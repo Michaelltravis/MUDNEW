@@ -134,7 +134,11 @@ class Player(Character):
 
         # Player flags
         self.flags = set()
-        
+
+        # Command system
+        self.last_command = ""  # For ! repeat
+        self.custom_aliases = {}  # Personal alias system
+
         # Timestamps
         self.created_at = datetime.now()
         self.last_login = datetime.now()
@@ -346,6 +350,7 @@ class Player(Character):
                          for slot, item in self.equipment.items()},
             'affects': AffectManager.save_affects(self),
             'companions': self._save_companions(),
+            'custom_aliases': self.custom_aliases,
             'created_at': self.created_at.isoformat(),
             'last_login': self.last_login.isoformat(),
             'total_playtime': self.total_playtime,
@@ -411,6 +416,7 @@ class Player(Character):
             player.active_quests = [ActiveQuest.from_dict(q) for q in data.get('active_quests', [])]
 
             player.flags = set(data.get('flags', []))
+            player.custom_aliases = data.get('custom_aliases', {})
 
             # Load affects using AffectManager
             affects_data = data.get('affects', [])

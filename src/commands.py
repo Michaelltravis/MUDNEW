@@ -51,13 +51,37 @@ class CommandHandler:
     @classmethod
     async def execute(cls, player: 'Player', cmd: str, args: List[str]):
         """Execute a command."""
-        # Check aliases
+        original_cmd = cmd
+
+        # Check custom player aliases first
+        if cmd in player.custom_aliases:
+            cmd = player.custom_aliases[cmd]
+
+        # Check built-in aliases
         cmd = cls.ALIASES.get(cmd, cmd)
-        
-        # Find the command method
+
+        # Try exact match first
         method_name = f'cmd_{cmd}'
         method = getattr(cls, method_name, None)
-        
+
+        # If no exact match, try partial matching
+        if not method:
+            matches = []
+            for attr_name in dir(cls):
+                if attr_name.startswith('cmd_'):
+                    command_name = attr_name[4:]  # Remove 'cmd_' prefix
+                    if command_name.startswith(cmd):
+                        matches.append((command_name, getattr(cls, attr_name)))
+
+            if len(matches) == 1:
+                # Single match found
+                method = matches[0][1]
+            elif len(matches) > 1:
+                # Multiple matches - ambiguous
+                match_names = ', '.join([m[0] for m in matches])
+                await player.send(f"Ambiguous command '{original_cmd}'. Could be: {match_names}")
+                return
+
         if method:
             await method(player, args)
         else:
@@ -65,7 +89,14 @@ class CommandHandler:
             if cmd in Config.DIRECTIONS:
                 await cls.cmd_move(player, cmd)
             else:
-                await player.send(f"Huh?!? '{cmd}' is not a valid command. Type 'help' for a list.")
+                # Check partial direction matching
+                dir_matches = [d for d in Config.DIRECTIONS if d.startswith(cmd)]
+                if len(dir_matches) == 1:
+                    await cls.cmd_move(player, dir_matches[0])
+                elif len(dir_matches) > 1:
+                    await player.send(f"Ambiguous direction '{original_cmd}'. Could be: {', '.join(dir_matches)}")
+                else:
+                    await player.send(f"Huh?!? '{original_cmd}' is not a valid command. Type 'help' for a list.")
     
     # ==================== MOVEMENT ====================
     
@@ -701,9 +732,23 @@ class CommandHandler:
         
     @classmethod
     async def cmd_practice(cls, player: 'Player', args: List[str]):
-        """Practice skills/spells."""
+        """Practice skills/spells - must be at a guild master or trainer."""
         c = player.config.COLORS
-        
+
+        # Check for trainer/guildmaster in room
+        has_trainer = False
+        from mobs import Mobile
+        if player.room:
+            for char in player.room.characters:
+                if isinstance(char, Mobile) and char.special in ('trainer', 'guildmaster'):
+                    has_trainer = True
+                    break
+
+        if not has_trainer:
+            await player.send(f"{c['red']}You must find a guild master or trainer to practice!{c['reset']}")
+            await player.send(f"{c['yellow']}Trainers can be found in the guilds around town.{c['reset']}")
+            return
+
         if not args:
             # Show what can be practiced
             await player.send(f"{c['cyan']}You have {player.practices} practice sessions.{c['reset']}")
@@ -2927,3 +2972,53 @@ class CommandHandler:
         # Disconnect
         if player.connection:
             await player.connection.disconnect()
+
+    @classmethod
+    async def cmd_alias(cls, player: 'Player', args: List[str]):
+        """Create, view, or remove personal command aliases.
+
+        Usage:
+            alias              - List all your aliases
+            alias <word>       - Show what <word> is aliased to
+            alias <word> <cmd> - Create alias <word> for <cmd>
+            unalias <word>     - Remove an alias
+        """
+        c = player.config.COLORS
+
+        if not args:
+            # List all aliases
+            if not player.custom_aliases:
+                await player.send("You have no aliases defined.")
+            else:
+                await player.send(f"{c['cyan']}Your Aliases:{c['reset']}")
+                for alias, command in sorted(player.custom_aliases.items()):
+                    await player.send(f"  {c['bright_green']}{alias}{c['white']} -> {c['bright_yellow']}{command}{c['reset']}")
+        elif len(args) == 1:
+            # Show specific alias
+            alias_word = args[0].lower()
+            if alias_word in player.custom_aliases:
+                await player.send(f"{c['bright_green']}{alias_word}{c['white']} is aliased to: {c['bright_yellow']}{player.custom_aliases[alias_word]}{c['reset']}")
+            else:
+                await player.send(f"You have no alias for '{alias_word}'.")
+        else:
+            # Create new alias
+            alias_word = args[0].lower()
+            command = ' '.join(args[1:])
+            player.custom_aliases[alias_word] = command
+            await player.send(f"{c['bright_green']}Alias created:{c['white']} {alias_word} -> {command}{c['reset']}")
+
+    @classmethod
+    async def cmd_unalias(cls, player: 'Player', args: List[str]):
+        """Remove a personal alias."""
+        c = player.config.COLORS
+
+        if not args:
+            await player.send("Usage: unalias <word>")
+            return
+
+        alias_word = args[0].lower()
+        if alias_word in player.custom_aliases:
+            del player.custom_aliases[alias_word]
+            await player.send(f"{c['bright_green']}Alias '{alias_word}' removed.{c['reset']}")
+        else:
+            await player.send(f"You have no alias for '{alias_word}'.")

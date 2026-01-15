@@ -1,0 +1,374 @@
+{
+  "number": 35,
+  "name": "The Sewers of Midgaard",
+  "builders": "Realmers",
+  "lifespan": 30,
+  "reset_mode": 2,
+  "top": 3599,
+  "rooms": {
+    "3500": {
+      "vnum": 3500,
+      "name": "A Dark Sewer Entrance",
+      "description": "You stand at the entrance to Midgaard's ancient sewer system.\nA rusty iron grate leads down into darkness, and the smell of decay\nwafts up from below. Water drips from the ceiling, echoing in the\nconfined space. This appears to be the only way into the sewers from\nthe Thieves' Guild.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "up": {
+          "to_room": 3012,
+          "description": "Up to the Thieves' Guild"
+        },
+        "east": {
+          "to_room": 3501,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3500,
+          "max": 2
+        }
+      ],
+      "obj_resets": []
+    },
+    "3501": {
+      "vnum": 3501,
+      "name": "A Narrow Sewer Tunnel",
+      "description": "The tunnel is barely wide enough for a person to walk upright.\nSlime covers the walls, and rats scurry away as you approach. A foul\nstream of water flows slowly through the center of the passage. The\ntunnel continues east and west.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 3500,
+          "description": null
+        },
+        "east": {
+          "to_room": 3502,
+          "description": null
+        },
+        "south": {
+          "to_room": 3505,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3500,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "3502": {
+      "vnum": 3502,
+      "name": "Sewer Junction",
+      "description": "Four tunnels meet here in a small chamber. The ceiling is higher\nhere, and you can see ancient brickwork that has mostly crumbled away.\nWater flows in from the north and continues south. Exits lead in all\nfour directions.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3503,
+          "description": null
+        },
+        "south": {
+          "to_room": 3506,
+          "description": null
+        },
+        "east": {
+          "to_room": 3508,
+          "description": null
+        },
+        "west": {
+          "to_room": 3501,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3501,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "3503": {
+      "vnum": 3503,
+      "name": "The Rat King's Lair",
+      "description": "This chamber reeks of decay and filth. Hundreds of rats swarm over\npiles of refuse, and in the center sits a massive, bloated rat that\nappears to be their king. The creature's eyes gleam with unnatural\nintelligence. This is clearly a dangerous place.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 3502,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3502,
+          "max": 1
+        },
+        {
+          "vnum": 3500,
+          "max": 3
+        }
+      ],
+      "obj_resets": []
+    },
+    "3504": {
+      "vnum": 3504,
+      "name": "A Hidden Sewer Exit",
+      "description": "A narrow passage leads up to a rusty grate. Daylight filters through\nthe gaps, and you can hear the sounds of the city above. This appears\nto be an exit to the city streets. A ladder leads up through the grate.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "up": {
+          "to_room": 3005,
+          "description": "Up to Main Street West"
+        },
+        "north": {
+          "to_room": 3505,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "3505": {
+      "vnum": 3505,
+      "name": "Flooded Sewer Passage",
+      "description": "This section of the sewers is partially flooded. Dark water comes up\nto your knees, and you can feel things brushing against your legs in\nthe murk. The passage continues north to what appears to be an exit,\nand south back into the sewer system.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3504,
+          "description": null
+        },
+        "south": {
+          "to_room": 3501,
+          "description": null
+        },
+        "east": {
+          "to_room": 3507,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3503,
+          "max": 2
+        }
+      ],
+      "obj_resets": []
+    },
+    "3506": {
+      "vnum": 3506,
+      "name": "A Fetid Pool",
+      "description": "This chamber contains a large pool of stagnant, foul-smelling water.\nThings move beneath the surface - you hope they're just fish. The walls\nare covered in slime and algae. A passage leads north back into the\ntunnel system.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3502,
+          "description": null
+        },
+        "east": {
+          "to_room": 3509,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3503,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 52,
+          "max": 1
+        }
+      ]
+    },
+    "3507": {
+      "vnum": 3507,
+      "name": "Narrow Side Tunnel",
+      "description": "This cramped tunnel branches off from the main sewer. You have to\ncrouch to move through here. The walls are rough and unfinished,\nsuggesting this was a hastily dug passage. Rats nest in the cracks.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 3505,
+          "description": null
+        },
+        "south": {
+          "to_room": 3508,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3500,
+          "max": 2
+        }
+      ],
+      "obj_resets": []
+    },
+    "3508": {
+      "vnum": 3508,
+      "name": "Ancient Storage Chamber",
+      "description": "This room was once used to store supplies for the city above. Now it's\nfilled with broken crates and rotting sacks. A few items of value might\nstill be hidden among the debris. Passages lead north and west.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3507,
+          "description": null
+        },
+        "west": {
+          "to_room": 3502,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3501,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 52,
+          "max": 1
+        },
+        {
+          "vnum": 1,
+          "max": 1
+        }
+      ]
+    },
+    "3509": {
+      "vnum": 3509,
+      "name": "The Collector's Den",
+      "description": "This chamber appears to be the lair of something that collects\nshiny objects. Coins, bits of jewelry, and other trinkets are scattered\nabout. A large nest made of rags and stolen goods sits in one corner.\nWhatever lives here is clearly territorial.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 3506,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3504,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 52,
+          "max": 2
+        }
+      ]
+    }
+  },
+  "mobs": {
+    "3500": {
+      "vnum": 3500,
+      "name": "a sewer rat",
+      "short_desc": "A large sewer rat",
+      "long_desc": "A large rat with matted fur scurries around, looking for food.",
+      "level": 1,
+      "hp_dice": "1d6+5",
+      "damage_dice": "1d3",
+      "gold": 0,
+      "exp": 10,
+      "alignment": 0,
+      "flags": [],
+      "special": null
+    },
+    "3501": {
+      "vnum": 3501,
+      "name": "a giant centipede",
+      "short_desc": "A giant centipede",
+      "long_desc": "A massive centipede with glistening chitin crawls along the walls.",
+      "level": 2,
+      "hp_dice": "2d6+10",
+      "damage_dice": "1d4",
+      "gold": 0,
+      "exp": 25,
+      "alignment": 0,
+      "flags": [],
+      "special": null
+    },
+    "3502": {
+      "vnum": 3502,
+      "name": "the Rat King",
+      "short_desc": "The Rat King",
+      "long_desc": "An enormous, bloated rat with malevolent intelligence in its eyes.",
+      "level": 5,
+      "hp_dice": "5d8+25",
+      "damage_dice": "1d6+2",
+      "gold": 50,
+      "exp": 150,
+      "alignment": -300,
+      "flags": [
+        "sentinel"
+      ],
+      "special": null
+    },
+    "3503": {
+      "vnum": 3503,
+      "name": "a slime creature",
+      "short_desc": "A pulsating slime creature",
+      "long_desc": "A blob of animated slime oozes across the floor.",
+      "level": 3,
+      "hp_dice": "3d6+15",
+      "damage_dice": "1d5",
+      "gold": 0,
+      "exp": 40,
+      "alignment": 0,
+      "flags": [],
+      "special": null
+    },
+    "3504": {
+      "vnum": 3504,
+      "name": "a filthy scavenger",
+      "short_desc": "A filthy scavenger",
+      "long_desc": "A ragged figure picks through refuse, collecting shiny objects.",
+      "level": 4,
+      "hp_dice": "4d6+20",
+      "damage_dice": "1d5+1",
+      "gold": 25,
+      "exp": 75,
+      "alignment": -100,
+      "flags": [
+        "thief",
+        "sentinel"
+      ],
+      "special": null
+    }
+  },
+  "objects": {
+    "52": {
+      "vnum": 52,
+      "name": "a rusty coin",
+      "short_desc": "a rusty old coin",
+      "room_desc": "A rusty coin lies here.",
+      "type": "money",
+      "weight": 0,
+      "cost": 5
+    }
+  }
+}

@@ -312,12 +312,25 @@ class Connection:
         if not line:
             await self.send_prompt()
             return
-            
+
+        # Handle ! to repeat last command
+        if line.strip() == '!':
+            if self.player.last_command:
+                line = self.player.last_command
+                await self.send(f"Repeating: {line}\r\n")
+            else:
+                await self.send("No previous command to repeat.\r\n")
+                await self.send_prompt()
+                return
+
+        # Store command for ! repeat
+        self.player.last_command = line
+
         # Parse command and arguments
         parts = line.split()
         cmd = parts[0].lower()
         args = parts[1:] if len(parts) > 1 else []
-        
+
         # Execute command
         await self.player.execute_command(cmd, args)
         await self.send_prompt()

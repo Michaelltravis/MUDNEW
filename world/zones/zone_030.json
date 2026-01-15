@@ -115,7 +115,7 @@
     "3005": {
       "vnum": 3005,
       "name": "Main Street West",
-      "description": "The western stretch of Main Street is home to the city's craftsmen.\nA carpenter's shop, a tanner's stall, and a jeweler's boutique line\nthe street. The sounds of industry fill the air. To the north, a sign\nreading 'The Prancing Pony Inn' swings gently in the breeze.",
+      "description": "The western stretch of Main Street is home to the city's craftsmen.\nA carpenter's shop, a tanner's stall, and a jeweler's boutique line\nthe street. The sounds of industry fill the air. To the north, a sign\nreading 'The Prancing Pony Inn' swings gently in the breeze. An old\nsewer grate is set into the street here.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -130,6 +130,10 @@
         "north": {
           "to_room": 3030,
           "description": null
+        },
+        "down": {
+          "to_room": 3504,
+          "description": "Down through the sewer grate"
         }
       },
       "extra_descs": {},
@@ -209,13 +213,17 @@
     "3012": {
       "vnum": 3012,
       "name": "The Thieves' Guild",
-      "description": "You've discovered the legendary Thieves' Guild of Midgaard. The\nunderground chamber is dimly lit by guttering torches. Hooded figures\nconverse in hushed tones at tables scattered about the room. A bar\nserves drinks of dubious origin, and a guildmaster sits in shadows.",
+      "description": "You've discovered the legendary Thieves' Guild of Midgaard. The\nunderground chamber is dimly lit by guttering torches. Hooded figures\nconverse in hushed tones at tables scattered about the room. A bar\nserves drinks of dubious origin, and a guildmaster sits in shadows.\nA dark passage leads down into what appears to be the sewers.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
         "up": {
           "to_room": 3011,
           "description": null
+        },
+        "down": {
+          "to_room": 3500,
+          "description": "Down to the sewers"
         }
       },
       "extra_descs": {},
