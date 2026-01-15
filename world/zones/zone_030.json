@@ -385,8 +385,7 @@
       "exp": 400,
       "alignment": -200,
       "flags": [
-        "thief",
-        "aggressive"
+        "thief"
       ],
       "special": null
     },
@@ -502,6 +501,236 @@
       "type": "other",
       "weight": 100,
       "cost": 0
+    },
+    "30": {
+      "vnum": 30,
+      "name": "an iron helmet",
+      "short_desc": "an iron helmet",
+      "room_desc": "An iron helmet lies here.",
+      "type": "armor",
+      "wear_slot": "head",
+      "weight": 3,
+      "cost": 25,
+      "armor_class": 2
+    },
+    "31": {
+      "vnum": 31,
+      "name": "a suit of chainmail",
+      "short_desc": "a suit of chainmail",
+      "room_desc": "A suit of chainmail armor lies here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 20,
+      "cost": 100,
+      "armor_class": 5
+    },
+    "32": {
+      "vnum": 32,
+      "name": "iron greaves",
+      "short_desc": "a pair of iron greaves",
+      "room_desc": "Iron leg armor lies here.",
+      "type": "armor",
+      "wear_slot": "legs",
+      "weight": 8,
+      "cost": 40,
+      "armor_class": 2
+    },
+    "33": {
+      "vnum": 33,
+      "name": "a wooden shield",
+      "short_desc": "a wooden shield",
+      "room_desc": "A wooden shield lies here.",
+      "type": "armor",
+      "wear_slot": "shield",
+      "weight": 5,
+      "cost": 30,
+      "armor_class": 3
+    },
+    "34": {
+      "vnum": 34,
+      "name": "a wooden staff",
+      "short_desc": "a simple wooden staff",
+      "room_desc": "A wooden staff lies here.",
+      "type": "weapon",
+      "weight": 4,
+      "cost": 20,
+      "damage_dice": "1d6",
+      "weapon_type": "bludgeon"
+    },
+    "35": {
+      "vnum": 35,
+      "name": "cloth robes",
+      "short_desc": "plain cloth robes",
+      "room_desc": "Simple cloth robes lie here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 2,
+      "cost": 20,
+      "armor_class": 1
+    },
+    "36": {
+      "vnum": 36,
+      "name": "a spellbook",
+      "short_desc": "a leather-bound spellbook",
+      "room_desc": "A spellbook lies here.",
+      "type": "other",
+      "weight": 3,
+      "cost": 50
+    },
+    "37": {
+      "vnum": 37,
+      "name": "leather armor",
+      "short_desc": "leather armor",
+      "room_desc": "Leather armor lies here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 10,
+      "cost": 50,
+      "armor_class": 3
+    },
+    "38": {
+      "vnum": 38,
+      "name": "a holy symbol",
+      "short_desc": "a silver holy symbol",
+      "room_desc": "A holy symbol lies here.",
+      "type": "worn",
+      "wear_slot": "neck1",
+      "weight": 1,
+      "cost": 25
+    },
+    "39": {
+      "vnum": 39,
+      "name": "a leather jerkin",
+      "short_desc": "a supple leather jerkin",
+      "room_desc": "A leather jerkin lies here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 5,
+      "cost": 35,
+      "armor_class": 2
+    },
+    "40": {
+      "vnum": 40,
+      "name": "lockpicks",
+      "short_desc": "a set of lockpicks",
+      "room_desc": "A set of lockpicks lies here.",
+      "type": "other",
+      "weight": 1,
+      "cost": 30
+    },
+    "41": {
+      "vnum": 41,
+      "name": "studded leather",
+      "short_desc": "studded leather armor",
+      "room_desc": "Studded leather armor lies here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 15,
+      "cost": 75,
+      "armor_class": 4
+    },
+    "42": {
+      "vnum": 42,
+      "name": "a quiver",
+      "short_desc": "a quiver of arrows",
+      "room_desc": "A quiver of arrows lies here.",
+      "type": "other",
+      "weight": 3,
+      "cost": 20
+    },
+    "43": {
+      "vnum": 43,
+      "name": "a dark staff",
+      "short_desc": "a dark twisted staff",
+      "room_desc": "A dark, twisted staff lies here.",
+      "type": "weapon",
+      "weight": 4,
+      "cost": 25,
+      "damage_dice": "1d6",
+      "weapon_type": "bludgeon"
+    },
+    "44": {
+      "vnum": 44,
+      "name": "dark robes",
+      "short_desc": "black robes with dark runes",
+      "room_desc": "Dark robes lie here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 3,
+      "cost": 30,
+      "armor_class": 1
+    },
+    "45": {
+      "vnum": 45,
+      "name": "an unholy symbol",
+      "short_desc": "a dark unholy symbol",
+      "room_desc": "An unholy symbol lies here.",
+      "type": "worn",
+      "wear_slot": "neck1",
+      "weight": 1,
+      "cost": 25
+    },
+    "46": {
+      "vnum": 46,
+      "name": "a leather vest",
+      "short_desc": "a decorated leather vest",
+      "room_desc": "A leather vest lies here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 4,
+      "cost": 40,
+      "armor_class": 2
+    },
+    "47": {
+      "vnum": 47,
+      "name": "a lute",
+      "short_desc": "a finely crafted lute",
+      "room_desc": "A lute lies here.",
+      "type": "other",
+      "weight": 2,
+      "cost": 50
+    },
+    "48": {
+      "vnum": 48,
+      "name": "a stiletto",
+      "short_desc": "a sharp stiletto",
+      "room_desc": "A stiletto dagger lies here.",
+      "type": "weapon",
+      "weight": 1,
+      "cost": 25,
+      "damage_dice": "1d4+1",
+      "weapon_type": "pierce"
+    },
+    "49": {
+      "vnum": 49,
+      "name": "black leather",
+      "short_desc": "form-fitting black leather armor",
+      "room_desc": "Black leather armor lies here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 6,
+      "cost": 45,
+      "armor_class": 2
+    },
+    "50": {
+      "vnum": 50,
+      "name": "a dark cloak",
+      "short_desc": "a shadowy dark cloak",
+      "room_desc": "A dark cloak lies here.",
+      "type": "armor",
+      "wear_slot": "about",
+      "weight": 2,
+      "cost": 20,
+      "armor_class": 1
+    },
+    "51": {
+      "vnum": 51,
+      "name": "a poison vial",
+      "short_desc": "a vial of poison",
+      "room_desc": "A vial of poison lies here.",
+      "type": "other",
+      "weight": 1,
+      "cost": 30
     }
   }
 }

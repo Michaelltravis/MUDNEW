@@ -192,37 +192,79 @@ class Player(Character):
     def _give_starting_equipment(self):
         """Give starting equipment based on class."""
         from objects import create_object
-        
+
         # Everyone gets basic items
         bread = create_object(1)  # Bread
         if bread:
             self.inventory.append(bread)
-            
+
         waterskin = create_object(2)  # Waterskin
         if waterskin:
             self.inventory.append(waterskin)
-            
+
         torch = create_object(3)  # Torch
         if torch:
             self.inventory.append(torch)
-            
-        # Class-specific starting weapon
-        weapons = {
-            'warrior': 10,    # Short sword
-            'mage': 11,       # Dagger
-            'cleric': 12,     # Mace
-            'thief': 11,      # Dagger
-            'ranger': 13,     # Short bow
-            'paladin': 10,    # Short sword
-            'necromancer': 11, # Dagger
-            'bard': 14,       # Rapier
-            'assassin': 11,   # Dagger
+
+        # Class-specific equipment sets
+        equipment_sets = {
+            'warrior': {
+                'wield': 10,    # Short sword
+                'head': 30,     # Iron helmet
+                'body': 31,     # Chainmail
+                'legs': 32,     # Iron greaves
+                'shield': 33,   # Wooden shield
+            },
+            'mage': {
+                'wield': 34,    # Wooden staff
+                'body': 35,     # Cloth robes
+                'hold': 36,     # Spellbook
+            },
+            'cleric': {
+                'wield': 12,    # Mace
+                'body': 37,     # Leather armor
+                'neck1': 38,    # Holy symbol
+            },
+            'thief': {
+                'wield': 11,    # Dagger
+                'body': 39,     # Leather jerkin
+                'hold': 40,     # Lockpicks
+            },
+            'ranger': {
+                'wield': 13,    # Short bow
+                'body': 41,     # Studded leather
+                'hold': 42,     # Quiver of arrows
+            },
+            'paladin': {
+                'wield': 10,    # Short sword
+                'body': 31,     # Chainmail
+                'shield': 33,   # Wooden shield
+                'neck1': 38,    # Holy symbol
+            },
+            'necromancer': {
+                'wield': 43,    # Dark staff
+                'body': 44,     # Dark robes
+                'neck1': 45,    # Unholy symbol
+            },
+            'bard': {
+                'wield': 14,    # Rapier
+                'body': 46,     # Leather vest
+                'hold': 47,     # Lute
+            },
+            'assassin': {
+                'wield': 48,    # Stiletto
+                'body': 49,     # Black leather armor
+                'about': 50,    # Dark cloak
+                'hold': 51,     # Poison vial
+            },
         }
-        
-        weapon_vnum = weapons.get(self.char_class, 10)
-        weapon = create_object(weapon_vnum)
-        if weapon:
-            self.equipment['wield'] = weapon
+
+        # Equip class-specific gear
+        class_equipment = equipment_sets.get(self.char_class, {})
+        for slot, vnum in class_equipment.items():
+            item = create_object(vnum)
+            if item:
+                self.equipment[slot] = item
             
     def set_password(self, password: str):
         """Set the player's password (hashed)."""
