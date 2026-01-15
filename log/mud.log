@@ -1,0 +1,96 @@
+2026-01-14 23:15:20,543 - RealmsMUD - INFO - ============================================================
+2026-01-14 23:15:20,543 - RealmsMUD - INFO - RealmsMUD - Fantasy Multi-User Dungeon
+2026-01-14 23:15:20,543 - RealmsMUD - INFO - ============================================================
+2026-01-14 23:15:20,543 - RealmsMUD - INFO - Initializing game systems...
+2026-01-14 23:15:20,543 - RealmsMUD.World - INFO - Loading world...
+2026-01-14 23:15:20,543 - RealmsMUD.World - WARNING - Zones directory not found: /home/claude/fantasymud/world/zones
+2026-01-14 23:15:20,543 - RealmsMUD.World - INFO - No zones found, creating default world...
+2026-01-14 23:15:20,554 - RealmsMUD.WorldBuilder - INFO - Building default fantasy world...
+2026-01-14 23:15:20,555 - RealmsMUD.WorldBuilder - INFO - Saved zone 0: Limbo - The Void
+2026-01-14 23:15:20,556 - RealmsMUD.WorldBuilder - INFO - Saved zone 30: The City of Midgaard
+2026-01-14 23:15:20,557 - RealmsMUD.WorldBuilder - INFO - Saved zone 40: Haon Dor Forest
+2026-01-14 23:15:20,557 - RealmsMUD.WorldBuilder - INFO - Saved zone 50: Greystone Castle
+2026-01-14 23:15:20,558 - RealmsMUD.WorldBuilder - INFO - Saved zone 60: The Goblin Warrens
+2026-01-14 23:15:20,558 - RealmsMUD.WorldBuilder - INFO - Saved zone 70: The Forgotten Crypt
+2026-01-14 23:15:20,559 - RealmsMUD.WorldBuilder - INFO - Saved zone 80: The Dragon's Domain
+2026-01-14 23:15:20,559 - RealmsMUD.WorldBuilder - INFO - Default world built successfully!
+2026-01-14 23:15:20,573 - RealmsMUD.World - INFO - World loaded: 7 zones, 42 rooms
+2026-01-14 23:15:20,573 - RealmsMUD - INFO - Initialization complete!
+2026-01-14 23:15:20,573 - RealmsMUD - INFO - Starting server on port 4000...
+2026-01-14 23:15:20,573 - RealmsMUD.Server - INFO - Server listening on 0.0.0.0:4000
+2026-01-14 23:15:25,383 - RealmsMUD - INFO - Shutting down RealmsMUD...
+2026-01-14 23:15:25,383 - RealmsMUD.World - INFO - Saved all 0 players
+2026-01-14 23:15:25,383 - RealmsMUD.Server - INFO - Shutting down server...
+2026-01-14 23:15:25,383 - RealmsMUD - INFO - Shutdown complete. Farewell!
+2026-01-14 23:15:25,384 - RealmsMUD - INFO - Shutting down RealmsMUD...
+2026-01-14 23:15:25,384 - RealmsMUD.World - INFO - Saved all 0 players
+2026-01-14 23:15:25,384 - RealmsMUD.Server - INFO - Shutting down server...
+2026-01-14 23:15:25,384 - RealmsMUD - INFO - Shutdown complete. Farewell!
+2026-01-14 23:15:25,418 - RealmsMUD - INFO - Shutting down RealmsMUD...
+2026-01-14 23:15:25,418 - RealmsMUD.World - INFO - Saved all 0 players
+2026-01-14 23:15:25,418 - RealmsMUD.Server - INFO - Shutting down server...
+2026-01-14 23:15:25,418 - RealmsMUD - INFO - Shutdown complete. Farewell!
+2026-01-14 15:28:12,252 - RealmsMUD - INFO - ============================================================
+2026-01-14 15:28:12,252 - RealmsMUD - INFO - RealmsMUD - Fantasy Multi-User Dungeon
+2026-01-14 15:28:12,253 - RealmsMUD - INFO - ============================================================
+2026-01-14 15:28:12,253 - RealmsMUD - INFO - Initializing game systems...
+2026-01-14 15:28:12,253 - RealmsMUD.World - INFO - Loading world...
+2026-01-14 15:28:12,254 - RealmsMUD.World - INFO - Loaded zone 0: Limbo - The Void (2 rooms)
+2026-01-14 15:28:12,255 - RealmsMUD.World - INFO - Loaded zone 30: The City of Midgaard (12 rooms)
+2026-01-14 15:28:12,255 - RealmsMUD.World - INFO - Loaded zone 40: Haon Dor Forest (6 rooms)
+2026-01-14 15:28:12,255 - RealmsMUD.World - INFO - Loaded zone 50: Greystone Castle (7 rooms)
+2026-01-14 15:28:12,255 - RealmsMUD.World - INFO - Loaded zone 60: The Goblin Warrens (6 rooms)
+2026-01-14 15:28:12,255 - RealmsMUD.World - INFO - Loaded zone 70: The Forgotten Crypt (6 rooms)
+2026-01-14 15:28:12,256 - RealmsMUD.World - INFO - Loaded zone 80: The Dragon's Domain (3 rooms)
+2026-01-14 15:28:12,264 - RealmsMUD.World - INFO - World loaded: 7 zones, 42 rooms
+2026-01-14 15:28:12,264 - RealmsMUD - INFO - Initialization complete!
+2026-01-14 15:28:12,265 - RealmsMUD - INFO - Starting server on port 4000...
+2026-01-14 15:28:12,265 - RealmsMUD.Server - INFO - Server listening on 0.0.0.0:4000
+2026-01-14 15:28:42,204 - RealmsMUD.Server - INFO - New connection from ('127.0.0.1', 50427)
+2026-01-14 15:30:59,856 - RealmsMUD.Server - INFO - New connection from ('127.0.0.1', 63804)
+2026-01-14 15:31:19,660 - RealmsMUD.Server - INFO - Connection closed: ('127.0.0.1', 50427)
+2026-01-14 15:32:50,351 - RealmsMUD.Player - INFO - Created new character: Electra (elf necromancer)
+2026-01-14 15:32:50,354 - RealmsMUD.World - INFO - Player entered world: Electra
+2026-01-14 15:33:00,088 - RealmsMUD.Server - INFO - Connection closed: ('127.0.0.1', 63804)
+2026-01-14 15:33:00,098 - RealmsMUD.World - INFO - Player left world: Electra
+2026-01-14 15:33:00,098 - RealmsMUD.Server - ERROR - Error sending to ('127.0.0.1', 63804): Connection lost
+2026-01-14 15:33:00,098 - RealmsMUD.Server - INFO - Connection closed: ('127.0.0.1', 63804)
+2026-01-14 15:33:00,098 - RealmsMUD.World - INFO - Player left world: Electra
+2026-01-14 15:33:35,765 - RealmsMUD.Server - INFO - New connection from ('127.0.0.1', 56703)
+2026-01-14 15:33:39,099 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-01-14 15:33:40,244 - RealmsMUD.Player - INFO - Loaded player: Electra
+2026-01-14 15:33:40,244 - RealmsMUD.World - INFO - Player entered world: Electra
+2026-01-14 15:36:36,343 - RealmsMUD.Server - INFO - Connection closed: ('127.0.0.1', 56703)
+2026-01-14 15:36:36,344 - RealmsMUD.World - INFO - Player left world: Electra
+2026-01-14 15:36:36,345 - RealmsMUD.Server - ERROR - Error sending to ('127.0.0.1', 56703): Connection lost
+2026-01-14 15:36:36,346 - RealmsMUD.Server - INFO - Connection closed: ('127.0.0.1', 56703)
+2026-01-14 15:36:36,347 - RealmsMUD.World - INFO - Player left world: Electra
+2026-01-14 15:36:54,973 - RealmsMUD - INFO - Shutdown requested...
+2026-01-14 15:36:54,973 - RealmsMUD - INFO - Shutting down RealmsMUD...
+2026-01-14 15:36:54,973 - RealmsMUD.World - INFO - Saved all 0 players
+2026-01-14 15:36:54,973 - RealmsMUD.Server - INFO - Shutting down server...
+2026-01-14 15:36:54,973 - RealmsMUD - INFO - Shutdown complete. Farewell!
+2026-01-14 15:38:09,958 - RealmsMUD - INFO - ============================================================
+2026-01-14 15:38:09,958 - RealmsMUD - INFO - RealmsMUD - Fantasy Multi-User Dungeon
+2026-01-14 15:38:09,958 - RealmsMUD - INFO - ============================================================
+2026-01-14 15:38:09,974 - RealmsMUD - INFO - Initializing game systems...
+2026-01-14 15:38:09,974 - RealmsMUD.World - INFO - Loading world...
+2026-01-14 15:38:09,974 - RealmsMUD.World - INFO - Loaded zone 0: Limbo - The Void (2 rooms)
+2026-01-14 15:38:09,974 - RealmsMUD.World - INFO - Loaded zone 30: The City of Midgaard (12 rooms)
+2026-01-14 15:38:09,974 - RealmsMUD.World - INFO - Loaded zone 40: Haon Dor Forest (6 rooms)
+2026-01-14 15:38:09,974 - RealmsMUD.World - INFO - Loaded zone 50: Greystone Castle (7 rooms)
+2026-01-14 15:38:09,974 - RealmsMUD.World - INFO - Loaded zone 60: The Goblin Warrens (6 rooms)
+2026-01-14 15:38:09,974 - RealmsMUD.World - INFO - Loaded zone 70: The Forgotten Crypt (6 rooms)
+2026-01-14 15:38:09,974 - RealmsMUD.World - INFO - Loaded zone 80: The Dragon's Domain (3 rooms)
+2026-01-14 15:38:09,974 - RealmsMUD.World - INFO - World loaded: 7 zones, 42 rooms
+2026-01-14 15:38:09,974 - RealmsMUD - INFO - Initialization complete!
+2026-01-14 15:38:09,974 - RealmsMUD - INFO - Starting server on port 4000...
+2026-01-14 15:38:09,974 - RealmsMUD.Server - INFO - Server listening on 0.0.0.0:4000
+2026-01-14 15:38:50,238 - RealmsMUD.Server - INFO - New connection from ('127.0.0.1', 49678)
+2026-01-14 15:38:55,113 - RealmsMUD.Player - INFO - Loaded player: Electra
+2026-01-14 15:38:55,113 - RealmsMUD.World - INFO - Player entered world: Electra
+2026-01-14 15:43:01,160 - RealmsMUD.Server - INFO - Connection closed: ('127.0.0.1', 49678)
+2026-01-14 15:43:01,160 - RealmsMUD.World - INFO - Player left world: Electra
+2026-01-14 15:43:01,160 - RealmsMUD.Server - ERROR - Error sending to ('127.0.0.1', 49678): Connection lost
+2026-01-14 15:43:01,160 - RealmsMUD.Server - INFO - Connection closed: ('127.0.0.1', 49678)
+2026-01-14 15:43:01,160 - RealmsMUD.World - INFO - Player left world: Electra

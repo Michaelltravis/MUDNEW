@@ -1,0 +1,197 @@
+{
+  "number": 80,
+  "name": "The Dragon's Domain",
+  "builders": "Realmers",
+  "lifespan": 60,
+  "reset_mode": 2,
+  "top": 8099,
+  "rooms": {
+    "8001": {
+      "vnum": 8001,
+      "name": "The Mountain Pass",
+      "description": "The path winds ever upward through jagged peaks. The air grows\nthin and cold. Far below, the world stretches out like a map.\nAhead, a cave mouth glows with inner fire - the lair of the \nlegendary dragon Scorathax.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 8002,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 8001,
+          "max": 2
+        }
+      ],
+      "obj_resets": []
+    },
+    "8002": {
+      "vnum": 8002,
+      "name": "The Dragon's Gate",
+      "description": "Massive stone pillars frame the entrance to the dragon's lair.\nAncient draconic runes warn all who approach. The ground is scorched\nblack, and the bones of previous challengers litter the area. Heat\nemanates from within.",
+      "sector_type": "dungeon",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 8001,
+          "description": null
+        },
+        "north": {
+          "to_room": 8003,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 8002,
+          "max": 2
+        }
+      ],
+      "obj_resets": []
+    },
+    "8003": {
+      "vnum": 8003,
+      "name": "The Treasure Cavern",
+      "description": "Mountains of gold, jewels, and magical artifacts fill this vast\ncavern - the accumulated hoard of centuries. The wealth here is\nbeyond imagination. And coiled atop it all, awaiting challengers...",
+      "sector_type": "dungeon",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 8002,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 8003,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 80,
+          "max": 1
+        },
+        {
+          "vnum": 81,
+          "max": 1
+        },
+        {
+          "vnum": 82,
+          "max": 1
+        }
+      ]
+    }
+  },
+  "mobs": {
+    "8001": {
+      "vnum": 8001,
+      "name": "a dragon-kin warrior",
+      "short_desc": "A scaled dragon-kin warrior",
+      "long_desc": "A humanoid with dragon features guards the path.",
+      "level": 35,
+      "hp_dice": "15d10+150",
+      "damage_dice": "3d6+8",
+      "gold": 100,
+      "exp": 4000,
+      "alignment": -500,
+      "flags": [
+        "aggressive"
+      ],
+      "special": "firebreath"
+    },
+    "8002": {
+      "vnum": 8002,
+      "name": "a fire elemental",
+      "short_desc": "A blazing fire elemental",
+      "long_desc": "A vaguely humanoid shape of living flame crackles here.",
+      "level": 30,
+      "hp_dice": "12d10+100",
+      "damage_dice": "3d8+6",
+      "gold": 0,
+      "exp": 3000,
+      "alignment": 0,
+      "flags": [
+        "aggressive"
+      ],
+      "special": "fireimmune"
+    },
+    "8003": {
+      "vnum": 8003,
+      "name": "Scorathax the Ancient",
+      "short_desc": "Scorathax the Ancient Red Dragon",
+      "long_desc": "A dragon of immense size and terrible majesty coils before you.\nScales like blood-red shields cover its massive form. Eyes like \nmolten gold regard you with ancient cunning. Smoke curls from its\nnostrils as it speaks in a voice like thunder: \"You dare enter my \ndomain, mortal? Then face the flames of eternity!\"",
+      "level": 50,
+      "hp_dice": "50d10+500",
+      "damage_dice": "5d10+15",
+      "gold": 10000,
+      "exp": 50000,
+      "alignment": -500,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "dragon"
+    }
+  },
+  "objects": {
+    "80": {
+      "vnum": 80,
+      "name": "Dragonsbane",
+      "short_desc": "the legendary sword Dragonsbane",
+      "room_desc": "A sword of legend gleams among the treasure.",
+      "type": "weapon",
+      "weight": 8,
+      "cost": 50000,
+      "damage_dice": "4d6",
+      "weapon_type": "slash",
+      "affects": [
+        {
+          "type": "hitroll",
+          "value": 5
+        },
+        {
+          "type": "damroll",
+          "value": 5
+        },
+        {
+          "type": "str",
+          "value": 2
+        }
+      ]
+    },
+    "81": {
+      "vnum": 81,
+      "name": "dragonscale armor",
+      "short_desc": "armor of red dragonscale",
+      "room_desc": "Armor crafted from dragon scales lies here.",
+      "type": "armor",
+      "weight": 30,
+      "cost": 40000,
+      "armor": 50,
+      "wear_slot": "body",
+      "affects": [
+        {
+          "type": "ac",
+          "value": -30
+        },
+        {
+          "type": "con",
+          "value": 2
+        }
+      ]
+    },
+    "82": {
+      "vnum": 82,
+      "name": "the dragon's hoard",
+      "short_desc": "a mountain of gold",
+      "room_desc": "An immense pile of gold and treasure dominates the cavern.",
+      "type": "money",
+      "weight": 1000,
+      "cost": 100000
+    }
+  }
+}

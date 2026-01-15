@@ -1,0 +1,349 @@
+{
+  "number": 60,
+  "name": "The Goblin Warrens",
+  "builders": "Realmers",
+  "lifespan": 15,
+  "reset_mode": 2,
+  "top": 6099,
+  "rooms": {
+    "6001": {
+      "vnum": 6001,
+      "name": "Cave Entrance",
+      "description": "The mouth of the cave yawns before you, a dark opening in the\nrocky hillside. The stench of goblin is unmistakable - smoke, \nrotting meat, and unwashed bodies. Crude warnings in goblin\npictographs mark the entrance. Torchlight flickers from within.",
+      "sector_type": "dungeon",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 4010,
+          "description": null
+        },
+        "north": {
+          "to_room": 6002,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 6001,
+          "max": 2
+        }
+      ],
+      "obj_resets": []
+    },
+    "6002": {
+      "vnum": 6002,
+      "name": "Goblin Guard Post",
+      "description": "A crude guard post has been established here. Broken furniture\nand gnawed bones litter the floor. Tunnels branch off in multiple\ndirections, leading deeper into the goblin warrens.",
+      "sector_type": "dungeon",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 6001,
+          "description": null
+        },
+        "north": {
+          "to_room": 6003,
+          "description": null
+        },
+        "east": {
+          "to_room": 6010,
+          "description": null
+        },
+        "west": {
+          "to_room": 6020,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 6001,
+          "max": 3
+        }
+      ],
+      "obj_resets": []
+    },
+    "6003": {
+      "vnum": 6003,
+      "name": "Goblin Common Area",
+      "description": "This large cavern serves as the common area for the goblin tribe.\nA fire pit smolders in the center, and rough pallets line the walls.\nGoblins go about their business - eating, squabbling, and sharpening\nweapons. The smell is overwhelming.",
+      "sector_type": "dungeon",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 6002,
+          "description": null
+        },
+        "north": {
+          "to_room": 6004,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 6002,
+          "max": 4
+        },
+        {
+          "vnum": 6003,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "6004": {
+      "vnum": 6004,
+      "name": "The Chieftain's Chamber",
+      "description": "The goblin chieftain's lair is surprisingly well-appointed by\ngoblin standards. A throne made of bones dominates one end, and\nstolen treasures are piled about. Wolf pelts cover the floor.\nThe chieftain rules here with an iron fist.",
+      "sector_type": "dungeon",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 6003,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 6004,
+          "max": 1
+        },
+        {
+          "vnum": 6005,
+          "max": 2
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 60,
+          "max": 1
+        },
+        {
+          "vnum": 61,
+          "max": 1
+        }
+      ]
+    },
+    "6010": {
+      "vnum": 6010,
+      "name": "The Slave Pens",
+      "description": "Iron cages line this damp chamber, holding the goblins' prisoners.\nThe captives - humans, elves, and halflings - reach out desperately\nthrough the bars. A goblin slaver cracks his whip to keep them quiet.",
+      "sector_type": "dungeon",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 6002,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 6006,
+          "max": 1
+        },
+        {
+          "vnum": 6007,
+          "max": 2
+        }
+      ],
+      "obj_resets": []
+    },
+    "6020": {
+      "vnum": 6020,
+      "name": "The Goblin Treasury",
+      "description": "The goblins have accumulated quite a hoard of stolen goods over\nthe years. Coins, gems, weapons, and armor are piled in heaps.\nMost of it is junk, but some items of value glint in the torchlight.",
+      "sector_type": "dungeon",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 6002,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 6001,
+          "max": 2
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 62,
+          "max": 3
+        },
+        {
+          "vnum": 63,
+          "max": 1
+        }
+      ]
+    }
+  },
+  "mobs": {
+    "6001": {
+      "vnum": 6001,
+      "name": "a goblin warrior",
+      "short_desc": "A snarling goblin warrior",
+      "long_desc": "A goblin in crude armor snarls at you, weapon ready.",
+      "level": 8,
+      "hp_dice": "3d10+25",
+      "damage_dice": "1d6+2",
+      "gold": 15,
+      "exp": 350,
+      "alignment": -500,
+      "flags": [
+        "aggressive"
+      ],
+      "special": null
+    },
+    "6002": {
+      "vnum": 6002,
+      "name": "a goblin",
+      "short_desc": "A mangy goblin",
+      "long_desc": "A small, wretched goblin scurries about.",
+      "level": 4,
+      "hp_dice": "2d10+10",
+      "damage_dice": "1d4+1",
+      "gold": 5,
+      "exp": 150,
+      "alignment": -300,
+      "flags": [
+        "aggressive",
+        "wimpy"
+      ],
+      "special": null
+    },
+    "6003": {
+      "vnum": 6003,
+      "name": "a goblin shaman",
+      "short_desc": "A goblin shaman",
+      "long_desc": "A goblin in feathers and bones chants dark magic.",
+      "level": 12,
+      "hp_dice": "4d10+40",
+      "damage_dice": "1d8+3",
+      "gold": 50,
+      "exp": 700,
+      "alignment": -600,
+      "flags": [
+        "caster"
+      ],
+      "special": "shaman"
+    },
+    "6004": {
+      "vnum": 6004,
+      "name": "the Goblin Chieftain",
+      "short_desc": "Grukthar the Goblin Chieftain",
+      "long_desc": "A massive goblin sits on a throne of bones, glaring at you.",
+      "level": 20,
+      "hp_dice": "10d10+100",
+      "damage_dice": "2d8+5",
+      "gold": 500,
+      "exp": 2500,
+      "alignment": -800,
+      "flags": [
+        "sentinel"
+      ],
+      "special": null
+    },
+    "6005": {
+      "vnum": 6005,
+      "name": "a hobgoblin bodyguard",
+      "short_desc": "A hobgoblin bodyguard",
+      "long_desc": "A large hobgoblin stands ready to defend the chieftain.",
+      "level": 15,
+      "hp_dice": "6d10+60",
+      "damage_dice": "2d6+4",
+      "gold": 30,
+      "exp": 1000,
+      "alignment": -600,
+      "flags": [
+        "helper"
+      ],
+      "special": null
+    },
+    "6006": {
+      "vnum": 6006,
+      "name": "a goblin slaver",
+      "short_desc": "A cruel goblin slaver",
+      "long_desc": "A goblin cracks a whip, tormenting the prisoners.",
+      "level": 10,
+      "hp_dice": "4d10+35",
+      "damage_dice": "1d8+2",
+      "gold": 25,
+      "exp": 500,
+      "alignment": -700,
+      "flags": [
+        "aggressive"
+      ],
+      "special": null
+    },
+    "6007": {
+      "vnum": 6007,
+      "name": "a prisoner",
+      "short_desc": "A pitiful prisoner",
+      "long_desc": "A ragged prisoner cowers in a cage.",
+      "level": 1,
+      "hp_dice": "1d10+5",
+      "damage_dice": "1d2",
+      "gold": 0,
+      "exp": 0,
+      "alignment": 0,
+      "flags": [
+        "wimpy"
+      ],
+      "special": null
+    }
+  },
+  "objects": {
+    "60": {
+      "vnum": 60,
+      "name": "the chieftain's battleaxe",
+      "short_desc": "a brutal battleaxe",
+      "room_desc": "A massive battleaxe lies here.",
+      "type": "weapon",
+      "weight": 12,
+      "cost": 400,
+      "damage_dice": "2d8",
+      "weapon_type": "cleave"
+    },
+    "61": {
+      "vnum": 61,
+      "name": "a pile of coins",
+      "short_desc": "a pile of gold coins",
+      "room_desc": "A pile of stolen gold coins glitters here.",
+      "type": "money",
+      "weight": 5,
+      "cost": 200
+    },
+    "62": {
+      "vnum": 62,
+      "name": "gold coins",
+      "short_desc": "some gold coins",
+      "room_desc": "Some gold coins are scattered here.",
+      "type": "money",
+      "weight": 1,
+      "cost": 50
+    },
+    "63": {
+      "vnum": 63,
+      "name": "a ring of protection",
+      "short_desc": "a silver ring",
+      "room_desc": "A silver ring glints among the treasure.",
+      "type": "armor",
+      "weight": 0,
+      "cost": 800,
+      "armor": 5,
+      "wear_slot": "finger1",
+      "affects": [
+        {
+          "type": "ac",
+          "value": -10
+        }
+      ]
+    }
+  }
+}

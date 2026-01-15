@@ -1,0 +1,507 @@
+{
+  "number": 30,
+  "name": "The City of Midgaard",
+  "builders": "Realmers",
+  "lifespan": 30,
+  "reset_mode": 2,
+  "top": 3099,
+  "rooms": {
+    "3001": {
+      "vnum": 3001,
+      "name": "The Temple of Midgaard",
+      "description": "You stand in the grand Temple of Midgaard, a place of healing and\nsanctuary for weary adventurers. Towering marble columns rise to a\nvaulted ceiling painted with scenes of ancient heroes. Soft candlelight\nilluminates the altar at the center, where priests tend to the wounded.\nThe exit leads south to the main square of the city.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "peaceful"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3002,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3001,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "3002": {
+      "vnum": 3002,
+      "name": "Temple Square",
+      "description": "The cobblestone square stretches before you, bustling with activity.\nMerchants hawk their wares, children play between the market stalls,\nand guards patrol the perimeter. The Temple of Midgaard rises to the\nnorth, its white marble gleaming in the sunlight. The main road extends\neast and west, while a narrow alley leads south.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3001,
+          "description": null
+        },
+        "east": {
+          "to_room": 3003,
+          "description": null
+        },
+        "west": {
+          "to_room": 3005,
+          "description": null
+        },
+        "south": {
+          "to_room": 3010,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3002,
+          "max": 2
+        }
+      ],
+      "obj_resets": []
+    },
+    "3003": {
+      "vnum": 3003,
+      "name": "Main Street East",
+      "description": "The eastern section of Main Street is lined with prosperous shops and\ntaverns. The smell of fresh bread wafts from a bakery, mingling with\nthe sound of a blacksmith's hammer. A large weapons shop stands to the\nnorth, its windows displaying gleaming swords and armor.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 3002,
+          "description": null
+        },
+        "east": {
+          "to_room": 3004,
+          "description": null
+        },
+        "north": {
+          "to_room": 3020,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "3004": {
+      "vnum": 3004,
+      "name": "East Gate of Midgaard",
+      "description": "The massive stone gates of Midgaard loom before you. Two enormous \ntowers flank the archway, and guards in chain mail scrutinize all who\npass. Beyond the gates, a dirt road leads east into the wilderness,\ntoward the Haon Dor forest. The safety of the city lies to the west.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 3003,
+          "description": null
+        },
+        "east": {
+          "to_room": 4001,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3002,
+          "max": 2
+        }
+      ],
+      "obj_resets": []
+    },
+    "3005": {
+      "vnum": 3005,
+      "name": "Main Street West",
+      "description": "The western stretch of Main Street is home to the city's craftsmen.\nA carpenter's shop, a tanner's stall, and a jeweler's boutique line\nthe street. The sounds of industry fill the air. To the north, a sign\nreading 'The Prancing Pony Inn' swings gently in the breeze.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3002,
+          "description": null
+        },
+        "west": {
+          "to_room": 3006,
+          "description": null
+        },
+        "north": {
+          "to_room": 3030,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "3006": {
+      "vnum": 3006,
+      "name": "West Gate of Midgaard",
+      "description": "The western gate of Midgaard opens onto a road leading to distant\nmountains. The gate is smaller than its eastern counterpart but no\nless fortified. Merchants with loaded wagons queue to enter the city,\ntheir goods bound for the markets. To the west, adventure awaits.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3005,
+          "description": null
+        },
+        "west": {
+          "to_room": 5001,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3002,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "3010": {
+      "vnum": 3010,
+      "name": "A Dark Alley",
+      "description": "This narrow alley winds between tall buildings, barely wide enough\nfor two people to pass. Shadows pool in the corners, and you can't\nshake the feeling of being watched. The city's less savory elements\nare known to frequent this area after dark.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3002,
+          "description": null
+        },
+        "south": {
+          "to_room": 3011,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3005,
+          "max": 2
+        }
+      ],
+      "obj_resets": []
+    },
+    "3011": {
+      "vnum": 3011,
+      "name": "A Dead End",
+      "description": "The alley ends abruptly at a crumbling brick wall. Graffiti marks\nthe stones, and broken bottles litter the ground. However, keen eyes\nmight notice that one section of the wall seems different from the\nrest - a hidden door, perhaps?",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3010,
+          "description": null
+        },
+        "down": {
+          "to_room": 3012,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "3012": {
+      "vnum": 3012,
+      "name": "The Thieves' Guild",
+      "description": "You've discovered the legendary Thieves' Guild of Midgaard. The\nunderground chamber is dimly lit by guttering torches. Hooded figures\nconverse in hushed tones at tables scattered about the room. A bar\nserves drinks of dubious origin, and a guildmaster sits in shadows.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "up": {
+          "to_room": 3011,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3006,
+          "max": 1
+        },
+        {
+          "vnum": 3005,
+          "max": 3
+        }
+      ],
+      "obj_resets": []
+    },
+    "3020": {
+      "vnum": 3020,
+      "name": "Grimtooth's Weapons Emporium",
+      "description": "Weapons of every description line the walls of this shop. Swords,\naxes, maces, and more exotic implements of destruction gleam under\nmagical lighting. A burly dwarf named Grimtooth tends the counter,\nhis own battleaxe never far from reach. Type 'list' to see his wares.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3003,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3003,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "3030": {
+      "vnum": 3030,
+      "name": "The Prancing Pony Inn",
+      "description": "The common room of the Prancing Pony is warm and inviting. A \ncheerful fire crackles in the hearth, and the smell of roasting meat\nfills the air. Travelers from far and wide gather here to share tales\nof adventure over mugs of ale. Rooms are available upstairs.",
+      "sector_type": "inside",
+      "flags": [
+        "peaceful"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3005,
+          "description": null
+        },
+        "up": {
+          "to_room": 3031,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3004,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 20,
+          "max": 1
+        }
+      ]
+    },
+    "3031": {
+      "vnum": 3031,
+      "name": "Upstairs Hallway",
+      "description": "A narrow hallway with doors leading to private rooms. The wooden\nfloor creaks underfoot. A window at the end provides a view of the\ncity below. This is a peaceful place where adventurers can rest.",
+      "sector_type": "inside",
+      "flags": [
+        "peaceful"
+      ],
+      "exits": {
+        "down": {
+          "to_room": 3030,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    }
+  },
+  "mobs": {
+    "3001": {
+      "vnum": 3001,
+      "name": "the temple healer",
+      "short_desc": "A kindly temple healer",
+      "long_desc": "A robed priest tends to the altar, ready to heal the wounded.",
+      "level": 25,
+      "hp_dice": "10d10+100",
+      "damage_dice": "1d4+2",
+      "gold": 50,
+      "exp": 0,
+      "alignment": 1000,
+      "flags": [
+        "sentinel",
+        "helper"
+      ],
+      "special": "healer"
+    },
+    "3002": {
+      "vnum": 3002,
+      "name": "a city guard",
+      "short_desc": "A vigilant city guard",
+      "long_desc": "A guard in chain mail patrols the area, watching for trouble.",
+      "level": 15,
+      "hp_dice": "5d10+50",
+      "damage_dice": "2d6+3",
+      "gold": 20,
+      "exp": 500,
+      "alignment": 500,
+      "flags": [
+        "sentinel",
+        "helper"
+      ],
+      "special": null
+    },
+    "3003": {
+      "vnum": 3003,
+      "name": "Grimtooth",
+      "short_desc": "Grimtooth the dwarf weaponsmith",
+      "long_desc": "A gruff dwarf stands behind the counter, appraising his wares.",
+      "level": 30,
+      "hp_dice": "15d10+150",
+      "damage_dice": "3d8+5",
+      "gold": 1000,
+      "exp": 0,
+      "alignment": 0,
+      "flags": [
+        "sentinel",
+        "shopkeeper"
+      ],
+      "special": "shopkeeper"
+    },
+    "3004": {
+      "vnum": 3004,
+      "name": "the innkeeper",
+      "short_desc": "A jovial innkeeper",
+      "long_desc": "The innkeeper polishes glasses, ready to serve weary travelers.",
+      "level": 10,
+      "hp_dice": "3d10+30",
+      "damage_dice": "1d4+1",
+      "gold": 100,
+      "exp": 0,
+      "alignment": 200,
+      "flags": [
+        "sentinel"
+      ],
+      "special": null
+    },
+    "3005": {
+      "vnum": 3005,
+      "name": "a shady thief",
+      "short_desc": "A shifty-eyed thief",
+      "long_desc": "A cloaked figure lurks in the shadows, eyeing your purse.",
+      "level": 8,
+      "hp_dice": "3d10+20",
+      "damage_dice": "1d6+2",
+      "gold": 30,
+      "exp": 400,
+      "alignment": -200,
+      "flags": [
+        "thief",
+        "aggressive"
+      ],
+      "special": null
+    },
+    "3006": {
+      "vnum": 3006,
+      "name": "the Guildmaster",
+      "short_desc": "The mysterious Guildmaster",
+      "long_desc": "A hooded figure sits in shadow, the Guildmaster of Thieves.",
+      "level": 40,
+      "hp_dice": "20d10+200",
+      "damage_dice": "4d6+8",
+      "gold": 500,
+      "exp": 5000,
+      "alignment": -500,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "trainer"
+    }
+  },
+  "objects": {
+    "1": {
+      "vnum": 1,
+      "name": "a loaf of bread",
+      "short_desc": "a loaf of bread",
+      "room_desc": "A loaf of fresh bread lies here.",
+      "type": "food",
+      "weight": 1,
+      "cost": 5,
+      "food_value": 12
+    },
+    "2": {
+      "vnum": 2,
+      "name": "a waterskin",
+      "short_desc": "a leather waterskin",
+      "room_desc": "A waterskin lies here.",
+      "type": "drink",
+      "weight": 2,
+      "cost": 10,
+      "drinks": 20,
+      "liquid": "water"
+    },
+    "3": {
+      "vnum": 3,
+      "name": "a torch",
+      "short_desc": "a burning torch",
+      "room_desc": "A torch flickers here.",
+      "type": "light",
+      "weight": 1,
+      "cost": 5,
+      "light_hours": 24
+    },
+    "10": {
+      "vnum": 10,
+      "name": "a short sword",
+      "short_desc": "a short sword",
+      "room_desc": "A short sword lies here.",
+      "type": "weapon",
+      "weight": 5,
+      "cost": 50,
+      "damage_dice": "1d6",
+      "weapon_type": "slash"
+    },
+    "11": {
+      "vnum": 11,
+      "name": "a dagger",
+      "short_desc": "a sharp dagger",
+      "room_desc": "A dagger glints on the ground.",
+      "type": "weapon",
+      "weight": 2,
+      "cost": 20,
+      "damage_dice": "1d4",
+      "weapon_type": "stab"
+    },
+    "12": {
+      "vnum": 12,
+      "name": "a mace",
+      "short_desc": "a heavy mace",
+      "room_desc": "A mace lies here.",
+      "type": "weapon",
+      "weight": 8,
+      "cost": 40,
+      "damage_dice": "1d8",
+      "weapon_type": "pound"
+    },
+    "13": {
+      "vnum": 13,
+      "name": "a short bow",
+      "short_desc": "a short bow",
+      "room_desc": "A short bow lies here.",
+      "type": "weapon",
+      "weight": 3,
+      "cost": 30,
+      "damage_dice": "1d6",
+      "weapon_type": "pierce"
+    },
+    "14": {
+      "vnum": 14,
+      "name": "a rapier",
+      "short_desc": "an elegant rapier",
+      "room_desc": "A rapier lies here.",
+      "type": "weapon",
+      "weight": 3,
+      "cost": 60,
+      "damage_dice": "1d6",
+      "weapon_type": "pierce"
+    },
+    "20": {
+      "vnum": 20,
+      "name": "a bulletin board",
+      "short_desc": "a large bulletin board",
+      "room_desc": "A bulletin board is mounted on the wall.",
+      "type": "other",
+      "weight": 100,
+      "cost": 0
+    }
+  }
+}

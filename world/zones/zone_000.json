@@ -1,0 +1,44 @@
+{
+  "number": 0,
+  "name": "Limbo - The Void",
+  "builders": "Immortals",
+  "lifespan": 999,
+  "reset_mode": 2,
+  "top": 99,
+  "rooms": {
+    "1": {
+      "vnum": 1,
+      "name": "The Void",
+      "description": "You float in an endless expanse of nothing. There is no up, no down,\nno left, no right. Just infinite darkness stretching in all directions.\nThis is the place between places, where lost souls drift eternally.\nA faint shimmer to the south suggests a way back to reality.",
+      "sector_type": "flying",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 3001,
+          "description": "A shimmer leads to the mortal realm."
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "2": {
+      "vnum": 2,
+      "name": "The Immortal Lounge",
+      "description": "Golden light suffuses this magnificent chamber. Plush divans and \ncomfortable chairs are arranged around a roaring fireplace. Crystal \ndecanters filled with celestial wine line the walls. This is where the\ngods rest between their divine duties.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "down": {
+          "to_room": 1,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    }
+  },
+  "mobs": {},
+  "objects": {}
+}

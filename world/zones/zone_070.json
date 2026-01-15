@@ -1,0 +1,338 @@
+{
+  "number": 70,
+  "name": "The Forgotten Crypt",
+  "builders": "Realmers",
+  "lifespan": 30,
+  "reset_mode": 2,
+  "top": 7099,
+  "rooms": {
+    "7001": {
+      "vnum": 7001,
+      "name": "Crypt Entrance",
+      "description": "Stone steps descend into darkness. The air is cold and still,\ncarrying the musty scent of ancient death. Cobwebs hang thick\nacross the entrance, and strange symbols are carved into the \narchway. This is a place of the dead.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark"
+      ],
+      "exits": {
+        "down": {
+          "to_room": 7002,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "7002": {
+      "vnum": 7002,
+      "name": "The Antechamber",
+      "description": "Dusty sarcophagi line the walls of this chamber. Most are sealed,\nbut a few lie broken open, their occupants long since risen. Faded\npaintings on the walls depict a noble family. Corridors lead deeper\ninto the crypt.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 7001,
+          "description": null
+        },
+        "north": {
+          "to_room": 7003,
+          "description": null
+        },
+        "east": {
+          "to_room": 7010,
+          "description": null
+        },
+        "west": {
+          "to_room": 7020,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 7001,
+          "max": 3
+        }
+      ],
+      "obj_resets": []
+    },
+    "7003": {
+      "vnum": 7003,
+      "name": "The Hall of Bones",
+      "description": "The walls of this corridor are composed entirely of human bones -\nskulls, femurs, and ribs arranged in macabre patterns. The floor\ncrunches underfoot with ancient fragments. An unholy chill permeates\nthis place.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 7002,
+          "description": null
+        },
+        "north": {
+          "to_room": 7004,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 7002,
+          "max": 2
+        },
+        {
+          "vnum": 7003,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "7004": {
+      "vnum": 7004,
+      "name": "The Necromancer's Sanctum",
+      "description": "You have found the lair of the Necromancer who plagues this land.\nDark altars hold blasphemous offerings, and arcane circles are\netched into the floor. Candles of black wax burn with an eerie \ngreen flame. The Necromancer himself awaits...",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 7003,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 7004,
+          "max": 1
+        },
+        {
+          "vnum": 7005,
+          "max": 2
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 70,
+          "max": 1
+        },
+        {
+          "vnum": 71,
+          "max": 1
+        }
+      ]
+    },
+    "7010": {
+      "vnum": 7010,
+      "name": "The Noble's Tomb",
+      "description": "An ornate tomb dominates this chamber. Once the resting place\nof a noble lord, it has been desecrated by the undead plague.\nThe ghost of the lord still lingers, trapped between worlds.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 7002,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 7006,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 72,
+          "max": 1
+        }
+      ]
+    },
+    "7020": {
+      "vnum": 7020,
+      "name": "The Mass Grave",
+      "description": "The floor of this chamber is uneven, covered with mounds of\nearth beneath which countless bodies were interred during some\nancient plague. Now they rise again, clawing their way free.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 7002,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 7002,
+          "max": 4
+        },
+        {
+          "vnum": 7001,
+          "max": 2
+        }
+      ],
+      "obj_resets": []
+    }
+  },
+  "mobs": {
+    "7001": {
+      "vnum": 7001,
+      "name": "a skeleton warrior",
+      "short_desc": "A rattling skeleton",
+      "long_desc": "A skeleton in rusted armor stands guard.",
+      "level": 10,
+      "hp_dice": "4d10+30",
+      "damage_dice": "1d8+2",
+      "gold": 10,
+      "exp": 400,
+      "alignment": -800,
+      "flags": [
+        "aggressive",
+        "undead"
+      ],
+      "special": null
+    },
+    "7002": {
+      "vnum": 7002,
+      "name": "a shambling zombie",
+      "short_desc": "A rotting zombie",
+      "long_desc": "A zombie lurches toward you, arms outstretched.",
+      "level": 8,
+      "hp_dice": "4d10+40",
+      "damage_dice": "1d6+3",
+      "gold": 0,
+      "exp": 350,
+      "alignment": -700,
+      "flags": [
+        "aggressive",
+        "undead"
+      ],
+      "special": null
+    },
+    "7003": {
+      "vnum": 7003,
+      "name": "a ghoul",
+      "short_desc": "A ravenous ghoul",
+      "long_desc": "A ghoul crouches over a corpse, feeding.",
+      "level": 14,
+      "hp_dice": "5d10+50",
+      "damage_dice": "2d4+4",
+      "gold": 20,
+      "exp": 800,
+      "alignment": -900,
+      "flags": [
+        "aggressive",
+        "undead"
+      ],
+      "special": "paralyze"
+    },
+    "7004": {
+      "vnum": 7004,
+      "name": "Malachar the Necromancer",
+      "short_desc": "Malachar the Necromancer",
+      "long_desc": "A robed figure channels dark energy, eyes glowing with malice.",
+      "level": 30,
+      "hp_dice": "15d10+150",
+      "damage_dice": "3d6+8",
+      "gold": 1000,
+      "exp": 5000,
+      "alignment": -1000,
+      "flags": [
+        "sentinel",
+        "caster"
+      ],
+      "special": "necromancer"
+    },
+    "7005": {
+      "vnum": 7005,
+      "name": "an undead knight",
+      "short_desc": "An armored undead knight",
+      "long_desc": "A knight in black armor stands motionless, awaiting command.",
+      "level": 18,
+      "hp_dice": "8d10+80",
+      "damage_dice": "2d8+5",
+      "gold": 50,
+      "exp": 1500,
+      "alignment": -800,
+      "flags": [
+        "helper",
+        "undead"
+      ],
+      "special": null
+    },
+    "7006": {
+      "vnum": 7006,
+      "name": "the ghost of Lord Aldric",
+      "short_desc": "The ghost of Lord Aldric",
+      "long_desc": "A spectral figure floats above its tomb, eyes filled with sorrow.",
+      "level": 25,
+      "hp_dice": "10d10+100",
+      "damage_dice": "2d6+6",
+      "gold": 0,
+      "exp": 3000,
+      "alignment": 0,
+      "flags": [
+        "sentinel",
+        "undead"
+      ],
+      "special": "ghost"
+    }
+  },
+  "objects": {
+    "70": {
+      "vnum": 70,
+      "name": "the Staff of the Dead",
+      "short_desc": "a bone staff crackling with energy",
+      "room_desc": "A staff made of fused bones pulses with dark power.",
+      "type": "weapon",
+      "weight": 4,
+      "cost": 2000,
+      "damage_dice": "2d6",
+      "weapon_type": "blast",
+      "affects": [
+        {
+          "type": "mana",
+          "value": 30
+        },
+        {
+          "type": "int",
+          "value": 2
+        }
+      ]
+    },
+    "71": {
+      "vnum": 71,
+      "name": "the Necronomicon",
+      "short_desc": "a book bound in human skin",
+      "room_desc": "A dark tome lies open, pages covered in forbidden knowledge.",
+      "type": "other",
+      "weight": 3,
+      "cost": 5000
+    },
+    "72": {
+      "vnum": 72,
+      "name": "Lord Aldric's blade",
+      "short_desc": "a ghostly longsword",
+      "room_desc": "A spectral sword hovers in the air.",
+      "type": "weapon",
+      "weight": 5,
+      "cost": 1500,
+      "damage_dice": "2d6",
+      "weapon_type": "slash",
+      "affects": [
+        {
+          "type": "hitroll",
+          "value": 3
+        }
+      ]
+    }
+  }
+}

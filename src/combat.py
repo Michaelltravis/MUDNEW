@@ -1,0 +1,446 @@
+"""
+RealmsMUD Combat System
+=======================
+Handles all combat mechanics.
+"""
+
+import random
+import logging
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from player import Character, Player
+
+from config import Config
+
+logger = logging.getLogger('RealmsMUD.Combat')
+
+
+class CombatHandler:
+    """Handles combat mechanics."""
+    
+    config = Config()
+    
+    @classmethod
+    async def start_combat(cls, attacker: 'Character', defender: 'Character'):
+        """Initiate combat between two characters."""
+        attacker.fighting = defender
+        defender.fighting = attacker
+        attacker.position = 'fighting'
+        defender.position = 'fighting'
+        
+        c = cls.config.COLORS
+        
+        if hasattr(attacker, 'send'):
+            await attacker.send(f"{c['bright_red']}You attack {defender.name}!{c['reset']}")
+        if hasattr(defender, 'send'):
+            await defender.send(f"\r\n{c['bright_red']}{attacker.name} attacks you!{c['reset']}")
+        if attacker.room:
+            await attacker.room.send_to_room(
+                f"{c['red']}{attacker.name} attacks {defender.name}!{c['reset']}",
+                exclude=[attacker, defender]
+            )
+            
+        # First strike
+        await cls.one_round(attacker, defender)
+        
+    @classmethod
+    async def one_round(cls, attacker: 'Character', defender: 'Character'):
+        """Process one round of combat."""
+        if not attacker.is_alive or not defender.is_alive:
+            await cls.end_combat(attacker, defender)
+            return
+            
+        if not attacker.is_fighting or not defender.is_fighting:
+            return
+            
+        c = cls.config.COLORS
+        
+        # Calculate hits
+        hit_roll = random.randint(1, 20) + attacker.get_hit_bonus()
+        defense = 10 + (defender.get_armor_class() // 10)
+        
+        if hit_roll >= defense:
+            # Calculate damage
+            weapon = attacker.equipment.get('wield') if hasattr(attacker, 'equipment') else None
+            
+            if weapon and hasattr(weapon, 'damage_dice'):
+                damage = cls.roll_dice(weapon.damage_dice)
+            else:
+                # Bare hands
+                damage = random.randint(1, 3)
+                
+            damage += attacker.get_damage_bonus()
+            damage = max(1, damage)
+            
+            # Critical hit on natural 20
+            if random.randint(1, 20) == 20:
+                damage *= 2
+                if hasattr(attacker, 'send'):
+                    await attacker.send(f"{c['bright_yellow']}CRITICAL HIT!{c['reset']}")
+                    
+            damage_word = cls.get_damage_word(damage)
+            
+            # Send messages
+            if hasattr(attacker, 'send'):
+                await attacker.send(f"{c['green']}Your {damage_word} {defender.name}. [{damage}]{c['reset']}")
+            if hasattr(defender, 'send'):
+                await defender.send(f"{c['red']}{attacker.name}'s {damage_word} you. [{damage}]{c['reset']}")
+                
+            # Apply damage
+            killed = await defender.take_damage(damage, attacker)
+            
+            if killed:
+                await cls.handle_death(attacker, defender)
+        else:
+            # Miss
+            if hasattr(attacker, 'send'):
+                await attacker.send(f"{c['yellow']}You miss {defender.name}.{c['reset']}")
+            if hasattr(defender, 'send'):
+                await defender.send(f"{c['cyan']}{attacker.name} misses you.{c['reset']}")
+                
+        # Check for second attack
+        if hasattr(attacker, 'skills') and 'second_attack' in attacker.skills:
+            if random.randint(1, 100) <= attacker.skills['second_attack']:
+                await cls.bonus_attack(attacker, defender)
+                
+        # Check for third attack
+        if hasattr(attacker, 'skills') and 'third_attack' in attacker.skills:
+            if random.randint(1, 100) <= attacker.skills['third_attack'] // 2:
+                await cls.bonus_attack(attacker, defender)
+
+        # Pet attacks (if attacker has pets)
+        if hasattr(attacker, 'world'):
+            from pets import PetManager
+            pets = PetManager.get_player_pets(attacker)
+            for pet in pets:
+                if pet.room == attacker.room and pet.is_alive and not pet.is_fighting:
+                    # Pet joins combat to help owner
+                    if random.randint(1, 100) <= 50:  # 50% chance per round
+                        await cls.pet_attack(pet, defender)
+
+    @classmethod
+    async def pet_attack(cls, pet: 'Character', defender: 'Character'):
+        """Process a pet attack."""
+        if not pet.is_alive or not defender.is_alive:
+            return
+
+        c = cls.config.COLORS
+
+        # Calculate hit
+        hit_roll = random.randint(1, 20) + pet.get_hit_bonus()
+        defense = 10 + (defender.get_armor_class() // 10)
+
+        if hit_roll >= defense:
+            # Calculate damage
+            damage = cls.roll_dice(pet.damage_dice) if hasattr(pet, 'damage_dice') else random.randint(1, 4)
+            damage += pet.get_damage_bonus()
+            damage = max(1, damage)
+
+            damage_word = cls.get_damage_word(damage)
+
+            # Send messages
+            await pet.room.send_to_room(
+                f"{c['green']}{pet.name}'s {damage_word} {defender.name}! [{damage}]{c['reset']}"
+            )
+
+            # Apply damage
+            killed = await defender.take_damage(damage, pet)
+            if killed:
+                await cls.handle_death(pet, defender)
+        else:
+            # Miss
+            await pet.room.send_to_room(
+                f"{c['yellow']}{pet.name} misses {defender.name}.{c['reset']}"
+            )
+
+    @classmethod
+    async def bonus_attack(cls, attacker: 'Character', defender: 'Character'):
+        """Process a bonus attack."""
+        if not attacker.is_alive or not defender.is_alive:
+            return
+            
+        c = cls.config.COLORS
+        hit_roll = random.randint(1, 20) + attacker.get_hit_bonus()
+        defense = 10 + (defender.get_armor_class() // 10)
+        
+        if hit_roll >= defense:
+            weapon = attacker.equipment.get('wield') if hasattr(attacker, 'equipment') else None
+            
+            if weapon and hasattr(weapon, 'damage_dice'):
+                damage = cls.roll_dice(weapon.damage_dice)
+            else:
+                damage = random.randint(1, 3)
+                
+            damage += attacker.get_damage_bonus()
+            damage = max(1, damage)
+            damage_word = cls.get_damage_word(damage)
+            
+            if hasattr(attacker, 'send'):
+                await attacker.send(f"{c['green']}Your {damage_word} {defender.name}. [{damage}]{c['reset']}")
+            if hasattr(defender, 'send'):
+                await defender.send(f"{c['red']}{attacker.name}'s {damage_word} you. [{damage}]{c['reset']}")
+                
+            killed = await defender.take_damage(damage, attacker)
+            if killed:
+                await cls.handle_death(attacker, defender)
+                
+    @classmethod
+    async def handle_death(cls, killer: 'Character', victim: 'Character'):
+        """Handle a combat death."""
+        c = cls.config.COLORS
+        
+        # Award experience to killer
+        if hasattr(killer, 'gain_exp') and hasattr(victim, 'exp'):
+            exp_gain = getattr(victim, 'exp', 100)
+            # Scale by level difference
+            level_diff = getattr(victim, 'level', 1) - getattr(killer, 'level', 1)
+            if level_diff > 0:
+                exp_gain = int(exp_gain * (1 + level_diff * 0.1))
+            elif level_diff < -5:
+                exp_gain = int(exp_gain * 0.1)  # Much lower level = almost no exp
+                
+            killer.gain_exp(exp_gain)
+            if hasattr(killer, 'send'):
+                await killer.send(f"{c['bright_yellow']}You gain {exp_gain} experience points!{c['reset']}")
+
+        # Check quest progress for kills
+        if hasattr(killer, 'active_quests') and hasattr(victim, 'name'):
+            from quests import QuestManager
+            await QuestManager.check_quest_progress(
+                killer, 'kill', {'mob_name': victim.name, 'mob_vnum': getattr(victim, 'vnum', 0)}
+            )
+
+        # Transfer gold
+        if hasattr(victim, 'gold') and victim.gold > 0:
+            if hasattr(killer, 'gold'):
+                killer.gold += victim.gold
+                if hasattr(killer, 'send'):
+                    await killer.send(f"{c['yellow']}You get {victim.gold} gold coins from the corpse.{c['reset']}")
+                    
+        # Create corpse with victim's inventory
+        if victim.room and hasattr(victim, 'inventory'):
+            from objects import Object
+            corpse = Object(0, killer.world if hasattr(killer, 'world') else None)
+            corpse.name = f"corpse of {victim.name}"
+            corpse.short_desc = f"the corpse of {victim.name}"
+            corpse.room_desc = f"The corpse of {victim.name} lies here."
+            corpse.item_type = 'container'
+            corpse.contents = list(victim.inventory)
+            victim.inventory.clear()
+            victim.room.items.append(corpse)
+            
+        # End combat
+        await cls.end_combat(killer, victim)
+        
+        # Remove NPC from world if it's a mob
+        if not hasattr(victim, 'connection'):  # It's an NPC
+            if victim.room and victim in victim.room.characters:
+                victim.room.characters.remove(victim)
+            if hasattr(killer, 'world') and victim in killer.world.npcs:
+                killer.world.npcs.remove(victim)
+                
+    @classmethod
+    async def end_combat(cls, char1: 'Character', char2: 'Character'):
+        """End combat between two characters."""
+        if char1.fighting == char2:
+            char1.fighting = None
+            if char1.position == 'fighting':
+                char1.position = 'standing'
+                
+        if char2.fighting == char1:
+            char2.fighting = None
+            if char2.position == 'fighting':
+                char2.position = 'standing'
+                
+    @classmethod
+    async def attempt_flee(cls, player: 'Player'):
+        """Attempt to flee from combat."""
+        if not player.is_fighting:
+            return
+            
+        c = cls.config.COLORS
+        
+        # Check for available exits
+        available_exits = [d for d, e in player.room.exits.items() if e and e.get('room')]
+        
+        if not available_exits:
+            await player.send(f"{c['red']}There's nowhere to flee to!{c['reset']}")
+            return
+            
+        # Chance to flee based on dexterity
+        flee_chance = 50 + (player.dex - 10) * 2
+        
+        if random.randint(1, 100) <= flee_chance:
+            direction = random.choice(available_exits)
+            enemy = player.fighting
+            
+            await cls.end_combat(player, enemy)
+            
+            await player.send(f"{c['yellow']}You flee {direction}!{c['reset']}")
+            await player.room.send_to_room(
+                f"{player.name} flees {direction}!",
+                exclude=[player]
+            )
+            
+            # Move player
+            from commands import CommandHandler
+            await CommandHandler.cmd_move(player, direction)
+            
+            # Lose some experience
+            exp_loss = int(player.exp * 0.01)
+            player.exp = max(0, player.exp - exp_loss)
+            await player.send(f"{c['yellow']}You lose {exp_loss} experience points.{c['reset']}")
+        else:
+            await player.send(f"{c['red']}PANIC! You couldn't escape!{c['reset']}")
+            
+    @classmethod
+    async def do_kick(cls, player: 'Player'):
+        """Execute kick skill."""
+        if not player.is_fighting:
+            return
+            
+        c = cls.config.COLORS
+        target = player.fighting
+        skill_level = player.skills.get('kick', 0)
+        
+        # Check if kick lands
+        if random.randint(1, 100) <= skill_level:
+            damage = random.randint(1, player.level) + (player.str - 10) // 2
+            damage_word = cls.get_damage_word(damage)
+            
+            await player.send(f"{c['bright_green']}Your kick {damage_word} {target.name}! [{damage}]{c['reset']}")
+            if hasattr(target, 'send'):
+                await target.send(f"{c['bright_red']}{player.name}'s kick {damage_word} you! [{damage}]{c['reset']}")
+                
+            killed = await target.take_damage(damage, player)
+            if killed:
+                await cls.handle_death(player, target)
+        else:
+            await player.send(f"{c['yellow']}Your kick misses {target.name}!{c['reset']}")
+            
+    @classmethod
+    async def do_bash(cls, player: 'Player'):
+        """Execute bash skill."""
+        if not player.is_fighting:
+            return
+            
+        c = cls.config.COLORS
+        target = player.fighting
+        skill_level = player.skills.get('bash', 0)
+        
+        if random.randint(1, 100) <= skill_level:
+            damage = random.randint(1, player.level // 2) + (player.str - 10) // 2
+            damage_word = cls.get_damage_word(damage)
+            
+            await player.send(f"{c['bright_green']}You bash {target.name} to the ground! [{damage}]{c['reset']}")
+            if hasattr(target, 'send'):
+                await target.send(f"{c['bright_red']}{player.name} bashes you to the ground! [{damage}]{c['reset']}")
+                
+            # Bash can stun
+            if random.randint(1, 100) <= 30:
+                if hasattr(target, 'position'):
+                    target.position = 'stunned'
+                await player.send(f"{c['bright_yellow']}{target.name} is stunned!{c['reset']}")
+                
+            killed = await target.take_damage(damage, player)
+            if killed:
+                await cls.handle_death(player, target)
+        else:
+            await player.send(f"{c['yellow']}You fail to bash {target.name}!{c['reset']}")
+            # Failed bash can make you fall
+            if random.randint(1, 100) <= 20:
+                await player.send(f"{c['red']}You fall to the ground!{c['reset']}")
+                player.position = 'sitting'
+                
+    @classmethod
+    async def do_backstab(cls, player: 'Player', target: 'Character'):
+        """Execute backstab skill."""
+        c = cls.config.COLORS
+        skill_level = player.skills.get('backstab', 0)
+        
+        # Must have a piercing weapon
+        weapon = player.equipment.get('wield')
+        if not weapon or getattr(weapon, 'weapon_type', '') not in ('stab', 'pierce'):
+            await player.send(f"{c['red']}You need a piercing weapon to backstab!{c['reset']}")
+            return
+            
+        if random.randint(1, 100) <= skill_level:
+            # Backstab does multiplied damage
+            base_damage = cls.roll_dice(weapon.damage_dice) if hasattr(weapon, 'damage_dice') else random.randint(1, 4)
+            multiplier = 2 + (player.level // 10)
+            damage = base_damage * multiplier + player.get_damage_bonus()
+            
+            await player.send(f"{c['bright_green']}You backstab {target.name}! [{damage}]{c['reset']}")
+            if hasattr(target, 'send'):
+                await target.send(f"{c['bright_red']}{player.name} backstabs you! [{damage}]{c['reset']}")
+            await player.room.send_to_room(
+                f"{player.name} backstabs {target.name}!",
+                exclude=[player, target]
+            )
+            
+            killed = await target.take_damage(damage, player)
+            if killed:
+                await cls.handle_death(player, target)
+            else:
+                # Start combat
+                await cls.start_combat(player, target)
+        else:
+            await player.send(f"{c['yellow']}You fail to backstab {target.name}!{c['reset']}")
+            # Failed backstab starts combat anyway
+            await cls.start_combat(player, target)
+            
+    @classmethod
+    def roll_dice(cls, dice_str: str) -> int:
+        """Roll dice from a string like '2d6+4'."""
+        try:
+            # Parse dice string
+            if '+' in dice_str:
+                dice_part, bonus = dice_str.split('+')
+                bonus = int(bonus)
+            elif '-' in dice_str:
+                dice_part, penalty = dice_str.split('-')
+                bonus = -int(penalty)
+            else:
+                dice_part = dice_str
+                bonus = 0
+                
+            num_dice, die_size = dice_part.split('d')
+            num_dice = int(num_dice)
+            die_size = int(die_size)
+            
+            total = sum(random.randint(1, die_size) for _ in range(num_dice))
+            return total + bonus
+            
+        except Exception:
+            return random.randint(1, 6)
+            
+    @classmethod
+    def get_damage_word(cls, damage: int) -> str:
+        """Get a descriptive word for damage amount."""
+        if damage <= 0:
+            return "miss"
+        elif damage <= 4:
+            return "scratch"
+        elif damage <= 8:
+            return "graze"
+        elif damage <= 12:
+            return "hit"
+        elif damage <= 16:
+            return "wound"
+        elif damage <= 20:
+            return "maul"
+        elif damage <= 28:
+            return "decimate"
+        elif damage <= 36:
+            return "devastate"
+        elif damage <= 48:
+            return "maim"
+        elif damage <= 64:
+            return "MUTILATE"
+        elif damage <= 80:
+            return "MASSACRE"
+        elif damage <= 100:
+            return "OBLITERATE"
+        else:
+            return "*** ANNIHILATE ***"

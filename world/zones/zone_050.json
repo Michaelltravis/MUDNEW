@@ -1,0 +1,286 @@
+{
+  "number": 50,
+  "name": "Greystone Castle",
+  "builders": "Realmers",
+  "lifespan": 30,
+  "reset_mode": 2,
+  "top": 5099,
+  "rooms": {
+    "5001": {
+      "vnum": 5001,
+      "name": "The Road to Greystone",
+      "description": "A well-maintained road leads toward the imposing silhouette of\nGreystone Castle. The fortress sits atop a hill, its grey stone\nwalls and towers dark against the sky. Pennants snap in the wind\nfrom the battlements. The castle gates lie to the north.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3006,
+          "description": null
+        },
+        "north": {
+          "to_room": 5002,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "5002": {
+      "vnum": 5002,
+      "name": "The Castle Gates",
+      "description": "Massive iron-bound gates stand before you, flanked by towers\nbristling with arrow slits. Guards in royal livery challenge all\nwho approach. Beyond the gates, you can see the cobblestone \ncourtyard of Greystone Castle.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 5001,
+          "description": null
+        },
+        "north": {
+          "to_room": 5003,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 5001,
+          "max": 2
+        }
+      ],
+      "obj_resets": []
+    },
+    "5003": {
+      "vnum": 5003,
+      "name": "Castle Courtyard",
+      "description": "The courtyard of Greystone Castle bustles with activity. Servants\nhurry about their duties, soldiers drill in formation, and nobles\nconverse in small groups. The main keep rises to the north, while\nstables and workshops line the walls.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 5002,
+          "description": null
+        },
+        "north": {
+          "to_room": 5004,
+          "description": null
+        },
+        "east": {
+          "to_room": 5010,
+          "description": null
+        },
+        "west": {
+          "to_room": 5020,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 5002,
+          "max": 2
+        },
+        {
+          "vnum": 5001,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "5004": {
+      "vnum": 5004,
+      "name": "The Great Hall",
+      "description": "You stand in the magnificent Great Hall of Greystone Castle.\nTapestries depicting ancient battles hang from the walls. A long\ntable runs the length of the hall, and at the far end, on a raised\ndais, sits the throne of the King. Suits of armor stand at attention.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 5003,
+          "description": null
+        },
+        "up": {
+          "to_room": 5030,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 5003,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "5010": {
+      "vnum": 5010,
+      "name": "The Castle Armory",
+      "description": "Racks of weapons and armor fill this room. Swords, spears, \nshields, and suits of plate mail are arranged in orderly rows.\nThe royal armorer works at a forge in the corner, maintaining\nthe kingdom's arsenal.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 5003,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 5004,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 50,
+          "max": 1
+        },
+        {
+          "vnum": 51,
+          "max": 1
+        }
+      ]
+    },
+    "5020": {
+      "vnum": 5020,
+      "name": "The Royal Stables",
+      "description": "The smell of hay and horses fills the air. Fine warhorses\nstamp and snort in their stalls, tended by stable hands. The\nroyal carriages are housed here as well, gleaming with gilt.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 5003,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "5030": {
+      "vnum": 5030,
+      "name": "The Tower Chamber",
+      "description": "A spiral staircase has brought you to a chamber high in the\ncastle tower. Windows provide a commanding view of the kingdom.\nA massive iron chest sits against one wall, and ancient tomes\nline the shelves. This is where the King keeps his treasures.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "down": {
+          "to_room": 5004,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": [
+        {
+          "vnum": 52,
+          "max": 1
+        }
+      ]
+    }
+  },
+  "mobs": {
+    "5001": {
+      "vnum": 5001,
+      "name": "a castle guard",
+      "short_desc": "A royal castle guard",
+      "long_desc": "A guard in royal livery stands at attention.",
+      "level": 20,
+      "hp_dice": "8d10+80",
+      "damage_dice": "2d8+4",
+      "gold": 30,
+      "exp": 1000,
+      "alignment": 500,
+      "flags": [
+        "sentinel",
+        "helper"
+      ],
+      "special": null
+    },
+    "5002": {
+      "vnum": 5002,
+      "name": "a castle servant",
+      "short_desc": "A busy servant",
+      "long_desc": "A servant hurries about their duties.",
+      "level": 3,
+      "hp_dice": "1d10+10",
+      "damage_dice": "1d2",
+      "gold": 5,
+      "exp": 50,
+      "alignment": 0,
+      "flags": [
+        "wimpy"
+      ],
+      "special": null
+    },
+    "5003": {
+      "vnum": 5003,
+      "name": "King Valdric",
+      "short_desc": "King Valdric the Just",
+      "long_desc": "King Valdric sits upon his throne, crown gleaming.",
+      "level": 50,
+      "hp_dice": "30d10+300",
+      "damage_dice": "4d8+10",
+      "gold": 5000,
+      "exp": 20000,
+      "alignment": 1000,
+      "flags": [
+        "sentinel"
+      ],
+      "special": null
+    },
+    "5004": {
+      "vnum": 5004,
+      "name": "the royal armorer",
+      "short_desc": "The royal armorer",
+      "long_desc": "A muscular smith works the forge, crafting fine weapons.",
+      "level": 25,
+      "hp_dice": "10d10+100",
+      "damage_dice": "2d6+4",
+      "gold": 200,
+      "exp": 0,
+      "alignment": 0,
+      "flags": [
+        "sentinel",
+        "shopkeeper"
+      ],
+      "special": "shopkeeper"
+    }
+  },
+  "objects": {
+    "50": {
+      "vnum": 50,
+      "name": "a royal longsword",
+      "short_desc": "a gleaming royal longsword",
+      "room_desc": "A finely crafted longsword lies here.",
+      "type": "weapon",
+      "weight": 6,
+      "cost": 500,
+      "damage_dice": "2d6",
+      "weapon_type": "slash"
+    },
+    "51": {
+      "vnum": 51,
+      "name": "a kite shield",
+      "short_desc": "a sturdy kite shield",
+      "room_desc": "A shield bearing the royal crest lies here.",
+      "type": "armor",
+      "weight": 10,
+      "cost": 300,
+      "armor": 15,
+      "wear_slot": "shield"
+    },
+    "52": {
+      "vnum": 52,
+      "name": "a treasure chest",
+      "short_desc": "an iron treasure chest",
+      "room_desc": "A heavy iron chest sits here.",
+      "type": "container",
+      "weight": 50,
+      "cost": 0,
+      "capacity": 100
+    }
+  }
+}

@@ -1,0 +1,237 @@
+# RealmsMUD - A Fantasy Multi-User Dungeon
+
+```
+    ╔═══════════════════════════════════════════════════════════════╗
+    ║                                                               ║
+    ║   ██████╗ ███████╗ █████╗ ██╗     ███╗   ███╗███████╗         ║
+    ║   ██╔══██╗██╔════╝██╔══██╗██║     ████╗ ████║██╔════╝         ║
+    ║   ██████╔╝█████╗  ███████║██║     ██╔████╔██║███████╗         ║
+    ║   ██╔══██╗██╔══╝  ██╔══██║██║     ██║╚██╔╝██║╚════██║         ║
+    ║   ██║  ██║███████╗██║  ██║███████╗██║ ╚═╝ ██║███████║         ║
+    ║   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝╚══════╝         ║
+    ║                       MUD                                     ║
+    ║                                                               ║
+    ╚═══════════════════════════════════════════════════════════════╝
+```
+
+A complete fantasy MUD (Multi-User Dungeon) inspired by CircleMUD, written in Python 3. 
+Features a rich fantasy world with multiple zones, character classes, magic system, 
+combat, NPCs, and more!
+
+## Features
+
+### Character System
+- **7 Playable Races**: Human, Elf, Dwarf, Halfling, Half-Orc, Gnome, Dark Elf
+- **8 Character Classes**: Warrior, Mage, Cleric, Thief, Ranger, Paladin, Necromancer, Bard
+- **Stat System**: Strength, Intelligence, Wisdom, Dexterity, Constitution, Charisma
+- **Leveling System**: Gain experience, level up, learn new skills and spells
+
+### Combat System
+- Real-time combat with automatic attack rounds
+- Skills: Kick, Bash, Backstab, Second Attack, Third Attack
+- Flee mechanics with experience penalty
+- Consider command to gauge enemy strength
+
+### Magic System
+- **30+ Spells** including:
+  - Offensive: Magic Missile, Fireball, Lightning Bolt, Flamestrike
+  - Healing: Cure Light, Cure Serious, Heal, Group Heal
+  - Buffs: Armor, Bless, Sanctuary, Haste, Invisibility, Fly
+  - Debuffs: Sleep, Blindness, Poison, Weaken, Fear
+  - Utility: Teleport, Word of Recall, Detect Magic, Identify
+
+### World
+- **7 Unique Zones**:
+  - The City of Midgaard (starting city with shops, inn, temple)
+  - Haon Dor Forest (wildlife, druids, and dangerous creatures)
+  - Greystone Castle (royal court and armory)
+  - The Goblin Warrens (goblin tribe dungeon)
+  - The Forgotten Crypt (undead and necromancer boss)
+  - The Dragon's Domain (end-game content with ancient dragon)
+  - Limbo (admin zone)
+- Automatic zone resets for mob respawning
+- Day/night cycle (planned)
+
+### Items & Equipment
+- 19 equipment slots (weapon, armor, jewelry, etc.)
+- Weapon types with different damage
+- Magical items with stat bonuses
+- Containers, food, drinks, potions, scrolls
+
+### Communication
+- Say, Shout, Gossip, Tell (private message)
+- Emotes for roleplay
+
+## Quick Start
+
+### Requirements
+- Python 3.8+
+- No external dependencies required!
+
+### Running the Server
+
+```bash
+# Make the launch script executable
+chmod +x run.sh
+
+# Start the server
+./run.sh
+
+# Or run directly with Python
+cd src && python3 main.py
+```
+
+The server will start on port **4000** by default.
+
+### Connecting
+
+Use any telnet client or MUD client:
+
+```bash
+telnet localhost 4000
+```
+
+Or use a dedicated MUD client like:
+- Mudlet
+- TinTin++
+- MUSHclient
+- zMUD
+
+## Commands Reference
+
+### Movement
+| Command | Description |
+|---------|-------------|
+| `north`, `n` | Move north |
+| `south`, `s` | Move south |
+| `east`, `e` | Move east |
+| `west`, `w` | Move west |
+| `up`, `u` | Move up |
+| `down`, `d` | Move down |
+
+### Information
+| Command | Description |
+|---------|-------------|
+| `look`, `l` | Look at room or target |
+| `score`, `sc` | View character stats |
+| `inventory`, `i` | List carried items |
+| `equipment`, `eq` | Show worn equipment |
+| `who` | List online players |
+| `where` | Find players/mobs in zone |
+| `consider` | Gauge enemy difficulty |
+
+### Combat
+| Command | Description |
+|---------|-------------|
+| `kill <target>` | Attack a target |
+| `flee` | Attempt to escape combat |
+| `kick` | Use kick skill |
+| `bash` | Use bash skill |
+| `backstab <target>` | Sneak attack |
+| `cast <spell> [target]` | Cast a spell |
+
+### Items
+| Command | Description |
+|---------|-------------|
+| `get <item>` | Pick up an item |
+| `drop <item>` | Drop an item |
+| `wear <item>` | Wear armor/jewelry |
+| `wield <item>` | Wield a weapon |
+| `remove <item>` | Remove equipment |
+| `give <item> <player>` | Give item to someone |
+
+### Communication
+| Command | Description |
+|---------|-------------|
+| `say <message>` | Speak to room |
+| `shout <message>` | Shout to zone |
+| `gossip <message>` | Global chat |
+| `tell <player> <msg>` | Private message |
+| `emote <action>` | Roleplay action |
+
+### Position
+| Command | Description |
+|---------|-------------|
+| `sit` | Sit down |
+| `rest` | Rest (faster regen) |
+| `sleep` | Sleep (fastest regen) |
+| `wake` | Wake up |
+| `stand` | Stand up |
+
+### Other
+| Command | Description |
+|---------|-------------|
+| `skills` | View known skills |
+| `spells` | View known spells |
+| `practice` | Practice skills/spells |
+| `eat <food>` | Eat food |
+| `drink <container>` | Drink liquid |
+| `quaff <potion>` | Drink a potion |
+| `save` | Save character |
+| `quit` | Exit game |
+| `help` | View help |
+
+## Directory Structure
+
+```
+fantasymud/
+├── run.sh              # Launch script
+├── README.md           # This file
+├── src/
+│   ├── main.py         # Entry point
+│   ├── config.py       # Configuration
+│   ├── server.py       # Network server
+│   ├── player.py       # Player class
+│   ├── world.py        # World management
+│   ├── world_builder.py # World generation
+│   ├── commands.py     # Command handler
+│   ├── combat.py       # Combat system
+│   ├── mobs.py         # NPC/Monster class
+│   ├── objects.py      # Item class
+│   └── spells.py       # Magic system
+├── world/
+│   └── zones/          # Zone data files
+├── lib/
+│   └── players/        # Player save files
+└── log/
+    └── mud.log         # Server log
+```
+
+## Configuration
+
+Edit `src/config.py` to customize:
+
+- `PORT`: Server port (default: 4000)
+- `MAX_PLAYERS`: Maximum concurrent players
+- `STARTING_ROOM`: Where new players spawn
+- Race/Class definitions
+- Spell costs and effects
+- Combat parameters
+
+## Extending the MUD
+
+### Adding New Zones
+1. Create a new method in `world_builder.py`
+2. Define rooms, mobs, and objects
+3. Call the method from `build_default_world()`
+
+### Adding New Spells
+1. Add spell definition to `SPELLS` dict in `spells.py`
+2. Add spell to appropriate class in `config.py`
+
+### Adding New Commands
+1. Create `cmd_yourcommand` method in `commands.py`
+2. Optionally add to `ALIASES` dict
+
+## Credits
+
+Inspired by CircleMUD and the classic DikuMUD codebase. Built with Python 3 
+using only the standard library for maximum compatibility.
+
+## License
+
+This project is open source and available for personal and educational use.
+
+---
+
+*Welcome to the Realms, adventurer. Your legend awaits!*

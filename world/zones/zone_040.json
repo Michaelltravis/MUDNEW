@@ -1,0 +1,288 @@
+{
+  "number": 40,
+  "name": "Haon Dor Forest",
+  "builders": "Realmers",
+  "lifespan": 20,
+  "reset_mode": 2,
+  "top": 4099,
+  "rooms": {
+    "4001": {
+      "vnum": 4001,
+      "name": "The Forest Road",
+      "description": "The cobblestone road from Midgaard gives way to a dirt path as\nyou enter the ancient Haon Dor forest. Massive oak trees tower \noverhead, their branches forming a green canopy that filters the \nsunlight. The air is thick with the scent of earth and growing things.\nStrange sounds echo from deeper within the woods.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 3004,
+          "description": null
+        },
+        "east": {
+          "to_room": 4002,
+          "description": null
+        },
+        "north": {
+          "to_room": 4010,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 4001,
+          "max": 2
+        }
+      ],
+      "obj_resets": []
+    },
+    "4002": {
+      "vnum": 4002,
+      "name": "Deep in the Forest",
+      "description": "The forest grows denser here. Ancient trees press close, their\ngnarled roots crossing the path. Mushrooms of unusual colors grow\nin clusters at their bases. The sounds of civilization have faded,\nreplaced by bird calls and rustling leaves. Shadows move between\nthe trees - or is that just your imagination?",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 4001,
+          "description": null
+        },
+        "east": {
+          "to_room": 4003,
+          "description": null
+        },
+        "south": {
+          "to_room": 4020,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 4002,
+          "max": 2
+        },
+        {
+          "vnum": 4003,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "4003": {
+      "vnum": 4003,
+      "name": "The Ancient Grove",
+      "description": "You've stumbled upon a sacred grove deep within the forest. \nA massive oak, easily a thousand years old, dominates the clearing.\nStrange runes are carved into its bark, and offerings of flowers\nand berries are piled at its base. This place radiates ancient power.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 4002,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 4004,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 40,
+          "max": 1
+        }
+      ]
+    },
+    "4010": {
+      "vnum": 4010,
+      "name": "Forest Trail North",
+      "description": "The path winds northward through increasingly rocky terrain.\nThe trees thin out here, and you can see the dark mouth of a cave\nin the hillside ahead. Crude totems mark the path - you're entering\ngoblin territory.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 4001,
+          "description": null
+        },
+        "north": {
+          "to_room": 6001,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 4001,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "4020": {
+      "vnum": 4020,
+      "name": "Edge of the Swamp",
+      "description": "The ground becomes soft and waterlogged. The trees here are\ntwisted and draped with hanging moss. The smell of decay is strong.\nMurky water pools between the tree roots, and insects buzz \nannoyingly around your head. The swamp extends to the south.",
+      "sector_type": "swamp",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 4002,
+          "description": null
+        },
+        "south": {
+          "to_room": 4021,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 4005,
+          "max": 2
+        }
+      ],
+      "obj_resets": []
+    },
+    "4021": {
+      "vnum": 4021,
+      "name": "Deep Swamp",
+      "description": "Brackish water rises to your knees here. Rotting logs provide\nthe only solid footing. Something large moves beneath the murky\nsurface. Will-o'-wisps dance in the distance, trying to lure\ntravelers to their doom.",
+      "sector_type": "swamp",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 4020,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 4006,
+          "max": 1
+        },
+        {
+          "vnum": 4005,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    }
+  },
+  "mobs": {
+    "4001": {
+      "vnum": 4001,
+      "name": "a forest wolf",
+      "short_desc": "A grey forest wolf",
+      "long_desc": "A large grey wolf prowls through the undergrowth.",
+      "level": 5,
+      "hp_dice": "2d10+15",
+      "damage_dice": "1d6+1",
+      "gold": 0,
+      "exp": 200,
+      "alignment": 0,
+      "flags": [
+        "aggressive"
+      ],
+      "special": null
+    },
+    "4002": {
+      "vnum": 4002,
+      "name": "a giant spider",
+      "short_desc": "A giant forest spider",
+      "long_desc": "A spider the size of a dog lurks in its web.",
+      "level": 7,
+      "hp_dice": "3d10+20",
+      "damage_dice": "1d8+2",
+      "gold": 0,
+      "exp": 350,
+      "alignment": 0,
+      "flags": [
+        "aggressive"
+      ],
+      "special": "poison"
+    },
+    "4003": {
+      "vnum": 4003,
+      "name": "a brown bear",
+      "short_desc": "A large brown bear",
+      "long_desc": "A massive brown bear forages among the trees.",
+      "level": 12,
+      "hp_dice": "6d10+50",
+      "damage_dice": "2d6+4",
+      "gold": 0,
+      "exp": 800,
+      "alignment": 0,
+      "flags": [],
+      "special": null
+    },
+    "4004": {
+      "vnum": 4004,
+      "name": "the Forest Druid",
+      "short_desc": "An ancient druid",
+      "long_desc": "A druid in green robes tends the sacred grove.",
+      "level": 25,
+      "hp_dice": "10d10+100",
+      "damage_dice": "2d8+5",
+      "gold": 100,
+      "exp": 2000,
+      "alignment": 1000,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "druid"
+    },
+    "4005": {
+      "vnum": 4005,
+      "name": "a giant frog",
+      "short_desc": "A bloated giant frog",
+      "long_desc": "A frog the size of a pony croaks menacingly.",
+      "level": 6,
+      "hp_dice": "3d10+15",
+      "damage_dice": "1d6+2",
+      "gold": 0,
+      "exp": 250,
+      "alignment": 0,
+      "flags": [
+        "aggressive"
+      ],
+      "special": null
+    },
+    "4006": {
+      "vnum": 4006,
+      "name": "a swamp troll",
+      "short_desc": "A hideous swamp troll",
+      "long_desc": "A moss-covered troll rises from the muck, dripping slime.",
+      "level": 18,
+      "hp_dice": "8d10+80",
+      "damage_dice": "2d8+6",
+      "gold": 50,
+      "exp": 1500,
+      "alignment": -500,
+      "flags": [
+        "aggressive"
+      ],
+      "special": "regenerate"
+    }
+  },
+  "objects": {
+    "40": {
+      "vnum": 40,
+      "name": "the druid's staff",
+      "short_desc": "a gnarled wooden staff",
+      "room_desc": "A staff carved from ancient oak lies here.",
+      "type": "weapon",
+      "weight": 4,
+      "cost": 500,
+      "damage_dice": "2d4",
+      "weapon_type": "pound",
+      "affects": [
+        {
+          "type": "mana",
+          "value": 20
+        }
+      ]
+    }
+  }
+}
