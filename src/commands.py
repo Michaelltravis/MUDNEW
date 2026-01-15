@@ -1523,6 +1523,438 @@ class CommandHandler:
         bar = '█' * filled + '░' * (width - filled)
         return f"[{bar}]"
 
+    # ==================== DOOR COMMANDS ====================
+
+    @classmethod
+    async def cmd_open(cls, player: 'Player', args: List[str]):
+        """Open a door or container. Usage: open <door/container>"""
+        if not args:
+            await player.send("Open what?")
+            return
+
+        c = player.config.COLORS
+        target_name = ' '.join(args).lower()
+
+        # Check for container first
+        container = None
+        for item in player.inventory + player.room.items:
+            if target_name in item.name.lower():
+                if hasattr(item, 'item_type') and item.item_type == 'container':
+                    container = item
+                    break
+
+        if container:
+            if not hasattr(container, 'is_closed'):
+                await player.send(f"{c['yellow']}The {container.name} doesn't open and close.{c['reset']}")
+                return
+
+            if not container.is_closed:
+                await player.send(f"{c['yellow']}The {container.name} is already open.{c['reset']}")
+                return
+
+            # Check if locked
+            if hasattr(container, 'is_locked') and container.is_locked:
+                await player.send(f"{c['red']}The {container.name} is locked.{c['reset']}")
+                return
+
+            container.is_closed = False
+            await player.send(f"{c['green']}You open {container.short_desc}.{c['reset']}")
+            await player.room.send_to_room(
+                f"{player.name} opens {container.short_desc}.",
+                exclude=[player]
+            )
+            return
+
+        # Check for door
+        direction = None
+        for dir_name in player.config.DIRECTIONS.keys():
+            if target_name in dir_name or target_name == dir_name:
+                direction = dir_name
+                break
+
+        if not direction:
+            await player.send(f"{c['red']}You don't see '{target_name}' here.{c['reset']}")
+            return
+
+        if direction not in player.room.exits or not player.room.exits[direction]:
+            await player.send(f"{c['red']}There's no exit {direction}.{c['reset']}")
+            return
+
+        exit_data = player.room.exits[direction]
+
+        if 'door' not in exit_data:
+            await player.send(f"{c['yellow']}There's no door {direction}.{c['reset']}")
+            return
+
+        door = exit_data['door']
+
+        if door.get('state') != 'closed':
+            await player.send(f"{c['yellow']}The door is already open.{c['reset']}")
+            return
+
+        # Check if locked
+        if door.get('locked', False):
+            await player.send(f"{c['red']}The door is locked.{c['reset']}")
+            return
+
+        # Check if magically blocked
+        if door.get('magically_blocked', False):
+            await player.send(f"{c['red']}The door is magically sealed!{c['reset']}")
+            return
+
+        door['state'] = 'open'
+        await player.send(f"{c['green']}You open the {door.get('name', 'door')} {direction}.{c['reset']}")
+        await player.room.send_to_room(
+            f"{player.name} opens the {door.get('name', 'door')} {direction}.",
+            exclude=[player]
+        )
+
+    @classmethod
+    async def cmd_close(cls, player: 'Player', args: List[str]):
+        """Close a door or container. Usage: close <door/container>"""
+        if not args:
+            await player.send("Close what?")
+            return
+
+        c = player.config.COLORS
+        target_name = ' '.join(args).lower()
+
+        # Check for container first
+        container = None
+        for item in player.inventory + player.room.items:
+            if target_name in item.name.lower():
+                if hasattr(item, 'item_type') and item.item_type == 'container':
+                    container = item
+                    break
+
+        if container:
+            if not hasattr(container, 'is_closed'):
+                await player.send(f"{c['yellow']}The {container.name} doesn't open and close.{c['reset']}")
+                return
+
+            if container.is_closed:
+                await player.send(f"{c['yellow']}The {container.name} is already closed.{c['reset']}")
+                return
+
+            container.is_closed = True
+            await player.send(f"{c['green']}You close {container.short_desc}.{c['reset']}")
+            await player.room.send_to_room(
+                f"{player.name} closes {container.short_desc}.",
+                exclude=[player]
+            )
+            return
+
+        # Check for door
+        direction = None
+        for dir_name in player.config.DIRECTIONS.keys():
+            if target_name in dir_name or target_name == dir_name:
+                direction = dir_name
+                break
+
+        if not direction:
+            await player.send(f"{c['red']}You don't see '{target_name}' here.{c['reset']}")
+            return
+
+        if direction not in player.room.exits or not player.room.exits[direction]:
+            await player.send(f"{c['red']}There's no exit {direction}.{c['reset']}")
+            return
+
+        exit_data = player.room.exits[direction]
+
+        if 'door' not in exit_data:
+            await player.send(f"{c['yellow']}There's no door {direction}.{c['reset']}")
+            return
+
+        door = exit_data['door']
+
+        # Check if broken
+        if door.get('broken', False):
+            await player.send(f"{c['red']}The door is broken and cannot be closed!{c['reset']}")
+            return
+
+        if door.get('state') == 'closed':
+            await player.send(f"{c['yellow']}The door is already closed.{c['reset']}")
+            return
+
+        door['state'] = 'closed'
+        await player.send(f"{c['green']}You close the {door.get('name', 'door')} {direction}.{c['reset']}")
+        await player.room.send_to_room(
+            f"{player.name} closes the {door.get('name', 'door')} {direction}.",
+            exclude=[player]
+        )
+
+    @classmethod
+    async def cmd_lock(cls, player: 'Player', args: List[str]):
+        """Lock a door or container. Usage: lock <door/container>"""
+        if not args:
+            await player.send("Lock what?")
+            return
+
+        c = player.config.COLORS
+        target_name = ' '.join(args).lower()
+
+        # Check for container first
+        container = None
+        for item in player.inventory + player.room.items:
+            if target_name in item.name.lower():
+                if hasattr(item, 'item_type') and item.item_type == 'container':
+                    container = item
+                    break
+
+        if container:
+            if not hasattr(container, 'is_locked'):
+                await player.send(f"{c['yellow']}The {container.name} cannot be locked.{c['reset']}")
+                return
+
+            if container.is_locked:
+                await player.send(f"{c['yellow']}The {container.name} is already locked.{c['reset']}")
+                return
+
+            # Check if closed
+            if hasattr(container, 'is_closed') and not container.is_closed:
+                await player.send(f"{c['red']}You must close it first.{c['reset']}")
+                return
+
+            # Check for key
+            key_vnum = getattr(container, 'key_vnum', None)
+            has_key = False
+            if key_vnum:
+                for item in player.inventory:
+                    if hasattr(item, 'vnum') and item.vnum == key_vnum:
+                        has_key = True
+                        break
+
+            if key_vnum and not has_key:
+                await player.send(f"{c['red']}You don't have the key.{c['reset']}")
+                return
+
+            container.is_locked = True
+            await player.send(f"{c['green']}*Click* You lock {container.short_desc}.{c['reset']}")
+            return
+
+        # Check for door
+        direction = None
+        for dir_name in player.config.DIRECTIONS.keys():
+            if target_name in dir_name or target_name == dir_name:
+                direction = dir_name
+                break
+
+        if not direction:
+            await player.send(f"{c['red']}You don't see '{target_name}' here.{c['reset']}")
+            return
+
+        if direction not in player.room.exits or not player.room.exits[direction]:
+            await player.send(f"{c['red']}There's no exit {direction}.{c['reset']}")
+            return
+
+        exit_data = player.room.exits[direction]
+
+        if 'door' not in exit_data:
+            await player.send(f"{c['yellow']}There's no door {direction}.{c['reset']}")
+            return
+
+        door = exit_data['door']
+
+        if door.get('locked', False):
+            await player.send(f"{c['yellow']}The door is already locked.{c['reset']}")
+            return
+
+        # Check if closed
+        if door.get('state') != 'closed':
+            await player.send(f"{c['red']}You must close it first.{c['reset']}")
+            return
+
+        # Check for key
+        key_vnum = door.get('key_vnum')
+        has_key = False
+        if key_vnum:
+            for item in player.inventory:
+                if hasattr(item, 'vnum') and item.vnum == key_vnum:
+                    has_key = True
+                    break
+
+        if key_vnum and not has_key:
+            await player.send(f"{c['red']}You don't have the key.{c['reset']}")
+            return
+
+        door['locked'] = True
+        await player.send(f"{c['green']}*Click* You lock the {door.get('name', 'door')} {direction}.{c['reset']}")
+
+    @classmethod
+    async def cmd_unlock(cls, player: 'Player', args: List[str]):
+        """Unlock a door or container. Usage: unlock <door/container>"""
+        if not args:
+            await player.send("Unlock what?")
+            return
+
+        c = player.config.COLORS
+        target_name = ' '.join(args).lower()
+
+        # Check for container first
+        container = None
+        for item in player.inventory + player.room.items:
+            if target_name in item.name.lower():
+                if hasattr(item, 'item_type') and item.item_type == 'container':
+                    container = item
+                    break
+
+        if container:
+            if not hasattr(container, 'is_locked'):
+                await player.send(f"{c['yellow']}The {container.name} cannot be locked.{c['reset']}")
+                return
+
+            if not container.is_locked:
+                await player.send(f"{c['yellow']}The {container.name} is already unlocked.{c['reset']}")
+                return
+
+            # Check for key
+            key_vnum = getattr(container, 'key_vnum', None)
+            has_key = False
+            if key_vnum:
+                for item in player.inventory:
+                    if hasattr(item, 'vnum') and item.vnum == key_vnum:
+                        has_key = True
+                        break
+
+            if key_vnum and not has_key:
+                await player.send(f"{c['red']}You don't have the key.{c['reset']}")
+                return
+
+            container.is_locked = False
+            await player.send(f"{c['green']}*Click* You unlock {container.short_desc}.{c['reset']}")
+            return
+
+        # Check for door
+        direction = None
+        for dir_name in player.config.DIRECTIONS.keys():
+            if target_name in dir_name or target_name == dir_name:
+                direction = dir_name
+                break
+
+        if not direction:
+            await player.send(f"{c['red']}You don't see '{target_name}' here.{c['reset']}")
+            return
+
+        if direction not in player.room.exits or not player.room.exits[direction]:
+            await player.send(f"{c['red']}There's no exit {direction}.{c['reset']}")
+            return
+
+        exit_data = player.room.exits[direction]
+
+        if 'door' not in exit_data:
+            await player.send(f"{c['yellow']}There's no door {direction}.{c['reset']}")
+            return
+
+        door = exit_data['door']
+
+        if not door.get('locked', False):
+            await player.send(f"{c['yellow']}The door is already unlocked.{c['reset']}")
+            return
+
+        # Check for key
+        key_vnum = door.get('key_vnum')
+        has_key = False
+        if key_vnum:
+            for item in player.inventory:
+                if hasattr(item, 'vnum') and item.vnum == key_vnum:
+                    has_key = True
+                    break
+
+        if key_vnum and not has_key:
+            await player.send(f"{c['red']}You don't have the key.{c['reset']}")
+            return
+
+        door['locked'] = False
+        await player.send(f"{c['green']}*Click* You unlock the {door.get('name', 'door')} {direction}.{c['reset']}")
+
+    @classmethod
+    async def cmd_pick(cls, player: 'Player', args: List[str]):
+        """Pick a lock (Thief skill). Usage: pick <door/container>"""
+        if not args:
+            await player.send("Pick what lock?")
+            return
+
+        c = player.config.COLORS
+
+        # Check if player has pick lock skill
+        pick_skill = player.skills.get('pick_lock', 0)
+        if pick_skill == 0:
+            await player.send(f"{c['red']}You don't know how to pick locks!{c['reset']}")
+            return
+
+        target_name = ' '.join(args).lower()
+
+        # Check for container first
+        container = None
+        for item in player.inventory + player.room.items:
+            if target_name in item.name.lower():
+                if hasattr(item, 'item_type') and item.item_type == 'container':
+                    container = item
+                    break
+
+        if container:
+            if not hasattr(container, 'is_locked') or not container.is_locked:
+                await player.send(f"{c['yellow']}The {container.name} isn't locked.{c['reset']}")
+                return
+
+            # Get pick difficulty
+            difficulty = getattr(container, 'pick_difficulty', 50)
+
+            # Attempt to pick
+            roll = random.randint(1, 100)
+            if roll <= pick_skill and roll + pick_skill >= difficulty:
+                container.is_locked = False
+                await player.send(f"{c['bright_green']}*Click* You successfully pick the lock on {container.short_desc}!{c['reset']}")
+                await player.room.send_to_room(
+                    f"{player.name} fiddles with {container.short_desc}.",
+                    exclude=[player]
+                )
+            else:
+                await player.send(f"{c['yellow']}You fail to pick the lock.{c['reset']}")
+            return
+
+        # Check for door
+        direction = None
+        for dir_name in player.config.DIRECTIONS.keys():
+            if target_name in dir_name or target_name == dir_name:
+                direction = dir_name
+                break
+
+        if not direction:
+            await player.send(f"{c['red']}You don't see '{target_name}' here.{c['reset']}")
+            return
+
+        if direction not in player.room.exits or not player.room.exits[direction]:
+            await player.send(f"{c['red']}There's no exit {direction}.{c['reset']}")
+            return
+
+        exit_data = player.room.exits[direction]
+
+        if 'door' not in exit_data:
+            await player.send(f"{c['yellow']}There's no door {direction}.{c['reset']}")
+            return
+
+        door = exit_data['door']
+
+        if not door.get('locked', False):
+            await player.send(f"{c['yellow']}The door isn't locked.{c['reset']}")
+            return
+
+        # Get pick difficulty
+        difficulty = door.get('pick_difficulty', 50)
+
+        # Attempt to pick
+        roll = random.randint(1, 100)
+        if roll <= pick_skill and roll + pick_skill >= difficulty:
+            door['locked'] = False
+            await player.send(f"{c['bright_green']}*Click* You successfully pick the lock on the {door.get('name', 'door')}!{c['reset']}")
+            await player.room.send_to_room(
+                f"{player.name} fiddles with the {door.get('name', 'door')} {direction}.",
+                exclude=[player]
+            )
+        else:
+            await player.send(f"{c['yellow']}You fail to pick the lock.{c['reset']}")
+
     # ==================== UTILITY ====================
     
     @classmethod

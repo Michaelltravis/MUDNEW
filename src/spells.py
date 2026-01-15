@@ -297,6 +297,27 @@ SPELLS = {
         'message_self': 'You feel yourself being pulled to safety...',
         'message_room': '$n disappears in a flash of light!',
     },
+
+    # Door spells
+    'break_door': {
+        'name': 'Break Door',
+        'mana_cost': 40,
+        'target': 'door',
+        'special': 'break_door',
+        'message_self': 'You unleash magical force at the door!',
+        'message_room': '$n unleashes magical force at the door!',
+        'level_required': 8,
+    },
+    'block_door': {
+        'name': 'Block Door',
+        'mana_cost': 50,
+        'target': 'door',
+        'duration_ticks': 600,  # 10 minutes
+        'special': 'block_door',
+        'message_self': 'You seal the door with magical energy!',
+        'message_room': '$n seals the door with magical energy!',
+        'level_required': 10,
+    },
 }
 
 
@@ -561,7 +582,74 @@ class SpellHandler:
                 drain = target.level * 100
                 target.exp = max(0, target.exp - drain)
                 await caster.send(f"{c['bright_red']}You drain {drain} experience from {target.name}!{c['reset']}")
-                
+
+        elif special == 'break_door':
+            # Break a locked door
+            # Need to get direction from target_name in original cast
+            direction = None
+            for dir_name in caster.config.DIRECTIONS.keys():
+                if target and hasattr(target, 'name') and dir_name in str(target).lower():
+                    direction = dir_name
+                    break
+
+            if not direction or direction not in caster.room.exits:
+                await caster.send(f"{c['red']}There's no door in that direction!{c['reset']}")
+                return
+
+            exit_data = caster.room.exits[direction]
+            if 'door' not in exit_data:
+                await caster.send(f"{c['yellow']}There's no door {direction}.{c['reset']}")
+                return
+
+            door = exit_data['door']
+
+            # Make a loud noise
+            await caster.room.send_to_room(
+                f"{c['bright_red']}**CRASH** The {door.get('name', 'door')} explodes into splinters!{c['reset']}"
+            )
+
+            # Break the door
+            door['broken'] = True
+            door['state'] = 'open'
+            door['locked'] = False
+
+            # Alert nearby mobs (aggressive behavior)
+            for npc in caster.room.characters:
+                if npc != caster and hasattr(npc, 'flags'):
+                    if 'aggressive' in npc.flags and not npc.is_fighting:
+                        from combat import CombatHandler
+                        await CombatHandler.start_combat(npc, caster)
+
+        elif special == 'block_door':
+            # Magically block a door
+            direction = None
+            for dir_name in caster.config.DIRECTIONS.keys():
+                if target and hasattr(target, 'name') and dir_name in str(target).lower():
+                    direction = dir_name
+                    break
+
+            if not direction or direction not in caster.room.exits:
+                await caster.send(f"{c['red']}There's no door in that direction!{c['reset']}")
+                return
+
+            exit_data = caster.room.exits[direction]
+            if 'door' not in exit_data:
+                await caster.send(f"{c['yellow']}There's no door {direction}.{c['reset']}")
+                return
+
+            door = exit_data['door']
+
+            # Check if already blocked
+            if door.get('magically_blocked', False):
+                await caster.send(f"{c['yellow']}The door is already magically sealed!{c['reset']}")
+                return
+
+            # Block the door
+            door['magically_blocked'] = True
+            door['block_expires'] = caster.world.game_time.hour + (spell['duration_ticks'] // 60) if hasattr(caster.world, 'game_time') else 0
+
+            await caster.send(f"{c['bright_blue']}Magical energy surrounds the {door.get('name', 'door')}, sealing it shut!{c['reset']}")
+
     @classmethod
     async def apply_spell_effect(cls, caster: 'Player', target: 'Character', spell_name: str):
         """Apply a spell effect (for potions, scrolls, etc.)."""
