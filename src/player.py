@@ -128,6 +128,10 @@ class Player(Character):
         self.quest_flags = {}
         self.active_quests = []  # List of ActiveQuest objects
 
+        # Group/following
+        self.group = None  # Group object if in a group
+        self.following = None  # Player being followed
+
         # Player flags
         self.flags = set()
         
