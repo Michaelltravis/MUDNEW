@@ -177,17 +177,17 @@ class Connection:
     async def show_race_menu(self):
         """Display race selection menu."""
         c = self.config.COLORS
-        await self.send(f"\r\n{c['cyan']}╔══════════════════════════════════════════════════════════════╗{c['reset']}")
-        await self.send(f"{c['cyan']}║{c['bright_yellow']}                    Choose Your Race                          {c['cyan']}║{c['reset']}")
-        await self.send(f"{c['cyan']}╠══════════════════════════════════════════════════════════════╣{c['reset']}")
-        
+        await self.send(f"\r\n{c['cyan']}================================================================{c['reset']}")
+        await self.send(f"{c['cyan']}                    Choose Your Race                          {c['reset']}")
+        await self.send(f"{c['cyan']}================================================================{c['reset']}")
+
         for race_id, race in self.config.RACES.items():
             mods = ' '.join([f"{stat[:3].upper()}:{mod:+d}" for stat, mod in race['stat_mods'].items() if mod != 0])
-            await self.send(f"{c['cyan']}║ {c['bright_green']}{race_id:<12}{c['white']}{race['description'][:38]:<38}{c['cyan']}║{c['reset']}")
+            await self.send(f" {c['bright_green']}{race_id:<12}{c['white']}{race['description']}{c['reset']}")
             if mods:
-                await self.send(f"{c['cyan']}║              {c['yellow']}({mods}){' ' * (48 - len(mods))}{c['cyan']}║{c['reset']}")
-        
-        await self.send(f"{c['cyan']}╚══════════════════════════════════════════════════════════════╝{c['reset']}")
+                await self.send(f"              {c['yellow']}({mods}){c['reset']}")
+
+        await self.send(f"{c['cyan']}================================================================{c['reset']}")
         await self.send(f"\r\n{c['white']}Enter race name: {c['reset']}")
         
     async def handle_race(self, race: str):
@@ -206,15 +206,15 @@ class Connection:
     async def show_class_menu(self):
         """Display class selection menu."""
         c = self.config.COLORS
-        await self.send(f"\r\n{c['cyan']}╔══════════════════════════════════════════════════════════════╗{c['reset']}")
-        await self.send(f"{c['cyan']}║{c['bright_yellow']}                    Choose Your Class                         {c['cyan']}║{c['reset']}")
-        await self.send(f"{c['cyan']}╠══════════════════════════════════════════════════════════════╣{c['reset']}")
-        
+        await self.send(f"\r\n{c['cyan']}================================================================{c['reset']}")
+        await self.send(f"{c['cyan']}                    Choose Your Class                         {c['reset']}")
+        await self.send(f"{c['cyan']}================================================================{c['reset']}")
+
         for class_id, cls in self.config.CLASSES.items():
-            await self.send(f"{c['cyan']}║ {c['bright_green']}{class_id:<12}{c['white']}{cls['description'][:48]:<48}{c['cyan']}║{c['reset']}")
-            await self.send(f"{c['cyan']}║              {c['yellow']}Prime: {cls['prime_stat'].upper():<3} HP:{cls['hit_dice']:>2}  MP:{cls['mana_dice']:>2}{' ' * 30}{c['cyan']}║{c['reset']}")
-        
-        await self.send(f"{c['cyan']}╚══════════════════════════════════════════════════════════════╝{c['reset']}")
+            await self.send(f" {c['bright_green']}{class_id:<12}{c['white']}{cls['description']}{c['reset']}")
+            await self.send(f"              {c['yellow']}Prime: {cls['prime_stat'].upper():<3} HP:{cls['hit_dice']:>2}  MP:{cls['mana_dice']:>2}{c['reset']}")
+
+        await self.send(f"{c['cyan']}================================================================{c['reset']}")
         await self.send(f"\r\n{c['white']}Enter class name: {c['reset']}")
         
     async def handle_class(self, char_class: str):
@@ -402,31 +402,30 @@ class MUDServer:
         c = self.config.COLORS
         welcome = f"""
 {c['bright_cyan']}
-    ╔═══════════════════════════════════════════════════════════════════╗
-    ║                                                                   ║
-    ║   {c['bright_yellow']}██████╗ ███████╗ █████╗ ██╗     ███╗   ███╗███████╗{c['bright_cyan']}            ║
-    ║   {c['bright_yellow']}██╔══██╗██╔════╝██╔══██╗██║     ████╗ ████║██╔════╝{c['bright_cyan']}            ║
-    ║   {c['bright_yellow']}██████╔╝█████╗  ███████║██║     ██╔████╔██║███████╗{c['bright_cyan']}            ║
-    ║   {c['bright_yellow']}██╔══██╗██╔══╝  ██╔══██║██║     ██║╚██╔╝██║╚════██║{c['bright_cyan']}            ║
-    ║   {c['bright_yellow']}██║  ██║███████╗██║  ██║███████╗██║ ╚═╝ ██║███████║{c['bright_cyan']}            ║
-    ║   {c['bright_yellow']}╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝╚══════╝{c['bright_cyan']}            ║
-    ║                      {c['white']}M U D{c['bright_cyan']}                                        ║
-    ║                                                                   ║
-    ╠═══════════════════════════════════════════════════════════════════╣
-    ║                                                                   ║
-    ║   {c['white']}Welcome, brave adventurer, to a world of fantasy and magic!{c['bright_cyan']}   ║
-    ║   {c['white']}Explore vast dungeons, battle fearsome creatures, and{c['bright_cyan']}         ║
-    ║   {c['white']}forge your legend in the Realms!{c['bright_cyan']}                              ║
-    ║                                                                   ║
-    ║   {c['bright_green']}• 8 unique races with special abilities{c['bright_cyan']}                   ║
-    ║   {c['bright_green']}• 8 character classes to master{c['bright_cyan']}                           ║
-    ║   {c['bright_green']}• Hundreds of zones to explore{c['bright_cyan']}                            ║
-    ║   {c['bright_green']}• Epic quests and legendary items{c['bright_cyan']}                         ║
-    ║                                                                   ║
-    ╚═══════════════════════════════════════════════════════════════════╝
+    ===================================================================
+
+        ____  _____    _    _     __  __ ____    __  __ _   _ ____
+       |  _ \\| ____|  / \\  | |   |  \\/  / ___|  |  \\/  | | | |  _ \\
+       | |_) |  _|   / _ \\ | |   | |\\/| \\___ \\  | |\\/| | | | | | | |
+       |  _ <| |___ / ___ \\| |___| |  | |___) | | |  | | |_| | |_| |
+       |_| \\_\\_____/_/   \\_\\_____|_|  |_|____/  |_|  |_|\\___/|____/
+
+    ===================================================================
+
+    {c['white']}Welcome, brave adventurer, to a world of fantasy and magic!
+    Explore vast dungeons, battle fearsome creatures, and
+    forge your legend in the Realms!
+
+    {c['bright_green']}* 8 unique races with special abilities
+    * 8 character classes to master
+    * Hundreds of zones to explore
+    * Epic quests and legendary items
+
+{c['bright_cyan']}    ===================================================================
 {c['reset']}
+
 {c['white']}What name shall you be known by?{c['reset']} """
-        
+
         await conn.send(welcome, newline=False)
         
     async def process_input(self):

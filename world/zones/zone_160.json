@@ -1,0 +1,767 @@
+{
+  "number": 160,
+  "name": "The Plane of Eternal Chaos",
+  "description": "Where reality itself breaks down and the elemental planes collide",
+  "level_range": [
+    30,
+    40
+  ],
+  "author": "RealmsMUD Team",
+  "reset_time": 300,
+  "rooms": {
+    "16000": {
+      "title": "Hidden Portal",
+      "description": "Deep within the Dragon's Domain, a crack in reality pulses with chaotic energy. The portal was hidden by ancient dragons who feared what lay beyond. It leads to the Plane of Eternal Chaos - a place where the elemental planes collide and reality itself is unstable. Entering is extremely dangerous. The portal shifts colors constantly - red fire, blue water, green earth, white air, and colors that shouldn't exist.",
+      "terrain": "mountain",
+      "exits": {
+        "west": {
+          "to_room": 8099
+        },
+        "portal": {
+          "to_room": 16001
+        }
+      },
+      "vnum": 16000
+    },
+    "16001": {
+      "title": "Threshold of Madness",
+      "description": "You step through into chaos. The ground beneath your feet shifts between solid stone, flowing water, burning flame, and empty air. The sky above (if it can be called sky) shows all times of day simultaneously - dawn, noon, dusk, and midnight overlapping. Gravity pulls in random directions. The very laws of physics are suggestions here. Reality warps and bends, and staying sane requires immense willpower.",
+      "terrain": "planar",
+      "special": "reality_warp",
+      "exits": {
+        "portal": {
+          "to_room": 16000
+        },
+        "north": {
+          "to_room": 16002
+        },
+        "south": {
+          "to_room": 16003
+        },
+        "east": {
+          "to_room": 16004
+        },
+        "west": {
+          "to_room": 16005
+        }
+      },
+      "vnum": 16001
+    },
+    "16002": {
+      "title": "Fire Dominance",
+      "description": "In this area, the Elemental Plane of Fire bleeds through. Everything burns - the ground is magma, the air is superheated, and flames dance without fuel. Fire elementals manifest spontaneously. The heat is beyond what the mortal body should survive. Even with fire resistance, this place is torture. Through the flames, you can see the other elemental zones bleeding through in places.",
+      "terrain": "planar",
+      "special": "extreme_heat",
+      "exits": {
+        "south": {
+          "to_room": 16001
+        },
+        "east": {
+          "to_room": 16006
+        }
+      },
+      "vnum": 16002
+    },
+    "16003": {
+      "title": "Water Dominance",
+      "description": "Here, water rules. You're underwater even though there's no surface above or below - just infinite ocean in all directions. Pressure crushing, cold numbing. Water elementals swim past like massive whales. Breathing is impossible without magic. Through the murky water, you can see other planes overlapping - fire boiling the water, earth creating temporary islands.",
+      "terrain": "planar",
+      "special": "requires_water_breathing",
+      "exits": {
+        "north": {
+          "to_room": 16001
+        },
+        "west": {
+          "to_room": 16007
+        }
+      },
+      "vnum": 16003
+    },
+    "16004": {
+      "title": "Earth Dominance",
+      "description": "Solid stone in every direction - you're embedded in rock. Movement is difficult, like pushing through thick mud. Earth elementals phase through the stone as if it were air. The weight of infinite stone presses from all sides. Occasionally the stone shifts to magma or ice as other planes intrude. Claustrophobia is overwhelming here.",
+      "terrain": "planar",
+      "special": "earth_prison",
+      "exits": {
+        "west": {
+          "to_room": 16001
+        },
+        "south": {
+          "to_room": 16008
+        }
+      },
+      "vnum": 16004
+    },
+    "16005": {
+      "title": "Air Dominance",
+      "description": "Nothing but endless sky. You fall forever without hitting ground, or fly without wings. Winds howl at hurricane force, changing direction constantly. Air elementals manifest as sentient tornadoes. Lightning arcs between clouds that materialize from nothing. There's no up or down, just infinite space. Some areas have breathable air, others vacuum. Navigation is nearly impossible.",
+      "terrain": "planar",
+      "special": "endless_sky",
+      "exits": {
+        "east": {
+          "to_room": 16001
+        },
+        "north": {
+          "to_room": 16009
+        }
+      },
+      "vnum": 16005
+    },
+    "16006": {
+      "title": "Fire-Earth Confluence",
+      "description": "Where fire and earth meet, volcanoes are born. This zone is an endless volcanic landscape - lava flows, ash clouds, erupting vents. The ground is hot enough to glow. Magma golems and lava elementals war with each other. The heat and toxic fumes are lethal without strong protection. Every surface radiates killing heat.",
+      "terrain": "planar",
+      "special": "volcanic_chaos",
+      "exits": {
+        "west": {
+          "to_room": 16002
+        },
+        "south": {
+          "to_room": 16010
+        }
+      },
+      "vnum": 16006
+    },
+    "16007": {
+      "title": "Water-Air Confluence",
+      "description": "Where water and air collide, storms are born. This area is an eternal hurricane - rain falling in every direction, lightning constantly, winds that could tear flesh from bone. Water and air elementals swirl together in massive vortexes. The noise is deafening. Visibility is zero through the storm. Simply existing here is a battle.",
+      "terrain": "planar",
+      "special": "eternal_storm",
+      "exits": {
+        "east": {
+          "to_room": 16003
+        },
+        "north": {
+          "to_room": 16011
+        }
+      },
+      "vnum": 16007
+    },
+    "16008": {
+      "title": "Earth-Water Confluence",
+      "description": "Earth and water create the primal swamp. Thick mud extends infinitely in all directions. Every step is a struggle - the mud pulls at you like quicksand. Strange plants grow rapidly, dying and regrowing in seconds. The smell of rot and growth is overwhelming. Oozes and elementals of both types spawn continuously.",
+      "terrain": "planar",
+      "special": "primal_swamp",
+      "exits": {
+        "north": {
+          "to_room": 16004
+        },
+        "west": {
+          "to_room": 16012
+        }
+      },
+      "vnum": 16008
+    },
+    "16009": {
+      "title": "Air-Fire Confluence",
+      "description": "Where air feeds fire, infernos rage. This zone is a firestorm - flames that burn without fuel, spreading through empty air. The heat is indescribable, the light blinding. Fire and air elementals dance together in deadly spirals. Breathing is almost impossible - the air itself burns. This is as close to hell as the elemental planes get.",
+      "terrain": "planar",
+      "special": "firestorm",
+      "exits": {
+        "south": {
+          "to_room": 16005
+        },
+        "east": {
+          "to_room": 16013
+        }
+      },
+      "vnum": 16009
+    },
+    "16010": {
+      "title": "The Elemental Nexus",
+      "description": "At the center where all four planes meet, pure chaos reigns. Elements shift and combine in impossible ways - ice that burns, stone that flows like water, fire that freezes. The four elemental lords battle here eternally, their conflict creating and destroying reality in waves. The power here is unimaginable. Simply witnessing it could break a mind.",
+      "terrain": "planar",
+      "special": "elemental_chaos",
+      "exits": {
+        "north": {
+          "to_room": 16006
+        },
+        "south": {
+          "to_room": 16014
+        },
+        "east": {
+          "to_room": 16015
+        },
+        "west": {
+          "to_room": 16016
+        }
+      },
+      "vnum": 16010
+    },
+    "16011": {
+      "title": "Chaos Beast Territory",
+      "description": "In areas where reality is most unstable, chaos beasts spawn. These creatures are living embodiments of disorder - their forms shift constantly, never stable. They have no set shape or nature. Fighting them is nearly impossible as they change faster than you can adapt. They attack anything stable, anything that represents order. This is their domain.",
+      "terrain": "planar",
+      "special": "reality_flux",
+      "exits": {
+        "south": {
+          "to_room": 16007
+        },
+        "east": {
+          "to_room": 16017
+        }
+      },
+      "vnum": 16011
+    },
+    "16012": {
+      "title": "The Maze of Madness",
+      "description": "Corridors that shift and change, paths that loop back on themselves, doors that lead nowhere. This maze has no solution because it changes constantly. The walls are made of solidified chaos, and they whisper madness to those who touch them. Creatures lost in here wander forever, slowly going insane. The only way out is to stop trying to understand.",
+      "terrain": "planar",
+      "special": "shifting_maze",
+      "exits": {
+        "east": {
+          "to_room": 16008
+        },
+        "north": {
+          "to_room": 16018
+        }
+      },
+      "vnum": 16012
+    },
+    "16013": {
+      "title": "The Demon Gate",
+      "description": "A massive portal tears through reality here, leading to the Abyss. Demons pour through constantly, drawn by the chaos. They see this plane as a staging ground for invading other realities. The portal is surrounded by demonic runes and burns with hellfire. Closing it would require incredible power and sacrifice. Until then, demons will continue their invasion.",
+      "terrain": "planar",
+      "special": "demon_portal",
+      "exits": {
+        "west": {
+          "to_room": 16009
+        },
+        "south": {
+          "to_room": 16019
+        }
+      },
+      "vnum": 16013
+    },
+    "16014": {
+      "title": "The Devil's Battleground",
+      "description": "Devils have claimed this area, fighting against the demon incursion. Unlike chaotic demons, devils represent order - evil order, but order nonetheless. They've fortified this zone, creating stable ground and defensive positions. The battle between devils and demons is eternal, and both sides seek allies. Neither can be trusted.",
+      "terrain": "planar",
+      "exits": {
+        "north": {
+          "to_room": 16010
+        },
+        "south": {
+          "to_room": 16020
+        }
+      },
+      "vnum": 16014
+    },
+    "16015": {
+      "title": "Reality Anchor Point",
+      "description": "A small area of stable reality exists here, maintained by ancient magic. The ground is solid, the air breathable, and physics work normally. It's an oasis of sanity in the chaos. Refugees from various planes gather here, seeking shelter. The magic maintaining stability is weakening - eventually this too will fall to chaos.",
+      "terrain": "planar",
+      "exits": {
+        "west": {
+          "to_room": 16010
+        },
+        "east": {
+          "to_room": 16021
+        }
+      },
+      "vnum": 16015
+    },
+    "16016": {
+      "title": "Void Breach",
+      "description": "Here, even the elemental planes have failed. You stand at the edge of true nothingness - the void between realities. It's not darkness but absence. Looking into it is looking at nothing in its purest form. Things that fall into the void cease to exist on every level. Even gods fear this place. The void slowly expands, consuming everything.",
+      "terrain": "planar",
+      "special": "void_damage",
+      "exits": {
+        "east": {
+          "to_room": 16010
+        }
+      },
+      "vnum": 16016
+    },
+    "16017": {
+      "title": "Planar Horror Nest",
+      "description": "Creatures that shouldn't exist spawn here - horrors from beyond reality. They're not from any known plane but from the spaces between. Each is unique, a nightmare given form. They have no logic or reason, just hunger for destruction. The nest itself is organic, pulsing like a living thing. Destroying the nest might stop more horrors from spawning.",
+      "terrain": "planar",
+      "special": "horror_spawn",
+      "exits": {
+        "west": {
+          "to_room": 16011
+        }
+      },
+      "vnum": 16017
+    },
+    "16018": {
+      "title": "The Time Storm",
+      "description": "Not just space but time is unstable here. You see echoes of yourself moving through - past selves, future selves, alternate selves. Time flows in all directions simultaneously. Age decades in seconds or reverse into youth. Paradoxes spawn constantly. Navigating requires not caring about causality. Those who try to understand go mad.",
+      "terrain": "planar",
+      "special": "time_chaos",
+      "exits": {
+        "south": {
+          "to_room": 16012
+        },
+        "east": {
+          "to_room": 16022
+        }
+      },
+      "vnum": 16018
+    },
+    "16019": {
+      "title": "Demon War Camp",
+      "description": "Demons have established a forward camp here. Crude fortifications surround areas where demons gather, plan, and prepare for raids. The camp reeks of sulfur and blood. Lesser demons scurry about on errands while greater demons command. They view mortals as food or slaves. Any who aren't demons are enemies.",
+      "terrain": "planar",
+      "exits": {
+        "north": {
+          "to_room": 16013
+        },
+        "south": {
+          "to_room": 16023
+        }
+      },
+      "vnum": 16019
+    },
+    "16020": {
+      "title": "Devil Fortress",
+      "description": "The devils have constructed a fortress of infernal iron. It's organized and efficient, completely unlike the demonic camp. Devils march in formation, strategy is planned carefully. They offer contracts to the desperate - power in exchange for souls. The fortress represents hell's bid to control this plane. It's evil, but it's rational evil.",
+      "terrain": "planar",
+      "exits": {
+        "north": {
+          "to_room": 16014
+        }
+      },
+      "vnum": 16020
+    },
+    "16021": {
+      "title": "Refugee Sanctuary",
+      "description": "Beings from across the planes have taken refuge here. Genies, angels, dragons - all seeking safety from the chaos. They've formed an uneasy alliance, united by survival. Resources are limited, and tensions run high. They know the sanctuary is failing. Some seek to escape, others to stabilize reality, others simply to survive one more day.",
+      "terrain": "planar",
+      "exits": {
+        "west": {
+          "to_room": 16015
+        }
+      },
+      "vnum": 16021
+    },
+    "16022": {
+      "title": "The Crystal Spire",
+      "description": "A massive crystal structure rises from the chaos, seemingly unaffected by the instability around it. The crystal resonates with power - reality stabilizes near it. Ancient beings constructed this spire as an anchor point, attempting to impose order on chaos. Controlling the spire grants immense power over the plane. Multiple factions battle for control.",
+      "terrain": "planar",
+      "exits": {
+        "west": {
+          "to_room": 16018
+        },
+        "up": {
+          "to_room": 16024
+        }
+      },
+      "vnum": 16022
+    },
+    "16023": {
+      "title": "The Demon Lord's Throne",
+      "description": "At the heart of the demon encampment sits a throne of bone and iron. The demon lord commanding the invasion sits here, plotting conquest. The demon lord is one of the most powerful beings on this plane - ancient, cunning, and utterly malevolent. Defeating it would shatter the demon invasion, but victory is far from certain. The throne radiates evil so profound it's almost physical.",
+      "terrain": "planar",
+      "exits": {
+        "north": {
+          "to_room": 16019
+        }
+      },
+      "vnum": 16023
+    },
+    "16024": {
+      "title": "Spire Summit",
+      "description": "At the top of the crystal spire, a control chamber allows manipulation of reality itself. Whoever controls this can stabilize areas, redirect elemental energies, even seal the demon portal. The chamber is a sphere of pure crystal, covered in glowing runes. Operating it requires immense magical power and understanding. This is the key to controlling the Plane of Chaos - or escaping it.",
+      "terrain": "planar",
+      "exits": {
+        "down": {
+          "to_room": 16022
+        }
+      },
+      "vnum": 16024
+    }
+  },
+  "mobiles": {
+    "16000": {
+      "name": "chaos beast",
+      "short_desc": "a constantly shifting chaos beast",
+      "long_desc": "A creature of pure chaos flows here, its form never stable for even a moment.",
+      "description": "This creature has no fixed form - it shifts constantly between shapes, sometimes humanoid, sometimes bestial, sometimes geometric patterns that hurt to look at. Its body is semi-transparent, showing swirling colors within. Each attack might be claws, tentacles, or pure energy. It exists only to spread chaos, attacking anything stable. It can't be predicted because it doesn't follow rules.",
+      "level": 32,
+      "race": "chaos",
+      "size": "large",
+      "hp_dice": "24d10+120",
+      "damage_dice": "4d8+6",
+      "armor_class": 35,
+      "exp_value": 2200,
+      "gold": 0,
+      "behaviors": [
+        "aggressive",
+        "wander"
+      ],
+      "special_abilities": [
+        "shape_shift",
+        "reality_warp",
+        "immune_to_chaos"
+      ],
+      "special_attacks": [
+        "chaos_touch"
+      ],
+      "spawn_rooms": [
+        16001,
+        16011,
+        16017,
+        16018
+      ],
+      "max_in_zone": 6,
+      "vnum": 16000
+    },
+    "16001": {
+      "name": "elemental lord",
+      "short_desc": "a towering elemental lord",
+      "long_desc": "A being of pure elemental power towers here, reality bending around it.",
+      "description": "This is not a mere elemental but an elemental lord - one of the most powerful beings of its type. It stands thirty feet tall, composed entirely of its element (fire, water, earth, or air). Its presence warps reality, spreading its element in a radius. Where an elemental lord goes, its domain follows. They battle each other constantly for dominance. Mortals are beneath their notice unless they interfere.",
+      "level": 35,
+      "race": "elemental",
+      "size": "huge",
+      "hp_dice": "28d12+140",
+      "damage_dice": "5d8+8",
+      "armor_class": 30,
+      "exp_value": 2500,
+      "gold": 0,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_abilities": [
+        "elemental_immunity",
+        "aura_of_power",
+        "legendary_resistance"
+      ],
+      "special_attacks": [
+        "elemental_fury"
+      ],
+      "spells": [
+        "meteor_swarm",
+        "tsunami",
+        "earthquake",
+        "tornado"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "spellcaster"
+        ],
+        "preferred_spells": [
+          "meteor_swarm",
+          "earthquake"
+        ]
+      },
+      "spawn_rooms": [
+        16002,
+        16003,
+        16004,
+        16005,
+        16010
+      ],
+      "max_in_zone": 4,
+      "vnum": 16001
+    },
+    "16002": {
+      "name": "demon",
+      "short_desc": "a hulking demon wreathed in flames",
+      "long_desc": "A massive demon stands here, its eyes burning with hatred for all creation.",
+      "description": "This demon is a creature of the Abyss, pure chaotic evil given form. It stands twelve feet tall, with massive muscles, leathery wings, curved horns, and skin like molten rock. It wields a massive sword that burns with hellfire. Demons exist only to destroy - they hate creation itself and work to unmake it. This one is a lieutenant in the invasion, commanding lesser demons.",
+      "level": 33,
+      "race": "demon",
+      "size": "large",
+      "hp_dice": "26d10+130",
+      "damage_dice": "4d10+7",
+      "armor_class": 32,
+      "exp_value": 2300,
+      "gold": 0,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_abilities": [
+        "demon_traits",
+        "fire_immunity",
+        "teleport"
+      ],
+      "special_attacks": [
+        "fear_aura",
+        "hellfire"
+      ],
+      "spells": [
+        "fireball",
+        "chaos_bolt",
+        "dispel_magic"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "spellcaster",
+          "pack"
+        ],
+        "preferred_spells": [
+          "fireball",
+          "chaos_bolt"
+        ],
+        "pack_call_radius": 3
+      },
+      "spawn_rooms": [
+        16013,
+        16019,
+        16023
+      ],
+      "max_in_zone": 6,
+      "vnum": 16002
+    },
+    "16003": {
+      "name": "devil",
+      "short_desc": "an armored devil warrior",
+      "long_desc": "A devil in black plate armor surveys the area with calculating eyes.",
+      "description": "This devil is a soldier of hell, representing lawful evil. Unlike the chaotic demons, devils are organized and strategic. This one wears dark armor and wields an enchanted weapon with skill. Devils offer contracts, seeking to claim souls through deals. They're not mindless destroyers but calculating conquerors. This one commands devil squads in the war against demons.",
+      "level": 34,
+      "race": "devil",
+      "size": "large",
+      "hp_dice": "27d10+135",
+      "damage_dice": "4d10+7",
+      "armor_class": 28,
+      "exp_value": 2400,
+      "gold": 500,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_abilities": [
+        "devil_traits",
+        "fire_immunity",
+        "see_invisible"
+      ],
+      "special_attacks": [
+        "infernal_command"
+      ],
+      "spells": [
+        "wall_of_fire",
+        "hold_person",
+        "fireball"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "spellcaster",
+          "assist"
+        ],
+        "preferred_spells": [
+          "wall_of_fire",
+          "hold_person"
+        ],
+        "assist_allies": [
+          "devil"
+        ]
+      },
+      "spawn_rooms": [
+        16014,
+        16020
+      ],
+      "max_in_zone": 4,
+      "vnum": 16003
+    },
+    "16004": {
+      "name": "planar horror",
+      "short_desc": "an incomprehensible planar horror",
+      "long_desc": "Something that should not exist writhes here, its very presence an affront to sanity.",
+      "description": "This creature is from beyond known reality - not from any plane but from the spaces between. Its form is impossible to fully perceive - the mind slides off it, unable to comprehend. Tentacles, mouths, eyes, and things without names writhe in constant motion. Looking at it too long causes madness. It exists to consume and corrupt reality itself. It may be the most dangerous thing on this plane.",
+      "level": 38,
+      "race": "aberration",
+      "size": "huge",
+      "hp_dice": "32d12+192",
+      "damage_dice": "6d8+10",
+      "armor_class": 25,
+      "exp_value": 2800,
+      "gold": 0,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_abilities": [
+        "reality_warp",
+        "spell_resistance",
+        "legendary_resistance",
+        "madness_aura"
+      ],
+      "special_attacks": [
+        "sanity_drain",
+        "reality_tear"
+      ],
+      "spawn_rooms": [
+        16017
+      ],
+      "max_in_zone": 2,
+      "vnum": 16004
+    },
+    "16005": {
+      "name": "demon lord",
+      "short_desc": "Bael'thurok, Lord of the Burning Chaos",
+      "long_desc": "An massive demon lord sits upon a throne of bone, power radiating from its form like heat.",
+      "description": "Bael'thurok is one of the most powerful demons in existence. Standing twenty feet tall, its body is covered in plates of infernal armor that seems part of its flesh. Six arms wield different weapons, and massive wings spread behind it. Horns the size of spears crown its head. It's led the demon invasion, seeing the Plane of Chaos as a perfect staging ground for attacks on all reality. Defeating it would require the combined might of legendary heroes.",
+      "level": 40,
+      "race": "demon",
+      "size": "huge",
+      "hp_dice": "36d12+216",
+      "damage_dice": "6d10+12",
+      "armor_class": 25,
+      "exp_value": 3000,
+      "gold": 5000,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_abilities": [
+        "demon_traits",
+        "fire_immunity",
+        "legendary_resistance",
+        "spell_resistance",
+        "true_sight"
+      ],
+      "special_attacks": [
+        "meteor_strike",
+        "summon_demons"
+      ],
+      "spells": [
+        "meteor_swarm",
+        "power_word_kill",
+        "gate",
+        "blasphemy"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "spellcaster",
+          "flee_heal"
+        ],
+        "preferred_spells": [
+          "meteor_swarm",
+          "power_word_kill",
+          "gate"
+        ],
+        "flee_hp_percent": 10
+      },
+      "spawn_rooms": [
+        16023
+      ],
+      "max_in_zone": 1,
+      "vnum": 16005
+    }
+  },
+  "objects": {
+    "16000": {
+      "name": "chaos blade",
+      "short_desc": "a sword that shifts between forms",
+      "long_desc": "A weapon of pure chaos lies here, its form never quite stable.",
+      "description": "This sword is forged from solidified chaos. Its blade shifts constantly - sometimes straight, sometimes curved, sometimes serrated. The hilt changes materials. Even its size varies. Despite the instability, it's incredibly powerful. Each strike might be fire, ice, lightning, or pure force. The unpredictability makes it deadly. Only the mad or desperate would wield such a weapon.",
+      "item_type": "weapon",
+      "value": 8000,
+      "weight": 10,
+      "weapon_type": "sword",
+      "damage_dice": "2d10+4",
+      "magic_bonus": 3,
+      "special_properties": [
+        "chaos",
+        "random_damage_type"
+      ],
+      "spawn_rooms": [
+        16010,
+        16023
+      ],
+      "max_in_zone": 1,
+      "vnum": 16000
+    },
+    "16001": {
+      "name": "planar armor",
+      "short_desc": "a suit of armor woven from reality itself",
+      "long_desc": "Armor that seems to exist in multiple places at once rests here.",
+      "description": "This armor is crafted from stabilized reality, woven into protective gear. It exists slightly out of phase, making attacks pass through it harmlessly. The armor adapts to threats, becoming fire-resistant when hit by fire, cold-resistant when hit by ice. It's one of the most protective items in existence. The cost is that wearing it makes you feel disconnected from reality.",
+      "item_type": "armor",
+      "value": 10000,
+      "weight": 30,
+      "armor_location": "body",
+      "armor_class": 22,
+      "magic_bonus": 4,
+      "special_properties": [
+        "adaptive_resistance",
+        "phase_shift"
+      ],
+      "spawn_rooms": [
+        16021,
+        16024
+      ],
+      "max_in_zone": 1,
+      "vnum": 16001
+    },
+    "16002": {
+      "name": "elemental crystal",
+      "short_desc": "a crystal containing pure elemental power",
+      "long_desc": "A multifaceted crystal pulses with elemental energy.",
+      "description": "This crystal is condensed elemental power made solid. It contains the essence of all four elements in perfect balance. Using it as a spell focus grants incredible power over elemental magic. It could also be used to create legendary elemental weapons or armor. Elemental beings are drawn to it like moths to flame.",
+      "item_type": "ingredient",
+      "value": 5000,
+      "weight": 3,
+      "magic_bonus": 4,
+      "special_properties": [
+        "elemental_mastery"
+      ],
+      "spawn_rooms": [
+        16010,
+        16024
+      ],
+      "max_in_zone": 2,
+      "vnum": 16002
+    },
+    "16003": {
+      "name": "staff of chaos",
+      "short_desc": "a twisted staff crackling with chaotic energy",
+      "long_desc": "A staff of bizarre materials crackles with power.",
+      "description": "This staff is crafted from materials that don't exist in normal reality. It channels chaos itself, allowing the user to warp reality in small ways. Every spell cast through it has unpredictable side effects - sometimes beneficial, sometimes disastrous. It's incredibly powerful but wildly dangerous. Only chaos mages dare use such a tool.",
+      "item_type": "staff",
+      "value": 7000,
+      "weight": 5,
+      "magic_bonus": 3,
+      "charges": 50,
+      "special_properties": [
+        "chaos_magic",
+        "random_effects"
+      ],
+      "spawn_rooms": [
+        16022,
+        16024
+      ],
+      "max_in_zone": 1,
+      "vnum": 16003
+    },
+    "16004": {
+      "name": "reality anchor",
+      "short_desc": "a device that stabilizes reality",
+      "long_desc": "A complex device of gears and crystals hums with power.",
+      "description": "This device was created by ancient beings to impose order on chaos. Activating it creates a sphere of stable reality around the user. Within that sphere, normal physics apply and chaos can't intrude. It's essential for surviving long-term in the Plane of Chaos. The device is powered by the user's willpower - it drains mental energy to maintain stability.",
+      "item_type": "tool",
+      "value": 6000,
+      "weight": 8,
+      "special_properties": [
+        "reality_stabilization"
+      ],
+      "spawn_rooms": [
+        16015,
+        16021
+      ],
+      "max_in_zone": 2,
+      "vnum": 16004
+    },
+    "16005": {
+      "name": "demon heart",
+      "short_desc": "a still-beating demon heart",
+      "long_desc": "A massive heart pulses here, hot to the touch.",
+      "description": "This is the heart of a greater demon, torn from its chest. Incredibly, it still beats. The heart radiates infernal power and burns with inner fire. Alchemists and enchanters prize demon hearts as components for the most powerful magic. Simply carrying it grants fire resistance and enhanced strength. But it also attracts other demons, who seek to reclaim their fallen comrade's heart.",
+      "item_type": "ingredient",
+      "value": 4000,
+      "weight": 15,
+      "magic_bonus": 3,
+      "special_properties": [
+        "fire_resistance",
+        "strength_boost",
+        "demon_attraction"
+      ],
+      "spawn_rooms": [
+        16019,
+        16023
+      ],
+      "max_in_zone": 2,
+      "vnum": 16005
+    }
+  }
+}

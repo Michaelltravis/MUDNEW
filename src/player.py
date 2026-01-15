@@ -160,9 +160,12 @@ class Player(Character):
         
         # Calculate derived stats based on class
         class_data = player.config.CLASSES[char_class]
-        player.max_hp = class_data['hit_dice'] + (player.con - 10) // 2 * 2
-        player.max_mana = class_data['mana_dice'] + (player.int - 10) // 2 * 2
-        player.max_move = class_data['move_dice'] + (player.dex - 10) // 2 * 2
+        # HP: 12-22 range based on class and constitution
+        player.max_hp = 12 + class_data['hit_dice'] // 2 + (player.con - 10) // 2
+        # Mana: ~100 base, scales with INT + WIS
+        player.max_mana = 100 + class_data['mana_dice'] * 5 + (player.int + player.wis - 20) * 2
+        # Moves: 100+ base, scales with constitution
+        player.max_move = 100 + class_data['move_dice'] * 5 + player.con * 2
         
         player.hp = player.max_hp
         player.mana = player.max_mana
@@ -213,6 +216,7 @@ class Player(Character):
             'paladin': 10,    # Short sword
             'necromancer': 11, # Dagger
             'bard': 14,       # Rapier
+            'assassin': 11,   # Dagger
         }
         
         weapon_vnum = weapons.get(self.char_class, 10)

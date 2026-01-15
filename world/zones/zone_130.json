@@ -1,0 +1,562 @@
+{
+  "number": 130,
+  "name": "The Sunken Ruins of Atal'narath",
+  "description": "Ancient ruins beneath the waves",
+  "level_range": [
+    18,
+    25
+  ],
+  "author": "RealmsMUD Team",
+  "reset_time": 300,
+  "rooms": {
+    "13000": {
+      "title": "The Docks of Midgaard",
+      "description": "Wooden docks extend into the harbor, where boats bob gently on the waves. Sailors and merchants crowd the waterfront, loading and unloading cargo. The smell of salt water and fish fills the air. To the west, beyond the harbor mouth, the open ocean beckons. Strange tales are told of ruins beneath those waves - a city that sank centuries ago.",
+      "terrain": "city",
+      "exits": {
+        "east": {
+          "to_room": 3005
+        },
+        "west": {
+          "to_room": 13001
+        }
+      },
+      "vnum": 13000
+    },
+    "13001": {
+      "title": "Harbor Mouth",
+      "description": "The harbor opens into deeper water here. The bottom is visible through clear blue water - sandy with patches of seaweed. Boats must navigate carefully to avoid the rocks that line the passage. Beneath the surface, shapes can be seen - old pilings, sunken debris, and something that might be ancient stonework. The water here is about twenty feet deep.",
+      "terrain": "water_surface",
+      "exits": {
+        "east": {
+          "to_room": 13000
+        },
+        "west": {
+          "to_room": 13002
+        },
+        "down": {
+          "to_room": 13003
+        }
+      },
+      "vnum": 13001
+    },
+    "13002": {
+      "title": "Open Ocean",
+      "description": "The shore has fallen away behind you, and deep water surrounds you on all sides. Waves roll endlessly, driven by distant winds. The water is a deep blue-green, impossible to see through from the surface. Sailors avoid this area, claiming it's cursed - that something beneath the waves pulls ships down. The water here is over a hundred feet deep.",
+      "terrain": "water_surface",
+      "exits": {
+        "east": {
+          "to_room": 13001
+        },
+        "down": {
+          "to_room": 13004
+        }
+      },
+      "vnum": 13002
+    },
+    "13003": {
+      "title": "Shallow Waters",
+      "description": "Sunlight filters down through the water, illuminating a sandy bottom. Schools of fish dart past, and kelp sways in the current. The silence underwater is profound - only the sound of your own breathing breaks it. If you have water breathing magic, you can breathe normally; otherwise, you'll need to surface soon. Old stone blocks lie half-buried in the sand.",
+      "terrain": "underwater",
+      "special": "requires_water_breathing",
+      "exits": {
+        "up": {
+          "to_room": 13001
+        },
+        "west": {
+          "to_room": 13004
+        },
+        "down": {
+          "to_room": 13005
+        }
+      },
+      "vnum": 13003
+    },
+    "13004": {
+      "title": "Edge of the Drop-Off",
+      "description": "The sandy bottom suddenly drops away into a deep trench. The water here is murky, and sunlight barely penetrates. Looking down into the darkness is unnerving - the trench seems bottomless. Strange sounds echo up from below - groans, clicks, and sounds that might be singing. Ancient stone structures are visible on the trench walls, covered in coral and barnacles.",
+      "terrain": "underwater",
+      "special": "requires_water_breathing",
+      "exits": {
+        "up": {
+          "to_room": 13002
+        },
+        "east": {
+          "to_room": 13003
+        },
+        "down": {
+          "to_room": 13006
+        }
+      },
+      "vnum": 13004
+    },
+    "13005": {
+      "title": "Kelp Forest",
+      "description": "Massive kelp plants grow from the bottom, their fronds reaching toward the surface. Swimming through them is like navigating a forest - the kelp is thick enough to hide in. Fish shelter among the stalks, and sea otters play in the canopy above. Something larger moves through the kelp, its shadow visible but its form unclear.",
+      "terrain": "underwater",
+      "special": "requires_water_breathing",
+      "exits": {
+        "up": {
+          "to_room": 13003
+        },
+        "west": {
+          "to_room": 13006
+        }
+      },
+      "vnum": 13005
+    },
+    "13006": {
+      "title": "Deepwater Trench",
+      "description": "The water here is cold and dark, pressure pressing in from all sides. Bio-luminescent creatures provide the only light - glowing fish, jellyfish that pulse with eerie radiance. The trench walls are sheer rock, descending into blackness. Ancient buildings are carved into the rock face, their architecture unlike anything on land. This is the outer edge of the sunken city.",
+      "terrain": "underwater",
+      "special": "requires_water_breathing",
+      "exits": {
+        "up": {
+          "to_room": 13004
+        },
+        "east": {
+          "to_room": 13005
+        },
+        "south": {
+          "to_room": 13007
+        },
+        "down": {
+          "to_room": 13008
+        }
+      },
+      "vnum": 13006
+    },
+    "13007": {
+      "title": "Coral Gardens",
+      "description": "Magnificent coral formations grow here in every color imaginable - reds, purples, yellows, greens. They form intricate sculptures and mazes. Tropical fish dart between branches, and anemones wave their tentacles. The beauty is breathtaking, but the coral conceals dangers - poisonous spines, hidden predators, and narrow passages where one could become trapped.",
+      "terrain": "underwater",
+      "special": "requires_water_breathing",
+      "exits": {
+        "north": {
+          "to_room": 13006
+        },
+        "south": {
+          "to_room": 13009
+        }
+      },
+      "vnum": 13007
+    },
+    "13008": {
+      "title": "The Ancient Gateway",
+      "description": "Two massive pillars rise from the trench floor, carved with images of waves and sea creatures. They frame a grand archway that leads deeper into the ruins. The stonework is incredible - after centuries underwater, it shows no wear. Runes glow faintly with preserved magic. This was once the main entrance to Atal'narath. Beyond lies the sunken city proper.",
+      "terrain": "underwater",
+      "special": "requires_water_breathing",
+      "exits": {
+        "up": {
+          "to_room": 13006
+        },
+        "south": {
+          "to_room": 13010
+        }
+      },
+      "vnum": 13008
+    },
+    "13009": {
+      "title": "Cave of the Giant Octopus",
+      "description": "A cave entrance yawns in the coral, dark and forbidding. Bones litter the entrance - fish, seals, and things less identifiable. This is clearly a predator's lair. Within, a giant octopus has made its home. The creature is old and cunning, with tentacles long enough to grab prey from surprising distances. Treasure from unfortunate divers lines its cave.",
+      "terrain": "underwater",
+      "special": "requires_water_breathing",
+      "exits": {
+        "north": {
+          "to_room": 13007
+        }
+      },
+      "vnum": 13009
+    },
+    "13010": {
+      "title": "Sunken Plaza",
+      "description": "This was once the city's central plaza. Statues of ancient rulers stand in a circle, now covered in barnacles and seaweed. Fish swim through empty eye sockets. A fountain at the center still flows, powered by ancient magic - but it flows with water, pointless now that the city is submerged. Buildings line the plaza, their doors and windows dark portals into flooded interiors.",
+      "terrain": "underwater",
+      "special": "requires_water_breathing",
+      "exits": {
+        "north": {
+          "to_room": 13008
+        },
+        "east": {
+          "to_room": 13011
+        },
+        "west": {
+          "to_room": 13012
+        },
+        "south": {
+          "to_room": 13013
+        }
+      },
+      "vnum": 13010
+    },
+    "13011": {
+      "title": "The Flooded Temple",
+      "description": "This temple was dedicated to the sea god. Columns march in rows toward an altar at the far end. The altar is carved from a single piece of blue crystal, still glowing with divine power. Offerings left by merfolk - shells, pearls, coral - are arranged carefully. The merfolk have reclaimed this temple, using it for their own worship. Disturbing it would be unwise.",
+      "terrain": "underwater",
+      "special": "requires_water_breathing",
+      "exits": {
+        "west": {
+          "to_room": 13010
+        }
+      },
+      "vnum": 13011
+    },
+    "13012": {
+      "title": "Merchant Quarter",
+      "description": "These buildings were once shops and warehouses. Their roofs have collapsed, and currents have scattered goods across the district. Ancient pottery, rusted tools, and rotted wood are everywhere. Occasionally something valuable can be found - a piece of jewelry, an intact vase, a weapon preserved by magic. Scavengers pick through the ruins constantly.",
+      "terrain": "underwater",
+      "special": "requires_water_breathing",
+      "exits": {
+        "east": {
+          "to_room": 13010
+        },
+        "south": {
+          "to_room": 13014
+        }
+      },
+      "vnum": 13012
+    },
+    "13013": {
+      "title": "The Royal Palace",
+      "description": "The palace is the grandest structure in the sunken city. Its towers still stand, reaching toward the surface far above. The entrance is flanked by statues of ancient kings. Inside, halls of marble and columns of jade speak of unimaginable wealth. Most of the treasure has been looted over the centuries, but legends say the deepest vaults remain sealed, protected by magic and monsters.",
+      "terrain": "underwater",
+      "special": "requires_water_breathing",
+      "exits": {
+        "north": {
+          "to_room": 13010
+        },
+        "south": {
+          "to_room": 13015
+        }
+      },
+      "vnum": 13013
+    },
+    "13014": {
+      "title": "Sahuagin Territory",
+      "description": "This section of ruins has been claimed by sahuagin - violent, shark-like humanoids. They've built crude structures from rubble and bone. Skulls decorate entrances in warning. The sahuagin hate surface dwellers and attack on sight. They're organized and intelligent, making them far more dangerous than beasts. Their patrols cover this area constantly.",
+      "terrain": "underwater",
+      "special": "requires_water_breathing",
+      "exits": {
+        "north": {
+          "to_room": 13012
+        }
+      },
+      "vnum": 13014
+    },
+    "13015": {
+      "title": "Throne Room",
+      "description": "The palace throne room is vast, its ceiling held up by columns of serpentine. The throne itself is carved from a single enormous pearl, black and lustrous. Murals on the walls depict the city's history - its founding, glory days, and final cataclysm when the ocean claimed it. The floor is mosaic tile, still intact. Water elementals guard this chamber.",
+      "terrain": "underwater",
+      "special": "requires_water_breathing",
+      "exits": {
+        "north": {
+          "to_room": 13013
+        },
+        "down": {
+          "to_room": 13016
+        }
+      },
+      "vnum": 13015
+    },
+    "13016": {
+      "title": "The Royal Vaults",
+      "description": "Deep beneath the palace, the royal treasure vaults were sealed when the city fell. The doors are adamantine, covered in preservation magic. Opening them would be difficult, but the reward would be worth it - the accumulated wealth of an ancient kingdom. Guards patrol here still, undead servants bound to their eternal duty.",
+      "terrain": "underwater",
+      "special": "requires_water_breathing",
+      "exits": {
+        "up": {
+          "to_room": 13015
+        }
+      },
+      "vnum": 13016
+    },
+    "13017": {
+      "title": "The Abyssal Trench",
+      "description": "The sea floor drops away into a trench so deep that light cannot reach the bottom. The water here is near freezing, and the pressure would crush an unprotected human. Strange bioluminescent creatures drift by - fish with teeth like needles, jellyfish trailing stinging tentacles. This is the domain of things adapted to the deep, alien and hostile.",
+      "terrain": "underwater",
+      "special": "requires_water_breathing",
+      "exits": {
+        "up": {
+          "to_room": 13006
+        }
+      },
+      "vnum": 13017
+    }
+  },
+  "mobiles": {
+    "13000": {
+      "name": "merfolk",
+      "short_desc": "a graceful merfolk",
+      "long_desc": "A merfolk swims by, their fish tail propelling them effortlessly.",
+      "description": "This merfolk has the upper body of a human and the lower body of a fish. Their skin has a slight iridescent sheen, and their eyes are adapted to underwater vision. They're intelligent and civilized, having built a new society in the ruins. Most are peaceful toward surface dwellers, but they're fierce defenders of their territory. They wield tridents and can use water magic.",
+      "level": 18,
+      "race": "merfolk",
+      "size": "medium",
+      "hp_dice": "12d8+24",
+      "damage_dice": "1d10+3",
+      "armor_class": 50,
+      "exp_value": 900,
+      "gold": 150,
+      "behaviors": [
+        "wander"
+      ],
+      "spells": [
+        "water_bolt",
+        "heal"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "patrol",
+          "assist"
+        ],
+        "patrol_route": [
+          13010,
+          13011,
+          13010,
+          13006
+        ],
+        "assist_allies": [
+          "merfolk",
+          "water elemental"
+        ]
+      },
+      "spawn_rooms": [
+        13006,
+        13010,
+        13011
+      ],
+      "max_in_zone": 5,
+      "vnum": 13000
+    },
+    "13001": {
+      "name": "giant octopus",
+      "short_desc": "an enormous giant octopus",
+      "long_desc": "A massive octopus fills the cave, its tentacles writhing.",
+      "description": "This octopus is truly gigantic, its body the size of a small house. Eight thick tentacles, each lined with powerful suckers, can reach prey from surprising distances. Its eyes are intelligent and calculating. Octopi are known for their cunning - this one has survived for decades by being smarter than its prey. It can change color to blend with its surroundings and squeeze through surprisingly small spaces.",
+      "level": 20,
+      "race": "vermin",
+      "size": "huge",
+      "hp_dice": "15d10+75",
+      "damage_dice": "2d8+4",
+      "armor_class": 45,
+      "exp_value": 1200,
+      "gold": 0,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_abilities": [
+        "ink_cloud",
+        "camouflage"
+      ],
+      "special_attacks": [
+        "grab",
+        "constrict"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "ambush"
+        ],
+        "ambush_room": 13009
+      },
+      "spawn_rooms": [
+        13009
+      ],
+      "max_in_zone": 1,
+      "vnum": 13001
+    },
+    "13002": {
+      "name": "water elemental",
+      "short_desc": "a flowing water elemental",
+      "long_desc": "A being of living water flows here, its form constantly shifting.",
+      "description": "This elemental is water given consciousness. It has no fixed shape, flowing and reforming constantly. Its eyes are whirlpools, and its voice is the sound of waves. In water, it's nearly unstoppable - able to engulf enemies and drown them. It can move through any gap that water could flow through. The elemental guards the temple and throne room.",
+      "level": 22,
+      "race": "elemental",
+      "size": "large",
+      "hp_dice": "14d10+56",
+      "damage_dice": "2d10+4",
+      "armor_class": 40,
+      "exp_value": 1300,
+      "gold": 0,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_abilities": [
+        "water_form",
+        "water_immunity"
+      ],
+      "special_attacks": [
+        "drown",
+        "water_jet"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "guard"
+        ],
+        "home_room": 13015
+      },
+      "spawn_rooms": [
+        13011,
+        13015
+      ],
+      "max_in_zone": 2,
+      "vnum": 13002
+    },
+    "13003": {
+      "name": "sahuagin",
+      "short_desc": "a vicious sahuagin raider",
+      "long_desc": "A shark-like humanoid patrols here, trident in hand and murder in its eyes.",
+      "description": "Sahuagin are the scourge of the seas - violent, territorial, and cunning. This one has a humanoid body covered in rough shark-skin, with a shark's head complete with rows of razor teeth. It walks upright and wields weapons, but retains a shark's bloodlust. Sahuagin hunt in packs and show no mercy. They hate surface dwellers with an intensity that borders on religious fervor.",
+      "level": 19,
+      "race": "sahuagin",
+      "size": "medium",
+      "hp_dice": "13d8+39",
+      "damage_dice": "2d6+3",
+      "armor_class": 55,
+      "exp_value": 1100,
+      "gold": 80,
+      "behaviors": [
+        "aggressive",
+        "wander"
+      ],
+      "special_attacks": [
+        "blood_frenzy"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "pack"
+        ],
+        "pack_call_radius": 2
+      },
+      "spawn_rooms": [
+        13012,
+        13014
+      ],
+      "max_in_zone": 6,
+      "vnum": 13003
+    },
+    "13004": {
+      "name": "drowned one",
+      "short_desc": "a bloated drowned corpse",
+      "long_desc": "A waterlogged corpse drifts here, animated by dark magic.",
+      "description": "This undead creature was once human, but death by drowning and necromantic magic have twisted it into something horrible. Its flesh is bloated and pale, fish have nibbled at the extremities, and seaweed grows in its hair. Empty eyes stare with malevolent hunger. Drowned ones guard the royal vaults, bound centuries ago to eternal service.",
+      "level": 21,
+      "race": "undead",
+      "size": "medium",
+      "hp_dice": "14d8+42",
+      "damage_dice": "2d8+3",
+      "armor_class": 50,
+      "exp_value": 1250,
+      "gold": 0,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_abilities": [
+        "undead_traits"
+      ],
+      "special_attacks": [
+        "paralysis_touch"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "guard"
+        ],
+        "home_room": 13016
+      },
+      "spawn_rooms": [
+        13016
+      ],
+      "max_in_zone": 4,
+      "vnum": 13004
+    }
+  },
+  "objects": {
+    "13000": {
+      "name": "water breathing potion",
+      "short_desc": "a blue potion of water breathing",
+      "long_desc": "A flask of blue liquid rests here.",
+      "description": "This potion tastes like seawater and grants the ability to breathe underwater for several hours. Essential for exploring the sunken ruins without drowning.",
+      "item_type": "potion",
+      "value": 300,
+      "weight": 1,
+      "potion_spell": "water_breathing",
+      "spawn_rooms": [
+        13001
+      ],
+      "max_in_zone": 5,
+      "vnum": 13000
+    },
+    "13001": {
+      "name": "pearl",
+      "short_desc": "a perfect black pearl",
+      "long_desc": "A lustrous black pearl gleams in the water.",
+      "description": "This pearl is the size of a marble and absolutely perfect. Black pearls are the rarest and most valuable. This one could be sold for a considerable sum or used as a spell component for powerful magic.",
+      "item_type": "treasure",
+      "value": 500,
+      "weight": 1,
+      "spawn_rooms": [
+        13009,
+        13011,
+        13016
+      ],
+      "max_in_zone": 4,
+      "vnum": 13001
+    },
+    "13002": {
+      "name": "trident",
+      "short_desc": "a masterwork trident",
+      "long_desc": "A three-pronged spear of blue steel lies here.",
+      "description": "This trident is forged from enchanted steel that never rusts. Its three prongs are razor-sharp and perfectly balanced. It's equally effective for fighting or fishing. The merfolk craft these weapons, and they're prized by underwater warriors.",
+      "item_type": "weapon",
+      "value": 400,
+      "weight": 8,
+      "weapon_type": "spear",
+      "damage_dice": "1d10+1",
+      "spawn_rooms": [
+        13010
+      ],
+      "max_in_zone": 3,
+      "vnum": 13002
+    },
+    "13003": {
+      "name": "ancient crown",
+      "short_desc": "the Crown of the Deep Kings",
+      "long_desc": "An ornate crown rests on the throne, glowing with power.",
+      "description": "This crown is wrought from gold and platinum, set with sapphires and aquamarines. It radiates magic - the crown grants its wearer authority over water and those who dwell in it. Legend says the ancient kings used it to calm storms and command sea creatures. It's priceless both as treasure and as a magical artifact.",
+      "item_type": "armor",
+      "value": 10000,
+      "weight": 3,
+      "armor_location": "head",
+      "armor_class": 3,
+      "magic_bonus": 3,
+      "special_properties": [
+        "water_breathing",
+        "speak_with_fish"
+      ],
+      "spawn_rooms": [
+        13015
+      ],
+      "max_in_zone": 1,
+      "vnum": 13003
+    },
+    "13004": {
+      "name": "coral blade",
+      "short_desc": "a sword carved from living coral",
+      "long_desc": "A sword of red coral lies here, still growing.",
+      "description": "This sword is carved from a single piece of living coral that continues to grow slowly. The blade is sharp as steel and never needs sharpening. Coral has natural magic that makes it effective against undead. The craftsmanship is merfolk work, combining art and utility.",
+      "item_type": "weapon",
+      "value": 600,
+      "weight": 6,
+      "weapon_type": "sword",
+      "damage_dice": "1d10+2",
+      "magic_bonus": 1,
+      "special_properties": [
+        "undead_bane"
+      ],
+      "spawn_rooms": [
+        13016
+      ],
+      "max_in_zone": 1,
+      "vnum": 13004
+    }
+  }
+}

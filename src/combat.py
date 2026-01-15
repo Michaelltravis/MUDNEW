@@ -416,6 +416,247 @@ class CombatHandler:
             return random.randint(1, 6)
             
     @classmethod
+    async def do_envenom(cls, player: 'Player'):
+        """Apply poison to weapon for extra damage."""
+        c = cls.config.COLORS
+        skill_level = player.skills.get('envenom', 0)
+
+        weapon = player.equipment.get('wield')
+        if not weapon:
+            await player.send(f"{c['red']}You need to wield a weapon to envenom it!{c['reset']}")
+            return
+
+        # Check for existing poison
+        if hasattr(weapon, 'envenomed') and weapon.envenomed:
+            await player.send(f"{c['yellow']}Your weapon is already envenomed!{c['reset']}")
+            return
+
+        # Cost move points
+        if player.move < 10:
+            await player.send(f"{c['red']}You are too exhausted to apply poison!{c['reset']}")
+            return
+        player.move -= 10
+
+        if random.randint(1, 100) <= skill_level:
+            weapon.envenomed = True
+            weapon.envenom_damage = 2 + (player.level // 5)  # Poison damage per hit
+            weapon.envenom_duration = 5 + (player.level // 3)  # Number of hits
+
+            await player.send(f"{c['bright_green']}You carefully apply deadly poison to your {weapon.name}.{c['reset']}")
+            await player.room.send_to_room(
+                f"{player.name} coats their weapon with a dark substance.",
+                exclude=[player]
+            )
+        else:
+            await player.send(f"{c['yellow']}You fail to properly apply the poison.{c['reset']}")
+            # Failed envenom can poison yourself
+            if random.randint(1, 100) <= 15:
+                await player.send(f"{c['red']}The poison touches your skin! You feel ill.{c['reset']}")
+                from affects import AffectHandler
+                await AffectHandler.apply_affect(player, 'poison', player.level, 3)
+
+    @classmethod
+    async def do_assassinate(cls, player: 'Player', target: 'Character'):
+        """Execute a deadly assassination attack - high damage if undetected."""
+        c = cls.config.COLORS
+        skill_level = player.skills.get('assassinate', 0)
+
+        # Must not be in combat
+        if player.is_fighting:
+            await player.send(f"{c['red']}You cannot assassinate while in combat!{c['reset']}")
+            return
+
+        # Target must not be fighting
+        if target.is_fighting:
+            await player.send(f"{c['red']}Your target is too alert to assassinate!{c['reset']}")
+            return
+
+        # Must have a piercing weapon
+        weapon = player.equipment.get('wield')
+        if not weapon or getattr(weapon, 'weapon_type', '') not in ('stab', 'pierce'):
+            await player.send(f"{c['red']}You need a piercing weapon to assassinate!{c['reset']}")
+            return
+
+        # Check if player is hidden
+        is_hidden = hasattr(player, 'affects') and 'hide' in player.affects
+
+        # Check if target is marked (bonus damage)
+        is_marked = hasattr(target, 'affects') and 'marked' in target.affects
+        mark_bonus = 1.5 if is_marked else 1.0
+
+        # Higher chance if hidden
+        bonus = 20 if is_hidden else 0
+
+        if random.randint(1, 100) <= skill_level + bonus:
+            # Assassination damage - massive multiplier
+            base_damage = cls.roll_dice(weapon.damage_dice) if hasattr(weapon, 'damage_dice') else random.randint(2, 8)
+            multiplier = 4 + (player.level // 8)
+            if is_hidden:
+                multiplier += 2  # Extra damage from stealth
+
+            damage = int(base_damage * multiplier * mark_bonus) + player.get_damage_bonus() * 2
+
+            # Remove hide
+            if is_hidden:
+                from affects import AffectHandler
+                await AffectHandler.remove_affect(player, 'hide')
+
+            # Clear mark if present
+            if is_marked:
+                from affects import AffectHandler
+                await AffectHandler.remove_affect(target, 'marked')
+                await player.send(f"{c['magenta']}Your mark flares as you strike!{c['reset']}")
+
+            await player.send(f"{c['bright_red']}You strike {target.name} in a vital spot! [{damage}]{c['reset']}")
+            if hasattr(target, 'send'):
+                await target.send(f"{c['bright_red']}{player.name} strikes you from the shadows! [{damage}]{c['reset']}")
+            await player.room.send_to_room(
+                f"{c['red']}{player.name} emerges from the shadows and strikes {target.name} viciously!{c['reset']}",
+                exclude=[player, target]
+            )
+
+            killed = await target.take_damage(damage, player)
+            if killed:
+                await cls.handle_death(player, target)
+            else:
+                await cls.start_combat(player, target)
+        else:
+            await player.send(f"{c['yellow']}Your assassination attempt fails!{c['reset']}")
+            if is_hidden:
+                from affects import AffectHandler
+                await AffectHandler.remove_affect(player, 'hide')
+            await cls.start_combat(player, target)
+
+    @classmethod
+    async def do_garrote(cls, player: 'Player', target: 'Character'):
+        """Strangle a target from behind, silencing and damaging over time."""
+        c = cls.config.COLORS
+        skill_level = player.skills.get('garrote', 0)
+
+        # Must not be in combat
+        if player.is_fighting:
+            await player.send(f"{c['red']}You cannot garrote while in combat!{c['reset']}")
+            return
+
+        if target.is_fighting:
+            await player.send(f"{c['red']}Your target is too alert to garrote!{c['reset']}")
+            return
+
+        # Check if player is hidden (better chance)
+        is_hidden = hasattr(player, 'affects') and 'hide' in player.affects
+        bonus = 15 if is_hidden else 0
+
+        if random.randint(1, 100) <= skill_level + bonus:
+            # Remove hide
+            if is_hidden:
+                from affects import AffectHandler
+                await AffectHandler.remove_affect(player, 'hide')
+
+            # Apply garrote effect
+            damage = random.randint(player.level // 2, player.level) + (player.dex - 10) // 2
+
+            await player.send(f"{c['bright_red']}You wrap a garrote around {target.name}'s throat! [{damage}]{c['reset']}")
+            if hasattr(target, 'send'):
+                await target.send(f"{c['bright_red']}{player.name} wraps something around your throat! You can't breathe!{c['reset']}")
+            await player.room.send_to_room(
+                f"{player.name} garrotes {target.name} from behind!",
+                exclude=[player, target]
+            )
+
+            # Apply silence effect
+            from affects import AffectHandler
+            await AffectHandler.apply_affect(target, 'silence', player.level, 3)
+
+            killed = await target.take_damage(damage, player)
+            if killed:
+                await cls.handle_death(player, target)
+            else:
+                await cls.start_combat(player, target)
+        else:
+            await player.send(f"{c['yellow']}Your garrote attempt fails!{c['reset']}")
+            if is_hidden:
+                from affects import AffectHandler
+                await AffectHandler.remove_affect(player, 'hide')
+            await cls.start_combat(player, target)
+
+    @classmethod
+    async def do_shadow_step(cls, player: 'Player', target: 'Character'):
+        """Teleport behind a target, ending up hidden."""
+        c = cls.config.COLORS
+        skill_level = player.skills.get('shadow_step', 0)
+
+        if player.is_fighting:
+            await player.send(f"{c['red']}You cannot shadow step while in combat!{c['reset']}")
+            return
+
+        # Cost move points
+        if player.move < 20:
+            await player.send(f"{c['red']}You are too exhausted to shadow step!{c['reset']}")
+            return
+        player.move -= 20
+
+        if random.randint(1, 100) <= skill_level:
+            await player.send(f"{c['magenta']}You dissolve into shadow and reappear behind {target.name}!{c['reset']}")
+            await player.room.send_to_room(
+                f"{player.name} dissolves into shadows...",
+                exclude=[player]
+            )
+
+            # If target is in different room, move there
+            if target.room != player.room:
+                # Remove from current room
+                if player in player.room.characters:
+                    player.room.characters.remove(player)
+                # Add to target's room
+                target.room.characters.append(player)
+                player.room = target.room
+
+                await target.room.send_to_room(
+                    f"Shadows coalesce as {player.name} appears from nowhere!",
+                    exclude=[player]
+                )
+
+            # Apply hide effect
+            from affects import AffectHandler
+            await AffectHandler.apply_affect(player, 'hide', player.level, 2)
+
+            await player.send(f"{c['cyan']}You are now hidden behind {target.name}.{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}You fail to step through the shadows!{c['reset']}")
+
+    @classmethod
+    async def do_mark_target(cls, player: 'Player', target: 'Character'):
+        """Mark a target for death, increasing damage against them."""
+        c = cls.config.COLORS
+        skill_level = player.skills.get('mark_target', 0)
+
+        # Check if already marked
+        if hasattr(target, 'affects') and 'marked' in target.affects:
+            await player.send(f"{c['yellow']}{target.name} is already marked for death!{c['reset']}")
+            return
+
+        # Cost mana
+        if player.mana < 5:
+            await player.send(f"{c['red']}You don't have enough energy to mark a target!{c['reset']}")
+            return
+        player.mana -= 5
+
+        if random.randint(1, 100) <= skill_level:
+            from affects import AffectHandler
+            duration = 10 + (player.level // 5)
+            await AffectHandler.apply_affect(target, 'marked', player.level, duration)
+
+            await player.send(f"{c['magenta']}You mark {target.name} for death. A dark aura surrounds them.{c['reset']}")
+            if hasattr(target, 'send'):
+                await target.send(f"{c['magenta']}You feel a chill as {player.name} marks you for death!{c['reset']}")
+            await player.room.send_to_room(
+                f"A dark aura briefly surrounds {target.name}.",
+                exclude=[player, target]
+            )
+        else:
+            await player.send(f"{c['yellow']}You fail to mark {target.name}.{c['reset']}")
+
+    @classmethod
     def get_damage_word(cls, damage: int) -> str:
         """Get a descriptive word for damage amount."""
         if damage <= 0:

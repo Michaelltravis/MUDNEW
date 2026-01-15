@@ -73,7 +73,7 @@ class AffectManager:
         'sanctuary', 'invisible', 'detect_invisible', 'detect_magic',
         'sense_life', 'waterwalk', 'fly', 'haste', 'slow',
         'blind', 'poisoned', 'paralyzed', 'stunned', 'feared',
-        'silenced', 'regenerating', 'diseased'
+        'silenced', 'regenerating', 'diseased', 'marked'
     }
 
     @staticmethod

@@ -1,0 +1,578 @@
+{
+  "number": 120,
+  "name": "The Volcanic Peaks of Mount Infernus",
+  "description": "A deadly volcanic region where fire reigns supreme",
+  "level_range": [
+    15,
+    20
+  ],
+  "author": "RealmsMUD Team",
+  "reset_time": 300,
+  "rooms": {
+    "12000": {
+      "title": "Obsidian Cliffs",
+      "description": "Massive cliffs of black volcanic glass rise on all sides, their surfaces smooth and mirror-like. The obsidian has been shaped by ancient lava flows into fantastic formations - spires, arches, and knife-sharp ridges. The rock is dangerously brittle despite its beauty. One false step could send you tumbling onto razor-sharp edges. Heat radiates from the cliffs themselves.",
+      "terrain": "mountain",
+      "exits": {
+        "west": {
+          "to_room": 12000
+        },
+        "north": {
+          "to_room": 12002
+        },
+        "south": {
+          "to_room": 12003
+        }
+      },
+      "vnum": 12000
+    },
+    "12002": {
+      "title": "Sulfur Vents",
+      "description": "Cracks in the ground belch thick yellow sulfurous smoke that burns the eyes and throat. The stench is overwhelming - rotten eggs multiplied a thousandfold. Yellow crystals of pure sulfur grow around the vents. The heat here is oppressive, and standing in the fumes for too long could prove fatal. Gas masks and fire resistance are essential.",
+      "terrain": "mountain",
+      "special": "gas_damage",
+      "exits": {
+        "south": {
+          "to_room": 12001
+        },
+        "north": {
+          "to_room": 12004
+        }
+      },
+      "vnum": 12002
+    },
+    "12003": {
+      "title": "Path Along the Lava River",
+      "description": "A river of molten rock flows sluggishly past, radiating intense heat. The lava glows orange and red, with a black crust that occasionally breaks to reveal the inferno beneath. The air above it ripples with heat haze. The narrow path between the lava and cliff wall is barely wide enough to walk. One misstep means a fiery death.",
+      "terrain": "mountain",
+      "special": "heat_damage",
+      "exits": {
+        "north": {
+          "to_room": 12001
+        },
+        "south": {
+          "to_room": 12005
+        }
+      },
+      "vnum": 12003
+    },
+    "12004": {
+      "title": "Geothermal Geyser Field",
+      "description": "The ground here is honeycombed with boiling hot springs and geysers. Jets of superheated steam erupt without warning, shooting hundreds of feet into the air. The ground is unstable, with thin crusts over scalding water. The geysers create a constant roar, and mist fills the air. This is an incredibly dangerous area requiring careful navigation.",
+      "terrain": "mountain",
+      "special": "geyser_damage",
+      "exits": {
+        "south": {
+          "to_room": 12002
+        },
+        "east": {
+          "to_room": 12006
+        }
+      },
+      "vnum": 12004
+    },
+    "12005": {
+      "title": "Lava Falls",
+      "description": "A massive cascade of molten rock pours over a cliff edge, creating a waterfall of fire. The sight is both beautiful and terrifying. The heat is so intense that exposed skin blisters within seconds. The roar is deafening, and the ground shakes continuously from the impact of falling lava. There's no way to approach any closer without magical protection.",
+      "terrain": "mountain",
+      "special": "extreme_heat_damage",
+      "exits": {
+        "north": {
+          "to_room": 12003
+        },
+        "east": {
+          "to_room": 12007
+        }
+      },
+      "vnum": 12005
+    },
+    "12006": {
+      "title": "Cinderstorm Ridge",
+      "description": "Volcanic ash and cinders constantly rain down here, carried by scorching winds from the crater above. Visibility is nearly zero through the swirling ash storm. The particles are hot enough to burn, and breathing is difficult. A cloth mask helps but isn't perfect. Lightning arcs through the ash cloud, adding electricity to the other dangers.",
+      "terrain": "mountain",
+      "special": "ash_storm_damage",
+      "exits": {
+        "west": {
+          "to_room": 12004
+        },
+        "south": {
+          "to_room": 12007
+        },
+        "east": {
+          "to_room": 12008
+        }
+      },
+      "vnum": 12006
+    },
+    "12007": {
+      "title": "Magma Chamber Approach",
+      "description": "The path leads toward an enormous cave mouth that glows red-orange from within. This is an entrance to the volcano's magma chamber. Heat pours out like a physical force, and the very air seems to burn. The rock here is hot enough to glow faintly. Without substantial fire resistance, approaching any closer would be suicide.",
+      "terrain": "mountain",
+      "exits": {
+        "west": {
+          "to_room": 12005
+        },
+        "north": {
+          "to_room": 12006
+        },
+        "east": {
+          "to_room": 12009
+        }
+      },
+      "vnum": 12007
+    },
+    "12008": {
+      "title": "Fire Giant Watchtower",
+      "description": "A crude tower of black volcanic rock serves as a lookout post. It's built on a massive scale - everything is twice normal size, built for giants. Rough-hewn stairs lead up to an observation platform. From here, fire giants keep watch over their territory. The tower radiates heat, and the stones themselves seem to burn with inner fire.",
+      "terrain": "mountain",
+      "exits": {
+        "west": {
+          "to_room": 12006
+        },
+        "south": {
+          "to_room": 12010
+        },
+        "up": {
+          "to_room": 12011
+        }
+      },
+      "vnum": 12008
+    },
+    "12009": {
+      "title": "Edge of the Magma Lake",
+      "description": "An enormous lake of molten rock fills a caldera. The surface churns and bubbles, releasing waves of heat that make the air shimmer. Islands of cooler rock float on the lava, constantly melting and reforming. This is one of the volcano's main magma chambers. The heat here is beyond description - lethal within seconds without magical protection.",
+      "terrain": "mountain",
+      "special": "extreme_heat_damage",
+      "exits": {
+        "west": {
+          "to_room": 12007
+        },
+        "north": {
+          "to_room": 12010
+        }
+      },
+      "vnum": 12009
+    },
+    "12010": {
+      "title": "Fire Giant Foundry",
+      "description": "The fire giants use this natural forge to craft their weapons and armor. Channels cut in the rock direct lava to anvils of adamantine. The heat is so intense that the giants work naked, their skin naturally resistant. Massive hammers and tongs hang on the walls. Half-finished weapons and armor lie scattered about - all sized for beings three times human height.",
+      "terrain": "mountain",
+      "exits": {
+        "north": {
+          "to_room": 12008
+        },
+        "south": {
+          "to_room": 12009
+        },
+        "east": {
+          "to_room": 12012
+        }
+      },
+      "vnum": 12010
+    },
+    "12011": {
+      "title": "Watchtower Summit",
+      "description": "From this high vantage point, you can see across the entire volcanic region. Lava flows wind through channels, geysers erupt, and ash clouds billow. The fire giant fortress is visible to the east. Far below, the magma lake glows like a pool of captured sunset. The view would be spectacular if not for the deadly heat and toxic fumes.",
+      "terrain": "mountain",
+      "exits": {
+        "down": {
+          "to_room": 12008
+        }
+      },
+      "vnum": 12011
+    },
+    "12012": {
+      "title": "Fortress Gates",
+      "description": "Massive gates of steel-bound obsidian mark the entrance to the fire giant fortress. They tower forty feet high and are etched with images of flames and battle. Guards watch from murder holes above, ready to pour molten rock on intruders. The gates radiate heat, and touching them would sear flesh instantly. This is the domain of the fire giants, and they do not welcome visitors.",
+      "terrain": "mountain",
+      "exits": {
+        "west": {
+          "to_room": 12010
+        },
+        "east": {
+          "to_room": 12013,
+          "door": {
+            "name": "fortress gates",
+            "state": "closed",
+            "locked": true,
+            "broken": false,
+            "key_vnum": 12000
+          }
+        }
+      },
+      "vnum": 12012
+    },
+    "12013": {
+      "title": "Fortress Courtyard",
+      "description": "The fortress courtyard is a vast open space paved with basalt blocks. Fire giants drill here, practicing with weapons that would require three men to lift. A well of lava in the center provides light and heat. The scale of everything is overwhelming - the giants live in a world sized for beings of immense power. Weapon racks hold swords taller than a man.",
+      "terrain": "mountain",
+      "exits": {
+        "west": {
+          "to_room": 12012,
+          "door": {
+            "name": "fortress gates",
+            "state": "closed",
+            "locked": false,
+            "broken": false
+          }
+        },
+        "north": {
+          "to_room": 12014
+        },
+        "east": {
+          "to_room": 12015
+        }
+      },
+      "vnum": 12013
+    },
+    "12014": {
+      "title": "Armory",
+      "description": "Weapons and armor line the walls - all giant-sized and all masterwork quality. Swords longer than a human is tall, shields that could serve as tables, helms that could be used as cauldrons. The fire giants are legendary smiths, and their gear reflects centuries of metallurgical knowledge. Everything here is functional art, beautiful and deadly.",
+      "terrain": "mountain",
+      "exits": {
+        "south": {
+          "to_room": 12013
+        }
+      },
+      "vnum": 12014
+    },
+    "12015": {
+      "title": "Great Hall",
+      "description": "This enormous hall could hold hundreds of giants comfortably. Long tables made from single slabs of stone run its length. A throne of volcanic rock dominates one end, where the fire giant king holds court. Torches of living flame illuminate the space, and channels of lava serve as heating. The walls are carved with the history of the fire giant clan.",
+      "terrain": "mountain",
+      "exits": {
+        "west": {
+          "to_room": 12013
+        },
+        "north": {
+          "to_room": 12016
+        }
+      },
+      "vnum": 12015
+    },
+    "12016": {
+      "title": "Throne Room",
+      "description": "The king of the fire giants sits upon a throne of pure obsidian, backed by a wall of flowing lava. His crown is wrought from adamantine and set with rubies the size of fists. Giants kneel before him, presenting tributes and seeking justice. The power in this room is palpable - this is a king among giants, a being of immense strength and will.",
+      "terrain": "mountain",
+      "exits": {
+        "south": {
+          "to_room": 12015
+        }
+      },
+      "vnum": 12016
+    },
+    "12017": {
+      "title": "Volcanic Tunnels",
+      "description": "Natural lava tubes twist through the mountain's interior, their walls smooth as glass from ancient magma flows. The tunnels are hot and filled with noxious fumes. Strange creatures adapted to extreme heat make their homes here. Occasional side passages branch off into unexplored depths where even fire giants rarely venture.",
+      "terrain": "underground",
+      "exits": {
+        "west": {
+          "to_room": 12009
+        },
+        "down": {
+          "to_room": 12018
+        }
+      },
+      "vnum": 12017
+    },
+    "12018": {
+      "title": "Heart of Fire",
+      "description": "At the very heart of the volcano, magma wells up from deep within the earth. This is as close to the Elemental Plane of Fire as you can get without leaving the material world. The heat here defies description - only beings of pure fire or those with the strongest magical protection could survive. A fire elemental lord makes its home here, ancient and powerful.",
+      "terrain": "underground",
+      "special": "extreme_heat_damage",
+      "exits": {
+        "up": {
+          "to_room": 12017
+        }
+      },
+      "vnum": 12018
+    },
+    "12019": {
+      "title": "Lava Worm Tunnels",
+      "description": "These tunnels were bored through solid rock by enormous lava worms. The walls are melted smooth and still radiate heat. Partially digested rock and metal are scattered about - the worms consume anything in their path. The ground trembles occasionally as the massive creatures move through nearby tunnels. They're incredibly dangerous and attack anything that disturbs them.",
+      "terrain": "underground",
+      "exits": {
+        "north": {
+          "to_room": 12007
+        },
+        "south": {
+          "to_room": 12018
+        }
+      },
+      "vnum": 12019
+    }
+  },
+  "mobiles": {
+    "12000": {
+      "name": "fire elemental",
+      "short_desc": "a roaring fire elemental",
+      "long_desc": "A being of living flame dances here, crackling with heat.",
+      "description": "This creature is flame given consciousness and form. It shifts constantly, flickering between humanoid shape and raw conflagration. Touching it would be instantly fatal, and even standing nearby causes burns. Its eyes are white-hot cores of heat, and its voice is the roar of wildfire. Fire elementals are drawn to volcanic regions where they can exist freely.",
+      "level": 16,
+      "race": "elemental",
+      "size": "large",
+      "hp_dice": "10d10+30",
+      "damage_dice": "2d6+3",
+      "armor_class": 45,
+      "exp_value": 850,
+      "gold": 0,
+      "behaviors": [
+        "aggressive",
+        "wander"
+      ],
+      "special_abilities": [
+        "fire_immunity",
+        "fire_aura"
+      ],
+      "special_attacks": [
+        "burn"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "spellcaster"
+        ],
+        "preferred_spells": [
+          "fireball",
+          "flame_strike"
+        ]
+      },
+      "spawn_rooms": [
+        12003,
+        12005,
+        12007,
+        12009
+      ],
+      "max_in_zone": 5,
+      "vnum": 12000
+    },
+    "12001": {
+      "name": "magma golem",
+      "short_desc": "a hulking magma golem",
+      "long_desc": "A massive construct of stone and molten rock stands here, glowing with inner heat.",
+      "description": "This golem appears to be carved from volcanic rock, but cracks in its surface reveal the molten core within. Lava drips from its joints, and its eyes glow like furnaces. It's incredibly strong and resilient, created by fire giants to serve as guardians. Immune to heat and most weapons, it's a nearly unstoppable foe. Its touch can melt steel.",
+      "level": 18,
+      "race": "construct",
+      "size": "huge",
+      "hp_dice": "14d10+70",
+      "damage_dice": "2d10+5",
+      "armor_class": 30,
+      "exp_value": 1000,
+      "gold": 0,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_abilities": [
+        "fire_immunity",
+        "construct_traits",
+        "molten_body"
+      ],
+      "special_attacks": [
+        "heat_metal"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "guard"
+        ],
+        "home_room": 12012
+      },
+      "spawn_rooms": [
+        12010,
+        12012,
+        12013
+      ],
+      "max_in_zone": 3,
+      "vnum": 12001
+    },
+    "12002": {
+      "name": "fire giant",
+      "short_desc": "a towering fire giant warrior",
+      "long_desc": "An enormous giant wreathed in flames surveys its domain with burning eyes.",
+      "description": "This fire giant stands over fifteen feet tall, built like a mountain of muscle. Its skin is dark red, almost black, and radiates heat. It wears armor of blackened steel and carries a massive greatsword that glows red-hot. Fire giants are legendary warriors and smiths, combining immense strength with surprising skill. This one guards the fortress with fierce dedication.",
+      "level": 19,
+      "race": "giant",
+      "size": "huge",
+      "hp_dice": "16d10+80",
+      "damage_dice": "3d8+6",
+      "armor_class": 35,
+      "exp_value": 1100,
+      "gold": 300,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_abilities": [
+        "fire_immunity"
+      ],
+      "special_attacks": [
+        "rock_throwing"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "pack",
+          "guard"
+        ],
+        "home_room": 12013,
+        "pack_call_radius": 3
+      },
+      "spawn_rooms": [
+        12008,
+        12010,
+        12013,
+        12014,
+        12015
+      ],
+      "max_in_zone": 6,
+      "vnum": 12002
+    },
+    "12003": {
+      "name": "lava worm",
+      "short_desc": "a massive lava worm",
+      "long_desc": "An enormous worm-like creature of stone and flame burrows through the rock.",
+      "description": "This nightmarish creature is like a giant earthworm, but made of volcanic rock and molten lava. It's over thirty feet long and five feet thick, with a mouth lined with obsidian teeth. It burrows through solid rock, melting it with the heat of its body. Lava worms are unintelligent but incredibly dangerous, attacking anything that moves. They can sense vibrations through the rock.",
+      "level": 17,
+      "race": "vermin",
+      "size": "huge",
+      "hp_dice": "13d10+65",
+      "damage_dice": "2d12+4",
+      "armor_class": 40,
+      "exp_value": 950,
+      "gold": 0,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_abilities": [
+        "fire_immunity",
+        "earth_glide",
+        "tremorsense"
+      ],
+      "special_attacks": [
+        "swallow_whole"
+      ],
+      "spawn_rooms": [
+        12019
+      ],
+      "max_in_zone": 2,
+      "vnum": 12003
+    },
+    "12004": {
+      "name": "fire giant king",
+      "short_desc": "Skoraeus, King of the Fire Giants",
+      "long_desc": "The king of fire giants sits upon his obsidian throne, a crown of flame upon his brow.",
+      "description": "Skoraeus is a legend among giants. Standing eighteen feet tall and weighing tons, he's a mountain of muscle and power. His skin is nearly black, and flames dance across his body. His crown is adamantine set with rubies, and his greatsword could cleave a horse in two. He's ruled this clan for centuries, leading them to prosperity through strength and cunning. His word is law, and his wrath is terrible.",
+      "level": 22,
+      "race": "giant",
+      "size": "huge",
+      "hp_dice": "20d10+120",
+      "damage_dice": "4d8+8",
+      "armor_class": 25,
+      "exp_value": 1500,
+      "gold": 1000,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_abilities": [
+        "fire_immunity",
+        "legendary_resistance"
+      ],
+      "special_attacks": [
+        "rock_throwing",
+        "flame_strike"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "spellcaster",
+          "pack"
+        ],
+        "preferred_spells": [
+          "fireball",
+          "wall_of_fire"
+        ],
+        "pack_call_radius": 5
+      },
+      "spawn_rooms": [
+        12016
+      ],
+      "max_in_zone": 1,
+      "vnum": 12004
+    }
+  },
+  "objects": {
+    "12000": {
+      "name": "obsidian key",
+      "short_desc": "a key carved from volcanic glass",
+      "long_desc": "A large key of polished obsidian lies here.",
+      "description": "This key is carved from a single piece of volcanic glass, perfectly shaped to fit the fortress gates. It's surprisingly heavy and sharp enough to cut if handled carelessly. Only fire giants and those who defeat them possess these keys.",
+      "item_type": "key",
+      "value": 50,
+      "weight": 5,
+      "spawn_rooms": [
+        12008
+      ],
+      "max_in_zone": 1,
+      "vnum": 12000
+    },
+    "12001": {
+      "name": "fire resistance potion",
+      "short_desc": "a red potion of fire resistance",
+      "long_desc": "A flask of glowing red liquid sits here.",
+      "description": "This potion glows with inner heat and feels warm to the touch. Drinking it grants temporary immunity to fire and heat, essential for surviving in volcanic regions. The effect lasts about an hour.",
+      "item_type": "potion",
+      "value": 250,
+      "weight": 1,
+      "potion_spell": "resist_fire",
+      "spawn_rooms": [
+        12010
+      ],
+      "max_in_zone": 3,
+      "vnum": 12001
+    },
+    "12002": {
+      "name": "fire giant greatsword",
+      "short_desc": "an enormous flaming greatsword",
+      "long_desc": "A massive sword wreathed in flames leans against the wall.",
+      "description": "This greatsword is sized for a giant - twelve feet long and weighing hundreds of pounds. The blade is forged from volcanic steel and enchanted with eternal flames. For a human to wield it would be impossible without magic, but the damage it could deal is devastating. The flames never go out and burn with intense heat.",
+      "item_type": "weapon",
+      "value": 1000,
+      "weight": 250,
+      "weapon_type": "sword",
+      "damage_dice": "4d8+3",
+      "magic_bonus": 2,
+      "special_properties": [
+        "flaming",
+        "giant_sized"
+      ],
+      "spawn_rooms": [
+        12014
+      ],
+      "max_in_zone": 2,
+      "vnum": 12002
+    },
+    "12003": {
+      "name": "ruby",
+      "short_desc": "a massive ruby",
+      "long_desc": "A ruby the size of your fist glows with inner fire.",
+      "description": "This ruby is enormous and flawless, worth a king's ransom. It seems to contain actual flame deep within its facets. Fire giants prize these gems both for their beauty and as power sources for their magic. A single stone like this could buy a castle.",
+      "item_type": "treasure",
+      "value": 5000,
+      "weight": 2,
+      "spawn_rooms": [
+        12016
+      ],
+      "max_in_zone": 1,
+      "vnum": 12003
+    },
+    "12004": {
+      "name": "volcanic steel",
+      "short_desc": "a bar of volcanic steel",
+      "long_desc": "A gleaming bar of black steel lies here.",
+      "description": "This is volcanic steel, forged in the heart of the mountain. It's stronger and lighter than normal steel, holding an edge far longer. Fire giant smiths jealously guard the secrets of its creation. A skilled blacksmith could forge legendary weapons from this material.",
+      "item_type": "ingredient",
+      "value": 500,
+      "weight": 20,
+      "spawn_rooms": [
+        12010
+      ],
+      "max_in_zone": 3,
+      "vnum": 12004
+    }
+  }
+}

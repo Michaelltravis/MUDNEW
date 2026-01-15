@@ -1,0 +1,614 @@
+{
+  "number": 110,
+  "name": "Silversong Elven Village",
+  "description": "An ancient elven settlement among the trees",
+  "level_range": [
+    12,
+    18
+  ],
+  "author": "RealmsMUD Team",
+  "reset_time": 300,
+  "rooms": {
+    "11000": {
+      "title": "Forest Path to Silversong",
+      "description": "The forest path opens into a glade where the trees grow impossibly tall and straight. Silver-barked trees tower overhead, their leaves shimmering with an inner light. The air is sweet with the scent of flowers and alive with birdsong. Delicate bridges and platforms can be seen high in the branches - this is the edge of an elven settlement. The path continues south back to the forest, or north deeper into elven lands.",
+      "terrain": "forest",
+      "exits": {
+        "south": {
+          "to_room": 4001
+        },
+        "north": {
+          "to_room": 11001
+        }
+      },
+      "vnum": 11000
+    },
+    "11001": {
+      "title": "Village Green",
+      "description": "A circular clearing serves as the heart of the village. Grass as soft as velvet covers the ground, and wildflowers grow in artful arrangements. Ancient trees ring the clearing, their trunks carved with intricate patterns that glow faintly. Rope ladders and spiral staircases wind up the massive trees to dwellings in the canopy. The beauty and harmony of this place is almost overwhelming.",
+      "terrain": "forest",
+      "exits": {
+        "south": {
+          "to_room": 11000
+        },
+        "north": {
+          "to_room": 11002
+        },
+        "east": {
+          "to_room": 11003
+        },
+        "west": {
+          "to_room": 11004
+        },
+        "up": {
+          "to_room": 11005
+        }
+      },
+      "vnum": 11001
+    },
+    "11002": {
+      "title": "The Moonwell",
+      "description": "A perfectly circular pool of crystal-clear water sits at the center of a grove. The water glows with soft silver light even during the day, and at night it shines like captured moonlight. Flowers of extraordinary beauty grow around its rim, and the air shimmers with magic. This is a moonwell, a sacred site of the elves, where the barrier between worlds is thin. The water is said to have healing properties.",
+      "terrain": "forest",
+      "exits": {
+        "south": {
+          "to_room": 11001
+        }
+      },
+      "vnum": 11002
+    },
+    "11003": {
+      "title": "Archery Range",
+      "description": "This long glade has been cleared for archery practice. Targets made of straw and wood are set up at various distances, some near, others barely visible. The ground is littered with arrows, many still quivering in their targets. Elven archers practice here relentlessly, honing their legendary skill. Targets are set at distances that would be impossible for humans, yet the elves hit them with casual ease.",
+      "terrain": "forest",
+      "exits": {
+        "west": {
+          "to_room": 11001
+        },
+        "east": {
+          "to_room": 11006
+        }
+      },
+      "vnum": 11003
+    },
+    "11004": {
+      "title": "The Ancient Grove",
+      "description": "This grove contains the oldest trees in the forest, their trunks so massive that ten men could not encircle them. They predate the elven settlement by millennia and are revered as sacred. The trees here have awareness - you can feel their presence, ancient and vast. Druids and rangers come here to commune with nature and learn the old magic. A treant guardian stands eternal watch.",
+      "terrain": "forest",
+      "exits": {
+        "east": {
+          "to_room": 11001
+        },
+        "north": {
+          "to_room": 11007
+        }
+      },
+      "vnum": 11004
+    },
+    "11005": {
+      "title": "Canopy Walkway",
+      "description": "Suspended bridges connect the tree dwellings high above the ground. The walkways sway gently in the breeze, but they're much sturdier than they appear. From this height, you can see for miles across the forest canopy. Birds flit between branches, and the occasional squirrel scampers past. The view is breathtaking, but the drop is dizzying.",
+      "terrain": "forest",
+      "exits": {
+        "down": {
+          "to_room": 11001
+        },
+        "north": {
+          "to_room": 11008
+        },
+        "east": {
+          "to_room": 11009
+        }
+      },
+      "vnum": 11005
+    },
+    "11006": {
+      "title": "Fletcher's Workshop",
+      "description": "This ground-level workshop is dedicated to the craft of bow and arrow making. Racks hold dozens of bows in various stages of completion - some just shaped wood, others finished masterpieces. Bundles of arrows sorted by type fill barrels. Feathers, sinew, glue, and exotic woods cover every work surface. A master fletcher works here, creating weapons of legendary quality.",
+      "terrain": "forest",
+      "exits": {
+        "west": {
+          "to_room": 11003
+        }
+      },
+      "vnum": 11006
+    },
+    "11007": {
+      "title": "Druid Circle",
+      "description": "Standing stones form a perfect circle here, each carved with nature symbols and runes. The grass within grows in a spiral pattern, and mushrooms spring up overnight. This is a place of power where druids and rangers commune with the spirits of nature. Animals approach fearlessly here, and plants grow with unnatural vigor. The air hums with primal magic.",
+      "terrain": "forest",
+      "exits": {
+        "south": {
+          "to_room": 11004
+        },
+        "north": {
+          "to_room": 11010
+        }
+      },
+      "vnum": 11007
+    },
+    "11008": {
+      "title": "Elder's Tree Home",
+      "description": "This dwelling is carved into the trunk of one of the largest trees, its interior surprisingly spacious. Windows look out over the forest in all directions, and the walls are lined with shelves holding ancient books and scrolls. Comfortable furnishings of living wood grow from the floor. This is the home of the village elder, keeper of lore and wisdom. The scent of herbs and incense fills the air.",
+      "terrain": "indoors",
+      "exits": {
+        "south": {
+          "to_room": 11005
+        }
+      },
+      "vnum": 11008
+    },
+    "11009": {
+      "title": "Observation Platform",
+      "description": "This platform extends far out from the main tree, providing an unobstructed view in all directions. Elven scouts use this post to watch for intruders. A spyglass on a swivel mount allows observation of distant locations. From here, you can see the boundaries of elven territory and beyond - the forest, the swamp to the south, and mountains to the east.",
+      "terrain": "forest",
+      "exits": {
+        "west": {
+          "to_room": 11005
+        }
+      },
+      "vnum": 11009
+    },
+    "11010": {
+      "title": "Companion Bonding Grounds",
+      "description": "This peaceful glade is where rangers and druids come to bond with animal companions. Several creatures - wolves, hawks, bears - move freely through the area, unafraid of people. They are wild animals, but some may choose to bond with a worthy ranger. Stone benches are arranged in a circle, and a small shrine to nature deities stands at the center. The bond formed here lasts a lifetime.",
+      "terrain": "forest",
+      "special": "taming_area",
+      "exits": {
+        "south": {
+          "to_room": 11007
+        },
+        "north": {
+          "to_room": 11011
+        }
+      },
+      "vnum": 11010
+    },
+    "11011": {
+      "title": "Shadowed Path",
+      "description": "The forest grows darker here, the trees closer together and their branches more entangled. This path marks the boundary between the protected village and the wild forest beyond. Elven magic keeps corruption at bay, but it's a constant struggle. Strange sounds echo from deeper in the woods, and shadows move in ways they shouldn't. The elves post guards here day and night.",
+      "terrain": "forest",
+      "exits": {
+        "south": {
+          "to_room": 11010
+        },
+        "north": {
+          "to_room": 11012
+        }
+      },
+      "vnum": 11011
+    },
+    "11012": {
+      "title": "Corrupted Grove",
+      "description": "Something is terribly wrong here. The trees are twisted and blackened, their leaves withered and dead. The ground is covered in sickly moss that squelches underfoot. Dark magic has tainted this place, and the corruption is spreading slowly toward the village. Corrupted sprites flit through the dying trees, and shadow stalkers hunt in the darkness. The elves are greatly concerned.",
+      "terrain": "forest",
+      "exits": {
+        "south": {
+          "to_room": 11011
+        },
+        "north": {
+          "to_room": 11013
+        }
+      },
+      "vnum": 11012
+    },
+    "11013": {
+      "title": "Heart of Corruption",
+      "description": "At the center of the corrupted grove lies the source - a massive dead tree, its trunk split open to reveal pulsing darkness within. This was once a sacred tree, but something has twisted it into an abomination. Shadow energy radiates from it like heat from a fire. Defeating the corruption here might save the grove, but the source of darkness is powerful and well-defended.",
+      "terrain": "forest",
+      "exits": {
+        "south": {
+          "to_room": 11012
+        }
+      },
+      "vnum": 11013
+    },
+    "11014": {
+      "title": "Training Hall",
+      "description": "This building on the forest floor serves as a training facility for elven warriors and rangers. Practice dummies, target posts, and weapon racks line the walls. Young elves practice their forms here under the watchful eyes of veterans. The hall is open-air, with a roof but no walls, allowing trainees to stay connected with nature while they hone their skills.",
+      "terrain": "forest",
+      "exits": {
+        "west": {
+          "to_room": 11001
+        }
+      },
+      "vnum": 11014
+    }
+  },
+  "mobiles": {
+    "11000": {
+      "name": "elven archer",
+      "short_desc": "a skilled elven archer",
+      "long_desc": "An elf in forest green leather draws an arrow with fluid grace.",
+      "description": "This elf embodies the grace and deadliness of their people. Tall and slim with the ageless beauty of elvenkind, they move with liquid fluidity. Their longbow is a masterwork of wood and magic, and a quiver of arrows hangs at their hip. Centuries of practice have made them a legendary marksman. Their eyes are alert, missing nothing.",
+      "level": 14,
+      "race": "elf",
+      "size": "medium",
+      "hp_dice": "9d8+9",
+      "damage_dice": "1d10+3",
+      "armor_class": 55,
+      "exp_value": 650,
+      "gold": 150,
+      "behaviors": [
+        "helpful",
+        "wander"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "patrol",
+          "assist"
+        ],
+        "patrol_route": [
+          11001,
+          11003,
+          11006,
+          11003,
+          11001
+        ],
+        "assist_allies": [
+          "elven archer",
+          "village elder"
+        ]
+      },
+      "spawn_rooms": [
+        11001,
+        11003,
+        11009,
+        11014
+      ],
+      "max_in_zone": 5,
+      "vnum": 11000
+    },
+    "11001": {
+      "name": "treant",
+      "short_desc": "a towering treant guardian",
+      "long_desc": "An enormous tree-like being stands here, its bark-covered form radiating ancient power.",
+      "description": "This treant is one of the oldest living things in the forest. Standing over twenty feet tall, it appears to be an ancient oak tree - until it moves. Massive limbs serve as arms, and roots pull free of the earth to become legs. Its face is carved into the trunk, with eyes like knotholes that glow with inner light. It speaks in a voice like wind through branches, slow and deliberate. The treant guards the ancient grove with unwavering dedication.",
+      "level": 16,
+      "race": "plant",
+      "size": "huge",
+      "hp_dice": "12d10+60",
+      "damage_dice": "2d10+5",
+      "armor_class": 45,
+      "exp_value": 900,
+      "gold": 0,
+      "behaviors": [
+        "helpful"
+      ],
+      "special_abilities": [
+        "tree_form",
+        "animate_trees"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "guard"
+        ],
+        "home_room": 11004
+      },
+      "spawn_rooms": [
+        11004
+      ],
+      "max_in_zone": 1,
+      "vnum": 11001
+    },
+    "11002": {
+      "name": "corrupted sprite",
+      "short_desc": "a twisted corrupted sprite",
+      "long_desc": "A small winged creature flits about erratically, trailing dark mist.",
+      "description": "This sprite was once a beautiful nature spirit, but corruption has twisted it into something ugly. Its wings are tattered and leak black ichor, and its eyes glow with malevolent red light. Where normal sprites trail stardust and bring joy, this one spreads decay and misery. The corruption that took the grove also claimed these innocent spirits, turning them into agents of darkness.",
+      "level": 13,
+      "race": "fey",
+      "size": "tiny",
+      "hp_dice": "7d6+7",
+      "damage_dice": "1d8+2",
+      "armor_class": 50,
+      "exp_value": 550,
+      "gold": 0,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_abilities": [
+        "fly"
+      ],
+      "special_attacks": [
+        "curse",
+        "drain_life"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "flee_heal"
+        ],
+        "flee_hp_percent": 35
+      },
+      "spawn_rooms": [
+        11012,
+        11013
+      ],
+      "max_in_zone": 4,
+      "vnum": 11002
+    },
+    "11003": {
+      "name": "shadow stalker",
+      "short_desc": "a shadowy figure that moves like smoke",
+      "long_desc": "A creature of living darkness hunts silently through the corrupted grove.",
+      "description": "This being seems to be made of shadow given form and malice. It has a vaguely humanoid shape but no distinct features - just darkness in the outline of a predator. When it moves, it flows like smoke, silent and deadly. Red eyes gleam in the void of its head. These creatures are spawn of the corruption, feeding on life and light to sustain their unnatural existence.",
+      "level": 17,
+      "race": "shadow",
+      "size": "medium",
+      "hp_dice": "11d8+22",
+      "damage_dice": "2d6+3",
+      "armor_class": 40,
+      "exp_value": 950,
+      "gold": 0,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_abilities": [
+        "incorporeal",
+        "shadow_blend"
+      ],
+      "special_attacks": [
+        "strength_drain"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "ambush",
+          "pack"
+        ],
+        "pack_call_radius": 1
+      },
+      "spawn_rooms": [
+        11012,
+        11013
+      ],
+      "max_in_zone": 3,
+      "vnum": 11003
+    },
+    "11004": {
+      "name": "village elder",
+      "short_desc": "Silvithiel, Elder of Silversong",
+      "long_desc": "An ancient elf studies a tome with eyes that have seen centuries pass.",
+      "description": "Silvithiel is impossibly old even by elven standards. Her silver hair flows like moonlight, and her eyes hold the wisdom of ages. Despite her apparent frailty, power radiates from her like heat from a flame. She is the keeper of lore, advisor to the people, and guardian of ancient secrets. She worries deeply about the spreading corruption and seeks heroes brave enough to face it.",
+      "level": 18,
+      "race": "elf",
+      "size": "medium",
+      "hp_dice": "12d8+12",
+      "damage_dice": "1d6+1",
+      "armor_class": 60,
+      "exp_value": 1000,
+      "gold": 500,
+      "behaviors": [
+        "helpful"
+      ],
+      "spells": [
+        "heal",
+        "cure_curse",
+        "remove_poison",
+        "bless",
+        "sanctuary"
+      ],
+      "spawn_rooms": [
+        11008
+      ],
+      "max_in_zone": 1,
+      "vnum": 11004
+    },
+    "11005": {
+      "name": "master fletcher",
+      "short_desc": "Aerendil, Master Fletcher",
+      "long_desc": "A skilled elf carefully shapes a bow with expert hands.",
+      "description": "Aerendil has devoted his long life to the craft of bow-making. His hands move with the precision of centuries of practice, shaping wood into instruments of deadly beauty. He can judge the quality of wood at a glance and knows which trees will yield the finest bows. His shop contains the finest ranged weapons in the realm.",
+      "level": 15,
+      "race": "elf",
+      "size": "medium",
+      "hp_dice": "10d8+10",
+      "damage_dice": "1d8+2",
+      "armor_class": 60,
+      "exp_value": 700,
+      "gold": 800,
+      "behaviors": [
+        "helpful"
+      ],
+      "special": "shopkeeper",
+      "shop_config": {
+        "buys": [
+          "weapon"
+        ],
+        "sells": [
+          11010,
+          11011,
+          11012,
+          11013
+        ],
+        "markup": 1.4,
+        "markdown": 0.5,
+        "starting_gold": 4000
+      },
+      "spawn_rooms": [
+        11006
+      ],
+      "max_in_zone": 1,
+      "vnum": 11005
+    },
+    "11006": {
+      "name": "wolf",
+      "short_desc": "a gray wolf",
+      "long_desc": "A gray wolf watches you with intelligent eyes.",
+      "description": "This wolf is larger and more intelligent than normal. It moves with fluid grace, muscles rippling under its thick fur. These wolves sometimes bond with worthy rangers, becoming loyal companions for life. This one seems interested in you, evaluating whether you're worthy of its loyalty.",
+      "level": 10,
+      "race": "animal",
+      "size": "medium",
+      "hp_dice": "6d8+12",
+      "damage_dice": "1d8+2",
+      "armor_class": 65,
+      "exp_value": 0,
+      "gold": 0,
+      "behaviors": [
+        "friendly"
+      ],
+      "special": "tameable",
+      "spawn_rooms": [
+        11010
+      ],
+      "max_in_zone": 2,
+      "vnum": 11006
+    },
+    "11007": {
+      "name": "hawk",
+      "short_desc": "a majestic hawk",
+      "long_desc": "A hawk perches on a branch, its keen eyes scanning for prey.",
+      "description": "This hawk is a magnificent specimen with sharp talons and piercing eyes. Hawks make excellent companions for rangers, serving as scouts and messengers. This one seems unusually intelligent and might bond with the right person.",
+      "level": 8,
+      "race": "animal",
+      "size": "small",
+      "hp_dice": "4d8+4",
+      "damage_dice": "1d6+1",
+      "armor_class": 70,
+      "exp_value": 0,
+      "gold": 0,
+      "behaviors": [
+        "friendly"
+      ],
+      "special": "tameable",
+      "special_abilities": [
+        "fly"
+      ],
+      "spawn_rooms": [
+        11010
+      ],
+      "max_in_zone": 2,
+      "vnum": 11007
+    }
+  },
+  "objects": {
+    "11000": {
+      "name": "elven bread",
+      "short_desc": "a loaf of elven waybread",
+      "long_desc": "A wrapped loaf of pale bread sits here.",
+      "description": "This is lembas, the waybread of the elves. One small bite fills the belly and restores energy. It stays fresh for months without spoiling. The elves give this to travelers setting out on long journeys.",
+      "item_type": "food",
+      "value": 50,
+      "weight": 1,
+      "food_value": 10,
+      "spawn_rooms": [
+        11001,
+        11008
+      ],
+      "max_in_zone": 5,
+      "vnum": 11000
+    },
+    "11001": {
+      "name": "healing potion",
+      "short_desc": "a vial of moonwell water",
+      "long_desc": "A crystal vial filled with glowing water sits here.",
+      "description": "This vial contains water drawn from the sacred moonwell. It glows with soft silver light and has powerful healing properties. One sip can cure wounds and purge poison from the body.",
+      "item_type": "potion",
+      "value": 150,
+      "weight": 1,
+      "potion_spell": "heal",
+      "spawn_rooms": [
+        11002
+      ],
+      "max_in_zone": 3,
+      "vnum": 11001
+    },
+    "11002": {
+      "name": "elven cloak",
+      "short_desc": "a finely woven elven cloak",
+      "long_desc": "A cloak of forest green hangs from a peg.",
+      "description": "This cloak is woven from spider silk and enchanted fibers. It's incredibly light and practically weightless, yet provides surprising warmth. The color shifts subtly to match surroundings, granting its wearer improved concealment in natural settings.",
+      "item_type": "armor",
+      "value": 250,
+      "weight": 2,
+      "armor_location": "about",
+      "armor_class": 3,
+      "special_properties": [
+        "stealth_bonus"
+      ],
+      "spawn_rooms": [
+        11008
+      ],
+      "max_in_zone": 2,
+      "vnum": 11002
+    },
+    "11003": {
+      "name": "nature's tear",
+      "short_desc": "a glowing crystal tear",
+      "long_desc": "A crystal that looks like a frozen teardrop glows softly.",
+      "description": "This crystal formed from a treant's tears, shed in sorrow over the corruption of the grove. It holds powerful nature magic and could be used to purify tainted land - or crafted into a powerful magical item by a skilled enchanter.",
+      "item_type": "ingredient",
+      "value": 300,
+      "weight": 1,
+      "magic_bonus": 2,
+      "spawn_rooms": [
+        11004
+      ],
+      "max_in_zone": 1,
+      "vnum": 11003
+    },
+    "11010": {
+      "name": "elven longbow",
+      "short_desc": "an masterwork elven longbow",
+      "long_desc": "A beautiful longbow of white wood rests in a display.",
+      "description": "This bow is a work of art and a deadly weapon. Made from ancient yew wood and reinforced with magic, it's both powerful and graceful. Elvish runes etched along its length glow faintly. The bowstring is woven from unicorn hair. In the hands of a skilled archer, this bow is deadly at incredible range.",
+      "item_type": "weapon",
+      "value": 600,
+      "weight": 4,
+      "weapon_type": "bow",
+      "damage_dice": "1d10+2",
+      "magic_bonus": 1,
+      "spawn_rooms": [
+        11006
+      ],
+      "max_in_zone": 1,
+      "vnum": 11010
+    },
+    "11011": {
+      "name": "quiver of arrows",
+      "short_desc": "a quiver of elven arrows",
+      "long_desc": "A leather quiver filled with arrows hangs here.",
+      "description": "This quiver contains two dozen arrows of elven make. Each is perfectly straight and balanced, fletched with hawk feathers. The arrowheads are steel, sharp enough to pierce armor. These arrows fly true and hit hard.",
+      "item_type": "ammunition",
+      "value": 100,
+      "weight": 3,
+      "ammo_count": 24,
+      "spawn_rooms": [
+        11006
+      ],
+      "max_in_zone": 3,
+      "vnum": 11011
+    },
+    "11012": {
+      "name": "short bow",
+      "short_desc": "a well-crafted short bow",
+      "long_desc": "A compact bow of dark wood rests here.",
+      "description": "This short bow is lighter and more maneuverable than a longbow, perfect for use in forests where space is limited. While it lacks the range of a longbow, it's easier to use and faster to draw.",
+      "item_type": "weapon",
+      "value": 200,
+      "weight": 3,
+      "weapon_type": "bow",
+      "damage_dice": "1d8+1",
+      "spawn_rooms": [
+        11006
+      ],
+      "max_in_zone": 2,
+      "vnum": 11012
+    },
+    "11013": {
+      "name": "leather armor",
+      "short_desc": "a suit of elven leather armor",
+      "long_desc": "Finely crafted leather armor hangs on display.",
+      "description": "This armor is made from the finest leather, supple yet strong. It's been treated with oils and magic to enhance its protective qualities while maintaining flexibility. The craftsmanship is superb - every seam perfect, every buckle secure.",
+      "item_type": "armor",
+      "value": 300,
+      "weight": 15,
+      "armor_location": "body",
+      "armor_class": 8,
+      "spawn_rooms": [
+        11006
+      ],
+      "max_in_zone": 2,
+      "vnum": 11013
+    }
+  }
+}

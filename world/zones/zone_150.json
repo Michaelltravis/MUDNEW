@@ -1,0 +1,628 @@
+{
+  "number": 150,
+  "name": "The Celestial Citadel",
+  "description": "A holy fortress floating among the clouds where angels dwell",
+  "level_range": [
+    25,
+    35
+  ],
+  "author": "RealmsMUD Team",
+  "reset_time": 300,
+  "rooms": {
+    "15000": {
+      "title": "The Portal Chamber",
+      "description": "At the heart of Midgaard's temple, a portal shimmers with divine light. Runes of power surround its frame, and a soft hymn emanates from beyond. The portal leads to the Celestial Citadel - a place few mortals ever see. Only those pure of heart and strong of faith can pass through. The air around the portal feels charged with holy energy.",
+      "terrain": "indoors",
+      "exits": {
+        "east": {
+          "to_room": 3001
+        },
+        "portal": {
+          "to_room": 15001
+        }
+      },
+      "vnum": 15000
+    },
+    "15001": {
+      "title": "Gates of Heaven",
+      "description": "You emerge onto a platform of pure white marble that floats impossibly in the sky. Clouds drift below and above, and the sun shines with a warm, gentle light that never burns. Before you stand gates of gold and pearl, worked with such artistry they seem alive. Angels stand guard, their wings folded and their expressions serene. Beyond the gates lies the Celestial Citadel.",
+      "terrain": "celestial",
+      "exits": {
+        "portal": {
+          "to_room": 15000
+        },
+        "north": {
+          "to_room": 15002,
+          "door": {
+            "name": "celestial gates",
+            "state": "closed",
+            "locked": false,
+            "broken": false
+          }
+        }
+      },
+      "vnum": 15001
+    },
+    "15002": {
+      "title": "The Radiant Plaza",
+      "description": "This vast plaza is paved with gemstones that catch and reflect light in dazzling displays. Fountains flow with water that shimmers like liquid starlight. Gardens of impossible flowers bloom in every direction, their scent sweet but not cloying. Angels move through the plaza on their duties, and the air rings with distant song. The beauty here is beyond mortal comprehension.",
+      "terrain": "celestial",
+      "exits": {
+        "south": {
+          "to_room": 15001,
+          "door": {
+            "name": "celestial gates",
+            "state": "closed",
+            "locked": false,
+            "broken": false
+          }
+        },
+        "north": {
+          "to_room": 15003
+        },
+        "east": {
+          "to_room": 15004
+        },
+        "west": {
+          "to_room": 15005
+        }
+      },
+      "vnum": 15002
+    },
+    "15003": {
+      "title": "Temple of the Divine",
+      "description": "This temple is the heart of the Celestial Citadel. Its walls are crystal that somehow doesn't reflect but seems to absorb and amplify light. The altar is a single block of white marble, perfectly smooth and radiating warmth. Holy symbols of all good deities adorn the walls in harmony. The presence of divinity here is overwhelming - mortals feel compelled to kneel in reverence.",
+      "terrain": "celestial",
+      "exits": {
+        "south": {
+          "to_room": 15002
+        },
+        "north": {
+          "to_room": 15006
+        }
+      },
+      "vnum": 15003
+    },
+    "15004": {
+      "title": "Hall of Heroes",
+      "description": "This hall contains statues of mortals who achieved greatness through good deeds. Paladins who gave their lives to save others, clerics who healed plagues, warriors who defended the innocent. Each statue is perfect, capturing the subject at their finest moment. Plaques tell their stories. This is both memorial and inspiration - proof that mortals can achieve the divine.",
+      "terrain": "celestial",
+      "exits": {
+        "west": {
+          "to_room": 15002
+        },
+        "north": {
+          "to_room": 15007
+        }
+      },
+      "vnum": 15004
+    },
+    "15005": {
+      "title": "The Healing Gardens",
+      "description": "Gardens of impossible beauty spread in all directions. Flowers bloom in colors that don't exist in the mortal world. Trees bear fruit that heals any ailment. Water from the streams can cure poison and disease. Simply being here makes wounds close and sickness fade. This is where the wounded come to recover, where broken spirits are mended. Peace pervades everything.",
+      "terrain": "celestial",
+      "exits": {
+        "east": {
+          "to_room": 15002
+        },
+        "west": {
+          "to_room": 15008
+        }
+      },
+      "vnum": 15005
+    },
+    "15006": {
+      "title": "Throne of the Divine",
+      "description": "At the temple's heart sits a throne that no mortal eye can fully comprehend. It seems to exist in more dimensions than the human mind can process. Light radiates from it with power that could unmake reality. This is where the divine manifests when they choose to appear directly. The very air here thrums with power. Lesser beings cannot approach without being overwhelmed.",
+      "terrain": "celestial",
+      "exits": {
+        "south": {
+          "to_room": 15003
+        }
+      },
+      "vnum": 15006
+    },
+    "15007": {
+      "title": "Armory of Light",
+      "description": "This armory contains weapons and armor crafted by celestial smiths. Each piece is a work of art and a tool of holy power. Swords that burn with righteous fire, armor that turns aside evil, shields that protect the innocent. These items are given only to those deemed worthy - champions who will use them in service of good. Simply touching them fills one with purpose.",
+      "terrain": "celestial",
+      "exits": {
+        "south": {
+          "to_room": 15004
+        },
+        "east": {
+          "to_room": 15009
+        }
+      },
+      "vnum": 15007
+    },
+    "15008": {
+      "title": "Library of Wisdom",
+      "description": "Every book ever written in service of good resides here - or at least a copy does. The shelves stretch infinitely in all directions, yet somehow the exact book you need is always within reach. Scribes work constantly, transcribing knowledge, preserving it for eternity. The accumulated wisdom of ages fills this space. One could spend lifetimes here and never read everything.",
+      "terrain": "celestial",
+      "exits": {
+        "east": {
+          "to_room": 15005
+        }
+      },
+      "vnum": 15008
+    },
+    "15009": {
+      "title": "Training Grounds",
+      "description": "Even in paradise, warriors train. This grounds hosts angels practicing combat, honing skills they hope never to use. The training is intense - strikes that would kill mortals are exchanged casually. Weapons clash with sounds like bells, and magic fills the air. Mortals who train here learn techniques impossible on the mortal plane. The angels are patient teachers for those worthy of instruction.",
+      "terrain": "celestial",
+      "exits": {
+        "west": {
+          "to_room": 15007
+        },
+        "north": {
+          "to_room": 15010
+        }
+      },
+      "vnum": 15009
+    },
+    "15010": {
+      "title": "Hall of Judgment",
+      "description": "This hall serves as courtroom when disputes arise or judgment must be passed. The archons preside here, weighing evidence with perfect fairness. Truth cannot hide in this place - lies are laid bare, and justice is always served. The hall is solemn but not dark. Even those judged guilty are treated with mercy appropriate to their crimes.",
+      "terrain": "celestial",
+      "exits": {
+        "south": {
+          "to_room": 15009
+        },
+        "north": {
+          "to_room": 15011
+        }
+      },
+      "vnum": 15010
+    },
+    "15011": {
+      "title": "The War Council Chamber",
+      "description": "Not all is peace in the celestial realm. Demons seek to corrupt and destroy. This chamber is where strategy is planned and war against evil is coordinated. Maps show the mortal world and the lower planes. Reports arrive constantly from angels on the front lines. The atmosphere is serious - this is where the eternal conflict between good and evil is managed.",
+      "terrain": "celestial",
+      "exits": {
+        "south": {
+          "to_room": 15010
+        }
+      },
+      "vnum": 15011
+    },
+    "15012": {
+      "title": "The Floating Gardens",
+      "description": "These gardens exist on platforms that float unsupported in the sky. Each platform holds a different ecosystem - desert, forest, jungle, mountain. They serve as both study and relaxation. Angels walk between platforms on bridges of solid light. The view from here is spectacular - clouds below, stars above (visible even during day), and the citadel spreading in all directions.",
+      "terrain": "celestial",
+      "exits": {
+        "south": {
+          "to_room": 15002
+        },
+        "north": {
+          "to_room": 15013
+        }
+      },
+      "vnum": 15012
+    },
+    "15013": {
+      "title": "The Music Hall",
+      "description": "Angels are beings of song, and this hall is where they give it voice. The acoustics are perfect - every note rings clear and true. The songs are of creation, of beauty, of hope. Mortal ears struggle to comprehend the complexity. The music here can move listeners to tears or fill them with joy beyond description. Performances happen constantly.",
+      "terrain": "celestial",
+      "exits": {
+        "south": {
+          "to_room": 15012
+        }
+      },
+      "vnum": 15013
+    },
+    "15014": {
+      "title": "The Resurrection Chamber",
+      "description": "This sacred room is where the dead are returned to life. The process is complex and costly - only those deemed worthy or necessary receive this blessing. Crystals channel divine energy, and a resurrection circle is inlaid in the floor with platinum and diamonds. The chamber holds an atmosphere of reverence. Life and death meet here, and death does not always win.",
+      "terrain": "celestial",
+      "exits": {
+        "west": {
+          "to_room": 15003
+        }
+      },
+      "vnum": 15014
+    },
+    "15015": {
+      "title": "Barracks of the Host",
+      "description": "Even angels must rest, though they need little sleep. This barracks provides quarters for the warrior angels. Each chamber is simple but comfortable. Weapons and armor are maintained with meticulous care. The angels are always ready to deploy at a moment's notice. Despite the military atmosphere, there's camaraderie here - warriors who've fought side by side for eons.",
+      "terrain": "celestial",
+      "exits": {
+        "east": {
+          "to_room": 15009
+        }
+      },
+      "vnum": 15015
+    },
+    "15016": {
+      "title": "The Corrupted Wing",
+      "description": "Something is wrong here. This section of the citadel feels different - the light is dimmer, the air cooler. Cracks mar the marble, and some plants in the gardens have withered. A demon has infiltrated the citadel, working corruption from within. The angels know but haven't located it yet. The contrast between this area and the rest is jarring and disturbing.",
+      "terrain": "celestial",
+      "special": "corrupted",
+      "exits": {
+        "west": {
+          "to_room": 15002
+        },
+        "north": {
+          "to_room": 15017
+        }
+      },
+      "vnum": 15016
+    },
+    "15017": {
+      "title": "Hidden Demon Lair",
+      "description": "Behind a false wall lies the demon's hideout. This chamber is a pocket of hell within heaven - the temperature is scorching, the air reeks of sulfur, and darkness pools in corners. The demon has been sabotaging the citadel slowly, corrupting angels where possible. Defeating it is essential but extremely dangerous. Its presence here is a violation of the highest order.",
+      "terrain": "celestial",
+      "special": "demon_lair",
+      "exits": {
+        "south": {
+          "to_room": 15016
+        }
+      },
+      "vnum": 15017
+    },
+    "15018": {
+      "title": "Observation Deck",
+      "description": "This deck extends far out from the main citadel, providing an unobstructed view in all directions. From here, angels watch the mortal world, observing events and identifying those who need help. The view is omniscient - you can see anywhere, anytime. It's humbling to realize how vast creation is and how small any individual's concerns are in the grand scheme.",
+      "terrain": "celestial",
+      "exits": {
+        "south": {
+          "to_room": 15012
+        }
+      },
+      "vnum": 15018
+    },
+    "15019": {
+      "title": "The Fallen Memorial",
+      "description": "This memorial honors angels who fell in battle against evil. Each name is inscribed in letters of gold, and eternal flames burn in remembrance. Even celestial beings can die in service of good. The memorial is somber but not sad - those remembered died with purpose, defending creation. Other angels visit often, paying respect to fallen comrades.",
+      "terrain": "celestial",
+      "exits": {
+        "east": {
+          "to_room": 15010
+        }
+      },
+      "vnum": 15019
+    }
+  },
+  "mobiles": {
+    "15000": {
+      "name": "celestial guardian",
+      "short_desc": "a radiant celestial guardian",
+      "long_desc": "A warrior angel stands here in gleaming armor, wings folded and sword ready.",
+      "description": "This angel is a soldier in the celestial host. It stands seven feet tall, with perfect features and eyes that glow with inner light. Four wings extend from its back - two for flight, two to shield. Its armor is mithril and gold, never tarnishing. The sword it wields is forged from solid light and can cut through any evil. The guardian is patient and kind to the righteous but shows no mercy to the wicked.",
+      "level": 26,
+      "race": "celestial",
+      "size": "medium",
+      "hp_dice": "18d8+72",
+      "damage_dice": "3d8+5",
+      "armor_class": 30,
+      "exp_value": 1500,
+      "gold": 0,
+      "behaviors": [
+        "helpful"
+      ],
+      "special_abilities": [
+        "fly",
+        "holy_aura",
+        "detect_evil"
+      ],
+      "special_attacks": [
+        "holy_smite"
+      ],
+      "spells": [
+        "heal",
+        "remove_curse",
+        "bless"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "guard",
+          "assist"
+        ],
+        "home_room": 15001,
+        "assist_allies": [
+          "celestial guardian",
+          "archon"
+        ]
+      },
+      "spawn_rooms": [
+        15001,
+        15002,
+        15003,
+        15007
+      ],
+      "max_in_zone": 6,
+      "vnum": 15000
+    },
+    "15001": {
+      "name": "archon",
+      "short_desc": "a majestic archon",
+      "long_desc": "An archon of incredible power hovers here, its many wings spread in glory.",
+      "description": "Archons are among the most powerful celestial beings. This one has six wings and radiates light like a star. Its voice is like a chorus, speaking in perfect harmony. It wields authority over lesser angels and can channel divine power with ease. Archons serve as generals, judges, and emissaries of the divine. They're incredibly wise, having existed since creation began. To stand before one is overwhelming.",
+      "level": 30,
+      "race": "celestial",
+      "size": "large",
+      "hp_dice": "22d10+110",
+      "damage_dice": "4d8+6",
+      "armor_class": 25,
+      "exp_value": 2000,
+      "gold": 0,
+      "behaviors": [
+        "helpful"
+      ],
+      "special_abilities": [
+        "fly",
+        "holy_aura",
+        "spell_resistance",
+        "legendary_resistance"
+      ],
+      "special_attacks": [
+        "holy_word",
+        "pillar_of_light"
+      ],
+      "spells": [
+        "heal",
+        "resurrection",
+        "holy_word",
+        "blade_barrier"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "spellcaster"
+        ],
+        "preferred_spells": [
+          "heal",
+          "blade_barrier",
+          "holy_word"
+        ]
+      },
+      "spawn_rooms": [
+        15003,
+        15006,
+        15011
+      ],
+      "max_in_zone": 2,
+      "vnum": 15001
+    },
+    "15002": {
+      "name": "corrupted angel",
+      "short_desc": "a twisted, corrupted angel",
+      "long_desc": "An angel writhes here in obvious agony, its form marred by spreading corruption.",
+      "description": "This angel has been corrupted by the demon's influence. Its beautiful features are twisted with pain and rage. Black veins spider across its skin, and its wings are tattered. It fights the corruption but is losing. The angel attacks anyone approaching, unable to distinguish friend from foe. Defeating it would be mercy, but if the corruption can be removed, the angel might be saved.",
+      "level": 28,
+      "race": "celestial",
+      "size": "medium",
+      "hp_dice": "20d8+80",
+      "damage_dice": "3d8+5",
+      "armor_class": 35,
+      "exp_value": 1700,
+      "gold": 0,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_abilities": [
+        "fly",
+        "corrupted_aura"
+      ],
+      "special_attacks": [
+        "corruption_touch"
+      ],
+      "spells": [
+        "curse",
+        "harm"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "spellcaster",
+          "flee_heal"
+        ],
+        "preferred_spells": [
+          "curse",
+          "harm"
+        ],
+        "flee_hp_percent": 20
+      },
+      "spawn_rooms": [
+        15016
+      ],
+      "max_in_zone": 2,
+      "vnum": 15002
+    },
+    "15003": {
+      "name": "demon infiltrator",
+      "short_desc": "a demonic infiltrator shrouded in shadow",
+      "long_desc": "A demon disguised as an angel lurks here, its true nature barely concealed.",
+      "description": "This demon has infiltrated the Celestial Citadel through cunning and dark magic. Its disguise is good but not perfect - those with sharp eyes can see the shadow that clings to it, the wrongness in its movements. In its true form, it's a horror of horns, wings, and claws. The demon works to corrupt angels and sabotage the citadel from within. It's incredibly dangerous - powerful in combat and skilled in deception.",
+      "level": 32,
+      "race": "demon",
+      "size": "large",
+      "hp_dice": "24d10+120",
+      "damage_dice": "4d8+7",
+      "armor_class": 30,
+      "exp_value": 2200,
+      "gold": 0,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_abilities": [
+        "demon_traits",
+        "shape_change",
+        "spell_resistance"
+      ],
+      "special_attacks": [
+        "corrupt",
+        "steal_soul"
+      ],
+      "spells": [
+        "fireball",
+        "unholy_blight",
+        "dispel_magic",
+        "teleport"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "spellcaster",
+          "flee_heal"
+        ],
+        "preferred_spells": [
+          "unholy_blight",
+          "dispel_magic"
+        ],
+        "flee_hp_percent": 25
+      },
+      "spawn_rooms": [
+        15017
+      ],
+      "max_in_zone": 1,
+      "vnum": 15003
+    },
+    "15004": {
+      "name": "high priest",
+      "short_desc": "Celestius, High Priest of the Divine",
+      "long_desc": "An elderly human in resplendent robes kneels in prayer, divine light surrounding him.",
+      "description": "Celestius is one of the few mortals allowed permanent residence in the Celestial Citadel. He achieved such purity of faith that the divine granted him this honor. Despite his advanced age, he radiates vitality and wisdom. He serves as liaison between mortal and celestial, interpreting the will of the gods for visitors. He can perform resurrections and grant powerful blessings to the worthy.",
+      "level": 27,
+      "race": "human",
+      "size": "medium",
+      "hp_dice": "18d8+36",
+      "damage_dice": "2d6+3",
+      "armor_class": 40,
+      "exp_value": 1600,
+      "gold": 1000,
+      "behaviors": [
+        "helpful"
+      ],
+      "spells": [
+        "heal",
+        "resurrection",
+        "holy_word",
+        "remove_curse",
+        "bless"
+      ],
+      "special": "quest_giver",
+      "spawn_rooms": [
+        15003
+      ],
+      "max_in_zone": 1,
+      "vnum": 15004
+    }
+  },
+  "objects": {
+    "15000": {
+      "name": "holy avenger",
+      "short_desc": "a radiant holy avenger sword",
+      "long_desc": "A magnificent longsword radiates holy light.",
+      "description": "This sword is the ultimate weapon of good. Its blade is forged from celestial steel and burns with holy fire. The crossguard is shaped like angel wings, and the pommel holds a crystal that contains captured starlight. In the hands of a paladin or cleric, it's devastating to evil creatures. The sword is intelligent and can communicate with its wielder. It will only serve the righteous.",
+      "item_type": "weapon",
+      "value": 10000,
+      "weight": 7,
+      "weapon_type": "sword",
+      "damage_dice": "2d8+3",
+      "magic_bonus": 3,
+      "special_properties": [
+        "holy",
+        "intelligent",
+        "evil_bane"
+      ],
+      "spawn_rooms": [
+        15007
+      ],
+      "max_in_zone": 1,
+      "vnum": 15000
+    },
+    "15001": {
+      "name": "celestial armor",
+      "short_desc": "a suit of gleaming celestial armor",
+      "long_desc": "Armor of incredible beauty and power rests on display.",
+      "description": "This plate armor is forged by celestial smiths from mithril and blessed metals. It's as light as leather but stronger than any mortal steel. The surface is polished to mirror brightness and engraved with holy symbols. It radiates protective magic and grants the wearer resistance to evil. Simply wearing it fills one with courage and purpose.",
+      "item_type": "armor",
+      "value": 8000,
+      "weight": 25,
+      "armor_location": "body",
+      "armor_class": 20,
+      "magic_bonus": 3,
+      "special_properties": [
+        "resist_evil",
+        "light_weight"
+      ],
+      "spawn_rooms": [
+        15007
+      ],
+      "max_in_zone": 1,
+      "vnum": 15001
+    },
+    "15002": {
+      "name": "resurrection scroll",
+      "short_desc": "a scroll inscribed with a resurrection prayer",
+      "long_desc": "A scroll glowing with divine power lies here.",
+      "description": "This scroll contains the spell of resurrection, capable of returning the dead to life. The words are written in gold ink on platinum paper. Reading it requires great faith and magical power. The spell will fully restore a deceased person, bringing them back with body and soul intact. Such scrolls are incredibly rare and valuable.",
+      "item_type": "scroll",
+      "value": 5000,
+      "weight": 1,
+      "spell": "resurrection",
+      "spawn_rooms": [
+        15014
+      ],
+      "max_in_zone": 2,
+      "vnum": 15002
+    },
+    "15003": {
+      "name": "holy symbol",
+      "short_desc": "a platinum holy symbol",
+      "long_desc": "A symbol of the divine hangs here, radiating power.",
+      "description": "This holy symbol is crafted from pure platinum and set with diamonds. It radiates divine energy and greatly enhances the power of clerical magic. Wearing it makes one feel connected to the divine, as if prayers are heard more clearly. It also repels evil creatures and can turn undead with just a touch.",
+      "item_type": "armor",
+      "value": 3000,
+      "weight": 2,
+      "armor_location": "neck",
+      "armor_class": 2,
+      "magic_bonus": 2,
+      "special_properties": [
+        "turn_undead_bonus",
+        "spell_power"
+      ],
+      "spawn_rooms": [
+        15003
+      ],
+      "max_in_zone": 2,
+      "vnum": 15003
+    },
+    "15004": {
+      "name": "angelic feather",
+      "short_desc": "a pure white angelic feather",
+      "long_desc": "A feather glowing with soft light drifts here.",
+      "description": "This feather came from an angel's wing. It's impossibly soft and glows with gentle light. Carrying it grants protection from evil and bad fortune. It can also be used as a powerful reagent for holy magic. Angels rarely shed feathers, making them extremely valuable.",
+      "item_type": "ingredient",
+      "value": 1000,
+      "weight": 1,
+      "magic_bonus": 2,
+      "special_properties": [
+        "protection_from_evil"
+      ],
+      "spawn_rooms": [
+        15002,
+        15009,
+        15012
+      ],
+      "max_in_zone": 5,
+      "vnum": 15004
+    },
+    "15005": {
+      "name": "celestial bread",
+      "short_desc": "a loaf of celestial bread",
+      "long_desc": "A loaf of golden bread sits here, still warm.",
+      "description": "This bread is made in the celestial kitchens. It never grows stale and provides complete nourishment - one bite fills the belly for a day. It also heals minor wounds and cures diseases. The taste is indescribably perfect, like every good meal you've ever had combined into one.",
+      "item_type": "food",
+      "value": 200,
+      "weight": 1,
+      "food_value": 24,
+      "special_properties": [
+        "healing"
+      ],
+      "spawn_rooms": [
+        15005
+      ],
+      "max_in_zone": 10,
+      "vnum": 15005
+    }
+  }
+}

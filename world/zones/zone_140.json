@@ -1,0 +1,792 @@
+{
+  "number": 140,
+  "name": "The Necropolis of Eternal Night",
+  "description": "A cursed city where the dead walk and death itself holds dominion",
+  "level_range": [
+    20,
+    28
+  ],
+  "author": "RealmsMUD Team",
+  "reset_time": 300,
+  "rooms": {
+    "14000": {
+      "title": "Gates of the Dead",
+      "description": "Massive iron gates stand open, rusted and covered in dark stains. Beyond lies a city shrouded in perpetual gloom - no matter the time of day, darkness reigns here. The gates are worked with images of skulls and bones, and inscriptions in dead languages warn visitors away. The air is cold and still, carrying the stench of decay. From within comes the sound of moaning and the scrape of bone on stone.",
+      "terrain": "undead",
+      "exits": {
+        "north": {
+          "to_room": 7099
+        },
+        "south": {
+          "to_room": 14001
+        }
+      },
+      "vnum": 14000
+    },
+    "14001": {
+      "title": "Avenue of Tombs",
+      "description": "A wide street stretches into the necropolis, lined on both sides with mausoleums and tombs. Many stand open, their doors torn from hinges, their occupants gone. The cobblestones are cracked and broken, with weeds growing between. Street lamps that once burned with eternal flame are dark and cold. Shambling figures can be seen in the distance, moving with the jerky gait of the undead.",
+      "terrain": "undead",
+      "exits": {
+        "north": {
+          "to_room": 14000
+        },
+        "south": {
+          "to_room": 14002
+        },
+        "east": {
+          "to_room": 14003
+        },
+        "west": {
+          "to_room": 14004
+        }
+      },
+      "vnum": 14001
+    },
+    "14002": {
+      "title": "Plaza of Bones",
+      "description": "This central plaza is paved with bones - skulls, ribs, femurs, all fitted together in grotesque mosaic. A fountain at the center once flowed with water; now it weeps blood that never stops. Broken statues ring the plaza, their faces chiseled away. This was once the heart of the city. Now it's a gathering place for the undead, where they stand in silent congregation.",
+      "terrain": "undead",
+      "exits": {
+        "north": {
+          "to_room": 14001
+        },
+        "south": {
+          "to_room": 14005
+        },
+        "east": {
+          "to_room": 14006
+        },
+        "west": {
+          "to_room": 14007
+        }
+      },
+      "vnum": 14002
+    },
+    "14003": {
+      "title": "Crypt Row",
+      "description": "Family crypts line this street, each grander than the last - competition in death as in life. Many are ornately carved with family crests and accomplishments. The doors are sealed with chains and locks, but many have been broken from within. Scraping sounds come from inside the crypts, and shadows move in the darkness. The wealthy dead do not rest easy here.",
+      "terrain": "undead",
+      "exits": {
+        "west": {
+          "to_room": 14001
+        },
+        "south": {
+          "to_room": 14006
+        }
+      },
+      "vnum": 14003
+    },
+    "14004": {
+      "title": "The Pauper's Field",
+      "description": "Here the poor were buried in mass graves, unmarked and unmourned. The ground has opened, vomiting forth its dead. Skeletal hands reach from the earth, and corpses drag themselves from shallow graves. The smell is overwhelming. These undead are mindless and vicious, attacking anything living that approaches. This is the most dangerous area for the unprepared.",
+      "terrain": "undead",
+      "exits": {
+        "east": {
+          "to_room": 14001
+        }
+      },
+      "vnum": 14004
+    },
+    "14005": {
+      "title": "Temple of the Death God",
+      "description": "This temple was dedicated to the god of death - not as evil, but as natural transition. But the necromancers perverted it, turning it into a shrine to undeath. The altar is stained black with blood sacrifices. Candles burn with cold flames that give no warmth. The air itself seems dead here. Necromancers use this place for their darkest rituals.",
+      "terrain": "undead",
+      "exits": {
+        "north": {
+          "to_room": 14002
+        },
+        "south": {
+          "to_room": 14008
+        }
+      },
+      "vnum": 14005
+    },
+    "14006": {
+      "title": "Mausoleum District",
+      "description": "Elaborate mausoleums dominate this district, some rising three stories high. They're built of marble and granite, designed to last forever. Statues of angels with broken wings stand watch. Inside, the wealthy dead sleep in ornate coffins - or at least they used to. Many have risen as vampires, retaining intelligence and cunning along with terrible hunger.",
+      "terrain": "undead",
+      "exits": {
+        "north": {
+          "to_room": 14003
+        },
+        "west": {
+          "to_room": 14002
+        },
+        "south": {
+          "to_room": 14009
+        }
+      },
+      "vnum": 14006
+    },
+    "14007": {
+      "title": "The Charnel House",
+      "description": "This building was used to process the dead - preparing bodies for burial. Now it's a horror show. Bodies in various states of decay lie on tables. Bones are sorted in piles. The tools of the undertaker's trade hang on walls. Ghouls have claimed this place, feeding on the dead and occasionally the living. The smell is indescribable.",
+      "terrain": "undead",
+      "exits": {
+        "east": {
+          "to_room": 14002
+        },
+        "south": {
+          "to_room": 14010
+        }
+      },
+      "vnum": 14007
+    },
+    "14008": {
+      "title": "Sanctum of Dark Rites",
+      "description": "Deep within the temple, the necromancers perform their most forbidden rituals. A circle of power is drawn on the floor in blood and ash. Skulls arranged in patterns channel dark energy. Books of necromancy lie open on lecterns. This is where the living are transformed into undead, where souls are trapped, where death itself is twisted. The evil here is palpable.",
+      "terrain": "undead",
+      "exits": {
+        "north": {
+          "to_room": 14005
+        }
+      },
+      "vnum": 14008
+    },
+    "14009": {
+      "title": "Vampire's Mausoleum",
+      "description": "This grand mausoleum belongs to an ancient vampire. The coffin within is carved from a single piece of obsidian and lined with silk. The vampire sleeps here during the day, venturing out at night to feed. The mausoleum is richly appointed - paintings, tapestries, furniture - as if still inhabited by the living. But everything is gray with dust and age.",
+      "terrain": "undead",
+      "exits": {
+        "north": {
+          "to_room": 14006
+        }
+      },
+      "vnum": 14009
+    },
+    "14010": {
+      "title": "Ghoul Warren",
+      "description": "Ghouls have burrowed into the ground here, creating a warren of tunnels. The entrances are surrounded by gnawed bones. These creatures are constantly hungry, feeding on the dead and dragging fresh corpses below. They're intelligent enough to set traps and ambushes. Venturing into their territory is extremely dangerous. The tunnels lead deep underground.",
+      "terrain": "undead",
+      "exits": {
+        "north": {
+          "to_room": 14007
+        },
+        "down": {
+          "to_room": 14011
+        }
+      },
+      "vnum": 14010
+    },
+    "14011": {
+      "title": "Underground Burial Chambers",
+      "description": "These chambers were cut from bedrock to hold the overflow when the surface graveyards filled. Niches in the walls hold thousands of bodies. The air is stale and thick with decay. Weak undead inhabit these chambers - zombies and skeletons that mindlessly patrol. The darkness is oppressive, broken only by occasional phosphorescent fungi.",
+      "terrain": "underground",
+      "exits": {
+        "up": {
+          "to_room": 14010
+        },
+        "south": {
+          "to_room": 14012
+        },
+        "east": {
+          "to_room": 14013
+        }
+      },
+      "vnum": 14011
+    },
+    "14012": {
+      "title": "The Ossuary",
+      "description": "When bodies decayed, their bones were moved here - a room dedicated to housing remains. Bones are stacked floor to ceiling in artistic patterns. Skulls grin from elaborate arrangements. Femurs are stacked like cord wood. The sheer number of dead represented here is staggering - tens of thousands. Something powerful moves among the bones.",
+      "terrain": "underground",
+      "exits": {
+        "north": {
+          "to_room": 14011
+        }
+      },
+      "vnum": 14012
+    },
+    "14013": {
+      "title": "Catacombs",
+      "description": "Ancient tunnels wind through the earth beneath the necropolis. These catacombs are far older than the city above, carved by a civilization long forgotten. Strange glyphs cover the walls. The passages branch and twist, forming a maze. Wraiths haunt these tunnels, the ghosts of those buried before recorded history. They hate the living with ancient malice.",
+      "terrain": "underground",
+      "exits": {
+        "west": {
+          "to_room": 14011
+        },
+        "south": {
+          "to_room": 14014
+        }
+      },
+      "vnum": 14013
+    },
+    "14014": {
+      "title": "The Deep Crypts",
+      "description": "The oldest and deepest burial chambers lie here, sealed centuries ago. The doors are warded with powerful magic meant to keep things in, not out. Whatever was buried here was important - and dangerous. The seals have weakened with age. Strange sounds emanate from beyond the doors, and dark power leaks through cracks.",
+      "terrain": "underground",
+      "exits": {
+        "north": {
+          "to_room": 14013
+        },
+        "east": {
+          "to_room": 14015
+        }
+      },
+      "vnum": 14014
+    },
+    "14015": {
+      "title": "Ancient Burial Chamber",
+      "description": "This chamber predates the necropolis by millennia. The walls are carved with symbols of an unknown culture. A stone sarcophagus dominates the center, its lid carved with the image of a king. The magic here is ancient and powerful. Something terrible sleeps within - an ancient evil that should never wake. The temperature drops near the sarcophagus.",
+      "terrain": "underground",
+      "exits": {
+        "west": {
+          "to_room": 14014
+        }
+      },
+      "vnum": 14015
+    },
+    "14016": {
+      "title": "Necromancer's Quarter",
+      "description": "Living necromancers make their homes in this district, maintaining their mortality while studying death. The buildings are surprisingly well-kept - these scholars value their comfort. Lights burn in windows, and the smell of cooking wafts from chimneys. But the atmosphere is still wrong. These are people who have embraced darkness, who see the undead as tools and death as a resource.",
+      "terrain": "undead",
+      "exits": {
+        "north": {
+          "to_room": 14002
+        },
+        "south": {
+          "to_room": 14017
+        },
+        "east": {
+          "to_room": 14018
+        }
+      },
+      "vnum": 14016
+    },
+    "14017": {
+      "title": "The Black Library",
+      "description": "This library contains the collected knowledge of necromancy from across the ages. Shelves hold thousands of grimoires, tomes, and scrolls - all dedicated to death magic. The rarest and most dangerous books are kept in locked cages. Simply reading some of these texts could drive one mad or corrupt the soul. Guards patrol constantly, both living and undead.",
+      "terrain": "undead",
+      "exits": {
+        "north": {
+          "to_room": 14016
+        }
+      },
+      "vnum": 14017
+    },
+    "14018": {
+      "title": "Summoning Chamber",
+      "description": "Necromancers use this room to summon and bind undead servants. Circles of power are drawn on the floor. Chains and shackles hang from walls for restraining the rebellious. Jars hold components for dark rituals - preserved organs, rare herbs, ground bones. The room reeks of death and dark magic. Apprentices practice here under watchful supervision.",
+      "terrain": "undead",
+      "exits": {
+        "west": {
+          "to_room": 14016
+        }
+      },
+      "vnum": 14018
+    },
+    "14019": {
+      "title": "The Lich Tower Approach",
+      "description": "A tower of black stone rises from the necropolis, taller than any other structure. This is the domain of the ancient lich who rules here. The tower seems to absorb light, and no bird will fly near it. The ground around it is dead - not even weeds grow. A sense of overwhelming dread emanates from the tower. Only the powerful or foolish approach.",
+      "terrain": "undead",
+      "exits": {
+        "west": {
+          "to_room": 14002
+        },
+        "up": {
+          "to_room": 14020
+        }
+      },
+      "vnum": 14019
+    },
+    "14020": {
+      "title": "Tower Entrance Hall",
+      "description": "The tower interior is surprisingly ornate. Tapestries that should have rotted centuries ago still hang on walls. Candles burn with cold flames. The floor is polished marble, and a grand staircase winds upward. But everything is wrong - the tapestries depict scenes of death, the candles give no warmth, and the very air feels thin and lifeless. Skeleton warriors stand guard.",
+      "terrain": "undead",
+      "exits": {
+        "down": {
+          "to_room": 14019
+        },
+        "up": {
+          "to_room": 14021
+        }
+      },
+      "vnum": 14020
+    },
+    "14021": {
+      "title": "Trophy Hall",
+      "description": "The lich displays trophies from victims here. Suits of armor stand empty, their wearers long dead. Weapons of defeated heroes hang on walls. Magical items that couldn't save their owners are arranged in cases. Each trophy has a plaque describing the victim and how they died. It's both memorial and warning - even the mighty fall to the lich.",
+      "terrain": "undead",
+      "exits": {
+        "down": {
+          "to_room": 14020
+        },
+        "up": {
+          "to_room": 14022
+        }
+      },
+      "vnum": 14021
+    },
+    "14022": {
+      "title": "Library of the Damned",
+      "description": "The lich's personal library makes the Black Library look tame. These are the rarest texts in existence - books that mere mortals shouldn't touch. Some are bound in human skin, others written in blood, still others seem to be alive in some horrible way. The knowledge here could reshape the world - or destroy it. The lich guards this collection jealously.",
+      "terrain": "undead",
+      "exits": {
+        "down": {
+          "to_room": 14021
+        },
+        "up": {
+          "to_room": 14023
+        }
+      },
+      "vnum": 14022
+    },
+    "14023": {
+      "title": "The Ritual Chamber",
+      "description": "This room is dedicated to the lich's darkest work. The floor is one massive circle of power, inlaid with precious metals and gems. Channeling this much power would kill a normal mage - only the lich's undead form allows it. The air crackles with potential energy. This is where the lich performs the rituals that maintain the necropolis and extend its power.",
+      "terrain": "undead",
+      "exits": {
+        "down": {
+          "to_room": 14022
+        },
+        "up": {
+          "to_room": 14024
+        }
+      },
+      "vnum": 14023
+    },
+    "14024": {
+      "title": "The Phylactery Chamber",
+      "description": "At the tower's pinnacle lies the lich's most guarded secret - its phylactery, the vessel containing its soul. As long as the phylactery exists, the lich cannot be permanently destroyed. The chamber is warded with every protection spell known. Guardians stand eternal watch. The phylactery itself is hidden, disguised as one of many identical objects. Finding and destroying it is the only way to truly kill the lich.",
+      "terrain": "undead",
+      "exits": {
+        "down": {
+          "to_room": 14023
+        }
+      },
+      "vnum": 14024
+    },
+    "14025": {
+      "title": "Graveyard of Heroes",
+      "description": "This section contains the graves of those who died fighting the undead - paladins, clerics, warriors of light. Their graves are marked with holy symbols and prayers. But even here, corruption has taken hold. Some have risen as death knights, their nobility twisted into service of evil. Others remain at rest, but their graves are desecrated. It's a sad reminder that even heroes fall.",
+      "terrain": "undead",
+      "exits": {
+        "east": {
+          "to_room": 14002
+        },
+        "south": {
+          "to_room": 14026
+        }
+      },
+      "vnum": 14025
+    },
+    "14026": {
+      "title": "Chapel of Lost Hope",
+      "description": "This chapel was built by survivors of the necropolis's fall, a place to pray for deliverance. But the prayers went unanswered. The chapel stands abandoned, its altar broken, its holy symbols defaced. Dust covers everything. The only visitors now are undead who mock what this place once represented. A sense of profound sadness permeates the air.",
+      "terrain": "undead",
+      "exits": {
+        "north": {
+          "to_room": 14025
+        }
+      },
+      "vnum": 14026
+    },
+    "14027": {
+      "title": "The Bone Throne",
+      "description": "In a grand hall sits a throne constructed entirely of bones - human and otherwise. This is where the lich holds court, issuing commands to lesser undead and receiving tribute from necromancer servants. The throne radiates power and malevolence. The lich rarely occupies it physically, preferring to work in the tower, but the throne represents its authority over this realm of death.",
+      "terrain": "undead",
+      "exits": {
+        "north": {
+          "to_room": 14019
+        }
+      },
+      "vnum": 14027
+    },
+    "14028": {
+      "title": "Execution Square",
+      "description": "When the necropolis was alive, criminals were executed here. The gallows, headsman's block, and stakes remain. Now the square has a new purpose - the undead bring captured living here for transformation into their ranks. The rituals performed here are brutal and terrifying. Screams echo from this square at all hours. Bloodstains cover the ancient stones.",
+      "terrain": "undead",
+      "exits": {
+        "west": {
+          "to_room": 14001
+        }
+      },
+      "vnum": 14028
+    },
+    "14029": {
+      "title": "The Corpse Market",
+      "description": "In a grotesque mockery of commerce, necromancers trade in corpses and parts here. Bodies are displayed like meat at a butcher shop, sorted by quality and freshness. Organs are sold separately. Special components - hearts of virgins, eyes of seers, bones of children - command premium prices. The market is always busy, with necromancers haggling over their gruesome wares.",
+      "terrain": "undead",
+      "exits": {
+        "east": {
+          "to_room": 14016
+        }
+      },
+      "vnum": 14029
+    }
+  },
+  "mobiles": {
+    "14000": {
+      "name": "skeleton warrior",
+      "short_desc": "an armored skeleton warrior",
+      "long_desc": "A skeleton in ancient armor patrols here, sword in bony hand.",
+      "description": "This skeleton was once a warrior, and death hasn't erased its martial skill. It wears rusted plate armor and wields a notched sword with surprising competence. Unlike mindless zombies, these skeletons retain combat training from life. They're tireless, fearless, and never stop. Red flame burns in empty eye sockets, suggesting some intelligence remains.",
+      "level": 20,
+      "race": "undead",
+      "size": "medium",
+      "hp_dice": "14d8+28",
+      "damage_dice": "2d8+3",
+      "armor_class": 50,
+      "exp_value": 1100,
+      "gold": 50,
+      "behaviors": [
+        "aggressive",
+        "wander"
+      ],
+      "special_abilities": [
+        "undead_traits",
+        "immune_to_cold"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "patrol",
+          "assist"
+        ],
+        "patrol_route": [
+          14001,
+          14002,
+          14019,
+          14020,
+          14021,
+          14020,
+          14019,
+          14002
+        ],
+        "assist_allies": [
+          "skeleton warrior",
+          "wraith",
+          "vampire"
+        ]
+      },
+      "spawn_rooms": [
+        14001,
+        14002,
+        14003,
+        14006,
+        14020,
+        14021
+      ],
+      "max_in_zone": 8,
+      "vnum": 14000
+    },
+    "14001": {
+      "name": "ghoul",
+      "short_desc": "a feral ghoul",
+      "long_desc": "A hunched, pale creature with long claws sniffs the air hungrily.",
+      "description": "Ghouls are created when people consume the flesh of the dead - a punishment that transforms them into monsters. This ghoul is barely recognizable as human. Its skin is pale and waxy, its fingers elongated into claws, its teeth filed to points. It moves with bestial grace, constantly hungry. Ghouls are intelligent enough to be truly dangerous, setting ambushes and working in packs.",
+      "level": 22,
+      "race": "undead",
+      "size": "medium",
+      "hp_dice": "15d8+45",
+      "damage_dice": "2d6+4",
+      "armor_class": 55,
+      "exp_value": 1250,
+      "gold": 30,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_abilities": [
+        "undead_traits",
+        "paralysis_touch"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "pack",
+          "ambush"
+        ],
+        "pack_call_radius": 2,
+        "ambush_room": 14010
+      },
+      "spawn_rooms": [
+        14007,
+        14010,
+        14011
+      ],
+      "max_in_zone": 6,
+      "vnum": 14001
+    },
+    "14002": {
+      "name": "wraith",
+      "short_desc": "a shadowy wraith",
+      "long_desc": "A dark figure drifts here, its form barely visible and utterly terrifying.",
+      "description": "Wraiths are the spirits of the truly evil, bound to the world by their malice. This creature is incorporeal, a shadow barely distinguishable from darkness. Its touch drains life force itself, weakening victims with each strike. Wraiths hate the living with a passion that transcends death. They can phase through walls and are immune to normal weapons. Only magic can harm them.",
+      "level": 24,
+      "race": "undead",
+      "size": "medium",
+      "hp_dice": "16d8+48",
+      "damage_dice": "2d8+4",
+      "armor_class": 40,
+      "exp_value": 1400,
+      "gold": 0,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_abilities": [
+        "undead_traits",
+        "incorporeal",
+        "life_drain"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "ambush"
+        ],
+        "ambush_room": 14013
+      },
+      "spawn_rooms": [
+        14013,
+        14014,
+        14025
+      ],
+      "max_in_zone": 4,
+      "vnum": 14002
+    },
+    "14003": {
+      "name": "vampire",
+      "short_desc": "an ancient vampire",
+      "long_desc": "A pale figure of terrible beauty watches you with predatory eyes.",
+      "description": "This vampire is centuries old, a master of undeath. It appears almost human - pale and beautiful, dressed in finery from a bygone age. But the illusion shatters when it opens its mouth to reveal fangs, or when you see the complete absence of humanity in its eyes. Vampires are incredibly strong, fast, and cunning. They can charm victims, turn into mist, and command lesser undead. Sunlight would destroy them, but here in eternal darkness they reign supreme.",
+      "level": 26,
+      "race": "undead",
+      "size": "medium",
+      "hp_dice": "18d8+72",
+      "damage_dice": "3d6+5",
+      "armor_class": 35,
+      "exp_value": 1600,
+      "gold": 500,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_abilities": [
+        "undead_traits",
+        "charm",
+        "mist_form",
+        "regeneration"
+      ],
+      "special_attacks": [
+        "blood_drain"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "flee_heal",
+          "spellcaster"
+        ],
+        "flee_hp_percent": 25,
+        "preferred_spells": [
+          "charm_person",
+          "darkness"
+        ]
+      },
+      "spawn_rooms": [
+        14009
+      ],
+      "max_in_zone": 2,
+      "vnum": 14003
+    },
+    "14004": {
+      "name": "lich",
+      "short_desc": "Malachar the Undying, Master of the Necropolis",
+      "long_desc": "An ancient lich wrapped in rotting robes stands here, eyes burning with unholy power.",
+      "description": "Malachar was once a great archmage who chose lichdom over death. That was over a thousand years ago. Now he's something beyond human understanding - a being of pure will and magic housed in a desiccated corpse. His bones show through dried flesh, and his eyes are pits of green flame. He wears robes that were once magnificent, now moth-eaten and stained. But none of this diminishes his power. He's one of the most powerful spellcasters in existence, wielding necromancy that could threaten kingdoms. His phylactery makes him nearly immortal.",
+      "level": 28,
+      "race": "undead",
+      "size": "medium",
+      "hp_dice": "20d8+80",
+      "damage_dice": "3d8+6",
+      "armor_class": 30,
+      "exp_value": 2000,
+      "gold": 2000,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_abilities": [
+        "undead_traits",
+        "spell_resistance",
+        "legendary_resistance",
+        "paralysis_touch"
+      ],
+      "spells": [
+        "finger_of_death",
+        "power_word_kill",
+        "animate_dead",
+        "cone_of_cold",
+        "disintegrate",
+        "time_stop"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "spellcaster",
+          "flee_heal"
+        ],
+        "preferred_spells": [
+          "finger_of_death",
+          "cone_of_cold",
+          "power_word_kill"
+        ],
+        "flee_hp_percent": 15
+      },
+      "spawn_rooms": [
+        14024
+      ],
+      "max_in_zone": 1,
+      "vnum": 14004
+    },
+    "14005": {
+      "name": "necromancer",
+      "short_desc": "a dark necromancer",
+      "long_desc": "A robed figure studies a tome of forbidden knowledge, dark energy crackling around their fingers.",
+      "description": "This necromancer is still among the living, though they've dedicated their life to death magic. They're pale from spending time indoors studying, with dark circles under their eyes. Their robes are black and covered in arcane symbols. They can summon and command undead, drain life energy, and cast curses. While not as powerful as the lich master, they're still dangerous spellcasters. They see undeath as the next stage of existence and actively work toward transformation.",
+      "level": 23,
+      "race": "human",
+      "size": "medium",
+      "hp_dice": "15d6+30",
+      "damage_dice": "1d6+2",
+      "armor_class": 60,
+      "exp_value": 1300,
+      "gold": 300,
+      "behaviors": [
+        "aggressive"
+      ],
+      "spells": [
+        "animate_dead",
+        "ray_of_enfeeblement",
+        "cause_fear",
+        "vampiric_touch"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "spellcaster",
+          "flee_heal"
+        ],
+        "preferred_spells": [
+          "animate_dead",
+          "vampiric_touch",
+          "cause_fear"
+        ],
+        "flee_hp_percent": 30
+      },
+      "spawn_rooms": [
+        14005,
+        14008,
+        14016,
+        14017,
+        14018
+      ],
+      "max_in_zone": 5,
+      "vnum": 14005
+    }
+  },
+  "objects": {
+    "14000": {
+      "name": "necronomicon",
+      "short_desc": "an ancient book bound in strange leather",
+      "long_desc": "A tome of forbidden knowledge lies here, radiating dark power.",
+      "description": "This is one of the legendary books of necromancy, containing spells and rituals of immense power. The pages are human skin, the ink is blood, and the binding is something you can't identify and don't want to. Simply reading it could drive one mad, but the knowledge within could grant power over death itself. Necromancers would kill for this book.",
+      "item_type": "book",
+      "value": 5000,
+      "weight": 10,
+      "magic_bonus": 3,
+      "special_properties": [
+        "teaches_necromancy"
+      ],
+      "spawn_rooms": [
+        14017,
+        14022
+      ],
+      "max_in_zone": 2,
+      "vnum": 14000
+    },
+    "14001": {
+      "name": "death knight armor",
+      "short_desc": "a suit of black plate armor",
+      "long_desc": "Black armor covered in profane symbols stands here on display.",
+      "description": "This armor was worn by a fallen paladin, corrupted into service of evil. The plate is black as midnight and etched with symbols of death. Despite its dark appearance, it's incredibly protective and grants unholy strength. The armor whispers to those who wear it, encouraging dark deeds. It's both a powerful tool and a corrupting influence.",
+      "item_type": "armor",
+      "value": 2000,
+      "weight": 50,
+      "armor_location": "body",
+      "armor_class": 18,
+      "magic_bonus": 2,
+      "special_properties": [
+        "strength_bonus",
+        "cursed"
+      ],
+      "spawn_rooms": [
+        14021,
+        14025
+      ],
+      "max_in_zone": 1,
+      "vnum": 14001
+    },
+    "14002": {
+      "name": "bone wand",
+      "short_desc": "a wand carved from a lich's finger bone",
+      "long_desc": "A wand of yellowed bone lies here, cold to the touch.",
+      "description": "This wand is carved from the finger bone of a lich - a powerful necromantic focus. It enhances death magic and can cast certain necromancy spells on its own. The bone is carved with tiny runes and capped with a black onyx. It feels wrong to touch, like holding something that should not exist.",
+      "item_type": "wand",
+      "value": 1500,
+      "weight": 1,
+      "magic_bonus": 2,
+      "charges": 20,
+      "special_properties": [
+        "casts_animate_dead"
+      ],
+      "spawn_rooms": [
+        14008,
+        14018
+      ],
+      "max_in_zone": 2,
+      "vnum": 14002
+    },
+    "14003": {
+      "name": "vampire's fangs",
+      "short_desc": "a pair of elongated vampire fangs",
+      "long_desc": "Two sharp fangs rest here, still dripping blood.",
+      "description": "These fangs were taken from a destroyed vampire. They retain a fragment of vampiric power - when worn, they grant enhanced senses and the ability to drain life from enemies. They're macabre and disturbing, but undeniably powerful. Some vampire hunters collect these as trophies.",
+      "item_type": "ingredient",
+      "value": 800,
+      "weight": 1,
+      "magic_bonus": 1,
+      "special_properties": [
+        "life_drain_on_hit"
+      ],
+      "spawn_rooms": [
+        14009
+      ],
+      "max_in_zone": 1,
+      "vnum": 14003
+    },
+    "14004": {
+      "name": "skull chalice",
+      "short_desc": "a chalice carved from a human skull",
+      "long_desc": "A drinking vessel made from a skull sits here, lined with silver.",
+      "description": "This chalice is carved from a human skull and lined with silver. Necromancers use it in dark rituals, filling it with blood for offerings. The skull's teeth are embedded with gems. It's both valuable and deeply unsettling. Drinking from it is said to grant temporary protection from undead.",
+      "item_type": "treasure",
+      "value": 1000,
+      "weight": 3,
+      "special_properties": [
+        "undead_protection"
+      ],
+      "spawn_rooms": [
+        14005,
+        14008
+      ],
+      "max_in_zone": 2,
+      "vnum": 14004
+    },
+    "14005": {
+      "name": "phylactery shard",
+      "short_desc": "a fragment of shattered phylactery",
+      "long_desc": "A broken piece of gem-studded metal pulses with residual power.",
+      "description": "This is a piece of a destroyed phylactery - the vessel that held a lich's soul. Though broken, it still holds fragments of necromantic power. A skilled enchanter could use it as a component for powerful magic items. Simply carrying it makes you feel cold inside.",
+      "item_type": "ingredient",
+      "value": 3000,
+      "weight": 2,
+      "magic_bonus": 3,
+      "spawn_rooms": [
+        14024
+      ],
+      "max_in_zone": 1,
+      "vnum": 14005
+    }
+  }
+}

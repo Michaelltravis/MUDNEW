@@ -491,7 +491,146 @@ class CommandHandler:
             
         from combat import CombatHandler
         await CombatHandler.do_backstab(player, target)
-    
+
+    @classmethod
+    async def cmd_envenom(cls, player: 'Player', args: List[str]):
+        """Envenom your weapon with deadly poison."""
+        if 'envenom' not in player.skills:
+            await player.send("You don't know how to envenom weapons!")
+            return
+
+        from combat import CombatHandler
+        await CombatHandler.do_envenom(player)
+
+    @classmethod
+    async def cmd_assassinate(cls, player: 'Player', args: List[str]):
+        """Attempt a deadly assassination on an unsuspecting target."""
+        if 'assassinate' not in player.skills:
+            await player.send("You don't know how to assassinate!")
+            return
+
+        if player.is_fighting:
+            await player.send("You're too busy fighting!")
+            return
+
+        if not args:
+            await player.send("Assassinate whom?")
+            return
+
+        target_name = ' '.join(args).lower()
+        target = None
+
+        for char in player.room.characters:
+            if char != player and target_name in char.name.lower():
+                target = char
+                break
+
+        if not target:
+            await player.send(f"You don't see '{target_name}' here.")
+            return
+
+        from combat import CombatHandler
+        await CombatHandler.do_assassinate(player, target)
+
+    @classmethod
+    async def cmd_garrote(cls, player: 'Player', args: List[str]):
+        """Strangle a target from behind, silencing them."""
+        if 'garrote' not in player.skills:
+            await player.send("You don't know how to garrote!")
+            return
+
+        if player.is_fighting:
+            await player.send("You're too busy fighting!")
+            return
+
+        if not args:
+            await player.send("Garrote whom?")
+            return
+
+        target_name = ' '.join(args).lower()
+        target = None
+
+        for char in player.room.characters:
+            if char != player and target_name in char.name.lower():
+                target = char
+                break
+
+        if not target:
+            await player.send(f"You don't see '{target_name}' here.")
+            return
+
+        from combat import CombatHandler
+        await CombatHandler.do_garrote(player, target)
+
+    @classmethod
+    async def cmd_shadowstep(cls, player: 'Player', args: List[str]):
+        """Dissolve into shadows and appear behind a target."""
+        if 'shadow_step' not in player.skills:
+            await player.send("You don't know how to shadow step!")
+            return
+
+        if player.is_fighting:
+            await player.send("You're too busy fighting!")
+            return
+
+        if not args:
+            await player.send("Shadow step to whom?")
+            return
+
+        target_name = ' '.join(args).lower()
+        target = None
+
+        # Can shadow step to anyone in the room or nearby rooms
+        for char in player.room.characters:
+            if char != player and target_name in char.name.lower():
+                target = char
+                break
+
+        # Check adjacent rooms if no target in current room
+        if not target:
+            for direction, exit_info in player.room.exits.items():
+                if exit_info and exit_info.get('room'):
+                    adj_room = exit_info['room']
+                    for char in adj_room.characters:
+                        if target_name in char.name.lower():
+                            target = char
+                            break
+                    if target:
+                        break
+
+        if not target:
+            await player.send(f"You don't sense '{target_name}' nearby.")
+            return
+
+        from combat import CombatHandler
+        await CombatHandler.do_shadow_step(player, target)
+
+    @classmethod
+    async def cmd_mark(cls, player: 'Player', args: List[str]):
+        """Mark a target for death, increasing damage against them."""
+        if 'mark_target' not in player.skills:
+            await player.send("You don't know how to mark targets!")
+            return
+
+        if not args:
+            await player.send("Mark whom for death?")
+            return
+
+        target_name = ' '.join(args).lower()
+        target = None
+
+        for char in player.room.characters:
+            if char != player and target_name in char.name.lower():
+                target = char
+                break
+
+        if not target:
+            await player.send(f"You don't see '{target_name}' here.")
+            return
+
+        from combat import CombatHandler
+        await CombatHandler.do_mark_target(player, target)
+
     # ==================== MAGIC ====================
     
     @classmethod
@@ -966,22 +1105,70 @@ class CommandHandler:
         await player.send(f"You don't have '{item_name}'.")
     
     # ==================== COMMUNICATION ====================
-    
+
+    @classmethod
+    async def handle_npc_trigger(cls, player: 'Player', npc: 'Mobile', message: str):
+        """Handle NPC responses to player speech."""
+        c = player.config.COLORS
+
+        # Healer NPCs
+        if npc.special == 'healer':
+            if 'heal' in message or 'help' in message:
+                # Check if player needs healing
+                if player.hp < player.max_hp:
+                    heal_amount = player.max_hp - player.hp
+                    player.hp = player.max_hp
+                    await player.send(f"{c['bright_cyan']}{npc.name} says, 'Let me tend to your wounds.'{c['reset']}")
+                    await player.room.send_to_room(
+                        f"{npc.name} places their hands on {player.name} and heals them.",
+                        exclude=[player]
+                    )
+                    await player.send(f"{c['bright_green']}You are fully healed! [{heal_amount} HP]{c['reset']}")
+                else:
+                    await player.send(f"{c['bright_cyan']}{npc.name} says, 'You appear to be in perfect health already.'{c['reset']}")
+
+        # Shopkeeper NPCs
+        elif npc.special == 'shopkeeper':
+            if 'hello' in message or 'hi' in message or 'greet' in message:
+                await player.send(f"{c['bright_cyan']}{npc.name} says, 'Welcome! Type LIST to see my wares.'{c['reset']}")
+            elif 'buy' in message or 'sell' in message:
+                await player.send(f"{c['bright_cyan']}{npc.name} says, 'Use BUY <item> to purchase or SELL <item> to sell to me.'{c['reset']}")
+
+        # Trainer NPCs
+        elif npc.special == 'trainer':
+            if 'train' in message or 'teach' in message or 'practice' in message:
+                await player.send(f"{c['bright_cyan']}{npc.name} says, 'I can train you in the arts of thievery. Type PRACTICE to see what I offer.'{c['reset']}")
+            elif 'hello' in message or 'hi' in message:
+                await player.send(f"{c['bright_cyan']}{npc.name} says, 'Welcome to the guild, shadow walker.'{c['reset']}")
+
+        # Generic helper NPCs
+        elif 'helper' in npc.flags:
+            if 'hello' in message or 'hi' in message or 'greet' in message:
+                await player.send(f"{c['bright_cyan']}{npc.name} nods at you in acknowledgment.{c['reset']}")
+            elif 'help' in message:
+                await player.send(f"{c['bright_cyan']}{npc.name} says, 'I'm here to keep the peace. Stay out of trouble!'{c['reset']}")
+
     @classmethod
     async def cmd_say(cls, player: 'Player', args: List[str]):
         """Say something to the room."""
         if not args:
             await player.send("Say what?")
             return
-            
+
         message = ' '.join(args)
         c = player.config.COLORS
-        
+
         await player.send(f"{c['bright_green']}You say, '{message}'{c['reset']}")
         await player.room.send_to_room(
             f"{c['bright_green']}{player.name} says, '{message}'{c['reset']}",
             exclude=[player]
         )
+
+        # Check for NPC triggers
+        from mobs import Mobile
+        for char in player.room.characters:
+            if isinstance(char, Mobile) and char.special:
+                await cls.handle_npc_trigger(player, char, message.lower())
         
     @classmethod
     async def cmd_shout(cls, player: 'Player', args: List[str]):

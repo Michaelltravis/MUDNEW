@@ -1,0 +1,608 @@
+{
+  "number": 90,
+  "name": "The Haunted Swamp",
+  "description": "A treacherous wetland shrouded in mist and decay",
+  "level_range": [
+    8,
+    12
+  ],
+  "author": "RealmsMUD Team",
+  "reset_time": 300,
+  "rooms": {
+    "9000": {
+      "title": "Edge of the Murky Swamp",
+      "description": "The solid ground gives way to soft, waterlogged earth as you enter the swamp. A thick mist hangs low over stagnant pools of dark water, and the air reeks of rot and decay. Dead trees with twisted branches reach up like skeletal fingers toward the gray sky. Strange sounds echo through the fog - croaking, splashing, and distant moaning.",
+      "terrain": "swamp",
+      "exits": {
+        "north": {
+          "to_room": 4099
+        },
+        "south": {
+          "to_room": 9001
+        },
+        "east": {
+          "to_room": 9002
+        }
+      },
+      "vnum": 9000
+    },
+    "9001": {
+      "title": "Shallow Bog Waters",
+      "description": "You wade through knee-deep murky water that squelches with each step. The bottom is soft mud that threatens to pull you down. Patches of luminescent fungus grow on rotting logs, casting an eerie green glow through the mist. Insects buzz constantly around your head, and something large splashes in the distance.",
+      "terrain": "swamp",
+      "exits": {
+        "north": {
+          "to_room": 9000
+        },
+        "south": {
+          "to_room": 9003
+        },
+        "west": {
+          "to_room": 9004
+        }
+      },
+      "vnum": 9001
+    },
+    "9002": {
+      "title": "Grove of Dead Trees",
+      "description": "A cluster of ancient, dead trees stands here, their bark blackened and peeling. Spanish moss drapes from the lifeless branches like funeral shrouds. The ground is carpeted with decaying leaves that release puffs of spores when disturbed. Carved symbols on the tree trunks hint that this place was once sacred - or cursed.",
+      "terrain": "swamp",
+      "exits": {
+        "west": {
+          "to_room": 9000
+        },
+        "south": {
+          "to_room": 9005
+        }
+      },
+      "vnum": 9002
+    },
+    "9003": {
+      "title": "Quicksand Pool",
+      "description": "The ground here looks deceptively solid but is actually a treacherous quicksand trap. Bones protrude from the surface - grim reminders of those who came before. A narrow safe path winds around the edge, marked by ancient wooden stakes driven into firmer ground. One false step could prove fatal.",
+      "terrain": "swamp",
+      "special": "quicksand_damage",
+      "exits": {
+        "north": {
+          "to_room": 9001
+        },
+        "east": {
+          "to_room": 9005
+        },
+        "south": {
+          "to_room": 9006
+        }
+      },
+      "vnum": 9003
+    },
+    "9004": {
+      "title": "Will-o-Wisp Hollow",
+      "description": "Strange blue-green lights dance through this hollow, floating just above the water's surface. They pulse and flicker hypnotically, drawing the unwary deeper into the swamp. Local legends say these lights are the souls of the drowned, forever wandering the marsh. The truth may be even more sinister.",
+      "terrain": "swamp",
+      "exits": {
+        "east": {
+          "to_room": 9001
+        },
+        "south": {
+          "to_room": 9007
+        }
+      },
+      "vnum": 9004
+    },
+    "9005": {
+      "title": "Twisted Path Through Reeds",
+      "description": "Tall reeds tower overhead, blocking out what little light penetrates the swamp mist. They rustle constantly though there is no wind, creating an unnerving chorus of whispers. The narrow path twists between them, and you catch glimpses of movement in your peripheral vision that vanish when you turn to look.",
+      "terrain": "swamp",
+      "exits": {
+        "north": {
+          "to_room": 9002
+        },
+        "west": {
+          "to_room": 9003
+        },
+        "south": {
+          "to_room": 9008
+        }
+      },
+      "vnum": 9005
+    },
+    "9006": {
+      "title": "Stagnant Pool",
+      "description": "A large pool of completely still water blocks the path. Its surface is covered with a thick layer of algae and scum. The smell is overwhelming - a putrid mix of decay and methane. Bubbles occasionally rise to the surface and pop, releasing noxious gases. Something moves beneath the algae.",
+      "terrain": "swamp",
+      "exits": {
+        "north": {
+          "to_room": 9003
+        },
+        "east": {
+          "to_room": 9008
+        },
+        "south": {
+          "to_room": 9009
+        }
+      },
+      "vnum": 9006
+    },
+    "9007": {
+      "title": "Raised Island",
+      "description": "A small island of solid ground rises from the swamp waters, covered in moss and ferns. It's a welcome relief from wading through muck. Ancient stone pillars stand in a circle here, weathered and cracked but still imposing. Strange runes are carved into their surfaces, glowing faintly in the mist.",
+      "terrain": "swamp",
+      "exits": {
+        "north": {
+          "to_room": 9004
+        },
+        "east": {
+          "to_room": 9008
+        },
+        "south": {
+          "to_room": 9010
+        }
+      },
+      "vnum": 9007
+    },
+    "9008": {
+      "title": "Cypress Grove",
+      "description": "Massive cypress trees grow here, their trunks impossibly wide and their roots forming complex tangles above and below the water. The canopy is thick enough to block out the sky completely, plunging this area into perpetual twilight. Moss and vines hang everywhere, and the croaking of frogs is deafening.",
+      "terrain": "swamp",
+      "exits": {
+        "north": {
+          "to_room": 9005
+        },
+        "west": {
+          "to_room": 9006
+        },
+        "east": {
+          "to_room": 9011
+        },
+        "south": {
+          "to_room": 9012
+        }
+      },
+      "vnum": 9008
+    },
+    "9009": {
+      "title": "Graveyard of Ships",
+      "description": "The rotting hulks of several small boats lie half-submerged in the murky water. Their wood is black with age and crawling with fungi. How they ended up this deep in the swamp is a mystery - there's no navigable waterway nearby. Inside the wrecks, you can see bones and the remains of cargo.",
+      "terrain": "swamp",
+      "exits": {
+        "north": {
+          "to_room": 9006
+        },
+        "east": {
+          "to_room": 9012
+        },
+        "south": {
+          "to_room": 9013
+        }
+      },
+      "vnum": 9009
+    },
+    "9010": {
+      "title": "Witch's Warning Path",
+      "description": "Stakes driven into the mud line the path here, each topped with a skull - human, animal, and things in between. Wind chimes made of bones hang from nearby branches, clattering eerily in the slightest breeze. This is clearly a warning, marking the territory of something that doesn't welcome visitors.",
+      "terrain": "swamp",
+      "exits": {
+        "north": {
+          "to_room": 9007
+        },
+        "south": {
+          "to_room": 9014
+        }
+      },
+      "vnum": 9010
+    },
+    "9011": {
+      "title": "Poison Ivy Tangle",
+      "description": "Thick vines choke this area, forming an almost impenetrable wall. Many are poison ivy, their three-leaved plants glistening with toxic oils. Others are thorny brambles that snag at your clothes and skin. The only way through is a narrow gap that forces you to crawl, brushing against the vegetation.",
+      "terrain": "swamp",
+      "exits": {
+        "west": {
+          "to_room": 9008
+        },
+        "south": {
+          "to_room": 9015
+        }
+      },
+      "vnum": 9011
+    },
+    "9012": {
+      "title": "Frog Spawning Grounds",
+      "description": "Thousands of frogs and toads cover every surface here - the ground, logs, lily pads, even the tree trunks. Their constant croaking is almost deafening. The water writhes with tadpoles and spawn. Some of the toads are abnormally large, nearly the size of a dog, with bulging eyes that watch your every move.",
+      "terrain": "swamp",
+      "exits": {
+        "north": {
+          "to_room": 9008
+        },
+        "west": {
+          "to_room": 9009
+        },
+        "south": {
+          "to_room": 9016
+        }
+      },
+      "vnum": 9012
+    },
+    "9013": {
+      "title": "Deep Mire",
+      "description": "The water here is chest-deep and impossible to see through. Each step is a struggle as the thick mud tries to hold you fast. Strange ripples cross the surface - something large is moving beneath. Dead trees rise from the water like monuments, their surfaces carved with more of the mysterious runes.",
+      "terrain": "swamp",
+      "exits": {
+        "north": {
+          "to_room": 9009
+        },
+        "east": {
+          "to_room": 9016
+        },
+        "south": {
+          "to_room": 9017
+        }
+      },
+      "vnum": 9013
+    },
+    "9014": {
+      "title": "Before the Witch's Hut",
+      "description": "A ramshackle hut rises from the swamp on stilts, smoke rising from its crooked chimney. The structure seems to defy physics, leaning at impossible angles yet somehow standing. Herbs and animal parts hang from the eaves, drying in the fetid air. A cauldron bubbles on a fire pit outside, filling the air with a sickly sweet smell.",
+      "terrain": "swamp",
+      "exits": {
+        "north": {
+          "to_room": 9010
+        },
+        "south": {
+          "to_room": 9018,
+          "door": {
+            "name": "hut door",
+            "state": "closed",
+            "locked": false,
+            "broken": false
+          }
+        }
+      },
+      "vnum": 9014
+    },
+    "9015": {
+      "title": "Abandoned Camp",
+      "description": "The remains of an old campsite lie scattered here on a small patch of higher ground. A rotted tent, rusted cooking gear, and moldy bedrolls tell of explorers who met an unfortunate end. Claw marks gouge the trees around the camp, and dark stains on the ground suggest a violent struggle.",
+      "terrain": "swamp",
+      "exits": {
+        "north": {
+          "to_room": 9011
+        },
+        "west": {
+          "to_room": 9016
+        }
+      },
+      "vnum": 9015
+    },
+    "9016": {
+      "title": "Corpse Flowers Bloom",
+      "description": "Massive flowers grow here, their petals a sickly purple-red. They emit a powerful stench of rotting meat that attracts swarms of flies. The flowers are corpse flowers, and local legend says they grow only where the bodies of the wicked are buried. The ground beneath them seems to move with writhing roots - or worms.",
+      "terrain": "swamp",
+      "exits": {
+        "north": {
+          "to_room": 9012
+        },
+        "west": {
+          "to_room": 9013
+        },
+        "east": {
+          "to_room": 9015
+        },
+        "south": {
+          "to_room": 9019
+        }
+      },
+      "vnum": 9016
+    },
+    "9017": {
+      "title": "Zombie Feeding Grounds",
+      "description": "The ground here is littered with bones - some old and bleached, others fresh with meat still clinging to them. Dark shapes shamble through the mist, their movements jerky and unnatural. The smell of decay is overwhelming. This is clearly a hunting ground for the swamp's undead inhabitants.",
+      "terrain": "swamp",
+      "exits": {
+        "north": {
+          "to_room": 9013
+        },
+        "east": {
+          "to_room": 9019
+        }
+      },
+      "vnum": 9017
+    },
+    "9018": {
+      "title": "Inside the Witch's Hut",
+      "description": "The interior of the hut is surprisingly spacious, defying its small external appearance. Shelves line every wall, packed with jars of strange specimens, dried herbs, and bubbling potions. A large cauldron dominates the center of the room, filled with something that glows with an eldritch light. Bones, feathers, and talismans hang from the rafters.",
+      "terrain": "indoors",
+      "exits": {
+        "north": {
+          "to_room": 9014,
+          "door": {
+            "name": "hut door",
+            "state": "closed",
+            "locked": false,
+            "broken": false
+          }
+        }
+      },
+      "vnum": 9018
+    },
+    "9019": {
+      "title": "Heart of the Swamp",
+      "description": "You've reached the deepest part of the swamp, where the mist is so thick you can barely see. The water here is black as ink and impossibly deep. An ancient stone altar rises from a small island in the center, covered in dried blood and surrounded by candles that burn with green flames. This place radiates malevolent power.",
+      "terrain": "swamp",
+      "exits": {
+        "north": {
+          "to_room": 9016
+        },
+        "west": {
+          "to_room": 9017
+        }
+      },
+      "vnum": 9019
+    }
+  },
+  "mobiles": {
+    "9000": {
+      "name": "swamp zombie",
+      "short_desc": "a rotting swamp zombie",
+      "long_desc": "A rotting zombie stumbles through the murky water, moaning softly.",
+      "description": "This undead creature is in an advanced state of decay. Waterlogged flesh hangs from its bones, and swamp vegetation has taken root in its rotting body. Its eyes glow with an unnatural green light, and it moves with jerky, spasmodic motions. Despite its decrepit appearance, it seems surprisingly aggressive.",
+      "level": 9,
+      "race": "undead",
+      "size": "medium",
+      "hp_dice": "5d8+10",
+      "damage_dice": "1d8+2",
+      "armor_class": 70,
+      "exp_value": 400,
+      "gold": 25,
+      "behaviors": [
+        "aggressive",
+        "wander"
+      ],
+      "special_attacks": [
+        "disease"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "assist"
+        ],
+        "assist_allies": [
+          "swamp zombie",
+          "bog hag"
+        ]
+      },
+      "spawn_rooms": [
+        9001,
+        9003,
+        9006,
+        9009,
+        9013,
+        9017
+      ],
+      "max_in_zone": 8,
+      "vnum": 9000
+    },
+    "9001": {
+      "name": "will-o-wisp",
+      "short_desc": "a flickering will-o-wisp",
+      "long_desc": "A ball of pale blue light floats eerily through the mist.",
+      "description": "This mysterious light dances through the air, pulsing with an otherworldly glow. It's unclear if it's a natural phenomenon, a trapped spirit, or something more sinister. The light seems almost alive, and it moves with purpose rather than drifting randomly. Those who follow such lights often meet unfortunate ends.",
+      "level": 10,
+      "race": "spirit",
+      "size": "tiny",
+      "hp_dice": "4d6+8",
+      "damage_dice": "1d6+3",
+      "armor_class": 50,
+      "exp_value": 450,
+      "gold": 0,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_abilities": [
+        "fly",
+        "incorporeal"
+      ],
+      "special_attacks": [
+        "shock"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "flee_heal"
+        ],
+        "flee_hp_percent": 30
+      },
+      "spawn_rooms": [
+        9004,
+        9007,
+        9010
+      ],
+      "max_in_zone": 3,
+      "vnum": 9001
+    },
+    "9002": {
+      "name": "bog hag",
+      "short_desc": "a hideous bog hag",
+      "long_desc": "A twisted, ancient hag stirs her cauldron with gnarled fingers.",
+      "description": "This creature is a nightmare given form - a bent, ancient woman with mottled green skin and wild, matted hair filled with twigs and moss. Her fingers end in long, black talons, and her teeth are filed to points. She wears tattered rags and reeks of the swamp. Her eyes gleam with malevolent intelligence, and she cackles as she works her dark magic.",
+      "level": 11,
+      "race": "humanoid",
+      "size": "medium",
+      "hp_dice": "7d8+14",
+      "damage_dice": "1d10+3",
+      "armor_class": 60,
+      "exp_value": 550,
+      "gold": 80,
+      "behaviors": [
+        "aggressive"
+      ],
+      "spells": [
+        "magic_missile",
+        "poison",
+        "curse"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "spellcaster",
+          "flee_heal"
+        ],
+        "preferred_spells": [
+          "curse",
+          "poison",
+          "magic_missile"
+        ],
+        "flee_hp_percent": 25
+      },
+      "spawn_rooms": [
+        9018
+      ],
+      "max_in_zone": 1,
+      "vnum": 9002
+    },
+    "9003": {
+      "name": "giant toad",
+      "short_desc": "a massive giant toad",
+      "long_desc": "An enormous toad squats here, its bulbous eyes watching hungrily.",
+      "description": "This toad is far larger than any natural specimen, easily the size of a large dog. Its warty skin glistens with toxic secretions, and its wide mouth is filled with rows of needle-like teeth. When it croaks, the sound is deep and resonant, almost like a drum. Its long tongue can shoot out with surprising speed to snatch prey.",
+      "level": 8,
+      "race": "animal",
+      "size": "large",
+      "hp_dice": "6d8+18",
+      "damage_dice": "1d8+2",
+      "armor_class": 75,
+      "exp_value": 350,
+      "gold": 15,
+      "behaviors": [
+        "aggressive",
+        "wander"
+      ],
+      "special_attacks": [
+        "poison_skin"
+      ],
+      "ai_config": {
+        "behaviors": [
+          "guard"
+        ],
+        "home_room": 9012
+      },
+      "spawn_rooms": [
+        9012
+      ],
+      "max_in_zone": 2,
+      "vnum": 9003
+    },
+    "9004": {
+      "name": "swamp viper",
+      "short_desc": "a venomous swamp viper",
+      "long_desc": "A thick-bodied viper coils on a log, its forked tongue tasting the air.",
+      "description": "This serpent is mottled brown and green, perfectly camouflaged against the swamp vegetation. It's thick and muscular, about six feet long, with distinctive triangular head and heat-sensing pits. Its fangs drip with venom, and it watches you with cold, reptilian eyes. These vipers are known for their aggressive nature and deadly bite.",
+      "level": 7,
+      "race": "animal",
+      "size": "small",
+      "hp_dice": "3d8+6",
+      "damage_dice": "1d6+1",
+      "armor_class": 65,
+      "exp_value": 300,
+      "gold": 0,
+      "behaviors": [
+        "aggressive"
+      ],
+      "special_attacks": [
+        "poison"
+      ],
+      "spawn_rooms": [
+        9002,
+        9005,
+        9008,
+        9011,
+        9015
+      ],
+      "max_in_zone": 5,
+      "vnum": 9004
+    }
+  },
+  "objects": {
+    "9000": {
+      "name": "rusty sword",
+      "short_desc": "a rusty iron sword",
+      "long_desc": "A rusty sword lies half-buried in the mud.",
+      "description": "This iron sword has seen better days. The blade is pitted with rust and nicked along its edge, but it's still serviceable. It probably belonged to one of the many unfortunate souls who ventured into the swamp and never returned.",
+      "item_type": "weapon",
+      "value": 50,
+      "weight": 8,
+      "weapon_type": "sword",
+      "damage_dice": "1d8",
+      "spawn_rooms": [
+        9015
+      ],
+      "max_in_zone": 1,
+      "vnum": 9000
+    },
+    "9001": {
+      "name": "antidote potion",
+      "short_desc": "a green antidote potion",
+      "long_desc": "A small vial of green liquid sits on a shelf.",
+      "description": "This potion glows with a faint green light. The liquid inside swirls on its own, suggesting magical properties. A tag attached to the vial reads 'Antidote' in spidery handwriting. It could cure poison or disease.",
+      "item_type": "potion",
+      "value": 100,
+      "weight": 1,
+      "potion_spell": "cure_poison",
+      "spawn_rooms": [
+        9018
+      ],
+      "max_in_zone": 2,
+      "vnum": 9001
+    },
+    "9002": {
+      "name": "swamp boots",
+      "short_desc": "a pair of waterproof swamp boots",
+      "long_desc": "A pair of well-made boots sits here, surprisingly clean.",
+      "description": "These knee-high leather boots are treated with oils and waxes that make them completely waterproof. They would be invaluable for traveling through swamps and marshes. The interior is lined with soft wool for comfort.",
+      "item_type": "armor",
+      "value": 120,
+      "weight": 4,
+      "armor_location": "feet",
+      "armor_class": 3,
+      "spawn_rooms": [
+        9018
+      ],
+      "max_in_zone": 1,
+      "vnum": 9002
+    },
+    "9003": {
+      "name": "hag's amulet",
+      "short_desc": "a bone amulet wreathed in dark energy",
+      "long_desc": "A dark amulet pulses with malevolent power.",
+      "description": "This amulet is carved from a single piece of blackened bone, etched with foul runes. It radiates dark magic and feels cold to the touch. Despite its sinister appearance, it grants its wearer protection from harmful magic.",
+      "item_type": "armor",
+      "value": 300,
+      "weight": 1,
+      "armor_location": "neck",
+      "armor_class": 5,
+      "magic_bonus": 2,
+      "special_properties": [
+        "resist_magic"
+      ],
+      "spawn_rooms": [
+        9018
+      ],
+      "max_in_zone": 1,
+      "vnum": 9003
+    },
+    "9004": {
+      "name": "swamp mushroom",
+      "short_desc": "a glowing swamp mushroom",
+      "long_desc": "A bioluminescent mushroom grows from a rotting log.",
+      "description": "This mushroom glows with a soft green light. It's a rare variety that only grows in the deepest parts of swamps. While poisonous if eaten raw, it has powerful medicinal properties when properly prepared.",
+      "item_type": "ingredient",
+      "value": 25,
+      "weight": 1,
+      "spawn_rooms": [
+        9001,
+        9003,
+        9008,
+        9012,
+        9016
+      ],
+      "max_in_zone": 8,
+      "vnum": 9004
+    }
+  }
+}

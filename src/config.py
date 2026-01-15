@@ -233,6 +233,19 @@ class Config:
             'spells': ['charm_person', 'sleep', 'invisibility', 'haste', 'slow',
                       'cure_light', 'detect_magic', 'heroism', 'fear', 'mass_charm'],
         },
+        'assassin': {
+            'name': 'Assassin',
+            'description': 'Deadly killers who specialize in eliminating targets with lethal precision.',
+            'prime_stat': 'dex',
+            'hit_dice': 8,
+            'mana_dice': 2,
+            'move_dice': 10,
+            'thac0_progression': 'fast',
+            'save_progression': 'thief',
+            'skills': ['backstab', 'sneak', 'hide', 'envenom', 'assassinate',
+                      'second_attack', 'dual_wield', 'garrote', 'shadow_step', 'mark_target'],
+            'spells': [],
+        },
     }
     
     # Equipment slots
