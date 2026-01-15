@@ -33,7 +33,7 @@ class CommandHandler:
         'gt': 'gtell', 'grouptell': 'gtell',
         'wh': 'who',
         'h': 'help', '?': 'help',
-        'q': 'quit', 'exit': 'quit',
+        'q': 'quit',
         'fl': 'flee',
         'dr': 'drink', 'ea': 'eat',
         'sl': 'sleep', 'wa': 'wake', 're': 'rest', 'st': 'stand',
@@ -189,7 +189,31 @@ class CommandHandler:
     async def cmd_look(cls, player: 'Player', args: List[str]):
         """Look at the room or something."""
         await player.do_look(args)
-        
+
+    @classmethod
+    async def cmd_exits(cls, player: 'Player', args: List[str]):
+        """Show available exits from the current room."""
+        c = player.config.COLORS
+
+        if not player.room:
+            await player.send("You are nowhere!")
+            return
+
+        if not player.room.exits:
+            await player.send(f"{c['yellow']}There are no obvious exits.{c['reset']}")
+            return
+
+        exits = []
+        for direction, exit_data in player.room.exits.items():
+            if exit_data:
+                exits.append(f"{c['bright_green']}{direction}{c['reset']}")
+
+        if exits:
+            exits_str = ", ".join(exits)
+            await player.send(f"{c['cyan']}Obvious exits:{c['white']} {exits_str}{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}There are no obvious exits.{c['reset']}")
+
     @classmethod
     async def cmd_examine(cls, player: 'Player', args: List[str]):
         """Examine something in detail."""
@@ -1021,30 +1045,54 @@ class CommandHandler:
 
     @classmethod
     async def cmd_wear(cls, player: 'Player', args: List[str]):
-        """Wear an item."""
+        """Wear an item or 'wear all' to wear everything you can."""
         if not args:
             await player.send("Wear what?")
             return
-            
+
         item_name = ' '.join(args).lower()
-        
-        # Find item in inventory
+
+        # Handle "wear all"
+        if item_name == 'all':
+            worn_count = 0
+            items_to_wear = [item for item in player.inventory
+                           if item.item_type in ('armor', 'light', 'worn') and hasattr(item, 'wear_slot')]
+
+            for item in items_to_wear:
+                slot = item.wear_slot
+                # Only wear if slot is empty
+                if not player.equipment.get(slot):
+                    player.inventory.remove(item)
+                    player.equipment[slot] = item
+                    await player.send(f"You wear {item.short_desc}.")
+                    worn_count += 1
+
+            if worn_count > 0:
+                await player.room.send_to_room(
+                    f"{player.name} puts on several items.",
+                    exclude=[player]
+                )
+            else:
+                await player.send("You don't have anything to wear.")
+            return
+
+        # Find specific item in inventory
         for item in player.inventory:
             if item_name in item.name.lower():
                 if item.item_type not in ('armor', 'light', 'worn'):
                     await player.send(f"You can't wear {item.short_desc}.")
                     return
-                    
+
                 slot = getattr(item, 'wear_slot', None)
                 if not slot:
                     await player.send(f"You can't figure out how to wear {item.short_desc}.")
                     return
-                    
+
                 # Check if slot is occupied
                 if player.equipment.get(slot):
                     await player.send(f"You're already wearing something there.")
                     return
-                    
+
                 player.inventory.remove(item)
                 player.equipment[slot] = item
                 await player.send(f"You wear {item.short_desc}.")
@@ -1053,7 +1101,7 @@ class CommandHandler:
                     exclude=[player]
                 )
                 return
-                
+
         await player.send(f"You don't have '{item_name}'.")
         
     @classmethod
@@ -1090,14 +1138,33 @@ class CommandHandler:
         
     @classmethod
     async def cmd_remove(cls, player: 'Player', args: List[str]):
-        """Remove worn equipment."""
+        """Remove worn equipment or 'remove all' to remove everything."""
         if not args:
             await player.send("Remove what?")
             return
-            
+
         item_name = ' '.join(args).lower()
-        
-        # Find item in equipment
+
+        # Handle "remove all"
+        if item_name == 'all':
+            removed_count = 0
+            for slot, item in list(player.equipment.items()):
+                if item:
+                    player.equipment[slot] = None
+                    player.inventory.append(item)
+                    await player.send(f"You remove {item.short_desc}.")
+                    removed_count += 1
+
+            if removed_count > 0:
+                await player.room.send_to_room(
+                    f"{player.name} removes several items.",
+                    exclude=[player]
+                )
+            else:
+                await player.send("You're not wearing anything to remove.")
+            return
+
+        # Find specific item in equipment
         for slot, item in list(player.equipment.items()):
             if item and item_name in item.name.lower():
                 player.equipment[slot] = None
@@ -1108,7 +1175,7 @@ class CommandHandler:
                     exclude=[player]
                 )
                 return
-                
+
         await player.send(f"You're not wearing '{item_name}'.")
         
     @classmethod
