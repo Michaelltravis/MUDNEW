@@ -7,7 +7,7 @@
     15
   ],
   "author": "RealmsMUD Team",
-  "reset_time": 300,
+  "reset_time": 900,
   "rooms": {
     "10000": {
       "title": "Entrance to the Dwarven Mines",
@@ -19,6 +19,10 @@
         },
         "down": {
           "to_room": 10001
+        },
+        "west": {
+          "to_room": 6500,
+          "description": "You see an exit west."
         }
       },
       "vnum": 10000
@@ -412,7 +416,16 @@
         10024
       ],
       "max_in_zone": 5,
-      "vnum": 10000
+      "vnum": 10000,
+      "gold": 800,
+      "inventory": [
+        {"vnum": 10000, "chance": 60}
+      ],
+      "equipment": {
+        "wield": {"vnum": 10020},
+        "head": {"vnum": 10002},
+        "body": {"vnum": 10021}
+      }
     },
     "10001": {
       "name": "kobold raider",
@@ -447,7 +460,16 @@
         10016
       ],
       "max_in_zone": 8,
-      "vnum": 10001
+      "vnum": 10001,
+      "gold": 400,
+      "inventory": [
+        {"vnum": 10000, "chance": 40},
+        {"vnum": 10001, "chance": 20}
+      ],
+      "equipment": {
+        "wield": {"vnum": 10022},
+        "body": {"vnum": 10023}
+      }
     },
     "10002": {
       "name": "cave spider",
@@ -479,7 +501,12 @@
         10019
       ],
       "max_in_zone": 3,
-      "vnum": 10002
+      "vnum": 10002,
+      "gold": 0,
+      "inventory": [
+        {"vnum": 10004, "chance": 80},
+        {"vnum": 10024, "chance": 30}
+      ]
     },
     "10003": {
       "name": "earth elemental",
@@ -514,7 +541,13 @@
         10018
       ],
       "max_in_zone": 1,
-      "vnum": 10003
+      "vnum": 10003,
+      "gold": 100,
+      "inventory": [
+        {"vnum": 10005, "chance": 100},
+        {"vnum": 10003, "chance": 50},
+        {"vnum": 10025, "chance": 25}
+      ]
     },
     "10004": {
       "name": "master blacksmith",
@@ -552,7 +585,12 @@
         10008
       ],
       "max_in_zone": 1,
-      "vnum": 10004
+      "vnum": 10004,
+      "gold": 2000,
+      "equipment": {
+        "wield": {"vnum": 10012},
+        "body": {"vnum": 10026}
+      }
     }
   },
   "objects": {
@@ -717,6 +755,87 @@
       ],
       "max_in_zone": 2,
       "vnum": 10013
+    },
+    "10020": {
+      "name": "miner's pickaxe",
+      "short_desc": "a well-worn miner's pickaxe",
+      "long_desc": "A sturdy pickaxe leans against the wall.",
+      "description": "This pickaxe has seen years of hard use in the mines. The steel head is still sharp, and the hickory handle is worn smooth from countless hours of work. It serves equally well as a mining tool or an improvised weapon.",
+      "item_type": "weapon",
+      "value": 50,
+      "weight": 8,
+      "weapon_type": "pick",
+      "damage_dice": "1d8+1",
+      "vnum": 10020
+    },
+    "10021": {
+      "name": "leather work vest",
+      "short_desc": "a thick leather work vest",
+      "long_desc": "A sturdy leather vest lies here.",
+      "description": "This heavy leather vest is standard issue for miners. It provides protection against falling rocks and scrapes, and has several pockets for small tools.",
+      "item_type": "armor",
+      "value": 40,
+      "weight": 5,
+      "armor_location": "body",
+      "armor_class": 5,
+      "vnum": 10021
+    },
+    "10022": {
+      "name": "crude kobold spear",
+      "short_desc": "a crude kobold spear",
+      "long_desc": "A crudely made spear lies on the ground.",
+      "description": "This spear is typical kobold craftsmanship - a fire-hardened stick with a sharpened stone lashed to the end. Crude but effective.",
+      "item_type": "weapon",
+      "value": 5,
+      "weight": 4,
+      "weapon_type": "spear",
+      "damage_dice": "1d6",
+      "vnum": 10022
+    },
+    "10023": {
+      "name": "patchwork leather",
+      "short_desc": "patchwork leather armor",
+      "long_desc": "A set of patchwork leather armor lies in a heap.",
+      "description": "Scraps of leather from various sources have been roughly stitched together to form this armor. It's ugly but functional - typical kobold work.",
+      "item_type": "armor",
+      "value": 10,
+      "weight": 6,
+      "armor_location": "body",
+      "armor_class": 3,
+      "vnum": 10023
+    },
+    "10024": {
+      "name": "venom gland",
+      "short_desc": "a spider venom gland",
+      "long_desc": "A pulsing venom gland lies here, still dripping poison.",
+      "description": "This organ was extracted from a giant cave spider. It still contains potent venom that could be useful for crafting poisons or antidotes. Handle with extreme care.",
+      "item_type": "ingredient",
+      "value": 100,
+      "weight": 1,
+      "vnum": 10024
+    },
+    "10025": {
+      "name": "elemental core",
+      "short_desc": "a glowing elemental core",
+      "long_desc": "A crystalline core pulses with earth magic.",
+      "description": "This crystalline sphere is the heart of an earth elemental. It radiates powerful magical energy and is incredibly valuable to enchanters and mages. The swirling patterns within seem to show tiny mountains and caverns.",
+      "item_type": "treasure",
+      "value": 1000,
+      "weight": 5,
+      "magic_bonus": 2,
+      "vnum": 10025
+    },
+    "10026": {
+      "name": "blacksmith's apron",
+      "short_desc": "a heavy blacksmith's apron",
+      "long_desc": "A thick leather apron hangs here.",
+      "description": "This thick leather apron is reinforced with metal studs. It provides excellent protection against sparks and heat from the forge, and doubles as decent body armor. It shows the marks of a master craftsman's long career.",
+      "item_type": "armor",
+      "value": 150,
+      "weight": 8,
+      "armor_location": "body",
+      "armor_class": 8,
+      "vnum": 10026
     }
   }
 }

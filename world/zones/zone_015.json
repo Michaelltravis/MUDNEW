@@ -1,0 +1,1641 @@
+{
+  "number": 15,
+  "name": "The Straight Path",
+  "lifespan": 10,
+  "rooms": {
+    "1500": {
+      "vnum": 1500,
+      "name": "A Road Leading From The Bank",
+      "description": "You find yourself on a small road leading away from the edge of the River of Lost Souls.  The dark waters of the River can be seen and heard just south of here.  Looking to the east and west, you see only the walls of the rocky cliffs.  Off to the north a strange path seems to lead straight into the depths of the mountain.",
+      "sector_type": "hills",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1501,
+          "description": "A strange path leads northwards."
+        },
+        "south": {
+          "to_room": 5619,
+          "description": "The River of Lost Souls flows just to the south of here."
+        }
+      }
+    },
+    "1501": {
+      "vnum": 1501,
+      "name": "A Long Road",
+      "description": "You stand here in spiritual emptiness, beginning a long and dangerous path.  Your honest submission has already been made, but the truth of your heart has yet to be told.  Leave here now, and do not come back until you have grown.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1502,
+          "description": ""
+        },
+        "south": {
+          "to_room": 1500,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1505,
+          "max": 1
+        }
+      ]
+    },
+    "1502": {
+      "vnum": 1502,
+      "name": "A Long Road",
+      "description": "You stop for a moment, screaming in frustration.  Surely it was that one sin that was avoidable, of all that you regret.  The hitting and the hurting flash briefly before you.  Moments later the pain passes, and the straight path reveals itself before you.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 1501,
+          "description": ""
+        },
+        "north": {
+          "to_room": 1503,
+          "description": ""
+        }
+      }
+    },
+    "1503": {
+      "vnum": 1503,
+      "name": "A Long Road",
+      "description": "The road clears, the fog and pain of the first few steps left behind you.  Despite the sudden clarity, your mind is still haunted, images of an old woman kneeling in prayer, eyes closing, smiling and crying.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1504,
+          "description": ""
+        },
+        "south": {
+          "to_room": 1502,
+          "description": ""
+        }
+      }
+    },
+    "1504": {
+      "vnum": 1504,
+      "name": "A Long Road",
+      "description": "Looking ahead, you can see that the path you have been following will soon come to an end, but something in the cold and the breeze tells you that that will be only the beginning of the journey.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1505,
+          "description": ""
+        },
+        "south": {
+          "to_room": 1503,
+          "description": ""
+        }
+      }
+    },
+    "1505": {
+      "vnum": 1505,
+      "name": "A Test for the Faithful",
+      "description": "It is here finally that decisions must be made.  The first one that confronts you is simple enough, to walk in the darkness, or to walk in the light.  Only the depths of your soul can decide, but remember this much: the same truth lies at the end of both paths.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 1507,
+          "description": ""
+        },
+        "down": {
+          "to_room": 1506,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1506,
+          "max": 1
+        }
+      ]
+    },
+    "1506": {
+      "vnum": 1506,
+      "name": "Halls of the Forgotten",
+      "description": "Even the darkest have a place on the road to the truth.  It is in this place, so empty and forgotten, that God has chosen the worst, and brought them close to Him for one last time.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 1513,
+          "description": ""
+        },
+        "west": {
+          "to_room": 1508,
+          "description": ""
+        },
+        "up": {
+          "to_room": 1505,
+          "description": ""
+        }
+      }
+    },
+    "1507": {
+      "vnum": 1507,
+      "name": "Shahadah",
+      "description": "It was written once, on an ancient parchment in a curious and flowing script, that there is in fact no god but Allah, and that Muhammad was the last of His Prophets.  With this recognition, all else became empty and meaningless.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 1523,
+          "description": ""
+        },
+        "west": {
+          "to_room": 1518,
+          "description": ""
+        },
+        "down": {
+          "to_room": 1505,
+          "description": ""
+        }
+      }
+    },
+    "1508": {
+      "vnum": 1508,
+      "name": "Earthly Evil",
+      "description": "Whatever it carries, that rage converts into a weapon.  Wrath supplies all with arms.  When an angry man thirsts for blood anything will serve him for a spear.  Fury turns a stick into a cudgel.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1509,
+          "description": ""
+        },
+        "east": {
+          "to_room": 1506,
+          "description": ""
+        }
+      }
+    },
+    "1509": {
+      "vnum": 1509,
+      "name": "Misguidance",
+      "description": "Some have been brought here not for what they did, but what they failed to do.  It is these, the poor souls that were presented the fair evidence and rejected it with an honest mind, that deserve our pity the most of all.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 1508,
+          "description": ""
+        },
+        "north": {
+          "to_room": 1510,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1507,
+          "max": 5
+        },
+        {
+          "vnum": 1511,
+          "max": 1
+        }
+      ]
+    },
+    "1510": {
+      "vnum": 1510,
+      "name": "Temptation",
+      "description": "Old tales tell of a conversation between the devil and the Prophet Jesus: the devil offered him a kingdom, vast riches, the temptation of a glorious near-death saved by his angels.  Even this Messenger of God was forced to stop and think.  Imagine how hard it could be for the rest.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1511,
+          "description": ""
+        },
+        "south": {
+          "to_room": 1509,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1510,
+          "max": 1
+        }
+      ]
+    },
+    "1511": {
+      "vnum": 1511,
+      "name": "Hypocrisy",
+      "description": "He called the populace to strict religious purity, rigidly enforcing the times of prayer and the most correct forms of the words of the Muezzin. All of this he strengthened by his most impeccable example, shunning all riches and riding in tattered rags through his capital on the back of a donkey.  Despite all this, remember.  Behind closed doors, all men are hypocrites.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1512,
+          "description": ""
+        },
+        "south": {
+          "to_room": 1510,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1509,
+          "max": 1
+        }
+      ]
+    },
+    "1512": {
+      "vnum": 1512,
+      "name": "Hate",
+      "description": "There is little in life much easier, and truthfully, little that is a quicker ticket to damnation.  You give brief thanks that you have come to the end of these trials, but your words are drowned out by something much louder, a mechanical preaching that drowns your ears in anger.  You hear a steady, repetitive litany of the same phrase, over and over again: \"I go the way history dictates with the blind assurance of a sleep-walker.\"",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 1511,
+          "description": ""
+        },
+        "north": {
+          "to_room": 1528,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1508,
+          "max": 1
+        }
+      ]
+    },
+    "1513": {
+      "vnum": 1513,
+      "name": "Spiritual Danger",
+      "description": "Some evils are tangible, solid, so evident that they spit you right in the face.  Others are more clever, more subtle, and it is these that present the greatest danger.  Looking down the hall before you, a great fear fills your heart, and a great, heavy longing.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1514,
+          "description": ""
+        },
+        "west": {
+          "to_room": 1506,
+          "description": ""
+        }
+      }
+    },
+    "1514": {
+      "vnum": 1514,
+      "name": "The Fall",
+      "description": "In the beginning, he was the best, the most beautiful of all the angels, and God's most loved creation.  Look at your own beauty, human, and do what he could not.  Look at your beauty, and learn to kneel!",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 1513,
+          "description": ""
+        },
+        "north": {
+          "to_room": 1515,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1516,
+          "max": 1
+        }
+      ]
+    },
+    "1515": {
+      "vnum": 1515,
+      "name": "Temptation",
+      "description": "Temptation is the IF, the wondering, the second-guessing, the \"I will be a better man... if...\"  And that if is usually taken, sitting alone, listening to that voice, calling you, offering such an easy way, but such a crooked one.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1516,
+          "description": ""
+        },
+        "south": {
+          "to_room": 1514,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1517,
+          "max": 1
+        }
+      ]
+    },
+    "1516": {
+      "vnum": 1516,
+      "name": "The Last Day",
+      "description": "The din of a great battle shakes these halls, the moans of the earth erupting at the shakings of the End Time.  Be ready for that day, be very ready, for if you are not, he will claim you for one of his own.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 1515,
+          "description": ""
+        },
+        "north": {
+          "to_room": 1517,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1507,
+          "max": 5
+        },
+        {
+          "vnum": 1518,
+          "max": 1
+        }
+      ]
+    },
+    "1517": {
+      "vnum": 1517,
+      "name": "Flame",
+      "description": "Undescribable horror and pain, a blackness drowned out only by the burning anguish, the inextinguishable fire coming not from some burning wood or molten lava but from the brightness and pain of the horrible, tortured souls that surround, everywhere you turn.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1530,
+          "description": ""
+        },
+        "south": {
+          "to_room": 1516,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1519,
+          "max": 1
+        }
+      ]
+    },
+    "1518": {
+      "vnum": 1518,
+      "name": "Earthly Light",
+      "description": "To slip into evil is easy, but walking this path is the hardest of all.  Even the four you will find here today have strayed from the line at least once in their lives, and there are still some living who curse the very sound of their names.  Despite all this, confront them now, and let their actions serve as your example.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1519,
+          "description": ""
+        },
+        "east": {
+          "to_room": 1507,
+          "description": ""
+        }
+      }
+    },
+    "1519": {
+      "vnum": 1519,
+      "name": "The Light of the Rashidun",
+      "description": "Many believed that the Prophet would never die, but when the stark evidence of his body confronted them, it soon became necessary to provide for the future.  The four that came after are called the Rashidun, the rightly-guided Caliphs that would spread the word and the light, and with it forge one of history's greatest empires.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1520,
+          "description": ""
+        },
+        "south": {
+          "to_room": 1518,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1512,
+          "max": 1
+        }
+      ]
+    },
+    "1520": {
+      "vnum": 1520,
+      "name": "The Light of the Rashidun",
+      "description": "The first Caliphs were chosen by consultation with a noble council of elders, each of whom, hoping to lead the world of Islam alone, voted to elect the one amongst them they thought was the weakest.  Each time, they were wrong.  Each one was more noble, more upright than the one before.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1521,
+          "description": ""
+        },
+        "south": {
+          "to_room": 1519,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1513,
+          "max": 1
+        }
+      ]
+    },
+    "1521": {
+      "vnum": 1521,
+      "name": "The Light of the Rashidun",
+      "description": "Every majestic and happy tale must end, usually all too soon, and thus it was with the golden age of the Caliphate.  The Rashidun were pure men, good men, true to the path, but their followers soon began to bicker, and civil war was on the horizon.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 1520,
+          "description": ""
+        },
+        "north": {
+          "to_room": 1522,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1507,
+          "max": 5
+        },
+        {
+          "vnum": 1514,
+          "max": 1
+        }
+      ]
+    },
+    "1522": {
+      "vnum": 1522,
+      "name": "The Light of the Rashidun",
+      "description": "The end of the Rashidun was the beginning of Schism.  The memories of the Prophet and the living example of the Caliphs proved to be insufficient example to the faithful.  Ali died, and some say that with him the Caliphate died too, a martyr, his blood still flowing in the nameless river.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1531,
+          "description": ""
+        },
+        "south": {
+          "to_room": 1521,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1515,
+          "max": 1
+        }
+      ]
+    },
+    "1523": {
+      "vnum": 1523,
+      "name": "Spritual Reward",
+      "description": "Behold, Allah is the Provider, the most Generous.  He would not suffer his believers to walk the path of light without guidance.  He provided the Prophets, may peace be upon them, and in the examples of their own growth, we shall find the truth of our own.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1524,
+          "description": ""
+        },
+        "west": {
+          "to_room": 1507,
+          "description": ""
+        }
+      }
+    },
+    "1524": {
+      "vnum": 1524,
+      "name": "Creation",
+      "description": "In the creation of the heavens and the earth, and in the alternation of night and day, there are signs for men of sense; those that remember Allah say: \"Lord, You have not created this in vain!\"",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1525,
+          "description": ""
+        },
+        "south": {
+          "to_room": 1523,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1507,
+          "max": 5
+        },
+        {
+          "vnum": 1520,
+          "max": 1
+        }
+      ]
+    },
+    "1525": {
+      "vnum": 1525,
+      "name": "Revelation",
+      "description": "The Angel Gabriel came to him and said: \"Read!\"  He replied: \"But I cannot!\"  The order was repeated three times, until the Angel himself said: \"Read, in the name of your Lord who created man from clots of blood. Praise be to God, Lord of the Universe.\"",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 1524,
+          "description": ""
+        },
+        "north": {
+          "to_room": 1526,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1521,
+          "max": 1
+        }
+      ]
+    },
+    "1526": {
+      "vnum": 1526,
+      "name": "Conversion",
+      "description": "Unbelievers, I do not worship what you worship, nor do you worship what I worship.  I shall never worship what you worship, nor will you ever worship what I worship.  You have your own religion, and I have mine.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1527,
+          "description": ""
+        },
+        "south": {
+          "to_room": 1525,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1522,
+          "max": 1
+        }
+      ]
+    },
+    "1527": {
+      "vnum": 1527,
+      "name": "Deliverance",
+      "description": "The balance had been made, the soul placed in readiness, and the final measurement taken.  For those that have come this far, surely this is the day of immortality!",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1533,
+          "description": ""
+        },
+        "south": {
+          "to_room": 1526,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1523,
+          "max": 1
+        }
+      ]
+    },
+    "1528": {
+      "vnum": 1528,
+      "name": "Repentance",
+      "description": "God forgives those who commit evil in ignorance, for He is all-knowing and wise.  But He will not forgive those who do evil, and when death comes to them, say: \"Now we repent!\"  For those We have prepared a woeful scourge.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 1534,
+          "description": ""
+        },
+        "east": {
+          "to_room": 1529,
+          "description": ""
+        },
+        "south": {
+          "to_room": 1512,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1504,
+          "max": 1
+        }
+      ]
+    },
+    "1529": {
+      "vnum": 1529,
+      "name": "Pilgrimage",
+      "description": "It is incumbent upon all Muslims to make the pilgrimage to Mecca once in their lifetime, if they are able, and for those unfortunate enough to follow the lives of the lower evils, such a pilgrimage with an open and contrite heart shall absolve them of all.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 1535,
+          "description": ""
+        },
+        "east": {
+          "to_room": 1530,
+          "description": ""
+        },
+        "west": {
+          "to_room": 1528,
+          "description": ""
+        }
+      }
+    },
+    "1530": {
+      "vnum": 1530,
+      "name": "Intercession",
+      "description": "It is written that no one may intercede with God on behalf of another. No prayers from another may save the soul of a doomed man; his only hope is prayers of his own.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 1536,
+          "description": ""
+        },
+        "south": {
+          "to_room": 1517,
+          "description": ""
+        },
+        "west": {
+          "to_room": 1529,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1503,
+          "max": 1
+        }
+      ]
+    },
+    "1531": {
+      "vnum": 1531,
+      "name": "The Upper Reaches",
+      "description": "You have traveled the righteous path, and you have faced the examples of the true models of the Prophet.  Only the final journey awaits you; live like this and you shall live forever.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 1522,
+          "description": ""
+        },
+        "east": {
+          "to_room": 1532,
+          "description": ""
+        },
+        "down": {
+          "to_room": 1534,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1502,
+          "max": 1
+        }
+      ]
+    },
+    "1532": {
+      "vnum": 1532,
+      "name": "The Upper Reaches",
+      "description": "When the records of men's deeds are laid open, and heaven is stripped bare; when Hell burns fiercely and Paradise is brought near: then each soul shall know what it has done.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 1533,
+          "description": ""
+        },
+        "west": {
+          "to_room": 1531,
+          "description": ""
+        },
+        "down": {
+          "to_room": 1535,
+          "description": ""
+        }
+      }
+    },
+    "1533": {
+      "vnum": 1533,
+      "name": "The Upper Reaches",
+      "description": "You have traveled the righteous path, and your own journey has imitated the evolution of the most perfect soul.  Only one final path awaits you; die as the one in the room before, and your death will mean nothing.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 1527,
+          "description": ""
+        },
+        "west": {
+          "to_room": 1532,
+          "description": ""
+        },
+        "down": {
+          "to_room": 1536,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1501,
+          "max": 1
+        }
+      ]
+    },
+    "1534": {
+      "vnum": 1534,
+      "name": "The Final Facing",
+      "description": "The last of the darkness lies behind you; only the straight path remains.  Go forth with a clean heart.  Only the penitent shall find what they seek.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 1535,
+          "description": ""
+        },
+        "up": {
+          "to_room": 1531,
+          "description": ""
+        },
+        "down": {
+          "to_room": 1528,
+          "description": ""
+        }
+      }
+    },
+    "1535": {
+      "vnum": 1535,
+      "name": "The Final Facing",
+      "description": "The last of the darkness lies behind you; only the straight path remains.  Go forth with a clean heart.  Only the penitent shall find what they seek.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1537,
+          "description": ""
+        },
+        "west": {
+          "to_room": 1534,
+          "description": ""
+        },
+        "east": {
+          "to_room": 1536,
+          "description": ""
+        },
+        "up": {
+          "to_room": 1532,
+          "description": ""
+        },
+        "down": {
+          "to_room": 1529,
+          "description": ""
+        }
+      }
+    },
+    "1536": {
+      "vnum": 1536,
+      "name": "The Final Facing",
+      "description": "The last of the darkness lies behind you; only the straight path remains.  Go forth with a clean heart.  Only the penitent shall find what they seek.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 1535,
+          "description": ""
+        },
+        "up": {
+          "to_room": 1533,
+          "description": ""
+        },
+        "down": {
+          "to_room": 1530,
+          "description": ""
+        }
+      }
+    },
+    "1537": {
+      "vnum": 1537,
+      "name": "A Straight Path",
+      "description": "The Compassionate, the Merciful, Sovereign of the Day of Judgment! You alone we worship, and to You alone we turn for help.  Guide us to the Straight Path, the path of those whom You have favored, not of those who have gone astray.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 1535,
+          "description": ""
+        },
+        "north": {
+          "to_room": 1538,
+          "description": ""
+        }
+      }
+    },
+    "1538": {
+      "vnum": 1538,
+      "name": "Progression",
+      "description": "Were We worn out by the First Creation?  Yet they are in doubt about a new creation.  WE created man.  We know the promptings of his soul, and are closer to him than his jugular vein.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1539,
+          "description": ""
+        },
+        "south": {
+          "to_room": 1537,
+          "description": ""
+        }
+      }
+    },
+    "1539": {
+      "vnum": 1539,
+      "name": "Judgment",
+      "description": "Undoubtedly the shortest path is the straightest one.  Only one more step awaits before a final decision is made and a home given to you for all eternity.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1540,
+          "description": ""
+        },
+        "south": {
+          "to_room": 1538,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1507,
+          "max": 5
+        }
+      ]
+    },
+    "1540": {
+      "vnum": 1540,
+      "name": "The Utmost Throne",
+      "description": "You have come at last to the resting place of the most holy.  Startling crystal clarity of vision has been granted to you; seven guardians rim the periphery of the throne and all is bathed in a warm and clean light. It is here that the final choice is to be made, and no defiance of yours can change the outcome.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 1539,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1500,
+          "max": 1
+        }
+      ]
+    }
+  },
+  "mobs": {
+    "1500": {
+      "vnum": 1500,
+      "name": "allah",
+      "short_desc": "Allah",
+      "long_desc": "You resist the urge to avert your eyes from the sight of the one true God.",
+      "level": 30,
+      "alignment": 1000,
+      "hp_dice": "8d8+9",
+      "damage_dice": "1d1+2999",
+      "gold": 50000,
+      "exp": 8,
+      "armor_class": -10,
+      "flags": [
+        "sentinel",
+        "aware",
+        "aggr_evil",
+        "memory",
+        "no_charm",
+        "no_summmon",
+        "no_sleep",
+        "no_bash",
+        "no_blind"
+      ],
+      "description": "The sight is for each man a different, a mirror into the true nature of\neach person's body and soul.  At first a proud, bitter old man, but just\nas easily a gentle extended hand, a smile, and gardens... gardens."
+    },
+    "1501": {
+      "vnum": 1501,
+      "name": "michael",
+      "short_desc": "Michael",
+      "long_desc": "The archangel Michael turns and begins to look you over.",
+      "level": 29,
+      "alignment": 1000,
+      "hp_dice": "6d7+7",
+      "damage_dice": "1d100+1900",
+      "gold": 30000,
+      "exp": 8,
+      "armor_class": -7,
+      "flags": [
+        "sentinel",
+        "memory"
+      ],
+      "description": "At first you see nothing but a bright and comforting glow; then the\nimage sharpens suddenly, and you see a face, eyes, hands, but then\nthat too fades, and you see nothing.",
+      "equipment": {
+        "hold": 1500
+      }
+    },
+    "1502": {
+      "vnum": 1502,
+      "name": "gabriel",
+      "short_desc": "Gabriel",
+      "long_desc": "The archangel Gabriel smiles, and begins to tell you something.",
+      "level": 29,
+      "alignment": 1000,
+      "hp_dice": "6d7+7",
+      "damage_dice": "1d100+1900",
+      "gold": 30000,
+      "exp": 8,
+      "armor_class": -7,
+      "flags": [
+        "sentinel",
+        "memory"
+      ],
+      "description": "Known as the Messenger, it is this angel that has brought the Divine Word\nto the chosen prophets, and in turn brought the Seal of the Prophets on a\nmiraculous journey to the holy city of Jerusalem.",
+      "equipment": {
+        "hold": 1501
+      }
+    },
+    "1503": {
+      "vnum": 1503,
+      "name": "raphael",
+      "short_desc": "Raphael",
+      "long_desc": "The archangel Raphael looks up and frowns at you in disapproval.",
+      "level": 29,
+      "alignment": 1000,
+      "hp_dice": "6d7+7",
+      "damage_dice": "1d100+1900",
+      "gold": 30000,
+      "exp": 8,
+      "armor_class": -7,
+      "flags": [
+        "sentinel",
+        "memory"
+      ],
+      "description": "It is impossible to get a solid glance at the archangel.  He is nothing\nthat is human, and with a mere whisper, he dispels every image that you\nattempt to create in your mind.",
+      "equipment": {
+        "shield": 1503
+      }
+    },
+    "1504": {
+      "vnum": 1504,
+      "name": "uriel",
+      "short_desc": "Uriel",
+      "long_desc": "Uriel, the angel of darkness, stands here guarding the way forward.",
+      "level": 29,
+      "alignment": 1000,
+      "hp_dice": "6d7+7",
+      "damage_dice": "1d100+1900",
+      "gold": 30000,
+      "exp": 8,
+      "armor_class": -7,
+      "flags": [
+        "sentinel",
+        "memory"
+      ],
+      "description": "After the Fall of the bringer of light, the Lord had need for the\nservice of a fourth, and it was this angel, Uriel, that rose to the\nhighest ranks.",
+      "equipment": {
+        "wield": 1502
+      }
+    },
+    "1505": {
+      "vnum": 1505,
+      "name": "cherub",
+      "short_desc": "the cherubin",
+      "long_desc": "The cherubin of the blazing sword looks at you and begins to chuckle.",
+      "level": 17,
+      "alignment": 0,
+      "hp_dice": "3d6+4",
+      "damage_dice": "10d5+260",
+      "gold": 20000,
+      "exp": 8,
+      "armor_class": 0,
+      "flags": [
+        "sentinel",
+        "aggressive"
+      ],
+      "description": "The monster before you seems to be nothing more than a baby or young\nchild, wrapped in a glowing white cloth, but as you try to walk past,\nthe beast grins and cackles, drawing its sword and blocking the way.",
+      "equipment": {
+        "hold": 1508
+      }
+    },
+    "1506": {
+      "vnum": 1506,
+      "name": "jester",
+      "short_desc": "the jester",
+      "long_desc": "A mad, drunken jester is sitting here, lost in his deepening stupor.",
+      "level": 13,
+      "alignment": -300,
+      "hp_dice": "2d8+2",
+      "damage_dice": "10d2+180",
+      "gold": 12225,
+      "exp": 6,
+      "armor_class": 1,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "He is dimly aware of your gaze.  Chuckling softly, you hear him mutter\nsomething obscure: dragons, the temple, the falling of great empires.\nHe laughs at you and takes another drink.",
+      "equipment": {
+        "hold": 1509
+      }
+    },
+    "1507": {
+      "vnum": 1507,
+      "name": "jinn",
+      "short_desc": "the jinn",
+      "long_desc": "One of the jinn dances in and out of the air before your eyes, taunting you.",
+      "level": 23,
+      "alignment": 0,
+      "hp_dice": "3d9+3",
+      "damage_dice": "25d2+400",
+      "gold": 35000,
+      "exp": 8,
+      "armor_class": -2,
+      "flags": [
+        "scavenger",
+        "stay_zone"
+      ],
+      "description": "You have heard legends of these creatures, the mischievous little demons\nsaid to be trapped in lamps and bottles, capable of granting all kinds of\npowerful wishes.  To you, it looks like nothing more than an annoying little\nsprite."
+    },
+    "1508": {
+      "vnum": 1508,
+      "name": "man",
+      "short_desc": "the slumped old man",
+      "long_desc": "A slumped, shaking old man stands up and begins to yell at the world.",
+      "level": 26,
+      "alignment": -1000,
+      "hp_dice": "4d9+6",
+      "damage_dice": "4d10+840",
+      "gold": 25000,
+      "exp": 8,
+      "armor_class": -5,
+      "flags": [
+        "sentinel",
+        "aggressive"
+      ],
+      "description": "He wears a faded uniform, decorated with honors of his own creation,\nslackened jaws and pasty white bags sagging under his ugly, hating eyes.\nA tuft of reckless dark hair scatters across his forehead, and his right\nhand shakes and shakes.",
+      "equipment": {
+        "arms": 1504
+      }
+    },
+    "1509": {
+      "vnum": 1509,
+      "name": "caliph",
+      "short_desc": "al-Hakim",
+      "long_desc": "The mad Caliph al-Hakim is here, dissecting a young boy.",
+      "level": 26,
+      "alignment": -1000,
+      "hp_dice": "4d9+6",
+      "damage_dice": "4d10+840",
+      "gold": 25000,
+      "exp": 8,
+      "armor_class": -5,
+      "flags": [
+        "sentinel",
+        "aggressive"
+      ],
+      "description": "The darkest skin, and eyes so white.  Covered only in a shoddy woolen\ntunic, he has not bathed in months nor eaten in days, and yet his smile,\nso charming."
+    },
+    "1510": {
+      "vnum": 1510,
+      "name": "judas",
+      "short_desc": "Judas Escariot",
+      "long_desc": "The wayward apostle approaches slowly, extending his arms in a hug.",
+      "level": 25,
+      "alignment": -1000,
+      "hp_dice": "4d6+5",
+      "damage_dice": "5d10+650",
+      "gold": 72500,
+      "exp": 8,
+      "armor_class": -4,
+      "flags": [
+        "sentinel",
+        "scavenger"
+      ],
+      "description": "You see nothing but the sadness of a man who would sell his own God."
+    },
+    "1511": {
+      "vnum": 1511,
+      "name": "pharoah",
+      "short_desc": "Pharoah",
+      "long_desc": "Pharoah has been sent here in retribution for a lifetime of evils.",
+      "level": 25,
+      "alignment": -1000,
+      "hp_dice": "4d6+5",
+      "damage_dice": "5d10+650",
+      "gold": 85000,
+      "exp": 8,
+      "armor_class": -4,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "Richly clothed and postured in arrogance and love of power, he looks at\nyou with nothing more than a smirk of contempt.",
+      "equipment": {
+        "neck1": 1512
+      }
+    },
+    "1512": {
+      "vnum": 1512,
+      "name": "abu",
+      "short_desc": "Abu Bakr",
+      "long_desc": "Abu Bakr, first of the Rashidun, mourns over the death of the Prophet.",
+      "level": 25,
+      "alignment": 1000,
+      "hp_dice": "4d6+5",
+      "damage_dice": "5d10+650",
+      "gold": 85000,
+      "exp": 8,
+      "armor_class": -4,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "You see a simple man, dressed in dark and unadorned robes, bent over and\npensive, reliving the memories of a man he never thought would die.",
+      "equipment": {
+        "wield": 1505
+      }
+    },
+    "1513": {
+      "vnum": 1513,
+      "name": "umar",
+      "short_desc": "Umar",
+      "long_desc": "You see Umar, second of the Rashidun, the successors of the Prophet.",
+      "level": 25,
+      "alignment": 1000,
+      "hp_dice": "4d6+5",
+      "damage_dice": "5d10+650",
+      "gold": 85000,
+      "exp": 8,
+      "armor_class": -4,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "You are amazed at the piety of the man.  He looks at you in sadness,\nsaying: \"I do not wish to fight you, but if you refuse the truth of\nthe Word, then I must.\""
+    },
+    "1514": {
+      "vnum": 1514,
+      "name": "uthman",
+      "short_desc": "Uthman",
+      "long_desc": "The third of the rightly-guided Caliphs, Uthman, stands before you.",
+      "level": 26,
+      "alignment": 1000,
+      "hp_dice": "4d9+6",
+      "damage_dice": "4d10+840",
+      "gold": 25000,
+      "exp": 8,
+      "armor_class": -5,
+      "flags": [
+        "sentinel",
+        "aggressive"
+      ],
+      "description": "He was chosen as leader by a clique of jealous rivals who could agree\nupon no other.  The memory of the Prophet fading quickly from the minds\nof the faithful, he could do little, and was in the end killed by his\nenemies.",
+      "equipment": {
+        "light": 1510
+      }
+    },
+    "1515": {
+      "vnum": 1515,
+      "name": "ali",
+      "short_desc": "Ali",
+      "long_desc": "You have come before Ali, fourth and last of the Rashidun.",
+      "level": 26,
+      "alignment": 1000,
+      "hp_dice": "4d9+6",
+      "damage_dice": "4d10+840",
+      "gold": 25000,
+      "exp": 8,
+      "armor_class": -5,
+      "flags": [
+        "sentinel",
+        "aggressive"
+      ],
+      "description": "Some view him as the closest to God among all of the Caliphs, the one\nmost deserving of our respect and reverence.  Still others saw him as\na schismatic, a heretic, one to be killed and forgotten.  To look at\nhim now is for you to decide for yourself.",
+      "equipment": {
+        "hands": 1511
+      }
+    },
+    "1516": {
+      "vnum": 1516,
+      "name": "angel",
+      "short_desc": "Iblis",
+      "long_desc": "You gaze in awe at the most beautiful of all angels, Iblis, the Fallen.",
+      "level": 25,
+      "alignment": -1000,
+      "hp_dice": "4d6+5",
+      "damage_dice": "10d5+650",
+      "gold": 85000,
+      "exp": 8,
+      "armor_class": -4,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "aggressive"
+      ],
+      "description": "He smiles calmly, and begins to tell you of the time when he would not\nkneel, would not prostrate himself before the first human beings.  And\nthen he gestures at you, smiling, and conjures an image of all the \ntemptations that will be yours if you in turn but follow him."
+    },
+    "1517": {
+      "vnum": 1517,
+      "name": "iblis",
+      "short_desc": "the Temptation",
+      "long_desc": "You pause nervously as a voice whispers at you from over your shoulder.",
+      "level": 25,
+      "alignment": -1000,
+      "hp_dice": "4d6+5",
+      "damage_dice": "10d5+650",
+      "gold": 85000,
+      "exp": 8,
+      "armor_class": -4,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "aggressive"
+      ],
+      "description": "There is no physical figure attached to the presence that dominates this\nplace, just tormented laughter, moaning, screaming, and begging.",
+      "equipment": {
+        "light": 1514
+      }
+    },
+    "1518": {
+      "vnum": 1518,
+      "name": "serpent",
+      "short_desc": "the raging dragon",
+      "long_desc": "A raging dragon turns to you in violent lust for your soul.",
+      "level": 27,
+      "alignment": -1000,
+      "hp_dice": "4d8+5",
+      "damage_dice": "75d2+825",
+      "gold": 25000,
+      "exp": 8,
+      "armor_class": -5,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "aggressive"
+      ],
+      "description": "The serpent of babylon, the aged and violet hued monster that has \nwatched all of mankind succumb before its power, turns to you as\nits last victim.",
+      "equipment": {
+        "neck1": 1513
+      }
+    },
+    "1519": {
+      "vnum": 1519,
+      "name": "demon",
+      "short_desc": "the demon",
+      "long_desc": "The hell-fire around you is dominated by a massive, burning demon.",
+      "level": 27,
+      "alignment": -1000,
+      "hp_dice": "4d8+5",
+      "damage_dice": "75d2+825",
+      "gold": 25000,
+      "exp": 8,
+      "armor_class": -5,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "aggressive"
+      ],
+      "description": "You see nothing but the inexorably red and burning anger of the \nlord of the underworld that you fear to be your fate.",
+      "inventory": [
+        1506
+      ]
+    },
+    "1520": {
+      "vnum": 1520,
+      "name": "baby",
+      "short_desc": "the innocent baby",
+      "long_desc": "Lying on the ground wrapped in blankets is the most innocent of babies.",
+      "level": 22,
+      "alignment": 1000,
+      "hp_dice": "4d6+4",
+      "damage_dice": "5d10+150",
+      "gold": 82500,
+      "exp": 4,
+      "armor_class": -4,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "The baby is barely aware of your presence, lost in a sleepy and\ncontented yawn."
+    },
+    "1521": {
+      "vnum": 1521,
+      "name": "boy",
+      "short_desc": "the teenage boy",
+      "long_desc": "You stop in surprise at the sight of a teenage boy staring off to the distance.",
+      "level": 24,
+      "alignment": 1000,
+      "hp_dice": "4d6+5",
+      "damage_dice": "5d10+680",
+      "gold": 83500,
+      "exp": 8,
+      "armor_class": -4,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "He is young, and has not yet seen the bloodiness of this world.  You follow\nhis gaze and notice that he is gazing in wonderment at the fullness of the\nmoon."
+    },
+    "1522": {
+      "vnum": 1522,
+      "name": "man",
+      "short_desc": "the man",
+      "long_desc": "A middle-aged man is here, kneeling in prayer.",
+      "level": 26,
+      "alignment": 1000,
+      "hp_dice": "4d8+5",
+      "damage_dice": "75d2+820",
+      "gold": 25000,
+      "exp": 5,
+      "armor_class": -5,
+      "flags": [
+        "sentinel",
+        "memory"
+      ],
+      "description": "He is tired, the lines of age marking his face, but in his robe, \nkneeling, he is the image of perfect contentment."
+    },
+    "1523": {
+      "vnum": 1523,
+      "name": "soul",
+      "short_desc": "the bodyless soul",
+      "long_desc": "You are overwhelmed by the presence of a soul that has transcended its body.",
+      "level": 28,
+      "alignment": 1000,
+      "hp_dice": "4d8+5",
+      "damage_dice": "100d2+820",
+      "gold": 95000,
+      "exp": 8,
+      "armor_class": -5,
+      "flags": [
+        "sentinel",
+        "aggressive"
+      ],
+      "description": "You sense certain tastes and smells, the winds through the gardens.\nNothing can explain or describe this perfection, this utter bliss.",
+      "inventory": [
+        1507
+      ]
+    }
+  },
+  "objects": {
+    "1500": {
+      "vnum": 1500,
+      "name": "scales",
+      "short_desc": "the Scales of Justice",
+      "room_desc": "Two beautiful plates shaped like scales have been left here.",
+      "item_type": "treasure",
+      "weight": 10,
+      "value": 15000
+    },
+    "1501": {
+      "vnum": 1501,
+      "name": "scroll",
+      "short_desc": "the Scroll of the Messenger",
+      "room_desc": "You see a solid and silver-lined scroll resting on the ground.",
+      "item_type": "treasure",
+      "weight": 1,
+      "value": 500
+    },
+    "1502": {
+      "vnum": 1502,
+      "name": "sword",
+      "short_desc": "a blazing sword",
+      "room_desc": "You are startled by the sight of a sword that glows as you approach it.",
+      "item_type": "weapon",
+      "weight": 10,
+      "value": 5000,
+      "damage_dice": "3d4",
+      "weapon_type": "pierce"
+    },
+    "1503": {
+      "vnum": 1503,
+      "name": "protector",
+      "short_desc": "the Protector of the Faithful",
+      "room_desc": "A weighty looking shield has been abandoned by one unworthy to hold it.",
+      "item_type": "armor",
+      "weight": 20,
+      "value": 5000,
+      "armor_bonus": 15
+    },
+    "1504": {
+      "vnum": 1504,
+      "name": "armband",
+      "short_desc": "a faded armband",
+      "room_desc": "A ragged and faded looking piece of cloth has been left here, forgotten.",
+      "item_type": "treasure",
+      "weight": 0,
+      "value": 15
+    },
+    "1505": {
+      "vnum": 1505,
+      "name": "scimitar",
+      "short_desc": "a jeweled scimitar",
+      "room_desc": "A stunning curved blade glistens on the ground.",
+      "item_type": "weapon",
+      "weight": 5,
+      "value": 5000,
+      "damage_dice": "7d1",
+      "weapon_type": "slash"
+    },
+    "1506": {
+      "vnum": 1506,
+      "name": "ember",
+      "short_desc": "a charred ember",
+      "room_desc": "You glance briefly at a smouldering ember that rests at your feet.",
+      "item_type": "light",
+      "weight": 0,
+      "value": 5,
+      "light_hours": -1
+    },
+    "1507": {
+      "vnum": 1507,
+      "name": "ethereal",
+      "short_desc": "an ethereal flame",
+      "room_desc": "The entire room is aglow from the flame at your feet.",
+      "item_type": "light",
+      "weight": 0,
+      "value": 5,
+      "light_hours": -1
+    },
+    "1508": {
+      "vnum": 1508,
+      "name": "key",
+      "short_desc": "the Key to the Gates",
+      "room_desc": "You have found at last the Key to the Gates of eternity.",
+      "item_type": "key",
+      "weight": 0,
+      "value": 1000
+    },
+    "1509": {
+      "vnum": 1509,
+      "name": "history",
+      "short_desc": "a burnt history",
+      "room_desc": "You have found a burnt book, some forgotten history lying on the ground.",
+      "item_type": "treasure",
+      "weight": 2,
+      "value": 10
+    },
+    "1510": {
+      "vnum": 1510,
+      "name": "surah",
+      "short_desc": "a surah of the book",
+      "room_desc": "You notice a thin parchment, with flowing script and rich decorative trim.",
+      "item_type": "light",
+      "weight": 0,
+      "value": 500,
+      "light_hours": -1
+    },
+    "1511": {
+      "vnum": 1511,
+      "name": "forge",
+      "short_desc": "the Forge of Unity",
+      "room_desc": "It is surely the best of men who has left these gloves to aid you.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 12000,
+      "armor_bonus": 5
+    },
+    "1512": {
+      "vnum": 1512,
+      "name": "ankh",
+      "short_desc": "an Ankh",
+      "room_desc": "You see a beautiful pendant of ancient and noble craftsmanship.",
+      "item_type": "treasure",
+      "weight": 3,
+      "value": 5000
+    },
+    "1513": {
+      "vnum": 1513,
+      "name": "amulet",
+      "short_desc": "the Amulet of Ra",
+      "room_desc": "You have found a beautiful gleaming disc with a golden image of the sun god.",
+      "item_type": "treasure",
+      "weight": 5,
+      "value": 7500
+    },
+    "1514": {
+      "vnum": 1514,
+      "name": "image",
+      "short_desc": "a graven image of Azathoth",
+      "room_desc": "You frown in disgust at the hideous icon of a false god that you have found.",
+      "item_type": "light",
+      "weight": 2,
+      "value": 1000,
+      "light_hours": 0
+    }
+  }
+}

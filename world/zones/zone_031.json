@@ -1,0 +1,1456 @@
+{
+  "number": 31,
+  "name": "Southern part of Midgaard",
+  "lifespan": 40,
+  "rooms": {
+    "3100": {
+      "vnum": 3100,
+      "name": "The Northwest End Of The Concourse",
+      "description": "You are at the concourse, the city wall is just west.  A small promenade goes east, and the bridge is just north of here.  The concourse continues south along the city wall.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3051,
+          "description": "You see the Bridge."
+        },
+        "east": {
+          "to_room": 3101,
+          "description": "You see the promenade."
+        },
+        "south": {
+          "to_room": 3127,
+          "description": "The promenade continues far south."
+        }
+      }
+    },
+    "3101": {
+      "vnum": 3101,
+      "name": "The Promenade",
+      "description": "The river gently flows westwards just north of here.  The promenade continues further east and to the west you see the city wall.  Park Road leads south from here.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3102,
+          "description": "The promenade continues."
+        },
+        "south": {
+          "to_room": 3131,
+          "description": "Park Road leads south."
+        },
+        "west": {
+          "to_room": 3100,
+          "description": "You see the Concourse."
+        }
+      }
+    },
+    "3102": {
+      "vnum": 3102,
+      "name": "The Promenade",
+      "description": "The river gently flows westwards just north of here.  The promenade continues both east and west.  South of here you see the entrance to the park, and a small building seems to be just west of the entrance.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3103,
+          "description": "You see the promenade."
+        },
+        "south": {
+          "to_room": 3105,
+          "description": "You see the park entrance."
+        },
+        "west": {
+          "to_room": 3101,
+          "description": "You see the promenade."
+        }
+      }
+    },
+    "3103": {
+      "vnum": 3103,
+      "name": "The Promenade",
+      "description": "The river gently flows westwards just north of here.  The promenade continues both east and west.  A small path leads south.  Looking across the river you see the levee.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3104,
+          "description": "You see the Concourse."
+        },
+        "south": {
+          "to_room": 3132,
+          "description": "The small path leads south."
+        },
+        "west": {
+          "to_room": 3102,
+          "description": "You see the promenade."
+        }
+      }
+    },
+    "3104": {
+      "vnum": 3104,
+      "name": "The Northeast End Of The Concourse",
+      "description": "You are at the Concourse.  The city wall is just east and a small promenade goes west.  Looking across the river you see a building that resembles a warehouse.  The Concourse continues south along the city wall.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 3130,
+          "description": "The Concourse continues south."
+        },
+        "west": {
+          "to_room": 3103,
+          "description": "You see the promenade."
+        }
+      },
+      "extra_descs": {
+        "": "wall"
+      }
+    },
+    "3105": {
+      "vnum": 3105,
+      "name": "The Park Entrance",
+      "description": "You are standing just inside the small park of Midgaard.  To the north is the promenade and a small path leads south into the park.  To your east is the famous Park Cafe.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3102,
+          "description": "You see the promenade."
+        },
+        "east": {
+          "to_room": 3106,
+          "description": "You see Park Cafe."
+        },
+        "south": {
+          "to_room": 3108,
+          "description": "You see the park."
+        }
+      }
+    },
+    "3106": {
+      "vnum": 3106,
+      "name": "Park Cafe",
+      "description": "You are inside Park Cafe, a very cozy place with many tables and seats where you can relax and enjoy the view.  To the east you can see the entrance to the park.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "no_magic"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 3105,
+          "description": "You see the park entrance."
+        }
+      }
+    },
+    "3107": {
+      "vnum": 3107,
+      "name": "A Small Path In The Park",
+      "description": "You are walking along a small path through the park.  The path continues south and east.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3108,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3113,
+          "description": ""
+        }
+      }
+    },
+    "3108": {
+      "vnum": 3108,
+      "name": "A Small Path In The Park",
+      "description": "You are standing on a small path inside the park.  The park entrance is just north of here, and Park Cafe is just east of the entrance.  The path leads further east and west.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3105,
+          "description": "You see the northern park entrance."
+        },
+        "east": {
+          "to_room": 3109,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3107,
+          "description": ""
+        }
+      }
+    },
+    "3109": {
+      "vnum": 3109,
+      "name": "A Small Path In The Park",
+      "description": "You are on a small path running through the park.  It continues west and south and just north of here you see the southern wall of Park Cafe.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 3115,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3108,
+          "description": ""
+        }
+      }
+    },
+    "3110": {
+      "vnum": 3110,
+      "name": "Cityguard HeadQuarters",
+      "description": "You are inside a tidy office.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 3111,
+          "description": "You see Park Road.",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": 3105
+          }
+        }
+      }
+    },
+    "3111": {
+      "vnum": 3111,
+      "name": "Park Road",
+      "description": "The road continues north and south.  A building is just west of here, you notice a sign on the door.  The park entrance is to the east.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3131,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3112,
+          "description": "You see the park entrance."
+        },
+        "south": {
+          "to_room": 3118,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3110,
+          "description": "You see the Cityguard HeadQuarters.",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": 3105
+          }
+        }
+      },
+      "extra_descs": {
+        "": "building door sign"
+      }
+    },
+    "3112": {
+      "vnum": 3112,
+      "name": "The Western Park Entrance",
+      "description": "You are standing at the western end of the park.  A small path leads east into the park and going west through the entrance you will reach Park Road.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 3113,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3111,
+          "description": ""
+        }
+      }
+    },
+    "3113": {
+      "vnum": 3113,
+      "name": "A Path In The Park",
+      "description": "You are in the park.  The paths lead north and west.  Westward is the park entrance and to the east you see a small pond.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3107,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3114,
+          "description": "You see the pond."
+        },
+        "west": {
+          "to_room": 3112,
+          "description": "You see the western park entrance."
+        }
+      }
+    },
+    "3114": {
+      "vnum": 3114,
+      "name": "The Pond",
+      "description": "You are swimming around in the pond, feeling rather stupid.  You can get back on the path from the eastern and western end of the pond.",
+      "sector_type": "water_swim",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3115,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3113,
+          "description": ""
+        }
+      }
+    },
+    "3115": {
+      "vnum": 3115,
+      "name": "A Path In The Park",
+      "description": "You are in the park.  The paths lead north and east.  Eastward is the park entrance and to the west you see a small pond.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3109,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3116,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3114,
+          "description": ""
+        }
+      }
+    },
+    "3116": {
+      "vnum": 3116,
+      "name": "The Eastern Park Entrance",
+      "description": "You are standing at the eastern end of the park.  A small path leads west into the park.  Going east through the entrance you will reach Emerald Avenue.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 3117,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3115,
+          "description": ""
+        }
+      }
+    },
+    "3117": {
+      "vnum": 3117,
+      "name": "Emerald Avenue",
+      "description": "You are standing on the north end of Emerald Avenue.  To the north is the promenade and to the west is the park entrance.  To the east is the not very big Town Hall of Midgaard.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3132,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3137,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3119,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3116,
+          "description": ""
+        }
+      }
+    },
+    "3118": {
+      "vnum": 3118,
+      "name": "Park Road",
+      "description": "You are on Park Road which leads north and south.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3111,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3135,
+          "description": ""
+        }
+      }
+    },
+    "3119": {
+      "vnum": 3119,
+      "name": "Emerald Avenue",
+      "description": "You are standing at a bend on Emerald Avenue.  The road leads north and west.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3117,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3133,
+          "description": ""
+        }
+      }
+    },
+    "3120": {
+      "vnum": 3120,
+      "name": "The Road Crossing",
+      "description": "You are in the middle of the road cross.  Roads lead in all directions. A huge black iron chain as thick as a tree trunk is fastened into the ground at the center of the road cross.  Its other end leads directly upwards towards the sky. A road sign is here.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3133,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3136,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3134,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3135,
+          "description": ""
+        },
+        "up": {
+          "to_room": 7914,
+          "description": "The chain disappears in the clouds."
+        }
+      },
+      "extra_descs": {
+        "": "chain",
+        "ast  - Park Road.": "South - Emerald Avenue.    West  - Park Road.  Someone has added the following with red paint:     Up    - Redferne's Flying Citadel."
+      }
+    },
+    "3121": {
+      "vnum": 3121,
+      "name": "Emerald Avenue",
+      "description": "You are standing at a bend on Emerald Avenue.  The road leads south and east.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3134,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3125,
+          "description": ""
+        }
+      }
+    },
+    "3122": {
+      "vnum": 3122,
+      "name": "Park Road",
+      "description": "You are on Park Road which leads south and north.  Elm Street is east of here.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3136,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3123,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3126,
+          "description": ""
+        }
+      }
+    },
+    "3123": {
+      "vnum": 3123,
+      "name": "Elm Street",
+      "description": "You are on Elm street.  Park Road is to the west and Elm Street continues in eastward direction.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3124,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3122,
+          "description": ""
+        }
+      }
+    },
+    "3124": {
+      "vnum": 3124,
+      "name": "The End Of Elm Street",
+      "description": "You are at the end of Elm Street.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 3123,
+          "description": ""
+        }
+      }
+    },
+    "3125": {
+      "vnum": 3125,
+      "name": "Emerald Avenue",
+      "description": "You are on Emerald Avenue which continues north.  The Concourse is south of here.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3121,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3128,
+          "description": ""
+        }
+      }
+    },
+    "3126": {
+      "vnum": 3126,
+      "name": "Park Road",
+      "description": "You are on Park Road which continues north.  The Concourse is south of here.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3122,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3129,
+          "description": ""
+        }
+      }
+    },
+    "3127": {
+      "vnum": 3127,
+      "name": "On The Concourse",
+      "description": "You are at the southwest corner of the city wall.  The Concourse leads both north and east.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3100,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3128,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3504,
+          "description": "Through the South Gate you can see a small path leading southwards."
+        }
+      }
+    },
+    "3128": {
+      "vnum": 3128,
+      "name": "On The Concourse",
+      "description": "The Concourse continues both east and west.  Emerald Avenue is north of here.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3125,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3129,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3127,
+          "description": ""
+        }
+      }
+    },
+    "3129": {
+      "vnum": 3129,
+      "name": "On The Concourse",
+      "description": "The Concourse continues both east and west.  Park Road is north of here and an iron grate leads south to the graveyard.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3126,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3130,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3150,
+          "description": "Through the solid iron bars you see the graveyard.",
+          "door": {
+            "name": "grate",
+            "state": "open",
+            "locked": true,
+            "key_vnum": 3106
+          }
+        },
+        "west": {
+          "to_room": 3128,
+          "description": ""
+        }
+      }
+    },
+    "3130": {
+      "vnum": 3130,
+      "name": "On The Concourse",
+      "description": "You are at the southeast corner of the city wall.  The Concourse leads both north and west.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3104,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3129,
+          "description": ""
+        }
+      }
+    },
+    "3131": {
+      "vnum": 3131,
+      "name": "Park Road",
+      "description": "You are at Park Road which continues north and south.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3101,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3111,
+          "description": ""
+        }
+      }
+    },
+    "3132": {
+      "vnum": 3132,
+      "name": "Emerald Avenue",
+      "description": "You are at Emerald Avenue which continues north and south.  Penny Lane leads east from here.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3103,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3139,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3117,
+          "description": ""
+        }
+      }
+    },
+    "3133": {
+      "vnum": 3133,
+      "name": "Emerald Avenue",
+      "description": "You are standing at a bend on Emerald Avenue.  To the east the road goes on and to the south is the Road Crossing.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3119,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3120,
+          "description": ""
+        }
+      }
+    },
+    "3134": {
+      "vnum": 3134,
+      "name": "Emerald Avenue",
+      "description": "You are standing at a bend on Emerald Avenue.  To the west the road goes on and to the north is the Road Crossing.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3120,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3121,
+          "description": ""
+        }
+      }
+    },
+    "3135": {
+      "vnum": 3135,
+      "name": "Park Road",
+      "description": "You are at a bend on Park Road.  To the north the road goes on and to the east is the Road Crossing.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3118,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3120,
+          "description": ""
+        }
+      }
+    },
+    "3136": {
+      "vnum": 3136,
+      "name": "Park Road",
+      "description": "You are at a bend on Park Road.  To the south the road goes on and to the west is the Road Crossing.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 3122,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3120,
+          "description": ""
+        }
+      }
+    },
+    "3137": {
+      "vnum": 3137,
+      "name": "The Waiting Room",
+      "description": "You are standing in the waiting room at the town hall.  Wooden chairs stand along the walls and a long desk with a typewriter is placed in the middle of the room.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 3138,
+          "description": "It looks like some kind of office."
+        },
+        "west": {
+          "to_room": 3117,
+          "description": "The exit west leads to Emerald Avenue."
+        }
+      },
+      "extra_descs": {
+        "": "typewriter",
+        "verything can be stored on its top.": ""
+      }
+    },
+    "3138": {
+      "vnum": 3138,
+      "name": "The Mayor's Office",
+      "description": "You are in the not very big office of the Mayor of Midgaard.  A large and polished but completely empty desk is standing in front of an armchair that looks so comfortable that it most of all resembles a bed with the head end raised slightly.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 3137,
+          "description": "The waiting room is to the west."
+        }
+      },
+      "extra_descs": {
+        "": "chair armchair"
+      }
+    },
+    "3139": {
+      "vnum": 3139,
+      "name": "Penny Lane",
+      "description": "You are on Penny Lane.  Emerald Avenue is to the west and Penny Lane continues in eastward direction.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3140,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3132,
+          "description": ""
+        }
+      }
+    },
+    "3140": {
+      "vnum": 3140,
+      "name": "Penny Lane",
+      "description": "You are on Penny Lane.  The narrow road continues north and west.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3141,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3139,
+          "description": ""
+        }
+      }
+    },
+    "3141": {
+      "vnum": 3141,
+      "name": "The End Of Penny Lane",
+      "description": "You are at the end of Penny Lane.  The only exit appears to be south.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 3140,
+          "description": ""
+        }
+      }
+    },
+    "3150": {
+      "vnum": 3150,
+      "name": "A Gravel Road In The Graveyard",
+      "description": "You are on a well-kept gravel road that leads north-south through the graveyard.  On both sides of the road grow dark evergreen trees.  An iron grate is to the north.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3129,
+          "description": "Through the solid iron bars you see the Concourse.",
+          "door": {
+            "name": "grate",
+            "state": "open",
+            "locked": true,
+            "key_vnum": 3106
+          }
+        },
+        "south": {
+          "to_room": 3151,
+          "description": "The gravel road continues southward."
+        }
+      }
+    },
+    "3151": {
+      "vnum": 3151,
+      "name": "A Gravel Road In The Graveyard",
+      "description": "You are on a well-kept gravel road that leads north-south through the graveyard.  On both sides of the road grow dark evergreen trees.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3150,
+          "description": "The gravel road continues northwards."
+        },
+        "south": {
+          "to_room": 3152,
+          "description": "The gravel road continues southward."
+        }
+      }
+    },
+    "3152": {
+      "vnum": 3152,
+      "name": "A Gravel Road In The Graveyard",
+      "description": "You are on a well-kept gravel road that leads north-south through the graveyard.  On both sides of the road grow dark evergreen trees.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3151,
+          "description": "The gravel road continues northwards."
+        },
+        "south": {
+          "to_room": 3153,
+          "description": "The gravel road continues southward."
+        }
+      }
+    },
+    "3153": {
+      "vnum": 3153,
+      "name": "A Gravel Road In The Graveyard",
+      "description": "You are on a well-kept gravel road that leads north-south through the graveyard.  On both sides of the road grow dark evergreen trees.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3152,
+          "description": "The gravel road continues northwards."
+        },
+        "south": {
+          "to_room": 3154,
+          "description": "The gravel road continues southward to an open space before a small building."
+        }
+      }
+    },
+    "3154": {
+      "vnum": 3154,
+      "name": "In Front Of The Chapel",
+      "description": "You are on an open space before a small chapel.  A gravel road leads north through the graveyard and the chapel entrance is to the south.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3153,
+          "description": "The gravel road continues northwards."
+        },
+        "south": {
+          "to_room": 3155,
+          "description": "The chapel door is made of dark wood.",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      }
+    },
+    "3155": {
+      "vnum": 3155,
+      "name": "Inside The Chapel",
+      "description": "You are in a small, dark chapel.  The dark brown glass in the tiny windows do not let much light through.  A few rows of worn wooden benches stand here and an ancient altar sits in the middle of the floor.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3154,
+          "description": "The chapel door is made of dark wood.",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "extra_descs": {
+        "": "benches rows"
+      }
+    },
+    "3200": {
+      "vnum": 3200,
+      "name": "Under The Bridge",
+      "description": "The arch under the bridge is covered by seaweed about a foot above the surface of the river.  The water gently flows through an opening in the lower part of the city wall.",
+      "sector_type": "water_noswim",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3201,
+          "description": ""
+        },
+        "west": {
+          "to_room": 900,
+          "description": ""
+        }
+      },
+      "extra_descs": {
+        "": "wall"
+      }
+    },
+    "3201": {
+      "vnum": 3201,
+      "name": "On The River",
+      "description": "North of here you see the miserable buildings of Poor Alley.  The river flows west towards the bridge.  The riverbanks are too steep to climb.",
+      "sector_type": "water_noswim",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3202,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3200,
+          "description": ""
+        }
+      }
+    },
+    "3202": {
+      "vnum": 3202,
+      "name": "On The River",
+      "description": "North of here you see the dump.  The river flows from east to west.  The riverbanks are too steep to climb.",
+      "sector_type": "water_noswim",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3203,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3201,
+          "description": ""
+        }
+      }
+    },
+    "3203": {
+      "vnum": 3203,
+      "name": "On The River",
+      "description": "The levee is directly north of here.  The river flows in an east west direction.",
+      "sector_type": "water_noswim",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3049,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3204,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3202,
+          "description": ""
+        }
+      }
+    },
+    "3204": {
+      "vnum": 3204,
+      "name": "On The River",
+      "description": "You see the warehouse on the northern riverbank.  East of here you see the city wall.  The river flows west towards the levee.",
+      "sector_type": "water_noswim",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3205,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3203,
+          "description": ""
+        }
+      }
+    },
+    "3205": {
+      "vnum": 3205,
+      "name": "On The River",
+      "description": "The river enters from a hole in the eastern city wall.  The hole has been blocked by several vertically positioned iron bars set into the wall.",
+      "sector_type": "water_noswim",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 5001,
+          "description": "The iron bars make it difficult to pass through the hole in the wall. Beyond the bars you see that the river leads into a cavern below the mountain range to the east."
+        },
+        "west": {
+          "to_room": 3204,
+          "description": ""
+        }
+      }
+    }
+  },
+  "mobs": {
+    "3100": {
+      "vnum": 3100,
+      "name": "maid",
+      "short_desc": "the Maid",
+      "long_desc": "The Maid is waiting for your order.",
+      "level": 33,
+      "alignment": 1000,
+      "hp_dice": "1d8+22",
+      "damage_dice": "1d1+30000",
+      "gold": 41000,
+      "exp": 8,
+      "armor_class": -10,
+      "flags": [
+        "special",
+        "sentinel",
+        "memory",
+        "no_charm",
+        "no_summmon"
+      ],
+      "description": "She is very beautiful with golden hair, and deep blue eyes.  A good reason\nfor coming here more often, you think to yourself.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          3100
+        ],
+        "buys": [],
+        "markup": 3101.0,
+        "markdown": 3102.0
+      }
+    },
+    "3101": {
+      "vnum": 3101,
+      "name": "sexton",
+      "short_desc": "the Sexton",
+      "long_desc": "A Sexton is sitting here, drinking hot tea.",
+      "level": 3,
+      "alignment": 800,
+      "hp_dice": "1d7+0",
+      "damage_dice": "2d6+35",
+      "gold": 156,
+      "exp": 6,
+      "armor_class": 7,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "The Sexton looks like he is relaxing after another gravedigging job."
+    },
+    "3102": {
+      "vnum": 3102,
+      "name": "chief",
+      "short_desc": "the Chief Guard",
+      "long_desc": "The Chief Guard is looking very upset.",
+      "level": 17,
+      "alignment": 800,
+      "hp_dice": "1d8+18",
+      "damage_dice": "1d12+210",
+      "gold": 14000,
+      "exp": 8,
+      "armor_class": 1,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "aggressive"
+      ],
+      "description": "A very angry chief."
+    },
+    "3103": {
+      "vnum": 3103,
+      "name": "cityguard",
+      "short_desc": "the upset cityguard",
+      "long_desc": "A cityguard stands here, looking very upset.",
+      "level": 10,
+      "alignment": 1000,
+      "hp_dice": "1d8+3",
+      "damage_dice": "1d12+123",
+      "gold": 4500,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "aggressive"
+      ],
+      "description": "A big, strong, angry guard."
+    },
+    "3104": {
+      "vnum": 3104,
+      "name": "secretary",
+      "short_desc": "the Secretary",
+      "long_desc": "A secretary is sitting at the desk, typing away on the typewriter.",
+      "level": 12,
+      "alignment": 900,
+      "hp_dice": "2d7+1",
+      "damage_dice": "1d12+148",
+      "gold": 6550,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "She looks very busy.\n\nThe Secretary says 'Sorry, but the Mayor is extremely busy today.'\nThe Secretary says 'Please sit down and have a seat in the meantime.'"
+    },
+    "3105": {
+      "vnum": 3105,
+      "name": "mayor",
+      "short_desc": "the Mayor",
+      "long_desc": "The Mayor is sitting in his huge chair, snoring loudly.",
+      "level": 24,
+      "alignment": 1000,
+      "hp_dice": "1d8+18",
+      "damage_dice": "6d10+790",
+      "gold": 65500,
+      "exp": 4,
+      "armor_class": -4,
+      "flags": [
+        "special",
+        "sentinel",
+        "memory",
+        "no_charm",
+        "no_summmon"
+      ],
+      "description": "He is a stocky, middle-aged man with thin, grey hair."
+    },
+    "3106": {
+      "vnum": 3106,
+      "name": "crier",
+      "short_desc": "the Town Crier",
+      "long_desc": "The Town Crier is here, weeping quietly.",
+      "level": 1,
+      "alignment": 900,
+      "hp_dice": "1d5+0",
+      "damage_dice": "2d6+10",
+      "gold": 67,
+      "exp": 8,
+      "armor_class": 9,
+      "flags": [
+        "wimpy"
+      ],
+      "description": "He is very good at his job - completely dissolved in tears."
+    },
+    "3120": {
+      "vnum": 3120,
+      "name": "swan",
+      "short_desc": "the swan",
+      "long_desc": "A swan is swimming around in the pond.",
+      "level": 1,
+      "alignment": 1000,
+      "hp_dice": "1d5+0",
+      "damage_dice": "2d6+10",
+      "gold": 50,
+      "exp": 8,
+      "armor_class": 9,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "The white swan is very elegant."
+    },
+    "3121": {
+      "vnum": 3121,
+      "name": "duckling",
+      "short_desc": "the duckling",
+      "long_desc": "A duckling is swimming around in the pond.",
+      "level": 0,
+      "alignment": 1000,
+      "hp_dice": "1d1+0",
+      "damage_dice": "1d1+0",
+      "gold": 0,
+      "exp": 8,
+      "armor_class": 10,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "The duckling is adorable, it looks most of all like a tiny furball."
+    },
+    "3122": {
+      "vnum": 3122,
+      "name": "sparrow",
+      "short_desc": "the sparrow",
+      "long_desc": "A sparrow is flapping around on the ground.",
+      "level": 0,
+      "alignment": 1000,
+      "hp_dice": "1d3+0",
+      "damage_dice": "2d6+0",
+      "gold": 12,
+      "exp": 8,
+      "armor_class": 10,
+      "flags": [
+        "stay_zone",
+        "wimpy"
+      ],
+      "description": "The sparrow looks like it is enjoying life."
+    },
+    "3123": {
+      "vnum": 3123,
+      "name": "duck",
+      "short_desc": "the duck",
+      "long_desc": "A duck is here, quacking happily.",
+      "level": 1,
+      "alignment": 1000,
+      "hp_dice": "1d4+0",
+      "damage_dice": "2d6+5",
+      "gold": 37,
+      "exp": 8,
+      "armor_class": 10,
+      "flags": [
+        "stay_zone"
+      ],
+      "description": "The duck is quite fat.  It looks like it is enjoying life."
+    }
+  },
+  "objects": {
+    "3100": {
+      "vnum": 3100,
+      "name": "cup",
+      "short_desc": "a cup",
+      "room_desc": "A cup has been set here.",
+      "item_type": "drinkcon",
+      "weight": 1,
+      "value": 5,
+      "capacity": 8,
+      "current": 8
+    },
+    "3101": {
+      "vnum": 3101,
+      "name": "cup",
+      "short_desc": "a cup",
+      "room_desc": "A cup has been set here.",
+      "item_type": "drinkcon",
+      "weight": 1,
+      "value": 7,
+      "capacity": 8,
+      "current": 8
+    },
+    "3102": {
+      "vnum": 3102,
+      "name": "cup",
+      "short_desc": "a cup",
+      "room_desc": "A cup has been set here.",
+      "item_type": "drinkcon",
+      "weight": 1,
+      "value": 2,
+      "capacity": 12,
+      "current": 12
+    },
+    "3103": {
+      "vnum": 3103,
+      "name": "bottle",
+      "short_desc": "a bottle",
+      "room_desc": "A bottle of Evian natural spring water is here.",
+      "item_type": "drinkcon",
+      "weight": 1,
+      "value": 10,
+      "capacity": 24,
+      "current": 24
+    },
+    "3104": {
+      "vnum": 3104,
+      "name": "canteen",
+      "short_desc": "a canteen",
+      "room_desc": "A canteen has been set on the ground here.",
+      "item_type": "drinkcon",
+      "weight": 20,
+      "value": 45,
+      "capacity": 80,
+      "current": 80
+    },
+    "3105": {
+      "vnum": 3105,
+      "name": "key",
+      "short_desc": "an iron key",
+      "room_desc": "An iron key has been left here.",
+      "item_type": "key",
+      "weight": 1,
+      "value": 0
+    },
+    "3106": {
+      "vnum": 3106,
+      "name": "key",
+      "short_desc": "a rusty key",
+      "room_desc": "A rusty key has been left here.",
+      "item_type": "key",
+      "weight": 1,
+      "value": 0
+    },
+    "3107": {
+      "vnum": 3107,
+      "name": "key",
+      "short_desc": "a wooden key",
+      "room_desc": "A wooden key has been left here.",
+      "item_type": "key",
+      "weight": 1,
+      "value": 0
+    },
+    "3108": {
+      "vnum": 3108,
+      "name": "key",
+      "short_desc": "a brass key",
+      "room_desc": "A brass key has been left here.",
+      "item_type": "key",
+      "weight": 1,
+      "value": 0
+    },
+    "3109": {
+      "vnum": 3109,
+      "name": "desk",
+      "short_desc": "the desk",
+      "room_desc": "A desk is set against the western wall.",
+      "item_type": "container",
+      "weight": 100,
+      "value": 0,
+      "capacity": 34,
+      "key_vnum": 3107
+    },
+    "3110": {
+      "vnum": 3110,
+      "name": "safe",
+      "short_desc": "the safe",
+      "room_desc": "A safe is placed in a dark corner of the room.",
+      "item_type": "container",
+      "weight": 999,
+      "value": 0,
+      "capacity": 34,
+      "key_vnum": 3108
+    },
+    "3111": {
+      "vnum": 3111,
+      "name": "bench",
+      "short_desc": "the Bench",
+      "room_desc": "A white-painted wooden bench is standing here.",
+      "item_type": "treasure",
+      "weight": 100,
+      "value": 600
+    },
+    "3112": {
+      "vnum": 3112,
+      "name": "key",
+      "short_desc": "the City Key",
+      "room_desc": "The very big City Key is lying here.",
+      "item_type": "key",
+      "weight": 30,
+      "value": 10000
+    },
+    "3113": {
+      "vnum": 3113,
+      "name": "fountain",
+      "short_desc": "a fountain",
+      "room_desc": "A small white fountain is standing here, gurgling happily.",
+      "item_type": "fountain",
+      "weight": 999,
+      "value": 0
+    },
+    "3114": {
+      "vnum": 3114,
+      "name": "coins",
+      "short_desc": "a small pile of gold coins",
+      "room_desc": "A small pile of gold coins lies here.",
+      "item_type": "money",
+      "weight": 0,
+      "value": 0
+    },
+    "3115": {
+      "vnum": 3115,
+      "name": "gold",
+      "short_desc": "the gold",
+      "room_desc": "A lot of gold is here.",
+      "item_type": "money",
+      "weight": 0,
+      "value": 32385
+    },
+    "3116": {
+      "vnum": 3116,
+      "name": "candlestick",
+      "short_desc": "a candlestick",
+      "room_desc": "A pewter candlestick is standing here.",
+      "item_type": "light",
+      "weight": 5,
+      "value": 150,
+      "light_hours": 24
+    },
+    "3117": {
+      "vnum": 3117,
+      "name": "tree",
+      "short_desc": "an elm tree",
+      "room_desc": "An old elm tree grows here.",
+      "item_type": "treasure",
+      "weight": 0,
+      "value": 0
+    }
+  }
+}

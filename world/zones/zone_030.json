@@ -1,744 +1,3373 @@
 {
   "number": 30,
-  "name": "The City of Midgaard",
-  "builders": "Realmers",
-  "lifespan": 30,
-  "reset_mode": 2,
-  "top": 3099,
+  "name": "Northern Midgaard Main City",
+  "lifespan": 15,
   "rooms": {
-    "3001": {
-      "vnum": 3001,
-      "name": "The Temple of Midgaard",
-      "description": "You stand in the grand Temple of Midgaard, a place of healing and\nsanctuary for weary adventurers. Towering marble columns rise to a\nvaulted ceiling painted with scenes of ancient heroes. Soft candlelight\nilluminates the altar at the center, where priests tend to the wounded.\nThe exit leads south to the main square of the city.",
+    "3000": {
+      "vnum": 3000,
+      "name": "The Reading Room",
+      "description": "You are in a small, simple room which is mostly empty, save a few wooden desks and benches.  To the east you hear the bustle of the Temple of Midgaard, a sharp contrast to the relative quiet of this peaceful room.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
-        "peaceful"
+        "indoors",
+        "peaceful",
+        "no_magic"
       ],
       "exits": {
-        "south": {
-          "to_room": 3002,
-          "description": null
+        "east": {
+          "to_room": 3001,
+          "description": "You see the Temple of Midgaard."
         }
       },
-      "extra_descs": {},
-      "mob_resets": [
+      "obj_resets": [
         {
-          "vnum": 3001,
-          "max": 1
+          "vnum": 3099,
+          "max": 2
         }
+      ]
+    },
+    "3001": {
+      "vnum": 3001,
+      "name": "The Temple Of Midgaard",
+      "description": "You are in the southern end of the temple hall in the Temple of Midgaard. The temple has been constructed from giant marble blocks, eternal in appearance, and most of the walls are covered by ancient wall paintings picturing Gods, Giants and peasants.    Large steps lead down through the grand temple gate, descending the huge mound upon which the temple is built and ends on the temple square below. To the west, you see the Reading Room.  The donation room is in a small alcove to your east.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors",
+        "peaceful",
+        "no_magic"
       ],
-      "obj_resets": []
+      "exits": {
+        "north": {
+          "to_room": 3054,
+          "description": "At the northern end of the temple hall is a statue and a huge altar."
+        },
+        "east": {
+          "to_room": 3063,
+          "description": "In the east, you see a small alcove with a rickety wooden sign which reads \"Midgaard Donation Room.\""
+        },
+        "south": {
+          "to_room": 3005,
+          "description": "You look down the huge stone steps at the temple square below."
+        },
+        "west": {
+          "to_room": 3000,
+          "description": "You see the Reading Room."
+        },
+        "down": {
+          "to_room": 3005,
+          "description": "You see the temple square."
+        },
+        "up": {
+          "to_room": 1204,
+          "description": "A shimmering staircase of light ascends to the realm of the Immortals."
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 3034,
+          "max": 10
+        }
+      ]
     },
     "3002": {
       "vnum": 3002,
-      "name": "Temple Square",
-      "description": "The cobblestone square stretches before you, bustling with activity.\nMerchants hawk their wares, children play between the market stalls,\nand guards patrol the perimeter. The Temple of Midgaard rises to the\nnorth, its white marble gleaming in the sunlight. The main road extends\neast and west, while a narrow alley leads south.",
-      "sector_type": "city",
-      "flags": [],
+      "name": "The Clerics' Inner Sanctum",
+      "description": "This is the inner sanctum.  A picture of the mighty Thor, is hanging on the wall, just above the altar which is set against the western wall.  A well in the middle of the floor leads down into darkness.  Vile smells waft from the depths.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors"
+      ],
       "exits": {
-        "north": {
-          "to_room": 3001,
-          "description": null
-        },
         "east": {
           "to_room": 3003,
-          "description": null
+          "description": "You see your favorite place, the bar of divination."
         },
-        "west": {
-          "to_room": 3005,
-          "description": null
-        },
-        "south": {
-          "to_room": 3010,
-          "description": null
+        "down": {
+          "to_room": 7026,
+          "description": "You can't see what is down there, it is too dark.  Looks like it would be impossible to climb back up."
         }
       },
-      "extra_descs": {},
       "mob_resets": [
         {
-          "vnum": 3002,
-          "max": 2
+          "vnum": 3021,
+          "max": 1
         }
-      ],
-      "obj_resets": []
+      ]
     },
     "3003": {
       "vnum": 3003,
-      "name": "Main Street East",
-      "description": "The eastern section of Main Street is lined with prosperous shops and\ntaverns. The smell of fresh bread wafts from a bakery, mingling with\nthe sound of a blacksmith's hammer. A large weapons shop stands to the\nnorth, its windows displaying gleaming swords and armor.",
-      "sector_type": "city",
-      "flags": [],
+      "name": "The Bar Of Divination",
+      "description": "The bar is one of the finest in the land, lucky it is members only.  Fine furniture is set all around the room.  A small sign is hanging on the wall.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors",
+        "no_magic"
+      ],
       "exits": {
-        "west": {
-          "to_room": 3002,
-          "description": null
-        },
-        "east": {
+        "south": {
           "to_room": 3004,
-          "description": null
+          "description": "You see the entrance."
         },
-        "north": {
-          "to_room": 3020,
-          "description": null
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [],
-      "obj_resets": []
-    },
-    "3004": {
-      "vnum": 3004,
-      "name": "East Gate of Midgaard",
-      "description": "The massive stone gates of Midgaard loom before you. Two enormous \ntowers flank the archway, and guards in chain mail scrutinize all who\npass. Beyond the gates, a dirt road leads east into the wilderness,\ntoward the Haon Dor forest. The safety of the city lies to the west.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
         "west": {
-          "to_room": 3003,
-          "description": null
-        },
-        "east": {
-          "to_room": 4001,
-          "description": null
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 3002,
-          "max": 2
-        }
-      ],
-      "obj_resets": []
-    },
-    "3005": {
-      "vnum": 3005,
-      "name": "Main Street West",
-      "description": "The western stretch of Main Street is home to the city's craftsmen.\nA carpenter's shop, a tanner's stall, and a jeweler's boutique line\nthe street. The sounds of industry fill the air. To the north, a sign\nreading 'The Prancing Pony Inn' swings gently in the breeze. An old\nsewer grate is set into the street here.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "east": {
           "to_room": 3002,
-          "description": null
-        },
-        "west": {
-          "to_room": 3006,
-          "description": null
-        },
-        "north": {
-          "to_room": 3030,
-          "description": null
-        },
-        "down": {
-          "to_room": 3504,
-          "description": "Down through the sewer grate"
+          "description": "You see the inner sanctum."
         }
       },
-      "extra_descs": {},
-      "mob_resets": [],
-      "obj_resets": []
-    },
-    "3006": {
-      "vnum": 3006,
-      "name": "West Gate of Midgaard",
-      "description": "The western gate of Midgaard opens onto a road leading to distant\nmountains. The gate is smaller than its eastern counterpart but no\nless fortified. Merchants with loaded wagons queue to enter the city,\ntheir goods bound for the markets. To the west, adventure awaits.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 3005,
-          "description": null
-        },
-        "west": {
-          "to_room": 5001,
-          "description": null
-        }
+      "extra_descs": {
+        "": "sign"
       },
-      "extra_descs": {},
       "mob_resets": [
         {
-          "vnum": 3002,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "3010": {
-      "vnum": 3010,
-      "name": "A Dark Alley",
-      "description": "This narrow alley winds between tall buildings, barely wide enough\nfor two people to pass. Shadows pool in the corners, and you can't\nshake the feeling of being watched. The city's less savory elements\nare known to frequent this area after dark.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3002,
-          "description": null
-        },
-        "south": {
-          "to_room": 3011,
-          "description": null
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 3005,
-          "max": 2
-        }
-      ],
-      "obj_resets": []
-    },
-    "3011": {
-      "vnum": 3011,
-      "name": "A Dead End",
-      "description": "The alley ends abruptly at a crumbling brick wall. Graffiti marks\nthe stones, and broken bottles litter the ground. However, keen eyes\nmight notice that one section of the wall seems different from the\nrest - a hidden door, perhaps?",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3010,
-          "description": null
-        },
-        "down": {
-          "to_room": 3012,
-          "description": null
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [],
-      "obj_resets": []
-    },
-    "3012": {
-      "vnum": 3012,
-      "name": "The Thieves' Guild",
-      "description": "You've discovered the legendary Thieves' Guild of Midgaard. The\nunderground chamber is dimly lit by guttering torches. Hooded figures\nconverse in hushed tones at tables scattered about the room. A bar\nserves drinks of dubious origin, and a guildmaster sits in shadows.\nA dark passage leads down into what appears to be the sewers.",
-      "sector_type": "inside",
-      "flags": [],
-      "exits": {
-        "up": {
-          "to_room": 3011,
-          "description": null
-        },
-        "down": {
-          "to_room": 3500,
-          "description": "Down to the sewers"
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 3006,
-          "max": 1
-        },
-        {
-          "vnum": 3005,
-          "max": 3
-        }
-      ],
-      "obj_resets": []
-    },
-    "3020": {
-      "vnum": 3020,
-      "name": "Grimtooth's Weapons Emporium",
-      "description": "Weapons of every description line the walls of this shop. Swords,\naxes, maces, and more exotic implements of destruction gleam under\nmagical lighting. A burly dwarf named Grimtooth tends the counter,\nhis own battleaxe never far from reach. Type 'list' to see his wares.",
-      "sector_type": "inside",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 3003,
-          "description": null
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 3003,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "3030": {
-      "vnum": 3030,
-      "name": "The Prancing Pony Inn",
-      "description": "The common room of the Prancing Pony is warm and inviting. A \ncheerful fire crackles in the hearth, and the smell of roasting meat\nfills the air. Travelers from far and wide gather here to share tales\nof adventure over mugs of ale. Rooms are available upstairs.",
-      "sector_type": "inside",
-      "flags": [
-        "peaceful"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 3005,
-          "description": null
-        },
-        "up": {
-          "to_room": 3031,
-          "description": null
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 3004,
+          "vnum": 3043,
           "max": 1
         }
       ],
       "obj_resets": [
         {
-          "vnum": 20,
+          "vnum": 3096,
+          "max": 5
+        }
+      ]
+    },
+    "3004": {
+      "vnum": 3004,
+      "name": "The Entrance To The Clerics' Guild",
+      "description": "The entrance hall is a small modest room, reflecting the true nature of the Clerics.  The exit leads east to the temple square.  A small entrance to the bar is in the northern wall.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3003,
+          "description": "You see the bar, richly decorated with really stylish furniture."
+        },
+        "east": {
+          "to_room": 3005,
+          "description": "You see the Temple Square."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3025,
+          "max": 1
+        },
+        {
+          "vnum": 3059,
+          "max": 5
+        },
+        {
+          "vnum": 3060,
+          "max": 10
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 3034,
+          "max": 10
+        }
+      ]
+    },
+    "3005": {
+      "vnum": 3005,
+      "name": "The Temple Square",
+      "description": "You are standing on the temple square.  Huge marble steps lead up to the temple gate.  The entrance to the Clerics' Guild is to the west, and the old Grunting Boar Inn, is to the east.  Just south of here you see the market square, the center of Midgaard.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3001,
+          "description": "You see the temple."
+        },
+        "east": {
+          "to_room": 3006,
+          "description": "You see the good old Grunting Boar Inn."
+        },
+        "south": {
+          "to_room": 3014,
+          "description": "You see the Market Square."
+        },
+        "west": {
+          "to_room": 3004,
+          "description": "You see the entrance to the Clerics' Guild."
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 3035,
           "max": 1
         }
       ]
     },
-    "3031": {
-      "vnum": 3031,
-      "name": "Upstairs Hallway",
-      "description": "A narrow hallway with doors leading to private rooms. The wooden\nfloor creaks underfoot. A window at the end provides a view of the\ncity below. This is a peaceful place where adventurers can rest.",
+    "3006": {
+      "vnum": 3006,
+      "name": "The Entrance Hall Of The Grunting Boar Inn",
+      "description": "You are standing in the entrance hall of the Grunting Boar Inn.  The hall has been wisely decorated with simple, functional furniture.  The heavy smell of dust and aging paper drifts in from the Post Office to the north.  A small staircase leads up to the reception and the bar is to the east.",
       "sector_type": "inside",
       "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3062,
+          "description": "You see the Midgaard Post Office."
+        },
+        "east": {
+          "to_room": 3007,
+          "description": "Surprise!  You see the bar."
+        },
+        "west": {
+          "to_room": 3005,
+          "description": "You see the temple square."
+        },
+        "up": {
+          "to_room": 3008,
+          "description": "You see the reception."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3061,
+          "max": 5
+        }
+      ]
+    },
+    "3007": {
+      "vnum": 3007,
+      "name": "The Grunting Boar",
+      "description": "You are standing in the bar.  The bar is set against the northern wall, old archaic writing, carvings and symbols cover its top.  A fireplace is built into the western wall, and through the southeastern windows you can see the temple square.  This place makes you feel like home. A small sign with big letters is fastened to the bar.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "no_magic"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 3006,
+          "description": "You see the exit to the entrance hall."
+        }
+      },
+      "extra_descs": {
+        "": "writing carving carvings symbols symbol"
+      },
+      "mob_resets": [
+        {
+          "vnum": 3040,
+          "max": 1
+        },
+        {
+          "vnum": 3064,
+          "max": 3
+        }
+      ]
+    },
+    "3008": {
+      "vnum": 3008,
+      "name": "The Reception",
+      "description": "You are standing in the reception.  The staircase leads down to the entrance hall.  An exit to the north leads to the Cryogenic Center. There is a small sign on the counter.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3064,
+          "description": "You see the Cryogenic Center."
+        },
+        "down": {
+          "to_room": 3006,
+          "description": "You see the entrance hall."
+        }
+      },
+      "extra_descs": {
+        "": "sign"
+      },
+      "mob_resets": [
+        {
+          "vnum": 3005,
+          "max": 1
+        },
+        {
+          "vnum": 3068,
+          "max": 4
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 3034,
+          "max": 10
+        }
+      ]
+    },
+    "3010": {
+      "vnum": 3010,
+      "name": "The General Store",
+      "description": "You are inside the general store.  All sorts of items are stacked on shelves behind the counter, safely out of your reach. A small note hangs on the wall.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "no_magic"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3015,
+          "description": "You see the main street."
+        }
+      },
+      "extra_descs": {
+        "": "note"
+      },
+      "mob_resets": [
+        {
+          "vnum": 3002,
+          "max": 1
+        }
+      ]
+    },
+    "3011": {
+      "vnum": 3011,
+      "name": "The Weapon Shop",
+      "description": "You are inside the weapon shop.  There is a small note on the counter.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "no_magic"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3016,
+          "description": "You see the main street."
+        }
+      },
+      "extra_descs": {
+        "": "note"
+      },
+      "mob_resets": [
+        {
+          "vnum": 3003,
+          "max": 1
+        }
+      ]
+    },
+    "3012": {
+      "vnum": 3012,
+      "name": "Main Street",
+      "description": "You are at the end of the main street of Midgaard.  South of here is the entrance to the Guild of Magic Users.  The street continues east towards the market square.  The magic shop is to the north and to the west is the city gate.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3033,
+          "description": "You see the magic shop."
+        },
+        "east": {
+          "to_room": 3013,
+          "description": "You see the main street."
+        },
+        "south": {
+          "to_room": 3017,
+          "description": "You see the entrance to the Guild of Magic Users."
+        },
+        "west": {
+          "to_room": 3040,
+          "description": "You see the city gate."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3062,
+          "max": 15
+        }
+      ]
+    },
+    "3013": {
+      "vnum": 3013,
+      "name": "Main Street",
+      "description": "You are on the main street passing through the City of Midgaard.  South of here is the entrance to the Armory, and the bakery is to the north.  East of here is the market square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3009,
+          "description": "You see the bakery."
+        },
+        "east": {
+          "to_room": 3014,
+          "description": "You see the market square."
+        },
+        "south": {
+          "to_room": 3020,
+          "description": "You see the armory."
+        },
+        "west": {
+          "to_room": 3012,
+          "description": "You see the main street."
+        }
+      }
+    },
+    "3014": {
+      "vnum": 3014,
+      "name": "Market Square",
+      "description": "You are standing on the market square, the famous Square of Midgaard. A large, peculiar looking statue is standing in the middle of the square. Roads lead in every direction, north to the temple square, south to the common square, east and westbound is the main street.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3005,
+          "description": "You see the temple square."
+        },
+        "east": {
+          "to_room": 3015,
+          "description": "You see the main street."
+        },
+        "south": {
+          "to_room": 3025,
+          "description": "You see the common square."
+        },
+        "west": {
+          "to_room": 3013,
+          "description": "You see the main street."
+        }
+      },
+      "extra_descs": {
+        "": "statue"
+      },
+      "mob_resets": [
+        {
+          "vnum": 3059,
+          "max": 5
+        },
+        {
+          "vnum": 3060,
+          "max": 10
+        },
+        {
+          "vnum": 3068,
+          "max": 4
+        }
+      ]
+    },
+    "3015": {
+      "vnum": 3015,
+      "name": "Main Street",
+      "description": "You are on the main street crossing through town.  To the north is the general store, and the main street continues east.  To the west you see and hear the market place, to the south a small door leads into the Pet Shop.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3010,
+          "description": "You see the general store."
+        },
+        "east": {
+          "to_room": 3016,
+          "description": "You see the main street."
+        },
+        "south": {
+          "to_room": 3031,
+          "description": "You see the Pet Shop."
+        },
+        "west": {
+          "to_room": 3014,
+          "description": "You see the market square."
+        }
+      }
+    },
+    "3016": {
+      "vnum": 3016,
+      "name": "Main Street",
+      "description": "The main street, to the north is the weapon shop and to the south is the Guild of Swordsmen.  To the east you leave town and to the west the street leads to the market square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3011,
+          "description": "You see the weapon shop."
+        },
+        "east": {
+          "to_room": 3041,
+          "description": "You see the city gate."
+        },
+        "south": {
+          "to_room": 3021,
+          "description": "You see the swordsmen's guild."
+        },
+        "west": {
+          "to_room": 3015,
+          "description": "You see the main street leading to the market square."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3062,
+          "max": 15
+        }
+      ]
+    },
+    "3017": {
+      "vnum": 3017,
+      "name": "The Entrance To The Mages' Guild",
+      "description": "The entrance hall to this guild is a small, poor lighted room.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3012,
+          "description": "You see the main street."
+        },
+        "south": {
+          "to_room": 3018,
+          "description": "You see your favorite place, the Mages' Bar."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3024,
+          "max": 1
+        },
+        {
+          "vnum": 3059,
+          "max": 5
+        },
+        {
+          "vnum": 3060,
+          "max": 10
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 3034,
+          "max": 10
+        }
+      ]
+    },
+    "3018": {
+      "vnum": 3018,
+      "name": "The Mages' Bar",
+      "description": "The bar is one of the weirdest in the land.  Mystical images float around the air.  Illusions of fine furniture appear all around the room.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors",
+        "no_magic"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3017,
+          "description": "You see the lobby."
+        },
+        "east": {
+          "to_room": 3019,
+          "description": "You see the laboratory."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3042,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 3096,
+          "max": 5
+        }
+      ]
+    },
+    "3019": {
+      "vnum": 3019,
+      "name": "The Mages' Laboratory",
+      "description": "This is the Magical Experiments Laboratory.  Dark smoke-stained stones arch over numerous huge oaken tables, most of these cluttered with strange- looking pipes and flasks.  The floor is covered with half-erased pentagrams and even weirder symbols, and a blackboard in a dark corner has only been partially cleaned, some painful-looking letters faintly visible.  A well in the middle of the floor leads down into darkness.  Vile smells waft from the depths.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 3018,
+          "description": "You see the bar."
+        },
+        "down": {
+          "to_room": 7017,
+          "description": "You can't see what is down there, it is too dark.  Looks like it would be impossible to climb back up."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3020,
+          "max": 1
+        }
+      ]
+    },
+    "3020": {
+      "vnum": 3020,
+      "name": "The Armory",
+      "description": "The armory with all kinds of armors on the walls and in the window.  You see helmets, shields and chain mails.  To the north is the main street. On the wall is a small note.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "no_magic"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3013,
+          "description": "You see the main street."
+        },
+        "gate": {
+          "to_room": 12000,
+          "description": "You see a magical gate."
+        }
+      },
+      "extra_descs": {
+        "": "note"
+      },
+      "mob_resets": [
+        {
+          "vnum": 3004,
+          "max": 1
+        }
+      ]
+    },
+    "3021": {
+      "vnum": 3021,
+      "name": "The Entrance Hall To The Guild Of Swordsmen",
+      "description": "The entrance hall to the Guild of Swordsmen.  A place where one has to be careful not to say something wrong (or right).  To the east is the bar and to the north is the main street.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3016,
+          "description": "You see the main street."
+        },
+        "east": {
+          "to_room": 3022,
+          "description": "You see the swordsmen's bar, many noises comes from there."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3027,
+          "max": 1
+        },
+        {
+          "vnum": 3059,
+          "max": 5
+        },
+        {
+          "vnum": 3060,
+          "max": 10
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 3034,
+          "max": 10
+        }
+      ]
+    },
+    "3022": {
+      "vnum": 3022,
+      "name": "The Bar Of Swordsmen",
+      "description": "The bar of swordsmen, once upon a time beautifully furnished.  But now the furniture is all around you in small pieces.  To the south is the yard, and to the west is the entrance hall.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors",
+        "no_magic"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3023,
+          "description": "You see the practice yard."
+        },
+        "west": {
+          "to_room": 3021,
+          "description": "You see the entrance hall to the warriors' guild."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3045,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 3096,
+          "max": 5
+        }
+      ]
+    },
+    "3023": {
+      "vnum": 3023,
+      "name": "The Tournament And Practice Yard",
+      "description": "This is the practice yard of the fighters.  To the north is the bar. A well leads down into darkness.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3022,
+          "description": "You see the bar."
+        },
+        "down": {
+          "to_room": 7048,
+          "description": "You can't see what is down there, it is too dark.  Looks like it would be impossible to climb back up."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3023,
+          "max": 1
+        }
+      ]
+    },
+    "3024": {
+      "vnum": 3024,
+      "name": "The Eastern End Of Poor Alley",
+      "description": "You are at the poor alley.  South of here is the Grubby Inn and to the east you see common square.  The alley continues further west.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3025,
+          "description": "You see the common square."
+        },
+        "south": {
+          "to_room": 3048,
+          "description": "You see the Inn."
+        },
+        "west": {
+          "to_room": 3044,
+          "description": "You see the poor alley."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3062,
+          "max": 15
+        }
+      ]
+    },
+    "3025": {
+      "vnum": 3025,
+      "name": "The Common Square",
+      "description": "The common square, people pass you, talking to each other.  To the west is the poor alley and to the east is the dark alley.  To the north, this square is connected to the market square.  From the south you notice a nasty smell.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3014,
+          "description": "You see the market square."
+        },
+        "east": {
+          "to_room": 3026,
+          "description": "You see the dark alley."
+        },
+        "south": {
+          "to_room": 3030,
+          "description": "You see the city dump."
+        },
+        "west": {
+          "to_room": 3024,
+          "description": "You see Poor Alley."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3062,
+          "max": 15
+        }
+      ]
+    },
+    "3026": {
+      "vnum": 3026,
+      "name": "The Dark Alley",
+      "description": "The dark alley, to the west is the common square and to the south is the Guild of Thieves.  The alley continues east.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3045,
+          "description": "The alley continues east."
+        },
+        "south": {
+          "to_room": 3027,
+          "description": "You see the entrance to the thieves' guild."
+        },
+        "west": {
+          "to_room": 3025,
+          "description": "You see the common square."
+        }
+      },
+      "extra_descs": {
+        "": "guild"
+      },
+      "mob_resets": [
+        {
+          "vnum": 3063,
+          "max": 5
+        },
+        {
+          "vnum": 3066,
+          "max": 1
+        }
+      ]
+    },
+    "3027": {
+      "vnum": 3027,
+      "name": "The Entrance Hall To The Guild Of Thieves",
+      "description": "The entrance hall to the thieves' and assassins' guild.  A place where you can lose both your life and your money, if you are not careful.  To the north is the dark alley and to the east is the thieves' bar.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3026,
+          "description": "You see the alley."
+        },
+        "east": {
+          "to_room": 3028,
+          "description": "You see the thieves bar, where everything disappears."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3026,
+          "max": 1
+        },
+        {
+          "vnum": 3059,
+          "max": 5
+        },
+        {
+          "vnum": 3060,
+          "max": 10
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 3034,
+          "max": 10
+        }
+      ]
+    },
+    "3028": {
+      "vnum": 3028,
+      "name": "The Thieves' Bar",
+      "description": "The bar of the thieves.  Once upon a time this place was beautifully furnished, but now it seems almost empty.  To the south is the yard, and to the west is the entrance hall.    (Maybe the furniture has been stolen?!)",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors",
+        "no_magic"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3029,
+          "description": "You see the secret yard."
+        },
+        "west": {
+          "to_room": 3027,
+          "description": "You see the entrance hall to the thieves' guild."
+        }
+      },
+      "extra_descs": {
+        "": "furniture"
+      },
+      "mob_resets": [
+        {
+          "vnum": 3044,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 3096,
+          "max": 5
+        }
+      ]
+    },
+    "3029": {
+      "vnum": 3029,
+      "name": "The Secret Yard",
+      "description": "The secret practice yard of thieves and assassins.  To the north is the bar.  A well leads down into darkness.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3028,
+          "description": "You see the bar."
+        },
+        "down": {
+          "to_room": 7043,
+          "description": "You can't see what is down there, it is too dark.  Looks like it would be impossible to climb back up."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3022,
+          "max": 1
+        }
+      ]
+    },
+    "3030": {
+      "vnum": 3030,
+      "name": "The Dump",
+      "description": "The dump, where the people from the city drop their garbage.  Through the garbage you can see a large junction of pipes, looks like the entrance to the sewer system.  North of here you see the common square.",
+      "sector_type": "field",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3025,
+          "description": "You see the common square."
+        },
+        "down": {
+          "to_room": 7030,
+          "description": "You see the sewers.",
+          "door": {
+            "name": "grate",
+            "state": "open",
+            "locked": true,
+            "key_vnum": 3005
+          }
+        }
+      }
+    },
+    "3031": {
+      "vnum": 3031,
+      "name": "The Pet Shop",
+      "description": "The Pet Shop is a small crowded store, full of cages and animals of various sizes.  There is a sign on the wall.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors",
+        "no_magic"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3015,
+          "description": "You see the main street."
+        }
+      },
+      "extra_descs": {
+        "": "sign"
+      },
+      "mob_resets": [
+        {
+          "vnum": 3089,
+          "max": 1
+        }
+      ]
+    },
+    "3032": {
+      "vnum": 3032,
+      "name": "Pet Shop Store",
+      "description": "This  is the small dark room in which the Pet shop keeps his pets. It is vital that this room's virtual number is exactly one larger than the Pet Shop number.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "godroom"
+      ],
+      "exits": {},
+      "mob_resets": [
+        {
+          "vnum": 3090,
+          "max": 1
+        },
+        {
+          "vnum": 3091,
+          "max": 1
+        },
+        {
+          "vnum": 3092,
+          "max": 1
+        },
+        {
+          "vnum": 3093,
+          "max": 1
+        },
+        {
+          "vnum": 3094,
+          "max": 1
+        }
+      ]
+    },
+    "3033": {
+      "vnum": 3033,
+      "name": "The Magic Shop",
+      "description": "Behind the counter you see various items, neatly placed in racks, presumably most of them are magic.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "no_magic"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3012,
+          "description": "You see the main street."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3000,
+          "max": 1
+        }
+      ]
+    },
+    "3040": {
+      "vnum": 3040,
+      "name": "Inside The West Gate Of Midgaard",
+      "description": "You are by two small towers that have been built into the city wall and connected with a footbridge across the heavy wooden gate.  Main Street leads east and Wall Road leads south from here.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3012,
+          "description": "You see Main Street."
+        },
+        "south": {
+          "to_room": 3042,
+          "description": "You see the road running along the inner side of the city wall.  You notice that it is called Wall Road."
+        },
+        "west": {
+          "to_room": 3052,
+          "description": "The city gate is to the west.",
+          "door": {
+            "name": "gate",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": 3112
+          }
+        }
+      },
+      "extra_descs": {
+        "": "wall"
+      },
+      "mob_resets": [
+        {
+          "vnum": 3067,
+          "max": 10
+        }
+      ]
+    },
+    "3041": {
+      "vnum": 3041,
+      "name": "Inside The East Gate Of Midgaard",
+      "description": "You are by two small towers that have been built into the city wall and connected with a footbridge across the heavy wooden gate.  Main Street leads west from here.  To the south you see the Water Shop.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3053,
+          "description": "You see the city gate.",
+          "door": {
+            "name": "gate",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": 3112
+          }
+        },
+        "south": {
+          "to_room": 3058,
+          "description": "You see the water shop."
+        },
+        "west": {
+          "to_room": 3016,
+          "description": "You see Main Street."
+        }
+      },
+      "extra_descs": {
+        "": "wall"
+      },
+      "mob_resets": [
+        {
+          "vnum": 3067,
+          "max": 10
+        }
+      ]
+    },
+    "3042": {
+      "vnum": 3042,
+      "name": "Wall Road",
+      "description": "You are walking next to the western city wall.  The road continues further south and the city gate is just north of here.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3040,
+          "description": "You see the city gate."
+        },
+        "south": {
+          "to_room": 3043,
+          "description": "The road continues further south."
+        }
+      },
+      "extra_descs": {
+        "": "wall"
+      }
+    },
+    "3043": {
+      "vnum": 3043,
+      "name": "Wall Road",
+      "description": "You are walking next to the western city wall.  Wall Road continues further north and south.  A small, poor alley leads east. Some letters have been written on the wall here.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3042,
+          "description": "The road continues further north."
+        },
+        "east": {
+          "to_room": 3044,
+          "description": "Poor Alley leads east."
+        },
+        "south": {
+          "to_room": 3047,
+          "description": "The road continues further south."
+        }
+      },
+      "extra_descs": {
+        "": "wall"
+      }
+    },
+    "3044": {
+      "vnum": 3044,
+      "name": "Poor Alley",
+      "description": "You are on Poor Alley, which continues further east.  You see the city wall to the west.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3024,
+          "description": "The alley leads east."
+        },
+        "west": {
+          "to_room": 3043,
+          "description": "The alley leads west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3065,
+          "max": 2
+        }
+      ]
+    },
+    "3045": {
+      "vnum": 3045,
+      "name": "The Dark Alley At The Levee",
+      "description": "You are standing in the alley which continues east and west.  South of here you see the levee.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3046,
+          "description": "The alley leads east."
+        },
+        "south": {
+          "to_room": 3049,
+          "description": "You see the levee."
+        },
+        "west": {
+          "to_room": 3026,
+          "description": "The alley leads west."
+        }
+      }
+    },
+    "3046": {
+      "vnum": 3046,
+      "name": "The Eastern End Of The Alley",
+      "description": "You are standing at the eastern end of the alley, the city wall is just east, blocking any further movement.  A small warehouse is directly south of here.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 3050,
+          "description": "You see the warehouse."
+        },
+        "west": {
+          "to_room": 3045,
+          "description": "You see the alley."
+        }
+      }
+    },
+    "3047": {
+      "vnum": 3047,
+      "name": "Wall Road",
+      "description": "You are standing on the road next to the western city wall, which continues north.  South of here is a bridge across the river.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3043,
+          "description": "You see the road."
+        },
+        "south": {
+          "to_room": 3051,
+          "description": "You see the bridge."
+        }
+      },
+      "extra_descs": {
+        "": "wall"
+      }
+    },
+    "3048": {
+      "vnum": 3048,
+      "name": "Grubby Inn",
+      "description": "You are inside the old Grubby Inn.  This place has not been cleaned for several decades; vile smells make you dizzy.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "no_magic"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3024,
+          "description": "You see the alley."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3046,
+          "max": 1
+        },
+        {
+          "vnum": 3065,
+          "max": 2
+        }
+      ]
+    },
+    "3049": {
+      "vnum": 3049,
+      "name": "The Levee",
+      "description": "You are at the levee.  South of here you see the river gently flowing west. The river bank is very low making it possible to enter the river.",
+      "sector_type": "city",
+      "flags": [
+        "no_magic"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3045,
+          "description": "You see the alley."
+        },
+        "south": {
+          "to_room": 3203,
+          "description": "You see the river flowing west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3006,
+          "max": 1
+        }
+      ]
+    },
+    "3050": {
+      "vnum": 3050,
+      "name": "The Deserted Warehouse",
+      "description": "You are inside the warehouse.  The room is decorated with various old items from ships.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3046,
+          "description": "You see the alley."
+        },
+        "portal": {
+          "to_room": 6500,
+          "description": "You see a magical portal."
+        },
+        "arch": {
+          "to_room": 5400,
+          "description": "You see a magical arch."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3007,
+          "max": 1
+        }
+      ]
+    },
+    "3051": {
+      "vnum": 3051,
+      "name": "On The Bridge",
+      "description": "You are standing on the stone bridge crosses the river.  The bridge is built out from the western city wall and the river flows west through an opening in the wall ten feet below the bridge.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3047,
+          "description": "You see the road."
+        },
+        "south": {
+          "to_room": 3100,
+          "description": "You see the Concourse."
+        }
+      },
+      "extra_descs": {
+        "": "wall"
+      }
+    },
+    "3052": {
+      "vnum": 3052,
+      "name": "Outside The West Gate Of Midgaard",
+      "description": "You are by two small towers that have been built into the city wall and connected with a footbridge across the heavy wooden gate.  To the west you can see the edge of a big forest.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3040,
+          "description": "The city gate is to the east.",
+          "door": {
+            "name": "gate",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": 3112
+          }
+        },
+        "west": {
+          "to_room": 6092,
+          "description": "The forest edge is to the west."
+        }
+      },
+      "extra_descs": {
+        "": "wall"
+      }
+    },
+    "3053": {
+      "vnum": 3053,
+      "name": "Outside The East Gate Of Midgaard",
+      "description": "You are by two small towers that have been built into the city wall and connected with a footbridge across the heavy wooden gate.  To the east the plains stretch out in the distance.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3503,
+          "description": "You see the plains."
+        },
+        "west": {
+          "to_room": 3041,
+          "description": "You see the city gate.",
+          "door": {
+            "name": "gate",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": 3112
+          }
+        }
+      },
+      "extra_descs": {
+        "": "wall"
+      }
+    },
+    "3054": {
+      "vnum": 3054,
+      "name": "By The Temple Altar",
+      "description": "You are by the temple altar in the northern end of the Temple of Midgaard.  A huge altar made from white polished marble is standing in front of you and behind it is a ten foot tall sitting statue of Odin, the King of the Gods.    To the north, steps lead out the back of the temple towards the countryside.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3059,
+          "description": "You see the vast Midgaard countryside."
+        },
+        "south": {
+          "to_room": 3001,
+          "description": "You see the southern end of the temple."
+        }
+      },
+      "extra_descs": {
+        "": "statue odin king god",
+        "ven though the altar is more than ten feet long it appears to be made from": "a single block of white virgin marble."
+      }
+    },
+    "3055": {
+      "vnum": 3055,
+      "name": "Odin's Store",
+      "description": "This is the small dark room in which Odin keeps the player items that he takes care of.  It is vital that this room's virtual number is exactly one larger than the room by the temple altar.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "private"
+      ],
+      "exits": {}
+    },
+    "3058": {
+      "vnum": 3058,
+      "name": "Ye Olde Water Shoppe",
+      "description": "You are standing in the center of a small wooden shop whose walls are covered with racks upon racks of water jugs.  Several large barrels with spigots are stacked in the corner.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "no_magic"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3041,
+          "description": "You see the East Gate."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3009,
+          "max": 1
+        }
+      ]
+    },
+    "3059": {
+      "vnum": 3059,
+      "name": "Behind The Temple Altar",
+      "description": "You are on a dirt path leading away from the Temple Altar which is south of here.  To the north, the path continues through the lush contryside of Midgaard towards the Dragonhelm Mountains far off to the north.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3060,
+          "description": "You see the lush, green countryside of Midgaard."
+        },
+        "south": {
+          "to_room": 3054,
+          "description": "You see the Temple Altar."
+        }
+      }
+    },
+    "3060": {
+      "vnum": 3060,
+      "name": "The Great Field Of Midgaard",
+      "description": "You are walking on a wide dirt path through the lush, green, fresh Midgaard countryside.  You can see to the horizon to the north, east, and west; the busy city of Midgaard lies to the south.  All around you is healthy green grass and an occasional large oak tree.  The sun feels wonderful on your face and a pleasant wind blows through your hair.  Birds chirp quietly to themselves and you can smell the faint scent of flowers and freshly cut grass.  You feel like you could lie down in the grass and stay here forever, surrounded by powerful beauty in all directions.    The path you are on continues north through the field and south back to Midgaard.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3061,
+          "description": "You see more of the path through the Great Field."
+        },
+        "south": {
+          "to_room": 3059,
+          "description": "You see the path which goes back to Midgaard."
+        }
+      }
+    },
+    "3061": {
+      "vnum": 3061,
+      "name": "The Great Field Of Midgaard",
+      "description": "You are walking on a wide dirt path through the lush, green, fresh Midgaard countryside.  You can see to the horizon to the north, east, and west; the busy city of Midgaard lies to the south.  All around you is healthy green grass and an occasional large oak tree.  The sun feels wonderful on your face and a pleasant wind blows through your hair.  Birds chirp quietly to themselves and you can smell the faint scent of flowers and freshly cut grass.  You feel like you could lie down in the grass and stay here forever, surrounded by powerful beauty in all directions.    There is a strange structure on the eastern side of the path.  A small dirt path splits off of the main path and leads off to the west.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3065,
+          "description": "The path continues northwards bringing you ever closer to the Dragonhelm Mountains."
+        },
+        "east": {
+          "to_room": 18600,
+          "description": "There is a strange structure to the east on the edge of the trail."
+        },
+        "south": {
+          "to_room": 3060,
+          "description": "You see more of the Field."
+        },
+        "west": {
+          "to_room": 3066,
+          "description": "There is a strange path leading towards a rusty gate to the west."
+        }
+      }
+    },
+    "3062": {
+      "vnum": 3062,
+      "name": "The Post Office",
+      "description": "You are in the central post office for Midgaard.  Piles of assorted mail lay untouched in the corners, collecting cobwebs.  Several large crates have been pried open by curious customs agents, and are now stacked along the west wall, hiding plenty of 'WANTED' posters. There is a sign posted on the wall here.",
+      "sector_type": "city",
+      "flags": [
+        "indoors",
+        "peaceful",
+        "no_magic"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3006,
+          "description": "You see the entrance to the Grunting Boar Inn and Tavern."
+        }
+      },
+      "extra_descs": {
+        "": "WANTED posters poster wall",
+        "nvelopes of all sizes are heaped into hugh piles around the room.  As you": "look closer, you see a letter that you had posted a full week ago, laying unnoticed and slightly rat-chewed towards the bottom of the pile."
+      },
+      "mob_resets": [
+        {
+          "vnum": 3010,
+          "max": 1
+        }
+      ]
+    },
+    "3063": {
+      "vnum": 3063,
+      "name": "The Midgaard Donation Room",
+      "description": "You are in a small, undecorated room just off of the main temple.  There are a couple of small wooden benches here where people occasionally sit while they wait for items to appear.  The temple is to the west.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "indoors",
         "peaceful"
       ],
       "exits": {
-        "down": {
-          "to_room": 3030,
-          "description": null
+        "west": {
+          "to_room": 3001,
+          "description": "The busy temple is back west."
+        }
+      }
+    },
+    "3064": {
+      "vnum": 3064,
+      "name": "The Cryogenic Center",
+      "description": "You are standing in an impossible white sterile room with cylindrical body-length canisters lined up against the walls.  The Reception is to the south.",
+      "sector_type": "city",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3008,
+          "description": "The Reception is to the south."
         }
       },
-      "extra_descs": {},
-      "mob_resets": [],
-      "obj_resets": []
+      "mob_resets": [
+        {
+          "vnum": 3095,
+          "max": 1
+        }
+      ]
+    },
+    "3065": {
+      "vnum": 3065,
+      "name": "The Great Field Of Midgaard",
+      "description": "You are walking on a wide dirt path through the lush, green, fresh Midgaard countryside.  You can see to the horizon to the north, east, and west; the busy city of Midgaard lies to the south.  All around you is healthy green grass and an occasional large oak tree.  The sun feels wonderful on your face and a pleasant wind blows through your hair.  Birds chirp quietly to themselves and you can smell the faint scent of flowers and freshly cut grass.  You feel like you could lie down in the grass and stay here forever, surrounded by powerful beauty in all directions.    The way north appears to be blocked by a large plot device and you cannot see any way around it.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 3061,
+          "description": "The path continues through the field to the south past an odd structure on the eastern side of the path."
+        }
+      },
+      "extra_descs": {
+        "": "plot device"
+      }
+    },
+    "3066": {
+      "vnum": 3066,
+      "name": "The Dirt Path",
+      "description": "You are walking along a narrow dirt path through the lush, green, fresh Midgaard countryside.  You can see to the horizon to the north and east; the busy city of Midgaard lies to the south.  All around you is healthy green grass and an occasional large oak tree.  The sun feels wonderful on your face and a pleasant wind blows through your hair.  Birds chirp quietly to themselves and you can smell the faint scent of flowers and freshly cut grass.  You feel like you could lie down in the grass and stay here forever, surrounded by powerful beauty in all directions.    There is a large rusty gate sitting in a stone archway just to the west.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3061,
+          "description": "The path meets up with a larger path just to the east."
+        },
+        "west": {
+          "to_room": 3600,
+          "description": "There is a large rusty gate just to the west."
+        }
+      }
     }
   },
   "mobs": {
+    "3000": {
+      "vnum": 3000,
+      "name": "wizard",
+      "short_desc": "the wizard",
+      "long_desc": "A wizard walks around behind the counter, talking to himself.",
+      "level": 33,
+      "alignment": 900,
+      "hp_dice": "2d8+18",
+      "damage_dice": "1d1+30000",
+      "gold": 95000,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "special",
+        "sentinel",
+        "memory",
+        "no_charm",
+        "no_summmon"
+      ],
+      "description": "The wizard looks old and senile, and yet he looks like a very powerful\nwizard.  He is equipped with fine clothing, and is wearing many fine\nrings and bracelets.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          3050
+        ],
+        "buys": [
+          "3053"
+        ],
+        "markup": 3051.0,
+        "markdown": 3052.0
+      },
+      "inventory": [
+        3050,
+        3051,
+        3052,
+        3053,
+        3054
+      ]
+    },
     "3001": {
       "vnum": 3001,
-      "name": "the temple healer",
-      "short_desc": "A kindly temple healer",
-      "long_desc": "A robed priest tends to the altar, ready to heal the wounded.",
-      "level": 25,
-      "hp_dice": "10d10+100",
-      "damage_dice": "1d4+2",
-      "gold": 50,
-      "exp": 0,
-      "alignment": 1000,
+      "name": "baker",
+      "short_desc": "the baker",
+      "long_desc": "The baker looks at you calmly, wiping flour from his face with one hand.",
+      "level": 33,
+      "alignment": 900,
+      "hp_dice": "2d8+18",
+      "damage_dice": "1d1+30000",
+      "gold": 80050,
+      "exp": 8,
+      "armor_class": -10,
       "flags": [
+        "special",
         "sentinel",
-        "helper"
+        "memory",
+        "no_charm",
+        "no_summmon"
       ],
-      "special": "healer"
+      "description": "A fat, nice looking baker.  But you can see that he has many scars on his\nbody.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          3009
+        ],
+        "buys": [],
+        "markup": 3010.0,
+        "markdown": 3011.0
+      },
+      "inventory": [
+        3009,
+        3010,
+        3011
+      ],
+      "equipment": {
+        "wield": 3022
+      }
     },
     "3002": {
       "vnum": 3002,
-      "name": "a city guard",
-      "short_desc": "A vigilant city guard",
-      "long_desc": "A guard in chain mail patrols the area, watching for trouble.",
-      "level": 15,
-      "hp_dice": "5d10+50",
-      "damage_dice": "2d6+3",
-      "gold": 20,
-      "exp": 500,
-      "alignment": 500,
+      "name": "grocer",
+      "short_desc": "the grocer",
+      "long_desc": "A grocer stands at the counter, with a slightly impatient look on his face.",
+      "level": 33,
+      "alignment": 900,
+      "hp_dice": "2d8+18",
+      "damage_dice": "1d1+30000",
+      "gold": 95000,
+      "exp": 8,
+      "armor_class": -10,
       "flags": [
+        "special",
         "sentinel",
-        "helper"
+        "memory",
+        "no_charm",
+        "no_summmon"
       ],
-      "special": null
+      "description": "A tall grocer, who moves two 200 pounds bag of flour around on his shoulders.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          3030
+        ],
+        "buys": [
+          "3033"
+        ],
+        "markup": 3031.0,
+        "markdown": 3032.0
+      },
+      "inventory": [
+        3030,
+        3031,
+        3032,
+        3033,
+        3036
+      ],
+      "equipment": {
+        "wield": 3022
+      }
     },
     "3003": {
       "vnum": 3003,
-      "name": "Grimtooth",
-      "short_desc": "Grimtooth the dwarf weaponsmith",
-      "long_desc": "A gruff dwarf stands behind the counter, appraising his wares.",
-      "level": 30,
-      "hp_dice": "15d10+150",
-      "damage_dice": "3d8+5",
-      "gold": 1000,
-      "exp": 0,
-      "alignment": 0,
+      "name": "weaponsmith",
+      "short_desc": "the weaponsmith",
+      "long_desc": "A weaponsmith is standing here.",
+      "level": 33,
+      "alignment": 900,
+      "hp_dice": "2d8+18",
+      "damage_dice": "1d1+30000",
+      "gold": 95000,
+      "exp": 8,
+      "armor_class": -10,
       "flags": [
+        "special",
         "sentinel",
-        "shopkeeper"
+        "memory",
+        "no_charm",
+        "no_summmon"
       ],
-      "special": "shopkeeper"
+      "description": "He is a young weaponsmith, who still has lots to learn but he is still\neager to sell you his latest implements of carnage and destruction.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          3020
+        ],
+        "buys": [
+          "3023"
+        ],
+        "markup": 3021.0,
+        "markdown": 3022.0
+      },
+      "inventory": [
+        3020,
+        3021,
+        3022,
+        3023,
+        3024,
+        3025
+      ],
+      "equipment": {
+        "wield": 3022
+      }
     },
     "3004": {
       "vnum": 3004,
-      "name": "the innkeeper",
-      "short_desc": "A jovial innkeeper",
-      "long_desc": "The innkeeper polishes glasses, ready to serve weary travelers.",
-      "level": 10,
-      "hp_dice": "3d10+30",
-      "damage_dice": "1d4+1",
-      "gold": 100,
-      "exp": 0,
-      "alignment": 200,
+      "name": "armourer",
+      "short_desc": "the armourer",
+      "long_desc": "An armourer stands here displaying his new (and previously owned) armours.",
+      "level": 33,
+      "alignment": 900,
+      "hp_dice": "2d8+18",
+      "damage_dice": "1d1+30000",
+      "gold": 94250,
+      "exp": 8,
+      "armor_class": -10,
       "flags": [
-        "sentinel"
+        "special",
+        "sentinel",
+        "memory",
+        "no_charm",
+        "no_summmon"
       ],
-      "special": null
+      "description": "An old but very strong armourer.  He has made more suits of armour in his\nlife than you have ever seen.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          3040
+        ],
+        "buys": [
+          "3043"
+        ],
+        "markup": 3041.0,
+        "markdown": 3042.0
+      },
+      "inventory": [
+        3040,
+        3041,
+        3042,
+        3043,
+        3044,
+        3045,
+        3046,
+        3070,
+        3071,
+        3075,
+        3076,
+        3080,
+        3081,
+        3085,
+        3086
+      ],
+      "equipment": {
+        "wield": 3022
+      }
     },
     "3005": {
       "vnum": 3005,
-      "name": "a shady thief",
-      "short_desc": "A shifty-eyed thief",
-      "long_desc": "A cloaked figure lurks in the shadows, eyeing your purse.",
-      "level": 8,
-      "hp_dice": "3d10+20",
-      "damage_dice": "1d6+2",
-      "gold": 30,
-      "exp": 400,
-      "alignment": -200,
+      "name": "receptionist",
+      "short_desc": "the receptionist",
+      "long_desc": "A receptionist is standing behind the counter here, smiling at you.",
+      "level": 33,
+      "alignment": 900,
+      "hp_dice": "2d8+32",
+      "damage_dice": "1d1+30000",
+      "gold": 0,
+      "exp": 8,
+      "armor_class": -10,
       "flags": [
-        "thief"
+        "special",
+        "sentinel",
+        "aware",
+        "memory",
+        "no_charm",
+        "no_summmon",
+        "no_sleep"
       ],
-      "special": null
+      "description": "You notice a tired look in her face.  She looks like she isn't paid well\nenough to put up with any crap from mud players with attitudes.",
+      "equipment": {
+        "wield": 3022
+      }
     },
     "3006": {
       "vnum": 3006,
-      "name": "the Guildmaster",
-      "short_desc": "The mysterious Guildmaster",
-      "long_desc": "A hooded figure sits in shadow, the Guildmaster of Thieves.",
-      "level": 40,
-      "hp_dice": "20d10+200",
-      "damage_dice": "4d6+8",
-      "gold": 500,
-      "exp": 5000,
-      "alignment": -500,
+      "name": "captain",
+      "short_desc": "Captain Stolar",
+      "long_desc": "A retired captain stands here, selling boats.",
+      "level": 33,
+      "alignment": 900,
+      "hp_dice": "2d8+12",
+      "damage_dice": "1d1+30000",
+      "gold": 81000,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "special",
+        "sentinel",
+        "memory",
+        "no_charm",
+        "no_summmon"
+      ],
+      "description": "This captain has eaten more sharks than you have killed peas.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          3060
+        ],
+        "buys": [
+          "1.2"
+        ],
+        "markup": 3061.0,
+        "markdown": -1.0
+      },
+      "inventory": [
+        3060,
+        3061
+      ]
+    },
+    "3007": {
+      "vnum": 3007,
+      "name": "sailor",
+      "short_desc": "the sailor",
+      "long_desc": "A sailor stands here, waiting to help you.",
+      "level": 33,
+      "alignment": 900,
+      "hp_dice": "2d8+12",
+      "damage_dice": "1d1+30000",
+      "gold": 81000,
+      "exp": 8,
+      "armor_class": -10,
+      "flags": [
+        "sentinel",
+        "memory",
+        "no_charm",
+        "no_summmon"
+      ],
+      "description": "He looks like a strong, fit sailor.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [],
+        "buys": [],
+        "markup": 1.0,
+        "markdown": 1.0
+      }
+    },
+    "3008": {
+      "vnum": 3008,
+      "name": "uncle",
+      "short_desc": "Uncle Juan",
+      "long_desc": "Uncle Juan is here ready to take your order.",
+      "level": 33,
+      "alignment": 900,
+      "hp_dice": "2d8+18",
+      "damage_dice": "1d1+30000",
+      "gold": 81000,
+      "exp": 8,
+      "armor_class": -10,
+      "flags": [
+        "special",
+        "sentinel",
+        "memory",
+        "no_charm",
+        "no_summmon"
+      ],
+      "description": "He looks like he may or may not have a green card."
+    },
+    "3009": {
+      "vnum": 3009,
+      "name": "wally",
+      "short_desc": "Wally the Watermaster",
+      "long_desc": "Wally the Watermaster is standing behind the counter.",
+      "level": 33,
+      "alignment": 800,
+      "hp_dice": "1d8+18",
+      "damage_dice": "1d1+30000",
+      "gold": 80500,
+      "exp": 8,
+      "armor_class": -10,
+      "flags": [
+        "special",
+        "sentinel",
+        "memory",
+        "no_charm",
+        "no_summmon"
+      ],
+      "description": "Wally is a bit pudgy but looks very strong.  He has a glass of Midgaard\nNatural Spring Water in his hand.  When he notices you, he proudly\ndisplays his fine collection of contemporary waters.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          3102
+        ],
+        "buys": [],
+        "markup": 3103.0,
+        "markdown": 3104.0
+      },
+      "inventory": [
+        3102,
+        3103,
+        3104,
+        6013
+      ]
+    },
+    "3010": {
+      "vnum": 3010,
+      "name": "postmaster",
+      "short_desc": "the postmaster",
+      "long_desc": "The head postmaster is standing here, waiting to help you with your mail.",
+      "level": 33,
+      "alignment": 1000,
+      "hp_dice": "1d8+18",
+      "damage_dice": "1d1+30000",
+      "gold": 1000,
+      "exp": 8,
+      "armor_class": -10,
+      "flags": [
+        "special",
+        "sentinel",
+        "memory",
+        "no_charm",
+        "no_summmon",
+        "no_sleep",
+        "no_blind"
+      ],
+      "description": "The Postmaster seems like a happy old man, though a bit sluggish.  He\nworries about the reputation of the MMS (Midgaard Mail Service), as many\npeople seem to think that it is slow.  Perhaps if he were to brush the\ncobwebs from his uniform it would help to make a better impression."
+    },
+    "3020": {
+      "vnum": 3020,
+      "name": "guildmaster",
+      "short_desc": "the mages' guildmaster",
+      "long_desc": "Your guildmaster is studying a spellbook while preparing to cast a spell.",
+      "level": 34,
+      "alignment": 1000,
+      "hp_dice": "1d8+24",
+      "damage_dice": "6d10+640",
+      "gold": 59397,
+      "exp": 8,
+      "armor_class": -10,
+      "flags": [
+        "special",
+        "sentinel",
+        "aware",
+        "memory",
+        "no_charm",
+        "no_summmon",
+        "no_sleep"
+      ],
+      "description": "Even though your guildmaster looks old and tired, you can clearly see the\nvast amount of knowledge she possesses.  She is wearing fine magic clothing,\nand you notice that she is surrounded by a blue shimmering aura."
+    },
+    "3021": {
+      "vnum": 3021,
+      "name": "guildmaster",
+      "short_desc": "the priests' guildmaster",
+      "long_desc": "Your guildmaster is prayer to your God here.",
+      "level": 34,
+      "alignment": 1000,
+      "hp_dice": "1d8+24",
+      "damage_dice": "6d10+640",
+      "gold": 59397,
+      "exp": 8,
+      "armor_class": -10,
+      "flags": [
+        "special",
+        "sentinel",
+        "aware",
+        "memory",
+        "no_charm",
+        "no_summmon",
+        "no_sleep"
+      ],
+      "description": "You are in no doubt that this guildmaster is truly close to your God; he\nhas a peaceful, loving look.  You notice that he is surrounded by a white\naura."
+    },
+    "3022": {
+      "vnum": 3022,
+      "name": "guildmaster",
+      "short_desc": "the thieves' guildmaster",
+      "long_desc": "A beggar is sitting here, could she be a guildmaster?",
+      "level": 34,
+      "alignment": 1000,
+      "hp_dice": "1d8+34",
+      "damage_dice": "6d10+640",
+      "gold": 59397,
+      "exp": 8,
+      "armor_class": -10,
+      "flags": [
+        "special",
+        "sentinel",
+        "aware",
+        "memory",
+        "no_charm",
+        "no_summmon",
+        "no_sleep"
+      ],
+      "description": "You realize that whenever your guildmaster moves, you fail to notice it -\nthe way of the true thief.  She is to be dressed in poor clothing, having\nthe appearance of a beggar."
+    },
+    "3023": {
+      "vnum": 3023,
+      "name": "guildmaster",
+      "short_desc": "the fighters' guildmaster",
+      "long_desc": "Your guildmaster is standing here sharpening an axe.",
+      "level": 34,
+      "alignment": 1000,
+      "hp_dice": "1d8+34",
+      "damage_dice": "6d10+740",
+      "gold": 59397,
+      "exp": 8,
+      "armor_class": -10,
+      "flags": [
+        "special",
+        "sentinel",
+        "aware",
+        "memory",
+        "no_charm",
+        "no_summmon",
+        "no_sleep"
+      ],
+      "description": "This is your master. Big and strong with bulging muscles. Several scars\nacross his body proves that he was using arms before you were born. He\nhas a calm look on his face."
+    },
+    "3024": {
+      "vnum": 3024,
+      "name": "sorcerer",
+      "short_desc": "the sorcerer",
+      "long_desc": "A sorcerer is guarding the entrance.",
+      "level": 33,
+      "alignment": 900,
+      "hp_dice": "1d8+22",
+      "damage_dice": "6d10+990",
+      "gold": 31000,
+      "exp": 8,
+      "armor_class": -5,
+      "flags": [
+        "special",
+        "sentinel",
+        "memory",
+        "no_charm",
+        "no_summmon",
+        "no_sleep"
+      ],
+      "description": "He is an experienced mage who has specialized in the field of Combat Magic.\nHe is here to guard the Mage's Guild and his superior knowledge of offensive\nas well as defensive spells make him a deadly opponent.",
+      "equipment": {
+        "wield": 3022
+      }
+    },
+    "3025": {
+      "vnum": 3025,
+      "name": "knight",
+      "short_desc": "the knight templar",
+      "long_desc": "A knight templar is guarding the entrance.",
+      "level": 33,
+      "alignment": 1000,
+      "hp_dice": "1d8+22",
+      "damage_dice": "6d10+990",
+      "gold": 81000,
+      "exp": 8,
+      "armor_class": -5,
+      "flags": [
+        "special",
+        "sentinel",
+        "memory",
+        "no_charm",
+        "no_summmon",
+        "no_sleep"
+      ],
+      "description": "He is a specially trained warrior belonging to the military order of the\nFaith.  His duty is to protect the faithful from persecution and infidel\nattacks and his religious devotion combined with his superior skill makes\nhim a deadly opponent.",
+      "equipment": {
+        "wield": 3022
+      }
+    },
+    "3026": {
+      "vnum": 3026,
+      "name": "assassin",
+      "short_desc": "the assassin",
+      "long_desc": "An assassin is guarding the entrance.",
+      "level": 33,
+      "alignment": 400,
+      "hp_dice": "1d8+25",
+      "damage_dice": "6d10+990",
+      "gold": 81000,
+      "exp": 8,
+      "armor_class": -10,
+      "flags": [
+        "special",
+        "sentinel",
+        "memory",
+        "no_charm",
+        "no_summmon",
+        "no_sleep"
+      ],
+      "description": "He is a thief who has specialized in killing others as effectively as\npossible, using all sorts of weapons.  His superior knowledge of how\nand where to use them combined with his extraordinary stealth makes\nhim a deadly opponent.",
+      "equipment": {
+        "wield": 3022
+      }
+    },
+    "3027": {
+      "vnum": 3027,
+      "name": "knight",
+      "short_desc": "the knight",
+      "long_desc": "A knight is guarding the entrance.",
+      "level": 33,
+      "alignment": 800,
+      "hp_dice": "1d8+40",
+      "damage_dice": "6d10+990",
+      "gold": 81000,
+      "exp": 8,
+      "armor_class": -8,
+      "flags": [
+        "special",
+        "sentinel",
+        "memory",
+        "no_charm",
+        "no_summmon",
+        "no_sleep"
+      ],
+      "description": "He is an expert warrior who has attained knighthood through countless\nchivalrous deeds.  His duty is to protect the Guild of Swordsmen and his\nextreme skill combined with his experience in warfare makes him a deadly\nopponent.",
+      "equipment": {
+        "wield": 3022
+      }
+    },
+    "3040": {
+      "vnum": 3040,
+      "name": "bartender",
+      "short_desc": "the bartender",
+      "long_desc": "A bartender watches you calmly, while he skillfully mixes a drink.",
+      "level": 24,
+      "alignment": 900,
+      "hp_dice": "1d8+12",
+      "damage_dice": "6d10+390",
+      "gold": 41000,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "sentinel",
+        "no_charm",
+        "no_summmon"
+      ],
+      "description": "A tired looking Bartender who hates trouble in his bar.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          3000
+        ],
+        "buys": [
+          "3003"
+        ],
+        "markup": 3001.0,
+        "markdown": 3002.0
+      },
+      "inventory": [
+        3000,
+        3001,
+        3002,
+        3003,
+        3004
+      ],
+      "equipment": {
+        "wield": 3022
+      }
+    },
+    "3041": {
+      "vnum": 3041,
+      "name": "waiter",
+      "short_desc": "the waiter",
+      "long_desc": "A waiter is going around from one place to another.",
+      "level": 23,
+      "alignment": 900,
+      "hp_dice": "1d8+12",
+      "damage_dice": "6d10+390",
+      "gold": 41000,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "sentinel",
+        "no_charm",
+        "no_summmon"
+      ],
+      "description": "A tired looking waiter."
+    },
+    "3042": {
+      "vnum": 3042,
+      "name": "waiter",
+      "short_desc": "the waiter",
+      "long_desc": "A man now leads a quiet, peaceful life as a waiter is standing here.",
+      "level": 23,
+      "alignment": 600,
+      "hp_dice": "1d8+12",
+      "damage_dice": "6d10+390",
+      "gold": 41000,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "sentinel",
+        "no_charm",
+        "no_summmon"
+      ],
+      "description": "This man was obviously a famous sorcerer in his younger days as you\ninstantly recognize his face.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          3002
+        ],
+        "buys": [
+          "1.0"
+        ],
+        "markup": 3003.0,
+        "markdown": -1.0
+      },
+      "inventory": [
+        3002,
+        3003
+      ],
+      "equipment": {
+        "wield": 3020
+      }
+    },
+    "3043": {
+      "vnum": 3043,
+      "name": "waiter",
+      "short_desc": "the waiter",
+      "long_desc": "A waiter who seems to have reached contact with his God is standing here.",
+      "level": 23,
+      "alignment": 600,
+      "hp_dice": "1d8+12",
+      "damage_dice": "6d10+390",
+      "gold": 41000,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "sentinel",
+        "no_charm",
+        "no_summmon"
+      ],
+      "description": "This waiter almost makes you feel like you should drop to your knees\nand begin to worship your God.  Naaah.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          3002
+        ],
+        "buys": [
+          "1.1"
+        ],
+        "markup": 3004.0,
+        "markdown": -1.0
+      },
+      "inventory": [
+        3002,
+        3004
+      ],
+      "equipment": {
+        "wield": 3024
+      }
+    },
+    "3044": {
+      "vnum": 3044,
+      "name": "waiter",
+      "short_desc": "the waiter",
+      "long_desc": "A waiter who knows where all his customers keep their money is standing here.",
+      "level": 23,
+      "alignment": 600,
+      "hp_dice": "1d8+12",
+      "damage_dice": "6d10+390",
+      "gold": 41000,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "sentinel",
+        "no_charm",
+        "no_summmon"
+      ],
+      "description": "Hmmm... wonder where he got that coin he is playing with.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          3003
+        ],
+        "buys": [
+          "1.7"
+        ],
+        "markup": 3004.0,
+        "markdown": -1.0
+      },
+      "inventory": [
+        3003,
+        3004
+      ],
+      "equipment": {
+        "wield": 3021
+      }
+    },
+    "3045": {
+      "vnum": 3045,
+      "name": "waiter",
+      "short_desc": "the waiter",
+      "long_desc": "A waiter is here.",
+      "level": 23,
+      "alignment": 600,
+      "hp_dice": "1d8+12",
+      "damage_dice": "6d10+390",
+      "gold": 41000,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "sentinel",
+        "no_charm",
+        "no_summmon"
+      ],
+      "description": "This guy looks like he could easily kill you while still carrying\nquite a few firebreathers.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          3002
+        ],
+        "buys": [],
+        "markup": 3003.0,
+        "markdown": 3004.0
+      },
+      "inventory": [
+        3002,
+        3003,
+        3004
+      ],
+      "equipment": {
+        "wield": 3022
+      }
+    },
+    "3046": {
+      "vnum": 3046,
+      "name": "filthy",
+      "short_desc": "Filthy",
+      "long_desc": "Filthy is standing here, eager to serve you a special drink.",
+      "level": 33,
+      "alignment": 600,
+      "hp_dice": "1d8+22",
+      "damage_dice": "1d1+30000",
+      "gold": 41000,
+      "exp": 8,
+      "armor_class": -10,
+      "flags": [
+        "sentinel",
+        "aware",
+        "memory",
+        "no_charm",
+        "no_summmon"
+      ],
+      "description": "Filthy looks real, ehm, dirty.  He likes to keep his customers happy,\nbut do not mess with him or else he'll get upset.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          3004
+        ],
+        "buys": [
+          "1.0"
+        ],
+        "markup": 3003.0,
+        "markdown": -1.0
+      },
+      "inventory": [
+        3003,
+        3004
+      ],
+      "equipment": {
+        "wield": 3022
+      }
+    },
+    "3059": {
+      "vnum": 3059,
+      "name": "keeper",
+      "short_desc": "the Peacekeeper",
+      "long_desc": "A Peacekeeper is standing here, ready to jump in at the first sign of trouble.",
+      "level": 17,
+      "alignment": 1000,
+      "hp_dice": "3d3+13",
+      "damage_dice": "5d6+225",
+      "gold": 16250,
+      "exp": 8,
+      "armor_class": 0,
+      "flags": [
+        "special",
+        "aware",
+        "stay_zone",
+        "memory",
+        "helper"
+      ],
+      "description": "He looks very strong and wise.  Looks like he doesn't answer to ANYONE."
+    },
+    "3060": {
+      "vnum": 3060,
+      "name": "cityguard",
+      "short_desc": "the cityguard",
+      "long_desc": "A cityguard stands here.",
+      "level": 10,
+      "alignment": 1000,
+      "hp_dice": "1d8+5",
+      "damage_dice": "1d12+123",
+      "gold": 4750,
+      "exp": 8,
+      "armor_class": 1,
+      "flags": [
+        "special",
+        "stay_zone",
+        "memory",
+        "helper"
+      ],
+      "description": "A big, strong, helpful, trustworthy guard.",
+      "equipment": {
+        "wield": 3022
+      }
+    },
+    "3061": {
+      "vnum": 3061,
+      "name": "janitor",
+      "short_desc": "the janitor",
+      "long_desc": "A janitor is walking around, cleaning up.",
+      "level": 1,
+      "alignment": 800,
+      "hp_dice": "1d5+0",
+      "damage_dice": "2d6+10",
+      "gold": 67,
+      "exp": 8,
+      "armor_class": 9,
+      "flags": [
+        "special",
+        "stay_zone",
+        "memory"
+      ],
+      "description": "What a tough job he has."
+    },
+    "3062": {
+      "vnum": 3062,
+      "name": "fido",
+      "short_desc": "the beastly fido",
+      "long_desc": "A beastly fido is mucking through the garbage looking for food here.",
+      "level": 0,
+      "alignment": -200,
+      "hp_dice": "1d4+0",
+      "damage_dice": "1d6+4",
+      "gold": 12,
+      "exp": 8,
+      "armor_class": 10,
+      "flags": [
+        "special",
+        "aggressive",
+        "stay_zone",
+        "wimpy",
+        "no_bash"
+      ],
+      "description": "The fido is a small dog that has a foul smell and pieces of rotted meat\nhanging around his teeth.",
+      "inventory": [
+        3015,
+        3015,
+        3015,
+        3015
+      ]
+    },
+    "3063": {
+      "vnum": 3063,
+      "name": "mercenary",
+      "short_desc": "the mercenary",
+      "long_desc": "A mercenary is waiting for a job here.",
+      "level": 5,
+      "alignment": -330,
+      "hp_dice": "1d6+1",
+      "damage_dice": "2d6+60",
+      "gold": 493,
+      "exp": 8,
+      "armor_class": 5,
+      "flags": [
+        "sentinel",
+        "memory"
+      ],
+      "description": "He looks pretty mean, and you imagine he'd do anything for money.",
+      "equipment": {
+        "wield": 3021
+      }
+    },
+    "3064": {
+      "vnum": 3064,
+      "name": "drunk",
+      "short_desc": "the drunk",
+      "long_desc": "A singing, happy Drunk.",
+      "level": 2,
+      "alignment": 400,
+      "hp_dice": "1d6+0",
+      "damage_dice": "2d6+22",
+      "gold": 126,
+      "exp": 8,
+      "armor_class": 8,
       "flags": [
         "sentinel"
       ],
-      "special": "trainer"
+      "description": "A drunk who seems to be too happy, and to carry too much money."
+    },
+    "3065": {
+      "vnum": 3065,
+      "name": "beggar",
+      "short_desc": "the beggar",
+      "long_desc": "A beggar is here, asking for a few coins.",
+      "level": 1,
+      "alignment": 400,
+      "hp_dice": "1d5+0",
+      "damage_dice": "2d6+10",
+      "gold": 50,
+      "exp": 8,
+      "armor_class": 9,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "The beggar looks like she is fed up with life.",
+      "inventory": [
+        3005
+      ]
+    },
+    "3066": {
+      "vnum": 3066,
+      "name": "odif",
+      "short_desc": "the odif yltsaeb",
+      "long_desc": "An odif yltsaeb is here, walking backwards.",
+      "level": 0,
+      "alignment": -200,
+      "hp_dice": "1d4+0",
+      "damage_dice": "1d6+4",
+      "gold": 12,
+      "exp": 8,
+      "armor_class": 10,
+      "flags": [
+        "special",
+        "aggressive",
+        "stay_zone",
+        "wimpy",
+        "no_bash"
+      ],
+      "description": "The odif is a small god that has been reversed by some dog.",
+      "inventory": [
+        3015
+      ]
+    },
+    "3067": {
+      "vnum": 3067,
+      "name": "cityguard",
+      "short_desc": "the cityguard",
+      "long_desc": "A cityguard is here, guarding the gate.",
+      "level": 10,
+      "alignment": 1000,
+      "hp_dice": "1d8+5",
+      "damage_dice": "1d12+123",
+      "gold": 4750,
+      "exp": 8,
+      "armor_class": 1,
+      "flags": [
+        "special",
+        "sentinel",
+        "stay_zone",
+        "memory",
+        "helper"
+      ],
+      "description": "A big, strong, helpful, trustworthy guard.",
+      "equipment": {
+        "wield": 3022
+      }
+    },
+    "3068": {
+      "vnum": 3068,
+      "name": "green",
+      "short_desc": "the green gelatinous blob",
+      "long_desc": "An oozing green gelatinous blob is here, sucking in bits of debris.",
+      "level": 20,
+      "alignment": 0,
+      "hp_dice": "3d6+5",
+      "damage_dice": "1d11+325",
+      "gold": 20500,
+      "exp": 8,
+      "armor_class": 0,
+      "flags": [
+        "special",
+        "aware",
+        "stay_zone",
+        "wimpy",
+        "memory",
+        "no_charm",
+        "no_summmon",
+        "no_sleep",
+        "no_bash",
+        "no_blind"
+      ],
+      "description": "A horrid looking thing; it is huge, greenish, and looks like the blob."
+    },
+    "3089": {
+      "vnum": 3089,
+      "name": "pet",
+      "short_desc": "the Pet Shop Boy",
+      "long_desc": "There is a Pet Shop Boy standing here cuddleing something furry in his hands.",
+      "level": 10,
+      "alignment": 1000,
+      "hp_dice": "20d4+10",
+      "damage_dice": "1d1+30000",
+      "gold": 4750,
+      "exp": 8,
+      "armor_class": 1,
+      "flags": [
+        "sentinel",
+        "memory",
+        "no_charm",
+        "no_summmon"
+      ],
+      "description": "As you look at him, he opens his hands to reveal a rat!"
+    },
+    "3090": {
+      "vnum": 3090,
+      "name": "kitten",
+      "short_desc": "the kitten",
+      "long_desc": "A small loyal kitten is here.",
+      "level": 1,
+      "alignment": 0,
+      "hp_dice": "1d4+0",
+      "damage_dice": "1d6+11",
+      "gold": 50,
+      "exp": 8,
+      "armor_class": 9,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "no_summmon"
+      ],
+      "description": "The kitten looks like a cute, little, fierce fighter."
+    },
+    "3091": {
+      "vnum": 3091,
+      "name": "puppy",
+      "short_desc": "the puppy",
+      "long_desc": "A small loyal puppy is here.",
+      "level": 1,
+      "alignment": 0,
+      "hp_dice": "1d4+0",
+      "damage_dice": "1d6+13",
+      "gold": 62,
+      "exp": 8,
+      "armor_class": 9,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "no_summmon"
+      ],
+      "description": "The puppy looks like a cute, little, fierce fighter."
+    },
+    "3092": {
+      "vnum": 3092,
+      "name": "beagle",
+      "short_desc": "the beagle",
+      "long_desc": "A small, quick, loyal beagle is here.",
+      "level": 2,
+      "alignment": 0,
+      "hp_dice": "1d6+0",
+      "damage_dice": "1d12+22",
+      "gold": 100,
+      "exp": 8,
+      "armor_class": 8,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "no_summmon"
+      ],
+      "description": "The beagle looks like a fierce fighter."
+    },
+    "3093": {
+      "vnum": 3093,
+      "name": "rottweiler",
+      "short_desc": "the rottweiler",
+      "long_desc": "A large, loyal rottweiler is here.",
+      "level": 3,
+      "alignment": 0,
+      "hp_dice": "1d7+0",
+      "damage_dice": "1d12+35",
+      "gold": 400,
+      "exp": 8,
+      "armor_class": 7,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "no_summmon"
+      ],
+      "description": "The rottweiler looks like a strong, fierce fighter."
+    },
+    "3094": {
+      "vnum": 3094,
+      "name": "wolf",
+      "short_desc": "the wolf",
+      "long_desc": "A large, trained wolf is here.",
+      "level": 4,
+      "alignment": 0,
+      "hp_dice": "1d8+0",
+      "damage_dice": "1d12+47",
+      "gold": 800,
+      "exp": 8,
+      "armor_class": 6,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "no_summmon"
+      ],
+      "description": "The wolf looks like a strong, fearless fighter."
+    },
+    "3095": {
+      "vnum": 3095,
+      "name": "cryogenicist",
+      "short_desc": "the cryogenicist",
+      "long_desc": "The cryogenicist is here, playing with a canister of liquid nitrogen.",
+      "level": 33,
+      "alignment": 900,
+      "hp_dice": "2d8+32",
+      "damage_dice": "1d1+30000",
+      "gold": 0,
+      "exp": 8,
+      "armor_class": -10,
+      "flags": [
+        "special",
+        "sentinel",
+        "memory",
+        "no_charm",
+        "no_summmon"
+      ],
+      "description": "You notice a tired look in her face.  She looks like she isn't paid well\nenough to put up with any crap from mud players with attitudes.",
+      "equipment": {
+        "wield": 3022
+      }
     }
   },
   "objects": {
-    "1": {
-      "vnum": 1,
-      "name": "a loaf of bread",
-      "short_desc": "a loaf of bread",
-      "room_desc": "A loaf of fresh bread lies here.",
-      "type": "food",
+    "3000": {
+      "vnum": 3000,
+      "name": "barrel",
+      "short_desc": "a barrel",
+      "room_desc": "A beer barrel has been left here.",
+      "item_type": "drinkcon",
+      "weight": 65,
+      "value": 300,
+      "capacity": 50,
+      "current": 50
+    },
+    "3001": {
+      "vnum": 3001,
+      "name": "bottle",
+      "short_desc": "a bottle",
+      "room_desc": "A beer bottle has been left here.",
+      "item_type": "drinkcon",
+      "weight": 10,
+      "value": 20,
+      "capacity": 8,
+      "current": 8
+    },
+    "3002": {
+      "vnum": 3002,
+      "name": "bottle",
+      "short_desc": "a bottle",
+      "room_desc": "A dark bottle of ale has been left here.",
+      "item_type": "drinkcon",
+      "weight": 10,
+      "value": 10,
+      "capacity": 8,
+      "current": 8
+    },
+    "3003": {
+      "vnum": 3003,
+      "name": "bottle",
+      "short_desc": "a bottle",
+      "room_desc": "A bottle of firebreather has been left here.",
+      "item_type": "drinkcon",
+      "weight": 10,
+      "value": 50,
+      "capacity": 8,
+      "current": 8
+    },
+    "3004": {
+      "vnum": 3004,
+      "name": "bottle",
+      "short_desc": "a bottle",
+      "room_desc": "A dark bottle has been left here.",
+      "item_type": "drinkcon",
+      "weight": 10,
+      "value": 20,
+      "capacity": 8,
+      "current": 8
+    },
+    "3005": {
+      "vnum": 3005,
+      "name": "key",
+      "short_desc": "a key of dull metal",
+      "room_desc": "A key made of a dull metal is lying on the ground here.",
+      "item_type": "key",
       "weight": 1,
-      "cost": 5,
-      "food_value": 12
+      "value": 0
     },
-    "2": {
-      "vnum": 2,
-      "name": "a waterskin",
-      "short_desc": "a leather waterskin",
-      "room_desc": "A waterskin lies here.",
-      "type": "drink",
-      "weight": 2,
-      "cost": 10,
-      "drinks": 20,
-      "liquid": "water"
-    },
-    "3": {
-      "vnum": 3,
-      "name": "a torch",
-      "short_desc": "a burning torch",
-      "room_desc": "A torch flickers here.",
-      "type": "light",
+    "3009": {
+      "vnum": 3009,
+      "name": "waybread",
+      "short_desc": "a waybread",
+      "room_desc": "Some waybread has been put here.",
+      "item_type": "food",
       "weight": 1,
-      "cost": 5,
-      "light_hours": 24
+      "value": 50,
+      "nutrition": 24
     },
-    "10": {
-      "vnum": 10,
-      "name": "a short sword",
-      "short_desc": "a short sword",
-      "room_desc": "A short sword lies here.",
-      "type": "weapon",
+    "3010": {
+      "vnum": 3010,
+      "name": "bread",
+      "short_desc": "a bread",
+      "room_desc": "A loaf of bread has been left here.",
+      "item_type": "food",
+      "weight": 1,
+      "value": 10,
+      "nutrition": 12
+    },
+    "3011": {
+      "vnum": 3011,
+      "name": "danish",
+      "short_desc": "a danish pastry",
+      "room_desc": "A nice looking delicious danish pastry has been placed here.",
+      "item_type": "food",
+      "weight": 1,
+      "value": 5,
+      "nutrition": 5
+    },
+    "3012": {
+      "vnum": 3012,
+      "name": "taco",
+      "short_desc": "a Mexican taco",
+      "room_desc": "A tasty looking Mexican taco has been dropped here.",
+      "item_type": "food",
+      "weight": 1,
+      "value": 15,
+      "nutrition": 15
+    },
+    "3013": {
+      "vnum": 3013,
+      "name": "burrito",
+      "short_desc": "a spicy hot burrito",
+      "room_desc": "A spicy looking burrito has been set here.",
+      "item_type": "food",
+      "weight": 1,
+      "value": 10,
+      "nutrition": 10
+    },
+    "3014": {
+      "vnum": 3014,
+      "name": "nachos",
+      "short_desc": "some nachos with cheese",
+      "room_desc": "Some nachos have been left here.",
+      "item_type": "food",
+      "weight": 1,
+      "value": 5,
+      "nutrition": 5
+    },
+    "3015": {
+      "vnum": 3015,
+      "name": "meat",
+      "short_desc": "a piece of meat",
+      "room_desc": "A rather dubious looking piece of meat is on the ground here.",
+      "item_type": "food",
       "weight": 5,
-      "cost": 50,
+      "value": 24,
+      "nutrition": 14
+    },
+    "3020": {
+      "vnum": 3020,
+      "name": "dagger",
+      "short_desc": "a dagger",
+      "room_desc": "A dagger with a long thin blade is here.",
+      "item_type": "weapon",
+      "weight": 1,
+      "value": 10,
+      "damage_dice": "1d4",
+      "weapon_type": "pierce"
+    },
+    "3021": {
+      "vnum": 3021,
+      "name": "sword",
+      "short_desc": "a small sword",
+      "room_desc": "A small sword lies here.",
+      "item_type": "weapon",
+      "weight": 3,
+      "value": 60,
       "damage_dice": "1d6",
+      "weapon_type": "pierce"
+    },
+    "3022": {
+      "vnum": 3022,
+      "name": "sword",
+      "short_desc": "a long sword",
+      "room_desc": "A long sword has been left here.",
+      "item_type": "weapon",
+      "weight": 8,
+      "value": 600,
+      "damage_dice": "1d8",
       "weapon_type": "slash"
     },
-    "11": {
-      "vnum": 11,
-      "name": "a dagger",
-      "short_desc": "a sharp dagger",
-      "room_desc": "A dagger glints on the ground.",
-      "type": "weapon",
-      "weight": 2,
-      "cost": 20,
-      "damage_dice": "1d4",
-      "weapon_type": "stab"
-    },
-    "12": {
-      "vnum": 12,
-      "name": "a mace",
-      "short_desc": "a heavy mace",
-      "room_desc": "A mace lies here.",
-      "type": "weapon",
-      "weight": 8,
-      "cost": 40,
-      "damage_dice": "1d8",
+    "3023": {
+      "vnum": 3023,
+      "name": "club",
+      "short_desc": "a wooden club",
+      "room_desc": "A simple looking wooden club is here.",
+      "item_type": "weapon",
+      "weight": 3,
+      "value": 12,
+      "damage_dice": "1d3",
       "weapon_type": "pound"
     },
-    "13": {
-      "vnum": 13,
-      "name": "a short bow",
-      "short_desc": "a short bow",
-      "room_desc": "A short bow lies here.",
-      "type": "weapon",
-      "weight": 3,
-      "cost": 30,
-      "damage_dice": "1d6",
-      "weapon_type": "pierce"
-    },
-    "14": {
-      "vnum": 14,
-      "name": "a rapier",
-      "short_desc": "an elegant rapier",
-      "room_desc": "A rapier lies here.",
-      "type": "weapon",
-      "weight": 3,
-      "cost": 60,
-      "damage_dice": "1d6",
-      "weapon_type": "pierce"
-    },
-    "20": {
-      "vnum": 20,
-      "name": "a bulletin board",
-      "short_desc": "a large bulletin board",
-      "room_desc": "A bulletin board is mounted on the wall.",
-      "type": "other",
-      "weight": 100,
-      "cost": 0
-    },
-    "30": {
-      "vnum": 30,
-      "name": "an iron helmet",
-      "short_desc": "an iron helmet",
-      "room_desc": "An iron helmet lies here.",
-      "type": "armor",
-      "wear_slot": "head",
-      "weight": 3,
-      "cost": 25,
-      "armor_class": 2
-    },
-    "31": {
-      "vnum": 31,
-      "name": "a suit of chainmail",
-      "short_desc": "a suit of chainmail",
-      "room_desc": "A suit of chainmail armor lies here.",
-      "type": "armor",
-      "wear_slot": "body",
-      "weight": 20,
-      "cost": 100,
-      "armor_class": 5
-    },
-    "32": {
-      "vnum": 32,
-      "name": "iron greaves",
-      "short_desc": "a pair of iron greaves",
-      "room_desc": "Iron leg armor lies here.",
-      "type": "armor",
-      "wear_slot": "legs",
-      "weight": 8,
-      "cost": 40,
-      "armor_class": 2
-    },
-    "33": {
-      "vnum": 33,
-      "name": "a wooden shield",
-      "short_desc": "a wooden shield",
-      "room_desc": "A wooden shield lies here.",
-      "type": "armor",
-      "wear_slot": "shield",
-      "weight": 5,
-      "cost": 30,
-      "armor_class": 3
-    },
-    "34": {
-      "vnum": 34,
-      "name": "a wooden staff",
-      "short_desc": "a simple wooden staff",
-      "room_desc": "A wooden staff lies here.",
-      "type": "weapon",
-      "weight": 4,
-      "cost": 20,
-      "damage_dice": "1d6",
-      "weapon_type": "bludgeon"
-    },
-    "35": {
-      "vnum": 35,
-      "name": "cloth robes",
-      "short_desc": "plain cloth robes",
-      "room_desc": "Simple cloth robes lie here.",
-      "type": "armor",
-      "wear_slot": "body",
-      "weight": 2,
-      "cost": 20,
-      "armor_class": 1
-    },
-    "36": {
-      "vnum": 36,
-      "name": "a spellbook",
-      "short_desc": "a leather-bound spellbook",
-      "room_desc": "A spellbook lies here.",
-      "type": "other",
-      "weight": 3,
-      "cost": 50
-    },
-    "37": {
-      "vnum": 37,
-      "name": "leather armor",
-      "short_desc": "leather armor",
-      "room_desc": "Leather armor lies here.",
-      "type": "armor",
-      "wear_slot": "body",
-      "weight": 10,
-      "cost": 50,
-      "armor_class": 3
-    },
-    "38": {
-      "vnum": 38,
-      "name": "a holy symbol",
-      "short_desc": "a silver holy symbol",
-      "room_desc": "A holy symbol lies here.",
-      "type": "worn",
-      "wear_slot": "neck1",
-      "weight": 1,
-      "cost": 25
-    },
-    "39": {
-      "vnum": 39,
-      "name": "a leather jerkin",
-      "short_desc": "a supple leather jerkin",
-      "room_desc": "A leather jerkin lies here.",
-      "type": "armor",
-      "wear_slot": "body",
-      "weight": 5,
-      "cost": 35,
-      "armor_class": 2
-    },
-    "40": {
-      "vnum": 40,
-      "name": "lockpicks",
-      "short_desc": "a set of lockpicks",
-      "room_desc": "A set of lockpicks lies here.",
-      "type": "other",
-      "weight": 1,
-      "cost": 30
-    },
-    "41": {
-      "vnum": 41,
-      "name": "studded leather",
-      "short_desc": "studded leather armor",
-      "room_desc": "Studded leather armor lies here.",
-      "type": "armor",
-      "wear_slot": "body",
-      "weight": 15,
-      "cost": 75,
-      "armor_class": 4
-    },
-    "42": {
-      "vnum": 42,
-      "name": "a quiver",
-      "short_desc": "a quiver of arrows",
-      "room_desc": "A quiver of arrows lies here.",
-      "type": "other",
-      "weight": 3,
-      "cost": 20
-    },
-    "43": {
-      "vnum": 43,
-      "name": "a dark staff",
-      "short_desc": "a dark twisted staff",
-      "room_desc": "A dark, twisted staff lies here.",
-      "type": "weapon",
-      "weight": 4,
-      "cost": 25,
-      "damage_dice": "1d6",
-      "weapon_type": "bludgeon"
-    },
-    "44": {
-      "vnum": 44,
-      "name": "dark robes",
-      "short_desc": "black robes with dark runes",
-      "room_desc": "Dark robes lie here.",
-      "type": "armor",
-      "wear_slot": "body",
-      "weight": 3,
-      "cost": 30,
-      "armor_class": 1
-    },
-    "45": {
-      "vnum": 45,
-      "name": "an unholy symbol",
-      "short_desc": "a dark unholy symbol",
-      "room_desc": "An unholy symbol lies here.",
-      "type": "worn",
-      "wear_slot": "neck1",
-      "weight": 1,
-      "cost": 25
-    },
-    "46": {
-      "vnum": 46,
-      "name": "a leather vest",
-      "short_desc": "a decorated leather vest",
-      "room_desc": "A leather vest lies here.",
-      "type": "armor",
-      "wear_slot": "body",
-      "weight": 4,
-      "cost": 40,
-      "armor_class": 2
-    },
-    "47": {
-      "vnum": 47,
-      "name": "a lute",
-      "short_desc": "a finely crafted lute",
-      "room_desc": "A lute lies here.",
-      "type": "other",
-      "weight": 2,
-      "cost": 50
-    },
-    "48": {
-      "vnum": 48,
-      "name": "a stiletto",
-      "short_desc": "a sharp stiletto",
-      "room_desc": "A stiletto dagger lies here.",
-      "type": "weapon",
-      "weight": 1,
-      "cost": 25,
-      "damage_dice": "1d4+1",
-      "weapon_type": "pierce"
-    },
-    "49": {
-      "vnum": 49,
-      "name": "black leather",
-      "short_desc": "form-fitting black leather armor",
-      "room_desc": "Black leather armor lies here.",
-      "type": "armor",
-      "wear_slot": "body",
+    "3024": {
+      "vnum": 3024,
+      "name": "warhammer",
+      "short_desc": "a warhammer",
+      "room_desc": "A medium sized warhammer is here.",
+      "item_type": "weapon",
       "weight": 6,
-      "cost": 45,
-      "armor_class": 2
+      "value": 50,
+      "damage_dice": "1d5",
+      "weapon_type": "pound"
     },
-    "50": {
-      "vnum": 50,
-      "name": "a dark cloak",
-      "short_desc": "a shadowy dark cloak",
-      "room_desc": "A dark cloak lies here.",
-      "type": "armor",
-      "wear_slot": "about",
-      "weight": 2,
-      "cost": 20,
-      "armor_class": 1
+    "3025": {
+      "vnum": 3025,
+      "name": "flail",
+      "short_desc": "a flail",
+      "room_desc": "A large flail is here.",
+      "item_type": "weapon",
+      "weight": 6,
+      "value": 625,
+      "damage_dice": "2d4",
+      "weapon_type": "pound"
     },
-    "51": {
-      "vnum": 51,
-      "name": "a poison vial",
-      "short_desc": "a vial of poison",
-      "room_desc": "A vial of poison lies here.",
-      "type": "other",
+    "3030": {
+      "vnum": 3030,
+      "name": "torch",
+      "short_desc": "a torch",
+      "room_desc": "A large torch.",
+      "item_type": "light",
       "weight": 1,
-      "cost": 30
+      "value": 10,
+      "light_hours": 24
+    },
+    "3031": {
+      "vnum": 3031,
+      "name": "lantern",
+      "short_desc": "a lantern",
+      "room_desc": "A brass lantern is here.",
+      "item_type": "light",
+      "weight": 1,
+      "value": 50,
+      "light_hours": 96
+    },
+    "3032": {
+      "vnum": 3032,
+      "name": "bag",
+      "short_desc": "a bag",
+      "room_desc": "A small bag is here.",
+      "item_type": "container",
+      "weight": 2,
+      "value": 20,
+      "capacity": 50
+    },
+    "3033": {
+      "vnum": 3033,
+      "name": "box",
+      "short_desc": "a box",
+      "room_desc": "A small box is here.",
+      "item_type": "container",
+      "weight": 5,
+      "value": 50,
+      "capacity": 10
+    },
+    "3034": {
+      "vnum": 3034,
+      "name": "atm",
+      "short_desc": "an automatic teller machine",
+      "room_desc": "An automatic teller machine has been installed in the wall here.",
+      "item_type": "treasure",
+      "weight": 5000,
+      "value": 0
+    },
+    "3035": {
+      "vnum": 3035,
+      "name": "fountain",
+      "short_desc": "the large fountain",
+      "room_desc": "A large fountain carved from blue-streaked marble is here, bubbling merrily.",
+      "item_type": "fountain",
+      "weight": 9999,
+      "value": 0
+    },
+    "3036": {
+      "vnum": 3036,
+      "name": "cashcard",
+      "short_desc": "a cashcard",
+      "room_desc": "A handy dandy cashcard is sitting on the ground here.",
+      "item_type": "treasure",
+      "weight": 1,
+      "value": 10000
+    },
+    "3037": {
+      "vnum": 3037,
+      "name": "candle",
+      "short_desc": "a candle",
+      "room_desc": "A candle lies here, unlit.",
+      "item_type": "light",
+      "weight": 1,
+      "value": 5,
+      "light_hours": 4
+    },
+    "3038": {
+      "vnum": 3038,
+      "name": "nail",
+      "short_desc": "a nail",
+      "room_desc": "A penny nail lies in the dust.",
+      "item_type": "weapon",
+      "weight": 1,
+      "value": 5,
+      "damage_dice": "1d1",
+      "weapon_type": "pierce"
+    },
+    "3039": {
+      "vnum": 3039,
+      "name": "pot",
+      "short_desc": "a pot",
+      "room_desc": "A cast-iron pot sits on the ground.",
+      "item_type": "container",
+      "weight": 10,
+      "value": 100,
+      "capacity": 10
+    },
+    "3040": {
+      "vnum": 3040,
+      "name": "plate",
+      "short_desc": "a breast plate",
+      "room_desc": "A breast plate is lying on the ground.",
+      "item_type": "armor",
+      "weight": 100,
+      "value": 18000,
+      "armor_bonus": 7
+    },
+    "3041": {
+      "vnum": 3041,
+      "name": "shirt",
+      "short_desc": "a chain mail shirt",
+      "room_desc": "A chain mail shirt is lying on the ground.",
+      "item_type": "armor",
+      "weight": 60,
+      "value": 2500,
+      "armor_bonus": 5
+    },
+    "3042": {
+      "vnum": 3042,
+      "name": "shield",
+      "short_desc": "a shield",
+      "room_desc": "A small wooden shield is lying on the ground.",
+      "item_type": "armor",
+      "weight": 3,
+      "value": 100,
+      "armor_bonus": 2
+    },
+    "3043": {
+      "vnum": 3043,
+      "name": "jacket",
+      "short_desc": "a leather jacket",
+      "room_desc": "A soft leather jacket is lying on the ground.",
+      "item_type": "armor",
+      "weight": 10,
+      "value": 200,
+      "armor_bonus": 2
+    },
+    "3044": {
+      "vnum": 3044,
+      "name": "jacket",
+      "short_desc": "a studded leather jacket",
+      "room_desc": "A studded leather jacket is lying on the ground.",
+      "item_type": "armor",
+      "weight": 20,
+      "value": 500,
+      "armor_bonus": 3
+    },
+    "3045": {
+      "vnum": 3045,
+      "name": "jacket",
+      "short_desc": "a scale mail jacket",
+      "room_desc": "A scale mail jacket is lying on the ground.",
+      "item_type": "armor",
+      "weight": 40,
+      "value": 1000,
+      "armor_bonus": 4
+    },
+    "3046": {
+      "vnum": 3046,
+      "name": "plate",
+      "short_desc": "a bronze breast plate",
+      "room_desc": "A bronze breast plate is lying on the ground.",
+      "item_type": "armor",
+      "weight": 80,
+      "value": 7000,
+      "armor_bonus": 6
+    },
+    "3050": {
+      "vnum": 3050,
+      "name": "scroll",
+      "short_desc": "a scroll of identify",
+      "room_desc": "A scroll has carelessly been left here.",
+      "item_type": "scroll",
+      "weight": 1,
+      "value": 2001
+    },
+    "3051": {
+      "vnum": 3051,
+      "name": "potion",
+      "short_desc": "a yellow potion of see invisible",
+      "room_desc": "A small yellow potion has carelessly been left here.",
+      "item_type": "potion",
+      "weight": 1,
+      "value": 400
+    },
+    "3052": {
+      "vnum": 3052,
+      "name": "scroll",
+      "short_desc": "a scroll of recall",
+      "room_desc": "A scroll has carelessly been left here.",
+      "item_type": "scroll",
+      "weight": 4,
+      "value": 2001
+    },
+    "3053": {
+      "vnum": 3053,
+      "name": "wand",
+      "short_desc": "a grey wand of invisibility",
+      "room_desc": "A grey wand has carelessly been left here.",
+      "item_type": "wand",
+      "weight": 2,
+      "value": 4000
+    },
+    "3054": {
+      "vnum": 3054,
+      "name": "staff",
+      "short_desc": "a gnarled staff",
+      "room_desc": "A gnarled staff has carelessly been left here.",
+      "item_type": "staff",
+      "weight": 17,
+      "value": 7000
+    },
+    "3055": {
+      "vnum": 3055,
+      "name": "staff",
+      "short_desc": "a metal staff",
+      "room_desc": "A metal staff has carelessly been left here.",
+      "item_type": "staff",
+      "weight": 7,
+      "value": 8500
+    },
+    "3060": {
+      "vnum": 3060,
+      "name": "raft",
+      "short_desc": "a raft",
+      "room_desc": "A raft has been left here.",
+      "item_type": "boat",
+      "weight": 75,
+      "value": 400
+    },
+    "3061": {
+      "vnum": 3061,
+      "name": "canoe",
+      "short_desc": "a canoe",
+      "room_desc": "A canoe has been left here.",
+      "item_type": "boat",
+      "weight": 32,
+      "value": 1000
+    },
+    "3070": {
+      "vnum": 3070,
+      "name": "gauntlets",
+      "short_desc": "a pair of bronze gauntlets",
+      "room_desc": "A pair of bronze gauntlets is lying on the ground.",
+      "item_type": "armor",
+      "weight": 8,
+      "value": 1750,
+      "armor_bonus": 6
+    },
+    "3071": {
+      "vnum": 3071,
+      "name": "gloves",
+      "short_desc": "a pair of leather gloves",
+      "room_desc": "A pair of leather gloves is lying on the ground.",
+      "item_type": "armor",
+      "weight": 3,
+      "value": 75,
+      "armor_bonus": 3
+    },
+    "3075": {
+      "vnum": 3075,
+      "name": "helmet",
+      "short_desc": "a bronze helmet",
+      "room_desc": "A bronze helmet is lying on the ground.",
+      "item_type": "armor",
+      "weight": 8,
+      "value": 3500,
+      "armor_bonus": 6
+    },
+    "3076": {
+      "vnum": 3076,
+      "name": "cap",
+      "short_desc": "a leather cap",
+      "room_desc": "A leather cap is lying on the ground.",
+      "item_type": "armor",
+      "weight": 3,
+      "value": 150,
+      "armor_bonus": 3
+    },
+    "3080": {
+      "vnum": 3080,
+      "name": "leggings",
+      "short_desc": "a pair of bronze leggings",
+      "room_desc": "A pair of bronze leggings is lying on the ground.",
+      "item_type": "armor",
+      "weight": 8,
+      "value": 3500,
+      "armor_bonus": 6
+    },
+    "3081": {
+      "vnum": 3081,
+      "name": "pants",
+      "short_desc": "a pair of leather pants",
+      "room_desc": "A pair of leather pants is lying on the ground.",
+      "item_type": "armor",
+      "weight": 8,
+      "value": 150,
+      "armor_bonus": 3
+    },
+    "3085": {
+      "vnum": 3085,
+      "name": "sleeves",
+      "short_desc": "a pair of bronze sleeves",
+      "room_desc": "A pair of bronze sleeves is lying on the ground.",
+      "item_type": "armor",
+      "weight": 8,
+      "value": 1750,
+      "armor_bonus": 6
+    },
+    "3086": {
+      "vnum": 3086,
+      "name": "sleeves",
+      "short_desc": "a pair of leather sleeves",
+      "room_desc": "A pair of leather sleeves is lying on the ground.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 75,
+      "armor_bonus": 2
+    },
+    "3096": {
+      "vnum": 3096,
+      "name": "board",
+      "short_desc": "a social bulletin board",
+      "room_desc": "A large, sociable bulletin board is mounted on a wall here.",
+      "item_type": "treasure",
+      "weight": 0,
+      "value": 0
+    },
+    "3097": {
+      "vnum": 3097,
+      "name": "board",
+      "short_desc": "a frozen bulletin board",
+      "room_desc": "A large bulletin board is here, carved from a block of ice.",
+      "item_type": "treasure",
+      "weight": 0,
+      "value": 0
+    },
+    "3098": {
+      "vnum": 3098,
+      "name": "board",
+      "short_desc": "a holy bulletin board",
+      "room_desc": "A large bulletin board is mounted on a wall here.  It glows with a faint aura.",
+      "item_type": "treasure",
+      "weight": 0,
+      "value": 0
+    },
+    "3099": {
+      "vnum": 3099,
+      "name": "board",
+      "short_desc": "a bulletin board",
+      "room_desc": "A large bulletin board is mounted on a wall here.",
+      "item_type": "treasure",
+      "weight": 0,
+      "value": 0
+    },
+    "3200": {
+      "vnum": 3200,
+      "name": "vial of viper venom",
+      "short_desc": "a vial of viper venom",
+      "room_desc": "A vial of viper venom lies here.",
+      "description": "Extracted from the fangs of the deadliest vipers, this venom causes excruciating pain and immediate tissue damage.",
+      "item_type": "poison",
+      "weight": 1,
+      "value": 150,
+      "poison_type": "venom"
+    },
+    "3201": {
+      "vnum": 3201,
+      "name": "vial of neurotoxin",
+      "short_desc": "a vial of blinding neurotoxin",
+      "room_desc": "A vial of yellow neurotoxin lies here.",
+      "description": "A paralytic toxin that blinds the target temporarily.",
+      "item_type": "poison",
+      "weight": 1,
+      "value": 250,
+      "poison_type": "neurotoxin"
+    },
+    "3202": {
+      "vnum": 3202,
+      "name": "vial of hemotoxin",
+      "short_desc": "a vial of crimson hemotoxin",
+      "room_desc": "A vial of crimson hemotoxin lies here.",
+      "description": "A blood poison that causes severe internal bleeding.",
+      "item_type": "poison",
+      "weight": 1,
+      "value": 200,
+      "poison_type": "hemotoxin"
     }
   }
 }

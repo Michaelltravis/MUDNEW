@@ -1,0 +1,2228 @@
+{
+  "number": 36,
+  "name": "The Chessboard of Midgaard",
+  "lifespan": 10,
+  "rooms": {
+    "3600": {
+      "vnum": 3600,
+      "name": "The Great Chessboard Of Midgaard",
+      "description": "You stand in the archway of the Chessboard of Midgaard.  The giant wooden gate is rusted open.    A narrow dirt path leads eastwards into the thick grass and the chessboard opens up to the west.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 3066,
+          "description": "A dirt path leads away through the great field north of Midgaard."
+        },
+        "west": {
+          "to_room": 3632,
+          "description": "The huge chessboard opens up to the west."
+        }
+      }
+    },
+    "3601": {
+      "vnum": 3601,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.  This is usually the home of the Black Queen's Rook.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3602,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3609,
+          "description": "A black square lies to the south."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3602,
+          "max": 2
+        }
+      ]
+    },
+    "3602": {
+      "vnum": 3602,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.  This is usually the home of the Black Queen's Knight.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3603,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3610,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3601,
+          "description": "A white square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3604,
+          "max": 2
+        }
+      ]
+    },
+    "3603": {
+      "vnum": 3603,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.  This is usually the home of the Black Queen's Bishop.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3604,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3611,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3602,
+          "description": "A black square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3606,
+          "max": 2
+        }
+      ]
+    },
+    "3604": {
+      "vnum": 3604,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.  This is usually the home of the Black Queen.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3605,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3612,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3603,
+          "description": "A white square lies to the west."
+        },
+        "down": {
+          "to_room": 3665,
+          "description": "",
+          "door": {
+            "name": "marble square",
+            "state": "open",
+            "locked": true,
+            "key_vnum": 3614
+          }
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3608,
+          "max": 1
+        }
+      ]
+    },
+    "3605": {
+      "vnum": 3605,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.  This is usually the home of the Black King.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3606,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3613,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3604,
+          "description": "A black square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3610,
+          "max": 1
+        }
+      ]
+    },
+    "3606": {
+      "vnum": 3606,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.  This is usually the home of the Black King's Bishop.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3607,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3614,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3605,
+          "description": "A white square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3606,
+          "max": 2
+        }
+      ]
+    },
+    "3607": {
+      "vnum": 3607,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.  This is usually the home of the Black King's Knight.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3608,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3615,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3606,
+          "description": "A black square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3604,
+          "max": 2
+        }
+      ]
+    },
+    "3608": {
+      "vnum": 3608,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.  This is usually the home of the Black King's Rook.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 3616,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3607,
+          "description": "A white square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3602,
+          "max": 2
+        }
+      ]
+    },
+    "3609": {
+      "vnum": 3609,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.  This is usually the home of one of the Black Queen's Pawns.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3601,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3610,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3617,
+          "description": "A white square lies to the south."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3600,
+          "max": 8
+        }
+      ]
+    },
+    "3610": {
+      "vnum": 3610,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.  This is usually the home of one of the Black Queen's Pawns.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3602,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3611,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3618,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3609,
+          "description": "A black square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3600,
+          "max": 8
+        }
+      ]
+    },
+    "3611": {
+      "vnum": 3611,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.  This is usually the home of one of the Black Queen's Pawns.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3603,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3612,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3619,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3610,
+          "description": "A white square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3600,
+          "max": 8
+        }
+      ]
+    },
+    "3612": {
+      "vnum": 3612,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.  This is usually the home of one of the Black Queen's Pawns.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3604,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3613,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3620,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3611,
+          "description": "A black square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3600,
+          "max": 8
+        }
+      ]
+    },
+    "3613": {
+      "vnum": 3613,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.  This is usually the home of one of the Black King's Pawns.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3605,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3614,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3621,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3612,
+          "description": "A white square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3600,
+          "max": 8
+        }
+      ]
+    },
+    "3614": {
+      "vnum": 3614,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.  This is usually the home of one of the Black King's Pawns.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3606,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3615,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3622,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3613,
+          "description": "A black square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3600,
+          "max": 8
+        }
+      ]
+    },
+    "3615": {
+      "vnum": 3615,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.  This is usually the home of one of the Black King's Pawns.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3607,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3616,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3623,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3614,
+          "description": "A white square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3600,
+          "max": 8
+        }
+      ]
+    },
+    "3616": {
+      "vnum": 3616,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.  This is usually the home of one of the Black King's Pawns.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3608,
+          "description": "A black square lies to the north."
+        },
+        "south": {
+          "to_room": 3624,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3615,
+          "description": "A black square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3600,
+          "max": 8
+        }
+      ]
+    },
+    "3617": {
+      "vnum": 3617,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3609,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3618,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3625,
+          "description": "A black square lies to the south."
+        }
+      }
+    },
+    "3618": {
+      "vnum": 3618,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3610,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3619,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3626,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3617,
+          "description": "A white square lies to the west."
+        }
+      }
+    },
+    "3619": {
+      "vnum": 3619,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3611,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3620,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3627,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3618,
+          "description": "A black square lies to the west."
+        }
+      }
+    },
+    "3620": {
+      "vnum": 3620,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3612,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3621,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3628,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3619,
+          "description": "A white square lies to the west."
+        }
+      }
+    },
+    "3621": {
+      "vnum": 3621,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3613,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3622,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3629,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3620,
+          "description": "A black square lies to the west."
+        }
+      }
+    },
+    "3622": {
+      "vnum": 3622,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3614,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3623,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3630,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3621,
+          "description": "A white square lies to the west."
+        }
+      }
+    },
+    "3623": {
+      "vnum": 3623,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3615,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3624,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3631,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3622,
+          "description": "A black square lies to the west."
+        }
+      }
+    },
+    "3624": {
+      "vnum": 3624,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.  You can see a rusty gate to the south.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3616,
+          "description": "A white square lies to the north."
+        },
+        "south": {
+          "to_room": 3632,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3623,
+          "description": "A white square lies to the west."
+        }
+      }
+    },
+    "3625": {
+      "vnum": 3625,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3617,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3626,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3633,
+          "description": "A white square lies to the south."
+        }
+      }
+    },
+    "3626": {
+      "vnum": 3626,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3618,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3627,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3634,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3625,
+          "description": "A black square lies to the west."
+        }
+      }
+    },
+    "3627": {
+      "vnum": 3627,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3619,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3628,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3635,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3626,
+          "description": "A white square lies to the west."
+        }
+      }
+    },
+    "3628": {
+      "vnum": 3628,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3620,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3629,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3636,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3627,
+          "description": "A black square lies to the west."
+        }
+      }
+    },
+    "3629": {
+      "vnum": 3629,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3621,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3630,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3637,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3628,
+          "description": "A white square lies to the west."
+        }
+      }
+    },
+    "3630": {
+      "vnum": 3630,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3622,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3631,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3638,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3629,
+          "description": "A black square lies to the west."
+        }
+      }
+    },
+    "3631": {
+      "vnum": 3631,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.  There is a rusty gate a short distance to the east.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3623,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3632,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3639,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3630,
+          "description": "A white square lies to the west."
+        }
+      }
+    },
+    "3632": {
+      "vnum": 3632,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.  There is a large rusty gate to the east.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3624,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3600,
+          "description": "The gate to the chessboard is just to the east."
+        },
+        "south": {
+          "to_room": 3640,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3631,
+          "description": "A black square lies to the west."
+        }
+      }
+    },
+    "3633": {
+      "vnum": 3633,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3625,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3634,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3641,
+          "description": "A black square lies to the south."
+        }
+      }
+    },
+    "3634": {
+      "vnum": 3634,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3626,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3635,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3642,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3633,
+          "description": "A white square lies to the west."
+        }
+      }
+    },
+    "3635": {
+      "vnum": 3635,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3627,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3636,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3643,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3634,
+          "description": "A black square lies to the west."
+        }
+      }
+    },
+    "3636": {
+      "vnum": 3636,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3628,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3637,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3644,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3635,
+          "description": "A white square lies to the west."
+        }
+      }
+    },
+    "3637": {
+      "vnum": 3637,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3629,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3638,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3645,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3636,
+          "description": "A black square lies to the west."
+        }
+      }
+    },
+    "3638": {
+      "vnum": 3638,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3630,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3639,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3646,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3637,
+          "description": "A white square lies to the west."
+        }
+      }
+    },
+    "3639": {
+      "vnum": 3639,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3631,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3640,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3647,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3638,
+          "description": "A black square lies to the west."
+        }
+      }
+    },
+    "3640": {
+      "vnum": 3640,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.  There is a rusty gate to the north.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3632,
+          "description": "A white square lies to the north."
+        },
+        "south": {
+          "to_room": 3648,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3639,
+          "description": "A white square lies to the west."
+        }
+      }
+    },
+    "3641": {
+      "vnum": 3641,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3633,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3642,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3649,
+          "description": "A white square lies to the south."
+        }
+      }
+    },
+    "3642": {
+      "vnum": 3642,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3634,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3643,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3650,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3641,
+          "description": "A black square lies to the west."
+        }
+      }
+    },
+    "3643": {
+      "vnum": 3643,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3635,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3644,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3651,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3642,
+          "description": "A white square lies to the west."
+        }
+      }
+    },
+    "3644": {
+      "vnum": 3644,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3636,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3645,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3652,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3643,
+          "description": "A black square lies to the west."
+        }
+      }
+    },
+    "3645": {
+      "vnum": 3645,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3637,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3646,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3653,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3644,
+          "description": "A white square lies to the west."
+        }
+      }
+    },
+    "3646": {
+      "vnum": 3646,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3638,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3647,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3654,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3645,
+          "description": "A black square lies to the west."
+        }
+      }
+    },
+    "3647": {
+      "vnum": 3647,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3639,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3648,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3655,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3646,
+          "description": "A white square lies to the west."
+        }
+      }
+    },
+    "3648": {
+      "vnum": 3648,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3640,
+          "description": "A black square lies to the north."
+        },
+        "south": {
+          "to_room": 3656,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3647,
+          "description": "A black square lies to the west."
+        }
+      }
+    },
+    "3649": {
+      "vnum": 3649,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.  This is usually the home of one of the White Queen's Pawns.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3641,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3650,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3657,
+          "description": "A black square lies to the south."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3601,
+          "max": 8
+        }
+      ]
+    },
+    "3650": {
+      "vnum": 3650,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.  This is usually the home of one of the White Queen's Pawns.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3642,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3651,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3658,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3649,
+          "description": "A white square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3601,
+          "max": 8
+        }
+      ]
+    },
+    "3651": {
+      "vnum": 3651,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.  This is usually the home of one of the White Queen's Pawns.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3643,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3652,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3659,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3650,
+          "description": "A black square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3601,
+          "max": 8
+        }
+      ]
+    },
+    "3652": {
+      "vnum": 3652,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.  This is usually the home of one of the White Queen's Pawns.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3644,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3653,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3660,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3651,
+          "description": "A white square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3601,
+          "max": 8
+        }
+      ]
+    },
+    "3653": {
+      "vnum": 3653,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.  This is usually the home of one of the White King's Pawns.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3645,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3654,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3661,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3652,
+          "description": "A black square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3601,
+          "max": 8
+        }
+      ]
+    },
+    "3654": {
+      "vnum": 3654,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.  This is usually the home of one of the White King's Pawns.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3646,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3655,
+          "description": "A white square lies to the east."
+        },
+        "south": {
+          "to_room": 3662,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3653,
+          "description": "A white square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3601,
+          "max": 8
+        }
+      ]
+    },
+    "3655": {
+      "vnum": 3655,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.  This is usually the home of one of the White King's Pawns.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3647,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3656,
+          "description": "A black square lies to the east."
+        },
+        "south": {
+          "to_room": 3663,
+          "description": "A black square lies to the south."
+        },
+        "west": {
+          "to_room": 3654,
+          "description": "A black square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3601,
+          "max": 8
+        }
+      ]
+    },
+    "3656": {
+      "vnum": 3656,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.  This is usually the home of one of the White King's Pawns.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3648,
+          "description": "A white square lies to the north."
+        },
+        "south": {
+          "to_room": 3664,
+          "description": "A white square lies to the south."
+        },
+        "west": {
+          "to_room": 3655,
+          "description": "A white square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3601,
+          "max": 8
+        }
+      ]
+    },
+    "3657": {
+      "vnum": 3657,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.  This is usually the home of the White Queen's Rook.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3649,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3658,
+          "description": "A white square lies to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3603,
+          "max": 2
+        }
+      ]
+    },
+    "3658": {
+      "vnum": 3658,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.  This is usually the home of the White Queen's Knight.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3650,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3659,
+          "description": "A black square lies to the east."
+        },
+        "west": {
+          "to_room": 3657,
+          "description": "A black square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3605,
+          "max": 2
+        }
+      ]
+    },
+    "3659": {
+      "vnum": 3659,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.  This is usually the home of the White Queen's Bishop.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3651,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3660,
+          "description": "A white square lies to the east."
+        },
+        "west": {
+          "to_room": 3658,
+          "description": "A white square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3607,
+          "max": 2
+        }
+      ]
+    },
+    "3660": {
+      "vnum": 3660,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.  This is usually the home of the White Queen.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3652,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3661,
+          "description": "A black square lies to the east."
+        },
+        "west": {
+          "to_room": 3659,
+          "description": "A black square lies to the west."
+        },
+        "down": {
+          "to_room": 3666,
+          "description": "",
+          "door": {
+            "name": "marble square",
+            "state": "open",
+            "locked": true,
+            "key_vnum": 3615
+          }
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3609,
+          "max": 1
+        }
+      ]
+    },
+    "3661": {
+      "vnum": 3661,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.  This is usually the home of the White King.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3653,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3662,
+          "description": "A white square lies to the east."
+        },
+        "west": {
+          "to_room": 3660,
+          "description": "A white square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3611,
+          "max": 1
+        }
+      ]
+    },
+    "3662": {
+      "vnum": 3662,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.  This is usually the home of the White King's Bishop.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3654,
+          "description": "A black square lies to the north."
+        },
+        "east": {
+          "to_room": 3663,
+          "description": "A black square lies to the east."
+        },
+        "west": {
+          "to_room": 3661,
+          "description": "A black square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3607,
+          "max": 2
+        }
+      ]
+    },
+    "3663": {
+      "vnum": 3663,
+      "name": "A Black Square",
+      "description": "You are standing on a black marble square.  This is usually the home of the White King's Knight.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3655,
+          "description": "A white square lies to the north."
+        },
+        "east": {
+          "to_room": 3664,
+          "description": "A white square lies to the east."
+        },
+        "west": {
+          "to_room": 3662,
+          "description": "A white square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3605,
+          "max": 2
+        }
+      ]
+    },
+    "3664": {
+      "vnum": 3664,
+      "name": "A White Square",
+      "description": "You are standing on a white marble square.  This is usually the home of the White King's Rook.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3656,
+          "description": "A black square lies to the north."
+        },
+        "west": {
+          "to_room": 3663,
+          "description": "A black square lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3603,
+          "max": 2
+        }
+      ]
+    },
+    "3665": {
+      "vnum": 3665,
+      "name": "The Black Treasury",
+      "description": "You are standing in the treasury of the Black Court.  Hopefully no one  has looted the Crown's treasure.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors",
+        "private"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 3604,
+          "description": "A small staircase rises above you.",
+          "door": {
+            "name": "marble square",
+            "state": "open",
+            "locked": true,
+            "key_vnum": 3614
+          }
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 3616,
+          "max": 1
+        }
+      ]
+    },
+    "3666": {
+      "vnum": 3666,
+      "name": "The White Treasury",
+      "description": "You are standing in the treasury of the White Court.  Hopefully no one  has looted the Crown's treasure.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors",
+        "private"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 3660,
+          "description": "A small staircase rises above you.",
+          "door": {
+            "name": "marble square",
+            "state": "open",
+            "locked": true,
+            "key_vnum": 3615
+          }
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 3617,
+          "max": 1
+        }
+      ]
+    }
+  },
+  "mobs": {
+    "3600": {
+      "vnum": 3600,
+      "name": "black",
+      "short_desc": "the Pawn of the Black Court",
+      "long_desc": "You see a pawn standing here waiting for orders.",
+      "level": 6,
+      "alignment": -400,
+      "hp_dice": "2d4+2",
+      "damage_dice": "5d4+50",
+      "gold": 750,
+      "exp": 8,
+      "armor_class": 5,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "stay_zone",
+        "wimpy"
+      ],
+      "description": "The Black Pawn looks quite like a small knight without his powerful steed.\nHis armor is shiny and black.  He stands ready to give his life for the\nCrown.",
+      "equipment": {
+        "body": 3600,
+        "wield": 3602
+      }
+    },
+    "3601": {
+      "vnum": 3601,
+      "name": "white",
+      "short_desc": "the Pawn of the White Court",
+      "long_desc": "You see a pawn standing here waiting for orders.",
+      "level": 6,
+      "alignment": 400,
+      "hp_dice": "2d4+2",
+      "damage_dice": "5d4+50",
+      "gold": 750,
+      "exp": 8,
+      "armor_class": 5,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "stay_zone",
+        "wimpy"
+      ],
+      "description": "The White Pawn looks quite like a small knight without his powerful steed.\nHis armor is spotless and white.  He stands ready to give his life for the\nCrown.",
+      "equipment": {
+        "body": 3601,
+        "wield": 3603
+      }
+    },
+    "3602": {
+      "vnum": 3602,
+      "name": "black",
+      "short_desc": "the Black Rook",
+      "long_desc": "In the corner you see a large, black, stone castle on wheels.",
+      "level": 27,
+      "alignment": -600,
+      "hp_dice": "3d8+5",
+      "damage_dice": "2d6+500",
+      "gold": 45000,
+      "exp": 8,
+      "armor_class": 1,
+      "flags": [
+        "sentinel",
+        "no_sleep",
+        "no_bash",
+        "no_blind"
+      ],
+      "description": "The Black Rook is a very large man-made tomb on wheels.  Just\nfrom the looks of it, it will probably be YOUR tomb.",
+      "equipment": {
+        "body": 3604
+      }
+    },
+    "3603": {
+      "vnum": 3603,
+      "name": "white",
+      "short_desc": "the White Rook",
+      "long_desc": "In the corner you see a large, white, stone castle on wheels.",
+      "level": 27,
+      "alignment": 600,
+      "hp_dice": "3d8+5",
+      "damage_dice": "2d6+500",
+      "gold": 45000,
+      "exp": 8,
+      "armor_class": 1,
+      "flags": [
+        "sentinel",
+        "no_sleep",
+        "no_bash",
+        "no_blind"
+      ],
+      "description": "The White Rook is a very large man-made tomb on wheels.  Just\nfrom the looks of it, it will probably be YOUR tomb.",
+      "equipment": {
+        "body": 3605
+      }
+    },
+    "3604": {
+      "vnum": 3604,
+      "name": "black",
+      "short_desc": "the Black Knight",
+      "long_desc": "Here stands a magnificent knight of the dark realm.",
+      "level": 18,
+      "alignment": -400,
+      "hp_dice": "2d8+1",
+      "damage_dice": "4d8+350",
+      "gold": 12750,
+      "exp": 8,
+      "armor_class": 0,
+      "flags": [
+        "sentinel",
+        "aggressive"
+      ],
+      "description": "The Black Knight is here, riding his ebony black war horse.  His eyes\nflash behind his visor in vengence.",
+      "equipment": {
+        "wield": 3606
+      }
+    },
+    "3605": {
+      "vnum": 3605,
+      "name": "white",
+      "short_desc": "the White Knight",
+      "long_desc": "Here stands a magnificent knight of the light realm.",
+      "level": 18,
+      "alignment": 400,
+      "hp_dice": "2d8+1",
+      "damage_dice": "4d8+350",
+      "gold": 12750,
+      "exp": 8,
+      "armor_class": 0,
+      "flags": [
+        "sentinel",
+        "aggressive"
+      ],
+      "description": "The White Knight is here, riding his ivory white war horse.  His eyes\ngleam behind his visor in joy.",
+      "equipment": {
+        "wield": 3607
+      }
+    },
+    "3606": {
+      "vnum": 3606,
+      "name": "black",
+      "short_desc": "the Black Bishop",
+      "long_desc": "A dark priest stands here.",
+      "level": 24,
+      "alignment": -500,
+      "hp_dice": "3d6+13",
+      "damage_dice": "2d5+350",
+      "gold": 23750,
+      "exp": 8,
+      "armor_class": 1,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "The Black Bishop seems willing to help you straight into your grave so\nhe can bless you properly.",
+      "equipment": {
+        "hold": 3608
+      }
+    },
+    "3607": {
+      "vnum": 3607,
+      "name": "white",
+      "short_desc": "the White Bishop",
+      "long_desc": "A light priest stands here.",
+      "level": 24,
+      "alignment": 500,
+      "hp_dice": "3d6+13",
+      "damage_dice": "2d5+350",
+      "gold": 23750,
+      "exp": 8,
+      "armor_class": 1,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "The White Bishop seems willing to help you in any possible so that he can\nattain a higher spirituality.",
+      "equipment": {
+        "hold": 3609
+      }
+    },
+    "3608": {
+      "vnum": 3608,
+      "name": "black",
+      "short_desc": "the Black Queen",
+      "long_desc": "The Black Queen stands here.",
+      "level": 32,
+      "alignment": -750,
+      "hp_dice": "4d6+13",
+      "damage_dice": "5d10+900",
+      "gold": 25000,
+      "exp": 8,
+      "armor_class": -3,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "aggressive",
+        "memory"
+      ],
+      "description": "The Black Queen is a strikingly beautiful woman with pale skin and a\nmass of dark hair that crowns her head like a black cloud.  If looks\ncould kill, you would already be dead.",
+      "equipment": {
+        "head": 3610
+      }
+    },
+    "3609": {
+      "vnum": 3609,
+      "name": "white",
+      "short_desc": "the White Queen",
+      "long_desc": "The White Queen stands here.",
+      "level": 32,
+      "alignment": 750,
+      "hp_dice": "4d6+13",
+      "damage_dice": "5d10+900",
+      "gold": 25000,
+      "exp": 8,
+      "armor_class": -3,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "aggressive",
+        "memory"
+      ],
+      "description": "The White Queen is a stunningly beautiful woman with dark skin and a mass\nof light hair that frames her head like the sun.  This is surely love at\nfirst sight for you.",
+      "equipment": {
+        "head": 3611
+      }
+    },
+    "3610": {
+      "vnum": 3610,
+      "name": "black",
+      "short_desc": "the Black King",
+      "long_desc": "The Black King stands here.",
+      "level": 36,
+      "alignment": -999,
+      "hp_dice": "5d8+20",
+      "damage_dice": "10d10+2000",
+      "gold": 40000,
+      "exp": 8,
+      "armor_class": -6,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "aware",
+        "aggressive",
+        "memory"
+      ],
+      "description": "The Black King is a menacing figure.  You can easily understand why he\nis the king and you are not.",
+      "equipment": {
+        "hold": 3612
+      },
+      "inventory": [
+        3614
+      ]
+    },
+    "3611": {
+      "vnum": 3611,
+      "name": "white",
+      "short_desc": "the White King",
+      "long_desc": "The White King stands here.",
+      "level": 36,
+      "alignment": 999,
+      "hp_dice": "5d8+20",
+      "damage_dice": "10d10+2000",
+      "gold": 40000,
+      "exp": 8,
+      "armor_class": -6,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "aware",
+        "aggressive",
+        "memory"
+      ],
+      "description": "The White King is a stately figure.  You can easily understand why he\nis the king and you are not.",
+      "equipment": {
+        "hold": 3613
+      },
+      "inventory": [
+        3615
+      ]
+    }
+  },
+  "objects": {
+    "3600": {
+      "vnum": 3600,
+      "name": "armour",
+      "short_desc": "some Black Pawn Armour",
+      "room_desc": "A pile of black armour is here.",
+      "item_type": "armor",
+      "weight": 13,
+      "value": 300,
+      "armor_bonus": 1
+    },
+    "3601": {
+      "vnum": 3601,
+      "name": "armour",
+      "short_desc": "some White Pawn Armour",
+      "room_desc": "A pile of white armour is here.",
+      "item_type": "armor",
+      "weight": 13,
+      "value": 300,
+      "armor_bonus": 1
+    },
+    "3602": {
+      "vnum": 3602,
+      "name": "sword",
+      "short_desc": "a Black Pawn's Sword",
+      "room_desc": "The sword of a Black Pawn lies here.",
+      "item_type": "weapon",
+      "weight": 10,
+      "value": 100,
+      "damage_dice": "3d4",
+      "weapon_type": "slash"
+    },
+    "3603": {
+      "vnum": 3603,
+      "name": "sword",
+      "short_desc": "a White Pawn's Sword",
+      "room_desc": "The sword of a White Pawn lies here.",
+      "item_type": "weapon",
+      "weight": 10,
+      "value": 100,
+      "damage_dice": "3d4",
+      "weapon_type": "slash"
+    },
+    "3604": {
+      "vnum": 3604,
+      "name": "armour",
+      "short_desc": "some Black Rook Armour",
+      "room_desc": "Some armour made from the remains of a black rook lies heaped on the floor.",
+      "item_type": "armor",
+      "weight": 60,
+      "value": 17000,
+      "armor_bonus": 2
+    },
+    "3605": {
+      "vnum": 3605,
+      "name": "armour",
+      "short_desc": "some White Rook Armour",
+      "room_desc": "Some armour made from the remains of a white rook lies heaped on the floor.",
+      "item_type": "armor",
+      "weight": 60,
+      "value": 17000,
+      "armor_bonus": 2
+    },
+    "3606": {
+      "vnum": 3606,
+      "name": "lance",
+      "short_desc": "the Lance of the Black Knight",
+      "room_desc": "The Lance of the Black Knight lies here, waiting to rust.",
+      "item_type": "weapon",
+      "weight": 18,
+      "value": 10000,
+      "damage_dice": "3d6",
+      "weapon_type": "crush"
+    },
+    "3607": {
+      "vnum": 3607,
+      "name": "lance",
+      "short_desc": "the Lance of the White Knight",
+      "room_desc": "The Lance of the White Knight lies here, waiting to rust.",
+      "item_type": "weapon",
+      "weight": 18,
+      "value": 10000,
+      "damage_dice": "3d6",
+      "weapon_type": "crush"
+    },
+    "3608": {
+      "vnum": 3608,
+      "name": "staff",
+      "short_desc": "the Staff of the Black Bishop",
+      "room_desc": "The Black Bishop's Staff is lying here.",
+      "item_type": "staff",
+      "weight": 3,
+      "value": 20000
+    },
+    "3609": {
+      "vnum": 3609,
+      "name": "staff",
+      "short_desc": "the Staff of the White Bishop",
+      "room_desc": "The White Bishop's Staff is lying here.",
+      "item_type": "staff",
+      "weight": 3,
+      "value": 20000
+    },
+    "3610": {
+      "vnum": 3610,
+      "name": "crown",
+      "short_desc": "the Crown of the Black Queen",
+      "room_desc": "The Crown of the Black Queen lies here, looking neglected.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 3000,
+      "armor_bonus": 2
+    },
+    "3611": {
+      "vnum": 3611,
+      "name": "crown",
+      "short_desc": "the Crown of the White Queen",
+      "room_desc": "The Crown of the White Queen lies here, looking neglected.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 3000,
+      "armor_bonus": 2
+    },
+    "3612": {
+      "vnum": 3612,
+      "name": "sceptre",
+      "short_desc": "the Black King's Sceptre",
+      "room_desc": "The Sceptre of the Black King lies here, collecting dust.",
+      "item_type": "treasure",
+      "weight": 200,
+      "value": 85000
+    },
+    "3613": {
+      "vnum": 3613,
+      "name": "sceptre",
+      "short_desc": "the White King's Sceptre",
+      "room_desc": "The Sceptre of the White King lies here, collecting dust.",
+      "item_type": "treasure",
+      "weight": 300,
+      "value": 85000
+    },
+    "3614": {
+      "vnum": 3614,
+      "name": "key",
+      "short_desc": "The Key to the Black Treasury",
+      "room_desc": "There is a sinister black key lying here.",
+      "item_type": "key",
+      "weight": 1,
+      "value": 1000
+    },
+    "3615": {
+      "vnum": 3615,
+      "name": "key",
+      "short_desc": "the Key to the White Treasury",
+      "room_desc": "There is a bright white key lying here.",
+      "item_type": "key",
+      "weight": 1,
+      "value": 1000
+    },
+    "3616": {
+      "vnum": 3616,
+      "name": "coins",
+      "short_desc": "the Black Royal Treasure",
+      "room_desc": "There are a LOT of coins here.",
+      "item_type": "money",
+      "weight": 10,
+      "value": 10000
+    },
+    "3617": {
+      "vnum": 3617,
+      "name": "coins",
+      "short_desc": "the White Royal Treasure",
+      "room_desc": "There are a LOT of coins here.",
+      "item_type": "money",
+      "weight": 10,
+      "value": 10000
+    }
+  }
+}

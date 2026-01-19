@@ -36,6 +36,7 @@ class Room:
         # Contents
         self.characters = []  # Players and NPCs in room
         self.items = []  # Objects in room
+        self.gold = 0  # Gold coins on the floor
         
         # Reset data
         self.mob_resets = []  # Mobs that spawn here
@@ -46,7 +47,12 @@ class Room:
     async def show_to(self, player: 'Player'):
         """Display the room to a player."""
         c = self.config.COLORS
-        
+
+        # Can't see room details while sleeping
+        if hasattr(player, 'position') and player.position == 'sleeping':
+            await player.send("You can't see anything, you're sleeping!")
+            return
+
         # Room name
         await player.send(f"{c['cyan']}{self.name}{c['reset']}")
         
@@ -60,6 +66,13 @@ class Room:
         else:
             await player.send(f"{c['yellow']}[ Exits: None ]{c['reset']}")
             
+        # Gold in room
+        if self.gold > 0:
+            if self.gold == 1:
+                await player.send(f"{c['yellow']}A single gold coin lies here.{c['reset']}")
+            else:
+                await player.send(f"{c['yellow']}A pile of {self.gold} gold coins lies here.{c['reset']}")
+
         # Items in room
         for item in self.items:
             await player.send(f"{c['yellow']}{item.room_desc}{c['reset']}")
@@ -67,10 +80,44 @@ class Room:
         # Characters in room (excluding player)
         for char in self.characters:
             if char != player:
+                fighting_msg = ""
+                # Check if this character is fighting the player
+                if hasattr(char, 'fighting') and char.fighting == player:
+                    fighting_msg = f" {c['red']}(Fighting YOU!){c['reset']}"
+                # Check if player is fighting this character
+                elif hasattr(player, 'fighting') and player.fighting == char:
+                    fighting_msg = f" {c['yellow']}(You are fighting this!){c['reset']}"
+
                 if hasattr(char, 'long_desc'):
-                    await player.send(f"{c['bright_cyan']}{char.long_desc}{c['reset']}")
+                    await player.send(f"{c['bright_cyan']}{char.long_desc}{fighting_msg}{c['reset']}")
                 else:
-                    await player.send(f"{c['bright_cyan']}{char.name} is standing here.{c['reset']}")
+                    await player.send(f"{c['bright_cyan']}{char.name} is standing here.{fighting_msg}{c['reset']}")
+
+                # Show active debuffs/buffs on the character
+                if hasattr(char, 'affects') and char.affects:
+                    debuff_messages = []
+                    for affect in char.affects:
+                        if affect.type == 'dot' and affect.name == 'poison':
+                            debuff_messages.append(f"{c['green']}{char.name} is poisoned!{c['reset']}")
+                        elif affect.type == 'flag':
+                            if affect.applies_to == 'blind':
+                                debuff_messages.append(f"{c['yellow']}{char.name} is blinded!{c['reset']}")
+                            elif affect.applies_to == 'silenced':
+                                debuff_messages.append(f"{c['magenta']}{char.name} is silenced!{c['reset']}")
+                            elif affect.applies_to == 'sanctuary':
+                                debuff_messages.append(f"{c['white']}{char.name} is protected by sanctuary!{c['reset']}")
+                            elif affect.applies_to == 'invisible':
+                                # Don't show if the viewer can't detect invisible
+                                if hasattr(player, 'affect_flags') and 'detect_invisible' in player.affect_flags:
+                                    debuff_messages.append(f"{c['cyan']}{char.name} is invisible!{c['reset']}")
+                        elif affect.type == 'modify_stat':
+                            if affect.name == 'weakened':
+                                debuff_messages.append(f"{c['red']}{char.name} looks weakened!{c['reset']}")
+                            elif affect.name == 'slowed':
+                                debuff_messages.append(f"{c['blue']}{char.name} is moving sluggishly!{c['reset']}")
+
+                    for msg in debuff_messages:
+                        await player.send(msg)
                     
     async def send_to_room(self, message: str, exclude: List = None):
         """Send a message to everyone in the room."""
@@ -155,7 +202,20 @@ class Zone:
         zone = cls(data['number'])
         zone.name = data.get('name', 'Unknown Zone')
         zone.builders = data.get('builders', '')
-        zone.lifespan = data.get('lifespan', 30)
+
+        # Handle both old format (lifespan in minutes) and new format (reset_time in seconds)
+        # zone_reset_tick is called every 900 seconds (15 minutes), so zone.age increments every 15 minutes
+        if 'reset_time' in data:
+            # New format: reset_time in seconds, convert to 15-minute units
+            reset_time_seconds = data['reset_time']
+            zone.lifespan = max(1, round(reset_time_seconds / 900))
+        else:
+            # Old format: lifespan already in the correct unit (but was probably intended as minutes)
+            # Since zone.age increments every 15 minutes, we need to adjust
+            lifespan_value = data.get('lifespan', 30)
+            # Treat old lifespan values as minutes, convert to 15-minute units
+            zone.lifespan = max(1, round(lifespan_value / 15))
+
         zone.reset_mode = data.get('reset_mode', 2)
         zone.top = data.get('top', 0)
         
@@ -280,6 +340,8 @@ class World:
                     if proto:
                         mob = Mobile.from_prototype(proto, self)
                         mob.room = room
+                        mob.home_room = room  # Set home room for AI
+                        mob.home_zone = zone.number  # Set home zone for movement restrictions
                         room.characters.append(mob)
                         self.npcs.append(mob)
                         
@@ -348,17 +410,39 @@ class World:
     async def combat_tick(self):
         """Process combat for all fighting characters."""
         from combat import CombatHandler
-        
+
         # Process player combat
         for player in list(self.players.values()):
             if player.is_fighting:
+                # Check if target is still valid
+                if player.fighting is None or player.fighting.hp <= 0 or player.fighting not in player.room.characters:
+                    player.fighting = None
+                    player.position = 'standing'
+                    continue
                 await CombatHandler.one_round(player, player.fighting)
-                
+
         # Process NPC combat
         for npc in list(self.npcs):
             if npc.is_fighting:
+                # Check if target is still valid
+                if npc.fighting is None or npc.fighting.hp <= 0 or (hasattr(npc.fighting, 'room') and npc.fighting not in npc.room.characters):
+                    npc.fighting = None
+                    npc.position = 'standing'
+                    continue
                 await CombatHandler.one_round(npc, npc.fighting)
                 
+    async def poison_tick(self):
+        """Process poison damage for all characters (runs every 2.5 seconds)."""
+        from affects import AffectManager
+
+        for player in self.players.values():
+            # Only process poison DOT effects, don't decrement durations
+            await AffectManager.tick_affects(player, poison_only=True)
+
+        for npc in self.npcs:
+            # Only process poison DOT effects, don't decrement durations
+            await AffectManager.tick_affects(npc, poison_only=True)
+
     async def regen_tick(self):
         """Process regeneration for all characters."""
         for player in self.players.values():

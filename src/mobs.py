@@ -32,6 +32,7 @@ class Mobile(Character):
         self.short_desc = "a generic mob"
         self.long_desc = "A generic mob stands here."
         self.description = ""
+        self.keywords = []  # List of keywords for targeting
         
         # Behavior flags
         self.flags = set()
@@ -41,6 +42,7 @@ class Mobile(Character):
         self.hate_list = []  # Characters this mob is angry at
         self.memory = {}  # Remember things about players
         self.home_room = None
+        self.home_zone = None  # Zone number this mob belongs to
         self.ai_config = {}  # AI configuration (patrol routes, behaviors, etc.)
         self.ai_state = {}  # Runtime AI state (patrol index, buffed status, etc.)
         self.ai_controller = None  # AIController instance
@@ -57,6 +59,16 @@ class Mobile(Character):
         mob.short_desc = proto.get('short_desc', mob.name)
         mob.long_desc = proto.get('long_desc', f"{mob.name} is here.")
         mob.description = proto.get('description', '')
+
+        # Generate keywords from name and short_desc for better targeting
+        # Remove articles (a, an, the) and split into words
+        keywords = set()
+        for text in [mob.name, mob.short_desc]:
+            words = text.lower().replace(',', '').replace('.', '').split()
+            for word in words:
+                if word not in ['a', 'an', 'the', 'is', 'are']:
+                    keywords.add(word)
+        mob.keywords = list(keywords)
         
         mob.level = proto.get('level', 1)
         mob.alignment = proto.get('alignment', 0)
@@ -99,6 +111,22 @@ class Mobile(Character):
         if mob.ai_config:
             from ai import AIController
             mob.ai_controller = AIController.create_from_config(mob, mob.ai_config)
+
+        # Load equipment
+        equipment_data = proto.get('equipment', {})
+        if equipment_data:
+            from objects import create_object
+            for slot, obj_vnum in equipment_data.items():
+                # Create object from vnum using the objects module function
+                obj = create_object(obj_vnum, world)
+                if obj:
+                    mob.equipment[slot] = obj
+
+        # Initialize shop if this mob is a shopkeeper
+        shop_config = proto.get('shop_config')
+        if shop_config and mob.special == 'shopkeeper':
+            from shops import ShopManager
+            ShopManager.create_shop(mob, shop_config, world)
 
         return mob
         
@@ -184,31 +212,62 @@ class Mobile(Character):
         """Check for and attack valid targets."""
         if not self.room:
             return
-            
-        # Find potential targets
-        targets = [
-            char for char in self.room.characters
-            if char != self 
-            and hasattr(char, 'connection')  # Is a player
-            and not char.is_fighting
-        ]
-        
+
+        # Find potential targets (excluding hidden/sneaking players who pass their check)
+        targets = []
+        for char in self.room.characters:
+            if char == self or not hasattr(char, 'connection') or char.is_fighting:
+                continue
+
+            # Check if player is hidden or sneaking
+            if 'hidden' in char.flags or 'sneaking' in char.flags:
+                # Mob tries to detect the player
+                # Detection chance = mob level vs player skill
+                # Base detection = (mob_level * 5) vs (player_skill)
+                detection_chance = self.level * 5
+
+                # Player's best stealth skill
+                hide_skill = char.skills.get('hide', 0)
+                sneak_skill = char.skills.get('sneak', 0)
+                stealth_skill = max(hide_skill, sneak_skill)
+
+                # Roll detection check
+                mob_roll = random.randint(1, 100) + detection_chance
+                player_roll = random.randint(1, 100) + stealth_skill
+
+                # If mob fails to detect, skip this player
+                if player_roll >= mob_roll:
+                    continue
+
+                # Mob detected the player! Reveal them
+                if 'hidden' in char.flags:
+                    char.flags.remove('hidden')
+                    c = self.config.COLORS
+                    await char.send(f"{c['yellow']}{self.name} spots you!{c['reset']}")
+                    await self.room.send_to_room(
+                        f"{c['yellow']}{self.name} spots {char.name} hiding!{c['reset']}",
+                        exclude=[char]
+                    )
+
+            # Add to targets
+            targets.append(char)
+
         if not targets:
             return
-            
+
         # Don't attack if room is peaceful
         if 'peaceful' in self.room.flags:
             return
-            
+
         # Pick a random target
         target = random.choice(targets)
-        
+
         # Announce and attack
         c = self.config.COLORS
         await self.room.send_to_room(
             f"{c['bright_red']}{self.name} attacks {target.name}!{c['reset']}"
         )
-        
+
         from combat import CombatHandler
         await CombatHandler.start_combat(self, target)
         
@@ -223,8 +282,14 @@ class Mobile(Character):
             if exit_data and exit_data.get('room'):
                 target_room = exit_data['room']
                 # Don't wander into no_mob rooms
-                if 'no_mob' not in target_room.flags:
-                    valid_exits.append((direction, target_room))
+                if 'no_mob' in target_room.flags:
+                    continue
+                # Don't wander out of home zone (unless no home zone set)
+                if self.home_zone is not None:
+                    target_zone = target_room.vnum // 100  # Calculate zone from room vnum
+                    if target_zone != self.home_zone:
+                        continue
+                valid_exits.append((direction, target_room))
                     
         if not valid_exits:
             return
@@ -433,13 +498,24 @@ class Mobile(Character):
             self.mana = min(self.max_mana, self.mana + max(1, self.max_mana // 10))
             
     def get_hit_bonus(self):
-        """Calculate hit bonus."""
-        return self.level // 2 + (self.str - 10) // 2
-        
+        """Calculate hit bonus (to hit / THAC0)."""
+        bonus = self.level // 2
+        # DEX is primary factor for accuracy
+        bonus += (self.dex - 10) // 2
+        # STR provides minor bonus
+        bonus += (self.str - 10) // 4
+        return bonus
+
     def get_damage_bonus(self):
         """Calculate damage bonus."""
-        return self.level // 4 + (self.str - 10) // 2
+        bonus = self.level // 4
+        # STR is primary factor for damage
+        bonus += (self.str - 10) // 2
+        return bonus
         
     def get_armor_class(self):
-        """Get effective armor class."""
-        return self.armor_class
+        """Get effective armor class (lower is better)."""
+        ac = self.armor_class
+        # DEX improves AC (makes you harder to hit)
+        ac -= (self.dex - 10) // 2 * 10
+        return ac

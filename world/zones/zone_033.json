@@ -1,0 +1,2443 @@
+{
+  "number": 33,
+  "name": "The Three Of Swords",
+  "lifespan": 30,
+  "rooms": {
+    "3300": {
+      "vnum": 3300,
+      "name": "A Scraggly Trail",
+      "description": "This trail slopes up and away from the main road to  the west.  At points the trail seems to fade into  obscurity against the grey stone and near-grey mountain  grass prevalent here.  The trail leads generally eastward  and up higher into the rocky ground.  There is a sign  here, seemingly out-of-place in this rough country.",
+      "sector_type": "mountain",
+      "flags": [
+        "no_mob",
+        "no_track"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 3301,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3500,
+          "description": ""
+        }
+      },
+      "extra_descs": {
+        "": "sign"
+      }
+    },
+    "3301": {
+      "vnum": 3301,
+      "name": "A Scraggly Trail",
+      "description": "What could barely be called a trail leads west back  down the mountainside, and down into a very small valley  where a small house sits in the middle of a well-groomed  yard.  The door to the house is open and inviting,  welcoming you for a visit.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 3300,
+          "description": ""
+        },
+        "down": {
+          "to_room": 3302,
+          "description": ""
+        }
+      }
+    },
+    "3302": {
+      "vnum": 3302,
+      "name": "A Groomed Path",
+      "description": "You are standing in the western end of a very, very  small valley, just about room enough for the one house  standing to your east.  You can see from here that the  door to the cozy cottage is open and inviting, but the  interior seems very dark.  A path bordered by shrubberies  leads up to the structure, and ends where you are  standing; right by the easiest path back up into the  mountains.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3303,
+          "description": ""
+        },
+        "up": {
+          "to_room": 3301,
+          "description": ""
+        }
+      }
+    },
+    "3303": {
+      "vnum": 3303,
+      "name": "Outside A House",
+      "description": "The path you are on leads from the front door of the cottage to your east, to the edge of the small valley to the west.  The building seems quiet...almost too quiet.  A small voice in the back of your head, the same voice that has saved your life on countless occasions, seems to be telling you that something is very, very wrong here.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3304,
+          "description": "It is a normal front door to a house.",
+          "door": {
+            "name": "door front",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "west": {
+          "to_room": 3302,
+          "description": ""
+        }
+      }
+    },
+    "3304": {
+      "vnum": 3304,
+      "name": "The Smithery",
+      "description": "Devastation greets your eyes.    The forge has been blasted apart, along with most of  the back door.  Hammers, tongs, and anvils lie about in  one gigantic mess, and the smith's bed smoulders yet.   This place has been utterly wrecked and blasted apart, by  more than one man you would think from all the tracks in  the dust...",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 3305,
+          "description": "It is a normal hole torn in the wall leading outside into a garden."
+        },
+        "west": {
+          "to_room": 3303,
+          "description": "It is a normal front door.",
+          "door": {
+            "name": "door front",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "extra_descs": {
+        "": "tracks dust"
+      },
+      "obj_resets": [
+        {
+          "vnum": 3314,
+          "max": 1
+        }
+      ]
+    },
+    "3305": {
+      "vnum": 3305,
+      "name": "A Small Garden",
+      "description": "This garden was probably once kept orderly and weedless. Unfortunately, it seems someone has been careless with a fireball.  There is nothing here now but blast-marks and ashes, and the remains of a trail leading to the east edge of this tiny valley.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3306,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3304,
+          "description": ""
+        }
+      },
+      "extra_descs": {
+        "": "tracks track"
+      }
+    },
+    "3306": {
+      "vnum": 3306,
+      "name": "Mountain Ridge",
+      "description": "You are standing on a ridge in the mountains, just east of a very small valley.  You spot a tiny cottage sitting  in the center of the valley, and the ridge continues  south.  Looking at the sheer drops to the north and west,  you consider not taking those directions.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 3307,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3305,
+          "description": ""
+        }
+      },
+      "extra_descs": {
+        "": "tracks track"
+      }
+    },
+    "3307": {
+      "vnum": 3307,
+      "name": "The Mountain Ridge",
+      "description": "The mountain range continues north from here, and  widens out into a small plateau just to your south.  Going east and west from here would be a bad idea, considering  the steepness of the drop.  From this height, you have a  fairly good panoramic view to the south, including what  appears to be a small mountain village to your south and  west, and a tall, ominous peak westwards from here.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3306,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3308,
+          "description": ""
+        }
+      },
+      "extra_descs": {
+        "": "tracks track"
+      }
+    },
+    "3308": {
+      "vnum": 3308,
+      "name": "The Diverging Paths",
+      "description": "You are standing on a small plateau in the mountains,  just south of a ridge that leads northwards through the  rocky area.  To the east, south, and west are gentle  slopes leading down into different areas of the mountains.    A giant, dark peak looks down over you to the west,  looking quite spooky indeed!",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3307,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3341,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3309,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3359,
+          "description": ""
+        }
+      },
+      "extra_descs": {
+        "": "tracks track"
+      }
+    },
+    "3309": {
+      "vnum": 3309,
+      "name": "A Steep Slope",
+      "description": "This slopes leads down and to the west from here.  Up  above, you see a plateau at the southern end of a long  mountain ridge.  Surpisingly, there seems to be signs of  traffic in this area, leading into the large depression  here.  The going looks somewhat dangerous, and you decide  to exercise a little caution.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3308,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3310,
+          "description": ""
+        },
+        "up": {
+          "to_room": 3308,
+          "description": ""
+        }
+      },
+      "extra_descs": {
+        "": "signs tracks"
+      }
+    },
+    "3310": {
+      "vnum": 3310,
+      "name": "A Small Plateau",
+      "description": "You are standing upon another mini-plateau, bordered by a sheer wall of rock to the north.  You can climb up the  slope to the east, or continue along the flat area to the  west.  Another slope leads downwards to the south, looking unsafe but climbable.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3309,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3314,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3311,
+          "description": ""
+        }
+      }
+    },
+    "3311": {
+      "vnum": 3311,
+      "name": "A Small Plateau",
+      "description": "This plateau ends here, with a steep drop-off to the  south, and a solid wall of rock to the north.  Eastwards  the plateau continues, and you think you can climb up the  steep rocky slope just west of here.  You are afforded a  good view of the lower regions of this depression, and you think you spot what might be a cave south and down from  here...",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3310,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3312,
+          "description": ""
+        }
+      }
+    },
+    "3312": {
+      "vnum": 3312,
+      "name": "A Rocky Slope",
+      "description": "This slope is fairly treacherous, but looks to be  somewhat safer to the north.  East the slope leads down  to a small plateau that also looks considerably safer  than your other choices.  The shale under your feet  slips badly, and you are almost thrown off balance;  this is no place to be without mountaineering equipment.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3313,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3311,
+          "description": ""
+        }
+      }
+    },
+    "3313": {
+      "vnum": 3313,
+      "name": "The Overlook",
+      "description": "You are standing on a point outcropping with a  beautiful view of the mountains to the north.  Far  below, you see what appears to be a foot-path climb  up to the central mountain, a peak that looks dark  and disturbing.  You get very bad vibes from that  mountain for some reason, and it doesn't seem like  a very good idea to try to find a way to get there.    The only safe way to leave this overlook is to  the south.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 3312,
+          "description": ""
+        }
+      }
+    },
+    "3314": {
+      "vnum": 3314,
+      "name": "A Rocky Slope",
+      "description": "You slip and slide your way across the steep ground,  trying desperately to keep your balance.  You can climb  up to a small plateau to the north from here, or carefully head down to the floor of the depression to the west.   You're not sure which is safer...",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3310,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3315,
+          "description": ""
+        }
+      }
+    },
+    "3315": {
+      "vnum": 3315,
+      "name": "The Depression Floor",
+      "description": "A small path leads south here, away from the rocky  slope leading up to the east.  A small spring burbles  here, evidently the cause of much of the traffic.   Looking up, you see sheer rock walls surrounding much  of the depression, making an effective fortress of this place.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3314,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3316,
+          "description": ""
+        }
+      }
+    },
+    "3316": {
+      "vnum": 3316,
+      "name": "The Depression Floor",
+      "description": "The small path you are standing on leads north, and east into what appears to be a large cave hollowed out of the mountainside.  The whole place seems quiet, too quiet in fact.  Your little adventurer's intuition is busily warning you of traps.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3315,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3317,
+          "description": ""
+        }
+      }
+    },
+    "3317": {
+      "vnum": 3317,
+      "name": "A Cave Entrance",
+      "description": "A cave leads into the heart of the mountainside, well- lit by sconces upon the walls.  A large rock sits by  the side here, near a small firepit.  Debris litters the  area; rabbit bones, half of a broken whetstone, and random litter.  The ground is devoid of grass, and well trodden  by many pairs of boots.  Strange that someone should live  so deep in the mountains...",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 3318,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3316,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3316,
+          "max": 5
+        }
+      ]
+    },
+    "3318": {
+      "vnum": 3318,
+      "name": "A Cave Passageway",
+      "description": "You are near the entrance of the cave.  The outside  light streams in from the west, accompanied by a slight  breeze, making the flames in the sconces flutter a bit and throw stange shadows upon the walls.  This passageway  heads north and south from here, each way seeming dark and stuffy compared to outdoors.  From the tracks in the  floor, you guess that the north is the more used.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3319,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3331,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3317,
+          "description": ""
+        }
+      }
+    },
+    "3319": {
+      "vnum": 3319,
+      "name": "A Cave Passageway",
+      "description": "The passage turns here, one end leading south, towards  the cave's entrance, and east -- that much deeper into the mountain.  The light sconces keep the area bright enough  to see, but not nearly bright enough for you to be quite  comfortable in this strange place.  From far off you hear  the echoes of what sound to be voices.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 3320,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3318,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3315,
+          "max": 9
+        }
+      ]
+    },
+    "3320": {
+      "vnum": 3320,
+      "name": "A Cave Passageway",
+      "description": "This twisty passage leads east and west from here.   Eastwards you hear the unmistakable sounds of low  voices.  The echoes seem to be playing funny effects  on you, however, and you are not sure  from how far  off these voices might be coming.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 3321,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3319,
+          "description": ""
+        }
+      }
+    },
+    "3321": {
+      "vnum": 3321,
+      "name": "A Cave Passageway",
+      "description": "The passage you are standing in turns west and south  from here.  One of the sconces here is out, making this  area extremely dark and hard to see in.  You do see lights from the south, however, seemingly brighter than the  sconces you've seen along the walls so far.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3322,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3320,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3315,
+          "max": 9
+        }
+      ]
+    },
+    "3322": {
+      "vnum": 3322,
+      "name": "A Cave Passageway",
+      "description": "This is a T-intersection in the cave passageway, the  north leading back towards the cave's entrance (you  think!), the west leading towards a well-lighted area.   Eastwards the passageway continues into the shadowy  recesses of the mountain uninvitingly.  The echoes of  voices are confusing you a bit, and you are not sure  whether you should try to remain quiet or not.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3321,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3324,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3323,
+          "description": ""
+        }
+      }
+    },
+    "3323": {
+      "vnum": 3323,
+      "name": "A Cave",
+      "description": "Many sconces line the walls here, casting light on  some weapon racks and chests of armor.  Everything is neat, orderly, and actually well-dusted.  Someone cares for these items...frequently it seems.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 3322,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3315,
+          "max": 9
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 3315,
+          "max": 2
+        },
+        {
+          "vnum": 3315,
+          "max": 2
+        }
+      ]
+    },
+    "3324": {
+      "vnum": 3324,
+      "name": "A Cave Passageway",
+      "description": "The passageway you are in leads south and west from  here.  Many large stones and rocks are on the floor of the cave, making walking difficult in the dim light from the  sconces on the walls.  You hear the continued echo of  voices, seemingly fainter now.  Must be the strange  acoustics of this place...",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3325,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3322,
+          "description": ""
+        }
+      }
+    },
+    "3325": {
+      "vnum": 3325,
+      "name": "A Cave Passageway",
+      "description": "The cave twists around like a coiled snake, leading  east and north from here.  You begin to wonder if your  orientations are still correct.  That worries you for some reason.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3324,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3326,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3315,
+          "max": 9
+        }
+      ]
+    },
+    "3326": {
+      "vnum": 3326,
+      "name": "A Cave Passageway",
+      "description": "You can head north and west through the cave passageways here, both ways dimly lit by the ever-present sconces on  the walls.  The echoes you heard earlier seem to be getting louder, and seem to be coming from the northern passage.   You feeled a bit chilled from the cooled cave air and  shiver a bit in the faint whisper of a breeze.  This place  is a little too eerie and dark to be comfortable in.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3327,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3325,
+          "description": ""
+        }
+      }
+    },
+    "3327": {
+      "vnum": 3327,
+      "name": "A Cave Passageway",
+      "description": "The echoes are growing louder, and seem to be coming  from the northern end of this corridor.  Southwards you  see the tunnel continue right before yet another bend in  the passagway.  You spot a small piece of red cloth torn  against a sharp rock jutting out from the passage's side.   It looks like silk, very nice in fact.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3328,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3326,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3315,
+          "max": 9
+        },
+        {
+          "vnum": 3315,
+          "max": 9
+        }
+      ]
+    },
+    "3328": {
+      "vnum": 3328,
+      "name": "A Cave Passageway",
+      "description": "The main passageway leads south from here, and a smaller cave tunnel leads away to the west.  Two large boulders  sit against the wall, wiped clean of dirt and grime.  A  paper food wrapper has been trodden under several pairs of  feet here; at best guess, you'd say this would probably be  a guard post.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3327,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3329,
+          "description": ""
+        }
+      }
+    },
+    "3329": {
+      "vnum": 3329,
+      "name": "The End Of The Passageway",
+      "description": "The cave passageway ends abruptly here to the north in a large wooden door set into the stone walls.  The craftsmanship is superb!  You can also head back to the main passage to the west, where there seems to be more light than here.  An echo from down the passage makes you wonder for a moment if you are being followed, but you see nothing there...",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3330,
+          "description": "It is a sturdy wooden door.",
+          "door": {
+            "name": "door wooden",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "east": {
+          "to_room": 3328,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3316,
+          "max": 5
+        },
+        {
+          "vnum": 3316,
+          "max": 5
+        }
+      ]
+    },
+    "3330": {
+      "vnum": 3330,
+      "name": "A Cavern",
+      "description": "This natural cavern has been turned into a combination  office/storeroom.  A small brook rushes through the south  wall, and flows back into the west wall through a tiny  hole.  Boxes and crates are stacked against the walls, and  a beat up oaken desk stands near the door stacked with  papers written upon by an unsteady hand.  Some large  lanterns keep the place very well lighted.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3329,
+          "description": "It is a sturdy wooden door.",
+          "door": {
+            "name": "door wooden",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3308,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 3316,
+          "max": 3
+        },
+        {
+          "vnum": 3316,
+          "max": 3
+        },
+        {
+          "vnum": 3316,
+          "max": 3
+        }
+      ]
+    },
+    "3331": {
+      "vnum": 3331,
+      "name": "A Cave Passageway",
+      "description": "You are standing south of the main entrance to this  cave.  The passage you are in continues south, very badly  lit along its length by the sconces lining the walls  every fifteen feet or so.  From somewhere deep in the  recesses of the cave, you hear a faint, rhythmic thumping  sound distorted by the passage's strange acoustics.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3318,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3332,
+          "description": ""
+        }
+      }
+    },
+    "3332": {
+      "vnum": 3332,
+      "name": "A Cave Passageway",
+      "description": "You are standing at the southern bend of this passage, able to head east and north from here.  The rock around you echoes the sound of far-off pounding to you, making the place seem somehow alive, with a heartbeat.  This place is fairly eerie, now that you come to think of it.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3331,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3333,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3315,
+          "max": 9
+        }
+      ]
+    },
+    "3333": {
+      "vnum": 3333,
+      "name": "A Cave Passageway",
+      "description": "The passageway makes a U-turn here, heading north and westwards to the other side of the 'U'.  The air seems humid and hard to breathe.  Some algae grows near the floor in the slick spots, giving a definite subtle smell of rot to the air.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3334,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3332,
+          "description": ""
+        }
+      }
+    },
+    "3334": {
+      "vnum": 3334,
+      "name": "A Cave Passageway",
+      "description": "The tunnel twists to the south and east from here,  its dark length seemingly dismal and lifeless.  A faint  thumping sound reverberates from the walls, making you  perk your ears for the direction of the noise.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 3335,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3333,
+          "description": ""
+        }
+      }
+    },
+    "3335": {
+      "vnum": 3335,
+      "name": "A Cave Passageway",
+      "description": "This area darker than the rest of the passageway, due to the fact that the sconces along the walls stop abruptly here.  The way to the south is completely dark, in direct contrast to the tunnels to the west.  You peer hard to the south, but can make out nothing in the impenetrable  darkness.  And still that distant thumping impinges on  your consciousness...",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3336,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3334,
+          "description": ""
+        }
+      }
+    },
+    "3336": {
+      "vnum": 3336,
+      "name": "A Cave Passageway",
+      "description": "You are standing in a north-south tunnel carved  naturally through the stone of the mountain.  To the  north the tunnel is lighted by sconces along the wall,  banishing the deep, deep darkness you now stand in.  To  the south you can see nothing.  A deep thumping noise  seems to be getting louder and louder as you stand here,  coming from somewhere deep inside.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3335,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3337,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3315,
+          "max": 9
+        }
+      ]
+    },
+    "3337": {
+      "vnum": 3337,
+      "name": "A Cave Passageway",
+      "description": "The passageway switches directions again in the dark  gloom of the mountain, heading to the north and east from  here.  As you round the corner, a trick of the acoustics  make the deep thrumming and pounding you've been hearing  sound as if its coming from two feet away!  Very unsettling.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3336,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3338,
+          "description": ""
+        }
+      }
+    },
+    "3338": {
+      "vnum": 3338,
+      "name": "A Cave Passageway",
+      "description": "The tunnel weaves around, twisting to the north and  west here.  The darkness around you is near total.  Ahead,  you hear the sounds of something metal banging against  stone.  Could someone be mining out the tunnel, perhaps?",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3339,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3337,
+          "description": ""
+        }
+      }
+    },
+    "3339": {
+      "vnum": 3339,
+      "name": "A Cave Passageway",
+      "description": "A glimmer of light to the east alerts you to the fact that something is going on in the tunnel nearby.  The south exit of the tunnel leads off into complete darkness.  All around on the ground are piles of earth and stone, making you have to wend through the tunnel carefully.  Hmm.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 3340,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3338,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3315,
+          "max": 9
+        }
+      ]
+    },
+    "3340": {
+      "vnum": 3340,
+      "name": "The End Of The Passage",
+      "description": "The tunnel stops abruptly here at a fissure in the stone. All around on the ground are rocks and gravel, mined from the fissure in an attempt to widen it enough for passage. A few pieces of paper litter and wrappers tells you that the work here is relatively recent.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 3339,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3316,
+          "max": 5
+        },
+        {
+          "vnum": 3316,
+          "max": 5
+        },
+        {
+          "vnum": 3317,
+          "max": 2
+        },
+        {
+          "vnum": 3317,
+          "max": 2
+        }
+      ]
+    },
+    "3341": {
+      "vnum": 3341,
+      "name": "A Rocky Slope",
+      "description": "This treacherous slope leads ever-downward quite a ways, down to a valley where there seems to be a small village!   What a village is doing this far from civilization, and how they survive you've no idea.  From the smoke wafting from  some of the chimneys, it looks like this place is still  inhabited as well.    Now if you can only get down this slope without breaking an ankle...",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3342,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3308,
+          "description": ""
+        }
+      }
+    },
+    "3342": {
+      "vnum": 3342,
+      "name": "A Rocky Slope",
+      "description": "You're slipping and sliding across this slope, trying to get to your destination without breaking your leg or falling and shattering your head.  Below, you spot some movement in the village, giving proof the place is not a ghost-town.    The main road of the village starts at the bottom of  the slope just to the east, and the slope continues west and up far, far up the mountain.",
+      "sector_type": "mountain",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 3343,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3341,
+          "description": ""
+        }
+      }
+    },
+    "3343": {
+      "vnum": 3343,
+      "name": "Main Road",
+      "description": "This place leaves you very unimpressed.  And bored.   You are definitely bored by this place.  The people are  listless, going about their daily chores with a slowness  that pains your eyes.  A slope to the west climbs up the  mountainside, and two open shops made of wood and stone  are to your north and south.  East-wards this road continues.    There is a small sign here.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3344,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3346,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3345,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3342,
+          "description": ""
+        }
+      },
+      "extra_descs": {
+        "": "sign"
+      }
+    },
+    "3344": {
+      "vnum": 3344,
+      "name": "The Mountain Tavern",
+      "description": "Hmm.  Looks like there's no one here, not even an bartender. Evidently you've come during off hours, since no bar could be THIS dull.  The walls are decorated with mounted animal heads and arrows and longbows and other hunting equipment/trophies. All of it looks rather plain.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3343,
+          "description": ""
+        }
+      }
+    },
+    "3345": {
+      "vnum": 3345,
+      "name": "The General Store",
+      "description": "A bored shopkeeper waves an idle hand towards his stock of stuff.  Browse, type list, buy, sell, whatever...",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3343,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3301,
+          "max": 1
+        }
+      ]
+    },
+    "3346": {
+      "vnum": 3346,
+      "name": "Main Road",
+      "description": "Nothing is going on in this section of village either.  To the east is an actual road intersection, and to the west you see one of the ends of this road.  A large grassy area to the south is fenced off for a horse corral.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3348,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3347,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3343,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3300,
+          "max": 2
+        }
+      ]
+    },
+    "3347": {
+      "vnum": 3347,
+      "name": "The Corral",
+      "description": "Many horses look up at you when you enter this corral. The horses are kept in by a big wooden fence, which they seem quite happy to been kept in by.  You don't see anyone around taking care of these horses, but someone is probably close by.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3346,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3302,
+          "max": 1
+        },
+        {
+          "vnum": 3303,
+          "max": 4
+        },
+        {
+          "vnum": 3303,
+          "max": 4
+        },
+        {
+          "vnum": 3303,
+          "max": 4
+        },
+        {
+          "vnum": 3303,
+          "max": 4
+        }
+      ]
+    },
+    "3348": {
+      "vnum": 3348,
+      "name": "The Intersection",
+      "description": "You are standing in an intersection deep in the heart of Stanneg by the Mountains.  In fact, this is the ONLY intersection anywhere in Stanneg by the Mountain it  appears.    There are some buildings to the north, and south, and east, and west.  None particularly stand out from the  others.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3349,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3355,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3353,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3346,
+          "description": ""
+        }
+      }
+    },
+    "3349": {
+      "vnum": 3349,
+      "name": "A Small Road",
+      "description": "This road runs north through Stanneg by the Mountains,  if through would be the operative word for such a motley  collection of buildings.  Westwards is a small, open-roofed building that appears to be a farmer's market.  The road  you are on continues north, and comes to an intersection  just south of here.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3351,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3348,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3350,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3311,
+          "max": 2
+        }
+      ]
+    },
+    "3350": {
+      "vnum": 3350,
+      "name": "The Farmer's Market",
+      "description": "One farmer's wife stands here, waiting for someone to buy the food her family has grown.  She looks bored, but not unhappy... no competition!",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3349,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3304,
+          "max": 1
+        }
+      ]
+    },
+    "3351": {
+      "vnum": 3351,
+      "name": "A Small Road",
+      "description": "The small, north-south road running through Stanneg by the Mountains ends here, curving to become the front walk of a private home to the east.  The road runs south from this house, towards the center of the village.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3352,
+          "description": "A normal, wooden front door to a normal looking home.  It is nothing to write home about.",
+          "door": {
+            "name": "door front",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "south": {
+          "to_room": 3349,
+          "description": ""
+        }
+      }
+    },
+    "3352": {
+      "vnum": 3352,
+      "name": "A Private Home",
+      "description": "The interior of this home is simple and rustic.  A  ladder leads up to the loft, where the sleeping pallets  are tucked away.  A wood-burning stove keeps the place  well heated and cozy.  A homemade rocking chair stands  crooked in the corner, draped with a old looking afghan.   This home is a nice place, very comfortable.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 3351,
+          "description": "There is a normal appearing door set in the western wall.",
+          "door": {
+            "name": "door front",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      }
+    },
+    "3353": {
+      "vnum": 3353,
+      "name": "A Small Road",
+      "description": "The road ends here, leading up to a stone house to the south.  Smoke rises from the chimney in a dark stream, and the windows are frosted over with humidity. North, you see the main intersection of Stanneg.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3348,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3354,
+          "description": "A normal looking front door made of wood serves as the entrance.",
+          "door": {
+            "name": "door front",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3300,
+          "max": 2
+        }
+      ]
+    },
+    "3354": {
+      "vnum": 3354,
+      "name": "A Private Home",
+      "description": "This home strikes you as unbearable warm and uncomfortable. The fireplace is going at a full-bonfire, a mammoth stack of firewood beside it against the wall.  The decorations seem somewhat spartan and plain; a landscape, an old hunting  bow... nothing much of interest.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3353,
+          "description": "You see a normal looking wooden door.",
+          "door": {
+            "name": "door front",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      }
+    },
+    "3355": {
+      "vnum": 3355,
+      "name": "Main Road",
+      "description": "The main road through Stanneg ends here at a large well that leads deep, deep into the earth.  To the north of the  well is a large building, with a large WELCOME mat outside  its front door.  Westwards you see the a road intersection  in the center of the tiny village.  Around you is a rocky  terrain in the middle of this mountain range...not very  many places else to go.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3356,
+          "description": "There is a large set of double doors, made of wood blocking the way.",
+          "door": {
+            "name": "door doors double",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "west": {
+          "to_room": 3348,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3311,
+          "max": 2
+        }
+      ]
+    },
+    "3356": {
+      "vnum": 3356,
+      "name": "Stanneg Inn",
+      "description": "This is a plainly decorated room, the main room of the Stanneg Inn.  A large arch to the west leads to a common room where food and drink can be ordered, and a set of rickety wooden stairs lead up to the rooms are.  A thread- bare rug lies in the middle of the floor, evidently well- loved by a cat or two from the quantity of hair on it.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3355,
+          "description": "There is a large set of double doors, made of wood set into the wall.",
+          "door": {
+            "name": "door doors double",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "west": {
+          "to_room": 3357,
+          "description": ""
+        },
+        "up": {
+          "to_room": 3358,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3310,
+          "max": 1
+        }
+      ]
+    },
+    "3357": {
+      "vnum": 3357,
+      "name": "The Common Room",
+      "description": "A large fireplace warms this room in great waves of heat, to combat the chill drafts eminating from the windows on the west and north sides of this room.  A few benches and tables are clustered in the center of the room, for the use of the locals.  Fairly plain, for a frequented gathering place.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 3356,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3307,
+          "max": 1
+        },
+        {
+          "vnum": 3312,
+          "max": 1
+        },
+        {
+          "vnum": 3313,
+          "max": 1
+        },
+        {
+          "vnum": 3314,
+          "max": 1
+        },
+        {
+          "vnum": 3318,
+          "max": 2
+        },
+        {
+          "vnum": 3318,
+          "max": 2
+        },
+        {
+          "vnum": 3319,
+          "max": 1
+        }
+      ]
+    },
+    "3358": {
+      "vnum": 3358,
+      "name": "The Reception",
+      "description": "A hall leads away to the west lined with small brown doors.  A small table has a ledger on it, seemingly almost unused.  The hall is plain and without any  decoration, except for a nice painting of (what else) a mountain hanging above the stairs that lead back down to the inn proper.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "down": {
+          "to_room": 3356,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3309,
+          "max": 1
+        }
+      ]
+    },
+    "3359": {
+      "vnum": 3359,
+      "name": "A Rocky Slope",
+      "description": "This slope is fairly shallow and easy to walk on,  despite the loose shale and gravel.  To the east is a high  ridge you could stand on, and to the west is a flat area  near two trails leading up and down into the mountains.   High above you, to your west, is that ominous, dark peak,  which seems to radiating a sense of hopelessness...",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3308,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3360,
+          "description": ""
+        }
+      }
+    },
+    "3360": {
+      "vnum": 3360,
+      "name": "A Ledge",
+      "description": "This ledge overlooks a small path that leads up and  down from here.  Below, you see the path head down to a  large flat area where a small cottage lies nestled in the  mountains, smoke rising from it in a curling line.  Above,  the path seems to head towards that dark peak piercing the  sky.  You notice a few boot-tracks in the earth, seemingly  to lead down towards the cottage.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3359,
+          "description": ""
+        },
+        "up": {
+          "to_room": 3363,
+          "description": ""
+        },
+        "down": {
+          "to_room": 3361,
+          "description": ""
+        }
+      }
+    },
+    "3361": {
+      "vnum": 3361,
+      "name": "Outside Of A Cottage",
+      "description": "Now that you approach closer to the cottage, you notice  that the smoke is not coming from the chimney, but rather  the gutted ruins of the building.  Something torched this  place, badly.  You see no signs of life among the wreckage. You can enter one of the particularly large holes in the  wall to the west, with caution.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 3362,
+          "description": ""
+        },
+        "up": {
+          "to_room": 3360,
+          "description": ""
+        }
+      }
+    },
+    "3362": {
+      "vnum": 3362,
+      "name": "The Torched Cottage",
+      "description": "This whole place is smouldering still from whatever  decided to try to burn it to the ground.  On the floor  near the center of the ruined structure is the burnt and  dessicated corpse of a man, outstretched and blackened.   There's not much to see here; whatever decided to destroy  this place did it very well.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3361,
+          "description": ""
+        }
+      }
+    },
+    "3363": {
+      "vnum": 3363,
+      "name": "A Mountain Trail",
+      "description": "This mountain trail leads straight up into the evil  looking mountains.  High above you, one mountain peak  seems to radiate danger and fear, and the trail seems  to be leading straight up to it.  You wonder if it is  wise to continue this way...    The trail goes even higher up to the west, and back  down to the west.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 3364,
+          "description": ""
+        },
+        "down": {
+          "to_room": 3360,
+          "description": ""
+        }
+      }
+    },
+    "3364": {
+      "vnum": 3364,
+      "name": "A Mountain Trail",
+      "description": "The trail leads up even higher into the mountains to the west here.  You shiver as the cold mountain air washes over you, and your back prickles as you wonder if anything lives up here, or anything _dangerous_ for that matter.  Maybe  heading back down to the east would be a good idea...",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3363,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3365,
+          "description": ""
+        }
+      }
+    },
+    "3365": {
+      "vnum": 3365,
+      "name": "A Mountain Trail",
+      "description": "The trail leads up the side of the tallest mountain in  the range -- the one that sticks up into the dark sky like a monument to death and futility.  The trail leads back to  safety to the east, and goes even higher to the west.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3364,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3366,
+          "description": ""
+        }
+      }
+    },
+    "3366": {
+      "vnum": 3366,
+      "name": "Near The Peak",
+      "description": "This is as close to the peak as you're going to get,  unless you use that tiny, tiny path leading up to your  north.  Up the side of the mountain you see a great cave  hollowed out, the inside pitch black.  The path leads down  the mountains to your east, which seems to be the best  place to go.",
+      "sector_type": "mountain",
+      "flags": [
+        "no_track",
+        "private"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3367,
+          "description": ""
+        },
+        "east": {
+          "to_room": 3365,
+          "description": ""
+        }
+      }
+    },
+    "3367": {
+      "vnum": 3367,
+      "name": "A Small, Dangerous Path",
+      "description": "This path leads up, up, up the side of the mountain, to  the evil-seeming cave.  It also heads down to the south--a  lot safer place to be.  In fact, you hear footsteps above  your head...",
+      "sector_type": "mountain",
+      "flags": [
+        "no_track",
+        "private"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3366,
+          "description": ""
+        },
+        "up": {
+          "to_room": 3368,
+          "description": ""
+        }
+      }
+    },
+    "3368": {
+      "vnum": 3368,
+      "name": "A Small, Dangerous Path",
+      "description": "Unfortunately, you realize too late that this bigger  ledge that leads north to the darkened cave is an ideal  spot for an ambush.  This ledge gives you a beautiful  panoramic view of the entire mountain range, however.   Breathtaking!",
+      "sector_type": "mountain",
+      "flags": [
+        "no_track",
+        "private"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3369,
+          "description": ""
+        },
+        "down": {
+          "to_room": 3367,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3306,
+          "max": 3
+        },
+        {
+          "vnum": 3306,
+          "max": 3
+        },
+        {
+          "vnum": 3306,
+          "max": 3
+        }
+      ]
+    },
+    "3369": {
+      "vnum": 3369,
+      "name": "The Cave Entrance",
+      "description": "You are standing in the entrance of a simply huge cave! The size is stunning!  All around the entrance are burnt  bones and various types of wooden and metal debris.  Giant  claw marks are all along the ground, leading back deeper  into the cave.    Two tunnels lead off from here, one up, one down.  There are claw marks leading in either direction.",
+      "sector_type": "hills",
+      "flags": [
+        "dark",
+        "indoors",
+        "no_track",
+        "private"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3368,
+          "description": ""
+        },
+        "up": {
+          "to_room": 3370,
+          "description": ""
+        },
+        "down": {
+          "to_room": 3373,
+          "description": ""
+        }
+      }
+    },
+    "3370": {
+      "vnum": 3370,
+      "name": "A Sloping Tunnel",
+      "description": "The tunnels slopes up to the north deeper into the  mountain.  A rather gusty breeze riffles your clothing  from ahead somewhere.  The claw marks in the stone floor  continue up the passage, through the darkness.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors",
+        "no_track",
+        "private"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3371,
+          "description": ""
+        },
+        "down": {
+          "to_room": 3369,
+          "description": ""
+        }
+      }
+    },
+    "3371": {
+      "vnum": 3371,
+      "name": "A Sloping Tunnel",
+      "description": "The tunnel continues its slope upwards, and the wind  blows at you even stronger yet.  The claw tracks in the  stone stop abruptly here, where there seems to be a lot of unearthed dirt and stone around, heaped upon the floor.   You feel uneasy about this place.",
+      "sector_type": "hills",
+      "flags": [
+        "dark",
+        "indoors",
+        "no_track",
+        "private"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3372,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3370,
+          "description": ""
+        }
+      },
+      "extra_descs": {
+        "": "floor"
+      }
+    },
+    "3372": {
+      "vnum": 3372,
+      "name": "The Pit",
+      "description": "You fall through the illusionary floor.    You hit the poisoned spikes below.    You die very slowly of bloodloss, your head impaled at  an awkward angle.",
+      "sector_type": "inside",
+      "flags": [
+        "death",
+        "indoors",
+        "no_track",
+        "private"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3371,
+          "description": ""
+        }
+      }
+    },
+    "3373": {
+      "vnum": 3373,
+      "name": "A Sloping Tunnel",
+      "description": "This tunnel slopes deep, down into the mountain's heart. The air feels still and uncomfortably warm, despite the  closeness of the cave's entrance above you.  There's a  deep, musky odor in the air, and the giant claw marks  continue downwards.",
+      "sector_type": "hills",
+      "flags": [
+        "dark",
+        "indoors",
+        "no_track",
+        "private"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 3369,
+          "description": ""
+        },
+        "down": {
+          "to_room": 3374,
+          "description": ""
+        }
+      }
+    },
+    "3374": {
+      "vnum": 3374,
+      "name": "A Sloping Tunnel",
+      "description": "A bright light greets your eyes from the north, in  direct contrast to the darkness of the tunnel overhead.   You break  out in a sweat due to the overwhelming warmth  of the air.  The musky odor has grown quite intense,  drowning out everything else in the air and making it hard  to breathe.  Something in your gut begins squirming  uncomfortably as you wonder what's ahead...",
+      "sector_type": "hills",
+      "flags": [
+        "dark",
+        "indoors",
+        "no_track",
+        "private"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3375,
+          "description": ""
+        },
+        "up": {
+          "to_room": 3373,
+          "description": ""
+        }
+      }
+    },
+    "3375": {
+      "vnum": 3375,
+      "name": "The Lair",
+      "description": "This place is huge!!!  It should be considering the  dragon's great bulk.  However, instead of seeing the  customary carnage and mound of gold that one is accustomed  to seeing in a dragon lair, this one is decorated subtly  with tapestries and drapes, and other comforts of human  life.  There is even a huge-dragon sized bed -- undoubtedly  conjured to life by its elder dragon owner.",
+      "sector_type": "hills",
+      "flags": [
+        "indoors",
+        "no_track",
+        "private"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3374,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3305,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 3302,
+          "max": 5
+        },
+        {
+          "vnum": 3303,
+          "max": 5
+        },
+        {
+          "vnum": 3304,
+          "max": 5
+        },
+        {
+          "vnum": 3305,
+          "max": 25
+        },
+        {
+          "vnum": 3306,
+          "max": 25
+        },
+        {
+          "vnum": 3307,
+          "max": 1
+        }
+      ]
+    }
+  },
+  "mobs": {
+    "3300": {
+      "vnum": 3300,
+      "name": "farmer",
+      "short_desc": "the farmer",
+      "long_desc": "A farmer walks around, looking for something to do.",
+      "level": 7,
+      "alignment": 500,
+      "hp_dice": "2d4+1",
+      "damage_dice": "3d5+83",
+      "gold": 1625,
+      "exp": 8,
+      "armor_class": 4,
+      "flags": [
+        "scavenger",
+        "stay_zone",
+        "wimpy"
+      ],
+      "description": "This farmer is a resident of Stanneg by the Mountains,\nand as such, is one of the most boring people on earth."
+    },
+    "3301": {
+      "vnum": 3301,
+      "name": "storekeeper",
+      "short_desc": "the storekeeper",
+      "long_desc": "A bored storekeeper waits for you to do something.",
+      "level": 20,
+      "alignment": 750,
+      "hp_dice": "3d6+6",
+      "damage_dice": "3d5+245",
+      "gold": 25000,
+      "exp": 8,
+      "armor_class": -40,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "The bored storekeeper keeps a lazy eye on you as he\nwaits for you to buy something.  Whee.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          3300
+        ],
+        "buys": [
+          "3309"
+        ],
+        "markup": 3301.0,
+        "markdown": 3308.0
+      },
+      "inventory": [
+        3032,
+        3037,
+        3038,
+        3039
+      ]
+    },
+    "3302": {
+      "vnum": 3302,
+      "name": "cowgirl",
+      "short_desc": "the cowgirl",
+      "long_desc": "A cowgirl stand here ready to defend her horses...",
+      "level": 20,
+      "alignment": 750,
+      "hp_dice": "3d6+4",
+      "damage_dice": "3d5+245",
+      "gold": 24000,
+      "exp": 8,
+      "armor_class": -60,
+      "flags": [
+        "sentinel",
+        "memory",
+        "helper"
+      ],
+      "description": "This woman seems ready for anything you might do...\nshe is truly a woman to be reckoned with...",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          3032
+        ],
+        "buys": [
+          "3039"
+        ],
+        "markup": 3037.0,
+        "markdown": 3038.0
+      }
+    },
+    "3303": {
+      "vnum": 3303,
+      "name": "horse",
+      "short_desc": "the horse",
+      "long_desc": "A horse does horsely things here.",
+      "level": 5,
+      "alignment": 250,
+      "hp_dice": "2d4+0",
+      "damage_dice": "1d10+60",
+      "gold": 500,
+      "exp": 8,
+      "armor_class": 5,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "This horse looks like a nice horse.  It looks at you\nwith soft brown eyes and you want to give it a carrot.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          3319
+        ],
+        "buys": [],
+        "markup": 3320.0,
+        "markdown": 3321.0
+      }
+    },
+    "3304": {
+      "vnum": 3304,
+      "name": "farmer's",
+      "short_desc": "the farmer's wife",
+      "long_desc": "A farmer's wife offers you some vegetables.",
+      "level": 20,
+      "alignment": 500,
+      "hp_dice": "3d6+6",
+      "damage_dice": "3d5+245",
+      "gold": 25000,
+      "exp": 8,
+      "armor_class": -40,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "This woman has many different types of fruits and\nvegetables for you to buy.  She looks bored, though.",
+      "inventory": [
+        3300,
+        3301,
+        3308,
+        3309,
+        3310
+      ]
+    },
+    "3305": {
+      "vnum": 3305,
+      "name": "aglandiir",
+      "short_desc": "Aglandiir",
+      "long_desc": "The Dragon Prince, Aglandiir, sits here looking at you curiously.",
+      "level": 30,
+      "alignment": 750,
+      "hp_dice": "8d5+5",
+      "damage_dice": "1d1+1499",
+      "gold": 50000,
+      "exp": 8,
+      "armor_class": -100,
+      "flags": [
+        "sentinel",
+        "aware",
+        "aggressive",
+        "memory",
+        "no_charm",
+        "no_summmon",
+        "no_sleep",
+        "no_bash",
+        "no_blind"
+      ],
+      "description": "Aglandiir is a prince of his kind, and he didn't get where \nhe is today by letting people steal from his horde!",
+      "inventory": [
+        3313
+      ]
+    },
+    "3306": {
+      "vnum": 3306,
+      "name": "cyclops",
+      "short_desc": "the Cyclops",
+      "long_desc": "A Cyclops is here, trying to judge range with no depth perception.",
+      "level": 16,
+      "alignment": -500,
+      "hp_dice": "2d8+2",
+      "damage_dice": "3d5+295",
+      "gold": 17000,
+      "exp": 8,
+      "armor_class": 0,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "aggressive",
+        "memory",
+        "no_charm",
+        "no_bash"
+      ],
+      "description": "This Cyclops throws rocks real good.  With one eye though, \nhitting the target is another matter.  He looks at you and \ngrowls as he misses again!"
+    },
+    "3307": {
+      "vnum": 3307,
+      "name": "salle",
+      "short_desc": "Salle",
+      "long_desc": "A woman ignores you completely, so intent is she upon her sword.",
+      "level": 15,
+      "alignment": -600,
+      "hp_dice": "2d6+6",
+      "damage_dice": "3d5+200",
+      "gold": 15250,
+      "exp": 8,
+      "armor_class": -30,
+      "flags": [
+        "sentinel",
+        "helper"
+      ],
+      "description": "She is a stunning woman, all hair and eyes, it seems.\nHer clothing is of the same tawny brown of her skin and\nhair.  Her blue eyes look at you appraisingly, seemingly\nto show great intelligence.  Her mouth twitches into a \nsneer...",
+      "equipment": {
+        "body": 3318,
+        "wield": 3312
+      }
+    },
+    "3308": {
+      "vnum": 3308,
+      "name": "duwick",
+      "short_desc": "Duwick",
+      "long_desc": "A truly immense man laughs at you, and draws his knife!",
+      "level": 22,
+      "alignment": -900,
+      "hp_dice": "3d6+10",
+      "damage_dice": "3d5+400",
+      "gold": 42500,
+      "exp": 8,
+      "armor_class": -70,
+      "flags": [
+        "sentinel",
+        "helper"
+      ],
+      "description": "This has to be one of the biggest men you've ever seen.  He is\na full seven feet toe to head, and weighs a good three hundred\npounds -- mostly on his biceps and pectorals it appears.  An\nornate scabbard slaps by his side, with the pommel of a silvered\ndagger sticking out... a tiny weapon for such a large man!",
+      "equipment": {
+        "wield": 3311
+      }
+    },
+    "3309": {
+      "vnum": 3309,
+      "name": "receptionist",
+      "short_desc": "the Receptionist",
+      "long_desc": "A receptionist offers you a room.",
+      "level": 12,
+      "alignment": 400,
+      "hp_dice": "2d7+1",
+      "damage_dice": "3d5+140",
+      "gold": 8000,
+      "exp": 8,
+      "armor_class": -30,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "He looks like a retired farmer now making an honest living in an inn.\nMore power to him!"
+    },
+    "3310": {
+      "vnum": 3310,
+      "name": "innkeeper",
+      "short_desc": "the innkeeper",
+      "long_desc": "An aged innkeeper greets you as you enter.",
+      "level": 10,
+      "alignment": 750,
+      "hp_dice": "2d6+1",
+      "damage_dice": "3d5+120",
+      "gold": 5500,
+      "exp": 8,
+      "armor_class": 20,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "He is old and greying, but seems to have been able to\nkeep his mental faculties through the years.  A large\nwoolen sweater is wrapped about him for warmth.  His\nblue eyes dance with amusement as he notices your weapons,\nbut he doesn't seem too terribly startled."
+    },
+    "3311": {
+      "vnum": 3311,
+      "name": "hunter",
+      "short_desc": "the hunter",
+      "long_desc": "A hunter walks through the town streets on his own time.",
+      "level": 11,
+      "alignment": 500,
+      "hp_dice": "2d6+2",
+      "damage_dice": "3d5+133",
+      "gold": 6100,
+      "exp": 8,
+      "armor_class": -20,
+      "flags": [
+        "scavenger",
+        "stay_zone",
+        "helper"
+      ],
+      "description": "He looks mean, as if the very personality of the mountains\nhad infected him with hardness.  His stride is purposeful,\nhis face weathered, his eyes cold and dark.  Others are\nstanding out of his way as he walks on by.",
+      "equipment": {
+        "wield": 3317
+      }
+    },
+    "3312": {
+      "vnum": 3312,
+      "name": "waiter",
+      "short_desc": "a waiter",
+      "long_desc": "A waiter rushes by, intent on his business.",
+      "level": 5,
+      "alignment": 0,
+      "hp_dice": "2d4+0",
+      "damage_dice": "3d5+60",
+      "gold": 675,
+      "exp": 8,
+      "armor_class": 70,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "He looks harried from the way he hastily takes orders and \nrushes in the back to get food, and to the bar for drinks.  \nHe doesn't even spare you a glance as he passes by."
+    },
+    "3313": {
+      "vnum": 3313,
+      "name": "waitress",
+      "short_desc": "a waitress",
+      "long_desc": "A waitress rushes by, intent on her business.",
+      "level": 5,
+      "alignment": 0,
+      "hp_dice": "2d4+0",
+      "damage_dice": "3d5+60",
+      "gold": 675,
+      "exp": 8,
+      "armor_class": 70,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "She looks harried from the way she hastily takes orders and rushes\nin the back to get food, and to the bar for drinks.  She doesn't\neven spare you a glance as she passes by."
+    },
+    "3314": {
+      "vnum": 3314,
+      "name": "bartender",
+      "short_desc": "a bartender",
+      "long_desc": "A bartender washes a glass idly here.",
+      "level": 15,
+      "alignment": 200,
+      "hp_dice": "2d8+2",
+      "damage_dice": "3d5+180",
+      "gold": 15500,
+      "exp": 8,
+      "armor_class": 10,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "He nods, smiles, and asks you what you would like to drink.\nAs you decide, he slowly polishes a glass with an old bar\nrag.  The glass is completely clean, but he polishes it anyway.\nGo figure.",
+      "inventory": [
+        3319,
+        3320,
+        3321
+      ]
+    },
+    "3315": {
+      "vnum": 3315,
+      "name": "bandit",
+      "short_desc": "the bandit",
+      "long_desc": "A bandit springs into action upon seeing you.",
+      "level": 16,
+      "alignment": -500,
+      "hp_dice": "2d8+3",
+      "damage_dice": "3d5+195",
+      "gold": 13000,
+      "exp": 8,
+      "armor_class": -20,
+      "flags": [
+        "scavenger",
+        "wimpy",
+        "aggr_good",
+        "aggr_neutral"
+      ],
+      "description": "Whew!  Has this guy ever seen a bath?  His face, hands, arms...\nnearly every bit of him is covered with grime, dust, dirt and\ndecay.  His sword is polished and cleaned though...",
+      "equipment": {
+        "wield": 3315
+      }
+    },
+    "3316": {
+      "vnum": 3316,
+      "name": "bandit",
+      "short_desc": "the bandit guard",
+      "long_desc": "A bandit guard stands at attention here.",
+      "level": 18,
+      "alignment": -500,
+      "hp_dice": "3d6+2",
+      "damage_dice": "3d5+220",
+      "gold": 17200,
+      "exp": 8,
+      "armor_class": -30,
+      "flags": [
+        "sentinel",
+        "aggr_good",
+        "aggr_neutral"
+      ],
+      "description": "He may be a bandit, but he's no slacker.  You wonder\nwho would be able to keep these bandits in line enough\nto pull a good guard duty...\n\n(boy is this guy DIRTY!!!)",
+      "equipment": {
+        "wield": 3315
+      }
+    },
+    "3317": {
+      "vnum": 3317,
+      "name": "miner",
+      "short_desc": "the slave",
+      "long_desc": "A slave here is mining out a new passageway.",
+      "level": 6,
+      "alignment": 1000,
+      "hp_dice": "1d8+1",
+      "damage_dice": "3d5+70",
+      "gold": 750,
+      "exp": 8,
+      "armor_class": 100,
+      "flags": [
+        "sentinel",
+        "wimpy"
+      ],
+      "description": "The slave looks up at you with pleading eyes.  He\nwants his freedom.  The chains around his ankles are\ntight, and you wonder if you should set him free, and\nif you even can."
+    },
+    "3318": {
+      "vnum": 3318,
+      "name": "farmer",
+      "short_desc": "the farmer",
+      "long_desc": "A farmer walks around, looking for something to do.",
+      "level": 7,
+      "alignment": 500,
+      "hp_dice": "2d4+1",
+      "damage_dice": "3d5+83",
+      "gold": 1625,
+      "exp": 8,
+      "armor_class": 4,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "stay_zone",
+        "wimpy"
+      ],
+      "description": "This farmer is a resident of Stanneg by the Mountains,\nand as such, is one of the most boring people on earth."
+    },
+    "3319": {
+      "vnum": 3319,
+      "name": "hunter",
+      "short_desc": "the hunter",
+      "long_desc": "A hunter walks through the town streets on his own time.",
+      "level": 11,
+      "alignment": 500,
+      "hp_dice": "2d6+2",
+      "damage_dice": "3d5+133",
+      "gold": 6100,
+      "exp": 8,
+      "armor_class": -20,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "stay_zone",
+        "helper"
+      ],
+      "description": "He looks mean, as if the very personality of the mountains\nhad infected him with hardness.  His stride is purposeful,\nhis face weathered, his eyes cold and dark.  Others are\nstanding out of his way as he walks on by.",
+      "equipment": {
+        "wield": 3317
+      }
+    }
+  },
+  "objects": {
+    "3300": {
+      "vnum": 3300,
+      "name": "orange",
+      "short_desc": "an orange",
+      "room_desc": "An orange lies on the ground here.",
+      "item_type": "food",
+      "weight": 1,
+      "value": 8,
+      "nutrition": 8
+    },
+    "3301": {
+      "vnum": 3301,
+      "name": "bale",
+      "short_desc": "a bale of wheat",
+      "room_desc": "There is a bale of wheat here.",
+      "item_type": "food",
+      "weight": 100,
+      "value": 1000,
+      "nutrition": 24
+    },
+    "3302": {
+      "vnum": 3302,
+      "name": "zither",
+      "short_desc": "a big zither",
+      "room_desc": "A HUGE zither made of gold rests in the corner",
+      "item_type": "treasure",
+      "weight": 40,
+      "value": 200000
+    },
+    "3303": {
+      "vnum": 3303,
+      "name": "barrel",
+      "short_desc": "a barrel of perfume",
+      "room_desc": "You can smell a barrel on the other side of the room from here.",
+      "item_type": "treasure",
+      "weight": 20,
+      "value": 100000
+    },
+    "3304": {
+      "vnum": 3304,
+      "name": "statue",
+      "short_desc": "a statue",
+      "room_desc": "There is a statue of Aglandiir here, made of solid gold.",
+      "item_type": "treasure",
+      "weight": 30,
+      "value": 150000
+    },
+    "3305": {
+      "vnum": 3305,
+      "name": "halberd",
+      "short_desc": "a halberd",
+      "room_desc": "A runed halberd lies on the ground here.",
+      "item_type": "weapon",
+      "weight": 16,
+      "value": 10000,
+      "damage_dice": "1d12",
+      "weapon_type": "slash"
+    },
+    "3306": {
+      "vnum": 3306,
+      "name": "potion",
+      "short_desc": "a potion of protection",
+      "room_desc": "A vial of a dun fluid is here.",
+      "item_type": "potion",
+      "weight": 1,
+      "value": 10000
+    },
+    "3307": {
+      "vnum": 3307,
+      "name": "crown",
+      "short_desc": "a dragon's crown",
+      "room_desc": "Aglandiir's crown sits here, radiating a shield.",
+      "item_type": "treasure",
+      "weight": 400,
+      "value": 0
+    },
+    "3308": {
+      "vnum": 3308,
+      "name": "apple",
+      "short_desc": "an apple",
+      "room_desc": "A scrawny red apple sits here.",
+      "item_type": "food",
+      "weight": 1,
+      "value": 5,
+      "nutrition": 4
+    },
+    "3309": {
+      "vnum": 3309,
+      "name": "bread",
+      "short_desc": "a loaf of bread",
+      "room_desc": "A fresh loaf of bread lies here.",
+      "item_type": "food",
+      "weight": 1,
+      "value": 10,
+      "nutrition": 12
+    },
+    "3310": {
+      "vnum": 3310,
+      "name": "melon",
+      "short_desc": "a melon",
+      "room_desc": "A melon sits here, discarded evidently.",
+      "item_type": "food",
+      "weight": 3,
+      "value": 8,
+      "nutrition": 8
+    },
+    "3311": {
+      "vnum": 3311,
+      "name": "knife",
+      "short_desc": "a knife",
+      "room_desc": "An exquisitely crafted knife rests here.",
+      "item_type": "weapon",
+      "weight": 8,
+      "value": 1000000,
+      "damage_dice": "3d5",
+      "weapon_type": "pierce"
+    },
+    "3312": {
+      "vnum": 3312,
+      "name": "sword",
+      "short_desc": "a long sword",
+      "room_desc": "A superb long sword sticks in the earth.",
+      "item_type": "weapon",
+      "weight": 15,
+      "value": 750000,
+      "damage_dice": "2d7",
+      "weapon_type": "slash"
+    },
+    "3313": {
+      "vnum": 3313,
+      "name": "sword",
+      "short_desc": "a short sword",
+      "room_desc": "A short sword lies here... a work of art!",
+      "item_type": "weapon",
+      "weight": 10,
+      "value": 10000000,
+      "damage_dice": "4d6",
+      "weapon_type": "slash"
+    },
+    "3314": {
+      "vnum": 3314,
+      "name": "corpse",
+      "short_desc": "a dismembered and burnt corpse",
+      "room_desc": "A dismembered and burnt corpse lies on the ground here.",
+      "item_type": "treasure",
+      "weight": 1,
+      "value": 1
+    },
+    "3315": {
+      "vnum": 3315,
+      "name": "scimitar",
+      "short_desc": "a scimitar",
+      "room_desc": "A scimitar as long as your arm lies here.",
+      "item_type": "weapon",
+      "weight": 10,
+      "value": 500,
+      "damage_dice": "1d7",
+      "weapon_type": "slash"
+    },
+    "3316": {
+      "vnum": 3316,
+      "name": "crate",
+      "short_desc": "a crate",
+      "room_desc": "A crate is stacked here.",
+      "item_type": "container",
+      "weight": 50,
+      "value": 100,
+      "capacity": 200
+    },
+    "3317": {
+      "vnum": 3317,
+      "name": "bow",
+      "short_desc": "a hunting bow",
+      "room_desc": "A hunting bow lies here, unwanted",
+      "item_type": "weapon",
+      "weight": 6,
+      "value": 400,
+      "damage_dice": "1d5",
+      "weapon_type": "pierce"
+    },
+    "3318": {
+      "vnum": 3318,
+      "name": "vest",
+      "short_desc": "a leather vest",
+      "room_desc": "A nice leather vest lies here.",
+      "item_type": "armor",
+      "weight": 6,
+      "value": 5000,
+      "armor_bonus": 6
+    },
+    "3319": {
+      "vnum": 3319,
+      "name": "glass",
+      "short_desc": "a glass",
+      "room_desc": "A glass of beer sits forgotten here.",
+      "item_type": "drinkcon",
+      "weight": 2,
+      "value": 5,
+      "capacity": 1,
+      "current": 1
+    },
+    "3320": {
+      "vnum": 3320,
+      "name": "glass",
+      "short_desc": "a glass",
+      "room_desc": "A big glass of mead sits here, cool and frosty.",
+      "item_type": "drinkcon",
+      "weight": 2,
+      "value": 8,
+      "capacity": 1,
+      "current": 1
+    },
+    "3321": {
+      "vnum": 3321,
+      "name": "shot",
+      "short_desc": "a shot",
+      "room_desc": "A shot of whisky is sitting here.",
+      "item_type": "drinkcon",
+      "weight": 1,
+      "value": 10,
+      "capacity": 1,
+      "current": 1
+    }
+  }
+}

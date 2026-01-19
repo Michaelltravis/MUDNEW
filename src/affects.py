@@ -65,7 +65,7 @@ class AffectManager:
         'str', 'int', 'wis', 'dex', 'con', 'cha',
         'hit', 'damage', 'armor_class', 'hitroll', 'damroll',
         'max_hp', 'max_mana', 'max_move',
-        'saving_throw', 'spell_resist'
+        'saving_throw', 'spell_resist', 'damage_reduction'
     }
 
     # Valid flag names
@@ -73,7 +73,12 @@ class AffectManager:
         'sanctuary', 'invisible', 'detect_invisible', 'detect_magic',
         'sense_life', 'waterwalk', 'fly', 'haste', 'slow',
         'blind', 'poisoned', 'paralyzed', 'stunned', 'feared',
-        'silenced', 'regenerating', 'diseased', 'marked'
+        'silenced', 'regenerating', 'diseased', 'marked',
+        # New defensive flags
+        'stoneskin', 'mirror_image', 'displacement', 'mana_shield',
+        'ice_armor', 'fire_shield', 'spell_reflect', 'blink',
+        'prot_evil', 'prot_good', 'divine_shield', 'invulnerable',
+        'detect_evil', 'charmed', 'entangled', 'sleeping'
     }
 
     @staticmethod
@@ -205,28 +210,70 @@ class AffectManager:
             logger.debug(f"  Removed flag: {flag_name}")
 
     @staticmethod
-    async def tick_affects(character: 'Character'):
+    async def tick_affects(character: 'Character', poison_only: bool = False):
         """
         Process affects for one tick, decrementing durations and removing expired affects.
         Also applies DOT/HOT effects.
 
         This should be called every 5 seconds from the regeneration tick.
+        Can also be called with poison_only=True every 2.5 seconds for poison damage.
 
         Args:
             character: The character whose affects to tick
+            poison_only: If True, only process poison (DOT) damage, don't decrement durations
         """
         affects_to_remove = []
 
         for affect in character.affects[:]:  # Copy list to allow modification
+            # Only process DOT effects if poison_only is True
+            if poison_only:
+                if affect.type == AffectManager.TYPE_DOT and affect.name == 'poison':
+                    # Damage over time
+                    old_hp = character.hp
+                    character.hp = max(1, character.hp - affect.value)
+                    damage_dealt = old_hp - character.hp
+
+                    if damage_dealt > 0:
+                        # Notify the character
+                        if hasattr(character, 'send'):
+                            await character.send(f"\x1b[32mYou shudder from the poison in your veins! ({damage_dealt} damage)\x1b[0m")
+
+                        # Notify the room
+                        if hasattr(character, 'room') and character.room:
+                            await character.room.send_to_room(
+                                f"\x1b[32m{character.name} shudders from poison!\x1b[0m",
+                                exclude=[character]
+                            )
+                continue
+
+            # Full tick processing
             # Decrement remaining duration
             affect.remaining -= 1
 
             # Apply DOT/HOT effects
             if affect.type == AffectManager.TYPE_DOT:
                 # Damage over time
+                old_hp = character.hp
                 character.hp = max(1, character.hp - affect.value)
-                if hasattr(character, 'send'):
-                    await character.send(f"You take {affect.value} damage from {affect.name}!")
+                damage_dealt = old_hp - character.hp
+
+                if damage_dealt > 0:
+                    # Notify the character
+                    if hasattr(character, 'send'):
+                        await character.send(f"\x1b[32mYou take {damage_dealt} damage from {affect.name}!\x1b[0m")
+
+                    # Notify the room
+                    if hasattr(character, 'room') and character.room:
+                        if affect.name == 'poison':
+                            await character.room.send_to_room(
+                                f"\x1b[32m{character.name} shudders from poison!\x1b[0m",
+                                exclude=[character]
+                            )
+                        else:
+                            await character.room.send_to_room(
+                                f"{character.name} takes damage from {affect.name}!",
+                                exclude=[character]
+                            )
             elif affect.type == AffectManager.TYPE_HOT:
                 # Healing over time
                 heal_amount = min(affect.value, character.max_hp - character.hp)
@@ -242,9 +289,10 @@ class AffectManager:
                 if hasattr(character, 'send'):
                     await character.send(f"The effect of {affect.name} wears off.")
 
-        # Remove expired affects
-        for affect in affects_to_remove:
-            AffectManager.remove_affect(character, affect)
+        # Remove expired affects (not during poison-only ticks)
+        if not poison_only:
+            for affect in affects_to_remove:
+                AffectManager.remove_affect(character, affect)
 
     @staticmethod
     def has_affect(character: 'Character', affect_name: str) -> bool:

@@ -70,6 +70,7 @@ class RealmsMUD:
         tick_rate = 1.0 / self.config.TICKS_PER_SECOND
         combat_tick = 0
         regen_tick = 0
+        poison_tick = 0
         zone_tick = 0
         autosave_tick = 0
         time_tick = 0
@@ -83,6 +84,7 @@ class RealmsMUD:
                 # Process game ticks
                 combat_tick += 1
                 regen_tick += 1
+                poison_tick += 1
                 zone_tick += 1
                 autosave_tick += 1
                 time_tick += 1
@@ -108,6 +110,11 @@ class RealmsMUD:
                 if combat_tick >= self.config.TICKS_PER_SECOND * 2:
                     await self.world.combat_tick()
                     combat_tick = 0
+
+                # Poison tick (every 2.5 seconds - half tick for visible poison damage)
+                if poison_tick >= int(self.config.TICKS_PER_SECOND * 2.5):
+                    await self.world.poison_tick()
+                    poison_tick = 0
 
                 # Regeneration tick (every 5 seconds)
                 if regen_tick >= self.config.TICKS_PER_SECOND * 5:

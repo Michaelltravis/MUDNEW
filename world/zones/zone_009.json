@@ -1,0 +1,918 @@
+{
+  "number": 9,
+  "name": "River Island Of Minos",
+  "lifespan": 39,
+  "rooms": {
+    "900": {
+      "vnum": 900,
+      "name": "On The Swift Flowing River",
+      "description": "As the river exits the city of Midgaard it picks up speed and whisks you along high banks flanked by the trees of Haon-Dor.  As the city fades in the east, you approach a gloomy forest to the west.",
+      "sector_type": "water_noswim",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3200,
+          "description": ""
+        },
+        "west": {
+          "to_room": 901,
+          "description": ""
+        }
+      }
+    },
+    "901": {
+      "vnum": 901,
+      "name": "The Riverbank",
+      "description": "The river is deep, and runs swiftly in an east-west direction.  To the north the river eddies and enters a backwash where a small bank extends down from a dark, thick stand of trees.  It doesn't look particulary inviting however.",
+      "sector_type": "water_noswim",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 6120,
+          "description": ""
+        },
+        "east": {
+          "to_room": 900,
+          "description": ""
+        },
+        "west": {
+          "to_room": 902,
+          "description": ""
+        }
+      }
+    },
+    "902": {
+      "vnum": 902,
+      "name": "The Twisty Part Of The River",
+      "description": "The river twists and turns and nearly tosses you out of your boat. The water is dark, cold, almost reptilian in sheen.  It seems almost alive.  The river runs east and south.",
+      "sector_type": "water_noswim",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 901,
+          "description": ""
+        },
+        "south": {
+          "to_room": 903,
+          "description": ""
+        }
+      }
+    },
+    "903": {
+      "vnum": 903,
+      "name": "The Scenic Route",
+      "description": "The dark forest of Haon-Dor recedes behind you to the northeast. The river continues in a westerly direction toward the river delta, where you can just make out a large island.",
+      "sector_type": "water_noswim",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 902,
+          "description": ""
+        },
+        "west": {
+          "to_room": 904,
+          "description": ""
+        }
+      }
+    },
+    "904": {
+      "vnum": 904,
+      "name": "The Swift River Delta",
+      "description": "You are at the edge of the river delta, where the river empties out on its way to the sea.  The water here is Black.  Deep.  Dark. Deadly.  The tidal waves sweep you around and around up and down.",
+      "sector_type": "water_noswim",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 911,
+          "description": ""
+        },
+        "east": {
+          "to_room": 903,
+          "description": ""
+        },
+        "south": {
+          "to_room": 906,
+          "description": ""
+        },
+        "west": {
+          "to_room": 905,
+          "description": ""
+        }
+      }
+    },
+    "905": {
+      "vnum": 905,
+      "name": "Near The Rocks",
+      "description": "You bob up and down in the waves comming dangerously close to some large, jagged rocks on the eastern shore of an unusual looking island. There is no way you could possibly land there without getting killed.",
+      "sector_type": "water_noswim",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 904,
+          "description": ""
+        },
+        "south": {
+          "to_room": 906,
+          "description": ""
+        }
+      }
+    },
+    "906": {
+      "vnum": 906,
+      "name": "The South River Delta",
+      "description": "You are making your way along a channel in the river delta between the island to the west and the shore to the south and east.  To the south an aging broken down looking pier juts out from land and toward the west the channel works it way close to the island as it moves around its southern tip.",
+      "sector_type": "water_noswim",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 905,
+          "description": ""
+        },
+        "east": {
+          "to_room": 904,
+          "description": ""
+        },
+        "south": {
+          "to_room": 907,
+          "description": ""
+        },
+        "west": {
+          "to_room": 908,
+          "description": ""
+        }
+      }
+    },
+    "907": {
+      "vnum": 907,
+      "name": "The Pier",
+      "description": "You float next to a crumbling pier long since neglected. To the west the water gets sluggish and there are many weeds and some seaweed floating about.",
+      "sector_type": "water_noswim",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 906,
+          "description": ""
+        },
+        "west": {
+          "to_room": 908,
+          "description": ""
+        }
+      }
+    },
+    "908": {
+      "vnum": 908,
+      "name": "Mired In Seaweed",
+      "description": "The going is rough here.  The tide struggles with the normal flow of the river and here near the edge of the sea there is a large amount of growth.  To the west the channel passes the southern tip of the island and heads for open waters.",
+      "sector_type": "water_noswim",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 906,
+          "description": ""
+        },
+        "east": {
+          "to_room": 907,
+          "description": ""
+        },
+        "west": {
+          "to_room": 909,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 909,
+          "max": 2
+        },
+        {
+          "vnum": 909,
+          "max": 2
+        }
+      ]
+    },
+    "909": {
+      "vnum": 909,
+      "name": "The Last Stop",
+      "description": "The delta meets the sea here.  To the west you see nothing but ocean on the horizon.  Sea birds squawk noisily at your approach and take flight from a nearby beach head on the island.  It looks as though this could be the last stop for those heading out to sea.",
+      "sector_type": "water_noswim",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 910,
+          "description": ""
+        },
+        "east": {
+          "to_room": 908,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 910,
+          "max": 2
+        },
+        {
+          "vnum": 910,
+          "max": 2
+        }
+      ]
+    },
+    "910": {
+      "vnum": 910,
+      "name": "The Beach Head",
+      "description": "This is a secluded looking beach on the southern tip of the island. There isn't much to see here and there is no way to cross the steep rocky cliffs that wall in this place.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 909,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 911,
+          "max": 3
+        },
+        {
+          "vnum": 911,
+          "max": 3
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 909,
+          "max": 12
+        }
+      ]
+    },
+    "911": {
+      "vnum": 911,
+      "name": "The North Channel",
+      "description": "The river splits as runs up against the island and a navigatble channel slips off to the north and west.",
+      "sector_type": "water_noswim",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 912,
+          "description": ""
+        },
+        "south": {
+          "to_room": 904,
+          "description": ""
+        },
+        "west": {
+          "to_room": 912,
+          "description": ""
+        }
+      }
+    },
+    "912": {
+      "vnum": 912,
+      "name": "The North Channel",
+      "description": "The river current carries you swiftly westward as the channel begins to narrow as it squeezes past the north end of the island.",
+      "sector_type": "water_noswim",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 911,
+          "description": ""
+        },
+        "south": {
+          "to_room": 911,
+          "description": ""
+        },
+        "west": {
+          "to_room": 913,
+          "description": ""
+        }
+      }
+    },
+    "913": {
+      "vnum": 913,
+      "name": "Near The Isle",
+      "description": "You are sitting just off a small landing on the island that appears to be nothing more than a short path that leads to the side of a hill.",
+      "sector_type": "water_noswim",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 912,
+          "description": ""
+        },
+        "south": {
+          "to_room": 914,
+          "description": ""
+        }
+      }
+    },
+    "914": {
+      "vnum": 914,
+      "name": "The Lane Of The Lying",
+      "description": "Bodies lie everywhere.  Commoner, peasant, duke, duchess.  The Gods will not hear you call here.  Hence they will not answer you.  To the south the path ends at a dark cave entrance. A sign has been posted beside the entrance.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 913,
+          "description": ""
+        },
+        "south": {
+          "to_room": 915,
+          "description": ""
+        }
+      },
+      "extra_descs": {
+        "": "sign cave"
+      }
+    },
+    "915": {
+      "vnum": 915,
+      "name": "The First Trial Of Minos",
+      "description": "Ah... you find yourself in Minos' battlefield playground.   Minos loves to torture his people through these places.  He collects the monsters of the world and puts them here.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 916,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 900,
+          "max": 3
+        },
+        {
+          "vnum": 900,
+          "max": 3
+        },
+        {
+          "vnum": 900,
+          "max": 3
+        }
+      ]
+    },
+    "916": {
+      "vnum": 916,
+      "name": "The Second Trial Of Minos",
+      "description": "Minos' voice reveberates from the four walls of this room: 'Get some rest and make sure you're healed.  You'll need it for the next monster in my playground.  Or are you strong enough?'    To the south is the entrance to the next challenge of Minos' stronghold.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 917,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 901,
+          "max": 2
+        },
+        {
+          "vnum": 901,
+          "max": 2
+        }
+      ]
+    },
+    "917": {
+      "vnum": 917,
+      "name": "The Third Trial Of Minos",
+      "description": "You go inside a red room.  Very red.  As if the Minos King used them to disembowel his guests.  The path continues eastward.  You see blue lights in that direction.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 918,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 902,
+          "max": 1
+        }
+      ]
+    },
+    "918": {
+      "vnum": 918,
+      "name": "The Fourth Trial Of Minos",
+      "description": "Minos must be a monster hacking machine.  You see a blue light flicker on and off.  A voice crackles, 'WHY ARE YOU HERE!'",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 919,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 903,
+          "max": 1
+        }
+      ]
+    },
+    "919": {
+      "vnum": 919,
+      "name": "The Fifth Trial Of Minos",
+      "description": "This is General Woundwort's quarters.  Hraka abound.  The frayed corpses of rabbits lie scattered about this hell-hole.  The General is not a very neat person as you can tell.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 920,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 904,
+          "max": 1
+        }
+      ]
+    },
+    "920": {
+      "vnum": 920,
+      "name": "The Sixth Trial Of Minos",
+      "description": "Dare we surmise how many more rooms Minos has?  The paths appear to be endless.  You shudder the sounds of death cries from the east.  A loud voice bellows another warning: 'Leave now or face my wrath!' There is a crawlway leading upwards at the far end of the room and there is a fresh breeze comming from there.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 921,
+          "description": ""
+        },
+        "up": {
+          "to_room": 923,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 905,
+          "max": 1
+        },
+        {
+          "vnum": 906,
+          "max": 1
+        }
+      ]
+    },
+    "921": {
+      "vnum": 921,
+      "name": "The Final Trial Of Minos",
+      "description": "This is Minos' room.  What else did you expect?  The room is lavishly decorated for this bovine king.  Everything is so opulent that it makes your eyes bulge.  Survive and reap his fortune!  The only exit is a large oak door in the east wall.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 922,
+          "description": "You see a rather large oak door bound with iron and securely locked.",
+          "door": {
+            "name": "door oak",
+            "state": "open",
+            "locked": true,
+            "key_vnum": 900
+          }
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 907,
+          "max": 1
+        }
+      ]
+    },
+    "922": {
+      "vnum": 922,
+      "name": "The Royal Chamber",
+      "description": "The treasure room of Minos is dark save for your lantern. Hopefully it has not been looted yet by the many legendary thieves of Midgaard.  A clever looking secret passage leads upward from here.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors",
+        "private"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 910,
+          "description": ""
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 904,
+          "max": 10
+        },
+        {
+          "vnum": 906,
+          "max": 1
+        }
+      ]
+    },
+    "923": {
+      "vnum": 923,
+      "name": "Above, On The Beach",
+      "description": "You sit amongst the rocks above a small beach at the southern end of the island.  You could clamber down easy enough, but getting back up would be another story.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "down": {
+          "to_room": 910,
+          "description": ""
+        }
+      }
+    }
+  },
+  "mobs": {
+    "900": {
+      "vnum": 900,
+      "name": "homba",
+      "short_desc": "the homba",
+      "long_desc": "The homba flits about.",
+      "level": 4,
+      "alignment": -100,
+      "hp_dice": "1d8+4",
+      "damage_dice": "2d10+40",
+      "gold": 800,
+      "exp": 8,
+      "armor_class": 5,
+      "flags": [
+        "sentinel",
+        "aggressive",
+        "memory",
+        "helper"
+      ],
+      "description": "Part kestrel, part bear, part wolf.  Parts is parts, and makes an ugly whole."
+    },
+    "901": {
+      "vnum": 901,
+      "name": "swordsman",
+      "short_desc": "the swordsman",
+      "long_desc": "The greatest swordsman in the land is standing here with a sneer on his face.",
+      "level": 7,
+      "alignment": -400,
+      "hp_dice": "2d5+2",
+      "damage_dice": "3d10+80",
+      "gold": 1625,
+      "exp": 8,
+      "armor_class": 3,
+      "flags": [
+        "sentinel",
+        "aggressive",
+        "memory",
+        "helper"
+      ],
+      "description": "This is the ultimate swordsman.",
+      "equipment": {
+        "hold": 901
+      }
+    },
+    "902": {
+      "vnum": 902,
+      "name": "mummy",
+      "short_desc": "the Mummy of Rabscuttle",
+      "long_desc": "The Mummy of Rabscuttle wanders here, hands aloft, walking towards you.",
+      "level": 11,
+      "alignment": -780,
+      "hp_dice": "2d6+2",
+      "damage_dice": "6d3+130",
+      "gold": 5625,
+      "exp": 8,
+      "armor_class": 1,
+      "flags": [
+        "sentinel",
+        "aggressive",
+        "memory",
+        "helper"
+      ],
+      "description": "All bandages, no personality."
+    },
+    "903": {
+      "vnum": 903,
+      "name": "lizard",
+      "short_desc": "the giant lizard",
+      "long_desc": "A giant lizard is here.",
+      "level": 16,
+      "alignment": 100,
+      "hp_dice": "3d4+5",
+      "damage_dice": "10d2+220",
+      "gold": 13600,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "sentinel",
+        "aggressive",
+        "memory",
+        "helper"
+      ],
+      "description": "This scaly creature looks like it is well adapted to its underground\nhabitat.  He looks very powerful."
+    },
+    "904": {
+      "vnum": 904,
+      "name": "woundwort",
+      "short_desc": "General Woundwort",
+      "long_desc": "General Woundwort, the dark demon of Minos, awaits to maul you to shreds.",
+      "level": 25,
+      "alignment": -1000,
+      "hp_dice": "3d5+12",
+      "damage_dice": "10d8+520",
+      "gold": 65000,
+      "exp": 8,
+      "armor_class": -1,
+      "flags": [
+        "sentinel",
+        "aggressive",
+        "memory",
+        "helper"
+      ],
+      "description": "He looks vaguely like a rabbit, but sure doesn't act like one.",
+      "equipment": {
+        "hands": 903,
+        "hold": 902
+      }
+    },
+    "905": {
+      "vnum": 905,
+      "name": "franz",
+      "short_desc": "Franz the Henchman",
+      "long_desc": "Franz, Minos' henchman, is here ready to pump you up.",
+      "level": 12,
+      "alignment": -300,
+      "hp_dice": "2d8+4",
+      "damage_dice": "5d10+120",
+      "gold": 7500,
+      "exp": 8,
+      "armor_class": 4,
+      "flags": [
+        "sentinel",
+        "aggressive",
+        "memory",
+        "helper"
+      ],
+      "description": "Franz is no girlie man.  He is very muscular and looks as if he could\nsqueeze your head like a grapefruit.",
+      "equipment": {
+        "wield": 905
+      }
+    },
+    "906": {
+      "vnum": 906,
+      "name": "hanz",
+      "short_desc": "Hanz the Henchman",
+      "long_desc": "Hanz is here flexing his muscles and squeezing grapefruits.",
+      "level": 12,
+      "alignment": -300,
+      "hp_dice": "2d8+4",
+      "damage_dice": "5d10+120",
+      "gold": 7500,
+      "exp": 8,
+      "armor_class": 4,
+      "flags": [
+        "sentinel",
+        "aggressive",
+        "memory",
+        "helper"
+      ],
+      "description": "Hanz is no girlie man.  He is very muscular and looks as if he could\nlift a large dragon.",
+      "equipment": {
+        "wield": 907
+      }
+    },
+    "907": {
+      "vnum": 907,
+      "name": "minos",
+      "short_desc": "King Minos the Minotaur",
+      "long_desc": "King Minos the Minotaur is ready and waiting to gore you to death.",
+      "level": 26,
+      "alignment": -1000,
+      "hp_dice": "4d6+10",
+      "damage_dice": "12d8+590",
+      "gold": 80000,
+      "exp": 8,
+      "armor_class": -2,
+      "flags": [
+        "sentinel",
+        "aggressive",
+        "memory",
+        "helper",
+        "no_charm",
+        "no_summmon",
+        "no_bash"
+      ],
+      "description": "He smells something awful.",
+      "equipment": {
+        "shield": 901,
+        "hold": 900
+      }
+    },
+    "908": {
+      "vnum": 908,
+      "name": "turtle",
+      "short_desc": "the dragon turtle",
+      "long_desc": "A large dragon turtle breaks the surface churning the water into huge waves.",
+      "level": 22,
+      "alignment": -200,
+      "hp_dice": "1d20+5",
+      "damage_dice": "12d6+350",
+      "gold": 45000,
+      "exp": 8,
+      "armor_class": -5,
+      "flags": [
+        "aggressive",
+        "stay_zone",
+        "no_bash"
+      ],
+      "description": "The turtle's shell is the size of a small house and looks as hard as rock."
+    },
+    "909": {
+      "vnum": 909,
+      "name": "hag",
+      "short_desc": "the sea hag",
+      "long_desc": "You notice the face of an ugly hag in the sea weeds.",
+      "level": 4,
+      "alignment": -700,
+      "hp_dice": "2d5+0",
+      "damage_dice": "4d4+35",
+      "gold": 425,
+      "exp": 8,
+      "armor_class": 6,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ],
+      "description": "The sea hag is terribly fightful and has razor sharp teeth."
+    },
+    "910": {
+      "vnum": 910,
+      "name": "merman",
+      "short_desc": "the merman",
+      "long_desc": "There is a merman swimming here brandishing his trident at you!",
+      "level": 5,
+      "alignment": 350,
+      "hp_dice": "2d4+2",
+      "damage_dice": "5d5+65",
+      "gold": 1250,
+      "exp": 8,
+      "armor_class": 5,
+      "flags": [
+        "sentinel",
+        "aggressive",
+        "memory",
+        "helper",
+        "no_charm",
+        "no_summmon",
+        "no_bash"
+      ],
+      "description": "The merman has a powerful tail fin instead of legs.",
+      "equipment": {
+        "wield": 908
+      }
+    },
+    "911": {
+      "vnum": 911,
+      "name": "crab",
+      "short_desc": "the crusty crab",
+      "long_desc": "A crusty looking crab is crawling around here searching for food.",
+      "level": 2,
+      "alignment": 0,
+      "hp_dice": "1d5+0",
+      "damage_dice": "5d2+25",
+      "gold": 75,
+      "exp": 8,
+      "armor_class": 4,
+      "flags": [
+        "wimpy",
+        "aggressive",
+        "no_bash"
+      ],
+      "description": "It looks like a crab... what more can be said?"
+    }
+  },
+  "objects": {
+    "900": {
+      "vnum": 900,
+      "name": "key",
+      "short_desc": "a golden key",
+      "room_desc": "A heavy golden key lies here.",
+      "item_type": "key",
+      "weight": 1,
+      "value": 0
+    },
+    "901": {
+      "vnum": 901,
+      "name": "shield",
+      "short_desc": "a dark minotaur shield",
+      "room_desc": "A dark minotaur shield has been left here.",
+      "item_type": "armor",
+      "weight": 12,
+      "value": 5000,
+      "armor_bonus": 12
+    },
+    "902": {
+      "vnum": 902,
+      "name": "potion",
+      "short_desc": "a speckled potion",
+      "room_desc": "A speckled potion speckles here.",
+      "item_type": "potion",
+      "weight": 2,
+      "value": 1300
+    },
+    "903": {
+      "vnum": 903,
+      "name": "gauntlets",
+      "short_desc": "a pair of troll gauntlets",
+      "room_desc": "A pair of gauntlets made from troll skin lie on the ground.",
+      "item_type": "armor",
+      "weight": 8,
+      "value": 2000,
+      "armor_bonus": 5
+    },
+    "904": {
+      "vnum": 904,
+      "name": "ring",
+      "short_desc": "a platinum ring",
+      "room_desc": "A shining ring of platinum lies here.  It has a tiny inscription.",
+      "item_type": "light",
+      "weight": 1,
+      "value": 2000,
+      "light_hours": -1
+    },
+    "905": {
+      "vnum": 905,
+      "name": "flail",
+      "short_desc": "a flail",
+      "room_desc": "A flail has been carelessly left here.",
+      "item_type": "weapon",
+      "weight": 8,
+      "value": 5000,
+      "damage_dice": "3d4",
+      "weapon_type": "pound"
+    },
+    "906": {
+      "vnum": 906,
+      "name": "coins",
+      "short_desc": "a great pile of treasure",
+      "room_desc": "A great, gleaming pile of treasure lies at your feet.",
+      "item_type": "money",
+      "weight": 20,
+      "value": 43500
+    },
+    "907": {
+      "vnum": 907,
+      "name": "spear",
+      "short_desc": "a heavy spear",
+      "room_desc": "A heavy spear has been tossed on the ground here.",
+      "item_type": "weapon",
+      "weight": 8,
+      "value": 450,
+      "damage_dice": "1d7",
+      "weapon_type": "pierce"
+    },
+    "908": {
+      "vnum": 908,
+      "name": "trident",
+      "short_desc": "a trident",
+      "room_desc": "There is a warrior's trident here.",
+      "item_type": "weapon",
+      "weight": 8,
+      "value": 350,
+      "damage_dice": "2d4",
+      "weapon_type": "pierce"
+    },
+    "909": {
+      "vnum": 909,
+      "name": "boots",
+      "short_desc": "a pair of boots",
+      "room_desc": "A pair of boots sit here in a puddle of water.",
+      "item_type": "boat",
+      "weight": 1,
+      "value": 5000
+    }
+  }
+}

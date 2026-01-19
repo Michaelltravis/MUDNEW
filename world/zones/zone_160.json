@@ -7,7 +7,7 @@
     40
   ],
   "author": "RealmsMUD Team",
-  "reset_time": 300,
+  "reset_time": 2700,
   "rooms": {
     "16000": {
       "title": "Hidden Portal",
@@ -19,6 +19,10 @@
         },
         "portal": {
           "to_room": 16001
+        },
+        "down": {
+          "to_room": 8000,
+          "description": "You see an exit down."
         }
       },
       "vnum": 16000

@@ -1,0 +1,1552 @@
+{
+  "number": 186,
+  "name": "Newbie Zone",
+  "lifespan": 10,
+  "rooms": {
+    "18600": {
+      "vnum": 18600,
+      "name": "The Entrance To The Newbie Zone",
+      "description": "Ahhh... the entrance to the newbie zone!  Just the place you have been looking for.  Well, when you've readied yourself you can enter to the north.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18601,
+          "description": "You see the start of the newbie zone."
+        },
+        "west": {
+          "to_room": 3061,
+          "description": "Back to the road that way... chickening out already?"
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 18602,
+          "max": 3
+        }
+      ]
+    },
+    "18601": {
+      "vnum": 18601,
+      "name": "The Beginning Of The Passage",
+      "description": "You find yourself entering a long corridor.  You can hear the sound of creatures roaming about, but you can't tell where the sound emanates from exactly.    Exits lead to the east along the hallway, and south back to the entrance.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 18602,
+          "description": "More of the hallway there... how exciting!"
+        },
+        "south": {
+          "to_room": 18600,
+          "description": "The entrance to the newbie zone... how dull"
+        }
+      }
+    },
+    "18602": {
+      "vnum": 18602,
+      "name": "The Dirty Hallway",
+      "description": "You continue wandering down the hallway.  Nothing much different here, but you are positive you here noises behind the door to the south, and coming from the east.  The walls are a bit slimy and moldy here... yeech, couldn't they hire someone to clean this place?  What will the newbies think?  Oh well, you can continue along the hallway to the east or west.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 18603,
+          "description": "More of the hallway there... how exciting!"
+        },
+        "south": {
+          "to_room": 18606,
+          "description": "A small room lies to the south... you hear something moving about inside.",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "west": {
+          "to_room": 18601,
+          "description": "More of the hallway there... how exciting!"
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 18603,
+          "max": 1
+        },
+        {
+          "vnum": 18606,
+          "max": 4
+        }
+      ]
+    },
+    "18603": {
+      "vnum": 18603,
+      "name": "A Nexus",
+      "description": "Well... you've reached an intersection of two passages, to the north and east, the passage brightens, while the darker hallway continues to the south.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18644,
+          "description": "A brighter hallway leads off that way.",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "east": {
+          "to_room": 18646,
+          "description": "A brighter hallway leads off that way.",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "south": {
+          "to_room": 18607,
+          "description": "More of the hallway there... how exciting!"
+        },
+        "west": {
+          "to_room": 18602,
+          "description": "More of the hallway there... how exciting!"
+        }
+      }
+    },
+    "18604": {
+      "vnum": 18604,
+      "name": "A Narrow Passage",
+      "description": "The thin passage is plain and undecorated, but still clean.  It ends abruptly to the south at a small oak door, behind which you here movement...",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18647,
+          "description": "A large domed room."
+        },
+        "south": {
+          "to_room": 18612,
+          "description": "A small cluttered room.",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 18614,
+          "max": 1
+        }
+      ]
+    },
+    "18605": {
+      "vnum": 18605,
+      "name": "The Dark Pit",
+      "description": "Ick... a dark damp dirty pit.  Even worse, what is that dark damp dirty thing looking at you from the corner?  Ewww... maybe you should go back up where it is a bit safer, unless you think you can tackle that thing in the corner.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 18606,
+          "description": "You see a ladder leading up",
+          "door": {
+            "name": "grate",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": 18608
+          }
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 18601,
+          "max": 1
+        }
+      ]
+    },
+    "18606": {
+      "vnum": 18606,
+      "name": "A Small Room",
+      "description": "Hmmm... this is an interesting little room.  Ack, and there is an interesting little creature staring at you too.  He looks a bit surprised at your intrusion.  You can leave via the doors north or east, or you can stay and annoy him a bit more.  There also appears to be some type of well down here also, but it has a rather secure grate covering it.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18602,
+          "description": "More of the hallway there... how exciting!",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "east": {
+          "to_room": 18607,
+          "description": "More of the hallway there... how exciting!",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "down": {
+          "to_room": 18605,
+          "description": "A ladder leads down into darkness.",
+          "door": {
+            "name": "grate",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": 18608
+          }
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 18604,
+          "max": 1
+        },
+        {
+          "vnum": 18606,
+          "max": 4
+        }
+      ]
+    },
+    "18607": {
+      "vnum": 18607,
+      "name": "More Of The Hallway",
+      "description": "Oh joy!  More of this annoying passage.  Perhaps there is something more exciting through that door to the west?  Or you can keep searching the hallways to the north or south.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18603,
+          "description": "More of the hallway there... how exciting!"
+        },
+        "south": {
+          "to_room": 18611,
+          "description": "More of the hallway there... how exciting!"
+        },
+        "west": {
+          "to_room": 18606,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 18602,
+          "max": 3
+        }
+      ]
+    },
+    "18608": {
+      "vnum": 18608,
+      "name": "An Open Field By The Great Field",
+      "description": "Finally, you are in an open field... it is so nice to breathe fresh air again!  You can return to that dank, smelly place to the east, or take the exit to the north which appears to lead into a large field.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3061,
+          "description": "There appears to be a field road to the north."
+        },
+        "east": {
+          "to_room": 18609,
+          "description": "The end of that darn hallway lies back to the east."
+        }
+      }
+    },
+    "18609": {
+      "vnum": 18609,
+      "name": "The End Of The Passage",
+      "description": "Ahhh... at last, the end of the hallway... you can exit into open air to the west,or return to the east and make sure you didn't miss anything.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 18610,
+          "description": "More of the hallway there... how exciting!"
+        },
+        "west": {
+          "to_room": 18608,
+          "description": "An open field near The Great Field of Midgaard can be seen."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 18606,
+          "max": 4
+        }
+      ]
+    },
+    "18610": {
+      "vnum": 18610,
+      "name": "A Brighter Hallway",
+      "description": "The hallway continues on in a east-west direction... and it seems to be brightening up to the west.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 18611,
+          "description": "A corner in the passage lies to the east."
+        },
+        "west": {
+          "to_room": 18609,
+          "description": "More of the hallway there... how exciting!"
+        }
+      }
+    },
+    "18611": {
+      "vnum": 18611,
+      "name": "Another Corner",
+      "description": "Another corner of the passage, and just as untidy as the rest of this place (maybe more so?).  There is a door to the east though... wonder where that leads?  Oh, and the hallway continues west and north.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18607,
+          "description": "More of the hallway there... how exciting!"
+        },
+        "east": {
+          "to_room": 18612,
+          "description": "You peer into a cluttered little room to the east.",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "west": {
+          "to_room": 18610,
+          "description": "More of the hallway there... how exciting!"
+        }
+      }
+    },
+    "18612": {
+      "vnum": 18612,
+      "name": "The Alchemist's Room",
+      "description": "Lots of bottles and flasks lie about this room, but it all looks like worthless clutter.  It appears whatever alchemist has been working here is really very adept at his art.  There are a lot of formulae and spells written on the walls too... couldn't he buy some paper?  There is a door to the north, and also a dark stairway in the corner leading down, with a large sign next to it that you probably should read...",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18604,
+          "description": "A nice shiny hallway!",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "west": {
+          "to_room": 18611,
+          "description": "A corner in the passage lies to the west.",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "down": {
+          "to_room": 18632,
+          "description": "A shadowed stairway leading down."
+        }
+      },
+      "extra_descs": {
+        "": "sign stairs stairway"
+      },
+      "mob_resets": [
+        {
+          "vnum": 18605,
+          "max": 1
+        }
+      ]
+    },
+    "18620": {
+      "vnum": 18620,
+      "name": "A Turn In The Passage",
+      "description": "This corner is much like all the others... except you see a strange glow coming from the south.  Could be an exit... you hope.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 18621,
+          "description": "The passage continues east quite a ways."
+        },
+        "south": {
+          "to_room": 18629,
+          "description": "You see an odd red glow from that direction."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 18607,
+          "max": 5
+        }
+      ]
+    },
+    "18621": {
+      "vnum": 18621,
+      "name": "A T-Intersection In The Passage",
+      "description": "This is an intersection of a long east-west passage with a corridor leading south.  The air seems a bit clearer here though, as if you were approaching an exit.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 18622,
+          "description": ""
+        },
+        "south": {
+          "to_room": 18633,
+          "description": ""
+        },
+        "west": {
+          "to_room": 18620,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 18608,
+          "max": 5
+        }
+      ]
+    },
+    "18622": {
+      "vnum": 18622,
+      "name": "Another Corner",
+      "description": "The passage turns from north to west here.  The walls are still covered with the same disgusting green fungus you have seen all along, and you hear sounds of creatures moving all around you...",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 18628,
+          "description": ""
+        },
+        "west": {
+          "to_room": 18621,
+          "description": ""
+        }
+      }
+    },
+    "18623": {
+      "vnum": 18623,
+      "name": "A Corner In The Hallway",
+      "description": "You can hear creatures moving all around you... and it is not a comforting sound at all.  The furnishing is nothing to speak of either, plain grey brick walls with green fungus (or something) growing on them.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 18624,
+          "description": ""
+        },
+        "south": {
+          "to_room": 18627,
+          "description": ""
+        }
+      }
+    },
+    "18624": {
+      "vnum": 18624,
+      "name": "Another Turn",
+      "description": "Hmmm... the passage turns south here.  You beginning to realize you can easily lose your bearings if you aren't careful, and you don't think you would like spending too much time here...",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 18630,
+          "description": ""
+        },
+        "west": {
+          "to_room": 18623,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 18607,
+          "max": 5
+        }
+      ]
+    },
+    "18625": {
+      "vnum": 18625,
+      "name": "A Large Room",
+      "description": "The passage opens into a large oval room.  There really isn't much of interest here though.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 18626,
+          "description": ""
+        },
+        "south": {
+          "to_room": 18631,
+          "description": ""
+        }
+      }
+    },
+    "18626": {
+      "vnum": 18626,
+      "name": "A Long East-West Passage",
+      "description": "This is a long, narrow passage leading east and west.  The walls are damp and covered with mildew and fungus.  There is a very unhealthy air about this place and you're beginning to want out of here... soon.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 18627,
+          "description": ""
+        },
+        "west": {
+          "to_room": 18625,
+          "description": ""
+        }
+      }
+    },
+    "18627": {
+      "vnum": 18627,
+      "name": "A Crossing Of Corridors",
+      "description": "Here a narrow east-west passage crosses with a wider passage to the north and south.  The air is dank, and has an odor of decay and debris. Not a nice place at all really...",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18623,
+          "description": ""
+        },
+        "east": {
+          "to_room": 18628,
+          "description": ""
+        },
+        "south": {
+          "to_room": 18632,
+          "description": ""
+        },
+        "west": {
+          "to_room": 18626,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 18608,
+          "max": 5
+        }
+      ]
+    },
+    "18628": {
+      "vnum": 18628,
+      "name": "A Corner Room",
+      "description": "This room is hardly more than a crossing of passages.  You do sense a slight breeze wafting down the passage to the north though, but it smells altogether bad...",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18622,
+          "description": ""
+        },
+        "west": {
+          "to_room": 18627,
+          "description": ""
+        }
+      }
+    },
+    "18629": {
+      "vnum": 18629,
+      "name": "The Red Room",
+      "description": "It takes you a moment to realize that the red glow here is coming from a round portal on the floor.  It looks almost as if someone had painted a picture of a dirt running through a field on the floor of this room.  Oddly enough, it is so realistic you can feel the wind in the field coming out of the picture.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18620,
+          "description": ""
+        },
+        "east": {
+          "to_room": 18630,
+          "description": ""
+        },
+        "down": {
+          "to_room": 3061,
+          "description": ""
+        }
+      },
+      "extra_descs": {
+        "": "portal floor"
+      },
+      "mob_resets": [
+        {
+          "vnum": 18609,
+          "max": 1
+        }
+      ]
+    },
+    "18630": {
+      "vnum": 18630,
+      "name": "A Branching Passage",
+      "description": "The north-south passage branches to the east here.  There is a queer red glow coming from that way as well, along with a faint breeze.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18624,
+          "description": ""
+        },
+        "south": {
+          "to_room": 18634,
+          "description": ""
+        },
+        "west": {
+          "to_room": 18629,
+          "description": "A very odd red glow emanates from that direction."
+        }
+      }
+    },
+    "18631": {
+      "vnum": 18631,
+      "name": "A Passage",
+      "description": "Ick... this place is just disgusting.  You try and stay clear of the walls, but the passage is so narrow you keep bumping them anyway.  You are almost convinced that the fungus coating the walls is grabbing at you too.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18625,
+          "description": ""
+        },
+        "east": {
+          "to_room": 18632,
+          "description": ""
+        },
+        "south": {
+          "to_room": 18638,
+          "description": ""
+        }
+      }
+    },
+    "18632": {
+      "vnum": 18632,
+      "name": "The Entrance",
+      "description": "It is dark, dank, disgusting and cold up here.  Plus you here the sounds of creatures all around you... and somehow they don't sound friendly.  It is probably wise to exercise some degree of caution here... no telling what you may run into here.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18627,
+          "description": ""
+        },
+        "south": {
+          "to_room": 18635,
+          "description": ""
+        },
+        "west": {
+          "to_room": 18631,
+          "description": ""
+        },
+        "up": {
+          "to_room": 18612,
+          "description": ""
+        }
+      }
+    },
+    "18633": {
+      "vnum": 18633,
+      "name": "Another Corner",
+      "description": "Well... what is there to say.  More fungus, more weird sounds, and a slight breeze from the north.  Bet you want to sign a lease, don't ya...",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18621,
+          "description": ""
+        },
+        "east": {
+          "to_room": 18634,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 18607,
+          "max": 5
+        }
+      ]
+    },
+    "18634": {
+      "vnum": 18634,
+      "name": "An Intersection Of Passages",
+      "description": "Cold, smelly, and coated with green fungus... just like last week's left-overs.  Furthermore you want nothing to do with either, you just want out right now.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18630,
+          "description": ""
+        },
+        "south": {
+          "to_room": 18637,
+          "description": ""
+        },
+        "west": {
+          "to_room": 18633,
+          "description": ""
+        }
+      }
+    },
+    "18635": {
+      "vnum": 18635,
+      "name": "A Turn In The Passage",
+      "description": "This place is just plain nauseating... it certainly smells as if something (or someone) died in here.  You hope you aren't next, but from the sounds you hear all around you, it seems as if something has other ideas about that.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18632,
+          "description": ""
+        },
+        "east": {
+          "to_room": 18636,
+          "description": ""
+        }
+      }
+    },
+    "18636": {
+      "vnum": 18636,
+      "name": "A Branch To The South",
+      "description": "The east-west passage branches of to the south here.  All around you is the odour of death.  Actually, the mold and fungus on the walls is doing great, but otherwise... well... you don't want to think about what else lives here.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 18637,
+          "description": ""
+        },
+        "south": {
+          "to_room": 18639,
+          "description": ""
+        },
+        "west": {
+          "to_room": 18635,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 18608,
+          "max": 5
+        }
+      ]
+    },
+    "18637": {
+      "vnum": 18637,
+      "name": "Yet Another Corner",
+      "description": "The passage turns here and heads north.  You sense something up ahead that way, but you aren't sure what.  You aren't sure if you want to know what either at this point.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18634,
+          "description": ""
+        },
+        "west": {
+          "to_room": 18636,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 18607,
+          "max": 5
+        }
+      ]
+    },
+    "18638": {
+      "vnum": 18638,
+      "name": "A Large Room",
+      "description": "You almost stumble as you enter this room... the sudden feeling of no walls on either side of you makes you a bit nervous.  Suddenly you are vulnerable on all sides.  You can't even tell how big a room this is, because it extends to the east farther than you light will reach...",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18631,
+          "description": ""
+        },
+        "east": {
+          "to_room": 18639,
+          "description": "The room extends into shadows..."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 18608,
+          "max": 5
+        }
+      ]
+    },
+    "18639": {
+      "vnum": 18639,
+      "name": "A Large Room",
+      "description": "As you enter, you light glints of the wall to the east.  There appears to be words scrawled on the wall, and a crude picture.  To the west the room extends beyond the reach of your light, and the dark shadows make you paranoid... anything could be hiding there.  You are painfully aware of how exposed you are without walls around you.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18636,
+          "description": ""
+        },
+        "west": {
+          "to_room": 18638,
+          "description": "The room extends as far as (and farther than) you can see..."
+        }
+      },
+      "extra_descs": {
+        "": "wall"
+      },
+      "mob_resets": [
+        {
+          "vnum": 18610,
+          "max": 1
+        }
+      ]
+    },
+    "18640": {
+      "vnum": 18640,
+      "name": "The Statue's Room",
+      "description": "Here, the passage enters a small room.  Exits lead to the east and south, and you notice a wonderful, large (and tastefully done) statue to the north.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 18641,
+          "description": "A long hallway, ending in a set of steps."
+        },
+        "south": {
+          "to_room": 18644,
+          "description": "The hall extends to the south where it seems to lighten somewhat."
+        }
+      },
+      "extra_descs": {
+        "": "plaque nameplate name"
+      },
+      "mob_resets": [
+        {
+          "vnum": 18613,
+          "max": 1
+        }
+      ]
+    },
+    "18641": {
+      "vnum": 18641,
+      "name": "The Hallway",
+      "description": "As you continue wandering down the hallway, you notice banners, pictures, and other fine decorations adorning the walls all along this passage.  It seems very different from the dismal passage where you entered.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 18642,
+          "description": "The hallway ends at a grand marble staircase."
+        },
+        "west": {
+          "to_room": 18640,
+          "description": "The passage leads into a small room."
+        }
+      }
+    },
+    "18642": {
+      "vnum": 18642,
+      "name": "The North Stairs",
+      "description": "Here, the hall opens into a wide room, with a high domed roof.  Now that that you have come clear of the enclosed passage, you can see that the stair leads upward to an open air balcony overlooking the area.  To the south the room continues, and another stair is visible matching the one in front of you.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 18647,
+          "description": "You see another staircase and two passages leading west and south."
+        },
+        "west": {
+          "to_room": 18641,
+          "description": "An entrance to a bright passage."
+        },
+        "up": {
+          "to_room": 18643,
+          "description": "An open air balcony."
+        }
+      },
+      "extra_descs": {
+        "": "staircase stair stairs"
+      },
+      "mob_resets": [
+        {
+          "vnum": 18612,
+          "max": 1
+        }
+      ]
+    },
+    "18643": {
+      "vnum": 18643,
+      "name": "The Balcony",
+      "description": "Here you can look out and observe the world around.  Constructed in a semi-circle around the dome of the room, the balcony allows you to look out in almost any direction.  Wandering to the north end, you can see that the Great Fields north of Midgaard continue off towards the Dragonhelm Mountains to the north.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 18645,
+          "description": "The south end of the balcony."
+        },
+        "down": {
+          "to_room": 18642,
+          "description": "Down the stairs to a large, domed room."
+        }
+      },
+      "extra_descs": {
+        "": "staircase stair stairs"
+      }
+    },
+    "18644": {
+      "vnum": 18644,
+      "name": "A Bright Hallway",
+      "description": "Wow!  What a change from the dismal passage to the south.  Whoever keeps this room up must really like newbies.  The walls and floor are clean, and tastefully decorated.  You also notice an interesting design on the floor.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18640,
+          "description": "A small room with a statue in it."
+        },
+        "south": {
+          "to_room": 18603,
+          "description": "A intersection of passages.",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "extra_descs": {
+        "": "floor design"
+      }
+    },
+    "18645": {
+      "vnum": 18645,
+      "name": "The Balcony",
+      "description": "Here you can look out and observe the world around.  Constructed in a semi-circle around the dome of the room, the balcony allows you to look out in almost any direction.  Wandering to the south end, you can see the great city of Midgaard off to the south-west.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18643,
+          "description": "The north end of the balcony."
+        },
+        "down": {
+          "to_room": 18647,
+          "description": "Back down the south staircase."
+        }
+      },
+      "extra_descs": {
+        "": "staircase stair stairs"
+      },
+      "mob_resets": [
+        {
+          "vnum": 18615,
+          "max": 1
+        }
+      ]
+    },
+    "18646": {
+      "vnum": 18646,
+      "name": "A Bright Hallway",
+      "description": "Wow!  What a change from the dismal passage to the west.  Whoever keeps this  room up must really like newbies.  The walls and floor are clean, and tastefully decorated.  You also notice an interesting design on the floor.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 18647,
+          "description": "The passage opens into a domed room with a grand marble staircase."
+        },
+        "west": {
+          "to_room": 18603,
+          "description": "A dark intersection of passages.",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "extra_descs": {
+        "": "floor design"
+      },
+      "mob_resets": [
+        {
+          "vnum": 18611,
+          "max": 1
+        }
+      ]
+    },
+    "18647": {
+      "vnum": 18647,
+      "name": "The South Stairs",
+      "description": "Here, the hall opens into a wide room, with a high domed roof.  Now that that you have come clear of the enclosed passage, you can see that the stair leads upward to an open air balcony overlooking the area.  to the north the room continues, and another stair is visible matching the one in front of you.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 18642,
+          "description": "Another stairway is to the north, as well as a passage to the west."
+        },
+        "south": {
+          "to_room": 18604,
+          "description": "A narrow passage to the south, ending in a wood door."
+        },
+        "west": {
+          "to_room": 18646,
+          "description": "Back down the bright hallway."
+        },
+        "up": {
+          "to_room": 18645,
+          "description": "An open air balcony."
+        }
+      },
+      "extra_descs": {
+        "": "staircase stair stairs"
+      }
+    }
+  },
+  "mobs": {
+    "18601": {
+      "vnum": 18601,
+      "name": "pitbeast",
+      "short_desc": "the pit beast",
+      "long_desc": "The big, ugly pit-beast is standing here sizing you up.",
+      "level": 5,
+      "alignment": -750,
+      "hp_dice": "1d5+1",
+      "damage_dice": "4d6+42",
+      "gold": 650,
+      "exp": 8,
+      "armor_class": 5,
+      "flags": [],
+      "description": "Ick... what a disgusting creature!  It is black and green and slimy\nand it is drooling everywhere... looks mean too.",
+      "equipment": {
+        "about": 18604
+      }
+    },
+    "18602": {
+      "vnum": 18602,
+      "name": "newbie",
+      "short_desc": "the newbie monster",
+      "long_desc": "The newbie monster stands here looking confused.  Kill him!  Kill him!",
+      "level": 2,
+      "alignment": 0,
+      "hp_dice": "1d4+1",
+      "damage_dice": "2d4+16",
+      "gold": 325,
+      "exp": 8,
+      "armor_class": 9,
+      "flags": [],
+      "description": "What an odd looking little beast.  He looks harmless, but you never can\ntell.  He is only about 4 feet tall, but he pretty muscular looking...\nmaybe you should ask if he needs help?  Nah... kill him.",
+      "equipment": {
+        "body": 18602,
+        "wield": 18606
+      }
+    },
+    "18603": {
+      "vnum": 18603,
+      "name": "dragon",
+      "short_desc": "the baby dragon",
+      "long_desc": "Someone's little pet dragon has gotten loose, and is sniffing about here.",
+      "level": 4,
+      "alignment": 100,
+      "hp_dice": "1d6+1",
+      "damage_dice": "1d4+50",
+      "gold": 500,
+      "exp": 8,
+      "armor_class": 6,
+      "flags": [],
+      "description": "Awwww... how cute!  A little baby dragon.  He's about 3 feet long and you\njust want to cuddle him to death... no, you really want to kill him to tell\nthe truth.  But, remember, even a little dragon can be a big problem.",
+      "equipment": {
+        "neck1": 18607
+      }
+    },
+    "18604": {
+      "vnum": 18604,
+      "name": "keeper",
+      "short_desc": "the Newbie Guard",
+      "long_desc": "The Newbie Guard is here wondering where that dragon went.",
+      "level": 3,
+      "alignment": 0,
+      "hp_dice": "1d7+0",
+      "damage_dice": "2d6+34",
+      "gold": 650,
+      "exp": 8,
+      "armor_class": 7,
+      "flags": [],
+      "description": "The Guard also had the job of taking care of the Alchemist's pet dragon,\nbut he doesn't seem to be doing a good job of it.  He looks at you and\nsays, 'Have you seen that dragon?  Master will have my head if I don't find\nhim.'",
+      "equipment": {
+        "finger1": 18605,
+        "head": 18603
+      },
+      "inventory": [
+        18608
+      ]
+    },
+    "18605": {
+      "vnum": 18605,
+      "name": "alchemist",
+      "short_desc": "the Newbie Alchemist",
+      "long_desc": "The Newbie Alchemist is here trying to make something.",
+      "level": 5,
+      "alignment": 0,
+      "hp_dice": "2d4+0",
+      "damage_dice": "4d6+38",
+      "gold": 1100,
+      "exp": 8,
+      "armor_class": 5,
+      "flags": [],
+      "description": "He is a funny looking, furry little dude.  He looks really busy trying to\nmix up a batch of something or other.",
+      "inventory": [
+        18609
+      ]
+    },
+    "18606": {
+      "vnum": 18606,
+      "name": "crawler",
+      "short_desc": "the creepy crawler",
+      "long_desc": "A creepy little crawling thing is scuttling along the floor at your feet.",
+      "level": 1,
+      "alignment": -250,
+      "hp_dice": "1d4+0",
+      "damage_dice": "1d4+8",
+      "gold": 50,
+      "exp": 8,
+      "armor_class": 10,
+      "flags": [],
+      "description": "Yuck!  If they'd ever clean this place maybe it wouldn't attract vermin\nlike this disgusting, little, six-legged, brown bug."
+    },
+    "18607": {
+      "vnum": 18607,
+      "name": "newbie",
+      "short_desc": "the zombiefied newbie",
+      "long_desc": "A VERY gaunt looking newbie... it looks like a zombie!",
+      "level": 4,
+      "alignment": -500,
+      "hp_dice": "2d4+0",
+      "damage_dice": "1d8+46",
+      "gold": 450,
+      "exp": 8,
+      "armor_class": 5,
+      "flags": [],
+      "description": "This guy has been lost in here too long... it is more zombie than man\nnow.  You would feel sorry for it, but it is moving in to attack!"
+    },
+    "18608": {
+      "vnum": 18608,
+      "name": "quasit",
+      "short_desc": "the quasit",
+      "long_desc": "A funny little imp-like thing (a quasit perhaps?) is sneaking about here.",
+      "level": 3,
+      "alignment": -800,
+      "hp_dice": "1d4+1",
+      "damage_dice": "1d10+30",
+      "gold": 150,
+      "exp": 8,
+      "armor_class": 7,
+      "flags": [],
+      "description": "Little green, vaguely humoniod shaped creature, with a long pointed tail.\nIt is hard to say because before you ever get a good look at it, it darts\nback into the shadows."
+    },
+    "18609": {
+      "vnum": 18609,
+      "name": "minotaur",
+      "short_desc": "the massive Minotaur",
+      "long_desc": "The Great Minotaur is wondering just what you'll taste like.",
+      "level": 7,
+      "alignment": -1000,
+      "hp_dice": "2d4+1",
+      "damage_dice": "3d5+85",
+      "gold": 2000,
+      "exp": 8,
+      "armor_class": 5,
+      "flags": [],
+      "description": "A massive man, with the head of a bull.  He looks as strong as bull too,\nbut not nearly as smart.  Actually, now that you consider it... he looks\na heck of a lot meaner than any bull you have ever seen... and he is\ncoming this way!",
+      "equipment": {
+        "head": 18610,
+        "body": 18611
+      }
+    },
+    "18610": {
+      "vnum": 18610,
+      "name": "spectre",
+      "short_desc": "the dark spectre",
+      "long_desc": "The dark spectre is lurking in the shadows.",
+      "level": 6,
+      "alignment": -850,
+      "hp_dice": "2d4+0",
+      "damage_dice": "3d5+62",
+      "gold": 800,
+      "exp": 8,
+      "armor_class": 3,
+      "flags": [],
+      "description": "The soul of a long since passed on adventurer... it lurks here waiting for\na chance to bring death to any who cross its path."
+    },
+    "18611": {
+      "vnum": 18611,
+      "name": "newbie",
+      "short_desc": "the annoying newbie",
+      "long_desc": "A newbie is here annoying the hell out of you.",
+      "level": 2,
+      "alignment": -500,
+      "hp_dice": "1d3+1",
+      "damage_dice": "2d4+20",
+      "gold": 375,
+      "exp": 8,
+      "armor_class": 10,
+      "flags": [],
+      "description": "What a jerk!  He won't shut up, and he keeps making the most irritating\ncomments about everything.  Better silence him with cold, tempered steel\nMUHAHAHAHAHAHAHAHAHAHA!",
+      "equipment": {
+        "wield": 18606
+      }
+    },
+    "18612": {
+      "vnum": 18612,
+      "name": "newbie",
+      "short_desc": "the clueless newbie",
+      "long_desc": "A newbie is here looking terribly confused.",
+      "level": 1,
+      "alignment": 0,
+      "hp_dice": "1d3+1",
+      "damage_dice": "1d1+19",
+      "gold": 135,
+      "exp": 8,
+      "armor_class": 10,
+      "flags": [],
+      "description": "What a moron!  Every question that is answered in the help files, he will\nask and he will probably ask 2 or 3 times too.  This guy just doesn't get\nit, best put him out of his misery."
+    },
+    "18613": {
+      "vnum": 18613,
+      "name": "newbie",
+      "short_desc": "the talkative newbie",
+      "long_desc": "A newbie is here talking a lot.",
+      "level": 3,
+      "alignment": 100,
+      "hp_dice": "1d7+1",
+      "damage_dice": "6d5+22",
+      "gold": 650,
+      "exp": 8,
+      "armor_class": 8,
+      "flags": [],
+      "description": "Well, at least this gal seems pretty cool.  Talks a lot, but she's a\nfriendly, interesting sort.  Seems to have a clue what she's doing also,\nunlike some others you might see.",
+      "equipment": {
+        "body": 18602
+      }
+    },
+    "18614": {
+      "vnum": 18614,
+      "name": "newbie",
+      "short_desc": "the lost newbie",
+      "long_desc": "A newbie is here wandering about aimlessly.",
+      "level": 4,
+      "alignment": 300,
+      "hp_dice": "1d6+1",
+      "damage_dice": "8d5+20",
+      "gold": 375,
+      "exp": 8,
+      "armor_class": 6,
+      "flags": [],
+      "description": "Hmmm... looks like he has been around a while, but he wandered a little\ntoo far from home this time.  Don't think he knows quite where he is,\nmaybe you should help him out?"
+    },
+    "18615": {
+      "vnum": 18615,
+      "name": "newbie",
+      "short_desc": "the smart newbie",
+      "long_desc": "A newbie is here, and he looks quite sure of himself.",
+      "level": 5,
+      "alignment": 500,
+      "hp_dice": "2d3+2",
+      "damage_dice": "10d5+20",
+      "gold": 1050,
+      "exp": 8,
+      "armor_class": 9,
+      "flags": [],
+      "description": "Here is a guy who has it all together.  Nice equipment too, must have read\nthe help files, Eh?",
+      "equipment": {
+        "arms": 18613,
+        "legs": 18612,
+        "body": 18602,
+        "wield": 18614
+      }
+    }
+  },
+  "objects": {
+    "18601": {
+      "vnum": 18601,
+      "name": "sword",
+      "short_desc": "a shiny newbie sword",
+      "room_desc": "A shiny newbie sword is lying here waiting to be possessed.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 0,
+      "damage_dice": "1d5",
+      "weapon_type": "slash"
+    },
+    "18602": {
+      "vnum": 18602,
+      "name": "vest",
+      "short_desc": "a bright green newbie vest",
+      "room_desc": "A bright green newbie vest is lying here looking for a body to hug.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 0,
+      "armor_bonus": 4
+    },
+    "18603": {
+      "vnum": 18603,
+      "name": "helm",
+      "short_desc": "a bright newbie helm",
+      "room_desc": "A bright newbie helm is hoping a loose head will wander by.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 0,
+      "armor_bonus": 3
+    },
+    "18604": {
+      "vnum": 18604,
+      "name": "cloak",
+      "short_desc": "a dark newbie cloak",
+      "room_desc": "A dark newbie cloak is lying here hoping to smother you.",
+      "item_type": "armor",
+      "weight": 2,
+      "value": 100,
+      "armor_bonus": 0
+    },
+    "18605": {
+      "vnum": 18605,
+      "name": "ring",
+      "short_desc": "a newbie signet ring",
+      "room_desc": "A newbie signet ring is lying in the dust here.",
+      "item_type": "armor",
+      "weight": 1,
+      "value": 500,
+      "armor_bonus": 0
+    },
+    "18606": {
+      "vnum": 18606,
+      "name": "dagger",
+      "short_desc": "a shiny newbie dagger",
+      "room_desc": "A shiny newbie dagger is lying here looking for a back to stab.",
+      "item_type": "weapon",
+      "weight": 1,
+      "value": 0,
+      "damage_dice": "1d4",
+      "weapon_type": "pierce"
+    },
+    "18607": {
+      "vnum": 18607,
+      "name": "collar",
+      "short_desc": "a pet dragon collar",
+      "room_desc": "Someone's pet dragon has escaped and left his collar here.",
+      "item_type": "armor",
+      "weight": 1,
+      "value": 0,
+      "armor_bonus": 0
+    },
+    "18608": {
+      "vnum": 18608,
+      "name": "key",
+      "short_desc": "a wee little key",
+      "room_desc": "A key with the newbie crest on it is here.",
+      "item_type": "key",
+      "weight": 1,
+      "value": 0
+    },
+    "18609": {
+      "vnum": 18609,
+      "name": "light",
+      "short_desc": "a brightly glowing jar",
+      "room_desc": "A jar of glowing fluid wants to brighten your day.",
+      "item_type": "light",
+      "weight": 2,
+      "value": 0,
+      "light_hours": -1
+    },
+    "18610": {
+      "vnum": 18610,
+      "name": "horns",
+      "short_desc": "the horns of the Minotaur",
+      "room_desc": "The horns of the great Minotaur lie here.",
+      "item_type": "armor",
+      "weight": 8,
+      "value": 100,
+      "armor_bonus": 2
+    },
+    "18611": {
+      "vnum": 18611,
+      "name": "hide",
+      "short_desc": "the smelly hide of the Minotaur",
+      "room_desc": "The hide of the great Minotaur is lying here.",
+      "item_type": "treasure",
+      "weight": 6,
+      "value": 100
+    },
+    "18612": {
+      "vnum": 18612,
+      "name": "leggings",
+      "short_desc": "some cool newbie leggings",
+      "room_desc": "A pair of neat looking leggings are here.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 200,
+      "armor_bonus": 4
+    },
+    "18613": {
+      "vnum": 18613,
+      "name": "sleeves",
+      "short_desc": "some cool newbie sleeves",
+      "room_desc": "A set of nifty sleeves is here.",
+      "item_type": "armor",
+      "weight": 3,
+      "value": 400,
+      "armor_bonus": 4
+    },
+    "18614": {
+      "vnum": 18614,
+      "name": "mace",
+      "short_desc": "a glowing newbie mace",
+      "room_desc": "A finely crafted newbie mace is waiting for a worthy owner.",
+      "item_type": "weapon",
+      "weight": 8,
+      "value": 300,
+      "damage_dice": "2d6",
+      "weapon_type": "pound"
+    }
+  }
+}

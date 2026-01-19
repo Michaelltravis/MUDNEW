@@ -221,7 +221,7 @@ class ShopManager:
     shops = {}  # mob_vnum -> ShopKeeper
 
     @classmethod
-    def create_shop(cls, mob: 'Mobile', shop_config: Dict) -> ShopKeeper:
+    def create_shop(cls, mob: 'Mobile', shop_config: Dict, world: 'World') -> ShopKeeper:
         """Create a shop for a merchant mob."""
         shop = ShopKeeper(mob, shop_config)
         cls.shops[mob.vnum] = shop
@@ -229,7 +229,7 @@ class ShopManager:
         # Initialize shop inventory
         from objects import create_object
         for item_vnum in shop.sells_vnums:
-            item = create_object(item_vnum)
+            item = create_object(item_vnum, world)
             if item:
                 shop.inventory.append(item)
 

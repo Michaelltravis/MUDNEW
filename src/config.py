@@ -136,7 +136,8 @@ class Config:
             'move_dice': 6,
             'thac0_progression': 'fast',
             'save_progression': 'warrior',
-            'skills': ['kick', 'bash', 'rescue', 'disarm', 'second_attack', 'third_attack', 'parry'],
+            'skills': ['kick', 'bash', 'rescue', 'disarm', 'second_attack', 'third_attack', 'parry',
+                      'shield_block', 'defensive_stance', 'berserk', 'cleave'],
             'spells': [],
         },
         'mage': {
@@ -151,7 +152,11 @@ class Config:
             'skills': ['scribe'],
             'spells': ['magic_missile', 'burning_hands', 'chill_touch', 'fireball', 'lightning_bolt',
                       'sleep', 'color_spray', 'teleport', 'fly', 'invisibility', 'detect_magic',
-                      'identify', 'enchant_weapon', 'meteor_swarm', 'chain_lightning'],
+                      'identify', 'enchant_weapon', 'meteor_swarm', 'chain_lightning',
+                      # Defensive spells
+                      'armor', 'shield', 'stoneskin', 'mirror_image', 'displacement', 'mana_shield',
+                      'ice_armor', 'fire_shield', 'spell_reflection', 'blink',
+                      'protection_from_evil', 'protection_from_good'],
         },
         'cleric': {
             'name': 'Cleric',
@@ -166,7 +171,10 @@ class Config:
             'spells': ['cure_light', 'cure_serious', 'cure_critical', 'heal', 'group_heal',
                       'bless', 'armor', 'sanctuary', 'remove_curse', 'remove_poison',
                       'create_food', 'create_water', 'summon', 'word_of_recall', 'resurrect',
-                      'harm', 'dispel_evil', 'earthquake', 'flamestrike'],
+                      'harm', 'dispel_evil', 'earthquake', 'flamestrike',
+                      # Defensive spells
+                      'shield_of_faith', 'divine_shield', 'barkskin', 'righteous_fury',
+                      'divine_protection', 'aegis', 'holy_aura', 'protection_from_evil'],
         },
         'thief': {
             'name': 'Thief',
@@ -178,7 +186,7 @@ class Config:
             'thac0_progression': 'medium',
             'save_progression': 'thief',
             'skills': ['backstab', 'sneak', 'hide', 'steal', 'pick_lock', 'detect_traps',
-                      'second_attack', 'trip', 'circle'],
+                      'second_attack', 'trip', 'circle', 'dodge', 'evasion', 'tumble'],
             'spells': [],
         },
         'ranger': {
@@ -190,7 +198,8 @@ class Config:
             'move_dice': 8,
             'thac0_progression': 'fast',
             'save_progression': 'warrior',
-            'skills': ['track', 'sneak', 'hide', 'second_attack', 'dual_wield'],
+            'skills': ['track', 'sneak', 'hide', 'second_attack', 'dual_wield', 'camouflage',
+                      'ambush', 'dodge'],
             'spells': ['cure_light', 'detect_magic', 'faerie_fire', 'call_lightning',
                       'barkskin', 'entangle'],
         },
@@ -203,8 +212,9 @@ class Config:
             'move_dice': 4,
             'thac0_progression': 'fast',
             'save_progression': 'warrior',
-            'skills': ['rescue', 'bash', 'lay_hands', 'turn_undead', 'second_attack'],
-            'spells': ['cure_light', 'cure_serious', 'bless', 'detect_evil', 'protection_from_evil'],
+            'skills': ['rescue', 'bash', 'turn_undead', 'second_attack'],
+            'spells': ['cure_light', 'cure_serious', 'bless', 'detect_evil', 'protection_from_evil',
+                      'lay_hands', 'shield_of_faith', 'divine_shield'],
         },
         'necromancer': {
             'name': 'Necromancer',
@@ -217,8 +227,9 @@ class Config:
             'save_progression': 'mage',
             'skills': [],
             'spells': ['chill_touch', 'animate_dead', 'vampiric_touch', 'enervation',
-                      'death_grip', 'summon_undead', 'finger_of_death', 'energy_drain',
-                      'poison', 'weaken', 'blindness', 'fear'],
+                      'death_grip', 'finger_of_death', 'energy_drain',
+                      'poison', 'weaken', 'blindness', 'fear', 'armor', 'shield',
+                      'protection_from_good'],
         },
         'bard': {
             'name': 'Bard',
@@ -231,7 +242,8 @@ class Config:
             'save_progression': 'thief',
             'skills': ['sneak', 'pick_lock', 'lore'],
             'spells': ['charm_person', 'sleep', 'invisibility', 'haste', 'slow',
-                      'cure_light', 'detect_magic', 'heroism', 'fear', 'mass_charm'],
+                      'cure_light', 'detect_magic', 'heroism', 'fear', 'mass_charm',
+                      'bless', 'armor'],
         },
         'assassin': {
             'name': 'Assassin',
@@ -243,7 +255,8 @@ class Config:
             'thac0_progression': 'fast',
             'save_progression': 'thief',
             'skills': ['backstab', 'sneak', 'hide', 'envenom', 'assassinate',
-                      'second_attack', 'dual_wield', 'garrote', 'shadow_step', 'mark_target'],
+                      'second_attack', 'dual_wield', 'garrote', 'shadow_step', 'mark_target',
+                      'dodge', 'evasion', 'feint', 'blur'],
             'spells': [],
         },
     }
@@ -315,7 +328,86 @@ class Config:
         'up': {'opposite': 'down', 'abbrev': 'u'},
         'down': {'opposite': 'up', 'abbrev': 'd'},
     }
-    
+
+    # Poison Types for Envenom
+    POISON_TYPES = {
+        'venom': {
+            'name': 'Deadly Venom',
+            'description': 'A vial of deadly poison that causes damage over time',
+            'effect': 'poison',
+            'damage': 3,
+            'duration': 8,
+            'color': 'green',
+            'hit_message': 'Your poisoned blade delivers venom!',
+            'victim_message': 'You feel poison coursing through your veins!',
+            'room_message': '{attacker} strikes {victim} with a poisoned blade!'
+        },
+        'neurotoxin': {
+            'name': 'Blinding Neurotoxin',
+            'description': 'A paralytic toxin that blinds the target',
+            'effect': 'blind',
+            'duration': 6,
+            'color': 'yellow',
+            'hit_message': 'Your neurotoxin strikes true!',
+            'victim_message': 'You are blinded by the neurotoxin!',
+            'room_message': '{attacker} blinds {victim} with a toxic strike!'
+        },
+        'viper_venom': {
+            'name': 'Viper Venom',
+            'description': 'Potent snake venom causing severe agony',
+            'effect': 'extra_damage',
+            'damage': 15,
+            'color': 'red',
+            'hit_message': 'Your viper venom burns through their flesh!',
+            'victim_message': 'Excruciating pain shoots through your body!',
+            'room_message': '{attacker}\'s viper venom causes {victim} to writhe in agony!'
+        },
+        'silencer': {
+            'name': 'Silencing Toxin',
+            'description': 'A magical poison that seals the vocal cords',
+            'effect': 'silence',
+            'duration': 5,
+            'color': 'magenta',
+            'hit_message': 'Your silencing toxin takes effect!',
+            'victim_message': 'Your throat constricts! You cannot speak!',
+            'room_message': '{attacker} strikes {victim} with a silencing toxin!'
+        },
+        'torpor': {
+            'name': 'Torpor Poison',
+            'description': 'A sedative poison that slows reactions',
+            'effect': 'slow',
+            'duration': 7,
+            'penalty': -2,
+            'color': 'blue',
+            'hit_message': 'Your torpor poison slows their movements!',
+            'victim_message': 'Your limbs feel sluggish and heavy!',
+            'room_message': '{attacker}\'s poison slows {victim}\'s movements!'
+        },
+        'nightshade': {
+            'name': 'Essence of Nightshade',
+            'description': 'A dark essence that weakens the body',
+            'effect': 'weaken',
+            'duration': 6,
+            'penalty': -3,
+            'stat': 'str',
+            'color': 'black',
+            'hit_message': 'Nightshade essence saps their strength!',
+            'victim_message': 'Your muscles feel weak and useless!',
+            'room_message': '{attacker}\'s nightshade weakens {victim}!'
+        },
+        'hemotoxin': {
+            'name': 'Crimson Hemotoxin',
+            'description': 'A blood poison that causes severe internal bleeding',
+            'effect': 'poison',
+            'damage': 5,
+            'duration': 6,
+            'color': 'bright_red',
+            'hit_message': 'Your hemotoxin causes internal bleeding!',
+            'victim_message': 'You taste blood as the hemotoxin attacks your veins!',
+            'room_message': '{attacker}\'s hemotoxin causes {victim} to bleed profusely!'
+        }
+    }
+
     # Ensure directories exist
     @classmethod
     def ensure_directories(cls):

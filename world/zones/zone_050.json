@@ -1,286 +1,2408 @@
 {
   "number": 50,
-  "name": "Greystone Castle",
-  "builders": "Realmers",
+  "name": "The Great Eastern Desert",
   "lifespan": 30,
-  "reset_mode": 2,
-  "top": 5099,
   "rooms": {
     "5001": {
       "vnum": 5001,
-      "name": "The Road to Greystone",
-      "description": "A well-maintained road leads toward the imposing silhouette of\nGreystone Castle. The fortress sits atop a hill, its grey stone\nwalls and towers dark against the sky. Pennants snap in the wind\nfrom the battlements. The castle gates lie to the north.",
-      "sector_type": "field",
-      "flags": [],
+      "name": "A Long Tunnel",
+      "description": "You encounter some rapids as you enter this tunnel cut out of the mountains by the river.",
+      "sector_type": "water_noswim",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
       "exits": {
         "east": {
-          "to_room": 3006,
-          "description": null
-        },
-        "north": {
           "to_room": 5002,
-          "description": null
+          "description": ""
+        },
+        "west": {
+          "to_room": 3205,
+          "description": "There appear to be some bars here, making passage to the west difficult."
         }
-      },
-      "extra_descs": {},
-      "mob_resets": [],
-      "obj_resets": []
+      }
     },
     "5002": {
       "vnum": 5002,
-      "name": "The Castle Gates",
-      "description": "Massive iron-bound gates stand before you, flanked by towers\nbristling with arrow slits. Guards in royal livery challenge all\nwho approach. Beyond the gates, you can see the cobblestone \ncourtyard of Greystone Castle.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 5001,
-          "description": null
-        },
-        "north": {
-          "to_room": 5003,
-          "description": null
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 5001,
-          "max": 2
-        }
+      "name": "A Long Tunnel",
+      "description": "The tunnel branches off north.",
+      "sector_type": "water_noswim",
+      "flags": [
+        "dark",
+        "indoors"
       ],
-      "obj_resets": []
+      "exits": {
+        "north": {
+          "to_room": 5008,
+          "description": ""
+        },
+        "east": {
+          "to_room": 5003,
+          "description": ""
+        },
+        "west": {
+          "to_room": 5001,
+          "description": ""
+        }
+      }
     },
     "5003": {
       "vnum": 5003,
-      "name": "Castle Courtyard",
-      "description": "The courtyard of Greystone Castle bustles with activity. Servants\nhurry about their duties, soldiers drill in formation, and nobles\nconverse in small groups. The main keep rises to the north, while\nstables and workshops line the walls.",
-      "sector_type": "city",
-      "flags": [],
+      "name": "A Long Tunnel",
+      "description": "The tunnel branches off south.",
+      "sector_type": "water_noswim",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
       "exits": {
-        "south": {
-          "to_room": 5002,
-          "description": null
-        },
-        "north": {
-          "to_room": 5004,
-          "description": null
-        },
         "east": {
-          "to_room": 5010,
-          "description": null
+          "to_room": 5004,
+          "description": ""
+        },
+        "south": {
+          "to_room": 5017,
+          "description": ""
         },
         "west": {
-          "to_room": 5020,
-          "description": null
+          "to_room": 5002,
+          "description": ""
         }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 5002,
-          "max": 2
-        },
-        {
-          "vnum": 5001,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
+      }
     },
     "5004": {
       "vnum": 5004,
-      "name": "The Great Hall",
-      "description": "You stand in the magnificent Great Hall of Greystone Castle.\nTapestries depicting ancient battles hang from the walls. A long\ntable runs the length of the hall, and at the far end, on a raised\ndais, sits the throne of the King. Suits of armor stand at attention.",
-      "sector_type": "inside",
-      "flags": [],
+      "name": "A Tunnel Intersection",
+      "description": "The tunnel branches off to the north and south.",
+      "sector_type": "water_noswim",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 5643,
+          "description": ""
+        },
+        "east": {
+          "to_room": 5005,
+          "description": ""
+        },
+        "south": {
+          "to_room": 5018,
+          "description": ""
+        },
+        "west": {
+          "to_room": 5003,
+          "description": ""
+        }
+      }
+    },
+    "5005": {
+      "vnum": 5005,
+      "name": "An Underground Lake",
+      "description": "You are floating on a jet-black underground lake fed by dripping water and lime from above.  The tunnel continues to the east and the river leads back west.  Leading upwards to the northwest is a roughly hewn hallway.",
+      "sector_type": "water_noswim",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 5671,
+          "description": ""
+        },
+        "east": {
+          "to_room": 5006,
+          "description": ""
+        },
+        "south": {
+          "to_room": 5023,
+          "description": ""
+        },
+        "west": {
+          "to_room": 5004,
+          "description": ""
+        }
+      }
+    },
+    "5006": {
+      "vnum": 5006,
+      "name": "A Long Narrow Tunnel",
+      "description": "The tunnel rises sharply to the east.  Another narrow tunnel leads away to the north.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors",
+        "tunnel"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 5016,
+          "description": ""
+        },
+        "east": {
+          "to_room": 5007,
+          "description": ""
+        },
+        "west": {
+          "to_room": 5005,
+          "description": ""
+        }
+      }
+    },
+    "5007": {
+      "vnum": 5007,
+      "name": "A Wide Tunnel",
+      "description": "The tunnel continues east and west.  To the east the tunnel dives down into a bright light.  A small passage way opens to the north.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 5026,
+          "description": ""
+        },
+        "west": {
+          "to_room": 5006,
+          "description": ""
+        }
+      }
+    },
+    "5008": {
+      "vnum": 5008,
+      "name": "The Cave-In",
+      "description": "You stand at the edge of a large pile of rubble created from the last rockslide.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
       "exits": {
         "south": {
-          "to_room": 5003,
-          "description": null
+          "to_room": 5002,
+          "description": ""
+        },
+        "down": {
+          "to_room": 5009,
+          "description": "You can easily slide down the rocks without getting hurt."
+        }
+      }
+    },
+    "5009": {
+      "vnum": 5009,
+      "name": "At The Foot Of The Rubble",
+      "description": "You are at the bottom of a large pile of rubble.  A tunnel branches off to the north and east.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 5010,
+          "description": ""
+        },
+        "east": {
+          "to_room": 5012,
+          "description": ""
         },
         "up": {
-          "to_room": 5030,
-          "description": null
+          "to_room": 5008,
+          "description": ""
         }
       },
-      "extra_descs": {},
       "mob_resets": [
         {
-          "vnum": 5003,
-          "max": 1
+          "vnum": 5011,
+          "max": 3
         }
-      ],
-      "obj_resets": []
+      ]
     },
     "5010": {
       "vnum": 5010,
-      "name": "The Castle Armory",
-      "description": "Racks of weapons and armor fill this room. Swords, spears, \nshields, and suits of plate mail are arranged in orderly rows.\nThe royal armorer works at a forge in the corner, maintaining\nthe kingdom's arsenal.",
-      "sector_type": "inside",
-      "flags": [],
+      "name": "A Cave Entrance",
+      "description": "You stand in the middle of a large and beautiful cave.  A path leads deeper into the darkness.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
       "exits": {
-        "west": {
-          "to_room": 5003,
-          "description": null
+        "south": {
+          "to_room": 5009,
+          "description": ""
+        },
+        "down": {
+          "to_room": 5011,
+          "description": "You look down into the cave.  Bones are strewn about everywhere."
+        }
+      }
+    },
+    "5011": {
+      "vnum": 5011,
+      "name": "A Giant Cave",
+      "description": "This cavern overwhelms you.  The walls and ceiling seem miles away. Bones of previous adventurers lie strewn on the cavern floor.  There is a passage that spirals downwards in the northeast corner of the cavern.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 5010,
+          "description": ""
+        },
+        "down": {
+          "to_room": 5100,
+          "description": "The passageway spirals down into the gloom."
         }
       },
-      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 5010,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 5005,
+          "max": 1
+        }
+      ]
+    },
+    "5012": {
+      "vnum": 5012,
+      "name": "A Narrow Bend",
+      "description": "The tunnel turns to the south and west.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 5013,
+          "description": ""
+        },
+        "west": {
+          "to_room": 5009,
+          "description": ""
+        }
+      }
+    },
+    "5013": {
+      "vnum": 5013,
+      "name": "A Large Cave",
+      "description": "You are standing in a large cave.  Many furs are spread out on the floor.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 5012,
+          "description": ""
+        },
+        "east": {
+          "to_room": 5014,
+          "description": ""
+        }
+      }
+    },
+    "5014": {
+      "vnum": 5014,
+      "name": "A Damp Hallway",
+      "description": "The walls here are extremely damp, as well as the floor.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 5015,
+          "description": "You hear drops of water."
+        },
+        "west": {
+          "to_room": 5013,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 5012,
+          "max": 3
+        }
+      ]
+    },
+    "5015": {
+      "vnum": 5015,
+      "name": "An Underground Pool",
+      "description": "You are wading in a knee deep pool of lime-water.",
+      "sector_type": "water_swim",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 5016,
+          "description": ""
+        },
+        "west": {
+          "to_room": 5014,
+          "description": ""
+        }
+      }
+    },
+    "5016": {
+      "vnum": 5016,
+      "name": "A Damp Hallway",
+      "description": "The walls of the tunnel are extremely damp here.  The tunnel leads sharply upwards to the south as it starts to get narrow.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 5006,
+          "description": ""
+        },
+        "west": {
+          "to_room": 5015,
+          "description": "You hear drops of water."
+        }
+      }
+    },
+    "5017": {
+      "vnum": 5017,
+      "name": "A Narrow Crawlway",
+      "description": "This crawlway is just big enough for a human to crawl through or a halfling to walk through.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 5003,
+          "description": ""
+        },
+        "east": {
+          "to_room": 5018,
+          "description": ""
+        },
+        "south": {
+          "to_room": 5019,
+          "description": "You smell the fragrant odor of fungus."
+        }
+      }
+    },
+    "5018": {
+      "vnum": 5018,
+      "name": "A Large Cavern",
+      "description": "You have entered a very large cavern.  The rock formations would amaze almost any dwarf.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 5004,
+          "description": ""
+        },
+        "west": {
+          "to_room": 5017,
+          "description": ""
+        }
+      }
+    },
+    "5019": {
+      "vnum": 5019,
+      "name": "A Fungus Patch",
+      "description": "As you walk through the fungus patch, you are shot at by many millions of spores.  You can hardly breathe.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 5017,
+          "description": ""
+        },
+        "east": {
+          "to_room": 5020,
+          "description": "The fragrant smell of fungus spores continues to the east."
+        }
+      }
+    },
+    "5020": {
+      "vnum": 5020,
+      "name": "The Fungus Path",
+      "description": "As you walk along the path, millions of spores are shot at you.  It is difficult to breathe.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 5021,
+          "description": "A giant mushroom temple stands to the south."
+        },
+        "west": {
+          "to_room": 5019,
+          "description": "The fragrant smell of spores continues to the west."
+        }
+      }
+    },
+    "5021": {
+      "vnum": 5021,
+      "name": "The Fungus Temple",
+      "description": "You find yourself standing inside of a giant mushroom.  The inside is decorated in the fashion of a temple.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 5020,
+          "description": ""
+        },
+        "east": {
+          "to_room": 5022,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 5013,
+          "max": 4
+        },
+        {
+          "vnum": 5014,
+          "max": 1
+        }
+      ]
+    },
+    "5022": {
+      "vnum": 5022,
+      "name": "A Sloping Passage",
+      "description": "You follow a path sloping down from the fungus temple.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 5023,
+          "description": ""
+        },
+        "south": {
+          "to_room": 5021,
+          "description": ""
+        }
+      }
+    },
+    "5023": {
+      "vnum": 5023,
+      "name": "A Sloping Passage",
+      "description": "You are on a path that gently slopes up from the underground pool.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 5005,
+          "description": "You hear sounds of trickling water."
+        },
+        "south": {
+          "to_room": 5022,
+          "description": ""
+        }
+      }
+    },
+    "5024": {
+      "vnum": 5024,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sand constantly shifting around you.  A pyramid lies to the east and a snow-capped mountain range to the  west.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5030,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5034,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5025,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5025": {
+      "vnum": 5025,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the east and a snow-capped mountain range to the  west.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5024,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5031,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5026,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5026": {
+      "vnum": 5026,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the east and a snow-capped mountain range to the west.  The hole which you tumbled out of is too high for you to reach.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5025,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5036,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5027,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5027": {
+      "vnum": 5027,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the east and a snow-capped mountain range to the west.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5026,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5033,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5028,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5028": {
+      "vnum": 5028,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north-east and a snow-capped mountain range to the west.  You spy a narrow dirt trail leading away to the west into the foothills.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5027,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5033,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5029,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 12068,
+          "description": "A small dirt trail leads off to the west where it joins a large clay road some distance away."
+        }
+      }
+    },
+    "5029": {
+      "vnum": 5029,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north-east and a snow-capped mountain range to the west.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5028,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5037,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5044,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5030": {
+      "vnum": 5030,
+      "name": "A Small Oasis",
+      "description": "You stand beside a small pool of crystal-blue water bathed in the shade of a few scarce palm trees.  To the north you see a small encampment stopped for the day.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5056,
+          "description": "You see three tents and some camels hitched to a stake.  Shadows moving  across the tents suggest activity."
+        },
+        "east": {
+          "to_room": 5036,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5032,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5025,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5031": {
+      "vnum": 5031,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the east.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5031,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5031,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5032,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5024,
+          "description": "Sand as far as the eye can see."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 5002,
+          "max": 5
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 5006,
+          "max": 6
+        }
+      ]
+    },
+    "5032": {
+      "vnum": 5032,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the east.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5035,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5036,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5033,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5032,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5033": {
+      "vnum": 5033,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north-east.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5037,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5037,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5043,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5028,
+          "description": "Sand as far as the eye can see."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 5015,
+          "max": 3
+        },
+        {
+          "vnum": 5000,
+          "max": 5
+        }
+      ]
+    },
+    "5034": {
+      "vnum": 5034,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the south-east.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5038,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5035,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5034,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5035,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5035": {
+      "vnum": 5035,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the east, it looks enormous, even from this distance.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5039,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5300,
+          "description": "Even from here, you can sense a great evil residing within the pyramid protruding from the sand to the east."
+        },
+        "south": {
+          "to_room": 5032,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5034,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5036": {
+      "vnum": 5036,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north-east.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5035,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5041,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5032,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5030,
+          "description": "Sand as far as the eye can see."
+        }
+      },
       "mob_resets": [
         {
           "vnum": 5004,
           "max": 1
         }
+      ]
+    },
+    "5037": {
+      "vnum": 5037,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north-east.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5048,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5033,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5042,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5033,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5038": {
+      "vnum": 5038,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the south.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5046,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5045,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5040,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5034,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5039": {
+      "vnum": 5039,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around you.  A pyramid lies to the south.  The gates of a city lie a short distance off to the north.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5411,
+          "description": "Some city gates stand off to the north."
+        },
+        "east": {
+          "to_room": 5039,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5048,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5039,
+          "description": "Sand as far as the eye can see."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 5015,
+          "max": 3
+        }
+      ]
+    },
+    "5040": {
+      "vnum": 5040,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  You are standing near a gigantic pyramid located a couple hundred meters west of you.  From here you can sense the great evil which resides within the massive structure.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5036,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5049,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5041,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5300,
+          "description": "The pyramid can be seen across the sands to the west."
+        },
+        "down": {
+          "to_room": 13000,
+          "description": "You see an exit down."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 5001,
+          "max": 8
+        }
+      ]
+    },
+    "5041": {
+      "vnum": 5041,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5040,
+          "description": "Even from here, you can sense a great evil residing within the pyramid protruding from the sand to the north."
+        },
+        "east": {
+          "to_room": 5048,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5041,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5037,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5042": {
+      "vnum": 5042,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5049,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5055,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5043,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5041,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5043": {
+      "vnum": 5043,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5042,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5055,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5044,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5033,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5044": {
+      "vnum": 5044,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north and a ruined city to the west.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5050,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5055,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5029,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5200,
+          "description": "Sand as far as the eye can see."
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 5006,
+          "max": 6
+        }
+      ]
+    },
+    "5045": {
+      "vnum": 5045,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the south.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5045,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5052,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5045,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5038,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5046": {
+      "vnum": 5046,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the south-west.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5038,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5047,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5047,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5039,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5047": {
+      "vnum": 5047,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the west.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5046,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5051,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5053,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5040,
+          "description": "Even from here, you can sense a great evil residing within the pyramid protruding from the sand to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 5000,
+          "max": 5
+        }
+      ]
+    },
+    "5048": {
+      "vnum": 5048,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the west.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5039,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5048,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5053,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5041,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5049": {
+      "vnum": 5049,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north-west.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5053,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5054,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5050,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5042,
+          "description": "Sand as far as the eye can see."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 5015,
+          "max": 3
+        }
       ],
       "obj_resets": [
         {
-          "vnum": 50,
-          "max": 1
+          "vnum": 5006,
+          "max": 6
+        }
+      ]
+    },
+    "5050": {
+      "vnum": 5050,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5300,
+          "description": "Sand as far as the eye can see... and a pyramid in the distance."
         },
+        "east": {
+          "to_room": 5054,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5044,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5042,
+          "description": "Sand as far as the eye can see."
+        }
+      },
+      "mob_resets": [
         {
-          "vnum": 51,
+          "vnum": 5003,
+          "max": 5
+        }
+      ]
+    },
+    "5051": {
+      "vnum": 5051,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the south-west and a deep canyon to the east.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5051,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5052,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5047,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5052": {
+      "vnum": 5052,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the south-west and a deep canyon to the east.  Just below you can make out a tiny ledge.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5051,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5053,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5045,
+          "description": "Sand as far as the eye can see."
+        },
+        "down": {
+          "to_room": 5063,
+          "description": ""
+        }
+      }
+    },
+    "5053": {
+      "vnum": 5053,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the west and a deep canyon to the east.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5052,
+          "description": "Sand as far as the eye can see."
+        },
+        "east": {
+          "to_room": 5062,
+          "description": "A rickety rope bridge stretches across the canyon... it doesn't look too safe."
+        },
+        "south": {
+          "to_room": 5054,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5049,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5054": {
+      "vnum": 5054,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the west and a deep canyon to the east.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5053,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5055,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5050,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5055": {
+      "vnum": 5055,
+      "name": "The Great Eastern Desert",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north-west and a deep canyon to the east.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 5054,
+          "description": "Sand as far as the eye can see."
+        },
+        "south": {
+          "to_room": 5055,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5043,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5056": {
+      "vnum": 5056,
+      "name": "A Nomad Camp",
+      "description": "This small group of desert nomads has stopped for the day to rest and refresh themselves beside this beautiful oasis.  Three tents and some camels make up the party.  From within two of the tents you hear muffled voices, obviously surprised at your visit.",
+      "sector_type": "field",
+      "flags": [
+        "no_track"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 5058,
+          "description": "Some camels are tied up to a mass of stakes plugged into the ground."
+        },
+        "east": {
+          "to_room": 5057,
+          "description": "You see inside one of the tents a huddled mass of people, probably slaves."
+        },
+        "south": {
+          "to_room": 5030,
+          "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5025,
+          "description": "Sand as far as the eye can see."
+        }
+      }
+    },
+    "5057": {
+      "vnum": 5057,
+      "name": "Inside A Small Tent",
+      "description": "This is a small and simple tent with few possessions in sight.  Lying here and there are young-looking men and women, possibly slaves to the leader of this band.",
+      "sector_type": "field",
+      "flags": [
+        "indoors",
+        "no_track"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 5056,
+          "description": "You see the center of the nomad camp."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 5009,
+          "max": 10
+        }
+      ]
+    },
+    "5058": {
+      "vnum": 5058,
+      "name": "Beside The Camels",
+      "description": "Here stand about ten camels, all hitched to some stakes plugged into  the ground.  To the east you see a small tent while to the north you see a  larger, fancier tent.",
+      "sector_type": "field",
+      "flags": [
+        "no_track"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 5060,
+          "description": "This tent seems to be the temporary abode of the nomad leader.  You make a mental note to visit it before you leave."
+        },
+        "east": {
+          "to_room": 5059,
+          "description": "In this tent there are very large men, all carrying weapons."
+        },
+        "south": {
+          "to_room": 5056,
+          "description": "You see the center of the nomad camp."
+        },
+        "west": {
+          "to_room": 5024,
+          "description": "Sand as far as the eye can see."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 5017,
           "max": 1
         }
       ]
     },
-    "5020": {
-      "vnum": 5020,
-      "name": "The Royal Stables",
-      "description": "The smell of hay and horses fills the air. Fine warhorses\nstamp and snort in their stalls, tended by stable hands. The\nroyal carriages are housed here as well, gleaming with gilt.",
-      "sector_type": "inside",
-      "flags": [],
+    "5059": {
+      "vnum": 5059,
+      "name": "The Warriors' Tent",
+      "description": "This tent has a few furnishings, but mainly it holds the band's  protectors.  They all stare at you coldly as you enter.",
+      "sector_type": "field",
+      "flags": [
+        "indoors",
+        "no_track"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 5058,
+          "description": "Outside you see some peaceful camels."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 5008,
+          "max": 5
+        }
+      ]
+    },
+    "5060": {
+      "vnum": 5060,
+      "name": "The Main Tent",
+      "description": "This tent is as lavishly decorated on the inside as it is on the outside.  A fancy carpet lies on the sand and numerous baskets line the walls.",
+      "sector_type": "field",
+      "flags": [
+        "indoors",
+        "no_track"
+      ],
       "exits": {
         "east": {
-          "to_room": 5003,
-          "description": null
+          "to_room": 5061,
+          "description": ""
+        },
+        "south": {
+          "to_room": 5058,
+          "description": "You see some peaceful camels."
         }
       },
-      "extra_descs": {},
-      "mob_resets": [],
-      "obj_resets": []
-    },
-    "5030": {
-      "vnum": 5030,
-      "name": "The Tower Chamber",
-      "description": "A spiral staircase has brought you to a chamber high in the\ncastle tower. Windows provide a commanding view of the kingdom.\nA massive iron chest sits against one wall, and ancient tomes\nline the shelves. This is where the King keeps his treasures.",
-      "sector_type": "inside",
-      "flags": [],
-      "exits": {
-        "down": {
-          "to_room": 5004,
-          "description": null
+      "mob_resets": [
+        {
+          "vnum": 5007,
+          "max": 1
         }
-      },
-      "extra_descs": {},
-      "mob_resets": [],
+      ],
       "obj_resets": [
         {
-          "vnum": 52,
+          "vnum": 5007,
+          "max": 1
+        }
+      ]
+    },
+    "5061": {
+      "vnum": 5061,
+      "name": "The Main Tent",
+      "description": "This is where the leader of this band of nomads resides.  He is  definitely rich as you inspect the tapestries, baskets, and a few paintings as well.",
+      "sector_type": "field",
+      "flags": [
+        "indoors",
+        "no_track"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 5060,
+          "description": "You see the entrance to this tent."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 5006,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 5008,
+          "max": 1
+        },
+        {
+          "vnum": 5009,
+          "max": 1
+        },
+        {
+          "vnum": 5010,
+          "max": 1
+        }
+      ]
+    },
+    "5062": {
+      "vnum": 5062,
+      "name": "The Rickety Rope Bridge",
+      "description": "You carefully begin to walk across the bridge, but suddenly the rope breaks and you fall...                      ... and fall                             and fall                                and fall                                     ... to your death on the rocks below.",
+      "sector_type": "mountain",
+      "flags": [
+        "death",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 5053,
+          "description": ""
+        }
+      }
+    },
+    "5063": {
+      "vnum": 5063,
+      "name": "The Wind-Swept Ledge",
+      "description": "Being very careful not to lose your balance, you look around and find that this canyon is about a half a kilometer deep.  To the west is a dark cave leading under the desert sands and above you a rope bridge spans the gap.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 5064,
+          "description": ""
+        },
+        "up": {
+          "to_room": 5052,
+          "description": "The desert sands blow down in your face."
+        }
+      }
+    },
+    "5064": {
+      "vnum": 5064,
+      "name": "The Cave Mouth",
+      "description": "The air in here is MUCH cooler than outside.  From the west you hear  strange sounds, but can see nothing.  The cave slopes down into the  darkness.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 5063,
+          "description": "Outside is lighter and very windy."
+        },
+        "west": {
+          "to_room": 5065,
+          "description": ""
+        }
+      }
+    },
+    "5065": {
+      "vnum": 5065,
+      "name": "The Mysterious Lair",
+      "description": "You have stumbled upon the home of something.  From the treasure haphazardly strewn about and the rotting carcasses, you would guess that this is a dragon's lair.  As to what type, you can't really say. The cave narrows out into a tunnel to the west. To the north, a treacherous mountain path climbs toward distant peaks wreathed in smoke.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors",
+        "no_track",
+        "no_magic"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 8001,
+          "description": "A dangerous mountain path leads upward toward smoke-wreathed peaks - the Dragon's Domain."
+        },
+        "east": {
+          "to_room": 5064,
+          "description": ""
+        },
+        "west": {
+          "to_room": 5066,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 5005,
+          "max": 1
+        }
+      ]
+    },
+    "5066": {
+      "vnum": 5066,
+      "name": "A Wide Tunnel",
+      "description": "This tunnel seems to go on forever into the darkness.  You carefully feel your way along the walls.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 5065,
+          "description": ""
+        },
+        "west": {
+          "to_room": 5067,
+          "description": ""
+        }
+      }
+    },
+    "5067": {
+      "vnum": 5067,
+      "name": "A Narrower Tunnel",
+      "description": "The tunnel becomes very narrow and you fight to squeeze your way through. The floor seems to level off a little.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 5066,
+          "description": ""
+        },
+        "south": {
+          "to_room": 5068,
+          "description": ""
+        }
+      }
+    },
+    "5068": {
+      "vnum": 5068,
+      "name": "A Narrow Crack",
+      "description": "This part of the tunnel is the hardest to move through as the walls move in to meet you.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors",
+        "tunnel"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 5067,
+          "description": ""
+        },
+        "west": {
+          "to_room": 5069,
+          "description": ""
+        }
+      }
+    },
+    "5069": {
+      "vnum": 5069,
+      "name": "A Small Cavern",
+      "description": "It is dark and damp and bats hang from the ceiling.  A narrow crack is in the east wall.  The floor now slopes upwards.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 5068,
+          "description": ""
+        },
+        "west": {
+          "to_room": 5070,
+          "description": ""
+        }
+      }
+    },
+    "5070": {
+      "vnum": 5070,
+      "name": "A Small Shaft",
+      "description": "From within this shaft you can see a narrow hole in the roof just large enough for one person.  Back east is the cavern.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 5069,
+          "description": ""
+        },
+        "up": {
+          "to_room": 5009,
+          "description": ""
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 5023,
           "max": 1
         }
       ]
     }
   },
   "mobs": {
+    "5000": {
+      "vnum": 5000,
+      "name": "dervish",
+      "short_desc": "the dervish",
+      "long_desc": "A raggity dervish walks on aimlessly.",
+      "level": 5,
+      "alignment": 900,
+      "hp_dice": "2d4+0",
+      "damage_dice": "1d10+60",
+      "gold": 535,
+      "exp": 8,
+      "armor_class": 5,
+      "flags": [
+        "scavenger",
+        "stay_zone",
+        "wimpy"
+      ],
+      "description": "Dressed in loose fitting rags, this man looks like he could use some rest.",
+      "equipment": {
+        "wield": 7211
+      }
+    },
     "5001": {
       "vnum": 5001,
-      "name": "a castle guard",
-      "short_desc": "A royal castle guard",
-      "long_desc": "A guard in royal livery stands at attention.",
-      "level": 20,
-      "hp_dice": "8d10+80",
-      "damage_dice": "2d8+4",
-      "gold": 30,
-      "exp": 1000,
-      "alignment": 500,
+      "name": "dervish",
+      "short_desc": "the dervish",
+      "long_desc": "A large dervish watches for signs of trouble.",
+      "level": 8,
+      "alignment": 650,
+      "hp_dice": "2d6+1",
+      "damage_dice": "2d6+100",
+      "gold": 3575,
+      "exp": 8,
+      "armor_class": 3,
       "flags": [
-        "sentinel",
-        "helper"
+        "aggressive",
+        "stay_zone"
       ],
-      "special": null
+      "description": "Dressed in loose fitting rags, this man looks like he could use LOTS of\nrest.",
+      "equipment": {
+        "wield": 3022
+      }
     },
     "5002": {
       "vnum": 5002,
-      "name": "a castle servant",
-      "short_desc": "A busy servant",
-      "long_desc": "A servant hurries about their duties.",
-      "level": 3,
-      "hp_dice": "1d10+10",
-      "damage_dice": "1d2",
-      "gold": 5,
-      "exp": 50,
-      "alignment": 0,
+      "name": "snake",
+      "short_desc": "the coral snake",
+      "long_desc": "A brightly colored snake slithers along the sands.",
+      "level": 4,
+      "alignment": -10,
+      "hp_dice": "1d9+0",
+      "damage_dice": "1d6+40",
+      "gold": 300,
+      "exp": 8,
+      "armor_class": 4,
       "flags": [
-        "wimpy"
+        "stay_zone"
       ],
-      "special": null
+      "description": "This relatively harmless snake has bright alternating bands of red, yellow\nand black."
     },
     "5003": {
       "vnum": 5003,
-      "name": "King Valdric",
-      "short_desc": "King Valdric the Just",
-      "long_desc": "King Valdric sits upon his throne, crown gleaming.",
-      "level": 50,
-      "hp_dice": "30d10+300",
-      "damage_dice": "4d8+10",
-      "gold": 5000,
-      "exp": 20000,
-      "alignment": 1000,
+      "name": "scorpion",
+      "short_desc": "the small scorpion",
+      "long_desc": "A small, red scorpion scuttles away at your approach.",
+      "level": 3,
+      "alignment": -50,
+      "hp_dice": "1d8+0",
+      "damage_dice": "1d6+40",
+      "gold": 250,
+      "exp": 8,
+      "armor_class": 1,
       "flags": [
-        "sentinel"
+        "stay_zone"
       ],
-      "special": null
+      "description": "The little tail is mighty dangerous for such a small creature."
     },
     "5004": {
       "vnum": 5004,
-      "name": "the royal armorer",
-      "short_desc": "The royal armorer",
-      "long_desc": "A muscular smith works the forge, crafting fine weapons.",
-      "level": 25,
-      "hp_dice": "10d10+100",
-      "damage_dice": "2d6+4",
-      "gold": 200,
-      "exp": 0,
-      "alignment": 0,
+      "name": "worm",
+      "short_desc": "the sand worm",
+      "long_desc": "A giant, purple sand worm thrusts up out of the sand and attacks!",
+      "level": 21,
+      "alignment": -300,
+      "hp_dice": "3d7+14",
+      "damage_dice": "2d10+320",
+      "gold": 8000,
+      "exp": 8,
+      "armor_class": 3,
+      "flags": [
+        "special",
+        "sentinel",
+        "aware",
+        "aggressive",
+        "memory",
+        "no_sleep",
+        "no_blind"
+      ],
+      "description": "He's big, mean, and purple.  Watch out!",
+      "inventory": [
+        5019,
+        5020,
+        5021
+      ]
+    },
+    "5005": {
+      "vnum": 5005,
+      "name": "dragon",
+      "short_desc": "the brass dragon",
+      "long_desc": "A very large brass dragon steps out of the darkness and says 'Hello.'",
+      "level": 20,
+      "alignment": 950,
+      "hp_dice": "3d6+4",
+      "damage_dice": "2d6+500",
+      "gold": 8000,
+      "exp": 8,
+      "armor_class": 0,
+      "flags": [
+        "special",
+        "sentinel",
+        "aware",
+        "aggressive",
+        "no_bash"
+      ],
+      "description": "Then adds to it, 'Prepare to die, have a nice day!'",
+      "inventory": [
+        5024,
+        5022
+      ]
+    },
+    "5006": {
+      "vnum": 5006,
+      "name": "nomad",
+      "short_desc": "the nomad leader",
+      "long_desc": "The nomad leader sits silently in prayer.",
+      "level": 14,
+      "alignment": 950,
+      "hp_dice": "2d8+5",
+      "damage_dice": "2d6+170",
+      "gold": 4000,
+      "exp": 6,
+      "armor_class": 0,
       "flags": [
         "sentinel",
-        "shopkeeper"
+        "wimpy",
+        "memory"
       ],
-      "special": "shopkeeper"
+      "description": "He is clad in silk robes lined with gold thread. At his side is a large,\nengraved cutlass.  He has an especially haughty air about him.",
+      "equipment": {
+        "wield": 5016
+      }
+    },
+    "5007": {
+      "vnum": 5007,
+      "name": "nomad",
+      "short_desc": "the nomad commander",
+      "long_desc": "The nomad commander stands here staring at you suspiciously.",
+      "level": 12,
+      "alignment": 900,
+      "hp_dice": "2d5+3",
+      "damage_dice": "2d6+135",
+      "gold": 3000,
+      "exp": 8,
+      "armor_class": 1,
+      "flags": [
+        "sentinel",
+        "wimpy",
+        "memory"
+      ],
+      "description": "This is the nomad leader's second in command.  His clothes are richly woven\nof silk and gold thread.  A nasty cutlass hangs at his side.",
+      "equipment": {
+        "wield": 5017
+      }
+    },
+    "5008": {
+      "vnum": 5008,
+      "name": "nomad",
+      "short_desc": "the nomad warrior",
+      "long_desc": "A proud nomad warrior stands here.",
+      "level": 10,
+      "alignment": 700,
+      "hp_dice": "2d6+1",
+      "damage_dice": "1d6+105",
+      "gold": 3650,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "This warrior is dressed in typical nomad clothing and looks quite mean.",
+      "equipment": {
+        "wield": 5018
+      }
+    },
+    "5009": {
+      "vnum": 5009,
+      "name": "slave",
+      "short_desc": "the slave",
+      "long_desc": "A young slave sits here staring at you with pleading eyes.",
+      "level": 3,
+      "alignment": 1000,
+      "hp_dice": "1d5+0",
+      "damage_dice": "1d4+25",
+      "gold": 150,
+      "exp": 5,
+      "armor_class": 9,
+      "flags": [
+        "sentinel",
+        "wimpy"
+      ],
+      "description": "She looks quite thin and weak."
+    },
+    "5010": {
+      "vnum": 5010,
+      "name": "dracolich",
+      "short_desc": "the dracolich",
+      "long_desc": "A pile of bones rises up to form a skeletal dracolich.",
+      "level": 24,
+      "alignment": -1000,
+      "hp_dice": "3d5+35",
+      "damage_dice": "1d12+520",
+      "gold": 20000,
+      "exp": 8,
+      "armor_class": -6,
+      "flags": [
+        "special",
+        "sentinel",
+        "aware",
+        "aggressive",
+        "memory",
+        "no_charm",
+        "no_summmon",
+        "no_sleep",
+        "no_bash"
+      ],
+      "description": "The dracolich is now only bone with pieces of flesh hanging from it.\nObviously it no longer fears death.",
+      "equipment": {
+        "body": 5001,
+        "wield": 5002
+      }
+    },
+    "5011": {
+      "vnum": 5011,
+      "name": "drider",
+      "short_desc": "the drider",
+      "long_desc": "The drider looks at you viciously while it draws its sword.",
+      "level": 8,
+      "alignment": -1000,
+      "hp_dice": "2d6+2",
+      "damage_dice": "1d6+95",
+      "gold": 2100,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ],
+      "description": "This half-spider, half-drow creature is a formidable opponent.",
+      "equipment": {
+        "wield": 3022
+      }
+    },
+    "5012": {
+      "vnum": 5012,
+      "name": "duergar",
+      "short_desc": "the dark dwarf",
+      "long_desc": "A duergar is here mining precious stones with his pick.",
+      "level": 5,
+      "alignment": -850,
+      "hp_dice": "2d5+1",
+      "damage_dice": "1d11+60",
+      "gold": 710,
+      "exp": 8,
+      "armor_class": 3,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ],
+      "description": "The duergar could probably crush your head as easily as he does those\nrocks.",
+      "equipment": {
+        "wield": 5000
+      }
+    },
+    "5013": {
+      "vnum": 5013,
+      "name": "myconoid",
+      "short_desc": "the myconoid",
+      "long_desc": "A myconoid lumbers along peacefully.",
+      "level": 6,
+      "alignment": 850,
+      "hp_dice": "2d7+0",
+      "damage_dice": "1d12+68",
+      "gold": 325,
+      "exp": 8,
+      "armor_class": 4,
+      "flags": [
+        "stay_zone",
+        "wimpy"
+      ],
+      "description": "The myconoid looks something like a giant mushroom (and probably has the\nsame effect)."
+    },
+    "5014": {
+      "vnum": 5014,
+      "name": "myconoid",
+      "short_desc": "the myconoid shaman",
+      "long_desc": "A rather large myconoid stands here chanting in a strange tongue.",
+      "level": 14,
+      "alignment": 950,
+      "hp_dice": "2d7+2",
+      "damage_dice": "1d12+173",
+      "gold": 10250,
+      "exp": 8,
+      "armor_class": 1,
+      "flags": [
+        "special",
+        "scavenger",
+        "aggr_evil",
+        "memory"
+      ],
+      "description": "The shaman shoots spores into the air.",
+      "equipment": {
+        "neck1": 5003
+      }
+    },
+    "5015": {
+      "vnum": 5015,
+      "name": "dustdigger",
+      "short_desc": "the dustdigger",
+      "long_desc": "A small oasis invites you to dive in.",
+      "level": 7,
+      "alignment": -200,
+      "hp_dice": "3d4+0",
+      "damage_dice": "1d6+85",
+      "gold": 1350,
+      "exp": 8,
+      "armor_class": 1,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "aggressive",
+        "no_bash",
+        "no_blind"
+      ],
+      "description": "Looking a little closer at this oasis, you begin to wonder why\nit seems to be moving about..."
+    },
+    "5017": {
+      "vnum": 5017,
+      "name": "camel",
+      "short_desc": "the camel",
+      "long_desc": "A very dangerous creature, a camel, snorts at you.",
+      "level": 5,
+      "alignment": -351,
+      "hp_dice": "2d4+3",
+      "damage_dice": "1d6+60",
+      "gold": 585,
+      "exp": 8,
+      "armor_class": 6,
+      "flags": [
+        "sentinel",
+        "aggressive",
+        "no_bash"
+      ],
+      "description": "It is advisable not to mess with this creature.  After all, you\nhave heard many a horror story about experiences with camels.\nBad experiences."
     }
   },
   "objects": {
-    "50": {
-      "vnum": 50,
-      "name": "a royal longsword",
-      "short_desc": "a gleaming royal longsword",
-      "room_desc": "A finely crafted longsword lies here.",
-      "type": "weapon",
-      "weight": 6,
-      "cost": 500,
-      "damage_dice": "2d6",
+    "5000": {
+      "vnum": 5000,
+      "name": "pick",
+      "short_desc": "a small mining pick",
+      "room_desc": "A small mining pick made of what appears to be silver lies on the ground.",
+      "item_type": "weapon",
+      "weight": 3,
+      "value": 600,
+      "damage_dice": "1d9",
+      "weapon_type": "pierce"
+    },
+    "5002": {
+      "vnum": 5002,
+      "name": "halberd",
+      "short_desc": "a halberd",
+      "room_desc": "A mighty halberd lies against the wall.",
+      "item_type": "weapon",
+      "weight": 16,
+      "value": 12000,
+      "damage_dice": "3d5",
       "weapon_type": "slash"
     },
-    "51": {
-      "vnum": 51,
-      "name": "a kite shield",
-      "short_desc": "a sturdy kite shield",
-      "room_desc": "A shield bearing the royal crest lies here.",
-      "type": "armor",
-      "weight": 10,
-      "cost": 300,
-      "armor": 15,
-      "wear_slot": "shield"
+    "5003": {
+      "vnum": 5003,
+      "name": "amulet",
+      "short_desc": "a mushroom amulet",
+      "room_desc": "A mushroom-shaped amulet lies on the ground.",
+      "item_type": "armor",
+      "weight": 2,
+      "value": 1500,
+      "armor_bonus": 0
     },
-    "52": {
-      "vnum": 52,
-      "name": "a treasure chest",
-      "short_desc": "an iron treasure chest",
-      "room_desc": "A heavy iron chest sits here.",
-      "type": "container",
+    "5005": {
+      "vnum": 5005,
+      "name": "bone",
+      "short_desc": "a large leg bone",
+      "room_desc": "A large leg bone rests on the ground.",
+      "item_type": "weapon",
+      "weight": 5,
+      "value": 300,
+      "damage_dice": "1d4",
+      "weapon_type": "pound"
+    },
+    "5006": {
+      "vnum": 5006,
+      "name": "cactus",
+      "short_desc": "a small cactus cup",
+      "room_desc": "A small cactus cup lies on the ground.",
+      "item_type": "drinkcon",
+      "weight": 6,
+      "value": 30,
+      "capacity": 5,
+      "current": 5
+    },
+    "5007": {
+      "vnum": 5007,
+      "name": "basket",
+      "short_desc": "a small wicker basket",
+      "room_desc": "A small wicker basket sits on the ground.",
+      "item_type": "container",
       "weight": 50,
-      "cost": 0,
+      "value": 5000,
       "capacity": 100
+    },
+    "5009": {
+      "vnum": 5009,
+      "name": "basket",
+      "short_desc": "a small wicker basket",
+      "room_desc": "A small wicker basket sits on the ground.",
+      "item_type": "container",
+      "weight": 50,
+      "value": 5000,
+      "capacity": 100
+    },
+    "5010": {
+      "vnum": 5010,
+      "name": "basket",
+      "short_desc": "a small wicker basket",
+      "room_desc": "A small wicker basket sits on the ground.",
+      "item_type": "container",
+      "weight": 50,
+      "value": 5000,
+      "capacity": 100
+    },
+    "5011": {
+      "vnum": 5011,
+      "name": "rope",
+      "short_desc": "a coil of rope",
+      "room_desc": "A long coil of rope lies on the ground.",
+      "item_type": "treasure",
+      "weight": 12,
+      "value": 450
+    },
+    "5012": {
+      "vnum": 5012,
+      "name": "stakes",
+      "short_desc": "a bunch of stakes",
+      "room_desc": "A small bundle of stakes lies here.",
+      "item_type": "weapon",
+      "weight": 6,
+      "value": 250,
+      "damage_dice": "1d2",
+      "weapon_type": "pierce"
+    },
+    "5013": {
+      "vnum": 5013,
+      "name": "map",
+      "short_desc": "an old, tattered map",
+      "room_desc": "An old, tattered, and much faded map lies here.",
+      "item_type": "treasure",
+      "weight": 1,
+      "value": 300
+    },
+    "5014": {
+      "vnum": 5014,
+      "name": "turban",
+      "short_desc": "a thick padded turban",
+      "room_desc": "A thick padded turban lies here.",
+      "item_type": "armor",
+      "weight": 15,
+      "value": 4300,
+      "armor_bonus": 0
+    },
+    "5015": {
+      "vnum": 5015,
+      "name": "coins",
+      "short_desc": "a great pile of treasure",
+      "room_desc": "A great, gleaming pile of treasure lies at your feet.",
+      "item_type": "money",
+      "weight": 0,
+      "value": 0
+    },
+    "5016": {
+      "vnum": 5016,
+      "name": "sabre",
+      "short_desc": "a long, curved sabre",
+      "room_desc": "A long, curved sabre stands upright in the ground.",
+      "item_type": "weapon",
+      "weight": 7,
+      "value": 1050,
+      "damage_dice": "1d8",
+      "weapon_type": "slash"
+    },
+    "5017": {
+      "vnum": 5017,
+      "name": "scimitar",
+      "short_desc": "a curved scimitar",
+      "room_desc": "A curved scimitar lies at your feet.",
+      "item_type": "weapon",
+      "weight": 6,
+      "value": 600,
+      "damage_dice": "1d7",
+      "weapon_type": "slash"
+    },
+    "5018": {
+      "vnum": 5018,
+      "name": "cutlass",
+      "short_desc": "a long, pointed cutlass",
+      "room_desc": "A long, pointed cutlass lies here.",
+      "item_type": "weapon",
+      "weight": 5,
+      "value": 550,
+      "damage_dice": "1d7",
+      "weapon_type": "slash"
+    },
+    "5019": {
+      "vnum": 5019,
+      "name": "potion",
+      "short_desc": "a pink potion",
+      "room_desc": "A pink potion stands here.",
+      "item_type": "potion",
+      "weight": 6,
+      "value": 600
+    },
+    "5020": {
+      "vnum": 5020,
+      "name": "wand",
+      "short_desc": "a platinum wand",
+      "room_desc": "A platinum wand lies here.",
+      "item_type": "wand",
+      "weight": 8,
+      "value": 1900
+    },
+    "5021": {
+      "vnum": 5021,
+      "name": "bow",
+      "short_desc": "a golden bow",
+      "room_desc": "A powerful golden bow lies here.",
+      "item_type": "weapon",
+      "weight": 20,
+      "value": 150000,
+      "damage_dice": "4d6",
+      "weapon_type": "blast"
+    },
+    "5022": {
+      "vnum": 5022,
+      "name": "scroll",
+      "short_desc": "an encrypted scroll",
+      "room_desc": "An encrypted scroll lies at your feet.",
+      "item_type": "scroll",
+      "weight": 7,
+      "value": 1500
+    },
+    "5023": {
+      "vnum": 5023,
+      "name": "chest",
+      "short_desc": "an iron bound chest",
+      "room_desc": "An iron bound chest with a shiny lock sits here.",
+      "item_type": "container",
+      "weight": 200,
+      "value": 1000,
+      "capacity": 200,
+      "key_vnum": 5024
+    },
+    "5024": {
+      "vnum": 5024,
+      "name": "key",
+      "short_desc": "a golden key",
+      "room_desc": "A shiny golden key lies here.",
+      "item_type": "key",
+      "weight": 1,
+      "value": 150
+    },
+    "5025": {
+      "vnum": 5025,
+      "name": "bracelet",
+      "short_desc": "a copper bracelet",
+      "room_desc": "A tarnished copper bracelet lies at your feet.",
+      "item_type": "armor",
+      "weight": 10,
+      "value": 23000,
+      "armor_bonus": -5
+    },
+    "5026": {
+      "vnum": 5026,
+      "name": "ruby",
+      "short_desc": "a large ruby",
+      "room_desc": "A large ruby lies on the ground, collecting dust.",
+      "item_type": "treasure",
+      "weight": 9,
+      "value": 4000
+    },
+    "5027": {
+      "vnum": 5027,
+      "name": "diamond",
+      "short_desc": "a glittering diamond",
+      "room_desc": "A glittering diamond lies at your feet.",
+      "item_type": "treasure",
+      "weight": 10,
+      "value": 9500
+    },
+    "5028": {
+      "vnum": 5028,
+      "name": "sapphire",
+      "short_desc": "a brilliant sapphire",
+      "room_desc": "A brilliant sapphire lies here, twinkling happily.",
+      "item_type": "treasure",
+      "weight": 7,
+      "value": 3500
+    },
+    "5029": {
+      "vnum": 5029,
+      "name": "lapis",
+      "short_desc": "a deep blue lapis lazuli",
+      "room_desc": "A deep blue lapis lazuli gem lies here.",
+      "item_type": "treasure",
+      "weight": 11,
+      "value": 8500
+    },
+    "5030": {
+      "vnum": 5030,
+      "name": "jewel",
+      "short_desc": "the Tiger Jewel",
+      "room_desc": "The Tiger Jewel lies here blazing.",
+      "item_type": "treasure",
+      "weight": 23,
+      "value": 43000
+    },
+    "5031": {
+      "vnum": 5031,
+      "name": "jewel",
+      "short_desc": "the red-eyed jewel",
+      "room_desc": "The red-eyed jewel glares at you greedily.",
+      "item_type": "treasure",
+      "weight": 30,
+      "value": 35000
+    },
+    "5032": {
+      "vnum": 5032,
+      "name": "emerald",
+      "short_desc": "a fiery green emerald",
+      "room_desc": "A fiery green emerald sits here.",
+      "item_type": "treasure",
+      "weight": 7,
+      "value": 5500
     }
   }
 }

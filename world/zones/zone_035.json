@@ -1,284 +1,993 @@
 {
   "number": 35,
-  "name": "The Sewers of Midgaard",
-  "builders": "Realmers",
-  "lifespan": 30,
-  "reset_mode": 2,
-  "top": 3599,
+  "name": "Miden'Nir",
+  "lifespan": 60,
   "rooms": {
     "3500": {
       "vnum": 3500,
-      "name": "A Dark Sewer Entrance",
-      "description": "You stand at the entrance to Midgaard's ancient sewer system.\nA rusty iron grate leads down into darkness, and the smell of decay\nwafts up from below. Water drips from the ceiling, echoing in the\nconfined space. This appears to be the only way into the sewers from\nthe Thieves' Guild.",
-      "sector_type": "inside",
-      "flags": [],
-      "exits": {
-        "up": {
-          "to_room": 3012,
-          "description": "Up to the Thieves' Guild"
-        },
-        "east": {
-          "to_room": 3501,
-          "description": null
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 3500,
-          "max": 2
-        }
-      ],
-      "obj_resets": []
-    },
-    "3501": {
-      "vnum": 3501,
-      "name": "A Narrow Sewer Tunnel",
-      "description": "The tunnel is barely wide enough for a person to walk upright.\nSlime covers the walls, and rats scurry away as you approach. A foul\nstream of water flows slowly through the center of the passage. The\ntunnel continues east and west.",
-      "sector_type": "inside",
-      "flags": [],
-      "exits": {
-        "west": {
-          "to_room": 3500,
-          "description": null
-        },
-        "east": {
-          "to_room": 3502,
-          "description": null
-        },
-        "south": {
-          "to_room": 3505,
-          "description": null
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 3500,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "3502": {
-      "vnum": 3502,
-      "name": "Sewer Junction",
-      "description": "Four tunnels meet here in a small chamber. The ceiling is higher\nhere, and you can see ancient brickwork that has mostly crumbled away.\nWater flows in from the north and continues south. Exits lead in all\nfour directions.",
-      "sector_type": "inside",
+      "name": "The Plains",
+      "description": "You are standing on the plains.  This is a vast desolate place where the wind can howl undisturbed since nothing but you bars its way.  However you are not the first to wander here.  Before you somebody has left a small path.  The path looks rather bewildered and is not the kind of path to lead to anywhere significant or important but it seems to have made up its mind to enter the hills far away north.  A narrow trail scars its way off to the east as it leads up towards a hillside.",
+      "sector_type": "city",
       "flags": [],
       "exits": {
         "north": {
-          "to_room": 3503,
-          "description": null
-        },
-        "south": {
-          "to_room": 3506,
-          "description": null
+          "to_room": 4000,
+          "description": ""
         },
         "east": {
-          "to_room": 3508,
-          "description": null
+          "to_room": 3300,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3501,
+          "description": ""
+        }
+      }
+    },
+    "3501": {
+      "vnum": 3501,
+      "name": "The Lane",
+      "description": "You are strolling along a pleasant, shady lane.  The road is lined on both sides by tall, stately trees which lend the scene with a sense of quiet serenity.    You can follow the road north or south.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3500,
+          "description": ""
+        },
+        "south": {
+          "to_room": 3502,
+          "description": ""
+        }
+      }
+    },
+    "3502": {
+      "vnum": 3502,
+      "name": "The Laneway",
+      "description": "The trees stand close here, and the tall, bushy undergrowth prevents you from seeing far in any direction save east, where a broad lane continues off into the distance; and west, where the same lane continues towards what looks like a fairly large city.  The muted sounds of city commotion reach your ears from a distance; stray dogs barking, children crying, and street salesmen shouting.    A steep path leads down from here to the northeast towards the Dwarven Village, and a small trail leads through the trees towards the hills to the north.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3501,
+          "description": ""
+        },
+        "east": {
+          "to_room": 15000,
+          "description": "You see a fairly large road leading towards a grand castle in the distance."
         },
         "west": {
-          "to_room": 3501,
-          "description": null
+          "to_room": 3503,
+          "description": ""
+        },
+        "down": {
+          "to_room": 6500,
+          "description": "The well trodden path leads down to the northeast towards a small bustling village."
         }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 3501,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
+      }
     },
     "3503": {
       "vnum": 3503,
-      "name": "The Rat King's Lair",
-      "description": "This chamber reeks of decay and filth. Hundreds of rats swarm over\npiles of refuse, and in the center sits a massive, bloated rat that\nappears to be their king. The creature's eyes gleam with unnatural\nintelligence. This is clearly a dangerous place.",
-      "sector_type": "inside",
+      "name": "The City Entrance",
+      "description": "You stand on the outskirts of a large city - Midgaard; the capital of this land.  The road leads east into the peace and quiet - and dangers - of the forest; and to the west it becomes the main street of the town; surrounded by a confusion of shops, bars, and market places.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 3502,
+          "description": ""
+        },
+        "west": {
+          "to_room": 3053,
+          "description": ""
+        }
+      }
+    },
+    "3504": {
+      "vnum": 3504,
+      "name": "The South Gate",
+      "description": "You are standing on a small, dusty path leading away from the south gate of Midgaard, to the forest of Miden'Nir (Goblinic for 'Green Blood'). You can still see the city to the east, but if you go south, there is fresh air and greenery.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3127,
+          "description": "You can see the walls of the South Gate."
+        },
+        "south": {
+          "to_room": 3505,
+          "description": "If you go south, you will enter the Miden'Nir."
+        }
+      }
+    },
+    "3505": {
+      "vnum": 3505,
+      "name": "The Trail To Miden'Nir",
+      "description": "You are in a light forest.  A path leads south, but the passage to the east is easy enough.  To the west, smoke can be seen rising above the treetops.  The sprawl of Midgaard lies north of here.",
+      "sector_type": "forest",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3504,
+          "description": "To the north, you see the South Gate of Midgaard."
+        },
+        "east": {
+          "to_room": 3506,
+          "description": "More light forest."
+        },
+        "south": {
+          "to_room": 3507,
+          "description": "This path cuts through the darkness of the Miden'Nir."
+        },
+        "west": {
+          "to_room": 3570,
+          "description": "The Woodsman's Inn can be seen a short distance to the west, it appears to be the source of the smoke."
+        }
+      }
+    },
+    "3506": {
+      "vnum": 3506,
+      "name": "The Miden'nir",
+      "description": "You are in a dark forest.  To the east, mountains block passage.  From here, only the lighter forest to the west or south offer a way to travel.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3550,
+          "description": "The mountains can be seen jutting up to the east."
+        },
+        "south": {
+          "to_room": 3509,
+          "description": "The forest is darker to the south."
+        },
+        "west": {
+          "to_room": 3505,
+          "description": "The forest gets lighter as you go west."
+        }
+      }
+    },
+    "3507": {
+      "vnum": 3507,
+      "name": "The Miden'nir",
+      "description": "The forest is deep here and the wind blows through the trees and through your hair.  To the north, the forest gets lighter.  However, the southern and western paths place you even deeper in the wood.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3505,
+          "description": "The forest is lighter in this direction."
+        },
+        "south": {
+          "to_room": 3510,
+          "description": "More and darker woods."
+        },
+        "west": {
+          "to_room": 3508,
+          "description": "There is a small path leading west."
+        }
+      }
+    },
+    "3508": {
+      "vnum": 3508,
+      "name": "On a Small Path",
+      "description": "A path is here, leading east and south through the dark woods of Miden'nir.  Mountains slash the scenery to the west of here.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3507,
+          "description": "Wind-swept forest."
+        },
+        "south": {
+          "to_room": 3511,
+          "description": "To the south, the trail continues."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3501,
+          "max": 10
+        }
+      ]
+    },
+    "3509": {
+      "vnum": 3509,
+      "name": "The Miden'nir",
+      "description": "The trees of Miden'nir are lush and green, hiding the evil that lurks in these woods.  The trees become too thick to the west, but you may go north, south or travel toward the mountains that lie east of here.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3506,
+          "description": "The trees lighten up a bit this way."
+        },
+        "east": {
+          "to_room": 3512,
+          "description": "Huge grey mountains lie in this direction."
+        },
+        "south": {
+          "to_room": 3514,
+          "description": "The forest continues."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3501,
+          "max": 10
+        },
+        {
+          "vnum": 3501,
+          "max": 10
+        }
+      ]
+    },
+    "3510": {
+      "vnum": 3510,
+      "name": "A Crossroads",
+      "description": "Here footworn paths meet leading north, south and east.  The trees seem to be closing in on you at this point, and you can barely see the sky through the thick branches above your head.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3507,
+          "description": "Trees as far as the eye can see."
+        },
+        "east": {
+          "to_room": 3514,
+          "description": "There is an especially dark part of the forest this way."
+        },
+        "south": {
+          "to_room": 3516,
+          "description": "There is an especially dark section of forest this way."
+        }
+      }
+    },
+    "3511": {
+      "vnum": 3511,
+      "name": "The Trail",
+      "description": "You are on a north-south trail through the woods.  To the west, impassable mountains glare at you, and the thick woods and undergrowth prevent any movement westward.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3508,
+          "description": "The trail bends to the north."
+        },
+        "south": {
+          "to_room": 3515,
+          "description": "To the south, the path re-enters the forest."
+        }
+      }
+    },
+    "3512": {
+      "vnum": 3512,
+      "name": "The Miden'nir",
+      "description": "The trees of Miden'nir are lush and green, hiding the evil that lurks in these woods.  You can go north toward the mountains, or west to the forest, but the steep mountains prevent any movement east.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3550,
+          "description": "The mountains can be seen to the north."
+        },
+        "south": {
+          "to_room": 3513,
+          "description": "A light section of forest."
+        },
+        "west": {
+          "to_room": 3509,
+          "description": "The forest continues here."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3501,
+          "max": 10
+        },
+        {
+          "vnum": 3501,
+          "max": 10
+        },
+        {
+          "vnum": 3501,
+          "max": 10
+        }
+      ]
+    },
+    "3513": {
+      "vnum": 3513,
+      "name": "The Miden'nir",
+      "description": "The forest is dark, and becomes even darker west.  You sense that there is something evil hidden in these woods.  The forest gets lighter to the north.  The wind kicks up as you ponder your options.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3512,
+          "description": "There is a small clearing to the north."
+        },
+        "west": {
+          "to_room": 3514,
+          "description": "It gets darker and thicker this way."
+        }
+      }
+    },
+    "3514": {
+      "vnum": 3514,
+      "name": "The Deep Forest",
+      "description": "It is quite dark here, forest surrounds you.  With each step, the forest seems to close around you, and get darker and more foreboding. It might just be time to head back to somewhere safe.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3509,
+          "description": "More forest."
+        },
+        "east": {
+          "to_room": 3513,
+          "description": "Lighter forest and mountains in the distance."
+        },
+        "south": {
+          "to_room": 3517,
+          "description": "More trees."
+        },
+        "west": {
+          "to_room": 3510,
+          "description": "The forest continues."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3501,
+          "max": 10
+        }
+      ]
+    },
+    "3515": {
+      "vnum": 3515,
+      "name": "The Light Forest",
+      "description": "The forest is light here and you can easily pick your way through the  trail.  To the east, the forest becomes thick and darker.  South, the trail continues.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3511,
+          "description": "A trail leading north-south."
+        },
+        "east": {
+          "to_room": 3516,
+          "description": "The trees get thicker as you go east."
+        },
+        "south": {
+          "to_room": 3518,
+          "description": "More trees and some small hills."
+        }
+      }
+    },
+    "3516": {
+      "vnum": 3516,
+      "name": "Some Muddy Ground",
+      "description": "The ground is quite muddy here and puddles are all around.  Your boots make a disgusting SQUISH as you walk here.  You can go in any of the four cardinal directions from here.  Hopefully, it will be dryer.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3510,
+          "description": "The Miden'nir continues."
+        },
+        "east": {
+          "to_room": 3517,
+          "description": "More trees."
+        },
+        "south": {
+          "to_room": 3519,
+          "description": "The trees get VERY thick to the south.  You can barely see..."
+        },
+        "west": {
+          "to_room": 3515,
+          "description": "Some light trees and daylight."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3501,
+          "max": 10
+        }
+      ]
+    },
+    "3517": {
+      "vnum": 3517,
+      "name": "Near The Mountains",
+      "description": "The most prominent feature here is the mountains that lie to the east.  You can only go north and west from here as the rocks stop all other movement.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3514,
+          "description": "Many trees to the north."
+        },
+        "west": {
+          "to_room": 3516,
+          "description": "There is a bit of a slope downward to the west."
+        }
+      }
+    },
+    "3518": {
+      "vnum": 3518,
+      "name": "The Fading Trail",
+      "description": "The trail becomes nearly unpassable here.  You can go north as the forest is relatively light.  To the south, you can see a path.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3515,
+          "description": "You can see a trail this way."
+        },
+        "south": {
+          "to_room": 3522,
+          "description": "Dark forests."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3501,
+          "max": 10
+        }
+      ]
+    },
+    "3519": {
+      "vnum": 3519,
+      "name": "The Dark Path",
+      "description": "You are hemmed in by trees on either side of you.  The path continues north and south, and while is much to thick to explore west, you can head off into the woods to the west.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3516,
+          "description": "The forest gets lighter this way."
+        },
+        "east": {
+          "to_room": 3520,
+          "description": "The forest continues."
+        },
+        "south": {
+          "to_room": 3521,
+          "description": "There is a strong stench coming from this direction."
+        }
+      }
+    },
+    "3520": {
+      "vnum": 3520,
+      "name": "The Dark Forest",
+      "description": "You stomp your way through the underbrush.  The dark forest of Miden'nir get pretty thick here, and the branches high above your head are so thick that they block out all direct sunlight.  While it is much too thick to go further east, you might be able to make your way though the forest to the south and west.",
+      "sector_type": "forest",
       "flags": [],
       "exits": {
         "south": {
-          "to_room": 3502,
-          "description": null
+          "to_room": 3523,
+          "description": "The thick forest continues."
+        },
+        "west": {
+          "to_room": 3519,
+          "description": "The thick forest continues."
+        }
+      }
+    },
+    "3521": {
+      "vnum": 3521,
+      "name": "The Carnage",
+      "description": "Here, you see a gruesome sight.  Blood is everywhere... on the trees and soaked into the ground.  Two carcasses lie in front of you, seeming to look up at you.  The forest is impassible to the south, but the other directions look ok.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3519,
+          "description": "Darkness..."
+        },
+        "east": {
+          "to_room": 3523,
+          "description": "Your light does not extend that far."
+        },
+        "west": {
+          "to_room": 3522,
+          "description": "More dark forest."
         }
       },
-      "extra_descs": {},
+      "extra_descs": {
+        "": "carcass body corpse carcasses bodies corpses"
+      },
       "mob_resets": [
         {
-          "vnum": 3502,
-          "max": 1
+          "vnum": 3500,
+          "max": 3
+        },
+        {
+          "vnum": 3500,
+          "max": 3
         },
         {
           "vnum": 3500,
           "max": 3
         }
       ],
-      "obj_resets": []
-    },
-    "3504": {
-      "vnum": 3504,
-      "name": "A Hidden Sewer Exit",
-      "description": "A narrow passage leads up to a rusty grate. Daylight filters through\nthe gaps, and you can hear the sounds of the city above. This appears\nto be an exit to the city streets. A ladder leads up through the grate.",
-      "sector_type": "inside",
-      "flags": [],
-      "exits": {
-        "up": {
-          "to_room": 3005,
-          "description": "Up to Main Street West"
-        },
-        "north": {
-          "to_room": 3505,
-          "description": null
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [],
-      "obj_resets": []
-    },
-    "3505": {
-      "vnum": 3505,
-      "name": "Flooded Sewer Passage",
-      "description": "This section of the sewers is partially flooded. Dark water comes up\nto your knees, and you can feel things brushing against your legs in\nthe murk. The passage continues north to what appears to be an exit,\nand south back into the sewer system.",
-      "sector_type": "inside",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3504,
-          "description": null
-        },
-        "south": {
-          "to_room": 3501,
-          "description": null
-        },
-        "east": {
-          "to_room": 3507,
-          "description": null
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 3503,
-          "max": 2
-        }
-      ],
-      "obj_resets": []
-    },
-    "3506": {
-      "vnum": 3506,
-      "name": "A Fetid Pool",
-      "description": "This chamber contains a large pool of stagnant, foul-smelling water.\nThings move beneath the surface - you hope they're just fish. The walls\nare covered in slime and algae. A passage leads north back into the\ntunnel system.",
-      "sector_type": "inside",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 3502,
-          "description": null
-        },
-        "east": {
-          "to_room": 3509,
-          "description": null
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 3503,
-          "max": 1
-        }
-      ],
       "obj_resets": [
         {
-          "vnum": 52,
+          "vnum": 3505,
+          "max": 2
+        },
+        {
+          "vnum": 3506,
           "max": 1
+        },
+        {
+          "vnum": 3505,
+          "max": 2
         }
       ]
     },
-    "3507": {
-      "vnum": 3507,
-      "name": "Narrow Side Tunnel",
-      "description": "This cramped tunnel branches off from the main sewer. You have to\ncrouch to move through here. The walls are rough and unfinished,\nsuggesting this was a hastily dug passage. Rats nest in the cracks.",
-      "sector_type": "inside",
-      "flags": [],
-      "exits": {
-        "west": {
-          "to_room": 3505,
-          "description": null
-        },
-        "south": {
-          "to_room": 3508,
-          "description": null
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 3500,
-          "max": 2
-        }
-      ],
-      "obj_resets": []
-    },
-    "3508": {
-      "vnum": 3508,
-      "name": "Ancient Storage Chamber",
-      "description": "This room was once used to store supplies for the city above. Now it's\nfilled with broken crates and rotting sacks. A few items of value might\nstill be hidden among the debris. Passages lead north and west.",
-      "sector_type": "inside",
+    "3522": {
+      "vnum": 3522,
+      "name": "Deep In The Forest Of Miden'nir",
+      "description": "There is a sickening stench here.  It smells of blood and death. To the north, you catch glimpses of daylight.  To the east, you simply cannot see.  The trees are close and stifling.",
+      "sector_type": "forest",
       "flags": [],
       "exits": {
         "north": {
-          "to_room": 3507,
-          "description": null
+          "to_room": 3518,
+          "description": "You see daylight and a trail to follow."
+        },
+        "east": {
+          "to_room": 3521,
+          "description": "The stench seems to becoming from this direction."
+        }
+      }
+    },
+    "3523": {
+      "vnum": 3523,
+      "name": "The Dark Forest",
+      "description": "The branches above you block out all direct sunlight, making the forest in this area rather dark.  The forest continues east, where it meets the mountains.  The air is still and stuffy - a stench comes from the west and an ugly feeling causes the hair to rise on the back of your neck!",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3520,
+          "description": "It appears to get much darker that direction."
+        },
+        "east": {
+          "to_room": 3551,
+          "description": "The forest appears to get much darker in this direction."
         },
         "west": {
-          "to_room": 3502,
-          "description": null
+          "to_room": 3521,
+          "description": "The sky becomes lighter in this direction."
+        }
+      }
+    },
+    "3550": {
+      "vnum": 3550,
+      "name": "At The Foot Of The Mountains",
+      "description": "You find yourself at the foot of the mountains, where it is much to steep to continue north or east.  You see the lush, green forest of Miden'nir to the south and west.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 3512,
+          "description": "The forest of Miden'nir spreads out before you."
+        },
+        "west": {
+          "to_room": 3506,
+          "description": "The forest of Miden'nir spreads out before you."
+        }
+      }
+    },
+    "3551": {
+      "vnum": 3551,
+      "name": "Deep In The Forest Of Miden'nir",
+      "description": "The branches above you block out all direct sunlight, making the forest in this area very dark.  The forest continues west, but mountains block further exploration in all other directions, except south, where you notice a small tunnel dug into the mountainside.",
+      "sector_type": "forest",
+      "flags": [
+        "dark"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3552,
+          "description": "The tunnel leads into the mountainside."
+        },
+        "west": {
+          "to_room": 3523,
+          "description": "The forest continues, but appears to be getting lighter."
         }
       },
-      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3502,
+          "max": 4
+        }
+      ]
+    },
+    "3552": {
+      "vnum": 3552,
+      "name": "A Tunnel In The Mountains",
+      "description": "The walls of this tunnel were carved out many years ago by the goblins of this forest.  The floor is well worn, and continues south, into the mountain, or back north out into the forest.",
+      "sector_type": "city",
+      "flags": [
+        "dark"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3551,
+          "description": "Outside, you see the forest of Miden'nir."
+        },
+        "south": {
+          "to_room": 3553,
+          "description": "The tunnel continues to the south."
+        }
+      }
+    },
+    "3553": {
+      "vnum": 3553,
+      "name": "A Tunnel In The Mountains",
+      "description": "The tunnel gets lighter to the north, presumably leading out, while to the south the passage gets smaller and smaller.  A small alcove has been carved into the east wall.",
+      "sector_type": "city",
+      "flags": [
+        "dark"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3552,
+          "description": "The tunnel gets wider in this direction."
+        },
+        "east": {
+          "to_room": 3554,
+          "description": "You see a small alcove."
+        },
+        "south": {
+          "to_room": 3555,
+          "description": "The tunnel gets smaller in this direction."
+        }
+      }
+    },
+    "3554": {
+      "vnum": 3554,
+      "name": "A Small Alcove",
+      "description": "A small alcove has been carved out here.  There are a bunch of twigs and leaves thrown into a pile here, probably serving as a bed.",
+      "sector_type": "city",
+      "flags": [
+        "dark"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 3553,
+          "description": "You see the main passageway."
+        }
+      },
+      "extra_descs": {
+        "": "twigs leaves bead"
+      }
+    },
+    "3555": {
+      "vnum": 3555,
+      "name": "A Tunnel In The Mountains",
+      "description": "As you explore further into the mountainside, the tunnel gets smaller and smaller to the south.  You almost have to hunch over to make your way through this area.  A small archway to the south leads into a large chamber.",
+      "sector_type": "city",
+      "flags": [
+        "dark"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3553,
+          "description": "The tunnel continues north."
+        },
+        "south": {
+          "to_room": 3556,
+          "description": "You see a small cavern."
+        }
+      }
+    },
+    "3556": {
+      "vnum": 3556,
+      "name": "The Goblin HeadQuarters",
+      "description": "The tunnel widens into a large (well, large for goblins) cavern that serves as the living quarters for the goblins of Miden'nir.  The bones of numbers woodland creatures are strewn about the room, the remanents of a recent meal.",
+      "sector_type": "city",
+      "flags": [
+        "dark"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3555,
+          "description": "The tunnel heads north."
+        }
+      },
       "mob_resets": [
         {
           "vnum": 3501,
-          "max": 1
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 52,
-          "max": 1
+          "max": 10
         },
         {
-          "vnum": 1,
+          "vnum": 3502,
+          "max": 4
+        },
+        {
+          "vnum": 3503,
           "max": 1
         }
       ]
     },
-    "3509": {
-      "vnum": 3509,
-      "name": "The Collector's Den",
-      "description": "This chamber appears to be the lair of something that collects\nshiny objects. Coins, bits of jewelry, and other trinkets are scattered\nabout. A large nest made of rags and stolen goods sits in one corner.\nWhatever lives here is clearly territorial.",
-      "sector_type": "inside",
+    "3570": {
+      "vnum": 3570,
+      "name": "The Front Of The Inn",
+      "description": "You are standing on a well-worn path which opens into a clearing. An old, wooden building is here with smoke billowing from its chimney.  A painted sign is visible on the porch to the west.  You could go north or south around the building or leave this place and return to the forest.",
+      "sector_type": "forest",
       "flags": [],
       "exits": {
+        "north": {
+          "to_room": 3571,
+          "description": "You can go north around the Inn."
+        },
+        "east": {
+          "to_room": 3505,
+          "description": "Back through the trees to the Miden'nir."
+        },
+        "south": {
+          "to_room": 3572,
+          "description": "You can go south around the Inn."
+        },
         "west": {
-          "to_room": 3506,
-          "description": null
+          "to_room": 3574,
+          "description": "The front door of the Inn beckons."
         }
       },
-      "extra_descs": {},
+      "extra_descs": {
+        "": "sign"
+      }
+    },
+    "3571": {
+      "vnum": 3571,
+      "name": "North Of The Inn",
+      "description": "You are standing north of the Inn.  Things don't look much different from this angle.  The air here is filled with smells of smoke and cooking. South, the front porch is waiting for you... or you can see if there is a back door.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 3570,
+          "description": "You see the front of the Inn."
+        }
+      }
+    },
+    "3572": {
+      "vnum": 3572,
+      "name": "South Of The Inn",
+      "description": "You are standing south of the Inn.  You could easily go north and enter through the front door, or west and to the rear of the establishment.  You here some muffled cries from a tiny trail leading south of here.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3570,
+          "description": "This way leads to the front of the Inn."
+        },
+        "south": {
+          "to_room": 3575,
+          "description": "The trail heads south."
+        },
+        "west": {
+          "to_room": 3573,
+          "description": "This way leads to the back of the Inn."
+        }
+      }
+    },
+    "3573": {
+      "vnum": 3573,
+      "name": "Behind The Inn",
+      "description": "You now stand behind the Inn.  The smell here is not so pleasant as the keeper and his help throw a good deal of garbage here.  A couple of piles of rubbish are to the west, but you will smell the worse for meddling there.  As a clean alternative, you can go north or east around the Inn.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3572,
+          "description": "You can go around the Inn this way."
+        },
+        "west": {
+          "to_room": 3578,
+          "description": "Only rats and fool adventurers play in garbage."
+        }
+      }
+    },
+    "3574": {
+      "vnum": 3574,
+      "name": "The Woodsman Inn",
+      "description": "You are in the common room of the Woodsman Inn.  A thin haze of smoke sits in the air here.  The Inn is often empty, as the forest has become overrun by goblins as of late, and it is no longer safe in these parts. The bar is just north of here.  If you'd rather have your own table, one is empty to the south.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3576,
+          "description": "The bar is here, manned by the Innkeeper."
+        },
+        "east": {
+          "to_room": 3570,
+          "description": "You can leave now and return to fresher air."
+        },
+        "south": {
+          "to_room": 3579,
+          "description": "An empty table is a rare commodity."
+        },
+        "west": {
+          "to_room": 3577,
+          "description": "There is a table to the south occupied by a heavy drinker."
+        }
+      }
+    },
+    "3575": {
+      "vnum": 3575,
+      "name": "The Ambush Point",
+      "description": "This is a overgrown foot-trail south of the Inn.  It leads west, but you would be hard pressed to follow it far.  A number of bushes are trampled on and some medium sized branches have been knocked down.  Obviously there has been a battle here rather recently.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3572,
+          "description": "The Inn lies to the north."
+        },
+        "west": {
+          "to_room": 3581,
+          "description": "A trail through the woods."
+        }
+      },
       "mob_resets": [
         {
           "vnum": 3504,
           "max": 1
         }
+      ]
+    },
+    "3576": {
+      "vnum": 3576,
+      "name": "The Bar",
+      "description": "This is where people use to come and enjoy the food, drink and hospitality of the Innkeeper, but as of late, he only serves the few adventurers that manage to survive a trip through the forest. You can leave south and return to the common room.",
+      "sector_type": "city",
+      "flags": [
+        "indoors",
+        "soundproof"
       ],
-      "obj_resets": [
+      "exits": {
+        "south": {
+          "to_room": 3574,
+          "description": "You may retreat south back to the common room."
+        }
+      },
+      "mob_resets": [
         {
-          "vnum": 52,
-          "max": 2
+          "vnum": 3505,
+          "max": 1
+        }
+      ]
+    },
+    "3577": {
+      "vnum": 3577,
+      "name": "The Bard's Table",
+      "description": "You are in a darker corner in the Inn.  A large round table with a few wooden chairs sits here.  There is a large stain on the table, the remnants of a spilled drink.",
+      "sector_type": "city",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 3574,
+          "description": "You see the main floor of the Inn to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3506,
+          "max": 1
+        }
+      ]
+    },
+    "3578": {
+      "vnum": 3578,
+      "name": "The Garbage Dump",
+      "description": "You stand knee deep in garbage.  YECCH!!!  It smells terrible and who knows what vermin live in these piles of filth...",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3573,
+          "description": "You can return to cleaner lands this way."
+        }
+      }
+    },
+    "3579": {
+      "vnum": 3579,
+      "name": "A Quieter Section Of The Inn",
+      "description": "There seems to be no one in this end of the Woodsman, probably a safe place to rest and lick your wounds...",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3574,
+          "description": "You see the common room."
+        }
+      }
+    },
+    "3581": {
+      "vnum": 3581,
+      "name": "On The Trail Of The Horsemen",
+      "description": "The path continues east and west of here.  You notice fresh tracks in the soft ground that show the horsemen fled to the west.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3575,
+          "description": "Back to ambush point."
+        },
+        "west": {
+          "to_room": 3582,
+          "description": "The trail continues."
+        }
+      }
+    },
+    "3582": {
+      "vnum": 3582,
+      "name": "On The Trail Of The Horsemen",
+      "description": "The path continues east and south.  You notice fresh tracks in the soft ground that show the horsemen turned, and fled south.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3581,
+          "description": "The trail continues."
+        },
+        "south": {
+          "to_room": 3583,
+          "description": "The tracks lead south."
+        }
+      }
+    },
+    "3583": {
+      "vnum": 3583,
+      "name": "On The Trail Of The Horsemen",
+      "description": "The trail of the horsemen continues east and north along this path through the forest.  The tracks are still fresh, so they must be near.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3582,
+          "description": "The trail continues."
+        },
+        "west": {
+          "to_room": 3584,
+          "description": "The tracks lead east."
+        }
+      }
+    },
+    "3584": {
+      "vnum": 3584,
+      "name": "A Dead End Trail",
+      "description": "The path comes to an abrupt end here, as the trees close around you and make any further exploration impossible.  Fresh tracks cover the ground, and end right here.  The horsemen must be nearby.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3583,
+          "description": "Back to along the trail."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3507,
+          "max": 4
+        },
+        {
+          "vnum": 3507,
+          "max": 4
         }
       ]
     }
@@ -286,89 +995,276 @@
   "mobs": {
     "3500": {
       "vnum": 3500,
-      "name": "a sewer rat",
-      "short_desc": "A large sewer rat",
-      "long_desc": "A large rat with matted fur scurries around, looking for food.",
-      "level": 1,
-      "hp_dice": "1d6+5",
-      "damage_dice": "1d3",
-      "gold": 0,
-      "exp": 10,
-      "alignment": 0,
-      "flags": [],
-      "special": null
+      "name": "wyvern",
+      "short_desc": "the wyvern",
+      "long_desc": "A monstrous wyvern slowly circles just above your head.",
+      "level": 8,
+      "alignment": -700,
+      "hp_dice": "2d6+1",
+      "damage_dice": "2d10+90",
+      "gold": 1787,
+      "exp": 8,
+      "armor_class": 3,
+      "flags": [
+        "sentinel",
+        "stay_zone",
+        "aggr_good",
+        "no_bash"
+      ],
+      "description": "This huge winged creature looks really menacing as it circles only inches\nabove your head, flapping its wings and squawking very loudly."
     },
     "3501": {
       "vnum": 3501,
-      "name": "a giant centipede",
-      "short_desc": "A giant centipede",
-      "long_desc": "A massive centipede with glistening chitin crawls along the walls.",
-      "level": 2,
-      "hp_dice": "2d6+10",
-      "damage_dice": "1d4",
-      "gold": 0,
-      "exp": 25,
-      "alignment": 0,
-      "flags": [],
-      "special": null
+      "name": "goblin",
+      "short_desc": "the goblin",
+      "long_desc": "A mountain goblin is wandering around mumbling to himself...",
+      "level": 4,
+      "alignment": -250,
+      "hp_dice": "1d8+0",
+      "damage_dice": "1d1+55",
+      "gold": 325,
+      "exp": 8,
+      "armor_class": 6,
+      "flags": [
+        "aggressive",
+        "stay_zone",
+        "memory",
+        "helper"
+      ],
+      "description": "You see before you a small and twisted creature with knotted muscles and\ndisgustingly green skin.  Doesn't look like the type you'd invite to dinner.",
+      "equipment": {
+        "wield": 3502
+      }
     },
     "3502": {
       "vnum": 3502,
-      "name": "the Rat King",
-      "short_desc": "The Rat King",
-      "long_desc": "An enormous, bloated rat with malevolent intelligence in its eyes.",
-      "level": 5,
-      "hp_dice": "5d8+25",
-      "damage_dice": "1d6+2",
-      "gold": 50,
-      "exp": 150,
-      "alignment": -300,
+      "name": "goblin",
+      "short_desc": "the goblin lieutenant",
+      "long_desc": "A goblin lieutenant stands here, attempting to get his men in order.",
+      "level": 7,
+      "alignment": -600,
+      "hp_dice": "2d5+1",
+      "damage_dice": "1d12+100",
+      "gold": 1150,
+      "exp": 8,
+      "armor_class": 3,
       "flags": [
-        "sentinel"
+        "stay_zone",
+        "aggr_good",
+        "memory",
+        "helper"
       ],
-      "special": null
+      "description": "The goblin lieutenant is rather angry, and looking for one of his men to\nbeat up upon, but maybe you will do just fine...",
+      "equipment": {
+        "wield": 3500
+      }
     },
     "3503": {
       "vnum": 3503,
-      "name": "a slime creature",
-      "short_desc": "A pulsating slime creature",
-      "long_desc": "A blob of animated slime oozes across the floor.",
-      "level": 3,
-      "hp_dice": "3d6+15",
-      "damage_dice": "1d5",
-      "gold": 0,
-      "exp": 40,
-      "alignment": 0,
-      "flags": [],
-      "special": null
+      "name": "goblin",
+      "short_desc": "the goblin leader",
+      "long_desc": "The goblin leader surveys the room.",
+      "level": 9,
+      "alignment": -900,
+      "hp_dice": "2d5+3",
+      "damage_dice": "1d12+120",
+      "gold": 4500,
+      "exp": 8,
+      "armor_class": 1,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "aggr_good",
+        "memory",
+        "helper"
+      ],
+      "description": "The leader doesn't look too happy that you have found him here.  He grabs\nfor his shortsword and lunges for your neck.",
+      "equipment": {
+        "wield": 3504
+      }
     },
     "3504": {
       "vnum": 3504,
-      "name": "a filthy scavenger",
-      "short_desc": "A filthy scavenger",
-      "long_desc": "A ragged figure picks through refuse, collecting shiny objects.",
+      "name": "boy",
+      "short_desc": "the small boy",
+      "long_desc": "A small boy sits here, licking his wounds.",
       "level": 4,
-      "hp_dice": "4d6+20",
-      "damage_dice": "1d5+1",
-      "gold": 25,
-      "exp": 75,
-      "alignment": -100,
+      "alignment": 500,
+      "hp_dice": "1d8+0",
+      "damage_dice": "1d12+47",
+      "gold": 300,
+      "exp": 5,
+      "armor_class": 6,
       "flags": [
-        "thief",
-        "sentinel"
+        "sentinel",
+        "wimpy"
       ],
-      "special": null
+      "description": "The poor boy has numerous cuts and scratches, but appears to be all right.\nHe is apparently the only survivor of the ambush.",
+      "equipment": {
+        "hold": 3508
+      }
+    },
+    "3505": {
+      "vnum": 3505,
+      "name": "innkeeper",
+      "short_desc": "the Innkeeper",
+      "long_desc": "The Innkeeper stands here, cleaning glasses.",
+      "level": 10,
+      "alignment": 400,
+      "hp_dice": "2d8+1",
+      "damage_dice": "1d12+200",
+      "gold": 4250,
+      "exp": 8,
+      "armor_class": 1,
+      "flags": [
+        "sentinel",
+        "stay_zone",
+        "memory",
+        "helper"
+      ],
+      "description": "The Innkeeper now spends most of his days waiting for customers, while the\nnights are spent watching out for goblins.  His inn is no longer the happy\nplace that is used to be in days past."
+    },
+    "3506": {
+      "vnum": 3506,
+      "name": "bard",
+      "short_desc": "the bard",
+      "long_desc": "A sullen bard is here, drinking away his problems.",
+      "level": 8,
+      "alignment": 600,
+      "hp_dice": "2d6+0",
+      "damage_dice": "1d12+110",
+      "gold": 2625,
+      "exp": 6,
+      "armor_class": 3,
+      "flags": [
+        "sentinel",
+        "stay_zone",
+        "memory",
+        "helper"
+      ],
+      "description": "You can smell the alcohol on his breath from across the room.  This poor\nbard has been sitting here quite a while, drinking himself into oblivion.",
+      "equipment": {
+        "wield": 3502
+      }
+    },
+    "3507": {
+      "vnum": 3507,
+      "name": "horseman",
+      "short_desc": "the dark horseman",
+      "long_desc": "A dark horseman is here, mounted on his black steed.",
+      "level": 8,
+      "alignment": -900,
+      "hp_dice": "1d5+7",
+      "damage_dice": "1d12+97",
+      "gold": 2500,
+      "exp": 8,
+      "armor_class": 4,
+      "flags": [
+        "stay_zone",
+        "wimpy",
+        "helper"
+      ],
+      "description": "The man is obviously an outlaw, and has no qualms about slashing you into\nlittle bits.",
+      "equipment": {
+        "body": 3503
+      }
     }
   },
   "objects": {
-    "52": {
-      "vnum": 52,
-      "name": "a rusty coin",
-      "short_desc": "a rusty old coin",
-      "room_desc": "A rusty coin lies here.",
-      "type": "money",
-      "weight": 0,
-      "cost": 5
+    "3500": {
+      "vnum": 3500,
+      "name": "sword",
+      "short_desc": "a small sword",
+      "room_desc": "A small sword lies here.",
+      "item_type": "weapon",
+      "weight": 3,
+      "value": 60,
+      "damage_dice": "1d6",
+      "weapon_type": "pierce"
+    },
+    "3501": {
+      "vnum": 3501,
+      "name": "sword",
+      "short_desc": "a fine long sword",
+      "room_desc": "A long sword has been left here.",
+      "item_type": "weapon",
+      "weight": 8,
+      "value": 600,
+      "damage_dice": "1d9",
+      "weapon_type": "slash"
+    },
+    "3502": {
+      "vnum": 3502,
+      "name": "club",
+      "short_desc": "a wooden club",
+      "room_desc": "A simple looking wooden club is here.",
+      "item_type": "weapon",
+      "weight": 3,
+      "value": 12,
+      "damage_dice": "1d3",
+      "weapon_type": "pound"
+    },
+    "3503": {
+      "vnum": 3503,
+      "name": "jacket",
+      "short_desc": "a studded leather jacket",
+      "room_desc": "A studded leather jacket is lying on the ground.",
+      "item_type": "armor",
+      "weight": 20,
+      "value": 500,
+      "armor_bonus": 5
+    },
+    "3504": {
+      "vnum": 3504,
+      "name": "spear",
+      "short_desc": "a small spear",
+      "room_desc": "A small spear lies here.",
+      "item_type": "weapon",
+      "weight": 15,
+      "value": 500,
+      "damage_dice": "5d1",
+      "weapon_type": "pierce"
+    },
+    "3505": {
+      "vnum": 3505,
+      "name": "corpse",
+      "short_desc": "a mutilated corpse",
+      "room_desc": "A mutilated corpse has been left on the ground here.",
+      "item_type": "container",
+      "weight": 25,
+      "value": 0,
+      "capacity": 20
+    },
+    "3506": {
+      "vnum": 3506,
+      "name": "corpse",
+      "short_desc": "a mutilated corpse",
+      "room_desc": "A mutilated corpse has been left on the ground here.",
+      "item_type": "container",
+      "weight": 25,
+      "value": 0,
+      "capacity": 20
+    },
+    "3507": {
+      "vnum": 3507,
+      "name": "dagger",
+      "short_desc": "an ornate dagger",
+      "room_desc": "A beautiful looking dagger is stuck in the ground.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 1000,
+      "damage_dice": "3d3",
+      "weapon_type": "pierce"
+    },
+    "3508": {
+      "vnum": 3508,
+      "name": "gyroscope",
+      "short_desc": "the gyroscope",
+      "room_desc": "A small toy is spinning about on the ground here.",
+      "item_type": "armor",
+      "weight": 1,
+      "value": 25,
+      "armor_bonus": 5
     }
   }
 }

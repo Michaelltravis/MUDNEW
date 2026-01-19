@@ -1,0 +1,236 @@
+{
+  "number": 12,
+  "name": "God Simplex",
+  "lifespan": 10,
+  "rooms": {
+    "1200": {
+      "vnum": 1200,
+      "name": "The Meeting Room Of The Gods",
+      "description": "The meeting room is plain and very simple.  A circular table sits in the middle of the room, lit by some unseen light source.  There are many chairs around the table, all empty.  The Immortal Board Room is to the north.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1204,
+          "description": "The Immortal Board Room can be seen to the north."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1202,
+          "max": 2
+        }
+      ]
+    },
+    "1201": {
+      "vnum": 1201,
+      "name": "The Inn Of The Gods",
+      "description": "The Inn of the Gods is a small room, holding only a shelf with many small precious stones on it.  When a God comes to rent his belongings, his essence is stored in the stones.  The Immortal Board Room is to the south.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "private"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 1204,
+          "description": "The Immortal Board Room can be seen to the south."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1200,
+          "max": 1
+        },
+        {
+          "vnum": 1202,
+          "max": 2
+        }
+      ]
+    },
+    "1202": {
+      "vnum": 1202,
+      "name": "The Ice Box Of The Gods",
+      "description": "The Ice Box is for little boys and girls that cannot play nice. Be good and maybe someone will come and get you.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "peaceful",
+        "soundproof",
+        "no_magic"
+      ],
+      "exits": {},
+      "obj_resets": [
+        {
+          "vnum": 3097,
+          "max": 1
+        }
+      ]
+    },
+    "1203": {
+      "vnum": 1203,
+      "name": "The Gods' Mortal Board Room",
+      "description": "Here the Gods have magically created an exact copy of the mortal board room.  Any God can easily post and read messages from the mortal board room without being seen by any mortals.  The Immortal Board Room is to the west.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 1204,
+          "description": "The Immortal Board Room can be seen to the west."
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 3099,
+          "max": 2
+        }
+      ]
+    },
+    "1204": {
+      "vnum": 1204,
+      "name": "The Immortal Board Room",
+      "description": "The main hang out of the Gods, the Immortal Board Room is the place to be.  Gods exchange messages here most every day.  The mortal board room is to the east and the meeting room for the gods is to the south.  To the north is the Gods' Inn and to the west is a post office for Gods.  There is a large staircase leading down to the main temple in the city of Midgaard.  In the northeast corner you spot a small staircase leading upwards.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 1201,
+          "description": "The Gods' Inn can be seen just to the north."
+        },
+        "east": {
+          "to_room": 1203,
+          "description": "The Mortal Board Room can be seen just to the east."
+        },
+        "south": {
+          "to_room": 1200,
+          "description": "The Gods' Meeting Room is located to the south."
+        },
+        "west": {
+          "to_room": 1205,
+          "description": "The Gods' Post Office is just to the west."
+        },
+        "up": {
+          "to_room": 1206,
+          "description": "There is a small stair in the corner leading up to the social room of the Gods."
+        },
+        "down": {
+          "to_room": 3001,
+          "description": "You see the hustle and bustle of the Temple of Midgaard at the bottom of the stairs."
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 3098,
+          "max": 1
+        }
+      ]
+    },
+    "1205": {
+      "vnum": 1205,
+      "name": "The Post Office Of The Gods",
+      "description": "The Post Office Of The Gods is the same as most Post Offices except that it is not as slow.  Even the Postal service knows not to anger the Gods. Piles of junk mail line the walls.  I guess even Gods get on mailing lists. The Immortal Board Room is to the east.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 1204,
+          "description": "The Immortal Board Room is just to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 1201,
+          "max": 1
+        }
+      ]
+    },
+    "1206": {
+      "vnum": 1206,
+      "name": "The Social Gathering Room",
+      "description": "This elegantly decorated room has one simple purpose.  To socialize with everyone else around in one central location.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "down": {
+          "to_room": 1204,
+          "description": "The Immortal Board Room is just down through the floor.  Funny how you didn't notice that exit before isn't it?"
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 3096,
+          "max": 5
+        }
+      ]
+    }
+  },
+  "mobs": {
+    "1200": {
+      "vnum": 1200,
+      "name": "innkeeper",
+      "short_desc": "the Immortal Innkeeper",
+      "long_desc": "The Immortal Innkeeper is organizing her books here.",
+      "level": 30,
+      "alignment": 0,
+      "hp_dice": "4d8+5",
+      "damage_dice": "1d49+901",
+      "gold": 0,
+      "exp": 8,
+      "armor_class": -10,
+      "flags": [
+        "special",
+        "sentinel"
+      ],
+      "description": "She appears to be having no problem tallying things up."
+    },
+    "1201": {
+      "vnum": 1201,
+      "name": "postmaster",
+      "short_desc": "the Immortal Postmaster",
+      "long_desc": "The Immortal Postmaster is hard at work here.",
+      "level": 30,
+      "alignment": 0,
+      "hp_dice": "4d8+5",
+      "damage_dice": "1d49+901",
+      "gold": 0,
+      "exp": 8,
+      "armor_class": -10,
+      "flags": [
+        "special",
+        "sentinel"
+      ],
+      "description": "Scary... a postal worker... working?"
+    },
+    "1202": {
+      "vnum": 1202,
+      "name": "being",
+      "short_desc": "the wandering spirit",
+      "long_desc": "A strange amorphous being wanders these halls eternally cleaning.",
+      "level": 30,
+      "alignment": 0,
+      "hp_dice": "4d8+5",
+      "damage_dice": "1d49+901",
+      "gold": 0,
+      "exp": 8,
+      "armor_class": -10,
+      "flags": [
+        "special",
+        "scavenger",
+        "stay_zone",
+        "no_bash"
+      ],
+      "description": "This spirit, having lived out its days in the mortal world, now\nworks off its final sins by doing menial labour in this realm's\npurgatory.  In this case, those chores seem to be cleaning up\nafter the immortals of the land."
+    }
+  },
+  "objects": {}
+}

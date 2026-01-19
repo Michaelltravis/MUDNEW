@@ -1,0 +1,1574 @@
+{
+  "number": 64,
+  "name": "Rand's Tower",
+  "lifespan": 20,
+  "rooms": {
+    "6400": {
+      "vnum": 6400,
+      "name": "A Mountain Trail",
+      "description": "This trail leads up, up, up into the mountains.  You hope you don't fall down, because that would hurt, hurt, hurt!  The trail continues to the east, and you can go back down to the small hidden valley to the west.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 6401,
+          "description": ""
+        },
+        "west": {
+          "to_room": 4078,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 6400,
+          "max": 3
+        }
+      ]
+    },
+    "6401": {
+      "vnum": 6401,
+      "name": "A Mountain Trail",
+      "description": "You're really high up now.  You can keep going even farther up into the mountains to the east, or go back down to the west.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 6402,
+          "description": ""
+        },
+        "west": {
+          "to_room": 6400,
+          "description": ""
+        }
+      }
+    },
+    "6402": {
+      "vnum": 6402,
+      "name": "A Mountain Trail",
+      "description": "Wispy clouds are beginning to surround you now, and your ears pop due to the altitude.  To the east, you see the summit of the mountain, and from the way the nearby mountains are arranged behind it, you believe you're on your way to a big valley.  You can also go down to the west.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 6403,
+          "description": ""
+        },
+        "west": {
+          "to_room": 6401,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 6400,
+          "max": 3
+        }
+      ]
+    },
+    "6403": {
+      "vnum": 6403,
+      "name": "Near The Mountain's Peak",
+      "description": "The peak of this mountain is another couple hundred feet above you, but here is where the trail leads down into the valley...  What an odd valley!    The valley seems to have been filled up by a hundreds of feet of lava many years ago.  It gives the valley an odd, 'flat' look and darkish ground.  The path leads down east into the valley, and west back to civilization.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 6404,
+          "description": ""
+        },
+        "west": {
+          "to_room": 6402,
+          "description": ""
+        }
+      }
+    },
+    "6404": {
+      "vnum": 6404,
+      "name": "The Trail To The Valley",
+      "description": "The trail leads down into the valley, where, by judging by the height of the trees, the lava had cooled tens of decades ago.  Down below you see the path lead into the small forest in the valley, and disappear out of sight.  East leads into the valley, West back to civilization.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 6405,
+          "description": ""
+        },
+        "west": {
+          "to_room": 6403,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 6400,
+          "max": 3
+        }
+      ]
+    },
+    "6405": {
+      "vnum": 6405,
+      "name": "In The Valley",
+      "description": "The ground has taken on the texture of dirt on the top, but this valley is far too flat and too rocky to disguise the catastrophe that happened here so long ago.  Looking up to the mountains ringing this area, you notice several mountains look as if they had 'exploded', which is strange, considering that they are not volcanos.    The path leads into the woods to the east, and back up the mountain to the west.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 6406,
+          "description": ""
+        },
+        "west": {
+          "to_room": 6404,
+          "description": ""
+        }
+      }
+    },
+    "6406": {
+      "vnum": 6406,
+      "name": "In A Clearing",
+      "description": "You come to a small clearing now, after walking for several minutes through the silent woods.  An odd block sticks up here and there in   the ground... wait a minute.  These stones seem a little too regular, and from the circle  formation and size you could almost swear that they were... crenellations?  Could some sort of building been buried by the lava here?  A rusty ring sticks out of the earth in the center... a trapdoor?  This is almost too good to be true!",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 6405,
+          "description": ""
+        },
+        "down": {
+          "to_room": 6407,
+          "description": "An ancient trapdoor, grimed with earth and age.",
+          "door": {
+            "name": "trapdoor trap",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      }
+    },
+    "6407": {
+      "vnum": 6407,
+      "name": "A Stairwell",
+      "description": "This small room is the top of a stairwell leading down deep into the tower.  A small trapdoor overhead leaks the light of day around its edges.  To the south is a  wooden door, preserved through the ages by means  unknown.  To the west is a short hall.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 6408,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "west": {
+          "to_room": 6409,
+          "description": ""
+        },
+        "up": {
+          "to_room": 6406,
+          "description": "An ancient trapdoor, grimed with earth and age.",
+          "door": {
+            "name": "trapdoor trap",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "down": {
+          "to_room": 6413,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 6401,
+          "max": 2
+        },
+        {
+          "vnum": 6401,
+          "max": 2
+        }
+      ]
+    },
+    "6408": {
+      "vnum": 6408,
+      "name": "A Linen Closet",
+      "description": "This small room holds many types of linen on shelves  along the walls.  They are undoubtedly preserved by magic against the toil of the ages, since they seem freshly washed and folded.  You wonder what sort of mage could wield so much power to waste on such little things.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 6407,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "extra_descs": {
+        "": "linen shelf shelves"
+      }
+    },
+    "6409": {
+      "vnum": 6409,
+      "name": "A Corridor",
+      "description": "This is only a clean corridor, that leads back to the  stairwell to the east, and has doors leading to other rooms to the north and south.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 6411,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "east": {
+          "to_room": 6407,
+          "description": ""
+        },
+        "south": {
+          "to_room": 6410,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      }
+    },
+    "6410": {
+      "vnum": 6410,
+      "name": "A Bathroom",
+      "description": "This is some sort of bathroom, like you've never seen before...  Water appliances leading from nowhere deliver hot and cold running water to basins that drain to... where?  How strange!",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 6409,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 6419,
+          "max": 1
+        }
+      ]
+    },
+    "6411": {
+      "vnum": 6411,
+      "name": "The Master Bedroom",
+      "description": "This is an opulent room, decorated in silks and gold. There is an ebony desk against one wall, cooled lava rock spilling over its surface from the window it once looked out at.  A nice, spacious closet is filled with clothes just cleaned and pressed.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 6409,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "extra_descs": {
+        "": "closet"
+      },
+      "mob_resets": [
+        {
+          "vnum": 6403,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 6404,
+          "max": 5
+        },
+        {
+          "vnum": 6409,
+          "max": 1
+        }
+      ]
+    },
+    "6412": {
+      "vnum": 6412,
+      "name": "The Library",
+      "description": "A great mages' library is contained on this floor of  the tower.  You feel you could learn anything you wanted to if you only looked and read long enough.  A door opens up back on the stairwell to the east.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 6413,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "west": {
+          "to_room": 6414,
+          "description": "A big bookcase, that looks rather odd.",
+          "door": {
+            "name": "bookcase",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "extra_descs": {
+        "": "book books"
+      },
+      "mob_resets": [
+        {
+          "vnum": 6402,
+          "max": 1
+        }
+      ]
+    },
+    "6413": {
+      "vnum": 6413,
+      "name": "The Stairwell",
+      "description": "This stairwell continues up and down, and there is a door to the west.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 6412,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "up": {
+          "to_room": 6407,
+          "description": ""
+        },
+        "down": {
+          "to_room": 6415,
+          "description": ""
+        }
+      }
+    },
+    "6414": {
+      "vnum": 6414,
+      "name": "A Hidden Hall",
+      "description": "This is a small hidden hall with a secret entrance to the library on the north end of the west wall, and a trapdoor  on the south end.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 6412,
+          "description": "The backside of a movable bookcase.",
+          "door": {
+            "name": "book bookcase",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "down": {
+          "to_room": 6416,
+          "description": "",
+          "door": {
+            "name": "trapdoor trap",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      }
+    },
+    "6415": {
+      "vnum": 6415,
+      "name": "A Stairwell",
+      "description": "This stairwell continues up and down, and there is a door to the west opening up onto this level.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 6417,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "up": {
+          "to_room": 6413,
+          "description": ""
+        },
+        "down": {
+          "to_room": 6422,
+          "description": ""
+        }
+      }
+    },
+    "6416": {
+      "vnum": 6416,
+      "name": "The Hidden Treasure Room",
+      "description": "Jackpot!  A small room filled with treasure chests!  Go get them!",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 6414,
+          "description": "",
+          "door": {
+            "name": "trapdoor trap",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 6416,
+          "max": 1
+        },
+        {
+          "vnum": 6417,
+          "max": 1
+        },
+        {
+          "vnum": 6418,
+          "max": 1
+        }
+      ],
+      "mob_resets": [
+        {
+          "vnum": 6404,
+          "max": 3
+        },
+        {
+          "vnum": 6404,
+          "max": 3
+        },
+        {
+          "vnum": 6404,
+          "max": 1
+        }
+      ]
+    },
+    "6417": {
+      "vnum": 6417,
+      "name": "A Hallway",
+      "description": "This hall runs through the tower.  There's more hall to the west, and doors to your north and south.  A door to the east leads back to the stairwell.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 6419,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "east": {
+          "to_room": 6415,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "south": {
+          "to_room": 6418,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "west": {
+          "to_room": 6420,
+          "description": ""
+        }
+      }
+    },
+    "6418": {
+      "vnum": 6418,
+      "name": "A Servant's Room",
+      "description": "This seems to be a small servant's bedroom, sparsely decorated and outfitted with a bed, nightstand, chair and table, etc.  Nothing real important here.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 6417,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      }
+    },
+    "6419": {
+      "vnum": 6419,
+      "name": "A Servant's Room",
+      "description": "This seems to be a small servant's bedroom, sparsely  decorated and outfitted with a bed, nightstand, chair and table, etc.  Nothing real important here.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 6417,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      }
+    },
+    "6420": {
+      "vnum": 6420,
+      "name": "A Hallway",
+      "description": "This hallway continues to the east, and has a door to  the north.  You could swear that the way this level is arranged... nah, couldn't be.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 6421,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "east": {
+          "to_room": 6417,
+          "description": ""
+        }
+      }
+    },
+    "6421": {
+      "vnum": 6421,
+      "name": "A Servant's Room",
+      "description": "This seems to be a small servant's bedroom, sparsely decorated and outfitted with a bed, nightstand, chair and a table, etc.  Nothing real important here.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 6420,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      }
+    },
+    "6422": {
+      "vnum": 6422,
+      "name": "The Stairwell",
+      "description": "This stairwell leads up and down, and there is a big open room to your west.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 6423,
+          "description": ""
+        },
+        "up": {
+          "to_room": 6415,
+          "description": ""
+        },
+        "down": {
+          "to_room": 6425,
+          "description": ""
+        }
+      }
+    },
+    "6423": {
+      "vnum": 6423,
+      "name": "The Dining Hall",
+      "description": "This is a large dining hall, with a long table that runs down the length of it.  Chairs are set up along the sides to accomodate approximately 10 people.  There are paintings and tapestries on the walls, adding color to the stonework, The cooled lava that had poured in the windows makes the place  seem eerie somehow .  There is a door to the north, and the stairwell is to the east.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 6424,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "east": {
+          "to_room": 6422,
+          "description": ""
+        }
+      },
+      "extra_descs": {
+        "": "tapestry tapestries painting paintings"
+      }
+    },
+    "6424": {
+      "vnum": 6424,
+      "name": "The Kitchen Area",
+      "description": "This is a well-stocked kitchen, the larders still fresh and full as if by magic.  Perhaps this would be a good place to take a break.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 6423,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 6420,
+          "max": 10
+        },
+        {
+          "vnum": 6420,
+          "max": 10
+        }
+      ]
+    },
+    "6425": {
+      "vnum": 6425,
+      "name": "The Stairwell",
+      "description": "The stairwell leads up and down here, and there is a hall you can enter to the west.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 6426,
+          "description": ""
+        },
+        "up": {
+          "to_room": 6422,
+          "description": ""
+        },
+        "down": {
+          "to_room": 6429,
+          "description": ""
+        }
+      }
+    },
+    "6426": {
+      "vnum": 6426,
+      "name": "A Hall",
+      "description": "This area of the tower seems dank and oppressive.  The hall runs north-south, and there is an empty cell to your west.  The stairwell is to your east.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 6427,
+          "description": ""
+        },
+        "east": {
+          "to_room": 6425,
+          "description": ""
+        },
+        "south": {
+          "to_room": 6428,
+          "description": ""
+        }
+      },
+      "extra_descs": {
+        "": "cell cells"
+      }
+    },
+    "6427": {
+      "vnum": 6427,
+      "name": "A Hall",
+      "description": "This is the northern end of the hall.  There are cells to your right and left, empty and awaiting occupants.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 6426,
+          "description": ""
+        }
+      },
+      "extra_descs": {
+        "": "cell cells"
+      }
+    },
+    "6428": {
+      "vnum": 6428,
+      "name": "A Hall",
+      "description": "This is the southern end of the hall.  There are cells to your right and left, empty and awaiting occupants.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 6426,
+          "description": ""
+        }
+      },
+      "extra_descs": {
+        "": "cell cells"
+      }
+    },
+    "6429": {
+      "vnum": 6429,
+      "name": "A Stairwell",
+      "description": "The stairwell continues up and down here.  A large room opens up to the west.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 6430,
+          "description": ""
+        },
+        "up": {
+          "to_room": 6425,
+          "description": ""
+        },
+        "down": {
+          "to_room": 6431,
+          "description": ""
+        }
+      }
+    },
+    "6430": {
+      "vnum": 6430,
+      "name": "A Mage's Office",
+      "description": "A small desk here is cluttered with magically preserved papers and documents.  None seem of value, except perhaps to a historian.  This place seems vaguely uninteresting...",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 6429,
+          "description": ""
+        }
+      },
+      "extra_descs": {
+        "": "desk"
+      }
+    },
+    "6431": {
+      "vnum": 6431,
+      "name": "The Stairwell",
+      "description": "The stairs go up and down here, and there is a room to the west...",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 6432,
+          "description": ""
+        },
+        "up": {
+          "to_room": 6429,
+          "description": ""
+        },
+        "down": {
+          "to_room": 6433,
+          "description": ""
+        }
+      }
+    },
+    "6432": {
+      "vnum": 6432,
+      "name": "A Sitting Room",
+      "description": "This is a simply furnished room, with chairs all about. A fireplace is inset into an inner wall, the chimney undoubtedly directed by magic...    This would be a nice place to rest awhile...",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 6431,
+          "description": ""
+        }
+      }
+    },
+    "6433": {
+      "vnum": 6433,
+      "name": "The Stairwell",
+      "description": "This is where the stairwell finally ends.  There is a hall to your west.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 6434,
+          "description": ""
+        },
+        "up": {
+          "to_room": 6431,
+          "description": ""
+        }
+      }
+    },
+    "6434": {
+      "vnum": 6434,
+      "name": "A Hallway",
+      "description": "This small hallway on the former 'ground floor' ran north- south.  To the east is the stairwell that leads up into  the shadowy recesses of the tower.  To the west is the entrance way to the tower.  The north is completely blocked off by lava, and the way south is still clear.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 6433,
+          "description": ""
+        },
+        "south": {
+          "to_room": 6437,
+          "description": ""
+        },
+        "west": {
+          "to_room": 6435,
+          "description": ""
+        }
+      }
+    },
+    "6435": {
+      "vnum": 6435,
+      "name": "The Entranceway",
+      "description": "This is a grand chamber with giant double-doors to the west.  To the east is the main floor of the tower.  This room is arranged highly attractively and very impressively, with sculptures and tapistries everywhere.  The doors seem impenetrable... you don't think you'd be able to get through them if you really had to...",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 6434,
+          "description": ""
+        },
+        "west": {
+          "to_room": 6436,
+          "description": "These doors seem incredible.  Unfortunately, they're locked.",
+          "door": {
+            "name": "door double",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "extra_descs": {
+        "": "sculpture tapestry sculptures tapestries"
+      }
+    },
+    "6436": {
+      "vnum": 6436,
+      "name": "The Doorway",
+      "description": "This was the entrance to the tower.  Now lava has blocked it up completely.  However:    It seems when the lava came down a man was outside the doors.  He was blasted into the doors, and died instantly, but his skeleton still clutches a staff in perfect  condition...",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 6435,
+          "description": "These double doors have the outline of a man blasted into them...",
+          "door": {
+            "name": "double doors",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 6415,
+          "max": 10
+        }
+      ]
+    },
+    "6437": {
+      "vnum": 6437,
+      "name": "The Hallway",
+      "description": "This is the southern part of the hallway.  There is  a door to the west, barred with gleaming bands of lights. To the north is more hallway.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 6434,
+          "description": ""
+        },
+        "west": {
+          "to_room": 6438,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 6405,
+          "max": 1
+        }
+      ]
+    },
+    "6438": {
+      "vnum": 6438,
+      "name": "The Stairs",
+      "description": "Stairs lead down here into the tower's basement, or you can head east into the main floor of the tower.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 6437,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "down": {
+          "to_room": 6439,
+          "description": ""
+        }
+      }
+    },
+    "6439": {
+      "vnum": 6439,
+      "name": "The Stairs",
+      "description": "Stairs lead up here to the main level, or you can go east to the basement of the tower.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 6440,
+          "description": ""
+        },
+        "up": {
+          "to_room": 6438,
+          "description": ""
+        }
+      }
+    },
+    "6440": {
+      "vnum": 6440,
+      "name": "An Alcove",
+      "description": "This alcove leads into a huge room to your north, and to stairs leading down to the east, and stairs going  up to your west.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 6441,
+          "description": ""
+        },
+        "east": {
+          "to_room": 6442,
+          "description": ""
+        },
+        "west": {
+          "to_room": 6439,
+          "description": ""
+        }
+      }
+    },
+    "6441": {
+      "vnum": 6441,
+      "name": "The Laboratory",
+      "description": "This laboratory has lots of stuff in it.  Beakers, flasks, burners, tongs, mortars and pestles, jars filled with normal things, jars filled with abnormal things, jars filled with things you'd rather not think about... A search could reveal many things...",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 6440,
+          "description": ""
+        }
+      },
+      "extra_descs": {
+        "": "mortar mortars pestle pestles jar jars"
+      },
+      "obj_resets": [
+        {
+          "vnum": 6413,
+          "max": 100
+        },
+        {
+          "vnum": 6414,
+          "max": 100
+        }
+      ]
+    },
+    "6442": {
+      "vnum": 6442,
+      "name": "The Stairs",
+      "description": "Stairs lead down here to the second level of the basement, or back west to the alcove.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 6440,
+          "description": ""
+        },
+        "down": {
+          "to_room": 6443,
+          "description": ""
+        }
+      }
+    },
+    "6443": {
+      "vnum": 6443,
+      "name": "The Stairs",
+      "description": "Stairs lead up here to the first level of the basement, or you can go east to another big room.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 6444,
+          "description": ""
+        },
+        "up": {
+          "to_room": 6442,
+          "description": ""
+        }
+      }
+    },
+    "6444": {
+      "vnum": 6444,
+      "name": "The Summoning Room",
+      "description": "This room is darkly lit by a giant glowing pentagram in the center of the room.  Bands of force encircle some sort of being trapped inside.  You think that going inside would be an EXTREMELY BAD idea...",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 6445,
+          "description": ""
+        },
+        "west": {
+          "to_room": 6443,
+          "description": ""
+        }
+      },
+      "extra_descs": {
+        "": "being"
+      }
+    },
+    "6445": {
+      "vnum": 6445,
+      "name": "Inside A Pentagram",
+      "description": "The small god entrapped by the wizard looks at you with an insane expression.  Four hundred years of imprisonment doesn't do much for one's...     OOPS!     He killed you!    You are dead, R.I.P.",
+      "sector_type": "inside",
+      "flags": [
+        "death",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 6444,
+          "description": ""
+        }
+      }
+    }
+  },
+  "mobs": {
+    "6400": {
+      "vnum": 6400,
+      "name": "goat",
+      "short_desc": "the mountain goat",
+      "long_desc": "A mountain goat nibbles at a piece of grass here.",
+      "level": 8,
+      "alignment": 0,
+      "hp_dice": "2d5+1",
+      "damage_dice": "3d5+95",
+      "gold": 2000,
+      "exp": 8,
+      "armor_class": 3,
+      "flags": [
+        "stay_zone",
+        "wimpy"
+      ],
+      "description": "This goat is acclimated to the rugged terrain of the \nmountains.  It looks at you and shies away a little."
+    },
+    "6401": {
+      "vnum": 6401,
+      "name": "demon",
+      "short_desc": "the Demon of Decay",
+      "long_desc": "A cloaked and clawed demon of decay comes at you viciously!",
+      "level": 12,
+      "alignment": -1000,
+      "hp_dice": "2d7+1",
+      "damage_dice": "3d5+145",
+      "gold": 5000,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "sentinel",
+        "aware",
+        "aggressive",
+        "memory",
+        "helper",
+        "no_charm",
+        "no_summmon",
+        "no_sleep",
+        "no_blind"
+      ],
+      "description": "This demon has pure malevolence for anything living.  \nOops!  You're living!  I guess that means you!"
+    },
+    "6402": {
+      "vnum": 6402,
+      "name": "book",
+      "short_desc": "the Book Monster",
+      "long_desc": "A mound of books rise up into a human shape and tries to hit you!",
+      "level": 14,
+      "alignment": 0,
+      "hp_dice": "2d8+2",
+      "damage_dice": "1d1+199",
+      "gold": 9000,
+      "exp": 8,
+      "armor_class": 1,
+      "flags": [
+        "sentinel",
+        "aware",
+        "aggressive",
+        "memory",
+        "helper",
+        "no_charm",
+        "no_summmon",
+        "no_sleep",
+        "no_bash",
+        "no_blind"
+      ],
+      "description": "Ironically enough, the book-monster's head is War and\nPeace.  Hmm.",
+      "inventory": [
+        6410,
+        6411
+      ]
+    },
+    "6403": {
+      "vnum": 6403,
+      "name": "bad",
+      "short_desc": "a Bad Feeling",
+      "long_desc": "A bad feeling chokes your throat.",
+      "level": 18,
+      "alignment": 0,
+      "hp_dice": "3d8+0",
+      "damage_dice": "1d1+249",
+      "gold": 20000,
+      "exp": 8,
+      "armor_class": 0,
+      "flags": [
+        "sentinel",
+        "aware",
+        "aggressive",
+        "memory",
+        "helper",
+        "no_charm",
+        "no_summmon",
+        "no_sleep",
+        "no_bash",
+        "no_blind"
+      ],
+      "description": "It resembles a lot of other bad feelings you've had,\nbut a lot more tangible... magic?"
+    },
+    "6404": {
+      "vnum": 6404,
+      "name": "nightmare",
+      "short_desc": "Your Worst Nightmare",
+      "long_desc": "Your worst nightmare coalesces in front of you and attacks!",
+      "level": 19,
+      "alignment": 0,
+      "hp_dice": "3d8+2",
+      "damage_dice": "1d1+299",
+      "gold": 22500,
+      "exp": 8,
+      "armor_class": 0,
+      "flags": [
+        "sentinel",
+        "aware",
+        "aggressive",
+        "memory",
+        "helper",
+        "no_charm",
+        "no_summmon",
+        "no_sleep",
+        "no_bash",
+        "no_blind"
+      ],
+      "description": "It looks like you deepest, darkest fears personified.\nWait a minute!  It IS your deepest, darkest fears\npersonified!"
+    },
+    "6405": {
+      "vnum": 6405,
+      "name": "guardian",
+      "short_desc": "the Guardian",
+      "long_desc": "A guardian guards the door.  It looks at you and attacks!",
+      "level": 18,
+      "alignment": 0,
+      "hp_dice": "3d6+2",
+      "damage_dice": "1d1+249",
+      "gold": 17500,
+      "exp": 8,
+      "armor_class": 0,
+      "flags": [
+        "sentinel",
+        "aware",
+        "aggressive",
+        "memory",
+        "helper",
+        "no_charm",
+        "no_summmon",
+        "no_sleep",
+        "no_blind"
+      ],
+      "description": "The guardian guards the door.  That's about all its\nbrain can handle: guarding."
+    }
+  },
+  "objects": {
+    "6400": {
+      "vnum": 6400,
+      "name": "dagger",
+      "short_desc": "a glowing dagger",
+      "room_desc": "A glowing dagger glows here.",
+      "item_type": "weapon",
+      "weight": 1,
+      "value": 1000,
+      "damage_dice": "1d4",
+      "weapon_type": "pierce"
+    },
+    "6401": {
+      "vnum": 6401,
+      "name": "platemail",
+      "short_desc": "the glowing platemail",
+      "room_desc": "Some glowing platemail lies in a heap here.",
+      "item_type": "armor",
+      "weight": 150,
+      "value": 30000,
+      "armor_bonus": 15
+    },
+    "6402": {
+      "vnum": 6402,
+      "name": "agate",
+      "short_desc": "an agate",
+      "room_desc": "A small gem lies here.",
+      "item_type": "treasure",
+      "weight": 1,
+      "value": 5000
+    },
+    "6403": {
+      "vnum": 6403,
+      "name": "jade",
+      "short_desc": "a piece of jade",
+      "room_desc": "A small jewel gleams here.",
+      "item_type": "treasure",
+      "weight": 1,
+      "value": 10000
+    },
+    "6404": {
+      "vnum": 6404,
+      "name": "sculpture",
+      "short_desc": "a piece of sculpture",
+      "room_desc": "A nice piece of sculpture is here.",
+      "item_type": "treasure",
+      "weight": 75,
+      "value": 20000
+    },
+    "6405": {
+      "vnum": 6405,
+      "name": "vial",
+      "short_desc": "a vial of dragon's blood",
+      "room_desc": "A small vial filled with a red fluid lies in the dust here.",
+      "item_type": "potion",
+      "weight": 5,
+      "value": 48000
+    },
+    "6406": {
+      "vnum": 6406,
+      "name": "amulet",
+      "short_desc": "an amulet",
+      "room_desc": "An odd looking amulet has been discarded here.",
+      "item_type": "armor",
+      "weight": 3,
+      "value": 20000,
+      "armor_bonus": 0
+    },
+    "6407": {
+      "vnum": 6407,
+      "name": "pole",
+      "short_desc": "a tent pole",
+      "room_desc": "A tent pole has been tossed away here.",
+      "item_type": "wand",
+      "weight": 10,
+      "value": 25000
+    },
+    "6408": {
+      "vnum": 6408,
+      "name": "bag",
+      "short_desc": "a bag of powder of wealth",
+      "room_desc": "A small bag filled with powder of wealth lies here.",
+      "item_type": "money",
+      "weight": 1,
+      "value": 100000
+    },
+    "6409": {
+      "vnum": 6409,
+      "name": "desk",
+      "short_desc": "a desk",
+      "room_desc": "There is an ebony desk here.",
+      "item_type": "container",
+      "weight": 800,
+      "value": 0,
+      "capacity": 100
+    },
+    "6410": {
+      "vnum": 6410,
+      "name": "book",
+      "short_desc": "the Book of Chaos",
+      "room_desc": "A book with a title written in moving letters rests here.",
+      "item_type": "wand",
+      "weight": 25,
+      "value": 100000
+    },
+    "6411": {
+      "vnum": 6411,
+      "name": "book",
+      "short_desc": "the Book of the Elder",
+      "room_desc": "A grey-bound book lies here.",
+      "item_type": "wand",
+      "weight": 25,
+      "value": 300000
+    },
+    "6412": {
+      "vnum": 6412,
+      "name": "lens",
+      "short_desc": "the Occluded Lens",
+      "room_desc": "A smoky lens about a foot around has been scuffled in the dirt here.",
+      "item_type": "light",
+      "weight": 20,
+      "value": 200000,
+      "light_hours": 0
+    },
+    "6413": {
+      "vnum": 6413,
+      "name": "mevais",
+      "short_desc": "a leaf of mevais",
+      "room_desc": "A small black leaf of a mevais plant lies here, well preserved.",
+      "item_type": "potion",
+      "weight": 1,
+      "value": 0
+    },
+    "6414": {
+      "vnum": 6414,
+      "name": "bottle",
+      "short_desc": "a bottle of peska",
+      "room_desc": "There is a bottle of a milky fluid here.",
+      "item_type": "potion",
+      "weight": 12,
+      "value": 15000
+    },
+    "6415": {
+      "vnum": 6415,
+      "name": "staff",
+      "short_desc": "Rand's staff",
+      "room_desc": "There is a metal-shod staff here.",
+      "item_type": "armor",
+      "weight": 7,
+      "value": 100000,
+      "armor_bonus": 8
+    },
+    "6416": {
+      "vnum": 6416,
+      "name": "chest",
+      "short_desc": "a wooden chest",
+      "room_desc": "There is a wooden chest here.",
+      "item_type": "container",
+      "weight": 0,
+      "value": 0,
+      "capacity": 500
+    },
+    "6417": {
+      "vnum": 6417,
+      "name": "chest",
+      "short_desc": "a wooden chest",
+      "room_desc": "There is a wooden chest here.",
+      "item_type": "container",
+      "weight": 0,
+      "value": 0,
+      "capacity": 500
+    },
+    "6418": {
+      "vnum": 6418,
+      "name": "chest",
+      "short_desc": "a wooden chest",
+      "room_desc": "There is a wooden chest here.",
+      "item_type": "container",
+      "weight": 0,
+      "value": 0,
+      "capacity": 500
+    },
+    "6419": {
+      "vnum": 6419,
+      "name": "basin",
+      "short_desc": "a water basin",
+      "room_desc": "A basin filled with crisp, clean water is here.",
+      "item_type": "drinkcon",
+      "weight": 100,
+      "value": 0,
+      "capacity": 100,
+      "current": 100
+    },
+    "6420": {
+      "vnum": 6420,
+      "name": "food",
+      "short_desc": "some food",
+      "room_desc": "There's some food lying here.",
+      "item_type": "food",
+      "weight": 3,
+      "value": 20,
+      "nutrition": 8
+    }
+  }
+}

@@ -7,7 +7,7 @@
     12
   ],
   "author": "RealmsMUD Team",
-  "reset_time": 300,
+  "reset_time": 780,
   "rooms": {
     "9000": {
       "title": "Edge of the Murky Swamp",
@@ -15,7 +15,8 @@
       "terrain": "swamp",
       "exits": {
         "north": {
-          "to_room": 4099
+          "to_room": 4050,
+          "description": "You see an exit north."
         },
         "south": {
           "to_room": 9001

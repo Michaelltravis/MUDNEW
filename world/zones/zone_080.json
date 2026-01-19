@@ -2,20 +2,28 @@
   "number": 80,
   "name": "The Dragon's Domain",
   "builders": "Realmers",
-  "lifespan": 60,
+  "lifespan": 45,
   "reset_mode": 2,
   "top": 8099,
   "rooms": {
     "8001": {
       "vnum": 8001,
       "name": "The Mountain Pass",
-      "description": "The path winds ever upward through jagged peaks. The air grows\nthin and cold. Far below, the world stretches out like a map.\nAhead, a cave mouth glows with inner fire - the lair of the \nlegendary dragon Scorathax.",
+      "description": "The path winds ever upward through jagged peaks. The air grows\nthin and cold. Far below, the world stretches out like a map.\nAhead, a cave mouth glows with inner fire - the lair of the \nlegendary dragon Scorathax. A swirling portal of chaotic energy\nhovers high above, leading to another plane of existence.",
       "sector_type": "mountain",
       "flags": [],
       "exits": {
         "north": {
           "to_room": 8002,
           "description": null
+        },
+        "south": {
+          "to_room": 5065,
+          "description": "A treacherous mountain path descends toward the desert caves below."
+        },
+        "up": {
+          "to_room": 16000,
+          "description": "A swirling portal of chaotic energy leads upward to another plane."
         }
       },
       "extra_descs": {},

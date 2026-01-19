@@ -7,7 +7,7 @@
     18
   ],
   "author": "RealmsMUD Team",
-  "reset_time": 300,
+  "reset_time": 1140,
   "rooms": {
     "11000": {
       "title": "Forest Path to Silversong",
@@ -15,7 +15,8 @@
       "terrain": "forest",
       "exits": {
         "south": {
-          "to_room": 4001
+          "to_room": 6000,
+          "description": "You see an exit south."
         },
         "north": {
           "to_room": 11001

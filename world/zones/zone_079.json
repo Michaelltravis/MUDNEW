@@ -1,0 +1,896 @@
+{
+  "number": 79,
+  "name": "Redferne's Residence",
+  "lifespan": 50,
+  "rooms": {
+    "7900": {
+      "vnum": 7900,
+      "name": "Outside Redferne's Residence",
+      "description": "A huge cloud forms the plateau on which you are now standing.  The wind here is absolutely quiet and the sun is shining warmly upon you. From under the cloud you can hear the faint sounds of Midgaard.  Right before you to the north lies the grand Mansion of Naris.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "private"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7901,
+          "description": "You see an enormous arched gate leading into this magnificent building.",
+          "door": {
+            "name": "gate huge arched",
+            "state": "open",
+            "locked": true,
+            "key_vnum": 7901
+          }
+        },
+        "down": {
+          "to_room": 7918,
+          "description": "You see a Huge Chain that anchors the Mansion of Naris to the ground."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 7900,
+          "max": 1
+        }
+      ]
+    },
+    "7901": {
+      "vnum": 7901,
+      "name": "The Southern End Of The Hall",
+      "description": "You are standing in a vast hall that is dimly lit, but wherever the light comes from, is a mystery.  The walls seem to radiate warmth and give the pleasent feeling of being welcome here.  A large portrait is hanging on one of the walls.  A large wooden staircase leads up into the tower.  To the east there is a high passage away from the hall. This ends shortly after by a tall oak door.  The enormous hall extends further north from here.  To the south you can see a huge, and VERY  heavy-looking iron-wrought door.  It looks like this is the only exit from this magnificent old house.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors",
+        "private"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7904,
+          "description": "The hallway continues that way.  You can see more doorways under the wooden staircase in that direction."
+        },
+        "east": {
+          "to_room": 7910,
+          "description": "You see a tall oak door there.  It looks quite tightly closed to you. On it little runes are chiselled into the wood.",
+          "door": {
+            "name": "door oak tall",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "south": {
+          "to_room": 7900,
+          "description": "Here you see a REAL door.  It would be more proper to call this a 'GATE', rather than a 'door'.  It is really HUGE!  On it hangs a large sign with very large letters spelling:                  EMERGENCY EXIT",
+          "door": {
+            "name": "gate iron huge",
+            "state": "open",
+            "locked": true,
+            "key_vnum": 7901
+          }
+        },
+        "west": {
+          "to_room": 7902,
+          "description": "This looks like a 'door' in the meaning of the word.  The ashen wood is painted in a peculiar yellow color.  Small letters are written with black on it.",
+          "door": {
+            "name": "door ashen ash yellow",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "up": {
+          "to_room": 7909,
+          "description": "You see the staircase extending upwards into the very high tower. It ends in what seems like a large bedroom up there."
+        }
+      },
+      "extra_descs": {
+        "": "letters"
+      }
+    },
+    "7902": {
+      "vnum": 7902,
+      "name": "Redferne's Library",
+      "description": "This is truly a magnificent place!  Books and scrolls lie together on every shelf.  A large globe, with the map of the world upon it, stands in the dimly lit north-western corner of the room.  Two large and comfortable looking leather armchairs adorn the center of the library together with a huge oak desk.  Dim light radiates from an enormous crystal chandelier hanging down from the ceiling approximately 10 feet off the floor.  To the east there is a great old ashen door.  A large glass window is set in the west wall.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors",
+        "private"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 7901,
+          "description": "You can see an old ashen door, painted in a peculiar yellow color.",
+          "door": {
+            "name": "door ash ashen",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "extra_descs": {
+        "": "river"
+      }
+    },
+    "7903": {
+      "vnum": 7903,
+      "name": "The Artifact Room Of Naris",
+      "description": "This is gloomy and dark room with only a faint light radiating from the walls.  A bunch of funny-looking items fill the center of the room.  There is no furniture here what-so-ever.  The only way out seems to be west, through the low steel door.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors",
+        "private"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 7910,
+          "description": "You see only the back of a safe's steel door.",
+          "door": {
+            "name": "door steel safe",
+            "state": "open",
+            "locked": true,
+            "key_vnum": 7900
+          }
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 7904,
+          "max": 1
+        }
+      ]
+    },
+    "7904": {
+      "vnum": 7904,
+      "name": "The Northern End Of The Hall",
+      "description": "You are standing in the northern end of the huge hall.  This part is under the grand wooden staircase so the light seems to be a little less bright here, but this doesn't affect your sight at all.  To the north lies the kitchen.  To the south lies the southern end of the hall.  To the east there is a huge metal door.  To the west there is a large aspenwood door.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors",
+        "private"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7906,
+          "description": ""
+        },
+        "east": {
+          "to_room": 7913,
+          "description": "You see a huge metal door.  From it a foul stench emanates.  The smell is the most awful experience in your entire life.  A thought seeps through this terrible stench and into your mind: 'Monsters', you feel BAD about opening that door.",
+          "door": {
+            "name": "door metal huge",
+            "state": "open",
+            "locked": true,
+            "key_vnum": null
+          }
+        },
+        "south": {
+          "to_room": 7901,
+          "description": "The rest of the hall lies in that direction, and so does the exit."
+        },
+        "west": {
+          "to_room": 7905,
+          "description": "The door has 'SITTING ROOM' written on it.  It is made from Aspenwood and is beautifully carved with small elves as main issue of sculpture.",
+          "door": {
+            "name": "door aspen wood",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      }
+    },
+    "7905": {
+      "vnum": 7905,
+      "name": "The Sitting Room Of Naris",
+      "description": "You are standing in the middle of a really comfortable place.  The walls are decorated with paintings of smiling Kings and Queens.  The most attractive picture is one of a Prince in shining armour.  By one of the walls there is an old armchair.  The only exit is through the aspenwood door to the east.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors",
+        "private"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 7904,
+          "description": "The door seems to be a very HEAVY door, carved completely from the trunk of an Aspen tree.",
+          "door": {
+            "name": "door aspen heavy",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "extra_descs": {
+        "": "chair armchair"
+      }
+    },
+    "7906": {
+      "vnum": 7906,
+      "name": "The Kitchen Of Naris",
+      "description": "This must be the place of food and drink.  You can hear the faint noise of rats feasting on meat and bread from somewhere undeterminable.  The sound makes you feel the agony of HUNGER.  The only visible exit is south to the Northern end of the hall.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors",
+        "private"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7907,
+          "description": "It is dark in there.  But the sounds from there are unmistakable.  The rats are here for your information.",
+          "door": {
+            "name": "larder wooden cupboard",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "east": {
+          "to_room": 7908,
+          "description": "You can see the fridge from here.  There are drinks all over the place.",
+          "door": {
+            "name": "fridge",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "south": {
+          "to_room": 7904,
+          "description": "You can see the northern end of the hall."
+        }
+      }
+    },
+    "7907": {
+      "vnum": 7907,
+      "name": "The Larder",
+      "description": "You can see food all over.  Among the heaps of food you notice HUGE rats scuttling around, nibbling pieces off the heaps here and there.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors",
+        "private"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 7906,
+          "description": "",
+          "door": {
+            "name": "door wooden larder",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 7901,
+          "max": 2
+        },
+        {
+          "vnum": 7901,
+          "max": 2
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 7908,
+          "max": 40
+        }
+      ]
+    },
+    "7908": {
+      "vnum": 7908,
+      "name": "The Fridge",
+      "description": "This place is LOADED with drink, water and booze.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors",
+        "private"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 7906,
+          "description": "",
+          "door": {
+            "name": "door fridge",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 7921,
+          "max": 10
+        }
+      ]
+    },
+    "7909": {
+      "vnum": 7909,
+      "name": "On The Stairs",
+      "description": "You can see up and down the stairway.  It seems to take forever, either going up OR down.  It is just a seemingly insurmountable climb, either way. Up is the bedroom of Redferne, and down leads to the southern end of the hall.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors",
+        "private"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 7911,
+          "description": ""
+        },
+        "down": {
+          "to_room": 7901,
+          "description": ""
+        }
+      }
+    },
+    "7910": {
+      "vnum": 7910,
+      "name": "The Treasure Room",
+      "description": "This place is gloomy.  A HUGE safe is cemented into the west wall.  The only visible exit is west, through the oak door.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors",
+        "private"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 7903,
+          "description": "",
+          "door": {
+            "name": "safe steel",
+            "state": "open",
+            "locked": true,
+            "key_vnum": 7900
+          }
+        },
+        "west": {
+          "to_room": 7901,
+          "description": "You see a tall oak door.",
+          "door": {
+            "name": "door oak tall",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      }
+    },
+    "7911": {
+      "vnum": 7911,
+      "name": "Redferne's Bedroom",
+      "description": "This is a snugly set bedroom with all the necessities for a romantic evening.  A large fireplace adorns the east wall, and sizzling away is the wood that is ablaze within.  The bed is enormous, covering at least HALF of this great room.  The room stretches at least 140 feet, so can you imagine the BED?  A large staircase leads down to the hall.  A couple of doors open up to a broad balcony to the south.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors",
+        "private"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 7912,
+          "description": "The sun seems to shine out there, warmly and comforting.",
+          "door": {
+            "name": "doors",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "down": {
+          "to_room": 7909,
+          "description": ""
+        }
+      }
+    },
+    "7912": {
+      "vnum": 7912,
+      "name": "Redferne's Balcony",
+      "description": "You see a splendid of the most of this world.  The valleys stretch as far as the eye reaches to the south from here.  Down below you can see the entrance of this magnificent building.  To the north are the doors to Redferne's bedroom.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "private"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7911,
+          "description": "You see the comfortable bedroom of Naris.",
+          "door": {
+            "name": "doors",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      }
+    },
+    "7913": {
+      "vnum": 7913,
+      "name": "The Monster Pen",
+      "description": "This looks like the cage in which a large carnivore is being kept. Judging by the state the walls are in, this could very well be a large AGGRESSIVE animal.  This makes you pretty insecure, this stating your feeling about the place quite mildly.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "private"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 7904,
+          "description": "This looks like the only exit from here.",
+          "door": {
+            "name": "door cage metal pen",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 7902,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 7905,
+          "max": 1
+        }
+      ]
+    },
+    "7914": {
+      "vnum": 7914,
+      "name": "On The Huge Chain",
+      "description": "This place has quite a good view over Midgaard.  Your possibilities of movement seem to extend only to the up and down directions.  Unless you want to let go of the secure and seemingly unmovable chain, then those are the directions you should take from here.",
+      "sector_type": "mountain",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 7915,
+          "description": "Upwards, you see the chain disappearing into the clouds above."
+        },
+        "down": {
+          "to_room": 3120,
+          "description": "Down below, you see the huge chain anchored to the ground at the Road Crossing of southern Midgaard."
+        }
+      }
+    },
+    "7915": {
+      "vnum": 7915,
+      "name": "The Chain Where It Is Too Windy",
+      "description": "Hanging on to the chain you figure out that there is no way of leaving down from here.  The wind pulls you from left to right and back.  This seems like a totally impossible task.  The ascend is the only way ahead for you.  Otherwise you would risk death by falling to the hard ground below.  DO NOT DESCEND NOW OR YOU WILL SURELY DIE!!!!",
+      "sector_type": "mountain",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 7916,
+          "description": "That way seems to be the only way away from here."
+        },
+        "down": {
+          "to_room": 7920,
+          "description": "THAT WAY IS CERTAIN DEATH!!!!  You can see the wind tearing at the chain down below you.  It swings like a furious serpent from side to side!  The descent is ABSOLUTELY out of the QUESTION."
+        }
+      }
+    },
+    "7916": {
+      "vnum": 7916,
+      "name": "On The Great Chain Of Naris",
+      "description": "You are approximately on the middle of the treacherous Chain.  One false step and death will come and collect you quickly.  The chain leads upwards and down.  No way are you going to descend now... You've only just begun your climb.  Besides it could cost you your life.  Look down and you'll see why.",
+      "sector_type": "mountain",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 7918,
+          "description": "There seems to be only one way from here and that's up."
+        },
+        "down": {
+          "to_room": 7915,
+          "description": "The chain down there is swinging wildly back and forth.  Going down there will be pretty risky!"
+        }
+      }
+    },
+    "7917": {
+      "vnum": 7917,
+      "name": "The Chain",
+      "description": "As you descend, the chain seems to absorb all weather around it, making it swing less and less in the very powerful wind tearing at it.  The Chain seems to chuckle quietly, and as you descend further you hear a soft whisper originating from within the Chain *ITSELF*.  It says 'Welcome back some other time, stranger.  Your company is always... hmmm... interesting.  God Speed.'  The chain extends further down through the now spreading clouds.",
+      "sector_type": "mountain",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "down": {
+          "to_room": 7914,
+          "description": "That way seems safe enough... now."
+        }
+      }
+    },
+    "7918": {
+      "vnum": 7918,
+      "name": "The Mighty Chain Of Naris",
+      "description": "This place truly a splendid view of the WHOLE COUNTRY SIDE!  A magnificent light shines upon you and the way up through the clouds is opened.  Up there you can now see the Mansion of Naris, Residence of the Greater God Redferne. The chain beneath you seems to evaporate in the mustering clouds that surround you by now.",
+      "sector_type": "mountain",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 7900,
+          "description": "You see the sunny top of the clouds.  Beyond these, the Mansion towers before your eyes.  Beautiful!!"
+        },
+        "down": {
+          "to_room": 7917,
+          "description": "You see nothing but the thick clouds.  They've closed completely around the Chain."
+        }
+      }
+    },
+    "7920": {
+      "vnum": 7920,
+      "name": "The Free Fall From The Chain",
+      "description": "This is probably the third worst place to be in this entire MUD right now.  You fall .   . . and fall . . . and fall . . . and HIT THE GROUND WITH SUCH A *SPLUTCH* that you die horribly, but instantly. Good-bye cruel world.",
+      "sector_type": "inside",
+      "flags": [
+        "death",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7914,
+          "description": ""
+        },
+        "east": {
+          "to_room": 7915,
+          "description": ""
+        },
+        "south": {
+          "to_room": 7916,
+          "description": ""
+        },
+        "west": {
+          "to_room": 7917,
+          "description": ""
+        },
+        "up": {
+          "to_room": 7918,
+          "description": ""
+        },
+        "down": {
+          "to_room": 3120,
+          "description": ""
+        }
+      }
+    }
+  },
+  "mobs": {
+    "7900": {
+      "vnum": 7900,
+      "name": "paladin",
+      "short_desc": "the Grand Knight of Paladins",
+      "long_desc": "The Grand Knight is standing here, waiting for someone to help.",
+      "level": 26,
+      "alignment": 1000,
+      "hp_dice": "2d6+16",
+      "damage_dice": "10d8+550",
+      "gold": 10000,
+      "exp": 8,
+      "armor_class": -2,
+      "flags": [
+        "special",
+        "sentinel",
+        "scavenger",
+        "aggr_evil",
+        "memory",
+        "no_charm",
+        "no_summmon"
+      ],
+      "description": "The Knight is standing here, smiling at you.  He is dressed all in white,\nblue and silver.  He looks VERY strong, as he stands here, ready to help\nthe innocent.",
+      "equipment": {
+        "hold": 7901,
+        "wield": 7910,
+        "body": 7914,
+        "legs": 7915,
+        "hands": 7916,
+        "head": 7917,
+        "shield": 7918,
+        "feet": 7919,
+        "arms": 7920
+      }
+    },
+    "7901": {
+      "vnum": 7901,
+      "name": "rat",
+      "short_desc": "the large rat",
+      "long_desc": "There is a large rat here, poking through the foodstuffs lying around.",
+      "level": 12,
+      "alignment": -800,
+      "hp_dice": "2d6+2",
+      "damage_dice": "1d10+150",
+      "gold": 7756,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "sentinel",
+        "aggressive"
+      ],
+      "description": "The large rat is about two feet long from head to tail and has claws the\nsize of your fingers, looking very nasty.  It seems to be quite occupied\nwith all the chewed open foodstuffs lying about the room.",
+      "inventory": [
+        7900
+      ]
+    },
+    "7902": {
+      "vnum": 7902,
+      "name": "cleaver",
+      "short_desc": "the Cleaver",
+      "long_desc": "The Cleaver is here eyeing you hungrily in anticipation of its next meal.",
+      "level": 20,
+      "alignment": 0,
+      "hp_dice": "8d4+4",
+      "damage_dice": "5d8+340",
+      "gold": 33500,
+      "exp": 8,
+      "armor_class": -1,
+      "flags": [
+        "aware",
+        "aggressive",
+        "stay_zone",
+        "memory",
+        "no_charm",
+        "no_summmon",
+        "no_sleep",
+        "no_bash",
+        "no_blind"
+      ],
+      "description": "The Cleaver is a huge spidery chittinous creature with four large\nspindly arms ending in cleaverlike talons that will surely cut you\nto ribbons.",
+      "equipment": {
+        "wrist1": 7907,
+        "wrist2": 7907,
+        "head": 7911
+      },
+      "inventory": [
+        7902
+      ]
+    }
+  },
+  "objects": {
+    "7900": {
+      "vnum": 7900,
+      "name": "key",
+      "short_desc": "a large key",
+      "room_desc": "A large steel key has been left here.",
+      "item_type": "key",
+      "weight": 2,
+      "value": 0
+    },
+    "7901": {
+      "vnum": 7901,
+      "name": "key",
+      "short_desc": "a copper key",
+      "room_desc": "A copper key has been left on the floor.",
+      "item_type": "key",
+      "weight": 2,
+      "value": 0
+    },
+    "7902": {
+      "vnum": 7902,
+      "name": "key",
+      "short_desc": "a small brass key",
+      "room_desc": "A small brass key lies here.",
+      "item_type": "key",
+      "weight": 1,
+      "value": 10
+    },
+    "7903": {
+      "vnum": 7903,
+      "name": "treasure",
+      "short_desc": "a huge treasure",
+      "room_desc": "There is a huge treasure here, looking moderately valuable.",
+      "item_type": "money",
+      "weight": 5,
+      "value": 7734
+    },
+    "7904": {
+      "vnum": 7904,
+      "name": "chest",
+      "short_desc": "a wooden chest",
+      "room_desc": "A wooden chest stands in the corner.",
+      "item_type": "container",
+      "weight": 0,
+      "value": 0,
+      "capacity": 100,
+      "key_vnum": 7902
+    },
+    "7905": {
+      "vnum": 7905,
+      "name": "chest",
+      "short_desc": "a chest",
+      "room_desc": "A heavy iron chest sits in one corner of the room.",
+      "item_type": "container",
+      "weight": 0,
+      "value": 0,
+      "capacity": 15,
+      "key_vnum": 7902
+    },
+    "7906": {
+      "vnum": 7906,
+      "name": "dagger",
+      "short_desc": "a plain dagger",
+      "room_desc": "A long black, but very plain, dagger rests here.",
+      "item_type": "weapon",
+      "weight": 3,
+      "value": 6500,
+      "damage_dice": "5d3",
+      "weapon_type": "pierce"
+    },
+    "7907": {
+      "vnum": 7907,
+      "name": "bracelet",
+      "short_desc": "a large spiked bracelet",
+      "room_desc": "A large spiked bracelet has been left here.",
+      "item_type": "treasure",
+      "weight": 1,
+      "value": 1200
+    },
+    "7908": {
+      "vnum": 7908,
+      "name": "waybread",
+      "short_desc": "a waybread",
+      "room_desc": "Some waybread has been put here.",
+      "item_type": "food",
+      "weight": 1,
+      "value": 50,
+      "nutrition": 24
+    },
+    "7909": {
+      "vnum": 7909,
+      "name": "ring",
+      "short_desc": "a golden ring",
+      "room_desc": "A shiny goldring has been abandoned here.",
+      "item_type": "treasure",
+      "weight": 20,
+      "value": 3500
+    },
+    "7910": {
+      "vnum": 7910,
+      "name": "sword",
+      "short_desc": "a huge bastard sword",
+      "room_desc": "There is a huge bastard sword here.",
+      "item_type": "weapon",
+      "weight": 18,
+      "value": 1700,
+      "damage_dice": "2d8",
+      "weapon_type": "slash"
+    },
+    "7911": {
+      "vnum": 7911,
+      "name": "helmet",
+      "short_desc": "a large helmet",
+      "room_desc": "There is a large helmet on the floor.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 4500,
+      "armor_bonus": 7
+    },
+    "7912": {
+      "vnum": 7912,
+      "name": "helmet",
+      "short_desc": "a chaos helmet",
+      "room_desc": "On the floor is a grand evil-looking chaos helmet.",
+      "item_type": "armor",
+      "weight": 8,
+      "value": 2300,
+      "armor_bonus": 8
+    },
+    "7913": {
+      "vnum": 7913,
+      "name": "sword",
+      "short_desc": "a two-handed sword",
+      "room_desc": "On the floor rests a enormous two-handed sword.",
+      "item_type": "weapon",
+      "weight": 22,
+      "value": 3500,
+      "damage_dice": "3d6",
+      "weapon_type": "slash"
+    },
+    "7914": {
+      "vnum": 7914,
+      "name": "plate",
+      "short_desc": "a silvery breast plate",
+      "room_desc": "There is a silvery breast plate on the floor.",
+      "item_type": "armor",
+      "weight": 70,
+      "value": 20000,
+      "armor_bonus": 10
+    },
+    "7915": {
+      "vnum": 7915,
+      "name": "plates",
+      "short_desc": "some silvery leg plates",
+      "room_desc": "On the floor you see some leg plates.",
+      "item_type": "armor",
+      "weight": 40,
+      "value": 12500,
+      "armor_bonus": 7
+    },
+    "7916": {
+      "vnum": 7916,
+      "name": "gloves",
+      "short_desc": "a pair of silvery gloves",
+      "room_desc": "You can see a pair of gloves on the floor.",
+      "item_type": "armor",
+      "weight": 14,
+      "value": 2500,
+      "armor_bonus": 5
+    },
+    "7917": {
+      "vnum": 7917,
+      "name": "helmet",
+      "short_desc": "a silvery helmet",
+      "room_desc": "The silvery helmet lies here.",
+      "item_type": "armor",
+      "weight": 35,
+      "value": 9000,
+      "armor_bonus": 8
+    },
+    "7918": {
+      "vnum": 7918,
+      "name": "shield",
+      "short_desc": "the shield of the rose",
+      "room_desc": "The shield of the rose rests on the floor.",
+      "item_type": "armor",
+      "weight": 60,
+      "value": 15000,
+      "armor_bonus": 12
+    },
+    "7919": {
+      "vnum": 7919,
+      "name": "boots",
+      "short_desc": "a pair of heavy plated boots",
+      "room_desc": "A pair of heavy plated boots stand on the floor.",
+      "item_type": "armor",
+      "weight": 40,
+      "value": 3500,
+      "armor_bonus": 5
+    },
+    "7920": {
+      "vnum": 7920,
+      "name": "plates",
+      "short_desc": "some silvery arm plates",
+      "room_desc": "On the floor you see some arm plates.",
+      "item_type": "armor",
+      "weight": 40,
+      "value": 12500,
+      "armor_bonus": 7
+    },
+    "7921": {
+      "vnum": 7921,
+      "name": "barrel",
+      "short_desc": "a barrel",
+      "room_desc": "A water barrel has been left here.",
+      "item_type": "drinkcon",
+      "weight": 45,
+      "value": 60,
+      "capacity": 40,
+      "current": 40
+    }
+  }
+}

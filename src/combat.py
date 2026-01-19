@@ -18,9 +18,32 @@ logger = logging.getLogger('RealmsMUD.Combat')
 
 class CombatHandler:
     """Handles combat mechanics."""
-    
+
     config = Config()
-    
+
+    @classmethod
+    def get_health_color(cls, health_pct: float) -> str:
+        """Get color code based on health percentage."""
+        c = cls.config.COLORS
+        if health_pct > 75:
+            return c['bright_green']
+        elif health_pct > 50:
+            return c['green']
+        elif health_pct > 25:
+            return c['yellow']
+        elif health_pct > 10:
+            return c['red']
+        else:
+            return c['bright_red']
+
+    @classmethod
+    def get_health_bar(cls, health_pct: float) -> str:
+        """Get a visual health bar based on health percentage."""
+        bar_length = 10
+        filled = int((health_pct / 100) * bar_length)
+        empty = bar_length - filled
+        return f"[{'█' * filled}{'░' * empty}]"
+
     @classmethod
     async def start_combat(cls, attacker: 'Character', defender: 'Character'):
         """Initiate combat between two characters."""
@@ -28,7 +51,15 @@ class CombatHandler:
         defender.fighting = attacker
         attacker.position = 'fighting'
         defender.position = 'fighting'
-        
+
+        # Break stealth for both combatants
+        if hasattr(attacker, 'flags'):
+            attacker.flags.discard('hidden')
+            attacker.flags.discard('sneaking')
+        if hasattr(defender, 'flags'):
+            defender.flags.discard('hidden')
+            defender.flags.discard('sneaking')
+
         c = cls.config.COLORS
         
         if hasattr(attacker, 'send'):
@@ -47,10 +78,30 @@ class CombatHandler:
     @classmethod
     async def one_round(cls, attacker: 'Character', defender: 'Character'):
         """Process one round of combat."""
+        # Safety check: if either is dead, end combat
         if not attacker.is_alive or not defender.is_alive:
             await cls.end_combat(attacker, defender)
             return
-            
+
+        # Safety check: if defender is None or not in world, end combat
+        if defender is None:
+            attacker.fighting = None
+            if attacker.position == 'fighting':
+                attacker.position = 'standing'
+            return
+
+        # Safety check: if defender has no room (removed from world), end combat
+        if not hasattr(defender, 'room') or defender.room is None:
+            attacker.fighting = None
+            if attacker.position == 'fighting':
+                attacker.position = 'standing'
+            return
+
+        # Safety check: if not in same room, end combat
+        if attacker.room != defender.room:
+            await cls.end_combat(attacker, defender)
+            return
+
         if not attacker.is_fighting or not defender.is_fighting:
             return
             
@@ -86,10 +137,21 @@ class CombatHandler:
                 await attacker.send(f"{c['green']}Your {damage_word} {defender.name}. [{damage}]{c['reset']}")
             if hasattr(defender, 'send'):
                 await defender.send(f"{c['red']}{attacker.name}'s {damage_word} you. [{damage}]{c['reset']}")
-                
+
             # Apply damage
             killed = await defender.take_damage(damage, attacker)
-            
+
+            # Apply poison effects from envenomed weapon
+            if not killed and weapon and hasattr(weapon, 'envenomed') and weapon.envenomed:
+                await cls.apply_poison_effect(attacker, defender, weapon)
+
+            # Show defender health to attacker (if attacker is a player)
+            if hasattr(attacker, 'send') and not killed:
+                health_pct = (defender.hp / defender.max_hp) * 100
+                health_color = cls.get_health_color(health_pct)
+                health_bar = cls.get_health_bar(health_pct)
+                await attacker.send(f"{c['cyan']}{defender.name} {health_color}{health_bar} [{defender.hp}/{defender.max_hp}]{c['reset']}")
+
             if killed:
                 await cls.handle_death(attacker, defender)
         else:
@@ -200,7 +262,7 @@ class CombatHandler:
             elif level_diff < -5:
                 exp_gain = int(exp_gain * 0.1)  # Much lower level = almost no exp
                 
-            killer.gain_exp(exp_gain)
+            await killer.gain_exp(exp_gain)
             if hasattr(killer, 'send'):
                 await killer.send(f"{c['bright_yellow']}You gain {exp_gain} experience points!{c['reset']}")
 
@@ -211,14 +273,32 @@ class CombatHandler:
                 killer, 'kill', {'mob_name': victim.name, 'mob_vnum': getattr(victim, 'vnum', 0)}
             )
 
-        # Transfer gold
+        # Handle gold and autoloot
+        gold_looted = False
+        items_looted = []
+
+        # Check for autoloot_gold setting
         if hasattr(victim, 'gold') and victim.gold > 0:
             if hasattr(killer, 'gold'):
-                killer.gold += victim.gold
-                if hasattr(killer, 'send'):
-                    await killer.send(f"{c['yellow']}You get {victim.gold} gold coins from the corpse.{c['reset']}")
-                    
-        # Create corpse with victim's inventory
+                # Autoloot gold is on by default for players
+                if hasattr(killer, 'autoloot_gold') and killer.autoloot_gold:
+                    killer.gold += victim.gold
+                    if hasattr(killer, 'send'):
+                        await killer.send(f"{c['yellow']}You get {victim.gold} gold coins from the corpse.{c['reset']}")
+                    victim.gold = 0  # Remove gold so it doesn't appear in corpse
+                    gold_looted = True
+
+        # Check for autoloot items
+        if hasattr(killer, 'autoloot') and killer.autoloot and hasattr(victim, 'inventory'):
+            if hasattr(killer, 'inventory'):
+                for item in list(victim.inventory):
+                    killer.inventory.append(item)
+                    items_looted.append(item)
+                    if hasattr(killer, 'send'):
+                        await killer.send(f"{c['bright_cyan']}You get {item.short_desc} from the corpse.{c['reset']}")
+                victim.inventory.clear()
+
+        # Create corpse with remaining items (if not autolooted)
         if victim.room and hasattr(victim, 'inventory'):
             from objects import Object
             corpse = Object(0, killer.world if hasattr(killer, 'world') else None)
@@ -226,8 +306,23 @@ class CombatHandler:
             corpse.short_desc = f"the corpse of {victim.name}"
             corpse.room_desc = f"The corpse of {victim.name} lies here."
             corpse.item_type = 'container'
-            corpse.contents = list(victim.inventory)
-            victim.inventory.clear()
+            corpse.capacity = 1000  # Large capacity for corpses
+            corpse.container_flags = ['closeable']
+            corpse.state = 'open'  # Corpses start open
+
+            # Add remaining gold to corpse if not autolooted
+            if hasattr(victim, 'gold') and victim.gold > 0 and not gold_looted:
+                corpse.gold = victim.gold
+            else:
+                corpse.gold = 0
+
+            # Add remaining items to corpse if not autolooted
+            if not items_looted:
+                corpse.contents = list(victim.inventory)
+                victim.inventory.clear()
+            else:
+                corpse.contents = []
+
             victim.room.items.append(corpse)
             
         # End combat
@@ -431,6 +526,23 @@ class CombatHandler:
             await player.send(f"{c['yellow']}Your weapon is already envenomed!{c['reset']}")
             return
 
+        # Find poison vial in inventory
+        poison_vial = None
+        poison_type = None
+        for item in player.inventory:
+            if hasattr(item, 'item_type') and item.item_type == 'poison':
+                poison_vial = item
+                poison_type = getattr(item, 'poison_type', 'venom')
+                break
+
+        if not poison_vial:
+            await player.send(f"{c['red']}You need a poison vial to envenom your weapon!{c['reset']}")
+            await player.send(f"{c['yellow']}Hint: Buy poison vials from alchemists or rogue trainers.{c['reset']}")
+            return
+
+        # Get poison configuration
+        poison_config = cls.config.POISON_TYPES.get(poison_type, cls.config.POISON_TYPES['venom'])
+
         # Cost move points
         if player.move < 10:
             await player.send(f"{c['red']}You are too exhausted to apply poison!{c['reset']}")
@@ -438,22 +550,169 @@ class CombatHandler:
         player.move -= 10
 
         if random.randint(1, 100) <= skill_level:
+            # Success! Apply poison to weapon
             weapon.envenomed = True
-            weapon.envenom_damage = 2 + (player.level // 5)  # Poison damage per hit
-            weapon.envenom_duration = 5 + (player.level // 3)  # Number of hits
+            weapon.poison_type = poison_type
+            weapon.poison_config = poison_config
+            weapon.envenom_charges = 5 + (player.level // 3)  # Number of hits
 
-            await player.send(f"{c['bright_green']}You carefully apply deadly poison to your {weapon.name}.{c['reset']}")
+            # Remove poison vial from inventory
+            player.inventory.remove(poison_vial)
+
+            # Success messages
+            color_code = c.get(poison_config['color'], c['bright_green'])
+            await player.send(
+                f"{color_code}You carefully coat your {weapon.name} with {poison_config['name']}!{c['reset']}\n"
+                f"{c['cyan']}Your weapon gleams with toxic energy. ({weapon.envenom_charges} charges){c['reset']}"
+            )
             await player.room.send_to_room(
-                f"{player.name} coats their weapon with a dark substance.",
+                f"{player.name} carefully applies a {poison_config['color']} substance to their weapon.",
                 exclude=[player]
             )
         else:
-            await player.send(f"{c['yellow']}You fail to properly apply the poison.{c['reset']}")
-            # Failed envenom can poison yourself
+            await player.send(f"{c['yellow']}You fumble and fail to properly apply the poison!{c['reset']}")
+            # Failed envenom - chance to poison yourself
             if random.randint(1, 100) <= 15:
-                await player.send(f"{c['red']}The poison touches your skin! You feel ill.{c['reset']}")
-                from affects import AffectHandler
-                await AffectHandler.apply_affect(player, 'poison', player.level, 3)
+                await player.send(f"{c['red']}The {poison_config['name']} touches your skin! You feel ill!{c['reset']}")
+                # Remove poison vial anyway (it was wasted)
+                player.inventory.remove(poison_vial)
+
+                # Apply poison effect to self
+                from affects import AffectManager
+                if poison_config['effect'] == 'poison':
+                    affect_data = {
+                        'name': 'poison',
+                        'type': AffectManager.TYPE_DOT,
+                        'applies_to': 'hp',
+                        'value': poison_config.get('damage', 2),
+                        'duration': poison_config.get('duration', 5),
+                        'caster_level': player.level
+                    }
+                    AffectManager.apply_affect(player, affect_data)
+                elif poison_config['effect'] == 'blind':
+                    affect_data = {
+                        'name': 'blindness',
+                        'type': AffectManager.TYPE_FLAG,
+                        'applies_to': 'blind',
+                        'value': 1,
+                        'duration': poison_config.get('duration', 5),
+                        'caster_level': player.level
+                    }
+                    AffectManager.apply_affect(player, affect_data)
+            else:
+                # Just failed, keep the poison vial
+                pass
+
+    @classmethod
+    async def apply_poison_effect(cls, attacker: 'Character', victim: 'Character', weapon):
+        """Apply poison effect from envenomed weapon on hit."""
+        from affects import AffectManager
+        c = cls.config.COLORS
+
+        # Get poison configuration
+        poison_type = getattr(weapon, 'poison_type', 'venom')
+        poison_config = getattr(weapon, 'poison_config', cls.config.POISON_TYPES['venom'])
+
+        # Decrement charges
+        weapon.envenom_charges -= 1
+
+        # Get color for messages
+        color_code = c.get(poison_config.get('color', 'green'), c['bright_green'])
+
+        # Send poison hit messages
+        if hasattr(attacker, 'send'):
+            await attacker.send(f"{color_code}{poison_config['hit_message']}{c['reset']}")
+        if hasattr(victim, 'send'):
+            await victim.send(f"{color_code}{poison_config['victim_message']}{c['reset']}")
+
+        # Room message
+        if hasattr(attacker, 'room') and attacker.room:
+            room_msg = poison_config['room_message'].format(
+                attacker=attacker.name,
+                victim=victim.name
+            )
+            await attacker.room.send_to_room(f"{color_code}{room_msg}{c['reset']}", exclude=[attacker, victim])
+
+        # Apply poison effect based on type
+        effect_type = poison_config.get('effect', 'poison')
+
+        if effect_type == 'poison':
+            # Damage over time
+            affect_data = {
+                'name': 'poison',
+                'type': AffectManager.TYPE_DOT,
+                'applies_to': 'hp',
+                'value': poison_config.get('damage', 3),
+                'duration': poison_config.get('duration', 8),
+                'caster_level': getattr(attacker, 'level', 1)
+            }
+            AffectManager.apply_affect(victim, affect_data)
+
+        elif effect_type == 'blind':
+            # Blindness effect
+            affect_data = {
+                'name': 'blindness',
+                'type': AffectManager.TYPE_FLAG,
+                'applies_to': 'blind',
+                'value': 1,
+                'duration': poison_config.get('duration', 6),
+                'caster_level': getattr(attacker, 'level', 1)
+            }
+            AffectManager.apply_affect(victim, affect_data)
+
+        elif effect_type == 'extra_damage':
+            # Immediate extra damage
+            extra_damage = poison_config.get('damage', 15)
+            await victim.take_damage(extra_damage, attacker)
+            if hasattr(victim, 'send'):
+                await victim.send(f"{color_code}The venom burns! ({extra_damage} additional damage){c['reset']}")
+
+        elif effect_type == 'silence':
+            # Silence effect
+            affect_data = {
+                'name': 'silence',
+                'type': AffectManager.TYPE_FLAG,
+                'applies_to': 'silenced',
+                'value': 1,
+                'duration': poison_config.get('duration', 5),
+                'caster_level': getattr(attacker, 'level', 1)
+            }
+            AffectManager.apply_affect(victim, affect_data)
+
+        elif effect_type == 'slow':
+            # Slow effect (reduces dexterity)
+            affect_data = {
+                'name': 'slowed',
+                'type': AffectManager.TYPE_MODIFY_STAT,
+                'applies_to': 'dex',
+                'value': poison_config.get('penalty', -2),
+                'duration': poison_config.get('duration', 7),
+                'caster_level': getattr(attacker, 'level', 1)
+            }
+            AffectManager.apply_affect(victim, affect_data)
+
+        elif effect_type == 'weaken':
+            # Weaken effect (reduces strength)
+            stat = poison_config.get('stat', 'str')
+            affect_data = {
+                'name': 'weakened',
+                'type': AffectManager.TYPE_MODIFY_STAT,
+                'applies_to': stat,
+                'value': poison_config.get('penalty', -3),
+                'duration': poison_config.get('duration', 6),
+                'caster_level': getattr(attacker, 'level', 1)
+            }
+            AffectManager.apply_affect(victim, affect_data)
+
+        # Check if weapon poison is depleted
+        if weapon.envenom_charges <= 0:
+            weapon.envenomed = False
+            weapon.poison_type = None
+            weapon.poison_config = None
+            weapon.envenom_charges = 0
+
+            if hasattr(attacker, 'send'):
+                await attacker.send(f"{c['yellow']}The poison on your {weapon.name} has been depleted.{c['reset']}")
 
     @classmethod
     async def do_assassinate(cls, player: 'Player', target: 'Character'):
@@ -498,13 +757,13 @@ class CombatHandler:
 
             # Remove hide
             if is_hidden:
-                from affects import AffectHandler
-                await AffectHandler.remove_affect(player, 'hide')
+                from affects import AffectManager
+                AffectManager.remove_affect_by_name(player, 'hide')
 
             # Clear mark if present
             if is_marked:
-                from affects import AffectHandler
-                await AffectHandler.remove_affect(target, 'marked')
+                from affects import AffectManager
+                AffectManager.remove_affect_by_name(target, 'marked')
                 await player.send(f"{c['magenta']}Your mark flares as you strike!{c['reset']}")
 
             await player.send(f"{c['bright_red']}You strike {target.name} in a vital spot! [{damage}]{c['reset']}")
@@ -523,8 +782,8 @@ class CombatHandler:
         else:
             await player.send(f"{c['yellow']}Your assassination attempt fails!{c['reset']}")
             if is_hidden:
-                from affects import AffectHandler
-                await AffectHandler.remove_affect(player, 'hide')
+                from affects import AffectManager
+                AffectManager.remove_affect_by_name(player, 'hide')
             await cls.start_combat(player, target)
 
     @classmethod
@@ -549,8 +808,8 @@ class CombatHandler:
         if random.randint(1, 100) <= skill_level + bonus:
             # Remove hide
             if is_hidden:
-                from affects import AffectHandler
-                await AffectHandler.remove_affect(player, 'hide')
+                from affects import AffectManager
+                AffectManager.remove_affect_by_name(player, 'hide')
 
             # Apply garrote effect
             damage = random.randint(player.level // 2, player.level) + (player.dex - 10) // 2
@@ -564,8 +823,16 @@ class CombatHandler:
             )
 
             # Apply silence effect
-            from affects import AffectHandler
-            await AffectHandler.apply_affect(target, 'silence', player.level, 3)
+            from affects import AffectManager
+            affect_data = {
+                'name': 'silence',
+                'type': AffectManager.TYPE_FLAG,
+                'applies_to': 'silenced',
+                'value': 1,
+                'duration': 3,
+                'caster_level': player.level
+            }
+            AffectManager.apply_affect(target, affect_data)
 
             killed = await target.take_damage(damage, player)
             if killed:
@@ -575,8 +842,8 @@ class CombatHandler:
         else:
             await player.send(f"{c['yellow']}Your garrote attempt fails!{c['reset']}")
             if is_hidden:
-                from affects import AffectHandler
-                await AffectHandler.remove_affect(player, 'hide')
+                from affects import AffectManager
+                AffectManager.remove_affect_by_name(player, 'hide')
             await cls.start_combat(player, target)
 
     @classmethod
@@ -617,8 +884,16 @@ class CombatHandler:
                 )
 
             # Apply hide effect
-            from affects import AffectHandler
-            await AffectHandler.apply_affect(player, 'hide', player.level, 2)
+            from affects import AffectManager
+            affect_data = {
+                'name': 'hide',
+                'type': AffectManager.TYPE_FLAG,
+                'applies_to': 'hidden',
+                'value': 1,
+                'duration': 2,
+                'caster_level': player.level
+            }
+            AffectManager.apply_affect(player, affect_data)
 
             await player.send(f"{c['cyan']}You are now hidden behind {target.name}.{c['reset']}")
         else:
@@ -642,9 +917,17 @@ class CombatHandler:
         player.mana -= 5
 
         if random.randint(1, 100) <= skill_level:
-            from affects import AffectHandler
+            from affects import AffectManager
             duration = 10 + (player.level // 5)
-            await AffectHandler.apply_affect(target, 'marked', player.level, duration)
+            affect_data = {
+                'name': 'marked',
+                'type': AffectManager.TYPE_FLAG,
+                'applies_to': 'marked',
+                'value': 1,
+                'duration': duration,
+                'caster_level': player.level
+            }
+            AffectManager.apply_affect(target, affect_data)
 
             await player.send(f"{c['magenta']}You mark {target.name} for death. A dark aura surrounds them.{c['reset']}")
             if hasattr(target, 'send'):

@@ -45,7 +45,9 @@ class Object:
         # Container properties
         self.contents = []
         self.capacity = 0
-        self.locked = False
+        self.is_closed = False  # Containers start open by default
+        self.is_locked = False
+        self.locked = False  # Backward compatibility
         self.key_vnum = None
         
         # Consumable properties
@@ -102,6 +104,9 @@ class Object:
             'armor': self.armor,
             'contents': [item.to_dict() for item in self.contents],
             'capacity': self.capacity,
+            'is_closed': getattr(self, 'is_closed', False),
+            'is_locked': getattr(self, 'is_locked', False),
+            'key_vnum': getattr(self, 'key_vnum', None),
             'food_value': self.food_value,
             'drinks': self.drinks,
             'liquid': self.liquid,
@@ -129,6 +134,10 @@ class Object:
         obj.weapon_type = data.get('weapon_type', 'hit')
         obj.armor = data.get('armor', 0)
         obj.capacity = data.get('capacity', 0)
+        obj.is_closed = data.get('is_closed', False)
+        obj.is_locked = data.get('is_locked', False)
+        obj.locked = data.get('locked', False)  # Backward compatibility
+        obj.key_vnum = data.get('key_vnum')
         obj.food_value = data.get('food_value', 0)
         obj.drinks = data.get('drinks', 0)
         obj.liquid = data.get('liquid', 'water')
@@ -137,7 +146,7 @@ class Object:
         obj.affects = data.get('affects', [])
         obj.flags = set(data.get('flags', []))
         obj.timer = data.get('timer', -1)
-        
+
         # Load contents recursively
         obj.contents = [cls.from_dict(item_data, world) 
                        for item_data in data.get('contents', [])]
@@ -161,6 +170,10 @@ class Object:
         obj.weapon_type = proto.get('weapon_type', 'hit')
         obj.armor = proto.get('armor', 0)
         obj.capacity = proto.get('capacity', 0)
+        obj.is_closed = proto.get('is_closed', proto.get('closed', False))  # Support both 'is_closed' and 'closed'
+        obj.is_locked = proto.get('is_locked', proto.get('locked', False))  # Support both 'is_locked' and 'locked'
+        obj.locked = obj.is_locked  # Backward compatibility
+        obj.key_vnum = proto.get('key_vnum')
         obj.food_value = proto.get('food_value', 0)
         obj.drinks = proto.get('drinks', 0)
         obj.liquid = proto.get('liquid', 'water')
@@ -168,7 +181,7 @@ class Object:
         obj.light_hours = proto.get('light_hours', 0)
         obj.affects = proto.get('affects', [])
         obj.flags = set(proto.get('flags', []))
-        
+
         return obj
 
 

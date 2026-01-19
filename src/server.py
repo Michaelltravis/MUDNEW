@@ -68,7 +68,16 @@ class Connection:
         if self.state == self.STATE_PLAYING and self.player:
             c = self.config.COLORS
             hp_color = c['green'] if self.player.hp > self.player.max_hp * 0.5 else c['yellow'] if self.player.hp > self.player.max_hp * 0.25 else c['red']
-            prompt = f"\r\n{hp_color}{self.player.hp}/{self.player.max_hp}hp {c['cyan']}{self.player.mana}/{self.player.max_mana}mp {c['yellow']}{self.player.move}/{self.player.max_move}mv{c['reset']}> "
+
+            # Add enemy health if fighting
+            enemy_status = ""
+            if self.player.is_fighting and self.player.fighting:
+                enemy = self.player.fighting
+                enemy_hp_pct = (enemy.hp / enemy.max_hp) * 100
+                enemy_color = c['bright_green'] if enemy_hp_pct > 75 else c['green'] if enemy_hp_pct > 50 else c['yellow'] if enemy_hp_pct > 25 else c['red']
+                enemy_status = f" {c['white']}[{enemy_color}{enemy.name}: {enemy.hp}/{enemy.max_hp}{c['white']}]{c['reset']}"
+
+            prompt = f"\r\n{hp_color}{self.player.hp}/{self.player.max_hp}hp {c['cyan']}{self.player.mana}/{self.player.max_mana}mp {c['yellow']}{self.player.move}/{self.player.max_move}mv{enemy_status}{c['reset']}> "
             await self.send(prompt, newline=False)
         else:
             await self.send("> ", newline=False)
@@ -330,6 +339,18 @@ class Connection:
         parts = line.split()
         cmd = parts[0].lower()
         args = parts[1:] if len(parts) > 1 else []
+
+        # Check for alias substitution
+        if cmd in self.player.custom_aliases:
+            aliased_command = self.player.custom_aliases[cmd]
+            # Reconstruct line with alias expanded + original args
+            expanded_line = aliased_command
+            if args:
+                expanded_line += ' ' + ' '.join(args)
+            # Re-parse with alias expanded
+            parts = expanded_line.split()
+            cmd = parts[0].lower()
+            args = parts[1:] if len(parts) > 1 else []
 
         # Execute command
         await self.player.execute_command(cmd, args)

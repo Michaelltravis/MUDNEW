@@ -1,44 +1,177 @@
 {
   "number": 0,
-  "name": "Limbo - The Void",
-  "builders": "Immortals",
-  "lifespan": 999,
-  "reset_mode": 2,
-  "top": 99,
+  "name": "Limbo - Internal",
+  "lifespan": 10,
   "rooms": {
+    "0": {
+      "vnum": 0,
+      "name": "The Void",
+      "description": "You don't think that you are not floating in nothing.  You can see a strange portal located above you.",
+      "sector_type": "city",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 3001,
+          "description": "The Temple of Midgaard floats above you."
+        }
+      }
+    },
     "1": {
       "vnum": 1,
-      "name": "The Void",
-      "description": "You float in an endless expanse of nothing. There is no up, no down,\nno left, no right. Just infinite darkness stretching in all directions.\nThis is the place between places, where lost souls drift eternally.\nA faint shimmer to the south suggests a way back to reality.",
-      "sector_type": "flying",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 3001,
-          "description": "A shimmer leads to the mortal realm."
+      "name": "Limbo",
+      "description": "You are floating in a formless void, detached from all sensation of physical matter, surrounded by swirling glowing light, which fades into the relative darkness around you without any trace of edges or shadow.    There is a \"No Tipping\" notice pinned to the darkness.",
+      "sector_type": "city",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {},
+      "mob_resets": [
+        {
+          "vnum": 1,
+          "max": 1
         }
-      },
-      "extra_descs": {},
-      "mob_resets": [],
-      "obj_resets": []
+      ]
     },
-    "2": {
-      "vnum": 2,
-      "name": "The Immortal Lounge",
-      "description": "Golden light suffuses this magnificent chamber. Plush divans and \ncomfortable chairs are arranged around a roaring fireplace. Crystal \ndecanters filled with celestial wine line the walls. This is where the\ngods rest between their divine duties.",
+    "3": {
+      "vnum": 3,
+      "name": "A Totally Empty Room",
+      "description": "The walls are completely bare... nothing at all in the room. How... utterly bizarre and completely weird.  There is a strange portal just above you, and it almost looks as if there is some sort of room above you.",
       "sector_type": "inside",
-      "flags": [],
+      "flags": [
+        "indoors",
+        "private"
+      ],
       "exits": {
-        "down": {
-          "to_room": 1,
-          "description": null
+        "up": {
+          "to_room": 3048,
+          "description": "You notice that the portal above you looks almost like glass, albeit very dirty glass."
         }
-      },
-      "extra_descs": {},
-      "mob_resets": [],
-      "obj_resets": []
+      }
     }
   },
-  "mobs": {},
-  "objects": {}
+  "mobs": {
+    "1": {
+      "vnum": 1,
+      "name": "Puff",
+      "short_desc": "Puff",
+      "long_desc": "Puff the Fractal Dragon is here, contemplating a higher reality.",
+      "level": 26,
+      "alignment": 1000,
+      "hp_dice": "4d6+3",
+      "damage_dice": "5d10+550",
+      "gold": 82500,
+      "exp": 8,
+      "armor_class": -1,
+      "flags": [
+        "special",
+        "no_charm",
+        "no_summmon",
+        "no_sleep",
+        "no_bash",
+        "no_blind"
+      ],
+      "description": "Is that some type of differential curve involving some strange, and\nunknown calculus that she seems to be made out of?"
+    },
+    "10": {
+      "vnum": 10,
+      "name": "clone",
+      "short_desc": "the clone",
+      "long_desc": "A boring old clone is standing here.",
+      "level": 1,
+      "alignment": 0,
+      "hp_dice": "1d1+1",
+      "damage_dice": "1d1+1",
+      "gold": 0,
+      "exp": 8,
+      "armor_class": 0,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "This clone is nothing to look at.  No, really, it is quite boring."
+    },
+    "11": {
+      "vnum": 11,
+      "name": "zombie",
+      "short_desc": "the zombie",
+      "long_desc": "A strange humanoid is here.  How odd, its flesh seems to be falling off!",
+      "level": 1,
+      "alignment": 0,
+      "hp_dice": "1d1+1",
+      "damage_dice": "1d1+1",
+      "gold": 0,
+      "exp": 8,
+      "armor_class": 0,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "This strange humanoid is moving rather slowly, and appears to be\na corpse, a walking corpse!  It must be a zombie or something of\nthe sort."
+    },
+    "19": {
+      "vnum": 19,
+      "name": "aerial",
+      "short_desc": "the aerial servant",
+      "long_desc": "An amorphous shape is floating in the air.",
+      "level": 1,
+      "alignment": 0,
+      "hp_dice": "1d1+1",
+      "damage_dice": "1d1+1",
+      "gold": 0,
+      "exp": 8,
+      "armor_class": 0,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "As you stare at this amorphous shape, it begins to appear to take\nthe shape of a cloud-like humanoid."
+    },
+    "20": {
+      "vnum": 20,
+      "name": "elemental",
+      "short_desc": "the elemental",
+      "long_desc": "An elemental is standing patiently here.",
+      "level": 1,
+      "alignment": 0,
+      "hp_dice": "1d1+1",
+      "damage_dice": "1d1+1",
+      "gold": 0,
+      "exp": 8,
+      "armor_class": 0,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "This creature is the essence of the elements, and appears to be\nwaiting patiently for something to occur."
+    }
+  },
+  "objects": {
+    "0": {
+      "vnum": 0,
+      "name": "bug",
+      "short_desc": "a bug",
+      "room_desc": "This object is BAD!  If you see it, there must be a bug in the game.  Please",
+      "item_type": "treasure",
+      "weight": 0,
+      "value": 0
+    },
+    "1": {
+      "vnum": 1,
+      "name": "wings",
+      "short_desc": "a pair of wings",
+      "room_desc": "A pair of wings is sitting here.",
+      "item_type": "armor",
+      "weight": 0,
+      "value": 0,
+      "armor_bonus": 6
+    },
+    "10": {
+      "vnum": 10,
+      "name": "waybread",
+      "short_desc": "a waybread",
+      "room_desc": "Some waybread has been put here.",
+      "item_type": "food",
+      "weight": 1,
+      "value": 50,
+      "nutrition": 24
+    }
+  }
 }

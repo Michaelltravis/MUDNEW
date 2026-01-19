@@ -7,7 +7,7 @@
     25
   ],
   "author": "RealmsMUD Team",
-  "reset_time": 300,
+  "reset_time": 1800,
   "rooms": {
     "13000": {
       "title": "The Docks of Midgaard",
@@ -19,6 +19,10 @@
         },
         "west": {
           "to_room": 13001
+        },
+        "up": {
+          "to_room": 5040,
+          "description": "You see an exit up."
         }
       },
       "vnum": 13000

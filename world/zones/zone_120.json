@@ -1,578 +1,3178 @@
 {
   "number": 120,
-  "name": "The Volcanic Peaks of Mount Infernus",
-  "description": "A deadly volcanic region where fire reigns supreme",
-  "level_range": [
-    15,
-    20
-  ],
-  "author": "RealmsMUD Team",
-  "reset_time": 300,
+  "name": "Rome",
+  "lifespan": 45,
   "rooms": {
-    "12000": {
-      "title": "Obsidian Cliffs",
-      "description": "Massive cliffs of black volcanic glass rise on all sides, their surfaces smooth and mirror-like. The obsidian has been shaped by ancient lava flows into fantastic formations - spires, arches, and knife-sharp ridges. The rock is dangerously brittle despite its beauty. One false step could send you tumbling onto razor-sharp edges. Heat radiates from the cliffs themselves.",
-      "terrain": "mountain",
-      "exits": {
-        "west": {
-          "to_room": 12000
-        },
-        "north": {
-          "to_room": 12002
-        },
-        "south": {
-          "to_room": 12003
-        }
-      },
-      "vnum": 12000
-    },
-    "12002": {
-      "title": "Sulfur Vents",
-      "description": "Cracks in the ground belch thick yellow sulfurous smoke that burns the eyes and throat. The stench is overwhelming - rotten eggs multiplied a thousandfold. Yellow crystals of pure sulfur grow around the vents. The heat here is oppressive, and standing in the fumes for too long could prove fatal. Gas masks and fire resistance are essential.",
-      "terrain": "mountain",
-      "special": "gas_damage",
-      "exits": {
-        "south": {
-          "to_room": 12001
-        },
-        "north": {
-          "to_room": 12004
-        }
-      },
-      "vnum": 12002
-    },
-    "12003": {
-      "title": "Path Along the Lava River",
-      "description": "A river of molten rock flows sluggishly past, radiating intense heat. The lava glows orange and red, with a black crust that occasionally breaks to reveal the inferno beneath. The air above it ripples with heat haze. The narrow path between the lava and cliff wall is barely wide enough to walk. One misstep means a fiery death.",
-      "terrain": "mountain",
-      "special": "heat_damage",
-      "exits": {
-        "north": {
-          "to_room": 12001
-        },
-        "south": {
-          "to_room": 12005
-        }
-      },
-      "vnum": 12003
-    },
-    "12004": {
-      "title": "Geothermal Geyser Field",
-      "description": "The ground here is honeycombed with boiling hot springs and geysers. Jets of superheated steam erupt without warning, shooting hundreds of feet into the air. The ground is unstable, with thin crusts over scalding water. The geysers create a constant roar, and mist fills the air. This is an incredibly dangerous area requiring careful navigation.",
-      "terrain": "mountain",
-      "special": "geyser_damage",
-      "exits": {
-        "south": {
-          "to_room": 12002
-        },
-        "east": {
-          "to_room": 12006
-        }
-      },
-      "vnum": 12004
-    },
-    "12005": {
-      "title": "Lava Falls",
-      "description": "A massive cascade of molten rock pours over a cliff edge, creating a waterfall of fire. The sight is both beautiful and terrifying. The heat is so intense that exposed skin blisters within seconds. The roar is deafening, and the ground shakes continuously from the impact of falling lava. There's no way to approach any closer without magical protection.",
-      "terrain": "mountain",
-      "special": "extreme_heat_damage",
-      "exits": {
-        "north": {
-          "to_room": 12003
-        },
-        "east": {
-          "to_room": 12007
-        }
-      },
-      "vnum": 12005
-    },
-    "12006": {
-      "title": "Cinderstorm Ridge",
-      "description": "Volcanic ash and cinders constantly rain down here, carried by scorching winds from the crater above. Visibility is nearly zero through the swirling ash storm. The particles are hot enough to burn, and breathing is difficult. A cloth mask helps but isn't perfect. Lightning arcs through the ash cloud, adding electricity to the other dangers.",
-      "terrain": "mountain",
-      "special": "ash_storm_damage",
-      "exits": {
-        "west": {
-          "to_room": 12004
-        },
-        "south": {
-          "to_room": 12007
-        },
-        "east": {
-          "to_room": 12008
-        }
-      },
-      "vnum": 12006
-    },
-    "12007": {
-      "title": "Magma Chamber Approach",
-      "description": "The path leads toward an enormous cave mouth that glows red-orange from within. This is an entrance to the volcano's magma chamber. Heat pours out like a physical force, and the very air seems to burn. The rock here is hot enough to glow faintly. Without substantial fire resistance, approaching any closer would be suicide.",
-      "terrain": "mountain",
-      "exits": {
-        "west": {
-          "to_room": 12005
-        },
-        "north": {
-          "to_room": 12006
-        },
-        "east": {
-          "to_room": 12009
-        }
-      },
-      "vnum": 12007
-    },
-    "12008": {
-      "title": "Fire Giant Watchtower",
-      "description": "A crude tower of black volcanic rock serves as a lookout post. It's built on a massive scale - everything is twice normal size, built for giants. Rough-hewn stairs lead up to an observation platform. From here, fire giants keep watch over their territory. The tower radiates heat, and the stones themselves seem to burn with inner fire.",
-      "terrain": "mountain",
-      "exits": {
-        "west": {
-          "to_room": 12006
-        },
-        "south": {
-          "to_room": 12010
-        },
-        "up": {
-          "to_room": 12011
-        }
-      },
-      "vnum": 12008
-    },
-    "12009": {
-      "title": "Edge of the Magma Lake",
-      "description": "An enormous lake of molten rock fills a caldera. The surface churns and bubbles, releasing waves of heat that make the air shimmer. Islands of cooler rock float on the lava, constantly melting and reforming. This is one of the volcano's main magma chambers. The heat here is beyond description - lethal within seconds without magical protection.",
-      "terrain": "mountain",
-      "special": "extreme_heat_damage",
-      "exits": {
-        "west": {
-          "to_room": 12007
-        },
-        "north": {
-          "to_room": 12010
-        }
-      },
-      "vnum": 12009
-    },
-    "12010": {
-      "title": "Fire Giant Foundry",
-      "description": "The fire giants use this natural forge to craft their weapons and armor. Channels cut in the rock direct lava to anvils of adamantine. The heat is so intense that the giants work naked, their skin naturally resistant. Massive hammers and tongs hang on the walls. Half-finished weapons and armor lie scattered about - all sized for beings three times human height.",
-      "terrain": "mountain",
-      "exits": {
-        "north": {
-          "to_room": 12008
-        },
-        "south": {
-          "to_room": 12009
-        },
-        "east": {
-          "to_room": 12012
-        }
-      },
-      "vnum": 12010
-    },
-    "12011": {
-      "title": "Watchtower Summit",
-      "description": "From this high vantage point, you can see across the entire volcanic region. Lava flows wind through channels, geysers erupt, and ash clouds billow. The fire giant fortress is visible to the east. Far below, the magma lake glows like a pool of captured sunset. The view would be spectacular if not for the deadly heat and toxic fumes.",
-      "terrain": "mountain",
+    "12001": {
+      "vnum": 12001,
+      "name": "The Judging Booth",
+      "description": "You stand in the midst of a small room with windows on the east and south walls.  These windows provide a complete view of the competition fields. There are several scorecards, pencils and other items that are used by the judges sitting on a table.  The only exit is a trapdoor leading down.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
       "exits": {
         "down": {
-          "to_room": 12008
-        }
-      },
-      "vnum": 12011
-    },
-    "12012": {
-      "title": "Fortress Gates",
-      "description": "Massive gates of steel-bound obsidian mark the entrance to the fire giant fortress. They tower forty feet high and are etched with images of flames and battle. Guards watch from murder holes above, ready to pour molten rock on intruders. The gates radiate heat, and touching them would sear flesh instantly. This is the domain of the fire giants, and they do not welcome visitors.",
-      "terrain": "mountain",
-      "exits": {
-        "west": {
-          "to_room": 12010
-        },
-        "east": {
-          "to_room": 12013,
+          "to_room": 12002,
+          "description": "There is a rickety ladder leading down.",
           "door": {
-            "name": "fortress gates",
-            "state": "closed",
-            "locked": true,
-            "broken": false,
-            "key_vnum": 12000
-          }
-        }
-      },
-      "vnum": 12012
-    },
-    "12013": {
-      "title": "Fortress Courtyard",
-      "description": "The fortress courtyard is a vast open space paved with basalt blocks. Fire giants drill here, practicing with weapons that would require three men to lift. A well of lava in the center provides light and heat. The scale of everything is overwhelming - the giants live in a world sized for beings of immense power. Weapon racks hold swords taller than a man.",
-      "terrain": "mountain",
-      "exits": {
-        "west": {
-          "to_room": 12012,
-          "door": {
-            "name": "fortress gates",
+            "name": "trapdoor",
             "state": "closed",
             "locked": false,
-            "broken": false
+            "key_vnum": 12033
           }
         },
         "north": {
-          "to_room": 12014
+          "to_room": 5001,
+          "description": "You see an exit north."
+        }
+      },
+      "extra_descs": {
+        "": "pencils pencil"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12000,
+          "max": 3
         },
-        "east": {
-          "to_room": 12015
-        }
-      },
-      "vnum": 12013
-    },
-    "12014": {
-      "title": "Armory",
-      "description": "Weapons and armor line the walls - all giant-sized and all masterwork quality. Swords longer than a human is tall, shields that could serve as tables, helms that could be used as cauldrons. The fire giants are legendary smiths, and their gear reflects centuries of metallurgical knowledge. Everything here is functional art, beautiful and deadly.",
-      "terrain": "mountain",
-      "exits": {
-        "south": {
-          "to_room": 12013
-        }
-      },
-      "vnum": 12014
-    },
-    "12015": {
-      "title": "Great Hall",
-      "description": "This enormous hall could hold hundreds of giants comfortably. Long tables made from single slabs of stone run its length. A throne of volcanic rock dominates one end, where the fire giant king holds court. Torches of living flame illuminate the space, and channels of lava serve as heating. The walls are carved with the history of the fire giant clan.",
-      "terrain": "mountain",
-      "exits": {
-        "west": {
-          "to_room": 12013
+        {
+          "vnum": 12000,
+          "max": 3
         },
-        "north": {
-          "to_room": 12016
-        }
-      },
-      "vnum": 12015
-    },
-    "12016": {
-      "title": "Throne Room",
-      "description": "The king of the fire giants sits upon a throne of pure obsidian, backed by a wall of flowing lava. His crown is wrought from adamantine and set with rubies the size of fists. Giants kneel before him, presenting tributes and seeking justice. The power in this room is palpable - this is a king among giants, a being of immense strength and will.",
-      "terrain": "mountain",
-      "exits": {
-        "south": {
-          "to_room": 12015
-        }
-      },
-      "vnum": 12016
-    },
-    "12017": {
-      "title": "Volcanic Tunnels",
-      "description": "Natural lava tubes twist through the mountain's interior, their walls smooth as glass from ancient magma flows. The tunnels are hot and filled with noxious fumes. Strange creatures adapted to extreme heat make their homes here. Occasional side passages branch off into unexplored depths where even fire giants rarely venture.",
-      "terrain": "underground",
-      "exits": {
-        "west": {
-          "to_room": 12009
+        {
+          "vnum": 12000,
+          "max": 3
         },
-        "down": {
-          "to_room": 12018
+        {
+          "vnum": 12001,
+          "max": 1
         }
-      },
-      "vnum": 12017
-    },
-    "12018": {
-      "title": "Heart of Fire",
-      "description": "At the very heart of the volcano, magma wells up from deep within the earth. This is as close to the Elemental Plane of Fire as you can get without leaving the material world. The heat here defies description - only beings of pure fire or those with the strongest magical protection could survive. A fire elemental lord makes its home here, ancient and powerful.",
-      "terrain": "underground",
-      "special": "extreme_heat_damage",
-      "exits": {
-        "up": {
-          "to_room": 12017
-        }
-      },
-      "vnum": 12018
-    },
-    "12019": {
-      "title": "Lava Worm Tunnels",
-      "description": "These tunnels were bored through solid rock by enormous lava worms. The walls are melted smooth and still radiate heat. Partially digested rock and metal are scattered about - the worms consume anything in their path. The ground trembles occasionally as the massive creatures move through nearby tunnels. They're incredibly dangerous and attack anything that disturbs them.",
-      "terrain": "underground",
-      "exits": {
-        "north": {
-          "to_room": 12007
-        },
-        "south": {
-          "to_room": 12018
-        }
-      },
-      "vnum": 12019
-    }
-  },
-  "mobiles": {
-    "12000": {
-      "name": "fire elemental",
-      "short_desc": "a roaring fire elemental",
-      "long_desc": "A being of living flame dances here, crackling with heat.",
-      "description": "This creature is flame given consciousness and form. It shifts constantly, flickering between humanoid shape and raw conflagration. Touching it would be instantly fatal, and even standing nearby causes burns. Its eyes are white-hot cores of heat, and its voice is the roar of wildfire. Fire elementals are drawn to volcanic regions where they can exist freely.",
-      "level": 16,
-      "race": "elemental",
-      "size": "large",
-      "hp_dice": "10d10+30",
-      "damage_dice": "2d6+3",
-      "armor_class": 45,
-      "exp_value": 850,
-      "gold": 0,
-      "behaviors": [
-        "aggressive",
-        "wander"
-      ],
-      "special_abilities": [
-        "fire_immunity",
-        "fire_aura"
-      ],
-      "special_attacks": [
-        "burn"
-      ],
-      "ai_config": {
-        "behaviors": [
-          "spellcaster"
-        ],
-        "preferred_spells": [
-          "fireball",
-          "flame_strike"
-        ]
-      },
-      "spawn_rooms": [
-        12003,
-        12005,
-        12007,
-        12009
-      ],
-      "max_in_zone": 5,
-      "vnum": 12000
-    },
-    "12001": {
-      "name": "magma golem",
-      "short_desc": "a hulking magma golem",
-      "long_desc": "A massive construct of stone and molten rock stands here, glowing with inner heat.",
-      "description": "This golem appears to be carved from volcanic rock, but cracks in its surface reveal the molten core within. Lava drips from its joints, and its eyes glow like furnaces. It's incredibly strong and resilient, created by fire giants to serve as guardians. Immune to heat and most weapons, it's a nearly unstoppable foe. Its touch can melt steel.",
-      "level": 18,
-      "race": "construct",
-      "size": "huge",
-      "hp_dice": "14d10+70",
-      "damage_dice": "2d10+5",
-      "armor_class": 30,
-      "exp_value": 1000,
-      "gold": 0,
-      "behaviors": [
-        "aggressive"
-      ],
-      "special_abilities": [
-        "fire_immunity",
-        "construct_traits",
-        "molten_body"
-      ],
-      "special_attacks": [
-        "heat_metal"
-      ],
-      "ai_config": {
-        "behaviors": [
-          "guard"
-        ],
-        "home_room": 12012
-      },
-      "spawn_rooms": [
-        12010,
-        12012,
-        12013
-      ],
-      "max_in_zone": 3,
-      "vnum": 12001
+      ]
     },
     "12002": {
-      "name": "fire giant",
-      "short_desc": "a towering fire giant warrior",
-      "long_desc": "An enormous giant wreathed in flames surveys its domain with burning eyes.",
-      "description": "This fire giant stands over fifteen feet tall, built like a mountain of muscle. Its skin is dark red, almost black, and radiates heat. It wears armor of blackened steel and carries a massive greatsword that glows red-hot. Fire giants are legendary warriors and smiths, combining immense strength with surprising skill. This one guards the fortress with fierce dedication.",
-      "level": 19,
-      "race": "giant",
-      "size": "huge",
-      "hp_dice": "16d10+80",
-      "damage_dice": "3d8+6",
-      "armor_class": 35,
-      "exp_value": 1100,
-      "gold": 300,
-      "behaviors": [
-        "aggressive"
+      "vnum": 12002,
+      "name": "Caesar's Private Box",
+      "description": "This is the best view in the house!  You can see gladiators fighting or the chariot races with an unobstructed view.  The seats are upholstered in red velvet and are in top-notch condition.  There is a rickety ladder leading up and a marble staircase leading down.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors"
       ],
-      "special_abilities": [
-        "fire_immunity"
-      ],
-      "special_attacks": [
-        "rock_throwing"
-      ],
-      "ai_config": {
-        "behaviors": [
-          "pack",
-          "guard"
-        ],
-        "home_room": 12013,
-        "pack_call_radius": 3
+      "exits": {
+        "up": {
+          "to_room": 12001,
+          "description": "You see a rickety ladder with a trapdoor leading up.",
+          "door": {
+            "name": "trapdoor",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": 12033
+          }
+        },
+        "down": {
+          "to_room": 12003,
+          "description": "There is a marble staircase leading down."
+        }
       },
-      "spawn_rooms": [
-        12008,
-        12010,
-        12013,
-        12014,
-        12015
-      ],
-      "max_in_zone": 6,
-      "vnum": 12002
+      "mob_resets": [
+        {
+          "vnum": 12004,
+          "max": 3
+        }
+      ]
     },
     "12003": {
-      "name": "lava worm",
-      "short_desc": "a massive lava worm",
-      "long_desc": "An enormous worm-like creature of stone and flame burrows through the rock.",
-      "description": "This nightmarish creature is like a giant earthworm, but made of volcanic rock and molten lava. It's over thirty feet long and five feet thick, with a mouth lined with obsidian teeth. It burrows through solid rock, melting it with the heat of its body. Lava worms are unintelligent but incredibly dangerous, attacking anything that moves. They can sense vibrations through the rock.",
-      "level": 17,
-      "race": "vermin",
-      "size": "huge",
-      "hp_dice": "13d10+65",
-      "damage_dice": "2d12+4",
-      "armor_class": 40,
-      "exp_value": 950,
-      "gold": 0,
-      "behaviors": [
-        "aggressive"
-      ],
-      "special_abilities": [
-        "fire_immunity",
-        "earth_glide",
-        "tremorsense"
-      ],
-      "special_attacks": [
-        "swallow_whole"
-      ],
-      "spawn_rooms": [
-        12019
-      ],
-      "max_in_zone": 2,
-      "vnum": 12003
+      "vnum": 12003,
+      "name": "The West Side Of The Commoner's Seating Area",
+      "description": "This is the western side commoner's seating area.  There are row upon row of rough wooden benches bolted to the floor.  There is stadium garbage everywhere and the smell makes you want to puke.  Stairs lead up to Caesar's  private box, a small ramp leads down to the playing field and a hallway  leads south.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 12004,
+          "description": "You see a small hallway that leads to a larger area."
+        },
+        "up": {
+          "to_room": 12002,
+          "description": "Watch your step!"
+        },
+        "down": {
+          "to_room": 12010,
+          "description": "Watch your step!"
+        }
+      },
+      "extra_descs": {
+        "": "seats benches"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12003,
+          "max": 10
+        },
+        {
+          "vnum": 12003,
+          "max": 10
+        }
+      ]
     },
     "12004": {
-      "name": "fire giant king",
-      "short_desc": "Skoraeus, King of the Fire Giants",
-      "long_desc": "The king of fire giants sits upon his obsidian throne, a crown of flame upon his brow.",
-      "description": "Skoraeus is a legend among giants. Standing eighteen feet tall and weighing tons, he's a mountain of muscle and power. His skin is nearly black, and flames dance across his body. His crown is adamantine set with rubies, and his greatsword could cleave a horse in two. He's ruled this clan for centuries, leading them to prosperity through strength and cunning. His word is law, and his wrath is terrible.",
-      "level": 22,
-      "race": "giant",
-      "size": "huge",
-      "hp_dice": "20d10+120",
-      "damage_dice": "4d8+8",
-      "armor_class": 25,
-      "exp_value": 1500,
-      "gold": 1000,
-      "behaviors": [
-        "aggressive"
-      ],
-      "special_abilities": [
-        "fire_immunity",
-        "legendary_resistance"
-      ],
-      "special_attacks": [
-        "rock_throwing",
-        "flame_strike"
-      ],
-      "ai_config": {
-        "behaviors": [
-          "spellcaster",
-          "pack"
-        ],
-        "preferred_spells": [
-          "fireball",
-          "wall_of_fire"
-        ],
-        "pack_call_radius": 5
+      "vnum": 12004,
+      "name": "The Southern Commoner's Seats",
+      "description": "This is the southeastern part of the common seating areas.  The benches here are made of stone and are probably centuries old.  A few scratches on one of the benches catch your eye.  An acrid smell is coming from the east and a tunnel leads off to the north.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 12003,
+          "description": "The tunnel looks like it leads to another seating area."
+        },
+        "east": {
+          "to_room": 12011,
+          "description": "There is an acrid smell coming from that direction."
+        }
       },
-      "spawn_rooms": [
-        12016
+      "extra_descs": {
+        "": "marks scratches"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12003,
+          "max": 10
+        },
+        {
+          "vnum": 12003,
+          "max": 10
+        },
+        {
+          "vnum": 12016,
+          "max": 3
+        }
+      ]
+    },
+    "12005": {
+      "vnum": 12005,
+      "name": "The Abandoned Gate",
+      "description": "This used to be a gateway to and from western Rome.  There is an iron gate blocking your way and judging by the amount of rust and foliage growing on the bars, it hasn't been open for years.  Looking through the gate at the barren landscape that lies beyond, you can see why.  A dirt road leads off to the  east, and a store is directly south.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 12012,
+          "description": "Through the clouds of dust, you can make out a passable road."
+        },
+        "south": {
+          "to_room": 12006,
+          "description": "You can barely make out a storefront through the foliage."
+        }
+      },
+      "extra_descs": {
+        "": "gate"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12018,
+          "max": 5
+        }
+      ]
+    },
+    "12006": {
+      "vnum": 12006,
+      "name": "Swords 'R  Us",
+      "description": "Welcome to the weaponshop of Titus Andronicus!!  Rare halberds, whips, swords and other instruments of death are proudly displayed on the walls and in gleaming glass cases.  More common weapons are stacked like wood on the floor.  To the north you can barely make out a gate.  There is a very secure looking door to the south.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "no_magic"
       ],
-      "max_in_zone": 1,
-      "vnum": 12004
+      "exits": {
+        "north": {
+          "to_room": 12005,
+          "description": "You can see a city gate to the north."
+        },
+        "south": {
+          "to_room": 12007,
+          "description": "There is a very secure looking door blocking your progress.",
+          "door": {
+            "name": "door",
+            "state": "open",
+            "locked": true,
+            "key_vnum": 12034
+          }
+        }
+      },
+      "extra_descs": {
+        "": "swords weapons armor halberds whips"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12005,
+          "max": 5
+        },
+        {
+          "vnum": 12011,
+          "max": 1
+        },
+        {
+          "vnum": 12019,
+          "max": 3
+        }
+      ]
+    },
+    "12007": {
+      "vnum": 12007,
+      "name": "The Back Room",
+      "description": "If you thought that there were a lot of weapons in the front of the store, you haven't seen anything yet!!  There is barely enough room to walk amongst the crates of armor and swords.  No wonder Rome will stand for a thousand years.  The only exit is through a door to the north.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 12006,
+          "description": "Through the piles of weapons, you can see a door leading north to the rest of  the store.",
+          "door": {
+            "name": "door",
+            "state": "open",
+            "locked": true,
+            "key_vnum": 12034
+          }
+        }
+      },
+      "extra_descs": {
+        "": "weapons swords crates armor weapon sword crate"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12026,
+          "max": 1
+        }
+      ]
+    },
+    "12008": {
+      "vnum": 12008,
+      "name": "Peanut Heaven",
+      "description": "You are now so high up that you begin to feel lightheaded and your nose feels like it is going to start bleeding.  There aren't even benches to sit on here; just bare dirty stone.  The view of the surrounding country is spectacular.  Unfortunately you can barely see the playing field.  There is a set of steps here, leading down.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "down": {
+          "to_room": 12015,
+          "description": "Watch your step!"
+        }
+      },
+      "extra_descs": {
+        "": "landscape country"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12003,
+          "max": 10
+        },
+        {
+          "vnum": 12003,
+          "max": 10
+        },
+        {
+          "vnum": 12016,
+          "max": 3
+        }
+      ]
+    },
+    "12009": {
+      "vnum": 12009,
+      "name": "The Practice And Warm-up Area",
+      "description": "There are many gladiators, chariot drivers and their coaches here, warming up in preparation for the games.  The dust rising from the parched earth makes you want to sneeze.  A short tunnel leads east and the thunder of pounding hooves and the clash of weapons can be heard coming from the south.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 12016,
+          "description": "There is a large oval dirt-track in that direction."
+        },
+        "south": {
+          "to_room": 12010,
+          "description": "You can hear the clash of weapons and the thunder of hooves in that direction."
+        }
+      },
+      "extra_descs": {
+        "": "coach trainer"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12006,
+          "max": 5
+        },
+        {
+          "vnum": 12006,
+          "max": 5
+        },
+        {
+          "vnum": 12007,
+          "max": 4
+        },
+        {
+          "vnum": 12008,
+          "max": 1
+        }
+      ]
+    },
+    "12010": {
+      "vnum": 12010,
+      "name": "The Jousting Arena",
+      "description": "This is a wide open grassy plane... LOOK OUT!!!!  You are almost skewered by a gladiator's lance as he makes his charge.  A practicing area is due north.",
+      "sector_type": "field",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 12009,
+          "description": "Through a small tunnel you can see athletes stretching and warming up for the games."
+        },
+        "up": {
+          "to_room": 12003,
+          "description": "You see a set of steps leading up into the spectator stands."
+        }
+      },
+      "extra_descs": {
+        "": "gladiator"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12006,
+          "max": 5
+        },
+        {
+          "vnum": 12006,
+          "max": 5
+        },
+        {
+          "vnum": 12006,
+          "max": 5
+        }
+      ]
+    },
+    "12012": {
+      "vnum": 12012,
+      "name": "A Dirt Road",
+      "description": "You are on a parched and dusty rural road which runs east and west.  There is a structure lying to the south.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 12019,
+          "description": "Through the dust, you see a paved road."
+        },
+        "south": {
+          "to_room": 12013,
+          "description": "It is difficult to see through the haze and dust."
+        },
+        "west": {
+          "to_room": 12005,
+          "description": "It is difficult to see through the haze and dust."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 12017,
+          "max": 15
+        }
+      ]
+    },
+    "12013": {
+      "vnum": 12013,
+      "name": "The Commoner's House",
+      "description": "You are standing in the main living quarters of a common Roman citizen. The furnishings are sparse and it is warm here.  A putrid odor is coming from the east and passages lead north and south.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 12012,
+          "description": "A dusty road lies to the north."
+        },
+        "east": {
+          "to_room": 12020,
+          "description": "What is that smell??!!!  It is enough to make a yak gag!!!"
+        },
+        "south": {
+          "to_room": 12014,
+          "description": "You hazard a guess that a bedroom lies in that direction."
+        }
+      },
+      "extra_descs": {
+        "": "furnishings furniture"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12017,
+          "max": 15
+        }
+      ]
+    },
+    "12014": {
+      "vnum": 12014,
+      "name": "The Bedchamber",
+      "description": "This is the bedroom.  There is a hard and lumpy bed in the far corner. It looks like the commoner's wife has been shirking her duties lately, as there is a big pile of soiled laundry here.  The only way out is from where you came.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 12013,
+          "description": "You see the living quarters to the north."
+        }
+      },
+      "extra_descs": {
+        "": "laundry wash clothing"
+      }
+    },
+    "12015": {
+      "vnum": 12015,
+      "name": "The Noblemans' Box",
+      "description": "These are the 'better' seats used primarily by the upper class of Rome. There is a large seating area to the east and a staircase leading up here. The view of the chariot track is pretty good.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 12022,
+          "description": "Rows upon rows of bleachers lie to the east."
+        },
+        "up": {
+          "to_room": 12008,
+          "description": "The stairs look safe enough."
+        }
+      }
+    },
+    "12016": {
+      "vnum": 12016,
+      "name": "The Race Track",
+      "description": "This is a hard dirt track about a quarter of a mile long.  There are hoof prints everywhere, and you see a large cloud of dust approaching.  You had better move before you get run over.  A small tunnel leads west, you can see the crowd to the east.  You can hear loud snarls and roars coming from below.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 12009,
+          "description": "You see athletes warming up and stretching."
+        },
+        "up": {
+          "to_room": 12023,
+          "description": ""
+        },
+        "down": {
+          "to_room": 12017,
+          "description": "Do you like lots of live lions that haven't been fed for a few days?"
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 12007,
+          "max": 4
+        },
+        {
+          "vnum": 12007,
+          "max": 4
+        },
+        {
+          "vnum": 12007,
+          "max": 4
+        }
+      ]
+    },
+    "12017": {
+      "vnum": 12017,
+      "name": "The Lion Pit",
+      "description": "As you land at the bottom of this dirt-walled pit, the realization that a pit full of lions is NOT a good thing to be hanging around in.  Several of the gladiators gather around the edge of the pit to watch your demise.  You look around you, and all you see is tawny fur and gaping jaws... it is too late to run, too late to hide.    Twelve lions rip you and your belongings into a gory mass of bloodied leather, bronze, and bone.     What's that old saying?     Cats killed the curious?  Something like that, I'm sure...",
+      "sector_type": "inside",
+      "flags": [
+        "death",
+        "indoors"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 12010,
+          "description": ""
+        },
+        "down": {
+          "to_room": 12016,
+          "description": ""
+        }
+      }
+    },
+    "12018": {
+      "vnum": 12018,
+      "name": "The South Entrance To The Coliseum",
+      "description": "You are standing at the south entrance to the Coliseum.  There are citizens of Rome everywhere, apparently in a mad rush to get in.  A statue of Caligula the Mad Emperor overlooks the area.  There are long lines standing to the east, and an acrid smell is coming from the west. A busy road lies to the south.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 12025,
+          "description": "The lines are very long and people look impatient."
+        },
+        "south": {
+          "to_room": 12019,
+          "description": "A road lies in that direction."
+        },
+        "west": {
+          "to_room": 12011,
+          "description": "An acrid, almost medicinal smell is coming from that direction."
+        }
+      },
+      "extra_descs": {
+        "": "statue caligula"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12017,
+          "max": 15
+        }
+      ]
+    },
+    "12019": {
+      "vnum": 12019,
+      "name": "The Main Highway",
+      "description": "This is a well built and heavily traveled road running from east to west and there is a large structure built entirely of stone to the north.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 12018,
+          "description": "You can hear the roar of a large crowd of people coming from that direction."
+        },
+        "east": {
+          "to_room": 12026,
+          "description": "The highway continues to the east."
+        },
+        "west": {
+          "to_room": 12012,
+          "description": "The highway continues to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 12017,
+          "max": 15
+        }
+      ]
+    },
+    "12020": {
+      "vnum": 12020,
+      "name": "The Outhouse",
+      "description": "PEEEEEEEEEEEEEEEE-YEEEEEWWWWWWWW!!!!!  Boy does it stink in here!!!  You taste bile in your mouth and your eyes begin to water.  As you wipe away your tears, you see that this is a small room, in the far corner of which a hole is dug.  The odor intensifies as you move closer and there is a roll of toilet paper sitting on the ground.  The only exit is to the west and your nose and stomach are strongly suggesting that you use it.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 12013,
+          "description": "The living quarters lie in that direction.  Why don't you stop pussyfooting  around and go that way??!!  Please?"
+        }
+      },
+      "extra_descs": {
+        "": "roll paper"
+      }
+    },
+    "12021": {
+      "vnum": 12021,
+      "name": "The Slave Quarters",
+      "description": "This is where the slaves sleep.  There are hard boards set out for use as beds and not much else.  The only exit is to the east.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 12027,
+          "description": "To the east, a well manicured path winds through the nobleman's estate."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 12005,
+          "max": 5
+        },
+        {
+          "vnum": 12005,
+          "max": 5
+        },
+        {
+          "vnum": 12005,
+          "max": 5
+        },
+        {
+          "vnum": 12017,
+          "max": 15
+        }
+      ]
+    },
+    "12022": {
+      "vnum": 12022,
+      "name": "The Common Seating",
+      "description": "This is where many of the common Roman citizens are seated during the games.  These are the cheapest seats in the house, as glare from the sun is usually a problem during the afternoon.  Like the other common seating areas, this place could stand extensive renovation and a thorough cleaning. This area extends to the south and a much more elegant seating area can be seen to the west.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 12015,
+          "description": "The seating gets much fancier and elegant in that direction."
+        },
+        "south": {
+          "to_room": 12023,
+          "description": "The common seating area continues."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 12003,
+          "max": 10
+        },
+        {
+          "vnum": 12003,
+          "max": 10
+        }
+      ]
+    },
+    "12023": {
+      "vnum": 12023,
+      "name": "The Common Seating",
+      "description": "This is where many of the common Roman citizens are seated during the games.  Like the other commoners' areas in the coliseum, it could use extensive renovation and cleaning.  This area extends to the north and lots of noise can be heard coming from the south.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 12022,
+          "description": "The common seating area continues."
+        },
+        "south": {
+          "to_room": 12024,
+          "description": "You see hundreds, perhaps thousands of people."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 12003,
+          "max": 10
+        },
+        {
+          "vnum": 12003,
+          "max": 10
+        },
+        {
+          "vnum": 12016,
+          "max": 3
+        }
+      ]
+    },
+    "12024": {
+      "vnum": 12024,
+      "name": "The East Entrance To The Coliseum",
+      "description": "You are standing at the east entrance to the Coliseum.  There are people  everywhere, apparently in a mad rush to get in.  A statue of Tiberius, an  Emperor of a time long since passed, stands here looking out over the crowd.   There is a passage to the north, the ticket booth is to the south and a gate  opening to the city lies to the east.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 12023,
+          "description": "You see rows upon rows of dilapidated wooden bleachers."
+        },
+        "south": {
+          "to_room": 12025,
+          "description": "There are VERY long lines standing outside the ticket booth."
+        },
+        "east": {
+          "to_room": 12031,
+          "description": "Nero Drive lies in that direction."
+        }
+      },
+      "extra_descs": {
+        "": "statue tiberius"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12017,
+          "max": 15
+        }
+      ]
+    },
+    "12025": {
+      "vnum": 12025,
+      "name": "The Ticket Booth",
+      "description": "Long lines are standing here, waiting to buy tickets.  There are three vendors working furiously.  Ticket stubs litter the ground and you can see that the people are getting very impatient.  There is a large, open cashbox here.  Main entrances to the Coliseum are to the north and west.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 12024,
+          "description": "You see hundreds, if not thousands of people."
+        },
+        "west": {
+          "to_room": 12018,
+          "description": "You see hundreds, if not thousands of people."
+        }
+      },
+      "extra_descs": {
+        "": "cashbox"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12015,
+          "max": 3
+        },
+        {
+          "vnum": 12015,
+          "max": 3
+        },
+        {
+          "vnum": 12015,
+          "max": 3
+        }
+      ]
+    },
+    "12026": {
+      "vnum": 12026,
+      "name": "A Paved Road",
+      "description": "You are on a paved road that runs east to west.  You can see an elaborate looking estate to the south and to the north-west, off in the distance, you can see a very large stone structure.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 12033,
+          "description": "The road leads off to the east."
+        },
+        "south": {
+          "to_room": 12027,
+          "description": "It looks like a Nobleman's estate.  We are talking RICH nobleman's estate."
+        },
+        "west": {
+          "to_room": 12019,
+          "description": "The road leads west towards the highway."
+        }
+      },
+      "extra_descs": {
+        "": "structure"
+      }
+    },
+    "12027": {
+      "vnum": 12027,
+      "name": "A Noble Estate",
+      "description": "You are on the grounds of a nobleman's estate which is hundreds of times the size and splendor of anything that a common citizen of Rome would ever hope to own.  Everything is lush and green.  The grass is perfectly manicured and the trees are all bearing fruit.  Ornamental plants are in perfectly situated to enhance and adorn the three statues of dedicated to gods Jupiter, Venus and Neptune.  A tranquil path leads east and west, there is a paved road to the north and an extravagant house lies to the south.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 12026,
+          "description": "You see a paved road in the distance."
+        },
+        "east": {
+          "to_room": 12034,
+          "description": "The path leads east through the estate."
+        },
+        "south": {
+          "to_room": 12028,
+          "description": "You see an incredible house off in the distance."
+        },
+        "west": {
+          "to_room": 12021,
+          "description": "Off through the trees, you see a small, plain hut."
+        }
+      },
+      "extra_descs": {
+        "": "trees tree shrubs shrub plants plant"
+      }
+    },
+    "12028": {
+      "vnum": 12028,
+      "name": "An Opulent House",
+      "description": "You stand in a house, the size and splendor of which almost defies the imagination.  The floor is done with hand crafted marble tile with silver and jeweled inlays.  The light coming through the exquisitely crafted stained glass windows bathes the room in splendor and the furniture looks as though it was made by master craftsmen from all over the empire.  A path through the estate is north of here.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 12027,
+          "description": "You see a well manicured path that winds through the estate."
+        }
+      },
+      "extra_descs": {
+        "": "furniture"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12004,
+          "max": 3
+        }
+      ]
+    },
+    "12029": {
+      "vnum": 12029,
+      "name": "The Great North Gate",
+      "description": "This is the northern gateway to the city of Rome.  The huge gate appears to be closed and locked against intrusion.  A large road muddy road runs through the gate and into the countryside.  Nero Drive runs south from here.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 12030,
+          "description": "Nero Drive continues in that direction."
+        }
+      },
+      "extra_descs": {
+        "": "road"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12018,
+          "max": 5
+        }
+      ]
+    },
+    "12030": {
+      "vnum": 12030,
+      "name": "Nero Drive",
+      "description": "You are walking on a paved road that runs south through the city of Rome. A great gate is directly north of here.  The Roman citizens are very friendly and tip their hats or say hello as you pass.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 12029,
+          "description": "To the north, you can see a gate leading out of the city."
+        },
+        "south": {
+          "to_room": 12031,
+          "description": "Nero Drive continues in that direction."
+        },
+        "west": {
+          "to_room": 12062,
+          "description": "You see the bakery of Rome."
+        }
+      }
+    },
+    "12031": {
+      "vnum": 12031,
+      "name": "Nero Drive",
+      "description": "You are walking on a great paved road that runs north and south through the city.  People are hurrying from one place to another, but always stop to say hello.  Most of the people are either coming from or going to the town square.  Nero Drive continues to the north, and you can see a large open area to the south.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 12030,
+          "description": "Nero drive continues in that direction."
+        },
+        "south": {
+          "to_room": 12032,
+          "description": "It looks like the town square."
+        },
+        "west": {
+          "to_room": 12024,
+          "description": "You see the an opulent estate."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 12017,
+          "max": 15
+        }
+      ]
+    },
+    "12032": {
+      "vnum": 12032,
+      "name": "The Town Square",
+      "description": "You are standing in the middle of a large open area which is the common area of Rome.  During the day, this place is alive with the hustle and bustle of all of the citizens of Rome and everyone in the city is sure to stop by at some time or another.  There are several street vendors peddling their wares and the overall atmosphere is carnival-like in nature.  To the southeast, off in the distance, you can see the aqueduct and the buildings of the Roman government lie to the northwest.  Nero Drive leads north and south from here and Clay Avenue runs east.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 12031,
+          "description": "Nero Drive heads in the direction of the northern gate."
+        },
+        "south": {
+          "to_room": 12033,
+          "description": "A street made of hard packed clay runs in that direction towards the aqueduct and buildings of the Roman government."
+        },
+        "east": {
+          "to_room": 12039,
+          "description": "Nero Drive heads in the direction of the south gate."
+        }
+      },
+      "extra_descs": {
+        "": "aqueduct"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12012,
+          "max": 1
+        },
+        {
+          "vnum": 12017,
+          "max": 15
+        },
+        {
+          "vnum": 12017,
+          "max": 15
+        }
+      ]
+    },
+    "12033": {
+      "vnum": 12033,
+      "name": "Nero Drive",
+      "description": "You are walking on a paved road that runs north and south through the city of Rome.  There are many people here, as polite as always.  Most of them are either coming from or going to the town square which lies to the north.  Nero Drive continues to the south.  There is an observation area overlooking the aqueduct to the east and a paved road leads west.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 12032,
+          "description": "The town square lies in that direction."
+        },
+        "east": {
+          "to_room": 12040,
+          "description": "The aqueduct and mountain of the gods are in that direction."
+        },
+        "south": {
+          "to_room": 12034,
+          "description": "Nero Drive continues toward the South Gate."
+        },
+        "west": {
+          "to_room": 12026,
+          "description": "A paved road runs west through the city."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 12017,
+          "max": 15
+        }
+      ]
+    },
+    "12034": {
+      "vnum": 12034,
+      "name": "Nero Drive",
+      "description": "This is a busy paved road that runs north through the city.  The people of Rome are very friendly and say hello as you pass.  A gate leading out of the city lies to the south and a small path goes west towards a nobleman's estate.  To the east, off in the distance, lies the great mountain.  It is rumored that the Gods watch over and protect the empire from there.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 12033,
+          "description": "Nero Drive leads in that direction."
+        },
+        "south": {
+          "to_room": 12035,
+          "description": "You see many people entering and leaving the city through a large gate in the walls protecting the city."
+        },
+        "west": {
+          "to_room": 12027,
+          "description": "It looks like a nobleman's estate.  We are talking RICH nobleman's estate."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 12017,
+          "max": 15
+        }
+      ]
+    },
+    "12035": {
+      "vnum": 12035,
+      "name": "The South Gate",
+      "description": "This is the southern gateway to the city of Rome.  The bronze gate is closed and locked.  Looking through the bars, you see a heavily traveled road leading out of the city.  Nero Drive starts here and runs north and a wizard's shop lies to the east.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 12034,
+          "description": "Nero Drive leads towards the center of town."
+        },
+        "east": {
+          "to_room": 12042,
+          "description": "A small store, from which an occasional detonation can be heard, lies off in that direction.  It appears to be surrounded by a rolling pink mist."
+        }
+      },
+      "extra_descs": {
+        "": "gate"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12018,
+          "max": 5
+        }
+      ]
+    },
+    "12036": {
+      "vnum": 12036,
+      "name": "The Emperor's Private Office",
+      "description": "You are standing in the Emperor's private office.  The room is richly furnished with the finest of the loot brought back from conquests of far away lands.  There is a massive, intricately carved desk here, upon which are important documents, decrees and other paperwork involved in running the empire.  On the far wall, there is a marble bookcase that is well stocked with the works of Homer, Plato, Socrates and other wise men. Further, it seems that the current Emperor likes flowers as there are many potted and cut specimens throughout the room.  There is a french door leading to the waiting room and a wooden door to the south.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 12043,
+          "description": "Through the door, you see a waiting room.",
+          "door": {
+            "name": "doors french",
+            "state": "open",
+            "locked": true,
+            "key_vnum": 12035
+          }
+        },
+        "south": {
+          "to_room": 12037,
+          "description": "The south door leads directly to the senate chambers.",
+          "door": {
+            "name": "door wooden",
+            "state": "open",
+            "locked": true,
+            "key_vnum": 12035
+          }
+        }
+      },
+      "extra_descs": {
+        "": "flowers plants flower plant"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12020,
+          "max": 1
+        },
+        {
+          "vnum": 12021,
+          "max": 2
+        },
+        {
+          "vnum": 12021,
+          "max": 2
+        }
+      ]
+    },
+    "12037": {
+      "vnum": 12037,
+      "name": "The Senate Chambers",
+      "description": "This is the working room where elected senators from all over the empire gather to advise the Emperor.  An official seal of the Emperor is hanging on the far wall.  There is a wooden door to the north and a bronze door to the east and doublehung door to the south.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 12036,
+          "description": "The door is made of thick walnut.",
+          "door": {
+            "name": "door wooden",
+            "state": "open",
+            "locked": true,
+            "key_vnum": 12035
+          }
+        },
+        "east": {
+          "to_room": 12044,
+          "description": "The door leads to the foyer.",
+          "door": {
+            "name": "door bronze",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": 12036
+          }
+        },
+        "south": {
+          "to_room": 12038,
+          "description": "",
+          "door": {
+            "name": "door doublehung",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": 12037
+          }
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 12013,
+          "max": 2
+        },
+        {
+          "vnum": 12027,
+          "max": 2
+        },
+        {
+          "vnum": 12027,
+          "max": 2
+        }
+      ]
+    },
+    "12038": {
+      "vnum": 12038,
+      "name": "The House Of Commons",
+      "description": "This is the lower house of the advising body to the Emperor.  Common men from all parts of Rome work here to further assist the senators in advising the Emperor on critical matters of state.  The seal of the Emperor is painted on the far wall.  The only exit is to the north.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 12037,
+          "description": "You see that the doublehung door leads to the senate chambers.",
+          "door": {
+            "name": "door doublehung",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": 12104
+          }
+        }
+      }
+    },
+    "12039": {
+      "vnum": 12039,
+      "name": "Clay Avenue",
+      "description": "You are on a wide well traveled road running east and west through the heart of Rome.  There are large crowds of people to the west and the road continues to the east.  The aqueduct is directly south of here.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 12046,
+          "description": "Clay Avenue continues in that direction."
+        },
+        "south": {
+          "to_room": 12041,
+          "description": "You see an entrance to the aqueduct."
+        },
+        "west": {
+          "to_room": 12032,
+          "description": "There are large crowds of people in that direction."
+        }
+      },
+      "extra_descs": {
+        "": "crowds people"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12017,
+          "max": 15
+        }
+      ]
+    },
+    "12040": {
+      "vnum": 12040,
+      "name": "The Observation Lookout",
+      "description": "You are on a platform overlooking a massive aqueduct.  There is a telescope mounted to the railing that surrounds the area and you can hear the gurgle of water as it is channeled into the city.  Off in the distance, you can see the Mountain of the Gods. There is a sign mounted to the railing and a ramp leads west.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 12033,
+          "description": "You can see a busy street in that direction."
+        }
+      },
+      "extra_descs": {
+        "": "sign"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12017,
+          "max": 15
+        }
+      ]
+    },
+    "12042": {
+      "vnum": 12042,
+      "name": "The Mage's Shop",
+      "description": "You are standing in the mage's shop.  Magical ointments, charms and potions are sitting on shelves and behind a glass counter.  There is a dense neon blue fog hugging the floor here, making it impossible to see below your knees.  You suddenly hear mutterings coming from the back room, possibly from... KKKKKAAAAAABBBBOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOMMMMMMMMMMMMMMMM!!!!!! You are deafened by the noise from a tremendous explosion and the concussion from the blast staggers you!  The shopkeeper seems to pay no heed to this. The door to the back room opens and an older man, wearing a pointed hat, whose face is smudged with soot sticks his head out.  'Is everyone alright?  Sorry about that.  I was testing a new spell.  I'll try to give advance notice next time.', he says.  The door then closes.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 12049,
+          "description": "The door is reinforced with steel and looks VERY sturdy.  Considering the 'test' that you just witnessed, you are glad that it stands between you and whatever is going on in the back room.",
+          "door": {
+            "name": "door",
+            "state": "open",
+            "locked": true,
+            "key_vnum": 12038
+          }
+        },
+        "west": {
+          "to_room": 12035,
+          "description": "You see the south gate through the door."
+        }
+      },
+      "extra_descs": {
+        "": "fog mist"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12019,
+          "max": 3
+        },
+        {
+          "vnum": 12034,
+          "max": 1
+        }
+      ]
+    },
+    "12043": {
+      "vnum": 12043,
+      "name": "The Waiting Room",
+      "description": "You are standing in a very large room with a high ceiling and there are a few people waiting here to see the Emperor on urgent matters.  The master scheduler tells you to have a seat and sends a page to inform the his highness of your arrival.  There are large doors to the east and west and an exit leads south to the foyer.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 12050,
+          "description": "There is a sign on the door that says:  MUNICIPAL COURT OF ROME.  It appears  to be open."
+        },
+        "south": {
+          "to_room": 12044,
+          "description": "The foyer is directly to the south."
+        },
+        "west": {
+          "to_room": 12036,
+          "description": "There is a large door to the west.",
+          "door": {
+            "name": "door",
+            "state": "open",
+            "locked": true,
+            "key_vnum": 12035
+          }
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 12004,
+          "max": 3
+        },
+        {
+          "vnum": 12013,
+          "max": 2
+        },
+        {
+          "vnum": 12023,
+          "max": 1
+        }
+      ]
+    },
+    "12044": {
+      "vnum": 12044,
+      "name": "The Entrance Foyer",
+      "description": "You have just entered the main government building of the Roman Empire and are standing in a massive room with an elaborately decorated domed roof. There are many people here; messengers and senators being the most numerous. There is a large, ornate door to the west, a hallway leads north and marble stairs that lead out of the building are to the south.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 12043,
+          "description": "You see a hallway leading north to what looks like a waiting room."
+        },
+        "west": {
+          "to_room": 12037,
+          "description": "There is a large door to the west that blocks your path.",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": 12036
+          }
+        },
+        "down": {
+          "to_room": 12045,
+          "description": "You see a stairway leading out of the building."
+        }
+      }
+    },
+    "12045": {
+      "vnum": 12045,
+      "name": "Outside The Capitol Building",
+      "description": "You stand on white marble steps that lead up and into the Capitol Building.  There are several statues, none of any real significance, at the entrance to the building.  The main entrance to the building is at the top of the steps.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "up": {
+          "to_room": 12044,
+          "description": "The steps lead into the Capitol Building."
+        },
+        "down": {
+          "to_room": 12046,
+          "description": "The steps terminate onto Clay Avenue."
+        }
+      },
+      "extra_descs": {
+        "": "statue statues"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12017,
+          "max": 15
+        },
+        {
+          "vnum": 12019,
+          "max": 3
+        }
+      ]
+    },
+    "12046": {
+      "vnum": 12046,
+      "name": "Clay Avenue",
+      "description": "You are standing on a wide, heavily traveled road that runs east and west through the heart of the city.  There are marble steps leading up. To the south, off in the distance, you can see a large stone structure and a mountain that is partially obscured by the haze.  There is a general store to the north.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 12063,
+          "description": "The general store lies in that direction."
+        },
+        "east": {
+          "to_room": 12051,
+          "description": "There is what appears to be a large gate in that direction."
+        },
+        "west": {
+          "to_room": 12039,
+          "description": "Clay Avenue continues."
+        },
+        "up": {
+          "to_room": 12045,
+          "description": "There are some white marble steps leading up."
+        }
+      },
+      "extra_descs": {
+        "": "mountain"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12017,
+          "max": 15
+        }
+      ]
+    },
+    "12047": {
+      "vnum": 12047,
+      "name": "The Summit Of The Mountain Of The Gods",
+      "description": "You are at the summit of a very high mountain and are standing above the clouds.  The sun is shining brilliantly here and the clouds below look like balls of cotton.  The path that you have been walking on is damp and the scent of lilac is in the air.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "down": {
+          "to_room": 12052,
+          "description": "You see a damp path leading back down the mountain."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 12030,
+          "max": 1
+        }
+      ]
+    },
+    "12049": {
+      "vnum": 12049,
+      "name": "Froboz's Workshop",
+      "description": "You are standing in the workshop of Froboz the Great, the most powerful and famous mage that Rome has ever known.  Workbenches line the walls and are covered with various test tubes, beakers, petri dishes and crucibles and there is an odor in here that can best be described as a combination of old sweat socks and burning tires.  The only exit is back through the door through which you came.  In the middle of the room, you see a pile of ashes that looks like it once was a body and Froboz is is busy making adjustments on a new type of magic wand... possibly the one responsible for the explosion a few minutes ago.  He removes a jeweler's loupe from his eye as he turns around.  'How in the name of Merlin did you get in here??!!' he asks.  'Oh, nevermind!  Since you are here, you can serve as witnesses to the final test of the new mages' spell:  \"ectowatt\".'  With this he makes a magical gesture and a paladin appears.  Crossing his fingers, Froboz waves the wand his direction and what happens next is incredible!  The Paladin is enveloped in what appears to be a small, well contained, thermonuclear explosion.  When the smoke clears you can see that the paladin and all of equipment has been reduced to a large pile of flaming cinders.  Froboz throws his head back and cackles with insane glee.  'Now, my young friends, what can I do for you?', he asks.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 12042,
+          "description": "There is a door, reinforced with steel, in that direction.",
+          "door": {
+            "name": "door",
+            "state": "open",
+            "locked": true,
+            "key_vnum": 12038
+          }
+        }
+      },
+      "extra_descs": {
+        "": "cinders ashes pile"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12005,
+          "max": 5
+        },
+        {
+          "vnum": 12025,
+          "max": 1
+        }
+      ]
+    },
+    "12050": {
+      "vnum": 12050,
+      "name": "The Courtroom",
+      "description": "You stand inside of a large courtroom in which common civil disputes and  criminal matters are decided.  There is a judge's bench and a witness stand on the far side of the room and a jury's box along side.  The Emperor's seal is prominently displayed on the wall behind the judge's stand, reminding all who enter that he is an extension of his highness.  There is a door, possibly  leading to the judge's chambers, to the east and the waiting room is to the  west.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 12055,
+          "description": "The door might lead into the judge's private chambers.",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": 12039
+          }
+        },
+        "south": {
+          "to_room": 12060,
+          "description": "The holding cells lie in that direction."
+        },
+        "west": {
+          "to_room": 12043,
+          "description": "The waiting room lies in that direction."
+        }
+      },
+      "extra_descs": {
+        "": "seal"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12014,
+          "max": 1
+        },
+        {
+          "vnum": 12028,
+          "max": 1
+        },
+        {
+          "vnum": 12029,
+          "max": 1
+        }
+      ]
+    },
+    "12051": {
+      "vnum": 12051,
+      "name": "The East Gate Of Rome",
+      "description": "You are standing inside of the eastern gate of Rome.  There are two tall  spires built into the city wall, from which the guards can see the whole  eastern side of the city.  The gate is currently open and to the east,  there is a heavily used road, made of packed clay, that leads out of Rome.  Another road leads westward into the city.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 12064,
+          "description": "The clay road heads eastwards.",
+          "door": {
+            "name": "gate",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        },
+        "west": {
+          "to_room": 12046,
+          "description": "The clay street leads into the city."
+        }
+      },
+      "extra_descs": {
+        "": "gate"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12018,
+          "max": 5
+        },
+        {
+          "vnum": 12018,
+          "max": 5
+        }
+      ]
+    },
+    "12052": {
+      "vnum": 12052,
+      "name": "A Mountain Path",
+      "description": "You stand on a small trail that leads up and down.  It has recently been  raining and there are small puddles everywhere.  You are just below the clouds and the view of the surrounding countryside is breathtaking.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "up": {
+          "to_room": 12047,
+          "description": "The trail leads up and enters the clouds."
+        },
+        "down": {
+          "to_room": 12056,
+          "description": "The trail leads down."
+        }
+      },
+      "extra_descs": {
+        "": "trail"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12031,
+          "max": 1
+        }
+      ]
+    },
+    "12055": {
+      "vnum": 12055,
+      "name": "The Judge's Chambers",
+      "description": "You are in a small room that is filled with legal tombs.  There is a small desk here, literally buried under legal documents.  There is also a small window overlooking the northern part of the city.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 12050,
+          "description": "The courtroom lies in that direction.",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": 12039
+          }
+        }
+      },
+      "extra_descs": {
+        "": "papers documents"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12022,
+          "max": 1
+        }
+      ]
+    },
+    "12056": {
+      "vnum": 12056,
+      "name": "A Mountain Path",
+      "description": "You are standing on a small trail that leads through a grove of trees. Every thing is lush and green here and it appears to have been raining recently.  'This would be an ideal place for a picnic.' , you think to yourself.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "up": {
+          "to_room": 12052,
+          "description": "You see a small trail leading further up the mountain."
+        },
+        "down": {
+          "to_room": 12059,
+          "description": "You see a small trail, leading down."
+        }
+      },
+      "extra_descs": {
+        "": "trail path"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12032,
+          "max": 1
+        }
+      ]
+    },
+    "12058": {
+      "vnum": 12058,
+      "name": "The Valley Of The Gods",
+      "description": "You stand in a tranquil valley at the base of a large mountain.  A quiet  stream, with fruit trees growing along its banks, winds its way peacefully through the valley and enters a large stone structure that lies to the west. There are birds singing and every now and then a ripple breaks the surface of the stream.  You can see a path leading through the trees to the up.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 12057,
+          "description": "A small path winds its way through the trees."
+        },
+        "up": {
+          "to_room": 12059,
+          "description": "You see a path leading up the mountain."
+        }
+      },
+      "extra_descs": {
+        "": "trees fruit"
+      }
+    },
+    "12059": {
+      "vnum": 12059,
+      "name": "A Mountain Path",
+      "description": "You are standing on a path that leads up through a stand of large trees.   Everything is green and it seems like eternal spring - this is Mother Nature at her finest.  It is possible to descend into a tranquil valley from here.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "up": {
+          "to_room": 12056,
+          "description": "The path leads further up the mountain."
+        },
+        "down": {
+          "to_room": 12058,
+          "description": "The path widens out into a tranquil valley."
+        }
+      },
+      "extra_descs": {
+        "": "trees"
+      },
+      "mob_resets": [
+        {
+          "vnum": 12033,
+          "max": 1
+        }
+      ]
+    },
+    "12060": {
+      "vnum": 12060,
+      "name": "The Holding Cells",
+      "description": "You are standing in the holding cell area, just off of the cortroom.  Those who are recently convicted of serious crimes are brought here, pending torture and execution.  The courtroom lies to the north and another exit goes east.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 12050,
+          "description": "The courtroom lies to the north."
+        },
+        "east": {
+          "to_room": 12061,
+          "description": ""
+        }
+      },
+      "extra_descs": {
+        "": "cells cell"
+      }
+    },
+    "12061": {
+      "vnum": 12061,
+      "name": "The Torture Chamber",
+      "description": "You are standing in a very small room in which there are many tools designed specifically for inflicting pain and suffering.  Some of them are familiar, such as the rack and the iron maidens.  Others, you have never seen before and they make you wonder about the kind of sadistic mind that dreamt them up.  The only exit is to the west.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 12060,
+          "description": "The holding cells lie in that direction."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 12035,
+          "max": 1
+        }
+      ]
+    },
+    "12062": {
+      "vnum": 12062,
+      "name": "The Roman Bakery",
+      "description": "You are standing in the bakery of Rome and your mouth waters at the delicious aromas wafting from the kitchen.  The only exit is to the east.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 12030,
+          "description": ""
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 12036,
+          "max": 1
+        }
+      ]
+    },
+    "12063": {
+      "vnum": 12063,
+      "name": "The General Store",
+      "description": "You are standing in the only general store of Rome.  The walls and shelves  are covered with all of the various items required by Roman citizens and  stalwart adventurers.  Clay Avenue lies to the south.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 12046,
+          "description": "Clay Avenue lies in that direction."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 12037,
+          "max": 1
+        }
+      ]
+    },
+    "12064": {
+      "vnum": 12064,
+      "name": "Before Rome",
+      "description": "You travel upon an East-West road wide enough for 30 men to march abreast.  It is packed hard through heavy use.  To the west stands the Gates of Rome inviting you to enter and partake of all the glory and splendor that is Rome.",
+      "sector_type": "city",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 12065,
+          "description": ""
+        },
+        "west": {
+          "to_room": 12051,
+          "description": "",
+          "door": {
+            "name": "gate",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      }
+    },
+    "12065": {
+      "vnum": 12065,
+      "name": "Clay Road",
+      "description": "You travel upon an East-West road wide enough for 30 men to march abreast.  It is packed hard through heavy use.  To the west, your eyes catch the splendors of a mighty city.",
+      "sector_type": "city",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 12066,
+          "description": ""
+        },
+        "west": {
+          "to_room": 12064,
+          "description": ""
+        }
+      }
+    },
+    "12066": {
+      "vnum": 12066,
+      "name": "Clay Road",
+      "description": "You travel upon an East-West road wide enough for 30 men to march abreast.",
+      "sector_type": "city",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 12067,
+          "description": ""
+        },
+        "west": {
+          "to_room": 12065,
+          "description": ""
+        }
+      }
+    },
+    "12067": {
+      "vnum": 12067,
+      "name": "The End Of The Clay Road",
+      "description": "The mighty clay road turns into lesser, but still well traveled roads here.  You feel a surge run through your body as you look East into the lands that Rome turned into its mighty empire.",
+      "sector_type": "city",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 12068,
+          "description": "A dirt trail leads towards the desert to the east."
+        },
+        "west": {
+          "to_room": 12066,
+          "description": "The mighty clay road leads off in this direction."
+        }
+      }
+    },
+    "12068": {
+      "vnum": 12068,
+      "name": "A Small Dirt Trail",
+      "description": "This small dirt path seems to be a joint between a large clay road located a short distance to the west and the expanse of sand which opens up before you to the east.  The clay road appears to lead through the foothills towards the snowcapped mountain chain to the west.  Perhaps there is a city or settlement in that direction.    You cannot see any breaks in the horizon of the sand which fills your vision as you look to the east, it seems to stretch forever.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 5028,
+          "description": "The expanse of the Great Eastern Desert opens up before you."
+        },
+        "west": {
+          "to_room": 12067,
+          "description": "A large clay road begins a short distance to the west."
+        }
+      }
+    }
+  },
+  "mobs": {
+    "12000": {
+      "vnum": 12000,
+      "name": "judge",
+      "short_desc": "the adjudicator",
+      "long_desc": "An adjudicator is watching the games intently.",
+      "level": 12,
+      "alignment": 100,
+      "hp_dice": "1d7+4",
+      "damage_dice": "3d7+140",
+      "gold": 7500,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "sentinel",
+        "memory"
+      ],
+      "description": "The adjudicator is a retired gladiator and scars cover all exposed parts of\nhis body.  Although he is getting on in years, he remains healthy and fit.",
+      "equipment": {
+        "wield": 3022,
+        "shield": 3042
+      }
+    },
+    "12001": {
+      "vnum": 12001,
+      "name": "scorekeeper",
+      "short_desc": "the scorekeeper",
+      "long_desc": "A scorekeeper has one eye on his stopwatch and the other on a clipboard.",
+      "level": 7,
+      "alignment": 100,
+      "hp_dice": "1d4+3",
+      "damage_dice": "3d5+80",
+      "gold": 1375,
+      "exp": 8,
+      "armor_class": 4,
+      "flags": [
+        "sentinel",
+        "memory"
+      ],
+      "description": "The scorekeeper is a young man of about 25 years of age and is very intently\nstudying his clipboard.",
+      "equipment": {
+        "wield": 3021,
+        "shield": 3042
+      }
+    },
+    "12003": {
+      "vnum": 12003,
+      "name": "spectator",
+      "short_desc": "the spectator",
+      "long_desc": "A spectator is here watching the games.",
+      "level": 5,
+      "alignment": -100,
+      "hp_dice": "2d4+0",
+      "damage_dice": "2d6+65",
+      "gold": 500,
+      "exp": 6,
+      "armor_class": 5,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "The spectator is filthy, half drunk and screaming his head off."
+    },
+    "12004": {
+      "vnum": 12004,
+      "name": "noble",
+      "short_desc": "the nobleman",
+      "long_desc": "A nobleman stands here looking aloof.",
+      "level": 12,
+      "alignment": 500,
+      "hp_dice": "1d7+5",
+      "damage_dice": "4d6+140",
+      "gold": 8250,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "sentinel",
+        "wimpy",
+        "memory"
+      ],
+      "description": "The nobleman is dressed in fine clothes and jewelry and has a very snobbish\nattitude.  While he is getting old and his hair and beard are streaked with\ngray, he is by no means an easy target.",
+      "equipment": {
+        "shield": 3042,
+        "wield": 3022,
+        "waist": 12001,
+        "finger1": 12000
+      },
+      "inventory": [
+        12033
+      ]
+    },
+    "12005": {
+      "vnum": 12005,
+      "name": "slave",
+      "short_desc": "the slave",
+      "long_desc": "A slave stands here, wishing that she was free.",
+      "level": 3,
+      "alignment": 0,
+      "hp_dice": "1d7+0",
+      "damage_dice": "3d6+30",
+      "gold": 180,
+      "exp": 8,
+      "armor_class": 7,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "A very pretty young woman who was captured instead of being killed when\nthe Roman legions subjugated her land.",
+      "equipment": {
+        "wield": 3023
+      }
+    },
+    "12006": {
+      "vnum": 12006,
+      "name": "gladiator",
+      "short_desc": "the gladiator",
+      "long_desc": "There is a gladiator standing here.",
+      "level": 14,
+      "alignment": -250,
+      "hp_dice": "1d8+6",
+      "damage_dice": "4d7+150",
+      "gold": 10100,
+      "exp": 8,
+      "armor_class": 0,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "A well muscled man who is very heavily armored and armed to the teeth.  He\nlives for combat.",
+      "equipment": {
+        "wield": 3022,
+        "head": 12002
+      }
+    },
+    "12007": {
+      "vnum": 12007,
+      "name": "driver",
+      "short_desc": "the chariot driver",
+      "long_desc": "There is a chariot driver here.",
+      "level": 10,
+      "alignment": 100,
+      "hp_dice": "2d6+1",
+      "damage_dice": "3d7+120",
+      "gold": 5100,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "You see a very slight and small individual whose whole life is centered around\nnothing but horses and speed.",
+      "equipment": {
+        "wield": 3021,
+        "feet": 12008
+      }
+    },
+    "12008": {
+      "vnum": 12008,
+      "name": "coach",
+      "short_desc": "the coach",
+      "long_desc": "There is a coach standing here, going over last minute strategy.",
+      "level": 11,
+      "alignment": 0,
+      "hp_dice": "2d6+1",
+      "damage_dice": "4d5+130",
+      "gold": 5750,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "sentinel",
+        "memory"
+      ],
+      "description": "As you try to look over his shoulder and listen in on his mumbling,\nhe looks up at you and gives you a glare that chills you to the\nbone.",
+      "equipment": {
+        "wield": 3021,
+        "body": 3043
+      },
+      "inventory": [
+        12003
+      ]
+    },
+    "12009": {
+      "vnum": 12009,
+      "name": "healer",
+      "short_desc": "the healer",
+      "long_desc": "A healer is standing here.",
+      "level": 14,
+      "alignment": 900,
+      "hp_dice": "1d7+6",
+      "damage_dice": "2d7+170",
+      "gold": 9750,
+      "exp": 8,
+      "armor_class": 1,
+      "flags": [
+        "special",
+        "sentinel",
+        "aware",
+        "memory"
+      ],
+      "description": "You see a young man, still learning about magical healing, wearing a white \ncoat and using a stethoscope.",
+      "equipment": {
+        "wield": 3022,
+        "body": 3043,
+        "shield": 3042,
+        "neck1": 12004
+      },
+      "inventory": [
+        12028
+      ]
+    },
+    "12010": {
+      "vnum": 12010,
+      "name": "herbalist",
+      "short_desc": "the herbalist",
+      "long_desc": "There is a beautiful young lady here, carrying herbs to help the healer with.",
+      "level": 10,
+      "alignment": 1000,
+      "hp_dice": "1d7+4",
+      "damage_dice": "3d4+110",
+      "gold": 4250,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "sentinel",
+        "wimpy",
+        "memory"
+      ],
+      "description": "The herbalist is a very beautiful young lady who is about 22 years old.  She \nhas deep brown eyes and shoulder-length chestnut hair.  Her body is perfectly \nproportioned and she stands about 5' 5\" tall.",
+      "equipment": {
+        "wield": 3021,
+        "body": 3043,
+        "head": 12005
+      },
+      "inventory": [
+        12027
+      ]
+    },
+    "12011": {
+      "vnum": 12011,
+      "name": "shopkeeper",
+      "short_desc": "Titus' shopkeeper",
+      "long_desc": "Titus' shopkeeper is here, minding the store.",
+      "level": 23,
+      "alignment": 750,
+      "hp_dice": "3d8+12",
+      "damage_dice": "4d10+400",
+      "gold": 42500,
+      "exp": 8,
+      "armor_class": -2,
+      "flags": [
+        "sentinel",
+        "memory"
+      ],
+      "description": "The shopkeeper is an older man in his middle to late fifties and looks like\nhe enjoys the quiet life.  There is a long scar running from the edge of his\nmouth to his right ear, making it look like he is always smiling.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          3020
+        ],
+        "buys": [
+          "3023"
+        ],
+        "markup": 3021.0,
+        "markdown": 3022.0
+      },
+      "inventory": [
+        3020,
+        3021,
+        3022,
+        3023,
+        3024,
+        3025,
+        12008,
+        12034
+      ],
+      "equipment": {
+        "wield": 3022,
+        "feet": 12008
+      }
+    },
+    "12012": {
+      "vnum": 12012,
+      "name": "peddler",
+      "short_desc": "the peddler",
+      "long_desc": "A poor peddler is standing here, trying to support his meager existence.",
+      "level": 4,
+      "alignment": 250,
+      "hp_dice": "1d8+0",
+      "damage_dice": "3d4+40",
+      "gold": 350,
+      "exp": 8,
+      "armor_class": 6,
+      "flags": [
+        "sentinel",
+        "stay_zone",
+        "wimpy",
+        "no_charm"
+      ],
+      "description": "You see a small, dirty man who doesn't look very healthy.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          12006
+        ],
+        "buys": [
+          "1.2"
+        ],
+        "markup": 12007.0,
+        "markdown": -1.0
+      },
+      "equipment": {
+        "feet": 12008
+      },
+      "inventory": [
+        12006,
+        12007
+      ]
+    },
+    "12013": {
+      "vnum": 12013,
+      "name": "page",
+      "short_desc": "the page",
+      "long_desc": "A page stands here, waiting to run an errand.",
+      "level": 6,
+      "alignment": 0,
+      "hp_dice": "2d4+1",
+      "damage_dice": "3d6+75",
+      "gold": 800,
+      "exp": 8,
+      "armor_class": 4,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "You see a young boy who looks very strong and very fast.  He has the look of\na scholar about him.",
+      "equipment": {
+        "wield": 3020,
+        "feet": 12008
+      }
+    },
+    "12014": {
+      "vnum": 12014,
+      "name": "plaintiff",
+      "short_desc": "the plaintiff",
+      "long_desc": "The plaintiff stands here, pleading his case.",
+      "level": 11,
+      "alignment": 0,
+      "hp_dice": "2d6+3",
+      "damage_dice": "3d6+140",
+      "gold": 6500,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "He looks pitiful.  Absolutely pitiful.",
+      "equipment": {
+        "wield": 3022,
+        "wrist2": 12011
+      }
+    },
+    "12015": {
+      "vnum": 12015,
+      "name": "master",
+      "short_desc": "the ticket master",
+      "long_desc": "A ticket master is here, looking at you expectantly.",
+      "level": 17,
+      "alignment": 100,
+      "hp_dice": "1d6+11",
+      "damage_dice": "4d8+210",
+      "gold": 16000,
+      "exp": 8,
+      "armor_class": 1,
+      "flags": [
+        "sentinel",
+        "memory"
+      ],
+      "description": "He seems to be waiting for you to either buy a ticket or to get out\nof his way so that he can sell tickets to people that actually want\nthem.",
+      "equipment": {
+        "wield": 12015
+      }
+    },
+    "12016": {
+      "vnum": 12016,
+      "name": "vendor",
+      "short_desc": "the stadium vendor",
+      "long_desc": "A stadium vendor is walking here, selling overpriced hotdogs and beer.",
+      "level": 8,
+      "alignment": -150,
+      "hp_dice": "2d5+15",
+      "damage_dice": "2d4+13000",
+      "gold": 2100,
+      "exp": 8,
+      "armor_class": 3,
+      "flags": [
+        "stay_zone"
+      ],
+      "description": "The vendor is a scruffy looking man who isn't afraid of a fight and looks\nlike he has had just about enough of smart-mouthed spectators.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [],
+        "buys": [],
+        "markup": 1.6,
+        "markdown": 0.3
+      },
+      "inventory": [
+        12010,
+        12010,
+        12010
+      ]
+    },
+    "12017": {
+      "vnum": 12017,
+      "name": "citizen",
+      "short_desc": "the citizen",
+      "long_desc": "A citizen of Rome is standing here.",
+      "level": 5,
+      "alignment": 900,
+      "hp_dice": "1d8+1",
+      "damage_dice": "1d4+85",
+      "gold": 550,
+      "exp": 8,
+      "armor_class": 5,
+      "flags": [
+        "stay_zone",
+        "memory"
+      ],
+      "description": "It appears to be your ordinary citizen going about his business."
+    },
+    "12018": {
+      "vnum": 12018,
+      "name": "gateguard",
+      "short_desc": "the gateguard",
+      "long_desc": "A gateguard stands here, tending the gate.",
+      "level": 11,
+      "alignment": 1000,
+      "hp_dice": "1d6+5",
+      "damage_dice": "3d6+130",
+      "gold": 5750,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "special",
+        "sentinel",
+        "scavenger",
+        "aware",
+        "memory"
+      ],
+      "description": "You see a strong, loyal public defender.",
+      "equipment": {
+        "wield": 3022
+      }
+    },
+    "12019": {
+      "vnum": 12019,
+      "name": "soldier",
+      "short_desc": "the soldier",
+      "long_desc": "A soldier on leave is walking around looking for entertainment.",
+      "level": 17,
+      "alignment": 300,
+      "hp_dice": "1d6+9",
+      "damage_dice": "3d5+220",
+      "gold": 14640,
+      "exp": 8,
+      "armor_class": -1,
+      "flags": [
+        "stay_zone",
+        "memory"
+      ],
+      "description": "You see a member of one of the Emperor's elite legions.  He looks VERY strong.\nYou have this vague feeling that his entertainment isn't going to be a very\nwholesome activity.",
+      "equipment": {
+        "wield": 3021,
+        "feet": 12008,
+        "body": 12018
+      }
+    },
+    "12020": {
+      "vnum": 12020,
+      "name": "emperor",
+      "short_desc": "Julius Caesar",
+      "long_desc": "Julius Caesar, the Emperor of Rome, is sitting here.",
+      "level": 27,
+      "alignment": 990,
+      "hp_dice": "3d7+15",
+      "damage_dice": "10d5+650",
+      "gold": 87381,
+      "exp": 8,
+      "armor_class": -7,
+      "flags": [
+        "special",
+        "sentinel",
+        "memory"
+      ],
+      "description": "You see a man who is dressed in the finest of clothes, has eaten the best of\nfoods and lived in the most opulent palace that Rome has ever known.",
+      "equipment": {
+        "wield": 3022,
+        "arms": 12017
+      },
+      "inventory": [
+        12024
+      ]
+    },
+    "12021": {
+      "vnum": 12021,
+      "name": "guard",
+      "short_desc": "the royal bodyguard",
+      "long_desc": "There is a royal bodyguard here, ready to die for the Emperor, if necessary.",
+      "level": 18,
+      "alignment": 990,
+      "hp_dice": "1d6+6",
+      "damage_dice": "3d6+220",
+      "gold": 20000,
+      "exp": 8,
+      "armor_class": 0,
+      "flags": [
+        "special",
+        "sentinel",
+        "aggr_evil",
+        "aggr_neutral",
+        "memory"
+      ],
+      "description": "The bodyguard is dressed in the finest of armor and wields only the\ndeadliest of weapons.  He is very strong and would put up one hell\nof a fight.  He has been trained to be suspicious of all but the\nmost innocent visitors, and likely to take offense of anyone with\nless than pure intentions.",
+      "equipment": {
+        "wield": 3022,
+        "shield": 3042,
+        "body": 3046
+      }
+    },
+    "12022": {
+      "vnum": 12022,
+      "name": "judge",
+      "short_desc": "the judge",
+      "long_desc": "A judge is standing here, reading a case.",
+      "level": 21,
+      "alignment": 990,
+      "hp_dice": "1d7+11",
+      "damage_dice": "20d5+260",
+      "gold": 27500,
+      "exp": 6,
+      "armor_class": -1,
+      "flags": [
+        "sentinel",
+        "memory"
+      ],
+      "description": "He seems to be quite interested in the case, perhaps you shouldn't\ndisturb him now, later would probably be a better time.",
+      "equipment": {
+        "wield": 3022,
+        "finger2": 12012
+      }
+    },
+    "12023": {
+      "vnum": 12023,
+      "name": "master",
+      "short_desc": "the master scheduler",
+      "long_desc": "The master scheduler is here, writing in an appointment book.",
+      "level": 17,
+      "alignment": 900,
+      "hp_dice": "1d6+9",
+      "damage_dice": "4d4+210",
+      "gold": 15500,
+      "exp": 8,
+      "armor_class": 0,
+      "flags": [
+        "sentinel",
+        "memory"
+      ],
+      "description": "As you look at him, he looks up at you and asks, 'Do you have an\nappointment?'  He waits for a few seconds and then asks, 'Would\nyou like one?'",
+      "equipment": {
+        "wield": 3022,
+        "feet": 12008,
+        "neck2": 12013
+      },
+      "inventory": [
+        12035,
+        12036
+      ]
+    },
+    "12024": {
+      "vnum": 12024,
+      "name": "slimeball",
+      "short_desc": "the slimeball",
+      "long_desc": "A green ball of slime is hanging over you, oozing downward.",
+      "level": 12,
+      "alignment": -500,
+      "hp_dice": "2d6+2",
+      "damage_dice": "3d4+145",
+      "gold": 6500,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "aggressive",
+        "no_bash",
+        "no_blind"
+      ],
+      "description": "There is a green 'ball' of slime oozing from the coating on the walls.",
+      "inventory": [
+        12030
+      ]
+    },
+    "12025": {
+      "vnum": 12025,
+      "name": "froboz",
+      "short_desc": "Froboz",
+      "long_desc": "Froboz the wizard is standing here, working on a new spell.",
+      "level": 23,
+      "alignment": 300,
+      "hp_dice": "1d8+14",
+      "damage_dice": "5d10+425",
+      "gold": 63500,
+      "exp": 8,
+      "armor_class": -3,
+      "flags": [
+        "special",
+        "sentinel",
+        "aware",
+        "memory",
+        "no_charm",
+        "no_summmon"
+      ],
+      "description": "You see a middle-aged man whose knowledge of magic, both offensive and \ndefensive, is legendary.  He literally glows with a pink aura.",
+      "equipment": {
+        "wield": 3022,
+        "shield": 3042,
+        "about": 12014
+      },
+      "inventory": [
+        12025,
+        12026,
+        12029
+      ]
+    },
+    "12026": {
+      "vnum": 12026,
+      "name": "titus",
+      "short_desc": "Titus Andronicus",
+      "long_desc": "Titus Andronicus is standing here, polishing a few swords.",
+      "level": 24,
+      "alignment": 500,
+      "hp_dice": "1d8+14",
+      "damage_dice": "1d5+450",
+      "gold": 58000,
+      "exp": 8,
+      "armor_class": -5,
+      "flags": [
+        "sentinel",
+        "aware",
+        "aggressive",
+        "memory",
+        "no_charm",
+        "no_summmon"
+      ],
+      "description": "As you look at him, he suddenly swings a newly sharpened sword\nat you!  Watch out!",
+      "equipment": {
+        "hold": 12016,
+        "wield": 3022,
+        "shield": 3042,
+        "body": 3046,
+        "feet": 12008
+      }
+    },
+    "12027": {
+      "vnum": 12027,
+      "name": "senator",
+      "short_desc": "the senator",
+      "long_desc": "A senator is here, waiting for debate to begin.",
+      "level": 10,
+      "alignment": 350,
+      "hp_dice": "2d6+1",
+      "damage_dice": "3d5+120",
+      "gold": 4750,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "sentinel",
+        "memory"
+      ],
+      "description": "He seems to be quite bored and is playing with the edge of his toga.",
+      "equipment": {
+        "wield": 3021,
+        "body": 3044
+      },
+      "inventory": [
+        12037,
+        3050
+      ]
+    },
+    "12028": {
+      "vnum": 12028,
+      "name": "bailiff",
+      "short_desc": "the bailiff",
+      "long_desc": "The bailiff stands here, keeping order in the courtroom.",
+      "level": 16,
+      "alignment": 900,
+      "hp_dice": "2d7+4",
+      "damage_dice": "1d5+200",
+      "gold": 12500,
+      "exp": 8,
+      "armor_class": 1,
+      "flags": [
+        "sentinel",
+        "memory"
+      ],
+      "description": "He is a very stern man and insists on absolute quiet in his courtroom\nunless the judge has given someone permisson to speak.",
+      "equipment": {
+        "wield": 3022,
+        "shield": 3042
+      },
+      "inventory": [
+        12039
+      ]
+    },
+    "12029": {
+      "vnum": 12029,
+      "name": "defendant",
+      "short_desc": "the defendant",
+      "long_desc": "The defendant stands here, pleading her case.",
+      "level": 11,
+      "alignment": 200,
+      "hp_dice": "2d7+1",
+      "damage_dice": "3d6+130",
+      "gold": 5750,
+      "exp": 8,
+      "armor_class": 1,
+      "flags": [
+        "sentinel",
+        "memory"
+      ],
+      "description": "She looks to be well organized and full of confidence.",
+      "equipment": {
+        "wield": 3024,
+        "body": 3043
+      }
+    },
+    "12030": {
+      "vnum": 12030,
+      "name": "jupiter",
+      "short_desc": "Jupiter",
+      "long_desc": "Jupiter, King of the Gods, is watching over his realm here.",
+      "level": 34,
+      "alignment": 1000,
+      "hp_dice": "8d6+50",
+      "damage_dice": "20d15+950",
+      "gold": 15000,
+      "exp": 8,
+      "armor_class": -10,
+      "flags": [
+        "special",
+        "sentinel",
+        "aware",
+        "aggr_evil",
+        "memory",
+        "no_charm",
+        "no_summmon",
+        "no_sleep",
+        "no_bash",
+        "no_blind"
+      ],
+      "description": "He is the strongest of the Gods, and certainly no easy mark!  His powers\ntranscend the plane of the physical, and could easily kill an unprepared\nmortal.",
+      "equipment": {
+        "wield": 12020
+      }
+    },
+    "12031": {
+      "vnum": 12031,
+      "name": "venus",
+      "short_desc": "Venus",
+      "long_desc": "Venus, the Goddess of Beauty and Knowledge, is resting here.",
+      "level": 28,
+      "alignment": 1000,
+      "hp_dice": "6d6+12",
+      "damage_dice": "5d10+650",
+      "gold": 11000,
+      "exp": 5,
+      "armor_class": -6,
+      "flags": [
+        "special",
+        "sentinel",
+        "aware",
+        "memory",
+        "no_charm",
+        "no_summmon",
+        "no_sleep",
+        "no_bash",
+        "no_blind"
+      ],
+      "description": "Venus is probably one of the most beautiful women you have ever seen\nif not THE most beautiful.  She is very powerful and tough under that\nouter image of beauty.",
+      "equipment": {
+        "neck1": 12022
+      }
+    },
+    "12032": {
+      "vnum": 12032,
+      "name": "mars",
+      "short_desc": "Mars",
+      "long_desc": "Mars, the God of War and State, is sitting down here.",
+      "level": 27,
+      "alignment": 1000,
+      "hp_dice": "8d6+14",
+      "damage_dice": "15d10+630",
+      "gold": 11000,
+      "exp": 6,
+      "armor_class": -9,
+      "flags": [
+        "special",
+        "sentinel",
+        "aware",
+        "memory",
+        "no_charm",
+        "no_summmon",
+        "no_sleep",
+        "no_bash",
+        "no_blind"
+      ],
+      "description": "Mars is a tall God with burning, hateful eyes and a large scowl on\nhis face.",
+      "equipment": {
+        "hold": 12016,
+        "waist": 12021
+      }
+    },
+    "12033": {
+      "vnum": 12033,
+      "name": "mercury",
+      "short_desc": "Mercury",
+      "long_desc": "Mercury, the messenger of the Gods, is standing here.",
+      "level": 26,
+      "alignment": 1000,
+      "hp_dice": "4d6+8",
+      "damage_dice": "5d10+550",
+      "gold": 90000,
+      "exp": 8,
+      "armor_class": -10,
+      "flags": [
+        "sentinel",
+        "aware",
+        "memory",
+        "no_charm",
+        "no_summmon",
+        "no_sleep",
+        "no_bash",
+        "no_blind"
+      ],
+      "description": "Mercury is a handsome, youthful God and wears a large grin on his face.",
+      "equipment": {
+        "feet": 12023
+      }
+    },
+    "12034": {
+      "vnum": 12034,
+      "name": "shopkeeper",
+      "short_desc": "Froboz' shopkeeper",
+      "long_desc": "Froboz' shopkeeper is here, minding the store.",
+      "level": 23,
+      "alignment": 650,
+      "hp_dice": "1d8+14",
+      "damage_dice": "4d10+400",
+      "gold": 42500,
+      "exp": 8,
+      "armor_class": -2,
+      "flags": [
+        "sentinel",
+        "memory",
+        "no_charm",
+        "no_summmon"
+      ],
+      "description": "The shopkeeper is an older man in his middle to late fifties and looks like\nhe enjoys the quiet life.  There is a long scar running from the edge of his\nmouth to his right ear, making it look like he is always smiling.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          3050
+        ],
+        "buys": [
+          "3053"
+        ],
+        "markup": 3051.0,
+        "markdown": 3052.0
+      },
+      "inventory": [
+        3050,
+        3051,
+        3052,
+        3053,
+        3054,
+        12030,
+        12038
+      ],
+      "equipment": {
+        "wield": 3022,
+        "feet": 12008
+      }
+    },
+    "12035": {
+      "vnum": 12035,
+      "name": "executioner",
+      "short_desc": "the executioner",
+      "long_desc": "The executioner stands here, waiting to torture some sorry soul.",
+      "level": 20,
+      "alignment": -1000,
+      "hp_dice": "2d2+14",
+      "damage_dice": "2d6+260",
+      "gold": 20500,
+      "exp": 8,
+      "armor_class": 0,
+      "flags": [
+        "sentinel",
+        "scavenger",
+        "aggressive",
+        "no_charm",
+        "no_summmon"
+      ],
+      "description": "You see a burly man who is wearing a black hood that obscures his face.  He\nhas a very sadistic attitude and clearly loves his work.",
+      "inventory": [
+        12031
+      ]
+    },
+    "12036": {
+      "vnum": 12036,
+      "name": "baker",
+      "short_desc": "the baker",
+      "long_desc": "The baker looks at you calmly, wiping flour from his face with one hand.",
+      "level": 33,
+      "alignment": 900,
+      "hp_dice": "2d8+22",
+      "damage_dice": "6d10+30000",
+      "gold": 41000,
+      "exp": 8,
+      "armor_class": -10,
+      "flags": [
+        "sentinel",
+        "memory"
+      ],
+      "description": "A fat, nice looking baker.  But you can see that he has many scars on his\nbody.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          3000
+        ],
+        "buys": [
+          "3010"
+        ],
+        "markup": 3001.0,
+        "markdown": 3009.0
+      },
+      "inventory": [
+        3000,
+        3001,
+        3009,
+        3010,
+        3011,
+        12006,
+        12007
+      ],
+      "equipment": {
+        "wield": 3022
+      }
+    },
+    "12037": {
+      "vnum": 12037,
+      "name": "grocer",
+      "short_desc": "the grocer",
+      "long_desc": "A grocer stands at the counter, with a slightly impatient look on his face.",
+      "level": 33,
+      "alignment": 900,
+      "hp_dice": "2d8+22",
+      "damage_dice": "1d1+30000",
+      "gold": 50000,
+      "exp": 8,
+      "armor_class": -10,
+      "flags": [
+        "sentinel",
+        "memory"
+      ],
+      "description": "A tall grocer, who moves two 200 pounds bag of flour around on his shoulders.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          3030
+        ],
+        "buys": [
+          "3033"
+        ],
+        "markup": 3031.0,
+        "markdown": 3032.0
+      },
+      "inventory": [
+        3030,
+        3031,
+        3032,
+        3033,
+        3036,
+        12003
+      ],
+      "equipment": {
+        "wield": 3022
+      }
     }
   },
   "objects": {
     "12000": {
-      "name": "obsidian key",
-      "short_desc": "a key carved from volcanic glass",
-      "long_desc": "A large key of polished obsidian lies here.",
-      "description": "This key is carved from a single piece of volcanic glass, perfectly shaped to fit the fortress gates. It's surprisingly heavy and sharp enough to cut if handled carelessly. Only fire giants and those who defeat them possess these keys.",
-      "item_type": "key",
-      "value": 50,
+      "vnum": 12000,
+      "name": "ring",
+      "short_desc": "a pewter ring",
+      "room_desc": "There is a pewter ring lying here.",
+      "item_type": "treasure",
       "weight": 5,
-      "spawn_rooms": [
-        12008
-      ],
-      "max_in_zone": 1,
-      "vnum": 12000
+      "value": 15000
     },
     "12001": {
-      "name": "fire resistance potion",
-      "short_desc": "a red potion of fire resistance",
-      "long_desc": "A flask of glowing red liquid sits here.",
-      "description": "This potion glows with inner heat and feels warm to the touch. Drinking it grants temporary immunity to fire and heat, essential for surviving in volcanic regions. The effect lasts about an hour.",
-      "item_type": "potion",
-      "value": 250,
-      "weight": 1,
-      "potion_spell": "resist_fire",
-      "spawn_rooms": [
-        12010
-      ],
-      "max_in_zone": 3,
-      "vnum": 12001
+      "vnum": 12001,
+      "name": "belt",
+      "short_desc": "a bronze belt",
+      "room_desc": "There is a bronze belt on the ground here.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 10000,
+      "armor_bonus": 4
     },
     "12002": {
-      "name": "fire giant greatsword",
-      "short_desc": "an enormous flaming greatsword",
-      "long_desc": "A massive sword wreathed in flames leans against the wall.",
-      "description": "This greatsword is sized for a giant - twelve feet long and weighing hundreds of pounds. The blade is forged from volcanic steel and enchanted with eternal flames. For a human to wield it would be impossible without magic, but the damage it could deal is devastating. The flames never go out and burn with intense heat.",
-      "item_type": "weapon",
-      "value": 1000,
-      "weight": 250,
-      "weapon_type": "sword",
-      "damage_dice": "4d8+3",
-      "magic_bonus": 2,
-      "special_properties": [
-        "flaming",
-        "giant_sized"
-      ],
-      "spawn_rooms": [
-        12014
-      ],
-      "max_in_zone": 2,
-      "vnum": 12002
+      "vnum": 12002,
+      "name": "helmet",
+      "short_desc": "a Roman combat helmet",
+      "room_desc": "A Roman combat helmet has been left here.",
+      "item_type": "armor",
+      "weight": 25,
+      "value": 12000,
+      "armor_bonus": 8
     },
     "12003": {
-      "name": "ruby",
-      "short_desc": "a massive ruby",
-      "long_desc": "A ruby the size of your fist glows with inner fire.",
-      "description": "This ruby is enormous and flawless, worth a king's ransom. It seems to contain actual flame deep within its facets. Fire giants prize these gems both for their beauty and as power sources for their magic. A single stone like this could buy a castle.",
+      "vnum": 12003,
+      "name": "whistle",
+      "short_desc": "a coach's whistle",
+      "room_desc": "A coach's whistle has been left here.",
       "item_type": "treasure",
-      "value": 5000,
-      "weight": 2,
-      "spawn_rooms": [
-        12016
-      ],
-      "max_in_zone": 1,
-      "vnum": 12003
+      "weight": 1,
+      "value": 1000
     },
     "12004": {
-      "name": "volcanic steel",
-      "short_desc": "a bar of volcanic steel",
-      "long_desc": "A gleaming bar of black steel lies here.",
-      "description": "This is volcanic steel, forged in the heart of the mountain. It's stronger and lighter than normal steel, holding an edge far longer. Fire giant smiths jealously guard the secrets of its creation. A skilled blacksmith could forge legendary weapons from this material.",
-      "item_type": "ingredient",
-      "value": 500,
+      "vnum": 12004,
+      "name": "stethoscope",
+      "short_desc": "a stethoscope",
+      "room_desc": "There is an odd object laying on the ground here.",
+      "item_type": "treasure",
+      "weight": 1,
+      "value": 15000
+    },
+    "12005": {
+      "vnum": 12005,
+      "name": "hairpin",
+      "short_desc": "a hairpin",
+      "room_desc": "A woman's hairpin is lying here.",
+      "item_type": "treasure",
+      "weight": 1,
+      "value": 3000
+    },
+    "12006": {
+      "vnum": 12006,
+      "name": "apple",
+      "short_desc": "an apple",
+      "room_desc": "A delicious looking apple has been left here.",
+      "item_type": "food",
+      "weight": 1,
+      "value": 5,
+      "nutrition": 4
+    },
+    "12007": {
+      "vnum": 12007,
+      "name": "orange",
+      "short_desc": "an orange",
+      "room_desc": "A sun-ripened orange has been left here.",
+      "item_type": "food",
+      "weight": 1,
+      "value": 6,
+      "nutrition": 6
+    },
+    "12008": {
+      "vnum": 12008,
+      "name": "sandals",
+      "short_desc": "a pair of leather sandals",
+      "room_desc": "A pair of leather sandals has been dropped here.",
+      "item_type": "armor",
+      "weight": 2,
+      "value": 250,
+      "armor_bonus": 2
+    },
+    "12010": {
+      "vnum": 12010,
+      "name": "hotdog",
+      "short_desc": "a hotdog",
+      "room_desc": "A hotdog loaded with chili and onions has been left here.",
+      "item_type": "food",
+      "weight": 1,
+      "value": 11,
+      "nutrition": 8
+    },
+    "12011": {
+      "vnum": 12011,
+      "name": "bracelet",
+      "short_desc": "a silver and gold bracelet",
+      "room_desc": "A bracelet, made from silver and gold, has been carelessly left here.",
+      "item_type": "treasure",
+      "weight": 14,
+      "value": 10000
+    },
+    "12012": {
+      "vnum": 12012,
+      "name": "ring",
+      "short_desc": "a sapphire ring",
+      "room_desc": "A sapphire ring has been left here.",
+      "item_type": "treasure",
       "weight": 20,
-      "spawn_rooms": [
-        12010
-      ],
-      "max_in_zone": 3,
-      "vnum": 12004
+      "value": 35000
+    },
+    "12013": {
+      "vnum": 12013,
+      "name": "pendant",
+      "short_desc": "a jade pendant",
+      "room_desc": "A beautiful jade pendant has been left here.",
+      "item_type": "treasure",
+      "weight": 30,
+      "value": 16500
+    },
+    "12014": {
+      "vnum": 12014,
+      "name": "robe",
+      "short_desc": "Froboz' robe",
+      "room_desc": "Froboz' robe has been dropped here.",
+      "item_type": "treasure",
+      "weight": 5,
+      "value": 15000
+    },
+    "12015": {
+      "vnum": 12015,
+      "name": "sword",
+      "short_desc": "a tempered sword",
+      "room_desc": "A nasty looking tempered sword is lying here.",
+      "item_type": "weapon",
+      "weight": 16,
+      "value": 15000,
+      "damage_dice": "3d8",
+      "weapon_type": "slash"
+    },
+    "12016": {
+      "vnum": 12016,
+      "name": "sword",
+      "short_desc": "a quenched sword",
+      "room_desc": "A very bloody, but quenched, sword has been left here.",
+      "item_type": "weapon",
+      "weight": 14,
+      "value": 10000,
+      "damage_dice": "3d5",
+      "weapon_type": "slash"
+    },
+    "12017": {
+      "vnum": 12017,
+      "name": "bracers",
+      "short_desc": "a pair of Moorish bracers",
+      "room_desc": "A pair of Moorish bracers has been dropped here.",
+      "item_type": "armor",
+      "weight": 15,
+      "value": 25000,
+      "armor_bonus": 8
+    },
+    "12018": {
+      "vnum": 12018,
+      "name": "plate",
+      "short_desc": "a Roman combat breast plate",
+      "room_desc": "A piece of military combat plate has been left here.",
+      "item_type": "armor",
+      "weight": 135,
+      "value": 50000,
+      "armor_bonus": 8
+    },
+    "12019": {
+      "vnum": 12019,
+      "name": "boots",
+      "short_desc": "a pair of Roman combat boots",
+      "room_desc": "A pair of combat boots have been left here.",
+      "item_type": "armor",
+      "weight": 45,
+      "value": 8750,
+      "armor_bonus": 8
+    },
+    "12020": {
+      "vnum": 12020,
+      "name": "thunderbolt",
+      "short_desc": "Jupiter's Thunderbolt",
+      "room_desc": "Jupiter's Thunderbolt has been left here.",
+      "item_type": "weapon",
+      "weight": 22,
+      "value": 100000,
+      "damage_dice": "4d6",
+      "weapon_type": "crush"
+    },
+    "12021": {
+      "vnum": 12021,
+      "name": "loincloth",
+      "short_desc": "a red loincloth",
+      "room_desc": "Mars' red loincloth is resting here.",
+      "item_type": "armor",
+      "weight": 30,
+      "value": 100000,
+      "armor_bonus": 15
+    },
+    "12022": {
+      "vnum": 12022,
+      "name": "necklace",
+      "short_desc": "a crystal necklace",
+      "room_desc": "Someone has left the crystal necklace of knowledge here.",
+      "item_type": "treasure",
+      "weight": 35,
+      "value": 50000
+    },
+    "12023": {
+      "vnum": 12023,
+      "name": "sandals",
+      "short_desc": "a pair of winged sandals",
+      "room_desc": "Mercury's winged sandals have been left here.",
+      "item_type": "armor",
+      "weight": 14,
+      "value": 75000,
+      "armor_bonus": 8
+    },
+    "12024": {
+      "vnum": 12024,
+      "name": "scroll",
+      "short_desc": "a dark grey scroll",
+      "room_desc": "A scroll has been carelessly left here.",
+      "item_type": "scroll",
+      "weight": 2,
+      "value": 5000
+    },
+    "12025": {
+      "vnum": 12025,
+      "name": "scroll",
+      "short_desc": "an ornate scroll",
+      "room_desc": "An ornate scroll has been left here.",
+      "item_type": "scroll",
+      "weight": 2,
+      "value": 7000
+    },
+    "12026": {
+      "vnum": 12026,
+      "name": "scroll",
+      "short_desc": "a plain scroll",
+      "room_desc": "A plain scroll is lying on the ground.",
+      "item_type": "scroll",
+      "weight": 2,
+      "value": 8000
+    },
+    "12027": {
+      "vnum": 12027,
+      "name": "bag",
+      "short_desc": "a bag of herbs",
+      "room_desc": "There is a small, sweet-smelling bag here on the ground.",
+      "item_type": "wand",
+      "weight": 5,
+      "value": 15000
+    },
+    "12028": {
+      "vnum": 12028,
+      "name": "staff",
+      "short_desc": "a Kodarta staff",
+      "room_desc": "A Kodarta staff has been carelessly left here.",
+      "item_type": "staff",
+      "weight": 6,
+      "value": 35000
+    },
+    "12029": {
+      "vnum": 12029,
+      "name": "wand",
+      "short_desc": "a prototype wand",
+      "room_desc": "There is a prototype of a new magical wand lying here.",
+      "item_type": "wand",
+      "weight": 26,
+      "value": 20000
+    },
+    "12030": {
+      "vnum": 12030,
+      "name": "flask",
+      "short_desc": "a flask",
+      "room_desc": "There is a flask, containing a blaze orange potion, resting here.",
+      "item_type": "potion",
+      "weight": 8,
+      "value": 1000
+    },
+    "12031": {
+      "vnum": 12031,
+      "name": "mace",
+      "short_desc": "an executioner's mace",
+      "room_desc": "An executioner's mace is lying here.",
+      "item_type": "weapon",
+      "weight": 13,
+      "value": 3000,
+      "damage_dice": "5d1",
+      "weapon_type": "pound"
+    },
+    "12032": {
+      "vnum": 12032,
+      "name": "mug",
+      "short_desc": "a mug",
+      "room_desc": "A frosty mug has been left on the ground here.",
+      "item_type": "drinkcon",
+      "weight": 3,
+      "value": 10,
+      "capacity": 3,
+      "current": 3
+    },
+    "12033": {
+      "vnum": 12033,
+      "name": "key",
+      "short_desc": "a rusted key",
+      "room_desc": "There is a rusted key here.",
+      "item_type": "key",
+      "weight": 1,
+      "value": 0
+    },
+    "12034": {
+      "vnum": 12034,
+      "name": "key",
+      "short_desc": "a double sided key",
+      "room_desc": "A double sided key has been left here.",
+      "item_type": "key",
+      "weight": 10,
+      "value": 0
+    },
+    "12035": {
+      "vnum": 12035,
+      "name": "key",
+      "short_desc": "a diamond studded key",
+      "room_desc": "A diamond studded key is sitting on the ground.",
+      "item_type": "key",
+      "weight": 30,
+      "value": 0
+    },
+    "12036": {
+      "vnum": 12036,
+      "name": "key",
+      "short_desc": "a key with a pearl handle",
+      "room_desc": "A key with a pearl handle is sitting on the ground.",
+      "item_type": "key",
+      "weight": 10,
+      "value": 0
+    },
+    "12037": {
+      "vnum": 12037,
+      "name": "key",
+      "short_desc": "an aquamarine key",
+      "room_desc": "There is an aquamarine colored key here.",
+      "item_type": "key",
+      "weight": 10,
+      "value": 0
+    },
+    "12038": {
+      "vnum": 12038,
+      "name": "key",
+      "short_desc": "an opal key",
+      "room_desc": "An opal key has been left here.",
+      "item_type": "key",
+      "weight": 20,
+      "value": 0
+    },
+    "12039": {
+      "vnum": 12039,
+      "name": "key",
+      "short_desc": "a steel key",
+      "room_desc": "A steel key is lying on the ground.",
+      "item_type": "key",
+      "weight": 1,
+      "value": 0
     }
   }
 }

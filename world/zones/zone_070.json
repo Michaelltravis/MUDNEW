@@ -1,338 +1,1829 @@
 {
   "number": 70,
-  "name": "The Forgotten Crypt",
-  "builders": "Realmers",
-  "lifespan": 30,
-  "reset_mode": 2,
-  "top": 7099,
+  "name": "The Sewer, First Level",
+  "lifespan": 15,
   "rooms": {
-    "7001": {
-      "vnum": 7001,
-      "name": "Crypt Entrance",
-      "description": "Stone steps descend into darkness. The air is cold and still,\ncarrying the musty scent of ancient death. Cobwebs hang thick\nacross the entrance, and strange symbols are carved into the \narchway. This is a place of the dead.",
-      "sector_type": "dungeon",
+    "7000": {
+      "vnum": 7000,
+      "name": "The Fissure Under The Ledge",
+      "description": "This is a small fissure in the solid rock.  Under you lies the deep dark pool.  The water trickles quietly down from the ledge above you.  The water smells like the water in a sewer.",
+      "sector_type": "mountain",
       "flags": [
-        "dark"
-      ],
-      "exits": {
-        "down": {
-          "to_room": 7002,
-          "description": null
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [],
-      "obj_resets": []
-    },
-    "7002": {
-      "vnum": 7002,
-      "name": "The Antechamber",
-      "description": "Dusty sarcophagi line the walls of this chamber. Most are sealed,\nbut a few lie broken open, their occupants long since risen. Faded\npaintings on the walls depict a noble family. Corridors lead deeper\ninto the crypt.",
-      "sector_type": "dungeon",
-      "flags": [
-        "dark"
+        "dark",
+        "no_mob",
+        "indoors"
       ],
       "exits": {
         "up": {
-          "to_room": 7001,
-          "description": null
+          "to_room": 7070,
+          "description": ""
         },
-        "north": {
-          "to_room": 7003,
-          "description": null
-        },
-        "east": {
-          "to_room": 7010,
-          "description": null
-        },
-        "west": {
-          "to_room": 7020,
-          "description": null
+        "down": {
+          "to_room": 14000,
+          "description": "You see an exit down."
         }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 7001,
-          "max": 3
-        }
-      ],
-      "obj_resets": []
+      }
     },
-    "7003": {
-      "vnum": 7003,
-      "name": "The Hall of Bones",
-      "description": "The walls of this corridor are composed entirely of human bones -\nskulls, femurs, and ribs arranged in macabre patterns. The floor\ncrunches underfoot with ancient fragments. An unholy chill permeates\nthis place.",
-      "sector_type": "dungeon",
-      "flags": [
-        "dark"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 7002,
-          "description": null
-        },
-        "north": {
-          "to_room": 7004,
-          "description": null
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 7002,
-          "max": 2
-        },
-        {
-          "vnum": 7003,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "7004": {
-      "vnum": 7004,
-      "name": "The Necromancer's Sanctum",
-      "description": "You have found the lair of the Necromancer who plagues this land.\nDark altars hold blasphemous offerings, and arcane circles are\netched into the floor. Candles of black wax burn with an eerie \ngreen flame. The Necromancer himself awaits...",
-      "sector_type": "dungeon",
-      "flags": [
-        "dark"
-      ],
-      "exits": {
-        "south": {
-          "to_room": 7003,
-          "description": null
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 7004,
-          "max": 1
-        },
-        {
-          "vnum": 7005,
-          "max": 2
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 70,
-          "max": 1
-        },
-        {
-          "vnum": 71,
-          "max": 1
-        }
-      ]
-    },
-    "7010": {
-      "vnum": 7010,
-      "name": "The Noble's Tomb",
-      "description": "An ornate tomb dominates this chamber. Once the resting place\nof a noble lord, it has been desecrated by the undead plague.\nThe ghost of the lord still lingers, trapped between worlds.",
-      "sector_type": "dungeon",
-      "flags": [
-        "dark"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 7002,
-          "description": null
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 7006,
-          "max": 1
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 72,
-          "max": 1
-        }
-      ]
-    },
-    "7020": {
-      "vnum": 7020,
-      "name": "The Mass Grave",
-      "description": "The floor of this chamber is uneven, covered with mounds of\nearth beneath which countless bodies were interred during some\nancient plague. Now they rise again, clawing their way free.",
-      "sector_type": "dungeon",
-      "flags": [
-        "dark"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 7002,
-          "description": null
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 7002,
-          "max": 4
-        },
-        {
-          "vnum": 7001,
-          "max": 2
-        }
-      ],
-      "obj_resets": []
-    }
-  },
-  "mobs": {
     "7001": {
       "vnum": 7001,
-      "name": "a skeleton warrior",
-      "short_desc": "A rattling skeleton",
-      "long_desc": "A skeleton in rusted armor stands guard.",
-      "level": 10,
-      "hp_dice": "4d10+30",
-      "damage_dice": "1d8+2",
-      "gold": 10,
-      "exp": 400,
-      "alignment": -800,
+      "name": "The Muddy Sewer",
+      "description": "You are standing in mud to your knees.  This is not the kind of place for a picnic.  The muddy sewer stretches further into the south.",
+      "sector_type": "mountain",
       "flags": [
-        "aggressive",
-        "undead"
+        "dark",
+        "indoors"
       ],
-      "special": null
+      "exits": {
+        "south": {
+          "to_room": 7002,
+          "description": "You see the muddy sewer continuing into the darkness to the south."
+        }
+      },
+      "extra_descs": {
+        "": "mud"
+      }
     },
     "7002": {
       "vnum": 7002,
-      "name": "a shambling zombie",
-      "short_desc": "A rotting zombie",
-      "long_desc": "A zombie lurches toward you, arms outstretched.",
-      "level": 8,
-      "hp_dice": "4d10+40",
-      "damage_dice": "1d6+3",
-      "gold": 0,
-      "exp": 350,
-      "alignment": -700,
+      "name": "The Muddy Sewer Junction",
+      "description": "The muddy sewer stretches into the dark to the south.  It looks as if  no person has ever put his foot here before.  It is too muddy for that anyway.  The sewer leads north, south and east from here.",
+      "sector_type": "mountain",
       "flags": [
-        "aggressive",
-        "undead"
+        "dark",
+        "indoors"
       ],
-      "special": null
+      "exits": {
+        "north": {
+          "to_room": 7001,
+          "description": "The muddy sewer stretches into the dark to the north."
+        },
+        "south": {
+          "to_room": 7003,
+          "description": "South.  The muddy sewer ends in a mudhole that way."
+        },
+        "east": {
+          "to_room": 7007,
+          "description": "East.  The muddy sewer leads into a bend that goes south."
+        }
+      },
+      "extra_descs": {
+        "": "mud"
+      }
     },
     "7003": {
       "vnum": 7003,
-      "name": "a ghoul",
-      "short_desc": "A ravenous ghoul",
-      "long_desc": "A ghoul crouches over a corpse, feeding.",
-      "level": 14,
-      "hp_dice": "5d10+50",
-      "damage_dice": "2d4+4",
-      "gold": 20,
-      "exp": 800,
-      "alignment": -900,
+      "name": "The Mudhole",
+      "description": "You stand in mud all the way up to your thighs and it is not too  comfortable since you are used to a somewhat different environment. The sewer leads to the north of here.  In the middle you can just make out an enormous drainpipe leading down.",
+      "sector_type": "mountain",
       "flags": [
-        "aggressive",
-        "undead"
+        "dark",
+        "no_mob",
+        "indoors"
       ],
-      "special": "paralyze"
+      "exits": {
+        "north": {
+          "to_room": 7002,
+          "description": "North.  The muddy junction lies in that direction."
+        },
+        "down": {
+          "to_room": 7101,
+          "description": "The muddy drainpipe leads down through the mud, otherwise it is utterly dark."
+        }
+      },
+      "extra_descs": {
+        "": "mud"
+      }
     },
     "7004": {
       "vnum": 7004,
-      "name": "Malachar the Necromancer",
-      "short_desc": "Malachar the Necromancer",
-      "long_desc": "A robed figure channels dark energy, eyes glowing with malice.",
-      "level": 30,
-      "hp_dice": "15d10+150",
-      "damage_dice": "3d6+8",
-      "gold": 1000,
-      "exp": 5000,
-      "alignment": -1000,
+      "name": "The Dark Pit",
+      "description": "You are standing by the edge of a dark pit that leads down into even deeper darkness.  >BWWAAADDRR< - The smell from down there is unbearable. The sewer stretches into the darkness to the east.",
+      "sector_type": "inside",
       "flags": [
-        "sentinel",
-        "caster"
+        "dark",
+        "indoors"
       ],
-      "special": "necromancer"
+      "exits": {
+        "east": {
+          "to_room": 7009,
+          "description": "East.  The sewer leads into the sewer junction."
+        },
+        "down": {
+          "to_room": 7102,
+          "description": "The Dark Pit leads down and down and down... well you can't see the  bottom anyway.  There are bars that could function as a ladder on the side."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 7001,
+          "max": 9
+        },
+        {
+          "vnum": 7001,
+          "max": 9
+        }
+      ]
     },
     "7005": {
       "vnum": 7005,
-      "name": "an undead knight",
-      "short_desc": "An armored undead knight",
-      "long_desc": "A knight in black armor stands motionless, awaiting command.",
-      "level": 18,
-      "hp_dice": "8d10+80",
-      "damage_dice": "2d8+5",
-      "gold": 50,
-      "exp": 1500,
-      "alignment": -800,
+      "name": "The Muddy Sewer",
+      "description": "You are standing in the middle of a bend of the sewer pipe.  It is very dark around here and the mud is sticking to your legs, not very pleasant. The pipe leads east and south from here.",
+      "sector_type": "hills",
       "flags": [
-        "helper",
-        "undead"
+        "dark",
+        "indoors"
       ],
-      "special": null
+      "exits": {
+        "east": {
+          "to_room": 7011,
+          "description": "East.  The mud stretches on into the darkness."
+        },
+        "south": {
+          "to_room": 7006,
+          "description": "South.  There is even more mud in that direction than where you are now.   Incredible."
+        }
+      },
+      "extra_descs": {
+        "": "mud"
+      }
     },
     "7006": {
       "vnum": 7006,
-      "name": "the ghost of Lord Aldric",
-      "short_desc": "The ghost of Lord Aldric",
-      "long_desc": "A spectral figure floats above its tomb, eyes filled with sorrow.",
-      "level": 25,
-      "hp_dice": "10d10+100",
-      "damage_dice": "2d6+6",
-      "gold": 0,
-      "exp": 3000,
-      "alignment": 0,
+      "name": "The Muddy Sewer",
+      "description": "You are standing in something that reminds you very much of porridge, this has the advantage that it is not hot, it is rather cold actually. The pipe bends to the north and east.",
+      "sector_type": "mountain",
       "flags": [
-        "sentinel",
-        "undead"
+        "dark",
+        "indoors"
       ],
-      "special": "ghost"
-    }
-  },
-  "objects": {
-    "70": {
-      "vnum": 70,
-      "name": "the Staff of the Dead",
-      "short_desc": "a bone staff crackling with energy",
-      "room_desc": "A staff made of fused bones pulses with dark power.",
-      "type": "weapon",
-      "weight": 4,
-      "cost": 2000,
-      "damage_dice": "2d6",
-      "weapon_type": "blast",
-      "affects": [
+      "exits": {
+        "east": {
+          "to_room": 7012,
+          "description": "The pipe leads into a bend that goes south.  Interesting, there is mud on the ground there as well."
+        },
+        "north": {
+          "to_room": 7005,
+          "description": "The muddy sewer pipe leads into a bend that goes east."
+        }
+      },
+      "extra_descs": {
+        "": "mud"
+      }
+    },
+    "7007": {
+      "vnum": 7007,
+      "name": "The Muddy Sewer Bend",
+      "description": "This isn't your idea of a place to stay too long.  You're in up to your knees in something that resembles mud, but you're not quite sure. The bend in which you stand leads west and south.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 7002,
+          "description": "The pipe (still filled with mud) leads into a intersection that goes north  and south.  Interesting."
+        },
+        "south": {
+          "to_room": 7008,
+          "description": "The pipe leads into a intersection that goes south and east.  The floor here  is still covered in mud."
+        }
+      },
+      "extra_descs": {
+        "": "mud"
+      }
+    },
+    "7008": {
+      "vnum": 7008,
+      "name": "A Muddy Intersection",
+      "description": "You have both your feet safely stuck in mud.  It isn't the mud that is wrong it is the smell, the sounds, the total darkness that surrounds you. Everything here is so depressing.  The pipe leads on with a trail of thick mud to the north, east and south.",
+      "sector_type": "hills",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7007,
+          "description": "North.  The pipe goes into a bend with a load of mud all the way up the walls. The bend leads west."
+        },
+        "east": {
+          "to_room": 7014,
+          "description": "East.  This way looks like a place for the annual mud festival, although the stench wouldn't allow any happiness at all.  The pipe leads into a bend that leads north."
+        },
+        "south": {
+          "to_room": 7009,
+          "description": "South.  There is much less mud in that direction.  Your light doesn't  uncover enough space for you to see much more than that it leads into some sort of junction."
+        }
+      },
+      "extra_descs": {
+        "": "mud"
+      }
+    },
+    "7009": {
+      "vnum": 7009,
+      "name": "The Sewer Junction",
+      "description": "You stand in the middle of a huge junction of sewer pipes right under what you'd think was an air shaft.  The sewer pipes lead to the north, south, east and west.  It look quite impossible to force your way up.",
+      "sector_type": "forest",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7008,
+          "description": "North.  Mud is the floor basis in that direction.  Yummy."
+        },
+        "east": {
+          "to_room": 7017,
+          "description": "YYEEUUCH!  BOOH!  THAT looks like a nice place for creepy crawlies."
+        },
+        "south": {
+          "to_room": 7010,
+          "description": "South.  This direction looks quite nice actually.  The pipe leads into  a bend that goes east."
+        },
+        "west": {
+          "to_room": 7004,
+          "description": "A few yards ahead - away from this junction - there is a pit leading down, but the smell from there...>PHEWW<."
+        }
+      },
+      "extra_descs": {
+        "": "mud"
+      }
+    },
+    "7010": {
+      "vnum": 7010,
+      "name": "A Bend In The Sewer Pipe",
+      "description": "You are in a bend in the sewer pipe.  A strong smell seeps in from the north.  The sewer goes north and east.",
+      "sector_type": "field",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7009,
+          "description": "North.  You are staring into a huge junction with exits in all directions."
+        },
+        "east": {
+          "to_room": 7018,
+          "description": "East.  The Pipe leads into utter darkness that way."
+        }
+      }
+    },
+    "7011": {
+      "vnum": 7011,
+      "name": "The Muddy Sewer Pipe",
+      "description": "You have entered a kind of tube intersection that leads south, west and east.  Your legs are covered in mud up to the knees.  REAL yucky!",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 7024,
+          "description": "East.  There is less mud in that direction, or that's your impression."
+        },
+        "south": {
+          "to_room": 7021,
+          "description": "That way is lost in darkness, though you sense less mud in that direction, perhaps even a complete end to this sludge that surrounds you."
+        },
+        "west": {
+          "to_room": 7005,
+          "description": "West.  The mud reaches that way too, all the way up the walls."
+        }
+      },
+      "extra_descs": {
+        "": "mud"
+      }
+    },
+    "7012": {
+      "vnum": 7012,
+      "name": "The Bend In The Muddy Sewer",
+      "description": "This is not your idea of a holiday.  You stand in mud up to your knees. It is absolutely inconceivable how all this mud could have been placed here.  The pipe leads to the west and south.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 7013,
+          "description": "South.  There is even more mud that way, incredible!  Although it looks like an intersection in the sewer system that leads east and south."
+        },
+        "west": {
+          "to_room": 7006,
+          "description": "West.  All you can see, is that the pipe leads into a bend that goes north.  But there is less mud in that direction, however odd that sounds."
+        }
+      },
+      "extra_descs": {
+        "": "mud"
+      }
+    },
+    "7013": {
+      "vnum": 7013,
+      "name": "A Muddy Intersection",
+      "description": "You wouldn't want to know the true feeling of standing in this mud up to your hips.  >BWAADR<.  All that fills your mind right now is the dream of a hot bath.  This is NOT very clean mud you know, remember you're in the sewer!  The pipes leads north, south and east.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7012,
+          "description": "North.  Sludge and sediment fills this corridor of the sewer that leads into a bend going west."
+        },
+        "east": {
+          "to_room": 7026,
+          "description": "East.  You can see absolutely nothing of interest in that direction (Maybe that is why it is so damn interesting...)  There is no mud in that direction either, GREAT!"
+        },
+        "south": {
+          "to_room": 7014,
+          "description": "South.  All you can see is more mud!  Although the pipe goes into a bend leading west."
+        }
+      },
+      "extra_descs": {
+        "": "sediment"
+      }
+    },
+    "7014": {
+      "vnum": 7014,
+      "name": "The Muddy Sewer",
+      "description": "You stand in a bend of the pipe system of the sewer with mud up to your thighs.  Contemplating a higher level of existence here would be utterly inappropriate, as the smell would keep any intelligent creature from even thinking of anything but getting away from this foul end of the WORLD. The bend goes from north to west.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7013,
+          "description": "North.  Filled with mud, that place looks like an impassable intersection with pipes leading north and east."
+        },
+        "west": {
+          "to_room": 7008,
+          "description": "West.  There is less mud that way, maybe you're on your way out of this foul place."
+        }
+      },
+      "extra_descs": {
+        "": "mud"
+      }
+    },
+    "7015": {
+      "vnum": 7015,
+      "name": "The Old Well",
+      "description": "You are standing by an old and worn well from before this century.  The sewer leads to the east from here and the well leads down into darkness. Metal bars implanted in the side of the well lead down as a ladder.",
+      "sector_type": "forest",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 7028,
+          "description": "East.  You see, because of the utter darkness that surround you, absolutely nothing.  Your light isn't of much use for that kind of distance."
+        },
+        "down": {
+          "to_room": 7105,
+          "description": "Down the well there is even less light than up here, so... sorry, you can't see a thing.  There are metal bars in the side leading down into the darkness."
+        }
+      },
+      "extra_descs": {
+        "": "bars"
+      }
+    },
+    "7016": {
+      "vnum": 7016,
+      "name": "The Ordinary Bend",
+      "description": "You are in the middle of a bend in the pipe system of the sewer system,  WHAT a place!!!  The pipe leads to the south and the east.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 7017,
+          "description": "South.  You see nothing at all in that direction it is too dark anyway."
+        },
+        "east": {
+          "to_room": 7021,
+          "description": "East.  What a quiet place you've found there.  It is an intersection that has pipeways going north and east."
+        }
+      }
+    },
+    "7017": {
+      "vnum": 7017,
+      "name": "The Sewer Junction",
+      "description": "You are in a junction that leads north, west and south.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7016,
+          "description": "North.  You see a bend."
+        },
+        "west": {
+          "to_room": 7009,
+          "description": "West.  There is a junction with four pipelines in that direction."
+        },
+        "south": {
+          "to_room": 7018,
+          "description": "South.  It looks like a pipe junction just like this one.  Only that one leads east and west."
+        }
+      }
+    },
+    "7018": {
+      "vnum": 7018,
+      "name": "The Ordinary Junction",
+      "description": "This looks like an ordinary junction, actually it seems very quiet here.  The pipelines lead west, east and north.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "no_mob",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7017,
+          "description": "To the north you can see a junction like this one, leading north and west."
+        },
+        "east": {
+          "to_room": 7031,
+          "description": "To the east there is nothing of particular interest, though there is a  junction with pipelines leading north and east."
+        },
+        "west": {
+          "to_room": 7010,
+          "description": "There is a bend to the west leading north."
+        }
+      }
+    },
+    "7021": {
+      "vnum": 7021,
+      "name": "A Quiet Pipe Junction",
+      "description": "This is the kind of place to rest, though the smell could be a LOT better than this.  The sewer goes east, north and west from here.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "no_mob",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7011,
+          "description": "In that direction, you can't see anything.  It is just too dark."
+        },
+        "east": {
+          "to_room": 7029,
+          "description": "There is an ordinary junction in the pipe system to the east."
+        },
+        "west": {
+          "to_room": 7016,
+          "description": "West.  There is an ordinary bend leading south into the sewer system in that direction."
+        }
+      }
+    },
+    "7022": {
+      "vnum": 7022,
+      "name": "The Odd Room With Smooth Walls",
+      "description": "As you enter you hear a loud click from one of the walls... and you fall and fall and fall... . . . . ... And come to an abrupt end.  THIS is strange indeed.  There is an arched entryway leading down.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "down": {
+          "to_room": 7112,
+          "description": "Down.  It is utterly dark that way, though you can make out an intersection of sewer pipes leading west, north and east."
+        }
+      }
+    },
+    "7024": {
+      "vnum": 7024,
+      "name": "The Sewer",
+      "description": "You are standing in mud up to your ankles.  This is an intersection with  sewer pipes leading east, south and west.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "no_mob",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 7037,
+          "description": "To the east there is a peculiar looking round room."
+        },
+        "south": {
+          "to_room": 7025,
+          "description": "To the south there is another intersection with pipes going south and east."
+        },
+        "west": {
+          "to_room": 7011,
+          "description": "To the west there is another intersection like this one, with sewer pipes leading south and west."
+        }
+      }
+    },
+    "7025": {
+      "vnum": 7025,
+      "name": "Another Intersection",
+      "description": "You have never seen anything so BORING... This is an intersection with pipes leading north, south and east.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7024,
+          "description": "To the north there is an intersection, where the pipes are leading west and east.  You notice that the floor to the west is covered in mud."
+        },
+        "east": {
+          "to_room": 7038,
+          "description": "East.  You see nothing of interest in that direction, just another  intersection.  This one leads east and south."
+        },
+        "south": {
+          "to_room": 7026,
+          "description": "Another intersection lies to the south.  It leads west and south."
+        }
+      },
+      "mob_resets": [
         {
-          "type": "mana",
-          "value": 30
+          "vnum": 7001,
+          "max": 9
+        }
+      ]
+    },
+    "7026": {
+      "vnum": 7026,
+      "name": "A Junction",
+      "description": "This one seems interesting, a big difference from all the other junctions. It seems cleaner than the rest of them.  Weird.  Something that looks like  an air shaft leads upwards, but it looks far too slippery to climb. The pipes lead to the south, west and north.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "no_mob",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7025,
+          "description": "North.  You see an intersection there, leading north and east."
+        },
+        "south": {
+          "to_room": 7028,
+          "description": "To the south there is ANOTHER junction leading west and east."
+        },
+        "west": {
+          "to_room": 7013,
+          "description": "To the west you see a load of mud and sediment in the sewer.  That should be an intersection there but you're not quite sure."
+        }
+      },
+      "extra_descs": {
+        "": "mud"
+      }
+    },
+    "7028": {
+      "vnum": 7028,
+      "name": "The Sewer Junction",
+      "description": "You stand in a junction of sewer pipes leading north, east and west.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7026,
+          "description": ""
+        },
+        "east": {
+          "to_room": 7034,
+          "description": "To the east you can see a bend in the pipe going south."
+        },
+        "west": {
+          "to_room": 7015,
+          "description": "To the west you can just make out an old well."
+        }
+      }
+    },
+    "7029": {
+      "vnum": 7029,
+      "name": "The Triple Junction",
+      "description": "You stand in the middle of a huge junction of concrete sewer pipes.  The  pipes lead into three different directions: east, south and west.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 7035,
+          "description": "East.  You can see a bend in the sewer pipe leading north."
+        },
+        "south": {
+          "to_room": 7030,
+          "description": "To the south there is an ENORMOUS quadruple sewer junction, all lit up by an odd light."
+        },
+        "west": {
+          "to_room": 7021,
+          "description": "To the west you can just make out another junction similar to the one  you are standing in."
+        }
+      }
+    },
+    "7030": {
+      "vnum": 7030,
+      "name": "The Quadruple Junction Under The Dump",
+      "description": "You are standing in something that reminds you of an entry to an ant hive. There are enormous concrete pipes leading north, south, east and west.   There is also a metal ladder built into the concrete wall leading up through a layer of garbage.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "no_mob",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7029,
+          "description": "To the north you can see a huge triple junction with sewer pipes leading west and east."
+        },
+        "east": {
+          "to_room": 7036,
+          "description": "East.  You can see a pit in the floor."
+        },
+        "south": {
+          "to_room": 7031,
+          "description": "To the south there is a huge junction with pipes leading east and west."
+        },
+        "west": {
+          "to_room": 7022,
+          "description": "To the west there is an odd looking room with totally smooth walls."
+        },
+        "up": {
+          "to_room": 3030,
+          "description": "Up through the garbage you can just make out what looks like the dump in Midgaard.",
+          "door": {
+            "name": "up door",
+            "state": "open",
+            "locked": true,
+            "key_vnum": 3005
+          }
+        }
+      },
+      "extra_descs": {
+        "": "ladder"
+      }
+    },
+    "7031": {
+      "vnum": 7031,
+      "name": "A Triple Junction",
+      "description": "You stand in a junction with pipes leading west, north and east.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7030,
+          "description": "To the north there is an ENORMOUS quadruple sewer junction, all lit up by an odd light."
+        },
+        "east": {
+          "to_room": 7044,
+          "description": "East.  You can just make out a triple junction leading north and east."
+        },
+        "west": {
+          "to_room": 7018,
+          "description": "West.  You can just make out a triple junction leading north and west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 7002,
+          "max": 3
+        }
+      ]
+    },
+    "7034": {
+      "vnum": 7034,
+      "name": "A Bend In The Sewer Pipe",
+      "description": "You can look in two directions where the pipe leads: south and west.",
+      "sector_type": "field",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 7028,
+          "description": "West.  You can just make out a triple junction leading north and west."
+        },
+        "south": {
+          "to_room": 7035,
+          "description": "To the south you can see another bend leading west."
+        }
+      }
+    },
+    "7035": {
+      "vnum": 7035,
+      "name": "The Sewer Pipe Bend",
+      "description": "You can look in two different directions where the pipe goes: west and  north.",
+      "sector_type": "field",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7034,
+          "description": "North.  You see another bend leading west."
+        },
+        "west": {
+          "to_room": 7029,
+          "description": "You can see another junction although this one is a triple one with pipes going south and west."
+        }
+      }
+    },
+    "7036": {
+      "vnum": 7036,
+      "name": "The Pit",
+      "description": "You stand in a section of a pipe that leads to a dead end.  In the floor there is a pit leading down.  There are bars set in the side of the pit wall functioning as a ladder.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 7030,
+          "description": "West.  You can see a dimly lit quadruple junction with an exit up."
+        },
+        "down": {
+          "to_room": 7122,
+          "description": "Down the pit it is so utterly dark that you can't see a thing."
+        }
+      }
+    },
+    "7037": {
+      "vnum": 7037,
+      "name": "The Round Room",
+      "description": "As you enter the room it starts rotating - at first slowly, then faster and faster - You get totally confused as to where up and down is, but you are certain that the doorway is in the opposite direction of what it was when you entered.  It now leads east.  There is only this one exit.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 7050,
+          "description": "You can just make out a smaller room with a chair."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 7003,
+          "max": 8
         },
         {
-          "type": "int",
-          "value": 2
+          "vnum": 7003,
+          "max": 8
         }
       ]
     },
-    "71": {
-      "vnum": 71,
-      "name": "the Necronomicon",
-      "short_desc": "a book bound in human skin",
-      "room_desc": "A dark tome lies open, pages covered in forbidden knowledge.",
-      "type": "other",
-      "weight": 3,
-      "cost": 5000
+    "7038": {
+      "vnum": 7038,
+      "name": "The Three Way Junction",
+      "description": "You are standing in a junction of pipes that lead west, east and south.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 7045,
+          "description": "East.  You can make out a dimly lit Guard Room."
+        },
+        "south": {
+          "to_room": 7039,
+          "description": "To the south you can see what looks like a store room."
+        },
+        "west": {
+          "to_room": 7025,
+          "description": "West.  You see another junction similar to this one leading north and south."
+        }
+      }
     },
-    "72": {
-      "vnum": 72,
-      "name": "Lord Aldric's blade",
-      "short_desc": "a ghostly longsword",
-      "room_desc": "A spectral sword hovers in the air.",
-      "type": "weapon",
-      "weight": 5,
-      "cost": 1500,
-      "damage_dice": "2d6",
-      "weapon_type": "slash",
-      "affects": [
+    "7039": {
+      "vnum": 7039,
+      "name": "The Sewer Store Room",
+      "description": "You stand in a small room lit by a single torch set in the wall.  The only  way out of here is to the north.",
+      "sector_type": "city",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7038,
+          "description": "To the north you see a pipe junction."
+        }
+      },
+      "mob_resets": [
         {
-          "type": "hitroll",
-          "value": 3
+          "vnum": 7003,
+          "max": 8
+        },
+        {
+          "vnum": 7003,
+          "max": 8
+        },
+        {
+          "vnum": 7003,
+          "max": 8
         }
       ]
+    },
+    "7041": {
+      "vnum": 7041,
+      "name": "The Shaft",
+      "description": "You are standing by the edge of a deep, dark shaft leading down.  A single ladder is your tool to work your way down if you so wish.  The sewer pipe leads south from here.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 7043,
+          "description": "To the south you can see the pipe leading further south into darkness."
+        },
+        "down": {
+          "to_room": 7123,
+          "description": "Down and utter darkness.  There is absolutely nothing to be seen in that  direction."
+        }
+      },
+      "extra_descs": {
+        "": "ladder"
+      },
+      "mob_resets": [
+        {
+          "vnum": 7001,
+          "max": 9
+        }
+      ]
+    },
+    "7043": {
+      "vnum": 7043,
+      "name": "The Sewer Entrance",
+      "description": "You stand in the middle of a pipe that leads from north to south.  Above you an air shaft leads up into sunlight.  It seems totally impossible to go up that way.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7041,
+          "description": "To the north you can just make out a huge shaft leading down."
+        },
+        "south": {
+          "to_room": 7044,
+          "description": "To the south you can see a triple junction leading west and east."
+        }
+      }
+    },
+    "7044": {
+      "vnum": 7044,
+      "name": "The Junction Going Three Ways",
+      "description": "You are in a passageway in the pipes of the sewer system leading north, east and west.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7043,
+          "description": "You see a sewer pipe leading north."
+        },
+        "east": {
+          "to_room": 7049,
+          "description": ""
+        },
+        "west": {
+          "to_room": 7031,
+          "description": "West.  You see another junction very similar to this one that leads north and west."
+        }
+      }
+    },
+    "7045": {
+      "vnum": 7045,
+      "name": "The Sewer Room",
+      "description": "You are standing in a large room with chairs set in the walls.  You have the feeling of being watched.  To the south there is an entrance to a larger room.  The room is lit by five torches, also set in the walls.  To the west there is a doorway leading out to the sewers.",
+      "sector_type": "city",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 7046,
+          "description": "You can see an even larger room than this one, filled with light."
+        },
+        "west": {
+          "to_room": 7038,
+          "description": "To the west you can see the sewers.",
+          "door": {
+            "name": "west door",
+            "state": "open",
+            "locked": true,
+            "key_vnum": null
+          }
+        }
+      }
+    },
+    "7046": {
+      "vnum": 7046,
+      "name": "The Sewer Room",
+      "description": "This is a Room with walls that glitters like gold though not quite like it. This is strange as it looks as if the glitter lights the whole room. It looks very bright.  To the south the floor is covered with yucky water. The north leads to a sort of a guard room.",
+      "sector_type": "city",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7045,
+          "description": "To the north you can see the guard room."
+        },
+        "south": {
+          "to_room": 7047,
+          "description": "To the south there is nothing but water and an exit leads east from there."
+        }
+      }
+    },
+    "7047": {
+      "vnum": 7047,
+      "name": "The Pool In The Sewer",
+      "description": "You stand in water to your waist.  To the north is the entrance to this room.  A single door leads east.",
+      "sector_type": "city",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7046,
+          "description": "To the north you see the entrance to this room."
+        },
+        "east": {
+          "to_room": 7053,
+          "description": "You can see an enormous hall through the doorway.",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      }
+    },
+    "7048": {
+      "vnum": 7048,
+      "name": "The Sewers",
+      "description": "You stand in a dead end of the sewer.  The only way out is south. You can see a shaft leading up but it looks too difficult to go up that way.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 7049,
+          "description": ""
+        }
+      }
+    },
+    "7049": {
+      "vnum": 7049,
+      "name": "The Junction",
+      "description": "You stand in a junction leading north, west and east.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7048,
+          "description": ""
+        },
+        "east": {
+          "to_room": 7060,
+          "description": "Darkness has closed in on that part of the sewer system, you can't see a thing in that direction."
+        },
+        "west": {
+          "to_room": 7044,
+          "description": "West.  You see another junction very similar to this one that leads north and west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 7002,
+          "max": 3
+        }
+      ]
+    },
+    "7050": {
+      "vnum": 7050,
+      "name": "The Small Room",
+      "description": "The only thing in this room of interest is a chair, and that appears to have been bolted to the rock floor.  A doorway leads south and another leads east into darkness.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 7055,
+          "description": "Utter darkness..."
+        },
+        "south": {
+          "to_room": 7051,
+          "description": "You can see a room with a lot of light in it.  You can't make out any details."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 7003,
+          "max": 8
+        }
+      ]
+    },
+    "7051": {
+      "vnum": 7051,
+      "name": "The Sewer Pipe",
+      "description": "You are in what reminds you of a foul sewer, as if you liked being here!   You can see two exits leading either north or south.",
+      "sector_type": "city",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7050,
+          "description": ""
+        },
+        "south": {
+          "to_room": 7052,
+          "description": "To the south you can see a strange light flowing from there."
+        }
+      }
+    },
+    "7052": {
+      "vnum": 7052,
+      "name": "The Grand Sewer",
+      "description": "You are in a grand sewer pipe.  This stretches toward the south.  It is large indeed!  A doorway leads to the east from here.",
+      "sector_type": "city",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7051,
+          "description": "To the north you can see a doorway."
+        },
+        "east": {
+          "to_room": 7056,
+          "description": "You can't see anything in that darkness."
+        },
+        "south": {
+          "to_room": 7053,
+          "description": "In the south end of the pipe the \"floor\" is completely covered with water."
+        }
+      }
+    },
+    "7053": {
+      "vnum": 7053,
+      "name": "The South End Of The Grand Pipe",
+      "description": "You stand in water to your knees.  A doorway leads west from here.  The pipe stretches north.",
+      "sector_type": "city",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7052,
+          "description": "You see a lot of pictures decorating the walls."
+        },
+        "west": {
+          "to_room": 7047,
+          "description": "",
+          "door": {
+            "name": "door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": null
+          }
+        }
+      }
+    },
+    "7055": {
+      "vnum": 7055,
+      "name": "The Edge Of The Water Sewer",
+      "description": "You stand in a room where half of the floor is covered in water.  The water leads east and a doorway leads west.",
+      "sector_type": "forest",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 7061,
+          "description": "You can hardly make out much more than that the next place is in a pipe  with more water."
+        },
+        "west": {
+          "to_room": 7050,
+          "description": ""
+        }
+      },
+      "extra_descs": {
+        "": "water"
+      }
+    },
+    "7056": {
+      "vnum": 7056,
+      "name": "The Dark Hallway",
+      "description": "You can't see much of this, even with a light.  The hallway goes into a passageway to the south.  A doorway leads west.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 7057,
+          "description": "You can see nothing at all because it is completely dark in that direction."
+        },
+        "west": {
+          "to_room": 7052,
+          "description": "You see a lot of light, bright as daylight, but nothing of interest."
+        }
+      }
+    },
+    "7057": {
+      "vnum": 7057,
+      "name": "The Dark Passageway",
+      "description": "You can't see anything but the ground where you put your feet.  The  passageway seems to continue south and north.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7056,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        },
+        "south": {
+          "to_room": 7058,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        }
+      }
+    },
+    "7058": {
+      "vnum": 7058,
+      "name": "The Dark Passageway",
+      "description": "You can't see anything but the ground where you put your feet.  The passageway seems to continue south and north.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7057,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        },
+        "south": {
+          "to_room": 7059,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        }
+      }
+    },
+    "7059": {
+      "vnum": 7059,
+      "name": "The Dark Passageway",
+      "description": "You can't see anything but the ground where you put your feet.  The passageway seems to continue south and north.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7058,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        },
+        "south": {
+          "to_room": 7060,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        }
+      }
+    },
+    "7060": {
+      "vnum": 7060,
+      "name": "The Dark Passageway",
+      "description": "You can't see anything but the ground where you put your feet. The passageway seems to continue west and north.  To the east there is water covering the floor and that leads through an arched entry to a watery sewer.",
+      "sector_type": "city",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7059,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        },
+        "east": {
+          "to_room": 7068,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        },
+        "west": {
+          "to_room": 7049,
+          "description": "You can just make out a triple junction leading north and west."
+        }
+      },
+      "extra_descs": {
+        "": "water"
+      }
+    },
+    "7061": {
+      "vnum": 7061,
+      "name": "The Watery Sewer Bend",
+      "description": "You can't see anything but the water you're in up to your hips.  The sewer seems to bend and lead south and west.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 7062,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        },
+        "west": {
+          "to_room": 7055,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        }
+      },
+      "extra_descs": {
+        "": "water"
+      }
+    },
+    "7062": {
+      "vnum": 7062,
+      "name": "The Watery Sewer",
+      "description": "You can't see anything but the water you're in up to your hips.  The sewer seems to lead south and north.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7061,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        },
+        "south": {
+          "to_room": 7063,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        }
+      },
+      "extra_descs": {
+        "": "water"
+      }
+    },
+    "7063": {
+      "vnum": 7063,
+      "name": "The Watery Sewer",
+      "description": "You can't see anything but the water you're in up to your hips.  The sewer seems to lead south and north.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7062,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        },
+        "south": {
+          "to_room": 7064,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        }
+      },
+      "extra_descs": {
+        "": "water"
+      }
+    },
+    "7064": {
+      "vnum": 7064,
+      "name": "The Watery Sewer Junction",
+      "description": "You can't see anything but the water you're in up to your hips.  The sewer seems to lead into a junction going south, north and east.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7063,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        },
+        "east": {
+          "to_room": 7069,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        },
+        "south": {
+          "to_room": 7065,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        }
+      },
+      "extra_descs": {
+        "": "water"
+      }
+    },
+    "7065": {
+      "vnum": 7065,
+      "name": "The Watery Sewer",
+      "description": "You can't see anything but the water you're in up to your hips.  The sewer seems to lead south and north.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7064,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        },
+        "south": {
+          "to_room": 7066,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        }
+      },
+      "extra_descs": {
+        "": "water"
+      }
+    },
+    "7066": {
+      "vnum": 7066,
+      "name": "The Watery Sewer Junction",
+      "description": "You can't see anything but the water you're in up to your hips.  The sewer seems to lead into a junction that goes north, south and east.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7065,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        },
+        "east": {
+          "to_room": 7070,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        },
+        "south": {
+          "to_room": 7067,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        }
+      },
+      "extra_descs": {
+        "": "water"
+      }
+    },
+    "7067": {
+      "vnum": 7067,
+      "name": "The Watery Sewer",
+      "description": "You can't see anything but the water you're in up to your hips.  The sewer seems to lead south and north.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7066,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        },
+        "south": {
+          "to_room": 7068,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        }
+      },
+      "extra_descs": {
+        "": "water"
+      }
+    },
+    "7068": {
+      "vnum": 7068,
+      "name": "The Watery Sewer Bend",
+      "description": "You can't see anything but the water you're in up to your hips.  The sewer seems to bend and lead west and north.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7067,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        },
+        "west": {
+          "to_room": 7060,
+          "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        }
+      },
+      "extra_descs": {
+        "": "water"
+      }
+    },
+    "7069": {
+      "vnum": 7069,
+      "name": "A Ledge By A Dark Pool",
+      "description": "You can't see much here but the echo tells you that there is quite a drop down.  You can just make out a huge dark pool out there in the darkness,  mostly because of the trickling of water.  The water from the sewer actually washes over this ledge and makes it quite slippery.  From here it drops,  like a waterfall, into the pool far down.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 7070,
+          "description": "You can't see a thing.  It is too dark."
+        },
+        "west": {
+          "to_room": 7064,
+          "description": "You can't see a thing.  It is too dark."
+        }
+      },
+      "extra_descs": {
+        "": "water"
+      }
+    },
+    "7070": {
+      "vnum": 7070,
+      "name": "A Ledge By A Dark Pool",
+      "description": "You can't see much here but the echo tells you that there is quite a drop down.  You can just make out a huge dark pool out there in the darkness, mostly because of the trickling of water.  The water from the sewer actually washes over this ledge and makes it quite slippery.  From here it drops, like a waterfall, into the pool far down.  Under you there is a small fissure in the rock.  It seems big enough to contain a few people.",
+      "sector_type": "mountain",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7069,
+          "description": "You can't see a thing.  It is too dark."
+        },
+        "west": {
+          "to_room": 7066,
+          "description": "You can't see a thing.  It is too dark."
+        },
+        "down": {
+          "to_room": 7000,
+          "description": ""
+        }
+      },
+      "extra_descs": {
+        "": "water"
+      }
     }
-  }
+  },
+  "mobs": {
+    "7000": {
+      "vnum": 7000,
+      "name": "mudmonster",
+      "short_desc": "the horrifying Mudmonster",
+      "long_desc": "A horrifying Mudmonster is slowly evolving from the mud...",
+      "level": 12,
+      "alignment": -250,
+      "hp_dice": "2d5+3",
+      "damage_dice": "4d6+140",
+      "gold": 6550,
+      "exp": 6,
+      "armor_class": 2,
+      "flags": [
+        "stay_zone",
+        "no_bash",
+        "no_blind"
+      ],
+      "description": "It sure looks like something out of a horror movie.  It strongly resembles\na huge figure made up from mud alone, and it sure looks like it had human \nflesh for breakfast and is strongly intent on having the same for dinner\n- Perhaps you?"
+    },
+    "7001": {
+      "vnum": 7001,
+      "name": "bat",
+      "short_desc": "the small bat",
+      "long_desc": "The small fierce-looking bat is hanging from the ceiling, obviously sleeping.",
+      "level": 1,
+      "alignment": -500,
+      "hp_dice": "1d5+0",
+      "damage_dice": "5d2+6",
+      "gold": 75,
+      "exp": 4,
+      "armor_class": 5,
+      "flags": [
+        "aggressive",
+        "stay_zone",
+        "no_blind"
+      ],
+      "description": "You have never in your entire life seen such a mean looking small creature,\nthough it looks rather peaceful, hanging there, sleeping.  The thought of \narousing this cruel creature doesn't sit well in your bones."
+    },
+    "7002": {
+      "vnum": 7002,
+      "name": "rat",
+      "short_desc": "the sewer rat",
+      "long_desc": "The huge hungry-looking sewer rat sits here.",
+      "level": 5,
+      "alignment": -1000,
+      "hp_dice": "2d4+0",
+      "damage_dice": "1d12+48",
+      "gold": 515,
+      "exp": 8,
+      "armor_class": 5,
+      "flags": [
+        "aggressive"
+      ],
+      "description": "This creature is fairly large for a rat, but not so big that it could\nbe called a giant rat.  Sewer water drips off of its grey fur as it\nlooks at you with black glistening eyes."
+    },
+    "7003": {
+      "vnum": 7003,
+      "name": "spider",
+      "short_desc": "the small Spider",
+      "long_desc": "The small hairy Spider is here, busy with its web.",
+      "level": 1,
+      "alignment": -700,
+      "hp_dice": "1d4+0",
+      "damage_dice": "1d12+8",
+      "gold": 50,
+      "exp": 8,
+      "armor_class": 3,
+      "flags": [
+        "aggressive"
+      ],
+      "description": "This small spider seems to pay you no attention at all as it builds\nits intricately designed web."
+    },
+    "7004": {
+      "vnum": 7004,
+      "name": "beetle",
+      "short_desc": "the giant earth beetle",
+      "long_desc": "The giant, mean-looking earth beetle is here.",
+      "level": 8,
+      "alignment": -300,
+      "hp_dice": "2d4+2",
+      "damage_dice": "2d10+98",
+      "gold": 2375,
+      "exp": 4,
+      "armor_class": 3,
+      "flags": [],
+      "description": "Now, you've seen beetles, but this one is enormous.  It stretches\nperhaps two feet from head to tail.  As it notices you, it waves\nits six legs about and makes some strange skittering noises at you."
+    },
+    "7005": {
+      "vnum": 7005,
+      "name": "maggot",
+      "short_desc": "the maggot",
+      "long_desc": "The giant maggot is here, simply existing.",
+      "level": 3,
+      "alignment": 300,
+      "hp_dice": "1d7+0",
+      "damage_dice": "2d5+35",
+      "gold": 176,
+      "exp": 8,
+      "armor_class": 9,
+      "flags": [
+        "no_bash",
+        "no_blind"
+      ],
+      "description": "This large mound of grotesque flesh is just lying here quivering,\nalmost as if it can sense your warm blood nearby."
+    },
+    "7006": {
+      "vnum": 7006,
+      "name": "snake",
+      "short_desc": "the snake",
+      "long_desc": "The snake slithers towards you. It looks very mean.",
+      "level": 4,
+      "alignment": -500,
+      "hp_dice": "1d9+0",
+      "damage_dice": "2d5+40",
+      "gold": 500,
+      "exp": 8,
+      "armor_class": 7,
+      "flags": [
+        "special",
+        "aggressive"
+      ],
+      "description": "This snake is of a variety that you do not recall seeing recently.\nIt has near black skin with small white diamond shaped spots all\nover its head and upper body.  A thin green stripe stretches along\neach side of its body."
+    },
+    "7007": {
+      "vnum": 7007,
+      "name": "wanderer",
+      "short_desc": "the evil wanderer",
+      "long_desc": "The evil wanderer stares at you with a piercing gaze.",
+      "level": 10,
+      "alignment": -1000,
+      "hp_dice": "2d6+1",
+      "damage_dice": "4d10+100",
+      "gold": 4900,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "scavenger",
+        "wimpy"
+      ],
+      "description": "The evil wanderer is very thin.  He is dressed in a grey cloak.  He\ndoesn't look like he'd be your first choice as a travelling companion."
+    },
+    "7008": {
+      "vnum": 7008,
+      "name": "homunculus",
+      "short_desc": "the creature homunculus",
+      "long_desc": "The creature homunculus is here, looking at you with an evil look.",
+      "level": 11,
+      "alignment": -780,
+      "hp_dice": "2d6+2",
+      "damage_dice": "6d3+130",
+      "gold": 6000,
+      "exp": 8,
+      "armor_class": 1,
+      "flags": [
+        "no_charm",
+        "no_summmon",
+        "no_sleep"
+      ],
+      "description": "The homunculus appears in a man-like form, about eighteen inches tall,\nhas a greenish, reptilian skin, leathery wings, and a batlike mouth,\nwith teeth dripping with a greenish sludge."
+    },
+    "7009": {
+      "vnum": 7009,
+      "name": "morkoth",
+      "short_desc": "the shadowy morkoth",
+      "long_desc": "The morkoth are standing here, waiting for someone to KILL!",
+      "level": 10,
+      "alignment": -900,
+      "hp_dice": "2d6+0",
+      "damage_dice": "1d20+120",
+      "gold": 4500,
+      "exp": 8,
+      "armor_class": 3,
+      "flags": [
+        "special",
+        "aggressive",
+        "wimpy"
+      ],
+      "description": "It is a five foot tall, shadow monster.  This has the shape between\na human and a rat.  It breaths very heavily while staring at you."
+    },
+    "7010": {
+      "vnum": 7010,
+      "name": "chr-eff'n",
+      "short_desc": "the evil chr-eff'n",
+      "long_desc": "The chr-eff'n are crawling here, looking around with its yellow eyes.",
+      "level": 12,
+      "alignment": -830,
+      "hp_dice": "2d7+1",
+      "damage_dice": "2d26+148",
+      "gold": 7250,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "scavenger",
+        "wimpy"
+      ],
+      "description": "The head and torso of a chr-eff'n is copper-covered, with yellow,\nglowing eyes.  The lower body is in an orange shading."
+    },
+    "7040": {
+      "vnum": 7040,
+      "name": "dragon",
+      "short_desc": "the red dragon",
+      "long_desc": "The fierce-looking red dragon stares at you angrily.",
+      "level": 19,
+      "alignment": -1000,
+      "hp_dice": "3d6+3",
+      "damage_dice": "5d4+230",
+      "gold": 28421,
+      "exp": 8,
+      "armor_class": 0,
+      "flags": [
+        "sentinel",
+        "aware",
+        "aggressive",
+        "no_charm",
+        "no_summmon",
+        "no_bash"
+      ],
+      "description": "The red dragon stares at you, angrily, as it wakes when you arrive.\nIt says 'Oh, human YOU woke me up... Hsssss', while it moves closer,\n'Can one NEVER sleep in peace... Hssss... '"
+    },
+    "7041": {
+      "vnum": 7041,
+      "name": "hag",
+      "short_desc": "the sea hag",
+      "long_desc": "A sea hag is here, swimming around.",
+      "level": 14,
+      "alignment": -800,
+      "hp_dice": "2d8+1",
+      "damage_dice": "1d8+172",
+      "gold": 9000,
+      "exp": 8,
+      "armor_class": 1,
+      "flags": [
+        "aggressive"
+      ],
+      "description": "The sea hag is so ghastly looking that you feel the deepest fear:  Big\nyellow eyes and sharp teeth.  Its ears are very big, and it has small\nsharp horns.  This beast is obviously a hater of beauty."
+    },
+    "7042": {
+      "vnum": 7042,
+      "name": "naga",
+      "short_desc": "the guardian naga",
+      "long_desc": "The guardian naga looks kindly at you.",
+      "level": 12,
+      "alignment": 700,
+      "hp_dice": "2d7+1",
+      "damage_dice": "1d18+148",
+      "gold": 6800,
+      "exp": 8,
+      "armor_class": 2,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "The naga are a snake-liked creature.  She is covered in green-gold scales\nwith silvery triangles along her back.  Her eyes are golden.  She notices\nthat you are staring at her, and she says 'Watch out.  This way leads to\nsome evil creatures.'"
+    },
+    "7043": {
+      "vnum": 7043,
+      "name": "basilisk",
+      "short_desc": "the scaled basilisk",
+      "long_desc": "The scaled basilisk crawls towards you slowly.",
+      "level": 13,
+      "alignment": -250,
+      "hp_dice": "2d7+2",
+      "damage_dice": "1d12+160",
+      "gold": 8175,
+      "exp": 8,
+      "armor_class": 0,
+      "flags": [
+        "scavenger"
+      ],
+      "description": "The basilisk is a reptilian monster.  It has eight legs, and a strong,\ntoothy jaws.  It is dull brown with yellowish underbelly.  Its eyes are\nglowing pale green."
+    },
+    "7044": {
+      "vnum": 7044,
+      "name": "lemure",
+      "short_desc": "the lemure",
+      "long_desc": "The lemure blob slithers towards you for an attack!",
+      "level": 5,
+      "alignment": -500,
+      "hp_dice": "2d4+0",
+      "damage_dice": "3d5+57",
+      "gold": 500,
+      "exp": 8,
+      "armor_class": 6,
+      "flags": [
+        "aggressive",
+        "no_charm",
+        "no_bash"
+      ],
+      "description": "This looks like a vaguely human blob.  Big black yellow eyes, and a mouth\ngoing a little bit out from the face.  The lemure does not look interested\nin you at all, but it attacks anyway.  It looks like its mind has been\nburned out."
+    },
+    "7045": {
+      "vnum": 7045,
+      "name": "jones",
+      "short_desc": "Jones 'cruncher' ettin",
+      "long_desc": "Jones is standing here glaring at you.",
+      "level": 10,
+      "alignment": -480,
+      "hp_dice": "2d6+2",
+      "damage_dice": "1d5+130",
+      "gold": 5530,
+      "exp": 5,
+      "armor_class": 2,
+      "flags": [
+        "scavenger"
+      ],
+      "description": "At the first sight you thought Jones was an Orc, but when he came closer you\nsee his second head.  He wears an animal skin dress, filthy and moth eaten. \nJones really stinks..."
+    },
+    "7046": {
+      "vnum": 7046,
+      "name": "herald",
+      "short_desc": "Herald 'the mouse-killer' ettin",
+      "long_desc": "Herald is standing here looking confused at you.",
+      "level": 6,
+      "alignment": 200,
+      "hp_dice": "1d8+0",
+      "damage_dice": "3d5+70",
+      "gold": 770,
+      "exp": 5,
+      "armor_class": 4,
+      "flags": [
+        "scavenger"
+      ],
+      "description": "When you look at Herald, you feel pity.  His clothes are really poor, and\none of his heads hangs down.  At the rope around his stomach hangs dead\nmice and rats.  He does not smell good."
+    }
+  },
+  "objects": {}
 }

@@ -122,71 +122,184 @@ class ActiveQuest:
 
 # Quest definitions (could be loaded from JSON files)
 QUEST_DEFINITIONS = {
-    'quest_001': {
-        'name': 'Goblin Extermination',
-        'description': 'The goblins have been raiding nearby farms. Slay 10 goblins to protect the villagers.',
+    # ========== BEGINNER QUESTS (Level 1-10) ==========
+    'rat_problem': {
+        'name': 'Rat Problem',
+        'description': 'The sewers are overrun with rats! Help clear them out before they spread disease.',
         'type': 'kill',
-        'level_min': 3,
-        'level_max': 10,
-        'quest_giver': 3005,  # NPC vnum in Midgaard
-        'objectives': [
-            {
-                'type': 'kill',
-                'description': 'Slay goblins',
-                'target': 'goblin',
-                'required': 10
-            }
-        ],
-        'rewards': {
-            'exp': 500,
-            'gold': 100,
-            'items': []
-        },
-        'repeatable': False
-    },
-    'quest_002': {
-        'name': 'Herb Collection',
-        'description': 'The healer needs healing herbs from the forest. Collect 5 herbs.',
-        'type': 'fetch',
         'level_min': 1,
-        'level_max': 5,
-        'quest_giver': 3001,
+        'level_max': 8,
+        'quest_giver': 3105,  # Mayor in Midgaard
         'objectives': [
-            {
-                'type': 'collect',
-                'description': 'Collect healing herbs',
-                'target': '4100',  # Item vnum
-                'required': 5
-            }
+            {'type': 'kill', 'description': 'Slay sewer rats', 'target': 'rat', 'required': 8}
         ],
-        'rewards': {
-            'exp': 200,
-            'gold': 50,
-            'items': []
-        },
+        'rewards': {'exp': 300, 'gold': 75, 'items': []},
         'repeatable': True
     },
-    'quest_003': {
-        'name': 'The Lost Sword',
-        'description': 'A warrior lost his sword in the Goblin Warrens. Retrieve it and return it to him.',
-        'type': 'fetch',
-        'level_min': 5,
-        'level_max': 15,
-        'quest_giver': 3006,
+    'goblin_menace': {
+        'name': 'The Goblin Menace',
+        'description': "Goblins from Miden'Nir have been raiding the roads. Put an end to their threat!",
+        'type': 'kill',
+        'level_min': 3,
+        'level_max': 12,
+        'quest_giver': 3105,  # Mayor
         'objectives': [
-            {
-                'type': 'collect',
-                'description': 'Find the lost sword',
-                'target': '6050',  # Sword vnum in Goblin Warrens
-                'required': 1
-            }
+            {'type': 'kill', 'description': 'Slay goblins', 'target': 'goblin', 'required': 10}
         ],
-        'rewards': {
-            'exp': 800,
-            'gold': 200,
-            'items': []
-        },
+        'rewards': {'exp': 600, 'gold': 150, 'items': []},
         'repeatable': False
+    },
+
+    # ========== INTERMEDIATE QUESTS (Level 8-20) ==========
+    'orc_invasion': {
+        'name': 'Orc Invasion',
+        'description': 'Orcs from the Enclave are preparing to attack! Strike first and thin their numbers.',
+        'type': 'kill',
+        'level_min': 8,
+        'level_max': 18,
+        'quest_giver': 3006,  # Captain Stolar
+        'objectives': [
+            {'type': 'kill', 'description': 'Slay orcs', 'target': 'orc', 'required': 15}
+        ],
+        'rewards': {'exp': 1200, 'gold': 300, 'items': []},
+        'repeatable': False
+    },
+    'spider_infestation': {
+        'name': 'Spider Infestation',
+        'description': 'Giant spiders have infested Arachnos! Clear them before they spread to the roads.',
+        'type': 'kill',
+        'level_min': 10,
+        'level_max': 20,
+        'quest_giver': 3006,  # Captain Stolar
+        'objectives': [
+            {'type': 'kill', 'description': 'Slay giant spiders', 'target': 'spider', 'required': 12}
+        ],
+        'rewards': {'exp': 1500, 'gold': 350, 'items': []},
+        'repeatable': False
+    },
+    'moria_depths': {
+        'name': 'Depths of Moria',
+        'description': 'The orcs in Moria grow bold. Venture into the mines and reduce their numbers.',
+        'type': 'kill',
+        'level_min': 12,
+        'level_max': 22,
+        'quest_giver': 3006,  # Captain Stolar
+        'objectives': [
+            {'type': 'kill', 'description': 'Slay Moria orcs', 'target': 'orc', 'required': 20}
+        ],
+        'rewards': {'exp': 2000, 'gold': 500, 'items': []},
+        'repeatable': False
+    },
+
+    # ========== ADVANCED QUESTS (Level 15-30) ==========
+    'drow_threat': {
+        'name': 'The Drow Threat',
+        'description': 'Dark elves stir in the underground city. Investigate and eliminate their scouts.',
+        'type': 'kill',
+        'level_min': 15,
+        'level_max': 28,
+        'quest_giver': 3006,  # Captain Stolar
+        'objectives': [
+            {'type': 'kill', 'description': 'Slay drow', 'target': 'drow', 'required': 10}
+        ],
+        'rewards': {'exp': 2500, 'gold': 600, 'items': []},
+        'repeatable': False
+    },
+    'undead_purge': {
+        'name': 'Undead Purge',
+        'description': 'The Necropolis teems with undead abominations. Destroy them before they march on the living!',
+        'type': 'kill',
+        'level_min': 20,
+        'level_max': 35,
+        'quest_giver': 3105,  # Mayor
+        'objectives': [
+            {'type': 'kill', 'description': 'Destroy zombies', 'target': 'zombie', 'required': 10},
+            {'type': 'kill', 'description': 'Destroy skeletons', 'target': 'skeleton', 'required': 10}
+        ],
+        'rewards': {'exp': 4000, 'gold': 1000, 'items': []},
+        'repeatable': False
+    },
+    'desert_raiders': {
+        'name': 'Desert Raiders',
+        'description': 'Nomad raiders are attacking caravans in the Great Desert. End their reign of terror.',
+        'type': 'kill',
+        'level_min': 18,
+        'level_max': 30,
+        'quest_giver': 3006,  # Captain Stolar
+        'objectives': [
+            {'type': 'kill', 'description': 'Slay nomad raiders', 'target': 'nomad', 'required': 15}
+        ],
+        'rewards': {'exp': 3000, 'gold': 800, 'items': []},
+        'repeatable': False
+    },
+
+    # ========== ELITE QUESTS (Level 25-45) ==========
+    'demon_hunter': {
+        'name': 'Demon Hunter',
+        'description': 'Demons have begun emerging from portals. Hunt them down before they grow too numerous!',
+        'type': 'kill',
+        'level_min': 25,
+        'level_max': 45,
+        'quest_giver': 3105,  # Mayor
+        'objectives': [
+            {'type': 'kill', 'description': 'Slay demons', 'target': 'demon', 'required': 8}
+        ],
+        'rewards': {'exp': 6000, 'gold': 2000, 'items': []},
+        'repeatable': False
+    },
+    'dragon_slayer': {
+        'name': 'Dragon Slayer',
+        'description': 'A dragon terrorizes the land! Only the bravest heroes dare face such a creature.',
+        'type': 'kill',
+        'level_min': 30,
+        'level_max': 50,
+        'quest_giver': 3006,  # Captain Stolar
+        'objectives': [
+            {'type': 'kill', 'description': 'Slay a dragon', 'target': 'dragon', 'required': 1}
+        ],
+        'rewards': {'exp': 10000, 'gold': 5000, 'items': []},
+        'repeatable': False
+    },
+    'elemental_mastery': {
+        'name': 'Elemental Mastery',
+        'description': 'Rogue elementals threaten the balance of nature. Destroy them to restore order.',
+        'type': 'kill',
+        'level_min': 28,
+        'level_max': 45,
+        'quest_giver': 3105,  # Mayor
+        'objectives': [
+            {'type': 'kill', 'description': 'Slay elementals', 'target': 'elemental', 'required': 6}
+        ],
+        'rewards': {'exp': 5000, 'gold': 1500, 'items': []},
+        'repeatable': False
+    },
+
+    # ========== REPEATABLE DAILY QUESTS ==========
+    'bounty_hunter': {
+        'name': 'Bounty Hunter',
+        'description': 'The city needs dangerous creatures culled. Hunt them for a reward.',
+        'type': 'kill',
+        'level_min': 5,
+        'level_max': 50,
+        'quest_giver': 3006,  # Captain Stolar
+        'objectives': [
+            {'type': 'kill', 'description': 'Slay dangerous creatures', 'target': 'any', 'required': 25}
+        ],
+        'rewards': {'exp': 1000, 'gold': 250, 'items': []},
+        'repeatable': True
+    },
+    'sewer_cleanup': {
+        'name': 'Sewer Cleanup',
+        'description': 'The sewers always need cleaning. Help keep them clear of vermin.',
+        'type': 'kill',
+        'level_min': 1,
+        'level_max': 15,
+        'quest_giver': 3105,  # Mayor
+        'objectives': [
+            {'type': 'kill', 'description': 'Clear sewer creatures', 'target': 'any', 'required': 15}
+        ],
+        'rewards': {'exp': 400, 'gold': 100, 'items': []},
+        'repeatable': True
     },
 }
 
@@ -310,7 +423,8 @@ class QuestManager:
                 if obj.type == 'kill' and event_type == 'kill':
                     # Check if killed mob matches target
                     mob_name = event_data.get('mob_name', '').lower()
-                    if obj.target.lower() in mob_name:
+                    # 'any' target matches any mob kill
+                    if obj.target.lower() == 'any' or obj.target.lower() in mob_name:
                         obj.current += 1
                         obj.check_progress()
 
