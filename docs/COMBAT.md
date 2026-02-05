@@ -1,0 +1,607 @@
+# RealmsMUD Combat Guide
+
+Master the art of combat in RealmsMUD! This guide covers everything from basic attacks to advanced class mechanics.
+
+---
+
+## ⚔️ Combat Basics
+
+### Starting a Fight
+
+To attack an enemy, use the `kill` command:
+
+```bash
+> kill goblin
+You attack the goblin warrior!
+You hit the goblin warrior for 12 damage!
+The goblin warrior swings at you!
+The goblin warrior hits you for 8 damage!
+```
+
+Combat continues automatically in **rounds** (every 2 seconds) until one side is dead or flees.
+
+### The Combat Round
+
+Each round, both combatants automatically attack. Your character will:
+1. Make a basic attack (and extra attacks if you have Second/Third Attack)
+2. Apply any active effects or procs
+3. Regenerate a small amount of HP/Mana (based on position)
+
+### Hitting and Missing
+
+Your chance to hit depends on:
+- **Hit Bonus** (from gear, stats, buffs)
+- **Enemy Armor Class** (lower AC = harder to hit)
+- **Your Stats** (DEX for accuracy, STR for power)
+
+```
+Attack Roll = d20 + Hit Bonus vs Enemy Defense
+```
+
+### Damage Calculation
+
+When you hit, damage is calculated:
+```
+Base Damage (weapon dice) + Damage Bonus + Stat Bonus
+```
+
+**Damage Modifiers:**
+- Critical hits deal double damage
+- Backstab multiplies damage
+- Abilities may add percentage bonuses
+- Armor reduces incoming damage
+
+---
+
+## 🎯 Understanding Your Stats
+
+| Stat | Combat Benefit |
+|------|----------------|
+| **STR** | Melee damage bonus, carrying capacity |
+| **DEX** | Hit chance, armor class, dodge |
+| **CON** | Maximum HP, HP regeneration |
+| **INT** | Spell damage (casters), mana pool |
+| **WIS** | Spell effectiveness, mana regen |
+| **CHA** | Charm effects, vendor prices, bard songs |
+
+### Armor Class (AC)
+
+Lower AC = Better Defense
+
+- Base AC is 100
+- Armor reduces AC (leather: -20, plate: -80)
+- Buffs like `armor` and `shield` further reduce AC
+- Each 10 AC = ~1 defense point
+
+---
+
+## 🗡️ Combat Skills
+
+### Universal Skills
+
+| Skill | Description | Usage |
+|-------|-------------|-------|
+| `kick` | Basic kick attack | `kick` |
+| `bash` | Shield bash (may stun) | `bash <target>` |
+| `rescue` | Pull enemy off ally | `rescue <ally>` |
+| `disarm` | Knock weapon away | `disarm <target>` |
+
+### The Second Attack / Third Attack
+
+Higher-level characters gain extra attacks per round:
+- **Second Attack** - 2 attacks per round
+- **Third Attack** - 3 attacks per round
+
+These trigger automatically in combat.
+
+### Positioning Skills
+
+| Skill | Effect |
+|-------|--------|
+| `hide` | Become hidden (out of combat) |
+| `sneak` | Move without being noticed |
+| `backstab` | Attack from hiding for bonus damage |
+| `circle` | Move behind enemy for bonus attack |
+
+---
+
+## ✨ Combat Magic
+
+### Casting in Combat
+
+```bash
+> cast fireball goblin
+You hurl a fireball at the goblin!
+The goblin is engulfed in flames for 45 damage!
+```
+
+### Spell Targeting
+
+- **Offensive spells** - Require a target: `cast fireball orc`
+- **Defensive spells** - Default to self: `cast armor` or `cast armor thorin`
+- **Group spells** - Affect your whole party: `cast group_heal`
+
+### Mana Management
+
+- Spells cost mana
+- Mana regenerates over time (faster when resting)
+- Out of mana? Use melee attacks or potions!
+
+### Key Combat Spells by Type
+
+**Damage:**
+```bash
+cast magic_missile <target>  # Low damage, reliable
+cast fireball <target>       # High fire damage
+cast lightning_bolt <target> # High electric damage
+cast flamestrike <target>    # Holy fire damage
+```
+
+**Healing:**
+```bash
+cast cure_light              # Small heal (10 mana)
+cast cure_serious            # Medium heal (20 mana)
+cast heal                    # Full heal (50 mana)
+cast group_heal              # Heal party (80 mana)
+```
+
+**Buffs (cast before combat!):**
+```bash
+cast armor                   # -20 AC
+cast shield                  # -10 AC, blocks magic missiles
+cast bless                   # +2 hit, +1 damage
+cast sanctuary               # Reduce damage taken
+cast haste                   # Faster attacks
+```
+
+---
+
+## 🔴 Class Combat Mechanics
+
+### ⚔️ Warrior: Rage System
+
+Warriors build **Rage** during combat by dealing and taking damage.
+
+```
+╔═══════════════════════════════════════════╗
+║  Rage: ████████░░░░░░░░░░░░ 40/100        ║
+╚═══════════════════════════════════════════╝
+```
+
+**Rage Abilities:**
+| Ability | Rage Cost | Effect |
+|---------|-----------|--------|
+| `execute` | 15 | Massive damage to targets below 20% HP |
+| `rampage` | 20 | Bonus damage after killing blow |
+| `warcry` | 10 | Buff yourself and nearby allies |
+| `ignorepain` | 8 | Reduce incoming damage |
+
+**Stances:**
+```bash
+> stance battle      # Balanced offense/defense
+> stance berserk     # +25% damage, +15% damage taken
+> stance defensive   # -25% damage, -15% damage taken
+> stance precision   # -10% damage, +15% crit chance, +4 hit
+```
+
+### 🗡️ Thief: Combo Points
+
+Thieves build **Combo Points** with attacks and spend them on finishers.
+
+```
+Combo Points: ● ● ● ○ ○ (3/5)
+```
+
+**Builders (add combo points):**
+- Backstab (from stealth)
+- Sinister Strike
+- Basic attacks (chance)
+
+**Finishers (spend combo points):**
+| Finisher | Min CP | Effect |
+|----------|--------|--------|
+| `eviscerate` | 1+ | Damage (scales with CP) |
+| `kidneyshot` | 4+ | Stun target |
+| `slicedice` | 3+ | Attack speed buff |
+
+**Example Rotation:**
+```bash
+> hide
+You slip into the shadows.
+
+> backstab orc
+You backstab the orc for 85 damage! (2 combo points)
+
+> circle
+You circle behind the orc! (1 combo point)
+
+> kidneyshot
+You kidney shot the orc! Stunned for 4 seconds!
+```
+
+### ✝️ Cleric: Divine Favor
+
+Clerics build **Divine Favor** through healing and turning undead.
+
+```
+Divine Favor: ★★★☆☆ (60/100)
+```
+
+**Building Divine Favor:**
+- Healing allies
+- Turn Undead ability
+- Prayer (out of combat)
+
+**Spending Divine Favor:**
+```bash
+> holysmite zombie
+You channel divine wrath into the zombie for 120 holy damage!
+(Costs Divine Favor)
+```
+
+### ⚜️ Paladin: Auras & Seals
+
+**Auras (one active at a time):**
+```bash
+> aura devotion      # Increased armor for nearby allies
+> aura protection    # Damage reduction for nearby allies  
+> aura retribution   # Reflect damage to attackers
+```
+
+**Lay on Hands:**
+```bash
+> layhands           # Powerful self-heal (long cooldown)
+> layhands thorin    # Heal an ally
+```
+
+### 🏹 Ranger: Animal Companions
+
+Rangers can tame animal companions to fight alongside them.
+
+**Taming:**
+```bash
+> tame wolf
+You begin taming the grey wolf...
+The grey wolf becomes your loyal companion!
+```
+
+**Companion Types:**
+| Animal | Specialty |
+|--------|-----------|
+| Wolf | Balanced damage |
+| Bear | Tank (high HP) |
+| Hawk | Fast attacks, interrupts |
+| Cat | Stealth, high crit |
+| Boar | Charge, stuns |
+
+**Managing Companions:**
+```bash
+> companion          # View companion status
+> companion attack   # Command to attack
+> companion stay     # Hold position
+> companion dismiss  # Release companion
+```
+
+### 💀 Necromancer: Undead Minions
+
+Necromancers raise undead servants from corpses.
+
+```bash
+> raise warrior
+You raise a skeletal warrior from the corpse!
+
+> raise healer
+You raise a spectral healer from the corpse!
+```
+
+**Minion Types:**
+| Type | Role |
+|------|------|
+| Warrior | Melee tank |
+| Healer | Heals you and other minions |
+| Caster | Ranged magic damage |
+| Rogue | Stealth attacks, debuffs |
+
+**Soulstone:**
+Hold a soulstone for bonus INT and to store souls for later raising.
+
+### 🎵 Bard: Songs
+
+Bards maintain one song at a time, providing buffs to nearby allies.
+
+```bash
+> perform courage
+You begin performing Song of Courage!
+Your allies feel emboldened! (+2 hit, +2 damage)
+```
+
+**Song Types:**
+| Song | Effect |
+|------|--------|
+| Courage | +hit/damage to allies |
+| Defense | +AC to allies |
+| Speed | +attack speed to allies |
+| Healing | Regen HP over time |
+| Mana | Regen mana over time |
+
+**Encore:**
+```bash
+> encore
+You extend your current performance!
+```
+
+---
+
+## 📊 Combat States
+
+### Positions
+
+| Position | Regen Rate | Combat |
+|----------|------------|--------|
+| Standing | Normal | Can fight |
+| Sitting | +50% | Can't fight |
+| Resting | +100% | Can't fight |
+| Sleeping | +150% | Can't fight, vulnerable |
+| Fighting | Minimal | In combat |
+
+Change position:
+```bash
+> sit        # Sit down
+> rest       # Rest (faster regen)
+> sleep      # Sleep (fastest regen)
+> stand      # Stand up
+> wake       # Wake from sleep
+```
+
+### Fleeing Combat
+
+When things go badly, run!
+
+```bash
+> flee
+You flee north!
+You lose 10 experience points.
+```
+
+**Flee Mechanics:**
+- Random exit direction
+- May fail if stunned/slowed
+- Costs experience points
+- Better than dying!
+
+---
+
+## 🎯 Combat Tips
+
+### Before Combat
+
+1. **Buff up!** Cast protective spells:
+   ```bash
+   cast armor
+   cast bless
+   cast sanctuary
+   ```
+
+2. **Check your opponent:**
+   ```bash
+   consider troll
+   > "This could be difficult."
+   ```
+
+3. **Heal to full:**
+   ```bash
+   cast cure_serious
+   ```
+
+### During Combat
+
+1. **Use skills!** Don't just auto-attack:
+   ```bash
+   kick
+   bash
+   cast fireball troll
+   ```
+
+2. **Watch your HP:**
+   ```
+   HP: 45/150 - Time to heal or flee!
+   ```
+
+3. **Know when to run:**
+   ```bash
+   flee
+   ```
+
+### After Combat
+
+1. **Loot the corpse:**
+   ```bash
+   get all corpse
+   ```
+
+2. **Heal up:**
+   ```bash
+   rest
+   cast cure_light
+   ```
+
+3. **Check for quests:**
+   ```bash
+   quest log
+   ```
+
+---
+
+## ⚡ Status Effects
+
+### Buffs (Good)
+
+| Effect | Benefit |
+|--------|---------|
+| Blessed | +hit, +damage |
+| Hasted | Faster attacks |
+| Sanctuary | Reduced damage |
+| Invisible | Enemies can't see you |
+| Protected | Magic resistance |
+
+### Debuffs (Bad)
+
+| Effect | Penalty |
+|--------|---------|
+| Poisoned | Damage over time |
+| Blinded | Reduced hit chance |
+| Slowed | Slower attacks |
+| Weakened | Reduced damage |
+| Stunned | Can't act |
+| Feared | Forced to flee |
+
+### Removing Debuffs
+
+```bash
+cast remove_poison    # Cure poison
+cast cure_blindness   # Cure blindness
+cast remove_curse     # Remove curses
+quaff antidote        # Drink cure potion
+```
+
+---
+
+## 👥 Group Combat
+
+### Forming a Group
+
+```bash
+> group thorin
+You invite Thorin to your group.
+
+> group
+Group Leader: You
+Members:
+  - Thorin (Warrior) [100%]
+  - Gandalf (Mage) [100%]
+```
+
+### Group Tactics
+
+**Tank and Spank:**
+1. Warrior attacks first (gets aggro)
+2. DPS attacks second
+3. Healer keeps tank alive
+
+**Assist:**
+```bash
+> assist thorin
+You assist Thorin, attacking the orc!
+```
+
+**Rescue:**
+```bash
+> rescue gandalf
+You heroically rescue Gandalf!
+The orc turns to attack you instead.
+```
+
+### Group Communication
+
+```bash
+> gtell Heal me please!
+[Group] You: Heal me please!
+```
+
+---
+
+## 🏆 Boss Fights
+
+Boss monsters have special mechanics:
+
+### Boss Indicators
+- Named enemies with titles
+- Higher HP pools
+- Special abilities
+- Better loot!
+
+### Common Boss Mechanics
+
+| Mechanic | Description | Counter |
+|----------|-------------|---------|
+| Enrage | +damage at low HP | Burn fast |
+| AoE Attack | Hits everyone | Spread out |
+| Summon Adds | Spawns minions | Kill adds |
+| Heal | Heals itself | Interrupt |
+| Stun | Disables tank | Have backup |
+
+### Boss Tips
+
+1. **Bring a group** - Most bosses need 3+ players
+2. **Know the fight** - Learn mechanics first
+3. **Assign roles** - Tank, heals, DPS
+4. **Prepare** - Full buffs, potions ready
+5. **Communicate** - Use group chat
+
+---
+
+## 📈 Improving Combat Performance
+
+### Gear Upgrades
+
+Better equipment = better combat:
+- Higher damage weapons
+- Lower AC armor
+- +hit and +damage bonuses
+
+### Skill Practice
+
+```bash
+> practice kick
+You improve your kicking! Kick: 75% -> 80%
+```
+
+Higher skill = more effective abilities.
+
+### Talent Points
+
+Spend talent points to unlock new abilities:
+```bash
+> talents
+> talent learn execute
+You learn Execute!
+```
+
+### Consumables
+
+Stock up on potions!
+```bash
+> quaff healing
+You feel much better!
+
+> quaff mana
+Your mind feels refreshed!
+```
+
+---
+
+## 🎮 Combat Commands Quick Reference
+
+```
+ATTACKING           DEFENDING           SUPPORT
+─────────────       ─────────────       ─────────────
+kill <target>       flee                rescue <ally>
+kick                consider <mob>      assist <ally>
+bash <target>       cast sanctuary      cast heal <ally>
+backstab <target>   rest                cast group_heal
+cast <spell>        quaff potion        gtell <message>
+
+CLASS SPECIFIC
+─────────────────────────────────────────────────────
+Warriors: stance, execute, rampage, warcry
+Thieves: combo, eviscerate, kidneyshot, slicedice
+Clerics: turnundead, holysmite, divinefavor
+Paladins: aura, layhands, smite
+Rangers: companion, track, tame
+Necros: raise, soulstone
+Bards: perform, encore, fascinate
+```
+
+---
+
+Now get out there and slay some monsters! ⚔️🐉
