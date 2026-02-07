@@ -243,9 +243,47 @@ class GroupManager:
     async def show_group(player: 'Player'):
         """Show group information."""
         c = player.config.COLORS
+        
+        from pets import PetManager
 
         if not hasattr(player, 'group') or not player.group:
-            await player.send(f"{c['yellow']}You're not in a group.{c['reset']}")
+            # Show solo status with pets if any
+            my_pets = PetManager.get_player_pets(player)
+            if not my_pets:
+                await player.send(f"{c['yellow']}You're not in a group.{c['reset']}")
+                return
+            
+            # Show solo + pets
+            await player.send(f"\n{c['bright_cyan']}╔══════════════════════════════════════════════════════════╗{c['reset']}")
+            await player.send(f"{c['bright_cyan']}║{c['bright_yellow']}                    Your Party                          {c['bright_cyan']}║{c['reset']}")
+            await player.send(f"{c['bright_cyan']}╠══════════════════════════════════════════════════════════╣{c['reset']}")
+            
+            # Show self
+            hp_pct = (player.hp / player.max_hp * 100) if player.max_hp > 0 else 0
+            mp_pct = (player.mana / player.max_mana * 100) if player.max_mana > 0 else 0
+            hp_color = c['bright_green'] if hp_pct > 75 else c['green'] if hp_pct > 50 else c['yellow'] if hp_pct > 25 else c['red']
+            
+            await player.send(
+                f"{c['bright_cyan']}║ {c['white']}{player.name.ljust(20)} "
+                f"Lv:{player.level:2} "
+                f"{hp_color}HP:{hp_pct:3.0f}%{c['white']} "
+                f"{c['bright_blue']}MP:{mp_pct:3.0f}%{c['white']}"
+                f" {c['bright_cyan']}║{c['reset']}"
+            )
+            
+            # Show pets
+            for pet in my_pets:
+                pet_hp = (pet.hp / pet.max_hp * 100) if pet.max_hp > 0 else 0
+                pet_hp_color = c['bright_green'] if pet_hp > 75 else c['green'] if pet_hp > 50 else c['yellow'] if pet_hp > 25 else c['red']
+                pet_name = f"  └ {pet.name}".ljust(20)
+                await player.send(
+                    f"{c['bright_cyan']}║ {c['magenta']}{pet_name} "
+                    f"Lv:{pet.level:2} "
+                    f"{pet_hp_color}HP:{pet_hp:3.0f}%{c['white']}         "
+                    f" {c['bright_cyan']}║{c['reset']}"
+                )
+            
+            await player.send(f"{c['bright_cyan']}╚══════════════════════════════════════════════════════════╝{c['reset']}\n")
             return
 
         group = player.group
@@ -282,5 +320,27 @@ class GroupManager:
                 f"{c['bright_blue']}MP:{mana_percent:3.0f}%{c['white']}"
                 f" {c['bright_cyan']}║{c['reset']}"
             )
+            
+            # Show member's pets
+            from pets import PetManager
+            member_pets = PetManager.get_player_pets(member)
+            for pet in member_pets:
+                pet_hp = (pet.hp / pet.max_hp * 100) if pet.max_hp > 0 else 0
+                if pet_hp > 75:
+                    pet_hp_color = c['bright_green']
+                elif pet_hp > 50:
+                    pet_hp_color = c['green']
+                elif pet_hp > 25:
+                    pet_hp_color = c['yellow']
+                else:
+                    pet_hp_color = c['red']
+                
+                pet_name = f"  └ {pet.name}".ljust(20)
+                await player.send(
+                    f"{c['bright_cyan']}║ {c['magenta']}{pet_name} "
+                    f"Lv:{pet.level:2} "
+                    f"{pet_hp_color}HP:{pet_hp:3.0f}%{c['white']}         "
+                    f" {c['bright_cyan']}║{c['reset']}"
+                )
 
         await player.send(f"{c['bright_cyan']}╚══════════════════════════════════════════════════════════╝{c['reset']}\n")

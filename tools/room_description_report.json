@@ -1,0 +1,387 @@
+{
+  "25": {
+    "name": "The High Tower Of Magic",
+    "file": "zone_025.json",
+    "missing": [],
+    "short": [
+      [
+        2612,
+        "It Is Very Dark Here...",
+        23
+      ],
+      [
+        2662,
+        "It Is Very Dark Here...",
+        23
+      ]
+    ],
+    "total": 183
+  },
+  "31": {
+    "name": "Southern part of Midgaard",
+    "file": "zone_031.json",
+    "missing": [],
+    "short": [
+      [
+        3110,
+        "Cityguard HeadQuarters",
+        29
+      ],
+      [
+        3118,
+        "Park Road",
+        49
+      ],
+      [
+        3124,
+        "The End Of Elm Street",
+        33
+      ]
+    ],
+    "total": 54
+  },
+  "36": {
+    "name": "The Chessboard of Midgaard",
+    "file": "zone_036.json",
+    "missing": [],
+    "short": [
+      [
+        3617,
+        "A White Square",
+        42
+      ],
+      [
+        3618,
+        "A Black Square",
+        42
+      ],
+      [
+        3619,
+        "A White Square",
+        42
+      ],
+      [
+        3620,
+        "A Black Square",
+        42
+      ],
+      [
+        3621,
+        "A White Square",
+        42
+      ],
+      [
+        3622,
+        "A Black Square",
+        42
+      ],
+      [
+        3623,
+        "A White Square",
+        42
+      ],
+      [
+        3625,
+        "A Black Square",
+        42
+      ],
+      [
+        3626,
+        "A White Square",
+        42
+      ],
+      [
+        3627,
+        "A Black Square",
+        42
+      ],
+      [
+        3628,
+        "A White Square",
+        42
+      ],
+      [
+        3629,
+        "A Black Square",
+        42
+      ],
+      [
+        3630,
+        "A White Square",
+        42
+      ],
+      [
+        3633,
+        "A White Square",
+        42
+      ],
+      [
+        3634,
+        "A Black Square",
+        42
+      ],
+      [
+        3635,
+        "A White Square",
+        42
+      ],
+      [
+        3636,
+        "A Black Square",
+        42
+      ],
+      [
+        3637,
+        "A White Square",
+        42
+      ],
+      [
+        3638,
+        "A Black Square",
+        42
+      ],
+      [
+        3639,
+        "A White Square",
+        42
+      ],
+      [
+        3641,
+        "A Black Square",
+        42
+      ],
+      [
+        3642,
+        "A White Square",
+        42
+      ],
+      [
+        3643,
+        "A Black Square",
+        42
+      ],
+      [
+        3644,
+        "A White Square",
+        42
+      ],
+      [
+        3645,
+        "A Black Square",
+        42
+      ],
+      [
+        3646,
+        "A White Square",
+        42
+      ],
+      [
+        3647,
+        "A Black Square",
+        42
+      ],
+      [
+        3648,
+        "A White Square",
+        42
+      ]
+    ],
+    "total": 67
+  },
+  "50": {
+    "name": "The Great Eastern Desert",
+    "file": "zone_050.json",
+    "missing": [],
+    "short": [
+      [
+        5002,
+        "A Long Tunnel",
+        30
+      ],
+      [
+        5003,
+        "A Long Tunnel",
+        30
+      ],
+      [
+        5004,
+        "A Tunnel Intersection",
+        47
+      ],
+      [
+        5012,
+        "A Narrow Bend",
+        39
+      ],
+      [
+        5015,
+        "An Underground Pool",
+        49
+      ]
+    ],
+    "total": 74
+  },
+  "51": {
+    "name": "Drow City",
+    "file": "zone_051.json",
+    "missing": [],
+    "short": [
+      [
+        5118,
+        "The Warriors' Academy",
+        46
+      ]
+    ],
+    "total": 51
+  },
+  "53": {
+    "name": "The Great Pyramid",
+    "file": "zone_053.json",
+    "missing": [],
+    "short": [
+      [
+        5334,
+        "A Tunnel",
+        40
+      ]
+    ],
+    "total": 60
+  },
+  "54": {
+    "name": "New Thalos",
+    "file": "zone_054.json",
+    "missing": [],
+    "short": [
+      [
+        5457,
+        "Underground",
+        44
+      ],
+      [
+        5459,
+        "Alley",
+        20
+      ],
+      [
+        5476,
+        "Underground",
+        38
+      ],
+      [
+        5492,
+        "Underground",
+        42
+      ],
+      [
+        5493,
+        "Underground",
+        42
+      ],
+      [
+        5500,
+        "Underground",
+        42
+      ],
+      [
+        5501,
+        "Underground",
+        42
+      ],
+      [
+        5502,
+        "Underground",
+        42
+      ],
+      [
+        5616,
+        "On A Road",
+        47
+      ],
+      [
+        5621,
+        "River Ishtar",
+        48
+      ],
+      [
+        5630,
+        "On A Road",
+        44
+      ],
+      [
+        5631,
+        "On A Road",
+        44
+      ],
+      [
+        5632,
+        "On A Road",
+        44
+      ],
+      [
+        5648,
+        "River Ishtar",
+        40
+      ]
+    ],
+    "total": 285
+  },
+  "65": {
+    "name": "The Dwarven Kingdom",
+    "file": "zone_065.json",
+    "missing": [],
+    "short": [
+      [
+        6528,
+        "On The Stairs In Castle Strangelove",
+        47
+      ],
+      [
+        6548,
+        "The Maze",
+        18
+      ],
+      [
+        6549,
+        "The Maze",
+        18
+      ],
+      [
+        6550,
+        "The Maze",
+        18
+      ]
+    ],
+    "total": 51
+  },
+  "72": {
+    "name": "The Sewer Maze",
+    "file": "zone_072.json",
+    "missing": [],
+    "short": [
+      [
+        7220,
+        "A Boring Drain",
+        35
+      ],
+      [
+        7340,
+        "The South-Western Part Of The Basilisk's Cave",
+        30
+      ]
+    ],
+    "total": 84
+  },
+  "79": {
+    "name": "Redferne's Residence",
+    "file": "zone_079.json",
+    "missing": [],
+    "short": [
+      [
+        7908,
+        "The Fridge",
+        49
+      ]
+    ],
+    "total": 20
+  }
+}

@@ -6,7 +6,7 @@
     "5001": {
       "vnum": 5001,
       "name": "A Long Tunnel",
-      "description": "You encounter some rapids as you enter this tunnel cut out of the mountains by the river.",
+      "description": "You encounter some rapids as you enter this tunnel cut out of the\nmountains by the river. Waves crash and foam relentlessly. The depths\nare dark and unknowable.",
       "sector_type": "water_noswim",
       "flags": [
         "dark",
@@ -26,7 +26,7 @@
     "5002": {
       "vnum": 5002,
       "name": "A Long Tunnel",
-      "description": "The tunnel branches off north.",
+      "description": "The tunnel stretches endlessly through solid rock, carved by ancient\nhands or perhaps erosion from underground rivers. Limestone walls\nglisten with moisture, and your footsteps echo into the darkness ahead.\nThe depths are dark and unknowable. Waves crash and foam relentlessly.",
       "sector_type": "water_noswim",
       "flags": [
         "dark",
@@ -50,7 +50,7 @@
     "5003": {
       "vnum": 5003,
       "name": "A Long Tunnel",
-      "description": "The tunnel branches off south.",
+      "description": "Rough-hewn stone walls press in from both sides as the tunnel continues\nits descent. The air grows cooler here, and you can hear the distant\ndrip of water echoing through unseen chambers. The roar of water fills\nyour ears. The water churns with dangerous currents.",
       "sector_type": "water_noswim",
       "flags": [
         "dark",
@@ -74,7 +74,7 @@
     "5004": {
       "vnum": 5004,
       "name": "A Tunnel Intersection",
-      "description": "The tunnel branches off to the north and south.",
+      "description": "Multiple tunnels converge at this intersection, each passage\ndisappearing into darkness. Strange symbols are carved into the\njunction's walls, possibly markers left by whoever built these passages.\nSpray mists the air around. The depths are dark and unknowable.",
       "sector_type": "water_noswim",
       "flags": [
         "dark",
@@ -102,7 +102,7 @@
     "5005": {
       "vnum": 5005,
       "name": "An Underground Lake",
-      "description": "You are floating on a jet-black underground lake fed by dripping water and lime from above.  The tunnel continues to the east and the river leads back west.  Leading upwards to the northwest is a roughly hewn hallway.",
+      "description": "The void stretches on a jet-black underground lake fed by dripping water\nand lime from above. The tunnel continues to the east and the river\nleads back west. Leading upwards to the northwest is a roughly hewn\nhallway. Spray mists the air around. Waves crash and foam relentlessly.",
       "sector_type": "water_noswim",
       "flags": [
         "dark",
@@ -130,7 +130,7 @@
     "5006": {
       "vnum": 5006,
       "name": "A Long Narrow Tunnel",
-      "description": "The tunnel rises sharply to the east.  Another narrow tunnel leads away to the north.",
+      "description": "The tunnel rises sharply to the east. Another narrow tunnel leads away\nto the north. Bare rock dominates the landscape. The wind howls around\nexposed peaks.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -155,7 +155,7 @@
     "5007": {
       "vnum": 5007,
       "name": "A Wide Tunnel",
-      "description": "The tunnel continues east and west.  To the east the tunnel dives down into a bright light.  A small passage way opens to the north.",
+      "description": "The tunnel continues east and west. To the east the tunnel dives down\ninto a bright light. A small passage way opens to the north. The path is\nsteep and treacherous. Bare rock dominates the landscape.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -175,7 +175,7 @@
     "5008": {
       "vnum": 5008,
       "name": "The Cave-In",
-      "description": "You stand at the edge of a large pile of rubble created from the last rockslide.",
+      "description": "The area opens at the edge of a large pile of rubble created from the\nlast rockslide. Snow clings to shadowed crevices. The air is thin and\ncold at this altitude.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -195,7 +195,7 @@
     "5009": {
       "vnum": 5009,
       "name": "At The Foot Of The Rubble",
-      "description": "You are at the bottom of a large pile of rubble.  A tunnel branches off to the north and east.",
+      "description": "This is the bottom of a large pile of rubble. A tunnel branches off to\nthe north and east. The path is steep and treacherous. The air is thin\nand cold at this altitude.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -225,7 +225,7 @@
     "5010": {
       "vnum": 5010,
       "name": "A Cave Entrance",
-      "description": "You stand in the middle of a large and beautiful cave.  A path leads deeper into the darkness.",
+      "description": "The area opens in the middle of a large and beautiful cave. A path leads\ndeeper into the darkness. Bare rock dominates the landscape. The path is\nsteep and treacherous.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -245,7 +245,7 @@
     "5011": {
       "vnum": 5011,
       "name": "A Giant Cave",
-      "description": "This cavern overwhelms you.  The walls and ceiling seem miles away. Bones of previous adventurers lie strewn on the cavern floor.  There is a passage that spirals downwards in the northeast corner of the cavern.",
+      "description": "This cavern overwhelms you. The walls and ceiling seem miles away. Bones\nof previous adventurers lie strewn on the cavern floor. There is a\npassage that spirals downwards in the northeast corner of the cavern.\nBare rock dominates the landscape. The wind howls around exposed peaks.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -277,7 +277,7 @@
     "5012": {
       "vnum": 5012,
       "name": "A Narrow Bend",
-      "description": "The tunnel turns to the south and west.",
+      "description": "The tunnel bends sharply here, forcing you to navigate carefully around\njagged outcroppings. Water trickles down the curved wall, leaving\nmineral deposits that sparkle in any available light. Bare rock\ndominates the landscape. The air is thin and cold at this altitude.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -297,7 +297,7 @@
     "5013": {
       "vnum": 5013,
       "name": "A Large Cave",
-      "description": "You are standing in a large cave.  Many furs are spread out on the floor.",
+      "description": "This is a large cave. Many furs are spread out on the floor. The path is\nsteep and treacherous. Snow clings to shadowed crevices. The rocky\nterrain is steep and unforgiving. Thin air makes breathing difficult.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -317,7 +317,7 @@
     "5014": {
       "vnum": 5014,
       "name": "A Damp Hallway",
-      "description": "The walls here are extremely damp, as well as the floor.",
+      "description": "The walls here are extremely damp, as well as the floor. The path is\nsteep and treacherous. Bare rock dominates the landscape. The rocky\nterrain is steep and unforgiving. Thin air makes breathing difficult.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -343,7 +343,7 @@
     "5015": {
       "vnum": 5015,
       "name": "An Underground Pool",
-      "description": "You are wading in a knee deep pool of lime-water.",
+      "description": "A natural underground pool fills this chamber, its surface perfectly\nstill and dark as obsidian. The water looks deep and ancient, fed by\nunderground springs that predate the desert above. The current tugs\ngently at your limbs. Fish dart beneath the waves.",
       "sector_type": "water_swim",
       "flags": [
         "dark",
@@ -363,7 +363,7 @@
     "5016": {
       "vnum": 5016,
       "name": "A Damp Hallway",
-      "description": "The walls of the tunnel are extremely damp here.  The tunnel leads sharply upwards to the south as it starts to get narrow.",
+      "description": "The walls of the tunnel are extremely damp here. The tunnel leads\nsharply upwards to the south as it starts to get narrow. Snow clings to\nshadowed crevices. The air is thin and cold at this altitude.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -383,7 +383,7 @@
     "5017": {
       "vnum": 5017,
       "name": "A Narrow Crawlway",
-      "description": "This crawlway is just big enough for a human to crawl through or a halfling to walk through.",
+      "description": "This crawlway is just big enough for a human to crawl through or a\nhalfling to walk through. The path is steep and treacherous. Bare rock\ndominates the landscape.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -407,7 +407,7 @@
     "5018": {
       "vnum": 5018,
       "name": "A Large Cavern",
-      "description": "You have entered a very large cavern.  The rock formations would amaze almost any dwarf.",
+      "description": "The entrance opens to a very large cavern. The rock formations would\namaze almost any dwarf. Bare rock dominates the landscape. The path is\nsteep and treacherous.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -427,7 +427,7 @@
     "5019": {
       "vnum": 5019,
       "name": "A Fungus Patch",
-      "description": "As you walk through the fungus patch, you are shot at by many millions of spores.  You can hardly breathe.",
+      "description": "As you walk through the fungus patch, you are shot at by many millions\nof spores. You can hardly breathe. Snow clings to shadowed crevices. The\nwind howls around exposed peaks.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -447,7 +447,7 @@
     "5020": {
       "vnum": 5020,
       "name": "The Fungus Path",
-      "description": "As you walk along the path, millions of spores are shot at you.  It is difficult to breathe.",
+      "description": "As you walk along the path, millions of spores are shot at you. It is\ndifficult to breathe. A section of the path feels hollow underfoot. The\npath is steep and treacherous. The air is thin and cold at this\naltitude.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -461,13 +461,21 @@
         "west": {
           "to_room": 5019,
           "description": "The fragrant smell of spores continues to the west."
+        },
+        "down": {
+          "to_room": 5074,
+          "description": "Loose stones conceal a sink into darkness.",
+          "hidden": true,
+          "search_difficulty": 55,
+          "secret": true,
+          "reveal_message": "The stones give way, revealing a hidden descent."
         }
       }
     },
     "5021": {
       "vnum": 5021,
       "name": "The Fungus Temple",
-      "description": "You find yourself standing inside of a giant mushroom.  The inside is decorated in the fashion of a temple.",
+      "description": "The passage opens standing inside of a giant mushroom. The inside is\ndecorated in the fashion of a temple. Bare rock dominates the landscape.\nSnow clings to shadowed crevices.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -497,7 +505,7 @@
     "5022": {
       "vnum": 5022,
       "name": "A Sloping Passage",
-      "description": "You follow a path sloping down from the fungus temple.",
+      "description": "You follow a path sloping down from the fungus temple. Snow clings to\nshadowed crevices. The wind howls around exposed peaks. The rocky\nterrain is steep and unforgiving. Thin air makes breathing difficult.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -517,7 +525,7 @@
     "5023": {
       "vnum": 5023,
       "name": "A Sloping Passage",
-      "description": "You are on a path that gently slopes up from the underground pool.",
+      "description": "The area is a path that gently slopes up from the underground pool. Snow\nclings to shadowed crevices. The air is thin and cold at this altitude.\nThe rocky terrain is steep and unforgiving. Thin air makes breathing\ndifficult.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -537,7 +545,7 @@
     "5024": {
       "vnum": 5024,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sand constantly shifting around you.  A pyramid lies to the east and a snow-capped mountain range to the  west.",
+      "description": "A vast desert stretches for miles, the sand constantly shifting around\nyou. A pyramid lies to the east and a snow-capped mountain range to the\nwest. The open sky stretches overhead. The ground is soft underfoot.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -558,7 +566,7 @@
     "5025": {
       "vnum": 5025,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the east and a snow-capped mountain range to the  west.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the east and a snow-capped mountain range to the\nwest. The air is fresh and clean. The open sky stretches overhead.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -579,7 +587,7 @@
     "5026": {
       "vnum": 5026,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the east and a snow-capped mountain range to the west.  The hole which you tumbled out of is too high for you to reach.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the east and a snow-capped mountain range to the\nwest. The hole which you tumbled out of is too high for you to reach.\nTall grass sways in a gentle breeze. The air is fresh and clean.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -600,7 +608,7 @@
     "5027": {
       "vnum": 5027,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the east and a snow-capped mountain range to the west.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the east and a snow-capped mountain range to the\nwest. The ground is soft underfoot. The air is fresh and clean.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -621,7 +629,7 @@
     "5028": {
       "vnum": 5028,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north-east and a snow-capped mountain range to the west.  You spy a narrow dirt trail leading away to the west into the foothills.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north-east and a snow-capped mountain range\nto the west. You spy a narrow dirt trail leading away to the west into\nthe foothills. Tall grass sways in a gentle breeze. The air is fresh and\nclean.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -646,7 +654,7 @@
     "5029": {
       "vnum": 5029,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north-east and a snow-capped mountain range to the west.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north-east and a snow-capped mountain range\nto the west. Wildflowers dot the landscape. Tall grass sways in a gentle\nbreeze.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -667,7 +675,7 @@
     "5030": {
       "vnum": 5030,
       "name": "A Small Oasis",
-      "description": "You stand beside a small pool of crystal-blue water bathed in the shade of a few scarce palm trees.  To the north you see a small encampment stopped for the day.",
+      "description": "The area opens beside a small pool of crystal-blue water bathed in the\nshade of a few scarce palm trees. To the north you see a small\nencampment stopped for the day. The oasis pool burbles with a hollow\necho. Wildflowers dot the landscape. Tall grass sways in a gentle\nbreeze.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -686,13 +694,27 @@
         "west": {
           "to_room": 5025,
           "description": "Sand as far as the eye can see."
+        },
+        "down": {
+          "to_room": 5073,
+          "description": "A stone hatch beneath the waterline.",
+          "hidden": true,
+          "search_difficulty": 60,
+          "secret": true,
+          "door": {
+            "name": "hatch",
+            "state": "closed",
+            "locked": true,
+            "key_vnum": 5053
+          },
+          "reveal_message": "You find a hatch hidden beneath the oasis water."
         }
       }
     },
     "5031": {
       "vnum": 5031,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the east.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the east. Tall grass sways in a gentle breeze.\nWildflowers dot the landscape.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -729,7 +751,7 @@
     "5032": {
       "vnum": 5032,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the east.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the east. The air is fresh and clean. The ground\nis soft underfoot.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -754,7 +776,7 @@
     "5033": {
       "vnum": 5033,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north-east.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north-east. The air is fresh and clean. The\nopen sky stretches overhead.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -789,7 +811,7 @@
     "5034": {
       "vnum": 5034,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the south-east.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the south-east. The air is fresh and clean. The\nground is soft underfoot.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -814,7 +836,7 @@
     "5035": {
       "vnum": 5035,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the east, it looks enormous, even from this distance.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the east, it looks enormous, even from this\ndistance. The open sky stretches overhead. The ground is soft underfoot.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -839,7 +861,7 @@
     "5036": {
       "vnum": 5036,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north-east.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north-east. The air is fresh and clean. Tall\ngrass sways in a gentle breeze.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -870,7 +892,7 @@
     "5037": {
       "vnum": 5037,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north-east.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north-east. Wildflowers dot the landscape.\nThe open sky stretches overhead.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -895,7 +917,7 @@
     "5038": {
       "vnum": 5038,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the south.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the south. The open sky stretches overhead. Tall\ngrass sways in a gentle breeze.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -920,7 +942,7 @@
     "5039": {
       "vnum": 5039,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around you.  A pyramid lies to the south.  The gates of a city lie a short distance off to the north.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the south. The gates of a city lie a short\ndistance off to the north. Wildflowers dot the landscape. The open sky\nstretches overhead.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -951,7 +973,7 @@
     "5040": {
       "vnum": 5040,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  You are standing near a gigantic pyramid located a couple hundred meters west of you.  From here you can sense the great evil which resides within the massive structure.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. The area is near a gigantic pyramid located a couple hundred meters\nto the west. From here you can sense the great evil which resides within\nthe massive structure. A patch of sand nearby feels colder than the\nrest. The air is fresh and clean. The ground is soft underfoot.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -972,8 +994,13 @@
           "description": "The pyramid can be seen across the sands to the west."
         },
         "down": {
-          "to_room": 13000,
-          "description": "You see an exit down."
+          "to_room": 5071,
+          "description": "A sinkhole hidden beneath loose sand.",
+          "hidden": true,
+          "requires_detect_magic": true,
+          "search_difficulty": 62,
+          "secret": true,
+          "reveal_message": "The sand collapses, revealing a buried reliquary below."
         }
       },
       "mob_resets": [
@@ -986,7 +1013,7 @@
     "5041": {
       "vnum": 5041,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north. The ground is soft underfoot.\nWildflowers dot the landscape.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -1011,7 +1038,7 @@
     "5042": {
       "vnum": 5042,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north. The open sky stretches overhead. The\nground is soft underfoot.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -1036,7 +1063,7 @@
     "5043": {
       "vnum": 5043,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north. Tall grass sways in a gentle breeze.\nThe air is fresh and clean.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -1061,7 +1088,7 @@
     "5044": {
       "vnum": 5044,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north and a ruined city to the west.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north and a ruined city to the west. The air\nis fresh and clean. The open sky stretches overhead.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -1092,7 +1119,7 @@
     "5045": {
       "vnum": 5045,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the south.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the south. The ground is soft underfoot. Tall\ngrass sways in a gentle breeze.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -1117,7 +1144,7 @@
     "5046": {
       "vnum": 5046,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the south-west.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the south-west. Tall grass sways in a gentle\nbreeze. Wildflowers dot the landscape.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -1142,7 +1169,7 @@
     "5047": {
       "vnum": 5047,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the west.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the west. The open sky stretches overhead.\nWildflowers dot the landscape.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -1173,7 +1200,7 @@
     "5048": {
       "vnum": 5048,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the west.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the west. Wildflowers dot the landscape. The open\nsky stretches overhead.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -1198,7 +1225,7 @@
     "5049": {
       "vnum": 5049,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north-west.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north-west. Tall grass sways in a gentle\nbreeze. The ground is soft underfoot.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -1235,7 +1262,7 @@
     "5050": {
       "vnum": 5050,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north. A wind-carved crevice to the west is\nalmost invisible in the glare. The air is fresh and clean. The ground is\nsoft underfoot.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -1252,8 +1279,13 @@
           "description": "Sand as far as the eye can see."
         },
         "west": {
-          "to_room": 5042,
-          "description": "Sand as far as the eye can see."
+          "to_room": 5072,
+          "description": "A narrow crevice in the dune wall.",
+          "hidden": true,
+          "requires_light": true,
+          "search_difficulty": 58,
+          "secret": true,
+          "reveal_message": "You spot a slit in the dune wall leading west."
         }
       },
       "mob_resets": [
@@ -1266,7 +1298,7 @@
     "5051": {
       "vnum": 5051,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the south-west and a deep canyon to the east.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the south-west and a deep canyon to the east. The\nair is fresh and clean. Tall grass sways in a gentle breeze.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -1287,7 +1319,7 @@
     "5052": {
       "vnum": 5052,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the south-west and a deep canyon to the east.  Just below you can make out a tiny ledge.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the south-west and a deep canyon to the east.\nJust below can make out a tiny ledge. The ground is soft underfoot.\nTall grass sways in a gentle breeze.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -1312,7 +1344,7 @@
     "5053": {
       "vnum": 5053,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the west and a deep canyon to the east.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the west and a deep canyon to the east. Tall\ngrass sways in a gentle breeze. The ground is soft underfoot.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -1337,7 +1369,7 @@
     "5054": {
       "vnum": 5054,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the west and a deep canyon to the east.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the west and a deep canyon to the east. The air\nis fresh and clean. Tall grass sways in a gentle breeze.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -1358,7 +1390,7 @@
     "5055": {
       "vnum": 5055,
       "name": "The Great Eastern Desert",
-      "description": "A vast desert stretches for miles, the sands constantly shifting around   you.  A pyramid lies to the north-west and a deep canyon to the east.",
+      "description": "A vast desert stretches for miles, the sands constantly shifting around\nyou. A pyramid lies to the north-west and a deep canyon to the east.\nTall grass sways in a gentle breeze. The ground is soft underfoot.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -1379,7 +1411,7 @@
     "5056": {
       "vnum": 5056,
       "name": "A Nomad Camp",
-      "description": "This small group of desert nomads has stopped for the day to rest and refresh themselves beside this beautiful oasis.  Three tents and some camels make up the party.  From within two of the tents you hear muffled voices, obviously surprised at your visit.",
+      "description": "This small group of desert nomads has stopped for the day to rest and\nrefresh themselves beside this beautiful oasis. Three tents and some\ncamels make up the party. From within two of the tents you hear muffled\nvoices, obviously surprised at your visit. Tall grass sways in a gentle\nbreeze. The open sky stretches overhead.",
       "sector_type": "field",
       "flags": [
         "no_track"
@@ -1406,7 +1438,7 @@
     "5057": {
       "vnum": 5057,
       "name": "Inside A Small Tent",
-      "description": "This is a small and simple tent with few possessions in sight.  Lying here and there are young-looking men and women, possibly slaves to the leader of this band.",
+      "description": "This is a small and simple tent with few possessions in sight. Lying\nhere and there are young-looking men and women, possibly slaves to the\nleader of this band. Tall grass sways in a gentle breeze. The ground is\nsoft underfoot.",
       "sector_type": "field",
       "flags": [
         "indoors",
@@ -1428,7 +1460,7 @@
     "5058": {
       "vnum": 5058,
       "name": "Beside The Camels",
-      "description": "Here stand about ten camels, all hitched to some stakes plugged into  the ground.  To the east you see a small tent while to the north you see a  larger, fancier tent.",
+      "description": "Here stand about ten camels, all hitched to some stakes plugged into the\nground. To the east you see a small tent while to the north you see a\nlarger, fancier tent. The air is fresh and clean. Tall grass sways in a\ngentle breeze.",
       "sector_type": "field",
       "flags": [
         "no_track"
@@ -1461,7 +1493,7 @@
     "5059": {
       "vnum": 5059,
       "name": "The Warriors' Tent",
-      "description": "This tent has a few furnishings, but mainly it holds the band's  protectors.  They all stare at you coldly as you enter.",
+      "description": "This tent has a few furnishings, but mainly it holds the band's\nprotectors. They all stare at you coldly as you enter. Wildflowers dot\nthe landscape. Tall grass sways in a gentle breeze.",
       "sector_type": "field",
       "flags": [
         "indoors",
@@ -1483,7 +1515,7 @@
     "5060": {
       "vnum": 5060,
       "name": "The Main Tent",
-      "description": "This tent is as lavishly decorated on the inside as it is on the outside.  A fancy carpet lies on the sand and numerous baskets line the walls.",
+      "description": "This tent is as lavishly decorated on the inside as it is on the\noutside. A fancy carpet lies on the sand and numerous baskets line the\nwalls. Tall grass sways in a gentle breeze. The ground is soft\nunderfoot.",
       "sector_type": "field",
       "flags": [
         "indoors",
@@ -1509,13 +1541,17 @@
         {
           "vnum": 5007,
           "max": 1
+        },
+        {
+          "vnum": 5053,
+          "max": 1
         }
       ]
     },
     "5061": {
       "vnum": 5061,
       "name": "The Main Tent",
-      "description": "This is where the leader of this band of nomads resides.  He is  definitely rich as you inspect the tapestries, baskets, and a few paintings as well.",
+      "description": "This is where the leader of this band of nomads resides. He is\ndefinitely rich as you inspect the tapestries, baskets, and a few\npaintings as well. The air is fresh and clean. Wildflowers dot the\nlandscape.",
       "sector_type": "field",
       "flags": [
         "indoors",
@@ -1551,7 +1587,7 @@
     "5062": {
       "vnum": 5062,
       "name": "The Rickety Rope Bridge",
-      "description": "You carefully begin to walk across the bridge, but suddenly the rope breaks and you fall...                      ... and fall                             and fall                                and fall                                     ... to your death on the rocks below.",
+      "description": "You carefully begin to walk across the bridge, but suddenly the rope\nbreaks and you fall... ... and fall and fall and fall ... to your death\non the rocks below. The path is steep and treacherous. Bare rock\ndominates the landscape.",
       "sector_type": "mountain",
       "flags": [
         "death",
@@ -1567,7 +1603,7 @@
     "5063": {
       "vnum": 5063,
       "name": "The Wind-Swept Ledge",
-      "description": "Being very careful not to lose your balance, you look around and find that this canyon is about a half a kilometer deep.  To the west is a dark cave leading under the desert sands and above you a rope bridge spans the gap.",
+      "description": "Being very careful not to lose your balance, you look around and find\nthat this canyon is about a half a kilometer deep. To the west is a dark\ncave leading under the desert sands and above a rope bridge spans\nthe gap. The path is steep and treacherous. The air is thin and cold at\nthis altitude.",
       "sector_type": "mountain",
       "flags": [],
       "exits": {
@@ -1584,7 +1620,7 @@
     "5064": {
       "vnum": 5064,
       "name": "The Cave Mouth",
-      "description": "The air in here is MUCH cooler than outside.  From the west you hear  strange sounds, but can see nothing.  The cave slopes down into the  darkness.",
+      "description": "The air in here is MUCH cooler than outside. From the west you hear\nstrange sounds, but can see nothing. The cave slopes down into the\ndarkness. The air is thin and cold at this altitude. Snow clings to\nshadowed crevices.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -1604,7 +1640,7 @@
     "5065": {
       "vnum": 5065,
       "name": "The Mysterious Lair",
-      "description": "You have stumbled upon the home of something.  From the treasure haphazardly strewn about and the rotting carcasses, you would guess that this is a dragon's lair.  As to what type, you can't really say. The cave narrows out into a tunnel to the west. To the north, a treacherous mountain path climbs toward distant peaks wreathed in smoke.",
+      "description": "You have stumbled upon the home of something. From the treasure\nhaphazardly strewn about and the rotting carcasses, you would guess that\nthis is a dragon's lair. As to what type, you can't really say. The cave\nnarrows out into a tunnel to the west. To the north, a treacherous\nmountain path climbs toward distant peaks wreathed in smoke. The path is\nsteep and treacherous. The wind howls around exposed peaks.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -1636,7 +1672,7 @@
     "5066": {
       "vnum": 5066,
       "name": "A Wide Tunnel",
-      "description": "This tunnel seems to go on forever into the darkness.  You carefully feel your way along the walls.",
+      "description": "This tunnel seems to go on forever into the darkness. You carefully feel\nyour way along the walls. The wind howls around exposed peaks. The path\nis steep and treacherous.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -1656,7 +1692,7 @@
     "5067": {
       "vnum": 5067,
       "name": "A Narrower Tunnel",
-      "description": "The tunnel becomes very narrow and you fight to squeeze your way through. The floor seems to level off a little.",
+      "description": "The tunnel becomes very narrow and you fight to squeeze your way\nthrough. The floor seems to level off a little. The path is steep and\ntreacherous. The wind howls around exposed peaks.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -1676,7 +1712,7 @@
     "5068": {
       "vnum": 5068,
       "name": "A Narrow Crack",
-      "description": "This part of the tunnel is the hardest to move through as the walls move in to meet you.",
+      "description": "This part of the tunnel is the hardest to move through as the walls move\nin to meet you. The wind howls around exposed peaks. The air is thin and\ncold at this altitude.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -1697,7 +1733,7 @@
     "5069": {
       "vnum": 5069,
       "name": "A Small Cavern",
-      "description": "It is dark and damp and bats hang from the ceiling.  A narrow crack is in the east wall.  The floor now slopes upwards.",
+      "description": "It is dark and damp and bats hang from the ceiling. A narrow crack is in\nthe east wall. The floor now slopes upwards. The path is steep and\ntreacherous. Bare rock dominates the landscape.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -1717,7 +1753,7 @@
     "5070": {
       "vnum": 5070,
       "name": "A Small Shaft",
-      "description": "From within this shaft you can see a narrow hole in the roof just large enough for one person.  Back east is the cavern.",
+      "description": "From within this shaft Visible is a narrow hole in the roof just large\nenough for one person. Back east is the cavern. The air is thin and cold\nat this altitude. Snow clings to shadowed crevices.",
       "sector_type": "mountain",
       "flags": [
         "dark",
@@ -1739,6 +1775,94 @@
           "max": 1
         }
       ]
+    },
+    "5071": {
+      "vnum": 5071,
+      "name": "A Buried Reliquary",
+      "description": "An ancient chamber sealed under the dunes. Carved reliefs depict a sun\ncult and a lost caravan. Shadows gather in the corners. The walls are\nrough-hewn and cold to the touch.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 5040,
+          "description": "The sinkhole leads back up."
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 5050,
+          "max": 1
+        }
+      ]
+    },
+    "5072": {
+      "vnum": 5072,
+      "name": "A Wind-Carved Grotto",
+      "description": "This tiny grotto is cool and still. Wind-scoured stones form natural\nshelves. Shadows gather in the corners. Dust motes drift in the stale\nair.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 5050,
+          "description": "The crevice returns to the desert."
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 5052,
+          "max": 1
+        }
+      ]
+    },
+    "5073": {
+      "vnum": 5073,
+      "name": "The Oasis Cellar",
+      "description": "Beneath the oasis, a stone cellar keeps the air cool. A bundle of\nletters is tucked into a niche. The air is still and musty. Shadows\ngather in the corners.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 5030,
+          "description": "The hatch leads back to the oasis."
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 5051,
+          "max": 1
+        },
+        {
+          "vnum": 5054,
+          "max": 1
+        }
+      ]
+    },
+    "5074": {
+      "vnum": 5074,
+      "name": "A Shifting Dune Sink",
+      "description": "A narrow sink drops to a sandy hollow. The walls whisper as the dunes\nshift above. The ceiling hangs low overhead. Dust motes drift in the\nstale air.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 5020,
+          "description": "The loose stones lead back up."
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 5052,
+          "max": 1
+        }
+      ]
     }
   },
   "mobs": {
@@ -1750,9 +1874,9 @@
       "level": 5,
       "alignment": 900,
       "hp_dice": "2d4+0",
-      "damage_dice": "1d10+60",
+      "damage_dice": "1d4+2",
       "gold": 535,
-      "exp": 8,
+      "exp": 121,
       "armor_class": 5,
       "flags": [
         "scavenger",
@@ -1771,11 +1895,11 @@
       "long_desc": "A large dervish watches for signs of trouble.",
       "level": 8,
       "alignment": 650,
-      "hp_dice": "2d6+1",
-      "damage_dice": "2d6+100",
+      "hp_dice": "8d10+112",
+      "damage_dice": "3d5+5",
       "gold": 3575,
-      "exp": 8,
-      "armor_class": 3,
+      "exp": 480,
+      "armor_class": 76,
       "flags": [
         "aggressive",
         "stay_zone"
@@ -1792,11 +1916,11 @@
       "long_desc": "A brightly colored snake slithers along the sands.",
       "level": 4,
       "alignment": -10,
-      "hp_dice": "1d9+0",
-      "damage_dice": "1d6+40",
+      "hp_dice": "4d10+64",
+      "damage_dice": "2d4+3",
       "gold": 300,
-      "exp": 8,
-      "armor_class": 4,
+      "exp": 240,
+      "armor_class": 88,
       "flags": [
         "stay_zone"
       ],
@@ -1809,11 +1933,11 @@
       "long_desc": "A small, red scorpion scuttles away at your approach.",
       "level": 3,
       "alignment": -50,
-      "hp_dice": "1d8+0",
-      "damage_dice": "1d6+40",
+      "hp_dice": "3d10+52",
+      "damage_dice": "1d4+4",
       "gold": 250,
-      "exp": 8,
-      "armor_class": 1,
+      "exp": 180,
+      "armor_class": 91,
       "flags": [
         "stay_zone"
       ],
@@ -1826,11 +1950,11 @@
       "long_desc": "A giant, purple sand worm thrusts up out of the sand and attacks!",
       "level": 21,
       "alignment": -300,
-      "hp_dice": "3d7+14",
-      "damage_dice": "2d10+320",
+      "hp_dice": "21d10+268",
+      "damage_dice": "6d8+6",
       "gold": 8000,
-      "exp": 8,
-      "armor_class": 3,
+      "exp": 1260,
+      "armor_class": 37,
       "flags": [
         "special",
         "sentinel",
@@ -1845,7 +1969,46 @@
         5019,
         5020,
         5021
-      ]
+      ],
+      "loot_table": [
+        {
+          "vnum": 5055,
+          "chance": 20
+        },
+        {
+          "vnum": 5056,
+          "chance": 20
+        },
+        {
+          "vnum": 5057,
+          "chance": 20
+        },
+        {
+          "vnum": 5058,
+          "chance": 20
+        },
+        {
+          "vnum": 5059,
+          "chance": 20
+        },
+        {
+          "vnum": 5060,
+          "chance": 20
+        },
+        {
+          "vnum": 5061,
+          "chance": 20
+        },
+        {
+          "vnum": 5062,
+          "chance": 20
+        },
+        {
+          "vnum": 5063,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
     },
     "5005": {
       "vnum": 5005,
@@ -1854,11 +2017,11 @@
       "long_desc": "A very large brass dragon steps out of the darkness and says 'Hello.'",
       "level": 20,
       "alignment": 950,
-      "hp_dice": "3d6+4",
-      "damage_dice": "2d6+500",
+      "hp_dice": "20d10+256",
+      "damage_dice": "6d8+5",
       "gold": 8000,
-      "exp": 8,
-      "armor_class": 0,
+      "exp": 1200,
+      "armor_class": 40,
       "flags": [
         "special",
         "sentinel",
@@ -1870,7 +2033,46 @@
       "inventory": [
         5024,
         5022
-      ]
+      ],
+      "loot_table": [
+        {
+          "vnum": 5055,
+          "chance": 20
+        },
+        {
+          "vnum": 5056,
+          "chance": 20
+        },
+        {
+          "vnum": 5057,
+          "chance": 20
+        },
+        {
+          "vnum": 5058,
+          "chance": 20
+        },
+        {
+          "vnum": 5059,
+          "chance": 20
+        },
+        {
+          "vnum": 5060,
+          "chance": 20
+        },
+        {
+          "vnum": 5061,
+          "chance": 20
+        },
+        {
+          "vnum": 5062,
+          "chance": 20
+        },
+        {
+          "vnum": 5063,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
     },
     "5006": {
       "vnum": 5006,
@@ -1879,10 +2081,10 @@
       "long_desc": "The nomad leader sits silently in prayer.",
       "level": 14,
       "alignment": 950,
-      "hp_dice": "2d8+5",
-      "damage_dice": "2d6+170",
+      "hp_dice": "3d10+112",
+      "damage_dice": "1d8+14",
       "gold": 4000,
-      "exp": 6,
+      "exp": 463,
       "armor_class": 0,
       "flags": [
         "sentinel",
@@ -1901,10 +2103,10 @@
       "long_desc": "The nomad commander stands here staring at you suspiciously.",
       "level": 12,
       "alignment": 900,
-      "hp_dice": "2d5+3",
-      "damage_dice": "2d6+135",
+      "hp_dice": "3d10+96",
+      "damage_dice": "1d8+12",
       "gold": 3000,
-      "exp": 8,
+      "exp": 379,
       "armor_class": 1,
       "flags": [
         "sentinel",
@@ -1923,10 +2125,10 @@
       "long_desc": "A proud nomad warrior stands here.",
       "level": 10,
       "alignment": 700,
-      "hp_dice": "2d6+1",
-      "damage_dice": "1d6+105",
+      "hp_dice": "2d8+50",
+      "damage_dice": "1d6+8",
       "gold": 3650,
-      "exp": 8,
+      "exp": 299,
       "armor_class": 2,
       "flags": [
         "sentinel"
@@ -1944,9 +2146,9 @@
       "level": 3,
       "alignment": 1000,
       "hp_dice": "1d5+0",
-      "damage_dice": "1d4+25",
+      "damage_dice": "1d4+1",
       "gold": 150,
-      "exp": 5,
+      "exp": 62,
       "armor_class": 9,
       "flags": [
         "sentinel",
@@ -1961,11 +2163,11 @@
       "long_desc": "A pile of bones rises up to form a skeletal dracolich.",
       "level": 24,
       "alignment": -1000,
-      "hp_dice": "3d5+35",
-      "damage_dice": "1d12+520",
+      "hp_dice": "24d10+304",
+      "damage_dice": "7d8+6",
       "gold": 20000,
-      "exp": 8,
-      "armor_class": -6,
+      "exp": 1440,
+      "armor_class": 28,
       "flags": [
         "special",
         "sentinel",
@@ -1981,7 +2183,46 @@
       "equipment": {
         "body": 5001,
         "wield": 5002
-      }
+      },
+      "loot_table": [
+        {
+          "vnum": 5055,
+          "chance": 20
+        },
+        {
+          "vnum": 5056,
+          "chance": 20
+        },
+        {
+          "vnum": 5057,
+          "chance": 20
+        },
+        {
+          "vnum": 5058,
+          "chance": 20
+        },
+        {
+          "vnum": 5059,
+          "chance": 20
+        },
+        {
+          "vnum": 5060,
+          "chance": 20
+        },
+        {
+          "vnum": 5061,
+          "chance": 20
+        },
+        {
+          "vnum": 5062,
+          "chance": 20
+        },
+        {
+          "vnum": 5063,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
     },
     "5011": {
       "vnum": 5011,
@@ -1990,11 +2231,11 @@
       "long_desc": "The drider looks at you viciously while it draws its sword.",
       "level": 8,
       "alignment": -1000,
-      "hp_dice": "2d6+2",
-      "damage_dice": "1d6+95",
+      "hp_dice": "8d10+112",
+      "damage_dice": "3d5+5",
       "gold": 2100,
-      "exp": 8,
-      "armor_class": 2,
+      "exp": 480,
+      "armor_class": 76,
       "flags": [
         "aggressive",
         "stay_zone"
@@ -2011,11 +2252,11 @@
       "long_desc": "A duergar is here mining precious stones with his pick.",
       "level": 5,
       "alignment": -850,
-      "hp_dice": "2d5+1",
-      "damage_dice": "1d11+60",
+      "hp_dice": "5d10+76",
+      "damage_dice": "2d5+3",
       "gold": 710,
-      "exp": 8,
-      "armor_class": 3,
+      "exp": 300,
+      "armor_class": 85,
       "flags": [
         "aggressive",
         "stay_zone"
@@ -2032,10 +2273,10 @@
       "long_desc": "A myconoid lumbers along peacefully.",
       "level": 6,
       "alignment": 850,
-      "hp_dice": "2d7+0",
-      "damage_dice": "1d12+68",
+      "hp_dice": "2d8+30",
+      "damage_dice": "1d6+4",
       "gold": 325,
-      "exp": 8,
+      "exp": 154,
       "armor_class": 4,
       "flags": [
         "stay_zone",
@@ -2050,10 +2291,10 @@
       "long_desc": "A rather large myconoid stands here chanting in a strange tongue.",
       "level": 14,
       "alignment": 950,
-      "hp_dice": "2d7+2",
-      "damage_dice": "1d12+173",
+      "hp_dice": "3d10+112",
+      "damage_dice": "1d8+14",
       "gold": 10250,
-      "exp": 8,
+      "exp": 463,
       "armor_class": 1,
       "flags": [
         "special",
@@ -2073,11 +2314,11 @@
       "long_desc": "A small oasis invites you to dive in.",
       "level": 7,
       "alignment": -200,
-      "hp_dice": "3d4+0",
-      "damage_dice": "1d6+85",
+      "hp_dice": "7d10+100",
+      "damage_dice": "2d5+6",
       "gold": 1350,
-      "exp": 8,
-      "armor_class": 1,
+      "exp": 420,
+      "armor_class": 79,
       "flags": [
         "sentinel",
         "scavenger",
@@ -2094,11 +2335,11 @@
       "long_desc": "A very dangerous creature, a camel, snorts at you.",
       "level": 5,
       "alignment": -351,
-      "hp_dice": "2d4+3",
-      "damage_dice": "1d6+60",
+      "hp_dice": "5d10+76",
+      "damage_dice": "2d5+3",
       "gold": 585,
-      "exp": 8,
-      "armor_class": 6,
+      "exp": 300,
+      "armor_class": 85,
       "flags": [
         "sentinel",
         "aggressive",
@@ -2403,6 +2644,248 @@
       "item_type": "treasure",
       "weight": 7,
       "value": 5500
+    },
+    "5050": {
+      "vnum": 5050,
+      "name": "a sand-worn tablet",
+      "short_desc": "a sand-worn tablet",
+      "room_desc": "A sand-worn tablet rests against the wall.",
+      "description": "Faded carvings depict a sun disk and a winding road.",
+      "type": "other",
+      "weight": 3,
+      "cost": 70,
+      "lore_id": "desert_tablet",
+      "lore_title": "Tablet of the Sun Cult",
+      "lore_zone": 50,
+      "lore_text": "\"We followed the star that burned at noon and found the well that never dried.\""
+    },
+    "5051": {
+      "vnum": 5051,
+      "name": "a nomad's letter",
+      "short_desc": "a nomad's letter",
+      "room_desc": "A bundle of letters lies here.",
+      "description": "The paper is brittle but still legible.",
+      "type": "other",
+      "weight": 1,
+      "cost": 40,
+      "lore_id": "desert_letter",
+      "lore_title": "Nomad Letter",
+      "lore_zone": 50,
+      "lore_text": "\"The dunes shift each night. Trust the rocks, not the stars.\""
+    },
+    "5052": {
+      "vnum": 5052,
+      "name": "a sun-baked reliquary chest",
+      "short_desc": "a sun-baked reliquary chest",
+      "room_desc": "A sun-baked chest is half-buried here.",
+      "description": "The lid is etched with a blazing sun.",
+      "type": "container",
+      "capacity": 6,
+      "is_closed": true,
+      "is_locked": false,
+      "weight": 6,
+      "cost": 130
+    },
+    "5053": {
+      "vnum": 5053,
+      "name": "an oasis copper key",
+      "short_desc": "an oasis copper key",
+      "room_desc": "A copper key glints at the edge of the pool.",
+      "description": "The key smells faintly of fresh water.",
+      "type": "key",
+      "weight": 1,
+      "cost": 5
+    },
+    "5054": {
+      "vnum": 5054,
+      "name": "a scorpionglass amulet",
+      "short_desc": "a scorpionglass amulet",
+      "room_desc": "A dark amulet glints in the shade.",
+      "description": "A piece of black glass carved into a scorpion.",
+      "type": "armor",
+      "wear_slot": "neck",
+      "armor": 1,
+      "weight": 1,
+      "cost": 230
+    },
+    "5055": {
+      "vnum": 5055,
+      "name": "dune\u2011breaker axe",
+      "short_desc": "a dune\u2011breaker axe",
+      "room_desc": "A dune\u2011breaker axe lies here.",
+      "description": "A heavy desert axe.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "slash",
+      "damage_dice": "2d6+3",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 2
+        }
+      ],
+      "set_id": 50
+    },
+    "5056": {
+      "vnum": 5056,
+      "name": "sunward shield",
+      "short_desc": "a sunward shield",
+      "room_desc": "A sunward shield lies here.",
+      "description": "A paladin's shield.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "shield",
+      "armor_bonus": 2,
+      "affects": [
+        {
+          "type": "cha",
+          "value": 1
+        }
+      ],
+      "set_id": 50
+    },
+    "5057": {
+      "vnum": 5057,
+      "name": "ashwind sigil",
+      "short_desc": "an ashwind sigil",
+      "room_desc": "An ashwind sigil lies here.",
+      "description": "A deathknight's sigil.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "neck1",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 2
+        }
+      ],
+      "set_id": 50
+    },
+    "5058": {
+      "vnum": 5058,
+      "name": "sandsong relic",
+      "short_desc": "a sandsong relic",
+      "room_desc": "A sandsong relic lies here.",
+      "description": "A cleric's relic.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "wis",
+          "value": 2
+        },
+        {
+          "type": "max_mana",
+          "value": 15
+        }
+      ],
+      "set_id": 50
+    },
+    "5059": {
+      "vnum": 5059,
+      "name": "glass\u2011etched orb",
+      "short_desc": "a glass\u2011etched orb",
+      "room_desc": "A glass\u2011etched orb lies here.",
+      "description": "A mage's orb.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "int",
+          "value": 2
+        }
+      ],
+      "set_id": 50
+    },
+    "5060": {
+      "vnum": 5060,
+      "name": "desert lute",
+      "short_desc": "a desert lute",
+      "room_desc": "A desert lute lies here.",
+      "description": "A bard's lute.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "mace",
+      "damage_dice": "1d6+1",
+      "affects": [
+        {
+          "type": "cha",
+          "value": 2
+        }
+      ],
+      "set_id": 50
+    },
+    "5061": {
+      "vnum": 5061,
+      "name": "sandspine dagger",
+      "short_desc": "a sandspine dagger",
+      "room_desc": "A sandspine dagger lies here.",
+      "description": "A rogue's dagger.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "pierce",
+      "damage_dice": "1d6+2",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 2
+        }
+      ],
+      "set_id": 50
+    },
+    "5062": {
+      "vnum": 5062,
+      "name": "nomad bow",
+      "short_desc": "a nomad bow",
+      "room_desc": "A nomad bow lies here.",
+      "description": "A ranger's bow.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "pierce",
+      "damage_dice": "1d6+2",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 2
+        },
+        {
+          "type": "hitroll",
+          "value": 1
+        }
+      ],
+      "set_id": 50
+    },
+    "5063": {
+      "vnum": 5063,
+      "name": "scarf of the wastes",
+      "short_desc": "a scarf of the wastes",
+      "room_desc": "A scarf of the wastes lies here.",
+      "description": "A desert scarf.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "neck1",
+      "affects": [
+        {
+          "type": "con",
+          "value": 1
+        }
+      ],
+      "set_id": 50
     }
   }
 }

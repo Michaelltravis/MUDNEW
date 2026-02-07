@@ -11,7 +11,7 @@
   "rooms": {
     "16000": {
       "title": "Hidden Portal",
-      "description": "Deep within the Dragon's Domain, a crack in reality pulses with chaotic energy. The portal was hidden by ancient dragons who feared what lay beyond. It leads to the Plane of Eternal Chaos - a place where the elemental planes collide and reality itself is unstable. Entering is extremely dangerous. The portal shifts colors constantly - red fire, blue water, green earth, white air, and colors that shouldn't exist.",
+      "description": "Deep within the Dragon's Domain, a crack in reality pulses with chaotic\nenergy. The portal was hidden by ancient dragons who feared what lay\nbeyond. It leads to the Plane of Eternal Chaos - a place where the\nelemental planes collide and reality itself is unstable. Entering is\nextremely dangerous. The portal shifts colors constantly - red fire,\nblue water, green earth, white air, and colors that shouldn't exist. The\nceiling hangs low overhead. The air is still and musty.",
       "terrain": "mountain",
       "exits": {
         "west": {
@@ -25,11 +25,21 @@
           "description": "You see an exit down."
         }
       },
-      "vnum": 16000
+      "vnum": 16000,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16003,
+          "max": 1
+        }
+      ]
     },
     "16001": {
       "title": "Threshold of Madness",
-      "description": "You step through into chaos. The ground beneath your feet shifts between solid stone, flowing water, burning flame, and empty air. The sky above (if it can be called sky) shows all times of day simultaneously - dawn, noon, dusk, and midnight overlapping. Gravity pulls in random directions. The very laws of physics are suggestions here. Reality warps and bends, and staying sane requires immense willpower.",
+      "description": "You step through into chaos. The ground beneath your feet shifts between\nsolid stone, flowing water, burning flame, and empty air. The sky above\n(if it can be called sky) shows all times of day simultaneously - dawn,\nnoon, dusk, and midnight overlapping. Gravity pulls in random\ndirections. The very laws of physics are suggestions here. Reality warps\nand bends, and staying sane requires immense willpower. The air is still\nand musty. The ceiling hangs low overhead.",
       "terrain": "planar",
       "special": "reality_warp",
       "exits": {
@@ -49,11 +59,21 @@
           "to_room": 16005
         }
       },
-      "vnum": 16001
+      "vnum": 16001,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16010,
+          "max": 1
+        }
+      ]
     },
     "16002": {
       "title": "Fire Dominance",
-      "description": "In this area, the Elemental Plane of Fire bleeds through. Everything burns - the ground is magma, the air is superheated, and flames dance without fuel. Fire elementals manifest spontaneously. The heat is beyond what the mortal body should survive. Even with fire resistance, this place is torture. Through the flames, you can see the other elemental zones bleeding through in places.",
+      "description": "In this area, the Elemental Plane of Fire bleeds through. Everything\nburns - the ground is magma, the air is superheated, and flames dance\nwithout fuel. Fire elementals manifest spontaneously. The heat is beyond\nwhat the mortal body should survive. Even with fire resistance, this\nplace is torture. Through the flames, Visible is the other elemental\nzones bleeding through in places. The air is still and musty. The walls\nare rough-hewn and cold to the touch.",
       "terrain": "planar",
       "special": "extreme_heat",
       "exits": {
@@ -64,11 +84,25 @@
           "to_room": 16006
         }
       },
-      "vnum": 16002
+      "vnum": 16002,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16010,
+          "max": 1
+        },
+        {
+          "vnum": 16002,
+          "max": 1
+        }
+      ]
     },
     "16003": {
       "title": "Water Dominance",
-      "description": "Here, water rules. You're underwater even though there's no surface above or below - just infinite ocean in all directions. Pressure crushing, cold numbing. Water elementals swim past like massive whales. Breathing is impossible without magic. Through the murky water, you can see other planes overlapping - fire boiling the water, earth creating temporary islands.",
+      "description": "Here, water rules. You're underwater even though there's no surface\nabove or below - just infinite ocean in all directions. Pressure\ncrushing, cold numbing. Water elementals swim past like massive whales.\nBreathing is impossible without magic. Through the murky water, you can\nsee other planes overlapping - fire boiling the water, earth creating\ntemporary islands. The walls are rough-hewn and cold to the touch. The\nair is still and musty.",
       "terrain": "planar",
       "special": "requires_water_breathing",
       "exits": {
@@ -79,11 +113,25 @@
           "to_room": 16007
         }
       },
-      "vnum": 16003
+      "vnum": 16003,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16010,
+          "max": 1
+        },
+        {
+          "vnum": 16007,
+          "max": 1
+        }
+      ]
     },
     "16004": {
       "title": "Earth Dominance",
-      "description": "Solid stone in every direction - you're embedded in rock. Movement is difficult, like pushing through thick mud. Earth elementals phase through the stone as if it were air. The weight of infinite stone presses from all sides. Occasionally the stone shifts to magma or ice as other planes intrude. Claustrophobia is overwhelming here.",
+      "description": "Solid stone in every direction - you're embedded in rock. Movement is\ndifficult, like pushing through thick mud. Earth elementals phase\nthrough the stone as if it were air. The weight of infinite stone\npresses from all sides. Occasionally the stone shifts to magma or ice as\nother planes intrude. Claustrophobia is overwhelming here. The air is\nstill and musty. Dust motes drift in the stale air.",
       "terrain": "planar",
       "special": "earth_prison",
       "exits": {
@@ -94,11 +142,29 @@
           "to_room": 16008
         }
       },
-      "vnum": 16004
+      "vnum": 16004,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16010,
+          "max": 1
+        },
+        {
+          "vnum": 16003,
+          "max": 1
+        },
+        {
+          "vnum": 16006,
+          "max": 1
+        }
+      ]
     },
     "16005": {
       "title": "Air Dominance",
-      "description": "Nothing but endless sky. You fall forever without hitting ground, or fly without wings. Winds howl at hurricane force, changing direction constantly. Air elementals manifest as sentient tornadoes. Lightning arcs between clouds that materialize from nothing. There's no up or down, just infinite space. Some areas have breathable air, others vacuum. Navigation is nearly impossible.",
+      "description": "Nothing but endless sky. You fall forever without hitting ground, or fly\nwithout wings. Winds howl at hurricane force, changing direction\nconstantly. Air elementals manifest as sentient tornadoes. Lightning\narcs between clouds that materialize from nothing. There's no up or\ndown, just infinite space. Some areas have breathable air, others\nvacuum. Navigation is nearly impossible. The air is still and musty.\nShadows gather in the corners.",
       "terrain": "planar",
       "special": "endless_sky",
       "exits": {
@@ -109,11 +175,25 @@
           "to_room": 16009
         }
       },
-      "vnum": 16005
+      "vnum": 16005,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16003,
+          "max": 1
+        },
+        {
+          "vnum": 16002,
+          "max": 1
+        }
+      ]
     },
     "16006": {
       "title": "Fire-Earth Confluence",
-      "description": "Where fire and earth meet, volcanoes are born. This zone is an endless volcanic landscape - lava flows, ash clouds, erupting vents. The ground is hot enough to glow. Magma golems and lava elementals war with each other. The heat and toxic fumes are lethal without strong protection. Every surface radiates killing heat.",
+      "description": "Where fire and earth meet, volcanoes are born. This zone is an endless\nvolcanic landscape - lava flows, ash clouds, erupting vents. The ground\nis hot enough to glow. Magma golems and lava elementals war with each\nother. The heat and toxic fumes are lethal without strong protection.\nEvery surface radiates killing heat. The ceiling hangs low overhead. The\nwalls are rough-hewn and cold to the touch.",
       "terrain": "planar",
       "special": "volcanic_chaos",
       "exits": {
@@ -124,11 +204,21 @@
           "to_room": 16010
         }
       },
-      "vnum": 16006
+      "vnum": 16006,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16010,
+          "max": 1
+        }
+      ]
     },
     "16007": {
       "title": "Water-Air Confluence",
-      "description": "Where water and air collide, storms are born. This area is an eternal hurricane - rain falling in every direction, lightning constantly, winds that could tear flesh from bone. Water and air elementals swirl together in massive vortexes. The noise is deafening. Visibility is zero through the storm. Simply existing here is a battle.",
+      "description": "Where water and air collide, storms are born. This area is an eternal\nhurricane - rain falling in every direction, lightning constantly, winds\nthat could tear flesh from bone. Water and air elementals swirl together\nin massive vortexes. The noise is deafening. Visibility is zero through\nthe storm. Simply existing here is a battle. The walls are rough-hewn\nand cold to the touch. The air is still and musty.",
       "terrain": "planar",
       "special": "eternal_storm",
       "exits": {
@@ -139,11 +229,25 @@
           "to_room": 16011
         }
       },
-      "vnum": 16007
+      "vnum": 16007,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16003,
+          "max": 1
+        },
+        {
+          "vnum": 16007,
+          "max": 1
+        }
+      ]
     },
     "16008": {
       "title": "Earth-Water Confluence",
-      "description": "Earth and water create the primal swamp. Thick mud extends infinitely in all directions. Every step is a struggle - the mud pulls at you like quicksand. Strange plants grow rapidly, dying and regrowing in seconds. The smell of rot and growth is overwhelming. Oozes and elementals of both types spawn continuously.",
+      "description": "Earth and water create the primal swamp. Thick mud extends infinitely in\nall directions. Every step is a struggle - the mud pulls at you like\nquicksand. Strange plants grow rapidly, dying and regrowing in seconds.\nThe smell of rot and growth is overwhelming. Oozes and elementals of\nboth types spawn continuously. Dust motes drift in the stale air.\nShadows gather in the corners.",
       "terrain": "planar",
       "special": "primal_swamp",
       "exits": {
@@ -154,11 +258,29 @@
           "to_room": 16012
         }
       },
-      "vnum": 16008
+      "vnum": 16008,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16010,
+          "max": 1
+        },
+        {
+          "vnum": 16003,
+          "max": 1
+        },
+        {
+          "vnum": 16002,
+          "max": 1
+        }
+      ]
     },
     "16009": {
       "title": "Air-Fire Confluence",
-      "description": "Where air feeds fire, infernos rage. This zone is a firestorm - flames that burn without fuel, spreading through empty air. The heat is indescribable, the light blinding. Fire and air elementals dance together in deadly spirals. Breathing is almost impossible - the air itself burns. This is as close to hell as the elemental planes get.",
+      "description": "Where air feeds fire, infernos rage. This zone is a firestorm - flames\nthat burn without fuel, spreading through empty air. The heat is\nindescribable, the light blinding. Fire and air elementals dance\ntogether in deadly spirals. Breathing is almost impossible - the air\nitself burns. This is as close to hell as the elemental planes get.\nShadows gather in the corners. Dust motes drift in the stale air.",
       "terrain": "planar",
       "special": "firestorm",
       "exits": {
@@ -169,11 +291,29 @@
           "to_room": 16013
         }
       },
-      "vnum": 16009
+      "vnum": 16009,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16010,
+          "max": 1
+        },
+        {
+          "vnum": 16006,
+          "max": 1
+        },
+        {
+          "vnum": 16004,
+          "max": 1
+        }
+      ]
     },
     "16010": {
       "title": "The Elemental Nexus",
-      "description": "At the center where all four planes meet, pure chaos reigns. Elements shift and combine in impossible ways - ice that burns, stone that flows like water, fire that freezes. The four elemental lords battle here eternally, their conflict creating and destroying reality in waves. The power here is unimaginable. Simply witnessing it could break a mind.",
+      "description": "At the center where all four planes meet, pure chaos reigns. Elements\nshift and combine in impossible ways - ice that burns, stone that flows\nlike water, fire that freezes. The four elemental lords battle here\neternally, their conflict creating and destroying reality in waves. The\npower here is unimaginable. Simply witnessing it could break a mind.\nShadows gather in the corners. Dust motes drift in the stale air.",
       "terrain": "planar",
       "special": "elemental_chaos",
       "exits": {
@@ -190,11 +330,21 @@
           "to_room": 16016
         }
       },
-      "vnum": 16010
+      "vnum": 16010,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16010,
+          "max": 1
+        }
+      ]
     },
     "16011": {
       "title": "Chaos Beast Territory",
-      "description": "In areas where reality is most unstable, chaos beasts spawn. These creatures are living embodiments of disorder - their forms shift constantly, never stable. They have no set shape or nature. Fighting them is nearly impossible as they change faster than you can adapt. They attack anything stable, anything that represents order. This is their domain.",
+      "description": "In areas where reality is most unstable, chaos beasts spawn. These\ncreatures are living embodiments of disorder - their forms shift\nconstantly, never stable. They have no set shape or nature. Fighting\nthem is nearly impossible as they change faster than you can adapt. They\nattack anything stable, anything that represents order. This is their\ndomain. The air is still and musty. The ceiling hangs low overhead.",
       "terrain": "planar",
       "special": "reality_flux",
       "exits": {
@@ -205,11 +355,29 @@
           "to_room": 16017
         }
       },
-      "vnum": 16011
+      "vnum": 16011,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16010,
+          "max": 1
+        },
+        {
+          "vnum": 16002,
+          "max": 1
+        },
+        {
+          "vnum": 16007,
+          "max": 1
+        }
+      ]
     },
     "16012": {
       "title": "The Maze of Madness",
-      "description": "Corridors that shift and change, paths that loop back on themselves, doors that lead nowhere. This maze has no solution because it changes constantly. The walls are made of solidified chaos, and they whisper madness to those who touch them. Creatures lost in here wander forever, slowly going insane. The only way out is to stop trying to understand.",
+      "description": "Corridors that shift and change, paths that loop back on themselves,\ndoors that lead nowhere. This maze has no solution because it changes\nconstantly. The walls are made of solidified chaos, and they whisper\nmadness to those who touch them. Creatures lost in here wander forever,\nslowly going insane. The only way out is to stop trying to understand.\nThe air is still and musty. The walls are rough-hewn and cold to the\ntouch.",
       "terrain": "planar",
       "special": "shifting_maze",
       "exits": {
@@ -220,11 +388,25 @@
           "to_room": 16018
         }
       },
-      "vnum": 16012
+      "vnum": 16012,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16010,
+          "max": 1
+        },
+        {
+          "vnum": 16003,
+          "max": 1
+        }
+      ]
     },
     "16013": {
       "title": "The Demon Gate",
-      "description": "A massive portal tears through reality here, leading to the Abyss. Demons pour through constantly, drawn by the chaos. They see this plane as a staging ground for invading other realities. The portal is surrounded by demonic runes and burns with hellfire. Closing it would require incredible power and sacrifice. Until then, demons will continue their invasion.",
+      "description": "A massive portal tears through reality here, leading to the Abyss.\nDemons pour through constantly, drawn by the chaos. They see this plane\nas a staging ground for invading other realities. The portal is\nsurrounded by demonic runes and burns with hellfire. Closing it would\nrequire incredible power and sacrifice. Until then, demons will continue\ntheir invasion. Shadows gather in the corners. Dust motes drift in the\nstale air.",
       "terrain": "planar",
       "special": "demon_portal",
       "exits": {
@@ -235,11 +417,21 @@
           "to_room": 16019
         }
       },
-      "vnum": 16013
+      "vnum": 16013,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16010,
+          "max": 1
+        }
+      ]
     },
     "16014": {
       "title": "The Devil's Battleground",
-      "description": "Devils have claimed this area, fighting against the demon incursion. Unlike chaotic demons, devils represent order - evil order, but order nonetheless. They've fortified this zone, creating stable ground and defensive positions. The battle between devils and demons is eternal, and both sides seek allies. Neither can be trusted.",
+      "description": "Devils have claimed this area, fighting against the demon incursion.\nUnlike chaotic demons, devils represent order - evil order, but order\nnonetheless. They've fortified this zone, creating stable ground and\ndefensive positions. The battle between devils and demons is eternal,\nand both sides seek allies. Neither can be trusted. The ceiling hangs\nlow overhead. The walls are rough-hewn and cold to the touch.",
       "terrain": "planar",
       "exits": {
         "north": {
@@ -249,11 +441,29 @@
           "to_room": 16020
         }
       },
-      "vnum": 16014
+      "vnum": 16014,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16002,
+          "max": 1
+        },
+        {
+          "vnum": 16006,
+          "max": 1
+        },
+        {
+          "vnum": 16005,
+          "max": 1
+        }
+      ]
     },
     "16015": {
       "title": "Reality Anchor Point",
-      "description": "A small area of stable reality exists here, maintained by ancient magic. The ground is solid, the air breathable, and physics work normally. It's an oasis of sanity in the chaos. Refugees from various planes gather here, seeking shelter. The magic maintaining stability is weakening - eventually this too will fall to chaos.",
+      "description": "A small area of stable reality exists here, maintained by ancient magic.\nThe ground is solid, the air breathable, and physics work normally. It's\nan oasis of sanity in the chaos. Refugees from various planes gather\nhere, seeking shelter. The magic maintaining stability is weakening -\neventually this too will fall to chaos. The ceiling hangs low overhead.\nThe walls are rough-hewn and cold to the touch.",
       "terrain": "planar",
       "exits": {
         "west": {
@@ -263,11 +473,25 @@
           "to_room": 16021
         }
       },
-      "vnum": 16015
+      "vnum": 16015,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16010,
+          "max": 1
+        },
+        {
+          "vnum": 16007,
+          "max": 1
+        }
+      ]
     },
     "16016": {
       "title": "Void Breach",
-      "description": "Here, even the elemental planes have failed. You stand at the edge of true nothingness - the void between realities. It's not darkness but absence. Looking into it is looking at nothing in its purest form. Things that fall into the void cease to exist on every level. Even gods fear this place. The void slowly expands, consuming everything.",
+      "description": "Here, even the elemental planes have failed. The area opens at the edge\nof true nothingness - the void between realities. It's not darkness but\nabsence. Looking into it is looking at nothing in its purest form.\nThings that fall into the void cease to exist on every level. Even gods\nfear this place. The void slowly expands, consuming everything. The air\nis still and musty. The walls are rough-hewn and cold to the touch.",
       "terrain": "planar",
       "special": "void_damage",
       "exits": {
@@ -275,11 +499,21 @@
           "to_room": 16010
         }
       },
-      "vnum": 16016
+      "vnum": 16016,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16010,
+          "max": 1
+        }
+      ]
     },
     "16017": {
       "title": "Planar Horror Nest",
-      "description": "Creatures that shouldn't exist spawn here - horrors from beyond reality. They're not from any known plane but from the spaces between. Each is unique, a nightmare given form. They have no logic or reason, just hunger for destruction. The nest itself is organic, pulsing like a living thing. Destroying the nest might stop more horrors from spawning.",
+      "description": "Creatures that shouldn't exist spawn here - horrors from beyond reality.\nThey're not from any known plane but from the spaces between. Each is\nunique, a nightmare given form. They have no logic or reason, just\nhunger for destruction. The nest itself is organic, pulsing like a\nliving thing. Destroying the nest might stop more horrors from spawning.\nThe walls are rough-hewn and cold to the touch. Dust motes drift in the\nstale air.",
       "terrain": "planar",
       "special": "horror_spawn",
       "exits": {
@@ -287,11 +521,29 @@
           "to_room": 16011
         }
       },
-      "vnum": 16017
+      "vnum": 16017,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16010,
+          "max": 1
+        },
+        {
+          "vnum": 16003,
+          "max": 1
+        },
+        {
+          "vnum": 16002,
+          "max": 1
+        }
+      ]
     },
     "16018": {
       "title": "The Time Storm",
-      "description": "Not just space but time is unstable here. You see echoes of yourself moving through - past selves, future selves, alternate selves. Time flows in all directions simultaneously. Age decades in seconds or reverse into youth. Paradoxes spawn constantly. Navigating requires not caring about causality. Those who try to understand go mad.",
+      "description": "Not just space but time is unstable here. You see echoes of yourself\nmoving through - past selves, future selves, alternate selves. Time\nflows in all directions simultaneously. Age decades in seconds or\nreverse into youth. Paradoxes spawn constantly. Navigating requires not\ncaring about causality. Those who try to understand go mad. The walls\nare rough-hewn and cold to the touch. The air is still and musty.",
       "terrain": "planar",
       "special": "time_chaos",
       "exits": {
@@ -302,11 +554,17 @@
           "to_room": 16022
         }
       },
-      "vnum": 16018
+      "vnum": 16018,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        }
+      ]
     },
     "16019": {
       "title": "Demon War Camp",
-      "description": "Demons have established a forward camp here. Crude fortifications surround areas where demons gather, plan, and prepare for raids. The camp reeks of sulfur and blood. Lesser demons scurry about on errands while greater demons command. They view mortals as food or slaves. Any who aren't demons are enemies.",
+      "description": "Demons have established a forward camp here. Crude fortifications\nsurround areas where demons gather, plan, and prepare for raids. The\ncamp reeks of sulfur and blood. Lesser demons scurry about on errands\nwhile greater demons command. They view mortals as food or slaves. Any\nwho aren't demons are enemies. Shadows gather in the corners. The\nceiling hangs low overhead.",
       "terrain": "planar",
       "exits": {
         "north": {
@@ -316,33 +574,87 @@
           "to_room": 16023
         }
       },
-      "vnum": 16019
+      "vnum": 16019,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16010,
+          "max": 1
+        },
+        {
+          "vnum": 16003,
+          "max": 1
+        },
+        {
+          "vnum": 16007,
+          "max": 1
+        },
+        {
+          "vnum": 16006,
+          "max": 1
+        },
+        {
+          "vnum": 16008,
+          "max": 1
+        }
+      ]
     },
     "16020": {
       "title": "Devil Fortress",
-      "description": "The devils have constructed a fortress of infernal iron. It's organized and efficient, completely unlike the demonic camp. Devils march in formation, strategy is planned carefully. They offer contracts to the desperate - power in exchange for souls. The fortress represents hell's bid to control this plane. It's evil, but it's rational evil.",
+      "description": "The devils have constructed a fortress of infernal iron. It's organized\nand efficient, completely unlike the demonic camp. Devils march in\nformation, strategy is planned carefully. They offer contracts to the\ndesperate - power in exchange for souls. The fortress represents hell's\nbid to control this plane. It's evil, but it's rational evil. Shadows\ngather in the corners. Dust motes drift in the stale air.",
       "terrain": "planar",
       "exits": {
         "north": {
           "to_room": 16014
         }
       },
-      "vnum": 16020
+      "vnum": 16020,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16010,
+          "max": 1
+        },
+        {
+          "vnum": 16003,
+          "max": 1
+        },
+        {
+          "vnum": 16002,
+          "max": 1
+        }
+      ]
     },
     "16021": {
       "title": "Refugee Sanctuary",
-      "description": "Beings from across the planes have taken refuge here. Genies, angels, dragons - all seeking safety from the chaos. They've formed an uneasy alliance, united by survival. Resources are limited, and tensions run high. They know the sanctuary is failing. Some seek to escape, others to stabilize reality, others simply to survive one more day.",
+      "description": "Beings from across the planes have taken refuge here. Genies, angels,\ndragons - all seeking safety from the chaos. They've formed an uneasy\nalliance, united by survival. Resources are limited, and tensions run\nhigh. They know the sanctuary is failing. Some seek to escape, others to\nstabilize reality, others simply to survive one more day. Dust motes\ndrift in the stale air. The walls are rough-hewn and cold to the touch.",
       "terrain": "planar",
       "exits": {
         "west": {
           "to_room": 16015
         }
       },
-      "vnum": 16021
+      "vnum": 16021,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16003,
+          "max": 1
+        }
+      ]
     },
     "16022": {
       "title": "The Crystal Spire",
-      "description": "A massive crystal structure rises from the chaos, seemingly unaffected by the instability around it. The crystal resonates with power - reality stabilizes near it. Ancient beings constructed this spire as an anchor point, attempting to impose order on chaos. Controlling the spire grants immense power over the plane. Multiple factions battle for control.",
+      "description": "A massive crystal structure rises from the chaos, seemingly unaffected\nby the instability around it. The crystal resonates with power - reality\nstabilizes near it. Ancient beings constructed this spire as an anchor\npoint, attempting to impose order on chaos. Controlling the spire grants\nimmense power over the plane. Multiple factions battle for control. The\nair is still and musty. Shadows gather in the corners.",
       "terrain": "planar",
       "exits": {
         "west": {
@@ -352,29 +664,100 @@
           "to_room": 16024
         }
       },
-      "vnum": 16022
+      "vnum": 16022,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16010,
+          "max": 1
+        },
+        {
+          "vnum": 16003,
+          "max": 1
+        }
+      ]
     },
     "16023": {
       "title": "The Demon Lord's Throne",
-      "description": "At the heart of the demon encampment sits a throne of bone and iron. The demon lord commanding the invasion sits here, plotting conquest. The demon lord is one of the most powerful beings on this plane - ancient, cunning, and utterly malevolent. Defeating it would shatter the demon invasion, but victory is far from certain. The throne radiates evil so profound it's almost physical.",
+      "description": "At the heart of the demon encampment sits a throne of bone and iron. The\ndemon lord commanding the invasion sits here, plotting conquest. The\ndemon lord is one of the most powerful beings on this plane - ancient,\ncunning, and utterly malevolent. Defeating it would shatter the demon\ninvasion, but victory is far from certain. The throne radiates evil so\nprofound it's almost physical. Dust motes drift in the stale air. The\nwalls are rough-hewn and cold to the touch.",
       "terrain": "planar",
       "exits": {
         "north": {
           "to_room": 16019
         }
       },
-      "vnum": 16023
+      "vnum": 16023,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16010,
+          "max": 1
+        },
+        {
+          "vnum": 16003,
+          "max": 1
+        },
+        {
+          "vnum": 16002,
+          "max": 1
+        },
+        {
+          "vnum": 16007,
+          "max": 1
+        }
+      ]
     },
     "16024": {
       "title": "Spire Summit",
-      "description": "At the top of the crystal spire, a control chamber allows manipulation of reality itself. Whoever controls this can stabilize areas, redirect elemental energies, even seal the demon portal. The chamber is a sphere of pure crystal, covered in glowing runes. Operating it requires immense magical power and understanding. This is the key to controlling the Plane of Chaos - or escaping it.",
+      "description": "At the top of the crystal spire, a control chamber allows manipulation\nof reality itself. Whoever controls this can stabilize areas, redirect\nelemental energies, even seal the demon portal. The chamber is a sphere\nof pure crystal, covered in glowing runes. Operating it requires immense\nmagical power and understanding. This is the key to controlling the\nPlane of Chaos - or escaping it. The air is still and musty. The ceiling\nhangs low overhead.",
       "terrain": "planar",
       "exits": {
         "down": {
           "to_room": 16022
+        },
+        "up": {
+          "to_room": 16025
         }
       },
-      "vnum": 16024
+      "vnum": 16024,
+      "mob_resets": [
+        {
+          "vnum": 16001,
+          "max": 2
+        },
+        {
+          "vnum": 16006,
+          "max": 1
+        },
+        {
+          "vnum": 16009,
+          "max": 1
+        }
+      ]
+    },
+    "16025": {
+      "vnum": 16025,
+      "title": "Prismatic Dragon Lair",
+      "description": "Color bends and fractures here. A prismatic dragon coils at the heart of\nchaos, its scales shifting through every hue. Reality trembles around\nit. Dust motes drift in the stale air. The walls are rough-hewn and cold\nto the touch.",
+      "terrain": "planar",
+      "exits": {
+        "down": {
+          "to_room": 16024
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 16025,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
     }
   },
   "mobiles": {
@@ -766,6 +1149,786 @@
       ],
       "max_in_zone": 2,
       "vnum": 16005
+    },
+    "9301": {
+      "vnum": 9301,
+      "name": "prism focus",
+      "short_desc": "\u001b[95ma prism \u001b[96mfocus\u001b[0m\u001b[95m\u001b[0m",
+      "room_desc": "\u001b[95mA prism \u001b[96mfocus\u001b[0m\u001b[95m refracts light into impossible colors.\u001b[0m",
+      "description": "A mage\u2019s focus that bends reality itself.",
+      "item_type": "weapon",
+      "wear_slot": "wield",
+      "weapon_type": "staff",
+      "damage_dice": "2d6+5",
+      "weight": 6,
+      "value": 19000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "int",
+          "value": 3
+        },
+        {
+          "type": "max_mana",
+          "value": 50
+        }
+      ],
+      "set_id": 160
+    },
+    "9302": {
+      "vnum": 9302,
+      "name": "chromatic circlet",
+      "short_desc": "\u001b[95ma chromatic circlet\u001b[0m",
+      "room_desc": "\u001b[95mA circlet of shifting light lies here.\u001b[0m",
+      "description": "A prismatic circlet favored by spellcasters.",
+      "item_type": "armor",
+      "wear_slot": "head",
+      "armor_bonus": 3,
+      "weight": 2,
+      "value": 16000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "int",
+          "value": 2
+        },
+        {
+          "type": "wis",
+          "value": 2
+        }
+      ],
+      "set_id": 160
+    },
+    "9303": {
+      "vnum": 9303,
+      "name": "scale of the prismatic dragon",
+      "short_desc": "\u001b[95ma scale of the prismatic dragon\u001b[0m",
+      "room_desc": "\u001b[95mA prismatic scale shifts through every color.\u001b[0m",
+      "description": "A fragment of pure chromatic power.",
+      "item_type": "armor",
+      "wear_slot": "neck1",
+      "armor_bonus": 5,
+      "weight": 2,
+      "value": 20000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "spell_resist",
+          "value": 8
+        }
+      ],
+      "set_id": 160
+    },
+    "16006": {
+      "vnum": 16006,
+      "name": "chaosforged greatblade",
+      "short_desc": "\u001b[95ma chaosforged \u001b[91mgreatblade\u001b[0m\u001b[95m\u001b[0m",
+      "room_desc": "\u001b[95mA chaosforged \u001b[91mgreatblade\u001b[0m\u001b[95m lies here.\u001b[0m",
+      "description": "A chaotic blade.",
+      "item_type": "weapon",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "wield",
+      "weapon_type": "slash",
+      "damage_dice": "2d6+8",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 6
+        },
+        {
+          "type": "hp",
+          "value": -15
+        }
+      ],
+      "set_id": 160
+    },
+    "16007": {
+      "vnum": 16007,
+      "name": "aegis of flux",
+      "short_desc": "\u001b[95man \u001b[93maegis\u001b[0m\u001b[95m of flux\u001b[0m",
+      "room_desc": "\u001b[95mAn \u001b[93maegis\u001b[0m\u001b[95m of flux lies here.\u001b[0m",
+      "description": "A paladin's shield.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "shield",
+      "armor_bonus": 3,
+      "affects": [
+        {
+          "type": "wis",
+          "value": 2
+        }
+      ],
+      "set_id": 160
+    },
+    "16008": {
+      "vnum": 16008,
+      "name": "entropy sigil",
+      "short_desc": "\u001b[95man entropy \u001b[35msigil\u001b[0m\u001b[95m\u001b[0m",
+      "room_desc": "\u001b[95mAn entropy \u001b[35msigil\u001b[0m\u001b[95m lies here.\u001b[0m",
+      "description": "A deathknight's sigil.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "neck1",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 6
+        },
+        {
+          "type": "hp",
+          "value": -10
+        }
+      ],
+      "set_id": 160
+    },
+    "16009": {
+      "vnum": 16009,
+      "name": "reliquary of storms",
+      "short_desc": "\u001b[95ma \u001b[93mreliquary\u001b[0m\u001b[95m of storms\u001b[0m",
+      "room_desc": "\u001b[95mA \u001b[93mreliquary\u001b[0m\u001b[95m of storms lies here.\u001b[0m",
+      "description": "A cleric's reliquary.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "wis",
+          "value": 4
+        },
+        {
+          "type": "max_mana",
+          "value": 50
+        }
+      ],
+      "set_id": 160
+    },
+    "16010": {
+      "vnum": 16010,
+      "name": "paradox focus",
+      "short_desc": "\u001b[95ma paradox \u001b[96mfocus\u001b[0m\u001b[95m\u001b[0m",
+      "room_desc": "\u001b[95mA paradox \u001b[96mfocus\u001b[0m\u001b[95m lies here.\u001b[0m",
+      "description": "A mage's focus.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "int",
+          "value": 5
+        },
+        {
+          "type": "max_mana",
+          "value": 60
+        }
+      ],
+      "set_id": 160
+    },
+    "16011": {
+      "vnum": 16011,
+      "name": "discord lyre",
+      "short_desc": "\u001b[95ma discord \u001b[95mlyre\u001b[0m\u001b[95m\u001b[0m",
+      "room_desc": "\u001b[95mA discord \u001b[95mlyre\u001b[0m\u001b[95m lies here.\u001b[0m",
+      "description": "A bard's lyre.",
+      "item_type": "weapon",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "wield",
+      "weapon_type": "mace",
+      "damage_dice": "1d6+4",
+      "affects": [
+        {
+          "type": "cha",
+          "value": 4
+        }
+      ],
+      "set_id": 160
+    },
+    "16012": {
+      "vnum": 16012,
+      "name": "phase\u2011edge dagger",
+      "short_desc": "\u001b[95ma phase\u2011edge \u001b[92mdagger\u001b[0m\u001b[95m\u001b[0m",
+      "room_desc": "\u001b[95mA phase\u2011edge \u001b[92mdagger\u001b[0m\u001b[95m lies here.\u001b[0m",
+      "description": "A rogue's dagger.",
+      "item_type": "weapon",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "wield",
+      "weapon_type": "pierce",
+      "damage_dice": "1d6+4",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 4
+        },
+        {
+          "type": "hitroll",
+          "value": 2
+        }
+      ],
+      "set_id": 160
+    },
+    "16013": {
+      "vnum": 16013,
+      "name": "stormcaller band",
+      "short_desc": "\u001b[95ma stormcaller \u001b[92mband\u001b[0m\u001b[95m\u001b[0m",
+      "room_desc": "\u001b[95mA stormcaller \u001b[92mband\u001b[0m\u001b[95m lies here.\u001b[0m",
+      "description": "A ranger's ring.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "finger1",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 3
+        },
+        {
+          "type": "hitroll",
+          "value": 1
+        }
+      ],
+      "set_id": 160
+    },
+    "16014": {
+      "vnum": 16014,
+      "name": "cloak of fractures",
+      "short_desc": "\u001b[95ma cloak of fractures\u001b[0m",
+      "room_desc": "\u001b[95mA cloak of fractures lies here.\u001b[0m",
+      "description": "A fractured cloak.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "about",
+      "armor_bonus": 4,
+      "affects": [
+        {
+          "type": "spell_resist",
+          "value": 10
+        }
+      ],
+      "set_id": 160
+    },
+    "16090": {
+      "vnum": 16090,
+      "name": "prismatic veil",
+      "short_desc": "\u001b[96mthe prismatic veil\u001b[0m",
+      "room_desc": "\u001b[96mA shimmering veil lies here.\u001b[0m",
+      "description": "A veil that bends light and hides your trail.",
+      "item_type": "armor",
+      "wear_slot": "about",
+      "armor_bonus": 3,
+      "weight": 2,
+      "value": 24000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "sneak",
+          "value": 6
+        },
+        {
+          "type": "no_track",
+          "value": 1
+        }
+      ]
+    },
+    "16091": {
+      "vnum": 16091,
+      "name": "prismblade gloves",
+      "short_desc": "\u001b[96mprismblade gloves\u001b[0m",
+      "room_desc": "\u001b[96mA pair of glass\u2011edged gloves glints here.\u001b[0m",
+      "description": "Gloves that refract light into razor edges for a perfect strike.",
+      "item_type": "armor",
+      "wear_slot": "hands",
+      "armor_bonus": 2,
+      "weight": 1,
+      "value": 26000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "backstab",
+          "value": 10
+        }
+      ]
+    },
+    "16092": {
+      "vnum": 16092,
+      "name": "prismatic focus",
+      "short_desc": "\u001b[96mthe prismatic focus\u001b[0m",
+      "room_desc": "\u001b[96mA prismatic crystal focus lies here.\u001b[0m",
+      "description": "A crystal that amplifies raw spell power.",
+      "item_type": "armor",
+      "wear_slot": "neck1",
+      "armor_bonus": 1,
+      "weight": 1,
+      "value": 26000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "spell_power",
+          "value": 12
+        },
+        {
+          "type": "hp",
+          "value": -10
+        }
+      ]
+    },
+    "16093": {
+      "vnum": 16093,
+      "name": "stormglass loop",
+      "short_desc": "\u001b[96mthe stormglass loop\u001b[0m",
+      "room_desc": "\u001b[96mA loop of stormglass glints here.\u001b[0m",
+      "description": "A loop that amplifies lightning bolt spells.",
+      "item_type": "armor",
+      "wear_slot": "finger1",
+      "armor_bonus": 1,
+      "weight": 1,
+      "value": 24000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "lightning_bolt",
+          "value": 12
+        }
+      ]
+    },
+    "16094": {
+      "vnum": 16094,
+      "name": "glacierband",
+      "short_desc": "\u001b[96mthe glacierband\u001b[0m",
+      "room_desc": "\u001b[96mA cold, blue band lies here.\u001b[0m",
+      "description": "A band that sharpens the chill of ice blast.",
+      "item_type": "armor",
+      "wear_slot": "finger2",
+      "armor_bonus": 1,
+      "weight": 1,
+      "value": 24000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "ice_blast",
+          "value": 12
+        }
+      ]
+    }
+  },
+  "mobs": {
+    "16001": {
+      "vnum": 16001,
+      "name": "imp",
+      "short_desc": "a chaos imp",
+      "long_desc": "A small imp cackles as flames dance on its fingertips.",
+      "description": "You see a chaos imp.",
+      "level": 30,
+      "alignment": -1000,
+      "hp_dice": "30d10+376",
+      "damage_dice": "8d8+11",
+      "gold": 171,
+      "exp": 1800,
+      "armor_class": 10,
+      "flags": [
+        "aggressive",
+        "fly"
+      ]
+    },
+    "16002": {
+      "vnum": 16002,
+      "name": "demon",
+      "short_desc": "a lesser demon",
+      "long_desc": "A hulking demon snarls, its skin crackling with fire.",
+      "description": "You see a lesser demon.",
+      "level": 33,
+      "alignment": -1000,
+      "hp_dice": "33d10+412",
+      "damage_dice": "9d8+11",
+      "gold": 300,
+      "exp": 1980,
+      "armor_class": 1,
+      "flags": [
+        "aggressive",
+        "sentinel"
+      ]
+    },
+    "16003": {
+      "vnum": 16003,
+      "name": "hound",
+      "short_desc": "a hell hound",
+      "long_desc": "A massive hound breathes smoke and embers.",
+      "description": "You see a hell hound.",
+      "level": 31,
+      "alignment": -1000,
+      "hp_dice": "31d10+388",
+      "damage_dice": "8d8+12",
+      "gold": 174,
+      "exp": 1860,
+      "armor_class": 7,
+      "flags": [
+        "aggressive"
+      ]
+    },
+    "16004": {
+      "vnum": 16004,
+      "name": "succubus",
+      "short_desc": "a succubus",
+      "long_desc": "A beautiful but deadly succubus beckons seductively.",
+      "description": "You see a succubus.",
+      "level": 34,
+      "alignment": -1000,
+      "hp_dice": "34d10+424",
+      "damage_dice": "9d8+12",
+      "gold": 121,
+      "exp": 2040,
+      "armor_class": -2,
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "fly"
+      ]
+    },
+    "16005": {
+      "vnum": 16005,
+      "name": "horror",
+      "short_desc": "a chaos horror",
+      "long_desc": "A writhing mass of tentacles and eyes defies description.",
+      "description": "You see a chaos horror.",
+      "level": 36,
+      "alignment": -1000,
+      "hp_dice": "36d10+448",
+      "damage_dice": "10d8+11",
+      "gold": 225,
+      "exp": 2160,
+      "armor_class": -8,
+      "flags": [
+        "aggressive"
+      ]
+    },
+    "16006": {
+      "vnum": 16006,
+      "name": "elemental",
+      "short_desc": "a chaos elemental",
+      "long_desc": "A swirling vortex of chaotic energy lashes out.",
+      "description": "You see a chaos elemental.",
+      "level": 35,
+      "alignment": -500,
+      "hp_dice": "35d10+436",
+      "damage_dice": "9d8+14",
+      "gold": 156,
+      "exp": 2100,
+      "armor_class": -5,
+      "flags": [
+        "aggressive"
+      ]
+    },
+    "16007": {
+      "vnum": 16007,
+      "name": "cultist",
+      "short_desc": "a chaos cultist",
+      "long_desc": "A mad cultist chants prayers to dark powers.",
+      "description": "You see a chaos cultist.",
+      "level": 32,
+      "alignment": -800,
+      "hp_dice": "32d10+400",
+      "damage_dice": "9d8+9",
+      "gold": 122,
+      "exp": 1920,
+      "armor_class": 4,
+      "flags": [
+        "aggressive",
+        "spellcaster"
+      ]
+    },
+    "16008": {
+      "vnum": 16008,
+      "name": "pit fiend",
+      "short_desc": "a pit fiend",
+      "long_desc": "A massive pit fiend, general of the chaos armies.",
+      "description": "You see a pit fiend.",
+      "level": 38,
+      "alignment": -1000,
+      "hp_dice": "38d10+472",
+      "damage_dice": "10d8+14",
+      "gold": 225,
+      "exp": 2280,
+      "armor_class": -10,
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "fly"
+      ],
+      "is_boss": true,
+      "loot_table": [
+        {
+          "vnum": 16006,
+          "chance": 20
+        },
+        {
+          "vnum": 16007,
+          "chance": 20
+        },
+        {
+          "vnum": 16008,
+          "chance": 20
+        },
+        {
+          "vnum": 16009,
+          "chance": 20
+        },
+        {
+          "vnum": 16010,
+          "chance": 20
+        },
+        {
+          "vnum": 16011,
+          "chance": 20
+        },
+        {
+          "vnum": 16012,
+          "chance": 20
+        },
+        {
+          "vnum": 16013,
+          "chance": 20
+        },
+        {
+          "vnum": 16014,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
+    },
+    "16009": {
+      "vnum": 16009,
+      "name": "balor",
+      "short_desc": "a balor",
+      "long_desc": "A terrifying balor, wreathed in flame and shadow.",
+      "description": "You see a balor.",
+      "level": 40,
+      "alignment": -1000,
+      "hp_dice": "40d10+496",
+      "damage_dice": "11d8+12",
+      "gold": 122,
+      "exp": 2400,
+      "armor_class": -10,
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "fly"
+      ],
+      "is_boss": true,
+      "loot_table": [
+        {
+          "vnum": 16006,
+          "chance": 20
+        },
+        {
+          "vnum": 16007,
+          "chance": 20
+        },
+        {
+          "vnum": 16008,
+          "chance": 20
+        },
+        {
+          "vnum": 16009,
+          "chance": 20
+        },
+        {
+          "vnum": 16010,
+          "chance": 20
+        },
+        {
+          "vnum": 16011,
+          "chance": 20
+        },
+        {
+          "vnum": 16012,
+          "chance": 20
+        },
+        {
+          "vnum": 16013,
+          "chance": 20
+        },
+        {
+          "vnum": 16014,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
+    },
+    "16010": {
+      "vnum": 16010,
+      "name": "spawn",
+      "short_desc": "a chaos spawn",
+      "long_desc": "A twisted spawn of pure chaos writhes before you.",
+      "description": "You see a chaos spawn.",
+      "level": 29,
+      "alignment": -600,
+      "hp_dice": "29d10+364",
+      "damage_dice": "8d8+9",
+      "gold": 113,
+      "exp": 1740,
+      "armor_class": 13,
+      "flags": [
+        "aggressive"
+      ]
+    },
+    "16025": {
+      "vnum": 16025,
+      "name": "Kaleidos the Prismatic Dragon",
+      "short_desc": "Kaleidos the Prismatic Dragon",
+      "long_desc": "A prismatic dragon radiates shifting light and terrible power.",
+      "level": 50,
+      "alignment": -900,
+      "hp_dice": "50d10+650",
+      "damage_dice": "13d8+18",
+      "gold": 12000,
+      "exp": 6000,
+      "armor_class": -12,
+      "flags": [
+        "boss",
+        "sentinel"
+      ],
+      "special": "dragon",
+      "boss": true,
+      "boss_id": "prismatic_dragon",
+      "boss_title": "the Prismbreaker",
+      "boss_achievement": "boss_prismatic_dragon",
+      "boss_loot_table": [
+        {
+          "vnum": 9303,
+          "chance": 100
+        },
+        {
+          "vnum": 9301,
+          "chance": 40
+        },
+        {
+          "vnum": 9302,
+          "chance": 35
+        },
+        {
+          "vnum": 16090,
+          "chance": 25
+        },
+        {
+          "vnum": 16091,
+          "chance": 25
+        },
+        {
+          "vnum": 16092,
+          "chance": 10
+        },
+        {
+          "vnum": 16093,
+          "chance": 10
+        },
+        {
+          "vnum": 16094,
+          "chance": 10
+        }
+      ],
+      "boss_loot_chance": 95,
+      "boss_config": {
+        "enrage_time": 120,
+        "enrage_multiplier": 2.0,
+        "ability_interval": 5.0,
+        "phases": [
+          {
+            "threshold": 70,
+            "message": "Kaleidos fractures into a storm of color!"
+          },
+          {
+            "threshold": 35,
+            "message": "Kaleidos releases a blinding prismatic surge!"
+          }
+        ],
+        "abilities": [
+          {
+            "name": "Prismatic Breath",
+            "telegraph": "Kaleidos gathers a storm of color in its maw!",
+            "cast_time": 3,
+            "cooldown": 18,
+            "damage_dice": "7d6+12",
+            "aoe": true,
+            "dodge": true
+          },
+          {
+            "name": "Color Shift",
+            "telegraph": "Kaleidos' scales flare with shifting light!",
+            "cast_time": 1,
+            "cooldown": 10,
+            "damage_dice": "4d8+8",
+            "dodge": true
+          }
+        ]
+      },
+      "equipment_rolls": [
+        {
+          "slot": "wield",
+          "vnum": 9301,
+          "chance": 50
+        }
+      ],
+      "loot_table": [
+        {
+          "vnum": 16006,
+          "chance": 20
+        },
+        {
+          "vnum": 16007,
+          "chance": 20
+        },
+        {
+          "vnum": 16008,
+          "chance": 20
+        },
+        {
+          "vnum": 16009,
+          "chance": 20
+        },
+        {
+          "vnum": 16010,
+          "chance": 20
+        },
+        {
+          "vnum": 16011,
+          "chance": 20
+        },
+        {
+          "vnum": 16012,
+          "chance": 20
+        },
+        {
+          "vnum": 16013,
+          "chance": 20
+        },
+        {
+          "vnum": 16014,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
     }
   }
 }

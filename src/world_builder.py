@@ -112,8 +112,9 @@ The exit leads south to the main square of the city."""
         room.description = """The cobblestone square stretches before you, bustling with activity.
 Merchants hawk their wares, children play between the market stalls,
 and guards patrol the perimeter. The Temple of Midgaard rises to the
-north, its white marble gleaming in the sunlight. The main road extends
-east and west, while a narrow alley leads south."""
+north, its white marble gleaming in the sunlight. A magnificent marble
+fountain gurgles peacefully in the center, its crystal waters sparkling.
+The main road extends east and west, while a narrow alley leads south."""
         room.sector_type = "city"
         room.zone = zone
         room.exits = {
@@ -123,6 +124,7 @@ east and west, while a narrow alley leads south."""
             'south': {'to_room': 3010}
         }
         room.mob_resets = [{'vnum': 3002, 'max': 2}]  # City guards
+        room.obj_resets = [{'vnum': 3035, 'max': 1}]  # Marble fountain
         zone.rooms[3002] = room
         
         # Room 3003: Main Street East
@@ -137,7 +139,8 @@ north, its windows displaying gleaming swords and armor."""
         room.exits = {
             'west': {'to_room': 3002},
             'east': {'to_room': 3004},
-            'north': {'to_room': 3020}
+            'north': {'to_room': 3020},
+            'south': {'to_room': 3015}
         }
         zone.rooms[3003] = room
         
@@ -235,6 +238,20 @@ serves drinks of dubious origin, and a guildmaster sits in shadows."""
             {'vnum': 3005, 'max': 3}   # Thieves
         ]
         zone.rooms[3012] = room
+
+        # Room 3015: Adventurer's Guild
+        room = Room(3015)
+        room.name = "The Adventurer's Guild"
+        room.description = """A wide hall filled with maps, trophies, and the chatter of seasoned
+adventurers. A large bulletin board lists bounties and dungeon notices,
+while a guild steward records the names of those brave enough to delve
+the unknown. A sturdy door to the north leads back to the city streets."""
+        room.sector_type = "inside"
+        room.zone = zone
+        room.flags.add('peaceful')
+        room.flags.add('no_mob')
+        room.exits = {'north': {'to_room': 3003}}
+        zone.rooms[3015] = room
         
         # Room 3020: Weapons Shop
         room = Room(3020)
@@ -295,6 +312,7 @@ city below. This is a peaceful place where adventurers can rest."""
                 'gold': 50,
                 'exp': 0,
                 'alignment': 1000,
+                'faction': 'midgaard',
                 'flags': ['sentinel', 'helper'],
                 'special': 'healer'
             },
@@ -309,6 +327,7 @@ city below. This is a peaceful place where adventurers can rest."""
                 'gold': 20,
                 'exp': 500,
                 'alignment': 500,
+                'faction': 'midgaard',
                 'flags': ['sentinel', 'helper'],
                 'special': None
             },
@@ -323,6 +342,7 @@ city below. This is a peaceful place where adventurers can rest."""
                 'gold': 1000,
                 'exp': 0,
                 'alignment': 0,
+                'faction': 'dwarves',
                 'flags': ['sentinel', 'shopkeeper'],
                 'special': 'shopkeeper'
             },
@@ -337,6 +357,7 @@ city below. This is a peaceful place where adventurers can rest."""
                 'gold': 100,
                 'exp': 0,
                 'alignment': 200,
+                'faction': 'midgaard',
                 'flags': ['sentinel'],
                 'special': None
             },
@@ -351,6 +372,8 @@ city below. This is a peaceful place where adventurers can rest."""
                 'gold': 30,
                 'exp': 400,
                 'alignment': -200,
+                'faction': 'thieves_guild',
+                'faction_rep': {'thieves_guild': -10, 'midgaard': 5},
                 'flags': ['thief', 'aggressive'],
                 'special': None
             },
@@ -365,6 +388,8 @@ city below. This is a peaceful place where adventurers can rest."""
                 'gold': 500,
                 'exp': 5000,
                 'alignment': -500,
+                'faction': 'thieves_guild',
+                'min_rep_talk_level': 'Friendly',
                 'flags': ['sentinel'],
                 'special': 'trainer'
             },
@@ -576,6 +601,7 @@ travelers to their doom."""
                 'gold': 100,
                 'exp': 2000,
                 'alignment': 1000,
+                'faction': 'elves',
                 'flags': ['sentinel'],
                 'special': 'druid'
             },

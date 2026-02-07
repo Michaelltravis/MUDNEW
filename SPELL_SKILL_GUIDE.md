@@ -454,10 +454,12 @@
 ### Utility Spells
 
 **Animate Dead** (Level 15, 50 mana)
-- Creates undead servant from corpse
+- Creates undead servant from a corpse in the room
 - Temporary combat ally (30-60 min)
 - Power scales with caster level
-- Usage: `cast animate dead <corpse>`
+- Servant types: bone knight (warrior), wraith healer, lich acolyte (caster), shadow stalker (rogue)
+- Servant limit: 1 + floor(level/10) undead servants
+- Usage: `cast animate dead [warrior|healer|caster|rogue]` or `raise <type>`
 
 **Armor/Shield** (shared with Mage)
 - Basic defensive spells

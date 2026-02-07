@@ -376,6 +376,49 @@ gossip Anyone want to group for Dragon's Domain?
 
 ---
 
+## 🏗️ Builder Commands (OLC)
+
+Immortal-only commands for building and editing the world.
+
+| Command | Description |
+|---------|-------------|
+| `redit` | Edit current room (name, desc, exits, doors) |
+| `redit <vnum>` | Edit specific room |
+| `medit <vnum>` | Edit mob prototype |
+| `oedit <vnum>` | Edit object prototype |
+| `save <zone>` | Write zone changes to disk |
+| `rlist <zone>` | List rooms in a zone |
+| `mlist <zone>` | List mobs in a zone |
+| `olist <zone>` | List objects in a zone |
+
+### OLC Menus
+All editors use menu-driven input:
+- Type a number/letter to edit that field
+- Type `Q` to quit the editor
+- Use `save` command to write changes to disk
+
+---
+
+## 👑 Immortal Commands
+
+| Command | Description |
+|---------|-------------|
+| `goto <room/player>` | Teleport to a location |
+| `trans <player>` | Teleport player to you |
+| `load mob <vnum>` | Spawn a mob |
+| `load obj <vnum>` | Create an object |
+| `slay <target>` | Instantly kill target |
+| `purge` | Remove all mobs/objects from room |
+| `restore <player>` | Fully heal a player |
+| `set <target> <field> <value>` | Modify stats |
+| `stat <target>` | View detailed stats |
+| `force <player> <cmd>` | Force a command |
+| `wizinvis` | Toggle immortal invisibility |
+| `zreset <zone>` | Reset/repopulate a zone |
+| `shutdown` | Shutdown the server |
+
+---
+
 ## Quick Reference Card
 
 ```

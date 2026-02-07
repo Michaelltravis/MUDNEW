@@ -1,0 +1,2224 @@
+{
+  "number": 220,
+  "name": "Castle Apocalypse",
+  "lifespan": 30,
+  "reset_mode": 2,
+  "rooms": {
+    "22001": {
+      "vnum": 22001,
+      "name": "Castle Apocalypse - Outer Gate",
+      "description": "A shattered causeway ends at a towering wall of black stone. The main\ngate looms in silence. Cold air drifts from the seams between ancient\nblocks, and the wall seems to swallow sound.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 22002,
+          "description": "The main gate rises ahead.",
+          "door": {
+            "name": "gate",
+            "state": "closed",
+            "locked": true,
+            "key_vnum": 22050
+          }
+        },
+        "west": {
+          "to_room": 22003,
+          "description": "A path skirts the wall to the west."
+        },
+        "east": {
+          "to_room": 22009,
+          "description": "A path skirts the wall to the east."
+        },
+        "up": {
+          "to_room": 21072,
+          "description": "A narrow climb leads back into the Tunnel of Sticks."
+        }
+      },
+      "extra_descs": {
+        "gate": "The gate is ancient and massive, forged of black iron and inscribed with runes of ending. It radiates cold malice.",
+        "wall": "The wall rises sheer and seamless, its surface pitted by age and siege. No handholds are visible.",
+        "runes": "The runes pulse with faint crimson light, spelling doom in a forgotten tongue."
+      },
+      "mob_resets": [
+        {
+          "vnum": 22030,
+          "max": 1
+        },
+        {
+          "vnum": 22031,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "22002": {
+      "vnum": 22002,
+      "name": "Castle Apocalypse - Main Gate",
+      "description": "The massive gate is set into the wall here, engraved with apocalyptic\nrunes. Two armored guardians stand watch in rigid stillness. The stone\nbeneath your feet is scarred by countless sieges.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 22001,
+          "description": "Back toward the outer causeway.",
+          "door": {
+            "name": "gate",
+            "state": "closed",
+            "locked": true,
+            "key_vnum": 22050
+          }
+        },
+        "north": {
+          "to_room": 22020,
+          "description": "Into the castle passage."
+        }
+      },
+      "extra_descs": {
+        "guardians": "The guardians stand motionless, their armor fused to their flesh. Their eyes burn with hollow fire.",
+        "runes": "Apocalyptic runes cover the gate, each one a curse made visible."
+      },
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22003": {
+      "vnum": 22003,
+      "name": "West Wall Path",
+      "description": "A narrow path hugs the outer wall, littered with ancient rubble and\nshattered bone. The stone underfoot is slick with mold and ash. A chill\nwind scrapes along the passage.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 22001
+        },
+        "west": {
+          "to_room": 22004
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 22040,
+          "max": 3
+        }
+      ],
+      "obj_resets": []
+    },
+    "22004": {
+      "vnum": 22004,
+      "name": "West Wall Path",
+      "description": "The path narrows between crumbling blocks and jutting iron spikes.\nShadows pool in every crevice. The wall looms overhead, blotting out the\nsky.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 22003
+        },
+        "west": {
+          "to_room": 22005
+        },
+        "south": {
+          "to_room": 22100,
+          "description": "A dangerous trail winds into a trap\u2011lined ravine."
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 22040,
+          "max": 3
+        }
+      ],
+      "obj_resets": []
+    },
+    "22005": {
+      "vnum": 22005,
+      "name": "West Wall Path",
+      "description": "Rubble chokes the path here, forcing careful steps. The wall is scarred\nby old siege damage. A faint metallic tang hangs in the air. The air is\nthick and hard to breathe. The floor is slick with moisture.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 22004
+        },
+        "north": {
+          "to_room": 22006
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 22040,
+          "max": 3
+        }
+      ],
+      "obj_resets": []
+    },
+    "22006": {
+      "vnum": 22006,
+      "name": "Northwest Wall Path",
+      "description": "The wall curves sharply, its stone cold and slick with condensation.\nDarkness gathers in the corners. The silence is oppressive and watchful.\nThe floor is slick with moisture. The air is thick and hard to breathe.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 22005
+        },
+        "north": {
+          "to_room": 22007
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 22040,
+          "max": 3
+        }
+      ],
+      "obj_resets": []
+    },
+    "22007": {
+      "vnum": 22007,
+      "name": "Northwest Wall Path",
+      "description": "The wind dies against the massive wall. Shadows pool between fallen\nblocks and shattered masonry. The air tastes of dust and decay. The air\nis thick and hard to breathe. Darkness clings to every surface.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 22006
+        },
+        "north": {
+          "to_room": 22008
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 22040,
+          "max": 3
+        }
+      ],
+      "obj_resets": []
+    },
+    "22008": {
+      "vnum": 22008,
+      "name": "Northwest Wall Dead End",
+      "description": "The path ends in a pile of collapsed masonry, the stones charred and\ncracked. There is no way forward. The dead end feels deliberate, like a\ntrap waiting to spring.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 22007
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 22040,
+          "max": 3
+        }
+      ],
+      "obj_resets": []
+    },
+    "22009": {
+      "vnum": 22009,
+      "name": "East Wall Path",
+      "description": "A narrow path skirts the outer wall, strewn with broken stone and rusted\nmetal. The wall rises sheer overhead. Each step echoes in the stillness.\nDarkness clings to every surface. The stone walls press close, cold and\ndamp.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 22001
+        },
+        "east": {
+          "to_room": 22010
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22010": {
+      "vnum": 22010,
+      "name": "East Wall Path",
+      "description": "The wall rises sheer here, its surface etched with claw marks deep\nenough to fit a fist. Something massive once climbed here. The scratches\nare old but still sharp.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 22009
+        },
+        "east": {
+          "to_room": 22011
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22011": {
+      "vnum": 22011,
+      "name": "East Wall Path",
+      "description": "The air is colder here, the wall radiating a dead chill that seeps into\nbone. Frost rimes the lower stones. The silence is absolute and final.\nThe silence is oppressive and watchful. Darkness clings to every\nsurface.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 22010
+        },
+        "north": {
+          "to_room": 22012
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22012": {
+      "vnum": 22012,
+      "name": "Northeast Wall Path",
+      "description": "The path turns along the wall, the stone worn smooth by countless feet.\nThe darkness deepens ahead. A faint wind carries the scent of rot. The\nfloor is slick with moisture. The stone walls press close, cold and\ndamp.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 22011
+        },
+        "north": {
+          "to_room": 22013
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22013": {
+      "vnum": 22013,
+      "name": "Northeast Wall Path",
+      "description": "Crumbling blocks form a jagged corridor beside the wall. The footing is\ntreacherous and uneven. The shadows seem to move at the edge of vision.\nDarkness clings to every surface. The air is thick and hard to breathe.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 22012
+        },
+        "north": {
+          "to_room": 22014
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22014": {
+      "vnum": 22014,
+      "name": "Northeast Wall Dead End",
+      "description": "A sheer wall ends the path, its surface unmarked and impassable. The\ndead end feels like a judgment. There is nothing here but dust and\nsilence.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 22013
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22020": {
+      "vnum": 22020,
+      "name": "Castle Entry",
+      "description": "Beyond the gate lies a shadowed passage of scorched stone. Ash collects\nin the corners and dead banners cling to the walls. Each step echoes\nthrough the hollow keep.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 22021
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22021": {
+      "vnum": 22021,
+      "name": "Castle Passage",
+      "description": "A narrow corridor stretches forward, the air thick with soot. Cracks in\nthe ceiling leak a faint, cold draft. The walls are etched with faded\noaths and broken sigils.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 22020
+        },
+        "south": {
+          "to_room": 22022
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22022": {
+      "vnum": 22022,
+      "name": "Castle Passage",
+      "description": "Tattered banners hang like funerary veils. The corridor darkens as the\nlight dies away. Old blood stains the flagstones in long, dried streaks.\nThe stone walls press close, cold and damp. The floor is slick with\nmoisture.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 22021
+        },
+        "south": {
+          "to_room": 22023
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22023": {
+      "vnum": 22023,
+      "name": "Castle Passage",
+      "description": "The passage narrows and the chill deepens. Rust flakes from iron\nfittings, drifting like black snow. A heavy stillness settles here,\npressing against the skin.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 22022
+        },
+        "south": {
+          "to_room": 22024,
+          "description": "An ironbound gate blocks the way.",
+          "door": {
+            "name": "inner gate",
+            "state": "closed",
+            "locked": true,
+            "key_vnum": 22051
+          }
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22024": {
+      "vnum": 22024,
+      "name": "Inner Gate",
+      "description": "An ironbound gate blocks the way, its surface pitted and scarred. Runes\npulse faintly along the hinges. The air beyond smells of ash and ruin.\nThe stone walls press close, cold and damp. The silence is oppressive\nand watchful.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 22023
+        },
+        "south": {
+          "to_room": 22025
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22025": {
+      "vnum": 22025,
+      "name": "Castle Courtyard",
+      "description": "A ruined courtyard opens beneath broken battlements. Charred beams jut\nfrom collapsed arches, and the ground is littered with shattered stone.\nA hush hangs over the open space, as if the castle holds its breath.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 22024
+        },
+        "south": {
+          "to_room": 22026,
+          "description": "A scorched gate blocks the way south.",
+          "door": {
+            "name": "scorched gate",
+            "state": "closed",
+            "locked": true,
+            "key_vnum": 22070
+          }
+        },
+        "east": {
+          "to_room": 22030
+        },
+        "west": {
+          "to_room": 22034
+        }
+      },
+      "extra_descs": {
+        "battlements": "The battlements are shattered, their crenellations crumbled to rubble. Nothing watches from above.",
+        "beams": "Charred beams jut from collapsed arches like broken ribs.",
+        "courtyard": "The courtyard floor is cracked and littered with debris. Ash drifts in lazy spirals."
+      },
+      "mob_resets": [
+        {
+          "vnum": 22070,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "22100": {
+      "vnum": 22100,
+      "name": "Blood\u2011Marked Trail",
+      "description": "A narrow trail veers into brutal stonework and jagged spikes. Bones lie\nhalf\u2011buried in ash, their edges polished smooth. The path coils with a\nsense of malice.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 22101
+        },
+        "north": {
+          "to_room": 22004
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22101": {
+      "vnum": 22101,
+      "name": "Winding Deathtrail",
+      "description": "The trail twists through shattered pillars and fallen masonry. The air\nsmells of old blood and rust. A faint rasp echoes from unseen hollows.\nThe silence is oppressive and watchful. Darkness clings to every\nsurface.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 22100
+        },
+        "north": {
+          "to_room": 22102
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22102": {
+      "vnum": 22102,
+      "name": "Winding Deathtrail",
+      "description": "The path narrows into a cramped passage of spikes and iron. Shadows\ncling to the walls, flickering with no light. The floor is slick with\ndark residue.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 22101
+        },
+        "west": {
+          "to_room": 22103
+        },
+        "east": {
+          "to_room": 22150,
+          "description": "A narrow gap opens to one side."
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22103": {
+      "vnum": 22103,
+      "name": "Bone\u2011Strewn Turn",
+      "description": "The corridor bends through a maze of broken columns. The stone here is\ncracked and sharp. A distant metallic scrape repeats like a heartbeat.\nDarkness clings to every surface. The air is thick and hard to breathe.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 22102
+        },
+        "south": {
+          "to_room": 22104
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22104": {
+      "vnum": 22104,
+      "name": "Deathtrap Corridor",
+      "description": "A long stretch of stone runs beneath jagged arches. Ash sifts from the\nceiling in slow drifts. The air is stale and bitter. The air is thick\nand hard to breathe. The stone walls press close, cold and damp.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 22103
+        },
+        "west": {
+          "to_room": 22105
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22105": {
+      "vnum": 22105,
+      "name": "Winding Deathtrail",
+      "description": "The trail winds between collapsed walls and serrated iron. Every step\nstirs a thin veil of dust. The silence here feels sharpened. The stone\nwalls press close, cold and damp. Darkness clings to every surface.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 22151,
+          "description": "A narrow gap opens to one side."
+        },
+        "north": {
+          "to_room": 22106
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22106": {
+      "vnum": 22106,
+      "name": "Narrow Switchback",
+      "description": "A narrow switchback climbs between splintered beams. The rock is cold to\nthe touch. A faint wind passes, carrying the smell of smoke. Darkness\nclings to every surface. The stone walls press close, cold and damp.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 22105
+        },
+        "west": {
+          "to_room": 22107
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22107": {
+      "vnum": 22107,
+      "name": "Winding Deathtrail",
+      "description": "The passage tightens into a spiked corridor. The floor is uneven and\nslick. Distant clinks echo like chains in a vault. The stone walls press\nclose, cold and damp. The air is thick and hard to breathe.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 22106
+        },
+        "south": {
+          "to_room": 22108
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22108": {
+      "vnum": 22108,
+      "name": "Spiked Passage",
+      "description": "A jagged stretch of stone opens briefly, then narrows again. The air is\nheavy and oppressive. The walls glint with embedded iron. The stone\nwalls press close, cold and damp. Darkness clings to every surface.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 22107
+        },
+        "west": {
+          "to_room": 22152,
+          "description": "A narrow gap opens to one side."
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22109": {
+      "vnum": 22109,
+      "name": "Winding Deathtrail",
+      "description": "A skull\u2011lined path stretches onward, the bone bleached white. The\nsilence grows deeper with each step. The floor is scarred by dragging\nmarks.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 22108
+        },
+        "north": {
+          "to_room": 22110
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22110": {
+      "vnum": 22110,
+      "name": "Skull\u2011Lined Path",
+      "description": "The trail bends through broken supports and shattered lintels. Dust\nhangs in the air like mist. A low hum thrums beneath your feet. The\nstone walls press close, cold and damp. The air is thick and hard to\nbreathe.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 22109
+        },
+        "west": {
+          "to_room": 22111
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22111": {
+      "vnum": 22111,
+      "name": "Winding Deathtrail",
+      "description": "The corridor tightens, spines of iron jutting from the walls. The air is\ncold and metallic. The stone bears fresh gouges. The silence is\noppressive and watchful. The air is thick and hard to breathe.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 22153,
+          "description": "A narrow gap opens to one side."
+        },
+        "south": {
+          "to_room": 22112
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22112": {
+      "vnum": 22112,
+      "name": "Deathtrap Corridor",
+      "description": "The path widens into a bleak gallery of cracked stone. The light dulls\nto a gray haze. The scent of oil and ash lingers. The stone walls press\nclose, cold and damp. Darkness clings to every surface.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 22111
+        },
+        "west": {
+          "to_room": 22113
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22113": {
+      "vnum": 22113,
+      "name": "Winding Deathtrail",
+      "description": "A narrow stretch leads onward through hooked spikes and rubble. The\nsilence is heavy and absolute. The floor tilts slightly underfoot. The\nsilence is oppressive and watchful. The air is thick and hard to\nbreathe.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 22112
+        },
+        "north": {
+          "to_room": 22114
+        },
+        "west": {
+          "to_room": 22154,
+          "description": "A narrow gap opens to one side."
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22114": {
+      "vnum": 22114,
+      "name": "Kirgan's Lair",
+      "description": "A throne of broken armor stands in a ruin\u2011stained chamber. The air is\nthick with iron and smoke. This place feels forged for slaughter. The\nfloor is slick with moisture. The silence is oppressive and watchful.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 22113
+        }
+      },
+      "extra_descs": {
+        "throne": "Kirgan's throne is a pile of shattered armor and broken bones, a monument to slaughter.",
+        "armor": "Broken armor litters the floor, each piece a fallen champion."
+      },
+      "mob_resets": [
+        {
+          "vnum": 22100,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "22150": {
+      "vnum": 22150,
+      "name": "Deathtrap",
+      "description": "A concealed pit yawns here, lined with spikes and cursed runes. The air\nis still and heavy. A faint hum rises from the depths below. The silence\nis oppressive and watchful. The floor is slick with moisture.",
+      "sector_type": "dungeon",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 22102
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22151": {
+      "vnum": 22151,
+      "name": "Deathtrap",
+      "description": "A concealed pit yawns here, lined with spikes and cursed runes. The air\nis still and heavy. A faint hum rises from the depths below. The air is\nthick and hard to breathe. Darkness clings to every surface.",
+      "sector_type": "dungeon",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 22105
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22152": {
+      "vnum": 22152,
+      "name": "Deathtrap",
+      "description": "A concealed pit yawns here, lined with spikes and cursed runes. The air\nis still and heavy. A faint hum rises from the depths below. The air is\nthick and hard to breathe. The stone walls press close, cold and damp.",
+      "sector_type": "dungeon",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 22108
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22153": {
+      "vnum": 22153,
+      "name": "Deathtrap",
+      "description": "A concealed pit yawns here, lined with spikes and cursed runes. The air\nis still and heavy. A faint hum rises from the depths below. The stone\nwalls press close, cold and damp. The floor is slick with moisture.",
+      "sector_type": "dungeon",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 22111
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22154": {
+      "vnum": 22154,
+      "name": "Deathtrap",
+      "description": "A concealed pit yawns here, lined with spikes and cursed runes. The air\nis still and heavy. A faint hum rises from the depths below. The stone\nwalls press close, cold and damp. Darkness clings to every surface.",
+      "sector_type": "dungeon",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 22113
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22026": {
+      "vnum": 22026,
+      "name": "Inner Hall",
+      "description": "A scorched hall runs deeper into the keep. The stone is blackened and\nslick with soot. The air carries the faint sting of smoke that never\nburns out.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 22025
+        },
+        "south": {
+          "to_room": 22027,
+          "description": "A heavy bone\u2011iron door stands to the south.",
+          "door": {
+            "name": "bone\u2011iron door",
+            "state": "closed",
+            "locked": true,
+            "key_vnum": 22071
+          }
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22027": {
+      "vnum": 22027,
+      "name": "Door of the Last Ride",
+      "description": "A heavy door of bone and iron stands within a narrow hall. The metal is\ncold and rough, the bone polished by countless hands. The silence here\nfeels deliberate and watchful.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 22026
+        },
+        "south": {
+          "to_room": 22028,
+          "description": "A chill seeps from the chamber beyond."
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22028": {
+      "vnum": 22028,
+      "name": "Chamber of Death",
+      "description": "A voidlike chamber swallows light and sound. Frost rims the floor in\nthin white lines, and the air bites at the lungs. Everything here feels\nfinal and absolute.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 22027
+        }
+      },
+      "extra_descs": {
+        "frost": "The frost forms intricate patterns, like frozen screams. It does not melt.",
+        "void": "The darkness here is absolute, swallowing light and hope alike."
+      },
+      "mob_resets": [
+        {
+          "vnum": 22073,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "22030": {
+      "vnum": 22030,
+      "name": "Hall of War",
+      "description": "A corridor lined with broken spears and splintered shields. The stone is\nscored by blade marks and gouges. The air thrums with a faint, distant\nroar.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 22025
+        },
+        "east": {
+          "to_room": 22031
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22031": {
+      "vnum": 22031,
+      "name": "Hall of War",
+      "description": "The hall widens, its walls scarred by old battles. Rusted helms lie\nhalf\u2011buried in ash. A heat rises here, like embers under the floor. The\nfloor is slick with moisture. The stone walls press close, cold and\ndamp.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 22030
+        },
+        "south": {
+          "to_room": 22032
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22032": {
+      "vnum": 22032,
+      "name": "War's Approach",
+      "description": "The air grows hot and dry, tasting of iron. Torn banners hang in ragged\nstrips. A low vibration hums through the stone, like a drumbeat. The air\nis thick and hard to breathe. Darkness clings to every surface.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 22031
+        },
+        "south": {
+          "to_room": 22033
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22033": {
+      "vnum": 22033,
+      "name": "War's Arena",
+      "description": "A blood\u2011slick floor surrounds a throne of weapons. The chamber reeks of\nsteel and sweat. The walls glow with a faint, angry crimson. The stone\nwalls press close, cold and damp. The silence is oppressive and\nwatchful.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 22032
+        }
+      },
+      "extra_descs": {
+        "throne": "The throne is built from shattered weapons: swords, axes, spears, all fused in blood and fury.",
+        "blood": "The blood on the floor is fresh and old at once, as if time itself bleeds here."
+      },
+      "mob_resets": [
+        {
+          "vnum": 22071,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "22034": {
+      "vnum": 22034,
+      "name": "Hall of Famine",
+      "description": "The walls are scraped bare, the stone worn smooth by hunger. Dust falls\nin slow, gray sheets. The air is thin and strangely hollow. The floor is\nslick with moisture. The silence is oppressive and watchful.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 22025
+        },
+        "west": {
+          "to_room": 22035
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22035": {
+      "vnum": 22035,
+      "name": "Hall of Famine",
+      "description": "An empty hall stretches onward, its torches long dead. The silence is\nbroken only by the scrape of grit underfoot. The floor bears deep,\ngnawing gouges.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 22034
+        },
+        "south": {
+          "to_room": 22036
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22036": {
+      "vnum": 22036,
+      "name": "Famine's Approach",
+      "description": "Blackened braziers line the passage, all cold. The scent of decay clings\nto the air. The corridor feels starved of warmth and light. The air is\nthick and hard to breathe. The silence is oppressive and watchful.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 22035
+        },
+        "south": {
+          "to_room": 22037
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "22037": {
+      "vnum": 22037,
+      "name": "Famine's Vault",
+      "description": "A hollow vault absorbs every sound. The light dulls and fades, as if\nconsumed. The room feels vast, yet suffocating. The air is thick and\nhard to breathe. Darkness clings to every surface.",
+      "sector_type": "dungeon",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 22036
+        }
+      },
+      "extra_descs": {
+        "vault": "The vault feels endless, though its walls are visible. Sound dies before it reaches them.",
+        "braziers": "The braziers are cold and empty, their fuel long since consumed."
+      },
+      "mob_resets": [
+        {
+          "vnum": 22072,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    }
+  },
+  "mobs": {
+    "22030": {
+      "vnum": 22030,
+      "name": "gate guardian",
+      "short_desc": "a gate guardian",
+      "long_desc": "A hulking guardian stands here, its form encased in dark metal.",
+      "level": 60,
+      "hp_dice": "55d10+800",
+      "damage_dice": "14d8+22",
+      "gold": 8000,
+      "exp": 9000,
+      "alignment": -500,
+      "flags": [
+        "boss",
+        "sentinel",
+        "aggressive"
+      ],
+      "armor_class": -15,
+      "boss": true,
+      "boss_id": "gate_guardian",
+      "boss_loot_table": [
+        {
+          "vnum": 22050,
+          "chance": 100
+        }
+      ],
+      "boss_loot_chance": 100,
+      "description": "The guardian is a massive figure of shadow and iron, its eyes burning with cold fury. It shows no signs of life beyond the malevolent gleam in its gaze."
+    },
+    "22031": {
+      "vnum": 22031,
+      "name": "gate guardian",
+      "short_desc": "a gate guardian",
+      "long_desc": "A hulking guardian stands here, its form encased in dark metal.",
+      "level": 60,
+      "hp_dice": "55d10+800",
+      "damage_dice": "14d8+22",
+      "gold": 8000,
+      "exp": 9000,
+      "alignment": -500,
+      "flags": [
+        "boss",
+        "sentinel",
+        "aggressive"
+      ],
+      "armor_class": -15,
+      "boss": true,
+      "boss_id": "gate_guardian",
+      "boss_loot_table": [
+        {
+          "vnum": 22052,
+          "chance": 25
+        }
+      ],
+      "boss_loot_chance": 100,
+      "description": "The guardian is a massive figure of shadow and iron, its eyes burning with cold fury. It shows no signs of life beyond the malevolent gleam in its gaze."
+    },
+    "22040": {
+      "vnum": 22040,
+      "name": "undead guardian",
+      "short_desc": "an undead guardian",
+      "long_desc": "An undead guardian shambles here, its eyes burning cold.",
+      "level": 55,
+      "hp_dice": "16d10+180",
+      "damage_dice": "5d6+8",
+      "gold": 300,
+      "exp": 1800,
+      "alignment": -600,
+      "flags": [
+        "aggressive",
+        "slow_wander"
+      ],
+      "armor_class": -2,
+      "detect_bonus": 25,
+      "description": "This undead horror was once a soldier. Now it is only hunger and hate, bound to patrol these walls for eternity."
+    },
+    "22100": {
+      "vnum": 22100,
+      "name": "Kirgan the Destroyer",
+      "short_desc": "Kirgan the Destroyer",
+      "long_desc": "Kirgan stands here, a mountain of muscle and murder.",
+      "level": 60,
+      "hp_dice": "60d10+950",
+      "damage_dice": "16d8+26",
+      "gold": 15000,
+      "exp": 12000,
+      "alignment": -900,
+      "flags": [
+        "boss",
+        "sentinel",
+        "aggressive"
+      ],
+      "armor_class": -18,
+      "boss": true,
+      "boss_id": "kirgan_destroyer",
+      "boss_title": "the Ruinbreaker",
+      "boss_loot_table": [
+        {
+          "vnum": 22051,
+          "chance": 100
+        },
+        {
+          "vnum": 22060,
+          "chance": 50
+        },
+        {
+          "vnum": 22061,
+          "chance": 35
+        },
+        {
+          "vnum": 22062,
+          "chance": 35
+        }
+      ],
+      "boss_loot_chance": 100,
+      "description": "Kirgan the Destroyer is a towering figure of brutal power. His eyes hold nothing but contempt for the living. Scars crisscross his flesh like a map of violence."
+    },
+    "22070": {
+      "vnum": 22070,
+      "name": "Pestilence",
+      "short_desc": "Pestilence",
+      "long_desc": "Pestilence drifts here, a miasma of rot and plague.",
+      "level": 60,
+      "hp_dice": "55d10+850",
+      "damage_dice": "14d8+20",
+      "gold": 12000,
+      "exp": 11000,
+      "alignment": -900,
+      "flags": [
+        "boss",
+        "sentinel",
+        "aggressive"
+      ],
+      "armor_class": -14,
+      "boss": true,
+      "boss_id": "pestilence",
+      "boss_title": "the Plaguebearer",
+      "boss_loot_table": [
+        {
+          "vnum": 22070,
+          "chance": 100
+        },
+        {
+          "vnum": 22080,
+          "chance": 50
+        },
+        {
+          "vnum": 22081,
+          "chance": 35
+        },
+        {
+          "vnum": 22089,
+          "chance": 35
+        },
+        {
+          "vnum": 22094,
+          "chance": 15
+        },
+        {
+          "vnum": 22095,
+          "chance": 15
+        }
+      ],
+      "boss_loot_chance": 100,
+      "description": "Pestilence is less a being than a presence, a cloud of sickness given form. Where it passes, life withers and hope dies."
+    },
+    "22071": {
+      "vnum": 22071,
+      "name": "War",
+      "short_desc": "War",
+      "long_desc": "War stands here, radiating fury and bloodlust.",
+      "level": 60,
+      "hp_dice": "58d10+900",
+      "damage_dice": "16d8+24",
+      "gold": 14000,
+      "exp": 12000,
+      "alignment": -900,
+      "flags": [
+        "boss",
+        "sentinel",
+        "aggressive"
+      ],
+      "armor_class": -16,
+      "boss": true,
+      "boss_id": "war",
+      "boss_title": "the Warmaster",
+      "boss_loot_table": [
+        {
+          "vnum": 22071,
+          "chance": 100
+        },
+        {
+          "vnum": 22082,
+          "chance": 50
+        },
+        {
+          "vnum": 22083,
+          "chance": 35
+        },
+        {
+          "vnum": 22090,
+          "chance": 35
+        },
+        {
+          "vnum": 22096,
+          "chance": 15
+        },
+        {
+          "vnum": 22097,
+          "chance": 15
+        }
+      ],
+      "boss_loot_chance": 100,
+      "description": "War is a figure of raw violence, muscles corded with rage. The air around it vibrates with the echoes of a thousand battles."
+    },
+    "22072": {
+      "vnum": 22072,
+      "name": "Famine",
+      "short_desc": "Famine",
+      "long_desc": "Famine lingers here, a hollow echo of starvation.",
+      "level": 60,
+      "hp_dice": "56d10+870",
+      "damage_dice": "15d8+22",
+      "gold": 14000,
+      "exp": 12000,
+      "alignment": -900,
+      "flags": [
+        "boss",
+        "sentinel",
+        "aggressive"
+      ],
+      "armor_class": -16,
+      "boss": true,
+      "boss_id": "famine",
+      "boss_title": "the Starved",
+      "boss_loot_table": [
+        {
+          "vnum": 22084,
+          "chance": 50
+        },
+        {
+          "vnum": 22085,
+          "chance": 35
+        },
+        {
+          "vnum": 22091,
+          "chance": 35
+        },
+        {
+          "vnum": 22098,
+          "chance": 15
+        },
+        {
+          "vnum": 22099,
+          "chance": 15
+        }
+      ],
+      "boss_loot_chance": 100,
+      "description": "Famine is gaunt beyond reason, a skeletal presence that seems to drain warmth and sustenance from the air itself."
+    },
+    "22073": {
+      "vnum": 22073,
+      "name": "Death",
+      "short_desc": "Death",
+      "long_desc": "Death waits here, silent and inevitable.",
+      "level": 60,
+      "hp_dice": "65d10+1000",
+      "damage_dice": "18d8+28",
+      "gold": 20000,
+      "exp": 15000,
+      "alignment": -1000,
+      "flags": [
+        "boss",
+        "sentinel",
+        "aggressive"
+      ],
+      "armor_class": -20,
+      "boss": true,
+      "boss_id": "death",
+      "boss_title": "the Ender",
+      "boss_loot_table": [
+        {
+          "vnum": 22086,
+          "chance": 50
+        },
+        {
+          "vnum": 22087,
+          "chance": 35
+        },
+        {
+          "vnum": 22088,
+          "chance": 35
+        },
+        {
+          "vnum": 22092,
+          "chance": 35
+        },
+        {
+          "vnum": 22100,
+          "chance": 15
+        },
+        {
+          "vnum": 22101,
+          "chance": 15
+        },
+        {
+          "vnum": 22102,
+          "chance": 15
+        }
+      ],
+      "boss_loot_chance": 100,
+      "description": "Death is stillness incarnate. It does not move, yet it is everywhere. Its presence is a weight, a certainty, the end of all things."
+    }
+  },
+  "objects": {
+    "22050": {
+      "vnum": 22050,
+      "name": "apocalypse gate key",
+      "short_desc": "an apocalypse gate key",
+      "room_desc": "A heavy iron key lies here.",
+      "item_type": "key",
+      "weight": 1,
+      "value": 0
+    },
+    "22051": {
+      "vnum": 22051,
+      "name": "inner gate key",
+      "short_desc": "an inner gate key",
+      "room_desc": "A dark steel key lies here.",
+      "item_type": "key",
+      "weight": 1,
+      "value": 0
+    },
+    "22052": {
+      "vnum": 22052,
+      "name": "apocalyptic crest",
+      "short_desc": "the apocalyptic crest",
+      "room_desc": "A blackened crest rests here.",
+      "item_type": "armor",
+      "wear_slot": "neck1",
+      "armor_bonus": 3,
+      "weight": 2,
+      "value": 35000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "hitroll",
+          "value": 4
+        },
+        {
+          "type": "damroll",
+          "value": 4
+        }
+      ]
+    },
+    "22060": {
+      "vnum": 22060,
+      "name": "ruinblade",
+      "short_desc": "the ruinblade",
+      "room_desc": "A massive blade etched with ruin lies here.",
+      "item_type": "weapon",
+      "weapon_type": "slash",
+      "damage_dice": "6d6",
+      "weight": 12,
+      "value": 80000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 6
+        },
+        {
+          "type": "hitroll",
+          "value": 3
+        },
+        {
+          "type": "hp",
+          "value": -25
+        }
+      ],
+      "description": "The ruinblade is a massive weapon of dark iron, its edge never dulling. Runes of destruction crawl along the blade, whispering of fallen kingdoms."
+    },
+    "22061": {
+      "vnum": 22061,
+      "name": "apocalypse plate",
+      "short_desc": "the apocalypse plate",
+      "room_desc": "A suit of apocalyptic plate lies here.",
+      "item_type": "armor",
+      "wear_slot": "body",
+      "armor_bonus": 12,
+      "weight": 35,
+      "value": 90000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "str",
+          "value": 2
+        },
+        {
+          "type": "hp",
+          "value": 40
+        }
+      ],
+      "description": "This plate armor is forged from the ruins of fallen fortresses, each piece bearing the scars of apocalyptic battles."
+    },
+    "22062": {
+      "vnum": 22062,
+      "name": "ring of ruin",
+      "short_desc": "the ring of ruin",
+      "room_desc": "A black ring radiates decay.",
+      "item_type": "armor",
+      "wear_slot": "finger1",
+      "armor_bonus": 1,
+      "weight": 1,
+      "value": 50000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 3
+        },
+        {
+          "type": "spell_power",
+          "value": 8
+        },
+        {
+          "type": "hp",
+          "value": -10
+        }
+      ]
+    },
+    "22070": {
+      "vnum": 22070,
+      "name": "pestilence key",
+      "short_desc": "a pestilence key",
+      "room_desc": "A corroded key weeps sickly green mist.",
+      "item_type": "key",
+      "weight": 1,
+      "value": 0
+    },
+    "22080": {
+      "vnum": 22080,
+      "name": "plaguewrap",
+      "short_desc": "the plaguewrap",
+      "room_desc": "A shroud of diseased cloth lies here.",
+      "item_type": "armor",
+      "wear_slot": "about",
+      "armor_bonus": 6,
+      "weight": 2,
+      "value": 70000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "poison_cloud",
+          "value": 15
+        },
+        {
+          "type": "heal_power",
+          "value": 6
+        }
+      ]
+    },
+    "22081": {
+      "vnum": 22081,
+      "name": "pestilent ring",
+      "short_desc": "the pestilent ring",
+      "room_desc": "A ring oozing faint green vapor rests here.",
+      "item_type": "armor",
+      "wear_slot": "finger1",
+      "armor_bonus": 1,
+      "weight": 1,
+      "value": 50000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "vampiric_touch",
+          "value": 12
+        }
+      ]
+    },
+    "22082": {
+      "vnum": 22082,
+      "name": "warbrand",
+      "short_desc": "the warbrand",
+      "room_desc": "A brutal warbrand lies here.",
+      "item_type": "weapon",
+      "weapon_type": "slash",
+      "damage_dice": "7d6",
+      "weight": 14,
+      "value": 90000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 7
+        },
+        {
+          "type": "hitroll",
+          "value": 4
+        },
+        {
+          "type": "hp",
+          "value": -20
+        }
+      ],
+      "description": "The warbrand is a brutal cleaver of crimson steel, built for devastation. It hums with the echoes of countless battles."
+    },
+    "22083": {
+      "vnum": 22083,
+      "name": "pauldron of war",
+      "short_desc": "the pauldron of war",
+      "room_desc": "A massive crimson pauldron lies here.",
+      "item_type": "armor",
+      "wear_slot": "shoulders",
+      "armor_bonus": 5,
+      "weight": 5,
+      "value": 65000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "str",
+          "value": 2
+        },
+        {
+          "type": "bash",
+          "value": 8
+        }
+      ]
+    },
+    "22084": {
+      "vnum": 22084,
+      "name": "hunger chain",
+      "short_desc": "the hunger chain",
+      "room_desc": "A chain of empty links lies here.",
+      "item_type": "armor",
+      "wear_slot": "neck1",
+      "armor_bonus": 2,
+      "weight": 2,
+      "value": 60000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "sneak",
+          "value": 8
+        },
+        {
+          "type": "track",
+          "value": 10
+        }
+      ]
+    },
+    "22085": {
+      "vnum": 22085,
+      "name": "gauntlets of famine",
+      "short_desc": "gauntlets of famine",
+      "room_desc": "Gauntlets of cracked bone lie here.",
+      "item_type": "armor",
+      "wear_slot": "hands",
+      "armor_bonus": 3,
+      "weight": 3,
+      "value": 65000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 5
+        },
+        {
+          "type": "spell_power",
+          "value": 8
+        },
+        {
+          "type": "hp",
+          "value": -10
+        }
+      ]
+    },
+    "22086": {
+      "vnum": 22086,
+      "name": "scythe of endings",
+      "short_desc": "the scythe of endings",
+      "room_desc": "A black scythe rests here, the air around it silent.",
+      "item_type": "weapon",
+      "weapon_type": "slash",
+      "damage_dice": "8d6",
+      "weight": 16,
+      "value": 120000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 8
+        },
+        {
+          "type": "hitroll",
+          "value": 5
+        },
+        {
+          "type": "hp",
+          "value": -30
+        }
+      ],
+      "description": "The scythe of endings is a weapon of absolute finality, its blade black as the void. Where it cuts, nothing heals."
+    },
+    "22087": {
+      "vnum": 22087,
+      "name": "veil of the end",
+      "short_desc": "the veil of the end",
+      "room_desc": "A veil of night pools here.",
+      "item_type": "armor",
+      "wear_slot": "head",
+      "armor_bonus": 4,
+      "weight": 2,
+      "value": 90000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "spell_power",
+          "value": 10
+        },
+        {
+          "type": "heal_power",
+          "value": 6
+        },
+        {
+          "type": "hp",
+          "value": -20
+        }
+      ],
+      "description": "The veil is woven from shadow and silence, colder than death. It obscures the wearer from both sight and fate."
+    },
+    "22088": {
+      "vnum": 22088,
+      "name": "death's ring",
+      "short_desc": "death's ring",
+      "room_desc": "A ring cold as a grave lies here.",
+      "item_type": "armor",
+      "wear_slot": "finger2",
+      "armor_bonus": 1,
+      "weight": 1,
+      "value": 90000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "no_track",
+          "value": 1
+        },
+        {
+          "type": "backstab",
+          "value": 12
+        }
+      ],
+      "description": "This ring is cold to the touch, colder still to the soul. It belonged to Death itself, and carries a fragment of that finality."
+    },
+    "22089": {
+      "vnum": 22089,
+      "name": "plaguebearer's censer",
+      "short_desc": "the plaguebearer's censer",
+      "room_desc": "A sickly censer smolders here.",
+      "item_type": "armor",
+      "wear_slot": "hold",
+      "armor_bonus": 0,
+      "weight": 2,
+      "value": 70000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "poison_cloud",
+          "value": 10
+        },
+        {
+          "type": "spell_power",
+          "value": 6
+        },
+        {
+          "type": "hp",
+          "value": -10
+        }
+      ]
+    },
+    "22090": {
+      "vnum": 22090,
+      "name": "banner of war",
+      "short_desc": "the banner of war",
+      "room_desc": "A blood\u2011red banner lies here.",
+      "item_type": "armor",
+      "wear_slot": "back",
+      "armor_bonus": 3,
+      "weight": 4,
+      "value": 75000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "bash",
+          "value": 6
+        },
+        {
+          "type": "hitroll",
+          "value": 3
+        }
+      ]
+    },
+    "22091": {
+      "vnum": 22091,
+      "name": "girdle of hunger",
+      "short_desc": "the girdle of hunger",
+      "room_desc": "A cracked leather girdle lies here.",
+      "item_type": "armor",
+      "wear_slot": "waist",
+      "armor_bonus": 2,
+      "weight": 2,
+      "value": 70000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 4
+        },
+        {
+          "type": "sneak",
+          "value": 6
+        }
+      ]
+    },
+    "22092": {
+      "vnum": 22092,
+      "name": "mantle of the end",
+      "short_desc": "the mantle of the end",
+      "room_desc": "A heavy mantle of void cloth lies here.",
+      "item_type": "armor",
+      "wear_slot": "about",
+      "armor_bonus": 4,
+      "weight": 3,
+      "value": 90000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "spell_power",
+          "value": 8
+        },
+        {
+          "type": "no_track",
+          "value": 1
+        },
+        {
+          "type": "hp",
+          "value": -10
+        }
+      ]
+    },
+    "22094": {
+      "vnum": 22094,
+      "name": "gravebind locket",
+      "short_desc": "\u001b[95mthe gravebind locket\u001b[0m",
+      "room_desc": "\u001b[95mThe gravebind locket lies here.\u001b[0m",
+      "item_type": "armor",
+      "wear_slot": "neck1",
+      "armor_bonus": 1,
+      "weight": 1,
+      "value": 60000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "vampiric_touch",
+          "value": 15
+        },
+        {
+          "type": "spell_power",
+          "value": 8
+        },
+        {
+          "type": "hp",
+          "value": -10
+        }
+      ]
+    },
+    "22095": {
+      "vnum": 22095,
+      "name": "radiant rosary",
+      "short_desc": "\u001b[97mthe radiant rosary\u001b[0m",
+      "room_desc": "\u001b[97mThe radiant rosary lies here.\u001b[0m",
+      "item_type": "armor",
+      "wear_slot": "neck2",
+      "armor_bonus": 1,
+      "weight": 1,
+      "value": 60000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "heal",
+          "value": 15
+        },
+        {
+          "type": "turn_undead",
+          "value": 12
+        }
+      ]
+    },
+    "22096": {
+      "vnum": 22096,
+      "name": "warlord's vambrace",
+      "short_desc": "\u001b[91mthe warlord's vambrace\u001b[0m",
+      "room_desc": "\u001b[91mThe warlord's vambrace lies here.\u001b[0m",
+      "item_type": "armor",
+      "wear_slot": "arms",
+      "armor_bonus": 3,
+      "weight": 3,
+      "value": 65000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "bash",
+          "value": 10
+        },
+        {
+          "type": "damroll",
+          "value": 4
+        }
+      ]
+    },
+    "22097": {
+      "vnum": 22097,
+      "name": "halo of judgment",
+      "short_desc": "\u001b[93mthe halo of judgment\u001b[0m",
+      "room_desc": "\u001b[93mThe halo of judgment lies here.\u001b[0m",
+      "item_type": "armor",
+      "wear_slot": "head",
+      "armor_bonus": 2,
+      "weight": 1,
+      "value": 65000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "holy_smite",
+          "value": 15
+        },
+        {
+          "type": "heal_power",
+          "value": 8
+        }
+      ]
+    },
+    "22098": {
+      "vnum": 22098,
+      "name": "wildpath bandolier",
+      "short_desc": "\u001b[92mthe wildpath bandolier\u001b[0m",
+      "room_desc": "\u001b[92mThe wildpath bandolier lies here.\u001b[0m",
+      "item_type": "armor",
+      "wear_slot": "about",
+      "armor_bonus": 2,
+      "weight": 2,
+      "value": 65000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "track",
+          "value": 12
+        },
+        {
+          "type": "ambush",
+          "value": 10
+        }
+      ]
+    },
+    "22099": {
+      "vnum": 22099,
+      "name": "shadowgrip wraps",
+      "short_desc": "\u001b[90mshadowgrip wraps\u001b[0m",
+      "room_desc": "\u001b[90mShadowgrip wraps lies here.\u001b[0m",
+      "item_type": "armor",
+      "wear_slot": "hands",
+      "armor_bonus": 2,
+      "weight": 1,
+      "value": 65000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "sneak",
+          "value": 10
+        },
+        {
+          "type": "backstab",
+          "value": 10
+        }
+      ]
+    },
+    "22100": {
+      "vnum": 22100,
+      "name": "stormcall ring",
+      "short_desc": "\u001b[96mthe stormcall ring\u001b[0m",
+      "room_desc": "\u001b[96mThe stormcall ring lies here.\u001b[0m",
+      "item_type": "armor",
+      "wear_slot": "finger1",
+      "armor_bonus": 1,
+      "weight": 1,
+      "value": 70000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "lightning_bolt",
+          "value": 15
+        },
+        {
+          "type": "spell_power",
+          "value": 8
+        },
+        {
+          "type": "hp",
+          "value": -10
+        }
+      ]
+    },
+    "22101": {
+      "vnum": 22101,
+      "name": "dirgeflute",
+      "short_desc": "\u001b[94mthe dirgeflute\u001b[0m",
+      "room_desc": "\u001b[94mThe dirgeflute lies here.\u001b[0m",
+      "item_type": "armor",
+      "wear_slot": "hold",
+      "armor_bonus": 0,
+      "weight": 1,
+      "value": 65000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "spell_power",
+          "value": 8
+        },
+        {
+          "type": "heal_power",
+          "value": 6
+        },
+        {
+          "type": "hp",
+          "value": -10
+        }
+      ]
+    },
+    "22102": {
+      "vnum": 22102,
+      "name": "eclipse band",
+      "short_desc": "\u001b[90mthe eclipse band\u001b[0m",
+      "room_desc": "\u001b[90mThe eclipse band lies here.\u001b[0m",
+      "item_type": "armor",
+      "wear_slot": "finger2",
+      "armor_bonus": 1,
+      "weight": 1,
+      "value": 70000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "backstab",
+          "value": 15
+        },
+        {
+          "type": "no_track",
+          "value": 1
+        }
+      ]
+    },
+    "22071": {
+      "vnum": 22071,
+      "name": "war key",
+      "short_desc": "a war key",
+      "room_desc": "A key stamped with a war sigil lies here.",
+      "item_type": "key",
+      "weight": 1,
+      "value": 0
+    }
+  }
+}

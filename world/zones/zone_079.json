@@ -6,7 +6,7 @@
     "7900": {
       "vnum": 7900,
       "name": "Outside Redferne's Residence",
-      "description": "A huge cloud forms the plateau on which you are now standing.  The wind here is absolutely quiet and the sun is shining warmly upon you. From under the cloud you can hear the faint sounds of Midgaard.  Right before you to the north lies the grand Mansion of Naris.",
+      "description": "A huge cloud forms the plateau on which you are now standing. The wind\nhere is absolutely quiet and the sun is shining warmly upon you. From\nunder the cloud you can hear the faint sounds of Midgaard. Right before\nyou to the north lies the grand Mansion of Naris. The walls are rough-\nhewn and cold to the touch. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -38,7 +38,7 @@
     "7901": {
       "vnum": 7901,
       "name": "The Southern End Of The Hall",
-      "description": "You are standing in a vast hall that is dimly lit, but wherever the light comes from, is a mystery.  The walls seem to radiate warmth and give the pleasent feeling of being welcome here.  A large portrait is hanging on one of the walls.  A large wooden staircase leads up into the tower.  To the east there is a high passage away from the hall. This ends shortly after by a tall oak door.  The enormous hall extends further north from here.  To the south you can see a huge, and VERY  heavy-looking iron-wrought door.  It looks like this is the only exit from this magnificent old house.",
+      "description": "This is a vast hall that is dimly lit, but wherever the light comes\nfrom, is a mystery. The walls seem to radiate warmth and give the\npleasent feeling of being welcome here. A large portrait is hanging on\none of the walls. A large wooden staircase leads up into the tower. To\nthe east there is a high passage away from the hall. This ends shortly\nafter by a tall oak door. The enormous hall extends further north from\nhere. To the south Visible is a huge, and VERY heavy-looking iron-\nwrought door. It looks like this is the only exit from this magnificent\nold house. The walls are rough-hewn and cold to the touch. The ceiling\nhangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -92,7 +92,7 @@
     "7902": {
       "vnum": 7902,
       "name": "Redferne's Library",
-      "description": "This is truly a magnificent place!  Books and scrolls lie together on every shelf.  A large globe, with the map of the world upon it, stands in the dimly lit north-western corner of the room.  Two large and comfortable looking leather armchairs adorn the center of the library together with a huge oak desk.  Dim light radiates from an enormous crystal chandelier hanging down from the ceiling approximately 10 feet off the floor.  To the east there is a great old ashen door.  A large glass window is set in the west wall.",
+      "description": "This is truly a magnificent place! Books and scrolls lie together on\nevery shelf. A large globe, with the map of the world upon it, stands in\nthe dimly lit north-western corner of the room. Two large and\ncomfortable looking leather armchairs adorn the center of the library\ntogether with a huge oak desk. Dim light radiates from an enormous\ncrystal chandelier hanging down from the ceiling approximately 10 feet\noff the floor. To the east there is a great old ashen door. A large\nglass window is set in the west wall. The air is still and musty. The\nceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -118,7 +118,7 @@
     "7903": {
       "vnum": 7903,
       "name": "The Artifact Room Of Naris",
-      "description": "This is gloomy and dark room with only a faint light radiating from the walls.  A bunch of funny-looking items fill the center of the room.  There is no furniture here what-so-ever.  The only way out seems to be west, through the low steel door.",
+      "description": "This is gloomy and dark room with only a faint light radiating from the\nwalls. A bunch of funny-looking items fill the center of the room. There\nis no furniture here what-so-ever. The only way out seems to be west,\nthrough the low steel door. The air is still and musty. Shadows gather\nin the corners.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -147,7 +147,7 @@
     "7904": {
       "vnum": 7904,
       "name": "The Northern End Of The Hall",
-      "description": "You are standing in the northern end of the huge hall.  This part is under the grand wooden staircase so the light seems to be a little less bright here, but this doesn't affect your sight at all.  To the north lies the kitchen.  To the south lies the southern end of the hall.  To the east there is a huge metal door.  To the west there is a large aspenwood door.",
+      "description": "This is the northern end of the huge hall. This part is under the grand\nwooden staircase so the light seems to be a little less bright here, but\nthis doesn't affect your sight at all. To the north lies the kitchen. To\nthe south lies the southern end of the hall. To the east there is a huge\nmetal door. To the west there is a large aspenwood door. The walls are\nrough-hewn and cold to the touch. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -188,7 +188,7 @@
     "7905": {
       "vnum": 7905,
       "name": "The Sitting Room Of Naris",
-      "description": "You are standing in the middle of a really comfortable place.  The walls are decorated with paintings of smiling Kings and Queens.  The most attractive picture is one of a Prince in shining armour.  By one of the walls there is an old armchair.  The only exit is through the aspenwood door to the east.",
+      "description": "This is the middle of a really comfortable place. The walls are\ndecorated with paintings of smiling Kings and Queens. The most\nattractive picture is one of a Prince in shining armour. By one of the\nwalls there is an old armchair. The only exit is through the aspenwood\ndoor to the east. Dust motes drift in the stale air. The air is still\nand musty.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -214,7 +214,7 @@
     "7906": {
       "vnum": 7906,
       "name": "The Kitchen Of Naris",
-      "description": "This must be the place of food and drink.  You can hear the faint noise of rats feasting on meat and bread from somewhere undeterminable.  The sound makes you feel the agony of HUNGER.  The only visible exit is south to the Northern end of the hall.",
+      "description": "This must be the place of food and drink. You can hear the faint noise\nof rats feasting on meat and bread from somewhere undeterminable. The\nsound makes you feel the agony of HUNGER. The only visible exit is south\nto the Northern end of the hall. The ceiling hangs low overhead. Shadows\ngather in the corners.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -251,7 +251,7 @@
     "7907": {
       "vnum": 7907,
       "name": "The Larder",
-      "description": "You can see food all over.  Among the heaps of food you notice HUGE rats scuttling around, nibbling pieces off the heaps here and there.",
+      "description": "Visible is food all over. Among the heaps of food you notice HUGE rats\nscuttling around, nibbling pieces off the heaps here and there. The\nwalls are rough-hewn and cold to the touch. The ceiling hangs low\noverhead.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -290,7 +290,7 @@
     "7908": {
       "vnum": 7908,
       "name": "The Fridge",
-      "description": "This place is LOADED with drink, water and booze.",
+      "description": "The wizard's enchanted fridge hums with magical energy, maintaining a\ntemperature far below freezing without any visible mechanism. Frost\ncovers the interior walls, and preserved specimens float in stasis\nwithin crystalline containers. The walls are rough-hewn and cold to the\ntouch. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -319,7 +319,7 @@
     "7909": {
       "vnum": 7909,
       "name": "On The Stairs",
-      "description": "You can see up and down the stairway.  It seems to take forever, either going up OR down.  It is just a seemingly insurmountable climb, either way. Up is the bedroom of Redferne, and down leads to the southern end of the hall.",
+      "description": "Visible is up and down the stairway. It seems to take forever, either\ngoing up OR down. It is just a seemingly insurmountable climb, either\nway. Up is the bedroom of Redferne, and down leads to the southern end\nof the hall. Dust motes drift in the stale air. The walls are rough-hewn\nand cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -340,7 +340,7 @@
     "7910": {
       "vnum": 7910,
       "name": "The Treasure Room",
-      "description": "This place is gloomy.  A HUGE safe is cemented into the west wall.  The only visible exit is west, through the oak door.",
+      "description": "This place is gloomy. A HUGE safe is cemented into the west wall. The\nonly visible exit is west, through the oak door. The walls are rough-\nhewn and cold to the touch. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -373,7 +373,7 @@
     "7911": {
       "vnum": 7911,
       "name": "Redferne's Bedroom",
-      "description": "This is a snugly set bedroom with all the necessities for a romantic evening.  A large fireplace adorns the east wall, and sizzling away is the wood that is ablaze within.  The bed is enormous, covering at least HALF of this great room.  The room stretches at least 140 feet, so can you imagine the BED?  A large staircase leads down to the hall.  A couple of doors open up to a broad balcony to the south.",
+      "description": "This is a snugly set bedroom with all the necessities for a romantic\nevening. A large fireplace adorns the east wall, and sizzling away is\nthe wood that is ablaze within. The bed is enormous, covering at least\nHALF of this great room. The room stretches at least 140 feet, so can\nyou imagine the BED? A large staircase leads down to the hall. A couple\nof doors open up to a broad balcony to the south. The ceiling hangs low\noverhead. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -400,7 +400,7 @@
     "7912": {
       "vnum": 7912,
       "name": "Redferne's Balcony",
-      "description": "You see a splendid of the most of this world.  The valleys stretch as far as the eye reaches to the south from here.  Down below you can see the entrance of this magnificent building.  To the north are the doors to Redferne's bedroom.",
+      "description": "You see a splendid of the most of this world. The valleys stretch as far\nas the eye reaches to the south from here. Down below can see the\nentrance of this magnificent building. To the north are the doors to\nRedferne's bedroom. Shadows gather in the corners. The ceiling hangs low\noverhead.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -422,7 +422,7 @@
     "7913": {
       "vnum": 7913,
       "name": "The Monster Pen",
-      "description": "This looks like the cage in which a large carnivore is being kept. Judging by the state the walls are in, this could very well be a large AGGRESSIVE animal.  This makes you pretty insecure, this stating your feeling about the place quite mildly.",
+      "description": "This looks like the cage in which a large carnivore is being kept.\nJudging by the state the walls are in, this could very well be a large\nAGGRESSIVE animal. This makes you pretty insecure, this stating your\nfeeling about the place quite mildly. The walls are rough-hewn and cold\nto the touch. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "indoors",
@@ -456,7 +456,7 @@
     "7914": {
       "vnum": 7914,
       "name": "On The Huge Chain",
-      "description": "This place has quite a good view over Midgaard.  Your possibilities of movement seem to extend only to the up and down directions.  Unless you want to let go of the secure and seemingly unmovable chain, then those are the directions you should take from here.",
+      "description": "This place has quite a good view over Midgaard. Your possibilities of\nmovement seem to extend only to the up and down directions. Unless you\nwant to let go of the secure and seemingly unmovable chain, then those\nare the directions you should take from here. Snow clings to shadowed\ncrevices. Bare rock dominates the landscape.",
       "sector_type": "mountain",
       "flags": [
         "no_mob"
@@ -475,7 +475,7 @@
     "7915": {
       "vnum": 7915,
       "name": "The Chain Where It Is Too Windy",
-      "description": "Hanging on to the chain you figure out that there is no way of leaving down from here.  The wind pulls you from left to right and back.  This seems like a totally impossible task.  The ascend is the only way ahead for you.  Otherwise you would risk death by falling to the hard ground below.  DO NOT DESCEND NOW OR YOU WILL SURELY DIE!!!!",
+      "description": "Hanging on to the chain you figure out that there is no way of leaving\ndown from here. The wind pulls you from left to right and back. This\nseems like a totally impossible task. The ascend is the only way ahead\nfor you. Otherwise you would risk death by falling to the hard ground\nbelow. DO NOT DESCEND NOW OR YOU WILL SURELY DIE!!!! The wind howls\naround exposed peaks. Bare rock dominates the landscape.",
       "sector_type": "mountain",
       "flags": [
         "no_mob"
@@ -494,7 +494,7 @@
     "7916": {
       "vnum": 7916,
       "name": "On The Great Chain Of Naris",
-      "description": "You are approximately on the middle of the treacherous Chain.  One false step and death will come and collect you quickly.  The chain leads upwards and down.  No way are you going to descend now... You've only just begun your climb.  Besides it could cost you your life.  Look down and you'll see why.",
+      "description": "The area is approximately on the middle of the treacherous Chain. One\nfalse step and death will come and collect you quickly. The chain leads\nupwards and down. No way are you going to descend now... You've only\njust begun your climb. Besides it could cost you your life. Look down\nand you'll see why. The air is thin and cold at this altitude. Snow\nclings to shadowed crevices.",
       "sector_type": "mountain",
       "flags": [
         "no_mob"
@@ -513,7 +513,7 @@
     "7917": {
       "vnum": 7917,
       "name": "The Chain",
-      "description": "As you descend, the chain seems to absorb all weather around it, making it swing less and less in the very powerful wind tearing at it.  The Chain seems to chuckle quietly, and as you descend further you hear a soft whisper originating from within the Chain *ITSELF*.  It says 'Welcome back some other time, stranger.  Your company is always... hmmm... interesting.  God Speed.'  The chain extends further down through the now spreading clouds.",
+      "description": "As you descend, the chain seems to absorb all weather around it, making\nit swing less and less in the very powerful wind tearing at it. The\nChain seems to chuckle quietly, and as you descend further you hear a\nsoft whisper originating from within the Chain *ITSELF*. It says\n'Welcome back some other time, stranger. Your company is always...\nhmmm... interesting. God Speed.' The chain extends further down through\nthe now spreading clouds. Bare rock dominates the landscape. Snow clings\nto shadowed crevices.",
       "sector_type": "mountain",
       "flags": [
         "no_mob"
@@ -528,7 +528,7 @@
     "7918": {
       "vnum": 7918,
       "name": "The Mighty Chain Of Naris",
-      "description": "This place truly a splendid view of the WHOLE COUNTRY SIDE!  A magnificent light shines upon you and the way up through the clouds is opened.  Up there you can now see the Mansion of Naris, Residence of the Greater God Redferne. The chain beneath you seems to evaporate in the mustering clouds that surround you by now.",
+      "description": "This place truly a splendid view of the WHOLE COUNTRY SIDE! A\nmagnificent light shines upon you and the way up through the clouds is\nopened. Up there you can now see the Mansion of Naris, Residence of the\nGreater God Redferne. The chain beneath you seems to evaporate in the\nmustering clouds that surround you by now. Bare rock dominates the\nlandscape. The path is steep and treacherous.",
       "sector_type": "mountain",
       "flags": [
         "no_mob"
@@ -547,7 +547,7 @@
     "7920": {
       "vnum": 7920,
       "name": "The Free Fall From The Chain",
-      "description": "This is probably the third worst place to be in this entire MUD right now.  You fall .   . . and fall . . . and fall . . . and HIT THE GROUND WITH SUCH A *SPLUTCH* that you die horribly, but instantly. Good-bye cruel world.",
+      "description": "This is probably the third worst place to be in this entire MUD right\nnow. You fall . . . and fall . . . and fall . . . and HIT THE GROUND\nWITH SUCH A *SPLUTCH* that you die horribly, but instantly. Good-bye\ncruel world. The air is still and musty. Dust motes drift in the stale\nair.",
       "sector_type": "inside",
       "flags": [
         "death",
@@ -589,10 +589,10 @@
       "long_desc": "The Grand Knight is standing here, waiting for someone to help.",
       "level": 26,
       "alignment": 1000,
-      "hp_dice": "2d6+16",
-      "damage_dice": "10d8+550",
+      "hp_dice": "6d10+650",
+      "damage_dice": "3d6+46",
       "gold": 10000,
-      "exp": 8,
+      "exp": 1036,
       "armor_class": -2,
       "flags": [
         "special",
@@ -623,11 +623,11 @@
       "long_desc": "There is a large rat here, poking through the foodstuffs lying around.",
       "level": 12,
       "alignment": -800,
-      "hp_dice": "2d6+2",
-      "damage_dice": "1d10+150",
+      "hp_dice": "12d10+160",
+      "damage_dice": "4d6+6",
       "gold": 7756,
-      "exp": 8,
-      "armor_class": 2,
+      "exp": 720,
+      "armor_class": 64,
       "flags": [
         "sentinel",
         "aggressive"
@@ -644,11 +644,11 @@
       "long_desc": "The Cleaver is here eyeing you hungrily in anticipation of its next meal.",
       "level": 20,
       "alignment": 0,
-      "hp_dice": "8d4+4",
-      "damage_dice": "5d8+340",
+      "hp_dice": "20d10+256",
+      "damage_dice": "6d8+5",
       "gold": 33500,
-      "exp": 8,
-      "armor_class": -1,
+      "exp": 1200,
+      "armor_class": 40,
       "flags": [
         "aware",
         "aggressive",

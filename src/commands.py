@@ -12,6 +12,8 @@ if TYPE_CHECKING:
     from player import Player
 
 from config import Config
+import os
+import json
 
 logger = logging.getLogger('RealmsMUD.Commands')
 
@@ -28,6 +30,7 @@ class CommandHandler:
         'eq': 'equipment', 'worn': 'equipment',
         'sc': 'score', 'stat': 'score',
         'k': 'kill', 'att': 'attack',
+        'ascii': 'ascii',
         "'": 'say', '"': 'say',
         ':': 'emote', 'me': 'emote',
         'gt': 'gtell', 'grouptell': 'gtell',
@@ -39,7 +42,7 @@ class CommandHandler:
         'sl': 'sleep', 'wa': 'wake', 're': 'rest', 'st': 'stand',
         'op': 'open', 'cl': 'close',
         'ge': 'get', 'ta': 'take', 'pi': 'pick',
-        'pu': 'put', 'dr': 'drop',
+        'pu': 'put', 'dp': 'drop',
         'gi': 'give',
         'we': 'wear', 'wi': 'wield', 'ho': 'hold', 'rem': 'remove',
         'c': 'cast',
@@ -49,12 +52,109 @@ class CommandHandler:
         'rec': 'recall',
         'zones': 'map',
         'worldmap': 'map',
+        'party': 'companions',
+        'rep': 'reputation',
+        'se': 'search',
+        'rd': 'read',
+        'jr': 'journal',
+        'lo': 'lore',
+        'dod': 'dodge',
+        'int': 'interrupt',
+        'newgame+': 'newgameplus',
+        'mm': 'minimap',
+        'undead': 'raise',
+        'imb': 'imbue',
+        'stone': 'soulstone',
+        # Bard commands
+        'perf': 'perform',
+        'sing': 'perform',
+        'play': 'perform',
+        'enc': 'encore',
+        'cs': 'countersong',
+        'fasc': 'fascinate',
+        # Warrior commands
+        'exec': 'execute',
+        'ramp': 'rampage',
+        'wc': 'warcry',
+        'ip': 'ignorepain',
+        'bs': 'battleshout',
+        'resc': 'rescue',
+        # Ranger commands
+        'comp': 'companion',
+        'pet': 'companion',
+        'tr': 'track',
+        'camo': 'camouflage',
+        'amb': 'ambush',
+        # Paladin commands
+        'loh': 'layhands',
+        'sm': 'smite',
+        # Thief commands
+        'cp': 'combo',
+        'evis': 'eviscerate',
+        'ks': 'kidneyshot',
+        'snd': 'slicedice',
+        # Cleric commands
+        'turn': 'turnundead',
+        'df': 'divinefavor',
+        'hs': 'holysmite',
+        # Talent shortcuts
+        'sbash': 'shield_bash',
+        'swall': 'shield_wall',
+        'aow': 'avatar_of_war',
+        'mstrike': 'mortal_strike',
+        'bstorm': 'bladestorm',
+        'sunder': 'sunder_armor',
+        'ovp': 'overpower',
+        'cb': 'cold_blood',
+        'mut': 'mutilate',
+        'vend': 'vendetta',
+        'arush': 'adrenaline_rush',
+        'prep': 'preparation',
+        'ss': 'shadowstep',
+        'sd': 'shadow_dance',
+        'bd': 'blade_dance',
+        'sa': 'slip_away',
+        'bw': 'bestial_wrath',
+        'stam': 'stampede',
+        'as': 'aimed_shot',
+        'et': 'explosive_trap',
+        'ba': 'black_arrow',
+        'ws': 'wyvern_sting',
+        'pm': 'predators_mark',
+        'soc': 'seal_of_command',
+        'cstrike': 'crusader_strike',
+        'dstorm': 'divine_storm',
+        'judge': 'judgment',
+        'sacshield': 'sacred_shield',
+        'mfd': 'marked_for_death',
+        'dfa': 'death_from_above',
+        'cpoison': 'crippling_poison',
+        'dpoison': 'deadly_poison',
+        'cos': 'cloak_of_shadows',
+        'van': 'vanish',
+        'sblade': 'shadow_blade',
+        'sblink': 'shadow_blink',
+        'sstr': 'silence_strike',
     }
     
     @classmethod
     async def execute(cls, player: 'Player', cmd: str, args: List[str]):
         """Execute a command."""
         original_cmd = cmd
+
+        # Help pagination - continue if player presses enter
+        if not cmd and not args and getattr(player, 'help_pagination', None):
+            await cls.continue_help_pagination(player)
+            return
+
+        # OLC input handling
+        if getattr(player, 'olc_state', None):
+            await cls.handle_olc_input(player, cmd, args)
+            return
+
+        # Clear help pagination on any other input
+        if hasattr(player, 'help_pagination'):
+            player.help_pagination = None
 
         # Check custom player aliases first
         if cmd in player.custom_aliases:
@@ -113,6 +213,14 @@ class CommandHandler:
                     await player.send(f"{c['yellow']}Did you mean: {c['bright_green']}{dir_list}{c['reset']}")
                 else:
                     await player.send(f"Huh?!? '{original_cmd}' is not a valid command. Type 'help' for a list.")
+
+    @classmethod
+    async def _record_collection_item(cls, player: 'Player', item):
+        try:
+            from collection_system import CollectionManager
+            await CollectionManager.record_item(player, item)
+        except Exception:
+            pass
     
     # ==================== MOVEMENT ====================
     
@@ -146,26 +254,70 @@ class CommandHandler:
             await player.send("You can't go that way.")
             return
 
-        # Check for closed door
+        # Hidden exit check
+        if exit_data.get('hidden'):
+            if not hasattr(player, 'discovered_exits') or (player.room.vnum, direction) not in player.discovered_exits:
+                await player.send("You can't go that way.")
+                return
+
+        # Check for closed/locked door
+        c = player.config.COLORS
         if 'door' in exit_data:
             door = exit_data['door']
-            if door.get('state') == 'closed':
-                c = player.config.COLORS
-                await player.send(f"{c['red']}The {door.get('name', 'door')} is closed.{c['reset']}")
+            door_name = door.get('name', 'door')
+            is_closed = door.get('state') == 'closed' or door.get('closed', False)
+            is_locked = door.get('locked', False)
+            
+            if is_closed:
+                if is_locked:
+                    await player.send(f"{c['red']}The {door_name} is closed and locked.{c['reset']}")
+                else:
+                    await player.send(f"{c['red']}The {door_name} is closed.{c['reset']}")
                 return
+        
+        # Also check for door/closed/locked in flags array (alternate format)
+        exit_flags = exit_data.get('flags', [])
+        if 'door' in exit_flags and 'closed' in exit_flags:
+            door_name = exit_data.get('keyword', 'door').split()[0] if exit_data.get('keyword') else 'door'
+            is_locked = 'locked' in exit_flags
+            if is_locked:
+                await player.send(f"{c['red']}The {door_name} is closed and locked.{c['reset']}")
+            else:
+                await player.send(f"{c['red']}The {door_name} is closed.{c['reset']}")
+            return
 
         target_room = exit_data.get('room')
         if not target_room:
             await player.send("That exit seems to lead nowhere...")
             return
+
+        # Class-only room restriction
+        for flag in getattr(target_room, 'flags', set()):
+            if isinstance(flag, str) and flag.startswith('class_only:'):
+                allowed = [c.strip().lower() for c in flag.split(':', 1)[1].split(',') if c.strip()]
+                if player.char_class.lower() not in allowed:
+                    allowed_display = ', '.join([c.title() for c in allowed])
+                    await player.send(f"{c['red']}Only {allowed_display} may enter.{c['reset']}")
+                    return
+
+        # Reputation-based gate for faction-controlled areas
+        if exit_data.get('faction_required'):
+            try:
+                from factions import FactionManager
+                faction_key = FactionManager.normalize_key(exit_data.get('faction_required'))
+                min_rep = exit_data.get('min_reputation', 0)
+                min_rep_level = exit_data.get('min_rep_level')
+                if min_rep_level:
+                    min_rep = max(min_rep, FactionManager.get_threshold_for_level(min_rep_level))
+                if faction_key and FactionManager.get_reputation(player, faction_key) < min_rep:
+                    c = player.config.COLORS
+                    await player.send(f"{c['yellow']}You are not trusted enough by {FactionManager.format_faction_detail(player, faction_key)[0].split(' - ')[0]} to enter.{c['reset']}")
+                    return
+            except Exception:
+                pass
             
         # Check movement points
-        sector = player.config.SECTOR_TYPES.get(target_room.sector_type, {'move_cost': 1})
-        move_cost = sector['move_cost']
-
-        # Mounted movement bonus (50% less movement cost)
-        if player.mount:
-            move_cost = max(1, move_cost // 2)
+        move_cost = cls._calculate_move_cost(player, target_room)
 
         if player.move < move_cost:
             await player.send("You are too exhausted to move!")
@@ -190,9 +342,20 @@ class CommandHandler:
 
         # Leave message (only if not sneaking successfully)
         if not sneak_success:
+            affect_flags = getattr(player, 'affect_flags', set())
             if player.mount:
                 await player.room.send_to_room(
                     f"{player.name} rides {player.mount.name} {direction}.",
+                    exclude=[player]
+                )
+            elif 'fly' in affect_flags:
+                await player.room.send_to_room(
+                    f"{player.name} soars {direction}.",
+                    exclude=[player]
+                )
+            elif 'sanctuary' in affect_flags:
+                await player.room.send_to_room(
+                    f"{player.name} glides {direction}, a holy aura trailing behind.",
                     exclude=[player]
                 )
             else:
@@ -201,24 +364,168 @@ class CommandHandler:
                     exclude=[player]
                 )
 
-        # Move player (and mount if present)
+        # Track old room for transition messages
+        old_room = player.room
+
+        # Move player
         player.room.characters.remove(player)
-        if player.mount and player.mount in player.room.characters:
-            player.room.characters.remove(player.mount)
 
         player.room = target_room
         target_room.characters.append(player)
-        if player.mount:
-            target_room.characters.append(player.mount)
+        
+        # Track explored rooms for map
+        if not hasattr(player, 'explored_rooms'):
+            player.explored_rooms = set()
+        player.explored_rooms.add(target_room.vnum)
+
+        # Deathtrap rooms
+        if player.room and ('deathtrap' in player.room.flags or 'death' in player.room.flags):
+            from combat import CombatHandler
+            c = player.config.COLORS
+            # Dex + perception save to avoid deathtrap
+            try:
+                import random
+                save = player.dex + player.get_perception() + random.randint(1, 20)
+            except Exception:
+                save = player.dex + random.randint(1, 20)
+            if save >= 35:
+                await player.send(f"{c['yellow']}You catch yourself at the last second and stumble back!{c['reset']}")
+                # Move back to old room
+                if old_room:
+                    player.room.characters.remove(player)
+                    player.room = old_room
+                    old_room.characters.append(player)
+                return
+            await player.send(f"{c['red']}You trigger a deadly trap!{c['reset']}")
+            # Deathtrap achievement (unlocks before death)
+            try:
+                from achievements import AchievementManager
+                await AchievementManager.check_deathtrap(player)
+            except Exception:
+                pass
+            await CombatHandler.handle_death(player, player)
+            return
 
         player.move -= move_cost
+
+        # End bard performance on movement
+        if player.performing:
+            c = player.config.COLORS
+            from spells import BARD_SONGS
+            song = BARD_SONGS.get(player.performing, {})
+            await player.send(f"{c['yellow']}Your {song.get('name', 'song')} ends as you move.{c['reset']}")
+            player.performing = None
+            player.performance_ticks = 0
+            player.encore_active = False
+
+        # Quest visit progress
+        from quests import QuestManager
+        await QuestManager.check_quest_progress(
+            player, 'visit', {'room_vnum': getattr(player.room, 'vnum', 0)}
+        )
+
+        # Achievement exploration tracking
+        try:
+            from achievements import AchievementManager
+            await AchievementManager.check_exploration(player, getattr(player.room, 'vnum', 0))
+        except Exception:
+            pass
+
+        # Journal zone discovery - check if entering a new zone
+        try:
+            from journal import JournalManager
+            if hasattr(target_room, 'zone') and target_room.zone:
+                zone = target_room.zone
+                zone_id = getattr(zone, 'number', None)
+                zone_key = f"zone_{zone_id}" if zone_id is not None else zone.name.lower().replace(' ', '_')
+                if not JournalManager.has_entry(player, f'area:{zone_key}'):
+                    zone_desc = getattr(zone, 'description', '') or f"You have discovered {zone.name}."
+                    await JournalManager.discover_area(
+                        player, zone_key, zone.name, zone_desc
+                    )
+        except Exception:
+            pass
+
+        # Waypoint discovery
+        try:
+            from travel import discover_waypoint
+            discovered = discover_waypoint(player, getattr(player.room, 'vnum', 0))
+            if discovered:
+                key, info = discovered
+                await player.send(f"{c['bright_cyan']}Waypoint discovered: {info['name']}{c['reset']}")
+        except Exception:
+            pass
+
+        # Auto-pickup gold
+        if getattr(player, 'autogold', False) and player.room.gold > 0:
+            gold_amount = player.room.gold
+            player.gold += gold_amount
+            player.room.gold = 0
+            await player.send(f"{c['yellow']}You pick up {gold_amount} gold coins. You now have {player.gold} gold.{c['reset']}")
+
+        # Web map update
+        if hasattr(player.world, 'web_map') and player.world.web_map:
+            await player.world.web_map.notify_player(player)
+
+        # Sneak detection check in new room
+        import time, random
+        if sneak_success and 'sneaking' in player.flags:
+            env_bonus = 0
+            if player.room:
+                if getattr(player.room, 'is_dark', False):
+                    env_bonus += 20
+                if player.room.sector_type in ('forest','swamp'):
+                    env_bonus += 10
+            if player.has_light_source():
+                env_bonus -= 25
+            sneak_roll = player.skills.get('sneak', 0) + (player.get_skill_level('hide') // 2) + player.dex + env_bonus + player.get_equipment_bonus('sneak') + random.randint(1,20)
+            for observer in list(target_room.characters):
+                if observer == player:
+                    continue
+                det = 0
+                if hasattr(observer, 'get_perception'):
+                    det = observer.get_perception()
+                else:
+                    det = int((getattr(observer,'wis',10)+getattr(observer,'dex',10))/2 + getattr(observer,'level',1)/5)
+                if getattr(observer, 'ai_state', {}).get('searching_until', 0) > time.time():
+                    det += 15
+                det += random.randint(1,20)
+                if det > sneak_roll:
+                    player.exposed_until = time.time() + random.randint(10,30)
+                    if hasattr(observer, 'ai_state'):
+                        observer.ai_state['searching_until'] = time.time() + random.randint(10,20)
+                        # no-track gear prevents tracking lock
+                        if player.get_equipment_bonus('no_track') <= 0:
+                            observer.ai_state['track_target'] = player
+                            observer.ai_state['track_until'] = time.time() + random.randint(10,20)
+                    if player.get_equipment_bonus('no_track') <= 0:
+                        player.tracked_by = observer
+                    await player.send(f"{c['red']}You are spotted!{c['reset']}")
+                    if hasattr(observer, 'send'):
+                        await observer.send(f"You notice a shadowy figure slipping by: {player.name}.")
+                    await target_room.send_to_room(
+                        f"{observer.name} narrows their eyes and scans the shadows.",
+                        exclude=[player]
+                    )
+                    break
 
         # Arrival message (only if not sneaking successfully)
         if not sneak_success:
             opposite = Config.DIRECTIONS.get(direction, {}).get('opposite', 'somewhere')
+            affect_flags = getattr(player, 'affect_flags', set())
             if player.mount:
                 await target_room.send_to_room(
                     f"{player.name} arrives from the {opposite}, riding {player.mount.name}.",
+                    exclude=[player]
+                )
+            elif 'fly' in affect_flags:
+                await target_room.send_to_room(
+                    f"{player.name} soars in from the {opposite}.",
+                    exclude=[player]
+                )
+            elif 'sanctuary' in affect_flags:
+                await target_room.send_to_room(
+                    f"{player.name} glides in from the {opposite}, wreathed in a holy aura.",
                     exclude=[player]
                 )
             else:
@@ -227,8 +534,130 @@ class CommandHandler:
                     exclude=[player]
                 )
         
+        # Move companions who are following
+        if hasattr(player, 'companions') and player.companions:
+            from companions import Companion
+            for companion in list(player.companions):
+                if isinstance(companion, Companion):
+                    if companion.order == 'follow' and not companion.ai_state.get('staying', False):
+                        if companion.room and companion in companion.room.characters:
+                            companion.room.characters.remove(companion)
+                        companion.room = target_room
+                        target_room.characters.append(companion)
+
+        # Move pets who are following (not staying)
+        pets_arriving = []
+        if hasattr(player, 'pets') and player.pets:
+            from pets import Pet
+            for pet in list(player.pets):
+                if isinstance(pet, Pet):
+                    # Skip if pet is staying in place
+                    if getattr(pet, 'ai_state', {}).get('staying', False):
+                        # But if pet is in the target room, clear staying (owner arrived)
+                        if pet.room == target_room:
+                            pet.ai_state['staying'] = False
+                        continue
+                    # Move pet to follow owner
+                    if pet.room and pet.room != target_room:
+                        if pet in pet.room.characters:
+                            pet.room.characters.remove(pet)
+                        pet.room = target_room
+                        if pet not in target_room.characters:
+                            target_room.characters.append(pet)
+                        pets_arriving.append(pet)
+        
+        # Announce pets arriving with player
+        if pets_arriving and not sneak_success:
+            pet_names = ', '.join([p.name for p in pets_arriving])
+            await target_room.send_to_room(
+                f"{c['magenta']}{pet_names} follows {player.name} in.{c['reset']}",
+                exclude=[player]
+            )
+            await player.send(f"{c['magenta']}Your pets follow you.{c['reset']}")
+
+        # Move players who are following this player
+        followers_moved = []
+        for char in list(old_room.characters):
+            if hasattr(char, 'following') and char.following == player:
+                if hasattr(char, 'connection'):  # Is a player
+                    # Check if follower can move
+                    if char.move >= 1:
+                        # Move follower
+                        if char in old_room.characters:
+                            old_room.characters.remove(char)
+                        char.room = target_room
+                        if char not in target_room.characters:
+                            target_room.characters.append(char)
+                        char.move = max(0, char.move - 1)
+                        followers_moved.append(char)
+        
+        # Announce followers arriving
+        if followers_moved and not sneak_success:
+            for follower in followers_moved:
+                await target_room.send_to_room(
+                    f"{follower.name} follows {player.name} in.",
+                    exclude=[player, follower]
+                )
+                await follower.send(f"{c['cyan']}You follow {player.name} {direction}.{c['reset']}")
+                # Show room to follower
+                await follower.do_look([])
+                # Update web map for follower
+                if hasattr(player.world, 'web_map') and player.world.web_map:
+                    await player.world.web_map.notify_player(follower)
+
+        # Atmospheric transition message when moving between different area types
+        try:
+            from atmosphere import AtmosphereManager
+            game_time = player.world.game_time if hasattr(player, 'world') and player.world else None
+            transition_msg = AtmosphereManager.get_transition_message(old_room, target_room, game_time)
+            if transition_msg:
+                await player.send(f"{c['blue']}{transition_msg}{c['reset']}")
+        except Exception:
+            pass
+
         # Show new room
         await player.do_look([])
+
+    @classmethod
+    def _calculate_move_cost(cls, player: 'Player', target_room: 'Room') -> int:
+        sector = player.config.SECTOR_TYPES.get(target_room.sector_type, {'move_cost': 1})
+        move_cost = sector['move_cost']
+
+        terrain_mods = getattr(player.config, 'TERRAIN_MOVE_COST_MODIFIERS', {})
+        move_cost = int(max(1, move_cost * terrain_mods.get(target_room.sector_type, 1.0)))
+
+        # Weather movement modifier (outdoors only)
+        if player.room and player.room.zone and player.room.sector_type in {
+            'field', 'forest', 'hills', 'mountain', 'water_swim', 'water_noswim',
+            'flying', 'desert', 'swamp'
+        }:
+            weather = player.room.zone.weather
+            if weather:
+                move_cost = int(max(1, move_cost * weather.get_movement_modifier()))
+
+        # Sneaking movement penalty (terrain-aware)
+        if hasattr(player, 'flags') and 'sneaking' in player.flags:
+            sneak_mods = {
+                'city': 1.1,       # cheapest
+                'indoors': 1.2,
+                'field': 1.4,
+                'forest': 1.8,
+                'swamp': 2.0,
+                'hills': 1.6,
+                'mountain': 2.0,
+                'desert': 1.5,
+                'water_swim': 2.0,
+                'water_noswim': 2.3,
+                'flying': 1.6,
+            }
+            move_cost = int(max(1, move_cost * sneak_mods.get(target_room.sector_type, 1.3)))
+
+        # Mounted movement bonus (reduced movement cost)
+        if player.mount:
+            bonus = getattr(player.mount, 'speed_bonus', 0.5)
+            move_cost = max(1, int(move_cost * (1 - bonus)))
+
+        return move_cost
         
     @classmethod
     async def cmd_north(cls, player: 'Player', args: List[str]):
@@ -270,14 +699,15 @@ class CommandHandler:
             await player.send("You are nowhere!")
             return
 
-        if not player.room.exits:
+        visible_exits = player.room.get_visible_exits(player) if player.room else {}
+        if not visible_exits:
             await player.send(f"{c['yellow']}There are no obvious exits.{c['reset']}")
             return
 
         await player.send(f"\n{c['cyan']}Obvious exits:{c['reset']}")
 
         has_exits = False
-        for direction, exit_data in player.room.exits.items():
+        for direction, exit_data in visible_exits.items():
             if exit_data:
                 has_exits = True
                 # Get description if available
@@ -306,6 +736,407 @@ class CommandHandler:
 
         if not has_exits:
             await player.send(f"{c['yellow']}There are no obvious exits.{c['reset']}")
+
+    @classmethod
+    async def cmd_search(cls, player: 'Player', args: List[str]):
+        """Search the room for hidden exits or items."""
+        if not player.room:
+            await player.send("You are nowhere!")
+            return
+
+        c = player.config.COLORS
+        room = player.room
+
+        # Too dark to search without light or infravision
+        game_time = player.world.game_time if hasattr(player, 'world') and player.world else None
+        if room.is_dark(game_time) and not player.can_see_in_dark():
+            await player.send(f"{c['blue']}It is too dark to search here.{c['reset']}")
+            return
+
+        # Small movement cost
+        if player.move < 2:
+            await player.send("You are too exhausted to search.")
+            return
+        player.move -= 2
+
+        # Perception-style score
+        perception_bonus = player.level * 2
+        perception_bonus += (player.wis - 10) * 3
+        int_bonus = player.get_soulstone_bonus_int() if hasattr(player, 'get_soulstone_bonus_int') else 0
+        perception_bonus += ((player.int + int_bonus) - 10) * 2
+        perception_bonus += (player.dex - 10)
+        perception_bonus += player.skills.get('detect_traps', 0) // 10
+
+        found_any = False
+        found_messages = []
+
+        # Hidden exits
+        for direction, exit_data in room.exits.items():
+            if not exit_data or not exit_data.get('hidden'):
+                continue
+            if (room.vnum, direction) in getattr(player, 'discovered_exits', set()):
+                continue
+
+            # Requirements
+            if exit_data.get('requires_light') and not player.has_light_source():
+                continue
+            if exit_data.get('requires_detect_magic') and 'detect_magic' not in getattr(player, 'affect_flags', set()):
+                continue
+
+            difficulty = exit_data.get('search_difficulty', 60)
+            roll = random.randint(1, 100) + perception_bonus
+            if roll >= difficulty:
+                player.discovered_exits.add((room.vnum, direction))
+                found_any = True
+                found_messages.append(exit_data.get('reveal_message') or f"You discover a hidden exit {direction}!")
+
+                if exit_data.get('secret'):
+                    from achievements import AchievementManager
+                    await AchievementManager.record_secret_found(player, exit_data.get('to_room', room.vnum))
+                    if hasattr(player, 'add_journal_entry'):
+                        player.add_journal_entry(f"Discovered a secret passage {direction} in {room.name}.", category='secret')
+
+        # Hidden items
+        if room.hidden_items:
+            from objects import create_object
+            for hidden in list(room.hidden_items):
+                if hidden.get('requires_light') and not player.has_light_source():
+                    continue
+                if hidden.get('requires_detect_magic') and 'detect_magic' not in getattr(player, 'affect_flags', set()):
+                    continue
+
+                difficulty = hidden.get('search_difficulty', 60)
+                roll = random.randint(1, 100) + perception_bonus
+                if roll >= difficulty:
+                    obj = create_object(hidden.get('vnum'), player.world)
+                    if obj:
+                        room.items.append(obj)
+                        room.hidden_items.remove(hidden)
+                        found_any = True
+                        found_messages.append(hidden.get('reveal_message') or f"You uncover {obj.short_desc}!")
+                        if getattr(obj, 'lore_id', None):
+                            if hasattr(player, 'add_journal_entry'):
+                                player.add_journal_entry(f"Recovered lore item: {obj.lore_title or obj.short_desc}.", category='lore')
+
+        if found_messages:
+            for msg in found_messages:
+                await player.send(f"{c['bright_green']}{msg}{c['reset']}")
+            return
+
+        if not found_any:
+            await player.send(f"{c['yellow']}You find nothing out of the ordinary.{c['reset']}")
+
+    @classmethod
+    async def cmd_answer(cls, player: 'Player', args: List[str]):
+        """Answer a riddle puzzle in the room."""
+        if not args:
+            await player.send("Answer what?")
+            return
+        from puzzles import PuzzleManager
+        await PuzzleManager.handle_answer(player, ' '.join(args))
+
+    @classmethod
+    async def cmd_pull(cls, player: 'Player', args: List[str]):
+        """Pull a lever for lever puzzles."""
+        if not args:
+            await player.send("Pull what?")
+            return
+        from puzzles import PuzzleManager
+        await PuzzleManager.handle_pull(player, ' '.join(args))
+
+    @classmethod
+    async def cmd_push(cls, player: 'Player', args: List[str]):
+        """Push a symbol or object for puzzle interactions."""
+        if not args:
+            await player.send("Push what?")
+            return
+        from puzzles import PuzzleManager
+        await PuzzleManager.handle_push(player, ' '.join(args))
+
+    @classmethod
+    async def cmd_hint(cls, player: 'Player', args: List[str]):
+        """Request a hint for the current room puzzle."""
+        from puzzles import PuzzleManager
+        await PuzzleManager.request_hint(player)
+
+    @classmethod
+    async def cmd_collections(cls, player: 'Player', args: List[str]):
+        """View collection progress."""
+        from collection_system import CollectionManager
+        lines = CollectionManager.render_collections(player)
+        for line in lines:
+            await player.send(line)
+
+    @classmethod
+    async def cmd_newgameplus(cls, player: 'Player', args: List[str]):
+        """Start a New Game+ cycle after completing the main story."""
+        from quests import QuestManager
+        state = QuestManager._get_chain_state(player, 'main_story')
+        if not state or not state.get('completed'):
+            await player.send("You must complete the main story before starting New Game+.")
+            return
+
+        nightmare = any(arg.lower() == 'nightmare' for arg in args)
+
+        c = player.config.COLORS
+        gold_keep = int(player.gold * 0.4)
+
+        # Retain skills/spells at reduced power
+        player.skills = {k: max(1, int(v * 0.6)) for k, v in player.skills.items()}
+        player.spells = {k: max(1, int(v * 0.6)) for k, v in player.spells.items()}
+
+        player.level = 1
+        player.exp = 0
+        player.gold = gold_keep
+        player.hp = player.max_hp = 100
+        player.mana = player.max_mana = 100
+        player.move = player.max_move = 100
+
+        player.quests_completed = []
+        player.quest_flags = {}
+        player.quest_chains = {}
+        player.dialogue_state = {}
+        player.active_quests = []
+        player.explored_rooms = set()
+        player.discovered_exits = set()
+        player.secret_rooms_found = set()
+
+        player.inventory = []
+        player.equipment = {slot: None for slot in player.equipment}
+
+        old_room = player.room
+        player.room_vnum = player.config.STARTING_ROOM
+        if player.world:
+            player.room = player.world.get_room(player.room_vnum)
+            if old_room and player in old_room.characters:
+                old_room.characters.remove(player)
+            if player.room and player not in player.room.characters:
+                player.room.characters.append(player)
+
+        player.ng_plus_cycle = getattr(player, 'ng_plus_cycle', 0) + 1
+        player.nightmare_mode = nightmare
+
+        await player.send(
+            f"{c['bright_magenta']}New Game+ begins!{c['reset']} "
+            f"Cycle {player.ng_plus_cycle} {'(Nightmare)' if nightmare else ''}"
+        )
+        await player.send(
+            f"{c['yellow']}You retain {gold_keep} gold, some skill mastery, and your title.{c['reset']}"
+        )
+
+    @classmethod
+    async def cmd_read(cls, player: 'Player', args: List[str]):
+        """Read a book, scroll, or readable item."""
+        if not args:
+            await player.send("Read what?")
+            return
+
+        target_name = ' '.join(args).lower()
+        item = None
+
+        # Check inventory and room
+        for candidate in player.inventory + (player.room.items if player.room else []):
+            if target_name in candidate.name.lower() or target_name in candidate.short_desc.lower():
+                item = candidate
+                break
+
+        if not item:
+            await player.send("You don't see that here.")
+            return
+
+        text = getattr(item, 'lore_text', None) or getattr(item, 'readable_text', None)
+        if not text:
+            await player.send("You can't read that.")
+            return
+
+        c = player.config.COLORS
+        await player.send(f"{c['bright_cyan']}{item.lore_title or item.short_desc}{c['reset']}")
+        await player.send(f"{c['white']}{text}{c['reset']}")
+
+        # Track lore discovery
+        lore_id = getattr(item, 'lore_id', None)
+        if lore_id:
+            if lore_id not in getattr(player, 'discovered_lore', set()):
+                player.discovered_lore.add(lore_id)
+                if hasattr(player, 'lore_catalog'):
+                    player.lore_catalog[lore_id] = item.lore_title or item.short_desc
+                from achievements import AchievementManager
+                await AchievementManager.record_lore_found(player, item)
+                
+                # Add to discovery journal
+                try:
+                    from journal import JournalManager
+                    lore_title = item.lore_title or item.short_desc
+                    await JournalManager.discover_lore(
+                        player, lore_id, lore_title, text
+                    )
+                except Exception:
+                    pass
+
+    @classmethod
+    async def cmd_lore(cls, player: 'Player', args: List[str]):
+        """Review discovered lore."""
+        c = player.config.COLORS
+        discovered = getattr(player, 'discovered_lore', set())
+        if not discovered:
+            await player.send("You haven't discovered any lore yet.")
+            return
+
+        # Build zone totals from world prototypes
+        zone_totals = {}
+        zone_discovered = {}
+        lore_lookup = {}
+        if hasattr(player, 'world') and player.world:
+            for proto in player.world.obj_prototypes.values():
+                lore_id = proto.get('lore_id')
+                lore_zone = proto.get('lore_zone')
+                lore_title = proto.get('lore_title') or proto.get('short_desc')
+                if lore_id:
+                    lore_lookup[lore_id] = (lore_zone, lore_title)
+                if lore_id and lore_zone is not None:
+                    zone_totals.setdefault(lore_zone, set()).add(lore_id)
+
+        for lore_id in discovered:
+            lore_zone = lore_lookup.get(lore_id, (None, None))[0]
+            zone_discovered.setdefault(lore_zone, set()).add(lore_id)
+
+        await player.send(f"{c['cyan']}Discovered Lore:{c['reset']}")
+        for lore_id in sorted(discovered):
+            title = getattr(player, 'lore_catalog', {}).get(lore_id, lore_id)
+            await player.send(f"  {c['bright_green']}- {title}{c['reset']}")
+
+        if zone_totals:
+            await player.send(f"\n{c['cyan']}Lore Progress by Zone:{c['reset']}")
+            for zone_id, total_ids in zone_totals.items():
+                found = len(zone_discovered.get(zone_id, set()))
+                total = len(total_ids)
+                percent = int((found / total) * 100) if total else 0
+                await player.send(f"  {c['bright_yellow']}Zone {zone_id}:{c['reset']} {found}/{total} ({percent}%)")
+
+    @classmethod
+    async def cmd_journal(cls, player: 'Player', args: List[str]):
+        """Review your discovery journal.
+        
+        Usage:
+            journal              - Show journal overview and recent entries
+            journal stats        - Show discovery statistics
+            journal lore         - Show lore entries
+            journal secrets      - Show discovered secrets
+            journal npcs         - Show NPCs you've met
+            journal areas        - Show discovered areas
+            journal read <num>   - Read a specific entry
+            journal all          - Show all entries
+        """
+        from journal import JournalManager
+        
+        c = player.config.COLORS
+        stats = JournalManager.get_stats(player)
+        
+        sub = args[0].lower() if args else None
+        
+        if sub == 'stats':
+            # Detailed statistics
+            explored_total = len(getattr(player, 'explored_rooms', set()))
+            total_rooms = len(player.world.rooms) if hasattr(player, 'world') and player.world else 0
+            overall_pct = int((explored_total / total_rooms) * 100) if total_rooms else 0
+            
+            await player.send(f"\r\n{c['bright_cyan']}╔══════════════════════════════════════════════════════════════╗{c['reset']}")
+            await player.send(f"{c['bright_cyan']}║{c['reset']}            📖 {c['bright_yellow']}DISCOVERY JOURNAL - STATISTICS{c['reset']}             {c['bright_cyan']}║{c['reset']}")
+            await player.send(f"{c['bright_cyan']}╠══════════════════════════════════════════════════════════════╣{c['reset']}")
+            await player.send(f"{c['bright_cyan']}║{c['reset']}                                                              {c['bright_cyan']}║{c['reset']}")
+            await player.send(f"{c['bright_cyan']}║{c['reset']}  {c['white']}🗺️  Rooms Explored:{c['reset']} {explored_total}/{total_rooms} ({overall_pct}%)                     {c['bright_cyan']}║{c['reset']}")
+            await player.send(f"{c['bright_cyan']}║{c['reset']}  {c['white']}📜 Lore Discovered:{c['reset']} {stats['lore_discovered']:<5}                               {c['bright_cyan']}║{c['reset']}")
+            await player.send(f"{c['bright_cyan']}║{c['reset']}  {c['white']}🔮 Secrets Found:{c['reset']}   {stats['secrets_found']:<5}                               {c['bright_cyan']}║{c['reset']}")
+            await player.send(f"{c['bright_cyan']}║{c['reset']}  {c['white']}👤 NPCs Met:{c['reset']}        {stats['npcs_met']:<5}                               {c['bright_cyan']}║{c['reset']}")
+            await player.send(f"{c['bright_cyan']}║{c['reset']}  {c['white']}🌍 Areas Found:{c['reset']}     {stats['areas_discovered']:<5}                               {c['bright_cyan']}║{c['reset']}")
+            await player.send(f"{c['bright_cyan']}║{c['reset']}                                                              {c['bright_cyan']}║{c['reset']}")
+            await player.send(f"{c['bright_cyan']}║{c['reset']}  {c['white']}📝 Total Entries:{c['reset']}   {stats['total_entries']:<5}                               {c['bright_cyan']}║{c['reset']}")
+            if stats['unread'] > 0:
+                await player.send(f"{c['bright_cyan']}║{c['reset']}  {c['bright_yellow']}📬 Unread:{c['reset']}          {stats['unread']:<5}                               {c['bright_cyan']}║{c['reset']}")
+            await player.send(f"{c['bright_cyan']}║{c['reset']}                                                              {c['bright_cyan']}║{c['reset']}")
+            await player.send(f"{c['bright_cyan']}╚══════════════════════════════════════════════════════════════╝{c['reset']}\r\n")
+            return
+        
+        # Filter by category
+        category_map = {
+            'lore': 'lore',
+            'secrets': 'secret',
+            'secret': 'secret',
+            'npcs': 'npc',
+            'npc': 'npc',
+            'areas': 'area',
+            'area': 'area',
+            'quests': 'quest',
+            'quest': 'quest',
+            'achievements': 'achievement',
+            'achievement': 'achievement',
+        }
+        
+        category = category_map.get(sub) if sub else None
+        
+        if sub == 'read' and len(args) > 1:
+            try:
+                idx = int(args[1]) - 1
+                entries = JournalManager.get_entries(player)
+                if 0 <= idx < len(entries):
+                    entry = entries[idx]
+                    entry.read = True
+                    
+                    cat_color = JournalManager.CATEGORY_COLORS.get(entry.category, 'white')
+                    icon = JournalManager.CATEGORY_ICONS.get(entry.category, '📝')
+                    
+                    await player.send(f"\r\n{c[cat_color]}╔══════════════════════════════════════════════════════════════╗{c['reset']}")
+                    await player.send(f"{c[cat_color]}║{c['reset']}  {icon} {c['bright_yellow']}{entry.title[:52]:<52}{c['reset']}  {c[cat_color]}║{c['reset']}")
+                    await player.send(f"{c[cat_color]}╠══════════════════════════════════════════════════════════════╣{c['reset']}")
+                    
+                    # Word wrap content
+                    words = entry.content.split()
+                    line = ""
+                    for word in words:
+                        if len(line) + len(word) + 1 <= 56:
+                            line = line + " " + word if line else word
+                        else:
+                            await player.send(f"{c[cat_color]}║{c['reset']}  {c['white']}{line:<56}{c['reset']}  {c[cat_color]}║{c['reset']}")
+                            line = word
+                    if line:
+                        await player.send(f"{c[cat_color]}║{c['reset']}  {c['white']}{line:<56}{c['reset']}  {c[cat_color]}║{c['reset']}")
+                    
+                    await player.send(f"{c[cat_color]}╚══════════════════════════════════════════════════════════════╝{c['reset']}\r\n")
+                else:
+                    await player.send(f"{c['red']}Invalid entry number.{c['reset']}")
+            except ValueError:
+                await player.send(f"{c['red']}Usage: journal read <number>{c['reset']}")
+            return
+        
+        # Get entries (filtered or all)
+        limit = None if sub == 'all' else 10
+        entries = JournalManager.get_entries(player, category=category, limit=limit)
+        
+        # Header
+        title = "DISCOVERY JOURNAL"
+        if category:
+            title = f"JOURNAL - {category.upper()}"
+        
+        await player.send(f"\r\n{c['bright_cyan']}╔══════════════════════════════════════════════════════════════╗{c['reset']}")
+        await player.send(f"{c['bright_cyan']}║{c['reset']}            📖 {c['bright_yellow']}{title:^40}{c['reset']}      {c['bright_cyan']}║{c['reset']}")
+        await player.send(f"{c['bright_cyan']}╠══════════════════════════════════════════════════════════════╣{c['reset']}")
+        
+        if not entries:
+            await player.send(f"{c['bright_cyan']}║{c['reset']}  {c['yellow']}No entries yet. Explore the world to fill your journal!{c['reset']}   {c['bright_cyan']}║{c['reset']}")
+        else:
+            for i, entry in enumerate(entries, 1):
+                icon = JournalManager.CATEGORY_ICONS.get(entry.category, '📝')
+                cat_color = JournalManager.CATEGORY_COLORS.get(entry.category, 'white')
+                unread = "" if entry.read else f"{c['bright_yellow']}*{c['reset']}"
+                title_display = entry.title[:45]
+                await player.send(f"{c['bright_cyan']}║{c['reset']}  {c['white']}{i:>2}.{c['reset']} {icon} {c[cat_color]}{title_display:<45}{c['reset']} {unread} {c['bright_cyan']}║{c['reset']}")
+        
+        await player.send(f"{c['bright_cyan']}╠══════════════════════════════════════════════════════════════╣{c['reset']}")
+        await player.send(f"{c['bright_cyan']}║{c['reset']}  {c['cyan']}Commands: journal stats | lore | secrets | read <#>{c['reset']}       {c['bright_cyan']}║{c['reset']}")
+        await player.send(f"{c['bright_cyan']}╚══════════════════════════════════════════════════════════════╝{c['reset']}\r\n")
+        
+        # Mark all as read if viewing
+        JournalManager.mark_read(player)
 
     @classmethod
     async def cmd_examine(cls, player: 'Player', args: List[str]):
@@ -365,19 +1196,57 @@ class CommandHandler:
         race_info = player.config.RACES.get(player.race, {})
         class_info = player.config.CLASSES.get(player.char_class, {})
         
-        await player.send(f"{c['cyan']}╔══════════════════════════════════════════════════════════════╗{c['reset']}")
-        await player.send(f"{c['cyan']}║{c['bright_yellow']} {player.name} {player.title:<52}{c['cyan']}║{c['reset']}")
-        await player.send(f"{c['cyan']}╠══════════════════════════════════════════════════════════════╣{c['reset']}")
-        await player.send(f"{c['cyan']}║ {c['white']}Race: {race_info.get('name', player.race):<12} Class: {class_info.get('name', player.char_class):<12} Level: {player.level:<3}{c['cyan']}    ║{c['reset']}")
-        await player.send(f"{c['cyan']}╠══════════════════════════════════════════════════════════════╣{c['reset']}")
-        await player.send(f"{c['cyan']}║ {c['bright_red']}HP: {player.hp:>4}/{player.max_hp:<4}{c['cyan']}  {c['bright_cyan']}Mana: {player.mana:>4}/{player.max_mana:<4}{c['cyan']}  {c['bright_yellow']}Move: {player.move:>4}/{player.max_move:<4}{c['cyan']}   ║{c['reset']}")
-        await player.send(f"{c['cyan']}╠══════════════════════════════════════════════════════════════╣{c['reset']}")
-        await player.send(f"{c['cyan']}║ {c['white']}Str: {player.str:>2}   Int: {player.int:>2}   Wis: {player.wis:>2}   Dex: {player.dex:>2}   Con: {player.con:>2}   Cha: {player.cha:>2}{c['cyan']} ║{c['reset']}")
-        await player.send(f"{c['cyan']}╠══════════════════════════════════════════════════════════════╣{c['reset']}")
-        await player.send(f"{c['cyan']}║ {c['bright_green']}Experience: {player.exp:<10}{c['cyan']} {c['bright_yellow']}Gold: {player.gold:<10}{c['cyan']} {c['white']}Practices: {player.practices:<3}{c['cyan']}  ║{c['reset']}")
-        await player.send(f"{c['cyan']}║ {c['white']}To next level: {player.exp_to_level() - player.exp:<10}{c['cyan']}                              ║{c['reset']}")
-        await player.send(f"{c['cyan']}╠══════════════════════════════════════════════════════════════╣{c['reset']}")
-        await player.send(f"{c['cyan']}║ {c['white']}Armor Class: {player.get_armor_class():<4}  Hitroll: {player.hitroll:>+3}  Damroll: {player.damroll:>+3}{c['cyan']}            ║{c['reset']}")
+        # Check for ASCII mode
+        use_ascii = getattr(player, 'ascii_ui', False)
+        
+        # Box drawing characters (ASCII or Unicode)
+        if use_ascii:
+            TL, TR, BL, BR = '+', '+', '+', '+'
+            H, V = '-', '|'
+            LT, RT, TT, BT = '+', '+', '+', '+'
+        else:
+            TL, TR, BL, BR = '╔', '╗', '╚', '╝'
+            H, V = '═', '║'
+            LT, RT, TT, BT = '╠', '╣', '╦', '╩'
+        
+        W = 64  # Width of box interior
+        
+        await player.send(f"{c['cyan']}{TL}{H*W}{TR}{c['reset']}")
+        await player.send(f"{c['cyan']}{V}{c['bright_yellow']} {player.name} {player.title:<52}{c['cyan']}{V}{c['reset']}")
+        await player.send(f"{c['cyan']}{LT}{H*W}{RT}{c['reset']}")
+        await player.send(f"{c['cyan']}{V} {c['white']}Race: {race_info.get('name', player.race):<12} Class: {class_info.get('name', player.char_class):<12} Level: {player.level:<3}{c['cyan']}    {V}{c['reset']}")
+        await player.send(f"{c['cyan']}{LT}{H*W}{RT}{c['reset']}")
+        # Calculate effective max values with equipment bonuses
+        eff_max_hp = player.max_hp + player.get_equipment_bonus('hp')
+        eff_max_mana = player.max_mana + player.get_equipment_bonus('mana')
+        eff_max_move = player.max_move + player.get_equipment_bonus('move')
+        await player.send(f"{c['cyan']}{V} {c['bright_red']}HP: {player.hp:>4}/{eff_max_hp:<4}{c['cyan']}  {c['bright_cyan']}Mana: {player.mana:>4}/{eff_max_mana:<4}{c['cyan']}  {c['bright_yellow']}Move: {player.move:>4}/{eff_max_move:<4}{c['cyan']}   {V}{c['reset']}")
+        await player.send(f"{c['cyan']}{LT}{H*W}{RT}{c['reset']}")
+        # Calculate stat bonuses from equipment
+        def stat_display(base, stat_name):
+            bonus = player.get_equipment_bonus(stat_name)
+            soulstone = player.get_soulstone_bonus_int() if stat_name == 'int' and hasattr(player, 'get_soulstone_bonus_int') else 0
+            total_bonus = bonus + soulstone
+            if total_bonus > 0:
+                return f"{base:>2}(+{total_bonus})"
+            elif total_bonus < 0:
+                return f"{base:>2}({total_bonus})"
+            return f"{base:>2}"
+        str_d = stat_display(player.str, 'str')
+        int_d = stat_display(player.int, 'int')
+        wis_d = stat_display(player.wis, 'wis')
+        dex_d = stat_display(player.dex, 'dex')
+        con_d = stat_display(player.con, 'con')
+        cha_d = stat_display(player.cha, 'cha')
+        await player.send(f"{c['cyan']}{V} {c['white']}Str:{str_d:<7} Int:{int_d:<7} Wis:{wis_d:<7} Dex:{dex_d:<7} Con:{con_d:<7} Cha:{cha_d:<5}{c['cyan']}{V}{c['reset']}")
+        await player.send(f"{c['cyan']}{LT}{H*W}{RT}{c['reset']}")
+        await player.send(f"{c['cyan']}{V} {c['bright_green']}Experience: {player.exp:<10}{c['cyan']} {c['bright_yellow']}Gold: {player.gold:<10}{c['cyan']} {c['white']}Practices: {player.practices:<3}{c['cyan']}  {V}{c['reset']}")
+        await player.send(f"{c['cyan']}{V} {c['white']}To next level: {player.exp_to_level() - player.exp:<10}{c['cyan']}                              {V}{c['reset']}")
+        await player.send(f"{c['cyan']}{LT}{H*W}{RT}{c['reset']}")
+        # Calculate hitroll/damroll with equipment bonuses
+        total_hitroll = player.hitroll + player.get_equipment_bonus('hitroll')
+        total_damroll = player.damroll + player.get_equipment_bonus('damroll')
+        await player.send(f"{c['cyan']}{V} {c['white']}Armor Class: {player.get_armor_class():<4}  Hitroll: {total_hitroll:>+3}  Damroll: {total_damroll:>+3}{c['cyan']}            {V}{c['reset']}")
 
         # Show hunger and thirst status
         hunger_cond = player.get_hunger_condition()
@@ -385,13 +1254,15 @@ class CommandHandler:
         hunger_color = c['red'] if player.hunger <= 3 else c['yellow'] if player.hunger <= 6 else c['green']
         thirst_color = c['red'] if player.thirst <= 3 else c['yellow'] if player.thirst <= 6 else c['green']
 
-        await player.send(f"{c['cyan']}╠══════════════════════════════════════════════════════════════╣{c['reset']}")
-        await player.send(f"{c['cyan']}║ {c['white']}Hunger: {hunger_color}{hunger_cond:<12}{c['white']}  Thirst: {thirst_color}{thirst_cond:<12}{c['cyan']}              ║{c['reset']}")
+        await player.send(f"{c['cyan']}{LT}{H*W}{RT}{c['reset']}")
+        sneak_status = f"{c['bright_black']}SNEAKING{c['reset']}" if 'sneaking' in player.flags else f"{c['white']}--{c['reset']}"
+        per = player.get_perception() if hasattr(player, 'get_perception') else 0
+        await player.send(f"{c['cyan']}{V} {c['white']}Hunger: {hunger_color}{hunger_cond:<12}{c['white']}  Thirst: {thirst_color}{thirst_cond:<12}{c['white']}  Stealth: {sneak_status}  PER: {per:<2}{c['cyan']}{V}{c['reset']}")
 
         # Show active affects/buffs/debuffs
         if player.affects:
-            await player.send(f"{c['cyan']}╠══════════════════════════════════════════════════════════════╣{c['reset']}")
-            await player.send(f"{c['cyan']}║ {c['bright_cyan']}Active Effects:{c['reset']}                                            {c['cyan']}║{c['reset']}")
+            await player.send(f"{c['cyan']}{LT}{H*W}{RT}{c['reset']}")
+            await player.send(f"{c['cyan']}{V} {c['bright_cyan']}Active Effects:{c['reset']}                                            {c['cyan']}{V}{c['reset']}")
 
             for affect in player.affects:
                 # Determine if it's a buff (positive) or debuff (negative)
@@ -420,9 +1291,49 @@ class CommandHandler:
                 if len(affect_desc) > 45:
                     affect_desc = affect_desc[:42] + "..."
 
-                await player.send(f"{c['cyan']}║  {affect_color}• {affect_desc:<43}{c['white']}[{duration_str:>5}]{c['cyan']} ║{c['reset']}")
+                await player.send(f"{c['cyan']}{V}  {affect_color}* {affect_desc:<43}{c['white']}[{duration_str:>5}]{c['cyan']} {V}{c['reset']}")
 
-        await player.send(f"{c['cyan']}╚══════════════════════════════════════════════════════════════╝{c['reset']}")
+        # Necromancer-specific info
+        if player.char_class == 'necromancer':
+            has_necro_info = False
+            
+            # Soul fragments
+            fragments = getattr(player, 'soul_fragments', 0)
+            if fragments > 0:
+                if not has_necro_info:
+                    await player.send(f"{c['cyan']}{LT}{H*W}{RT}{c['reset']}")
+                    await player.send(f"{c['cyan']}{V} {c['bright_magenta']}Necromancer:{c['reset']}                                               {c['cyan']}{V}{c['reset']}")
+                    has_necro_info = True
+                
+                import time
+                expires = getattr(player, 'soul_fragment_expires', 0)
+                remaining = max(0, int(expires - time.time()))
+                await player.send(f"{c['cyan']}{V}  {c['bright_cyan']}Soul Fragments: {fragments}/5{c['white']}  (-10% mana cost, +20% pet duration){c['cyan']} {V}{c['reset']}")
+                if remaining > 0:
+                    await player.send(f"{c['cyan']}{V}  {c['yellow']}Expires in: {remaining}s{c['cyan']}                                          {V}{c['reset']}")
+            
+            # Ritual status
+            if getattr(player, 'channeling_ritual', False):
+                if not has_necro_info:
+                    await player.send(f"{c['cyan']}{LT}{H*W}{RT}{c['reset']}")
+                    await player.send(f"{c['cyan']}{V} {c['bright_magenta']}Necromancer:{c['reset']}                                               {c['cyan']}{V}{c['reset']}")
+                    has_necro_info = True
+                duration = getattr(player, 'ritual_duration', 0)
+                await player.send(f"{c['cyan']}{V}  {c['bright_green']}Dark Ritual ACTIVE{c['white']} - {duration} rounds remaining{c['cyan']}              {V}{c['reset']}")
+            
+            # Ritual cooldown
+            cooldown_end = getattr(player, 'dark_ritual_cooldown', 0)
+            import time
+            now = time.time()
+            if cooldown_end > now:
+                if not has_necro_info:
+                    await player.send(f"{c['cyan']}{LT}{H*W}{RT}{c['reset']}")
+                    await player.send(f"{c['cyan']}{V} {c['bright_magenta']}Necromancer:{c['reset']}                                               {c['cyan']}{V}{c['reset']}")
+                    has_necro_info = True
+                remaining = int(cooldown_end - now)
+                await player.send(f"{c['cyan']}{V}  {c['red']}Dark Ritual on cooldown: {remaining}s{c['cyan']}                           {V}{c['reset']}")
+
+        await player.send(f"{c['cyan']}{BL}{H*W}{BR}{c['reset']}")
         
     @classmethod
     async def cmd_inventory(cls, player: 'Player', args: List[str]):
@@ -435,7 +1346,62 @@ class CommandHandler:
         else:
             for item in player.inventory:
                 await player.send(f"  {c['yellow']}{item.short_desc}{c['reset']}")
-                
+
+    @classmethod
+    async def cmd_clear(cls, player: 'Player', args: List[str]):
+        """Clear the screen.
+        
+        Usage: clear
+        """
+        # Send ANSI clear screen sequence
+        await player.send("\033[2J\033[H")
+
+    @classmethod
+    async def cmd_worth(cls, player: 'Player', args: List[str]):
+        """Show your total wealth breakdown.
+        
+        Usage: worth
+        """
+        c = player.config.COLORS
+        
+        # Gold on hand
+        gold_carried = player.gold
+        
+        # Gold in bank
+        bank_gold = getattr(player, 'bank_gold', 0)
+        
+        # Value of inventory items
+        inv_value = 0
+        for item in player.inventory:
+            inv_value += getattr(item, 'value', 0)
+        
+        # Value of equipped items
+        eq_value = 0
+        for slot, item in player.equipment.items():
+            if item:
+                eq_value += getattr(item, 'value', 0)
+        
+        # Value of storage
+        storage_value = 0
+        for item in getattr(player, 'storage', []):
+            storage_value += getattr(item, 'value', 0)
+        
+        total = gold_carried + bank_gold + inv_value + eq_value + storage_value
+        
+        await player.send(f"\n{c['bright_cyan']}═══════════════════════════════════════{c['reset']}")
+        await player.send(f"{c['bright_yellow']}          💰 Your Worth 💰{c['reset']}")
+        await player.send(f"{c['bright_cyan']}═══════════════════════════════════════{c['reset']}")
+        await player.send(f"{c['white']}  Gold carried:    {c['bright_yellow']}{gold_carried:>12,}{c['reset']}")
+        if bank_gold > 0:
+            await player.send(f"{c['white']}  Gold in bank:    {c['bright_yellow']}{bank_gold:>12,}{c['reset']}")
+        await player.send(f"{c['white']}  Inventory value: {c['yellow']}{inv_value:>12,}{c['reset']}")
+        await player.send(f"{c['white']}  Equipment value: {c['yellow']}{eq_value:>12,}{c['reset']}")
+        if storage_value > 0:
+            await player.send(f"{c['white']}  Storage value:   {c['yellow']}{storage_value:>12,}{c['reset']}")
+        await player.send(f"{c['bright_cyan']}───────────────────────────────────────{c['reset']}")
+        await player.send(f"{c['bright_white']}  Total worth:     {c['bright_green']}{total:>12,}{c['reset']}")
+        await player.send(f"{c['bright_cyan']}═══════════════════════════════════════{c['reset']}\n")
+
     @classmethod
     async def cmd_equipment(cls, player: 'Player', args: List[str]):
         """Show equipped items."""
@@ -470,7 +1436,17 @@ class CommandHandler:
             if item:
                 has_equipment = True
                 slot_desc = slot_names.get(slot, f'<{slot}>')
-                await player.send(f"  {c['green']}{slot_desc:20}{c['yellow']}{item.short_desc}{c['reset']}")
+                
+                # Special display for light sources
+                if slot == 'light' or (slot == 'hold' and getattr(item, 'item_type', '') == 'light'):
+                    is_lit = getattr(item, 'light_lit', True)
+                    if is_lit:
+                        light_status = f"{c['bright_yellow']}(blazing){c['reset']}"
+                    else:
+                        light_status = f"{c['bright_black']}(dark){c['reset']}"
+                    await player.send(f"  {c['green']}{slot_desc:20}{c['yellow']}{item.short_desc} {light_status}")
+                else:
+                    await player.send(f"  {c['green']}{slot_desc:20}{c['yellow']}{item.short_desc}{c['reset']}")
                 
         if not has_equipment:
             await player.send(f"  {c['white']}Nothing.{c['reset']}")
@@ -495,107 +1471,334 @@ class CommandHandler:
         await player.send(f"{c['cyan']}╚══════════════════════════════════════════════════════════════╝{c['reset']}")
 
     @classmethod
+    async def cmd_daily(cls, player: 'Player', args: List[str]):
+        """View your daily login bonus status.
+        
+        Usage: daily
+        
+        Log in each day to build your streak and earn better rewards!
+        """
+        from daily import DailyBonusManager
+        await DailyBonusManager.show_daily_status(player)
+
+    @classmethod
+    async def cmd_leaderboard(cls, player: 'Player', args: List[str]):
+        """View the server leaderboards.
+        
+        Usage: leaderboard [category]
+        Categories: level, kills, gold, deaths, achievements, quests
+        """
+        import os
+        from pathlib import Path
+        
+        c = player.config.COLORS
+        category = args[0].lower() if args else 'level'
+        
+        valid_categories = ['level', 'kills', 'gold', 'deaths', 'achievements', 'quests']
+        if category not in valid_categories:
+            await player.send(f"{c['yellow']}Valid categories: {', '.join(valid_categories)}{c['reset']}")
+            return
+        
+        # Load all player files
+        players_dir = Path(__file__).parent.parent / 'data' / 'players'
+        player_stats = []
+        
+        if players_dir.exists():
+            import json
+            for pfile in players_dir.glob('*.json'):
+                try:
+                    with open(pfile) as f:
+                        data = json.load(f)
+                    
+                    stats = {
+                        'name': data.get('name', pfile.stem),
+                        'level': data.get('level', 1),
+                        'kills': data.get('stats', {}).get('kills', 0),
+                        'gold': data.get('gold', 0),
+                        'deaths': data.get('stats', {}).get('deaths', data.get('deaths', 0)),
+                        'achievements': len(data.get('achievements', {})),
+                        'quests': len(data.get('quests_completed', [])),
+                    }
+                    player_stats.append(stats)
+                except Exception:
+                    pass
+        
+        # Sort by category
+        player_stats.sort(key=lambda x: x.get(category, 0), reverse=True)
+        
+        # Display leaderboard
+        category_titles = {
+            'level': '⚔️ Top Players by Level',
+            'kills': '💀 Most Kills',
+            'gold': '💰 Wealthiest Players',
+            'deaths': '👻 Most Deaths',
+            'achievements': '🏆 Achievement Leaders',
+            'quests': '📜 Quest Champions',
+        }
+        
+        await player.send(f"\n{c['bright_cyan']}═══════════════════════════════════════{c['reset']}")
+        await player.send(f"{c['bright_yellow']}     {category_titles.get(category, 'Leaderboard')}{c['reset']}")
+        await player.send(f"{c['bright_cyan']}═══════════════════════════════════════{c['reset']}")
+        
+        for i, ps in enumerate(player_stats[:10], 1):
+            # Medal for top 3
+            if i == 1:
+                medal = f"{c['bright_yellow']}🥇{c['reset']}"
+            elif i == 2:
+                medal = f"{c['white']}🥈{c['reset']}"
+            elif i == 3:
+                medal = f"{c['yellow']}🥉{c['reset']}"
+            else:
+                medal = f"{c['bright_black']}{i:>2}.{c['reset']}"
+            
+            value = ps.get(category, 0)
+            name = ps['name']
+            
+            # Highlight current player
+            if name.lower() == player.name.lower():
+                name = f"{c['bright_green']}{name}{c['reset']}"
+            else:
+                name = f"{c['white']}{name}{c['reset']}"
+            
+            await player.send(f" {medal} {name:<20} {c['bright_cyan']}{value:,}{c['reset']}")
+        
+        if not player_stats:
+            await player.send(f"{c['yellow']}  No players found.{c['reset']}")
+        
+        await player.send(f"{c['bright_cyan']}═══════════════════════════════════════{c['reset']}")
+        await player.send(f"{c['bright_black']}Categories: {', '.join(valid_categories)}{c['reset']}\n")
+
+    @classmethod
+    async def cmd_achievements(cls, player: 'Player', args: List[str]):
+        """View your achievements and progress.
+        
+        Usage: achievements [category]
+        Categories: combat, exploration, progression, collection, social
+        """
+        from achievements import AchievementManager
+        
+        category = args[0].lower() if args else None
+        valid_categories = ['combat', 'exploration', 'progression', 'collection', 'social']
+        
+        if category and category not in valid_categories:
+            c = player.config.COLORS
+            await player.send(f"{c['yellow']}Valid categories: {', '.join(valid_categories)}{c['reset']}")
+            return
+        
+        await AchievementManager.show_achievements(player, category)
+
+    @classmethod
+    async def cmd_account(cls, player: 'Player', args: List[str]):
+        """View and manage your account. Usage: account [create|chars|info]"""
+        c = player.config.COLORS
+        from accounts import Account, AccountManager
+        
+        if not args:
+            # Show account info
+            if player.account_name:
+                account = Account.load(player.account_name)
+                if account:
+                    await player.send(f"\r\n{c['cyan']}Account: {c['bright_green']}{account.account_name}{c['reset']}")
+                    await player.send(f"{c['cyan']}Characters: {c['white']}{', '.join(account.characters)}{c['reset']}")
+                    await player.send(f"{c['cyan']}Created: {c['white']}{account.created_at[:10]}{c['reset']}")
+                    if account.is_admin:
+                        await player.send(f"{c['bright_red']}[ADMIN ACCOUNT]{c['reset']}")
+                else:
+                    await player.send(f"{c['yellow']}Account not found.{c['reset']}")
+            else:
+                await player.send(f"{c['yellow']}You are not linked to an account.{c['reset']}")
+                await player.send(f"{c['cyan']}Use 'account create' to create one.{c['reset']}")
+            return
+        
+        cmd = args[0].lower()
+        
+        if cmd == 'create':
+            # Create account from current character
+            if player.account_name:
+                await player.send(f"{c['yellow']}You already have an account: {player.account_name}{c['reset']}")
+                return
+            
+            # Use character name as account name
+            account_name = player.name.lower()
+            if Account.exists(account_name):
+                await player.send(f"{c['red']}Account '{account_name}' already exists!{c['reset']}")
+                return
+            
+            # Create account with same password as character
+            account = Account(account_name)
+            account.password_hash = player.password_hash  # Copy password
+            account.add_character(player.name)
+            account.save()
+            
+            player.account_name = account_name
+            await player.save()
+            
+            await player.send(f"{c['bright_green']}Account '{account_name}' created!{c['reset']}")
+            await player.send(f"{c['cyan']}Your character '{player.name}' is now linked.{c['reset']}")
+            await player.send(f"{c['cyan']}You can create more characters by logging in with your account.{c['reset']}")
+        
+        elif cmd == 'chars':
+            if not player.account_name:
+                await player.send(f"{c['yellow']}You are not linked to an account.{c['reset']}")
+                return
+            
+            account = Account.load(player.account_name)
+            if account:
+                char_info = AccountManager.get_character_info(account)
+                await player.send(f"\r\n{c['cyan']}Characters on account '{account.account_name}':{c['reset']}")
+                for info in char_info:
+                    marker = " *" if info['name'] == player.name else ""
+                    await player.send(f"  {c['bright_green']}{info['name']:<12}{c['white']} Lvl {info['level']:<3} {info['class']}{marker}{c['reset']}")
+            else:
+                await player.send(f"{c['red']}Account not found.{c['reset']}")
+        
+        elif cmd == 'password':
+            # Change account password: account password <old> <new>
+            if not player.account_name:
+                await player.send(f"{c['yellow']}You are not linked to an account.{c['reset']}")
+                return
+            if len(args) < 3:
+                await player.send(f"{c['yellow']}Usage: account password <old> <new>{c['reset']}")
+                return
+            old_pw = args[1]
+            new_pw = args[2]
+            account = Account.load(player.account_name)
+            if not account:
+                await player.send(f"{c['red']}Account not found.{c['reset']}")
+                return
+            if not account.check_password(old_pw):
+                await player.send(f"{c['red']}Incorrect current password.{c['reset']}")
+                return
+            if len(new_pw) < 4:
+                await player.send(f"{c['yellow']}New password must be at least 4 characters.{c['reset']}")
+                return
+            account.set_password(new_pw)
+            account.save()
+            await player.send(f"{c['bright_green']}Password updated successfully.{c['reset']}")
+
+        elif cmd == 'email':
+            # account email <address>
+            if not player.account_name:
+                await player.send(f"{c['yellow']}You are not linked to an account.{c['reset']}")
+                return
+            if len(args) < 2:
+                await player.send(f"{c['yellow']}Usage: account email <address>{c['reset']}")
+                return
+            account = Account.load(player.account_name)
+            if not account:
+                await player.send(f"{c['red']}Account not found.{c['reset']}")
+                return
+            email = args[1]
+            if not AccountManager.set_email(account, email):
+                await player.send(f"{c['red']}Invalid email address.{c['reset']}")
+                return
+            await player.send(f"{c['bright_green']}Email set to {email}.{c['reset']}")
+
+        elif cmd == 'forgot':
+            # account forgot - send reset email
+            if not player.account_name:
+                await player.send(f"{c['yellow']}You are not linked to an account.{c['reset']}")
+                return
+            account = Account.load(player.account_name)
+            if not account:
+                await player.send(f"{c['red']}Account not found.{c['reset']}")
+                return
+            if not account.settings.get('email'):
+                await player.send(f"{c['yellow']}No email set. Use: account email <address>{c['reset']}")
+                return
+            token = AccountManager.generate_reset_token(account)
+            sent = AccountManager.send_reset_email(account, token)
+            if sent:
+                await player.send(f"{c['bright_green']}Reset email sent to {account.settings['email']}.{c['reset']}")
+            else:
+                await player.send(f"{c['red']}Email not configured. Ask an admin to reset your password.{c['reset']}")
+
+        elif cmd == 'recover':
+            # account recover <token> <newpass>
+            if not player.account_name:
+                await player.send(f"{c['yellow']}You are not linked to an account.{c['reset']}")
+                return
+            if len(args) < 3:
+                await player.send(f"{c['yellow']}Usage: account recover <token> <newpass>{c['reset']}")
+                return
+            token = args[1]
+            new_pw = args[2]
+            ok = AccountManager.reset_with_token(player.account_name, token, new_pw)
+            if ok:
+                await player.send(f"{c['bright_green']}Password reset successfully.{c['reset']}")
+            else:
+                await player.send(f"{c['red']}Invalid or expired token.{c['reset']}")
+        
+        elif cmd == 'reset':
+            # Immortal reset: account reset <account> <newpass>
+            if len(args) < 3:
+                await player.send(f"{c['yellow']}Usage: account reset <account> <newpass>{c['reset']}")
+                return
+            # Immortal check
+            if getattr(player, 'level', 0) < player.config.IMMORTAL_LEVEL:
+                await player.send(f"{c['red']}You do not have permission to do that.{c['reset']}")
+                return
+            target_account = args[1].lower()
+            new_pw = args[2]
+            if len(new_pw) < 4:
+                await player.send(f"{c['yellow']}New password must be at least 4 characters.{c['reset']}")
+                return
+            account = Account.load(target_account)
+            if not account:
+                await player.send(f"{c['red']}Account '{target_account}' not found.{c['reset']}")
+                return
+            account.set_password(new_pw)
+            account.save()
+            await player.send(f"{c['bright_green']}Password for '{target_account}' reset.{c['reset']}")
+        
+        elif cmd == 'info':
+            await cls.cmd_account(player, [])  # Same as no args
+        
+        else:
+            await player.send(f"{c['yellow']}Usage: account [create|chars|info|password|email|forgot|recover|reset]{c['reset']}")
+
+    @classmethod
     async def cmd_map(cls, player: 'Player', args: List[str]):
-        """Display map - world overview or local ASCII map.
+        """Display ASCII map.
 
         Usage:
-            map        - Show world zone overview
-            map world  - Show world zone overview
-            map local  - Show local ASCII map (if available)
+            map        - Show local explored map
+            map full   - Show entire explored area
+            map zone   - Show explored rooms in current zone
         """
+        from map_system import render_ascii_map
+
+        mode = 'local'
+        if args:
+            arg = args[0].lower()
+            if arg in ('full', 'zone'):
+                mode = arg
+
+        size = getattr(player.config, 'MAP_VIEW_SIZE', 11)
+        output = render_ascii_map(player, mode=mode, size=size)
+        for line in output.split('\n'):
+            await player.send(line)
+
+    @classmethod
+    @classmethod
+    async def cmd_minimap(cls, player: 'Player', args: List[str]):
+        """Display a compact ASCII minimap centered on the player."""
+        from map_system import render_ascii_map
+
+        size = getattr(player.config, 'MAP_MINI_SIZE', 7)
+        output = render_ascii_map(player, mode='local', size=size)
+        for line in output.split('\n'):
+            await player.send(line)
+
+    @classmethod
+    async def cmd_mapurl(cls, player: 'Player', args: List[str]):
+        """Show the web map URL for this player."""
+        host = getattr(player.config, 'MAP_PUBLIC_HOST', 'localhost')
+        port = getattr(player.config, 'MAP_PORT', 4001)
+        url = f"http://{host}:{port}/?player={player.name}"
         c = player.config.COLORS
-
-        # Check if local map requested
-        if args and args[0].lower() == 'local':
-            await cls._show_local_map(player)
-            return
-
-        # Show world map (default)
-        await player.send(f"{c['bright_cyan']}╔═══════════════════════════════════════════════════════════════════════════╗{c['reset']}")
-        await player.send(f"{c['bright_cyan']}║{c['bright_yellow']}                        REALMSMUD WORLD MAP                                  {c['bright_cyan']}║{c['reset']}")
-        await player.send(f"{c['bright_cyan']}╚═══════════════════════════════════════════════════════════════════════════╝{c['reset']}")
-        await player.send("")
-
-        # Current location indicator
-        current_zone = player.room.vnum // 100 if player.room else 0
-        zone = player.world.zones.get(current_zone)
-        zone_name = zone.name if zone else 'Unknown'
-        await player.send(f"{c['white']}You are currently in: {c['bright_green']}{zone_name}{c['reset']}")
-        await player.send("")
-
-        # Zone map organized by region and level
-        await player.send(f"{c['bright_yellow']}═══ NEWBIE ZONES (Level 1-10) ═══{c['reset']}")
-        zones_newbie = [
-            (15, "The Straight Path", "Easy tutorial area"),
-            (186, "Newbie Zone", "Beginner training grounds"),
-            (30, "Midgaard City", "Central hub, shops & quests"),
-        ]
-        for vnum, name, desc in zones_newbie:
-            marker = f"{c['bright_green']}[YOU]" if vnum == current_zone else "     "
-            await player.send(f"  {marker} {c['cyan']}{vnum:3d}{c['reset']} - {c['white']}{name:<30}{c['yellow']} {desc}{c['reset']}")
-
-        await player.send("")
-        await player.send(f"{c['bright_yellow']}═══ LOW LEVEL ZONES (Level 5-15) ═══{c['reset']}")
-        zones_low = [
-            (31, "South Midgaard", "City streets & alleys"),
-            (33, "Three Of Swords", "Wilderness adventure"),
-            (60, "Haon-Dor Light Forest", "Peaceful woods"),
-            (9, "River Island Of Minos", "Minotaur labyrinth"),
-            (90, "Haunted Swamp", "Undead bog"),
-        ]
-        for vnum, name, desc in zones_low:
-            marker = f"{c['bright_green']}[YOU]" if vnum == current_zone else "     "
-            await player.send(f"  {marker} {c['cyan']}{vnum:3d}{c['reset']} - {c['white']}{name:<30}{c['yellow']} {desc}{c['reset']}")
-
-        await player.send("")
-        await player.send(f"{c['bright_yellow']}═══ MID LEVEL ZONES (Level 10-25) ═══{c['reset']}")
-        zones_mid = [
-            (35, "Miden'Nir", "Elven stronghold"),
-            (36, "Chessboard", "Strategic combat"),
-            (40, "Mines of Moria", "Deep dwarven mines"),
-            (50, "Great Eastern Desert", "Vast wasteland"),
-            (52, "The City of Thalos", "Ancient metropolis"),
-            (61, "Haon-Dor Dark Forest", "Dangerous woods"),
-            (62, "The Orc Enclave", "Orcish camp"),
-            (63, "Arachnos", "Spider caverns"),
-            (64, "Rand's Tower", "Wizard's tower"),
-            (65, "Dwarven Kingdom", "Mountain halls"),
-            (100, "Dwarven Mines", "Rich ore deposits"),
-            (110, "Elven Village", "Silversong settlement"),
-        ]
-        for vnum, name, desc in zones_mid:
-            marker = f"{c['bright_green']}[YOU]" if vnum == current_zone else "     "
-            await player.send(f"  {marker} {c['cyan']}{vnum:3d}{c['reset']} - {c['white']}{name:<30}{c['yellow']} {desc}{c['reset']}")
-
-        await player.send("")
-        await player.send(f"{c['bright_yellow']}═══ HIGH LEVEL ZONES (Level 20-35) ═══{c['reset']}")
-        zones_high = [
-            (51, "Drow City", "Dark elf metropolis"),
-            (53, "The Great Pyramid", "Ancient tombs"),
-            (54, "New Thalos", "Massive city (285 rooms!)"),
-            (70, "Sewers Level 1", "Underground tunnels"),
-            (71, "Sewers Level 2", "Deeper sewers"),
-            (72, "Sewer Maze", "Complex labyrinth"),
-            (120, "Rome", "Ancient city"),
-            (130, "Sunken Ruins", "Underwater temple"),
-            (140, "Necropolis", "City of the dead"),
-        ]
-        for vnum, name, desc in zones_high:
-            marker = f"{c['bright_green']}[YOU]" if vnum == current_zone else "     "
-            await player.send(f"  {marker} {c['cyan']}{vnum:3d}{c['reset']} - {c['white']}{name:<30}{c['yellow']} {desc}{c['reset']}")
-
-        await player.send("")
-        await player.send(f"{c['bright_red']}═══ EPIC ZONES (Level 30-50) ═══{c['reset']}")
-        zones_epic = [
-            (25, "High Tower Of Magic", "Arcane challenges"),
-            (79, "Redferne's Residence", "Wizard's home"),
-            (80, "Dragon's Domain", "Ancient dragon lair"),
-            (150, "King Welmar's Castle", "Royal fortress"),
-            (160, "Plane of Eternal Chaos", "Planar battleground"),
-        ]
-        for vnum, name, desc in zones_epic:
-            marker = f"{c['bright_green']}[YOU]" if vnum == current_zone else "     "
-            await player.send(f"  {marker} {c['bright_red']}{vnum:3d}{c['reset']} - {c['white']}{name:<30}{c['bright_red']} {desc}{c['reset']}")
+        current_zone = player.room.zone if getattr(player, 'room', None) else None
+        await player.send(f"{c['cyan']}Web map:{c['reset']} {c['bright_green']}{url}{c['reset']}")
 
         await player.send("")
         await player.send(f"{c['bright_yellow']}═══ SPECIAL ZONES ═══{c['reset']}")
@@ -737,14 +1940,13 @@ class CommandHandler:
     @classmethod
     async def cmd_help(cls, player: 'Player', args: List[str]):
         """Show help information for commands, skills, and spells."""
-        from help_data import get_help_text, get_help_index
+        from help_data import get_help_text, HELP_TOPICS
 
         c = player.config.COLORS
 
         if not args:
-            # Show help index
-            help_text = get_help_index()
-            await player.send(f"{c['white']}{help_text}{c['reset']}")
+            # Show comprehensive help index with pagination
+            await cls.show_help_index(player)
             return
 
         # Look up specific topic
@@ -756,6 +1958,136 @@ class CommandHandler:
         else:
             await player.send(f"{c['red']}No help available for '{topic}'.{c['reset']}")
             await player.send(f"{c['yellow']}Type 'help' for a list of topics.{c['reset']}")
+
+    @classmethod
+    async def show_help_index(cls, player: 'Player'):
+        """Show paginated help index with all topics."""
+        from help_data import HELP_TOPICS
+        c = player.config.COLORS
+        
+        # Organize topics by category
+        categories = {
+            'Basic Commands': [],
+            'Movement': [],
+            'Communication': [],
+            'Combat': [],
+            'Skills': [],
+            'Spells': [],
+            'Bard Songs': [],
+            'Equipment & Items': [],
+            'Groups & Social': [],
+            'Information': [],
+            'Classes': [],
+            'Miscellaneous': []
+        }
+        
+        # Categorize all topics
+        for topic, data in sorted(HELP_TOPICS.items()):
+            cat = data.get('category', 'command')
+            title = data.get('title', topic.replace('_', ' ').title())
+            
+            if cat == 'skill':
+                categories['Skills'].append(topic)
+            elif cat == 'spell':
+                categories['Spells'].append(topic)
+            elif cat == 'class':
+                categories['Classes'].append(topic)
+            elif 'song' in topic.lower() or topic in ['perform', 'encore', 'countersong', 'fascinate', 'mock', 'songs']:
+                categories['Bard Songs'].append(topic)
+            elif topic in ['north', 'south', 'east', 'west', 'up', 'down', 'movement', 'flee', 'enter', 'leave', 'recall', 'teleport']:
+                categories['Movement'].append(topic)
+            elif topic in ['say', 'tell', 'shout', 'whisper', 'chat', 'gtell', 'emote', 'communication', 'channels']:
+                categories['Communication'].append(topic)
+            elif topic in ['kill', 'attack', 'combat', 'flee', 'rescue', 'kick', 'bash', 'backstab', 'target']:
+                categories['Combat'].append(topic)
+            elif topic in ['equipment', 'inventory', 'wear', 'wield', 'remove', 'drop', 'get', 'put', 'containers', 'armor']:
+                categories['Equipment & Items'].append(topic)
+            elif topic in ['group', 'follow', 'unfollow', 'assist', 'split', 'gtell']:
+                categories['Groups & Social'].append(topic)
+            elif topic in ['score', 'who', 'look', 'examine', 'consider', 'where', 'time', 'weather', 'affects']:
+                categories['Information'].append(topic)
+            elif topic in ['look', 'help', 'quit', 'save', 'practice', 'train', 'rest', 'sleep', 'wake', 'stand']:
+                categories['Basic Commands'].append(topic)
+            else:
+                categories['Miscellaneous'].append(topic)
+        
+        # Build output lines
+        lines = []
+        lines.append(f"{c['bright_cyan']}{'═' * 70}")
+        lines.append(f"{c['bright_yellow']}{'REALMSMUD HELP INDEX':^70}")
+        lines.append(f"{c['bright_cyan']}{'═' * 70}{c['reset']}")
+        lines.append(f"{c['white']}Type 'help <topic>' for detailed information on any topic.{c['reset']}")
+        lines.append("")
+        
+        for cat_name, topics in categories.items():
+            if not topics:
+                continue
+            topics = sorted(set(topics))
+            lines.append(f"{c['bright_yellow']}[ {cat_name} ]{c['reset']}")
+            # Format in columns
+            row = []
+            for topic in topics:
+                row.append(f"{c['cyan']}{topic:<18}{c['reset']}")
+                if len(row) == 4:
+                    lines.append("  " + "".join(row))
+                    row = []
+            if row:
+                lines.append("  " + "".join(row))
+            lines.append("")
+        
+        lines.append(f"{c['bright_cyan']}{'═' * 70}{c['reset']}")
+        lines.append(f"{c['white']}Total topics: {len(HELP_TOPICS)} | Type 'help <topic>' for details{c['reset']}")
+        
+        # Paginate - 20 lines per page
+        page_size = 20
+        total_lines = len(lines)
+        
+        for i in range(0, total_lines, page_size):
+            page = lines[i:i + page_size]
+            for line in page:
+                await player.send(line)
+            
+            # If more pages, prompt to continue
+            if i + page_size < total_lines:
+                await player.send(f"\n{c['bright_yellow']}-- Press ENTER to continue ({i + page_size}/{total_lines} lines) --{c['reset']}")
+                # Set a flag so the next empty input continues
+                player.help_pagination = {
+                    'lines': lines,
+                    'offset': i + page_size
+                }
+                return
+        
+        # Clear pagination if we reached the end
+        player.help_pagination = None
+
+    @classmethod
+    async def continue_help_pagination(cls, player: 'Player'):
+        """Continue showing paginated help."""
+        c = player.config.COLORS
+        pag = player.help_pagination
+        if not pag:
+            return
+        
+        lines = pag['lines']
+        offset = pag['offset']
+        page_size = 20
+        total_lines = len(lines)
+        
+        # Show next page
+        page = lines[offset:offset + page_size]
+        for line in page:
+            await player.send(line)
+        
+        # If more pages remain
+        if offset + page_size < total_lines:
+            await player.send(f"\n{c['bright_yellow']}-- Press ENTER to continue ({offset + page_size}/{total_lines} lines) --{c['reset']}")
+            player.help_pagination = {
+                'lines': lines,
+                'offset': offset + page_size
+            }
+        else:
+            # Done
+            player.help_pagination = None
 
     @classmethod
     async def cmd_where(cls, player: 'Player', args: List[str]):
@@ -793,19 +2125,13 @@ class CommandHandler:
 
     @classmethod
     async def cmd_consider(cls, player: 'Player', args: List[str]):
-        """Consider how tough a mob is."""
+        """Consider how tough a mob is and learn about its capabilities."""
         if not args:
             await player.send("Consider whom?")
             return
             
-        target_name = ' '.join(args).lower()
-        target = None
-        
-        # Find target in room
-        for char in player.room.characters:
-            if char != player and target_name in char.name.lower():
-                target = char
-                break
+        target_name = ' '.join(args)
+        target = player.find_target_in_room(target_name)
                 
         if not target:
             await player.send(f"You don't see '{target_name}' here.")
@@ -813,23 +2139,148 @@ class CommandHandler:
             
         c = player.config.COLORS
         diff = target.level - player.level
+        target_level = getattr(target, 'level', 1)
         
+        await player.send(f"\r\n{c['bright_cyan']}=== Considering: {target.name} ==={c['reset']}")
+        
+        # Difficulty rating and exp info
         if diff <= -10:
             msg = f"{c['bright_cyan']}Now where did that chicken go?{c['reset']}"
-        elif diff <= -5:
+            exp_note = "gray (10% exp)"
+            danger = "Trivial"
+        elif diff <= -7:
             msg = f"{c['cyan']}You could kill {target.name} naked and weaponless.{c['reset']}"
+            exp_note = "trivial (25% exp)"
+            danger = "Trivial"
+        elif diff <= -4:
+            msg = f"{c['cyan']}{target.name} is far beneath your skill.{c['reset']}"
+            exp_note = "easy (50% exp)"
+            danger = "Easy"
         elif diff <= -2:
             msg = f"{c['bright_green']}{target.name} looks like an easy kill.{c['reset']}"
+            exp_note = "green (80% exp)"
+            danger = "Easy"
         elif diff <= 1:
             msg = f"{c['green']}A perfect match!{c['reset']}"
+            exp_note = "even (100% exp)"
+            danger = "Even"
+        elif diff <= 2:
+            msg = f"{c['yellow']}{target.name} might put up a fight.{c['reset']}"
+            exp_note = "yellow (+15% exp)"
+            danger = "Moderate"
         elif diff <= 4:
             msg = f"{c['yellow']}{target.name} says 'Do you feel lucky, punk?'{c['reset']}"
-        elif diff <= 8:
+            exp_note = "challenging (+30% exp)"
+            danger = "Challenging"
+        elif diff <= 6:
             msg = f"{c['bright_red']}{target.name} laughs at your puny weapons.{c['reset']}"
+            exp_note = "dangerous (+50% exp)"
+            danger = "Dangerous"
         else:
             msg = f"{c['red']}Death will thank you for your gift.{c['reset']}"
+            exp_note = "suicide (+50% exp)"
+            danger = "DEADLY"
             
         await player.send(msg)
+        await player.send(f"{c['white']}Level: {target_level}  |  Difficulty: {danger}  |  XP: {exp_note}{c['reset']}")
+        
+        # Health assessment
+        hp_ratio = target.hp / max(1, target.max_hp)
+        if hp_ratio > 0.9:
+            hp_status = f"{c['bright_green']}excellent condition{c['reset']}"
+        elif hp_ratio > 0.7:
+            hp_status = f"{c['green']}good condition{c['reset']}"
+        elif hp_ratio > 0.5:
+            hp_status = f"{c['yellow']}slightly wounded{c['reset']}"
+        elif hp_ratio > 0.3:
+            hp_status = f"{c['yellow']}wounded{c['reset']}"
+        elif hp_ratio > 0.15:
+            hp_status = f"{c['red']}badly wounded{c['reset']}"
+        else:
+            hp_status = f"{c['bright_red']}near death{c['reset']}"
+        await player.send(f"{c['white']}Health: {hp_status}{c['reset']}")
+        
+        # Combat style assessment (based on stats and equipment)
+        combat_styles = []
+        target_str = getattr(target, 'str', 10)
+        target_int = getattr(target, 'int', 10)
+        target_dex = getattr(target, 'dex', 10)
+        
+        if target_str > target_int and target_str > target_dex:
+            combat_styles.append("heavy hitter")
+        elif target_int > target_str:
+            combat_styles.append("spellcaster")
+        elif target_dex > target_str:
+            combat_styles.append("agile fighter")
+        
+        # Check for special abilities based on mob type/flags
+        special_abilities = []
+        target_flags = getattr(target, 'flags', set())
+        if isinstance(target_flags, list):
+            target_flags = set(target_flags)
+            
+        if 'caster' in target_flags or 'magic_user' in target_flags:
+            special_abilities.append(f"{c['magenta']}casts spells{c['reset']}")
+        if 'healer' in target_flags:
+            special_abilities.append(f"{c['green']}can heal{c['reset']}")
+        if 'poisonous' in target_flags:
+            special_abilities.append(f"{c['bright_green']}poisonous attacks{c['reset']}")
+        if 'stun' in target_flags or 'basher' in target_flags:
+            special_abilities.append(f"{c['yellow']}can stun{c['reset']}")
+        if 'drainer' in target_flags:
+            special_abilities.append(f"{c['magenta']}drains life{c['reset']}")
+        if 'fire' in target_flags or 'firebreath' in target_flags:
+            special_abilities.append(f"{c['red']}fire attacks{c['reset']}")
+        if 'cold' in target_flags or 'frostbreath' in target_flags:
+            special_abilities.append(f"{c['cyan']}cold attacks{c['reset']}")
+            
+        # Boss-specific info
+        if getattr(target, 'is_boss', False) or 'boss' in target_flags:
+            special_abilities.insert(0, f"{c['bright_magenta']}BOSS{c['reset']}")
+            # Show boss abilities if available
+            boss_config = getattr(target, 'boss_config', {})
+            abilities = boss_config.get('abilities', [])
+            for ability in abilities[:3]:  # Show up to 3 abilities
+                ability_name = ability.get('name', ability.get('type', 'unknown'))
+                special_abilities.append(f"{c['bright_yellow']}{ability_name}{c['reset']}")
+        
+        if special_abilities:
+            await player.send(f"{c['cyan']}Special:{c['reset']} {', '.join(special_abilities)}")
+        
+        # Behavior warnings
+        warnings = []
+        if 'aggressive' in target_flags:
+            warnings.append(f"{c['red']}Will attack on sight!{c['reset']}")
+        if 'hunter' in target_flags or 'tracker' in target_flags:
+            warnings.append(f"{c['yellow']}Will hunt you if you flee!{c['reset']}")
+        if 'memory' in target_flags:
+            warnings.append(f"{c['yellow']}Remembers attackers{c['reset']}")
+        if 'assist' in target_flags:
+            warnings.append(f"{c['yellow']}Calls for help{c['reset']}")
+        if 'wimpy' in target_flags:
+            warnings.append(f"{c['green']}Flees when wounded{c['reset']}")
+            
+        if warnings:
+            await player.send(f"{c['red']}Warning:{c['reset']} {', '.join(warnings)}")
+        
+        # Weakness hints (class-specific tips)
+        hints = []
+        mob_class = (getattr(target, 'mob_class', '') or '').lower()
+        if 'undead' in target_flags or 'undead' in str(target.name).lower():
+            hints.append("Vulnerable to holy attacks and turning")
+        if 'animal' in target_flags or mob_class == 'animal':
+            hints.append("Can be calmed or charmed by rangers")
+        if 'humanoid' in target_flags and target_int > 12:
+            hints.append("May be susceptible to sleep/charm spells")
+        if target_dex < 10:
+            hints.append("Low agility - easier to hit")
+        if target_level <= 3:
+            hints.append("Good target for beginners")
+            
+        if hints and player.level >= target_level - 5:  # Only show hints if not too underleveled
+            await player.send(f"{c['cyan']}Insight:{c['reset']} {hints[0]}")
+        
+        await player.send("")
 
     # ==================== SKILLS ====================
 
@@ -843,21 +2294,121 @@ class CommandHandler:
             await player.send(f"{c['red']}You don't know how to sneak!{c['reset']}")
             return
 
+        # If exposed, block sneaking
+        import time, random
+        if getattr(player, 'exposed_until', 0) > time.time():
+            await player.send(f"{c['red']}You're too exposed to sneak right now.{c['reset']}")
+            return
+
         # Toggle sneak
         if 'sneaking' in player.flags:
             player.flags.remove('sneaking')
             await player.send(f"{c['yellow']}You stop sneaking.{c['reset']}")
         else:
-            # Skill check
-            import random
-            skill_level = player.skills['sneak']
+            skill_level = player.get_skill_level('sneak')
             if random.randint(1, 100) <= skill_level:
                 player.flags.add('sneaking')
                 await player.send(f"{c['green']}You start moving silently...{c['reset']}")
-                # Improve skill
                 await player.improve_skill('sneak', difficulty=3)
             else:
                 await player.send(f"{c['yellow']}You try to move quietly but fail.{c['reset']}")
+
+    @classmethod
+    async def cmd_ritual(cls, player: 'Player', args: List[str]):
+        """Perform dark ritual to empower all undead pets (Necromancer only)."""
+        c = player.config.COLORS
+        
+        # Class check
+        if player.char_class != 'necromancer':
+            await player.send(f"{c['red']}Only necromancers can perform dark rituals!{c['reset']}")
+            return
+        
+        # Check if already channeling
+        if hasattr(player, 'channeling_ritual') and player.channeling_ritual:
+            await player.send(f"{c['yellow']}You are already channeling a ritual!{c['reset']}")
+            return
+        
+        # Check cooldown
+        import time
+        now = time.time()
+        cooldown_end = getattr(player, 'dark_ritual_cooldown', 0)
+        if now < cooldown_end:
+            remaining = int(cooldown_end - now)
+            await player.send(f"{c['red']}Dark ritual is on cooldown! ({remaining}s remaining){c['reset']}")
+            return
+        
+        # Check mana and HP cost
+        mana_cost = 30
+        skill_level = player.skills.get('dark_ritual', 1)
+        hp_percent = 0.15 if skill_level < 76 else 0.10  # Reduced at high skill
+        hp_cost = int(player.max_hp * hp_percent)
+        
+        if player.mana < mana_cost:
+            await player.send(f"{c['red']}You need {mana_cost} mana to perform the ritual!{c['reset']}")
+            return
+        
+        if player.hp <= hp_cost:
+            await player.send(f"{c['red']}The ritual would kill you! You need more than {hp_cost} HP.{c['reset']}")
+            return
+        
+        # Get undead pets
+        from pets import PetManager
+        pets = PetManager.get_player_pets(player)
+        undead_pets = [p for p in pets if p.pet_type == 'undead']
+        
+        if not undead_pets:
+            await player.send(f"{c['yellow']}You have no undead servants to empower!{c['reset']}")
+            return
+        
+        # Pay costs
+        player.mana -= mana_cost
+        player.hp -= hp_cost
+        
+        # Calculate duration based on skill level
+        if skill_level < 26:
+            duration_rounds = 20  # ~1 minute
+        elif skill_level < 51:
+            duration_rounds = 30  # ~1.5 minutes
+        elif skill_level < 76:
+            duration_rounds = 40  # ~2 minutes
+        else:
+            duration_rounds = 50  # ~2.5 minutes
+        
+        # Apply ritual buff to all undead pets
+        for pet in undead_pets:
+            if not hasattr(pet, 'ritual_buff_duration'):
+                pet.ritual_buff_duration = 0
+            pet.ritual_buff_duration = duration_rounds
+            
+            # Apply stat bonuses
+            if not hasattr(pet, 'ritual_bonuses'):
+                pet.ritual_bonuses = {}
+            pet.ritual_bonuses = {
+                'str': 3,
+                'dex': 3,
+                'con': 3,
+                'regen': 5  # 5% HP per round
+            }
+        
+        # Set channeling state (prevents other spellcasting)
+        player.channeling_ritual = True
+        player.ritual_duration = duration_rounds
+        
+        # Set cooldown (5 minutes)
+        player.dark_ritual_cooldown = now + 300
+        
+        await player.send(f"{c['bright_magenta']}You begin the dark ritual, sacrificing {hp_cost} HP and {mana_cost} mana!{c['reset']}")
+        await player.send(f"{c['green']}All {len(undead_pets)} undead servants are empowered for {duration_rounds} rounds!{c['reset']}")
+        await player.send(f"{c['yellow']}Effects: +3 to all stats, 5% HP regen per round{c['reset']}")
+        
+        if player.room:
+            await player.room.send_to_room(
+                f"{c['bright_magenta']}{player.name} begins chanting in a guttural tongue, dark energy swirling!{c['reset']}",
+                exclude=[player]
+            )
+        
+        # Improve skill
+        await player.improve_skill('dark_ritual', difficulty=5)
 
     @classmethod
     async def cmd_hide(cls, player: 'Player', args: List[str]):
@@ -874,16 +2425,318 @@ class CommandHandler:
             await player.send(f"{c['red']}You can't hide while fighting!{c['reset']}")
             return
 
-        # Skill check
-        import random
-        skill_level = player.skills['hide']
-        if random.randint(1, 100) <= skill_level:
+        import time, random
+        if getattr(player, 'exposed_until', 0) > time.time():
+            await player.send(f"{c['red']}You're too exposed to hide right now.{c['reset']}")
+            return
+
+        # Environment bonus
+        env_bonus = 0
+        if player.room:
+            if hasattr(player.room, 'is_dark') and player.room.is_dark(getattr(player.world, 'game_time', None)):
+                env_bonus += 20
+            if player.room.sector_type in ('forest','swamp'):
+                env_bonus += 10
+        if player.has_light_source():
+            env_bonus -= 25
+
+        skill_level = player.get_skill_level('hide') + env_bonus
+        if random.randint(1, 100) <= max(5, skill_level):
             player.flags.add('hidden')
             await player.send(f"{c['green']}You blend into the shadows...{c['reset']}")
-            # Improve skill
             await player.improve_skill('hide', difficulty=4)
+            # chance to clear tracking if being searched
+            if getattr(player, 'tracked_by', None):
+                if random.randint(1, 100) <= 50:
+                    player.tracked_by = None
+                    await player.send(f"{c['cyan']}You lose your pursuer in the shadows.{c['reset']}")
         else:
             await player.send(f"{c['yellow']}You fail to conceal yourself.{c['reset']}")
+
+    @classmethod
+    async def cmd_blur(cls, player: 'Player', args: List[str]):
+        """Blur your outline to make attacks less accurate."""
+        c = player.config.COLORS
+        if 'blur' not in player.skills:
+            await player.send(f"{c['red']}You don't know how to blur yourself.{c['reset']}")
+            return
+        import time
+        now = time.time()
+        if getattr(player, 'blur_cooldown_until', 0) > now:
+            remaining = int(player.blur_cooldown_until - now)
+            await player.send(f"{c['yellow']}Blur is on cooldown ({remaining}s).{c['reset']}")
+            return
+        player.blur_until = now + 20
+        player.blur_cooldown_until = now + 30
+        await player.send(f"{c['cyan']}Your outline shimmers and blurs.{c['reset']}")
+
+    @classmethod
+    async def cmd_feint(cls, player: 'Player', args: List[str]):
+        """Feint to throw off a target's defense."""
+        c = player.config.COLORS
+        if 'feint' not in player.skills:
+            await player.send(f"{c['red']}You don't know how to feint.{c['reset']}")
+            return
+        if not args:
+            target = player.target if player.target and player.target in player.room.characters else None
+            if not target:
+                await player.send("Feint whom?")
+                return
+        else:
+            target = player.find_target_in_room(' '.join(args).lower())
+        if not target:
+            await player.send(f"{c['red']}They aren't here.{c['reset']}")
+            return
+        import time, random
+        chance = player.skills.get('feint', 0) + (player.dex - getattr(target, 'dex', 10))
+        if random.randint(1, 100) <= max(5, chance):
+            if not hasattr(target, 'ai_state'):
+                target.ai_state = {}
+            target.ai_state['feinted_until'] = time.time() + 6
+            target.ai_state['feinted_by'] = player
+            await player.send(f"{c['green']}You feint, opening {target.name}'s guard!{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}Your feint fails.{c['reset']}")
+
+    @classmethod
+    async def cmd_tumble(cls, player: 'Player', args: List[str]):
+        """Tumble to reduce incoming damage briefly."""
+        c = player.config.COLORS
+        if 'tumble' not in player.skills:
+            await player.send(f"{c['red']}You don't know how to tumble.{c['reset']}")
+            return
+        import time
+        player.tumble_until = time.time() + 3
+        await player.send(f"{c['cyan']}You tumble and roll, ready to evade blows.{c['reset']}")
+
+    @classmethod
+    async def cmd_circle(cls, player: 'Player', args: List[str]):
+        """Circle behind a distracted target for a quick strike."""
+        c = player.config.COLORS
+        if 'circle' not in player.skills:
+            await player.send(f"{c['red']}You don't know how to circle attack.{c['reset']}")
+            return
+        if not args:
+            target = player.target if player.target and player.target in player.room.characters else None
+            if not target:
+                await player.send("Circle whom?")
+                return
+        else:
+            target = player.find_target_in_room(' '.join(args).lower())
+        if not target:
+            await player.send(f"{c['red']}They aren't here.{c['reset']}")
+            return
+        if not getattr(target, 'fighting', None) or target.fighting == player:
+            await player.send(f"{c['yellow']}They're not distracted enough to circle.{c['reset']}")
+            return
+        from combat import CombatHandler
+        # Quick bonus attack
+        await CombatHandler.bonus_attack(player, target)
+
+    @classmethod
+    async def cmd_cleave(cls, player: 'Player', args: List[str]):
+        """Cleave multiple enemies with a sweeping attack."""
+        c = player.config.COLORS
+        if 'cleave' not in player.skills:
+            await player.send(f"{c['red']}You don't know how to cleave.{c['reset']}")
+            return
+        if not player.is_fighting:
+            await player.send(f"{c['yellow']}You need to be fighting to cleave.{c['reset']}")
+            return
+        from combat import CombatHandler
+        targets = [ch for ch in player.room.characters if ch != player and hasattr(ch, 'is_fighting') and ch.is_fighting]
+        if not targets:
+            await player.send(f"{c['yellow']}No targets to cleave.{c['reset']}")
+            return
+        await player.send(f"{c['red']}You swing in a wide arc!{c['reset']}")
+        for t in targets[:3]:
+            await CombatHandler.bonus_attack(player, t)
+
+    @classmethod
+    async def cmd_trip(cls, player: 'Player', args: List[str]):
+        """Trip a target, knocking them down."""
+        c = player.config.COLORS
+        if 'trip' not in player.skills:
+            await player.send(f"{c['red']}You don't know how to trip.{c['reset']}")
+            return
+        if not args:
+            target = player.target if player.target and player.target in player.room.characters else None
+            if not target:
+                await player.send("Trip whom?")
+                return
+        else:
+            target = player.find_target_in_room(' '.join(args).lower())
+        if not target:
+            await player.send(f"{c['red']}They aren't here.{c['reset']}")
+            return
+        import random
+        chance = player.skills.get('trip', 0) + (player.dex - getattr(target, 'dex', 10))
+        if random.randint(1, 100) <= max(5, chance):
+            target.position = 'sitting'
+            await player.send(f"{c['green']}You trip {target.name}!{c['reset']}")
+            await player.room.send_to_room(f"{target.name} is knocked to the ground!", exclude=[player])
+        else:
+            await player.send(f"{c['yellow']}You fail to trip {target.name}.{c['reset']}")
+
+    @classmethod
+    async def cmd_turn_undead(cls, player: 'Player', args: List[str]):
+        """Turn undead creatures with holy power."""
+        c = player.config.COLORS
+        if 'turn_undead' not in player.skills:
+            await player.send(f"{c['red']}You don't know how to turn undead.{c['reset']}")
+            return
+        if not args:
+            target = player.target if player.target and player.target in player.room.characters else None
+            if not target:
+                await player.send("Turn whom?")
+                return
+        else:
+            target = player.find_target_in_room(' '.join(args).lower())
+        if not target:
+            await player.send(f"{c['red']}They aren't here.{c['reset']}")
+            return
+        if 'undead' not in getattr(target, 'flags', set()):
+            await player.send(f"{c['yellow']}{target.name} is not undead.{c['reset']}")
+            return
+        import random
+        chance = player.skills.get('turn_undead', 0) + (player.wis - 10) * 2
+        if random.randint(1, 100) <= max(5, chance):
+            await player.send(f"{c['bright_white']}You turn the undead!{c['reset']}")
+            if hasattr(target, 'flee'):
+                await target.flee()
+        else:
+            await player.send(f"{c['yellow']}Your turning fails.{c['reset']}")
+
+    @classmethod
+    async def cmd_detect_traps(cls, player: 'Player', args: List[str]):
+        """Detect traps or hidden dangers."""
+        c = player.config.COLORS
+        if 'detect_traps' not in player.skills:
+            await player.send(f"{c['red']}You don't know how to detect traps.{c['reset']}")
+            return
+        if not player.room:
+            await player.send("You are nowhere.")
+            return
+        import random
+        roll = random.randint(1, 100)
+        if roll <= player.skills.get('detect_traps', 0):
+            await player.send(f"{c['green']}You carefully scan for traps but find none.{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}You don't notice anything unusual.{c['reset']}")
+
+    @classmethod
+    async def cmd_intimidate(cls, player: 'Player', args: List[str]):
+        """Intimidate a target, possibly forcing them to flee."""
+        c = player.config.COLORS
+        if 'intimidate' not in player.skills:
+            await player.send(f"{c['red']}You don't know how to intimidate.{c['reset']}")
+            return
+        if not args:
+            target = player.target if player.target and player.target in player.room.characters else None
+            if not target:
+                await player.send("Intimidate whom?")
+                return
+        else:
+            target = player.find_target_in_room(' '.join(args).lower())
+        if not target:
+            await player.send(f"{c['red']}They aren't here.{c['reset']}")
+            return
+        import random
+        chance = player.skills.get('intimidate', 0) + (player.cha - getattr(target, 'cha', 10))
+        if random.randint(1, 100) <= max(5, chance):
+            await player.send(f"{c['green']}You intimidate {target.name}!{c['reset']}")
+            if hasattr(target, 'flee'):
+                await target.flee()
+        else:
+            await player.send(f"{c['yellow']}Your intimidation fails.{c['reset']}")
+
+    @classmethod
+    async def cmd_steal(cls, player: 'Player', args: List[str]):
+        """Attempt to steal gold from a target."""
+        c = player.config.COLORS
+        if 'steal' not in player.skills:
+            await player.send(f"{c['red']}You don't know how to steal.{c['reset']}")
+            return
+        if not args:
+            target = player.target if player.target and player.target in player.room.characters else None
+            if not target:
+                await player.send("Steal from whom?")
+                return
+        else:
+            target = player.find_target_in_room(' '.join(args).lower())
+        if not target:
+            await player.send(f"{c['red']}They aren't here.{c['reset']}")
+            return
+        import random
+        chance = player.skills.get('steal', 0) + (player.dex - getattr(target, 'dex', 10))
+        if random.randint(1, 100) <= max(5, chance):
+            amt = min(getattr(target, 'gold', 0), random.randint(1, 20))
+            if amt > 0:
+                target.gold -= amt
+                player.gold += amt
+                await player.send(f"{c['green']}You steal {amt} gold from {target.name}.{c['reset']}")
+            else:
+                await player.send(f"{c['yellow']}{target.name} has nothing to steal.{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}You fail to steal from {target.name}.{c['reset']}")
+
+    @classmethod
+    async def cmd_scribe(cls, player: 'Player', args: List[str]):
+        """Scribe a scroll from a known spell. Usage: scribe <spell>"""
+        c = player.config.COLORS
+        if 'scribe' not in player.skills:
+            await player.send(f"{c['red']}You don't know how to scribe.{c['reset']}")
+            return
+        if not args:
+            await player.send("Scribe which spell?")
+            return
+        spell_name = ' '.join(args).lower().replace(' ', '_')
+        if spell_name not in player.spells:
+            await player.send(f"{c['red']}You don't know that spell.{c['reset']}")
+            return
+        from objects import Object
+        scroll = Object(0, player.world)
+        scroll.name = f"scroll of {spell_name.replace('_',' ')}"
+        scroll.short_desc = f"a scroll of {spell_name.replace('_',' ')}"
+        scroll.room_desc = f"A scroll lies here."
+        scroll.description = f"A scroll inscribed with {spell_name.replace('_',' ')}."
+        scroll.item_type = 'scroll'
+        scroll.spell_effects = [spell_name]
+        player.inventory.append(scroll)
+        await player.send(f"{c['green']}You scribe a scroll of {spell_name.replace('_',' ')}.{c['reset']}")
+
+    @classmethod
+    async def cmd_slip(cls, player: 'Player', args: List[str]):
+        """Slip out of combat to a chosen direction. Usage: slip <direction>"""
+        c = player.config.COLORS
+        if 'slip' not in player.skills:
+            await player.send(f"{c['red']}You don't know how to slip away!{c['reset']}")
+            return
+        if not args:
+            await player.send("Slip which direction?")
+            return
+        if not player.is_fighting:
+            await player.send(f"{c['yellow']}You aren't fighting anyone.{c['reset']}")
+            return
+        direction = args[0].lower()
+        dir_map = {'n':'north','s':'south','e':'east','w':'west','u':'up','d':'down'}
+        direction = dir_map.get(direction, direction)
+        if direction not in player.config.DIRECTIONS:
+            await player.send("That's not a valid direction.")
+            return
+        import random
+        chance = player.skills.get('slip', 0) + (player.dex - 10)
+        if random.randint(1, 100) > max(5, chance):
+            await player.send(f"{c['yellow']}You fail to slip away!{c['reset']}")
+            return
+        # End combat
+        if player.fighting and hasattr(player.fighting, 'fighting') and player.fighting.fighting == player:
+            player.fighting.fighting = None
+        player.fighting = None
+        player.position = 'standing'
+        await player.send(f"{c['green']}You slip away!{c['reset']}")
+        # Move
+        await CommandHandler.cmd_move(player, direction)
 
     @classmethod
     async def cmd_visible(cls, player: 'Player', args: List[str]):
@@ -906,6 +2759,958 @@ class CommandHandler:
             )
         else:
             await player.send(f"{c['yellow']}You are already visible.{c['reset']}")
+
+    @classmethod
+    async def cmd_cover(cls, player: 'Player', args: List[str]):
+        """Cover your light source. Usage: cover light"""
+        c = player.config.COLORS
+        if not args or args[0].lower() != 'light':
+            await player.send(f"{c['yellow']}Usage: cover light{c['reset']}")
+            return
+        item = player.equipment.get('light') or player.equipment.get('hold')
+        if not item:
+            await player.send(f"{c['yellow']}You're not holding or wearing a light source.{c['reset']}")
+            return
+        item.covered = True
+        await player.send(f"{c['cyan']}You cover your light source, dimming its glow.{c['reset']}")
+
+    @classmethod
+    async def cmd_uncover(cls, player: 'Player', args: List[str]):
+        """Uncover your light source. Usage: uncover light"""
+        c = player.config.COLORS
+        if not args or args[0].lower() != 'light':
+            await player.send(f"{c['yellow']}Usage: uncover light{c['reset']}")
+            return
+        item = player.equipment.get('light') or player.equipment.get('hold')
+        if not item:
+            await player.send(f"{c['yellow']}You're not holding or wearing a light source.{c['reset']}")
+            return
+        item.covered = False
+        await player.send(f"{c['cyan']}You uncover your light source, letting it shine.{c['reset']}")
+
+    @classmethod
+    async def cmd_snuff(cls, player: 'Player', args: List[str]):
+        """Snuff your light source. Usage: snuff light"""
+        c = player.config.COLORS
+        if not args or args[0].lower() != 'light':
+            await player.send(f"{c['yellow']}Usage: snuff light{c['reset']}")
+            return
+        item = player.equipment.get('light') or player.equipment.get('hold')
+        if not item:
+            await player.send(f"{c['yellow']}You're not holding or wearing a light source.{c['reset']}")
+            return
+        if not getattr(item, 'light_lit', True):
+            await player.send(f"{c['yellow']}Your {item.short_desc} is already dark.{c['reset']}")
+            return
+        item.light_lit = False
+        import random
+        snuff_msgs = [
+            f"You cup your hand over the flame and snuff out {item.short_desc}. Darkness creeps closer.",
+            f"With a quick breath, you extinguish {item.short_desc}. The shadows seem to sigh in relief.",
+            f"You pinch the wick of {item.short_desc}, plunging yourself into deeper darkness.",
+            f"The flame of {item.short_desc} gutters and dies at your command.",
+            f"You snuff {item.short_desc}. The darkness eagerly swallows the space where light once was.",
+        ]
+        await player.send(f"{c['bright_black']}{random.choice(snuff_msgs)}{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(
+                f"{c['bright_black']}{player.name} snuffs out their light, and the shadows grow deeper.{c['reset']}",
+                exclude=[player]
+            )
+
+    @classmethod
+    async def cmd_relight(cls, player: 'Player', args: List[str]):
+        """Relight your light source. Usage: relight light"""
+        c = player.config.COLORS
+        if not args or args[0].lower() != 'light':
+            await player.send(f"{c['yellow']}Usage: relight light{c['reset']}")
+            return
+        item = player.equipment.get('light') or player.equipment.get('hold')
+        if not item:
+            await player.send(f"{c['yellow']}You're not holding or wearing a light source.{c['reset']}")
+            return
+        if getattr(item, 'light_lit', False):
+            await player.send(f"{c['yellow']}Your {item.short_desc} is already burning brightly.{c['reset']}")
+            return
+        item.light_lit = True
+        item.covered = False
+        import random
+        light_msgs = [
+            f"You strike a spark and {item.short_desc} flares to life, pushing back the darkness.",
+            f"A warm glow spreads from {item.short_desc} as you coax the flame back to life.",
+            f"Light blooms from {item.short_desc}, banishing the shadows that had crept close.",
+            f"With practiced hands, you relight {item.short_desc}. The darkness retreats grudgingly.",
+            f"The flame of {item.short_desc} dances back into existence, casting dancing shadows on the walls.",
+        ]
+        await player.send(f"{c['bright_yellow']}{random.choice(light_msgs)}{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(
+                f"{c['bright_yellow']}{player.name} relights their {item.short_desc}, and warm light fills the area.{c['reset']}",
+                exclude=[player]
+            )
+
+    @classmethod
+    async def cmd_redit(cls, player: 'Player', args: List[str]):
+        """Online room editor (immortal only)."""
+        c = player.config.COLORS
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have access to OLC.{c['reset']}")
+            return
+
+        try:
+            vnum = int(args[0]) if args else player.room.vnum
+        except Exception:
+            await player.send(f"{c['yellow']}Usage: redit <vnum>{c['reset']}")
+            return
+
+        zone_num = vnum // 100
+        zone = player.world.zones.get(zone_num)
+        if not zone:
+            await player.send(f"{c['red']}Zone {zone_num} not found.{c['reset']}")
+            return
+
+        room = player.world.rooms.get(vnum)
+        if not room:
+            from world import Room
+            room = Room(vnum)
+            room.zone = zone
+            zone.rooms[vnum] = room
+            player.world.rooms[vnum] = room
+
+        player.olc_state = {
+            'mode': 'redit',
+            'menu': 'main',
+            'room': room,
+            'exit_dir': None,
+            'buffer': [],
+            'extra_key': None
+        }
+        await cls.show_redit_menu(player)
+
+    @classmethod
+    async def cmd_save(cls, player: 'Player', args: List[str]):
+        """Save a zone to disk (immortal only)."""
+        c = player.config.COLORS
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have access to save zones.{c['reset']}")
+            return
+
+        try:
+            zone_num = int(args[0]) if args else player.room.zone.number
+        except Exception:
+            await player.send(f"{c['yellow']}Usage: save <zone_number>{c['reset']}")
+            return
+
+        zone = player.world.zones.get(zone_num)
+        if not zone:
+            await player.send(f"{c['red']}Zone {zone_num} not found.{c['reset']}")
+            return
+
+        zones_dir = os.path.join(player.config.WORLD_DIR, 'zones')
+        os.makedirs(zones_dir, exist_ok=True)
+        filepath = os.path.join(zones_dir, f"zone_{zone_num:03d}.json")
+        with open(filepath, 'w') as f:
+            json.dump(zone.to_dict(), f, indent=2)
+        await player.send(f"{c['green']}Zone {zone_num} saved to {filepath}.{c['reset']}")
+
+    @classmethod
+    async def cmd_medit(cls, player: 'Player', args: List[str]):
+        """Online mob editor (immortal only)."""
+        c = player.config.COLORS
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have access to OLC.{c['reset']}")
+            return
+
+        if not args:
+            await player.send(f"{c['yellow']}Usage: medit <vnum>{c['reset']}")
+            return
+
+        try:
+            vnum = int(args[0])
+        except Exception:
+            await player.send(f"{c['yellow']}Usage: medit <vnum>{c['reset']}")
+            return
+
+        zone_num = vnum // 100
+        zone = player.world.zones.get(zone_num)
+        if not zone:
+            await player.send(f"{c['red']}Zone {zone_num} not found.{c['reset']}")
+            return
+
+        # Get or create mob prototype
+        mob = zone.mobs.get(str(vnum)) or zone.mobs.get(vnum)
+        if not mob:
+            mob = {
+                'vnum': vnum,
+                'name': 'new mob',
+                'short_desc': 'a new mob',
+                'long_desc': 'A new mob stands here.',
+                'description': '',
+                'level': 1,
+                'hp_dice': '1d10+10',
+                'damage_dice': '1d4+1',
+                'gold': 0,
+                'exp': 100,
+                'alignment': 0,
+                'flags': [],
+                'armor_class': 0
+            }
+            zone.mobs[str(vnum)] = mob
+            player.world.mob_prototypes[vnum] = mob
+
+        player.olc_state = {
+            'mode': 'medit',
+            'menu': 'main',
+            'mob': mob,
+            'vnum': vnum,
+            'zone': zone,
+            'buffer': []
+        }
+        await cls.show_medit_menu(player)
+
+    @classmethod
+    async def cmd_oedit(cls, player: 'Player', args: List[str]):
+        """Online object editor (immortal only)."""
+        c = player.config.COLORS
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have access to OLC.{c['reset']}")
+            return
+
+        if not args:
+            await player.send(f"{c['yellow']}Usage: oedit <vnum>{c['reset']}")
+            return
+
+        try:
+            vnum = int(args[0])
+        except Exception:
+            await player.send(f"{c['yellow']}Usage: oedit <vnum>{c['reset']}")
+            return
+
+        zone_num = vnum // 100
+        zone = player.world.zones.get(zone_num)
+        if not zone:
+            await player.send(f"{c['red']}Zone {zone_num} not found.{c['reset']}")
+            return
+
+        # Get or create object prototype
+        obj = zone.objects.get(str(vnum)) or zone.objects.get(vnum)
+        if not obj:
+            obj = {
+                'vnum': vnum,
+                'name': 'new object',
+                'short_desc': 'a new object',
+                'room_desc': 'A new object lies here.',
+                'description': '',
+                'item_type': 'trash',
+                'wear_slot': None,
+                'weight': 1,
+                'value': 0,
+                'flags': [],
+                'affects': []
+            }
+            zone.objects[str(vnum)] = obj
+            player.world.obj_prototypes[vnum] = obj
+
+        player.olc_state = {
+            'mode': 'oedit',
+            'menu': 'main',
+            'obj': obj,
+            'vnum': vnum,
+            'zone': zone,
+            'buffer': []
+        }
+        await cls.show_oedit_menu(player)
+
+    @classmethod
+    async def show_medit_menu(cls, player: 'Player'):
+        c = player.config.COLORS
+        state = player.olc_state
+        mob = state['mob']
+        await player.send(f"{c['cyan']}-- Mob Number   : [{mob.get('vnum')}]{c['reset']}")
+        await player.send(f"{c['white']}1){c['reset']} Keywords    : {mob.get('name', '')}")
+        await player.send(f"{c['white']}2){c['reset']} Short desc  : {mob.get('short_desc', '')}")
+        await player.send(f"{c['white']}3){c['reset']} Long desc   : {mob.get('long_desc', '')}")
+        await player.send(f"{c['white']}4){c['reset']} Description :")
+        await player.send(mob.get('description') or "(none)")
+        await player.send(f"{c['white']}5){c['reset']} Level       : {mob.get('level', 1)}")
+        await player.send(f"{c['white']}6){c['reset']} HP Dice     : {mob.get('hp_dice', '1d10+10')}")
+        await player.send(f"{c['white']}7){c['reset']} Damage Dice : {mob.get('damage_dice', '1d4+1')}")
+        await player.send(f"{c['white']}8){c['reset']} Armor Class : {mob.get('armor_class', 0)}")
+        await player.send(f"{c['white']}9){c['reset']} Gold        : {mob.get('gold', 0)}")
+        await player.send(f"{c['white']}A){c['reset']} Experience  : {mob.get('exp', 0)}")
+        await player.send(f"{c['white']}B){c['reset']} Alignment   : {mob.get('alignment', 0)}")
+        await player.send(f"{c['white']}C){c['reset']} Flags       : {' '.join(mob.get('flags', [])) or 'NOBITS'}")
+        await player.send(f"{c['white']}D){c['reset']} Boss Setup  : {'Yes' if mob.get('boss') else 'No'}")
+        await player.send(f"{c['white']}Q){c['reset']} Quit")
+        await player.send(f"{c['yellow']}Enter choice:{c['reset']}")
+
+    @classmethod
+    async def show_oedit_menu(cls, player: 'Player'):
+        c = player.config.COLORS
+        state = player.olc_state
+        obj = state['obj']
+        await player.send(f"{c['cyan']}-- Object Number: [{obj.get('vnum')}]{c['reset']}")
+        await player.send(f"{c['white']}1){c['reset']} Keywords    : {obj.get('name', '')}")
+        await player.send(f"{c['white']}2){c['reset']} Short desc  : {obj.get('short_desc', '')}")
+        await player.send(f"{c['white']}3){c['reset']} Room desc   : {obj.get('room_desc', '')}")
+        await player.send(f"{c['white']}4){c['reset']} Description :")
+        await player.send(obj.get('description') or "(none)")
+        await player.send(f"{c['white']}5){c['reset']} Item type   : {obj.get('item_type', 'trash')}")
+        await player.send(f"{c['white']}6){c['reset']} Wear slot   : {obj.get('wear_slot') or 'none'}")
+        await player.send(f"{c['white']}7){c['reset']} Weight      : {obj.get('weight', 1)}")
+        await player.send(f"{c['white']}8){c['reset']} Value       : {obj.get('value', 0)}")
+        await player.send(f"{c['white']}9){c['reset']} Flags       : {' '.join(obj.get('flags', [])) or 'NOBITS'}")
+        await player.send(f"{c['white']}A){c['reset']} Affects     : {len(obj.get('affects', []))} affects")
+        if obj.get('item_type') == 'weapon':
+            await player.send(f"{c['white']}B){c['reset']} Damage dice : {obj.get('damage_dice', '1d4')}")
+            await player.send(f"{c['white']}C){c['reset']} Weapon type : {obj.get('weapon_type', 'pound')}")
+        elif obj.get('item_type') == 'armor':
+            await player.send(f"{c['white']}B){c['reset']} Armor bonus : {obj.get('armor_bonus', 0)}")
+        elif obj.get('item_type') == 'container':
+            await player.send(f"{c['white']}B){c['reset']} Capacity    : {obj.get('capacity', 10)}")
+        await player.send(f"{c['white']}Q){c['reset']} Quit")
+        await player.send(f"{c['yellow']}Enter choice:{c['reset']}")
+
+    @classmethod
+    async def show_redit_menu(cls, player: 'Player'):
+        c = player.config.COLORS
+        state = player.olc_state
+        room = state['room']
+        await player.send(f"{c['cyan']}--Room Number   : [{room.vnum}]{c['reset']}")
+        await player.send(f"{c['white']}1){c['reset']} Name        : {room.name}")
+        await player.send(f"{c['white']}2){c['reset']} Description :")
+        await player.send(room.description or "(none)")
+        await player.send(f"{c['white']}3){c['reset']} Room flags  : {' '.join(sorted(room.flags)) if room.flags else 'NOBITS'}")
+        await player.send(f"{c['white']}4){c['reset']} Sector type : {room.sector_type}")
+        await player.send(f"{c['white']}5){c['reset']} Exit North  : {room.exits.get('north', {}).get('to_room', -1)}")
+        await player.send(f"{c['white']}6){c['reset']} Exit East   : {room.exits.get('east', {}).get('to_room', -1)}")
+        await player.send(f"{c['white']}7){c['reset']} Exit South  : {room.exits.get('south', {}).get('to_room', -1)}")
+        await player.send(f"{c['white']}8){c['reset']} Exit West   : {room.exits.get('west', {}).get('to_room', -1)}")
+        await player.send(f"{c['white']}9){c['reset']} Exit Up     : {room.exits.get('up', {}).get('to_room', -1)}")
+        await player.send(f"{c['white']}A){c['reset']} Exit Down   : {room.exits.get('down', {}).get('to_room', -1)}")
+        await player.send(f"{c['white']}B){c['reset']} Extra Descriptions")
+        await player.send(f"{c['white']}Q){c['reset']} Quit")
+        await player.send(f"{c['yellow']}Enter choice:{c['reset']}")
+
+    @classmethod
+    async def handle_olc_input(cls, player: 'Player', cmd: str, args: List[str]):
+        c = player.config.COLORS
+        state = player.olc_state
+        if not state:
+            player.olc_state = None
+            return
+
+        mode = state.get('mode')
+        if mode == 'medit':
+            await cls.handle_medit_input(player, cmd, args)
+            return
+        elif mode == 'oedit':
+            await cls.handle_oedit_input(player, cmd, args)
+            return
+        elif mode != 'redit':
+            player.olc_state = None
+            return
+
+        line = (cmd + (' ' + ' '.join(args) if args else '')).strip()
+        room = state['room']
+        menu = state['menu']
+
+        if menu == 'main':
+            choice = cmd.lower()
+            if choice == 'q':
+                player.olc_state = None
+                await player.send(f"{c['yellow']}OLC exited. Use 'save <zone>' to write changes.{c['reset']}")
+                return
+            if choice == 'save':
+                await cls.cmd_save(player, [])
+                return
+            if choice == '1':
+                state['menu'] = 'name'
+                await player.send(f"{c['yellow']}Room name:{c['reset']}")
+                return
+            if choice == '2':
+                state['menu'] = 'desc'
+                state['buffer'] = []
+                await player.send(f"{c['yellow']}Enter description, end with @:{c['reset']}")
+                return
+            if choice == '3':
+                state['menu'] = 'flags'
+                await player.send(f"{c['yellow']}Enter flag (dark/indoors/peaceful/deathtrap/nomob/notrack/nomagic/tunnel/private/soundproof) or 0 to done:{c['reset']}")
+                return
+            if choice == '4':
+                state['menu'] = 'sector'
+                await player.send(f"{c['yellow']}Sector type (inside/city/field/forest/hills/mountain/water_swim/water_noswim/underwater/flying):{c['reset']}")
+                return
+            if choice in ['5','6','7','8','9','a']:
+                dir_map = {'5':'north','6':'east','7':'south','8':'west','9':'up','a':'down'}
+                state['exit_dir'] = dir_map[choice]
+                state['menu'] = 'exit_to'
+                await player.send(f"{c['yellow']}Exit to room vnum (-1 to delete):{c['reset']}")
+                return
+            if choice == 'b':
+                state['menu'] = 'extra_key'
+                await player.send(f"{c['yellow']}Extra desc keywords:{c['reset']}")
+                return
+
+            await player.send(f"{c['yellow']}Invalid choice.{c['reset']}")
+            await cls.show_redit_menu(player)
+            return
+
+        if menu == 'name':
+            room.name = line if line else room.name
+            state['menu'] = 'main'
+            await cls.show_redit_menu(player)
+            return
+
+        if menu == 'desc':
+            if line == '@':
+                room.description = '\n'.join(state['buffer'])
+                state['menu'] = 'main'
+                await cls.show_redit_menu(player)
+            else:
+                state['buffer'].append(line)
+            return
+
+        if menu == 'flags':
+            if line in ['0','done']:
+                state['menu'] = 'main'
+                await cls.show_redit_menu(player)
+                return
+            flag = line.lower()
+            if flag == 'death':
+                flag = 'deathtrap'
+            if flag:
+                if flag in room.flags:
+                    room.flags.remove(flag)
+                else:
+                    room.flags.add(flag)
+            await player.send(f"{c['cyan']}Flags now: {' '.join(sorted(room.flags))}{c['reset']}")
+            await player.send(f"{c['yellow']}Enter flag (or 0 to done):{c['reset']}")
+            return
+
+        if menu == 'sector':
+            room.sector_type = line.lower()
+            state['menu'] = 'main'
+            await cls.show_redit_menu(player)
+            return
+
+        if menu == 'exit_to':
+            try:
+                to_vnum = int(line)
+            except Exception:
+                await player.send(f"{c['yellow']}Enter a valid vnum or -1.{c['reset']}")
+                return
+            dir_ = state['exit_dir']
+            if to_vnum == -1:
+                room.exits.pop(dir_, None)
+                state['menu'] = 'main'
+                await cls.show_redit_menu(player)
+                return
+            room.exits[dir_] = {'to_room': to_vnum, 'description': ''}
+            state['menu'] = 'exit_desc'
+            await player.send(f"{c['yellow']}Exit description (blank for none):{c['reset']}")
+            return
+
+        if menu == 'exit_desc':
+            dir_ = state['exit_dir']
+            room.exits[dir_]['description'] = line
+            state['menu'] = 'exit_door'
+            await player.send(f"{c['yellow']}Door? (y/n):{c['reset']}")
+            return
+
+        if menu == 'exit_door':
+            dir_ = state['exit_dir']
+            if line.lower().startswith('y'):
+                state['menu'] = 'exit_door_name'
+                await player.send(f"{c['yellow']}Door name:{c['reset']}")
+            else:
+                state['menu'] = 'exit_hidden'
+                await player.send(f"{c['yellow']}Hidden exit? (y/n):{c['reset']}")
+            return
+
+        if menu == 'exit_door_name':
+            dir_ = state['exit_dir']
+            room.exits[dir_]['door'] = {'name': line or 'door', 'state': 'closed', 'locked': False}
+            state['menu'] = 'exit_locked'
+            await player.send(f"{c['yellow']}Locked? (y/n):{c['reset']}")
+            return
+
+        if menu == 'exit_locked':
+            dir_ = state['exit_dir']
+            if line.lower().startswith('y'):
+                room.exits[dir_]['door']['locked'] = True
+                state['menu'] = 'exit_key'
+                await player.send(f"{c['yellow']}Key vnum (0 for none):{c['reset']}")
+            else:
+                state['menu'] = 'exit_hidden'
+                await player.send(f"{c['yellow']}Hidden exit? (y/n):{c['reset']}")
+            return
+
+        if menu == 'exit_key':
+            dir_ = state['exit_dir']
+            try:
+                key_vnum = int(line)
+            except Exception:
+                key_vnum = 0
+            if key_vnum:
+                room.exits[dir_]['door']['key_vnum'] = key_vnum
+            state['menu'] = 'exit_hidden'
+            await player.send(f"{c['yellow']}Hidden exit? (y/n):{c['reset']}")
+            return
+
+        if menu == 'exit_hidden':
+            dir_ = state['exit_dir']
+            if line.lower().startswith('y'):
+                room.exits[dir_]['hidden'] = True
+                room.exits[dir_]['secret'] = True
+                state['menu'] = 'exit_search'
+                await player.send(f"{c['yellow']}Search difficulty (e.g. 55):{c['reset']}")
+            else:
+                room.exits[dir_].pop('hidden', None)
+                room.exits[dir_].pop('secret', None)
+                room.exits[dir_].pop('search_difficulty', None)
+                player.world.link_exits()
+                state['menu'] = 'main'
+                await cls.show_redit_menu(player)
+            return
+
+        if menu == 'exit_search':
+            dir_ = state['exit_dir']
+            try:
+                sd = int(line)
+            except Exception:
+                sd = 55
+            room.exits[dir_]['search_difficulty'] = sd
+            player.world.link_exits()
+            state['menu'] = 'main'
+            await cls.show_redit_menu(player)
+            return
+
+        if menu == 'extra_key':
+            state['extra_key'] = line
+            state['buffer'] = []
+            state['menu'] = 'extra_desc'
+            await player.send(f"{c['yellow']}Extra description, end with @:{c['reset']}")
+            return
+
+        if menu == 'extra_desc':
+            if line == '@':
+                if state.get('extra_key'):
+                    room.extra_descs[state['extra_key']] = '\n'.join(state['buffer'])
+                state['menu'] = 'main'
+                await cls.show_redit_menu(player)
+            else:
+                state['buffer'].append(line)
+            return
+
+    @classmethod
+    async def handle_medit_input(cls, player: 'Player', cmd: str, args: List[str]):
+        """Handle medit menu input."""
+        c = player.config.COLORS
+        state = player.olc_state
+        line = (cmd + (' ' + ' '.join(args) if args else '')).strip()
+        mob = state['mob']
+        menu = state['menu']
+
+        if menu == 'main':
+            choice = cmd.lower()
+            if choice == 'q':
+                player.olc_state = None
+                await player.send(f"{c['yellow']}Medit exited. Use 'save <zone>' to write changes.{c['reset']}")
+                return
+            if choice == '1':
+                state['menu'] = 'name'
+                await player.send(f"{c['yellow']}Keywords (e.g. 'guard cityguard'):{c['reset']}")
+                return
+            if choice == '2':
+                state['menu'] = 'short'
+                await player.send(f"{c['yellow']}Short desc (e.g. 'a city guard'):{c['reset']}")
+                return
+            if choice == '3':
+                state['menu'] = 'long'
+                await player.send(f"{c['yellow']}Long desc (shown in room):{c['reset']}")
+                return
+            if choice == '4':
+                state['menu'] = 'desc'
+                state['buffer'] = []
+                await player.send(f"{c['yellow']}Description (end with @):{c['reset']}")
+                return
+            if choice == '5':
+                state['menu'] = 'level'
+                await player.send(f"{c['yellow']}Level (1-60):{c['reset']}")
+                return
+            if choice == '6':
+                state['menu'] = 'hp'
+                await player.send(f"{c['yellow']}HP dice (e.g. '10d10+100'):{c['reset']}")
+                return
+            if choice == '7':
+                state['menu'] = 'damage'
+                await player.send(f"{c['yellow']}Damage dice (e.g. '2d6+4'):{c['reset']}")
+                return
+            if choice == '8':
+                state['menu'] = 'ac'
+                await player.send(f"{c['yellow']}Armor class (-20 to 10, lower is better):{c['reset']}")
+                return
+            if choice == '9':
+                state['menu'] = 'gold'
+                await player.send(f"{c['yellow']}Gold dropped:{c['reset']}")
+                return
+            if choice == 'a':
+                state['menu'] = 'exp'
+                await player.send(f"{c['yellow']}Experience value:{c['reset']}")
+                return
+            if choice == 'b':
+                state['menu'] = 'align'
+                await player.send(f"{c['yellow']}Alignment (-1000 to 1000):{c['reset']}")
+                return
+            if choice == 'c':
+                state['menu'] = 'flags'
+                await player.send(f"{c['yellow']}Flags (aggressive/sentinel/helper/boss/slow_wander/stay_zone/wimpy/memory), 0 to done:{c['reset']}")
+                return
+            if choice == 'd':
+                state['menu'] = 'boss'
+                await player.send(f"{c['yellow']}Make boss? (y/n):{c['reset']}")
+                return
+            await player.send(f"{c['yellow']}Invalid choice.{c['reset']}")
+            await cls.show_medit_menu(player)
+            return
+
+        if menu == 'name':
+            mob['name'] = line
+            state['menu'] = 'main'
+            await cls.show_medit_menu(player)
+            return
+        if menu == 'short':
+            mob['short_desc'] = line
+            state['menu'] = 'main'
+            await cls.show_medit_menu(player)
+            return
+        if menu == 'long':
+            mob['long_desc'] = line
+            state['menu'] = 'main'
+            await cls.show_medit_menu(player)
+            return
+        if menu == 'desc':
+            if line == '@':
+                mob['description'] = '\n'.join(state['buffer'])
+                state['menu'] = 'main'
+                await cls.show_medit_menu(player)
+            else:
+                state['buffer'].append(line)
+            return
+        if menu == 'level':
+            try:
+                mob['level'] = max(1, min(60, int(line)))
+            except:
+                pass
+            state['menu'] = 'main'
+            await cls.show_medit_menu(player)
+            return
+        if menu == 'hp':
+            mob['hp_dice'] = line
+            state['menu'] = 'main'
+            await cls.show_medit_menu(player)
+            return
+        if menu == 'damage':
+            mob['damage_dice'] = line
+            state['menu'] = 'main'
+            await cls.show_medit_menu(player)
+            return
+        if menu == 'ac':
+            try:
+                mob['armor_class'] = int(line)
+            except:
+                pass
+            state['menu'] = 'main'
+            await cls.show_medit_menu(player)
+            return
+        if menu == 'gold':
+            try:
+                mob['gold'] = max(0, int(line))
+            except:
+                pass
+            state['menu'] = 'main'
+            await cls.show_medit_menu(player)
+            return
+        if menu == 'exp':
+            try:
+                mob['exp'] = max(0, int(line))
+            except:
+                pass
+            state['menu'] = 'main'
+            await cls.show_medit_menu(player)
+            return
+        if menu == 'align':
+            try:
+                mob['alignment'] = max(-1000, min(1000, int(line)))
+            except:
+                pass
+            state['menu'] = 'main'
+            await cls.show_medit_menu(player)
+            return
+        if menu == 'flags':
+            if line in ['0', 'done']:
+                state['menu'] = 'main'
+                await cls.show_medit_menu(player)
+                return
+            flag = line.lower()
+            flags = mob.get('flags', [])
+            if not isinstance(flags, list):
+                flags = list(flags)
+            if flag in flags:
+                flags.remove(flag)
+            else:
+                flags.append(flag)
+            mob['flags'] = flags
+            await player.send(f"{c['cyan']}Flags: {' '.join(flags)}{c['reset']}")
+            await player.send(f"{c['yellow']}Enter flag (or 0 to done):{c['reset']}")
+            return
+        if menu == 'boss':
+            if line.lower().startswith('y'):
+                mob['boss'] = True
+                mob['boss_id'] = mob.get('name', 'boss').replace(' ', '_')
+                state['menu'] = 'boss_loot'
+                await player.send(f"{c['yellow']}Boss loot chance % (0-100):{c['reset']}")
+            else:
+                mob['boss'] = False
+                state['menu'] = 'main'
+                await cls.show_medit_menu(player)
+            return
+        if menu == 'boss_loot':
+            try:
+                mob['boss_loot_chance'] = max(0, min(100, int(line)))
+            except:
+                mob['boss_loot_chance'] = 100
+            state['menu'] = 'main'
+            await cls.show_medit_menu(player)
+            return
+
+    @classmethod
+    async def handle_oedit_input(cls, player: 'Player', cmd: str, args: List[str]):
+        """Handle oedit menu input."""
+        c = player.config.COLORS
+        state = player.olc_state
+        line = (cmd + (' ' + ' '.join(args) if args else '')).strip()
+        obj = state['obj']
+        menu = state['menu']
+
+        if menu == 'main':
+            choice = cmd.lower()
+            if choice == 'q':
+                player.olc_state = None
+                await player.send(f"{c['yellow']}Oedit exited. Use 'save <zone>' to write changes.{c['reset']}")
+                return
+            if choice == '1':
+                state['menu'] = 'name'
+                await player.send(f"{c['yellow']}Keywords (e.g. 'sword longsword'):{c['reset']}")
+                return
+            if choice == '2':
+                state['menu'] = 'short'
+                await player.send(f"{c['yellow']}Short desc (e.g. 'a long sword'):{c['reset']}")
+                return
+            if choice == '3':
+                state['menu'] = 'room'
+                await player.send(f"{c['yellow']}Room desc (shown on ground):{c['reset']}")
+                return
+            if choice == '4':
+                state['menu'] = 'desc'
+                state['buffer'] = []
+                await player.send(f"{c['yellow']}Description (end with @):{c['reset']}")
+                return
+            if choice == '5':
+                state['menu'] = 'type'
+                await player.send(f"{c['yellow']}Item type (weapon/armor/container/key/food/drink/light/scroll/potion/trash):{c['reset']}")
+                return
+            if choice == '6':
+                state['menu'] = 'wear'
+                await player.send(f"{c['yellow']}Wear slot (head/neck1/neck2/body/arms/hands/waist/legs/feet/wield/hold/shield/about/finger1/finger2/wrist1/wrist2/back/shoulders/ears/face):{c['reset']}")
+                return
+            if choice == '7':
+                state['menu'] = 'weight'
+                await player.send(f"{c['yellow']}Weight:{c['reset']}")
+                return
+            if choice == '8':
+                state['menu'] = 'value'
+                await player.send(f"{c['yellow']}Value (gold):{c['reset']}")
+                return
+            if choice == '9':
+                state['menu'] = 'flags'
+                await player.send(f"{c['yellow']}Flags (magic/glow/hum/nodrop/norent/invisible/cursed/anti_good/anti_evil/anti_neutral), 0 to done:{c['reset']}")
+                return
+            if choice == 'a':
+                state['menu'] = 'affects'
+                state['affect_idx'] = 0
+                await player.send(f"{c['yellow']}Add affect type (str/dex/con/int/wis/cha/hitroll/damroll/hp/mana/move/ac/spell_power/heal_power), or 0 to done:{c['reset']}")
+                return
+            if choice == 'b':
+                if obj.get('item_type') == 'weapon':
+                    state['menu'] = 'damage'
+                    await player.send(f"{c['yellow']}Damage dice (e.g. '2d6'):{c['reset']}")
+                elif obj.get('item_type') == 'armor':
+                    state['menu'] = 'armor'
+                    await player.send(f"{c['yellow']}Armor bonus:{c['reset']}")
+                elif obj.get('item_type') == 'container':
+                    state['menu'] = 'capacity'
+                    await player.send(f"{c['yellow']}Capacity:{c['reset']}")
+                else:
+                    await player.send(f"{c['yellow']}N/A for this item type.{c['reset']}")
+                return
+            if choice == 'c' and obj.get('item_type') == 'weapon':
+                state['menu'] = 'weapontype'
+                await player.send(f"{c['yellow']}Weapon type (slash/pierce/pound/crush):{c['reset']}")
+                return
+            await player.send(f"{c['yellow']}Invalid choice.{c['reset']}")
+            await cls.show_oedit_menu(player)
+            return
+
+        if menu == 'name':
+            obj['name'] = line
+            state['menu'] = 'main'
+            await cls.show_oedit_menu(player)
+            return
+        if menu == 'short':
+            obj['short_desc'] = line
+            state['menu'] = 'main'
+            await cls.show_oedit_menu(player)
+            return
+        if menu == 'room':
+            obj['room_desc'] = line
+            state['menu'] = 'main'
+            await cls.show_oedit_menu(player)
+            return
+        if menu == 'desc':
+            if line == '@':
+                obj['description'] = '\n'.join(state['buffer'])
+                state['menu'] = 'main'
+                await cls.show_oedit_menu(player)
+            else:
+                state['buffer'].append(line)
+            return
+        if menu == 'type':
+            obj['item_type'] = line.lower()
+            state['menu'] = 'main'
+            await cls.show_oedit_menu(player)
+            return
+        if menu == 'wear':
+            obj['wear_slot'] = line.lower() if line.lower() != 'none' else None
+            state['menu'] = 'main'
+            await cls.show_oedit_menu(player)
+            return
+        if menu == 'weight':
+            try:
+                obj['weight'] = max(0, int(line))
+            except:
+                pass
+            state['menu'] = 'main'
+            await cls.show_oedit_menu(player)
+            return
+        if menu == 'value':
+            try:
+                obj['value'] = max(0, int(line))
+            except:
+                pass
+            state['menu'] = 'main'
+            await cls.show_oedit_menu(player)
+            return
+        if menu == 'flags':
+            if line in ['0', 'done']:
+                state['menu'] = 'main'
+                await cls.show_oedit_menu(player)
+                return
+            flag = line.lower()
+            flags = obj.get('flags', [])
+            if not isinstance(flags, list):
+                flags = list(flags)
+            if flag in flags:
+                flags.remove(flag)
+            else:
+                flags.append(flag)
+            obj['flags'] = flags
+            await player.send(f"{c['cyan']}Flags: {' '.join(flags)}{c['reset']}")
+            await player.send(f"{c['yellow']}Enter flag (or 0 to done):{c['reset']}")
+            return
+        if menu == 'affects':
+            if line in ['0', 'done']:
+                state['menu'] = 'main'
+                await cls.show_oedit_menu(player)
+                return
+            state['affect_type'] = line.lower()
+            state['menu'] = 'affect_value'
+            await player.send(f"{c['yellow']}Value for {line}:{c['reset']}")
+            return
+        if menu == 'affect_value':
+            try:
+                val = int(line)
+            except:
+                val = 0
+            affects = obj.get('affects', [])
+            if not isinstance(affects, list):
+                affects = []
+            affects.append({'type': state['affect_type'], 'value': val})
+            obj['affects'] = affects
+            state['menu'] = 'affects'
+            await player.send(f"{c['cyan']}Added {state['affect_type']} +{val}{c['reset']}")
+            await player.send(f"{c['yellow']}Add another affect type, or 0 to done:{c['reset']}")
+            return
+        if menu == 'damage':
+            obj['damage_dice'] = line
+            state['menu'] = 'main'
+            await cls.show_oedit_menu(player)
+            return
+        if menu == 'armor':
+            try:
+                obj['armor_bonus'] = int(line)
+            except:
+                pass
+            state['menu'] = 'main'
+            await cls.show_oedit_menu(player)
+            return
+        if menu == 'capacity':
+            try:
+                obj['capacity'] = max(1, int(line))
+            except:
+                pass
+            state['menu'] = 'main'
+            await cls.show_oedit_menu(player)
+            return
+        if menu == 'weapontype':
+            obj['weapon_type'] = line.lower()
+            state['menu'] = 'main'
+            await cls.show_oedit_menu(player)
+            return
+
+    @classmethod
+    async def cmd_dual_wield(cls, player: 'Player', args: List[str]):
+        """Wield a weapon in your off-hand (requires dual wield skill). Usage: dual_wield <weapon>"""
+        if not args:
+            await player.send("Dual wield what?")
+            return
+        if 'dual_wield' not in player.skills:
+            await player.send("You don't know how to dual wield.")
+            return
+        item_name = ' '.join(args).lower()
+        for item in player.inventory:
+            if item_name in item.name.lower():
+                if item.item_type != 'weapon':
+                    await player.send(f"You can't wield {item.short_desc}.")
+                    return
+                if player.equipment.get('dual_wield'):
+                    await player.send("You're already dual wielding.")
+                    return
+                name_l = (item.name + ' ' + item.short_desc).lower()
+                allowed_name = any(x in name_l for x in ['dagger', 'knife', 'stiletto', 'short sword', 'shortsword'])
+                if getattr(item, 'weapon_type', '') not in ('pierce', 'stab') and not allowed_name:
+                    await player.send("Off-hand weapons must be daggers, knives, or short swords.")
+                    return
+                player.inventory.remove(item)
+                player.equipment['dual_wield'] = item
+                await player.send(f"You off-hand {item.short_desc}.")
+                await player.room.send_to_room(
+                    f"{player.name} off-hands {item.short_desc}.",
+                    exclude=[player]
+                )
+                return
+        await player.send(f"You don't have '{item_name}'.")
 
     @classmethod
     async def cmd_backstab(cls, player: 'Player', args: List[str]):
@@ -938,45 +3743,40 @@ class CommandHandler:
                 await player.send(f"{c['red']}They aren't here.{c['reset']}")
                 return
 
-        # Skill check
-        import random
-        skill_level = player.skills['backstab']
+        import time, random, asyncio
+        from combat import CombatHandler
 
-        if random.randint(1, 100) > skill_level:
-            await player.send(f"{c['yellow']}You try to backstab {target.name} but fumble!{c['reset']}")
-            await player.room.send_to_room(
-                f"{player.name} tries to backstab {target.name} but fails!",
-                exclude=[player]
-            )
-            # Start combat anyway
-            from combat import CombatHandler
-            await CombatHandler.start_combat(player, target)
+        # Cooldown check
+        now = time.time()
+        cooldown_until = getattr(player, 'backstab_cooldown_until', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Backstab is on cooldown ({remaining}s).{c['reset']}")
             return
 
-        # Successful backstab - calculate massive damage
-        base_damage = random.randint(player.level, player.level * 3)
-        backstab_multiplier = 3 + (skill_level // 25)  # 3x to 6x damage
-        damage = base_damage * backstab_multiplier
+        # Wind-up time (1-4s) with spinner
+        windup = random.randint(1, 4)
+        spinner = ['|', '/', '-', '\\']
+        await player.send(f"{c['bright_black']}You size up your target...{c['reset']}")
+        for i in range(windup * 2):  # 0.5s ticks
+            # Abort if target leaves/you fight/move
+            if not player.room or target not in player.room.characters or player.is_fighting:
+                await player.send(f"{c['yellow']}You lose your opening.{c['reset']}")
+                return
+            glyph = spinner[i % 4]
+            await player.send(f"\r{c['bright_black']}Backstab {glyph}{c['reset']}", newline=False)
+            await asyncio.sleep(0.5)
+        await player.send("\r", newline=False)
 
-        await player.send(f"{c['bright_red']}You slip behind {target.name} and STAB them in the back!{c['reset']}")
-        await player.room.send_to_room(
-            f"{player.name} sneaks behind {target.name} and delivers a devastating backstab!",
-            exclude=[player, target]
-        )
+        # Set cooldown (short)
+        player.backstab_cooldown_until = time.time() + 6
 
-        if hasattr(target, 'send'):
-            await target.send(f"{c['bright_red']}{player.name} backstabs you!{c['reset']}")
+        # Attempt backstab using combat handler logic
+        success = await CombatHandler.do_backstab(player, target)
 
-        # Apply damage
-        await target.take_damage(damage, player)
-
-        # Improve skill
-        await player.improve_skill('backstab', difficulty=6)
-
-        # Start combat if target survived
-        if target.hp > 0:
-            from combat import CombatHandler
-            await CombatHandler.start_combat(player, target)
+        # Improve skill on successful backstab
+        if success:
+            await player.improve_skill('backstab', difficulty=6)
 
     # ==================== COMBAT ====================
 
@@ -1068,32 +3868,116 @@ class CommandHandler:
         await CombatHandler.attempt_flee(player)
         
     @classmethod
-    async def cmd_kick(cls, player: 'Player', args: List[str]):
-        """Kick skill."""
-        if 'kick' not in player.skills:
-            await player.send("You don't know how to kick!")
-            return
-            
+    async def cmd_dodge(cls, player: 'Player', args: List[str]):
+        """Attempt to dodge a telegraphed boss attack."""
         if not player.is_fighting:
             await player.send("You're not fighting anyone!")
             return
+
+        target = player.fighting
+        if not getattr(target, 'is_boss', False):
+            await player.send("You don't need to dodge right now.")
+            return
+
+        if not target.can_dodge():
+            await player.send("There's nothing to dodge yet!")
+            return
+
+        # Dodge chance based on skill and dex
+        import random
+        skill = player.skills.get('dodge', 0) if hasattr(player, 'skills') else 0
+        bonus = (player.dex - 10) * 2
+        chance = min(95, max(25, skill + bonus))
+
+        if random.randint(1, 100) <= chance:
+            target.mark_dodging(player)
+            await player.send("You prepare to dodge the incoming attack!")
+            if player.room:
+                await player.room.send_to_room(f"{player.name} braces to dodge.", exclude=[player])
+            if skill:
+                await player.improve_skill('dodge', difficulty=3)
+        else:
+            await player.send("You mistime your dodge!")
+
+    @classmethod
+    async def cmd_interrupt(cls, player: 'Player', args: List[str]):
+        """Attempt to interrupt a boss cast with bash or kick."""
+        if not player.is_fighting:
+            await player.send("You're not fighting anyone!")
+            return
+
+        target = player.fighting
+        if not getattr(target, 'is_boss', False):
+            await player.send("There's nothing to interrupt.")
+            return
+
+        if not target.can_interrupt():
+            await player.send("The boss isn't casting anything interruptible.")
+            return
+
+        if target.attempt_interrupt(player):
+            await player.send("You slam into the boss and break its cast!")
+            if player.room:
+                await player.room.send_to_room(
+                    f"{player.name} interrupts {target.name}'s casting!",
+                    exclude=[player]
+                )
+        else:
+            await player.send("You fail to interrupt the cast!")
+
+    @classmethod
+    async def cmd_kick(cls, player: 'Player', args: List[str]):
+        """Kick skill."""
+        c = player.config.COLORS
+        if 'kick' not in player.skills:
+            await player.send(f"{c['red']}You don't know how to kick!{c['reset']}")
+            return
+        
+        # Find target: args > fighting > pre-set target
+        target = None
+        if args:
+            target_name = ' '.join(args).lower()
+            target = player.find_target_in_room(target_name)
+            if not target:
+                await player.send(f"{c['red']}You don't see '{args[0]}' here.{c['reset']}")
+                return
+        elif hasattr(player, 'target') and player.target and player.target in player.room.characters:
+            target = player.target
+        elif player.is_fighting:
+            target = player.fighting
+        else:
+            await player.send(f"{c['yellow']}Kick whom? (Use 'target <name>' to set a target){c['reset']}")
+            return
             
         from combat import CombatHandler
-        await CombatHandler.do_kick(player)
+        await CombatHandler.do_kick(player, target)
         
     @classmethod
     async def cmd_bash(cls, player: 'Player', args: List[str]):
         """Bash skill."""
+        c = player.config.COLORS
         if 'bash' not in player.skills:
-            await player.send("You don't know how to bash!")
+            await player.send(f"{c['red']}You don't know how to bash!{c['reset']}")
             return
-            
-        if not player.is_fighting:
-            await player.send("You're not fighting anyone!")
+        
+        # Find target: args > pre-set target > fighting
+        target = None
+        if args:
+            target_name = ' '.join(args).lower()
+            target = player.find_target_in_room(target_name)
+            if not target:
+                await player.send(f"{c['red']}You don't see '{args[0]}' here.{c['reset']}")
+                return
+        elif hasattr(player, 'target') and player.target and player.target in player.room.characters:
+            target = player.target
+        elif player.is_fighting:
+            target = player.fighting
+        else:
+            await player.send(f"{c['yellow']}Bash whom? (Use 'target <name>' to set a target){c['reset']}")
             return
             
         from combat import CombatHandler
-        await CombatHandler.do_bash(player)
+        await CombatHandler.do_bash(player, target)
 
 
     @classmethod
@@ -1121,13 +4005,8 @@ class CommandHandler:
             await player.send("Assassinate whom?")
             return
 
-        target_name = ' '.join(args).lower()
-        target = None
-
-        for char in player.room.characters:
-            if char != player and target_name in char.name.lower():
-                target = char
-                break
+        target_name = ' '.join(args)
+        target = player.find_target_in_room(target_name)
 
         if not target:
             await player.send(f"You don't see '{target_name}' here.")
@@ -1151,13 +4030,8 @@ class CommandHandler:
             await player.send("Garrote whom?")
             return
 
-        target_name = ' '.join(args).lower()
-        target = None
-
-        for char in player.room.characters:
-            if char != player and target_name in char.name.lower():
-                target = char
-                break
+        target_name = ' '.join(args)
+        target = player.find_target_in_room(target_name)
 
         if not target:
             await player.send(f"You don't see '{target_name}' here.")
@@ -1181,22 +4055,19 @@ class CommandHandler:
             await player.send("Shadow step to whom?")
             return
 
-        target_name = ' '.join(args).lower()
-        target = None
-
+        target_name = ' '.join(args)
+        
         # Can shadow step to anyone in the room or nearby rooms
-        for char in player.room.characters:
-            if char != player and target_name in char.name.lower():
-                target = char
-                break
+        target = player.find_target_in_room(target_name)
 
         # Check adjacent rooms if no target in current room
         if not target:
+            target_lower = target_name.lower()
             for direction, exit_info in player.room.exits.items():
                 if exit_info and exit_info.get('room'):
                     adj_room = exit_info['room']
                     for char in adj_room.characters:
-                        if target_name in char.name.lower():
+                        if target_lower in char.name.lower():
                             target = char
                             break
                     if target:
@@ -1220,13 +4091,8 @@ class CommandHandler:
             await player.send("Mark whom for death?")
             return
 
-        target_name = ' '.join(args).lower()
-        target = None
-
-        for char in player.room.characters:
-            if char != player and target_name in char.name.lower():
-                target = char
-                break
+        target_name = ' '.join(args)
+        target = player.find_target_in_room(target_name)
 
         if not target:
             await player.send(f"You don't see '{target_name}' here.")
@@ -1246,38 +4112,63 @@ class CommandHandler:
             await player.send("Cast what spell?")
             return
 
-        # Join all args to handle quoted spell names
-        full_args = ' '.join(args)
-
-        # Remove quotes if present
-        full_args = full_args.replace("'", "").replace('"', '')
-
-        # Split into spell name and target
-        parts = full_args.split(' ', 1)
-        spell_input = parts[0].lower()
-        target_name = parts[1] if len(parts) > 1 else None
-
         # Check if player has any spells
         if not player.spells:
             await player.send(f"{c['red']}You don't know any spells!{c['reset']}")
             return
 
-        # Find matching spell - convert spaces to underscores for matching
-        spell_search = spell_input.replace(' ', '_')
-        matching_spell = None
+        # Join all args to handle quoted spell names
+        full_args = ' '.join(args)
 
-        for spell_key in player.spells:
-            # Match by exact name or prefix
-            if spell_key == spell_search or spell_key.startswith(spell_search):
-                matching_spell = spell_key
+        # Remove quotes if present
+        full_args = full_args.replace("'", "").replace('"', '').strip()
+        
+        # Safety check for empty input after quote removal
+        if not full_args:
+            await player.send("Cast what spell?")
+            return
+        
+        # Smart spell matching: try progressively longer spell names
+        # This handles "animate dead knight" -> spell="animate_dead", target="knight"
+        words = full_args.lower().split()
+        if not words:
+            await player.send("Cast what spell?")
+            return
+            
+        matching_spell = None
+        target_name = None
+        
+        # Try matching 1 word, 2 words, 3 words as the spell name
+        for num_words in range(1, min(4, len(words) + 1)):
+            spell_try = '_'.join(words[:num_words])
+            
+            # Check exact match first
+            if spell_try in player.spells:
+                matching_spell = spell_try
+                target_name = ' '.join(words[num_words:]) if num_words < len(words) else None
                 break
-            # Also try matching the display name
-            if spell_key.replace('_', ' ') == spell_input or spell_key.replace('_', ' ').startswith(spell_input):
-                matching_spell = spell_key
+            
+            # Check prefix match
+            for spell_key in player.spells:
+                if spell_key.startswith(spell_try):
+                    matching_spell = spell_key
+                    target_name = ' '.join(words[num_words:]) if num_words < len(words) else None
+                    break
+            
+            if matching_spell:
                 break
 
         if not matching_spell:
-            await player.send(f"{c['red']}You don't know the spell '{spell_input}'!{c['reset']}")
+            # Fall back to simple first-word matching
+            spell_input = words[0]
+            for spell_key in player.spells:
+                if spell_key == spell_input or spell_key.startswith(spell_input):
+                    matching_spell = spell_key
+                    target_name = ' '.join(words[1:]) if len(words) > 1 else None
+                    break
+
+        if not matching_spell:
+            await player.send(f"{c['red']}You don't know the spell '{words[0]}'!{c['reset']}")
             await player.send(f"{c['cyan']}Type 'spells' to see your known spells.{c['reset']}")
             return
 
@@ -1293,96 +4184,2531 @@ class CommandHandler:
             await player.send("You don't know any spells.")
             return
             
-        await player.send(f"{c['cyan']}╔═══════════════════════════════════════╗{c['reset']}")
-        await player.send(f"{c['cyan']}║{c['bright_yellow']}        Your Known Spells              {c['cyan']}║{c['reset']}")
-        await player.send(f"{c['cyan']}╠═══════════════════════════════════════╣{c['reset']}")
+        use_ascii = getattr(player, 'ascii_ui', False)
+        if use_ascii:
+            await player.send(f"{c['cyan']}+---------------------------------------+{c['reset']}")
+            await player.send(f"{c['cyan']}|{c['bright_yellow']}        Your Known Spells              {c['cyan']}|{c['reset']}")
+            await player.send(f"{c['cyan']}+---------------------------------------+{c['reset']}")
+        else:
+            await player.send(f"{c['cyan']}╔═══════════════════════════════════════╗{c['reset']}")
+            await player.send(f"{c['cyan']}║{c['bright_yellow']}        Your Known Spells              {c['cyan']}║{c['reset']}")
+            await player.send(f"{c['cyan']}╠═══════════════════════════════════════╣{c['reset']}")
         
         for spell, proficiency in player.spells.items():
             spell_name = spell.replace('_', ' ').title()
             from spells import SPELLS
             spell_info = SPELLS.get(spell, {})
             mana_cost = spell_info.get('mana_cost', 10)
-            await player.send(f"{c['cyan']}║ {c['bright_magenta']}{spell_name:<20} {c['white']}Mana: {mana_cost:<3} {proficiency}%{c['cyan']}  ║{c['reset']}")
+            if use_ascii:
+                await player.send(f"{c['cyan']}| {c['bright_magenta']}{spell_name:<20} {c['white']}Mana: {mana_cost:<3} {proficiency}%{c['cyan']}  |{c['reset']}")
+            else:
+                await player.send(f"{c['cyan']}║ {c['bright_magenta']}{spell_name:<20} {c['white']}Mana: {mana_cost:<3} {proficiency}%{c['cyan']}  ║{c['reset']}")
             
-        await player.send(f"{c['cyan']}╚═══════════════════════════════════════╝{c['reset']}")
+        if use_ascii:
+            await player.send(f"{c['cyan']}+---------------------------------------+{c['reset']}")
+        else:
+            await player.send(f"{c['cyan']}╚═══════════════════════════════════════╝{c['reset']}")
         
     @classmethod
+    async def cmd_ascii(cls, player: 'Player', args: List[str]):
+        """Toggle ASCII-only UI (no box-drawing characters). Usage: ascii [on|off]"""
+        c = player.config.COLORS
+        if args:
+            arg = args[0].lower()
+            if arg in ('on', 'true', 'yes'):
+                player.ascii_ui = True
+            elif arg in ('off', 'false', 'no'):
+                player.ascii_ui = False
+            else:
+                await player.send(f"{c['yellow']}Usage: ascii [on|off]{c['reset']}")
+                return
+        else:
+            player.ascii_ui = not getattr(player, 'ascii_ui', False)
+        state = 'ON' if player.ascii_ui else 'OFF'
+        await player.send(f"{c['cyan']}ASCII UI is now {state}.{c['reset']}")
+
+    @classmethod
     async def cmd_skills(cls, player: 'Player', args: List[str]):
-        """Show known skills."""
+        """Show all skills and spells available to your class, or pet abilities."""
         c = player.config.COLORS
         
-        if not player.skills:
-            await player.send("You don't know any skills.")
-            return
-            
-        await player.send(f"{c['cyan']}╔═══════════════════════════════════════╗{c['reset']}")
-        await player.send(f"{c['cyan']}║{c['bright_yellow']}        Your Known Skills              {c['cyan']}║{c['reset']}")
-        await player.send(f"{c['cyan']}╠═══════════════════════════════════════╣{c['reset']}")
+        # Check if user wants to see pet skills
+        if args:
+            pet_arg = args[0].lower()
+            pet_map = {
+                'knight': 'undead_warrior', 'warrior': 'undead_warrior', 'bone': 'undead_warrior',
+                'wraith': 'undead_healer', 'healer': 'undead_healer',
+                'lich': 'undead_caster', 'caster': 'undead_caster', 'mage': 'undead_caster',
+                'stalker': 'undead_rogue', 'rogue': 'undead_rogue', 'shadow': 'undead_rogue',
+                'air': 'air_elemental', 'fire': 'fire_elemental', 'water': 'water_elemental', 'earth': 'earth_elemental',
+                'wolf': 'wolf', 'bear': 'bear', 'hawk': 'hawk', 'cat': 'panther',
+            }
+            if pet_arg in pet_map:
+                await cls._show_pet_skills(player, pet_map[pet_arg])
+                return
         
-        for skill, proficiency in player.skills.items():
-            skill_name = skill.replace('_', ' ').title()
-            await player.send(f"{c['cyan']}║ {c['bright_green']}{skill_name:<25} {c['white']}{proficiency}%{c['cyan']}       ║{c['reset']}")
+        # ASCII mode support
+        use_ascii = getattr(player, 'ascii_ui', False)
+        if use_ascii:
+            TL, TR, BL, BR = '+', '+', '+', '+'
+            H, V = '-', '|'
+            LT, RT = '+', '+'
+            BAR_FULL, BAR_EMPTY = '#', '.'
+        else:
+            TL, TR, BL, BR = '╔', '╗', '╚', '╝'
+            H, V = '═', '║'
+            LT, RT = '╠', '╣'
+            BAR_FULL, BAR_EMPTY = '█', '░'
+        
+        W = 64
+        
+        # Get class data
+        class_data = player.config.CLASSES.get(player.char_class.lower(), {})
+        class_skills = class_data.get('skills', [])
+        class_spells = class_data.get('spells', [])
+        
+        await player.send(f"{c['cyan']}{TL}{H*W}{TR}{c['reset']}")
+        await player.send(f"{c['cyan']}{V}{c['bright_yellow']}  {player.char_class.upper()} SKILLS & SPELLS                              {c['cyan']}{V}{c['reset']}")
+        await player.send(f"{c['cyan']}{LT}{H*W}{RT}{c['reset']}")
+        await player.send(f"{c['cyan']}{V} {c['white']}Practice sessions: {c['bright_green']}{player.practices}{c['cyan']}                                      {V}{c['reset']}")
+        await player.send(f"{c['cyan']}{LT}{H*W}{RT}{c['reset']}")
+        
+        # Skills section
+        await player.send(f"{c['cyan']}{V} {c['bright_yellow']}SKILLS:{c['cyan']}                                                     {V}{c['reset']}")
+        if class_skills:
+            for skill in class_skills:
+                prof = player.skills.get(skill, 0)
+                skill_name = skill.replace('_', ' ').title()
+                if prof > 0:
+                    bar = BAR_FULL * (prof // 10) + BAR_EMPTY * (10 - prof // 10)
+                    await player.send(f"{c['cyan']}{V}   {c['bright_green']}{skill_name:<20} {c['white']}[{bar}] {prof:>3}%{c['cyan']}          {V}{c['reset']}")
+                else:
+                    await player.send(f"{c['cyan']}{V}   {c['white']}{skill_name:<20} {c['yellow']}[not learned]{c['cyan']}                 {V}{c['reset']}")
+        else:
+            await player.send(f"{c['cyan']}{V}   {c['white']}(none){c['cyan']}                                                  {V}{c['reset']}")
+        
+        await player.send(f"{c['cyan']}{LT}{H*W}{RT}{c['reset']}")
+        
+        # Spells section
+        await player.send(f"{c['cyan']}{V} {c['bright_yellow']}SPELLS:{c['cyan']}                                                     {V}{c['reset']}")
+        if class_spells:
+            for spell in class_spells:
+                prof = player.spells.get(spell, 0)
+                spell_name = spell.replace('_', ' ').title()
+                if prof > 0:
+                    bar = BAR_FULL * (prof // 10) + BAR_EMPTY * (10 - prof // 10)
+                    await player.send(f"{c['cyan']}{V}   {c['bright_magenta']}{spell_name:<20} {c['white']}[{bar}] {prof:>3}%{c['cyan']}          {V}{c['reset']}")
+                else:
+                    await player.send(f"{c['cyan']}{V}   {c['white']}{spell_name:<20} {c['yellow']}[not learned]{c['cyan']}                 {V}{c['reset']}")
+        else:
+            await player.send(f"{c['cyan']}{V}   {c['white']}(none){c['cyan']}                                                  {V}{c['reset']}")
+        
+        await player.send(f"{c['cyan']}{LT}{H*W}{RT}{c['reset']}")
+        await player.send(f"{c['cyan']}{V} {c['white']}Find a trainer to practice and improve your abilities!{c['cyan']}      {V}{c['reset']}")
+        await player.send(f"{c['cyan']}{BL}{H*W}{BR}{c['reset']}")
+
+    @classmethod
+    async def _show_pet_skills(cls, player: 'Player', template_name: str):
+        """Show abilities for a pet type."""
+        c = player.config.COLORS
+        from pets import PET_TEMPLATES
+        
+        template = PET_TEMPLATES.get(template_name)
+        if not template:
+            await player.send(f"{c['red']}Unknown pet type.{c['reset']}")
+            return
+        
+        use_ascii = getattr(player, 'ascii_ui', False)
+        if use_ascii:
+            TL, TR, BL, BR = '+', '+', '+', '+'
+            H, V = '-', '|'
+            LT, RT = '+', '+'
+        else:
+            TL, TR, BL, BR = '╔', '╗', '╚', '╝'
+            H, V = '═', '║'
+            LT, RT = '╠', '╣'
+        
+        W = 50
+        name = template.get('name', template_name).upper()
+        role = template.get('role', 'companion').title()
+        pet_type = template.get('pet_type', 'summon').title()
+        abilities = template.get('special_abilities', [])
+        duration = template.get('duration', 3600) // 60  # minutes
+        hp_dice = template.get('hp_dice', '?')
+        damage_dice = template.get('damage_dice', '?')
+        level_mult = template.get('level_mult', 1.0)
+        
+        await player.send(f"{c['cyan']}{TL}{H*W}{TR}{c['reset']}")
+        await player.send(f"{c['cyan']}{V}{c['bright_magenta']}  {name:<46} {c['cyan']}{V}{c['reset']}")
+        await player.send(f"{c['cyan']}{LT}{H*W}{RT}{c['reset']}")
+        await player.send(f"{c['cyan']}{V} {c['white']}Type: {c['yellow']}{pet_type:<15} {c['white']}Role: {c['yellow']}{role:<15}{c['cyan']} {V}{c['reset']}")
+        await player.send(f"{c['cyan']}{V} {c['white']}Level: {c['green']}{int(level_mult*100)}% of yours   {c['white']}Duration: {c['green']}{duration} min{c['cyan']}        {V}{c['reset']}")
+        await player.send(f"{c['cyan']}{V} {c['white']}HP: {c['green']}{hp_dice:<12} {c['white']}Damage: {c['green']}{damage_dice:<12}{c['cyan']}    {V}{c['reset']}")
+        await player.send(f"{c['cyan']}{LT}{H*W}{RT}{c['reset']}")
+        await player.send(f"{c['cyan']}{V} {c['bright_yellow']}ABILITIES:{c['cyan']}                                       {V}{c['reset']}")
+        
+        # Ability descriptions
+        ability_info = {
+            'undead': ('Undead', 'Immune to poison, disease, and fear'),
+            'shield_wall': ('Shield Wall', 'Reduces incoming damage, taunts enemies'),
+            'dark_heal': ('Dark Heal', 'Heals owner using dark magic'),
+            'necrotic_bolt': ('Necrotic Bolt', 'Ranged magic attack dealing shadow damage'),
+            'backstab': ('Backstab', 'High damage sneak attack from shadows'),
+            'whirlwind': ('Whirlwind', 'Area attack hitting all enemies'),
+            'fly': ('Flying', 'Can fly over obstacles'),
+            'fire_breath': ('Fire Breath', 'Cone of fire damage'),
+            'immolate': ('Immolate', 'Burns enemies that attack'),
+            'tidal_wave': ('Tidal Wave', 'Knockback water attack'),
+            'healing_mist': ('Healing Mist', 'Heals allies in the area'),
+            'earthquake': ('Earthquake', 'Stuns and damages all enemies'),
+            'stone_skin': ('Stone Skin', 'Greatly increased defense'),
+            'howl': ('Howl', 'Buffs attack speed'),
+            'pack_tactics': ('Pack Tactics', 'Bonus damage when owner is fighting'),
+            'maul': ('Maul', 'Heavy damage with stun chance'),
+            'thick_hide': ('Thick Hide', 'Damage reduction'),
+            'dive': ('Dive', 'Aerial attack with bonus damage'),
+            'scout': ('Scout', 'Can scout ahead, reveals hidden enemies'),
+            'pounce': ('Pounce', 'Leaps at target for opening attack'),
+            'stealth': ('Stealth', 'Sneaks alongside owner'),
+        }
+        
+        if abilities:
+            for ability in abilities:
+                info = ability_info.get(ability, (ability.replace('_', ' ').title(), 'Special ability'))
+                await player.send(f"{c['cyan']}{V}   {c['bright_green']}{info[0]:<15} {c['white']}{info[1]:<30}{c['cyan']}{V}{c['reset']}")
+        else:
+            await player.send(f"{c['cyan']}{V}   {c['white']}(no special abilities){c['cyan']}                      {V}{c['reset']}")
+        
+        await player.send(f"{c['cyan']}{BL}{H*W}{BR}{c['reset']}")
+        
+        # Show how to summon
+        if template.get('pet_type') == 'undead':
+            themed_name = {'undead_warrior': 'knight', 'undead_healer': 'wraith', 'undead_caster': 'lich', 'undead_rogue': 'stalker'}.get(template_name, template_name)
+            await player.send(f"{c['yellow']}Summon with: raise {themed_name}{c['reset']}")
+        elif 'elemental' in template_name:
+            elem = template_name.split('_')[0]
+            await player.send(f"{c['yellow']}Summon with: cast summon {elem}{c['reset']}")
+        elif template_name in ('wolf', 'bear', 'hawk', 'panther'):
+            await player.send(f"{c['yellow']}Tame with: tame {template_name}{c['reset']}")
+
+    @classmethod
+    async def cmd_skill(cls, player: 'Player', args: List[str]):
+        """Alias for skills command."""
+        await cls.cmd_skills(player, args)
+    
+    @classmethod
+    async def cmd_talents(cls, player: 'Player', args: List[str]):
+        """View and spend talent points.
+        
+        Usage:
+            talents           - Show all talent trees
+            talents <tree>    - Show specific tree (e.g., 'talents fury')
+            talents learn <id> - Learn/rank up a talent
+            talents reset     - Reset all talents (costs gold)
+        """
+        from talents import TalentManager, CLASS_TALENT_TREES
+        
+        c = player.config.COLORS
+        char_class = (getattr(player, 'char_class', 'warrior') or 'warrior').lower()
+        trees = CLASS_TALENT_TREES.get(char_class, [])
+        
+        if not trees:
+            await player.send(f"{c['red']}No talent trees defined for your class.{c['reset']}")
+            return
+        
+        # Ensure player has talents dict
+        if not hasattr(player, 'talents'):
+            player.talents = {}
+        
+        sub = args[0].lower() if args else None
+        
+        # Learn a talent
+        if sub == 'learn' and len(args) > 1:
+            talent_id = args[1].lower()
+            await TalentManager.learn_talent(player, talent_id)
+            return
+        
+        # Reset talents
+        if sub == 'reset':
+            cost = player.level * 100
+            if player.gold < cost:
+                await player.send(f"{c['red']}Talent reset costs {cost} gold. You only have {player.gold}.{c['reset']}")
+                return
+            player.gold -= cost
+            player.talents = {}
+            await player.send(f"{c['bright_yellow']}Your talents have been reset! Paid {cost} gold.{c['reset']}")
+            return
+        
+        # Show specific tree
+        if sub:
+            for tree in trees:
+                if tree['name'].lower() == sub.lower():
+                    await cls._show_talent_tree(player, tree)
+                    return
+            await player.send(f"{c['red']}Unknown tree. Your trees: {', '.join(t['name'] for t in trees)}{c['reset']}")
+            return
+        
+        # Show overview of all trees
+        total_pts = TalentManager.get_talent_points(player)
+        spent_pts = TalentManager.get_spent_points(player)
+        avail_pts = total_pts - spent_pts
+        
+        await player.send(f"\r\n{c['bright_yellow']}╔══════════════════════════════════════════════════════════════╗{c['reset']}")
+        await player.send(f"{c['bright_yellow']}║{c['white']}            ★ {char_class.upper()} TALENT TREES ★                      {c['bright_yellow']}║{c['reset']}")
+        await player.send(f"{c['bright_yellow']}╠══════════════════════════════════════════════════════════════╣{c['reset']}")
+        await player.send(f"{c['bright_yellow']}║{c['reset']}  Talent Points: {c['bright_green']}{avail_pts}{c['reset']} available / {c['cyan']}{spent_pts}{c['reset']} spent / {c['white']}{total_pts}{c['reset']} total      {c['bright_yellow']}║{c['reset']}")
+        await player.send(f"{c['bright_yellow']}╠══════════════════════════════════════════════════════════════╣{c['reset']}")
+        
+        for tree in trees:
+            icon = tree.get('icon', '★')
+            name = tree['name']
+            desc = tree['description'][:45]
+            tree_pts = TalentManager.get_tree_points(player, name)
             
-        await player.send(f"{c['cyan']}╚═══════════════════════════════════════╝{c['reset']}")
+            await player.send(f"{c['bright_yellow']}║{c['reset']}                                                              {c['bright_yellow']}║{c['reset']}")
+            await player.send(f"{c['bright_yellow']}║{c['reset']}  {icon} {c['bright_cyan']}{name:<15}{c['reset']} ({tree_pts} points)                        {c['bright_yellow']}║{c['reset']}")
+            await player.send(f"{c['bright_yellow']}║{c['reset']}    {c['white']}{desc:<55}{c['reset']} {c['bright_yellow']}║{c['reset']}")
+        
+        await player.send(f"{c['bright_yellow']}║{c['reset']}                                                              {c['bright_yellow']}║{c['reset']}")
+        await player.send(f"{c['bright_yellow']}╚══════════════════════════════════════════════════════════════╝{c['reset']}")
+        await player.send(f"{c['cyan']}  Commands: talents <tree> | talents learn <id> | talents reset{c['reset']}\r\n")
+    
+    @classmethod
+    async def _show_talent_tree(cls, player: 'Player', tree: dict):
+        """Show a single talent tree in detail."""
+        from talents import TalentManager
+        
+        c = player.config.COLORS
+        name = tree['name']
+        icon = tree.get('icon', '★')
+        desc = tree['description']
+        talents = tree['talents']
+        tree_pts = TalentManager.get_tree_points(player, name)
+        player_talents = getattr(player, 'talents', {})
+        
+        # Box width: 64 inner chars
+        W = 62
+        def pad(text, width=W):
+            """Pad text to width, accounting for ANSI codes."""
+            import re
+            visible = re.sub(r'\x1b\[[0-9;]*m', '', text)
+            return text + ' ' * (width - len(visible))
+        
+        header = f"  {icon} {name.upper()} TALENTS"
+        await player.send(f"\r\n{c['bright_cyan']}╔{'═'*W}╗{c['reset']}")
+        await player.send(f"{c['bright_cyan']}║{c['white']}{pad(header)}{c['bright_cyan']}║{c['reset']}")
+        await player.send(f"{c['bright_cyan']}╠{'═'*W}╣{c['reset']}")
+        await player.send(f"{c['bright_cyan']}║{c['reset']}{pad('  ' + desc[:58])}{c['bright_cyan']}║{c['reset']}")
+        pts_line = f"  Points in tree: {c['bright_green']}{tree_pts}{c['reset']}"
+        await player.send(f"{c['bright_cyan']}║{c['reset']}{pad(pts_line)}{c['bright_cyan']}║{c['reset']}")
+        await player.send(f"{c['bright_cyan']}╠{'═'*W}╣{c['reset']}")
+        
+        # Group by tier
+        tiers = {}
+        for tid, talent in talents.items():
+            tier = talent.tier
+            if tier not in tiers:
+                tiers[tier] = []
+            tiers[tier].append((tid, talent))
+        
+        for tier in sorted(tiers.keys()):
+            req_pts = (tier - 1) * 5
+            unlocked = tree_pts >= req_pts
+            tier_color = c['bright_green'] if unlocked else c['red']
+            await player.send(f"{c['bright_cyan']}║{' '*W}║{c['reset']}")
+            tier_line = f"  {tier_color}━━━ TIER {tier} ({req_pts}+ points) ━━━{c['reset']}"
+            await player.send(f"{c['bright_cyan']}║{c['reset']}{pad(tier_line)}{c['bright_cyan']}║{c['reset']}")
+            
+            for tid, talent in tiers[tier]:
+                cur_rank = player_talents.get(tid, 0)
+                max_rank = talent.max_rank
+                
+                # Status indicator
+                if cur_rank >= max_rank:
+                    status = f"{c['bright_green']}[MAX]{c['reset']}"
+                elif cur_rank > 0:
+                    status = f"{c['yellow']}[{cur_rank}/{max_rank}]{c['reset']}"
+                elif unlocked:
+                    can_learn, _ = TalentManager.can_learn_talent(player, tid)
+                    if can_learn:
+                        status = f"{c['cyan']}[READY]{c['reset']}"
+                    else:
+                        status = f"{c['white']}[0/{max_rank}]{c['reset']}"
+                else:
+                    status = f"{c['red']}[LOCKED]{c['reset']}"
+                
+                name_line = f"    {c['white']}{talent.name}{c['reset']} {status}"
+                await player.send(f"{c['bright_cyan']}║{c['reset']}{pad(name_line)}{c['bright_cyan']}║{c['reset']}")
+                
+                # Description (truncated)
+                desc_line = f"      {c['cyan']}{talent.description[:52]}{c['reset']}"
+                await player.send(f"{c['bright_cyan']}║{c['reset']}{pad(desc_line)}{c['bright_cyan']}║{c['reset']}")
+                id_line = f"      {c['yellow']}ID: {tid}{c['reset']}"
+                await player.send(f"{c['bright_cyan']}║{c['reset']}{pad(id_line)}{c['bright_cyan']}║{c['reset']}")
+        
+        await player.send(f"{c['bright_cyan']}║{' '*W}║{c['reset']}")
+        await player.send(f"{c['bright_cyan']}╚{'═'*W}╝{c['reset']}")
+        await player.send(f"{c['yellow']}  Use 'talents learn <id>' to learn a talent.{c['reset']}\r\n")
         
     @classmethod
     async def cmd_practice(cls, player: 'Player', args: List[str]):
-        """Practice skills/spells - must be at a guild master or trainer."""
+        """Practice skills/spells - must be at a guild master for your class."""
         c = player.config.COLORS
 
-        # Check for trainer/guildmaster in room
-        has_trainer = False
+        # Check for trainer/guildmaster in room that trains player's class
+        trainer = None
+        any_trainer = False
         from mobs import Mobile
         if player.room:
             for char in player.room.characters:
                 if isinstance(char, Mobile) and char.special in ('trainer', 'guildmaster'):
-                    has_trainer = True
-                    break
+                    any_trainer = True
+                    # Check if this trainer teaches the player's class
+                    trains_class = getattr(char, 'trains_class', None)
+                    if trains_class:
+                        allowed = [t.strip().lower() for t in trains_class.split(',') if t.strip()]
+                        if player.char_class.lower() in allowed:
+                            trainer = char
+                            break
 
-        if not has_trainer:
+        # Get class data for validation
+        class_data = player.config.CLASSES.get(player.char_class.lower(), {})
+        class_skills = class_data.get('skills', [])
+        class_spells = class_data.get('spells', [])
+
+        async def show_practice_list(show_practices: bool):
+            if show_practices:
+                await player.send(f"{c['cyan']}You have {player.practices} practice sessions.{c['reset']}")
+            await player.send(f"{c['cyan']}Skills available to {player.char_class}s:{c['reset']}")
+            if class_skills:
+                for skill in class_skills:
+                    prof = player.skills.get(skill, 0)
+                    skill_name = skill.replace('_', ' ').title()
+                    if prof > 0:
+                        status = f"{prof}%" if prof < 85 else f"{c['bright_green']}MASTERED{c['reset']}"
+                    else:
+                        status = f"{c['yellow']}0%{c['reset']}"
+                    await player.send(f"  {skill_name}: {status}")
+            else:
+                await player.send(f"  (none)")
+
+            await player.send(f"{c['cyan']}Spells available to {player.char_class}s:{c['reset']}")
+            if class_spells:
+                for spell in class_spells:
+                    prof = player.spells.get(spell, 0)
+                    spell_name = spell.replace('_', ' ').title()
+                    if prof > 0:
+                        status = f"{prof}%" if prof < 85 else f"{c['bright_green']}MASTERED{c['reset']}"
+                    else:
+                        status = f"{c['yellow']}0%{c['reset']}"
+                    await player.send(f"  {spell_name}: {status}")
+            else:
+                await player.send(f"  (none)")
+
+        if not any_trainer:
             await player.send(f"{c['red']}You must find a guild master or trainer to practice!{c['reset']}")
             await player.send(f"{c['yellow']}Trainers can be found in the guilds around town.{c['reset']}")
+            # Show full list even when not at trainer
+            await show_practice_list(show_practices=False)
+            return
+        
+        if not trainer:
+            await player.send(f"{c['red']}This trainer cannot teach {player.char_class}s.{c['reset']}")
+            await player.send(f"{c['yellow']}Find the {player.char_class}s' guildmaster to practice your skills.{c['reset']}")
+            await show_practice_list(show_practices=False)
             return
 
         if not args:
-            # Show what can be practiced
-            await player.send(f"{c['cyan']}You have {player.practices} practice sessions.{c['reset']}")
-            await player.send(f"{c['cyan']}Skills:{c['reset']}")
-            for skill, prof in player.skills.items():
-                await player.send(f"  {skill.replace('_', ' ').title()}: {prof}%")
-            await player.send(f"{c['cyan']}Spells:{c['reset']}")
-            for spell, prof in player.spells.items():
-                await player.send(f"  {spell.replace('_', ' ').title()}: {prof}%")
+            # Show what can be practiced (class-specific)
+            await show_practice_list(show_practices=True)
             return
             
         if player.practices <= 0:
             await player.send("You have no practice sessions left!")
             return
             
-        target = args[0].lower().replace(' ', '_')
+        # Abbreviation matching - find skills/spells that start with input
+        search_term = ' '.join(args).lower().replace(' ', '_')
+        search_term_nospace = ''.join(args).lower()
         
-        # Check skills
-        if target in player.skills:
-            if player.skills[target] >= 85:
+        # Combine all available abilities
+        all_abilities = [(s, 'skill') for s in class_skills] + [(s, 'spell') for s in class_spells]
+        
+        # Find matches - check prefix match with underscores and without
+        matches = []
+        for ability, atype in all_abilities:
+            ability_nospace = ability.replace('_', '')
+            # Exact match
+            if ability == search_term:
+                matches = [(ability, atype)]
+                break
+            # Prefix match (underscore version)
+            if ability.startswith(search_term):
+                matches.append((ability, atype))
+            # Prefix match (no underscore version) 
+            elif ability_nospace.startswith(search_term_nospace):
+                matches.append((ability, atype))
+        
+        # Handle results
+        if not matches:
+            await player.send(f"{c['red']}'{' '.join(args)}' is not available to {player.char_class}s.{c['reset']}")
+            await player.send(f"{c['yellow']}Type 'practice' to see what you can learn.{c['reset']}")
+            return
+        
+        if len(matches) > 1:
+            await player.send(f"{c['yellow']}Which ability did you mean?{c['reset']}")
+            for ability, atype in matches:
+                await player.send(f"  {ability.replace('_', ' ')} ({atype})")
+            return
+        
+        # Single match - practice it
+        target, ability_type = matches[0]
+        
+        if ability_type == 'skill':
+            current = player.skills.get(target, 0)
+            if current >= 85:
                 await player.send("You've already mastered that skill!")
                 return
-            player.skills[target] = min(85, player.skills[target] + 10)
+            player.skills[target] = min(85, current + 10)
             player.practices -= 1
-            await player.send(f"You practice {target.replace('_', ' ')}. ({player.skills[target]}%)")
-            return
-            
-        # Check spells
-        if target in player.spells:
-            if player.spells[target] >= 85:
+            if current == 0:
+                await player.send(f"You learn {target.replace('_', ' ')}! ({player.skills[target]}%)")
+            else:
+                await player.send(f"You practice {target.replace('_', ' ')}. ({player.skills[target]}%)")
+        else:  # spell
+            current = player.spells.get(target, 0)
+            if current >= 85:
                 await player.send("You've already mastered that spell!")
                 return
-            player.spells[target] = min(85, player.spells[target] + 10)
+            player.spells[target] = min(85, current + 10)
             player.practices -= 1
-            await player.send(f"You practice {target.replace('_', ' ')}. ({player.spells[target]}%)")
-            return
-            
-        await player.send(f"You don't know '{target}'!")
+            if current == 0:
+                await player.send(f"You learn {target.replace('_', ' ')}! ({player.spells[target]}%)")
+            else:
+                await player.send(f"You practice {target.replace('_', ' ')}. ({player.spells[target]}%)")
+
+    # ==================== BARD PERFORMANCE SYSTEM ====================
     
+    @classmethod
+    async def cmd_songs(cls, player: 'Player', args: List[str]):
+        """Show known bard songs and current performance status."""
+        c = player.config.COLORS
+        
+        if player.char_class.lower() != 'bard':
+            await player.send(f"{c['red']}Only bards can perform songs!{c['reset']}")
+            return
+        
+        from spells import BARD_SONGS
+        
+        # Get songs available to this bard
+        known_songs = []
+        for song_key, song_data in BARD_SONGS.items():
+            if player.level >= song_data['level']:
+                known_songs.append((song_key, song_data))
+        
+        await player.send(f"{c['bright_magenta']}╔═══════════════════════════════════════════════════╗{c['reset']}")
+        await player.send(f"{c['bright_magenta']}║{c['bright_yellow']}  ♪  BARD SONGS  ♪                                 {c['bright_magenta']}║{c['reset']}")
+        await player.send(f"{c['bright_magenta']}╠═══════════════════════════════════════════════════╣{c['reset']}")
+        
+        if player.performing:
+            current = BARD_SONGS.get(player.performing, {})
+            encore_str = f" {c['bright_yellow']}[ENCORE!]{c['reset']}" if player.encore_active else ""
+            await player.send(f"{c['bright_magenta']}║ {c['bright_green']}♪ NOW PLAYING: {current.get('name', player.performing)}{encore_str}")
+            await player.send(f"{c['bright_magenta']}║ {c['cyan']}  Duration: {player.performance_ticks} ticks | Mana/tick: {current.get('mana_per_tick', 0)}")
+            await player.send(f"{c['bright_magenta']}╠═══════════════════════════════════════════════════╣{c['reset']}")
+        
+        if not known_songs:
+            await player.send(f"{c['bright_magenta']}║ {c['yellow']}You haven't learned any songs yet!{c['reset']}")
+        else:
+            for song_key, song_data in known_songs:
+                name = song_data['name']
+                mana = song_data['mana_per_tick']
+                lvl = song_data['level']
+                target = song_data['target'].title()
+                playing = " ♪" if player.performing == song_key else ""
+                await player.send(f"{c['bright_magenta']}║ {c['bright_cyan']}{name:<25} {c['white']}Mana: {mana}/tick  Lvl {lvl:<2} ({target}){playing}")
+        
+        await player.send(f"{c['bright_magenta']}╠═══════════════════════════════════════════════════╣{c['reset']}")
+        await player.send(f"{c['bright_magenta']}║ {c['cyan']}Commands: perform <song>, stop, encore{c['bright_magenta']}            ║{c['reset']}")
+        await player.send(f"{c['bright_magenta']}╚═══════════════════════════════════════════════════╝{c['reset']}")
+    
+    @classmethod
+    async def cmd_perform(cls, player: 'Player', args: List[str]):
+        """Start performing a bard song."""
+        c = player.config.COLORS
+        
+        if player.char_class.lower() != 'bard':
+            await player.send(f"{c['red']}Only bards can perform songs!{c['reset']}")
+            return
+        
+        if not args:
+            await player.send(f"{c['yellow']}Perform which song? Type 'songs' to see your repertoire.{c['reset']}")
+            return
+        
+        from spells import BARD_SONGS
+        
+        song_input = '_'.join(args).lower()
+        
+        # Find matching song
+        matching_song = None
+        for song_key in BARD_SONGS:
+            if song_key == song_input or song_key.startswith(song_input):
+                matching_song = song_key
+                break
+            # Also check display name
+            song_name = BARD_SONGS[song_key]['name'].lower().replace(' ', '_')
+            if song_name.startswith(song_input.replace(' ', '_')):
+                matching_song = song_key
+                break
+        
+        if not matching_song:
+            await player.send(f"{c['red']}You don't know the song '{' '.join(args)}'.{c['reset']}")
+            await player.send(f"{c['cyan']}Type 'songs' to see your repertoire.{c['reset']}")
+            return
+        
+        song = BARD_SONGS[matching_song]
+        
+        # Check level requirement
+        if player.level < song['level']:
+            await player.send(f"{c['red']}You need to be level {song['level']} to perform {song['name']}!{c['reset']}")
+            return
+        
+        # Check if already performing
+        if player.performing:
+            if player.performing == matching_song:
+                await player.send(f"{c['yellow']}You're already performing {song['name']}!{c['reset']}")
+                return
+            # Switch songs
+            old_song = BARD_SONGS.get(player.performing, {})
+            await player.send(f"{c['cyan']}{old_song.get('end_self', 'Your song ends.')}{c['reset']}")
+            if player.room:
+                await player.room.send_to_room(
+                    old_song.get('end_room', '$n stops playing.').replace('$n', player.name),
+                    exclude=[player]
+                )
+        
+        # Check mana
+        if player.mana < song['mana_per_tick']:
+            await player.send(f"{c['red']}You don't have enough mana to begin performing!{c['reset']}")
+            return
+        
+        # Check if song is combat-only or non-combat only
+        if song.get('combat_only') == False and player.is_fighting:
+            await player.send(f"{c['red']}{song['name']} can only be performed out of combat!{c['reset']}")
+            return
+        
+        # Start performing
+        player.performing = matching_song
+        player.performance_ticks = 0
+        player.encore_active = False
+        player.lullaby_saves = {}  # Reset lullaby tracking
+        
+        await player.send(f"{c['bright_magenta']}{song['start_self']}{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(
+                song['start_room'].replace('$n', player.name),
+                exclude=[player]
+            )
+    
+    @classmethod
+    async def cmd_stop(cls, player: 'Player', args: List[str]):
+        """Stop the current bard performance."""
+        c = player.config.COLORS
+        
+        if not player.performing:
+            await player.send(f"{c['yellow']}You're not performing anything.{c['reset']}")
+            return
+        
+        from spells import BARD_SONGS
+        song = BARD_SONGS.get(player.performing, {})
+        
+        await player.send(f"{c['cyan']}{song.get('end_self', 'You stop playing.')}{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(
+                song.get('end_room', '$n stops playing.').replace('$n', player.name),
+                exclude=[player]
+            )
+        
+        player.performing = None
+        player.performance_ticks = 0
+        player.encore_active = False
+        player.encore_ticks = 0
+        player.lullaby_saves = {}
+    
+    @classmethod
+    async def cmd_encore(cls, player: 'Player', args: List[str]):
+        """Boost your current song's effects temporarily."""
+        c = player.config.COLORS
+        import time
+        
+        if player.char_class.lower() != 'bard':
+            await player.send(f"{c['red']}Only bards can perform encores!{c['reset']}")
+            return
+        
+        if not player.performing:
+            await player.send(f"{c['red']}You must be performing a song to use encore!{c['reset']}")
+            return
+        
+        # Check cooldown (60 seconds)
+        now = time.time()
+        if now - player.last_encore < 60:
+            remaining = int(60 - (now - player.last_encore))
+            await player.send(f"{c['yellow']}Encore is on cooldown! ({remaining}s remaining){c['reset']}")
+            return
+        
+        # Check mana cost
+        if player.mana < 30:
+            await player.send(f"{c['red']}You need 30 mana to perform an encore!{c['reset']}")
+            return
+        
+        player.mana -= 30
+        player.encore_active = True
+        player.encore_ticks = 3
+        player.last_encore = now
+        
+        from spells import BARD_SONGS
+        song = BARD_SONGS.get(player.performing, {})
+        
+        await player.send(f"{c['bright_yellow']}♪♪ ENCORE! ♪♪ Your {song.get('name', 'song')} swells with power!{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(
+                f"♪♪ {player.name}'s performance reaches a powerful crescendo! ♪♪",
+                exclude=[player]
+            )
+    
+    @classmethod
+    async def cmd_countersong(cls, player: 'Player', args: List[str]):
+        """Use your music to dispel magical effects."""
+        c = player.config.COLORS
+        import time
+        
+        if player.char_class.lower() != 'bard':
+            await player.send(f"{c['red']}Only bards can perform countersong!{c['reset']}")
+            return
+        
+        if 'countersong' not in player.skills:
+            await player.send(f"{c['red']}You haven't learned countersong yet!{c['reset']}")
+            return
+        
+        # Check cooldown (30 seconds)
+        now = time.time()
+        if now - player.last_countersong < 30:
+            remaining = int(30 - (now - player.last_countersong))
+            await player.send(f"{c['yellow']}Countersong is on cooldown! ({remaining}s remaining){c['reset']}")
+            return
+        
+        # Check mana cost
+        if player.mana < 25:
+            await player.send(f"{c['red']}You need 25 mana to perform countersong!{c['reset']}")
+            return
+        
+        player.mana -= 25
+        player.last_countersong = now
+        
+        skill_level = player.skills.get('countersong', 50)
+        
+        await player.send(f"{c['bright_cyan']}♪ You weave a countersong to disrupt magical energies! ♪{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(
+                f"{player.name} begins a disruptive countersong!",
+                exclude=[player]
+            )
+        
+        from affects import AffectManager
+        
+        # Try to remove debuffs from allies
+        dispelled_ally = 0
+        for char in player.room.characters:
+            if char == player or (hasattr(char, 'is_hostile') and char.is_hostile):
+                continue
+            # Try to remove negative effects
+            if hasattr(char, 'affects') and char.affects:
+                debuffs = ['poison', 'blindness', 'curse', 'weakness', 'slow', 'fear', 'silence']
+                for debuff in debuffs:
+                    if debuff in char.affects and random.randint(1, 100) <= skill_level:
+                        AffectManager.remove_affect_by_name(char, debuff)
+                        dispelled_ally += 1
+                        if hasattr(char, 'send'):
+                            await char.send(f"{c['bright_cyan']}The countersong dispels your {debuff}!{c['reset']}")
+        
+        # Try to remove buffs from enemies
+        dispelled_enemy = 0
+        from mobs import Mobile
+        for char in player.room.characters:
+            if isinstance(char, Mobile):
+                if hasattr(char, 'affects') and char.affects:
+                    buffs = ['haste', 'bless', 'armor', 'sanctuary', 'shield']
+                    for buff in buffs:
+                        if buff in char.affects and random.randint(1, 100) <= skill_level // 2:
+                            AffectManager.remove_affect_by_name(char, buff)
+                            dispelled_enemy += 1
+                            await player.send(f"{c['cyan']}Your countersong strips {buff} from {char.name}!{c['reset']}")
+        
+        if dispelled_ally + dispelled_enemy == 0:
+            await player.send(f"{c['yellow']}Your countersong fails to dispel anything.{c['reset']}")
+        else:
+            total = dispelled_ally + dispelled_enemy
+            await player.send(f"{c['bright_green']}Your countersong dispelled {total} magical effect{'s' if total != 1 else ''}!{c['reset']}")
+    
+    @classmethod
+    async def cmd_fascinate(cls, player: 'Player', args: List[str]):
+        """Charm an enemy with your music, preventing them from attacking."""
+        c = player.config.COLORS
+        
+        if player.char_class.lower() != 'bard':
+            await player.send(f"{c['red']}Only bards can fascinate!{c['reset']}")
+            return
+        
+        if 'fascinate' not in player.skills:
+            await player.send(f"{c['red']}You haven't learned fascinate yet!{c['reset']}")
+            return
+        
+        if not args:
+            await player.send(f"{c['yellow']}Fascinate whom?{c['reset']}")
+            return
+        
+        target_name = ' '.join(args)
+        target = player.find_target_in_room(target_name)
+        
+        from mobs import Mobile
+        if target and not isinstance(target, Mobile):
+            target = None
+        
+        if not target:
+            await player.send(f"{c['red']}You don't see '{target_name}' here.{c['reset']}")
+            return
+        
+        if target.is_fighting:
+            await player.send(f"{c['red']}{target.name} is too alert to be fascinated!{c['reset']}")
+            return
+        
+        # Check mana
+        if player.mana < 20:
+            await player.send(f"{c['red']}You need 20 mana to fascinate!{c['reset']}")
+            return
+        
+        player.mana -= 20
+        skill_level = player.skills.get('fascinate', 50)
+        
+        # Charm check
+        if random.randint(1, 100) <= skill_level:
+            from affects import AffectManager
+            duration = 3 + (player.level // 10)
+            affect_data = {
+                'name': 'fascinated',
+                'type': AffectManager.TYPE_FLAG,
+                'applies_to': 'charmed',
+                'value': 1,
+                'duration': duration,
+                'caster_level': player.level
+            }
+            AffectManager.apply_affect(target, affect_data)
+            
+            await player.send(f"{c['bright_magenta']}♪ Your captivating melody fascinates {target.name}! ♪{c['reset']}")
+            await player.room.send_to_room(
+                f"{target.name} stares dreamily at {player.name}, fascinated by the music.",
+                exclude=[player]
+            )
+        else:
+            await player.send(f"{c['yellow']}{target.name} resists your captivating melody.{c['reset']}")
+    
+    @classmethod
+    async def cmd_mock(cls, player: 'Player', args: List[str]):
+        """Taunt an enemy with vicious mockery, debuffing them."""
+        c = player.config.COLORS
+        
+        if player.char_class.lower() != 'bard':
+            await player.send(f"{c['red']}Only bards can use mockery!{c['reset']}")
+            return
+        
+        if 'mockery' not in player.skills:
+            await player.send(f"{c['red']}You haven't learned mockery yet!{c['reset']}")
+            return
+        
+        if not args:
+            await player.send(f"{c['yellow']}Mock whom?{c['reset']}")
+            return
+        
+        target_name = ' '.join(args)
+        target = player.find_target_in_room(target_name)
+        
+        if not target:
+            await player.send(f"{c['red']}You don't see '{target_name}' here.{c['reset']}")
+            return
+        
+        # Check mana
+        if player.mana < 10:
+            await player.send(f"{c['red']}You need 10 mana for mockery!{c['reset']}")
+            return
+        
+        player.mana -= 10
+        skill_level = player.skills.get('mockery', 50)
+        
+        # Mockery always lands some effect
+        from affects import AffectManager
+        
+        # Psychic damage
+        damage = random.randint(1, 4) + (player.level // 5)
+        
+        # Debuff
+        if random.randint(1, 100) <= skill_level:
+            duration = 2 + (player.level // 15)
+            affect_data = {
+                'name': 'mocked',
+                'type': AffectManager.TYPE_MODIFY_STAT,
+                'applies_to': 'hitroll',
+                'value': -2,
+                'duration': duration,
+                'caster_level': player.level
+            }
+            AffectManager.apply_affect(target, affect_data)
+            
+            insults = [
+                f"Your mother was a hamster and your father smelt of elderberries!",
+                f"I've seen scarier things in a goblin's lunchbox!",
+                f"Even the village idiot thinks you're an embarrassment!",
+                f"You fight like a dairy farmer!",
+                f"I've met corpses with more charisma than you!",
+            ]
+            insult = random.choice(insults)
+            
+            await player.send(f"{c['bright_yellow']}♪ \"{insult}\" ♪ [{damage} psychic damage]{c['reset']}")
+            if hasattr(target, 'send'):
+                await target.send(f"{c['red']}{player.name} mocks you viciously! You feel demoralized.{c['reset']}")
+            await player.room.send_to_room(
+                f"{player.name} hurls vicious mockery at {target.name}!",
+                exclude=[player, target]
+            )
+        else:
+            await player.send(f"{c['yellow']}Your mockery falls flat, but still stings. [{damage} damage]{c['reset']}")
+        
+        await target.take_damage(damage, player)
+        
+        # Start combat if not already fighting
+        if not player.is_fighting:
+            from combat import CombatHandler
+            await CombatHandler.start_combat(player, target)
+
+    # ==================== WARRIOR RAGE & STANCE SYSTEM ====================
+    
+    @classmethod
+    async def cmd_rage(cls, player: 'Player', args: List[str]):
+        """Display current rage level."""
+        c = player.config.COLORS
+        
+        if player.char_class.lower() != 'warrior':
+            await player.send(f"{c['red']}Only warriors can harness rage!{c['reset']}")
+            return
+        
+        rage_bar = cls._make_bar(player.rage, player.max_rage, 20, c['bright_red'], c['red'])
+        stance_colors = {
+            'battle': c['white'],
+            'berserk': c['bright_red'],
+            'defensive': c['bright_blue'],
+            'precision': c['bright_yellow']
+        }
+        stance_color = stance_colors.get(player.stance, c['white'])
+        
+        await player.send(f"{c['bright_red']}╔═══════════════════════════════════════╗{c['reset']}")
+        await player.send(f"{c['bright_red']}║{c['bright_yellow']}  ⚔  WARRIOR STATUS  ⚔                 {c['bright_red']}║{c['reset']}")
+        await player.send(f"{c['bright_red']}╠═══════════════════════════════════════╣{c['reset']}")
+        await player.send(f"{c['bright_red']}║ {c['white']}Rage: {rage_bar} {player.rage}/{player.max_rage}")
+        await player.send(f"{c['bright_red']}║ {c['white']}Stance: {stance_color}{player.stance.title()}{c['reset']}")
+        if player.ignore_pain_absorb > 0:
+            await player.send(f"{c['bright_red']}║ {c['cyan']}Ignore Pain: {player.ignore_pain_absorb} damage remaining{c['reset']}")
+        await player.send(f"{c['bright_red']}╠═══════════════════════════════════════╣{c['reset']}")
+        await player.send(f"{c['bright_red']}║ {c['cyan']}Rage Abilities:{c['reset']}")
+        await player.send(f"{c['bright_red']}║   {c['yellow']}ignorepain{c['white']} (20) - Absorb damage{c['reset']}")
+        await player.send(f"{c['bright_red']}║   {c['yellow']}warcry{c['white']} (30) - Fear enemies, buff allies{c['reset']}")
+        await player.send(f"{c['bright_red']}║   {c['yellow']}rampage{c['white']} (40) - Attack all enemies{c['reset']}")
+        await player.send(f"{c['bright_red']}║   {c['yellow']}execute{c['white']} (50) - Devastating finisher{c['reset']}")
+        await player.send(f"{c['bright_red']}╚═══════════════════════════════════════╝{c['reset']}")
+    
+    @classmethod
+    def _make_bar(cls, current, maximum, width, filled_color, empty_color):
+        """Create a visual bar."""
+        if maximum <= 0:
+            return f"{empty_color}{'░' * width}"
+        filled = int((current / maximum) * width)
+        empty = width - filled
+        return f"{filled_color}{'█' * filled}{empty_color}{'░' * empty}"
+    
+    @classmethod
+    async def cmd_stance(cls, player: 'Player', args: List[str]):
+        """Switch warrior combat stance."""
+        c = player.config.COLORS
+        
+        if player.char_class.lower() != 'warrior':
+            await player.send(f"{c['red']}Only warriors can use stances!{c['reset']}")
+            return
+        
+        stances = {
+            'battle': {
+                'name': 'Battle Stance',
+                'desc': 'Balanced offense and defense.',
+                'color': c['white']
+            },
+            'berserk': {
+                'name': 'Berserker Stance', 
+                'desc': '+25% damage, -20 AC, +50% rage generation.',
+                'color': c['bright_red']
+            },
+            'defensive': {
+                'name': 'Defensive Stance',
+                'desc': '-25% damage, +30 AC, +25% parry chance.',
+                'color': c['bright_blue']
+            },
+            'precision': {
+                'name': 'Precision Stance',
+                'desc': '+4 hit, -10% damage, +15% critical strike.',
+                'color': c['bright_yellow']
+            }
+        }
+        
+        if not args:
+            await player.send(f"{c['cyan']}Current stance: {stances[player.stance]['color']}{stances[player.stance]['name']}{c['reset']}")
+            await player.send(f"{c['cyan']}Available stances:{c['reset']}")
+            for key, data in stances.items():
+                current = " ← current" if key == player.stance else ""
+                await player.send(f"  {data['color']}{data['name']}{c['white']}: {data['desc']}{c['cyan']}{current}{c['reset']}")
+            return
+        
+        stance_input = args[0].lower()
+        
+        # Match stance
+        matching_stance = None
+        for key in stances:
+            if key.startswith(stance_input):
+                matching_stance = key
+                break
+        
+        if not matching_stance:
+            await player.send(f"{c['red']}Unknown stance. Choose: battle, berserk, defensive, precision{c['reset']}")
+            return
+        
+        if matching_stance == player.stance:
+            await player.send(f"{c['yellow']}You are already in {stances[matching_stance]['name']}.{c['reset']}")
+            return
+        
+        old_stance = player.stance
+        player.stance = matching_stance
+        
+        await player.send(f"{c['bright_yellow']}You shift from {stances[old_stance]['name']} to {stances[matching_stance]['color']}{stances[matching_stance]['name']}{c['reset']}!")
+        if player.room:
+            await player.room.send_to_room(
+                f"{player.name} shifts into a different combat stance.",
+                exclude=[player]
+            )
+    
+    @classmethod
+    async def cmd_execute(cls, player: 'Player', args: List[str]):
+        """Devastating finisher that deals more damage at low target HP."""
+        c = player.config.COLORS
+        
+        if player.char_class.lower() != 'warrior':
+            await player.send(f"{c['red']}Only warriors can execute!{c['reset']}")
+            return
+        
+        if player.level < 15:
+            await player.send(f"{c['red']}You need to be level 15 to use Execute!{c['reset']}")
+            return
+        
+        if not player.is_fighting:
+            await player.send(f"{c['red']}You need to be in combat to execute!{c['reset']}")
+            return
+        
+        if player.rage < 50:
+            await player.send(f"{c['red']}You need 50 rage to execute! (Current: {player.rage}){c['reset']}")
+            return
+        
+        target = player.fighting
+        if not target:
+            await player.send(f"{c['red']}You have no target!{c['reset']}")
+            return
+        
+        player.rage -= 50
+        
+        # Calculate damage multiplier based on target HP percentage
+        target_hp_pct = (target.hp / target.max_hp) * 100
+        multiplier = 2 + (100 - target_hp_pct) / 20  # 2x at 100% HP, 7x at 0% HP
+        
+        # Base damage from weapon
+        weapon = player.equipment.get('wield')
+        if weapon and hasattr(weapon, 'damage_dice'):
+            from combat import CombatHandler
+            base_damage = CombatHandler.roll_dice(weapon.damage_dice)
+        else:
+            base_damage = random.randint(2, 8)
+        
+        damage = int(base_damage * multiplier) + player.get_damage_bonus() * 2
+        
+        import random
+        
+        # Execution messages based on damage
+        if damage > 50:
+            msg = f"You EXECUTE {target.name} with a devastating blow!"
+        elif damage > 30:
+            msg = f"You execute {target.name} with brutal force!"
+        else:
+            msg = f"You execute {target.name}!"
+        
+        await player.send(f"{c['bright_red']}{msg} [{damage}]{c['reset']}")
+        if hasattr(target, 'send'):
+            await target.send(f"{c['bright_red']}{player.name} executes you! [{damage}]{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(
+                f"{player.name} executes {target.name} with a devastating strike!",
+                exclude=[player, target]
+            )
+        
+        killed = await target.take_damage(damage, player)
+        if killed:
+            from combat import CombatHandler
+            await CombatHandler.handle_death(player, target)
+    
+    @classmethod
+    async def cmd_rampage(cls, player: 'Player', args: List[str]):
+        """Attack all enemies in the room."""
+        c = player.config.COLORS
+        import random
+        
+        if player.char_class.lower() != 'warrior':
+            await player.send(f"{c['red']}Only warriors can rampage!{c['reset']}")
+            return
+        
+        if player.level < 20:
+            await player.send(f"{c['red']}You need to be level 20 to use Rampage!{c['reset']}")
+            return
+        
+        if player.rage < 40:
+            await player.send(f"{c['red']}You need 40 rage to rampage! (Current: {player.rage}){c['reset']}")
+            return
+        
+        # Find all hostile mobs in room
+        from mobs import Mobile
+        targets = []
+        for char in player.room.characters:
+            if isinstance(char, Mobile) and char.hp > 0:
+                targets.append(char)
+        
+        if not targets:
+            await player.send(f"{c['yellow']}There's no one to rampage against!{c['reset']}")
+            return
+        
+        player.rage -= 40
+        
+        await player.send(f"{c['bright_red']}⚔ You unleash a RAMPAGE! ⚔{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(
+                f"{player.name} goes on a wild rampage!",
+                exclude=[player]
+            )
+        
+        # Attack each target for 75% damage
+        weapon = player.equipment.get('wield')
+        total_damage = 0
+        kills = []
+        
+        from combat import CombatHandler
+        
+        for target in targets:
+            if weapon and hasattr(weapon, 'damage_dice'):
+                base_damage = CombatHandler.roll_dice(weapon.damage_dice)
+            else:
+                base_damage = random.randint(2, 8)
+            
+            damage = int(base_damage * 0.75) + player.get_damage_bonus()
+            damage = max(1, damage)
+            total_damage += damage
+            
+            await player.send(f"{c['red']}  → You strike {target.name}! [{damage}]{c['reset']}")
+            
+            killed = await target.take_damage(damage, player)
+            if killed:
+                kills.append(target)
+            else:
+                # Gain rage for each hit
+                player.rage = min(player.max_rage, player.rage + 10)
+        
+        await player.send(f"{c['bright_yellow']}Total rampage damage: {total_damage}{c['reset']}")
+        
+        for target in kills:
+            await CombatHandler.handle_death(player, target)
+        
+        # Start combat with first surviving target
+        if not player.is_fighting:
+            for target in targets:
+                if target not in kills and target.hp > 0:
+                    await CombatHandler.start_combat(player, target)
+                    break
+    
+    @classmethod
+    async def cmd_warcry(cls, player: 'Player', args: List[str]):
+        """Terrifying shout that fears enemies and buffs allies."""
+        c = player.config.COLORS
+        import time
+        import random
+        
+        if player.char_class.lower() != 'warrior':
+            await player.send(f"{c['red']}Only warriors can use war cry!{c['reset']}")
+            return
+        
+        if player.level < 10:
+            await player.send(f"{c['red']}You need to be level 10 to use War Cry!{c['reset']}")
+            return
+        
+        if player.rage < 30:
+            await player.send(f"{c['red']}You need 30 rage for war cry! (Current: {player.rage}){c['reset']}")
+            return
+        
+        # Check cooldown (45 seconds)
+        now = time.time()
+        if now - player.last_warcry < 45:
+            remaining = int(45 - (now - player.last_warcry))
+            await player.send(f"{c['yellow']}War Cry is on cooldown! ({remaining}s remaining){c['reset']}")
+            return
+        
+        player.rage -= 30
+        player.last_warcry = now
+        
+        await player.send(f"{c['bright_red']}⚔ You let out a THUNDERING WAR CRY! ⚔{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(
+                f"{player.name} lets out a thundering war cry!",
+                exclude=[player]
+            )
+        
+        from affects import AffectManager
+        from mobs import Mobile
+        
+        # Fear enemies
+        feared = 0
+        for char in player.room.characters:
+            if isinstance(char, Mobile) and char.hp > 0:
+                # Save vs fear
+                if random.randint(1, 100) > 50:  # 50% base fear chance
+                    affect_data = {
+                        'name': 'fear',
+                        'type': AffectManager.TYPE_FLAG,
+                        'applies_to': 'feared',
+                        'value': 1,
+                        'duration': 2,
+                        'caster_level': player.level
+                    }
+                    AffectManager.apply_affect(char, affect_data)
+                    feared += 1
+                    await player.send(f"{c['yellow']}{char.name} cowers in fear!{c['reset']}")
+        
+        # Buff allies
+        buffed = 0
+        for char in player.room.characters:
+            if char == player:
+                continue
+            if not isinstance(char, Mobile):
+                # It's a player - buff them
+                if not hasattr(char, 'song_bonuses'):
+                    char.song_bonuses = {}
+                char.song_bonuses['warcry_hitroll'] = 2
+                char.song_bonuses['warcry_damroll'] = 1
+                char.song_bonuses['warcry_expires'] = 5
+                buffed += 1
+                if hasattr(char, 'send'):
+                    await char.send(f"{c['bright_yellow']}{player.name}'s war cry fills you with courage!{c['reset']}")
+        
+        # Buff self
+        if not hasattr(player, 'song_bonuses'):
+            player.song_bonuses = {}
+        player.song_bonuses['warcry_hitroll'] = 2
+        player.song_bonuses['warcry_damroll'] = 1
+        player.song_bonuses['warcry_expires'] = 5
+        
+        if feared > 0:
+            await player.send(f"{c['bright_green']}Feared {feared} enemies!{c['reset']}")
+        if buffed > 0:
+            await player.send(f"{c['bright_green']}Inspired {buffed} allies!{c['reset']}")
+    
+    @classmethod
+    async def cmd_ignorepain(cls, player: 'Player', args: List[str]):
+        """Absorb incoming damage with pure willpower."""
+        c = player.config.COLORS
+        
+        if player.char_class.lower() != 'warrior':
+            await player.send(f"{c['red']}Only warriors can ignore pain!{c['reset']}")
+            return
+        
+        if player.level < 8:
+            await player.send(f"{c['red']}You need to be level 8 to use Ignore Pain!{c['reset']}")
+            return
+        
+        if player.rage < 20:
+            await player.send(f"{c['red']}You need 20 rage to ignore pain! (Current: {player.rage}){c['reset']}")
+            return
+        
+        if player.ignore_pain_absorb > 0:
+            await player.send(f"{c['yellow']}Ignore Pain is already active! ({player.ignore_pain_absorb} absorb remaining){c['reset']}")
+            return
+        
+        player.rage -= 20
+        
+        # Absorb amount based on level
+        absorb = 10 + (player.level * 2)
+        player.ignore_pain_absorb = absorb
+        player.ignore_pain_ticks = 3
+        
+        await player.send(f"{c['bright_cyan']}You steel yourself against pain! (Absorbing next {absorb} damage){c['reset']}")
+        if player.room:
+            await player.room.send_to_room(
+                f"{player.name} grits their teeth, steeling against pain.",
+                exclude=[player]
+            )
+    
+    @classmethod
+    async def cmd_battleshout(cls, player: 'Player', args: List[str]):
+        """Shout to buff party's strength and constitution."""
+        c = player.config.COLORS
+        import time
+        
+        if player.char_class.lower() != 'warrior':
+            await player.send(f"{c['red']}Only warriors can use battle shout!{c['reset']}")
+            return
+        
+        if 'battleshout' not in player.skills:
+            await player.send(f"{c['red']}You haven't learned battle shout!{c['reset']}")
+            return
+        
+        # Check cooldown (60 seconds)
+        now = time.time()
+        if now - player.last_battleshout < 60:
+            remaining = int(60 - (now - player.last_battleshout))
+            await player.send(f"{c['yellow']}Battle Shout is on cooldown! ({remaining}s remaining){c['reset']}")
+            return
+        
+        # Cost move points
+        if player.move < 15:
+            await player.send(f"{c['red']}You're too tired to shout!{c['reset']}")
+            return
+        
+        player.move -= 15
+        player.last_battleshout = now
+        
+        await player.send(f"{c['bright_yellow']}⚔ You let out a battle shout! ⚔{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(
+                f"{player.name} lets out a rallying battle shout!",
+                exclude=[player]
+            )
+        
+        from affects import AffectManager
+        
+        # Buff self and allies
+        buffed = 0
+        for char in player.room.characters:
+            from mobs import Mobile
+            if isinstance(char, Mobile):
+                continue
+            
+            # Apply stat buffs
+            affect_data = {
+                'name': 'battle_shout',
+                'type': AffectManager.TYPE_MODIFY_STAT,
+                'applies_to': 'str',
+                'value': 2,
+                'duration': 10,
+                'caster_level': player.level
+            }
+            AffectManager.apply_affect(char, affect_data)
+            
+            affect_data2 = {
+                'name': 'battle_shout_con',
+                'type': AffectManager.TYPE_MODIFY_STAT,
+                'applies_to': 'con',
+                'value': 1,
+                'duration': 10,
+                'caster_level': player.level
+            }
+            AffectManager.apply_affect(char, affect_data2)
+            
+            buffed += 1
+            if char != player and hasattr(char, 'send'):
+                await char.send(f"{c['bright_yellow']}You feel stronger from {player.name}'s battle shout!{c['reset']}")
+        
+        await player.send(f"{c['bright_green']}Battle Shout buffed {buffed} allies with +2 STR, +1 CON for 10 ticks!{c['reset']}")
+    
+    @classmethod
+    async def cmd_rescue(cls, player: 'Player', args: List[str]):
+        """Rescue an ally from combat, becoming the new target."""
+        c = player.config.COLORS
+        import random
+        
+        if player.char_class.lower() not in ('warrior', 'paladin'):
+            await player.send(f"{c['red']}Only warriors and paladins can rescue!{c['reset']}")
+            return
+        
+        if 'rescue' not in player.skills:
+            await player.send(f"{c['red']}You haven't learned rescue!{c['reset']}")
+            return
+        
+        if not args:
+            await player.send(f"{c['yellow']}Rescue whom?{c['reset']}")
+            return
+        
+        target_name = ' '.join(args).lower()
+        
+        # Find the ally to rescue
+        ally = None
+        for char in player.room.characters:
+            from mobs import Mobile
+            if not isinstance(char, Mobile) and char != player:
+                if target_name in char.name.lower():
+                    ally = char
+                    break
+        
+        if not ally:
+            await player.send(f"{c['red']}You don't see '{target_name}' here.{c['reset']}")
+            return
+        
+        if not ally.is_fighting:
+            await player.send(f"{c['yellow']}{ally.name} isn't fighting anyone!{c['reset']}")
+            return
+        
+        attacker = ally.fighting
+        if not attacker:
+            await player.send(f"{c['yellow']}{ally.name} has no attacker to rescue from!{c['reset']}")
+            return
+        
+        skill_level = player.skills.get('rescue', 50)
+        
+        if random.randint(1, 100) <= skill_level:
+            # Successful rescue
+            await player.send(f"{c['bright_green']}You heroically rescue {ally.name} from {attacker.name}!{c['reset']}")
+            await ally.send(f"{c['bright_green']}{player.name} rescues you from {attacker.name}!{c['reset']}")
+            if player.room:
+                await player.room.send_to_room(
+                    f"{player.name} heroically rescues {ally.name}!",
+                    exclude=[player, ally]
+                )
+            
+            # Switch aggro
+            ally.fighting = None
+            ally.is_fighting = False
+            ally.position = 'standing'
+            
+            attacker.fighting = player
+            player.fighting = attacker
+            player.is_fighting = True
+            player.position = 'fighting'
+            
+            # Gain rage for the heroic act
+            if player.char_class.lower() == 'warrior':
+                player.rage = min(player.max_rage, player.rage + 15)
+                await player.send(f"{c['red']}(+15 rage){c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}You fail to rescue {ally.name}!{c['reset']}")
+    
+    @classmethod
+    async def cmd_disarm(cls, player: 'Player', args: List[str]):
+        """Attempt to disarm an enemy."""
+        c = player.config.COLORS
+        import random
+        
+        if 'disarm' not in player.skills:
+            await player.send(f"{c['red']}You don't know how to disarm!{c['reset']}")
+            return
+        
+        if not player.is_fighting:
+            await player.send(f"{c['red']}You need to be fighting someone to disarm them!{c['reset']}")
+            return
+        
+        target = player.fighting
+        if not target:
+            await player.send(f"{c['red']}You have no target!{c['reset']}")
+            return
+        
+        # Check if target has a weapon
+        target_weapon = None
+        if hasattr(target, 'equipment'):
+            target_weapon = target.equipment.get('wield')
+        
+        if not target_weapon:
+            await player.send(f"{c['yellow']}{target.name} isn't wielding a weapon!{c['reset']}")
+            return
+        
+        skill_level = player.skills.get('disarm', 50)
+        
+        # Disarm check (harder against higher level targets)
+        level_diff = getattr(target, 'level', 1) - player.level
+        chance = skill_level - (level_diff * 5)
+        
+        if random.randint(1, 100) <= chance:
+            # Success! Remove weapon
+            target.equipment['wield'] = None
+            
+            # Put weapon in room
+            if hasattr(player.room, 'items'):
+                player.room.items.append(target_weapon)
+            
+            await player.send(f"{c['bright_green']}You disarm {target.name}! Their {target_weapon.name} clatters to the ground!{c['reset']}")
+            if hasattr(target, 'send'):
+                await target.send(f"{c['bright_red']}{player.name} disarms you!{c['reset']}")
+            if player.room:
+                await player.room.send_to_room(
+                    f"{player.name} disarms {target.name}!",
+                    exclude=[player, target]
+                )
+            
+            # Gain rage
+            if player.char_class.lower() == 'warrior':
+                player.rage = min(player.max_rage, player.rage + 10)
+        else:
+            await player.send(f"{c['yellow']}You fail to disarm {target.name}!{c['reset']}")
+
+    # ==================== RANGER COMPANION & TRACKING SYSTEM ====================
+    
+    @classmethod
+    async def cmd_companion(cls, player: 'Player', args: List[str]):
+        """View or command your animal companion."""
+        c = player.config.COLORS
+        
+        if player.char_class.lower() != 'ranger':
+            await player.send(f"{c['red']}Only rangers can have animal companions!{c['reset']}")
+            return
+        
+        if not player.animal_companion:
+            await player.send(f"{c['yellow']}You don't have an animal companion.{c['reset']}")
+            await player.send(f"{c['cyan']}Use 'tame <animal>' to bond with a wild beast.{c['reset']}")
+            return
+        
+        comp = player.animal_companion
+        
+        if not args:
+            # Show companion status
+            hp_bar = cls._make_bar(comp.hp, comp.max_hp, 15, c['bright_green'], c['red'])
+            
+            await player.send(f"{c['bright_green']}╔══════════════════════════════════════════════════╗{c['reset']}")
+            await player.send(f"{c['bright_green']}║{c['bright_yellow']}  🐾 ANIMAL COMPANION 🐾                          {c['bright_green']}║{c['reset']}")
+            await player.send(f"{c['bright_green']}╠══════════════════════════════════════════════════╣{c['reset']}")
+            await player.send(f"{c['bright_green']}║ {c['white']}Name: {c['bright_cyan']}{comp.name}{c['reset']}")
+            await player.send(f"{c['bright_green']}║ {c['white']}Type: {c['cyan']}{player.companion_type.title()}{c['reset']}")
+            await player.send(f"{c['bright_green']}║ {c['white']}HP: {hp_bar} {comp.hp}/{comp.max_hp}{c['reset']}")
+            await player.send(f"{c['bright_green']}║ {c['white']}Level: {comp.level}{c['reset']}")
+            
+            from spells import RANGER_COMPANIONS
+            comp_data = RANGER_COMPANIONS.get(player.companion_type, {})
+            special = comp_data.get('special', 'none').title()
+            await player.send(f"{c['bright_green']}║ {c['white']}Special: {c['bright_yellow']}{special}{c['reset']}")
+            
+            await player.send(f"{c['bright_green']}╠══════════════════════════════════════════════════╣{c['reset']}")
+            await player.send(f"{c['bright_green']}║ {c['cyan']}Commands: attack, defend, stay, follow, heel{c['reset']}")
+            await player.send(f"{c['bright_green']}╚══════════════════════════════════════════════════╝{c['reset']}")
+            return
+        
+        command = args[0].lower()
+        
+        if command == 'attack':
+            if not player.is_fighting:
+                await player.send(f"{c['yellow']}You're not fighting anyone for {comp.name} to attack!{c['reset']}")
+                return
+            target = player.fighting
+            comp.fighting = target
+            comp.is_fighting = True
+            await player.send(f"{c['bright_green']}You command {comp.name} to attack!{c['reset']}")
+            await player.room.send_to_room(f"{comp.name} lunges at {target.name}!", exclude=[player])
+        
+        elif command == 'defend':
+            await player.send(f"{c['cyan']}{comp.name} moves to defend you.{c['reset']}")
+            if not hasattr(comp, 'defending'):
+                comp.defending = player
+        
+        elif command == 'stay':
+            comp.following = None
+            await player.send(f"{c['cyan']}{comp.name} stays in place.{c['reset']}")
+        
+        elif command == 'follow':
+            comp.following = player
+            await player.send(f"{c['cyan']}{comp.name} begins following you.{c['reset']}")
+        
+        elif command == 'heel':
+            if comp.room != player.room:
+                if comp.room and comp in comp.room.characters:
+                    comp.room.characters.remove(comp)
+                player.room.characters.append(comp)
+                comp.room = player.room
+                await player.send(f"{c['cyan']}{comp.name} returns to your side.{c['reset']}")
+            else:
+                await player.send(f"{c['yellow']}{comp.name} is already at your side.{c['reset']}")
+        
+        else:
+            await player.send(f"{c['yellow']}Unknown command. Try: attack, defend, stay, follow, heel{c['reset']}")
+    
+    @classmethod
+    async def cmd_tame(cls, player: 'Player', args: List[str]):
+        """Attempt to tame a wild animal as your companion."""
+        c = player.config.COLORS
+        import random
+        
+        if player.char_class.lower() != 'ranger':
+            await player.send(f"{c['red']}Only rangers can tame animals!{c['reset']}")
+            return
+        
+        if 'tame' not in player.skills:
+            await player.send(f"{c['red']}You haven't learned how to tame animals!{c['reset']}")
+            return
+        
+        if player.animal_companion:
+            await player.send(f"{c['yellow']}You already have a companion! Use 'dismiss' first.{c['reset']}")
+            return
+        
+        if not args:
+            await player.send(f"{c['yellow']}Tame which animal?{c['reset']}")
+            return
+        
+        target_name = ' '.join(args).lower()
+        
+        from mobs import Mobile
+        from spells import RANGER_COMPANIONS
+        
+        # Find target animal
+        target = None
+        matched_type = None
+        
+        for char in player.room.characters:
+            if isinstance(char, Mobile) and target_name in char.name.lower():
+                # Check if it's a tameable beast
+                for comp_type, comp_data in RANGER_COMPANIONS.items():
+                    for keyword in comp_data['keywords']:
+                        if keyword in char.name.lower():
+                            target = char
+                            matched_type = comp_type
+                            break
+                    if matched_type:
+                        break
+                if matched_type:
+                    break
+        
+        if not target:
+            await player.send(f"{c['red']}You don't see a tameable animal called '{target_name}' here.{c['reset']}")
+            await player.send(f"{c['cyan']}Tameable types: wolf, bear, hawk, cat, boar{c['reset']}")
+            return
+        
+        comp_data = RANGER_COMPANIONS[matched_type]
+        
+        # Check level requirement
+        if player.level < comp_data['level_required']:
+            await player.send(f"{c['red']}You need to be level {comp_data['level_required']} to tame a {matched_type}!{c['reset']}")
+            return
+        
+        # Check if target is hostile/fighting
+        if target.is_fighting:
+            await player.send(f"{c['red']}{target.name} is too aggressive to tame right now!{c['reset']}")
+            return
+        
+        # Taming attempt
+        skill_level = player.skills.get('tame', 50)
+        difficulty = comp_data['level_required'] * 2
+        chance = skill_level - difficulty + (player.level - comp_data['level_required']) * 2
+        
+        await player.send(f"{c['cyan']}You approach {target.name} slowly, attempting to bond...{c['reset']}")
+        await player.room.send_to_room(f"{player.name} approaches {target.name} carefully.", exclude=[player])
+        
+        if random.randint(1, 100) <= chance:
+            # Success! Convert to companion
+            player.animal_companion = target
+            player.companion_type = matched_type
+            
+            # Set companion stats based on ranger
+            target.max_hp = int(player.max_hp * comp_data['hp_mult'])
+            target.hp = target.max_hp
+            target.level = player.level
+            target.armor_class = comp_data['armor_class']
+            target.following = player
+            target.is_companion = True
+            target.companion_owner = player
+            target.special_ability = comp_data['special']
+            
+            await player.send(f"{c['bright_green']}Success! {target.name} bonds with you as your companion!{c['reset']}")
+            await player.send(f"{c['cyan']}{comp_data['description']}{c['reset']}")
+            await player.room.send_to_room(
+                f"{target.name} nuzzles {player.name} affectionately.",
+                exclude=[player]
+            )
+        else:
+            await player.send(f"{c['yellow']}{target.name} refuses to bond with you.{c['reset']}")
+            # Failed tame might make it hostile
+            if random.randint(1, 100) <= 20:
+                await player.send(f"{c['red']}{target.name} becomes aggressive!{c['reset']}")
+                from combat import CombatHandler
+                await CombatHandler.start_combat(target, player)
+    
+    @classmethod
+    async def cmd_dismiss(cls, player: 'Player', args: List[str]):
+        """Release your animal companion back to the wild."""
+        c = player.config.COLORS
+        
+        if not player.animal_companion:
+            await player.send(f"{c['yellow']}You don't have an animal companion.{c['reset']}")
+            return
+        
+        comp = player.animal_companion
+        
+        await player.send(f"{c['cyan']}You release {comp.name} back to the wild.{c['reset']}")
+        await player.send(f"{c['cyan']}{comp.name} nuzzles you one last time before departing.{c['reset']}")
+        
+        if player.room:
+            await player.room.send_to_room(
+                f"{comp.name} bounds away into the wilderness.",
+                exclude=[player]
+            )
+            if comp in player.room.characters:
+                player.room.characters.remove(comp)
+        
+        # Remove from world
+        if hasattr(player, 'world') and hasattr(player.world, 'npcs'):
+            if comp in player.world.npcs:
+                player.world.npcs.remove(comp)
+        
+        player.animal_companion = None
+        player.companion_type = None
+    
+    @classmethod
+    async def cmd_track(cls, player: 'Player', args: List[str]):
+        """Track a creature type or specific target."""
+        c = player.config.COLORS
+        
+        if 'track' not in player.skills:
+            await player.send(f"{c['red']}You don't know how to track!{c['reset']}")
+            return
+        
+        if not args:
+            if player.tracking_target:
+                await player.send(f"{c['cyan']}Currently tracking: {c['bright_yellow']}{player.tracking_target}{c['reset']}")
+                await player.send(f"{c['cyan']}Type 'track stop' to stop tracking.{c['reset']}")
+            else:
+                await player.send(f"{c['yellow']}Track what? Usage: track <creature type>{c['reset']}")
+            return
+        
+        target = ' '.join(args).lower()
+        
+        if target == 'stop':
+            if player.tracking_target:
+                await player.send(f"{c['cyan']}You stop tracking {player.tracking_target}.{c['reset']}")
+                player.tracking_target = None
+                player.tracking_vnum = None
+            else:
+                await player.send(f"{c['yellow']}You're not tracking anything.{c['reset']}")
+            return
+        
+        # Start tracking
+        player.tracking_target = target
+        
+        skill_level = player.skills.get('track', 50)
+        
+        await player.send(f"{c['bright_green']}You begin tracking {target}...{c['reset']}")
+        
+        # Search for the target in nearby rooms
+        found_direction = None
+        from mobs import Mobile
+        
+        for direction, exit_info in player.room.exits.items():
+            if not exit_info or not exit_info.get('room'):
+                continue
+            adj_room = exit_info['room']
+            for char in adj_room.characters:
+                if isinstance(char, Mobile) and target in char.name.lower():
+                    found_direction = direction
+                    break
+            if found_direction:
+                break
+        
+        # Deeper search if not found adjacent
+        if not found_direction:
+            import random
+            if random.randint(1, 100) <= skill_level:
+                # Search 2 rooms deep
+                for direction, exit_info in player.room.exits.items():
+                    if not exit_info or not exit_info.get('room'):
+                        continue
+                    adj_room = exit_info['room']
+                    for dir2, exit2 in adj_room.exits.items():
+                        if not exit2 or not exit2.get('room'):
+                            continue
+                        far_room = exit2['room']
+                        for char in far_room.characters:
+                            if isinstance(char, Mobile) and target in char.name.lower():
+                                found_direction = direction
+                                break
+                        if found_direction:
+                            break
+                    if found_direction:
+                        break
+        
+        if found_direction:
+            await player.send(f"{c['bright_yellow']}You sense tracks leading {found_direction}!{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}You find no fresh tracks nearby.{c['reset']}")
+    
+    @classmethod
+    async def cmd_scan(cls, player: 'Player', args: List[str]):
+        """Scan for creatures in adjacent rooms."""
+        c = player.config.COLORS
+        import time
+        
+        if 'scan' not in player.skills:
+            await player.send(f"{c['red']}You don't know how to scan!{c['reset']}")
+            return
+        
+        # Check cooldown (10 seconds)
+        now = time.time()
+        if now - player.last_scan < 10:
+            remaining = int(10 - (now - player.last_scan))
+            await player.send(f"{c['yellow']}You need to wait {remaining}s before scanning again.{c['reset']}")
+            return
+        
+        player.last_scan = now
+        
+        await player.send(f"{c['cyan']}You scan your surroundings...{c['reset']}")
+        
+        from mobs import Mobile
+        
+        found_any = False
+        
+        for direction, exit_info in player.room.exits.items():
+            if not exit_info or not exit_info.get('room'):
+                continue
+            
+            # Skip hidden exits
+            if exit_info.get('hidden'):
+                continue
+            
+            adj_room = exit_info['room']
+            creatures = []
+            
+            for char in adj_room.characters:
+                if isinstance(char, Mobile):
+                    creatures.append(char.name)
+            
+            if creatures:
+                found_any = True
+                count = len(creatures)
+                if count == 1:
+                    await player.send(f"{c['bright_yellow']}{direction.title()}{c['white']}: {creatures[0]}{c['reset']}")
+                elif count <= 3:
+                    await player.send(f"{c['bright_yellow']}{direction.title()}{c['white']}: {', '.join(creatures)}{c['reset']}")
+                else:
+                    await player.send(f"{c['bright_yellow']}{direction.title()}{c['white']}: {creatures[0]}, {creatures[1]}, and {count - 2} more...{c['reset']}")
+        
+        if not found_any:
+            await player.send(f"{c['cyan']}You don't sense any creatures nearby.{c['reset']}")
+    
+    @classmethod
+    async def cmd_camouflage(cls, player: 'Player', args: List[str]):
+        """Blend into the wilderness for enhanced stealth."""
+        c = player.config.COLORS
+        import random
+        
+        if 'camouflage' not in player.skills:
+            await player.send(f"{c['red']}You don't know how to camouflage!{c['reset']}")
+            return
+        
+        # Check if outdoors
+        outdoor_sectors = {'field', 'forest', 'hills', 'mountain', 'desert', 'swamp'}
+        is_outdoors = player.room and player.room.sector_type in outdoor_sectors
+        
+        if not is_outdoors:
+            await player.send(f"{c['yellow']}Camouflage works best in wilderness areas.{c['reset']}")
+        
+        skill_level = player.skills.get('camouflage', 50)
+        bonus = 30 if is_outdoors else 0
+        
+        if random.randint(1, 100) <= skill_level + bonus:
+            from affects import AffectManager
+            
+            # Apply enhanced hide
+            duration = 10 + (player.level // 5)
+            affect_data = {
+                'name': 'camouflage',
+                'type': AffectManager.TYPE_FLAG,
+                'applies_to': 'hidden',
+                'value': 2,  # 2 = enhanced hide
+                'duration': duration,
+                'caster_level': player.level
+            }
+            AffectManager.apply_affect(player, affect_data)
+            player.flags.add('hidden')
+            
+            await player.send(f"{c['bright_green']}You blend seamlessly into your surroundings.{c['reset']}")
+            await player.room.send_to_room(
+                f"{player.name} seems to fade into the wilderness.",
+                exclude=[player]
+            )
+        else:
+            await player.send(f"{c['yellow']}You fail to properly camouflage yourself.{c['reset']}")
+    
+    @classmethod
+    async def cmd_rapid_shot(cls, player: 'Player', args: List[str]):
+        """Fire multiple arrows in quick succession."""
+        c = player.config.COLORS
+        import random
+        
+        if 'rapid_shot' not in player.skills:
+            await player.send(f"{c['red']}You don't know Rapid Shot.{c['reset']}")
+            return
+        if not player.is_fighting:
+            await player.send(f"{c['yellow']}You must be fighting to use Rapid Shot.{c['reset']}")
+            return
+        
+        target = player.fighting
+        shots = 3  # Fire 3 rapid shots
+        total_damage = 0
+        
+        await player.send(f"{c['bright_green']}You loose a rapid volley of arrows!{c['reset']}")
+        for i in range(shots):
+            damage = random.randint(4, 10) + player.level // 3
+            total_damage += damage
+            await player.send(f"{c['green']}  → Arrow {i+1} hits {target.name}! [{damage}]{c['reset']}")
+        
+        await target.take_damage(total_damage, player)
+
+    @classmethod
+    async def cmd_volley(cls, player: 'Player', args: List[str]):
+        """Rain arrows on all enemies in the room."""
+        c = player.config.COLORS
+        import random
+        from mobs import Mobile
+        
+        if 'volley' not in player.skills:
+            await player.send(f"{c['red']}You don't know Volley.{c['reset']}")
+            return
+        
+        targets = [m for m in player.room.characters if isinstance(m, Mobile) and m.hp > 0]
+        if not targets:
+            await player.send(f"{c['yellow']}No enemies to target!{c['reset']}")
+            return
+        
+        await player.send(f"{c['bright_green']}You fire a volley of arrows into the air!{c['reset']}")
+        for target in targets:
+            damage = random.randint(6, 14) + player.level // 2
+            await player.send(f"{c['green']}  → {target.name} takes {damage} damage!{c['reset']}")
+            await target.take_damage(damage, player)
+
+    @classmethod
+    async def cmd_marked_shot(cls, player: 'Player', args: List[str]):
+        """Fire a powerful shot at a marked target for bonus damage."""
+        c = player.config.COLORS
+        import random
+        
+        if 'marked_shot' not in player.skills:
+            await player.send(f"{c['red']}You don't know Marked Shot.{c['reset']}")
+            return
+        if not player.is_fighting:
+            await player.send(f"{c['yellow']}You must be fighting to use Marked Shot.{c['reset']}")
+            return
+        
+        target = player.fighting
+        base_damage = random.randint(12, 24) + player.level
+        
+        # Bonus damage if target is marked (vendetta, hunter's mark, etc.)
+        marked = getattr(target, 'hunters_mark', None) == player or getattr(target, 'vendetta_from', None) == player
+        if marked:
+            base_damage = int(base_damage * 1.5)
+            await player.send(f"{c['bright_yellow']}MARKED! Your shot finds its mark with deadly precision!{c['reset']}")
+        
+        await player.send(f"{c['bright_green']}Your marked shot strikes {target.name}! [{base_damage}]{c['reset']}")
+        await target.take_damage(base_damage, player)
+
+    @classmethod
+    async def cmd_hunters_mark(cls, player: 'Player', args: List[str]):
+        """Mark a target for increased damage from your attacks."""
+        c = player.config.COLORS
+        
+        if 'marked_shot' not in player.skills:  # Uses marked_shot skill
+            await player.send(f"{c['red']}You don't know Hunter's Mark.{c['reset']}")
+            return
+        if not player.is_fighting:
+            await player.send(f"{c['yellow']}You must be fighting to mark a target.{c['reset']}")
+            return
+        
+        target = player.fighting
+        target.hunters_mark = player
+        target.hunters_mark_ticks = 8
+        await player.send(f"{c['bright_yellow']}You mark {target.name} for the hunt!{c['reset']}")
+
+    @classmethod
+    async def cmd_ambush(cls, player: 'Player', args: List[str]):
+        """Launch a devastating attack from hiding."""
+        c = player.config.COLORS
+        import random
+        
+        if 'ambush' not in player.skills:
+            await player.send(f"{c['red']}You don't know how to ambush!{c['reset']}")
+            return
+        
+        # Must be hidden
+        is_hidden = 'hidden' in player.flags or (hasattr(player, 'affects') and 'hide' in player.affects)
+        if not is_hidden:
+            is_hidden = hasattr(player, 'affects') and 'camouflage' in player.affects
+        
+        if not is_hidden:
+            await player.send(f"{c['red']}You must be hidden to ambush!{c['reset']}")
+            return
+        
+        if not args:
+            await player.send(f"{c['yellow']}Ambush whom?{c['reset']}")
+            return
+        
+        target_name = ' '.join(args).lower()
+        target = None
+        
+        from mobs import Mobile
+        for char in player.room.characters:
+            if char != player and target_name in char.name.lower():
+                target = char
+                break
+        
+        if not target:
+            await player.send(f"{c['red']}You don't see '{target_name}' here.{c['reset']}")
+            return
+        
+        if target.is_fighting:
+            await player.send(f"{c['red']}{target.name} is too alert to ambush!{c['reset']}")
+            return
+        
+        skill_level = player.get_skill_level('ambush')
+        
+        # Remove hidden status
+        player.flags.discard('hidden')
+        from affects import AffectManager
+        AffectManager.remove_affect_by_name(player, 'hide')
+        AffectManager.remove_affect_by_name(player, 'camouflage')
+        
+        if random.randint(1, 100) <= skill_level:
+            # Ambush damage: 2.5x weapon damage
+            weapon = player.equipment.get('wield')
+            if weapon and hasattr(weapon, 'damage_dice'):
+                from combat import CombatHandler
+                base_damage = CombatHandler.roll_dice(weapon.damage_dice)
+            else:
+                base_damage = random.randint(2, 8)
+            
+            # Bonus damage if tracking this target
+            tracking_bonus = 1.15 if player.tracking_target and player.tracking_target in target.name.lower() else 1.0
+            
+            damage = int(base_damage * 2.5 * tracking_bonus) + player.get_damage_bonus() * 2
+            
+            await player.send(f"{c['bright_green']}You ambush {target.name} from the shadows! [{damage}]{c['reset']}")
+            if hasattr(target, 'send'):
+                await target.send(f"{c['bright_red']}{player.name} ambushes you from hiding! [{damage}]{c['reset']}")
+            await player.room.send_to_room(
+                f"{player.name} leaps from concealment, ambushing {target.name}!",
+                exclude=[player, target]
+            )
+            
+            killed = await target.take_damage(damage, player)
+            if killed:
+                from combat import CombatHandler
+                await CombatHandler.handle_death(player, target)
+            else:
+                from combat import CombatHandler
+                await CombatHandler.start_combat(player, target)
+        else:
+            await player.send(f"{c['yellow']}Your ambush fails! {target.name} spots you!{c['reset']}")
+            from combat import CombatHandler
+            await CombatHandler.start_combat(player, target)
+
+    # ==================== PALADIN AURA & HOLY POWER SYSTEM ====================
+    
+    @classmethod
+    async def cmd_aura(cls, player: 'Player', args: List[str]):
+        """Activate or view paladin auras."""
+        c = player.config.COLORS
+        
+        if player.char_class.lower() != 'paladin':
+            await player.send(f"{c['red']}Only paladins can use auras!{c['reset']}")
+            return
+        
+        auras = {
+            'devotion': {
+                'name': 'Devotion Aura',
+                'desc': '+15 AC to all allies in room',
+                'effect': 'ac',
+                'value': -15,
+                'level': 5
+            },
+            'protection': {
+                'name': 'Protection Aura', 
+                'desc': '+10% damage reduction to all allies',
+                'effect': 'damage_reduction',
+                'value': 10,
+                'level': 12
+            },
+            'retribution': {
+                'name': 'Retribution Aura',
+                'desc': 'Enemies take damage when they hit allies',
+                'effect': 'thorns',
+                'value': 5,
+                'level': 20
+            }
+        }
+        
+        if not args:
+            await player.send(f"{c['bright_yellow']}╔══════════════════════════════════════════════════╗{c['reset']}")
+            await player.send(f"{c['bright_yellow']}║  ✟ PALADIN AURAS ✟                               {c['bright_yellow']}║{c['reset']}")
+            await player.send(f"{c['bright_yellow']}╠══════════════════════════════════════════════════╣{c['reset']}")
+            
+            current = player.active_aura
+            if current:
+                await player.send(f"{c['bright_yellow']}║ {c['bright_green']}Active: {auras[current]['name']}{c['reset']}")
+            else:
+                await player.send(f"{c['bright_yellow']}║ {c['yellow']}No aura active{c['reset']}")
+            
+            await player.send(f"{c['bright_yellow']}╠══════════════════════════════════════════════════╣{c['reset']}")
+            for key, data in auras.items():
+                active = " ✓" if key == current else ""
+                locked = f" (Lvl {data['level']})" if player.level < data['level'] else ""
+                await player.send(f"{c['bright_yellow']}║ {c['cyan']}{data['name']}{active}{locked}{c['reset']}")
+                await player.send(f"{c['bright_yellow']}║   {c['white']}{data['desc']}{c['reset']}")
+            await player.send(f"{c['bright_yellow']}╚══════════════════════════════════════════════════╝{c['reset']}")
+            return
+        
+        aura_input = args[0].lower()
+        
+        if aura_input == 'off' or aura_input == 'none':
+            if player.active_aura:
+                await player.send(f"{c['cyan']}You deactivate your {auras[player.active_aura]['name']}.{c['reset']}")
+                player.active_aura = None
+            else:
+                await player.send(f"{c['yellow']}You have no aura active.{c['reset']}")
+            return
+        
+        # Match aura
+        matched = None
+        for key in auras:
+            if key.startswith(aura_input):
+                matched = key
+                break
+        
+        if not matched:
+            await player.send(f"{c['red']}Unknown aura. Try: devotion, protection, retribution, off{c['reset']}")
+            return
+        
+        aura_data = auras[matched]
+        
+        if player.level < aura_data['level']:
+            await player.send(f"{c['red']}You need level {aura_data['level']} to use {aura_data['name']}!{c['reset']}")
+            return
+        
+        player.active_aura = matched
+        
+        await player.send(f"{c['bright_yellow']}✟ You activate {aura_data['name']}! ✟{c['reset']}")
+        await player.send(f"{c['cyan']}{aura_data['desc']}{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(
+                f"A holy aura emanates from {player.name}.",
+                exclude=[player]
+            )
+    
+    @classmethod
+    async def cmd_smite(cls, player: 'Player', args: List[str]):
+        """Smite an enemy with holy power."""
+        c = player.config.COLORS
+        import time
+        import random
+        
+        if player.char_class.lower() != 'paladin':
+            await player.send(f"{c['red']}Only paladins can smite!{c['reset']}")
+            return
+        
+        if not player.is_fighting:
+            await player.send(f"{c['red']}You must be fighting to smite!{c['reset']}")
+            return
+        
+        # Check cooldown (20 seconds)
+        now = time.time()
+        if now - player.last_smite < 20:
+            remaining = int(20 - (now - player.last_smite))
+            await player.send(f"{c['yellow']}Smite is on cooldown! ({remaining}s){c['reset']}")
+            return
+        
+        if player.mana < 25:
+            await player.send(f"{c['red']}You need 25 mana to smite!{c['reset']}")
+            return
+        
+        player.mana -= 25
+        player.last_smite = now
+        
+        target = player.fighting
+        
+        # Base damage + bonus vs evil/undead
+        base_damage = random.randint(10, 20) + player.level
+        smite_bonus = player.get_equipment_bonus('smite') + player.get_equipment_bonus('holy_smite')
+        if smite_bonus:
+            base_damage += int(base_damage * (smite_bonus / 100))
+        
+        # Check if target is undead or evil (by keywords or flags)
+        is_evil = False
+        evil_keywords = ['undead', 'demon', 'devil', 'skeleton', 'zombie', 'vampire', 'lich', 'ghost', 'wraith', 'evil']
+        for kw in evil_keywords:
+            if kw in target.name.lower():
+                is_evil = True
+                break
+        
+        if is_evil:
+            damage = int(base_damage * 2.5)  # 2.5x vs evil
+            await player.send(f"{c['bright_yellow']}✟ Your smite burns {target.name} with holy fire! ✟ [{damage}]{c['reset']}")
+        else:
+            damage = base_damage
+            await player.send(f"{c['bright_yellow']}✟ You smite {target.name}! [{damage}]{c['reset']}")
+        
+        if hasattr(target, 'send'):
+            await target.send(f"{c['bright_yellow']}{player.name} smites you with holy power!{c['reset']}")
+        
+        await player.room.send_to_room(
+            f"{player.name} smites {target.name} with divine power!",
+            exclude=[player, target]
+        )
+        
+        killed = await target.take_damage(damage, player)
+        if killed:
+            from combat import CombatHandler
+            await CombatHandler.handle_death(player, target)
+    
+    @classmethod
+    async def cmd_layhands(cls, player: 'Player', args: List[str]):
+        """Use lay on hands to heal yourself or an ally."""
+        c = player.config.COLORS
+        
+        if player.char_class.lower() != 'paladin':
+            await player.send(f"{c['red']}Only paladins can use lay on hands!{c['reset']}")
+            return
+        
+        if player.lay_hands_used:
+            await player.send(f"{c['yellow']}You have already used lay on hands today. Rest to restore it.{c['reset']}")
+            return
+        
+        target = player
+        
+        if args:
+            target_name = ' '.join(args).lower()
+            for char in player.room.characters:
+                from mobs import Mobile
+                if not isinstance(char, Mobile) and target_name in char.name.lower():
+                    target = char
+                    break
+        
+        # Heal amount: 50% of paladin max HP
+        heal_amount = player.max_hp // 2
+        old_hp = target.hp
+        target.hp = min(target.max_hp, target.hp + heal_amount)
+        actual_heal = target.hp - old_hp
+        
+        player.lay_hands_used = True
+        
+        if target == player:
+            await player.send(f"{c['bright_yellow']}✟ You lay hands upon yourself, healing {actual_heal} HP! ✟{c['reset']}")
+            await player.room.send_to_room(
+                f"Divine light surrounds {player.name} as they heal themselves.",
+                exclude=[player]
+            )
+        else:
+            await player.send(f"{c['bright_yellow']}✟ You lay hands upon {target.name}, healing {actual_heal} HP! ✟{c['reset']}")
+            await target.send(f"{c['bright_yellow']}{player.name} lays hands upon you, healing {actual_heal} HP!{c['reset']}")
+            await player.room.send_to_room(
+                f"Divine light flows from {player.name} to {target.name}.",
+                exclude=[player, target]
+            )
+
+    # ==================== THIEF COMBO POINT SYSTEM ====================
+    
+    @classmethod
+    async def cmd_combo(cls, player: 'Player', args: List[str]):
+        """View current combo points."""
+        c = player.config.COLORS
+        
+        if player.char_class.lower() != 'thief':
+            await player.send(f"{c['red']}Only thieves use combo points!{c['reset']}")
+            return
+        
+        cp = player.combo_points
+        cp_bar = "●" * cp + "○" * (5 - cp)
+        target_name = player.combo_target.name if player.combo_target else "none"
+        
+        await player.send(f"{c['bright_yellow']}Combo Points: {c['bright_red']}{cp_bar}{c['white']} ({cp}/5) on {target_name}{c['reset']}")
+        await player.send(f"{c['cyan']}Finishers: eviscerate (5), kidney_shot (4), slice_dice (3){c['reset']}")
+    
+    @classmethod
+    async def cmd_eviscerate(cls, player: 'Player', args: List[str]):
+        """Powerful finisher that consumes all combo points."""
+        c = player.config.COLORS
+        import random
+        
+        if player.char_class.lower() != 'thief':
+            await player.send(f"{c['red']}Only thieves can eviscerate!{c['reset']}")
+            return
+        
+        if not player.is_fighting:
+            await player.send(f"{c['red']}You must be fighting to eviscerate!{c['reset']}")
+            return
+        
+        if player.combo_points < 1:
+            await player.send(f"{c['red']}You need at least 1 combo point!{c['reset']}")
+            return
+        
+        target = player.fighting
+        
+        # Damage scales with combo points
+        weapon = player.equipment.get('wield')
+        if weapon and hasattr(weapon, 'damage_dice'):
+            from combat import CombatHandler
+            base_damage = CombatHandler.roll_dice(weapon.damage_dice)
+        else:
+            base_damage = random.randint(2, 8)
+        
+        # Each combo point adds 50% damage
+        multiplier = 1 + (player.combo_points * 0.5)
+        damage = int(base_damage * multiplier) + player.get_damage_bonus()
+        
+        await player.send(f"{c['bright_red']}You eviscerate {target.name}! [{damage}] ({player.combo_points} combo points){c['reset']}")
+        if hasattr(target, 'send'):
+            await target.send(f"{c['bright_red']}{player.name} eviscerates you!{c['reset']}")
+        
+        player.combo_points = 0
+        player.combo_target = None
+        
+        killed = await target.take_damage(damage, player)
+        if killed:
+            from combat import CombatHandler
+            await CombatHandler.handle_death(player, target)
+    
+    @classmethod
+    async def cmd_kidneyshot(cls, player: 'Player', args: List[str]):
+        """Stun finisher that uses 4+ combo points."""
+        c = player.config.COLORS
+        
+        if player.char_class.lower() != 'thief':
+            await player.send(f"{c['red']}Only thieves can use kidney shot!{c['reset']}")
+            return
+        
+        if not player.is_fighting:
+            await player.send(f"{c['red']}You must be fighting!{c['reset']}")
+            return
+        
+        if player.combo_points < 4:
+            await player.send(f"{c['red']}You need at least 4 combo points for kidney shot!{c['reset']}")
+            return
+        
+        target = player.fighting
+        
+        # Stun duration based on combo points
+        stun_duration = 1 + (player.combo_points - 4)  # 1-2 ticks
+        
+        from affects import AffectManager
+        affect_data = {
+            'name': 'kidney_shot',
+            'type': AffectManager.TYPE_FLAG,
+            'applies_to': 'stunned',
+            'value': 1,
+            'duration': stun_duration,
+            'caster_level': player.level
+        }
+        AffectManager.apply_affect(target, affect_data)
+        target.position = 'stunned'
+        
+        await player.send(f"{c['bright_yellow']}You kidney shot {target.name}! Stunned for {stun_duration} ticks!{c['reset']}")
+        if hasattr(target, 'send'):
+            await target.send(f"{c['bright_red']}{player.name} kidney shots you! You're stunned!{c['reset']}")
+        
+        player.combo_points = 0
+        player.combo_target = None
+    
+    @classmethod 
+    async def cmd_slicedice(cls, player: 'Player', args: List[str]):
+        """DoT finisher that uses 3+ combo points."""
+        c = player.config.COLORS
+        
+        if player.char_class.lower() != 'thief':
+            await player.send(f"{c['red']}Only thieves can use slice and dice!{c['reset']}")
+            return
+        
+        if not player.is_fighting:
+            await player.send(f"{c['red']}You must be fighting!{c['reset']}")
+            return
+        
+        if player.combo_points < 3:
+            await player.send(f"{c['red']}You need at least 3 combo points for slice and dice!{c['reset']}")
+            return
+        
+        target = player.fighting
+        
+        # Bleed duration based on combo points
+        bleed_duration = player.combo_points
+        bleed_damage = 3 + (player.level // 5)
+        
+        from affects import AffectManager
+        affect_data = {
+            'name': 'slice_dice',
+            'type': AffectManager.TYPE_DOT,
+            'applies_to': 'hp',
+            'value': bleed_damage,
+            'duration': bleed_duration,
+            'caster_level': player.level
+        }
+        AffectManager.apply_affect(target, affect_data)
+        
+        await player.send(f"{c['bright_red']}You slice and dice {target.name}! Bleeding for {bleed_damage}/tick for {bleed_duration} ticks!{c['reset']}")
+        if hasattr(target, 'send'):
+            await target.send(f"{c['bright_red']}{player.name} slices you! You're bleeding!{c['reset']}")
+        
+        player.combo_points = 0
+        player.combo_target = None
+
+    # ==================== CLERIC DIVINE FAVOR SYSTEM ====================
+    
+    @classmethod
+    async def cmd_turnundead(cls, player: 'Player', args: List[str]):
+        """Turn undead creatures, causing fear or destroying weak ones."""
+        c = player.config.COLORS
+        import time
+        import random
+        
+        if player.char_class.lower() not in ('cleric', 'paladin'):
+            await player.send(f"{c['red']}Only clerics and paladins can turn undead!{c['reset']}")
+            return
+        
+        # Check cooldown (30 seconds)
+        now = time.time()
+        if now - player.last_turn_undead < 30:
+            remaining = int(30 - (now - player.last_turn_undead))
+            await player.send(f"{c['yellow']}Turn Undead is on cooldown! ({remaining}s){c['reset']}")
+            return
+        
+        if player.mana < 20:
+            await player.send(f"{c['red']}You need 20 mana to turn undead!{c['reset']}")
+            return
+        
+        player.mana -= 20
+        player.last_turn_undead = now
+        
+        await player.send(f"{c['bright_yellow']}✟ You raise your holy symbol and invoke divine power! ✟{c['reset']}")
+        await player.room.send_to_room(
+            f"{player.name} raises a holy symbol, radiating divine light!",
+            exclude=[player]
+        )
+        
+        from mobs import Mobile
+        from affects import AffectManager
+        
+        undead_keywords = ['undead', 'skeleton', 'zombie', 'vampire', 'lich', 'ghost', 'wraith', 'ghoul', 'wight', 'specter']
+        
+        turned = 0
+        destroyed = 0
+        
+        for char in list(player.room.characters):
+            if not isinstance(char, Mobile):
+                continue
+            
+            is_undead = False
+            for kw in undead_keywords:
+                if kw in char.name.lower():
+                    is_undead = True
+                    break
+            
+            if not is_undead:
+                continue
+            
+            # Check if destroyed (weak undead) or turned (strong)
+            level_diff = player.level - char.level
+            
+            if level_diff >= 5:
+                # Destroy weak undead
+                destroyed += 1
+                await player.send(f"{c['bright_yellow']}{char.name} is destroyed by holy power!{c['reset']}")
+                
+                # Remove from room and world
+                if char in player.room.characters:
+                    player.room.characters.remove(char)
+                if hasattr(player.world, 'npcs') and char in player.world.npcs:
+                    player.world.npcs.remove(char)
+                
+                # Give XP
+                from combat import CombatHandler
+                await CombatHandler.award_experience(player, char)
+            else:
+                # Turn (fear) stronger undead
+                if random.randint(1, 100) <= 70 + (level_diff * 5):
+                    turned += 1
+                    affect_data = {
+                        'name': 'turned',
+                        'type': AffectManager.TYPE_FLAG,
+                        'applies_to': 'feared',
+                        'value': 1,
+                        'duration': 3,
+                        'caster_level': player.level
+                    }
+                    AffectManager.apply_affect(char, affect_data)
+                    await player.send(f"{c['yellow']}{char.name} cowers from your holy power!{c['reset']}")
+        
+        if turned == 0 and destroyed == 0:
+            await player.send(f"{c['cyan']}There are no undead here to turn.{c['reset']}")
+        else:
+            await player.send(f"{c['bright_green']}Turned {turned}, destroyed {destroyed} undead!{c['reset']}")
+            
+            # Gain divine favor
+            if player.char_class.lower() == 'cleric':
+                favor_gain = (turned + destroyed * 2) * 5
+                player.divine_favor = min(100, player.divine_favor + favor_gain)
+                await player.send(f"{c['cyan']}(+{favor_gain} Divine Favor){c['reset']}")
+    
+    @classmethod
+    async def cmd_divinefavor(cls, player: 'Player', args: List[str]):
+        """View current divine favor."""
+        c = player.config.COLORS
+        
+        if player.char_class.lower() != 'cleric':
+            await player.send(f"{c['red']}Only clerics have divine favor!{c['reset']}")
+            return
+        
+        favor_bar = cls._make_bar(player.divine_favor, 100, 20, c['bright_yellow'], c['yellow'])
+        
+        await player.send(f"{c['bright_yellow']}╔══════════════════════════════════════════════════╗{c['reset']}")
+        await player.send(f"{c['bright_yellow']}║  ✟ DIVINE FAVOR ✟                                {c['bright_yellow']}║{c['reset']}")
+        await player.send(f"{c['bright_yellow']}╠══════════════════════════════════════════════════╣{c['reset']}")
+        await player.send(f"{c['bright_yellow']}║ {favor_bar} {player.divine_favor}/100{c['reset']}")
+        await player.send(f"{c['bright_yellow']}╠══════════════════════════════════════════════════╣{c['reset']}")
+        await player.send(f"{c['bright_yellow']}║ {c['cyan']}Gain favor: Heal allies, turn undead{c['reset']}")
+        await player.send(f"{c['bright_yellow']}║ {c['cyan']}Spend favor: holysmite (50), sanctuary (30){c['reset']}")
+        await player.send(f"{c['bright_yellow']}╚══════════════════════════════════════════════════╝{c['reset']}")
+    
+    @classmethod
+    async def cmd_holysmite(cls, player: 'Player', args: List[str]):
+        """Spend divine favor for a powerful holy attack."""
+        c = player.config.COLORS
+        import random
+        
+        if player.char_class.lower() != 'cleric':
+            await player.send(f"{c['red']}Only clerics can use holy smite!{c['reset']}")
+            return
+        
+        if player.divine_favor < 50:
+            await player.send(f"{c['red']}You need 50 divine favor to use holy smite! (Current: {player.divine_favor}){c['reset']}")
+            return
+        
+        if not player.is_fighting:
+            await player.send(f"{c['red']}You must be fighting to smite!{c['reset']}")
+            return
+        
+        player.divine_favor -= 50
+        target = player.fighting
+        
+        damage = random.randint(20, 40) + player.level + (player.wis - 10)
+        
+        await player.send(f"{c['bright_yellow']}✟ You channel divine favor into a devastating holy smite! [{damage}] ✟{c['reset']}")
+        if hasattr(target, 'send'):
+            await target.send(f"{c['bright_yellow']}{player.name} smites you with divine power!{c['reset']}")
+        
+        killed = await target.take_damage(damage, player)
+        if killed:
+            from combat import CombatHandler
+            await CombatHandler.handle_death(player, target)
+
     # ==================== ITEMS ====================
     
     @classmethod
@@ -1407,6 +6733,24 @@ class CommandHandler:
         # Check if last argument is a container (and no "from" keyword)
         from_container = False
         container_name = None
+
+        def find_in_list(items, name):
+            """Find item in list with numbered targeting (e.g., 2.corpse)."""
+            if not name:
+                return None
+            target_number = 1
+            if '.' in name:
+                parts = name.split('.', 1)
+                if parts[0].isdigit():
+                    target_number = int(parts[0])
+                    name = parts[1]
+            matches = []
+            for item in items:
+                if name.lower() in item.name.lower():
+                    matches.append(item)
+            if target_number <= len(matches):
+                return matches[target_number - 1]
+            return None
 
         if len(args) >= 2 and 'from' not in args:
             # Check if last argument might be a container
@@ -1448,13 +6792,10 @@ class CommandHandler:
                 item_name = ' '.join(args[:from_idx]).lower()
                 container_name = ' '.join(args[from_idx+1:]).lower()
 
-            # Find container in inventory or room
-            container = None
-            for item in player.inventory + player.room.items:
-                if container_name in item.name.lower() or container_name in item.short_desc.lower():
-                    if hasattr(item, 'item_type') and item.item_type == 'container':
-                        container = item
-                        break
+            # Find container using numbered targeting (e.g., "2.corpse")
+            container = find_in_list(player.inventory + player.room.items, container_name)
+            if container and getattr(container, 'item_type', None) != 'container':
+                container = None
 
             if not container:
                 await player.send(f"You don't see a '{container_name}' container here.")
@@ -1499,6 +6840,11 @@ class CommandHandler:
                 for item in list(container.contents):
                     container.contents.remove(item)
                     player.inventory.append(item)
+                    await cls._record_collection_item(player, item)
+                    from quests import QuestManager
+                    await QuestManager.check_quest_progress(
+                        player, 'collect', {'item_vnum': getattr(item, 'vnum', 0), 'item_name': item.name}
+                    )
                     await player.send(f"You get {item.short_desc} from {container.short_desc}.")
                 return
 
@@ -1507,16 +6853,21 @@ class CommandHandler:
                 await player.send(f"The {container.name} is empty.")
                 return
 
-            for item in container.contents:
-                if item_name in item.name.lower():
-                    container.contents.remove(item)
-                    player.inventory.append(item)
-                    await player.send(f"You get {item.short_desc} from {container.short_desc}.")
-                    await player.room.send_to_room(
-                        f"{player.name} gets {item.short_desc} from {container.short_desc}.",
-                        exclude=[player]
-                    )
-                    return
+            item = find_in_list(container.contents, item_name)
+            if item:
+                container.contents.remove(item)
+                player.inventory.append(item)
+                await cls._record_collection_item(player, item)
+                from quests import QuestManager
+                await QuestManager.check_quest_progress(
+                    player, 'collect', {'item_vnum': getattr(item, 'vnum', 0), 'item_name': item.name}
+                )
+                await player.send(f"You get {item.short_desc} from {container.short_desc}.")
+                await player.room.send_to_room(
+                    f"{player.name} gets {item.short_desc} from {container.short_desc}.",
+                    exclude=[player]
+                )
+                return
 
             await player.send(f"There's no '{item_name}' in {container.short_desc}.")
             return
@@ -1555,6 +6906,11 @@ class CommandHandler:
                     for item in list(container.contents):
                         container.contents.remove(item)
                         player.inventory.append(item)
+                        await cls._record_collection_item(player, item)
+                        from quests import QuestManager
+                        await QuestManager.check_quest_progress(
+                            player, 'collect', {'item_vnum': getattr(item, 'vnum', 0), 'item_name': item.name}
+                        )
                         await player.send(f"You get {item.short_desc} from {container.short_desc}.")
                         total_items += 1
 
@@ -1575,20 +6931,30 @@ class CommandHandler:
             for item in list(player.room.items):
                 player.room.items.remove(item)
                 player.inventory.append(item)
+                await cls._record_collection_item(player, item)
+                from quests import QuestManager
+                await QuestManager.check_quest_progress(
+                    player, 'collect', {'item_vnum': getattr(item, 'vnum', 0), 'item_name': item.name}
+                )
                 await player.send(f"You get {item.short_desc}.")
             return
             
-        # Find item in room
-        for item in player.room.items:
-            if item_name in item.name.lower():
-                player.room.items.remove(item)
-                player.inventory.append(item)
-                await player.send(f"You get {item.short_desc}.")
-                await player.room.send_to_room(
-                    f"{player.name} picks up {item.short_desc}.",
-                    exclude=[player]
-                )
-                return
+        # Find item in room with numbered targeting (e.g., "2.corpse", "3.sword")
+        item = player.find_item_in_room(item_name)
+        if item:
+            player.room.items.remove(item)
+            player.inventory.append(item)
+            await cls._record_collection_item(player, item)
+            from quests import QuestManager
+            await QuestManager.check_quest_progress(
+                player, 'collect', {'item_vnum': getattr(item, 'vnum', 0), 'item_name': item.name}
+            )
+            await player.send(f"You get {item.short_desc}.")
+            await player.room.send_to_room(
+                f"{player.name} picks up {item.short_desc}.",
+                exclude=[player]
+            )
+            return
                 
         await player.send(f"You don't see '{item_name}' here.")
         
@@ -1599,18 +6965,18 @@ class CommandHandler:
 
     @classmethod
     async def cmd_loot(cls, player: 'Player', args: List[str]):
-        """Loot items from a corpse."""
+        """Loot items from a corpse. Supports numbered targeting (e.g., loot 2.corpse)"""
         c = player.config.COLORS
 
         # Find corpse - default to first corpse if no args
         corpse = None
         if args:
             corpse_name = ' '.join(args).lower()
-            for item in player.room.items:
-                if hasattr(item, 'item_type') and item.item_type == 'container':
-                    if 'corpse' in item.name.lower() and corpse_name in item.name.lower():
-                        corpse = item
-                        break
+            # Use find_container for numbered targeting (e.g., "loot 2.corpse")
+            corpse = player.find_container(corpse_name)
+            # Verify it's actually a corpse
+            if corpse and 'corpse' not in corpse.name.lower():
+                corpse = None
         else:
             # No args - find first corpse
             for item in player.room.items:
@@ -1636,6 +7002,11 @@ class CommandHandler:
             for item in list(corpse.contents):
                 corpse.contents.remove(item)
                 player.inventory.append(item)
+                await cls._record_collection_item(player, item)
+                from quests import QuestManager
+                await QuestManager.check_quest_progress(
+                    player, 'collect', {'item_vnum': getattr(item, 'vnum', 0), 'item_name': item.name}
+                )
                 await player.send(f"{c['bright_cyan']}You get {item.short_desc} from {corpse.short_desc}.{c['reset']}")
                 items_looted += 1
 
@@ -1930,17 +7301,41 @@ class CommandHandler:
         # Handle "wear all"
         if item_name == 'all':
             worn_count = 0
+            # Include lights even without wear_slot (they auto-assign to 'light')
             items_to_wear = [item for item in player.inventory
-                           if item.item_type in ('armor', 'light', 'worn') and hasattr(item, 'wear_slot')]
+                           if item.item_type in ('armor', 'light', 'worn') and (hasattr(item, 'wear_slot') or item.item_type == 'light')]
 
+            # Handle paired slots
+            paired_slots = {
+                'finger': ['finger1', 'finger2'],
+                'neck': ['neck1', 'neck2'],
+                'wrist': ['wrist1', 'wrist2'],
+            }
+            
             for item in items_to_wear:
-                slot = item.wear_slot
-                # Only wear if slot is empty
-                if not player.equipment.get(slot):
-                    player.inventory.remove(item)
-                    player.equipment[slot] = item
-                    await player.send(f"You wear {item.short_desc}.")
-                    worn_count += 1
+                slot = getattr(item, 'wear_slot', None)
+                # Auto-assign light slot for light items
+                if not slot and item.item_type == 'light':
+                    slot = 'light'
+                if not slot:
+                    continue
+                actual_slot = slot
+                
+                # Handle paired slots
+                if slot in paired_slots:
+                    for paired in paired_slots[slot]:
+                        if not player.equipment.get(paired):
+                            actual_slot = paired
+                            break
+                    else:
+                        continue  # Both slots full, skip this item
+                elif player.equipment.get(slot):
+                    continue  # Slot occupied
+                
+                player.inventory.remove(item)
+                player.equipment[actual_slot] = item
+                await player.send(f"You wear {item.short_desc}.")
+                worn_count += 1
 
             if worn_count > 0:
                 await player.room.send_to_room(
@@ -1959,17 +7354,38 @@ class CommandHandler:
                     return
 
                 slot = getattr(item, 'wear_slot', None)
+                # Auto-assign light slot for light items
+                if not slot and item.item_type == 'light':
+                    slot = 'light'
                 if not slot:
                     await player.send(f"You can't figure out how to wear {item.short_desc}.")
                     return
 
-                # Check if slot is occupied
-                if player.equipment.get(slot):
+                # Handle paired slots (finger, neck, wrist -> finger1/finger2, etc.)
+                paired_slots = {
+                    'finger': ['finger1', 'finger2'],
+                    'neck': ['neck1', 'neck2'],
+                    'wrist': ['wrist1', 'wrist2'],
+                }
+                
+                actual_slot = slot
+                if slot in paired_slots:
+                    # Find first empty slot in the pair
+                    for paired in paired_slots[slot]:
+                        if not player.equipment.get(paired):
+                            actual_slot = paired
+                            break
+                    else:
+                        # Both slots full
+                        await player.send(f"You're already wearing something in both {slot} slots.")
+                        return
+                elif player.equipment.get(slot):
+                    # Single slot already occupied
                     await player.send(f"You're already wearing something there.")
                     return
 
                 player.inventory.remove(item)
-                player.equipment[slot] = item
+                player.equipment[actual_slot] = item
                 await player.send(f"You wear {item.short_desc}.")
                 await player.room.send_to_room(
                     f"{player.name} wears {item.short_desc}.",
@@ -1995,9 +7411,27 @@ class CommandHandler:
                     await player.send(f"You can't wield {item.short_desc}.")
                     return
                     
-                # Check if already wielding
+                # If already wielding, require dual wield skill and use off-hand slot
                 if player.equipment.get('wield'):
-                    await player.send("You're already wielding something.")
+                    if 'dual_wield' not in player.skills:
+                        await player.send("You're already wielding something.")
+                        return
+                    if player.equipment.get('dual_wield'):
+                        await player.send("You're already dual wielding.")
+                        return
+                    # Restrict to light weapons
+                    name_l = (item.name + ' ' + item.short_desc).lower()
+                    allowed_name = any(x in name_l for x in ['dagger', 'knife', 'stiletto', 'short sword', 'shortsword'])
+                    if getattr(item, 'weapon_type', '') not in ('pierce', 'stab') and not allowed_name:
+                        await player.send("Off-hand weapons must be daggers, knives, or short swords.")
+                        return
+                    player.inventory.remove(item)
+                    player.equipment['dual_wield'] = item
+                    await player.send(f"You off-hand {item.short_desc}.")
+                    await player.room.send_to_room(
+                        f"{player.name} off-hands {item.short_desc}.",
+                        exclude=[player]
+                    )
                     return
                     
                 player.inventory.remove(item)
@@ -2027,6 +7461,7 @@ class CommandHandler:
                 if item:
                     player.equipment[slot] = None
                     player.inventory.append(item)
+                    await cls._record_collection_item(player, item)
                     await player.send(f"You remove {item.short_desc}.")
                     removed_count += 1
 
@@ -2044,6 +7479,7 @@ class CommandHandler:
             if item and item_name in item.name.lower():
                 player.equipment[slot] = None
                 player.inventory.append(item)
+                await cls._record_collection_item(player, item)
                 await player.send(f"You remove {item.short_desc}.")
                 await player.room.send_to_room(
                     f"{player.name} removes {item.short_desc}.",
@@ -2146,6 +7582,94 @@ class CommandHandler:
                 await player.send(f"{c['bright_cyan']}{npc.name} says, 'I'm here to keep the peace. Stay out of trouble!'{c['reset']}")
 
     @classmethod
+    async def cmd_ask(cls, player: 'Player', args: List[str]):
+        """Ask an NPC a question using LLM-powered conversation."""
+        c = player.config.COLORS
+        
+        if len(args) < 2:
+            await player.send(f"{c['yellow']}Usage: ask <npc> <question>{c['reset']}")
+            await player.send(f"{c['cyan']}Example: ask sage What is the history of this realm?{c['reset']}")
+            return
+        
+        npc_name = args[0].lower()
+        question = ' '.join(args[1:])
+        
+        # Find the NPC in the room
+        from mobs import Mobile
+        target_npc = None
+        
+        for char in player.room.characters:
+            if isinstance(char, Mobile):
+                if npc_name in char.name.lower():
+                    target_npc = char
+                    break
+                # Check keywords
+                keywords = getattr(char, 'keywords', [])
+                if isinstance(keywords, str):
+                    keywords = [keywords]
+                for kw in keywords:
+                    if npc_name in kw.lower():
+                        target_npc = char
+                        break
+                if target_npc:
+                    break
+        
+        if not target_npc:
+            await player.send(f"{c['red']}You don't see '{npc_name}' here to ask.{c['reset']}")
+            return
+        
+        # Check if LLM is available
+        from llm_client import get_llm_client
+        llm = get_llm_client()
+        
+        if not await llm.is_available():
+            # Fallback to generic response
+            await player.send(f"{c['cyan']}{target_npc.name} looks at you thoughtfully but doesn't seem to understand.{c['reset']}")
+            await player.send(f"{c['yellow']}(LLM server not available - start LM Studio to enable NPC conversations){c['reset']}")
+            return
+        
+        # Show thinking indicator
+        await player.send(f"{c['cyan']}You ask {target_npc.name}: \"{question}\"{c['reset']}")
+        await player.room.send_to_room(
+            f"{player.name} speaks with {target_npc.name}.",
+            exclude=[player]
+        )
+        
+        # Get NPC personality and context
+        from npc_personalities import get_npc_personality, get_world_context
+        
+        personality = get_npc_personality(target_npc)
+        context = get_world_context(player, target_npc)
+        
+        # Get conversation history for this NPC (if we have it)
+        conv_key = f"{player.name}:{target_npc.vnum if hasattr(target_npc, 'vnum') else target_npc.name}"
+        if not hasattr(player, 'npc_conversations'):
+            player.npc_conversations = {}
+        history = player.npc_conversations.get(conv_key, [])
+        
+        # Call LLM
+        response = await llm.ask_npc(
+            npc_name=target_npc.name,
+            npc_personality=personality,
+            player_name=player.name,
+            question=question,
+            context=context,
+            conversation_history=history
+        )
+        
+        if response:
+            # Store conversation history
+            history.append({"role": "user", "content": f"{player.name} asks: {question}"})
+            history.append({"role": "assistant", "content": response})
+            # Keep only last 10 messages
+            player.npc_conversations[conv_key] = history[-10:]
+            
+            # Display NPC response
+            await player.send(f"\n{c['bright_cyan']}{target_npc.name} says, \"{response}\"{c['reset']}\n")
+        else:
+            await player.send(f"{c['cyan']}{target_npc.name} ponders for a moment but doesn't respond.{c['reset']}")
+
+    @classmethod
     async def cmd_say(cls, player: 'Player', args: List[str]):
         """Say something to the room."""
         if not args:
@@ -2155,7 +7679,8 @@ class CommandHandler:
         message = ' '.join(args)
         c = player.config.COLORS
 
-        await player.send(f"{c['bright_green']}You say, '{message}'{c['reset']}")
+        if not getattr(player, 'norepeat', False):
+            await player.send(f"{c['bright_green']}You say, '{message}'{c['reset']}")
         await player.room.send_to_room(
             f"{c['bright_green']}{player.name} says, '{message}'{c['reset']}",
             exclude=[player]
@@ -2177,12 +7702,14 @@ class CommandHandler:
         message = ' '.join(args)
         c = player.config.COLORS
         
-        await player.send(f"{c['bright_yellow']}You shout, '{message}'{c['reset']}")
+        if not getattr(player, 'norepeat', False):
+            await player.send(f"{c['bright_yellow']}You shout, '{message}'{c['reset']}")
         
         # Send to all players in the zone
         for p in player.world.players.values():
             if p != player and p.room and player.room and p.room.zone == player.room.zone:
-                await p.send(f"\r\n{c['bright_yellow']}{player.name} shouts, '{message}'{c['reset']}")
+                if not getattr(p, 'noshout', False):
+                    await p.send(f"\r\n{c['bright_yellow']}{player.name} shouts, '{message}'{c['reset']}")
                 
     @classmethod
     async def cmd_gossip(cls, player: 'Player', args: List[str]):
@@ -2228,7 +7755,12 @@ class CommandHandler:
             await player.send(f"No player named '{target_name}' is online.")
             return
             
-        await player.send(f"{c['bright_cyan']}You tell {target.name}, '{message}'{c['reset']}")
+        if getattr(target, 'notell', False):
+            await player.send(f"{c['yellow']}{target.name} is not accepting tells.{c['reset']}")
+            return
+        
+        if not getattr(player, 'norepeat', False):
+            await player.send(f"{c['bright_cyan']}You tell {target.name}, '{message}'{c['reset']}")
         await target.send(f"\r\n{c['bright_cyan']}{player.name} tells you, '{message}'{c['reset']}")
     
     # ==================== POSITIONS ====================
@@ -2327,6 +7859,57 @@ class CommandHandler:
                 else:
                     await player.send(f"{c['yellow']}You are already full!{c['reset']}")
 
+                # Check for food bonuses (rare/magical food)
+                food_bonus = getattr(item, 'food_bonus', None)
+                if food_bonus:
+                    from affects import AffectManager
+                    bonus_type = food_bonus.get('type')
+                    bonus_value = food_bonus.get('value', 1)
+                    duration = food_bonus.get('duration', 300) // 6  # Convert seconds to ticks
+                    
+                    # Custom message
+                    food_msg = getattr(item, 'food_message', None)
+                    if food_msg:
+                        await player.send(f"{c['bright_magenta']}{food_msg}{c['reset']}")
+                    
+                    if bonus_type == 'all_stats':
+                        # Boost all stats
+                        for stat in ['str', 'int', 'wis', 'dex', 'con', 'cha']:
+                            AffectManager.apply_affect(player, {
+                                'name': f'divine_nourishment_{stat}',
+                                'type': AffectManager.TYPE_MODIFY_STAT,
+                                'applies_to': stat,
+                                'value': bonus_value,
+                                'duration': duration,
+                                'caster_level': 30
+                            })
+                    elif bonus_type == 'regen':
+                        # Bonus HP/mana regen - just heal directly for now
+                        heal = bonus_value
+                        player.hp = min(player.max_hp, player.hp + heal)
+                        player.mana = min(player.max_mana, player.mana + heal)
+                        await player.send(f"{c['bright_green']}You recover {heal} HP and mana!{c['reset']}")
+                    elif bonus_type == 'stealth':
+                        # Stealth bonus
+                        AffectManager.apply_affect(player, {
+                            'name': 'shadow_nourishment',
+                            'type': AffectManager.TYPE_FLAG,
+                            'applies_to': 'sneak_bonus',
+                            'value': bonus_value,
+                            'duration': duration,
+                            'caster_level': 20
+                        })
+                    elif bonus_type in ['str', 'int', 'wis', 'dex', 'con', 'cha', 'hitroll', 'damroll']:
+                        # Stat bonus
+                        AffectManager.apply_affect(player, {
+                            'name': 'nourishment_bonus',
+                            'type': AffectManager.TYPE_MODIFY_STAT,
+                            'applies_to': bonus_type,
+                            'value': bonus_value,
+                            'duration': duration,
+                            'caster_level': 20
+                        })
+
                 return
                 
         await player.send(f"You don't have '{item_name}'.")
@@ -2338,45 +7921,69 @@ class CommandHandler:
             await player.send("Drink what?")
             return
             
-        item_name = ' '.join(args).lower()
-        
+        c = player.config.COLORS
+        target = ' '.join(args).lower()
+        if target.startswith('from '):
+            target = target[5:]
+
+        # Check for explicit drink container in inventory
+        explicit_container = None
         for item in player.inventory:
-            if item_name in item.name.lower():
-                if item.item_type != 'drink':
-                    await player.send(f"You can't drink from {item.short_desc}!")
-                    return
+            if target in item.name.lower() and getattr(item, 'item_type', '') == 'drink':
+                explicit_container = item
+                break
 
-                c = player.config.COLORS
-                # Get drink value (drinks attribute indicates how many servings remain)
-                drinks_remaining = getattr(item, 'drinks', 20)
-                drink_value = 3  # Each drink restores 3 hours of thirst
+        # If there's a fountain in the room, drink from it by default
+        fountain = None
+        if player.room:
+            for item in player.room.items:
+                if getattr(item, 'item_type', '') == 'fountain':
+                    if target in item.name.lower() or target in ('fountain', 'water', 'spring', 'pool'):
+                        fountain = item
+                        break
+            if fountain is None:
+                # If no specific target matched but a fountain exists, default to it
+                for item in player.room.items:
+                    if getattr(item, 'item_type', '') == 'fountain':
+                        fountain = item
+                        break
 
-                if drinks_remaining > 0:
-                    # Consume one serving
-                    item.drinks = drinks_remaining - 1
+        if fountain and not explicit_container:
+            drink_value = getattr(fountain, 'drink_value', 12)
+            player.thirst = min(player.max_thirst, player.thirst + drink_value)
+            await player.send(f"{c['cyan']}You drink from {fountain.short_desc}.{c['reset']}")
+            if player.room:
+                await player.room.send_to_room(f"{player.name} drinks from {fountain.short_desc}.", exclude=[player])
+            return
 
-                    # Restore thirst
-                    old_thirst = player.thirst
-                    player.thirst = min(player.max_thirst, player.thirst + drink_value)
-                    thirst_restored = player.thirst - old_thirst
+        # Drink from container if explicitly requested or no fountain available
+        if explicit_container:
+            item = explicit_container
+            drinks_remaining = getattr(item, 'drinks', 20)
+            drink_value = 3  # Each drink restores 3 hours of thirst
 
-                    liquid = getattr(item, 'liquid', 'water')
-                    await player.send(f"You drink {liquid} from {item.short_desc}.")
-                    if thirst_restored > 0:
-                        await player.send(f"{c['cyan']}You feel less thirsty. (+{thirst_restored} thirst){c['reset']}")
-                    else:
-                        await player.send(f"{c['yellow']}You can't drink any more!{c['reset']}")
+            if drinks_remaining > 0:
+                item.drinks = drinks_remaining - 1
 
-                    # Remove empty container
-                    if item.drinks <= 0:
-                        await player.send(f"{c['white']}{item.short_desc} is now empty.{c['reset']}")
-                        player.inventory.remove(item)
+                old_thirst = player.thirst
+                player.thirst = min(player.max_thirst, player.thirst + drink_value)
+                thirst_restored = player.thirst - old_thirst
+
+                liquid = getattr(item, 'liquid', 'water')
+                await player.send(f"You drink {liquid} from {item.short_desc}.")
+                if thirst_restored > 0:
+                    await player.send(f"{c['cyan']}You feel less thirsty. (+{thirst_restored} thirst){c['reset']}")
                 else:
-                    await player.send(f"{item.short_desc} is empty!")
+                    await player.send(f"{c['yellow']}You can't drink any more!{c['reset']}")
 
-                return
-                
-        await player.send(f"You don't have '{item_name}'.")
+                if item.drinks <= 0:
+                    await player.send(f"{c['white']}{item.short_desc} is now empty.{c['reset']}")
+                    player.inventory.remove(item)
+            else:
+                await player.send(f"{item.short_desc} is empty!")
+            return
+
+        await player.send(f"You don't have '{target}'.")
         
     @classmethod
     async def cmd_quaff(cls, player: 'Player', args: List[str]):
@@ -2463,6 +8070,365 @@ class CommandHandler:
                 return
                 
         await player.send(f"You don't have '{item_name}'.")
+
+    @classmethod
+    async def cmd_time_old(cls, player: 'Player', args: List[str]):
+        """Show the current in-game time (old version)."""
+        if not player.world or not getattr(player.world, 'game_time', None):
+            await player.send("Time seems to stand still.")
+            return
+
+        c = player.config.COLORS
+        game_time = player.world.game_time
+        await player.send(
+            f"{c['bright_cyan']}It is {game_time.get_time_string()} ({game_time.get_period()}, {game_time.get_season()}).{c['reset']}"
+        )
+
+    @classmethod
+    async def cmd_reputation(cls, player: 'Player', args: List[str]):
+        """Show reputation standings with all factions."""
+        from factions import FactionManager
+        c = player.config.COLORS
+        lines = FactionManager.format_reputation_summary(player)
+        await player.send(f"{c['bright_cyan']}Faction Reputation:{c['reset']}")
+        for line in lines:
+            await player.send(f"  {line}")
+
+    @classmethod
+    async def cmd_faction(cls, player: 'Player', args: List[str]):
+        """Show detailed reputation for a specific faction."""
+        if not args:
+            await player.send("Usage: faction <name>")
+            return
+
+        from factions import FactionManager
+        c = player.config.COLORS
+        key = FactionManager.normalize_key(' '.join(args))
+        if not key:
+            await player.send(f"{c['yellow']}Unknown faction.{c['reset']}")
+            return
+
+        lines = FactionManager.format_faction_detail(player, key)
+        for line in lines:
+            await player.send(f"{c['white']}{line}{c['reset']}")
+
+    @classmethod
+    async def cmd_gather(cls, player: 'Player', args: List[str]):
+        """Gather resources based on environment."""
+        from crafting import gather
+        await gather(player)
+
+    @classmethod
+    async def cmd_craft(cls, player: 'Player', args: List[str]):
+        """Craft an item from a recipe."""
+        from crafting import craft, list_recipes
+        c = player.config.COLORS
+
+        if not args or args[0] == 'list':
+            recipes = list_recipes()
+            await player.send(f"{c['bright_yellow']}Available Recipes:{c['reset']}")
+            for recipe_id, recipe in recipes.items():
+                ingredients = ", ".join(
+                    f"{amt}x {mat.replace('_', ' ')}" for mat, amt in recipe.ingredients.items()
+                )
+                await player.send(
+                    f"  {c['cyan']}{recipe_id}{c['reset']}: {recipe.name} "
+                    f"({recipe.skill} {recipe.skill_required}%) - {ingredients}"
+                )
+            await player.send(f"{c['white']}Use 'craft <recipe_id>' to craft an item.{c['reset']}")
+            return
+
+        await craft(player, args[0])
+
+    @classmethod
+    async def cmd_talk(cls, player: 'Player', args: List[str]):
+        """Talk to an NPC."""
+        if not args:
+            await player.send("Talk to whom?")
+            return
+
+        if not player.room:
+            await player.send("You are nowhere.")
+            return
+
+        choice_index = None
+        if args and args[-1].isdigit():
+            choice_index = int(args[-1])
+            target_name = ' '.join(args[:-1]).lower()
+        else:
+            target_name = ' '.join(args).lower()
+
+        if not target_name:
+            await player.send("Talk to whom?")
+            return
+
+        from mobs import Mobile
+        target = None
+        for char in player.room.characters:
+            if isinstance(char, Mobile) and target_name in char.name.lower():
+                target = char
+                break
+
+        if not target:
+            await player.send("You don't see them here.")
+            return
+
+        # Reputation gating for NPC interactions
+        try:
+            from factions import FactionManager
+            faction_key = FactionManager.normalize_key(getattr(target, 'faction', None))
+            min_required = None
+            if getattr(target, 'min_rep_talk', None) is not None:
+                min_required = int(target.min_rep_talk)
+            elif getattr(target, 'min_rep_talk_level', None) and faction_key:
+                min_required = FactionManager.get_threshold_for_level(target.min_rep_talk_level)
+
+            if faction_key and min_required is not None:
+                rep = FactionManager.get_reputation(player, faction_key)
+                if rep < min_required:
+                    c = player.config.COLORS
+                    await player.send(f"{c['yellow']}{target.name} refuses to speak with you.{c['reset']}")
+                    return
+        except Exception:
+            pass
+
+        c = player.config.COLORS
+        await player.send(f"{c['bright_green']}You greet {target.name}.{c['reset']}")
+
+        # Trigger NPC responses
+        if target.special:
+            await cls.handle_npc_trigger(player, target, 'hello')
+
+        # Dialogue trees
+        from quests import QuestManager, QUEST_DEFINITIONS
+        if hasattr(target, 'vnum'):
+            await QuestManager.handle_dialogue(player, target.vnum, choice_index)
+
+        # Quest giver interactions
+        if hasattr(target, 'vnum'):
+            available = QuestManager.get_available_quests(player, target.vnum)
+            if available:
+                await player.send(f"{c['bright_yellow']}{target.name} has quests for you:{c['reset']}")
+                for quest_id in available:
+                    quest_def = QUEST_DEFINITIONS[quest_id]
+                    await player.send(f"  {c['cyan']}{quest_id}{c['reset']}: {quest_def['name']}")
+                await player.send(f"{c['white']}Use 'quest accept <quest_id>' to accept.{c['reset']}")
+
+        await QuestManager.check_quest_progress(
+            player, 'talk', {'npc_vnum': getattr(target, 'vnum', 0), 'npc_name': target.name}
+        )
+        
+        # Journal entry for notable NPCs (those with quests, special functions, or notable flag)
+        try:
+            from journal import JournalManager, NOTABLE_NPCS
+            is_notable = (
+                getattr(target, 'notable', False) or
+                getattr(target, 'special', None) or
+                available or  # Has quests
+                getattr(target, 'shopkeeper', False) or
+                getattr(target, 'trainer', False)
+            )
+            if is_notable:
+                npc_key = f"{getattr(target, 'vnum', 0)}_{target.name.lower().replace(' ', '_')}"
+                npc_desc = getattr(target, 'description', '') or getattr(target, 'long_desc', '') or f"A resident of the realm."
+                
+                # Check for predefined lore about this NPC
+                for lore_key, lore_data in NOTABLE_NPCS.items():
+                    if lore_key.lower() in target.name.lower() or target.name.lower() in lore_key.lower():
+                        npc_desc = lore_data['content']
+                        break
+                
+                await JournalManager.discover_npc(
+                    player, npc_key, target.name, npc_desc
+                )
+        except Exception:
+            pass
+
+    @classmethod
+    async def cmd_chat(cls, player: 'Player', args: List[str]):
+        """Have a dynamic AI conversation with an NPC. Usage: chat <npc> <message>"""
+        c = player.config.COLORS
+        
+        if len(args) < 2:
+            await player.send(f"{c['yellow']}Usage: chat <npc> <what you want to say>{c['reset']}")
+            await player.send(f"{c['white']}Example: chat guard Hello, any trouble around here?{c['reset']}")
+            return
+        
+        if not player.room:
+            await player.send("You are nowhere.")
+            return
+        
+        # First arg is NPC name, rest is message
+        target_name = args[0].lower()
+        message = ' '.join(args[1:])
+        
+        from mobs import Mobile
+        target = None
+        for char in player.room.characters:
+            if isinstance(char, Mobile) and target_name in char.name.lower():
+                target = char
+                break
+        
+        if not target:
+            await player.send(f"{c['red']}You don't see '{target_name}' here.{c['reset']}")
+            return
+        
+        # Check AI chat toggle
+        if not getattr(player, 'ai_chat_enabled', True):
+            await player.send(f"{c['yellow']}AI chat is disabled. Use 'ai on' to enable.{c['reset']}")
+            return
+        
+        # Conversation key
+        convo_key = f"chat_{target.vnum if hasattr(target, 'vnum') else id(target)}"
+        if not hasattr(player, 'conversation_history'):
+            player.conversation_history = {}
+        
+        # Handle reset
+        if message.strip().lower() == 'reset':
+            player.conversation_history.pop(convo_key, None)
+            await player.send(f"{c['yellow']}Conversation with {target.name} has been reset.{c['reset']}")
+            return
+        
+        # Show player speaking
+        await player.send(f"{c['white']}You say to {target.name}, \"{message}\"{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(
+                f"{player.name} says something to {target.name}.",
+                exclude=[player]
+            )
+        
+        # Try AI response
+        from ai_service import ai_service
+        
+        # Get NPC personality from attributes or generate defaults
+        npc_desc = getattr(target, 'short_desc', target.name)
+        npc_personality = getattr(target, 'personality', None)
+        
+        if not npc_personality:
+            # Generate personality from NPC type/keywords
+            if any(k in target.name.lower() for k in ['guard', 'soldier', 'knight']):
+                npc_personality = "Serious, dutiful, protective. Speaks formally."
+            elif any(k in target.name.lower() for k in ['merchant', 'vendor', 'shopkeeper']):
+                npc_personality = "Friendly, business-minded, always looking to make a sale."
+            elif any(k in target.name.lower() for k in ['beggar', 'peasant', 'farmer']):
+                npc_personality = "Humble, weary, speaks simply."
+            elif any(k in target.name.lower() for k in ['wizard', 'mage', 'sage']):
+                npc_personality = "Wise, cryptic, speaks in riddles sometimes."
+            elif any(k in target.name.lower() for k in ['priest', 'cleric', 'monk']):
+                npc_personality = "Pious, kind, speaks of faith and blessings."
+            elif any(k in target.name.lower() for k in ['thief', 'rogue', 'bandit']):
+                npc_personality = "Shifty, cunning, speaks in hushed tones."
+            elif any(k in target.name.lower() for k in ['bartender', 'innkeeper']):
+                npc_personality = "Friendly, gossipy, knows local rumors."
+            else:
+                npc_personality = "A typical citizen of the realm."
+        
+        # Get conversation history if we have it
+        history = player.conversation_history.get(convo_key, [])
+        
+        # Generate AI response
+        response = await ai_service.npc_dialogue(
+            npc_name=target.name,
+            npc_desc=npc_desc,
+            npc_personality=npc_personality,
+            player_name=player.name,
+            player_says=message,
+            conversation_history=history
+        )
+        
+        if response:
+            await player.send(f"{c['bright_green']}{target.name} says, \"{response}\"{c['reset']}")
+            
+            # Store in history
+            history.append(f"{player.name}: {message}")
+            history.append(f"{target.name}: {response}")
+            player.conversation_history[convo_key] = history[-8:]  # Keep last 8 lines
+        else:
+            # Fallback to generic responses
+            import random
+            fallbacks = [
+                f"{target.name} looks at you but doesn't seem to understand.",
+                f"{target.name} nods politely.",
+                f"{target.name} shrugs.",
+                f"{target.name} seems distracted.",
+                f"{target.name} grunts acknowledgment.",
+            ]
+            await player.send(f"{c['yellow']}{random.choice(fallbacks)}{c['reset']}")
+
+    @classmethod
+    async def cmd_chathistory(cls, player: 'Player', args: List[str]):
+        """Show recent AI chat history with an NPC. Usage: chathistory <npc>"""
+        c = player.config.COLORS
+        
+        if not args:
+            await player.send(f"{c['yellow']}Usage: chathistory <npc>{c['reset']}")
+            return
+        
+        target_name = ' '.join(args).lower()
+        from mobs import Mobile
+        target = None
+        if player.room:
+            for char in player.room.characters:
+                if isinstance(char, Mobile) and target_name in char.name.lower():
+                    target = char
+                    break
+        
+        if not target:
+            await player.send(f"{c['red']}You don't see '{target_name}' here.{c['reset']}")
+            return
+        
+        if not hasattr(player, 'conversation_history'):
+            player.conversation_history = {}
+        
+        convo_key = f"chat_{target.vnum if hasattr(target, 'vnum') else id(target)}"
+        history = player.conversation_history.get(convo_key, [])
+        
+        if not history:
+            await player.send(f"{c['yellow']}No conversation history with {target.name}.{c['reset']}")
+            return
+        
+        await player.send(f"{c['cyan']}=== Chat History: {target.name} ==={c['reset']}")
+        for line in history:
+            await player.send(f"{c['white']}{line}{c['reset']}")
+
+    @classmethod
+    async def cmd_ai(cls, player: 'Player', args: List[str]):
+        """Toggle AI chat on/off. Usage: ai on|off"""
+        c = player.config.COLORS
+        
+        if not args:
+            status = 'ON' if getattr(player, 'ai_chat_enabled', True) else 'OFF'
+            await player.send(f"{c['cyan']}AI chat is currently {status}.{c['reset']}")
+            await player.send(f"{c['yellow']}Usage: ai on|off{c['reset']}")
+            return
+        
+        val = args[0].lower()
+        if val not in ['on', 'off']:
+            await player.send(f"{c['red']}Usage: ai on|off{c['reset']}")
+            return
+        
+        player.ai_chat_enabled = (val == 'on')
+        await player.send(f"{c['green']}AI chat {val.upper()}.{c['reset']}")
+
+    @classmethod
+    async def cmd_aistatus(cls, player: 'Player', args: List[str]):
+        """Check AI service status (admin command)."""
+        c = player.config.COLORS
+        
+        from ai_service import ai_service
+        
+        await player.send(f"{c['cyan']}=== AI Service Status ==={c['reset']}")
+        await player.send(f"  Enabled: {c['green'] if ai_service.config.enabled else c['red']}{ai_service.config.enabled}{c['reset']}")
+        await player.send(f"  Available: {c['green'] if ai_service.available else c['red']}{ai_service.available}{c['reset']}")
+        await player.send(f"  Endpoint: {ai_service.config.base_url}")
+        await player.send(f"  Cache entries: {len(ai_service.cache)}")
+        
+        # Try to check connection
+        available = await ai_service.check_availability()
+        if available:
+            await player.send(f"{c['bright_green']}LM Studio is running and ready!{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}LM Studio not detected. Start it for AI features.{c['reset']}")
 
     @classmethod
     async def cmd_quest(cls, player: 'Player', args: List[str]):
@@ -2612,58 +8578,339 @@ class CommandHandler:
         """Show quest log (alias for quest log)."""
         await cls.cmd_quest(player, ['log'])
 
+    @classmethod
+    async def cmd_story(cls, player: 'Player', args: List[str]):
+        """Show main story quest progress."""
+        from quests import QuestManager, QUEST_CHAINS, QUEST_DEFINITIONS
+
+        c = player.config.COLORS
+        chain_def = QUEST_CHAINS.get('main_story')
+        if not chain_def:
+            await player.send(f"{c['yellow']}No main story configured.{c['reset']}")
+            return
+
+        state = QuestManager._get_chain_state(player, 'main_story')
+        await player.send(f"\r\n{c['cyan']}╔══════════════════════════════════════════════════════════════╗{c['reset']}")
+        await player.send(f"{c['cyan']}║{c['bright_yellow']} Main Story Progress{c['cyan']}                                          ║{c['reset']}")
+        await player.send(f"{c['cyan']}╚══════════════════════════════════════════════════════════════╝{c['reset']}\r\n")
+
+        await player.send(f"{c['bright_cyan']}{QuestManager.get_story_progress(player)}{c['reset']}")
+        await player.send("")
+
+        if not state:
+            return
+
+        stages = chain_def.get('stages', {})
+        history = set(state.get('history', []))
+        current = state.get('stage')
+
+        for stage_id, stage_def in stages.items():
+            quest_id = stage_def.get('quest_id')
+            quest_name = QUEST_DEFINITIONS.get(quest_id, {}).get('name', quest_id)
+            if stage_id in history:
+                status = f"{c['bright_green']}✓ COMPLETE{c['reset']}"
+            elif stage_id == current:
+                status = f"{c['yellow']}▶ CURRENT{c['reset']}"
+            else:
+                status = f"{c['white']}LOCKED{c['reset']}"
+            await player.send(f"{status} {quest_name}")
+
+        await player.send("")
+
     # ==================== PET/COMPANION COMMANDS ====================
 
     @classmethod
     async def cmd_order(cls, player: 'Player', args: List[str]):
-        """Order your pet to do something. Usage: order <command> [target]"""
+        """Order your companion or pet. Usage: order <action> [target] OR order <pet> <action> [target]"""
         from pets import PetManager
+        from companions import CompanionManager
 
         c = player.config.COLORS
 
         if not args:
-            await player.send(f"{c['yellow']}Usage: order <command> [target]{c['reset']}")
-            await player.send(f"Commands: attack, follow, stay, guard, fetch")
+            await player.send(f"{c['yellow']}Usage: order <action> [target]{c['reset']}")
+            await player.send(f"Actions: attack, assist, follow, stay, guard, protect, fetch, report")
+            await player.send(f"Positions: sit, stand, sleep, rest")
+            await player.send(f"Movement: order north/south/east/west/up/down")
+            await player.send(f"{c['cyan']}Assist: 'order assist' - pet attacks what you're fighting{c['reset']}")
+            await player.send(f"{c['cyan']}Report: 'order report' - pet reports its status{c['reset']}")
+            await player.send(f"{c['cyan']}Protect: 'order protect <player>' - pet intercepts attacks{c['reset']}")
             return
 
-        # Get player's pets
+        # Check for companion order by name
+        companions = CompanionManager.get_player_companions(player)
+        if companions:
+            companion = CompanionManager.find_companion(player, args[0])
+            if companion:
+                if len(args) < 2:
+                    await player.send(f"{c['yellow']}Usage: order <companion> <action> [target]{c['reset']}")
+                    return
+                action = args[1]
+                target = ' '.join(args[2:]) if len(args) > 2 else ''
+                await CompanionManager.order_companion(player, companion, action, target)
+                return
+
+        # Get all pets
         pets = PetManager.get_player_pets(player)
         if not pets:
             await player.send(f"{c['red']}You don't have any pets to command!{c['reset']}")
             return
 
+        # Check if first arg is a pet name
         command = args[0].lower()
         target = ' '.join(args[1:]) if len(args) > 1 else ''
+        
+        # Check if first arg matches a pet name - if so, shift args
+        for pet in pets:
+            if pet.name.lower().startswith(command) or command in pet.name.lower():
+                if len(args) >= 2:
+                    command = args[1].lower()
+                    target = ' '.join(args[2:]) if len(args) > 2 else ''
+                    if pet.room == player.room:
+                        await pet.execute_command(command, target)
+                    else:
+                        await player.send(f"{c['yellow']}{pet.name} is not here.{c['reset']}")
+                    return
 
-        # Order all pets
+        # Order all pets in room
+        ordered_any = False
         for pet in pets:
             if pet.room == player.room:
                 await pet.execute_command(command, target)
+                ordered_any = True
+        
+        if not ordered_any:
+            await player.send(f"{c['yellow']}None of your pets are here.{c['reset']}")
+
+    @classmethod
+    async def cmd_pets(cls, player: 'Player', args: List[str]):
+        """Manage all your pets. Usage: pets [list|report|assist|recall|dismiss all]"""
+        from pets import PetManager
+        c = player.config.COLORS
+        
+        pets = PetManager.get_player_pets(player)
+        
+        if not args:
+            args = ['list']
+            
+        action = args[0].lower()
+        
+        if action == 'list':
+            if not pets:
+                await player.send(f"{c['yellow']}You don't have any pets.{c['reset']}")
+                return
+                
+            await player.send(f"{c['cyan']}╔═══════════════════════════════════════════════════════════╗{c['reset']}")
+            await player.send(f"{c['cyan']}║{c['reset']}              {c['bright_white']}YOUR PETS{c['reset']}                                   {c['cyan']}║{c['reset']}")
+            await player.send(f"{c['cyan']}╠═══════════════════════════════════════════════════════════╣{c['reset']}")
+            
+            for i, pet in enumerate(pets, 1):
+                hp_pct = int((pet.hp / pet.max_hp) * 100) if pet.max_hp > 0 else 0
+                if hp_pct > 75:
+                    hp_color = c['bright_green']
+                elif hp_pct > 50:
+                    hp_color = c['green']
+                elif hp_pct > 25:
+                    hp_color = c['yellow']
+                else:
+                    hp_color = c['red']
+                
+                # Location
+                if pet.room == player.room:
+                    loc = f"{c['green']}Here{c['reset']}"
+                elif pet.room:
+                    loc = f"{c['yellow']}{pet.room.name[:15]}{c['reset']}"
+                else:
+                    loc = f"{c['red']}Unknown{c['reset']}"
+                
+                # Fighting status
+                if pet.is_fighting and pet.fighting:
+                    status = f"{c['red']}Fighting {pet.fighting.name[:10]}{c['reset']}"
+                else:
+                    status = f"{c['green']}Idle{c['reset']}"
+                
+                await player.send(f"{c['cyan']}║{c['reset']} {i}. {c['white']}{pet.name[:18]:<18}{c['reset']} Lvl {pet.level:<2} {hp_color}{pet.hp:>4}/{pet.max_hp:<4}{c['reset']} {loc:<20} {status} {c['cyan']}║{c['reset']}")
+            
+            await player.send(f"{c['cyan']}╠═══════════════════════════════════════════════════════════╣{c['reset']}")
+            await player.send(f"{c['cyan']}║{c['reset']} Commands: pets report | pets assist | pets recall         {c['cyan']}║{c['reset']}")
+            await player.send(f"{c['cyan']}╚═══════════════════════════════════════════════════════════╝{c['reset']}")
+            
+        elif action == 'report':
+            if not pets:
+                await player.send(f"{c['yellow']}You don't have any pets.{c['reset']}")
+                return
+            for pet in pets:
+                await pet.execute_command('report', '')
+                
+        elif action == 'assist':
+            if not pets:
+                await player.send(f"{c['yellow']}You don't have any pets.{c['reset']}")
+                return
+            if not player.is_fighting:
+                await player.send(f"{c['yellow']}You're not fighting anyone!{c['reset']}")
+                return
+            for pet in pets:
+                if pet.room == player.room:
+                    await pet.execute_command('assist', '')
+                    
+        elif action == 'recall':
+            if not pets:
+                await player.send(f"{c['yellow']}You don't have any pets.{c['reset']}")
+                return
+            for pet in pets:
+                if pet.room != player.room:
+                    if pet.room:
+                        pet.room.characters.remove(pet)
+                    pet.room = player.room
+                    player.room.characters.append(pet)
+                    await player.send(f"{c['green']}{pet.name} appears at your side!{c['reset']}")
+                    await player.room.send_to_room(f"{c['cyan']}{pet.name} appears at {player.name}'s side.{c['reset']}", exclude=[player])
+                else:
+                    await player.send(f"{c['yellow']}{pet.name} is already here.{c['reset']}")
+                    
+        elif action == 'dismiss' and len(args) > 1 and args[1].lower() == 'all':
+            if not pets:
+                await player.send(f"{c['yellow']}You don't have any pets.{c['reset']}")
+                return
+            count = 0
+            for pet in list(pets):
+                await PetManager.dismiss_pet(pet)
+                count += 1
+            await player.send(f"{c['green']}Dismissed {count} pet(s).{c['reset']}")
+            
+        else:
+            await player.send(f"{c['yellow']}Usage: pets [list|report|assist|recall|dismiss all]{c['reset']}")
 
     @classmethod
     async def cmd_dismiss(cls, player: 'Player', args: List[str]):
-        """Dismiss your summoned pet. Usage: dismiss"""
-        from pets import PetManager, Pet
+        """Dismiss a pet or companion. Usage: dismiss <pet name>"""
+        from pets import PetManager
+        from companions import CompanionManager
 
         c = player.config.COLORS
-
-        # Get player's pets
+        
         pets = PetManager.get_player_pets(player)
-        if not pets:
+        
+        # If no pets at all
+        if not pets and not getattr(player, 'animal_companion', None):
             await player.send(f"{c['red']}You don't have any pets to dismiss!{c['reset']}")
             return
 
-        # Dismiss temporary pets (summons/undead)
-        dismissed = False
-        for pet in pets:
-            if not pet.is_persistent:
-                await PetManager.dismiss_pet(pet)
-                await player.send(f"{c['green']}You dismiss {pet.name}.{c['reset']}")
-                dismissed = True
+        # If a name is provided, find that specific pet
+        if args:
+            target_name = ' '.join(args).lower()
+            
+            # Check companions first
+            companion = CompanionManager.find_companion(player, target_name)
+            if companion:
+                await CompanionManager.dismiss_companion(player, companion)
+                return
+            
+            # Check animal companion (ranger)
+            if player.animal_companion and target_name in player.animal_companion.name.lower():
+                comp = player.animal_companion
+                await player.send(f"{c['cyan']}You release {comp.name} back to the wild.{c['reset']}")
+                if player.room and comp in player.room.characters:
+                    player.room.characters.remove(comp)
+                if hasattr(player, 'group_members') and comp in player.group_members:
+                    player.group_members.remove(comp)
+                if hasattr(player.world, 'npcs') and comp in player.world.npcs:
+                    player.world.npcs.remove(comp)
+                player.animal_companion = None
+                return
+            
+            # Check undead/summoned pets
+            for pet in pets:
+                if target_name in pet.name.lower():
+                    await PetManager.dismiss_pet(pet)
+                    await player.send(f"{c['green']}You dismiss {pet.name}.{c['reset']}")
+                    return
+            
+            await player.send(f"{c['yellow']}You don't have a pet named '{target_name}'.{c['reset']}")
+            return
 
-        if not dismissed:
-            await player.send(f"{c['yellow']}You don't have any temporary pets to dismiss.{c['reset']}")
-            await player.send(f"(Permanent companions cannot be dismissed)")
+        # No name provided - list pets
+        await player.send(f"{c['cyan']}Your pets:{c['reset']}")
+        for pet in pets:
+            await player.send(f"  {c['yellow']}{pet.name}{c['reset']}")
+        if player.animal_companion:
+            await player.send(f"  {c['yellow']}{player.animal_companion.name}{c['reset']} (companion)")
+        await player.send(f"{c['white']}Use 'dismiss <name>' to dismiss a specific pet.{c['reset']}")
+
+    @classmethod
+    async def cmd_hire(cls, player: 'Player', args: List[str]):
+        """Hire a companion from a tavern or guild. Usage: hire <npc>"""
+        from companions import CompanionManager
+
+        c = player.config.COLORS
+
+        if not args:
+            await player.send(f"{c['yellow']}Usage: hire <npc>{c['reset']}")
+            return
+
+        target_name = ' '.join(args).lower()
+        target = None
+        for char in player.room.characters:
+            if char != player and not hasattr(char, 'connection') and target_name in char.name.lower():
+                target = char
+                break
+
+        if not target:
+            await player.send(f"{c['red']}You don't see '{target_name}' here.{c['reset']}")
+            return
+
+        await CompanionManager.hire_companion(player, target)
+
+    @classmethod
+    async def cmd_companions(cls, player: 'Player', args: List[str]):
+        """List your current companions. Usage: companions"""
+        from companions import CompanionManager
+
+        c = player.config.COLORS
+        companions = CompanionManager.get_player_companions(player)
+        if not companions:
+            await player.send(f"{c['yellow']}You have no companions.{c['reset']}")
+            return
+
+        await player.send(f"{c['cyan']}╔═══════════════════════════════════════╗{c['reset']}")
+        await player.send(f"{c['cyan']}║{c['bright_yellow']}           Your Companions             {c['cyan']}║{c['reset']}")
+        await player.send(f"{c['cyan']}╠═══════════════════════════════════════╣{c['reset']}")
+        for comp in companions:
+            hp_pct = int((comp.hp / max(1, comp.max_hp)) * 100)
+            await player.send(
+                f"{c['cyan']}║ {c['bright_green']}{comp.name[:16]:<16} {c['white']}Lv {comp.level:<2} {c['yellow']}{comp.companion_type:<6} {c['magenta']}{hp_pct:>3}% {c['cyan']}║{c['reset']}"
+            )
+            await player.send(
+                f"{c['cyan']}║ {c['white']}Morale:{comp.morale:<3} Loyalty:{comp.loyalty:<3} Order:{comp.order:<6} Upkeep:{comp.daily_upkeep:<4}{c['cyan']}║{c['reset']}"
+            )
+        await player.send(f"{c['cyan']}╚═══════════════════════════════════════╝{c['reset']}")
+
+    @classmethod
+    async def cmd_minions(cls, player: 'Player', args: List[str]):
+        """List your summoned minions (undead, summons). Usage: minions"""
+        from pets import PetManager
+
+        c = player.config.COLORS
+        pets = PetManager.get_player_pets(player)
+        minions = [p for p in pets if not p.is_persistent]
+        
+        if not minions:
+            await player.send(f"{c['yellow']}You have no summoned minions.{c['reset']}")
+            return
+
+        await player.send(f"{c['magenta']}╔═══════════════════════════════════════╗{c['reset']}")
+        await player.send(f"{c['magenta']}║{c['bright_magenta']}           Your Minions                {c['magenta']}║{c['reset']}")
+        await player.send(f"{c['magenta']}╠═══════════════════════════════════════╣{c['reset']}")
+        for minion in minions:
+            hp_pct = int((minion.hp / max(1, minion.max_hp)) * 100)
+            timer_str = ""
+            if minion.timer:
+                mins_left = minion.timer // 60
+                timer_str = f" ({mins_left}m)"
+            await player.send(
+                f"{c['magenta']}║ {c['bright_red']}{minion.name[:18]:<18} {c['white']}Lv {minion.level:<2} {c['yellow']}{hp_pct:>3}%{timer_str:<8}{c['magenta']}║{c['reset']}"
+            )
+        await player.send(f"{c['magenta']}╚═══════════════════════════════════════╝{c['reset']}")
 
     @classmethod
     async def cmd_tame(cls, player: 'Player', args: List[str]):
@@ -2814,6 +9061,183 @@ class CommandHandler:
             await player.send(f"{c['yellow']}Duration: {duration} minutes{c['reset']}")
 
     @classmethod
+    async def cmd_raise(cls, player: 'Player', args: List[str]):
+        """Raise a necromancer servant. Usage: raise <knight|wraith|lich|stalker>"""
+        c = player.config.COLORS
+
+        if player.char_class != 'necromancer':
+            await player.send(f"{c['red']}Only necromancers can raise undead servants!{c['reset']}")
+            return
+
+        if not args:
+            await player.send(f"{c['yellow']}Usage: raise <knight|wraith|lich|stalker>{c['reset']}")
+            await player.send(f"{c['cyan']}Servant types:{c['reset']}")
+            await player.send(f"  {c['white']}knight{c['reset']}  - Bone Knight (tank, high defense)")
+            await player.send(f"  {c['white']}wraith{c['reset']}  - Wraith Healer (support, heals you)")
+            await player.send(f"  {c['white']}lich{c['reset']}    - Lich Acolyte (caster, high damage)")
+            await player.send(f"  {c['white']}stalker{c['reset']} - Shadow Stalker (rogue, fast attacks)")
+            return
+
+        if 'animate_dead' not in player.spells:
+            await player.send(f"{c['red']}You do not yet know how to animate the dead.{c['reset']}")
+            return
+
+        choice = args[0].lower()
+        # Map themed names to template names
+        themed_map = {
+            'knight': 'knight', 'bone': 'knight', 'tank': 'knight',
+            'wraith': 'wraith', 'healer': 'wraith', 'support': 'wraith',
+            'lich': 'lich', 'caster': 'lich', 'mage': 'lich',
+            'stalker': 'stalker', 'rogue': 'stalker', 'shadow': 'stalker',
+        }
+        if choice not in themed_map:
+            await player.send(f"{c['yellow']}Choose a servant: knight, wraith, lich, stalker.{c['reset']}")
+            return
+
+        from spells import SpellHandler
+        await SpellHandler.cast_spell(player, 'animate_dead', themed_map[choice])
+
+    @classmethod
+    async def cmd_soulstone(cls, player: 'Player', args: List[str]):
+        """Create a necromancer soulstone. Usage: soulstone [create]"""
+        c = player.config.COLORS
+
+        if player.char_class != 'necromancer':
+            await player.send(f"{c['red']}Only necromancers can forge soulstones!{c['reset']}")
+            return
+
+        # Allow optional 'create' argument
+        if args and args[0].lower() not in ('create', 'forge', 'craft'):
+            await player.send(f"{c['yellow']}Usage: soulstone [create]{c['reset']}")
+            return
+
+        # Check if already has a soulstone
+        def has_soulstone():
+            for item in player.inventory:
+                if getattr(item, 'is_soulstone', False) or ('soulstone' in getattr(item, 'flags', set())):
+                    return True
+            for item in player.equipment.values():
+                if item and (getattr(item, 'is_soulstone', False) or ('soulstone' in getattr(item, 'flags', set()))):
+                    return True
+            return False
+
+        if has_soulstone():
+            await player.send(f"{c['yellow']}You already possess a soulstone.{c['reset']}")
+            return
+
+        # Require a corpse in the room
+        if not player.room:
+            await player.send(f"{c['red']}You are nowhere. There is no corpse to bind.{c['reset']}")
+            return
+
+        corpse = None
+        for item in player.room.items:
+            if hasattr(item, 'item_type') and item.item_type == 'container' and 'corpse' in item.name.lower():
+                corpse = item
+                break
+
+        if not corpse:
+            await player.send(f"{c['yellow']}You need a corpse here to bind into a soulstone.{c['reset']}")
+            return
+
+        mana_cost = 60
+        if player.mana < mana_cost:
+            await player.send(f"{c['red']}You need {mana_cost} mana to forge a soulstone.{c['reset']}")
+            return
+
+        # Consume resources
+        player.mana -= mana_cost
+        if corpse in player.room.items:
+            player.room.items.remove(corpse)
+
+        # Create the soulstone object
+        from objects import Object
+        stone = Object(0, player.world if hasattr(player, 'world') else None)
+        stone.name = 'soulstone'
+        stone.short_desc = '\x1b[95ma soulstone\x1b[0m'
+        stone.room_desc = '\x1b[95mA faintly glowing soulstone lies here, drinking the light.\x1b[0m'
+        stone.description = 'A crystal of bound souls, pulsing with cold necromantic light. Dark tendrils swirl within it like trapped smoke.'
+        stone.item_type = 'worn'
+        stone.wear_slot = 'hold'
+        stone.weight = 1
+        stone.cost = 0
+        stone.flags.add('soulstone')
+        stone.is_soulstone = True
+        stone.soulstone_bonus_int = 3
+        stone.soulstone_mana_regen = 0.10
+        stone.soulstone_spell_damage = 2
+
+        player.inventory.append(stone)
+        await player.send(f"{c['bright_magenta']}You bind the corpse's essence into a soulstone.{c['reset']}")
+        await player.send(f"{c['cyan']}It hums with power. Hold it in your offhand to channel its bonuses.{c['reset']}")
+        await player.room.send_to_room(
+            f"{player.name} binds a corpse into a coldly glowing soulstone.",
+            exclude=[player]
+        )
+
+    @classmethod
+    async def cmd_imbue(cls, player: 'Player', args: List[str]):
+        """Imbue a corpse with soulstone power. Usage: imbue [corpse]"""
+        c = player.config.COLORS
+
+        if player.char_class != 'necromancer':
+            await player.send(f"{c['red']}Only necromancers can imbue corpses.{c['reset']}")
+            return
+
+        if args and args[0].lower() not in ('corpse', 'body'):
+            await player.send(f"{c['yellow']}Usage: imbue [corpse]{c['reset']}")
+            return
+
+        # Must be holding a soulstone in offhand
+        stone = player.equipment.get('hold')
+        if not stone or not (getattr(stone, 'is_soulstone', False) or ('soulstone' in getattr(stone, 'flags', set()))):
+            await player.send(f"{c['yellow']}You must hold a soulstone in your offhand to imbue a corpse.{c['reset']}")
+            return
+
+        if not player.room:
+            await player.send(f"{c['red']}You are nowhere. There is no corpse to imbue.{c['reset']}")
+            return
+
+        corpse = None
+        for item in player.room.items:
+            if hasattr(item, 'item_type') and item.item_type == 'container' and 'corpse' in item.name.lower():
+                corpse = item
+                break
+
+        if not corpse:
+            await player.send(f"{c['yellow']}There is no corpse here to imbue.{c['reset']}")
+            return
+
+        level = getattr(corpse, 'soul_imbue_level', 0)
+        if level >= 5:
+            await player.send(f"{c['yellow']}This corpse is already saturated with soulstone power.{c['reset']}")
+            return
+
+        mana_cost = 20 + (level * 15)
+        if player.mana < mana_cost:
+            await player.send(f"{c['red']}You need {mana_cost} mana to deepen the imbue.{c['reset']}")
+            return
+
+        player.mana -= mana_cost
+        level += 1
+        corpse.soul_imbue_level = level
+
+        progress_msgs = {
+            1: "The corpse shudders as dark veins spread across its flesh.",
+            2: "Bones tighten and re-knit as the soulstone drinks deeper.",
+            3: "A cold aura wreathes the corpse, thick with necromantic gravity.",
+            4: "The corpse rises slightly, then settles—heavier, denser.",
+            5: "The corpse glows with a dense, hungry darkness. It is ready."
+        }
+
+        await player.send(f"{c['bright_magenta']}You channel soulstone power into the corpse.{c['reset']}")
+        await player.send(f"{c['cyan']}Imbue level: {level}/5{c['reset']}")
+        await player.room.send_to_room(
+            progress_msgs.get(level, "The corpse crackles with dark power."),
+            exclude=[player]
+        )
+
+    @classmethod
     async def cmd_companion(cls, player: 'Player', args: List[str]):
         """Show your companion's stats. Usage: companion"""
         from pets import PetManager
@@ -2843,7 +9267,7 @@ class CommandHandler:
                     seconds = remaining % 60
                     time_remaining = f" (Time left: {minutes}m {seconds}s)"
 
-            await player.send(f"\n{c['bright_white']}{pet.name} [{pet_type}]{c['reset']}{time_remaining}")
+            await player.send(f"\n{c['white']}{pet.name} [{pet_type}]{c['reset']}{time_remaining}")
             await player.send(f"  Level: {pet.level}  Type: {pet.pet_type}")
             await player.send(f"  HP:      {hp_bar} {pet.hp}/{pet.max_hp}")
             await player.send(f"  Loyalty: {loyalty_bar} {pet.loyalty}/100")
@@ -2908,33 +9332,41 @@ class CommandHandler:
             )
             return
 
-        # Check for door - handle "door north", "door n", or just "north"
+        # Check for door - handle "door north", "door n", "north", or door names like "trapdoor"
         direction = None
+        door = None
+        exit_data = None
 
         # Remove "door" from the target name if present
         if target_name.startswith('door '):
             target_name = target_name[5:].strip()
 
+        # First try to match by direction
         for dir_name in player.config.DIRECTIONS.keys():
             if target_name == dir_name or target_name in dir_name:
                 direction = dir_name
                 break
 
-        if not direction:
-            await player.send(f"{c['red']}You don't see '{target_name}' here.{c['reset']}")
+        if direction and direction in player.room.exits and player.room.exits[direction]:
+            exit_data = player.room.exits[direction]
+            if 'door' in exit_data:
+                door = exit_data['door']
+
+        # If no door found by direction, try to find by door name
+        if not door:
+            for dir_name, ex_data in player.room.exits.items():
+                if ex_data and 'door' in ex_data:
+                    door_obj = ex_data['door']
+                    door_name = door_obj.get('name', 'door').lower()
+                    if target_name in door_name or door_name in target_name:
+                        door = door_obj
+                        exit_data = ex_data
+                        direction = dir_name
+                        break
+
+        if not door:
+            await player.send(f"{c['red']}You don't see a '{target_name}' to open here.{c['reset']}")
             return
-
-        if direction not in player.room.exits or not player.room.exits[direction]:
-            await player.send(f"{c['red']}There's no exit {direction}.{c['reset']}")
-            return
-
-        exit_data = player.room.exits[direction]
-
-        if 'door' not in exit_data:
-            await player.send(f"{c['yellow']}There's no door {direction}.{c['reset']}")
-            return
-
-        door = exit_data['door']
 
         if door.get('state') != 'closed':
             await player.send(f"{c['yellow']}The door is already open.{c['reset']}")
@@ -2999,33 +9431,41 @@ class CommandHandler:
             )
             return
 
-        # Check for door - handle "door north", "door n", or just "north"
+        # Check for door - handle "door north", "door n", "north", or door names like "trapdoor"
         direction = None
+        door = None
+        exit_data = None
 
         # Remove "door" from the target name if present
         if target_name.startswith('door '):
             target_name = target_name[5:].strip()
 
+        # First try to match by direction
         for dir_name in player.config.DIRECTIONS.keys():
             if target_name == dir_name or target_name in dir_name:
                 direction = dir_name
                 break
 
-        if not direction:
-            await player.send(f"{c['red']}You don't see '{target_name}' here.{c['reset']}")
+        if direction and direction in player.room.exits and player.room.exits[direction]:
+            exit_data = player.room.exits[direction]
+            if 'door' in exit_data:
+                door = exit_data['door']
+
+        # If no door found by direction, try to find by door name
+        if not door:
+            for dir_name, ex_data in player.room.exits.items():
+                if ex_data and 'door' in ex_data:
+                    door_obj = ex_data['door']
+                    door_name = door_obj.get('name', 'door').lower()
+                    if target_name in door_name or door_name in target_name:
+                        door = door_obj
+                        exit_data = ex_data
+                        direction = dir_name
+                        break
+
+        if not door:
+            await player.send(f"{c['red']}You don't see a '{target_name}' to close here.{c['reset']}")
             return
-
-        if direction not in player.room.exits or not player.room.exits[direction]:
-            await player.send(f"{c['red']}There's no exit {direction}.{c['reset']}")
-            return
-
-        exit_data = player.room.exits[direction]
-
-        if 'door' not in exit_data:
-            await player.send(f"{c['yellow']}There's no door {direction}.{c['reset']}")
-            return
-
-        door = exit_data['door']
 
         # Check if broken
         if door.get('broken', False):
@@ -3545,7 +9985,7 @@ class CommandHandler:
         await player.send(f"{c['cyan']}║{c['bright_yellow']} {shopkeeper.name} shows you:{c['cyan']}{'':>36}║{c['reset']}")
         await player.send(f"{c['cyan']}╚══════════════════════════════════════════════════════════════╝{c['reset']}\r\n")
 
-        await player.send(f"{c['bright_white']}{item.short_desc.capitalize()}{c['reset']}")
+        await player.send(f"{c['white']}{item.short_desc.capitalize()}{c['reset']}")
         await player.send(f"{c['white']}{item.description}{c['reset']}\r\n")
 
         # Item type
@@ -3782,8 +10222,21 @@ class CommandHandler:
         if hasattr(item, 'affects') and item.affects:
             await player.send(f"\r\n{c['bright_magenta']}Magical Properties:{c['reset']}")
             for affect in item.affects:
-                sign = '+' if affect['value'] > 0 else ''
-                await player.send(f"  {c['magenta']}{affect['type'].capitalize()}: {sign}{affect['value']}{c['reset']}")
+                if isinstance(affect, dict):
+                    affect_type = affect.get('type', '')
+                    applies_to = affect.get('applies_to', '')
+                    value = affect.get('value', 0)
+                    sign = '+' if value > 0 else ''
+                    
+                    # Format nicely based on type
+                    if affect_type == 'modify_stat':
+                        stat_name = applies_to.upper() if applies_to in ('str', 'int', 'wis', 'dex', 'con', 'cha') else applies_to.replace('_', ' ').title()
+                        await player.send(f"  {c['magenta']}{sign}{value} {stat_name}{c['reset']}")
+                    else:
+                        await player.send(f"  {c['magenta']}{affect_type}: {sign}{value} {applies_to}{c['reset']}")
+                else:
+                    # Handle affect objects
+                    await player.send(f"  {c['magenta']}{getattr(affect, 'name', 'Unknown')}{c['reset']}")
 
         # Weight and value
         await player.send(f"\r\n{c['white']}Weight: {item.weight} lbs{c['reset']}")
@@ -3794,7 +10247,16 @@ class CommandHandler:
 
     @classmethod
     async def cmd_group(cls, player: 'Player', args: List[str]):
-        """Manage your group. Usage: group [player] or group leave"""
+        """Manage your group. CircleMUD-style group commands.
+        
+        Usage:
+            group           - Show group status
+            group all       - Group all players following you
+            group <player>  - Add a player following you to your group
+            group leave     - Leave your current group
+            group disband   - Disband the group (leader only)
+            group kick <n>  - Remove player from group (leader only)
+        """
         from groups import GroupManager
 
         c = player.config.COLORS
@@ -3804,12 +10266,85 @@ class CommandHandler:
             await GroupManager.show_group(player)
             return
 
+        action = args[0].lower()
+
         # Leave group
-        if args[0].lower() == 'leave':
+        if action == 'leave':
             await GroupManager.leave_group(player)
             return
+            
+        # Disband group (leader only)
+        if action == 'disband':
+            if not hasattr(player, 'group') or not player.group:
+                await player.send(f"{c['yellow']}You're not in a group.{c['reset']}")
+                return
+            if player.group.leader != player:
+                await player.send(f"{c['red']}Only the group leader can disband the group.{c['reset']}")
+                return
+            # Notify all members
+            for member in player.group.members:
+                if member != player:
+                    await member.send(f"{c['yellow']}{player.name} has disbanded the group.{c['reset']}")
+            player.group.disband()
+            await player.send(f"{c['yellow']}You disband the group.{c['reset']}")
+            return
+            
+        # Group all followers
+        if action == 'all':
+            # Find all players following this player in the same room
+            followers = []
+            for char in player.room.characters:
+                if char != player and hasattr(char, 'connection'):
+                    if hasattr(char, 'following') and char.following == player:
+                        followers.append(char)
+            
+            if not followers:
+                await player.send(f"{c['yellow']}No one is following you here.{c['reset']}")
+                return
+            
+            # Add each follower to the group
+            added = 0
+            for follower in followers:
+                success = await GroupManager.join_group(player, follower)
+                if success:
+                    added += 1
+            
+            if added > 0:
+                await player.send(f"{c['green']}Added {added} follower(s) to your group.{c['reset']}")
+            else:
+                await player.send(f"{c['yellow']}Could not add any followers to the group.{c['reset']}")
+            return
+            
+        # Kick player from group
+        if action == 'kick' and len(args) > 1:
+            if not hasattr(player, 'group') or not player.group:
+                await player.send(f"{c['yellow']}You're not in a group.{c['reset']}")
+                return
+            if player.group.leader != player:
+                await player.send(f"{c['red']}Only the group leader can kick members.{c['reset']}")
+                return
+            
+            target_name = ' '.join(args[1:]).lower()
+            target = None
+            for member in player.group.members:
+                if member.name.lower().startswith(target_name) and member != player:
+                    target = member
+                    break
+            
+            if not target:
+                await player.send(f"{c['red']}'{target_name}' is not in your group.{c['reset']}")
+                return
+            
+            player.group.remove_member(target)
+            target.group = None
+            await player.send(f"{c['yellow']}You kick {target.name} from the group.{c['reset']}")
+            await target.send(f"{c['yellow']}{player.name} kicks you from the group.{c['reset']}")
+            for member in player.group.members:
+                if member != player:
+                    await member.send(f"{c['yellow']}{target.name} has been kicked from the group.{c['reset']}")
+            return
 
-        # Invite player to group
+        # Add specific player to group - they must be following you
         target_name = ' '.join(args).lower()
 
         # Find target in room
@@ -3823,9 +10358,59 @@ class CommandHandler:
         if not target:
             await player.send(f"{c['red']}Player '{target_name}' not found here.{c['reset']}")
             return
+            
+        # Check if target is following you (CircleMUD requirement)
+        if not hasattr(target, 'following') or target.following != player:
+            await player.send(f"{c['yellow']}{target.name} must be following you to join your group.{c['reset']}")
+            await player.send(f"{c['cyan']}Tell them to 'follow {player.name}' first.{c['reset']}")
+            return
 
         # Try to add to group
         success = await GroupManager.join_group(player, target)
+    
+    @classmethod
+    async def cmd_ungroup(cls, player: 'Player', args: List[str]):
+        """Leave your group or remove someone from it.
+        
+        Usage:
+            ungroup         - Leave your current group
+            ungroup <name>  - Remove player from group (leader only)
+        """
+        from groups import GroupManager
+        c = player.config.COLORS
+        
+        if not hasattr(player, 'group') or not player.group:
+            await player.send(f"{c['yellow']}You're not in a group.{c['reset']}")
+            return
+        
+        if not args:
+            # Leave group
+            await GroupManager.leave_group(player)
+            return
+        
+        # Remove specific player (leader only)
+        if player.group.leader != player:
+            await player.send(f"{c['red']}Only the group leader can remove members.{c['reset']}")
+            return
+        
+        target_name = ' '.join(args).lower()
+        target = None
+        for member in player.group.members:
+            if member.name.lower().startswith(target_name) and member != player:
+                target = member
+                break
+        
+        if not target:
+            await player.send(f"{c['red']}'{target_name}' is not in your group.{c['reset']}")
+            return
+        
+        player.group.remove_member(target)
+        target.group = None
+        await player.send(f"{c['yellow']}You remove {target.name} from the group.{c['reset']}")
+        await target.send(f"{c['yellow']}{player.name} removes you from the group.{c['reset']}")
+        for member in player.group.members:
+            if member != player:
+                await member.send(f"{c['yellow']}{target.name} has left the group.{c['reset']}")
 
     @classmethod
     async def cmd_follow(cls, player: 'Player', args: List[str]):
@@ -3928,6 +10513,1272 @@ class CommandHandler:
         for member in player.group.members:
             if member != player:
                 await member.send(f"{c['bright_yellow']}{player.name} splits {amount} gold with the group.{c['reset']}")
+
+    # ==================== GLOBAL CHANNELS ====================
+
+    @classmethod
+    async def cmd_gossip(cls, player: 'Player', args: List[str]):
+        """Global chat channel. Usage: gossip <message>"""
+        c = player.config.COLORS
+
+        if not args:
+            await player.send(f"{c['yellow']}Gossip what?{c['reset']}")
+            return
+
+        message = ' '.join(args)
+        
+        # Send to all players in the world
+        if hasattr(player, 'world') and player.world:
+            for p in player.world.players.values():
+                if p == player:
+                    if not getattr(player, 'norepeat', False):
+                        await p.send(f"{c['magenta']}[Gossip] You gossip: {message}{c['reset']}")
+                else:
+                    if not getattr(p, 'noshout', False):
+                        await p.send(f"{c['magenta']}[Gossip] {player.name}: {message}{c['reset']}")
+
+    @classmethod
+    async def cmd_auction(cls, player: 'Player', args: List[str]):
+        """Auction channel for selling items. Usage: auction <message>"""
+        c = player.config.COLORS
+
+        if not args:
+            await player.send(f"{c['yellow']}Auction what?{c['reset']}")
+            return
+
+        message = ' '.join(args)
+        
+        if hasattr(player, 'world') and player.world:
+            for p in player.world.players.values():
+                if p == player:
+                    if not getattr(player, 'norepeat', False):
+                        await p.send(f"{c['bright_yellow']}[Auction] You auction: {message}{c['reset']}")
+                else:
+                    if not getattr(p, 'noshout', False):
+                        await p.send(f"{c['bright_yellow']}[Auction] {player.name}: {message}{c['reset']}")
+
+    @classmethod
+    async def cmd_grats(cls, player: 'Player', args: List[str]):
+        """Congratulations channel. Usage: grats <message>"""
+        c = player.config.COLORS
+
+        if not args:
+            # No args = just say grats
+            message = "Congratulations!"
+        else:
+            message = ' '.join(args)
+        
+        if hasattr(player, 'world') and player.world:
+            for p in player.world.players.values():
+                if p == player:
+                    if not getattr(player, 'norepeat', False):
+                        await p.send(f"{c['bright_green']}[Grats] You: {message}{c['reset']}")
+                else:
+                    if not getattr(p, 'noshout', False):
+                        await p.send(f"{c['bright_green']}[Grats] {player.name}: {message}{c['reset']}")
+
+    @classmethod
+    async def cmd_holler(cls, player: 'Player', args: List[str]):
+        """Shout to everyone (costs 20 movement). Usage: holler <message>"""
+        c = player.config.COLORS
+
+        if not args:
+            await player.send(f"{c['yellow']}Holler what?{c['reset']}")
+            return
+        
+        if player.move < 20:
+            await player.send(f"{c['red']}You're too exhausted to holler!{c['reset']}")
+            return
+        
+        player.move -= 20
+        message = ' '.join(args)
+        
+        if hasattr(player, 'world') and player.world:
+            for p in player.world.players.values():
+                if p == player:
+                    if not getattr(player, 'norepeat', False):
+                        await p.send(f"{c['bright_red']}You holler '{message}'{c['reset']}")
+                elif not getattr(p, 'noshout', False):
+                    await p.send(f"{c['bright_red']}{player.name} hollers '{message}'{c['reset']}")
+
+    @classmethod
+    async def cmd_qsay(cls, player: 'Player', args: List[str]):
+        """Say something on the quest channel. Usage: qsay <message>"""
+        c = player.config.COLORS
+
+        if not getattr(player, 'on_quest', False):
+            await player.send(f"{c['yellow']}You're not on a quest.{c['reset']}")
+            return
+
+        if not args:
+            await player.send(f"{c['yellow']}Quest-say what?{c['reset']}")
+            return
+
+        message = ' '.join(args)
+        
+        # Send to all players on the same quest
+        if hasattr(player, 'world') and player.world:
+            for p in player.world.players.values():
+                if getattr(p, 'on_quest', False):
+                    if p == player:
+                        await p.send(f"{c['bright_magenta']}[Quest] You: {message}{c['reset']}")
+                    else:
+                        await p.send(f"{c['bright_magenta']}[Quest] {player.name}: {message}{c['reset']}")
+
+    # ==================== INFO COMMANDS ====================
+
+    @classmethod
+    async def cmd_time(cls, player: 'Player', args: List[str]):
+        """Display the current game time."""
+        c = player.config.COLORS
+        
+        if hasattr(player, 'world') and player.world and hasattr(player.world, 'game_time'):
+            gt = player.world.game_time
+            
+            # Determine time of day
+            if gt.hour < 6:
+                time_desc = "the dead of night"
+            elif gt.hour < 9:
+                time_desc = "early morning"
+            elif gt.hour < 12:
+                time_desc = "morning"
+            elif gt.hour < 14:
+                time_desc = "midday"
+            elif gt.hour < 17:
+                time_desc = "afternoon"
+            elif gt.hour < 20:
+                time_desc = "evening"
+            elif gt.hour < 22:
+                time_desc = "night"
+            else:
+                time_desc = "late night"
+            
+            # Calculate minutes from tick counter if available
+            minutes = 0
+            if hasattr(gt, 'tick_counter'):
+                # tick_counter counts seconds until next hour (120 seconds = 1 MUD hour)
+                # So current minutes = (elapsed seconds in hour) / 2
+                seconds_per_hour = getattr(gt, 'SECONDS_PER_MUD_HOUR', 120)
+                elapsed = seconds_per_hour - gt.tick_counter if gt.tick_counter else 0
+                minutes = (elapsed * 60) // seconds_per_hour
+            
+            await player.send(f"{c['cyan']}It is {time_desc} ({gt.hour}:{minutes:02d}).{c['reset']}")
+            await player.send(f"{c['white']}Day {gt.day} of {gt.MONTH_NAMES[gt.month - 1] if hasattr(gt, 'MONTH_NAMES') else f'month {gt.month}'}, year {gt.year}.{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}Time seems meaningless here...{c['reset']}")
+
+    @classmethod
+    async def cmd_commands(cls, player: 'Player', args: List[str]):
+        """List all available commands."""
+        c = player.config.COLORS
+        
+        # Get all command methods
+        cmds = sorted([name[4:] for name in dir(cls) if name.startswith('cmd_') and callable(getattr(cls, name))])
+        
+        await player.send(f"{c['cyan']}=== Available Commands ==={c['reset']}")
+        
+        # Display in columns
+        cols = 5
+        for i in range(0, len(cmds), cols):
+            row = cmds[i:i+cols]
+            formatted = '  '.join(f"{cmd:<14}" for cmd in row)
+            await player.send(f"{c['white']}{formatted}{c['reset']}")
+        
+        await player.send(f"\n{c['yellow']}Type 'help <command>' for more information.{c['reset']}")
+
+    @classmethod
+    async def cmd_diagnose(cls, player: 'Player', args: List[str]):
+        """Check detailed health status. Usage: diagnose [target]"""
+        c = player.config.COLORS
+        
+        if args:
+            # Diagnose target
+            target = player.find_target_in_room(' '.join(args))
+            if not target:
+                await player.send(f"{c['red']}You don't see them here.{c['reset']}")
+                return
+        elif player.target:
+            target = player.target
+        else:
+            target = player
+        
+        hp_pct = target.hp / target.max_hp if target.max_hp > 0 else 0
+        
+        if hp_pct >= 1.0:
+            condition = f"{c['bright_green']}in perfect health{c['reset']}"
+        elif hp_pct >= 0.9:
+            condition = f"{c['green']}slightly scratched{c['reset']}"
+        elif hp_pct >= 0.75:
+            condition = f"{c['green']}lightly wounded{c['reset']}"
+        elif hp_pct >= 0.5:
+            condition = f"{c['yellow']}moderately wounded{c['reset']}"
+        elif hp_pct >= 0.30:
+            condition = f"{c['yellow']}heavily wounded{c['reset']}"
+        elif hp_pct >= 0.15:
+            condition = f"{c['bright_red']}severely wounded{c['reset']}"
+        elif hp_pct > 0:
+            condition = f"{c['red']}critically wounded{c['reset']}"
+        else:
+            condition = f"{c['red']}DEAD{c['reset']}"
+        
+        await player.send(f"{c['cyan']}{target.name} is {condition}.{c['reset']}")
+        await player.send(f"{c['white']}HP: {target.hp}/{target.max_hp} ({int(hp_pct * 100)}%){c['reset']}")
+        
+        # Show affects if any
+        if hasattr(target, 'affect_flags') and target.affect_flags:
+            affects = ', '.join(target.affect_flags)
+            await player.send(f"{c['magenta']}Affected by: {affects}{c['reset']}")
+
+    @classmethod
+    async def cmd_assist(cls, player: 'Player', args: List[str]):
+        """Help someone in combat. Usage: assist <player>"""
+        from combat import CombatHandler
+        c = player.config.COLORS
+        
+        if not args:
+            await player.send(f"{c['yellow']}Assist whom?{c['reset']}")
+            return
+        
+        target_name = ' '.join(args)
+        target = None
+        
+        # Find player in room
+        for char in player.room.characters:
+            if char != player and target_name.lower() in char.name.lower():
+                target = char
+                break
+        
+        if not target:
+            await player.send(f"{c['red']}You don't see {target_name} here.{c['reset']}")
+            return
+        
+        # Check if they're fighting (handle both .target and .fighting attributes)
+        enemy = getattr(target, 'fighting', None) or getattr(target, 'target', None)
+        if not getattr(target, 'is_fighting', False) or not enemy:
+            await player.send(f"{c['yellow']}{target.name} isn't fighting anyone!{c['reset']}")
+            return
+        
+        await player.send(f"{c['green']}You rush to assist {target.name}!{c['reset']}")
+        # Only send to target if they can receive messages (players, not pets)
+        if hasattr(target, 'send'):
+            await target.send(f"{c['green']}{player.name} rushes to assist you!{c['reset']}")
+        await CombatHandler.start_combat(player, enemy)
+
+    @classmethod
+    async def cmd_wimpy(cls, player: 'Player', args: List[str]):
+        """Set auto-flee HP threshold. Usage: wimpy [hp amount]"""
+        c = player.config.COLORS
+        
+        if not args:
+            wimpy = getattr(player, 'wimpy', 0)
+            if wimpy > 0:
+                await player.send(f"{c['yellow']}You will flee when HP drops below {wimpy}.{c['reset']}")
+            else:
+                await player.send(f"{c['yellow']}Wimpy is disabled. Use 'wimpy <hp>' to set it.{c['reset']}")
+            return
+        
+        try:
+            amount = int(args[0])
+        except ValueError:
+            await player.send(f"{c['red']}Invalid HP amount.{c['reset']}")
+            return
+        
+        if amount < 0:
+            amount = 0
+        elif amount > player.max_hp:
+            amount = player.max_hp
+        
+        player.wimpy = amount
+        
+        if amount > 0:
+            await player.send(f"{c['green']}You will flee when HP drops below {amount}.{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}Wimpy disabled.{c['reset']}")
+
+    @classmethod
+    async def cmd_junk(cls, player: 'Player', args: List[str]):
+        """Destroy an item. Usage: junk <item>"""
+        c = player.config.COLORS
+        
+        if not args:
+            await player.send(f"{c['yellow']}Junk what?{c['reset']}")
+            return
+        
+        item_name = ' '.join(args)
+        item = None
+        
+        # Find in inventory
+        for inv_item in player.inventory:
+            if item_name.lower() in inv_item.name.lower():
+                item = inv_item
+                break
+        
+        if not item:
+            await player.send(f"{c['red']}You don't have that.{c['reset']}")
+            return
+        
+        # Remove item
+        player.inventory.remove(item)
+        
+        # Small gold reward based on item value
+        reward = getattr(item, 'value', 0) // 10
+        if reward > 0:
+            player.gold += reward
+            await player.send(f"{c['green']}You junk {item.short_desc} and salvage {reward} gold.{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}You junk {item.short_desc}.{c['reset']}")
+
+    @classmethod
+    async def cmd_quaff(cls, player: 'Player', args: List[str]):
+        """Drink a potion. Usage: quaff <potion>"""
+        # Alias for 'use' on potions
+        await cls.cmd_use(player, args)
+
+    @classmethod
+    async def cmd_recite(cls, player: 'Player', args: List[str]):
+        """Read a scroll. Usage: recite <scroll> [target]"""
+        # Alias for 'use' on scrolls
+        await cls.cmd_use(player, args)
+
+    @classmethod  
+    async def cmd_levels(cls, player: 'Player', args: List[str]):
+        """Show experience required for each level."""
+        c = player.config.COLORS
+        
+        base_exp = getattr(player.config, 'BASE_EXP', 800)
+        exp_mult = getattr(player.config, 'EXP_MULTIPLIER', 1.4)
+        high_mult = getattr(player.config, 'HIGH_LEVEL_EXP_MULTIPLIER', 1.6)
+        threshold = getattr(player.config, 'HIGH_LEVEL_THRESHOLD', 30)
+        max_level = getattr(player.config, 'MAX_MORTAL_LEVEL', 60)
+        
+        await player.send(f"{c['cyan']}{'=' * 40}{c['reset']}")
+        await player.send(f"{c['cyan']}         Level Requirements{c['reset']}")
+        await player.send(f"{c['cyan']}{'=' * 40}{c['reset']}")
+        
+        # Calculate XP at threshold for high-level progression
+        level_30_xp = int(base_exp * (exp_mult ** (threshold - 1)))
+        
+        for lvl in range(1, max_level + 1):
+            if lvl <= threshold:
+                xp_required = int(base_exp * (exp_mult ** (lvl - 1)))
+            else:
+                levels_beyond = lvl - threshold
+                xp_required = int(level_30_xp * (high_mult ** levels_beyond))
+            
+            marker = f" {c['bright_green']}<-- YOU{c['reset']}" if lvl == player.level else ""
+            
+            # Color code by tier
+            if lvl <= 10:
+                lvl_color = c['white']
+            elif lvl <= 20:
+                lvl_color = c['green']
+            elif lvl <= 30:
+                lvl_color = c['cyan']
+            elif lvl <= 40:
+                lvl_color = c['yellow']
+            elif lvl <= 50:
+                lvl_color = c['bright_magenta']
+            else:
+                lvl_color = c['bright_red']
+            
+            await player.send(f"{lvl_color}Level {lvl:2}: {xp_required:>15,} XP{c['reset']}{marker}")
+
+    # ==================== BANKING COMMANDS ====================
+
+    @classmethod
+    async def cmd_deposit(cls, player: 'Player', args: List[str]):
+        """Deposit gold in the bank. Usage: deposit <amount>"""
+        c = player.config.COLORS
+        
+        # Check if in a bank room
+        if not player.room or 'bank' not in getattr(player.room, 'flags', set()):
+            await player.send(f"{c['yellow']}You must be at a bank to deposit gold.{c['reset']}")
+            return
+        
+        if not args:
+            await player.send(f"{c['yellow']}Deposit how much?{c['reset']}")
+            return
+        
+        try:
+            if args[0].lower() == 'all':
+                amount = player.gold
+            else:
+                amount = int(args[0])
+        except ValueError:
+            await player.send(f"{c['red']}Invalid amount.{c['reset']}")
+            return
+        
+        if amount <= 0:
+            await player.send(f"{c['red']}Nice try.{c['reset']}")
+            return
+        
+        if amount > player.gold:
+            await player.send(f"{c['red']}You don't have that much gold!{c['reset']}")
+            return
+        
+        player.gold -= amount
+        player.bank_gold = getattr(player, 'bank_gold', 0) + amount
+        
+        await player.send(f"{c['bright_yellow']}You deposit {amount:,} gold.{c['reset']}")
+        await player.send(f"{c['white']}Bank balance: {player.bank_gold:,} gold.{c['reset']}")
+
+    @classmethod
+    async def cmd_withdraw(cls, player: 'Player', args: List[str]):
+        """Withdraw gold from the bank. Usage: withdraw <amount>"""
+        c = player.config.COLORS
+        
+        # Check if in a bank room
+        if not player.room or 'bank' not in getattr(player.room, 'flags', set()):
+            await player.send(f"{c['yellow']}You must be at a bank to withdraw gold.{c['reset']}")
+            return
+        
+        if not args:
+            await player.send(f"{c['yellow']}Withdraw how much?{c['reset']}")
+            return
+        
+        bank_gold = getattr(player, 'bank_gold', 0)
+        
+        try:
+            if args[0].lower() == 'all':
+                amount = bank_gold
+            else:
+                amount = int(args[0])
+        except ValueError:
+            await player.send(f"{c['red']}Invalid amount.{c['reset']}")
+            return
+        
+        if amount <= 0:
+            await player.send(f"{c['red']}Nice try.{c['reset']}")
+            return
+        
+        if amount > bank_gold:
+            await player.send(f"{c['red']}You don't have that much gold in the bank!{c['reset']}")
+            return
+        
+        player.bank_gold -= amount
+        player.gold += amount
+        
+        await player.send(f"{c['bright_yellow']}You withdraw {amount:,} gold.{c['reset']}")
+        await player.send(f"{c['white']}Bank balance: {player.bank_gold:,} gold.{c['reset']}")
+
+    @classmethod
+    async def cmd_balance(cls, player: 'Player', args: List[str]):
+        """Check your bank balance."""
+        c = player.config.COLORS
+        
+        bank_gold = getattr(player, 'bank_gold', 0)
+        await player.send(f"{c['bright_yellow']}Bank Balance: {bank_gold:,} gold{c['reset']}")
+        await player.send(f"{c['white']}Gold on hand: {player.gold:,} gold{c['reset']}")
+
+    # ==================== FOOD & DRINK COMMANDS ====================
+
+    @classmethod
+    @classmethod
+    async def cmd_drink_alt(cls, player: 'Player', args: List[str]):
+        """Drink from a fountain or container. Usage: drink [from] <source>"""
+        c = player.config.COLORS
+        
+        if not args:
+            thirst_pct = (player.thirst / player.max_thirst) * 100
+            if thirst_pct > 80:
+                await player.send(f"{c['cyan']}You are not thirsty.{c['reset']}")
+            elif thirst_pct > 50:
+                await player.send(f"{c['yellow']}You could use a drink.{c['reset']}")
+            elif thirst_pct > 25:
+                await player.send(f"{c['yellow']}You are thirsty.{c['reset']}")
+            else:
+                await player.send(f"{c['red']}You are dying of thirst!{c['reset']}")
+            return
+        
+        # Handle "drink from X" syntax
+        target = ' '.join(args)
+        if target.lower().startswith('from '):
+            target = target[5:]
+        
+        # Check for fountains in room
+        fountain = None
+        if player.room:
+            for item in player.room.items:
+                if target.lower() in item.name.lower():
+                    if getattr(item, 'item_type', '') == 'fountain':
+                        fountain = item
+                        break
+        
+        if fountain:
+            drink_value = getattr(fountain, 'drink_value', 12)
+            player.thirst = min(player.max_thirst, player.thirst + drink_value)
+            await player.send(f"{c['cyan']}You drink from {fountain.short_desc}.{c['reset']}")
+            if player.room:
+                await player.room.send_to_room(f"{player.name} drinks from {fountain.short_desc}.", exclude=[player])
+            return
+        
+        # Check containers in inventory
+        container = None
+        for inv_item in player.inventory:
+            if target.lower() in inv_item.name.lower():
+                if getattr(inv_item, 'item_type', '') in ('drink', 'container'):
+                    if getattr(inv_item, 'drink_amount', 0) > 0:
+                        container = inv_item
+                        break
+        
+        if container:
+            drink_value = getattr(container, 'drink_value', 6)
+            container.drink_amount = getattr(container, 'drink_amount', 0) - 1
+            player.thirst = min(player.max_thirst, player.thirst + drink_value)
+            await player.send(f"{c['cyan']}You drink from {container.short_desc}.{c['reset']}")
+            if container.drink_amount <= 0:
+                await player.send(f"{c['yellow']}{container.short_desc} is now empty.{c['reset']}")
+            return
+        
+        await player.send(f"{c['red']}You can't drink from that.{c['reset']}")
+
+    @classmethod
+    async def cmd_fill(cls, player: 'Player', args: List[str]):
+        """Fill a container from a fountain. Usage: fill <container> [fountain]"""
+        c = player.config.COLORS
+        
+        if not args:
+            await player.send(f"{c['yellow']}Fill what?{c['reset']}")
+            return
+        
+        container_name = args[0]
+        fountain_name = ' '.join(args[1:]) if len(args) > 1 else None
+        
+        # Find container in inventory
+        container = None
+        for inv_item in player.inventory:
+            if container_name.lower() in inv_item.name.lower():
+                if getattr(inv_item, 'item_type', '') in ('drink', 'container'):
+                    container = inv_item
+                    break
+        
+        if not container:
+            await player.send(f"{c['red']}You don't have a container called '{container_name}'.{c['reset']}")
+            return
+        
+        # Find fountain in room
+        fountain = None
+        if player.room:
+            for item in player.room.items:
+                if getattr(item, 'item_type', '') == 'fountain':
+                    if fountain_name is None or fountain_name.lower() in item.name.lower():
+                        fountain = item
+                        break
+        
+        if not fountain:
+            await player.send(f"{c['red']}There's no fountain here to fill from.{c['reset']}")
+            return
+        
+        # Fill container
+        # Support new drink system (drinks/max_drinks/liquid) + legacy fields
+        max_drinks = getattr(container, 'max_drinks', None)
+        if max_drinks is None or max_drinks <= 0:
+            max_drinks = getattr(container, 'drinks', 0) or getattr(container, 'max_drink_amount', 10)
+        
+        container.drinks = max_drinks
+        container.max_drinks = max_drinks
+        container.liquid = getattr(fountain, 'liquid', getattr(fountain, 'liquid_type', 'water'))
+        
+        # Legacy fields for backward compatibility
+        container.drink_amount = max_drinks
+        container.liquid_type = container.liquid
+        
+        await player.send(f"{c['cyan']}You fill {container.short_desc} from {fountain.short_desc}.{c['reset']}")
+
+    @classmethod
+    async def cmd_taste(cls, player: 'Player', args: List[str]):
+        """Taste food or drink. Usage: taste <item>"""
+        c = player.config.COLORS
+        
+        if not args:
+            await player.send(f"{c['yellow']}Taste what?{c['reset']}")
+            return
+        
+        item_name = ' '.join(args)
+        item = None
+        
+        # Find in inventory
+        for inv_item in player.inventory:
+            if item_name.lower() in inv_item.name.lower():
+                item = inv_item
+                break
+        
+        if not item:
+            await player.send(f"{c['red']}You don't have that.{c['reset']}")
+            return
+        
+        item_type = getattr(item, 'item_type', '')
+        
+        if item_type == 'food':
+            # Small food benefit
+            player.hunger = min(player.max_hunger, player.hunger + 2)
+            await player.send(f"{c['green']}You taste {item.short_desc}. It's edible.{c['reset']}")
+        elif item_type in ('drink', 'container'):
+            if getattr(item, 'drink_amount', 0) > 0:
+                player.thirst = min(player.max_thirst, player.thirst + 1)
+                await player.send(f"{c['cyan']}You sip {item.short_desc}. It's {getattr(item, 'liquid_type', 'water')}.{c['reset']}")
+            else:
+                await player.send(f"{c['yellow']}{item.short_desc} is empty.{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}You lick {item.short_desc}. Tastes like... stuff.{c['reset']}")
+
+    # ==================== QUICK UTILITY COMMANDS ====================
+
+    @classmethod
+    async def cmd_toggle(cls, player: 'Player', args: List[str]):
+        """Show all toggle settings."""
+        c = player.config.COLORS
+        
+        def on_off(val):
+            return f"{c['green']}ON{c['reset']}" if val else f"{c['red']}OFF{c['reset']}"
+        
+        await player.send(f"{c['cyan']}=== Toggle Settings ==={c['reset']}")
+        await player.send(f"  Brief mode:      {on_off(getattr(player, 'brief_mode', False))}")
+        await player.send(f"  Compact mode:    {on_off(getattr(player, 'compact_mode', False))}")
+        await player.send(f"  Autoexit:        {on_off(getattr(player, 'autoexit', False))}")
+        await player.send(f"  Autoloot:        {on_off(getattr(player, 'autoloot', False))}")
+        await player.send(f"  Autoloot gold:   {on_off(getattr(player, 'autoloot_gold', True))}")
+        await player.send(f"  Autogold:        {on_off(getattr(player, 'autogold', True))}")
+        await player.send(f"  Autoattack:      {on_off(getattr(player, 'autoattack', False))}")
+        await player.send(f"  Autocombat:      {on_off(getattr(player, 'autocombat', False))}")
+        await player.send(f"  ASCII UI:        {on_off(getattr(player, 'ascii_ui', False))}")
+        await player.send(f"  Norepeat:        {on_off(getattr(player, 'norepeat', False))}")
+        await player.send(f"  Notell:          {on_off(getattr(player, 'notell', False))}")
+        await player.send(f"  Noshout:         {on_off(getattr(player, 'noshout', False))}")
+        
+        color_level = getattr(player, 'color_level', 'complete')
+        await player.send(f"  Color level:     {c['yellow']}{color_level}{c['reset']}")
+        
+        wimpy = getattr(player, 'wimpy', 0)
+        await player.send(f"  Wimpy:           {c['yellow']}{wimpy}{c['reset']} HP" if wimpy else f"  Wimpy:           {c['red']}OFF{c['reset']}")
+        
+        autorecall = getattr(player, 'autorecall_hp', None)
+        if autorecall:
+            pct = '%' if getattr(player, 'autorecall_is_percent', False) else ' HP'
+            await player.send(f"  Autorecall:      {c['yellow']}{autorecall}{pct}{c['reset']}")
+        else:
+            await player.send(f"  Autorecall:      {c['red']}OFF{c['reset']}")
+        
+        prompt = getattr(player, 'custom_prompt', None)
+        await player.send(f"  Custom prompt:   {c['yellow']}{prompt}{c['reset']}" if prompt else f"  Custom prompt:   {c['red']}default{c['reset']}")
+        await player.send(f"  Prompt display:  {on_off(getattr(player, 'prompt_enabled', True))}")
+        
+        await player.send(f"\n{c['white']}Use command name to toggle (e.g., 'brief', 'autoexit', 'notell'){c['reset']}")
+
+    @classmethod
+    async def cmd_color(cls, player: 'Player', args: List[str]):
+        """Set color level. Usage: color [off|sparse|normal|complete]"""
+        c = player.config.COLORS
+        
+        levels = ['off', 'sparse', 'normal', 'complete']
+        current = getattr(player, 'color_level', 'complete')
+        
+        if not args:
+            await player.send(f"{c['cyan']}Current color level: {c['white']}{current}{c['reset']}")
+            await player.send(f"{c['yellow']}Usage: color <off|sparse|normal|complete>{c['reset']}")
+            return
+        
+        level = args[0].lower()
+        if level not in levels:
+            await player.send(f"{c['red']}Invalid level. Choose: off, sparse, normal, complete{c['reset']}")
+            return
+        
+        player.color_level = level
+        await player.send(f"{c['green']}Color level set to: {level}{c['reset']}")
+
+    @classmethod
+    async def cmd_prompt(cls, player: 'Player', args: List[str]):
+        """Set custom prompt. Usage: prompt <format> or prompt default"""
+        c = player.config.COLORS
+        
+        if not args:
+            current = getattr(player, 'custom_prompt', None)
+            if current:
+                await player.send(f"{c['cyan']}Current prompt: {c['white']}{current}{c['reset']}")
+            else:
+                await player.send(f"{c['cyan']}Using default prompt.{c['reset']}")
+            await player.send(f"{c['yellow']}Prompt is {'ON' if getattr(player, 'prompt_enabled', True) else 'OFF'} (use: prompt on/off){c['reset']}")
+            await player.send(f"{c['yellow']}Format codes: %h=HP %H=MaxHP %m=Mana %M=MaxMana %v=Move %V=MaxMove %g=Gold %x=XP %p=HP% %q=Mana% %r=Move% %n=Newline{c['reset']}")
+            await player.send(f"{c['yellow']}Example: prompt <%h/%Hhp %m/%Mm %v/%Vmv> {c['reset']}")
+            return
+        
+        prompt_str = ' '.join(args)
+        
+        # Toggle prompt display
+        if prompt_str.lower() in ['on', 'off']:
+            player.prompt_enabled = (prompt_str.lower() == 'on')
+            state = 'ON' if player.prompt_enabled else 'OFF'
+            await player.send(f"{c['green']}Prompt is now {state}.{c['reset']}")
+            return
+        
+        if prompt_str.lower() == 'default':
+            player.custom_prompt = None
+            await player.send(f"{c['green']}Prompt reset to default.{c['reset']}")
+        else:
+            player.custom_prompt = prompt_str
+            await player.send(f"{c['green']}Prompt set to: {prompt_str}{c['reset']}")
+
+    @classmethod
+    async def cmd_display(cls, player: 'Player', args: List[str]):
+        """Set display options. Alias for prompt."""
+        await cls.cmd_prompt(player, args)
+
+    @classmethod
+    async def cmd_autoexit(cls, player: 'Player', args: List[str]):
+        """Toggle automatic exit display on room entry."""
+        c = player.config.COLORS
+        
+        player.autoexit = not getattr(player, 'autoexit', False)
+        
+        if player.autoexit:
+            await player.send(f"{c['green']}Autoexit is now ON. Exits will show when you enter rooms.{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}Autoexit is now OFF.{c['reset']}")
+
+    @classmethod
+    async def cmd_norepeat(cls, player: 'Player', args: List[str]):
+        """Toggle echoing of your own communication."""
+        c = player.config.COLORS
+        
+        player.norepeat = not getattr(player, 'norepeat', False)
+        
+        if player.norepeat:
+            await player.send(f"{c['green']}Norepeat ON. You won't see your own says/tells echoed.{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}Norepeat OFF. You'll see your own communication.{c['reset']}")
+
+    @classmethod
+    async def cmd_notell(cls, player: 'Player', args: List[str]):
+        """Toggle blocking of tells from other players."""
+        c = player.config.COLORS
+        
+        player.notell = not getattr(player, 'notell', False)
+        
+        if player.notell:
+            await player.send(f"{c['green']}Notell ON. You will not receive tells.{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}Notell OFF. You can receive tells.{c['reset']}")
+
+    @classmethod
+    async def cmd_noshout(cls, player: 'Player', args: List[str]):
+        """Toggle blocking of shouts and hollers."""
+        c = player.config.COLORS
+        
+        player.noshout = not getattr(player, 'noshout', False)
+        
+        if player.noshout:
+            await player.send(f"{c['green']}Noshout ON. You will not hear shouts or hollers.{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}Noshout OFF. You can hear shouts.{c['reset']}")
+
+    # ==================== PLAYER FEEDBACK ====================
+
+    @classmethod
+    async def cmd_bug(cls, player: 'Player', args: List[str]):
+        """Report a bug. Usage: bug <description>"""
+        c = player.config.COLORS
+        
+        if not args:
+            await player.send(f"{c['yellow']}Usage: bug <description of the bug>{c['reset']}")
+            return
+        
+        import os
+        from datetime import datetime
+        
+        report = ' '.join(args)
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        room_vnum = player.room.vnum if player.room else 'unknown'
+        
+        # Append to bugs file
+        bug_file = os.path.join(os.path.dirname(__file__), '..', 'logs', 'bugs.log')
+        os.makedirs(os.path.dirname(bug_file), exist_ok=True)
+        
+        with open(bug_file, 'a') as f:
+            f.write(f"[{timestamp}] {player.name} (Room {room_vnum}): {report}\n")
+        
+        await player.send(f"{c['green']}Bug reported. Thank you!{c['reset']}")
+
+    @classmethod
+    async def cmd_idea(cls, player: 'Player', args: List[str]):
+        """Suggest an idea. Usage: idea <your suggestion>"""
+        c = player.config.COLORS
+        
+        if not args:
+            await player.send(f"{c['yellow']}Usage: idea <your suggestion>{c['reset']}")
+            return
+        
+        import os
+        from datetime import datetime
+        
+        report = ' '.join(args)
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        
+        idea_file = os.path.join(os.path.dirname(__file__), '..', 'logs', 'ideas.log')
+        os.makedirs(os.path.dirname(idea_file), exist_ok=True)
+        
+        with open(idea_file, 'a') as f:
+            f.write(f"[{timestamp}] {player.name}: {report}\n")
+        
+        await player.send(f"{c['green']}Idea submitted. Thank you!{c['reset']}")
+
+    @classmethod
+    async def cmd_typo(cls, player: 'Player', args: List[str]):
+        """Report a typo. Usage: typo <description>"""
+        c = player.config.COLORS
+        
+        if not args:
+            await player.send(f"{c['yellow']}Usage: typo <description of the typo>{c['reset']}")
+            return
+        
+        import os
+        from datetime import datetime
+        
+        report = ' '.join(args)
+        timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        room_vnum = player.room.vnum if player.room else 'unknown'
+        
+        typo_file = os.path.join(os.path.dirname(__file__), '..', 'logs', 'typos.log')
+        os.makedirs(os.path.dirname(typo_file), exist_ok=True)
+        
+        with open(typo_file, 'a') as f:
+            f.write(f"[{timestamp}] {player.name} (Room {room_vnum}): {report}\n")
+        
+        await player.send(f"{c['green']}Typo reported. Thank you!{c['reset']}")
+
+    # ==================== SERVER INFO ====================
+
+    @classmethod
+    async def cmd_news(cls, player: 'Player', args: List[str]):
+        """Display server news and updates."""
+        c = player.config.COLORS
+        
+        await player.send(f"{c['bright_cyan']}=== RealmsMUD News ==={c['reset']}")
+        await player.send(f"{c['white']}Welcome to RealmsMUD!{c['reset']}")
+        await player.send(f"")
+        await player.send(f"{c['yellow']}Recent Updates:{c['reset']}")
+        await player.send(f"  - 7 unique class systems (Bard, Warrior, Ranger, Paladin, Thief, Cleric, Necromancer)")
+        await player.send(f"  - Pet and companion system")
+        await player.send(f"  - Banking system (west then north from Market Square)")
+        await player.send(f"  - Hunger/thirst system (drink from fountains!)")
+        await player.send(f"  - 30+ social commands")
+        await player.send(f"  - Web map at http://72.35.132.11:4001")
+        await player.send(f"")
+        await player.send(f"{c['cyan']}Type 'help' for commands, 'policy' for rules.{c['reset']}")
+
+    @classmethod
+    async def cmd_motd(cls, player: 'Player', args: List[str]):
+        """Display the Message of the Day."""
+        c = player.config.COLORS
+        
+        await player.send(f"{c['bright_yellow']}=== Message of the Day ==={c['reset']}")
+        await player.send(f"")
+        await player.send(f"{c['white']}Welcome, adventurer!{c['reset']}")
+        await player.send(f"")
+        await player.send(f"{c['cyan']}The Realms await your exploration.{c['reset']}")
+        await player.send(f"{c['cyan']}New players: Head south to the Market Square,{c['reset']}")
+        await player.send(f"{c['cyan']}then explore the city of Midgaard.{c['reset']}")
+        await player.send(f"")
+        await player.send(f"{c['bright_green']}Quickstart:{c['reset']}")
+        await player.send(f"  {c['white']}look  | score  | inventory  | equipment{c['reset']}")
+        await player.send(f"  {c['white']}consider <mob> | kill <mob> | flee{c['reset']}")
+        await player.send(f"  {c['white']}drink fountain | deposit <amt> | balance{c['reset']}")
+        await player.send(f"")
+        await player.send(f"{c['yellow']}Tip: Use 'consider <mob>' before attacking!{c['reset']}")
+        await player.send(f"{c['yellow']}Tip: Drink from the fountain in Temple Square or Market Square!{c['reset']}")
+
+    @classmethod
+    async def cmd_updates(cls, player: 'Player', args: List[str]):
+        """Show recent game updates and changes. Usage: updates [number of days]"""
+        import json
+        import os
+        c = player.config.COLORS
+        
+        updates_file = 'data/updates.json'
+        if not os.path.exists(updates_file):
+            await player.send(f"{c['yellow']}No updates available.{c['reset']}")
+            return
+        
+        try:
+            with open(updates_file) as f:
+                data = json.load(f)
+        except Exception as e:
+            await player.send(f"{c['red']}Error reading updates.{c['reset']}")
+            return
+        
+        updates = data.get('updates', [])
+        if not updates:
+            await player.send(f"{c['yellow']}No updates available.{c['reset']}")
+            return
+        
+        # How many days to show (default 7)
+        days_to_show = 7
+        if args:
+            try:
+                days_to_show = int(args[0])
+            except ValueError:
+                pass
+        
+        await player.send(f"\n{c['bright_cyan']}╔══════════════════════════════════════════════════════════════╗{c['reset']}")
+        await player.send(f"{c['bright_cyan']}║{c['bright_yellow']}                    RECENT UPDATES                           {c['bright_cyan']}║{c['reset']}")
+        await player.send(f"{c['bright_cyan']}╚══════════════════════════════════════════════════════════════╝{c['reset']}")
+        
+        shown = 0
+        for update in updates[:days_to_show]:
+            date = update.get('date', 'Unknown')
+            version = update.get('version', '')
+            changes = update.get('changes', [])
+            
+            version_str = f" (v{version})" if version else ""
+            await player.send(f"\n{c['bright_green']}═══ {date}{version_str} ═══{c['reset']}")
+            
+            for change in changes:
+                await player.send(f"  {c['white']}• {change}{c['reset']}")
+            
+            shown += 1
+        
+        await player.send(f"\n{c['cyan']}Showing {shown} update(s). Use 'updates <n>' for more.{c['reset']}")
+        await player.send(f"{c['cyan']}Report bugs with: bug <description>{c['reset']}\n")
+
+    @classmethod
+    async def cmd_changelog(cls, player: 'Player', args: List[str]):
+        """Alias for updates command."""
+        await cls.cmd_updates(player, args)
+
+    @classmethod
+    async def cmd_news(cls, player: 'Player', args: List[str]):
+        """Alias for updates command."""
+        await cls.cmd_updates(player, args)
+
+    @classmethod
+    async def cmd_policy(cls, player: 'Player', args: List[str]):
+        """Display server policies and rules."""
+        c = player.config.COLORS
+        
+        await player.send(f"{c['bright_red']}=== Server Policy ==={c['reset']}")
+        await player.send(f"")
+        await player.send(f"{c['white']}1. Be respectful to other players.{c['reset']}")
+        await player.send(f"{c['white']}2. No harassment or hate speech.{c['reset']}")
+        await player.send(f"{c['white']}3. No exploiting bugs (report them with 'bug').{c['reset']}")
+        await player.send(f"{c['white']}4. No botting or automation scripts.{c['reset']}")
+        await player.send(f"{c['white']}5. Multiple characters are allowed.{c['reset']}")
+        await player.send(f"")
+        await player.send(f"{c['yellow']}Violations may result in character deletion.{c['reset']}")
+        await player.send(f"{c['cyan']}Have fun and happy adventuring!{c['reset']}")
+
+    @classmethod
+    async def cmd_info(cls, player: 'Player', args: List[str]):
+        """Display game information for new players."""
+        c = player.config.COLORS
+        
+        await player.send(f"{c['bright_green']}=== New Player Information ==={c['reset']}")
+        await player.send(f"")
+        await player.send(f"{c['cyan']}Getting Started:{c['reset']}")
+        await player.send(f"  - Use compass directions to move (north, south, etc.)")
+        await player.send(f"  - 'look' to see your surroundings")
+        await player.send(f"  - 'score' to see your character stats")
+        await player.send(f"  - 'inventory' or 'i' to see what you're carrying")
+        await player.send(f"  - 'equipment' or 'eq' to see what you're wearing")
+        await player.send(f"")
+        await player.send(f"{c['cyan']}Combat:{c['reset']}")
+        await player.send(f"  - 'consider <mob>' to check difficulty")
+        await player.send(f"  - 'kill <mob>' to attack")
+        await player.send(f"  - 'flee' to escape")
+        await player.send(f"")
+        await player.send(f"{c['cyan']}Useful Commands:{c['reset']}")
+        await player.send(f"  - 'help <topic>' for detailed help")
+        await player.send(f"  - 'commands' for full command list")
+        await player.send(f"  - 'who' to see online players")
+
+    # ==================== MISC COMMANDS ====================
+
+    @classmethod
+    async def cmd_knock(cls, player: 'Player', args: List[str]):
+        """Knock on a door. Usage: knock <direction>"""
+        c = player.config.COLORS
+        
+        if not args:
+            await player.send(f"{c['yellow']}Knock on which door?{c['reset']}")
+            return
+        
+        direction = args[0].lower()
+        
+        if not player.room or direction not in player.room.exits:
+            await player.send(f"{c['red']}There's no exit in that direction.{c['reset']}")
+            return
+        
+        exit_data = player.room.exits[direction]
+        
+        if 'door' not in exit_data:
+            await player.send(f"{c['yellow']}There's no door there.{c['reset']}")
+            return
+        
+        door = exit_data['door']
+        door_name = door.get('name', 'door')
+        
+        await player.send(f"{c['cyan']}You knock on the {door_name}.{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{player.name} knocks on the {door_name}.", exclude=[player])
+        
+        # Notify people on the other side
+        target_room = exit_data.get('room')
+        if target_room:
+            await target_room.send_to_room(f"{c['yellow']}Someone knocks on the {door_name} from the other side.{c['reset']}")
+
+    @classmethod
+    async def cmd_enter(cls, player: 'Player', args: List[str]):
+        """Enter a building or portal. Usage: enter [portal/building name]"""
+        c = player.config.COLORS
+        
+        if not player.room:
+            await player.send(f"{c['red']}You are nowhere!{c['reset']}")
+            return
+        
+        # If no args, look for obvious entrance
+        if not args:
+            # Check for portals or buildings in room
+            for item in player.room.items:
+                if getattr(item, 'item_type', '') == 'portal':
+                    target_room = item.portal_target if hasattr(item, 'portal_target') else None
+                    if target_room and hasattr(player, 'world'):
+                        dest = player.world.rooms.get(target_room)
+                        if dest:
+                            await player.room.send_to_room(f"{player.name} enters {item.short_desc}.", exclude=[player])
+                            player.room.characters.remove(player)
+                            player.room = dest
+                            dest.characters.append(player)
+                            await player.send(f"{c['cyan']}You enter {item.short_desc}.{c['reset']}")
+                            await player.do_look([])
+                            await dest.send_to_room(f"{player.name} arrives.", exclude=[player])
+                            return
+            
+            # Try common directions for "inside"
+            for direction in ['in', 'inside', 'building', 'enter']:
+                if direction in player.room.exits:
+                    from commands import CommandHandler
+                    await CommandHandler.cmd_move(player, direction)
+                    return
+            
+            await player.send(f"{c['yellow']}Enter what? Specify a direction or portal name.{c['reset']}")
+            return
+        
+        target = ' '.join(args).lower()
+        
+        # Check items for portals
+        for item in player.room.items:
+            if target in item.name.lower() and getattr(item, 'item_type', '') == 'portal':
+                target_room = item.portal_target if hasattr(item, 'portal_target') else None
+                if target_room and hasattr(player, 'world'):
+                    dest = player.world.rooms.get(target_room)
+                    if dest:
+                        await player.room.send_to_room(f"{player.name} enters {item.short_desc}.", exclude=[player])
+                        player.room.characters.remove(player)
+                        player.room = dest
+                        dest.characters.append(player)
+                        await player.send(f"{c['cyan']}You enter {item.short_desc}.{c['reset']}")
+                        await player.do_look([])
+                        await dest.send_to_room(f"{player.name} arrives.", exclude=[player])
+                        return
+        
+        await player.send(f"{c['red']}You can't enter that.{c['reset']}")
+
+    @classmethod
+    async def cmd_leave(cls, player: 'Player', args: List[str]):
+        """Leave a building to go outside. Usage: leave"""
+        c = player.config.COLORS
+        
+        if not player.room:
+            await player.send(f"{c['red']}You are nowhere!{c['reset']}")
+            return
+        
+        # Try common exit directions
+        for direction in ['out', 'outside', 'exit', 'leave']:
+            if direction in player.room.exits:
+                from commands import CommandHandler
+                await CommandHandler.cmd_move(player, direction)
+                return
+        
+        # If indoors, try to find an outdoor exit
+        if 'indoors' in getattr(player.room, 'flags', []):
+            for direction, exit_data in player.room.exits.items():
+                target_room = exit_data.get('room')
+                if target_room and 'indoors' not in getattr(target_room, 'flags', []):
+                    from commands import CommandHandler
+                    await CommandHandler.cmd_move(player, direction)
+                    return
+        
+        await player.send(f"{c['yellow']}There's no obvious way out.{c['reset']}")
+
+    @classmethod
+    async def cmd_report(cls, player: 'Player', args: List[str]):
+        """Report your status to the group."""
+        c = player.config.COLORS
+        
+        hp_pct = int((player.hp / player.max_hp) * 100) if player.max_hp > 0 else 0
+        mana_pct = int((player.mana / player.max_mana) * 100) if player.max_mana > 0 else 0
+        move_pct = int((player.move / player.max_move) * 100) if player.max_move > 0 else 0
+        
+        report = f"{player.name} reports: {player.hp}/{player.max_hp} HP ({hp_pct}%), {player.mana}/{player.max_mana} Mana ({mana_pct}%), {player.move}/{player.max_move} Move ({move_pct}%)"
+        
+        if hasattr(player, 'group') and player.group:
+            # Send to group
+            for member in player.group.members:
+                await member.send(f"{c['cyan']}{report}{c['reset']}")
+        else:
+            # Just show in room
+            await player.send(f"{c['cyan']}You report: {player.hp}/{player.max_hp} HP, {player.mana}/{player.max_mana} Mana, {player.move}/{player.max_move} Move{c['reset']}")
+            if player.room:
+                await player.room.send_to_room(f"{c['white']}{report}{c['reset']}", exclude=[player])
+
+    @classmethod
+    async def cmd_socials(cls, player: 'Player', args: List[str]):
+        """List all available social commands."""
+        c = player.config.COLORS
+        
+        social_list = sorted(cls.SOCIALS.keys())
+        
+        await player.send(f"{c['cyan']}=== Social Commands ==={c['reset']}")
+        
+        # Display in columns
+        cols = 6
+        for i in range(0, len(social_list), cols):
+            row = social_list[i:i+cols]
+            formatted = '  '.join(f"{s:<12}" for s in row)
+            await player.send(f"{c['white']}{formatted}{c['reset']}")
+        
+        await player.send(f"\n{c['yellow']}Usage: <social> [target]{c['reset']}")
+
+    @classmethod
+    async def cmd_title(cls, player: 'Player', args: List[str]):
+        """Set your title. Usage: title <new title>"""
+        c = player.config.COLORS
+        
+        if not args:
+            current = getattr(player, 'title', 'the Adventurer')
+            await player.send(f"{c['cyan']}Your current title: {c['white']}{player.name} {current}{c['reset']}")
+            await player.send(f"{c['yellow']}Usage: title <new title>{c['reset']}")
+            return
+        
+        new_title = ' '.join(args)
+        
+        # Sanitize - no parentheses (reserved for flags)
+        if '(' in new_title or ')' in new_title:
+            await player.send(f"{c['red']}Titles cannot contain parentheses.{c['reset']}")
+            return
+        
+        # Length limit
+        if len(new_title) > 40:
+            await player.send(f"{c['red']}Title too long (max 40 characters).{c['reset']}")
+            return
+        
+        player.title = new_title
+        await player.send(f"{c['green']}Title set to: {player.name} {new_title}{c['reset']}")
+
+    @classmethod
+    async def cmd_donate(cls, player: 'Player', args: List[str]):
+        """Donate an item to help newbies. Usage: donate <item>"""
+        c = player.config.COLORS
+        
+        if not args:
+            await player.send(f"{c['yellow']}Donate what?{c['reset']}")
+            return
+        
+        item_name = ' '.join(args)
+        item = None
+        
+        # Find in inventory
+        for inv_item in player.inventory:
+            if item_name.lower() in inv_item.name.lower():
+                item = inv_item
+                break
+        
+        if not item:
+            await player.send(f"{c['red']}You don't have that.{c['reset']}")
+            return
+        
+        # Remove from inventory
+        player.inventory.remove(item)
+        
+        # 75% chance goes to donation room, 25% junked
+        import random
+        if random.randint(1, 100) <= 75:
+            # Find donation room (3002 in Midgaard)
+            donation_room = player.world.rooms.get(3002) if hasattr(player, 'world') else None
+            if donation_room:
+                donation_room.items.append(item)
+                await player.send(f"{c['green']}You donate {item.short_desc}. It has been sent to the donation room.{c['reset']}")
+            else:
+                await player.send(f"{c['green']}You donate {item.short_desc}. The gods accept your generosity.{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}You donate {item.short_desc}, but it was too damaged to be useful.{c['reset']}")
+        
+        if player.room:
+            await player.room.send_to_room(f"{player.name} donates {item.short_desc}.", exclude=[player])
+
+    @classmethod
+    async def cmd_pour(cls, player: 'Player', args: List[str]):
+        """Pour liquid between containers. Usage: pour <from> <to> OR pour <from> out"""
+        c = player.config.COLORS
+        
+        if len(args) < 2:
+            await player.send(f"{c['yellow']}Usage: pour <from container> <to container>{c['reset']}")
+            await player.send(f"{c['yellow']}       pour <container> out{c['reset']}")
+            return
+        
+        from_name = args[0]
+        to_name = args[1]
+        
+        # Find source container
+        from_item = None
+        for inv_item in player.inventory:
+            if from_name.lower() in inv_item.name.lower():
+                if getattr(inv_item, 'item_type', '') in ('drink', 'drinkcon', 'container'):
+                    from_item = inv_item
+                    break
+        
+        if not from_item:
+            await player.send(f"{c['red']}You don't have a container called '{from_name}'.{c['reset']}")
+            return
+        
+        current = getattr(from_item, 'drink_amount', 0)
+        if current <= 0:
+            await player.send(f"{c['yellow']}{from_item.short_desc} is empty.{c['reset']}")
+            return
+        
+        # Pour out
+        if to_name.lower() == 'out':
+            from_item.drink_amount = 0
+            await player.send(f"{c['cyan']}You pour out {from_item.short_desc}.{c['reset']}")
+            if player.room:
+                await player.room.send_to_room(f"{player.name} pours out {from_item.short_desc}.", exclude=[player])
+            return
+        
+        # Find target container
+        to_item = None
+        for inv_item in player.inventory:
+            if inv_item != from_item and to_name.lower() in inv_item.name.lower():
+                if getattr(inv_item, 'item_type', '') in ('drink', 'drinkcon', 'container'):
+                    to_item = inv_item
+                    break
+        
+        if not to_item:
+            await player.send(f"{c['red']}You don't have another container called '{to_name}'.{c['reset']}")
+            return
+        
+        # Pour liquid
+        to_max = getattr(to_item, 'max_drink_amount', 10)
+        to_current = getattr(to_item, 'drink_amount', 0)
+        space = to_max - to_current
+        
+        if space <= 0:
+            await player.send(f"{c['yellow']}{to_item.short_desc} is already full.{c['reset']}")
+            return
+        
+        transfer = min(current, space)
+        from_item.drink_amount -= transfer
+        to_item.drink_amount = to_current + transfer
+        to_item.liquid_type = getattr(from_item, 'liquid_type', 'water')
+        
+        await player.send(f"{c['cyan']}You pour {getattr(from_item, 'liquid_type', 'liquid')} from {from_item.short_desc} into {to_item.short_desc}.{c['reset']}")
 
     # ==================== SOCIAL COMMANDS ====================
 
@@ -4168,9 +12019,10 @@ class CommandHandler:
             # Message to room
             msg = social['no_arg_room']
             msg = msg.replace('$n', player.name)
-            msg = msg.replace('$e', 'he' if player.sex == 'male' else 'she')
-            msg = msg.replace('$s', 'his' if player.sex == 'male' else 'her')
-            msg = msg.replace('$m', 'him' if player.sex == 'male' else 'her')
+            sex = getattr(player, 'sex', 'neutral')
+            msg = msg.replace('$e', 'he' if sex == 'male' else ('she' if sex == 'female' else 'they'))
+            msg = msg.replace('$s', 'his' if sex == 'male' else ('her' if sex == 'female' else 'their'))
+            msg = msg.replace('$m', 'him' if sex == 'male' else ('her' if sex == 'female' else 'them'))
             await player.room.send_to_room(f"{c['cyan']}{msg}{c['reset']}", exclude=[player])
 
         else:
@@ -4629,6 +12481,7 @@ class CommandHandler:
         # Retrieve the item
         player.storage.remove(item)
         player.inventory.append(item)
+        await cls._record_collection_item(player, item)
 
         await player.send(f"{c['green']}You retrieve {item.short_desc} from your locker.{c['reset']}")
 
@@ -4703,6 +12556,93 @@ class CommandHandler:
             await player.send(f"You have no alias for '{alias_word}'.")
 
     @classmethod
+    async def cmd_label(cls, player: 'Player', args: List[str]):
+        """Label a target for quick targeting in combat.
+        
+        Usage:
+            label                    - Show all current labels
+            label <target> <name>    - Label a target (e.g., label warrior DEAD)
+            label clear              - Clear all labels
+            label clear <name>       - Clear specific label
+        
+        Then use the label in commands: kill DEAD, cast fireball DEAD
+        Labels are case-insensitive and session-only (not saved).
+        """
+        c = player.config.COLORS
+        
+        if not args:
+            # Show all labels
+            if not player.target_labels:
+                await player.send(f"{c['yellow']}You have no targets labeled.{c['reset']}")
+                await player.send(f"{c['cyan']}Usage: label <target> <name>  (e.g., label warrior DEAD){c['reset']}")
+            else:
+                await player.send(f"{c['cyan']}Current Labels:{c['reset']}")
+                for label, char in list(player.target_labels.items()):
+                    if char in player.room.characters:
+                        await player.send(f"  {c['bright_yellow']}{label}{c['white']} -> {c['bright_green']}{char.name}{c['reset']}")
+                    else:
+                        # Stale label
+                        del player.target_labels[label]
+                        await player.send(f"  {c['bright_yellow']}{label}{c['white']} -> {c['red']}(no longer present){c['reset']}")
+            return
+        
+        if args[0].lower() == 'clear':
+            if len(args) > 1:
+                # Clear specific label
+                label_name = args[1].upper()
+                if label_name in player.target_labels:
+                    del player.target_labels[label_name]
+                    await player.send(f"{c['bright_green']}Label '{label_name}' cleared.{c['reset']}")
+                else:
+                    await player.send(f"{c['yellow']}No label '{label_name}' found.{c['reset']}")
+            else:
+                # Clear all labels
+                player.target_labels.clear()
+                await player.send(f"{c['bright_green']}All labels cleared.{c['reset']}")
+            return
+        
+        if len(args) < 2:
+            await player.send(f"{c['yellow']}Usage: label <target> <name>{c['reset']}")
+            await player.send(f"{c['cyan']}Example: label 2.warrior TANK{c['reset']}")
+            return
+        
+        # Parse: label <target> <labelname>
+        target_name = ' '.join(args[:-1])
+        label_name = args[-1].upper()
+        
+        # Find target using existing targeting (supports 1.warrior, 2.warrior, etc.)
+        # But temporarily disable label lookup to avoid circular reference
+        old_labels = player.target_labels
+        player.target_labels = {}
+        target = player.find_target_in_room(target_name)
+        player.target_labels = old_labels
+        
+        if not target:
+            await player.send(f"{c['red']}You don't see '{target_name}' here.{c['reset']}")
+            return
+        
+        # Set the label
+        player.target_labels[label_name] = target
+        await player.send(f"{c['bright_green']}Labeled {target.name} as '{label_name}'.{c['reset']}")
+        await player.send(f"{c['cyan']}Now you can use: kill {label_name}, cast spell {label_name}, etc.{c['reset']}")
+
+    @classmethod
+    async def cmd_unlabel(cls, player: 'Player', args: List[str]):
+        """Remove a target label."""
+        c = player.config.COLORS
+        
+        if not args:
+            await player.send(f"{c['yellow']}Usage: unlabel <name>{c['reset']}")
+            return
+        
+        label_name = args[0].upper()
+        if label_name in player.target_labels:
+            del player.target_labels[label_name]
+            await player.send(f"{c['bright_green']}Label '{label_name}' removed.{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}No label '{label_name}' found.{c['reset']}")
+
+    @classmethod
     async def cmd_autoloot(cls, player: 'Player', args: List[str]):
         """Toggle automatic looting of items from corpses.
 
@@ -4756,6 +12696,469 @@ class CommandHandler:
         await player.send(f"{c['cyan']}Current settings: Autoloot Items: {item_status}, Autoloot Gold: {gold_status}{c['reset']}")
 
     @classmethod
+    async def cmd_autogold(cls, player: 'Player', args: List[str]):
+        """Toggle automatic pickup of ground gold.
+
+        Usage:
+            autogold          - Toggle autogold on/off
+            autogold on       - Turn autogold on
+            autogold off      - Turn autogold off
+        """
+        c = player.config.COLORS
+
+        if args:
+            setting = args[0].lower()
+            if setting == 'on':
+                player.autogold = True
+                await player.send(f"{c['bright_green']}Autogold is now ON. You will automatically pick up gold on the ground.{c['reset']}")
+            elif setting == 'off':
+                player.autogold = False
+                await player.send(f"{c['yellow']}Autogold is now OFF. You must manually pick up gold.{c['reset']}")
+            else:
+                await player.send(f"{c['red']}Usage: autogold [on|off]{c['reset']}")
+        else:
+            player.autogold = not player.autogold
+            status = f"{c['bright_green']}ON{c['reset']}" if player.autogold else f"{c['red']}OFF{c['reset']}"
+            await player.send(f"Autogold is now {status}.")
+
+    @classmethod
+    async def cmd_autoattack(cls, player: 'Player', args: List[str]):
+        """Toggle automatic basic attacks.
+
+        Usage:
+            autoattack          - Toggle autoattack on/off
+            autoattack on       - Turn autoattack on
+            autoattack off      - Turn autoattack off
+        """
+        c = player.config.COLORS
+
+        if args:
+            setting = args[0].lower()
+            if setting == 'on':
+                player.autoattack = True
+                await player.send(f"{c['bright_green']}Autoattack is now ON.{c['reset']}")
+            elif setting == 'off':
+                player.autoattack = False
+                await player.send(f"{c['yellow']}Autoattack is now OFF.{c['reset']}")
+            else:
+                await player.send(f"{c['red']}Usage: autoattack [on|off]{c['reset']}")
+        else:
+            player.autoattack = not player.autoattack
+            status = f"{c['bright_green']}ON{c['reset']}" if player.autoattack else f"{c['red']}OFF{c['reset']}"
+            await player.send(f"Autoattack is now {status}.")
+
+    @classmethod
+    async def cmd_autocombat(cls, player: 'Player', args: List[str]):
+        """Toggle automatic combat skills/spells.
+
+        Usage:
+            autocombat          - Toggle autocombat on/off
+            autocombat on       - Turn autocombat on
+            autocombat off      - Turn autocombat off
+        """
+        c = player.config.COLORS
+
+        if args:
+            setting = args[0].lower()
+            if setting == 'on':
+                player.autocombat = True
+                await player.send(f"{c['bright_green']}Autocombat is now ON.{c['reset']}")
+            elif setting == 'off':
+                player.autocombat = False
+                await player.send(f"{c['yellow']}Autocombat is now OFF.{c['reset']}")
+            else:
+                await player.send(f"{c['red']}Usage: autocombat [on|off]{c['reset']}")
+        else:
+            player.autocombat = not player.autocombat
+            status = f"{c['bright_green']}ON{c['reset']}" if player.autocombat else f"{c['red']}OFF{c['reset']}"
+            await player.send(f"Autocombat is now {status}.")
+
+    @classmethod
+    async def cmd_brief(cls, player: 'Player', args: List[str]):
+        """Toggle brief room descriptions.
+
+        Usage:
+            brief          - Toggle brief mode on/off
+            brief on       - Turn brief mode on
+            brief off      - Turn brief mode off
+        """
+        c = player.config.COLORS
+
+        if args:
+            setting = args[0].lower()
+            if setting == 'on':
+                player.brief_mode = True
+                await player.send(f"{c['bright_green']}Brief mode is now ON.{c['reset']}")
+            elif setting == 'off':
+                player.brief_mode = False
+                await player.send(f"{c['yellow']}Brief mode is now OFF.{c['reset']}")
+            else:
+                await player.send(f"{c['red']}Usage: brief [on|off]{c['reset']}")
+        else:
+            player.brief_mode = not player.brief_mode
+            status = f"{c['bright_green']}ON{c['reset']}" if player.brief_mode else f"{c['red']}OFF{c['reset']}"
+            await player.send(f"Brief mode is now {status}.")
+
+    @classmethod
+    async def cmd_compact(cls, player: 'Player', args: List[str]):
+        """Toggle compact combat messages.
+
+        Usage:
+            compact          - Toggle compact mode on/off
+            compact on       - Turn compact mode on
+            compact off      - Turn compact mode off
+        """
+        c = player.config.COLORS
+
+        if args:
+            setting = args[0].lower()
+            if setting == 'on':
+                player.compact_mode = True
+                await player.send(f"{c['bright_green']}Compact mode is now ON.{c['reset']}")
+            elif setting == 'off':
+                player.compact_mode = False
+                await player.send(f"{c['yellow']}Compact mode is now OFF.{c['reset']}")
+            else:
+                await player.send(f"{c['red']}Usage: compact [on|off]{c['reset']}")
+        else:
+            player.compact_mode = not player.compact_mode
+            status = f"{c['bright_green']}ON{c['reset']}" if player.compact_mode else f"{c['red']}OFF{c['reset']}"
+            await player.send(f"Compact mode is now {status}.")
+
+    @classmethod
+    async def cmd_tick(cls, player: 'Player', args: List[str]):
+        """Toggle tick timer notifications.
+        
+        Shows when game ticks happen (regen, combat, etc.)
+        
+        Usage:
+            tick         - Toggle tick notifications
+            tick on      - Turn on
+            tick off     - Turn off
+        """
+        c = player.config.COLORS
+        
+        if args:
+            setting = args[0].lower()
+            if setting == 'on':
+                player.show_ticks = True
+            elif setting == 'off':
+                player.show_ticks = False
+            else:
+                await player.send(f"{c['yellow']}Usage: tick [on|off]{c['reset']}")
+                return
+        else:
+            player.show_ticks = not getattr(player, 'show_ticks', False)
+        
+        if player.show_ticks:
+            await player.send(f"{c['bright_green']}Tick notifications ON.{c['reset']}")
+            await player.send(f"{c['cyan']}Tick rates: Combat=4s, Regen=60s, Pet=10s{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}Tick notifications OFF.{c['reset']}")
+
+    @classmethod
+    async def cmd_notick(cls, player: 'Player', args: List[str]):
+        """Alias for tick - toggle tick notifications."""
+        await cls.cmd_tick(player, args)
+
+    @classmethod
+    async def cmd_sets(cls, player: 'Player', args: List[str]):
+        """Show active zone set bonuses."""
+        c = player.config.COLORS
+        try:
+            from sets import ZONE_CATEGORIES, CATEGORY_BONUSES, get_set_bonus
+        except Exception:
+            await player.send(f"{c['yellow']}Set system not available.{c['reset']}")
+            return
+
+        # Count equipped pieces by set_id
+        set_counts = {}
+        for slot, item in getattr(player, 'equipment', {}).items():
+            if item and getattr(item, 'set_id', None):
+                set_id = item.set_id
+                if isinstance(set_id, str) and set_id.isdigit():
+                    set_id = int(set_id)
+                set_counts[set_id] = set_counts.get(set_id, 0) + 1
+
+        if not set_counts:
+            await player.send(f"{c['yellow']}You have no set pieces equipped.{c['reset']}")
+            return
+
+        current_zone = getattr(player.room.zone, 'number', None) if player.room and player.room.zone else None
+
+        await player.send(f"\n{c['bright_cyan']}╔══════════════════════════════════════════════════════╗{c['reset']}")
+        await player.send(f"{c['bright_cyan']}║{c['bright_yellow']}               ACTIVE SET BONUSES              {c['bright_cyan']}║{c['reset']}")
+        await player.send(f"{c['bright_cyan']}╚══════════════════════════════════════════════════════╝{c['reset']}")
+
+        for set_id, pieces in set_counts.items():
+            category = ZONE_CATEGORIES.get(set_id, 'unknown')
+            await player.send(f"\n{c['bright_green']}Set {set_id} ({category}) — {pieces} piece(s){c['reset']}")
+
+            # Always-on bonuses
+            always = get_set_bonus(set_id, pieces, in_zone=False)
+            if always:
+                await player.send(f"{c['white']}  Always-on:{c['reset']}")
+                for stat, val in always.items():
+                    await player.send(f"    {c['cyan']}{stat}{c['reset']}: +{val}")
+
+            # In-zone bonuses
+            in_zone = get_set_bonus(set_id, pieces, in_zone=True) if current_zone == set_id else {}
+            if in_zone:
+                await player.send(f"{c['white']}  In-zone:{c['reset']}")
+                for stat, val in in_zone.items():
+                    await player.send(f"    {c['bright_magenta']}{stat}{c['reset']}: +{val}")
+
+            if current_zone != set_id:
+                await player.send(f"{c['yellow']}  (Enter zone {set_id} to activate in-zone bonuses){c['reset']}")
+
+    @classmethod
+    async def cmd_settings(cls, player: 'Player', args: List[str]):
+        """Show toggleable settings."""
+        c = player.config.COLORS
+
+        toggles = {
+            'Autoattack': getattr(player, 'autoattack', False),
+            'Autocombat': getattr(player, 'autocombat', False),
+            'Autoexit': getattr(player, 'autoexit', False),
+            'Autoloot Items': getattr(player, 'autoloot', False),
+            'Autoloot Gold': getattr(player, 'autoloot_gold', True),
+            'Autogold': getattr(player, 'autogold', True),
+            'Brief': getattr(player, 'brief_mode', False),
+            'Compact': getattr(player, 'compact_mode', False),
+            'Prompt': getattr(player, 'prompt_enabled', True),
+            'Norepeat': getattr(player, 'norepeat', False),
+            'Notell': getattr(player, 'notell', False),
+            'Noshout': getattr(player, 'noshout', False),
+            'AI Chat': getattr(player, 'ai_chat_enabled', True),
+        }
+
+        await player.send(f"{c['cyan']}Current Settings:{c['reset']}")
+        for label, enabled in toggles.items():
+            status = f"{c['bright_green']}ON{c['reset']}" if enabled else f"{c['red']}OFF{c['reset']}"
+            await player.send(f"  {label:<14} {status}")
+
+        if hasattr(player, 'autorecall_hp') and player.autorecall_hp is not None:
+            if getattr(player, 'autorecall_is_percent', False):
+                await player.send(f"  Autorecall: {player.autorecall_hp}%")
+            else:
+                await player.send(f"  Autorecall: {int(player.autorecall_hp)} HP")
+        
+        # Extra settings
+        color_level = getattr(player, 'color_level', 'complete')
+        await player.send(f"  Color level: {color_level}")
+        if getattr(player, 'custom_prompt', None):
+            await player.send(f"  Prompt format: {player.custom_prompt}")
+
+    @classmethod
+    async def cmd_combat(cls, player: 'Player', args: List[str]):
+        """Combat settings for auto-combat.
+
+        Usage:
+            combat settings
+            combat settings heal <percent>
+            combat settings skills on|off
+            combat settings spells on|off
+            combat settings skillpriority <skill1,skill2,...>
+            combat settings spellpriority <spell1,spell2,...>
+            combat settings reset
+        """
+        c = player.config.COLORS
+
+        if not args or args[0].lower() != 'settings':
+            await player.send(f"{c['yellow']}Usage: combat settings{c['reset']}")
+            return
+
+        settings = getattr(player, 'auto_combat_settings', {})
+        if len(args) == 1:
+            await player.send(f"{c['cyan']}Auto-Combat Settings:{c['reset']}")
+            await player.send(f"  Heal Threshold: {settings.get('heal_threshold', 35)}%")
+            await player.send(f"  Use Skills: {'ON' if settings.get('use_skills', True) else 'OFF'}")
+            await player.send(f"  Use Spells: {'ON' if settings.get('use_spells', True) else 'OFF'}")
+            await player.send(f"  Skill Priority: {', '.join(settings.get('skill_priority', []))}")
+            await player.send(f"  Spell Priority: {', '.join(settings.get('spell_priority', []))}")
+            return
+
+        sub = args[1].lower()
+        if sub == 'reset':
+            player.auto_combat_settings = {
+                'heal_threshold': 35,
+                'use_skills': True,
+                'use_spells': True,
+                'skill_priority': ['bash', 'kick'],
+                'spell_priority': ['heal', 'cure_critical', 'cure_serious', 'cure_light', 'fireball', 'lightning_bolt', 'magic_missile'],
+            }
+            await player.send(f"{c['bright_green']}Auto-combat settings reset to defaults.{c['reset']}")
+            return
+
+        if sub == 'heal' and len(args) >= 3:
+            try:
+                val = int(args[2].rstrip('%'))
+                if val < 1 or val > 99:
+                    raise ValueError
+                settings['heal_threshold'] = val
+                await player.send(f"{c['green']}Heal threshold set to {val}%{c['reset']}")
+            except ValueError:
+                await player.send(f"{c['red']}Usage: combat settings heal <1-99>{c['reset']}")
+            return
+
+        if sub == 'skills' and len(args) >= 3:
+            setting = args[2].lower()
+            if setting in ('on', 'off'):
+                settings['use_skills'] = setting == 'on'
+                await player.send(f"{c['green']}Auto skills set to {setting.upper()}.{c['reset']}")
+            else:
+                await player.send(f"{c['red']}Usage: combat settings skills on|off{c['reset']}")
+            return
+
+        if sub == 'spells' and len(args) >= 3:
+            setting = args[2].lower()
+            if setting in ('on', 'off'):
+                settings['use_spells'] = setting == 'on'
+                await player.send(f"{c['green']}Auto spells set to {setting.upper()}.{c['reset']}")
+            else:
+                await player.send(f"{c['red']}Usage: combat settings spells on|off{c['reset']}")
+            return
+
+        if sub == 'skillpriority' and len(args) >= 3:
+            raw = ' '.join(args[2:]).replace(',', ' ').split()
+            settings['skill_priority'] = [s.lower() for s in raw]
+            await player.send(f"{c['green']}Skill priority set to: {', '.join(settings['skill_priority'])}{c['reset']}")
+            return
+
+        if sub == 'spellpriority' and len(args) >= 3:
+            raw = ' '.join(args[2:]).replace(',', ' ').split()
+            settings['spell_priority'] = [s.lower() for s in raw]
+            await player.send(f"{c['green']}Spell priority set to: {', '.join(settings['spell_priority'])}{c['reset']}")
+            return
+
+        await player.send(f"{c['yellow']}Usage: combat settings (heal|skills|spells|skillpriority|spellpriority|reset){c['reset']}")
+
+    @classmethod
+    async def cmd_waypoints(cls, player: 'Player', args: List[str]):
+        """List discovered waypoints."""
+        c = player.config.COLORS
+        from travel import WAYPOINTS
+
+        discovered = getattr(player, 'discovered_waypoints', set())
+        await player.send(f"{c['cyan']}Discovered Waypoints:{c['reset']}")
+        if not discovered:
+            await player.send(f"{c['yellow']}None yet. Visit major locations to discover waypoints.{c['reset']}")
+            return
+
+        for key in discovered:
+            info = WAYPOINTS.get(key)
+            if not info:
+                continue
+            await player.send(f"  {c['bright_green']}{info['name']}{c['reset']} (Cost: {info['cost']} gold)")
+
+        undiscovered = len(WAYPOINTS) - len(discovered)
+        if undiscovered > 0:
+            await player.send(f"{c['yellow']}Undiscovered: {undiscovered}{c['reset']}")
+
+    @classmethod
+    async def cmd_travel(cls, player: 'Player', args: List[str]):
+        """Travel to a discovered waypoint.
+
+        Usage:
+            travel <waypoint>
+        """
+        c = player.config.COLORS
+        if not args:
+            await player.send(f"{c['yellow']}Usage: travel <waypoint>{c['reset']}")
+            await player.send(f"{c['cyan']}Use 'waypoints' to see discovered locations.{c['reset']}")
+            return
+
+        from travel import get_waypoint_by_name, can_travel, set_travel_cooldown
+
+        name = ' '.join(args)
+        result = get_waypoint_by_name(name)
+        if not result:
+            await player.send(f"{c['red']}Unknown waypoint '{name}'.{c['reset']}")
+            return
+
+        key, info = result
+        if key not in getattr(player, 'discovered_waypoints', set()):
+            await player.send(f"{c['red']}You haven't discovered that waypoint yet.{c['reset']}")
+            return
+
+        ok, msg = can_travel(player)
+        if not ok:
+            await player.send(f"{c['red']}{msg}{c['reset']}")
+            return
+
+        cost = info.get('cost', 0)
+        if cost > 0 and player.gold < cost:
+            await player.send(f"{c['red']}You need {cost} gold to travel there.{c['reset']}")
+            return
+
+        target_room = player.world.rooms.get(info['vnum']) if player.world else None
+        if not target_room:
+            await player.send(f"{c['red']}That waypoint no longer exists.{c['reset']}")
+            return
+
+        if player.room == target_room:
+            await player.send(f"{c['yellow']}You are already there.{c['reset']}")
+            return
+
+        # Pay cost
+        if cost > 0:
+            player.gold -= cost
+
+        # Teleport
+        old_room = player.room
+        if old_room:
+            await old_room.send_to_room(
+                f"{c['bright_cyan']}{player.name} disappears in a flash of light!{c['reset']}",
+                exclude=[player]
+            )
+            old_room.characters.remove(player)
+
+        player.room = target_room
+        target_room.characters.append(player)
+
+        set_travel_cooldown(player)
+
+        await player.send(f"{c['bright_cyan']}You travel to {info['name']}!{c['reset']}")
+        if cost > 0:
+            await player.send(f"{c['yellow']}Travel cost: {cost} gold. Remaining: {player.gold} gold.{c['reset']}")
+        await player.send("")
+        await target_room.show_to(player)
+        await target_room.send_to_room(
+            f"{c['bright_cyan']}{player.name} arrives in a flash of light!{c['reset']}",
+            exclude=[player]
+        )
+
+    @classmethod
+    async def cmd_bind(cls, player: 'Player', args: List[str]):
+        """Set your recall point to the current location."""
+        await cls.cmd_recall(player, ['set'])
+
+    @classmethod
+    async def cmd_xp(cls, player: 'Player', args: List[str]):
+        """Show XP breakdown and progress."""
+        c = player.config.COLORS
+        to_level = player.exp_to_level()
+        remaining = max(0, to_level - player.exp)
+        pct = (player.exp / to_level) * 100 if to_level > 0 else 0
+
+        await player.send(f"{c['cyan']}XP Progress:{c['reset']}")
+        await player.send(f"  Current XP: {player.exp}")
+        await player.send(f"  Next Level: {remaining} XP ({pct:.1f}% of level)")
+
+        breakdown = getattr(player, 'xp_breakdown', {})
+        if breakdown:
+            await player.send(f"{c['cyan']}XP Breakdown:{c['reset']}")
+            for key in ['kill', 'exploration', 'quest', 'boss', 'streak', 'rested', 'other']:
+                if key in breakdown:
+                    await player.send(f"  {key.title():<12}: {breakdown[key]}")
+
+        if getattr(player, 'rested_xp', 0) > 0:
+            await player.send(f"{c['bright_green']}Rested XP available: {player.rested_xp}{c['reset']}")
+
+        if getattr(player, 'kill_streak', 0) > 1:
+            await player.send(f"{c['yellow']}Current kill streak: {player.kill_streak} (Best: {player.best_kill_streak}){c['reset']}")
+
+    @classmethod
     async def cmd_recall(cls, player: 'Player', args: List[str]):
         """Recall to your recall point (temple).
 
@@ -4766,7 +13169,7 @@ class CommandHandler:
         c = player.config.COLORS
 
         # Check if setting recall point
-        if args and args[0].lower() == 'set':
+        if args and args[0] and args[0].lower() == 'set':
             if not player.room:
                 await player.send(f"{c['red']}You are nowhere!{c['reset']}")
                 return
@@ -4834,6 +13237,29 @@ class CommandHandler:
             f"{c['bright_cyan']}{player.name} appears in a flash of light!{c['reset']}",
             exclude=[player]
         )
+
+        # Recall pets to player
+        try:
+            from pets import PetManager, Pet
+            pets = PetManager.get_player_pets(player)
+            for pet in pets:
+                if not pet or pet.room is None:
+                    continue
+                # Remove from old room
+                if pet.room:
+                    await pet.room.send_to_room(f"{c['bright_cyan']}{pet.name} vanishes in a flash of light!{c['reset']}")
+                    if pet in pet.room.characters:
+                        pet.room.characters.remove(pet)
+                # Move to recall room
+                pet.room = recall_room
+                recall_room.characters.append(pet)
+                pet.fighting = None
+                if not hasattr(pet, 'ai_state'):
+                    pet.ai_state = {}
+                pet.ai_state['staying'] = False
+                await recall_room.send_to_room(f"{c['bright_cyan']}{pet.name} appears beside {player.name}.{c['reset']}")
+        except Exception:
+            pass
 
     @classmethod
     async def cmd_goto(cls, player: 'Player', args: List[str]):
@@ -4988,3 +13414,3634 @@ class CommandHandler:
         except ValueError:
             await player.send(f"{c['red']}Invalid HP value. Use a number or percentage (e.g., 50 or 25%).{c['reset']}")
             return
+
+
+    # ==================== MOUNTS ====================
+
+    @classmethod
+    async def cmd_mount(cls, player: 'Player', args: List[str]):
+        """Mount a owned/tamed mount. Usage: mount [name]"""
+        from mounts import MountManager
+
+        c = player.config.COLORS
+
+        if not args:
+            if player.mount:
+                await player.send(f"{c['green']}You are riding {player.mount.name}.{c['reset']}")
+            else:
+                await player.send(f"{c['yellow']}You are not mounted.{c['reset']}")
+            return
+
+        target_name = ' '.join(args).lower()
+
+        # Try to mount an owned mount
+        if target_name in player.owned_mounts:
+            mount = MountManager.create_mount(target_name)
+            if not mount:
+                await player.send(f"{c['red']}You can't mount that.{c['reset']}")
+                return
+            player.mount = mount
+            await player.send(f"{c['bright_green']}You mount your {mount.name}.{c['reset']}")
+            return
+
+        # Try to tame and mount from room
+        target = None
+        if player.room:
+            for char in player.room.characters:
+                if char != player and hasattr(char, 'name') and char.name.lower().startswith(target_name):
+                    target = char
+                    break
+
+        if target:
+            success = await MountManager.tame_mount(player, target)
+            if success:
+                player.mount = MountManager.create_mount(target.name.lower())
+                if player.mount:
+                    await player.send(f"{c['bright_green']}You mount your new {player.mount.name}.{c['reset']}")
+            return
+
+        await player.send(f"{c['red']}You don't own a '{target_name}', and none is here to tame.{c['reset']}")
+
+    @classmethod
+    async def cmd_dismount(cls, player: 'Player', args: List[str]):
+        """Dismount your current mount."""
+        c = player.config.COLORS
+        if not player.mount:
+            await player.send(f"{c['yellow']}You are not mounted.{c['reset']}")
+            return
+        await player.send(f"{c['green']}You dismount {player.mount.name}.{c['reset']}")
+        player.mount = None
+
+    @classmethod
+    async def cmd_stable(cls, player: 'Player', args: List[str]):
+        """Stable services. Usage: stable [list|buy <mount>]"""
+        from mounts import MountManager
+
+        c = player.config.COLORS
+
+        if not player.room or player.room.sector_type != 'city':
+            await player.send(f"{c['red']}You need to be in a city to use a stable.{c['reset']}")
+            return
+
+        if not args or args[0].lower() == 'list':
+            await player.send(f"{c['cyan']}Available mounts:{c['reset']}")
+            for name, info in MountManager.list_mounts().items():
+                await player.send(f"  {c['bright_green']}{name}{c['reset']} - {info['cost']} gold ({info['description']})")
+            if player.owned_mounts:
+                await player.send(f"{c['cyan']}Owned mounts:{c['reset']} {', '.join(player.owned_mounts)}")
+            return
+
+        if args[0].lower() == 'buy' and len(args) > 1:
+            mount_name = args[1].lower()
+            success = await MountManager.buy_mount(player, mount_name)
+            if success:
+                await player.send(f"{c['green']}Your {mount_name} is ready to be mounted.{c['reset']}")
+            return
+
+        await player.send(f"{c['yellow']}Usage: stable [list|buy <mount>]{c['reset']}")
+
+    # ==================== PETS ====================
+
+    @classmethod
+    async def cmd_pet(cls, player: 'Player', args: List[str]):
+        """Show your pets and companions."""
+        from pets import PetManager
+
+        c = player.config.COLORS
+        pets = PetManager.get_player_pets(player)
+        if not pets:
+            await player.send(f"{c['yellow']}You have no pets or companions.{c['reset']}")
+            await player.send(f"{c['cyan']}Tip: Necromancers animate undead, Rangers tame beasts, Mages summon elementals.{c['reset']}")
+            return
+
+        await player.send(f"\n{c['bright_cyan']}═══════════════ Your Pets ═══════════════{c['reset']}")
+        for pet in pets:
+            # Type badge
+            if pet.is_persistent:
+                badge = f"{c['bright_green']}[Companion]{c['reset']}"
+            elif pet.pet_type == 'undead':
+                badge = f"{c['magenta']}[Undead]{c['reset']}"
+            else:
+                badge = f"{c['yellow']}[Summon]{c['reset']}"
+            
+            # HP bar
+            hp_pct = (pet.hp / pet.max_hp * 100) if pet.max_hp > 0 else 0
+            if hp_pct > 75:
+                hp_color = c['bright_green']
+            elif hp_pct > 50:
+                hp_color = c['green']
+            elif hp_pct > 25:
+                hp_color = c['yellow']
+            else:
+                hp_color = c['red']
+            
+            await player.send(f"  {c['white']}{pet.name}{c['reset']} {badge} Lv {pet.level}")
+            await player.send(f"    {hp_color}HP: {pet.hp}/{pet.max_hp}{c['reset']} | Loyalty: {pet.loyalty}")
+            
+            # Position
+            pos = getattr(pet, 'position', 'standing')
+            staying = getattr(pet, 'ai_state', {}).get('staying', False)
+            guarding = getattr(pet, 'ai_state', {}).get('guarding', False)
+            
+            status_parts = [pos]
+            if staying:
+                status_parts.append("staying")
+            if guarding:
+                status_parts.append("guarding")
+            if pet.is_fighting:
+                status_parts.append(f"fighting {pet.fighting.name}" if pet.fighting else "fighting")
+            
+            await player.send(f"    Status: {', '.join(status_parts)}")
+            
+            # Time remaining for temp pets
+            if pet.timer:
+                remaining = pet.get_despawn_time()
+                if remaining:
+                    mins = remaining // 60
+                    secs = remaining % 60
+                    await player.send(f"    {c['yellow']}Time left: {mins}m {secs}s{c['reset']}")
+            
+            # Location
+            if pet.room != player.room:
+                await player.send(f"    {c['cyan']}Location: {pet.room.name if pet.room else 'Unknown'}{c['reset']}")
+        
+        await player.send(f"{c['bright_cyan']}═════════════════════════════════════════{c['reset']}")
+        await player.send(f"{c['cyan']}Use 'order <action>' to command pets. See 'help order'.{c['reset']}\n")
+
+    # ==================== ACHIEVEMENTS ====================
+
+    @classmethod
+    async def cmd_achievements(cls, player: 'Player', args: List[str]):
+        """List earned achievements and progress. Usage: achievements [all|progress]"""
+        from achievements import ACHIEVEMENTS, AchievementManager
+
+        c = player.config.COLORS
+        AchievementManager._ensure_player_fields(player)
+        
+        show_all = args and args[0].lower() == 'all'
+        show_progress = args and args[0].lower() == 'progress'
+        
+        earned = player.achievements or {}
+        total_points = sum(ACHIEVEMENTS.get(ach_id, {}).get('points', 0) for ach_id in earned)
+        max_points = sum(a.get('points', 0) for a in ACHIEVEMENTS.values())
+        
+        await player.send(f"\r\n{c['bright_cyan']}═══════════════════ ACHIEVEMENTS ═══════════════════{c['reset']}")
+        await player.send(f"{c['yellow']}Points: {c['bright_yellow']}{total_points}/{max_points}{c['reset']}  |  "
+                         f"{c['yellow']}Earned: {c['bright_green']}{len(earned)}/{len(ACHIEVEMENTS)}{c['reset']}")
+        await player.send(f"{c['bright_cyan']}════════════════════════════════════════════════════{c['reset']}")
+        
+        # Show progress stats
+        progress = player.achievement_progress or {}
+        kills = progress.get('kills', 0)
+        explored = len(player.explored_rooms) if hasattr(player, 'explored_rooms') else 0
+        secrets = len(player.secret_rooms_found) if hasattr(player, 'secret_rooms_found') else 0
+        
+        await player.send(f"\r\n{c['cyan']}Progress:{c['reset']}")
+        await player.send(f"  Kills: {c['white']}{kills}{c['reset']}  |  Rooms explored: {c['white']}{explored}{c['reset']}  |  Secrets: {c['white']}{secrets}{c['reset']}")
+        
+        if show_progress:
+            # Show next milestones
+            await player.send(f"\r\n{c['cyan']}Next milestones:{c['reset']}")
+            if kills < 10:
+                await player.send(f"  {c['yellow']}Hunter:{c['reset']} {kills}/10 kills")
+            if explored < 10:
+                await player.send(f"  {c['yellow']}Explorer:{c['reset']} {explored}/10 rooms")
+            if secrets < 5:
+                await player.send(f"  {c['yellow']}Secret Seeker I:{c['reset']} {secrets}/5 secrets")
+            elif secrets < 10:
+                await player.send(f"  {c['yellow']}Secret Seeker II:{c['reset']} {secrets}/10 secrets")
+            return
+        
+        # Show earned achievements
+        if earned:
+            await player.send(f"\r\n{c['bright_green']}✓ Earned:{c['reset']}")
+            for ach_id in earned:
+                info = ACHIEVEMENTS.get(ach_id, {})
+                title = info.get('title', ach_id)
+                points = info.get('points', 0)
+                await player.send(f"  {c['bright_green']}★{c['reset']} {title} {c['yellow']}({points} pts){c['reset']}")
+        
+        # Show unearned if requested
+        if show_all:
+            unearned = [a for a in ACHIEVEMENTS if a not in earned]
+            if unearned:
+                await player.send(f"\r\n{c['white']}○ Not yet earned:{c['reset']}")
+                for ach_id in unearned[:10]:  # Limit to avoid spam
+                    info = ACHIEVEMENTS.get(ach_id, {})
+                    title = info.get('title', ach_id)
+                    desc = info.get('description', '')
+                    await player.send(f"  {c['white']}○{c['reset']} {title} - {c['white']}{desc}{c['reset']}")
+                if len(unearned) > 10:
+                    await player.send(f"  {c['white']}... and {len(unearned) - 10} more{c['reset']}")
+        else:
+            unearned_count = len(ACHIEVEMENTS) - len(earned)
+            if unearned_count > 0:
+                await player.send(f"\r\n{c['white']}Type 'achievements all' to see {unearned_count} unearned achievements.{c['reset']}")
+                await player.send(f"{c['white']}Type 'achievements progress' to see milestone progress.{c['reset']}")
+
+    # ==================== HOUSING ====================
+
+    @classmethod
+    async def cmd_house(cls, player: 'Player', args: List[str]):
+        """Manage housing. Usage: house [buy|info]"""
+        from housing import HouseManager
+
+        c = player.config.COLORS
+
+        if not args or args[0].lower() == 'info':
+            if getattr(player, 'house_vnum', None):
+                await player.send(f"{c['green']}You own a house at room {player.house_vnum}.{c['reset']}")
+            else:
+                await player.send(f"{c['yellow']}You do not own a house.{c['reset']}")
+                await player.send(f"{c['cyan']}Use 'house buy' in a city to purchase one.{c['reset']}")
+            return
+
+        if args[0].lower() == 'buy':
+            await HouseManager.buy_house(player)
+            return
+
+        await player.send(f"{c['yellow']}Usage: house [buy|info]{c['reset']}")
+
+    @classmethod
+    async def cmd_store(cls, player: 'Player', args: List[str]):
+        """Store an item in your house. Usage: store <item>"""
+        from housing import HouseManager
+
+        c = player.config.COLORS
+        if not HouseManager.in_house(player):
+            await player.send(f"{c['red']}You must be in your house to store items.{c['reset']}")
+            return
+
+        if not args:
+            await player.send(f"{c['yellow']}Usage: store <item>{c['reset']}")
+            return
+
+        item_name = ' '.join(args).lower()
+        item = None
+        for obj in player.inventory:
+            if obj.name.lower().startswith(item_name):
+                item = obj
+                break
+
+        if not item:
+            await player.send(f"{c['red']}You don't have that item.{c['reset']}")
+            return
+
+        player.inventory.remove(item)
+        player.house_storage.append(item)
+        await player.send(f"{c['green']}You store {item.short_desc}.{c['reset']}")
+
+    @classmethod
+    async def cmd_retrieve(cls, player: 'Player', args: List[str]):
+        """Retrieve an item from your house. Usage: retrieve <item>"""
+        from housing import HouseManager
+
+        c = player.config.COLORS
+        if not HouseManager.in_house(player):
+            await player.send(f"{c['red']}You must be in your house to retrieve items.{c['reset']}")
+            return
+
+        if not args:
+            await player.send(f"{c['yellow']}Usage: retrieve <item>{c['reset']}")
+            return
+
+        item_name = ' '.join(args).lower()
+        item = None
+        for obj in player.house_storage:
+            if obj.name.lower().startswith(item_name):
+                item = obj
+                break
+
+        if not item:
+            await player.send(f"{c['red']}That item is not in your house storage.{c['reset']}")
+            return
+
+        player.house_storage.remove(item)
+        player.inventory.append(item)
+        await cls._record_collection_item(player, item)
+        await player.send(f"{c['green']}You retrieve {item.short_desc}.{c['reset']}")
+
+    @classmethod
+    async def cmd_dungeon(cls, player: 'Player', args: List[str]):
+        """Procedural dungeon commands.
+
+        Usage:
+            dungeon list
+            dungeon enter <type> [difficulty] [permadeath]
+            dungeon enter daily [difficulty] [permadeath]
+            dungeon leave
+        """
+        from procedural import get_dungeon_manager
+
+        c = player.config.COLORS
+        manager = get_dungeon_manager()
+
+        if not args or args[0].lower() == 'list':
+            await player.send(f"{c['bright_cyan']}Available Dungeons:{c['reset']}")
+            for entry in manager.list_dungeons():
+                daily_marker = f" {c['bright_yellow']}[DAILY]{c['reset']}" if entry['daily'] else ''
+                await player.send(f"  {c['green']}{entry['key']:<8}{c['reset']} - {c['white']}{entry['name']}{c['reset']}{daily_marker}")
+            await player.send(f"{c['yellow']}Usage: dungeon enter <type> [difficulty] [permadeath]{c['reset']}")
+            return
+
+        sub = args[0].lower()
+        if sub == 'enter':
+            if len(args) < 2:
+                await player.send(f"{c['yellow']}Usage: dungeon enter <type> [difficulty] [permadeath]{c['reset']}")
+                return
+
+            if not player.room or player.room.vnum != 3015:
+                await player.send(f"{c['red']}You must be at the Adventurer's Guild to enter a dungeon.{c['reset']}")
+                return
+
+            dungeon_key = args[1].lower()
+            daily = False
+            if dungeon_key == 'daily':
+                dungeon_key = manager.get_daily_type()
+                daily = True
+
+            difficulty = None
+            permadeath = False
+            for arg in args[2:]:
+                if arg.isdigit():
+                    difficulty = int(arg)
+                elif arg.lower() in {'permadeath', 'hardcore'}:
+                    permadeath = True
+
+            await manager.enter_dungeon(player, dungeon_key, difficulty=difficulty, permadeath=permadeath, daily=daily)
+            return
+
+        if sub == 'leave':
+            await manager.leave_dungeon(player, reason='abandon')
+            return
+
+        if sub in {'leaderboard', 'leaders', 'scores'}:
+            boards = manager.get_leaderboards()
+            if not boards:
+                await player.send(f"{c['yellow']}No dungeon clears recorded yet.{c['reset']}")
+                return
+
+            if len(args) >= 2:
+                dungeon_key = args[1].lower()
+                difficulty = None
+                if len(args) >= 3 and args[2].isdigit():
+                    difficulty = int(args[2])
+                if difficulty:
+                    board_key = f"{dungeon_key}:{difficulty}"
+                    entries = boards.get(board_key, [])
+                    await player.send(f"{c['bright_cyan']}Leaderboard: {dungeon_key} (Level {difficulty}){c['reset']}")
+                    for idx, entry in enumerate(entries, 1):
+                        await player.send(f"  {c['green']}{idx}. {entry['player']} - {entry['duration']}s{c['reset']}")
+                    return
+                else:
+                    await player.send(f"{c['bright_cyan']}Leaderboards for {dungeon_key}:{c['reset']}")
+                    for key, entries in boards.items():
+                        if not key.startswith(f"{dungeon_key}:"):
+                            continue
+                        level = key.split(':', 1)[1]
+                        best = entries[0] if entries else None
+                        if best:
+                            await player.send(f"  {c['green']}Level {level}:{c['reset']} {best['player']} - {best['duration']}s")
+                    return
+
+            await player.send(f"{c['bright_cyan']}Dungeon Leaderboards:{c['reset']}")
+            for key, entries in boards.items():
+                best = entries[0] if entries else None
+                if best:
+                    await player.send(f"  {c['green']}{key}{c['reset']} - {best['player']} {best['duration']}s")
+            return
+
+        await player.send(f"{c['yellow']}Unknown dungeon command. Use 'dungeon list'.{c['reset']}")
+
+    # ==================== IMMORTAL COMMANDS ====================
+    
+    @classmethod
+    async def cmd_mload(cls, player: 'Player', args: List[str]):
+        """Load a mob into the current room (immortal only).
+        
+        Usage: mload <vnum>
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+            
+        if not args:
+            await player.send(f"{c['yellow']}Usage: mload <vnum>{c['reset']}")
+            return
+            
+        try:
+            vnum = int(args[0])
+        except ValueError:
+            await player.send(f"{c['red']}Invalid vnum. Must be a number.{c['reset']}")
+            return
+            
+        proto = player.world.mob_prototypes.get(vnum)
+        if not proto:
+            await player.send(f"{c['red']}No mob with vnum {vnum} exists.{c['reset']}")
+            return
+            
+        from bosses import create_mob_from_prototype
+        mob = create_mob_from_prototype(proto, player.world)
+        mob.room = player.room
+        mob.home_room = player.room
+        player.room.characters.append(mob)
+        player.world.mobs.append(mob)
+        
+        await player.send(f"{c['bright_green']}You wave your hand and {mob.short_desc} appears!{c['reset']}")
+        await player.room.send_to_room(
+            f"{c['bright_magenta']}{mob.short_desc} appears out of thin air!{c['reset']}",
+            exclude=[player]
+        )
+    
+    @classmethod
+    async def cmd_oload(cls, player: 'Player', args: List[str]):
+        """Load an object into the room or your inventory (immortal only).
+        
+        Usage: oload <vnum> [room]
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+            
+        if not args:
+            await player.send(f"{c['yellow']}Usage: oload <vnum> [room]{c['reset']}")
+            return
+            
+        try:
+            vnum = int(args[0])
+        except ValueError:
+            await player.send(f"{c['red']}Invalid vnum. Must be a number.{c['reset']}")
+            return
+            
+        from objects import create_object, create_preset_object
+        obj = create_object(vnum, player.world) or create_preset_object(vnum)
+        
+        if not obj:
+            await player.send(f"{c['red']}No object with vnum {vnum} exists.{c['reset']}")
+            return
+        
+        to_room = len(args) > 1 and args[1].lower() == 'room'
+        
+        if to_room:
+            player.room.items.append(obj)
+            await player.send(f"{c['bright_green']}You conjure {obj.short_desc} onto the ground.{c['reset']}")
+            await player.room.send_to_room(
+                f"{c['bright_magenta']}{obj.short_desc} materializes out of thin air!{c['reset']}",
+                exclude=[player]
+            )
+        else:
+            player.inventory.append(obj)
+            await player.send(f"{c['bright_green']}You conjure {obj.short_desc} into your hands.{c['reset']}")
+    
+    @classmethod
+    async def cmd_slay(cls, player: 'Player', args: List[str]):
+        """Instantly kill a target (immortal only).
+        
+        Usage: slay <target>
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+            
+        if not args:
+            await player.send(f"{c['yellow']}Usage: slay <target>{c['reset']}")
+            return
+            
+        target = cls._find_target(player, ' '.join(args))
+        if not target:
+            await player.send(f"{c['red']}No one by that name here.{c['reset']}")
+            return
+            
+        if target == player:
+            await player.send(f"{c['red']}That would be unwise...{c['reset']}")
+            return
+            
+        # Check if it's a player
+        from player import Player
+        if isinstance(target, Player):
+            await player.send(f"{c['red']}You cannot slay other players!{c['reset']}")
+            return
+            
+        target.hp = 0
+        await player.send(f"{c['bright_red']}You slay {target.name} with a wave of your hand!{c['reset']}")
+        await player.room.send_to_room(
+            f"{c['bright_red']}{player.name} waves their hand and {target.name} crumples to the ground, dead!{c['reset']}",
+            exclude=[player]
+        )
+        
+        # Trigger death
+        from combat import CombatHandler
+        await CombatHandler.handle_death(target, player)
+    
+    @classmethod
+    async def cmd_purge(cls, player: 'Player', args: List[str]):
+        """Remove all mobs and objects from the room, or a specific target (immortal only).
+        
+        Usage: 
+            purge           - Remove all mobs/objects in room
+            purge <target>  - Remove specific mob/object
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        
+        from mobs import Mobile
+        from player import Player
+        
+        if args:
+            # Purge specific target
+            target_name = ' '.join(args)
+            target = cls._find_target(player, target_name)
+            
+            if not target:
+                # Try finding an object
+                for item in player.room.items:
+                    if target_name.lower() in item.name.lower():
+                        player.room.items.remove(item)
+                        await player.send(f"{c['bright_magenta']}{item.short_desc} vanishes in a puff of smoke.{c['reset']}")
+                        return
+                await player.send(f"{c['red']}Nothing by that name here.{c['reset']}")
+                return
+                
+            if isinstance(target, Player):
+                await player.send(f"{c['red']}You cannot purge players!{c['reset']}")
+                return
+                
+            # Remove the mob
+            if target in player.room.characters:
+                player.room.characters.remove(target)
+            if target in player.world.mobs:
+                player.world.mobs.remove(target)
+            await player.send(f"{c['bright_magenta']}{target.name} vanishes in a puff of smoke.{c['reset']}")
+            return
+        
+        # Purge all mobs and objects in room
+        purged_mobs = 0
+        purged_objs = 0
+        
+        for char in player.room.characters[:]:
+            if isinstance(char, Mobile):
+                player.room.characters.remove(char)
+                if char in player.world.mobs:
+                    player.world.mobs.remove(char)
+                purged_mobs += 1
+                
+        for item in player.room.items[:]:
+            player.room.items.remove(item)
+            purged_objs += 1
+            
+        await player.send(f"{c['bright_magenta']}You purge the room!{c['reset']}")
+        await player.send(f"{c['cyan']}Removed {purged_mobs} mobs and {purged_objs} objects.{c['reset']}")
+        await player.room.send_to_room(
+            f"{c['bright_magenta']}{player.name} gestures and everything not a player vanishes!{c['reset']}",
+            exclude=[player]
+        )
+    
+    @classmethod
+    async def cmd_restore(cls, player: 'Player', args: List[str]):
+        """Fully restore HP/mana/move for self or a target (immortal only).
+        
+        Usage:
+            restore         - Restore yourself
+            restore <name>  - Restore a player
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+            
+        if not args:
+            target = player
+        else:
+            # Find the player
+            target_name = args[0].lower()
+            target = None
+            for p in player.world.players.values():
+                if p.name.lower() == target_name:
+                    target = p
+                    break
+            if not target:
+                await player.send(f"{c['red']}No player named '{args[0]}' is online.{c['reset']}")
+                return
+        
+        target.hp = target.max_hp
+        target.mana = target.max_mana
+        target.move = target.max_move
+        
+        if target == player:
+            await player.send(f"{c['bright_green']}You restore yourself to full health!{c['reset']}")
+        else:
+            await player.send(f"{c['bright_green']}You restore {target.name} to full health!{c['reset']}")
+            await target.send(f"{c['bright_green']}You feel a surge of divine energy! Fully restored!{c['reset']}")
+    
+    @classmethod
+    async def cmd_advance(cls, player: 'Player', args: List[str]):
+        """Set a player's level (immortal only).
+        
+        Usage: advance <player> <level>
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+            
+        if len(args) < 2:
+            await player.send(f"{c['yellow']}Usage: advance <player> <level>{c['reset']}")
+            return
+            
+        target_name = args[0].lower()
+        try:
+            new_level = int(args[1])
+        except ValueError:
+            await player.send(f"{c['red']}Level must be a number.{c['reset']}")
+            return
+            
+        if new_level < 1 or new_level > 100:
+            await player.send(f"{c['red']}Level must be between 1 and 100.{c['reset']}")
+            return
+            
+        # Find the player
+        target = None
+        for p in player.world.players.values():
+            if p.name.lower() == target_name:
+                target = p
+                break
+        if not target:
+            await player.send(f"{c['red']}No player named '{args[0]}' is online.{c['reset']}")
+            return
+            
+        old_level = target.level
+        
+        await player.send(f"{c['bright_green']}You advance {target.name} from level {old_level} to level {new_level}!{c['reset']}")
+        
+        # Level up one at a time to trigger proper celebrations and ability unlocks
+        while target.level < new_level:
+            await target.level_up()
+        
+        # Restore to full
+        target.hp = target.max_hp
+        target.mana = target.max_mana
+        target.move = target.max_move
+    
+    @classmethod
+    async def cmd_transfer(cls, player: 'Player', args: List[str]):
+        """Teleport a player to your location (immortal only).
+        
+        Usage: transfer <player>
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+            
+        if not args:
+            await player.send(f"{c['yellow']}Usage: transfer <player>{c['reset']}")
+            return
+            
+        target_name = args[0].lower()
+        target = None
+        for p in player.world.players.values():
+            if p.name.lower() == target_name:
+                target = p
+                break
+        if not target:
+            await player.send(f"{c['red']}No player named '{args[0]}' is online.{c['reset']}")
+            return
+            
+        if target == player:
+            await player.send(f"{c['yellow']}You're already here!{c['reset']}")
+            return
+            
+        old_room = target.room
+        
+        # Remove from old room
+        if old_room:
+            await old_room.send_to_room(
+                f"{c['bright_magenta']}{target.name} disappears in a flash of light!{c['reset']}",
+                exclude=[target]
+            )
+            old_room.characters.remove(target)
+            
+        # Add to new room
+        target.room = player.room
+        player.room.characters.append(target)
+        
+        await target.send(f"{c['bright_magenta']}You feel yourself being pulled through space!{c['reset']}")
+        await target.room.show_to(target)
+        
+        await player.send(f"{c['bright_green']}You summon {target.name} to your location!{c['reset']}")
+        await player.room.send_to_room(
+            f"{c['bright_magenta']}{target.name} appears in a flash of light!{c['reset']}",
+            exclude=[player, target]
+        )
+    
+    @classmethod
+    async def cmd_wizinvis(cls, player: 'Player', args: List[str]):
+        """Toggle invisibility to mortals (immortal only).
+        
+        Usage: wizinvis [level]
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        
+        # Toggle wizinvis flag
+        if not hasattr(player, 'wizinvis'):
+            player.wizinvis = False
+            
+        player.wizinvis = not player.wizinvis
+        
+        if player.wizinvis:
+            await player.send(f"{c['bright_cyan']}You slowly vanish from sight...{c['reset']}")
+            await player.room.send_to_room(
+                f"{c['bright_cyan']}{player.name} slowly fades from view.{c['reset']}",
+                exclude=[player]
+            )
+        else:
+            await player.send(f"{c['bright_cyan']}You become visible again.{c['reset']}")
+            await player.room.send_to_room(
+                f"{c['bright_cyan']}{player.name} slowly fades into view.{c['reset']}",
+                exclude=[player]
+            )
+    
+    @classmethod
+    async def cmd_peace(cls, player: 'Player', args: List[str]):
+        """Stop all combat in the current room (immortal only).
+        
+        Usage: peace
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+            
+        stopped = 0
+        for char in player.room.characters:
+            if char.fighting:
+                char.fighting = None
+                stopped += 1
+                
+        if stopped > 0:
+            await player.send(f"{c['bright_cyan']}You wave your hand and all combat ceases!{c['reset']}")
+            await player.room.send_to_room(
+                f"{c['bright_cyan']}{player.name} waves their hand and a feeling of peace washes over everyone.{c['reset']}",
+                exclude=[player]
+            )
+        else:
+            await player.send(f"{c['yellow']}No one is fighting here.{c['reset']}")
+    
+    @classmethod
+    async def cmd_force(cls, player: 'Player', args: List[str]):
+        """Force a player to execute a command (immortal only).
+        
+        Usage: force <player> <command>
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+            
+        if len(args) < 2:
+            await player.send(f"{c['yellow']}Usage: force <player> <command>{c['reset']}")
+            return
+            
+        target_name = args[0].lower()
+        command = ' '.join(args[1:])
+        
+        target = None
+        for p in player.world.players.values():
+            if p.name.lower() == target_name:
+                target = p
+                break
+        if not target:
+            await player.send(f"{c['red']}No player named '{args[0]}' is online.{c['reset']}")
+            return
+            
+        await player.send(f"{c['bright_cyan']}You force {target.name} to '{command}'.{c['reset']}")
+        await target.send(f"{c['bright_magenta']}{player.name} forces you to '{command}'.{c['reset']}")
+        
+        # Parse and execute the command
+        parts = command.split()
+        cmd = parts[0].lower()
+        cmd_args = parts[1:] if len(parts) > 1 else []
+        
+        await cls.execute(target, cmd, cmd_args)
+    
+    @classmethod
+    async def cmd_stat(cls, player: 'Player', args: List[str]):
+        """View detailed stats on a player, mob, or object (immortal only).
+        
+        Usage: stat <target>
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+            
+        if not args:
+            await player.send(f"{c['yellow']}Usage: stat <target>{c['reset']}")
+            return
+            
+        target_name = ' '.join(args).lower()
+        
+        # Try to find a character (player or mob)
+        target = cls._find_target(player, target_name)
+        
+        if target:
+            # Character stats
+            from player import Player
+            from mobs import Mobile
+            
+            char_type = "Player" if isinstance(target, Player) else "Mobile"
+            
+            await player.send(f"{c['bright_cyan']}=== {char_type} Stats: {target.name} ==={c['reset']}")
+            await player.send(f"{c['white']}Level: {target.level}  Class: {getattr(target, 'char_class', 'N/A')}")
+            
+            if isinstance(target, Mobile):
+                await player.send(f"{c['white']}Vnum: {target.vnum}  Keywords: {', '.join(target.keywords)}")
+                await player.send(f"{c['white']}Flags: {', '.join(target.flags) if target.flags else 'none'}")
+                await player.send(f"{c['white']}Special: {target.special or 'none'}")
+                
+            await player.send(f"{c['green']}HP: {target.hp}/{target.max_hp}  Mana: {target.mana}/{target.max_mana}  Move: {target.move}/{target.max_move}")
+            await player.send(f"{c['yellow']}STR: {target.str}  INT: {target.int}  WIS: {target.wis}")
+            await player.send(f"{c['yellow']}DEX: {target.dex}  CON: {target.con}  CHA: {target.cha}")
+            await player.send(f"{c['red']}AC: {target.armor_class}  Hit: {target.hitroll}  Dam: {target.damroll}")
+            await player.send(f"{c['cyan']}Gold: {target.gold}  Exp: {target.exp}  Align: {target.alignment}")
+            
+            if isinstance(target, Mobile):
+                await player.send(f"{c['magenta']}Damage Dice: {target.damage_dice}")
+                
+            if isinstance(target, Player):
+                await player.send(f"{c['white']}Account: {target.account_name or 'None'}  Room: {target.room.vnum if target.room else 'None'}")
+                
+            await player.send(f"{c['cyan']}Position: {target.position}  Fighting: {target.fighting.name if target.fighting else 'No'}")
+            
+            # Equipment
+            if target.equipment:
+                await player.send(f"{c['bright_yellow']}Equipment:{c['reset']}")
+                for slot, item in target.equipment.items():
+                    await player.send(f"  {c['white']}{slot}: {item.short_desc} (vnum {item.vnum})")
+            return
+            
+        # Try to find an object
+        for item in player.room.items + player.inventory:
+            if target_name in item.name.lower():
+                await player.send(f"{c['bright_cyan']}=== Object Stats: {item.name} ==={c['reset']}")
+                await player.send(f"{c['white']}Vnum: {item.vnum}  Type: {item.item_type}")
+                await player.send(f"{c['white']}Short: {item.short_desc}")
+                await player.send(f"{c['white']}Room: {item.room_desc}")
+                await player.send(f"{c['yellow']}Wear Slot: {item.wear_slot or 'None'}  Weight: {item.weight}  Cost: {item.cost}")
+                
+                if item.item_type == 'weapon':
+                    await player.send(f"{c['red']}Damage: {item.damage_dice}  Type: {item.weapon_type}")
+                if item.item_type == 'armor':
+                    await player.send(f"{c['green']}Armor: {item.armor}")
+                if item.affects:
+                    await player.send(f"{c['magenta']}Affects: {item.affects}")
+                if item.flags:
+                    await player.send(f"{c['cyan']}Flags: {', '.join(item.flags)}")
+                return
+                
+        await player.send(f"{c['red']}Nothing by that name found.{c['reset']}")
+    
+    @classmethod
+    async def cmd_set(cls, player: 'Player', args: List[str]):
+        """Set a field on a player or mob (immortal only).
+        
+        Usage: set <target> <field> <value>
+        
+        Fields for characters:
+            level, hp, maxhp, mana, maxmana, move, maxmove
+            str, int, wis, dex, con, cha
+            gold, exp, alignment, hitroll, damroll, ac
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+            
+        if len(args) < 3:
+            await player.send(f"{c['yellow']}Usage: set <target> <field> <value>{c['reset']}")
+            await player.send(f"{c['cyan']}Fields: level, hp, maxhp, mana, maxmana, move, maxmove,")
+            await player.send(f"{c['cyan']}        str, int, wis, dex, con, cha, gold, exp,")
+            await player.send(f"{c['cyan']}        alignment, hitroll, damroll, ac{c['reset']}")
+            return
+            
+        target_name = args[0].lower()
+        field = args[1].lower()
+        try:
+            value = int(args[2])
+        except ValueError:
+            await player.send(f"{c['red']}Value must be a number.{c['reset']}")
+            return
+            
+        # Find target
+        target = cls._find_target(player, target_name)
+        if not target:
+            # Try online players
+            for p in player.world.players.values():
+                if p.name.lower() == target_name:
+                    target = p
+                    break
+                    
+        if not target:
+            await player.send(f"{c['red']}No target named '{args[0]}' found.{c['reset']}")
+            return
+            
+        # Map field names to attributes
+        field_map = {
+            'level': 'level',
+            'hp': 'hp',
+            'maxhp': 'max_hp',
+            'mana': 'mana',
+            'maxmana': 'max_mana',
+            'move': 'move',
+            'maxmove': 'max_move',
+            'str': 'str',
+            'int': 'int',
+            'wis': 'wis',
+            'dex': 'dex',
+            'con': 'con',
+            'cha': 'cha',
+            'gold': 'gold',
+            'exp': 'exp',
+            'alignment': 'alignment',
+            'hitroll': 'hitroll',
+            'damroll': 'damroll',
+            'ac': 'armor_class',
+        }
+        
+        if field not in field_map:
+            await player.send(f"{c['red']}Unknown field '{field}'.{c['reset']}")
+            await player.send(f"{c['cyan']}Valid fields: {', '.join(field_map.keys())}{c['reset']}")
+            return
+            
+        attr = field_map[field]
+        old_value = getattr(target, attr, 0)
+        setattr(target, attr, value)
+        
+        await player.send(f"{c['bright_green']}Set {target.name}'s {field} from {old_value} to {value}.{c['reset']}")
+    
+    @classmethod
+    async def cmd_zreset(cls, player: 'Player', args: List[str]):
+        """Reset (repopulate) a zone (immortal only).
+        
+        Usage: 
+            zreset          - Reset current zone
+            zreset <number> - Reset specific zone
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+            
+        if args:
+            try:
+                zone_num = int(args[0])
+            except ValueError:
+                await player.send(f"{c['red']}Invalid zone number.{c['reset']}")
+                return
+        else:
+            # Get current zone from room vnum
+            if not player.room:
+                await player.send(f"{c['red']}You're not in a room!{c['reset']}")
+                return
+            zone_num = player.room.vnum // 100
+            
+        zone = player.world.zones.get(zone_num)
+        if not zone:
+            await player.send(f"{c['red']}Zone {zone_num} does not exist.{c['reset']}")
+            return
+            
+        # Reset the zone
+        await player.world.reset_zone(zone)
+        await player.send(f"{c['bright_green']}Zone {zone_num} ({zone.name}) has been reset!{c['reset']}")
+    
+    @classmethod
+    async def cmd_backup(cls, player: 'Player', args: List[str]):
+        """Create a backup of game data (immortal only).
+        
+        Usage: backup [players|world|full]
+               backup list
+               backup restore <filename>
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        
+        import subprocess
+        import sys
+        from pathlib import Path
+        
+        script_path = Path(__file__).parent.parent / "scripts" / "backup.py"
+        
+        if not args:
+            args = ['full']
+        
+        mode = args[0].lower()
+        
+        if mode == 'list':
+            await player.send(f"{c['bright_cyan']}=== Available Backups ==={c['reset']}")
+            result = subprocess.run(
+                [sys.executable, str(script_path), '--list'],
+                capture_output=True, text=True
+            )
+            for line in result.stdout.strip().split('\n'):
+                await player.send(f"{c['white']}{line}{c['reset']}")
+            return
+        
+        if mode == 'restore':
+            if len(args) < 2:
+                await player.send(f"{c['red']}Usage: backup restore <filename>{c['reset']}")
+                return
+            filename = args[1]
+            await player.send(f"{c['yellow']}Restoring from {filename}...{c['reset']}")
+            result = subprocess.run(
+                [sys.executable, str(script_path), '--restore', filename],
+                capture_output=True, text=True
+            )
+            for line in result.stdout.strip().split('\n'):
+                await player.send(f"{c['white']}{line}{c['reset']}")
+            if result.returncode == 0:
+                await player.send(f"{c['bright_green']}Restore complete! Use 'shutdown reboot' to load changes.{c['reset']}")
+            else:
+                await player.send(f"{c['red']}Restore failed:{c['reset']}")
+                for line in result.stderr.strip().split('\n'):
+                    await player.send(f"{c['red']}{line}{c['reset']}")
+            return
+        
+        # Create backup
+        cmd_args = [sys.executable, str(script_path)]
+        if mode == 'players':
+            cmd_args.append('--players')
+            backup_type = "player data"
+        elif mode == 'world':
+            cmd_args.append('--world')
+            backup_type = "world/zones"
+        else:
+            backup_type = "full"
+        
+        await player.send(f"{c['yellow']}Creating {backup_type} backup...{c['reset']}")
+        
+        result = subprocess.run(cmd_args, capture_output=True, text=True)
+        
+        if result.returncode == 0:
+            # Parse output for summary
+            lines = result.stdout.strip().split('\n')
+            for line in lines[-4:]:  # Show last 4 lines (summary)
+                await player.send(f"{c['bright_green']}{line}{c['reset']}")
+        else:
+            await player.send(f"{c['red']}Backup failed:{c['reset']}")
+            for line in result.stderr.strip().split('\n'):
+                await player.send(f"{c['red']}{line}{c['reset']}")
+    
+    @classmethod
+    async def cmd_shutdown(cls, player: 'Player', args: List[str]):
+        """Shutdown the MUD server (immortal only).
+        
+        Usage: shutdown [now|reboot]
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+            
+        mode = args[0].lower() if args else 'warn'
+        
+        if mode == 'now':
+            # Immediate shutdown
+            await player.send(f"{c['bright_red']}Initiating immediate shutdown...{c['reset']}")
+            for p in player.world.players.values():
+                await p.send(f"{c['bright_red']}*** SHUTDOWN BY {player.name} ***{c['reset']}")
+                p.save()
+            import sys
+            sys.exit(0)
+        elif mode == 'reboot':
+            await player.send(f"{c['bright_yellow']}Initiating reboot...{c['reset']}")
+            for p in player.world.players.values():
+                await p.send(f"{c['bright_yellow']}*** REBOOT BY {player.name} - Please reconnect shortly ***{c['reset']}")
+                p.save()
+            import sys
+            sys.exit(0)
+        else:
+            await player.send(f"{c['yellow']}Shutdown options:{c['reset']}")
+            await player.send(f"{c['white']}  shutdown now    - Immediate shutdown")
+            await player.send(f"{c['white']}  shutdown reboot - Reboot the server")
+    
+    @classmethod
+    async def cmd_immlist(cls, player: 'Player', args: List[str]):
+        """List all immortals (admin accounts).
+        
+        Usage: immlist
+        """
+        c = player.config.COLORS
+        
+        import os
+        from accounts import Account, ACCOUNTS_DIR
+        
+        await player.send(f"{c['bright_cyan']}=== Immortals ==={c['reset']}")
+        
+        if not os.path.exists(ACCOUNTS_DIR):
+            await player.send(f"{c['yellow']}No accounts found.{c['reset']}")
+            return
+            
+        found = False
+        for filename in os.listdir(ACCOUNTS_DIR):
+            if filename.endswith('.json'):
+                account_name = filename[:-5]
+                account = Account.load(account_name)
+                if account and account.is_admin:
+                    found = True
+                    online = any(p.account_name == account_name for p in player.world.players.values())
+                    status = f"{c['bright_green']}[ONLINE]{c['reset']}" if online else f"{c['red']}[OFFLINE]{c['reset']}"
+                    await player.send(f"  {c['white']}{account_name}{c['reset']} {status}")
+                    
+        if not found:
+            await player.send(f"{c['yellow']}No immortals found.{c['reset']}")
+    
+    @classmethod
+    async def cmd_wizhelp(cls, player: 'Player', args: List[str]):
+        """List all immortal commands.
+        
+        Usage: wizhelp
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+            
+        await player.send(f"{c['bright_cyan']}=== Immortal Commands ==={c['reset']}")
+        await player.send(f"{c['yellow']}Loading/Creating:{c['reset']}")
+        await player.send(f"  {c['white']}mload <vnum>         {c['cyan']}- Load a mob into the room")
+        await player.send(f"  {c['white']}oload <vnum> [room]  {c['cyan']}- Load an object (inv or room)")
+        await player.send(f"  {c['white']}load <mob|obj> <vnum>{c['cyan']}- Combined load command")
+        await player.send(f"  {c['white']}purge [target]       {c['cyan']}- Remove mobs/objects from room")
+        await player.send(f"  {c['white']}zreset [zone]        {c['cyan']}- Reset/repopulate a zone")
+        await player.send(f"")
+        await player.send(f"{c['yellow']}Player Management:{c['reset']}")
+        await player.send(f"  {c['white']}restore [player]     {c['cyan']}- Fully heal a player")
+        await player.send(f"  {c['white']}advance <player> <lvl>{c['cyan']}- Set player level")
+        await player.send(f"  {c['white']}transfer <player>    {c['cyan']}- Summon player to you")
+        await player.send(f"  {c['white']}teleport <plr> <room>{c['cyan']}- Send player to room")
+        await player.send(f"  {c['white']}force <player> <cmd> {c['cyan']}- Force player to do command")
+        await player.send(f"  {c['white']}set <tgt> <fld> <val>{c['cyan']}- Modify stats")
+        await player.send(f"  {c['white']}freeze <player>      {c['cyan']}- Toggle player frozen")
+        await player.send(f"  {c['white']}mute <player>        {c['cyan']}- Toggle player muted")
+        await player.send(f"  {c['white']}dc <player>          {c['cyan']}- Disconnect player")
+        await player.send(f"  {c['white']}snoop [player]       {c['cyan']}- Watch what player sees")
+        await player.send(f"")
+        await player.send(f"{c['yellow']}Combat/Control:{c['reset']}")
+        await player.send(f"  {c['white']}slay <target>        {c['cyan']}- Instantly kill a mob")
+        await player.send(f"  {c['white']}peace                {c['cyan']}- Stop all combat in room")
+        await player.send(f"  {c['white']}nohassle             {c['cyan']}- Toggle mob aggro immunity")
+        await player.send(f"")
+        await player.send(f"{c['yellow']}Movement/Location:{c['reset']}")
+        await player.send(f"  {c['white']}goto <vnum/zone>     {c['cyan']}- Teleport to a room")
+        await player.send(f"  {c['white']}at <room> <cmd>      {c['cyan']}- Execute cmd at location")
+        await player.send(f"  {c['white']}wizinvis             {c['cyan']}- Toggle invisibility")
+        await player.send(f"  {c['white']}holylight            {c['cyan']}- See in dark/see invis")
+        await player.send(f"")
+        await player.send(f"{c['yellow']}Communication:{c['reset']}")
+        await player.send(f"  {c['white']}echo <message>       {c['cyan']}- Send msg to room")
+        await player.send(f"  {c['white']}gecho <message>      {c['cyan']}- Send msg to all players")
+        await player.send(f"")
+        await player.send(f"{c['yellow']}Information:{c['reset']}")
+        await player.send(f"  {c['white']}stat <target>        {c['cyan']}- View detailed stats")
+        await player.send(f"  {c['white']}mlist [zone]         {c['cyan']}- List mobs in zone")
+        await player.send(f"  {c['white']}olist [zone]         {c['cyan']}- List objects in zone")
+        await player.send(f"  {c['white']}rlist [zone]         {c['cyan']}- List rooms in zone")
+        await player.send(f"  {c['white']}find <mob|obj> <name>{c['cyan']}- Find mob/obj by name")
+        await player.send(f"  {c['white']}show <zones|players|stats>{c['cyan']}- Show game info")
+        await player.send(f"  {c['white']}invis                {c['cyan']}- List invisible in room")
+        await player.send(f"  {c['white']}immlist              {c['cyan']}- List all immortals")
+        await player.send(f"")
+        await player.send(f"{c['yellow']}Server:{c['reset']}")
+        await player.send(f"  {c['white']}shutdown [now|reboot]{c['cyan']}- Shutdown server")
+    
+    @classmethod
+    def _find_target(cls, player: 'Player', name: str):
+        """Find a character in the room by name or number."""
+        if not player.room:
+            return None
+            
+        name = name.lower()
+        
+        # Check for numbered targeting (e.g., "2.guard")
+        number = 1
+        if '.' in name:
+            parts = name.split('.', 1)
+            try:
+                number = int(parts[0])
+                name = parts[1]
+            except ValueError:
+                pass
+        
+        count = 0
+        for char in player.room.characters:
+            if char == player:
+                continue
+            # Check name
+            char_name = char.name.lower()
+            # Check keywords for mobs
+            keywords = getattr(char, 'keywords', [])
+            
+            if name in char_name or any(name in kw.lower() for kw in keywords):
+                count += 1
+                if count == number:
+                    return char
+        return None
+
+    @classmethod
+    async def cmd_olist(cls, player: 'Player', args: List[str]):
+        """List all objects in a zone (immortal only).
+        
+        Usage:
+            olist           - List objects in current zone
+            olist <zone>    - List objects in specified zone
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        
+        # Determine zone
+        if args:
+            try:
+                zone_num = int(args[0])
+            except ValueError:
+                await player.send(f"{c['red']}Invalid zone number.{c['reset']}")
+                return
+        else:
+            if not player.room:
+                await player.send(f"{c['red']}You're not in a room!{c['reset']}")
+                return
+            zone_num = player.room.vnum // 100
+        
+        # Get objects in that zone range
+        min_vnum = zone_num * 100
+        max_vnum = min_vnum + 99
+        
+        await player.send(f"{c['bright_cyan']}=== Objects in Zone {zone_num} (vnums {min_vnum}-{max_vnum}) ==={c['reset']}")
+        
+        count = 0
+        for vnum, proto in sorted(player.world.obj_prototypes.items()):
+            if min_vnum <= vnum <= max_vnum:
+                name = proto.get('name', proto.get('short_desc', 'unknown'))
+                obj_type = proto.get('type', 'other')
+                await player.send(f"  {c['yellow']}{vnum:5}{c['reset']} - {c['white']}{name}{c['reset']} ({obj_type})")
+                count += 1
+        
+        if count == 0:
+            await player.send(f"{c['yellow']}No objects defined in this zone.{c['reset']}")
+        else:
+            await player.send(f"{c['cyan']}Total: {count} objects{c['reset']}")
+
+    @classmethod
+    async def cmd_mlist(cls, player: 'Player', args: List[str]):
+        """List all mobs in a zone (immortal only).
+        
+        Usage:
+            mlist           - List mobs in current zone
+            mlist <zone>    - List mobs in specified zone
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        
+        # Determine zone
+        if args:
+            try:
+                zone_num = int(args[0])
+            except ValueError:
+                await player.send(f"{c['red']}Invalid zone number.{c['reset']}")
+                return
+        else:
+            if not player.room:
+                await player.send(f"{c['red']}You're not in a room!{c['reset']}")
+                return
+            zone_num = player.room.vnum // 100
+        
+        # Get mobs in that zone range
+        min_vnum = zone_num * 100
+        max_vnum = min_vnum + 99
+        
+        await player.send(f"{c['bright_cyan']}=== Mobs in Zone {zone_num} (vnums {min_vnum}-{max_vnum}) ==={c['reset']}")
+        
+        count = 0
+        for vnum, proto in sorted(player.world.mob_prototypes.items()):
+            if min_vnum <= vnum <= max_vnum:
+                name = proto.get('name', proto.get('short_desc', 'unknown'))
+                level = proto.get('level', 1)
+                await player.send(f"  {c['yellow']}{vnum:5}{c['reset']} - [{c['green']}{level:2}{c['reset']}] {c['white']}{name}{c['reset']}")
+                count += 1
+        
+        if count == 0:
+            await player.send(f"{c['yellow']}No mobs defined in this zone.{c['reset']}")
+        else:
+            await player.send(f"{c['cyan']}Total: {count} mobs{c['reset']}")
+
+    @classmethod
+    async def cmd_rlist(cls, player: 'Player', args: List[str]):
+        """List all rooms in a zone (immortal only).
+        
+        Usage:
+            rlist           - List rooms in current zone
+            rlist <zone>    - List rooms in specified zone
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        
+        # Determine zone
+        if args:
+            try:
+                zone_num = int(args[0])
+            except ValueError:
+                await player.send(f"{c['red']}Invalid zone number.{c['reset']}")
+                return
+        else:
+            if not player.room:
+                await player.send(f"{c['red']}You're not in a room!{c['reset']}")
+                return
+            zone_num = player.room.vnum // 100
+        
+        zone = player.world.zones.get(zone_num)
+        if not zone:
+            await player.send(f"{c['red']}Zone {zone_num} does not exist.{c['reset']}")
+            return
+        
+        await player.send(f"{c['bright_cyan']}=== Rooms in Zone {zone_num}: {zone.name} ==={c['reset']}")
+        
+        count = 0
+        for vnum, room in sorted(zone.rooms.items()):
+            await player.send(f"  {c['yellow']}{vnum:5}{c['reset']} - {c['white']}{room.name}{c['reset']}")
+            count += 1
+        
+        await player.send(f"{c['cyan']}Total: {count} rooms{c['reset']}")
+
+    @classmethod
+    async def cmd_snoop(cls, player: 'Player', args: List[str]):
+        """Watch what another player sees (immortal only).
+        
+        Usage:
+            snoop <player>  - Start snooping on a player
+            snoop           - Stop snooping
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        
+        if not args:
+            # Stop snooping
+            if hasattr(player, 'snooping') and player.snooping:
+                target = player.snooping
+                player.snooping = None
+                if hasattr(target, 'snooped_by'):
+                    target.snooped_by = None
+                await player.send(f"{c['yellow']}You stop snooping.{c['reset']}")
+            else:
+                await player.send(f"{c['yellow']}You aren't snooping anyone.{c['reset']}")
+            return
+        
+        target_name = args[0].lower()
+        target = None
+        for p in player.world.players.values():
+            if p.name.lower() == target_name:
+                target = p
+                break
+        
+        if not target:
+            await player.send(f"{c['red']}No player named '{args[0]}' is online.{c['reset']}")
+            return
+        
+        if target == player:
+            await player.send(f"{c['red']}You can't snoop yourself!{c['reset']}")
+            return
+        
+        # Stop any current snoop
+        if hasattr(player, 'snooping') and player.snooping:
+            old_target = player.snooping
+            if hasattr(old_target, 'snooped_by'):
+                old_target.snooped_by = None
+        
+        player.snooping = target
+        target.snooped_by = player
+        await player.send(f"{c['bright_cyan']}You begin snooping on {target.name}.{c['reset']}")
+
+    @classmethod
+    async def cmd_at(cls, player: 'Player', args: List[str]):
+        """Execute a command at another location (immortal only).
+        
+        Usage: at <location> <command>
+        
+        Examples:
+            at 3001 look
+            at 3001 mload 3000
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        
+        if len(args) < 2:
+            await player.send(f"{c['yellow']}Usage: at <room_vnum> <command>{c['reset']}")
+            return
+        
+        try:
+            target_vnum = int(args[0])
+        except ValueError:
+            await player.send(f"{c['red']}Invalid room number.{c['reset']}")
+            return
+        
+        target_room = player.world.rooms.get(target_vnum)
+        if not target_room:
+            await player.send(f"{c['red']}Room {target_vnum} doesn't exist.{c['reset']}")
+            return
+        
+        # Save current location
+        original_room = player.room
+        
+        # Temporarily move to target room (silently)
+        if original_room:
+            original_room.characters.remove(player)
+        player.room = target_room
+        target_room.characters.append(player)
+        
+        # Execute command
+        cmd = args[1].lower()
+        cmd_args = args[2:] if len(args) > 2 else []
+        await cls.execute(player, cmd, cmd_args)
+        
+        # Move back
+        target_room.characters.remove(player)
+        player.room = original_room
+        if original_room:
+            original_room.characters.append(player)
+
+    @classmethod
+    async def cmd_echo(cls, player: 'Player', args: List[str]):
+        """Send a message to the current room (immortal only).
+        
+        Usage: echo <message>
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        
+        if not args:
+            await player.send(f"{c['yellow']}Usage: echo <message>{c['reset']}")
+            return
+        
+        message = ' '.join(args)
+        await player.room.send_to_room(f"{c['bright_yellow']}{message}{c['reset']}")
+
+    @classmethod
+    async def cmd_gecho(cls, player: 'Player', args: List[str]):
+        """Send a message to all players (immortal only).
+        
+        Usage: gecho <message>
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        
+        if not args:
+            await player.send(f"{c['yellow']}Usage: gecho <message>{c['reset']}")
+            return
+        
+        message = ' '.join(args)
+        for p in player.world.players.values():
+            await p.send(f"{c['bright_yellow']}{message}{c['reset']}")
+
+    @classmethod
+    async def cmd_teleport(cls, player: 'Player', args: List[str]):
+        """Send a player to a location (immortal only).
+        
+        Usage: teleport <player> <room_vnum>
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        
+        if len(args) < 2:
+            await player.send(f"{c['yellow']}Usage: teleport <player> <room_vnum>{c['reset']}")
+            return
+        
+        target_name = args[0].lower()
+        try:
+            target_vnum = int(args[1])
+        except ValueError:
+            await player.send(f"{c['red']}Invalid room number.{c['reset']}")
+            return
+        
+        # Find player
+        target = None
+        for p in player.world.players.values():
+            if p.name.lower() == target_name:
+                target = p
+                break
+        
+        if not target:
+            await player.send(f"{c['red']}No player named '{args[0]}' is online.{c['reset']}")
+            return
+        
+        # Find room
+        target_room = player.world.rooms.get(target_vnum)
+        if not target_room:
+            await player.send(f"{c['red']}Room {target_vnum} doesn't exist.{c['reset']}")
+            return
+        
+        # Teleport them
+        old_room = target.room
+        if old_room:
+            await old_room.send_to_room(
+                f"{c['bright_magenta']}{target.name} disappears in a flash of light!{c['reset']}",
+                exclude=[target]
+            )
+            old_room.characters.remove(target)
+        
+        target.room = target_room
+        target_room.characters.append(target)
+        
+        await target.send(f"{c['bright_magenta']}You feel yourself yanked through space!{c['reset']}")
+        await target_room.show_to(target)
+        await target_room.send_to_room(
+            f"{c['bright_magenta']}{target.name} appears in a flash of light!{c['reset']}",
+            exclude=[target]
+        )
+        
+        await player.send(f"{c['bright_green']}You teleport {target.name} to room {target_vnum}.{c['reset']}")
+
+    @classmethod
+    async def cmd_freeze(cls, player: 'Player', args: List[str]):
+        """Freeze a player so they can't do anything (immortal only).
+        
+        Usage: freeze <player>
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        
+        if not args:
+            await player.send(f"{c['yellow']}Usage: freeze <player>{c['reset']}")
+            return
+        
+        target_name = args[0].lower()
+        target = None
+        for p in player.world.players.values():
+            if p.name.lower() == target_name:
+                target = p
+                break
+        
+        if not target:
+            await player.send(f"{c['red']}No player named '{args[0]}' is online.{c['reset']}")
+            return
+        
+        if not hasattr(target, 'frozen'):
+            target.frozen = False
+        
+        target.frozen = not target.frozen
+        
+        if target.frozen:
+            await player.send(f"{c['bright_cyan']}You freeze {target.name} in place!{c['reset']}")
+            await target.send(f"{c['bright_cyan']}You have been frozen by {player.name}!{c['reset']}")
+        else:
+            await player.send(f"{c['bright_green']}You unfreeze {target.name}.{c['reset']}")
+            await target.send(f"{c['bright_green']}You have been unfrozen.{c['reset']}")
+
+    @classmethod
+    async def cmd_mute(cls, player: 'Player', args: List[str]):
+        """Mute a player so they can't talk (immortal only).
+        
+        Usage: mute <player>
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        
+        if not args:
+            await player.send(f"{c['yellow']}Usage: mute <player>{c['reset']}")
+            return
+        
+        target_name = args[0].lower()
+        target = None
+        for p in player.world.players.values():
+            if p.name.lower() == target_name:
+                target = p
+                break
+        
+        if not target:
+            await player.send(f"{c['red']}No player named '{args[0]}' is online.{c['reset']}")
+            return
+        
+        if not hasattr(target, 'muted'):
+            target.muted = False
+        
+        target.muted = not target.muted
+        
+        if target.muted:
+            await player.send(f"{c['bright_cyan']}You mute {target.name}!{c['reset']}")
+            await target.send(f"{c['bright_cyan']}You have been muted by {player.name}!{c['reset']}")
+        else:
+            await player.send(f"{c['bright_green']}You unmute {target.name}.{c['reset']}")
+            await target.send(f"{c['bright_green']}You have been unmuted.{c['reset']}")
+
+    @classmethod
+    async def cmd_dc(cls, player: 'Player', args: List[str]):
+        """Disconnect a player (immortal only).
+        
+        Usage: dc <player>
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        
+        if not args:
+            await player.send(f"{c['yellow']}Usage: dc <player>{c['reset']}")
+            return
+        
+        target_name = args[0].lower()
+        target = None
+        for p in player.world.players.values():
+            if p.name.lower() == target_name:
+                target = p
+                break
+        
+        if not target:
+            await player.send(f"{c['red']}No player named '{args[0]}' is online.{c['reset']}")
+            return
+        
+        if target == player:
+            await player.send(f"{c['red']}You can't disconnect yourself!{c['reset']}")
+            return
+        
+        await target.send(f"{c['bright_red']}You have been disconnected by {player.name}.{c['reset']}")
+        if target.connection:
+            await target.connection.disconnect()
+        
+        await player.send(f"{c['bright_green']}You disconnect {target.name}.{c['reset']}")
+
+    @classmethod
+    async def cmd_invis(cls, player: 'Player', args: List[str]):
+        """List all invisible players/mobs in room (immortal only).
+        
+        Usage: invis
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        
+        await player.send(f"{c['bright_cyan']}=== Invisible Entities ==={c['reset']}")
+        
+        found = False
+        for char in player.room.characters:
+            is_invis = 'invisible' in getattr(char, 'affect_flags', set())
+            is_hidden = getattr(char, 'hidden', False)
+            is_wizinvis = getattr(char, 'wizinvis', False)
+            
+            if is_invis or is_hidden or is_wizinvis:
+                found = True
+                flags = []
+                if is_invis:
+                    flags.append('invisible')
+                if is_hidden:
+                    flags.append('hidden')
+                if is_wizinvis:
+                    flags.append('wizinvis')
+                await player.send(f"  {c['white']}{char.name}{c['reset']} ({', '.join(flags)})")
+        
+        if not found:
+            await player.send(f"{c['yellow']}No invisible entities in this room.{c['reset']}")
+
+    @classmethod
+    async def cmd_holylight(cls, player: 'Player', args: List[str]):
+        """Toggle ability to see everything (dark rooms, invisible, etc) (immortal only).
+        
+        Usage: holylight
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        
+        if not hasattr(player, 'holylight'):
+            player.holylight = False
+        
+        player.holylight = not player.holylight
+        
+        if player.holylight:
+            await player.send(f"{c['bright_yellow']}Holy light activated! You can see all.{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}Holy light deactivated.{c['reset']}")
+
+    @classmethod
+    async def cmd_nohassle(cls, player: 'Player', args: List[str]):
+        """Toggle immunity to mob attacks (immortal only).
+        
+        Usage: nohassle
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        
+        if not hasattr(player, 'nohassle'):
+            player.nohassle = False
+        
+        player.nohassle = not player.nohassle
+        
+        if player.nohassle:
+            await player.send(f"{c['bright_green']}Nohassle activated! Mobs will ignore you.{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}Nohassle deactivated.{c['reset']}")
+
+    @classmethod
+    async def cmd_show(cls, player: 'Player', args: List[str]):
+        """Show various game statistics (immortal only).
+        
+        Usage:
+            show zones    - List all zones
+            show players  - List all online players with details
+            show stats    - Show server statistics
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        
+        if not args:
+            await player.send(f"{c['yellow']}Usage: show <zones|players|stats>{c['reset']}")
+            return
+        
+        sub = args[0].lower()
+        
+        if sub == 'zones':
+            await player.send(f"{c['bright_cyan']}=== All Zones ==={c['reset']}")
+            for zone_num, zone in sorted(player.world.zones.items()):
+                room_count = len(zone.rooms)
+                await player.send(f"  {c['yellow']}{zone_num:3}{c['reset']} - {c['white']}{zone.name}{c['reset']} ({room_count} rooms)")
+        
+        elif sub == 'players':
+            await player.send(f"{c['bright_cyan']}=== Online Players ==={c['reset']}")
+            for p in player.world.players.values():
+                room_vnum = p.room.vnum if p.room else 'None'
+                flags = []
+                if getattr(p, 'frozen', False):
+                    flags.append('FROZEN')
+                if getattr(p, 'muted', False):
+                    flags.append('MUTED')
+                if getattr(p, 'wizinvis', False):
+                    flags.append('WIZINVIS')
+                flag_str = f" [{', '.join(flags)}]" if flags else ""
+                await player.send(f"  {c['white']}{p.name}{c['reset']} [{p.level} {p.char_class}] Room: {room_vnum}{flag_str}")
+        
+        elif sub == 'stats':
+            await player.send(f"{c['bright_cyan']}=== Server Statistics ==={c['reset']}")
+            await player.send(f"  {c['white']}Zones:{c['reset']} {len(player.world.zones)}")
+            await player.send(f"  {c['white']}Rooms:{c['reset']} {len(player.world.rooms)}")
+            await player.send(f"  {c['white']}Mob Prototypes:{c['reset']} {len(player.world.mob_prototypes)}")
+            await player.send(f"  {c['white']}Object Prototypes:{c['reset']} {len(player.world.obj_prototypes)}")
+            await player.send(f"  {c['white']}Online Players:{c['reset']} {len(player.world.players)}")
+            await player.send(f"  {c['white']}Active NPCs:{c['reset']} {len(player.world.npcs)}")
+        
+        else:
+            await player.send(f"{c['yellow']}Unknown option. Try: zones, players, stats{c['reset']}")
+
+    @classmethod
+    async def cmd_find(cls, player: 'Player', args: List[str]):
+        """Find a mob or object anywhere in the world (immortal only).
+        
+        Usage:
+            find mob <name>    - Find all mobs matching name
+            find obj <name>    - Find all objects matching name
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        
+        if len(args) < 2:
+            await player.send(f"{c['yellow']}Usage: find <mob|obj> <name>{c['reset']}")
+            return
+        
+        search_type = args[0].lower()
+        search_name = ' '.join(args[1:]).lower()
+        
+        if search_type in ('mob', 'm'):
+            await player.send(f"{c['bright_cyan']}=== Mobs matching '{search_name}' ==={c['reset']}")
+            count = 0
+            # Search prototypes
+            for vnum, proto in player.world.mob_prototypes.items():
+                name = proto.get('name', '').lower()
+                if search_name in name:
+                    await player.send(f"  {c['yellow']}[{vnum}]{c['reset']} {c['white']}{proto.get('name')}{c['reset']} (prototype)")
+                    count += 1
+            # Search active mobs
+            for mob in player.world.npcs:
+                if search_name in mob.name.lower():
+                    room_vnum = mob.room.vnum if mob.room else 'None'
+                    await player.send(f"  {c['green']}[{mob.vnum}]{c['reset']} {c['white']}{mob.name}{c['reset']} @ room {room_vnum}")
+                    count += 1
+            await player.send(f"{c['cyan']}Found {count} matches.{c['reset']}")
+        
+        elif search_type in ('obj', 'o', 'object'):
+            await player.send(f"{c['bright_cyan']}=== Objects matching '{search_name}' ==={c['reset']}")
+            count = 0
+            # Search prototypes
+            for vnum, proto in player.world.obj_prototypes.items():
+                name = proto.get('name', proto.get('short_desc', '')).lower()
+                if search_name in name:
+                    await player.send(f"  {c['yellow']}[{vnum}]{c['reset']} {c['white']}{proto.get('name', proto.get('short_desc'))}{c['reset']} (prototype)")
+                    count += 1
+            await player.send(f"{c['cyan']}Found {count} matches.{c['reset']}")
+        
+        else:
+            await player.send(f"{c['yellow']}Usage: find <mob|obj> <name>{c['reset']}")
+
+    @classmethod
+    async def cmd_load(cls, player: 'Player', args: List[str]):
+        """Load a mob or object (immortal only).
+        
+        Usage:
+            load mob <vnum>       - Load a mob
+            load obj <vnum>       - Load an object to inventory
+            load obj <vnum> room  - Load an object to room
+        """
+        c = player.config.COLORS
+        
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        
+        if len(args) < 2:
+            await player.send(f"{c['yellow']}Usage: load <mob|obj> <vnum>{c['reset']}")
+            return
+        
+        load_type = args[0].lower()
+        
+        if load_type in ('mob', 'm'):
+            await cls.cmd_mload(player, args[1:])
+        elif load_type in ('obj', 'o', 'object'):
+            await cls.cmd_oload(player, args[1:])
+        else:
+            await player.send(f"{c['yellow']}Usage: load <mob|obj> <vnum>{c['reset']}")
+
+
+    # ==================== TALENT ABILITIES (NEW) ====================
+
+    @classmethod
+    async def cmd_shield_bash(cls, player: 'Player', args: List[str]):
+        """Stun and interrupt with your shield."""
+        c = player.config.COLORS
+        if 'shield_bash' not in player.skills:
+            await player.send(f"{c['red']}You don't know Shield Bash.{c['reset']}")
+            return
+        if not player.is_fighting:
+            await player.send(f"{c['yellow']}You must be fighting to Shield Bash.{c['reset']}")
+            return
+        shield = player.equipment.get('shield') if hasattr(player, 'equipment') else None
+        if not shield:
+            await player.send(f"{c['red']}You need a shield to use Shield Bash.{c['reset']}")
+            return
+        target = player.fighting
+        from affects import AffectManager
+        import random
+        damage = random.randint(5, 12) + player.level
+        await player.send(f"{c['bright_green']}You smash {target.name} with your shield! [{damage}]{c['reset']}")
+        await target.take_damage(damage, player)
+        # Stun for 1 round
+        AffectManager.apply_affect(target, {
+            'name': 'shield_bash',
+            'type': AffectManager.TYPE_FLAG,
+            'applies_to': 'stunned',
+            'value': 1,
+            'duration': 2,
+            'caster_level': player.level
+        })
+
+    @classmethod
+    async def cmd_shield_wall(cls, player: 'Player', args: List[str]):
+        """Reduce incoming damage for a short time."""
+        c = player.config.COLORS
+        if 'shield_wall' not in player.skills:
+            await player.send(f"{c['red']}You don't know Shield Wall.{c['reset']}")
+            return
+        from affects import AffectManager
+        AffectManager.apply_affect(player, {
+            'name': 'shield_wall',
+            'type': AffectManager.TYPE_MODIFY_STAT,
+            'applies_to': 'damage_reduction',
+            'value': 50,
+            'duration': 5,
+            'caster_level': player.level
+        })
+        await player.send(f"{c['cyan']}You brace behind your shield! Damage reduced.{c['reset']}")
+
+    @classmethod
+    async def cmd_avatar_of_war(cls, player: 'Player', args: List[str]):
+        """Massive offensive burst."""
+        c = player.config.COLORS
+        if 'avatar_of_war' not in player.skills:
+            await player.send(f"{c['red']}You don't know Avatar of War.{c['reset']}")
+            return
+        from affects import AffectManager
+        AffectManager.apply_affect(player, {'name': 'avatar_of_war', 'type': AffectManager.TYPE_MODIFY_STAT,
+                                            'applies_to': 'damroll', 'value': 8, 'duration': 6, 'caster_level': player.level})
+        AffectManager.apply_affect(player, {'name': 'avatar_of_war', 'type': AffectManager.TYPE_MODIFY_STAT,
+                                            'applies_to': 'hitroll', 'value': 6, 'duration': 6, 'caster_level': player.level})
+        AffectManager.apply_affect(player, {'name': 'avatar_of_war', 'type': AffectManager.TYPE_FLAG,
+                                            'applies_to': 'haste', 'value': 1, 'duration': 6, 'caster_level': player.level})
+        await player.send(f"{c['bright_red']}You become an Avatar of War!{c['reset']}")
+
+    @classmethod
+    async def cmd_mortal_strike(cls, player: 'Player', args: List[str]):
+        """Heavy strike that wounds the target."""
+        c = player.config.COLORS
+        if 'mortal_strike' not in player.skills:
+            await player.send(f"{c['red']}You don't know Mortal Strike.{c['reset']}")
+            return
+        if not player.is_fighting:
+            await player.send(f"{c['yellow']}You must be fighting to use Mortal Strike.{c['reset']}")
+            return
+        target = player.fighting
+        import random
+        damage = random.randint(10, 20) + player.level
+        await player.send(f"{c['bright_red']}You cleave {target.name} with a Mortal Strike! [{damage}]{c['reset']}")
+        await target.take_damage(damage, player)
+
+    @classmethod
+    async def cmd_bladestorm(cls, player: 'Player', args: List[str]):
+        """Spin and strike all enemies."""
+        c = player.config.COLORS
+        if 'bladestorm' not in player.skills:
+            await player.send(f"{c['red']}You don't know Bladestorm.{c['reset']}")
+            return
+        from mobs import Mobile
+        import random
+        targets = [m for m in player.room.characters if isinstance(m, Mobile) and m.hp > 0]
+        if not targets:
+            await player.send(f"{c['yellow']}No enemies to bladestorm!{c['reset']}")
+            return
+        await player.send(f"{c['bright_red']}You spin into a Bladestorm!{c['reset']}")
+        for target in targets:
+            dmg = random.randint(6, 12) + player.level
+            await player.send(f"{c['red']}  → {target.name} takes {dmg} damage!{c['reset']}")
+            await target.take_damage(dmg, player)
+
+    @classmethod
+    async def cmd_rend(cls, player: 'Player', args: List[str]):
+        """Apply a bleeding wound."""
+        c = player.config.COLORS
+        if 'rend' not in player.skills:
+            await player.send(f"{c['red']}You don't know Rend.{c['reset']}")
+            return
+        if not player.is_fighting:
+            await player.send(f"{c['yellow']}You must be fighting to Rend.{c['reset']}")
+            return
+        target = player.fighting
+        from affects import AffectManager
+        AffectManager.apply_affect(target, {
+            'name': 'rend',
+            'type': AffectManager.TYPE_DOT,
+            'applies_to': 'hp',
+            'value': 5 + player.level // 5,
+            'duration': 4,
+            'caster_level': player.level
+        })
+        await player.send(f"{c['red']}You rend {target.name}, causing bleeding!{c['reset']}")
+
+    @classmethod
+    async def cmd_sunder_armor(cls, player: 'Player', args: List[str]):
+        """Reduce target armor temporarily."""
+        c = player.config.COLORS
+        if 'sunder_armor' not in player.skills:
+            await player.send(f"{c['red']}You don't know Sunder Armor.{c['reset']}")
+            return
+        if not player.is_fighting:
+            await player.send(f"{c['yellow']}You must be fighting to Sunder.{c['reset']}")
+            return
+        target = player.fighting
+        from affects import AffectManager
+        AffectManager.apply_affect(target, {
+            'name': 'sunder_armor',
+            'type': AffectManager.TYPE_MODIFY_STAT,
+            'applies_to': 'armor_class',
+            'value': 20,
+            'duration': 4,
+            'caster_level': player.level
+        })
+        await player.send(f"{c['yellow']}You sunder {target.name}'s armor!{c['reset']}")
+
+    @classmethod
+    async def cmd_overpower(cls, player: 'Player', args: List[str]):
+        """Quick counterattack."""
+        c = player.config.COLORS
+        if 'overpower' not in player.skills:
+            await player.send(f"{c['red']}You don't know Overpower.{c['reset']}")
+            return
+        if not player.is_fighting:
+            await player.send(f"{c['yellow']}You must be fighting to Overpower.{c['reset']}")
+            return
+        target = player.fighting
+        import random
+        damage = random.randint(6, 12) + player.level // 2
+        await player.send(f"{c['bright_yellow']}You overpower {target.name}! [{damage}]{c['reset']}")
+        await target.take_damage(damage, player)
+
+    # ----- Thief talent skills -----
+    @classmethod
+    async def cmd_cold_blood(cls, player: 'Player', args: List[str]):
+        """Guarantee your next attack crits."""
+        c = player.config.COLORS
+        if 'cold_blood' not in player.skills:
+            await player.send(f"{c['red']}You don't know Cold Blood.{c['reset']}")
+            return
+        player.cold_blood = True
+        await player.send(f"{c['cyan']}Your next attack will critically strike.{c['reset']}")
+
+    @classmethod
+    async def cmd_mutilate(cls, player: 'Player', args: List[str]):
+        """Dual strike that builds combo points."""
+        c = player.config.COLORS
+        if 'mutilate' not in player.skills:
+            await player.send(f"{c['red']}You don't know Mutilate.{c['reset']}")
+            return
+        if not player.is_fighting:
+            await player.send(f"{c['yellow']}You must be fighting to Mutilate.{c['reset']}")
+            return
+        target = player.fighting
+        import random
+        damage = random.randint(8, 14) + player.level
+        await player.send(f"{c['bright_red']}You mutilate {target.name}! [{damage}]{c['reset']}")
+        await target.take_damage(damage, player)
+        if hasattr(player, 'combo_points'):
+            player.combo_points = min(5, player.combo_points + 2)
+            player.combo_target = target
+
+    @classmethod
+    async def cmd_vendetta(cls, player: 'Player', args: List[str]):
+        """Mark target to take extra damage from you."""
+        c = player.config.COLORS
+        if 'vendetta' not in player.skills:
+            await player.send(f"{c['red']}You don't know Vendetta.{c['reset']}")
+            return
+        if not player.is_fighting:
+            await player.send(f"{c['yellow']}You must be fighting to Vendetta.{c['reset']}")
+            return
+        target = player.fighting
+        target.vendetta_from = player
+        target.vendetta_ticks = 6
+        await player.send(f"{c['magenta']}You mark {target.name} for Vendetta!{c['reset']}")
+
+    @classmethod
+    async def cmd_adrenaline_rush(cls, player: 'Player', args: List[str]):
+        """Burst of speed."""
+        c = player.config.COLORS
+        if 'adrenaline_rush' not in player.skills:
+            await player.send(f"{c['red']}You don't know Adrenaline Rush.{c['reset']}")
+            return
+        from affects import AffectManager
+        AffectManager.apply_affect(player, {'name': 'adrenaline_rush', 'type': AffectManager.TYPE_FLAG,
+                                            'applies_to': 'haste', 'value': 1, 'duration': 6, 'caster_level': player.level})
+        await player.send(f"{c['bright_green']}Adrenaline surges through you!{c['reset']}")
+
+    @classmethod
+    async def cmd_killing_spree(cls, player: 'Player', args: List[str]):
+        """Rapidly strike multiple enemies."""
+        c = player.config.COLORS
+        if 'killing_spree' not in player.skills:
+            await player.send(f"{c['red']}You don't know Killing Spree.{c['reset']}")
+            return
+        from mobs import Mobile
+        import random
+        targets = [m for m in player.room.characters if isinstance(m, Mobile) and m.hp > 0]
+        if not targets:
+            await player.send(f"{c['yellow']}No enemies to strike.{c['reset']}")
+            return
+        await player.send(f"{c['bright_red']}You go on a Killing Spree!{c['reset']}")
+        for target in targets[:4]:
+            dmg = random.randint(6, 10) + player.level
+            await target.take_damage(dmg, player)
+            await player.send(f"{c['red']}  → {target.name} takes {dmg} damage!{c['reset']}")
+
+    @classmethod
+    async def cmd_preparation(cls, player: 'Player', args: List[str]):
+        """Reset major cooldowns."""
+        c = player.config.COLORS
+        if 'preparation' not in player.skills:
+            await player.send(f"{c['red']}You don't know Preparation.{c['reset']}")
+            return
+        # simple reset: clear last skill timestamps if present
+        for attr in ['last_shadowstep', 'last_ambush', 'last_backstab']:
+            if hasattr(player, attr):
+                setattr(player, attr, 0)
+        await player.send(f"{c['cyan']}You feel prepared for another strike.{c['reset']}")
+
+    @classmethod
+    async def cmd_shadowstep(cls, player: 'Player', args: List[str]):
+        """Step through shadows behind target."""
+        c = player.config.COLORS
+        if 'shadowstep' not in player.skills:
+            await player.send(f"{c['red']}You don't know Shadowstep.{c['reset']}")
+            return
+        if not args:
+            await player.send(f"{c['yellow']}Shadowstep whom?{c['reset']}")
+            return
+        target = player.find_target_in_room(' '.join(args))
+        if not target:
+            await player.send(f"{c['red']}They aren't here.{c['reset']}")
+            return
+        player.flags.add('hidden')
+        await player.send(f"{c['magenta']}You blur through shadows behind {target.name}.{c['reset']}")
+
+    @classmethod
+    async def cmd_shadow_dance(cls, player: 'Player', args: List[str]):
+        """Use stealth abilities in combat for a short time."""
+        c = player.config.COLORS
+        if 'shadow_dance' not in player.skills:
+            await player.send(f"{c['red']}You don't know Shadow Dance.{c['reset']}")
+            return
+        player.shadow_dance_ticks = 6
+        await player.send(f"{c['magenta']}You slip into a Shadow Dance.{c['reset']}")
+
+    @classmethod
+    async def cmd_blade_dance(cls, player: 'Player', args: List[str]):
+        """Spin striking nearby enemies."""
+        c = player.config.COLORS
+        if 'blade_dance' not in player.skills:
+            await player.send(f"{c['red']}You don't know Blade Dance.{c['reset']}")
+            return
+        from mobs import Mobile
+        import random
+        targets = [m for m in player.room.characters if isinstance(m, Mobile) and m.hp > 0]
+        if not targets:
+            await player.send(f"{c['yellow']}No enemies to strike.{c['reset']}")
+            return
+        await player.send(f"{c['bright_red']}You whirl in a Blade Dance!{c['reset']}")
+        for target in targets:
+            dmg = random.randint(4, 8) + player.level // 2
+            await target.take_damage(dmg, player)
+
+    @classmethod
+    async def cmd_slip_away(cls, player: 'Player', args: List[str]):
+        """Enter stealth after a dodge."""
+        c = player.config.COLORS
+        if 'slip_away' not in player.skills:
+            await player.send(f"{c['red']}You don't know Slip Away.{c['reset']}")
+            return
+        player.flags.add('hidden')
+        await player.send(f"{c['cyan']}You slip into the shadows.{c['reset']}")
+
+    # ----- Ranger talent skills -----
+    @classmethod
+    async def cmd_bestial_wrath(cls, player: 'Player', args: List[str]):
+        """Enrage your pet."""
+        c = player.config.COLORS
+        if 'bestial_wrath' not in player.skills:
+            await player.send(f"{c['red']}You don't know Bestial Wrath.{c['reset']}")
+            return
+        from pets import PetManager
+        pets = PetManager.get_player_pets(player)
+        if not pets:
+            await player.send(f"{c['yellow']}You have no pet to empower.{c['reset']}")
+            return
+        for pet in pets:
+            pet.bestial_wrath = 5
+        await player.send(f"{c['bright_green']}Your pet enters a bestial rage!{c['reset']}")
+
+    @classmethod
+    async def cmd_stampede(cls, player: 'Player', args: List[str]):
+        """Command all pets to attack."""
+        c = player.config.COLORS
+        if 'stampede' not in player.skills:
+            await player.send(f"{c['red']}You don't know Stampede.{c['reset']}")
+            return
+        from pets import PetManager
+        pets = PetManager.get_player_pets(player)
+        if not pets:
+            await player.send(f"{c['yellow']}You have no pets to stampede.{c['reset']}")
+            return
+        await player.send(f"{c['bright_green']}You unleash a stampede of companions!{c['reset']}")
+        for pet in pets:
+            pet.ai_state['aggressive'] = True
+
+    @classmethod
+    async def cmd_aimed_shot(cls, player: 'Player', args: List[str]):
+        """Powerful ranged shot."""
+        c = player.config.COLORS
+        if 'aimed_shot' not in player.skills:
+            await player.send(f"{c['red']}You don't know Aimed Shot.{c['reset']}")
+            return
+        if not args:
+            await player.send(f"{c['yellow']}Aimed shot at whom?{c['reset']}")
+            return
+        target = player.find_target_in_room(' '.join(args))
+        if not target:
+            await player.send(f"{c['red']}Target not found.{c['reset']}")
+            return
+        import random
+        damage = random.randint(10, 18) + player.level
+        await player.send(f"{c['bright_green']}You fire an aimed shot at {target.name}! [{damage}]{c['reset']}")
+        await target.take_damage(damage, player)
+
+    @classmethod
+    async def cmd_explosive_trap(cls, player: 'Player', args: List[str]):
+        """Set an explosive trap in the room."""
+        c = player.config.COLORS
+        if 'explosive_trap' not in player.skills:
+            await player.send(f"{c['red']}You don't know Explosive Trap.{c['reset']}")
+            return
+        player.room.trap_explosive = 5
+        await player.send(f"{c['yellow']}You set an explosive trap.{c['reset']}")
+
+    @classmethod
+    async def cmd_black_arrow(cls, player: 'Player', args: List[str]):
+        """Poisoned arrow dealing damage over time."""
+        c = player.config.COLORS
+        if 'black_arrow' not in player.skills:
+            await player.send(f"{c['red']}You don't know Black Arrow.{c['reset']}")
+            return
+        if not args:
+            await player.send(f"{c['yellow']}Black Arrow at whom?{c['reset']}")
+            return
+        target = player.find_target_in_room(' '.join(args))
+        if not target:
+            await player.send(f"{c['red']}Target not found.{c['reset']}")
+            return
+        from affects import AffectManager
+        AffectManager.apply_affect(target, {'name': 'black_arrow', 'type': AffectManager.TYPE_DOT,
+                                            'applies_to': 'hp', 'value': 6, 'duration': 4,
+                                            'caster_level': player.level})
+        await player.send(f"{c['green']}You fire a black arrow into {target.name}!{c['reset']}")
+
+    @classmethod
+    async def cmd_wyvern_sting(cls, player: 'Player', args: List[str]):
+        """Put target to sleep briefly."""
+        c = player.config.COLORS
+        if 'wyvern_sting' not in player.skills:
+            await player.send(f"{c['red']}You don't know Wyvern Sting.{c['reset']}")
+            return
+        if not args:
+            await player.send(f"{c['yellow']}Wyvern sting whom?{c['reset']}")
+            return
+        target = player.find_target_in_room(' '.join(args))
+        if not target:
+            await player.send(f"{c['red']}Target not found.{c['reset']}")
+            return
+        from affects import AffectManager
+        AffectManager.apply_affect(target, {'name': 'wyvern_sting', 'type': AffectManager.TYPE_FLAG,
+                                            'applies_to': 'sleeping', 'value': 1, 'duration': 3,
+                                            'caster_level': player.level})
+        await player.send(f"{c['cyan']}{target.name} is lulled into sleep!{c['reset']}")
+
+    @classmethod
+    async def cmd_predators_mark(cls, player: 'Player', args: List[str]):
+        """Mark a target for increased damage and tracking."""
+        c = player.config.COLORS
+        if 'predators_mark' not in player.skills:
+            await player.send(f"{c['red']}You don't know Predator's Mark.{c['reset']}")
+            return
+        if not args:
+            await player.send(f"{c['yellow']}Mark whom?{c['reset']}")
+            return
+        target = player.find_target_in_room(' '.join(args))
+        if not target:
+            await player.send(f"{c['red']}Target not found.{c['reset']}")
+            return
+        target.predators_mark = player
+        target.predators_mark_ticks = 8
+        await player.send(f"{c['bright_green']}You mark {target.name} as prey.{c['reset']}")
+
+    # ----- Paladin talent skills -----
+    @classmethod
+    async def cmd_seal_of_command(cls, player: 'Player', args: List[str]):
+        """Empower attacks with holy damage."""
+        c = player.config.COLORS
+        if 'seal_of_command' not in player.skills:
+            await player.send(f"{c['red']}You don't know Seal of Command.{c['reset']}")
+            return
+        player.seal_of_command = True
+        await player.send(f"{c['bright_yellow']}Holy power surrounds your weapon.{c['reset']}")
+
+    @classmethod
+    async def cmd_crusader_strike(cls, player: 'Player', args: List[str]):
+        """Instant weapon strike."""
+        c = player.config.COLORS
+        if 'crusader_strike' not in player.skills:
+            await player.send(f"{c['red']}You don't know Crusader Strike.{c['reset']}")
+            return
+        if not player.is_fighting:
+            await player.send(f"{c['yellow']}You must be fighting to strike.{c['reset']}")
+            return
+        target = player.fighting
+        import random
+        damage = random.randint(8, 14) + player.level
+        await player.send(f"{c['bright_yellow']}You crusader strike {target.name}! [{damage}]{c['reset']}")
+        await target.take_damage(damage, player)
+
+    @classmethod
+    async def cmd_divine_storm(cls, player: 'Player', args: List[str]):
+        """Holy whirlwind attack."""
+        c = player.config.COLORS
+        if 'divine_storm' not in player.skills:
+            await player.send(f"{c['red']}You don't know Divine Storm.{c['reset']}")
+            return
+        from mobs import Mobile
+        import random
+        targets = [m for m in player.room.characters if isinstance(m, Mobile) and m.hp > 0]
+        await player.send(f"{c['bright_yellow']}You unleash a Divine Storm!{c['reset']}")
+        for target in targets:
+            dmg = random.randint(6, 12) + player.level
+            await target.take_damage(dmg, player)
+
+    @classmethod
+    async def cmd_judgment(cls, player: 'Player', args: List[str]):
+        """Ranged holy strike."""
+        c = player.config.COLORS
+        if 'judgment' not in player.skills:
+            await player.send(f"{c['red']}You don't know Judgment.{c['reset']}")
+            return
+        if not args:
+            await player.send(f"{c['yellow']}Judge whom?{c['reset']}")
+            return
+        target = player.find_target_in_room(' '.join(args))
+        if not target:
+            await player.send(f"{c['red']}Target not found.{c['reset']}")
+            return
+        import random
+        damage = random.randint(10, 16) + player.level
+        await player.send(f"{c['bright_yellow']}You smite {target.name} with Judgment! [{damage}]{c['reset']}")
+        await target.take_damage(damage, player)
+
+    @classmethod
+    async def cmd_sacred_shield(cls, player: 'Player', args: List[str]):
+        """Apply a holy shield."""
+        c = player.config.COLORS
+        if 'sacred_shield' not in player.skills:
+            await player.send(f"{c['red']}You don't know Sacred Shield.{c['reset']}")
+            return
+        from affects import AffectManager
+        AffectManager.apply_affect(player, {'name': 'sacred_shield', 'type': AffectManager.TYPE_FLAG,
+                                            'applies_to': 'divine_shield', 'value': 1, 'duration': 6,
+                                            'caster_level': player.level})
+        await player.send(f"{c['bright_yellow']}A sacred shield surrounds you.{c['reset']}")
+
+    # ----- Assassin talent skills -----
+    @classmethod
+    async def cmd_marked_for_death(cls, player: 'Player', args: List[str]):
+        """Mark a target for lethal focus."""
+        c = player.config.COLORS
+        if 'marked_for_death' not in player.skills:
+            await player.send(f"{c['red']}You don't know Marked for Death.{c['reset']}")
+            return
+        if not args:
+            await player.send(f"{c['yellow']}Mark whom?{c['reset']}")
+            return
+        target = player.find_target_in_room(' '.join(args))
+        if not target:
+            await player.send(f"{c['red']}Target not found.{c['reset']}")
+            return
+        target.marked_for_death = player
+        target.marked_for_death_ticks = 8
+        await player.send(f"{c['magenta']}You mark {target.name} for death.{c['reset']}")
+
+    @classmethod
+    async def cmd_death_from_above(cls, player: 'Player', args: List[str]):
+        """Leap attack for massive damage."""
+        c = player.config.COLORS
+        if 'death_from_above' not in player.skills:
+            await player.send(f"{c['red']}You don't know Death from Above.{c['reset']}")
+            return
+        if not args:
+            await player.send(f"{c['yellow']}Leap at whom?{c['reset']}")
+            return
+        target = player.find_target_in_room(' '.join(args))
+        if not target:
+            await player.send(f"{c['red']}Target not found.{c['reset']}")
+            return
+        import random
+        damage = random.randint(14, 22) + player.level
+        await player.send(f"{c['bright_red']}You strike from above! [{damage}]{c['reset']}")
+        await target.take_damage(damage, player)
+
+    @classmethod
+    async def cmd_crippling_poison(cls, player: 'Player', args: List[str]):
+        """Apply crippling poison to your weapon."""
+        c = player.config.COLORS
+        if 'crippling_poison' not in player.skills:
+            await player.send(f"{c['red']}You don't know Crippling Poison.{c['reset']}")
+            return
+        player.preferred_poison_type = 'crippling'
+        from combat import CombatHandler
+        await CombatHandler.do_envenom(player)
+
+    @classmethod
+    async def cmd_deadly_poison(cls, player: 'Player', args: List[str]):
+        """Apply deadly poison to your weapon."""
+        c = player.config.COLORS
+        if 'deadly_poison' not in player.skills:
+            await player.send(f"{c['red']}You don't know Deadly Poison.{c['reset']}")
+            return
+        player.preferred_poison_type = 'deadly'
+        from combat import CombatHandler
+        await CombatHandler.do_envenom(player)
+
+    @classmethod
+    async def cmd_cloak_of_shadows(cls, player: 'Player', args: List[str]):
+        """Remove harmful magic effects."""
+        c = player.config.COLORS
+        if 'cloak_of_shadows' not in player.skills:
+            await player.send(f"{c['red']}You don't know Cloak of Shadows.{c['reset']}")
+            return
+        from affects import AffectManager
+        count = AffectManager.dispel_affects(player, player.level)
+        await player.send(f"{c['cyan']}You shed {count} harmful effects.{c['reset']}")
+
+    @classmethod
+    async def cmd_vanish(cls, player: 'Player', args: List[str]):
+        """Instant stealth and drop threat."""
+        c = player.config.COLORS
+        if 'vanish' not in player.skills:
+            await player.send(f"{c['red']}You don't know Vanish.{c['reset']}")
+            return
+        player.flags.add('hidden')
+        player.is_fighting = False
+        player.fighting = None
+        await player.send(f"{c['magenta']}You vanish into the shadows.{c['reset']}")
+
+    @classmethod
+    async def cmd_shadow_blade(cls, player: 'Player', args: List[str]):
+        """Empower attacks from stealth."""
+        c = player.config.COLORS
+        if 'shadow_blade' not in player.skills:
+            await player.send(f"{c['red']}You don't know Shadow Blade.{c['reset']}")
+            return
+        player.shadow_blade_ticks = 6
+        await player.send(f"{c['magenta']}Your blade drinks the darkness.{c['reset']}")
+
+    @classmethod
+    async def cmd_shadow_blink(cls, player: 'Player', args: List[str]):
+        """Blink behind target and stealth briefly."""
+        c = player.config.COLORS
+        if 'shadow_blink' not in player.skills:
+            await player.send(f"{c['red']}You don't know Shadow Blink.{c['reset']}")
+            return
+        if not args:
+            await player.send(f"{c['yellow']}Blink to whom?{c['reset']}")
+            return
+        target = player.find_target_in_room(' '.join(args))
+        if not target:
+            await player.send(f"{c['red']}Target not found.{c['reset']}")
+            return
+        player.flags.add('hidden')
+        await player.send(f"{c['magenta']}You blink behind {target.name} and fade from sight.{c['reset']}")
+
+    @classmethod
+    async def cmd_silence_strike(cls, player: 'Player', args: List[str]):
+        """Strike and silence spellcasting."""
+        c = player.config.COLORS
+        if 'silence_strike' not in player.skills:
+            await player.send(f"{c['red']}You don't know Silence Strike.{c['reset']}")
+            return
+        if not player.is_fighting:
+            await player.send(f"{c['yellow']}You must be fighting to use Silence Strike.{c['reset']}")
+            return
+        target = player.fighting
+        from affects import AffectManager
+        AffectManager.apply_affect(target, {'name': 'silence_strike', 'type': AffectManager.TYPE_FLAG,
+                                            'applies_to': 'silenced', 'value': 1, 'duration': 3,
+                                            'caster_level': player.level})
+        await player.send(f"{c['bright_red']}You silence {target.name}!{c['reset']}")
+
+    # ========== LEVEL 31-60 SKILL COMMANDS ==========
+    # These are the powerful high-level abilities that define endgame combat.
+
+    # ----- WARRIOR LEVEL 31-60 -----
+    @classmethod
+    async def cmd_rallying_cry(cls, player: 'Player', args: List[str]):
+        """Buff the entire party with increased max HP and regeneration."""
+        c = player.config.COLORS
+        import time
+        
+        if player.char_class.lower() != 'warrior':
+            await player.send(f"{c['red']}Only warriors can use Rallying Cry!{c['reset']}")
+            return
+        if player.level < 32:
+            await player.send(f"{c['red']}You must be level 32 to use Rallying Cry!{c['reset']}")
+            return
+        
+        # Cooldown check (2 minutes)
+        now = time.time()
+        cooldown_until = getattr(player, 'rallying_cry_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Rallying Cry on cooldown ({remaining}s).{c['reset']}")
+            return
+        
+        player.rallying_cry_cooldown = now + 120
+        
+        from affects import AffectManager
+        
+        # Apply to self and group members
+        targets = [player]
+        if player.group:
+            targets.extend([m for m in player.group.members if m != player and m.room == player.room])
+        
+        hp_boost = 20 + player.level
+        for target in targets:
+            AffectManager.apply_affect(target, {
+                'name': 'rallying_cry',
+                'type': AffectManager.TYPE_STAT,
+                'applies_to': 'max_hp',
+                'value': hp_boost,
+                'duration': 15,
+                'caster_level': player.level
+            })
+            if hasattr(target, 'send'):
+                await target.send(f"{c['bright_yellow']}You feel a surge of vitality from the Rallying Cry!{c['reset']}")
+        
+        await player.send(f"{c['bright_yellow']}You let out a RALLYING CRY! All allies gain +{hp_boost} max HP!{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{player.name} lets out a thunderous rallying cry!", exclude=[player])
+
+    @classmethod
+    async def cmd_shattering_blow(cls, player: 'Player', args: List[str]):
+        """Strike with such force that armor is reduced."""
+        c = player.config.COLORS
+        import time, random
+        
+        if player.char_class.lower() != 'warrior':
+            await player.send(f"{c['red']}Only warriors can use Shattering Blow!{c['reset']}")
+            return
+        if player.level < 38:
+            await player.send(f"{c['red']}You must be level 38 to use Shattering Blow!{c['reset']}")
+            return
+        
+        target = None
+        if args:
+            target = player.find_target_in_room(' '.join(args))
+        elif player.is_fighting:
+            target = player.fighting
+        elif player.target and player.target in player.room.characters:
+            target = player.target
+        
+        if not target:
+            await player.send(f"{c['yellow']}Shattering Blow whom?{c['reset']}")
+            return
+        
+        # Cooldown (15 seconds)
+        now = time.time()
+        cooldown_until = getattr(player, 'shattering_blow_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Shattering Blow on cooldown ({remaining}s).{c['reset']}")
+            return
+        
+        player.shattering_blow_cooldown = now + 15
+        
+        from affects import AffectManager
+        
+        # Damage + armor reduction
+        damage = random.randint(15, 25) + player.level + player.get_damage_bonus()
+        AffectManager.apply_affect(target, {
+            'name': 'armor_shattered',
+            'type': AffectManager.TYPE_STAT,
+            'applies_to': 'ac',
+            'value': 30,  # Worse AC (higher number = worse)
+            'duration': 10,
+            'caster_level': player.level
+        })
+        
+        await target.take_damage(damage, player)
+        await player.send(f"{c['bright_red']}Your SHATTERING BLOW cracks {target.name}'s armor! [{damage}]{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{player.name}'s weapon SHATTERS against {target.name}'s armor!", exclude=[player])
+
+    @classmethod
+    async def cmd_commanding_shout(cls, player: 'Player', args: List[str]):
+        """Taunt all enemies in the room, forcing them to attack you."""
+        c = player.config.COLORS
+        import time
+        
+        if player.char_class.lower() != 'warrior':
+            await player.send(f"{c['red']}Only warriors can use Commanding Shout!{c['reset']}")
+            return
+        if player.level < 44:
+            await player.send(f"{c['red']}You must be level 44 to use Commanding Shout!{c['reset']}")
+            return
+        
+        now = time.time()
+        cooldown_until = getattr(player, 'commanding_shout_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Commanding Shout on cooldown ({remaining}s).{c['reset']}")
+            return
+        
+        player.commanding_shout_cooldown = now + 30
+        
+        from mobs import Mobile
+        
+        taunted = 0
+        for char in player.room.characters:
+            if isinstance(char, Mobile) and char.hp > 0:
+                char.fighting = player
+                char.taunted_by = player
+                char.taunt_ticks = 6
+                taunted += 1
+        
+        await player.send(f"{c['bright_yellow']}You let out a COMMANDING SHOUT! {taunted} enemies focus on you!{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{player.name} bellows a commanding shout that echoes through the room!", exclude=[player])
+
+    @classmethod
+    async def cmd_heroic_leap(cls, player: 'Player', args: List[str]):
+        """Leap to a target, stunning them on impact."""
+        c = player.config.COLORS
+        import time, random
+        
+        if player.char_class.lower() != 'warrior':
+            await player.send(f"{c['red']}Only warriors can use Heroic Leap!{c['reset']}")
+            return
+        if player.level < 50:
+            await player.send(f"{c['red']}You must be level 50 to use Heroic Leap!{c['reset']}")
+            return
+        
+        if not args:
+            await player.send(f"{c['yellow']}Heroic Leap at whom?{c['reset']}")
+            return
+        
+        target = player.find_target_in_room(' '.join(args))
+        if not target:
+            await player.send(f"{c['red']}Target not found.{c['reset']}")
+            return
+        
+        now = time.time()
+        cooldown_until = getattr(player, 'heroic_leap_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Heroic Leap on cooldown ({remaining}s).{c['reset']}")
+            return
+        
+        player.heroic_leap_cooldown = now + 45
+        
+        from affects import AffectManager
+        from combat import CombatHandler
+        
+        damage = random.randint(20, 35) + player.level
+        AffectManager.apply_affect(target, {
+            'name': 'heroic_leap_stun',
+            'type': AffectManager.TYPE_FLAG,
+            'applies_to': 'stunned',
+            'value': 1,
+            'duration': 3,
+            'caster_level': player.level
+        })
+        
+        await target.take_damage(damage, player)
+        await CombatHandler.start_combat(player, target)
+        
+        await player.send(f"{c['bright_yellow']}You HEROICALLY LEAP onto {target.name}, stunning them! [{damage}]{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{player.name} leaps through the air and SLAMS into {target.name}!", exclude=[player])
+
+    @classmethod
+    async def cmd_warpath(cls, player: 'Player', args: List[str]):
+        """Enter a sustained damage mode - all attacks deal increased damage."""
+        c = player.config.COLORS
+        import time
+        
+        if player.char_class.lower() != 'warrior':
+            await player.send(f"{c['red']}Only warriors can use Warpath!{c['reset']}")
+            return
+        if player.level < 56:
+            await player.send(f"{c['red']}You must be level 56 to use Warpath!{c['reset']}")
+            return
+        
+        now = time.time()
+        cooldown_until = getattr(player, 'warpath_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Warpath on cooldown ({remaining}s).{c['reset']}")
+            return
+        
+        player.warpath_cooldown = now + 180  # 3 minutes
+        
+        from affects import AffectManager
+        
+        AffectManager.apply_affect(player, {
+            'name': 'warpath',
+            'type': AffectManager.TYPE_STAT,
+            'applies_to': 'damroll',
+            'value': 15,
+            'duration': 20,
+            'caster_level': player.level
+        })
+        AffectManager.apply_affect(player, {
+            'name': 'warpath_speed',
+            'type': AffectManager.TYPE_FLAG,
+            'applies_to': 'haste',
+            'value': 1,
+            'duration': 20,
+            'caster_level': player.level
+        })
+        
+        await player.send(f"{c['bright_red']}You enter the WARPATH! Destruction follows in your wake!{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{player.name}'s eyes glow red as they enter a devastating WARPATH!", exclude=[player])
+
+    @classmethod
+    async def cmd_titans_wrath(cls, player: 'Player', args: List[str]):
+        """CAPSTONE: 10 seconds of god mode - immune to damage, 2x damage, AoE cleave."""
+        c = player.config.COLORS
+        import time
+        
+        if player.char_class.lower() != 'warrior':
+            await player.send(f"{c['red']}Only warriors can invoke Titan's Wrath!{c['reset']}")
+            return
+        if player.level < 60:
+            await player.send(f"{c['red']}You must be level 60 to invoke Titan's Wrath!{c['reset']}")
+            return
+        
+        now = time.time()
+        cooldown_until = getattr(player, 'titans_wrath_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Titan's Wrath on cooldown ({int(remaining/60)}m {remaining%60}s).{c['reset']}")
+            return
+        
+        player.titans_wrath_cooldown = now + 600  # 10 minutes
+        
+        from affects import AffectManager
+        
+        # Invulnerability
+        AffectManager.apply_affect(player, {
+            'name': 'titans_wrath_invuln',
+            'type': AffectManager.TYPE_FLAG,
+            'applies_to': 'invulnerable',
+            'value': 1,
+            'duration': 5,  # ~10 seconds (2s per tick)
+            'caster_level': player.level
+        })
+        # Double damage
+        AffectManager.apply_affect(player, {
+            'name': 'titans_wrath_damage',
+            'type': AffectManager.TYPE_STAT,
+            'applies_to': 'damroll',
+            'value': 50,
+            'duration': 5,
+            'caster_level': player.level
+        })
+        # AoE cleave flag
+        player.titans_wrath_active = True
+        player.titans_wrath_ticks = 5
+        
+        await player.send(f"{c['bright_yellow']}████████████████████████████████████████████{c['reset']}")
+        await player.send(f"{c['bright_yellow']}█ {c['bright_red']}TITAN'S WRATH{c['bright_yellow']} - YOU ARE UNSTOPPABLE! █{c['reset']}")
+        await player.send(f"{c['bright_yellow']}████████████████████████████████████████████{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(
+                f"The air CRACKLES with power as {player.name} invokes TITAN'S WRATH! They are INVINCIBLE!",
+                exclude=[player]
+            )
+
+    # ----- THIEF LEVEL 31-60 -----
+    @classmethod
+    async def cmd_nerve_strike(cls, player: 'Player', args: List[str]):
+        """Paralyze a target with a precise nerve strike."""
+        c = player.config.COLORS
+        import time
+        
+        if player.char_class.lower() != 'thief':
+            await player.send(f"{c['red']}Only thieves can use Nerve Strike!{c['reset']}")
+            return
+        if player.level < 32:
+            await player.send(f"{c['red']}You must be level 32 to use Nerve Strike!{c['reset']}")
+            return
+        
+        target = None
+        if args:
+            target = player.find_target_in_room(' '.join(args))
+        elif player.is_fighting:
+            target = player.fighting
+        
+        if not target:
+            await player.send(f"{c['yellow']}Nerve Strike whom?{c['reset']}")
+            return
+        
+        now = time.time()
+        cooldown_until = getattr(player, 'nerve_strike_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Nerve Strike on cooldown ({remaining}s).{c['reset']}")
+            return
+        
+        player.nerve_strike_cooldown = now + 30
+        
+        from affects import AffectManager
+        
+        AffectManager.apply_affect(target, {
+            'name': 'paralyzed',
+            'type': AffectManager.TYPE_FLAG,
+            'applies_to': 'paralyzed',
+            'value': 1,
+            'duration': 3,
+            'caster_level': player.level
+        })
+        
+        await player.send(f"{c['magenta']}You strike {target.name}'s nerve cluster - they are PARALYZED!{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{player.name} strikes {target.name}'s pressure point!", exclude=[player])
+
+    @classmethod
+    async def cmd_garrote(cls, player: 'Player', args: List[str]):
+        """Strangle a target, silencing them and causing bleed damage."""
+        c = player.config.COLORS
+        import time, random
+        
+        if player.char_class.lower() != 'thief':
+            await player.send(f"{c['red']}Only thieves can use Garrote!{c['reset']}")
+            return
+        if player.level < 44:
+            await player.send(f"{c['red']}You must be level 44 to use Garrote!{c['reset']}")
+            return
+        
+        if player.is_fighting:
+            await player.send(f"{c['red']}You can only Garrote from stealth!{c['reset']}")
+            return
+        
+        if not args:
+            await player.send(f"{c['yellow']}Garrote whom?{c['reset']}")
+            return
+        
+        target = player.find_target_in_room(' '.join(args))
+        if not target:
+            await player.send(f"{c['red']}Target not found.{c['reset']}")
+            return
+        
+        now = time.time()
+        cooldown_until = getattr(player, 'garrote_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Garrote on cooldown ({remaining}s).{c['reset']}")
+            return
+        
+        player.garrote_cooldown = now + 20
+        
+        from affects import AffectManager
+        from combat import CombatHandler
+        
+        damage = random.randint(10, 18) + player.level
+        
+        # Silence
+        AffectManager.apply_affect(target, {
+            'name': 'garrote_silence',
+            'type': AffectManager.TYPE_FLAG,
+            'applies_to': 'silenced',
+            'value': 1,
+            'duration': 5,
+            'caster_level': player.level
+        })
+        # Bleed DoT
+        AffectManager.apply_affect(target, {
+            'name': 'garrote_bleed',
+            'type': AffectManager.TYPE_DOT,
+            'applies_to': 'hp',
+            'value': 8 + player.level // 5,
+            'duration': 6,
+            'caster_level': player.level
+        })
+        
+        await target.take_damage(damage, player)
+        await CombatHandler.start_combat(player, target)
+        
+        await player.send(f"{c['bright_red']}You GARROTE {target.name} - silenced and bleeding! [{damage}]{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{player.name} wraps a garrote around {target.name}'s throat!", exclude=[player])
+
+    @classmethod
+    async def cmd_evasion(cls, player: 'Player', args: List[str]):
+        """Gain 100% dodge chance for 10 seconds."""
+        c = player.config.COLORS
+        import time
+        
+        if player.char_class.lower() != 'thief':
+            await player.send(f"{c['red']}Only thieves can use Evasion!{c['reset']}")
+            return
+        if player.level < 50:
+            await player.send(f"{c['red']}You must be level 50 to use Evasion!{c['reset']}")
+            return
+        
+        now = time.time()
+        cooldown_until = getattr(player, 'evasion_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Evasion on cooldown ({remaining}s).{c['reset']}")
+            return
+        
+        player.evasion_cooldown = now + 180  # 3 minutes
+        
+        from affects import AffectManager
+        
+        AffectManager.apply_affect(player, {
+            'name': 'evasion',
+            'type': AffectManager.TYPE_FLAG,
+            'applies_to': 'evasion',
+            'value': 100,  # 100% dodge
+            'duration': 5,
+            'caster_level': player.level
+        })
+        
+        await player.send(f"{c['cyan']}You enter a state of perfect EVASION - all attacks will miss!{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{player.name}'s movements become a blur - impossible to hit!", exclude=[player])
+
+    @classmethod
+    async def cmd_marked_for_death_thief(cls, player: 'Player', args: List[str]):
+        """Mark a target for massive damage bonus."""
+        c = player.config.COLORS
+        import time
+        
+        if player.char_class.lower() != 'thief':
+            await player.send(f"{c['red']}Only thieves can use Marked for Death!{c['reset']}")
+            return
+        if player.level < 56:
+            await player.send(f"{c['red']}You must be level 56 to use Marked for Death!{c['reset']}")
+            return
+        
+        if not args:
+            await player.send(f"{c['yellow']}Mark whom for death?{c['reset']}")
+            return
+        
+        target = player.find_target_in_room(' '.join(args))
+        if not target:
+            await player.send(f"{c['red']}Target not found.{c['reset']}")
+            return
+        
+        now = time.time()
+        cooldown_until = getattr(player, 'marked_for_death_thief_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Marked for Death on cooldown ({remaining}s).{c['reset']}")
+            return
+        
+        player.marked_for_death_thief_cooldown = now + 60
+        
+        target.marked_for_death_by = player
+        target.marked_for_death_bonus = 50  # 50% extra damage
+        target.marked_for_death_ticks = 10
+        
+        await player.send(f"{c['bright_red']}You mark {target.name} for DEATH - your attacks deal 50% more damage!{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"A dark mark appears on {target.name} - they have been marked for death!", exclude=[player])
+
+    @classmethod
+    async def cmd_perfect_crime(cls, player: 'Player', args: List[str]):
+        """CAPSTONE: 30 seconds of permanent stealth with guaranteed crits."""
+        c = player.config.COLORS
+        import time
+        
+        if player.char_class.lower() != 'thief':
+            await player.send(f"{c['red']}Only thieves can commit the Perfect Crime!{c['reset']}")
+            return
+        if player.level < 60:
+            await player.send(f"{c['red']}You must be level 60 to commit the Perfect Crime!{c['reset']}")
+            return
+        
+        now = time.time()
+        cooldown_until = getattr(player, 'perfect_crime_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Perfect Crime on cooldown ({int(remaining/60)}m {remaining%60}s).{c['reset']}")
+            return
+        
+        player.perfect_crime_cooldown = now + 600  # 10 minutes
+        
+        from affects import AffectManager
+        
+        # Permanent stealth
+        AffectManager.apply_affect(player, {
+            'name': 'perfect_crime_stealth',
+            'type': AffectManager.TYPE_FLAG,
+            'applies_to': 'invisible',
+            'value': 1,
+            'duration': 15,  # ~30 seconds
+            'caster_level': player.level
+        })
+        # Guaranteed crits
+        AffectManager.apply_affect(player, {
+            'name': 'perfect_crime_crit',
+            'type': AffectManager.TYPE_STAT,
+            'applies_to': 'crit_chance',
+            'value': 100,
+            'duration': 15,
+            'caster_level': player.level
+        })
+        
+        player.perfect_crime_active = True
+        player.flags.add('hidden')
+        
+        await player.send(f"{c['bright_magenta']}████████████████████████████████████████████{c['reset']}")
+        await player.send(f"{c['bright_magenta']}█ {c['bright_white']}PERFECT CRIME{c['bright_magenta']} - YOU ARE A GHOST █{c['reset']}")
+        await player.send(f"{c['bright_magenta']}████████████████████████████████████████████{c['reset']}")
+        await player.send(f"{c['cyan']}30 seconds of permanent stealth. All attacks are critical hits.{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{player.name} vanishes without a trace...", exclude=[player])
+
+    # ----- RANGER LEVEL 31-60 -----
+    @classmethod
+    async def cmd_volley(cls, player: 'Player', args: List[str]):
+        """Rain arrows on all enemies in the room."""
+        c = player.config.COLORS
+        import time, random
+        
+        if player.char_class.lower() != 'ranger':
+            await player.send(f"{c['red']}Only rangers can use Volley!{c['reset']}")
+            return
+        if player.level < 32:
+            await player.send(f"{c['red']}You must be level 32 to use Volley!{c['reset']}")
+            return
+        
+        now = time.time()
+        cooldown_until = getattr(player, 'volley_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Volley on cooldown ({remaining}s).{c['reset']}")
+            return
+        
+        player.volley_cooldown = now + 20
+        
+        from mobs import Mobile
+        
+        targets = [m for m in player.room.characters if isinstance(m, Mobile) and m.hp > 0]
+        if not targets:
+            await player.send(f"{c['yellow']}No enemies to rain arrows on.{c['reset']}")
+            return
+        
+        await player.send(f"{c['bright_green']}You fire a VOLLEY of arrows into the air!{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{player.name} fires a volley of arrows into the sky!", exclude=[player])
+        
+        for target in targets:
+            damage = random.randint(8, 14) + player.level // 2
+            await target.take_damage(damage, player)
+            await player.send(f"{c['green']}  → {target.name} is struck! [{damage}]{c['reset']}")
+
+    @classmethod
+    async def cmd_camouflage_master(cls, player: 'Player', args: List[str]):
+        """Enter advanced camouflage - harder to detect than regular hide."""
+        c = player.config.COLORS
+        import time
+        
+        if player.char_class.lower() != 'ranger':
+            await player.send(f"{c['red']}Only rangers can use Camouflage!{c['reset']}")
+            return
+        if player.level < 38:
+            await player.send(f"{c['red']}You must be level 38 to use Camouflage!{c['reset']}")
+            return
+        
+        now = time.time()
+        cooldown_until = getattr(player, 'camouflage_master_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Camouflage on cooldown ({remaining}s).{c['reset']}")
+            return
+        
+        player.camouflage_master_cooldown = now + 30
+        
+        from affects import AffectManager
+        
+        player.flags.add('hidden')
+        AffectManager.apply_affect(player, {
+            'name': 'camouflage',
+            'type': AffectManager.TYPE_FLAG,
+            'applies_to': 'invisible',
+            'value': 1,
+            'duration': 20,
+            'caster_level': player.level
+        })
+        player.camouflage_bonus = 30  # +30 to stealth check
+        
+        await player.send(f"{c['green']}You blend perfectly into your surroundings with CAMOUFLAGE!{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{player.name} seems to melt into the environment...", exclude=[player])
+
+    @classmethod
+    async def cmd_serpent_sting(cls, player: 'Player', args: List[str]):
+        """Apply a strong poison DoT to the target."""
+        c = player.config.COLORS
+        import time, random
+        
+        if player.char_class.lower() != 'ranger':
+            await player.send(f"{c['red']}Only rangers can use Serpent Sting!{c['reset']}")
+            return
+        if player.level < 44:
+            await player.send(f"{c['red']}You must be level 44 to use Serpent Sting!{c['reset']}")
+            return
+        
+        if not args:
+            await player.send(f"{c['yellow']}Serpent Sting whom?{c['reset']}")
+            return
+        
+        target = player.find_target_in_room(' '.join(args))
+        if not target:
+            await player.send(f"{c['red']}Target not found.{c['reset']}")
+            return
+        
+        now = time.time()
+        cooldown_until = getattr(player, 'serpent_sting_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Serpent Sting on cooldown ({remaining}s).{c['reset']}")
+            return
+        
+        player.serpent_sting_cooldown = now + 15
+        
+        from affects import AffectManager
+        
+        damage = random.randint(5, 10) + player.level // 3
+        AffectManager.apply_affect(target, {
+            'name': 'serpent_sting',
+            'type': AffectManager.TYPE_DOT,
+            'applies_to': 'hp',
+            'value': 10 + player.level // 4,
+            'duration': 10,
+            'caster_level': player.level
+        })
+        
+        await target.take_damage(damage, player)
+        await player.send(f"{c['green']}You strike {target.name} with SERPENT STING! [{damage}] (Poison applied){c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{player.name}'s arrow drips with venom as it strikes {target.name}!", exclude=[player])
+
+    @classmethod
+    async def cmd_rapid_fire(cls, player: 'Player', args: List[str]):
+        """Fire a rapid barrage of arrows at your target."""
+        c = player.config.COLORS
+        import time, random
+        
+        if player.char_class.lower() != 'ranger':
+            await player.send(f"{c['red']}Only rangers can use Rapid Fire!{c['reset']}")
+            return
+        if player.level < 50:
+            await player.send(f"{c['red']}You must be level 50 to use Rapid Fire!{c['reset']}")
+            return
+        
+        target = None
+        if args:
+            target = player.find_target_in_room(' '.join(args))
+        elif player.is_fighting:
+            target = player.fighting
+        
+        if not target:
+            await player.send(f"{c['yellow']}Rapid Fire at whom?{c['reset']}")
+            return
+        
+        now = time.time()
+        cooldown_until = getattr(player, 'rapid_fire_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Rapid Fire on cooldown ({remaining}s).{c['reset']}")
+            return
+        
+        player.rapid_fire_cooldown = now + 60
+        
+        await player.send(f"{c['bright_green']}You unleash a RAPID FIRE barrage at {target.name}!{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{player.name} fires a rapid barrage of arrows!", exclude=[player])
+        
+        # Fire 5-7 arrows
+        arrows = random.randint(5, 7)
+        total_damage = 0
+        for i in range(arrows):
+            damage = random.randint(6, 12) + player.level // 3
+            total_damage += damage
+            await target.take_damage(damage, player)
+            await player.send(f"{c['green']}  → Arrow #{i+1} hits! [{damage}]{c['reset']}")
+        
+        await player.send(f"{c['bright_green']}Total damage: {total_damage}{c['reset']}")
+
+    @classmethod
+    async def cmd_kill_command(cls, player: 'Player', args: List[str]):
+        """Command your pet to execute a wounded target."""
+        c = player.config.COLORS
+        import time, random
+        
+        if player.char_class.lower() != 'ranger':
+            await player.send(f"{c['red']}Only rangers can use Kill Command!{c['reset']}")
+            return
+        if player.level < 56:
+            await player.send(f"{c['red']}You must be level 56 to use Kill Command!{c['reset']}")
+            return
+        
+        from pets import PetManager
+        pets = PetManager.get_player_pets(player)
+        if not pets:
+            await player.send(f"{c['yellow']}You need a pet to use Kill Command!{c['reset']}")
+            return
+        
+        target = None
+        if args:
+            target = player.find_target_in_room(' '.join(args))
+        elif player.is_fighting:
+            target = player.fighting
+        
+        if not target:
+            await player.send(f"{c['yellow']}Kill Command whom?{c['reset']}")
+            return
+        
+        now = time.time()
+        cooldown_until = getattr(player, 'kill_command_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Kill Command on cooldown ({remaining}s).{c['reset']}")
+            return
+        
+        player.kill_command_cooldown = now + 45
+        
+        # Execute damage - bonus if target below 35% HP
+        base_damage = random.randint(25, 40) + player.level
+        if target.hp < target.max_hp * 0.35:
+            base_damage = int(base_damage * 2)
+            await player.send(f"{c['bright_red']}EXECUTE! Your pet senses weakness!{c['reset']}")
+        
+        await target.take_damage(base_damage, player)
+        pet_name = pets[0].name if pets else "Your pet"
+        await player.send(f"{c['bright_green']}{pet_name} savages {target.name} on your command! [{base_damage}]{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{pet_name} lunges at {target.name} on {player.name}'s command!", exclude=[player])
+
+    @classmethod
+    async def cmd_alpha_pack(cls, player: 'Player', args: List[str]):
+        """CAPSTONE: Summon ALL your pets simultaneously in a frenzy."""
+        c = player.config.COLORS
+        import time
+        
+        if player.char_class.lower() != 'ranger':
+            await player.send(f"{c['red']}Only rangers can summon the Alpha Pack!{c['reset']}")
+            return
+        if player.level < 60:
+            await player.send(f"{c['red']}You must be level 60 to summon the Alpha Pack!{c['reset']}")
+            return
+        
+        now = time.time()
+        cooldown_until = getattr(player, 'alpha_pack_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Alpha Pack on cooldown ({int(remaining/60)}m {remaining%60}s).{c['reset']}")
+            return
+        
+        player.alpha_pack_cooldown = now + 600  # 10 minutes
+        
+        from pets import Pet
+        
+        pack_types = ['wolf', 'bear', 'hawk', 'cat', 'boar']
+        pack_members = []
+        
+        await player.send(f"{c['bright_green']}████████████████████████████████████████████{c['reset']}")
+        await player.send(f"{c['bright_green']}█ {c['bright_yellow']}ALPHA PACK{c['bright_green']} - THE HUNT BEGINS! █{c['reset']}")
+        await player.send(f"{c['bright_green']}████████████████████████████████████████████{c['reset']}")
+        
+        for pet_type in pack_types:
+            pet = Pet(0, player.world, player, pet_type)
+            pet.name = f"Pack {pet_type.title()}"
+            pet.level = player.level
+            pet.hp = int(player.max_hp * 0.5)
+            pet.max_hp = pet.hp
+            pet.timer = 15  # 30 seconds duration
+            pet.bestial_wrath = 15  # Permanent frenzy
+            pack_members.append(pet)
+            player.companions.append(pet)
+            if player.room:
+                player.room.characters.append(pet)
+                pet.room = player.room
+        
+        await player.send(f"{c['bright_yellow']}5 ferocious beasts answer your call!{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(
+                f"A PACK of wild beasts bursts forth to fight alongside {player.name}!",
+                exclude=[player]
+            )
+
+    # ----- ASSASSIN LEVEL 31-60 -----
+    @classmethod
+    async def cmd_shadowstrike(cls, player: 'Player', args: List[str]):
+        """Teleport behind a target and backstab them."""
+        c = player.config.COLORS
+        import time, random
+        
+        if player.char_class.lower() != 'assassin':
+            await player.send(f"{c['red']}Only assassins can use Shadowstrike!{c['reset']}")
+            return
+        if player.level < 32:
+            await player.send(f"{c['red']}You must be level 32 to use Shadowstrike!{c['reset']}")
+            return
+        
+        if not args:
+            await player.send(f"{c['yellow']}Shadowstrike whom?{c['reset']}")
+            return
+        
+        target = player.find_target_in_room(' '.join(args))
+        if not target:
+            await player.send(f"{c['red']}Target not found.{c['reset']}")
+            return
+        
+        now = time.time()
+        cooldown_until = getattr(player, 'shadowstrike_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Shadowstrike on cooldown ({remaining}s).{c['reset']}")
+            return
+        
+        player.shadowstrike_cooldown = now + 20
+        
+        from combat import CombatHandler
+        
+        # Backstab damage from behind
+        damage = random.randint(20, 35) + player.level * 2
+        await target.take_damage(damage, player)
+        await CombatHandler.start_combat(player, target)
+        
+        await player.send(f"{c['magenta']}You SHADOWSTRIKE behind {target.name}! [{damage}]{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{player.name} vanishes and reappears behind {target.name} with a deadly strike!", exclude=[player])
+
+    @classmethod
+    async def cmd_fan_of_knives(cls, player: 'Player', args: List[str]):
+        """Throw poisoned knives at all enemies in the room."""
+        c = player.config.COLORS
+        import time, random
+        
+        if player.char_class.lower() != 'assassin':
+            await player.send(f"{c['red']}Only assassins can use Fan of Knives!{c['reset']}")
+            return
+        if player.level < 38:
+            await player.send(f"{c['red']}You must be level 38 to use Fan of Knives!{c['reset']}")
+            return
+        
+        now = time.time()
+        cooldown_until = getattr(player, 'fan_of_knives_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Fan of Knives on cooldown ({remaining}s).{c['reset']}")
+            return
+        
+        player.fan_of_knives_cooldown = now + 15
+        
+        from mobs import Mobile
+        from affects import AffectManager
+        
+        targets = [m for m in player.room.characters if isinstance(m, Mobile) and m.hp > 0]
+        if not targets:
+            await player.send(f"{c['yellow']}No enemies to strike.{c['reset']}")
+            return
+        
+        await player.send(f"{c['magenta']}You hurl a FAN OF KNIVES at your enemies!{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{player.name} hurls a fan of poisoned knives!", exclude=[player])
+        
+        for target in targets:
+            damage = random.randint(8, 15) + player.level // 2
+            AffectManager.apply_affect(target, {
+                'name': 'knife_poison',
+                'type': AffectManager.TYPE_DOT,
+                'applies_to': 'hp',
+                'value': 5 + player.level // 6,
+                'duration': 5,
+                'caster_level': player.level
+            })
+            await target.take_damage(damage, player)
+            await player.send(f"{c['magenta']}  → {target.name} is struck and poisoned! [{damage}]{c['reset']}")
+
+    @classmethod
+    async def cmd_rupture(cls, player: 'Player', args: List[str]):
+        """Cause massive bleeding with a vicious strike."""
+        c = player.config.COLORS
+        import time, random
+        
+        if player.char_class.lower() != 'assassin':
+            await player.send(f"{c['red']}Only assassins can use Rupture!{c['reset']}")
+            return
+        if player.level < 44:
+            await player.send(f"{c['red']}You must be level 44 to use Rupture!{c['reset']}")
+            return
+        
+        target = None
+        if args:
+            target = player.find_target_in_room(' '.join(args))
+        elif player.is_fighting:
+            target = player.fighting
+        
+        if not target:
+            await player.send(f"{c['yellow']}Rupture whom?{c['reset']}")
+            return
+        
+        now = time.time()
+        cooldown_until = getattr(player, 'rupture_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Rupture on cooldown ({remaining}s).{c['reset']}")
+            return
+        
+        player.rupture_cooldown = now + 20
+        
+        from affects import AffectManager
+        
+        damage = random.randint(15, 25) + player.level
+        AffectManager.apply_affect(target, {
+            'name': 'rupture_bleed',
+            'type': AffectManager.TYPE_DOT,
+            'applies_to': 'hp',
+            'value': 15 + player.level // 3,
+            'duration': 8,
+            'caster_level': player.level
+        })
+        
+        await target.take_damage(damage, player)
+        await player.send(f"{c['bright_red']}You RUPTURE {target.name}'s flesh! [{damage}] (Massive bleed applied){c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{player.name} tears into {target.name}, causing horrific bleeding!", exclude=[player])
+
+    @classmethod
+    async def cmd_shadow_blades_master(cls, player: 'Player', args: List[str]):
+        """Conjure shadow weapons that deal bonus damage."""
+        c = player.config.COLORS
+        import time
+        
+        if player.char_class.lower() != 'assassin':
+            await player.send(f"{c['red']}Only assassins can use Shadow Blades!{c['reset']}")
+            return
+        if player.level < 50:
+            await player.send(f"{c['red']}You must be level 50 to use Shadow Blades!{c['reset']}")
+            return
+        
+        now = time.time()
+        cooldown_until = getattr(player, 'shadow_blades_master_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Shadow Blades on cooldown ({remaining}s).{c['reset']}")
+            return
+        
+        player.shadow_blades_master_cooldown = now + 120
+        
+        from affects import AffectManager
+        
+        AffectManager.apply_affect(player, {
+            'name': 'shadow_blades',
+            'type': AffectManager.TYPE_STAT,
+            'applies_to': 'damroll',
+            'value': 20,
+            'duration': 12,
+            'caster_level': player.level
+        })
+        AffectManager.apply_affect(player, {
+            'name': 'shadow_blades_haste',
+            'type': AffectManager.TYPE_FLAG,
+            'applies_to': 'haste',
+            'value': 1,
+            'duration': 12,
+            'caster_level': player.level
+        })
+        
+        await player.send(f"{c['magenta']}SHADOW BLADES manifest in your hands - +20 damage for 24 seconds!{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"Shadowy blades form in {player.name}'s hands!", exclude=[player])
+
+    @classmethod
+    async def cmd_vendetta_assassin(cls, player: 'Player', args: List[str]):
+        """Mark a target for death - all damage to them is doubled."""
+        c = player.config.COLORS
+        import time
+        
+        if player.char_class.lower() != 'assassin':
+            await player.send(f"{c['red']}Only assassins can use Vendetta!{c['reset']}")
+            return
+        if player.level < 56:
+            await player.send(f"{c['red']}You must be level 56 to use Vendetta!{c['reset']}")
+            return
+        
+        if not args:
+            await player.send(f"{c['yellow']}Vendetta against whom?{c['reset']}")
+            return
+        
+        target = player.find_target_in_room(' '.join(args))
+        if not target:
+            await player.send(f"{c['red']}Target not found.{c['reset']}")
+            return
+        
+        now = time.time()
+        cooldown_until = getattr(player, 'vendetta_assassin_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Vendetta on cooldown ({remaining}s).{c['reset']}")
+            return
+        
+        player.vendetta_assassin_cooldown = now + 120
+        
+        target.vendetta_target = player
+        target.vendetta_bonus = 100  # 100% (2x) damage
+        target.vendetta_ticks = 10
+        
+        await player.send(f"{c['bright_red']}You swear VENDETTA against {target.name} - ALL damage doubled!{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{player.name} swears a deadly vendetta against {target.name}!", exclude=[player])
+
+    @classmethod
+    async def cmd_death_mark(cls, player: 'Player', args: List[str]):
+        """CAPSTONE: Execute a boss at <25% HP instantly."""
+        c = player.config.COLORS
+        import time
+        
+        if player.char_class.lower() != 'assassin':
+            await player.send(f"{c['red']}Only assassins can use Death Mark!{c['reset']}")
+            return
+        if player.level < 60:
+            await player.send(f"{c['red']}You must be level 60 to use Death Mark!{c['reset']}")
+            return
+        
+        if not args:
+            await player.send(f"{c['yellow']}Death Mark whom?{c['reset']}")
+            return
+        
+        target = player.find_target_in_room(' '.join(args))
+        if not target:
+            await player.send(f"{c['red']}Target not found.{c['reset']}")
+            return
+        
+        now = time.time()
+        cooldown_until = getattr(player, 'death_mark_cooldown', 0)
+        if now < cooldown_until:
+            remaining = int(cooldown_until - now)
+            await player.send(f"{c['yellow']}Death Mark on cooldown ({int(remaining/60)}m {remaining%60}s).{c['reset']}")
+            return
+        
+        # Check if target is below 25% HP
+        hp_pct = target.hp / target.max_hp if target.max_hp > 0 else 0
+        
+        if hp_pct >= 0.25:
+            await player.send(f"{c['yellow']}{target.name} must be below 25% HP to execute!{c['reset']}")
+            await player.send(f"{c['cyan']}(Currently at {int(hp_pct*100)}% HP){c['reset']}")
+            return
+        
+        player.death_mark_cooldown = now + 600  # 10 minutes
+        
+        # Instant kill
+        await player.send(f"{c['bright_red']}████████████████████████████████████████████{c['reset']}")
+        await player.send(f"{c['bright_red']}█ {c['bright_white']}DEATH MARK{c['bright_red']} - EXECUTION COMPLETE █{c['reset']}")
+        await player.send(f"{c['bright_red']}████████████████████████████████████████████{c['reset']}")
+        
+        if player.room:
+            await player.room.send_to_room(
+                f"{player.name} marks {target.name} for DEATH - they fall instantly!",
+                exclude=[player]
+            )
+        
+        # Deal massive damage to kill
+        await target.take_damage(target.hp + 1000, player)

@@ -18,6 +18,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from server import MUDServer
 from world import World
 from config import Config
+from web_map import WebMapServer
 
 # Configure logging
 logging.basicConfig(
@@ -37,6 +38,9 @@ class RealmsMUD:
         self.config = Config()
         self.world = None
         self.server = None
+        self.web_map = None
+        self.web_client = None
+        self.admin_dashboard = None
         self.running = False
         self.start_time = None
         
@@ -53,7 +57,29 @@ class RealmsMUD:
         
         # Create the server
         self.server = MUDServer(self.world, self.config)
-        
+
+        # Start web map server
+        self.web_map = WebMapServer(self.world, self.config)
+        await self.web_map.start()
+        # Expose for map updates
+        self.world.web_map = self.web_map
+
+        # Start admin dashboard
+        try:
+            from admin_dashboard import AdminDashboard
+            self.admin_dashboard = AdminDashboard(self.world, port=4002)
+            await self.admin_dashboard.start()
+        except Exception as e:
+            logger.warning(f"Admin dashboard failed to start: {e}")
+
+        # Start web client
+        try:
+            from web_client import WebClient
+            self.web_client = WebClient(mud_port=self.config.PORT, web_port=4003)
+            await self.web_client.start()
+        except Exception as e:
+            logger.warning(f"Web client failed to start: {e}")
+
         logger.info("Initialization complete!")
         
     async def run(self):
@@ -70,12 +96,15 @@ class RealmsMUD:
         tick_rate = 1.0 / self.config.TICKS_PER_SECOND
         combat_tick = 0
         regen_tick = 0
+        minor_regen_tick = 0
+        affect_tick = 0
         poison_tick = 0
         zone_tick = 0
         autosave_tick = 0
         time_tick = 0
         weather_tick = 0
         pet_tick = 0
+        ambient_tick = 0
 
         try:
             while self.running:
@@ -84,12 +113,15 @@ class RealmsMUD:
                 # Process game ticks
                 combat_tick += 1
                 regen_tick += 1
+                minor_regen_tick += 1
+                affect_tick += 1
                 poison_tick += 1
                 zone_tick += 1
                 autosave_tick += 1
                 time_tick += 1
                 weather_tick += 1
                 pet_tick += 1
+                ambient_tick += 1
 
                 # Time tick (every 1 second - virtual game time)
                 if time_tick >= self.config.TICKS_PER_SECOND:
@@ -106,20 +138,46 @@ class RealmsMUD:
                     await self.world.pet_tick()
                     pet_tick = 0
 
-                # Combat tick (every 2 seconds)
-                if combat_tick >= self.config.TICKS_PER_SECOND * 2:
+                # Combat tick (every 4 seconds - slowed for readability)
+                if combat_tick >= self.config.TICKS_PER_SECOND * 4:
                     await self.world.combat_tick()
                     combat_tick = 0
 
-                # Poison tick (every 2.5 seconds - half tick for visible poison damage)
-                if poison_tick >= int(self.config.TICKS_PER_SECOND * 2.5):
+                # Affect tick (DOT/HOT effects)
+                if affect_tick >= self.config.TICKS_PER_SECOND * self.config.AFFECT_TICK_SECONDS:
+                    await self.world.affect_tick()
+                    affect_tick = 0
+
+                # Poison tick (faster feedback)
+                if poison_tick >= int(self.config.TICKS_PER_SECOND * self.config.POISON_TICK_SECONDS):
                     await self.world.poison_tick()
                     poison_tick = 0
 
-                # Regeneration tick (every 5 seconds)
-                if regen_tick >= self.config.TICKS_PER_SECOND * 5:
+                # Regen tick every 60 seconds (CircleMUD standard)
+                if regen_tick >= self.config.TICKS_PER_SECOND * 60:
                     await self.world.regen_tick()
                     regen_tick = 0
+
+                # Regen tick warning (3 seconds before)
+                if regen_tick == self.config.TICKS_PER_SECOND * 57:
+                    c = self.config.COLORS
+                    for p in self.world.players.values():
+                        if getattr(p, 'show_ticks', False):
+                            await p.send(f"{c['cyan']}[TICK in 3s]{c['reset']}")
+
+                # Minor regen tick every 5 seconds
+                if minor_regen_tick >= self.config.TICKS_PER_SECOND * 5:
+                    await self.world.minor_regen_tick()
+                    minor_regen_tick = 0
+                
+                # Ambient message tick (every 10 seconds, 3% chance per player)
+                if ambient_tick >= self.config.TICKS_PER_SECOND * 10:
+                    from ambient import AmbientManager
+                    await AmbientManager.ambient_tick(self.world)
+                    ambient_tick = 0
+                
+                # NPC schedule tick (every game hour change - handled in time_tick)
+                # Schedule processing happens when hour changes in world.time_tick()
                 
                 # Zone reset tick (every 15 minutes)
                 if zone_tick >= self.config.TICKS_PER_SECOND * 900:
@@ -155,6 +213,12 @@ class RealmsMUD:
             
         if self.server:
             await self.server.shutdown()
+
+        if self.web_map:
+            await self.web_map.stop()
+
+        if hasattr(self, 'web_client') and self.web_client:
+            await self.web_client.stop()
             
         logger.info("Shutdown complete. Farewell!")
 

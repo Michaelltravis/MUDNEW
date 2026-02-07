@@ -6,7 +6,7 @@
     "6400": {
       "vnum": 6400,
       "name": "A Mountain Trail",
-      "description": "This trail leads up, up, up into the mountains.  You hope you don't fall down, because that would hurt, hurt, hurt!  The trail continues to the east, and you can go back down to the small hidden valley to the west.",
+      "description": "This trail leads up, up, up into the mountains. You hope you don't fall\ndown, because that would hurt, hurt, hurt! The trail continues to the\neast, and you can go back down to the small hidden valley to the west.\nThe path is steep and treacherous. The wind howls around exposed peaks.",
       "sector_type": "mountain",
       "flags": [],
       "exits": {
@@ -29,7 +29,7 @@
     "6401": {
       "vnum": 6401,
       "name": "A Mountain Trail",
-      "description": "You're really high up now.  You can keep going even farther up into the mountains to the east, or go back down to the west.",
+      "description": "You're really high up now. You can keep going even farther up into the\nmountains to the east, or go back down to the west. Snow clings to\nshadowed crevices. The wind howls around exposed peaks.",
       "sector_type": "mountain",
       "flags": [],
       "exits": {
@@ -46,7 +46,7 @@
     "6402": {
       "vnum": 6402,
       "name": "A Mountain Trail",
-      "description": "Wispy clouds are beginning to surround you now, and your ears pop due to the altitude.  To the east, you see the summit of the mountain, and from the way the nearby mountains are arranged behind it, you believe you're on your way to a big valley.  You can also go down to the west.",
+      "description": "Wispy clouds are beginning to surround you now, and your ears pop due to\nthe altitude. To the east, you see the summit of the mountain, and from\nthe way the nearby mountains are arranged behind it, you believe you're\non your way to a big valley. You can also go down to the west. Snow\nclings to shadowed crevices. Bare rock dominates the landscape.",
       "sector_type": "mountain",
       "flags": [],
       "exits": {
@@ -69,7 +69,7 @@
     "6403": {
       "vnum": 6403,
       "name": "Near The Mountain's Peak",
-      "description": "The peak of this mountain is another couple hundred feet above you, but here is where the trail leads down into the valley...  What an odd valley!    The valley seems to have been filled up by a hundreds of feet of lava many years ago.  It gives the valley an odd, 'flat' look and darkish ground.  The path leads down east into the valley, and west back to civilization.",
+      "description": "The peak of this mountain is another couple hundred feet above, but\nhere is where the trail leads down into the valley... What an odd\nvalley! The valley seems to have been filled up by a hundreds of feet of\nlava many years ago. It gives the valley an odd, 'flat' look and darkish\nground. The path leads down east into the valley, and west back to\ncivilization. Snow clings to shadowed crevices. Bare rock dominates the\nlandscape.",
       "sector_type": "mountain",
       "flags": [],
       "exits": {
@@ -86,7 +86,7 @@
     "6404": {
       "vnum": 6404,
       "name": "The Trail To The Valley",
-      "description": "The trail leads down into the valley, where, by judging by the height of the trees, the lava had cooled tens of decades ago.  Down below you see the path lead into the small forest in the valley, and disappear out of sight.  East leads into the valley, West back to civilization.",
+      "description": "The trail leads down into the valley, where, by judging by the height of\nthe trees, the lava had cooled tens of decades ago. Down below see\nthe path lead into the small forest in the valley, and disappear out of\nsight. East leads into the valley, West back to civilization. Snow\nclings to shadowed crevices. The air is thin and cold at this altitude.",
       "sector_type": "mountain",
       "flags": [],
       "exits": {
@@ -109,7 +109,7 @@
     "6405": {
       "vnum": 6405,
       "name": "In The Valley",
-      "description": "The ground has taken on the texture of dirt on the top, but this valley is far too flat and too rocky to disguise the catastrophe that happened here so long ago.  Looking up to the mountains ringing this area, you notice several mountains look as if they had 'exploded', which is strange, considering that they are not volcanos.    The path leads into the woods to the east, and back up the mountain to the west.",
+      "description": "The ground has taken on the texture of dirt on the top, but this valley\nis far too flat and too rocky to disguise the catastrophe that happened\nhere so long ago. Looking up to the mountains ringing this area, you\nnotice several mountains look as if they had 'exploded', which is\nstrange, considering that they are not volcanos. The path leads into the\nwoods to the east, and back up the mountain to the west. Ancient trees\nrise on all sides. The forest floor is carpeted with fallen leaves.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -126,7 +126,7 @@
     "6406": {
       "vnum": 6406,
       "name": "In A Clearing",
-      "description": "You come to a small clearing now, after walking for several minutes through the silent woods.  An odd block sticks up here and there in   the ground... wait a minute.  These stones seem a little too regular, and from the circle  formation and size you could almost swear that they were... crenellations?  Could some sort of building been buried by the lava here?  A rusty ring sticks out of the earth in the center... a trapdoor?  This is almost too good to be true!",
+      "description": "You come to a small clearing now, after walking for several minutes\nthrough the silent woods. An odd block sticks up here and there in the\nground... wait a minute. These stones seem a little too regular, and\nfrom the circle formation and size you could almost swear that they\nwere... crenellations? Could some sort of building been buried by the\nlava here? A rusty ring sticks out of the earth in the center... a\ntrapdoor? This is almost too good to be true! The forest floor is\ncarpeted with fallen leaves. The scent of pine and earth fills the air.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -149,7 +149,7 @@
     "6407": {
       "vnum": 6407,
       "name": "A Stairwell",
-      "description": "This small room is the top of a stairwell leading down deep into the tower.  A small trapdoor overhead leaks the light of day around its edges.  To the south is a  wooden door, preserved through the ages by means  unknown.  To the west is a short hall.",
+      "description": "This small room is the top of a stairwell leading down deep into the\ntower. A small trapdoor overhead leaks the light of day around its\nedges. To the south is a wooden door, preserved through the ages by\nmeans unknown. To the west is a short hall. The ceiling hangs low\noverhead. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -199,7 +199,7 @@
     "6408": {
       "vnum": 6408,
       "name": "A Linen Closet",
-      "description": "This small room holds many types of linen on shelves  along the walls.  They are undoubtedly preserved by magic against the toil of the ages, since they seem freshly washed and folded.  You wonder what sort of mage could wield so much power to waste on such little things.",
+      "description": "This small room holds many types of linen on shelves along the walls.\nThey are undoubtedly preserved by magic against the toil of the ages,\nsince they seem freshly washed and folded. You wonder what sort of mage\ncould wield so much power to waste on such little things. Shadows gather\nin the corners. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -224,7 +224,7 @@
     "6409": {
       "vnum": 6409,
       "name": "A Corridor",
-      "description": "This is only a clean corridor, that leads back to the  stairwell to the east, and has doors leading to other rooms to the north and south.",
+      "description": "This is only a clean corridor, that leads back to the stairwell to the\neast, and has doors leading to other rooms to the north and south. Dust\nmotes drift in the stale air. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -260,7 +260,7 @@
     "6410": {
       "vnum": 6410,
       "name": "A Bathroom",
-      "description": "This is some sort of bathroom, like you've never seen before...  Water appliances leading from nowhere deliver hot and cold running water to basins that drain to... where?  How strange!",
+      "description": "This is some sort of bathroom, like you've never seen before... Water\nappliances leading from nowhere deliver hot and cold running water to\nbasins that drain to... where? How strange! Shadows gather in the\ncorners. The walls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -288,7 +288,7 @@
     "6411": {
       "vnum": 6411,
       "name": "The Master Bedroom",
-      "description": "This is an opulent room, decorated in silks and gold. There is an ebony desk against one wall, cooled lava rock spilling over its surface from the window it once looked out at.  A nice, spacious closet is filled with clothes just cleaned and pressed.",
+      "description": "This is an opulent room, decorated in silks and gold. There is an ebony\ndesk against one wall, cooled lava rock spilling over its surface from\nthe window it once looked out at. A nice, spacious closet is filled with\nclothes just cleaned and pressed. The air is still and musty. Dust motes\ndrift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -329,7 +329,7 @@
     "6412": {
       "vnum": 6412,
       "name": "The Library",
-      "description": "A great mages' library is contained on this floor of  the tower.  You feel you could learn anything you wanted to if you only looked and read long enough.  A door opens up back on the stairwell to the east.",
+      "description": "A great mages' library is contained on this floor of the tower. You feel\nyou could learn anything you wanted to if you only looked and read long\nenough. A door opens up back on the stairwell to the east. Shadows\ngather in the corners. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -370,7 +370,7 @@
     "6413": {
       "vnum": 6413,
       "name": "The Stairwell",
-      "description": "This stairwell continues up and down, and there is a door to the west.",
+      "description": "This stairwell continues up and down, and there is a door to the west.\nShadows gather in the corners. The air is still and musty. The air is\nstale and the walls close. Shadows pool in the corners, undisturbed.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -400,7 +400,7 @@
     "6414": {
       "vnum": 6414,
       "name": "A Hidden Hall",
-      "description": "This is a small hidden hall with a secret entrance to the library on the north end of the west wall, and a trapdoor  on the south end.",
+      "description": "This is a small hidden hall with a secret entrance to the library on the\nnorth end of the west wall, and a trapdoor on the south end. Dust motes\ndrift in the stale air. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -432,7 +432,7 @@
     "6415": {
       "vnum": 6415,
       "name": "A Stairwell",
-      "description": "This stairwell continues up and down, and there is a door to the west opening up onto this level.",
+      "description": "This stairwell continues up and down, and there is a door to the west\nopening up onto this level. Dust motes drift in the stale air. The\nceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -462,7 +462,7 @@
     "6416": {
       "vnum": 6416,
       "name": "The Hidden Treasure Room",
-      "description": "Jackpot!  A small room filled with treasure chests!  Go get them!",
+      "description": "Jackpot! A small room filled with treasure chests! Go get them! Shadows\ngather in the corners. The air is still and musty. The air is stale and\nthe walls close. Shadows pool in the corners, undisturbed.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -512,7 +512,7 @@
     "6417": {
       "vnum": 6417,
       "name": "A Hallway",
-      "description": "This hall runs through the tower.  There's more hall to the west, and doors to your north and south.  A door to the east leads back to the stairwell.",
+      "description": "This hall runs through the tower. There's more hall to the west, and\ndoors to the north and south. A door to the east leads back to the\nstairwell. The walls are rough-hewn and cold to the touch. Shadows\ngather in the corners.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -558,7 +558,7 @@
     "6418": {
       "vnum": 6418,
       "name": "A Servant's Room",
-      "description": "This seems to be a small servant's bedroom, sparsely decorated and outfitted with a bed, nightstand, chair and table, etc.  Nothing real important here.",
+      "description": "This seems to be a small servant's bedroom, sparsely decorated and\noutfitted with a bed, nightstand, chair and table, etc. Nothing real\nimportant here. Shadows gather in the corners. The air is still and\nmusty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -580,7 +580,7 @@
     "6419": {
       "vnum": 6419,
       "name": "A Servant's Room",
-      "description": "This seems to be a small servant's bedroom, sparsely  decorated and outfitted with a bed, nightstand, chair and table, etc.  Nothing real important here.",
+      "description": "This seems to be a small servant's bedroom, sparsely decorated and\noutfitted with a bed, nightstand, chair and table, etc. Nothing real\nimportant here. Shadows gather in the corners. The walls are rough-hewn\nand cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -602,7 +602,7 @@
     "6420": {
       "vnum": 6420,
       "name": "A Hallway",
-      "description": "This hallway continues to the east, and has a door to  the north.  You could swear that the way this level is arranged... nah, couldn't be.",
+      "description": "This hallway continues to the east, and has a door to the north. You\ncould swear that the way this level is arranged... nah, couldn't be. The\nwalls are rough-hewn and cold to the touch. The ceiling hangs low\noverhead.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -628,7 +628,7 @@
     "6421": {
       "vnum": 6421,
       "name": "A Servant's Room",
-      "description": "This seems to be a small servant's bedroom, sparsely decorated and outfitted with a bed, nightstand, chair and a table, etc.  Nothing real important here.",
+      "description": "This seems to be a small servant's bedroom, sparsely decorated and\noutfitted with a bed, nightstand, chair and a table, etc. Nothing real\nimportant here. The walls are rough-hewn and cold to the touch. The\nceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -650,7 +650,7 @@
     "6422": {
       "vnum": 6422,
       "name": "The Stairwell",
-      "description": "This stairwell leads up and down, and there is a big open room to your west.",
+      "description": "This stairwell leads up and down, and there is a big open room to your\nwest. The ceiling hangs low overhead. The air is still and musty. The\nair is stale and the walls close. Shadows pool in the corners,\nundisturbed.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -674,7 +674,7 @@
     "6423": {
       "vnum": 6423,
       "name": "The Dining Hall",
-      "description": "This is a large dining hall, with a long table that runs down the length of it.  Chairs are set up along the sides to accomodate approximately 10 people.  There are paintings and tapestries on the walls, adding color to the stonework, The cooled lava that had poured in the windows makes the place  seem eerie somehow .  There is a door to the north, and the stairwell is to the east.",
+      "description": "This is a large dining hall, with a long table that runs down the length\nof it. Chairs are set up along the sides to accomodate approximately 10\npeople. There are paintings and tapestries on the walls, adding color to\nthe stonework, The cooled lava that had poured in the windows makes the\nplace seem eerie somehow . There is a door to the north, and the\nstairwell is to the east. The walls are rough-hewn and cold to the\ntouch. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -703,7 +703,7 @@
     "6424": {
       "vnum": 6424,
       "name": "The Kitchen Area",
-      "description": "This is a well-stocked kitchen, the larders still fresh and full as if by magic.  Perhaps this would be a good place to take a break.",
+      "description": "This is a well-stocked kitchen, the larders still fresh and full as if\nby magic. Perhaps this would be a good place to take a break. The walls\nare rough-hewn and cold to the touch. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -735,7 +735,7 @@
     "6425": {
       "vnum": 6425,
       "name": "The Stairwell",
-      "description": "The stairwell leads up and down here, and there is a hall you can enter to the west.",
+      "description": "The stairwell leads up and down here, and there is a hall you can enter\nto the west. Dust motes drift in the stale air. Shadows gather in the\ncorners.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -759,7 +759,7 @@
     "6426": {
       "vnum": 6426,
       "name": "A Hall",
-      "description": "This area of the tower seems dank and oppressive.  The hall runs north-south, and there is an empty cell to your west.  The stairwell is to your east.",
+      "description": "This area of the tower seems dank and oppressive. The hall runs north-\nsouth, and there is an empty cell to the west. The stairwell is to your\neast. Dust motes drift in the stale air. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -786,7 +786,7 @@
     "6427": {
       "vnum": 6427,
       "name": "A Hall",
-      "description": "This is the northern end of the hall.  There are cells to your right and left, empty and awaiting occupants.",
+      "description": "This is the northern end of the hall. There are cells nearby and left,\nempty and awaiting occupants. The ceiling hangs low overhead. Shadows\ngather in the corners.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -805,7 +805,7 @@
     "6428": {
       "vnum": 6428,
       "name": "A Hall",
-      "description": "This is the southern end of the hall.  There are cells to your right and left, empty and awaiting occupants.",
+      "description": "This is the southern end of the hall. There are cells nearby and left,\nempty and awaiting occupants. Shadows gather in the corners. The walls\nare rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -824,7 +824,7 @@
     "6429": {
       "vnum": 6429,
       "name": "A Stairwell",
-      "description": "The stairwell continues up and down here.  A large room opens up to the west.",
+      "description": "The stairwell continues up and down here. A large room opens up to the\nwest. The ceiling hangs low overhead. Dust motes drift in the stale air.\nThe air is stale and the walls close. Shadows pool in the corners,\nundisturbed.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -848,7 +848,7 @@
     "6430": {
       "vnum": 6430,
       "name": "A Mage's Office",
-      "description": "A small desk here is cluttered with magically preserved papers and documents.  None seem of value, except perhaps to a historian.  This place seems vaguely uninteresting...",
+      "description": "A small desk here is cluttered with magically preserved papers and\ndocuments. None seem of value, except perhaps to a historian. This place\nseems vaguely uninteresting... The walls are rough-hewn and cold to the\ntouch. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -867,7 +867,7 @@
     "6431": {
       "vnum": 6431,
       "name": "The Stairwell",
-      "description": "The stairs go up and down here, and there is a room to the west...",
+      "description": "The stairs go up and down here, and there is a room to the west... The\nwalls are rough-hewn and cold to the touch. The air is still and musty.\nThe air is stale and the walls close. Shadows pool in the corners,\nundisturbed.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -891,7 +891,7 @@
     "6432": {
       "vnum": 6432,
       "name": "A Sitting Room",
-      "description": "This is a simply furnished room, with chairs all about. A fireplace is inset into an inner wall, the chimney undoubtedly directed by magic...    This would be a nice place to rest awhile...",
+      "description": "This is a simply furnished room, with chairs all about. A fireplace is\ninset into an inner wall, the chimney undoubtedly directed by magic...\nThis would be a nice place to rest awhile... The walls are rough-hewn\nand cold to the touch. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -907,7 +907,7 @@
     "6433": {
       "vnum": 6433,
       "name": "The Stairwell",
-      "description": "This is where the stairwell finally ends.  There is a hall to your west.",
+      "description": "This is where the stairwell finally ends. There is a hall to the west.\nThe ceiling hangs low overhead. The air is still and musty. The air is\nstale and the walls close. Shadows pool in the corners, undisturbed.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -927,7 +927,7 @@
     "6434": {
       "vnum": 6434,
       "name": "A Hallway",
-      "description": "This small hallway on the former 'ground floor' ran north- south.  To the east is the stairwell that leads up into  the shadowy recesses of the tower.  To the west is the entrance way to the tower.  The north is completely blocked off by lava, and the way south is still clear.",
+      "description": "This small hallway on the former 'ground floor' ran north- south. To the\neast is the stairwell that leads up into the shadowy recesses of the\ntower. To the west is the entrance way to the tower. The north is\ncompletely blocked off by lava, and the way south is still clear. Dust\nmotes drift in the stale air. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -951,7 +951,7 @@
     "6435": {
       "vnum": 6435,
       "name": "The Entranceway",
-      "description": "This is a grand chamber with giant double-doors to the west.  To the east is the main floor of the tower.  This room is arranged highly attractively and very impressively, with sculptures and tapistries everywhere.  The doors seem impenetrable... you don't think you'd be able to get through them if you really had to...",
+      "description": "This is a grand chamber with giant double-doors to the west. To the east\nis the main floor of the tower. This room is arranged highly\nattractively and very impressively, with sculptures and tapistries\neverywhere. The doors seem impenetrable... you don't think you'd be able\nto get through them if you really had to... The walls are rough-hewn and\ncold to the touch. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -980,7 +980,7 @@
     "6436": {
       "vnum": 6436,
       "name": "The Doorway",
-      "description": "This was the entrance to the tower.  Now lava has blocked it up completely.  However:    It seems when the lava came down a man was outside the doors.  He was blasted into the doors, and died instantly, but his skeleton still clutches a staff in perfect  condition...",
+      "description": "This was the entrance to the tower. Now lava has blocked it up\ncompletely. However: It seems when the lava came down a man was outside\nthe doors. He was blasted into the doors, and died instantly, but his\nskeleton still clutches a staff in perfect condition... The air is still\nand musty. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1008,7 +1008,7 @@
     "6437": {
       "vnum": 6437,
       "name": "The Hallway",
-      "description": "This is the southern part of the hallway.  There is  a door to the west, barred with gleaming bands of lights. To the north is more hallway.",
+      "description": "This is the southern part of the hallway. There is a door to the west,\nbarred with gleaming bands of lights. To the north is more hallway. The\nwalls are rough-hewn and cold to the touch. Dust motes drift in the\nstale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1040,7 +1040,7 @@
     "6438": {
       "vnum": 6438,
       "name": "The Stairs",
-      "description": "Stairs lead down here into the tower's basement, or you can head east into the main floor of the tower.",
+      "description": "Stairs lead down here into the tower's basement, or you can head east\ninto the main floor of the tower. The ceiling hangs low overhead. Dust\nmotes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1066,7 +1066,7 @@
     "6439": {
       "vnum": 6439,
       "name": "The Stairs",
-      "description": "Stairs lead up here to the main level, or you can go east to the basement of the tower.",
+      "description": "Stairs lead up here to the main level, or you can go east to the\nbasement of the tower. Dust motes drift in the stale air. The air is\nstill and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1086,7 +1086,7 @@
     "6440": {
       "vnum": 6440,
       "name": "An Alcove",
-      "description": "This alcove leads into a huge room to your north, and to stairs leading down to the east, and stairs going  up to your west.",
+      "description": "This alcove leads into a huge room to the north, and to stairs leading\ndown to the east, and stairs going up to the west. The walls are rough-\nhewn and cold to the touch. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1110,7 +1110,7 @@
     "6441": {
       "vnum": 6441,
       "name": "The Laboratory",
-      "description": "This laboratory has lots of stuff in it.  Beakers, flasks, burners, tongs, mortars and pestles, jars filled with normal things, jars filled with abnormal things, jars filled with things you'd rather not think about... A search could reveal many things...",
+      "description": "This laboratory has lots of stuff in it. Beakers, flasks, burners,\ntongs, mortars and pestles, jars filled with normal things, jars filled\nwith abnormal things, jars filled with things you'd rather not think\nabout... A search could reveal many things... The air is still and\nmusty. The walls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1139,7 +1139,7 @@
     "6442": {
       "vnum": 6442,
       "name": "The Stairs",
-      "description": "Stairs lead down here to the second level of the basement, or back west to the alcove.",
+      "description": "Stairs lead down here to the second level of the basement, or back west\nto the alcove. The air is still and musty. The walls are rough-hewn and\ncold to the touch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1159,7 +1159,7 @@
     "6443": {
       "vnum": 6443,
       "name": "The Stairs",
-      "description": "Stairs lead up here to the first level of the basement, or you can go east to another big room.",
+      "description": "Stairs lead up here to the first level of the basement, or you can go\neast to another big room. The air is still and musty. Shadows gather in\nthe corners.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1179,7 +1179,7 @@
     "6444": {
       "vnum": 6444,
       "name": "The Summoning Room",
-      "description": "This room is darkly lit by a giant glowing pentagram in the center of the room.  Bands of force encircle some sort of being trapped inside.  You think that going inside would be an EXTREMELY BAD idea...",
+      "description": "This room is darkly lit by a giant glowing pentagram in the center of\nthe room. Bands of force encircle some sort of being trapped inside. You\nthink that going inside would be an EXTREMELY BAD idea... The walls are\nrough-hewn and cold to the touch. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -1201,7 +1201,7 @@
     "6445": {
       "vnum": 6445,
       "name": "Inside A Pentagram",
-      "description": "The small god entrapped by the wizard looks at you with an insane expression.  Four hundred years of imprisonment doesn't do much for one's...     OOPS!     He killed you!    You are dead, R.I.P.",
+      "description": "The small god entrapped by the wizard looks at you with an insane\nexpression. Four hundred years of imprisonment doesn't do much for\none's... OOPS! He killed you! The area is dead, R.I.P. Dust motes drift\nin the stale air. The walls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "death",
@@ -1223,11 +1223,11 @@
       "long_desc": "A mountain goat nibbles at a piece of grass here.",
       "level": 8,
       "alignment": 0,
-      "hp_dice": "2d5+1",
-      "damage_dice": "3d5+95",
+      "hp_dice": "8d10+112",
+      "damage_dice": "3d5+5",
       "gold": 2000,
-      "exp": 8,
-      "armor_class": 3,
+      "exp": 480,
+      "armor_class": 76,
       "flags": [
         "stay_zone",
         "wimpy"
@@ -1241,11 +1241,11 @@
       "long_desc": "A cloaked and clawed demon of decay comes at you viciously!",
       "level": 12,
       "alignment": -1000,
-      "hp_dice": "2d7+1",
-      "damage_dice": "3d5+145",
+      "hp_dice": "12d10+160",
+      "damage_dice": "4d6+6",
       "gold": 5000,
-      "exp": 8,
-      "armor_class": 2,
+      "exp": 720,
+      "armor_class": 64,
       "flags": [
         "sentinel",
         "aware",
@@ -1266,11 +1266,11 @@
       "long_desc": "A mound of books rise up into a human shape and tries to hit you!",
       "level": 14,
       "alignment": 0,
-      "hp_dice": "2d8+2",
-      "damage_dice": "1d1+199",
+      "hp_dice": "14d10+184",
+      "damage_dice": "4d6+9",
       "gold": 9000,
-      "exp": 8,
-      "armor_class": 1,
+      "exp": 840,
+      "armor_class": 58,
       "flags": [
         "sentinel",
         "aware",
@@ -1296,11 +1296,11 @@
       "long_desc": "A bad feeling chokes your throat.",
       "level": 18,
       "alignment": 0,
-      "hp_dice": "3d8+0",
-      "damage_dice": "1d1+249",
+      "hp_dice": "18d10+232",
+      "damage_dice": "5d7+9",
       "gold": 20000,
-      "exp": 8,
-      "armor_class": 0,
+      "exp": 1080,
+      "armor_class": 46,
       "flags": [
         "sentinel",
         "aware",
@@ -1313,7 +1313,46 @@
         "no_bash",
         "no_blind"
       ],
-      "description": "It resembles a lot of other bad feelings you've had,\nbut a lot more tangible... magic?"
+      "description": "It resembles a lot of other bad feelings you've had,\nbut a lot more tangible... magic?",
+      "loot_table": [
+        {
+          "vnum": 6421,
+          "chance": 20
+        },
+        {
+          "vnum": 6422,
+          "chance": 20
+        },
+        {
+          "vnum": 6423,
+          "chance": 20
+        },
+        {
+          "vnum": 6424,
+          "chance": 20
+        },
+        {
+          "vnum": 6425,
+          "chance": 20
+        },
+        {
+          "vnum": 6426,
+          "chance": 20
+        },
+        {
+          "vnum": 6427,
+          "chance": 20
+        },
+        {
+          "vnum": 6428,
+          "chance": 20
+        },
+        {
+          "vnum": 6429,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
     },
     "6404": {
       "vnum": 6404,
@@ -1322,11 +1361,11 @@
       "long_desc": "Your worst nightmare coalesces in front of you and attacks!",
       "level": 19,
       "alignment": 0,
-      "hp_dice": "3d8+2",
-      "damage_dice": "1d1+299",
+      "hp_dice": "19d10+244",
+      "damage_dice": "5d7+10",
       "gold": 22500,
-      "exp": 8,
-      "armor_class": 0,
+      "exp": 1140,
+      "armor_class": 43,
       "flags": [
         "sentinel",
         "aware",
@@ -1339,7 +1378,46 @@
         "no_bash",
         "no_blind"
       ],
-      "description": "It looks like you deepest, darkest fears personified.\nWait a minute!  It IS your deepest, darkest fears\npersonified!"
+      "description": "It looks like you deepest, darkest fears personified.\nWait a minute!  It IS your deepest, darkest fears\npersonified!",
+      "loot_table": [
+        {
+          "vnum": 6421,
+          "chance": 20
+        },
+        {
+          "vnum": 6422,
+          "chance": 20
+        },
+        {
+          "vnum": 6423,
+          "chance": 20
+        },
+        {
+          "vnum": 6424,
+          "chance": 20
+        },
+        {
+          "vnum": 6425,
+          "chance": 20
+        },
+        {
+          "vnum": 6426,
+          "chance": 20
+        },
+        {
+          "vnum": 6427,
+          "chance": 20
+        },
+        {
+          "vnum": 6428,
+          "chance": 20
+        },
+        {
+          "vnum": 6429,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
     },
     "6405": {
       "vnum": 6405,
@@ -1348,11 +1426,11 @@
       "long_desc": "A guardian guards the door.  It looks at you and attacks!",
       "level": 18,
       "alignment": 0,
-      "hp_dice": "3d6+2",
-      "damage_dice": "1d1+249",
+      "hp_dice": "18d10+232",
+      "damage_dice": "5d7+9",
       "gold": 17500,
-      "exp": 8,
-      "armor_class": 0,
+      "exp": 1080,
+      "armor_class": 46,
       "flags": [
         "sentinel",
         "aware",
@@ -1364,7 +1442,46 @@
         "no_sleep",
         "no_blind"
       ],
-      "description": "The guardian guards the door.  That's about all its\nbrain can handle: guarding."
+      "description": "The guardian guards the door.  That's about all its\nbrain can handle: guarding.",
+      "loot_table": [
+        {
+          "vnum": 6421,
+          "chance": 20
+        },
+        {
+          "vnum": 6422,
+          "chance": 20
+        },
+        {
+          "vnum": 6423,
+          "chance": 20
+        },
+        {
+          "vnum": 6424,
+          "chance": 20
+        },
+        {
+          "vnum": 6425,
+          "chance": 20
+        },
+        {
+          "vnum": 6426,
+          "chance": 20
+        },
+        {
+          "vnum": 6427,
+          "chance": 20
+        },
+        {
+          "vnum": 6428,
+          "chance": 20
+        },
+        {
+          "vnum": 6429,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
     }
   },
   "objects": {
@@ -1569,6 +1686,184 @@
       "weight": 3,
       "value": 20,
       "nutrition": 8
+    },
+    "6421": {
+      "vnum": 6421,
+      "name": "towerguard blade",
+      "short_desc": "a towerguard blade",
+      "room_desc": "A towerguard blade lies here.",
+      "description": "A guard's blade.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "slash",
+      "damage_dice": "2d6+3",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 2
+        }
+      ],
+      "set_id": 64
+    },
+    "6422": {
+      "vnum": 6422,
+      "name": "sanctum shield",
+      "short_desc": "a sanctum shield",
+      "room_desc": "A sanctum shield lies here.",
+      "description": "A paladin's shield.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "shield",
+      "armor_bonus": 2,
+      "affects": [
+        {
+          "type": "wis",
+          "value": 1
+        }
+      ],
+      "set_id": 64
+    },
+    "6423": {
+      "vnum": 6423,
+      "name": "void\u2011etched sigil",
+      "short_desc": "a void\u2011etched sigil",
+      "room_desc": "A void\u2011etched sigil lies here.",
+      "description": "A deathknight's sigil.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "neck1",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 3
+        }
+      ],
+      "set_id": 64
+    },
+    "6424": {
+      "vnum": 6424,
+      "name": "wardkeeper's seal",
+      "short_desc": "a wardkeeper's seal",
+      "room_desc": "A wardkeeper's seal lies here.",
+      "description": "A cleric's seal.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "wis",
+          "value": 2
+        },
+        {
+          "type": "max_mana",
+          "value": 20
+        }
+      ],
+      "set_id": 64
+    },
+    "6425": {
+      "vnum": 6425,
+      "name": "arcane focus",
+      "short_desc": "an arcane focus",
+      "room_desc": "An arcane focus lies here.",
+      "description": "A mage's focus.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "int",
+          "value": 3
+        }
+      ],
+      "set_id": 64
+    },
+    "6426": {
+      "vnum": 6426,
+      "name": "resonant lyre",
+      "short_desc": "a resonant lyre",
+      "room_desc": "A resonant lyre lies here.",
+      "description": "A bard's lyre.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "mace",
+      "damage_dice": "1d6+2",
+      "affects": [
+        {
+          "type": "cha",
+          "value": 2
+        }
+      ],
+      "set_id": 64
+    },
+    "6427": {
+      "vnum": 6427,
+      "name": "spell\u2011cut knife",
+      "short_desc": "a spell\u2011cut knife",
+      "room_desc": "A spell\u2011cut knife lies here.",
+      "description": "A rogue's knife.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "pierce",
+      "damage_dice": "1d6+2",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 2
+        },
+        {
+          "type": "hitroll",
+          "value": 1
+        }
+      ],
+      "set_id": 64
+    },
+    "6428": {
+      "vnum": 6428,
+      "name": "watcher's band",
+      "short_desc": "a watcher's band",
+      "room_desc": "A watcher's band lies here.",
+      "description": "A ranger's ring.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "finger1",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 2
+        }
+      ],
+      "set_id": 64
+    },
+    "6429": {
+      "vnum": 6429,
+      "name": "runic cloak",
+      "short_desc": "a runic cloak",
+      "room_desc": "A runic cloak lies here.",
+      "description": "A warded cloak.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "about",
+      "armor_bonus": 1,
+      "affects": [
+        {
+          "type": "spell_resist",
+          "value": 5
+        }
+      ],
+      "set_id": 64
     }
   }
 }

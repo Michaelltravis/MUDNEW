@@ -6,7 +6,7 @@
     "3300": {
       "vnum": 3300,
       "name": "A Scraggly Trail",
-      "description": "This trail slopes up and away from the main road to  the west.  At points the trail seems to fade into  obscurity against the grey stone and near-grey mountain  grass prevalent here.  The trail leads generally eastward  and up higher into the rocky ground.  There is a sign  here, seemingly out-of-place in this rough country.",
+      "description": "This trail slopes up and away from the main road to the west. At points\nthe trail seems to fade into obscurity against the grey stone and near-\ngrey mountain grass prevalent here. The trail leads generally eastward\nand up higher into the rocky ground. There is a sign here, seemingly\nout-of-place in this rough country. Snow clings to shadowed crevices.\nThe path is steep and treacherous.",
       "sector_type": "mountain",
       "flags": [
         "no_mob",
@@ -29,7 +29,7 @@
     "3301": {
       "vnum": 3301,
       "name": "A Scraggly Trail",
-      "description": "What could barely be called a trail leads west back  down the mountainside, and down into a very small valley  where a small house sits in the middle of a well-groomed  yard.  The door to the house is open and inviting,  welcoming you for a visit.",
+      "description": "What could barely be called a trail leads west back down the\nmountainside, and down into a very small valley where a small house sits\nin the middle of a well-groomed yard. The door to the house is open and\ninviting, welcoming you for a visit. Snow clings to shadowed crevices.\nBare rock dominates the landscape.",
       "sector_type": "mountain",
       "flags": [],
       "exits": {
@@ -46,7 +46,7 @@
     "3302": {
       "vnum": 3302,
       "name": "A Groomed Path",
-      "description": "You are standing in the western end of a very, very  small valley, just about room enough for the one house  standing to your east.  You can see from here that the  door to the cozy cottage is open and inviting, but the  interior seems very dark.  A path bordered by shrubberies  leads up to the structure, and ends where you are  standing; right by the easiest path back up into the  mountains.",
+      "description": "This is the western end of a very, very small valley, just about room\nenough for the one house standing to the east. Visible is from here that\nthe door to the cozy cottage is open and inviting, but the interior\nseems very dark. A path bordered by shrubberies leads up to the\nstructure, and ends where you are standing; right by the easiest path\nback up into the mountains. Bare rock dominates the landscape. The wind\nhowls around exposed peaks.",
       "sector_type": "mountain",
       "flags": [],
       "exits": {
@@ -63,7 +63,7 @@
     "3303": {
       "vnum": 3303,
       "name": "Outside A House",
-      "description": "The path you are on leads from the front door of the cottage to your east, to the edge of the small valley to the west.  The building seems quiet...almost too quiet.  A small voice in the back of your head, the same voice that has saved your life on countless occasions, seems to be telling you that something is very, very wrong here.",
+      "description": "The path you are on leads from the front door of the cottage to your\neast, to the edge of the small valley to the west. The building seems\nquiet...almost too quiet. A small voice in the back of your head, the\nsame voice that has saved your life on countless occasions, seems to be\ntelling you that something is very, very wrong here. Tall grass sways in\na gentle breeze. The ground is soft underfoot.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -86,7 +86,7 @@
     "3304": {
       "vnum": 3304,
       "name": "The Smithery",
-      "description": "Devastation greets your eyes.    The forge has been blasted apart, along with most of  the back door.  Hammers, tongs, and anvils lie about in  one gigantic mess, and the smith's bed smoulders yet.   This place has been utterly wrecked and blasted apart, by  more than one man you would think from all the tracks in  the dust...",
+      "description": "Devastation greets your eyes. The forge has been blasted apart, along\nwith most of the back door. Hammers, tongs, and anvils lie about in one\ngigantic mess, and the smith's bed smoulders yet. This place has been\nutterly wrecked and blasted apart, by more than one man you would think\nfrom all the tracks in the dust... Dust motes drift in the stale air.\nThe walls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -120,7 +120,7 @@
     "3305": {
       "vnum": 3305,
       "name": "A Small Garden",
-      "description": "This garden was probably once kept orderly and weedless. Unfortunately, it seems someone has been careless with a fireball.  There is nothing here now but blast-marks and ashes, and the remains of a trail leading to the east edge of this tiny valley.",
+      "description": "This garden was probably once kept orderly and weedless. Unfortunately,\nit seems someone has been careless with a fireball. There is nothing\nhere now but blast-marks and ashes, and the remains of a trail leading\nto the east edge of this tiny valley. Tall grass sways in a gentle\nbreeze. The air is fresh and clean.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -140,7 +140,7 @@
     "3306": {
       "vnum": 3306,
       "name": "Mountain Ridge",
-      "description": "You are standing on a ridge in the mountains, just east of a very small valley.  You spot a tiny cottage sitting  in the center of the valley, and the ridge continues  south.  Looking at the sheer drops to the north and west,  you consider not taking those directions.",
+      "description": "This area is a ridge in the mountains, just east of a very small valley.\nYou spot a tiny cottage sitting in the center of the valley, and the\nridge continues south. Looking at the sheer drops to the north and west,\nyou consider not taking those directions. The wind howls around exposed\npeaks. The air is thin and cold at this altitude.",
       "sector_type": "mountain",
       "flags": [],
       "exits": {
@@ -160,7 +160,7 @@
     "3307": {
       "vnum": 3307,
       "name": "The Mountain Ridge",
-      "description": "The mountain range continues north from here, and  widens out into a small plateau just to your south.  Going east and west from here would be a bad idea, considering  the steepness of the drop.  From this height, you have a  fairly good panoramic view to the south, including what  appears to be a small mountain village to your south and  west, and a tall, ominous peak westwards from here.",
+      "description": "The mountain range continues north from here, and widens out into a\nsmall plateau just to the south. Going east and west from here would be\na bad idea, considering the steepness of the drop. From this height, you\nhave a fairly good panoramic view to the south, including what appears\nto be a small mountain village to the south and west, and a tall,\nominous peak westwards from here. Snow clings to shadowed crevices. Bare\nrock dominates the landscape.",
       "sector_type": "mountain",
       "flags": [],
       "exits": {
@@ -180,7 +180,7 @@
     "3308": {
       "vnum": 3308,
       "name": "The Diverging Paths",
-      "description": "You are standing on a small plateau in the mountains,  just south of a ridge that leads northwards through the  rocky area.  To the east, south, and west are gentle  slopes leading down into different areas of the mountains.    A giant, dark peak looks down over you to the west,  looking quite spooky indeed!",
+      "description": "This area is a small plateau in the mountains, just south of a ridge\nthat leads northwards through the rocky area. To the east, south, and\nwest are gentle slopes leading down into different areas of the\nmountains. A giant, dark peak looks down over you to the west, looking\nquite spooky indeed! Bare rock dominates the landscape. The path is\nsteep and treacherous.",
       "sector_type": "mountain",
       "flags": [],
       "exits": {
@@ -208,7 +208,7 @@
     "3309": {
       "vnum": 3309,
       "name": "A Steep Slope",
-      "description": "This slopes leads down and to the west from here.  Up  above, you see a plateau at the southern end of a long  mountain ridge.  Surpisingly, there seems to be signs of  traffic in this area, leading into the large depression  here.  The going looks somewhat dangerous, and you decide  to exercise a little caution.",
+      "description": "This slopes leads down and to the west from here. Up above, you see a\nplateau at the southern end of a long mountain ridge. Surpisingly, there\nseems to be signs of traffic in this area, leading into the large\ndepression here. The going looks somewhat dangerous, and you decide to\nexercise a little caution. The wind carries the scent of wild herbs.\nSheep trails wind between the hillocks.",
       "sector_type": "hills",
       "flags": [],
       "exits": {
@@ -232,7 +232,7 @@
     "3310": {
       "vnum": 3310,
       "name": "A Small Plateau",
-      "description": "You are standing upon another mini-plateau, bordered by a sheer wall of rock to the north.  You can climb up the  slope to the east, or continue along the flat area to the  west.  Another slope leads downwards to the south, looking unsafe but climbable.",
+      "description": "The area opens upon another mini-plateau, bordered by a sheer wall of\nrock to the north. You can climb up the slope to the east, or continue\nalong the flat area to the west. Another slope leads downwards to the\nsouth, looking unsafe but climbable. The view stretches for miles in\nevery direction. Rocks jut from the grassy slopes.",
       "sector_type": "hills",
       "flags": [],
       "exits": {
@@ -253,7 +253,7 @@
     "3311": {
       "vnum": 3311,
       "name": "A Small Plateau",
-      "description": "This plateau ends here, with a steep drop-off to the  south, and a solid wall of rock to the north.  Eastwards  the plateau continues, and you think you can climb up the  steep rocky slope just west of here.  You are afforded a  good view of the lower regions of this depression, and you think you spot what might be a cave south and down from  here...",
+      "description": "This plateau ends here, with a steep drop-off to the south, and a solid\nwall of rock to the north. Eastwards the plateau continues, and you\nthink you can climb up the steep rocky slope just west of here. The area\nis afforded a good view of the lower regions of this depression, and you\nthink you spot what might be a cave south and down from here... Rocks\njut from the grassy slopes. The terrain rolls and dips around.",
       "sector_type": "hills",
       "flags": [],
       "exits": {
@@ -270,7 +270,7 @@
     "3312": {
       "vnum": 3312,
       "name": "A Rocky Slope",
-      "description": "This slope is fairly treacherous, but looks to be  somewhat safer to the north.  East the slope leads down  to a small plateau that also looks considerably safer  than your other choices.  The shale under your feet  slips badly, and you are almost thrown off balance;  this is no place to be without mountaineering equipment.",
+      "description": "This slope is fairly treacherous, but looks to be somewhat safer to the\nnorth. East the slope leads down to a small plateau that also looks\nconsiderably safer than your other choices. The shale under your feet\nslips badly, and you are almost thrown off balance; this is no place to\nbe without mountaineering equipment. Snow clings to shadowed crevices.\nBare rock dominates the landscape.",
       "sector_type": "mountain",
       "flags": [],
       "exits": {
@@ -287,7 +287,7 @@
     "3313": {
       "vnum": 3313,
       "name": "The Overlook",
-      "description": "You are standing on a point outcropping with a  beautiful view of the mountains to the north.  Far  below, you see what appears to be a foot-path climb  up to the central mountain, a peak that looks dark  and disturbing.  You get very bad vibes from that  mountain for some reason, and it doesn't seem like  a very good idea to try to find a way to get there.    The only safe way to leave this overlook is to  the south.",
+      "description": "This area is a point outcropping with a beautiful view of the mountains\nto the north. Far below, you see what appears to be a foot- path climb\nup to the central mountain, a peak that looks dark and disturbing. You\nget very bad vibes from that mountain for some reason, and it doesn't\nseem like a very good idea to try to find a way to get there. The only\nsafe way to leave this overlook is to the south. Rocks jut from the\ngrassy slopes. The view stretches for miles in every direction.",
       "sector_type": "hills",
       "flags": [],
       "exits": {
@@ -300,7 +300,7 @@
     "3314": {
       "vnum": 3314,
       "name": "A Rocky Slope",
-      "description": "You slip and slide your way across the steep ground,  trying desperately to keep your balance.  You can climb  up to a small plateau to the north from here, or carefully head down to the floor of the depression to the west.   You're not sure which is safer...",
+      "description": "You slip and slide your way across the steep ground, trying desperately\nto keep your balance. You can climb up to a small plateau to the north\nfrom here, or carefully head down to the floor of the depression to the\nwest. You're not sure which is safer... Bare rock dominates the\nlandscape. The air is thin and cold at this altitude.",
       "sector_type": "mountain",
       "flags": [],
       "exits": {
@@ -317,7 +317,7 @@
     "3315": {
       "vnum": 3315,
       "name": "The Depression Floor",
-      "description": "A small path leads south here, away from the rocky  slope leading up to the east.  A small spring burbles  here, evidently the cause of much of the traffic.   Looking up, you see sheer rock walls surrounding much  of the depression, making an effective fortress of this place.",
+      "description": "A small path leads south here, away from the rocky slope leading up to\nthe east. A small spring burbles here, evidently the cause of much of\nthe traffic. Looking up, you see sheer rock walls surrounding much of\nthe depression, making an effective fortress of this place. Sheep trails\nwind between the hillocks. Rocks jut from the grassy slopes.",
       "sector_type": "hills",
       "flags": [],
       "exits": {
@@ -334,7 +334,7 @@
     "3316": {
       "vnum": 3316,
       "name": "The Depression Floor",
-      "description": "The small path you are standing on leads north, and east into what appears to be a large cave hollowed out of the mountainside.  The whole place seems quiet, too quiet in fact.  Your little adventurer's intuition is busily warning you of traps.",
+      "description": "The small path you are standing on leads north, and east into what\nappears to be a large cave hollowed out of the mountainside. The whole\nplace seems quiet, too quiet in fact. Your little adventurer's intuition\nis busily warning you of traps. The wind carries the scent of wild\nherbs. Sheep trails wind between the hillocks.",
       "sector_type": "hills",
       "flags": [],
       "exits": {
@@ -351,7 +351,7 @@
     "3317": {
       "vnum": 3317,
       "name": "A Cave Entrance",
-      "description": "A cave leads into the heart of the mountainside, well- lit by sconces upon the walls.  A large rock sits by  the side here, near a small firepit.  Debris litters the  area; rabbit bones, half of a broken whetstone, and random litter.  The ground is devoid of grass, and well trodden  by many pairs of boots.  Strange that someone should live  so deep in the mountains...",
+      "description": "A cave leads into the heart of the mountainside, well- lit by sconces\nupon the walls. A large rock sits by the side here, near a small\nfirepit. Debris litters the area; rabbit bones, half of a broken\nwhetstone, and random litter. The ground is devoid of grass, and well\ntrodden by many pairs of boots. Strange that someone should live so deep\nin the mountains... Shadows gather in the corners. Dust motes drift in\nthe stale air.",
       "sector_type": "inside",
       "flags": [
         "no_mob"
@@ -376,7 +376,7 @@
     "3318": {
       "vnum": 3318,
       "name": "A Cave Passageway",
-      "description": "You are near the entrance of the cave.  The outside  light streams in from the west, accompanied by a slight  breeze, making the flames in the sconces flutter a bit and throw stange shadows upon the walls.  This passageway  heads north and south from here, each way seeming dark and stuffy compared to outdoors.  From the tracks in the  floor, you guess that the north is the more used.",
+      "description": "The area is near the entrance of the cave. The outside light streams in\nfrom the west, accompanied by a slight breeze, making the flames in the\nsconces flutter a bit and throw stange shadows upon the walls. This\npassageway heads north and south from here, each way seeming dark and\nstuffy compared to outdoors. From the tracks in the floor, you guess\nthat the north is the more used. The ceiling hangs low overhead. Shadows\ngather in the corners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -399,7 +399,7 @@
     "3319": {
       "vnum": 3319,
       "name": "A Cave Passageway",
-      "description": "The passage turns here, one end leading south, towards  the cave's entrance, and east -- that much deeper into the mountain.  The light sconces keep the area bright enough  to see, but not nearly bright enough for you to be quite  comfortable in this strange place.  From far off you hear  the echoes of what sound to be voices.",
+      "description": "The passage turns here, one end leading south, towards the cave's\nentrance, and east -- that much deeper into the mountain. The light\nsconces keep the area bright enough to see, but not nearly bright enough\nfor you to be quite comfortable in this strange place. From far off you\nhear the echoes of what sound to be voices. Shadows gather in the\ncorners. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -424,7 +424,7 @@
     "3320": {
       "vnum": 3320,
       "name": "A Cave Passageway",
-      "description": "This twisty passage leads east and west from here.   Eastwards you hear the unmistakable sounds of low  voices.  The echoes seem to be playing funny effects  on you, however, and you are not sure  from how far  off these voices might be coming.",
+      "description": "This twisty passage leads east and west from here. Eastwards you hear\nthe unmistakable sounds of low voices. The echoes seem to be playing\nfunny effects on you, however, and you are not sure from how far off\nthese voices might be coming. The ceiling hangs low overhead. The air is\nstill and musty.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -443,7 +443,7 @@
     "3321": {
       "vnum": 3321,
       "name": "A Cave Passageway",
-      "description": "The passage you are standing in turns west and south  from here.  One of the sconces here is out, making this  area extremely dark and hard to see in.  You do see lights from the south, however, seemingly brighter than the  sconces you've seen along the walls so far.",
+      "description": "The passage you are standing in turns west and south from here. One of\nthe sconces here is out, making this area extremely dark and hard to see\nin. You do see lights from the south, however, seemingly brighter than\nthe sconces you've seen along the walls so far. Dust motes drift in the\nstale air. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -468,7 +468,7 @@
     "3322": {
       "vnum": 3322,
       "name": "A Cave Passageway",
-      "description": "This is a T-intersection in the cave passageway, the  north leading back towards the cave's entrance (you  think!), the west leading towards a well-lighted area.   Eastwards the passageway continues into the shadowy  recesses of the mountain uninvitingly.  The echoes of  voices are confusing you a bit, and you are not sure  whether you should try to remain quiet or not.",
+      "description": "This is a T-intersection in the cave passageway, the north leading back\ntowards the cave's entrance (you think!), the west leading towards a\nwell-lighted area. Eastwards the passageway continues into the shadowy\nrecesses of the mountain uninvitingly. The echoes of voices are\nconfusing you a bit, and you are not sure whether you should try to\nremain quiet or not. Shadows gather in the corners. The air is still and\nmusty.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -491,7 +491,7 @@
     "3323": {
       "vnum": 3323,
       "name": "A Cave",
-      "description": "Many sconces line the walls here, casting light on  some weapon racks and chests of armor.  Everything is neat, orderly, and actually well-dusted.  Someone cares for these items...frequently it seems.",
+      "description": "Many sconces line the walls here, casting light on some weapon racks and\nchests of armor. Everything is neat, orderly, and actually well-dusted.\nSomeone cares for these items...frequently it seems. Shadows gather in\nthe corners. The walls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -522,7 +522,7 @@
     "3324": {
       "vnum": 3324,
       "name": "A Cave Passageway",
-      "description": "The passageway you are in leads south and west from  here.  Many large stones and rocks are on the floor of the cave, making walking difficult in the dim light from the  sconces on the walls.  You hear the continued echo of  voices, seemingly fainter now.  Must be the strange  acoustics of this place...",
+      "description": "The passageway you are in leads south and west from here. Many large\nstones and rocks are on the floor of the cave, making walking difficult\nin the dim light from the sconces on the walls. You hear the continued\necho of voices, seemingly fainter now. Must be the strange acoustics of\nthis place... The walls are rough-hewn and cold to the touch. The air is\nstill and musty.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -541,7 +541,7 @@
     "3325": {
       "vnum": 3325,
       "name": "A Cave Passageway",
-      "description": "The cave twists around like a coiled snake, leading  east and north from here.  You begin to wonder if your  orientations are still correct.  That worries you for some reason.",
+      "description": "The cave twists around like a coiled snake, leading east and north from\nhere. You begin to wonder if your orientations are still correct. That\nworries you for some reason. The walls are rough-hewn and cold to the\ntouch. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -566,7 +566,7 @@
     "3326": {
       "vnum": 3326,
       "name": "A Cave Passageway",
-      "description": "You can head north and west through the cave passageways here, both ways dimly lit by the ever-present sconces on  the walls.  The echoes you heard earlier seem to be getting louder, and seem to be coming from the northern passage.   You feeled a bit chilled from the cooled cave air and  shiver a bit in the faint whisper of a breeze.  This place  is a little too eerie and dark to be comfortable in.",
+      "description": "You can head north and west through the cave passageways here, both ways\ndimly lit by the ever-present sconces on the walls. The echoes you heard\nearlier seem to be getting louder, and seem to be coming from the\nnorthern passage. You feeled a bit chilled from the cooled cave air and\nshiver a bit in the faint whisper of a breeze. This place is a little\ntoo eerie and dark to be comfortable in. The walls are rough-hewn and\ncold to the touch. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -585,7 +585,7 @@
     "3327": {
       "vnum": 3327,
       "name": "A Cave Passageway",
-      "description": "The echoes are growing louder, and seem to be coming  from the northern end of this corridor.  Southwards you  see the tunnel continue right before yet another bend in  the passagway.  You spot a small piece of red cloth torn  against a sharp rock jutting out from the passage's side.   It looks like silk, very nice in fact.",
+      "description": "The echoes are growing louder, and seem to be coming from the northern\nend of this corridor. Southwards you see the tunnel continue right\nbefore yet another bend in the passagway. You spot a small piece of red\ncloth torn against a sharp rock jutting out from the passage's side. It\nlooks like silk, very nice in fact. The air is still and musty. The\nceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -614,7 +614,7 @@
     "3328": {
       "vnum": 3328,
       "name": "A Cave Passageway",
-      "description": "The main passageway leads south from here, and a smaller cave tunnel leads away to the west.  Two large boulders  sit against the wall, wiped clean of dirt and grime.  A  paper food wrapper has been trodden under several pairs of  feet here; at best guess, you'd say this would probably be  a guard post.",
+      "description": "The main passageway leads south from here, and a smaller cave tunnel\nleads away to the west. Two large boulders sit against the wall, wiped\nclean of dirt and grime. A paper food wrapper has been trodden under\nseveral pairs of feet here; at best guess, you'd say this would probably\nbe a guard post. The walls are rough-hewn and cold to the touch. The\nceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -633,7 +633,7 @@
     "3329": {
       "vnum": 3329,
       "name": "The End Of The Passageway",
-      "description": "The cave passageway ends abruptly here to the north in a large wooden door set into the stone walls.  The craftsmanship is superb!  You can also head back to the main passage to the west, where there seems to be more light than here.  An echo from down the passage makes you wonder for a moment if you are being followed, but you see nothing there...",
+      "description": "The cave passageway ends abruptly here to the north in a large wooden\ndoor set into the stone walls. The craftsmanship is superb! You can also\nhead back to the main passage to the west, where there seems to be more\nlight than here. An echo from down the passage makes you wonder for a\nmoment if you are being followed, but you see nothing there... Dust\nmotes drift in the stale air. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -668,7 +668,7 @@
     "3330": {
       "vnum": 3330,
       "name": "A Cavern",
-      "description": "This natural cavern has been turned into a combination  office/storeroom.  A small brook rushes through the south  wall, and flows back into the west wall through a tiny  hole.  Boxes and crates are stacked against the walls, and  a beat up oaken desk stands near the door stacked with  papers written upon by an unsteady hand.  Some large  lanterns keep the place very well lighted.",
+      "description": "This natural cavern has been turned into a combination office/storeroom.\nA small brook rushes through the south wall, and flows back into the\nwest wall through a tiny hole. Boxes and crates are stacked against the\nwalls, and a beat up oaken desk stands near the door stacked with papers\nwritten upon by an unsteady hand. Some large lanterns keep the place\nvery well lighted. Shadows gather in the corners. The air is still and\nmusty.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -709,7 +709,7 @@
     "3331": {
       "vnum": 3331,
       "name": "A Cave Passageway",
-      "description": "You are standing south of the main entrance to this  cave.  The passage you are in continues south, very badly  lit along its length by the sconces lining the walls  every fifteen feet or so.  From somewhere deep in the  recesses of the cave, you hear a faint, rhythmic thumping  sound distorted by the passage's strange acoustics.",
+      "description": "The area opens south of the main entrance to this cave. The passage you\nare in continues south, very badly lit along its length by the sconces\nlining the walls every fifteen feet or so. From somewhere deep in the\nrecesses of the cave, you hear a faint, rhythmic thumping sound\ndistorted by the passage's strange acoustics. The ceiling hangs low\noverhead. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -728,7 +728,7 @@
     "3332": {
       "vnum": 3332,
       "name": "A Cave Passageway",
-      "description": "You are standing at the southern bend of this passage, able to head east and north from here.  The rock around you echoes the sound of far-off pounding to you, making the place seem somehow alive, with a heartbeat.  This place is fairly eerie, now that you come to think of it.",
+      "description": "The area opens at the southern bend of this passage, able to head east\nand north from here. The rock around echoes the sound of far-off\npounding to you, making the place seem somehow alive, with a heartbeat.\nThis place is fairly eerie, now that you come to think of it. The air is\nstill and musty. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -753,7 +753,7 @@
     "3333": {
       "vnum": 3333,
       "name": "A Cave Passageway",
-      "description": "The passageway makes a U-turn here, heading north and westwards to the other side of the 'U'.  The air seems humid and hard to breathe.  Some algae grows near the floor in the slick spots, giving a definite subtle smell of rot to the air.",
+      "description": "The passageway makes a U-turn here, heading north and westwards to the\nother side of the 'U'. The air seems humid and hard to breathe. Some\nalgae grows near the floor in the slick spots, giving a definite subtle\nsmell of rot to the air. The walls are rough-hewn and cold to the touch.\nShadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -772,7 +772,7 @@
     "3334": {
       "vnum": 3334,
       "name": "A Cave Passageway",
-      "description": "The tunnel twists to the south and east from here,  its dark length seemingly dismal and lifeless.  A faint  thumping sound reverberates from the walls, making you  perk your ears for the direction of the noise.",
+      "description": "The tunnel twists to the south and east from here, its dark length\nseemingly dismal and lifeless. A faint thumping sound reverberates from\nthe walls, making you perk your ears for the direction of the noise.\nShadows gather in the corners. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -791,7 +791,7 @@
     "3335": {
       "vnum": 3335,
       "name": "A Cave Passageway",
-      "description": "This area darker than the rest of the passageway, due to the fact that the sconces along the walls stop abruptly here.  The way to the south is completely dark, in direct contrast to the tunnels to the west.  You peer hard to the south, but can make out nothing in the impenetrable  darkness.  And still that distant thumping impinges on  your consciousness...",
+      "description": "This area darker than the rest of the passageway, due to the fact that\nthe sconces along the walls stop abruptly here. The way to the south is\ncompletely dark, in direct contrast to the tunnels to the west. You peer\nhard to the south, but can make out nothing in the impenetrable\ndarkness. And still that distant thumping impinges on your\nconsciousness... Shadows gather in the corners. Dust motes drift in the\nstale air.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -810,7 +810,7 @@
     "3336": {
       "vnum": 3336,
       "name": "A Cave Passageway",
-      "description": "You are standing in a north-south tunnel carved  naturally through the stone of the mountain.  To the  north the tunnel is lighted by sconces along the wall,  banishing the deep, deep darkness you now stand in.  To  the south you can see nothing.  A deep thumping noise  seems to be getting louder and louder as you stand here,  coming from somewhere deep inside.",
+      "description": "This is a north-south tunnel carved naturally through the stone of the\nmountain. To the north the tunnel is lighted by sconces along the wall,\nbanishing the deep, deep darkness you now stand in. To the south Visible\nis nothing. A deep thumping noise seems to be getting louder and louder\nas you stand here, coming from somewhere deep inside. Shadows gather in\nthe corners. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -836,7 +836,7 @@
     "3337": {
       "vnum": 3337,
       "name": "A Cave Passageway",
-      "description": "The passageway switches directions again in the dark  gloom of the mountain, heading to the north and east from  here.  As you round the corner, a trick of the acoustics  make the deep thrumming and pounding you've been hearing  sound as if its coming from two feet away!  Very unsettling.",
+      "description": "The passageway switches directions again in the dark gloom of the\nmountain, heading to the north and east from here. As you round the\ncorner, a trick of the acoustics make the deep thrumming and pounding\nyou've been hearing sound as if its coming from two feet away! Very\nunsettling. The ceiling hangs low overhead. Shadows gather in the\ncorners.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -856,7 +856,7 @@
     "3338": {
       "vnum": 3338,
       "name": "A Cave Passageway",
-      "description": "The tunnel weaves around, twisting to the north and  west here.  The darkness around you is near total.  Ahead,  you hear the sounds of something metal banging against  stone.  Could someone be mining out the tunnel, perhaps?",
+      "description": "The tunnel weaves around, twisting to the north and west here. The\ndarkness around is near total. Ahead, you hear the sounds of\nsomething metal banging against stone. Could someone be mining out the\ntunnel, perhaps? The walls are rough-hewn and cold to the touch. Dust\nmotes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -876,7 +876,7 @@
     "3339": {
       "vnum": 3339,
       "name": "A Cave Passageway",
-      "description": "A glimmer of light to the east alerts you to the fact that something is going on in the tunnel nearby.  The south exit of the tunnel leads off into complete darkness.  All around on the ground are piles of earth and stone, making you have to wend through the tunnel carefully.  Hmm.",
+      "description": "A glimmer of light to the east alerts you to the fact that something is\ngoing on in the tunnel nearby. The south exit of the tunnel leads off\ninto complete darkness. All around on the ground are piles of earth and\nstone, making you have to wend through the tunnel carefully. Hmm. The\nair is still and musty. The walls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -902,7 +902,7 @@
     "3340": {
       "vnum": 3340,
       "name": "The End Of The Passage",
-      "description": "The tunnel stops abruptly here at a fissure in the stone. All around on the ground are rocks and gravel, mined from the fissure in an attempt to widen it enough for passage. A few pieces of paper litter and wrappers tells you that the work here is relatively recent.",
+      "description": "The tunnel stops abruptly here at a fissure in the stone. All around on\nthe ground are rocks and gravel, mined from the fissure in an attempt to\nwiden it enough for passage. A few pieces of paper litter and wrappers\ntells you that the work here is relatively recent. Dust motes drift in\nthe stale air. The walls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -935,7 +935,7 @@
     "3341": {
       "vnum": 3341,
       "name": "A Rocky Slope",
-      "description": "This treacherous slope leads ever-downward quite a ways, down to a valley where there seems to be a small village!   What a village is doing this far from civilization, and how they survive you've no idea.  From the smoke wafting from  some of the chimneys, it looks like this place is still  inhabited as well.    Now if you can only get down this slope without breaking an ankle...",
+      "description": "This treacherous slope leads ever-downward quite a ways, down to a\nvalley where there seems to be a small village! What a village is doing\nthis far from civilization, and how they survive you've no idea. From\nthe smoke wafting from some of the chimneys, it looks like this place is\nstill inhabited as well. Now if you can only get down this slope without\nbreaking an ankle... Bare rock dominates the landscape. Snow clings to\nshadowed crevices.",
       "sector_type": "mountain",
       "flags": [],
       "exits": {
@@ -952,7 +952,7 @@
     "3342": {
       "vnum": 3342,
       "name": "A Rocky Slope",
-      "description": "You're slipping and sliding across this slope, trying to get to your destination without breaking your leg or falling and shattering your head.  Below, you spot some movement in the village, giving proof the place is not a ghost-town.    The main road of the village starts at the bottom of  the slope just to the east, and the slope continues west and up far, far up the mountain.",
+      "description": "You're slipping and sliding across this slope, trying to get to your\ndestination without breaking your leg or falling and shattering your\nhead. Below, you spot some movement in the village, giving proof the\nplace is not a ghost-town. The main road of the village starts at the\nbottom of the slope just to the east, and the slope continues west and\nup far, far up the mountain. The wind howls around exposed peaks. The\nair is thin and cold at this altitude.",
       "sector_type": "mountain",
       "flags": [
         "no_mob"
@@ -971,7 +971,7 @@
     "3343": {
       "vnum": 3343,
       "name": "Main Road",
-      "description": "This place leaves you very unimpressed.  And bored.   You are definitely bored by this place.  The people are  listless, going about their daily chores with a slowness  that pains your eyes.  A slope to the west climbs up the  mountainside, and two open shops made of wood and stone  are to your north and south.  East-wards this road continues.    There is a small sign here.",
+      "description": "This place leaves you very unimpressed. And bored. The area is\ndefinitely bored by this place. The people are listless, going about\ntheir daily chores with a slowness that pains your eyes. A slope to the\nwest climbs up the mountainside, and two open shops made of wood and\nstone are to your north and south. East-wards this road continues. There\nis a small sign here. The sounds of city life echo around. The smell of\nsmoke and humanity hangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -999,7 +999,7 @@
     "3344": {
       "vnum": 3344,
       "name": "The Mountain Tavern",
-      "description": "Hmm.  Looks like there's no one here, not even an bartender. Evidently you've come during off hours, since no bar could be THIS dull.  The walls are decorated with mounted animal heads and arrows and longbows and other hunting equipment/trophies. All of it looks rather plain.",
+      "description": "Hmm. Looks like there's no one here, not even an bartender. Evidently\nyou've come during off hours, since no bar could be THIS dull. The walls\nare decorated with mounted animal heads and arrows and longbows and\nother hunting equipment/trophies. All of it looks rather plain. Shadows\ngather in the corners. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -1014,7 +1014,7 @@
     "3345": {
       "vnum": 3345,
       "name": "The General Store",
-      "description": "A bored shopkeeper waves an idle hand towards his stock of stuff.  Browse, type list, buy, sell, whatever...",
+      "description": "A bored shopkeeper waves an idle hand towards his stock of stuff.\nBrowse, type list, buy, sell, whatever... Shadows gather in the corners.\nDust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -1035,7 +1035,7 @@
     "3346": {
       "vnum": 3346,
       "name": "Main Road",
-      "description": "Nothing is going on in this section of village either.  To the east is an actual road intersection, and to the west you see one of the ends of this road.  A large grassy area to the south is fenced off for a horse corral.",
+      "description": "Nothing is going on in this section of village either. To the east is an\nactual road intersection, and to the west you see one of the ends of\nthis road. A large grassy area to the south is fenced off for a horse\ncorral. The smell of smoke and humanity hangs in the air. Vendors and\npedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1062,7 +1062,7 @@
     "3347": {
       "vnum": 3347,
       "name": "The Corral",
-      "description": "Many horses look up at you when you enter this corral. The horses are kept in by a big wooden fence, which they seem quite happy to been kept in by.  You don't see anyone around taking care of these horses, but someone is probably close by.",
+      "description": "Many horses look up at you when you enter this corral. The horses are\nkept in by a big wooden fence, which they seem quite happy to been kept\nin by. You don't see anyone around taking care of these horses, but\nsomeone is probably close by. The air is still and musty. The ceiling\nhangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -1099,7 +1099,7 @@
     "3348": {
       "vnum": 3348,
       "name": "The Intersection",
-      "description": "You are standing in an intersection deep in the heart of Stanneg by the Mountains.  In fact, this is the ONLY intersection anywhere in Stanneg by the Mountain it  appears.    There are some buildings to the north, and south, and east, and west.  None particularly stand out from the  others.",
+      "description": "This is an intersection deep in the heart of Stanneg by the Mountains.\nIn fact, this is the ONLY intersection anywhere in Stanneg by the\nMountain it appears. There are some buildings to the north, and south,\nand east, and west. None particularly stand out from the others.\nBuildings crowd together on all sides. The sounds of city life echo\naround.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1124,7 +1124,7 @@
     "3349": {
       "vnum": 3349,
       "name": "A Small Road",
-      "description": "This road runs north through Stanneg by the Mountains,  if through would be the operative word for such a motley  collection of buildings.  Westwards is a small, open-roofed building that appears to be a farmer's market.  The road  you are on continues north, and comes to an intersection  just south of here.",
+      "description": "This road runs north through Stanneg by the Mountains, if through would\nbe the operative word for such a motley collection of buildings.\nWestwards is a small, open-roofed building that appears to be a farmer's\nmarket. The road you are on continues north, and comes to an\nintersection just south of here. The smell of smoke and humanity hangs\nin the air. The sounds of city life echo around.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1151,7 +1151,7 @@
     "3350": {
       "vnum": 3350,
       "name": "The Farmer's Market",
-      "description": "One farmer's wife stands here, waiting for someone to buy the food her family has grown.  She looks bored, but not unhappy... no competition!",
+      "description": "One farmer's wife stands here, waiting for someone to buy the food her\nfamily has grown. She looks bored, but not unhappy... no competition!\nThe cobblestones are worn smooth by countless feet. Buildings crowd\ntogether on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1170,7 +1170,7 @@
     "3351": {
       "vnum": 3351,
       "name": "A Small Road",
-      "description": "The small, north-south road running through Stanneg by the Mountains ends here, curving to become the front walk of a private home to the east.  The road runs south from this house, towards the center of the village.",
+      "description": "The small, north-south road running through Stanneg by the Mountains\nends here, curving to become the front walk of a private home to the\neast. The road runs south from this house, towards the center of the\nvillage. Vendors and pedestrians bustle past. The sounds of city life\necho around.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1193,7 +1193,7 @@
     "3352": {
       "vnum": 3352,
       "name": "A Private Home",
-      "description": "The interior of this home is simple and rustic.  A  ladder leads up to the loft, where the sleeping pallets  are tucked away.  A wood-burning stove keeps the place  well heated and cozy.  A homemade rocking chair stands  crooked in the corner, draped with a old looking afghan.   This home is a nice place, very comfortable.",
+      "description": "The interior of this home is simple and rustic. A ladder leads up to the\nloft, where the sleeping pallets are tucked away. A wood-burning stove\nkeeps the place well heated and cozy. A homemade rocking chair stands\ncrooked in the corner, draped with a old looking afghan. This home is a\nnice place, very comfortable. The ceiling hangs low overhead. Dust motes\ndrift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -1214,7 +1214,7 @@
     "3353": {
       "vnum": 3353,
       "name": "A Small Road",
-      "description": "The road ends here, leading up to a stone house to the south.  Smoke rises from the chimney in a dark stream, and the windows are frosted over with humidity. North, you see the main intersection of Stanneg.",
+      "description": "The road ends here, leading up to a stone house to the south. Smoke\nrises from the chimney in a dark stream, and the windows are frosted\nover with humidity. North, you see the main intersection of Stanneg.\nBuildings crowd together on all sides. The sounds of city life echo\naround.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1243,7 +1243,7 @@
     "3354": {
       "vnum": 3354,
       "name": "A Private Home",
-      "description": "This home strikes you as unbearable warm and uncomfortable. The fireplace is going at a full-bonfire, a mammoth stack of firewood beside it against the wall.  The decorations seem somewhat spartan and plain; a landscape, an old hunting  bow... nothing much of interest.",
+      "description": "This home strikes you as unbearable warm and uncomfortable. The\nfireplace is going at a full-bonfire, a mammoth stack of firewood beside\nit against the wall. The decorations seem somewhat spartan and plain; a\nlandscape, an old hunting bow... nothing much of interest. Shadows\ngather in the corners. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -1264,7 +1264,7 @@
     "3355": {
       "vnum": 3355,
       "name": "Main Road",
-      "description": "The main road through Stanneg ends here at a large well that leads deep, deep into the earth.  To the north of the  well is a large building, with a large WELCOME mat outside  its front door.  Westwards you see the a road intersection  in the center of the tiny village.  Around you is a rocky  terrain in the middle of this mountain range...not very  many places else to go.",
+      "description": "The main road through Stanneg ends here at a large well that leads deep,\ndeep into the earth. To the north of the well is a large building, with\na large WELCOME mat outside its front door. Westwards you see the a road\nintersection in the center of the tiny village. around is a rocky\nterrain in the middle of this mountain range...not very many places else\nto go. The cobblestones are worn smooth by countless feet. Buildings\ncrowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1293,7 +1293,7 @@
     "3356": {
       "vnum": 3356,
       "name": "Stanneg Inn",
-      "description": "This is a plainly decorated room, the main room of the Stanneg Inn.  A large arch to the west leads to a common room where food and drink can be ordered, and a set of rickety wooden stairs lead up to the rooms are.  A thread- bare rug lies in the middle of the floor, evidently well- loved by a cat or two from the quantity of hair on it.",
+      "description": "This is a plainly decorated room, the main room of the Stanneg Inn. A\nlarge arch to the west leads to a common room where food and drink can\nbe ordered, and a set of rickety wooden stairs lead up to the rooms are.\nA thread- bare rug lies in the middle of the floor, evidently well-\nloved by a cat or two from the quantity of hair on it. The ceiling hangs\nlow overhead. The walls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -1328,7 +1328,7 @@
     "3357": {
       "vnum": 3357,
       "name": "The Common Room",
-      "description": "A large fireplace warms this room in great waves of heat, to combat the chill drafts eminating from the windows on the west and north sides of this room.  A few benches and tables are clustered in the center of the room, for the use of the locals.  Fairly plain, for a frequented gathering place.",
+      "description": "A large fireplace warms this room in great waves of heat, to combat the\nchill drafts eminating from the windows on the west and north sides of\nthis room. A few benches and tables are clustered in the center of the\nroom, for the use of the locals. Fairly plain, for a frequented\ngathering place. The walls are rough-hewn and cold to the touch. Shadows\ngather in the corners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -1373,7 +1373,7 @@
     "3358": {
       "vnum": 3358,
       "name": "The Reception",
-      "description": "A hall leads away to the west lined with small brown doors.  A small table has a ledger on it, seemingly almost unused.  The hall is plain and without any  decoration, except for a nice painting of (what else) a mountain hanging above the stairs that lead back down to the inn proper.",
+      "description": "A hall leads away to the west lined with small brown doors. A small\ntable has a ledger on it, seemingly almost unused. The hall is plain and\nwithout any decoration, except for a nice painting of (what else) a\nmountain hanging above the stairs that lead back down to the inn proper.\nThe walls are rough-hewn and cold to the touch. Shadows gather in the\ncorners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -1394,7 +1394,7 @@
     "3359": {
       "vnum": 3359,
       "name": "A Rocky Slope",
-      "description": "This slope is fairly shallow and easy to walk on,  despite the loose shale and gravel.  To the east is a high  ridge you could stand on, and to the west is a flat area  near two trails leading up and down into the mountains.   High above you, to your west, is that ominous, dark peak,  which seems to radiating a sense of hopelessness...",
+      "description": "This slope is fairly shallow and easy to walk on, despite the loose\nshale and gravel. To the east is a high ridge you could stand on, and to\nthe west is a flat area near two trails leading up and down into the\nmountains. High above, to the west, is that ominous, dark peak, which\nseems to radiating a sense of hopelessness... Snow clings to shadowed\ncrevices. The path is steep and treacherous.",
       "sector_type": "mountain",
       "flags": [],
       "exits": {
@@ -1411,7 +1411,7 @@
     "3360": {
       "vnum": 3360,
       "name": "A Ledge",
-      "description": "This ledge overlooks a small path that leads up and  down from here.  Below, you see the path head down to a  large flat area where a small cottage lies nestled in the  mountains, smoke rising from it in a curling line.  Above,  the path seems to head towards that dark peak piercing the  sky.  You notice a few boot-tracks in the earth, seemingly  to lead down towards the cottage.",
+      "description": "This ledge overlooks a small path that leads up and down from here.\nBelow, you see the path head down to a large flat area where a small\ncottage lies nestled in the mountains, smoke rising from it in a curling\nline. Above, the path seems to head towards that dark peak piercing the\nsky. You notice a few boot-tracks in the earth, seemingly to lead down\ntowards the cottage. Sheep trails wind between the hillocks. The terrain\nrolls and dips around.",
       "sector_type": "hills",
       "flags": [],
       "exits": {
@@ -1432,7 +1432,7 @@
     "3361": {
       "vnum": 3361,
       "name": "Outside Of A Cottage",
-      "description": "Now that you approach closer to the cottage, you notice  that the smoke is not coming from the chimney, but rather  the gutted ruins of the building.  Something torched this  place, badly.  You see no signs of life among the wreckage. You can enter one of the particularly large holes in the  wall to the west, with caution.",
+      "description": "Now that you approach closer to the cottage, you notice that the smoke\nis not coming from the chimney, but rather the gutted ruins of the\nbuilding. Something torched this place, badly. You see no signs of life\namong the wreckage. You can enter one of the particularly large holes in\nthe wall to the west, with caution. The wind carries the scent of wild\nherbs. The view stretches for miles in every direction.",
       "sector_type": "hills",
       "flags": [],
       "exits": {
@@ -1449,7 +1449,7 @@
     "3362": {
       "vnum": 3362,
       "name": "The Torched Cottage",
-      "description": "This whole place is smouldering still from whatever  decided to try to burn it to the ground.  On the floor  near the center of the ruined structure is the burnt and  dessicated corpse of a man, outstretched and blackened.   There's not much to see here; whatever decided to destroy  this place did it very well.",
+      "description": "This whole place is smouldering still from whatever decided to try to\nburn it to the ground. On the floor near the center of the ruined\nstructure is the burnt and dessicated corpse of a man, outstretched and\nblackened. There's not much to see here; whatever decided to destroy\nthis place did it very well. Buildings crowd together on all sides. The\ncobblestones are worn smooth by countless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1462,7 +1462,7 @@
     "3363": {
       "vnum": 3363,
       "name": "A Mountain Trail",
-      "description": "This mountain trail leads straight up into the evil  looking mountains.  High above you, one mountain peak  seems to radiate danger and fear, and the trail seems  to be leading straight up to it.  You wonder if it is  wise to continue this way...    The trail goes even higher up to the west, and back  down to the west.",
+      "description": "This mountain trail leads straight up into the evil looking mountains.\nHigh above, one mountain peak seems to radiate danger and fear, and\nthe trail seems to be leading straight up to it. You wonder if it is\nwise to continue this way... The trail goes even higher up to the west,\nand back down to the west. The wind howls around exposed peaks. Bare\nrock dominates the landscape.",
       "sector_type": "mountain",
       "flags": [],
       "exits": {
@@ -1479,7 +1479,7 @@
     "3364": {
       "vnum": 3364,
       "name": "A Mountain Trail",
-      "description": "The trail leads up even higher into the mountains to the west here.  You shiver as the cold mountain air washes over you, and your back prickles as you wonder if anything lives up here, or anything _dangerous_ for that matter.  Maybe  heading back down to the east would be a good idea...",
+      "description": "The trail leads up even higher into the mountains to the west here. You\nshiver as the cold mountain air washes over you, and your back prickles\nas you wonder if anything lives up here, or anything _dangerous_ for\nthat matter. Maybe heading back down to the east would be a good idea...\nBare rock dominates the landscape. The path is steep and treacherous.",
       "sector_type": "mountain",
       "flags": [],
       "exits": {
@@ -1496,7 +1496,7 @@
     "3365": {
       "vnum": 3365,
       "name": "A Mountain Trail",
-      "description": "The trail leads up the side of the tallest mountain in  the range -- the one that sticks up into the dark sky like a monument to death and futility.  The trail leads back to  safety to the east, and goes even higher to the west.",
+      "description": "The trail leads up the side of the tallest mountain in the range -- the\none that sticks up into the dark sky like a monument to death and\nfutility. The trail leads back to safety to the east, and goes even\nhigher to the west. The path is steep and treacherous. The air is thin\nand cold at this altitude.",
       "sector_type": "mountain",
       "flags": [],
       "exits": {
@@ -1513,7 +1513,7 @@
     "3366": {
       "vnum": 3366,
       "name": "Near The Peak",
-      "description": "This is as close to the peak as you're going to get,  unless you use that tiny, tiny path leading up to your  north.  Up the side of the mountain you see a great cave  hollowed out, the inside pitch black.  The path leads down  the mountains to your east, which seems to be the best  place to go.",
+      "description": "This is as close to the peak as you're going to get, unless you use that\ntiny, tiny path leading up to the north. Up the side of the mountain you\nsee a great cave hollowed out, the inside pitch black. The path leads\ndown the mountains to the east, which seems to be the best place to go.\nBare rock dominates the landscape. The wind howls around exposed peaks.",
       "sector_type": "mountain",
       "flags": [
         "no_track",
@@ -1533,7 +1533,7 @@
     "3367": {
       "vnum": 3367,
       "name": "A Small, Dangerous Path",
-      "description": "This path leads up, up, up the side of the mountain, to  the evil-seeming cave.  It also heads down to the south--a  lot safer place to be.  In fact, you hear footsteps above  your head...",
+      "description": "This path leads up, up, up the side of the mountain, to the evil-seeming\ncave. It also heads down to the south--a lot safer place to be. In fact,\nyou hear footsteps above your head... The air is thin and cold at this\naltitude. Bare rock dominates the landscape.",
       "sector_type": "mountain",
       "flags": [
         "no_track",
@@ -1553,7 +1553,7 @@
     "3368": {
       "vnum": 3368,
       "name": "A Small, Dangerous Path",
-      "description": "Unfortunately, you realize too late that this bigger  ledge that leads north to the darkened cave is an ideal  spot for an ambush.  This ledge gives you a beautiful  panoramic view of the entire mountain range, however.   Breathtaking!",
+      "description": "Unfortunately, you realize too late that this bigger ledge that leads\nnorth to the darkened cave is an ideal spot for an ambush. This ledge\ngives you a beautiful panoramic view of the entire mountain range,\nhowever. Breathtaking! Bare rock dominates the landscape. Snow clings to\nshadowed crevices.",
       "sector_type": "mountain",
       "flags": [
         "no_track",
@@ -1587,7 +1587,7 @@
     "3369": {
       "vnum": 3369,
       "name": "The Cave Entrance",
-      "description": "You are standing in the entrance of a simply huge cave! The size is stunning!  All around the entrance are burnt  bones and various types of wooden and metal debris.  Giant  claw marks are all along the ground, leading back deeper  into the cave.    Two tunnels lead off from here, one up, one down.  There are claw marks leading in either direction.",
+      "description": "This is the entrance of a simply huge cave! The size is stunning! All\naround the entrance are burnt bones and various types of wooden and\nmetal debris. Giant claw marks are all along the ground, leading back\ndeeper into the cave. Two tunnels lead off from here, one up, one down.\nThere are claw marks leading in either direction. The wind carries the\nscent of wild herbs. Sheep trails wind between the hillocks.",
       "sector_type": "hills",
       "flags": [
         "dark",
@@ -1613,7 +1613,7 @@
     "3370": {
       "vnum": 3370,
       "name": "A Sloping Tunnel",
-      "description": "The tunnels slopes up to the north deeper into the  mountain.  A rather gusty breeze riffles your clothing  from ahead somewhere.  The claw marks in the stone floor  continue up the passage, through the darkness.",
+      "description": "The tunnels slopes up to the north deeper into the mountain. A rather\ngusty breeze riffles your clothing from ahead somewhere. The claw marks\nin the stone floor continue up the passage, through the darkness.\nShadows gather in the corners. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1635,7 +1635,7 @@
     "3371": {
       "vnum": 3371,
       "name": "A Sloping Tunnel",
-      "description": "The tunnel continues its slope upwards, and the wind  blows at you even stronger yet.  The claw tracks in the  stone stop abruptly here, where there seems to be a lot of unearthed dirt and stone around, heaped upon the floor.   You feel uneasy about this place.",
+      "description": "The tunnel continues its slope upwards, and the wind blows at you even\nstronger yet. The claw tracks in the stone stop abruptly here, where\nthere seems to be a lot of unearthed dirt and stone around, heaped upon\nthe floor. You feel uneasy about this place. Sheep trails wind between\nthe hillocks. Rocks jut from the grassy slopes.",
       "sector_type": "hills",
       "flags": [
         "dark",
@@ -1660,7 +1660,7 @@
     "3372": {
       "vnum": 3372,
       "name": "The Pit",
-      "description": "You fall through the illusionary floor.    You hit the poisoned spikes below.    You die very slowly of bloodloss, your head impaled at  an awkward angle.",
+      "description": "You fall through the illusionary floor. You hit the poisoned spikes\nbelow. You die very slowly of bloodloss, your head impaled at an awkward\nangle. The air is still and musty. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "death",
@@ -1678,7 +1678,7 @@
     "3373": {
       "vnum": 3373,
       "name": "A Sloping Tunnel",
-      "description": "This tunnel slopes deep, down into the mountain's heart. The air feels still and uncomfortably warm, despite the  closeness of the cave's entrance above you.  There's a  deep, musky odor in the air, and the giant claw marks  continue downwards.",
+      "description": "This tunnel slopes deep, down into the mountain's heart. The air feels\nstill and uncomfortably warm, despite the closeness of the cave's\nentrance above. There's a deep, musky odor in the air, and the giant\nclaw marks continue downwards. The terrain rolls and dips around.\nThe wind carries the scent of wild herbs.",
       "sector_type": "hills",
       "flags": [
         "dark",
@@ -1700,7 +1700,7 @@
     "3374": {
       "vnum": 3374,
       "name": "A Sloping Tunnel",
-      "description": "A bright light greets your eyes from the north, in  direct contrast to the darkness of the tunnel overhead.   You break  out in a sweat due to the overwhelming warmth  of the air.  The musky odor has grown quite intense,  drowning out everything else in the air and making it hard  to breathe.  Something in your gut begins squirming  uncomfortably as you wonder what's ahead...",
+      "description": "A bright light greets your eyes from the north, in direct contrast to\nthe darkness of the tunnel overhead. You break out in a sweat due to the\noverwhelming warmth of the air. The musky odor has grown quite intense,\ndrowning out everything else in the air and making it hard to breathe.\nSomething in your gut begins squirming uncomfortably as you wonder\nwhat's ahead... The view stretches for miles in every direction. Sheep\ntrails wind between the hillocks.",
       "sector_type": "hills",
       "flags": [
         "dark",
@@ -1722,7 +1722,7 @@
     "3375": {
       "vnum": 3375,
       "name": "The Lair",
-      "description": "This place is huge!!!  It should be considering the  dragon's great bulk.  However, instead of seeing the  customary carnage and mound of gold that one is accustomed  to seeing in a dragon lair, this one is decorated subtly  with tapestries and drapes, and other comforts of human  life.  There is even a huge-dragon sized bed -- undoubtedly  conjured to life by its elder dragon owner.",
+      "description": "This place is huge!!! It should be considering the dragon's great bulk.\nHowever, instead of seeing the customary carnage and mound of gold that\none is accustomed to seeing in a dragon lair, this one is decorated\nsubtly with tapestries and drapes, and other comforts of human life.\nThere is even a huge-dragon sized bed -- undoubtedly conjured to life by\nits elder dragon owner. The view stretches for miles in every direction.\nThe wind carries the scent of wild herbs.",
       "sector_type": "hills",
       "flags": [
         "indoors",
@@ -1777,11 +1777,11 @@
       "long_desc": "A farmer walks around, looking for something to do.",
       "level": 7,
       "alignment": 500,
-      "hp_dice": "2d4+1",
-      "damage_dice": "3d5+83",
+      "hp_dice": "7d10+100",
+      "damage_dice": "2d5+6",
       "gold": 1625,
-      "exp": 8,
-      "armor_class": 4,
+      "exp": 420,
+      "armor_class": 79,
       "flags": [
         "scavenger",
         "stay_zone",
@@ -1821,7 +1821,46 @@
         3037,
         3038,
         3039
-      ]
+      ],
+      "loot_table": [
+        {
+          "vnum": 3322,
+          "chance": 20
+        },
+        {
+          "vnum": 3323,
+          "chance": 20
+        },
+        {
+          "vnum": 3324,
+          "chance": 20
+        },
+        {
+          "vnum": 3325,
+          "chance": 20
+        },
+        {
+          "vnum": 3326,
+          "chance": 20
+        },
+        {
+          "vnum": 3327,
+          "chance": 20
+        },
+        {
+          "vnum": 3328,
+          "chance": 20
+        },
+        {
+          "vnum": 3329,
+          "chance": 20
+        },
+        {
+          "vnum": 3330,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
     },
     "3302": {
       "vnum": 3302,
@@ -1861,7 +1900,7 @@
       "level": 5,
       "alignment": 250,
       "hp_dice": "2d4+0",
-      "damage_dice": "1d10+60",
+      "damage_dice": "1d4+1",
       "gold": 500,
       "exp": 8,
       "armor_class": 5,
@@ -1886,11 +1925,11 @@
       "long_desc": "A farmer's wife offers you some vegetables.",
       "level": 20,
       "alignment": 500,
-      "hp_dice": "3d6+6",
-      "damage_dice": "3d5+245",
+      "hp_dice": "20d10+256",
+      "damage_dice": "6d8+5",
       "gold": 25000,
-      "exp": 8,
-      "armor_class": -40,
+      "exp": 1200,
+      "armor_class": 40,
       "flags": [
         "sentinel"
       ],
@@ -1910,11 +1949,11 @@
       "long_desc": "The Dragon Prince, Aglandiir, sits here looking at you curiously.",
       "level": 30,
       "alignment": 750,
-      "hp_dice": "8d5+5",
-      "damage_dice": "1d1+1499",
+      "hp_dice": "30d10+376",
+      "damage_dice": "8d8+11",
       "gold": 50000,
-      "exp": 8,
-      "armor_class": -100,
+      "exp": 1800,
+      "armor_class": 10,
       "flags": [
         "sentinel",
         "aware",
@@ -1929,7 +1968,46 @@
       "description": "Aglandiir is a prince of his kind, and he didn't get where \nhe is today by letting people steal from his horde!",
       "inventory": [
         3313
-      ]
+      ],
+      "loot_table": [
+        {
+          "vnum": 3322,
+          "chance": 20
+        },
+        {
+          "vnum": 3323,
+          "chance": 20
+        },
+        {
+          "vnum": 3324,
+          "chance": 20
+        },
+        {
+          "vnum": 3325,
+          "chance": 20
+        },
+        {
+          "vnum": 3326,
+          "chance": 20
+        },
+        {
+          "vnum": 3327,
+          "chance": 20
+        },
+        {
+          "vnum": 3328,
+          "chance": 20
+        },
+        {
+          "vnum": 3329,
+          "chance": 20
+        },
+        {
+          "vnum": 3330,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
     },
     "3306": {
       "vnum": 3306,
@@ -1938,11 +2016,11 @@
       "long_desc": "A Cyclops is here, trying to judge range with no depth perception.",
       "level": 16,
       "alignment": -500,
-      "hp_dice": "2d8+2",
-      "damage_dice": "3d5+295",
+      "hp_dice": "16d10+208",
+      "damage_dice": "5d7+6",
       "gold": 17000,
-      "exp": 8,
-      "armor_class": 0,
+      "exp": 960,
+      "armor_class": 52,
       "flags": [
         "sentinel",
         "scavenger",
@@ -1960,11 +2038,11 @@
       "long_desc": "A woman ignores you completely, so intent is she upon her sword.",
       "level": 15,
       "alignment": -600,
-      "hp_dice": "2d6+6",
-      "damage_dice": "3d5+200",
+      "hp_dice": "15d10+196",
+      "damage_dice": "4d7+8",
       "gold": 15250,
-      "exp": 8,
-      "armor_class": -30,
+      "exp": 900,
+      "armor_class": 55,
       "flags": [
         "sentinel",
         "helper"
@@ -1982,11 +2060,11 @@
       "long_desc": "A truly immense man laughs at you, and draws his knife!",
       "level": 22,
       "alignment": -900,
-      "hp_dice": "3d6+10",
-      "damage_dice": "3d5+400",
+      "hp_dice": "22d10+280",
+      "damage_dice": "6d8+8",
       "gold": 42500,
-      "exp": 8,
-      "armor_class": -70,
+      "exp": 1320,
+      "armor_class": 34,
       "flags": [
         "sentinel",
         "helper"
@@ -1994,7 +2072,46 @@
       "description": "This has to be one of the biggest men you've ever seen.  He is\na full seven feet toe to head, and weighs a good three hundred\npounds -- mostly on his biceps and pectorals it appears.  An\nornate scabbard slaps by his side, with the pommel of a silvered\ndagger sticking out... a tiny weapon for such a large man!",
       "equipment": {
         "wield": 3311
-      }
+      },
+      "loot_table": [
+        {
+          "vnum": 3322,
+          "chance": 20
+        },
+        {
+          "vnum": 3323,
+          "chance": 20
+        },
+        {
+          "vnum": 3324,
+          "chance": 20
+        },
+        {
+          "vnum": 3325,
+          "chance": 20
+        },
+        {
+          "vnum": 3326,
+          "chance": 20
+        },
+        {
+          "vnum": 3327,
+          "chance": 20
+        },
+        {
+          "vnum": 3328,
+          "chance": 20
+        },
+        {
+          "vnum": 3329,
+          "chance": 20
+        },
+        {
+          "vnum": 3330,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
     },
     "3309": {
       "vnum": 3309,
@@ -2003,11 +2120,11 @@
       "long_desc": "A receptionist offers you a room.",
       "level": 12,
       "alignment": 400,
-      "hp_dice": "2d7+1",
-      "damage_dice": "3d5+140",
+      "hp_dice": "12d10+160",
+      "damage_dice": "4d6+6",
       "gold": 8000,
-      "exp": 8,
-      "armor_class": -30,
+      "exp": 720,
+      "armor_class": 64,
       "flags": [
         "sentinel"
       ],
@@ -2020,10 +2137,10 @@
       "long_desc": "An aged innkeeper greets you as you enter.",
       "level": 10,
       "alignment": 750,
-      "hp_dice": "2d6+1",
-      "damage_dice": "3d5+120",
+      "hp_dice": "2d8+50",
+      "damage_dice": "1d6+8",
       "gold": 5500,
-      "exp": 8,
+      "exp": 299,
       "armor_class": 20,
       "flags": [
         "sentinel"
@@ -2037,11 +2154,11 @@
       "long_desc": "A hunter walks through the town streets on his own time.",
       "level": 11,
       "alignment": 500,
-      "hp_dice": "2d6+2",
-      "damage_dice": "3d5+133",
+      "hp_dice": "11d10+148",
+      "damage_dice": "3d6+8",
       "gold": 6100,
-      "exp": 8,
-      "armor_class": -20,
+      "exp": 660,
+      "armor_class": 67,
       "flags": [
         "scavenger",
         "stay_zone",
@@ -2059,11 +2176,11 @@
       "long_desc": "A waiter rushes by, intent on his business.",
       "level": 5,
       "alignment": 0,
-      "hp_dice": "2d4+0",
-      "damage_dice": "3d5+60",
+      "hp_dice": "5d10+76",
+      "damage_dice": "2d5+3",
       "gold": 675,
-      "exp": 8,
-      "armor_class": 70,
+      "exp": 300,
+      "armor_class": 85,
       "flags": [
         "sentinel"
       ],
@@ -2076,11 +2193,11 @@
       "long_desc": "A waitress rushes by, intent on her business.",
       "level": 5,
       "alignment": 0,
-      "hp_dice": "2d4+0",
-      "damage_dice": "3d5+60",
+      "hp_dice": "5d10+76",
+      "damage_dice": "2d5+3",
       "gold": 675,
-      "exp": 8,
-      "armor_class": 70,
+      "exp": 300,
+      "armor_class": 85,
       "flags": [
         "sentinel"
       ],
@@ -2093,11 +2210,11 @@
       "long_desc": "A bartender washes a glass idly here.",
       "level": 15,
       "alignment": 200,
-      "hp_dice": "2d8+2",
-      "damage_dice": "3d5+180",
+      "hp_dice": "15d10+196",
+      "damage_dice": "4d7+8",
       "gold": 15500,
-      "exp": 8,
-      "armor_class": 10,
+      "exp": 900,
+      "armor_class": 55,
       "flags": [
         "sentinel"
       ],
@@ -2115,11 +2232,11 @@
       "long_desc": "A bandit springs into action upon seeing you.",
       "level": 16,
       "alignment": -500,
-      "hp_dice": "2d8+3",
-      "damage_dice": "3d5+195",
+      "hp_dice": "16d10+208",
+      "damage_dice": "5d7+6",
       "gold": 13000,
-      "exp": 8,
-      "armor_class": -20,
+      "exp": 960,
+      "armor_class": 52,
       "flags": [
         "scavenger",
         "wimpy",
@@ -2138,11 +2255,11 @@
       "long_desc": "A bandit guard stands at attention here.",
       "level": 18,
       "alignment": -500,
-      "hp_dice": "3d6+2",
-      "damage_dice": "3d5+220",
+      "hp_dice": "18d10+232",
+      "damage_dice": "5d7+9",
       "gold": 17200,
-      "exp": 8,
-      "armor_class": -30,
+      "exp": 1080,
+      "armor_class": 46,
       "flags": [
         "sentinel",
         "aggr_good",
@@ -2160,10 +2277,10 @@
       "long_desc": "A slave here is mining out a new passageway.",
       "level": 6,
       "alignment": 1000,
-      "hp_dice": "1d8+1",
-      "damage_dice": "3d5+70",
+      "hp_dice": "2d8+30",
+      "damage_dice": "1d6+4",
       "gold": 750,
-      "exp": 8,
+      "exp": 154,
       "armor_class": 100,
       "flags": [
         "sentinel",
@@ -2178,11 +2295,11 @@
       "long_desc": "A farmer walks around, looking for something to do.",
       "level": 7,
       "alignment": 500,
-      "hp_dice": "2d4+1",
-      "damage_dice": "3d5+83",
+      "hp_dice": "7d10+100",
+      "damage_dice": "2d5+6",
       "gold": 1625,
-      "exp": 8,
-      "armor_class": 4,
+      "exp": 420,
+      "armor_class": 79,
       "flags": [
         "sentinel",
         "scavenger",
@@ -2198,11 +2315,11 @@
       "long_desc": "A hunter walks through the town streets on his own time.",
       "level": 11,
       "alignment": 500,
-      "hp_dice": "2d6+2",
-      "damage_dice": "3d5+133",
+      "hp_dice": "11d10+148",
+      "damage_dice": "3d6+8",
       "gold": 6100,
-      "exp": 8,
-      "armor_class": -20,
+      "exp": 660,
+      "armor_class": 67,
       "flags": [
         "sentinel",
         "scavenger",
@@ -2438,6 +2555,188 @@
       "value": 10,
       "capacity": 1,
       "current": 1
+    },
+    "3322": {
+      "vnum": 3322,
+      "name": "blade\u2011master greatsword",
+      "short_desc": "\u001b[97ma \u001b[91mblade\u001b[0m\u001b[97m\u2011master \u001b[91mblade\u001b[0m\u001b[97m\u001b[0m",
+      "room_desc": "\u001b[97mA \u001b[91mblade\u001b[0m\u001b[97m\u2011master \u001b[91mblade\u001b[0m\u001b[97m lies here.\u001b[0m",
+      "description": "A duelist's blade.",
+      "item_type": "weapon",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "wield",
+      "weapon_type": "slash",
+      "damage_dice": "2d6+6",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 4
+        }
+      ],
+      "set_id": 33
+    },
+    "3323": {
+      "vnum": 3323,
+      "name": "oathbound shield",
+      "short_desc": "\u001b[97man oathbound \u001b[93mshield\u001b[0m\u001b[97m\u001b[0m",
+      "room_desc": "\u001b[97mAn oathbound \u001b[93mshield\u001b[0m\u001b[97m lies here.\u001b[0m",
+      "description": "A paladin's shield.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "shield",
+      "armor_bonus": 3,
+      "affects": [
+        {
+          "type": "wis",
+          "value": 1
+        }
+      ],
+      "set_id": 33
+    },
+    "3324": {
+      "vnum": 3324,
+      "name": "blood duel sigil",
+      "short_desc": "\u001b[97ma blood duel \u001b[35msigil\u001b[0m\u001b[97m\u001b[0m",
+      "room_desc": "\u001b[97mA blood duel \u001b[35msigil\u001b[0m\u001b[97m lies here.\u001b[0m",
+      "description": "A deathknight's sigil.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "neck1",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 4
+        }
+      ],
+      "set_id": 33
+    },
+    "3325": {
+      "vnum": 3325,
+      "name": "sanctum reliquary",
+      "short_desc": "\u001b[97ma sanctum \u001b[93mreliquary\u001b[0m\u001b[97m\u001b[0m",
+      "room_desc": "\u001b[97mA sanctum \u001b[93mreliquary\u001b[0m\u001b[97m lies here.\u001b[0m",
+      "description": "A cleric's reliquary.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "wis",
+          "value": 3
+        },
+        {
+          "type": "max_mana",
+          "value": 30
+        }
+      ],
+      "set_id": 33
+    },
+    "3326": {
+      "vnum": 3326,
+      "name": "spell\u2011duelist focus",
+      "short_desc": "\u001b[97ma spell\u2011duelist \u001b[96mfocus\u001b[0m\u001b[97m\u001b[0m",
+      "room_desc": "\u001b[97mA spell\u2011duelist \u001b[96mfocus\u001b[0m\u001b[97m lies here.\u001b[0m",
+      "description": "A mage's focus.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "int",
+          "value": 4
+        }
+      ],
+      "set_id": 33
+    },
+    "3327": {
+      "vnum": 3327,
+      "name": "virtuoso lyre",
+      "short_desc": "\u001b[97ma virtuoso \u001b[95mlyre\u001b[0m\u001b[97m\u001b[0m",
+      "room_desc": "\u001b[97mA virtuoso \u001b[95mlyre\u001b[0m\u001b[97m lies here.\u001b[0m",
+      "description": "A bard's lyre.",
+      "item_type": "weapon",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "wield",
+      "weapon_type": "mace",
+      "damage_dice": "1d6+3",
+      "affects": [
+        {
+          "type": "cha",
+          "value": 3
+        }
+      ],
+      "set_id": 33
+    },
+    "3328": {
+      "vnum": 3328,
+      "name": "duelist stiletto",
+      "short_desc": "\u001b[97ma duelist \u001b[92mstiletto\u001b[0m\u001b[97m\u001b[0m",
+      "room_desc": "\u001b[97mA duelist \u001b[92mstiletto\u001b[0m\u001b[97m lies here.\u001b[0m",
+      "description": "A rogue's stiletto.",
+      "item_type": "weapon",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "wield",
+      "weapon_type": "pierce",
+      "damage_dice": "1d6+3",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 3
+        },
+        {
+          "type": "hitroll",
+          "value": 2
+        }
+      ],
+      "set_id": 33
+    },
+    "3329": {
+      "vnum": 3329,
+      "name": "marksman band",
+      "short_desc": "\u001b[97ma marksman \u001b[92mband\u001b[0m\u001b[97m\u001b[0m",
+      "room_desc": "\u001b[97mA marksman \u001b[92mband\u001b[0m\u001b[97m lies here.\u001b[0m",
+      "description": "A ranger's ring.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "finger1",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 2
+        },
+        {
+          "type": "hitroll",
+          "value": 1
+        }
+      ],
+      "set_id": 33
+    },
+    "3330": {
+      "vnum": 3330,
+      "name": "duelist mantle",
+      "short_desc": "\u001b[97ma duelist mantle\u001b[0m",
+      "room_desc": "\u001b[97mA duelist mantle lies here.\u001b[0m",
+      "description": "A duelist's cloak.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "about",
+      "armor_bonus": 2,
+      "affects": [
+        {
+          "type": "dex",
+          "value": 1
+        }
+      ],
+      "set_id": 33
     }
   }
 }

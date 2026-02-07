@@ -6,7 +6,7 @@
     "1500": {
       "vnum": 1500,
       "name": "A Road Leading From The Bank",
-      "description": "You find yourself on a small road leading away from the edge of the River of Lost Souls.  The dark waters of the River can be seen and heard just south of here.  Looking to the east and west, you see only the walls of the rocky cliffs.  Off to the north a strange path seems to lead straight into the depths of the mountain.",
+      "description": "The passage opens on a small road leading away from the edge of the\nRiver of Lost Souls. The dark waters of the River can be seen and heard\njust south of here. Looking to the east and west, you see only the walls\nof the rocky cliffs. Off to the north a strange path seems to lead\nstraight into the depths of the mountain. The terrain rolls and dips\naround. The wind carries the scent of wild herbs.",
       "sector_type": "hills",
       "flags": [
         "no_mob"
@@ -25,7 +25,7 @@
     "1501": {
       "vnum": 1501,
       "name": "A Long Road",
-      "description": "You stand here in spiritual emptiness, beginning a long and dangerous path.  Your honest submission has already been made, but the truth of your heart has yet to be told.  Leave here now, and do not come back until you have grown.",
+      "description": "The area opens here in spiritual emptiness, beginning a long and\ndangerous path. Your honest submission has already been made, but the\ntruth of your heart has yet to be told. Leave here now, and do not come\nback until you have grown. The walls are rough-hewn and cold to the\ntouch. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -50,7 +50,7 @@
     "1502": {
       "vnum": 1502,
       "name": "A Long Road",
-      "description": "You stop for a moment, screaming in frustration.  Surely it was that one sin that was avoidable, of all that you regret.  The hitting and the hurting flash briefly before you.  Moments later the pain passes, and the straight path reveals itself before you.",
+      "description": "You stop for a moment, screaming in frustration. Surely it was that one\nsin that was avoidable, of all that you regret. The hitting and the\nhurting flash briefly before. Moments later the pain passes, and the\nstraight path reveals itself before. Dust motes drift in the stale\nair. The walls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -69,7 +69,7 @@
     "1503": {
       "vnum": 1503,
       "name": "A Long Road",
-      "description": "The road clears, the fog and pain of the first few steps left behind you.  Despite the sudden clarity, your mind is still haunted, images of an old woman kneeling in prayer, eyes closing, smiling and crying.",
+      "description": "The road clears, the fog and pain of the first few steps left behind.\nDespite the sudden clarity, your mind is still haunted, images of an old\nwoman kneeling in prayer, eyes closing, smiling and crying. The walls\nare rough-hewn and cold to the touch. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -88,7 +88,7 @@
     "1504": {
       "vnum": 1504,
       "name": "A Long Road",
-      "description": "Looking ahead, you can see that the path you have been following will soon come to an end, but something in the cold and the breeze tells you that that will be only the beginning of the journey.",
+      "description": "Looking ahead, Visible is that the path you have been following will\nsoon come to an end, but something in the cold and the breeze tells you\nthat that will be only the beginning of the journey. The ceiling hangs\nlow overhead. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -107,7 +107,7 @@
     "1505": {
       "vnum": 1505,
       "name": "A Test for the Faithful",
-      "description": "It is here finally that decisions must be made.  The first one that confronts you is simple enough, to walk in the darkness, or to walk in the light.  Only the depths of your soul can decide, but remember this much: the same truth lies at the end of both paths.",
+      "description": "It is here finally that decisions must be made. The first one that\nconfronts you is simple enough, to walk in the darkness, or to walk in\nthe light. Only the depths of your soul can decide, but remember this\nmuch: the same truth lies at the end of both paths. Dust motes drift in\nthe stale air. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -132,7 +132,7 @@
     "1506": {
       "vnum": 1506,
       "name": "Halls of the Forgotten",
-      "description": "Even the darkest have a place on the road to the truth.  It is in this place, so empty and forgotten, that God has chosen the worst, and brought them close to Him for one last time.",
+      "description": "Even the darkest have a place on the road to the truth. It is in this\nplace, so empty and forgotten, that God has chosen the worst, and\nbrought them close to Him for one last time. The air is still and musty.\nDust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -155,7 +155,7 @@
     "1507": {
       "vnum": 1507,
       "name": "Shahadah",
-      "description": "It was written once, on an ancient parchment in a curious and flowing script, that there is in fact no god but Allah, and that Muhammad was the last of His Prophets.  With this recognition, all else became empty and meaningless.",
+      "description": "It was written once, on an ancient parchment in a curious and flowing\nscript, that there is in fact no god but Allah, and that Muhammad was\nthe last of His Prophets. With this recognition, all else became empty\nand meaningless. The air is still and musty. Shadows gather in the\ncorners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -178,7 +178,7 @@
     "1508": {
       "vnum": 1508,
       "name": "Earthly Evil",
-      "description": "Whatever it carries, that rage converts into a weapon.  Wrath supplies all with arms.  When an angry man thirsts for blood anything will serve him for a spear.  Fury turns a stick into a cudgel.",
+      "description": "Whatever it carries, that rage converts into a weapon. Wrath supplies\nall with arms. When an angry man thirsts for blood anything will serve\nhim for a spear. Fury turns a stick into a cudgel. Dust motes drift in\nthe stale air. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -198,7 +198,7 @@
     "1509": {
       "vnum": 1509,
       "name": "Misguidance",
-      "description": "Some have been brought here not for what they did, but what they failed to do.  It is these, the poor souls that were presented the fair evidence and rejected it with an honest mind, that deserve our pity the most of all.",
+      "description": "Some have been brought here not for what they did, but what they failed\nto do. It is these, the poor souls that were presented the fair evidence\nand rejected it with an honest mind, that deserve our pity the most of\nall. Shadows gather in the corners. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -228,7 +228,7 @@
     "1510": {
       "vnum": 1510,
       "name": "Temptation",
-      "description": "Old tales tell of a conversation between the devil and the Prophet Jesus: the devil offered him a kingdom, vast riches, the temptation of a glorious near-death saved by his angels.  Even this Messenger of God was forced to stop and think.  Imagine how hard it could be for the rest.",
+      "description": "Old tales tell of a conversation between the devil and the Prophet\nJesus: the devil offered him a kingdom, vast riches, the temptation of a\nglorious near-death saved by his angels. Even this Messenger of God was\nforced to stop and think. Imagine how hard it could be for the rest. The\nceiling hangs low overhead. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -254,7 +254,7 @@
     "1511": {
       "vnum": 1511,
       "name": "Hypocrisy",
-      "description": "He called the populace to strict religious purity, rigidly enforcing the times of prayer and the most correct forms of the words of the Muezzin. All of this he strengthened by his most impeccable example, shunning all riches and riding in tattered rags through his capital on the back of a donkey.  Despite all this, remember.  Behind closed doors, all men are hypocrites.",
+      "description": "He called the populace to strict religious purity, rigidly enforcing the\ntimes of prayer and the most correct forms of the words of the Muezzin.\nAll of this he strengthened by his most impeccable example, shunning all\nriches and riding in tattered rags through his capital on the back of a\ndonkey. Despite all this, remember. Behind closed doors, all men are\nhypocrites. Dust motes drift in the stale air. The air is still and\nmusty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -280,7 +280,7 @@
     "1512": {
       "vnum": 1512,
       "name": "Hate",
-      "description": "There is little in life much easier, and truthfully, little that is a quicker ticket to damnation.  You give brief thanks that you have come to the end of these trials, but your words are drowned out by something much louder, a mechanical preaching that drowns your ears in anger.  You hear a steady, repetitive litany of the same phrase, over and over again: \"I go the way history dictates with the blind assurance of a sleep-walker.\"",
+      "description": "There is little in life much easier, and truthfully, little that is a\nquicker ticket to damnation. You give brief thanks that you have come to\nthe end of these trials, but your words are drowned out by something\nmuch louder, a mechanical preaching that drowns your ears in anger. You\nhear a steady, repetitive litany of the same phrase, over and over\nagain: \"I go the way history dictates with the blind assurance of a\nsleep-walker.\" The ceiling hangs low overhead. Dust motes drift in the\nstale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -306,7 +306,7 @@
     "1513": {
       "vnum": 1513,
       "name": "Spiritual Danger",
-      "description": "Some evils are tangible, solid, so evident that they spit you right in the face.  Others are more clever, more subtle, and it is these that present the greatest danger.  Looking down the hall before you, a great fear fills your heart, and a great, heavy longing.",
+      "description": "Some evils are tangible, solid, so evident that they spit you right in\nthe face. Others are more clever, more subtle, and it is these that\npresent the greatest danger. Looking down the hall before, a great\nfear fills your heart, and a great, heavy longing. Shadows gather in the\ncorners. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -326,7 +326,7 @@
     "1514": {
       "vnum": 1514,
       "name": "The Fall",
-      "description": "In the beginning, he was the best, the most beautiful of all the angels, and God's most loved creation.  Look at your own beauty, human, and do what he could not.  Look at your beauty, and learn to kneel!",
+      "description": "In the beginning, he was the best, the most beautiful of all the angels,\nand God's most loved creation. Look at your own beauty, human, and do\nwhat he could not. Look at your beauty, and learn to kneel! The air is\nstill and musty. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -352,7 +352,7 @@
     "1515": {
       "vnum": 1515,
       "name": "Temptation",
-      "description": "Temptation is the IF, the wondering, the second-guessing, the \"I will be a better man... if...\"  And that if is usually taken, sitting alone, listening to that voice, calling you, offering such an easy way, but such a crooked one.",
+      "description": "Temptation is the IF, the wondering, the second-guessing, the \"I will be\na better man... if...\" And that if is usually taken, sitting alone,\nlistening to that voice, calling you, offering such an easy way, but\nsuch a crooked one. The ceiling hangs low overhead. Shadows gather in\nthe corners.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -378,7 +378,7 @@
     "1516": {
       "vnum": 1516,
       "name": "The Last Day",
-      "description": "The din of a great battle shakes these halls, the moans of the earth erupting at the shakings of the End Time.  Be ready for that day, be very ready, for if you are not, he will claim you for one of his own.",
+      "description": "The din of a great battle shakes these halls, the moans of the earth\nerupting at the shakings of the End Time. Be ready for that day, be very\nready, for if you are not, he will claim you for one of his own. The\nwalls are rough-hewn and cold to the touch. Dust motes drift in the\nstale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -408,7 +408,7 @@
     "1517": {
       "vnum": 1517,
       "name": "Flame",
-      "description": "Undescribable horror and pain, a blackness drowned out only by the burning anguish, the inextinguishable fire coming not from some burning wood or molten lava but from the brightness and pain of the horrible, tortured souls that surround, everywhere you turn.",
+      "description": "Undescribable horror and pain, a blackness drowned out only by the\nburning anguish, the inextinguishable fire coming not from some burning\nwood or molten lava but from the brightness and pain of the horrible,\ntortured souls that surround, everywhere you turn. The walls are rough-\nhewn and cold to the touch. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -434,7 +434,7 @@
     "1518": {
       "vnum": 1518,
       "name": "Earthly Light",
-      "description": "To slip into evil is easy, but walking this path is the hardest of all.  Even the four you will find here today have strayed from the line at least once in their lives, and there are still some living who curse the very sound of their names.  Despite all this, confront them now, and let their actions serve as your example.",
+      "description": "To slip into evil is easy, but walking this path is the hardest of all.\nEven the four you will find here today have strayed from the line at\nleast once in their lives, and there are still some living who curse the\nvery sound of their names. Despite all this, confront them now, and let\ntheir actions serve as your example. Dust motes drift in the stale air.\nThe air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -453,7 +453,7 @@
     "1519": {
       "vnum": 1519,
       "name": "The Light of the Rashidun",
-      "description": "Many believed that the Prophet would never die, but when the stark evidence of his body confronted them, it soon became necessary to provide for the future.  The four that came after are called the Rashidun, the rightly-guided Caliphs that would spread the word and the light, and with it forge one of history's greatest empires.",
+      "description": "Many believed that the Prophet would never die, but when the stark\nevidence of his body confronted them, it soon became necessary to\nprovide for the future. The four that came after are called the\nRashidun, the rightly-guided Caliphs that would spread the word and the\nlight, and with it forge one of history's greatest empires. The walls\nare rough-hewn and cold to the touch. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -478,7 +478,7 @@
     "1520": {
       "vnum": 1520,
       "name": "The Light of the Rashidun",
-      "description": "The first Caliphs were chosen by consultation with a noble council of elders, each of whom, hoping to lead the world of Islam alone, voted to elect the one amongst them they thought was the weakest.  Each time, they were wrong.  Each one was more noble, more upright than the one before.",
+      "description": "The first Caliphs were chosen by consultation with a noble council of\nelders, each of whom, hoping to lead the world of Islam alone, voted to\nelect the one amongst them they thought was the weakest. Each time, they\nwere wrong. Each one was more noble, more upright than the one before.\nThe air is still and musty. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -503,7 +503,7 @@
     "1521": {
       "vnum": 1521,
       "name": "The Light of the Rashidun",
-      "description": "Every majestic and happy tale must end, usually all too soon, and thus it was with the golden age of the Caliphate.  The Rashidun were pure men, good men, true to the path, but their followers soon began to bicker, and civil war was on the horizon.",
+      "description": "Every majestic and happy tale must end, usually all too soon, and thus\nit was with the golden age of the Caliphate. The Rashidun were pure men,\ngood men, true to the path, but their followers soon began to bicker,\nand civil war was on the horizon. The ceiling hangs low overhead.\nShadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -532,7 +532,7 @@
     "1522": {
       "vnum": 1522,
       "name": "The Light of the Rashidun",
-      "description": "The end of the Rashidun was the beginning of Schism.  The memories of the Prophet and the living example of the Caliphs proved to be insufficient example to the faithful.  Ali died, and some say that with him the Caliphate died too, a martyr, his blood still flowing in the nameless river.",
+      "description": "The end of the Rashidun was the beginning of Schism. The memories of the\nProphet and the living example of the Caliphs proved to be insufficient\nexample to the faithful. Ali died, and some say that with him the\nCaliphate died too, a martyr, his blood still flowing in the nameless\nriver. The air is still and musty. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -557,7 +557,7 @@
     "1523": {
       "vnum": 1523,
       "name": "Spritual Reward",
-      "description": "Behold, Allah is the Provider, the most Generous.  He would not suffer his believers to walk the path of light without guidance.  He provided the Prophets, may peace be upon them, and in the examples of their own growth, we shall find the truth of our own.",
+      "description": "Behold, Allah is the Provider, the most Generous. He would not suffer\nhis believers to walk the path of light without guidance. He provided\nthe Prophets, may peace be upon them, and in the examples of their own\ngrowth, we shall find the truth of our own. The ceiling hangs low\noverhead. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -576,7 +576,7 @@
     "1524": {
       "vnum": 1524,
       "name": "Creation",
-      "description": "In the creation of the heavens and the earth, and in the alternation of night and day, there are signs for men of sense; those that remember Allah say: \"Lord, You have not created this in vain!\"",
+      "description": "In the creation of the heavens and the earth, and in the alternation of\nnight and day, there are signs for men of sense; those that remember\nAllah say: \"Lord, You have not created this in vain!\" The air is still\nand musty. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -605,7 +605,7 @@
     "1525": {
       "vnum": 1525,
       "name": "Revelation",
-      "description": "The Angel Gabriel came to him and said: \"Read!\"  He replied: \"But I cannot!\"  The order was repeated three times, until the Angel himself said: \"Read, in the name of your Lord who created man from clots of blood. Praise be to God, Lord of the Universe.\"",
+      "description": "The Angel Gabriel came to him and said: \"Read!\" He replied: \"But I\ncannot!\" The order was repeated three times, until the Angel himself\nsaid: \"Read, in the name of your Lord who created man from clots of\nblood. Praise be to God, Lord of the Universe.\" Shadows gather in the\ncorners. The walls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -630,7 +630,7 @@
     "1526": {
       "vnum": 1526,
       "name": "Conversion",
-      "description": "Unbelievers, I do not worship what you worship, nor do you worship what I worship.  I shall never worship what you worship, nor will you ever worship what I worship.  You have your own religion, and I have mine.",
+      "description": "Unbelievers, I do not worship what you worship, nor do you worship what\nI worship. I shall never worship what you worship, nor will you ever\nworship what I worship. You have your own religion, and I have mine.\nShadows gather in the corners. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -655,7 +655,7 @@
     "1527": {
       "vnum": 1527,
       "name": "Deliverance",
-      "description": "The balance had been made, the soul placed in readiness, and the final measurement taken.  For those that have come this far, surely this is the day of immortality!",
+      "description": "The balance had been made, the soul placed in readiness, and the final\nmeasurement taken. For those that have come this far, surely this is the\nday of immortality! The air is still and musty. The ceiling hangs low\noverhead.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -680,7 +680,7 @@
     "1528": {
       "vnum": 1528,
       "name": "Repentance",
-      "description": "God forgives those who commit evil in ignorance, for He is all-knowing and wise.  But He will not forgive those who do evil, and when death comes to them, say: \"Now we repent!\"  For those We have prepared a woeful scourge.",
+      "description": "God forgives those who commit evil in ignorance, for He is all-knowing\nand wise. But He will not forgive those who do evil, and when death\ncomes to them, say: \"Now we repent!\" For those We have prepared a woeful\nscourge. Shadows gather in the corners. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -710,7 +710,7 @@
     "1529": {
       "vnum": 1529,
       "name": "Pilgrimage",
-      "description": "It is incumbent upon all Muslims to make the pilgrimage to Mecca once in their lifetime, if they are able, and for those unfortunate enough to follow the lives of the lower evils, such a pilgrimage with an open and contrite heart shall absolve them of all.",
+      "description": "It is incumbent upon all Muslims to make the pilgrimage to Mecca once in\ntheir lifetime, if they are able, and for those unfortunate enough to\nfollow the lives of the lower evils, such a pilgrimage with an open and\ncontrite heart shall absolve them of all. The ceiling hangs low\noverhead. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -734,7 +734,7 @@
     "1530": {
       "vnum": 1530,
       "name": "Intercession",
-      "description": "It is written that no one may intercede with God on behalf of another. No prayers from another may save the soul of a doomed man; his only hope is prayers of his own.",
+      "description": "It is written that no one may intercede with God on behalf of another.\nNo prayers from another may save the soul of a doomed man; his only hope\nis prayers of his own. Dust motes drift in the stale air. Shadows gather\nin the corners.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -764,7 +764,7 @@
     "1531": {
       "vnum": 1531,
       "name": "The Upper Reaches",
-      "description": "You have traveled the righteous path, and you have faced the examples of the true models of the Prophet.  Only the final journey awaits you; live like this and you shall live forever.",
+      "description": "You have traveled the righteous path, and you have faced the examples of\nthe true models of the Prophet. Only the final journey awaits you; live\nlike this and you shall live forever. The ceiling hangs low overhead.\nDust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -793,7 +793,7 @@
     "1532": {
       "vnum": 1532,
       "name": "The Upper Reaches",
-      "description": "When the records of men's deeds are laid open, and heaven is stripped bare; when Hell burns fiercely and Paradise is brought near: then each soul shall know what it has done.",
+      "description": "When the records of men's deeds are laid open, and heaven is stripped\nbare; when Hell burns fiercely and Paradise is brought near: then each\nsoul shall know what it has done. Shadows gather in the corners. Dust\nmotes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -816,7 +816,7 @@
     "1533": {
       "vnum": 1533,
       "name": "The Upper Reaches",
-      "description": "You have traveled the righteous path, and your own journey has imitated the evolution of the most perfect soul.  Only one final path awaits you; die as the one in the room before, and your death will mean nothing.",
+      "description": "You have traveled the righteous path, and your own journey has imitated\nthe evolution of the most perfect soul. Only one final path awaits you;\ndie as the one in the room before, and your death will mean nothing.\nShadows gather in the corners. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -845,7 +845,7 @@
     "1534": {
       "vnum": 1534,
       "name": "The Final Facing",
-      "description": "The last of the darkness lies behind you; only the straight path remains.  Go forth with a clean heart.  Only the penitent shall find what they seek.",
+      "description": "The last of the darkness lies behind; only the straight path remains. Go\nforth with a clean heart. Only the penitent shall find what they seek.\nShadows gather in the corners. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -869,7 +869,7 @@
     "1535": {
       "vnum": 1535,
       "name": "The Final Facing",
-      "description": "The last of the darkness lies behind you; only the straight path remains.  Go forth with a clean heart.  Only the penitent shall find what they seek.",
+      "description": "The last of the darkness lies behind; only the straight path remains. Go\nforth with a clean heart. Only the penitent shall find what they seek.\nThe walls are rough-hewn and cold to the touch. The ceiling hangs low\noverhead.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -901,7 +901,7 @@
     "1536": {
       "vnum": 1536,
       "name": "The Final Facing",
-      "description": "The last of the darkness lies behind you; only the straight path remains.  Go forth with a clean heart.  Only the penitent shall find what they seek.",
+      "description": "The last of the darkness lies behind; only the straight path remains. Go\nforth with a clean heart. Only the penitent shall find what they seek.\nThe ceiling hangs low overhead. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -925,7 +925,7 @@
     "1537": {
       "vnum": 1537,
       "name": "A Straight Path",
-      "description": "The Compassionate, the Merciful, Sovereign of the Day of Judgment! You alone we worship, and to You alone we turn for help.  Guide us to the Straight Path, the path of those whom You have favored, not of those who have gone astray.",
+      "description": "The Compassionate, the Merciful, Sovereign of the Day of Judgment! You\nalone we worship, and to You alone we turn for help. Guide us to the\nStraight Path, the path of those whom You have favored, not of those who\nhave gone astray. Shadows gather in the corners. The walls are rough-\nhewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -944,7 +944,7 @@
     "1538": {
       "vnum": 1538,
       "name": "Progression",
-      "description": "Were We worn out by the First Creation?  Yet they are in doubt about a new creation.  WE created man.  We know the promptings of his soul, and are closer to him than his jugular vein.",
+      "description": "Were We worn out by the First Creation? Yet they are in doubt about a\nnew creation. WE created man. We know the promptings of his soul, and\nare closer to him than his jugular vein. The ceiling hangs low overhead.\nShadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -963,7 +963,7 @@
     "1539": {
       "vnum": 1539,
       "name": "Judgment",
-      "description": "Undoubtedly the shortest path is the straightest one.  Only one more step awaits before a final decision is made and a home given to you for all eternity.",
+      "description": "Undoubtedly the shortest path is the straightest one. Only one more step\nawaits before a final decision is made and a home given to you for all\neternity. Shadows gather in the corners. The walls are rough-hewn and\ncold to the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -988,7 +988,7 @@
     "1540": {
       "vnum": 1540,
       "name": "The Utmost Throne",
-      "description": "You have come at last to the resting place of the most holy.  Startling crystal clarity of vision has been granted to you; seven guardians rim the periphery of the throne and all is bathed in a warm and clean light. It is here that the final choice is to be made, and no defiance of yours can change the outcome.",
+      "description": "You have come at last to the resting place of the most holy. Startling\ncrystal clarity of vision has been granted to you; seven guardians rim\nthe periphery of the throne and all is bathed in a warm and clean light.\nIt is here that the final choice is to be made, and no defiance of yours\ncan change the outcome. The ceiling hangs low overhead. The walls are\nrough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -1015,10 +1015,10 @@
       "long_desc": "You resist the urge to avert your eyes from the sight of the one true God.",
       "level": 30,
       "alignment": 1000,
-      "hp_dice": "8d8+9",
-      "damage_dice": "1d1+2999",
+      "hp_dice": "6d10+750",
+      "damage_dice": "3d6+54",
       "gold": 50000,
-      "exp": 8,
+      "exp": 1248,
       "armor_class": -10,
       "flags": [
         "sentinel",
@@ -1040,10 +1040,10 @@
       "long_desc": "The archangel Michael turns and begins to look you over.",
       "level": 29,
       "alignment": 1000,
-      "hp_dice": "6d7+7",
-      "damage_dice": "1d100+1900",
+      "hp_dice": "6d10+725",
+      "damage_dice": "3d6+52",
       "gold": 30000,
-      "exp": 8,
+      "exp": 1194,
       "armor_class": -7,
       "flags": [
         "sentinel",
@@ -1061,10 +1061,10 @@
       "long_desc": "The archangel Gabriel smiles, and begins to tell you something.",
       "level": 29,
       "alignment": 1000,
-      "hp_dice": "6d7+7",
-      "damage_dice": "1d100+1900",
+      "hp_dice": "6d10+725",
+      "damage_dice": "3d6+52",
       "gold": 30000,
-      "exp": 8,
+      "exp": 1194,
       "armor_class": -7,
       "flags": [
         "sentinel",
@@ -1082,10 +1082,10 @@
       "long_desc": "The archangel Raphael looks up and frowns at you in disapproval.",
       "level": 29,
       "alignment": 1000,
-      "hp_dice": "6d7+7",
-      "damage_dice": "1d100+1900",
+      "hp_dice": "6d10+725",
+      "damage_dice": "3d6+52",
       "gold": 30000,
-      "exp": 8,
+      "exp": 1194,
       "armor_class": -7,
       "flags": [
         "sentinel",
@@ -1103,10 +1103,10 @@
       "long_desc": "Uriel, the angel of darkness, stands here guarding the way forward.",
       "level": 29,
       "alignment": 1000,
-      "hp_dice": "6d7+7",
-      "damage_dice": "1d100+1900",
+      "hp_dice": "6d10+725",
+      "damage_dice": "3d6+52",
       "gold": 30000,
-      "exp": 8,
+      "exp": 1194,
       "armor_class": -7,
       "flags": [
         "sentinel",
@@ -1124,11 +1124,11 @@
       "long_desc": "The cherubin of the blazing sword looks at you and begins to chuckle.",
       "level": 17,
       "alignment": 0,
-      "hp_dice": "3d6+4",
-      "damage_dice": "10d5+260",
+      "hp_dice": "17d10+220",
+      "damage_dice": "5d7+7",
       "gold": 20000,
-      "exp": 8,
-      "armor_class": 0,
+      "exp": 1020,
+      "armor_class": 49,
       "flags": [
         "sentinel",
         "aggressive"
@@ -1145,11 +1145,11 @@
       "long_desc": "A mad, drunken jester is sitting here, lost in his deepening stupor.",
       "level": 13,
       "alignment": -300,
-      "hp_dice": "2d8+2",
-      "damage_dice": "10d2+180",
+      "hp_dice": "13d10+172",
+      "damage_dice": "4d6+7",
       "gold": 12225,
-      "exp": 6,
-      "armor_class": 1,
+      "exp": 780,
+      "armor_class": 61,
       "flags": [
         "sentinel"
       ],
@@ -1165,11 +1165,11 @@
       "long_desc": "One of the jinn dances in and out of the air before your eyes, taunting you.",
       "level": 23,
       "alignment": 0,
-      "hp_dice": "3d9+3",
-      "damage_dice": "25d2+400",
+      "hp_dice": "23d10+292",
+      "damage_dice": "6d8+9",
       "gold": 35000,
-      "exp": 8,
-      "armor_class": -2,
+      "exp": 1380,
+      "armor_class": 31,
       "flags": [
         "scavenger",
         "stay_zone"
@@ -1183,11 +1183,11 @@
       "long_desc": "A slumped, shaking old man stands up and begins to yell at the world.",
       "level": 26,
       "alignment": -1000,
-      "hp_dice": "4d9+6",
-      "damage_dice": "4d10+840",
+      "hp_dice": "26d10+328",
+      "damage_dice": "7d8+9",
       "gold": 25000,
-      "exp": 8,
-      "armor_class": -5,
+      "exp": 1560,
+      "armor_class": 22,
       "flags": [
         "sentinel",
         "aggressive"
@@ -1204,11 +1204,11 @@
       "long_desc": "The mad Caliph al-Hakim is here, dissecting a young boy.",
       "level": 26,
       "alignment": -1000,
-      "hp_dice": "4d9+6",
-      "damage_dice": "4d10+840",
+      "hp_dice": "26d10+328",
+      "damage_dice": "7d8+9",
       "gold": 25000,
-      "exp": 8,
-      "armor_class": -5,
+      "exp": 1560,
+      "armor_class": 22,
       "flags": [
         "sentinel",
         "aggressive"
@@ -1222,11 +1222,11 @@
       "long_desc": "The wayward apostle approaches slowly, extending his arms in a hug.",
       "level": 25,
       "alignment": -1000,
-      "hp_dice": "4d6+5",
-      "damage_dice": "5d10+650",
+      "hp_dice": "25d10+316",
+      "damage_dice": "7d8+8",
       "gold": 72500,
-      "exp": 8,
-      "armor_class": -4,
+      "exp": 1500,
+      "armor_class": 25,
       "flags": [
         "sentinel",
         "scavenger"
@@ -1240,11 +1240,11 @@
       "long_desc": "Pharoah has been sent here in retribution for a lifetime of evils.",
       "level": 25,
       "alignment": -1000,
-      "hp_dice": "4d6+5",
-      "damage_dice": "5d10+650",
+      "hp_dice": "25d10+316",
+      "damage_dice": "7d8+8",
       "gold": 85000,
-      "exp": 8,
-      "armor_class": -4,
+      "exp": 1500,
+      "armor_class": 25,
       "flags": [
         "sentinel"
       ],
@@ -1260,10 +1260,10 @@
       "long_desc": "Abu Bakr, first of the Rashidun, mourns over the death of the Prophet.",
       "level": 25,
       "alignment": 1000,
-      "hp_dice": "4d6+5",
-      "damage_dice": "5d10+650",
+      "hp_dice": "5d10+450",
+      "damage_dice": "2d8+37",
       "gold": 85000,
-      "exp": 8,
+      "exp": 984,
       "armor_class": -4,
       "flags": [
         "sentinel"
@@ -1280,10 +1280,10 @@
       "long_desc": "You see Umar, second of the Rashidun, the successors of the Prophet.",
       "level": 25,
       "alignment": 1000,
-      "hp_dice": "4d6+5",
-      "damage_dice": "5d10+650",
+      "hp_dice": "5d10+450",
+      "damage_dice": "2d8+37",
       "gold": 85000,
-      "exp": 8,
+      "exp": 984,
       "armor_class": -4,
       "flags": [
         "sentinel"
@@ -1297,11 +1297,11 @@
       "long_desc": "The third of the rightly-guided Caliphs, Uthman, stands before you.",
       "level": 26,
       "alignment": 1000,
-      "hp_dice": "4d9+6",
-      "damage_dice": "4d10+840",
+      "hp_dice": "26d10+328",
+      "damage_dice": "7d8+9",
       "gold": 25000,
-      "exp": 8,
-      "armor_class": -5,
+      "exp": 1560,
+      "armor_class": 22,
       "flags": [
         "sentinel",
         "aggressive"
@@ -1318,11 +1318,11 @@
       "long_desc": "You have come before Ali, fourth and last of the Rashidun.",
       "level": 26,
       "alignment": 1000,
-      "hp_dice": "4d9+6",
-      "damage_dice": "4d10+840",
+      "hp_dice": "26d10+328",
+      "damage_dice": "7d8+9",
       "gold": 25000,
-      "exp": 8,
-      "armor_class": -5,
+      "exp": 1560,
+      "armor_class": 22,
       "flags": [
         "sentinel",
         "aggressive"
@@ -1339,11 +1339,11 @@
       "long_desc": "You gaze in awe at the most beautiful of all angels, Iblis, the Fallen.",
       "level": 25,
       "alignment": -1000,
-      "hp_dice": "4d6+5",
-      "damage_dice": "10d5+650",
+      "hp_dice": "25d10+316",
+      "damage_dice": "7d8+8",
       "gold": 85000,
-      "exp": 8,
-      "armor_class": -4,
+      "exp": 1500,
+      "armor_class": 25,
       "flags": [
         "sentinel",
         "scavenger",
@@ -1358,11 +1358,11 @@
       "long_desc": "You pause nervously as a voice whispers at you from over your shoulder.",
       "level": 25,
       "alignment": -1000,
-      "hp_dice": "4d6+5",
-      "damage_dice": "10d5+650",
+      "hp_dice": "25d10+316",
+      "damage_dice": "7d8+8",
       "gold": 85000,
-      "exp": 8,
-      "armor_class": -4,
+      "exp": 1500,
+      "armor_class": 25,
       "flags": [
         "sentinel",
         "scavenger",
@@ -1380,11 +1380,11 @@
       "long_desc": "A raging dragon turns to you in violent lust for your soul.",
       "level": 27,
       "alignment": -1000,
-      "hp_dice": "4d8+5",
-      "damage_dice": "75d2+825",
+      "hp_dice": "27d10+340",
+      "damage_dice": "7d8+11",
       "gold": 25000,
-      "exp": 8,
-      "armor_class": -5,
+      "exp": 1620,
+      "armor_class": 19,
       "flags": [
         "sentinel",
         "scavenger",
@@ -1402,11 +1402,11 @@
       "long_desc": "The hell-fire around you is dominated by a massive, burning demon.",
       "level": 27,
       "alignment": -1000,
-      "hp_dice": "4d8+5",
-      "damage_dice": "75d2+825",
+      "hp_dice": "27d10+340",
+      "damage_dice": "7d8+11",
       "gold": 25000,
-      "exp": 8,
-      "armor_class": -5,
+      "exp": 1620,
+      "armor_class": 19,
       "flags": [
         "sentinel",
         "scavenger",
@@ -1424,10 +1424,10 @@
       "long_desc": "Lying on the ground wrapped in blankets is the most innocent of babies.",
       "level": 22,
       "alignment": 1000,
-      "hp_dice": "4d6+4",
-      "damage_dice": "5d10+150",
+      "hp_dice": "5d10+396",
+      "damage_dice": "2d8+33",
       "gold": 82500,
-      "exp": 4,
+      "exp": 834,
       "armor_class": -4,
       "flags": [
         "sentinel"
@@ -1441,10 +1441,10 @@
       "long_desc": "You stop in surprise at the sight of a teenage boy staring off to the distance.",
       "level": 24,
       "alignment": 1000,
-      "hp_dice": "4d6+5",
-      "damage_dice": "5d10+680",
+      "hp_dice": "5d10+432",
+      "damage_dice": "2d8+36",
       "gold": 83500,
-      "exp": 8,
+      "exp": 934,
       "armor_class": -4,
       "flags": [
         "sentinel"
@@ -1458,10 +1458,10 @@
       "long_desc": "A middle-aged man is here, kneeling in prayer.",
       "level": 26,
       "alignment": 1000,
-      "hp_dice": "4d8+5",
-      "damage_dice": "75d2+820",
+      "hp_dice": "6d10+650",
+      "damage_dice": "3d6+46",
       "gold": 25000,
-      "exp": 5,
+      "exp": 1036,
       "armor_class": -5,
       "flags": [
         "sentinel",
@@ -1476,11 +1476,11 @@
       "long_desc": "You are overwhelmed by the presence of a soul that has transcended its body.",
       "level": 28,
       "alignment": 1000,
-      "hp_dice": "4d8+5",
-      "damage_dice": "100d2+820",
+      "hp_dice": "28d10+352",
+      "damage_dice": "8d8+8",
       "gold": 95000,
-      "exp": 8,
-      "armor_class": -5,
+      "exp": 1680,
+      "armor_class": 16,
       "flags": [
         "sentinel",
         "aggressive"

@@ -92,6 +92,18 @@ class RegenerationCalculator:
             if 'diseased' in character.affect_flags:
                 regen *= 0.25  # Disease severely reduces HP regen
 
+        # Hunger/Thirst penalties (players only)
+        if hasattr(character, 'hunger'):
+            if character.hunger <= 5:
+                regen *= 0.4
+            elif character.hunger <= 10:
+                regen *= 0.7
+        if hasattr(character, 'thirst'):
+            if character.thirst <= 3:
+                regen *= 0.4
+            elif character.thirst <= 8:
+                regen *= 0.7
+
         return max(1, int(regen))
 
     @staticmethod
@@ -147,10 +159,30 @@ class RegenerationCalculator:
             race_mult = RegenerationCalculator._get_race_mana_modifier(character.race)
             regen *= race_mult
 
+        # Soulstone bonus (necromancer offhand)
+        try:
+            stone = character.equipment.get('hold') if hasattr(character, 'equipment') else None
+            if stone and (getattr(stone, 'is_soulstone', False) or ('soulstone' in getattr(stone, 'flags', set()))):
+                regen *= (1.0 + getattr(stone, 'soulstone_mana_regen', 0.10))
+        except Exception:
+            pass
+
         # Affect bonuses/penalties
         if hasattr(character, 'affect_flags'):
             if 'silenced' in character.affect_flags:
                 regen *= 0.5  # Silence halves mana regen
+
+        # Hunger/Thirst penalties (players only)
+        if hasattr(character, 'hunger'):
+            if character.hunger <= 5:
+                regen *= 0.5
+            elif character.hunger <= 10:
+                regen *= 0.8
+        if hasattr(character, 'thirst'):
+            if character.thirst <= 3:
+                regen *= 0.4
+            elif character.thirst <= 8:
+                regen *= 0.7
 
         return max(1, int(regen))
 
@@ -207,6 +239,18 @@ class RegenerationCalculator:
         if hasattr(character, 'race'):
             race_mult = RegenerationCalculator._get_race_move_modifier(character.race)
             regen *= race_mult
+
+        # Hunger/Thirst penalties (players only)
+        if hasattr(character, 'hunger'):
+            if character.hunger <= 5:
+                regen *= 0.5
+            elif character.hunger <= 10:
+                regen *= 0.8
+        if hasattr(character, 'thirst'):
+            if character.thirst <= 3:
+                regen *= 0.4
+            elif character.thirst <= 8:
+                regen *= 0.7
 
         return max(1, int(regen))
 

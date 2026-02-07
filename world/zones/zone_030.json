@@ -6,7 +6,7 @@
     "3000": {
       "vnum": 3000,
       "name": "The Reading Room",
-      "description": "You are in a small, simple room which is mostly empty, save a few wooden desks and benches.  To the east you hear the bustle of the Temple of Midgaard, a sharp contrast to the relative quiet of this peaceful room.",
+      "description": "This is a small, simple room which is mostly empty, save a few wooden\ndesks and benches. To the east you hear the bustle of the Temple of\nMidgaard, a sharp contrast to the relative quiet of this peaceful room.\nOne bookshelf seems oddly drafty, as if a gap hides behind it. The\nceiling hangs low overhead. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -18,25 +18,48 @@
         "east": {
           "to_room": 3001,
           "description": "You see the Temple of Midgaard."
+        },
+        "north": {
+          "to_room": 3070,
+          "description": "The shelves to the north look slightly misaligned.",
+          "hidden": true,
+          "search_difficulty": 60,
+          "requires_light": true,
+          "secret": true,
+          "reveal_message": "You slide the bookshelf aside, revealing a narrow passage north."
         }
       },
       "obj_resets": [
         {
           "vnum": 3099,
           "max": 2
+        },
+        {
+          "vnum": 3214,
+          "max": 1
         }
       ]
     },
     "3001": {
       "vnum": 3001,
       "name": "The Temple Of Midgaard",
-      "description": "You are in the southern end of the temple hall in the Temple of Midgaard. The temple has been constructed from giant marble blocks, eternal in appearance, and most of the walls are covered by ancient wall paintings picturing Gods, Giants and peasants.    Large steps lead down through the grand temple gate, descending the huge mound upon which the temple is built and ends on the temple square below. To the west, you see the Reading Room.  The donation room is in a small alcove to your east.",
+      "description": "This is the southern end of the temple hall in the Temple of Midgaard.\nThe temple has been constructed from giant marble blocks, eternal in\nappearance, and most of the walls are covered by ancient wall paintings\npicturing Gods, Giants and peasants. Large steps lead down through the\ngrand temple gate, descending the huge mound upon which the temple is\nbuilt and ends on the temple square below. To the west, you see the\nReading Room. The donation room is in a small alcove to the east. Dust\nmotes drift in the stale air. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
         "indoors",
         "peaceful",
         "no_magic"
+      ],
+      "mob_resets": [
+        {
+          "vnum": 3110,
+          "max": 1
+        },
+        {
+          "vnum": 3200,
+          "max": 1
+        }
       ],
       "exits": {
         "north": {
@@ -68,17 +91,22 @@
         {
           "vnum": 3034,
           "max": 10
+        },
+        {
+          "vnum": 3035,
+          "max": 1
         }
       ]
     },
     "3002": {
       "vnum": 3002,
       "name": "The Clerics' Inner Sanctum",
-      "description": "This is the inner sanctum.  A picture of the mighty Thor, is hanging on the wall, just above the altar which is set against the western wall.  A well in the middle of the floor leads down into darkness.  Vile smells waft from the depths.",
+      "description": "This is the inner sanctum. A picture of the mighty Thor, is hanging on\nthe wall, just above the altar which is set against the western wall. A\nwell in the middle of the floor leads down into darkness. Vile smells\nwaft from the depths. A magnificent marble fountain gurgles peacefully\nin the center of the square. The walls are rough-hewn and cold to the\ntouch. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
-        "indoors"
+        "indoors",
+        "class_only:cleric"
       ],
       "exits": {
         "east": {
@@ -95,12 +123,18 @@
           "vnum": 3021,
           "max": 1
         }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 3035,
+          "max": 1
+        }
       ]
     },
     "3003": {
       "vnum": 3003,
       "name": "The Bar Of Divination",
-      "description": "The bar is one of the finest in the land, lucky it is members only.  Fine furniture is set all around the room.  A small sign is hanging on the wall.",
+      "description": "The bar is one of the finest in the land, lucky it is members only. Fine\nfurniture is set all around the room. A small sign is hanging on the\nwall. Dust motes drift in the stale air. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -136,7 +170,7 @@
     "3004": {
       "vnum": 3004,
       "name": "The Entrance To The Clerics' Guild",
-      "description": "The entrance hall is a small modest room, reflecting the true nature of the Clerics.  The exit leads east to the temple square.  A small entrance to the bar is in the northern wall.",
+      "description": "The entrance hall is a small modest room, reflecting the true nature of\nthe Clerics. The exit leads east to the temple square. A small entrance\nto the bar is in the northern wall. The ceiling hangs low overhead.\nShadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -149,6 +183,10 @@
         "east": {
           "to_room": 3005,
           "description": "You see the Temple Square."
+        },
+        "south": {
+          "to_room": 3078,
+          "description": "The training grounds are to the south."
         }
       },
       "mob_resets": [
@@ -175,9 +213,15 @@
     "3005": {
       "vnum": 3005,
       "name": "The Temple Square",
-      "description": "You are standing on the temple square.  Huge marble steps lead up to the temple gate.  The entrance to the Clerics' Guild is to the west, and the old Grunting Boar Inn, is to the east.  Just south of here you see the market square, the center of Midgaard.",
+      "description": "This area is the temple square. Huge marble steps lead up to the temple\ngate to the north. In the center of the square, a magnificent marble\nfountain gurgles peacefully, its crystal waters catching the light. The\nentrance to the Clerics' Guild is to the west, and the old Grunting Boar\nInn is to the east. The market square lies to the south, and the training grounds are to the west. A cold draft seeps up from cracks\nbetween the stones beneath the stairs. The cobblestones are worn smooth\nby countless feet. The smell of smoke and humanity hangs in the air.",
       "sector_type": "city",
       "flags": [],
+      "obj_resets": [
+        {
+          "vnum": 3035,
+          "max": 1
+        }
+      ],
       "exits": {
         "north": {
           "to_room": 3001,
@@ -194,19 +238,22 @@
         "west": {
           "to_room": 3004,
           "description": "You see the entrance to the Clerics' Guild."
+        },
+        "down": {
+          "to_room": 3071,
+          "description": "A narrow gap between the stones drops into darkness.",
+          "hidden": true,
+          "search_difficulty": 58,
+          "requires_light": true,
+          "secret": true,
+          "reveal_message": "You pry up a loose flagstone, exposing a hidden way down."
         }
-      },
-      "obj_resets": [
-        {
-          "vnum": 3035,
-          "max": 1
-        }
-      ]
+      }
     },
     "3006": {
       "vnum": 3006,
       "name": "The Entrance Hall Of The Grunting Boar Inn",
-      "description": "You are standing in the entrance hall of the Grunting Boar Inn.  The hall has been wisely decorated with simple, functional furniture.  The heavy smell of dust and aging paper drifts in from the Post Office to the north.  A small staircase leads up to the reception and the bar is to the east.",
+      "description": "This is the entrance hall of the Grunting Boar Inn. The hall has been\nwisely decorated with simple, functional furniture. The heavy smell of\ndust and aging paper drifts in from the Post Office to the north. A\nsmall staircase leads up to the reception and the bar is to the east.\nThe walls are rough-hewn and cold to the touch. Shadows gather in the\ncorners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -239,11 +286,12 @@
     "3007": {
       "vnum": 3007,
       "name": "The Grunting Boar",
-      "description": "You are standing in the bar.  The bar is set against the northern wall, old archaic writing, carvings and symbols cover its top.  A fireplace is built into the western wall, and through the southeastern windows you can see the temple square.  This place makes you feel like home. A small sign with big letters is fastened to the bar.",
+      "description": "This is the bar. The bar is set against the northern wall, old archaic\nwriting, carvings and symbols cover its top. A fireplace is built into\nthe western wall, and through the southeastern windows you can see the\ntemple square. This place makes you feel like home. A small sign with\nbig letters is fastened to the bar. The ceiling hangs low overhead. The\nair is still and musty.",
       "sector_type": "inside",
       "flags": [
         "indoors",
-        "no_magic"
+        "no_magic",
+        "class_only:bard"
       ],
       "exits": {
         "west": {
@@ -262,13 +310,17 @@
         {
           "vnum": 3064,
           "max": 3
+        },
+        {
+          "vnum": 3032,
+          "max": 1
         }
       ]
     },
     "3008": {
       "vnum": 3008,
       "name": "The Reception",
-      "description": "You are standing in the reception.  The staircase leads down to the entrance hall.  An exit to the north leads to the Cryogenic Center. There is a small sign on the counter.",
+      "description": "This is the reception. The staircase leads down to the entrance hall. An\nexit to the north leads to the Cryogenic Center. There is a small sign\non the counter. The walls are rough-hewn and cold to the touch. Shadows\ngather in the corners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -306,7 +358,7 @@
     "3010": {
       "vnum": 3010,
       "name": "The General Store",
-      "description": "You are inside the general store.  All sorts of items are stacked on shelves behind the counter, safely out of your reach. A small note hangs on the wall.",
+      "description": "This isside the general store. All sorts of items are stacked on shelves\nbehind the counter, safely out of your reach. A small note hangs on the\nwall. The ceiling hangs low overhead. The walls are rough-hewn and cold\nto the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors",
@@ -331,7 +383,7 @@
     "3011": {
       "vnum": 3011,
       "name": "The Weapon Shop",
-      "description": "You are inside the weapon shop.  There is a small note on the counter.",
+      "description": "This isside the weapon shop. There is a small note on the counter. The\nair is still and musty. Shadows gather in the corners. The air is stale\nand the walls close. Shadows pool in the corners, undisturbed.",
       "sector_type": "inside",
       "flags": [
         "indoors",
@@ -356,7 +408,7 @@
     "3012": {
       "vnum": 3012,
       "name": "Main Street",
-      "description": "You are at the end of the main street of Midgaard.  South of here is the entrance to the Guild of Magic Users.  The street continues east towards the market square.  The magic shop is to the north and to the west is the city gate.",
+      "description": "This is the end of the main street of Midgaard. South of here is the\nentrance to the Guild of Magic Users. The street continues east towards\nthe market square. The magic shop is to the north and to the west is the\ncity gate. The cobblestones are worn smooth by countless feet. Vendors\nand pedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -387,7 +439,7 @@
     "3013": {
       "vnum": 3013,
       "name": "Main Street",
-      "description": "You are on the main street passing through the City of Midgaard.  South of here is the entrance to the Armory, and the bakery is to the north.  East of here is the market square.",
+      "description": "The area is the main street passing through the City of Midgaard. South\nof here is the entrance to the Armory, and the bakery is to the north.\nEast of here is the market square. Vendors and pedestrians bustle past.\nThe sounds of city life echo around.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -412,9 +464,15 @@
     "3014": {
       "vnum": 3014,
       "name": "Market Square",
-      "description": "You are standing on the market square, the famous Square of Midgaard. A large, peculiar looking statue is standing in the middle of the square. Roads lead in every direction, north to the temple square, south to the common square, east and westbound is the main street.",
+      "description": "This area is the market square, the famous Square of Midgaard. A large,\npeculiar looking statue is standing in the middle of the square. Roads\nlead in every direction, north to the temple square, south to the common\nsquare, east and westbound is the main street. A grand marble building\nto the west bears the sign 'First National Bank'. A small stone\nfountain bubbles cheerfully near the statue. The statue's base hums\nfaintly, runes flickering when no one looks directly at them. The smell\nof smoke and humanity hangs in the air. Vendors and pedestrians bustle\npast.",
       "sector_type": "city",
       "flags": [],
+      "obj_resets": [
+        {
+          "vnum": 3103,
+          "max": 1
+        }
+      ],
       "exits": {
         "north": {
           "to_room": 3005,
@@ -429,8 +487,13 @@
           "description": "You see the common square."
         },
         "west": {
-          "to_room": 3013,
-          "description": "You see the main street."
+          "to_room": 3072,
+          "description": "A seam in the statue base leads west.",
+          "hidden": true,
+          "requires_detect_magic": true,
+          "search_difficulty": 62,
+          "secret": true,
+          "reveal_message": "A section of the statue base dissolves, opening a concealed passage west."
         }
       },
       "extra_descs": {
@@ -454,7 +517,7 @@
     "3015": {
       "vnum": 3015,
       "name": "Main Street",
-      "description": "You are on the main street crossing through town.  To the north is the general store, and the main street continues east.  To the west you see and hear the market place, to the south a small door leads into the Pet Shop.",
+      "description": "The area is the main street crossing through town. To the north is the\ngeneral store, and the main street continues east. To the west you see\nand hear the market place, to the south a small door leads into the Pet\nShop. Vendors and pedestrians bustle past. Buildings crowd together on\nall sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -479,7 +542,7 @@
     "3016": {
       "vnum": 3016,
       "name": "Main Street",
-      "description": "The main street, to the north is the weapon shop and to the south is the Guild of Swordsmen.  To the east you leave town and to the west the street leads to the market square.",
+      "description": "The main street, to the north is the weapon shop and to the south is the\nGuild of Swordsmen. To the east you leave town and to the west the\nstreet leads to the market square. Buildings crowd together on all\nsides. Vendors and pedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -510,7 +573,7 @@
     "3017": {
       "vnum": 3017,
       "name": "The Entrance To The Mages' Guild",
-      "description": "The entrance hall to this guild is a small, poor lighted room.",
+      "description": "The entrance hall to this guild is a small, poor lighted room. The air\nis still and musty. Shadows gather in the corners. The air is stale and\nthe walls close. Shadows pool in the corners, undisturbed.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -549,7 +612,7 @@
     "3018": {
       "vnum": 3018,
       "name": "The Mages' Bar",
-      "description": "The bar is one of the weirdest in the land.  Mystical images float around the air.  Illusions of fine furniture appear all around the room.",
+      "description": "The bar is one of the weirdest in the land. Mystical images float around\nthe air. Illusions of fine furniture appear all around the room. The\nwalls are rough-hewn and cold to the touch. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -582,11 +645,12 @@
     "3019": {
       "vnum": 3019,
       "name": "The Mages' Laboratory",
-      "description": "This is the Magical Experiments Laboratory.  Dark smoke-stained stones arch over numerous huge oaken tables, most of these cluttered with strange- looking pipes and flasks.  The floor is covered with half-erased pentagrams and even weirder symbols, and a blackboard in a dark corner has only been partially cleaned, some painful-looking letters faintly visible.  A well in the middle of the floor leads down into darkness.  Vile smells waft from the depths.",
+      "description": "This is the Magical Experiments Laboratory. Dark smoke-stained stones\narch over numerous huge oaken tables, most of these cluttered with\nstrange- looking pipes and flasks. The floor is covered with half-erased\npentagrams and even weirder symbols, and a blackboard in a dark corner\nhas only been partially cleaned, some painful-looking letters faintly\nvisible. A well in the middle of the floor leads down into darkness.\nVile smells waft from the depths. Shadows gather in the corners. The\nwalls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
-        "indoors"
+        "indoors",
+        "class_only:mage"
       ],
       "exits": {
         "west": {
@@ -608,7 +672,7 @@
     "3020": {
       "vnum": 3020,
       "name": "The Armory",
-      "description": "The armory with all kinds of armors on the walls and in the window.  You see helmets, shields and chain mails.  To the north is the main street. On the wall is a small note.",
+      "description": "The armory with all kinds of armors on the walls and in the window. You\nsee helmets, shields and chain mails. To the north is the main street.\nOn the wall is a small note. The ceiling hangs low overhead. Dust motes\ndrift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "indoors",
@@ -637,7 +701,7 @@
     "3021": {
       "vnum": 3021,
       "name": "The Entrance Hall To The Guild Of Swordsmen",
-      "description": "The entrance hall to the Guild of Swordsmen.  A place where one has to be careful not to say something wrong (or right).  To the east is the bar and to the north is the main street.",
+      "description": "The entrance hall to the Guild of Swordsmen. A place where one has to be\ncareful not to say something wrong (or right). To the east is the bar\nand to the north is the main street. Dust motes drift in the stale air.\nThe ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -676,7 +740,7 @@
     "3022": {
       "vnum": 3022,
       "name": "The Bar Of Swordsmen",
-      "description": "The bar of swordsmen, once upon a time beautifully furnished.  But now the furniture is all around you in small pieces.  To the south is the yard, and to the west is the entrance hall.",
+      "description": "The bar of swordsmen, once upon a time beautifully furnished. But now\nthe furniture is all around in small pieces. To the south is the\nyard, and to the west is the entrance hall. Shadows gather in the\ncorners. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -709,11 +773,12 @@
     "3023": {
       "vnum": 3023,
       "name": "The Tournament And Practice Yard",
-      "description": "This is the practice yard of the fighters.  To the north is the bar. A well leads down into darkness.",
+      "description": "This is the practice yard of the fighters. To the north is the bar. A\nwell leads down into darkness. The walls are rough-hewn and cold to the\ntouch. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
-        "indoors"
+        "indoors",
+        "class_only:warrior"
       ],
       "exits": {
         "north": {
@@ -735,7 +800,7 @@
     "3024": {
       "vnum": 3024,
       "name": "The Eastern End Of Poor Alley",
-      "description": "You are at the poor alley.  South of here is the Grubby Inn and to the east you see common square.  The alley continues further west.",
+      "description": "This is the poor alley. South of here is the Grubby Inn and to the east\nyou see common square. The alley continues further west. Vendors and\npedestrians bustle past. Buildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -756,13 +821,21 @@
         {
           "vnum": 3062,
           "max": 15
+        },
+        {
+          "vnum": 3130,
+          "max": 2
+        },
+        {
+          "vnum": 3131,
+          "max": 1
         }
       ]
     },
     "3025": {
       "vnum": 3025,
       "name": "The Common Square",
-      "description": "The common square, people pass you, talking to each other.  To the west is the poor alley and to the east is the dark alley.  To the north, this square is connected to the market square.  From the south you notice a nasty smell.",
+      "description": "The common square, people pass you, talking to each other. To the west\nis the poor alley and to the east is the dark alley. To the north, this\nsquare is connected to the market square. From the south you notice a\nnasty smell. The cobblestones near the old well look loose. The smell of\nsmoke and humanity hangs in the air. Vendors and pedestrians bustle\npast.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -781,6 +854,16 @@
         "west": {
           "to_room": 3024,
           "description": "You see Poor Alley."
+        },
+        "down": {
+          "to_room": 3074,
+          "description": "A hidden passage descends into darkness.",
+          "flags": [
+            "hidden",
+            "door",
+            "closed"
+          ],
+          "keyword": "trapdoor cobblestones"
         }
       },
       "mob_resets": [
@@ -793,7 +876,7 @@
     "3026": {
       "vnum": 3026,
       "name": "The Dark Alley",
-      "description": "The dark alley, to the west is the common square and to the south is the Guild of Thieves.  The alley continues east.",
+      "description": "The dark alley, to the west is the common square and to the south is the\nGuild of Thieves. The alley continues east. The sounds of city life echo\naround. Buildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -821,13 +904,17 @@
         {
           "vnum": 3066,
           "max": 1
+        },
+        {
+          "vnum": 3133,
+          "max": 1
         }
       ]
     },
     "3027": {
       "vnum": 3027,
       "name": "The Entrance Hall To The Guild Of Thieves",
-      "description": "The entrance hall to the thieves' and assassins' guild.  A place where you can lose both your life and your money, if you are not careful.  To the north is the dark alley and to the east is the thieves' bar.",
+      "description": "The entrance hall to the thieves' and assassins' guild. A place where\nyou can lose both your life and your money, if you are not careful. To\nthe north is the dark alley and to the east is the thieves' bar. Shadows\ngather in the corners. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -866,7 +953,7 @@
     "3028": {
       "vnum": 3028,
       "name": "The Thieves' Bar",
-      "description": "The bar of the thieves.  Once upon a time this place was beautifully furnished, but now it seems almost empty.  To the south is the yard, and to the west is the entrance hall.    (Maybe the furniture has been stolen?!)",
+      "description": "The bar of the thieves. Once upon a time this place was beautifully\nfurnished, but now it seems almost empty. To the south is the yard, and\nto the west is the entrance hall. (Maybe the furniture has been\nstolen?!) Dust motes drift in the stale air. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -902,11 +989,12 @@
     "3029": {
       "vnum": 3029,
       "name": "The Secret Yard",
-      "description": "The secret practice yard of thieves and assassins.  To the north is the bar.  A well leads down into darkness.",
+      "description": "The secret practice yard of thieves and assassins. To the north is the\nbar. A well leads down into darkness. The air is still and musty. The\nwalls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
-        "indoors"
+        "indoors",
+        "class_only:assassin,thief"
       ],
       "exits": {
         "north": {
@@ -928,7 +1016,7 @@
     "3030": {
       "vnum": 3030,
       "name": "The Dump",
-      "description": "The dump, where the people from the city drop their garbage.  Through the garbage you can see a large junction of pipes, looks like the entrance to the sewer system.  North of here you see the common square.",
+      "description": "The dump, where the people from the city drop their garbage. Through the\ngarbage Visible is a large junction of pipes, looks like the entrance to\nthe sewer system. North of here you see the common square. The open sky\nstretches overhead. The air is fresh and clean.",
       "sector_type": "field",
       "flags": [
         "no_mob"
@@ -953,7 +1041,7 @@
     "3031": {
       "vnum": 3031,
       "name": "The Pet Shop",
-      "description": "The Pet Shop is a small crowded store, full of cages and animals of various sizes.  There is a sign on the wall.",
+      "description": "The Pet Shop is a small crowded store, full of cages and animals of\nvarious sizes. There is a sign on the wall. The walls are rough-hewn and\ncold to the touch. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "no_mob",
@@ -979,7 +1067,7 @@
     "3032": {
       "vnum": 3032,
       "name": "Pet Shop Store",
-      "description": "This  is the small dark room in which the Pet shop keeps his pets. It is vital that this room's virtual number is exactly one larger than the Pet Shop number.",
+      "description": "This is the small dark room in which the Pet shop keeps his pets. It is\nvital that this room's virtual number is exactly one larger than the Pet\nShop number. Dust motes drift in the stale air. The walls are rough-hewn\nand cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors",
@@ -1012,7 +1100,7 @@
     "3033": {
       "vnum": 3033,
       "name": "The Magic Shop",
-      "description": "Behind the counter you see various items, neatly placed in racks, presumably most of them are magic.",
+      "description": "Behind the counter you see various items, neatly placed in racks,\npresumably most of them are magic. The air is still and musty. Dust\nmotes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "indoors",
@@ -1034,7 +1122,7 @@
     "3040": {
       "vnum": 3040,
       "name": "Inside The West Gate Of Midgaard",
-      "description": "You are by two small towers that have been built into the city wall and connected with a footbridge across the heavy wooden gate.  Main Street leads east and Wall Road leads south from here.",
+      "description": "The area is by two small towers that have been built into the city wall\nand connected with a footbridge across the heavy wooden gate. Main\nStreet leads east and Wall Road leads south from here. High above, a\nshadowed ledge looks like it could hide a watch post. Vendors and\npedestrians bustle past. The smell of smoke and humanity hangs in the\nair.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1055,6 +1143,20 @@
             "locked": false,
             "key_vnum": 3112
           }
+        },
+        "up": {
+          "to_room": 3073,
+          "description": "A narrow trapdoor in the ceiling.",
+          "hidden": true,
+          "search_difficulty": 55,
+          "secret": true,
+          "door": {
+            "name": "trapdoor",
+            "state": "closed",
+            "locked": true,
+            "key_vnum": 3214
+          },
+          "reveal_message": "You find a trapdoor concealed by soot and grime."
         }
       },
       "extra_descs": {
@@ -1070,9 +1172,11 @@
     "3041": {
       "vnum": 3041,
       "name": "Inside The East Gate Of Midgaard",
-      "description": "You are by two small towers that have been built into the city wall and connected with a footbridge across the heavy wooden gate.  Main Street leads west from here.  To the south you see the Water Shop.",
+      "description": "The area is by two small towers that have been built into the city wall\nand connected with a footbridge across the heavy wooden gate. Main\nStreet leads west from here. To the south you see the Water Shop. The\nsounds of city life echo around. Vendors and pedestrians bustle past.",
       "sector_type": "city",
-      "flags": [],
+      "flags": [
+        "class_only:ranger"
+      ],
       "exits": {
         "east": {
           "to_room": 3053,
@@ -1100,13 +1204,17 @@
         {
           "vnum": 3067,
           "max": 10
+        },
+        {
+          "vnum": 3030,
+          "max": 1
         }
       ]
     },
     "3042": {
       "vnum": 3042,
       "name": "Wall Road",
-      "description": "You are walking next to the western city wall.  The road continues further south and the city gate is just north of here.",
+      "description": "The way continues next to the western city wall. The road continues\nfurther south and the city gate is just north of here. The smell of\nsmoke and humanity hangs in the air. The cobblestones are worn smooth by\ncountless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1126,7 +1234,7 @@
     "3043": {
       "vnum": 3043,
       "name": "Wall Road",
-      "description": "You are walking next to the western city wall.  Wall Road continues further north and south.  A small, poor alley leads east. Some letters have been written on the wall here.",
+      "description": "The way continues next to the western city wall. Wall Road continues\nfurther north and south. A small, poor alley leads east. Some letters\nhave been written on the wall here. The cobblestones are worn smooth by\ncountless feet. The smell of smoke and humanity hangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1150,7 +1258,7 @@
     "3044": {
       "vnum": 3044,
       "name": "Poor Alley",
-      "description": "You are on Poor Alley, which continues further east.  You see the city wall to the west.",
+      "description": "The area is Poor Alley, which continues further east. You see the city\nwall to the west. The smell of smoke and humanity hangs in the air.\nBuildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1173,7 +1281,7 @@
     "3045": {
       "vnum": 3045,
       "name": "The Dark Alley At The Levee",
-      "description": "You are standing in the alley which continues east and west.  South of here you see the levee.",
+      "description": "This is the alley which continues east and west. South of here you see\nthe levee. The cobblestones are worn smooth by countless feet. The smell\nof smoke and humanity hangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1194,7 +1302,7 @@
     "3046": {
       "vnum": 3046,
       "name": "The Eastern End Of The Alley",
-      "description": "You are standing at the eastern end of the alley, the city wall is just east, blocking any further movement.  A small warehouse is directly south of here.",
+      "description": "The area opens at the eastern end of the alley, the city wall is just\neast, blocking any further movement. A small warehouse is directly south\nof here. The smell of smoke and humanity hangs in the air. Vendors and\npedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1211,7 +1319,7 @@
     "3047": {
       "vnum": 3047,
       "name": "Wall Road",
-      "description": "You are standing on the road next to the western city wall, which continues north.  South of here is a bridge across the river.",
+      "description": "This area is the road next to the western city wall, which continues\nnorth. South of here is a bridge across the river. Vendors and\npedestrians bustle past. The sounds of city life echo around.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1231,7 +1339,7 @@
     "3048": {
       "vnum": 3048,
       "name": "Grubby Inn",
-      "description": "You are inside the old Grubby Inn.  This place has not been cleaned for several decades; vile smells make you dizzy.",
+      "description": "This isside the old Grubby Inn. This place has not been cleaned for\nseveral decades; vile smells make you dizzy. The ceiling hangs low\noverhead. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "indoors",
@@ -1251,13 +1359,17 @@
         {
           "vnum": 3065,
           "max": 2
+        },
+        {
+          "vnum": 3132,
+          "max": 2
         }
       ]
     },
     "3049": {
       "vnum": 3049,
       "name": "The Levee",
-      "description": "You are at the levee.  South of here you see the river gently flowing west. The river bank is very low making it possible to enter the river.",
+      "description": "This is the levee. South of here you see the river gently flowing west.\nThe river bank is very low making it possible to enter the river.\nBuildings crowd together on all sides. The cobblestones are worn smooth\nby countless feet.",
       "sector_type": "city",
       "flags": [
         "no_magic"
@@ -1282,7 +1394,7 @@
     "3050": {
       "vnum": 3050,
       "name": "The Deserted Warehouse",
-      "description": "You are inside the warehouse.  The room is decorated with various old items from ships.",
+      "description": "This isside the warehouse. The room is decorated with various old items\nfrom ships. Shadows gather in the corners. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -1311,7 +1423,7 @@
     "3051": {
       "vnum": 3051,
       "name": "On The Bridge",
-      "description": "You are standing on the stone bridge crosses the river.  The bridge is built out from the western city wall and the river flows west through an opening in the wall ten feet below the bridge.",
+      "description": "This area is the stone bridge crosses the river. The bridge is built out\nfrom the western city wall and the river flows west through an opening\nin the wall ten feet below the bridge. Buildings crowd together on all\nsides. The sounds of city life echo around.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1331,7 +1443,7 @@
     "3052": {
       "vnum": 3052,
       "name": "Outside The West Gate Of Midgaard",
-      "description": "You are by two small towers that have been built into the city wall and connected with a footbridge across the heavy wooden gate.  To the west you can see the edge of a big forest.",
+      "description": "The area is by two small towers that have been built into the city wall\nand connected with a footbridge across the heavy wooden gate. To the\nwest Visible is the edge of a big forest. A shadowy path leads south into the Forest of Shadows. The smell of smoke and humanity hangs in the\nair. The cobblestones are worn smooth by countless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1348,6 +1460,10 @@
         "west": {
           "to_room": 6092,
           "description": "The forest edge is to the west."
+        },
+        "south": {
+          "to_room": 20001,
+          "description": "A shadowy path leads into the Forest of Shadows."
         }
       },
       "extra_descs": {
@@ -1357,7 +1473,7 @@
     "3053": {
       "vnum": 3053,
       "name": "Outside The East Gate Of Midgaard",
-      "description": "You are by two small towers that have been built into the city wall and connected with a footbridge across the heavy wooden gate.  To the east the plains stretch out in the distance.",
+      "description": "The area is by two small towers that have been built into the city wall\nand connected with a footbridge across the heavy wooden gate. To the\neast the plains stretch out in the distance. Vendors and pedestrians\nbustle past. Buildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1383,10 +1499,11 @@
     "3054": {
       "vnum": 3054,
       "name": "By The Temple Altar",
-      "description": "You are by the temple altar in the northern end of the Temple of Midgaard.  A huge altar made from white polished marble is standing in front of you and behind it is a ten foot tall sitting statue of Odin, the King of the Gods.    To the north, steps lead out the back of the temple towards the countryside.",
+      "description": "The area is by the temple altar in the northern end of the Temple of\nMidgaard. A huge altar made from white polished marble is standing ahead\nand behind it is a ten foot tall sitting statue of Odin, the King of the\nGods. To the north, steps lead out the back of the temple towards the\ncountryside. Shadows gather in the corners. The walls are rough-hewn and\ncold to the touch.",
       "sector_type": "inside",
       "flags": [
-        "indoors"
+        "indoors",
+        "class_only:paladin"
       ],
       "exits": {
         "north": {
@@ -1401,12 +1518,18 @@
       "extra_descs": {
         "": "statue odin king god",
         "ven though the altar is more than ten feet long it appears to be made from": "a single block of white virgin marble."
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3031,
+          "max": 1
+        }
+      ]
     },
     "3055": {
       "vnum": 3055,
       "name": "Odin's Store",
-      "description": "This is the small dark room in which Odin keeps the player items that he takes care of.  It is vital that this room's virtual number is exactly one larger than the room by the temple altar.",
+      "description": "This is the small dark room in which Odin keeps the player items that he\ntakes care of. It is vital that this room's virtual number is exactly\none larger than the room by the temple altar. The ceiling hangs low\noverhead. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "indoors",
@@ -1417,7 +1540,7 @@
     "3058": {
       "vnum": 3058,
       "name": "Ye Olde Water Shoppe",
-      "description": "You are standing in the center of a small wooden shop whose walls are covered with racks upon racks of water jugs.  Several large barrels with spigots are stacked in the corner.",
+      "description": "This is the center of a small wooden shop whose walls are covered with\nracks upon racks of water jugs. Several large barrels with spigots are\nstacked in the corner. The air is still and musty. Dust motes drift in\nthe stale air.",
       "sector_type": "inside",
       "flags": [
         "indoors",
@@ -1439,7 +1562,7 @@
     "3059": {
       "vnum": 3059,
       "name": "Behind The Temple Altar",
-      "description": "You are on a dirt path leading away from the Temple Altar which is south of here.  To the north, the path continues through the lush contryside of Midgaard towards the Dragonhelm Mountains far off to the north.",
+      "description": "The area is a dirt path leading away from the Temple Altar which is\nsouth of here. To the north, the path continues through the lush\ncontryside of Midgaard towards the Dragonhelm Mountains far off to the\nnorth. Vendors and pedestrians bustle past. The cobblestones are worn\nsmooth by countless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1456,7 +1579,7 @@
     "3060": {
       "vnum": 3060,
       "name": "The Great Field Of Midgaard",
-      "description": "You are walking on a wide dirt path through the lush, green, fresh Midgaard countryside.  You can see to the horizon to the north, east, and west; the busy city of Midgaard lies to the south.  All around you is healthy green grass and an occasional large oak tree.  The sun feels wonderful on your face and a pleasant wind blows through your hair.  Birds chirp quietly to themselves and you can smell the faint scent of flowers and freshly cut grass.  You feel like you could lie down in the grass and stay here forever, surrounded by powerful beauty in all directions.    The path you are on continues north through the field and south back to Midgaard.",
+      "description": "A path runs through a wide dirt path through the lush, green, fresh\nMidgaard countryside. Visible is to the horizon to the north, east, and\nwest; the busy city of Midgaard lies to the south. All around is healthy\ngreen grass and an occasional large oak tree. The sun feels wonderful on\nyour face and a pleasant wind blows through your hair. Birds chirp\nquietly to themselves and you can smell the faint scent of flowers and\nfreshly cut grass. You feel like you could lie down in the grass and\nstay here forever, surrounded by powerful beauty in all directions. The\npath you are on continues north through the field and south back to\nMidgaard. The cobblestones are worn smooth by countless feet. Vendors\nand pedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1473,7 +1596,7 @@
     "3061": {
       "vnum": 3061,
       "name": "The Great Field Of Midgaard",
-      "description": "You are walking on a wide dirt path through the lush, green, fresh Midgaard countryside.  You can see to the horizon to the north, east, and west; the busy city of Midgaard lies to the south.  All around you is healthy green grass and an occasional large oak tree.  The sun feels wonderful on your face and a pleasant wind blows through your hair.  Birds chirp quietly to themselves and you can smell the faint scent of flowers and freshly cut grass.  You feel like you could lie down in the grass and stay here forever, surrounded by powerful beauty in all directions.    There is a strange structure on the eastern side of the path.  A small dirt path splits off of the main path and leads off to the west.",
+      "description": "A path runs through a wide dirt path through the lush, green, fresh\nMidgaard countryside. Visible is to the horizon to the north, east, and\nwest; the busy city of Midgaard lies to the south. All around is healthy\ngreen grass and an occasional large oak tree. The sun feels wonderful on\nyour face and a pleasant wind blows through your hair. Birds chirp\nquietly to themselves and you can smell the faint scent of flowers and\nfreshly cut grass. You feel like you could lie down in the grass and\nstay here forever, surrounded by powerful beauty in all directions.\nThere is a strange structure on the eastern side of the path. A small\ndirt path splits off of the main path and leads off to the west. Vendors\nand pedestrians bustle past. The smell of smoke and humanity hangs in\nthe air.",
       "sector_type": "city",
       "flags": [
         "no_mob"
@@ -1500,7 +1623,7 @@
     "3062": {
       "vnum": 3062,
       "name": "The Post Office",
-      "description": "You are in the central post office for Midgaard.  Piles of assorted mail lay untouched in the corners, collecting cobwebs.  Several large crates have been pried open by curious customs agents, and are now stacked along the west wall, hiding plenty of 'WANTED' posters. There is a sign posted on the wall here.",
+      "description": "This is the central post office for Midgaard. Piles of assorted mail lay\nuntouched in the corners, collecting cobwebs. Several large crates have\nbeen pried open by curious customs agents, and are now stacked along the\nwest wall, hiding plenty of 'WANTED' posters. There is a sign posted on\nthe wall here. The smell of smoke and humanity hangs in the air. The\nsounds of city life echo around.",
       "sector_type": "city",
       "flags": [
         "indoors",
@@ -1527,7 +1650,7 @@
     "3063": {
       "vnum": 3063,
       "name": "The Midgaard Donation Room",
-      "description": "You are in a small, undecorated room just off of the main temple.  There are a couple of small wooden benches here where people occasionally sit while they wait for items to appear.  The temple is to the west.",
+      "description": "This is a small, undecorated room just off of the main temple. There are\na couple of small wooden benches here where people occasionally sit\nwhile they wait for items to appear. The temple is to the west. Vendors\nand pedestrians bustle past. Buildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [
         "no_mob",
@@ -1544,7 +1667,7 @@
     "3064": {
       "vnum": 3064,
       "name": "The Cryogenic Center",
-      "description": "You are standing in an impossible white sterile room with cylindrical body-length canisters lined up against the walls.  The Reception is to the south.",
+      "description": "This is an impossible white sterile room with cylindrical body-length\ncanisters lined up against the walls. The Reception is to the south. The\nsounds of city life echo around. The smell of smoke and humanity hangs\nin the air.",
       "sector_type": "city",
       "flags": [
         "indoors"
@@ -1565,7 +1688,7 @@
     "3065": {
       "vnum": 3065,
       "name": "The Great Field Of Midgaard",
-      "description": "You are walking on a wide dirt path through the lush, green, fresh Midgaard countryside.  You can see to the horizon to the north, east, and west; the busy city of Midgaard lies to the south.  All around you is healthy green grass and an occasional large oak tree.  The sun feels wonderful on your face and a pleasant wind blows through your hair.  Birds chirp quietly to themselves and you can smell the faint scent of flowers and freshly cut grass.  You feel like you could lie down in the grass and stay here forever, surrounded by powerful beauty in all directions.    The way north appears to be blocked by a large plot device and you cannot see any way around it.",
+      "description": "A path runs through a wide dirt path through the lush, green, fresh\nMidgaard countryside. Visible is to the horizon to the north, east, and\nwest; the busy city of Midgaard lies to the south. All around is healthy\ngreen grass and an occasional large oak tree. The sun feels wonderful on\nyour face and a pleasant wind blows through your hair. Birds chirp\nquietly to themselves and you can smell the faint scent of flowers and\nfreshly cut grass. You feel like you could lie down in the grass and\nstay here forever, surrounded by powerful beauty in all directions. The\nway north appears to be blocked by a large plot device and you cannot\nsee any way around it. The open sky stretches overhead. Tall grass sways\nin a gentle breeze.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -1581,7 +1704,7 @@
     "3066": {
       "vnum": 3066,
       "name": "The Dirt Path",
-      "description": "You are walking along a narrow dirt path through the lush, green, fresh Midgaard countryside.  You can see to the horizon to the north and east; the busy city of Midgaard lies to the south.  All around you is healthy green grass and an occasional large oak tree.  The sun feels wonderful on your face and a pleasant wind blows through your hair.  Birds chirp quietly to themselves and you can smell the faint scent of flowers and freshly cut grass.  You feel like you could lie down in the grass and stay here forever, surrounded by powerful beauty in all directions.    There is a large rusty gate sitting in a stone archway just to the west.",
+      "description": "A path winds along a narrow dirt path through the lush, green, fresh\nMidgaard countryside. Visible is to the horizon to the north and east;\nthe busy city of Midgaard lies to the south. All around is healthy green\ngrass and an occasional large oak tree. The sun feels wonderful on your\nface and a pleasant wind blows through your hair. Birds chirp quietly to\nthemselves and you can smell the faint scent of flowers and freshly cut\ngrass. You feel like you could lie down in the grass and stay here\nforever, surrounded by powerful beauty in all directions. There is a\nlarge rusty gate sitting in a stone archway just to the west. The ground\nis soft underfoot. The air is fresh and clean.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -1592,6 +1715,338 @@
         "west": {
           "to_room": 3600,
           "description": "There is a large rusty gate just to the west."
+        }
+      }
+    },
+    "3069": {
+      "vnum": 3069,
+      "name": "First National Bank of Midgaard",
+      "description": "The area opens in the marble-floored lobby of Midgaard's most\nprestigious financial institution. Iron-barred teller windows line the\nnorthern wall, where a well-dressed banker handles transactions with\nefficient precision. Ornate columns support the vaulted ceiling, and oil\npaintings of the city's founding merchants hang on the walls. A brass\nplaque near the door reads 'Est. Year 1 of the Third Age'. Shadows\ngather in the corners. The ceiling hangs low overhead.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "bank"
+      ],
+      "mob_resets": [
+        {
+          "vnum": 3111,
+          "max": 1
+        }
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3072,
+          "description": "The statue base cache is to the south."
+        }
+      }
+    },
+    "3070": {
+      "vnum": 3070,
+      "name": "An Abandoned Scriptorium",
+      "description": "Dusty desks and ink-stained parchment are scattered across this\nforgotten scriptorium. A single candle stub clings to a wrought holder,\nlong since cold. The air smells of vellum and age. Dust motes drift in\nthe stale air. The air is still and musty.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3000,
+          "description": "The bookshelf passage leads back south."
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 3210,
+          "max": 1
+        }
+      ]
+    },
+    "3071": {
+      "vnum": 3071,
+      "name": "A Catacomb Niche",
+      "description": "A narrow niche tucked beneath the temple stones. Old votive bowls line\nthe walls, and a small reliquary sits on a cracked pedestal. The ceiling\nhangs low overhead. Shadows gather in the corners.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "dark"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 3005,
+          "description": "A cramped crawlspace leads back up."
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 3211,
+          "max": 1
+        }
+      ]
+    },
+    "3072": {
+      "vnum": 3072,
+      "name": "The Statue Base Cache",
+      "description": "Hidden within the statue, this cramped chamber holds a few offerings, a\nshallow basin, and a stone shelf carved with prayer marks. The ceiling\nhangs low overhead. Shadows gather in the corners.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 3014,
+          "description": "The passage returns to the market square."
+        },
+        "north": {
+          "to_room": 3069,
+          "description": "The bank is to the north."
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 3212,
+          "max": 1
+        }
+      ]
+    },
+    "3073": {
+      "vnum": 3073,
+      "name": "The Old Watch Post",
+      "description": "This cramped watch post overlooks the west gate through narrow slits. A\nbattered coffer sits against the wall, and the air smells of old oil and\nsmoke. The ceiling hangs low overhead. The air is still and musty.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "down": {
+          "to_room": 3040,
+          "description": "The trapdoor drops back to the west gate."
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 3213,
+          "max": 1
+        }
+      ]
+    },
+    "3074": {
+      "vnum": 3074,
+      "name": "The Forgotten Passage",
+      "description": "A narrow passage descends into darkness. The walls are damp with\ncondensation and the air reeks of decay. This entrance was clearly\nhidden for a reason - perhaps to keep something in, rather than keep\npeople out. The air is still and musty. The ceiling hangs low overhead.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "dark"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 3025,
+          "description": "A hidden trapdoor leads back to the surface.",
+          "flags": [
+            "hidden"
+          ]
+        },
+        "down": {
+          "to_room": 3075,
+          "description": "The passage descends further into darkness."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3134,
+          "max": 3
+        }
+      ]
+    },
+    "3075": {
+      "vnum": 3075,
+      "name": "The Sewer King's Domain",
+      "description": "This vast chamber stinks of rot and refuse. Bones litter the floor, and\nmakeshift totems of rat skulls line the walls. A crude throne of garbage\nand bones sits at the far end. Something large and terrible rules here.\nThe air is still and musty. The walls are rough-hewn and cold to the\ntouch.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "dark"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 3074,
+          "description": "The passage leads back toward the surface."
+        },
+        "east": {
+          "to_room": 3076,
+          "description": "A dark tunnel leads deeper into the sewers."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3120,
+          "max": 1
+        }
+      ]
+    },
+    "3076": {
+      "vnum": 3076,
+      "name": "The Shadow Crossing",
+      "description": "The darkness here is unnatural, seeming to swallow even magical light.\nShadows move of their own accord along the walls. You feel watched by\nunseen eyes. The air is deathly cold. The ceiling hangs low overhead.\nDust motes drift in the stale air.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "dark"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 3075,
+          "description": "The tunnel leads back to the Sewer King's domain."
+        },
+        "north": {
+          "to_room": 3077,
+          "description": "An ancient archway leads to something older..."
+        },
+        "east": {
+          "to_room": 3080,
+          "description": "A passage wreathed in shadow leads to an ancient sanctum."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3121,
+          "max": 1
+        }
+      ]
+    },
+    "3077": {
+      "vnum": 3077,
+      "name": "The Guardian's Vault",
+      "description": "This ancient chamber predates the city above by millennia. Runes of\npower are carved into every surface, pulsing with faint light. At the\ncenter stands a massive stone golem, eternally vigilant. Behind it, a\ntreasure chest gleams with promise. The walls are rough-hewn and cold to\nthe touch. The ceiling hangs low overhead.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3076,
+          "description": "The archway leads back to the shadows."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3122,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 3128,
+          "max": 1
+        }
+      ]
+    },
+    "3078": {
+      "vnum": 3078,
+      "name": "The Training Grounds",
+      "description": "This open courtyard serves as Midgaard's training grounds, where new\nadventurers learn the art of combat. Straw dummies stand in neat rows,\nbearing the scars of countless practice sessions. Wooden weapon racks\nline the walls, and the ground is packed hard from years of footwork\ndrills. A grizzled sergeant watches over the area, occasionally barking\ncorrections at those whose form displeases him. The Temple Square lies\nto the north. Vendors and pedestrians bustle past. The smell of smoke\nand humanity hangs in the air.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3004,
+          "description": "The Clerics' Guild entrance is to the north."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3201,
+          "max": 5
+        },
+        {
+          "vnum": 3202,
+          "max": 1
+        }
+      ]
+    },
+    "3080": {
+      "vnum": 3080,
+      "name": "The Threshold of Shadows",
+      "description": "The air grows cold and heavy as you enter this passage. Torches burn\nwith an eerie green flame, casting dancing shadows on walls etched with\nrunic symbols of death and rebirth. The scent of grave soil and ancient\nincense hangs in the still air. A foreboding presence seems to watch\nfrom the darkness beyond.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "dark"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 3076,
+          "description": "The Shadow Crossing lies to the west."
+        },
+        "north": {
+          "to_room": 3081,
+          "description": "A corridor of bones leads deeper into the sanctum."
+        }
+      }
+    },
+    "3081": {
+      "vnum": 3081,
+      "name": "The Bone Corridor",
+      "description": "Skulls and bones of countless creatures line the walls of this macabre\nhallway, arranged in intricate patterns that seem almost artistic in\ntheir grotesque beauty. Candles flicker in empty eye sockets, providing\nweak illumination. The bones whisper secrets to those who know how to\nlisten. The corridor opens into a larger chamber to the north.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "dark"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3080,
+          "description": "The threshold lies to the south."
+        },
+        "north": {
+          "to_room": 3082,
+          "description": "The main hall of the guild awaits."
+        }
+      }
+    },
+    "3082": {
+      "vnum": 3082,
+      "name": "The Necromancers' Guild",
+      "description": "This vaulted chamber serves as the heart of the Necromancers' Guild.\nAncient tomes line shelves carved from black stone, their pages filled\nwith forbidden knowledge. A ritual circle inlaid with silver dominates\nthe floor, surrounded by candelabras dripping with black wax. The air\nhums with dark energy, and the veil between life and death feels thin\nhere.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "dark",
+        "no_summon",
+        "class_only:necromancer"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3081,
+          "description": "The bone corridor leads back."
+        },
+        "east": {
+          "to_room": 3083,
+          "description": "A private study lies beyond a dark curtain."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3033,
+          "max": 1
+        }
+      ]
+    },
+    "3083": {
+      "vnum": 3083,
+      "name": "The Inner Sanctum",
+      "description": "This private study belongs to the guildmaster. Shelves hold preserved\nspecimens in jars, reagents for dark rituals, and scrolls of ancient\npower. A desk covered in notes and diagrams sits against one wall.\nA summoning circle is etched permanently into the stone floor, faint\ntraces of otherworldly energy still lingering within its bounds.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "dark",
+        "no_summon",
+        "private"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 3082,
+          "description": "The main guild hall lies beyond the curtain."
         }
       }
     }
@@ -1620,20 +2075,28 @@
       "special": "shopkeeper",
       "shop_config": {
         "sells": [
-          3050
+          3050,
+          3134,
+          3135,
+          3136
         ],
         "buys": [
-          "3053"
+          "scroll",
+          "potion",
+          "wand"
         ],
-        "markup": 3051.0,
-        "markdown": 3052.0
+        "markup": 2.0,
+        "markdown": 0.4
       },
       "inventory": [
         3050,
         3051,
         3052,
         3053,
-        3054
+        3054,
+        3134,
+        3135,
+        3136
       ]
     },
     "3001": {
@@ -1659,11 +2122,15 @@
       "special": "shopkeeper",
       "shop_config": {
         "sells": [
-          3009
+          3009,
+          3101,
+          3130,
+          3131,
+          3132
         ],
         "buys": [],
-        "markup": 3010.0,
-        "markdown": 3011.0
+        "markup": 1.5,
+        "markdown": 0.5
       },
       "inventory": [
         3009,
@@ -1697,20 +2164,29 @@
       "special": "shopkeeper",
       "shop_config": {
         "sells": [
-          3030
+          3010,
+          3015,
+          3130,
+          3131,
+          3132,
+          3102,
+          3133
         ],
         "buys": [
-          "3033"
+          "food",
+          "drinkcon"
         ],
-        "markup": 3031.0,
-        "markdown": 3032.0
+        "markup": 1.5,
+        "markdown": 0.5
       },
       "inventory": [
         3030,
         3031,
         3032,
         3033,
-        3036
+        3036,
+        3102,
+        3133
       ],
       "equipment": {
         "wield": 3022
@@ -1742,10 +2218,11 @@
           3020
         ],
         "buys": [
-          "3023"
+          "weapon"
         ],
-        "markup": 3021.0,
-        "markdown": 3022.0
+        "markup": 1.15,
+        "markdown": 0.2,
+        "starting_gold": 500000
       },
       "inventory": [
         3020,
@@ -1818,10 +2295,10 @@
       "long_desc": "A receptionist is standing behind the counter here, smiling at you.",
       "level": 33,
       "alignment": 900,
-      "hp_dice": "2d8+32",
-      "damage_dice": "1d1+30000",
+      "hp_dice": "8d10+1155",
+      "damage_dice": "3d8+66",
       "gold": 0,
-      "exp": 8,
+      "exp": 1413,
       "armor_class": -10,
       "flags": [
         "special",
@@ -1907,10 +2384,10 @@
       "long_desc": "Uncle Juan is here ready to take your order.",
       "level": 33,
       "alignment": 900,
-      "hp_dice": "2d8+18",
-      "damage_dice": "1d1+30000",
+      "hp_dice": "8d10+1155",
+      "damage_dice": "3d8+66",
       "gold": 81000,
-      "exp": 8,
+      "exp": 1413,
       "armor_class": -10,
       "flags": [
         "special",
@@ -1964,10 +2441,10 @@
       "long_desc": "The head postmaster is standing here, waiting to help you with your mail.",
       "level": 33,
       "alignment": 1000,
-      "hp_dice": "1d8+18",
-      "damage_dice": "1d1+30000",
+      "hp_dice": "8d10+1155",
+      "damage_dice": "3d8+66",
       "gold": 1000,
-      "exp": 8,
+      "exp": 1413,
       "armor_class": -10,
       "flags": [
         "special",
@@ -1987,10 +2464,10 @@
       "long_desc": "Your guildmaster is studying a spellbook while preparing to cast a spell.",
       "level": 34,
       "alignment": 1000,
-      "hp_dice": "1d8+24",
-      "damage_dice": "6d10+640",
+      "hp_dice": "8d10+1190",
+      "damage_dice": "3d8+68",
       "gold": 59397,
-      "exp": 8,
+      "exp": 1468,
       "armor_class": -10,
       "flags": [
         "special",
@@ -2001,7 +2478,9 @@
         "no_summmon",
         "no_sleep"
       ],
-      "description": "Even though your guildmaster looks old and tired, you can clearly see the\nvast amount of knowledge she possesses.  She is wearing fine magic clothing,\nand you notice that she is surrounded by a blue shimmering aura."
+      "description": "Even though your guildmaster looks old and tired, you can clearly see the\nvast amount of knowledge she possesses.  She is wearing fine magic clothing,\nand you notice that she is surrounded by a blue shimmering aura.",
+      "special": "guildmaster",
+      "trains_class": "mage"
     },
     "3021": {
       "vnum": 3021,
@@ -2010,10 +2489,10 @@
       "long_desc": "Your guildmaster is prayer to your God here.",
       "level": 34,
       "alignment": 1000,
-      "hp_dice": "1d8+24",
-      "damage_dice": "6d10+640",
+      "hp_dice": "8d10+1190",
+      "damage_dice": "3d8+68",
       "gold": 59397,
-      "exp": 8,
+      "exp": 1468,
       "armor_class": -10,
       "flags": [
         "special",
@@ -2024,7 +2503,9 @@
         "no_summmon",
         "no_sleep"
       ],
-      "description": "You are in no doubt that this guildmaster is truly close to your God; he\nhas a peaceful, loving look.  You notice that he is surrounded by a white\naura."
+      "description": "You are in no doubt that this guildmaster is truly close to your God; he\nhas a peaceful, loving look.  You notice that he is surrounded by a white\naura.",
+      "special": "guildmaster",
+      "trains_class": "cleric"
     },
     "3022": {
       "vnum": 3022,
@@ -2033,10 +2514,10 @@
       "long_desc": "A beggar is sitting here, could she be a guildmaster?",
       "level": 34,
       "alignment": 1000,
-      "hp_dice": "1d8+34",
-      "damage_dice": "6d10+640",
+      "hp_dice": "8d10+1190",
+      "damage_dice": "3d8+68",
       "gold": 59397,
-      "exp": 8,
+      "exp": 1468,
       "armor_class": -10,
       "flags": [
         "special",
@@ -2047,7 +2528,9 @@
         "no_summmon",
         "no_sleep"
       ],
-      "description": "You realize that whenever your guildmaster moves, you fail to notice it -\nthe way of the true thief.  She is to be dressed in poor clothing, having\nthe appearance of a beggar."
+      "description": "You realize that whenever your guildmaster moves, you fail to notice it -\nthe way of the true thief.  She is to be dressed in poor clothing, having\nthe appearance of a beggar.",
+      "special": "guildmaster",
+      "trains_class": "thief,assassin"
     },
     "3023": {
       "vnum": 3023,
@@ -2056,10 +2539,10 @@
       "long_desc": "Your guildmaster is standing here sharpening an axe.",
       "level": 34,
       "alignment": 1000,
-      "hp_dice": "1d8+34",
-      "damage_dice": "6d10+740",
+      "hp_dice": "8d10+1190",
+      "damage_dice": "3d8+68",
       "gold": 59397,
-      "exp": 8,
+      "exp": 1468,
       "armor_class": -10,
       "flags": [
         "special",
@@ -2070,7 +2553,9 @@
         "no_summmon",
         "no_sleep"
       ],
-      "description": "This is your master. Big and strong with bulging muscles. Several scars\nacross his body proves that he was using arms before you were born. He\nhas a calm look on his face."
+      "description": "This is your master. Big and strong with bulging muscles. Several scars\nacross his body proves that he was using arms before you were born. He\nhas a calm look on his face.",
+      "special": "guildmaster",
+      "trains_class": "warrior"
     },
     "3024": {
       "vnum": 3024,
@@ -2079,10 +2564,10 @@
       "long_desc": "A sorcerer is guarding the entrance.",
       "level": 33,
       "alignment": 900,
-      "hp_dice": "1d8+22",
-      "damage_dice": "6d10+990",
+      "hp_dice": "8d10+1155",
+      "damage_dice": "3d8+66",
       "gold": 31000,
-      "exp": 8,
+      "exp": 1413,
       "armor_class": -5,
       "flags": [
         "special",
@@ -2104,10 +2589,10 @@
       "long_desc": "A knight templar is guarding the entrance.",
       "level": 33,
       "alignment": 1000,
-      "hp_dice": "1d8+22",
-      "damage_dice": "6d10+990",
+      "hp_dice": "8d10+1155",
+      "damage_dice": "3d8+66",
       "gold": 81000,
-      "exp": 8,
+      "exp": 1413,
       "armor_class": -5,
       "flags": [
         "special",
@@ -2129,11 +2614,11 @@
       "long_desc": "An assassin is guarding the entrance.",
       "level": 33,
       "alignment": 400,
-      "hp_dice": "1d8+25",
-      "damage_dice": "6d10+990",
+      "hp_dice": "33d10+412",
+      "damage_dice": "9d8+11",
       "gold": 81000,
-      "exp": 8,
-      "armor_class": -10,
+      "exp": 1980,
+      "armor_class": 1,
       "flags": [
         "special",
         "sentinel",
@@ -2154,10 +2639,10 @@
       "long_desc": "A knight is guarding the entrance.",
       "level": 33,
       "alignment": 800,
-      "hp_dice": "1d8+40",
-      "damage_dice": "6d10+990",
+      "hp_dice": "8d10+1155",
+      "damage_dice": "3d8+66",
       "gold": 81000,
-      "exp": 8,
+      "exp": 1413,
       "armor_class": -8,
       "flags": [
         "special",
@@ -2217,13 +2702,13 @@
       "name": "waiter",
       "short_desc": "the waiter",
       "long_desc": "A waiter is going around from one place to another.",
-      "level": 23,
+      "level": 5,
       "alignment": 900,
-      "hp_dice": "1d8+12",
-      "damage_dice": "6d10+390",
-      "gold": 41000,
-      "exp": 8,
-      "armor_class": 2,
+      "hp_dice": "2d6+15",
+      "damage_dice": "1d4+2",
+      "gold": 20,
+      "exp": 50,
+      "armor_class": 7,
       "flags": [
         "sentinel",
         "no_charm",
@@ -2424,10 +2909,10 @@
       "long_desc": "A Peacekeeper is standing here, ready to jump in at the first sign of trouble.",
       "level": 17,
       "alignment": 1000,
-      "hp_dice": "3d3+13",
-      "damage_dice": "5d6+225",
-      "gold": 16250,
-      "exp": 8,
+      "hp_dice": "4d10+60",
+      "damage_dice": "2d6+10",
+      "gold": 50,
+      "exp": 300,
       "armor_class": 0,
       "flags": [
         "special",
@@ -2445,16 +2930,17 @@
       "long_desc": "A cityguard stands here.",
       "level": 10,
       "alignment": 1000,
-      "hp_dice": "1d8+5",
-      "damage_dice": "1d12+123",
-      "gold": 4750,
-      "exp": 8,
+      "hp_dice": "3d8+30",
+      "damage_dice": "1d8+5",
+      "gold": 30,
+      "exp": 150,
       "armor_class": 1,
       "flags": [
         "special",
         "stay_zone",
         "memory",
-        "helper"
+        "helper",
+        "sentinel"
       ],
       "description": "A big, strong, helpful, trustworthy guard.",
       "equipment": {
@@ -2468,10 +2954,10 @@
       "long_desc": "A janitor is walking around, cleaning up.",
       "level": 1,
       "alignment": 800,
-      "hp_dice": "1d5+0",
-      "damage_dice": "2d6+10",
-      "gold": 67,
-      "exp": 8,
+      "hp_dice": "1d6+3",
+      "damage_dice": "1d3",
+      "gold": 5,
+      "exp": 15,
       "armor_class": 9,
       "flags": [
         "special",
@@ -2485,19 +2971,20 @@
       "name": "fido",
       "short_desc": "the beastly fido",
       "long_desc": "A beastly fido is mucking through the garbage looking for food here.",
-      "level": 0,
+      "level": 1,
       "alignment": -200,
-      "hp_dice": "1d4+0",
-      "damage_dice": "1d6+4",
-      "gold": 12,
-      "exp": 8,
-      "armor_class": 10,
+      "hp_dice": "1d10+28",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 60,
+      "armor_class": 97,
       "flags": [
         "special",
         "aggressive",
         "stay_zone",
         "wimpy",
-        "no_bash"
+        "no_bash",
+        "slow_wander"
       ],
       "description": "The fido is a small dog that has a foul smell and pieces of rotted meat\nhanging around his teeth.",
       "inventory": [
@@ -2514,11 +3001,11 @@
       "long_desc": "A mercenary is waiting for a job here.",
       "level": 5,
       "alignment": -330,
-      "hp_dice": "1d6+1",
-      "damage_dice": "2d6+60",
-      "gold": 493,
-      "exp": 8,
-      "armor_class": 5,
+      "hp_dice": "5d10+76",
+      "damage_dice": "2d5+3",
+      "gold": 25,
+      "exp": 300,
+      "armor_class": 85,
       "flags": [
         "sentinel",
         "memory"
@@ -2535,11 +3022,11 @@
       "long_desc": "A singing, happy Drunk.",
       "level": 2,
       "alignment": 400,
-      "hp_dice": "1d6+0",
-      "damage_dice": "2d6+22",
-      "gold": 126,
-      "exp": 8,
-      "armor_class": 8,
+      "hp_dice": "2d10+40",
+      "damage_dice": "1d4+2",
+      "gold": 10,
+      "exp": 120,
+      "armor_class": 94,
       "flags": [
         "sentinel"
       ],
@@ -2552,11 +3039,11 @@
       "long_desc": "A beggar is here, asking for a few coins.",
       "level": 1,
       "alignment": 400,
-      "hp_dice": "1d5+0",
-      "damage_dice": "2d6+10",
-      "gold": 50,
-      "exp": 8,
-      "armor_class": 9,
+      "hp_dice": "1d10+28",
+      "damage_dice": "1d4+1",
+      "gold": 3,
+      "exp": 60,
+      "armor_class": 97,
       "flags": [
         "sentinel"
       ],
@@ -2570,13 +3057,13 @@
       "name": "odif",
       "short_desc": "the odif yltsaeb",
       "long_desc": "An odif yltsaeb is here, walking backwards.",
-      "level": 0,
+      "level": 1,
       "alignment": -200,
-      "hp_dice": "1d4+0",
-      "damage_dice": "1d6+4",
-      "gold": 12,
-      "exp": 8,
-      "armor_class": 10,
+      "hp_dice": "1d10+28",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 60,
+      "armor_class": 97,
       "flags": [
         "special",
         "aggressive",
@@ -2596,10 +3083,10 @@
       "long_desc": "A cityguard is here, guarding the gate.",
       "level": 10,
       "alignment": 1000,
-      "hp_dice": "1d8+5",
-      "damage_dice": "1d12+123",
-      "gold": 4750,
-      "exp": 8,
+      "hp_dice": "3d8+30",
+      "damage_dice": "1d8+5",
+      "gold": 30,
+      "exp": 150,
       "armor_class": 1,
       "flags": [
         "special",
@@ -2620,11 +3107,11 @@
       "long_desc": "An oozing green gelatinous blob is here, sucking in bits of debris.",
       "level": 20,
       "alignment": 0,
-      "hp_dice": "3d6+5",
-      "damage_dice": "1d11+325",
-      "gold": 20500,
-      "exp": 8,
-      "armor_class": 0,
+      "hp_dice": "20d10+256",
+      "damage_dice": "6d8+5",
+      "gold": 100,
+      "exp": 1200,
+      "armor_class": 40,
       "flags": [
         "special",
         "aware",
@@ -2646,10 +3133,10 @@
       "long_desc": "There is a Pet Shop Boy standing here cuddleing something furry in his hands.",
       "level": 10,
       "alignment": 1000,
-      "hp_dice": "20d4+10",
-      "damage_dice": "1d1+30000",
+      "hp_dice": "2d8+50",
+      "damage_dice": "1d6+8",
       "gold": 4750,
-      "exp": 8,
+      "exp": 299,
       "armor_class": 1,
       "flags": [
         "sentinel",
@@ -2666,11 +3153,11 @@
       "long_desc": "A small loyal kitten is here.",
       "level": 1,
       "alignment": 0,
-      "hp_dice": "1d4+0",
-      "damage_dice": "1d6+11",
+      "hp_dice": "1d10+28",
+      "damage_dice": "1d4+1",
       "gold": 50,
-      "exp": 8,
-      "armor_class": 9,
+      "exp": 60,
+      "armor_class": 97,
       "flags": [
         "sentinel",
         "scavenger",
@@ -2685,11 +3172,11 @@
       "long_desc": "A small loyal puppy is here.",
       "level": 1,
       "alignment": 0,
-      "hp_dice": "1d4+0",
-      "damage_dice": "1d6+13",
+      "hp_dice": "1d10+28",
+      "damage_dice": "1d4+1",
       "gold": 62,
-      "exp": 8,
-      "armor_class": 9,
+      "exp": 60,
+      "armor_class": 97,
       "flags": [
         "sentinel",
         "scavenger",
@@ -2704,11 +3191,11 @@
       "long_desc": "A small, quick, loyal beagle is here.",
       "level": 2,
       "alignment": 0,
-      "hp_dice": "1d6+0",
-      "damage_dice": "1d12+22",
+      "hp_dice": "2d10+40",
+      "damage_dice": "1d4+2",
       "gold": 100,
-      "exp": 8,
-      "armor_class": 8,
+      "exp": 120,
+      "armor_class": 94,
       "flags": [
         "sentinel",
         "scavenger",
@@ -2723,11 +3210,11 @@
       "long_desc": "A large, loyal rottweiler is here.",
       "level": 3,
       "alignment": 0,
-      "hp_dice": "1d7+0",
-      "damage_dice": "1d12+35",
+      "hp_dice": "3d10+52",
+      "damage_dice": "1d4+4",
       "gold": 400,
-      "exp": 8,
-      "armor_class": 7,
+      "exp": 180,
+      "armor_class": 91,
       "flags": [
         "sentinel",
         "scavenger",
@@ -2742,11 +3229,11 @@
       "long_desc": "A large, trained wolf is here.",
       "level": 4,
       "alignment": 0,
-      "hp_dice": "1d8+0",
-      "damage_dice": "1d12+47",
-      "gold": 800,
-      "exp": 8,
-      "armor_class": 6,
+      "hp_dice": "4d10+64",
+      "damage_dice": "2d4+3",
+      "gold": 20,
+      "exp": 240,
+      "armor_class": 88,
       "flags": [
         "sentinel",
         "scavenger",
@@ -2761,10 +3248,10 @@
       "long_desc": "The cryogenicist is here, playing with a canister of liquid nitrogen.",
       "level": 33,
       "alignment": 900,
-      "hp_dice": "2d8+32",
-      "damage_dice": "1d1+30000",
+      "hp_dice": "8d10+1155",
+      "damage_dice": "3d8+66",
       "gold": 0,
-      "exp": 8,
+      "exp": 1413,
       "armor_class": -10,
       "flags": [
         "special",
@@ -2776,6 +3263,414 @@
       "description": "You notice a tired look in her face.  She looks like she isn't paid well\nenough to put up with any crap from mud players with attitudes.",
       "equipment": {
         "wield": 3022
+      }
+    },
+    "3110": {
+      "vnum": 3110,
+      "name": "guide",
+      "short_desc": "the temple guide",
+      "long_desc": "A friendly temple guide stands here, ready to help new adventurers.",
+      "level": 5,
+      "alignment": 500,
+      "hp_dice": "5d10+76",
+      "damage_dice": "2d5+3",
+      "gold": 50,
+      "exp": 300,
+      "armor_class": 85,
+      "flags": [
+        "sentinel",
+        "memory"
+      ],
+      "description": "The temple guide smiles warmly and looks eager to offer advice to newcomers."
+    },
+    "3111": {
+      "vnum": 3111,
+      "name": "banker",
+      "short_desc": "the bank teller",
+      "long_desc": "A well-dressed bank teller stands behind a brass counter.",
+      "level": 10,
+      "alignment": 500,
+      "hp_dice": "10d10+136",
+      "damage_dice": "3d6+6",
+      "gold": 200,
+      "exp": 600,
+      "armor_class": 70,
+      "flags": [
+        "sentinel",
+        "memory"
+      ],
+      "description": "The bank teller keeps a careful eye on the ledgers, ready to assist with deposits or withdrawals."
+    },
+    "3120": {
+      "vnum": 3120,
+      "name": "sewer king",
+      "short_desc": "the Sewer King",
+      "long_desc": "A massive rat-man standing here.",
+      "level": 15,
+      "alignment": -800,
+      "hp_dice": "15d10+196",
+      "damage_dice": "4d7+8",
+      "gold": 500,
+      "exp": 900,
+      "armor_class": 55,
+      "flags": [
+        "aggressive",
+        "boss",
+        "memory",
+        "no_charm",
+        "no_sleep"
+      ],
+      "description": "The Sewer King is a hulking rat-man, easily seven feet tall. His matted fur is slick with filth, and he wears a crude crown fashioned from the bones of his victims. His beady red eyes gleam with cunning malice.",
+      "equipment": {
+        "wield": 3120
+      },
+      "loot_table": [
+        {
+          "vnum": 3121,
+          "chance": 30
+        },
+        {
+          "vnum": 3122,
+          "chance": 15
+        }
+      ]
+    },
+    "3121": {
+      "vnum": 3121,
+      "name": "shadow assassin",
+      "short_desc": "a shadow assassin",
+      "long_desc": "A figure cloaked in living darkness watches from the shadows.",
+      "level": 20,
+      "alignment": -900,
+      "hp_dice": "20d10+256",
+      "damage_dice": "6d8+5",
+      "gold": 300,
+      "exp": 1200,
+      "armor_class": 40,
+      "flags": [
+        "aggressive",
+        "tracker",
+        "memory",
+        "no_charm",
+        "no_sleep",
+        "no_blind"
+      ],
+      "description": "The shadow assassin seems to flicker in and out of existence. Where its face should be, there is only darkness. It moves with supernatural grace, daggers dripping with poison.",
+      "equipment": {
+        "wield": 3123
+      },
+      "loot_table": [
+        {
+          "vnum": 3124,
+          "chance": 20
+        },
+        {
+          "vnum": 3125,
+          "chance": 10
+        }
+      ]
+    },
+    "3122": {
+      "vnum": 3122,
+      "name": "ancient guardian",
+      "short_desc": "the Ancient Guardian",
+      "long_desc": "A towering stone golem stands watch, runes glowing on its body.",
+      "level": 25,
+      "alignment": 0,
+      "hp_dice": "25d10+316",
+      "damage_dice": "7d8+8",
+      "gold": 0,
+      "exp": 1500,
+      "armor_class": 25,
+      "flags": [
+        "sentinel",
+        "boss",
+        "memory",
+        "no_charm",
+        "no_sleep",
+        "no_blind",
+        "no_poison"
+      ],
+      "description": "The Ancient Guardian has stood here for millennia. Its stone body is covered in protective runes that pulse with arcane energy. It attacks any who would disturb the treasure it protects.",
+      "loot_table": [
+        {
+          "vnum": 3126,
+          "chance": 25
+        },
+        {
+          "vnum": 3127,
+          "chance": 15
+        },
+        {
+          "vnum": 3128,
+          "chance": 5
+        }
+      ]
+    },
+    "3130": {
+      "vnum": 3130,
+      "name": "street urchin",
+      "short_desc": "a street urchin",
+      "long_desc": "A scrappy young street urchin darts about, eyes alert for opportunity.",
+      "level": 2,
+      "alignment": -100,
+      "hp_dice": "2d10+40",
+      "damage_dice": "1d4+2",
+      "gold": 5,
+      "exp": 120,
+      "armor_class": 94,
+      "flags": [
+        "scavenger"
+      ],
+      "description": "This young urchin has learned to survive on the streets of Midgaard. Quick and nimble, they know every alley and shortcut in the city."
+    },
+    "3131": {
+      "vnum": 3131,
+      "name": "stray dog",
+      "short_desc": "a mangy stray dog",
+      "long_desc": "A thin, mangy dog sniffs around for scraps.",
+      "level": 1,
+      "alignment": 0,
+      "hp_dice": "1d10+28",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 60,
+      "armor_class": 97,
+      "flags": [
+        "scavenger"
+      ],
+      "description": "This poor dog has been living on the streets, scrounging for whatever food it can find."
+    },
+    "3132": {
+      "vnum": 3132,
+      "name": "drunk patron",
+      "short_desc": "a drunk patron",
+      "long_desc": "A drunk patron stumbles about, mumbling incoherently.",
+      "level": 3,
+      "alignment": 0,
+      "hp_dice": "3d10+52",
+      "damage_dice": "1d4+4",
+      "gold": 15,
+      "exp": 180,
+      "armor_class": 91,
+      "flags": [],
+      "description": "This patron has clearly had far too much to drink. They sway unsteadily and occasionally burst into song."
+    },
+    "3133": {
+      "vnum": 3133,
+      "name": "pickpocket",
+      "short_desc": "a shifty pickpocket",
+      "long_desc": "A shifty-eyed figure lurks in the shadows, watching for easy marks.",
+      "level": 5,
+      "alignment": -300,
+      "hp_dice": "5d10+76",
+      "damage_dice": "2d5+3",
+      "gold": 50,
+      "exp": 300,
+      "armor_class": 85,
+      "flags": [
+        "tracker",
+        "memory"
+      ],
+      "description": "This pickpocket has quick hands and quicker feet. They prey on distracted travelers and unwary merchants."
+    },
+    "3134": {
+      "vnum": 3134,
+      "name": "rat",
+      "short_desc": "a large rat",
+      "long_desc": "A large rat scurries about, searching for food.",
+      "level": 1,
+      "alignment": 0,
+      "hp_dice": "1d10+28",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 60,
+      "armor_class": 97,
+      "flags": [
+        "scavenger"
+      ],
+      "description": "An oversized rat, bold enough to venture out even in daylight."
+    },
+    "3030": {
+      "vnum": 3030,
+      "name": "ranger",
+      "short_desc": "the rangers' guildmaster",
+      "long_desc": "A weathered ranger stands here, bow at the ready.",
+      "level": 34,
+      "alignment": 500,
+      "hp_dice": "8d10+1190",
+      "damage_dice": "3d8+68",
+      "gold": 0,
+      "exp": 1468,
+      "armor_class": -10,
+      "special": "guildmaster",
+      "trains_class": "ranger",
+      "flags": [
+        "sentinel",
+        "aware",
+        "no_charm",
+        "no_summon",
+        "no_sleep"
+      ],
+      "description": "This grizzled tracker has spent decades in the wild. Scars from countless hunts mark her arms, and her keen eyes miss nothing."
+    },
+    "3031": {
+      "vnum": 3031,
+      "name": "paladin",
+      "short_desc": "the paladins' guildmaster",
+      "long_desc": "A holy knight in shining armor kneels in prayer.",
+      "level": 34,
+      "alignment": 1000,
+      "hp_dice": "8d10+1190",
+      "damage_dice": "3d8+68",
+      "gold": 0,
+      "exp": 1468,
+      "armor_class": -10,
+      "special": "guildmaster",
+      "trains_class": "paladin",
+      "flags": [
+        "sentinel",
+        "aware",
+        "no_charm",
+        "no_summon",
+        "no_sleep"
+      ],
+      "description": "This noble knight radiates an aura of righteousness. His armor gleams with divine light, and his sword bears holy runes."
+    },
+    "3032": {
+      "vnum": 3032,
+      "name": "bard",
+      "short_desc": "the bards' guildmaster",
+      "long_desc": "A flamboyant bard strums a lute while humming a tune.",
+      "level": 34,
+      "alignment": 0,
+      "hp_dice": "8d10+1190",
+      "damage_dice": "3d8+68",
+      "gold": 0,
+      "exp": 1468,
+      "armor_class": -10,
+      "special": "guildmaster",
+      "trains_class": "bard",
+      "flags": [
+        "sentinel",
+        "aware",
+        "no_charm",
+        "no_summon",
+        "no_sleep"
+      ],
+      "description": "This charismatic performer has traveled the world collecting songs and stories. Her voice can charm friend and foe alike."
+    },
+    "3033": {
+      "vnum": 3033,
+      "name": "necromancer",
+      "short_desc": "the necromancers' guildmaster",
+      "long_desc": "A hooded figure shrouded in dark mist stands here.",
+      "level": 34,
+      "alignment": -1000,
+      "hp_dice": "8d10+1190",
+      "damage_dice": "3d8+68",
+      "gold": 0,
+      "exp": 1468,
+      "armor_class": -10,
+      "special": "guildmaster",
+      "trains_class": "necromancer",
+      "flags": [
+        "sentinel",
+        "aware",
+        "no_charm",
+        "no_summon",
+        "no_sleep"
+      ],
+      "description": "Shadows seem to cling to this master of death. Pale hands emerge from dark robes, and the faint smell of decay follows him."
+    },
+    "3200": {
+      "vnum": 3200,
+      "name": "Sage Aldric",
+      "short_desc": "Sage Aldric",
+      "long_desc": "Sage Aldric stands here, ready to guide new adventurers.",
+      "level": 30,
+      "alignment": 1000,
+      "hp_dice": "10d10+500",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 0,
+      "special": "quest_giver",
+      "flags": [
+        "sentinel",
+        "aware",
+        "no_charm",
+        "no_summon",
+        "no_sleep",
+        "no_attack"
+      ],
+      "description": "Sage Aldric is an elderly man with a long white beard and kind, knowing eyes. He wears simple robes of deep blue, adorned with silver runes. A faint aura of wisdom surrounds him, and his voice carries the weight of countless years spent guiding young adventurers.\n\nHe seems eager to help newcomers find their way.",
+      "ai_config": {
+        "behaviors": [
+          "helpful",
+          "talkative"
+        ],
+        "greet_message": "Ah, a new face! Welcome to Midgaard, traveler. I am Sage Aldric. If you seek guidance, simply speak with me.",
+        "topics": {
+          "help": "I can teach you the ways of survival in these lands. Would you like to begin your training?",
+          "quest": "I offer guidance to those new to adventuring. Type 'quest' to see what tasks await you.",
+          "midgaard": "This city has stood for centuries as a beacon of civilization. The Temple behind me is sacred ground.",
+          "combat": "Combat is a necessary skill. South of the square are training grounds where you can practice safely.",
+          "skills": "Each class has unique abilities. Visit your guildmaster to improve your skills through practice."
+        }
+      }
+    },
+    "3201": {
+      "vnum": 3201,
+      "name": "training dummy",
+      "short_desc": "a training dummy",
+      "long_desc": "A straw training dummy stands here, waiting to be struck.",
+      "level": 1,
+      "alignment": 0,
+      "hp_dice": "1d4+20",
+      "damage_dice": "1d2+0",
+      "gold": 0,
+      "exp": 10,
+      "armor_class": 100,
+      "flags": [
+        "sentinel",
+        "no_charm",
+        "no_summon"
+      ],
+      "description": "This is a man-shaped dummy made of burlap and stuffed with straw. It's mounted on a wooden post and has clearly seen better days - countless sword cuts and arrow holes mark its surface. Perfect for practicing your combat skills without real danger."
+    },
+    "3202": {
+      "vnum": 3202,
+      "name": "combat instructor",
+      "short_desc": "Sergeant Bron",
+      "long_desc": "Sergeant Bron stands here, watching recruits with a critical eye.",
+      "level": 20,
+      "alignment": 500,
+      "hp_dice": "5d10+200",
+      "damage_dice": "2d6+5",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 20,
+      "special": "trainer",
+      "flags": [
+        "sentinel",
+        "aware",
+        "no_charm",
+        "no_summon",
+        "no_attack"
+      ],
+      "description": "Sergeant Bron is a grizzled veteran with a scarred face and arms like tree trunks. He wears worn but well-maintained armor and carries a wooden practice sword. His eyes constantly scan for poor form or lazy swings.",
+      "ai_config": {
+        "behaviors": [
+          "gruff",
+          "helpful"
+        ],
+        "greet_message": "You there! Looking to train? The dummies won't hit back - much. Show me what you've got!",
+        "topics": {
+          "train": "Attack the dummies to practice. Use 'kill dummy' to begin.",
+          "combat": "In combat, you attack automatically each round. Use skills and spells to gain advantage.",
+          "flee": "If a fight goes bad, type 'flee' to escape. No shame in living to fight another day."
+        }
       }
     }
   },
@@ -2852,7 +3747,8 @@
       "item_type": "food",
       "weight": 1,
       "value": 50,
-      "nutrition": 24
+      "nutrition": 24,
+      "food_value": 30
     },
     "3010": {
       "vnum": 3010,
@@ -2862,7 +3758,8 @@
       "item_type": "food",
       "weight": 1,
       "value": 10,
-      "nutrition": 12
+      "nutrition": 12,
+      "food_value": 8
     },
     "3011": {
       "vnum": 3011,
@@ -2872,7 +3769,8 @@
       "item_type": "food",
       "weight": 1,
       "value": 5,
-      "nutrition": 5
+      "nutrition": 5,
+      "food_value": 15
     },
     "3012": {
       "vnum": 3012,
@@ -2882,7 +3780,8 @@
       "item_type": "food",
       "weight": 1,
       "value": 15,
-      "nutrition": 15
+      "nutrition": 15,
+      "food_value": 20
     },
     "3013": {
       "vnum": 3013,
@@ -2892,7 +3791,8 @@
       "item_type": "food",
       "weight": 1,
       "value": 10,
-      "nutrition": 10
+      "nutrition": 10,
+      "food_value": 25
     },
     "3014": {
       "vnum": 3014,
@@ -2902,7 +3802,8 @@
       "item_type": "food",
       "weight": 1,
       "value": 5,
-      "nutrition": 5
+      "nutrition": 5,
+      "food_value": 18
     },
     "3015": {
       "vnum": 3015,
@@ -2912,7 +3813,8 @@
       "item_type": "food",
       "weight": 5,
       "value": 24,
-      "nutrition": 14
+      "nutrition": 14,
+      "food_value": 22
     },
     "3020": {
       "vnum": 3020,
@@ -3036,7 +3938,13 @@
       "room_desc": "A large fountain carved from blue-streaked marble is here, bubbling merrily.",
       "item_type": "fountain",
       "weight": 9999,
-      "value": 0
+      "value": 0,
+      "drink_value": 12,
+      "liquid": "clear water",
+      "description": "This magnificent fountain is carved from blue-streaked marble. Crystal clear water bubbles up from the center, cascading down in gentle streams. The peaceful sound of flowing water fills the square.",
+      "unlimited": true,
+      "drinks": -1,
+      "capacity": 9999
     },
     "3036": {
       "vnum": 3036,
@@ -3336,6 +4244,428 @@
       "weight": 0,
       "value": 0
     },
+    "3100": {
+      "vnum": 3100,
+      "name": "fountain marble",
+      "short_desc": "a marble fountain",
+      "room_desc": "A beautiful marble fountain stands here, water trickling peacefully.",
+      "description": "This ornate marble fountain features carved dolphins spouting crystal-clear water into a wide basin. The water is cool and refreshing.",
+      "item_type": "fountain",
+      "weight": 0,
+      "value": 0,
+      "drink_value": 12,
+      "liquid_type": "water",
+      "flags": [
+        "no_take"
+      ]
+    },
+    "3101": {
+      "vnum": 3101,
+      "name": "bread loaf",
+      "short_desc": "a loaf of bread",
+      "room_desc": "A fresh loaf of bread lies here.",
+      "description": "A crusty loaf of freshly baked bread, still warm from the oven.",
+      "item_type": "food",
+      "weight": 1,
+      "value": 5,
+      "food_value": 10
+    },
+    "3102": {
+      "vnum": 3102,
+      "name": "waterskin",
+      "short_desc": "a leather waterskin",
+      "room_desc": "A leather waterskin lies here.",
+      "description": "A sturdy leather waterskin for carrying water on long journeys.",
+      "item_type": "drink",
+      "weight": 2,
+      "value": 15,
+      "drink_value": 6,
+      "drink_amount": 10,
+      "max_drink_amount": 10,
+      "liquid_type": "water"
+    },
+    "3103": {
+      "vnum": 3103,
+      "name": "fountain stone",
+      "short_desc": "a stone fountain",
+      "room_desc": "A small stone fountain bubbles here.",
+      "description": "A modest stone fountain provides fresh water to the market square.",
+      "item_type": "fountain",
+      "weight": 0,
+      "value": 0,
+      "drink_value": 10,
+      "liquid_type": "water",
+      "flags": [
+        "no_take"
+      ]
+    },
+    "3120": {
+      "vnum": 3120,
+      "name": "bone crown scepter",
+      "short_desc": "the Sewer King's scepter",
+      "room_desc": "A scepter made of fused bones lies here, emanating foul energy.",
+      "description": "This grotesque scepter was fashioned by the Sewer King from the bones of his enemies. Dark magic pulses through it.",
+      "item_type": "weapon",
+      "weight": 8,
+      "value": 2500,
+      "weapon_type": "mace",
+      "damage_dice": "3d5+4",
+      "flags": [
+        "magic",
+        "evil"
+      ],
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 3
+        },
+        {
+          "type": "hitroll",
+          "value": 2
+        }
+      ]
+    },
+    "3121": {
+      "vnum": 3121,
+      "name": "ratking crown",
+      "short_desc": "the Crown of the Rat King",
+      "room_desc": "A crown of yellowed bones lies here.",
+      "description": "This crown grants the wearer dominion over vermin. Rats seem to bow in its presence.",
+      "item_type": "armor",
+      "weight": 2,
+      "value": 3000,
+      "armor_value": 8,
+      "wear_flags": [
+        "head"
+      ],
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "cha",
+          "value": 2
+        },
+        {
+          "type": "armor",
+          "value": -10
+        }
+      ]
+    },
+    "3122": {
+      "vnum": 3122,
+      "name": "plague ring",
+      "short_desc": "a Ring of Pestilence",
+      "room_desc": "A tarnished ring pulses with sickly green light.",
+      "description": "This ring was forged in disease and death. Its wearer becomes immune to common poisons.",
+      "item_type": "armor",
+      "weight": 0,
+      "value": 4000,
+      "armor_value": 2,
+      "wear_flags": [
+        "finger"
+      ],
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "con",
+          "value": 2
+        },
+        {
+          "type": "saves",
+          "value": -5
+        }
+      ]
+    },
+    "3123": {
+      "vnum": 3123,
+      "name": "shadow dagger",
+      "short_desc": "a Shadowsteel Dagger",
+      "room_desc": "A dagger of pure darkness lies here, drinking in the light.",
+      "description": "This dagger was forged from solidified shadow. It seems to hunger for blood.",
+      "item_type": "weapon",
+      "weight": 2,
+      "value": 5000,
+      "weapon_type": "dagger",
+      "damage_dice": "2d6+5",
+      "flags": [
+        "magic",
+        "evil"
+      ],
+      "affects": [
+        {
+          "type": "hitroll",
+          "value": 4
+        },
+        {
+          "type": "damroll",
+          "value": 3
+        },
+        {
+          "type": "dex",
+          "value": 1
+        }
+      ]
+    },
+    "3124": {
+      "vnum": 3124,
+      "name": "shadow cloak",
+      "short_desc": "a Cloak of Shadows",
+      "room_desc": "A cloak woven from living darkness pools on the ground.",
+      "description": "This cloak seems to bend light around itself. The wearer becomes harder to see and hit.",
+      "item_type": "armor",
+      "weight": 3,
+      "value": 6000,
+      "armor_value": 10,
+      "wear_flags": [
+        "about"
+      ],
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "armor",
+          "value": -15
+        },
+        {
+          "type": "dex",
+          "value": 2
+        }
+      ]
+    },
+    "3125": {
+      "vnum": 3125,
+      "name": "assassin boots",
+      "short_desc": "Boots of the Silent Step",
+      "room_desc": "A pair of jet-black boots lies here.",
+      "description": "These boots make no sound when walking. Perfect for those who prefer to strike unseen.",
+      "item_type": "armor",
+      "weight": 2,
+      "value": 4500,
+      "armor_value": 6,
+      "wear_flags": [
+        "feet"
+      ],
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "dex",
+          "value": 2
+        },
+        {
+          "type": "move",
+          "value": 25
+        }
+      ]
+    },
+    "3126": {
+      "vnum": 3126,
+      "name": "guardian hammer",
+      "short_desc": "the Guardian's Runic Hammer",
+      "room_desc": "A massive stone hammer covered in glowing runes lies here.",
+      "description": "This hammer was wielded by the Ancient Guardian for millennia. The runes carved into it still pulse with protective magic.",
+      "item_type": "weapon",
+      "weight": 15,
+      "value": 8000,
+      "weapon_type": "mace",
+      "damage_dice": "4d5+6",
+      "flags": [
+        "magic",
+        "two_handed"
+      ],
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 5
+        },
+        {
+          "type": "hitroll",
+          "value": 3
+        },
+        {
+          "type": "str",
+          "value": 2
+        }
+      ]
+    },
+    "3127": {
+      "vnum": 3127,
+      "name": "runic shield",
+      "short_desc": "a Runic Stone Shield",
+      "room_desc": "A shield of carved stone radiates protective energy.",
+      "description": "Carved from the same stone as the Ancient Guardian, this shield bears runes of protection that glow when danger approaches.",
+      "item_type": "armor",
+      "weight": 12,
+      "value": 7000,
+      "armor_value": 15,
+      "wear_flags": [
+        "shield"
+      ],
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "armor",
+          "value": -20
+        },
+        {
+          "type": "con",
+          "value": 2
+        },
+        {
+          "type": "saves",
+          "value": -8
+        }
+      ]
+    },
+    "3128": {
+      "vnum": 3128,
+      "name": "ancient amulet",
+      "short_desc": "the Amulet of the Ancients",
+      "room_desc": "A glowing amulet of incredible power lies here.",
+      "description": "This amulet predates recorded history. It thrums with raw magical power. Legends say it was worn by the first archmage.",
+      "item_type": "armor",
+      "weight": 1,
+      "value": 15000,
+      "armor_value": 5,
+      "wear_flags": [
+        "neck"
+      ],
+      "flags": [
+        "magic",
+        "glow",
+        "hum"
+      ],
+      "affects": [
+        {
+          "type": "int",
+          "value": 3
+        },
+        {
+          "type": "wis",
+          "value": 3
+        },
+        {
+          "type": "mana",
+          "value": 50
+        },
+        {
+          "type": "saves",
+          "value": -10
+        }
+      ]
+    },
+    "3130": {
+      "vnum": 3130,
+      "name": "meat pie",
+      "short_desc": "a hearty meat pie",
+      "room_desc": "A delicious-looking meat pie sits here.",
+      "description": "A flaky-crusted pie filled with seasoned meat and vegetables.",
+      "item_type": "food",
+      "weight": 1,
+      "value": 25,
+      "food_value": 28
+    },
+    "3131": {
+      "vnum": 3131,
+      "name": "cheese wheel",
+      "short_desc": "a wheel of aged cheese",
+      "room_desc": "A wheel of cheese lies here.",
+      "description": "Aged for months, this cheese has a sharp, rich flavor.",
+      "item_type": "food",
+      "weight": 2,
+      "value": 40,
+      "food_value": 20
+    },
+    "3132": {
+      "vnum": 3132,
+      "name": "apple",
+      "short_desc": "a fresh red apple",
+      "room_desc": "A shiny red apple sits here.",
+      "description": "A crisp, fresh apple from the orchards outside the city.",
+      "item_type": "food",
+      "weight": 0,
+      "value": 5,
+      "food_value": 6
+    },
+    "3133": {
+      "vnum": 3133,
+      "name": "wine bottle",
+      "short_desc": "a bottle of fine wine",
+      "room_desc": "A dusty bottle of wine lies here.",
+      "description": "An excellent vintage from the southern vineyards.",
+      "item_type": "drinkcon",
+      "weight": 2,
+      "value": 100,
+      "capacity": 6,
+      "current": 6,
+      "liquid_type": "wine"
+    },
+    "3134": {
+      "vnum": 3134,
+      "name": "healing potion",
+      "short_desc": "a potion of healing",
+      "room_desc": "A small red vial glows faintly.",
+      "description": "This red potion restores health when consumed.",
+      "item_type": "potion",
+      "weight": 1,
+      "value": 150,
+      "spell_level": 10,
+      "spells": [
+        "cure_light"
+      ]
+    },
+    "3135": {
+      "vnum": 3135,
+      "name": "mana potion",
+      "short_desc": "a potion of mana",
+      "room_desc": "A small blue vial shimmers with energy.",
+      "description": "This blue potion restores magical energy when consumed.",
+      "item_type": "potion",
+      "weight": 1,
+      "value": 175,
+      "spell_level": 10,
+      "spells": [
+        "restore_mana"
+      ]
+    },
+    "3136": {
+      "vnum": 3136,
+      "name": "torch",
+      "short_desc": "a wooden torch",
+      "room_desc": "A torch lies on the ground.",
+      "description": "A simple wooden torch coated with pitch. It will provide light in dark places.",
+      "item_type": "light",
+      "weight": 1,
+      "value": 10,
+      "light_hours": 24
+    },
+    "3137": {
+      "vnum": 3137,
+      "name": "rope",
+      "short_desc": "a coil of sturdy rope",
+      "room_desc": "A coil of rope lies here.",
+      "description": "Fifty feet of hemp rope, useful for climbing or binding.",
+      "item_type": "other",
+      "weight": 5,
+      "value": 20
+    },
+    "3138": {
+      "vnum": 3138,
+      "name": "bandages",
+      "short_desc": "a roll of clean bandages",
+      "room_desc": "A roll of bandages lies here.",
+      "description": "Clean linen bandages for treating wounds.",
+      "item_type": "other",
+      "weight": 0,
+      "value": 15
+    },
     "3200": {
       "vnum": 3200,
       "name": "vial of viper venom",
@@ -3368,6 +4698,206 @@
       "weight": 1,
       "value": 200,
       "poison_type": "hemotoxin"
+    },
+    "3210": {
+      "vnum": 3210,
+      "name": "a leather-bound chronicle",
+      "short_desc": "a leather-bound chronicle",
+      "room_desc": "A leather-bound chronicle rests on a dusty desk.",
+      "description": "The cover reads \"Chronicle of the First Wall\" in faded ink.",
+      "type": "other",
+      "weight": 2,
+      "cost": 75,
+      "lore_id": "midgaard_chronicle",
+      "lore_title": "Chronicle of the First Wall",
+      "lore_zone": 30,
+      "lore_text": "\"We raised the first wall of Midgaard with sweat, prayer, and borrowed stone from the giants. The walls did not merely keep danger out; they kept hope in.\""
+    },
+    "3211": {
+      "vnum": 3211,
+      "name": "a sealed temple letter",
+      "short_desc": "a sealed temple letter",
+      "room_desc": "A sealed letter lies tucked into a votive bowl.",
+      "description": "Wax bears the imprint of a stylized hammer.",
+      "type": "other",
+      "weight": 1,
+      "cost": 50,
+      "lore_id": "midgaard_letter",
+      "lore_title": "Letter of the First High Priest",
+      "lore_zone": 30,
+      "lore_text": "\"Keep the reliquary hidden. Let only those who search with pure intent find the way beneath the temple.\""
+    },
+    "3212": {
+      "vnum": 3212,
+      "name": "a watcher's ring",
+      "short_desc": "a watcher's ring",
+      "room_desc": "A steel ring etched with a tiny eye glints here.",
+      "description": "A simple steel band worn smooth from long service.",
+      "type": "armor",
+      "wear_slot": "finger",
+      "armor": 1,
+      "weight": 1,
+      "cost": 250
+    },
+    "3213": {
+      "vnum": 3213,
+      "name": "a battered watch coffer",
+      "short_desc": "a battered watch coffer",
+      "room_desc": "A battered watch coffer rests against the wall.",
+      "description": "Its hinges creak and the lock is stiff with rust.",
+      "type": "container",
+      "capacity": 5,
+      "is_closed": true,
+      "is_locked": true,
+      "key_vnum": 3214,
+      "weight": 5,
+      "cost": 80
+    },
+    "3214": {
+      "vnum": 3214,
+      "name": "a rusted watch-key",
+      "short_desc": "a rusted watch-key",
+      "room_desc": "A rusted iron key has been left here.",
+      "description": "An old key stamped with the watch sigil.",
+      "type": "key",
+      "weight": 1,
+      "cost": 5
+    },
+    "3215": {
+      "vnum": 3215,
+      "name": "dragon steak",
+      "short_desc": "a sizzling dragon steak",
+      "room_desc": "A perfectly cooked dragon steak sits here, still sizzling.",
+      "description": "This thick cut of dragon meat is seared to perfection, radiating heat and a mouthwatering aroma. Eating it is said to grant the strength of dragons.",
+      "item_type": "food",
+      "weight": 2,
+      "value": 500,
+      "food_value": 48,
+      "food_bonus": {
+        "type": "str",
+        "value": 2,
+        "duration": 300
+      },
+      "food_message": "The dragon's power surges through your muscles!"
+    },
+    "3216": {
+      "vnum": 3216,
+      "name": "pixie dust cake",
+      "short_desc": "a shimmering pixie dust cake",
+      "room_desc": "A small cake dusted with glittering pixie dust rests here.",
+      "description": "This delicate confection sparkles with authentic pixie dust. Those who eat it report feeling lighter than air and incredibly quick.",
+      "item_type": "food",
+      "weight": 1,
+      "value": 400,
+      "food_value": 35,
+      "food_bonus": {
+        "type": "dex",
+        "value": 2,
+        "duration": 300
+      },
+      "food_message": "You feel light as a feather and quick as lightning!"
+    },
+    "3217": {
+      "vnum": 3217,
+      "name": "mindflayer brain",
+      "short_desc": "a preserved mindflayer brain",
+      "room_desc": "A preserved brain floats in a jar of strange fluid.",
+      "description": "This grotesque delicacy is prized by dark mages for the psionic residue it contains. Consuming it is said to enhance mental acuity... if you can stomach it.",
+      "item_type": "food",
+      "weight": 1,
+      "value": 600,
+      "food_value": 40,
+      "food_bonus": {
+        "type": "int",
+        "value": 3,
+        "duration": 300
+      },
+      "food_message": "Alien thoughts flood your mind, expanding your consciousness!"
+    },
+    "3218": {
+      "vnum": 3218,
+      "name": "phoenix egg omelette",
+      "short_desc": "a golden phoenix egg omelette",
+      "room_desc": "A golden omelette radiates warmth here.",
+      "description": "Made from the incredibly rare phoenix egg, this omelette glows with inner fire. Those who eat it are said to recover from wounds with supernatural speed.",
+      "item_type": "food",
+      "weight": 1,
+      "value": 800,
+      "food_value": 50,
+      "food_bonus": {
+        "type": "regen",
+        "value": 50,
+        "duration": 300
+      },
+      "food_message": "Warmth spreads through your body, accelerating your healing!"
+    },
+    "3219": {
+      "vnum": 3219,
+      "name": "giants stew",
+      "short_desc": "a cauldron of giant's stew",
+      "room_desc": "A massive cauldron of hearty stew steams here.",
+      "description": "This thick, meaty stew was made by giants using their secret recipe. A single bowl can fill even the hungriest adventurer and toughens the body.",
+      "item_type": "food",
+      "weight": 3,
+      "value": 350,
+      "food_value": 60,
+      "food_bonus": {
+        "type": "con",
+        "value": 2,
+        "duration": 300
+      },
+      "food_message": "The hearty stew fortifies your constitution!"
+    },
+    "3220": {
+      "vnum": 3220,
+      "name": "ambrosia",
+      "short_desc": "a vial of divine ambrosia",
+      "room_desc": "A crystal vial of golden ambrosia glows softly here.",
+      "description": "The food of the gods themselves. This divine nectar restores both body and spirit, granting temporary blessings to all who consume it.",
+      "item_type": "food",
+      "weight": 1,
+      "value": 2000,
+      "food_value": 100,
+      "food_bonus": {
+        "type": "all_stats",
+        "value": 1,
+        "duration": 600
+      },
+      "food_message": "Divine power flows through you! All your abilities are enhanced!"
+    },
+    "3221": {
+      "vnum": 3221,
+      "name": "shadowfruit",
+      "short_desc": "a dark shadowfruit",
+      "room_desc": "A fruit that seems to absorb light sits here.",
+      "description": "This rare fruit grows only in the deepest shadows. It tastes of midnight and secrets, and grants those who eat it the ability to move unseen.",
+      "item_type": "food",
+      "weight": 1,
+      "value": 450,
+      "food_value": 30,
+      "food_bonus": {
+        "type": "stealth",
+        "value": 25,
+        "duration": 300
+      },
+      "food_message": "Shadows cling to you, making you harder to detect!"
+    },
+    "3222": {
+      "vnum": 3222,
+      "name": "battle ration",
+      "short_desc": "an enchanted battle ration",
+      "room_desc": "A magically preserved battle ration lies here.",
+      "description": "Standard issue for elite soldiers, this enchanted ration never spoils and provides both sustenance and combat readiness.",
+      "item_type": "food",
+      "weight": 1,
+      "value": 200,
+      "food_value": 40,
+      "food_bonus": {
+        "type": "hitroll",
+        "value": 2,
+        "duration": 300
+      },
+      "food_message": "Your combat reflexes sharpen!"
     }
   }
 }

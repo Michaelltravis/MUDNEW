@@ -1,8 +1,196 @@
 {
   "number": 73,
-  "name": "The Tunnels In The Sewer",
+  "name": "The Mindflayer's Lair",
   "lifespan": 25,
-  "rooms": {},
-  "mobs": {},
+  "rooms": {
+    "7350": {
+      "vnum": 7350,
+      "name": "The Outer Warrens",
+      "description": "The tunnel opens into a wider passage slick with moisture and something\nfar more sinister. Strange symbols are carved into the walls, glowing\nfaintly with sickly purple light. The air itself feels wrong here, as\nif reality is slightly bent. Scratching sounds echo from deeper within.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "dark"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 7351,
+          "description": "The passage continues into darkness."
+        },
+        "south": {
+          "to_room": 7344,
+          "description": "The sewer pool lies to the south."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 7301,
+          "max": 2
+        },
+        {
+          "vnum": 7302,
+          "max": 1
+        }
+      ]
+    },
+    "7351": {
+      "vnum": 7351,
+      "name": "The Feeding Chamber",
+      "description": "Bones litter the floor of this circular chamber - humanoid bones, picked\nclean of all flesh. The walls pulse with a faint bioluminescence, and\nalcoves carved into the stone hold more grisly remains. Something has\nbeen feeding here for a very long time. The stench is overwhelming.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "dark"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 7350,
+          "description": "The outer warrens lie to the south."
+        },
+        "east": {
+          "to_room": 7352,
+          "description": "An ornate archway leads to the inner sanctum."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 7302,
+          "max": 2
+        },
+        {
+          "vnum": 7303,
+          "max": 1
+        }
+      ]
+    },
+    "7352": {
+      "vnum": 7352,
+      "name": "The Mindflayer's Sanctum",
+      "description": "You have entered the heart of the horror. This vast chamber thrums with\npsionic energy that makes your skull ache. A throne of fused bone and\nmetal dominates the center, surrounded by pools of dark, viscous fluid.\nTentacled shapes writhe in your peripheral vision. The Master waits.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors",
+        "dark",
+        "no_magic",
+        "no_teleport"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 7351,
+          "description": "The feeding chamber lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 7303,
+          "max": 2
+        },
+        {
+          "vnum": 7304,
+          "max": 1
+        }
+      ]
+    }
+  },
+  "mobs": {
+    "7301": {
+      "vnum": 7301,
+      "name": "basilisk",
+      "short_desc": "a basilisk",
+      "long_desc": "A serpentine creature with deadly eyes lurks here.",
+      "description": "This reptilian horror has scales like rusted iron and eyes that gleam with petrifying malice. Its gaze seems to bore into your very soul, and you feel your muscles stiffen just from being near it.",
+      "level": 18,
+      "alignment": -500,
+      "hp_dice": "18d10+200",
+      "damage_dice": "3d8+12",
+      "gold": 150,
+      "exp": 2500,
+      "armor_class": -20,
+      "flags": [
+        "aggressive",
+        "sentinel"
+      ],
+      "special_attacks": [
+        "petrify_gaze"
+      ]
+    },
+    "7302": {
+      "vnum": 7302,
+      "name": "flayer",
+      "short_desc": "a flayer",
+      "long_desc": "A gaunt humanoid with elongated fingers crouches here.",
+      "description": "This emaciated creature has grey, rubbery skin stretched tight over an angular frame. Its fingers end in razor-sharp claws, and its eyeless face seems to sense your presence through some unnatural means.",
+      "level": 20,
+      "alignment": -700,
+      "hp_dice": "20d10+250",
+      "damage_dice": "4d6+15",
+      "gold": 200,
+      "exp": 3000,
+      "armor_class": -30,
+      "flags": [
+        "aggressive",
+        "aware"
+      ],
+      "special_attacks": [
+        "psychic_scream"
+      ]
+    },
+    "7303": {
+      "vnum": 7303,
+      "name": "mind flayer",
+      "short_desc": "a mind flayer",
+      "long_desc": "A tentacled horror floats menacingly before you.",
+      "description": "This aberration defies natural law. Its bulbous head is dominated by four writhing tentacles where a mouth should be. Pupilless white eyes regard you with cold, alien intelligence. Psionic energy crackles around its elongated fingers.",
+      "level": 24,
+      "alignment": -900,
+      "hp_dice": "24d10+350",
+      "damage_dice": "4d8+20",
+      "gold": 400,
+      "exp": 5000,
+      "armor_class": -50,
+      "flags": [
+        "aggressive",
+        "aware",
+        "no_charm",
+        "no_sleep"
+      ],
+      "special_attacks": [
+        "mind_blast",
+        "extract_brain"
+      ]
+    },
+    "7304": {
+      "vnum": 7304,
+      "name": "master mindflayer",
+      "short_desc": "the Master Mindflayer",
+      "long_desc": "The Master Mindflayer towers here, radiating psionic terror!",
+      "description": "This ancient mind flayer is twice the size of its lesser kin. Its purple-black skin pulses with barely contained psionic energy, and its tentacles writhe with eager anticipation. Centuries of consuming intellects have made it impossibly powerful. Its presence alone makes your thoughts feel like they're being siphoned away.",
+      "level": 30,
+      "alignment": -1000,
+      "hp_dice": "30d12+600",
+      "damage_dice": "5d10+30",
+      "gold": 2000,
+      "exp": 15000,
+      "armor_class": -80,
+      "flags": [
+        "aggressive",
+        "aware",
+        "no_charm",
+        "no_sleep",
+        "no_summon",
+        "sentinel"
+      ],
+      "special_attacks": [
+        "mind_blast",
+        "dominate",
+        "psychic_crush"
+      ],
+      "special": "boss",
+      "is_boss": true,
+      "boss_mechanics": [
+        "psionic_storm"
+      ]
+    }
+  },
   "objects": {}
 }

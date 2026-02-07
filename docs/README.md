@@ -29,44 +29,54 @@ RealmsMUD is a feature-rich text-based multiplayer RPG inspired by classic MUDs 
 - **6 Core Stats**: Strength, Intelligence, Wisdom, Dexterity, Constitution, Charisma
 
 ### Combat
-- Real-time combat with automatic attack rounds
-- Class-specific combat mechanics (Rage, Combo Points, Divine Favor, etc.)
-- 30+ combat skills including Kick, Bash, Backstab, and more
-- Boss encounters with special mechanics
+- Real-time combat with 4-second attack rounds
+- Class-specific mechanics (Rage, Combo Points, Divine Favor, Songs, etc.)
+- 50+ combat skills and abilities
+- Boss encounters with special mechanics and loot tables
+- Equipment set bonuses
 
 ### Magic System
-- **50+ Spells** across multiple schools
-- Offensive magic: Fireball, Lightning Bolt, Meteor Swarm
-- Healing: Cure Light through Group Heal
-- Buffs & Debuffs: Bless, Sanctuary, Haste, Sleep, Fear
+- **100+ Spells** across multiple schools
+- Offensive: Fireball, Lightning Bolt, Meteor Swarm, Chain Lightning
+- Healing: Cure Light through Group Heal, Resurrection
+- Buffs & Debuffs: Sanctuary, Haste, Sleep, Fear, Curse
 - Utility: Teleport, Identify, Word of Recall
+- Bard Songs: Battle Hymn, Song of Rest, Dirge of Doom
 
 ### World
-- **7 Unique Zones** to explore:
+- **40 Unique Zones** with 2,494 rooms to explore:
   - City of Midgaard (starting city)
-  - Haon Dor Forest
-  - Greystone Castle
-  - The Goblin Warrens
-  - The Forgotten Crypt
-  - The Dragon's Domain
-  - Limbo (admin zone)
+  - Newbie Training Zone (levels 1-7)
+  - Haon Dor Forest (Light & Dark)
+  - Mines of Moria, Dwarven Kingdom
+  - The Great Pyramid, City of Thalos
+  - High Tower of Magic
+  - Sewers (3 levels), Haunted Swamp
+  - Castle Apocalypse (endgame)
+  - And many more!
 - Dynamic day/night cycle with weather
-- Quest system with multiple objective types
-- Crafting and gathering professions
+- Quest system with 9-part tutorial
+- Stealth & detection mechanics
+
+### Pet & Companion System
+- Rangers can tame wild animals
+- Necromancers animate undead servants
+- Pet commands: follow, stay, attack, assist
 
 ### Social Features
 - Account system with multiple characters
-- Group/party system
-- Guild support
-- Multiple chat channels (Say, Shout, Gossip, Tell)
+- Group/party system with auto-follow
+- 344 commands available
+- Multiple chat channels (Say, Shout, Gossip, Tell, Group)
 - Emotes for roleplay
 
 ### Modern Conveniences
-- Web-based map viewer
-- Achievement system
+- **Web Client** (browser-based, no download required)
+- **Live World Map** in browser
+- **Vitals Bar**: Real-time HP/Mana/Move display
+- 500+ searchable help topics
 - Journal for tracking adventures
 - New Game+ mode for replayability
-- Rested XP bonus system
 
 ---
 
@@ -79,28 +89,25 @@ RealmsMUD is a feature-rich text-based multiplayer RPG inspired by classic MUDs 
 ### Running the Server
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/RealmsMUD.git
-cd RealmsMUD
-
-# Make the launch script executable
-chmod +x run.sh
-
 # Start the server
-./run.sh
-
-# Or run directly
 cd src && python3 main.py
 ```
 
-The server starts on **port 4000** by default.
+The server starts on multiple ports:
+- **4000** - Telnet (MUD clients)
+- **4001** - Web Map
+- **4003** - Web Client
 
 ### Connecting
 
-Use any telnet or MUD client:
+**Web Client (Recommended):**
+```
+http://your-server-ip:4003
+```
 
+**Telnet/MUD Client:**
 ```bash
-telnet localhost 4000
+telnet your-server-ip 4000
 ```
 
 **Recommended MUD Clients:**
@@ -108,6 +115,21 @@ telnet localhost 4000
 - [TinTin++](https://tintin.mudhalla.net/) (Free, terminal-based)
 - MUSHclient (Windows)
 - Blowtorch (Android)
+
+---
+
+## 🛠️ Builder Tools (OLC)
+
+RealmsMUD includes OasisOLC-style in-game building tools:
+
+| Command | Description |
+|---------|-------------|
+| `redit` | Room editor (name, desc, exits, doors) |
+| `medit <vnum>` | Mob editor (stats, flags, loot) |
+| `oedit <vnum>` | Object editor (type, affects, wear) |
+| `save <zone>` | Save zone to disk |
+
+All editors are menu-driven. Type the option number to edit that field.
 
 ---
 
@@ -119,6 +141,7 @@ telnet localhost 4000
 | [Commands](COMMANDS.md) | Complete command reference |
 | [Classes](CLASSES.md) | Class guide with talent trees |
 | [Combat](COMBAT.md) | Combat mechanics explained |
+| [OLC Spec](OLC_SPEC.md) | Builder documentation |
 
 ---
 
@@ -126,27 +149,28 @@ telnet localhost 4000
 
 ```
 RealmsMUD/
-├── run.sh              # Launch script
 ├── src/
 │   ├── main.py         # Server entry point
 │   ├── server.py       # Network/connection handling
 │   ├── player.py       # Player class & character data
 │   ├── world.py        # World management
-│   ├── commands.py     # All player commands
+│   ├── commands.py     # 344 player commands
 │   ├── combat.py       # Combat system
-│   ├── spells.py       # Magic system
+│   ├── spells.py       # Magic system (100+ spells)
 │   ├── talents.py      # Talent tree system
 │   ├── mobs.py         # NPCs and monsters
 │   ├── objects.py      # Items and equipment
 │   ├── quests.py       # Quest system
+│   ├── help_data.py    # 500+ help topics
+│   ├── web_client.py   # Browser-based client
 │   └── ...             # Additional systems
 ├── world/
-│   └── zones/          # Zone data files
+│   └── zones/          # 40 zone JSON files
 ├── lib/
 │   ├── players/        # Player save files
 │   └── accounts/       # Account data
 ├── docs/               # Documentation
-└── log/                # Server logs
+└── data/               # Game data files
 ```
 
 ---
@@ -155,12 +179,22 @@ RealmsMUD/
 
 Edit `src/config.py` to customize:
 
-- `PORT`: Server port (default: 4000)
+- `PORT`: Telnet port (default: 4000)
+- `WEB_MAP_PORT`: Map server (default: 4001)
+- `WEB_CLIENT_PORT`: Web client (default: 4003)
 - `MAX_PLAYERS`: Maximum concurrent connections
 - `STARTING_ROOM`: New player spawn location
-- Combat parameters
-- Experience rates
-- And much more...
+- Combat parameters, experience rates, and more
+
+---
+
+## 📊 Statistics
+
+- **40 zones** with 2,494 rooms
+- **670 mob types**, **1,101 object types**
+- **344 commands**, **500+ help topics**
+- **9 classes** with unique mechanics
+- **100+ spells and skills**
 
 ---
 

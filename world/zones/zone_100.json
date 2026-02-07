@@ -11,7 +11,7 @@
   "rooms": {
     "10000": {
       "title": "Entrance to the Dwarven Mines",
-      "description": "A massive iron-bound door set into the mountainside marks the entrance to the legendary Dwarven Mines. Runes of power are etched deep into the stone archway overhead, still glowing faintly with ancient magic. The air from within is cool and carries the scent of stone, metal, and forge-fire. Torches mounted in brass holders line the walls, casting flickering shadows.",
+      "description": "A massive iron-bound door set into the mountainside marks the entrance\nto the legendary Dwarven Mines. Runes of power are etched deep into the\nstone archway overhead, still glowing faintly with ancient magic. The\nair from within is cool and carries the scent of stone, metal, and\nforge-fire. Torches mounted in brass holders line the walls, casting\nflickering shadows. The walls are rough-hewn and cold to the touch. The\nceiling hangs low overhead.",
       "terrain": "underground",
       "exits": {
         "up": {
@@ -25,11 +25,21 @@
           "description": "You see an exit west."
         }
       },
-      "vnum": 10000
+      "vnum": 10000,
+      "mob_resets": [
+        {
+          "vnum": 10001,
+          "max": 2
+        },
+        {
+          "vnum": 10002,
+          "max": 1
+        }
+      ]
     },
     "10001": {
       "title": "The Grand Stair",
-      "description": "Broad stone stairs descend into the earth, wide enough for ten dwarves to march abreast. The walls are carved with scenes of ancient dwarven history - founding of the mine, great discoveries, battles with underground horrors. The craftsmanship is exquisite, every detail perfect despite centuries of age. The stairs are worn smooth by countless feet.",
+      "description": "Broad stone stairs descend into the earth, wide enough for ten dwarves\nto march abreast. The walls are carved with scenes of ancient dwarven\nhistory - founding of the mine, great discoveries, battles with\nunderground horrors. The craftsmanship is exquisite, every detail\nperfect despite centuries of age. The stairs are worn smooth by\ncountless feet. The air is still and musty. The ceiling hangs low\noverhead.",
       "terrain": "underground",
       "exits": {
         "up": {
@@ -39,11 +49,17 @@
           "to_room": 10002
         }
       },
-      "vnum": 10001
+      "vnum": 10001,
+      "mob_resets": [
+        {
+          "vnum": 10001,
+          "max": 2
+        }
+      ]
     },
     "10002": {
       "title": "Hall of the Mountain King",
-      "description": "This vast hall serves as the main hub of the mine. Massive pillars carved from living rock support a ceiling lost in shadows far above. In the center stands a statue of the legendary Mountain King, founder of the mines, depicted with hammer raised in triumph. Several passages branch off in different directions, each marked with dwarven runes indicating their purpose.",
+      "description": "This vast hall serves as the main hub of the mine. Massive pillars\ncarved from living rock support a ceiling lost in shadows far above. In\nthe center stands a statue of the legendary Mountain King, founder of\nthe mines, depicted with hammer raised in triumph. Several passages\nbranch off in different directions, each marked with dwarven runes\nindicating their purpose. Shadows gather in the corners. Dust motes\ndrift in the stale air.",
       "terrain": "underground",
       "exits": {
         "up": {
@@ -62,11 +78,21 @@
           "to_room": 10006
         }
       },
-      "vnum": 10002
+      "vnum": 10002,
+      "mob_resets": [
+        {
+          "vnum": 10001,
+          "max": 2
+        },
+        {
+          "vnum": 10005,
+          "max": 1
+        }
+      ]
     },
     "10003": {
       "title": "Mining Equipment Storage",
-      "description": "Racks and shelves line this room, holding hundreds of mining tools - picks, shovels, hammers, chisels, and more. Most are well-maintained, though some show signs of hard use. A few pieces of equipment lie scattered on the floor as if dropped in haste. There's an unsettling feeling that the miners left in a hurry.",
+      "description": "Racks and shelves line this room, holding hundreds of mining tools -\npicks, shovels, hammers, chisels, and more. Most are well-maintained,\nthough some show signs of hard use. A few pieces of equipment lie\nscattered on the floor as if dropped in haste. There's an unsettling\nfeeling that the miners left in a hurry. The walls are rough-hewn and\ncold to the touch. Dust motes drift in the stale air.",
       "terrain": "underground",
       "exits": {
         "south": {
@@ -76,11 +102,21 @@
           "to_room": 10007
         }
       },
-      "vnum": 10003
+      "vnum": 10003,
+      "mob_resets": [
+        {
+          "vnum": 10001,
+          "max": 2
+        },
+        {
+          "vnum": 10005,
+          "max": 1
+        }
+      ]
     },
     "10004": {
       "title": "Foreman's Office",
-      "description": "This small office contains a sturdy stone desk covered in papers, charts, and mining surveys. Maps of the tunnels cover the walls, with certain areas marked in red - abandoned sections, dangerous zones, rich veins. A ledger lies open on the desk, the last entry dated several months ago. Whatever caused the miners to leave happened suddenly.",
+      "description": "This small office contains a sturdy stone desk covered in papers,\ncharts, and mining surveys. Maps of the tunnels cover the walls, with\ncertain areas marked in red - abandoned sections, dangerous zones, rich\nveins. A ledger lies open on the desk, the last entry dated several\nmonths ago. Whatever caused the miners to leave happened suddenly. The\nwalls are rough-hewn and cold to the touch. The air is still and musty.",
       "terrain": "underground",
       "exits": {
         "west": {
@@ -90,11 +126,17 @@
           "to_room": 10008
         }
       },
-      "vnum": 10004
+      "vnum": 10004,
+      "mob_resets": [
+        {
+          "vnum": 10001,
+          "max": 2
+        }
+      ]
     },
     "10005": {
       "title": "The Great Forge",
-      "description": "This enormous forge chamber is dominated by a massive stone furnace that still radiates heat. The forge was designed to burn hot enough to smelt the rarest ores and work the hardest metals. Anvils of various sizes are positioned around the room, each with tools hanging nearby. Despite the abandonment, the coals in the forge still glow red, kept alive by some ancient magic.",
+      "description": "This enormous forge chamber is dominated by a massive stone furnace that\nstill radiates heat. The forge was designed to burn hot enough to smelt\nthe rarest ores and work the hardest metals. Anvils of various sizes are\npositioned around the room, each with tools hanging nearby. Despite the\nabandonment, the coals in the forge still glow red, kept alive by some\nancient magic. Shadows gather in the corners. The ceiling hangs low\noverhead.",
       "terrain": "underground",
       "exits": {
         "north": {
@@ -107,11 +149,17 @@
           "to_room": 10009
         }
       },
-      "vnum": 10005
+      "vnum": 10005,
+      "mob_resets": [
+        {
+          "vnum": 10001,
+          "max": 2
+        }
+      ]
     },
     "10006": {
       "title": "Supply Depot",
-      "description": "Barrels, crates, and sacks are stacked high in this storage chamber. Most contain mining supplies - rope, nails, timber, lamp oil, and preserved food. Some have been torn open and ransacked, their contents scattered across the floor. Claw marks on the wood suggest kobolds have been looting the stores.",
+      "description": "Barrels, crates, and sacks are stacked high in this storage chamber.\nMost contain mining supplies - rope, nails, timber, lamp oil, and\npreserved food. Some have been torn open and ransacked, their contents\nscattered across the floor. Claw marks on the wood suggest kobolds have\nbeen looting the stores. The ceiling hangs low overhead. Dust motes\ndrift in the stale air.",
       "terrain": "underground",
       "exits": {
         "east": {
@@ -121,11 +169,17 @@
           "to_room": 10010
         }
       },
-      "vnum": 10006
+      "vnum": 10006,
+      "mob_resets": [
+        {
+          "vnum": 10001,
+          "max": 2
+        }
+      ]
     },
     "10007": {
       "title": "Northern Mining Shaft",
-      "description": "This tunnel slopes downward, its walls showing exposed veins of copper and iron ore. Mining carts sit on rusty rails, some half-filled with ore. The sound of dripping water echoes through the passage, and the air is noticeably cooler. Timber supports creak ominously, and small rocks occasionally fall from the ceiling.",
+      "description": "This tunnel slopes downward, its walls showing exposed veins of copper\nand iron ore. Mining carts sit on rusty rails, some half-filled with\nore. The sound of dripping water echoes through the passage, and the air\nis noticeably cooler. Timber supports creak ominously, and small rocks\noccasionally fall from the ceiling. Dust motes drift in the stale air.\nThe ceiling hangs low overhead.",
       "terrain": "underground",
       "exits": {
         "west": {
@@ -135,11 +189,17 @@
           "to_room": 10011
         }
       },
-      "vnum": 10007
+      "vnum": 10007,
+      "mob_resets": [
+        {
+          "vnum": 10001,
+          "max": 2
+        }
+      ]
     },
     "10008": {
       "title": "Master Blacksmith's Workshop",
-      "description": "This is where the mine's finest weapons and tools were crafted. The workshop is cluttered with half-finished projects - a sword blade waiting for its hilt, armor pieces needing assembly, intricate gears for some unknown device. A magnificent anvil dominates the center, its surface polished smooth by centuries of use. The quality of work here is legendary.",
+      "description": "This is where the mine's finest weapons and tools were crafted. The\nworkshop is cluttered with half-finished projects - a sword blade\nwaiting for its hilt, armor pieces needing assembly, intricate gears for\nsome unknown device. A magnificent anvil dominates the center, its\nsurface polished smooth by centuries of use. The quality of work here is\nlegendary. The ceiling hangs low overhead. Shadows gather in the\ncorners.",
       "terrain": "underground",
       "exits": {
         "north": {
@@ -149,11 +209,17 @@
           "to_room": 10005
         }
       },
-      "vnum": 10008
+      "vnum": 10008,
+      "mob_resets": [
+        {
+          "vnum": 10001,
+          "max": 2
+        }
+      ]
     },
     "10009": {
       "title": "Smelting Chamber",
-      "description": "Banks of smaller forges line this hot chamber, used for initial ore smelting. Large crucibles sit waiting to be filled, and channels cut in the floor once carried molten metal to casting molds. The heat here is intense even now, and the walls are blackened with centuries of soot. Piles of slag and waste ore are heaped in corners.",
+      "description": "Banks of smaller forges line this hot chamber, used for initial ore\nsmelting. Large crucibles sit waiting to be filled, and channels cut in\nthe floor once carried molten metal to casting molds. The heat here is\nintense even now, and the walls are blackened with centuries of soot.\nPiles of slag and waste ore are heaped in corners. The air is still and\nmusty. The ceiling hangs low overhead.",
       "terrain": "underground",
       "exits": {
         "north": {
@@ -163,11 +229,17 @@
           "to_room": 10012
         }
       },
-      "vnum": 10009
+      "vnum": 10009,
+      "mob_resets": [
+        {
+          "vnum": 10001,
+          "max": 2
+        }
+      ]
     },
     "10010": {
       "title": "Kobold Nest",
-      "description": "This room has been converted into a filthy kobold lair. Crude bedding made from stolen blankets and rags covers the floor. Bones and refuse are scattered everywhere, and the walls are covered in crude drawings and scrawled messages in the kobold language. The smell is overwhelming - a mix of unwashed bodies, rotting food, and worse.",
+      "description": "This room has been converted into a filthy kobold lair. Crude bedding\nmade from stolen blankets and rags covers the floor. Bones and refuse\nare scattered everywhere, and the walls are covered in crude drawings\nand scrawled messages in the kobold language. The smell is overwhelming\n- a mix of unwashed bodies, rotting food, and worse. The air is still\nand musty. The ceiling hangs low overhead.",
       "terrain": "underground",
       "exits": {
         "north": {
@@ -180,11 +252,21 @@
           "to_room": 10013
         }
       },
-      "vnum": 10010
+      "vnum": 10010,
+      "mob_resets": [
+        {
+          "vnum": 10004,
+          "max": 1
+        },
+        {
+          "vnum": 10006,
+          "max": 1
+        }
+      ]
     },
     "10011": {
       "title": "Deep Mining Chamber",
-      "description": "This large chamber was carved out around a particularly rich ore deposit. The walls glitter with traces of precious metals - gold, silver, mithril. Mining equipment lies abandoned mid-use, as if the workers fled suddenly. Dark tunnels branch off in multiple directions, and strange sounds echo from the depths - scuttling, hissing, things that should not be.",
+      "description": "This large chamber was carved out around a particularly rich ore\ndeposit. The walls glitter with traces of precious metals - gold,\nsilver, mithril. Mining equipment lies abandoned mid-use, as if the\nworkers fled suddenly. Dark tunnels branch off in multiple directions,\nand strange sounds echo from the depths - scuttling, hissing, things\nthat should not be. Shadows gather in the corners. Dust motes drift in\nthe stale air.",
       "terrain": "underground",
       "exits": {
         "up": {
@@ -197,11 +279,17 @@
           "to_room": 10015
         }
       },
-      "vnum": 10011
+      "vnum": 10011,
+      "mob_resets": [
+        {
+          "vnum": 10006,
+          "max": 1
+        }
+      ]
     },
     "10012": {
       "title": "Eastern Mining Tunnel",
-      "description": "This tunnel was cut through solid granite, a testament to dwarven engineering. Support beams are spaced at regular intervals, still solid despite their age. The walls here show evidence of extensive mining - pick marks, drill holes, and places where ore veins have been completely extracted. Rusty mining equipment leans against the walls.",
+      "description": "This tunnel was cut through solid granite, a testament to dwarven\nengineering. Support beams are spaced at regular intervals, still solid\ndespite their age. The walls here show evidence of extensive mining -\npick marks, drill holes, and places where ore veins have been completely\nextracted. Rusty mining equipment leans against the walls. The walls are\nrough-hewn and cold to the touch. The air is still and musty.",
       "terrain": "underground",
       "exits": {
         "north": {
@@ -214,22 +302,42 @@
           "to_room": 10016
         }
       },
-      "vnum": 10012
+      "vnum": 10012,
+      "mob_resets": [
+        {
+          "vnum": 10004,
+          "max": 1
+        },
+        {
+          "vnum": 10006,
+          "max": 1
+        }
+      ]
     },
     "10013": {
       "title": "Kobold Treasure Room",
-      "description": "The kobolds have gathered their stolen loot in this chamber. Piles of tools, equipment, ore samples, and even some finished weapons are heaped carelessly against the walls. Most of it is junk, but a careful search might reveal something valuable among the debris. Guards watch this room jealously.",
+      "description": "The kobolds have gathered their stolen loot in this chamber. Piles of\ntools, equipment, ore samples, and even some finished weapons are heaped\ncarelessly against the walls. Most of it is junk, but a careful search\nmight reveal something valuable among the debris. Guards watch this room\njealously. Dust motes drift in the stale air. The air is still and\nmusty.",
       "terrain": "underground",
       "exits": {
         "north": {
           "to_room": 10010
         }
       },
-      "vnum": 10013
+      "vnum": 10013,
+      "mob_resets": [
+        {
+          "vnum": 10004,
+          "max": 1
+        },
+        {
+          "vnum": 10006,
+          "max": 1
+        }
+      ]
     },
     "10014": {
       "title": "Abandoned Mine Cart Station",
-      "description": "This room once served as a loading station for mine carts carrying ore to the surface. Tracks converge from multiple directions, and a massive wooden crane sits silent and still. Several carts have derailed and lie on their sides, their contents spilled. A thick layer of dust covers everything, suggesting no one has been here in a very long time.",
+      "description": "This room once served as a loading station for mine carts carrying ore\nto the surface. Tracks converge from multiple directions, and a massive\nwooden crane sits silent and still. Several carts have derailed and lie\non their sides, their contents spilled. A thick layer of dust covers\neverything, suggesting no one has been here in a very long time. Dust\nmotes drift in the stale air. The air is still and musty.",
       "terrain": "underground",
       "exits": {
         "north": {
@@ -242,11 +350,25 @@
           "to_room": 10017
         }
       },
-      "vnum": 10014
+      "vnum": 10014,
+      "mob_resets": [
+        {
+          "vnum": 10004,
+          "max": 1
+        },
+        {
+          "vnum": 10003,
+          "max": 1
+        },
+        {
+          "vnum": 10008,
+          "max": 1
+        }
+      ]
     },
     "10015": {
       "title": "The Crystal Cave",
-      "description": "This natural cavern was discovered during mining operations and left largely untouched. Massive crystals grow from floor to ceiling, their facets catching and reflecting torchlight in brilliant displays. The crystals hum with a faint vibration, suggesting some kind of magical resonance. The beauty of this place is breathtaking and otherworldly.",
+      "description": "This natural cavern was discovered during mining operations and left\nlargely untouched. Massive crystals grow from floor to ceiling, their\nfacets catching and reflecting torchlight in brilliant displays. The\ncrystals hum with a faint vibration, suggesting some kind of magical\nresonance. The beauty of this place is breathtaking and otherworldly.\nThe air is still and musty. Shadows gather in the corners.",
       "terrain": "underground",
       "exits": {
         "up": {
@@ -256,11 +378,17 @@
           "to_room": 10018
         }
       },
-      "vnum": 10015
+      "vnum": 10015,
+      "mob_resets": [
+        {
+          "vnum": 10004,
+          "max": 1
+        }
+      ]
     },
     "10016": {
       "title": "Collapsed Tunnel",
-      "description": "This tunnel has partially collapsed, with massive boulders blocking what was once the main passage. A narrow gap between the rocks allows passage, but it looks dangerously unstable. Timber supports are splintered and broken, and small rocks continuously trickle down from cracks in the ceiling. Proceeding further is risky.",
+      "description": "This tunnel has partially collapsed, with massive boulders blocking what\nwas once the main passage. A narrow gap between the rocks allows\npassage, but it looks dangerously unstable. Timber supports are\nsplintered and broken, and small rocks continuously trickle down from\ncracks in the ceiling. Proceeding further is risky. The walls are rough-\nhewn and cold to the touch. Dust motes drift in the stale air.",
       "terrain": "underground",
       "exits": {
         "north": {
@@ -277,7 +405,7 @@
     },
     "10017": {
       "title": "The Underground Lake",
-      "description": "A vast underground lake stretches before you, its dark waters perfectly still. The ceiling here rises to a natural dome, and stalactites hang like stone icicles. Phosphorescent fungi growing along the shore provide a dim, eerie glow. The water is incredibly clear despite its darkness, and you can see down to disturbing depths. Something large moves in those depths.",
+      "description": "A vast underground lake stretches before, its dark waters perfectly\nstill. The ceiling here rises to a natural dome, and stalactites hang\nlike stone icicles. Phosphorescent fungi growing along the shore provide\na dim, eerie glow. The water is incredibly clear despite its darkness,\nand Visible is down to disturbing depths. Something large moves in those\ndepths. The walls are rough-hewn and cold to the touch. Dust motes drift\nin the stale air.",
       "terrain": "underground",
       "exits": {
         "north": {
@@ -290,22 +418,38 @@
           "to_room": 10020
         }
       },
-      "vnum": 10017
+      "vnum": 10017,
+      "mob_resets": [
+        {
+          "vnum": 10004,
+          "max": 1
+        }
+      ]
     },
     "10018": {
       "title": "Elemental Convergence",
-      "description": "The very air in this chamber crackles with power. The walls are scarred and melted, showing signs of intense heat and force. Crystals from the cave above extend into this room, and they pulse with visible energy. This appears to be some kind of natural nexus of magical power, and the barrier between the material world and the Elemental Plane of Earth is thin here.",
+      "description": "The very air in this chamber crackles with power. The walls are scarred\nand melted, showing signs of intense heat and force. Crystals from the\ncave above extend into this room, and they pulse with visible energy.\nThis appears to be some kind of natural nexus of magical power, and the\nbarrier between the material world and the Elemental Plane of Earth is\nthin here. The ceiling hangs low overhead. The air is still and musty.",
       "terrain": "underground",
       "exits": {
         "north": {
           "to_room": 10015
         }
       },
-      "vnum": 10018
+      "vnum": 10018,
+      "mob_resets": [
+        {
+          "vnum": 10006,
+          "max": 1
+        },
+        {
+          "vnum": 10005,
+          "max": 1
+        }
+      ]
     },
     "10019": {
       "title": "Spider Den",
-      "description": "Thick webbing covers every surface in this chamber, forming a maze of sticky strands. Wrapped bundles - the remains of unfortunate creatures - hang from the ceiling. The webbing trembles with movement as unseen arachnids scuttle through their domain. The desiccated husks of several kobolds suggest this is a very dangerous place.",
+      "description": "Thick webbing covers every surface in this chamber, forming a maze of\nsticky strands. Wrapped bundles - the remains of unfortunate creatures -\nhang from the ceiling. The webbing trembles with movement as unseen\narachnids scuttle through their domain. The desiccated husks of several\nkobolds suggest this is a very dangerous place. Shadows gather in the\ncorners. Dust motes drift in the stale air.",
       "terrain": "underground",
       "exits": {
         "north": {
@@ -315,11 +459,17 @@
           "to_room": 10017
         }
       },
-      "vnum": 10019
+      "vnum": 10019,
+      "mob_resets": [
+        {
+          "vnum": 10005,
+          "max": 1
+        }
+      ]
     },
     "10020": {
       "title": "Lakeside Dock",
-      "description": "A stone dock extends into the underground lake, with several small boats tied up alongside. The boats are of dwarven construction, solid and functional. A boathouse sits at the end of the dock, its door hanging open. This area was used by miners to cross the lake to reach veins on the far side. The boats rock gently despite the still water.",
+      "description": "A stone dock extends into the underground lake, with several small boats\ntied up alongside. The boats are of dwarven construction, solid and\nfunctional. A boathouse sits at the end of the dock, its door hanging\nopen. This area was used by miners to cross the lake to reach veins on\nthe far side. The boats rock gently despite the still water. The air is\nstill and musty. Shadows gather in the corners.",
       "terrain": "underground",
       "exits": {
         "east": {
@@ -329,11 +479,21 @@
           "to_room": 10021
         }
       },
-      "vnum": 10020
+      "vnum": 10020,
+      "mob_resets": [
+        {
+          "vnum": 10006,
+          "max": 1
+        },
+        {
+          "vnum": 10005,
+          "max": 1
+        }
+      ]
     },
     "10021": {
       "title": "The Deep Dark",
-      "description": "This tunnel descends into darkness so complete that even torches seem to give off barely any light. The walls are rough and unfinished - this was an exploratory shaft, probing into unknown depths. Strange sounds echo from below - grinding stone, distant roars, things that make your primitive hindbrain scream warnings. The dwarves delved too deep here, and found something.",
+      "description": "This tunnel descends into darkness so complete that even torches seem to\ngive off barely any light. The walls are rough and unfinished - this was\nan exploratory shaft, probing into unknown depths. Strange sounds echo\nfrom below - grinding stone, distant roars, things that make your\nprimitive hindbrain scream warnings. The dwarves delved too deep here,\nand found something. Shadows gather in the corners. The walls are rough-\nhewn and cold to the touch.",
       "terrain": "underground",
       "exits": {
         "north": {
@@ -343,40 +503,72 @@
           "to_room": 10022
         }
       },
-      "vnum": 10021
+      "vnum": 10021,
+      "mob_resets": [
+        {
+          "vnum": 10004,
+          "max": 1
+        }
+      ]
     },
     "10022": {
       "title": "The Bottomless Pit",
-      "description": "The tunnel ends at a massive chasm that splits the earth. The far side is barely visible in the darkness, and no amount of light can reach the bottom - if there even is one. Ancient chains and rope bridges once spanned the gap, but they've long since rotted away. The dwarves built this far, but went no further. Perhaps they were wise.",
+      "description": "The tunnel ends at a massive chasm that splits the earth. The far side\nis barely visible in the darkness, and no amount of light can reach the\nbottom - if there even is one. Ancient chains and rope bridges once\nspanned the gap, but they've long since rotted away. The dwarves built\nthis far, but went no further. Perhaps they were wise. Dust motes drift\nin the stale air. The ceiling hangs low overhead.",
       "terrain": "underground",
       "exits": {
         "up": {
           "to_room": 10021
         }
       },
-      "vnum": 10022
+      "vnum": 10022,
+      "mob_resets": [
+        {
+          "vnum": 10004,
+          "max": 1
+        }
+      ]
     },
     "10023": {
       "title": "Masterwork Weapon Shop",
-      "description": "This shop was cut into the living rock near the Great Forge, allowing the master smiths to sell their finest works. Display cases line the walls, showing off exquisite weapons and armor. Most are empty now, their contents looted or rusted, but a few pieces remain. A heavy stone counter dominates the room, with a ledger listing prices in dwarven runes.",
+      "description": "This shop was cut into the living rock near the Great Forge, allowing\nthe master smiths to sell their finest works. Display cases line the\nwalls, showing off exquisite weapons and armor. Most are empty now,\ntheir contents looted or rusted, but a few pieces remain. A heavy stone\ncounter dominates the room, with a ledger listing prices in dwarven\nrunes. Dust motes drift in the stale air. Shadows gather in the corners.",
       "terrain": "underground",
       "exits": {
         "north": {
           "to_room": 10005
         }
       },
-      "vnum": 10023
+      "vnum": 10023,
+      "mob_resets": [
+        {
+          "vnum": 10004,
+          "max": 1
+        },
+        {
+          "vnum": 10006,
+          "max": 1
+        },
+        {
+          "vnum": 10005,
+          "max": 1
+        }
+      ]
     },
     "10024": {
       "title": "Miner's Barracks",
-      "description": "Rows of stone bunks line this long chamber, each with a small chest for personal belongings at its foot. Most are empty and gathering dust, but a few show signs of recent habitation - rumpled blankets, personal items, ale mugs. The remaining dwarven miners sleep here, those too stubborn or brave to abandon their ancestral home despite the dangers.",
+      "description": "Rows of stone bunks line this long chamber, each with a small chest for\npersonal belongings at its foot. Most are empty and gathering dust, but\na few show signs of recent habitation - rumpled blankets, personal\nitems, ale mugs. The remaining dwarven miners sleep here, those too\nstubborn or brave to abandon their ancestral home despite the dangers.\nThe walls are rough-hewn and cold to the touch. The air is still and\nmusty.",
       "terrain": "underground",
       "exits": {
         "west": {
           "to_room": 10002
         }
       },
-      "vnum": 10024
+      "vnum": 10024,
+      "mob_resets": [
+        {
+          "vnum": 10007,
+          "max": 1
+        }
+      ]
     }
   },
   "mobiles": {
@@ -392,7 +584,7 @@
       "damage_dice": "1d10+3",
       "armor_class": 60,
       "exp_value": 500,
-      "gold": 100,
+      "gold": 800,
       "behaviors": [
         "helpful",
         "wander"
@@ -417,14 +609,22 @@
       ],
       "max_in_zone": 5,
       "vnum": 10000,
-      "gold": 800,
       "inventory": [
-        {"vnum": 10000, "chance": 60}
+        {
+          "vnum": 10000,
+          "chance": 60
+        }
       ],
       "equipment": {
-        "wield": {"vnum": 10020},
-        "head": {"vnum": 10002},
-        "body": {"vnum": 10021}
+        "wield": {
+          "vnum": 10020
+        },
+        "head": {
+          "vnum": 10002
+        },
+        "body": {
+          "vnum": 10021
+        }
       }
     },
     "10001": {
@@ -439,7 +639,7 @@
       "damage_dice": "1d6+1",
       "armor_class": 70,
       "exp_value": 400,
-      "gold": 30,
+      "gold": 400,
       "behaviors": [
         "aggressive",
         "wander"
@@ -461,14 +661,23 @@
       ],
       "max_in_zone": 8,
       "vnum": 10001,
-      "gold": 400,
       "inventory": [
-        {"vnum": 10000, "chance": 40},
-        {"vnum": 10001, "chance": 20}
+        {
+          "vnum": 10000,
+          "chance": 40
+        },
+        {
+          "vnum": 10001,
+          "chance": 20
+        }
       ],
       "equipment": {
-        "wield": {"vnum": 10022},
-        "body": {"vnum": 10023}
+        "wield": {
+          "vnum": 10022
+        },
+        "body": {
+          "vnum": 10023
+        }
       }
     },
     "10002": {
@@ -502,10 +711,15 @@
       ],
       "max_in_zone": 3,
       "vnum": 10002,
-      "gold": 0,
       "inventory": [
-        {"vnum": 10004, "chance": 80},
-        {"vnum": 10024, "chance": 30}
+        {
+          "vnum": 10004,
+          "chance": 80
+        },
+        {
+          "vnum": 10024,
+          "chance": 30
+        }
       ]
     },
     "10003": {
@@ -520,7 +734,7 @@
       "damage_dice": "2d8+4",
       "armor_class": 40,
       "exp_value": 800,
-      "gold": 0,
+      "gold": 100,
       "behaviors": [
         "aggressive"
       ],
@@ -542,11 +756,19 @@
       ],
       "max_in_zone": 1,
       "vnum": 10003,
-      "gold": 100,
       "inventory": [
-        {"vnum": 10005, "chance": 100},
-        {"vnum": 10003, "chance": 50},
-        {"vnum": 10025, "chance": 25}
+        {
+          "vnum": 10005,
+          "chance": 100
+        },
+        {
+          "vnum": 10003,
+          "chance": 50
+        },
+        {
+          "vnum": 10025,
+          "chance": 25
+        }
       ]
     },
     "10004": {
@@ -561,7 +783,7 @@
       "damage_dice": "2d6+4",
       "armor_class": 50,
       "exp_value": 700,
-      "gold": 500,
+      "gold": 2000,
       "behaviors": [
         "helpful"
       ],
@@ -586,10 +808,13 @@
       ],
       "max_in_zone": 1,
       "vnum": 10004,
-      "gold": 2000,
       "equipment": {
-        "wield": {"vnum": 10012},
-        "body": {"vnum": 10026}
+        "wield": {
+          "vnum": 10012
+        },
+        "body": {
+          "vnum": 10026
+        }
       }
     }
   },
@@ -836,6 +1061,440 @@
       "armor_location": "body",
       "armor_class": 8,
       "vnum": 10026
+    },
+    "10027": {
+      "vnum": 10027,
+      "name": "khaz\u2011forged waraxe",
+      "short_desc": "a khaz\u2011forged waraxe",
+      "room_desc": "A khaz\u2011forged waraxe lies here.",
+      "description": "A dwarven waraxe.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "slash",
+      "damage_dice": "2d6+4",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 3
+        }
+      ],
+      "set_id": 100
+    },
+    "10028": {
+      "vnum": 10028,
+      "name": "stoneward shield",
+      "short_desc": "a stoneward shield",
+      "room_desc": "A stoneward shield lies here.",
+      "description": "A paladin's ward.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "shield",
+      "armor_bonus": 3,
+      "affects": [
+        {
+          "type": "cha",
+          "value": 1
+        }
+      ],
+      "set_id": 100
+    },
+    "10029": {
+      "vnum": 10029,
+      "name": "rune\u2011bound chain",
+      "short_desc": "a rune\u2011bound chain",
+      "room_desc": "A rune\u2011bound chain lies here.",
+      "description": "A deathknight's chain.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "neck1",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 3
+        }
+      ],
+      "set_id": 100
+    },
+    "10030": {
+      "vnum": 10030,
+      "name": "hearth\u2011blessed relic",
+      "short_desc": "a hearth\u2011blessed relic",
+      "room_desc": "A hearth\u2011blessed relic lies here.",
+      "description": "A cleric's relic.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "wis",
+          "value": 2
+        },
+        {
+          "type": "max_mana",
+          "value": 25
+        }
+      ],
+      "set_id": 100
+    },
+    "10031": {
+      "vnum": 10031,
+      "name": "runesmith's rod",
+      "short_desc": "a runesmith's rod",
+      "room_desc": "A runesmith's rod lies here.",
+      "description": "A mage's rod.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "staff",
+      "damage_dice": "2d5+2",
+      "affects": [
+        {
+          "type": "int",
+          "value": 2
+        }
+      ],
+      "set_id": 100
+    },
+    "10032": {
+      "vnum": 10032,
+      "name": "hammer\u2011song flute",
+      "short_desc": "a hammer\u2011song flute",
+      "room_desc": "A hammer\u2011song flute lies here.",
+      "description": "A bard's flute.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "cha",
+          "value": 2
+        }
+      ],
+      "set_id": 100
+    },
+    "10033": {
+      "vnum": 10033,
+      "name": "pickrunner dagger",
+      "short_desc": "a pickrunner dagger",
+      "room_desc": "A pickrunner dagger lies here.",
+      "description": "A rogue's blade.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "pierce",
+      "damage_dice": "1d6+2",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 2
+        }
+      ],
+      "set_id": 100
+    },
+    "10034": {
+      "vnum": 10034,
+      "name": "tunnel\u2011guard bracer",
+      "short_desc": "a tunnel\u2011guard bracer",
+      "room_desc": "A tunnel\u2011guard bracer lies here.",
+      "description": "A ranger's bracer.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wrist1",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 2
+        }
+      ],
+      "set_id": 100
+    },
+    "10035": {
+      "vnum": 10035,
+      "name": "miner's mantle",
+      "short_desc": "a miner's mantle",
+      "room_desc": "A miner's mantle lies here.",
+      "description": "A sturdy mantle.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "about",
+      "armor_bonus": 1,
+      "affects": [
+        {
+          "type": "str",
+          "value": 1
+        }
+      ],
+      "set_id": 100
+    }
+  },
+  "mobs": {
+    "10001": {
+      "vnum": 10001,
+      "name": "miner",
+      "short_desc": "a dwarven miner",
+      "long_desc": "A grizzled dwarven miner chips away at the rock.",
+      "description": "You see a dwarven miner.",
+      "level": 10,
+      "alignment": 500,
+      "hp_dice": "10d10+136",
+      "damage_dice": "3d6+6",
+      "gold": 13,
+      "exp": 600,
+      "armor_class": 70,
+      "flags": [
+        "sentinel"
+      ]
+    },
+    "10002": {
+      "vnum": 10002,
+      "name": "guard",
+      "short_desc": "a dwarven guard",
+      "long_desc": "A heavily armored dwarven guard watches the tunnels.",
+      "description": "You see a dwarven guard.",
+      "level": 15,
+      "alignment": 700,
+      "hp_dice": "15d8+242",
+      "damage_dice": "5d4+9",
+      "gold": 26,
+      "exp": 829,
+      "armor_class": 70,
+      "flags": [
+        "sentinel",
+        "guard"
+      ],
+      "loot_table": [
+        {
+          "vnum": 10027,
+          "chance": 20
+        },
+        {
+          "vnum": 10028,
+          "chance": 20
+        },
+        {
+          "vnum": 10029,
+          "chance": 20
+        },
+        {
+          "vnum": 10030,
+          "chance": 20
+        },
+        {
+          "vnum": 10031,
+          "chance": 20
+        },
+        {
+          "vnum": 10032,
+          "chance": 20
+        },
+        {
+          "vnum": 10033,
+          "chance": 20
+        },
+        {
+          "vnum": 10034,
+          "chance": 20
+        },
+        {
+          "vnum": 10035,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
+    },
+    "10003": {
+      "vnum": 10003,
+      "name": "foreman",
+      "short_desc": "the mine foreman",
+      "long_desc": "A stocky dwarf with a booming voice oversees the work.",
+      "description": "You see the mine foreman.",
+      "level": 18,
+      "alignment": 600,
+      "hp_dice": "18d8+357",
+      "damage_dice": "6d4+11",
+      "gold": 36,
+      "exp": 1041,
+      "armor_class": 64,
+      "flags": [
+        "sentinel"
+      ],
+      "loot_table": [
+        {
+          "vnum": 10027,
+          "chance": 20
+        },
+        {
+          "vnum": 10028,
+          "chance": 20
+        },
+        {
+          "vnum": 10029,
+          "chance": 20
+        },
+        {
+          "vnum": 10030,
+          "chance": 20
+        },
+        {
+          "vnum": 10031,
+          "chance": 20
+        },
+        {
+          "vnum": 10032,
+          "chance": 20
+        },
+        {
+          "vnum": 10033,
+          "chance": 20
+        },
+        {
+          "vnum": 10034,
+          "chance": 20
+        },
+        {
+          "vnum": 10035,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
+    },
+    "10004": {
+      "vnum": 10004,
+      "name": "goblin",
+      "short_desc": "a goblin raider",
+      "long_desc": "A sneaky goblin has infiltrated the mines.",
+      "description": "You see a goblin raider.",
+      "level": 12,
+      "alignment": -500,
+      "hp_dice": "12d10+160",
+      "damage_dice": "4d6+6",
+      "gold": 15,
+      "exp": 720,
+      "armor_class": 64,
+      "flags": [
+        "aggressive",
+        "thief"
+      ]
+    },
+    "10005": {
+      "vnum": 10005,
+      "name": "bat",
+      "short_desc": "a giant cave bat",
+      "long_desc": "A giant bat hangs from the ceiling.",
+      "description": "You see a giant cave bat.",
+      "level": 8,
+      "alignment": -100,
+      "hp_dice": "8d10+112",
+      "damage_dice": "3d5+5",
+      "gold": 35,
+      "exp": 480,
+      "armor_class": 76,
+      "flags": [
+        "aggressive"
+      ]
+    },
+    "10006": {
+      "vnum": 10006,
+      "name": "spider",
+      "short_desc": "a cave spider",
+      "long_desc": "A pale spider lurks in the darkness.",
+      "description": "You see a cave spider.",
+      "level": 14,
+      "alignment": -200,
+      "hp_dice": "14d10+184",
+      "damage_dice": "4d6+9",
+      "gold": 15,
+      "exp": 840,
+      "armor_class": 58,
+      "flags": [
+        "aggressive",
+        "sentinel"
+      ]
+    },
+    "10007": {
+      "vnum": 10007,
+      "name": "elemental",
+      "short_desc": "an earth elemental",
+      "long_desc": "An elemental of living rock guards the deep mines.",
+      "description": "You see an earth elemental.",
+      "level": 20,
+      "alignment": 0,
+      "hp_dice": "20d10+256",
+      "damage_dice": "6d8+5",
+      "gold": 21,
+      "exp": 1200,
+      "armor_class": 40,
+      "flags": [
+        "aggressive",
+        "sentinel"
+      ],
+      "loot_table": [
+        {
+          "vnum": 10027,
+          "chance": 20
+        },
+        {
+          "vnum": 10028,
+          "chance": 20
+        },
+        {
+          "vnum": 10029,
+          "chance": 20
+        },
+        {
+          "vnum": 10030,
+          "chance": 20
+        },
+        {
+          "vnum": 10031,
+          "chance": 20
+        },
+        {
+          "vnum": 10032,
+          "chance": 20
+        },
+        {
+          "vnum": 10033,
+          "chance": 20
+        },
+        {
+          "vnum": 10034,
+          "chance": 20
+        },
+        {
+          "vnum": 10035,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
+    },
+    "10008": {
+      "vnum": 10008,
+      "name": "merchant",
+      "short_desc": "a dwarven smith",
+      "long_desc": "A dwarven smith works at a portable forge.",
+      "description": "You see a dwarven smith.",
+      "level": 12,
+      "alignment": 500,
+      "hp_dice": "12d8+194",
+      "damage_dice": "4d4+8",
+      "gold": 39,
+      "exp": 719,
+      "armor_class": 76,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "shopkeeper"
     }
   }
 }

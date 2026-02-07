@@ -1,0 +1,833 @@
+{
+  "number": 200,
+  "name": "Forest of Shadows",
+  "lifespan": 30,
+  "reset_mode": 2,
+  "rooms": {
+    "20001": {
+      "vnum": 20001,
+      "name": "Forest Edge",
+      "description": "The cobblestone road ends here at the edge of a dark forest. Ancient\noaks tower overhead, their branches blocking out much of the sunlight. A\nworn path leads deeper into the woods, while the safety of the city lies\nto the east. Bird calls echo through the canopy. The forest floor is\ncarpeted with fallen leaves.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 20002,
+          "description": "A path winds deeper into the forest."
+        },
+        "north": {
+          "to_room": 3052,
+          "description": "The road leads back to Midgaard's west gate."
+        }
+      }
+    },
+    "20002": {
+      "vnum": 20002,
+      "name": "Shadowy Path",
+      "description": "The forest closes in around. Shafts of pale light filter through the\ncanopy above, creating dancing patterns on the leaf-covered ground. The\npath splits here, leading north and west. The forest floor is carpeted\nwith fallen leaves. Bird calls echo through the canopy.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 20001,
+          "description": "The path leads back toward the forest edge."
+        },
+        "north": {
+          "to_room": 20003,
+          "description": "The path continues north into deeper shadows."
+        },
+        "west": {
+          "to_room": 20005,
+          "description": "A trail winds westward."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 20001,
+          "max": 2
+        }
+      ]
+    },
+    "20003": {
+      "vnum": 20003,
+      "name": "Dark Grove",
+      "description": "The area opens in a small clearing surrounded by ancient, gnarled trees.\nStrange fungi grow at the base of the trees, some glowing with a faint\nphosphorescence. The air is thick with the smell of decay and growing\nthings. Bird calls echo through the canopy. Branches intertwine\noverhead, filtering the light.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 20002,
+          "description": "The path leads south."
+        },
+        "north": {
+          "to_room": 20004,
+          "description": "The trees thin out to the north."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 20002,
+          "max": 3
+        },
+        {
+          "vnum": 20001,
+          "max": 1
+        }
+      ]
+    },
+    "20004": {
+      "vnum": 20004,
+      "name": "Spider's Hollow",
+      "description": "Thick webs stretch between the trees here, some large enough to trap a\nman. The skeletal remains of small animals dangle in the sticky strands.\nSomething moves in the shadows above... Ancient trees rise on all sides.\nThe forest floor is carpeted with fallen leaves.",
+      "sector_type": "forest",
+      "flags": [
+        "dark"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 20003,
+          "description": "The path leads back through the grove."
+        },
+        "east": {
+          "to_room": 20008,
+          "description": "A web-covered tunnel leads east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 20003,
+          "max": 3
+        },
+        {
+          "vnum": 20004,
+          "max": 1
+        }
+      ]
+    },
+    "20005": {
+      "vnum": 20005,
+      "name": "Mossy Trail",
+      "description": "The ground here is soft with centuries of accumulated moss. Your\nfootsteps make no sound as you walk. Ancient stones, perhaps markers or\nruins, peek through the undergrowth. The forest floor is carpeted with\nfallen leaves. The scent of pine and earth fills the air.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 20002,
+          "description": "The path leads east."
+        },
+        "west": {
+          "to_room": 20006,
+          "description": "The trail continues west."
+        },
+        "south": {
+          "to_room": 20010,
+          "description": "A barely visible path leads south."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 20001,
+          "max": 2
+        }
+      ]
+    },
+    "20006": {
+      "vnum": 20006,
+      "name": "Ruined Shrine",
+      "description": "The crumbling remains of an ancient shrine stand here, overgrown with\nvines and moss. A weathered statue of some forgotten deity watches over\nthe clearing. Offerings of coins and trinkets lie at its base. Ancient\ntrees rise on all sides. The scent of pine and earth fills the air.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 20005,
+          "description": "The trail leads east."
+        },
+        "north": {
+          "to_room": 20007,
+          "description": "A path leads north into thicker forest."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 20005,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 20001,
+          "max": 1
+        }
+      ]
+    },
+    "20007": {
+      "vnum": 20007,
+      "name": "Wolf Den Entrance",
+      "description": "The ground slopes down here toward a dark cave entrance. Fresh animal\nbones are scattered about, and claw marks scar the nearby trees.\nGrowling echoes from within the den. Branches intertwine overhead,\nfiltering the light. Ancient trees rise on all sides.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 20006,
+          "description": "The shrine lies to the south."
+        },
+        "down": {
+          "to_room": 20009,
+          "description": "The cave entrance leads down into darkness."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 20006,
+          "max": 2
+        }
+      ]
+    },
+    "20008": {
+      "vnum": 20008,
+      "name": "The Spider Queen's Lair",
+      "description": "This chamber is choked with webs so thick they form walls. Cocooned\nvictims hang from the ceiling, some still twitching. At the center of\nthis nightmare, a massive spider waits on her throne of silk. The\nceiling hangs low overhead. The walls are rough-hewn and cold to the\ntouch.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 20004,
+          "description": "The tunnel leads west, back to the hollow."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 20007,
+          "max": 1
+        }
+      ]
+    },
+    "20009": {
+      "vnum": 20009,
+      "name": "Wolf Den",
+      "description": "The cave is littered with bones and scraps of fur. The smell of wolf is\noverwhelming. Several sets of eyes gleam in the darkness, watching your\nevery move. The pack's alpha lurks at the back. Dust motes drift in the\nstale air. The ceiling hangs low overhead.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 20007,
+          "description": "The cave entrance leads up and out."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 20006,
+          "max": 3
+        },
+        {
+          "vnum": 20008,
+          "max": 1
+        }
+      ]
+    },
+    "20010": {
+      "vnum": 20010,
+      "name": "Hidden Glade",
+      "description": "This beautiful glade is hidden from the rest of the forest. Sunlight\nstreams down onto a carpet of wildflowers. A crystal-clear spring\nbubbles up from the ground. The place radiates tranquility. The scent of\npine and earth fills the air. The forest floor is carpeted with fallen\nleaves.",
+      "sector_type": "forest",
+      "flags": [
+        "peaceful"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 20005,
+          "description": "A hidden path leads north."
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 20002,
+          "max": 1
+        }
+      ]
+    }
+  },
+  "mobs": {
+    "20001": {
+      "vnum": 20001,
+      "name": "forest wolf",
+      "short_desc": "a forest wolf",
+      "long_desc": "A lean gray wolf prowls here, watching you with hungry eyes.",
+      "level": 5,
+      "alignment": 0,
+      "hp_dice": "5d10+76",
+      "damage_dice": "2d5+3",
+      "gold": 10,
+      "exp": 300,
+      "armor_class": 85,
+      "flags": [
+        "aggressive"
+      ],
+      "description": "This wolf is part of the forest pack. Its gray fur is matted and scarred from countless hunts."
+    },
+    "20002": {
+      "vnum": 20002,
+      "name": "giant spider",
+      "short_desc": "a giant spider",
+      "long_desc": "A giant spider clings to a web, its many eyes watching you.",
+      "level": 6,
+      "alignment": -200,
+      "hp_dice": "6d10+88",
+      "damage_dice": "2d5+5",
+      "gold": 15,
+      "exp": 360,
+      "armor_class": 82,
+      "flags": [
+        "aggressive"
+      ],
+      "description": "This spider is the size of a large dog. Venom drips from its fangs."
+    },
+    "20003": {
+      "vnum": 20003,
+      "name": "venomous spider",
+      "short_desc": "a venomous spider",
+      "long_desc": "A venomous spider drops silently from the shadows.",
+      "level": 8,
+      "alignment": -300,
+      "hp_dice": "8d10+112",
+      "damage_dice": "3d5+5",
+      "gold": 25,
+      "exp": 480,
+      "armor_class": 76,
+      "flags": [
+        "aggressive",
+        "hunter"
+      ],
+      "description": "This spider's venom is particularly potent. Its bright markings warn of danger."
+    },
+    "20004": {
+      "vnum": 20004,
+      "name": "web spinner",
+      "short_desc": "a web spinner",
+      "long_desc": "A large spider works tirelessly, spinning intricate webs.",
+      "level": 7,
+      "alignment": -200,
+      "hp_dice": "7d10+100",
+      "damage_dice": "2d5+6",
+      "gold": 20,
+      "exp": 420,
+      "armor_class": 79,
+      "flags": [
+        "sentinel"
+      ],
+      "description": "This spider specializes in creating elaborate trap webs."
+    },
+    "20005": {
+      "vnum": 20005,
+      "name": "shrine guardian",
+      "short_desc": "a spectral shrine guardian",
+      "long_desc": "A ghostly figure in ancient armor guards the ruined shrine.",
+      "level": 10,
+      "alignment": 200,
+      "hp_dice": "10d10+136",
+      "damage_dice": "2d6+4",
+      "gold": 0,
+      "exp": 600,
+      "armor_class": 70,
+      "flags": [
+        "sentinel",
+        "no_charm"
+      ],
+      "description": "This spectral warrior has guarded this shrine for centuries. It attacks only those who disturb the sacred ground.",
+      "loot_table": [
+        {
+          "vnum": 20007,
+          "chance": 20
+        },
+        {
+          "vnum": 20008,
+          "chance": 20
+        },
+        {
+          "vnum": 20009,
+          "chance": 20
+        },
+        {
+          "vnum": 20010,
+          "chance": 20
+        },
+        {
+          "vnum": 20011,
+          "chance": 20
+        },
+        {
+          "vnum": 20012,
+          "chance": 20
+        },
+        {
+          "vnum": 20013,
+          "chance": 20
+        },
+        {
+          "vnum": 20014,
+          "chance": 20
+        },
+        {
+          "vnum": 20015,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
+    },
+    "20006": {
+      "vnum": 20006,
+      "name": "dire wolf",
+      "short_desc": "a dire wolf",
+      "long_desc": "A massive dire wolf snarls menacingly at you.",
+      "level": 9,
+      "alignment": 0,
+      "hp_dice": "9d10+124",
+      "damage_dice": "3d5+6",
+      "gold": 20,
+      "exp": 540,
+      "armor_class": 73,
+      "flags": [
+        "aggressive",
+        "hunter"
+      ],
+      "description": "This dire wolf is nearly the size of a horse. Its fangs are as long as daggers."
+    },
+    "20007": {
+      "vnum": 20007,
+      "name": "spider queen",
+      "short_desc": "the Spider Queen",
+      "long_desc": "A massive spider queen dominates this chamber, her eyes gleaming with malevolent intelligence.",
+      "level": 12,
+      "alignment": -500,
+      "hp_dice": "12d10+160",
+      "damage_dice": "2d6+4",
+      "gold": 200,
+      "exp": 720,
+      "armor_class": 64,
+      "flags": [
+        "sentinel",
+        "boss",
+        "no_charm",
+        "no_sleep"
+      ],
+      "description": "The Spider Queen is ancient and cunning. Countless adventurers have fallen to her venom over the centuries. She guards her lair jealously.",
+      "loot_table": [
+        {
+          "vnum": 20007,
+          "chance": 20
+        },
+        {
+          "vnum": 20008,
+          "chance": 20
+        },
+        {
+          "vnum": 20009,
+          "chance": 20
+        },
+        {
+          "vnum": 20010,
+          "chance": 20
+        },
+        {
+          "vnum": 20011,
+          "chance": 20
+        },
+        {
+          "vnum": 20012,
+          "chance": 20
+        },
+        {
+          "vnum": 20013,
+          "chance": 20
+        },
+        {
+          "vnum": 20014,
+          "chance": 20
+        },
+        {
+          "vnum": 20015,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
+    },
+    "20008": {
+      "vnum": 20008,
+      "name": "alpha wolf",
+      "short_desc": "the Alpha Wolf",
+      "long_desc": "The alpha wolf stands guard over its pack, a magnificent and deadly beast.",
+      "level": 14,
+      "alignment": 0,
+      "hp_dice": "14d10+184",
+      "damage_dice": "2d6+4",
+      "gold": 150,
+      "exp": 840,
+      "armor_class": 58,
+      "flags": [
+        "sentinel",
+        "boss",
+        "no_charm",
+        "no_sleep"
+      ],
+      "description": "The Alpha Wolf is the undisputed leader of the forest pack. Countless scars mark its grizzled hide, testament to years of dominance.",
+      "loot_table": [
+        {
+          "vnum": 20007,
+          "chance": 20
+        },
+        {
+          "vnum": 20008,
+          "chance": 20
+        },
+        {
+          "vnum": 20009,
+          "chance": 20
+        },
+        {
+          "vnum": 20010,
+          "chance": 20
+        },
+        {
+          "vnum": 20011,
+          "chance": 20
+        },
+        {
+          "vnum": 20012,
+          "chance": 20
+        },
+        {
+          "vnum": 20013,
+          "chance": 20
+        },
+        {
+          "vnum": 20014,
+          "chance": 20
+        },
+        {
+          "vnum": 20015,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
+    }
+  },
+  "objects": {
+    "20001": {
+      "vnum": 20001,
+      "name": "ancient coin",
+      "short_desc": "an ancient silver coin",
+      "room_desc": "An ancient coin lies among the offerings.",
+      "description": "This coin bears the face of a long-forgotten king. It might be valuable to a collector.",
+      "item_type": "treasure",
+      "weight": 0,
+      "value": 100
+    },
+    "20002": {
+      "vnum": 20002,
+      "name": "spring water",
+      "short_desc": "the crystal spring",
+      "room_desc": "A crystal-clear spring bubbles here.",
+      "description": "This spring provides fresh, clean water. The perfect place to fill a waterskin.",
+      "item_type": "fountain",
+      "weight": 0,
+      "value": 0,
+      "drink_value": 10,
+      "liquid_type": "water",
+      "flags": [
+        "no_take"
+      ]
+    },
+    "20003": {
+      "vnum": 20003,
+      "name": "spider fang dagger",
+      "short_desc": "a Spider Fang Dagger",
+      "room_desc": "A dagger made from a giant spider's fang lies here.",
+      "description": "This wicked dagger was crafted from the fang of the Spider Queen. It still drips with venom.",
+      "item_type": "weapon",
+      "weight": 2,
+      "value": 500,
+      "weapon_type": "dagger",
+      "damage_dice": "2d4+3",
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "hitroll",
+          "value": 2
+        },
+        {
+          "type": "damroll",
+          "value": 2
+        }
+      ]
+    },
+    "20004": {
+      "vnum": 20004,
+      "name": "web cloak",
+      "short_desc": "a Cloak of Webbing",
+      "room_desc": "A shimmering cloak woven from spider silk lies here.",
+      "description": "This cloak is woven from the finest spider silk. It is surprisingly strong and light.",
+      "item_type": "armor",
+      "weight": 2,
+      "value": 750,
+      "armor_value": 8,
+      "wear_flags": [
+        "about"
+      ],
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "armor",
+          "value": -10
+        },
+        {
+          "type": "dex",
+          "value": 1
+        }
+      ]
+    },
+    "20005": {
+      "vnum": 20005,
+      "name": "wolf fang necklace",
+      "short_desc": "a Wolf Fang Necklace",
+      "room_desc": "A necklace of wolf fangs lies here.",
+      "description": "This necklace is made from the fangs of the Alpha Wolf. It radiates primal power.",
+      "item_type": "armor",
+      "weight": 1,
+      "value": 600,
+      "armor_value": 3,
+      "wear_flags": [
+        "neck"
+      ],
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "str",
+          "value": 2
+        },
+        {
+          "type": "con",
+          "value": 1
+        }
+      ]
+    },
+    "20006": {
+      "vnum": 20006,
+      "name": "alpha pelt",
+      "short_desc": "the Alpha Wolf's Pelt",
+      "room_desc": "A magnificent wolf pelt lies here.",
+      "description": "This thick pelt came from the Alpha Wolf. It would make excellent armor or fetch a high price.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 1000,
+      "armor_value": 12,
+      "wear_flags": [
+        "body"
+      ],
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "armor",
+          "value": -15
+        },
+        {
+          "type": "con",
+          "value": 2
+        }
+      ]
+    },
+    "20007": {
+      "vnum": 20007,
+      "name": "shadow\u2011bark axe",
+      "short_desc": "a shadow\u2011bark axe",
+      "room_desc": "A shadow\u2011bark axe lies here.",
+      "description": "A warrior's axe.",
+      "item_type": "weapon",
+      "weight": 3,
+      "value": 2500,
+      "wear_slot": "wield",
+      "weapon_type": "slash",
+      "damage_dice": "2d6+3",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 2
+        }
+      ],
+      "set_id": 200
+    },
+    "20008": {
+      "vnum": 20008,
+      "name": "twilight ward",
+      "short_desc": "a twilight ward",
+      "room_desc": "A twilight ward lies here.",
+      "description": "A paladin's shield.",
+      "item_type": "armor",
+      "weight": 3,
+      "value": 2500,
+      "wear_slot": "shield",
+      "armor_bonus": 2,
+      "affects": [
+        {
+          "type": "wis",
+          "value": 1
+        }
+      ],
+      "set_id": 200
+    },
+    "20009": {
+      "vnum": 20009,
+      "name": "nightbind chain",
+      "short_desc": "a nightbind chain",
+      "room_desc": "A nightbind chain lies here.",
+      "description": "A deathknight's chain.",
+      "item_type": "armor",
+      "weight": 3,
+      "value": 2500,
+      "wear_slot": "neck1",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 2
+        }
+      ],
+      "set_id": 200
+    },
+    "20010": {
+      "vnum": 20010,
+      "name": "moonlit reliquary",
+      "short_desc": "a moonlit reliquary",
+      "room_desc": "A moonlit reliquary lies here.",
+      "description": "A cleric's relic.",
+      "item_type": "armor",
+      "weight": 3,
+      "value": 2500,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "wis",
+          "value": 2
+        }
+      ],
+      "set_id": 200
+    },
+    "20011": {
+      "vnum": 20011,
+      "name": "gloomglass focus",
+      "short_desc": "a gloomglass focus",
+      "room_desc": "A gloomglass focus lies here.",
+      "description": "A mage's focus.",
+      "item_type": "armor",
+      "weight": 3,
+      "value": 2500,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "int",
+          "value": 2
+        }
+      ],
+      "set_id": 200
+    },
+    "20012": {
+      "vnum": 20012,
+      "name": "nocturne harp",
+      "short_desc": "a nocturne harp",
+      "room_desc": "A nocturne harp lies here.",
+      "description": "A bard's harp.",
+      "item_type": "weapon",
+      "weight": 3,
+      "value": 2500,
+      "wear_slot": "wield",
+      "weapon_type": "mace",
+      "damage_dice": "1d6+1",
+      "affects": [
+        {
+          "type": "cha",
+          "value": 2
+        }
+      ],
+      "set_id": 200
+    },
+    "20013": {
+      "vnum": 20013,
+      "name": "silent fang",
+      "short_desc": "a silent fang",
+      "room_desc": "A silent fang lies here.",
+      "description": "A rogue's blade.",
+      "item_type": "weapon",
+      "weight": 3,
+      "value": 2500,
+      "wear_slot": "wield",
+      "weapon_type": "pierce",
+      "damage_dice": "1d6+2",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 2
+        },
+        {
+          "type": "hitroll",
+          "value": 1
+        }
+      ],
+      "set_id": 200
+    },
+    "20014": {
+      "vnum": 20014,
+      "name": "wraithleaf bow",
+      "short_desc": "a wraithleaf bow",
+      "room_desc": "A wraithleaf bow lies here.",
+      "description": "A ranger's bow.",
+      "item_type": "weapon",
+      "weight": 3,
+      "value": 2500,
+      "wear_slot": "wield",
+      "weapon_type": "pierce",
+      "damage_dice": "1d6+2",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 2
+        },
+        {
+          "type": "hitroll",
+          "value": 1
+        }
+      ],
+      "set_id": 200
+    },
+    "20015": {
+      "vnum": 20015,
+      "name": "cloak of dusk",
+      "short_desc": "a cloak of dusk",
+      "room_desc": "A cloak of dusk lies here.",
+      "description": "A shadowy cloak.",
+      "item_type": "armor",
+      "weight": 3,
+      "value": 2500,
+      "wear_slot": "about",
+      "armor_bonus": 2,
+      "affects": [
+        {
+          "type": "shadow_resist",
+          "value": 5
+        }
+      ],
+      "set_id": 200
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "updates": [
+    {
+      "date": "2026-02-06",
+      "version": "0.9.6",
+      "changes": [
+        "Autoexit now persists and defaults ON",
+        "Drink containers show contents/fullness with look/inspect",
+        "Fill now correctly refills drink containers",
+        "Drink uses fountains by default; explicit container supported",
+        "Backstab wind-up spinner + 6s cooldown",
+        "Backstab success/damage scales with sneak/hide/environment",
+        "Rare execution proc on non-boss backstabs",
+        "Sneak detection uses hide + environment + light penalties",
+        "Exposed debuff on detection + NPC searching/tracking",
+        "Pets recall with owner; order recall added",
+        "Trainer rooms now class-locked",
+        "Thieves' guildmaster trains thief + assassin",
+        "Class help updated with skill tree progression",
+        "Full help rebuild: commands/skills/spells/classes",
+        "Generated docs/HELP.md"
+      ]
+    },
+    {
+      "date": "2026-02-05",
+      "version": "0.9.5",
+      "changes": [
+        "Combat slowed down - rounds now every 4 seconds",
+        "HP prompt now shows after every combat round",
+        "Command echo added - see what you type in terminal",
+        "Guard call-for-help system - guards within 3 rooms respond",
+        "Chessboard zone rebalanced for levels 4-10",
+        "Pet colors changed - your pets show in magenta",
+        "Room look shows who NPCs/pets are fighting",
+        "New 'target' system - set target for spells/skills",
+        "Pet commands: order assist, order report, skill orders (backstab/heal/bolt/shield)",
+        "New 'pets' command for managing all pets",
+        "Pets now announced when entering rooms",
+        "Persistent undead pets across restarts",
+        "Full CircleMUD-style group system added",
+        "Followers auto-move with leader",
+        "Regen ticks every 60s; DOT/HOT ticks configurable",
+        "General store now sells food",
+        "Updates/news/changelog command added",
+        "Fixed cast empty input crash",
+        "Fixed login crash with persisted pets"
+      ]
+    },
+    {
+      "date": "2026-02-04",
+      "version": "0.9.4",
+      "changes": [
+        "Combat balance audit - defense formula fixed",
+        "11 mobs rebalanced for proper damage",
+        "Web client with auto-map sync",
+        "Door system improvements",
+        "Bug reporting command added"
+      ]
+    },
+    {
+      "date": "2026-02-03",
+      "version": "0.9.3",
+      "changes": [
+        "All 8 class talent trees implemented",
+        "Equipment bonus system",
+        "Pet protection system (60%/75% intercept)",
+        "Light source system for dark rooms",
+        "Backup and supervisor scripts"
+      ]
+    }
+  ]
+}

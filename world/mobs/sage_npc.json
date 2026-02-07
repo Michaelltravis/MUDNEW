@@ -1,0 +1,28 @@
+{
+  "vnum": 9900,
+  "name": "The Ancient Sage",
+  "short_desc": "An ancient sage sits here, surrounded by floating runes.",
+  "long_desc": "An elderly figure in flowing robes sits cross-legged on a meditation cushion. Ancient runes float in a slow orbit around them, casting a soft blue glow. Their eyes, though milky with age, seem to perceive things beyond the mortal realm. Centuries of wisdom are etched into every line of their face.",
+  "keywords": ["sage", "ancient", "elder", "wise"],
+  "level": 50,
+  "hp": 500,
+  "max_hp": 500,
+  "mana": 1000,
+  "max_mana": 1000,
+  "armor_class": 50,
+  "damage_dice": "1d4",
+  "gold": 0,
+  "experience": 0,
+  "position": "sitting",
+  "special": "sage",
+  "flags": ["no_attack", "sentinel", "helper"],
+  "scripts": [],
+  "spawn_room": 3001,
+  "respawn_time": 0,
+  "dialogue": {
+    "greeting": "The sage's eyes focus on you with ancient wisdom. 'Ah, a seeker of knowledge. What questions burden your mind?'",
+    "farewell": "The sage nods slowly. 'May wisdom light your path, traveler.'",
+    "unknown": "The sage strokes their beard thoughtfully. 'That is a mystery even I cannot unravel.'"
+  },
+  "notes": "LLM-powered NPC. Use 'ask sage <question>' for intelligent conversation."
+}

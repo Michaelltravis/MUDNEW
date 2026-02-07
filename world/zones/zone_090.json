@@ -11,7 +11,7 @@
   "rooms": {
     "9000": {
       "title": "Edge of the Murky Swamp",
-      "description": "The solid ground gives way to soft, waterlogged earth as you enter the swamp. A thick mist hangs low over stagnant pools of dark water, and the air reeks of rot and decay. Dead trees with twisted branches reach up like skeletal fingers toward the gray sky. Strange sounds echo through the fog - croaking, splashing, and distant moaning.",
+      "description": "The solid ground gives way to soft, waterlogged earth as you enter the\nswamp. A thick mist hangs low over stagnant pools of dark water, and the\nair reeks of rot and decay. Dead trees with twisted branches reach up\nlike skeletal fingers toward the gray sky. Strange sounds echo through\nthe fog - croaking, splashing, and distant moaning. Shadows gather in\nthe corners. The ceiling hangs low overhead.",
       "terrain": "swamp",
       "exits": {
         "north": {
@@ -25,11 +25,17 @@
           "to_room": 9002
         }
       },
-      "vnum": 9000
+      "vnum": 9000,
+      "mob_resets": [
+        {
+          "vnum": 9001,
+          "max": 1
+        }
+      ]
     },
     "9001": {
       "title": "Shallow Bog Waters",
-      "description": "You wade through knee-deep murky water that squelches with each step. The bottom is soft mud that threatens to pull you down. Patches of luminescent fungus grow on rotting logs, casting an eerie green glow through the mist. Insects buzz constantly around your head, and something large splashes in the distance.",
+      "description": "You wade through knee-deep murky water that squelches with each step.\nThe bottom is soft mud that threatens to pull you down. Patches of\nluminescent fungus grow on rotting logs, casting an eerie green glow\nthrough the mist. Insects buzz constantly around your head, and\nsomething large splashes in the distance. The walls are rough-hewn and\ncold to the touch. Dust motes drift in the stale air.",
       "terrain": "swamp",
       "exits": {
         "north": {
@@ -46,7 +52,7 @@
     },
     "9002": {
       "title": "Grove of Dead Trees",
-      "description": "A cluster of ancient, dead trees stands here, their bark blackened and peeling. Spanish moss drapes from the lifeless branches like funeral shrouds. The ground is carpeted with decaying leaves that release puffs of spores when disturbed. Carved symbols on the tree trunks hint that this place was once sacred - or cursed.",
+      "description": "A cluster of ancient, dead trees stands here, their bark blackened and\npeeling. Spanish moss drapes from the lifeless branches like funeral\nshrouds. The ground is carpeted with decaying leaves that release puffs\nof spores when disturbed. Carved symbols on the tree trunks hint that\nthis place was once sacred - or cursed. The air is still and musty. The\nceiling hangs low overhead.",
       "terrain": "swamp",
       "exits": {
         "west": {
@@ -56,11 +62,17 @@
           "to_room": 9005
         }
       },
-      "vnum": 9002
+      "vnum": 9002,
+      "mob_resets": [
+        {
+          "vnum": 9005,
+          "max": 1
+        }
+      ]
     },
     "9003": {
       "title": "Quicksand Pool",
-      "description": "The ground here looks deceptively solid but is actually a treacherous quicksand trap. Bones protrude from the surface - grim reminders of those who came before. A narrow safe path winds around the edge, marked by ancient wooden stakes driven into firmer ground. One false step could prove fatal.",
+      "description": "The ground here looks deceptively solid but is actually a treacherous\nquicksand trap. Bones protrude from the surface - grim reminders of\nthose who came before. A narrow safe path winds around the edge, marked\nby ancient wooden stakes driven into firmer ground. One false step could\nprove fatal. The air is still and musty. The ceiling hangs low overhead.",
       "terrain": "swamp",
       "special": "quicksand_damage",
       "exits": {
@@ -74,11 +86,21 @@
           "to_room": 9006
         }
       },
-      "vnum": 9003
+      "vnum": 9003,
+      "mob_resets": [
+        {
+          "vnum": 9001,
+          "max": 1
+        },
+        {
+          "vnum": 9003,
+          "max": 1
+        }
+      ]
     },
     "9004": {
       "title": "Will-o-Wisp Hollow",
-      "description": "Strange blue-green lights dance through this hollow, floating just above the water's surface. They pulse and flicker hypnotically, drawing the unwary deeper into the swamp. Local legends say these lights are the souls of the drowned, forever wandering the marsh. The truth may be even more sinister.",
+      "description": "Strange blue-green lights dance through this hollow, floating just above\nthe water's surface. They pulse and flicker hypnotically, drawing the\nunwary deeper into the swamp. Local legends say these lights are the\nsouls of the drowned, forever wandering the marsh. The truth may be even\nmore sinister. Shadows gather in the corners. The air is still and\nmusty.",
       "terrain": "swamp",
       "exits": {
         "east": {
@@ -92,7 +114,7 @@
     },
     "9005": {
       "title": "Twisted Path Through Reeds",
-      "description": "Tall reeds tower overhead, blocking out what little light penetrates the swamp mist. They rustle constantly though there is no wind, creating an unnerving chorus of whispers. The narrow path twists between them, and you catch glimpses of movement in your peripheral vision that vanish when you turn to look.",
+      "description": "Tall reeds tower overhead, blocking out what little light penetrates the\nswamp mist. They rustle constantly though there is no wind, creating an\nunnerving chorus of whispers. The narrow path twists between them, and\nyou catch glimpses of movement in your peripheral vision that vanish\nwhen you turn to look. Dust motes drift in the stale air. The ceiling\nhangs low overhead.",
       "terrain": "swamp",
       "exits": {
         "north": {
@@ -105,11 +127,17 @@
           "to_room": 9008
         }
       },
-      "vnum": 9005
+      "vnum": 9005,
+      "mob_resets": [
+        {
+          "vnum": 9006,
+          "max": 1
+        }
+      ]
     },
     "9006": {
       "title": "Stagnant Pool",
-      "description": "A large pool of completely still water blocks the path. Its surface is covered with a thick layer of algae and scum. The smell is overwhelming - a putrid mix of decay and methane. Bubbles occasionally rise to the surface and pop, releasing noxious gases. Something moves beneath the algae.",
+      "description": "A large pool of completely still water blocks the path. Its surface is\ncovered with a thick layer of algae and scum. The smell is overwhelming\n- a putrid mix of decay and methane. Bubbles occasionally rise to the\nsurface and pop, releasing noxious gases. Something moves beneath the\nalgae. The ceiling hangs low overhead. Shadows gather in the corners.",
       "terrain": "swamp",
       "exits": {
         "north": {
@@ -122,11 +150,17 @@
           "to_room": 9009
         }
       },
-      "vnum": 9006
+      "vnum": 9006,
+      "mob_resets": [
+        {
+          "vnum": 9001,
+          "max": 1
+        }
+      ]
     },
     "9007": {
       "title": "Raised Island",
-      "description": "A small island of solid ground rises from the swamp waters, covered in moss and ferns. It's a welcome relief from wading through muck. Ancient stone pillars stand in a circle here, weathered and cracked but still imposing. Strange runes are carved into their surfaces, glowing faintly in the mist.",
+      "description": "A small island of solid ground rises from the swamp waters, covered in\nmoss and ferns. It's a welcome relief from wading through muck. Ancient\nstone pillars stand in a circle here, weathered and cracked but still\nimposing. Strange runes are carved into their surfaces, glowing faintly\nin the mist. The air is still and musty. Dust motes drift in the stale\nair.",
       "terrain": "swamp",
       "exits": {
         "north": {
@@ -139,11 +173,29 @@
           "to_room": 9010
         }
       },
-      "vnum": 9007
+      "vnum": 9007,
+      "mob_resets": [
+        {
+          "vnum": 9001,
+          "max": 1
+        },
+        {
+          "vnum": 9002,
+          "max": 1
+        },
+        {
+          "vnum": 9003,
+          "max": 1
+        },
+        {
+          "vnum": 9008,
+          "max": 1
+        }
+      ]
     },
     "9008": {
       "title": "Cypress Grove",
-      "description": "Massive cypress trees grow here, their trunks impossibly wide and their roots forming complex tangles above and below the water. The canopy is thick enough to block out the sky completely, plunging this area into perpetual twilight. Moss and vines hang everywhere, and the croaking of frogs is deafening.",
+      "description": "Massive cypress trees grow here, their trunks impossibly wide and their\nroots forming complex tangles above and below the water. The canopy is\nthick enough to block out the sky completely, plunging this area into\nperpetual twilight. Moss and vines hang everywhere, and the croaking of\nfrogs is deafening. The ceiling hangs low overhead. The walls are rough-\nhewn and cold to the touch.",
       "terrain": "swamp",
       "exits": {
         "north": {
@@ -159,11 +211,17 @@
           "to_room": 9012
         }
       },
-      "vnum": 9008
+      "vnum": 9008,
+      "mob_resets": [
+        {
+          "vnum": 9005,
+          "max": 1
+        }
+      ]
     },
     "9009": {
       "title": "Graveyard of Ships",
-      "description": "The rotting hulks of several small boats lie half-submerged in the murky water. Their wood is black with age and crawling with fungi. How they ended up this deep in the swamp is a mystery - there's no navigable waterway nearby. Inside the wrecks, you can see bones and the remains of cargo.",
+      "description": "The rotting hulks of several small boats lie half-submerged in the murky\nwater. Their wood is black with age and crawling with fungi. How they\nended up this deep in the swamp is a mystery - there's no navigable\nwaterway nearby. Inside the wrecks, Visible is bones and the remains of\ncargo. Dust motes drift in the stale air. The ceiling hangs low\noverhead.",
       "terrain": "swamp",
       "exits": {
         "north": {
@@ -176,11 +234,25 @@
           "to_room": 9013
         }
       },
-      "vnum": 9009
+      "vnum": 9009,
+      "mob_resets": [
+        {
+          "vnum": 9001,
+          "max": 1
+        },
+        {
+          "vnum": 9002,
+          "max": 1
+        },
+        {
+          "vnum": 9004,
+          "max": 1
+        }
+      ]
     },
     "9010": {
       "title": "Witch's Warning Path",
-      "description": "Stakes driven into the mud line the path here, each topped with a skull - human, animal, and things in between. Wind chimes made of bones hang from nearby branches, clattering eerily in the slightest breeze. This is clearly a warning, marking the territory of something that doesn't welcome visitors.",
+      "description": "Stakes driven into the mud line the path here, each topped with a skull\n- human, animal, and things in between. Wind chimes made of bones hang\nfrom nearby branches, clattering eerily in the slightest breeze. This is\nclearly a warning, marking the territory of something that doesn't\nwelcome visitors. The walls are rough-hewn and cold to the touch.\nShadows gather in the corners.",
       "terrain": "swamp",
       "exits": {
         "north": {
@@ -190,11 +262,21 @@
           "to_room": 9014
         }
       },
-      "vnum": 9010
+      "vnum": 9010,
+      "mob_resets": [
+        {
+          "vnum": 9002,
+          "max": 1
+        },
+        {
+          "vnum": 9005,
+          "max": 1
+        }
+      ]
     },
     "9011": {
       "title": "Poison Ivy Tangle",
-      "description": "Thick vines choke this area, forming an almost impenetrable wall. Many are poison ivy, their three-leaved plants glistening with toxic oils. Others are thorny brambles that snag at your clothes and skin. The only way through is a narrow gap that forces you to crawl, brushing against the vegetation.",
+      "description": "Thick vines choke this area, forming an almost impenetrable wall. Many\nare poison ivy, their three-leaved plants glistening with toxic oils.\nOthers are thorny brambles that snag at your clothes and skin. The only\nway through is a narrow gap that forces you to crawl, brushing against\nthe vegetation. The walls are rough-hewn and cold to the touch. Shadows\ngather in the corners.",
       "terrain": "swamp",
       "exits": {
         "west": {
@@ -204,11 +286,21 @@
           "to_room": 9015
         }
       },
-      "vnum": 9011
+      "vnum": 9011,
+      "mob_resets": [
+        {
+          "vnum": 9003,
+          "max": 1
+        },
+        {
+          "vnum": 9006,
+          "max": 1
+        }
+      ]
     },
     "9012": {
       "title": "Frog Spawning Grounds",
-      "description": "Thousands of frogs and toads cover every surface here - the ground, logs, lily pads, even the tree trunks. Their constant croaking is almost deafening. The water writhes with tadpoles and spawn. Some of the toads are abnormally large, nearly the size of a dog, with bulging eyes that watch your every move.",
+      "description": "Thousands of frogs and toads cover every surface here - the ground,\nlogs, lily pads, even the tree trunks. Their constant croaking is almost\ndeafening. The water writhes with tadpoles and spawn. Some of the toads\nare abnormally large, nearly the size of a dog, with bulging eyes that\nwatch your every move. Dust motes drift in the stale air. The air is\nstill and musty.",
       "terrain": "swamp",
       "exits": {
         "north": {
@@ -221,11 +313,21 @@
           "to_room": 9016
         }
       },
-      "vnum": 9012
+      "vnum": 9012,
+      "mob_resets": [
+        {
+          "vnum": 9001,
+          "max": 1
+        },
+        {
+          "vnum": 9005,
+          "max": 1
+        }
+      ]
     },
     "9013": {
       "title": "Deep Mire",
-      "description": "The water here is chest-deep and impossible to see through. Each step is a struggle as the thick mud tries to hold you fast. Strange ripples cross the surface - something large is moving beneath. Dead trees rise from the water like monuments, their surfaces carved with more of the mysterious runes.",
+      "description": "The water here is chest-deep and impossible to see through. Each step is\na struggle as the thick mud tries to hold you fast. Strange ripples\ncross the surface - something large is moving beneath. Dead trees rise\nfrom the water like monuments, their surfaces carved with more of the\nmysterious runes. The walls are rough-hewn and cold to the touch.\nShadows gather in the corners.",
       "terrain": "swamp",
       "exits": {
         "north": {
@@ -238,11 +340,21 @@
           "to_room": 9017
         }
       },
-      "vnum": 9013
+      "vnum": 9013,
+      "mob_resets": [
+        {
+          "vnum": 9001,
+          "max": 1
+        },
+        {
+          "vnum": 9005,
+          "max": 1
+        }
+      ]
     },
     "9014": {
       "title": "Before the Witch's Hut",
-      "description": "A ramshackle hut rises from the swamp on stilts, smoke rising from its crooked chimney. The structure seems to defy physics, leaning at impossible angles yet somehow standing. Herbs and animal parts hang from the eaves, drying in the fetid air. A cauldron bubbles on a fire pit outside, filling the air with a sickly sweet smell.",
+      "description": "A ramshackle hut rises from the swamp on stilts, smoke rising from its\ncrooked chimney. The structure seems to defy physics, leaning at\nimpossible angles yet somehow standing. Herbs and animal parts hang from\nthe eaves, drying in the fetid air. A cauldron bubbles on a fire pit\noutside, filling the air with a sickly sweet smell. The air is still and\nmusty. The walls are rough-hewn and cold to the touch.",
       "terrain": "swamp",
       "exits": {
         "north": {
@@ -258,11 +370,25 @@
           }
         }
       },
-      "vnum": 9014
+      "vnum": 9014,
+      "mob_resets": [
+        {
+          "vnum": 9001,
+          "max": 1
+        },
+        {
+          "vnum": 9002,
+          "max": 1
+        },
+        {
+          "vnum": 9005,
+          "max": 1
+        }
+      ]
     },
     "9015": {
       "title": "Abandoned Camp",
-      "description": "The remains of an old campsite lie scattered here on a small patch of higher ground. A rotted tent, rusted cooking gear, and moldy bedrolls tell of explorers who met an unfortunate end. Claw marks gouge the trees around the camp, and dark stains on the ground suggest a violent struggle.",
+      "description": "The remains of an old campsite lie scattered here on a small patch of\nhigher ground. A rotted tent, rusted cooking gear, and moldy bedrolls\ntell of explorers who met an unfortunate end. Claw marks gouge the trees\naround the camp, and dark stains on the ground suggest a violent\nstruggle. Shadows gather in the corners. Dust motes drift in the stale\nair.",
       "terrain": "swamp",
       "exits": {
         "north": {
@@ -272,11 +398,29 @@
           "to_room": 9016
         }
       },
-      "vnum": 9015
+      "vnum": 9015,
+      "mob_resets": [
+        {
+          "vnum": 9001,
+          "max": 1
+        },
+        {
+          "vnum": 9002,
+          "max": 1
+        },
+        {
+          "vnum": 9003,
+          "max": 1
+        },
+        {
+          "vnum": 9008,
+          "max": 1
+        }
+      ]
     },
     "9016": {
       "title": "Corpse Flowers Bloom",
-      "description": "Massive flowers grow here, their petals a sickly purple-red. They emit a powerful stench of rotting meat that attracts swarms of flies. The flowers are corpse flowers, and local legend says they grow only where the bodies of the wicked are buried. The ground beneath them seems to move with writhing roots - or worms.",
+      "description": "Massive flowers grow here, their petals a sickly purple-red. They emit a\npowerful stench of rotting meat that attracts swarms of flies. The\nflowers are corpse flowers, and local legend says they grow only where\nthe bodies of the wicked are buried. The ground beneath them seems to\nmove with writhing roots - or worms. Dust motes drift in the stale air.\nShadows gather in the corners.",
       "terrain": "swamp",
       "exits": {
         "north": {
@@ -292,11 +436,21 @@
           "to_room": 9019
         }
       },
-      "vnum": 9016
+      "vnum": 9016,
+      "mob_resets": [
+        {
+          "vnum": 9001,
+          "max": 1
+        },
+        {
+          "vnum": 9002,
+          "max": 1
+        }
+      ]
     },
     "9017": {
       "title": "Zombie Feeding Grounds",
-      "description": "The ground here is littered with bones - some old and bleached, others fresh with meat still clinging to them. Dark shapes shamble through the mist, their movements jerky and unnatural. The smell of decay is overwhelming. This is clearly a hunting ground for the swamp's undead inhabitants.",
+      "description": "The ground here is littered with bones - some old and bleached, others\nfresh with meat still clinging to them. Dark shapes shamble through the\nmist, their movements jerky and unnatural. The smell of decay is\noverwhelming. This is clearly a hunting ground for the swamp's undead\ninhabitants. Shadows gather in the corners. The air is still and musty.",
       "terrain": "swamp",
       "exits": {
         "north": {
@@ -306,11 +460,17 @@
           "to_room": 9019
         }
       },
-      "vnum": 9017
+      "vnum": 9017,
+      "mob_resets": [
+        {
+          "vnum": 9006,
+          "max": 1
+        }
+      ]
     },
     "9018": {
       "title": "Inside the Witch's Hut",
-      "description": "The interior of the hut is surprisingly spacious, defying its small external appearance. Shelves line every wall, packed with jars of strange specimens, dried herbs, and bubbling potions. A large cauldron dominates the center of the room, filled with something that glows with an eldritch light. Bones, feathers, and talismans hang from the rafters.",
+      "description": "The interior of the hut is surprisingly spacious, defying its small\nexternal appearance. Shelves line every wall, packed with jars of\nstrange specimens, dried herbs, and bubbling potions. A large cauldron\ndominates the center of the room, filled with something that glows with\nan eldritch light. Bones, feathers, and talismans hang from the rafters.\nShadows gather in the corners. Dust motes drift in the stale air.",
       "terrain": "indoors",
       "exits": {
         "north": {
@@ -323,11 +483,17 @@
           }
         }
       },
-      "vnum": 9018
+      "vnum": 9018,
+      "mob_resets": [
+        {
+          "vnum": 9001,
+          "max": 1
+        }
+      ]
     },
     "9019": {
       "title": "Heart of the Swamp",
-      "description": "You've reached the deepest part of the swamp, where the mist is so thick you can barely see. The water here is black as ink and impossibly deep. An ancient stone altar rises from a small island in the center, covered in dried blood and surrounded by candles that burn with green flames. This place radiates malevolent power.",
+      "description": "You've reached the deepest part of the swamp, where the mist is so thick\nyou can barely see. The water here is black as ink and impossibly deep.\nAn ancient stone altar rises from a small island in the center, covered\nin dried blood and surrounded by candles that burn with green flames.\nThis place radiates malevolent power. Dust motes drift in the stale air.\nThe air is still and musty.",
       "terrain": "swamp",
       "exits": {
         "north": {
@@ -337,7 +503,21 @@
           "to_room": 9017
         }
       },
-      "vnum": 9019
+      "vnum": 9019,
+      "mob_resets": [
+        {
+          "vnum": 9001,
+          "max": 1
+        },
+        {
+          "vnum": 9003,
+          "max": 1
+        },
+        {
+          "vnum": 9007,
+          "max": 1
+        }
+      ]
     }
   },
   "mobiles": {
@@ -604,6 +784,463 @@
       ],
       "max_in_zone": 8,
       "vnum": 9004
+    },
+    "9005": {
+      "vnum": 9005,
+      "name": "bog\u2011cleaver",
+      "short_desc": "a bog\u2011cleaver",
+      "room_desc": "A bog\u2011cleaver lies here.",
+      "description": "A heavy swamp blade.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "slash",
+      "damage_dice": "2d6+3",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 2
+        },
+        {
+          "type": "str",
+          "value": 1
+        }
+      ],
+      "set_id": 90
+    },
+    "9006": {
+      "vnum": 9006,
+      "name": "marshlight shield",
+      "short_desc": "a marshlight shield",
+      "room_desc": "A marshlight shield lies here.",
+      "description": "A paladin's ward.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "shield",
+      "armor_bonus": 2,
+      "affects": [
+        {
+          "type": "wis",
+          "value": 1
+        }
+      ],
+      "set_id": 90
+    },
+    "9007": {
+      "vnum": 9007,
+      "name": "rot\u2011etched sigil",
+      "short_desc": "a rot\u2011etched sigil",
+      "room_desc": "A rot\u2011etched sigil lies here.",
+      "description": "A deathknight's sigil.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "neck1",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 3
+        }
+      ],
+      "set_id": 90
+    },
+    "9008": {
+      "vnum": 9008,
+      "name": "censer of mists",
+      "short_desc": "a censer of mists",
+      "room_desc": "A censer of mists lies here.",
+      "description": "A cleric's censer.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "wis",
+          "value": 2
+        },
+        {
+          "type": "max_mana",
+          "value": 20
+        }
+      ],
+      "set_id": 90
+    },
+    "9009": {
+      "vnum": 9009,
+      "name": "gloomroot focus",
+      "short_desc": "a gloomroot focus",
+      "room_desc": "A gloomroot focus lies here.",
+      "description": "A mage's focus.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "int",
+          "value": 2
+        },
+        {
+          "type": "max_mana",
+          "value": 10
+        }
+      ],
+      "set_id": 90
+    },
+    "9010": {
+      "vnum": 9010,
+      "name": "willow reed",
+      "short_desc": "a willow reed",
+      "room_desc": "A willow reed lies here.",
+      "description": "A bard's reed.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "mace",
+      "damage_dice": "1d6+1",
+      "affects": [
+        {
+          "type": "cha",
+          "value": 2
+        }
+      ],
+      "set_id": 90
+    },
+    "9011": {
+      "vnum": 9011,
+      "name": "fenblade",
+      "short_desc": "a fenblade",
+      "room_desc": "A fenblade lies here.",
+      "description": "A rogue's blade.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "pierce",
+      "damage_dice": "1d6+2",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 2
+        },
+        {
+          "type": "hitroll",
+          "value": 1
+        }
+      ],
+      "set_id": 90
+    },
+    "9012": {
+      "vnum": 9012,
+      "name": "mirestalker band",
+      "short_desc": "a mirestalker band",
+      "room_desc": "A mirestalker band lies here.",
+      "description": "A ranger's ring.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "finger1",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 2
+        },
+        {
+          "type": "hitroll",
+          "value": 1
+        }
+      ],
+      "set_id": 90
+    },
+    "9013": {
+      "vnum": 9013,
+      "name": "swampwalker boots",
+      "short_desc": "swampwalker boots",
+      "room_desc": "Swampwalker boots lie here.",
+      "description": "Boots for the mire.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "feet",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 1
+        },
+        {
+          "type": "disease_resist",
+          "value": 10
+        }
+      ],
+      "set_id": 90
+    }
+  },
+  "mobs": {
+    "9001": {
+      "vnum": 9001,
+      "name": "will-o-wisp",
+      "short_desc": "a flickering will-o-wisp",
+      "long_desc": "A ghostly light bobs and weaves through the mist.",
+      "description": "You see a flickering will-o-wisp.",
+      "level": 12,
+      "alignment": -500,
+      "hp_dice": "12d10+160",
+      "damage_dice": "4d6+6",
+      "gold": 35,
+      "exp": 720,
+      "armor_class": 64,
+      "flags": [
+        "aggressive",
+        "sentinel"
+      ]
+    },
+    "9002": {
+      "vnum": 9002,
+      "name": "zombie",
+      "short_desc": "a swamp zombie",
+      "long_desc": "A waterlogged zombie shambles through the muck.",
+      "description": "You see a swamp zombie.",
+      "level": 10,
+      "alignment": -1000,
+      "hp_dice": "10d10+136",
+      "damage_dice": "3d6+6",
+      "gold": 12,
+      "exp": 600,
+      "armor_class": 70,
+      "flags": [
+        "aggressive",
+        "undead"
+      ]
+    },
+    "9003": {
+      "vnum": 9003,
+      "name": "ghoul",
+      "short_desc": "a hungry ghoul",
+      "long_desc": "A ghoul crouches over something, its claws dripping.",
+      "description": "You see a hungry ghoul.",
+      "level": 14,
+      "alignment": -1000,
+      "hp_dice": "14d10+184",
+      "damage_dice": "4d6+9",
+      "gold": 39,
+      "exp": 840,
+      "armor_class": 58,
+      "flags": [
+        "aggressive",
+        "undead"
+      ]
+    },
+    "9004": {
+      "vnum": 9004,
+      "name": "hag",
+      "short_desc": "a swamp hag",
+      "long_desc": "A hideous hag cackles as she stirs a bubbling cauldron.",
+      "description": "You see a swamp hag.",
+      "level": 16,
+      "alignment": -800,
+      "hp_dice": "16d10+208",
+      "damage_dice": "5d7+6",
+      "gold": 20,
+      "exp": 960,
+      "armor_class": 52,
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "spellcaster"
+      ],
+      "loot_table": [
+        {
+          "vnum": 9005,
+          "chance": 20
+        },
+        {
+          "vnum": 9006,
+          "chance": 20
+        },
+        {
+          "vnum": 9007,
+          "chance": 20
+        },
+        {
+          "vnum": 9008,
+          "chance": 20
+        },
+        {
+          "vnum": 9009,
+          "chance": 20
+        },
+        {
+          "vnum": 9010,
+          "chance": 20
+        },
+        {
+          "vnum": 9011,
+          "chance": 20
+        },
+        {
+          "vnum": 9012,
+          "chance": 20
+        },
+        {
+          "vnum": 9013,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
+    },
+    "9005": {
+      "vnum": 9005,
+      "name": "snake",
+      "short_desc": "a giant swamp snake",
+      "long_desc": "A massive snake coils in the murky water.",
+      "description": "You see a giant swamp snake.",
+      "level": 11,
+      "alignment": -200,
+      "hp_dice": "11d10+148",
+      "damage_dice": "3d6+8",
+      "gold": 32,
+      "exp": 660,
+      "armor_class": 67,
+      "flags": [
+        "aggressive"
+      ]
+    },
+    "9006": {
+      "vnum": 9006,
+      "name": "spirit",
+      "short_desc": "a tormented spirit",
+      "long_desc": "A translucent spirit drifts aimlessly, moaning in anguish.",
+      "description": "You see a tormented spirit.",
+      "level": 13,
+      "alignment": -600,
+      "hp_dice": "13d10+172",
+      "damage_dice": "4d6+7",
+      "gold": 33,
+      "exp": 780,
+      "armor_class": 61,
+      "flags": [
+        "aggressive",
+        "undead",
+        "fly"
+      ]
+    },
+    "9007": {
+      "vnum": 9007,
+      "name": "troll",
+      "short_desc": "a swamp troll",
+      "long_desc": "A mossy troll rises from the bog, water dripping from its hide.",
+      "description": "You see a swamp troll.",
+      "level": 18,
+      "alignment": -700,
+      "hp_dice": "18d10+232",
+      "damage_dice": "5d7+9",
+      "gold": 34,
+      "exp": 1080,
+      "armor_class": 46,
+      "flags": [
+        "aggressive",
+        "sentinel"
+      ],
+      "loot_table": [
+        {
+          "vnum": 9005,
+          "chance": 20
+        },
+        {
+          "vnum": 9006,
+          "chance": 20
+        },
+        {
+          "vnum": 9007,
+          "chance": 20
+        },
+        {
+          "vnum": 9008,
+          "chance": 20
+        },
+        {
+          "vnum": 9009,
+          "chance": 20
+        },
+        {
+          "vnum": 9010,
+          "chance": 20
+        },
+        {
+          "vnum": 9011,
+          "chance": 20
+        },
+        {
+          "vnum": 9012,
+          "chance": 20
+        },
+        {
+          "vnum": 9013,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
+    },
+    "9008": {
+      "vnum": 9008,
+      "name": "alligator",
+      "short_desc": "a massive alligator",
+      "long_desc": "A massive alligator floats motionless, watching you.",
+      "description": "You see a massive alligator.",
+      "level": 15,
+      "alignment": -300,
+      "hp_dice": "15d10+196",
+      "damage_dice": "4d7+8",
+      "gold": 48,
+      "exp": 900,
+      "armor_class": 55,
+      "flags": [
+        "aggressive",
+        "sentinel"
+      ],
+      "loot_table": [
+        {
+          "vnum": 9005,
+          "chance": 20
+        },
+        {
+          "vnum": 9006,
+          "chance": 20
+        },
+        {
+          "vnum": 9007,
+          "chance": 20
+        },
+        {
+          "vnum": 9008,
+          "chance": 20
+        },
+        {
+          "vnum": 9009,
+          "chance": 20
+        },
+        {
+          "vnum": 9010,
+          "chance": 20
+        },
+        {
+          "vnum": 9011,
+          "chance": 20
+        },
+        {
+          "vnum": 9012,
+          "chance": 20
+        },
+        {
+          "vnum": 9013,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
     }
   }
 }

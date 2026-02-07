@@ -1,0 +1,41 @@
+# Zone Connectivity Map
+
+All zones are connected in a single walkable graph. Connections below list zone-to-zone links via exits.
+
+- **000 Limbo - Internal** → 030 The City of Midgaard
+- **009 River Island Of Minos** → 031 Southern part of Midgaard, 061 Haon-Dor, Dark Forest
+- **012 God Simplex** → 030 The City of Midgaard
+- **015 The Straight Path** → 054 New Thalos
+- **025 The High Tower Of Magic** → 030 The City of Midgaard, 040 Mines of Moria
+- **030 The City of Midgaard** → 000 Limbo - Internal, 012 God Simplex, 025 The High Tower Of Magic, 035 Miden'Nir, 036 The Chessboard of Midgaard, 040 Mines of Moria, 050 The Great Eastern Desert, 070 The Sewer, First Level, 130 The Sunken Ruins of Atal'narath, 186 Newbie Zone
+- **031 Southern part of Midgaard** → 009 River Island Of Minos, 035 Miden'Nir, 050 The Great Eastern Desert, 079 Redferne's Residence
+- **033 The Three Of Swords** → 035 Miden'Nir
+- **035 Miden'Nir** → 030 The City of Midgaard, 031 Southern part of Midgaard, 033 The Three Of Swords, 040 Mines of Moria, 065 The Dwarven Kingdom, 150 King Welmar's Castle
+- **036 The Chessboard of Midgaard** → 030 The City of Midgaard
+- **040 Mines of Moria** → 025 The High Tower Of Magic, 030 The City of Midgaard, 035 Miden'Nir, 054 New Thalos, 064 Rand's Tower, 090 The Haunted Swamp
+- **050 The Great Eastern Desert** → 030 The City of Midgaard, 031 Southern part of Midgaard, 051 Drow City, 052 The City Of Thalos, 053 The Great Pyramid, 054 New Thalos, 080 The Dragon's Domain, 100 The Dwarven Mines of Khaz-Durum, 120 Rome, 130 The Sunken Ruins of Atal'narath
+- **051 Drow City** → 050 The Great Eastern Desert
+- **052 The City Of Thalos** → 050 The Great Eastern Desert
+- **053 The Great Pyramid** → 050 The Great Eastern Desert
+- **054 New Thalos** → 015 The Straight Path, 040 Mines of Moria, 050 The Great Eastern Desert
+- **060 Haon-Dor, Light Forest** → 061 Haon-Dor, Dark Forest, 110 Silversong Elven Village
+- **061 Haon-Dor, Dark Forest** → 009 River Island Of Minos, 060 Haon-Dor, Light Forest, 062 The Orc Enclave, 063 Arachnos
+- **062 The Orc Enclave** → 061 Haon-Dor, Dark Forest
+- **063 Arachnos** → 061 Haon-Dor, Dark Forest
+- **064 Rand's Tower** → 040 Mines of Moria
+- **065 The Dwarven Kingdom** → 035 Miden'Nir, 100 The Dwarven Mines of Khaz-Durum
+- **070 The Sewer, First Level** → 030 The City of Midgaard, 071 The Second Sewer, 140 The Necropolis of Eternal Night
+- **071 The Second Sewer** → 070 The Sewer, First Level, 072 The Sewer Maze
+- **072 The Sewer Maze** → 071 The Second Sewer, 073 The Tunnels In The Sewer
+- **073 The Tunnels In The Sewer** → 072 The Sewer Maze
+- **079 Redferne's Residence** → 031 Southern part of Midgaard
+- **080 The Dragon's Domain** → 050 The Great Eastern Desert, 160 The Plane of Eternal Chaos
+- **090 The Haunted Swamp** → 040 Mines of Moria
+- **100 The Dwarven Mines of Khaz-Durum** → 050 The Great Eastern Desert, 065 The Dwarven Kingdom
+- **110 Silversong Elven Village** → 060 Haon-Dor, Light Forest
+- **120 Rome** → 050 The Great Eastern Desert
+- **130 The Sunken Ruins of Atal'narath** → 030 The City of Midgaard, 050 The Great Eastern Desert
+- **140 The Necropolis of Eternal Night** → 070 The Sewer, First Level
+- **150 King Welmar's Castle** → 035 Miden'Nir
+- **160 The Plane of Eternal Chaos** → 080 The Dragon's Domain
+- **186 Newbie Zone** → 030 The City of Midgaard

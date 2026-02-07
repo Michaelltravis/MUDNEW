@@ -6,7 +6,7 @@
     "3600": {
       "vnum": 3600,
       "name": "The Great Chessboard Of Midgaard",
-      "description": "You stand in the archway of the Chessboard of Midgaard.  The giant wooden gate is rusted open.    A narrow dirt path leads eastwards into the thick grass and the chessboard opens up to the west.",
+      "description": "The area opens in the archway of the Chessboard of Midgaard. The giant\nwooden gate is rusted open. A narrow dirt path leads eastwards into the\nthick grass and the chessboard opens up to the west. The smell of smoke\nand humanity hangs in the air. The cobblestones are worn smooth by\ncountless feet.",
       "sector_type": "city",
       "flags": [
         "no_mob"
@@ -25,7 +25,7 @@
     "3601": {
       "vnum": 3601,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.  This is usually the home of the Black Queen's Rook.",
+      "description": "This area is a white marble square. This is usually the home of the\nBlack Queen's Rook. Vendors and pedestrians bustle past. The sounds of\ncity life echo around.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -48,7 +48,7 @@
     "3602": {
       "vnum": 3602,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.  This is usually the home of the Black Queen's Knight.",
+      "description": "This area is a black marble square. This is usually the home of the\nBlack Queen's Knight. The smell of smoke and humanity hangs in the air.\nThe cobblestones are worn smooth by countless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -75,7 +75,7 @@
     "3603": {
       "vnum": 3603,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.  This is usually the home of the Black Queen's Bishop.",
+      "description": "This area is a white marble square. This is usually the home of the\nBlack Queen's Bishop. The sounds of city life echo around. Buildings\ncrowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -102,7 +102,7 @@
     "3604": {
       "vnum": 3604,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.  This is usually the home of the Black Queen.",
+      "description": "This area is a black marble square. This is usually the home of the\nBlack Queen. The smell of smoke and humanity hangs in the air. Vendors\nand pedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -139,7 +139,7 @@
     "3605": {
       "vnum": 3605,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.  This is usually the home of the Black King.",
+      "description": "This area is a white marble square. This is usually the home of the\nBlack King. The smell of smoke and humanity hangs in the air. Buildings\ncrowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -166,7 +166,7 @@
     "3606": {
       "vnum": 3606,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.  This is usually the home of the Black King's Bishop.",
+      "description": "This area is a black marble square. This is usually the home of the\nBlack King's Bishop. Buildings crowd together on all sides. The smell of\nsmoke and humanity hangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -193,7 +193,7 @@
     "3607": {
       "vnum": 3607,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.  This is usually the home of the Black King's Knight.",
+      "description": "This area is a white marble square. This is usually the home of the\nBlack King's Knight. The sounds of city life echo around. The\ncobblestones are worn smooth by countless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -220,7 +220,7 @@
     "3608": {
       "vnum": 3608,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.  This is usually the home of the Black King's Rook.",
+      "description": "This area is a black marble square. This is usually the home of the\nBlack King's Rook. Buildings crowd together on all sides. The sounds of\ncity life echo around.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -243,7 +243,7 @@
     "3609": {
       "vnum": 3609,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.  This is usually the home of one of the Black Queen's Pawns.",
+      "description": "This area is a black marble square. This is usually the home of one of\nthe Black Queen's Pawns. The cobblestones are worn smooth by countless\nfeet. The smell of smoke and humanity hangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -270,7 +270,7 @@
     "3610": {
       "vnum": 3610,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.  This is usually the home of one of the Black Queen's Pawns.",
+      "description": "This area is a white marble square. This is usually the home of one of\nthe Black Queen's Pawns. The cobblestones are worn smooth by countless\nfeet. The smell of smoke and humanity hangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -301,7 +301,7 @@
     "3611": {
       "vnum": 3611,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.  This is usually the home of one of the Black Queen's Pawns.",
+      "description": "This area is a black marble square. This is usually the home of one of\nthe Black Queen's Pawns. Buildings crowd together on all sides. The\nsounds of city life echo around.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -332,7 +332,7 @@
     "3612": {
       "vnum": 3612,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.  This is usually the home of one of the Black Queen's Pawns.",
+      "description": "This area is a white marble square. This is usually the home of one of\nthe Black Queen's Pawns. The smell of smoke and humanity hangs in the\nair. Vendors and pedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -363,7 +363,7 @@
     "3613": {
       "vnum": 3613,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.  This is usually the home of one of the Black King's Pawns.",
+      "description": "This area is a black marble square. This is usually the home of one of\nthe Black King's Pawns. Buildings crowd together on all sides. The\ncobblestones are worn smooth by countless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -394,7 +394,7 @@
     "3614": {
       "vnum": 3614,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.  This is usually the home of one of the Black King's Pawns.",
+      "description": "This area is a white marble square. This is usually the home of one of\nthe Black King's Pawns. The smell of smoke and humanity hangs in the\nair. The cobblestones are worn smooth by countless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -425,7 +425,7 @@
     "3615": {
       "vnum": 3615,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.  This is usually the home of one of the Black King's Pawns.",
+      "description": "This area is a black marble square. This is usually the home of one of\nthe Black King's Pawns. The sounds of city life echo around. Vendors and\npedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -456,7 +456,7 @@
     "3616": {
       "vnum": 3616,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.  This is usually the home of one of the Black King's Pawns.",
+      "description": "This area is a white marble square. This is usually the home of one of\nthe Black King's Pawns. The sounds of city life echo around. Vendors and\npedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -483,7 +483,7 @@
     "3617": {
       "vnum": 3617,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.",
+      "description": "The area opens upon a gleaming white marble square. The polished stone\nreflects an ethereal glow, and the air shimmers with magical energy.\nAcross the board, Visible is towering chess pieces locked in eternal\nbattle. Buildings crowd together on all sides. Vendors and pedestrians\nbustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -504,7 +504,7 @@
     "3618": {
       "vnum": 3618,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.",
+      "description": "This black obsidian square absorbs the light around it. The dark stone\nfeels cold beneath your feet, and shadows seem to pool at the edges.\nGiant chess pieces loom in the distance. The sounds of city life echo\naround. The cobblestones are worn smooth by countless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -529,7 +529,7 @@
     "3619": {
       "vnum": 3619,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.",
+      "description": "Pristine white marble stretches beneath you, almost blinding in its\nbrightness. The square pulses with faint magical luminescence, part of\nthe grand chessboard's enchantment. Buildings crowd together on all\nsides. The smell of smoke and humanity hangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -554,7 +554,7 @@
     "3620": {
       "vnum": 3620,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.",
+      "description": "Deep black stone forms this square, polished to a mirror-like finish.\nThe obsidian feels unnaturally cold, and you can hear the distant\ngrinding of massive chess pieces moving across the board. Buildings\ncrowd together on all sides. The cobblestones are worn smooth by\ncountless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -579,7 +579,7 @@
     "3621": {
       "vnum": 3621,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.",
+      "description": "This white square gleams like fresh snow under an invisible sun. Magical\nrunes are etched along its edges, part of the ancient game's binding\nspell. The cobblestones are worn smooth by countless feet. The sounds of\ncity life echo around.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -604,7 +604,7 @@
     "3622": {
       "vnum": 3622,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.",
+      "description": "Jet-black obsidian forms this square, darker than night. The stone seems\nto whisper with ancient magic, and your footsteps echo strangely across\nits surface. Vendors and pedestrians bustle past. The sounds of city\nlife echo around.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -629,7 +629,7 @@
     "3623": {
       "vnum": 3623,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.",
+      "description": "Brilliant white marble radiates a subtle warmth. This square sits at a\nstrategic position on the mystical chessboard, and you sense powerful\npieces have stood here. The smell of smoke and humanity hangs in the\nair. The cobblestones are worn smooth by countless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -654,7 +654,7 @@
     "3624": {
       "vnum": 3624,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.  You can see a rusty gate to the south.",
+      "description": "This area is a black marble square. Visible is a rusty gate to the\nsouth. The sounds of city life echo around. The cobblestones are worn\nsmooth by countless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -675,7 +675,7 @@
     "3625": {
       "vnum": 3625,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.",
+      "description": "Darkness pools on this black square, the obsidian drinking in all light.\nFaint energy pulses beneath your feet, part of the board's eternal\nenchantment. The smell of smoke and humanity hangs in the air. Vendors\nand pedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -696,7 +696,7 @@
     "3626": {
       "vnum": 3626,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.",
+      "description": "Ivory-white stone gleams beneath you, immaculately smooth. The square\nfeels charged with anticipation, as if waiting for the next move in an\nendless game. The cobblestones are worn smooth by countless feet.\nBuildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -721,7 +721,7 @@
     "3627": {
       "vnum": 3627,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.",
+      "description": "This black square feels heavier than the others, as if weighted with\nimportance. The obsidian is flawless, reflecting distorted images of the\ntowering chess pieces. Vendors and pedestrians bustle past. The smell of\nsmoke and humanity hangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -746,7 +746,7 @@
     "3628": {
       "vnum": 3628,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.",
+      "description": "Pure white marble forms this square, unblemished and bright. Magical\nenergy crackles faintly at the edges where white meets black across the\nboard. The sounds of city life echo around. Vendors and pedestrians\nbustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -771,7 +771,7 @@
     "3629": {
       "vnum": 3629,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.",
+      "description": "Coal-black stone stretches beneath you, cold and unyielding. The square\nseems to absorb sound as well as light, creating an eerie pocket of\nsilence. Buildings crowd together on all sides. Vendors and pedestrians\nbustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -796,7 +796,7 @@
     "3630": {
       "vnum": 3630,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.",
+      "description": "This white square practically glows with inner light. The marble feels\nancient beyond measure, worn smooth by centuries of magical combat\nabove. Vendors and pedestrians bustle past. The sounds of city life echo\naround.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -821,7 +821,7 @@
     "3631": {
       "vnum": 3631,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.  There is a rusty gate a short distance to the east.",
+      "description": "This area is a black marble square. There is a rusty gate a short\ndistance to the east. Buildings crowd together on all sides. The\ncobblestones are worn smooth by countless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -846,7 +846,7 @@
     "3632": {
       "vnum": 3632,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.  There is a large rusty gate to the east.",
+      "description": "This area is a white marble square. There is a large rusty gate to the\neast. Buildings crowd together on all sides. The smell of smoke and\nhumanity hangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -871,7 +871,7 @@
     "3633": {
       "vnum": 3633,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.",
+      "description": "Gleaming white marble forms this square near the board's edge. The stone\nis cool to the touch, and you can sense the boundary of the magical\nplaying field nearby. The sounds of city life echo around. The\ncobblestones are worn smooth by countless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -892,7 +892,7 @@
     "3634": {
       "vnum": 3634,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.",
+      "description": "Obsidian black as a moonless night forms this square. Strange\nreflections dance across its surface, showing glimpses of moves long\npast in this eternal game. The smell of smoke and humanity hangs in the\nair. Buildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -917,7 +917,7 @@
     "3635": {
       "vnum": 3635,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.",
+      "description": "Brilliant white stone radiates subtle power. This square occupies a\ntactical position, and faint scorch marks suggest it's seen magical\ncombat. The sounds of city life echo around. Vendors and pedestrians\nbustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -942,7 +942,7 @@
     "3636": {
       "vnum": 3636,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.",
+      "description": "Deep black obsidian forms this square, its surface polished to\nperfection. The stone seems to hum with barely contained magical energy.\nThe cobblestones are worn smooth by countless feet. The smell of smoke\nand humanity hangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -967,7 +967,7 @@
     "3637": {
       "vnum": 3637,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.",
+      "description": "This white square shimmers with protective enchantments. The marble\nfeels solid and reassuring, a bastion of light against the surrounding\ndarkness. Buildings crowd together on all sides. Vendors and pedestrians\nbustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -992,7 +992,7 @@
     "3638": {
       "vnum": 3638,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.",
+      "description": "Darkness incarnate forms this black square. The obsidian is so perfectly\nblack it's difficult to gauge depth, creating a subtle sense of vertigo.\nThe sounds of city life echo around. The smell of smoke and humanity\nhangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1017,7 +1017,7 @@
     "3639": {
       "vnum": 3639,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.",
+      "description": "Pristine white marble stretches in a perfect square. Ancient runes\ncarved into its edges glow faintly, maintaining the board's magical\nintegrity. The sounds of city life echo around. Vendors and\npedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1042,7 +1042,7 @@
     "3640": {
       "vnum": 3640,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.  There is a rusty gate to the north.",
+      "description": "This area is a black marble square. There is a rusty gate to the north.\nThe smell of smoke and humanity hangs in the air. The sounds of city\nlife echo around.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1063,7 +1063,7 @@
     "3641": {
       "vnum": 3641,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.",
+      "description": "This black square feels different from the others - colder, darker, more\nominous. The obsidian seems to pull at you slightly, as if gravity is\nstronger here. Buildings crowd together on all sides. The cobblestones\nare worn smooth by countless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1084,7 +1084,7 @@
     "3642": {
       "vnum": 3642,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.",
+      "description": "Radiant white marble forms this square, almost painful to look at in its\nbrightness. The stone vibrates with barely perceptible magical energy.\nVendors and pedestrians bustle past. The cobblestones are worn smooth by\ncountless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1109,7 +1109,7 @@
     "3643": {
       "vnum": 3643,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.",
+      "description": "Black as the void between stars, this obsidian square seems to exist\nslightly out of phase with reality. Your footsteps make no sound upon\nit. Vendors and pedestrians bustle past. The smell of smoke and humanity\nhangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1134,7 +1134,7 @@
     "3644": {
       "vnum": 3644,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.",
+      "description": "This white square gleams like polished bone. The marble is ancient yet\neternal, part of a game that transcends normal time and space. Buildings\ncrowd together on all sides. The sounds of city life echo around.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1159,7 +1159,7 @@
     "3645": {
       "vnum": 3645,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.",
+      "description": "Jet-black stone forms this square, its surface mirror-smooth. Dark\nreflections show distorted versions of yourself, twisted by the board's\nmagic. The smell of smoke and humanity hangs in the air. The\ncobblestones are worn smooth by countless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1184,7 +1184,7 @@
     "3646": {
       "vnum": 3646,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.",
+      "description": "Pure white marble radiates a comforting warmth. This square feels safe,\nprotected by the same magic that maintains the entire chessboard realm.\nThe sounds of city life echo around. The cobblestones are worn\nsmooth by countless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1209,7 +1209,7 @@
     "3647": {
       "vnum": 3647,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.",
+      "description": "Obsidian darker than shadows forms this square. The black stone seems to\nswallow light and sound, creating a pocket of profound silence and\ndarkness. The smell of smoke and humanity hangs in the air. Vendors and\npedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1234,7 +1234,7 @@
     "3648": {
       "vnum": 3648,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.",
+      "description": "This white square marks the edge of the board. The marble transitions\ninto nothingness beyond, where the magical playing field ends and\nreality resumes. The smell of smoke and humanity hangs in the air.\nVendors and pedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1255,7 +1255,7 @@
     "3649": {
       "vnum": 3649,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.  This is usually the home of one of the White Queen's Pawns.",
+      "description": "This area is a white marble square. This is usually the home of one of\nthe White Queen's Pawns. Buildings crowd together on all sides. Vendors\nand pedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1282,7 +1282,7 @@
     "3650": {
       "vnum": 3650,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.  This is usually the home of one of the White Queen's Pawns.",
+      "description": "This area is a black marble square. This is usually the home of one of\nthe White Queen's Pawns. The sounds of city life echo around. Vendors\nand pedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1313,7 +1313,7 @@
     "3651": {
       "vnum": 3651,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.  This is usually the home of one of the White Queen's Pawns.",
+      "description": "This area is a white marble square. This is usually the home of one of\nthe White Queen's Pawns. The sounds of city life echo around. Vendors\nand pedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1344,7 +1344,7 @@
     "3652": {
       "vnum": 3652,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.  This is usually the home of one of the White Queen's Pawns.",
+      "description": "This area is a black marble square. This is usually the home of one of\nthe White Queen's Pawns. The cobblestones are worn smooth by countless\nfeet. Buildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1375,7 +1375,7 @@
     "3653": {
       "vnum": 3653,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.  This is usually the home of one of the White King's Pawns.",
+      "description": "This area is a white marble square. This is usually the home of one of\nthe White King's Pawns. Vendors and pedestrians bustle past. Buildings\ncrowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1406,7 +1406,7 @@
     "3654": {
       "vnum": 3654,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.  This is usually the home of one of the White King's Pawns.",
+      "description": "This area is a black marble square. This is usually the home of one of\nthe White King's Pawns. The smell of smoke and humanity hangs in the\nair. Vendors and pedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1437,7 +1437,7 @@
     "3655": {
       "vnum": 3655,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.  This is usually the home of one of the White King's Pawns.",
+      "description": "This area is a white marble square. This is usually the home of one of\nthe White King's Pawns. The cobblestones are worn smooth by countless\nfeet. The smell of smoke and humanity hangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1468,7 +1468,7 @@
     "3656": {
       "vnum": 3656,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.  This is usually the home of one of the White King's Pawns.",
+      "description": "This area is a black marble square. This is usually the home of one of\nthe White King's Pawns. The cobblestones are worn smooth by countless\nfeet. Vendors and pedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1495,7 +1495,7 @@
     "3657": {
       "vnum": 3657,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.  This is usually the home of the White Queen's Rook.",
+      "description": "This area is a black marble square. This is usually the home of the\nWhite Queen's Rook. The cobblestones are worn smooth by countless feet.\nThe smell of smoke and humanity hangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1518,7 +1518,7 @@
     "3658": {
       "vnum": 3658,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.  This is usually the home of the White Queen's Knight.",
+      "description": "This area is a white marble square. This is usually the home of the\nWhite Queen's Knight. The cobblestones are worn smooth by countless\nfeet. Buildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1545,7 +1545,7 @@
     "3659": {
       "vnum": 3659,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.  This is usually the home of the White Queen's Bishop.",
+      "description": "This area is a black marble square. This is usually the home of the\nWhite Queen's Bishop. Vendors and pedestrians bustle past. The smell of\nsmoke and humanity hangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1572,7 +1572,7 @@
     "3660": {
       "vnum": 3660,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.  This is usually the home of the White Queen.",
+      "description": "This area is a white marble square. This is usually the home of the\nWhite Queen. The smell of smoke and humanity hangs in the air. Buildings\ncrowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1609,7 +1609,7 @@
     "3661": {
       "vnum": 3661,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.  This is usually the home of the White King.",
+      "description": "This area is a black marble square. This is usually the home of the\nWhite King. Buildings crowd together on all sides. Vendors and\npedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1636,7 +1636,7 @@
     "3662": {
       "vnum": 3662,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.  This is usually the home of the White King's Bishop.",
+      "description": "This area is a white marble square. This is usually the home of the\nWhite King's Bishop. The sounds of city life echo around. Vendors and\npedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1663,7 +1663,7 @@
     "3663": {
       "vnum": 3663,
       "name": "A Black Square",
-      "description": "You are standing on a black marble square.  This is usually the home of the White King's Knight.",
+      "description": "This area is a black marble square. This is usually the home of the\nWhite King's Knight. The sounds of city life echo around. The\ncobblestones are worn smooth by countless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1690,7 +1690,7 @@
     "3664": {
       "vnum": 3664,
       "name": "A White Square",
-      "description": "You are standing on a white marble square.  This is usually the home of the White King's Rook.",
+      "description": "This area is a white marble square. This is usually the home of the\nWhite King's Rook. The cobblestones are worn smooth by countless feet.\nBuildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -1713,7 +1713,7 @@
     "3665": {
       "vnum": 3665,
       "name": "The Black Treasury",
-      "description": "You are standing in the treasury of the Black Court.  Hopefully no one  has looted the Crown's treasure.",
+      "description": "This is the treasury of the Black Court. Hopefully no one has looted the\nCrown's treasure. Dust motes drift in the stale air. The air is still\nand musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1742,7 +1742,7 @@
     "3666": {
       "vnum": 3666,
       "name": "The White Treasury",
-      "description": "You are standing in the treasury of the White Court.  Hopefully no one  has looted the Crown's treasure.",
+      "description": "This is the treasury of the White Court. Hopefully no one has looted the\nCrown's treasure. The ceiling hangs low overhead. The walls are rough-\nhewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1775,13 +1775,13 @@
       "name": "black",
       "short_desc": "the Pawn of the Black Court",
       "long_desc": "You see a pawn standing here waiting for orders.",
-      "level": 6,
+      "level": 4,
       "alignment": -400,
-      "hp_dice": "2d4+2",
-      "damage_dice": "5d4+50",
+      "hp_dice": "2d6+15",
+      "damage_dice": "1d4+1",
       "gold": 750,
-      "exp": 8,
-      "armor_class": 5,
+      "exp": 60,
+      "armor_class": 90,
       "flags": [
         "sentinel",
         "scavenger",
@@ -1799,13 +1799,13 @@
       "name": "white",
       "short_desc": "the Pawn of the White Court",
       "long_desc": "You see a pawn standing here waiting for orders.",
-      "level": 6,
+      "level": 4,
       "alignment": 400,
-      "hp_dice": "2d4+2",
-      "damage_dice": "5d4+50",
+      "hp_dice": "2d6+15",
+      "damage_dice": "1d4+1",
       "gold": 750,
-      "exp": 8,
-      "armor_class": 5,
+      "exp": 60,
+      "armor_class": 90,
       "flags": [
         "sentinel",
         "scavenger",
@@ -1823,13 +1823,13 @@
       "name": "black",
       "short_desc": "the Black Rook",
       "long_desc": "In the corner you see a large, black, stone castle on wheels.",
-      "level": 27,
+      "level": 6,
       "alignment": -600,
-      "hp_dice": "3d8+5",
-      "damage_dice": "2d6+500",
+      "hp_dice": "3d6+25",
+      "damage_dice": "1d6+2",
       "gold": 45000,
-      "exp": 8,
-      "armor_class": 1,
+      "exp": 100,
+      "armor_class": 80,
       "flags": [
         "sentinel",
         "no_sleep",
@@ -1846,13 +1846,13 @@
       "name": "white",
       "short_desc": "the White Rook",
       "long_desc": "In the corner you see a large, white, stone castle on wheels.",
-      "level": 27,
+      "level": 6,
       "alignment": 600,
-      "hp_dice": "3d8+5",
-      "damage_dice": "2d6+500",
+      "hp_dice": "3d6+25",
+      "damage_dice": "1d6+2",
       "gold": 45000,
-      "exp": 8,
-      "armor_class": 1,
+      "exp": 100,
+      "armor_class": 80,
       "flags": [
         "sentinel",
         "no_sleep",
@@ -1869,13 +1869,13 @@
       "name": "black",
       "short_desc": "the Black Knight",
       "long_desc": "Here stands a magnificent knight of the dark realm.",
-      "level": 18,
+      "level": 7,
       "alignment": -400,
-      "hp_dice": "2d8+1",
-      "damage_dice": "4d8+350",
+      "hp_dice": "3d8+30",
+      "damage_dice": "1d6+3",
       "gold": 12750,
-      "exp": 8,
-      "armor_class": 0,
+      "exp": 130,
+      "armor_class": 75,
       "flags": [
         "sentinel",
         "aggressive"
@@ -1890,13 +1890,13 @@
       "name": "white",
       "short_desc": "the White Knight",
       "long_desc": "Here stands a magnificent knight of the light realm.",
-      "level": 18,
+      "level": 7,
       "alignment": 400,
-      "hp_dice": "2d8+1",
-      "damage_dice": "4d8+350",
+      "hp_dice": "3d8+30",
+      "damage_dice": "1d6+3",
       "gold": 12750,
-      "exp": 8,
-      "armor_class": 0,
+      "exp": 130,
+      "armor_class": 75,
       "flags": [
         "sentinel",
         "aggressive"
@@ -1911,13 +1911,13 @@
       "name": "black",
       "short_desc": "the Black Bishop",
       "long_desc": "A dark priest stands here.",
-      "level": 24,
+      "level": 8,
       "alignment": -500,
-      "hp_dice": "3d6+13",
-      "damage_dice": "2d5+350",
+      "hp_dice": "4d8+40",
+      "damage_dice": "1d8+3",
       "gold": 23750,
-      "exp": 8,
-      "armor_class": 1,
+      "exp": 160,
+      "armor_class": 65,
       "flags": [
         "sentinel"
       ],
@@ -1931,13 +1931,13 @@
       "name": "white",
       "short_desc": "the White Bishop",
       "long_desc": "A light priest stands here.",
-      "level": 24,
+      "level": 8,
       "alignment": 500,
-      "hp_dice": "3d6+13",
-      "damage_dice": "2d5+350",
+      "hp_dice": "4d8+40",
+      "damage_dice": "1d8+3",
       "gold": 23750,
-      "exp": 8,
-      "armor_class": 1,
+      "exp": 160,
+      "armor_class": 65,
       "flags": [
         "sentinel"
       ],
@@ -1951,13 +1951,13 @@
       "name": "black",
       "short_desc": "the Black Queen",
       "long_desc": "The Black Queen stands here.",
-      "level": 32,
+      "level": 9,
       "alignment": -750,
-      "hp_dice": "4d6+13",
-      "damage_dice": "5d10+900",
+      "hp_dice": "4d10+50",
+      "damage_dice": "2d4+3",
       "gold": 25000,
-      "exp": 8,
-      "armor_class": -3,
+      "exp": 200,
+      "armor_class": 60,
       "flags": [
         "sentinel",
         "scavenger",
@@ -1974,13 +1974,13 @@
       "name": "white",
       "short_desc": "the White Queen",
       "long_desc": "The White Queen stands here.",
-      "level": 32,
+      "level": 9,
       "alignment": 750,
-      "hp_dice": "4d6+13",
-      "damage_dice": "5d10+900",
+      "hp_dice": "4d10+50",
+      "damage_dice": "2d4+3",
       "gold": 25000,
-      "exp": 8,
-      "armor_class": -3,
+      "exp": 200,
+      "armor_class": 60,
       "flags": [
         "sentinel",
         "scavenger",
@@ -1997,13 +1997,13 @@
       "name": "black",
       "short_desc": "the Black King",
       "long_desc": "The Black King stands here.",
-      "level": 36,
+      "level": 10,
       "alignment": -999,
-      "hp_dice": "5d8+20",
-      "damage_dice": "10d10+2000",
+      "hp_dice": "5d10+60",
+      "damage_dice": "2d4+4",
       "gold": 40000,
-      "exp": 8,
-      "armor_class": -6,
+      "exp": 250,
+      "armor_class": 55,
       "flags": [
         "sentinel",
         "scavenger",
@@ -2024,13 +2024,13 @@
       "name": "white",
       "short_desc": "the White King",
       "long_desc": "The White King stands here.",
-      "level": 36,
+      "level": 10,
       "alignment": 999,
-      "hp_dice": "5d8+20",
-      "damage_dice": "10d10+2000",
+      "hp_dice": "5d10+60",
+      "damage_dice": "2d4+4",
       "gold": 40000,
-      "exp": 8,
-      "armor_class": -6,
+      "exp": 250,
+      "armor_class": 55,
       "flags": [
         "sentinel",
         "scavenger",

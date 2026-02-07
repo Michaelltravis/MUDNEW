@@ -20,6 +20,12 @@ class Config:
     WORLD_DIR = os.path.join(BASE_DIR, 'world')
     PLAYER_DIR = os.path.join(BASE_DIR, 'lib', 'players')
     LOG_DIR = os.path.join(BASE_DIR, 'log')
+
+    # Web map settings
+    MAP_PORT = 4001
+    MAP_HOST = '0.0.0.0'
+    MAP_PUBLIC_HOST = '72.35.132.11'
+    MAP_VIEW_SIZE = 11
     
     # Game Settings
     STARTING_ROOM = 3001  # Temple of Midgaard equivalent
@@ -28,9 +34,22 @@ class Config:
     IMMORTAL_START_ROOM = 1200
     
     # Level Settings
-    MAX_MORTAL_LEVEL = 50
-    MAX_IMMORTAL_LEVEL = 60
-    IMMORTAL_LEVEL = 51
+    MAX_MORTAL_LEVEL = 60
+    MAX_IMMORTAL_LEVEL = 70
+    IMMORTAL_LEVEL = 61
+    
+    # High-level XP multiplier (levels 31-60 use slower progression)
+    HIGH_LEVEL_EXP_MULTIPLIER = 1.6
+    HIGH_LEVEL_THRESHOLD = 30
+
+    # Email / password reset (SMTP)
+    SMTP_HOST = None
+    SMTP_PORT = 587
+    SMTP_USER = None
+    SMTP_PASS = None
+    SMTP_FROM = None
+    SMTP_TLS = True
+    PASSWORD_RESET_TTL_HOURS = 24
     
     # Combat Settings
     PULSE_VIOLENCE = 2  # seconds between combat rounds
@@ -45,18 +64,40 @@ class Config:
     MIN_STAT = 3
     
     # Experience multipliers by level
-    EXP_MULTIPLIER = 1.5
-    BASE_EXP = 1000
+    EXP_MULTIPLIER = 1.4
+    BASE_EXP = 800
+
+    # Bonus XP settings
+    EXPLORATION_XP_BASE = 40
+    EXPLORATION_XP_PER_LEVEL = 5
+    QUEST_XP_BONUS_PERCENT = 0.05  # 5% of next level XP
+    BOSS_XP_BONUS_PERCENT = 0.50   # 50% bonus for boss kills
+    STREAK_XP_BONUS_PER_KILL = 0.02  # 2% per streak stack
+    STREAK_XP_BONUS_CAP = 0.30       # 30% cap
+
+    # Rested XP settings
+    RESTED_XP_RATE = 0.02  # 2% of next level XP per hour offline
+    RESTED_XP_CAP = 0.50   # 50% of next level XP
+
+    # Travel settings
+    TRAVEL_COOLDOWN_SECONDS = 60
     
     # Regeneration rates (per tick)
-    HP_REGEN_RATE = 0.05
-    MANA_REGEN_RATE = 0.08
-    MOVE_REGEN_RATE = 0.10
+    # Base regen rates (% of max per 60s tick) - multiplied by position
+    # Standing=1x, Sitting=1.25x, Resting=1.5x, Sleeping=2x, Fighting=0.5x
+    HP_REGEN_RATE = 0.12      # 12% base → 24% sleeping
+    MANA_REGEN_RATE = 0.15    # 15% base → 30% sleeping  
+    MOVE_REGEN_RATE = 0.20    # 20% base → 40% sleeping
+
+    # Tick intervals (seconds)
+    AFFECT_TICK_SECONDS = 6    # DOT/HOT effects tick rate
+    POISON_TICK_SECONDS = 3    # Poison tick rate (faster feedback)
     
     # Colors (ANSI)
     COLORS = {
         'reset': '\033[0m',
         'bold': '\033[1m',
+        'black': '\033[30m',
         'red': '\033[31m',
         'green': '\033[32m',
         'yellow': '\033[33m',
@@ -64,17 +105,20 @@ class Config:
         'magenta': '\033[35m',
         'cyan': '\033[36m',
         'white': '\033[37m',
+        'bright_black': '\033[90m',  # Dark gray
         'bright_red': '\033[91m',
         'bright_green': '\033[92m',
         'bright_yellow': '\033[93m',
         'bright_blue': '\033[94m',
         'bright_magenta': '\033[95m',
         'bright_cyan': '\033[96m',
+        'bright_white': '\033[97m',
     }
     
     # Race definitions
     RACES = {
         'human': {
+            'perception_bonus': 1,
             'name': 'Human',
             'description': 'Versatile and adaptable, humans excel in all professions.',
             'stat_mods': {'str': 0, 'int': 0, 'wis': 0, 'dex': 0, 'con': 0, 'cha': 1},
@@ -82,6 +126,7 @@ class Config:
             'abilities': ['quick_learner'],
         },
         'elf': {
+            'perception_bonus': 2,
             'name': 'Elf',
             'description': 'Graceful and wise, elves are masters of magic and archery.',
             'stat_mods': {'str': -1, 'int': 2, 'wis': 1, 'dex': 2, 'con': -2, 'cha': 1},
@@ -89,6 +134,7 @@ class Config:
             'abilities': ['infravision', 'resist_charm'],
         },
         'dwarf': {
+            'perception_bonus': 1,
             'name': 'Dwarf',
             'description': 'Stout and hardy, dwarves are renowned warriors and craftsmen.',
             'stat_mods': {'str': 1, 'int': -1, 'wis': 1, 'dex': -1, 'con': 3, 'cha': -1},
@@ -96,6 +142,7 @@ class Config:
             'abilities': ['infravision', 'resist_poison', 'resist_magic'],
         },
         'halfling': {
+            'perception_bonus': 2,
             'name': 'Halfling',
             'description': 'Small and nimble, halflings are excellent thieves and scouts.',
             'stat_mods': {'str': -2, 'int': 0, 'wis': 0, 'dex': 3, 'con': 0, 'cha': 1},
@@ -103,6 +150,7 @@ class Config:
             'abilities': ['sneak_bonus', 'resist_fear'],
         },
         'half_orc': {
+            'perception_bonus': 0,
             'name': 'Half-Orc',
             'description': 'Strong and fierce, half-orcs are formidable warriors.',
             'stat_mods': {'str': 3, 'int': -2, 'wis': -1, 'dex': 0, 'con': 2, 'cha': -2},
@@ -110,6 +158,7 @@ class Config:
             'abilities': ['infravision', 'berserk'],
         },
         'gnome': {
+            'perception_bonus': 2,
             'name': 'Gnome',
             'description': 'Clever and curious, gnomes have an affinity for illusion magic.',
             'stat_mods': {'str': -2, 'int': 2, 'wis': 0, 'dex': 1, 'con': 0, 'cha': 0},
@@ -137,8 +186,15 @@ class Config:
             'thac0_progression': 'fast',
             'save_progression': 'warrior',
             'skills': ['kick', 'bash', 'rescue', 'disarm', 'second_attack', 'third_attack', 'parry',
-                      'shield_block', 'defensive_stance', 'berserk', 'cleave'],
+                      'shield_block', 'cleave', 'battleshout', 'intimidate',
+                      # Level 31-60 abilities
+                      'rallying_cry', 'shattering_blow', 'commanding_shout', 'heroic_leap',
+                      'warpath', 'titans_wrath'],
             'spells': [],
+            # Warriors also gain rage abilities: execute (15), rampage (20), warcry (10), ignorepain (8)
+            # And can switch stances: battle, berserk, defensive, precision
+            # Level 31-60: rallying_cry (32), shattering_blow (38), commanding_shout (44),
+            #              heroic_leap (50), warpath (56), titans_wrath (60)
         },
         'mage': {
             'name': 'Mage',
@@ -156,7 +212,11 @@ class Config:
                       # Defensive spells
                       'armor', 'shield', 'stoneskin', 'mirror_image', 'displacement', 'mana_shield',
                       'ice_armor', 'fire_shield', 'spell_reflection', 'blink',
-                      'protection_from_evil', 'protection_from_good'],
+                      'protection_from_evil', 'protection_from_good',
+                      # Level 31-60 spells
+                      'time_warp', 'arcane_explosion', 'icy_veins', 'combustion_master', 'meteor_storm'],
+            # Level 31-60: mana_shield (32), time_warp (38), arcane_explosion (44),
+            #              icy_veins (50), combustion_master (56), meteor_storm (60)
         },
         'cleric': {
             'name': 'Cleric',
@@ -167,14 +227,20 @@ class Config:
             'move_dice': 4,
             'thac0_progression': 'medium',
             'save_progression': 'cleric',
-            'skills': ['turn_undead'],
+            'skills': ['turn_undead', 'holy_smite'],
             'spells': ['cure_light', 'cure_serious', 'cure_critical', 'heal', 'group_heal',
                       'bless', 'armor', 'sanctuary', 'remove_curse', 'remove_poison',
                       'create_food', 'create_water', 'summon', 'word_of_recall', 'resurrect',
                       'harm', 'dispel_evil', 'earthquake', 'flamestrike',
                       # Defensive spells
                       'shield_of_faith', 'divine_shield', 'barkskin', 'righteous_fury',
-                      'divine_protection', 'aegis', 'holy_aura', 'protection_from_evil'],
+                      'divine_protection', 'aegis', 'holy_aura', 'protection_from_evil',
+                      # Level 31-60 spells
+                      'prayer_of_mending', 'spirit_link', 'mass_dispel', 'lightwell',
+                      'serenity', 'divine_intervention'],
+            # Clerics build Divine Favor through healing/turning undead, spend on holy_smite
+            # Level 31-60: prayer_of_mending (32), spirit_link (38), mass_dispel (44),
+            #              lightwell (50), serenity (56), divine_intervention (60)
         },
         'thief': {
             'name': 'Thief',
@@ -186,8 +252,15 @@ class Config:
             'thac0_progression': 'medium',
             'save_progression': 'thief',
             'skills': ['backstab', 'sneak', 'hide', 'steal', 'pick_lock', 'detect_traps',
-                      'second_attack', 'trip', 'circle', 'dodge', 'evasion', 'tumble'],
+                      'second_attack', 'trip', 'circle', 'dodge', 'evasion', 'tumble', 'slip',
+                      # Level 31-60 abilities
+                      'nerve_strike', 'shadow_dance', 'garrote', 'evasion_master',
+                      'marked_for_death_thief', 'perfect_crime'],
             'spells': [],
+            # Thieves use combo points: backstab/attacks build points, finishers spend them
+            # Finishers: eviscerate (1+), kidney_shot (4+), slice_dice (3+)
+            # Level 31-60: nerve_strike (32), shadow_dance (38), garrote (44),
+            #              evasion_master (50), marked_for_death_thief (56), perfect_crime (60)
         },
         'ranger': {
             'name': 'Ranger',
@@ -199,9 +272,15 @@ class Config:
             'thac0_progression': 'fast',
             'save_progression': 'warrior',
             'skills': ['track', 'sneak', 'hide', 'second_attack', 'dual_wield', 'camouflage',
-                      'ambush', 'dodge'],
+                      'ambush', 'dodge', 'tame', 'scan',
+                      # Level 31-60 abilities
+                      'volley', 'camouflage_master', 'serpent_sting', 'rapid_fire',
+                      'kill_command', 'alpha_pack'],
             'spells': ['cure_light', 'detect_magic', 'faerie_fire', 'call_lightning',
                       'barkskin', 'entangle'],
+            # Rangers can tame animal companions: wolf, bear, hawk, cat, boar
+            # Level 31-60: volley (32), camouflage_master (38), serpent_sting (44),
+            #              rapid_fire (50), kill_command (56), alpha_pack (60)
         },
         'paladin': {
             'name': 'Paladin',
@@ -212,9 +291,15 @@ class Config:
             'move_dice': 4,
             'thac0_progression': 'fast',
             'save_progression': 'warrior',
-            'skills': ['rescue', 'bash', 'turn_undead', 'second_attack'],
+            'skills': ['rescue', 'bash', 'turn_undead', 'second_attack', 'smite'],
             'spells': ['cure_light', 'cure_serious', 'bless', 'detect_evil', 'protection_from_evil',
-                      'lay_hands', 'shield_of_faith', 'divine_shield'],
+                      'shield_of_faith', 'divine_shield',
+                      # Level 31-60 spells
+                      'hand_of_freedom', 'consecration', 'hammer_of_justice',
+                      'avenging_wrath_master', 'divine_shield_master', 'crusaders_judgment'],
+            # Paladins use auras (devotion, protection, retribution) and lay_hands ability
+            # Level 31-60: hand_of_freedom (32), consecration (38), hammer_of_justice (44),
+            #              avenging_wrath_master (50), divine_shield_master (56), crusaders_judgment (60)
         },
         'necromancer': {
             'name': 'Necromancer',
@@ -229,7 +314,12 @@ class Config:
             'spells': ['chill_touch', 'animate_dead', 'vampiric_touch', 'enervation',
                       'death_grip', 'finger_of_death', 'energy_drain',
                       'poison', 'weaken', 'blindness', 'fear', 'armor', 'shield',
-                      'protection_from_good'],
+                      'protection_from_good',
+                      # Level 31-60 spells
+                      'death_coil', 'corpse_shield', 'plague_strike', 'summon_gargoyle',
+                      'soul_harvest', 'apocalypse_necro'],
+            # Level 31-60: death_coil (32), corpse_shield (38), plague_strike (44),
+            #              summon_gargoyle (50), soul_harvest (56), apocalypse_necro (60)
         },
         'bard': {
             'name': 'Bard',
@@ -240,10 +330,16 @@ class Config:
             'move_dice': 6,
             'thac0_progression': 'medium',
             'save_progression': 'thief',
-            'skills': ['sneak', 'pick_lock', 'lore'],
+            'skills': ['sneak', 'pick_lock', 'lore', 'countersong', 'fascinate', 'mockery'],
             'spells': ['charm_person', 'sleep', 'invisibility', 'haste', 'slow',
                       'cure_light', 'detect_magic', 'heroism', 'fear', 'mass_charm',
-                      'bless', 'armor'],
+                      'bless', 'armor',
+                      # Level 31-60 spells
+                      'hymn_of_hope', 'chord_of_disruption', 'epic_tale', 'siren_song',
+                      'requiem', 'magnum_opus'],
+            # Bards also learn songs automatically based on level (see BARD_SONGS in spells.py)
+            # Level 31-60: hymn_of_hope (32), chord_of_disruption (38), epic_tale (44),
+            #              siren_song (50), requiem (56), magnum_opus (60)
         },
         'assassin': {
             'name': 'Assassin',
@@ -256,8 +352,13 @@ class Config:
             'save_progression': 'thief',
             'skills': ['backstab', 'sneak', 'hide', 'envenom', 'assassinate',
                       'second_attack', 'dual_wield', 'garrote', 'shadow_step', 'mark_target',
-                      'dodge', 'evasion', 'feint', 'blur'],
+                      'dodge', 'evasion', 'feint', 'blur', 'slip',
+                      # Level 31-60 abilities
+                      'shadowstrike', 'fan_of_knives', 'rupture', 'shadow_blades_master',
+                      'vendetta_assassin', 'death_mark'],
             'spells': [],
+            # Level 31-60: shadowstrike (32), fan_of_knives (38), rupture (44),
+            #              shadow_blades_master (50), vendetta_assassin (56), death_mark (60)
         },
     }
     
@@ -302,24 +403,29 @@ class Config:
     SECTOR_TYPES = {
         'inside': {'move_cost': 1, 'description': 'Indoors'},
         'city': {'move_cost': 1, 'description': 'City streets'},
-        'field': {'move_cost': 2, 'description': 'Open field'},
-        'forest': {'move_cost': 3, 'description': 'Dense forest'},
-        'hills': {'move_cost': 4, 'description': 'Rolling hills'},
-        'mountain': {'move_cost': 6, 'description': 'Steep mountains'},
-        'water_swim': {'move_cost': 4, 'description': 'Shallow water'},
-        'water_noswim': {'move_cost': 100, 'description': 'Deep water'},
-        'underwater': {'move_cost': 5, 'description': 'Underwater'},
+        'field': {'move_cost': 1, 'description': 'Open field'},
+        'forest': {'move_cost': 2, 'description': 'Dense forest'},
+        'hills': {'move_cost': 2, 'description': 'Rolling hills'},
+        'mountain': {'move_cost': 3, 'description': 'Steep mountains'},
+        'water_swim': {'move_cost': 2, 'description': 'Shallow water'},
+        'water_noswim': {'move_cost': 50, 'description': 'Deep water'},
+        'underwater': {'move_cost': 3, 'description': 'Underwater'},
         'flying': {'move_cost': 1, 'description': 'Flying'},
-        'desert': {'move_cost': 4, 'description': 'Arid desert'},
-        'swamp': {'move_cost': 5, 'description': 'Murky swamp'},
-        'dungeon': {'move_cost': 2, 'description': 'Dungeon corridor'},
+        'desert': {'move_cost': 2, 'description': 'Arid desert'},
+        'swamp': {'move_cost': 3, 'description': 'Murky swamp'},
+        'dungeon': {'move_cost': 1, 'description': 'Dungeon corridor'},
+    }
+
+    # Terrain movement cost modifiers (scaffolding for future terrain-based rules)
+    TERRAIN_MOVE_COST_MODIFIERS = {
+        sector: 1.0 for sector in SECTOR_TYPES
     }
     
     # Position states
     POSITIONS = ['dead', 'mortally_wounded', 'incapacitated', 'stunned',
                  'sleeping', 'resting', 'sitting', 'fighting', 'standing']
     
-    # Directions
+    # Directions (cardinal only: n/s/e/w/u/d)
     DIRECTIONS = {
         'north': {'opposite': 'south', 'abbrev': 'n'},
         'east': {'opposite': 'west', 'abbrev': 'e'},

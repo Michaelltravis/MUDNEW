@@ -11,7 +11,7 @@
   "rooms": {
     "11000": {
       "title": "Forest Path to Silversong",
-      "description": "The forest path opens into a glade where the trees grow impossibly tall and straight. Silver-barked trees tower overhead, their leaves shimmering with an inner light. The air is sweet with the scent of flowers and alive with birdsong. Delicate bridges and platforms can be seen high in the branches - this is the edge of an elven settlement. The path continues south back to the forest, or north deeper into elven lands.",
+      "description": "The forest path opens into a glade where the trees grow impossibly tall\nand straight. Silver-barked trees tower overhead, their leaves\nshimmering with an inner light. The air is sweet with the scent of\nflowers and alive with birdsong. Delicate bridges and platforms can be\nseen high in the branches - this is the edge of an elven settlement. The\npath continues south back to the forest, or north deeper into elven\nlands. Shadows gather in the corners. The ceiling hangs low overhead.",
       "terrain": "forest",
       "exits": {
         "south": {
@@ -22,11 +22,21 @@
           "to_room": 11001
         }
       },
-      "vnum": 11000
+      "vnum": 11000,
+      "mob_resets": [
+        {
+          "vnum": 11001,
+          "max": 2
+        },
+        {
+          "vnum": 11002,
+          "max": 1
+        }
+      ]
     },
     "11001": {
       "title": "Village Green",
-      "description": "A circular clearing serves as the heart of the village. Grass as soft as velvet covers the ground, and wildflowers grow in artful arrangements. Ancient trees ring the clearing, their trunks carved with intricate patterns that glow faintly. Rope ladders and spiral staircases wind up the massive trees to dwellings in the canopy. The beauty and harmony of this place is almost overwhelming.",
+      "description": "A circular clearing serves as the heart of the village. Grass as soft as\nvelvet covers the ground, and wildflowers grow in artful arrangements.\nAncient trees ring the clearing, their trunks carved with intricate\npatterns that glow faintly. Rope ladders and spiral staircases wind up\nthe massive trees to dwellings in the canopy. The beauty and harmony of\nthis place is almost overwhelming. Shadows gather in the corners. The\nair is still and musty.",
       "terrain": "forest",
       "exits": {
         "south": {
@@ -45,22 +55,38 @@
           "to_room": 11005
         }
       },
-      "vnum": 11001
+      "vnum": 11001,
+      "mob_resets": [
+        {
+          "vnum": 11001,
+          "max": 2
+        },
+        {
+          "vnum": 11002,
+          "max": 1
+        }
+      ]
     },
     "11002": {
       "title": "The Moonwell",
-      "description": "A perfectly circular pool of crystal-clear water sits at the center of a grove. The water glows with soft silver light even during the day, and at night it shines like captured moonlight. Flowers of extraordinary beauty grow around its rim, and the air shimmers with magic. This is a moonwell, a sacred site of the elves, where the barrier between worlds is thin. The water is said to have healing properties.",
+      "description": "A perfectly circular pool of crystal-clear water sits at the center of a\ngrove. The water glows with soft silver light even during the day, and\nat night it shines like captured moonlight. Flowers of extraordinary\nbeauty grow around its rim, and the air shimmers with magic. This is a\nmoonwell, a sacred site of the elves, where the barrier between worlds\nis thin. The water is said to have healing properties. Shadows gather in\nthe corners. Dust motes drift in the stale air.",
       "terrain": "forest",
       "exits": {
         "south": {
           "to_room": 11001
         }
       },
-      "vnum": 11002
+      "vnum": 11002,
+      "mob_resets": [
+        {
+          "vnum": 11001,
+          "max": 2
+        }
+      ]
     },
     "11003": {
       "title": "Archery Range",
-      "description": "This long glade has been cleared for archery practice. Targets made of straw and wood are set up at various distances, some near, others barely visible. The ground is littered with arrows, many still quivering in their targets. Elven archers practice here relentlessly, honing their legendary skill. Targets are set at distances that would be impossible for humans, yet the elves hit them with casual ease.",
+      "description": "This long glade has been cleared for archery practice. Targets made of\nstraw and wood are set up at various distances, some near, others barely\nvisible. The ground is littered with arrows, many still quivering in\ntheir targets. Elven archers practice here relentlessly, honing their\nlegendary skill. Targets are set at distances that would be impossible\nfor humans, yet the elves hit them with casual ease. The walls are\nrough-hewn and cold to the touch. Shadows gather in the corners.",
       "terrain": "forest",
       "exits": {
         "west": {
@@ -70,11 +96,21 @@
           "to_room": 11006
         }
       },
-      "vnum": 11003
+      "vnum": 11003,
+      "mob_resets": [
+        {
+          "vnum": 11001,
+          "max": 2
+        },
+        {
+          "vnum": 11005,
+          "max": 1
+        }
+      ]
     },
     "11004": {
       "title": "The Ancient Grove",
-      "description": "This grove contains the oldest trees in the forest, their trunks so massive that ten men could not encircle them. They predate the elven settlement by millennia and are revered as sacred. The trees here have awareness - you can feel their presence, ancient and vast. Druids and rangers come here to commune with nature and learn the old magic. A treant guardian stands eternal watch.",
+      "description": "This grove contains the oldest trees in the forest, their trunks so\nmassive that ten men could not encircle them. They predate the elven\nsettlement by millennia and are revered as sacred. The trees here have\nawareness - you can feel their presence, ancient and vast. Druids and\nrangers come here to commune with nature and learn the old magic. A\ntreant guardian stands eternal watch. The air is still and musty. Dust\nmotes drift in the stale air.",
       "terrain": "forest",
       "exits": {
         "east": {
@@ -84,11 +120,33 @@
           "to_room": 11007
         }
       },
-      "vnum": 11004
+      "vnum": 11004,
+      "mob_resets": [
+        {
+          "vnum": 11001,
+          "max": 2
+        },
+        {
+          "vnum": 11004,
+          "max": 1
+        },
+        {
+          "vnum": 11005,
+          "max": 1
+        },
+        {
+          "vnum": 11006,
+          "max": 1
+        },
+        {
+          "vnum": 11008,
+          "max": 1
+        }
+      ]
     },
     "11005": {
       "title": "Canopy Walkway",
-      "description": "Suspended bridges connect the tree dwellings high above the ground. The walkways sway gently in the breeze, but they're much sturdier than they appear. From this height, you can see for miles across the forest canopy. Birds flit between branches, and the occasional squirrel scampers past. The view is breathtaking, but the drop is dizzying.",
+      "description": "Suspended bridges connect the tree dwellings high above the ground. The\nwalkways sway gently in the breeze, but they're much sturdier than they\nappear. From this height, Visible is for miles across the forest canopy.\nBirds flit between branches, and the occasional squirrel scampers past.\nThe view is breathtaking, but the drop is dizzying. Shadows gather in\nthe corners. Dust motes drift in the stale air.",
       "terrain": "forest",
       "exits": {
         "down": {
@@ -101,22 +159,34 @@
           "to_room": 11009
         }
       },
-      "vnum": 11005
+      "vnum": 11005,
+      "mob_resets": [
+        {
+          "vnum": 11001,
+          "max": 2
+        }
+      ]
     },
     "11006": {
       "title": "Fletcher's Workshop",
-      "description": "This ground-level workshop is dedicated to the craft of bow and arrow making. Racks hold dozens of bows in various stages of completion - some just shaped wood, others finished masterpieces. Bundles of arrows sorted by type fill barrels. Feathers, sinew, glue, and exotic woods cover every work surface. A master fletcher works here, creating weapons of legendary quality.",
+      "description": "This ground-level workshop is dedicated to the craft of bow and arrow\nmaking. Racks hold dozens of bows in various stages of completion - some\njust shaped wood, others finished masterpieces. Bundles of arrows sorted\nby type fill barrels. Feathers, sinew, glue, and exotic woods cover\nevery work surface. A master fletcher works here, creating weapons of\nlegendary quality. The walls are rough-hewn and cold to the touch. The\nceiling hangs low overhead.",
       "terrain": "forest",
       "exits": {
         "west": {
           "to_room": 11003
         }
       },
-      "vnum": 11006
+      "vnum": 11006,
+      "mob_resets": [
+        {
+          "vnum": 11001,
+          "max": 2
+        }
+      ]
     },
     "11007": {
       "title": "Druid Circle",
-      "description": "Standing stones form a perfect circle here, each carved with nature symbols and runes. The grass within grows in a spiral pattern, and mushrooms spring up overnight. This is a place of power where druids and rangers commune with the spirits of nature. Animals approach fearlessly here, and plants grow with unnatural vigor. The air hums with primal magic.",
+      "description": "Standing stones form a perfect circle here, each carved with nature\nsymbols and runes. The grass within grows in a spiral pattern, and\nmushrooms spring up overnight. This is a place of power where druids and\nrangers commune with the spirits of nature. Animals approach fearlessly\nhere, and plants grow with unnatural vigor. The air hums with primal\nmagic. Dust motes drift in the stale air. The ceiling hangs low\noverhead.",
       "terrain": "forest",
       "exits": {
         "south": {
@@ -126,33 +196,67 @@
           "to_room": 11010
         }
       },
-      "vnum": 11007
+      "vnum": 11007,
+      "mob_resets": [
+        {
+          "vnum": 11001,
+          "max": 2
+        },
+        {
+          "vnum": 11003,
+          "max": 1
+        }
+      ]
     },
     "11008": {
       "title": "Elder's Tree Home",
-      "description": "This dwelling is carved into the trunk of one of the largest trees, its interior surprisingly spacious. Windows look out over the forest in all directions, and the walls are lined with shelves holding ancient books and scrolls. Comfortable furnishings of living wood grow from the floor. This is the home of the village elder, keeper of lore and wisdom. The scent of herbs and incense fills the air.",
+      "description": "This dwelling is carved into the trunk of one of the largest trees, its\ninterior surprisingly spacious. Windows look out over the forest in all\ndirections, and the walls are lined with shelves holding ancient books\nand scrolls. Comfortable furnishings of living wood grow from the floor.\nThis is the home of the village elder, keeper of lore and wisdom. The\nscent of herbs and incense fills the air. The ceiling hangs low\noverhead. Dust motes drift in the stale air.",
       "terrain": "indoors",
       "exits": {
         "south": {
           "to_room": 11005
         }
       },
-      "vnum": 11008
+      "vnum": 11008,
+      "mob_resets": [
+        {
+          "vnum": 11001,
+          "max": 2
+        },
+        {
+          "vnum": 11005,
+          "max": 1
+        }
+      ]
     },
     "11009": {
       "title": "Observation Platform",
-      "description": "This platform extends far out from the main tree, providing an unobstructed view in all directions. Elven scouts use this post to watch for intruders. A spyglass on a swivel mount allows observation of distant locations. From here, you can see the boundaries of elven territory and beyond - the forest, the swamp to the south, and mountains to the east.",
+      "description": "This platform extends far out from the main tree, providing an\nunobstructed view in all directions. Elven scouts use this post to watch\nfor intruders. A spyglass on a swivel mount allows observation of\ndistant locations. From here, Visible is the boundaries of elven\nterritory and beyond - the forest, the swamp to the south, and mountains\nto the east. The walls are rough-hewn and cold to the touch. Shadows\ngather in the corners.",
       "terrain": "forest",
       "exits": {
         "west": {
           "to_room": 11005
         }
       },
-      "vnum": 11009
+      "vnum": 11009,
+      "mob_resets": [
+        {
+          "vnum": 11001,
+          "max": 2
+        },
+        {
+          "vnum": 11006,
+          "max": 1
+        },
+        {
+          "vnum": 11008,
+          "max": 1
+        }
+      ]
     },
     "11010": {
       "title": "Companion Bonding Grounds",
-      "description": "This peaceful glade is where rangers and druids come to bond with animal companions. Several creatures - wolves, hawks, bears - move freely through the area, unafraid of people. They are wild animals, but some may choose to bond with a worthy ranger. Stone benches are arranged in a circle, and a small shrine to nature deities stands at the center. The bond formed here lasts a lifetime.",
+      "description": "This peaceful glade is where rangers and druids come to bond with animal\ncompanions. Several creatures - wolves, hawks, bears - move freely\nthrough the area, unafraid of people. They are wild animals, but some\nmay choose to bond with a worthy ranger. Stone benches are arranged in a\ncircle, and a small shrine to nature deities stands at the center. The\nbond formed here lasts a lifetime. Dust motes drift in the stale air.\nShadows gather in the corners.",
       "terrain": "forest",
       "special": "taming_area",
       "exits": {
@@ -163,11 +267,17 @@
           "to_room": 11011
         }
       },
-      "vnum": 11010
+      "vnum": 11010,
+      "mob_resets": [
+        {
+          "vnum": 11001,
+          "max": 2
+        }
+      ]
     },
     "11011": {
       "title": "Shadowed Path",
-      "description": "The forest grows darker here, the trees closer together and their branches more entangled. This path marks the boundary between the protected village and the wild forest beyond. Elven magic keeps corruption at bay, but it's a constant struggle. Strange sounds echo from deeper in the woods, and shadows move in ways they shouldn't. The elves post guards here day and night.",
+      "description": "The forest grows darker here, the trees closer together and their\nbranches more entangled. This path marks the boundary between the\nprotected village and the wild forest beyond. Elven magic keeps\ncorruption at bay, but it's a constant struggle. Strange sounds echo\nfrom deeper in the woods, and shadows move in ways they shouldn't. The\nelves post guards here day and night. Dust motes drift in the stale air.\nShadows gather in the corners.",
       "terrain": "forest",
       "exits": {
         "south": {
@@ -177,11 +287,21 @@
           "to_room": 11012
         }
       },
-      "vnum": 11011
+      "vnum": 11011,
+      "mob_resets": [
+        {
+          "vnum": 11001,
+          "max": 2
+        },
+        {
+          "vnum": 11007,
+          "max": 1
+        }
+      ]
     },
     "11012": {
       "title": "Corrupted Grove",
-      "description": "Something is terribly wrong here. The trees are twisted and blackened, their leaves withered and dead. The ground is covered in sickly moss that squelches underfoot. Dark magic has tainted this place, and the corruption is spreading slowly toward the village. Corrupted sprites flit through the dying trees, and shadow stalkers hunt in the darkness. The elves are greatly concerned.",
+      "description": "Something is terribly wrong here. The trees are twisted and blackened,\ntheir leaves withered and dead. The ground is covered in sickly moss\nthat squelches underfoot. Dark magic has tainted this place, and the\ncorruption is spreading slowly toward the village. Corrupted sprites\nflit through the dying trees, and shadow stalkers hunt in the darkness.\nThe elves are greatly concerned. Shadows gather in the corners. The\nwalls are rough-hewn and cold to the touch.",
       "terrain": "forest",
       "exits": {
         "south": {
@@ -191,29 +311,51 @@
           "to_room": 11013
         }
       },
-      "vnum": 11012
+      "vnum": 11012,
+      "mob_resets": [
+        {
+          "vnum": 11001,
+          "max": 2
+        }
+      ]
     },
     "11013": {
       "title": "Heart of Corruption",
-      "description": "At the center of the corrupted grove lies the source - a massive dead tree, its trunk split open to reveal pulsing darkness within. This was once a sacred tree, but something has twisted it into an abomination. Shadow energy radiates from it like heat from a fire. Defeating the corruption here might save the grove, but the source of darkness is powerful and well-defended.",
+      "description": "At the center of the corrupted grove lies the source - a massive dead\ntree, its trunk split open to reveal pulsing darkness within. This was\nonce a sacred tree, but something has twisted it into an abomination.\nShadow energy radiates from it like heat from a fire. Defeating the\ncorruption here might save the grove, but the source of darkness is\npowerful and well-defended. The air is still and musty. Dust motes drift\nin the stale air.",
       "terrain": "forest",
       "exits": {
         "south": {
           "to_room": 11012
         }
       },
-      "vnum": 11013
+      "vnum": 11013,
+      "mob_resets": [
+        {
+          "vnum": 11001,
+          "max": 2
+        }
+      ]
     },
     "11014": {
       "title": "Training Hall",
-      "description": "This building on the forest floor serves as a training facility for elven warriors and rangers. Practice dummies, target posts, and weapon racks line the walls. Young elves practice their forms here under the watchful eyes of veterans. The hall is open-air, with a roof but no walls, allowing trainees to stay connected with nature while they hone their skills.",
+      "description": "This building on the forest floor serves as a training facility for\nelven warriors and rangers. Practice dummies, target posts, and weapon\nracks line the walls. Young elves practice their forms here under the\nwatchful eyes of veterans. The hall is open-air, with a roof but no\nwalls, allowing trainees to stay connected with nature while they hone\ntheir skills. Dust motes drift in the stale air. The walls are rough-\nhewn and cold to the touch.",
       "terrain": "forest",
       "exits": {
         "west": {
           "to_room": 11001
         }
       },
-      "vnum": 11014
+      "vnum": 11014,
+      "mob_resets": [
+        {
+          "vnum": 11001,
+          "max": 2
+        },
+        {
+          "vnum": 11006,
+          "max": 1
+        }
+      ]
     }
   },
   "mobiles": {
@@ -610,6 +752,443 @@
       ],
       "max_in_zone": 2,
       "vnum": 11013
+    },
+    "11014": {
+      "vnum": 11014,
+      "name": "silverleaf longsword",
+      "short_desc": "a silverleaf longsword",
+      "room_desc": "A silverleaf longsword lies here.",
+      "description": "An elven blade.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "slash",
+      "damage_dice": "2d6+2",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 2
+        }
+      ],
+      "set_id": 110
+    },
+    "11015": {
+      "vnum": 11015,
+      "name": "moonshield",
+      "short_desc": "a moonshield",
+      "room_desc": "A moonshield lies here.",
+      "description": "A paladin's shield.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "shield",
+      "armor_bonus": 2,
+      "affects": [
+        {
+          "type": "wis",
+          "value": 1
+        }
+      ],
+      "set_id": 110
+    },
+    "11016": {
+      "vnum": 11016,
+      "name": "gilded sigil",
+      "short_desc": "a gilded sigil",
+      "room_desc": "A gilded sigil lies here.",
+      "description": "A deathknight's sigil.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "neck1",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 2
+        }
+      ],
+      "set_id": 110
+    },
+    "11017": {
+      "vnum": 11017,
+      "name": "starbloom reliquary",
+      "short_desc": "a starbloom reliquary",
+      "room_desc": "A starbloom reliquary lies here.",
+      "description": "A cleric's reliquary.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "wis",
+          "value": 2
+        },
+        {
+          "type": "max_mana",
+          "value": 20
+        }
+      ],
+      "set_id": 110
+    },
+    "11018": {
+      "vnum": 11018,
+      "name": "elven focus crystal",
+      "short_desc": "an elven focus crystal",
+      "room_desc": "An elven focus crystal lies here.",
+      "description": "A mage's focus.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "int",
+          "value": 2
+        }
+      ],
+      "set_id": 110
+    },
+    "11019": {
+      "vnum": 11019,
+      "name": "larkstring harp",
+      "short_desc": "a larkstring harp",
+      "room_desc": "A larkstring harp lies here.",
+      "description": "A bard's harp.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "mace",
+      "damage_dice": "1d6+1",
+      "affects": [
+        {
+          "type": "cha",
+          "value": 2
+        }
+      ],
+      "set_id": 110
+    },
+    "11020": {
+      "vnum": 11020,
+      "name": "nightpetal knife",
+      "short_desc": "a nightpetal knife",
+      "room_desc": "A nightpetal knife lies here.",
+      "description": "A rogue's knife.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "pierce",
+      "damage_dice": "1d6+2",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 2
+        }
+      ],
+      "set_id": 110
+    },
+    "11021": {
+      "vnum": 11021,
+      "name": "silverbranch bow",
+      "short_desc": "a silverbranch bow",
+      "room_desc": "A silverbranch bow lies here.",
+      "description": "A ranger's bow.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "pierce",
+      "damage_dice": "1d6+2",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 2
+        },
+        {
+          "type": "hitroll",
+          "value": 1
+        }
+      ],
+      "set_id": 110
+    },
+    "11022": {
+      "vnum": 11022,
+      "name": "elvenleaf mantle",
+      "short_desc": "an elvenleaf mantle",
+      "room_desc": "An elvenleaf mantle lies here.",
+      "description": "A graceful mantle.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "about",
+      "armor_bonus": 1,
+      "affects": [
+        {
+          "type": "dex",
+          "value": 1
+        }
+      ],
+      "set_id": 110
+    }
+  },
+  "mobs": {
+    "11001": {
+      "vnum": 11001,
+      "name": "elf",
+      "short_desc": "an elven villager",
+      "long_desc": "An elven villager goes about their daily tasks.",
+      "description": "You see an elven villager.",
+      "level": 5,
+      "alignment": 500,
+      "hp_dice": "5d10+76",
+      "damage_dice": "2d5+3",
+      "gold": 16,
+      "exp": 300,
+      "armor_class": 85,
+      "flags": [
+        "sentinel"
+      ]
+    },
+    "11002": {
+      "vnum": 11002,
+      "name": "guard",
+      "short_desc": "an elven guard",
+      "long_desc": "An elven guard stands watch, bow at the ready.",
+      "description": "You see an elven guard.",
+      "level": 10,
+      "alignment": 800,
+      "hp_dice": "10d8+207",
+      "damage_dice": "3d4+7",
+      "gold": 27,
+      "exp": 648,
+      "armor_class": 80,
+      "flags": [
+        "sentinel",
+        "guard"
+      ],
+      "loot_table": [
+        {
+          "vnum": 11014,
+          "chance": 20
+        },
+        {
+          "vnum": 11015,
+          "chance": 20
+        },
+        {
+          "vnum": 11016,
+          "chance": 20
+        },
+        {
+          "vnum": 11017,
+          "chance": 20
+        },
+        {
+          "vnum": 11018,
+          "chance": 20
+        },
+        {
+          "vnum": 11019,
+          "chance": 20
+        },
+        {
+          "vnum": 11020,
+          "chance": 20
+        },
+        {
+          "vnum": 11021,
+          "chance": 20
+        },
+        {
+          "vnum": 11022,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
+    },
+    "11003": {
+      "vnum": 11003,
+      "name": "elder",
+      "short_desc": "an elven elder",
+      "long_desc": "A wise elven elder sits in contemplation.",
+      "description": "You see an elven elder.",
+      "level": 15,
+      "alignment": 1000,
+      "hp_dice": "15d8+326",
+      "damage_dice": "5d4+9",
+      "gold": 43,
+      "exp": 772,
+      "armor_class": 70,
+      "flags": [
+        "sentinel"
+      ],
+      "loot_table": [
+        {
+          "vnum": 11014,
+          "chance": 20
+        },
+        {
+          "vnum": 11015,
+          "chance": 20
+        },
+        {
+          "vnum": 11016,
+          "chance": 20
+        },
+        {
+          "vnum": 11017,
+          "chance": 20
+        },
+        {
+          "vnum": 11018,
+          "chance": 20
+        },
+        {
+          "vnum": 11019,
+          "chance": 20
+        },
+        {
+          "vnum": 11020,
+          "chance": 20
+        },
+        {
+          "vnum": 11021,
+          "chance": 20
+        },
+        {
+          "vnum": 11022,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
+    },
+    "11004": {
+      "vnum": 11004,
+      "name": "merchant",
+      "short_desc": "an elven merchant",
+      "long_desc": "An elven merchant displays fine crafts and goods.",
+      "description": "You see an elven merchant.",
+      "level": 8,
+      "alignment": 600,
+      "hp_dice": "8d8+160",
+      "damage_dice": "2d4+6",
+      "gold": 10,
+      "exp": 542,
+      "armor_class": 84,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "shopkeeper"
+    },
+    "11005": {
+      "vnum": 11005,
+      "name": "child",
+      "short_desc": "an elven child",
+      "long_desc": "An elven child plays among the trees.",
+      "description": "You see an elven child.",
+      "level": 2,
+      "alignment": 500,
+      "hp_dice": "2d10+40",
+      "damage_dice": "1d4+2",
+      "gold": 9,
+      "exp": 120,
+      "armor_class": 94,
+      "flags": [
+        "sentinel"
+      ]
+    },
+    "11006": {
+      "vnum": 11006,
+      "name": "ranger",
+      "short_desc": "an elven ranger",
+      "long_desc": "An elven ranger patrols the village perimeter.",
+      "description": "You see an elven ranger.",
+      "level": 12,
+      "alignment": 700,
+      "hp_dice": "12d8+223",
+      "damage_dice": "4d4+8",
+      "gold": 56,
+      "exp": 776,
+      "armor_class": 76,
+      "flags": [
+        "patrol"
+      ],
+      "loot_table": [
+        {
+          "vnum": 11014,
+          "chance": 20
+        },
+        {
+          "vnum": 11015,
+          "chance": 20
+        },
+        {
+          "vnum": 11016,
+          "chance": 20
+        },
+        {
+          "vnum": 11017,
+          "chance": 20
+        },
+        {
+          "vnum": 11018,
+          "chance": 20
+        },
+        {
+          "vnum": 11019,
+          "chance": 20
+        },
+        {
+          "vnum": 11020,
+          "chance": 20
+        },
+        {
+          "vnum": 11021,
+          "chance": 20
+        },
+        {
+          "vnum": 11022,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
+    },
+    "11007": {
+      "vnum": 11007,
+      "name": "healer",
+      "short_desc": "an elven healer",
+      "long_desc": "An elven healer tends to herbs and poultices.",
+      "description": "You see an elven healer.",
+      "level": 10,
+      "alignment": 900,
+      "hp_dice": "10d8+155",
+      "damage_dice": "3d4+7",
+      "gold": 20,
+      "exp": 561,
+      "armor_class": 80,
+      "flags": [
+        "sentinel"
+      ]
+    },
+    "11008": {
+      "vnum": 11008,
+      "name": "spider",
+      "short_desc": "a forest spider",
+      "long_desc": "A large spider has wandered in from the forest.",
+      "description": "You see a forest spider.",
+      "level": 6,
+      "alignment": -200,
+      "hp_dice": "6d10+88",
+      "damage_dice": "2d5+5",
+      "gold": 7,
+      "exp": 360,
+      "armor_class": 82,
+      "flags": [
+        "aggressive"
+      ]
     }
   }
 }

@@ -32,6 +32,7 @@ class Object:
         # Item properties
         self.item_type = "other"  # weapon, armor, potion, etc.
         self.wear_slot = None  # Where it can be worn
+        self.set_id = None      # Zone set id
         self.weight = 1
         self.cost = 0
         
@@ -53,6 +54,7 @@ class Object:
         # Consumable properties
         self.food_value = 0
         self.drinks = 0
+        self.max_drinks = 0  # Maximum drink capacity
         self.liquid = "water"
         self.spell_effects = []
         
@@ -62,6 +64,13 @@ class Object:
         # Magical properties
         self.affects = []  # [{type, value}, ...]
         self.flags = set()
+
+        # Lore/Readable text
+        self.lore_id = None
+        self.lore_title = None
+        self.lore_text = None
+        self.lore_zone = None
+        self.readable_text = None
         
         # Timer (for decay, etc.)
         self.timer = -1
@@ -97,6 +106,7 @@ class Object:
             'description': self.description,
             'item_type': self.item_type,
             'wear_slot': self.wear_slot,
+            'set_id': self.set_id,
             'weight': self.weight,
             'cost': self.cost,
             'damage_dice': self.damage_dice,
@@ -109,11 +119,17 @@ class Object:
             'key_vnum': getattr(self, 'key_vnum', None),
             'food_value': self.food_value,
             'drinks': self.drinks,
+            'max_drinks': self.max_drinks,
             'liquid': self.liquid,
             'spell_effects': self.spell_effects,
             'light_hours': self.light_hours,
             'affects': self.affects,
             'flags': list(self.flags),
+            'lore_id': self.lore_id,
+            'lore_title': self.lore_title,
+            'lore_text': self.lore_text,
+            'lore_zone': self.lore_zone,
+            'readable_text': self.readable_text,
             'timer': self.timer,
         }
         
@@ -128,6 +144,7 @@ class Object:
         obj.description = data.get('description', '')
         obj.item_type = data.get('item_type', 'other')
         obj.wear_slot = data.get('wear_slot')
+        obj.set_id = data.get('set_id')
         obj.weight = data.get('weight', 1)
         obj.cost = data.get('cost', 0)
         obj.damage_dice = data.get('damage_dice', '1d4')
@@ -140,11 +157,17 @@ class Object:
         obj.key_vnum = data.get('key_vnum')
         obj.food_value = data.get('food_value', 0)
         obj.drinks = data.get('drinks', 0)
+        obj.max_drinks = data.get('max_drinks', obj.drinks)  # Default to current drinks if not specified
         obj.liquid = data.get('liquid', 'water')
         obj.spell_effects = data.get('spell_effects', [])
         obj.light_hours = data.get('light_hours', 0)
         obj.affects = data.get('affects', [])
         obj.flags = set(data.get('flags', []))
+        obj.lore_id = data.get('lore_id')
+        obj.lore_title = data.get('lore_title')
+        obj.lore_text = data.get('lore_text')
+        obj.lore_zone = data.get('lore_zone')
+        obj.readable_text = data.get('readable_text')
         obj.timer = data.get('timer', -1)
 
         # Load contents recursively
@@ -162,8 +185,9 @@ class Object:
         obj.short_desc = proto.get('short_desc', obj.name)
         obj.room_desc = proto.get('room_desc', f"{obj.short_desc} lies here.")
         obj.description = proto.get('description', 'You see nothing special.')
-        obj.item_type = proto.get('type', 'other')
+        obj.item_type = proto.get('item_type', proto.get('type', 'other'))
         obj.wear_slot = proto.get('wear_slot')
+        obj.set_id = proto.get('set_id')
         obj.weight = proto.get('weight', 1)
         obj.cost = proto.get('cost', 0)
         obj.damage_dice = proto.get('damage_dice', '1d4')
@@ -175,12 +199,20 @@ class Object:
         obj.locked = obj.is_locked  # Backward compatibility
         obj.key_vnum = proto.get('key_vnum')
         obj.food_value = proto.get('food_value', 0)
+        obj.food_bonus = proto.get('food_bonus')  # Rare food stat bonuses
+        obj.food_message = proto.get('food_message')  # Custom message when eaten
         obj.drinks = proto.get('drinks', 0)
+        obj.max_drinks = proto.get('max_drinks', obj.drinks)  # Default max to initial drinks
         obj.liquid = proto.get('liquid', 'water')
         obj.spell_effects = proto.get('spell_effects', [])
         obj.light_hours = proto.get('light_hours', 0)
         obj.affects = proto.get('affects', [])
         obj.flags = set(proto.get('flags', []))
+        obj.lore_id = proto.get('lore_id')
+        obj.lore_title = proto.get('lore_title')
+        obj.lore_text = proto.get('lore_text')
+        obj.lore_zone = proto.get('lore_zone')
+        obj.readable_text = proto.get('readable_text')
 
         return obj
 
@@ -216,6 +248,7 @@ PRESET_OBJECTS = {
         'weight': 2,
         'cost': 10,
         'drinks': 20,
+        'max_drinks': 20,
         'liquid': 'water',
     },
     3: {
@@ -289,6 +322,157 @@ PRESET_OBJECTS = {
         'cost': 60,
         'damage_dice': '1d6',
         'weapon_type': 'pierce',
+    },
+    9010: {
+        'vnum': 9010,
+        'name': 'the Midgaard guard blade',
+        'short_desc': 'the Midgaard guard blade',
+        'room_desc': 'A polished guard blade rests here.',
+        'description': 'A masterwork blade awarded to the most trusted defenders of Midgaard.',
+        'type': 'weapon',
+        'weight': 5,
+        'cost': 2000,
+        'damage_dice': '2d6',
+        'weapon_type': 'slash',
+    },
+    9011: {
+        'vnum': 9011,
+        'name': 'the elven silverbow',
+        'short_desc': 'the elven silverbow',
+        'room_desc': 'A silver-threaded bow gleams here.',
+        'description': 'An elegant bow of ancient elven make, humming with forest magic.',
+        'type': 'weapon',
+        'weight': 3,
+        'cost': 2200,
+        'damage_dice': '2d6',
+        'weapon_type': 'pierce',
+    },
+    9012: {
+        'vnum': 9012,
+        'name': 'the dwarven warhammer',
+        'short_desc': 'the dwarven warhammer',
+        'room_desc': 'A rune-etched warhammer rests here.',
+        'description': 'A heavy hammer forged in the deep halls, etched with protective runes.',
+        'type': 'weapon',
+        'weight': 8,
+        'cost': 2300,
+        'damage_dice': '2d7',
+        'weapon_type': 'pound',
+    },
+    9013: {
+        'vnum': 9013,
+        'name': 'the dagger of silence',
+        'short_desc': 'the dagger of silence',
+        'room_desc': 'A matte-black dagger lies here.',
+        'description': 'A blade that drinks the light around it, favored by the Thieves Guild.',
+        'type': 'weapon',
+        'weight': 2,
+        'cost': 2100,
+        'damage_dice': '2d5',
+        'weapon_type': 'stab',
+    },
+    9014: {
+        'vnum': 9014,
+        'name': 'the staff of the Conclave',
+        'short_desc': 'the staff of the Conclave',
+        'room_desc': 'An arcane staff radiates power here.',
+        'description': 'A staff bound with glowing sigils, gift of the Mages Guild.',
+        'type': 'weapon',
+        'weight': 4,
+        'cost': 2400,
+        'damage_dice': '2d4',
+        'weapon_type': 'pound',
+        'affects': [{'type': 'mana', 'value': 30}]
+    },
+    9200: {
+        'vnum': 9200,
+        'name': 'an ancient sun idol',
+        'short_desc': 'an ancient sun idol',
+        'room_desc': 'A gilded sun idol glows faintly here.',
+        'description': 'An artifact of the old empire, warm to the touch and etched with solar runes.',
+        'type': 'treasure',
+        'weight': 2,
+        'cost': 1200,
+    },
+    9201: {
+        'vnum': 9201,
+        'name': 'a shattered crown fragment',
+        'short_desc': 'a shattered crown fragment',
+        'room_desc': 'A shard of a regal crown lies here.',
+        'description': 'A jagged piece of a once-mighty crown, still humming with forgotten power.',
+        'type': 'treasure',
+        'weight': 1,
+        'cost': 1400,
+    },
+    9202: {
+        'vnum': 9202,
+        'name': 'a rune-etched obelisk chip',
+        'short_desc': 'a rune-etched obelisk chip',
+        'room_desc': 'A rune-etched stone chip rests here.',
+        'description': 'A fragment of an ancient obelisk covered in warding glyphs.',
+        'type': 'treasure',
+        'weight': 3,
+        'cost': 1100,
+    },
+    9203: {
+        'vnum': 9203,
+        'name': 'a relic of the deep forge',
+        'short_desc': 'a relic of the deep forge',
+        'room_desc': 'A darkened relic from a lost forge lies here.',
+        'description': 'A heavy relic forged in the deep places, still radiating heat.',
+        'type': 'treasure',
+        'weight': 4,
+        'cost': 1300,
+    },
+    9300: {
+        'vnum': 9300,
+        'name': 'a prismarine gem',
+        'short_desc': 'a prismarine gem',
+        'room_desc': 'A prismarine gem sparkles here.',
+        'description': 'A multifaceted gem that catches light in impossible angles.',
+        'type': 'treasure',
+        'weight': 1,
+        'cost': 900,
+    },
+    9301: {
+        'vnum': 9301,
+        'name': 'a storm opal',
+        'short_desc': 'a storm opal',
+        'room_desc': 'A storm opal swirls with inner lightning.',
+        'description': 'A rare opal with a rolling, electric sheen.',
+        'type': 'treasure',
+        'weight': 1,
+        'cost': 950,
+    },
+    9302: {
+        'vnum': 9302,
+        'name': 'a blood ruby',
+        'short_desc': 'a blood ruby',
+        'room_desc': 'A blood ruby gleams here.',
+        'description': 'A rich ruby that seems to pulse with crimson light.',
+        'type': 'treasure',
+        'weight': 1,
+        'cost': 980,
+    },
+    9303: {
+        'vnum': 9303,
+        'name': 'a star sapphire',
+        'short_desc': 'a star sapphire',
+        'room_desc': 'A star sapphire twinkles here.',
+        'description': 'A deep sapphire with a luminous star at its core.',
+        'type': 'treasure',
+        'weight': 1,
+        'cost': 1000,
+    },
+    9400: {
+        'vnum': 9400,
+        'name': 'a nightmare sigil',
+        'short_desc': 'a nightmare sigil',
+        'room_desc': 'A shadowy sigil pulses with dread.',
+        'description': 'A token of your trials in New Game+, humming with dark power.',
+        'type': 'treasure',
+        'weight': 1,
+        'cost': 1500,
     },
 }
 

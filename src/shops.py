@@ -27,6 +27,11 @@ class ShopKeeper:
         # What types of items this shop deals with
         self.buy_types = shop_config.get('buys', ['weapon', 'armor', 'treasure'])
 
+        # Faction for reputation-based pricing
+        self.faction = shop_config.get('faction') or getattr(mob, 'faction', None)
+        self.min_rep_shop = getattr(mob, 'min_rep_shop', None)
+        self.min_rep_shop_level = getattr(mob, 'min_rep_shop_level', None)
+
         # Items this shop sells (vnums)
         self.sells_vnums = shop_config.get('sells', [])
 
@@ -59,15 +64,32 @@ class ShopKeeper:
             # Handles overnight shops (e.g., 20:00 to 6:00)
             return hour >= self.opening_hour or hour < self.closing_hour
 
-    def get_sell_price(self, item: 'Object') -> int:
+    def get_sell_price(self, item: 'Object', player: Optional['Player'] = None) -> int:
         """Get the price this shop sells an item for."""
         base_value = getattr(item, 'value', 100)
-        return int(base_value * self.markup)
+        price = base_value * self.markup
+        if player and self.faction:
+            try:
+                from factions import FactionManager
+                modifier = FactionManager.get_price_modifier(player, FactionManager.normalize_key(self.faction))
+                price *= modifier
+            except Exception:
+                pass
+        return int(price)
 
-    def get_buy_price(self, item: 'Object') -> int:
+    def get_buy_price(self, item: 'Object', player: Optional['Player'] = None) -> int:
         """Get the price this shop will pay for an item."""
         base_value = getattr(item, 'value', 100)
-        return int(base_value * self.markdown)
+        price = base_value * self.markdown
+        if player and self.faction:
+            try:
+                from factions import FactionManager
+                modifier = FactionManager.get_price_modifier(player, FactionManager.normalize_key(self.faction))
+                if modifier != 0:
+                    price *= (1 / modifier)
+            except Exception:
+                pass
+        return int(price)
 
     def will_buy(self, item: 'Object') -> bool:
         """Check if shop will buy this type of item."""
@@ -78,9 +100,38 @@ class ShopKeeper:
         """Get all items available for sale."""
         return self.inventory + self.bought_items
 
+    async def check_reputation_access(self, player: 'Player') -> bool:
+        if not self.faction:
+            return True
+        try:
+            from factions import FactionManager
+            faction_key = FactionManager.normalize_key(self.faction)
+            if not faction_key:
+                return True
+            min_required = None
+            if self.min_rep_shop is not None:
+                min_required = int(self.min_rep_shop)
+            elif self.min_rep_shop_level:
+                min_required = FactionManager.get_threshold_for_level(self.min_rep_shop_level)
+
+            if min_required is None:
+                return True
+
+            if FactionManager.get_reputation(player, faction_key) < min_required:
+                c = self.config.COLORS
+                await player.send(f"{c['yellow']}{self.mob.name} says, 'I don't do business with you.'{c['reset']}")
+                return False
+        except Exception:
+            return True
+
+        return True
+
     async def list_items(self, player: 'Player'):
         """Show player what's for sale."""
         c = self.config.COLORS
+
+        if not await self.check_reputation_access(player):
+            return
 
         items = self.get_sellable_items()
 
@@ -95,7 +146,7 @@ class ShopKeeper:
         await player.send(f"{c['bright_cyan']}╠══════════════════════════════════════════════════════════╣{c['reset']}")
 
         for i, item in enumerate(items, 1):
-            price = self.get_sell_price(item)
+            price = self.get_sell_price(item, player)
             item_name = item.short_desc[:40].ljust(40)
             await player.send(f"{c['bright_cyan']}║ {c['white']}{i:2}. {item_name} {price:6} gold {c['bright_cyan']}║{c['reset']}")
 
@@ -105,6 +156,8 @@ class ShopKeeper:
     async def sell_to_player(self, player: 'Player', item_identifier: str) -> bool:
         """Sell an item to a player."""
         c = self.config.COLORS
+        if not await self.check_reputation_access(player):
+            return False
         items = self.get_sellable_items()
 
         # Find item by number or name
@@ -123,7 +176,7 @@ class ShopKeeper:
             await player.send(f"{c['red']}{self.mob.name} says, 'I don't have that item.'{c['reset']}")
             return False
 
-        price = self.get_sell_price(item)
+        price = self.get_sell_price(item, player)
 
         # Check if player has enough gold
         if player.gold < price:
@@ -134,14 +187,23 @@ class ShopKeeper:
         player.gold -= price
         self.gold += price
 
-        # Remove from shop inventory
-        if item in self.inventory:
-            self.inventory.remove(item)
-        elif item in self.bought_items:
-            self.bought_items.remove(item)
-
-        # Give to player
-        player.inventory.append(item)
+        # Check if item is unlimited stock (food, drink, light, container)
+        item_type = getattr(item, 'item_type', '').lower()
+        unlimited_types = ['food', 'drink', 'light', 'container', 'potion']
+        
+        if item_type in unlimited_types and item in self.inventory:
+            # Create a copy for the player, keep original in stock
+            from objects import Object
+            sold_item = Object.from_dict(item.to_dict(), player.world)
+            player.inventory.append(sold_item)
+        else:
+            # Remove from shop inventory (limited stock)
+            if item in self.inventory:
+                self.inventory.remove(item)
+            elif item in self.bought_items:
+                self.bought_items.remove(item)
+            # Give original to player
+            player.inventory.append(item)
 
         await player.send(f"{c['bright_green']}{self.mob.name} says, 'Here you go! That'll be {price} gold.'{c['reset']}")
         await player.send(f"{c['green']}You buy {item.short_desc} for {price} gold.{c['reset']}")
@@ -152,6 +214,8 @@ class ShopKeeper:
     async def buy_from_player(self, player: 'Player', item_name: str) -> bool:
         """Buy an item from a player."""
         c = self.config.COLORS
+        if not await self.check_reputation_access(player):
+            return False
 
         # Find item in player's inventory
         item = None
@@ -169,7 +233,7 @@ class ShopKeeper:
             await player.send(f"{c['yellow']}{self.mob.name} says, 'I don't deal in that type of item.'{c['reset']}")
             return False
 
-        price = self.get_buy_price(item)
+        price = self.get_buy_price(item, player)
 
         # Check if shop has enough gold
         if self.gold < price:
@@ -195,6 +259,8 @@ class ShopKeeper:
     async def value_item(self, player: 'Player', item_name: str):
         """Tell player how much shop will pay for an item."""
         c = self.config.COLORS
+        if not await self.check_reputation_access(player):
+            return
 
         # Find item in player's inventory
         item = None
@@ -211,7 +277,7 @@ class ShopKeeper:
             await player.send(f"{c['yellow']}{self.mob.name} says, 'I don't deal in that type of item.'{c['reset']}")
             return
 
-        price = self.get_buy_price(item)
+        price = self.get_buy_price(item, player)
         await player.send(f"{c['cyan']}{self.mob.name} says, 'I'll give you {price} gold for {item.short_desc}.'{c['reset']}")
 
 

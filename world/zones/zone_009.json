@@ -6,7 +6,7 @@
     "900": {
       "vnum": 900,
       "name": "On The Swift Flowing River",
-      "description": "As the river exits the city of Midgaard it picks up speed and whisks you along high banks flanked by the trees of Haon-Dor.  As the city fades in the east, you approach a gloomy forest to the west.",
+      "description": "As the river exits the city of Midgaard it picks up speed and whisks you\nalong high banks flanked by the trees of Haon-Dor. As the city fades in\nthe east, you approach a gloomy forest to the west. The roar of water\nfills your ears. Waves crash and foam relentlessly.",
       "sector_type": "water_noswim",
       "flags": [],
       "exits": {
@@ -23,7 +23,7 @@
     "901": {
       "vnum": 901,
       "name": "The Riverbank",
-      "description": "The river is deep, and runs swiftly in an east-west direction.  To the north the river eddies and enters a backwash where a small bank extends down from a dark, thick stand of trees.  It doesn't look particulary inviting however.",
+      "description": "The river is deep, and runs swiftly in an east-west direction. To the\nnorth the river eddies and enters a backwash where a small bank extends\ndown from a dark, thick stand of trees. It doesn't look particulary\ninviting however. The roar of water fills your ears. The depths are dark\nand unknowable.",
       "sector_type": "water_noswim",
       "flags": [],
       "exits": {
@@ -44,7 +44,7 @@
     "902": {
       "vnum": 902,
       "name": "The Twisty Part Of The River",
-      "description": "The river twists and turns and nearly tosses you out of your boat. The water is dark, cold, almost reptilian in sheen.  It seems almost alive.  The river runs east and south.",
+      "description": "The river twists and turns and nearly tosses you out of your boat. The\nwater is dark, cold, almost reptilian in sheen. It seems almost alive.\nThe river runs east and south. Waves crash and foam relentlessly. The\nwater churns with dangerous currents.",
       "sector_type": "water_noswim",
       "flags": [],
       "exits": {
@@ -61,7 +61,7 @@
     "903": {
       "vnum": 903,
       "name": "The Scenic Route",
-      "description": "The dark forest of Haon-Dor recedes behind you to the northeast. The river continues in a westerly direction toward the river delta, where you can just make out a large island.",
+      "description": "The dark forest of Haon-Dor recedes behind to the northeast. The river\ncontinues in a westerly direction toward the river delta, where you can\njust make out a large island. The water churns with dangerous currents.\nWaves crash and foam relentlessly.",
       "sector_type": "water_noswim",
       "flags": [],
       "exits": {
@@ -78,7 +78,7 @@
     "904": {
       "vnum": 904,
       "name": "The Swift River Delta",
-      "description": "You are at the edge of the river delta, where the river empties out on its way to the sea.  The water here is Black.  Deep.  Dark. Deadly.  The tidal waves sweep you around and around up and down.",
+      "description": "This is the edge of the river delta, where the river empties out on its\nway to the sea. The water here is Black. Deep. Dark. Deadly. The tidal\nwaves sweep you around and around up and down. Spray mists the air\naround. The depths are dark and unknowable.",
       "sector_type": "water_noswim",
       "flags": [],
       "exits": {
@@ -103,7 +103,7 @@
     "905": {
       "vnum": 905,
       "name": "Near The Rocks",
-      "description": "You bob up and down in the waves comming dangerously close to some large, jagged rocks on the eastern shore of an unusual looking island. There is no way you could possibly land there without getting killed.",
+      "description": "You bob up and down in the waves comming dangerously close to some\nlarge, jagged rocks on the eastern shore of an unusual looking island.\nThere is no way you could possibly land there without getting killed.\nThe depths are dark and unknowable. Waves crash and foam relentlessly.",
       "sector_type": "water_noswim",
       "flags": [],
       "exits": {
@@ -120,7 +120,7 @@
     "906": {
       "vnum": 906,
       "name": "The South River Delta",
-      "description": "You are making your way along a channel in the river delta between the island to the west and the shore to the south and east.  To the south an aging broken down looking pier juts out from land and toward the west the channel works it way close to the island as it moves around its southern tip.",
+      "description": "The way leads along a channel in the river delta between the island to\nthe west and the shore to the south and east. To the south an aging\nbroken down looking pier juts out from land and toward the west the\nchannel works it way close to the island as it moves around its southern\ntip. Waves crash and foam relentlessly. Spray mists the air around.",
       "sector_type": "water_noswim",
       "flags": [],
       "exits": {
@@ -145,7 +145,7 @@
     "907": {
       "vnum": 907,
       "name": "The Pier",
-      "description": "You float next to a crumbling pier long since neglected. To the west the water gets sluggish and there are many weeds and some seaweed floating about.",
+      "description": "You float next to a crumbling pier long since neglected. To the west the\nwater gets sluggish and there are many weeds and some seaweed floating\nabout. The depths are dark and unknowable. Waves crash and foam\nrelentlessly.",
       "sector_type": "water_noswim",
       "flags": [],
       "exits": {
@@ -162,7 +162,7 @@
     "908": {
       "vnum": 908,
       "name": "Mired In Seaweed",
-      "description": "The going is rough here.  The tide struggles with the normal flow of the river and here near the edge of the sea there is a large amount of growth.  To the west the channel passes the southern tip of the island and heads for open waters.",
+      "description": "The going is rough here. The tide struggles with the normal flow of the\nriver and here near the edge of the sea there is a large amount of\ngrowth. To the west the channel passes the southern tip of the island\nand heads for open waters. Waves crash and foam relentlessly. The depths\nare dark and unknowable.",
       "sector_type": "water_noswim",
       "flags": [],
       "exits": {
@@ -193,7 +193,7 @@
     "909": {
       "vnum": 909,
       "name": "The Last Stop",
-      "description": "The delta meets the sea here.  To the west you see nothing but ocean on the horizon.  Sea birds squawk noisily at your approach and take flight from a nearby beach head on the island.  It looks as though this could be the last stop for those heading out to sea.",
+      "description": "The delta meets the sea here. To the west you see nothing but ocean on\nthe horizon. Sea birds squawk noisily at your approach and take flight\nfrom a nearby beach head on the island. It looks as though this could be\nthe last stop for those heading out to sea. The roar of water fills your\nears. Spray mists the air around.",
       "sector_type": "water_noswim",
       "flags": [],
       "exits": {
@@ -220,7 +220,7 @@
     "910": {
       "vnum": 910,
       "name": "The Beach Head",
-      "description": "This is a secluded looking beach on the southern tip of the island. There isn't much to see here and there is no way to cross the steep rocky cliffs that wall in this place.",
+      "description": "This is a secluded looking beach on the southern tip of the island.\nThere isn't much to see here and there is no way to cross the steep\nrocky cliffs that wall in this place. The air is fresh and clean. Tall\ngrass sways in a gentle breeze.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -249,7 +249,7 @@
     "911": {
       "vnum": 911,
       "name": "The North Channel",
-      "description": "The river splits as runs up against the island and a navigatble channel slips off to the north and west.",
+      "description": "The river splits as runs up against the island and a navigatble channel\nslips off to the north and west. The roar of water fills your ears. The\ndepths are dark and unknowable.",
       "sector_type": "water_noswim",
       "flags": [
         "no_mob"
@@ -272,7 +272,7 @@
     "912": {
       "vnum": 912,
       "name": "The North Channel",
-      "description": "The river current carries you swiftly westward as the channel begins to narrow as it squeezes past the north end of the island.",
+      "description": "The river current carries you swiftly westward as the channel begins to\nnarrow as it squeezes past the north end of the island. The roar of\nwater fills your ears. The water churns with dangerous currents.",
       "sector_type": "water_noswim",
       "flags": [],
       "exits": {
@@ -293,7 +293,7 @@
     "913": {
       "vnum": 913,
       "name": "Near The Isle",
-      "description": "You are sitting just off a small landing on the island that appears to be nothing more than a short path that leads to the side of a hill.",
+      "description": "The area opens just off a small landing on the island that appears to be\nnothing more than a short path that leads to the side of a hill. Spray\nmists the air around. The depths are dark and unknowable.",
       "sector_type": "water_noswim",
       "flags": [
         "no_mob"
@@ -312,7 +312,7 @@
     "914": {
       "vnum": 914,
       "name": "The Lane Of The Lying",
-      "description": "Bodies lie everywhere.  Commoner, peasant, duke, duchess.  The Gods will not hear you call here.  Hence they will not answer you.  To the south the path ends at a dark cave entrance. A sign has been posted beside the entrance.",
+      "description": "Bodies lie everywhere. Commoner, peasant, duke, duchess. The Gods will\nnot hear you call here. Hence they will not answer you. To the south the\npath ends at a dark cave entrance. A sign has been posted beside the\nentrance. Buildings crowd together on all sides. Vendors and pedestrians\nbustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -332,7 +332,7 @@
     "915": {
       "vnum": 915,
       "name": "The First Trial Of Minos",
-      "description": "Ah... you find yourself in Minos' battlefield playground.   Minos loves to torture his people through these places.  He collects the monsters of the world and puts them here.",
+      "description": "Ah... The passage opens in Minos' battlefield playground. Minos loves to\ntorture his people through these places. He collects the monsters of the\nworld and puts them here. The sounds of city life echo around. Buildings\ncrowd together on all sides.",
       "sector_type": "city",
       "flags": [
         "dark",
@@ -362,7 +362,7 @@
     "916": {
       "vnum": 916,
       "name": "The Second Trial Of Minos",
-      "description": "Minos' voice reveberates from the four walls of this room: 'Get some rest and make sure you're healed.  You'll need it for the next monster in my playground.  Or are you strong enough?'    To the south is the entrance to the next challenge of Minos' stronghold.",
+      "description": "Minos' voice reveberates from the four walls of this room: 'Get some\nrest and make sure you're healed. You'll need it for the next monster in\nmy playground. Or are you strong enough?' To the south is the entrance\nto the next challenge of Minos' stronghold. The cobblestones are worn\nsmooth by countless feet. Buildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [
         "dark",
@@ -388,7 +388,7 @@
     "917": {
       "vnum": 917,
       "name": "The Third Trial Of Minos",
-      "description": "You go inside a red room.  Very red.  As if the Minos King used them to disembowel his guests.  The path continues eastward.  You see blue lights in that direction.",
+      "description": "You go inside a red room. Very red. As if the Minos King used them to\ndisembowel his guests. The path continues eastward. You see blue lights\nin that direction. The ceiling hangs low overhead. The air is still and\nmusty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -410,7 +410,7 @@
     "918": {
       "vnum": 918,
       "name": "The Fourth Trial Of Minos",
-      "description": "Minos must be a monster hacking machine.  You see a blue light flicker on and off.  A voice crackles, 'WHY ARE YOU HERE!'",
+      "description": "Minos must be a monster hacking machine. You see a blue light flicker on\nand off. A voice crackles, 'WHY ARE YOU HERE!' The walls are rough-hewn\nand cold to the touch. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -432,7 +432,7 @@
     "919": {
       "vnum": 919,
       "name": "The Fifth Trial Of Minos",
-      "description": "This is General Woundwort's quarters.  Hraka abound.  The frayed corpses of rabbits lie scattered about this hell-hole.  The General is not a very neat person as you can tell.",
+      "description": "This is General Woundwort's quarters. Hraka abound. The frayed corpses\nof rabbits lie scattered about this hell-hole. The General is not a very\nneat person as you can tell. Dust motes drift in the stale air. The air\nis still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -454,7 +454,7 @@
     "920": {
       "vnum": 920,
       "name": "The Sixth Trial Of Minos",
-      "description": "Dare we surmise how many more rooms Minos has?  The paths appear to be endless.  You shudder the sounds of death cries from the east.  A loud voice bellows another warning: 'Leave now or face my wrath!' There is a crawlway leading upwards at the far end of the room and there is a fresh breeze comming from there.",
+      "description": "Dare we surmise how many more rooms Minos has? The paths appear to be\nendless. You shudder the sounds of death cries from the east. A loud\nvoice bellows another warning: 'Leave now or face my wrath!' There is a\ncrawlway leading upwards at the far end of the room and there is a fresh\nbreeze comming from there. Dust motes drift in the stale air. The walls\nare rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -484,7 +484,7 @@
     "921": {
       "vnum": 921,
       "name": "The Final Trial Of Minos",
-      "description": "This is Minos' room.  What else did you expect?  The room is lavishly decorated for this bovine king.  Everything is so opulent that it makes your eyes bulge.  Survive and reap his fortune!  The only exit is a large oak door in the east wall.",
+      "description": "This is Minos' room. What else did you expect? The room is lavishly\ndecorated for this bovine king. Everything is so opulent that it makes\nyour eyes bulge. Survive and reap his fortune! The only exit is a large\noak door in the east wall. The walls are rough-hewn and cold to the\ntouch. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -512,7 +512,7 @@
     "922": {
       "vnum": 922,
       "name": "The Royal Chamber",
-      "description": "The treasure room of Minos is dark save for your lantern. Hopefully it has not been looted yet by the many legendary thieves of Midgaard.  A clever looking secret passage leads upward from here.",
+      "description": "The treasure room of Minos is dark save for your lantern. Hopefully it\nhas not been looted yet by the many legendary thieves of Midgaard. A\nclever looking secret passage leads upward from here. The walls are\nrough-hewn and cold to the touch. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -539,7 +539,7 @@
     "923": {
       "vnum": 923,
       "name": "Above, On The Beach",
-      "description": "You sit amongst the rocks above a small beach at the southern end of the island.  You could clamber down easy enough, but getting back up would be another story.",
+      "description": "You sit amongst the rocks above a small beach at the southern end of the\nisland. You could clamber down easy enough, but getting back up would be\nanother story. Rocks jut from the grassy slopes. The view stretches for\nmiles in every direction.",
       "sector_type": "hills",
       "flags": [],
       "exits": {
@@ -558,11 +558,11 @@
       "long_desc": "The homba flits about.",
       "level": 4,
       "alignment": -100,
-      "hp_dice": "1d8+4",
-      "damage_dice": "2d10+40",
+      "hp_dice": "4d10+64",
+      "damage_dice": "2d4+3",
       "gold": 800,
-      "exp": 8,
-      "armor_class": 5,
+      "exp": 240,
+      "armor_class": 88,
       "flags": [
         "sentinel",
         "aggressive",
@@ -578,11 +578,11 @@
       "long_desc": "The greatest swordsman in the land is standing here with a sneer on his face.",
       "level": 7,
       "alignment": -400,
-      "hp_dice": "2d5+2",
-      "damage_dice": "3d10+80",
+      "hp_dice": "7d10+100",
+      "damage_dice": "2d5+6",
       "gold": 1625,
-      "exp": 8,
-      "armor_class": 3,
+      "exp": 420,
+      "armor_class": 79,
       "flags": [
         "sentinel",
         "aggressive",
@@ -601,11 +601,11 @@
       "long_desc": "The Mummy of Rabscuttle wanders here, hands aloft, walking towards you.",
       "level": 11,
       "alignment": -780,
-      "hp_dice": "2d6+2",
-      "damage_dice": "6d3+130",
+      "hp_dice": "11d10+148",
+      "damage_dice": "3d6+8",
       "gold": 5625,
-      "exp": 8,
-      "armor_class": 1,
+      "exp": 660,
+      "armor_class": 67,
       "flags": [
         "sentinel",
         "aggressive",
@@ -621,11 +621,11 @@
       "long_desc": "A giant lizard is here.",
       "level": 16,
       "alignment": 100,
-      "hp_dice": "3d4+5",
-      "damage_dice": "10d2+220",
+      "hp_dice": "16d10+208",
+      "damage_dice": "5d7+6",
       "gold": 13600,
-      "exp": 8,
-      "armor_class": 2,
+      "exp": 960,
+      "armor_class": 52,
       "flags": [
         "sentinel",
         "aggressive",
@@ -641,11 +641,11 @@
       "long_desc": "General Woundwort, the dark demon of Minos, awaits to maul you to shreds.",
       "level": 25,
       "alignment": -1000,
-      "hp_dice": "3d5+12",
-      "damage_dice": "10d8+520",
+      "hp_dice": "25d10+316",
+      "damage_dice": "7d8+8",
       "gold": 65000,
-      "exp": 8,
-      "armor_class": -1,
+      "exp": 1500,
+      "armor_class": 25,
       "flags": [
         "sentinel",
         "aggressive",
@@ -665,11 +665,11 @@
       "long_desc": "Franz, Minos' henchman, is here ready to pump you up.",
       "level": 12,
       "alignment": -300,
-      "hp_dice": "2d8+4",
-      "damage_dice": "5d10+120",
+      "hp_dice": "12d10+160",
+      "damage_dice": "4d6+6",
       "gold": 7500,
-      "exp": 8,
-      "armor_class": 4,
+      "exp": 720,
+      "armor_class": 64,
       "flags": [
         "sentinel",
         "aggressive",
@@ -688,11 +688,11 @@
       "long_desc": "Hanz is here flexing his muscles and squeezing grapefruits.",
       "level": 12,
       "alignment": -300,
-      "hp_dice": "2d8+4",
-      "damage_dice": "5d10+120",
+      "hp_dice": "12d10+160",
+      "damage_dice": "4d6+6",
       "gold": 7500,
-      "exp": 8,
-      "armor_class": 4,
+      "exp": 720,
+      "armor_class": 64,
       "flags": [
         "sentinel",
         "aggressive",
@@ -711,11 +711,11 @@
       "long_desc": "King Minos the Minotaur is ready and waiting to gore you to death.",
       "level": 26,
       "alignment": -1000,
-      "hp_dice": "4d6+10",
-      "damage_dice": "12d8+590",
+      "hp_dice": "26d10+328",
+      "damage_dice": "7d8+9",
       "gold": 80000,
-      "exp": 8,
-      "armor_class": -2,
+      "exp": 1560,
+      "armor_class": 22,
       "flags": [
         "sentinel",
         "aggressive",
@@ -738,11 +738,11 @@
       "long_desc": "A large dragon turtle breaks the surface churning the water into huge waves.",
       "level": 22,
       "alignment": -200,
-      "hp_dice": "1d20+5",
-      "damage_dice": "12d6+350",
+      "hp_dice": "22d10+280",
+      "damage_dice": "6d8+8",
       "gold": 45000,
-      "exp": 8,
-      "armor_class": -5,
+      "exp": 1320,
+      "armor_class": 34,
       "flags": [
         "aggressive",
         "stay_zone",
@@ -757,11 +757,11 @@
       "long_desc": "You notice the face of an ugly hag in the sea weeds.",
       "level": 4,
       "alignment": -700,
-      "hp_dice": "2d5+0",
-      "damage_dice": "4d4+35",
+      "hp_dice": "4d10+64",
+      "damage_dice": "2d4+3",
       "gold": 425,
-      "exp": 8,
-      "armor_class": 6,
+      "exp": 240,
+      "armor_class": 88,
       "flags": [
         "aggressive",
         "stay_zone"
@@ -775,11 +775,11 @@
       "long_desc": "There is a merman swimming here brandishing his trident at you!",
       "level": 5,
       "alignment": 350,
-      "hp_dice": "2d4+2",
-      "damage_dice": "5d5+65",
+      "hp_dice": "5d10+76",
+      "damage_dice": "2d5+3",
       "gold": 1250,
-      "exp": 8,
-      "armor_class": 5,
+      "exp": 300,
+      "armor_class": 85,
       "flags": [
         "sentinel",
         "aggressive",
@@ -801,11 +801,11 @@
       "long_desc": "A crusty looking crab is crawling around here searching for food.",
       "level": 2,
       "alignment": 0,
-      "hp_dice": "1d5+0",
-      "damage_dice": "5d2+25",
+      "hp_dice": "2d10+40",
+      "damage_dice": "1d4+2",
       "gold": 75,
-      "exp": 8,
-      "armor_class": 4,
+      "exp": 120,
+      "armor_class": 94,
       "flags": [
         "wimpy",
         "aggressive",

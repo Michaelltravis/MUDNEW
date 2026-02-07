@@ -102,15 +102,16 @@
       "short_desc": "A scaled dragon-kin warrior",
       "long_desc": "A humanoid with dragon features guards the path.",
       "level": 35,
-      "hp_dice": "15d10+150",
-      "damage_dice": "3d6+8",
+      "hp_dice": "35d10+436",
+      "damage_dice": "9d8+14",
       "gold": 100,
-      "exp": 4000,
+      "exp": 2100,
       "alignment": -500,
       "flags": [
         "aggressive"
       ],
-      "special": "firebreath"
+      "special": "firebreath",
+      "armor_class": -5
     },
     "8002": {
       "vnum": 8002,
@@ -118,31 +119,127 @@
       "short_desc": "A blazing fire elemental",
       "long_desc": "A vaguely humanoid shape of living flame crackles here.",
       "level": 30,
-      "hp_dice": "12d10+100",
-      "damage_dice": "3d8+6",
+      "hp_dice": "30d10+376",
+      "damage_dice": "8d8+11",
       "gold": 0,
-      "exp": 3000,
+      "exp": 1800,
       "alignment": 0,
       "flags": [
         "aggressive"
       ],
-      "special": "fireimmune"
+      "special": "fireimmune",
+      "armor_class": 10
     },
     "8003": {
       "vnum": 8003,
-      "name": "Scorathax the Ancient",
-      "short_desc": "Scorathax the Ancient Red Dragon",
-      "long_desc": "A dragon of immense size and terrible majesty coils before you.\nScales like blood-red shields cover its massive form. Eyes like \nmolten gold regard you with ancient cunning. Smoke curls from its\nnostrils as it speaks in a voice like thunder: \"You dare enter my \ndomain, mortal? Then face the flames of eternity!\"",
+      "name": "Scorathax the Red Dragon",
+      "short_desc": "Scorathax the Red Dragon",
+      "long_desc": "A colossal red dragon coils atop a mountain of gold, eyes blazing with fire.",
       "level": 50,
-      "hp_dice": "50d10+500",
-      "damage_dice": "5d10+15",
+      "hp_dice": "50d10+616",
+      "damage_dice": "13d8+18",
       "gold": 10000,
-      "exp": 50000,
+      "exp": 3000,
       "alignment": -500,
       "flags": [
+        "boss",
         "sentinel"
       ],
-      "special": "dragon"
+      "special": "dragon",
+      "boss": true,
+      "boss_id": "red_dragon",
+      "boss_title": "the Dragonslayer",
+      "boss_achievement": "boss_red_dragon",
+      "boss_loot_table": [
+        {
+          "vnum": 9003,
+          "chance": 100
+        },
+        {
+          "vnum": 9002,
+          "chance": 35
+        },
+        {
+          "vnum": 9001,
+          "chance": 35
+        },
+        {
+          "vnum": 9004,
+          "chance": 25
+        },
+        {
+          "vnum": 9005,
+          "chance": 25
+        },
+        {
+          "vnum": 9006,
+          "chance": 10
+        },
+        {
+          "vnum": 9007,
+          "chance": 10
+        },
+        {
+          "vnum": 9008,
+          "chance": 10
+        }
+      ],
+      "boss_loot_chance": 90,
+      "boss_config": {
+        "enrage_time": 120,
+        "enrage_multiplier": 1.8,
+        "ability_interval": 5.0,
+        "phases": [
+          {
+            "threshold": 70,
+            "message": "Scorathax spreads its wings and takes flight!",
+            "spawn_adds": {
+              "8001": 2
+            }
+          },
+          {
+            "threshold": 35,
+            "message": "Scorathax crashes back to the ground, scales exposed!"
+          }
+        ],
+        "abilities": [
+          {
+            "name": "Flame Breath",
+            "telegraph": "Scorathax rears back, heat building in its maw!",
+            "cast_time": 3,
+            "cooldown": 18,
+            "damage_dice": "6d6+12",
+            "aoe": true,
+            "dodge": true,
+            "vulnerable_after": 4
+          },
+          {
+            "name": "Tail Swipe",
+            "telegraph": "Scorathax pivots, tail sweeping low!",
+            "cast_time": 1,
+            "cooldown": 10,
+            "damage_dice": "3d8+6",
+            "dodge": true
+          },
+          {
+            "name": "Falling Rocks",
+            "telegraph": "The cavern ceiling cracks and begins to fall!",
+            "cast_time": 2,
+            "cooldown": 16,
+            "damage_dice": "4d6+8",
+            "aoe": true,
+            "dodge": true
+          }
+        ]
+      },
+      "armor_class": -10,
+      "equipment_rolls": [
+        {
+          "slot": "wield",
+          "vnum": 9002,
+          "chance": 50
+        }
+      ]
     }
   },
   "objects": {
@@ -200,6 +297,219 @@
       "type": "money",
       "weight": 1000,
       "cost": 100000
+    },
+    "83": {
+      "vnum": 83,
+      "name": "a dragonfang blade",
+      "short_desc": "a dragonfang blade",
+      "room_desc": "A blade carved from a dragon fang gleams here.",
+      "type": "weapon",
+      "weight": 7,
+      "cost": 3200,
+      "damage_dice": "3d6+3",
+      "weapon_type": "slash"
+    },
+    "84": {
+      "vnum": 84,
+      "name": "a scale-forged shield",
+      "short_desc": "a scale-forged shield",
+      "room_desc": "A shield of interlocking dragon scales rests here.",
+      "type": "armor",
+      "weight": 12,
+      "cost": 2800,
+      "armor": 18,
+      "wear_slot": "shield"
+    },
+    "85": {
+      "vnum": 85,
+      "name": "an emberheart talisman",
+      "short_desc": "an emberheart talisman",
+      "room_desc": "A talisman warm to the touch lies here.",
+      "type": "treasure",
+      "weight": 1,
+      "cost": 2500
+    },
+    "9001": {
+      "vnum": 9001,
+      "name": "cinderstring lute",
+      "short_desc": "\u001b[91ma cinderstring \u001b[95mlute\u001b[0m\u001b[91m\u001b[0m",
+      "room_desc": "\u001b[91mA cinderstring \u001b[95mlute\u001b[0m\u001b[91m rests here, warm to the touch.\u001b[0m",
+      "description": "A bardic lute strung with ember\u2011touched strings.",
+      "item_type": "weapon",
+      "wear_slot": "wield",
+      "weapon_type": "mace",
+      "damage_dice": "2d6+4",
+      "weight": 5,
+      "value": 12000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "cha",
+          "value": 2
+        },
+        {
+          "type": "int",
+          "value": 1
+        }
+      ]
+    },
+    "9002": {
+      "vnum": 9002,
+      "name": "flamebound greatsword",
+      "short_desc": "\u001b[91ma flamebound \u001b[91mgreatsword\u001b[0m\u001b[91m\u001b[0m",
+      "room_desc": "\u001b[91mA massive flamebound \u001b[91mgreatsword\u001b[0m\u001b[91m lies here.\u001b[0m",
+      "description": "A warrior\u2019s blade wreathed in faint heat.",
+      "item_type": "weapon",
+      "wear_slot": "wield",
+      "weapon_type": "slash",
+      "damage_dice": "3d6+6",
+      "weight": 15,
+      "value": 18000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 4
+        },
+        {
+          "type": "hitroll",
+          "value": 2
+        }
+      ]
+    },
+    "9003": {
+      "vnum": 9003,
+      "name": "scale of the red dragon",
+      "short_desc": "\u001b[91ma scale of the red dragon\u001b[0m",
+      "room_desc": "\u001b[91mA crimson dragon scale glints here.\u001b[0m",
+      "description": "A massive scale, still warm with draconic heat.",
+      "item_type": "armor",
+      "wear_slot": "neck1",
+      "armor_bonus": 4,
+      "weight": 2,
+      "value": 15000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "fire_resist",
+          "value": 10
+        }
+      ]
+    },
+    "9004": {
+      "vnum": 9004,
+      "name": "cinderstep cloak",
+      "short_desc": "\u001b[91mthe cinderstep cloak\u001b[0m",
+      "room_desc": "\u001b[91mA cloak of embers smolders here.\u001b[0m",
+      "description": "A dragon‑forged cloak that swallows light and muffles footsteps.",
+      "item_type": "armor",
+      "wear_slot": "back",
+      "armor_bonus": 3,
+      "weight": 2,
+      "value": 22000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "sneak",
+          "value": 8
+        },
+        {
+          "type": "no_track",
+          "value": 1
+        }
+      ]
+    },
+    "9005": {
+      "vnum": 9005,
+      "name": "wyrmfang gloves",
+      "short_desc": "\u001b[91mwyrmfang gloves\u001b[0m",
+      "room_desc": "\u001b[91mA pair of red‑scaled gloves lies here.\u001b[0m",
+      "description": "Gloves tipped with dragon‑tooth barbs, ideal for a killing thrust.",
+      "item_type": "armor",
+      "wear_slot": "hands",
+      "armor_bonus": 2,
+      "weight": 1,
+      "value": 24000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "backstab",
+          "value": 12
+        }
+      ]
+    },
+    "9006": {
+      "vnum": 9006,
+      "name": "gauntlets of the warlord",
+      "short_desc": "\u001b[91mgauntlets of the warlord\u001b[0m",
+      "room_desc": "\u001b[91mA pair of heavy gauntlets rests here.\u001b[0m",
+      "description": "Warlord gauntlets that empower crushing blows.",
+      "item_type": "armor",
+      "wear_slot": "hands",
+      "armor_bonus": 3,
+      "weight": 3,
+      "value": 26000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "bash",
+          "value": 10
+        }
+      ]
+    },
+    "9007": {
+      "vnum": 9007,
+      "name": "embercall pendant",
+      "short_desc": "\u001b[91mthe embercall pendant\u001b[0m",
+      "room_desc": "\u001b[91mA pendant of smoldering ember rests here.\u001b[0m",
+      "description": "A pendant that deepens the heat of fireball magic.",
+      "item_type": "armor",
+      "wear_slot": "neck1",
+      "armor_bonus": 1,
+      "weight": 1,
+      "value": 26000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "fireball",
+          "value": 12
+        }
+      ]
+    },
+    "9008": {
+      "vnum": 9008,
+      "name": "glacial torque",
+      "short_desc": "\u001b[94mthe glacial torque\u001b[0m",
+      "room_desc": "\u001b[94mA frost‑rimmed torque lies here.\u001b[0m",
+      "description": "A torque that sharpens the bite of ice spells.",
+      "item_type": "armor",
+      "wear_slot": "neck2",
+      "armor_bonus": 1,
+      "weight": 1,
+      "value": 26000,
+      "flags": [
+        "magic"
+      ],
+      "affects": [
+        {
+          "type": "ice_blast",
+          "value": 12
+        }
+      ]
     }
   }
 }

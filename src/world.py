@@ -4,6 +4,8 @@ RealmsMUD World
 World management - zones, rooms, mobs, objects.
 """
 
+import random
+
 import os
 import json
 import logging
@@ -32,6 +34,8 @@ class Room:
         self.flags = set()
         self.exits = {}  # direction -> {to_room, description, door, key}
         self.extra_descs = {}  # keyword -> description
+        self.hidden_items = []  # [{vnum, search_difficulty, requires_light, requires_detect_magic, reveal_message}, ...]
+        self.puzzles = []  # Puzzle definitions for this room
         
         # Contents
         self.characters = []  # Players and NPCs in room
@@ -44,7 +48,38 @@ class Room:
         
         self.config = Config()
         
-    async def show_to(self, player: 'Player'):
+    def is_dark(self, game_time: Optional[GameTime]) -> bool:
+        """Determine if the room is currently dark based on time/flags."""
+        if 'dark' in self.flags:
+            return True
+
+        if not game_time:
+            return False
+
+        if not game_time.is_night():
+            return False
+
+        # Outdoors sectors are dark at night
+        outdoor_sectors = {
+            'field', 'forest', 'hills', 'mountain', 'water_swim', 'water_noswim',
+            'flying', 'desert', 'swamp'
+        }
+        return self.sector_type in outdoor_sectors
+
+    def get_visible_exits(self, player: Optional['Player'] = None) -> Dict[str, dict]:
+        """Return exits visible to the player (hidden exits require discovery)."""
+        visible = {}
+        for direction, exit_data in self.exits.items():
+            if not exit_data:
+                continue
+            if exit_data.get('hidden'):
+                if player and hasattr(player, 'discovered_exits') and (self.vnum, direction) in player.discovered_exits:
+                    visible[direction] = exit_data
+            else:
+                visible[direction] = exit_data
+        return visible
+
+    async def show_to(self, player: 'Player', force_exits: bool = False):
         """Display the room to a player."""
         c = self.config.COLORS
 
@@ -53,18 +88,140 @@ class Room:
             await player.send("You can't see anything, you're sleeping!")
             return
 
+        # Day/night visibility check
+        game_time = None
+        if hasattr(player, 'world') and player.world:
+            game_time = player.world.game_time
+        is_too_dark = self.is_dark(game_time) and hasattr(player, 'can_see_in_dark') and not player.can_see_in_dark()
+        
+        if is_too_dark:
+            # In darkness: show only that it's dark and available exits (can feel walls)
+            await player.send(f"{c['blue']}It is pitch black. You can't see a thing.{c['reset']}")
+            # Still show exits - you can feel your way around
+            visible_exits = self.get_visible_exits(player)
+            exit_strings = []
+            for direction, exit_data in visible_exits.items():
+                if exit_data and 'door' in exit_data:
+                    door = exit_data['door']
+                    state = door.get('state', 'open')
+                    if state == 'closed':
+                        # Can feel a closed door but not see details
+                        exit_strings.append(f"{c['yellow']}{direction}[blocked]{c['green']}")
+                    else:
+                        exit_strings.append(direction)
+                else:
+                    exit_strings.append(direction)
+            if exit_strings:
+                await player.send(f"{c['green']}[ Exits: {' '.join(exit_strings)} ]{c['reset']}")
+            else:
+                await player.send(f"{c['yellow']}[ Exits: None ]{c['reset']}")
+            await player.send(f"{c['cyan']}Hint: Equip a light source or cast a light spell.{c['reset']}")
+            return
+
+        # Weather visibility effects (outdoors only)
+        outdoor_sectors = {
+            'field', 'forest', 'hills', 'mountain', 'water_swim', 'water_noswim',
+            'flying', 'desert', 'swamp'
+        }
+        if self.zone and self.sector_type in outdoor_sectors:
+            weather = self.zone.weather
+            if weather:
+                vision_mod = weather.get_vision_modifier()
+                if vision_mod < 0.6:
+                    await player.send(f"{c['blue']}Visibility is severely reduced by the weather.{c['reset']}")
+                    await player.send(f"{c['cyan']}{self.name}{c['reset']}")
+                    await player.send(f"{c['white']}You can barely make out your surroundings.{c['reset']}")
+                    visible_exits = self.get_visible_exits(player)
+                    exit_strings = []
+                    for direction, exit_data in visible_exits.items():
+                        if exit_data and 'door' in exit_data:
+                            door = exit_data['door']
+                            state = door.get('state', 'open')
+                            door_name = door.get('name', 'door')
+                            if state == 'closed':
+                                if door.get('locked'):
+                                    exit_strings.append(f"{c['red']}{direction}[{door_name}:locked]{c['green']}")
+                                elif door.get('picked'):
+                                    exit_strings.append(f"{c['yellow']}{direction}[{door_name}:picked]{c['green']}")
+                                else:
+                                    exit_strings.append(f"{c['yellow']}{direction}[{door_name}:closed]{c['green']}")
+                            else:
+                                exit_strings.append(direction)
+                        else:
+                            exit_strings.append(direction)
+                    if exit_strings:
+                        await player.send(f"{c['green']}[ Exits: {' '.join(exit_strings)} ]{c['reset']}")
+                    else:
+                        await player.send(f"{c['yellow']}[ Exits: None ]{c['reset']}")
+                    return
+                elif vision_mod < 1.0:
+                    await player.send(f"{c['blue']}Visibility is reduced by the weather.{c['reset']}")
+
         # Room name
         await player.send(f"{c['cyan']}{self.name}{c['reset']}")
         
-        # Description
-        await player.send(f"{c['white']}{self.description}{c['reset']}")
+        # Dynamic atmospheric description based on time/weather
+        try:
+            from atmosphere import AtmosphereManager
+            weather = self.zone.weather if self.zone else None
+            atmosphere = AtmosphereManager.get_atmosphere(self, game_time, weather)
+            if atmosphere:
+                await player.send(f"{c['blue']}{atmosphere}{c['reset']}")
+        except Exception:
+            pass
         
-        # Exits
-        exits = [d for d, e in self.exits.items() if e]
-        if exits:
-            await player.send(f"{c['green']}[ Exits: {' '.join(exits)} ]{c['reset']}")
+        # Description
+        desc = self.description or ""
+        if getattr(player, 'brief_mode', False):
+            # First sentence or 200 chars
+            sentences = desc.split('.')
+            if len(sentences) >= 2:
+                brief_desc = sentences[0] + '.' + sentences[1] + '.'
+            elif sentences and sentences[0]:
+                brief_desc = sentences[0] + '.'
+            else:
+                brief_desc = desc
+            if len(brief_desc) > 200:
+                brief_desc = brief_desc[:200] + '...'
+            await player.send(f"{c['white']}{brief_desc}{c['reset']}")
         else:
-            await player.send(f"{c['yellow']}[ Exits: None ]{c['reset']}")
+            await player.send(f"{c['white']}{desc}{c['reset']}")
+
+        # Puzzle prompts
+        try:
+            from puzzles import PuzzleManager
+            await PuzzleManager.announce_room_puzzles(player)
+        except Exception:
+            pass
+        
+        # Exits (only show if autoexit enabled or explicitly requested)
+        if force_exits or getattr(player, 'autoexit', False):
+            visible_exits = self.get_visible_exits(player)
+            exit_strings = []
+            for direction, exit_data in visible_exits.items():
+                if exit_data and 'door' in exit_data:
+                    door = exit_data['door']
+                    state = door.get('state', 'open')
+                    door_name = door.get('name', 'door')
+                    if state == 'closed':
+                        if door.get('locked'):
+                            # Red for locked
+                            exit_strings.append(f"{c['red']}{direction}[{door_name}:locked]{c['green']}")
+                        elif door.get('picked'):
+                            # Yellow for picked (closed but lock broken)
+                            exit_strings.append(f"{c['yellow']}{direction}[{door_name}:picked]{c['green']}")
+                        else:
+                            # Yellow for closed but unlocked
+                            exit_strings.append(f"{c['yellow']}{direction}[{door_name}:closed]{c['green']}")
+                    else:
+                        # Open door - show in normal color
+                        exit_strings.append(direction)
+                else:
+                    exit_strings.append(direction)
+            if exit_strings:
+                await player.send(f"{c['green']}[ Exits: {' '.join(exit_strings)} ]{c['reset']}")
+            else:
+                await player.send(f"{c['yellow']}[ Exits: None ]{c['reset']}")
             
         # Gold in room
         if self.gold > 0:
@@ -76,40 +233,102 @@ class Room:
         # Items in room
         for item in self.items:
             await player.send(f"{c['yellow']}{item.room_desc}{c['reset']}")
+
+        # Display case for collections in player housing
+        try:
+            from housing import HouseManager
+            if HouseManager.in_house(player):
+                from collection_system import CollectionManager
+                case_lines = CollectionManager.get_display_case_lines(player)
+                for line in case_lines:
+                    await player.send(line)
+        except Exception:
+            pass
             
         # Characters in room (excluding player)
         for char in self.characters:
             if char != player:
                 fighting_msg = ""
-                # Check if this character is fighting the player
-                if hasattr(char, 'fighting') and char.fighting == player:
-                    fighting_msg = f" {c['red']}(Fighting YOU!){c['reset']}"
-                # Check if player is fighting this character
+                # CircleMUD-style: show who this character is fighting
+                if hasattr(char, 'fighting') and char.fighting:
+                    if char.fighting == player:
+                        fighting_msg = f" {c['red']}[fighting YOU!]{c['reset']}"
+                    else:
+                        fighting_msg = f" {c['yellow']}[fighting {char.fighting.name}]{c['reset']}"
+                # Also note if player is fighting this character
                 elif hasattr(player, 'fighting') and player.fighting == char:
-                    fighting_msg = f" {c['yellow']}(You are fighting this!){c['reset']}"
+                    fighting_msg = f" {c['red']}[your target]{c['reset']}"
 
-                if hasattr(char, 'long_desc'):
-                    await player.send(f"{c['bright_cyan']}{char.long_desc}{fighting_msg}{c['reset']}")
+                # Check if player has labeled this character
+                label_msg = ""
+                if hasattr(player, 'target_labels') and player.target_labels:
+                    for label_name, labeled_char in player.target_labels.items():
+                        if labeled_char == char:
+                            label_msg = f" {c['bright_yellow']}({label_name}){c['reset']}"
+                            break
+
+                # Color pets/summons differently from regular NPCs
+                if hasattr(char, 'owner') and char.owner:
+                    # This is a pet/summon - use magenta
+                    if char.owner == player:
+                        char_color = c['bright_magenta']  # Your pets
+                        owner_tag = f" {c['green']}(yours){c['reset']}"
+                    else:
+                        char_color = c['magenta']  # Other player's pets
+                        owner_tag = f" {c['yellow']}({char.owner.name}'s){c['reset']}"
                 else:
-                    await player.send(f"{c['bright_cyan']}{char.name} is standing here.{fighting_msg}{c['reset']}")
+                    char_color = c['bright_cyan']  # Regular NPCs
+                    owner_tag = ""
 
-                # Show active debuffs/buffs on the character
+                # Randomly visible sneaking mobs
+                sneak_indicator = ""
+                try:
+                    flags = getattr(char, 'flags', set())
+                    if 'sneaking' in flags and char != player:
+                        perc = player.get_perception() if hasattr(player, 'get_perception') else 10
+                        # Harder to see sneaking characters
+                        if random.randint(1, 100) > min(95, 30 + perc * 2):
+                            continue
+                        # If we can see them, show they're sneaking
+                        sneak_indicator = f" {c['bright_black']}(sneaking){c['reset']}"
+                except Exception:
+                    pass
+                
+                # Build the character description line
+                if hasattr(char, 'fighting') and char.fighting:
+                    # CircleMUD style: replace desc with fighting message
+                    if char.fighting == player:
+                        desc = f"{char.name} is here, fighting YOU!"
+                        await player.send(f"{c['red']}{desc}{owner_tag}{label_msg}{sneak_indicator}{c['reset']}")
+                    else:
+                        desc = f"{char.name} is here, fighting {char.fighting.name}."
+                        await player.send(f"{char_color}{desc}{owner_tag}{label_msg}{sneak_indicator}{c['reset']}")
+                elif hasattr(char, 'long_desc'):
+                    await player.send(f"{char_color}{char.long_desc}{owner_tag}{label_msg}{fighting_msg}{sneak_indicator}{c['reset']}")
+                else:
+                    await player.send(f"{char_color}{char.name} is standing here.{owner_tag}{label_msg}{fighting_msg}{sneak_indicator}{c['reset']}")
+
+                # Show active debuffs/buffs on the character (limited, flavorful)
                 if hasattr(char, 'affects') and char.affects:
                     debuff_messages = []
                     for affect in char.affects:
                         if affect.type == 'dot' and affect.name == 'poison':
-                            debuff_messages.append(f"{c['green']}{char.name} is poisoned!{c['reset']}")
+                            debuff_messages.append(f"{c['green']}{char.name} looks sick and pale.{c['reset']}")
                         elif affect.type == 'flag':
                             if affect.applies_to == 'blind':
-                                debuff_messages.append(f"{c['yellow']}{char.name} is blinded!{c['reset']}")
+                                debuff_messages.append(f"{c['yellow']}{char.name} seems blinded.{c['reset']}")
                             elif affect.applies_to == 'silenced':
-                                debuff_messages.append(f"{c['magenta']}{char.name} is silenced!{c['reset']}")
+                                debuff_messages.append(f"{c['magenta']}{char.name} is unnaturally quiet.{c['reset']}")
                             elif affect.applies_to == 'sanctuary':
-                                debuff_messages.append(f"{c['white']}{char.name} is protected by sanctuary!{c['reset']}")
+                                debuff_messages.append(f"{c['white']}{char.name} glows with a holy aura.{c['reset']}")
+                            elif affect.applies_to == 'fly':
+                                debuff_messages.append(f"{c['cyan']}{char.name} is levitating above the ground.{c['reset']}")
+                            elif affect.applies_to == 'stoneskin':
+                                debuff_messages.append(f"{c['white']}{char.name}'s skin looks like stone.{c['reset']}")
                             elif affect.applies_to == 'invisible':
                                 # Don't show if the viewer can't detect invisible
                                 if hasattr(player, 'affect_flags') and 'detect_invisible' in player.affect_flags:
-                                    debuff_messages.append(f"{c['cyan']}{char.name} is invisible!{c['reset']}")
+                                    debuff_messages.append(f"{c['cyan']}{char.name} shimmers faintly in the air.{c['reset']}")
                         elif affect.type == 'modify_stat':
                             if affect.name == 'weakened':
                                 debuff_messages.append(f"{c['red']}{char.name} looks weakened!{c['reset']}")
@@ -119,11 +338,14 @@ class Room:
                     for msg in debuff_messages:
                         await player.send(msg)
                     
-    async def send_to_room(self, message: str, exclude: List = None):
-        """Send a message to everyone in the room."""
+    async def send_to_room(self, message: str, exclude: List = None, wake_sleepers: bool = False):
+        """Send a message to everyone in the room (sleeping players don't see messages unless wake_sleepers=True)."""
         exclude = exclude or []
         for char in self.characters:
             if char not in exclude and hasattr(char, 'send'):
+                # Skip sleeping players unless it's important enough to wake them
+                if not wake_sleepers and getattr(char, 'position', 'standing') == 'sleeping':
+                    continue
                 await char.send(message)
                 
     def get_exit(self, direction: str) -> Optional['Room']:
@@ -135,15 +357,25 @@ class Room:
         
     def to_dict(self) -> dict:
         """Convert room to dictionary for saving."""
+        exits = {}
+        for d, e in self.exits.items():
+            if not e:
+                continue
+            ex = dict(e)
+            # Remove runtime-only references
+            if 'room' in ex:
+                ex.pop('room')
+            exits[d] = ex
         return {
             'vnum': self.vnum,
             'name': self.name,
             'description': self.description,
             'sector_type': self.sector_type,
             'flags': list(self.flags),
-            'exits': {d: {'to_room': e.get('to_room'), 'description': e.get('description')}
-                     for d, e in self.exits.items()},
+            'exits': exits,
             'extra_descs': self.extra_descs,
+            'hidden_items': self.hidden_items,
+            'puzzles': self.puzzles,
             'mob_resets': self.mob_resets,
             'obj_resets': self.obj_resets,
         }
@@ -156,8 +388,47 @@ class Room:
         room.description = data.get('description', '')
         room.sector_type = data.get('sector_type', 'inside')
         room.flags = set(data.get('flags', []))
-        room.exits = {d: e for d, e in data.get('exits', {}).items()}
+        
+        # Process exits and convert flag-based door format to door objects
+        room.exits = {}
+        for direction, exit_data in data.get('exits', {}).items():
+            if exit_data:
+                # Copy the exit data
+                processed_exit = dict(exit_data)
+                
+                # Check for door flags and convert to door object
+                exit_flags = list(exit_data.get('flags', []))  # Make a copy
+                if 'door' in exit_flags or exit_data.get('door'):
+                    # Has a door - create door object if not exists
+                    if 'door' not in processed_exit or not isinstance(processed_exit.get('door'), dict):
+                        door_name = exit_data.get('keyword', 'door').split()[0] if exit_data.get('keyword') else 'door'
+                        processed_exit['door'] = {
+                            'name': door_name,
+                            'state': 'closed' if 'closed' in exit_flags else 'open',
+                            'locked': 'locked' in exit_flags,
+                            'pickproof': 'pickproof' in exit_flags,
+                            'key': exit_data.get('key'),
+                        }
+                    else:
+                        # Door object exists, ensure it has proper state from flags
+                        door = processed_exit['door']
+                        if 'closed' in exit_flags and door.get('state') != 'open':
+                            door['state'] = 'closed'
+                        if 'locked' in exit_flags:
+                            door['locked'] = True
+                    
+                    # Remove door-related flags since they're now in the door object
+                    # This prevents the flags from overriding the door object state
+                    for flag in ['door', 'closed', 'locked', 'pickproof']:
+                        if flag in exit_flags:
+                            exit_flags.remove(flag)
+                    processed_exit['flags'] = exit_flags
+                
+                room.exits[direction] = processed_exit
+        
         room.extra_descs = data.get('extra_descs', {})
+        room.hidden_items = data.get('hidden_items', [])
+        room.puzzles = data.get('puzzles', [])
         room.mob_resets = data.get('mob_resets', [])
         room.obj_resets = data.get('obj_resets', [])
         return room
@@ -269,6 +540,13 @@ class World:
             
         # Link room exits
         self.link_exits()
+
+        # Seed puzzles
+        try:
+            from puzzles import PuzzleManager
+            PuzzleManager.seed_world(self)
+        except Exception:
+            pass
         
         # Reset zones (spawn mobs and objects)
         await self.reset_all_zones()
@@ -300,13 +578,26 @@ class World:
             logger.error(f"Error loading zone file {filepath}: {e}")
             
     def link_exits(self):
-        """Link room exits to actual room objects."""
+        """Link room exits to actual room objects and ensure doors exist on both sides."""
+        from config import Config
+        config = Config()
+        
         for room in self.rooms.values():
             for direction, exit_data in room.exits.items():
                 if exit_data and 'to_room' in exit_data:
                     target_vnum = exit_data['to_room']
                     if target_vnum in self.rooms:
-                        exit_data['room'] = self.rooms[target_vnum]
+                        target_room = self.rooms[target_vnum]
+                        exit_data['room'] = target_room
+                        
+                        # If this exit has a door, ensure the other side has it too
+                        if 'door' in exit_data and exit_data['door']:
+                            opposite = config.DIRECTIONS.get(direction, {}).get('opposite')
+                            if opposite and opposite in target_room.exits:
+                                other_exit = target_room.exits[opposite]
+                                if other_exit and 'door' not in other_exit:
+                                    # Copy the door to the other side
+                                    other_exit['door'] = dict(exit_data['door'])
                         
     async def create_default_world(self):
         """Create a default fantasy world."""
@@ -321,7 +612,7 @@ class World:
             
     async def reset_zone(self, zone: Zone):
         """Reset a single zone."""
-        from mobs import Mobile
+        from bosses import create_mob_from_prototype
         from objects import create_object
         
         for room in zone.rooms.values():
@@ -338,7 +629,7 @@ class World:
                 if current < max_count:
                     proto = self.mob_prototypes.get(mob_vnum)
                     if proto:
-                        mob = Mobile.from_prototype(proto, self)
+                        mob = create_mob_from_prototype(proto, self)
                         mob.room = room
                         mob.home_room = room  # Set home room for AI
                         mob.home_zone = zone.number  # Set home zone for movement restrictions
@@ -372,9 +663,15 @@ class World:
         # Spawn persistent companions
         if hasattr(player, 'companions') and player.companions:
             from pets import Pet
+            from companions import Companion
             for companion in player.companions:
                 if isinstance(companion, Pet) and companion.is_persistent:
                     # Add companion to world
+                    companion.room = player.room
+                    player.room.characters.append(companion)
+                    self.npcs.append(companion)
+                    logger.info(f"Spawned companion: {companion.name} for {player.name}")
+                elif isinstance(companion, Companion):
                     companion.room = player.room
                     player.room.characters.append(companion)
                     self.npcs.append(companion)
@@ -387,8 +684,15 @@ class World:
         # Remove persistent companions from world (but keep in player's companion list)
         if hasattr(player, 'companions') and player.companions:
             from pets import Pet
+            from companions import Companion
             for companion in player.companions:
                 if isinstance(companion, Pet) and companion.is_persistent:
+                    if companion.room and companion in companion.room.characters:
+                        companion.room.characters.remove(companion)
+                    if companion in self.npcs:
+                        self.npcs.remove(companion)
+                    logger.info(f"Removed companion: {companion.name} for {player.name}")
+                elif isinstance(companion, Companion):
                     if companion.room and companion in companion.room.characters:
                         companion.room.characters.remove(companion)
                     if companion in self.npcs:
@@ -413,6 +717,23 @@ class World:
 
         # Process player combat
         for player in list(self.players.values()):
+            # If mobs are attacking the player, set fighting target to one of them
+            if not player.is_fighting and player.room:
+                attackers = [ch for ch in player.room.characters if hasattr(ch, 'fighting') and ch.fighting == player]
+                if attackers:
+                    player.fighting = attackers[0]
+                    player.position = 'fighting'
+                elif player.position == 'fighting':
+                    # Clear stuck combat state
+                    player.position = 'standing'
+
+            # Autoattack if enabled
+            if getattr(player, 'autoattack', False) and not player.is_fighting:
+                target = getattr(player, 'target', None)
+                if target and player.room and target in player.room.characters:
+                    if not hasattr(target, 'connection') and 'peaceful' not in player.room.flags:
+                        await CombatHandler.start_combat(player, target)
+
             if player.is_fighting:
                 # Check if target is still valid
                 if player.fighting is None or player.fighting.hp <= 0 or player.fighting not in player.room.characters:
@@ -420,6 +741,9 @@ class World:
                     player.position = 'standing'
                     continue
                 await CombatHandler.one_round(player, player.fighting)
+                # Send prompt after combat round so player always sees HP
+                if hasattr(player, 'connection') and player.connection:
+                    await player.connection.send_prompt()
 
         # Process NPC combat
         for npc in list(self.npcs):
@@ -431,8 +755,19 @@ class World:
                     continue
                 await CombatHandler.one_round(npc, npc.fighting)
                 
+    async def affect_tick(self):
+        """Process DOT/HOT effects and decrement durations."""
+        from affects import AffectManager
+
+        for player in self.players.values():
+            await AffectManager.tick_affects(player)
+
+        for npc in self.npcs:
+            if hasattr(npc, 'affects'):
+                await AffectManager.tick_affects(npc)
+
     async def poison_tick(self):
-        """Process poison damage for all characters (runs every 2.5 seconds)."""
+        """Process poison damage for all characters (faster tick)."""
         from affects import AffectManager
 
         for player in self.players.values():
@@ -445,13 +780,23 @@ class World:
 
     async def regen_tick(self):
         """Process regeneration for all characters."""
+        c = Config().COLORS
         for player in self.players.values():
             await player.regen_tick()
+            # Notify players with tick notifications enabled
+            if getattr(player, 'show_ticks', False):
+                await player.send(f"{c['cyan']}[TICK - Regen]{c['reset']}")
 
         for npc in self.npcs:
             if hasattr(npc, 'regen_tick'):
                 await npc.regen_tick()
-                
+
+    async def minor_regen_tick(self):
+        """Process small between-tick regeneration for all characters."""
+        for player in self.players.values():
+            if hasattr(player, 'minor_regen_tick'):
+                await player.minor_regen_tick()
+
     async def zone_reset_tick(self):
         """Check and reset zones as needed."""
         for zone in self.zones.values():
@@ -470,6 +815,7 @@ class World:
     async def time_tick(self):
         """Process game time advancement."""
         old_hour = self.game_time.hour
+        old_day = (self.game_time.year, self.game_time.month, self.game_time.day)
 
         # Advance time by 1 second
         self.game_time.advance_tick(1)
@@ -484,6 +830,46 @@ class World:
                 for player in self.players.values():
                     await player.send(f"\r\n{c['yellow']}{announcement}{c['reset']}\r\n")
                 logger.info(f"Time: {self.game_time.get_time_string()}")
+            
+            # Process hunger/thirst for all players (every game hour)
+            c = self.config.COLORS
+            for player in self.players.values():
+                # Decrement hunger (1 per game hour)
+                if hasattr(player, 'hunger') and player.hunger > 0:
+                    player.hunger -= 1
+                    if player.hunger == 20:
+                        await player.send(f"\r\n{c['yellow']}You are getting hungry.{c['reset']}\r\n")
+                    elif player.hunger == 10:
+                        await player.send(f"\r\n{c['bright_yellow']}You are hungry!{c['reset']}\r\n")
+                    elif player.hunger == 5:
+                        await player.send(f"\r\n{c['red']}You are very hungry!{c['reset']}\r\n")
+                    elif player.hunger == 0:
+                        await player.send(f"\r\n{c['bright_red']}You are STARVING! Find food soon!{c['reset']}\r\n")
+                
+                # Decrement thirst (1 per game hour)
+                if hasattr(player, 'thirst') and player.thirst > 0:
+                    player.thirst -= 1
+                    if player.thirst == 15:
+                        await player.send(f"\r\n{c['yellow']}You are getting thirsty.{c['reset']}\r\n")
+                    elif player.thirst == 8:
+                        await player.send(f"\r\n{c['bright_yellow']}You are thirsty!{c['reset']}\r\n")
+                    elif player.thirst == 3:
+                        await player.send(f"\r\n{c['red']}You are very thirsty!{c['reset']}\r\n")
+                    elif player.thirst == 0:
+                        await player.send(f"\r\n{c['bright_red']}You are DYING OF THIRST! Find water!{c['reset']}\r\n")
+            
+            # Process NPC schedules (shopkeepers open/close, etc.)
+            try:
+                from npc_schedules import schedule_tick
+                await schedule_tick(self)
+            except Exception as e:
+                logger.debug(f"NPC schedule error: {e}")
+
+        # Daily upkeep for companions
+        new_day = (self.game_time.year, self.game_time.month, self.game_time.day)
+        if new_day != old_day:
+            from companions import CompanionManager
+            await CompanionManager.apply_daily_upkeep(self)
 
     async def weather_tick(self):
         """Process weather updates for all zones."""

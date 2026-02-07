@@ -1,1755 +1,81 @@
 {
-  "number": 60,
-  "name": "Haon-Dor, Light Forest",
   "lifespan": 13,
-  "rooms": {
-    "6000": {
-      "vnum": 6000,
-      "name": "The Edge Of The Forest",
-      "description": "You are standing at the end of a dusty road, near the eastern edge of the large forest of Haon-Dor.  To the east you see the road heading back to the walled city, Midgaard, and to the west is a narrow trail leading through the forest.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6090,
-          "description": "To the east a dusty road takes you back to the walls of Midgaard, and its large west gate."
-        },
-        "west": {
-          "to_room": 6001,
-          "description": "You see a narrow forest trail winding westward in between the trees."
-        },
-        "north": {
-          "to_room": 11000,
-          "description": "You see an exit north."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "obj_resets": [
-        {
-          "vnum": 6012,
-          "max": 1
-        }
-      ]
-    },
-    "6001": {
-      "vnum": 6001,
-      "name": "A Trail Through The Light Forest",
-      "description": "You are on a trail leading through the forest.  There seems to be a small path leading north into the shadows.  To the east is the forest edge and to the west the trail leads further into the forest.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6060,
-          "description": "You see evidence of a small path leading through a break in the trees to the north."
-        },
-        "east": {
-          "to_room": 6000,
-          "description": "The trail continues eastwards out of the forest."
-        },
-        "west": {
-          "to_room": 6002,
-          "description": "You see the narrow forest trail winding westwards in between the trees."
-        }
-      },
-      "extra_descs": {
-        "": "birds insects animals"
-      }
-    },
-    "6002": {
-      "vnum": 6002,
-      "name": "A Trail Through The Light Forest",
-      "description": "You are on a narrow trail winding east and west through the forest.  To the west, the forest gradually becomes more dense.  A small forest path leads off to the south.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6001,
-          "description": "The trail continues eastwards through the young trees."
-        },
-        "south": {
-          "to_room": 6011,
-          "description": "The small path leads south through the young trees."
-        },
-        "west": {
-          "to_room": 6003,
-          "description": "You see the narrow forest trail winding westwards into the dense forest."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      }
-    },
-    "6003": {
-      "vnum": 6003,
-      "name": "A Trail Through The Dense Forest",
-      "description": "You are on a trail winding east and west through the dense forest.  To the east, the forest gradually seems to become lighter.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6002,
-          "description": "The trail continues eastwards to the younger part of the forest."
-        },
-        "west": {
-          "to_room": 6004,
-          "description": "You see the narrow trail winding westwards through the dense forest."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6012,
-          "max": 7
-        }
-      ]
-    },
-    "6004": {
-      "vnum": 6004,
-      "name": "A Trail Through The Dense Forest",
-      "description": "You are on a trail winding east and west through the dense forest.  To the west, the trees are so huge and their crowns so dense that forest remains in total darkness.  A small path leads south through the trees.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6003,
-          "description": "The trail continues eastwards through the dense forest."
-        },
-        "south": {
-          "to_room": 6005,
-          "description": "The small path leads south through the trees."
-        },
-        "west": {
-          "to_room": 6100,
-          "description": "The narrow trail almost seems to disappear between the enormous trunks."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      }
-    },
-    "6005": {
-      "vnum": 6005,
-      "name": "A Small Path In The Dense Forest",
-      "description": "You are on a small path leading through the dense forest.  The crowns of the old trees leave the forest in an unreal twilight illumination.  The path continues north and south.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6004,
-          "description": "The small path leads north through the trees."
-        },
-        "south": {
-          "to_room": 6006,
-          "description": "The small path leads south through the trees."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6008,
-          "max": 4
-        }
-      ]
-    },
-    "6006": {
-      "vnum": 6006,
-      "name": "A Small Path In The Dense Forest",
-      "description": "You are on a small path leading through the dense forest.  The crowns of the old trees leave the forest in an unreal twilight illumination.  The path continues north and east.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6005,
-          "description": "The small path leads north through the trees."
-        },
-        "east": {
-          "to_room": 6007,
-          "description": "The small path leads east through the trees."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "obj_resets": [
-        {
-          "vnum": 6011,
-          "max": 10
-        },
-        {
-          "vnum": 6014,
-          "max": 5
-        }
-      ]
-    },
-    "6007": {
-      "vnum": 6007,
-      "name": "An Intersection In The Dense Forest",
-      "description": "You are on a small path leading through the dense forest.  The crowns of the old trees leave the forest in an unreal twilight illumination.  The forest gradually lightens to the east.  Paths lead east, west and south.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6008,
-          "description": "You can barely make out a clearing to the east."
-        },
-        "south": {
-          "to_room": 6012,
-          "description": "The small path leads south through the trees."
-        },
-        "west": {
-          "to_room": 6006,
-          "description": "The small path leads west through the trees."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6012,
-          "max": 7
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 6014,
-          "max": 5
-        }
-      ]
-    },
-    "6008": {
-      "vnum": 6008,
-      "name": "The Forest Clearing",
-      "description": "You are in a clearing in the forest.  Lots of fresh stumps of varying sizes protrude from the ground and heavy logs are stacked neatly in a big pile supported by stakes set into the ground.  Paths lead north, east and west.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6011,
-          "description": "The small path leads north through the trees."
-        },
-        "east": {
-          "to_room": 6009,
-          "description": "The small path leads east through the trees."
-        },
-        "west": {
-          "to_room": 6007,
-          "description": "The small path leads west through the trees."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees",
-        "ven though the logs have been chopped to shorter pieces, they are quite heavy": "as they are fresh and still filled with sap."
-      },
-      "obj_resets": [
-        {
-          "vnum": 6014,
-          "max": 5
-        }
-      ]
-    },
-    "6009": {
-      "vnum": 6009,
-      "name": "Outside A Small Cabin In The Forest",
-      "description": "You are outside a small cabin built entirely from heavy logs.  There is a wooden door to the north and small paths lead west and south through the trees.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6010,
-          "description": "The wooden door is quite sturdy but does not appear to be equipped with a lock.",
-          "door": {
-            "name": "door wooden",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "south": {
-          "to_room": 6014,
-          "description": "The small path leads south through the dense forest."
-        },
-        "west": {
-          "to_room": 6008,
-          "description": "The small path leads west through the light forest."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6000,
-          "max": 1
-        }
-      ]
-    },
-    "6011": {
-      "vnum": 6011,
-      "name": "A Small Path Through The Light Forest",
-      "description": "You are on a small path leading through the forest.  The trees are tall and slender.  Paths lead north and south.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6002,
-          "description": "The path leads north through the young trees."
-        },
-        "south": {
-          "to_room": 6008,
-          "description": "The path leads south through the young trees."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      }
-    },
-    "6012": {
-      "vnum": 6012,
-      "name": "An Intersection In The Dense Forest",
-      "description": "You are on a small path leading through the dense forest.  The crowns of the old trees leave the forest floor in an unreal twilight illumination.  Paths lead north, east and south.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6007,
-          "description": "The small path leads north through the trees."
-        },
-        "east": {
-          "to_room": 6013,
-          "description": "The small path leads east through the trees."
-        },
-        "south": {
-          "to_room": 6021,
-          "description": "The small path leads south through the trees."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6001,
-          "max": 6
-        }
-      ]
-    },
-    "6013": {
-      "vnum": 6013,
-      "name": "A Small Path In The Dense Forest",
-      "description": "You are on a small path leading through the dense forest.  The crowns of the old trees leave the forest in an unreal twilight illumination.  The path continues east and west.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6014,
-          "description": "The small path leads east through the trees."
-        },
-        "west": {
-          "to_room": 6012,
-          "description": "The small path leads west through the trees."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "obj_resets": [
-        {
-          "vnum": 6011,
-          "max": 10
-        },
-        {
-          "vnum": 6014,
-          "max": 5
-        }
-      ],
-      "mob_resets": [
-        {
-          "vnum": 6008,
-          "max": 4
-        },
-        {
-          "vnum": 6009,
-          "max": 4
-        }
-      ]
-    },
-    "6014": {
-      "vnum": 6014,
-      "name": "An Intersection In The Dense Forest",
-      "description": "You are on a small path leading through the dense forest.  The forest gradually lightens to the north.  Paths lead north, east and west.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6009,
-          "description": "The path leads north to a lighter part of the forest."
-        },
-        "east": {
-          "to_room": 6015,
-          "description": "The small path leads east through the trees."
-        },
-        "west": {
-          "to_room": 6013,
-          "description": "The small path leads west through the trees."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6005,
-          "max": 4
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 6014,
-          "max": 5
-        }
-      ]
-    },
-    "6015": {
-      "vnum": 6015,
-      "name": "A Small Path In The Dense Forest",
-      "description": "You are on a small path leading through the dense forest.  The crowns of the old trees leave the forest in an unreal twilight illumination.  The path continues south and west.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6016,
-          "description": "The small path leads south through the trees."
-        },
-        "west": {
-          "to_room": 6014,
-          "description": "The small path leads west through the trees."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6001,
-          "max": 6
-        }
-      ]
-    },
-    "6016": {
-      "vnum": 6016,
-      "name": "A Small Path In The Dense Forest",
-      "description": "You are on a small path leading through the dense forest.  The crowns of the old trees leave the forest in an unreal twilight illumination.  The path continues north, south and east.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6015,
-          "description": "The small path leads north through the trees."
-        },
-        "east": {
-          "to_room": 6028,
-          "description": "The small path leads east through the trees."
-        },
-        "south": {
-          "to_room": 6017,
-          "description": "The small path leads south through the trees."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "obj_resets": [
-        {
-          "vnum": 6011,
-          "max": 10
-        }
-      ],
-      "mob_resets": [
-        {
-          "vnum": 6009,
-          "max": 4
-        }
-      ]
-    },
-    "6017": {
-      "vnum": 6017,
-      "name": "A Small Path In The Dense Forest",
-      "description": "You are at a turn on a small path leading through the dense forest.  The forest seems to become lighter to the west.  The path continues north and west.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6016,
-          "description": "The small path leads north through the trees."
-        },
-        "west": {
-          "to_room": 6018,
-          "description": "The small path leads west through the trees to a lighter part of the forest."
-        }
-      },
-      "extra_descs": {
-        "": "up branches branch large"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6001,
-          "max": 6
-        }
-      ]
-    },
-    "6018": {
-      "vnum": 6018,
-      "name": "An Intersection In The Light Forest",
-      "description": "You are on a small path leading through the forest.  A path leads north to a small field and other paths lead east and west into the dense forest.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6023,
-          "description": "The path leads north to a small, grassy field."
-        },
-        "east": {
-          "to_room": 6017,
-          "description": "The path leads east to a dense part of the forest."
-        },
-        "west": {
-          "to_room": 6019,
-          "description": "The path leads west to a dense part of the forest."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      }
-    },
-    "6019": {
-      "vnum": 6019,
-      "name": "A Small Path In The Dense Forest",
-      "description": "You are on a small path leading through the dense forest.  The forest seems to become lighter to the east.  The path continues north and east.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6020,
-          "description": "The small path leads north through the trees."
-        },
-        "east": {
-          "to_room": 6018,
-          "description": "The small path leads east through the trees to a lighter part of the forest."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6001,
-          "max": 6
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 6011,
-          "max": 10
-        }
-      ]
-    },
-    "6020": {
-      "vnum": 6020,
-      "name": "A Small Path In The Dense Forest",
-      "description": "You are on a small path leading through the dense forest.  The crowns of the old trees leave the forest in an unreal twilight illumination.  The path continues south and west.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6019,
-          "description": "The small path leads south through the trees."
-        },
-        "west": {
-          "to_room": 6021,
-          "description": "The small path leads west through the trees."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      }
-    },
-    "6021": {
-      "vnum": 6021,
-      "name": "A Small Path In The Dense Forest",
-      "description": "You are on a small path leading through the dense forest.  To the west you see a dark cave entrance, leading into a small hillside.  The path continues north and east.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6012,
-          "description": "The small path leads north through the trees."
-        },
-        "east": {
-          "to_room": 6020,
-          "description": "The small path leads east through the trees."
-        },
-        "west": {
-          "to_room": 6022,
-          "description": "The cave is very dark."
-        }
-      },
-      "extra_descs": {
-        "": "cave entrance"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6013,
-          "max": 4
-        }
-      ]
-    },
-    "6022": {
-      "vnum": 6022,
-      "name": "Inside The Cave",
-      "description": "You are in a natural cave.  Various sorts of debris cover the stone floor, emitting a rather unpleasant smell that makes the air thick and hard to breathe.  The only obvious exit is east.",
-      "sector_type": "inside",
-      "flags": [
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6021,
-          "description": "The cave opening is to the east."
-        }
-      },
-      "extra_descs": {
-        "": "air smell"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6002,
-          "max": 1
-        }
-      ]
-    },
-    "6023": {
-      "vnum": 6023,
-      "name": "A Grassy Field",
-      "description": "You are in a grass covered field somewhere in the forest.  The tall grass nearly reaches your waist, and the surrounding oaks and beeches form an almost wall-like thicket on the east side of the field.  To the northeast you can see a small lake.  A small path leads south through the trees, and the field opens up to the north and west.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6026,
-          "description": "Wind blowing in from the north carries with it the smell of a newly killed animal, as well as the noise of many birds, which you can see circling there."
-        },
-        "east": {
-          "to_room": 6024,
-          "description": "The ground slopes gently downward to the eastern tree line."
-        },
-        "south": {
-          "to_room": 6018,
-          "description": "The small path leads south in between the trees."
-        }
-      },
-      "extra_descs": {
-        "": "birds bird circling"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6004,
-          "max": 1
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 6010,
-          "max": 1
-        }
-      ]
-    },
-    "6024": {
-      "vnum": 6024,
-      "name": "The Lower Part Of The Grassy Field",
-      "description": "You are in a lower part of the grassy field, south of a small lake.  The grass here has been trampled by the many animals coming here for water, leaving the ground covered in tracks of different types.  To the west you see a break in the wall of trees surrounding the field, and to the north is a small lake.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6025,
-          "description": "The animal tracks lead off to the north, and around the lake there."
-        },
-        "west": {
-          "to_room": 6023,
-          "description": "To the south-west you see a break in the tree line, leading back to the forest path."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees thicket"
-      }
-    },
-    "6025": {
-      "vnum": 6025,
-      "name": "Beside The Lake In A Grassy Field",
-      "description": "The grass stops shortly before the lake, replaced by mud covered in tracks from the local animals.  When you come close many animals scatter into the tall grass and some even into the forest.  To the west you see birds circling in the high in the air, and to the north you see a small lake, surrounded by tall reeds.  The field continues to the south, and the forest blocks passage to the east.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6027,
-          "description": "The lake looks inviting, and you can see some sort of water fowl floating around among the reeds."
-        },
-        "south": {
-          "to_room": 6024,
-          "description": "To the south an animal trail leads of towards a the other side of the lower field."
-        },
-        "west": {
-          "to_room": 6026,
-          "description": "The smell of carrion drifts down to you from higher on the field to the west."
-        }
-      },
-      "extra_descs": {
-        "": "track tracks mud"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6016,
-          "max": 1
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 6015,
-          "max": 2
-        }
-      ]
-    },
-    "6026": {
-      "vnum": 6026,
-      "name": "The Northern Section Of A Grassy Field",
-      "description": "As you come close, scavenging animals and birds of all sorts scatter, leaving only the boldest and stupidest encircling the corpse of a large boar. Carrion birds circle overhead, and smaller animals stare out of the tall grass at you.  The grass here has been trampled, and a large area around the corpse is stained by blood.  A trail leads down the sloping field to a lake, and to the south you see the path back to the forest.",
-      "sector_type": "field",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6025,
-          "description": "A small lake lies down the sloping field to the east.  Some of the animals that fled from here have gone there, and are watching, waiting for you to leave so they can resume their feasting."
-        },
-        "south": {
-          "to_room": 6023,
-          "description": "The field continues to the south, and you can see the path back to the forest there."
-        }
-      },
-      "extra_descs": {
-        "": "animal animals small"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6014,
-          "max": 4
-        },
-        {
-          "vnum": 6014,
-          "max": 4
-        },
-        {
-          "vnum": 6014,
-          "max": 4
-        },
-        {
-          "vnum": 6015,
-          "max": 1
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 6017,
-          "max": 1
-        }
-      ]
-    },
-    "6027": {
-      "vnum": 6027,
-      "name": "On The Lake",
-      "description": "You are in the middle of a small lake, fed from a small stream coming through the forest from the northwest.  The water is not that clear, but you can see fish swimming around below you.  The bank is clear to the south, providing a safe place to get back to the field.",
-      "sector_type": "water_noswim",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6025,
-          "description": "Some animals have gathered on the bank to watch you, curious about what you are doing."
-        }
-      },
-      "extra_descs": {
-        "": "reed reeds"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6014,
-          "max": 4
-        },
-        {
-          "vnum": 6017,
-          "max": 3
-        },
-        {
-          "vnum": 6017,
-          "max": 3
-        },
-        {
-          "vnum": 6017,
-          "max": 3
-        },
-        {
-          "vnum": 6018,
-          "max": 2
-        },
-        {
-          "vnum": 6018,
-          "max": 2
-        },
-        {
-          "vnum": 6019,
-          "max": 2
-        },
-        {
-          "vnum": 6019,
-          "max": 2
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 6015,
-          "max": 2
-        }
-      ]
-    },
-    "6028": {
-      "vnum": 6028,
-      "name": "A Small Path In The Dense Forest",
-      "description": "You are on a small path leading through the dense forest.  The crowns of the old trees leave the forest in an unreal twilight illumination.  The path continues to the west and south.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6029,
-          "description": ""
-        },
-        "west": {
-          "to_room": 6016,
-          "description": "The small path leads west through the trees."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6012,
-          "max": 7
-        }
-      ]
-    },
-    "6029": {
-      "vnum": 6029,
-      "name": "Near A Large Tree In The Dense Forest",
-      "description": "You are at the end of a small path leading through the dense forest.  The crowns of the old trees leave the forest in an unreal twilight illumination. This rough clearing is dominated by a very large oak tree, probably the largest in this part of the forest.  The path leads back to the north.",
-      "sector_type": "forest",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6028,
-          "description": ""
-        },
-        "up": {
-          "to_room": 6030,
-          "description": "You see the lower branches of the towering oak."
-        }
-      },
-      "extra_descs": {
-        "": "top highest high"
-      }
-    },
-    "6030": {
-      "vnum": 6030,
-      "name": "In The Lower Branches Of A Large Oak",
-      "description": "You are in a huge oak, about one third of the way to the top.  The branches above you block out much of the light, but enough filters through for you to see.  Small animals and birds scatter at your approach, rustling the leaves all about you.  You could easily climb back down to the ground, or continue up the tree.  One large branch juts outward to the west, possibly providing a third choice of exit.",
-      "sector_type": "mountain",
-      "flags": [],
-      "exits": {
-        "west": {
-          "to_room": 6031,
-          "description": "This limb looks large and strong enough for you to walk most of the way along its length to the west."
-        },
-        "up": {
-          "to_room": 6032,
-          "description": "More large branches spread out from the tree above you."
-        },
-        "down": {
-          "to_room": 6029,
-          "description": "The rough clearing is just a quick climb and jump below you."
-        }
-      },
-      "extra_descs": {
-        "": "top highest high"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6010,
-          "max": 2
-        },
-        {
-          "vnum": 6010,
-          "max": 2
-        },
-        {
-          "vnum": 6012,
-          "max": 7
-        },
-        {
-          "vnum": 6013,
-          "max": 4
-        }
-      ]
-    },
-    "6031": {
-      "vnum": 6031,
-      "name": "Out On A Limb In A Large Oak",
-      "description": "This sturdy branch hangs far out over a path to the west, which you might be able to jump down to.  Several squirrels scamper into hiding as you approach, leaving you alone and swaying slightly with the wind.  To your north you can see a small log cabin through the trees, and to the southeast there seems to be some sort of clearing, with many birds circling above it.",
-      "sector_type": "forest",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6030,
-          "description": "Back to the east you see the tree trunk.  It is much less precarious there compared to here... perhaps you should go back."
-        },
-        "down": {
-          "to_room": 6016,
-          "description": "Below you is a small path, probably used by the forest animals.  You think that you could jump down with a little effort."
-        }
-      },
-      "extra_descs": {
-        "": "top highest high"
-      }
-    },
-    "6032": {
-      "vnum": 6032,
-      "name": "Midway To The Top Of The Large Oak",
-      "description": "You are in a huge oak, about midway to the top.  The branches above you block out much of the light, but enough filters through for you to see.  A few birds have remained to watch you from the fringe branches, well out of your reach.  Scratches mar the tree here, and torn bark is scattered near you on the branch.  It would seem some large forest cat lives nearby, so you had better be careful!  You can continue a bit farther up the tree, or descend to limbs that don't sway so much.",
-      "sector_type": "mountain",
-      "flags": [],
-      "exits": {
-        "up": {
-          "to_room": 6033,
-          "description": "Above you the tree narrows farther, but it still looks like you could climb up there.  A feline shape is pacing about above you, trying to get to a large wounded bird.  Perhaps you should try to see what sort of cat this is before you interrupt its hunt... it might eat you instead of the bird."
-        },
-        "down": {
-          "to_room": 6030,
-          "description": ""
-        }
-      },
-      "extra_descs": {
-        "": "top highest high"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6009,
-          "max": 3
-        },
-        {
-          "vnum": 6012,
-          "max": 7
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 6021,
-          "max": 1
-        }
-      ]
-    },
-    "6060": {
-      "vnum": 6060,
-      "name": "A Shaded Path Through The Forest",
-      "description": "You are on a small shaded path leading through the trees.  The forest gradually lightens to the east.  The path continues to the north, and to the south you see the main trail.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6065,
-          "description": "The path winds its way between the trees."
-        },
-        "south": {
-          "to_room": 6001,
-          "description": "Through a break in the tree line you see the main trail that heads back towards Midgaard."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6001,
-          "max": 11
-        },
-        {
-          "vnum": 6005,
-          "max": 8
-        }
-      ]
-    },
-    "6061": {
-      "vnum": 6061,
-      "name": "A Shaded Path Through The Forest",
-      "description": "You are at a turn on a small shadowed path leading through the forest.  The forest seems to become lighter to the west.  The path continues north and west.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6066,
-          "description": "The path winds its way between the trees."
-        },
-        "west": {
-          "to_room": 6062,
-          "description": "The path winds its way between the trees."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6013,
-          "max": 4
-        }
-      ]
-    },
-    "6062": {
-      "vnum": 6062,
-      "name": "A Shaded Path Through The Dense Forest",
-      "description": "You are on a small shaded path leading through the dense forest.  The crowns of the old trees leave the forest floor in an unreal twililght illumination.  To the north you see a small clearing.  Paths lead east and west.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6067,
-          "description": "Through the underbrush you see a small clearing."
-        },
-        "east": {
-          "to_room": 6061,
-          "description": "The path winds its way between the trees."
-        },
-        "west": {
-          "to_room": 6063,
-          "description": "The path winds its way between the trees."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "obj_resets": [
-        {
-          "vnum": 6011,
-          "max": 10
-        }
-      ],
-      "mob_resets": [
-        {
-          "vnum": 6008,
-          "max": 4
-        },
-        {
-          "vnum": 6001,
-          "max": 11
-        }
-      ]
-    },
-    "6063": {
-      "vnum": 6063,
-      "name": "A Shaded Path Through The Dense Forest",
-      "description": "You are on a small shaded path through the dense forest.  The crowns of the old trees leave the forest in an unreal twilight illumination.  The path continues north and east.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6068,
-          "description": "The path winds its way between the trees."
-        },
-        "east": {
-          "to_room": 6062,
-          "description": "The path winds its way between the trees."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      }
-    },
-    "6064": {
-      "vnum": 6064,
-      "name": "A Shadowy Path Through The Dense Forest",
-      "description": "You are on a small shadowy path leading through the dense forest.  The crowns of the old trees leave the forest in an unreal twilight illumination. The path continues north and south.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6069,
-          "description": "The path winds its way between the trees."
-        },
-        "south": {
-          "to_room": 6100,
-          "description": "The path winds its way into darkness."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6012,
-          "max": 7
-        }
-      ]
-    },
-    "6065": {
-      "vnum": 6065,
-      "name": "A Shaded Path Through The Forest",
-      "description": "You are at a turn on a small shaded path winding through the trees.  The forest gradually becomes more dense to the west.  The path continues west and south from here.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6060,
-          "description": "Through the trees to the south you can almost see the main trail leading back to Midgaard."
-        },
-        "west": {
-          "to_room": 6066,
-          "description": "The path winds its way between the trees."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "obj_resets": [
-        {
-          "vnum": 6011,
-          "max": 10
-        }
-      ]
-    },
-    "6066": {
-      "vnum": 6066,
-      "name": "A Fork On The Shaded Path Through The Forest",
-      "description": "You are at a fork in the small shaded path winding through the trees.  The forest gradually becomes more dense to the west.  The path branches to the north and south here, and also continues to the east.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6071,
-          "description": "The path winds its way between the trees."
-        },
-        "east": {
-          "to_room": 6065,
-          "description": "The path winds its way between the trees."
-        },
-        "south": {
-          "to_room": 6061,
-          "description": "The path winds its way between the trees."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6009,
-          "max": 4
-        }
-      ]
-    },
-    "6067": {
-      "vnum": 6067,
-      "name": "At The Fallen Tree",
-      "description": "You are standing in a small clearing, beside a large fallen tree.  A large amount of the tree has already decomposed, but some pieces remain, scattered about the clearing.  Paths border the clearing to the north and south.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6072,
-          "description": "A shaded path winds its way northeast between the trees."
-        },
-        "south": {
-          "to_room": 6062,
-          "description": "A shaded path winds its way east between the trees."
-        }
-      },
-      "extra_descs": {
-        "": "under animal den"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6011,
-          "max": 1
-        },
-        {
-          "vnum": 6013,
-          "max": 4
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 6020,
-          "max": 1
-        }
-      ]
-    },
-    "6068": {
-      "vnum": 6068,
-      "name": "An Intersection On The Shaded Path",
-      "description": "You are on a small shaded path leading through the dense forest.  The crowns of the old trees leave the forest in an unreal twilight illumination. The path continues north, south, and west.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6073,
-          "description": "The path winds its way between the trees."
-        },
-        "south": {
-          "to_room": 6063,
-          "description": "The path winds its way between the trees."
-        },
-        "west": {
-          "to_room": 6069,
-          "description": "The path winds its way between the trees."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6001,
-          "max": 11
-        }
-      ]
-    },
-    "6069": {
-      "vnum": 6069,
-      "name": "A Shadowy Path Through The Dense Forest",
-      "description": "You are on a small shadowy path leading through the dense forest.  The crowns of the old trees leave the forest in an unreal twilight illumination. The path continues south and east.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6068,
-          "description": "The path winds its way between the old trees."
-        },
-        "south": {
-          "to_room": 6064,
-          "description": "The path winds its way between the trees."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "obj_resets": [
-        {
-          "vnum": 6011,
-          "max": 10
-        }
-      ],
-      "mob_resets": [
-        {
-          "vnum": 6005,
-          "max": 8
-        }
-      ]
-    },
-    "6070": {
-      "vnum": 6070,
-      "name": "Off Of The Path In The Shaded Forest",
-      "description": "You are wandering amongst the trees in the light forest, without the aid of a path or trail.  More sunlight trickles through the treetops here, making your travel a bit easier.  Small animals scurry away as you approach.  You are no longer on a path, so you may go whichever way you please.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6078,
-          "description": "The trees seem to part, exposing a trail into the shade."
-        },
-        "east": {
-          "to_room": 6070,
-          "description": "The trees seem to part, exposing a trail into the shade."
-        },
-        "south": {
-          "to_room": 6061,
-          "description": "The trees seem to part, exposing a trail into the shade."
-        },
-        "west": {
-          "to_room": 6072,
-          "description": "The trees seem to part, exposing a trail into the shade."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6001,
-          "max": 11
-        }
-      ]
-    },
-    "6071": {
-      "vnum": 6071,
-      "name": "A Shaded Path Through The Forest",
-      "description": "You are on a small shaded path leading in between the trees.  The forest gradually lightens to the east.  Paths lead west and south, and you think you see a small path leading eastward.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 6070,
-          "description": "It looks like a small path begins between two trees to the east, but you aren't quite certain."
-        },
-        "south": {
-          "to_room": 6066,
-          "description": "The path winds its way through the trees to an split in the path."
-        },
-        "west": {
-          "to_room": 6072,
-          "description": "The path winds its way between the trees."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6001,
-          "max": 11
-        }
-      ]
-    },
-    "6072": {
-      "vnum": 6072,
-      "name": "A Shaded Path Though The Forest",
-      "description": "You are on a small shaded path leading between the trees.  The forest gradually becomes more dense to the west.  Paths lead north and east, and you see a small clearing to the south.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6075,
-          "description": "The path winds its way between the trees."
-        },
-        "east": {
-          "to_room": 6071,
-          "description": "The path winds its way between the trees."
-        },
-        "south": {
-          "to_room": 6067,
-          "description": "A lightly traveled path heads southward to a small clearing."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      }
-    },
-    "6073": {
-      "vnum": 6073,
-      "name": "A Shadowy Path Through The Dense Forest",
-      "description": "You are on a small shadowy path leading through the dense forest.  To the north the terrain becomes quite hilly and rough.  The crowns of the old trees leave the forest in an unreal twilight illumination.  The path continues north and south.",
-      "sector_type": "hills",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6076,
-          "description": "The path winds its way into the hills and denser forest."
-        },
-        "south": {
-          "to_room": 6068,
-          "description": "The path winds its way between the trees."
-        }
-      },
-      "extra_descs": {
-        "": "hill hills terrain"
-      }
-    },
-    "6074": {
-      "vnum": 6074,
-      "name": "A Small Trail Through The Forest",
-      "description": "You have just left the shaded path, and you are now standing at the head of a very short trail.  It looks like someone begin clearing away the underbrush here, but didn't get finished.  You may leave in any direction, but the path is to the west.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6074,
-          "description": "The trees seem to part, exposing a trail into the shade."
-        },
-        "east": {
-          "to_room": 6070,
-          "description": "The trees seem to part, exposing a trail into the shade."
-        },
-        "south": {
-          "to_room": 6070,
-          "description": "The trees seem to part, exposing a trail into the shade."
-        },
-        "west": {
-          "to_room": 6075,
-          "description": "Through the underbrush you see a small path winding its way northward."
-        }
-      },
-      "extra_descs": {
-        "": "tree trees"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6005,
-          "max": 8
-        }
-      ]
-    },
-    "6075": {
-      "vnum": 6075,
-      "name": "A Shaded Path Through The Forest",
-      "description": "You are on a small shaded path leading between the trees.  The forest gradually becomes more dense to the west, and to the northwest the terrain is quite hilly.  The path continues north and south.  To the east you see a trail winding through the younger section of the forest.",
-      "sector_type": "forest",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 6078,
-          "description": "The path winds its way between the trees."
-        },
-        "east": {
-          "to_room": 6074,
-          "description": "You think you see the beginnings of a small trail through the younger part of the forest."
-        },
-        "south": {
-          "to_room": 6072,
-          "description": "The path winds its way between the trees."
-        }
-      },
-      "extra_descs": {
-        "": "trail"
-      },
-      "mob_resets": [
-        {
-          "vnum": 6012,
-          "max": 7
-        }
-      ]
-    },
-    "6076": {
-      "vnum": 6076,
-      "name": "In The Dense Forest Between The Hills",
-      "description": "You are standing among tightly packed trees between several hills.  You lost track of the path long ago, and now must rely on your instincts to guide you.  The ground is very rough and rocky here, and only the most hardy plants survive.  The crowns of the old trees leave the hills in an unreal twilight illumination.",
-      "sector_type": "hills",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6081,
-          "description": "All you see are trees and hillsides."
-        },
-        "east": {
-          "to_room": 6077,
-          "description": "All you see are trees and hillsides."
-        },
-        "south": {
-          "to_room": 6076,
-          "description": "All you see are trees and hillsides."
-        },
-        "west": {
-          "to_room": 6073,
-          "description": "All you see are trees and a shadowy path."
-        }
-      },
-      "extra_descs": {
-        "": "hills hill"
-      }
-    },
-    "6077": {
-      "vnum": 6077,
-      "name": "In The Dense Forest Between The Hills",
-      "description": "You are standing among tightly packed trees between several hills.  You lost track of the path long ago, and now must rely on your instincts to guide you.  The ground is very rough and rocky here, and only the most hardy plants survive.  The crowns of the old trees leave the hills in an unreal twilight illumination.",
-      "sector_type": "hills",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6081,
-          "description": "All you see are trees and hillsides."
-        },
-        "east": {
-          "to_room": 6076,
-          "description": "All you see are trees and hillsides."
-        },
-        "south": {
-          "to_room": 6079,
-          "description": "All you see are trees and hillsides."
-        },
-        "west": {
-          "to_room": 6077,
-          "description": "All you see are trees and hillsides."
-        }
-      },
-      "extra_descs": {
-        "": "hills hill"
-      }
-    },
-    "6078": {
-      "vnum": 6078,
-      "name": "In The Dense Forest Between The Hills",
-      "description": "You are at the end of a small shaded path leading between the trees.  The forest is quite thick here, and the ground is very rough and hilly, halting your progress.  The path lies to the south.",
-      "sector_type": "hills",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 6075,
-          "description": "The path winds its way between the trees."
-        }
-      },
-      "extra_descs": {
-        "": "hills hill"
-      },
-      "obj_resets": [
-        {
-          "vnum": 6011,
-          "max": 10
-        }
-      ]
-    },
-    "6079": {
-      "vnum": 6079,
-      "name": "In The Dense Forest Between The Hills",
-      "description": "You are standing among tightly packed trees between several hills.  You lost track of the path long ago, and now must rely on your instincts to guide you.  The ground is very rough and rocky here, and only the most hardy plants survive.  The crowns of the old trees leave the hills in an unreal twilight illumination.",
-      "sector_type": "hills",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6081,
-          "description": "All you see are trees and hillsides."
-        },
-        "east": {
-          "to_room": 6078,
-          "description": "All you see are trees and hillsides."
-        },
-        "south": {
-          "to_room": 6073,
-          "description": "All you see are trees and a shadowy path."
-        },
-        "west": {
-          "to_room": 6080,
-          "description": "All you see are trees and hillsides."
-        }
-      },
-      "extra_descs": {
-        "": "hills hill"
-      }
-    },
-    "6080": {
-      "vnum": 6080,
-      "name": "In The Dense Forest Between The Hills",
-      "description": "You are standing among tightly packed trees between several hills.  You lost track of the path long ago, and now must rely on your instincts to guide you.  The ground is very rough and rocky here, and only the most hardy plants survive.  The crowns of the old trees leave the hills in an unreal twilight illumination.",
-      "sector_type": "hills",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6081,
-          "description": "All you see are trees and hillsides."
-        },
-        "east": {
-          "to_room": 6082,
-          "description": "All you see are trees and hillsides."
-        },
-        "south": {
-          "to_room": 6076,
-          "description": "All you see are trees and hillsides."
-        },
-        "west": {
-          "to_room": 6081,
-          "description": "All you see are trees and hillsides."
-        }
-      },
-      "extra_descs": {
-        "": "hills hill"
-      }
-    },
-    "6081": {
-      "vnum": 6081,
-      "name": "In The Dense Forest Between The Hills",
-      "description": "You are standing among tightly packed trees between several hills.  You lost track of the path long ago, and now must rely on your instincts to guide you.  The ground is very rough and rocky here, and only the most hardy plants survive.  The crowns of the old trees leave the hills in an unreal twilight illumination.",
-      "sector_type": "hills",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6078,
-          "description": "All you see are trees and hillsides."
-        },
-        "east": {
-          "to_room": 6077,
-          "description": "All you see are trees and hillsides."
-        },
-        "south": {
-          "to_room": 6076,
-          "description": "All you see are trees and hillsides."
-        },
-        "west": {
-          "to_room": 6073,
-          "description": "All you see are trees and a shadowy path."
-        }
-      },
-      "extra_descs": {
-        "": "hills hill"
-      }
-    },
-    "6082": {
-      "vnum": 6082,
-      "name": "In The Dense Forest Between The Hills",
-      "description": "You are standing among tightly packed trees on a medium sized hill. The dense forest spreads out all around you, and the crowns of the old trees leave the hills in an unreal twilight illumination.",
-      "sector_type": "hills",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 6081,
-          "description": "All you see are trees and hillsides."
-        },
-        "east": {
-          "to_room": 6079,
-          "description": "All you see are trees and hillsides."
-        },
-        "south": {
-          "to_room": 6076,
-          "description": "All you see are trees and hillsides."
-        }
-      },
-      "extra_descs": {
-        "": "hills hill"
-      }
-    },
-    "6090": {
-      "vnum": 6090,
-      "name": "A Road Through The Plains",
-      "description": "You are on a dust covered east-west road through the western plains.  An occasional hunter or adventurer can be seen, heading to or from the forest. To the east is the walled city, Midgaard, and to the west the road ends at the head of a narrow trail into a large forest.",
-      "sector_type": "field",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6091,
-          "description": "Far to the east you see the large walls guarding Midgaard."
-        },
-        "west": {
-          "to_room": 6000,
-          "description": "To the west the dusty trail ends, and becomes a narrow trail into the cool shadows of the forest."
-        }
-      },
-      "extra_descs": {
-        "": "road dust dusty"
-      }
-    },
-    "6091": {
-      "vnum": 6091,
-      "name": "A Road Through The Plains",
-      "description": "You are on a dust covered east-west road through the western plains.  An occasional hunter or adventurer can be seen, heading to or from the forest. To the east is the walled city, Midgaard, and to the west the road continues  towards a large forest.",
-      "sector_type": "field",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 6092,
-          "description": "Far to the east you see the walls and western gate of Midgaard."
-        },
-        "west": {
-          "to_room": 6090,
-          "description": "You see the large forest, Haon-Dor, stretching out far to the west, and to the northwest you the forest gives way to hills."
-        }
-      },
-      "extra_descs": {
-        "": "road dust dusty"
-      }
-    },
-    "6092": {
-      "vnum": 6092,
-      "name": "A Road Through The Plains",
-      "description": "You are on a dust covered east-west road crossing the grassy plains between Midgaard the forest of Haon-Dor.  An occasional hunter or adventurer can be  seen, heading to or from the forest.  To the east is the walled city, Midgaard,  and to the west the road continues towards a large forest.",
-      "sector_type": "city",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 3052,
-          "description": "To the east you see the walls and West Gate of Midgaard."
-        },
-        "west": {
-          "to_room": 6091,
-          "description": "To the west the road continues towards the forest."
-        }
-      },
-      "extra_descs": {
-        "": "road dust dusty"
-      }
-    }
-  },
   "mobs": {
     "6000": {
-      "vnum": 6000,
-      "name": "john",
-      "short_desc": "John the Lumberjack",
-      "long_desc": "John the Lumberjack is here, looking for some trees to chop down.",
-      "level": 5,
       "alignment": 370,
-      "hp_dice": "1d4+3",
-      "damage_dice": "1d12+60",
-      "gold": 575,
-      "exp": 8,
-      "armor_class": 6,
+      "armor_class": 85,
+      "damage_dice": "2d5+3",
+      "description": "He is six feet tall and looks quite strong, muscles bulging under his heavy,\nchequered shirt.  His features are worn with hard work and his expression is\none of a peaceful man leading a simple life.",
+      "equipment": {
+        "body": 6001,
+        "feet": 6002,
+        "wield": 6000
+      },
+      "exp": 300,
       "flags": [
         "scavenger",
         "stay_zone",
         "memory",
         "helper"
       ],
-      "description": "He is six feet tall and looks quite strong, muscles bulging under his heavy,\nchequered shirt.  His features are worn with hard work and his expression is\none of a peaceful man leading a simple life.",
-      "equipment": {
-        "wield": 6000,
-        "body": 6001,
-        "feet": 6002
-      }
+      "gold": 575,
+      "hp_dice": "5d10+76",
+      "level": 5,
+      "long_desc": "John the Lumberjack is here, looking for some trees to chop down.",
+      "name": "john",
+      "short_desc": "John the Lumberjack",
+      "vnum": 6000,
+      "loot_table": [
+        {
+          "vnum": 6055,
+          "chance": 20
+        },
+        {
+          "vnum": 6056,
+          "chance": 20
+        },
+        {
+          "vnum": 6057,
+          "chance": 20
+        },
+        {
+          "vnum": 6058,
+          "chance": 20
+        },
+        {
+          "vnum": 6059,
+          "chance": 20
+        },
+        {
+          "vnum": 6060,
+          "chance": 20
+        },
+        {
+          "vnum": 6061,
+          "chance": 20
+        },
+        {
+          "vnum": 6062,
+          "chance": 20
+        },
+        {
+          "vnum": 6063,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
     },
     "6001": {
-      "vnum": 6001,
-      "name": "rabbit",
-      "short_desc": "the rabbit",
-      "long_desc": "A small rabbit is foraging in the bushes here.",
-      "level": 0,
       "alignment": 0,
-      "hp_dice": "1d4+0",
-      "damage_dice": "1d4+1",
-      "gold": 30,
-      "exp": 8,
-      "armor_class": 6,
+      "armor_class": 100,
+      "damage_dice": "1d4",
+      "description": "It is a small, furry creature with long ears and big feet.",
+      "exp": 0,
       "flags": [
         "stay_zone"
       ],
-      "description": "It is a small, furry creature with long ears and big feet.",
+      "gold": 30,
+      "hp_dice": "1d10+16",
       "inventory": [
         6023,
         6023,
@@ -1760,540 +86,2692 @@
         6023,
         6023,
         6023
-      ]
+      ],
+      "level": 0,
+      "long_desc": "A small rabbit is foraging in the bushes here.",
+      "name": "rabbit",
+      "short_desc": "the rabbit",
+      "vnum": 6001
     },
     "6002": {
-      "vnum": 6002,
+      "alignment": -50,
+      "armor_class": 76,
+      "damage_dice": "3d5+5",
+      "description": "The bear is a big, brown, furry animal with very large claws and very sharp\nteeth.  It doesn't resemble those cute little dolls from toy shops at all.",
+      "exp": 480,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ],
+      "gold": 2000,
+      "hp_dice": "8d10+112",
+      "level": 8,
+      "long_desc": "A big, brown, angry-looking bear is here.",
       "name": "bear",
       "short_desc": "the brown bear",
-      "long_desc": "A big, brown, angry-looking bear is here.",
-      "level": 8,
-      "alignment": -50,
-      "hp_dice": "2d6+2",
-      "damage_dice": "1d12+98",
-      "gold": 2000,
-      "exp": 4,
-      "armor_class": 3,
-      "flags": [
-        "aggressive",
-        "stay_zone"
+      "vnum": 6002,
+      "loot_table": [
+        {
+          "vnum": 6055,
+          "chance": 20
+        },
+        {
+          "vnum": 6056,
+          "chance": 20
+        },
+        {
+          "vnum": 6057,
+          "chance": 20
+        },
+        {
+          "vnum": 6058,
+          "chance": 20
+        },
+        {
+          "vnum": 6059,
+          "chance": 20
+        },
+        {
+          "vnum": 6060,
+          "chance": 20
+        },
+        {
+          "vnum": 6061,
+          "chance": 20
+        },
+        {
+          "vnum": 6062,
+          "chance": 20
+        },
+        {
+          "vnum": 6063,
+          "chance": 20
+        }
       ],
-      "description": "The bear is a big, brown, furry animal with very large claws and very sharp\nteeth.  It doesn't resemble those cute little dolls from toy shops at all."
+      "loot_chance": 100
     },
     "6003": {
-      "vnum": 6003,
-      "name": "rabbit",
-      "short_desc": "the ferocious rabbit",
-      "long_desc": "A ferocious rabbit is here, glaring hungrily at you.",
-      "level": 3,
       "alignment": -150,
-      "hp_dice": "1d8+0",
-      "damage_dice": "1d4+26",
-      "gold": 175,
-      "exp": 4,
-      "armor_class": 6,
+      "armor_class": 91,
+      "damage_dice": "1d4+4",
+      "description": "This small, furry creature with long ears and big feet has been attacked\nby the dreaded rabbit rabies, a horrible disease that turns helpless and\ninnocent rabbits into ferocious and bloodthirsty monsters.",
+      "exp": 180,
       "flags": [
         "aggressive",
         "stay_zone"
       ],
-      "description": "This small, furry creature with long ears and big feet has been attacked\nby the dreaded rabbit rabies, a horrible disease that turns helpless and\ninnocent rabbits into ferocious and bloodthirsty monsters."
+      "gold": 175,
+      "hp_dice": "3d10+52",
+      "level": 3,
+      "long_desc": "A ferocious rabbit is here, glaring hungrily at you.",
+      "name": "rabbit",
+      "short_desc": "the ferocious rabbit",
+      "vnum": 6003
     },
     "6004": {
-      "vnum": 6004,
-      "name": "deer",
-      "short_desc": "the fallow deer",
-      "long_desc": "A fallow deer is grazing peacefully here.",
-      "level": 2,
       "alignment": 350,
-      "hp_dice": "1d6+0",
-      "damage_dice": "2d8+8",
-      "gold": 115,
-      "exp": 8,
-      "armor_class": 5,
+      "armor_class": 94,
+      "damage_dice": "1d4+2",
+      "description": "She is a graceful creature on long, slender legs, and with large, brown eyes\nlooking back at you with an air of watchful interest.",
+      "exp": 120,
       "flags": [
         "stay_zone",
         "wimpy"
       ],
-      "description": "She is a graceful creature on long, slender legs, and with large, brown eyes\nlooking back at you with an air of watchful interest.",
+      "gold": 115,
+      "hp_dice": "2d10+40",
       "inventory": [
         6024
-      ]
+      ],
+      "level": 2,
+      "long_desc": "A fallow deer is grazing peacefully here.",
+      "name": "deer",
+      "short_desc": "the fallow deer",
+      "vnum": 6004
     },
     "6005": {
-      "vnum": 6005,
-      "name": "fox",
-      "short_desc": "the brown fox",
-      "long_desc": "A brown fox is stalking rabbits through the underbrush here.",
-      "level": 2,
       "alignment": -50,
-      "hp_dice": "1d6+0",
-      "damage_dice": "1d4+18",
-      "gold": 112,
-      "exp": 8,
-      "armor_class": 6,
+      "armor_class": 94,
+      "damage_dice": "1d4+2",
+      "description": "It is a large fox with beautiful, red-brown fur and a long, thick bushy tail.",
+      "exp": 120,
       "flags": [
         "stay_zone"
       ],
-      "description": "It is a large fox with beautiful, red-brown fur and a long, thick bushy tail."
+      "gold": 112,
+      "hp_dice": "2d10+40",
+      "level": 2,
+      "long_desc": "A brown fox is stalking rabbits through the underbrush here.",
+      "name": "fox",
+      "short_desc": "the brown fox",
+      "vnum": 6005
     },
     "6006": {
-      "vnum": 6006,
-      "name": "bird",
-      "short_desc": "the bird",
-      "long_desc": "A large bird with a broken wing has been cornered here.",
-      "level": 0,
       "alignment": 0,
-      "hp_dice": "1d2+1",
-      "damage_dice": "2d3+1",
-      "gold": 12,
-      "exp": 8,
-      "armor_class": 10,
+      "armor_class": 100,
+      "damage_dice": "1d4",
+      "description": "The bird isn't going to live much longer, by the looks of it.",
+      "exp": 0,
       "flags": [
         "sentinel"
       ],
-      "description": "The bird isn't going to live much longer, by the looks of it."
+      "gold": 12,
+      "hp_dice": "1d10+16",
+      "level": 0,
+      "long_desc": "A large bird with a broken wing has been cornered here.",
+      "name": "bird",
+      "short_desc": "the bird",
+      "vnum": 6006
     },
     "6007": {
-      "vnum": 6007,
-      "name": "bobcat",
-      "short_desc": "the bobcat",
-      "long_desc": "A medium sized bobcat is stalking a bird here.",
-      "level": 5,
       "alignment": -150,
-      "hp_dice": "2d4+3",
-      "damage_dice": "1d12+60",
-      "gold": 550,
-      "exp": 8,
-      "armor_class": 5,
+      "armor_class": 85,
+      "damage_dice": "2d5+3",
+      "description": "The bobcat has sharp claws and teeth, and will probably eat you instead of\nthe bird if you give it the chance.",
+      "exp": 300,
       "flags": [
         "sentinel",
         "aggressive"
       ],
-      "description": "The bobcat has sharp claws and teeth, and will probably eat you instead of\nthe bird if you give it the chance."
+      "gold": 550,
+      "hp_dice": "5d10+76",
+      "level": 5,
+      "long_desc": "A medium sized bobcat is stalking a bird here.",
+      "name": "bobcat",
+      "short_desc": "the bobcat",
+      "vnum": 6007
     },
     "6008": {
-      "vnum": 6008,
+      "alignment": 200,
+      "armor_class": 100,
+      "damage_dice": "1d4",
+      "description": "The sparrow looks like it is enjoying life.",
+      "exp": 0,
+      "flags": [
+        "stay_zone"
+      ],
+      "gold": 12,
+      "hp_dice": "1d10+16",
+      "level": 0,
+      "long_desc": "A sparrow is flapping around by the ground.",
       "name": "sparrow",
       "short_desc": "the sparrow",
-      "long_desc": "A sparrow is flapping around by the ground.",
-      "level": 0,
-      "alignment": 200,
-      "hp_dice": "1d4+0",
-      "damage_dice": "3d3+1",
-      "gold": 12,
-      "exp": 8,
-      "armor_class": 9,
-      "flags": [
-        "stay_zone"
-      ],
-      "description": "The sparrow looks like it is enjoying life."
+      "vnum": 6008
     },
     "6009": {
-      "vnum": 6009,
+      "alignment": 200,
+      "armor_class": 100,
+      "damage_dice": "1d4",
+      "description": "The robin looks quite intent on finding a bug or worm to eat.",
+      "exp": 0,
+      "flags": [
+        "stay_zone"
+      ],
+      "gold": 12,
+      "hp_dice": "1d10+16",
+      "level": 0,
+      "long_desc": "A robin is hopping around looking for bugs to eat.",
       "name": "robin",
       "short_desc": "the robin",
-      "long_desc": "A robin is hopping around looking for bugs to eat.",
-      "level": 0,
-      "alignment": 200,
-      "hp_dice": "1d4+0",
-      "damage_dice": "3d3+1",
-      "gold": 12,
-      "exp": 8,
-      "armor_class": 9,
-      "flags": [
-        "stay_zone"
-      ],
-      "description": "The robin looks quite intent on finding a bug or worm to eat."
+      "vnum": 6009
     },
     "6010": {
-      "vnum": 6010,
+      "alignment": 200,
+      "armor_class": 97,
+      "damage_dice": "1d4+1",
+      "description": "It peers out of its nest at you anxiously, seeming to plead silently with\nyou to leave it alone.",
+      "exp": 60,
+      "flags": [
+        "sentinel"
+      ],
+      "gold": 60,
+      "hp_dice": "1d10+28",
+      "level": 1,
+      "long_desc": "A squirrel is here seeking refuge in its nest.",
       "name": "squirrel",
       "short_desc": "the squirrel",
-      "long_desc": "A squirrel is here seeking refuge in its nest.",
-      "level": 1,
-      "alignment": 200,
-      "hp_dice": "1d5+0",
-      "damage_dice": "1d7+9",
-      "gold": 60,
-      "exp": 8,
-      "armor_class": 8,
-      "flags": [
-        "sentinel"
-      ],
-      "description": "It peers out of its nest at you anxiously, seeming to plead silently with\nyou to leave it alone."
+      "vnum": 6010
     },
     "6011": {
-      "vnum": 6011,
-      "name": "badger",
-      "short_desc": "the sleepy badger",
-      "long_desc": "A furry brown badger is curled up under a log here.",
-      "level": 4,
       "alignment": 50,
-      "hp_dice": "2d3+2",
-      "damage_dice": "1d5+48",
-      "gold": 325,
-      "exp": 8,
-      "armor_class": 5,
+      "armor_class": 88,
+      "damage_dice": "2d4+3",
+      "description": "The badger is slowly awakening and peering up at you from its burrow. You\nknow that it won't be moving this slow for long.  Its sharp claws and teeth\ncatch your attention when you consider killing it.",
+      "exp": 240,
       "flags": [
         "sentinel"
       ],
-      "description": "The badger is slowly awakening and peering up at you from its burrow. You\nknow that it won't be moving this slow for long.  Its sharp claws and teeth\ncatch your attention when you consider killing it."
+      "gold": 325,
+      "hp_dice": "4d10+64",
+      "level": 4,
+      "long_desc": "A furry brown badger is curled up under a log here.",
+      "name": "badger",
+      "short_desc": "the sleepy badger",
+      "vnum": 6011
     },
     "6012": {
-      "vnum": 6012,
+      "alignment": 150,
+      "armor_class": 94,
+      "damage_dice": "1d4+2",
+      "description": "This happy creature seems to pay you no heed as it goes about its search for\nnuts among the leaves and twigs on the ground here.",
+      "exp": 120,
+      "flags": [
+        "stay_zone"
+      ],
+      "gold": 100,
+      "hp_dice": "2d10+40",
+      "level": 2,
+      "long_desc": "A grey squirrel with a bushy tail is foraging for nuts here.",
       "name": "grey",
       "short_desc": "the grey squirrel",
-      "long_desc": "A grey squirrel with a bushy tail is foraging for nuts here.",
-      "level": 2,
-      "alignment": 150,
-      "hp_dice": "1d6+0",
-      "damage_dice": "1d12+22",
-      "gold": 100,
-      "exp": 8,
-      "armor_class": 8,
-      "flags": [
-        "stay_zone"
-      ],
-      "description": "This happy creature seems to pay you no heed as it goes about its search for\nnuts among the leaves and twigs on the ground here."
+      "vnum": 6012
     },
     "6013": {
-      "vnum": 6013,
-      "name": "chipmunk",
-      "short_desc": "the small chipmunk",
-      "long_desc": "A small brown-red chipmunk dashes from tree to tree here.",
-      "level": 0,
       "alignment": 170,
-      "hp_dice": "1d4+0",
-      "damage_dice": "2d5+3",
-      "gold": 20,
-      "exp": 8,
-      "armor_class": 5,
+      "armor_class": 100,
+      "damage_dice": "1d4",
+      "description": "The absolute zenith of hyperactivity, this small rodent seems to never tire\nof running up, down, and around the trees in this area.  If you could ever\ncatch it, you imagine it would make an easy meal.",
+      "exp": 0,
       "flags": [
         "stay_zone"
       ],
-      "description": "The absolute zenith of hyperactivity, this small rodent seems to never tire\nof running up, down, and around the trees in this area.  If you could ever\ncatch it, you imagine it would make an easy meal."
+      "gold": 20,
+      "hp_dice": "1d10+16",
+      "level": 0,
+      "long_desc": "A small brown-red chipmunk dashes from tree to tree here.",
+      "name": "chipmunk",
+      "short_desc": "the small chipmunk",
+      "vnum": 6013
     },
     "6014": {
-      "vnum": 6014,
-      "name": "crow",
-      "short_desc": "the large black crow",
-      "long_desc": "A large black bird flits about here, picking at bits of carrion.",
-      "level": 2,
       "alignment": -20,
-      "hp_dice": "1d5+1",
-      "damage_dice": "1d12+22",
-      "gold": 101,
-      "exp": 8,
-      "armor_class": 8,
+      "armor_class": 94,
+      "damage_dice": "1d4+2",
+      "description": "The bird eyes you warily, but continues with its meal.",
+      "exp": 120,
       "flags": [
         "sentinel",
         "scavenger",
         "wimpy"
       ],
-      "description": "The bird eyes you warily, but continues with its meal."
+      "gold": 101,
+      "hp_dice": "2d10+40",
+      "level": 2,
+      "long_desc": "A large black bird flits about here, picking at bits of carrion.",
+      "name": "crow",
+      "short_desc": "the large black crow",
+      "vnum": 6014
     },
     "6015": {
-      "vnum": 6015,
-      "name": "grotesque",
-      "short_desc": "the grotesque vulture",
-      "long_desc": "A grotesque vulture covered in blood and gore is here feeding madly.",
-      "level": 6,
       "alignment": -700,
-      "hp_dice": "2d3+2",
-      "damage_dice": "1d12+68",
-      "gold": 882,
-      "exp": 8,
-      "armor_class": 4,
+      "armor_class": 82,
+      "damage_dice": "2d5+5",
+      "description": "It sickens you to even look at this foul bird.  Bits of dried gore stick to\nits beak, and unidentifiable organs hang from its talons and feathers.  \nIt sees you and attacks, protecting its horrible feast!",
+      "exp": 360,
       "flags": [
         "sentinel",
         "scavenger",
         "aggressive"
       ],
-      "description": "It sickens you to even look at this foul bird.  Bits of dried gore stick to\nits beak, and unidentifiable organs hang from its talons and feathers.  \nIt sees you and attacks, protecting its horrible feast!"
+      "gold": 882,
+      "hp_dice": "6d10+88",
+      "level": 6,
+      "long_desc": "A grotesque vulture covered in blood and gore is here feeding madly.",
+      "name": "grotesque",
+      "short_desc": "the grotesque vulture",
+      "vnum": 6015,
+      "loot_table": [
+        {
+          "vnum": 6055,
+          "chance": 20
+        },
+        {
+          "vnum": 6056,
+          "chance": 20
+        },
+        {
+          "vnum": 6057,
+          "chance": 20
+        },
+        {
+          "vnum": 6058,
+          "chance": 20
+        },
+        {
+          "vnum": 6059,
+          "chance": 20
+        },
+        {
+          "vnum": 6060,
+          "chance": 20
+        },
+        {
+          "vnum": 6061,
+          "chance": 20
+        },
+        {
+          "vnum": 6062,
+          "chance": 20
+        },
+        {
+          "vnum": 6063,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
     },
     "6016": {
-      "vnum": 6016,
-      "name": "buck",
-      "short_desc": "the young buck",
-      "long_desc": "A young 5-point buck is drinking from the lake here.",
-      "level": 4,
       "alignment": 350,
-      "hp_dice": "1d5+3",
-      "damage_dice": "1d12+48",
-      "gold": 375,
-      "exp": 8,
-      "armor_class": 4,
+      "armor_class": 88,
+      "damage_dice": "2d4+3",
+      "description": "This young male deer is drinking from the edge of the lake and watching you\nwarily.  His antlers are not full size yet, and will no doubt be quite \nimpressive in a few years.",
+      "exp": 240,
       "flags": [
         "sentinel",
         "stay_zone"
       ],
-      "description": "This young male deer is drinking from the edge of the lake and watching you\nwarily.  His antlers are not full size yet, and will no doubt be quite \nimpressive in a few years.",
+      "gold": 375,
+      "hp_dice": "4d10+64",
       "inventory": [
         6024
-      ]
+      ],
+      "level": 4,
+      "long_desc": "A young 5-point buck is drinking from the lake here.",
+      "name": "buck",
+      "short_desc": "the young buck",
+      "vnum": 6016
     },
     "6017": {
-      "vnum": 6017,
+      "alignment": 100,
+      "armor_class": 100,
+      "damage_dice": "1d4",
+      "description": "The fish looks about the right size for a meal.",
+      "exp": 0,
+      "flags": [
+        "sentinel"
+      ],
+      "gold": 15,
+      "hp_dice": "1d10+16",
+      "level": 0,
+      "long_desc": "A fish is swimming about here.",
       "name": "fish",
       "short_desc": "the fish",
-      "long_desc": "A fish is swimming about here.",
-      "level": 0,
-      "alignment": 100,
-      "hp_dice": "1d3+0",
-      "damage_dice": "2d5+0",
-      "gold": 15,
-      "exp": 8,
+      "vnum": 6017
+    },
+    "6018": {
+      "alignment": 1000,
       "armor_class": 10,
+      "damage_dice": "1d1+0",
+      "description": "The duckling is adorable, it looks most of all like a tiny furball.",
+      "exp": 8,
       "flags": [
         "sentinel"
       ],
-      "description": "The fish looks about the right size for a meal."
-    },
-    "6018": {
-      "vnum": 6018,
+      "gold": 0,
+      "hp_dice": "1d1+0",
+      "level": 0,
+      "long_desc": "A duckling is swimming around in the pond.",
       "name": "duckling",
       "short_desc": "the duckling",
-      "long_desc": "A duckling is swimming around in the pond.",
-      "level": 0,
-      "alignment": 1000,
-      "hp_dice": "1d1+0",
-      "damage_dice": "1d1+0",
-      "gold": 0,
-      "exp": 8,
-      "armor_class": 10,
-      "flags": [
-        "sentinel"
-      ],
-      "description": "The duckling is adorable, it looks most of all like a tiny furball."
+      "vnum": 6018
     }
   },
+  "name": "Haon-Dor, Light Forest",
+  "number": 60,
   "objects": {
     "6000": {
-      "vnum": 6000,
-      "name": "axe",
-      "short_desc": "a lumber axe",
-      "room_desc": "A heavy lumber axe lies here.",
-      "item_type": "weapon",
-      "weight": 12,
-      "value": 50,
       "damage_dice": "2d3",
-      "weapon_type": "slash"
+      "item_type": "weapon",
+      "name": "axe",
+      "room_desc": "A heavy lumber axe lies here.",
+      "short_desc": "a lumber axe",
+      "value": 50,
+      "vnum": 6000,
+      "weapon_type": "slash",
+      "weight": 12
     },
     "6001": {
-      "vnum": 6001,
-      "name": "shirt",
-      "short_desc": "a chequered shirt",
-      "room_desc": "A chequered shirt lies here.",
+      "armor_bonus": 1,
       "item_type": "armor",
-      "weight": 2,
+      "name": "shirt",
+      "room_desc": "A chequered shirt lies here.",
+      "short_desc": "a chequered shirt",
       "value": 20,
-      "armor_bonus": 1
+      "vnum": 6001,
+      "weight": 2
     },
     "6002": {
-      "vnum": 6002,
-      "name": "boots",
-      "short_desc": "a pair of worn leather boots",
-      "room_desc": "A pair of worn leather boots lies here.",
+      "armor_bonus": 2,
       "item_type": "armor",
-      "weight": 4,
+      "name": "boots",
+      "room_desc": "A pair of worn leather boots lies here.",
+      "short_desc": "a pair of worn leather boots",
       "value": 60,
-      "armor_bonus": 2
+      "vnum": 6002,
+      "weight": 4
     },
     "6003": {
-      "vnum": 6003,
-      "name": "fireplace",
-      "short_desc": "a fireplace",
-      "room_desc": "A fireplace made from stone is set against the east wall.",
+      "capacity": 200,
       "item_type": "container",
-      "weight": 0,
+      "name": "fireplace",
+      "room_desc": "A fireplace made from stone is set against the east wall.",
+      "short_desc": "a fireplace",
       "value": 0,
-      "capacity": 200
+      "vnum": 6003,
+      "weight": 0
     },
     "6004": {
-      "vnum": 6004,
-      "name": "lantern",
-      "short_desc": "a hooded brass lantern",
-      "room_desc": "A hooded brass lantern has been left here.",
       "item_type": "light",
-      "weight": 4,
+      "light_hours": 100,
+      "name": "lantern",
+      "room_desc": "A hooded brass lantern has been left here.",
+      "short_desc": "a hooded brass lantern",
       "value": 60,
-      "light_hours": 100
+      "vnum": 6004,
+      "weight": 4
     },
     "6005": {
-      "vnum": 6005,
-      "name": "chest",
-      "short_desc": "a wooden chest",
-      "room_desc": "A wooden chest stands in the corner.",
-      "item_type": "container",
-      "weight": 20,
-      "value": 100,
       "capacity": 100,
-      "key_vnum": 6006
+      "item_type": "container",
+      "key_vnum": 6006,
+      "name": "chest",
+      "room_desc": "A wooden chest stands in the corner.",
+      "short_desc": "a wooden chest",
+      "value": 100,
+      "vnum": 6005,
+      "weight": 20
     },
     "6006": {
-      "vnum": 6006,
-      "name": "key",
-      "short_desc": "a small brass key",
-      "room_desc": "A small brass key lies here.",
       "item_type": "key",
-      "weight": 1,
-      "value": 0
+      "name": "key",
+      "room_desc": "A small brass key lies here.",
+      "short_desc": "a small brass key",
+      "value": 0,
+      "vnum": 6006,
+      "weight": 1
     },
     "6007": {
-      "vnum": 6007,
-      "name": "coins",
-      "short_desc": "a heap of gold coins",
-      "room_desc": "Some gold coins lie piled up in a heap on the floor.",
       "item_type": "money",
-      "weight": 1,
-      "value": 127
+      "name": "coins",
+      "room_desc": "Some gold coins lie piled up in a heap on the floor.",
+      "short_desc": "a heap of gold coins",
+      "value": 127,
+      "vnum": 6007,
+      "weight": 1
     },
     "6010": {
-      "vnum": 6010,
-      "name": "blackberries",
-      "short_desc": "some blackberries",
-      "room_desc": "Some blackberries grow on a bush nearby.",
       "item_type": "food",
-      "weight": 1,
+      "name": "blackberries",
+      "nutrition": 3,
+      "room_desc": "Some blackberries grow on a bush nearby.",
+      "short_desc": "some blackberries",
       "value": 0,
-      "nutrition": 3
+      "vnum": 6010,
+      "weight": 1
     },
     "6011": {
-      "vnum": 6011,
-      "name": "mushroom",
-      "short_desc": "a mushroom",
-      "room_desc": "A small mushroom grows nearby.",
       "item_type": "food",
-      "weight": 1,
+      "name": "mushroom",
+      "nutrition": 6,
+      "room_desc": "A small mushroom grows nearby.",
+      "short_desc": "a mushroom",
       "value": 10,
-      "nutrition": 6
+      "vnum": 6011,
+      "weight": 1
     },
     "6012": {
-      "vnum": 6012,
-      "name": "sign",
-      "short_desc": "a large sign",
-      "room_desc": "A large sign mounted on a pole is standing by the roadside.",
       "item_type": "treasure",
-      "weight": 100,
-      "value": 0
+      "name": "sign",
+      "room_desc": "A large sign mounted on a pole is standing by the roadside.",
+      "short_desc": "a large sign",
+      "value": 0,
+      "vnum": 6012,
+      "weight": 100
     },
     "6013": {
-      "vnum": 6013,
-      "name": "barrel",
-      "short_desc": "a barrel",
-      "room_desc": "A water barrel has been left here.",
-      "item_type": "drinkcon",
-      "weight": 45,
-      "value": 60,
       "capacity": 40,
-      "current": 40
+      "current": 40,
+      "item_type": "drinkcon",
+      "name": "barrel",
+      "room_desc": "A water barrel has been left here.",
+      "short_desc": "a barrel",
+      "value": 60,
+      "vnum": 6013,
+      "weight": 45
     },
     "6014": {
-      "vnum": 6014,
-      "name": "water",
-      "short_desc": "a small brook",
-      "room_desc": "A small brook trickles through the forest beside the path.",
       "item_type": "fountain",
-      "weight": 0,
-      "value": 0
+      "name": "water",
+      "room_desc": "A small brook trickles through the forest beside the path.",
+      "short_desc": "a small brook",
+      "value": 0,
+      "vnum": 6014,
+      "weight": 0
     },
     "6015": {
-      "vnum": 6015,
-      "name": "water",
-      "short_desc": "the lake",
-      "room_desc": "the lake",
       "item_type": "fountain",
-      "weight": 0,
-      "value": 0
+      "name": "water",
+      "room_desc": "the lake",
+      "short_desc": "the lake",
+      "value": 0,
+      "vnum": 6015,
+      "weight": 0
     },
     "6016": {
-      "vnum": 6016,
-      "name": "cudgel",
-      "short_desc": "an oaken cudgel",
-      "room_desc": "A limb has fallen here.",
-      "item_type": "weapon",
-      "weight": 16,
-      "value": 1,
       "damage_dice": "1d7",
-      "weapon_type": "pound"
+      "item_type": "weapon",
+      "name": "cudgel",
+      "room_desc": "A limb has fallen here.",
+      "short_desc": "an oaken cudgel",
+      "value": 1,
+      "vnum": 6016,
+      "weapon_type": "pound",
+      "weight": 16
     },
     "6017": {
-      "vnum": 6017,
-      "name": "corpse",
-      "short_desc": "the corpse of a boar",
-      "room_desc": "the corpse of a boar",
+      "capacity": 100,
       "item_type": "container",
-      "weight": 500,
+      "name": "corpse",
+      "room_desc": "the corpse of a boar",
+      "short_desc": "the corpse of a boar",
       "value": 1,
-      "capacity": 100
+      "vnum": 6017,
+      "weight": 500
     },
     "6018": {
-      "vnum": 6018,
-      "name": "slab",
-      "short_desc": "a large slab of meat",
-      "room_desc": "A large piece of freshly cut boar meat is on the ground here.",
       "item_type": "food",
-      "weight": 15,
+      "name": "slab",
+      "nutrition": 24,
+      "room_desc": "A large piece of freshly cut boar meat is on the ground here.",
+      "short_desc": "a large slab of meat",
       "value": 40,
-      "nutrition": 24
+      "vnum": 6018,
+      "weight": 15
     },
     "6019": {
-      "vnum": 6019,
-      "name": "tusks",
-      "short_desc": "a pair of boar tusks",
-      "room_desc": "A pair of large boar tusks have been dropped here.",
       "item_type": "treasure",
-      "weight": 10,
-      "value": 60
+      "name": "tusks",
+      "room_desc": "A pair of large boar tusks have been dropped here.",
+      "short_desc": "a pair of boar tusks",
+      "value": 60,
+      "vnum": 6019,
+      "weight": 10
     },
     "6020": {
-      "vnum": 6020,
-      "name": "log",
-      "short_desc": "a hollow log",
-      "room_desc": "a hollow log",
       "item_type": "boat",
-      "weight": 48,
-      "value": 2
+      "name": "log",
+      "room_desc": "a hollow log",
+      "short_desc": "a hollow log",
+      "value": 2,
+      "vnum": 6020,
+      "weight": 48
     },
     "6021": {
-      "vnum": 6021,
-      "name": "nest",
-      "short_desc": "the bird's nest",
-      "room_desc": "the bird's nest",
+      "capacity": 30,
       "item_type": "container",
-      "weight": 0,
+      "name": "nest",
+      "room_desc": "the bird's nest",
+      "short_desc": "the bird's nest",
       "value": 0,
-      "capacity": 30
+      "vnum": 6021,
+      "weight": 0
     },
     "6022": {
-      "vnum": 6022,
-      "name": "egg",
-      "short_desc": "a blue robin's egg",
-      "room_desc": "A small bluish egg has been left here.",
       "item_type": "food",
-      "weight": 1,
+      "name": "egg",
+      "nutrition": 6,
+      "room_desc": "A small bluish egg has been left here.",
+      "short_desc": "a blue robin's egg",
       "value": 10,
-      "nutrition": 6
+      "vnum": 6022,
+      "weight": 1
     },
     "6023": {
-      "vnum": 6023,
-      "name": "meat",
-      "short_desc": "a piece of rabbit meat",
-      "room_desc": "A large piece of rabbit meat.",
       "item_type": "food",
-      "weight": 5,
+      "name": "meat",
+      "nutrition": 12,
+      "room_desc": "A large piece of rabbit meat.",
+      "short_desc": "a piece of rabbit meat",
       "value": 29,
-      "nutrition": 12
+      "vnum": 6023,
+      "weight": 5
     },
     "6024": {
-      "vnum": 6024,
-      "name": "meat",
-      "short_desc": "a piece of venison",
-      "room_desc": "A large piece of venison.",
       "item_type": "food",
-      "weight": 10,
+      "name": "meat",
+      "nutrition": 24,
+      "room_desc": "A large piece of venison.",
+      "short_desc": "a piece of venison",
       "value": 80,
-      "nutrition": 24
+      "vnum": 6024,
+      "weight": 10
+    },
+    "6050": {
+      "vnum": 6050,
+      "name": "a barkbound journal",
+      "short_desc": "a barkbound journal",
+      "room_desc": "A barkbound journal rests on the platform.",
+      "description": "The pages are stitched with reed fibers and smell of pine.",
+      "type": "other",
+      "weight": 2,
+      "cost": 60,
+      "lore_id": "haondor_journal",
+      "lore_title": "Barkbound Journal of the Wardens",
+      "lore_zone": 60,
+      "lore_text": "\"We ward the forest paths, guiding the lost and turning back those who would burn the groves.\""
+    },
+    "6051": {
+      "vnum": 6051,
+      "name": "an oath of Haon-Dor",
+      "short_desc": "an oath of Haon-Dor",
+      "room_desc": "A scroll of green vellum lies atop the altar.",
+      "description": "Leaf-inked vows spiral down the page.",
+      "type": "other",
+      "weight": 1,
+      "cost": 45,
+      "lore_id": "haondor_oath",
+      "lore_title": "Oath of the Haon-Dor Rangers",
+      "lore_zone": 60,
+      "lore_text": "\"To the roots we pledge, to the canopy we answer, and to the wild we belong.\""
+    },
+    "6052": {
+      "vnum": 6052,
+      "name": "a fae-etched casket",
+      "short_desc": "a fae-etched casket",
+      "room_desc": "A fae-etched casket is tucked beneath the bench.",
+      "description": "Delicate etchings shimmer when you look away.",
+      "type": "container",
+      "capacity": 6,
+      "is_closed": true,
+      "is_locked": false,
+      "weight": 4,
+      "cost": 120
+    },
+    "6053": {
+      "vnum": 6053,
+      "name": "a moonlit antler charm",
+      "short_desc": "a moonlit antler charm",
+      "room_desc": "A pale antler charm glows softly here.",
+      "description": "Carved from shed antler and bound with silver thread.",
+      "type": "armor",
+      "wear_slot": "neck",
+      "armor": 1,
+      "weight": 1,
+      "cost": 220
+    },
+    "6054": {
+      "vnum": 6054,
+      "name": "a carved oak key",
+      "short_desc": "a carved oak key",
+      "room_desc": "A carved oak key has been wedged into a stump.",
+      "description": "The key is inlaid with small leaf motifs.",
+      "type": "key",
+      "weight": 1,
+      "cost": 5
+    },
+    "6055": {
+      "vnum": 6055,
+      "name": "sapwood maul",
+      "short_desc": "a sapwood maul",
+      "room_desc": "A sapwood maul lies here.",
+      "description": "A heavy wooden maul.",
+      "item_type": "weapon",
+      "weight": 3,
+      "value": 2500,
+      "wear_slot": "wield",
+      "weapon_type": "mace",
+      "damage_dice": "2d4+2",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 1
+        }
+      ],
+      "set_id": 60
+    },
+    "6056": {
+      "vnum": 6056,
+      "name": "verdant ward",
+      "short_desc": "a verdant ward",
+      "room_desc": "A verdant ward rests here.",
+      "description": "A shield of living wood.",
+      "item_type": "armor",
+      "weight": 3,
+      "value": 2500,
+      "wear_slot": "shield",
+      "armor_bonus": 2,
+      "affects": [
+        {
+          "type": "wis",
+          "value": 1
+        }
+      ],
+      "set_id": 60
+    },
+    "6057": {
+      "vnum": 6057,
+      "name": "briar\u2011bound chain",
+      "short_desc": "a briar\u2011bound chain",
+      "room_desc": "A briar\u2011bound chain lies here.",
+      "description": "A dark chain for deathknights.",
+      "item_type": "armor",
+      "weight": 3,
+      "value": 2500,
+      "wear_slot": "waist",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 1
+        }
+      ],
+      "set_id": 60
+    },
+    "6058": {
+      "vnum": 6058,
+      "name": "sprig of life",
+      "short_desc": "a sprig of life",
+      "room_desc": "A sprig of life lies here.",
+      "description": "A cleric's token.",
+      "item_type": "armor",
+      "weight": 3,
+      "value": 2500,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "wis",
+          "value": 1
+        },
+        {
+          "type": "max_mana",
+          "value": 15
+        }
+      ],
+      "set_id": 60
+    },
+    "6059": {
+      "vnum": 6059,
+      "name": "leaf\u2011etched orb",
+      "short_desc": "a leaf\u2011etched orb",
+      "room_desc": "A leaf\u2011etched orb glows softly.",
+      "description": "A mage's forest focus.",
+      "item_type": "armor",
+      "weight": 3,
+      "value": 2500,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "int",
+          "value": 1
+        }
+      ],
+      "set_id": 60
+    },
+    "6060": {
+      "vnum": 6060,
+      "name": "songbird flute",
+      "short_desc": "a songbird flute",
+      "room_desc": "A songbird flute lies here.",
+      "description": "A bard's flute.",
+      "item_type": "weapon",
+      "weight": 3,
+      "value": 2500,
+      "wear_slot": "wield",
+      "weapon_type": "mace",
+      "damage_dice": "1d4+1",
+      "affects": [
+        {
+          "type": "cha",
+          "value": 1
+        }
+      ],
+      "set_id": 60
+    },
+    "6061": {
+      "vnum": 6061,
+      "name": "foxfang knife",
+      "short_desc": "a foxfang knife",
+      "room_desc": "A foxfang knife lies here.",
+      "description": "A quick blade.",
+      "item_type": "weapon",
+      "weight": 3,
+      "value": 2500,
+      "wear_slot": "wield",
+      "weapon_type": "pierce",
+      "damage_dice": "1d4+1",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 1
+        }
+      ],
+      "set_id": 60
+    },
+    "6062": {
+      "vnum": 6062,
+      "name": "greenwood longbow",
+      "short_desc": "a greenwood longbow",
+      "room_desc": "A greenwood longbow lies here.",
+      "description": "A ranger's bow.",
+      "item_type": "weapon",
+      "weight": 3,
+      "value": 2500,
+      "wear_slot": "wield",
+      "weapon_type": "pierce",
+      "damage_dice": "1d6+1",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 1
+        },
+        {
+          "type": "hitroll",
+          "value": 1
+        }
+      ],
+      "set_id": 60
+    },
+    "6063": {
+      "vnum": 6063,
+      "name": "deerhide gloves",
+      "short_desc": "deerhide gloves",
+      "room_desc": "Deerhide gloves lie here.",
+      "description": "Supple gloves.",
+      "item_type": "armor",
+      "weight": 3,
+      "value": 2500,
+      "wear_slot": "hands",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 1
+        }
+      ],
+      "set_id": 60
+    }
+  },
+  "rooms": {
+    "6000": {
+      "description": "The area opens at the end of a dusty road, near the eastern edge of the\nlarge forest of Haon-Dor. To the east you see the road heading back to\nthe walled city, Midgaard, and to the west is a narrow trail leading\nthrough the forest. The air is fresh and clean. Wildflowers dot the\nlandscape.",
+      "exits": {
+        "east": {
+          "description": "To the east a dusty road takes you back to the walls of Midgaard, and its large west gate.",
+          "to_room": 6090
+        },
+        "north": {
+          "description": "You see an exit north.",
+          "to_room": 11000
+        },
+        "west": {
+          "description": "You see a narrow forest trail winding westward in between the trees.",
+          "to_room": 6001
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "name": "The Edge Of The Forest",
+      "obj_resets": [
+        {
+          "max": 1,
+          "vnum": 6012
+        }
+      ],
+      "sector_type": "field",
+      "vnum": 6000
+    },
+    "6001": {
+      "description": "The area is a trail leading through the forest. There seems to be a\nsmall path leading north into the shadows. To the east is the forest\nedge and to the west the trail leads further into the forest. The forest\nfloor is carpeted with fallen leaves. Bird calls echo through the\ncanopy.",
+      "exits": {
+        "east": {
+          "description": "The trail continues eastwards out of the forest.",
+          "to_room": 6000
+        },
+        "north": {
+          "description": "You see evidence of a small path leading through a break in the trees to the north.",
+          "to_room": 6060
+        },
+        "west": {
+          "description": "You see the narrow forest trail winding westwards in between the trees.",
+          "to_room": 6002
+        }
+      },
+      "extra_descs": {
+        "": "birds insects animals"
+      },
+      "flags": [],
+      "name": "A Trail Through The Light Forest",
+      "sector_type": "forest",
+      "vnum": 6001
+    },
+    "6002": {
+      "description": "The area is a narrow trail winding east and west through the forest. To\nthe west, the forest gradually becomes more dense. A small forest path\nleads off to the south. Branches intertwine overhead, filtering the\nlight. The scent of pine and earth fills the air.",
+      "exits": {
+        "east": {
+          "description": "The trail continues eastwards through the young trees.",
+          "to_room": 6001
+        },
+        "south": {
+          "description": "The small path leads south through the young trees.",
+          "to_room": 6011
+        },
+        "west": {
+          "description": "You see the narrow forest trail winding westwards into the dense forest.",
+          "to_room": 6003
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "name": "A Trail Through The Light Forest",
+      "sector_type": "forest",
+      "vnum": 6002
+    },
+    "6003": {
+      "description": "The area is a trail winding east and west through the dense forest. To\nthe east, the forest gradually seems to become lighter. The forest floor\nis carpeted with fallen leaves. The scent of pine and earth fills the\nair.",
+      "exits": {
+        "east": {
+          "description": "The trail continues eastwards to the younger part of the forest.",
+          "to_room": 6002
+        },
+        "west": {
+          "description": "You see the narrow trail winding westwards through the dense forest.",
+          "to_room": 6004
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 7,
+          "vnum": 6012
+        }
+      ],
+      "name": "A Trail Through The Dense Forest",
+      "sector_type": "forest",
+      "vnum": 6003
+    },
+    "6004": {
+      "description": "The area is a trail winding east and west through the dense forest. To\nthe west, the trees are so huge and their crowns so dense that forest\nremains in total darkness. A small path leads south through the trees.\nAncient trees rise on all sides. The forest floor is carpeted with\nfallen leaves.",
+      "exits": {
+        "east": {
+          "description": "The trail continues eastwards through the dense forest.",
+          "to_room": 6003
+        },
+        "south": {
+          "description": "The small path leads south through the trees.",
+          "to_room": 6005
+        },
+        "west": {
+          "description": "The narrow trail almost seems to disappear between the enormous trunks.",
+          "to_room": 6100
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "name": "A Trail Through The Dense Forest",
+      "sector_type": "forest",
+      "vnum": 6004
+    },
+    "6005": {
+      "description": "The area is a small path leading through the dense forest. The crowns of\nthe old trees leave the forest in an unreal twilight illumination. The\npath continues north and south. A patch of moss to the west looks\nfreshly disturbed. The scent of pine and earth fills the air. Bird calls\necho through the canopy.",
+      "exits": {
+        "north": {
+          "description": "The small path leads north through the trees.",
+          "to_room": 6004
+        },
+        "south": {
+          "description": "The small path leads south through the trees.",
+          "to_room": 6006
+        },
+        "west": {
+          "to_room": 6093,
+          "description": "A narrow opening veiled by moss.",
+          "hidden": true,
+          "search_difficulty": 55,
+          "requires_light": true,
+          "secret": true,
+          "reveal_message": "You part the moss, revealing a hidden hollow to the west."
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 4,
+          "vnum": 6008
+        }
+      ],
+      "name": "A Small Path In The Dense Forest",
+      "sector_type": "forest",
+      "vnum": 6005
+    },
+    "6006": {
+      "description": "The area is a small path leading through the dense forest. The crowns of\nthe old trees leave the forest in an unreal twilight illumination. The\npath continues north and east. The scent of pine and earth fills the\nair. The forest floor is carpeted with fallen leaves.",
+      "exits": {
+        "east": {
+          "description": "The small path leads east through the trees.",
+          "to_room": 6007
+        },
+        "north": {
+          "description": "The small path leads north through the trees.",
+          "to_room": 6005
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "name": "A Small Path In The Dense Forest",
+      "obj_resets": [
+        {
+          "max": 10,
+          "vnum": 6011
+        },
+        {
+          "max": 5,
+          "vnum": 6014
+        }
+      ],
+      "sector_type": "forest",
+      "vnum": 6006
+    },
+    "6007": {
+      "description": "The area is a small path leading through the dense forest. The crowns of\nthe old trees leave the forest in an unreal twilight illumination. The\nforest gradually lightens to the east. Paths lead east, west and south.\nBranches intertwine overhead, filtering the light. Bird calls echo\nthrough the canopy.",
+      "exits": {
+        "east": {
+          "description": "You can barely make out a clearing to the east.",
+          "to_room": 6008
+        },
+        "south": {
+          "description": "The small path leads south through the trees.",
+          "to_room": 6012
+        },
+        "west": {
+          "description": "The small path leads west through the trees.",
+          "to_room": 6006
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 7,
+          "vnum": 6012
+        }
+      ],
+      "name": "An Intersection In The Dense Forest",
+      "obj_resets": [
+        {
+          "max": 5,
+          "vnum": 6014
+        }
+      ],
+      "sector_type": "forest",
+      "vnum": 6007
+    },
+    "6008": {
+      "description": "This is a clearing in the forest. Lots of fresh stumps of varying sizes\nprotrude from the ground and heavy logs are stacked neatly in a big pile\nsupported by stakes set into the ground. Paths lead north, east and\nwest. The forest floor is carpeted with fallen leaves. The scent of pine\nand earth fills the air.",
+      "exits": {
+        "east": {
+          "description": "The small path leads east through the trees.",
+          "to_room": 6009
+        },
+        "north": {
+          "description": "The small path leads north through the trees.",
+          "to_room": 6011
+        },
+        "west": {
+          "description": "The small path leads west through the trees.",
+          "to_room": 6007
+        }
+      },
+      "extra_descs": {
+        "": "tree trees",
+        "ven though the logs have been chopped to shorter pieces, they are quite heavy": "as they are fresh and still filled with sap."
+      },
+      "flags": [],
+      "name": "The Forest Clearing",
+      "obj_resets": [
+        {
+          "max": 5,
+          "vnum": 6014
+        }
+      ],
+      "sector_type": "forest",
+      "vnum": 6008
+    },
+    "6009": {
+      "description": "The area is outside a small cabin built entirely from heavy logs. There\nis a wooden door to the north and small paths lead west and south\nthrough the trees. Bird calls echo through the canopy. The forest floor\nis carpeted with fallen leaves.",
+      "exits": {
+        "north": {
+          "description": "The wooden door is quite sturdy but does not appear to be equipped with a lock.",
+          "door": {
+            "key_vnum": null,
+            "locked": false,
+            "name": "door wooden",
+            "state": "closed"
+          },
+          "to_room": 6010
+        },
+        "south": {
+          "description": "The small path leads south through the dense forest.",
+          "to_room": 6014
+        },
+        "west": {
+          "description": "The small path leads west through the light forest.",
+          "to_room": 6008
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 1,
+          "vnum": 6000
+        }
+      ],
+      "name": "Outside A Small Cabin In The Forest",
+      "sector_type": "forest",
+      "vnum": 6009
+    },
+    "6011": {
+      "description": "The area is a small path leading through the forest. The trees are tall\nand slender. Paths lead north and south. Ancient trees rise on all\nsides. The scent of pine and earth fills the air.",
+      "exits": {
+        "north": {
+          "description": "The path leads north through the young trees.",
+          "to_room": 6002
+        },
+        "south": {
+          "description": "The path leads south through the young trees.",
+          "to_room": 6008
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "name": "A Small Path Through The Light Forest",
+      "sector_type": "forest",
+      "vnum": 6011
+    },
+    "6012": {
+      "description": "The area is a small path leading through the dense forest. The crowns of\nthe old trees leave the forest floor in an unreal twilight illumination.\nPaths lead north, east and south. Ancient trees rise on all sides. The\nforest floor is carpeted with fallen leaves.",
+      "exits": {
+        "east": {
+          "description": "The small path leads east through the trees.",
+          "to_room": 6013
+        },
+        "north": {
+          "description": "The small path leads north through the trees.",
+          "to_room": 6007
+        },
+        "south": {
+          "description": "The small path leads south through the trees.",
+          "to_room": 6021
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 6,
+          "vnum": 6001
+        }
+      ],
+      "name": "An Intersection In The Dense Forest",
+      "sector_type": "forest",
+      "vnum": 6012
+    },
+    "6013": {
+      "description": "The area is a small path leading through the dense forest. The crowns of\nthe old trees leave the forest in an unreal twilight illumination. The\npath continues east and west. Ancient trees rise on all sides. Bird\ncalls echo through the canopy.",
+      "exits": {
+        "east": {
+          "description": "The small path leads east through the trees.",
+          "to_room": 6014
+        },
+        "west": {
+          "description": "The small path leads west through the trees.",
+          "to_room": 6012
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 4,
+          "vnum": 6008
+        },
+        {
+          "max": 4,
+          "vnum": 6009
+        }
+      ],
+      "name": "A Small Path In The Dense Forest",
+      "obj_resets": [
+        {
+          "max": 10,
+          "vnum": 6011
+        },
+        {
+          "max": 5,
+          "vnum": 6014
+        }
+      ],
+      "sector_type": "forest",
+      "vnum": 6013
+    },
+    "6014": {
+      "description": "The area is a small path leading through the dense forest. The forest\ngradually lightens to the north. Paths lead north, east and west.\nAncient trees rise on all sides. The forest floor is carpeted with\nfallen leaves.",
+      "exits": {
+        "east": {
+          "description": "The small path leads east through the trees.",
+          "to_room": 6015
+        },
+        "north": {
+          "description": "The path leads north to a lighter part of the forest.",
+          "to_room": 6009
+        },
+        "west": {
+          "description": "The small path leads west through the trees.",
+          "to_room": 6013
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 4,
+          "vnum": 6005
+        }
+      ],
+      "name": "An Intersection In The Dense Forest",
+      "obj_resets": [
+        {
+          "max": 5,
+          "vnum": 6014
+        }
+      ],
+      "sector_type": "forest",
+      "vnum": 6014
+    },
+    "6015": {
+      "description": "The area is a small path leading through the dense forest. The crowns of\nthe old trees leave the forest in an unreal twilight illumination. The\npath continues south and west. Ancient trees rise on all sides. Branches\nintertwine overhead, filtering the light.",
+      "exits": {
+        "south": {
+          "description": "The small path leads south through the trees.",
+          "to_room": 6016
+        },
+        "west": {
+          "description": "The small path leads west through the trees.",
+          "to_room": 6014
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 6,
+          "vnum": 6001
+        }
+      ],
+      "name": "A Small Path In The Dense Forest",
+      "sector_type": "forest",
+      "vnum": 6015
+    },
+    "6016": {
+      "description": "The area is a small path leading through the dense forest. The crowns of\nthe old trees leave the forest in an unreal twilight illumination. The\npath continues north, south and east. Ancient trees rise on all sides.\nBranches intertwine overhead, filtering the light.",
+      "exits": {
+        "east": {
+          "description": "The small path leads east through the trees.",
+          "to_room": 6028
+        },
+        "north": {
+          "description": "The small path leads north through the trees.",
+          "to_room": 6015
+        },
+        "south": {
+          "description": "The small path leads south through the trees.",
+          "to_room": 6017
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 4,
+          "vnum": 6009
+        }
+      ],
+      "name": "A Small Path In The Dense Forest",
+      "obj_resets": [
+        {
+          "max": 10,
+          "vnum": 6011
+        }
+      ],
+      "sector_type": "forest",
+      "vnum": 6016
+    },
+    "6017": {
+      "description": "This is a turn on a small path leading through the dense forest. The\nforest seems to become lighter to the west. The path continues north and\nwest. Ancient trees rise on all sides. Bird calls echo through the\ncanopy.",
+      "exits": {
+        "north": {
+          "description": "The small path leads north through the trees.",
+          "to_room": 6016
+        },
+        "west": {
+          "description": "The small path leads west through the trees to a lighter part of the forest.",
+          "to_room": 6018
+        }
+      },
+      "extra_descs": {
+        "": "up branches branch large"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 6,
+          "vnum": 6001
+        }
+      ],
+      "name": "A Small Path In The Dense Forest",
+      "sector_type": "forest",
+      "vnum": 6017
+    },
+    "6018": {
+      "description": "The area is a small path leading through the forest. A path leads north\nto a small field and other paths lead east and west into the dense\nforest. The forest floor is carpeted with fallen leaves. Ancient trees\nrise on all sides.",
+      "exits": {
+        "east": {
+          "description": "The path leads east to a dense part of the forest.",
+          "to_room": 6017
+        },
+        "north": {
+          "description": "The path leads north to a small, grassy field.",
+          "to_room": 6023
+        },
+        "west": {
+          "description": "The path leads west to a dense part of the forest.",
+          "to_room": 6019
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "name": "An Intersection In The Light Forest",
+      "sector_type": "forest",
+      "vnum": 6018
+    },
+    "6019": {
+      "description": "The area is a small path leading through the dense forest. The forest\nseems to become lighter to the east. The path continues north and east.\nThe scent of pine and earth fills the air. Branches intertwine overhead,\nfiltering the light.",
+      "exits": {
+        "east": {
+          "description": "The small path leads east through the trees to a lighter part of the forest.",
+          "to_room": 6018
+        },
+        "north": {
+          "description": "The small path leads north through the trees.",
+          "to_room": 6020
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 6,
+          "vnum": 6001
+        }
+      ],
+      "name": "A Small Path In The Dense Forest",
+      "obj_resets": [
+        {
+          "max": 10,
+          "vnum": 6011
+        }
+      ],
+      "sector_type": "forest",
+      "vnum": 6019
+    },
+    "6020": {
+      "description": "The area is a small path leading through the dense forest. The crowns of\nthe old trees leave the forest in an unreal twilight illumination. The\npath continues south and west. Branches intertwine overhead, filtering\nthe light. The scent of pine and earth fills the air.",
+      "exits": {
+        "south": {
+          "description": "The small path leads south through the trees.",
+          "to_room": 6019
+        },
+        "west": {
+          "description": "The small path leads west through the trees.",
+          "to_room": 6021
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "name": "A Small Path In The Dense Forest",
+      "sector_type": "forest",
+      "vnum": 6020
+    },
+    "6021": {
+      "description": "The area is a small path leading through the dense forest. To the west\nyou see a dark cave entrance, leading into a small hillside. The path\ncontinues north and east. The scent of pine and earth fills the air.\nBranches intertwine overhead, filtering the light.",
+      "exits": {
+        "east": {
+          "description": "The small path leads east through the trees.",
+          "to_room": 6020
+        },
+        "north": {
+          "description": "The small path leads north through the trees.",
+          "to_room": 6012
+        },
+        "west": {
+          "description": "The cave is very dark.",
+          "to_room": 6022
+        }
+      },
+      "extra_descs": {
+        "": "cave entrance"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 4,
+          "vnum": 6013
+        }
+      ],
+      "name": "A Small Path In The Dense Forest",
+      "sector_type": "forest",
+      "vnum": 6021
+    },
+    "6022": {
+      "description": "This is a natural cave. Various sorts of debris cover the stone floor,\nemitting a rather unpleasant smell that makes the air thick and hard to\nbreathe. The only obvious exit is east. Dust motes drift in the stale\nair. Shadows gather in the corners.",
+      "exits": {
+        "east": {
+          "description": "The cave opening is to the east.",
+          "to_room": 6021
+        }
+      },
+      "extra_descs": {
+        "": "air smell"
+      },
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "mob_resets": [
+        {
+          "max": 1,
+          "vnum": 6002
+        }
+      ],
+      "name": "Inside The Cave",
+      "sector_type": "inside",
+      "vnum": 6022
+    },
+    "6023": {
+      "description": "This is a grass covered field somewhere in the forest. The tall grass\nnearly reaches your waist, and the surrounding oaks and beeches form an\nalmost wall-like thicket on the east side of the field. To the northeast\nVisible is a small lake. A small path leads south through the trees, and\nthe field opens up to the north and west. The open sky stretches\noverhead. The ground is soft underfoot.",
+      "exits": {
+        "east": {
+          "description": "The ground slopes gently downward to the eastern tree line.",
+          "to_room": 6024
+        },
+        "north": {
+          "description": "Wind blowing in from the north carries with it the smell of a newly killed animal, as well as the noise of many birds, which you can see circling there.",
+          "to_room": 6026
+        },
+        "south": {
+          "description": "The small path leads south in between the trees.",
+          "to_room": 6018
+        }
+      },
+      "extra_descs": {
+        "": "birds bird circling"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 1,
+          "vnum": 6004
+        }
+      ],
+      "name": "A Grassy Field",
+      "obj_resets": [
+        {
+          "max": 1,
+          "vnum": 6010
+        }
+      ],
+      "sector_type": "field",
+      "vnum": 6023
+    },
+    "6024": {
+      "description": "This is a lower part of the grassy field, south of a small lake. The\ngrass here has been trampled by the many animals coming here for water,\nleaving the ground covered in tracks of different types. To the west you\nsee a break in the wall of trees surrounding the field, and to the north\nis a small lake. Tall grass sways in a gentle breeze. The air is fresh\nand clean.",
+      "exits": {
+        "north": {
+          "description": "The animal tracks lead off to the north, and around the lake there.",
+          "to_room": 6025
+        },
+        "west": {
+          "description": "To the south-west you see a break in the tree line, leading back to the forest path.",
+          "to_room": 6023
+        }
+      },
+      "extra_descs": {
+        "": "tree trees thicket"
+      },
+      "flags": [],
+      "name": "The Lower Part Of The Grassy Field",
+      "sector_type": "field",
+      "vnum": 6024
+    },
+    "6025": {
+      "description": "The grass stops shortly before the lake, replaced by mud covered in\ntracks from the local animals. When you come close many animals scatter\ninto the tall grass and some even into the forest. To the west you see\nbirds circling in the high in the air, and to the north you see a small\nlake, surrounded by tall reeds. The field continues to the south, and\nthe forest blocks passage to the east. The ground is soft underfoot. The\nopen sky stretches overhead.",
+      "exits": {
+        "north": {
+          "description": "The lake looks inviting, and you can see some sort of water fowl floating around among the reeds.",
+          "to_room": 6027
+        },
+        "south": {
+          "description": "To the south an animal trail leads of towards a the other side of the lower field.",
+          "to_room": 6024
+        },
+        "west": {
+          "description": "The smell of carrion drifts down to you from higher on the field to the west.",
+          "to_room": 6026
+        }
+      },
+      "extra_descs": {
+        "": "track tracks mud"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 1,
+          "vnum": 6016
+        }
+      ],
+      "name": "Beside The Lake In A Grassy Field",
+      "obj_resets": [
+        {
+          "max": 2,
+          "vnum": 6015
+        }
+      ],
+      "sector_type": "field",
+      "vnum": 6025
+    },
+    "6026": {
+      "description": "As you come close, scavenging animals and birds of all sorts scatter,\nleaving only the boldest and stupidest encircling the corpse of a large\nboar. Carrion birds circle overhead, and smaller animals stare out of\nthe tall grass at you. The grass here has been trampled, and a large\narea around the corpse is stained by blood. A trail leads down the\nsloping field to a lake, and to the south you see the path back to the\nforest. The ground is soft underfoot. The air is fresh and clean.",
+      "exits": {
+        "east": {
+          "description": "A small lake lies down the sloping field to the east.  Some of the animals that fled from here have gone there, and are watching, waiting for you to leave so they can resume their feasting.",
+          "to_room": 6025
+        },
+        "south": {
+          "description": "The field continues to the south, and you can see the path back to the forest there.",
+          "to_room": 6023
+        }
+      },
+      "extra_descs": {
+        "": "animal animals small"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 4,
+          "vnum": 6014
+        },
+        {
+          "max": 4,
+          "vnum": 6014
+        },
+        {
+          "max": 4,
+          "vnum": 6014
+        },
+        {
+          "max": 1,
+          "vnum": 6015
+        }
+      ],
+      "name": "The Northern Section Of A Grassy Field",
+      "obj_resets": [
+        {
+          "max": 1,
+          "vnum": 6017
+        }
+      ],
+      "sector_type": "field",
+      "vnum": 6026
+    },
+    "6027": {
+      "description": "This is the middle of a small lake, fed from a small stream coming\nthrough the forest from the northwest. The water is not that clear, but\nVisible is fish swimming around below. The bank is clear to the south,\nproviding a safe place to get back to the field. Waves crash and foam\nrelentlessly. The roar of water fills your ears.",
+      "exits": {
+        "south": {
+          "description": "Some animals have gathered on the bank to watch you, curious about what you are doing.",
+          "to_room": 6025
+        }
+      },
+      "extra_descs": {
+        "": "reed reeds"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 4,
+          "vnum": 6014
+        },
+        {
+          "max": 3,
+          "vnum": 6017
+        },
+        {
+          "max": 3,
+          "vnum": 6017
+        },
+        {
+          "max": 3,
+          "vnum": 6017
+        },
+        {
+          "max": 2,
+          "vnum": 6018
+        },
+        {
+          "max": 2,
+          "vnum": 6018
+        },
+        {
+          "max": 2,
+          "vnum": 6019
+        },
+        {
+          "max": 2,
+          "vnum": 6019
+        }
+      ],
+      "name": "On The Lake",
+      "obj_resets": [
+        {
+          "max": 2,
+          "vnum": 6015
+        }
+      ],
+      "sector_type": "water_noswim",
+      "vnum": 6027
+    },
+    "6028": {
+      "description": "The area is a small path leading through the dense forest. The crowns of\nthe old trees leave the forest in an unreal twilight illumination. The\npath continues to the west and south. Ancient trees rise on all sides.\nThe scent of pine and earth fills the air.",
+      "exits": {
+        "south": {
+          "description": "To the south, a narrow trail slips toward Near A Large Tree In The Dense Forest. Sun-dappled leaves sway overhead and birdsong filters through the trees.",
+          "to_room": 6029
+        },
+        "west": {
+          "description": "The small path leads west through the trees.",
+          "to_room": 6016
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 7,
+          "vnum": 6012
+        }
+      ],
+      "name": "A Small Path In The Dense Forest",
+      "sector_type": "forest",
+      "vnum": 6028
+    },
+    "6029": {
+      "description": "This is the end of a small path leading through the dense forest. The\ncrowns of the old trees leave the forest in an unreal twilight\nillumination. This rough clearing is dominated by a very large oak tree,\nprobably the largest in this part of the forest. The path leads back to\nthe north. Ancient trees rise on all sides. Branches intertwine\noverhead, filtering the light.",
+      "exits": {
+        "north": {
+          "description": "To the north, a narrow trail slips toward A Small Path In The Dense Forest. Sun-dappled leaves sway overhead and birdsong filters through the trees.",
+          "to_room": 6028
+        },
+        "up": {
+          "description": "You see the lower branches of the towering oak.",
+          "to_room": 6030
+        }
+      },
+      "extra_descs": {
+        "": "top highest high"
+      },
+      "flags": [
+        "no_mob"
+      ],
+      "name": "Near A Large Tree In The Dense Forest",
+      "sector_type": "forest",
+      "vnum": 6029
+    },
+    "6030": {
+      "description": "This is a huge oak, about one third of the way to the top. The branches\nabove block out much of the light, but enough filters through for you to\nsee. Small animals and birds scatter at your approach, rustling the\nleaves all about you. You could easily climb back down to the ground, or\ncontinue up the tree. One large branch juts outward to the west,\npossibly providing a third choice of exit. High in the branches, a\nplatform is barely visible among the leaves. The air is thin and cold at\nthis altitude. Snow clings to shadowed crevices.",
+      "exits": {
+        "down": {
+          "description": "The rough clearing is just a quick climb and jump below you.",
+          "to_room": 6029
+        },
+        "up": {
+          "to_room": 6094,
+          "description": "A rope ladder blends with the bark.",
+          "hidden": true,
+          "search_difficulty": 60,
+          "requires_light": true,
+          "secret": true,
+          "reveal_message": "You find a rope ladder hidden in the canopy."
+        },
+        "west": {
+          "description": "This limb looks large and strong enough for you to walk most of the way along its length to the west.",
+          "to_room": 6031
+        }
+      },
+      "extra_descs": {
+        "": "top highest high"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 2,
+          "vnum": 6010
+        },
+        {
+          "max": 2,
+          "vnum": 6010
+        },
+        {
+          "max": 7,
+          "vnum": 6012
+        },
+        {
+          "max": 4,
+          "vnum": 6013
+        }
+      ],
+      "name": "In The Lower Branches Of A Large Oak",
+      "sector_type": "mountain",
+      "vnum": 6030
+    },
+    "6031": {
+      "description": "This sturdy branch hangs far out over a path to the west, which you\nmight be able to jump down to. Several squirrels scamper into hiding as\nyou approach, leaving you alone and swaying slightly with the wind. To\nyour north Visible is a small log cabin through the trees, and to the\nsoutheast there seems to be some sort of clearing, with many birds\ncircling above it. Bird calls echo through the canopy. The forest floor\nis carpeted with fallen leaves.",
+      "exits": {
+        "down": {
+          "description": "Below you is a small path, probably used by the forest animals.  You think that you could jump down with a little effort.",
+          "to_room": 6016
+        },
+        "east": {
+          "description": "Back to the east you see the tree trunk.  It is much less precarious there compared to here... perhaps you should go back.",
+          "to_room": 6030
+        }
+      },
+      "extra_descs": {
+        "": "top highest high"
+      },
+      "flags": [
+        "no_mob"
+      ],
+      "name": "Out On A Limb In A Large Oak",
+      "sector_type": "forest",
+      "vnum": 6031
+    },
+    "6032": {
+      "description": "This is a huge oak, about midway to the top. The branches above block\nout much of the light, but enough filters through for you to see. A few\nbirds have remained to watch you from the fringe branches, well out of\nyour reach. Scratches mar the tree here, and torn bark is scattered near\nyou on the branch. It would seem some large forest cat lives nearby, so\nyou had better be careful! You can continue a bit farther up the tree,\nor descend to limbs that don't sway so much. The wind howls around\nexposed peaks. Bare rock dominates the landscape.",
+      "exits": {
+        "down": {
+          "description": "Below you, a narrow trail slips toward In The Lower Branches Of A Large Oak. Sun-dappled leaves sway overhead and birdsong filters through the trees.",
+          "to_room": 6030
+        },
+        "up": {
+          "description": "Above you the tree narrows farther, but it still looks like you could climb up there.  A feline shape is pacing about above you, trying to get to a large wounded bird.  Perhaps you should try to see what sort of cat this is before you interrupt its hunt... it might eat you instead of the bird.",
+          "to_room": 6033
+        }
+      },
+      "extra_descs": {
+        "": "top highest high"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 3,
+          "vnum": 6009
+        },
+        {
+          "max": 7,
+          "vnum": 6012
+        }
+      ],
+      "name": "Midway To The Top Of The Large Oak",
+      "obj_resets": [
+        {
+          "max": 1,
+          "vnum": 6021
+        }
+      ],
+      "sector_type": "mountain",
+      "vnum": 6032
+    },
+    "6060": {
+      "description": "The area is a small shaded path leading through the trees. The forest\ngradually lightens to the east. The path continues to the north, and to\nthe south you see the main trail. The scent of pine and earth fills the\nair. Branches intertwine overhead, filtering the light.",
+      "exits": {
+        "north": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6065
+        },
+        "south": {
+          "description": "Through a break in the tree line you see the main trail that heads back towards Midgaard.",
+          "to_room": 6001
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 11,
+          "vnum": 6001
+        },
+        {
+          "max": 8,
+          "vnum": 6005
+        }
+      ],
+      "name": "A Shaded Path Through The Forest",
+      "sector_type": "forest",
+      "vnum": 6060,
+      "obj_resets": [
+        {
+          "vnum": 6054,
+          "max": 1
+        }
+      ]
+    },
+    "6061": {
+      "description": "This is a turn on a small shadowed path leading through the forest. The\nforest seems to become lighter to the west. The path continues north and\nwest. Ancient trees rise on all sides. The scent of pine and earth fills\nthe air.",
+      "exits": {
+        "north": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6066
+        },
+        "west": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6062
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 4,
+          "vnum": 6013
+        }
+      ],
+      "name": "A Shaded Path Through The Forest",
+      "sector_type": "forest",
+      "vnum": 6061
+    },
+    "6062": {
+      "description": "The area is a small shaded path leading through the dense forest. The\ncrowns of the old trees leave the forest floor in an unreal twililght\nillumination. To the north you see a small clearing. Paths lead east and\nwest. Ancient trees rise on all sides. The scent of pine and earth fills\nthe air.",
+      "exits": {
+        "east": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6061
+        },
+        "north": {
+          "description": "Through the underbrush you see a small clearing.",
+          "to_room": 6067
+        },
+        "west": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6063
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 4,
+          "vnum": 6008
+        },
+        {
+          "max": 11,
+          "vnum": 6001
+        }
+      ],
+      "name": "A Shaded Path Through The Dense Forest",
+      "obj_resets": [
+        {
+          "max": 10,
+          "vnum": 6011
+        }
+      ],
+      "sector_type": "forest",
+      "vnum": 6062
+    },
+    "6063": {
+      "description": "The area is a small shaded path through the dense forest. The crowns of\nthe old trees leave the forest in an unreal twilight illumination. The\npath continues north and east. Branches intertwine overhead, filtering\nthe light. The forest floor is carpeted with fallen leaves.",
+      "exits": {
+        "east": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6062
+        },
+        "north": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6068
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "name": "A Shaded Path Through The Dense Forest",
+      "sector_type": "forest",
+      "vnum": 6063
+    },
+    "6064": {
+      "description": "The area is a small shadowy path leading through the dense forest. The\ncrowns of the old trees leave the forest in an unreal twilight\nillumination. The path continues north and south. The forest floor is\ncarpeted with fallen leaves. Branches intertwine overhead, filtering the\nlight.",
+      "exits": {
+        "north": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6069
+        },
+        "south": {
+          "description": "The path winds its way into darkness.",
+          "to_room": 6100
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 7,
+          "vnum": 6012
+        }
+      ],
+      "name": "A Shadowy Path Through The Dense Forest",
+      "sector_type": "forest",
+      "vnum": 6064
+    },
+    "6065": {
+      "description": "This is a turn on a small shaded path winding through the trees. The\nforest gradually becomes more dense to the west. The path continues west\nand south from here. The scent of pine and earth fills the air. Ancient\ntrees rise on all sides.",
+      "exits": {
+        "south": {
+          "description": "Through the trees to the south you can almost see the main trail leading back to Midgaard.",
+          "to_room": 6060
+        },
+        "west": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6066
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "name": "A Shaded Path Through The Forest",
+      "obj_resets": [
+        {
+          "max": 10,
+          "vnum": 6011
+        }
+      ],
+      "sector_type": "forest",
+      "vnum": 6065
+    },
+    "6066": {
+      "description": "This is a fork in the small shaded path winding through the trees. The\nforest gradually becomes more dense to the west. The path branches to\nthe north and south here, and also continues to the east. Branches\nintertwine overhead, filtering the light. Ancient trees rise on all\nsides.",
+      "exits": {
+        "east": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6065
+        },
+        "north": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6071
+        },
+        "south": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6061
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 4,
+          "vnum": 6009
+        }
+      ],
+      "name": "A Fork On The Shaded Path Through The Forest",
+      "sector_type": "forest",
+      "vnum": 6066
+    },
+    "6067": {
+      "description": "This is a small clearing, beside a large fallen tree. A large amount of\nthe tree has already decomposed, but some pieces remain, scattered about\nthe clearing. Paths border the clearing to the north and south. The\nscent of pine and earth fills the air. Ancient trees rise on all sides.",
+      "exits": {
+        "north": {
+          "description": "A shaded path winds its way northeast between the trees.",
+          "to_room": 6072
+        },
+        "south": {
+          "description": "A shaded path winds its way east between the trees.",
+          "to_room": 6062
+        }
+      },
+      "extra_descs": {
+        "": "under animal den"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 1,
+          "vnum": 6011
+        },
+        {
+          "max": 4,
+          "vnum": 6013
+        }
+      ],
+      "name": "At The Fallen Tree",
+      "obj_resets": [
+        {
+          "max": 1,
+          "vnum": 6020
+        }
+      ],
+      "sector_type": "forest",
+      "vnum": 6067
+    },
+    "6068": {
+      "description": "The area is a small shaded path leading through the dense forest. The\ncrowns of the old trees leave the forest in an unreal twilight\nillumination. The path continues north, south, and west. The scent of\npine and earth fills the air. Bird calls echo through the canopy.",
+      "exits": {
+        "north": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6073
+        },
+        "south": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6063
+        },
+        "west": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6069
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 11,
+          "vnum": 6001
+        }
+      ],
+      "name": "An Intersection On The Shaded Path",
+      "sector_type": "forest",
+      "vnum": 6068
+    },
+    "6069": {
+      "description": "The area is a small shadowy path leading through the dense forest. The\ncrowns of the old trees leave the forest in an unreal twilight\nillumination. The path continues south and east. Branches intertwine\noverhead, filtering the light. Ancient trees rise on all sides.",
+      "exits": {
+        "east": {
+          "description": "The path winds its way between the old trees.",
+          "to_room": 6068
+        },
+        "south": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6064
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 8,
+          "vnum": 6005
+        }
+      ],
+      "name": "A Shadowy Path Through The Dense Forest",
+      "obj_resets": [
+        {
+          "max": 10,
+          "vnum": 6011
+        }
+      ],
+      "sector_type": "forest",
+      "vnum": 6069
+    },
+    "6070": {
+      "description": "The area is wandering amongst the trees in the light forest, without the\naid of a path or trail. More sunlight trickles through the treetops\nhere, making your travel a bit easier. Small animals scurry away as you\napproach. The area is no longer on a path, so you may go whichever way\nyou please. A stitched screen of leaves to the north looks out of place.\nThe scent of pine and earth fills the air. Branches intertwine overhead,\nfiltering the light.",
+      "exits": {
+        "east": {
+          "description": "The trees seem to part, exposing a trail into the shade.",
+          "to_room": 6070
+        },
+        "north": {
+          "to_room": 6095,
+          "description": "A woven screen hides a blind.",
+          "hidden": true,
+          "search_difficulty": 58,
+          "secret": true,
+          "door": {
+            "name": "leaf screen",
+            "state": "closed",
+            "locked": true,
+            "key_vnum": 6054
+          },
+          "reveal_message": "You find a leaf-screened door set into the brush."
+        },
+        "south": {
+          "description": "The trees seem to part, exposing a trail into the shade.",
+          "to_room": 6061
+        },
+        "west": {
+          "description": "The trees seem to part, exposing a trail into the shade.",
+          "to_room": 6072
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 11,
+          "vnum": 6001
+        }
+      ],
+      "name": "Off Of The Path In The Shaded Forest",
+      "sector_type": "forest",
+      "vnum": 6070
+    },
+    "6071": {
+      "description": "The area is a small shaded path leading in between the trees. The forest\ngradually lightens to the east. Paths lead west and south, and you think\nyou see a small path leading eastward. Bird calls echo through the\ncanopy. Branches intertwine overhead, filtering the light.",
+      "exits": {
+        "east": {
+          "description": "It looks like a small path begins between two trees to the east, but you aren't quite certain.",
+          "to_room": 6070
+        },
+        "south": {
+          "description": "The path winds its way through the trees to an split in the path.",
+          "to_room": 6066
+        },
+        "west": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6072
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 11,
+          "vnum": 6001
+        }
+      ],
+      "name": "A Shaded Path Through The Forest",
+      "sector_type": "forest",
+      "vnum": 6071
+    },
+    "6072": {
+      "description": "The area is a small shaded path leading between the trees. The forest\ngradually becomes more dense to the west. Paths lead north and east, and\nyou see a small clearing to the south. Ancient trees rise on all sides.\nBranches intertwine overhead, filtering the light.",
+      "exits": {
+        "east": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6071
+        },
+        "north": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6075
+        },
+        "south": {
+          "description": "A lightly traveled path heads southward to a small clearing.",
+          "to_room": 6067
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "name": "A Shaded Path Though The Forest",
+      "sector_type": "forest",
+      "vnum": 6072
+    },
+    "6073": {
+      "description": "The area is a small shadowy path leading through the dense forest. To\nthe north the terrain becomes quite hilly and rough. The crowns of the\nold trees leave the forest in an unreal twilight illumination. The path\ncontinues north and south. Sheep trails wind between the hillocks. Rocks\njut from the grassy slopes.",
+      "exits": {
+        "north": {
+          "description": "The path winds its way into the hills and denser forest.",
+          "to_room": 6076
+        },
+        "south": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6068
+        }
+      },
+      "extra_descs": {
+        "": "hill hills terrain"
+      },
+      "flags": [],
+      "name": "A Shadowy Path Through The Dense Forest",
+      "sector_type": "hills",
+      "vnum": 6073
+    },
+    "6074": {
+      "description": "You have just left the shaded path, and you are now standing at the head\nof a very short trail. It looks like someone begin clearing away the\nunderbrush here, but didn't get finished. You may leave in any\ndirection, but the path is to the west. The scent of pine and earth\nfills the air. Branches intertwine overhead, filtering the light.",
+      "exits": {
+        "east": {
+          "description": "The trees seem to part, exposing a trail into the shade.",
+          "to_room": 6070
+        },
+        "north": {
+          "description": "The trees seem to part, exposing a trail into the shade.",
+          "to_room": 6074
+        },
+        "south": {
+          "description": "The trees seem to part, exposing a trail into the shade.",
+          "to_room": 6070
+        },
+        "west": {
+          "description": "Through the underbrush you see a small path winding its way northward.",
+          "to_room": 6075
+        }
+      },
+      "extra_descs": {
+        "": "tree trees"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 8,
+          "vnum": 6005
+        }
+      ],
+      "name": "A Small Trail Through The Forest",
+      "sector_type": "forest",
+      "vnum": 6074
+    },
+    "6075": {
+      "description": "The area is a small shaded path leading between the trees. The forest\ngradually becomes more dense to the west, and to the northwest the\nterrain is quite hilly. The path continues north and south. To the east\nyou see a trail winding through the younger section of the forest.\nBranches intertwine overhead, filtering the light. Bird calls echo\nthrough the canopy.",
+      "exits": {
+        "east": {
+          "description": "You think you see the beginnings of a small trail through the younger part of the forest.",
+          "to_room": 6074
+        },
+        "north": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6078
+        },
+        "south": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6072
+        }
+      },
+      "extra_descs": {
+        "": "trail"
+      },
+      "flags": [],
+      "mob_resets": [
+        {
+          "max": 7,
+          "vnum": 6012
+        }
+      ],
+      "name": "A Shaded Path Through The Forest",
+      "sector_type": "forest",
+      "vnum": 6075
+    },
+    "6076": {
+      "description": "The area opens among tightly packed trees between several hills. You\nlost track of the path long ago, and now must rely on your instincts to\nguide you. The ground is very rough and rocky here, and only the most\nhardy plants survive. The crowns of the old trees leave the hills in an\nunreal twilight illumination. The view stretches for miles in every\ndirection. The wind carries the scent of wild herbs.",
+      "exits": {
+        "east": {
+          "description": "All you see are trees and hillsides.",
+          "to_room": 6077
+        },
+        "north": {
+          "description": "All you see are trees and hillsides.",
+          "to_room": 6081
+        },
+        "south": {
+          "description": "All you see are trees and hillsides.",
+          "to_room": 6076
+        },
+        "west": {
+          "description": "All you see are trees and a shadowy path.",
+          "to_room": 6073
+        }
+      },
+      "extra_descs": {
+        "": "hills hill"
+      },
+      "flags": [
+        "no_mob"
+      ],
+      "name": "In The Dense Forest Between The Hills",
+      "sector_type": "hills",
+      "vnum": 6076
+    },
+    "6077": {
+      "description": "The area opens among tightly packed trees between several hills. You\nlost track of the path long ago, and now must rely on your instincts to\nguide you. The ground is very rough and rocky here, and only the most\nhardy plants survive. The crowns of the old trees leave the hills in an\nunreal twilight illumination. Rocks jut from the grassy slopes. The view\nstretches for miles in every direction.",
+      "exits": {
+        "east": {
+          "description": "All you see are trees and hillsides.",
+          "to_room": 6076
+        },
+        "north": {
+          "description": "All you see are trees and hillsides.",
+          "to_room": 6081
+        },
+        "south": {
+          "description": "All you see are trees and hillsides.",
+          "to_room": 6079
+        },
+        "west": {
+          "description": "All you see are trees and hillsides.",
+          "to_room": 6077
+        }
+      },
+      "extra_descs": {
+        "": "hills hill"
+      },
+      "flags": [
+        "no_mob"
+      ],
+      "name": "In The Dense Forest Between The Hills",
+      "sector_type": "hills",
+      "vnum": 6077
+    },
+    "6078": {
+      "description": "This is the end of a small shaded path leading between the trees. The\nforest is quite thick here, and the ground is very rough and hilly,\nhalting your progress. The path lies to the south. The view stretches\nfor miles in every direction. Rocks jut from the grassy slopes.",
+      "exits": {
+        "south": {
+          "description": "The path winds its way between the trees.",
+          "to_room": 6075
+        }
+      },
+      "extra_descs": {
+        "": "hills hill"
+      },
+      "flags": [],
+      "name": "In The Dense Forest Between The Hills",
+      "obj_resets": [
+        {
+          "max": 10,
+          "vnum": 6011
+        }
+      ],
+      "sector_type": "hills",
+      "vnum": 6078
+    },
+    "6079": {
+      "description": "The area opens among tightly packed trees between several hills. You\nlost track of the path long ago, and now must rely on your instincts to\nguide you. The ground is very rough and rocky here, and only the most\nhardy plants survive. The crowns of the old trees leave the hills in an\nunreal twilight illumination. The view stretches for miles in every\ndirection. Rocks jut from the grassy slopes.",
+      "exits": {
+        "east": {
+          "description": "All you see are trees and hillsides.",
+          "to_room": 6078
+        },
+        "north": {
+          "description": "All you see are trees and hillsides.",
+          "to_room": 6081
+        },
+        "south": {
+          "description": "All you see are trees and a shadowy path.",
+          "to_room": 6073
+        },
+        "west": {
+          "description": "All you see are trees and hillsides.",
+          "to_room": 6080
+        }
+      },
+      "extra_descs": {
+        "": "hills hill"
+      },
+      "flags": [
+        "no_mob"
+      ],
+      "name": "In The Dense Forest Between The Hills",
+      "sector_type": "hills",
+      "vnum": 6079
+    },
+    "6080": {
+      "description": "The area opens among tightly packed trees between several hills. You\nlost track of the path long ago, and now must rely on your instincts to\nguide you. The ground is very rough and rocky here, and only the most\nhardy plants survive. The crowns of the old trees leave the hills in an\nunreal twilight illumination. A circle of mushrooms glows faintly to the\nwest. The wind carries the scent of wild herbs. The terrain rolls and\ndips around.",
+      "exits": {
+        "east": {
+          "description": "All you see are trees and hillsides.",
+          "to_room": 6082
+        },
+        "north": {
+          "description": "All you see are trees and hillsides.",
+          "to_room": 6081
+        },
+        "south": {
+          "description": "All you see are trees and hillsides.",
+          "to_room": 6076
+        },
+        "west": {
+          "to_room": 6096,
+          "description": "A shimmering gap between the trees.",
+          "hidden": true,
+          "requires_detect_magic": true,
+          "search_difficulty": 62,
+          "secret": true,
+          "reveal_message": "Magic parts the trees, revealing a fae ring to the west."
+        }
+      },
+      "extra_descs": {
+        "": "hills hill"
+      },
+      "flags": [
+        "no_mob"
+      ],
+      "name": "In The Dense Forest Between The Hills",
+      "sector_type": "hills",
+      "vnum": 6080
+    },
+    "6081": {
+      "description": "The area opens among tightly packed trees between several hills. You\nlost track of the path long ago, and now must rely on your instincts to\nguide you. The ground is very rough and rocky here, and only the most\nhardy plants survive. The crowns of the old trees leave the hills in an\nunreal twilight illumination. Rocks jut from the grassy slopes. The\nterrain rolls and dips around.",
+      "exits": {
+        "east": {
+          "description": "All you see are trees and hillsides.",
+          "to_room": 6077
+        },
+        "north": {
+          "description": "All you see are trees and hillsides.",
+          "to_room": 6078
+        },
+        "south": {
+          "description": "All you see are trees and hillsides.",
+          "to_room": 6076
+        },
+        "west": {
+          "description": "All you see are trees and a shadowy path.",
+          "to_room": 6073
+        }
+      },
+      "extra_descs": {
+        "": "hills hill"
+      },
+      "flags": [
+        "no_mob"
+      ],
+      "name": "In The Dense Forest Between The Hills",
+      "sector_type": "hills",
+      "vnum": 6081
+    },
+    "6082": {
+      "description": "The area opens among tightly packed trees on a medium sized hill. The\ndense forest spreads out all around, and the crowns of the old trees\nleave the hills in an unreal twilight illumination. The view stretches\nfor miles in every direction. The terrain rolls and dips around.",
+      "exits": {
+        "east": {
+          "description": "All you see are trees and hillsides.",
+          "to_room": 6079
+        },
+        "north": {
+          "description": "All you see are trees and hillsides.",
+          "to_room": 6081
+        },
+        "south": {
+          "description": "All you see are trees and hillsides.",
+          "to_room": 6076
+        }
+      },
+      "extra_descs": {
+        "": "hills hill"
+      },
+      "flags": [
+        "no_mob"
+      ],
+      "name": "In The Dense Forest Between The Hills",
+      "sector_type": "hills",
+      "vnum": 6082
+    },
+    "6090": {
+      "description": "The area is a dust covered east-west road through the western plains. An\noccasional hunter or adventurer can be seen, heading to or from the\nforest. To the east is the walled city, Midgaard, and to the west the\nroad ends at the head of a narrow trail into a large forest. Wildflowers\ndot the landscape. The open sky stretches overhead.",
+      "exits": {
+        "east": {
+          "description": "Far to the east you see the large walls guarding Midgaard.",
+          "to_room": 6091
+        },
+        "west": {
+          "description": "To the west the dusty trail ends, and becomes a narrow trail into the cool shadows of the forest.",
+          "to_room": 6000
+        }
+      },
+      "extra_descs": {
+        "": "road dust dusty"
+      },
+      "flags": [
+        "no_mob"
+      ],
+      "name": "A Road Through The Plains",
+      "sector_type": "field",
+      "vnum": 6090
+    },
+    "6091": {
+      "description": "The area is a dust covered east-west road through the western plains. An\noccasional hunter or adventurer can be seen, heading to or from the\nforest. To the east is the walled city, Midgaard, and to the west the\nroad continues towards a large forest. Tall grass sways in a gentle\nbreeze. The ground is soft underfoot.",
+      "exits": {
+        "east": {
+          "description": "Far to the east you see the walls and western gate of Midgaard.",
+          "to_room": 6092
+        },
+        "west": {
+          "description": "You see the large forest, Haon-Dor, stretching out far to the west, and to the northwest you the forest gives way to hills.",
+          "to_room": 6090
+        }
+      },
+      "extra_descs": {
+        "": "road dust dusty"
+      },
+      "flags": [
+        "no_mob"
+      ],
+      "name": "A Road Through The Plains",
+      "sector_type": "field",
+      "vnum": 6091
+    },
+    "6092": {
+      "description": "The area is a dust covered east-west road crossing the grassy plains\nbetween Midgaard the forest of Haon-Dor. An occasional hunter or\nadventurer can be seen, heading to or from the forest. To the east is\nthe walled city, Midgaard, and to the west the road continues towards a\nlarge forest. Buildings crowd together on all sides. The smell of smoke\nand humanity hangs in the air.",
+      "exits": {
+        "east": {
+          "description": "To the east you see the walls and West Gate of Midgaard.",
+          "to_room": 3052
+        },
+        "west": {
+          "description": "To the west the road continues towards the forest.",
+          "to_room": 6091
+        }
+      },
+      "extra_descs": {
+        "": "road dust dusty"
+      },
+      "flags": [
+        "no_mob"
+      ],
+      "name": "A Road Through The Plains",
+      "sector_type": "city",
+      "vnum": 6092
+    },
+    "6093": {
+      "vnum": 6093,
+      "name": "A Moss-Covered Hollow",
+      "description": "A quiet hollow blanketed in thick moss. The air is cool, and a stone\naltar sits beneath an ancient tree root. Ancient trees rise on all\nsides. The forest floor is carpeted with fallen leaves.",
+      "sector_type": "forest",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 6005,
+          "description": "The mossy opening leads back east."
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 6051,
+          "max": 1
+        }
+      ]
+    },
+    "6094": {
+      "vnum": 6094,
+      "name": "The Canopy Hideaway",
+      "description": "A hidden platform lashed between branches. From here, the forest canopy\nstretches like a living sea. Ancient trees rise on all sides. Bird calls\necho through the canopy.",
+      "sector_type": "forest",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "down": {
+          "to_room": 6030,
+          "description": "The rope ladder descends back down."
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 6050,
+          "max": 1
+        }
+      ]
+    },
+    "6095": {
+      "vnum": 6095,
+      "name": "The Hunter's Blind",
+      "description": "This well-hidden blind overlooks a deer trail. A small cache is tucked\nbeneath a bench. Bird calls echo through the canopy. The scent of pine\nand earth fills the air.",
+      "sector_type": "forest",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 6070,
+          "description": "You push back through the leaf screen."
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 6052,
+          "max": 1
+        }
+      ]
+    },
+    "6096": {
+      "vnum": 6096,
+      "name": "A Fae Ring",
+      "description": "A ring of pale mushrooms encircles a tranquil clearing. The air tastes\nof rain and old magic. The scent of pine and earth fills the air.\nBranches intertwine overhead, filtering the light.",
+      "sector_type": "forest",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 6080,
+          "description": "The trees part back toward the forest."
+        }
+      },
+      "obj_resets": [
+        {
+          "vnum": 6053,
+          "max": 1
+        }
+      ]
     }
   }
 }

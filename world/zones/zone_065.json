@@ -6,7 +6,7 @@
     "6500": {
       "vnum": 6500,
       "name": "The Path To The Dwarven Village",
-      "description": "You are walking down a path that leads to the dwarven village.  Above you, you can see the Turning Point, and to the north the path continues  toward the mountains.",
+      "description": "The way continues down a path that leads to the dwarven village. Above\nyou, Visible is the Turning Point, and to the north the path continues\ntoward the mountains. The open sky stretches overhead. Tall grass sways\nin a gentle breeze.",
       "sector_type": "field",
       "flags": [
         "no_mob"
@@ -29,7 +29,7 @@
     "6501": {
       "vnum": 6501,
       "name": "The Path At The Base Of The Mountain",
-      "description": "Now you are at the bottom of a rugged mountain.  The forest around you is very dense, and it seems very dark to the north.",
+      "description": "Now you are at the bottom of a rugged mountain. The forest around is\nvery dense, and it seems very dark to the north. The terrain rolls and\ndips around. The view stretches for miles in every direction.",
       "sector_type": "hills",
       "flags": [],
       "exits": {
@@ -52,7 +52,7 @@
     "6502": {
       "vnum": 6502,
       "name": "The Path At The Middle Of The Mountain",
-      "description": "Standing on the middle of the mountain, you can easily see the city to the south, and the top of the mountain is very near to the north.",
+      "description": "Standing on the middle of the mountain, you can easily see the city to\nthe south, and the top of the mountain is very near to the north. Snow\nclings to shadowed crevices. The wind howls around exposed peaks.",
       "sector_type": "mountain",
       "flags": [],
       "exits": {
@@ -75,7 +75,7 @@
     "6503": {
       "vnum": 6503,
       "name": "The Top Of The Mountain",
-      "description": "You are now on the top of the mountain.  To the south you see a path leading down the mountain.  To the east and west you see entrances to what seems like mines.",
+      "description": "The area is now on the top of the mountain. To the south you see a path\nleading down the mountain. To the east and west you see entrances to\nwhat seems like mines. The terrain rolls and dips around. Rocks jut from\nthe grassy slopes.",
       "sector_type": "hills",
       "flags": [],
       "exits": {
@@ -108,7 +108,7 @@
     "6504": {
       "vnum": 6504,
       "name": "The Narrow Path",
-      "description": "This is a narrow path leading to the Dwarven Kingdom.  It looks less travelled than the others, and it is very creepy.  The path opens up to  the south, and continues to the north.",
+      "description": "This is a narrow path leading to the Dwarven Kingdom. It looks less\ntravelled than the others, and it is very creepy. The path opens up to\nthe south, and continues to the north. The ceiling hangs low overhead.\nThe walls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -127,7 +127,7 @@
     "6505": {
       "vnum": 6505,
       "name": "The Entrance To The Mountain",
-      "description": "Here is an entrance to the mountain.  The door looks very well built, and you can hear noise coming from within.",
+      "description": "Here is an entrance to the mountain. The door looks very well built, and\nyou can hear noise coming from within. The air is fresh and clean.\nWildflowers dot the landscape.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -166,7 +166,7 @@
     "6506": {
       "vnum": 6506,
       "name": "A Bend In The Narrow Path",
-      "description": "This is a narrow path that bends to the east here.  The trees hang over the path, and it is very overgrown.  The narrow path continues to the south and to the east.",
+      "description": "This is a narrow path that bends to the east here. The trees hang over\nthe path, and it is very overgrown. The narrow path continues to the\nsouth and to the east. The ceiling hangs low overhead. The air is still\nand musty.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -188,7 +188,7 @@
     "6507": {
       "vnum": 6507,
       "name": "The Narrow Path",
-      "description": "This path is very narrow, and it continues to the north and west.",
+      "description": "This path is very narrow, and it continues to the north and west.\nShadows gather in the corners. Dust motes drift in the stale air. The\nair is stale and the walls close. Shadows pool in the corners,\nundisturbed.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -207,7 +207,7 @@
     "6508": {
       "vnum": 6508,
       "name": "The Narrow North-South Path",
-      "description": "This path leads to the north and south.  To the north you can see a door, and to the south the path continues.",
+      "description": "This path leads to the north and south. To the north Visible is a door,\nand to the south the path continues. Dust motes drift in the stale air.\nThe air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -232,7 +232,7 @@
     "6509": {
       "vnum": 6509,
       "name": "The Door To The Kingdom",
-      "description": "Here the path turns to the west.  You can see a door in front of you, and the path continues to the west and south.",
+      "description": "Here the path turns to the west. Visible is a door ahead, and the path\ncontinues to the west and south. Shadows gather in the corners. The\nceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -271,7 +271,7 @@
     "6510": {
       "vnum": 6510,
       "name": "On The Path To The Castle",
-      "description": "You are on a path that will eventually lead to the castle.  It continues north to the castle, and there is a door in the southern wall.",
+      "description": "The area is a path that will eventually lead to the castle. It continues\nnorth to the castle, and there is a door in the southern wall. Shadows\ngather in the corners. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -296,7 +296,7 @@
     "6511": {
       "vnum": 6511,
       "name": "Still On The Path To The Castle",
-      "description": "You are still on the path to the castle, or back to the Dwarven village, whichever way you wish to go.  The path continues to the north and south.",
+      "description": "The area is still on the path to the castle, or back to the Dwarven\nvillage, whichever way you wish to go. The path continues to the north\nand south. The ceiling hangs low overhead. Shadows gather in the\ncorners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -315,7 +315,7 @@
     "6512": {
       "vnum": 6512,
       "name": "The Door To The Castle",
-      "description": "Here there is a door to the castle to the east.  The castle is  elegantly designed, and looks much like a roll of toilet paper standing  on its end.  There is a sign which says:                ******************************************               *  WELCOME TO THE CASTLE OF STRANGELOVE  *               *      Here, celibacy is uninvited       *               ******************************************",
+      "description": "Here there is a door to the castle to the east. The castle is elegantly\ndesigned, and looks much like a roll of toilet paper standing on its\nend. There is a sign which says:\n****************************************** * WELCOME TO THE CASTLE OF\nSTRANGELOVE * * Here, celibacy is uninvited *\n****************************************** Shadows gather in the\ncorners. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -350,7 +350,7 @@
     "6513": {
       "vnum": 6513,
       "name": "Inside The Entrance",
-      "description": "Everything here is covered in soot and very grimy.  The path continues to the east and north, and there is a door to the west.",
+      "description": "Everything here is covered in soot and very grimy. The path continues to\nthe east and north, and there is a door to the west. The walls are\nrough-hewn and cold to the touch. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -385,7 +385,7 @@
     "6514": {
       "vnum": 6514,
       "name": "The Path",
-      "description": "You are on a path in the dwarven village which leads north to the shops and south to the corner of the area.",
+      "description": "The area is a path in the dwarven village which leads north to the shops\nand south to the corner of the area. The walls are rough-hewn and cold\nto the touch. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -404,7 +404,7 @@
     "6515": {
       "vnum": 6515,
       "name": "A Turn In The Road",
-      "description": "You are on a path that leads to the Hide & Tooth shop to the west, and the path continues to the south.",
+      "description": "The area is a path that leads to the Hide & Tooth shop to the west, and\nthe path continues to the south. Dust motes drift in the stale air. The\nwalls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -429,7 +429,7 @@
     "6516": {
       "vnum": 6516,
       "name": "The Hide & Tooth Shop",
-      "description": "You are in the Hide & Tooth shop.  Here you may buy the finest in Dwarven weapons and armors.  The path continues to the north and east.",
+      "description": "This is the Hide & Tooth shop. Here you may buy the finest in Dwarven\nweapons and armors. The path continues to the north and east. The\nceiling hangs low overhead. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "indoors",
@@ -455,7 +455,7 @@
     "6517": {
       "vnum": 6517,
       "name": "The Path To The North Of The Shop",
-      "description": "You are on a path to the north of the Hide & Tooth shop.  The path  continues to the north, and there is Granite Head's bakery to the west.",
+      "description": "The area is a path to the north of the Hide & Tooth shop. The path\ncontinues to the north, and there is Granite Head's bakery to the west.\nThe walls are rough-hewn and cold to the touch. The air is still and\nmusty.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -478,7 +478,7 @@
     "6518": {
       "vnum": 6518,
       "name": "North Of The Shops",
-      "description": "Here the path bends to the east towards the barracks. To the south you can see the shops.",
+      "description": "Here the path bends to the east towards the barracks. To the south you\ncan see the shops. Dust motes drift in the stale air. The walls are\nrough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -497,7 +497,7 @@
     "6519": {
       "vnum": 6519,
       "name": "A Path By The Hospital",
-      "description": "Here the path passes by the Hospital to the north.  It continues to the east to the barracks, and to the west.",
+      "description": "Here the path passes by the Hospital to the north. It continues to the\neast to the barracks, and to the west. Shadows gather in the corners.\nThe ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -520,7 +520,7 @@
     "6520": {
       "vnum": 6520,
       "name": "A Path Next To The Barracks",
-      "description": "Here the path continues west, and east to the barracks.",
+      "description": "Here the path continues west, and east to the barracks. The ceiling\nhangs low overhead. The walls are rough-hewn and cold to the touch. The\nair is stale and the walls close. Shadows pool in the corners,\nundisturbed.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -545,7 +545,7 @@
     "6521": {
       "vnum": 6521,
       "name": "The Entrance To The Barracks",
-      "description": "Here there is an entrance to the barracks to the south, and the path  continues to the west.",
+      "description": "Here there is an entrance to the barracks to the south, and the path\ncontinues to the west. The air is still and musty. The walls are rough-\nhewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -592,7 +592,7 @@
     "6522": {
       "vnum": 6522,
       "name": "A Guard House",
-      "description": "You are in the guard house to the west of the entrance to the castle.   There are nudie posters covering the walls.",
+      "description": "This is the guard house to the west of the entrance to the castle. There\nare nudie posters covering the walls. The air is still and musty.\nShadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -610,7 +610,7 @@
     "6523": {
       "vnum": 6523,
       "name": "The First Barrack Room",
-      "description": "Here is the first of two main rooms of barracks.  The barracks continue to the south, and you can leave the room to the north.",
+      "description": "Here is the first of two main rooms of barracks. The barracks continue\nto the south, and you can leave the room to the north. The walls are\nrough-hewn and cold to the touch. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -649,7 +649,7 @@
     "6524": {
       "vnum": 6524,
       "name": "The Back Of The Barracks",
-      "description": "Here is the back of the dwarven barracks.  There are rows of beds  here, and there is a stench that is unbearable.",
+      "description": "Here is the back of the dwarven barracks. There are rows of beds here,\nand there is a stench that is unbearable. Shadows gather in the corners.\nThe ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -678,7 +678,7 @@
     "6525": {
       "vnum": 6525,
       "name": "Inside Of Castle Strangelove",
-      "description": "You are just inside the castle.  It is very tubular in shape, and it is very featureless.  There is a set of stairs that lead up, and the door leads out of the castle to the west.",
+      "description": "The area is just inside the castle. It is very tubular in shape, and it\nis very featureless. There is a set of stairs that lead up, and the door\nleads out of the castle to the west. The ceiling hangs low overhead. The\nwalls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -703,7 +703,7 @@
     "6526": {
       "vnum": 6526,
       "name": "A Store Room",
-      "description": "There is a layer of dust on the floor at least 3 inches thick!  It is probable that not many people have been in here for many months.",
+      "description": "There is a layer of dust on the floor at least 3 inches thick! It is\nprobable that not many people have been in here for many months. Dust\nmotes drift in the stale air. The walls are rough-hewn and cold to the\ntouch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -732,7 +732,7 @@
     "6527": {
       "vnum": 6527,
       "name": "The Wine Cellar",
-      "description": "This room smells like wine, and you can only assume it used to be a wine cellar at one time.",
+      "description": "This room smells like wine, and you can only assume it used to be a wine\ncellar at one time. Dust motes drift in the stale air. The walls are\nrough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -760,7 +760,7 @@
     "6528": {
       "vnum": 6528,
       "name": "On The Stairs In Castle Strangelove",
-      "description": "The stairs continue to circle up and down here.",
+      "description": "Stone stairs spiral upward through Castle Strangelove's interior. The\nsteps are worn smooth by countless boots over the years, and arrow slits\nin the thick walls provide narrow views of the surrounding kingdom. The\nwalls are rough-hewn and cold to the touch. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -779,7 +779,7 @@
     "6529": {
       "vnum": 6529,
       "name": "On The Stairs",
-      "description": "You are still circling around on the stairs.  You are starting to get dizzy from going around and around and around and around and around.  The stairs continue up and down.",
+      "description": "The area is still circling around on the stairs. The area is starting to\nget dizzy from going around and around and around and around and around.\nThe stairs continue up and down. The ceiling hangs low overhead. The\nwalls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -798,7 +798,7 @@
     "6530": {
       "vnum": 6530,
       "name": "At The Top Of The Stairs",
-      "description": "You are at the top of the stairs in the castle.  There is an exit to the east, and the stairs lead down.",
+      "description": "This is the top of the stairs in the castle. There is an exit to the\neast, and the stairs lead down. Shadows gather in the corners. The\nceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -817,7 +817,7 @@
     "6531": {
       "vnum": 6531,
       "name": "The Queen's Waiting Room",
-      "description": "This is the Queen's waiting room.  Here the men literally 'wait' for the queen.  You've heard that the queen really likes to get to 'know' her people, in the biblical sense.    The Queen's bedroom is to the north, and you can see stairs to the west.",
+      "description": "This is the Queen's waiting room. Here the men literally 'wait' for the\nqueen. You've heard that the queen really likes to get to 'know' her\npeople, in the biblical sense. The Queen's bedroom is to the north, and\nVisible is stairs to the west. Shadows gather in the corners. The air is\nstill and musty.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -842,7 +842,7 @@
     "6532": {
       "vnum": 6532,
       "name": "The Queen's Bedroom",
-      "description": "This is the Queen's bedroom.  The bed is all ruffled, and there is a stack of dirty sheets piled in the corner.  There is a ladder that leads down, out of the castle, and you can leave the room to the south.  There is also a small wooden door to the west. There is a sign that says:        -------------------------       |  I'm busy right now,  |       |  and don't know when  |       |  Ill be back, but if  |       |  there is a key here  |       |  take it and PLEASE,  |       |  try to get my birth  |       |  control pills back!  |       |  I've heard they can  |       |  be found somewhere,  |       |  deep in the mines..  |       -------------------------",
+      "description": "This is the Queen's bedroom. The bed is all ruffled, and there is a\nstack of dirty sheets piled in the corner. There is a ladder that leads\ndown, out of the castle, and you can leave the room to the south. There\nis also a small wooden door to the west. There is a sign that says:\n------------------------- | I'm busy right now, | | and don't know when\n| | Ill be back, but if | | there is a key here | | take it and PLEASE,\n| | try to get my birth | | control pills back! | | I've heard they can\n| | be found somewhere, | | deep in the mines.. |\n------------------------- The walls are rough-hewn and cold to the\ntouch. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -883,7 +883,7 @@
     "6533": {
       "vnum": 6533,
       "name": "The North Side Of Castle Strangelove",
-      "description": "You are standing on the north side of Castle Strangelove.  You notice that you are no longer inside the mountain anymore either. Along the southern horizon you see towering mountains.    The only exit, however, is back up the ladder into the Queen's Bedroom.",
+      "description": "This area is the north side of Castle Strangelove. You notice that you\nare no longer inside the mountain anymore either. Along the southern\nhorizon you see towering mountains. The only exit, however, is back up\nthe ladder into the Queen's Bedroom. The air is still and musty. The\nwalls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
@@ -896,7 +896,7 @@
     "6534": {
       "vnum": 6534,
       "name": "The Hospital",
-      "description": "You are inside the Dwarven Hospital.  It smells like rubbing alcohol, and there is blood all over the walls.",
+      "description": "This isside the Dwarven Hospital. It smells like rubbing alcohol, and\nthere is blood all over the walls. The air is still and musty. The walls\nare rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -925,7 +925,7 @@
     "6535": {
       "vnum": 6535,
       "name": "Granite Head's Bakery",
-      "description": "The aroma coming from this room is astonishing.  You can almost taste the pastries dissolving in your mouth.",
+      "description": "The aroma coming from this room is astonishing. You can almost taste the\npastries dissolving in your mouth. The air is still and musty. Dust\nmotes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "indoors",
@@ -947,7 +947,7 @@
     "6540": {
       "vnum": 6540,
       "name": "The Dark Path",
-      "description": "This path is very well worn, and there is an entrance to the mines to the east, while the path continues to the north and west.",
+      "description": "This path is very well worn, and there is an entrance to the mines to\nthe east, while the path continues to the north and west. Shadows gather\nin the corners. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -992,7 +992,7 @@
     "6541": {
       "vnum": 6541,
       "name": "The Mine Entrance",
-      "description": "The little path here leads down toward the mines, while the worn path continues to the west.",
+      "description": "The little path here leads down toward the mines, while the worn path\ncontinues to the west. The air is still and musty. Shadows gather in the\ncorners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -1017,7 +1017,7 @@
     "6542": {
       "vnum": 6542,
       "name": "At The Bottom Of The Mineshaft",
-      "description": "You are at the bottom of the mineshaft.  The air here is very sooty, and it is very hard to breath.  The mineshaft leads up and east.",
+      "description": "This is the bottom of the mineshaft. The air here is very sooty, and it\nis very hard to breath. The mineshaft leads up and east. The ceiling\nhangs low overhead. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1047,7 +1047,7 @@
     "6543": {
       "vnum": 6543,
       "name": "On The Path Inside The Mine",
-      "description": "You are deep inside the mine, and you feel very uncomfortable.  The path continues to the east, and leads to the mineshaft to the west.",
+      "description": "The area is deep inside the mine, and you feel very uncomfortable. The\npath continues to the east, and leads to the mineshaft to the west. The\nair is still and musty. The walls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1081,7 +1081,7 @@
     "6544": {
       "vnum": 6544,
       "name": "The Mine Crossroad",
-      "description": "You are at a crossroad in the mine.  There is a door to the north, and the path continues to the south, east, and west.",
+      "description": "This is a crossroad in the mine. There is a door to the north, and the\npath continues to the south, east, and west. The walls are rough- hewn\nand cold to the touch. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1115,7 +1115,7 @@
     "6545": {
       "vnum": 6545,
       "name": "The Coal Room",
-      "description": "You are inside the storage area for the raw materials that are found down here.  The room is very unsturdy as the supports are very rickety.",
+      "description": "This isside the storage area for the raw materials that are found down\nhere. The room is very unsturdy as the supports are very rickety. Dust\nmotes drift in the stale air. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1137,7 +1137,7 @@
     "6546": {
       "vnum": 6546,
       "name": "The Mine Maze",
-      "description": "You have entered the maze of the mines.  To the east you can see some inscriptions, and you can exit to the south.",
+      "description": "The entrance opens to the maze of the mines. To the east Visible is some\ninscriptions, and you can exit to the south. The ceiling hangs low\noverhead. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1163,7 +1163,7 @@
     "6547": {
       "vnum": 6547,
       "name": "At The Maze Inscription",
-      "description": "You are inside the maze, but not far enough in that you could get lost.  There is an enscription on the wall which says:            1    3    2    4           N    W    N    S  This isn't too tough, so don't take it so rough.",
+      "description": "This isside the maze, but not far enough in that you could get lost.\nThere is an enscription on the wall which says: 1 3 2 4 N W N S This\nisn't too tough, so don't take it so rough. The walls are rough-hewn and\ncold to the touch. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1187,7 +1187,7 @@
     "6548": {
       "vnum": 6548,
       "name": "The Maze",
-      "description": "You are in a maze.",
+      "description": "The maze twists and turns through carved stone passages. Each corridor\nlooks identical to the last, deliberately designed to confuse intruders.\nThe air is cool and still, and sound travels strangely through the\nlabyrinth. The air is still and musty. The walls are rough-hewn and cold\nto the touch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1217,7 +1217,7 @@
     "6549": {
       "vnum": 6549,
       "name": "The Maze",
-      "description": "You are in a maze.",
+      "description": "Identical stone walls press in from all sides in this section of the\nmaze. The passages split and rejoin in bewildering patterns, and you've\nlost all sense of direction in this dwarven-crafted puzzle. The air is\nstill and musty. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1247,7 +1247,7 @@
     "6550": {
       "vnum": 6550,
       "name": "The Maze",
-      "description": "You are in a maze.",
+      "description": "The maze continues its disorienting pattern of stone corridors and dead\nends. Every wall looks the same, every turn potentially leading you\ndeeper into the labyrinth or back to where you started. The walls are\nrough-hewn and cold to the touch. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1275,7 +1275,7 @@
     "6551": {
       "vnum": 6551,
       "name": "The Mining Equipment Room",
-      "description": "This is the storage room for equipment used by the Dwarven miners. It is very small, and you can tell that not many miners actually use  equipment.",
+      "description": "This is the storage room for equipment used by the Dwarven miners. It is\nvery small, and you can tell that not many miners actually use\nequipment. Dust motes drift in the stale air. The ceiling hangs low\noverhead.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1297,7 +1297,7 @@
     "6552": {
       "vnum": 6552,
       "name": "The End Of The Maze",
-      "description": "You have solved the maze.  You can tell by the last few moves that there is no way that a dumb worker could have figured that out.  It seems pretty desolate here.  To the south is a bleak room.  To the north, you see the maze.  There is a sign above the south exit:  THOSE WHO ENTER, PLAN ON A TIMELY DEATH. (ESPECIALLY IF YOU'RE LOYAL TO THE QUEEN)",
+      "description": "You have solved the maze. You can tell by the last few moves that there\nis no way that a dumb worker could have figured that out. It seems\npretty desolate here. To the south is a bleak room. To the north, you\nsee the maze. There is a sign above the south exit: THOSE WHO ENTER,\nPLAN ON A TIMELY DEATH. (ESPECIALLY IF YOU'RE LOYAL TO THE QUEEN) The\nwalls are rough-hewn and cold to the touch. Dust motes drift in the\nstale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1317,7 +1317,7 @@
     "6553": {
       "vnum": 6553,
       "name": "The Mazekeeper's Room",
-      "description": "You have entered the Mazekeeper's room.  There are pictures of the Queen with darts thrown at it.  Spraypainted on the wall are things like 'the queen shall suffer' and 'Catholics Rule'.",
+      "description": "The entrance opens to the Mazekeeper's room. There are pictures of the\nQueen with darts thrown at it. Spraypainted on the wall are things like\n'the queen shall suffer' and 'Catholics Rule'. The air is still and\nmusty. The walls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1339,7 +1339,7 @@
     "6554": {
       "vnum": 6554,
       "name": "The Treasury",
-      "description": "This room appears to be the Queen's Treasury.  There is one exit, back to the east.",
+      "description": "This room appears to be the Queen's Treasury. There is one exit, back to\nthe east. Vendors and pedestrians bustle past. The sounds of city life\necho around.",
       "sector_type": "city",
       "flags": [
         "indoors",
@@ -1373,10 +1373,10 @@
       "long_desc": "A dwarven guard is here.",
       "level": 21,
       "alignment": 1000,
-      "hp_dice": "2d8+9",
-      "damage_dice": "4d20+336",
+      "hp_dice": "5d10+378",
+      "damage_dice": "2d8+31",
       "gold": 35000,
-      "exp": 8,
+      "exp": 785,
       "armor_class": -1,
       "flags": [
         "special",
@@ -1401,10 +1401,10 @@
       "long_desc": "A dwarven mining worker is here.",
       "level": 13,
       "alignment": 900,
-      "hp_dice": "2d4+6",
-      "damage_dice": "25d5+170",
+      "hp_dice": "3d10+104",
+      "damage_dice": "1d8+13",
       "gold": 9750,
-      "exp": 8,
+      "exp": 420,
       "armor_class": 2,
       "flags": [
         "stay_zone",
@@ -1420,11 +1420,11 @@
       "long_desc": "A wraith is awaiting your first move here.",
       "level": 25,
       "alignment": -900,
-      "hp_dice": "4d5+25",
-      "damage_dice": "9d7+500",
+      "hp_dice": "25d10+316",
+      "damage_dice": "7d8+8",
       "gold": 85354,
-      "exp": 8,
-      "armor_class": -6,
+      "exp": 1500,
+      "armor_class": 25,
       "flags": [
         "special",
         "sentinel",
@@ -1478,7 +1478,46 @@
       ],
       "equipment": {
         "wield": 6504
-      }
+      },
+      "loot_table": [
+        {
+          "vnum": 6517,
+          "chance": 20
+        },
+        {
+          "vnum": 6518,
+          "chance": 20
+        },
+        {
+          "vnum": 6519,
+          "chance": 20
+        },
+        {
+          "vnum": 6520,
+          "chance": 20
+        },
+        {
+          "vnum": 6521,
+          "chance": 20
+        },
+        {
+          "vnum": 6522,
+          "chance": 20
+        },
+        {
+          "vnum": 6523,
+          "chance": 20
+        },
+        {
+          "vnum": 6524,
+          "chance": 20
+        },
+        {
+          "vnum": 6525,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
     },
     "6504": {
       "vnum": 6504,
@@ -1520,7 +1559,46 @@
       ],
       "equipment": {
         "wield": 6504
-      }
+      },
+      "loot_table": [
+        {
+          "vnum": 6517,
+          "chance": 20
+        },
+        {
+          "vnum": 6518,
+          "chance": 20
+        },
+        {
+          "vnum": 6519,
+          "chance": 20
+        },
+        {
+          "vnum": 6520,
+          "chance": 20
+        },
+        {
+          "vnum": 6521,
+          "chance": 20
+        },
+        {
+          "vnum": 6522,
+          "chance": 20
+        },
+        {
+          "vnum": 6523,
+          "chance": 20
+        },
+        {
+          "vnum": 6524,
+          "chance": 20
+        },
+        {
+          "vnum": 6525,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
     },
     "6505": {
       "vnum": 6505,
@@ -1529,11 +1607,11 @@
       "long_desc": "A giant lizard is foraging for food along the cavern floor here.",
       "level": 21,
       "alignment": 100,
-      "hp_dice": "3d7+4",
-      "damage_dice": "4d20+340",
+      "hp_dice": "21d10+268",
+      "damage_dice": "6d8+6",
       "gold": 27600,
-      "exp": 8,
-      "armor_class": 1,
+      "exp": 1260,
+      "armor_class": 37,
       "flags": [
         "stay_zone"
       ],
@@ -1546,10 +1624,10 @@
       "long_desc": "A giant is wandering around the mountainside here.",
       "level": 19,
       "alignment": 600,
-      "hp_dice": "3d3+8",
-      "damage_dice": "4d20+300",
+      "hp_dice": "4d10+228",
+      "damage_dice": "2d6+22",
       "gold": 23500,
-      "exp": 8,
+      "exp": 689,
       "armor_class": 0,
       "flags": [
         "stay_zone",
@@ -1567,11 +1645,11 @@
       "long_desc": "A dwarven mineworker is here.",
       "level": 4,
       "alignment": 500,
-      "hp_dice": "1d3+2",
-      "damage_dice": "3d13+40",
+      "hp_dice": "4d10+64",
+      "damage_dice": "2d4+3",
       "gold": 650,
-      "exp": 8,
-      "armor_class": 7,
+      "exp": 240,
+      "armor_class": 88,
       "flags": [
         "sentinel",
         "memory"
@@ -1588,10 +1666,10 @@
       "long_desc": "A dwarven mine leader is here, supervising the work.",
       "level": 19,
       "alignment": 700,
-      "hp_dice": "3d4+6",
-      "damage_dice": "50d2+270",
+      "hp_dice": "4d10+228",
+      "damage_dice": "2d6+22",
       "gold": 26500,
-      "exp": 8,
+      "exp": 689,
       "armor_class": 0,
       "flags": [
         "sentinel",
@@ -1610,10 +1688,10 @@
       "long_desc": "The dwarven doctor is here, aiding the sick of his people.",
       "level": 22,
       "alignment": 999,
-      "hp_dice": "3d8+4",
-      "damage_dice": "9d4+375",
+      "hp_dice": "5d10+396",
+      "damage_dice": "2d8+33",
       "gold": 40000,
-      "exp": 8,
+      "exp": 834,
       "armor_class": -1,
       "flags": [
         "special",
@@ -1632,11 +1710,11 @@
       "long_desc": "A dwarven peon is awaiting help here.",
       "level": 3,
       "alignment": 500,
-      "hp_dice": "2d3+2",
-      "damage_dice": "10d3+35",
+      "hp_dice": "3d10+52",
+      "damage_dice": "1d4+4",
       "gold": 212,
-      "exp": 8,
-      "armor_class": 7,
+      "exp": 180,
+      "armor_class": 91,
       "flags": [
         "sentinel",
         "helper"
@@ -1652,11 +1730,11 @@
       "long_desc": "A dwarf is here.",
       "level": 6,
       "alignment": 500,
-      "hp_dice": "3d3+1",
-      "damage_dice": "1d15+70",
+      "hp_dice": "6d10+88",
+      "damage_dice": "2d5+5",
       "gold": 1062,
-      "exp": 8,
-      "armor_class": 4,
+      "exp": 360,
+      "armor_class": 82,
       "flags": [
         "sentinel"
       ],
@@ -1671,11 +1749,11 @@
       "long_desc": "A barrack guard is here, lounging around while off duty.",
       "level": 14,
       "alignment": 100,
-      "hp_dice": "2d5+4",
-      "damage_dice": "5d10+170",
+      "hp_dice": "14d10+184",
+      "damage_dice": "4d6+9",
       "gold": 10650,
-      "exp": 8,
-      "armor_class": 1,
+      "exp": 840,
+      "armor_class": 58,
       "flags": [
         "sentinel",
         "helper"
@@ -1691,11 +1769,11 @@
       "long_desc": "A mazekeeper is here.",
       "level": 29,
       "alignment": -1000,
-      "hp_dice": "4d3+5",
-      "damage_dice": "250d4+2000",
+      "hp_dice": "29d10+364",
+      "damage_dice": "8d8+9",
       "gold": 12000,
-      "exp": 8,
-      "armor_class": -7,
+      "exp": 1740,
+      "armor_class": 13,
       "flags": [
         "special",
         "sentinel",
@@ -1714,15 +1792,54 @@
       "long_desc": "There is a giant snake here.",
       "level": 33,
       "alignment": -1000,
-      "hp_dice": "4d4+22",
-      "damage_dice": "300d6+600",
+      "hp_dice": "33d10+412",
+      "damage_dice": "9d8+11",
       "gold": 13000,
-      "exp": 8,
-      "armor_class": -10,
+      "exp": 1980,
+      "armor_class": 1,
       "flags": [
         "sentinel",
         "aggressive"
-      ]
+      ],
+      "loot_table": [
+        {
+          "vnum": 6517,
+          "chance": 20
+        },
+        {
+          "vnum": 6518,
+          "chance": 20
+        },
+        {
+          "vnum": 6519,
+          "chance": 20
+        },
+        {
+          "vnum": 6520,
+          "chance": 20
+        },
+        {
+          "vnum": 6521,
+          "chance": 20
+        },
+        {
+          "vnum": 6522,
+          "chance": 20
+        },
+        {
+          "vnum": 6523,
+          "chance": 20
+        },
+        {
+          "vnum": 6524,
+          "chance": 20
+        },
+        {
+          "vnum": 6525,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
     }
   },
   "objects": {
@@ -1890,6 +2007,184 @@
       "item_type": "key",
       "weight": 1,
       "value": 0
+    },
+    "6517": {
+      "vnum": 6517,
+      "name": "kingguard waraxe",
+      "short_desc": "a kingguard waraxe",
+      "room_desc": "A kingguard waraxe lies here.",
+      "description": "A royal axe.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "slash",
+      "damage_dice": "2d6+5",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 3
+        }
+      ],
+      "set_id": 65
+    },
+    "6518": {
+      "vnum": 6518,
+      "name": "king's aegis",
+      "short_desc": "the king's aegis",
+      "room_desc": "The king's aegis lies here.",
+      "description": "A royal shield.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "shield",
+      "armor_bonus": 3,
+      "affects": [
+        {
+          "type": "cha",
+          "value": 1
+        }
+      ],
+      "set_id": 65
+    },
+    "6519": {
+      "vnum": 6519,
+      "name": "iron oath sigil",
+      "short_desc": "an iron oath sigil",
+      "room_desc": "An iron oath sigil lies here.",
+      "description": "A deathknight's sigil.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "neck1",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 4
+        }
+      ],
+      "set_id": 65
+    },
+    "6520": {
+      "vnum": 6520,
+      "name": "stone\u2011father reliquary",
+      "short_desc": "a stone\u2011father reliquary",
+      "room_desc": "A stone\u2011father reliquary lies here.",
+      "description": "A cleric's reliquary.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "wis",
+          "value": 3
+        },
+        {
+          "type": "max_mana",
+          "value": 30
+        }
+      ],
+      "set_id": 65
+    },
+    "6521": {
+      "vnum": 6521,
+      "name": "runebound focus",
+      "short_desc": "a runebound focus",
+      "room_desc": "A runebound focus lies here.",
+      "description": "A mage's focus.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "int",
+          "value": 3
+        }
+      ],
+      "set_id": 65
+    },
+    "6522": {
+      "vnum": 6522,
+      "name": "anvil\u2011song lyre",
+      "short_desc": "an anvil\u2011song lyre",
+      "room_desc": "An anvil\u2011song lyre lies here.",
+      "description": "A bard's lyre.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "mace",
+      "damage_dice": "1d6+2",
+      "affects": [
+        {
+          "type": "cha",
+          "value": 3
+        }
+      ],
+      "set_id": 65
+    },
+    "6523": {
+      "vnum": 6523,
+      "name": "vault\u2011key dagger",
+      "short_desc": "a vault\u2011key dagger",
+      "room_desc": "A vault\u2011key dagger lies here.",
+      "description": "A rogue's dagger.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "pierce",
+      "damage_dice": "1d6+3",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 3
+        }
+      ],
+      "set_id": 65
+    },
+    "6524": {
+      "vnum": 6524,
+      "name": "mountainwatch band",
+      "short_desc": "a mountainwatch band",
+      "room_desc": "A mountainwatch band lies here.",
+      "description": "A ranger's ring.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "finger1",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 2
+        },
+        {
+          "type": "hitroll",
+          "value": 1
+        }
+      ],
+      "set_id": 65
+    },
+    "6525": {
+      "vnum": 6525,
+      "name": "runebacked cloak",
+      "short_desc": "a runebacked cloak",
+      "room_desc": "A runebacked cloak lies here.",
+      "description": "A sturdy cloak.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "about",
+      "armor_bonus": 2,
+      "affects": [
+        {
+          "type": "con",
+          "value": 1
+        }
+      ],
+      "set_id": 65
     }
   }
 }

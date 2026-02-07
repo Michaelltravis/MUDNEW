@@ -605,3 +605,86 @@ Bards: perform, encore, fascinate
 ---
 
 Now get out there and slay some monsters! ⚔️🐉
+
+---
+
+## 🔧 DEVELOPMENT NOTES: Combat System Gaps
+
+*Last updated: February 6, 2026*
+
+### Implemented ✅
+
+| Feature | Status | Notes |
+|---------|--------|-------|
+| Basic attack loop | ✅ | Hit/miss/damage per round |
+| Armor Class | ✅ | Lower AC = harder to hit |
+| Avoidance | ✅ | Dodge, parry, block, riposte |
+| Multi-attack | ✅ | Second/third attack by skill |
+| Critical hits | ✅ | 2x damage multiplier |
+| Pet combat | ✅ | Auto-assist, modes, orders |
+| Cooldowns | ✅ Partial | Per-ability, needs display command |
+| Taunt | ✅ Basic | Single-target threat |
+
+### Class Systems ✅
+
+All 9 classes have unique resource systems:
+
+| Class | Resource | Mechanic |
+|-------|----------|----------|
+| Warrior | Rage | Builds on hit/being hit, powers abilities |
+| Thief | Combo Points | Build with attacks, spend on finishers |
+| Cleric | Divine Favor | Builds through healing, unlocks miracles |
+| Paladin | Holy Power + Auras | Stacking power + passive buffs |
+| Necromancer | Soul Essence | Harvested from kills, powers undead |
+| Ranger | Focus | Concentration for precision abilities |
+| Bard | Rhythm | Stacks from performances, buffs songs |
+| Mage | Arcane Charges | Build for burst damage |
+| Assassin | Combo + Poison | Build combo, apply lethal poisons |
+
+### Not Yet Implemented 🔴
+
+#### Priority 1: Core Combat
+| Feature | Difficulty | Impact |
+|---------|------------|--------|
+| **Damage Types** | Medium | Physical, fire, cold, lightning, holy, shadow, nature, arcane |
+| **Resistances** | Medium | Per-mob/player vulnerability/resistance to damage types |
+| **Threat Table** | High | Proper aggro management for tanking |
+| **Interrupt/Counterspell** | Medium | Stop casts, require timing |
+| **CC Diminishing Returns** | Medium | Repeated CC becomes less effective |
+
+#### Priority 2: Quality of Life
+| Feature | Difficulty | Impact |
+|---------|------------|--------|
+| **`cooldowns` command** | Low | Show all active cooldowns |
+| **Combat log** | Low | Detailed damage breakdown |
+| **Target lock** | Low | Maintain focus on one enemy |
+| **Assist improvements** | Low | Better party coordination |
+
+#### Priority 3: Missing Class Abilities
+| Class | Missing Abilities |
+|-------|------------------|
+| Warrior | Charge (gap close), Shield Wall (party defense), Execute (low HP) |
+| Mage | Polymorph (CC), Counterspell, Blink (escape) |
+| Thief | Traps, Blind, Distract |
+| Ranger | Freezing Trap, Misdirection |
+| Cleric | Power Word: Shield, Penance |
+| Paladin | Hammer of Justice (ranged stun) |
+| Necromancer | Army of the Dead, Anti-Magic Shell |
+| Bard | Silencing Song, Mass Dispel |
+| Assassin | Smoke Bomb, Garrote silence |
+
+#### Priority 4: Boss Mechanics
+| Feature | Description |
+|---------|-------------|
+| Phase transitions | Bosses change behavior at HP thresholds |
+| Telegraphed attacks | Warning before big hits |
+| Add spawning | Boss summons helpers |
+| Positioning | Frontal cleave, back attacks |
+| Enrage timers | Soft/hard enrage for DPS checks |
+
+### Recommended Next Steps
+
+1. **Add damage types + resistances** - Foundation for interesting combat
+2. **Implement `cooldowns` command** - Critical for players
+3. **Build threat table** - Required for proper tank/healer/DPS
+4. **Add missing class abilities** - Fill out rotations

@@ -6,7 +6,7 @@
     "3500": {
       "vnum": 3500,
       "name": "The Plains",
-      "description": "You are standing on the plains.  This is a vast desolate place where the wind can howl undisturbed since nothing but you bars its way.  However you are not the first to wander here.  Before you somebody has left a small path.  The path looks rather bewildered and is not the kind of path to lead to anywhere significant or important but it seems to have made up its mind to enter the hills far away north.  A narrow trail scars its way off to the east as it leads up towards a hillside.",
+      "description": "This area is the plains. This is a vast desolate place where the wind\ncan howl undisturbed since nothing but you bars its way. However you are\nnot the first to wander here. before somebody has left a small path. The\npath looks rather bewildered and is not the kind of path to lead to\nanywhere significant or important but it seems to have made up its mind\nto enter the hills far away north. A narrow trail scars its way off to\nthe east as it leads up towards a hillside. Buildings crowd together on\nall sides. The cobblestones are worn smooth by countless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -27,7 +27,7 @@
     "3501": {
       "vnum": 3501,
       "name": "The Lane",
-      "description": "You are strolling along a pleasant, shady lane.  The road is lined on both sides by tall, stately trees which lend the scene with a sense of quiet serenity.    You can follow the road north or south.",
+      "description": "The area is strolling along a pleasant, shady lane. The road is lined on\nboth sides by tall, stately trees which lend the scene with a sense of\nquiet serenity. You can follow the road north or south. The sounds of\ncity life echo around. The smell of smoke and humanity hangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -44,7 +44,7 @@
     "3502": {
       "vnum": 3502,
       "name": "The Laneway",
-      "description": "The trees stand close here, and the tall, bushy undergrowth prevents you from seeing far in any direction save east, where a broad lane continues off into the distance; and west, where the same lane continues towards what looks like a fairly large city.  The muted sounds of city commotion reach your ears from a distance; stray dogs barking, children crying, and street salesmen shouting.    A steep path leads down from here to the northeast towards the Dwarven Village, and a small trail leads through the trees towards the hills to the north.",
+      "description": "The trees stand close here, and the tall, bushy undergrowth prevents you\nfrom seeing far in any direction save east, where a broad lane continues\noff into the distance; and west, where the same lane continues towards\nwhat looks like a fairly large city. The muted sounds of city commotion\nreach your ears from a distance; stray dogs barking, children crying,\nand street salesmen shouting. A steep path leads down from here to the\nnortheast towards the Dwarven Village, and a small trail leads through\nthe trees towards the hills to the north. Buildings crowd together on\nall sides. Vendors and pedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -69,7 +69,7 @@
     "3503": {
       "vnum": 3503,
       "name": "The City Entrance",
-      "description": "You stand on the outskirts of a large city - Midgaard; the capital of this land.  The road leads east into the peace and quiet - and dangers - of the forest; and to the west it becomes the main street of the town; surrounded by a confusion of shops, bars, and market places.",
+      "description": "The area opens on the outskirts of a large city - Midgaard; the capital\nof this land. The road leads east into the peace and quiet - and dangers\n- of the forest; and to the west it becomes the main street of the town;\nsurrounded by a confusion of shops, bars, and market places. The sounds\nof city life echo around. Vendors and pedestrians bustle past.",
       "sector_type": "city",
       "flags": [
         "no_mob"
@@ -88,7 +88,7 @@
     "3504": {
       "vnum": 3504,
       "name": "The South Gate",
-      "description": "You are standing on a small, dusty path leading away from the south gate of Midgaard, to the forest of Miden'Nir (Goblinic for 'Green Blood'). You can still see the city to the east, but if you go south, there is fresh air and greenery.",
+      "description": "This area is a small, dusty path leading away from the south gate of\nMidgaard, to the forest of Miden'Nir (Goblinic for 'Green Blood'). You\ncan still see the city to the east, but if you go south, there is fresh\nair and greenery. Branches intertwine overhead, filtering the light. The\nforest floor is carpeted with fallen leaves.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -105,7 +105,7 @@
     "3505": {
       "vnum": 3505,
       "name": "The Trail To Miden'Nir",
-      "description": "You are in a light forest.  A path leads south, but the passage to the east is easy enough.  To the west, smoke can be seen rising above the treetops.  The sprawl of Midgaard lies north of here.",
+      "description": "This is a light forest. A path leads south, but the passage to the east\nis easy enough. To the west, smoke can be seen rising above the\ntreetops. The sprawl of Midgaard lies north of here. Bird calls echo\nthrough the canopy. Branches intertwine overhead, filtering the light.",
       "sector_type": "forest",
       "flags": [
         "no_mob"
@@ -132,7 +132,7 @@
     "3506": {
       "vnum": 3506,
       "name": "The Miden'nir",
-      "description": "You are in a dark forest.  To the east, mountains block passage.  From here, only the lighter forest to the west or south offer a way to travel.",
+      "description": "This is a dark forest. To the east, mountains block passage. From here,\nonly the lighter forest to the west or south offer a way to travel. The\nscent of pine and earth fills the air. Branches intertwine overhead,\nfiltering the light.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -153,7 +153,7 @@
     "3507": {
       "vnum": 3507,
       "name": "The Miden'nir",
-      "description": "The forest is deep here and the wind blows through the trees and through your hair.  To the north, the forest gets lighter.  However, the southern and western paths place you even deeper in the wood.",
+      "description": "The forest is deep here and the wind blows through the trees and through\nyour hair. To the north, the forest gets lighter. However, the southern\nand western paths place you even deeper in the wood. The scent of pine\nand earth fills the air. Ancient trees rise on all sides.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -174,7 +174,7 @@
     "3508": {
       "vnum": 3508,
       "name": "On a Small Path",
-      "description": "A path is here, leading east and south through the dark woods of Miden'nir.  Mountains slash the scenery to the west of here.",
+      "description": "A path is here, leading east and south through the dark woods of\nMiden'nir. Mountains slash the scenery to the west of here. Bird calls\necho through the canopy. The forest floor is carpeted with fallen\nleaves.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -197,7 +197,7 @@
     "3509": {
       "vnum": 3509,
       "name": "The Miden'nir",
-      "description": "The trees of Miden'nir are lush and green, hiding the evil that lurks in these woods.  The trees become too thick to the west, but you may go north, south or travel toward the mountains that lie east of here.",
+      "description": "The trees of Miden'nir are lush and green, hiding the evil that lurks in\nthese woods. The trees become too thick to the west, but you may go\nnorth, south or travel toward the mountains that lie east of here. Bird\ncalls echo through the canopy. Branches intertwine overhead, filtering\nthe light.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -228,7 +228,7 @@
     "3510": {
       "vnum": 3510,
       "name": "A Crossroads",
-      "description": "Here footworn paths meet leading north, south and east.  The trees seem to be closing in on you at this point, and you can barely see the sky through the thick branches above your head.",
+      "description": "Here footworn paths meet leading north, south and east. The trees seem\nto be closing in on you at this point, and you can barely see the sky\nthrough the thick branches above your head. Bird calls echo through the\ncanopy. Ancient trees rise on all sides.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -249,7 +249,7 @@
     "3511": {
       "vnum": 3511,
       "name": "The Trail",
-      "description": "You are on a north-south trail through the woods.  To the west, impassable mountains glare at you, and the thick woods and undergrowth prevent any movement westward.",
+      "description": "The area is a north-south trail through the woods. To the west,\nimpassable mountains glare at you, and the thick woods and undergrowth\nprevent any movement westward. Ancient trees rise on all sides. Branches\nintertwine overhead, filtering the light.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -266,7 +266,7 @@
     "3512": {
       "vnum": 3512,
       "name": "The Miden'nir",
-      "description": "The trees of Miden'nir are lush and green, hiding the evil that lurks in these woods.  You can go north toward the mountains, or west to the forest, but the steep mountains prevent any movement east.",
+      "description": "The trees of Miden'nir are lush and green, hiding the evil that lurks in\nthese woods. You can go north toward the mountains, or west to the\nforest, but the steep mountains prevent any movement east. The scent of\npine and earth fills the air. The forest floor is carpeted with fallen\nleaves.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -301,7 +301,7 @@
     "3513": {
       "vnum": 3513,
       "name": "The Miden'nir",
-      "description": "The forest is dark, and becomes even darker west.  You sense that there is something evil hidden in these woods.  The forest gets lighter to the north.  The wind kicks up as you ponder your options.",
+      "description": "The forest is dark, and becomes even darker west. You sense that there\nis something evil hidden in these woods. The forest gets lighter to the\nnorth. The wind kicks up as you ponder your options. The forest floor is\ncarpeted with fallen leaves. Bird calls echo through the canopy.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -318,7 +318,7 @@
     "3514": {
       "vnum": 3514,
       "name": "The Deep Forest",
-      "description": "It is quite dark here, forest surrounds you.  With each step, the forest seems to close around you, and get darker and more foreboding. It might just be time to head back to somewhere safe.",
+      "description": "It is quite dark here, forest surrounds you. With each step, the forest\nseems to close around, and get darker and more foreboding. It might\njust be time to head back to somewhere safe. Branches intertwine\noverhead, filtering the light. The scent of pine and earth fills the\nair.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -349,7 +349,7 @@
     "3515": {
       "vnum": 3515,
       "name": "The Light Forest",
-      "description": "The forest is light here and you can easily pick your way through the  trail.  To the east, the forest becomes thick and darker.  South, the trail continues.",
+      "description": "The forest is light here and you can easily pick your way through the\ntrail. To the east, the forest becomes thick and darker. South, the\ntrail continues. Branches intertwine overhead, filtering the light. The\nforest floor is carpeted with fallen leaves.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -370,7 +370,7 @@
     "3516": {
       "vnum": 3516,
       "name": "Some Muddy Ground",
-      "description": "The ground is quite muddy here and puddles are all around.  Your boots make a disgusting SQUISH as you walk here.  You can go in any of the four cardinal directions from here.  Hopefully, it will be dryer.",
+      "description": "The ground is quite muddy here and puddles are all around. Your boots\nmake a disgusting SQUISH as you walk here. You can go in any of the four\ncardinal directions from here. Hopefully, it will be dryer. Bird calls\necho through the canopy. Ancient trees rise on all sides.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -401,7 +401,7 @@
     "3517": {
       "vnum": 3517,
       "name": "Near The Mountains",
-      "description": "The most prominent feature here is the mountains that lie to the east.  You can only go north and west from here as the rocks stop all other movement.",
+      "description": "The most prominent feature here is the mountains that lie to the east.\nYou can only go north and west from here as the rocks stop all other\nmovement. Bird calls echo through the canopy. Branches intertwine\noverhead, filtering the light.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -418,7 +418,7 @@
     "3518": {
       "vnum": 3518,
       "name": "The Fading Trail",
-      "description": "The trail becomes nearly unpassable here.  You can go north as the forest is relatively light.  To the south, you can see a path.",
+      "description": "The trail becomes nearly unpassable here. You can go north as the forest\nis relatively light. To the south, Visible is a path. The forest floor\nis carpeted with fallen leaves. Bird calls echo through the canopy.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -441,7 +441,7 @@
     "3519": {
       "vnum": 3519,
       "name": "The Dark Path",
-      "description": "You are hemmed in by trees on either side of you.  The path continues north and south, and while is much to thick to explore west, you can head off into the woods to the west.",
+      "description": "The area is hemmed in by trees on either side of you. The path continues\nnorth and south, and while is much to thick to explore west, you can\nhead off into the woods to the west. Branches intertwine overhead,\nfiltering the light. The scent of pine and earth fills the air.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -462,7 +462,7 @@
     "3520": {
       "vnum": 3520,
       "name": "The Dark Forest",
-      "description": "You stomp your way through the underbrush.  The dark forest of Miden'nir get pretty thick here, and the branches high above your head are so thick that they block out all direct sunlight.  While it is much too thick to go further east, you might be able to make your way though the forest to the south and west.",
+      "description": "You stomp your way through the underbrush. The dark forest of Miden'nir\nget pretty thick here, and the branches high above your head are so\nthick that they block out all direct sunlight. While it is much too\nthick to go further east, you might be able to make your way though the\nforest to the south and west. Branches intertwine overhead, filtering\nthe light. The scent of pine and earth fills the air.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -479,7 +479,7 @@
     "3521": {
       "vnum": 3521,
       "name": "The Carnage",
-      "description": "Here, you see a gruesome sight.  Blood is everywhere... on the trees and soaked into the ground.  Two carcasses lie in front of you, seeming to look up at you.  The forest is impassible to the south, but the other directions look ok.",
+      "description": "Here, you see a gruesome sight. Blood is everywhere... on the trees and\nsoaked into the ground. Two carcasses lie ahead, seeming to look up at\nyou. The forest is impassible to the south, but the other directions\nlook ok. Ancient trees rise on all sides. The scent of pine and earth\nfills the air.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -531,7 +531,7 @@
     "3522": {
       "vnum": 3522,
       "name": "Deep In The Forest Of Miden'nir",
-      "description": "There is a sickening stench here.  It smells of blood and death. To the north, you catch glimpses of daylight.  To the east, you simply cannot see.  The trees are close and stifling.",
+      "description": "There is a sickening stench here. It smells of blood and death. To the\nnorth, you catch glimpses of daylight. To the east, you simply cannot\nsee. The trees are close and stifling. Ancient trees rise on all sides.\nThe forest floor is carpeted with fallen leaves.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -548,7 +548,7 @@
     "3523": {
       "vnum": 3523,
       "name": "The Dark Forest",
-      "description": "The branches above you block out all direct sunlight, making the forest in this area rather dark.  The forest continues east, where it meets the mountains.  The air is still and stuffy - a stench comes from the west and an ugly feeling causes the hair to rise on the back of your neck!",
+      "description": "The branches above block out all direct sunlight, making the forest\nin this area rather dark. The forest continues east, where it meets the\nmountains. The air is still and stuffy - a stench comes from the west\nand an ugly feeling causes the hair to rise on the back of your neck!\nThe scent of pine and earth fills the air. Ancient trees rise on all\nsides.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -569,7 +569,7 @@
     "3550": {
       "vnum": 3550,
       "name": "At The Foot Of The Mountains",
-      "description": "You find yourself at the foot of the mountains, where it is much to steep to continue north or east.  You see the lush, green forest of Miden'nir to the south and west.",
+      "description": "The passage opens at the foot of the mountains, where it is much to\nsteep to continue north or east. You see the lush, green forest of\nMiden'nir to the south and west. The path is steep and treacherous. The\nair is thin and cold at this altitude.",
       "sector_type": "mountain",
       "flags": [],
       "exits": {
@@ -586,7 +586,7 @@
     "3551": {
       "vnum": 3551,
       "name": "Deep In The Forest Of Miden'nir",
-      "description": "The branches above you block out all direct sunlight, making the forest in this area very dark.  The forest continues west, but mountains block further exploration in all other directions, except south, where you notice a small tunnel dug into the mountainside.",
+      "description": "The branches above block out all direct sunlight, making the forest\nin this area very dark. The forest continues west, but mountains block\nfurther exploration in all other directions, except south, where you\nnotice a small tunnel dug into the mountainside. Ancient trees rise on\nall sides. The forest floor is carpeted with fallen leaves.",
       "sector_type": "forest",
       "flags": [
         "dark"
@@ -611,7 +611,7 @@
     "3552": {
       "vnum": 3552,
       "name": "A Tunnel In The Mountains",
-      "description": "The walls of this tunnel were carved out many years ago by the goblins of this forest.  The floor is well worn, and continues south, into the mountain, or back north out into the forest.",
+      "description": "The walls of this tunnel were carved out many years ago by the goblins\nof this forest. The floor is well worn, and continues south, into the\nmountain, or back north out into the forest. The smell of smoke and\nhumanity hangs in the air. The sounds of city life echo around.",
       "sector_type": "city",
       "flags": [
         "dark"
@@ -630,7 +630,7 @@
     "3553": {
       "vnum": 3553,
       "name": "A Tunnel In The Mountains",
-      "description": "The tunnel gets lighter to the north, presumably leading out, while to the south the passage gets smaller and smaller.  A small alcove has been carved into the east wall.",
+      "description": "The tunnel gets lighter to the north, presumably leading out, while to\nthe south the passage gets smaller and smaller. A small alcove has been\ncarved into the east wall. The sounds of city life echo around. The\ncobblestones are worn smooth by countless feet.",
       "sector_type": "city",
       "flags": [
         "dark"
@@ -653,7 +653,7 @@
     "3554": {
       "vnum": 3554,
       "name": "A Small Alcove",
-      "description": "A small alcove has been carved out here.  There are a bunch of twigs and leaves thrown into a pile here, probably serving as a bed.",
+      "description": "A small alcove has been carved out here. There are a bunch of twigs and\nleaves thrown into a pile here, probably serving as a bed. Buildings\ncrowd together on all sides. Vendors and pedestrians bustle past.",
       "sector_type": "city",
       "flags": [
         "dark"
@@ -671,7 +671,7 @@
     "3555": {
       "vnum": 3555,
       "name": "A Tunnel In The Mountains",
-      "description": "As you explore further into the mountainside, the tunnel gets smaller and smaller to the south.  You almost have to hunch over to make your way through this area.  A small archway to the south leads into a large chamber.",
+      "description": "As you explore further into the mountainside, the tunnel gets smaller\nand smaller to the south. You almost have to hunch over to make your way\nthrough this area. A small archway to the south leads into a large\nchamber. The cobblestones are worn smooth by countless feet. The smell\nof smoke and humanity hangs in the air.",
       "sector_type": "city",
       "flags": [
         "dark"
@@ -690,7 +690,7 @@
     "3556": {
       "vnum": 3556,
       "name": "The Goblin HeadQuarters",
-      "description": "The tunnel widens into a large (well, large for goblins) cavern that serves as the living quarters for the goblins of Miden'nir.  The bones of numbers woodland creatures are strewn about the room, the remanents of a recent meal.",
+      "description": "The tunnel widens into a large (well, large for goblins) cavern that\nserves as the living quarters for the goblins of Miden'nir. The bones of\nnumbers woodland creatures are strewn about the room, the remanents of a\nrecent meal. Buildings crowd together on all sides. Vendors and\npedestrians bustle past.",
       "sector_type": "city",
       "flags": [
         "dark"
@@ -719,7 +719,7 @@
     "3570": {
       "vnum": 3570,
       "name": "The Front Of The Inn",
-      "description": "You are standing on a well-worn path which opens into a clearing. An old, wooden building is here with smoke billowing from its chimney.  A painted sign is visible on the porch to the west.  You could go north or south around the building or leave this place and return to the forest.",
+      "description": "This area is a well-worn path which opens into a clearing. An old,\nwooden building is here with smoke billowing from its chimney. A painted\nsign is visible on the porch to the west. You could go north or south\naround the building or leave this place and return to the forest. The\nscent of pine and earth fills the air. Branches intertwine overhead,\nfiltering the light.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -747,7 +747,7 @@
     "3571": {
       "vnum": 3571,
       "name": "North Of The Inn",
-      "description": "You are standing north of the Inn.  Things don't look much different from this angle.  The air here is filled with smells of smoke and cooking. South, the front porch is waiting for you... or you can see if there is a back door.",
+      "description": "The area opens north of the Inn. Things don't look much different from\nthis angle. The air here is filled with smells of smoke and cooking.\nSouth, the front porch is waiting for you... or Visible is if there is a\nback door. Branches intertwine overhead, filtering the light. The scent\nof pine and earth fills the air.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -760,7 +760,7 @@
     "3572": {
       "vnum": 3572,
       "name": "South Of The Inn",
-      "description": "You are standing south of the Inn.  You could easily go north and enter through the front door, or west and to the rear of the establishment.  You here some muffled cries from a tiny trail leading south of here.",
+      "description": "The area opens south of the Inn. You could easily go north and enter\nthrough the front door, or west and to the rear of the establishment.\nYou here some muffled cries from a tiny trail leading south of here. The\nforest floor is carpeted with fallen leaves. The scent of pine and earth\nfills the air.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -781,7 +781,7 @@
     "3573": {
       "vnum": 3573,
       "name": "Behind The Inn",
-      "description": "You now stand behind the Inn.  The smell here is not so pleasant as the keeper and his help throw a good deal of garbage here.  A couple of piles of rubbish are to the west, but you will smell the worse for meddling there.  As a clean alternative, you can go north or east around the Inn.",
+      "description": "You now stand behind the Inn. The smell here is not so pleasant as the\nkeeper and his help throw a good deal of garbage here. A couple of piles\nof rubbish are to the west, but you will smell the worse for meddling\nthere. As a clean alternative, you can go north or east around the Inn.\nThe forest floor is carpeted with fallen leaves. The scent of pine and\nearth fills the air.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -798,7 +798,7 @@
     "3574": {
       "vnum": 3574,
       "name": "The Woodsman Inn",
-      "description": "You are in the common room of the Woodsman Inn.  A thin haze of smoke sits in the air here.  The Inn is often empty, as the forest has become overrun by goblins as of late, and it is no longer safe in these parts. The bar is just north of here.  If you'd rather have your own table, one is empty to the south.",
+      "description": "This is the common room of the Woodsman Inn. A thin haze of smoke sits\nin the air here. The Inn is often empty, as the forest has become\noverrun by goblins as of late, and it is no longer safe in these parts.\nThe bar is just north of here. If you'd rather have your own table, one\nis empty to the south. The smell of smoke and humanity hangs in the air.\nBuildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [
         "no_mob",
@@ -826,7 +826,7 @@
     "3575": {
       "vnum": 3575,
       "name": "The Ambush Point",
-      "description": "This is a overgrown foot-trail south of the Inn.  It leads west, but you would be hard pressed to follow it far.  A number of bushes are trampled on and some medium sized branches have been knocked down.  Obviously there has been a battle here rather recently.",
+      "description": "This is a overgrown foot-trail south of the Inn. It leads west, but you\nwould be hard pressed to follow it far. A number of bushes are trampled\non and some medium sized branches have been knocked down. Obviously\nthere has been a battle here rather recently. The forest floor is\ncarpeted with fallen leaves. Ancient trees rise on all sides.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -849,7 +849,7 @@
     "3576": {
       "vnum": 3576,
       "name": "The Bar",
-      "description": "This is where people use to come and enjoy the food, drink and hospitality of the Innkeeper, but as of late, he only serves the few adventurers that manage to survive a trip through the forest. You can leave south and return to the common room.",
+      "description": "This is where people use to come and enjoy the food, drink and\nhospitality of the Innkeeper, but as of late, he only serves the few\nadventurers that manage to survive a trip through the forest. You can\nleave south and return to the common room. The sounds of city life echo\naround. The cobblestones are worn smooth by countless feet.",
       "sector_type": "city",
       "flags": [
         "indoors",
@@ -871,7 +871,7 @@
     "3577": {
       "vnum": 3577,
       "name": "The Bard's Table",
-      "description": "You are in a darker corner in the Inn.  A large round table with a few wooden chairs sits here.  There is a large stain on the table, the remnants of a spilled drink.",
+      "description": "This is a darker corner in the Inn. A large round table with a few\nwooden chairs sits here. There is a large stain on the table, the\nremnants of a spilled drink. Vendors and pedestrians bustle past.\nBuildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [
         "indoors"
@@ -892,7 +892,7 @@
     "3578": {
       "vnum": 3578,
       "name": "The Garbage Dump",
-      "description": "You stand knee deep in garbage.  YECCH!!!  It smells terrible and who knows what vermin live in these piles of filth...",
+      "description": "The area opens knee deep in garbage. YECCH!!! It smells terrible and who\nknows what vermin live in these piles of filth... Bird calls echo\nthrough the canopy. Ancient trees rise on all sides.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -905,7 +905,7 @@
     "3579": {
       "vnum": 3579,
       "name": "A Quieter Section Of The Inn",
-      "description": "There seems to be no one in this end of the Woodsman, probably a safe place to rest and lick your wounds...",
+      "description": "There seems to be no one in this end of the Woodsman, probably a safe\nplace to rest and lick your wounds... The air is still and musty. The\nwalls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -920,7 +920,7 @@
     "3581": {
       "vnum": 3581,
       "name": "On The Trail Of The Horsemen",
-      "description": "The path continues east and west of here.  You notice fresh tracks in the soft ground that show the horsemen fled to the west.",
+      "description": "The path continues east and west of here. You notice fresh tracks in the\nsoft ground that show the horsemen fled to the west. Ancient trees rise\non all sides. Branches intertwine overhead, filtering the light.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -937,7 +937,7 @@
     "3582": {
       "vnum": 3582,
       "name": "On The Trail Of The Horsemen",
-      "description": "The path continues east and south.  You notice fresh tracks in the soft ground that show the horsemen turned, and fled south.",
+      "description": "The path continues east and south. You notice fresh tracks in the soft\nground that show the horsemen turned, and fled south. The forest floor\nis carpeted with fallen leaves. Ancient trees rise on all sides.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -954,7 +954,7 @@
     "3583": {
       "vnum": 3583,
       "name": "On The Trail Of The Horsemen",
-      "description": "The trail of the horsemen continues east and north along this path through the forest.  The tracks are still fresh, so they must be near.",
+      "description": "The trail of the horsemen continues east and north along this path\nthrough the forest. The tracks are still fresh, so they must be near.\nBird calls echo through the canopy. Branches intertwine overhead,\nfiltering the light.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -971,7 +971,7 @@
     "3584": {
       "vnum": 3584,
       "name": "A Dead End Trail",
-      "description": "The path comes to an abrupt end here, as the trees close around you and make any further exploration impossible.  Fresh tracks cover the ground, and end right here.  The horsemen must be nearby.",
+      "description": "The path comes to an abrupt end here, as the trees close around and\nmake any further exploration impossible. Fresh tracks cover the ground,\nand end right here. The horsemen must be nearby. The scent of pine and\nearth fills the air. Branches intertwine overhead, filtering the light.",
       "sector_type": "forest",
       "flags": [],
       "exits": {
@@ -1000,11 +1000,11 @@
       "long_desc": "A monstrous wyvern slowly circles just above your head.",
       "level": 8,
       "alignment": -700,
-      "hp_dice": "2d6+1",
-      "damage_dice": "2d10+90",
+      "hp_dice": "8d10+112",
+      "damage_dice": "3d5+5",
       "gold": 1787,
-      "exp": 8,
-      "armor_class": 3,
+      "exp": 480,
+      "armor_class": 76,
       "flags": [
         "sentinel",
         "stay_zone",
@@ -1020,11 +1020,11 @@
       "long_desc": "A mountain goblin is wandering around mumbling to himself...",
       "level": 4,
       "alignment": -250,
-      "hp_dice": "1d8+0",
-      "damage_dice": "1d1+55",
+      "hp_dice": "4d10+64",
+      "damage_dice": "2d4+3",
       "gold": 325,
-      "exp": 8,
-      "armor_class": 6,
+      "exp": 240,
+      "armor_class": 88,
       "flags": [
         "aggressive",
         "stay_zone",
@@ -1043,11 +1043,11 @@
       "long_desc": "A goblin lieutenant stands here, attempting to get his men in order.",
       "level": 7,
       "alignment": -600,
-      "hp_dice": "2d5+1",
-      "damage_dice": "1d12+100",
+      "hp_dice": "7d10+100",
+      "damage_dice": "2d5+6",
       "gold": 1150,
-      "exp": 8,
-      "armor_class": 3,
+      "exp": 420,
+      "armor_class": 79,
       "flags": [
         "stay_zone",
         "aggr_good",
@@ -1061,26 +1061,76 @@
     },
     "3503": {
       "vnum": 3503,
-      "name": "goblin",
-      "short_desc": "the goblin leader",
-      "long_desc": "The goblin leader surveys the room.",
-      "level": 9,
+      "name": "the Goblin King",
+      "short_desc": "Grukthar the Goblin King",
+      "long_desc": "Grukthar the Goblin King towers over his throne, snarling.",
+      "level": 22,
       "alignment": -900,
-      "hp_dice": "2d5+3",
-      "damage_dice": "1d12+120",
+      "hp_dice": "22d10+280",
+      "damage_dice": "6d8+8",
       "gold": 4500,
-      "exp": 8,
-      "armor_class": 1,
+      "exp": 1320,
+      "armor_class": 34,
       "flags": [
-        "sentinel",
-        "scavenger",
+        "helper",
+        "boss",
         "aggr_good",
+        "sentinel",
         "memory",
-        "helper"
+        "scavenger"
       ],
       "description": "The leader doesn't look too happy that you have found him here.  He grabs\nfor his shortsword and lunges for your neck.",
       "equipment": {
         "wield": 3504
+      },
+      "boss": true,
+      "boss_id": "goblin_king",
+      "boss_title": "the Goblinbane",
+      "boss_achievement": "boss_goblin_king",
+      "boss_loot_table": [
+        3509,
+        3510,
+        3511
+      ],
+      "boss_loot_chance": 85,
+      "boss_config": {
+        "enrage_time": 60,
+        "enrage_multiplier": 1.5,
+        "ability_interval": 4.0,
+        "phases": [
+          {
+            "threshold": 70,
+            "message": "The Goblin King beats his chest and calls for reinforcements!",
+            "spawn_adds": {
+              "3501": 2,
+              "3502": 2
+            }
+          },
+          {
+            "threshold": 40,
+            "message": "The Goblin King flies into a berserk rage!"
+          }
+        ],
+        "abilities": [
+          {
+            "name": "Bomb Toss",
+            "telegraph": "The Goblin King lights a crude bomb and hurls it high!",
+            "cast_time": 2,
+            "cooldown": 12,
+            "damage_dice": "4d6+8",
+            "dodge": true,
+            "aoe": true,
+            "vulnerable_after": 3
+          },
+          {
+            "name": "Summon Lackeys",
+            "cooldown": 18,
+            "summon": {
+              "3501": 1,
+              "3502": 2
+            }
+          }
+        ]
       }
     },
     "3504": {
@@ -1090,11 +1140,11 @@
       "long_desc": "A small boy sits here, licking his wounds.",
       "level": 4,
       "alignment": 500,
-      "hp_dice": "1d8+0",
-      "damage_dice": "1d12+47",
+      "hp_dice": "4d10+64",
+      "damage_dice": "2d4+3",
       "gold": 300,
-      "exp": 5,
-      "armor_class": 6,
+      "exp": 240,
+      "armor_class": 88,
       "flags": [
         "sentinel",
         "wimpy"
@@ -1111,11 +1161,11 @@
       "long_desc": "The Innkeeper stands here, cleaning glasses.",
       "level": 10,
       "alignment": 400,
-      "hp_dice": "2d8+1",
-      "damage_dice": "1d12+200",
+      "hp_dice": "10d10+136",
+      "damage_dice": "3d6+6",
       "gold": 4250,
-      "exp": 8,
-      "armor_class": 1,
+      "exp": 600,
+      "armor_class": 70,
       "flags": [
         "sentinel",
         "stay_zone",
@@ -1131,10 +1181,10 @@
       "long_desc": "A sullen bard is here, drinking away his problems.",
       "level": 8,
       "alignment": 600,
-      "hp_dice": "2d6+0",
-      "damage_dice": "1d12+110",
+      "hp_dice": "2d8+40",
+      "damage_dice": "1d6+6",
       "gold": 2625,
-      "exp": 6,
+      "exp": 223,
       "armor_class": 3,
       "flags": [
         "sentinel",
@@ -1154,11 +1204,11 @@
       "long_desc": "A dark horseman is here, mounted on his black steed.",
       "level": 8,
       "alignment": -900,
-      "hp_dice": "1d5+7",
-      "damage_dice": "1d12+97",
+      "hp_dice": "8d10+112",
+      "damage_dice": "3d5+5",
       "gold": 2500,
-      "exp": 8,
-      "armor_class": 4,
+      "exp": 480,
+      "armor_class": 76,
       "flags": [
         "stay_zone",
         "wimpy",
@@ -1265,6 +1315,38 @@
       "weight": 1,
       "value": 25,
       "armor_bonus": 5
+    },
+    "3509": {
+      "vnum": 3509,
+      "name": "a jagged goblin crown",
+      "short_desc": "a jagged goblin crown",
+      "room_desc": "A jagged crown fashioned from scrap metal lies here.",
+      "type": "armor",
+      "weight": 2,
+      "cost": 900,
+      "armor": 6,
+      "wear_slot": "head"
+    },
+    "3510": {
+      "vnum": 3510,
+      "name": "a bomb satchel",
+      "short_desc": "a bomb satchel",
+      "room_desc": "A soot-stained satchel of goblin bombs sits here.",
+      "type": "container",
+      "weight": 5,
+      "cost": 600,
+      "capacity": 20
+    },
+    "3511": {
+      "vnum": 3511,
+      "name": "a kingly cleaver",
+      "short_desc": "a kingly cleaver",
+      "room_desc": "A brutal cleaver etched with goblin runes lies here.",
+      "type": "weapon",
+      "weight": 10,
+      "cost": 1200,
+      "damage_dice": "2d7+2",
+      "weapon_type": "slash"
     }
   }
 }

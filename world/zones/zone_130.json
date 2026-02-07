@@ -11,7 +11,7 @@
   "rooms": {
     "13000": {
       "title": "The Docks of Midgaard",
-      "description": "Wooden docks extend into the harbor, where boats bob gently on the waves. Sailors and merchants crowd the waterfront, loading and unloading cargo. The smell of salt water and fish fills the air. To the west, beyond the harbor mouth, the open ocean beckons. Strange tales are told of ruins beneath those waves - a city that sank centuries ago.",
+      "description": "Wooden docks extend into the harbor, where boats bob gently on the\nwaves. Sailors and merchants crowd the waterfront, loading and unloading\ncargo. The smell of salt water and fish fills the air. To the west,\nbeyond the harbor mouth, the open ocean beckons. Strange tales are told\nof ruins beneath those waves - a city that sank centuries ago. Dust\nmotes drift in the stale air. The ceiling hangs low overhead.",
       "terrain": "city",
       "exits": {
         "east": {
@@ -25,11 +25,17 @@
           "description": "You see an exit up."
         }
       },
-      "vnum": 13000
+      "vnum": 13000,
+      "mob_resets": [
+        {
+          "vnum": 13001,
+          "max": 1
+        }
+      ]
     },
     "13001": {
       "title": "Harbor Mouth",
-      "description": "The harbor opens into deeper water here. The bottom is visible through clear blue water - sandy with patches of seaweed. Boats must navigate carefully to avoid the rocks that line the passage. Beneath the surface, shapes can be seen - old pilings, sunken debris, and something that might be ancient stonework. The water here is about twenty feet deep.",
+      "description": "The harbor opens into deeper water here. The bottom is visible through\nclear blue water - sandy with patches of seaweed. Boats must navigate\ncarefully to avoid the rocks that line the passage. Beneath the surface,\nshapes can be seen - old pilings, sunken debris, and something that\nmight be ancient stonework. The water here is about twenty feet deep.\nThe walls are rough-hewn and cold to the touch. Dust motes drift in the\nstale air.",
       "terrain": "water_surface",
       "exits": {
         "east": {
@@ -42,11 +48,17 @@
           "to_room": 13003
         }
       },
-      "vnum": 13001
+      "vnum": 13001,
+      "mob_resets": [
+        {
+          "vnum": 13005,
+          "max": 1
+        }
+      ]
     },
     "13002": {
       "title": "Open Ocean",
-      "description": "The shore has fallen away behind you, and deep water surrounds you on all sides. Waves roll endlessly, driven by distant winds. The water is a deep blue-green, impossible to see through from the surface. Sailors avoid this area, claiming it's cursed - that something beneath the waves pulls ships down. The water here is over a hundred feet deep.",
+      "description": "The shore has fallen away behind, and deep water surrounds you on all\nsides. Waves roll endlessly, driven by distant winds. The water is a\ndeep blue-green, impossible to see through from the surface. Sailors\navoid this area, claiming it's cursed - that something beneath the waves\npulls ships down. The water here is over a hundred feet deep. Dust motes\ndrift in the stale air. The walls are rough-hewn and cold to the touch.",
       "terrain": "water_surface",
       "exits": {
         "east": {
@@ -56,11 +68,17 @@
           "to_room": 13004
         }
       },
-      "vnum": 13002
+      "vnum": 13002,
+      "mob_resets": [
+        {
+          "vnum": 13001,
+          "max": 1
+        }
+      ]
     },
     "13003": {
       "title": "Shallow Waters",
-      "description": "Sunlight filters down through the water, illuminating a sandy bottom. Schools of fish dart past, and kelp sways in the current. The silence underwater is profound - only the sound of your own breathing breaks it. If you have water breathing magic, you can breathe normally; otherwise, you'll need to surface soon. Old stone blocks lie half-buried in the sand.",
+      "description": "Sunlight filters down through the water, illuminating a sandy bottom.\nSchools of fish dart past, and kelp sways in the current. The silence\nunderwater is profound - only the sound of your own breathing breaks it.\nIf you have water breathing magic, you can breathe normally; otherwise,\nyou'll need to surface soon. Old stone blocks lie half-buried in the\nsand. Shadows gather in the corners. Dust motes drift in the stale air.",
       "terrain": "underwater",
       "special": "requires_water_breathing",
       "exits": {
@@ -74,11 +92,25 @@
           "to_room": 13005
         }
       },
-      "vnum": 13003
+      "vnum": 13003,
+      "mob_resets": [
+        {
+          "vnum": 13001,
+          "max": 1
+        },
+        {
+          "vnum": 13002,
+          "max": 1
+        },
+        {
+          "vnum": 13004,
+          "max": 1
+        }
+      ]
     },
     "13004": {
       "title": "Edge of the Drop-Off",
-      "description": "The sandy bottom suddenly drops away into a deep trench. The water here is murky, and sunlight barely penetrates. Looking down into the darkness is unnerving - the trench seems bottomless. Strange sounds echo up from below - groans, clicks, and sounds that might be singing. Ancient stone structures are visible on the trench walls, covered in coral and barnacles.",
+      "description": "The sandy bottom suddenly drops away into a deep trench. The water here\nis murky, and sunlight barely penetrates. Looking down into the darkness\nis unnerving - the trench seems bottomless. Strange sounds echo up from\nbelow - groans, clicks, and sounds that might be singing. Ancient stone\nstructures are visible on the trench walls, covered in coral and\nbarnacles. Dust motes drift in the stale air. Shadows gather in the\ncorners.",
       "terrain": "underwater",
       "special": "requires_water_breathing",
       "exits": {
@@ -92,11 +124,25 @@
           "to_room": 13006
         }
       },
-      "vnum": 13004
+      "vnum": 13004,
+      "mob_resets": [
+        {
+          "vnum": 13001,
+          "max": 1
+        },
+        {
+          "vnum": 13002,
+          "max": 1
+        },
+        {
+          "vnum": 13006,
+          "max": 1
+        }
+      ]
     },
     "13005": {
       "title": "Kelp Forest",
-      "description": "Massive kelp plants grow from the bottom, their fronds reaching toward the surface. Swimming through them is like navigating a forest - the kelp is thick enough to hide in. Fish shelter among the stalks, and sea otters play in the canopy above. Something larger moves through the kelp, its shadow visible but its form unclear.",
+      "description": "Massive kelp plants grow from the bottom, their fronds reaching toward\nthe surface. Swimming through them is like navigating a forest - the\nkelp is thick enough to hide in. Fish shelter among the stalks, and sea\notters play in the canopy above. Something larger moves through the\nkelp, its shadow visible but its form unclear. The air is still and\nmusty. The walls are rough-hewn and cold to the touch.",
       "terrain": "underwater",
       "special": "requires_water_breathing",
       "exits": {
@@ -111,7 +157,7 @@
     },
     "13006": {
       "title": "Deepwater Trench",
-      "description": "The water here is cold and dark, pressure pressing in from all sides. Bio-luminescent creatures provide the only light - glowing fish, jellyfish that pulse with eerie radiance. The trench walls are sheer rock, descending into blackness. Ancient buildings are carved into the rock face, their architecture unlike anything on land. This is the outer edge of the sunken city.",
+      "description": "The water here is cold and dark, pressure pressing in from all sides.\nBio-luminescent creatures provide the only light - glowing fish,\njellyfish that pulse with eerie radiance. The trench walls are sheer\nrock, descending into blackness. Ancient buildings are carved into the\nrock face, their architecture unlike anything on land. This is the outer\nedge of the sunken city. The ceiling hangs low overhead. The air is\nstill and musty.",
       "terrain": "underwater",
       "special": "requires_water_breathing",
       "exits": {
@@ -132,7 +178,7 @@
     },
     "13007": {
       "title": "Coral Gardens",
-      "description": "Magnificent coral formations grow here in every color imaginable - reds, purples, yellows, greens. They form intricate sculptures and mazes. Tropical fish dart between branches, and anemones wave their tentacles. The beauty is breathtaking, but the coral conceals dangers - poisonous spines, hidden predators, and narrow passages where one could become trapped.",
+      "description": "Magnificent coral formations grow here in every color imaginable - reds,\npurples, yellows, greens. They form intricate sculptures and mazes.\nTropical fish dart between branches, and anemones wave their tentacles.\nThe beauty is breathtaking, but the coral conceals dangers - poisonous\nspines, hidden predators, and narrow passages where one could become\ntrapped. The air is still and musty. Dust motes drift in the stale air.",
       "terrain": "underwater",
       "special": "requires_water_breathing",
       "exits": {
@@ -143,11 +189,21 @@
           "to_room": 13009
         }
       },
-      "vnum": 13007
+      "vnum": 13007,
+      "mob_resets": [
+        {
+          "vnum": 13001,
+          "max": 1
+        },
+        {
+          "vnum": 13004,
+          "max": 1
+        }
+      ]
     },
     "13008": {
       "title": "The Ancient Gateway",
-      "description": "Two massive pillars rise from the trench floor, carved with images of waves and sea creatures. They frame a grand archway that leads deeper into the ruins. The stonework is incredible - after centuries underwater, it shows no wear. Runes glow faintly with preserved magic. This was once the main entrance to Atal'narath. Beyond lies the sunken city proper.",
+      "description": "Two massive pillars rise from the trench floor, carved with images of\nwaves and sea creatures. They frame a grand archway that leads deeper\ninto the ruins. The stonework is incredible - after centuries\nunderwater, it shows no wear. Runes glow faintly with preserved magic.\nThis was once the main entrance to Atal'narath. Beyond lies the sunken\ncity proper. The ceiling hangs low overhead. Dust motes drift in the\nstale air.",
       "terrain": "underwater",
       "special": "requires_water_breathing",
       "exits": {
@@ -158,11 +214,25 @@
           "to_room": 13010
         }
       },
-      "vnum": 13008
+      "vnum": 13008,
+      "mob_resets": [
+        {
+          "vnum": 13001,
+          "max": 1
+        },
+        {
+          "vnum": 13002,
+          "max": 1
+        },
+        {
+          "vnum": 13003,
+          "max": 1
+        }
+      ]
     },
     "13009": {
       "title": "Cave of the Giant Octopus",
-      "description": "A cave entrance yawns in the coral, dark and forbidding. Bones litter the entrance - fish, seals, and things less identifiable. This is clearly a predator's lair. Within, a giant octopus has made its home. The creature is old and cunning, with tentacles long enough to grab prey from surprising distances. Treasure from unfortunate divers lines its cave.",
+      "description": "A cave entrance yawns in the coral, dark and forbidding. Bones litter\nthe entrance - fish, seals, and things less identifiable. This is\nclearly a predator's lair. Within, a giant octopus has made its home.\nThe creature is old and cunning, with tentacles long enough to grab prey\nfrom surprising distances. Treasure from unfortunate divers lines its\ncave. The air is still and musty. Shadows gather in the corners.",
       "terrain": "underwater",
       "special": "requires_water_breathing",
       "exits": {
@@ -170,11 +240,21 @@
           "to_room": 13007
         }
       },
-      "vnum": 13009
+      "vnum": 13009,
+      "mob_resets": [
+        {
+          "vnum": 13005,
+          "max": 1
+        },
+        {
+          "vnum": 13006,
+          "max": 1
+        }
+      ]
     },
     "13010": {
       "title": "Sunken Plaza",
-      "description": "This was once the city's central plaza. Statues of ancient rulers stand in a circle, now covered in barnacles and seaweed. Fish swim through empty eye sockets. A fountain at the center still flows, powered by ancient magic - but it flows with water, pointless now that the city is submerged. Buildings line the plaza, their doors and windows dark portals into flooded interiors.",
+      "description": "This was once the city's central plaza. Statues of ancient rulers stand\nin a circle, now covered in barnacles and seaweed. Fish swim through\nempty eye sockets. A fountain at the center still flows, powered by\nancient magic - but it flows with water, pointless now that the city is\nsubmerged. Buildings line the plaza, their doors and windows dark\nportals into flooded interiors. The walls are rough-hewn and cold to the\ntouch. Dust motes drift in the stale air.",
       "terrain": "underwater",
       "special": "requires_water_breathing",
       "exits": {
@@ -195,7 +275,7 @@
     },
     "13011": {
       "title": "The Flooded Temple",
-      "description": "This temple was dedicated to the sea god. Columns march in rows toward an altar at the far end. The altar is carved from a single piece of blue crystal, still glowing with divine power. Offerings left by merfolk - shells, pearls, coral - are arranged carefully. The merfolk have reclaimed this temple, using it for their own worship. Disturbing it would be unwise.",
+      "description": "This temple was dedicated to the sea god. Columns march in rows toward\nan altar at the far end. The altar is carved from a single piece of blue\ncrystal, still glowing with divine power. Offerings left by merfolk -\nshells, pearls, coral - are arranged carefully. The merfolk have\nreclaimed this temple, using it for their own worship. Disturbing it\nwould be unwise. Shadows gather in the corners. The walls are rough-hewn\nand cold to the touch.",
       "terrain": "underwater",
       "special": "requires_water_breathing",
       "exits": {
@@ -203,11 +283,21 @@
           "to_room": 13010
         }
       },
-      "vnum": 13011
+      "vnum": 13011,
+      "mob_resets": [
+        {
+          "vnum": 13001,
+          "max": 1
+        },
+        {
+          "vnum": 13004,
+          "max": 1
+        }
+      ]
     },
     "13012": {
       "title": "Merchant Quarter",
-      "description": "These buildings were once shops and warehouses. Their roofs have collapsed, and currents have scattered goods across the district. Ancient pottery, rusted tools, and rotted wood are everywhere. Occasionally something valuable can be found - a piece of jewelry, an intact vase, a weapon preserved by magic. Scavengers pick through the ruins constantly.",
+      "description": "These buildings were once shops and warehouses. Their roofs have\ncollapsed, and currents have scattered goods across the district.\nAncient pottery, rusted tools, and rotted wood are everywhere.\nOccasionally something valuable can be found - a piece of jewelry, an\nintact vase, a weapon preserved by magic. Scavengers pick through the\nruins constantly. Dust motes drift in the stale air. The ceiling hangs\nlow overhead.",
       "terrain": "underwater",
       "special": "requires_water_breathing",
       "exits": {
@@ -218,11 +308,17 @@
           "to_room": 13014
         }
       },
-      "vnum": 13012
+      "vnum": 13012,
+      "mob_resets": [
+        {
+          "vnum": 13005,
+          "max": 1
+        }
+      ]
     },
     "13013": {
       "title": "The Royal Palace",
-      "description": "The palace is the grandest structure in the sunken city. Its towers still stand, reaching toward the surface far above. The entrance is flanked by statues of ancient kings. Inside, halls of marble and columns of jade speak of unimaginable wealth. Most of the treasure has been looted over the centuries, but legends say the deepest vaults remain sealed, protected by magic and monsters.",
+      "description": "The palace is the grandest structure in the sunken city. Its towers\nstill stand, reaching toward the surface far above. The entrance is\nflanked by statues of ancient kings. Inside, halls of marble and columns\nof jade speak of unimaginable wealth. Most of the treasure has been\nlooted over the centuries, but legends say the deepest vaults remain\nsealed, protected by magic and monsters. The air is still and musty. The\nceiling hangs low overhead.",
       "terrain": "underwater",
       "special": "requires_water_breathing",
       "exits": {
@@ -233,11 +329,25 @@
           "to_room": 13015
         }
       },
-      "vnum": 13013
+      "vnum": 13013,
+      "mob_resets": [
+        {
+          "vnum": 13001,
+          "max": 1
+        },
+        {
+          "vnum": 13002,
+          "max": 1
+        },
+        {
+          "vnum": 13007,
+          "max": 1
+        }
+      ]
     },
     "13014": {
       "title": "Sahuagin Territory",
-      "description": "This section of ruins has been claimed by sahuagin - violent, shark-like humanoids. They've built crude structures from rubble and bone. Skulls decorate entrances in warning. The sahuagin hate surface dwellers and attack on sight. They're organized and intelligent, making them far more dangerous than beasts. Their patrols cover this area constantly.",
+      "description": "This section of ruins has been claimed by sahuagin - violent, shark-like\nhumanoids. They've built crude structures from rubble and bone. Skulls\ndecorate entrances in warning. The sahuagin hate surface dwellers and\nattack on sight. They're organized and intelligent, making them far more\ndangerous than beasts. Their patrols cover this area constantly. The\nceiling hangs low overhead. Shadows gather in the corners.",
       "terrain": "underwater",
       "special": "requires_water_breathing",
       "exits": {
@@ -245,11 +355,17 @@
           "to_room": 13012
         }
       },
-      "vnum": 13014
+      "vnum": 13014,
+      "mob_resets": [
+        {
+          "vnum": 13006,
+          "max": 1
+        }
+      ]
     },
     "13015": {
       "title": "Throne Room",
-      "description": "The palace throne room is vast, its ceiling held up by columns of serpentine. The throne itself is carved from a single enormous pearl, black and lustrous. Murals on the walls depict the city's history - its founding, glory days, and final cataclysm when the ocean claimed it. The floor is mosaic tile, still intact. Water elementals guard this chamber.",
+      "description": "The palace throne room is vast, its ceiling held up by columns of\nserpentine. The throne itself is carved from a single enormous pearl,\nblack and lustrous. Murals on the walls depict the city's history - its\nfounding, glory days, and final cataclysm when the ocean claimed it. The\nfloor is mosaic tile, still intact. Water elementals guard this chamber.\nDust motes drift in the stale air. The ceiling hangs low overhead.",
       "terrain": "underwater",
       "special": "requires_water_breathing",
       "exits": {
@@ -260,11 +376,29 @@
           "to_room": 13016
         }
       },
-      "vnum": 13015
+      "vnum": 13015,
+      "mob_resets": [
+        {
+          "vnum": 13001,
+          "max": 1
+        },
+        {
+          "vnum": 13002,
+          "max": 1
+        },
+        {
+          "vnum": 13005,
+          "max": 1
+        },
+        {
+          "vnum": 13004,
+          "max": 1
+        }
+      ]
     },
     "13016": {
       "title": "The Royal Vaults",
-      "description": "Deep beneath the palace, the royal treasure vaults were sealed when the city fell. The doors are adamantine, covered in preservation magic. Opening them would be difficult, but the reward would be worth it - the accumulated wealth of an ancient kingdom. Guards patrol here still, undead servants bound to their eternal duty.",
+      "description": "Deep beneath the palace, the royal treasure vaults were sealed when the\ncity fell. The doors are adamantine, covered in preservation magic.\nOpening them would be difficult, but the reward would be worth it - the\naccumulated wealth of an ancient kingdom. Guards patrol here still,\nundead servants bound to their eternal duty. The ceiling hangs low\noverhead. Shadows gather in the corners.",
       "terrain": "underwater",
       "special": "requires_water_breathing",
       "exits": {
@@ -272,11 +406,21 @@
           "to_room": 13015
         }
       },
-      "vnum": 13016
+      "vnum": 13016,
+      "mob_resets": [
+        {
+          "vnum": 13001,
+          "max": 1
+        },
+        {
+          "vnum": 13002,
+          "max": 1
+        }
+      ]
     },
     "13017": {
       "title": "The Abyssal Trench",
-      "description": "The sea floor drops away into a trench so deep that light cannot reach the bottom. The water here is near freezing, and the pressure would crush an unprotected human. Strange bioluminescent creatures drift by - fish with teeth like needles, jellyfish trailing stinging tentacles. This is the domain of things adapted to the deep, alien and hostile.",
+      "description": "The sea floor drops away into a trench so deep that light cannot reach\nthe bottom. The water here is near freezing, and the pressure would\ncrush an unprotected human. Strange bioluminescent creatures drift by -\nfish with teeth like needles, jellyfish trailing stinging tentacles.\nThis is the domain of things adapted to the deep, alien and hostile. The\nair is still and musty. The walls are rough-hewn and cold to the touch.",
       "terrain": "underwater",
       "special": "requires_water_breathing",
       "exits": {
@@ -284,7 +428,13 @@
           "to_room": 13006
         }
       },
-      "vnum": 13017
+      "vnum": 13017,
+      "mob_resets": [
+        {
+          "vnum": 13008,
+          "max": 1
+        }
+      ]
     }
   },
   "mobiles": {
@@ -561,6 +711,449 @@
       ],
       "max_in_zone": 1,
       "vnum": 13004
+    },
+    "13005": {
+      "vnum": 13005,
+      "name": "barnacle\u2011edge axe",
+      "short_desc": "\u001b[96ma barnacle\u2011edge \u001b[91maxe\u001b[0m\u001b[96m\u001b[0m",
+      "room_desc": "\u001b[96mA barnacle\u2011edge \u001b[91maxe\u001b[0m\u001b[96m lies here.\u001b[0m",
+      "description": "A sea\u2011worn axe.",
+      "item_type": "weapon",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "wield",
+      "weapon_type": "slash",
+      "damage_dice": "2d6+5",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 3
+        }
+      ],
+      "set_id": 130
+    },
+    "13006": {
+      "vnum": 13006,
+      "name": "tidal shield",
+      "short_desc": "\u001b[96ma tidal \u001b[93mshield\u001b[0m\u001b[96m\u001b[0m",
+      "room_desc": "\u001b[96mA tidal \u001b[93mshield\u001b[0m\u001b[96m lies here.\u001b[0m",
+      "description": "A paladin's shield.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "shield",
+      "armor_bonus": 3,
+      "affects": [
+        {
+          "type": "wis",
+          "value": 1
+        }
+      ],
+      "set_id": 130
+    },
+    "13007": {
+      "vnum": 13007,
+      "name": "abyss sigil",
+      "short_desc": "\u001b[96man abyss \u001b[35msigil\u001b[0m\u001b[96m\u001b[0m",
+      "room_desc": "\u001b[96mAn abyss \u001b[35msigil\u001b[0m\u001b[96m lies here.\u001b[0m",
+      "description": "A deathknight's sigil.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "neck1",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 4
+        }
+      ],
+      "set_id": 130
+    },
+    "13008": {
+      "vnum": 13008,
+      "name": "pearl reliquary",
+      "short_desc": "\u001b[96ma pearl \u001b[93mreliquary\u001b[0m\u001b[96m\u001b[0m",
+      "room_desc": "\u001b[96mA pearl \u001b[93mreliquary\u001b[0m\u001b[96m lies here.\u001b[0m",
+      "description": "A cleric's reliquary.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "wis",
+          "value": 3
+        },
+        {
+          "type": "max_mana",
+          "value": 30
+        }
+      ],
+      "set_id": 130
+    },
+    "13009": {
+      "vnum": 13009,
+      "name": "tideglass focus",
+      "short_desc": "\u001b[96ma tideglass \u001b[96mfocus\u001b[0m\u001b[96m\u001b[0m",
+      "room_desc": "\u001b[96mA tideglass \u001b[96mfocus\u001b[0m\u001b[96m lies here.\u001b[0m",
+      "description": "A mage's focus.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "int",
+          "value": 4
+        }
+      ],
+      "set_id": 130
+    },
+    "13010": {
+      "vnum": 13010,
+      "name": "shellsong lyre",
+      "short_desc": "\u001b[96ma shellsong \u001b[95mlyre\u001b[0m\u001b[96m\u001b[0m",
+      "room_desc": "\u001b[96mA shellsong \u001b[95mlyre\u001b[0m\u001b[96m lies here.\u001b[0m",
+      "description": "A bard's lyre.",
+      "item_type": "weapon",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "wield",
+      "weapon_type": "mace",
+      "damage_dice": "1d6+3",
+      "affects": [
+        {
+          "type": "cha",
+          "value": 3
+        }
+      ],
+      "set_id": 130
+    },
+    "13011": {
+      "vnum": 13011,
+      "name": "coral stiletto",
+      "short_desc": "\u001b[96ma coral \u001b[92mstiletto\u001b[0m\u001b[96m\u001b[0m",
+      "room_desc": "\u001b[96mA coral \u001b[92mstiletto\u001b[0m\u001b[96m lies here.\u001b[0m",
+      "description": "A rogue's stiletto.",
+      "item_type": "weapon",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "wield",
+      "weapon_type": "pierce",
+      "damage_dice": "1d6+3",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 3
+        },
+        {
+          "type": "hitroll",
+          "value": 1
+        }
+      ],
+      "set_id": 130
+    },
+    "13012": {
+      "vnum": 13012,
+      "name": "seaguard band",
+      "short_desc": "\u001b[96ma seaguard \u001b[92mband\u001b[0m\u001b[96m\u001b[0m",
+      "room_desc": "\u001b[96mA seaguard \u001b[92mband\u001b[0m\u001b[96m lies here.\u001b[0m",
+      "description": "A ranger's ring.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "finger1",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 2
+        },
+        {
+          "type": "hitroll",
+          "value": 1
+        }
+      ],
+      "set_id": 130
+    },
+    "13013": {
+      "vnum": 13013,
+      "name": "abyss mantle",
+      "short_desc": "\u001b[96man abyss mantle\u001b[0m",
+      "room_desc": "\u001b[96mAn abyss mantle lies here.\u001b[0m",
+      "description": "A cold mantle.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 8000,
+      "wear_slot": "about",
+      "armor_bonus": 2,
+      "affects": [
+        {
+          "type": "cold_resist",
+          "value": 10
+        }
+      ],
+      "set_id": 130
+    }
+  },
+  "mobs": {
+    "13001": {
+      "vnum": 13001,
+      "name": "sahuagin",
+      "short_desc": "a sahuagin warrior",
+      "long_desc": "A fish-like humanoid warrior guards the ruins.",
+      "description": "You see a sahuagin warrior.",
+      "level": 18,
+      "alignment": -600,
+      "hp_dice": "18d10+232",
+      "damage_dice": "5d7+9",
+      "gold": 44,
+      "exp": 1080,
+      "armor_class": 46,
+      "flags": [
+        "aggressive",
+        "sentinel"
+      ]
+    },
+    "13002": {
+      "vnum": 13002,
+      "name": "shark",
+      "short_desc": "a reef shark",
+      "long_desc": "A sleek shark circles hungrily.",
+      "description": "You see a reef shark.",
+      "level": 15,
+      "alignment": -300,
+      "hp_dice": "15d10+196",
+      "damage_dice": "4d7+8",
+      "gold": 75,
+      "exp": 900,
+      "armor_class": 55,
+      "flags": [
+        "aggressive"
+      ]
+    },
+    "13003": {
+      "vnum": 13003,
+      "name": "octopus",
+      "short_desc": "a giant octopus",
+      "long_desc": "A massive octopus lurks among the ruins.",
+      "description": "You see a giant octopus.",
+      "level": 20,
+      "alignment": -200,
+      "hp_dice": "20d10+256",
+      "damage_dice": "6d8+5",
+      "gold": 20,
+      "exp": 1200,
+      "armor_class": 40,
+      "flags": [
+        "aggressive",
+        "sentinel"
+      ],
+      "loot_table": [
+        {
+          "vnum": 13005,
+          "chance": 20
+        },
+        {
+          "vnum": 13006,
+          "chance": 20
+        },
+        {
+          "vnum": 13007,
+          "chance": 20
+        },
+        {
+          "vnum": 13008,
+          "chance": 20
+        },
+        {
+          "vnum": 13009,
+          "chance": 20
+        },
+        {
+          "vnum": 13010,
+          "chance": 20
+        },
+        {
+          "vnum": 13011,
+          "chance": 20
+        },
+        {
+          "vnum": 13012,
+          "chance": 20
+        },
+        {
+          "vnum": 13013,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
+    },
+    "13004": {
+      "vnum": 13004,
+      "name": "mermaid",
+      "short_desc": "a ghostly mermaid",
+      "long_desc": "The spirit of a drowned mermaid drifts past.",
+      "description": "You see a ghostly mermaid.",
+      "level": 16,
+      "alignment": -400,
+      "hp_dice": "16d10+208",
+      "damage_dice": "5d7+6",
+      "gold": 71,
+      "exp": 960,
+      "armor_class": 52,
+      "flags": [
+        "aggressive",
+        "undead"
+      ]
+    },
+    "13005": {
+      "vnum": 13005,
+      "name": "crab",
+      "short_desc": "a giant crab",
+      "long_desc": "A giant crab snaps its claws menacingly.",
+      "description": "You see a giant crab.",
+      "level": 14,
+      "alignment": -100,
+      "hp_dice": "14d10+184",
+      "damage_dice": "4d6+9",
+      "gold": 36,
+      "exp": 840,
+      "armor_class": 58,
+      "flags": [
+        "aggressive"
+      ]
+    },
+    "13006": {
+      "vnum": 13006,
+      "name": "eel",
+      "short_desc": "an electric eel",
+      "long_desc": "An electric eel crackles with energy.",
+      "description": "You see an electric eel.",
+      "level": 17,
+      "alignment": -200,
+      "hp_dice": "17d10+220",
+      "damage_dice": "5d7+7",
+      "gold": 68,
+      "exp": 1020,
+      "armor_class": 49,
+      "flags": [
+        "aggressive"
+      ]
+    },
+    "13007": {
+      "vnum": 13007,
+      "name": "priest",
+      "short_desc": "a sahuagin priest",
+      "long_desc": "A sahuagin priest chants dark prayers to the deep.",
+      "description": "You see a sahuagin priest.",
+      "level": 22,
+      "alignment": -800,
+      "hp_dice": "22d10+280",
+      "damage_dice": "6d8+8",
+      "gold": 37,
+      "exp": 1320,
+      "armor_class": 34,
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "spellcaster"
+      ],
+      "loot_table": [
+        {
+          "vnum": 13005,
+          "chance": 20
+        },
+        {
+          "vnum": 13006,
+          "chance": 20
+        },
+        {
+          "vnum": 13007,
+          "chance": 20
+        },
+        {
+          "vnum": 13008,
+          "chance": 20
+        },
+        {
+          "vnum": 13009,
+          "chance": 20
+        },
+        {
+          "vnum": 13010,
+          "chance": 20
+        },
+        {
+          "vnum": 13011,
+          "chance": 20
+        },
+        {
+          "vnum": 13012,
+          "chance": 20
+        },
+        {
+          "vnum": 13013,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
+    },
+    "13008": {
+      "vnum": 13008,
+      "name": "leviathan",
+      "short_desc": "a sea leviathan",
+      "long_desc": "An ancient leviathan, ruler of these depths.",
+      "description": "You see a sea leviathan.",
+      "level": 25,
+      "alignment": -500,
+      "hp_dice": "25d10+316",
+      "damage_dice": "7d8+8",
+      "gold": 115,
+      "exp": 1500,
+      "armor_class": 25,
+      "flags": [
+        "aggressive",
+        "sentinel"
+      ],
+      "loot_table": [
+        {
+          "vnum": 13005,
+          "chance": 20
+        },
+        {
+          "vnum": 13006,
+          "chance": 20
+        },
+        {
+          "vnum": 13007,
+          "chance": 20
+        },
+        {
+          "vnum": 13008,
+          "chance": 20
+        },
+        {
+          "vnum": 13009,
+          "chance": 20
+        },
+        {
+          "vnum": 13010,
+          "chance": 20
+        },
+        {
+          "vnum": 13011,
+          "chance": 20
+        },
+        {
+          "vnum": 13012,
+          "chance": 20
+        },
+        {
+          "vnum": 13013,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
     }
   }
 }

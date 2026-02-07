@@ -78,7 +78,10 @@ class AffectManager:
         'stoneskin', 'mirror_image', 'displacement', 'mana_shield',
         'ice_armor', 'fire_shield', 'spell_reflect', 'blink',
         'prot_evil', 'prot_good', 'divine_shield', 'invulnerable',
-        'detect_evil', 'charmed', 'entangled', 'sleeping'
+        'detect_evil', 'charmed', 'entangled', 'sleeping',
+        'combustion', 'presence_of_mind', 'arcane_power',
+        'guardian_spirit', 'beacon_of_light', 'holy_shield',
+        'divine_guardian', 'aegis_ward', 'shadowform'
     }
 
     @staticmethod
@@ -241,7 +244,7 @@ class AffectManager:
                         # Notify the room
                         if hasattr(character, 'room') and character.room:
                             await character.room.send_to_room(
-                                f"\x1b[32m{character.name} shudders from poison!\x1b[0m",
+                                f"\x1b[32m{character.name} looks ill from poison.\x1b[0m",
                                 exclude=[character]
                             )
                 continue
@@ -266,12 +269,12 @@ class AffectManager:
                     if hasattr(character, 'room') and character.room:
                         if affect.name == 'poison':
                             await character.room.send_to_room(
-                                f"\x1b[32m{character.name} shudders from poison!\x1b[0m",
+                                f"\x1b[32m{character.name} looks ill from poison.\x1b[0m",
                                 exclude=[character]
                             )
                         else:
                             await character.room.send_to_room(
-                                f"{character.name} takes damage from {affect.name}!",
+                                f"{character.name} looks ill from {affect.name}.",
                                 exclude=[character]
                             )
             elif affect.type == AffectManager.TYPE_HOT:

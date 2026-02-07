@@ -1,0 +1,2035 @@
+{
+  "number": 30,
+  "name": "The City of Midgaard",
+  "builders": "Realmers",
+  "lifespan": 30,
+  "reset_mode": 2,
+  "top": 3099,
+  "rooms": {
+    "3001": {
+      "vnum": 3001,
+      "name": "The Temple of Midgaard",
+      "description": "You stand in the grand Temple of Midgaard, a place of healing and\nsanctuary for weary adventurers. Towering marble columns rise to a\nvaulted ceiling painted with scenes of ancient heroes. Soft candlelight\nilluminates the altar at the center, where priests tend to the wounded.\nThe exit leads south to the main square of the city.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob",
+        "peaceful"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3002,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3001,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "3002": {
+      "vnum": 3002,
+      "name": "Temple Square",
+      "description": "The cobblestone square stretches before you, bustling with activity.\nMerchants hawk their wares, children play between the market stalls,\nand guards patrol the perimeter. The Temple of Midgaard rises to the\nnorth, its white marble gleaming in the sunlight. The main road extends\neast and west, while a narrow alley leads south.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3001,
+          "description": null
+        },
+        "east": {
+          "to_room": 3003,
+          "description": null
+        },
+        "west": {
+          "to_room": 3005,
+          "description": null
+        },
+        "south": {
+          "to_room": 3010,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3002,
+          "max": 2
+        }
+      ],
+      "obj_resets": []
+    },
+    "3003": {
+      "vnum": 3003,
+      "name": "Main Street East",
+      "description": "The eastern section of Main Street is lined with prosperous shops and\ntaverns. The smell of fresh bread wafts from a bakery, mingling with\nthe sound of a blacksmith's hammer. A large weapons shop stands to the\nnorth, its windows displaying gleaming swords and armor. A mystical shop\nglowing with arcane light stands to the south.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 3002,
+          "description": null
+        },
+        "east": {
+          "to_room": 3004,
+          "description": null
+        },
+        "north": {
+          "to_room": 3020,
+          "description": null
+        },
+        "south": {
+          "to_room": 3021,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "3021": {
+      "vnum": 3021,
+      "name": "Mystical Curiosities",
+      "description": "Shelves lined with glowing bottles, ancient tomes, and mystical artifacts\nfill this dimly lit shop. The air crackles with magical energy, and strange\nsymbols glow faintly on the walls. A robed figure stands behind a counter\ncovered in scrolls and potions. Type 'list' to see available items.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 3003,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3007,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "3004": {
+      "vnum": 3004,
+      "name": "East Gate of Midgaard",
+      "description": "The massive stone gates of Midgaard loom before you. Two enormous \ntowers flank the archway, and guards in chain mail scrutinize all who\npass. Beyond the gates, a dirt road leads east into the wilderness,\ntoward the Haon Dor forest. The safety of the city lies to the west.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 3003,
+          "description": null
+        },
+        "east": {
+          "to_room": 4001,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3002,
+          "max": 2
+        }
+      ],
+      "obj_resets": []
+    },
+    "3005": {
+      "vnum": 3005,
+      "name": "Main Street West",
+      "description": "The western stretch of Main Street is home to the city's craftsmen.\nA carpenter's shop, a tanner's stall, and a jeweler's boutique line\nthe street. The sounds of industry fill the air. To the north, a sign\nreading 'The Prancing Pony Inn' swings gently in the breeze. An old\nsewer grate is set into the street here.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3002,
+          "description": null
+        },
+        "west": {
+          "to_room": 3006,
+          "description": null
+        },
+        "north": {
+          "to_room": 3030,
+          "description": null
+        },
+        "down": {
+          "to_room": 3504,
+          "description": "Down through the sewer grate"
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "3006": {
+      "vnum": 3006,
+      "name": "West Gate of Midgaard",
+      "description": "The western gate of Midgaard opens onto a road leading to distant\nmountains. The gate is smaller than its eastern counterpart but no\nless fortified. Merchants with loaded wagons queue to enter the city,\ntheir goods bound for the markets. To the west, adventure awaits.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3005,
+          "description": null
+        },
+        "west": {
+          "to_room": 5001,
+          "description": null
+        },
+        "south": {
+          "to_room": 3061,
+          "description": "A grassy field stretches beyond the walls."
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3002,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "3010": {
+      "vnum": 3010,
+      "name": "A Dark Alley",
+      "description": "This narrow alley winds between tall buildings, barely wide enough\nfor two people to pass. Shadows pool in the corners, and you can't\nshake the feeling of being watched. The city's less savory elements\nare known to frequent this area after dark.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3002,
+          "description": null
+        },
+        "south": {
+          "to_room": 3011,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3005,
+          "max": 2
+        }
+      ],
+      "obj_resets": []
+    },
+    "3011": {
+      "vnum": 3011,
+      "name": "A Dead End",
+      "description": "The alley ends abruptly at a crumbling brick wall. Graffiti marks\nthe stones, and broken bottles litter the ground. However, keen eyes\nmight notice that one section of the wall seems different from the\nrest - a hidden door, perhaps?",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3010,
+          "description": null
+        },
+        "down": {
+          "to_room": 3012,
+          "description": "A concealed entrance to the Thieves' Guild",
+          "door": {
+            "name": "hidden door",
+            "state": "closed",
+            "locked": true,
+            "key_vnum": 70,
+            "pick_difficulty": 20,
+            "broken": false
+          }
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "3012": {
+      "vnum": 3012,
+      "name": "The Thieves' Guild",
+      "description": "You've discovered the legendary Thieves' Guild of Midgaard. The\nunderground chamber is dimly lit by guttering torches. Hooded figures\nconverse in hushed tones at tables scattered about the room. A bar\nserves drinks of dubious origin, and a guildmaster sits in shadows.\nA dark passage leads down into what appears to be the sewers. A\nreinforced chest sits near the guildmaster's table.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "up": {
+          "to_room": 3011,
+          "description": "A concealed entrance to the alley above",
+          "door": {
+            "name": "hidden door",
+            "state": "closed",
+            "locked": true,
+            "key_vnum": 70,
+            "pick_difficulty": 20,
+            "broken": false
+          }
+        },
+        "down": {
+          "to_room": 3500,
+          "description": "Down to the sewers"
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3006,
+          "max": 1
+        },
+        {
+          "vnum": 3005,
+          "max": 3
+        },
+        {
+          "vnum": 3053,
+          "max": 1
+        },
+        {
+          "vnum": 3054,
+          "max": 1
+        },
+        {
+          "vnum": 3055,
+          "max": 1
+        },
+        {
+          "vnum": 3056,
+          "max": 1
+        },
+        {
+          "vnum": 3057,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 64,
+          "max": 1
+        }
+      ]
+    },
+    "3020": {
+      "vnum": 3020,
+      "name": "Grimtooth's Weapons Emporium",
+      "description": "Weapons of every description line the walls of this shop. Swords,\naxes, maces, and more exotic implements of destruction gleam under\nmagical lighting. A burly dwarf named Grimtooth tends the counter,\nhis own battleaxe never far from reach. An unlocked chest behind the\ncounter holds various wares. Type 'list' to see his wares.",
+      "sector_type": "inside",
+      "flags": [
+        "no_mob"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3003,
+          "description": null,
+          "door": {
+            "name": "shop door",
+            "state": "open",
+            "locked": false,
+            "key_vnum": null,
+            "pick_difficulty": 5,
+            "broken": false
+          }
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3003,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 63,
+          "max": 1
+        }
+      ]
+    },
+    "3030": {
+      "vnum": 3030,
+      "name": "The Prancing Pony Inn",
+      "description": "The common room of the Prancing Pony is warm and inviting. A \ncheerful fire crackles in the hearth, and the smell of roasting meat\nfills the air. Travelers from far and wide gather here to share tales\nof adventure over mugs of ale. Rooms are available upstairs.",
+      "sector_type": "inside",
+      "flags": [
+        "peaceful"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3005,
+          "description": null
+        },
+        "up": {
+          "to_room": 3031,
+          "description": null
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [
+        {
+          "vnum": 3004,
+          "max": 1
+        },
+        {
+          "vnum": 3050,
+          "max": 1
+        },
+        {
+          "vnum": 3051,
+          "max": 1
+        },
+        {
+          "vnum": 3052,
+          "max": 1
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 20,
+          "max": 1
+        }
+      ]
+    },
+    "3031": {
+      "vnum": 3031,
+      "name": "Upstairs Hallway",
+      "description": "A narrow hallway with doors leading to private rooms. The wooden\nfloor creaks underfoot. A window at the end provides a view of the\ncity below. This is a peaceful place where adventurers can rest.",
+      "sector_type": "inside",
+      "flags": [
+        "peaceful"
+      ],
+      "exits": {
+        "down": {
+          "to_room": 3030,
+          "description": null
+        },
+        "north": {
+          "to_room": 3032,
+          "description": "Room 1",
+          "door": {
+            "name": "oak door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": 71,
+            "pick_difficulty": 10,
+            "broken": false
+          }
+        },
+        "east": {
+          "to_room": 3033,
+          "description": "Room 2",
+          "door": {
+            "name": "oak door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": 72,
+            "pick_difficulty": 10,
+            "broken": false
+          }
+        },
+        "west": {
+          "to_room": 3034,
+          "description": "Room 3",
+          "door": {
+            "name": "oak door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": 73,
+            "pick_difficulty": 10,
+            "broken": false
+          }
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "3032": {
+      "vnum": 3032,
+      "name": "Rental Room 1",
+      "description": "A small but comfortable room with a bed, a wardrobe, and a small\nwindow overlooking the street. A locked chest sits at the foot of the\nbed for storing your belongings. This is a safe place to rent and rest.",
+      "sector_type": "inside",
+      "flags": [
+        "peaceful",
+        "no_mob"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 3031,
+          "description": null,
+          "door": {
+            "name": "oak door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": 71,
+            "pick_difficulty": 10,
+            "broken": false
+          }
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": [
+        {
+          "vnum": 60,
+          "max": 1
+        }
+      ]
+    },
+    "3033": {
+      "vnum": 3033,
+      "name": "Rental Room 2",
+      "description": "A cozy room with a comfortable bed and a desk by the window. A\nlocked chest provides storage for your equipment. The room smells\nfaintly of lavender, and clean linens await weary travelers.",
+      "sector_type": "inside",
+      "flags": [
+        "peaceful",
+        "no_mob"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 3031,
+          "description": null,
+          "door": {
+            "name": "oak door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": 72,
+            "pick_difficulty": 10,
+            "broken": false
+          }
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": [
+        {
+          "vnum": 61,
+          "max": 1
+        }
+      ]
+    },
+    "3034": {
+      "vnum": 3034,
+      "name": "Rental Room 3",
+      "description": "The largest of the rental rooms, this chamber has a four-poster bed,\na writing desk, and a fireplace. A sturdy locked chest sits near the\nwardrobe. This room is fit for a successful adventurer.",
+      "sector_type": "inside",
+      "flags": [
+        "peaceful",
+        "no_mob"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 3031,
+          "description": null,
+          "door": {
+            "name": "oak door",
+            "state": "closed",
+            "locked": false,
+            "key_vnum": 73,
+            "pick_difficulty": 10,
+            "broken": false
+          }
+        }
+      },
+      "extra_descs": {},
+      "mob_resets": [],
+      "obj_resets": [
+        {
+          "vnum": 62,
+          "max": 1
+        }
+      ]
+    },
+    "3061": {
+      "vnum": 3061,
+      "name": "The Great Field Of Midgaard",
+      "description": "You are on a wide, grassy field just outside the western walls of Midgaard. A well-worn path runs along the edge of the city, and a narrow track veers off toward a rusty gate to the west. The city gate stands to the north.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 3006,
+          "description": "The West Gate of Midgaard rises to the north."
+        },
+        "west": {
+          "to_room": 3066,
+          "description": "A narrow track leads toward a rusty gate."
+        },
+        "east": {
+          "to_room": 18600,
+          "description": "A strange structure sits off to the east."
+        }
+      }
+    },
+    "3066": {
+      "vnum": 3066,
+      "name": "The Dirt Path",
+      "description": "A narrow dirt path winds through knee-high grass. A rusty gate sits in a stone archway to the west, and the open field stretches back toward Midgaard to the east.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 3061,
+          "description": "The path returns to the open field."
+        },
+        "west": {
+          "to_room": 3600,
+          "description": "A large rusty gate stands in a stone archway."
+        }
+      }
+    }
+  },
+  "mobs": {
+    "3001": {
+      "vnum": 3001,
+      "name": "the temple healer",
+      "short_desc": "A kindly temple healer",
+      "long_desc": "A robed priest tends to the altar, ready to heal the wounded.",
+      "level": 25,
+      "hp_dice": "10d10+100",
+      "damage_dice": "1d4+2",
+      "gold": 50,
+      "exp": 984,
+      "alignment": 1000,
+      "flags": [
+        "sentinel",
+        "helper"
+      ],
+      "special": "healer",
+      "equipment": {
+        "body": 90,
+        "wield": 91
+      }
+    },
+    "3002": {
+      "vnum": 3002,
+      "name": "a city guard",
+      "short_desc": "A vigilant city guard",
+      "long_desc": "A guard in chain mail patrols the area, watching for trouble.",
+      "level": 15,
+      "hp_dice": "5d10+50",
+      "damage_dice": "2d6+3",
+      "gold": 20,
+      "exp": 500,
+      "alignment": 500,
+      "flags": [
+        "sentinel",
+        "helper"
+      ],
+      "special": null,
+      "equipment": {
+        "wield": 80,
+        "body": 81,
+        "shield": 82,
+        "head": 83
+      }
+    },
+    "3003": {
+      "vnum": 3003,
+      "name": "Grimtooth",
+      "short_desc": "Grimtooth the dwarf weaponsmith",
+      "long_desc": "A gruff dwarf stands behind the counter, appraising his wares.",
+      "level": 30,
+      "hp_dice": "15d10+150",
+      "damage_dice": "3d8+5",
+      "gold": 1000,
+      "exp": 0,
+      "alignment": 0,
+      "flags": [
+        "sentinel",
+        "shopkeeper"
+      ],
+      "special": "shopkeeper",
+      "equipment": {
+        "wield": 84,
+        "body": 85
+      },
+      "shop_config": {
+        "buys": [
+          "weapon",
+          "armor"
+        ],
+        "sells": [
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119
+        ],
+        "markup": 1.3,
+        "markdown": 0.5
+      }
+    },
+    "3004": {
+      "vnum": 3004,
+      "name": "the innkeeper",
+      "short_desc": "A jovial innkeeper",
+      "long_desc": "The innkeeper polishes glasses, ready to serve weary travelers.",
+      "level": 10,
+      "hp_dice": "3d10+30",
+      "damage_dice": "1d4+1",
+      "gold": 100,
+      "exp": 0,
+      "alignment": 200,
+      "flags": [
+        "sentinel",
+        "shopkeeper"
+      ],
+      "special": "innkeeper",
+      "shop_config": {
+        "buys": [],
+        "sells": [
+          200,
+          201,
+          202,
+          203,
+          207,
+          208,
+          209
+        ],
+        "markup": 1.2,
+        "markdown": 0.3
+      }
+    },
+    "3005": {
+      "vnum": 3005,
+      "name": "a shady thief",
+      "short_desc": "A shifty-eyed thief",
+      "long_desc": "A cloaked figure lurks in the shadows, eyeing your purse.",
+      "level": 8,
+      "hp_dice": "3d10+20",
+      "damage_dice": "1d6+2",
+      "gold": 30,
+      "exp": 400,
+      "alignment": -200,
+      "flags": [
+        "thief"
+      ],
+      "special": null,
+      "equipment": {
+        "wield": 86,
+        "body": 87
+      }
+    },
+    "3006": {
+      "vnum": 3006,
+      "name": "the Guildmaster",
+      "short_desc": "The mysterious Guildmaster",
+      "long_desc": "A hooded figure sits in shadow, the Guildmaster of Thieves.",
+      "level": 40,
+      "hp_dice": "20d10+200",
+      "damage_dice": "4d6+8",
+      "gold": 500,
+      "exp": 5000,
+      "alignment": -500,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "trainer",
+      "equipment": {
+        "wield": 88,
+        "about": 89
+      }
+    },
+    "3007": {
+      "vnum": 3007,
+      "name": "Zephyrus the Enchanter",
+      "short_desc": "Zephyrus the wizard merchant",
+      "long_desc": "A wizened old wizard tends to his magical wares, eyes twinkling with arcane knowledge.",
+      "level": 35,
+      "hp_dice": "12d10+120",
+      "damage_dice": "3d6+4",
+      "gold": 2000,
+      "exp": 0,
+      "alignment": 500,
+      "flags": [
+        "sentinel",
+        "shopkeeper"
+      ],
+      "special": "shopkeeper",
+      "equipment": {
+        "wield": 43,
+        "body": 44,
+        "neck1": 45
+      },
+      "shop_config": {
+        "buys": [
+          "scroll",
+          "potion",
+          "wand",
+          "staff"
+        ],
+        "sells": [
+          204,
+          205,
+          206,
+          210,
+          211,
+          212,
+          213,
+          214,
+          215,
+          216,
+          217,
+          218,
+          219,
+          220
+        ],
+        "markup": 1.5,
+        "markdown": 0.4
+      }
+    },
+    "3050": {
+      "vnum": 3050,
+      "name": "a fresh-faced swordsman",
+      "short_desc": "a fresh-faced swordsman",
+      "long_desc": "A fresh-faced swordsman leans against the wall, seeking work.",
+      "level": 5,
+      "hp_dice": "5d10+25",
+      "damage_dice": "2d6",
+      "gold": 10,
+      "exp": 150,
+      "alignment": 200,
+      "flags": [
+        "sentinel"
+      ],
+      "special": null,
+      "hireable": true,
+      "companion_type": "Fighter",
+      "companion_level": 5,
+      "companion_scale": true
+    },
+    "3051": {
+      "vnum": 3051,
+      "name": "a temple acolyte",
+      "short_desc": "a temple acolyte",
+      "long_desc": "A soft-spoken acolyte waits to tend the injured in exchange for coin.",
+      "level": 8,
+      "hp_dice": "6d10+30",
+      "damage_dice": "1d6",
+      "gold": 12,
+      "exp": 200,
+      "alignment": 500,
+      "flags": [
+        "sentinel"
+      ],
+      "special": null,
+      "hireable": true,
+      "companion_type": "Healer",
+      "companion_level": 8,
+      "companion_scale": true
+    },
+    "3052": {
+      "vnum": 3052,
+      "name": "an apprentice mage",
+      "short_desc": "an apprentice mage",
+      "long_desc": "An apprentice mage practices sparks of magic, hoping to be hired.",
+      "level": 9,
+      "hp_dice": "5d10+20",
+      "damage_dice": "1d4",
+      "gold": 15,
+      "exp": 220,
+      "alignment": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": null,
+      "hireable": true,
+      "companion_type": "Mage",
+      "companion_level": 9,
+      "companion_scale": true
+    },
+    "3053": {
+      "vnum": 3053,
+      "name": "a seasoned ranger",
+      "short_desc": "a seasoned ranger",
+      "long_desc": "A seasoned ranger sharpens a hunting knife, offering skilled aid.",
+      "level": 15,
+      "hp_dice": "10d10+50",
+      "damage_dice": "1d8",
+      "gold": 30,
+      "exp": 500,
+      "alignment": 200,
+      "flags": [
+        "sentinel"
+      ],
+      "special": null,
+      "hireable": true,
+      "companion_type": "Ranger",
+      "companion_level": 15,
+      "companion_scale": true
+    },
+    "3054": {
+      "vnum": 3054,
+      "name": "a sly rogue",
+      "short_desc": "a sly rogue",
+      "long_desc": "A sly rogue lounges in the shadows, watching for contracts.",
+      "level": 18,
+      "hp_dice": "10d10+60",
+      "damage_dice": "1d6",
+      "gold": 35,
+      "exp": 650,
+      "alignment": -200,
+      "flags": [
+        "sentinel"
+      ],
+      "special": null,
+      "hireable": true,
+      "companion_type": "Rogue",
+      "companion_level": 18,
+      "companion_scale": true
+    },
+    "3055": {
+      "vnum": 3055,
+      "name": "a veteran fighter",
+      "short_desc": "a veteran fighter",
+      "long_desc": "A veteran fighter adjusts battered armor, awaiting a worthy employer.",
+      "level": 24,
+      "hp_dice": "14d10+90",
+      "damage_dice": "2d6",
+      "gold": 60,
+      "exp": 900,
+      "alignment": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": null,
+      "hireable": true,
+      "companion_type": "Fighter",
+      "companion_level": 24,
+      "companion_scale": false
+    },
+    "3056": {
+      "vnum": 3056,
+      "name": "a battle mage",
+      "short_desc": "a battle mage",
+      "long_desc": "A battle mage studies a scorched spellbook, selling arcane power.",
+      "level": 26,
+      "hp_dice": "12d10+80",
+      "damage_dice": "1d4",
+      "gold": 70,
+      "exp": 1000,
+      "alignment": 50,
+      "flags": [
+        "sentinel"
+      ],
+      "special": null,
+      "hireable": true,
+      "companion_type": "Mage",
+      "companion_level": 26,
+      "companion_scale": false
+    },
+    "3057": {
+      "vnum": 3057,
+      "name": "a devoted healer",
+      "short_desc": "a devoted healer",
+      "long_desc": "A devoted healer offers prayers and protection to those who can pay.",
+      "level": 27,
+      "hp_dice": "13d10+85",
+      "damage_dice": "1d6",
+      "gold": 65,
+      "exp": 1000,
+      "alignment": 800,
+      "flags": [
+        "sentinel"
+      ],
+      "special": null,
+      "hireable": true,
+      "companion_type": "Healer",
+      "companion_level": 27,
+      "companion_scale": false
+    }
+  },
+  "objects": {
+    "1": {
+      "vnum": 1,
+      "name": "a loaf of bread",
+      "short_desc": "a loaf of bread",
+      "room_desc": "A loaf of fresh bread lies here.",
+      "type": "food",
+      "weight": 1,
+      "cost": 5,
+      "food_value": 12
+    },
+    "2": {
+      "vnum": 2,
+      "name": "a waterskin",
+      "short_desc": "a leather waterskin",
+      "room_desc": "A waterskin lies here.",
+      "type": "drink",
+      "weight": 2,
+      "cost": 10,
+      "drinks": 20,
+      "liquid": "water"
+    },
+    "3": {
+      "vnum": 3,
+      "name": "a torch",
+      "short_desc": "a burning torch",
+      "room_desc": "A torch flickers here.",
+      "type": "light",
+      "weight": 1,
+      "cost": 5,
+      "light_hours": 24
+    },
+    "10": {
+      "vnum": 10,
+      "name": "a short sword",
+      "short_desc": "a short sword",
+      "room_desc": "A short sword lies here.",
+      "type": "weapon",
+      "weight": 5,
+      "cost": 50,
+      "damage_dice": "1d6",
+      "weapon_type": "slash"
+    },
+    "11": {
+      "vnum": 11,
+      "name": "a dagger",
+      "short_desc": "a sharp dagger",
+      "room_desc": "A dagger glints on the ground.",
+      "type": "weapon",
+      "weight": 2,
+      "cost": 20,
+      "damage_dice": "1d4",
+      "weapon_type": "stab"
+    },
+    "12": {
+      "vnum": 12,
+      "name": "a mace",
+      "short_desc": "a heavy mace",
+      "room_desc": "A mace lies here.",
+      "type": "weapon",
+      "weight": 8,
+      "cost": 40,
+      "damage_dice": "1d8",
+      "weapon_type": "pound"
+    },
+    "13": {
+      "vnum": 13,
+      "name": "a short bow",
+      "short_desc": "a short bow",
+      "room_desc": "A short bow lies here.",
+      "type": "weapon",
+      "weight": 3,
+      "cost": 30,
+      "damage_dice": "1d6",
+      "weapon_type": "pierce"
+    },
+    "14": {
+      "vnum": 14,
+      "name": "a rapier",
+      "short_desc": "an elegant rapier",
+      "room_desc": "A rapier lies here.",
+      "type": "weapon",
+      "weight": 3,
+      "cost": 60,
+      "damage_dice": "1d6",
+      "weapon_type": "pierce"
+    },
+    "20": {
+      "vnum": 20,
+      "name": "a bulletin board",
+      "short_desc": "a large bulletin board",
+      "room_desc": "A bulletin board is mounted on the wall.",
+      "type": "other",
+      "weight": 100,
+      "cost": 0
+    },
+    "30": {
+      "vnum": 30,
+      "name": "an iron helmet",
+      "short_desc": "an iron helmet",
+      "room_desc": "An iron helmet lies here.",
+      "type": "armor",
+      "wear_slot": "head",
+      "weight": 3,
+      "cost": 25,
+      "armor_class": 2
+    },
+    "31": {
+      "vnum": 31,
+      "name": "a suit of chainmail",
+      "short_desc": "a suit of chainmail",
+      "room_desc": "A suit of chainmail armor lies here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 20,
+      "cost": 100,
+      "armor_class": 5
+    },
+    "32": {
+      "vnum": 32,
+      "name": "iron greaves",
+      "short_desc": "a pair of iron greaves",
+      "room_desc": "Iron leg armor lies here.",
+      "type": "armor",
+      "wear_slot": "legs",
+      "weight": 8,
+      "cost": 40,
+      "armor_class": 2
+    },
+    "33": {
+      "vnum": 33,
+      "name": "a wooden shield",
+      "short_desc": "a wooden shield",
+      "room_desc": "A wooden shield lies here.",
+      "type": "armor",
+      "wear_slot": "shield",
+      "weight": 5,
+      "cost": 30,
+      "armor_class": 3
+    },
+    "34": {
+      "vnum": 34,
+      "name": "a wooden staff",
+      "short_desc": "a simple wooden staff",
+      "room_desc": "A wooden staff lies here.",
+      "type": "weapon",
+      "weight": 4,
+      "cost": 20,
+      "damage_dice": "1d6",
+      "weapon_type": "bludgeon"
+    },
+    "35": {
+      "vnum": 35,
+      "name": "cloth robes",
+      "short_desc": "plain cloth robes",
+      "room_desc": "Simple cloth robes lie here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 2,
+      "cost": 20,
+      "armor_class": 1
+    },
+    "36": {
+      "vnum": 36,
+      "name": "a spellbook",
+      "short_desc": "a leather-bound spellbook",
+      "room_desc": "A spellbook lies here.",
+      "type": "other",
+      "weight": 3,
+      "cost": 50
+    },
+    "37": {
+      "vnum": 37,
+      "name": "leather armor",
+      "short_desc": "leather armor",
+      "room_desc": "Leather armor lies here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 10,
+      "cost": 50,
+      "armor_class": 3
+    },
+    "38": {
+      "vnum": 38,
+      "name": "a holy symbol",
+      "short_desc": "a silver holy symbol",
+      "room_desc": "A holy symbol lies here.",
+      "type": "worn",
+      "wear_slot": "neck1",
+      "weight": 1,
+      "cost": 25
+    },
+    "39": {
+      "vnum": 39,
+      "name": "a leather jerkin",
+      "short_desc": "a supple leather jerkin",
+      "room_desc": "A leather jerkin lies here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 5,
+      "cost": 35,
+      "armor_class": 2
+    },
+    "40": {
+      "vnum": 40,
+      "name": "lockpicks",
+      "short_desc": "a set of lockpicks",
+      "room_desc": "A set of lockpicks lies here.",
+      "type": "other",
+      "weight": 1,
+      "cost": 30
+    },
+    "41": {
+      "vnum": 41,
+      "name": "studded leather",
+      "short_desc": "studded leather armor",
+      "room_desc": "Studded leather armor lies here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 15,
+      "cost": 75,
+      "armor_class": 4
+    },
+    "42": {
+      "vnum": 42,
+      "name": "a quiver",
+      "short_desc": "a quiver of arrows",
+      "room_desc": "A quiver of arrows lies here.",
+      "type": "other",
+      "weight": 3,
+      "cost": 20
+    },
+    "43": {
+      "vnum": 43,
+      "name": "a dark staff",
+      "short_desc": "a dark twisted staff",
+      "room_desc": "A dark, twisted staff lies here.",
+      "type": "weapon",
+      "weight": 4,
+      "cost": 25,
+      "damage_dice": "1d6",
+      "weapon_type": "bludgeon"
+    },
+    "44": {
+      "vnum": 44,
+      "name": "dark robes",
+      "short_desc": "black robes with dark runes",
+      "room_desc": "Dark robes lie here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 3,
+      "cost": 30,
+      "armor_class": 1
+    },
+    "45": {
+      "vnum": 45,
+      "name": "an unholy symbol",
+      "short_desc": "a dark unholy symbol",
+      "room_desc": "An unholy symbol lies here.",
+      "type": "worn",
+      "wear_slot": "neck1",
+      "weight": 1,
+      "cost": 25
+    },
+    "46": {
+      "vnum": 46,
+      "name": "a leather vest",
+      "short_desc": "a decorated leather vest",
+      "room_desc": "A leather vest lies here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 4,
+      "cost": 40,
+      "armor_class": 2
+    },
+    "47": {
+      "vnum": 47,
+      "name": "a lute",
+      "short_desc": "a finely crafted lute",
+      "room_desc": "A lute lies here.",
+      "type": "other",
+      "weight": 2,
+      "cost": 50
+    },
+    "48": {
+      "vnum": 48,
+      "name": "a stiletto",
+      "short_desc": "a sharp stiletto",
+      "room_desc": "A stiletto dagger lies here.",
+      "type": "weapon",
+      "weight": 1,
+      "cost": 25,
+      "damage_dice": "1d4+1",
+      "weapon_type": "pierce"
+    },
+    "49": {
+      "vnum": 49,
+      "name": "black leather",
+      "short_desc": "form-fitting black leather armor",
+      "room_desc": "Black leather armor lies here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 6,
+      "cost": 45,
+      "armor_class": 2
+    },
+    "50": {
+      "vnum": 50,
+      "name": "a dark cloak",
+      "short_desc": "a shadowy dark cloak",
+      "room_desc": "A dark cloak lies here.",
+      "type": "armor",
+      "wear_slot": "about",
+      "weight": 2,
+      "cost": 20,
+      "armor_class": 1
+    },
+    "51": {
+      "vnum": 51,
+      "name": "a poison vial",
+      "short_desc": "a vial of poison",
+      "room_desc": "A vial of poison lies here.",
+      "type": "other",
+      "weight": 1,
+      "cost": 30
+    },
+    "60": {
+      "vnum": 60,
+      "name": "a wooden chest",
+      "short_desc": "a small wooden chest",
+      "room_desc": "A small wooden chest sits here.",
+      "type": "container",
+      "weight": 15,
+      "cost": 50,
+      "capacity": 100,
+      "container_flags": [
+        "closeable",
+        "lockable"
+      ],
+      "state": "closed",
+      "locked": true,
+      "key_vnum": 71,
+      "pick_difficulty": 15
+    },
+    "61": {
+      "vnum": 61,
+      "name": "a wooden chest",
+      "short_desc": "a sturdy wooden chest",
+      "room_desc": "A sturdy wooden chest sits here.",
+      "type": "container",
+      "weight": 15,
+      "cost": 50,
+      "capacity": 100,
+      "container_flags": [
+        "closeable",
+        "lockable"
+      ],
+      "state": "closed",
+      "locked": true,
+      "key_vnum": 72,
+      "pick_difficulty": 15
+    },
+    "62": {
+      "vnum": 62,
+      "name": "an iron-bound chest",
+      "short_desc": "a large iron-bound chest",
+      "room_desc": "A large iron-bound chest sits here.",
+      "type": "container",
+      "weight": 25,
+      "cost": 100,
+      "capacity": 150,
+      "container_flags": [
+        "closeable",
+        "lockable"
+      ],
+      "state": "closed",
+      "locked": true,
+      "key_vnum": 73,
+      "pick_difficulty": 20
+    },
+    "63": {
+      "vnum": 63,
+      "name": "a simple chest",
+      "short_desc": "a simple unlocked chest",
+      "room_desc": "A simple chest sits here.",
+      "type": "container",
+      "weight": 10,
+      "cost": 20,
+      "capacity": 80,
+      "container_flags": [
+        "closeable"
+      ],
+      "state": "closed",
+      "locked": false,
+      "key_vnum": null,
+      "pick_difficulty": 0
+    },
+    "64": {
+      "vnum": 64,
+      "name": "a guild chest",
+      "short_desc": "a reinforced guild chest",
+      "room_desc": "A reinforced chest with the guild emblem sits here.",
+      "type": "container",
+      "weight": 30,
+      "cost": 200,
+      "capacity": 200,
+      "container_flags": [
+        "closeable",
+        "lockable"
+      ],
+      "state": "closed",
+      "locked": true,
+      "key_vnum": 70,
+      "pick_difficulty": 25
+    },
+    "70": {
+      "vnum": 70,
+      "name": "a guild key",
+      "short_desc": "an ornate guild key",
+      "room_desc": "An ornate key with the guild emblem lies here.",
+      "type": "key",
+      "weight": 0,
+      "cost": 100
+    },
+    "71": {
+      "vnum": 71,
+      "name": "a brass key",
+      "short_desc": "a brass room key",
+      "room_desc": "A brass key lies here.",
+      "type": "key",
+      "weight": 0,
+      "cost": 10
+    },
+    "72": {
+      "vnum": 72,
+      "name": "a brass key",
+      "short_desc": "a brass room key",
+      "room_desc": "A brass key lies here.",
+      "type": "key",
+      "weight": 0,
+      "cost": 10
+    },
+    "73": {
+      "vnum": 73,
+      "name": "a brass key",
+      "short_desc": "a brass room key",
+      "room_desc": "A brass key lies here.",
+      "type": "key",
+      "weight": 0,
+      "cost": 10
+    },
+    "74": {
+      "vnum": 74,
+      "name": "a rusty key",
+      "short_desc": "a rusty old key",
+      "room_desc": "A rusty key lies on the ground.",
+      "type": "key",
+      "weight": 0,
+      "cost": 5
+    },
+    "80": {
+      "vnum": 80,
+      "name": "a guard's longsword",
+      "short_desc": "a well-maintained longsword",
+      "room_desc": "A guard's longsword lies here.",
+      "type": "weapon",
+      "weight": 8,
+      "cost": 100,
+      "damage_dice": "1d8+2",
+      "weapon_type": "slash"
+    },
+    "81": {
+      "vnum": 81,
+      "name": "guard chainmail",
+      "short_desc": "polished chainmail armor",
+      "room_desc": "Guard chainmail armor lies here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 25,
+      "cost": 200,
+      "armor_class": 6
+    },
+    "82": {
+      "vnum": 82,
+      "name": "a guard's shield",
+      "short_desc": "a steel shield with city emblem",
+      "room_desc": "A guard's shield lies here.",
+      "type": "armor",
+      "wear_slot": "shield",
+      "weight": 10,
+      "cost": 75,
+      "armor_class": 3
+    },
+    "83": {
+      "vnum": 83,
+      "name": "a guard's helmet",
+      "short_desc": "a steel helmet",
+      "room_desc": "A steel helmet lies here.",
+      "type": "armor",
+      "wear_slot": "head",
+      "weight": 5,
+      "cost": 50,
+      "armor_class": 2
+    },
+    "84": {
+      "vnum": 84,
+      "name": "Grimtooth's battleaxe",
+      "short_desc": "a masterwork dwarven battleaxe",
+      "room_desc": "A magnificent dwarven battleaxe lies here.",
+      "type": "weapon",
+      "weight": 12,
+      "cost": 500,
+      "damage_dice": "2d6+4",
+      "weapon_type": "slash"
+    },
+    "85": {
+      "vnum": 85,
+      "name": "dwarven plate armor",
+      "short_desc": "masterwork dwarven plate armor",
+      "room_desc": "Ornate dwarven plate armor lies here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 40,
+      "cost": 800,
+      "armor_class": 10
+    },
+    "86": {
+      "vnum": 86,
+      "name": "a thief's dagger",
+      "short_desc": "a curved poisoned dagger",
+      "room_desc": "A curved dagger lies here.",
+      "type": "weapon",
+      "weight": 2,
+      "cost": 60,
+      "damage_dice": "1d4+1",
+      "weapon_type": "stab"
+    },
+    "87": {
+      "vnum": 87,
+      "name": "shadowy leather",
+      "short_desc": "dark shadowy leather armor",
+      "room_desc": "Dark leather armor lies here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 8,
+      "cost": 120,
+      "armor_class": 4
+    },
+    "88": {
+      "vnum": 88,
+      "name": "guildmaster's blade",
+      "short_desc": "an enchanted assassin's blade",
+      "room_desc": "A wickedly sharp enchanted blade lies here.",
+      "type": "weapon",
+      "weight": 3,
+      "cost": 1000,
+      "damage_dice": "2d4+3",
+      "weapon_type": "stab"
+    },
+    "89": {
+      "vnum": 89,
+      "name": "shadow cloak",
+      "short_desc": "a cloak woven from shadows",
+      "room_desc": "A cloak of pure shadow lies here.",
+      "type": "armor",
+      "wear_slot": "about",
+      "weight": 1,
+      "cost": 500,
+      "armor_class": 5
+    },
+    "90": {
+      "vnum": 90,
+      "name": "holy robes",
+      "short_desc": "pristine white holy robes",
+      "room_desc": "White holy robes lie here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 4,
+      "cost": 150,
+      "armor_class": 3
+    },
+    "91": {
+      "vnum": 91,
+      "name": "a holy mace",
+      "short_desc": "a blessed silver mace",
+      "room_desc": "A silver mace glows with divine light.",
+      "type": "weapon",
+      "weight": 6,
+      "cost": 300,
+      "damage_dice": "1d8+1",
+      "weapon_type": "pound"
+    },
+    "100": {
+      "vnum": 100,
+      "name": "an iron longsword",
+      "short_desc": "a well-balanced iron longsword",
+      "room_desc": "An iron longsword lies here.",
+      "type": "weapon",
+      "weight": 8,
+      "cost": 150,
+      "damage_dice": "1d8+1",
+      "weapon_type": "slash"
+    },
+    "101": {
+      "vnum": 101,
+      "name": "a steel battleaxe",
+      "short_desc": "a double-bladed steel battleaxe",
+      "room_desc": "A steel battleaxe lies here.",
+      "type": "weapon",
+      "weight": 12,
+      "cost": 200,
+      "damage_dice": "1d10+2",
+      "weapon_type": "slash"
+    },
+    "102": {
+      "vnum": 102,
+      "name": "a war hammer",
+      "short_desc": "a heavy war hammer",
+      "room_desc": "A war hammer lies here.",
+      "type": "weapon",
+      "weight": 10,
+      "cost": 180,
+      "damage_dice": "1d10+1",
+      "weapon_type": "pound"
+    },
+    "103": {
+      "vnum": 103,
+      "name": "a rapier",
+      "short_desc": "a thin fencing rapier",
+      "room_desc": "A rapier lies here.",
+      "type": "weapon",
+      "weight": 3,
+      "cost": 120,
+      "damage_dice": "1d6+2",
+      "weapon_type": "stab"
+    },
+    "104": {
+      "vnum": 104,
+      "name": "a longbow",
+      "short_desc": "a masterwork longbow",
+      "room_desc": "A longbow lies here.",
+      "type": "weapon",
+      "weight": 4,
+      "cost": 140,
+      "damage_dice": "1d8",
+      "weapon_type": "pierce"
+    },
+    "105": {
+      "vnum": 105,
+      "name": "a halberd",
+      "short_desc": "a long-hafted halberd",
+      "room_desc": "A halberd lies here.",
+      "type": "weapon",
+      "weight": 14,
+      "cost": 220,
+      "damage_dice": "1d12",
+      "weapon_type": "slash"
+    },
+    "106": {
+      "vnum": 106,
+      "name": "twin daggers",
+      "short_desc": "a pair of matching daggers",
+      "room_desc": "Twin daggers lie here.",
+      "type": "weapon",
+      "weight": 3,
+      "cost": 100,
+      "damage_dice": "1d4+1",
+      "weapon_type": "stab"
+    },
+    "107": {
+      "vnum": 107,
+      "name": "a flail",
+      "short_desc": "a spiked ball and chain flail",
+      "room_desc": "A flail lies here.",
+      "type": "weapon",
+      "weight": 9,
+      "cost": 160,
+      "damage_dice": "1d8+2",
+      "weapon_type": "pound"
+    },
+    "108": {
+      "vnum": 108,
+      "name": "a scimitar",
+      "short_desc": "a curved scimitar",
+      "room_desc": "A scimitar lies here.",
+      "type": "weapon",
+      "weight": 6,
+      "cost": 130,
+      "damage_dice": "1d7+1",
+      "weapon_type": "slash"
+    },
+    "109": {
+      "vnum": 109,
+      "name": "a quarterstaff",
+      "short_desc": "a reinforced oak quarterstaff",
+      "room_desc": "A quarterstaff lies here.",
+      "type": "weapon",
+      "weight": 5,
+      "cost": 80,
+      "damage_dice": "1d6+1",
+      "weapon_type": "bludgeon"
+    },
+    "110": {
+      "vnum": 110,
+      "name": "chainmail armor",
+      "short_desc": "a suit of chainmail armor",
+      "room_desc": "Chainmail armor lies here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 30,
+      "cost": 250,
+      "armor_class": 7
+    },
+    "111": {
+      "vnum": 111,
+      "name": "plate armor",
+      "short_desc": "a full suit of plate armor",
+      "room_desc": "Plate armor lies here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 45,
+      "cost": 400,
+      "armor_class": 10
+    },
+    "112": {
+      "vnum": 112,
+      "name": "leather armor",
+      "short_desc": "sturdy leather armor",
+      "room_desc": "Leather armor lies here.",
+      "type": "armor",
+      "wear_slot": "body",
+      "weight": 15,
+      "cost": 100,
+      "armor_class": 4
+    },
+    "113": {
+      "vnum": 113,
+      "name": "a tower shield",
+      "short_desc": "a massive tower shield",
+      "room_desc": "A tower shield lies here.",
+      "type": "armor",
+      "wear_slot": "shield",
+      "weight": 15,
+      "cost": 180,
+      "armor_class": 5
+    },
+    "114": {
+      "vnum": 114,
+      "name": "a round shield",
+      "short_desc": "a wooden round shield",
+      "room_desc": "A round shield lies here.",
+      "type": "armor",
+      "wear_slot": "shield",
+      "weight": 8,
+      "cost": 90,
+      "armor_class": 3
+    },
+    "115": {
+      "vnum": 115,
+      "name": "a great helm",
+      "short_desc": "a heavy great helm",
+      "room_desc": "A great helm lies here.",
+      "type": "armor",
+      "wear_slot": "head",
+      "weight": 8,
+      "cost": 120,
+      "armor_class": 3
+    },
+    "116": {
+      "vnum": 116,
+      "name": "steel gauntlets",
+      "short_desc": "a pair of steel gauntlets",
+      "room_desc": "Steel gauntlets lie here.",
+      "type": "armor",
+      "wear_slot": "hands",
+      "weight": 4,
+      "cost": 80,
+      "armor_class": 2
+    },
+    "117": {
+      "vnum": 117,
+      "name": "steel greaves",
+      "short_desc": "heavy steel leg greaves",
+      "room_desc": "Steel greaves lie here.",
+      "type": "armor",
+      "wear_slot": "legs",
+      "weight": 10,
+      "cost": 140,
+      "armor_class": 3
+    },
+    "118": {
+      "vnum": 118,
+      "name": "a war cloak",
+      "short_desc": "a heavy fur-lined war cloak",
+      "room_desc": "A war cloak lies here.",
+      "type": "armor",
+      "wear_slot": "about",
+      "weight": 5,
+      "cost": 100,
+      "armor_class": 2
+    },
+    "119": {
+      "vnum": 119,
+      "name": "steel boots",
+      "short_desc": "reinforced steel boots",
+      "room_desc": "Steel boots lie here.",
+      "type": "armor",
+      "wear_slot": "feet",
+      "weight": 6,
+      "cost": 110,
+      "armor_class": 2
+    },
+    "200": {
+      "vnum": 200,
+      "name": "a healing potion",
+      "short_desc": "a red healing potion",
+      "room_desc": "A red potion lies here.",
+      "type": "potion",
+      "weight": 1,
+      "cost": 50,
+      "spell_level": 5,
+      "spells": [
+        "heal"
+      ]
+    },
+    "201": {
+      "vnum": 201,
+      "name": "a mana potion",
+      "short_desc": "a blue mana potion",
+      "room_desc": "A blue potion lies here.",
+      "type": "potion",
+      "weight": 1,
+      "cost": 50,
+      "spell_level": 5,
+      "spells": [
+        "restore_mana"
+      ]
+    },
+    "202": {
+      "vnum": 202,
+      "name": "a strength potion",
+      "short_desc": "a bubbling strength potion",
+      "room_desc": "A bubbling potion lies here.",
+      "type": "potion",
+      "weight": 1,
+      "cost": 75,
+      "spell_level": 10,
+      "spells": [
+        "strength"
+      ]
+    },
+    "203": {
+      "vnum": 203,
+      "name": "an invisibility potion",
+      "short_desc": "a shimmering invisibility potion",
+      "room_desc": "A shimmering potion lies here.",
+      "type": "potion",
+      "weight": 1,
+      "cost": 100,
+      "spell_level": 15,
+      "spells": [
+        "invisibility"
+      ]
+    },
+    "204": {
+      "vnum": 204,
+      "name": "a scroll of fireball",
+      "short_desc": "a scorched scroll",
+      "room_desc": "A scorched scroll lies here.",
+      "type": "scroll",
+      "weight": 1,
+      "cost": 80,
+      "spell_level": 10,
+      "spells": [
+        "fireball"
+      ]
+    },
+    "205": {
+      "vnum": 205,
+      "name": "a scroll of lightning bolt",
+      "short_desc": "a crackling scroll",
+      "room_desc": "A crackling scroll lies here.",
+      "type": "scroll",
+      "weight": 1,
+      "cost": 80,
+      "spell_level": 10,
+      "spells": [
+        "lightning_bolt"
+      ]
+    },
+    "206": {
+      "vnum": 206,
+      "name": "a scroll of cure light",
+      "short_desc": "a glowing white scroll",
+      "room_desc": "A glowing scroll lies here.",
+      "type": "scroll",
+      "weight": 1,
+      "cost": 30,
+      "spell_level": 5,
+      "spells": [
+        "cure_light"
+      ]
+    },
+    "207": {
+      "vnum": 207,
+      "name": "a waterskin",
+      "short_desc": "a leather waterskin",
+      "room_desc": "A waterskin lies here.",
+      "type": "drink",
+      "weight": 2,
+      "cost": 10,
+      "drinks": 20,
+      "liquid": "water"
+    },
+    "208": {
+      "vnum": 208,
+      "name": "travel rations",
+      "short_desc": "a package of travel rations",
+      "room_desc": "Travel rations lie here.",
+      "type": "food",
+      "weight": 2,
+      "cost": 15,
+      "food_value": 20
+    },
+    "209": {
+      "vnum": 209,
+      "name": "a backpack",
+      "short_desc": "a sturdy leather backpack",
+      "room_desc": "A backpack lies here.",
+      "type": "container",
+      "weight": 5,
+      "cost": 40,
+      "capacity": 150,
+      "container_flags": [
+        "closeable"
+      ]
+    },
+    "210": {
+      "vnum": 210,
+      "name": "a wand of magic missile",
+      "short_desc": "a crystal wand crackling with energy",
+      "room_desc": "A crystal wand lies here.",
+      "type": "wand",
+      "weight": 1,
+      "cost": 150,
+      "spell_level": 5,
+      "spells": [
+        "magic_missile"
+      ],
+      "charges": 10
+    },
+    "211": {
+      "vnum": 211,
+      "name": "a wand of healing",
+      "short_desc": "a white oak wand glowing softly",
+      "room_desc": "A glowing wand lies here.",
+      "type": "wand",
+      "weight": 1,
+      "cost": 200,
+      "spell_level": 10,
+      "spells": [
+        "cure_light"
+      ],
+      "charges": 8
+    },
+    "212": {
+      "vnum": 212,
+      "name": "a staff of power",
+      "short_desc": "an ancient staff pulsing with magic",
+      "room_desc": "An ancient staff lies here.",
+      "type": "staff",
+      "weight": 4,
+      "cost": 500,
+      "spell_level": 20,
+      "spells": [
+        "fireball"
+      ],
+      "charges": 5
+    },
+    "213": {
+      "vnum": 213,
+      "name": "a scroll of teleport",
+      "short_desc": "a swirling arcane scroll",
+      "room_desc": "A swirling scroll lies here.",
+      "type": "scroll",
+      "weight": 1,
+      "cost": 120,
+      "spell_level": 15,
+      "spells": [
+        "teleport"
+      ]
+    },
+    "214": {
+      "vnum": 214,
+      "name": "a scroll of identify",
+      "short_desc": "a scroll inscribed with runes",
+      "room_desc": "A runic scroll lies here.",
+      "type": "scroll",
+      "weight": 1,
+      "cost": 50,
+      "spell_level": 8,
+      "spells": [
+        "identify"
+      ]
+    },
+    "215": {
+      "vnum": 215,
+      "name": "a potion of giant strength",
+      "short_desc": "a thick red potion",
+      "room_desc": "A thick red potion lies here.",
+      "type": "potion",
+      "weight": 1,
+      "cost": 150,
+      "spell_level": 15,
+      "spells": [
+        "giant_strength"
+      ]
+    },
+    "216": {
+      "vnum": 216,
+      "name": "a potion of haste",
+      "short_desc": "a quicksilver potion",
+      "room_desc": "A quicksilver potion lies here.",
+      "type": "potion",
+      "weight": 1,
+      "cost": 180,
+      "spell_level": 18,
+      "spells": [
+        "haste"
+      ]
+    },
+    "217": {
+      "vnum": 217,
+      "name": "an elixir of protection",
+      "short_desc": "a shimmering golden elixir",
+      "room_desc": "A golden elixir lies here.",
+      "type": "potion",
+      "weight": 1,
+      "cost": 200,
+      "spell_level": 20,
+      "spells": [
+        "protection",
+        "armor"
+      ]
+    },
+    "218": {
+      "vnum": 218,
+      "name": "a spellbook",
+      "short_desc": "a leather-bound spellbook",
+      "room_desc": "A spellbook lies here.",
+      "type": "book",
+      "weight": 3,
+      "cost": 100
+    },
+    "219": {
+      "vnum": 219,
+      "name": "a crystal orb",
+      "short_desc": "a glowing crystal orb",
+      "room_desc": "A crystal orb lies here.",
+      "type": "light",
+      "weight": 2,
+      "cost": 80,
+      "light_hours": 999
+    },
+    "220": {
+      "vnum": 220,
+      "name": "a ring of protection",
+      "short_desc": "a silver ring etched with runes",
+      "room_desc": "A silver ring lies here.",
+      "type": "armor",
+      "wear_slot": "finger1",
+      "weight": 0,
+      "cost": 300,
+      "armor_class": 2
+    }
+  }
+}

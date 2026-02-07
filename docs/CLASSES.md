@@ -549,4 +549,104 @@ talent reset         # Reset all talents (cost: gold)
 
 ---
 
+## ⚡ Level 31-60: Endgame Abilities
+
+At higher levels, each class unlocks powerful new abilities that define endgame play. Every class gains 5 new abilities at levels 32, 38, 44, 50, and 56, plus a **CAPSTONE ability at level 60**.
+
+### XP Curve Changes
+- **Levels 1-30:** Standard progression (1.4x per level)
+- **Levels 31-60:** Slower progression (1.6x per level) for extended endgame content
+
+### Level 60 Capstone Abilities
+
+These ultimate abilities have **10-minute cooldowns** and can turn the tide of any battle:
+
+| Class | Capstone | Effect |
+|-------|----------|--------|
+| **Warrior** | Titan's Wrath | 10s invulnerability, 2x damage, AoE cleave |
+| **Mage** | Meteor Storm | Massive AoE damage, stun, ground burn |
+| **Cleric** | Divine Intervention | Full party heal, resurrect dead, immunity |
+| **Thief** | Perfect Crime | 30s perma-stealth, guaranteed crits |
+| **Ranger** | Alpha Pack | Summon ALL 5 pet types in frenzy |
+| **Paladin** | Crusader's Judgment | Holy nuke, party invuln, mass rez |
+| **Necromancer** | Apocalypse | Raise every corpse in the zone |
+| **Bard** | Magnum Opus | All songs active + massive buffs |
+| **Assassin** | Death Mark | Instant kill if target <25% HP |
+
+### Ability Progression by Class
+
+#### Warrior (Levels 31-60)
+- **32:** Rallying Cry - Party buff (+Max HP)
+- **38:** Shattering Blow - Armor penetration
+- **44:** Commanding Shout - AoE taunt
+- **50:** Heroic Leap - Gap closer + stun
+- **56:** Warpath - Sustained damage mode
+- **60:** Titan's Wrath - God mode for 10 seconds
+
+#### Mage (Levels 31-60)
+- **32:** Mana Shield - Absorb damage with mana
+- **38:** Time Warp - Haste self + party
+- **44:** Arcane Explosion - Massive AoE
+- **50:** Icy Veins - Crit + cast speed
+- **56:** Combustion - Guaranteed fire crits
+- **60:** Meteor Storm - Ultimate destruction
+
+#### Cleric (Levels 31-60)
+- **32:** Prayer of Mending - Bouncing heal
+- **38:** Spirit Link - Share HP with party
+- **44:** Mass Dispel - Remove all debuffs
+- **50:** Lightwell - Sustained area heal
+- **56:** Serenity - Full single-target heal
+- **60:** Divine Intervention - Miracle spell
+
+#### Thief (Levels 31-60)
+- **32:** Nerve Strike - Paralyze
+- **38:** Shadow Dance - Stealth abilities in combat
+- **44:** Garrote - Silence + bleed
+- **50:** Evasion - 100% dodge for 10s
+- **56:** Marked for Death - Huge damage bonus
+- **60:** Perfect Crime - Ultimate stealth
+
+#### Ranger (Levels 31-60)
+- **32:** Volley - AoE arrow rain
+- **38:** Camouflage - Improved stealth
+- **44:** Serpent Sting - Strong poison DoT
+- **50:** Rapid Fire - Machine gun arrows
+- **56:** Kill Command - Pet executes
+- **60:** Alpha Pack - All pets at once
+
+#### Paladin (Levels 31-60)
+- **32:** Hand of Freedom - Remove CC
+- **38:** Consecration - Holy ground damage
+- **44:** Hammer of Justice - Ranged stun
+- **50:** Avenging Wrath - Damage + healing boost
+- **56:** Divine Shield - Complete immunity
+- **60:** Crusader's Judgment - Ultimate judgment
+
+#### Necromancer (Levels 31-60)
+- **32:** Death Coil - Damage or heal undead
+- **38:** Corpse Shield - Pet absorbs damage
+- **44:** Plague Strike - Spreading disease
+- **50:** Summon Gargoyle - Flying pet
+- **56:** Soul Harvest - Massive essence gain
+- **60:** Apocalypse - Raise army of dead
+
+#### Bard (Levels 31-60)
+- **32:** Hymn of Hope - Mana regen aura
+- **38:** Chord of Disruption - AoE silence
+- **44:** Epic Tale - Buff all stats
+- **50:** Siren Song - Mass charm
+- **56:** Requiem - Damage over time aura
+- **60:** Magnum Opus - All songs active
+
+#### Assassin (Levels 31-60)
+- **32:** Shadowstrike - Teleport + backstab
+- **38:** Fan of Knives - AoE poison
+- **44:** Rupture - Massive bleed
+- **50:** Shadow Blades - Dual shadow weapons
+- **56:** Vendetta - Mark for death
+- **60:** Death Mark - Execute low HP targets
+
+---
+
 Good luck choosing your path, adventurer! 🎮

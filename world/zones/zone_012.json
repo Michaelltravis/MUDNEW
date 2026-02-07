@@ -6,7 +6,7 @@
     "1200": {
       "vnum": 1200,
       "name": "The Meeting Room Of The Gods",
-      "description": "The meeting room is plain and very simple.  A circular table sits in the middle of the room, lit by some unseen light source.  There are many chairs around the table, all empty.  The Immortal Board Room is to the north.",
+      "description": "The meeting room is plain and very simple. A circular table sits in the\nmiddle of the room, lit by some unseen light source. There are many\nchairs around the table, all empty. The Immortal Board Room is to the\nnorth. The ceiling hangs low overhead. Dust motes drift in the stale\nair.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -27,7 +27,7 @@
     "1201": {
       "vnum": 1201,
       "name": "The Inn Of The Gods",
-      "description": "The Inn of the Gods is a small room, holding only a shelf with many small precious stones on it.  When a God comes to rent his belongings, his essence is stored in the stones.  The Immortal Board Room is to the south.",
+      "description": "The Inn of the Gods is a small room, holding only a shelf with many\nsmall precious stones on it. When a God comes to rent his belongings,\nhis essence is stored in the stones. The Immortal Board Room is to the\nsouth. The ceiling hangs low overhead. The walls are rough-hewn and cold\nto the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors",
@@ -53,7 +53,7 @@
     "1202": {
       "vnum": 1202,
       "name": "The Ice Box Of The Gods",
-      "description": "The Ice Box is for little boys and girls that cannot play nice. Be good and maybe someone will come and get you.",
+      "description": "The Ice Box is for little boys and girls that cannot play nice. Be good\nand maybe someone will come and get you. The ceiling hangs low overhead.\nThe walls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors",
@@ -72,7 +72,7 @@
     "1203": {
       "vnum": 1203,
       "name": "The Gods' Mortal Board Room",
-      "description": "Here the Gods have magically created an exact copy of the mortal board room.  Any God can easily post and read messages from the mortal board room without being seen by any mortals.  The Immortal Board Room is to the west.",
+      "description": "Here the Gods have magically created an exact copy of the mortal board\nroom. Any God can easily post and read messages from the mortal board\nroom without being seen by any mortals. The Immortal Board Room is to\nthe west. The ceiling hangs low overhead. The walls are rough-hewn and\ncold to the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -93,7 +93,7 @@
     "1204": {
       "vnum": 1204,
       "name": "The Immortal Board Room",
-      "description": "The main hang out of the Gods, the Immortal Board Room is the place to be.  Gods exchange messages here most every day.  The mortal board room is to the east and the meeting room for the gods is to the south.  To the north is the Gods' Inn and to the west is a post office for Gods.  There is a large staircase leading down to the main temple in the city of Midgaard.  In the northeast corner you spot a small staircase leading upwards.",
+      "description": "The main hang out of the Gods, the Immortal Board Room is the place to\nbe. Gods exchange messages here most every day. The mortal board room is\nto the east and the meeting room for the gods is to the south. To the\nnorth is the Gods' Inn and to the west is a post office for Gods. There\nis a large staircase leading down to the main temple in the city of\nMidgaard. In the northeast corner you spot a small staircase leading\nupwards. The ceiling hangs low overhead. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -134,7 +134,7 @@
     "1205": {
       "vnum": 1205,
       "name": "The Post Office Of The Gods",
-      "description": "The Post Office Of The Gods is the same as most Post Offices except that it is not as slow.  Even the Postal service knows not to anger the Gods. Piles of junk mail line the walls.  I guess even Gods get on mailing lists. The Immortal Board Room is to the east.",
+      "description": "The Post Office Of The Gods is the same as most Post Offices except that\nit is not as slow. Even the Postal service knows not to anger the Gods.\nPiles of junk mail line the walls. I guess even Gods get on mailing\nlists. The Immortal Board Room is to the east. The air is still and\nmusty. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -155,7 +155,7 @@
     "1206": {
       "vnum": 1206,
       "name": "The Social Gathering Room",
-      "description": "This elegantly decorated room has one simple purpose.  To socialize with everyone else around in one central location.",
+      "description": "This elegantly decorated room has one simple purpose. To socialize with\neveryone else around in one central location. The ceiling hangs low\noverhead. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -182,11 +182,11 @@
       "long_desc": "The Immortal Innkeeper is organizing her books here.",
       "level": 30,
       "alignment": 0,
-      "hp_dice": "4d8+5",
-      "damage_dice": "1d49+901",
+      "hp_dice": "30d10+376",
+      "damage_dice": "8d8+11",
       "gold": 0,
-      "exp": 8,
-      "armor_class": -10,
+      "exp": 1800,
+      "armor_class": 10,
       "flags": [
         "special",
         "sentinel"
@@ -200,11 +200,11 @@
       "long_desc": "The Immortal Postmaster is hard at work here.",
       "level": 30,
       "alignment": 0,
-      "hp_dice": "4d8+5",
-      "damage_dice": "1d49+901",
+      "hp_dice": "30d10+376",
+      "damage_dice": "8d8+11",
       "gold": 0,
-      "exp": 8,
-      "armor_class": -10,
+      "exp": 1800,
+      "armor_class": 10,
       "flags": [
         "special",
         "sentinel"
@@ -218,11 +218,11 @@
       "long_desc": "A strange amorphous being wanders these halls eternally cleaning.",
       "level": 30,
       "alignment": 0,
-      "hp_dice": "4d8+5",
-      "damage_dice": "1d49+901",
+      "hp_dice": "30d10+376",
+      "damage_dice": "8d8+11",
       "gold": 0,
-      "exp": 8,
-      "armor_class": -10,
+      "exp": 1800,
+      "armor_class": 10,
       "flags": [
         "special",
         "scavenger",

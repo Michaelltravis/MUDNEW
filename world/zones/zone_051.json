@@ -6,7 +6,7 @@
     "5100": {
       "vnum": 5100,
       "name": "The City Entrance",
-      "description": "You are at the entrance to a small underground city.  A great adamantite gate lies open to the west allowing entrance into the city.",
+      "description": "This is the entrance to a small underground city. A great adamantite\ngate lies open to the west allowing entrance into the city. Shadows\ngather in the corners. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -36,7 +36,7 @@
     "5101": {
       "vnum": 5101,
       "name": "A City Street",
-      "description": "You walk along a highly ornate street going north-south.  A large gate lies to the east while a building lies to the west.",
+      "description": "You walk along a highly ornate street going north-south. A large gate\nlies to the east while a building lies to the west. The air is still and\nmusty. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -80,7 +80,7 @@
     "5102": {
       "vnum": 5102,
       "name": "A City Street",
-      "description": "You walk along a highly ornate city street going north and west.",
+      "description": "You walk along a highly ornate city street going north and west. Dust\nmotes drift in the stale air. The air is still and musty. The air is\nstale and the walls close. Shadows pool in the corners, undisturbed.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -100,7 +100,7 @@
     "5103": {
       "vnum": 5103,
       "name": "A City Street",
-      "description": "You walk along a highly ornate city street going east-west.  A large house stands to the south.",
+      "description": "You walk along a highly ornate city street going east-west. A large\nhouse stands to the south. The ceiling hangs low overhead. Shadows\ngather in the corners.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -124,7 +124,7 @@
     "5104": {
       "vnum": 5104,
       "name": "The 3rd House",
-      "description": "You stand inside the 3rd house of the city; it is fairly well decorated by drow standards having a few statues, murals and such.  A door leads to the  south.",
+      "description": "The area opens inside the 3rd house of the city; it is fairly well\ndecorated by drow standards having a few statues, murals and such. A\ndoor leads to the south. The walls are rough-hewn and cold to the touch.\nThe ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -164,7 +164,7 @@
     "5105": {
       "vnum": 5105,
       "name": "The Throne Room",
-      "description": "The throne room of the 3rd house is about as decorated as the inner courtyard except with a blood covered altar in the center of the room.",
+      "description": "The throne room of the 3rd house is about as decorated as the inner\ncourtyard except with a blood covered altar in the center of the room.\nDust motes drift in the stale air. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -192,7 +192,7 @@
     "5106": {
       "vnum": 5106,
       "name": "A City Street",
-      "description": "You walk along a highly ornate city street going east-west.  To the north is a large building.",
+      "description": "You walk along a highly ornate city street going east-west. To the north\nis a large building. The walls are rough-hewn and cold to the touch. The\nair is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -222,7 +222,7 @@
     "5107": {
       "vnum": 5107,
       "name": "A City Street",
-      "description": "You walk along a highly ornate city street leading north and east.  To the south is an extremely large house.",
+      "description": "You walk along a highly ornate city street leading north and east. To\nthe south is an extremely large house. The ceiling hangs low overhead.\nThe walls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -246,7 +246,7 @@
     "5108": {
       "vnum": 5108,
       "name": "The 2nd House",
-      "description": "You stand inside the 2nd house of the city.  The room is highly decorated with statues of spiders and murals everywhere.",
+      "description": "The area opens inside the 2nd house of the city. The room is highly\ndecorated with statues of spiders and murals everywhere. The ceiling\nhangs low overhead. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -286,7 +286,7 @@
     "5109": {
       "vnum": 5109,
       "name": "The Throne Room",
-      "description": "The throne room of the 2nd house is just a little more decorative than the inner courtyard having an altar in the center of the room.",
+      "description": "The throne room of the 2nd house is just a little more decorative than\nthe inner courtyard having an altar in the center of the room. Dust\nmotes drift in the stale air. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -314,7 +314,7 @@
     "5110": {
       "vnum": 5110,
       "name": "The Main Gate",
-      "description": "You are at the entrance to the 1st house of the city.  A large gate, almost as big and elegant as the one at the entrance to the city, stands here.",
+      "description": "This is the entrance to the 1st house of the city. A large gate, almost\nas big and elegant as the one at the entrance to the city, stands here.\nThe walls are rough-hewn and cold to the touch. The air is still and\nmusty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -354,7 +354,7 @@
     "5111": {
       "vnum": 5111,
       "name": "The 1st House",
-      "description": "You stand in the inner courtyard of the 1st and largest house in the city. The room is extremely large and decorative.  Mural and paintings hang on the  walls depicting some battles and a spider queen.",
+      "description": "The area opens in the inner courtyard of the 1st and largest house in\nthe city. The room is extremely large and decorative. Mural and\npaintings hang on the walls depicting some battles and a spider queen.\nThe air is still and musty. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -394,7 +394,7 @@
     "5112": {
       "vnum": 5112,
       "name": "The Throne Room",
-      "description": "The throne room of the 1st house is in one word...awesome.  It is so horrifying it is almost beautiful.",
+      "description": "The throne room of the 1st house is in one word...awesome. It is so\nhorrifying it is almost beautiful. The air is still and musty. Shadows\ngather in the corners.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -420,7 +420,7 @@
     "5113": {
       "vnum": 5113,
       "name": "The Main Chamber",
-      "description": "This is the council chamber for the Matron Mother herself.  A huge table and chairs surrounding it sits in the center of the room.",
+      "description": "This is the council chamber for the Matron Mother herself. A huge table\nand chairs surrounding it sits in the center of the room. The air is\nstill and musty. The walls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -448,7 +448,7 @@
     "5114": {
       "vnum": 5114,
       "name": "A City Street",
-      "description": "You walk along a highly ornate city street leading north-south and east.",
+      "description": "You walk along a highly ornate city street leading north-south and east.\nThe air is still and musty. The walls are rough-hewn and cold to the\ntouch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -472,7 +472,7 @@
     "5115": {
       "vnum": 5115,
       "name": "A City Street",
-      "description": "You walk along a highly ornate city street leading south.  A building is to the west.",
+      "description": "You walk along a highly ornate city street leading south. A building is\nto the west. Dust motes drift in the stale air. The walls are rough-hewn\nand cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -498,7 +498,7 @@
     "5116": {
       "vnum": 5116,
       "name": "The Clerics' Academy",
-      "description": "This is the most lavish of the academies being that it is for the clerics.",
+      "description": "This is the most lavish of the academies being that it is for the\nclerics. The ceiling hangs low overhead. Shadows gather in the corners.\nThe air is stale and the walls close. Shadows pool in the corners,\nundisturbed.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -520,7 +520,7 @@
     "5117": {
       "vnum": 5117,
       "name": "A City Street",
-      "description": "You walk along a highly ornate city street going east-west.  To the north is a giant temple.",
+      "description": "You walk along a highly ornate city street going east-west. To the north\nis a giant temple. The ceiling hangs low overhead. The walls are rough-\nhewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -550,7 +550,7 @@
     "5118": {
       "vnum": 5118,
       "name": "The Warriors' Academy",
-      "description": "This looks more like a barracks than a school.",
+      "description": "The Warriors' Academy fills this vast cavern with the sounds of combat\ntraining. Drow fighters practice deadly techniques under the watchful\neyes of weapon masters, their movements fluid and precise in the dim\nfaerie fire light. The ceiling hangs low overhead. Shadows gather in the\ncorners.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -576,7 +576,7 @@
     "5119": {
       "vnum": 5119,
       "name": "The Entrance To The Temple Of Lloth",
-      "description": "The temple is the largest building in the city.  Even its doors are beyond imagination.  Inside of the temple entrance, the walls are made of gold and  adamantite.",
+      "description": "The temple is the largest building in the city. Even its doors are\nbeyond imagination. Inside of the temple entrance, the walls are made of\ngold and adamantite. Shadows gather in the corners. The air is still and\nmusty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -602,7 +602,7 @@
     "5120": {
       "vnum": 5120,
       "name": "The Mages' Academy",
-      "description": "The Mages' Academy is fairly well decorated and you can see that the drow prefer magic over physical power greatly.",
+      "description": "The Mages' Academy is fairly well decorated and Visible is that the drow\nprefer magic over physical power greatly. The walls are rough-hewn and\ncold to the touch. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -624,7 +624,7 @@
     "5121": {
       "vnum": 5121,
       "name": "A City Street",
-      "description": "You walk along a highly ornate city street going eastward.  To the north is a building.",
+      "description": "You walk along a highly ornate city street going eastward. To the north\nis a building. The ceiling hangs low overhead. The air is still and\nmusty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -654,7 +654,7 @@
     "5122": {
       "vnum": 5122,
       "name": "The Slave Chamber",
-      "description": "The room is in shambles.  Straw is strewn all about the room as beds for the unfortunate creatures who have fallen prey to drow imperialism.",
+      "description": "The room is in shambles. Straw is strewn all about the room as beds for\nthe unfortunate creatures who have fallen prey to drow imperialism. Dust\nmotes drift in the stale air. The walls are rough-hewn and cold to the\ntouch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -704,7 +704,7 @@
     "5123": {
       "vnum": 5123,
       "name": "A City Street",
-      "description": "You walk along a highly ornate city street leading west and south.  To the north is a relatively small house.",
+      "description": "You walk along a highly ornate city street leading west and south. To\nthe north is a relatively small house. The walls are rough-hewn and cold\nto the touch. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -734,7 +734,7 @@
     "5124": {
       "vnum": 5124,
       "name": "The 4th House",
-      "description": "You stand inside the 4th house of the city.  Its inner courtyard is rather  dull by drow standards and rather small as well.",
+      "description": "The area opens inside the 4th house of the city. Its inner courtyard is\nrather dull by drow standards and rather small as well. The ceiling\nhangs low overhead. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -774,7 +774,7 @@
     "5125": {
       "vnum": 5125,
       "name": "The Throne Room",
-      "description": "The throne room is basically similar to the inner courtyard in regards to decor.  there is a small throne behind the altar but that is about it.",
+      "description": "The throne room is basically similar to the inner courtyard in regards\nto decor. there is a small throne behind the altar but that is about it.\nDust motes drift in the stale air. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -796,7 +796,7 @@
     "5126": {
       "vnum": 5126,
       "name": "The Entrance Hall",
-      "description": "You stand in the entrance way to the temple which opens up to the north into a large hallway going east and west.  Small statues os spiders line the entrance way's walls.",
+      "description": "The area opens in the entrance way to the temple which opens up to the\nnorth into a large hallway going east and west. Small statues os spiders\nline the entrance way's walls. Dust motes drift in the stale air.\nShadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -816,7 +816,7 @@
     "5127": {
       "vnum": 5127,
       "name": "A Hallway",
-      "description": "You are in a long hallway lined with adamantite.  The walls are engraved with pictures of elves and spiders.  The hallway continues east and west.  As you look down the hallway you can make out one or two figures moving away from you. To the north is a obsidian stairway.",
+      "description": "This is a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west.\nAs you look down the hallway you can make out one or two figures moving\naway from you. To the north is a obsidian stairway. Shadows gather in\nthe corners. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -844,7 +844,7 @@
     "5128": {
       "vnum": 5128,
       "name": "A Long Hallway",
-      "description": "You are in a long hallway lined with adamantite.  The walls are engraved with pictures of elves and spiders.  The hallway continues east and west.  As you look down the hallway you can make out one or two figures moving away from you.",
+      "description": "This is a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west.\nAs you look down the hallway you can make out one or two figures moving\naway from you. The ceiling hangs low overhead. The walls are rough-hewn\nand cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -864,7 +864,7 @@
     "5129": {
       "vnum": 5129,
       "name": "A Long Hallway",
-      "description": "You are in a long hallway lined with adamantite.  The walls are engraved with pictures of elves and spiders.  The hallway continues east and west.  As you look down the hallway you can make out one or two figures moving away from you. To the north is a door.",
+      "description": "This is a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west.\nAs you look down the hallway you can make out one or two figures moving\naway from you. To the north is a door. Shadows gather in the corners.\nThe ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -894,7 +894,7 @@
     "5130": {
       "vnum": 5130,
       "name": "A Long Hallway",
-      "description": "You are in a long hallway lined with adamantite.  The walls are engraved with pictures of elves and spiders.  The hallway continues east and west.  As you look down the hallway you can make out one or two figures moving away from you.",
+      "description": "This is a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west.\nAs you look down the hallway you can make out one or two figures moving\naway from you. The ceiling hangs low overhead. The air is still and\nmusty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -914,7 +914,7 @@
     "5131": {
       "vnum": 5131,
       "name": "A Long Hallway",
-      "description": "You are in a long hallway lined with adamantite.  The walls are engraved with pictures of elves and spiders.  The hallway continues east and west.  As you look down the hallway you can make out one or two figures moving away from you.",
+      "description": "This is a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west.\nAs you look down the hallway you can make out one or two figures moving\naway from you. The ceiling hangs low overhead. Dust motes drift in the\nstale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -934,7 +934,7 @@
     "5132": {
       "vnum": 5132,
       "name": "A Long Hallway",
-      "description": "You are in a long hallway lined with adamantite.  The walls are engraved with pictures of elves and spiders.  The hallway continues east and west.  As you look down the hallway you can make out one or two figures moving away from you. To the south is a door.",
+      "description": "This is a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west.\nAs you look down the hallway you can make out one or two figures moving\naway from you. To the south is a door. Shadows gather in the corners.\nThe ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -964,7 +964,7 @@
     "5133": {
       "vnum": 5133,
       "name": "The Warriors' Barracks",
-      "description": "The room is a complete mess.  None of the beds are made, clothes and other items have been left all about the room.  Well drow warriors never were known for neatness.",
+      "description": "The room is a complete mess. None of the beds are made, clothes and\nother items have been left all about the room. Well drow warriors never\nwere known for neatness. Shadows gather in the corners. The ceiling\nhangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -992,7 +992,7 @@
     "5134": {
       "vnum": 5134,
       "name": "A Long Hallway",
-      "description": "You are in a long hallway lined with adamantite.  The walls are engraved with pictures of elves and spiders.  The hallway continues east and west.  As you look down the hallway you can make out one or two figures moving away from you.",
+      "description": "This is a long hallway lined with adamantite. The walls are engraved\nwith pictures of elves and spiders. The hallway continues east and west.\nAs you look down the hallway you can make out one or two figures moving\naway from you. The walls are rough-hewn and cold to the touch. The air\nis still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1012,7 +1012,7 @@
     "5135": {
       "vnum": 5135,
       "name": "The Grand Stairway",
-      "description": "You are standing at the bottom of a giant obsidian and adamantite  stairway.  The edges are trimmed with gold.",
+      "description": "The area opens at the bottom of a giant obsidian and adamantite\nstairway. The edges are trimmed with gold. The ceiling hangs low\noverhead. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1032,7 +1032,7 @@
     "5136": {
       "vnum": 5136,
       "name": "The Grand Hallway",
-      "description": "You are standing in the middle of a grand hallway.  The walls are  of the purest adamantite with gold trim.  Mosaics line the walls.",
+      "description": "This is the middle of a grand hallway. The walls are of the purest\nadamantite with gold trim. Mosaics line the walls. Shadows gather in the\ncorners. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1062,7 +1062,7 @@
     "5137": {
       "vnum": 5137,
       "name": "The Mages' Barracks",
-      "description": "The mage's living quarters is rather clean with the exception of a few used component containers.  It is rather well decorated as well.  Cots line the floor for the mages to sleep on.  The only door is to the west.",
+      "description": "The mage's living quarters is rather clean with the exception of a few\nused component containers. It is rather well decorated as well. Cots\nline the floor for the mages to sleep on. The only door is to the west.\nThe walls are rough-hewn and cold to the touch. Dust motes drift in the\nstale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1084,7 +1084,7 @@
     "5138": {
       "vnum": 5138,
       "name": "The Grand Hallway",
-      "description": "You are walking down a grand hallway, heavily decorated with adamantite and gold.  To the north the hall goes down a flight of stairs while a door is  to the west.",
+      "description": "The way continues down a grand hallway, heavily decorated with\nadamantite and gold. To the north the hall goes down a flight of stairs\nwhile a door is to the west. Shadows gather in the corners. Dust motes\ndrift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1114,7 +1114,7 @@
     "5139": {
       "vnum": 5139,
       "name": "The Clerics' Barracks",
-      "description": "The bed chamber is brightly decorated with spider shaped statues, murals and the like.  Large beds line the floor making this a comfortable room to live in.",
+      "description": "The bed chamber is brightly decorated with spider shaped statues, murals\nand the like. Large beds line the floor making this a comfortable room\nto live in. The air is still and musty. The walls are rough-hewn and\ncold to the touch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1136,7 +1136,7 @@
     "5140": {
       "vnum": 5140,
       "name": "The Grand Stairway",
-      "description": "You are climbing a set of obsidian stairs surrounded by adamantite walls. To the north are a set of large golden doors.",
+      "description": "The area is climbing a set of obsidian stairs surrounded by adamantite\nwalls. To the north are a set of large golden doors. Shadows gather in\nthe corners. The walls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1162,7 +1162,7 @@
     "5141": {
       "vnum": 5141,
       "name": "The Main Chamber",
-      "description": "This is the south side of a large auditorium used for services by the drow priestesses.  In the center is a large sacrificial pit and beyond that is an altar.",
+      "description": "This is the south side of a large auditorium used for services by the\ndrow priestesses. In the center is a large sacrificial pit and beyond\nthat is an altar. The walls are rough-hewn and cold to the touch. Dust\nmotes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1192,7 +1192,7 @@
     "5142": {
       "vnum": 5142,
       "name": "The Eastern Side Of The Main Chamber",
-      "description": "You are on the eastern side of the chamber overlooking the pit.  To the east is a door while to the north is an altar.",
+      "description": "The area is the eastern side of the chamber overlooking the pit. To the\neast is a door while to the north is an altar. Dust motes drift in the\nstale air. The ceiling hangs low overhead.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1222,7 +1222,7 @@
     "5143": {
       "vnum": 5143,
       "name": "The Sacrificial Pit",
-      "description": "As you climb down into the pit, thousands of spiders cover you, tearing your fragile body to shreds.     Lloth thanks you for your sacrifice.",
+      "description": "As you climb down into the pit, thousands of spiders cover you, tearing\nyour fragile body to shreds. Lloth thanks you for your sacrifice.\nShadows gather in the corners. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "death",
@@ -1233,7 +1233,7 @@
     "5144": {
       "vnum": 5144,
       "name": "The Western Side Of The Main Chamber",
-      "description": "You are on the western side of the main chamber overlooking a sacrificial pit.  To the north is an altar.",
+      "description": "The area is the western side of the main chamber overlooking a\nsacrificial pit. To the north is an altar. The ceiling hangs low\noverhead. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1253,7 +1253,7 @@
     "5145": {
       "vnum": 5145,
       "name": "The Altar",
-      "description": "You are standing in front of a highly and freshly bloodstained altar.   Engraved on the top of the altar is a giant spider with a human head.  Looking  down from the altar you see a large sacrificial pit with thousands of swarming spiders looking for their next meal!",
+      "description": "This is front of a highly and freshly bloodstained altar. Engraved on\nthe top of the altar is a giant spider with a human head. Looking down\nfrom the altar you see a large sacrificial pit with thousands of\nswarming spiders looking for their next meal! The walls are rough-hewn\nand cold to the touch. Shadows gather in the corners.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1281,7 +1281,7 @@
     "5146": {
       "vnum": 5146,
       "name": "The Slave Cells",
-      "description": "This is the main room to the cell chambers for the slaves to be  sacrificed.  You notice there are no guards around.",
+      "description": "This is the main room to the cell chambers for the slaves to be\nsacrificed. You notice there are no guards around. The walls are rough-\nhewn and cold to the touch. The air is still and musty.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1313,7 +1313,7 @@
     "5147": {
       "vnum": 5147,
       "name": "The Slave Pen",
-      "description": "Rotten meat and breads lie about the floor while shackles hang from the  walls.  The room reeks of death.  You almost become nauseous and decide to leave the room since you were obviously too late to save the slave.",
+      "description": "Rotten meat and breads lie about the floor while shackles hang from the\nwalls. The room reeks of death. You almost become nauseous and decide to\nleave the room since you were obviously too late to save the slave. The\nwalls are rough-hewn and cold to the touch. The ceiling hangs low\noverhead.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1335,7 +1335,7 @@
     "5148": {
       "vnum": 5148,
       "name": "The Dias",
-      "description": "You stand upon a dias behind the altar.  Above you is a enormous illusion of a female drow turning into a giant spider and back again.  There is a door  to the west.",
+      "description": "The area opens upon a dias behind the altar. above is a enormous\nillusion of a female drow turning into a giant spider and back again.\nThere is a door to the west. Shadows gather in the corners. Dust motes\ndrift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1367,7 +1367,7 @@
     "5149": {
       "vnum": 5149,
       "name": "The Treasury",
-      "description": "This is obviously only a temporary storage place for the collected  treasure being rather bare.",
+      "description": "This is obviously only a temporary storage place for the collected\ntreasure being rather bare. Dust motes drift in the stale air. Shadows\ngather in the corners.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1395,7 +1395,7 @@
     "5150": {
       "vnum": 5150,
       "name": "The Weaponsmaster's Chamber",
-      "description": "This one-person bedchamber is very elegant.  The owner must be held in high regard to get this kind of treatment.",
+      "description": "This one-person bedchamber is very elegant. The owner must be held in\nhigh regard to get this kind of treatment. The ceiling hangs low\noverhead. The walls are rough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -1429,11 +1429,11 @@
       "long_desc": "A goblin slave lies here asleep.",
       "level": 1,
       "alignment": 350,
-      "hp_dice": "1d5+0",
-      "damage_dice": "1d11+11",
+      "hp_dice": "1d10+28",
+      "damage_dice": "1d4+1",
       "gold": 50,
-      "exp": 4,
-      "armor_class": 9,
+      "exp": 60,
+      "armor_class": 97,
       "flags": [
         "sentinel",
         "wimpy"
@@ -1447,11 +1447,11 @@
       "long_desc": "A drow commoner is here, walking around on guard duty.",
       "level": 10,
       "alignment": -1000,
-      "hp_dice": "13d1+3",
-      "damage_dice": "1d10+130",
+      "hp_dice": "10d10+136",
+      "damage_dice": "3d6+6",
       "gold": 5525,
-      "exp": 8,
-      "armor_class": 0,
+      "exp": 600,
+      "armor_class": 70,
       "flags": [
         "aggressive",
         "stay_zone",
@@ -1470,11 +1470,11 @@
       "long_desc": "A drow warrior stands here guarding his home.",
       "level": 12,
       "alignment": -1000,
-      "hp_dice": "14d1+7",
-      "damage_dice": "1d5+160",
+      "hp_dice": "12d10+160",
+      "damage_dice": "4d6+6",
       "gold": 8000,
-      "exp": 8,
-      "armor_class": 0,
+      "exp": 720,
+      "armor_class": 64,
       "flags": [
         "sentinel",
         "aggressive",
@@ -1493,11 +1493,11 @@
       "long_desc": "A drow mage is here protecting his home.",
       "level": 15,
       "alignment": -1000,
-      "hp_dice": "8d2+2",
-      "damage_dice": "1d12+190",
+      "hp_dice": "15d10+196",
+      "damage_dice": "4d7+8",
       "gold": 11500,
-      "exp": 8,
-      "armor_class": 2,
+      "exp": 900,
+      "armor_class": 55,
       "flags": [
         "special",
         "sentinel",
@@ -1517,11 +1517,11 @@
       "long_desc": "A drow priestess is here shouting orders.",
       "level": 17,
       "alignment": -1000,
-      "hp_dice": "14d1+4",
-      "damage_dice": "1d11+205",
+      "hp_dice": "17d10+220",
+      "damage_dice": "5d7+7",
       "gold": 16000,
-      "exp": 8,
-      "armor_class": 0,
+      "exp": 1020,
+      "armor_class": 49,
       "flags": [
         "special",
         "sentinel",
@@ -1541,11 +1541,11 @@
       "long_desc": "A drow master stares at you angrily.",
       "level": 21,
       "alignment": -1000,
-      "hp_dice": "18d1+4",
-      "damage_dice": "1d12+248",
+      "hp_dice": "21d10+268",
+      "damage_dice": "6d8+6",
       "gold": 35000,
-      "exp": 8,
-      "armor_class": 0,
+      "exp": 1260,
+      "armor_class": 37,
       "flags": [
         "sentinel",
         "aggressive",
@@ -1565,11 +1565,11 @@
       "long_desc": "A drow weaponsmaster is here shadow boxing.",
       "level": 23,
       "alignment": -1000,
-      "hp_dice": "12d2+4",
-      "damage_dice": "1d25+405",
+      "hp_dice": "23d10+292",
+      "damage_dice": "6d8+9",
       "gold": 47500,
-      "exp": 8,
-      "armor_class": -2,
+      "exp": 1380,
+      "armor_class": 31,
       "flags": [
         "sentinel",
         "aggressive",
@@ -1580,7 +1580,46 @@
       "equipment": {
         "wield": 5105,
         "hands": 5109
-      }
+      },
+      "loot_table": [
+        {
+          "vnum": 5117,
+          "chance": 20
+        },
+        {
+          "vnum": 5118,
+          "chance": 20
+        },
+        {
+          "vnum": 5119,
+          "chance": 20
+        },
+        {
+          "vnum": 5120,
+          "chance": 20
+        },
+        {
+          "vnum": 5121,
+          "chance": 20
+        },
+        {
+          "vnum": 5122,
+          "chance": 20
+        },
+        {
+          "vnum": 5123,
+          "chance": 20
+        },
+        {
+          "vnum": 5124,
+          "chance": 20
+        },
+        {
+          "vnum": 5125,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
     },
     "5107": {
       "vnum": 5107,
@@ -1589,11 +1628,11 @@
       "long_desc": "The Matron Mother of the house is standing here.",
       "level": 24,
       "alignment": -1000,
-      "hp_dice": "15d2+4",
-      "damage_dice": "1d50+450",
+      "hp_dice": "24d10+304",
+      "damage_dice": "7d8+6",
       "gold": 80000,
-      "exp": 8,
-      "armor_class": -3,
+      "exp": 1440,
+      "armor_class": 28,
       "flags": [
         "special",
         "sentinel",
@@ -1608,7 +1647,46 @@
       },
       "inventory": [
         5114
-      ]
+      ],
+      "loot_table": [
+        {
+          "vnum": 5117,
+          "chance": 20
+        },
+        {
+          "vnum": 5118,
+          "chance": 20
+        },
+        {
+          "vnum": 5119,
+          "chance": 20
+        },
+        {
+          "vnum": 5120,
+          "chance": 20
+        },
+        {
+          "vnum": 5121,
+          "chance": 20
+        },
+        {
+          "vnum": 5122,
+          "chance": 20
+        },
+        {
+          "vnum": 5123,
+          "chance": 20
+        },
+        {
+          "vnum": 5124,
+          "chance": 20
+        },
+        {
+          "vnum": 5125,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
     },
     "5108": {
       "vnum": 5108,
@@ -1617,11 +1695,11 @@
       "long_desc": "The Matron Mother of the first house is waiting for you.",
       "level": 25,
       "alignment": -1000,
-      "hp_dice": "12d2+24",
-      "damage_dice": "5d10+350",
+      "hp_dice": "25d10+316",
+      "damage_dice": "7d8+8",
       "gold": 95000,
-      "exp": 8,
-      "armor_class": -4,
+      "exp": 1500,
+      "armor_class": 25,
       "flags": [
         "special",
         "sentinel",
@@ -1632,7 +1710,46 @@
       "equipment": {
         "wield": 5107,
         "finger1": 5112
-      }
+      },
+      "loot_table": [
+        {
+          "vnum": 5117,
+          "chance": 20
+        },
+        {
+          "vnum": 5118,
+          "chance": 20
+        },
+        {
+          "vnum": 5119,
+          "chance": 20
+        },
+        {
+          "vnum": 5120,
+          "chance": 20
+        },
+        {
+          "vnum": 5121,
+          "chance": 20
+        },
+        {
+          "vnum": 5122,
+          "chance": 20
+        },
+        {
+          "vnum": 5123,
+          "chance": 20
+        },
+        {
+          "vnum": 5124,
+          "chance": 20
+        },
+        {
+          "vnum": 5125,
+          "chance": 20
+        }
+      ],
+      "loot_chance": 100
     },
     "5109": {
       "vnum": 5109,
@@ -1641,11 +1758,11 @@
       "long_desc": "The drider looks at you viciously while it draws its sword.",
       "level": 8,
       "alignment": -1000,
-      "hp_dice": "2d6+2",
-      "damage_dice": "1d6+195",
+      "hp_dice": "8d10+112",
+      "damage_dice": "3d5+5",
       "gold": 2100,
-      "exp": 8,
-      "armor_class": 2,
+      "exp": 480,
+      "armor_class": 76,
       "flags": [
         "aggressive",
         "stay_zone",
@@ -1661,11 +1778,11 @@
       "long_desc": "The drider looks at you viciously while it draws its sword.",
       "level": 11,
       "alignment": -1000,
-      "hp_dice": "3d6+8",
-      "damage_dice": "1d6+295",
+      "hp_dice": "11d10+148",
+      "damage_dice": "3d6+8",
       "gold": 3500,
-      "exp": 8,
-      "armor_class": 0,
+      "exp": 660,
+      "armor_class": 67,
       "flags": [
         "sentinel",
         "aggressive",
@@ -1682,11 +1799,11 @@
       "long_desc": "A yochlol forms out of a swirling mist...",
       "level": 23,
       "alignment": -1000,
-      "hp_dice": "15d2+30",
-      "damage_dice": "25d2+450",
+      "hp_dice": "23d10+292",
+      "damage_dice": "6d8+9",
       "gold": 70000,
-      "exp": 8,
-      "armor_class": -6,
+      "exp": 1380,
+      "armor_class": 31,
       "flags": [
         "sentinel",
         "aware",
@@ -1878,6 +1995,182 @@
       "item_type": "money",
       "weight": 10,
       "value": 17645
+    },
+    "5117": {
+      "vnum": 5117,
+      "name": "drow warblade",
+      "short_desc": "a drow warblade",
+      "room_desc": "A drow warblade lies here.",
+      "description": "A dark blade.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "slash",
+      "damage_dice": "2d6+4",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 3
+        }
+      ],
+      "set_id": 51
+    },
+    "5118": {
+      "vnum": 5118,
+      "name": "nightward shield",
+      "short_desc": "a nightward shield",
+      "room_desc": "A nightward shield lies here.",
+      "description": "A paladin's shield.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "shield",
+      "armor_bonus": 3,
+      "affects": [
+        {
+          "type": "wis",
+          "value": 1
+        }
+      ],
+      "set_id": 51
+    },
+    "5119": {
+      "vnum": 5119,
+      "name": "umbra sigil",
+      "short_desc": "an umbra sigil",
+      "room_desc": "An umbra sigil lies here.",
+      "description": "A deathknight's sigil.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "neck1",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 3
+        }
+      ],
+      "set_id": 51
+    },
+    "5120": {
+      "vnum": 5120,
+      "name": "shadow priory reliquary",
+      "short_desc": "a shadow priory reliquary",
+      "room_desc": "A shadow priory reliquary lies here.",
+      "description": "A cleric's reliquary.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "wis",
+          "value": 3
+        }
+      ],
+      "set_id": 51
+    },
+    "5121": {
+      "vnum": 5121,
+      "name": "gloomstone focus",
+      "short_desc": "a gloomstone focus",
+      "room_desc": "A gloomstone focus lies here.",
+      "description": "A mage's focus.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "hold",
+      "affects": [
+        {
+          "type": "int",
+          "value": 3
+        }
+      ],
+      "set_id": 51
+    },
+    "5122": {
+      "vnum": 5122,
+      "name": "whisperstring lute",
+      "short_desc": "a whisperstring lute",
+      "room_desc": "A whisperstring lute lies here.",
+      "description": "A bard's lute.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "mace",
+      "damage_dice": "1d6+2",
+      "affects": [
+        {
+          "type": "cha",
+          "value": 3
+        }
+      ],
+      "set_id": 51
+    },
+    "5123": {
+      "vnum": 5123,
+      "name": "spiderfang dagger",
+      "short_desc": "a spiderfang dagger",
+      "room_desc": "A spiderfang dagger lies here.",
+      "description": "A rogue's dagger.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "pierce",
+      "damage_dice": "1d6+3",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 3
+        },
+        {
+          "type": "hitroll",
+          "value": 1
+        }
+      ],
+      "set_id": 51
+    },
+    "5124": {
+      "vnum": 5124,
+      "name": "darkleaf bow",
+      "short_desc": "a darkleaf bow",
+      "room_desc": "A darkleaf bow lies here.",
+      "description": "A ranger's bow.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "wield",
+      "weapon_type": "pierce",
+      "damage_dice": "1d6+3",
+      "affects": [
+        {
+          "type": "dex",
+          "value": 3
+        }
+      ],
+      "set_id": 51
+    },
+    "5125": {
+      "vnum": 5125,
+      "name": "shadowveil cloak",
+      "short_desc": "a shadowveil cloak",
+      "room_desc": "A shadowveil cloak lies here.",
+      "description": "A shadowy cloak.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 4000,
+      "wear_slot": "about",
+      "armor_bonus": 2,
+      "affects": [
+        {
+          "type": "shadow_resist",
+          "value": 5
+        }
+      ],
+      "set_id": 51
     }
   }
 }

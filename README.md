@@ -50,13 +50,22 @@ combat, NPCs, and more!
   - The Dragon's Domain (end-game content with ancient dragon)
   - Limbo (admin zone)
 - Automatic zone resets for mob respawning
-- Day/night cycle (planned)
+- Day/night cycle with nighttime darkness
 
 ### Items & Equipment
 - 19 equipment slots (weapon, armor, jewelry, etc.)
 - Weapon types with different damage
 - Magical items with stat bonuses
 - Containers, food, drinks, potions, scrolls
+
+### Quest System
+- Quest givers with kill, collect, talk, and visit objectives
+- Quest log with accept/abandon tracking and rewards
+
+### Crafting & Gathering
+- Gathering skills: mining, herbalism, skinning
+- Crafting skills: blacksmithing, alchemy, leatherworking
+- Recipes that combine materials into useful items
 
 ### Communication
 - Say, Shout, Gossip, Tell (private message)
@@ -119,6 +128,7 @@ Or use a dedicated MUD client like:
 | `who` | List online players |
 | `where` | Find players/mobs in zone |
 | `consider` | Gauge enemy difficulty |
+| `time` | View the current in-game time |
 
 ### Combat
 | Command | Description |
@@ -129,6 +139,13 @@ Or use a dedicated MUD client like:
 | `bash` | Use bash skill |
 | `backstab <target>` | Sneak attack |
 | `cast <spell> [target]` | Cast a spell |
+
+### Pets & Summons
+| Command | Description |
+|---------|-------------|
+| `pet` | Show your current pets and companions |
+| `dismiss` | Dismiss temporary summoned pets |
+| `raise <type>` | Necromancer: raise an undead servant (warrior/healer/caster/rogue) |
 
 ### Items
 | Command | Description |
@@ -157,6 +174,18 @@ Or use a dedicated MUD client like:
 | `sleep` | Sleep (fastest regen) |
 | `wake` | Wake up |
 | `stand` | Stand up |
+
+### Quests & Crafting
+| Command | Description |
+|---------|-------------|
+| `quest list` | List available quests from nearby NPCs |
+| `quest accept <id>` | Accept a quest |
+| `quest log` | View active quests |
+| `quest abandon <id>` | Abandon a quest |
+| `craft list` | List known recipes |
+| `craft <recipe>` | Craft an item |
+| `gather` | Gather nearby materials |
+| `talk <npc>` | Talk to an NPC (quest givers) |
 
 ### Other
 | Command | Description |

@@ -6,7 +6,7 @@
     "0": {
       "vnum": 0,
       "name": "The Void",
-      "description": "You don't think that you are not floating in nothing.  You can see a strange portal located above you.",
+      "description": "You don't think that you are not floating in nothing. Visible is a\nstrange portal located above. The cobblestones are worn smooth by\ncountless feet. Buildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [
         "indoors"
@@ -21,7 +21,7 @@
     "1": {
       "vnum": 1,
       "name": "Limbo",
-      "description": "You are floating in a formless void, detached from all sensation of physical matter, surrounded by swirling glowing light, which fades into the relative darkness around you without any trace of edges or shadow.    There is a \"No Tipping\" notice pinned to the darkness.",
+      "description": "The void stretches in a formless void, detached from all sensation of\nphysical matter, surrounded by swirling glowing light, which fades into\nthe relative darkness around without any trace of edges or shadow. There\nis a \"No Tipping\" notice pinned to the darkness. Buildings crowd\ntogether on all sides. The sounds of city life echo around.",
       "sector_type": "city",
       "flags": [
         "indoors"
@@ -37,7 +37,7 @@
     "3": {
       "vnum": 3,
       "name": "A Totally Empty Room",
-      "description": "The walls are completely bare... nothing at all in the room. How... utterly bizarre and completely weird.  There is a strange portal just above you, and it almost looks as if there is some sort of room above you.",
+      "description": "The walls are completely bare... nothing at all in the room. How...\nutterly bizarre and completely weird. There is a strange portal just\nabove, and it almost looks as if there is some sort of room above\nyou. The ceiling hangs low overhead. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "indoors",
@@ -59,10 +59,10 @@
       "long_desc": "Puff the Fractal Dragon is here, contemplating a higher reality.",
       "level": 26,
       "alignment": 1000,
-      "hp_dice": "4d6+3",
-      "damage_dice": "5d10+550",
+      "hp_dice": "6d10+650",
+      "damage_dice": "3d6+46",
       "gold": 82500,
-      "exp": 8,
+      "exp": 1036,
       "armor_class": -1,
       "flags": [
         "special",
@@ -81,11 +81,11 @@
       "long_desc": "A boring old clone is standing here.",
       "level": 1,
       "alignment": 0,
-      "hp_dice": "1d1+1",
-      "damage_dice": "1d1+1",
+      "hp_dice": "1d10+28",
+      "damage_dice": "1d4+1",
       "gold": 0,
-      "exp": 8,
-      "armor_class": 0,
+      "exp": 60,
+      "armor_class": 97,
       "flags": [
         "sentinel"
       ],
@@ -98,11 +98,11 @@
       "long_desc": "A strange humanoid is here.  How odd, its flesh seems to be falling off!",
       "level": 1,
       "alignment": 0,
-      "hp_dice": "1d1+1",
-      "damage_dice": "1d1+1",
+      "hp_dice": "1d10+28",
+      "damage_dice": "1d4+1",
       "gold": 0,
-      "exp": 8,
-      "armor_class": 0,
+      "exp": 60,
+      "armor_class": 97,
       "flags": [
         "sentinel"
       ],
@@ -115,11 +115,11 @@
       "long_desc": "An amorphous shape is floating in the air.",
       "level": 1,
       "alignment": 0,
-      "hp_dice": "1d1+1",
-      "damage_dice": "1d1+1",
+      "hp_dice": "1d10+28",
+      "damage_dice": "1d4+1",
       "gold": 0,
-      "exp": 8,
-      "armor_class": 0,
+      "exp": 60,
+      "armor_class": 97,
       "flags": [
         "sentinel"
       ],
@@ -132,11 +132,11 @@
       "long_desc": "An elemental is standing patiently here.",
       "level": 1,
       "alignment": 0,
-      "hp_dice": "1d1+1",
-      "damage_dice": "1d1+1",
+      "hp_dice": "1d10+28",
+      "damage_dice": "1d4+1",
       "gold": 0,
-      "exp": 8,
-      "armor_class": 0,
+      "exp": 60,
+      "armor_class": 97,
       "flags": [
         "sentinel"
       ],

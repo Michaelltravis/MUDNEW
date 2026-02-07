@@ -1,0 +1,318 @@
+{
+  "chain_id": "tutorial",
+  "name": "Path of the Adventurer",
+  "description": "Master the basics and begin your journey as a hero of the Realms.",
+  "starting_quest": "tutorial_1_awakening",
+  "auto_start_level": 1,
+  "quests": {
+    "tutorial_1_awakening": {
+      "name": "Awakening",
+      "description": "You've arrived in Midgaard, the greatest city in the Realms. Sage Aldric at the Temple can help you find your footing.",
+      "type": "tutorial",
+      "level_min": 1,
+      "level_max": 5,
+      "quest_giver": 3200,
+      "objectives": [
+        {
+          "type": "talk",
+          "description": "Speak with Sage Aldric at the Temple",
+          "target": "3200",
+          "required": 1
+        }
+      ],
+      "rewards": {"exp": 50, "gold": 10},
+      "next_quest": "tutorial_2_look_around",
+      "dialogue": {
+        "start": {
+          "text": "Ah, a new arrival! Welcome to Midgaard, young one. I am Sage Aldric, and I've guided many adventurers on their first steps.\n\nThe world can be dangerous, but knowledge is your greatest weapon. Let me teach you the ways of survival.\n\nFirst, you must learn to observe your surroundings. Type 'look' to see where you are, or 'look <object>' to examine something specific.",
+          "choices": [
+            {"text": "I'm ready to learn.", "next_node": "accept"},
+            {"text": "Tell me more about Midgaard.", "next_node": "about_midgaard"},
+            {"text": "What dangers should I know about?", "next_node": "about_dangers"}
+          ]
+        },
+        "about_midgaard": {
+          "text": "Midgaard is the heart of civilization in these lands. Founded centuries ago, it stands as a beacon of hope against the darkness.\n\nThe Temple where we stand is sacred ground - a place of healing and safety. No violence is permitted here.\n\nBeyond these walls, you'll find shops, taverns, guilds, and the great square where adventurers gather.",
+          "choices": [
+            {"text": "I'm ready to learn.", "next_node": "accept"},
+            {"text": "What dangers should I know about?", "next_node": "about_dangers"}
+          ]
+        },
+        "about_dangers": {
+          "text": "The world outside these walls is perilous. Rats infest the sewers beneath the city. Goblins raid from Miden'Nir. Orcs mass in the dark forests.\n\nAnd those are merely the lesser threats. Dragons, demons, and ancient evils stir in the forgotten places.\n\nBut fear not - with training and courage, you can face any challenge.",
+          "choices": [
+            {"text": "I'm ready to begin my training.", "next_node": "accept"}
+          ]
+        },
+        "accept": {
+          "text": "Excellent! Your first lesson: awareness.\n\nExplore the Temple and the square outside. Use 'look' to examine your surroundings and 'exits' to see where you can go.\n\nWhen you've looked around, return to me.",
+          "effects": [{"type": "start_quest"}],
+          "end": true
+        }
+      }
+    },
+
+    "tutorial_2_look_around": {
+      "name": "Eyes Open",
+      "description": "Learn to observe your surroundings by exploring the Temple area.",
+      "type": "tutorial",
+      "level_min": 1,
+      "level_max": 5,
+      "quest_giver": 3200,
+      "objectives": [
+        {
+          "type": "visit",
+          "description": "Visit the Temple Square",
+          "target": "3005",
+          "required": 1
+        },
+        {
+          "type": "visit",
+          "description": "Visit the Temple Altar",
+          "target": "3054",
+          "required": 1
+        }
+      ],
+      "rewards": {"exp": 75, "gold": 15},
+      "next_quest": "tutorial_3_know_thyself",
+      "completion_dialogue": {
+        "text": "Well done! You're learning quickly.\n\nRemember: 'look' shows your surroundings, 'look <direction>' peeks that way, and 'look <thing>' examines objects or creatures.\n\nNow, let's learn about yourself."
+      }
+    },
+
+    "tutorial_3_know_thyself": {
+      "name": "Know Thyself",
+      "description": "Learn about your character's abilities and equipment.",
+      "type": "tutorial",
+      "level_min": 1,
+      "level_max": 5,
+      "quest_giver": 3200,
+      "objectives": [
+        {
+          "type": "command",
+          "description": "Check your score (type 'score')",
+          "target": "score",
+          "required": 1
+        },
+        {
+          "type": "command",
+          "description": "View your equipment (type 'equipment')",
+          "target": "equipment",
+          "required": 1
+        },
+        {
+          "type": "command",
+          "description": "Check your inventory (type 'inventory')",
+          "target": "inventory",
+          "required": 1
+        }
+      ],
+      "rewards": {"exp": 100, "gold": 20},
+      "next_quest": "tutorial_4_skills",
+      "dialogue": {
+        "start": {
+          "text": "Every adventurer must know their own strengths and limitations.\n\nType 'score' to see your vital statistics - health, mana, and attributes.\nType 'equipment' to see what you're wearing and wielding.\nType 'inventory' to see what you're carrying.\n\nTry each of these commands, then return to me.",
+          "effects": [{"type": "start_quest"}],
+          "end": true
+        }
+      },
+      "completion_dialogue": {
+        "text": "Excellent! Understanding your capabilities is crucial.\n\nYour HP (hit points) keeps you alive - when it reaches zero, you die. Your Mana powers spells and abilities. Your Move determines how far you can travel.\n\nNow, let's discuss the skills of your chosen profession."
+      }
+    },
+
+    "tutorial_4_skills": {
+      "name": "The Way of Your Class",
+      "description": "Learn about your class abilities and how to improve them.",
+      "type": "tutorial",
+      "level_min": 1,
+      "level_max": 5,
+      "quest_giver": 3200,
+      "objectives": [
+        {
+          "type": "command",
+          "description": "View your skills (type 'skills')",
+          "target": "skills",
+          "required": 1
+        },
+        {
+          "type": "command",
+          "description": "View available spells (type 'spells')",
+          "target": "spells",
+          "required": 1
+        }
+      ],
+      "rewards": {"exp": 100, "gold": 25, "practices": 2},
+      "next_quest": "tutorial_5_combat",
+      "dialogue": {
+        "start": {
+          "text": "Each class has unique abilities. Warriors excel in martial combat. Mages wield arcane power. Thieves strike from shadows.\n\nType 'skills' to see your combat abilities and their proficiency.\nType 'spells' to see magical abilities you've learned.\n\nAs you gain levels, visit your guildmaster to 'practice' and improve these abilities.\n\nReturn when you've reviewed your capabilities.",
+          "effects": [{"type": "start_quest"}],
+          "end": true
+        }
+      },
+      "completion_dialogue": {
+        "text": "Good! I've granted you some practice sessions as a reward. Find your guildmaster to improve your skills.\n\nNow comes the true test - combat."
+      }
+    },
+
+    "tutorial_5_combat": {
+      "name": "Blood and Steel",
+      "description": "Learn the art of combat by defeating a training dummy.",
+      "type": "tutorial",
+      "level_min": 1,
+      "level_max": 5,
+      "quest_giver": 3200,
+      "objectives": [
+        {
+          "type": "visit",
+          "description": "Go to the Training Grounds (south of Temple Square)",
+          "target": "3008",
+          "required": 1
+        },
+        {
+          "type": "kill",
+          "description": "Defeat a training dummy",
+          "target": "dummy",
+          "required": 1
+        }
+      ],
+      "rewards": {"exp": 150, "gold": 30},
+      "next_quest": "tutorial_6_healing",
+      "dialogue": {
+        "start": {
+          "text": "Theory is nothing without practice. South of the Temple Square, you'll find the Training Grounds where warriors hone their skills.\n\nTo attack, type 'kill <target>' or simply 'k <target>'. Combat continues automatically until one of you falls or you 'flee'.\n\nDefeat a training dummy, then return. And don't worry - the dummies can't hurt you much.",
+          "effects": [{"type": "start_quest"}],
+          "end": true
+        }
+      },
+      "completion_dialogue": {
+        "text": "Victory! You've drawn first blood - well, sawdust.\n\nIn real combat, enemies will fight back fiercely. Watch your HP closely. When it drops low, 'flee' to escape and recover.\n\nSpeaking of recovery..."
+      }
+    },
+
+    "tutorial_6_healing": {
+      "name": "The Art of Survival",
+      "description": "Learn how to heal and recover from injuries.",
+      "type": "tutorial",
+      "level_min": 1,
+      "level_max": 5,
+      "quest_giver": 3200,
+      "objectives": [
+        {
+          "type": "command",
+          "description": "Rest to recover (type 'rest')",
+          "target": "rest",
+          "required": 1
+        },
+        {
+          "type": "command",
+          "description": "Stand back up (type 'stand')",
+          "target": "stand",
+          "required": 1
+        },
+        {
+          "type": "use_item",
+          "description": "Eat some food (type 'eat bread')",
+          "target": "bread",
+          "required": 1
+        }
+      ],
+      "rewards": {"exp": 100, "gold": 25, "items": [{"vnum": 1, "count": 3}, {"vnum": 2, "count": 1}]},
+      "next_quest": "tutorial_7_shopping",
+      "dialogue": {
+        "start": {
+          "text": "Combat takes its toll. You must learn to recover.\n\n'rest' - Sit down to recover HP and mana faster\n'sleep' - Sleep to recover even faster (but you can't see danger coming!)\n'stand' - Get back on your feet\n\nFood and drink also restore you. Type 'eat bread' to eat, 'drink waterskin' to drink.\n\nTry resting, standing, and eating something.",
+          "effects": [{"type": "start_quest"}],
+          "end": true
+        }
+      },
+      "completion_dialogue": {
+        "text": "Good! Always keep food and water with you. Running out in a dangerous place can be fatal.\n\nThe Temple also offers healing - type 'heal' when near the altar to be restored for a small donation.\n\nNow, let's learn about commerce."
+      }
+    },
+
+    "tutorial_7_shopping": {
+      "name": "Tools of the Trade",
+      "description": "Learn to buy and sell at shops.",
+      "type": "tutorial",
+      "level_min": 1,
+      "level_max": 5,
+      "quest_giver": 3200,
+      "objectives": [
+        {
+          "type": "visit",
+          "description": "Visit the Weapon Shop",
+          "target": "3031",
+          "required": 1
+        },
+        {
+          "type": "command",
+          "description": "View shop inventory (type 'list')",
+          "target": "list",
+          "required": 1
+        },
+        {
+          "type": "buy",
+          "description": "Buy any item from a shop",
+          "target": "any",
+          "required": 1
+        }
+      ],
+      "rewards": {"exp": 125, "gold": 100},
+      "next_quest": "tutorial_8_exploration",
+      "dialogue": {
+        "start": {
+          "text": "Gold makes the world turn. Every adventurer needs supplies.\n\nFind the Weapon Shop - it's near the Temple Square. Once there:\n\n'list' - See what's for sale\n'buy <item>' - Purchase something\n'sell <item>' - Sell from your inventory\n'value <item>' - See what a shop will pay\n\nI've given you extra gold. Buy something useful!",
+          "effects": [{"type": "start_quest"}],
+          "end": true
+        }
+      },
+      "completion_dialogue": {
+        "text": "Excellent! Better equipment can mean the difference between life and death.\n\nDon't forget: you can 'wear' armor, 'wield' weapons, and 'remove' equipment. Check 'equipment' to see what you have on.\n\nYou're nearly ready for true adventure. One final lesson..."
+      }
+    },
+
+    "tutorial_8_exploration": {
+      "name": "Into the Unknown",
+      "description": "Venture beyond the city and prove yourself ready for adventure.",
+      "type": "tutorial",
+      "level_min": 1,
+      "level_max": 5,
+      "quest_giver": 3200,
+      "objectives": [
+        {
+          "type": "visit",
+          "description": "Visit the South Gate of Midgaard",
+          "target": "3053",
+          "required": 1
+        },
+        {
+          "type": "kill",
+          "description": "Defeat a creature outside the city",
+          "target": "any_mob",
+          "required": 1
+        },
+        {
+          "type": "visit",
+          "description": "Return to Sage Aldric",
+          "target": "3001",
+          "required": 1
+        }
+      ],
+      "rewards": {"exp": 300, "gold": 150, "items": [{"vnum": 3099, "count": 1}], "title": "the Initiated"},
+      "next_quest": null,
+      "dialogue": {
+        "start": {
+          "text": "You've learned much, but true wisdom comes from experience.\n\nVenture to the South Gate of Midgaard and step outside the city walls. Defeat any creature you encounter, then return to me.\n\nUse 'map' to see the world, 'where' to see who's nearby, and 'recall' if you get lost - it will bring you back to the Temple.\n\nGo forth, adventurer. Prove yourself!",
+          "effects": [{"type": "start_quest"}],
+          "end": true
+        }
+      },
+      "completion_dialogue": {
+        "text": "You've returned victorious! I knew you had the spirit of a true adventurer.\n\nYou are now ready to forge your own path. Here are your rewards - and a title to mark your achievement.\n\nRemember what I've taught you:\n• 'help <topic>' for guidance on any subject\n• 'who' to see other adventurers\n• 'quests' to find more adventures\n• 'recall' to return here if lost\n\nMay fortune favor the bold. Go forth, hero, and write your legend!",
+        "effects": [{"type": "complete_chain", "chain": "tutorial"}]
+      }
+    }
+  }
+}

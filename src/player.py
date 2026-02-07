@@ -51,6 +51,7 @@ class Character:
         self.armor_class = 100
         self.hitroll = 0
         self.damroll = 0
+        self.damage_reduction = 0  # % reduction from affects
         
         # State
         self.position = 'standing'
@@ -71,35 +72,115 @@ class Character:
     @property
     def is_fighting(self):
         return self.fighting is not None
+
+    @property
+    def is_immortal(self) -> bool:
+        """Check if this player has immortal/admin privileges."""
+        if not self.account_name:
+            return False
+        try:
+            from accounts import Account
+            account = Account.load(self.account_name)
+            return account and account.is_admin
+        except Exception:
+            return False
         
+    def get_soulstone_bonus_int(self) -> int:
+        """Return INT bonus from a held soulstone (if any)."""
+        try:
+            stone = self.equipment.get('hold') if hasattr(self, 'equipment') else None
+            if stone and (getattr(stone, 'is_soulstone', False) or ('soulstone' in getattr(stone, 'flags', set()))):
+                return int(getattr(stone, 'soulstone_bonus_int', 3))
+        except Exception:
+            pass
+        return 0
+
+    def get_paladin_auras(self) -> set:
+        """Return active paladin auras affecting this character (nearby allies)."""
+        auras = set()
+        try:
+            if self.room:
+                for char in getattr(self.room, 'characters', []):
+                    if hasattr(char, 'char_class') and str(char.char_class).lower() == 'paladin':
+                        aura = getattr(char, 'active_aura', None)
+                        if aura:
+                            auras.add(aura)
+        except Exception:
+            pass
+        return auras
+
     def get_hit_bonus(self):
         """Calculate total hit bonus (to hit / THAC0)."""
         bonus = self.hitroll
+        
+        # Equipment hitroll bonus
+        bonus += self.get_equipment_bonus('hitroll')
 
         # DEX is primary factor for accuracy (dodging, precision)
-        bonus += (self.dex - 10) // 2
+        effective_dex = self.dex + self.get_equipment_bonus('dex')
+        bonus += (effective_dex - 10) // 2
 
         # STR provides minor bonus (raw power helping land blows)
-        bonus += (self.str - 10) // 4
+        effective_str = self.str + self.get_equipment_bonus('str')
+        bonus += (effective_str - 10) // 4
 
         # INT provides bonus for tactical awareness (mainly for casters)
         if hasattr(self, 'char_class'):
             if self.char_class in ['Mage', 'Necromancer', 'Cleric']:
-                bonus += (self.int - 10) // 3
+                effective_int = self.int + self.get_equipment_bonus('int') + self.get_soulstone_bonus_int()
+                bonus += (effective_int - 10) // 3
+
+        # Bard song bonuses
+        if hasattr(self, 'song_bonuses') and self.song_bonuses:
+            bonus += self.song_bonuses.get('hitroll', 0)
+            bonus += self.song_bonuses.get('warcry_hitroll', 0)  # Warrior war cry
+
+        # Bard song debuffs (for mobs)
+        if hasattr(self, 'song_debuffs') and self.song_debuffs:
+            bonus += self.song_debuffs.get('hitroll', 0)  # Negative value
+
+        # Warrior precision stance hit bonus
+        if hasattr(self, 'stance') and self.stance == 'precision':
+            bonus += 4
+
+        # Talent bonuses
+        try:
+            from talents import TalentManager
+            bonus += int(TalentManager.get_talent_bonus(self, 'stat_bonus', 'hit_chance'))
+            # Ranged hit bonus when using bows/crossbows
+            weapon = self.equipment.get('wield') if hasattr(self, 'equipment') else None
+            if weapon and getattr(weapon, 'weapon_type', '') in ('bow', 'crossbow', 'ranged'):
+                bonus += int(TalentManager.get_talent_bonus(self, 'stat_bonus', 'ranged_hit'))
+        except Exception:
+            pass
 
         return bonus
 
     def get_damage_bonus(self):
         """Calculate total damage bonus."""
         bonus = self.damroll
+        
+        # Equipment damroll bonus
+        bonus += self.get_equipment_bonus('damroll')
 
         # STR is primary factor for damage
-        bonus += (self.str - 10) // 2
+        effective_str = self.str + self.get_equipment_bonus('str')
+        bonus += (effective_str - 10) // 2
 
         # DEX provides minor damage bonus (precision strikes for finesse classes)
         if hasattr(self, 'char_class'):
             if self.char_class in ['Thief', 'Assassin', 'Ranger']:
-                bonus += (self.dex - 10) // 5
+                effective_dex = self.dex + self.get_equipment_bonus('dex')
+                bonus += (effective_dex - 10) // 5
+
+        # Bard song bonuses
+        if hasattr(self, 'song_bonuses') and self.song_bonuses:
+            bonus += self.song_bonuses.get('damroll', 0)
+            bonus += self.song_bonuses.get('warcry_damroll', 0)  # Warrior war cry
+
+        # Bard song debuffs (for mobs)
+        if hasattr(self, 'song_debuffs') and self.song_debuffs:
+            bonus += self.song_debuffs.get('damroll', 0)  # Negative value
 
         return bonus
         
@@ -112,14 +193,80 @@ class Character:
         for slot, item in self.equipment.items():
             if item and hasattr(item, 'armor'):
                 ac -= item.armor
+        
+        # Warrior stance AC modifiers
+        if hasattr(self, 'stance'):
+            if self.stance == 'berserk':
+                ac += 20  # Worse AC (higher number = worse)
+            elif self.stance == 'defensive':
+                ac -= 30  # Better AC (lower number = better)
+
+        # Paladin Devotion Aura (nearby allies)
+        if 'devotion' in self.get_paladin_auras():
+            ac -= 15
+        
+        # Equipment affect bonuses for armor
+        ac += self.get_equipment_bonus('armor')
                 
         return max(ac, -100)  # Cap at -100
+
+    def get_equipment_bonus(self, stat: str) -> int:
+        """Get total bonus for a stat from all equipped items + set bonuses."""
+        bonus = 0
+        for slot, item in getattr(self, 'equipment', {}).items():
+            if item and hasattr(item, 'affects') and item.affects:
+                for affect in item.affects:
+                    if isinstance(affect, dict):
+                        # Newer format: affects list with type/value
+                        if affect.get('type') == stat:
+                            bonus += affect.get('value', 0)
+                        # Legacy format: modify_stat + applies_to
+                        if affect.get('type') == 'modify_stat' and affect.get('applies_to') == stat:
+                            bonus += affect.get('value', 0)
+                    elif hasattr(affect, 'type') and hasattr(affect, 'applies_to'):
+                        if affect.type == 'modify_stat' and affect.applies_to == stat:
+                            bonus += getattr(affect, 'value', 0)
+        # Add set bonuses
+        bonus += self.get_set_bonus(stat)
+        return bonus
+
+    def get_set_bonus(self, stat: str) -> int:
+        """Get set bonuses for a given stat."""
+        try:
+            from sets import get_set_bonus
+        except Exception:
+            return 0
+        
+        # Count equipped pieces by set_id
+        set_counts = {}
+        for slot, item in getattr(self, 'equipment', {}).items():
+            if item and getattr(item, 'set_id', None):
+                set_id = item.set_id
+                if isinstance(set_id, str) and set_id.isdigit():
+                    set_id = int(set_id)
+                set_counts[set_id] = set_counts.get(set_id, 0) + 1
+        
+        total = 0
+        for set_id, pieces in set_counts.items():
+            # always-on bonuses
+            bonuses = get_set_bonus(set_id, pieces, in_zone=False)
+            total += bonuses.get(stat, 0)
+            # in-zone bonuses
+            if self.room and self.room.zone and getattr(self.room.zone, 'number', None) == set_id:
+                bonuses_in = get_set_bonus(set_id, pieces, in_zone=True)
+                total += bonuses_in.get(stat, 0)
+        return total
+
+    def get_effective_stat(self, stat: str) -> int:
+        """Get effective stat value including equipment bonuses."""
+        base = getattr(self, stat, 0)
+        return base + self.get_equipment_bonus(stat)
 
 
 class Player(Character):
     """Player character class."""
     
-    def __init__(self, world: 'World'):
+    def __init__(self, world: 'World' = None):
         super().__init__()
         self.world = world
         self.config = Config()
@@ -127,7 +274,9 @@ class Player(Character):
         
         # Player-specific attributes
         self.password_hash = ""
+        self.account_name = None  # Link to account for multi-character
         self.race = "human"
+        self.sex = "neutral"  # male, female, or neutral
         self.char_class = "warrior"
         self.title = "the Adventurer"
         
@@ -140,11 +289,17 @@ class Player(Character):
         # Skills and spells
         self.skills = {}
         self.spells = {}
+        self.talents = {}  # Talent tree points
         
         # Quest tracking
         self.quests_completed = []
         self.quest_flags = {}
+        self.quest_chains = {}  # chain_id -> {stage, completed, choices, history}
+        self.dialogue_state = {}  # npc_vnum -> dialogue node id
         self.active_quests = []  # List of ActiveQuest objects
+
+        # Procedural dungeon tracking
+        self.active_dungeon = None
 
         # Group/following
         self.group = None  # Group object if in a group
@@ -157,15 +312,55 @@ class Player(Character):
         self.last_command = ""  # For ! repeat
         self.custom_aliases = {}  # Personal alias system
         self.target = None  # Current combat target for targeting system
+        self.target_labels = {}  # Label system: {"DEAD": character_obj, "TANK": char_obj}
 
         # Autoloot settings
         self.autoloot = False  # Automatically loot items from corpses
-        self.autoloot_gold = True  # Automatically loot gold (default on)
+        self.autoloot_gold = True  # Automatically loot gold from corpses (default on)
+        self.autogold = True  # Automatically pick up gold from the ground
+
+        # Auto-combat settings
+        self.autoattack = False  # Automatically attack your target
+        self.autocombat = False  # Automatically use skills/spells in combat
+        self.auto_combat_settings = {
+            'heal_threshold': 35,  # Percent HP
+            'use_skills': True,
+            'use_spells': True,
+            'skill_priority': ['bash', 'kick'],
+            'spell_priority': ['heal', 'cure_critical', 'cure_serious', 'cure_light', 'fireball', 'lightning_bolt', 'magic_missile'],
+        }
+        self.auto_combat_cooldowns = {}
+        self.last_autocombat_time = 0
+
+        # Display modes
+        self.brief_mode = False  # Shorter room descriptions
+        self.compact_mode = False  # Less combat spam
+        self.autoexit = True  # Show exits on room entry
+        self.ai_chat_enabled = True  # AI NPC chat enabled
+        self.prompt_enabled = True   # Show prompt
 
         # Recall system
         self.recall_point = 3001  # Default recall point (Temple of Midgaard)
         self.autorecall_hp = None  # HP threshold for automatic recall
         self.autorecall_is_percent = False  # Whether autorecall_hp is a percentage
+
+        # Travel system
+        self.discovered_waypoints = set()
+        self.travel_cooldown_until = 0
+
+        # XP bonuses & tracking
+        self.rested_xp = 0
+        self.kill_streak = 0
+        self.best_kill_streak = 0
+        self.xp_breakdown = {
+            'kill': 0,
+            'exploration': 0,
+            'quest': 0,
+            'boss': 0,
+            'streak': 0,
+            'rested': 0,
+            'other': 0,
+        }
 
         # Hunger/Thirst System (game-time based, realistic timescales)
         self.hunger = 168  # Max 168 game hours = 1 week (0 = starving)
@@ -174,19 +369,195 @@ class Player(Character):
         self.max_thirst = 60
         self.last_hunger_hour = 0  # Track last game hour for hunger
         self.last_thirst_hour = 0  # Track last game hour for thirst
+        
+        # Banking System
+        self.bank_gold = 0  # Gold stored in the bank
 
         # Mount System
         self.mount = None  # Currently mounted creature
         self.owned_mounts = []  # List of owned mount vnums
 
+        # Companion System
+        self.companions = []
+        self.last_companion_upkeep_day = None
+
+        # Bard Performance System
+        self.performing = None          # Current song key being performed
+
+        # UI settings
+        self.ascii_ui = False           # Use ASCII-only UI (no box drawing)
+        self.performance_ticks = 0      # How long currently performing
+        self.encore_active = False      # Encore boost active
+        self.encore_ticks = 0           # Encore duration remaining
+        self.last_countersong = 0       # Cooldown tracking (timestamp)
+        self.last_encore = 0            # Cooldown tracking (timestamp)
+        self.lullaby_saves = {}         # Track cumulative lullaby penalties per target
+
+        # Warrior Rage & Stance System
+        self.rage = 0                   # Current rage (0-100)
+        self.max_rage = 100             # Maximum rage
+        self.stance = 'battle'          # Current stance: battle, berserk, defensive, precision
+        self.ignore_pain_absorb = 0     # Damage absorption remaining
+        self.ignore_pain_ticks = 0      # Duration remaining
+        self.last_warcry = 0            # Cooldown tracking (timestamp)
+        self.last_battleshout = 0       # Cooldown tracking (timestamp)
+
+        # Ranger Companion & Tracking System
+        self.animal_companion = None    # Companion Mobile object
+        self.companion_type = None      # 'wolf', 'bear', 'hawk', 'cat', 'boar'
+        self.tracking_target = None     # Mob type being tracked
+        self.tracking_vnum = None       # Specific mob vnum if tracking individual
+        self.last_scan = 0              # Cooldown tracking (timestamp)
+
+        # Paladin Aura & Holy Power System
+        self.active_aura = None         # Current aura: devotion, protection, retribution
+        self.lay_hands_used = False     # Daily lay hands (resets on rest)
+        self.last_smite = 0             # Cooldown tracking (timestamp)
+
+        # Mage Arcane Charges System
+        self.arcane_charges = 0         # Arcane charges (0-5)
+        self.max_arcane_charges = 5
+
+        # Thief Combo Point System
+        self.combo_points = 0           # Current combo points (0-5)
+        self.combo_target = None        # Target combo points are built on
+
+        # Cleric Divine Favor System
+        self.divine_favor = 0           # Divine favor points (0-100)
+        self.last_turn_undead = 0       # Cooldown tracking (timestamp)
+
         # Rent/Storage System
         self.storage = []  # Items in storage (inn locker)
         self.storage_location = None  # Room vnum where storage is located
 
+        # Achievements
+        self.achievements = {}
+        self.achievement_progress = {}
+        self.explored_rooms = set()
+        self.discovered_exits = set()
+        self.secret_rooms_found = set()
+
+        # Puzzles & collections
+        self.puzzle_state = {}
+        self.collection_progress = {}
+        self.collections_completed = []
+
+        # New Game+ tracking
+        self.ng_plus_cycle = 0
+        self.nightmare_mode = False
+
+        # Lore & Journal
+        self.discovered_lore = set()
+        self.lore_catalog = {}
+        self.journal = []
+        self.journal_keys = set()  # For fast lookup of discovered entries
+
+        # Housing
+        self.house_vnum = None
+        self.house_storage = []
+
+        # Faction reputation
+        self.reputation = {}
+        self.faction_rewards = {}
+        try:
+            from factions import FactionManager
+            FactionManager.ensure_player_reputation(self)
+        except Exception:
+            pass
+
         # Timestamps
         self.created_at = datetime.now()
         self.last_login = datetime.now()
+        self.last_logout = datetime.now()
         self.total_playtime = 0
+
+    def has_light_source(self) -> bool:
+        """Check if the player has an active light source equipped or held."""
+        # Light slot
+        light_item = self.equipment.get('light') if hasattr(self, 'equipment') else None
+        if light_item:
+            if getattr(light_item, 'covered', False):
+                return False
+            if getattr(light_item, 'light_lit', True) is False:
+                return False
+            item_type = getattr(light_item, 'item_type', None)
+            light_hours = getattr(light_item, 'light_hours', 0)
+            if item_type == 'light' or light_hours > 0 or light_hours == -1:
+                return True
+
+        # Held item can also be a light source
+        held_item = self.equipment.get('hold') if hasattr(self, 'equipment') else None
+        if held_item:
+            if getattr(held_item, 'covered', False):
+                return False
+            if getattr(held_item, 'light_lit', True) is False:
+                return False
+            item_type = getattr(held_item, 'item_type', None)
+            light_hours = getattr(held_item, 'light_hours', 0)
+            if item_type == 'light' or light_hours > 0 or light_hours == -1:
+                return True
+
+        return False
+
+    def get_perception(self) -> int:
+        """Derived perception stat for detecting stealth."""
+        wis = getattr(self, 'wis', 10)
+        dex = getattr(self, 'dex', 10)
+        level = getattr(self, 'level', 1)
+        # Base perception
+        per = int((wis + dex) / 2 + (level / 5))
+        # Race bonuses
+        try:
+            race_info = self.config.RACES.get(self.race, {})
+            per += race_info.get('perception_bonus', 0)
+        except Exception:
+            pass
+        # Class bonuses
+        if getattr(self, 'char_class', '') in ('thief', 'assassin', 'ranger'):
+            per += 2
+        return per
+
+    def get_skill_level(self, skill: str) -> int:
+        """Base skill level plus equipment bonus for that skill."""
+        base = 0
+        try:
+            base = self.skills.get(skill, 0)
+        except Exception:
+            base = 0
+        return base + self.get_equipment_bonus(skill)
+
+    def can_see_in_dark(self) -> bool:
+        """Determine if the player can see in dark conditions."""
+        if self.has_light_source():
+            return True
+
+        race_abilities = self.config.RACES.get(self.race, {}).get('abilities', [])
+        if 'infravision' in race_abilities:
+            return True
+
+        if hasattr(self, 'affect_flags') and 'infravision' in self.affect_flags:
+            return True
+
+        # Rogue night vision (thief/assassin) via high perception
+        if getattr(self, 'char_class', '') in ('thief', 'assassin'):
+            if self.get_perception() >= 14:
+                return True
+
+        return False
+
+    def add_journal_entry(self, text: str, category: str = None):
+        """Add a journal entry for the player."""
+        if not hasattr(self, 'journal') or self.journal is None:
+            self.journal = []
+        entry = {
+            'time': datetime.now().isoformat(),
+            'text': text,
+            'category': category
+        }
+        self.journal.append(entry)
+        # Keep journal size manageable
+        if len(self.journal) > 200:
+            self.journal = self.journal[-200:]
         
     @classmethod
     def create_new(cls, name: str, password: str, race: str, char_class: str, 
@@ -334,10 +705,14 @@ class Player(Character):
 
         companions_data = []
         from pets import Pet
+        from companions import Companion
 
         for companion in self.companions:
-            if isinstance(companion, Pet) and companion.is_persistent:
+            if isinstance(companion, Companion):
+                companions_data.append(companion.to_dict())
+            elif isinstance(companion, Pet) and companion.is_persistent:
                 comp_data = {
+                    'kind': 'pet',
                     'name': companion.name,
                     'short_desc': companion.short_desc,
                     'long_desc': companion.long_desc,
@@ -345,9 +720,14 @@ class Player(Character):
                     'hp': companion.hp,
                     'max_hp': companion.max_hp,
                     'damage_dice': companion.damage_dice,
-                    'loyalty': companion.loyalty,
-                    'experience': companion.experience,
-                    'pet_level': companion.pet_level,
+                    'loyalty': getattr(companion, 'loyalty', 100),
+                    'experience': getattr(companion, 'experience', 0),
+                    'pet_level': getattr(companion, 'pet_level', 1),
+                    'pet_type': companion.pet_type,
+                    'role': getattr(companion, 'role', None),
+                    'special_abilities': getattr(companion, 'special_abilities', []),
+                    'flags': list(getattr(companion, 'flags', set())),
+                    'timer': getattr(companion, 'timer', None),
                 }
                 companions_data.append(comp_data)
 
@@ -358,6 +738,7 @@ class Player(Character):
         data = {
             'name': self.name,
             'password_hash': self.password_hash,
+            'account_name': self.account_name,
             'race': self.race,
             'char_class': self.char_class,
             'title': self.title,
@@ -385,8 +766,11 @@ class Player(Character):
             'room_vnum': self.room.vnum if self.room else self.config.STARTING_ROOM,
             'skills': self.skills,
             'spells': self.spells,
+            'talents': getattr(self, 'talents', {}),
             'quests_completed': self.quests_completed,
             'quest_flags': self.quest_flags,
+            'quest_chains': self.quest_chains,
+            'dialogue_state': self.dialogue_state,
             'active_quests': [q.to_dict() for q in self.active_quests],
             'flags': list(self.flags),
             'inventory': [item.to_dict() for item in self.inventory],
@@ -397,6 +781,13 @@ class Player(Character):
             'custom_aliases': self.custom_aliases,
             'autoloot': self.autoloot,
             'autoloot_gold': self.autoloot_gold,
+            'autogold': self.autogold,
+            'autoattack': self.autoattack,
+            'autocombat': self.autocombat,
+            'auto_combat_settings': self.auto_combat_settings,
+            'brief_mode': self.brief_mode,
+            'compact_mode': self.compact_mode,
+            'autoexit': self.autoexit,
             'recall_point': self.recall_point,
             'autorecall_hp': self.autorecall_hp,
             'autorecall_is_percent': self.autorecall_is_percent,
@@ -407,10 +798,41 @@ class Player(Character):
             'last_hunger_hour': self.last_hunger_hour,
             'last_thirst_hour': self.last_thirst_hour,
             'owned_mounts': self.owned_mounts,
+            'last_companion_upkeep_day': self.last_companion_upkeep_day,
             'storage': [item.to_dict() for item in self.storage],
             'storage_location': self.storage_location,
+            'achievements': self.achievements,
+            'achievement_progress': self.achievement_progress,
+            'explored_rooms': list(self.explored_rooms),
+            'discovered_exits': [list(x) for x in self.discovered_exits],
+            'secret_rooms_found': list(self.secret_rooms_found),
+            'discovered_lore': list(self.discovered_lore),
+            'lore_catalog': self.lore_catalog,
+            'journal': self.journal,
+            'journal_keys': list(self.journal_keys),
+            'puzzle_state': self.puzzle_state,
+            'collection_progress': self.collection_progress,
+            'collections_completed': self.collections_completed,
+            'ng_plus_cycle': self.ng_plus_cycle,
+            'nightmare_mode': self.nightmare_mode,
+            'house_vnum': self.house_vnum,
+            'house_storage': [item.to_dict() for item in self.house_storage],
+            'reputation': self.reputation,
+            'faction_rewards': self.faction_rewards,
+            'discovered_waypoints': list(self.discovered_waypoints),
+            'travel_cooldown_until': self.travel_cooldown_until,
+            'rested_xp': self.rested_xp,
+            'kill_streak': self.kill_streak,
+            'best_kill_streak': self.best_kill_streak,
+            'xp_breakdown': self.xp_breakdown,
+            'stats': getattr(self, 'stats', {}),
+            'daily_bonus': getattr(self, 'daily_bonus', {}),
+            'visited_rooms': list(getattr(self, 'visited_rooms', set())),
+            'horsemen_killed': list(getattr(self, 'horsemen_killed', set())),
             'created_at': self.created_at.isoformat(),
             'last_login': self.last_login.isoformat(),
+            'last_logout': self.last_logout.isoformat(),
+            'last_host': getattr(self, 'last_host', 'Unknown'),
             'total_playtime': self.total_playtime,
         }
         
@@ -421,10 +843,52 @@ class Player(Character):
             json.dump(data, f, indent=2)
             
         logger.debug(f"Saved player: {self.name}")
+
+    @staticmethod
+    def exists(name: str) -> bool:
+        """Check if a player file exists."""
+        filepath = os.path.join(Config.PLAYER_DIR, f"{name.lower()}.json")
+        return os.path.exists(filepath)
+    
+    @staticmethod
+    def get_info(name: str) -> Optional[dict]:
+        """Get raw player info from file without loading full player object.
+        Used for account menu displays without updating last_login."""
+        filepath = os.path.join(Config.PLAYER_DIR, f"{name.lower()}.json")
+        if not os.path.exists(filepath):
+            return None
+        try:
+            with open(filepath, 'r') as f:
+                data = json.load(f)
+            return {
+                'name': data.get('name', name),
+                'race': data.get('race', 'Human'),
+                'char_class': data.get('char_class', 'warrior'),
+                'level': data.get('level', 1),
+                'hp': data.get('hp', 100),
+                'max_hp': data.get('max_hp', 100),
+                'mana': data.get('mana', 100),
+                'max_mana': data.get('max_mana', 100),
+                'gold': data.get('gold', 0),
+                'exp': data.get('exp', 0),
+                'room': data.get('room', 3001),
+                'stats': data.get('stats', {}),
+                'skills': data.get('skills', {}),
+                'spells': data.get('spells', {}),
+                'kills': data.get('kills', 0),
+                'deaths': data.get('deaths', 0),
+                'hitroll': data.get('hitroll', 0),
+                'damroll': data.get('damroll', 0),
+                'last_login': data.get('last_login'),
+                'last_host': data.get('last_host', 'Unknown'),
+                'created_at': data.get('created_at'),
+            }
+        except Exception:
+            return None
         
     @classmethod
-    def load(cls, name: str, world: 'World') -> Optional['Player']:
-        """Load a player from disk."""
+    def load(cls, name: str, world: 'World' = None) -> Optional['Player']:
+        """Load a player from disk. World is optional for info-only loads."""
         filepath = os.path.join(Config.PLAYER_DIR, f"{name.lower()}.json")
         
         if not os.path.exists(filepath):
@@ -439,6 +903,7 @@ class Player(Character):
             # Load all attributes
             player.name = data['name']
             player.password_hash = data['password_hash']
+            player.account_name = data.get('account_name')
             player.race = data['race']
             player.char_class = data['char_class']
             player.title = data.get('title', 'the Adventurer')
@@ -466,8 +931,11 @@ class Player(Character):
             player.room_vnum = data.get('room_vnum', Config.STARTING_ROOM)
             player.skills = data.get('skills', {})
             player.spells = data.get('spells', {})
+            player.talents = data.get('talents', {})
             player.quests_completed = data.get('quests_completed', [])
             player.quest_flags = data.get('quest_flags', {})
+            player.quest_chains = data.get('quest_chains', {})
+            player.dialogue_state = data.get('dialogue_state', {})
 
             # Load active quests
             from quests import ActiveQuest
@@ -477,6 +945,13 @@ class Player(Character):
             player.custom_aliases = data.get('custom_aliases', {})
             player.autoloot = data.get('autoloot', False)
             player.autoloot_gold = data.get('autoloot_gold', True)
+            player.autogold = data.get('autogold', True)
+            player.autoattack = data.get('autoattack', False)
+            player.autocombat = data.get('autocombat', False)
+            player.auto_combat_settings = data.get('auto_combat_settings', player.auto_combat_settings)
+            player.brief_mode = data.get('brief_mode', False)
+            player.compact_mode = data.get('compact_mode', False)
+            player.autoexit = data.get('autoexit', True)
             player.recall_point = data.get('recall_point', 3001)
             player.autorecall_hp = data.get('autorecall_hp', None)
             player.autorecall_is_percent = data.get('autorecall_is_percent', False)
@@ -487,12 +962,65 @@ class Player(Character):
             player.last_hunger_hour = data.get('last_hunger_hour', 0)
             player.last_thirst_hour = data.get('last_thirst_hour', 0)
             player.owned_mounts = data.get('owned_mounts', [])
+            player.last_companion_upkeep_day = data.get('last_companion_upkeep_day', None)
+
+            from objects import Object
 
             # Load storage
             player.storage = [Object.from_dict(item_data, world)
                             for item_data in data.get('storage', [])
                             if item_data]
             player.storage_location = data.get('storage_location', None)
+
+            # Load achievements
+            player.achievements = data.get('achievements', {})
+            player.achievement_progress = data.get('achievement_progress', {})
+            player.explored_rooms = set(data.get('explored_rooms', []))
+            player.discovered_exits = set(tuple(x) for x in data.get('discovered_exits', []))
+            player.secret_rooms_found = set(data.get('secret_rooms_found', []))
+            player.discovered_lore = set(data.get('discovered_lore', []))
+            player.lore_catalog = data.get('lore_catalog', {})
+            player.journal = data.get('journal', [])
+            player.journal_keys = set(data.get('journal_keys', []))
+            # Rebuild keys from existing journal entries if not saved
+            if not player.journal_keys and player.journal:
+                for entry in player.journal:
+                    if isinstance(entry, dict) and 'key' in entry:
+                        player.journal_keys.add(entry['key'])
+            player.puzzle_state = data.get('puzzle_state', {})
+            player.collection_progress = data.get('collection_progress', {})
+            player.collections_completed = data.get('collections_completed', [])
+            player.ng_plus_cycle = data.get('ng_plus_cycle', 0)
+            player.nightmare_mode = data.get('nightmare_mode', False)
+
+            # Travel + XP bonuses
+            player.discovered_waypoints = set(data.get('discovered_waypoints', []))
+            player.travel_cooldown_until = data.get('travel_cooldown_until', 0)
+            player.rested_xp = data.get('rested_xp', 0)
+            player.kill_streak = data.get('kill_streak', 0)
+            player.best_kill_streak = data.get('best_kill_streak', 0)
+            player.xp_breakdown = data.get('xp_breakdown', player.xp_breakdown)
+            
+            # Stats and daily bonus
+            player.stats = data.get('stats', {})
+            player.daily_bonus = data.get('daily_bonus', {})
+            player.visited_rooms = set(data.get('visited_rooms', []))
+            player.horsemen_killed = set(data.get('horsemen_killed', []))
+
+            # Load housing
+            player.house_vnum = data.get('house_vnum', None)
+            player.house_storage = [Object.from_dict(item_data, world)
+                                   for item_data in data.get('house_storage', [])
+                                   if item_data]
+
+            # Load faction reputation
+            player.reputation = data.get('reputation', {})
+            player.faction_rewards = data.get('faction_rewards', {})
+            try:
+                from factions import FactionManager
+                FactionManager.ensure_player_reputation(player)
+            except Exception:
+                pass
 
             # Load affects using AffectManager
             affects_data = data.get('affects', [])
@@ -505,7 +1033,6 @@ class Player(Character):
                 player.affect_flags = set()
 
             # Load inventory
-            from objects import Object
             player.inventory = [Object.from_dict(item_data, world) 
                                for item_data in data.get('inventory', [])
                                if item_data]
@@ -518,33 +1045,56 @@ class Player(Character):
                 else:
                     player.equipment[slot] = None
 
-            # Load companions (persistent pets)
+            # Load companions (persistent pets or hirelings)
             player.companions = []
             companions_data = data.get('companions', [])
             if companions_data:
                 from pets import Pet
+                from companions import Companion
                 for comp_data in companions_data:
-                    # Create pet from saved data
-                    pet = Pet(0, world, player, 'companion')
-                    pet.name = comp_data['name']
-                    pet.short_desc = comp_data['short_desc']
-                    pet.long_desc = comp_data['long_desc']
-                    pet.level = comp_data['level']
-                    pet.hp = comp_data['hp']
-                    pet.max_hp = comp_data['max_hp']
-                    pet.damage_dice = comp_data['damage_dice']
-                    pet.loyalty = comp_data.get('loyalty', 100)
-                    pet.experience = comp_data.get('experience', 0)
-                    pet.pet_level = comp_data.get('pet_level', 1)
-                    pet.is_persistent = True
+                    kind = comp_data.get('kind', 'pet') if isinstance(comp_data, dict) else 'pet'
+                    if kind == 'companion' or 'companion_type' in comp_data:
+                        companion = Companion.from_dict(comp_data, world, player)
+                        player.companions.append(companion)
+                    else:
+                        # Create pet from saved data
+                        pet_type = comp_data.get('pet_type', 'companion')
+                        pet = Pet(0, world, player, pet_type)
+                        pet.name = comp_data['name']
+                        pet.short_desc = comp_data['short_desc']
+                        pet.long_desc = comp_data['long_desc']
+                        pet.level = comp_data['level']
+                        pet.hp = comp_data['hp']
+                        pet.max_hp = comp_data['max_hp']
+                        pet.damage_dice = comp_data['damage_dice']
+                        pet.loyalty = comp_data.get('loyalty', 100)
+                        pet.experience = comp_data.get('experience', 0)
+                        pet.pet_level = comp_data.get('pet_level', 1)
+                        pet.role = comp_data.get('role')
+                        pet.special_abilities = comp_data.get('special_abilities', [])
+                        pet.flags = set(comp_data.get('flags', []))
+                        pet.timer = comp_data.get('timer')  # Restore remaining duration
+                        pet.is_persistent = True
 
-                    player.companions.append(pet)
-                    # Companions will be added to world when player enters game
+                        player.companions.append(pet)
+                        # Companions will be added to world when player enters game
 
             # Parse timestamps
             player.created_at = datetime.fromisoformat(data.get('created_at', datetime.now().isoformat()))
+            player.last_logout = datetime.fromisoformat(data.get('last_logout', datetime.now().isoformat()))
             player.last_login = datetime.now()
             player.total_playtime = data.get('total_playtime', 0)
+
+            # Rested XP from time offline
+            try:
+                offline_seconds = max(0, (player.last_login - player.last_logout).total_seconds())
+                offline_hours = offline_seconds / 3600.0
+                max_rested = int(player.exp_to_level() * player.config.RESTED_XP_CAP)
+                gain = int(player.exp_to_level() * player.config.RESTED_XP_RATE * offline_hours)
+                if gain > 0:
+                    player.rested_xp = min(max_rested, player.rested_xp + gain)
+            except Exception:
+                pass
             
             logger.info(f"Loaded player: {player.name}")
             return player
@@ -571,7 +1121,7 @@ class Player(Character):
 
         if not args:
             # Look at room
-            await self.room.show_to(self)
+            await self.room.show_to(self, force_exits=True)
         else:
             # Check for "look in <container>" syntax
             args_str = ' '.join(args).lower()
@@ -583,16 +1133,61 @@ class Player(Character):
                     parts = args_str.split(' in ', 1)
                     container_name = parts[1].strip()
 
-                # Find container in room or inventory
+                # Find container or drink container in room or inventory
                 container = None
+                drink_container = None
                 for item in self.inventory + self.room.items:
                     if container_name in item.name.lower():
-                        if hasattr(item, 'item_type') and item.item_type == 'container':
-                            container = item
-                            break
+                        if hasattr(item, 'item_type'):
+                            if item.item_type == 'container':
+                                container = item
+                                break
+                            elif item.item_type == 'drink':
+                                drink_container = item
+                                break
 
-                if not container:
-                    await self.send(f"You don't see a '{container_name}' container here.")
+                c = self.config.COLORS
+
+                # Handle drink containers (waterskins, canteens, etc.)
+                if drink_container:
+                    liquid = getattr(drink_container, 'liquid', 'water')
+                    drinks = getattr(drink_container, 'drinks', 0)
+                    max_drinks = getattr(drink_container, 'max_drinks', 20)
+                    
+                    await self.send(f"{c['cyan']}You look inside {drink_container.short_desc}:{c['reset']}")
+                    
+                    if drinks <= 0:
+                        await self.send(f"  {c['white']}It is empty.{c['reset']}")
+                    else:
+                        # Calculate fullness percentage
+                        if max_drinks > 0:
+                            pct = (drinks / max_drinks) * 100
+                        else:
+                            pct = 100 if drinks > 0 else 0
+                        
+                        # Describe fullness
+                        if pct >= 90:
+                            fullness = "full"
+                            color = c['bright_cyan']
+                        elif pct >= 60:
+                            fullness = "more than half full"
+                            color = c['cyan']
+                        elif pct >= 40:
+                            fullness = "about half full"
+                            color = c['yellow']
+                        elif pct >= 20:
+                            fullness = "less than half full"
+                            color = c['yellow']
+                        else:
+                            fullness = "nearly empty"
+                            color = c['red']
+                        
+                        await self.send(f"  {color}It contains {liquid} and is {fullness}.{c['reset']}")
+                        await self.send(f"  {c['white']}({drinks}/{max_drinks} drinks remaining){c['reset']}")
+                    return
+
+                if not container and not drink_container:
+                    await self.send(f"You don't see a '{container_name}' that you can look inside here.")
                     return
 
                 # Check if container is closed
@@ -601,7 +1196,6 @@ class Player(Character):
                     return
 
                 # Show container contents
-                c = self.config.COLORS
                 await self.send(f"{c['cyan']}Inside {container.short_desc}:{c['reset']}")
 
                 # Check for gold
@@ -618,7 +1212,12 @@ class Player(Character):
                 return
 
             # Look at something specific
-            target = ' '.join(args)
+            target = ' '.join(args).lower()
+
+            # Expand direction abbreviations
+            dir_abbrevs = {'n': 'north', 's': 'south', 'e': 'east', 'w': 'west', 'u': 'up', 'd': 'down'}
+            if target in dir_abbrevs:
+                target = dir_abbrevs[target]
 
             # Check directions FIRST - look into adjacent rooms
             if target in self.config.DIRECTIONS:
@@ -640,6 +1239,11 @@ class Player(Character):
                 # Look into the next room
                 next_room = exit_data.get('room')
                 if next_room:
+                    game_time = self.world.game_time if hasattr(self, 'world') and self.world else None
+                    if hasattr(next_room, 'is_dark') and next_room.is_dark(game_time) and not self.can_see_in_dark():
+                        await self.send(f"{c['blue']}It is too dark to see that way.{c['reset']}")
+                        return
+
                     await self.send(f"{c['cyan']}You look {target}...{c['reset']}\n")
                     await self.send(f"{c['bright_yellow']}{next_room.name}{c['reset']}")
 
@@ -700,6 +1304,36 @@ class Player(Character):
                         await self.send(f"You see an exit leading {target}.")
                 return
 
+            # Check for doors by name (trapdoor, gate, door, etc.)
+            for direction, exit_data in self.room.exits.items():
+                if exit_data and 'door' in exit_data:
+                    door = exit_data['door']
+                    door_name = door.get('name', 'door')
+                    if target in door_name.lower() or door_name.lower() in target:
+                        c = self.config.COLORS
+                        state = door.get('state', 'open')
+                        await self.send(f"{c['cyan']}You examine the {door_name} ({direction}):{c['reset']}")
+                        
+                        # Describe appearance
+                        door_desc = door.get('description', f"A sturdy {door_name}.")
+                        await self.send(f"{c['white']}{door_desc}{c['reset']}")
+                        
+                        # State info
+                        state_info = []
+                        if state == 'closed':
+                            state_info.append(f"{c['yellow']}closed{c['reset']}")
+                        else:
+                            state_info.append(f"{c['green']}open{c['reset']}")
+                        if door.get('locked'):
+                            state_info.append(f"{c['red']}locked{c['reset']}")
+                        if door.get('picked'):
+                            state_info.append(f"{c['magenta']}lock picked{c['reset']}")
+                        if door.get('broken'):
+                            state_info.append(f"{c['red']}broken{c['reset']}")
+                        
+                        await self.send(f"It is currently: {', '.join(state_info)}")
+                        return
+
             # Check characters in room
             for char in self.room.characters:
                 if char != self and target.lower() in char.name.lower():
@@ -713,6 +1347,9 @@ class Player(Character):
                     # If it's a container, show contents too
                     if hasattr(item, 'item_type') and item.item_type == 'container':
                         await self._show_container_contents(item)
+                    # If it's a drink container, show fill level
+                    elif hasattr(item, 'item_type') and item.item_type == 'drink':
+                        await self._show_drink_contents(item)
                     return
 
             # Check items in room
@@ -722,6 +1359,9 @@ class Player(Character):
                     # If it's a container, show contents too
                     if hasattr(item, 'item_type') and item.item_type == 'container':
                         await self._show_container_contents(item)
+                    # If it's a drink container, show fill level
+                    elif hasattr(item, 'item_type') and item.item_type == 'drink':
+                        await self._show_drink_contents(item)
                     return
 
             await self.send(f"You don't see '{target}' here.")
@@ -753,14 +1393,60 @@ class Player(Character):
         if not has_contents:
             await self.send(f"  {c['white']}Nothing.{c['reset']}")
 
+    async def _show_drink_contents(self, drink_item):
+        """Show the contents and fill level of a drink container."""
+        c = self.config.COLORS
+        liquid = getattr(drink_item, 'liquid', 'water')
+        drinks = getattr(drink_item, 'drinks', 0)
+        max_drinks = getattr(drink_item, 'max_drinks', 20)
+        
+        await self.send(f"\n{c['cyan']}Contents:{c['reset']}")
+        
+        if drinks <= 0:
+            await self.send(f"  {c['white']}It is empty.{c['reset']}")
+        else:
+            # Calculate fullness percentage
+            if max_drinks > 0:
+                pct = (drinks / max_drinks) * 100
+            else:
+                pct = 100 if drinks > 0 else 0
+            
+            # Describe fullness
+            if pct >= 90:
+                fullness = "full"
+                color = c['bright_cyan']
+            elif pct >= 60:
+                fullness = "more than half full"
+                color = c['cyan']
+            elif pct >= 40:
+                fullness = "about half full"
+                color = c['yellow']
+            elif pct >= 20:
+                fullness = "less than half full"
+                color = c['yellow']
+            else:
+                fullness = "nearly empty"
+                color = c['red']
+            
+            await self.send(f"  {color}Contains {liquid}, {fullness}.{c['reset']}")
+            await self.send(f"  {c['white']}({drinks}/{max_drinks} drinks remaining){c['reset']}")
+
     async def show_character(self, char: 'Character'):
         """Show details about a character."""
         c = self.config.COLORS
         
+        # Check if player has labeled this character
+        label_msg = ""
+        if hasattr(self, 'target_labels') and self.target_labels:
+            for label_name, labeled_char in self.target_labels.items():
+                if labeled_char == char:
+                    label_msg = f" {c['bright_yellow']}({label_name}){c['reset']}"
+                    break
+        
         if hasattr(char, 'long_desc'):
-            await self.send(char.long_desc)
+            await self.send(f"{char.long_desc}{label_msg}")
         else:
-            await self.send(f"You see {char.name}.")
+            await self.send(f"You see {char.name}.{label_msg}")
             
         # Show condition
         hp_pct = char.hp / char.max_hp if char.max_hp > 0 else 0
@@ -781,6 +1467,77 @@ class Player(Character):
             
         await self.send(f"{c['white']}{char.name} {condition}.{c['reset']}")
         
+        # Show affects with flavorful descriptions
+        affect_descriptions = []
+        affect_flags = getattr(char, 'affect_flags', set())
+        
+        if 'blind' in affect_flags or 'blinded' in affect_flags:
+            affect_descriptions.append(f"{c['magenta']}{char.name} stumbles around blindly, arms outstretched, searching for something to grab onto.{c['reset']}")
+        if 'poisoned' in affect_flags:
+            affect_descriptions.append(f"{c['green']}{char.name} looks sickly, with a greenish pallor and beads of sweat.{c['reset']}")
+        if 'stunned' in affect_flags:
+            affect_descriptions.append(f"{c['yellow']}{char.name} sways unsteadily, looking dazed and confused.{c['reset']}")
+        if 'sleeping' in affect_flags or char.position == 'sleeping':
+            affect_descriptions.append(f"{c['blue']}{char.name} is fast asleep, oblivious to the world.{c['reset']}")
+        if 'paralyzed' in affect_flags:
+            affect_descriptions.append(f"{c['red']}{char.name} stands frozen in place, unable to move a muscle.{c['reset']}")
+        if 'feared' in affect_flags:
+            affect_descriptions.append(f"{c['yellow']}{char.name} cowers in terror, eyes wide with fear.{c['reset']}")
+        if 'silenced' in affect_flags:
+            affect_descriptions.append(f"{c['cyan']}{char.name} opens their mouth but no sound comes out.{c['reset']}")
+        if 'charmed' in affect_flags:
+            affect_descriptions.append(f"{c['magenta']}{char.name} has a dreamy, vacant look in their eyes.{c['reset']}")
+        if 'entangled' in affect_flags:
+            affect_descriptions.append(f"{c['green']}{char.name} struggles against vines and roots wrapped around their limbs.{c['reset']}")
+        if 'slow' in affect_flags:
+            affect_descriptions.append(f"{c['cyan']}{char.name} moves with unnatural slowness, as if wading through honey.{c['reset']}")
+        if 'haste' in affect_flags:
+            affect_descriptions.append(f"{c['bright_cyan']}{char.name} moves with supernatural speed, almost blurring.{c['reset']}")
+        if 'sanctuary' in affect_flags:
+            affect_descriptions.append(f"{c['bright_white']}{char.name} is surrounded by a shimmering white aura.{c['reset']}")
+        if 'invisible' in affect_flags:
+            affect_descriptions.append(f"{c['white']}{char.name} flickers in and out of visibility.{c['reset']}")
+        if 'fly' in affect_flags:
+            affect_descriptions.append(f"{c['cyan']}{char.name} hovers slightly off the ground.{c['reset']}")
+        if 'stoneskin' in affect_flags:
+            affect_descriptions.append(f"{c['white']}{char.name}'s skin has a grey, rocky texture.{c['reset']}")
+        if 'fire_shield' in affect_flags:
+            affect_descriptions.append(f"{c['bright_red']}{char.name} is wreathed in flickering flames.{c['reset']}")
+        if 'ice_armor' in affect_flags:
+            affect_descriptions.append(f"{c['bright_cyan']}{char.name} is encased in a layer of frost and ice.{c['reset']}")
+        
+        for desc in affect_descriptions:
+            await self.send(desc)
+        
+        # Show active spell affects
+        affects = getattr(char, 'affects', [])
+        if affects:
+            buff_names = []
+            debuff_names = []
+            debuff_keywords = [
+                'pain', 'curse', 'poison', 'slow', 'blind', 'stun', 'wound', 'bleed', 
+                'burn', 'rend', 'sunder', 'enervation', 'weaken', 'chill', 'drain',
+                'fear', 'sleep', 'entangle', 'root', 'snare', 'silence', 'doom',
+                'plague', 'disease', 'wither', 'decay', 'corrupt', 'hex', 'jinx',
+                'debilitate', 'cripple', 'hamstring', 'daze', 'confuse', 'disorient',
+                'vulnerability', 'expose', 'mark', 'faerie_fire', 'shadow_word'
+            ]
+            for affect in affects:
+                # Handle both Affect objects and dicts
+                name = getattr(affect, 'name', None) or affect.get('name', 'unknown') if isinstance(affect, dict) else 'unknown'
+                if not name or name == 'unknown':
+                    continue
+                # Categorize as buff or debuff
+                if any(neg in name.lower() for neg in debuff_keywords):
+                    debuff_names.append(name.replace('_', ' ').title())
+                else:
+                    buff_names.append(name.replace('_', ' ').title())
+            
+            if buff_names:
+                await self.send(f"{c['bright_green']}Buffs: {', '.join(buff_names)}{c['reset']}")
+            if debuff_names:
+                await self.send(f"{c['bright_red']}Afflictions: {', '.join(debuff_names)}{c['reset']}")
+        
         # Show equipment if player
         if hasattr(char, 'equipment') and char.equipment:
             await self.send(f"{c['cyan']}{char.name} is using:{c['reset']}")
@@ -791,11 +1548,22 @@ class Player(Character):
     def find_target_in_room(self, target_name: str):
         """
         Find a target in the room with numbered targeting support.
-        Supports: "goblin", "1.goblin", "2.goblin", etc.
+        Supports: "goblin", "1.goblin", "2.goblin", labels, etc.
         Returns: Character object or None
         """
         if not target_name or not self.room:
             return None
+
+        # Check labels first (case-insensitive)
+        label_upper = target_name.upper()
+        if label_upper in self.target_labels:
+            labeled_char = self.target_labels[label_upper]
+            # Verify the labeled character is still in the room
+            if labeled_char in self.room.characters:
+                return labeled_char
+            else:
+                # Character left/died, remove stale label
+                del self.target_labels[label_upper]
 
         # Check for numbered target (e.g., "1.goblin", "2.goblin")
         target_number = 1
@@ -872,8 +1640,60 @@ class Player(Character):
 
         return None
 
-    async def gain_exp(self, amount: int):
+    def find_container(self, container_name: str):
+        """
+        Find a container in the room or inventory with numbered targeting support.
+        Supports: "corpse", "1.corpse", "2.corpse", etc.
+        Returns: Container item or None
+        """
+        if not container_name:
+            return None
+
+        # Check for numbered target (e.g., "1.corpse", "2.corpse")
+        target_number = 1
+        if '.' in container_name:
+            parts = container_name.split('.', 1)
+            if parts[0].isdigit():
+                target_number = int(parts[0])
+                container_name = parts[1]
+
+        # Find matching containers in room and inventory
+        matches = []
+        for item in self.room.items + self.inventory:
+            if hasattr(item, 'item_type') and item.item_type == 'container':
+                if container_name.lower() in item.name.lower():
+                    matches.append(item)
+
+        # Return the nth match (1-indexed)
+        if target_number <= len(matches):
+            return matches[target_number - 1]
+
+        return None
+
+    async def gain_exp(self, amount: int, source: str = 'other', breakdown: Dict[str, int] = None):
         """Gain experience points."""
+        if amount <= 0:
+            return
+
+        if not hasattr(self, 'xp_breakdown') or self.xp_breakdown is None:
+            self.xp_breakdown = {
+                'kill': 0,
+                'exploration': 0,
+                'quest': 0,
+                'boss': 0,
+                'streak': 0,
+                'rested': 0,
+                'other': 0,
+            }
+
+        if breakdown:
+            for key, value in breakdown.items():
+                if value <= 0:
+                    continue
+                self.xp_breakdown[key] = self.xp_breakdown.get(key, 0) + value
+        else:
+            self.xp_breakdown[source] = self.xp_breakdown.get(source, 0) + amount
+
         self.exp += amount
 
         # Check for level up
@@ -881,11 +1701,27 @@ class Player(Character):
             await self.level_up()
             
     def exp_to_level(self) -> int:
-        """Calculate experience needed for next level."""
-        return int(self.config.BASE_EXP * (self.config.EXP_MULTIPLIER ** (self.level - 1)))
+        """Calculate experience needed for next level.
+        
+        Levels 1-30: Use standard EXP_MULTIPLIER (1.4x)
+        Levels 31-60: Use HIGH_LEVEL_EXP_MULTIPLIER (1.6x) for slower progression
+        """
+        threshold = getattr(self.config, 'HIGH_LEVEL_THRESHOLD', 30)
+        
+        if self.level <= threshold:
+            # Standard progression for levels 1-30
+            return int(self.config.BASE_EXP * (self.config.EXP_MULTIPLIER ** (self.level - 1)))
+        else:
+            # Calculate XP at level 30 as base for high-level progression
+            level_30_xp = int(self.config.BASE_EXP * (self.config.EXP_MULTIPLIER ** (threshold - 1)))
+            # Apply higher multiplier for levels beyond 30
+            levels_beyond = self.level - threshold
+            high_multiplier = getattr(self.config, 'HIGH_LEVEL_EXP_MULTIPLIER', 1.6)
+            return int(level_30_xp * (high_multiplier ** levels_beyond))
         
     async def level_up(self):
-        """Level up the player."""
+        """Level up the player with an epic celebration!"""
+        old_level = self.level
         self.level += 1
         
         class_data = self.config.CLASSES[self.char_class]
@@ -906,21 +1742,153 @@ class Player(Character):
         self.move = self.max_move
         
         # Gain practices
-        self.practices += (self.wis - 10) // 2 + 2
+        practice_gain = (self.wis - 10) // 2 + 2
+        self.practices += practice_gain
         
         c = self.config.COLORS
-        await self.send(f"\r\n{c['bright_yellow']}╔══════════════════════════════════════════════════════════╗")
-        await self.send(f"║        CONGRATULATIONS! You have reached level {self.level:>2}!       ║")
-        await self.send(f"╠══════════════════════════════════════════════════════════╣")
-        await self.send(f"║  {c['bright_green']}HP: +{hp_gain:<3}{c['bright_yellow']}  {c['bright_cyan']}Mana: +{mana_gain:<3}{c['bright_yellow']}  {c['white']}Move: +{move_gain:<3}{c['bright_yellow']}               ║")
-        await self.send(f"╚══════════════════════════════════════════════════════════╝{c['reset']}\r\n")
+        
+        # Epic level-up display!
+        await self.send(f"\r\n")
+        await self.send(f"{c['bright_yellow']}    *  .  *       *  .    .  *    .   *   .     *")
+        await self.send(f"  .    *    .  *    .   *   . *  .    *    .")
+        await self.send(f"       .  *    L E V E L   U P !    *  .       ")
+        await self.send(f"  *  .    .  *    .   *   . *  .    *    .  *")
+        await self.send(f"    .   *    *  .  *       *  .    .  *    .{c['reset']}")
+        await self.send(f"")
+        
+        # Level milestone messages
+        milestone_msgs = {
+            5: "You're getting the hang of this!",
+            10: "A true adventurer emerges!",
+            15: "Your reputation grows...",
+            20: "Heroes speak your name!",
+            25: "Legends are made of this!",
+            30: "You walk among the elite!",
+            40: "A force of nature!",
+            50: "MAXIMUM POWER ACHIEVED!"
+        }
+        
+        # Class-specific level titles
+        class_titles = {
+            'warrior': {5: 'Fighter', 10: 'Veteran', 15: 'Swordmaster', 20: 'Champion', 30: 'Warlord', 40: 'Battlemaster'},
+            'mage': {5: 'Apprentice', 10: 'Conjurer', 15: 'Magician', 20: 'Warlock', 30: 'Archmage', 40: 'Grand Magus'},
+            'cleric': {5: 'Acolyte', 10: 'Adept', 15: 'Priest', 20: 'High Priest', 30: 'Bishop', 40: 'Cardinal'},
+            'thief': {5: 'Footpad', 10: 'Cutpurse', 15: 'Burglar', 20: 'Assassin', 30: 'Shadow', 40: 'Nightblade'},
+            'ranger': {5: 'Scout', 10: 'Tracker', 15: 'Pathfinder', 20: 'Strider', 30: 'Ranger Lord', 40: 'Beastmaster'},
+            'paladin': {5: 'Squire', 10: 'Knight', 15: 'Crusader', 20: 'Templar', 30: 'Holy Champion', 40: 'Paragon'},
+            'bard': {5: 'Minstrel', 10: 'Troubadour', 15: 'Entertainer', 20: 'Virtuoso', 30: 'Maestro', 40: 'Legendsinger'},
+            'necromancer': {5: 'Cultist', 10: 'Gravecaller', 15: 'Bonelord', 20: 'Deathbringer', 30: 'Lich Aspirant', 40: 'Master of Death'}
+        }
+        
+        # Check for new title
+        new_title = None
+        titles = class_titles.get(self.char_class.lower(), {})
+        for lvl in sorted(titles.keys(), reverse=True):
+            if self.level >= lvl and old_level < lvl:
+                new_title = titles[lvl]
+                break
+        
+        await self.send(f"{c['bright_cyan']}╔══════════════════════════════════════════════════════════════╗{c['reset']}")
+        await self.send(f"{c['bright_cyan']}║{c['bright_yellow']}         ★ LEVEL {self.level:>2} ACHIEVED! ★                            {c['bright_cyan']}║{c['reset']}")
+        await self.send(f"{c['bright_cyan']}╠══════════════════════════════════════════════════════════════╣{c['reset']}")
+        await self.send(f"{c['bright_cyan']}║{c['reset']}                                                              {c['bright_cyan']}║{c['reset']}")
+        await self.send(f"{c['bright_cyan']}║{c['reset']}  {c['bright_green']}Health:  {c['white']}+{hp_gain:<3}{c['reset']}  {c['green']}({self.max_hp} total){c['reset']}                           {c['bright_cyan']}║{c['reset']}")
+        await self.send(f"{c['bright_cyan']}║{c['reset']}  {c['bright_cyan']}Mana:    {c['white']}+{mana_gain:<3}{c['reset']}  {c['cyan']}({self.max_mana} total){c['reset']}                           {c['bright_cyan']}║{c['reset']}")
+        await self.send(f"{c['bright_cyan']}║{c['reset']}  {c['bright_yellow']}Move:    {c['white']}+{move_gain:<3}{c['reset']}  {c['yellow']}({self.max_move} total){c['reset']}                           {c['bright_cyan']}║{c['reset']}")
+        await self.send(f"{c['bright_cyan']}║{c['reset']}  {c['bright_magenta']}Practice:{c['white']} +{practice_gain:<3}{c['reset']} {c['magenta']}({self.practices} available){c['reset']}                      {c['bright_cyan']}║{c['reset']}")
+        await self.send(f"{c['bright_cyan']}║{c['reset']}                                                              {c['bright_cyan']}║{c['reset']}")
+        
+        # Milestone message
+        for lvl, msg in milestone_msgs.items():
+            if self.level == lvl:
+                await self.send(f"{c['bright_cyan']}║{c['reset']}  {c['bright_yellow']}{msg:^56}{c['reset']}  {c['bright_cyan']}║{c['reset']}")
+                await self.send(f"{c['bright_cyan']}║{c['reset']}                                                              {c['bright_cyan']}║{c['reset']}")
+                break
+        
+        # New title
+        if new_title:
+            await self.send(f"{c['bright_cyan']}║{c['reset']}  {c['bright_magenta']}★ NEW TITLE: {new_title:^40} ★{c['reset']}  {c['bright_cyan']}║{c['reset']}")
+            await self.send(f"{c['bright_cyan']}║{c['reset']}                                                              {c['bright_cyan']}║{c['reset']}")
+        
+        await self.send(f"{c['bright_cyan']}╚══════════════════════════════════════════════════════════════╝{c['reset']}")
+        await self.send(f"")
+        
+        # Announce to room
+        if self.room:
+            await self.room.send_to_room(
+                f"{c['bright_yellow']}★ {self.name} has reached level {self.level}! ★{c['reset']}",
+                exclude=[self]
+            )
+        
+        # Show level up tip
+        try:
+            from tips import TipManager
+            await TipManager.show_event_tip(self, 'level_up')
+        except Exception:
+            pass
         
         # Check for new skills/spells
         await self.check_new_abilities()
         
+        # Check level achievements
+        try:
+            from achievements import AchievementManager
+            await AchievementManager.check_level(self)
+        except Exception:
+            pass
+        
     async def check_new_abilities(self):
-        """Check if player qualifies for new skills/spells."""
+        """Check if player qualifies for new skills/spells with epic notifications."""
         class_data = self.config.CLASSES[self.char_class]
+        c = self.config.COLORS
+        
+        # Ability descriptions for flavor
+        ABILITY_DESC = {
+            # Combat skills
+            'kick': 'A powerful kick that deals bonus damage',
+            'bash': 'Shield bash that can stun enemies',
+            'rescue': 'Pull an ally from combat danger',
+            'disarm': 'Knock the weapon from your foe\'s hands',
+            'parry': 'Deflect incoming attacks with your weapon',
+            'dodge': 'Nimbly avoid enemy strikes',
+            'second_attack': 'Strike twice in a single round',
+            'third_attack': 'Land three blows per round',
+            'dual_wield': 'Fight with a weapon in each hand',
+            'critical_strike': 'Chance for devastating critical hits',
+            'backstab': 'Strike from shadows for massive damage',
+            'sneak': 'Move unseen through the shadows',
+            'hide': 'Conceal yourself from enemies',
+            'pick_lock': 'Open locks without a key',
+            'steal': 'Pilfer items from unsuspecting targets',
+            'track': 'Follow the trail of your quarry',
+            'hunt': 'Relentlessly pursue fleeing enemies',
+            'berserk': 'Enter a rage, trading defense for offense',
+            'whirlwind': 'Strike all enemies around you',
+            'cleave': 'Powerful sweeping attack',
+            'shield_block': 'Block attacks with your shield',
+            'taunt': 'Draw enemy attention to yourself',
+            # Spells
+            'magic_missile': 'Unerring bolts of arcane force',
+            'fireball': 'Explosive ball of flame',
+            'lightning_bolt': 'A crackling bolt of electricity',
+            'cure_light': 'Mend minor wounds',
+            'cure_serious': 'Heal moderate injuries',
+            'cure_critical': 'Restore grievous wounds',
+            'heal': 'Powerful restorative magic',
+            'armor': 'Magical protection surrounds you',
+            'bless': 'Divine favor improves combat',
+            'sanctuary': 'Holy aura reduces damage taken',
+            'word_of_recall': 'Instantly return to safety',
+            'detect_invisible': 'See the unseen',
+            'invisibility': 'Become invisible to enemies',
+            'fly': 'Soar through the air',
+            'summon': 'Call an ally to your side',
+            'charm': 'Bend a creature to your will',
+            'sleep': 'Put enemies into slumber',
+            'poison': 'Coat your attacks with venom',
+            'animate_dead': 'Raise fallen foes as minions',
+            'energy_drain': 'Steal life force from enemies',
+        }
         
         # Skills unlocked at various levels
         skill_levels = {
@@ -929,20 +1897,50 @@ class Player(Character):
         
         max_skills = skill_levels.get(self.level, 0)
         available_skills = class_data['skills'][:max_skills + 3]
+        available_spells = class_data['spells'][:max_skills + 2]
+        
+        new_skills = []
+        new_spells = []
         
         for skill in available_skills:
             if skill not in self.skills:
                 self.skills[skill] = 30
-                c = self.config.COLORS
-                await self.send(f"{c['bright_green']}You have learned the skill: {skill.replace('_', ' ').title()}!{c['reset']}")
+                new_skills.append(skill)
                 
-        # Same for spells
-        available_spells = class_data['spells'][:max_skills + 2]
         for spell in available_spells:
             if spell not in self.spells:
                 self.spells[spell] = 30
-                c = self.config.COLORS
-                await self.send(f"{c['bright_magenta']}You have learned the spell: {spell.replace('_', ' ').title()}!{c['reset']}")
+                new_spells.append(spell)
+        
+        # Display epic notification if we learned anything
+        if new_skills or new_spells:
+            await self.send("")
+            await self.send(f"{c['bright_cyan']}  +{'=' * 54}+{c['reset']}")
+            await self.send(f"{c['bright_cyan']}  |{c['bright_yellow']}     ★ NEW ABILITIES UNLOCKED! ★                      {c['bright_cyan']}|{c['reset']}")
+            await self.send(f"{c['bright_cyan']}  +{'-' * 54}+{c['reset']}")
+            
+            if new_skills:
+                await self.send(f"{c['bright_cyan']}  |{c['reset']}                                                      {c['bright_cyan']}|{c['reset']}")
+                await self.send(f"{c['bright_cyan']}  |{c['bright_green']}  SKILLS:{c['reset']}                                             {c['bright_cyan']}|{c['reset']}")
+                for skill in new_skills:
+                    skill_name = skill.replace('_', ' ').title()
+                    desc = ABILITY_DESC.get(skill, 'A powerful new technique')
+                    await self.send(f"{c['bright_cyan']}  |{c['reset']}    {c['white']}⚔ {skill_name:<20}{c['reset']}                       {c['bright_cyan']}|{c['reset']}")
+                    await self.send(f"{c['bright_cyan']}  |{c['reset']}      {c['cyan']}{desc[:46]:<46}{c['reset']}  {c['bright_cyan']}|{c['reset']}")
+            
+            if new_spells:
+                await self.send(f"{c['bright_cyan']}  |{c['reset']}                                                      {c['bright_cyan']}|{c['reset']}")
+                await self.send(f"{c['bright_cyan']}  |{c['bright_magenta']}  SPELLS:{c['reset']}                                             {c['bright_cyan']}|{c['reset']}")
+                for spell in new_spells:
+                    spell_name = spell.replace('_', ' ').title()
+                    desc = ABILITY_DESC.get(spell, 'A mystical new power')
+                    await self.send(f"{c['bright_cyan']}  |{c['reset']}    {c['white']}✦ {spell_name:<20}{c['reset']}                       {c['bright_cyan']}|{c['reset']}")
+                    await self.send(f"{c['bright_cyan']}  |{c['reset']}      {c['magenta']}{desc[:46]:<46}{c['reset']}  {c['bright_cyan']}|{c['reset']}")
+            
+            await self.send(f"{c['bright_cyan']}  |{c['reset']}                                                      {c['bright_cyan']}|{c['reset']}")
+            await self.send(f"{c['bright_cyan']}  +{'=' * 54}+{c['reset']}")
+            await self.send(f"{c['yellow']}  Use 'skills' or 'spells' to see all your abilities.{c['reset']}")
+            await self.send("")
                 
     def get_damage_message(self, damage: int) -> str:
         """Get a message describing the damage amount."""
@@ -975,7 +1973,166 @@ class Player(Character):
             
     async def take_damage(self, amount: int, attacker: 'Character' = None) -> bool:
         """Take damage, return True if killed."""
+        c = self.config.COLORS
+        
+        # Pet protection intercept - check if any pet is protecting this player
+        if attacker and self.room and amount > 0:
+            from pets import PetManager
+            for char in self.room.characters:
+                # Check if this is a pet protecting us
+                if hasattr(char, 'ai_state') and hasattr(char, 'owner'):
+                    protecting = char.ai_state.get('protecting')
+                    if protecting == self and char.hp > 0 and not char.is_fighting:
+                        # 60% chance to intercept, higher if pet has shield_wall ability
+                        intercept_chance = 60
+                        if hasattr(char, 'special_abilities') and 'shield_wall' in char.special_abilities:
+                            intercept_chance = 75
+                        
+                        if random.randint(1, 100) <= intercept_chance:
+                            # Pet intercepts the attack!
+                            await self.send(f"{c['bright_green']}{char.name} leaps in front of you, taking the blow!{c['reset']}")
+                            await char.owner.send(f"{c['bright_green']}{char.name} intercepts an attack on {self.name}!{c['reset']}")
+                            
+                            # Announce to room
+                            await self.room.send_to_room(
+                                f"{c['cyan']}{char.name} throws itself in front of {self.name}!{c['reset']}",
+                                exclude=[self, char.owner]
+                            )
+                            
+                            # Pet takes damage and engages attacker
+                            char.hp -= amount
+                            
+                            # Start combat between pet and attacker
+                            if not char.is_fighting:
+                                from combat import CombatHandler
+                                await CombatHandler.start_combat(char, attacker)
+                            
+                            # Switch attacker's target to pet
+                            if hasattr(attacker, 'fighting') and attacker.fighting == self:
+                                attacker.fighting = char
+                            
+                            # Check if pet died
+                            if char.hp <= 0:
+                                await self.room.send_to_room(
+                                    f"{c['red']}{char.name} collapses from the intercepted blow!{c['reset']}"
+                                )
+                                # Handle pet death
+                                if char in self.room.characters:
+                                    self.room.characters.remove(char)
+                                if hasattr(char.owner, 'world') and hasattr(char.owner.world, 'npcs'):
+                                    if char in char.owner.world.npcs:
+                                        char.owner.world.npcs.remove(char)
+                            
+                            return False  # Player takes no damage
+        
+        # Absorb shields (divine_shield / stoneskin)
+        try:
+            for affect in self.affects[:]:
+                if affect.applies_to in ('divine_shield', 'stoneskin') and amount > 0:
+                    absorbed = min(amount, affect.value)
+                    affect.value -= absorbed
+                    amount -= absorbed
+                    if absorbed > 0:
+                        await self.send(f"{c['cyan']}{affect.applies_to.replace('_',' ').title()} absorbs {absorbed} damage!{c['reset']}")
+                    if affect.value <= 0:
+                        from affects import AffectManager
+                        AffectManager.remove_affect(self, affect)
+        except Exception:
+            pass
+
+        # Warrior Ignore Pain absorption
+        if hasattr(self, 'ignore_pain_absorb') and self.ignore_pain_absorb > 0:
+            absorbed = min(amount, self.ignore_pain_absorb)
+            self.ignore_pain_absorb -= absorbed
+            amount -= absorbed
+            if absorbed > 0:
+                await self.send(f"{c['cyan']}Ignore Pain absorbs {absorbed} damage!{c['reset']}")
+            if self.ignore_pain_absorb <= 0:
+                await self.send(f"{c['yellow']}Your Ignore Pain fades.{c['reset']}")
+                self.ignore_pain_ticks = 0
+
+        # Damage reduction from affects
+        if amount > 0 and hasattr(self, 'damage_reduction') and self.damage_reduction > 0:
+            reduced = max(1, int(amount * (self.damage_reduction / 100.0)))
+            amount = max(0, amount - reduced)
+            await self.send(f"{c['cyan']}You shrug off {reduced} damage!{c['reset']}")
+        
+        # Warrior rage gain on damage taken (+10 rage, +15 in berserk)
+        if hasattr(self, 'rage') and hasattr(self, 'char_class') and amount > 0:
+            if self.char_class.lower() == 'warrior':
+                rage_gain = 10
+                if hasattr(self, 'stance') and self.stance == 'berserk':
+                    rage_gain = int(rage_gain * 1.5)
+                self.rage = min(self.max_rage, self.rage + rage_gain)
+        
+        # Death Pact damage sharing - split damage 50/50 with bonded pet
+        if hasattr(self, 'death_pact_target') and self.death_pact_target:
+            pet = self.death_pact_target
+            if hasattr(pet, 'death_pact_duration') and pet.death_pact_duration > 0 and pet.hp > 0:
+                pet_damage = amount // 2
+                player_damage = amount - pet_damage
+                
+                # Pet takes its share
+                pet.hp -= pet_damage
+                await self.send(f"{c['magenta']}Your death pact splits {pet_damage} damage to {pet.name}!{c['reset']}")
+                
+                # Check if pet died from the shared damage
+                if pet.hp <= 0:
+                    # Backlash damage!
+                    backlash = int(self.max_hp * 0.2)
+                    await self.send(f"{c['bright_red']}Your death pact shatters as {pet.name} falls!{c['reset']}")
+                    await self.send(f"{c['bright_red']}Backlash deals {backlash} damage to you!{c['reset']}")
+                    amount = player_damage + backlash  # Add backlash to damage
+                    
+                    # Clear the pact
+                    pet.death_pact_master = None
+                    pet.death_pact_duration = 0
+                    self.death_pact_target = None
+                    
+                    # Handle pet death
+                    if hasattr(pet, 'room') and pet.room:
+                        await pet.room.send_to_room(
+                            f"{pet.name} crumbles into dust!",
+                            exclude=[self]
+                        )
+                        if pet in pet.room.characters:
+                            pet.room.characters.remove(pet)
+                    if hasattr(self, 'world') and hasattr(self.world, 'npcs'):
+                        if pet in self.world.npcs:
+                            self.world.npcs.remove(pet)
+                else:
+                    amount = player_damage
+
+        # Paladin Protection Aura (nearby allies): 10% damage reduction
+        if amount > 0 and 'protection' in self.get_paladin_auras():
+            reduced = max(1, int(amount * 0.10))
+            amount = max(0, amount - reduced)
+            await self.send(f"{c['cyan']}Holy protection absorbs {reduced} damage!{c['reset']}")
+
+        # Paladin Retribution Aura (nearby allies): thorns damage to attacker
+        if amount > 0 and attacker and 'retribution' in self.get_paladin_auras():
+            thorn = max(2, min(20, int(amount * 0.10)))
+            try:
+                attacker.hp -= thorn
+                if hasattr(attacker, 'send'):
+                    await attacker.send(f"{c['magenta']}Retribution burns you for {thorn} damage!{c['reset']}")
+                await self.send(f"{c['magenta']}Retribution scorches {attacker.name} for {thorn} damage!{c['reset']}")
+                if attacker.hp <= 0 and hasattr(attacker, 'die'):
+                    await attacker.die(self)
+            except Exception:
+                pass
+        
         self.hp -= amount
+
+        # Low health warning tip (25% threshold, once per session)
+        if self.hp > 0 and self.hp < self.max_hp * 0.25:
+            if not getattr(self, '_low_health_tip_shown', False):
+                self._low_health_tip_shown = True
+                try:
+                    from tips import TipManager
+                    await TipManager.show_event_tip(self, 'low_health')
+                except Exception:
+                    pass
 
         # Check for autorecall
         if hasattr(self, 'autorecall_hp') and self.autorecall_hp is not None and self.hp > 0:
@@ -1032,59 +2189,155 @@ class Player(Character):
         
     async def die(self, killer: 'Character' = None):
         """Handle player death."""
+        import random
         c = self.config.COLORS
         
         # Stop fighting
         if self.fighting:
             self.fighting.fighting = None
             self.fighting = None
+
+        # Reset kill streak
+        self.kill_streak = 0
             
         self.position = 'dead'
         
-        # Death message
-        await self.send(f"\r\n{c['bright_red']}You have been KILLED!{c['reset']}")
+        # Track deaths
+        if not hasattr(self, 'deaths'):
+            self.deaths = 0
+        self.deaths += 1
+        
+        # Check death achievements
+        try:
+            from achievements import AchievementManager
+            await AchievementManager.check_death(self)
+        except Exception:
+            pass
+
+        # Procedural dungeon death handling
+        if getattr(self, 'active_dungeon', None):
+            from procedural import get_dungeon_manager
+            await get_dungeon_manager().on_player_death(self)
+        
+        # Varied death messages
+        death_messages = [
+            "You have been KILLED!",
+            "Your vision fades to black...",
+            "You collapse, defeated!",
+            "Death claims you!",
+            "You fall into darkness...",
+        ]
+        await self.send(f"\r\n{c['bright_red']}{random.choice(death_messages)}{c['reset']}")
         await self.send(f"{c['red']}You feel your soul slipping away...{c['reset']}\r\n")
         
         if self.room:
+            killer_name = killer.name if killer else "something"
             await self.room.send_to_room(
-                f"{c['red']}{self.name} falls to the ground, dead!{c['reset']}",
+                f"{c['red']}{self.name} has been slain by {killer_name}!{c['reset']}",
                 exclude=[self]
             )
             
-        # Lose some experience
-        exp_loss = int(self.exp * 0.05)  # Lose 5% exp
+        # Scale exp loss by level (lower levels lose less)
+        # Level 1-10: 2%, 11-20: 3%, 21-30: 4%, 31+: 5%
+        if self.level <= 10:
+            exp_percent = 0.02
+        elif self.level <= 20:
+            exp_percent = 0.03
+        elif self.level <= 30:
+            exp_percent = 0.04
+        else:
+            exp_percent = 0.05
+            
+        exp_loss = int(self.exp * exp_percent)
         self.exp = max(0, self.exp - exp_loss)
-        await self.send(f"{c['yellow']}You lose {exp_loss} experience points.{c['reset']}")
+        if exp_loss > 0:
+            await self.send(f"{c['yellow']}You lose {exp_loss} experience points.{c['reset']}")
         
-        # Drop gold
-        gold_drop = int(self.gold * 0.10)  # Lose 10% gold
+        # Drop gold (5% instead of 10%)
+        gold_drop = int(self.gold * 0.05)
         if gold_drop > 0:
             self.gold -= gold_drop
-            # Create gold object in room
             await self.send(f"{c['yellow']}You drop {gold_drop} gold coins.{c['reset']}")
             
-        # Restore to starting room
-        self.hp = 1
-        self.mana = 1
-        self.move = 1
+        # Restore with partial HP/mana/move (not just 1)
+        self.hp = max(1, self.max_hp // 4)  # 25% HP
+        self.mana = max(1, self.max_mana // 4)  # 25% mana
+        self.move = max(1, self.max_move // 2)  # 50% move
         self.position = 'standing'
         
-        # Move to temple
+        # Clear negative affects on death
+        if hasattr(self, 'affects'):
+            bad_affects = ['poison', 'blind', 'stun', 'paralyze', 'fear', 'slow']
+            if isinstance(self.affects, dict):
+                self.affects = {k: v for k, v in self.affects.items() if k not in bad_affects}
+            elif isinstance(self.affects, list):
+                # Handle both dict affects and Affect objects
+                self.affects = [a for a in self.affects if getattr(a, 'name', a.get('name', '') if isinstance(a, dict) else '') not in bad_affects]
+        
+        # Move to temple/recall point
         if self.room:
             self.room.characters.remove(self)
-            
-        temple = self.world.get_room(self.config.STARTING_ROOM)
+        
+        recall_vnum = getattr(self, 'recall_point', self.config.STARTING_ROOM)
+        temple = self.world.get_room(recall_vnum)
+        if not temple:
+            temple = self.world.get_room(self.config.STARTING_ROOM)
         if temple:
             self.room = temple
             temple.characters.append(self)
             
-        await self.send(f"\r\n{c['white']}You feel yourself being pulled back to the material plane...{c['reset']}\r\n")
+        await self.send(f"\r\n{c['white']}You feel yourself being pulled back to the material plane...{c['reset']}")
+        await self.send(f"{c['cyan']}The gods have granted you another chance.{c['reset']}\r\n")
+        
+        # Show death tip for first few deaths
+        if self.deaths <= 3:
+            try:
+                from tips import TipManager
+                await TipManager.show_event_tip(self, 'first_death')
+            except Exception:
+                pass
         await self.do_look([])
         
     async def regen_tick(self):
         """Regenerate HP/mana/move and process affects."""
-        # Process affects (damage over time, healing over time, expiration)
-        await AffectManager.tick_affects(self)
+        # Process bard performance
+        await self.process_performance_tick()
+
+        # Warrior rage decay out of combat
+        if hasattr(self, 'rage') and self.rage > 0:
+            if not self.is_fighting:
+                self.rage = max(0, self.rage - 5)  # Decay 5 rage per tick
+
+        # Mage arcane charge decay out of combat
+        if hasattr(self, 'arcane_charges') and self.arcane_charges > 0:
+            if not self.is_fighting:
+                self.arcane_charges = max(0, self.arcane_charges - 1)
+        
+        # Warrior ignore pain tick decay
+        if hasattr(self, 'ignore_pain_ticks') and self.ignore_pain_ticks > 0:
+            self.ignore_pain_ticks -= 1
+            if self.ignore_pain_ticks <= 0:
+                self.ignore_pain_absorb = 0
+        
+        # Song/warcry bonus expiration
+        if hasattr(self, 'song_bonuses') and self.song_bonuses:
+            expires = self.song_bonuses.get('expires', 0)
+            warcry_expires = self.song_bonuses.get('warcry_expires', 0)
+            
+            if expires > 0:
+                self.song_bonuses['expires'] = expires - 1
+                if self.song_bonuses['expires'] <= 0:
+                    # Clear bard song bonuses
+                    for key in ['hitroll', 'damroll', 'haste', 'all_stats', 'xp_bonus', 'source', 'expires']:
+                        self.song_bonuses.pop(key, None)
+            
+            if warcry_expires > 0:
+                self.song_bonuses['warcry_expires'] = warcry_expires - 1
+                if self.song_bonuses['warcry_expires'] <= 0:
+                    # Clear warcry bonuses
+                    self.song_bonuses.pop('warcry_hitroll', None)
+                    self.song_bonuses.pop('warcry_damroll', None)
+                    self.song_bonuses.pop('warcry_expires', None)
 
         # Position affects regen
         position_mult = {
@@ -1122,6 +2375,297 @@ class Player(Character):
 
         # Process hunger and thirst consumption
         await self.hunger_thirst_tick()
+
+    async def minor_regen_tick(self):
+        """Small between-tick regeneration (fraction of full regen)."""
+        # 10% of normal regen every minor tick
+        game_time = self.world.game_time if hasattr(self, 'world') and self.world else None
+        weather = None
+        if self.room and self.room.zone and hasattr(self.room.zone, 'weather'):
+            weather = self.room.zone.weather
+        mult = {
+            'sleeping': 2.0,
+            'resting': 1.5,
+            'sitting': 1.25,
+            'standing': 1.0,
+            'fighting': 0.5,
+        }.get(self.position, 1.0)
+        hp_regen = int(RegenerationCalculator.calculate_hp_regen(
+            self, self.config.HP_REGEN_RATE * 0.10, mult, game_time, weather
+        ))
+        mana_regen = int(RegenerationCalculator.calculate_mana_regen(
+            self, self.config.MANA_REGEN_RATE * 0.10, mult, game_time, weather
+        ))
+        move_regen = int(RegenerationCalculator.calculate_move_regen(
+            self, self.config.MOVE_REGEN_RATE * 0.10, mult, game_time, weather
+        ))
+        self.hp = min(self.max_hp, self.hp + hp_regen)
+        self.mana = min(self.max_mana, self.mana + mana_regen)
+        self.move = min(self.max_move, self.move + move_regen)
+
+    async def process_performance_tick(self):
+        """Process bard performance effects each tick."""
+        if not self.performing:
+            return
+        
+        c = self.config.COLORS
+        
+        from spells import BARD_SONGS
+        import random
+        
+        song = BARD_SONGS.get(self.performing)
+        if not song:
+            self.performing = None
+            return
+        
+        # Calculate mana cost (doubled during encore)
+        mana_cost = song['mana_per_tick']
+        if self.encore_active:
+            mana_cost *= 2
+        
+        # Check if we have enough mana
+        if self.mana < mana_cost:
+            await self.send(f"{c['yellow']}You run out of energy to continue your performance!{c['reset']}")
+            await self._end_performance()
+            return
+        
+        # Drain mana
+        self.mana -= mana_cost
+        self.performance_ticks += 1
+        
+        # Process encore duration
+        if self.encore_active:
+            self.encore_ticks -= 1
+            if self.encore_ticks <= 0:
+                self.encore_active = False
+                await self.send(f"{c['cyan']}Your encore fades back to normal performance.{c['reset']}")
+        
+        # Calculate effect multiplier
+        effect_mult = 2.0 if self.encore_active else 1.0
+        
+        # Apply song effects based on target type
+        target_type = song.get('target', 'allies')
+        
+        if target_type == 'allies':
+            await self._apply_song_to_allies(song, effect_mult)
+        elif target_type == 'enemies':
+            await self._apply_song_to_enemies(song, effect_mult)
+        
+        # Tick message (every 3 ticks)
+        if self.performance_ticks % 3 == 0:
+            await self.send(f"{c['bright_magenta']}{song.get('tick_self', '♪ You continue performing... ♪')}{c['reset']}")
+            if self.room:
+                await self.room.send_to_room(
+                    song.get('tick_room', '♪ $n continues performing... ♪').replace('$n', self.name),
+                    exclude=[self]
+                )
+
+    async def _apply_song_to_allies(self, song, effect_mult):
+        """Apply beneficial song effects to allies in the room."""
+        if not self.room:
+            return
+        
+        c = self.config.COLORS
+        
+        # Check if song only works out of combat
+        if song.get('combat_only') == False and self.is_fighting:
+            await self.send(f"{c['yellow']}Your song of rest has no effect during combat.{c['reset']}")
+            return
+        
+        affects = song.get('affects', [])
+        
+        for char in self.room.characters:
+            # Skip enemies (mobs that are hostile or fighting us)
+            from mobs import Mobile
+            if isinstance(char, Mobile) and (char.is_fighting or getattr(char, 'is_hostile', False)):
+                continue
+            
+            # Apply effects
+            for affect in affects:
+                affect_type = affect['type']
+                value = int(affect['value'] * effect_mult)
+                
+                if affect_type == 'hitroll':
+                    # Temporary combat bonus (applied in combat calculations)
+                    if not hasattr(char, 'song_bonuses'):
+                        char.song_bonuses = {}
+                    char.song_bonuses['hitroll'] = value
+                    char.song_bonuses['source'] = self.name
+                    char.song_bonuses['expires'] = 2  # Expires in 2 ticks if not refreshed
+                
+                elif affect_type == 'damroll':
+                    if not hasattr(char, 'song_bonuses'):
+                        char.song_bonuses = {}
+                    char.song_bonuses['damroll'] = value
+                    char.song_bonuses['expires'] = 2
+                
+                elif affect_type == 'haste':
+                    if not hasattr(char, 'song_bonuses'):
+                        char.song_bonuses = {}
+                    char.song_bonuses['haste'] = value
+                    char.song_bonuses['expires'] = 2
+                
+                elif affect_type == 'hp_regen':
+                    # Bonus regeneration (percentage)
+                    if not self.is_fighting:
+                        regen_bonus = int((char.max_hp * value / 100) * 0.05)  # 50% of normal 5% regen
+                        char.hp = min(char.max_hp, char.hp + regen_bonus)
+                
+                elif affect_type == 'mana_regen':
+                    if not self.is_fighting:
+                        regen_bonus = int((char.max_mana * value / 100) * 0.05)
+                        char.mana = min(char.max_mana, char.mana + regen_bonus)
+                
+                elif affect_type == 'move_regen':
+                    if not self.is_fighting:
+                        regen_bonus = int((char.max_move * value / 100) * 0.05)
+                        char.move = min(char.max_move, char.move + regen_bonus)
+                
+                elif affect_type == 'all_stats':
+                    if not hasattr(char, 'song_bonuses'):
+                        char.song_bonuses = {}
+                    char.song_bonuses['all_stats'] = value
+                    char.song_bonuses['expires'] = 2
+                
+                elif affect_type == 'xp_bonus':
+                    if not hasattr(char, 'song_bonuses'):
+                        char.song_bonuses = {}
+                    char.song_bonuses['xp_bonus'] = value
+                    char.song_bonuses['expires'] = 2
+
+    async def _apply_song_to_enemies(self, song, effect_mult):
+        """Apply debuff song effects to enemies in the room."""
+        if not self.room:
+            return
+        
+        c = self.config.COLORS
+        import random
+        
+        from mobs import Mobile
+        
+        affects = song.get('affects', [])
+        special = song.get('special')
+        damage_dice = song.get('damage_per_tick')
+        
+        for char in self.room.characters:
+            # Only affect mobs
+            if not isinstance(char, Mobile):
+                continue
+            
+            # Apply stat debuffs
+            for affect in affects:
+                affect_type = affect['type']
+                value = int(affect['value'] * effect_mult)
+                
+                if affect_type in ('hitroll', 'damroll', 'saving_throw'):
+                    if not hasattr(char, 'song_debuffs'):
+                        char.song_debuffs = {}
+                    char.song_debuffs[affect_type] = value
+                    char.song_debuffs['expires'] = 2
+                
+                elif affect_type == 'fumble':
+                    if not hasattr(char, 'song_debuffs'):
+                        char.song_debuffs = {}
+                    char.song_debuffs['fumble'] = value
+                    char.song_debuffs['expires'] = 2
+                
+                elif affect_type == 'deafen':
+                    # Chance to deafen
+                    if random.randint(1, 100) <= value:
+                        from affects import AffectManager
+                        affect_data = {
+                            'name': 'deafened',
+                            'type': AffectManager.TYPE_FLAG,
+                            'applies_to': 'deafened',
+                            'value': 1,
+                            'duration': 3,
+                            'caster_level': self.level
+                        }
+                        AffectManager.apply_affect(char, affect_data)
+                        await self.send(f"{c['bright_cyan']}{char.name} is deafened by your symphony!{c['reset']}")
+            
+            # Handle special effects
+            if special == 'sleep':
+                # Lullaby - cumulative sleep chance
+                target_id = id(char)
+                if target_id not in self.lullaby_saves:
+                    self.lullaby_saves[target_id] = 0
+                
+                penalty = song.get('save_penalty_per_tick', 5)
+                self.lullaby_saves[target_id] += penalty
+                
+                # Base 30% chance + cumulative penalty
+                sleep_chance = 30 + self.lullaby_saves[target_id]
+                if random.randint(1, 100) <= sleep_chance:
+                    from affects import AffectManager
+                    affect_data = {
+                        'name': 'sleep',
+                        'type': AffectManager.TYPE_FLAG,
+                        'applies_to': 'sleeping',
+                        'value': 1,
+                        'duration': 3 + (self.level // 10),
+                        'caster_level': self.level
+                    }
+                    AffectManager.apply_affect(char, affect_data)
+                    char.position = 'sleeping'
+                    await self.send(f"{c['bright_magenta']}{char.name} falls asleep to your lullaby!{c['reset']}")
+                    if self.room:
+                        await self.room.send_to_room(
+                            f"{char.name} falls asleep!",
+                            exclude=[self]
+                        )
+                    # Remove from combat
+                    if char.is_fighting:
+                        char.fighting = None
+                        char.is_fighting = False
+            
+            elif special == 'sonic_damage':
+                # Symphony of destruction - deal damage
+                if damage_dice:
+                    damage = self._roll_dice(damage_dice)
+                    damage = int(damage * effect_mult)
+                    await self.send(f"{c['bright_red']}Your symphony tears at {char.name}! [{damage}]{c['reset']}")
+                    killed = await char.take_damage(damage, self)
+                    if killed:
+                        from combat import CombatHandler
+                        await CombatHandler.handle_death(self, char)
+
+    def _roll_dice(self, dice_str: str) -> int:
+        """Roll dice from string like '2d6'."""
+        import random
+        try:
+            if '+' in dice_str:
+                dice_part, bonus = dice_str.split('+')
+                bonus = int(bonus)
+            else:
+                dice_part = dice_str
+                bonus = 0
+            
+            num, sides = dice_part.split('d')
+            total = sum(random.randint(1, int(sides)) for _ in range(int(num)))
+            return total + bonus
+        except Exception:
+            return random.randint(1, 6)
+
+    async def _end_performance(self):
+        """End the current performance."""
+        from spells import BARD_SONGS
+        c = self.config.COLORS
+        
+        song = BARD_SONGS.get(self.performing, {})
+        
+        await self.send(f"{c['cyan']}{song.get('end_self', 'Your song ends.')}{c['reset']}")
+        if self.room:
+            await self.room.send_to_room(
+                song.get('end_room', '$n stops playing.').replace('$n', self.name),
+                exclude=[self]
+            )
+        
+        self.performing = None
+        self.performance_ticks = 0
+        self.encore_active = False
+        self.encore_ticks = 0
+        self.lullaby_saves = {}
 
     async def hunger_thirst_tick(self):
         """Process hunger and thirst consumption based on game time (1 point per game hour)."""

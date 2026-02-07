@@ -84,6 +84,9 @@ class PatrolBehavior(AIBehavior):
         # Find direction to next room
         for direction, exit_data in mob.room.exits.items():
             if exit_data.get('to_room') == next_room_vnum:
+                # Skip closed doors
+                if 'door' in exit_data and exit_data['door'].get('state') == 'closed':
+                    continue
                 # Move to next room
                 target_room = mob.world.rooms.get(next_room_vnum)
                 if target_room:
@@ -128,16 +131,26 @@ class GuardBehavior(AIBehavior):
         # In a real implementation, you'd use A* or similar
         # For now, just pick a random direction
         if mob.room.exits:
-            direction = random.choice(list(mob.room.exits.keys()))
-            exit_data = mob.room.exits[direction]
-            target_vnum = exit_data.get('to_room')
-            target_room = mob.world.rooms.get(target_vnum)
+            # Filter out closed doors
+            valid_exits = []
+            for dir_name, exit_info in mob.room.exits.items():
+                if not exit_info:
+                    continue
+                # Skip closed doors
+                if 'door' in exit_info and exit_info['door'].get('state') == 'closed':
+                    continue
+                valid_exits.append((dir_name, exit_info))
+            
+            if valid_exits:
+                direction, exit_data = random.choice(valid_exits)
+                target_vnum = exit_data.get('to_room')
+                target_room = mob.world.rooms.get(target_vnum)
 
-            if target_room:
-                mob.room.characters.remove(mob)
-                target_room.characters.append(mob)
-                mob.room = target_room
-                logger.debug(f"{mob.name} moved toward home")
+                if target_room:
+                    mob.room.characters.remove(mob)
+                    target_room.characters.append(mob)
+                    mob.room = target_room
+                    logger.debug(f"{mob.name} moved toward home")
 
 
 class FleeHealBehavior(AIBehavior):
@@ -156,8 +169,20 @@ class FleeHealBehavior(AIBehavior):
     async def execute(self, mob: 'Mobile'):
         # Try to flee
         if mob.room and mob.room.exits:
-            direction = random.choice(list(mob.room.exits.keys()))
-            exit_data = mob.room.exits[direction]
+            # Filter out closed doors
+            valid_exits = []
+            for dir_name, exit_info in mob.room.exits.items():
+                if not exit_info:
+                    continue
+                # Skip closed doors
+                if 'door' in exit_info and exit_info['door'].get('state') == 'closed':
+                    continue
+                valid_exits.append((dir_name, exit_info))
+            
+            if not valid_exits:
+                return
+            
+            direction, exit_data = random.choice(valid_exits)
             target_vnum = exit_data.get('to_room')
             target_room = mob.world.rooms.get(target_vnum)
 

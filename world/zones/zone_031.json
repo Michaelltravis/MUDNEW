@@ -6,7 +6,7 @@
     "3100": {
       "vnum": 3100,
       "name": "The Northwest End Of The Concourse",
-      "description": "You are at the concourse, the city wall is just west.  A small promenade goes east, and the bridge is just north of here.  The concourse continues south along the city wall.",
+      "description": "This is the concourse, the city wall is just west. A small promenade\ngoes east, and the bridge is just north of here. The concourse continues\nsouth along the city wall. The sounds of city life echo around.\nBuildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -27,7 +27,7 @@
     "3101": {
       "vnum": 3101,
       "name": "The Promenade",
-      "description": "The river gently flows westwards just north of here.  The promenade continues further east and to the west you see the city wall.  Park Road leads south from here.",
+      "description": "The river gently flows westwards just north of here. The promenade\ncontinues further east and to the west you see the city wall. Park Road\nleads south from here. Vendors and pedestrians bustle past. The smell of\nsmoke and humanity hangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -48,7 +48,7 @@
     "3102": {
       "vnum": 3102,
       "name": "The Promenade",
-      "description": "The river gently flows westwards just north of here.  The promenade continues both east and west.  South of here you see the entrance to the park, and a small building seems to be just west of the entrance.",
+      "description": "The river gently flows westwards just north of here. The promenade\ncontinues both east and west. South of here you see the entrance to the\npark, and a small building seems to be just west of the entrance. The\nsmell of smoke and humanity hangs in the air. The cobblestones are worn\nsmooth by countless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -69,7 +69,7 @@
     "3103": {
       "vnum": 3103,
       "name": "The Promenade",
-      "description": "The river gently flows westwards just north of here.  The promenade continues both east and west.  A small path leads south.  Looking across the river you see the levee.",
+      "description": "The river gently flows westwards just north of here. The promenade\ncontinues both east and west. A small path leads south. Looking across\nthe river you see the levee. The cobblestones are worn smooth by\ncountless feet. The sounds of city life echo around.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -90,7 +90,7 @@
     "3104": {
       "vnum": 3104,
       "name": "The Northeast End Of The Concourse",
-      "description": "You are at the Concourse.  The city wall is just east and a small promenade goes west.  Looking across the river you see a building that resembles a warehouse.  The Concourse continues south along the city wall.",
+      "description": "This is the Concourse. The city wall is just east and a small promenade\ngoes west. Looking across the river you see a building that resembles a\nwarehouse. The Concourse continues south along the city wall. The smell\nof smoke and humanity hangs in the air. Vendors and pedestrians bustle\npast.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -110,7 +110,7 @@
     "3105": {
       "vnum": 3105,
       "name": "The Park Entrance",
-      "description": "You are standing just inside the small park of Midgaard.  To the north is the promenade and a small path leads south into the park.  To your east is the famous Park Cafe.",
+      "description": "The area opens just inside the small park of Midgaard. To the north is\nthe promenade and a small path leads south into the park. to the east is\nthe famous Park Cafe. The sounds of city life echo around. The\ncobblestones are worn smooth by countless feet.",
       "sector_type": "city",
       "flags": [
         "no_mob"
@@ -133,7 +133,7 @@
     "3106": {
       "vnum": 3106,
       "name": "Park Cafe",
-      "description": "You are inside Park Cafe, a very cozy place with many tables and seats where you can relax and enjoy the view.  To the east you can see the entrance to the park.",
+      "description": "This isside Park Cafe, a very cozy place with many tables and seats\nwhere you can relax and enjoy the view. To the east Visible is the\nentrance to the park. The air is still and musty. Shadows gather in the\ncorners.",
       "sector_type": "inside",
       "flags": [
         "indoors",
@@ -149,7 +149,7 @@
     "3107": {
       "vnum": 3107,
       "name": "A Small Path In The Park",
-      "description": "You are walking along a small path through the park.  The path continues south and east.",
+      "description": "A path winds along a small path through the park. The path continues\nsouth and east. The cobblestones are worn smooth by countless feet.\nBuildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -166,7 +166,7 @@
     "3108": {
       "vnum": 3108,
       "name": "A Small Path In The Park",
-      "description": "You are standing on a small path inside the park.  The park entrance is just north of here, and Park Cafe is just east of the entrance.  The path leads further east and west.",
+      "description": "This area is a small path inside the park. The park entrance is just\nnorth of here, and Park Cafe is just east of the entrance. The path\nleads further east and west. Buildings crowd together on all sides. The\ncobblestones are worn smooth by countless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -187,7 +187,7 @@
     "3109": {
       "vnum": 3109,
       "name": "A Small Path In The Park",
-      "description": "You are on a small path running through the park.  It continues west and south and just north of here you see the southern wall of Park Cafe.",
+      "description": "The area is a small path running through the park. It continues west and\nsouth and just north of here you see the southern wall of Park Cafe. The\nsounds of city life echo around. Vendors and pedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -204,7 +204,7 @@
     "3110": {
       "vnum": 3110,
       "name": "Cityguard HeadQuarters",
-      "description": "You are inside a tidy office.",
+      "description": "The cityguard headquarters buzzes with activity. Stone walls are lined\nwith weapon racks and duty rosters. Guards in polished armor stand\nready, while others study maps of patrol routes. The walls are rough-\nhewn and cold to the touch. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -225,7 +225,7 @@
     "3111": {
       "vnum": 3111,
       "name": "Park Road",
-      "description": "The road continues north and south.  A building is just west of here, you notice a sign on the door.  The park entrance is to the east.",
+      "description": "The road continues north and south. A building is just west of here, you\nnotice a sign on the door. The park entrance is to the east. Vendors and\npedestrians bustle past. The sounds of city life echo around.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -259,7 +259,7 @@
     "3112": {
       "vnum": 3112,
       "name": "The Western Park Entrance",
-      "description": "You are standing at the western end of the park.  A small path leads east into the park and going west through the entrance you will reach Park Road.",
+      "description": "The area opens at the western end of the park. A small path leads east\ninto the park and going west through the entrance you will reach Park\nRoad. Buildings crowd together on all sides. The sounds of city life\necho around.",
       "sector_type": "city",
       "flags": [
         "no_mob"
@@ -278,7 +278,7 @@
     "3113": {
       "vnum": 3113,
       "name": "A Path In The Park",
-      "description": "You are in the park.  The paths lead north and west.  Westward is the park entrance and to the east you see a small pond.",
+      "description": "This is the park. The paths lead north and west. Westward is the park\nentrance and to the east you see a small pond. Vendors and pedestrians\nbustle past. The sounds of city life echo around.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -299,7 +299,7 @@
     "3114": {
       "vnum": 3114,
       "name": "The Pond",
-      "description": "You are swimming around in the pond, feeling rather stupid.  You can get back on the path from the eastern and western end of the pond.",
+      "description": "The area is swimming around in the pond, feeling rather stupid. You can\nget back on the path from the eastern and western end of the pond.\nRipples spread across the surface. The current tugs gently at your\nlimbs.",
       "sector_type": "water_swim",
       "flags": [],
       "exits": {
@@ -316,7 +316,7 @@
     "3115": {
       "vnum": 3115,
       "name": "A Path In The Park",
-      "description": "You are in the park.  The paths lead north and east.  Eastward is the park entrance and to the west you see a small pond.",
+      "description": "This is the park. The paths lead north and east. Eastward is the park\nentrance and to the west you see a small pond. The smell of smoke and\nhumanity hangs in the air. Vendors and pedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -337,7 +337,7 @@
     "3116": {
       "vnum": 3116,
       "name": "The Eastern Park Entrance",
-      "description": "You are standing at the eastern end of the park.  A small path leads west into the park.  Going east through the entrance you will reach Emerald Avenue.",
+      "description": "The area opens at the eastern end of the park. A small path leads west\ninto the park. Going east through the entrance you will reach Emerald\nAvenue. The sounds of city life echo around. Buildings crowd together on\nall sides.",
       "sector_type": "city",
       "flags": [
         "no_mob"
@@ -356,7 +356,7 @@
     "3117": {
       "vnum": 3117,
       "name": "Emerald Avenue",
-      "description": "You are standing on the north end of Emerald Avenue.  To the north is the promenade and to the west is the park entrance.  To the east is the not very big Town Hall of Midgaard.",
+      "description": "This area is the north end of Emerald Avenue. To the north is the\npromenade and to the west is the park entrance. To the east is the not\nvery big Town Hall of Midgaard. The cobblestones are worn smooth by\ncountless feet. The smell of smoke and humanity hangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -381,7 +381,7 @@
     "3118": {
       "vnum": 3118,
       "name": "Park Road",
-      "description": "You are on Park Road which leads north and south.",
+      "description": "Cobblestones give way to smooth flagstones along this well-maintained\npark road. Ancient oak trees provide shade overhead, and the scent of\nflowers drifts from nearby gardens. Vendors and pedestrians bustle past.\nBuildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -398,7 +398,7 @@
     "3119": {
       "vnum": 3119,
       "name": "Emerald Avenue",
-      "description": "You are standing at a bend on Emerald Avenue.  The road leads north and west.",
+      "description": "The area opens at a bend on Emerald Avenue. The road leads north and\nwest. The cobblestones are worn smooth by countless feet. Buildings\ncrowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -415,7 +415,7 @@
     "3120": {
       "vnum": 3120,
       "name": "The Road Crossing",
-      "description": "You are in the middle of the road cross.  Roads lead in all directions. A huge black iron chain as thick as a tree trunk is fastened into the ground at the center of the road cross.  Its other end leads directly upwards towards the sky. A road sign is here.",
+      "description": "This is the middle of the road cross. Roads lead in all directions. A\nhuge black iron chain as thick as a tree trunk is fastened into the\nground at the center of the road cross. Its other end leads directly\nupwards towards the sky. A road sign is here. The sounds of city life\necho around. The smell of smoke and humanity hangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -448,7 +448,7 @@
     "3121": {
       "vnum": 3121,
       "name": "Emerald Avenue",
-      "description": "You are standing at a bend on Emerald Avenue.  The road leads south and east.",
+      "description": "The area opens at a bend on Emerald Avenue. The road leads south and\neast. The sounds of city life echo around. The smell of smoke and\nhumanity hangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -465,7 +465,7 @@
     "3122": {
       "vnum": 3122,
       "name": "Park Road",
-      "description": "You are on Park Road which leads south and north.  Elm Street is east of here.",
+      "description": "The area is Park Road which leads south and north. Elm Street is east of\nhere. The cobblestones are worn smooth by countless feet. Vendors and\npedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -486,7 +486,7 @@
     "3123": {
       "vnum": 3123,
       "name": "Elm Street",
-      "description": "You are on Elm street.  Park Road is to the west and Elm Street continues in eastward direction.",
+      "description": "The area is Elm street. Park Road is to the west and Elm Street\ncontinues in eastward direction. The sounds of city life echo around.\nBuildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -503,7 +503,7 @@
     "3124": {
       "vnum": 3124,
       "name": "The End Of Elm Street",
-      "description": "You are at the end of Elm Street.",
+      "description": "Elm Street ends here at a weathered stone wall marking the city's\nsouthern boundary. A single lantern flickers at the corner, casting long\nshadows across the quiet residential district. The sounds of city life\necho around. Buildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -516,7 +516,7 @@
     "3125": {
       "vnum": 3125,
       "name": "Emerald Avenue",
-      "description": "You are on Emerald Avenue which continues north.  The Concourse is south of here.",
+      "description": "The area is Emerald Avenue which continues north. The Concourse is south\nof here. The smell of smoke and humanity hangs in the air. Vendors and\npedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -533,7 +533,7 @@
     "3126": {
       "vnum": 3126,
       "name": "Park Road",
-      "description": "You are on Park Road which continues north.  The Concourse is south of here.",
+      "description": "The area is Park Road which continues north. The Concourse is south of\nhere. Buildings crowd together on all sides. The smell of smoke and\nhumanity hangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -550,7 +550,7 @@
     "3127": {
       "vnum": 3127,
       "name": "On The Concourse",
-      "description": "You are at the southwest corner of the city wall.  The Concourse leads both north and east.",
+      "description": "This is the southwest corner of the city wall. The Concourse leads both\nnorth and east. The smell of smoke and humanity hangs in the air.\nBuildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -571,7 +571,7 @@
     "3128": {
       "vnum": 3128,
       "name": "On The Concourse",
-      "description": "The Concourse continues both east and west.  Emerald Avenue is north of here.",
+      "description": "The Concourse continues both east and west. Emerald Avenue is north of\nhere. The smell of smoke and humanity hangs in the air. The sounds of\ncity life echo around.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -592,7 +592,7 @@
     "3129": {
       "vnum": 3129,
       "name": "On The Concourse",
-      "description": "The Concourse continues both east and west.  Park Road is north of here and an iron grate leads south to the graveyard.",
+      "description": "The Concourse continues both east and west. Park Road is north of here\nand an iron grate leads south to the graveyard. Vendors and pedestrians\nbustle past. The sounds of city life echo around.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -623,7 +623,7 @@
     "3130": {
       "vnum": 3130,
       "name": "On The Concourse",
-      "description": "You are at the southeast corner of the city wall.  The Concourse leads both north and west.",
+      "description": "This is the southeast corner of the city wall. The Concourse leads both\nnorth and west. The sounds of city life echo around. Vendors and\npedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -640,7 +640,7 @@
     "3131": {
       "vnum": 3131,
       "name": "Park Road",
-      "description": "You are at Park Road which continues north and south.",
+      "description": "This is Park Road which continues north and south. The smell of smoke\nand humanity hangs in the air. The cobblestones are worn smooth by\ncountless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -657,7 +657,7 @@
     "3132": {
       "vnum": 3132,
       "name": "Emerald Avenue",
-      "description": "You are at Emerald Avenue which continues north and south.  Penny Lane leads east from here.",
+      "description": "This is Emerald Avenue which continues north and south. Penny Lane leads\neast from here. Vendors and pedestrians bustle past. The cobblestones\nare worn smooth by countless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -678,7 +678,7 @@
     "3133": {
       "vnum": 3133,
       "name": "Emerald Avenue",
-      "description": "You are standing at a bend on Emerald Avenue.  To the east the road goes on and to the south is the Road Crossing.",
+      "description": "The area opens at a bend on Emerald Avenue. To the east the road goes on\nand to the south is the Road Crossing. The cobblestones are worn smooth\nby countless feet. Vendors and pedestrians bustle past.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -695,7 +695,7 @@
     "3134": {
       "vnum": 3134,
       "name": "Emerald Avenue",
-      "description": "You are standing at a bend on Emerald Avenue.  To the west the road goes on and to the north is the Road Crossing.",
+      "description": "The area opens at a bend on Emerald Avenue. To the west the road goes on\nand to the north is the Road Crossing. The cobblestones are worn smooth\nby countless feet. Buildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -712,7 +712,7 @@
     "3135": {
       "vnum": 3135,
       "name": "Park Road",
-      "description": "You are at a bend on Park Road.  To the north the road goes on and to the east is the Road Crossing.",
+      "description": "This is a bend on Park Road. To the north the road goes on and to the\neast is the Road Crossing. The sounds of city life echo around.\nBuildings crowd together on all sides.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -729,7 +729,7 @@
     "3136": {
       "vnum": 3136,
       "name": "Park Road",
-      "description": "You are at a bend on Park Road.  To the south the road goes on and to the west is the Road Crossing.",
+      "description": "This is a bend on Park Road. To the south the road goes on and to the\nwest is the Road Crossing. The cobblestones are worn smooth by countless\nfeet. The sounds of city life echo around.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -746,7 +746,7 @@
     "3137": {
       "vnum": 3137,
       "name": "The Waiting Room",
-      "description": "You are standing in the waiting room at the town hall.  Wooden chairs stand along the walls and a long desk with a typewriter is placed in the middle of the room.",
+      "description": "This is the waiting room at the town hall. Wooden chairs stand along the\nwalls and a long desk with a typewriter is placed in the middle of the\nroom. Shadows gather in the corners. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -769,7 +769,7 @@
     "3138": {
       "vnum": 3138,
       "name": "The Mayor's Office",
-      "description": "You are in the not very big office of the Mayor of Midgaard.  A large and polished but completely empty desk is standing in front of an armchair that looks so comfortable that it most of all resembles a bed with the head end raised slightly.",
+      "description": "This is the not very big office of the Mayor of Midgaard. A large and\npolished but completely empty desk is standing in front of an armchair\nthat looks so comfortable that it most of all resembles a bed with the\nhead end raised slightly. Shadows gather in the corners. The walls are\nrough-hewn and cold to the touch.",
       "sector_type": "inside",
       "flags": [
         "indoors"
@@ -787,7 +787,7 @@
     "3139": {
       "vnum": 3139,
       "name": "Penny Lane",
-      "description": "You are on Penny Lane.  Emerald Avenue is to the west and Penny Lane continues in eastward direction.",
+      "description": "The area is Penny Lane. Emerald Avenue is to the west and Penny Lane\ncontinues in eastward direction. Vendors and pedestrians bustle past.\nThe smell of smoke and humanity hangs in the air.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -804,7 +804,7 @@
     "3140": {
       "vnum": 3140,
       "name": "Penny Lane",
-      "description": "You are on Penny Lane.  The narrow road continues north and west.",
+      "description": "The area is Penny Lane. The narrow road continues north and west.\nVendors and pedestrians bustle past. The cobblestones are worn smooth by\ncountless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -821,7 +821,7 @@
     "3141": {
       "vnum": 3141,
       "name": "The End Of Penny Lane",
-      "description": "You are at the end of Penny Lane.  The only exit appears to be south.",
+      "description": "This is the end of Penny Lane. The only exit appears to be south. The\nsmell of smoke and humanity hangs in the air. The sounds of city life\necho around.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -834,7 +834,7 @@
     "3150": {
       "vnum": 3150,
       "name": "A Gravel Road In The Graveyard",
-      "description": "You are on a well-kept gravel road that leads north-south through the graveyard.  On both sides of the road grow dark evergreen trees.  An iron grate is to the north.",
+      "description": "The area is a well-kept gravel road that leads north-south through the\ngraveyard. On both sides of the road grow dark evergreen trees. An iron\ngrate is to the north. The air is fresh and clean. The open sky\nstretches overhead.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -857,7 +857,7 @@
     "3151": {
       "vnum": 3151,
       "name": "A Gravel Road In The Graveyard",
-      "description": "You are on a well-kept gravel road that leads north-south through the graveyard.  On both sides of the road grow dark evergreen trees.",
+      "description": "The area is a well-kept gravel road that leads north-south through the\ngraveyard. On both sides of the road grow dark evergreen trees. The open\nsky stretches overhead. Tall grass sways in a gentle breeze.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -874,7 +874,7 @@
     "3152": {
       "vnum": 3152,
       "name": "A Gravel Road In The Graveyard",
-      "description": "You are on a well-kept gravel road that leads north-south through the graveyard.  On both sides of the road grow dark evergreen trees.",
+      "description": "The area is a well-kept gravel road that leads north-south through the\ngraveyard. On both sides of the road grow dark evergreen trees. The open\nsky stretches overhead. The air is fresh and clean.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -891,7 +891,7 @@
     "3153": {
       "vnum": 3153,
       "name": "A Gravel Road In The Graveyard",
-      "description": "You are on a well-kept gravel road that leads north-south through the graveyard.  On both sides of the road grow dark evergreen trees.",
+      "description": "The area is a well-kept gravel road that leads north-south through the\ngraveyard. On both sides of the road grow dark evergreen trees.\nBuildings crowd together on all sides. The cobblestones are worn smooth\nby countless feet.",
       "sector_type": "city",
       "flags": [],
       "exits": {
@@ -908,7 +908,7 @@
     "3154": {
       "vnum": 3154,
       "name": "In Front Of The Chapel",
-      "description": "You are on an open space before a small chapel.  A gravel road leads north through the graveyard and the chapel entrance is to the south.",
+      "description": "The area is an open space before a small chapel. A gravel road leads\nnorth through the graveyard and the chapel entrance is to the south. The\nair is fresh and clean. The ground is soft underfoot.",
       "sector_type": "field",
       "flags": [],
       "exits": {
@@ -931,7 +931,7 @@
     "3155": {
       "vnum": 3155,
       "name": "Inside The Chapel",
-      "description": "You are in a small, dark chapel.  The dark brown glass in the tiny windows do not let much light through.  A few rows of worn wooden benches stand here and an ancient altar sits in the middle of the floor.",
+      "description": "This is a small, dark chapel. The dark brown glass in the tiny windows\ndo not let much light through. A few rows of worn wooden benches stand\nhere and an ancient altar sits in the middle of the floor. The walls are\nrough-hewn and cold to the touch. Dust motes drift in the stale air.",
       "sector_type": "inside",
       "flags": [
         "dark",
@@ -956,7 +956,7 @@
     "3200": {
       "vnum": 3200,
       "name": "Under The Bridge",
-      "description": "The arch under the bridge is covered by seaweed about a foot above the surface of the river.  The water gently flows through an opening in the lower part of the city wall.",
+      "description": "The arch under the bridge is covered by seaweed about a foot above the\nsurface of the river. The water gently flows through an opening in the\nlower part of the city wall. The roar of water fills your ears. The\ndepths are dark and unknowable.",
       "sector_type": "water_noswim",
       "flags": [],
       "exits": {
@@ -976,7 +976,7 @@
     "3201": {
       "vnum": 3201,
       "name": "On The River",
-      "description": "North of here you see the miserable buildings of Poor Alley.  The river flows west towards the bridge.  The riverbanks are too steep to climb.",
+      "description": "North of here you see the miserable buildings of Poor Alley. The river\nflows west towards the bridge. The riverbanks are too steep to climb.\nThe roar of water fills your ears. The depths are dark and unknowable.",
       "sector_type": "water_noswim",
       "flags": [],
       "exits": {
@@ -993,7 +993,7 @@
     "3202": {
       "vnum": 3202,
       "name": "On The River",
-      "description": "North of here you see the dump.  The river flows from east to west.  The riverbanks are too steep to climb.",
+      "description": "North of here you see the dump. The river flows from east to west. The\nriverbanks are too steep to climb. Spray mists the air around. The\nwater churns with dangerous currents.",
       "sector_type": "water_noswim",
       "flags": [],
       "exits": {
@@ -1010,7 +1010,7 @@
     "3203": {
       "vnum": 3203,
       "name": "On The River",
-      "description": "The levee is directly north of here.  The river flows in an east west direction.",
+      "description": "The levee is directly north of here. The river flows in an east west\ndirection. The roar of water fills your ears. Waves crash and foam\nrelentlessly.",
       "sector_type": "water_noswim",
       "flags": [],
       "exits": {
@@ -1031,7 +1031,7 @@
     "3204": {
       "vnum": 3204,
       "name": "On The River",
-      "description": "You see the warehouse on the northern riverbank.  East of here you see the city wall.  The river flows west towards the levee.",
+      "description": "You see the warehouse on the northern riverbank. East of here you see\nthe city wall. The river flows west towards the levee. Spray mists the\nair around. The depths are dark and unknowable.",
       "sector_type": "water_noswim",
       "flags": [],
       "exits": {
@@ -1048,7 +1048,7 @@
     "3205": {
       "vnum": 3205,
       "name": "On The River",
-      "description": "The river enters from a hole in the eastern city wall.  The hole has been blocked by several vertically positioned iron bars set into the wall.",
+      "description": "The river enters from a hole in the eastern city wall. The hole has been\nblocked by several vertically positioned iron bars set into the wall.\nSpray mists the air around. The water churns with dangerous\ncurrents.",
       "sector_type": "water_noswim",
       "flags": [],
       "exits": {
@@ -1102,9 +1102,9 @@
       "level": 3,
       "alignment": 800,
       "hp_dice": "1d7+0",
-      "damage_dice": "2d6+35",
+      "damage_dice": "1d4+1",
       "gold": 156,
-      "exp": 6,
+      "exp": 62,
       "armor_class": 7,
       "flags": [
         "sentinel"
@@ -1118,11 +1118,11 @@
       "long_desc": "The Chief Guard is looking very upset.",
       "level": 17,
       "alignment": 800,
-      "hp_dice": "1d8+18",
-      "damage_dice": "1d12+210",
+      "hp_dice": "17d10+220",
+      "damage_dice": "5d7+7",
       "gold": 14000,
-      "exp": 8,
-      "armor_class": 1,
+      "exp": 1020,
+      "armor_class": 49,
       "flags": [
         "sentinel",
         "scavenger",
@@ -1137,11 +1137,11 @@
       "long_desc": "A cityguard stands here, looking very upset.",
       "level": 10,
       "alignment": 1000,
-      "hp_dice": "1d8+3",
-      "damage_dice": "1d12+123",
+      "hp_dice": "10d10+136",
+      "damage_dice": "3d6+6",
       "gold": 4500,
-      "exp": 8,
-      "armor_class": 2,
+      "exp": 600,
+      "armor_class": 70,
       "flags": [
         "sentinel",
         "scavenger",
@@ -1156,10 +1156,10 @@
       "long_desc": "A secretary is sitting at the desk, typing away on the typewriter.",
       "level": 12,
       "alignment": 900,
-      "hp_dice": "2d7+1",
-      "damage_dice": "1d12+148",
+      "hp_dice": "3d10+96",
+      "damage_dice": "1d8+12",
       "gold": 6550,
-      "exp": 8,
+      "exp": 379,
       "armor_class": 2,
       "flags": [
         "sentinel"
@@ -1173,10 +1173,10 @@
       "long_desc": "The Mayor is sitting in his huge chair, snoring loudly.",
       "level": 24,
       "alignment": 1000,
-      "hp_dice": "1d8+18",
-      "damage_dice": "6d10+790",
+      "hp_dice": "5d10+432",
+      "damage_dice": "2d8+36",
       "gold": 65500,
-      "exp": 4,
+      "exp": 934,
       "armor_class": -4,
       "flags": [
         "special",
