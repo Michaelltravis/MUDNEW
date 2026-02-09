@@ -441,6 +441,10 @@ city below. This is a peaceful place where adventurers can rest."""
             20: {'vnum': 20, 'name': 'a bulletin board', 'short_desc': 'a large bulletin board',
                  'room_desc': 'A bulletin board is mounted on the wall.', 'type': 'other',
                  'weight': 100, 'cost': 0},
+            3035: {'vnum': 3035, 'name': 'marble fountain', 'short_desc': 'a marble fountain',
+                   'room_desc': 'A magnificent marble fountain gurgles with crystal-clear water.',
+                   'type': 'fountain', 'weight': 500, 'cost': 0, 'drink_value': 12,
+                   'liquid': 'water'},
         }
         
         self.world.zones[30] = zone

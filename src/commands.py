@@ -7946,8 +7946,15 @@ class CommandHandler:
     async def cmd_drink(cls, player: 'Player', args: List[str]):
         """Drink from a container or fountain."""
         if not args:
-            await player.send("Drink what?")
-            return
+            # Default: try to drink from a fountain in the room
+            if player.room:
+                for item in player.room.items:
+                    if getattr(item, 'item_type', '') == 'fountain':
+                        args = [item.name.split()[0]]
+                        break
+            if not args:
+                await player.send("Drink what?")
+                return
             
         c = player.config.COLORS
         target = ' '.join(args).lower()
