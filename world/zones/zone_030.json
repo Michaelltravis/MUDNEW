@@ -1518,12 +1518,7 @@
         "": "statue odin king god",
         "ven though the altar is more than ten feet long it appears to be made from": "a single block of white virgin marble."
       },
-      "mob_resets": [
-        {
-          "vnum": 3031,
-          "max": 1
-        }
-      ]
+      "mob_resets": []
     },
     "3055": {
       "vnum": 3055,
@@ -1951,6 +1946,9 @@
         "north": {
           "to_room": 3004,
           "description": "The Clerics' Guild entrance is to the north."
+        },
+        "west": {
+          "to_room": 3085
         }
       },
       "mob_resets": [
@@ -2063,6 +2061,57 @@
       "mob_resets": [],
       "obj_resets": [],
       "vnum": 3009
+    },
+    "3085": {
+      "vnum": 3085,
+      "name": "The Entrance To The Order Of Paladins",
+      "description": "A wide stone archway opens into the hallowed halls of the Order of Paladins. The walls are adorned with polished shields bearing the sigils of holy warriors who served Midgaard through the ages. A silver chandelier hangs overhead, casting warm light across the marble floor. The sound of prayer drifts from the inner sanctum to the west.",
+      "sector_type": "city",
+      "flags": [
+        "indoors",
+        "peaceful"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 3078
+        },
+        "west": {
+          "to_room": 3086
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3059,
+          "max": 1
+        },
+        {
+          "vnum": 3060,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "3086": {
+      "vnum": 3086,
+      "name": "The Sanctum Of The Holy Order",
+      "description": "The inner sanctum of the Paladin Order is a place of quiet reverence. An altar of white marble stands at the center, flanked by racks of blessed weapons and gleaming armor. Stained glass windows depict scenes of righteous battle against the forces of darkness. The paladin guildmaster stands ready to guide those who walk the path of honor.",
+      "sector_type": "city",
+      "flags": [
+        "indoors",
+        "peaceful"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 3085
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3031,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
     }
   },
   "mobs": {
