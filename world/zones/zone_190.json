@@ -1,0 +1,800 @@
+{
+  "number": 190,
+  "name": "The Frostspire",
+  "builders": "Ram",
+  "lifespan": 30,
+  "reset_mode": 2,
+  "top": 19039,
+  "rooms": {
+    "19000": {
+      "vnum": 19000,
+      "name": "Base of the Frostspire",
+      "description": "The frozen mountain known as the Frostspire rises before you, its ice-sheathed slopes vanishing into swirling clouds above. Ancient dwarven stonework, now crumbling and ice-encrusted, marks this as the beginning of an old mountain road. The wind howls down from the heights, carrying the bitter cold of eternal winter. Snow drifts pile against the worn stone markers that once guided travelers. To the south, the relative warmth of the forest beckons; to the north, only ice and danger await.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 19001},
+        "east": {"to_room": 19015},
+        "south": {"to_room": 18014, "description": "The Great Northern Forest lies to the south."}
+      },
+      "mob_resets": [
+        {"vnum": 19000, "max": 2}
+      ]
+    },
+    "19001": {
+      "vnum": 19001,
+      "name": "The Lower Switchback",
+      "description": "A narrow path carved into the mountainside switchbacks upward, the ancient dwarven stonework barely visible beneath thick ice. The drop to your left is sheer and deadly, vanishing into mist hundreds of feet below. Icicles hang from rocky overhangs above, some as thick as a man's torso. The cold is intense, numbing exposed skin within moments. Frozen corpses of previous climbers are visible in the ice, their faces locked in expressions of terror.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 19002},
+        "south": {"to_room": 19000}
+      },
+      "mob_resets": [
+        {"vnum": 19001, "max": 2}
+      ]
+    },
+    "19002": {
+      "vnum": 19002,
+      "name": "A Treacherous Crossing",
+      "description": "A narrow ice bridge spans a deep crevasse that splits the mountainside. The bridge is ancient dwarven construction, but time and ice have made it treacherous. Cracks spider-web across its surface, and chunks of ice periodically break away, tumbling into the darkness below. The wind gusts fiercely here, threatening to sweep the unwary to their doom. Strange blue lights flicker in the depths of the crevasse.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 19003},
+        "west": {"to_room": 19016},
+        "south": {"to_room": 19001}
+      },
+      "mob_resets": [
+        {"vnum": 19002, "max": 1}
+      ]
+    },
+    "19003": {
+      "vnum": 19003,
+      "name": "The Frozen Plateau",
+      "description": "The path opens onto a small plateau, offering a brief respite from the treacherous climbing. The ruins of an old waystation stand here, its walls collapsed and filled with snow. Dwarven runes, still faintly visible on the remaining stonework, speak of safe passage and hospitality - bitter irony now. Multiple paths lead from here: a steep climb north, a cave entrance to the east, and the treacherous path south.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 19004},
+        "east": {"to_room": 19020},
+        "south": {"to_room": 19002}
+      },
+      "mob_resets": [
+        {"vnum": 19000, "max": 1},
+        {"vnum": 19001, "max": 1}
+      ],
+      "obj_resets": [
+        {"vnum": 19020, "max": 1}
+      ]
+    },
+    "19004": {
+      "vnum": 19004,
+      "name": "The Upper Switchback",
+      "description": "The path grows steeper and more dangerous as you climb higher. Ice coats every surface, and the wind threatens to tear you from the mountainside. Dark clouds swirl overhead, occasionally parting to reveal glimpses of the summit still far above. The cold is beyond bitter now - it burns, sapping the strength from your limbs. Ancient chains, once used as handholds, hang frozen and useless from iron rings set into the rock.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 19005},
+        "east": {"to_room": 19017},
+        "south": {"to_room": 19003}
+      },
+      "mob_resets": [
+        {"vnum": 19003, "max": 2}
+      ]
+    },
+    "19005": {
+      "vnum": 19005,
+      "name": "The Windswept Ridge",
+      "description": "You crest a ridge where the wind howls with such fury that standing upright becomes a struggle. Ice crystals fill the air, reducing visibility to mere feet. The path splits here - one branch continues up the exposed ridge to the north, the other descends slightly to the west where a cave mouth offers shelter from the wind. Frozen bones rattle in the gale, remnants of those who underestimated this mountain.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 19006},
+        "west": {"to_room": 19025},
+        "south": {"to_room": 19004}
+      },
+      "mob_resets": [
+        {"vnum": 19001, "max": 2}
+      ]
+    },
+    "19006": {
+      "vnum": 19006,
+      "name": "Below the Watchtower",
+      "description": "The ancient dwarven watchtower looms above, its frozen spire piercing the clouds. Once it stood proud, a beacon of dwarven might in these mountains. Now it is sheathed in ice so thick that the original stonework is barely visible. Dark windows stare down like empty eye sockets, and an aura of malevolence radiates from the structure. The main entrance lies to the east, while a treacherous path continues upward to the summit.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 19010},
+        "east": {"to_room": 19030},
+        "south": {"to_room": 19005}
+      },
+      "mob_resets": [
+        {"vnum": 19004, "max": 1}
+      ]
+    },
+    "19010": {
+      "vnum": 19010,
+      "name": "The Final Ascent",
+      "description": "The path narrows to a knife-edge ridge leading to the summit. On either side, sheer cliffs drop away into clouds far below. The cold here is absolute, freezing the breath in your lungs and coating everything in a layer of rime. The sky above churns with unnatural storms, lightning flickering through the grey. At the end of the ridge, you can see the summit platform where something massive moves in the swirling snow.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 19011},
+        "south": {"to_room": 19006}
+      },
+      "mob_resets": [
+        {"vnum": 19002, "max": 2}
+      ]
+    },
+    "19011": {
+      "vnum": 19011,
+      "name": "Summit of the Frostspire",
+      "description": "You have reached the summit of the Frostspire, a flat expanse of ice-covered stone where the dwarves once kept their sacred flame burning. Now the flame is long dead, replaced by an aura of supernatural cold that emanates from the massive creature that has claimed this place. Ancient altars stand frozen and forgotten, their offerings preserved in ice for eternity. The view would be breathtaking if the clouds ever parted, but here there is only grey sky, howling wind, and death.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "south": {"to_room": 19010}
+      },
+      "mob_resets": [
+        {"vnum": 19010, "max": 1}
+      ],
+      "obj_resets": [
+        {"vnum": 19030, "max": 1}
+      ]
+    },
+    "19015": {
+      "vnum": 19015,
+      "name": "The Eastern Approach",
+      "description": "An older, more treacherous path leads up the eastern face of the mountain. This route was abandoned by the dwarves long before the curse fell, deemed too dangerous even for their hardy folk. The stones are loose and the ice treacherous, but those who survive might bypass some of the mountain's defenses. Bones of the foolish litter the way, picked clean by carrion birds.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 19016},
+        "west": {"to_room": 19000}
+      },
+      "mob_resets": [
+        {"vnum": 19000, "max": 1},
+        {"vnum": 19001, "max": 2}
+      ]
+    },
+    "19016": {
+      "vnum": 19016,
+      "name": "The Narrow Ledge",
+      "description": "A ledge barely wide enough for a single person winds along a sheer cliff face. The drop is vertical and seemingly infinite, vanishing into swirling mists far below. Ice makes every step a calculated risk, and the wind tugs insistently, eager to claim another victim. Claw marks gouge the stone - something large uses this path, something that doesn't fear the fall.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 19017},
+        "east": {"to_room": 19002},
+        "south": {"to_room": 19015}
+      },
+      "mob_resets": [
+        {"vnum": 19001, "max": 1}
+      ]
+    },
+    "19017": {
+      "vnum": 19017,
+      "name": "The Ice Troll's Lair",
+      "description": "A large cave opens in the cliff face, its entrance rimmed with massive icicles like jagged teeth. The stench of decay wafts from within, and large bones are scattered about the entrance - the remains of the troll's meals. The cave offers some shelter from the wind, but whatever dwells within may be more dangerous than the cold. Frozen blood stains the snow, recent enough to still be red.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 19018},
+        "west": {"to_room": 19004},
+        "south": {"to_room": 19016}
+      },
+      "mob_resets": [
+        {"vnum": 19005, "max": 1}
+      ]
+    },
+    "19018": {
+      "vnum": 19018,
+      "name": "Inside the Troll's Cave",
+      "description": "The cave is larger than it appeared from outside, with rough walls glittering with ice crystals. A pile of bones and frozen meat occupies one corner - the troll's larder. Crude scratchings cover the walls, possibly the creature's attempts at art or perhaps territorial markers. The smell is overwhelming, a mixture of rot and musk that makes your eyes water. Something valuable glints among the bones.",
+      "sector_type": "inside",
+      "flags": ["indoors"],
+      "exits": {
+        "south": {"to_room": 19017}
+      },
+      "mob_resets": [
+        {"vnum": 19005, "max": 1}
+      ],
+      "obj_resets": [
+        {"vnum": 19021, "max": 1},
+        {"vnum": 19022, "max": 1}
+      ]
+    },
+    "19020": {
+      "vnum": 19020,
+      "name": "The Frozen Cavern Entrance",
+      "description": "A natural cave opens in the mountainside, its entrance partially blocked by accumulated ice. The walls within glitter with frost crystals that catch what little light penetrates the gloom. The cave descends into the mountain's heart, where ancient dwarven mines once delved for precious metals. Now only darkness and cold await, along with whatever creatures have made these tunnels their home.",
+      "sector_type": "inside",
+      "flags": ["indoors"],
+      "exits": {
+        "east": {"to_room": 19021},
+        "west": {"to_room": 19003}
+      },
+      "mob_resets": [
+        {"vnum": 19003, "max": 2}
+      ]
+    },
+    "19021": {
+      "vnum": 19021,
+      "name": "The Ice-Bound Mine",
+      "description": "Ancient dwarven mine tunnels stretch into darkness, their walls coated with centuries of ice. Rusted mine carts and frozen tools lie scattered about, abandoned when the curse came. The silence is absolute, broken only by the occasional crack of settling ice. Some of the ice formations seem to hold shapes within - frozen dwarves, their final moments preserved for eternity. Their dead eyes seem to follow you.",
+      "sector_type": "inside",
+      "flags": ["indoors", "dark"],
+      "exits": {
+        "east": {"to_room": 19022},
+        "west": {"to_room": 19020}
+      },
+      "mob_resets": [
+        {"vnum": 19004, "max": 2}
+      ]
+    },
+    "19022": {
+      "vnum": 19022,
+      "name": "The Frozen Treasury",
+      "description": "This chamber was once the dwarven treasury, where precious metals and gems were stored. The wealth remains, frozen in place - coins, ingots, and gems encased in ice so thick it would take days to chip through. But the riches are not unguarded. The frozen corpses of dwarven guards stand at their posts, their eyes glowing with unholy blue light, still fulfilling their duty in death.",
+      "sector_type": "inside",
+      "flags": ["indoors", "dark"],
+      "exits": {
+        "west": {"to_room": 19021}
+      },
+      "mob_resets": [
+        {"vnum": 19004, "max": 3}
+      ],
+      "obj_resets": [
+        {"vnum": 19023, "max": 1},
+        {"vnum": 19024, "max": 1}
+      ]
+    },
+    "19025": {
+      "vnum": 19025,
+      "name": "The Sheltered Cave",
+      "description": "A small cave provides welcome shelter from the howling wind outside. The temperature is still freezing, but without the wind chill, it feels almost warm. Signs of previous visitors mark the walls - scratched initials, crude drawings, a prayer to forgotten gods. A frozen corpse sits against one wall, its hand still clutching a journal. Perhaps its words can provide guidance to those who would follow.",
+      "sector_type": "inside",
+      "flags": ["indoors"],
+      "exits": {
+        "east": {"to_room": 19005},
+        "north": {"to_room": 19026}
+      },
+      "obj_resets": [
+        {"vnum": 19025, "max": 1}
+      ]
+    },
+    "19026": {
+      "vnum": 19026,
+      "name": "The Crystal Cavern",
+      "description": "Deep within the cave, a natural chamber opens, its walls covered with massive ice crystals that pulse with an inner light. The crystals hum with magical energy, resonating at frequencies that make your teeth ache. This place was sacred to the dwarves, a temple to the spirits of the mountain. Now the spirits are corrupted, their light cold and unwelcoming, their song a dirge for the fallen.",
+      "sector_type": "inside",
+      "flags": ["indoors"],
+      "exits": {
+        "south": {"to_room": 19025}
+      },
+      "mob_resets": [
+        {"vnum": 19002, "max": 2}
+      ],
+      "obj_resets": [
+        {"vnum": 19026, "max": 1}
+      ]
+    },
+    "19030": {
+      "vnum": 19030,
+      "name": "Watchtower Entry Hall",
+      "description": "The frozen doors of the watchtower have been torn from their hinges, lying in shattered pieces across the threshold. Beyond, the entry hall stretches into darkness, its dwarven murals barely visible beneath the ice that coats everything. The cold here has a malevolent quality, actively hostile, as if the building itself resents your presence. Stairs lead up into the tower's heights and down into its depths.",
+      "sector_type": "inside",
+      "flags": ["indoors", "dark"],
+      "exits": {
+        "up": {"to_room": 19031},
+        "down": {"to_room": 19035},
+        "west": {"to_room": 19006}
+      },
+      "mob_resets": [
+        {"vnum": 19004, "max": 2}
+      ]
+    },
+    "19031": {
+      "vnum": 19031,
+      "name": "The Guard Quarters",
+      "description": "This level once housed the tower's garrison. Frozen bunks line the walls, some still occupied by their original owners - dwarven guards who died in their sleep when the curse fell. Their undead eyes snap open as you enter, their frozen forms creaking as they rise to defend their post. Weapons and armor hang on racks, preserved by the eternal cold.",
+      "sector_type": "inside",
+      "flags": ["indoors", "dark"],
+      "exits": {
+        "up": {"to_room": 19032},
+        "down": {"to_room": 19030}
+      },
+      "mob_resets": [
+        {"vnum": 19004, "max": 4}
+      ],
+      "obj_resets": [
+        {"vnum": 19027, "max": 1}
+      ]
+    },
+    "19032": {
+      "vnum": 19032,
+      "name": "The Armory",
+      "description": "The watchtower's armory remains well-stocked with dwarven weapons and armor, all perfectly preserved by the cold. Frost-rimed axes, ice-encrusted shields, and frozen chainmail await wielders who will never come. The quality of the workmanship is evident even beneath the ice - these were master-crafted items meant to last generations. A spiral staircase continues upward.",
+      "sector_type": "inside",
+      "flags": ["indoors", "dark"],
+      "exits": {
+        "up": {"to_room": 19033},
+        "down": {"to_room": 19031}
+      },
+      "obj_resets": [
+        {"vnum": 19028, "max": 1},
+        {"vnum": 19029, "max": 1}
+      ]
+    },
+    "19033": {
+      "vnum": 19033,
+      "name": "The Commander's Chamber",
+      "description": "The tower commander's private quarters occupy this level. A frozen desk still holds the last orders being written when death came - a warning about something approaching from the north, something terrible. The commander's frozen corpse sits at the desk, quill still in hand. Unlike the guards below, this one does not stir. Perhaps in death, rank still has its privileges. Fine furnishings, now frozen solid, speak of status and authority.",
+      "sector_type": "inside",
+      "flags": ["indoors", "dark"],
+      "exits": {
+        "up": {"to_room": 19034},
+        "down": {"to_room": 19032}
+      },
+      "mob_resets": [
+        {"vnum": 19006, "max": 1}
+      ],
+      "obj_resets": [
+        {"vnum": 19031, "max": 1}
+      ]
+    },
+    "19034": {
+      "vnum": 19034,
+      "name": "The Signal Room",
+      "description": "At the top of the watchtower, the signal room still holds the great brazier that once sent warnings across the mountains. The flame has been frozen in place - an impossibility that speaks to the power of the curse. Great windows, now shattered, offer views of the entire mountain range, though the perpetual storm obscures much. From here, one can access the summit where the master of this frozen realm awaits.",
+      "sector_type": "inside",
+      "flags": ["indoors", "dark"],
+      "exits": {
+        "out": {"to_room": 19011},
+        "down": {"to_room": 19033}
+      },
+      "obj_resets": [
+        {"vnum": 19032, "max": 1}
+      ]
+    },
+    "19035": {
+      "vnum": 19035,
+      "name": "The Watchtower Basement",
+      "description": "Stone stairs descend into the watchtower's basement, where supplies were once stored for long sieges. Barrels of frozen provisions line the walls, and the remains of a forge stand cold and dead. But something stirs in the darkness here - the sounds of scraping and shuffling echo from the shadows. The cold is even more intense below ground, emanating from some source deeper within.",
+      "sector_type": "inside",
+      "flags": ["indoors", "dark"],
+      "exits": {
+        "east": {"to_room": 19036},
+        "up": {"to_room": 19030}
+      },
+      "mob_resets": [
+        {"vnum": 19003, "max": 2}
+      ]
+    },
+    "19036": {
+      "vnum": 19036,
+      "name": "The Deep Storage",
+      "description": "Deeper in the basement, older supplies molder in the eternal cold. This section was sealed off years before the curse, its contents forgotten. Ancient crates bear the marks of the dwarven royal house, suggesting they contain items of great value or importance. Some have been broken open by whatever lurks down here, their contents scattered across the frozen floor.",
+      "sector_type": "inside",
+      "flags": ["indoors", "dark"],
+      "exits": {
+        "east": {"to_room": 19037},
+        "west": {"to_room": 19035}
+      },
+      "mob_resets": [
+        {"vnum": 19003, "max": 2}
+      ],
+      "obj_resets": [
+        {"vnum": 19033, "max": 1}
+      ]
+    },
+    "19037": {
+      "vnum": 19037,
+      "name": "The Vault Entrance",
+      "description": "A massive dwarven vault door stands at the end of the corridor, its surface covered in protective runes now darkened and cracked. Whatever power once sealed this vault has failed, and the door stands partially open. Cold mist seeps through the gap, colder even than the surrounding ice. The frozen body of a dwarf lies before the door, his hands still wrapped around the handle, as if he died trying to seal it shut.",
+      "sector_type": "inside",
+      "flags": ["indoors", "dark"],
+      "exits": {
+        "east": {"to_room": 19038},
+        "west": {"to_room": 19036}
+      },
+      "mob_resets": [
+        {"vnum": 19004, "max": 1}
+      ]
+    },
+    "19038": {
+      "vnum": 19038,
+      "name": "The Ancient Vault",
+      "description": "Beyond the vault door lies a chamber that should not exist - a space far larger than the basement above could contain. Ancient treasures fill the room: artifacts of dwarven make, relics of forgotten kingdoms, and items of power that radiate magical energy even through the supernatural cold. At the center of the vault, a sarcophagus of black ice holds something that moves within, pressing against its frozen prison.",
+      "sector_type": "inside",
+      "flags": ["indoors", "dark"],
+      "exits": {
+        "west": {"to_room": 19037}
+      },
+      "mob_resets": [
+        {"vnum": 19007, "max": 1}
+      ],
+      "obj_resets": [
+        {"vnum": 19034, "max": 1},
+        {"vnum": 19035, "max": 1}
+      ]
+    }
+  },
+  "mobs": {
+    "19000": {
+      "vnum": 19000,
+      "name": "frost wolf",
+      "short_desc": "a frost wolf",
+      "long_desc": "A massive white wolf prowls the frozen slopes, frost crystallizing on its fur.",
+      "level": 15,
+      "alignment": -300,
+      "hp_dice": "12d10+100",
+      "damage_dice": "3d6+6",
+      "gold": 0,
+      "exp": 800,
+      "armor_class": 60,
+      "flags": ["aggressive", "stay_zone"],
+      "special": null,
+      "description": "This wolf is much larger than its lowland cousins, with a thick coat of pure white fur that provides perfect camouflage in the snow. Frost clings to its muzzle, and its breath comes in clouds of icy mist. Its eyes glow with a faint blue light, suggesting something supernatural about its nature."
+    },
+    "19001": {
+      "vnum": 19001,
+      "name": "ice wraith",
+      "short_desc": "an ice wraith",
+      "long_desc": "A translucent figure of frozen mist drifts through the air, its touch deadly cold.",
+      "level": 18,
+      "alignment": -600,
+      "hp_dice": "14d10+120",
+      "damage_dice": "3d8+8",
+      "gold": 0,
+      "exp": 1200,
+      "armor_class": 45,
+      "flags": ["aggressive", "stay_zone", "undead"],
+      "special": null,
+      "description": "This spirit appears as a vaguely humanoid shape formed of swirling ice and freezing mist. Its features are indistinct, constantly shifting, but two points of cold blue light serve as eyes. Where it passes, frost forms on every surface, and the temperature drops to deadly levels."
+    },
+    "19002": {
+      "vnum": 19002,
+      "name": "ice elemental",
+      "short_desc": "an ice elemental",
+      "long_desc": "A hulking creature of living ice lumbers forward, its frozen form creaking.",
+      "level": 20,
+      "alignment": -200,
+      "hp_dice": "18d10+180",
+      "damage_dice": "4d6+10",
+      "gold": 0,
+      "exp": 1800,
+      "armor_class": 40,
+      "flags": ["aggressive", "stay_zone", "sentinel"],
+      "special": null,
+      "description": "This elemental appears to be carved from the heart of a glacier - dense blue ice that has never known warmth. It stands eight feet tall, vaguely humanoid in shape, with arms that end in razor-sharp ice blades. Its movements are slow but implacable, and its strength is that of an avalanche."
+    },
+    "19003": {
+      "vnum": 19003,
+      "name": "frozen ghoul",
+      "short_desc": "a frozen ghoul",
+      "long_desc": "A hunched, frost-covered figure scrabbles across the ice on all fours.",
+      "level": 16,
+      "alignment": -800,
+      "hp_dice": "12d10+90",
+      "damage_dice": "3d6+5",
+      "gold": 30,
+      "exp": 900,
+      "armor_class": 55,
+      "flags": ["aggressive", "stay_zone", "undead"],
+      "special": null,
+      "description": "This undead creature was once human or dwarf, but hunger and cold have twisted it into something bestial. Its skin is blue-grey and covered with frost, its eyes are vacant and hungry, and its fingers have become curved claws perfect for tearing flesh. It moves with jerky, unnatural speed."
+    },
+    "19004": {
+      "vnum": 19004,
+      "name": "frozen dwarven guard",
+      "short_desc": "a frozen dwarven guard",
+      "long_desc": "A dwarven warrior stands frozen in death, but its eyes glow with unholy light.",
+      "level": 18,
+      "alignment": -500,
+      "hp_dice": "14d10+130",
+      "damage_dice": "3d8+7",
+      "gold": 75,
+      "exp": 1100,
+      "armor_class": 45,
+      "flags": ["aggressive", "stay_zone", "undead", "helper"],
+      "special": null,
+      "description": "This dwarf died centuries ago when the curse fell upon the Frostspire, but death was not the end. Ice has preserved its body perfectly, and dark magic has animated its corpse. It wears the armor and carries the weapons it bore in life, and it fights with the skill of a trained warrior, though now in service to the cold.",
+      "loot_table": [
+        {"vnum": 19027, "chance": 30}
+      ],
+      "loot_chance": 100
+    },
+    "19005": {
+      "vnum": 19005,
+      "name": "ice troll",
+      "short_desc": "a massive ice troll",
+      "long_desc": "An enormous troll with blue-white skin and icicle fangs guards this area.",
+      "level": 22,
+      "alignment": -600,
+      "hp_dice": "20d10+200",
+      "damage_dice": "4d8+12",
+      "gold": 200,
+      "exp": 2200,
+      "armor_class": 35,
+      "flags": ["aggressive", "stay_zone", "sentinel"],
+      "special": null,
+      "description": "This troll stands over ten feet tall, its massive frame covered in blue-white hide as tough as frozen leather. Icicles hang from its chin like a frozen beard, and its claws are solid ice, razor-sharp and strong as steel. Unlike normal trolls, this creature does not fear fire - in fact, fire seems to anger it, driving it into a killing frenzy.",
+      "loot_table": [
+        {"vnum": 19021, "chance": 40},
+        {"vnum": 19022, "chance": 30}
+      ],
+      "loot_chance": 100
+    },
+    "19006": {
+      "vnum": 19006,
+      "name": "frozen dwarven commander",
+      "short_desc": "the frozen dwarven commander",
+      "long_desc": "A dwarven officer in ornate frozen armor stands at attention, its dead eyes watching.",
+      "level": 24,
+      "alignment": -500,
+      "hp_dice": "22d10+220",
+      "damage_dice": "4d8+10",
+      "gold": 300,
+      "exp": 2800,
+      "armor_class": 30,
+      "flags": ["aggressive", "stay_zone", "undead", "sentinel"],
+      "special": null,
+      "description": "This dwarf was a commander of high rank, as evidenced by the ornate armor still encasing its frozen corpse. Unlike the common guards, this undead retains a measure of intelligence, coordinating the defense of the watchtower with tactical precision. Its eyes burn with colder, brighter light than the others, and its frozen voice still barks orders in ancient Dwarvish.",
+      "loot_table": [
+        {"vnum": 19028, "chance": 50},
+        {"vnum": 19031, "chance": 30}
+      ],
+      "loot_chance": 100
+    },
+    "19007": {
+      "vnum": 19007,
+      "name": "frozen dwarven king",
+      "short_desc": "the Frozen Dwarven King",
+      "long_desc": "A majestic dwarven figure in royal armor struggles against its icy prison.",
+      "level": 28,
+      "alignment": 100,
+      "hp_dice": "25d10+300",
+      "damage_dice": "5d8+12",
+      "gold": 1000,
+      "exp": 5000,
+      "armor_class": 20,
+      "flags": ["sentinel", "stay_zone", "boss"],
+      "boss": true,
+      "special": null,
+      "description": "This is the last dwarven king of the Frostspire, entombed in black ice by the frost wyrm's curse. Unlike the undead guards, the king was sealed away alive, trapped in a state between life and death for centuries. His armor is of legendary quality, his crown set with gems of power. If freed, he might be an ally... but freeing him may release something far worse.",
+      "loot_table": [
+        {"vnum": 19034, "chance": 100},
+        {"vnum": 19035, "chance": 50}
+      ],
+      "loot_chance": 100
+    },
+    "19010": {
+      "vnum": 19010,
+      "name": "Vyrkothas the Frost Wyrm",
+      "short_desc": "Vyrkothas the Frost Wyrm",
+      "long_desc": "A massive dragon of living ice coils upon the summit, its cold eyes regarding you with ancient malice.",
+      "level": 30,
+      "alignment": -1000,
+      "hp_dice": "30d10+500",
+      "damage_dice": "4d8+10",
+      "gold": 5000,
+      "exp": 15000,
+      "armor_class": 0,
+      "flags": ["aggressive", "sentinel", "stay_zone", "boss"],
+      "boss": true,
+      "special": null,
+      "description": "Vyrkothas is no ordinary dragon - it is a creature born of the deepest winter, a living embodiment of killing cold. Its scales are solid ice, harder than steel and glittering with inner light. Its eyes are twin pools of absolute cold, and its breath is the wind from the end of the world. It has ruled this mountain for a thousand years, feeding on the life force of all who dare climb to its domain. The curse that froze the dwarven kingdom was its doing, a mere casual display of its power. It regards you with the cold amusement of an immortal being facing yet another would-be hero.",
+      "loot_table": [
+        {"vnum": 19036, "chance": 100},
+        {"vnum": 19037, "chance": 75},
+        {"vnum": 19038, "chance": 50},
+        {"vnum": 19039, "chance": 25}
+      ],
+      "loot_chance": 100
+    }
+  },
+  "objects": {
+    "19020": {
+      "vnum": 19020,
+      "name": "frozen rations",
+      "short_desc": "some frozen dwarven rations",
+      "room_desc": "A pack of frozen rations lies in the snow.",
+      "type": "food",
+      "weight": 3,
+      "cost": 20,
+      "nutrition": 12
+    },
+    "19021": {
+      "vnum": 19021,
+      "name": "troll's ice club",
+      "short_desc": "a massive ice club",
+      "room_desc": "A club made of solid ice lies here.",
+      "type": "weapon",
+      "weight": 25,
+      "cost": 200,
+      "damage_dice": "3d6+8",
+      "weapon_type": "crush"
+    },
+    "19022": {
+      "vnum": 19022,
+      "name": "frozen gold coins",
+      "short_desc": "a handful of frozen gold coins",
+      "room_desc": "Some gold coins are frozen to the ground here.",
+      "type": "other",
+      "weight": 2,
+      "cost": 150
+    },
+    "19023": {
+      "vnum": 19023,
+      "name": "dwarven gold bar",
+      "short_desc": "a bar of dwarven gold",
+      "room_desc": "A bar of pure dwarven gold lies frozen in the ice.",
+      "type": "other",
+      "weight": 10,
+      "cost": 500
+    },
+    "19024": {
+      "vnum": 19024,
+      "name": "frozen sapphire",
+      "short_desc": "a large frozen sapphire",
+      "room_desc": "A sapphire the size of a fist glitters in the ice.",
+      "type": "other",
+      "weight": 1,
+      "cost": 750
+    },
+    "19025": {
+      "vnum": 19025,
+      "name": "frozen journal",
+      "short_desc": "a frozen explorer's journal",
+      "room_desc": "A leather-bound journal lies clutched in frozen hands.",
+      "type": "other",
+      "weight": 1,
+      "cost": 50
+    },
+    "19026": {
+      "vnum": 19026,
+      "name": "spirit crystal",
+      "short_desc": "a pulsing spirit crystal",
+      "room_desc": "A crystal pulsing with inner light lies on a frozen altar.",
+      "type": "other",
+      "weight": 2,
+      "cost": 400
+    },
+    "19027": {
+      "vnum": 19027,
+      "name": "dwarven frost axe",
+      "short_desc": "a dwarven frost axe",
+      "room_desc": "An ice-encrusted dwarven axe lies here.",
+      "type": "weapon",
+      "weight": 12,
+      "cost": 350,
+      "damage_dice": "2d8+6",
+      "weapon_type": "slash"
+    },
+    "19028": {
+      "vnum": 19028,
+      "name": "frostguard chainmail",
+      "short_desc": "a suit of frostguard chainmail",
+      "room_desc": "A suit of ice-blue chainmail lies frozen on an armor stand.",
+      "type": "armor",
+      "weight": 25,
+      "cost": 600,
+      "ac_apply": -8,
+      "wear_flags": ["body"]
+    },
+    "19029": {
+      "vnum": 19029,
+      "name": "frozen dwarven shield",
+      "short_desc": "a frozen dwarven shield",
+      "room_desc": "A large dwarven shield covered in ice lies here.",
+      "type": "armor",
+      "weight": 15,
+      "cost": 250,
+      "ac_apply": -4,
+      "wear_flags": ["shield"]
+    },
+    "19030": {
+      "vnum": 19030,
+      "name": "frozen altar fragment",
+      "short_desc": "a fragment of the sacred altar",
+      "room_desc": "A piece of ancient altar stone lies on the frozen ground.",
+      "type": "other",
+      "weight": 8,
+      "cost": 200
+    },
+    "19031": {
+      "vnum": 19031,
+      "name": "commander's orders",
+      "short_desc": "the commander's final orders",
+      "room_desc": "A frozen scroll lies on the desk.",
+      "type": "other",
+      "weight": 0,
+      "cost": 75
+    },
+    "19032": {
+      "vnum": 19032,
+      "name": "frozen flame shard",
+      "short_desc": "a shard of frozen flame",
+      "room_desc": "An impossible object lies here - a piece of flame frozen in time.",
+      "type": "other",
+      "weight": 1,
+      "cost": 1000
+    },
+    "19033": {
+      "vnum": 19033,
+      "name": "dwarven royal seal",
+      "short_desc": "the dwarven royal seal",
+      "room_desc": "A golden seal bearing the royal crest lies in the dust.",
+      "type": "other",
+      "weight": 2,
+      "cost": 800
+    },
+    "19034": {
+      "vnum": 19034,
+      "name": "crown of the frozen king",
+      "short_desc": "the Crown of the Frozen King",
+      "room_desc": "A magnificent crown of ice and mithril lies here.",
+      "type": "armor",
+      "weight": 3,
+      "cost": 5000,
+      "ac_apply": -5,
+      "wear_flags": ["head"]
+    },
+    "19035": {
+      "vnum": 19035,
+      "name": "king's scepter",
+      "short_desc": "the Scepter of the Mountain King",
+      "room_desc": "A royal scepter of silver and sapphire lies abandoned.",
+      "type": "weapon",
+      "weight": 5,
+      "cost": 3000,
+      "damage_dice": "3d6+8",
+      "weapon_type": "crush"
+    },
+    "19036": {
+      "vnum": 19036,
+      "name": "frostfire blade",
+      "short_desc": "Frostfire, blade of eternal winter",
+      "room_desc": "A magnificent sword of ice and fire lies here, its blade smoking with cold.",
+      "type": "weapon",
+      "weight": 8,
+      "cost": 10000,
+      "damage_dice": "4d6+12",
+      "weapon_type": "slash"
+    },
+    "19037": {
+      "vnum": 19037,
+      "name": "wyrm scale armor",
+      "short_desc": "armor of frost wyrm scales",
+      "room_desc": "A suit of armor made from dragon scales lies here, radiating cold.",
+      "type": "armor",
+      "weight": 30,
+      "cost": 8000,
+      "ac_apply": -15,
+      "wear_flags": ["body"]
+    },
+    "19038": {
+      "vnum": 19038,
+      "name": "heart of winter",
+      "short_desc": "the Heart of Winter",
+      "room_desc": "A gem of absolute cold pulses with power here.",
+      "type": "other",
+      "weight": 1,
+      "cost": 15000
+    },
+    "19039": {
+      "vnum": 19039,
+      "name": "wyrm's eye amulet",
+      "short_desc": "an amulet containing the wyrm's eye",
+      "room_desc": "An amulet with a dragon's eye set in silver lies here.",
+      "type": "armor",
+      "weight": 1,
+      "cost": 5000,
+      "ac_apply": -3,
+      "wear_flags": ["neck"]
+    }
+  }
+}

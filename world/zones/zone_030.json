@@ -1688,17 +1688,18 @@
     "3065": {
       "vnum": 3065,
       "name": "The Great Field Of Midgaard",
-      "description": "A path runs through a wide dirt path through the lush, green, fresh\nMidgaard countryside. Visible is to the horizon to the north, east, and\nwest; the busy city of Midgaard lies to the south. All around is healthy\ngreen grass and an occasional large oak tree. The sun feels wonderful on\nyour face and a pleasant wind blows through your hair. Birds chirp\nquietly to themselves and you can smell the faint scent of flowers and\nfreshly cut grass. You feel like you could lie down in the grass and\nstay here forever, surrounded by powerful beauty in all directions. The\nway north appears to be blocked by a large plot device and you cannot\nsee any way around it. The open sky stretches overhead. Tall grass sways\nin a gentle breeze.",
+      "description": "A path runs through a wide dirt path through the lush, green, fresh\nMidgaard countryside. The busy city of Midgaard lies to the south, while\nto the north a dark line of trees marks the edge of the Great Northern\nForest. All around is healthy green grass and an occasional large oak\ntree. The sun feels wonderful on your face and a pleasant wind blows\nthrough your hair, though a subtle chill from the north hints at colder\nlands beyond. Birds chirp quietly to themselves and you can smell the\nfaint scent of flowers and freshly cut grass. The open sky stretches\noverhead. Tall grass sways in a gentle breeze.",
       "sector_type": "field",
       "flags": [],
       "exits": {
+        "north": {
+          "to_room": 18000,
+          "description": "The dark trees of the Great Northern Forest loom to the north."
+        },
         "south": {
           "to_room": 3061,
           "description": "The path continues through the field to the south past an odd structure on the eastern side of the path."
         }
-      },
-      "extra_descs": {
-        "": "plot device"
       }
     },
     "3066": {

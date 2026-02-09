@@ -10662,3 +10662,102 @@ ConnectionResetError: [Errno 54] Connection reset by peer
 2026-02-09 09:39:32,092 - RealmsMUD.World - INFO - Autosaved 0 players
 2026-02-09 09:43:36,934 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 2 of Early Summer, Year 1000
 2026-02-09 09:44:38,230 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-09 09:45:04,101 - RealmsMUD - INFO - ============================================================
+2026-02-09 09:45:04,101 - RealmsMUD - INFO - RealmsMUD - Fantasy Multi-User Dungeon
+2026-02-09 09:45:04,101 - RealmsMUD - INFO - ============================================================
+2026-02-09 09:45:04,101 - RealmsMUD - INFO - Initializing game systems...
+2026-02-09 09:45:04,101 - time_system - INFO - Game time initialized: 12:00 PM, Day 1 of Early Summer, Year 1000
+2026-02-09 09:45:04,101 - RealmsMUD.World - INFO - Loading world...
+2026-02-09 09:45:04,102 - RealmsMUD.World - INFO - Loaded zone 50: The Great Eastern Desert (74 rooms)
+2026-02-09 09:45:04,105 - RealmsMUD.World - INFO - Loaded zone 210: Tunnel of Sticks (400 rooms)
+2026-02-09 09:45:04,105 - RealmsMUD.World - INFO - Loaded zone 31: Southern part of Midgaard (54 rooms)
+2026-02-09 09:45:04,106 - RealmsMUD.World - ERROR - Error loading zone file /Users/michaeltravis/clawd/projects/RealmsMUD/world/zones/zone_070.json: 'vnum'
+2026-02-09 09:45:04,106 - RealmsMUD.World - INFO - Loaded zone 71: The Second Sewer (26 rooms)
+2026-02-09 09:45:04,107 - RealmsMUD.World - ERROR - Error loading zone file /Users/michaeltravis/clawd/projects/RealmsMUD/world/zones/zone_030.json: 'vnum'
+2026-02-09 09:45:04,108 - RealmsMUD.World - INFO - Loaded zone 51: Drow City (51 rooms)
+2026-02-09 09:45:04,108 - RealmsMUD.World - INFO - Loaded zone 220: Castle Apocalypse (51 rooms)
+2026-02-09 09:45:04,109 - RealmsMUD.World - ERROR - Error loading zone file /Users/michaeltravis/clawd/projects/RealmsMUD/world/zones/zone_060.json: 'vnum'
+2026-02-09 09:45:04,110 - RealmsMUD.World - INFO - Loaded zone 40: Mines of Moria (103 rooms)
+2026-02-09 09:45:04,111 - RealmsMUD.World - INFO - Loaded zone 200: Forest of Shadows (10 rooms)
+2026-02-09 09:45:04,111 - RealmsMUD.World - INFO - Loaded zone 186: Newbie Zone (41 rooms)
+2026-02-09 09:45:04,111 - RealmsMUD.World - INFO - Loaded zone 0: Limbo - Internal (3 rooms)
+2026-02-09 09:45:04,112 - RealmsMUD.World - INFO - Loaded zone 61: Haon-Dor, Dark Forest (48 rooms)
+2026-02-09 09:45:04,112 - RealmsMUD.World - INFO - Loaded zone 36: The Chessboard of Midgaard (67 rooms)
+2026-02-09 09:45:04,113 - RealmsMUD.World - ERROR - Error loading zone file /Users/michaeltravis/clawd/projects/RealmsMUD/world/zones/zone_062.json: 'vnum'
+2026-02-09 09:45:04,113 - RealmsMUD.World - INFO - Loaded zone 35: Miden'Nir (45 rooms)
+2026-02-09 09:45:04,114 - RealmsMUD.World - INFO - Loaded zone 150: King Welmar's Castle (75 rooms)
+2026-02-09 09:45:04,115 - RealmsMUD.World - INFO - Loaded zone 15: The Straight Path (41 rooms)
+2026-02-09 09:45:04,117 - RealmsMUD.World - INFO - Loaded zone 54: New Thalos (285 rooms)
+2026-02-09 09:45:04,117 - RealmsMUD.World - INFO - Loaded zone 110: Silversong Elven Village (15 rooms)
+2026-02-09 09:45:04,117 - RealmsMUD.World - ERROR - Error loading zone file /Users/michaeltravis/clawd/projects/RealmsMUD/world/zones/zone_080.json: 'vnum'
+2026-02-09 09:45:04,117 - RealmsMUD.World - INFO - Loaded zone 79: Redferne's Residence (20 rooms)
+2026-02-09 09:45:04,118 - RealmsMUD.World - INFO - Loaded zone 63: Arachnos (52 rooms)
+2026-02-09 09:45:04,118 - RealmsMUD.World - INFO - Loaded zone 130: The Sunken Ruins of Atal'narath (18 rooms)
+2026-02-09 09:45:04,118 - RealmsMUD.World - INFO - Loaded zone 140: The Necropolis of Eternal Night (31 rooms)
+2026-02-09 09:45:04,119 - RealmsMUD.World - ERROR - Error loading zone file /Users/michaeltravis/clawd/projects/RealmsMUD/world/zones/zone_052.json: 'vnum'
+2026-02-09 09:45:04,120 - RealmsMUD.World - INFO - Loaded zone 25: The High Tower Of Magic (183 rooms)
+2026-02-09 09:45:04,121 - RealmsMUD.World - INFO - Loaded zone 160: The Plane of Eternal Chaos (26 rooms)
+2026-02-09 09:45:04,121 - RealmsMUD.World - ERROR - Error loading zone file /Users/michaeltravis/clawd/projects/RealmsMUD/world/zones/zone_072.json: 'vnum'
+2026-02-09 09:45:04,122 - RealmsMUD.World - INFO - Loaded zone 64: Rand's Tower (46 rooms)
+2026-02-09 09:45:04,122 - RealmsMUD.World - INFO - Loaded zone 33: The Three Of Swords (76 rooms)
+2026-02-09 09:45:04,123 - RealmsMUD.World - INFO - Loaded zone 9: River Island Of Minos (24 rooms)
+2026-02-09 09:45:04,123 - RealmsMUD.World - INFO - Loaded zone 65: The Dwarven Kingdom (51 rooms)
+2026-02-09 09:45:04,124 - RealmsMUD.World - ERROR - Error loading zone file /Users/michaeltravis/clawd/projects/RealmsMUD/world/zones/zone_120.json: 'vnum'
+2026-02-09 09:45:04,124 - RealmsMUD.World - INFO - Loaded zone 73: The Mindflayer's Lair (3 rooms)
+2026-02-09 09:45:04,124 - RealmsMUD.World - INFO - Loaded zone 53: The Great Pyramid (61 rooms)
+2026-02-09 09:45:04,124 - RealmsMUD.World - INFO - Loaded zone 12: God Simplex (7 rooms)
+2026-02-09 09:45:04,125 - RealmsMUD.World - INFO - Loaded zone 100: The Dwarven Mines of Khaz-Durum (25 rooms)
+2026-02-09 09:45:04,125 - RealmsMUD.World - INFO - Loaded zone 90: The Haunted Swamp (20 rooms)
+2026-02-09 09:45:04,143 - RealmsMUD.Shops - INFO - Created shop for chef (vnum 15022) with 1 items
+2026-02-09 09:45:04,144 - RealmsMUD.Shops - INFO - Created shop for astrologer (vnum 15019) with 1 items
+2026-02-09 09:45:04,146 - RealmsMUD.Shops - INFO - Created shop for bartender (vnum 5405) with 1 items
+2026-02-09 09:45:04,146 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-09 09:45:04,146 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-09 09:45:04,147 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-09 09:45:04,147 - RealmsMUD.Shops - INFO - Created shop for cassandra (vnum 5418) with 0 items
+2026-02-09 09:45:04,148 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-09 09:45:04,148 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-09 09:45:04,149 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-09 09:45:04,150 - RealmsMUD.Shops - INFO - Created shop for ahkeem (vnum 5413) with 1 items
+2026-02-09 09:45:04,150 - RealmsMUD.Shops - INFO - Created shop for vera (vnum 5414) with 1 items
+2026-02-09 09:45:04,150 - RealmsMUD.Shops - INFO - Created shop for butch (vnum 5415) with 1 items
+2026-02-09 09:45:04,150 - RealmsMUD.Shops - INFO - Created shop for elriva (vnum 5479) with 1 items
+2026-02-09 09:45:04,150 - RealmsMUD.Shops - INFO - Created shop for braheem (vnum 5480) with 1 items
+2026-02-09 09:45:04,150 - RealmsMUD.Shops - INFO - Created shop for shopkeeper (vnum 5411) with 1 items
+2026-02-09 09:45:04,150 - RealmsMUD.Shops - INFO - Created shop for abdul (vnum 5416) with 1 items
+2026-02-09 09:45:04,151 - RealmsMUD.Shops - INFO - Created shop for baker (vnum 5410) with 1 items
+2026-02-09 09:45:04,151 - RealmsMUD.Shops - INFO - Created shop for igor (vnum 5417) with 1 items
+2026-02-09 09:45:04,151 - RealmsMUD.Shops - INFO - Created shop for stitch (vnum 5484) with 1 items
+2026-02-09 09:45:04,151 - RealmsMUD.Shops - INFO - Created shop for patch (vnum 5483) with 1 items
+2026-02-09 09:45:04,151 - RealmsMUD.Shops - INFO - Created shop for shipwright (vnum 5465) with 0 items
+2026-02-09 09:45:04,151 - RealmsMUD.Shops - INFO - Created shop for blacksmith (vnum 5466) with 1 items
+2026-02-09 09:45:04,163 - RealmsMUD.Shops - INFO - Created shop for strick (vnum 2505) with 1 items
+2026-02-09 09:45:04,163 - RealmsMUD.Shops - INFO - Created shop for tatorious (vnum 2506) with 0 items
+2026-02-09 09:45:04,177 - RealmsMUD.Shops - INFO - Created shop for storekeeper (vnum 3301) with 1 items
+2026-02-09 09:45:04,177 - RealmsMUD.Shops - INFO - Created shop for cowgirl (vnum 3302) with 0 items
+2026-02-09 09:45:04,178 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-02-09 09:45:04,178 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-02-09 09:45:04,178 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-02-09 09:45:04,178 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-02-09 09:45:04,180 - RealmsMUD.Shops - INFO - Created shop for storekeeper (vnum 6503) with 0 items
+2026-02-09 09:45:04,181 - RealmsMUD.Shops - INFO - Created shop for baker (vnum 6504) with 0 items
+2026-02-09 09:45:04,190 - RealmsMUD.World - INFO - World loaded: 32 zones, 2032 rooms
+2026-02-09 09:45:04,190 - RealmsMUD.WebMap - INFO - Web map server listening on 0.0.0.0:4001
+2026-02-09 09:45:04,262 - web_client - INFO - Web client listening on http://0.0.0.0:4003
+2026-02-09 09:45:04,262 - RealmsMUD - INFO - Initialization complete!
+2026-02-09 09:45:04,262 - RealmsMUD - INFO - Starting server on port 4000...
+2026-02-09 09:45:04,262 - RealmsMUD.Server - INFO - Server listening on 0.0.0.0:4000
+2026-02-09 09:45:04,567 - RealmsMUD.WebMap - INFO - WebSocket subscribe: player='Ruby' mode='full'
+2026-02-09 09:45:04,567 - RealmsMUD.WebMap - WARNING - Player 'Ruby' not found in world.players (online: [])
+2026-02-09 09:49:38,619 - RealmsMUD.WebMap - INFO - WebSocket message is None, closing connection for client
+2026-02-09 09:50:10,301 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-09 09:55:16,432 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-09 09:57:19,009 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 1 of Early Summer, Year 1000
+2026-02-09 10:00:22,700 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-09 10:00:22,702 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-09 10:00:22,704 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-09 10:00:22,708 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-09 10:00:22,709 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-09 10:00:22,711 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-09 10:00:22,742 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-09 10:01:23,871 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 1 of Early Summer, Year 1000

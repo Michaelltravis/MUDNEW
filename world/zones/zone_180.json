@@ -1,0 +1,695 @@
+{
+  "number": 180,
+  "name": "The Great Northern Forest",
+  "builders": "Ram",
+  "lifespan": 30,
+  "reset_mode": 2,
+  "top": 18029,
+  "rooms": {
+    "18000": {
+      "vnum": 18000,
+      "name": "Edge of the Northern Forest",
+      "description": "The well-worn path from Midgaard ends here at the edge of a vast, ancient forest. Towering oaks and thick-trunked pines rise before you like silent sentinels, their branches intertwining to form a living canopy overhead. The air carries the rich scent of pine needles and damp earth. Birdsong echoes from the shadowed depths ahead, though a subtle chill in the breeze hints at colder lands to the north. The path continues deeper into the woods.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 18001},
+        "south": {"to_room": 3065, "description": "The great field of Midgaard stretches to the south."}
+      },
+      "mob_resets": [
+        {"vnum": 18001, "max": 2}
+      ]
+    },
+    "18001": {
+      "vnum": 18001,
+      "name": "A Winding Forest Path",
+      "description": "The forest path winds between gnarled oak trees, their twisted roots breaking through the packed earth underfoot. Dappled sunlight filters through gaps in the canopy, creating shifting patterns of light and shadow on the forest floor. Thick ferns and brambles crowd the edges of the trail. The distant howl of a wolf echoes from somewhere to the north, and the temperature feels noticeably cooler here than in the open fields.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 18002},
+        "east": {"to_room": 18010},
+        "south": {"to_room": 18000}
+      },
+      "mob_resets": [
+        {"vnum": 18000, "max": 2}
+      ]
+    },
+    "18002": {
+      "vnum": 18002,
+      "name": "Dense Woodland",
+      "description": "The trees grow closer together here, their branches forming an almost impenetrable barrier overhead. Moss-covered boulders dot the landscape, and the air is thick with the musty smell of decaying leaves. Small animals rustle through the underbrush, fleeing at your approach. A faint game trail branches off to the west, while the main path continues north toward the sound of running water.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 18003},
+        "west": {"to_room": 18015},
+        "south": {"to_room": 18001}
+      },
+      "mob_resets": [
+        {"vnum": 18001, "max": 1}
+      ]
+    },
+    "18003": {
+      "vnum": 18003,
+      "name": "By the Frozen Stream",
+      "description": "A crystal-clear stream cuts through the forest here, though ice has begun to form along its banks and coat the stones in the shallows. The water still flows, but sluggishly, and your breath mists in the cold air. Frost-rimed willows lean over the water, their drooping branches encased in delicate ice crystals that glitter in the pale light. The sound of the stream is muted by the ice, creating an eerie quiet.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 18004},
+        "east": {"to_room": 18011},
+        "south": {"to_room": 18002}
+      },
+      "obj_resets": [
+        {"vnum": 18020, "max": 1}
+      ]
+    },
+    "18004": {
+      "vnum": 18004,
+      "name": "Northern Bank of the Stream",
+      "description": "You stand on the northern bank of the frozen stream, where the ground rises slightly into a ridge of exposed granite. The forest here takes on a more wintry character - spruce and fir trees replace the oaks, their dark green needles dusted with frost. Patches of snow cling to the shaded hollows between the roots. A worn trail leads northwest toward wisps of smoke rising above the treeline.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 18005},
+        "northwest": {"to_room": 18006},
+        "south": {"to_room": 18003}
+      },
+      "mob_resets": [
+        {"vnum": 18002, "max": 1}
+      ]
+    },
+    "18005": {
+      "vnum": 18005,
+      "name": "The Whispering Pines",
+      "description": "Tall pine trees sway gently in the cold wind, their needles whispering secrets in a language older than mankind. The ground is carpeted with a thick layer of brown needles that muffle your footsteps. The air is sharp and clean, carrying the strong scent of pine resin. Occasional snowflakes drift down from the grey sky visible through gaps in the canopy. A sense of ancient watchfulness permeates this place.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 18007},
+        "east": {"to_room": 18012},
+        "south": {"to_room": 18004}
+      },
+      "mob_resets": [
+        {"vnum": 18003, "max": 1}
+      ]
+    },
+    "18006": {
+      "vnum": 18006,
+      "name": "Outside the Ranger's Cabin",
+      "description": "A small log cabin stands in a natural clearing, its stone chimney sending a thin trail of smoke into the grey sky. The cabin is well-maintained despite its remote location, with a neatly stacked woodpile by the door and animal pelts stretched on frames nearby. Snowshoes and a hunting bow hang from pegs on the front wall. The scent of wood smoke mingles with the forest air, creating a welcoming atmosphere.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "southeast": {"to_room": 18004},
+        "inside": {"to_room": 18020}
+      },
+      "mob_resets": [
+        {"vnum": 18006, "max": 1}
+      ]
+    },
+    "18007": {
+      "vnum": 18007,
+      "name": "A Snow-Dusted Glade",
+      "description": "The trees open into a natural glade where a thin layer of snow covers the ground. Animal tracks crisscross the white surface - the delicate prints of rabbits, the larger marks of deer, and the ominous pawprints of wolves. The cold is more pronounced here without the shelter of the trees. To the north, the ground begins to rise toward distant hills, while the forest continues in other directions.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 18008},
+        "west": {"to_room": 18016},
+        "south": {"to_room": 18005}
+      },
+      "mob_resets": [
+        {"vnum": 18000, "max": 3}
+      ]
+    },
+    "18008": {
+      "vnum": 18008,
+      "name": "Rising Ground",
+      "description": "The forest thins as the terrain rises toward the foothills of distant mountains. Hardy evergreens cling to the rocky soil, their branches bent by years of harsh winter winds. The snow lies deeper here, crunching beneath your feet with each step. Looking back to the south, you can see the canopy of the forest stretching toward the horizon. The air bites at exposed skin with bitter cold.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 18009},
+        "east": {"to_room": 18013},
+        "south": {"to_room": 18007}
+      },
+      "mob_resets": [
+        {"vnum": 18002, "max": 2}
+      ]
+    },
+    "18009": {
+      "vnum": 18009,
+      "name": "The Ancient Standing Stones",
+      "description": "A circle of massive granite monoliths stands in a clearing atop this hill, their surfaces covered with lichen and worn runes. The stones predate any known civilization, placed here by hands unknown for purposes long forgotten. Snow has piled in drifts against their bases, and the wind howls mournfully as it passes between them. There is a palpable sense of ancient power here, and the hair on your arms stands on end.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 18025},
+        "south": {"to_room": 18008}
+      },
+      "mob_resets": [
+        {"vnum": 18004, "max": 2}
+      ],
+      "obj_resets": [
+        {"vnum": 18021, "max": 1}
+      ]
+    },
+    "18010": {
+      "vnum": 18010,
+      "name": "Eastern Forest Trail",
+      "description": "A narrow game trail leads through the eastern reaches of the forest, where the trees grow thick and wild. Tangles of brambles force you to duck and weave as you navigate the path. The sounds of the forest are muted here - no birdsong, only the rustle of wind through leaves. Something about this place feels wrong, as if you're being watched by hostile eyes from the shadows.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 18011},
+        "west": {"to_room": 18001}
+      },
+      "mob_resets": [
+        {"vnum": 18005, "max": 3}
+      ]
+    },
+    "18011": {
+      "vnum": 18011,
+      "name": "Deep in the Eastern Woods",
+      "description": "The forest is at its thickest here, the canopy so dense that little light reaches the ground. Mushrooms grow in profusion on rotting logs, some glowing with a faint phosphorescence. The air is damp and cold, carrying the smell of decay. Strange sounds echo through the trees - creaking branches, distant rustling, the occasional snap of a twig that makes you spin around to find... nothing.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 18012},
+        "south": {"to_room": 18010},
+        "west": {"to_room": 18003}
+      },
+      "mob_resets": [
+        {"vnum": 18005, "max": 2},
+        {"vnum": 18001, "max": 1}
+      ]
+    },
+    "18012": {
+      "vnum": 18012,
+      "name": "A Bandit's Ambush Point",
+      "description": "The trail narrows between two large boulders that create a natural bottleneck - a perfect spot for an ambush. The rocks show signs of recent activity: scuff marks, a discarded wineskin, the cold ashes of a small fire. The bandits who use this place have grown bold, preying on travelers foolish enough to venture into the forest alone. Bones of past victims lie scattered in the underbrush.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 18013},
+        "south": {"to_room": 18011},
+        "west": {"to_room": 18005}
+      },
+      "mob_resets": [
+        {"vnum": 18005, "max": 4}
+      ],
+      "obj_resets": [
+        {"vnum": 18022, "max": 1}
+      ]
+    },
+    "18013": {
+      "vnum": 18013,
+      "name": "Rocky Forest Edge",
+      "description": "The forest gives way to a rocky transition zone where scattered boulders and stunted trees mark the boundary between woodland and hills. The wind is stronger here, carrying flurries of snow from the peaks visible to the north. Your breath comes in visible clouds, and your fingers quickly grow numb without gloves. The path continues upward toward the forbidding slopes of the Frostspire.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 18014},
+        "south": {"to_room": 18012},
+        "west": {"to_room": 18008}
+      },
+      "mob_resets": [
+        {"vnum": 18002, "max": 1}
+      ]
+    },
+    "18014": {
+      "vnum": 18014,
+      "name": "The Forest's Northern Edge",
+      "description": "You have reached the northern boundary of the Great Northern Forest. Before you, the land rises sharply toward the frozen peaks of the Frostspire, an ancient mountain wreathed in eternal winter. The trees here are small and twisted, beaten into submission by centuries of harsh winds and bitter cold. A layer of ice covers everything, making each step treacherous. The mountain looms above, its summit lost in grey clouds.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 19000, "description": "The icy slopes of the Frostspire rise to the north."},
+        "south": {"to_room": 18013}
+      }
+    },
+    "18015": {
+      "vnum": 18015,
+      "name": "Western Game Trail",
+      "description": "A faint game trail winds westward through the forest, barely visible beneath the carpet of fallen leaves. Deer droppings and the scattered remains of old kills suggest this is a well-used path for the forest's predators and prey alike. The trees are old here, their bark scarred by the claws of bears marking their territory. A musty, animal smell hangs heavy in the still air.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "west": {"to_room": 18017},
+        "east": {"to_room": 18002}
+      },
+      "mob_resets": [
+        {"vnum": 18001, "max": 2}
+      ]
+    },
+    "18016": {
+      "vnum": 18016,
+      "name": "A Moonlit Clearing",
+      "description": "This small clearing seems touched by magic. Even in daylight, it holds a silvery quality, as if perpetually bathed in moonlight. Delicate flowers bloom here despite the cold, their petals shimmering with an otherworldly luminescence. The forest sprites are said to dance here on winter nights, leaving rings of frost in the snow. There is a peaceful, ethereal quality to this place that soothes the weary traveler.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "east": {"to_room": 18007},
+        "west": {"to_room": 18018}
+      },
+      "mob_resets": [
+        {"vnum": 18004, "max": 3}
+      ],
+      "obj_resets": [
+        {"vnum": 18023, "max": 1}
+      ]
+    },
+    "18017": {
+      "vnum": 18017,
+      "name": "Bear Territory",
+      "description": "Deep claw marks score the bark of every tree in sight, some fresh with sap still oozing, others old and weathered. This is clearly the territory of a large and aggressive bear. The ground is torn up where the creature has dug for roots and grubs, and a half-eaten deer carcass lies rotting nearby, covered in flies. The smell is overwhelming, and every instinct screams at you to leave this place.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 18018},
+        "east": {"to_room": 18015}
+      },
+      "mob_resets": [
+        {"vnum": 18002, "max": 1}
+      ]
+    },
+    "18018": {
+      "vnum": 18018,
+      "name": "Northwestern Forest",
+      "description": "The forest takes on a wilder, more untamed character in these northwestern reaches. Ancient trees, some fallen and rotting, create natural barriers that force you to climb and scramble. Thick moss covers everything, and the ground is spongy with moisture. The cold here has a wet quality that seeps into your bones. Occasional breaks in the canopy reveal the snow-capped mountains to the north.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 18019},
+        "east": {"to_room": 18016},
+        "south": {"to_room": 18017}
+      },
+      "mob_resets": [
+        {"vnum": 18000, "max": 2},
+        {"vnum": 18001, "max": 1}
+      ]
+    },
+    "18019": {
+      "vnum": 18019,
+      "name": "Frozen Wetlands",
+      "description": "The ground here is treacherous - a frozen marsh that groans and cracks underfoot. Skeletal reeds poke through the ice, and dead trees stand like grey ghosts in the mist. The cold is intense, and a layer of frost covers your clothing within minutes. Strange lights sometimes flicker over the ice at night, will-o'-wisps that lead unwary travelers to drown in hidden pools beneath the frozen surface.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 18025},
+        "south": {"to_room": 18018}
+      },
+      "mob_resets": [
+        {"vnum": 18003, "max": 2}
+      ]
+    },
+    "18020": {
+      "vnum": 18020,
+      "name": "Inside the Ranger's Cabin",
+      "description": "The interior of the cabin is warm and cozy, heated by a crackling fire in a fieldstone hearth. Animal pelts and hunting trophies cover the walls, and a simple wooden table holds the remains of a recent meal. A straw mattress in the corner serves as a bed, covered with thick wool blankets. Bundles of dried herbs hang from the rafters, filling the air with a pleasant, medicinal scent. This is clearly the home of someone who knows the forest intimately.",
+      "sector_type": "inside",
+      "flags": ["indoors"],
+      "exits": {
+        "outside": {"to_room": 18006}
+      },
+      "mob_resets": [
+        {"vnum": 18007, "max": 1}
+      ],
+      "obj_resets": [
+        {"vnum": 18024, "max": 1},
+        {"vnum": 18025, "max": 1}
+      ]
+    },
+    "18021": {
+      "vnum": 18021,
+      "name": "A Hollow Oak",
+      "description": "This massive oak tree has a hollow center large enough to shelter a person from the elements. The interior is surprisingly dry and somewhat warmer than the open forest. Old carvings cover the inner walls - symbols of protection and woodland spirits left by travelers seeking refuge here over the years. A small cache of supplies suggests this is a known stopping point for rangers and hunters.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "out": {"to_room": 18016}
+      },
+      "obj_resets": [
+        {"vnum": 18026, "max": 1}
+      ]
+    },
+    "18022": {
+      "vnum": 18022,
+      "name": "The Bandit Camp",
+      "description": "Hidden in a natural depression surrounded by dense undergrowth, this crude camp serves as the base for the forest bandits. Rough lean-tos made of branches and stolen canvas provide shelter, and the remains of many campfires blacken the frozen ground. Stolen goods are piled carelessly about - empty coin purses, broken weapons, and the personal effects of victims. The smell of unwashed bodies and stale alcohol permeates the camp.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "east": {"to_room": 18012}
+      },
+      "mob_resets": [
+        {"vnum": 18005, "max": 5},
+        {"vnum": 18008, "max": 1}
+      ],
+      "obj_resets": [
+        {"vnum": 18027, "max": 2},
+        {"vnum": 18028, "max": 1}
+      ]
+    },
+    "18023": {
+      "vnum": 18023,
+      "name": "A Frozen Pond",
+      "description": "A small pond lies frozen solid here, its surface a mirror of clouded ice. Dark shapes of fish can be seen suspended in the ice, caught by a sudden freeze. The trees around the pond are covered in hoarfrost, their branches glittering like crystal in the pale light. An eerie silence hangs over this place, broken only by the occasional crack and groan of the ice settling.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "south": {"to_room": 18005},
+        "west": {"to_room": 18024}
+      }
+    },
+    "18024": {
+      "vnum": 18024,
+      "name": "The Wolf Den",
+      "description": "A shallow cave beneath an overhanging rock ledge serves as a den for the local wolf pack. Bones of past meals litter the entrance, and the musky smell of wolf is overpowering. Pawprints cover the snow outside, and patches of grey fur cling to nearby rocks where the wolves have scratched themselves. The den itself is dark, but yellow eyes gleam from within, watching your every move.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "east": {"to_room": 18023}
+      },
+      "mob_resets": [
+        {"vnum": 18000, "max": 4},
+        {"vnum": 18009, "max": 1}
+      ]
+    },
+    "18025": {
+      "vnum": 18025,
+      "name": "The Forest's End",
+      "description": "The trees finally give way to open hillside here, the last of the forest stretching away to the south and west. Before you rises the imposing bulk of the Frostspire, its frozen peaks piercing the grey sky. The wind howls down from the heights, carrying stinging ice crystals that bite at exposed skin. A treacherous path winds upward toward the mountain, while the ancient standing stones are visible to the east.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "north": {"to_room": 19000, "description": "The frozen slopes of the Frostspire await."},
+        "east": {"to_room": 18009},
+        "south": {"to_room": 18019}
+      }
+    }
+  },
+  "mobs": {
+    "18000": {
+      "vnum": 18000,
+      "name": "timber wolf",
+      "short_desc": "a timber wolf",
+      "long_desc": "A large timber wolf prowls through the forest, its yellow eyes watching you.",
+      "level": 8,
+      "alignment": -200,
+      "hp_dice": "6d10+50",
+      "damage_dice": "2d6+4",
+      "gold": 0,
+      "exp": 400,
+      "armor_class": 75,
+      "flags": ["aggressive", "stay_zone"],
+      "special": null,
+      "description": "This is a large grey wolf with a thick winter coat. Its yellow eyes gleam with predatory intelligence, and its lips are pulled back to reveal sharp fangs stained with old blood. Powerful muscles ripple beneath its fur as it moves with silent grace."
+    },
+    "18001": {
+      "vnum": 18001,
+      "name": "forest deer",
+      "short_desc": "a forest deer",
+      "long_desc": "A graceful deer pauses to nibble at some frozen shrubs.",
+      "level": 3,
+      "alignment": 0,
+      "hp_dice": "2d10+20",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 50,
+      "armor_class": 90,
+      "flags": ["wimpy", "stay_zone"],
+      "special": null,
+      "description": "This deer has a thick brown coat touched with white on its belly and throat. Large, dark eyes regard you nervously, and its ears swivel constantly, listening for danger. Its legs are tensed, ready to flee at the first sign of threat."
+    },
+    "18002": {
+      "vnum": 18002,
+      "name": "black bear",
+      "short_desc": "a massive black bear",
+      "long_desc": "A massive black bear rummages through the underbrush, searching for food.",
+      "level": 12,
+      "alignment": -100,
+      "hp_dice": "10d10+100",
+      "damage_dice": "3d6+6",
+      "gold": 0,
+      "exp": 800,
+      "armor_class": 65,
+      "flags": ["aggressive", "stay_zone"],
+      "special": null,
+      "description": "This bear is enormous, standing nearly seven feet tall when it rises on its hind legs. Its thick black fur is matted with burrs and dried blood from recent kills. Long claws, each as thick as a finger, gouge the earth with every step. Its small eyes hold a violent, hungry gleam.",
+      "loot_table": [
+        {"vnum": 18029, "chance": 30}
+      ],
+      "loot_chance": 100
+    },
+    "18003": {
+      "vnum": 18003,
+      "name": "frost wolf",
+      "short_desc": "a frost wolf",
+      "long_desc": "A white-furred frost wolf stalks through the snow, nearly invisible.",
+      "level": 10,
+      "alignment": -300,
+      "hp_dice": "8d10+70",
+      "damage_dice": "2d8+5",
+      "gold": 0,
+      "exp": 600,
+      "armor_class": 70,
+      "flags": ["aggressive", "stay_zone"],
+      "special": null,
+      "description": "This wolf is larger than its timber wolf cousins, with a coat of pure white that provides perfect camouflage in the snow. Frost clings to its fur, and its breath comes in clouds of mist. There is something unnatural about this creature, as if it is more a spirit of winter than a mere animal."
+    },
+    "18004": {
+      "vnum": 18004,
+      "name": "forest sprite",
+      "short_desc": "a mischievous forest sprite",
+      "long_desc": "A tiny glowing sprite flits between the trees, leaving a trail of sparkles.",
+      "level": 9,
+      "alignment": 200,
+      "hp_dice": "5d10+40",
+      "damage_dice": "2d4+3",
+      "gold": 50,
+      "exp": 450,
+      "armor_class": 60,
+      "flags": ["stay_zone", "slow_wander"],
+      "special": null,
+      "description": "This tiny creature appears to be made of concentrated moonlight, its form shifting and flickering as it moves. Delicate wings beat too fast to see, and a musical giggling accompanies its every movement. Its eyes are bright with ancient mischief."
+    },
+    "18005": {
+      "vnum": 18005,
+      "name": "forest bandit",
+      "short_desc": "a grizzled forest bandit",
+      "long_desc": "A rough-looking bandit lurks in the shadows, waiting to ambush travelers.",
+      "level": 10,
+      "alignment": -500,
+      "hp_dice": "7d10+60",
+      "damage_dice": "2d6+4",
+      "gold": 150,
+      "exp": 500,
+      "armor_class": 70,
+      "flags": ["aggressive", "stay_zone", "helper"],
+      "special": null,
+      "description": "This bandit is a hard-bitten survivor, his face scarred and weathered by years of living rough in the forest. He wears a mismatched collection of stolen clothing and armor, and his eyes constantly dart about, looking for threats and opportunities alike. A cruel smile plays on his cracked lips.",
+      "loot_table": [
+        {"vnum": 18027, "chance": 40},
+        {"vnum": 18022, "chance": 20}
+      ],
+      "loot_chance": 100
+    },
+    "18006": {
+      "vnum": 18006,
+      "name": "ranger Eldric",
+      "short_desc": "Eldric the Ranger",
+      "long_desc": "Eldric the Ranger stands outside his cabin, surveying the forest.",
+      "level": 15,
+      "alignment": 750,
+      "hp_dice": "12d10+120",
+      "damage_dice": "3d8+8",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 50,
+      "flags": ["sentinel", "stay_zone"],
+      "special": null,
+      "description": "Eldric is a weathered man in his fifties, with grey-streaked hair and keen green eyes that miss nothing. He wears practical leather armor and carries a well-maintained longbow. His face bears the scars of many encounters with the forest's dangers, but his expression is calm and welcoming. He has lived in these woods for thirty years and knows every tree, every trail, every creature that calls this place home."
+    },
+    "18007": {
+      "vnum": 18007,
+      "name": "old hermit Bjorn",
+      "short_desc": "Bjorn the Hermit",
+      "long_desc": "An old hermit sits by the fire, mumbling to himself.",
+      "level": 8,
+      "alignment": 100,
+      "hp_dice": "5d10+40",
+      "damage_dice": "1d6+2",
+      "gold": 25,
+      "exp": 100,
+      "armor_class": 85,
+      "flags": ["sentinel", "stay_zone"],
+      "special": null,
+      "description": "Bjorn is an ancient man with a long white beard and wild, unkempt hair. His eyes hold a distant, slightly mad gleam, as if he sees things invisible to others. He wears ragged furs and speaks in riddles and half-remembered prophecies. Some say he was once a great wizard who lost his mind, others that he is blessed with second sight. He seems harmless enough, if somewhat unsettling."
+    },
+    "18008": {
+      "vnum": 18008,
+      "name": "bandit leader Scarface",
+      "short_desc": "Scarface, the bandit leader",
+      "long_desc": "A brutal-looking man with a hideous scar commands the bandits here.",
+      "level": 14,
+      "alignment": -750,
+      "hp_dice": "12d10+110",
+      "damage_dice": "3d6+7",
+      "gold": 500,
+      "exp": 1200,
+      "armor_class": 55,
+      "flags": ["aggressive", "sentinel", "stay_zone", "helper"],
+      "special": null,
+      "description": "The man known as Scarface earned his name from the horrible wound that runs from his forehead to his chin, destroying one eye and twisting his face into a permanent grimace. Despite his disfigurement, he is a cunning and dangerous leader who has united the forest bandits under his cruel rule. He carries a notched sword that has ended many lives.",
+      "loot_table": [
+        {"vnum": 18030, "chance": 50},
+        {"vnum": 18027, "chance": 100}
+      ],
+      "loot_chance": 100
+    },
+    "18009": {
+      "vnum": 18009,
+      "name": "alpha wolf",
+      "short_desc": "the alpha wolf",
+      "long_desc": "An enormous wolf with silver-grey fur watches you with calculating eyes.",
+      "level": 15,
+      "alignment": -400,
+      "hp_dice": "14d10+130",
+      "damage_dice": "3d8+8",
+      "gold": 0,
+      "exp": 1500,
+      "armor_class": 50,
+      "flags": ["aggressive", "sentinel", "stay_zone"],
+      "special": null,
+      "description": "This is the largest wolf you have ever seen, easily the size of a small horse. Its silver-grey fur is thick and luxurious, and its amber eyes gleam with a terrifying intelligence far beyond that of a normal animal. Scars on its muzzle and flanks speak of many battles for dominance. This is the alpha of the forest pack, and all other wolves defer to it.",
+      "loot_table": [
+        {"vnum": 18031, "chance": 40}
+      ],
+      "loot_chance": 100
+    }
+  },
+  "objects": {
+    "18020": {
+      "vnum": 18020,
+      "name": "frozen fish",
+      "short_desc": "a frozen fish",
+      "room_desc": "A frozen fish lies on the ice here.",
+      "type": "food",
+      "weight": 2,
+      "cost": 5,
+      "nutrition": 8
+    },
+    "18021": {
+      "vnum": 18021,
+      "name": "runed stone fragment",
+      "short_desc": "a fragment of runed stone",
+      "room_desc": "A piece of ancient runed stone lies among the monoliths.",
+      "type": "other",
+      "weight": 5,
+      "cost": 200
+    },
+    "18022": {
+      "vnum": 18022,
+      "name": "bandit's dagger",
+      "short_desc": "a bandit's rusty dagger",
+      "room_desc": "A rusty dagger lies discarded on the ground.",
+      "type": "weapon",
+      "weight": 2,
+      "cost": 50,
+      "damage_dice": "1d6+2",
+      "weapon_type": "pierce"
+    },
+    "18023": {
+      "vnum": 18023,
+      "name": "moonpetal flower",
+      "short_desc": "a shimmering moonpetal flower",
+      "room_desc": "A delicate flower shimmers with ethereal light here.",
+      "type": "other",
+      "weight": 0,
+      "cost": 100
+    },
+    "18024": {
+      "vnum": 18024,
+      "name": "ranger's map",
+      "short_desc": "a hand-drawn map of the northern forest",
+      "room_desc": "A weathered map lies on the table.",
+      "type": "other",
+      "weight": 1,
+      "cost": 75
+    },
+    "18025": {
+      "vnum": 18025,
+      "name": "healing herbs",
+      "short_desc": "a bundle of healing herbs",
+      "room_desc": "A bundle of dried herbs hangs from a peg.",
+      "type": "food",
+      "weight": 1,
+      "cost": 50,
+      "nutrition": 2
+    },
+    "18026": {
+      "vnum": 18026,
+      "name": "traveler's supplies",
+      "short_desc": "a cache of traveler's supplies",
+      "room_desc": "Some supplies have been hidden here.",
+      "type": "container",
+      "weight": 10,
+      "cost": 30,
+      "capacity": 50
+    },
+    "18027": {
+      "vnum": 18027,
+      "name": "stolen coin purse",
+      "short_desc": "a stolen coin purse",
+      "room_desc": "An empty coin purse lies on the ground.",
+      "type": "container",
+      "weight": 1,
+      "cost": 10,
+      "capacity": 20
+    },
+    "18028": {
+      "vnum": 18028,
+      "name": "bandit's lockbox",
+      "short_desc": "a locked iron box",
+      "room_desc": "A small iron lockbox sits among the stolen goods.",
+      "type": "container",
+      "weight": 15,
+      "cost": 100,
+      "capacity": 30
+    },
+    "18029": {
+      "vnum": 18029,
+      "name": "bear pelt",
+      "short_desc": "a thick black bear pelt",
+      "room_desc": "A large bear pelt lies here.",
+      "type": "armor",
+      "weight": 20,
+      "cost": 150,
+      "ac_apply": -3,
+      "wear_flags": ["body"]
+    },
+    "18030": {
+      "vnum": 18030,
+      "name": "Scarface's notched sword",
+      "short_desc": "Scarface's notched sword",
+      "room_desc": "A notched and bloodstained sword lies here.",
+      "type": "weapon",
+      "weight": 8,
+      "cost": 300,
+      "damage_dice": "2d6+5",
+      "weapon_type": "slash"
+    },
+    "18031": {
+      "vnum": 18031,
+      "name": "alpha wolf fang",
+      "short_desc": "a massive wolf fang",
+      "room_desc": "An enormous wolf fang lies on the ground.",
+      "type": "other",
+      "weight": 1,
+      "cost": 200
+    }
+  }
+}
