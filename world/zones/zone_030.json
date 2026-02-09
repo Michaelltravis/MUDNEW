@@ -2049,6 +2049,19 @@
           "description": "The main guild hall lies beyond the curtain."
         }
       }
+    },
+    "3009": {
+      "name": "The Bakery",
+      "description": "The warm smell of fresh bread fills this cozy bakery. Shelves line the walls, loaded with loaves, rolls, and pastries. A flour-dusted baker works behind the counter, kneading dough with practiced hands.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 3013
+        }
+      },
+      "mob_resets": [],
+      "obj_resets": []
     }
   },
   "mobs": {

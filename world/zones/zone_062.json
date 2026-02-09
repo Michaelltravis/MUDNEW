@@ -1572,6 +1572,22 @@
           "max": 4
         }
       ]
+    },
+    "6211": {
+      "name": "The Edge Of The Orc Enclave",
+      "description": "The forest thins here, revealing crude fortifications made from sharpened logs. The ground is trampled and littered with bones. This marks the boundary of orc territory.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 6210
+        },
+        "west": {
+          "to_room": 6212
+        }
+      },
+      "mob_resets": [],
+      "obj_resets": []
     }
   },
   "mobs": {

@@ -93,6 +93,32 @@
           "max": 1
         }
       ]
+    },
+    "8000": {
+      "name": "The Edge Of Chaos",
+      "description": "Reality seems to fracture at the edges here. Colors shift and blend in impossible ways, and the ground beneath your feet feels unstable, as if it might dissolve at any moment.",
+      "sector_type": "flying",
+      "flags": [],
+      "exits": {
+        "up": {
+          "to_room": 16000
+        }
+      },
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "8099": {
+      "name": "A Rift In The Planes",
+      "description": "A shimmering rift hangs in the air, connecting this plane to another. Chaotic energy crackles around its edges.",
+      "sector_type": "flying",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 16000
+        }
+      },
+      "mob_resets": [],
+      "obj_resets": []
     }
   },
   "mobs": {
@@ -407,7 +433,7 @@
       "name": "cinderstep cloak",
       "short_desc": "\u001b[91mthe cinderstep cloak\u001b[0m",
       "room_desc": "\u001b[91mA cloak of embers smolders here.\u001b[0m",
-      "description": "A dragon‑forged cloak that swallows light and muffles footsteps.",
+      "description": "A dragon\u2011forged cloak that swallows light and muffles footsteps.",
       "item_type": "armor",
       "wear_slot": "back",
       "armor_bonus": 3,
@@ -431,8 +457,8 @@
       "vnum": 9005,
       "name": "wyrmfang gloves",
       "short_desc": "\u001b[91mwyrmfang gloves\u001b[0m",
-      "room_desc": "\u001b[91mA pair of red‑scaled gloves lies here.\u001b[0m",
-      "description": "Gloves tipped with dragon‑tooth barbs, ideal for a killing thrust.",
+      "room_desc": "\u001b[91mA pair of red\u2011scaled gloves lies here.\u001b[0m",
+      "description": "Gloves tipped with dragon\u2011tooth barbs, ideal for a killing thrust.",
       "item_type": "armor",
       "wear_slot": "hands",
       "armor_bonus": 2,
@@ -494,7 +520,7 @@
       "vnum": 9008,
       "name": "glacial torque",
       "short_desc": "\u001b[94mthe glacial torque\u001b[0m",
-      "room_desc": "\u001b[94mA frost‑rimmed torque lies here.\u001b[0m",
+      "room_desc": "\u001b[94mA frost\u2011rimmed torque lies here.\u001b[0m",
       "description": "A torque that sharpens the bite of ice spells.",
       "item_type": "armor",
       "wear_slot": "neck2",

@@ -2772,6 +2772,32 @@
           "max": 1
         }
       ]
+    },
+    "6010": {
+      "name": "Inside The Small Cabin",
+      "description": "The interior of the small cabin is rustic but well-maintained. A stone fireplace dominates one wall, and simple wooden furniture fills the space.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 6009
+        }
+      },
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "6033": {
+      "name": "The Top Of The Large Oak",
+      "description": "You have reached the crown of the massive oak tree. The canopy spreads around you, and through gaps in the leaves you can see for miles across the forest.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "down": {
+          "to_room": 6032
+        }
+      },
+      "mob_resets": [],
+      "obj_resets": []
     }
   }
 }

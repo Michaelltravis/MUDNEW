@@ -2596,6 +2596,54 @@
           "max": 1
         }
       ]
+    },
+    "7320": {
+      "name": "A Flooded Sewer Junction",
+      "description": "Murky water sloshes around your ankles at this junction in the sewer maze. Tunnels branch off in several directions, and the sound of dripping water echoes endlessly.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 7317
+        },
+        "north": {
+          "to_room": 7319
+        }
+      },
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "7327": {
+      "name": "A Narrow Sewer Passage",
+      "description": "The sewer narrows here, forcing you to duck under low-hanging pipes. The walls are slick with moisture and something unidentifiable.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 7326
+        },
+        "east": {
+          "to_room": 7328
+        }
+      },
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "7329": {
+      "name": "A Wide Sewer Chamber",
+      "description": "The tunnel opens into a wider chamber. Scratches and scorch marks mar the walls, suggesting something large has been through here recently.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 7328
+        },
+        "west": {
+          "to_room": 7330
+        }
+      },
+      "mob_resets": [],
+      "obj_resets": []
     }
   },
   "mobs": {

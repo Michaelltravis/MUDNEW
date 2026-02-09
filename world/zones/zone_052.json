@@ -1306,6 +1306,22 @@
           "max": 1
         }
       ]
+    },
+    "5233": {
+      "name": "The City Hall Foyer",
+      "description": "A grand foyer connects the eastern wing of the city hall to the private gardens. Polished marble floors reflect the light from ornate chandeliers.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 5232
+        },
+        "south": {
+          "to_room": 5234
+        }
+      },
+      "mob_resets": [],
+      "obj_resets": []
     }
   },
   "mobs": {

@@ -1806,6 +1806,57 @@
           "description": "A large clay road begins a short distance to the west."
         }
       }
+    },
+    "12000": {
+      "name": "The Coliseum Gates",
+      "description": "Massive stone gates mark the entrance to the great Roman Coliseum. The roar of crowds can be heard from within, and the smell of sand and sweat fills the air.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {},
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "12011": {
+      "name": "The Eastern Coliseum Corridor",
+      "description": "A wide corridor runs along the eastern side of the Coliseum. Stone arches frame views of the arena below, where combatants test their mettle.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 12004
+        },
+        "east": {
+          "to_room": 12018
+        }
+      },
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "12041": {
+      "name": "Clay Avenue South",
+      "description": "Clay Avenue continues southward here, the packed earth road lined with modest dwellings. Terracotta pots of herbs sit outside doorways.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 12039
+        }
+      },
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "12057": {
+      "name": "The Valley Approach",
+      "description": "The path winds northward toward the Valley of the Gods. Massive stone pillars, remnants of an ancient temple, line the way.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 12058
+        }
+      },
+      "mob_resets": [],
+      "obj_resets": []
     }
   },
   "mobs": {

@@ -2133,6 +2133,19 @@
           "max": 1
         }
       ]
+    },
+    "7099": {
+      "name": "The Threshold Of The Necropolis",
+      "description": "Ancient iron gates stand before you, rusted but still imposing. Beyond them lies the Necropolis of Eternal Night, a place of darkness and undeath. Cold air seeps through the bars.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 14000
+        }
+      },
+      "mob_resets": [],
+      "obj_resets": []
     }
   },
   "mobs": {
