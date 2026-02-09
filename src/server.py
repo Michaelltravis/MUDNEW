@@ -449,8 +449,9 @@ class Connection:
             try:
                 from commands import CommandHandler
                 await CommandHandler._room_entry_triggers(self.player)
-            except Exception:
-                pass
+            except Exception as e:
+                import logging
+                logging.getLogger('RealmsMUD').error(f"Room entry trigger error: {e}")
 
             # Web map update
             if hasattr(self.world, 'web_map') and self.world.web_map:

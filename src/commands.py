@@ -635,7 +635,7 @@ class CommandHandler:
 
         # Sage Aldric greets new players (level < 5, haven't completed starter quest)
         for npc in player.room.characters:
-            if getattr(npc, 'special', None) == 'sage_aldric':
+            if getattr(npc, 'special', None) in ('sage_aldric', 'quest_giver') and 'aldric' in getattr(npc, 'name', '').lower():
                 if player.level < 5:
                     completed = getattr(player, 'quests_completed', None) or []
                     if 'tutorial_1_awakening' not in completed:

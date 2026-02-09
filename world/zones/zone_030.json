@@ -432,7 +432,7 @@
       "mob_resets": [
         {
           "vnum": 3062,
-          "max": 15
+          "max": 1
         }
       ]
     },
@@ -566,7 +566,7 @@
       "mob_resets": [
         {
           "vnum": 3062,
-          "max": 15
+          "max": 1
         }
       ]
     },
@@ -820,7 +820,7 @@
       "mob_resets": [
         {
           "vnum": 3062,
-          "max": 15
+          "max": 1
         },
         {
           "vnum": 3130,
@@ -869,7 +869,7 @@
       "mob_resets": [
         {
           "vnum": 3062,
-          "max": 15
+          "max": 1
         }
       ]
     },
@@ -2980,7 +2980,6 @@
       "armor_class": 97,
       "flags": [
         "special",
-        "aggressive",
         "stay_zone",
         "wimpy",
         "no_bash",
@@ -2992,7 +2991,8 @@
         3015,
         3015,
         3015
-      ]
+      ],
+      "special": "scavenger"
     },
     "3063": {
       "vnum": 3063,
@@ -3595,7 +3595,7 @@
       "gold": 0,
       "exp": 0,
       "armor_class": 0,
-      "special": "quest_giver",
+      "special": "sage_aldric",
       "flags": [
         "sentinel",
         "aware",
