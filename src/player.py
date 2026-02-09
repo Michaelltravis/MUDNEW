@@ -610,18 +610,25 @@ class Player(Character):
         
     def _give_starting_equipment(self):
         """Give starting equipment based on class."""
-        from objects import create_object
+        from objects import create_object, create_preset_object
+
+        def _make(vnum):
+            """Create object from world prototypes or preset fallback."""
+            obj = create_object(vnum, self.world if hasattr(self, 'world') else None)
+            if not obj:
+                obj = create_preset_object(vnum)
+            return obj
 
         # Everyone gets basic items
-        bread = create_object(1)  # Bread
+        bread = _make(1)  # Bread
         if bread:
             self.inventory.append(bread)
 
-        waterskin = create_object(2)  # Waterskin
+        waterskin = _make(2)  # Waterskin
         if waterskin:
             self.inventory.append(waterskin)
 
-        torch = create_object(3)  # Torch
+        torch = _make(3)  # Torch
         if torch:
             self.inventory.append(torch)
 
@@ -681,7 +688,7 @@ class Player(Character):
         # Equip class-specific gear
         class_equipment = equipment_sets.get(self.char_class, {})
         for slot, vnum in class_equipment.items():
-            item = create_object(vnum)
+            item = _make(vnum)
             if item:
                 self.equipment[slot] = item
             

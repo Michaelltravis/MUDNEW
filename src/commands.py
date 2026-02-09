@@ -300,6 +300,11 @@ class CommandHandler:
                     await player.send(f"{c['red']}Only {allowed_display} may enter.{c['reset']}")
                     return
 
+        # Immortal-only rooms
+        if 'imm_only' in getattr(target_room, 'flags', set()) and not player.is_immortal:
+            await player.send(f"{c['red']}A divine force prevents you from entering.{c['reset']}")
+            return
+
         # Reputation-based gate for faction-controlled areas
         if exit_data.get('faction_required'):
             try:

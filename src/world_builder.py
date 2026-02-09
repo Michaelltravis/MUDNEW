@@ -62,6 +62,7 @@ This is the place between places, where lost souls drift eternally.
 A faint shimmer to the south suggests a way back to reality."""
         room.sector_type = "flying"
         room.zone = zone
+        room.flags.add('imm_only')
         room.exits = {'south': {'to_room': 3001, 'description': 'A shimmer leads to the mortal realm.'}}
         zone.rooms[1] = room
         
@@ -74,6 +75,7 @@ decanters filled with celestial wine line the walls. This is where the
 gods rest between their divine duties."""
         room.sector_type = "inside"
         room.zone = zone
+        room.flags.add('imm_only')
         room.exits = {'down': {'to_room': 1}}
         zone.rooms[2] = room
         

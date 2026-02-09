@@ -831,6 +831,12 @@ class Mobile(Character):
         if 'peaceful' in self.room.flags:
             return
 
+        # Don't attack players more than 5 levels below us in city zones
+        if self.room and hasattr(self.room, 'sector_type') and self.room.sector_type == 'city':
+            targets = [t for t in targets if t.level >= self.level - 5]
+            if not targets:
+                return
+
         # Pick a random target
         target = random.choice(targets)
 
