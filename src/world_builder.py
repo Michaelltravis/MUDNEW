@@ -105,7 +105,7 @@ The exit leads south to the main square of the city."""
         room.flags.add('peaceful')
         room.flags.add('no_mob')
         room.exits = {'south': {'to_room': 3002}}
-        room.mob_resets = [{'vnum': 3001, 'max': 1}]  # Temple healer
+        room.mob_resets = [{'vnum': 3001, 'max': 1}, {'vnum': 3200, 'max': 1}]  # Temple healer + Sage Aldric
         zone.rooms[3001] = room
         
         # Room 3002: Temple Square
@@ -317,6 +317,21 @@ city below. This is a peaceful place where adventurers can rest."""
                 'faction': 'midgaard',
                 'flags': ['sentinel', 'helper'],
                 'special': 'healer'
+            },
+            3200: {
+                'vnum': 3200,
+                'name': 'Sage Aldric',
+                'short_desc': 'Sage Aldric, guide of new adventurers',
+                'long_desc': 'An elderly sage in deep blue robes stands here, his kind eyes watching for newcomers.',
+                'level': 30,
+                'hp_dice': '10d10+200',
+                'damage_dice': '1d4+1',
+                'gold': 0,
+                'exp': 0,
+                'alignment': 1000,
+                'faction': 'midgaard',
+                'flags': ['sentinel', 'helper'],
+                'special': 'sage_aldric'
             },
             3002: {
                 'vnum': 3002,

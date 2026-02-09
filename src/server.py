@@ -445,6 +445,13 @@ class Connection:
             # Show room
             await self.player.do_look([])
 
+            # Room entry triggers (Sage Aldric greeting, etc.)
+            try:
+                from commands import CommandHandler
+                await CommandHandler._room_entry_triggers(self.player)
+            except Exception:
+                pass
+
             # Web map update
             if hasattr(self.world, 'web_map') and self.world.web_map:
                 await self.world.web_map.notify_player(self.player)

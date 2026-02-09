@@ -618,6 +618,34 @@ class CommandHandler:
         # Show new room
         await player.do_look([])
 
+        # Room entry triggers (NPC greetings, etc.)
+        await cls._room_entry_triggers(player)
+
+    @classmethod
+    async def _room_entry_triggers(cls, player: 'Player'):
+        """Handle NPC greeting triggers when a player enters a room."""
+        if not player.room:
+            return
+        c = player.config.COLORS
+
+        # Sage Aldric greets new players (level < 5, haven't completed starter quest)
+        for npc in player.room.characters:
+            if hasattr(npc, 'special') and npc.special == 'sage_aldric':
+                # Check if player is low level and hasn't done the tutorial
+                if player.level < 5:
+                    completed = getattr(player, 'completed_quests', [])
+                    if 'tutorial_1_awakening' not in completed:
+                        import asyncio
+                        await asyncio.sleep(1)  # Brief delay so it appears after room desc
+                        await player.send(
+                            f"\r\n{c['bright_cyan']}Sage Aldric tells you, "
+                            f"'Welcome, young {player.name}! I am Sage Aldric, guide to new adventurers. "
+                            f"Speak with me to begin your training — simply type "
+                            f"{c['bright_white']}talk aldric{c['bright_cyan']}"
+                            f" and I shall set you on your path.'{c['reset']}"
+                        )
+                break
+
     @classmethod
     def _calculate_move_cost(cls, player: 'Player', target_room: 'Room') -> int:
         sector = player.config.SECTOR_TYPES.get(target_room.sector_type, {'move_cost': 1})
