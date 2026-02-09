@@ -13937,7 +13937,7 @@ class CommandHandler:
         
         # Trigger death
         from combat import CombatHandler
-        await CombatHandler.handle_death(target, player)
+        await CombatHandler.handle_death(player, target)
     
     @classmethod
     async def cmd_purge(cls, player: 'Player', args: List[str]):

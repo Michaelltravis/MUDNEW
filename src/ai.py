@@ -67,9 +67,21 @@ class PatrolBehavior(AIBehavior):
             return False
 
         patrol_route = mob.ai_config.get('patrol_route', [])
-        return len(patrol_route) > 1
+        if len(patrol_route) <= 1:
+            return False
+
+        # Cooldown: only move once every 15-30 seconds
+        import time
+        if not hasattr(mob, 'ai_state'):
+            mob.ai_state = {}
+        next_patrol_time = mob.ai_state.get('next_patrol_time', 0)
+        if time.time() < next_patrol_time:
+            return False
+
+        return True
 
     async def execute(self, mob: 'Mobile'):
+        import time
         patrol_route = mob.ai_config.get('patrol_route', [])
         if not patrol_route or not mob.room:
             return
@@ -77,6 +89,10 @@ class PatrolBehavior(AIBehavior):
         # Get current patrol index
         if not hasattr(mob, 'ai_state'):
             mob.ai_state = {}
+
+        # Set next patrol time (15-30 seconds)
+        import random as rng
+        mob.ai_state['next_patrol_time'] = time.time() + rng.randint(15, 30)
 
         patrol_index = mob.ai_state.get('patrol_index', 0)
         next_room_vnum = patrol_route[patrol_index]
@@ -376,7 +392,7 @@ class AIController:
     def __init__(self, mob: 'Mobile'):
         self.mob = mob
         self.behaviors: List[AIBehavior] = []
-        self.action_rate = 0.3  # 30% chance to take an action per tick
+        self.action_rate = 0.05  # 5% chance to take an action per tick (~0.5/sec at 10 tps)
 
     def add_behavior(self, behavior: AIBehavior):
         """Add a behavior to this AI controller."""

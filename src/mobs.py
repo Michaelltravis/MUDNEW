@@ -465,8 +465,8 @@ class Mobile(Character):
         if await self.faction_aggressive_ai():
             return
 
-        # Random chance to act each tick
-        if random.randint(1, 100) > 10:
+        # Random chance to act each tick (2% = ~0.2 actions/sec at 10 tps)
+        if random.randint(1, 100) > 2:
             return
 
         # Check for aggressive behavior
