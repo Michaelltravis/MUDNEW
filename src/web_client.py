@@ -210,7 +210,7 @@ class WebClient:
         """Start the web client server."""
         self.runner = web.AppRunner(self.app)
         await self.runner.setup()
-        site = web.TCPSite(self.runner, '0.0.0.0', self.web_port)
+        site = web.TCPSite(self.runner, '0.0.0.0', self.web_port, reuse_address=True)
         await site.start()
         logger.info(f"Web client listening on http://0.0.0.0:{self.web_port}")
     

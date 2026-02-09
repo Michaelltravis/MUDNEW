@@ -1136,7 +1136,8 @@ class MUDServer:
         self.server = await asyncio.start_server(
             self.handle_connection,
             self.config.HOST,
-            self.config.PORT
+            self.config.PORT,
+            reuse_address=True
         )
         
         addr = self.server.sockets[0].getsockname()

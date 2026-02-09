@@ -1814,7 +1814,8 @@
       "flags": [],
       "exits": {},
       "mob_resets": [],
-      "obj_resets": []
+      "obj_resets": [],
+      "vnum": 12000
     },
     "12011": {
       "name": "The Eastern Coliseum Corridor",
@@ -1830,7 +1831,8 @@
         }
       },
       "mob_resets": [],
-      "obj_resets": []
+      "obj_resets": [],
+      "vnum": 12011
     },
     "12041": {
       "name": "Clay Avenue South",
@@ -1843,7 +1845,8 @@
         }
       },
       "mob_resets": [],
-      "obj_resets": []
+      "obj_resets": [],
+      "vnum": 12041
     },
     "12057": {
       "name": "The Valley Approach",
@@ -1856,7 +1859,8 @@
         }
       },
       "mob_resets": [],
-      "obj_resets": []
+      "obj_resets": [],
+      "vnum": 12057
     }
   },
   "mobs": {

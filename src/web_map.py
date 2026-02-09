@@ -32,7 +32,7 @@ class WebMapServer:
         self.clients = set()
 
     async def start(self):
-        self.server = await asyncio.start_server(self._handle_client, self.config.MAP_HOST, self.config.MAP_PORT)
+        self.server = await asyncio.start_server(self._handle_client, self.config.MAP_HOST, self.config.MAP_PORT, reuse_address=True)
         logger.info(f"Web map server listening on {self.config.MAP_HOST}:{self.config.MAP_PORT}")
         # Start background ping task to detect dead connections
         self._ping_task = asyncio.create_task(self._ping_clients_loop())
