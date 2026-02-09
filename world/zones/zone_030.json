@@ -1502,8 +1502,7 @@
       "description": "The area is by the temple altar in the northern end of the Temple of\nMidgaard. A huge altar made from white polished marble is standing ahead\nand behind it is a ten foot tall sitting statue of Odin, the King of the\nGods. To the north, steps lead out the back of the temple towards the\ncountryside. Shadows gather in the corners. The walls are rough-hewn and\ncold to the touch.",
       "sector_type": "inside",
       "flags": [
-        "indoors",
-        "class_only:paladin"
+        "indoors"
       ],
       "exits": {
         "north": {
