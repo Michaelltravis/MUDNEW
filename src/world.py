@@ -182,8 +182,8 @@ class Room:
                 brief_desc = sentences[0] + '.'
             else:
                 brief_desc = desc
-            if len(brief_desc) > 200:
-                brief_desc = brief_desc[:200] + '...'
+            if len(brief_desc) > 500:
+                brief_desc = brief_desc[:500] + '...'
             await player.send(f"{c['white']}{brief_desc}{c['reset']}")
         else:
             await player.send(f"{c['white']}{desc}{c['reset']}")
