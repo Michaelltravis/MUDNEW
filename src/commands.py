@@ -635,13 +635,10 @@ class CommandHandler:
 
         # Sage Aldric greets new players (level < 5, haven't completed starter quest)
         for npc in player.room.characters:
-            if hasattr(npc, 'special') and npc.special == 'sage_aldric':
-                # Check if player is low level and hasn't done the tutorial
+            if getattr(npc, 'special', None) == 'sage_aldric':
                 if player.level < 5:
-                    completed = getattr(player, 'completed_quests', [])
+                    completed = getattr(player, 'quests_completed', None) or []
                     if 'tutorial_1_awakening' not in completed:
-                        import asyncio
-                        await asyncio.sleep(1)  # Brief delay so it appears after room desc
                         await player.send(
                             f"\r\n{c['bright_cyan']}Sage Aldric tells you, "
                             f"'Welcome, young {player.name}! I am Sage Aldric, guide to new adventurers. "
