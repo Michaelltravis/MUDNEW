@@ -8,6 +8,7 @@ import random
 
 import os
 import json
+import time
 import logging
 import asyncio
 from typing import Dict, List, Optional, TYPE_CHECKING
@@ -441,10 +442,13 @@ class Zone:
         self.number = number
         self.name = "Unknown Zone"
         self.builders = ""
-        self.lifespan = 30  # Minutes between resets
+        self.lifespan = 2  # Reset ticks (each tick = 15 real minutes; 2 = 30 min)
         self.reset_mode = 2  # 0=never, 1=empty, 2=always
         self.top = 0  # Highest vnum in zone
-        self.age = 0  # Minutes since last reset
+        self.age = 0  # Ticks since last reset
+        self.reset_interval_seconds = self.lifespan * 900
+        self.last_reset_at = None
+        self.next_reset_at = None
 
         self.rooms: Dict[int, Room] = {}
         self.mobs: Dict[int, dict] = {}  # mob prototypes
@@ -459,7 +463,7 @@ class Zone:
             'number': self.number,
             'name': self.name,
             'builders': self.builders,
-            'lifespan': self.lifespan,
+            'reset_time': self.lifespan * 900,  # Save as seconds for from_dict
             'reset_mode': self.reset_mode,
             'top': self.top,
             'rooms': {vnum: room.to_dict() for vnum, room in self.rooms.items()},
@@ -486,6 +490,7 @@ class Zone:
             lifespan_value = data.get('lifespan', 30)
             # Treat old lifespan values as minutes, convert to 15-minute units
             zone.lifespan = max(1, round(lifespan_value / 15))
+        zone.reset_interval_seconds = zone.lifespan * 900
 
         zone.reset_mode = data.get('reset_mode', 2)
         zone.top = data.get('top', 0)
@@ -620,11 +625,28 @@ class World:
             for mob_reset in room.mob_resets:
                 mob_vnum = mob_reset.get('vnum')
                 max_count = mob_reset.get('max', 1)
+                max_existing = mob_reset.get('max_existing')
                 
-                # Count existing mobs of this type
-                current = sum(1 for npc in self.npcs 
-                            if hasattr(npc, 'vnum') and npc.vnum == mob_vnum 
-                            and npc.room == room)
+                # Count existing mobs tied to this spawn (home room) so wandering mobs don't duplicate.
+                current = sum(
+                    1 for npc in self.npcs
+                    if hasattr(npc, 'vnum')
+                    and npc.vnum == mob_vnum
+                    and (getattr(npc, 'home_room', None) == room or npc.room == room)
+                )
+
+                if max_existing is not None:
+                    existing_in_zone = sum(
+                        1 for npc in self.npcs
+                        if hasattr(npc, 'vnum')
+                        and npc.vnum == mob_vnum
+                        and (
+                            getattr(npc, 'home_zone', None) == zone.number
+                            or (npc.room and npc.room.zone == zone)
+                        )
+                    )
+                    if existing_in_zone >= max_existing:
+                        continue
                 
                 if current < max_count:
                     proto = self.mob_prototypes.get(mob_vnum)
@@ -651,6 +673,8 @@ class World:
                         room.items.append(obj)
                         
         zone.age = 0
+        zone.last_reset_at = time.time()
+        zone.next_reset_at = zone.last_reset_at + zone.reset_interval_seconds
         
     def get_room(self, vnum: int) -> Optional[Room]:
         """Get a room by vnum."""

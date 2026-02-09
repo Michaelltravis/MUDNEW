@@ -50,7 +50,8 @@ class WorldBuilder:
         zone.name = "Limbo - The Void"
         zone.builders = "Immortals"
         zone.top = 99
-        zone.lifespan = 999
+        zone.lifespan = 999  # effectively never resets
+        zone.reset_interval_seconds = zone.lifespan * 900
         
         # Room 1: The Void
         room = Room(1)
@@ -88,7 +89,8 @@ gods rest between their divine duties."""
         zone.name = "The City of Midgaard"
         zone.builders = "Realmers"
         zone.top = 3099
-        zone.lifespan = 30
+        zone.lifespan = 2  # 30 min (2 ticks × 15 min)
+        zone.reset_interval_seconds = zone.lifespan * 900
         
         # Room 3001: Temple of Midgaard (starting room)
         room = Room(3001)
@@ -440,7 +442,8 @@ city below. This is a peaceful place where adventurers can rest."""
         zone.name = "Haon Dor Forest"
         zone.builders = "Realmers"
         zone.top = 4099
-        zone.lifespan = 20
+        zone.lifespan = 2  # ~20 min (rounded to 2 ticks)
+        zone.reset_interval_seconds = zone.lifespan * 900
         
         # Forest entrance
         room = Room(4001)
@@ -656,7 +659,8 @@ travelers to their doom."""
         zone.name = "Greystone Castle"
         zone.builders = "Realmers"
         zone.top = 5099
-        zone.lifespan = 30
+        zone.lifespan = 2  # 30 min (2 ticks × 15 min)
+        zone.reset_interval_seconds = zone.lifespan * 900
         
         # Castle approach
         room = Room(5001)
@@ -852,7 +856,8 @@ line the shelves. This is where the King keeps his treasures."""
         zone.name = "The Goblin Warrens"
         zone.builders = "Realmers"
         zone.top = 6099
-        zone.lifespan = 15
+        zone.lifespan = 1  # 15 min (1 tick)
+        zone.reset_interval_seconds = zone.lifespan * 900
         
         # Cave entrance
         room = Room(6001)
@@ -1088,7 +1093,8 @@ Most of it is junk, but some items of value glint in the torchlight."""
         zone.name = "The Forgotten Crypt"
         zone.builders = "Realmers"
         zone.top = 7099
-        zone.lifespan = 30
+        zone.lifespan = 2  # 30 min (2 ticks × 15 min)
+        zone.reset_interval_seconds = zone.lifespan * 900
         
         # Crypt entrance (accessible from city cemetery - we'll link this)
         room = Room(7001)
@@ -1308,7 +1314,8 @@ ancient plague. Now they rise again, clawing their way free."""
         zone.name = "The Dragon's Domain"
         zone.builders = "Realmers"
         zone.top = 8099
-        zone.lifespan = 60
+        zone.lifespan = 4  # 60 min (4 ticks × 15 min)
+        zone.reset_interval_seconds = zone.lifespan * 900
         
         # Mountain pass
         room = Room(8001)
