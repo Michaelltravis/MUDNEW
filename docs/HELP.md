@@ -1330,6 +1330,26 @@ Quit the game.
 
 Display current rage level.
 
+### Rent
+**Syntax:** `rent`
+
+Rent a room at an inn to safely store your inventory and equipment when you log out.
+You must be at an innkeeper to use this command. The innkeeper will calculate your
+daily rental cost based on the items you're carrying:
+
+  Common items:    10 gold/day
+  Uncommon items:  50 gold/day
+  Rare items:      200 gold/day
+  Epic items:      1,000 gold/day
+  Legendary items: 5,000 gold/day
+
+Your total rent is the sum of all item costs plus a small base fee. The gold is
+deducted and you are safely disconnected. When you reconnect, your gear is restored.
+If you quit without renting (using `quit`), you keep your gear but miss the flavor
+of a proper inn stay.
+
+See also: QUIT, SAVE, INN
+
 ### Raise
 **Syntax:** `raise <knight|wraith|lich|stalker>`
 

@@ -15,7 +15,7 @@
       "exits": {
         "east": {
           "to_room": 5002,
-          "description": ""
+          "description": "Deep waters churn near A Long Tunnel"
         },
         "west": {
           "to_room": 3205,
@@ -35,15 +35,15 @@
       "exits": {
         "north": {
           "to_room": 5008,
-          "description": ""
+          "description": "A steep trail ascends to The Cave-In"
         },
         "east": {
           "to_room": 5003,
-          "description": ""
+          "description": "Deep waters churn near A Long Tunnel"
         },
         "west": {
           "to_room": 5001,
-          "description": ""
+          "description": "Deep waters churn near A Long Tunnel"
         }
       }
     },
@@ -59,15 +59,15 @@
       "exits": {
         "east": {
           "to_room": 5004,
-          "description": ""
+          "description": "Deep waters churn near A Tunnel Intersection"
         },
         "south": {
           "to_room": 5017,
-          "description": ""
+          "description": "A steep trail ascends to A Narrow Crawlway"
         },
         "west": {
           "to_room": 5002,
-          "description": ""
+          "description": "Deep waters churn near A Long Tunnel"
         }
       }
     },
@@ -83,19 +83,19 @@
       "exits": {
         "north": {
           "to_room": 5643,
-          "description": ""
+          "description": "Deep waters churn near The River Of Lost Souls"
         },
         "east": {
           "to_room": 5005,
-          "description": ""
+          "description": "Deep waters churn near An Underground Lake"
         },
         "south": {
           "to_room": 5018,
-          "description": ""
+          "description": "A steep trail ascends to A Large Cavern"
         },
         "west": {
           "to_room": 5003,
-          "description": ""
+          "description": "Deep waters churn near A Long Tunnel"
         }
       }
     },
@@ -111,19 +111,19 @@
       "exits": {
         "north": {
           "to_room": 5671,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         },
         "east": {
           "to_room": 5006,
-          "description": ""
+          "description": "A steep trail ascends to A Long Narrow Tunnel"
         },
         "south": {
           "to_room": 5023,
-          "description": ""
+          "description": "A steep trail ascends to A Sloping Passage"
         },
         "west": {
           "to_room": 5004,
-          "description": ""
+          "description": "Deep waters churn near A Tunnel Intersection"
         }
       }
     },
@@ -140,15 +140,15 @@
       "exits": {
         "north": {
           "to_room": 5016,
-          "description": ""
+          "description": "A steep trail ascends to A Damp Hallway"
         },
         "east": {
           "to_room": 5007,
-          "description": ""
+          "description": "A steep trail ascends to A Wide Tunnel"
         },
         "west": {
           "to_room": 5005,
-          "description": ""
+          "description": "Deep waters churn near An Underground Lake"
         }
       }
     },
@@ -164,11 +164,11 @@
       "exits": {
         "east": {
           "to_room": 5026,
-          "description": ""
+          "description": "An open path leads to The Great Eastern Desert"
         },
         "west": {
           "to_room": 5006,
-          "description": ""
+          "description": "A steep trail ascends to A Long Narrow Tunnel"
         }
       }
     },
@@ -184,7 +184,7 @@
       "exits": {
         "south": {
           "to_room": 5002,
-          "description": ""
+          "description": "Deep waters churn near A Long Tunnel"
         },
         "down": {
           "to_room": 5009,
@@ -204,15 +204,15 @@
       "exits": {
         "north": {
           "to_room": 5010,
-          "description": ""
+          "description": "A steep trail ascends to A Cave Entrance"
         },
         "east": {
           "to_room": 5012,
-          "description": ""
+          "description": "A steep trail ascends to A Narrow Bend"
         },
         "up": {
           "to_room": 5008,
-          "description": ""
+          "description": "A steep trail ascends to The Cave-In"
         }
       },
       "mob_resets": [
@@ -234,13 +234,19 @@
       "exits": {
         "south": {
           "to_room": 5009,
-          "description": ""
+          "description": "A steep trail ascends to At The Foot Of The Rubble"
         },
         "down": {
           "to_room": 5011,
           "description": "You look down into the cave.  Bones are strewn about everywhere."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 5098,
+          "max": 1
+        }
+      ]
     },
     "5011": {
       "vnum": 5011,
@@ -254,7 +260,7 @@
       "exits": {
         "up": {
           "to_room": 5010,
-          "description": ""
+          "description": "A steep trail ascends to A Cave Entrance"
         },
         "down": {
           "to_room": 5100,
@@ -286,11 +292,11 @@
       "exits": {
         "south": {
           "to_room": 5013,
-          "description": ""
+          "description": "A steep trail ascends to A Large Cave"
         },
         "west": {
           "to_room": 5009,
-          "description": ""
+          "description": "A steep trail ascends to At The Foot Of The Rubble"
         }
       }
     },
@@ -306,11 +312,11 @@
       "exits": {
         "north": {
           "to_room": 5012,
-          "description": ""
+          "description": "A steep trail ascends to A Narrow Bend"
         },
         "east": {
           "to_room": 5014,
-          "description": ""
+          "description": "A steep trail ascends to A Damp Hallway"
         }
       }
     },
@@ -330,7 +336,7 @@
         },
         "west": {
           "to_room": 5013,
-          "description": ""
+          "description": "A steep trail ascends to A Large Cave"
         }
       },
       "mob_resets": [
@@ -352,11 +358,11 @@
       "exits": {
         "east": {
           "to_room": 5016,
-          "description": ""
+          "description": "A steep trail ascends to A Damp Hallway"
         },
         "west": {
           "to_room": 5014,
-          "description": ""
+          "description": "A steep trail ascends to A Damp Hallway"
         }
       }
     },
@@ -372,7 +378,7 @@
       "exits": {
         "south": {
           "to_room": 5006,
-          "description": ""
+          "description": "A steep trail ascends to A Long Narrow Tunnel"
         },
         "west": {
           "to_room": 5015,
@@ -392,11 +398,11 @@
       "exits": {
         "north": {
           "to_room": 5003,
-          "description": ""
+          "description": "Deep waters churn near A Long Tunnel"
         },
         "east": {
           "to_room": 5018,
-          "description": ""
+          "description": "A steep trail ascends to A Large Cavern"
         },
         "south": {
           "to_room": 5019,
@@ -416,11 +422,11 @@
       "exits": {
         "north": {
           "to_room": 5004,
-          "description": ""
+          "description": "Deep waters churn near A Tunnel Intersection"
         },
         "west": {
           "to_room": 5017,
-          "description": ""
+          "description": "A steep trail ascends to A Narrow Crawlway"
         }
       }
     },
@@ -436,7 +442,7 @@
       "exits": {
         "north": {
           "to_room": 5017,
-          "description": ""
+          "description": "A steep trail ascends to A Narrow Crawlway"
         },
         "east": {
           "to_room": 5020,
@@ -484,11 +490,11 @@
       "exits": {
         "north": {
           "to_room": 5020,
-          "description": ""
+          "description": "A steep trail ascends to The Fungus Path"
         },
         "east": {
           "to_room": 5022,
-          "description": ""
+          "description": "A steep trail ascends to A Sloping Passage"
         }
       },
       "mob_resets": [
@@ -514,11 +520,11 @@
       "exits": {
         "north": {
           "to_room": 5023,
-          "description": ""
+          "description": "A steep trail ascends to A Sloping Passage"
         },
         "south": {
           "to_room": 5021,
-          "description": ""
+          "description": "A steep trail ascends to The Fungus Temple"
         }
       }
     },
@@ -538,7 +544,7 @@
         },
         "south": {
           "to_room": 5022,
-          "description": ""
+          "description": "A steep trail ascends to A Sloping Passage"
         }
       }
     },
@@ -1337,7 +1343,7 @@
         },
         "down": {
           "to_room": 5063,
-          "description": ""
+          "description": "A steep trail ascends to The Wind-Swept Ledge"
         }
       }
     },
@@ -1524,7 +1530,7 @@
       "exits": {
         "east": {
           "to_room": 5061,
-          "description": ""
+          "description": "An open path leads to The Main Tent"
         },
         "south": {
           "to_room": 5058,
@@ -1596,7 +1602,7 @@
       "exits": {
         "west": {
           "to_room": 5053,
-          "description": ""
+          "description": "An open path leads to The Great Eastern Desert"
         }
       }
     },
@@ -1609,7 +1615,7 @@
       "exits": {
         "west": {
           "to_room": 5064,
-          "description": ""
+          "description": "A steep trail ascends to The Cave Mouth"
         },
         "up": {
           "to_room": 5052,
@@ -1633,7 +1639,7 @@
         },
         "west": {
           "to_room": 5065,
-          "description": ""
+          "description": "A steep trail ascends to The Mysterious Lair"
         }
       }
     },
@@ -1655,11 +1661,11 @@
         },
         "east": {
           "to_room": 5064,
-          "description": ""
+          "description": "A steep trail ascends to The Cave Mouth"
         },
         "west": {
           "to_room": 5066,
-          "description": ""
+          "description": "A steep trail ascends to A Wide Tunnel"
         }
       },
       "mob_resets": [
@@ -1681,11 +1687,11 @@
       "exits": {
         "east": {
           "to_room": 5065,
-          "description": ""
+          "description": "A steep trail ascends to The Mysterious Lair"
         },
         "west": {
           "to_room": 5067,
-          "description": ""
+          "description": "A steep trail ascends to A Narrower Tunnel"
         }
       }
     },
@@ -1701,11 +1707,11 @@
       "exits": {
         "east": {
           "to_room": 5066,
-          "description": ""
+          "description": "A steep trail ascends to A Wide Tunnel"
         },
         "south": {
           "to_room": 5068,
-          "description": ""
+          "description": "A steep trail ascends to A Narrow Crack"
         }
       }
     },
@@ -1722,11 +1728,11 @@
       "exits": {
         "north": {
           "to_room": 5067,
-          "description": ""
+          "description": "A steep trail ascends to A Narrower Tunnel"
         },
         "west": {
           "to_room": 5069,
-          "description": ""
+          "description": "A steep trail ascends to A Small Cavern"
         }
       }
     },
@@ -1742,11 +1748,11 @@
       "exits": {
         "east": {
           "to_room": 5068,
-          "description": ""
+          "description": "A steep trail ascends to A Narrow Crack"
         },
         "west": {
           "to_room": 5070,
-          "description": ""
+          "description": "A steep trail ascends to A Small Shaft"
         }
       }
     },
@@ -1762,11 +1768,11 @@
       "exits": {
         "east": {
           "to_room": 5069,
-          "description": ""
+          "description": "A steep trail ascends to A Small Cavern"
         },
         "up": {
           "to_room": 5009,
-          "description": ""
+          "description": "A steep trail ascends to At The Foot Of The Rubble"
         }
       },
       "obj_resets": [
@@ -2346,6 +2352,29 @@
         "no_bash"
       ],
       "description": "It is advisable not to mess with this creature.  After all, you\nhave heard many a horror story about experiences with camels.\nBad experiences."
+    },
+    "5098": {
+      "vnum": 5098,
+      "name": "trembling torchbearer",
+      "short_desc": "a trembling torchbearer",
+      "long_desc": "A trembling torchbearer crouches here, his torch barely flickering.",
+      "description": "He was hired to light the way for an expedition that never returned. Now he sits alone in the dark, too afraid to go forward, too lost to go back.",
+      "level": 28,
+      "alignment": 0,
+      "hp_dice": "28d10+450",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The torchbearer's voice cracks. 'They went deeper. All of them. Said there was treasure past the underground lake. None came back. I can still hear the echoes of their screams sometimes... or maybe that's just the wind.'",
+        "treasure": "He laughs bitterly. 'Gold means nothing when you're dead. But if you must know \u2014 the richest veins are near the lake. That's where the worst things live, too.'",
+        "default": "The torchbearer clutches his guttering torch. 'Please... do you know the way out?'"
+      }
     }
   },
   "objects": {
@@ -2358,7 +2387,8 @@
       "weight": 3,
       "value": 600,
       "damage_dice": "1d9",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "treasure"
     },
     "5002": {
       "vnum": 5002,
@@ -2369,7 +2399,8 @@
       "weight": 16,
       "value": 12000,
       "damage_dice": "3d5",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "5003": {
       "vnum": 5003,
@@ -2379,7 +2410,10 @@
       "item_type": "armor",
       "weight": 2,
       "value": 1500,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "neck",
+      "armor": 0
     },
     "5005": {
       "vnum": 5005,
@@ -2390,7 +2424,8 @@
       "weight": 5,
       "value": 300,
       "damage_dice": "1d4",
-      "weapon_type": "pound"
+      "weapon_type": "pound",
+      "type": "trash"
     },
     "5006": {
       "vnum": 5006,
@@ -2401,7 +2436,10 @@
       "weight": 6,
       "value": 30,
       "capacity": 5,
-      "current": 5
+      "current": 5,
+      "type": "drink",
+      "drinks": 10,
+      "max_drinks": 10
     },
     "5007": {
       "vnum": 5007,
@@ -2411,7 +2449,8 @@
       "item_type": "container",
       "weight": 50,
       "value": 5000,
-      "capacity": 100
+      "capacity": 100,
+      "type": "container"
     },
     "5009": {
       "vnum": 5009,
@@ -2421,7 +2460,8 @@
       "item_type": "container",
       "weight": 50,
       "value": 5000,
-      "capacity": 100
+      "capacity": 100,
+      "type": "container"
     },
     "5010": {
       "vnum": 5010,
@@ -2431,7 +2471,8 @@
       "item_type": "container",
       "weight": 50,
       "value": 5000,
-      "capacity": 100
+      "capacity": 100,
+      "type": "container"
     },
     "5011": {
       "vnum": 5011,
@@ -2440,7 +2481,8 @@
       "room_desc": "A long coil of rope lies on the ground.",
       "item_type": "treasure",
       "weight": 12,
-      "value": 450
+      "value": 450,
+      "type": "treasure"
     },
     "5012": {
       "vnum": 5012,
@@ -2451,7 +2493,8 @@
       "weight": 6,
       "value": 250,
       "damage_dice": "1d2",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "treasure"
     },
     "5013": {
       "vnum": 5013,
@@ -2460,7 +2503,8 @@
       "room_desc": "An old, tattered, and much faded map lies here.",
       "item_type": "treasure",
       "weight": 1,
-      "value": 300
+      "value": 300,
+      "type": "note"
     },
     "5014": {
       "vnum": 5014,
@@ -2470,7 +2514,10 @@
       "item_type": "armor",
       "weight": 15,
       "value": 4300,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "5015": {
       "vnum": 5015,
@@ -2479,7 +2526,8 @@
       "room_desc": "A great, gleaming pile of treasure lies at your feet.",
       "item_type": "money",
       "weight": 0,
-      "value": 0
+      "value": 0,
+      "type": "treasure"
     },
     "5016": {
       "vnum": 5016,
@@ -2490,7 +2538,8 @@
       "weight": 7,
       "value": 1050,
       "damage_dice": "1d8",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "5017": {
       "vnum": 5017,
@@ -2501,7 +2550,8 @@
       "weight": 6,
       "value": 600,
       "damage_dice": "1d7",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "5018": {
       "vnum": 5018,
@@ -2512,7 +2562,8 @@
       "weight": 5,
       "value": 550,
       "damage_dice": "1d7",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "5019": {
       "vnum": 5019,
@@ -2521,7 +2572,8 @@
       "room_desc": "A pink potion stands here.",
       "item_type": "potion",
       "weight": 6,
-      "value": 600
+      "value": 600,
+      "type": "potion"
     },
     "5020": {
       "vnum": 5020,
@@ -2530,7 +2582,8 @@
       "room_desc": "A platinum wand lies here.",
       "item_type": "wand",
       "weight": 8,
-      "value": 1900
+      "value": 1900,
+      "type": "wand"
     },
     "5021": {
       "vnum": 5021,
@@ -2541,7 +2594,8 @@
       "weight": 20,
       "value": 150000,
       "damage_dice": "4d6",
-      "weapon_type": "blast"
+      "weapon_type": "blast",
+      "type": "weapon"
     },
     "5022": {
       "vnum": 5022,
@@ -2550,7 +2604,8 @@
       "room_desc": "An encrypted scroll lies at your feet.",
       "item_type": "scroll",
       "weight": 7,
-      "value": 1500
+      "value": 1500,
+      "type": "scroll"
     },
     "5023": {
       "vnum": 5023,
@@ -2561,7 +2616,8 @@
       "weight": 200,
       "value": 1000,
       "capacity": 200,
-      "key_vnum": 5024
+      "key_vnum": 5024,
+      "type": "container"
     },
     "5024": {
       "vnum": 5024,
@@ -2570,7 +2626,8 @@
       "room_desc": "A shiny golden key lies here.",
       "item_type": "key",
       "weight": 1,
-      "value": 150
+      "value": 150,
+      "type": "key"
     },
     "5025": {
       "vnum": 5025,
@@ -2580,7 +2637,10 @@
       "item_type": "armor",
       "weight": 10,
       "value": 23000,
-      "armor_bonus": -5
+      "armor_bonus": -5,
+      "type": "armor",
+      "wear_slot": "wrist",
+      "armor": 1
     },
     "5026": {
       "vnum": 5026,
@@ -2589,7 +2649,8 @@
       "room_desc": "A large ruby lies on the ground, collecting dust.",
       "item_type": "treasure",
       "weight": 9,
-      "value": 4000
+      "value": 4000,
+      "type": "treasure"
     },
     "5027": {
       "vnum": 5027,
@@ -2598,7 +2659,8 @@
       "room_desc": "A glittering diamond lies at your feet.",
       "item_type": "treasure",
       "weight": 10,
-      "value": 9500
+      "value": 9500,
+      "type": "treasure"
     },
     "5028": {
       "vnum": 5028,
@@ -2607,7 +2669,8 @@
       "room_desc": "A brilliant sapphire lies here, twinkling happily.",
       "item_type": "treasure",
       "weight": 7,
-      "value": 3500
+      "value": 3500,
+      "type": "treasure"
     },
     "5029": {
       "vnum": 5029,
@@ -2616,7 +2679,8 @@
       "room_desc": "A deep blue lapis lazuli gem lies here.",
       "item_type": "treasure",
       "weight": 11,
-      "value": 8500
+      "value": 8500,
+      "type": "treasure"
     },
     "5030": {
       "vnum": 5030,
@@ -2625,7 +2689,8 @@
       "room_desc": "The Tiger Jewel lies here blazing.",
       "item_type": "treasure",
       "weight": 23,
-      "value": 43000
+      "value": 43000,
+      "type": "treasure"
     },
     "5031": {
       "vnum": 5031,
@@ -2634,7 +2699,8 @@
       "room_desc": "The red-eyed jewel glares at you greedily.",
       "item_type": "treasure",
       "weight": 30,
-      "value": 35000
+      "value": 35000,
+      "type": "treasure"
     },
     "5032": {
       "vnum": 5032,
@@ -2643,7 +2709,8 @@
       "room_desc": "A fiery green emerald sits here.",
       "item_type": "treasure",
       "weight": 7,
-      "value": 5500
+      "value": 5500,
+      "type": "treasure"
     },
     "5050": {
       "vnum": 5050,
@@ -2651,7 +2718,7 @@
       "short_desc": "a sand-worn tablet",
       "room_desc": "A sand-worn tablet rests against the wall.",
       "description": "Faded carvings depict a sun disk and a winding road.",
-      "type": "other",
+      "type": "note",
       "weight": 3,
       "cost": 70,
       "lore_id": "desert_tablet",
@@ -2665,7 +2732,7 @@
       "short_desc": "a nomad's letter",
       "room_desc": "A bundle of letters lies here.",
       "description": "The paper is brittle but still legible.",
-      "type": "other",
+      "type": "note",
       "weight": 1,
       "cost": 40,
       "lore_id": "desert_letter",
@@ -2726,7 +2793,8 @@
           "value": 2
         }
       ],
-      "set_id": 50
+      "set_id": 50,
+      "type": "weapon"
     },
     "5056": {
       "vnum": 5056,
@@ -2745,7 +2813,9 @@
           "value": 1
         }
       ],
-      "set_id": 50
+      "set_id": 50,
+      "type": "armor",
+      "armor": 3
     },
     "5057": {
       "vnum": 5057,
@@ -2763,7 +2833,8 @@
           "value": 2
         }
       ],
-      "set_id": 50
+      "set_id": 50,
+      "type": "treasure"
     },
     "5058": {
       "vnum": 5058,
@@ -2785,7 +2856,8 @@
           "value": 15
         }
       ],
-      "set_id": 50
+      "set_id": 50,
+      "type": "treasure"
     },
     "5059": {
       "vnum": 5059,
@@ -2803,7 +2875,8 @@
           "value": 2
         }
       ],
-      "set_id": 50
+      "set_id": 50,
+      "type": "treasure"
     },
     "5060": {
       "vnum": 5060,
@@ -2823,7 +2896,8 @@
           "value": 2
         }
       ],
-      "set_id": 50
+      "set_id": 50,
+      "type": "treasure"
     },
     "5061": {
       "vnum": 5061,
@@ -2843,7 +2917,8 @@
           "value": 2
         }
       ],
-      "set_id": 50
+      "set_id": 50,
+      "type": "weapon"
     },
     "5062": {
       "vnum": 5062,
@@ -2867,7 +2942,8 @@
           "value": 1
         }
       ],
-      "set_id": 50
+      "set_id": 50,
+      "type": "weapon"
     },
     "5063": {
       "vnum": 5063,
@@ -2885,7 +2961,8 @@
           "value": 1
         }
       ],
-      "set_id": 50
+      "set_id": 50,
+      "type": "treasure"
     }
   }
 }

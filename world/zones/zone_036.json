@@ -120,7 +120,7 @@
         },
         "down": {
           "to_room": 3665,
-          "description": "",
+          "description": "A passage leads to The Black Treasury",
           "door": {
             "name": "marble square",
             "state": "open",
@@ -1590,7 +1590,7 @@
         },
         "down": {
           "to_room": 3666,
-          "description": "",
+          "description": "A passage leads to The White Treasury",
           "door": {
             "name": "marble square",
             "state": "open",
@@ -2056,7 +2056,10 @@
       "item_type": "armor",
       "weight": 13,
       "value": 300,
-      "armor_bonus": 1
+      "armor_bonus": 1,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 4
     },
     "3601": {
       "vnum": 3601,
@@ -2066,7 +2069,10 @@
       "item_type": "armor",
       "weight": 13,
       "value": 300,
-      "armor_bonus": 1
+      "armor_bonus": 1,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 4
     },
     "3602": {
       "vnum": 3602,
@@ -2077,7 +2083,8 @@
       "weight": 10,
       "value": 100,
       "damage_dice": "3d4",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "3603": {
       "vnum": 3603,
@@ -2088,7 +2095,8 @@
       "weight": 10,
       "value": 100,
       "damage_dice": "3d4",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "3604": {
       "vnum": 3604,
@@ -2098,7 +2106,10 @@
       "item_type": "armor",
       "weight": 60,
       "value": 17000,
-      "armor_bonus": 2
+      "armor_bonus": 2,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 4
     },
     "3605": {
       "vnum": 3605,
@@ -2108,7 +2119,10 @@
       "item_type": "armor",
       "weight": 60,
       "value": 17000,
-      "armor_bonus": 2
+      "armor_bonus": 2,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 4
     },
     "3606": {
       "vnum": 3606,
@@ -2119,7 +2133,8 @@
       "weight": 18,
       "value": 10000,
       "damage_dice": "3d6",
-      "weapon_type": "crush"
+      "weapon_type": "crush",
+      "type": "weapon"
     },
     "3607": {
       "vnum": 3607,
@@ -2130,7 +2145,8 @@
       "weight": 18,
       "value": 10000,
       "damage_dice": "3d6",
-      "weapon_type": "crush"
+      "weapon_type": "crush",
+      "type": "weapon"
     },
     "3608": {
       "vnum": 3608,
@@ -2139,7 +2155,10 @@
       "room_desc": "The Black Bishop's Staff is lying here.",
       "item_type": "staff",
       "weight": 3,
-      "value": 20000
+      "value": 20000,
+      "type": "weapon",
+      "weapon_type": "pound",
+      "damage_dice": "1d6"
     },
     "3609": {
       "vnum": 3609,
@@ -2148,7 +2167,10 @@
       "room_desc": "The White Bishop's Staff is lying here.",
       "item_type": "staff",
       "weight": 3,
-      "value": 20000
+      "value": 20000,
+      "type": "weapon",
+      "weapon_type": "pound",
+      "damage_dice": "1d6"
     },
     "3610": {
       "vnum": 3610,
@@ -2158,7 +2180,10 @@
       "item_type": "armor",
       "weight": 4,
       "value": 3000,
-      "armor_bonus": 2
+      "armor_bonus": 2,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "3611": {
       "vnum": 3611,
@@ -2168,7 +2193,10 @@
       "item_type": "armor",
       "weight": 4,
       "value": 3000,
-      "armor_bonus": 2
+      "armor_bonus": 2,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "3612": {
       "vnum": 3612,
@@ -2177,7 +2205,8 @@
       "room_desc": "The Sceptre of the Black King lies here, collecting dust.",
       "item_type": "treasure",
       "weight": 200,
-      "value": 85000
+      "value": 85000,
+      "type": "treasure"
     },
     "3613": {
       "vnum": 3613,
@@ -2186,7 +2215,8 @@
       "room_desc": "The Sceptre of the White King lies here, collecting dust.",
       "item_type": "treasure",
       "weight": 300,
-      "value": 85000
+      "value": 85000,
+      "type": "treasure"
     },
     "3614": {
       "vnum": 3614,
@@ -2195,7 +2225,8 @@
       "room_desc": "There is a sinister black key lying here.",
       "item_type": "key",
       "weight": 1,
-      "value": 1000
+      "value": 1000,
+      "type": "key"
     },
     "3615": {
       "vnum": 3615,
@@ -2204,7 +2235,8 @@
       "room_desc": "There is a bright white key lying here.",
       "item_type": "key",
       "weight": 1,
-      "value": 1000
+      "value": 1000,
+      "type": "key"
     },
     "3616": {
       "vnum": 3616,
@@ -2213,7 +2245,8 @@
       "room_desc": "There are a LOT of coins here.",
       "item_type": "money",
       "weight": 10,
-      "value": 10000
+      "value": 10000,
+      "type": "treasure"
     },
     "3617": {
       "vnum": 3617,
@@ -2222,7 +2255,8 @@
       "room_desc": "There are a LOT of coins here.",
       "item_type": "money",
       "weight": 10,
-      "value": 10000
+      "value": 10000,
+      "type": "treasure"
     }
   }
 }

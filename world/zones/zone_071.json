@@ -16,7 +16,7 @@
       "exits": {
         "up": {
           "to_room": 7000,
-          "description": ""
+          "description": "A steep trail ascends to The Fissure Under The Ledge"
         }
       },
       "mob_resets": [
@@ -76,7 +76,7 @@
       "exits": {
         "east": {
           "to_room": 7104,
-          "description": ""
+          "description": "The cobblestones lead to A Junction In The Sewer Pipes"
         },
         "up": {
           "to_room": 7004,
@@ -84,7 +84,7 @@
         },
         "down": {
           "to_room": 7300,
-          "description": "",
+          "description": "The cobblestones lead to Cave Entrance",
           "door": {
             "name": "trapdoor",
             "state": "closed",
@@ -471,11 +471,11 @@
         },
         "east": {
           "to_room": 7122,
-          "description": ""
+          "description": "A passage leads to Under The Pit"
         },
         "west": {
           "to_room": 7104,
-          "description": ""
+          "description": "The cobblestones lead to A Junction In The Sewer Pipes"
         }
       },
       "mob_resets": [
@@ -536,23 +536,23 @@
       "exits": {
         "north": {
           "to_room": 7119,
-          "description": ""
+          "description": "A steep trail ascends to The Narrow Eastern Ledge"
         },
         "east": {
           "to_room": 7118,
-          "description": ""
+          "description": "A steep trail ascends to The Narrow Eastern Ledge"
         },
         "south": {
           "to_room": 7120,
-          "description": ""
+          "description": "A steep trail ascends to The Narrow Eastern Ledge"
         },
         "west": {
           "to_room": 7117,
-          "description": ""
+          "description": "A steep trail ascends to The Narrow Eastern Ledge"
         },
         "up": {
           "to_room": 7115,
-          "description": ""
+          "description": "A rocky path climbs toward The Broad Ledge"
         }
       },
       "mob_resets": [
@@ -587,19 +587,19 @@
       "exits": {
         "north": {
           "to_room": 7114,
-          "description": ""
+          "description": "A passage leads to Mid-Air"
         },
         "east": {
           "to_room": 7121,
-          "description": ""
+          "description": "The Southeastern Corner Of The Ledge"
         },
         "south": {
           "to_room": 7129,
-          "description": ""
+          "description": "A trail winds toward The Sewer Line"
         },
         "west": {
           "to_room": 7111,
-          "description": ""
+          "description": "The Southwestern Corner Of The Ledge"
         }
       },
       "mob_resets": [
@@ -622,7 +622,7 @@
       "exits": {
         "south": {
           "to_room": 7117,
-          "description": ""
+          "description": "A steep trail ascends to The Narrow Eastern Ledge"
         },
         "west": {
           "to_room": 7113,
@@ -841,7 +841,7 @@
       "exits": {
         "west": {
           "to_room": 7112,
-          "description": ""
+          "description": "The cobblestones lead to An Odd Intersection"
         }
       },
       "extra_descs": {
@@ -935,23 +935,23 @@
       "exits": {
         "north": {
           "to_room": 7109,
-          "description": ""
+          "description": "A steep trail ascends to The Narrow Ledge"
         },
         "east": {
           "to_room": 7108,
-          "description": ""
+          "description": "A steep trail ascends to The Narrow Ledge"
         },
         "south": {
           "to_room": 7110,
-          "description": ""
+          "description": "A steep trail ascends to The Narrow Ledge"
         },
         "west": {
           "to_room": 7107,
-          "description": ""
+          "description": "A steep trail ascends to The Narrow Ledge"
         },
         "up": {
           "to_room": 7113,
-          "description": ""
+          "description": "The Narrow Ledge Going East To West"
         }
       },
       "mob_resets": [
@@ -1194,7 +1194,10 @@
       "room_desc": "A lovely silver ring has been left here.",
       "item_type": "treasure",
       "weight": 9,
-      "value": 16000
+      "value": 16000,
+      "type": "armor",
+      "wear_slot": "finger",
+      "armor": 0
     },
     "7191": {
       "vnum": 7191,
@@ -1214,7 +1217,8 @@
           "value": 1
         }
       ],
-      "set_id": 71
+      "set_id": 71,
+      "type": "weapon"
     },
     "7192": {
       "vnum": 7192,
@@ -1233,7 +1237,9 @@
           "value": 1
         }
       ],
-      "set_id": 71
+      "set_id": 71,
+      "type": "armor",
+      "armor": 3
     },
     "7193": {
       "vnum": 7193,
@@ -1251,7 +1257,8 @@
           "value": 1
         }
       ],
-      "set_id": 71
+      "set_id": 71,
+      "type": "treasure"
     },
     "7194": {
       "vnum": 7194,
@@ -1273,7 +1280,8 @@
           "value": 15
         }
       ],
-      "set_id": 71
+      "set_id": 71,
+      "type": "treasure"
     },
     "7195": {
       "vnum": 7195,
@@ -1291,7 +1299,8 @@
           "value": 1
         }
       ],
-      "set_id": 71
+      "set_id": 71,
+      "type": "treasure"
     },
     "7196": {
       "vnum": 7196,
@@ -1311,7 +1320,8 @@
           "value": 1
         }
       ],
-      "set_id": 71
+      "set_id": 71,
+      "type": "treasure"
     },
     "7197": {
       "vnum": 7197,
@@ -1335,7 +1345,8 @@
           "value": 1
         }
       ],
-      "set_id": 71
+      "set_id": 71,
+      "type": "weapon"
     },
     "7198": {
       "vnum": 7198,
@@ -1353,7 +1364,9 @@
           "value": 1
         }
       ],
-      "set_id": 71
+      "set_id": 71,
+      "type": "armor",
+      "armor": 0
     },
     "7199": {
       "vnum": 7199,
@@ -1371,7 +1384,9 @@
           "value": 7
         }
       ],
-      "set_id": 71
+      "set_id": 71,
+      "type": "armor",
+      "armor": 2
     }
   }
 }

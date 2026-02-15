@@ -62,9 +62,9 @@ FACTIONS: Dict[str, Faction] = {
     'midgaard': Faction(
         key='midgaard',
         name='Midgaard',
-        description='The human city-state of Midgaard, bastion of law and order.',
-        enemies=['thieves_guild'],
-        allies=['mages_guild'],
+        description='The human city-state of Midgaard, bastion of law and order. Reputation gained by helping city NPCs and completing city quests. Lost by attacking citizens or aiding the Thieves Guild.',
+        enemies=['thieves_guild', 'orc_horde'],
+        allies=['mages_guild', 'holy_order'],
         quest_line=['midgaard_guard_duty', 'midgaard_city_watch', 'midgaard_honor_guard'],
         exalted_rewards={
             'titles': ['the Shield of Midgaard'],
@@ -74,10 +74,10 @@ FACTIONS: Dict[str, Faction] = {
     ),
     'elves': Faction(
         key='elves',
-        name='Elves',
-        description='The ancient Elven enclaves, guardians of forest and magic.',
-        enemies=['dwarves'],
-        allies=['mages_guild'],
+        name='Elven Court',
+        description='The Silversong elves, ancient guardians of forest and magic. Reputation gained by helping the forest and completing elven quests. Lost by harming forest creatures needlessly.',
+        enemies=['drow_conclave', 'orc_horde'],
+        allies=['mages_guild', 'holy_order'],
         quest_line=['elves_forest_wardens', 'elves_sacred_grove', 'elves_starlight_pact'],
         exalted_rewards={
             'titles': ['the Silverleaf'],
@@ -87,10 +87,10 @@ FACTIONS: Dict[str, Faction] = {
     ),
     'dwarves': Faction(
         key='dwarves',
-        name='Dwarves',
-        description='Stout-hearted dwarves of the mountain halls.',
-        enemies=['elves'],
-        allies=['midgaard'],
+        name='Dwarven Kingdom',
+        description='The stout-hearted dwarves of the Moria mountain halls. Reputation gained through Moria quests and trade route defense. Lost by theft or betrayal.',
+        enemies=['orc_horde'],
+        allies=['midgaard', 'holy_order'],
         quest_line=['dwarves_iron_oath', 'dwarves_deep_delves', 'dwarves_rune_forge'],
         exalted_rewards={
             'titles': ['the Forgefriend'],
@@ -101,9 +101,9 @@ FACTIONS: Dict[str, Faction] = {
     'thieves_guild': Faction(
         key='thieves_guild',
         name='Thieves Guild',
-        description='A secretive guild of rogues, smugglers, and cutpurses.',
-        enemies=['midgaard'],
-        allies=[],
+        description='A secretive underground guild of rogues, smugglers, and cutpurses. Reputation gained by stealing, sewer quests, and smuggling runs. Lost by cooperating with city guards.',
+        enemies=['midgaard', 'holy_order'],
+        allies=['drow_conclave'],
         quest_line=['thieves_guild_cutpurse', 'thieves_guild_silent_blade', 'thieves_guild_shadow_king'],
         exalted_rewards={
             'titles': ['the Whisper'],
@@ -113,8 +113,8 @@ FACTIONS: Dict[str, Faction] = {
     ),
     'mages_guild': Faction(
         key='mages_guild',
-        name='Mages Guild',
-        description='The arcane order of scholars and spellcasters.',
+        name='Mages Circle',
+        description='The arcane order of the High Tower of Magic. Reputation gained by magical quests, recovering lost scrolls, and arcane research. Neutral to most political conflicts.',
         enemies=[],
         allies=['midgaard', 'elves'],
         quest_line=['mages_guild_apprentice', 'mages_guild_archives', 'mages_guild_ascension'],
@@ -124,6 +124,85 @@ FACTIONS: Dict[str, Faction] = {
             'items': [9014],
         },
     ),
+    'drow_conclave': Faction(
+        key='drow_conclave',
+        name='Drow Conclave',
+        description='The dark elves of the underground Drow City. Hostile to surface dwellers by default. Reputation gained by completing drow quests and proving your worth. Lost by killing drow.',
+        enemies=['elves', 'holy_order', 'midgaard'],
+        allies=['thieves_guild'],
+        quest_line=['drow_shadow_errand', 'drow_web_of_lies', 'drow_matrons_favor'],
+        exalted_rewards={
+            'titles': ['the Spider-Touched'],
+            'mounts': ['riding_spider'],
+            'items': [9015],
+        },
+    ),
+    'holy_order': Faction(
+        key='holy_order',
+        name='Holy Order',
+        description='The Temple and Paladin faction devoted to purging evil. Reputation gained by destroying undead, healing the sick, and completing temple quests. Lost by necromancy or aiding evil.',
+        enemies=['drow_conclave', 'dragon_cult'],
+        allies=['midgaard', 'elves', 'dwarves'],
+        quest_line=['holy_order_vigil', 'holy_order_purge', 'holy_order_crusade'],
+        exalted_rewards={
+            'titles': ['the Lightbringer'],
+            'mounts': ['celestial_charger'],
+            'items': [9016],
+        },
+    ),
+    'dragon_cult': Faction(
+        key='dragon_cult',
+        name='Dragon Cult',
+        description="A mysterious cult dwelling in the Dragon's Domain. Hostile to most. Reputation gained through a secret quest chain and NOT killing dragons. Lost by slaying dragons.",
+        enemies=['holy_order', 'midgaard'],
+        allies=[],
+        quest_line=['dragon_cult_offering', 'dragon_cult_trial', 'dragon_cult_ascendance'],
+        exalted_rewards={
+            'titles': ['the Dragonsworn'],
+            'mounts': ['drake_whelp'],
+            'items': [9017],
+        },
+    ),
+    'orc_horde': Faction(
+        key='orc_horde',
+        name='Orc Horde',
+        description='The savage orc tribes of the Orc Enclave. Hostile to all civilized races. Reputation can only be gained through rare special means — defeating their champions in honorable combat or completing brutal trials.',
+        enemies=['midgaard', 'elves', 'dwarves'],
+        allies=[],
+        quest_line=['orc_horde_bloodrite', 'orc_horde_warpath', 'orc_horde_warchief'],
+        exalted_rewards={
+            'titles': ['the Bloodsworn'],
+            'mounts': ['dire_warg'],
+            'items': [9018],
+        },
+    ),
+}
+
+# Starting reputation for new players
+DEFAULT_STARTING_REPUTATION = {
+    'midgaard': 300,        # Friendly
+    'elves': 0,             # Neutral
+    'dwarves': 0,           # Neutral
+    'thieves_guild': -600,  # Hidden (Hated until discovered)
+    'mages_guild': 0,       # Neutral
+    'drow_conclave': -300,  # Hostile
+    'holy_order': 300,      # Friendly
+    'dragon_cult': -300,    # Hostile
+    'orc_horde': -300,      # Hostile
+}
+
+# Actions that grant/lose reputation (referenced by game systems)
+FACTION_REP_ACTIONS = {
+    'kill_undead': {'holy_order': 5},
+    'heal_npc': {'holy_order': 3, 'midgaard': 1},
+    'steal_success': {'thieves_guild': 5, 'midgaard': -3},
+    'kill_dragon': {'dragon_cult': -50},
+    'complete_sewer_quest': {'thieves_guild': 15},
+    'kill_city_guard': {'midgaard': -20, 'thieves_guild': 5},
+    'kill_orc': {'orc_horde': -5, 'midgaard': 2, 'dwarves': 2},
+    'kill_drow': {'drow_conclave': -10, 'elves': 3},
+    'kill_elf': {'elves': -15, 'drow_conclave': 3},
+    'kill_goblin': {'midgaard': 1, 'dwarves': 1},
 }
 
 
@@ -150,7 +229,7 @@ class FactionManager:
         if not hasattr(player, 'reputation') or not isinstance(player.reputation, dict):
             player.reputation = {}
         for key in FACTIONS.keys():
-            player.reputation.setdefault(key, 0)
+            player.reputation.setdefault(key, DEFAULT_STARTING_REPUTATION.get(key, 0))
 
     @staticmethod
     def get_reputation(player, faction_key: str) -> int:

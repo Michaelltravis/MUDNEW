@@ -234,7 +234,16 @@
         "death",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "up": {
+          "to_room": 5306,
+          "description": "The apex of the pyramid is above."
+        },
+        "down": {
+          "to_room": 5308,
+          "description": "A ladder descends into darkness."
+        }
+      }
     },
     "5308": {
       "vnum": 5308,
@@ -339,7 +348,13 @@
           "to_room": 5311,
           "description": "You see a small chamber filled with fire."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 5398,
+          "max": 1
+        }
+      ]
     },
     "5311": {
       "vnum": 5311,
@@ -565,7 +580,13 @@
       },
       "extra_descs": {
         "": "man old"
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 5399,
+          "max": 1
+        }
+      ]
     },
     "5321": {
       "vnum": 5321,
@@ -1686,7 +1707,8 @@
           "description": "You see a sand dune."
         },
         "down": {
-          "to_room": 5360
+          "to_room": 5360,
+          "description": "The way leads to Bronze Dragon Lair"
         }
       },
       "obj_resets": [
@@ -1720,7 +1742,8 @@
       "flags": [],
       "exits": {
         "up": {
-          "to_room": 5359
+          "to_room": 5359,
+          "description": "A passage leads to Through The Hole In The Sand"
         }
       },
       "extra_descs": {},
@@ -2289,7 +2312,23 @@
       "boss_loot_table": [
         5328,
         5329,
-        5330
+        5330,
+        {
+          "vnum": 5320,
+          "chance": 20
+        },
+        {
+          "vnum": 5321,
+          "chance": 20
+        },
+        {
+          "vnum": 5322,
+          "chance": 20
+        },
+        {
+          "vnum": 5323,
+          "chance": 20
+        }
       ],
       "boss_loot_chance": 85,
       "boss_config": {
@@ -2466,6 +2505,53 @@
         }
       ],
       "loot_chance": 100
+    },
+    "5398": {
+      "vnum": 5398,
+      "name": "tomb robber",
+      "short_desc": "a shadowy tomb robber",
+      "long_desc": "A tomb robber hides here in a shadowy alcove, clutching a half-empty sack.",
+      "description": "He's lean and wiry, dressed in dark wrappings that blend with the pyramid's shadows. His fingers are stained with ancient dust and his eyes dart constantly to every sound.",
+      "level": 32,
+      "alignment": 0,
+      "hp_dice": "32d10+550",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The tomb robber hisses. 'Keep your voice down! The deeper chambers have pressure plates \u2014 step on the wrong stone and the ceiling comes down. I lost my partner that way. Also, the mummies... they don't stay dead. Burn them if you can.'",
+        "traps": "He traces a pattern in the dust. 'The builders were clever. Look for discolored stones \u2014 those are usually triggers. And never touch golden sarcophagi directly. Always check for needles in the lid seams.'",
+        "default": "The tomb robber eyes you warily. 'You didn't see me here. I wasn't here. Got it?'",
+        "next": "The tomb robber's eyes gleam with fear and greed. 'The Necropolis makes this tomb look like a children's playground. Seek Paladin Dawnguard there if you dare. And I've heard whispers of a Frostspire in the frozen north \u2014 ancient magic and terrible cold.'"
+      }
+    },
+    "5399": {
+      "vnum": 5399,
+      "name": "ghostly servant",
+      "short_desc": "a ghostly pharaoh's servant",
+      "long_desc": "The translucent shade of a pharaoh's servant drifts here, endlessly sweeping with a spectral broom.",
+      "description": "Its form flickers like a candle in the wind. Ancient linen wrappings trail behind it, and its hollow eyes stare through you as if seeing another time entirely.",
+      "level": 40,
+      "alignment": 0,
+      "hp_dice": "40d10+800",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The ghost pauses its eternal sweeping. 'The master sleeps... but not peacefully. His tomb was sealed with blood and bone. Those who disturb his rest join his court \u2014 forever. The pharaoh's curse is not metaphor, traveler. It is promise.'",
+        "pharaoh": "The ghost's voice echoes. 'He was a god among men, and cruel as the desert sun. Even death could not humble him. His treasure room lies in the deepest chamber, but the way is guarded by those who served him in life... and now in death.'",
+        "default": "The ghostly servant resumes sweeping, murmuring in a forgotten language."
+      }
     }
   },
   "objects": {
@@ -2478,7 +2564,8 @@
       "weight": 10,
       "value": 800,
       "damage_dice": "2d6",
-      "weapon_type": "pound"
+      "weapon_type": "pound",
+      "type": "weapon"
     },
     "5301": {
       "vnum": 5301,
@@ -2488,7 +2575,10 @@
       "item_type": "armor",
       "weight": 5,
       "value": 500,
-      "armor_bonus": 4
+      "armor_bonus": 4,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 1
     },
     "5302": {
       "vnum": 5302,
@@ -2499,7 +2589,8 @@
       "weight": 8,
       "value": 1000,
       "damage_dice": "3d3",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "5303": {
       "vnum": 5303,
@@ -2509,7 +2600,10 @@
       "item_type": "armor",
       "weight": 10,
       "value": 1500,
-      "armor_bonus": 5
+      "armor_bonus": 5,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "5304": {
       "vnum": 5304,
@@ -2519,7 +2613,8 @@
       "item_type": "armor",
       "weight": 15,
       "value": 1250,
-      "armor_bonus": 5
+      "armor_bonus": 5,
+      "type": "treasure"
     },
     "5305": {
       "vnum": 5305,
@@ -2528,7 +2623,10 @@
       "room_desc": "A dusty bottle lies here on the ground.",
       "item_type": "potion",
       "weight": 5,
-      "value": 250
+      "value": 250,
+      "type": "drink",
+      "drinks": 10,
+      "max_drinks": 10
     },
     "5306": {
       "vnum": 5306,
@@ -2537,7 +2635,8 @@
       "room_desc": "A small jar lies here on the ground.",
       "item_type": "potion",
       "weight": 6,
-      "value": 300
+      "value": 300,
+      "type": "treasure"
     },
     "5307": {
       "vnum": 5307,
@@ -2547,7 +2646,8 @@
       "item_type": "light",
       "weight": 10,
       "value": 3500,
-      "light_hours": -1
+      "light_hours": -1,
+      "type": "treasure"
     },
     "5308": {
       "vnum": 5308,
@@ -2558,7 +2658,8 @@
       "weight": 18,
       "value": 10000,
       "damage_dice": "4d3",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "5309": {
       "vnum": 5309,
@@ -2567,7 +2668,8 @@
       "room_desc": "A stone key has been dropped here.",
       "item_type": "key",
       "weight": 15,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "5310": {
       "vnum": 5310,
@@ -2578,7 +2680,8 @@
       "weight": 5000,
       "value": 5000,
       "capacity": 500,
-      "key_vnum": 5309
+      "key_vnum": 5309,
+      "type": "treasure"
     },
     "5311": {
       "vnum": 5311,
@@ -2587,7 +2690,8 @@
       "room_desc": "A small pile of dust is being scattered by the breeze.",
       "item_type": "treasure",
       "weight": 1,
-      "value": 1
+      "value": 1,
+      "type": "trash"
     },
     "5312": {
       "vnum": 5312,
@@ -2596,7 +2700,8 @@
       "room_desc": "A small emerald scarab lies here on the ground.",
       "item_type": "key",
       "weight": 5,
-      "value": 0
+      "value": 0,
+      "type": "treasure"
     },
     "5313": {
       "vnum": 5313,
@@ -2605,7 +2710,9 @@
       "room_desc": "A small, tarnished, battered lamp has been dropped here.",
       "item_type": "staff",
       "weight": 10,
-      "value": 25000
+      "value": 25000,
+      "type": "light",
+      "light_hours": 24
     },
     "5314": {
       "vnum": 5314,
@@ -2615,7 +2722,8 @@
       "item_type": "armor",
       "weight": 9,
       "value": 10000,
-      "armor_bonus": 7
+      "armor_bonus": 7,
+      "type": "treasure"
     },
     "5315": {
       "vnum": 5315,
@@ -2624,7 +2732,8 @@
       "room_desc": "A medium-sized parchment book with well-worn pages lies here.",
       "item_type": "scroll",
       "weight": 15,
-      "value": 7500
+      "value": 7500,
+      "type": "furniture"
     },
     "5316": {
       "vnum": 5316,
@@ -2635,7 +2744,8 @@
       "weight": 20,
       "value": 18000,
       "damage_dice": "1d14",
-      "weapon_type": "bludgeon"
+      "weapon_type": "bludgeon",
+      "type": "treasure"
     },
     "5317": {
       "vnum": 5317,
@@ -2644,7 +2754,8 @@
       "room_desc": "A small piece of parchment covered in hieroglyphics lies here.",
       "item_type": "key",
       "weight": 1,
-      "value": 1
+      "value": 1,
+      "type": "note"
     },
     "5318": {
       "vnum": 5318,
@@ -2653,7 +2764,8 @@
       "room_desc": "The massive treasure of the sphinx lies here in a big pile.",
       "item_type": "money",
       "weight": 23,
-      "value": 23850
+      "value": 23850,
+      "type": "treasure"
     },
     "5319": {
       "vnum": 5319,
@@ -2662,44 +2774,93 @@
       "room_desc": "You see a small pile of sand.",
       "item_type": "money",
       "weight": 12,
-      "value": 12986
+      "value": 12986,
+      "type": "trash"
     },
     "5320": {
       "vnum": 5320,
-      "name": "curse",
-      "short_desc": "the curse of the mummy",
-      "room_desc": "Some fortunate soul has escaped the mummy's curse, for now.",
-      "item_type": "treasure",
-      "weight": 1,
-      "value": 500
+      "name": "golden armor of the pharaoh",
+      "short_desc": "golden armor of the pharaoh",
+      "room_desc": "Gleaming golden armor lies here.",
+      "description": "Ancient golden armor inscribed with hieroglyphs.",
+      "item_type": "armor",
+      "weight": 8,
+      "value": 6000,
+      "wear_slot": "body",
+      "armor_class": 7,
+      "affects": [
+        {
+          "type": "wis",
+          "value": 2
+        }
+      ],
+      "set_id": "pharaohs_legacy",
+      "type": "armor",
+      "min_level": 25
     },
     "5321": {
       "vnum": 5321,
-      "name": "elixir",
-      "short_desc": "a small elixir",
-      "room_desc": "A small glass elixir lies under your feet.",
-      "item_type": "potion",
+      "name": "pharaoh's crown",
+      "short_desc": "a pharaoh's crown",
+      "room_desc": "A golden crown rests here.",
+      "description": "A crown of the ancient pharaohs.",
+      "item_type": "armor",
       "weight": 2,
-      "value": 10000
+      "value": 5000,
+      "wear_slot": "head",
+      "armor_class": 4,
+      "affects": [
+        {
+          "type": "int",
+          "value": 2
+        }
+      ],
+      "set_id": "pharaohs_legacy",
+      "type": "armor",
+      "min_level": 25
     },
     "5322": {
       "vnum": 5322,
-      "name": "mask",
-      "short_desc": "a golden mask",
-      "room_desc": "A beautiful, intricately detailed mask has been forgotten here.",
-      "item_type": "armor",
-      "weight": 10,
-      "value": 15000,
-      "armor_bonus": 10
+      "name": "pharaoh's scepter",
+      "short_desc": "a pharaoh's scepter",
+      "room_desc": "A golden scepter lies here.",
+      "description": "A jeweled scepter of power.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 5500,
+      "wear_slot": "wield",
+      "weapon_type": "pound",
+      "damage_dice": "2d6+5",
+      "affects": [
+        {
+          "type": "wis",
+          "value": 2
+        }
+      ],
+      "set_id": "pharaohs_legacy",
+      "type": "weapon",
+      "min_level": 25
     },
     "5323": {
       "vnum": 5323,
-      "name": "diamond",
-      "short_desc": "the diamond",
-      "room_desc": "the diamond",
-      "item_type": "treasure",
-      "weight": 5,
-      "value": 0
+      "name": "pharaoh's sandals",
+      "short_desc": "a pair of pharaoh's sandals",
+      "room_desc": "Golden sandals lie here.",
+      "description": "Ornate golden sandals.",
+      "item_type": "armor",
+      "weight": 1,
+      "value": 3500,
+      "wear_slot": "feet",
+      "armor_class": 3,
+      "affects": [
+        {
+          "type": "max_mana",
+          "value": 15
+        }
+      ],
+      "set_id": "pharaohs_legacy",
+      "type": "armor",
+      "min_level": 25
     },
     "5324": {
       "vnum": 5324,
@@ -2708,7 +2869,8 @@
       "room_desc": "A small length of brass pipe shines here with its own light.",
       "item_type": "wand",
       "weight": 10,
-      "value": 25000
+      "value": 25000,
+      "type": "wand"
     },
     "5325": {
       "vnum": 5325,
@@ -2718,7 +2880,10 @@
       "item_type": "armor",
       "weight": 5,
       "value": 20000,
-      "armor_bonus": 8
+      "armor_bonus": 8,
+      "type": "armor",
+      "wear_slot": "finger",
+      "armor": 0
     },
     "5326": {
       "vnum": 5326,
@@ -2727,7 +2892,8 @@
       "room_desc": "A small golden sphinx glints in the light.",
       "item_type": "treasure",
       "weight": 5,
-      "value": 50000
+      "value": 50000,
+      "type": "treasure"
     },
     "5327": {
       "vnum": 5327,
@@ -2737,7 +2903,10 @@
       "item_type": "armor",
       "weight": 20,
       "value": 20000,
-      "armor_bonus": 10
+      "armor_bonus": 10,
+      "type": "armor",
+      "wear_slot": "legs",
+      "armor": 2
     },
     "5328": {
       "vnum": 5328,
@@ -2794,7 +2963,9 @@
           "value": 2
         }
       ],
-      "set_id": 53
+      "set_id": 53,
+      "type": "armor",
+      "armor": 3
     },
     "9202": {
       "vnum": 9202,
@@ -2820,7 +2991,8 @@
           "value": 40
         }
       ],
-      "set_id": 53
+      "set_id": 53,
+      "type": "treasure"
     },
     "9203": {
       "vnum": 9203,
@@ -2842,7 +3014,8 @@
           "value": 5
         }
       ],
-      "set_id": 53
+      "set_id": 53,
+      "type": "treasure"
     },
     "9204": {
       "vnum": 9204,
@@ -2862,7 +3035,8 @@
           "value": 4
         }
       ],
-      "set_id": 53
+      "set_id": 53,
+      "type": "weapon"
     },
     "9205": {
       "vnum": 9205,
@@ -2881,7 +3055,9 @@
           "value": 1
         }
       ],
-      "set_id": 53
+      "set_id": 53,
+      "type": "armor",
+      "armor": 3
     },
     "9206": {
       "vnum": 9206,
@@ -2899,7 +3075,8 @@
           "value": 4
         }
       ],
-      "set_id": 53
+      "set_id": 53,
+      "type": "treasure"
     },
     "9207": {
       "vnum": 9207,
@@ -2921,7 +3098,8 @@
           "value": 35
         }
       ],
-      "set_id": 53
+      "set_id": 53,
+      "type": "treasure"
     },
     "9208": {
       "vnum": 9208,
@@ -2939,7 +3117,8 @@
           "value": 4
         }
       ],
-      "set_id": 53
+      "set_id": 53,
+      "type": "treasure"
     },
     "9209": {
       "vnum": 9209,
@@ -2959,7 +3138,8 @@
           "value": 3
         }
       ],
-      "set_id": 53
+      "set_id": 53,
+      "type": "treasure"
     },
     "9210": {
       "vnum": 9210,
@@ -2983,7 +3163,8 @@
           "value": 1
         }
       ],
-      "set_id": 53
+      "set_id": 53,
+      "type": "weapon"
     },
     "9211": {
       "vnum": 9211,
@@ -3005,7 +3186,9 @@
           "value": 1
         }
       ],
-      "set_id": 53
+      "set_id": 53,
+      "type": "armor",
+      "armor": 0
     },
     "9212": {
       "vnum": 9212,
@@ -3024,7 +3207,9 @@
           "value": 10
         }
       ],
-      "set_id": 53
+      "set_id": 53,
+      "type": "armor",
+      "armor": 1
     },
     "53090": {
       "vnum": 53090,
@@ -3045,7 +3230,9 @@
           "type": "sneak",
           "value": 7
         }
-      ]
+      ],
+      "type": "armor",
+      "armor": 2
     },
     "53091": {
       "vnum": 53091,
@@ -3066,7 +3253,9 @@
           "type": "smite",
           "value": 12
         }
-      ]
+      ],
+      "type": "armor",
+      "armor": 0
     },
     "53092": {
       "vnum": 53092,
@@ -3087,7 +3276,8 @@
           "type": "heal",
           "value": 12
         }
-      ]
+      ],
+      "type": "treasure"
     },
     "53093": {
       "vnum": 53093,
@@ -3108,7 +3298,8 @@
           "type": "holy_smite",
           "value": 12
         }
-      ]
+      ],
+      "type": "treasure"
     }
   }
 }

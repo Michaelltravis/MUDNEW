@@ -15,10 +15,12 @@
       "terrain": "city",
       "exits": {
         "east": {
-          "to_room": 3005
+          "to_room": 3005,
+          "description": "The cobblestones lead to The Temple Square"
         },
         "west": {
-          "to_room": 13001
+          "to_room": 13001,
+          "description": "The path continues west"
         },
         "up": {
           "to_room": 5040,
@@ -39,13 +41,16 @@
       "terrain": "water_surface",
       "exits": {
         "east": {
-          "to_room": 13000
+          "to_room": 13000,
+          "description": "The path continues east"
         },
         "west": {
-          "to_room": 13002
+          "to_room": 13002,
+          "description": "The path continues west"
         },
         "down": {
-          "to_room": 13003
+          "to_room": 13003,
+          "description": "The path continues down"
         }
       },
       "vnum": 13001,
@@ -62,10 +67,12 @@
       "terrain": "water_surface",
       "exits": {
         "east": {
-          "to_room": 13001
+          "to_room": 13001,
+          "description": "The path continues east"
         },
         "down": {
-          "to_room": 13004
+          "to_room": 13004,
+          "description": "The path continues down"
         }
       },
       "vnum": 13002,
@@ -83,13 +90,16 @@
       "special": "requires_water_breathing",
       "exits": {
         "up": {
-          "to_room": 13001
+          "to_room": 13001,
+          "description": "The path continues up"
         },
         "west": {
-          "to_room": 13004
+          "to_room": 13004,
+          "description": "The path continues west"
         },
         "down": {
-          "to_room": 13005
+          "to_room": 13005,
+          "description": "The path continues down"
         }
       },
       "vnum": 13003,
@@ -115,13 +125,16 @@
       "special": "requires_water_breathing",
       "exits": {
         "up": {
-          "to_room": 13002
+          "to_room": 13002,
+          "description": "The path continues up"
         },
         "east": {
-          "to_room": 13003
+          "to_room": 13003,
+          "description": "The path continues east"
         },
         "down": {
-          "to_room": 13006
+          "to_room": 13006,
+          "description": "The path continues down"
         }
       },
       "vnum": 13004,
@@ -147,10 +160,12 @@
       "special": "requires_water_breathing",
       "exits": {
         "up": {
-          "to_room": 13003
+          "to_room": 13003,
+          "description": "The path continues up"
         },
         "west": {
-          "to_room": 13006
+          "to_room": 13006,
+          "description": "The path continues west"
         }
       },
       "vnum": 13005
@@ -162,16 +177,20 @@
       "special": "requires_water_breathing",
       "exits": {
         "up": {
-          "to_room": 13004
+          "to_room": 13004,
+          "description": "The path continues up"
         },
         "east": {
-          "to_room": 13005
+          "to_room": 13005,
+          "description": "The path continues east"
         },
         "south": {
-          "to_room": 13007
+          "to_room": 13007,
+          "description": "The path continues south"
         },
         "down": {
-          "to_room": 13008
+          "to_room": 13008,
+          "description": "The path continues down"
         }
       },
       "vnum": 13006
@@ -183,10 +202,12 @@
       "special": "requires_water_breathing",
       "exits": {
         "north": {
-          "to_room": 13006
+          "to_room": 13006,
+          "description": "The path continues north"
         },
         "south": {
-          "to_room": 13009
+          "to_room": 13009,
+          "description": "The path continues south"
         }
       },
       "vnum": 13007,
@@ -208,10 +229,12 @@
       "special": "requires_water_breathing",
       "exits": {
         "up": {
-          "to_room": 13006
+          "to_room": 13006,
+          "description": "The path continues up"
         },
         "south": {
-          "to_room": 13010
+          "to_room": 13010,
+          "description": "The path continues south"
         }
       },
       "vnum": 13008,
@@ -237,7 +260,8 @@
       "special": "requires_water_breathing",
       "exits": {
         "north": {
-          "to_room": 13007
+          "to_room": 13007,
+          "description": "The path continues north"
         }
       },
       "vnum": 13009,
@@ -259,16 +283,20 @@
       "special": "requires_water_breathing",
       "exits": {
         "north": {
-          "to_room": 13008
+          "to_room": 13008,
+          "description": "The path continues north"
         },
         "east": {
-          "to_room": 13011
+          "to_room": 13011,
+          "description": "The path continues east"
         },
         "west": {
-          "to_room": 13012
+          "to_room": 13012,
+          "description": "The path continues west"
         },
         "south": {
-          "to_room": 13013
+          "to_room": 13013,
+          "description": "The path continues south"
         }
       },
       "vnum": 13010
@@ -280,7 +308,8 @@
       "special": "requires_water_breathing",
       "exits": {
         "west": {
-          "to_room": 13010
+          "to_room": 13010,
+          "description": "The path continues west"
         }
       },
       "vnum": 13011,
@@ -302,10 +331,12 @@
       "special": "requires_water_breathing",
       "exits": {
         "east": {
-          "to_room": 13010
+          "to_room": 13010,
+          "description": "The path continues east"
         },
         "south": {
-          "to_room": 13014
+          "to_room": 13014,
+          "description": "The path continues south"
         }
       },
       "vnum": 13012,
@@ -323,10 +354,12 @@
       "special": "requires_water_breathing",
       "exits": {
         "north": {
-          "to_room": 13010
+          "to_room": 13010,
+          "description": "The path continues north"
         },
         "south": {
-          "to_room": 13015
+          "to_room": 13015,
+          "description": "The path continues south"
         }
       },
       "vnum": 13013,
@@ -352,7 +385,8 @@
       "special": "requires_water_breathing",
       "exits": {
         "north": {
-          "to_room": 13012
+          "to_room": 13012,
+          "description": "The path continues north"
         }
       },
       "vnum": 13014,
@@ -370,10 +404,12 @@
       "special": "requires_water_breathing",
       "exits": {
         "north": {
-          "to_room": 13013
+          "to_room": 13013,
+          "description": "The path continues north"
         },
         "down": {
-          "to_room": 13016
+          "to_room": 13016,
+          "description": "The path continues down"
         }
       },
       "vnum": 13015,
@@ -403,7 +439,8 @@
       "special": "requires_water_breathing",
       "exits": {
         "up": {
-          "to_room": 13015
+          "to_room": 13015,
+          "description": "The path continues up"
         }
       },
       "vnum": 13016,
@@ -425,7 +462,8 @@
       "special": "requires_water_breathing",
       "exits": {
         "up": {
-          "to_room": 13006
+          "to_room": 13006,
+          "description": "The path continues up"
         }
       },
       "vnum": 13017,
@@ -637,7 +675,8 @@
         13001
       ],
       "max_in_zone": 5,
-      "vnum": 13000
+      "vnum": 13000,
+      "type": "potion"
     },
     "13001": {
       "name": "pearl",
@@ -653,7 +692,8 @@
         13016
       ],
       "max_in_zone": 4,
-      "vnum": 13001
+      "vnum": 13001,
+      "type": "treasure"
     },
     "13002": {
       "name": "trident",
@@ -669,7 +709,8 @@
         13010
       ],
       "max_in_zone": 3,
-      "vnum": 13002
+      "vnum": 13002,
+      "type": "weapon"
     },
     "13003": {
       "name": "ancient crown",
@@ -690,7 +731,10 @@
         13015
       ],
       "max_in_zone": 1,
-      "vnum": 13003
+      "vnum": 13003,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "13004": {
       "name": "coral blade",
@@ -710,7 +754,8 @@
         13016
       ],
       "max_in_zone": 1,
-      "vnum": 13004
+      "vnum": 13004,
+      "type": "weapon"
     },
     "13005": {
       "vnum": 13005,
@@ -730,7 +775,8 @@
           "value": 3
         }
       ],
-      "set_id": 130
+      "set_id": 130,
+      "type": "weapon"
     },
     "13006": {
       "vnum": 13006,
@@ -749,7 +795,9 @@
           "value": 1
         }
       ],
-      "set_id": 130
+      "set_id": 130,
+      "type": "armor",
+      "armor": 3
     },
     "13007": {
       "vnum": 13007,
@@ -767,7 +815,8 @@
           "value": 4
         }
       ],
-      "set_id": 130
+      "set_id": 130,
+      "type": "treasure"
     },
     "13008": {
       "vnum": 13008,
@@ -789,7 +838,8 @@
           "value": 30
         }
       ],
-      "set_id": 130
+      "set_id": 130,
+      "type": "treasure"
     },
     "13009": {
       "vnum": 13009,
@@ -807,7 +857,8 @@
           "value": 4
         }
       ],
-      "set_id": 130
+      "set_id": 130,
+      "type": "treasure"
     },
     "13010": {
       "vnum": 13010,
@@ -827,7 +878,8 @@
           "value": 3
         }
       ],
-      "set_id": 130
+      "set_id": 130,
+      "type": "treasure"
     },
     "13011": {
       "vnum": 13011,
@@ -851,7 +903,8 @@
           "value": 1
         }
       ],
-      "set_id": 130
+      "set_id": 130,
+      "type": "weapon"
     },
     "13012": {
       "vnum": 13012,
@@ -873,7 +926,9 @@
           "value": 1
         }
       ],
-      "set_id": 130
+      "set_id": 130,
+      "type": "armor",
+      "armor": 0
     },
     "13013": {
       "vnum": 13013,
@@ -892,7 +947,9 @@
           "value": 10
         }
       ],
-      "set_id": 130
+      "set_id": 130,
+      "type": "armor",
+      "armor": 1
     }
   },
   "mobs": {

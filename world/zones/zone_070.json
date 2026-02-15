@@ -16,7 +16,7 @@
       "exits": {
         "up": {
           "to_room": 7070,
-          "description": ""
+          "description": "A steep trail ascends to A Ledge By A Dark Pool"
         },
         "down": {
           "to_room": 14000,
@@ -187,6 +187,10 @@
       "mob_resets": [
         {
           "vnum": 7002,
+          "max": 1
+        },
+        {
+          "vnum": 7098,
           "max": 1
         }
       ]
@@ -801,7 +805,7 @@
       "exits": {
         "north": {
           "to_room": 7026,
-          "description": ""
+          "description": "A passage leads to A Junction"
         },
         "east": {
           "to_room": 7034,
@@ -1186,7 +1190,7 @@
         },
         "east": {
           "to_room": 7049,
-          "description": ""
+          "description": "The cobblestones lead to The Junction"
         },
         "west": {
           "to_room": 7031,
@@ -1317,7 +1321,7 @@
       "exits": {
         "south": {
           "to_room": 7049,
-          "description": ""
+          "description": "The cobblestones lead to The Junction"
         }
       },
       "mob_resets": [
@@ -1339,7 +1343,7 @@
       "exits": {
         "north": {
           "to_room": 7048,
-          "description": ""
+          "description": "The cobblestones lead to The Sewers"
         },
         "east": {
           "to_room": 7060,
@@ -1406,7 +1410,7 @@
       "exits": {
         "north": {
           "to_room": 7050,
-          "description": ""
+          "description": "The cobblestones lead to The Small Room"
         },
         "south": {
           "to_room": 7052,
@@ -1468,7 +1472,7 @@
         },
         "west": {
           "to_room": 7047,
-          "description": "",
+          "description": "The cobblestones lead to The Pool In The Sewer",
           "door": {
             "name": "door",
             "state": "closed",
@@ -1508,7 +1512,7 @@
         },
         "west": {
           "to_room": 7050,
-          "description": ""
+          "description": "The cobblestones lead to The Small Room"
         }
       },
       "extra_descs": {
@@ -2141,7 +2145,8 @@
       "flags": [],
       "exits": {
         "south": {
-          "to_room": 14000
+          "to_room": 14000,
+          "description": "The way leads to Gates of the Dead"
         }
       },
       "mob_resets": [],
@@ -2626,6 +2631,49 @@
         "aggressive",
         "sentinel"
       ]
+    },
+    "7098": {
+      "vnum": 7098,
+      "name": "crazy beggar",
+      "short_desc": "a crazy old beggar",
+      "long_desc": "A wild-eyed old beggar crouches here in a nest of rags, muttering to himself.",
+      "description": "His matted beard reaches his waist and his skin is covered in sewer grime. He seems to have made a home down here, surrounded by strange trinkets and half-eaten rats.",
+      "level": 30,
+      "alignment": 0,
+      "hp_dice": "30d10+500",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The beggar cackles. 'You've come to see the king! The King Below! He sits on a throne of bones in the deepest pipe, he does. Rats bring him tribute. I've SEEN him \u2014 ten feet tall with eyes like lanterns!' He leans close. 'The eastern tunnels are his domain. Don't go there unless you want an audience.'",
+        "king": "His eyes go wide. 'The King Below has ruled these sewers for a hundred years! Maybe longer! The city above doesn't know... doesn't WANT to know. But the rats know. They always know.'",
+        "default": "The beggar rocks back and forth, whispering secrets to an imaginary companion.",
+        "next": "The beggar cackles wildly. 'You think THESE sewers are bad? There's a maze deeper down that'd drive you mad! And the Dark Forest... heh, the trees themselves want you dead there. But riches, oh yes, riches for those who survive!'"
+      },
+      "loot_table": [
+        {
+          "vnum": 7001,
+          "chance": 15
+        },
+        {
+          "vnum": 7002,
+          "chance": 15
+        },
+        {
+          "vnum": 7003,
+          "chance": 15
+        },
+        {
+          "vnum": 7004,
+          "chance": 15
+        }
+      ],
+      "loot_chance": 100
     }
   },
   "objects": {
@@ -2635,13 +2683,14 @@
       "short_desc": "a smuggler's manifest",
       "room_desc": "A damp smuggler's manifest is tucked into a crate.",
       "description": "The ink lists deliveries and bribes in a tight hand.",
-      "type": "other",
+      "type": "container",
       "weight": 1,
       "cost": 40,
       "lore_id": "sewer_manifest",
       "lore_title": "Smuggler Manifest",
       "lore_zone": 70,
-      "lore_text": "\"Three crates to the north gate. Pay the watchman in silver, not gold.\""
+      "lore_text": "\"Three crates to the north gate. Pay the watchman in silver, not gold.\"",
+      "capacity": 100
     },
     "7101": {
       "vnum": 7101,
@@ -2649,7 +2698,7 @@
       "short_desc": "a sewer worker's log",
       "room_desc": "A water-stained logbook rests here.",
       "description": "The pages are swollen with damp.",
-      "type": "other",
+      "type": "treasure",
       "weight": 1,
       "cost": 35,
       "lore_id": "sewer_log",
@@ -2686,9 +2735,11 @@
       "short_desc": "a rat-king token",
       "room_desc": "A tarnished token lies in the sludge.",
       "description": "A worn coin etched with a rat crown.",
-      "type": "other",
+      "type": "armor",
       "weight": 1,
-      "cost": 200
+      "cost": 200,
+      "wear_slot": "head",
+      "armor": 2
     },
     "7105": {
       "vnum": 7105,
@@ -2717,7 +2768,8 @@
           "value": 1
         }
       ],
-      "set_id": 70
+      "set_id": 70,
+      "type": "treasure"
     },
     "7107": {
       "vnum": 7107,
@@ -2736,7 +2788,9 @@
           "value": 1
         }
       ],
-      "set_id": 70
+      "set_id": 70,
+      "type": "armor",
+      "armor": 3
     },
     "7108": {
       "vnum": 7108,
@@ -2754,7 +2808,8 @@
           "value": 1
         }
       ],
-      "set_id": 70
+      "set_id": 70,
+      "type": "treasure"
     },
     "7109": {
       "vnum": 7109,
@@ -2776,7 +2831,8 @@
           "value": 15
         }
       ],
-      "set_id": 70
+      "set_id": 70,
+      "type": "treasure"
     },
     "7110": {
       "vnum": 7110,
@@ -2794,7 +2850,8 @@
           "value": 1
         }
       ],
-      "set_id": 70
+      "set_id": 70,
+      "type": "note"
     },
     "7111": {
       "vnum": 7111,
@@ -2812,7 +2869,8 @@
           "value": 1
         }
       ],
-      "set_id": 70
+      "set_id": 70,
+      "type": "treasure"
     },
     "7112": {
       "vnum": 7112,
@@ -2836,7 +2894,8 @@
           "value": 1
         }
       ],
-      "set_id": 70
+      "set_id": 70,
+      "type": "weapon"
     },
     "7113": {
       "vnum": 7113,
@@ -2854,7 +2913,9 @@
           "value": 1
         }
       ],
-      "set_id": 70
+      "set_id": 70,
+      "type": "armor",
+      "armor": 0
     },
     "7114": {
       "vnum": 7114,
@@ -2872,7 +2933,93 @@
           "value": 5
         }
       ],
-      "set_id": 70
+      "set_id": 70,
+      "type": "treasure"
+    },
+    "7001": {
+      "vnum": 7001,
+      "name": "ratty leather vest",
+      "short_desc": "a ratty leather vest",
+      "room_desc": "A filthy leather vest lies here.",
+      "description": "Scavenged sewer leather.",
+      "item_type": "armor",
+      "weight": 3,
+      "value": 2000,
+      "wear_slot": "body",
+      "armor_class": 4,
+      "affects": [
+        {
+          "type": "con",
+          "value": 1
+        }
+      ],
+      "set_id": "sewer_rat",
+      "type": "armor",
+      "min_level": 20
+    },
+    "7002": {
+      "vnum": 7002,
+      "name": "sewer rat's ring",
+      "short_desc": "a sewer rat's ring",
+      "room_desc": "A grimy ring lies here.",
+      "description": "A tarnished ring.",
+      "item_type": "armor",
+      "weight": 0,
+      "value": 1500,
+      "wear_slot": "finger",
+      "armor_class": 1,
+      "affects": [
+        {
+          "type": "disease_resist",
+          "value": 5
+        }
+      ],
+      "set_id": "sewer_rat",
+      "type": "armor",
+      "min_level": 20
+    },
+    "7003": {
+      "vnum": 7003,
+      "name": "sewer rat's boots",
+      "short_desc": "a pair of sewer rat's boots",
+      "room_desc": "Waterlogged boots lie here.",
+      "description": "Surprisingly grippy boots.",
+      "item_type": "armor",
+      "weight": 2,
+      "value": 1200,
+      "wear_slot": "feet",
+      "armor_class": 2,
+      "affects": [
+        {
+          "type": "dex",
+          "value": 1
+        }
+      ],
+      "set_id": "sewer_rat",
+      "type": "armor",
+      "min_level": 20
+    },
+    "7004": {
+      "vnum": 7004,
+      "name": "sewer rat's dagger",
+      "short_desc": "a sewer rat's dagger",
+      "room_desc": "A rusty dagger lies here.",
+      "description": "A corroded but sharp dagger.",
+      "item_type": "weapon",
+      "weight": 1,
+      "value": 1800,
+      "wear_slot": "wield",
+      "weapon_type": "pierce",
+      "damage_dice": "2d4+3",
+      "affects": [
+        {
+          "type": "hitroll",
+          "value": 2
+        }
+      ],
+      "set_id": "sewer_rat",
+      "type": "weapon",
+      "min_level": 20
     }
   }
 }

@@ -74,6 +74,8 @@ class Connection:
                 message += '\r\n'
             self.writer.write(message.encode('utf-8'))
             await self.writer.drain()
+        except (ConnectionResetError, BrokenPipeError, ConnectionAbortedError, OSError):
+            logger.debug(f"Connection lost while sending to {self.address}")
         except Exception as e:
             logger.error(f"Error sending to {self.address}: {e}")
             
@@ -125,7 +127,18 @@ class Connection:
                 await self.send(prompt, newline=False)
                 return
 
-            prompt = f"\r\n{hp_color}{self.player.hp}/{self.player.max_hp}hp {c['cyan']}{self.player.mana}/{self.player.max_mana}mp {c['yellow']}{self.player.move}/{self.player.max_move}mv{sneak_status}{enemy_status}{c['reset']}> "
+            # Warrior Momentum display in prompt
+            momentum_status = ""
+            if getattr(self.player, 'char_class', '').lower() == 'warrior':
+                mom = getattr(self.player, 'momentum', 0)
+                if mom > 0:
+                    filled = '█' * mom
+                    empty = '░' * (10 - mom)
+                    momentum_status = f" {c['bright_yellow']}[Momentum: {filled}{empty} {mom}/10]{c['reset']}"
+                    if getattr(self.player, 'unstoppable_rounds', 0) > 0:
+                        momentum_status += f" {c['bright_red']}★UNSTOPPABLE★{c['reset']}"
+
+            prompt = f"\r\n{hp_color}{self.player.hp}/{self.player.max_hp}hp {c['cyan']}{self.player.mana}/{self.player.max_mana}mp {c['yellow']}{self.player.move}/{self.player.max_move}mv{sneak_status}{momentum_status}{enemy_status}{c['reset']}> "
             await self.send(prompt, newline=False)
         else:
             await self.send("> ", newline=False)
@@ -142,7 +155,7 @@ class Connection:
         elif self.state == self.STATE_GET_PASSWORD:
             await self.handle_password(line)
         elif self.state == self.STATE_CONFIRM_PASSWORD:
-            await self.handle_confirm_password(line)
+            await self.handle_confirm_new_char_password(line)
         elif self.state == self.STATE_GET_RACE:
             await self.handle_race(line)
         elif self.state == self.STATE_GET_CLASS:
@@ -258,7 +271,7 @@ class Connection:
             await self.send("Confirm password: ")
             self.state = self.STATE_CONFIRM_PASSWORD
             
-    async def handle_confirm_password(self, password: str):
+    async def handle_confirm_new_char_password(self, password: str):
         """Confirm new character password."""
         if password == self.temp_password:
             await self.show_race_menu()
@@ -275,22 +288,33 @@ class Connection:
         await self.send(f"{c['cyan']}                    Choose Your Race                          {c['reset']}")
         await self.send(f"{c['cyan']}================================================================{c['reset']}")
 
-        for race_id, race in self.config.RACES.items():
+        for i, (race_id, race) in enumerate(self.config.RACES.items(), 1):
             mods = ' '.join([f"{stat[:3].upper()}:{mod:+d}" for stat, mod in race['stat_mods'].items() if mod != 0])
-            await self.send(f" {c['bright_green']}{race_id:<12}{c['white']}{race['description']}{c['reset']}")
+            await self.send(f" {c['bright_yellow']}{i}){c['reset']} {c['bright_green']}{race_id:<12}{c['white']}{race['description']}{c['reset']}")
             if mods:
                 await self.send(f"              {c['yellow']}({mods}){c['reset']}")
 
         await self.send(f"{c['cyan']}================================================================{c['reset']}")
-        await self.send(f"\r\n{c['white']}Enter race name: {c['reset']}")
+        await self.send(f"\r\n{c['white']}Enter race name or number: {c['reset']}")
         
     async def handle_race(self, race: str):
         """Handle race selection."""
-        race = race.lower().replace(' ', '_')
+        race = race.strip().lower().replace(' ', '_')
+        
+        # Accept number selection
+        if race.isdigit():
+            idx = int(race) - 1
+            race_list = list(self.config.RACES.keys())
+            if 0 <= idx < len(race_list):
+                race = race_list[idx]
+            else:
+                await self.send(f"Invalid selection. Choose 1-{len(race_list)} or enter race name.")
+                await self.send("Enter race name or number: ")
+                return
         
         if race not in self.config.RACES:
             await self.send(f"'{race}' is not a valid race. Choose from: {', '.join(self.config.RACES.keys())}")
-            await self.send("Enter race name: ")
+            await self.send("Enter race name or number: ")
             return
             
         self.temp_race = race
@@ -304,20 +328,31 @@ class Connection:
         await self.send(f"{c['cyan']}                    Choose Your Class                         {c['reset']}")
         await self.send(f"{c['cyan']}================================================================{c['reset']}")
 
-        for class_id, cls in self.config.CLASSES.items():
-            await self.send(f" {c['bright_green']}{class_id:<12}{c['white']}{cls['description']}{c['reset']}")
+        for i, (class_id, cls) in enumerate(self.config.CLASSES.items(), 1):
+            await self.send(f" {c['bright_yellow']}{i}){c['reset']} {c['bright_green']}{class_id:<12}{c['white']}{cls['description']}{c['reset']}")
             await self.send(f"              {c['yellow']}Prime: {cls['prime_stat'].upper():<3} HP:{cls['hit_dice']:>2}  MP:{cls['mana_dice']:>2}{c['reset']}")
 
         await self.send(f"{c['cyan']}================================================================{c['reset']}")
-        await self.send(f"\r\n{c['white']}Enter class name: {c['reset']}")
+        await self.send(f"\r\n{c['white']}Enter class name or number: {c['reset']}")
         
     async def handle_class(self, char_class: str):
         """Handle class selection."""
-        char_class = char_class.lower()
+        char_class = char_class.strip().lower()
+        
+        # Accept number selection
+        if char_class.isdigit():
+            idx = int(char_class) - 1
+            class_list = list(self.config.CLASSES.keys())
+            if 0 <= idx < len(class_list):
+                char_class = class_list[idx]
+            else:
+                await self.send(f"Invalid selection. Choose 1-{len(class_list)} or enter class name.")
+                await self.send("Enter class name or number: ")
+                return
         
         if char_class not in self.config.CLASSES:
             await self.send(f"'{char_class}' is not a valid class. Choose from: {', '.join(self.config.CLASSES.keys())}")
-            await self.send("Enter class name: ")
+            await self.send("Enter class name or number: ")
             return
             
         self.temp_class = char_class
@@ -407,6 +442,42 @@ class Connection:
         await self.send(f"{c['white']}  Type 'help' for a list of commands.{c['reset']}")
         await self.send(f"{c['bright_cyan']}══════════════════════════════════════════════════════════════{c['reset']}\r\n")
 
+        # Process rent charges from previous session
+        try:
+            rent_data = getattr(self.player, 'rent_data', None)
+            if rent_data and rent_data.get('rented'):
+                from datetime import datetime
+                rent_time = datetime.fromisoformat(rent_data['rent_time'])
+                elapsed = (datetime.now() - rent_time).total_seconds()
+                days_elapsed = max(1, elapsed / 86400)  # At least 1 day charge
+                daily_cost = rent_data.get('daily_cost', 0)
+                total_charge = int(daily_cost * days_elapsed)
+
+                if total_charge > 0:
+                    if self.player.gold >= total_charge:
+                        self.player.gold -= total_charge
+                        await self.send(f"{c['bright_yellow']}The innkeeper collected {total_charge} gold for {days_elapsed:.1f} days of storage.{c['reset']}")
+                    else:
+                        # Player can't afford - drop random items
+                        shortfall = total_charge - self.player.gold
+                        self.player.gold = 0
+                        dropped = 0
+                        while shortfall > 0 and self.player.inventory:
+                            item = self.player.inventory.pop()
+                            item_rent = 10  # base value of dropped item
+                            shortfall -= getattr(item, 'value', getattr(item, 'cost', 50))
+                            dropped += 1
+                        await self.send(f"{c['red']}You couldn't afford {total_charge} gold in rent!{c['reset']}")
+                        if dropped:
+                            await self.send(f"{c['red']}The innkeeper confiscated {dropped} item(s) to cover the debt.{c['reset']}")
+                        await self.send(f"{c['yellow']}You have {self.player.gold} gold remaining.{c['reset']}")
+
+                # Clear rent data
+                self.player.rent_data = None
+        except Exception as e:
+            import logging
+            logging.getLogger('RealmsMUD').error(f"Rent processing error: {e}")
+
         if room:
             room.characters.append(self.player)
             
@@ -467,7 +538,24 @@ class Connection:
                     await QuestManager.start_tutorial(self.player)
                 except Exception:
                     pass
-            
+
+            # Check for unread mail
+            try:
+                from mail_system import MailManager
+                unread = MailManager.get_unread_count(self.player.name)
+                if unread > 0:
+                    await self.send(f"{c['bright_yellow']}You have {unread} unread mail message{'s' if unread != 1 else ''}! Type 'mail read' to read.{c['reset']}")
+            except Exception:
+                pass
+
+            # Show a tip to newer players
+            try:
+                if self.player.level < 15:
+                    from tips import TipManager
+                    await TipManager.maybe_show_tip(self.player, chance=0.3)
+            except Exception:
+                pass
+
         await self.send_prompt()
     
     # ==================== ACCOUNT SYSTEM HANDLERS ====================
@@ -1077,6 +1165,14 @@ class Connection:
         # Execute command
         await self.player.execute_command(cmd, args)
         
+        # Occasional tip for newer players after commands
+        try:
+            if self.player.level < 15:
+                from tips import TipManager
+                await TipManager.maybe_show_tip(self.player, chance=0.03)
+        except Exception:
+            pass
+
         # Track command for tutorial progress
         try:
             from quests import QuestManager
@@ -1085,40 +1181,73 @@ class Connection:
             for quest in list(getattr(self.player, 'active_quests', [])):
                 if quest.quest_id.startswith('tutorial_') and quest.is_complete():
                     await QuestManager.auto_complete_tutorial_quest(self.player, quest)
+            
+            # Periodic auto-hint for tutorial quests (5 min no progress)
+            await QuestManager.check_auto_hint(self.player)
+            
+            # Compass sense hint after movement/look
+            if cmd in ('look', 'north', 'south', 'east', 'west', 'up', 'down', 'n', 's', 'e', 'w', 'u', 'd'):
+                await QuestManager.show_compass_hint(self.player)
         except Exception:
             pass
         
         await self.send_prompt()
         
     async def disconnect(self):
-        """Handle disconnection."""
+        """Handle disconnection gracefully — stop combat, save state, clean up."""
         logger.info(f"Connection closed: {self.address}")
         
         if self.player:
-            # Update logout timestamp + playtime
             try:
+                # Stop combat immediately
+                if self.player.fighting:
+                    # Clear the opponent's target if they were fighting this player
+                    opponent = self.player.fighting
+                    if opponent and getattr(opponent, 'fighting', None) == self.player:
+                        opponent.fighting = None
+                        if opponent.position == 'fighting':
+                            opponent.position = 'standing'
+                    self.player.fighting = None
+                    if self.player.position == 'fighting':
+                        self.player.position = 'standing'
+
+                # Update logout timestamp + playtime
                 now = datetime.now()
                 if hasattr(self.player, 'last_login'):
                     self.player.total_playtime += max(0, int((now - self.player.last_login).total_seconds()))
                 self.player.last_logout = now
+            except Exception as e:
+                logger.error(f"Error updating player state on disconnect: {e}")
+
+            # Save player state
+            try:
+                await self.player.save()
+            except Exception as e:
+                logger.error(f"Error saving player {self.player.name} on disconnect: {e}")
+
+            # Remove from world
+            try:
+                await self.world.remove_player(self.player)
+            except Exception as e:
+                logger.error(f"Error removing player {self.player.name} from world: {e}")
+            
+            # Announce departure
+            try:
+                if self.player.room:
+                    await self.player.room.send_to_room(
+                        f"{self.player.name} has left the realm.",
+                        exclude=[self.player]
+                    )
             except Exception:
                 pass
 
-            # Save and remove from world
-            await self.player.save()
-            await self.world.remove_player(self.player)
-            
-            # Announce departure
-            if self.player.room:
-                await self.player.room.send_to_room(
-                    f"{self.player.name} has left the realm.",
-                    exclude=[self.player]
-                )
+            # Clear connection reference
+            self.player.connection = None
         
         try:
             self.writer.close()
             await self.writer.wait_closed()
-        except:
+        except Exception:
             pass
 
 
@@ -1158,13 +1287,30 @@ class MUDServer:
             # Read input loop
             while True:
                 try:
-                    data = await asyncio.wait_for(reader.readline(), timeout=300.0)
+                    data = await asyncio.wait_for(reader.readline(), timeout=1800.0)
                     if not data:
                         break
                     line = data.decode('utf-8', errors='ignore').strip()
                     await conn.handle_input(line)
                 except asyncio.TimeoutError:
-                    await conn.send("\r\nConnection timed out. Goodbye!\r\n")
+                    # Force-rent at 2x cost on idle timeout
+                    if conn.player:
+                        try:
+                            from commands import CommandHandler
+                            rent_cost = CommandHandler.calc_total_rent(conn.player) * 2
+                            if conn.player.gold >= rent_cost:
+                                conn.player.gold -= rent_cost
+                                conn.player.rent_paid = True
+                                await conn.send(f"\r\nIdle timeout! You've been force-rented for {rent_cost} gold (2x normal rate).\r\n")
+                            else:
+                                await conn.send(f"\r\nIdle timeout! You couldn't afford rent ({rent_cost} gold). Some items may be lost!\r\n")
+                        except Exception:
+                            pass
+                    else:
+                        await conn.send("\r\nConnection timed out. Goodbye!\r\n")
+                    break
+                except (ConnectionResetError, BrokenPipeError, ConnectionAbortedError, OSError) as e:
+                    logger.info(f"Connection lost for {self.address}: {e}")
                     break
                 except Exception as e:
                     import traceback

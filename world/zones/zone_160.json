@@ -15,10 +15,12 @@
       "terrain": "mountain",
       "exits": {
         "west": {
-          "to_room": 8099
+          "to_room": 8099,
+          "description": "The way leads to A Rift In The Planes"
         },
         "portal": {
-          "to_room": 16001
+          "to_room": 16001,
+          "description": "The path continues portal"
         },
         "down": {
           "to_room": 8000,
@@ -44,19 +46,24 @@
       "special": "reality_warp",
       "exits": {
         "portal": {
-          "to_room": 16000
+          "to_room": 16000,
+          "description": "The path continues portal"
         },
         "north": {
-          "to_room": 16002
+          "to_room": 16002,
+          "description": "The path continues north"
         },
         "south": {
-          "to_room": 16003
+          "to_room": 16003,
+          "description": "The path continues south"
         },
         "east": {
-          "to_room": 16004
+          "to_room": 16004,
+          "description": "The path continues east"
         },
         "west": {
-          "to_room": 16005
+          "to_room": 16005,
+          "description": "The path continues west"
         }
       },
       "vnum": 16001,
@@ -78,10 +85,12 @@
       "special": "extreme_heat",
       "exits": {
         "south": {
-          "to_room": 16001
+          "to_room": 16001,
+          "description": "The path continues south"
         },
         "east": {
-          "to_room": 16006
+          "to_room": 16006,
+          "description": "The path continues east"
         }
       },
       "vnum": 16002,
@@ -107,10 +116,12 @@
       "special": "requires_water_breathing",
       "exits": {
         "north": {
-          "to_room": 16001
+          "to_room": 16001,
+          "description": "The path continues north"
         },
         "west": {
-          "to_room": 16007
+          "to_room": 16007,
+          "description": "The path continues west"
         }
       },
       "vnum": 16003,
@@ -136,10 +147,12 @@
       "special": "earth_prison",
       "exits": {
         "west": {
-          "to_room": 16001
+          "to_room": 16001,
+          "description": "The path continues west"
         },
         "south": {
-          "to_room": 16008
+          "to_room": 16008,
+          "description": "The path continues south"
         }
       },
       "vnum": 16004,
@@ -169,10 +182,12 @@
       "special": "endless_sky",
       "exits": {
         "east": {
-          "to_room": 16001
+          "to_room": 16001,
+          "description": "The path continues east"
         },
         "north": {
-          "to_room": 16009
+          "to_room": 16009,
+          "description": "The path continues north"
         }
       },
       "vnum": 16005,
@@ -188,6 +203,10 @@
         {
           "vnum": 16002,
           "max": 1
+        },
+        {
+          "vnum": 16098,
+          "max": 1
         }
       ]
     },
@@ -198,10 +217,12 @@
       "special": "volcanic_chaos",
       "exits": {
         "west": {
-          "to_room": 16002
+          "to_room": 16002,
+          "description": "The path continues west"
         },
         "south": {
-          "to_room": 16010
+          "to_room": 16010,
+          "description": "The path continues south"
         }
       },
       "vnum": 16006,
@@ -223,10 +244,12 @@
       "special": "eternal_storm",
       "exits": {
         "east": {
-          "to_room": 16003
+          "to_room": 16003,
+          "description": "The path continues east"
         },
         "north": {
-          "to_room": 16011
+          "to_room": 16011,
+          "description": "The path continues north"
         }
       },
       "vnum": 16007,
@@ -252,10 +275,12 @@
       "special": "primal_swamp",
       "exits": {
         "north": {
-          "to_room": 16004
+          "to_room": 16004,
+          "description": "The path continues north"
         },
         "west": {
-          "to_room": 16012
+          "to_room": 16012,
+          "description": "The path continues west"
         }
       },
       "vnum": 16008,
@@ -285,10 +310,12 @@
       "special": "firestorm",
       "exits": {
         "south": {
-          "to_room": 16005
+          "to_room": 16005,
+          "description": "The path continues south"
         },
         "east": {
-          "to_room": 16013
+          "to_room": 16013,
+          "description": "The path continues east"
         }
       },
       "vnum": 16009,
@@ -318,16 +345,20 @@
       "special": "elemental_chaos",
       "exits": {
         "north": {
-          "to_room": 16006
+          "to_room": 16006,
+          "description": "The path continues north"
         },
         "south": {
-          "to_room": 16014
+          "to_room": 16014,
+          "description": "The path continues south"
         },
         "east": {
-          "to_room": 16015
+          "to_room": 16015,
+          "description": "The path continues east"
         },
         "west": {
-          "to_room": 16016
+          "to_room": 16016,
+          "description": "The path continues west"
         }
       },
       "vnum": 16010,
@@ -339,6 +370,10 @@
         {
           "vnum": 16010,
           "max": 1
+        },
+        {
+          "vnum": 16099,
+          "max": 1
         }
       ]
     },
@@ -349,10 +384,12 @@
       "special": "reality_flux",
       "exits": {
         "south": {
-          "to_room": 16007
+          "to_room": 16007,
+          "description": "The path continues south"
         },
         "east": {
-          "to_room": 16017
+          "to_room": 16017,
+          "description": "The path continues east"
         }
       },
       "vnum": 16011,
@@ -382,10 +419,12 @@
       "special": "shifting_maze",
       "exits": {
         "east": {
-          "to_room": 16008
+          "to_room": 16008,
+          "description": "The path continues east"
         },
         "north": {
-          "to_room": 16018
+          "to_room": 16018,
+          "description": "The path continues north"
         }
       },
       "vnum": 16012,
@@ -411,10 +450,12 @@
       "special": "demon_portal",
       "exits": {
         "west": {
-          "to_room": 16009
+          "to_room": 16009,
+          "description": "The path continues west"
         },
         "south": {
-          "to_room": 16019
+          "to_room": 16019,
+          "description": "The path continues south"
         }
       },
       "vnum": 16013,
@@ -435,10 +476,12 @@
       "terrain": "planar",
       "exits": {
         "north": {
-          "to_room": 16010
+          "to_room": 16010,
+          "description": "The path continues north"
         },
         "south": {
-          "to_room": 16020
+          "to_room": 16020,
+          "description": "The path continues south"
         }
       },
       "vnum": 16014,
@@ -467,10 +510,12 @@
       "terrain": "planar",
       "exits": {
         "west": {
-          "to_room": 16010
+          "to_room": 16010,
+          "description": "The path continues west"
         },
         "east": {
-          "to_room": 16021
+          "to_room": 16021,
+          "description": "The path continues east"
         }
       },
       "vnum": 16015,
@@ -496,7 +541,8 @@
       "special": "void_damage",
       "exits": {
         "east": {
-          "to_room": 16010
+          "to_room": 16010,
+          "description": "The path continues east"
         }
       },
       "vnum": 16016,
@@ -518,7 +564,8 @@
       "special": "horror_spawn",
       "exits": {
         "west": {
-          "to_room": 16011
+          "to_room": 16011,
+          "description": "The path continues west"
         }
       },
       "vnum": 16017,
@@ -548,10 +595,12 @@
       "special": "time_chaos",
       "exits": {
         "south": {
-          "to_room": 16012
+          "to_room": 16012,
+          "description": "The path continues south"
         },
         "east": {
-          "to_room": 16022
+          "to_room": 16022,
+          "description": "The path continues east"
         }
       },
       "vnum": 16018,
@@ -568,10 +617,12 @@
       "terrain": "planar",
       "exits": {
         "north": {
-          "to_room": 16013
+          "to_room": 16013,
+          "description": "The path continues north"
         },
         "south": {
-          "to_room": 16023
+          "to_room": 16023,
+          "description": "The path continues south"
         }
       },
       "vnum": 16019,
@@ -608,7 +659,8 @@
       "terrain": "planar",
       "exits": {
         "north": {
-          "to_room": 16014
+          "to_room": 16014,
+          "description": "The path continues north"
         }
       },
       "vnum": 16020,
@@ -637,7 +689,8 @@
       "terrain": "planar",
       "exits": {
         "west": {
-          "to_room": 16015
+          "to_room": 16015,
+          "description": "The path continues west"
         }
       },
       "vnum": 16021,
@@ -658,10 +711,12 @@
       "terrain": "planar",
       "exits": {
         "west": {
-          "to_room": 16018
+          "to_room": 16018,
+          "description": "The path continues west"
         },
         "up": {
-          "to_room": 16024
+          "to_room": 16024,
+          "description": "The path continues up"
         }
       },
       "vnum": 16022,
@@ -686,7 +741,8 @@
       "terrain": "planar",
       "exits": {
         "north": {
-          "to_room": 16019
+          "to_room": 16019,
+          "description": "The path continues north"
         }
       },
       "vnum": 16023,
@@ -719,10 +775,12 @@
       "terrain": "planar",
       "exits": {
         "down": {
-          "to_room": 16022
+          "to_room": 16022,
+          "description": "The path continues down"
         },
         "up": {
-          "to_room": 16025
+          "to_room": 16025,
+          "description": "The path continues up"
         }
       },
       "vnum": 16024,
@@ -748,7 +806,8 @@
       "terrain": "planar",
       "exits": {
         "down": {
-          "to_room": 16024
+          "to_room": 16024,
+          "description": "The path continues down"
         }
       },
       "mob_resets": [
@@ -1047,87 +1106,109 @@
         16023
       ],
       "max_in_zone": 1,
-      "vnum": 16000
+      "vnum": 16000,
+      "type": "weapon"
     },
     "16001": {
-      "name": "planar armor",
-      "short_desc": "a suit of armor woven from reality itself",
-      "long_desc": "Armor that seems to exist in multiple places at once rests here.",
-      "description": "This armor is crafted from stabilized reality, woven into protective gear. It exists slightly out of phase, making attacks pass through it harmlessly. The armor adapts to threats, becoming fire-resistant when hit by fire, cold-resistant when hit by ice. It's one of the most protective items in existence. The cost is that wearing it makes you feel disconnected from reality.",
+      "vnum": 16001,
+      "name": "shifting chaos armor",
+      "short_desc": "shifting chaos armor",
+      "room_desc": "Armor that shifts and shimmers lies here.",
+      "description": "Reality bends around it.",
       "item_type": "armor",
-      "value": 10000,
-      "weight": 30,
-      "armor_location": "body",
-      "armor_class": 22,
-      "magic_bonus": 4,
-      "special_properties": [
-        "adaptive_resistance",
-        "phase_shift"
+      "weight": 7,
+      "value": 16000,
+      "wear_slot": "body",
+      "armor_class": 10,
+      "affects": [
+        {
+          "type": "spell_resist",
+          "value": 5
+        },
+        {
+          "type": "con",
+          "value": 2
+        }
       ],
-      "spawn_rooms": [
-        16021,
-        16024
-      ],
-      "max_in_zone": 1,
-      "vnum": 16001
+      "set_id": "chaos_weave",
+      "type": "armor",
+      "min_level": 40
     },
     "16002": {
-      "name": "elemental crystal",
-      "short_desc": "a crystal containing pure elemental power",
-      "long_desc": "A multifaceted crystal pulses with elemental energy.",
-      "description": "This crystal is condensed elemental power made solid. It contains the essence of all four elements in perfect balance. Using it as a spell focus grants incredible power over elemental magic. It could also be used to create legendary elemental weapons or armor. Elemental beings are drawn to it like moths to flame.",
-      "item_type": "ingredient",
-      "value": 5000,
-      "weight": 3,
-      "magic_bonus": 4,
-      "special_properties": [
-        "elemental_mastery"
+      "vnum": 16002,
+      "name": "prismatic ring of chaos",
+      "short_desc": "a prismatic ring of chaos",
+      "room_desc": "A ring of swirling colors lies here.",
+      "description": "Colors shift endlessly.",
+      "item_type": "armor",
+      "weight": 0,
+      "value": 14000,
+      "wear_slot": "finger",
+      "armor_class": 2,
+      "affects": [
+        {
+          "type": "int",
+          "value": 2
+        },
+        {
+          "type": "wis",
+          "value": 2
+        }
       ],
-      "spawn_rooms": [
-        16010,
-        16024
-      ],
-      "max_in_zone": 2,
-      "vnum": 16002
+      "set_id": "chaos_weave",
+      "type": "armor",
+      "min_level": 40
     },
     "16003": {
-      "name": "staff of chaos",
-      "short_desc": "a twisted staff crackling with chaotic energy",
-      "long_desc": "A staff of bizarre materials crackles with power.",
-      "description": "This staff is crafted from materials that don't exist in normal reality. It channels chaos itself, allowing the user to warp reality in small ways. Every spell cast through it has unpredictable side effects - sometimes beneficial, sometimes disastrous. It's incredibly powerful but wildly dangerous. Only chaos mages dare use such a tool.",
-      "item_type": "staff",
-      "value": 7000,
-      "weight": 5,
-      "magic_bonus": 3,
-      "charges": 50,
-      "special_properties": [
-        "chaos_magic",
-        "random_effects"
+      "vnum": 16003,
+      "name": "chaos blade",
+      "short_desc": "a chaos blade",
+      "room_desc": "A blade of shifting reality lies here.",
+      "description": "The edge phases in and out.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 16000,
+      "wear_slot": "wield",
+      "weapon_type": "slash",
+      "damage_dice": "3d6+6",
+      "affects": [
+        {
+          "type": "hitroll",
+          "value": 4
+        },
+        {
+          "type": "damroll",
+          "value": 3
+        }
       ],
-      "spawn_rooms": [
-        16022,
-        16024
-      ],
-      "max_in_zone": 1,
-      "vnum": 16003
+      "set_id": "chaos_weave",
+      "type": "weapon",
+      "min_level": 40
     },
     "16004": {
-      "name": "reality anchor",
-      "short_desc": "a device that stabilizes reality",
-      "long_desc": "A complex device of gears and crystals hums with power.",
-      "description": "This device was created by ancient beings to impose order on chaos. Activating it creates a sphere of stable reality around the user. Within that sphere, normal physics apply and chaos can't intrude. It's essential for surviving long-term in the Plane of Chaos. The device is powered by the user's willpower - it drains mental energy to maintain stability.",
-      "item_type": "tool",
-      "value": 6000,
-      "weight": 8,
-      "special_properties": [
-        "reality_stabilization"
+      "vnum": 16004,
+      "name": "boots of planar shift",
+      "short_desc": "a pair of boots of planar shift",
+      "room_desc": "Boots that flicker between planes lie here.",
+      "description": "They hum with energy.",
+      "item_type": "armor",
+      "weight": 2,
+      "value": 13000,
+      "wear_slot": "feet",
+      "armor_class": 4,
+      "affects": [
+        {
+          "type": "dex",
+          "value": 2
+        },
+        {
+          "type": "max_move",
+          "value": 20
+        }
       ],
-      "spawn_rooms": [
-        16015,
-        16021
-      ],
-      "max_in_zone": 2,
-      "vnum": 16004
+      "set_id": "chaos_weave",
+      "type": "armor",
+      "min_level": 40
     },
     "16005": {
       "name": "demon heart",
@@ -1148,7 +1229,9 @@
         16023
       ],
       "max_in_zone": 2,
-      "vnum": 16005
+      "vnum": 16005,
+      "type": "container",
+      "capacity": 100
     },
     "9301": {
       "vnum": 9301,
@@ -1175,7 +1258,8 @@
           "value": 50
         }
       ],
-      "set_id": 160
+      "set_id": 160,
+      "type": "treasure"
     },
     "9302": {
       "vnum": 9302,
@@ -1201,7 +1285,9 @@
           "value": 2
         }
       ],
-      "set_id": 160
+      "set_id": 160,
+      "type": "armor",
+      "armor": 2
     },
     "9303": {
       "vnum": 9303,
@@ -1223,7 +1309,8 @@
           "value": 8
         }
       ],
-      "set_id": 160
+      "set_id": 160,
+      "type": "treasure"
     },
     "16006": {
       "vnum": 16006,
@@ -1247,7 +1334,8 @@
           "value": -15
         }
       ],
-      "set_id": 160
+      "set_id": 160,
+      "type": "weapon"
     },
     "16007": {
       "vnum": 16007,
@@ -1266,7 +1354,9 @@
           "value": 2
         }
       ],
-      "set_id": 160
+      "set_id": 160,
+      "type": "armor",
+      "armor": 3
     },
     "16008": {
       "vnum": 16008,
@@ -1288,7 +1378,8 @@
           "value": -10
         }
       ],
-      "set_id": 160
+      "set_id": 160,
+      "type": "treasure"
     },
     "16009": {
       "vnum": 16009,
@@ -1310,7 +1401,8 @@
           "value": 50
         }
       ],
-      "set_id": 160
+      "set_id": 160,
+      "type": "treasure"
     },
     "16010": {
       "vnum": 16010,
@@ -1332,7 +1424,8 @@
           "value": 60
         }
       ],
-      "set_id": 160
+      "set_id": 160,
+      "type": "treasure"
     },
     "16011": {
       "vnum": 16011,
@@ -1352,7 +1445,8 @@
           "value": 4
         }
       ],
-      "set_id": 160
+      "set_id": 160,
+      "type": "treasure"
     },
     "16012": {
       "vnum": 16012,
@@ -1376,7 +1470,8 @@
           "value": 2
         }
       ],
-      "set_id": 160
+      "set_id": 160,
+      "type": "weapon"
     },
     "16013": {
       "vnum": 16013,
@@ -1398,7 +1493,9 @@
           "value": 1
         }
       ],
-      "set_id": 160
+      "set_id": 160,
+      "type": "armor",
+      "armor": 0
     },
     "16014": {
       "vnum": 16014,
@@ -1417,7 +1514,9 @@
           "value": 10
         }
       ],
-      "set_id": 160
+      "set_id": 160,
+      "type": "armor",
+      "armor": 1
     },
     "16090": {
       "vnum": 16090,
@@ -1442,7 +1541,8 @@
           "type": "no_track",
           "value": 1
         }
-      ]
+      ],
+      "type": "treasure"
     },
     "16091": {
       "vnum": 16091,
@@ -1463,7 +1563,9 @@
           "type": "backstab",
           "value": 10
         }
-      ]
+      ],
+      "type": "armor",
+      "armor": 2
     },
     "16092": {
       "vnum": 16092,
@@ -1488,7 +1590,8 @@
           "type": "hp",
           "value": -10
         }
-      ]
+      ],
+      "type": "treasure"
     },
     "16093": {
       "vnum": 16093,
@@ -1509,7 +1612,8 @@
           "type": "lightning_bolt",
           "value": 12
         }
-      ]
+      ],
+      "type": "treasure"
     },
     "16094": {
       "vnum": 16094,
@@ -1530,7 +1634,8 @@
           "type": "ice_blast",
           "value": 12
         }
-      ]
+      ],
+      "type": "treasure"
     }
   },
   "mobs": {
@@ -1846,38 +1951,107 @@
         {
           "vnum": 16094,
           "chance": 10
+        },
+        {
+          "vnum": 16001,
+          "chance": 25
+        },
+        {
+          "vnum": 16002,
+          "chance": 25
+        },
+        {
+          "vnum": 16003,
+          "chance": 25
+        },
+        {
+          "vnum": 16004,
+          "chance": 25
         }
       ],
       "boss_loot_chance": 95,
       "boss_config": {
         "enrage_time": 120,
         "enrage_multiplier": 2.0,
-        "ability_interval": 5.0,
+        "ability_interval": 4.0,
         "phases": [
           {
-            "threshold": 70,
-            "message": "Kaleidos fractures into a storm of color!"
+            "threshold": 65,
+            "message": "\u001b[34mKaleidos shifts to a cold blue radiance! Ice fills the air!\u001b[0m"
           },
           {
-            "threshold": 35,
-            "message": "Kaleidos releases a blinding prismatic surge!"
+            "threshold": 30,
+            "message": "\u001b[31mKaleidos erupts in crimson fury! All elements converge!\u001b[0m"
           }
         ],
         "abilities": [
           {
-            "name": "Prismatic Breath",
-            "telegraph": "Kaleidos gathers a storm of color in its maw!",
-            "cast_time": 3,
-            "cooldown": 18,
-            "damage_dice": "7d6+12",
+            "name": "Flame Burst",
+            "telegraph": "\u001b[31mKaleidos glows red-hot!\u001b[0m",
+            "cast_time": 2,
+            "cooldown": 12,
+            "damage_dice": "5d6+12",
             "aoe": true,
-            "dodge": true
+            "dodge": true,
+            "phase": 0
+          },
+          {
+            "name": "Searing Claw",
+            "telegraph": "Kaleidos rakes with burning claws!",
+            "cast_time": 1,
+            "cooldown": 8,
+            "damage_dice": "4d6+8",
+            "dodge": true,
+            "phase": 0
+          },
+          {
+            "name": "Frost Breath",
+            "telegraph": "\u001b[36mKaleidos exhales a blast of absolute cold!\u001b[0m",
+            "cast_time": 3,
+            "cooldown": 14,
+            "damage_dice": "6d6+14",
+            "aoe": true,
+            "dodge": true,
+            "interruptible": true,
+            "vulnerable_after": 4,
+            "phase": 1
+          },
+          {
+            "name": "Ice Shard",
+            "telegraph": "Kaleidos hurls shards of ice!",
+            "cast_time": 1,
+            "cooldown": 8,
+            "damage_dice": "4d6+10",
+            "dodge": true,
+            "phase": 1
+          },
+          {
+            "name": "Prismatic Breath",
+            "telegraph": "\u001b[35mKaleidos gathers ALL elements into a devastating beam!\u001b[0m",
+            "cast_time": 3,
+            "cooldown": 12,
+            "damage_dice": "8d6+18",
+            "aoe": true,
+            "dodge": true,
+            "interruptible": true,
+            "vulnerable_after": 5,
+            "phase": 2
+          },
+          {
+            "name": "Elemental Storm",
+            "telegraph": "Reality fractures around Kaleidos!",
+            "cast_time": 2,
+            "cooldown": 10,
+            "damage_dice": "5d8+12",
+            "aoe": true,
+            "dodge": true,
+            "phase": 2
           },
           {
             "name": "Color Shift",
             "telegraph": "Kaleidos' scales flare with shifting light!",
             "cast_time": 1,
-            "cooldown": 10,
+            "cooldown": 6,
             "damage_dice": "4d8+8",
             "dodge": true
           }
@@ -1929,6 +2103,53 @@
         }
       ],
       "loot_chance": 100
+    },
+    "16098": {
+      "vnum": 16098,
+      "name": "planar traveler",
+      "short_desc": "a disoriented planar traveler",
+      "long_desc": "A wild-eyed traveler stumbles about here, clutching a cracked compass that spins endlessly.",
+      "description": "Their clothing is a patchwork of styles from a dozen different realms, and their hair shifts color every few seconds \u2014 a side effect of prolonged chaos exposure. They seem only partially tethered to reality.",
+      "level": 38,
+      "alignment": 0,
+      "hp_dice": "38d10+700",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The traveler laughs and cries simultaneously. 'Is this the Material Plane? No? Still chaos then. I've been here for... time doesn't work here. Could be days. Could be centuries. The portals shift constantly \u2014 what was an exit yesterday is a wall today. The only constant is the Nexus at the center. Find the Nexus, find the way out. Maybe.'",
+        "nexus": "They grab your arm with surprising strength. 'The Nexus is where all the planes bleed together. Reality is thinnest there. The elementals are drawn to it like moths. If you can survive the convergence, you can reshape the chaos around you. Or it reshapes you. Fifty-fifty, really.'",
+        "default": "The traveler checks their spinning compass and mutters equations that hurt your brain to overhear.",
+        "next": "The traveler's form flickers between dimensions. 'Beyond chaos lies only apocalypse. Castle Apocalypse stands as the final bastion \u2014 Sir Aldren the Undying guards its outer gate. And the Tunnel of Sticks... don't ask. Just don't. Unless you're level 50 and have a death wish.'"
+      }
+    },
+    "16099": {
+      "vnum": 16099,
+      "name": "crystallized elemental",
+      "short_desc": "a crystallized elemental",
+      "long_desc": "A humanoid figure of pure crystal stands frozen here mid-stride, one arm raised as if casting a spell.",
+      "description": "What was once a living elemental has been trapped in a moment of time, crystallized by some catastrophic magical event. Faint light pulses deep within its translucent form, and an inscription is carved into the crystal base.",
+      "level": 1,
+      "alignment": 0,
+      "hp_dice": "1d10+5000",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "You read the inscription at the crystal's base: 'HERE FELL COMMANDER PYRIXIS OF THE ELEMENTAL CONCORDANCE, FROZEN AT THE MOMENT OF CONVERGENCE. LET ALL WHO PASS KNOW: THE PLANES WERE NEVER MEANT TO TOUCH. WHAT WAS MERGED MUST BE SUNDERED, OR ALL REALMS FALL TO CHAOS.'",
+        "inscription": "Examining closer, smaller text reads: 'The Convergence can be reversed. Four elemental anchors must be activated: fire, water, earth, air. They are scattered across this plane. Find them. The alternative is oblivion.'",
+        "default": "The crystallized elemental stands in eternal silence. Light pulses within like a slow heartbeat."
+      }
     }
   }
 }

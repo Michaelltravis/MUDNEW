@@ -385,7 +385,7 @@
         },
         "south": {
           "to_room": 15009,
-          "description": ""
+          "description": "A passage leads to Under The Tower"
         }
       }
     },
@@ -2858,7 +2858,8 @@
       "weight": 40,
       "value": 0,
       "damage_dice": "6d4",
-      "weapon_type": "sting"
+      "weapon_type": "sting",
+      "type": "treasure"
     },
     "15001": {
       "vnum": 15001,
@@ -2867,7 +2868,8 @@
       "room_desc": "A lot of gold is here.",
       "item_type": "money",
       "weight": 0,
-      "value": 32385
+      "value": 32385,
+      "type": "treasure"
     },
     "15002": {
       "vnum": 15002,
@@ -2876,7 +2878,8 @@
       "room_desc": "A golden Royal sceptre lies on the ground.",
       "item_type": "treasure",
       "weight": 20,
-      "value": 15000
+      "value": 15000,
+      "type": "treasure"
     },
     "15003": {
       "vnum": 15003,
@@ -2886,7 +2889,10 @@
       "item_type": "armor",
       "weight": 40,
       "value": 12000,
-      "armor_bonus": 7
+      "armor_bonus": 7,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "15004": {
       "vnum": 15004,
@@ -2896,7 +2902,9 @@
       "item_type": "light",
       "weight": 5,
       "value": 8000,
-      "light_hours": -1
+      "light_hours": -1,
+      "type": "food",
+      "food_value": 12
     },
     "15005": {
       "vnum": 15005,
@@ -2905,7 +2913,8 @@
       "room_desc": "There is a large telescope here, pointing at the sky.",
       "item_type": "treasure",
       "weight": 0,
-      "value": 0
+      "value": 0,
+      "type": "treasure"
     },
     "15006": {
       "vnum": 15006,
@@ -2916,7 +2925,8 @@
       "weight": 7,
       "value": 300,
       "damage_dice": "1d4",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "15007": {
       "vnum": 15007,
@@ -2925,7 +2935,8 @@
       "room_desc": "There is a huge, heavy-looking key on the floor here.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "15008": {
       "vnum": 15008,
@@ -2936,7 +2947,8 @@
       "weight": 2,
       "value": 1,
       "damage_dice": "3d4",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "15009": {
       "vnum": 15009,
@@ -2945,7 +2957,8 @@
       "room_desc": "The Butler's key is here.",
       "item_type": "key",
       "weight": 3,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "15010": {
       "vnum": 15010,
@@ -2954,7 +2967,8 @@
       "room_desc": "A small key lies here.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "15011": {
       "vnum": 15011,
@@ -2965,7 +2979,8 @@
       "weight": 450,
       "value": 400,
       "capacity": 800,
-      "key_vnum": 15010
+      "key_vnum": 15010,
+      "type": "container"
     },
     "15012": {
       "vnum": 15012,
@@ -2974,7 +2989,8 @@
       "room_desc": "A large vial has been left here.",
       "item_type": "potion",
       "weight": 14,
-      "value": 2000
+      "value": 2000,
+      "type": "treasure"
     },
     "15013": {
       "vnum": 15013,
@@ -2983,7 +2999,8 @@
       "room_desc": "The royal banner has been firmly planted in the ground here.",
       "item_type": "treasure",
       "weight": 0,
-      "value": 0
+      "value": 0,
+      "type": "treasure"
     },
     "15014": {
       "vnum": 15014,
@@ -2992,7 +3009,8 @@
       "room_desc": "A key lies on the floor.",
       "item_type": "key",
       "weight": 13,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "15015": {
       "vnum": 15015,
@@ -3002,7 +3020,10 @@
       "item_type": "armor",
       "weight": 60,
       "value": 2000,
-      "armor_bonus": 5
+      "armor_bonus": 5,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 5
     },
     "15016": {
       "vnum": 15016,
@@ -3013,7 +3034,8 @@
       "weight": 14,
       "value": 1300,
       "damage_dice": "2d6",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "treasure"
     },
     "15017": {
       "vnum": 15017,
@@ -3022,7 +3044,8 @@
       "room_desc": "A key lies on the floor.",
       "item_type": "key",
       "weight": 3,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "15018": {
       "vnum": 15018,
@@ -3031,7 +3054,8 @@
       "room_desc": "There is a corpse lying in the middle of the floor of the building here.",
       "item_type": "treasure",
       "weight": 0,
-      "value": 0
+      "value": 0,
+      "type": "trash"
     },
     "15019": {
       "vnum": 15019,
@@ -3041,7 +3065,9 @@
       "item_type": "food",
       "weight": 5,
       "value": 100,
-      "nutrition": 7
+      "nutrition": 7,
+      "type": "food",
+      "food_value": 12
     },
     "15020": {
       "vnum": 15020,
@@ -3051,7 +3077,9 @@
       "item_type": "food",
       "weight": 1,
       "value": 250,
-      "nutrition": 2
+      "nutrition": 2,
+      "type": "food",
+      "food_value": 12
     },
     "15021": {
       "vnum": 15021,
@@ -3060,7 +3088,8 @@
       "room_desc": "There is a strange glow coming from the west.",
       "item_type": "treasure",
       "weight": 0,
-      "value": 0
+      "value": 0,
+      "type": "treasure"
     },
     "15022": {
       "vnum": 15022,
@@ -3069,7 +3098,8 @@
       "room_desc": "There is an eerie wailing sound coming from the house to the east.",
       "item_type": "treasure",
       "weight": 0,
-      "value": 0
+      "value": 0,
+      "type": "treasure"
     },
     "15023": {
       "vnum": 15023,
@@ -3089,7 +3119,8 @@
           "value": 4
         }
       ],
-      "set_id": 150
+      "set_id": 150,
+      "type": "weapon"
     },
     "15024": {
       "vnum": 15024,
@@ -3108,7 +3139,9 @@
           "value": 1
         }
       ],
-      "set_id": 150
+      "set_id": 150,
+      "type": "armor",
+      "armor": 3
     },
     "15025": {
       "vnum": 15025,
@@ -3126,7 +3159,8 @@
           "value": 4
         }
       ],
-      "set_id": 150
+      "set_id": 150,
+      "type": "treasure"
     },
     "15026": {
       "vnum": 15026,
@@ -3148,7 +3182,8 @@
           "value": 35
         }
       ],
-      "set_id": 150
+      "set_id": 150,
+      "type": "treasure"
     },
     "15027": {
       "vnum": 15027,
@@ -3166,7 +3201,8 @@
           "value": 4
         }
       ],
-      "set_id": 150
+      "set_id": 150,
+      "type": "treasure"
     },
     "15028": {
       "vnum": 15028,
@@ -3186,7 +3222,8 @@
           "value": 3
         }
       ],
-      "set_id": 150
+      "set_id": 150,
+      "type": "treasure"
     },
     "15029": {
       "vnum": 15029,
@@ -3210,7 +3247,8 @@
           "value": 2
         }
       ],
-      "set_id": 150
+      "set_id": 150,
+      "type": "weapon"
     },
     "15030": {
       "vnum": 15030,
@@ -3232,7 +3270,9 @@
           "value": 1
         }
       ],
-      "set_id": 150
+      "set_id": 150,
+      "type": "armor",
+      "armor": 0
     },
     "15031": {
       "vnum": 15031,
@@ -3245,7 +3285,9 @@
       "value": 8000,
       "wear_slot": "about",
       "armor_bonus": 3,
-      "set_id": 150
+      "set_id": 150,
+      "type": "armor",
+      "armor": 1
     }
   }
 }

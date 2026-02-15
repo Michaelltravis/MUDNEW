@@ -12,11 +12,11 @@
       "exits": {
         "east": {
           "to_room": 3200,
-          "description": ""
+          "description": "Deep waters churn near Under The Bridge"
         },
         "west": {
           "to_room": 901,
-          "description": ""
+          "description": "Deep waters churn near The Riverbank"
         }
       }
     },
@@ -29,15 +29,15 @@
       "exits": {
         "north": {
           "to_room": 6120,
-          "description": ""
+          "description": "On The River Bank In The Deep, Dark Forest"
         },
         "east": {
           "to_room": 900,
-          "description": ""
+          "description": "Deep waters churn near On The Swift Flowing River"
         },
         "west": {
           "to_room": 902,
-          "description": ""
+          "description": "Deep waters churn near The Twisty Part Of The River"
         }
       }
     },
@@ -50,11 +50,11 @@
       "exits": {
         "east": {
           "to_room": 901,
-          "description": ""
+          "description": "Deep waters churn near The Riverbank"
         },
         "south": {
           "to_room": 903,
-          "description": ""
+          "description": "Deep waters churn near The Scenic Route"
         }
       }
     },
@@ -67,11 +67,11 @@
       "exits": {
         "east": {
           "to_room": 902,
-          "description": ""
+          "description": "Deep waters churn near The Twisty Part Of The River"
         },
         "west": {
           "to_room": 904,
-          "description": ""
+          "description": "Deep waters churn near The Swift River Delta"
         }
       }
     },
@@ -84,19 +84,19 @@
       "exits": {
         "north": {
           "to_room": 911,
-          "description": ""
+          "description": "Deep waters churn near The North Channel"
         },
         "east": {
           "to_room": 903,
-          "description": ""
+          "description": "Deep waters churn near The Scenic Route"
         },
         "south": {
           "to_room": 906,
-          "description": ""
+          "description": "Deep waters churn near The South River Delta"
         },
         "west": {
           "to_room": 905,
-          "description": ""
+          "description": "Deep waters churn near Near The Rocks"
         }
       }
     },
@@ -109,11 +109,11 @@
       "exits": {
         "east": {
           "to_room": 904,
-          "description": ""
+          "description": "Deep waters churn near The Swift River Delta"
         },
         "south": {
           "to_room": 906,
-          "description": ""
+          "description": "Deep waters churn near The South River Delta"
         }
       }
     },
@@ -126,19 +126,19 @@
       "exits": {
         "north": {
           "to_room": 905,
-          "description": ""
+          "description": "Deep waters churn near Near The Rocks"
         },
         "east": {
           "to_room": 904,
-          "description": ""
+          "description": "Deep waters churn near The Swift River Delta"
         },
         "south": {
           "to_room": 907,
-          "description": ""
+          "description": "Deep waters churn near The Pier"
         },
         "west": {
           "to_room": 908,
-          "description": ""
+          "description": "Deep waters churn near Mired In Seaweed"
         }
       }
     },
@@ -151,11 +151,11 @@
       "exits": {
         "north": {
           "to_room": 906,
-          "description": ""
+          "description": "Deep waters churn near The South River Delta"
         },
         "west": {
           "to_room": 908,
-          "description": ""
+          "description": "Deep waters churn near Mired In Seaweed"
         }
       }
     },
@@ -168,15 +168,15 @@
       "exits": {
         "north": {
           "to_room": 906,
-          "description": ""
+          "description": "Deep waters churn near The South River Delta"
         },
         "east": {
           "to_room": 907,
-          "description": ""
+          "description": "Deep waters churn near The Pier"
         },
         "west": {
           "to_room": 909,
-          "description": ""
+          "description": "Deep waters churn near The Last Stop"
         }
       },
       "mob_resets": [
@@ -199,11 +199,11 @@
       "exits": {
         "north": {
           "to_room": 910,
-          "description": ""
+          "description": "An open path leads to The Beach Head"
         },
         "east": {
           "to_room": 908,
-          "description": ""
+          "description": "Deep waters churn near Mired In Seaweed"
         }
       },
       "mob_resets": [
@@ -226,7 +226,7 @@
       "exits": {
         "south": {
           "to_room": 909,
-          "description": ""
+          "description": "Deep waters churn near The Last Stop"
         }
       },
       "mob_resets": [
@@ -257,15 +257,15 @@
       "exits": {
         "north": {
           "to_room": 912,
-          "description": ""
+          "description": "Deep waters churn near The North Channel"
         },
         "south": {
           "to_room": 904,
-          "description": ""
+          "description": "Deep waters churn near The Swift River Delta"
         },
         "west": {
           "to_room": 912,
-          "description": ""
+          "description": "Deep waters churn near The North Channel"
         }
       }
     },
@@ -278,15 +278,15 @@
       "exits": {
         "east": {
           "to_room": 911,
-          "description": ""
+          "description": "Deep waters churn near The North Channel"
         },
         "south": {
           "to_room": 911,
-          "description": ""
+          "description": "Deep waters churn near The North Channel"
         },
         "west": {
           "to_room": 913,
-          "description": ""
+          "description": "Deep waters churn near Near The Isle"
         }
       }
     },
@@ -301,11 +301,11 @@
       "exits": {
         "east": {
           "to_room": 912,
-          "description": ""
+          "description": "Deep waters churn near The North Channel"
         },
         "south": {
           "to_room": 914,
-          "description": ""
+          "description": "The cobblestones lead to The Lane Of The Lying"
         }
       }
     },
@@ -318,11 +318,11 @@
       "exits": {
         "north": {
           "to_room": 913,
-          "description": ""
+          "description": "Deep waters churn near Near The Isle"
         },
         "south": {
           "to_room": 915,
-          "description": ""
+          "description": "The cobblestones lead to The First Trial Of Minos"
         }
       },
       "extra_descs": {
@@ -341,7 +341,7 @@
       "exits": {
         "east": {
           "to_room": 916,
-          "description": ""
+          "description": "The cobblestones lead to The Second Trial Of Minos"
         }
       },
       "mob_resets": [
@@ -371,7 +371,7 @@
       "exits": {
         "south": {
           "to_room": 917,
-          "description": ""
+          "description": "A passage leads to The Third Trial Of Minos"
         }
       },
       "mob_resets": [
@@ -397,7 +397,7 @@
       "exits": {
         "east": {
           "to_room": 918,
-          "description": ""
+          "description": "A passage leads to The Fourth Trial Of Minos"
         }
       },
       "mob_resets": [
@@ -419,7 +419,7 @@
       "exits": {
         "south": {
           "to_room": 919,
-          "description": ""
+          "description": "A passage leads to The Fifth Trial Of Minos"
         }
       },
       "mob_resets": [
@@ -441,7 +441,7 @@
       "exits": {
         "east": {
           "to_room": 920,
-          "description": ""
+          "description": "A passage leads to The Sixth Trial Of Minos"
         }
       },
       "mob_resets": [
@@ -463,11 +463,11 @@
       "exits": {
         "south": {
           "to_room": 921,
-          "description": ""
+          "description": "A passage leads to The Final Trial Of Minos"
         },
         "up": {
           "to_room": 923,
-          "description": ""
+          "description": "A rocky path climbs toward Above, On The Beach"
         }
       },
       "mob_resets": [
@@ -522,7 +522,7 @@
       "exits": {
         "up": {
           "to_room": 910,
-          "description": ""
+          "description": "An open path leads to The Beach Head"
         }
       },
       "obj_resets": [
@@ -545,7 +545,7 @@
       "exits": {
         "down": {
           "to_room": 910,
-          "description": ""
+          "description": "An open path leads to The Beach Head"
         }
       }
     }
@@ -822,7 +822,8 @@
       "room_desc": "A heavy golden key lies here.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "901": {
       "vnum": 901,
@@ -832,7 +833,10 @@
       "item_type": "armor",
       "weight": 12,
       "value": 5000,
-      "armor_bonus": 12
+      "armor_bonus": 12,
+      "type": "armor",
+      "wear_slot": "shield",
+      "armor": 3
     },
     "902": {
       "vnum": 902,
@@ -841,7 +845,8 @@
       "room_desc": "A speckled potion speckles here.",
       "item_type": "potion",
       "weight": 2,
-      "value": 1300
+      "value": 1300,
+      "type": "potion"
     },
     "903": {
       "vnum": 903,
@@ -851,7 +856,8 @@
       "item_type": "armor",
       "weight": 8,
       "value": 2000,
-      "armor_bonus": 5
+      "armor_bonus": 5,
+      "type": "treasure"
     },
     "904": {
       "vnum": 904,
@@ -861,7 +867,10 @@
       "item_type": "light",
       "weight": 1,
       "value": 2000,
-      "light_hours": -1
+      "light_hours": -1,
+      "type": "armor",
+      "wear_slot": "finger",
+      "armor": 0
     },
     "905": {
       "vnum": 905,
@@ -872,7 +881,8 @@
       "weight": 8,
       "value": 5000,
       "damage_dice": "3d4",
-      "weapon_type": "pound"
+      "weapon_type": "pound",
+      "type": "weapon"
     },
     "906": {
       "vnum": 906,
@@ -881,7 +891,8 @@
       "room_desc": "A great, gleaming pile of treasure lies at your feet.",
       "item_type": "money",
       "weight": 20,
-      "value": 43500
+      "value": 43500,
+      "type": "treasure"
     },
     "907": {
       "vnum": 907,
@@ -892,7 +903,8 @@
       "weight": 8,
       "value": 450,
       "damage_dice": "1d7",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "908": {
       "vnum": 908,
@@ -903,7 +915,8 @@
       "weight": 8,
       "value": 350,
       "damage_dice": "2d4",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "909": {
       "vnum": 909,
@@ -912,7 +925,10 @@
       "room_desc": "A pair of boots sit here in a puddle of water.",
       "item_type": "boat",
       "weight": 1,
-      "value": 5000
+      "value": 5000,
+      "type": "armor",
+      "wear_slot": "feet",
+      "armor": 2
     }
   }
 }

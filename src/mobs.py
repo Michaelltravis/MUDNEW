@@ -161,14 +161,25 @@ class Mobile(Character):
         mob.long_desc = proto.get('long_desc', f"{mob.name} is here.")
         mob.description = proto.get('description', '')
 
-        # Generate keywords from name and short_desc for better targeting
-        # Remove articles (a, an, the) and split into words
+        # Generate keywords from name, short_desc, and long_desc for better targeting
+        # Remove common articles/verbs and split into words
+        stop_words = {'a', 'an', 'the', 'is', 'are', 'its', 'it', 'of', 'and', 'or',
+                      'in', 'on', 'at', 'to', 'for', 'with', 'by', 'from', 'up', 'out',
+                      'as', 'into', 'through', 'here', 'there', 'this', 'that', 'has',
+                      'was', 'were', 'been', 'being', 'have', 'had', 'having', 'do',
+                      'does', 'did', 'will', 'would', 'could', 'should', 'may', 'might',
+                      'shall', 'can', 'stands', 'sitting', 'standing', 'drifts', 'lurks',
+                      'walks', 'paces', 'hovers', 'floats', 'lies', 'rests'}
         keywords = set()
-        for text in [mob.name, mob.short_desc]:
-            words = text.lower().replace(',', '').replace('.', '').split()
+        for text in [mob.name, mob.short_desc, mob.long_desc]:
+            words = text.lower().replace(',', '').replace('.', '').replace('!', '').replace("'", '').split()
             for word in words:
-                if word not in ['a', 'an', 'the', 'is', 'are']:
+                if word not in stop_words and len(word) > 2:
                     keywords.add(word)
+        # Also add explicit keywords from zone data if present
+        if proto.get('keywords'):
+            for kw in proto['keywords']:
+                keywords.add(kw.lower())
         mob.keywords = list(keywords)
 
         mob.level = proto.get('level', 1)
@@ -176,9 +187,13 @@ class Mobile(Character):
         mob.gold = proto.get('gold', 0)
         mob.exp = proto.get('exp', mob.level * 100)
 
-        # Parse HP dice
-        hp_dice = proto.get('hp_dice', f'{mob.level}d10+{mob.level * 5}')
-        mob.max_hp = Mobile.roll_dice(hp_dice)
+        # Parse HP: use explicit max_hp if set, otherwise roll hp_dice
+        explicit_hp = proto.get('max_hp', 0)
+        if explicit_hp and explicit_hp > 0:
+            mob.max_hp = explicit_hp
+        else:
+            hp_dice = proto.get('hp_dice', f'{mob.level}d10+{mob.level * 5}')
+            mob.max_hp = Mobile.roll_dice(hp_dice)
         mob.hp = mob.max_hp
 
         # Mana and movement
@@ -198,12 +213,17 @@ class Mobile(Character):
         mob.con = 10 + mob.level // 5
         mob.cha = 10 + mob.level // 5
 
-        # Armor class improves with level
-        mob.armor_class = 100 - mob.level * 2
+        # Armor class: use zone data if present, otherwise derive from level
+        mob.armor_class = proto.get('ac', 100 - mob.level * 2)
+
+        # Hitroll and damroll from zone data (default to level-based)
+        mob.hitroll = proto.get('hitroll', mob.level // 2)
+        mob.damroll = proto.get('damroll', mob.level // 3)
 
         # Flags
         mob.flags = set(proto.get('flags', []))
         mob.special = proto.get('special')
+        mob.talk_responses = proto.get('talk_responses', {})
         mob.trains_class = proto.get('trains_class')  # For guildmasters
 
         # Companion hire data
@@ -913,6 +933,8 @@ class Mobile(Character):
             pass  # Shopkeepers handled by commands
         elif self.special == 'trainer':
             pass  # Trainers handled by commands
+        elif self.special == 'flavor_npc':
+            pass  # Flavor NPCs - atmosphere only, no AI behavior
         elif self.special == 'druid':
             await self.druid_ai()
             
@@ -1011,12 +1033,20 @@ class Mobile(Character):
             attack_type = 'breathes fire on'
             damage_mult = 2.0
         elif 'troll' in self.name.lower() or self.special == 'regenerate':
-            # Trolls regenerate during combat
-            regen = self.max_hp // 10
-            self.hp = min(self.max_hp, self.hp + regen)
-            await self.room.send_to_room(
-                f"{c['green']}{self.name}'s wounds begin to close.{c['reset']}"
-            )
+            # Trolls regenerate during combat (poison blocks it)
+            affect_flags = getattr(self, 'affect_flags', set())
+            if 'poisoned' in affect_flags:
+                await self.room.send_to_room(
+                    f"{c['bright_magenta']}{self.name} tries to regenerate but the poison prevents it!{c['reset']}"
+                )
+            else:
+                regen = self.max_hp // 10
+                if 'diseased' in affect_flags:
+                    regen = regen // 4
+                self.hp = min(self.max_hp, self.hp + regen)
+                await self.room.send_to_room(
+                    f"{c['green']}{self.name}'s wounds begin to close.{c['reset']}"
+                )
             return
         elif self.special == 'paralyze':
             attack_type = 'tries to paralyze'
@@ -1095,9 +1125,15 @@ class Mobile(Character):
         
         self.hp -= amount
         
-        # Check for death FIRST (before wimpy flee check)
+        # Check for death
         if self.hp <= 0:
-            await self.die(attacker)
+            if not getattr(self, '_dying', False):
+                self._dying = True
+                if attacker:
+                    from combat import CombatHandler
+                    await CombatHandler.handle_death(attacker, self)
+                else:
+                    await self.die(attacker)
             return True
         
         # Wimpy mobs flee at low health (but not if dead)
@@ -1158,14 +1194,22 @@ class Mobile(Character):
         await AffectManager.tick_affects(self)
 
         if not self.is_fighting:
-            # Simple regen for mobs (5% HP, 10% mana)
-            # Could use enhanced regen but keep it simpler for NPCs
-            self.hp = min(self.max_hp, self.hp + max(1, self.max_hp // 20))
+            # Regen for mobs: 5% for normal mobs, capped at 500 for bosses/high-HP mobs
+            regen_amt = max(1, self.max_hp // 20)
+            if self.max_hp > 5000:
+                regen_amt = min(regen_amt, 500)  # Cap regen for bosses
+            # Poison halves regen, disease quarters it
+            affect_flags = getattr(self, 'affect_flags', set())
+            if 'poisoned' in affect_flags:
+                regen_amt = regen_amt // 2
+            if 'diseased' in affect_flags:
+                regen_amt = regen_amt // 4
+            self.hp = min(self.max_hp, self.hp + regen_amt)
             self.mana = min(self.max_mana, self.mana + max(1, self.max_mana // 10))
             
     def get_hit_bonus(self):
         """Calculate hit bonus (to hit / THAC0)."""
-        bonus = self.level // 2
+        bonus = getattr(self, 'hitroll', 0) or (self.level // 2)
         # DEX is primary factor for accuracy
         bonus += (self.dex - 10) // 2
         # STR provides minor bonus
@@ -1174,7 +1218,7 @@ class Mobile(Character):
 
     def get_damage_bonus(self):
         """Calculate damage bonus."""
-        bonus = self.level // 4
+        bonus = getattr(self, 'damroll', 0) or (self.level // 4)
         # STR is primary factor for damage
         bonus += (self.str - 10) // 2
         return bonus

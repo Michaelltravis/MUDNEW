@@ -526,7 +526,8 @@
       "description": "This coin bears the face of a long-forgotten king. It might be valuable to a collector.",
       "item_type": "treasure",
       "weight": 0,
-      "value": 100
+      "value": 100,
+      "type": "money"
     },
     "20002": {
       "vnum": 20002,
@@ -541,7 +542,10 @@
       "liquid_type": "water",
       "flags": [
         "no_take"
-      ]
+      ],
+      "type": "drink",
+      "drinks": 10,
+      "max_drinks": 10
     },
     "20003": {
       "vnum": 20003,
@@ -566,7 +570,8 @@
           "type": "damroll",
           "value": 2
         }
-      ]
+      ],
+      "type": "weapon"
     },
     "20004": {
       "vnum": 20004,
@@ -593,7 +598,10 @@
           "type": "dex",
           "value": 1
         }
-      ]
+      ],
+      "type": "armor",
+      "wear_slot": "about",
+      "armor": 1
     },
     "20005": {
       "vnum": 20005,
@@ -620,7 +628,10 @@
           "type": "con",
           "value": 1
         }
-      ]
+      ],
+      "type": "armor",
+      "wear_slot": "neck",
+      "armor": 0
     },
     "20006": {
       "vnum": 20006,
@@ -647,7 +658,10 @@
           "type": "con",
           "value": 2
         }
-      ]
+      ],
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 4
     },
     "20007": {
       "vnum": 20007,
@@ -667,7 +681,8 @@
           "value": 2
         }
       ],
-      "set_id": 200
+      "set_id": 200,
+      "type": "weapon"
     },
     "20008": {
       "vnum": 20008,
@@ -686,7 +701,9 @@
           "value": 1
         }
       ],
-      "set_id": 200
+      "set_id": 200,
+      "type": "armor",
+      "armor": 3
     },
     "20009": {
       "vnum": 20009,
@@ -704,7 +721,8 @@
           "value": 2
         }
       ],
-      "set_id": 200
+      "set_id": 200,
+      "type": "treasure"
     },
     "20010": {
       "vnum": 20010,
@@ -722,7 +740,8 @@
           "value": 2
         }
       ],
-      "set_id": 200
+      "set_id": 200,
+      "type": "treasure"
     },
     "20011": {
       "vnum": 20011,
@@ -740,7 +759,8 @@
           "value": 2
         }
       ],
-      "set_id": 200
+      "set_id": 200,
+      "type": "treasure"
     },
     "20012": {
       "vnum": 20012,
@@ -760,7 +780,8 @@
           "value": 2
         }
       ],
-      "set_id": 200
+      "set_id": 200,
+      "type": "treasure"
     },
     "20013": {
       "vnum": 20013,
@@ -784,7 +805,8 @@
           "value": 1
         }
       ],
-      "set_id": 200
+      "set_id": 200,
+      "type": "weapon"
     },
     "20014": {
       "vnum": 20014,
@@ -808,7 +830,8 @@
           "value": 1
         }
       ],
-      "set_id": 200
+      "set_id": 200,
+      "type": "weapon"
     },
     "20015": {
       "vnum": 20015,
@@ -827,7 +850,9 @@
           "value": 5
         }
       ],
-      "set_id": 200
+      "set_id": 200,
+      "type": "armor",
+      "armor": 1
     }
   }
 }

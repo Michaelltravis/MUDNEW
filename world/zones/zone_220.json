@@ -97,10 +97,12 @@
       ],
       "exits": {
         "east": {
-          "to_room": 22001
+          "to_room": 22001,
+          "description": "The way leads to Castle Apocalypse - Outer Gate"
         },
         "west": {
-          "to_room": 22004
+          "to_room": 22004,
+          "description": "The way leads to West Wall Path"
         }
       },
       "extra_descs": {},
@@ -123,10 +125,12 @@
       ],
       "exits": {
         "east": {
-          "to_room": 22003
+          "to_room": 22003,
+          "description": "The way leads to West Wall Path"
         },
         "west": {
-          "to_room": 22005
+          "to_room": 22005,
+          "description": "The way leads to West Wall Path"
         },
         "south": {
           "to_room": 22100,
@@ -153,10 +157,12 @@
       ],
       "exits": {
         "east": {
-          "to_room": 22004
+          "to_room": 22004,
+          "description": "The way leads to West Wall Path"
         },
         "north": {
-          "to_room": 22006
+          "to_room": 22006,
+          "description": "The way leads to Northwest Wall Path"
         }
       },
       "extra_descs": {},
@@ -164,6 +170,10 @@
         {
           "vnum": 22040,
           "max": 3
+        },
+        {
+          "vnum": 22098,
+          "max": 1
         }
       ],
       "obj_resets": []
@@ -179,10 +189,12 @@
       ],
       "exits": {
         "south": {
-          "to_room": 22005
+          "to_room": 22005,
+          "description": "The way leads to West Wall Path"
         },
         "north": {
-          "to_room": 22007
+          "to_room": 22007,
+          "description": "The way leads to Northwest Wall Path"
         }
       },
       "extra_descs": {},
@@ -205,10 +217,12 @@
       ],
       "exits": {
         "south": {
-          "to_room": 22006
+          "to_room": 22006,
+          "description": "The way leads to Northwest Wall Path"
         },
         "north": {
-          "to_room": 22008
+          "to_room": 22008,
+          "description": "The way leads to Northwest Wall Dead End"
         }
       },
       "extra_descs": {},
@@ -231,7 +245,8 @@
       ],
       "exits": {
         "south": {
-          "to_room": 22007
+          "to_room": 22007,
+          "description": "The way leads to Northwest Wall Path"
         }
       },
       "extra_descs": {},
@@ -254,10 +269,12 @@
       ],
       "exits": {
         "west": {
-          "to_room": 22001
+          "to_room": 22001,
+          "description": "The way leads to Castle Apocalypse - Outer Gate"
         },
         "east": {
-          "to_room": 22010
+          "to_room": 22010,
+          "description": "The way leads to East Wall Path"
         }
       },
       "extra_descs": {},
@@ -275,14 +292,21 @@
       ],
       "exits": {
         "west": {
-          "to_room": 22009
+          "to_room": 22009,
+          "description": "The way leads to East Wall Path"
         },
         "east": {
-          "to_room": 22011
+          "to_room": 22011,
+          "description": "The way leads to East Wall Path"
         }
       },
       "extra_descs": {},
-      "mob_resets": [],
+      "mob_resets": [
+        {
+          "vnum": 22099,
+          "max": 1
+        }
+      ],
       "obj_resets": []
     },
     "22011": {
@@ -296,10 +320,12 @@
       ],
       "exits": {
         "west": {
-          "to_room": 22010
+          "to_room": 22010,
+          "description": "The way leads to East Wall Path"
         },
         "north": {
-          "to_room": 22012
+          "to_room": 22012,
+          "description": "The way leads to Northeast Wall Path"
         }
       },
       "extra_descs": {},
@@ -317,10 +343,12 @@
       ],
       "exits": {
         "south": {
-          "to_room": 22011
+          "to_room": 22011,
+          "description": "The way leads to East Wall Path"
         },
         "north": {
-          "to_room": 22013
+          "to_room": 22013,
+          "description": "The way leads to Northeast Wall Path"
         }
       },
       "extra_descs": {},
@@ -338,10 +366,12 @@
       ],
       "exits": {
         "south": {
-          "to_room": 22012
+          "to_room": 22012,
+          "description": "The way leads to Northeast Wall Path"
         },
         "north": {
-          "to_room": 22014
+          "to_room": 22014,
+          "description": "The way leads to Northeast Wall Dead End"
         }
       },
       "extra_descs": {},
@@ -359,7 +389,8 @@
       ],
       "exits": {
         "south": {
-          "to_room": 22013
+          "to_room": 22013,
+          "description": "The way leads to Northeast Wall Path"
         }
       },
       "extra_descs": {},
@@ -377,7 +408,12 @@
       ],
       "exits": {
         "south": {
-          "to_room": 22021
+          "to_room": 22021,
+          "description": "The way leads to Castle Passage"
+        },
+        "north": {
+          "to_room": 22002,
+          "description": "Back through the main gate."
         }
       },
       "extra_descs": {},
@@ -395,10 +431,12 @@
       ],
       "exits": {
         "north": {
-          "to_room": 22020
+          "to_room": 22020,
+          "description": "The way leads to Castle Entry"
         },
         "south": {
-          "to_room": 22022
+          "to_room": 22022,
+          "description": "The way leads to Castle Passage"
         }
       },
       "extra_descs": {},
@@ -416,10 +454,12 @@
       ],
       "exits": {
         "north": {
-          "to_room": 22021
+          "to_room": 22021,
+          "description": "The way leads to Castle Passage"
         },
         "south": {
-          "to_room": 22023
+          "to_room": 22023,
+          "description": "The way leads to Castle Passage"
         }
       },
       "extra_descs": {},
@@ -437,7 +477,8 @@
       ],
       "exits": {
         "north": {
-          "to_room": 22022
+          "to_room": 22022,
+          "description": "The way leads to Castle Passage"
         },
         "south": {
           "to_room": 22024,
@@ -465,10 +506,12 @@
       ],
       "exits": {
         "north": {
-          "to_room": 22023
+          "to_room": 22023,
+          "description": "The way leads to Castle Passage"
         },
         "south": {
-          "to_room": 22025
+          "to_room": 22025,
+          "description": "The way leads to Castle Courtyard"
         }
       },
       "extra_descs": {},
@@ -486,7 +529,8 @@
       ],
       "exits": {
         "north": {
-          "to_room": 22024
+          "to_room": 22024,
+          "description": "The way leads to Inner Gate"
         },
         "south": {
           "to_room": 22026,
@@ -499,10 +543,12 @@
           }
         },
         "east": {
-          "to_room": 22030
+          "to_room": 22030,
+          "description": "The way leads to Hall of War"
         },
         "west": {
-          "to_room": 22034
+          "to_room": 22034,
+          "description": "The way leads to Hall of Famine"
         }
       },
       "extra_descs": {
@@ -528,11 +574,21 @@
         "indoors"
       ],
       "exits": {
-        "west": {
-          "to_room": 22101
-        },
         "north": {
-          "to_room": 22004
+          "to_room": 22004,
+          "description": "Back to the west wall path."
+        },
+        "south": {
+          "to_room": 22101,
+          "description": "The trail continues deeper..."
+        },
+        "east": {
+          "to_room": 22150,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
+        },
+        "west": {
+          "to_room": 22151,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
         }
       },
       "extra_descs": {},
@@ -541,7 +597,7 @@
     },
     "22101": {
       "vnum": 22101,
-      "name": "Winding Deathtrail",
+      "name": "Winding Dark Trail",
       "description": "The trail twists through shattered pillars and fallen masonry. The air\nsmells of old blood and rust. A faint rasp echoes from unseen hollows.\nThe silence is oppressive and watchful. Darkness clings to every\nsurface.",
       "sector_type": "dungeon",
       "flags": [
@@ -549,11 +605,21 @@
         "indoors"
       ],
       "exits": {
-        "east": {
-          "to_room": 22100
-        },
         "north": {
-          "to_room": 22102
+          "to_room": 22100,
+          "description": "Back along the trail."
+        },
+        "east": {
+          "to_room": 22102,
+          "description": "The trail continues deeper..."
+        },
+        "south": {
+          "to_room": 22152,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
+        },
+        "west": {
+          "to_room": 22153,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
         }
       },
       "extra_descs": {},
@@ -562,7 +628,7 @@
     },
     "22102": {
       "vnum": 22102,
-      "name": "Winding Deathtrail",
+      "name": "Shadowed Passage",
       "description": "The path narrows into a cramped passage of spikes and iron. Shadows\ncling to the walls, flickering with no light. The floor is slick with\ndark residue.",
       "sector_type": "dungeon",
       "flags": [
@@ -570,15 +636,21 @@
         "indoors"
       ],
       "exits": {
-        "south": {
-          "to_room": 22101
-        },
         "west": {
-          "to_room": 22103
+          "to_room": 22101,
+          "description": "Back along the trail."
+        },
+        "south": {
+          "to_room": 22103,
+          "description": "The trail continues deeper..."
+        },
+        "north": {
+          "to_room": 22154,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
         },
         "east": {
-          "to_room": 22150,
-          "description": "A narrow gap opens to one side."
+          "to_room": 22155,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
         }
       },
       "extra_descs": {},
@@ -587,7 +659,7 @@
     },
     "22103": {
       "vnum": 22103,
-      "name": "Bone\u2011Strewn Turn",
+      "name": "Bone-Strewn Turn",
       "description": "The corridor bends through a maze of broken columns. The stone here is\ncracked and sharp. A distant metallic scrape repeats like a heartbeat.\nDarkness clings to every surface. The air is thick and hard to breathe.",
       "sector_type": "dungeon",
       "flags": [
@@ -595,11 +667,21 @@
         "indoors"
       ],
       "exits": {
+        "north": {
+          "to_room": 22102,
+          "description": "Back along the trail."
+        },
         "east": {
-          "to_room": 22102
+          "to_room": 22104,
+          "description": "The trail continues deeper..."
         },
         "south": {
-          "to_room": 22104
+          "to_room": 22156,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
+        },
+        "west": {
+          "to_room": 22157,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
         }
       },
       "extra_descs": {},
@@ -608,7 +690,7 @@
     },
     "22104": {
       "vnum": 22104,
-      "name": "Deathtrap Corridor",
+      "name": "Perilous Corridor",
       "description": "A long stretch of stone runs beneath jagged arches. Ash sifts from the\nceiling in slow drifts. The air is stale and bitter. The air is thick\nand hard to breathe. The stone walls press close, cold and damp.",
       "sector_type": "dungeon",
       "flags": [
@@ -616,11 +698,21 @@
         "indoors"
       ],
       "exits": {
-        "north": {
-          "to_room": 22103
-        },
         "west": {
-          "to_room": 22105
+          "to_room": 22103,
+          "description": "Back along the trail."
+        },
+        "south": {
+          "to_room": 22105,
+          "description": "The trail continues deeper..."
+        },
+        "north": {
+          "to_room": 22158,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
+        },
+        "east": {
+          "to_room": 22159,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
         }
       },
       "extra_descs": {},
@@ -629,7 +721,7 @@
     },
     "22105": {
       "vnum": 22105,
-      "name": "Winding Deathtrail",
+      "name": "Twisting Dark Path",
       "description": "The trail winds between collapsed walls and serrated iron. Every step\nstirs a thin veil of dust. The silence here feels sharpened. The stone\nwalls press close, cold and damp. Darkness clings to every surface.",
       "sector_type": "dungeon",
       "flags": [
@@ -637,12 +729,21 @@
         "indoors"
       ],
       "exits": {
-        "east": {
-          "to_room": 22151,
-          "description": "A narrow gap opens to one side."
-        },
         "north": {
-          "to_room": 22106
+          "to_room": 22104,
+          "description": "Back along the trail."
+        },
+        "east": {
+          "to_room": 22106,
+          "description": "The trail continues deeper..."
+        },
+        "south": {
+          "to_room": 22160,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
+        },
+        "west": {
+          "to_room": 22161,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
         }
       },
       "extra_descs": {},
@@ -659,11 +760,21 @@
         "indoors"
       ],
       "exits": {
-        "south": {
-          "to_room": 22105
-        },
         "west": {
-          "to_room": 22107
+          "to_room": 22105,
+          "description": "Back along the trail."
+        },
+        "south": {
+          "to_room": 22107,
+          "description": "The trail continues deeper..."
+        },
+        "north": {
+          "to_room": 22162,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
+        },
+        "east": {
+          "to_room": 22163,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
         }
       },
       "extra_descs": {},
@@ -672,7 +783,7 @@
     },
     "22107": {
       "vnum": 22107,
-      "name": "Winding Deathtrail",
+      "name": "Grim Passage",
       "description": "The passage tightens into a spiked corridor. The floor is uneven and\nslick. Distant clinks echo like chains in a vault. The stone walls press\nclose, cold and damp. The air is thick and hard to breathe.",
       "sector_type": "dungeon",
       "flags": [
@@ -680,11 +791,21 @@
         "indoors"
       ],
       "exits": {
+        "north": {
+          "to_room": 22106,
+          "description": "Back along the trail."
+        },
         "east": {
-          "to_room": 22106
+          "to_room": 22108,
+          "description": "The trail continues deeper..."
         },
         "south": {
-          "to_room": 22108
+          "to_room": 22164,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
+        },
+        "west": {
+          "to_room": 22165,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
         }
       },
       "extra_descs": {},
@@ -701,12 +822,21 @@
         "indoors"
       ],
       "exits": {
-        "north": {
-          "to_room": 22107
-        },
         "west": {
-          "to_room": 22152,
-          "description": "A narrow gap opens to one side."
+          "to_room": 22107,
+          "description": "Back along the trail."
+        },
+        "south": {
+          "to_room": 22109,
+          "description": "The trail continues deeper..."
+        },
+        "north": {
+          "to_room": 22166,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
+        },
+        "east": {
+          "to_room": 22167,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
         }
       },
       "extra_descs": {},
@@ -715,7 +845,7 @@
     },
     "22109": {
       "vnum": 22109,
-      "name": "Winding Deathtrail",
+      "name": "Winding Gloom",
       "description": "A skull\u2011lined path stretches onward, the bone bleached white. The\nsilence grows deeper with each step. The floor is scarred by dragging\nmarks.",
       "sector_type": "dungeon",
       "flags": [
@@ -723,11 +853,21 @@
         "indoors"
       ],
       "exits": {
-        "east": {
-          "to_room": 22108
-        },
         "north": {
-          "to_room": 22110
+          "to_room": 22108,
+          "description": "Back along the trail."
+        },
+        "east": {
+          "to_room": 22110,
+          "description": "The trail continues deeper..."
+        },
+        "south": {
+          "to_room": 22168,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
+        },
+        "west": {
+          "to_room": 22169,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
         }
       },
       "extra_descs": {},
@@ -736,7 +876,7 @@
     },
     "22110": {
       "vnum": 22110,
-      "name": "Skull\u2011Lined Path",
+      "name": "Skull-Lined Path",
       "description": "The trail bends through broken supports and shattered lintels. Dust\nhangs in the air like mist. A low hum thrums beneath your feet. The\nstone walls press close, cold and damp. The air is thick and hard to\nbreathe.",
       "sector_type": "dungeon",
       "flags": [
@@ -744,11 +884,21 @@
         "indoors"
       ],
       "exits": {
-        "south": {
-          "to_room": 22109
-        },
         "west": {
-          "to_room": 22111
+          "to_room": 22109,
+          "description": "Back along the trail."
+        },
+        "south": {
+          "to_room": 22111,
+          "description": "The trail continues deeper..."
+        },
+        "north": {
+          "to_room": 22170,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
+        },
+        "east": {
+          "to_room": 22171,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
         }
       },
       "extra_descs": {},
@@ -757,7 +907,7 @@
     },
     "22111": {
       "vnum": 22111,
-      "name": "Winding Deathtrail",
+      "name": "Darkened Trail",
       "description": "The corridor tightens, spines of iron jutting from the walls. The air is\ncold and metallic. The stone bears fresh gouges. The silence is\noppressive and watchful. The air is thick and hard to breathe.",
       "sector_type": "dungeon",
       "flags": [
@@ -765,12 +915,21 @@
         "indoors"
       ],
       "exits": {
+        "north": {
+          "to_room": 22110,
+          "description": "Back along the trail."
+        },
         "east": {
-          "to_room": 22153,
-          "description": "A narrow gap opens to one side."
+          "to_room": 22112,
+          "description": "The trail continues deeper..."
         },
         "south": {
-          "to_room": 22112
+          "to_room": 22172,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
+        },
+        "west": {
+          "to_room": 22173,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
         }
       },
       "extra_descs": {},
@@ -779,7 +938,7 @@
     },
     "22112": {
       "vnum": 22112,
-      "name": "Deathtrap Corridor",
+      "name": "Treacherous Corridor",
       "description": "The path widens into a bleak gallery of cracked stone. The light dulls\nto a gray haze. The scent of oil and ash lingers. The stone walls press\nclose, cold and damp. Darkness clings to every surface.",
       "sector_type": "dungeon",
       "flags": [
@@ -787,11 +946,21 @@
         "indoors"
       ],
       "exits": {
-        "north": {
-          "to_room": 22111
-        },
         "west": {
-          "to_room": 22113
+          "to_room": 22111,
+          "description": "Back along the trail."
+        },
+        "south": {
+          "to_room": 22113,
+          "description": "The trail continues deeper..."
+        },
+        "north": {
+          "to_room": 22174,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
+        },
+        "east": {
+          "to_room": 22175,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
         }
       },
       "extra_descs": {},
@@ -800,7 +969,7 @@
     },
     "22113": {
       "vnum": 22113,
-      "name": "Winding Deathtrail",
+      "name": "Final Approach",
       "description": "A narrow stretch leads onward through hooked spikes and rubble. The\nsilence is heavy and absolute. The floor tilts slightly underfoot. The\nsilence is oppressive and watchful. The air is thick and hard to\nbreathe.",
       "sector_type": "dungeon",
       "flags": [
@@ -808,15 +977,21 @@
         "indoors"
       ],
       "exits": {
-        "east": {
-          "to_room": 22112
-        },
         "north": {
-          "to_room": 22114
+          "to_room": 22112,
+          "description": "Back along the trail."
+        },
+        "east": {
+          "to_room": 22114,
+          "description": "The trail continues deeper..."
+        },
+        "south": {
+          "to_room": 22176,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
         },
         "west": {
-          "to_room": 22154,
-          "description": "A narrow gap opens to one side."
+          "to_room": 22177,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
         }
       },
       "extra_descs": {},
@@ -833,8 +1008,21 @@
         "indoors"
       ],
       "exits": {
+        "west": {
+          "to_room": 22113,
+          "description": "Back along the trail."
+        },
+        "north": {
+          "to_room": 22178,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
+        },
         "south": {
-          "to_room": 22113
+          "to_room": 22179,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
+        },
+        "east": {
+          "to_room": 22180,
+          "description": "A treacherous path leads into darkness... \u26a0\ufe0f DANGER!"
         }
       },
       "extra_descs": {
@@ -849,101 +1037,6 @@
       ],
       "obj_resets": []
     },
-    "22150": {
-      "vnum": 22150,
-      "name": "Deathtrap",
-      "description": "A concealed pit yawns here, lined with spikes and cursed runes. The air\nis still and heavy. A faint hum rises from the depths below. The silence\nis oppressive and watchful. The floor is slick with moisture.",
-      "sector_type": "dungeon",
-      "flags": [
-        "deathtrap",
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 22102
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [],
-      "obj_resets": []
-    },
-    "22151": {
-      "vnum": 22151,
-      "name": "Deathtrap",
-      "description": "A concealed pit yawns here, lined with spikes and cursed runes. The air\nis still and heavy. A faint hum rises from the depths below. The air is\nthick and hard to breathe. Darkness clings to every surface.",
-      "sector_type": "dungeon",
-      "flags": [
-        "deathtrap",
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 22105
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [],
-      "obj_resets": []
-    },
-    "22152": {
-      "vnum": 22152,
-      "name": "Deathtrap",
-      "description": "A concealed pit yawns here, lined with spikes and cursed runes. The air\nis still and heavy. A faint hum rises from the depths below. The air is\nthick and hard to breathe. The stone walls press close, cold and damp.",
-      "sector_type": "dungeon",
-      "flags": [
-        "deathtrap",
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 22108
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [],
-      "obj_resets": []
-    },
-    "22153": {
-      "vnum": 22153,
-      "name": "Deathtrap",
-      "description": "A concealed pit yawns here, lined with spikes and cursed runes. The air\nis still and heavy. A faint hum rises from the depths below. The stone\nwalls press close, cold and damp. The floor is slick with moisture.",
-      "sector_type": "dungeon",
-      "flags": [
-        "deathtrap",
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 22111
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [],
-      "obj_resets": []
-    },
-    "22154": {
-      "vnum": 22154,
-      "name": "Deathtrap",
-      "description": "A concealed pit yawns here, lined with spikes and cursed runes. The air\nis still and heavy. A faint hum rises from the depths below. The stone\nwalls press close, cold and damp. Darkness clings to every surface.",
-      "sector_type": "dungeon",
-      "flags": [
-        "deathtrap",
-        "dark",
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 22113
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [],
-      "obj_resets": []
-    },
     "22026": {
       "vnum": 22026,
       "name": "Inner Hall",
@@ -955,7 +1048,8 @@
       ],
       "exits": {
         "north": {
-          "to_room": 22025
+          "to_room": 22025,
+          "description": "The way leads to Castle Courtyard"
         },
         "south": {
           "to_room": 22027,
@@ -983,7 +1077,8 @@
       ],
       "exits": {
         "north": {
-          "to_room": 22026
+          "to_room": 22026,
+          "description": "The way leads to Inner Hall"
         },
         "south": {
           "to_room": 22028,
@@ -1005,7 +1100,8 @@
       ],
       "exits": {
         "north": {
-          "to_room": 22027
+          "to_room": 22027,
+          "description": "The way leads to Door of the Last Ride"
         }
       },
       "extra_descs": {
@@ -1031,10 +1127,12 @@
       ],
       "exits": {
         "west": {
-          "to_room": 22025
+          "to_room": 22025,
+          "description": "The way leads to Castle Courtyard"
         },
         "east": {
-          "to_room": 22031
+          "to_room": 22031,
+          "description": "The way leads to Hall of War"
         }
       },
       "extra_descs": {},
@@ -1052,10 +1150,12 @@
       ],
       "exits": {
         "west": {
-          "to_room": 22030
+          "to_room": 22030,
+          "description": "The way leads to Hall of War"
         },
         "south": {
-          "to_room": 22032
+          "to_room": 22032,
+          "description": "The way leads to War's Approach"
         }
       },
       "extra_descs": {},
@@ -1073,10 +1173,12 @@
       ],
       "exits": {
         "north": {
-          "to_room": 22031
+          "to_room": 22031,
+          "description": "The way leads to Hall of War"
         },
         "south": {
-          "to_room": 22033
+          "to_room": 22033,
+          "description": "The way leads to War's Arena"
         }
       },
       "extra_descs": {},
@@ -1094,7 +1196,8 @@
       ],
       "exits": {
         "north": {
-          "to_room": 22032
+          "to_room": 22032,
+          "description": "The way leads to War's Approach"
         }
       },
       "extra_descs": {
@@ -1120,10 +1223,12 @@
       ],
       "exits": {
         "east": {
-          "to_room": 22025
+          "to_room": 22025,
+          "description": "The way leads to Castle Courtyard"
         },
         "west": {
-          "to_room": 22035
+          "to_room": 22035,
+          "description": "The way leads to Hall of Famine"
         }
       },
       "extra_descs": {},
@@ -1141,10 +1246,12 @@
       ],
       "exits": {
         "east": {
-          "to_room": 22034
+          "to_room": 22034,
+          "description": "The way leads to Hall of Famine"
         },
         "south": {
-          "to_room": 22036
+          "to_room": 22036,
+          "description": "The way leads to Famine's Approach"
         }
       },
       "extra_descs": {},
@@ -1162,10 +1269,12 @@
       ],
       "exits": {
         "north": {
-          "to_room": 22035
+          "to_room": 22035,
+          "description": "The way leads to Hall of Famine"
         },
         "south": {
-          "to_room": 22037
+          "to_room": 22037,
+          "description": "The way leads to Famine's Vault"
         }
       },
       "extra_descs": {},
@@ -1183,7 +1292,8 @@
       ],
       "exits": {
         "north": {
-          "to_room": 22036
+          "to_room": 22036,
+          "description": "The way leads to Famine's Approach"
         }
       },
       "extra_descs": {
@@ -1197,6 +1307,378 @@
         }
       ],
       "obj_resets": []
+    },
+    "22150": {
+      "vnum": 22150,
+      "name": "\ud83d\udc80 Pit of Spikes",
+      "description": "You stumble into a deadly pit of spikes! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22151": {
+      "vnum": 22151,
+      "name": "\ud83d\udc80 Crushing Walls",
+      "description": "You stumble into a deadly crushing walls! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22152": {
+      "vnum": 22152,
+      "name": "\ud83d\udc80 Acid Pool",
+      "description": "You stumble into a deadly acid pool! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22153": {
+      "vnum": 22153,
+      "name": "\ud83d\udc80 Blade Corridor",
+      "description": "You stumble into a deadly blade corridor! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22154": {
+      "vnum": 22154,
+      "name": "\ud83d\udc80 Collapsing Floor",
+      "description": "You stumble into a deadly collapsing floor! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22155": {
+      "vnum": 22155,
+      "name": "\ud83d\udc80 Fire Geyser",
+      "description": "You stumble into a deadly fire geyser! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22156": {
+      "vnum": 22156,
+      "name": "\ud83d\udc80 Poison Gas Chamber",
+      "description": "You stumble into a deadly poison gas chamber! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22157": {
+      "vnum": 22157,
+      "name": "\ud83d\udc80 Pendulum Hall",
+      "description": "You stumble into a deadly pendulum hall! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22158": {
+      "vnum": 22158,
+      "name": "\ud83d\udc80 Spiked Ceiling",
+      "description": "You stumble into a deadly spiked ceiling! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22159": {
+      "vnum": 22159,
+      "name": "\ud83d\udc80 Lava Fissure",
+      "description": "You stumble into a deadly lava fissure! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22160": {
+      "vnum": 22160,
+      "name": "\ud83d\udc80 Arrow Trap",
+      "description": "You stumble into a deadly arrow trap! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22161": {
+      "vnum": 22161,
+      "name": "\ud83d\udc80 Boulder Chute",
+      "description": "You stumble into a deadly boulder chute! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22162": {
+      "vnum": 22162,
+      "name": "\ud83d\udc80 Snake Pit",
+      "description": "You stumble into a deadly snake pit! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22163": {
+      "vnum": 22163,
+      "name": "\ud83d\udc80 Tar Pool",
+      "description": "You stumble into a deadly tar pool! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22164": {
+      "vnum": 22164,
+      "name": "\ud83d\udc80 Lightning Floor",
+      "description": "You stumble into a deadly lightning floor! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22165": {
+      "vnum": 22165,
+      "name": "\ud83d\udc80 Bone Grinder",
+      "description": "You stumble into a deadly bone grinder! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22166": {
+      "vnum": 22166,
+      "name": "\ud83d\udc80 Quicksand",
+      "description": "You stumble into a deadly quicksand! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22167": {
+      "vnum": 22167,
+      "name": "\ud83d\udc80 Guillotine Hall",
+      "description": "You stumble into a deadly guillotine hall! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22168": {
+      "vnum": 22168,
+      "name": "\ud83d\udc80 Freezing Chamber",
+      "description": "You stumble into a deadly freezing chamber! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22169": {
+      "vnum": 22169,
+      "name": "\ud83d\udc80 Necrotic Fog",
+      "description": "You stumble into a deadly necrotic fog! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22170": {
+      "vnum": 22170,
+      "name": "\ud83d\udc80 Spike Wall",
+      "description": "You stumble into a deadly spike wall! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22171": {
+      "vnum": 22171,
+      "name": "\ud83d\udc80 Razor Wire",
+      "description": "You stumble into a deadly razor wire! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22172": {
+      "vnum": 22172,
+      "name": "\ud83d\udc80 Flame Pit",
+      "description": "You stumble into a deadly flame pit! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22173": {
+      "vnum": 22173,
+      "name": "\ud83d\udc80 Death Fog",
+      "description": "You stumble into a deadly death fog! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22174": {
+      "vnum": 22174,
+      "name": "\ud83d\udc80 Impaling Stakes",
+      "description": "You stumble into a deadly impaling stakes! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22175": {
+      "vnum": 22175,
+      "name": "\ud83d\udc80 Scorpion Den",
+      "description": "You stumble into a deadly scorpion den! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22176": {
+      "vnum": 22176,
+      "name": "\ud83d\udc80 Cave-In",
+      "description": "You stumble into a deadly cave-in! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22177": {
+      "vnum": 22177,
+      "name": "\ud83d\udc80 Soul Drain",
+      "description": "You stumble into a deadly soul drain! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22178": {
+      "vnum": 22178,
+      "name": "\ud83d\udc80 Void Drop",
+      "description": "You stumble into a deadly void drop! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22179": {
+      "vnum": 22179,
+      "name": "\ud83d\udc80 Iron Maiden",
+      "description": "You stumble into a deadly iron maiden! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
+    },
+    "22180": {
+      "vnum": 22180,
+      "name": "\ud83d\udc80 Acid Rain",
+      "description": "You stumble into a deadly acid rain! There is no escape...",
+      "sector_type": "inside",
+      "flags": [
+        "deathtrap",
+        "dark",
+        "indoors"
+      ],
+      "exits": {}
     }
   },
   "mobs": {
@@ -1206,8 +1688,8 @@
       "short_desc": "a gate guardian",
       "long_desc": "A hulking guardian stands here, its form encased in dark metal.",
       "level": 60,
-      "hp_dice": "55d10+800",
-      "damage_dice": "14d8+22",
+      "hp_dice": "80d10+4000",
+      "damage_dice": "18d8+30",
       "gold": 8000,
       "exp": 9000,
       "alignment": -500,
@@ -1226,7 +1708,12 @@
         }
       ],
       "boss_loot_chance": 100,
-      "description": "The guardian is a massive figure of shadow and iron, its eyes burning with cold fury. It shows no signs of life beyond the malevolent gleam in its gaze."
+      "description": "The guardian is a massive figure of shadow and iron, its eyes burning with cold fury. It shows no signs of life beyond the malevolent gleam in its gaze.",
+      "max_hp": 8000,
+      "ac": -60,
+      "hitroll": 30,
+      "damroll": 25,
+      "xp": 15000
     },
     "22031": {
       "vnum": 22031,
@@ -1234,8 +1721,8 @@
       "short_desc": "a gate guardian",
       "long_desc": "A hulking guardian stands here, its form encased in dark metal.",
       "level": 60,
-      "hp_dice": "55d10+800",
-      "damage_dice": "14d8+22",
+      "hp_dice": "80d10+4000",
+      "damage_dice": "18d8+30",
       "gold": 8000,
       "exp": 9000,
       "alignment": -500,
@@ -1254,16 +1741,21 @@
         }
       ],
       "boss_loot_chance": 100,
-      "description": "The guardian is a massive figure of shadow and iron, its eyes burning with cold fury. It shows no signs of life beyond the malevolent gleam in its gaze."
+      "description": "The guardian is a massive figure of shadow and iron, its eyes burning with cold fury. It shows no signs of life beyond the malevolent gleam in its gaze.",
+      "max_hp": 8000,
+      "ac": -60,
+      "hitroll": 30,
+      "damroll": 25,
+      "xp": 15000
     },
     "22040": {
       "vnum": 22040,
       "name": "undead guardian",
       "short_desc": "an undead guardian",
       "long_desc": "An undead guardian shambles here, its eyes burning cold.",
-      "level": 55,
-      "hp_dice": "16d10+180",
-      "damage_dice": "5d6+8",
+      "level": 58,
+      "hp_dice": "60d10+2000",
+      "damage_dice": "14d8+20",
       "gold": 300,
       "exp": 1800,
       "alignment": -600,
@@ -1273,25 +1765,30 @@
       ],
       "armor_class": -2,
       "detect_bonus": 25,
-      "description": "This undead horror was once a soldier. Now it is only hunger and hate, bound to patrol these walls for eternity."
+      "description": "This undead horror was once a soldier. Now it is only hunger and hate, bound to patrol these walls for eternity.",
+      "max_hp": 5000,
+      "ac": -50,
+      "hitroll": 25,
+      "damroll": 20,
+      "xp": 10000
     },
     "22100": {
       "vnum": 22100,
       "name": "Kirgan the Destroyer",
       "short_desc": "Kirgan the Destroyer",
       "long_desc": "Kirgan stands here, a mountain of muscle and murder.",
-      "level": 60,
-      "hp_dice": "60d10+950",
-      "damage_dice": "16d8+26",
+      "level": 68,
+      "hp_dice": "1000d10+90000",
+      "damage_dice": "50d12+80",
       "gold": 15000,
-      "exp": 12000,
+      "exp": 75000,
       "alignment": -900,
       "flags": [
         "boss",
         "sentinel",
         "aggressive"
       ],
-      "armor_class": -18,
+      "armor_class": -65,
       "boss": true,
       "boss_id": "kirgan_destroyer",
       "boss_title": "the Ruinbreaker",
@@ -1311,28 +1808,100 @@
         {
           "vnum": 22062,
           "chance": 35
+        },
+        {
+          "vnum": 22001,
+          "chance": 20
+        },
+        {
+          "vnum": 22002,
+          "chance": 20
+        },
+        {
+          "vnum": 22003,
+          "chance": 20
+        },
+        {
+          "vnum": 22004,
+          "chance": 20
         }
       ],
       "boss_loot_chance": 100,
-      "description": "Kirgan the Destroyer is a towering figure of brutal power. His eyes hold nothing but contempt for the living. Scars crisscross his flesh like a map of violence."
+      "description": "Kirgan the Destroyer is a towering figure of brutal power. His eyes hold nothing but contempt for the living. Scars crisscross his flesh like a map of violence.",
+      "boss_config": {
+        "enrage_time": 150,
+        "enrage_multiplier": 1.8,
+        "ability_interval": 4.0,
+        "phases": [
+          {
+            "threshold": 50,
+            "message": "\u001b[31mKirgan roars with berserk fury! His attacks become frenzied!\u001b[0m"
+          }
+        ],
+        "abilities": [
+          {
+            "name": "Cleave",
+            "telegraph": "Kirgan raises his massive axe for a sweeping blow!",
+            "cast_time": 2,
+            "cooldown": 10,
+            "damage_dice": "4d8+12",
+            "aoe": true,
+            "dodge": true,
+            "vulnerable_after": 3
+          },
+          {
+            "name": "Crushing Blow",
+            "telegraph": "Kirgan focuses on his target with murderous intent!",
+            "cast_time": 1,
+            "cooldown": 8,
+            "damage_dice": "5d6+15",
+            "dodge": true
+          },
+          {
+            "name": "Shockwave",
+            "telegraph": "\u001b[33mKirgan slams the ground with tremendous force!\u001b[0m",
+            "cast_time": 2,
+            "cooldown": 15,
+            "damage_dice": "4d10+10",
+            "aoe": true,
+            "dodge": true,
+            "interruptible": true,
+            "min_phase": 1
+          },
+          {
+            "name": "Berserk Flurry",
+            "telegraph": "Kirgan's eyes go wild as he attacks with reckless abandon!",
+            "cast_time": 1,
+            "cooldown": 6,
+            "damage_dice": "3d8+8",
+            "min_phase": 1
+          }
+        ]
+      },
+      "max_hp": 100000,
+      "hp": 35000,
+      "ac": -110,
+      "hitroll": 60,
+      "damroll": 55,
+      "xp": 200000
     },
     "22070": {
       "vnum": 22070,
       "name": "Pestilence",
       "short_desc": "Pestilence",
       "long_desc": "Pestilence drifts here, a miasma of rot and plague.",
-      "level": 60,
-      "hp_dice": "55d10+850",
-      "damage_dice": "14d8+20",
+      "level": 63,
+      "hp_dice": "600d10+54000",
+      "damage_dice": "35d10+50",
       "gold": 12000,
-      "exp": 11000,
+      "exp": 55000,
       "alignment": -900,
       "flags": [
         "boss",
         "sentinel",
         "aggressive"
       ],
-      "armor_class": -14,
+      "armor_class": -55,
       "boss": true,
       "boss_id": "pestilence",
       "boss_title": "the Plaguebearer",
@@ -1363,25 +1932,70 @@
         }
       ],
       "boss_loot_chance": 100,
-      "description": "Pestilence is less a being than a presence, a cloud of sickness given form. Where it passes, life withers and hope dies."
+      "description": "Pestilence is less a being than a presence, a cloud of sickness given form. Where it passes, life withers and hope dies.",
+      "boss_config": {
+        "enrage_time": 150,
+        "enrage_multiplier": 1.6,
+        "ability_interval": 5.0,
+        "phases": [
+          {
+            "threshold": 50,
+            "message": "\u001b[32mPestilence's body erupts with plague!\u001b[0m"
+          }
+        ],
+        "abilities": [
+          {
+            "name": "Plague Touch",
+            "telegraph": "Pestilence reaches out with diseased hands!",
+            "cast_time": 1,
+            "cooldown": 8,
+            "damage_dice": "3d8+8"
+          },
+          {
+            "name": "Miasma",
+            "telegraph": "A cloud of disease fills the room!",
+            "cast_time": 3,
+            "cooldown": 15,
+            "damage_dice": "3d6+10",
+            "aoe": true,
+            "dodge": false,
+            "interruptible": true
+          },
+          {
+            "name": "Plague Swarm",
+            "telegraph": "Pestilence summons a swarm of diseased insects!",
+            "cast_time": 2,
+            "cooldown": 20,
+            "damage_dice": "4d6+8",
+            "aoe": true,
+            "min_phase": 1
+          }
+        ]
+      },
+      "max_hp": 60000,
+      "hp": 28000,
+      "ac": -90,
+      "hitroll": 45,
+      "damroll": 40,
+      "xp": 80000
     },
     "22071": {
       "vnum": 22071,
       "name": "War",
       "short_desc": "War",
       "long_desc": "War stands here, radiating fury and bloodlust.",
-      "level": 60,
-      "hp_dice": "58d10+900",
-      "damage_dice": "16d8+24",
+      "level": 64,
+      "hp_dice": "650d10+58500",
+      "damage_dice": "40d10+55",
       "gold": 14000,
-      "exp": 12000,
+      "exp": 60000,
       "alignment": -900,
       "flags": [
         "boss",
         "sentinel",
         "aggressive"
       ],
-      "armor_class": -16,
+      "armor_class": -60,
       "boss": true,
       "boss_id": "war",
       "boss_title": "the Warmaster",
@@ -1412,25 +2026,69 @@
         }
       ],
       "boss_loot_chance": 100,
-      "description": "War is a figure of raw violence, muscles corded with rage. The air around it vibrates with the echoes of a thousand battles."
+      "description": "War is a figure of raw violence, muscles corded with rage. The air around it vibrates with the echoes of a thousand battles.",
+      "boss_config": {
+        "enrage_time": 150,
+        "enrage_multiplier": 1.8,
+        "ability_interval": 4.0,
+        "phases": [
+          {
+            "threshold": 50,
+            "message": "\u001b[31mWar draws a second blade, doubling its fury!\u001b[0m"
+          }
+        ],
+        "abilities": [
+          {
+            "name": "Blade Storm",
+            "telegraph": "War spins with blades extended!",
+            "cast_time": 2,
+            "cooldown": 12,
+            "damage_dice": "4d8+10",
+            "aoe": true,
+            "dodge": true
+          },
+          {
+            "name": "Challenge",
+            "telegraph": "War points its blade at you!",
+            "cast_time": 1,
+            "cooldown": 8,
+            "damage_dice": "5d6+12"
+          },
+          {
+            "name": "War Cry",
+            "telegraph": "War lets out a deafening battle cry!",
+            "cast_time": 2,
+            "cooldown": 20,
+            "damage_dice": "3d6+6",
+            "aoe": true,
+            "min_phase": 1
+          }
+        ]
+      },
+      "max_hp": 65000,
+      "hp": 30000,
+      "ac": -85,
+      "hitroll": 50,
+      "damroll": 45,
+      "xp": 90000
     },
     "22072": {
       "vnum": 22072,
       "name": "Famine",
       "short_desc": "Famine",
       "long_desc": "Famine lingers here, a hollow echo of starvation.",
-      "level": 60,
-      "hp_dice": "56d10+870",
-      "damage_dice": "15d8+22",
+      "level": 63,
+      "hp_dice": "550d10+49500",
+      "damage_dice": "30d10+45",
       "gold": 14000,
-      "exp": 12000,
+      "exp": 60000,
       "alignment": -900,
       "flags": [
         "boss",
         "sentinel",
         "aggressive"
       ],
-      "armor_class": -16,
+      "armor_class": -60,
       "boss": true,
       "boss_id": "famine",
       "boss_title": "the Starved",
@@ -1457,25 +2115,69 @@
         }
       ],
       "boss_loot_chance": 100,
-      "description": "Famine is gaunt beyond reason, a skeletal presence that seems to drain warmth and sustenance from the air itself."
+      "description": "Famine is gaunt beyond reason, a skeletal presence that seems to drain warmth and sustenance from the air itself.",
+      "boss_config": {
+        "enrage_time": 150,
+        "enrage_multiplier": 1.6,
+        "ability_interval": 5.0,
+        "phases": [
+          {
+            "threshold": 50,
+            "message": "\u001b[33mFamine's hunger grows insatiable!\u001b[0m"
+          }
+        ],
+        "abilities": [
+          {
+            "name": "Devour",
+            "telegraph": "Famine lunges with gaping maw!",
+            "cast_time": 1,
+            "cooldown": 8,
+            "damage_dice": "4d6+10",
+            "heal_pct": 3
+          },
+          {
+            "name": "Wasting Touch",
+            "telegraph": "Famine reaches out with emaciated hands!",
+            "cast_time": 1,
+            "cooldown": 10,
+            "damage_dice": "3d8+6"
+          },
+          {
+            "name": "Hunger Aura",
+            "telegraph": "An overwhelming hunger fills the room!",
+            "cast_time": 2,
+            "cooldown": 18,
+            "damage_dice": "3d6+8",
+            "aoe": true,
+            "heal_pct": 5,
+            "min_phase": 1
+          }
+        ]
+      },
+      "max_hp": 55000,
+      "hp": 30000,
+      "ac": -85,
+      "hitroll": 42,
+      "damroll": 38,
+      "xp": 80000
     },
     "22073": {
       "vnum": 22073,
       "name": "Death",
       "short_desc": "Death",
       "long_desc": "Death waits here, silent and inevitable.",
-      "level": 60,
-      "hp_dice": "65d10+1000",
-      "damage_dice": "18d8+28",
+      "level": 66,
+      "hp_dice": "800d10+72000",
+      "damage_dice": "45d12+70",
       "gold": 20000,
-      "exp": 15000,
+      "exp": 100000,
       "alignment": -1000,
       "flags": [
         "boss",
         "sentinel",
         "aggressive"
       ],
-      "armor_class": -20,
+      "armor_class": -80,
       "boss": true,
       "boss_id": "death",
       "boss_title": "the Ender",
@@ -1510,7 +2212,144 @@
         }
       ],
       "boss_loot_chance": 100,
-      "description": "Death is stillness incarnate. It does not move, yet it is everywhere. Its presence is a weight, a certainty, the end of all things."
+      "description": "Death is stillness incarnate. It does not move, yet it is everywhere. Its presence is a weight, a certainty, the end of all things.",
+      "boss_config": {
+        "enrage_time": 180,
+        "enrage_multiplier": 2.0,
+        "ability_interval": 4.0,
+        "phases": [
+          {
+            "threshold": 60,
+            "message": "\u001b[31mDeath's eyes blaze with unholy fire! The dead begin to stir!\u001b[0m",
+            "spawn_adds": {
+              "22040": 3
+            }
+          },
+          {
+            "threshold": 30,
+            "message": "\u001b[31mDeath screams in fury! A wave of death energy erupts!\u001b[0m"
+          }
+        ],
+        "abilities": [
+          {
+            "name": "Death Touch",
+            "telegraph": "Death reaches out with a skeletal hand...",
+            "cast_time": 2,
+            "cooldown": 15,
+            "damage": [
+              80,
+              150
+            ],
+            "dodge": true,
+            "phase": 0
+          },
+          {
+            "name": "Reaping Strike",
+            "telegraph": "Death swings its great scythe!",
+            "cast_time": 1,
+            "cooldown": 8,
+            "damage_dice": "4d8+10",
+            "dodge": true
+          },
+          {
+            "name": "Life Drain",
+            "telegraph": "Death draws the life force from the room!",
+            "cast_time": 2,
+            "cooldown": 12,
+            "damage_dice": "3d8+8",
+            "aoe": true,
+            "dodge": false,
+            "heal_pct": 5,
+            "min_phase": 1
+          },
+          {
+            "name": "Summon Undead",
+            "telegraph": "Death raises its hand and the dead answer!",
+            "cast_time": 3,
+            "cooldown": 25,
+            "damage": 0,
+            "min_phase": 1,
+            "summon": {
+              "22040": 2
+            }
+          },
+          {
+            "name": "Death Wave",
+            "telegraph": "\u001b[31mDeath gathers an immense wave of necrotic energy!\u001b[0m",
+            "cast_time": 3,
+            "cooldown": 15,
+            "damage_dice": "6d10+20",
+            "aoe": true,
+            "dodge": true,
+            "interruptible": true,
+            "vulnerable_after": 3,
+            "min_phase": 2
+          }
+        ]
+      },
+      "max_hp": 80000,
+      "hp": 50000,
+      "ac": -100,
+      "hitroll": 55,
+      "damroll": 50,
+      "xp": 120000
+    },
+    "22098": {
+      "vnum": 22098,
+      "name": "dying crusader",
+      "short_desc": "a dying crusader knight",
+      "long_desc": "A crusader knight lies here against a blood-stained wall, his once-gleaming armor shattered.",
+      "description": "The holy symbols on his tabard are scorched and his sword lies broken beside him. Blood pools beneath him, but his eyes still burn with righteous fury. He doesn't have long.",
+      "level": 45,
+      "alignment": 0,
+      "hp_dice": "30d10+600",
+      "damage_dice": "8d6+10",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The knight coughs blood. 'Listen... carefully. The castle's master... is not what he seems. Layers of illusion... the throne room is a trap. The REAL power... is beneath. In the dungeons. A ritual circle... feeding the castle's darkness.' He grips your arm. 'Holy weapons. Blessed steel. Nothing else even scratches them. Promise me... you'll finish this.'",
+        "castle": "He wheezes. 'We came with fifty knights. The outer ward fell in an hour. The demons came from everywhere \u2014 walls, floors, shadows. The bound ones are the worst... they WANT to be freed, and they'll say anything. Trust nothing that offers you power in this cursed place.'",
+        "default": "The dying knight's breathing grows shallower. He murmurs a prayer through bloodied lips.",
+        "next": "The crusader coughs blood but manages a grim smile. 'You've made it this far? You're among the greatest heroes the realm has ever known. Only the Tunnel of Sticks remains unconquered. May the gods have mercy on your soul.'"
+      },
+      "max_hp": 1500,
+      "ac": -30,
+      "hitroll": 15,
+      "damroll": 12,
+      "xp": 3000
+    },
+    "22099": {
+      "vnum": 22099,
+      "name": "bound demon",
+      "short_desc": "a bound demon",
+      "long_desc": "A demon is bound here within a circle of smoldering runes, its form writhing against invisible chains.",
+      "description": "It's beautiful and terrible \u2014 shifting between alluring and monstrous with each heartbeat. Its eyes are pools of liquid fire, and its smile promises everything while meaning nothing. The binding circle flickers dangerously.",
+      "level": 57,
+      "alignment": 0,
+      "hp_dice": "70d10+2500",
+      "damage_dice": "16d8+25",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The demon's voice is silk and venom. 'Ah, a mortal. How delightful. I could offer you such things \u2014 power, knowledge, the location of every treasure in this castle. All I need is a small favor. Just... scuff one of these runes with your foot. Such a tiny thing. Barely even counts as a decision, really.'",
+        "bargain": "It laughs like breaking glass. 'Everyone has a price. Yours is... hmm. Interesting. I can see your desires, mortal. But no, I won't name them aloud. That would be crass. Just know that everything you want is one scuffed rune away. Think about it.'",
+        "default": "The demon watches you with burning eyes, its smile never wavering. The binding runes pulse in warning."
+      },
+      "max_hp": 6000,
+      "ac": -55,
+      "hitroll": 28,
+      "damroll": 22,
+      "xp": 12000
     }
   },
   "objects": {
@@ -1521,7 +2360,8 @@
       "room_desc": "A heavy iron key lies here.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "22051": {
       "vnum": 22051,
@@ -1530,7 +2370,8 @@
       "room_desc": "A dark steel key lies here.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "22052": {
       "vnum": 22052,
@@ -1554,7 +2395,8 @@
           "type": "damroll",
           "value": 4
         }
-      ]
+      ],
+      "type": "treasure"
     },
     "22060": {
       "vnum": 22060,
@@ -1583,7 +2425,8 @@
           "value": -25
         }
       ],
-      "description": "The ruinblade is a massive weapon of dark iron, its edge never dulling. Runes of destruction crawl along the blade, whispering of fallen kingdoms."
+      "description": "The ruinblade is a massive weapon of dark iron, its edge never dulling. Runes of destruction crawl along the blade, whispering of fallen kingdoms.",
+      "type": "weapon"
     },
     "22061": {
       "vnum": 22061,
@@ -1608,7 +2451,9 @@
           "value": 40
         }
       ],
-      "description": "This plate armor is forged from the ruins of fallen fortresses, each piece bearing the scars of apocalyptic battles."
+      "description": "This plate armor is forged from the ruins of fallen fortresses, each piece bearing the scars of apocalyptic battles.",
+      "type": "armor",
+      "armor": 4
     },
     "22062": {
       "vnum": 22062,
@@ -1636,7 +2481,9 @@
           "type": "hp",
           "value": -10
         }
-      ]
+      ],
+      "type": "armor",
+      "armor": 0
     },
     "22070": {
       "vnum": 22070,
@@ -1645,7 +2492,8 @@
       "room_desc": "A corroded key weeps sickly green mist.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "22080": {
       "vnum": 22080,
@@ -1669,7 +2517,9 @@
           "type": "heal_power",
           "value": 6
         }
-      ]
+      ],
+      "type": "armor",
+      "armor": 1
     },
     "22081": {
       "vnum": 22081,
@@ -1689,7 +2539,9 @@
           "type": "vampiric_touch",
           "value": 12
         }
-      ]
+      ],
+      "type": "armor",
+      "armor": 0
     },
     "22082": {
       "vnum": 22082,
@@ -1718,7 +2570,8 @@
           "value": -20
         }
       ],
-      "description": "The warbrand is a brutal cleaver of crimson steel, built for devastation. It hums with the echoes of countless battles."
+      "description": "The warbrand is a brutal cleaver of crimson steel, built for devastation. It hums with the echoes of countless battles.",
+      "type": "weapon"
     },
     "22083": {
       "vnum": 22083,
@@ -1742,7 +2595,8 @@
           "type": "bash",
           "value": 8
         }
-      ]
+      ],
+      "type": "treasure"
     },
     "22084": {
       "vnum": 22084,
@@ -1766,7 +2620,8 @@
           "type": "track",
           "value": 10
         }
-      ]
+      ],
+      "type": "treasure"
     },
     "22085": {
       "vnum": 22085,
@@ -1794,7 +2649,8 @@
           "type": "hp",
           "value": -10
         }
-      ]
+      ],
+      "type": "trash"
     },
     "22086": {
       "vnum": 22086,
@@ -1823,7 +2679,8 @@
           "value": -30
         }
       ],
-      "description": "The scythe of endings is a weapon of absolute finality, its blade black as the void. Where it cuts, nothing heals."
+      "description": "The scythe of endings is a weapon of absolute finality, its blade black as the void. Where it cuts, nothing heals.",
+      "type": "weapon"
     },
     "22087": {
       "vnum": 22087,
@@ -1852,7 +2709,8 @@
           "value": -20
         }
       ],
-      "description": "The veil is woven from shadow and silence, colder than death. It obscures the wearer from both sight and fate."
+      "description": "The veil is woven from shadow and silence, colder than death. It obscures the wearer from both sight and fate.",
+      "type": "treasure"
     },
     "22088": {
       "vnum": 22088,
@@ -1877,7 +2735,9 @@
           "value": 12
         }
       ],
-      "description": "This ring is cold to the touch, colder still to the soul. It belonged to Death itself, and carries a fragment of that finality."
+      "description": "This ring is cold to the touch, colder still to the soul. It belonged to Death itself, and carries a fragment of that finality.",
+      "type": "armor",
+      "armor": 0
     },
     "22089": {
       "vnum": 22089,
@@ -1905,7 +2765,8 @@
           "type": "hp",
           "value": -10
         }
-      ]
+      ],
+      "type": "treasure"
     },
     "22090": {
       "vnum": 22090,
@@ -1929,7 +2790,8 @@
           "type": "hitroll",
           "value": 3
         }
-      ]
+      ],
+      "type": "treasure"
     },
     "22091": {
       "vnum": 22091,
@@ -1953,7 +2815,9 @@
           "type": "sneak",
           "value": 6
         }
-      ]
+      ],
+      "type": "armor",
+      "armor": 1
     },
     "22092": {
       "vnum": 22092,
@@ -1981,7 +2845,9 @@
           "type": "hp",
           "value": -10
         }
-      ]
+      ],
+      "type": "armor",
+      "armor": 1
     },
     "22094": {
       "vnum": 22094,
@@ -2009,7 +2875,8 @@
           "type": "hp",
           "value": -10
         }
-      ]
+      ],
+      "type": "treasure"
     },
     "22095": {
       "vnum": 22095,
@@ -2033,7 +2900,8 @@
           "type": "turn_undead",
           "value": 12
         }
-      ]
+      ],
+      "type": "treasure"
     },
     "22096": {
       "vnum": 22096,
@@ -2057,7 +2925,9 @@
           "type": "damroll",
           "value": 4
         }
-      ]
+      ],
+      "type": "armor",
+      "armor": 2
     },
     "22097": {
       "vnum": 22097,
@@ -2081,7 +2951,8 @@
           "type": "heal_power",
           "value": 8
         }
-      ]
+      ],
+      "type": "treasure"
     },
     "22098": {
       "vnum": 22098,
@@ -2105,7 +2976,8 @@
           "type": "ambush",
           "value": 10
         }
-      ]
+      ],
+      "type": "treasure"
     },
     "22099": {
       "vnum": 22099,
@@ -2129,7 +3001,9 @@
           "type": "backstab",
           "value": 10
         }
-      ]
+      ],
+      "type": "armor",
+      "armor": 2
     },
     "22100": {
       "vnum": 22100,
@@ -2157,7 +3031,9 @@
           "type": "hp",
           "value": -10
         }
-      ]
+      ],
+      "type": "armor",
+      "armor": 0
     },
     "22101": {
       "vnum": 22101,
@@ -2185,7 +3061,8 @@
           "type": "hp",
           "value": -10
         }
-      ]
+      ],
+      "type": "treasure"
     },
     "22102": {
       "vnum": 22102,
@@ -2209,7 +3086,8 @@
           "type": "no_track",
           "value": 1
         }
-      ]
+      ],
+      "type": "treasure"
     },
     "22071": {
       "vnum": 22071,
@@ -2218,7 +3096,108 @@
       "room_desc": "A key stamped with a war sigil lies here.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
+    },
+    "22001": {
+      "vnum": 22001,
+      "name": "death's black armor",
+      "short_desc": "death's black armor",
+      "room_desc": "Armor of pure darkness lies here.",
+      "description": "The void given form.",
+      "item_type": "armor",
+      "weight": 10,
+      "value": 30000,
+      "wear_slot": "body",
+      "armor_class": 14,
+      "affects": [
+        {
+          "type": "str",
+          "value": 3
+        },
+        {
+          "type": "con",
+          "value": 3
+        }
+      ],
+      "set_id": "apocalypse_raiment",
+      "type": "armor",
+      "min_level": 50
+    },
+    "22002": {
+      "vnum": 22002,
+      "name": "war helm of the apocalypse",
+      "short_desc": "a war helm of the apocalypse",
+      "room_desc": "A helm of apocalyptic war lies here.",
+      "description": "Radiates dread.",
+      "item_type": "armor",
+      "weight": 4,
+      "value": 25000,
+      "wear_slot": "head",
+      "armor_class": 8,
+      "affects": [
+        {
+          "type": "hitroll",
+          "value": 5
+        },
+        {
+          "type": "damroll",
+          "value": 3
+        }
+      ],
+      "set_id": "apocalypse_raiment",
+      "type": "armor",
+      "min_level": 50
+    },
+    "22003": {
+      "vnum": 22003,
+      "name": "pestilence cloak",
+      "short_desc": "a pestilence cloak",
+      "room_desc": "A cloak reeking of plague lies here.",
+      "description": "Disease incarnate.",
+      "item_type": "armor",
+      "weight": 3,
+      "value": 22000,
+      "wear_slot": "about",
+      "armor_class": 6,
+      "affects": [
+        {
+          "type": "poison_resist",
+          "value": 15
+        },
+        {
+          "type": "disease_resist",
+          "value": 15
+        }
+      ],
+      "set_id": "apocalypse_raiment",
+      "type": "armor",
+      "min_level": 50
+    },
+    "22004": {
+      "vnum": 22004,
+      "name": "famine ring",
+      "short_desc": "a famine ring",
+      "room_desc": "A ring of endless hunger lies here.",
+      "description": "Drains life nearby.",
+      "item_type": "armor",
+      "weight": 0,
+      "value": 20000,
+      "wear_slot": "finger",
+      "armor_class": 3,
+      "affects": [
+        {
+          "type": "max_hp",
+          "value": 40
+        },
+        {
+          "type": "max_mana",
+          "value": 40
+        }
+      ],
+      "set_id": "apocalypse_raiment",
+      "type": "armor",
+      "min_level": 50
     }
   }
 }

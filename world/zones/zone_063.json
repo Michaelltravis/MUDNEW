@@ -14,11 +14,11 @@
       "exits": {
         "north": {
           "to_room": 6302,
-          "description": ""
+          "description": "An open path leads to The Webby Passage"
         },
         "south": {
           "to_room": 6132,
-          "description": ""
+          "description": "The water flows toward Up In The Tree"
         }
       },
       "mob_resets": [
@@ -37,19 +37,19 @@
       "exits": {
         "north": {
           "to_room": 6304,
-          "description": ""
+          "description": "An open path leads to The Webby Passage"
         },
         "east": {
           "to_room": 6305,
-          "description": ""
+          "description": "An open path leads to Beneath The Busy Path"
         },
         "south": {
           "to_room": 6301,
-          "description": ""
+          "description": "The cobblestones lead to The Webbed Entrance"
         },
         "west": {
           "to_room": 6303,
-          "description": ""
+          "description": "An open path leads to The Wasp Hive"
         }
       }
     },
@@ -62,7 +62,7 @@
       "exits": {
         "east": {
           "to_room": 6302,
-          "description": ""
+          "description": "An open path leads to The Webby Passage"
         }
       },
       "mob_resets": [
@@ -81,11 +81,11 @@
       "exits": {
         "east": {
           "to_room": 6305,
-          "description": ""
+          "description": "An open path leads to Beneath The Busy Path"
         },
         "south": {
           "to_room": 6302,
-          "description": ""
+          "description": "An open path leads to The Webby Passage"
         }
       },
       "mob_resets": [
@@ -104,11 +104,11 @@
       "exits": {
         "west": {
           "to_room": 6304,
-          "description": ""
+          "description": "An open path leads to The Webby Passage"
         },
         "up": {
           "to_room": 6306,
-          "description": ""
+          "description": "An open path leads to On The Busy Path"
         }
       }
     },
@@ -121,11 +121,11 @@
       "exits": {
         "south": {
           "to_room": 6307,
-          "description": ""
+          "description": "An open path leads to On The Busy Path"
         },
         "down": {
           "to_room": 6305,
-          "description": ""
+          "description": "An open path leads to Beneath The Busy Path"
         }
       },
       "mob_resets": [
@@ -148,11 +148,11 @@
       "exits": {
         "north": {
           "to_room": 6306,
-          "description": ""
+          "description": "An open path leads to On The Busy Path"
         },
         "east": {
           "to_room": 6308,
-          "description": ""
+          "description": "An open path leads to On The Busy Path"
         }
       }
     },
@@ -165,19 +165,19 @@
       "exits": {
         "north": {
           "to_room": 6307,
-          "description": ""
+          "description": "An open path leads to On The Busy Path"
         },
         "east": {
           "to_room": 6306,
-          "description": ""
+          "description": "An open path leads to On The Busy Path"
         },
         "south": {
           "to_room": 6305,
-          "description": ""
+          "description": "An open path leads to Beneath The Busy Path"
         },
         "west": {
           "to_room": 6309,
-          "description": ""
+          "description": "An open path leads to A Split In The Path"
         }
       },
       "mob_resets": [
@@ -212,15 +212,15 @@
       "exits": {
         "north": {
           "to_room": 6310,
-          "description": ""
+          "description": "An open path leads to A Fuzzy Tree Limb"
         },
         "east": {
           "to_room": 6308,
-          "description": ""
+          "description": "An open path leads to On The Busy Path"
         },
         "south": {
           "to_room": 6320,
-          "description": ""
+          "description": "An open path leads to The Webless Path"
         }
       }
     },
@@ -233,11 +233,11 @@
       "exits": {
         "south": {
           "to_room": 6309,
-          "description": ""
+          "description": "An open path leads to A Split In The Path"
         },
         "west": {
           "to_room": 6311,
-          "description": ""
+          "description": "An open path leads to The Tree Trunk"
         }
       }
     },
@@ -252,11 +252,11 @@
       "exits": {
         "east": {
           "to_room": 6310,
-          "description": ""
+          "description": "An open path leads to A Fuzzy Tree Limb"
         },
         "south": {
           "to_room": 6312,
-          "description": ""
+          "description": "An open path leads to The Tree Lair Entrance"
         }
       }
     },
@@ -269,11 +269,11 @@
       "exits": {
         "north": {
           "to_room": 6311,
-          "description": ""
+          "description": "An open path leads to The Tree Trunk"
         },
         "west": {
           "to_room": 6313,
-          "description": ""
+          "description": "An open path leads to The Wolf Spider Lair"
         }
       }
     },
@@ -286,7 +286,7 @@
       "exits": {
         "east": {
           "to_room": 6312,
-          "description": ""
+          "description": "An open path leads to The Tree Lair Entrance"
         }
       },
       "mob_resets": [
@@ -305,11 +305,11 @@
       "exits": {
         "north": {
           "to_room": 6309,
-          "description": ""
+          "description": "An open path leads to A Split In The Path"
         },
         "west": {
           "to_room": 6321,
-          "description": ""
+          "description": "An open path leads to Above The Ravine"
         }
       }
     },
@@ -322,15 +322,15 @@
       "exits": {
         "east": {
           "to_room": 6320,
-          "description": ""
+          "description": "An open path leads to The Webless Path"
         },
         "south": {
           "to_room": 6323,
-          "description": ""
+          "description": "An open path leads to The Web Forest"
         },
         "down": {
           "to_room": 6322,
-          "description": ""
+          "description": "An open path leads to The Rainbow Web"
         }
       },
       "mob_resets": [
@@ -349,7 +349,7 @@
       "exits": {
         "up": {
           "to_room": 6321,
-          "description": ""
+          "description": "An open path leads to Above The Ravine"
         }
       }
     },
@@ -362,11 +362,11 @@
       "exits": {
         "north": {
           "to_room": 6321,
-          "description": ""
+          "description": "An open path leads to Above The Ravine"
         },
         "down": {
           "to_room": 6324,
-          "description": ""
+          "description": "An open path leads to The Slave Pit"
         }
       }
     },
@@ -379,11 +379,11 @@
       "exits": {
         "north": {
           "to_room": 6325,
-          "description": ""
+          "description": "An open path leads to The Tether Path"
         },
         "up": {
           "to_room": 6323,
-          "description": ""
+          "description": "An open path leads to The Web Forest"
         }
       }
     },
@@ -396,11 +396,11 @@
       "exits": {
         "east": {
           "to_room": 6326,
-          "description": ""
+          "description": "An open path leads to A Road Crossing"
         },
         "west": {
           "to_room": 6324,
-          "description": ""
+          "description": "An open path leads to The Slave Pit"
         }
       }
     },
@@ -413,11 +413,11 @@
       "exits": {
         "west": {
           "to_room": 6325,
-          "description": ""
+          "description": "An open path leads to The Tether Path"
         },
         "up": {
           "to_room": 6327,
-          "description": ""
+          "description": "An open path leads to A Leader Strand"
         }
       }
     },
@@ -430,11 +430,11 @@
       "exits": {
         "north": {
           "to_room": 6328,
-          "description": ""
+          "description": "An open path leads to The Entrance Of The Ethereal Web"
         },
         "down": {
           "to_room": 6326,
-          "description": ""
+          "description": "An open path leads to A Road Crossing"
         }
       },
       "mob_resets": [
@@ -453,7 +453,7 @@
       "exits": {
         "south": {
           "to_room": 6331,
-          "description": ""
+          "description": "An open path leads to The Base Of The Web"
         }
       }
     },
@@ -466,7 +466,7 @@
       "exits": {
         "up": {
           "to_room": 6331,
-          "description": ""
+          "description": "An open path leads to The Base Of The Web"
         }
       },
       "mob_resets": [
@@ -489,19 +489,19 @@
       "exits": {
         "north": {
           "to_room": 6330,
-          "description": ""
+          "description": "An open path leads to The Young Wormkin's Crib"
         },
         "east": {
           "to_room": 6332,
-          "description": ""
+          "description": "An open path leads to Through The Trees"
         },
         "south": {
           "to_room": 6333,
-          "description": ""
+          "description": "An open path leads to Above The Clouds"
         },
         "west": {
           "to_room": 6334,
-          "description": ""
+          "description": "An open path leads to On A Cloud"
         }
       },
       "mob_resets": [
@@ -520,15 +520,15 @@
       "exits": {
         "east": {
           "to_room": 6331,
-          "description": ""
+          "description": "An open path leads to The Base Of The Web"
         },
         "south": {
           "to_room": 6335,
-          "description": ""
+          "description": "An open path leads to A Link In The Ethereal Web"
         },
         "west": {
           "to_room": 6333,
-          "description": ""
+          "description": "An open path leads to Above The Clouds"
         }
       },
       "mob_resets": [
@@ -547,15 +547,15 @@
       "exits": {
         "east": {
           "to_room": 6331,
-          "description": ""
+          "description": "An open path leads to The Base Of The Web"
         },
         "south": {
           "to_room": 6334,
-          "description": ""
+          "description": "An open path leads to On A Cloud"
         },
         "west": {
           "to_room": 6335,
-          "description": ""
+          "description": "An open path leads to A Link In The Ethereal Web"
         }
       },
       "mob_resets": [
@@ -574,7 +574,7 @@
       "exits": {
         "down": {
           "to_room": 6331,
-          "description": ""
+          "description": "An open path leads to The Base Of The Web"
         }
       }
     },
@@ -587,11 +587,11 @@
       "exits": {
         "east": {
           "to_room": 6336,
-          "description": ""
+          "description": "An open path leads to The Tenuous Strand"
         },
         "west": {
           "to_room": 6331,
-          "description": ""
+          "description": "An open path leads to The Base Of The Web"
         }
       },
       "mob_resets": [
@@ -610,15 +610,15 @@
       "exits": {
         "south": {
           "to_room": 6340,
-          "description": ""
+          "description": "An open path leads to The Elder Wormkin's Room"
         },
         "west": {
           "to_room": 6341,
-          "description": ""
+          "description": "An open path leads to Another Tree Limb"
         },
         "down": {
           "to_room": 6331,
-          "description": ""
+          "description": "An open path leads to The Base Of The Web"
         }
       }
     },
@@ -631,7 +631,7 @@
       "exits": {
         "down": {
           "to_room": 6331,
-          "description": ""
+          "description": "An open path leads to The Base Of The Web"
         }
       },
       "mob_resets": [
@@ -650,15 +650,15 @@
       "exits": {
         "east": {
           "to_room": 6342,
-          "description": ""
+          "description": "An open path leads to The Bird Spider's Lair"
         },
         "south": {
           "to_room": 6334,
-          "description": ""
+          "description": "An open path leads to On A Cloud"
         },
         "west": {
           "to_room": 6345,
-          "description": ""
+          "description": "An open path leads to A Link In The Ethereal Web"
         }
       }
     },
@@ -671,7 +671,7 @@
       "exits": {
         "down": {
           "to_room": 6331,
-          "description": ""
+          "description": "An open path leads to The Base Of The Web"
         }
       },
       "mob_resets": [
@@ -690,15 +690,15 @@
       "exits": {
         "south": {
           "to_room": 6350,
-          "description": ""
+          "description": "An open path leads to The Ki-Rin Chamber"
         },
         "west": {
           "to_room": 6346,
-          "description": ""
+          "description": "An open path leads to The Quiet Tree Top"
         },
         "up": {
           "to_room": 6345,
-          "description": ""
+          "description": "An open path leads to A Link In The Ethereal Web"
         }
       }
     },
@@ -711,15 +711,15 @@
       "exits": {
         "east": {
           "to_room": 6345,
-          "description": ""
+          "description": "An open path leads to A Link In The Ethereal Web"
         },
         "west": {
           "to_room": 6347,
-          "description": ""
+          "description": "An open path leads to On The Web"
         },
         "down": {
           "to_room": 6132,
-          "description": ""
+          "description": "The water flows toward Up In The Tree"
         }
       }
     },
@@ -732,15 +732,15 @@
       "exits": {
         "east": {
           "to_room": 6346,
-          "description": ""
+          "description": "An open path leads to The Quiet Tree Top"
         },
         "south": {
           "to_room": 6355,
-          "description": ""
+          "description": "An open path leads to A Link In The Ethereal Web"
         },
         "down": {
           "to_room": 6331,
-          "description": ""
+          "description": "An open path leads to The Base Of The Web"
         }
       }
     },
@@ -753,7 +753,7 @@
       "exits": {
         "north": {
           "to_room": 6347,
-          "description": ""
+          "description": "An open path leads to On The Web"
         }
       },
       "mob_resets": [
@@ -772,11 +772,11 @@
       "exits": {
         "north": {
           "to_room": 6360,
-          "description": ""
+          "description": "An open path leads to Yevaud's Lair"
         },
         "south": {
           "to_room": 6365,
-          "description": ""
+          "description": "An open path leads to A Link In The Ethereal Web"
         }
       }
     },
@@ -789,7 +789,7 @@
       "exits": {
         "south": {
           "to_room": 6355,
-          "description": ""
+          "description": "An open path leads to A Link In The Ethereal Web"
         }
       },
       "mob_resets": [
@@ -808,19 +808,19 @@
       "exits": {
         "north": {
           "to_room": 6371,
-          "description": ""
+          "description": "An open path leads to The Single Spider Line"
         },
         "east": {
           "to_room": 6331,
-          "description": ""
+          "description": "An open path leads to The Base Of The Web"
         },
         "south": {
           "to_room": 6366,
-          "description": ""
+          "description": "An open path leads to The Entrance To The Donjonkeep"
         },
         "down": {
           "to_room": 6390,
-          "description": ""
+          "description": "An open path leads to The Entrance To The Arachnos' Lair"
         }
       }
     },
@@ -833,7 +833,7 @@
       "exits": {
         "north": {
           "to_room": 6367,
-          "description": ""
+          "description": "An open path leads to The Guardian's Room"
         }
       }
     },
@@ -846,7 +846,7 @@
       "exits": {
         "north": {
           "to_room": 6368,
-          "description": ""
+          "description": "An open path leads to The Realm Of The Hopeless"
         }
       },
       "extra_descs": {
@@ -868,7 +868,7 @@
       "exits": {
         "north": {
           "to_room": 6369,
-          "description": ""
+          "description": "An open path leads to The Realm Of The Hopeless"
         }
       }
     },
@@ -881,11 +881,11 @@
       "exits": {
         "north": {
           "to_room": 6368,
-          "description": ""
+          "description": "An open path leads to The Realm Of The Hopeless"
         },
         "south": {
           "to_room": 6370,
-          "description": ""
+          "description": "An open path leads to The Donjonkeep"
         }
       }
     },
@@ -898,7 +898,7 @@
       "exits": {
         "east": {
           "to_room": 6371,
-          "description": ""
+          "description": "An open path leads to The Single Spider Line"
         }
       },
       "mob_resets": [
@@ -917,11 +917,11 @@
       "exits": {
         "north": {
           "to_room": 6331,
-          "description": ""
+          "description": "An open path leads to The Base Of The Web"
         },
         "south": {
           "to_room": 6372,
-          "description": ""
+          "description": "An open path leads to The Single Spider Line"
         }
       }
     },
@@ -934,11 +934,11 @@
       "exits": {
         "north": {
           "to_room": 6371,
-          "description": ""
+          "description": "An open path leads to The Single Spider Line"
         },
         "south": {
           "to_room": 6373,
-          "description": ""
+          "description": "An open path leads to The Hermit's Corner"
         }
       }
     },
@@ -951,11 +951,11 @@
       "exits": {
         "north": {
           "to_room": 6372,
-          "description": ""
+          "description": "An open path leads to The Single Spider Line"
         },
         "south": {
           "to_room": 6380,
-          "description": ""
+          "description": "A passage leads to Mahatma's Inescapable Trap"
         }
       },
       "mob_resets": [
@@ -985,7 +985,7 @@
       "exits": {
         "east": {
           "to_room": 6391,
-          "description": ""
+          "description": "An open path leads to The Sticky Chamber"
         }
       }
     },
@@ -998,11 +998,11 @@
       "exits": {
         "east": {
           "to_room": 6392,
-          "description": ""
+          "description": "An open path leads to The Great Door"
         },
         "down": {
           "to_room": 6331,
-          "description": ""
+          "description": "An open path leads to The Base Of The Web"
         }
       }
     },
@@ -1017,7 +1017,7 @@
       "exits": {
         "north": {
           "to_room": 6399,
-          "description": "",
+          "description": "An open path leads to The Lair Of Arachnos",
           "door": {
             "name": "door",
             "state": "open",
@@ -1027,7 +1027,7 @@
         },
         "west": {
           "to_room": 6391,
-          "description": ""
+          "description": "An open path leads to The Sticky Chamber"
         }
       }
     },
@@ -1042,7 +1042,7 @@
       "exits": {
         "south": {
           "to_room": 6392,
-          "description": "",
+          "description": "An open path leads to The Great Door",
           "door": {
             "name": "door",
             "state": "open",
@@ -1588,7 +1588,8 @@
       "room_desc": "A somewhat plain black key has been left here.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "6301": {
       "vnum": 6301,
@@ -1599,7 +1600,8 @@
       "weight": 9,
       "value": 1000,
       "damage_dice": "8d1",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "6302": {
       "vnum": 6302,
@@ -1609,7 +1611,10 @@
       "item_type": "armor",
       "weight": 5,
       "value": 20000,
-      "armor_bonus": 6
+      "armor_bonus": 6,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "6303": {
       "vnum": 6303,
@@ -1619,7 +1624,8 @@
       "item_type": "armor",
       "weight": 5,
       "value": 20000,
-      "armor_bonus": 6
+      "armor_bonus": 6,
+      "type": "treasure"
     },
     "6304": {
       "vnum": 6304,
@@ -1629,7 +1635,10 @@
       "item_type": "armor",
       "weight": 5,
       "value": 20000,
-      "armor_bonus": 8
+      "armor_bonus": 8,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "6305": {
       "vnum": 6305,
@@ -1638,7 +1647,8 @@
       "room_desc": "A thick white potion has been left here.",
       "item_type": "potion",
       "weight": 9,
-      "value": 21000
+      "value": 21000,
+      "type": "potion"
     },
     "6306": {
       "vnum": 6306,
@@ -1689,7 +1699,8 @@
           "value": 3
         }
       ],
-      "set_id": 63
+      "set_id": 63,
+      "type": "weapon"
     },
     "6310": {
       "vnum": 6310,
@@ -1708,7 +1719,9 @@
           "value": 1
         }
       ],
-      "set_id": 63
+      "set_id": 63,
+      "type": "armor",
+      "armor": 3
     },
     "6311": {
       "vnum": 6311,
@@ -1726,7 +1739,8 @@
           "value": 3
         }
       ],
-      "set_id": 63
+      "set_id": 63,
+      "type": "treasure"
     },
     "6312": {
       "vnum": 6312,
@@ -1748,7 +1762,8 @@
           "value": 25
         }
       ],
-      "set_id": 63
+      "set_id": 63,
+      "type": "treasure"
     },
     "6313": {
       "vnum": 6313,
@@ -1766,7 +1781,8 @@
           "value": 3
         }
       ],
-      "set_id": 63
+      "set_id": 63,
+      "type": "treasure"
     },
     "6314": {
       "vnum": 6314,
@@ -1786,7 +1802,8 @@
           "value": 3
         }
       ],
-      "set_id": 63
+      "set_id": 63,
+      "type": "treasure"
     },
     "6315": {
       "vnum": 6315,
@@ -1810,7 +1827,8 @@
           "value": 1
         }
       ],
-      "set_id": 63
+      "set_id": 63,
+      "type": "weapon"
     },
     "6316": {
       "vnum": 6316,
@@ -1832,7 +1850,9 @@
           "value": 1
         }
       ],
-      "set_id": 63
+      "set_id": 63,
+      "type": "armor",
+      "armor": 0
     },
     "6317": {
       "vnum": 6317,
@@ -1851,7 +1871,9 @@
           "value": 10
         }
       ],
-      "set_id": 63
+      "set_id": 63,
+      "type": "armor",
+      "armor": 1
     }
   }
 }

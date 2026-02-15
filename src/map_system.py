@@ -65,7 +65,7 @@ def get_room_icon(room) -> str:
     sector = getattr(room, 'sector_type', 'inside')
 
     # Special locations
-    if 'death' in flags or 'deathtrap' in name:
+    if 'deathtrap' in flags:
         return '💀'
     if 'boss' in flags or 'boss' in name:
         return '👹'
@@ -242,8 +242,11 @@ def compute_room_coords(rooms: Dict[int, object], start_vnum: Optional[int], pla
     return coords
 
 
-def get_frontier_coords(coords: Dict[int, Tuple[int, int, int]], rooms: Dict[int, object], explored: Set[int], player=None) -> Set[Tuple[int, int, int]]:
-    frontier = set()
+def get_frontier_coords(coords: Dict[int, Tuple[int, int, int]], rooms: Dict[int, object], explored: Set[int], player=None) -> list:
+    """Returns list of dicts with x, y, z and optional deathtrap flag."""
+    frontier_map = {}  # (x,y,z) -> {info}
+    occupied_coords = set(coords.values())
+    world = player.world if player and hasattr(player, 'world') else None
     for vnum, (x, y, z) in coords.items():
         if vnum not in explored:
             continue
@@ -254,8 +257,32 @@ def get_frontier_coords(coords: Dict[int, Tuple[int, int, int]], rooms: Dict[int
             to_vnum = _get_exit_target_vnum(exit_data)
             dx, dy, dz = DIR_OFFSETS[direction]
             if not to_vnum or to_vnum not in explored:
-                frontier.add((x + dx, y + dy, z + dz))
-    return frontier
+                coord = (x + dx, y + dy, z + dz)
+                # Skip if an explored room already occupies this coordinate
+                if coord in occupied_coords:
+                    continue
+                # Also skip if coord is already a frontier entry
+                if coord not in frontier_map:
+                    # Check if the destination is a deathtrap
+                    is_deathtrap = False
+                    dest_name = None
+                    if to_vnum and world:
+                        dest_room = world.rooms.get(to_vnum)
+                        if dest_room:
+                            dest_flags = set(dest_room.flags) if hasattr(dest_room, 'flags') else set()
+                            is_deathtrap = 'deathtrap' in dest_flags
+                            dest_name = dest_room.name if hasattr(dest_room, 'name') else None
+                    # Also check exit description for danger warnings
+                    if not is_deathtrap and isinstance(exit_data, dict):
+                        desc = exit_data.get('description', '')
+                        if 'DANGER' in desc or 'deathtrap' in desc.lower():
+                            is_deathtrap = True
+                    frontier_map[coord] = {
+                        'x': coord[0], 'y': coord[1], 'z': coord[2],
+                        'deathtrap': is_deathtrap,
+                        'name': dest_name,
+                    }
+    return list(frontier_map.values())
 
 
 def render_ascii_map(player, mode: str = 'local', size: int = 11) -> str:
@@ -291,7 +318,8 @@ def render_ascii_map(player, mode: str = 'local', size: int = 11) -> str:
 
     # Determine bounds
     if mode == 'full':
-        points = list(coords.values()) + list(frontier)
+        frontier_pts = [(f['x'], f['y'], f['z']) for f in frontier]
+        points = list(coords.values()) + frontier_pts
         min_x = min(p[0] for p in points)
         max_x = max(p[0] for p in points)
         min_y = min(p[1] for p in points)
@@ -359,7 +387,8 @@ def render_ascii_map(player, mode: str = 'local', size: int = 11) -> str:
                 grid[mid_y][mid_x] = '─' if direction in ('east', 'west') else '│'
 
     # Draw frontier
-    for x, y, z in frontier:
+    for f in frontier:
+        x, y, z = f['x'], f['y'], f['z']
         if z != player_z:
             continue
         if x < min_x or x > max_x or y < min_y or y > max_y:
@@ -469,8 +498,8 @@ def build_map_payload(player, mode: str = 'full') -> dict:
 
     player_coord = coords[start_vnum]
 
-    # Filter frontier to only valid 3-tuples (defensive coding)
-    valid_frontier = [f for f in frontier if isinstance(f, tuple) and len(f) == 3]
+    # Frontier is now a list of dicts
+    valid_frontier = [f for f in frontier if isinstance(f, dict) and 'x' in f]
     
     # Build zones list with colors
     zone_colors = [
@@ -490,7 +519,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
     return {
         'type': 'map_data',
         'rooms': room_items,
-        'frontier': [{'x': x, 'y': y, 'z': z} for (x, y, z) in valid_frontier],
+        'frontier': valid_frontier,
         'zones': zones_list,
         'player': {
             'name': player.name,

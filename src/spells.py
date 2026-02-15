@@ -1895,6 +1895,12 @@ class SpellHandler:
         # Arcane Power increases mana cost
         if hasattr(caster, 'affect_flags') and 'arcane_power' in caster.affect_flags:
             mana_cost = int(mana_cost * 1.3)
+
+        # Mage arcane charges increase mana cost by 10% per charge
+        if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'mage':
+            charges = getattr(caster, 'arcane_charges', 0)
+            if charges > 0:
+                mana_cost = int(mana_cost * (1 + 0.10 * charges))
         
         # Soul fragments reduce mana cost by 10% per fragment
         if hasattr(caster, 'soul_fragments') and caster.soul_fragments > 0:
@@ -2122,12 +2128,12 @@ class SpellHandler:
                 except Exception:
                     pass
 
-                # Mage arcane charges: +5% damage per charge
+                # Mage arcane charges: +8% damage per charge
                 if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'mage':
                     charges = getattr(caster, 'arcane_charges', 0)
                     if charges > 0:
-                        damage = int(damage * (1 + (0.05 * charges)))
-                        await caster.send(f"{c['magenta']}Arcane charges amplify your spell! ({charges} charges){c['reset']}")
+                        damage = int(damage * (1 + (0.08 * charges)))
+                        await caster.send(f"{c['magenta']}Arcane charges amplify your spell! ({charges} charges, +{charges * 8}% damage){c['reset']}")
 
                 # Spell critical strike chance
                 # Base 5% + 1% per 2 INT above 10 + 0.5% per level
@@ -2238,6 +2244,19 @@ class SpellHandler:
                         if hasattr(caster, 'divine_favor'):
                             gain = max(2, actual_heal // 5)
                             caster.divine_favor = min(100, caster.divine_favor + gain)
+
+                        # Cleric Faith generation from healing
+                        if hasattr(caster, 'faith') and not getattr(caster, 'shadow_form', False):
+                            if actual_heal > 0 and caster.faith < 10:
+                                caster.faith = min(10, caster.faith + 1)
+                                await caster.send(f"{c['bright_yellow']}[Faith: {caster.faith}/10]{c['reset']}")
+
+                    # Bard Inspiration from healing allies
+                    if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'bard':
+                        if hasattr(caster, 'inspiration') and actual_heal > 0 and member != caster:
+                            if caster.inspiration < 10:
+                                caster.inspiration = min(10, caster.inspiration + 1)
+                                await caster.send(f"{c['bright_yellow']}[Inspiration: {caster.inspiration}/10]{c['reset']}")
             else:
                 old_hp = target.hp
                 target.hp = min(target.max_hp, target.hp + heal)
@@ -2255,7 +2274,20 @@ class SpellHandler:
                     if hasattr(caster, 'divine_favor'):
                         gain = max(2, actual_heal // 5)
                         caster.divine_favor = min(100, caster.divine_favor + gain)
-                    
+
+                    # Cleric Faith generation from healing
+                    if hasattr(caster, 'faith') and not getattr(caster, 'shadow_form', False):
+                        if actual_heal > 0 and caster.faith < 10:
+                            caster.faith = min(10, caster.faith + 1)
+                            await caster.send(f"{c['bright_yellow']}[Faith: {caster.faith}/10]{c['reset']}")
+
+                # Bard Inspiration from healing allies
+                if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'bard':
+                    if hasattr(caster, 'inspiration') and actual_heal > 0 and target != caster:
+                        if caster.inspiration < 10:
+                            caster.inspiration = min(10, caster.inspiration + 1)
+                            await caster.send(f"{c['bright_yellow']}[Inspiration: {caster.inspiration}/10]{c['reset']}")
+
         # Apply buff/debuff affects
         if 'affects' in spell:
             duration = spell.get('duration_ticks', 24)

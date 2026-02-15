@@ -177,6 +177,16 @@ class CombatHandler:
         if hasattr(defender, 'target') and (not defender.target or defender.target not in defender.room.characters):
             defender.target = attacker
 
+        # Auto-mark for assassin Intel when entering combat
+        if (getattr(attacker, 'char_class', '').lower() == 'assassin'
+                and not getattr(attacker, 'intel_target', None)
+                and hasattr(attacker, 'send')):
+            attacker.intel_target = defender
+            attacker.intel_points = 0
+            attacker.intel_thresholds = {}
+            c_temp = cls.config.COLORS
+            await attacker.send(f"{c_temp['cyan']}You automatically mark {defender.name} for study.{c_temp['reset']}")
+
         # Break stealth for both combatants
         if hasattr(attacker, 'flags'):
             attacker.flags.discard('hidden')
@@ -246,8 +256,52 @@ class CombatHandler:
         if hasattr(attacker, 'autocombat') and attacker.autocombat:
             await cls.auto_combat(attacker)
 
+        # Stun check: stunned attackers skip their turn (Unstoppable immune)
+        if getattr(attacker, 'stunned_rounds', 0) > 0:
+            if getattr(attacker, 'unstoppable_rounds', 0) > 0:
+                attacker.stunned_rounds = 0
+                if hasattr(attacker, 'send'):
+                    await attacker.send(f"{c['bright_yellow']}★ Unstoppable! You resist the stun! ★{c['reset']}")
+            else:
+                attacker.stunned_rounds -= 1
+                if hasattr(attacker, 'send'):
+                    await attacker.send(f"{c['yellow']}You are stunned and cannot attack!{c['reset']}")
+                return
+
+        # Blind check: blinded attackers have 50% miss chance
+        blinded = getattr(attacker, 'blinded_rounds', 0) > 0
+        if blinded:
+            attacker.blinded_rounds -= 1
+            if attacker.blinded_rounds <= 0:
+                attacker.blinded_until = 0
+                if hasattr(attacker, 'send'):
+                    await attacker.send(f"{c['green']}Your vision clears!{c['reset']}")
+
+        # Marked man: target takes 10% more damage
+        marked_man_bonus = 1.0
+        if getattr(defender, 'marked_man_until', 0) > time.time():
+            marked_man_bonus = 1.10
+
+        # Thief rigged dice: consume guaranteed crit
+        force_crit = False
+        if getattr(attacker, 'rigged_dice_hits', 0) > 0:
+            force_crit = True
+            attacker.rigged_dice_hits -= 1
+
+        # Bone shield check on defender
+        if getattr(defender, 'bone_shield_charges', 0) > 0 and time.time() < getattr(defender, 'bone_shield_until', 0):
+            # Will be checked after damage calc
+            pass
+
         # Calculate hits
         hit_roll = random.randint(1, 20) + attacker.get_hit_bonus()
+        if blinded:
+            if random.randint(1, 100) <= 50:
+                if hasattr(attacker, 'send'):
+                    await attacker.send(f"{c['yellow']}You swing blindly and miss!{c['reset']}")
+                if hasattr(defender, 'send'):
+                    await defender.send(f"{c['cyan']}{attacker.name} swings blindly!{c['reset']}")
+                return
 
         # Defensive skills (dodge/parry/shield block/blur)
         now = time.time()
@@ -273,14 +327,82 @@ class CombatHandler:
         # Lower AC = better armor = harder to hit (higher defense)
         defense = 10 - (defender.get_armor_class() // 10)
 
+        # Ghost passive: 50% dodge after big hit
+        if getattr(defender, 'ghost_dodge_until', 0) > time.time():
+            if random.randint(1, 100) <= 50:
+                if hasattr(defender, 'send'):
+                    await defender.send(f"{c['cyan']}Your ghostly reflexes let you dodge!{c['reset']}")
+                if hasattr(attacker, 'send'):
+                    await attacker.send(f"{c['yellow']}{defender.name} dodges like a ghost!{c['reset']}")
+                return
+
+        # Assassin Evasion (100% dodge)
+        now = time.time()
+        if getattr(defender, 'evasion_until', 0) > now:
+            if hasattr(defender, 'send'):
+                await defender.send(f"{c['cyan']}You effortlessly evade {attacker.name}'s attack!{c['reset']}")
+            if hasattr(attacker, 'send'):
+                await attacker.send(f"{c['yellow']}{defender.name} is untouchable!{c['reset']}")
+            return
+
+        # Shadow Step dodge (one-time)
+        if getattr(defender, 'shadowstep_dodge', False):
+            defender.shadowstep_dodge = False
+            if hasattr(defender, 'send'):
+                await defender.send(f"{c['cyan']}You dodge the attack from the shadows!{c['reset']}")
+            if hasattr(attacker, 'send'):
+                await attacker.send(f"{c['yellow']}{defender.name} dodges from the shadows!{c['reset']}")
+            return
+
         # Avoidance checks
         if hasattr(defender, 'skills'):
             dodge = defender.skills.get('dodge', 0)
+            # Kill or Be Killed: +1% dodge per Intel point
+            try:
+                from talents import TalentManager
+                if TalentManager.has_talent(defender, 'kill_or_be_killed'):
+                    dodge += getattr(defender, 'intel_points', 0)
+                # Thief slippery talent
+                dodge += TalentManager.get_talent_rank(defender, 'slippery')
+            except Exception:
+                pass
             if dodge and random.randint(1, 100) <= dodge:
                 if hasattr(defender, 'send'):
                     await defender.send(f"{c['cyan']}You dodge {attacker.name}'s attack!{c['reset']}")
                 if hasattr(attacker, 'send'):
                     await attacker.send(f"{c['yellow']}{defender.name} dodges your attack!{c['reset']}")
+                # Ranger Focus gain on dodge (+15)
+                if hasattr(defender, 'focus') and getattr(defender, 'char_class', '').lower() == 'ranger':
+                    old_focus = defender.focus
+                    defender.focus = min(100, defender.focus + 15)
+                    if defender.focus > old_focus and hasattr(defender, 'send'):
+                        await defender.send(f"{c['bright_green']}[Focus: {defender.focus}/100]{c['reset']}")
+
+                # Thief luck on dodge
+                if hasattr(defender, 'luck_points') and getattr(defender, 'char_class', '').lower() == 'thief':
+                    gain = 1
+                    try:
+                        from talents import TalentManager
+                        gain += TalentManager.get_talent_rank(defender, 'fortune_favors')
+                    except Exception:
+                        pass
+                    if defender.luck_points < 10:
+                        defender.luck_points = min(10, defender.luck_points + gain)
+                        if hasattr(defender, 'send'):
+                            await defender.send(f"{c['bright_yellow']}[Luck: {defender.luck_points}/10]{c['reset']}")
+                    # Luck counterattack: dodge + luck >= 5 = free hit
+                    if defender.luck_points >= 5:
+                        weapon = defender.equipment.get('wield') if hasattr(defender, 'equipment') else None
+                        if weapon and hasattr(weapon, 'damage_dice'):
+                            counter_dmg = cls.roll_dice(weapon.damage_dice) + defender.get_damage_bonus()
+                        else:
+                            counter_dmg = random.randint(1, 6) + defender.get_damage_bonus()
+                        counter_dmg = max(1, counter_dmg)
+                        if hasattr(defender, 'send'):
+                            await defender.send(f"{c['bright_green']}Lucky counterattack! [{counter_dmg}]{c['reset']}")
+                        if hasattr(attacker, 'send'):
+                            await attacker.send(f"{c['red']}{defender.name} counters! [{counter_dmg}]{c['reset']}")
+                        await attacker.take_damage(counter_dmg, defender)
                 return
             parry = defender.skills.get('parry', 0)
             if parry and defender.equipment.get('wield') and random.randint(1, 100) <= parry:
@@ -288,6 +410,12 @@ class CombatHandler:
                     await defender.send(f"{c['cyan']}You parry {attacker.name}'s attack!{c['reset']}")
                 if hasattr(attacker, 'send'):
                     await attacker.send(f"{c['yellow']}{defender.name} parries your attack!{c['reset']}")
+                # Thief luck on parry
+                if hasattr(defender, 'luck_points') and getattr(defender, 'char_class', '').lower() == 'thief':
+                    if defender.luck_points < 10:
+                        defender.luck_points = min(10, defender.luck_points + 1)
+                        if hasattr(defender, 'send'):
+                            await defender.send(f"{c['bright_yellow']}[Luck: {defender.luck_points}/10]{c['reset']}")
                 return
             sblock = defender.skills.get('shield_block', 0)
             if sblock and defender.equipment.get('shield') and random.randint(1, 100) <= sblock:
@@ -317,15 +445,7 @@ class CombatHandler:
 
             damage += attacker.get_damage_bonus()
 
-            # Warrior stance damage modifiers
-            if hasattr(attacker, 'stance'):
-                if attacker.stance == 'berserk':
-                    damage = int(damage * 1.25)  # +25% damage
-                elif attacker.stance == 'defensive':
-                    damage = int(damage * 0.75)  # -25% damage
-                elif attacker.stance == 'precision':
-                    damage = int(damage * 0.90)  # -10% damage
-                    # But +15% crit chance handled separately
+            # Warrior stance modifiers removed — warriors now use Combo Chain system
 
             # Apply talent passive bonuses
             if hasattr(attacker, 'talents') and attacker.talents:
@@ -336,6 +456,22 @@ class CombatHandler:
                         damage = int(damage * (1 + talent_dmg_bonus / 100))
                 except Exception:
                     pass
+
+            # Warrior Momentum damage bonus (+5% per point)
+            if getattr(attacker, 'char_class', '').lower() == 'warrior' and getattr(attacker, 'momentum', 0) > 0:
+                mom_mult = 1.0 + getattr(attacker, 'momentum', 0) * 0.05
+                damage = int(damage * mom_mult)
+
+            # Warrior damage buff (from rally evolutions)
+            if getattr(attacker, 'warrior_dmg_bonus', 0) > 0 and getattr(attacker, 'warrior_dmg_bonus_rounds', 0) > 0:
+                damage = int(damage * (1 + attacker.warrior_dmg_bonus))
+
+            # Berserker momentum lifesteal
+            if getattr(attacker, 'war_doctrine', None) == 'berserker' and getattr(attacker, 'momentum', 0) > 0:
+                lifesteal_pct = getattr(attacker, 'momentum', 0) * 0.02
+                heal = int(damage * lifesteal_pct)
+                if heal > 0:
+                    attacker.hp = min(attacker.max_hp, attacker.hp + heal)
 
             # Boss enrage bonus
             if getattr(attacker, 'is_boss', False) and getattr(attacker, 'ai_state', None):
@@ -357,6 +493,16 @@ class CombatHandler:
             if getattr(defender, 'position', '') == 'sleeping':
                 damage = int(damage * 1.5)
 
+            # Vendetta bonus (assassin ability - doubles all damage to target)
+            vendetta_attacker = getattr(defender, 'vendetta_target', None)
+            if vendetta_attacker and vendetta_attacker == attacker:
+                bonus_pct = getattr(defender, 'vendetta_bonus', 100)
+                damage = int(damage * (1 + bonus_pct / 100))
+
+            # Basic vendetta (non-assassin version)
+            if getattr(defender, 'vendetta_from', None) == attacker:
+                damage = int(damage * 1.3)
+
             damage = max(1, damage)
 
             # Evasion/tumble mitigation
@@ -366,6 +512,45 @@ class CombatHandler:
                     damage = int(damage * 0.7)
             if getattr(defender, 'tumble_until', 0) > time.time():
                 damage = int(damage * 0.8)
+
+            # Assassin Feint: attacker's target takes 30% less damage
+            if getattr(defender, 'feint_until', 0) > time.time() and getattr(defender, 'feint_reduction', 0) > 0:
+                damage = int(damage * (1 - defender.feint_reduction))
+
+            # Deadly Patience: Intel >= 6 grants 15% DR
+            try:
+                from talents import TalentManager
+                if TalentManager.has_talent(defender, 'deadly_patience') and getattr(defender, 'intel_points', 0) >= 6:
+                    damage = int(damage * 0.85)
+            except Exception:
+                pass
+
+            # Numbing Toxin: poisoned targets deal less damage
+            try:
+                from talents import TalentManager
+                if hasattr(defender, 'char_class') and defender.char_class.lower() == 'assassin':
+                    pass  # defender is assassin, check if ATTACKER is poisoned
+                nt_rank = TalentManager.get_talent_rank(defender, 'numbing_toxin')
+                if nt_rank > 0:
+                    # Check if attacker is poisoned
+                    attacker_poisoned = False
+                    if hasattr(attacker, 'affects'):
+                        for aff in attacker.affects:
+                            aff_name = getattr(aff, 'name', '') if hasattr(aff, 'name') else aff.get('name', '') if isinstance(aff, dict) else ''
+                            if 'poison' in aff_name.lower():
+                                attacker_poisoned = True
+                                break
+                    if attacker_poisoned:
+                        reductions = {1: 0.03, 2: 0.06, 3: 0.10}
+                        damage = int(damage * (1 - reductions.get(nt_rank, 0.10)))
+            except Exception:
+                pass
+
+            # Expose Weakness: target takes 15% more damage from this player
+            if hasattr(attacker, 'expose_target') and attacker.expose_target == defender:
+                if getattr(attacker, 'expose_until', 0) > time.time():
+                    damage = int(damage * 1.15)
+
             damage = max(1, damage)
 
             # Critical hit check - percentage based
@@ -384,14 +569,12 @@ class CombatHandler:
             elif char_class == 'ranger':
                 crit_chance += 5
 
-            # Precision stance: +15% crit chance
-            if hasattr(attacker, 'stance') and attacker.stance == 'precision':
-                crit_chance += 15
+            # Warrior stance crit bonus removed — warriors now use Combo Chain system
 
             # Cap at 50%
             crit_chance = min(crit_chance, 50)
 
-            is_crit = random.randint(1, 100) <= crit_chance
+            is_crit = force_crit or (random.randint(1, 100) <= crit_chance)
             if is_crit:
                 crit_mult = 2.0  # 200% damage
                 # Thief gets better crits
@@ -400,6 +583,27 @@ class CombatHandler:
                 damage = int(damage * crit_mult)
                 if hasattr(attacker, 'send'):
                     await attacker.send(f"{c['bright_yellow']}*** CRITICAL HIT! ***{c['reset']}")
+
+            # Apply marked_man bonus (thief low blow talent)
+            damage = int(damage * marked_man_bonus)
+
+            # Bone shield absorption (necromancer)
+            if getattr(defender, 'bone_shield_charges', 0) > 0 and time.time() < getattr(defender, 'bone_shield_until', 0):
+                absorb_max = getattr(defender, 'bone_shield_absorb', 500)
+                absorbed = min(damage, absorb_max)
+                damage -= absorbed
+                defender.bone_shield_charges -= 1
+                if hasattr(defender, 'send'):
+                    await defender.send(f"{c['cyan']}Bone Shield absorbs {absorbed} damage! ({defender.bone_shield_charges} charges left){c['reset']}")
+                if defender.bone_shield_charges <= 0:
+                    defender.bone_shield_until = 0
+                    if hasattr(defender, 'send'):
+                        await defender.send(f"{c['yellow']}Your Bone Shield shatters!{c['reset']}")
+                if damage <= 0:
+                    if hasattr(attacker, 'send'):
+                        await attacker.send(f"{c['yellow']}{defender.name}'s bone shield absorbs the blow!{c['reset']}")
+                    return
+            damage = max(1, damage)
 
             damage_word = cls.get_damage_word(damage)
             damage_color = cls.get_damage_color(damage)
@@ -411,11 +615,18 @@ class CombatHandler:
             you_verb, they_verb = cls.get_weapon_verb(weapon_type)
 
             # Send messages with enhanced formatting
+            # Build Intel suffix for assassins with marked targets
+            intel_suffix = ""
+            if (hasattr(attacker, 'intel_target') and attacker.intel_target == defender
+                    and getattr(attacker, 'char_class', '').lower() == 'assassin'):
+                intel_pts = getattr(attacker, 'intel_points', 0)
+                intel_suffix = f" {c['cyan']}(Intel: {intel_pts}/10){c['reset']}"
+
             if hasattr(attacker, 'send'):
                 if getattr(attacker, 'compact_mode', False):
-                    await attacker.send(f"{c['green']}You {you_verb} {defender.name}. {damage_color}[{damage}]{c['reset']}")
+                    await attacker.send(f"{c['green']}You {you_verb} {defender.name}. {damage_color}[{damage}]{c['reset']}{intel_suffix}")
                 else:
-                    await attacker.send(f"{c['green']}Your {damage_word} {they_verb} {defender.name}! {damage_color}[{damage} damage]{c['reset']}")
+                    await attacker.send(f"{c['green']}Your {damage_word} {they_verb} {defender.name}! {damage_color}[{damage} damage]{c['reset']}{intel_suffix}")
             if hasattr(defender, 'send'):
                 if getattr(defender, 'compact_mode', False):
                     await defender.send(f"{c['red']}{attacker.name} {they_verb} you. {damage_color}[{damage}]{c['reset']}")
@@ -435,18 +646,157 @@ class CombatHandler:
             # Apply damage
             killed = await defender.take_damage(damage, attacker)
 
+            # Assassin Intel accumulation on hit
+            if not killed and hasattr(attacker, 'intel_target') and attacker.intel_target == defender:
+                if getattr(attacker, 'char_class', '').lower() == 'assassin':
+                    intel_gain = 1
+                    old_intel = attacker.intel_points
+                    attacker.intel_points = min(10, attacker.intel_points + intel_gain)
+                    if attacker.intel_points > old_intel and hasattr(attacker, 'send'):
+                        await attacker.send(f"{c['cyan']}[Intel: {attacker.intel_points}/10]{c['reset']}")
+                        # Threshold messages
+                        thresholds = getattr(attacker, 'intel_thresholds', {})
+                        tname = defender.name
+                        if attacker.intel_points >= 3 and not thresholds.get(3):
+                            thresholds[3] = True
+                            await attacker.send(f"{c['bright_green']}You spot an opening in {tname}'s defenses! [Expose Weakness unlocked]{c['reset']}")
+                        if attacker.intel_points >= 6 and not thresholds.get(6):
+                            thresholds[6] = True
+                            await attacker.send(f"{c['bright_yellow']}You've mapped {tname}'s vital points! [Vital Strike unlocked]{c['reset']}")
+                        if attacker.intel_points >= 10 and not thresholds.get(10):
+                            thresholds[10] = True
+                            await attacker.send(f"{c['bright_red']}You know exactly how to kill {tname}. [Execute Contract unlocked]{c['reset']}")
+                        attacker.intel_thresholds = thresholds
+
+            # Ghost passive: big hit triggers 50% dodge
+            if not killed and hasattr(defender, 'char_class') and defender.char_class.lower() == 'assassin':
+                try:
+                    from talents import TalentManager
+                    if TalentManager.has_talent(defender, 'ghost') and damage > defender.max_hp * 0.2:
+                        defender.ghost_dodge_until = time.time() + 4  # ~1 round
+                        if hasattr(defender, 'send'):
+                            await defender.send(f"{c['cyan']}Ghost triggers! 50% dodge for 1 round.{c['reset']}")
+                except Exception:
+                    pass
+
+            # Decrement vendetta ticks
+            if getattr(defender, 'vendetta_ticks', 0) > 0:
+                defender.vendetta_ticks -= 1
+                if defender.vendetta_ticks <= 0:
+                    defender.vendetta_target = None
+                    defender.vendetta_bonus = 0
+                    defender.vendetta_from = None
+                    if hasattr(attacker, 'send'):
+                        c = attacker.config.COLORS
+                        await attacker.send(f"{c['yellow']}Your Vendetta has expired.{c['reset']}")
+
             # Add grudge for hunting AI (mob remembers who attacked them)
             if hasattr(defender, 'add_grudge') and hasattr(attacker, 'connection'):
                 # Defender is a mob, attacker is a player
                 defender.add_grudge(attacker, damage)
 
-            # Warrior rage generation on hit
-            if hasattr(attacker, 'rage') and hasattr(attacker, 'char_class'):
-                if attacker.char_class.lower() == 'warrior':
-                    rage_gain = 5
-                    if attacker.stance == 'berserk':
-                        rage_gain = int(rage_gain * 1.5)  # +50% rage in berserk
-                    attacker.rage = min(attacker.max_rage, attacker.rage + rage_gain)
+            # Thief Luck generation on hit
+            if hasattr(attacker, 'luck_points') and hasattr(attacker, 'char_class'):
+                if attacker.char_class.lower() == 'thief':
+                    luck_chance = 15
+                    try:
+                        from talents import TalentManager
+                        luck_chance += TalentManager.get_talent_rank(attacker, 'lucky_strikes') * 3
+                        # Hot streak: consecutive luck gains increase chance
+                        hs_rank = TalentManager.get_talent_rank(attacker, 'hot_streak')
+                        luck_chance += getattr(attacker, 'luck_streak', 0) * hs_rank * 2
+                    except Exception:
+                        pass
+                    gained_luck = False
+                    if is_crit:
+                        # Crits always grant luck
+                        gain = 1
+                        try:
+                            from talents import TalentManager
+                            if TalentManager.has_talent(attacker, 'loaded_dice'):
+                                gain = 2
+                        except Exception:
+                            pass
+                        if attacker.luck_points < 10:
+                            attacker.luck_points = min(10, attacker.luck_points + gain)
+                            gained_luck = True
+                    elif random.randint(1, 100) <= luck_chance:
+                        if attacker.luck_points < 10:
+                            attacker.luck_points = min(10, attacker.luck_points + 1)
+                            gained_luck = True
+                    if gained_luck:
+                        attacker.luck_streak = getattr(attacker, 'luck_streak', 0) + 1
+                        if hasattr(attacker, 'send'):
+                            await attacker.send(f"{c['bright_yellow']}[Luck: {attacker.luck_points}/10]{c['reset']}")
+                        # Lucky break: at 10, next hit is auto-crit
+                        try:
+                            from talents import TalentManager
+                            if attacker.luck_points >= 10 and TalentManager.has_talent(attacker, 'lucky_break'):
+                                attacker.rigged_dice_hits = max(getattr(attacker, 'rigged_dice_hits', 0), 1)
+                        except Exception:
+                            pass
+                    else:
+                        attacker.luck_streak = 0
+                    # Rigged dice guaranteed crits (consume)
+                    # (handled above in crit section... we'll hook it in crit calc)
+
+            # Paladin Holy Power generation on hit
+            if hasattr(attacker, 'holy_power') and hasattr(attacker, 'char_class'):
+                if attacker.char_class.lower() == 'paladin':
+                    hp_chance = 25
+                    try:
+                        from talents import TalentManager
+                        hp_chance += TalentManager.get_talent_rank(attacker, 'benediction') * 3
+                    except Exception:
+                        pass
+                    if getattr(attacker, 'active_oath', None) == 'vengeance':
+                        hp_chance += 10
+                    elif getattr(attacker, 'active_oath', None) == 'justice':
+                        hp_chance += 5
+                    if random.randint(1, 100) <= hp_chance and attacker.holy_power < 5:
+                        attacker.holy_power = min(5, attacker.holy_power + 1)
+                        if hasattr(attacker, 'send'):
+                            await attacker.send(f"{c['bright_yellow']}[Holy Power: {attacker.holy_power}/5]{c['reset']}")
+
+            # Cleric Faith generation (shadow form: damage builds faith)
+            if hasattr(attacker, 'faith') and hasattr(attacker, 'char_class'):
+                if attacker.char_class.lower() == 'cleric' and getattr(attacker, 'shadow_form', False):
+                    if attacker.faith < 10:
+                        attacker.faith = min(10, attacker.faith + 1)
+                        if hasattr(attacker, 'send'):
+                            await attacker.send(f"{c['bright_magenta']}[Faith: {attacker.faith}/10]{c['reset']}")
+
+            # Warrior rage generation removed — warriors now use Combo Chain system
+            # (rage attribute kept for save compatibility but unused)
+
+            # Ranger focus generation on hit
+            if hasattr(attacker, 'focus') and hasattr(attacker, 'char_class'):
+                if attacker.char_class.lower() == 'ranger':
+                    focus_gain = 10
+                    # Bonus focus on marked target
+                    if getattr(attacker, 'hunters_mark_target', None) == defender:
+                        focus_gain += 5
+                    # Talent: master_marksman
+                    try:
+                        from talents import TalentManager
+                        focus_gain += TalentManager.get_talent_rank(attacker, 'master_marksman') * 2
+                    except Exception:
+                        pass
+                    old_focus = attacker.focus
+                    attacker.focus = min(100, attacker.focus + focus_gain)
+                    for threshold in [25, 50, 75, 100]:
+                        if old_focus < threshold <= attacker.focus:
+                            if hasattr(attacker, 'send'):
+                                await attacker.send(f"{c['bright_green']}[Focus: {attacker.focus}/100]{c['reset']}")
+                            break
+
+            # Bard inspiration generation on hit (25% chance)
+            if hasattr(attacker, 'inspiration') and hasattr(attacker, 'char_class'):
+                if attacker.char_class.lower() == 'bard':
+                    if random.randint(1, 100) <= 25 and attacker.inspiration < 10:
+                        attacker.inspiration = min(10, attacker.inspiration + 1)
+                        if hasattr(attacker, 'send'):
+                            await attacker.send(f"{c['bright_yellow']}[Inspiration: {attacker.inspiration}/10]{c['reset']}")
 
             # Thief combo point generation on hit
             if hasattr(attacker, 'combo_points') and hasattr(attacker, 'char_class'):
@@ -779,7 +1129,71 @@ class CombatHandler:
     @classmethod
     async def handle_death(cls, killer: 'Character', victim: 'Character'):
         """Handle a combat death."""
+        # Guard against double-death processing
+        if getattr(victim, '_death_processed', False):
+            return
+        victim._death_processed = True
+
+        # Reset Intel for any assassin whose intel_target was the victim
+        if victim.room:
+            for char in victim.room.characters:
+                if hasattr(char, 'intel_target') and char.intel_target == victim:
+                    char.intel_target = None
+                    char.intel_points = 0
+                    char.intel_thresholds = {}
+
+        # Adrenaline passive: kill restores 20% HP
+        try:
+            from talents import TalentManager
+            if hasattr(killer, 'char_class') and killer.char_class.lower() == 'assassin':
+                if TalentManager.has_talent(killer, 'adrenaline'):
+                    heal = int(killer.max_hp * 0.20)
+                    killer.hp = min(killer.max_hp, killer.hp + heal)
+                    if hasattr(killer, 'send'):
+                        c_k = killer.config.COLORS
+                        await killer.send(f"{c_k['bright_green']}Adrenaline! You recover {heal} HP!{c_k['reset']}")
+        except Exception:
+            pass
+        
         c = cls.config.COLORS
+
+        # Duel check — if this is a duel, end it at 1 HP instead of death
+        if hasattr(killer, 'dueling') and killer.dueling == victim:
+            victim.hp = 1
+            await cls.end_combat(killer, victim)
+            wager = getattr(killer, 'duel_wager_amount', 0)
+            if wager > 0:
+                victim.gold = max(0, victim.gold - wager)
+                killer.gold += wager
+            if victim.room:
+                await victim.room.send_to_room(
+                    f"{c['bright_yellow']}═══ DUEL OVER ═══ {killer.name} defeats {victim.name}!"
+                    + (f" ({wager} gold changes hands!)" if wager else "")
+                    + f"{c['reset']}"
+                )
+            killer.dueling = None
+            victim.dueling = None
+            killer.duel_wager_amount = 0
+            victim.duel_wager_amount = 0
+            return
+        if hasattr(victim, 'dueling') and victim.dueling == killer:
+            victim.hp = 1
+            await cls.end_combat(killer, victim)
+            wager = getattr(victim, 'duel_wager_amount', 0)
+            if wager > 0:
+                victim.gold = max(0, victim.gold - wager)
+                killer.gold += wager
+            if victim.room:
+                await victim.room.send_to_room(
+                    f"{c['bright_yellow']}═══ DUEL OVER ═══ {killer.name} defeats {victim.name}!"
+                    + (f" ({wager} gold changes hands!)" if wager else "")
+                    + f"{c['reset']}"
+                )
+            killer.dueling = None
+            victim.dueling = None
+            killer.duel_wager_amount = 0
+            victim.duel_wager_amount = 0
+            return
 
         # Ensure equipped items are lootable
         if hasattr(victim, 'equipment') and hasattr(victim, 'inventory'):
@@ -972,7 +1386,7 @@ class CombatHandler:
             if getattr(victim, 'is_boss', False):
                 boss_achievement = getattr(victim, 'boss_achievement', None)
                 if boss_achievement:
-                    await AchievementManager._award_async(killer, boss_achievement)
+                    await AchievementManager.unlock(killer, boss_achievement)
                     try:
                         from collection_system import CollectionManager
                         await CollectionManager.record_trophy(killer, boss_achievement)
@@ -984,7 +1398,43 @@ class CombatHandler:
                     if hasattr(killer, 'send'):
                         await killer.send(f"{c['bright_magenta']}You are now known as {boss_title}!{c['reset']}")
 
-        # Soul Harvest for necromancers
+        # Necromancer Soul Shard generation on kill
+        if hasattr(killer, 'soul_shards') and hasattr(killer, 'char_class'):
+            if killer.char_class.lower() == 'necromancer':
+                gain = 1
+                # Undead kills grant +2
+                if 'undead' in getattr(victim, 'flags', set()) or 'undead' in getattr(victim, 'race', '').lower():
+                    gain = 2
+                if killer.soul_shards < 10:
+                    killer.soul_shards = min(10, killer.soul_shards + gain)
+                    if hasattr(killer, 'send'):
+                        await killer.send(f"{c['bright_cyan']}[Soul Shards: {killer.soul_shards}/10]{c['reset']}")
+
+        # Bard Inspiration from group member kills
+        if hasattr(killer, 'group') and killer.group:
+            for member in killer.group.members:
+                if hasattr(member, 'char_class') and str(member.char_class).lower() == 'bard':
+                    if hasattr(member, 'inspiration') and member.room == killer.room:
+                        if member.inspiration < 10:
+                            member.inspiration = min(10, member.inspiration + 1)
+                            if hasattr(member, 'send'):
+                                await member.send(f"{c['bright_yellow']}[Inspiration: {member.inspiration}/10] (ally kill){c['reset']}")
+
+        # Thief Luck decay after combat (reset streak)
+        if hasattr(killer, 'luck_streak') and hasattr(killer, 'char_class'):
+            if killer.char_class.lower() == 'thief':
+                killer.luck_streak = 0
+                killer.second_chance_used = False
+
+        # Cleric Faith from holy kills
+        if hasattr(killer, 'faith') and hasattr(killer, 'char_class'):
+            if killer.char_class.lower() == 'cleric' and not getattr(killer, 'shadow_form', False):
+                if killer.faith < 10:
+                    killer.faith = min(10, killer.faith + 1)
+                    if hasattr(killer, 'send'):
+                        await killer.send(f"{c['bright_yellow']}[Faith: {killer.faith}/10]{c['reset']}")
+
+        # Soul Harvest for necromancers (legacy system)
         if hasattr(killer, 'char_class') and killer.char_class == 'necromancer':
             skill_level = getattr(killer, 'skills', {}).get('soul_harvest', 0)
             if skill_level > 0:
@@ -1102,6 +1552,11 @@ class CombatHandler:
             else:
                 corpse.contents = []
 
+            # Player corpses last longer (10 min), mob corpses 5 min
+            if hasattr(victim, 'connection'):
+                corpse.decay_timer = 100  # ~10 min real time (player)
+            else:
+                corpse.decay_timer = 50  # ~5 min real time (mob)
             victim.room.items.append(corpse)
 
         # End combat
@@ -1355,6 +1810,18 @@ class CombatHandler:
                     await player.send(f"{c['bright_red']}*** EXECUTION! ***{c['reset']}")
                     damage = max(damage, getattr(target, 'hp', 1))
 
+            # Shadow Mend: stealth damage heals 10%
+            try:
+                from talents import TalentManager
+                if TalentManager.has_talent(player, 'shadow_mend'):
+                    if 'hidden' in getattr(player, 'flags', set()) or 'sneaking' in getattr(player, 'flags', set()):
+                        heal = int(damage * 0.10)
+                        if heal > 0:
+                            player.hp = min(player.max_hp, player.hp + heal)
+                            await player.send(f"{c['bright_green']}Shadow Mend heals you for {heal} HP!{c['reset']}")
+            except Exception:
+                pass
+
             await player.send(f"{c['bright_green']}You backstab {target.name}! [{damage}]{c['reset']}")
             if hasattr(target, 'send'):
                 await target.send(f"{c['bright_red']}{player.name} backstabs you! [{damage}]{c['reset']}")
@@ -1363,7 +1830,48 @@ class CombatHandler:
                 exclude=[player, target]
             )
 
+            # Auto-mark target for Intel on backstab
+            if getattr(player, 'char_class', '').lower() == 'assassin':
+                if not getattr(player, 'intel_target', None) or player.intel_target != target:
+                    player.intel_target = target
+                    player.intel_points = 0
+                    player.intel_thresholds = {}
+                    await player.send(f"{c['cyan']}You automatically mark {target.name} for study.{c['reset']}")
+
             killed = await target.take_damage(damage, player)
+
+            # Assassin Intel from backstab
+            if hasattr(player, 'intel_target') and player.intel_target == target and not killed:
+                if getattr(player, 'char_class', '').lower() == 'assassin':
+                    from_stealth = 'hidden' in getattr(player, 'flags', set()) or 'sneaking' in getattr(player, 'flags', set())
+                    try:
+                        from talents import TalentManager
+                        intel_backstab_talent = TalentManager.has_talent(player, 'intel_backstab')
+                    except Exception:
+                        intel_backstab_talent = False
+                    if from_stealth and intel_backstab_talent:
+                        intel_gain = 3
+                    elif from_stealth:
+                        intel_gain = 3
+                    else:
+                        intel_gain = 1
+                    old_intel = player.intel_points
+                    player.intel_points = min(10, player.intel_points + intel_gain)
+                    if player.intel_points > old_intel:
+                        await player.send(f"{c['cyan']}[Intel: {player.intel_points}/10]{c['reset']}")
+                        thresholds = getattr(player, 'intel_thresholds', {})
+                        tname = target.name
+                        if player.intel_points >= 3 and not thresholds.get(3):
+                            thresholds[3] = True
+                            await player.send(f"{c['bright_green']}You spot an opening in {tname}'s defenses! [Expose Weakness unlocked]{c['reset']}")
+                        if player.intel_points >= 6 and not thresholds.get(6):
+                            thresholds[6] = True
+                            await player.send(f"{c['bright_yellow']}You've mapped {tname}'s vital points! [Vital Strike unlocked]{c['reset']}")
+                        if player.intel_points >= 10 and not thresholds.get(10):
+                            thresholds[10] = True
+                            await player.send(f"{c['bright_red']}You know exactly how to kill {tname}. [Execute Contract unlocked]{c['reset']}")
+                        player.intel_thresholds = thresholds
+
             if killed:
                 await cls.handle_death(player, target)
             else:

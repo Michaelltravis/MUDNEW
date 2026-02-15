@@ -18,7 +18,13 @@
           "to_room": 5201,
           "description": "You see devastation everywhere.  Houses lie in ruin and skeletons litter the streets.  You see strange beasts stalking the shadows."
         }
-      }
+      },
+      "obj_resets": [
+        {
+          "vnum": 5295,
+          "max": 1
+        }
+      ]
     },
     "5201": {
       "vnum": 5201,
@@ -43,7 +49,13 @@
           "to_room": 5202,
           "description": "Main Street lies this way."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 5298,
+          "max": 1
+        }
+      ]
     },
     "5202": {
       "vnum": 5202,
@@ -58,7 +70,7 @@
         },
         "east": {
           "to_room": 5201,
-          "description": ""
+          "description": "The cobblestones lead to Main Street"
         },
         "south": {
           "to_room": 5232,
@@ -273,15 +285,15 @@
       "exits": {
         "east": {
           "to_room": 5243,
-          "description": ""
+          "description": "The cobblestones lead to A Back Alley"
         },
         "south": {
           "to_room": 5210,
-          "description": ""
+          "description": "The cobblestones lead to A Side Street"
         },
         "west": {
           "to_room": 5228,
-          "description": ""
+          "description": "The cobblestones lead to A Back Alley"
         }
       },
       "mob_resets": [
@@ -300,7 +312,7 @@
       "exits": {
         "north": {
           "to_room": 5209,
-          "description": ""
+          "description": "The cobblestones lead to A Side Street"
         },
         "east": {
           "to_room": 5244,
@@ -314,13 +326,19 @@
         },
         "south": {
           "to_room": 5211,
-          "description": ""
+          "description": "The cobblestones lead to A Side Street"
         },
         "west": {
           "to_room": 5226,
           "description": "A small clay dwelling sits here."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 5299,
+          "max": 1
+        }
+      ]
     },
     "5211": {
       "vnum": 5211,
@@ -331,7 +349,7 @@
       "exits": {
         "north": {
           "to_room": 5210,
-          "description": ""
+          "description": "The cobblestones lead to A Side Street"
         },
         "east": {
           "to_room": 5237,
@@ -370,7 +388,7 @@
         },
         "south": {
           "to_room": 5213,
-          "description": ""
+          "description": "The cobblestones lead to A Side Street"
         },
         "west": {
           "to_room": 5221,
@@ -387,7 +405,7 @@
       "exits": {
         "north": {
           "to_room": 5212,
-          "description": ""
+          "description": "The cobblestones lead to A Side Street"
         },
         "east": {
           "to_room": 5230,
@@ -395,7 +413,7 @@
         },
         "south": {
           "to_room": 5214,
-          "description": ""
+          "description": "The cobblestones lead to A Side Street"
         },
         "west": {
           "to_room": 5219,
@@ -412,15 +430,15 @@
       "exits": {
         "north": {
           "to_room": 5213,
-          "description": ""
+          "description": "The cobblestones lead to A Side Street"
         },
         "east": {
           "to_room": 5229,
-          "description": ""
+          "description": "The cobblestones lead to An Abandoned Shop"
         },
         "west": {
           "to_room": 5218,
-          "description": ""
+          "description": "The cobblestones lead to A Back Alley"
         }
       },
       "obj_resets": [
@@ -439,15 +457,15 @@
       "exits": {
         "north": {
           "to_room": 5216,
-          "description": ""
+          "description": "The cobblestones lead to A Back Alley"
         },
         "east": {
           "to_room": 5218,
-          "description": ""
+          "description": "The cobblestones lead to A Back Alley"
         },
         "up": {
           "to_room": 5247,
-          "description": ""
+          "description": "The cobblestones lead to The South-West Watchtower"
         }
       }
     },
@@ -491,7 +509,7 @@
         },
         "south": {
           "to_room": 5216,
-          "description": ""
+          "description": "The cobblestones lead to A Back Alley"
         }
       },
       "mob_resets": [
@@ -618,7 +636,7 @@
       "exits": {
         "north": {
           "to_room": 5223,
-          "description": ""
+          "description": "The cobblestones lead to A Back Alley"
         },
         "east": {
           "to_room": 5225,
@@ -643,7 +661,7 @@
         },
         "south": {
           "to_room": 5222,
-          "description": ""
+          "description": "The cobblestones lead to The Tapestry Stand"
         }
       }
     },
@@ -656,11 +674,11 @@
       "exits": {
         "east": {
           "to_room": 5228,
-          "description": ""
+          "description": "The cobblestones lead to A Back Alley"
         },
         "south": {
           "to_room": 5223,
-          "description": ""
+          "description": "The cobblestones lead to A Back Alley"
         },
         "up": {
           "to_room": 5246,
@@ -762,11 +780,11 @@
       "exits": {
         "east": {
           "to_room": 5209,
-          "description": ""
+          "description": "The cobblestones lead to A Side Street"
         },
         "west": {
           "to_room": 5224,
-          "description": ""
+          "description": "The cobblestones lead to Under The Watchtower"
         }
       }
     },
@@ -843,7 +861,7 @@
         },
         "east": {
           "to_room": 5234,
-          "description": ""
+          "description": "The Private Gardens And Courtyard Of Thalos"
         }
       },
       "obj_resets": [
@@ -876,7 +894,7 @@
         },
         "west": {
           "to_room": 5212,
-          "description": ""
+          "description": "The cobblestones lead to A Side Street"
         }
       },
       "mob_resets": [
@@ -899,11 +917,11 @@
       "exits": {
         "north": {
           "to_room": 5233,
-          "description": ""
+          "description": "The cobblestones lead to The City Hall Foyer"
         },
         "west": {
           "to_room": 5231,
-          "description": ""
+          "description": "The cobblestones lead to The South Wing Of The City Hall"
         }
       },
       "mob_resets": [
@@ -978,7 +996,7 @@
       "exits": {
         "east": {
           "to_room": 5238,
-          "description": ""
+          "description": "The cobblestones lead to A Small Shack"
         },
         "west": {
           "to_room": 5211,
@@ -1007,7 +1025,7 @@
       "exits": {
         "west": {
           "to_room": 5237,
-          "description": ""
+          "description": "The cobblestones lead to A Tall Dwelling"
         }
       },
       "mob_resets": [
@@ -1044,7 +1062,7 @@
       "exits": {
         "north": {
           "to_room": 5240,
-          "description": ""
+          "description": "The cobblestones lead to A Back Alley"
         },
         "south": {
           "to_room": 5201,
@@ -1065,7 +1083,7 @@
         },
         "south": {
           "to_room": 5239,
-          "description": ""
+          "description": "The cobblestones lead to A Back Alley"
         }
       },
       "mob_resets": [
@@ -1084,11 +1102,11 @@
       "exits": {
         "south": {
           "to_room": 5240,
-          "description": ""
+          "description": "The cobblestones lead to A Back Alley"
         },
         "west": {
           "to_room": 5243,
-          "description": ""
+          "description": "The cobblestones lead to A Back Alley"
         },
         "up": {
           "to_room": 5248,
@@ -1113,7 +1131,7 @@
       "exits": {
         "north": {
           "to_room": 5243,
-          "description": ""
+          "description": "The cobblestones lead to A Back Alley"
         },
         "west": {
           "to_room": 5244,
@@ -1146,7 +1164,7 @@
         },
         "south": {
           "to_room": 5242,
-          "description": ""
+          "description": "The cobblestones lead to A Bath House"
         },
         "west": {
           "to_room": 5209,
@@ -1165,7 +1183,7 @@
       "exits": {
         "east": {
           "to_room": 5242,
-          "description": ""
+          "description": "The cobblestones lead to A Bath House"
         },
         "west": {
           "to_room": 5210,
@@ -1188,7 +1206,12 @@
         "death",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "down": {
+          "to_room": 5237,
+          "description": "The first floor is below."
+        }
+      }
     },
     "5246": {
       "vnum": 5246,
@@ -1264,7 +1287,12 @@
         "death",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "up": {
+          "to_room": 5248,
+          "description": "The watchtower is above."
+        }
+      }
     },
     "5250": {
       "vnum": 5250,
@@ -1314,10 +1342,12 @@
       "flags": [],
       "exits": {
         "west": {
-          "to_room": 5232
+          "to_room": 5232,
+          "description": "The cobblestones lead to The City Hall"
         },
         "south": {
-          "to_room": 5234
+          "to_room": 5234,
+          "description": "The Private Gardens And Courtyard Of Thalos"
         }
       },
       "mob_resets": [],
@@ -1722,6 +1752,53 @@
         "stay_zone"
       ],
       "description": "This is a creature with the upper torso of a beautiful woman, but the lower\nbody of a four-legged beast.  She licks her lips as she looks at you greedily."
+    },
+    "5298": {
+      "vnum": 5298,
+      "name": "street vendor",
+      "short_desc": "a loud street vendor",
+      "long_desc": "A street vendor stands here, hawking questionable wares from a rickety cart.",
+      "description": "He's missing two fingers on his left hand and has the shrewd eyes of someone who's cheated death \u2014 and customers \u2014 more times than he can count.",
+      "level": 35,
+      "alignment": 0,
+      "hp_dice": "35d10+600",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The vendor grins wide. 'Finest goods in Thalos! Well, maybe not finest, but definitely cheapest. Say, you hear about the new tax the council pushed through? Bunch of crooks, the lot of them. At least I'm honest about my dishonesty!'",
+        "politics": "He leans in conspiratorially. 'Word is the harbor master's been taking bribes from pirates. That's why the docks have been so dangerous lately.'",
+        "default": "The vendor waves a hand. 'Browse all you like! Everything's negotiable, except my prices \u2014 those are final.'",
+        "next": "The vendor glances around nervously. 'Between you and me, if you're looking for real adventure, the Drow City lies hidden beneath the earth \u2014 speak to Zilara the Shadow Exile if you dare. The deep mines of Moria also hold treasures beyond imagining... and horrors to match.'"
+      }
+    },
+    "5299": {
+      "vnum": 5299,
+      "name": "drunk sailor",
+      "short_desc": "a drunk sailor",
+      "long_desc": "A drunk sailor slumps against a barrel here, reeking of cheap rum.",
+      "description": "His weathered face tells tales of a thousand storms, and his bloodshot eyes struggle to focus on anything. A faded tattoo of a kraken adorns his forearm.",
+      "level": 30,
+      "alignment": 0,
+      "hp_dice": "30d10+500",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The sailor belches loudly. 'I've shailed \u2014 sailed \u2014 every ocean there is, and I'll tell you this for free: there's things in the deep water that'd make a dragon weep. Saw a tentacle once, thick as a mast, just... reaching up from below.'",
+        "sea": "He clutches his rum bottle. 'The eastern waters are the worst. Ships vanish there. No wreckage, no bodies. Just... gone. I won't sail east again, not for all the gold in Thalos.'",
+        "default": "The sailor hiccups. 'Buy me a drink and I'll tell you about the time I outran a sea serpent... probably.'"
+      }
     }
   },
   "objects": {
@@ -1733,7 +1810,10 @@
       "item_type": "armor",
       "weight": 60,
       "value": 12000,
-      "armor_bonus": 6
+      "armor_bonus": 6,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 1
     },
     "5201": {
       "vnum": 5201,
@@ -1743,7 +1823,10 @@
       "item_type": "armor",
       "weight": 10,
       "value": 5000,
-      "armor_bonus": 7
+      "armor_bonus": 7,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "5202": {
       "vnum": 5202,
@@ -1753,7 +1836,8 @@
       "item_type": "armor",
       "weight": 10,
       "value": 2200,
-      "armor_bonus": 7
+      "armor_bonus": 7,
+      "type": "treasure"
     },
     "5203": {
       "vnum": 5203,
@@ -1763,7 +1847,10 @@
       "item_type": "armor",
       "weight": 10,
       "value": 2450,
-      "armor_bonus": 7
+      "armor_bonus": 7,
+      "type": "armor",
+      "wear_slot": "legs",
+      "armor": 2
     },
     "5204": {
       "vnum": 5204,
@@ -1773,7 +1860,10 @@
       "item_type": "armor",
       "weight": 6,
       "value": 800,
-      "armor_bonus": 4
+      "armor_bonus": 4,
+      "type": "armor",
+      "wear_slot": "feet",
+      "armor": 2
     },
     "5205": {
       "vnum": 5205,
@@ -1783,7 +1873,10 @@
       "item_type": "armor",
       "weight": 10,
       "value": 5400,
-      "armor_bonus": 7
+      "armor_bonus": 7,
+      "type": "armor",
+      "wear_slot": "feet",
+      "armor": 2
     },
     "5206": {
       "vnum": 5206,
@@ -1793,7 +1886,8 @@
       "item_type": "armor",
       "weight": 6,
       "value": 4200,
-      "armor_bonus": 4
+      "armor_bonus": 4,
+      "type": "treasure"
     },
     "5207": {
       "vnum": 5207,
@@ -1803,7 +1897,8 @@
       "item_type": "armor",
       "weight": 125,
       "value": 13000,
-      "armor_bonus": 5
+      "armor_bonus": 5,
+      "type": "treasure"
     },
     "5208": {
       "vnum": 5208,
@@ -1813,7 +1908,10 @@
       "item_type": "armor",
       "weight": 5,
       "value": 500,
-      "armor_bonus": 5
+      "armor_bonus": 5,
+      "type": "armor",
+      "wear_slot": "shield",
+      "armor": 3
     },
     "5210": {
       "vnum": 5210,
@@ -1822,7 +1920,8 @@
       "room_desc": "A jet black potion sits upright waiting to be taken.",
       "item_type": "potion",
       "weight": 5,
-      "value": 6000
+      "value": 6000,
+      "type": "potion"
     },
     "5211": {
       "vnum": 5211,
@@ -1831,7 +1930,8 @@
       "room_desc": "A small orange potion lies here.",
       "item_type": "potion",
       "weight": 10,
-      "value": 7500
+      "value": 7500,
+      "type": "potion"
     },
     "5213": {
       "vnum": 5213,
@@ -1840,7 +1940,10 @@
       "room_desc": "A green serpentine staff has been left here.",
       "item_type": "staff",
       "weight": 12,
-      "value": 6600
+      "value": 6600,
+      "type": "weapon",
+      "weapon_type": "pound",
+      "damage_dice": "1d6"
     },
     "5214": {
       "vnum": 5214,
@@ -1850,7 +1953,8 @@
       "item_type": "light",
       "weight": 30,
       "value": 3050,
-      "light_hours": 72
+      "light_hours": 72,
+      "type": "treasure"
     },
     "5215": {
       "vnum": 5215,
@@ -1859,7 +1963,8 @@
       "room_desc": "A worn and tattered scroll has been left here.",
       "item_type": "scroll",
       "weight": 15,
-      "value": 11000
+      "value": 11000,
+      "type": "scroll"
     },
     "5216": {
       "vnum": 5216,
@@ -1868,7 +1973,8 @@
       "room_desc": "A bound scroll of detection lies at your feet.",
       "item_type": "scroll",
       "weight": 15,
-      "value": 4200
+      "value": 4200,
+      "type": "scroll"
     },
     "5217": {
       "vnum": 5217,
@@ -1877,7 +1983,8 @@
       "room_desc": "A brilliant silver flute glimmers from beneath a rock.",
       "item_type": "staff",
       "weight": 3,
-      "value": 10500
+      "value": 10500,
+      "type": "treasure"
     },
     "5218": {
       "vnum": 5218,
@@ -1887,7 +1994,8 @@
       "item_type": "armor",
       "weight": 11,
       "value": 2500,
-      "armor_bonus": 5
+      "armor_bonus": 5,
+      "type": "treasure"
     },
     "5219": {
       "vnum": 5219,
@@ -1897,7 +2005,9 @@
       "item_type": "food",
       "weight": 20,
       "value": 100,
-      "nutrition": 24
+      "nutrition": 24,
+      "type": "food",
+      "food_value": 12
     },
     "5220": {
       "vnum": 5220,
@@ -1906,7 +2016,8 @@
       "room_desc": "a large cracked fountain",
       "item_type": "fountain",
       "weight": 0,
-      "value": 0
+      "value": 0,
+      "type": "furniture"
     },
     "5221": {
       "vnum": 5221,
@@ -1917,7 +2028,8 @@
       "weight": 22,
       "value": 55000,
       "damage_dice": "3d6",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "5222": {
       "vnum": 5222,
@@ -1927,7 +2039,10 @@
       "item_type": "armor",
       "weight": 6,
       "value": 1300,
-      "armor_bonus": 1
+      "armor_bonus": 1,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 1
     },
     "5223": {
       "vnum": 5223,
@@ -1937,7 +2052,10 @@
       "item_type": "armor",
       "weight": 12,
       "value": 14500,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "about",
+      "armor": 1
     },
     "5224": {
       "vnum": 5224,
@@ -1946,7 +2064,8 @@
       "room_desc": "A small, engraved ebony seal is here.",
       "item_type": "key",
       "weight": 2,
-      "value": 0
+      "value": 0,
+      "type": "treasure"
     },
     "5225": {
       "vnum": 5225,
@@ -1957,7 +2076,8 @@
       "weight": 0,
       "value": 0,
       "capacity": 100,
-      "key_vnum": 5224
+      "key_vnum": 5224,
+      "type": "furniture"
     },
     "5226": {
       "vnum": 5226,
@@ -1966,7 +2086,8 @@
       "room_desc": "A small, engraved ivory seal lies here.",
       "item_type": "key",
       "weight": 2,
-      "value": 0
+      "value": 0,
+      "type": "treasure"
     },
     "5227": {
       "vnum": 5227,
@@ -1977,7 +2098,8 @@
       "weight": 0,
       "value": 0,
       "capacity": 500,
-      "key_vnum": 5226
+      "key_vnum": 5226,
+      "type": "container"
     },
     "5228": {
       "vnum": 5228,
@@ -1987,7 +2109,8 @@
       "item_type": "food",
       "weight": 20,
       "value": 0,
-      "nutrition": 50
+      "nutrition": 50,
+      "type": "treasure"
     },
     "5230": {
       "vnum": 5230,
@@ -1996,7 +2119,8 @@
       "room_desc": "A pale blue stone sits here.",
       "item_type": "treasure",
       "weight": 10,
-      "value": 5500
+      "value": 5500,
+      "type": "treasure"
     },
     "5231": {
       "vnum": 5231,
@@ -2005,7 +2129,8 @@
       "room_desc": "A pretty scarlet and blue stone has been dropped here.",
       "item_type": "treasure",
       "weight": 10,
-      "value": 5500
+      "value": 5500,
+      "type": "treasure"
     },
     "5232": {
       "vnum": 5232,
@@ -2014,7 +2139,8 @@
       "room_desc": "A small incandescent blue stone lies here.",
       "item_type": "treasure",
       "weight": 10,
-      "value": 5500
+      "value": 5500,
+      "type": "treasure"
     },
     "5233": {
       "vnum": 5233,
@@ -2023,7 +2149,8 @@
       "room_desc": "Someone has left a deep red stone here.",
       "item_type": "treasure",
       "weight": 10,
-      "value": 5500
+      "value": 5500,
+      "type": "treasure"
     },
     "5234": {
       "vnum": 5234,
@@ -2032,7 +2159,8 @@
       "room_desc": "A tiny pink stone lies at your feet.",
       "item_type": "treasure",
       "weight": 10,
-      "value": 5500
+      "value": 5500,
+      "type": "treasure"
     },
     "5235": {
       "vnum": 5235,
@@ -2041,7 +2169,8 @@
       "room_desc": "A lovely, pearly white stone has been carelessly left here.",
       "item_type": "treasure",
       "weight": 10,
-      "value": 8700
+      "value": 8700,
+      "type": "treasure"
     },
     "5236": {
       "vnum": 5236,
@@ -2050,7 +2179,8 @@
       "room_desc": "A beautiful pale lavender stone lies here.",
       "item_type": "treasure",
       "weight": 10,
-      "value": 4300
+      "value": 4300,
+      "type": "treasure"
     },
     "5237": {
       "vnum": 5237,
@@ -2059,7 +2189,8 @@
       "room_desc": "A stunning lavender and green stone rests on the ground.",
       "item_type": "treasure",
       "weight": 10,
-      "value": 4700
+      "value": 4700,
+      "type": "treasure"
     },
     "5238": {
       "vnum": 5238,
@@ -2068,7 +2199,8 @@
       "room_desc": "A stone is here, sort of a dusty rose color and very pretty.",
       "item_type": "treasure",
       "weight": 10,
-      "value": 9800
+      "value": 9800,
+      "type": "treasure"
     },
     "5239": {
       "vnum": 5239,
@@ -2077,7 +2209,8 @@
       "room_desc": "You can barely make out a dull grey stone on the ground.",
       "item_type": "treasure",
       "weight": 10,
-      "value": 20
+      "value": 20,
+      "type": "treasure"
     },
     "5240": {
       "vnum": 5240,
@@ -2086,7 +2219,8 @@
       "room_desc": "A stunningly vibrant purple stone attracts your attention.",
       "item_type": "treasure",
       "weight": 10,
-      "value": 10200
+      "value": 10200,
+      "type": "treasure"
     },
     "5241": {
       "vnum": 5241,
@@ -2095,7 +2229,8 @@
       "room_desc": "A bright pink and green stone has been left here.",
       "item_type": "treasure",
       "weight": 10,
-      "value": 6600
+      "value": 6600,
+      "type": "treasure"
     },
     "5242": {
       "vnum": 5242,
@@ -2104,7 +2239,8 @@
       "room_desc": "A pale green stone lies here collecting dust.",
       "item_type": "treasure",
       "weight": 10,
-      "value": 7100
+      "value": 7100,
+      "type": "treasure"
     },
     "5243": {
       "vnum": 5243,
@@ -2113,7 +2249,8 @@
       "room_desc": "An odd clear stone lies at your feet.",
       "item_type": "treasure",
       "weight": 10,
-      "value": 8900
+      "value": 8900,
+      "type": "treasure"
     },
     "5244": {
       "vnum": 5244,
@@ -2122,7 +2259,8 @@
       "room_desc": "A large iridescent stone has been left here.",
       "item_type": "treasure",
       "weight": 10,
-      "value": 3700
+      "value": 3700,
+      "type": "treasure"
     },
     "5250": {
       "vnum": 5250,
@@ -2131,7 +2269,8 @@
       "room_desc": "A mandolin lies against the wall.",
       "item_type": "staff",
       "weight": 20,
-      "value": 3000
+      "value": 3000,
+      "type": "treasure"
     },
     "5251": {
       "vnum": 5251,
@@ -2140,7 +2279,8 @@
       "room_desc": "A battered golden harp has been tipped over.",
       "item_type": "staff",
       "weight": 100,
-      "value": 2500
+      "value": 2500,
+      "type": "treasure"
     },
     "9401": {
       "vnum": 9401,
@@ -2166,7 +2306,8 @@
           "value": 30
         }
       ],
-      "set_id": 52
+      "set_id": 52,
+      "type": "treasure"
     },
     "9402": {
       "vnum": 9402,
@@ -2192,7 +2333,8 @@
           "value": 1
         }
       ],
-      "set_id": 52
+      "set_id": 52,
+      "type": "treasure"
     },
     "9403": {
       "vnum": 9403,
@@ -2212,7 +2354,8 @@
           "value": 3
         }
       ],
-      "set_id": 52
+      "set_id": 52,
+      "type": "weapon"
     },
     "9404": {
       "vnum": 9404,
@@ -2231,7 +2374,9 @@
           "value": 1
         }
       ],
-      "set_id": 52
+      "set_id": 52,
+      "type": "armor",
+      "armor": 3
     },
     "9405": {
       "vnum": 9405,
@@ -2249,7 +2394,8 @@
           "value": 3
         }
       ],
-      "set_id": 52
+      "set_id": 52,
+      "type": "treasure"
     },
     "9406": {
       "vnum": 9406,
@@ -2271,7 +2417,8 @@
           "value": 25
         }
       ],
-      "set_id": 52
+      "set_id": 52,
+      "type": "treasure"
     },
     "9407": {
       "vnum": 9407,
@@ -2289,7 +2436,8 @@
           "value": 3
         }
       ],
-      "set_id": 52
+      "set_id": 52,
+      "type": "treasure"
     },
     "9408": {
       "vnum": 9408,
@@ -2309,7 +2457,8 @@
           "value": 3
         }
       ],
-      "set_id": 52
+      "set_id": 52,
+      "type": "treasure"
     },
     "9409": {
       "vnum": 9409,
@@ -2333,7 +2482,8 @@
           "value": 1
         }
       ],
-      "set_id": 52
+      "set_id": 52,
+      "type": "weapon"
     },
     "9410": {
       "vnum": 9410,
@@ -2351,7 +2501,9 @@
           "value": 2
         }
       ],
-      "set_id": 52
+      "set_id": 52,
+      "type": "armor",
+      "armor": 0
     },
     "9411": {
       "vnum": 9411,
@@ -2364,7 +2516,9 @@
       "value": 4000,
       "wear_slot": "about",
       "armor_bonus": 2,
-      "set_id": 52
+      "set_id": 52,
+      "type": "armor",
+      "armor": 1
     },
     "52090": {
       "vnum": 52090,
@@ -2389,7 +2543,9 @@
           "type": "sneak",
           "value": 5
         }
-      ]
+      ],
+      "type": "armor",
+      "armor": 2
     },
     "52091": {
       "vnum": 52091,
@@ -2410,7 +2566,8 @@
           "type": "heal_power",
           "value": 12
         }
-      ]
+      ],
+      "type": "treasure"
     },
     "52092": {
       "vnum": 52092,
@@ -2431,7 +2588,9 @@
           "type": "vampiric_touch",
           "value": 12
         }
-      ]
+      ],
+      "type": "armor",
+      "armor": 0
     },
     "52093": {
       "vnum": 52093,
@@ -2452,7 +2611,20 @@
           "type": "turn_undead",
           "value": 12
         }
-      ]
+      ],
+      "type": "light",
+      "light_hours": 24
+    },
+    "5295": {
+      "vnum": 5295,
+      "name": "wooden signpost",
+      "short_desc": "a sun-bleached signpost",
+      "room_desc": "A sun-bleached wooden signpost stands at the city entrance.",
+      "item_type": "furniture",
+      "type": "furniture",
+      "weight": 0,
+      "value": 0,
+      "readable_text": "=== CITY OF THALOS ===\nRecommended Level: 10-20\nA bustling desert city with dangers in its streets\nSeek Captain Varro for military contracts\nWest: Return toward Midgaard"
     }
   }
 }

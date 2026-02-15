@@ -33,11 +33,11 @@
       "exits": {
         "north": {
           "to_room": 1502,
-          "description": ""
+          "description": "A passage leads to A Long Road"
         },
         "south": {
           "to_room": 1500,
-          "description": ""
+          "description": "A rocky path climbs toward A Road Leading From The Bank"
         }
       },
       "mob_resets": [
@@ -58,11 +58,11 @@
       "exits": {
         "south": {
           "to_room": 1501,
-          "description": ""
+          "description": "A passage leads to A Long Road"
         },
         "north": {
           "to_room": 1503,
-          "description": ""
+          "description": "A passage leads to A Long Road"
         }
       }
     },
@@ -77,11 +77,11 @@
       "exits": {
         "north": {
           "to_room": 1504,
-          "description": ""
+          "description": "A passage leads to A Long Road"
         },
         "south": {
           "to_room": 1502,
-          "description": ""
+          "description": "A passage leads to A Long Road"
         }
       }
     },
@@ -96,11 +96,11 @@
       "exits": {
         "north": {
           "to_room": 1505,
-          "description": ""
+          "description": "A passage leads to A Test for the Faithful"
         },
         "south": {
           "to_room": 1503,
-          "description": ""
+          "description": "A passage leads to A Long Road"
         }
       }
     },
@@ -115,11 +115,11 @@
       "exits": {
         "up": {
           "to_room": 1507,
-          "description": ""
+          "description": "A passage leads to Shahadah"
         },
         "down": {
           "to_room": 1506,
-          "description": ""
+          "description": "A passage leads to Halls of the Forgotten"
         }
       },
       "mob_resets": [
@@ -140,15 +140,15 @@
       "exits": {
         "east": {
           "to_room": 1513,
-          "description": ""
+          "description": "A passage leads to Spiritual Danger"
         },
         "west": {
           "to_room": 1508,
-          "description": ""
+          "description": "A passage leads to Earthly Evil"
         },
         "up": {
           "to_room": 1505,
-          "description": ""
+          "description": "A passage leads to A Test for the Faithful"
         }
       }
     },
@@ -163,15 +163,15 @@
       "exits": {
         "east": {
           "to_room": 1523,
-          "description": ""
+          "description": "A passage leads to Spritual Reward"
         },
         "west": {
           "to_room": 1518,
-          "description": ""
+          "description": "A passage leads to Earthly Light"
         },
         "down": {
           "to_room": 1505,
-          "description": ""
+          "description": "A passage leads to A Test for the Faithful"
         }
       }
     },
@@ -187,11 +187,11 @@
       "exits": {
         "north": {
           "to_room": 1509,
-          "description": ""
+          "description": "A passage leads to Misguidance"
         },
         "east": {
           "to_room": 1506,
-          "description": ""
+          "description": "A passage leads to Halls of the Forgotten"
         }
       }
     },
@@ -207,11 +207,11 @@
       "exits": {
         "south": {
           "to_room": 1508,
-          "description": ""
+          "description": "A passage leads to Earthly Evil"
         },
         "north": {
           "to_room": 1510,
-          "description": ""
+          "description": "A passage leads to Temptation"
         }
       },
       "mob_resets": [
@@ -237,11 +237,11 @@
       "exits": {
         "north": {
           "to_room": 1511,
-          "description": ""
+          "description": "A passage leads to Hypocrisy"
         },
         "south": {
           "to_room": 1509,
-          "description": ""
+          "description": "A passage leads to Misguidance"
         }
       },
       "mob_resets": [
@@ -263,11 +263,11 @@
       "exits": {
         "north": {
           "to_room": 1512,
-          "description": ""
+          "description": "A passage leads to Hate"
         },
         "south": {
           "to_room": 1510,
-          "description": ""
+          "description": "A passage leads to Temptation"
         }
       },
       "mob_resets": [
@@ -289,11 +289,11 @@
       "exits": {
         "south": {
           "to_room": 1511,
-          "description": ""
+          "description": "A passage leads to Hypocrisy"
         },
         "north": {
           "to_room": 1528,
-          "description": ""
+          "description": "A passage leads to Repentance"
         }
       },
       "mob_resets": [
@@ -315,11 +315,11 @@
       "exits": {
         "north": {
           "to_room": 1514,
-          "description": ""
+          "description": "A passage leads to The Fall"
         },
         "west": {
           "to_room": 1506,
-          "description": ""
+          "description": "A passage leads to Halls of the Forgotten"
         }
       }
     },
@@ -335,11 +335,11 @@
       "exits": {
         "south": {
           "to_room": 1513,
-          "description": ""
+          "description": "A passage leads to Spiritual Danger"
         },
         "north": {
           "to_room": 1515,
-          "description": ""
+          "description": "A passage leads to Temptation"
         }
       },
       "mob_resets": [
@@ -361,11 +361,11 @@
       "exits": {
         "north": {
           "to_room": 1516,
-          "description": ""
+          "description": "A passage leads to The Last Day"
         },
         "south": {
           "to_room": 1514,
-          "description": ""
+          "description": "A passage leads to The Fall"
         }
       },
       "mob_resets": [
@@ -387,11 +387,11 @@
       "exits": {
         "south": {
           "to_room": 1515,
-          "description": ""
+          "description": "A passage leads to Temptation"
         },
         "north": {
           "to_room": 1517,
-          "description": ""
+          "description": "A passage leads to Flame"
         }
       },
       "mob_resets": [
@@ -417,11 +417,11 @@
       "exits": {
         "north": {
           "to_room": 1530,
-          "description": ""
+          "description": "A passage leads to Intercession"
         },
         "south": {
           "to_room": 1516,
-          "description": ""
+          "description": "A passage leads to The Last Day"
         }
       },
       "mob_resets": [
@@ -442,11 +442,11 @@
       "exits": {
         "north": {
           "to_room": 1519,
-          "description": ""
+          "description": "A passage leads to The Light of the Rashidun"
         },
         "east": {
           "to_room": 1507,
-          "description": ""
+          "description": "A passage leads to Shahadah"
         }
       }
     },
@@ -461,11 +461,11 @@
       "exits": {
         "north": {
           "to_room": 1520,
-          "description": ""
+          "description": "A passage leads to The Light of the Rashidun"
         },
         "south": {
           "to_room": 1518,
-          "description": ""
+          "description": "A passage leads to Earthly Light"
         }
       },
       "mob_resets": [
@@ -486,11 +486,11 @@
       "exits": {
         "north": {
           "to_room": 1521,
-          "description": ""
+          "description": "A passage leads to The Light of the Rashidun"
         },
         "south": {
           "to_room": 1519,
-          "description": ""
+          "description": "A passage leads to The Light of the Rashidun"
         }
       },
       "mob_resets": [
@@ -511,11 +511,11 @@
       "exits": {
         "south": {
           "to_room": 1520,
-          "description": ""
+          "description": "A passage leads to The Light of the Rashidun"
         },
         "north": {
           "to_room": 1522,
-          "description": ""
+          "description": "A passage leads to The Light of the Rashidun"
         }
       },
       "mob_resets": [
@@ -540,11 +540,11 @@
       "exits": {
         "north": {
           "to_room": 1531,
-          "description": ""
+          "description": "A passage leads to The Upper Reaches"
         },
         "south": {
           "to_room": 1521,
-          "description": ""
+          "description": "A passage leads to The Light of the Rashidun"
         }
       },
       "mob_resets": [
@@ -565,11 +565,11 @@
       "exits": {
         "north": {
           "to_room": 1524,
-          "description": ""
+          "description": "A passage leads to Creation"
         },
         "west": {
           "to_room": 1507,
-          "description": ""
+          "description": "A passage leads to Shahadah"
         }
       }
     },
@@ -584,11 +584,11 @@
       "exits": {
         "north": {
           "to_room": 1525,
-          "description": ""
+          "description": "A passage leads to Revelation"
         },
         "south": {
           "to_room": 1523,
-          "description": ""
+          "description": "A passage leads to Spritual Reward"
         }
       },
       "mob_resets": [
@@ -613,11 +613,11 @@
       "exits": {
         "south": {
           "to_room": 1524,
-          "description": ""
+          "description": "A passage leads to Creation"
         },
         "north": {
           "to_room": 1526,
-          "description": ""
+          "description": "A passage leads to Conversion"
         }
       },
       "mob_resets": [
@@ -638,11 +638,11 @@
       "exits": {
         "north": {
           "to_room": 1527,
-          "description": ""
+          "description": "A passage leads to Deliverance"
         },
         "south": {
           "to_room": 1525,
-          "description": ""
+          "description": "A passage leads to Revelation"
         }
       },
       "mob_resets": [
@@ -663,11 +663,11 @@
       "exits": {
         "north": {
           "to_room": 1533,
-          "description": ""
+          "description": "A passage leads to The Upper Reaches"
         },
         "south": {
           "to_room": 1526,
-          "description": ""
+          "description": "A passage leads to Conversion"
         }
       },
       "mob_resets": [
@@ -689,15 +689,15 @@
       "exits": {
         "up": {
           "to_room": 1534,
-          "description": ""
+          "description": "A passage leads to The Final Facing"
         },
         "east": {
           "to_room": 1529,
-          "description": ""
+          "description": "A passage leads to Pilgrimage"
         },
         "south": {
           "to_room": 1512,
-          "description": ""
+          "description": "A passage leads to Hate"
         }
       },
       "mob_resets": [
@@ -719,15 +719,15 @@
       "exits": {
         "up": {
           "to_room": 1535,
-          "description": ""
+          "description": "A passage leads to The Final Facing"
         },
         "east": {
           "to_room": 1530,
-          "description": ""
+          "description": "A passage leads to Intercession"
         },
         "west": {
           "to_room": 1528,
-          "description": ""
+          "description": "A passage leads to Repentance"
         }
       }
     },
@@ -743,15 +743,15 @@
       "exits": {
         "up": {
           "to_room": 1536,
-          "description": ""
+          "description": "A passage leads to The Final Facing"
         },
         "south": {
           "to_room": 1517,
-          "description": ""
+          "description": "A passage leads to Flame"
         },
         "west": {
           "to_room": 1529,
-          "description": ""
+          "description": "A passage leads to Pilgrimage"
         }
       },
       "mob_resets": [
@@ -772,15 +772,15 @@
       "exits": {
         "south": {
           "to_room": 1522,
-          "description": ""
+          "description": "A passage leads to The Light of the Rashidun"
         },
         "east": {
           "to_room": 1532,
-          "description": ""
+          "description": "A passage leads to The Upper Reaches"
         },
         "down": {
           "to_room": 1534,
-          "description": ""
+          "description": "A passage leads to The Final Facing"
         }
       },
       "mob_resets": [
@@ -801,15 +801,15 @@
       "exits": {
         "east": {
           "to_room": 1533,
-          "description": ""
+          "description": "A passage leads to The Upper Reaches"
         },
         "west": {
           "to_room": 1531,
-          "description": ""
+          "description": "A passage leads to The Upper Reaches"
         },
         "down": {
           "to_room": 1535,
-          "description": ""
+          "description": "A passage leads to The Final Facing"
         }
       }
     },
@@ -824,15 +824,15 @@
       "exits": {
         "south": {
           "to_room": 1527,
-          "description": ""
+          "description": "A passage leads to Deliverance"
         },
         "west": {
           "to_room": 1532,
-          "description": ""
+          "description": "A passage leads to The Upper Reaches"
         },
         "down": {
           "to_room": 1536,
-          "description": ""
+          "description": "A passage leads to The Final Facing"
         }
       },
       "mob_resets": [
@@ -854,15 +854,15 @@
       "exits": {
         "east": {
           "to_room": 1535,
-          "description": ""
+          "description": "A passage leads to The Final Facing"
         },
         "up": {
           "to_room": 1531,
-          "description": ""
+          "description": "A passage leads to The Upper Reaches"
         },
         "down": {
           "to_room": 1528,
-          "description": ""
+          "description": "A passage leads to Repentance"
         }
       }
     },
@@ -878,23 +878,23 @@
       "exits": {
         "north": {
           "to_room": 1537,
-          "description": ""
+          "description": "A passage leads to A Straight Path"
         },
         "west": {
           "to_room": 1534,
-          "description": ""
+          "description": "A passage leads to The Final Facing"
         },
         "east": {
           "to_room": 1536,
-          "description": ""
+          "description": "A passage leads to The Final Facing"
         },
         "up": {
           "to_room": 1532,
-          "description": ""
+          "description": "A passage leads to The Upper Reaches"
         },
         "down": {
           "to_room": 1529,
-          "description": ""
+          "description": "A passage leads to Pilgrimage"
         }
       }
     },
@@ -910,15 +910,15 @@
       "exits": {
         "west": {
           "to_room": 1535,
-          "description": ""
+          "description": "A passage leads to The Final Facing"
         },
         "up": {
           "to_room": 1533,
-          "description": ""
+          "description": "A passage leads to The Upper Reaches"
         },
         "down": {
           "to_room": 1530,
-          "description": ""
+          "description": "A passage leads to Intercession"
         }
       }
     },
@@ -933,11 +933,11 @@
       "exits": {
         "south": {
           "to_room": 1535,
-          "description": ""
+          "description": "A passage leads to The Final Facing"
         },
         "north": {
           "to_room": 1538,
-          "description": ""
+          "description": "A passage leads to Progression"
         }
       }
     },
@@ -952,11 +952,11 @@
       "exits": {
         "north": {
           "to_room": 1539,
-          "description": ""
+          "description": "A passage leads to Judgment"
         },
         "south": {
           "to_room": 1537,
-          "description": ""
+          "description": "A passage leads to A Straight Path"
         }
       }
     },
@@ -971,11 +971,11 @@
       "exits": {
         "north": {
           "to_room": 1540,
-          "description": ""
+          "description": "A passage leads to The Utmost Throne"
         },
         "south": {
           "to_room": 1538,
-          "description": ""
+          "description": "A passage leads to Progression"
         }
       },
       "mob_resets": [
@@ -996,7 +996,7 @@
       "exits": {
         "south": {
           "to_room": 1539,
-          "description": ""
+          "description": "A passage leads to Judgment"
         }
       },
       "mob_resets": [
@@ -1499,7 +1499,8 @@
       "room_desc": "Two beautiful plates shaped like scales have been left here.",
       "item_type": "treasure",
       "weight": 10,
-      "value": 15000
+      "value": 15000,
+      "type": "treasure"
     },
     "1501": {
       "vnum": 1501,
@@ -1508,7 +1509,8 @@
       "room_desc": "You see a solid and silver-lined scroll resting on the ground.",
       "item_type": "treasure",
       "weight": 1,
-      "value": 500
+      "value": 500,
+      "type": "scroll"
     },
     "1502": {
       "vnum": 1502,
@@ -1519,7 +1521,8 @@
       "weight": 10,
       "value": 5000,
       "damage_dice": "3d4",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "1503": {
       "vnum": 1503,
@@ -1529,7 +1532,10 @@
       "item_type": "armor",
       "weight": 20,
       "value": 5000,
-      "armor_bonus": 15
+      "armor_bonus": 15,
+      "type": "armor",
+      "wear_slot": "shield",
+      "armor": 3
     },
     "1504": {
       "vnum": 1504,
@@ -1538,7 +1544,10 @@
       "room_desc": "A ragged and faded looking piece of cloth has been left here, forgotten.",
       "item_type": "treasure",
       "weight": 0,
-      "value": 15
+      "value": 15,
+      "type": "armor",
+      "wear_slot": "wrist",
+      "armor": 1
     },
     "1505": {
       "vnum": 1505,
@@ -1549,7 +1558,8 @@
       "weight": 5,
       "value": 5000,
       "damage_dice": "7d1",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "1506": {
       "vnum": 1506,
@@ -1559,7 +1569,8 @@
       "item_type": "light",
       "weight": 0,
       "value": 5,
-      "light_hours": -1
+      "light_hours": -1,
+      "type": "treasure"
     },
     "1507": {
       "vnum": 1507,
@@ -1569,7 +1580,8 @@
       "item_type": "light",
       "weight": 0,
       "value": 5,
-      "light_hours": -1
+      "light_hours": -1,
+      "type": "treasure"
     },
     "1508": {
       "vnum": 1508,
@@ -1578,7 +1590,8 @@
       "room_desc": "You have found at last the Key to the Gates of eternity.",
       "item_type": "key",
       "weight": 0,
-      "value": 1000
+      "value": 1000,
+      "type": "key"
     },
     "1509": {
       "vnum": 1509,
@@ -1587,7 +1600,8 @@
       "room_desc": "You have found a burnt book, some forgotten history lying on the ground.",
       "item_type": "treasure",
       "weight": 2,
-      "value": 10
+      "value": 10,
+      "type": "note"
     },
     "1510": {
       "vnum": 1510,
@@ -1597,7 +1611,8 @@
       "item_type": "light",
       "weight": 0,
       "value": 500,
-      "light_hours": -1
+      "light_hours": -1,
+      "type": "note"
     },
     "1511": {
       "vnum": 1511,
@@ -1607,7 +1622,10 @@
       "item_type": "armor",
       "weight": 5,
       "value": 12000,
-      "armor_bonus": 5
+      "armor_bonus": 5,
+      "type": "armor",
+      "wear_slot": "hands",
+      "armor": 2
     },
     "1512": {
       "vnum": 1512,
@@ -1616,7 +1634,10 @@
       "room_desc": "You see a beautiful pendant of ancient and noble craftsmanship.",
       "item_type": "treasure",
       "weight": 3,
-      "value": 5000
+      "value": 5000,
+      "type": "armor",
+      "wear_slot": "neck",
+      "armor": 0
     },
     "1513": {
       "vnum": 1513,
@@ -1625,7 +1646,10 @@
       "room_desc": "You have found a beautiful gleaming disc with a golden image of the sun god.",
       "item_type": "treasure",
       "weight": 5,
-      "value": 7500
+      "value": 7500,
+      "type": "armor",
+      "wear_slot": "neck",
+      "armor": 0
     },
     "1514": {
       "vnum": 1514,
@@ -1635,7 +1659,8 @@
       "item_type": "light",
       "weight": 2,
       "value": 1000,
-      "light_hours": 0
+      "light_hours": 0,
+      "type": "treasure"
     }
   }
 }

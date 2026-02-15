@@ -155,11 +155,11 @@
       "exits": {
         "east": {
           "to_room": 3108,
-          "description": ""
+          "description": "The cobblestones lead to A Small Path In The Park"
         },
         "south": {
           "to_room": 3113,
-          "description": ""
+          "description": "The cobblestones lead to A Path In The Park"
         }
       }
     },
@@ -176,11 +176,11 @@
         },
         "east": {
           "to_room": 3109,
-          "description": ""
+          "description": "The cobblestones lead to A Small Path In The Park"
         },
         "west": {
           "to_room": 3107,
-          "description": ""
+          "description": "The cobblestones lead to A Small Path In The Park"
         }
       }
     },
@@ -193,11 +193,11 @@
       "exits": {
         "south": {
           "to_room": 3115,
-          "description": ""
+          "description": "The cobblestones lead to A Path In The Park"
         },
         "west": {
           "to_room": 3108,
-          "description": ""
+          "description": "The cobblestones lead to A Small Path In The Park"
         }
       }
     },
@@ -231,7 +231,7 @@
       "exits": {
         "north": {
           "to_room": 3131,
-          "description": ""
+          "description": "The cobblestones lead to Park Road"
         },
         "east": {
           "to_room": 3112,
@@ -239,7 +239,7 @@
         },
         "south": {
           "to_room": 3118,
-          "description": ""
+          "description": "The cobblestones lead to Park Road"
         },
         "west": {
           "to_room": 3110,
@@ -267,11 +267,11 @@
       "exits": {
         "east": {
           "to_room": 3113,
-          "description": ""
+          "description": "The cobblestones lead to A Path In The Park"
         },
         "west": {
           "to_room": 3111,
-          "description": ""
+          "description": "The cobblestones lead to Park Road"
         }
       }
     },
@@ -284,7 +284,7 @@
       "exits": {
         "north": {
           "to_room": 3107,
-          "description": ""
+          "description": "The cobblestones lead to A Small Path In The Park"
         },
         "east": {
           "to_room": 3114,
@@ -305,11 +305,11 @@
       "exits": {
         "east": {
           "to_room": 3115,
-          "description": ""
+          "description": "The cobblestones lead to A Path In The Park"
         },
         "west": {
           "to_room": 3113,
-          "description": ""
+          "description": "The cobblestones lead to A Path In The Park"
         }
       }
     },
@@ -322,15 +322,15 @@
       "exits": {
         "north": {
           "to_room": 3109,
-          "description": ""
+          "description": "The cobblestones lead to A Small Path In The Park"
         },
         "east": {
           "to_room": 3116,
-          "description": ""
+          "description": "The cobblestones lead to The Eastern Park Entrance"
         },
         "west": {
           "to_room": 3114,
-          "description": ""
+          "description": "The water flows toward The Pond"
         }
       }
     },
@@ -345,11 +345,11 @@
       "exits": {
         "east": {
           "to_room": 3117,
-          "description": ""
+          "description": "The cobblestones lead to Emerald Avenue"
         },
         "west": {
           "to_room": 3115,
-          "description": ""
+          "description": "The cobblestones lead to A Path In The Park"
         }
       }
     },
@@ -362,19 +362,19 @@
       "exits": {
         "north": {
           "to_room": 3132,
-          "description": ""
+          "description": "The cobblestones lead to Emerald Avenue"
         },
         "east": {
           "to_room": 3137,
-          "description": ""
+          "description": "A passage leads to The Waiting Room"
         },
         "south": {
           "to_room": 3119,
-          "description": ""
+          "description": "The cobblestones lead to Emerald Avenue"
         },
         "west": {
           "to_room": 3116,
-          "description": ""
+          "description": "The cobblestones lead to The Eastern Park Entrance"
         }
       }
     },
@@ -387,11 +387,11 @@
       "exits": {
         "north": {
           "to_room": 3111,
-          "description": ""
+          "description": "The cobblestones lead to Park Road"
         },
         "south": {
           "to_room": 3135,
-          "description": ""
+          "description": "The cobblestones lead to Park Road"
         }
       }
     },
@@ -404,11 +404,11 @@
       "exits": {
         "north": {
           "to_room": 3117,
-          "description": ""
+          "description": "The cobblestones lead to Emerald Avenue"
         },
         "west": {
           "to_room": 3133,
-          "description": ""
+          "description": "The cobblestones lead to Emerald Avenue"
         }
       }
     },
@@ -421,19 +421,19 @@
       "exits": {
         "north": {
           "to_room": 3133,
-          "description": ""
+          "description": "The cobblestones lead to Emerald Avenue"
         },
         "east": {
           "to_room": 3136,
-          "description": ""
+          "description": "The cobblestones lead to Park Road"
         },
         "south": {
           "to_room": 3134,
-          "description": ""
+          "description": "The cobblestones lead to Emerald Avenue"
         },
         "west": {
           "to_room": 3135,
-          "description": ""
+          "description": "The cobblestones lead to Park Road"
         },
         "up": {
           "to_room": 7914,
@@ -454,11 +454,11 @@
       "exits": {
         "east": {
           "to_room": 3134,
-          "description": ""
+          "description": "The cobblestones lead to Emerald Avenue"
         },
         "south": {
           "to_room": 3125,
-          "description": ""
+          "description": "The cobblestones lead to Emerald Avenue"
         }
       }
     },
@@ -471,15 +471,15 @@
       "exits": {
         "north": {
           "to_room": 3136,
-          "description": ""
+          "description": "The cobblestones lead to Park Road"
         },
         "east": {
           "to_room": 3123,
-          "description": ""
+          "description": "The cobblestones lead to Elm Street"
         },
         "south": {
           "to_room": 3126,
-          "description": ""
+          "description": "The cobblestones lead to Park Road"
         }
       }
     },
@@ -492,11 +492,11 @@
       "exits": {
         "east": {
           "to_room": 3124,
-          "description": ""
+          "description": "The cobblestones lead to The End Of Elm Street"
         },
         "west": {
           "to_room": 3122,
-          "description": ""
+          "description": "The cobblestones lead to Park Road"
         }
       }
     },
@@ -509,7 +509,7 @@
       "exits": {
         "west": {
           "to_room": 3123,
-          "description": ""
+          "description": "The cobblestones lead to Elm Street"
         }
       }
     },
@@ -522,11 +522,11 @@
       "exits": {
         "north": {
           "to_room": 3121,
-          "description": ""
+          "description": "The cobblestones lead to Emerald Avenue"
         },
         "south": {
           "to_room": 3128,
-          "description": ""
+          "description": "The cobblestones lead to On The Concourse"
         }
       }
     },
@@ -539,11 +539,11 @@
       "exits": {
         "north": {
           "to_room": 3122,
-          "description": ""
+          "description": "The cobblestones lead to Park Road"
         },
         "south": {
           "to_room": 3129,
-          "description": ""
+          "description": "The cobblestones lead to On The Concourse"
         }
       }
     },
@@ -556,11 +556,11 @@
       "exits": {
         "north": {
           "to_room": 3100,
-          "description": ""
+          "description": "The Northwest End Of The Concourse"
         },
         "east": {
           "to_room": 3128,
-          "description": ""
+          "description": "The cobblestones lead to On The Concourse"
         },
         "west": {
           "to_room": 3504,
@@ -577,15 +577,15 @@
       "exits": {
         "north": {
           "to_room": 3125,
-          "description": ""
+          "description": "The cobblestones lead to Emerald Avenue"
         },
         "east": {
           "to_room": 3129,
-          "description": ""
+          "description": "The cobblestones lead to On The Concourse"
         },
         "west": {
           "to_room": 3127,
-          "description": ""
+          "description": "The cobblestones lead to On The Concourse"
         }
       }
     },
@@ -598,11 +598,11 @@
       "exits": {
         "north": {
           "to_room": 3126,
-          "description": ""
+          "description": "The cobblestones lead to Park Road"
         },
         "east": {
           "to_room": 3130,
-          "description": ""
+          "description": "The cobblestones lead to On The Concourse"
         },
         "south": {
           "to_room": 3150,
@@ -616,7 +616,7 @@
         },
         "west": {
           "to_room": 3128,
-          "description": ""
+          "description": "The cobblestones lead to On The Concourse"
         }
       }
     },
@@ -629,11 +629,11 @@
       "exits": {
         "north": {
           "to_room": 3104,
-          "description": ""
+          "description": "The Northeast End Of The Concourse"
         },
         "west": {
           "to_room": 3129,
-          "description": ""
+          "description": "The cobblestones lead to On The Concourse"
         }
       }
     },
@@ -646,11 +646,11 @@
       "exits": {
         "north": {
           "to_room": 3101,
-          "description": ""
+          "description": "The cobblestones lead to The Promenade"
         },
         "south": {
           "to_room": 3111,
-          "description": ""
+          "description": "The cobblestones lead to Park Road"
         }
       }
     },
@@ -663,15 +663,15 @@
       "exits": {
         "north": {
           "to_room": 3103,
-          "description": ""
+          "description": "The cobblestones lead to The Promenade"
         },
         "east": {
           "to_room": 3139,
-          "description": ""
+          "description": "The cobblestones lead to Penny Lane"
         },
         "south": {
           "to_room": 3117,
-          "description": ""
+          "description": "The cobblestones lead to Emerald Avenue"
         }
       }
     },
@@ -684,11 +684,11 @@
       "exits": {
         "east": {
           "to_room": 3119,
-          "description": ""
+          "description": "The cobblestones lead to Emerald Avenue"
         },
         "south": {
           "to_room": 3120,
-          "description": ""
+          "description": "The cobblestones lead to The Road Crossing"
         }
       }
     },
@@ -701,11 +701,11 @@
       "exits": {
         "north": {
           "to_room": 3120,
-          "description": ""
+          "description": "The cobblestones lead to The Road Crossing"
         },
         "west": {
           "to_room": 3121,
-          "description": ""
+          "description": "The cobblestones lead to Emerald Avenue"
         }
       }
     },
@@ -718,11 +718,11 @@
       "exits": {
         "north": {
           "to_room": 3118,
-          "description": ""
+          "description": "The cobblestones lead to Park Road"
         },
         "east": {
           "to_room": 3120,
-          "description": ""
+          "description": "The cobblestones lead to The Road Crossing"
         }
       }
     },
@@ -735,11 +735,11 @@
       "exits": {
         "south": {
           "to_room": 3122,
-          "description": ""
+          "description": "The cobblestones lead to Park Road"
         },
         "west": {
           "to_room": 3120,
-          "description": ""
+          "description": "The cobblestones lead to The Road Crossing"
         }
       }
     },
@@ -793,11 +793,11 @@
       "exits": {
         "east": {
           "to_room": 3140,
-          "description": ""
+          "description": "The cobblestones lead to Penny Lane"
         },
         "west": {
           "to_room": 3132,
-          "description": ""
+          "description": "The cobblestones lead to Emerald Avenue"
         }
       }
     },
@@ -810,11 +810,11 @@
       "exits": {
         "north": {
           "to_room": 3141,
-          "description": ""
+          "description": "The cobblestones lead to The End Of Penny Lane"
         },
         "west": {
           "to_room": 3139,
-          "description": ""
+          "description": "The cobblestones lead to Penny Lane"
         }
       }
     },
@@ -827,7 +827,7 @@
       "exits": {
         "south": {
           "to_room": 3140,
-          "description": ""
+          "description": "The cobblestones lead to Penny Lane"
         }
       }
     },
@@ -962,11 +962,11 @@
       "exits": {
         "east": {
           "to_room": 3201,
-          "description": ""
+          "description": "Deep waters churn near On The River"
         },
         "west": {
           "to_room": 900,
-          "description": ""
+          "description": "Deep waters churn near On The Swift Flowing River"
         }
       },
       "extra_descs": {
@@ -982,11 +982,11 @@
       "exits": {
         "east": {
           "to_room": 3202,
-          "description": ""
+          "description": "Deep waters churn near On The River"
         },
         "west": {
           "to_room": 3200,
-          "description": ""
+          "description": "Deep waters churn near Under The Bridge"
         }
       }
     },
@@ -999,11 +999,11 @@
       "exits": {
         "east": {
           "to_room": 3203,
-          "description": ""
+          "description": "Deep waters churn near On The River"
         },
         "west": {
           "to_room": 3201,
-          "description": ""
+          "description": "Deep waters churn near On The River"
         }
       }
     },
@@ -1016,15 +1016,15 @@
       "exits": {
         "north": {
           "to_room": 3049,
-          "description": ""
+          "description": "The cobblestones lead to The Levee"
         },
         "east": {
           "to_room": 3204,
-          "description": ""
+          "description": "Deep waters churn near On The River"
         },
         "west": {
           "to_room": 3202,
-          "description": ""
+          "description": "Deep waters churn near On The River"
         }
       }
     },
@@ -1037,11 +1037,11 @@
       "exits": {
         "east": {
           "to_room": 3205,
-          "description": ""
+          "description": "Deep waters churn near On The River"
         },
         "west": {
           "to_room": 3203,
-          "description": ""
+          "description": "Deep waters churn near On The River"
         }
       }
     },
@@ -1058,7 +1058,7 @@
         },
         "west": {
           "to_room": 3204,
-          "description": ""
+          "description": "Deep waters churn near On The River"
         }
       }
     }
@@ -1284,7 +1284,10 @@
       "weight": 1,
       "value": 5,
       "capacity": 8,
-      "current": 8
+      "current": 8,
+      "type": "drink",
+      "drinks": 10,
+      "max_drinks": 10
     },
     "3101": {
       "vnum": 3101,
@@ -1295,7 +1298,10 @@
       "weight": 1,
       "value": 7,
       "capacity": 8,
-      "current": 8
+      "current": 8,
+      "type": "drink",
+      "drinks": 10,
+      "max_drinks": 10
     },
     "3102": {
       "vnum": 3102,
@@ -1306,7 +1312,10 @@
       "weight": 1,
       "value": 2,
       "capacity": 12,
-      "current": 12
+      "current": 12,
+      "type": "drink",
+      "drinks": 10,
+      "max_drinks": 10
     },
     "3103": {
       "vnum": 3103,
@@ -1317,7 +1326,10 @@
       "weight": 1,
       "value": 10,
       "capacity": 24,
-      "current": 24
+      "current": 24,
+      "type": "drink",
+      "drinks": 10,
+      "max_drinks": 10
     },
     "3104": {
       "vnum": 3104,
@@ -1328,7 +1340,10 @@
       "weight": 20,
       "value": 45,
       "capacity": 80,
-      "current": 80
+      "current": 80,
+      "type": "drink",
+      "drinks": 10,
+      "max_drinks": 10
     },
     "3105": {
       "vnum": 3105,
@@ -1337,7 +1352,8 @@
       "room_desc": "An iron key has been left here.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "3106": {
       "vnum": 3106,
@@ -1346,7 +1362,8 @@
       "room_desc": "A rusty key has been left here.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "3107": {
       "vnum": 3107,
@@ -1355,7 +1372,8 @@
       "room_desc": "A wooden key has been left here.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "3108": {
       "vnum": 3108,
@@ -1364,7 +1382,8 @@
       "room_desc": "A brass key has been left here.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "3109": {
       "vnum": 3109,
@@ -1375,7 +1394,8 @@
       "weight": 100,
       "value": 0,
       "capacity": 34,
-      "key_vnum": 3107
+      "key_vnum": 3107,
+      "type": "furniture"
     },
     "3110": {
       "vnum": 3110,
@@ -1386,7 +1406,8 @@
       "weight": 999,
       "value": 0,
       "capacity": 34,
-      "key_vnum": 3108
+      "key_vnum": 3108,
+      "type": "treasure"
     },
     "3111": {
       "vnum": 3111,
@@ -1395,7 +1416,8 @@
       "room_desc": "A white-painted wooden bench is standing here.",
       "item_type": "treasure",
       "weight": 100,
-      "value": 600
+      "value": 600,
+      "type": "furniture"
     },
     "3112": {
       "vnum": 3112,
@@ -1404,7 +1426,8 @@
       "room_desc": "The very big City Key is lying here.",
       "item_type": "key",
       "weight": 30,
-      "value": 10000
+      "value": 10000,
+      "type": "key"
     },
     "3113": {
       "vnum": 3113,
@@ -1413,7 +1436,8 @@
       "room_desc": "A small white fountain is standing here, gurgling happily.",
       "item_type": "fountain",
       "weight": 999,
-      "value": 0
+      "value": 0,
+      "type": "furniture"
     },
     "3114": {
       "vnum": 3114,
@@ -1422,7 +1446,8 @@
       "room_desc": "A small pile of gold coins lies here.",
       "item_type": "money",
       "weight": 0,
-      "value": 0
+      "value": 0,
+      "type": "trash"
     },
     "3115": {
       "vnum": 3115,
@@ -1431,7 +1456,8 @@
       "room_desc": "A lot of gold is here.",
       "item_type": "money",
       "weight": 0,
-      "value": 32385
+      "value": 32385,
+      "type": "treasure"
     },
     "3116": {
       "vnum": 3116,
@@ -1441,7 +1467,8 @@
       "item_type": "light",
       "weight": 5,
       "value": 150,
-      "light_hours": 24
+      "light_hours": 24,
+      "type": "treasure"
     },
     "3117": {
       "vnum": 3117,
@@ -1450,7 +1477,8 @@
       "room_desc": "An old elm tree grows here.",
       "item_type": "treasure",
       "weight": 0,
-      "value": 0
+      "value": 0,
+      "type": "treasure"
     }
   }
 }

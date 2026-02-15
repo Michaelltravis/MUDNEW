@@ -369,12 +369,18 @@ class WebMapServer:
             <span>⛰️ Mountain</span><span>🕯️ Dungeon</span>
             <span>🛒 Shop</span><span>⭐ Quest</span>
             <span>👹 Boss</span><span>💀 Danger</span>
+            <span>🌀 Portal</span><span></span>
           </div>
+        </div>
+        <div id=\"zoneFilter\" class=\"zone-filter\">
+          <h3>🗺️ Zone Filter</h3>
+          <div id=\"zoneFilterList\"></div>
         </div>
         <div id=\"zoneList\" class=\"zone-list\"></div>
       </aside>
     </div>
     <canvas id=\"minimap\"></canvas>
+    <canvas id=\"zoneOverview\"></canvas>
     <div id=\"debugPanel\" class=\"debug-panel hidden\">
       <div><span class=\"label\">WS</span> <span id=\"debugWs\">-</span></div>
       <div><span class=\"label\">Poll</span> <span id=\"debugPoll\">-</span></div>
@@ -427,9 +433,21 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
 .legend-grid span{display:flex;align-items:center;gap:4px}
 .zone-list{background:rgba(0,0,0,0.15);border-radius:10px;padding:12px}
 .zone-list h3{margin-top:0}
-.zone-item{display:flex;align-items:center;gap:8px;padding:6px 0;font-size:12px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.zone-item{display:flex;align-items:center;gap:8px;padding:6px 0;font-size:12px;border-bottom:1px solid rgba(255,255,255,0.05);cursor:pointer;transition:background 0.15s;padding:6px 8px;border-radius:6px;margin:1px 0}
+.zone-item:hover{background:rgba(255,255,255,0.06)}
+.zone-item.active{background:rgba(99,102,241,0.2);border:1px solid rgba(99,102,241,0.4)}
 .zone-item:last-child{border-bottom:none}
 .zone-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.zone-filter{background:rgba(0,0,0,0.15);border-radius:10px;padding:12px}
+.zone-filter h3{margin-top:0}
+.zone-filter-item{display:flex;align-items:center;gap:8px;padding:5px 8px;font-size:12px;cursor:pointer;border-radius:6px;transition:background 0.15s;margin:2px 0}
+.zone-filter-item:hover{background:rgba(255,255,255,0.06)}
+.zone-filter-item.active{background:rgba(99,102,241,0.25);border:1px solid rgba(99,102,241,0.4)}
+.zone-filter-item .zf-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.zone-filter-item .zf-name{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.zone-filter-item .zf-count{color:#6b7280;font-size:11px}
+#zoneOverview{position:fixed;left:18px;bottom:18px;width:140px;height:140px;border:1px solid rgba(255,255,255,0.1);background:rgba(10,14,20,0.95);border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.5);backdrop-filter:blur(12px);cursor:pointer;z-index:10}
+#zoneOverview.hidden{display:none}
 #tooltip{position:fixed;background:rgba(12,15,20,0.98);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:12px 16px;font-size:13px;pointer-events:none;z-index:1000;box-shadow:0 12px 40px rgba(0,0,0,0.6);backdrop-filter:blur(16px);max-width:280px;opacity:0;transition:opacity 0.2s}
 #tooltip.visible{opacity:1}
 #tooltip .tt-icon{font-size:24px;margin-bottom:6px}
@@ -446,11 +464,13 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
 """
 
     def _js(self):
-        return """(() => {
+        return r"""(() => {
   const canvas = document.getElementById('mapCanvas');
   const ctx = canvas.getContext('2d');
   const minimap = document.getElementById('minimap');
   const miniCtx = minimap.getContext('2d');
+  const zoneOverview = document.getElementById('zoneOverview');
+  const zoCtx = zoneOverview.getContext('2d');
   const zSelect = document.getElementById('zSelect');
   const zoomControl = document.getElementById('zoom');
   const minimapToggle = document.getElementById('minimapToggle');
@@ -461,6 +481,7 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
   const pathInfo = document.getElementById('pathInfo');
   const zoneInfo = document.getElementById('zoneInfo');
   const zoneList = document.getElementById('zoneList');
+  const zoneFilterList = document.getElementById('zoneFilterList');
   const wsStatus = document.getElementById('wsStatus');
   const playerWarning = document.getElementById('playerWarning');
   const debugPanel = document.getElementById('debugPanel');
@@ -481,7 +502,8 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
   let zoom = 1;
   let targetZoom = 1;
   let selectedZ = 0;
-  let revealed = new Map(); // vnum -> reveal time for animation
+  let activeZone = null; // null = all zones, number = specific zone id
+  let revealed = new Map();
   let hoveredRoom = null;
   let selectedRoom = null;
   let pathRooms = new Set();
@@ -489,15 +511,20 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
   let useIcons = true;
   let showFog = true;
   let showZones = true;
+  let portalRooms = new Set(); // vnums of rooms that connect to other zones (shown as portals when filtering)
+  let crossZoneExits = []; // {fromVnum, toVnum, fromZone, toZone, dir} for portal markers
 
   const ROOM_SIZE = 36;
   const ROOM_SPACING = 56;
   const ROOM_RADIUS = 8;
 
-  // Zone colors from backend + fallback
   const getZoneColor = (zoneId) => {
     const zone = state.zones.find(z => z.id === zoneId);
     return zone ? zone.color : '#6366f1';
+  };
+  const getZoneName = (zoneId) => {
+    const zone = state.zones.find(z => z.id === zoneId);
+    return zone ? zone.name : 'Zone ' + zoneId;
   };
 
   const dirOffsets = {
@@ -519,6 +546,53 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
     setDebug(debugWs, label);
   };
 
+  // Build cross-zone exit index
+  const buildCrossZoneIndex = () => {
+    crossZoneExits = [];
+    portalRooms = new Set();
+    const roomMap = new Map();
+    const coordMap = new Map();
+    state.rooms.forEach(r => { roomMap.set(r.vnum, r); coordMap.set(r.x + ',' + r.y + ',' + r.z, r); });
+    state.rooms.forEach(room => {
+      (room.exits || []).forEach(dir => {
+        const off = dirOffsets[dir];
+        if (!off) return;
+        const target = coordMap.get((room.x + off[0]) + ',' + (room.y + off[1]) + ',' + (room.z + off[2]));
+        if (target && target.zone !== room.zone) {
+          crossZoneExits.push({ fromVnum: room.vnum, toVnum: target.vnum, fromZone: room.zone, toZone: target.zone, dir });
+          portalRooms.add(room.vnum);
+          portalRooms.add(target.vnum);
+        }
+      });
+    });
+  };
+
+  // Get visible rooms based on zone filter
+  const getVisibleRooms = () => {
+    if (activeZone === null) return state.rooms;
+    // Show rooms in active zone + portal rooms from adjacent zones
+    const adjacentPortalVnums = new Set();
+    crossZoneExits.forEach(cx => {
+      if (cx.fromZone === activeZone) adjacentPortalVnums.add(cx.toVnum);
+      if (cx.toZone === activeZone) adjacentPortalVnums.add(cx.fromVnum);
+    });
+    return state.rooms.filter(r => r.zone === activeZone || adjacentPortalVnums.has(r.vnum));
+  };
+
+  const setActiveZone = (zoneId) => {
+    activeZone = zoneId;
+    // Re-center on zone centroid
+    const zoneRooms = zoneId === null ? state.rooms : state.rooms.filter(r => r.zone === zoneId);
+    if (zoneRooms.length > 0) {
+      const cx = zoneRooms.reduce((s, r) => s + r.x, 0) / zoneRooms.length;
+      const cy = zoneRooms.reduce((s, r) => s + r.y, 0) / zoneRooms.length;
+      targetPan.x = canvas.clientWidth / 2 - (cx * ROOM_SPACING * zoom);
+      targetPan.y = canvas.clientHeight / 2 - (cy * ROOM_SPACING * zoom);
+    }
+    updateUI();
+    renderZoneOverview();
+  };
+
   function resize() {
     const dpr = window.devicePixelRatio || 1;
     canvas.width = canvas.clientWidth * dpr;
@@ -527,12 +601,15 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
     minimap.width = minimap.clientWidth * dpr;
     minimap.height = minimap.clientHeight * dpr;
     miniCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    zoneOverview.width = zoneOverview.clientWidth * dpr;
+    zoneOverview.height = zoneOverview.clientHeight * dpr;
+    zoCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
   window.addEventListener('resize', resize);
   setTimeout(resize, 0);
 
   zoomControl.addEventListener('input', (e) => { targetZoom = parseFloat(e.target.value); });
-  minimapToggle.addEventListener('change', (e) => { minimap.classList.toggle('hidden', !e.target.checked); });
+  minimapToggle.addEventListener('change', (e) => { minimap.classList.toggle('hidden', !e.target.checked); zoneOverview.classList.toggle('hidden', !e.target.checked); });
   iconMode.addEventListener('change', (e) => { useIcons = e.target.checked; });
   fogMode.addEventListener('change', (e) => { showFog = e.target.checked; });
   zoneMode.addEventListener('change', (e) => { showZones = e.target.checked; });
@@ -542,22 +619,27 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
   canvas.addEventListener('mousedown', (e) => { dragging = true; last = { x: e.clientX, y: e.clientY }; });
   window.addEventListener('mouseup', () => dragging = false);
 
-  const hitTest = (mx, my) => state.rooms.find(r => r.z === selectedZ && 
-    Math.abs(r.x * ROOM_SPACING - mx) < ROOM_SIZE/2 + 6 && 
-    Math.abs(r.y * ROOM_SPACING - my) < ROOM_SIZE/2 + 6);
+  const hitTest = (mx, my) => {
+    const visible = getVisibleRooms().filter(r => r.z === selectedZ);
+    return visible.find(r =>
+      Math.abs(r.x * ROOM_SPACING - mx) < ROOM_SIZE/2 + 6 &&
+      Math.abs(r.y * ROOM_SPACING - my) < ROOM_SIZE/2 + 6);
+  };
 
   window.addEventListener('mousemove', (e) => {
     const rect = canvas.getBoundingClientRect();
     const mx = (e.clientX - rect.left - pan.x) / zoom;
     const my = (e.clientY - rect.top - pan.y) / zoom;
     const hit = hitTest(mx, my);
-    
+
     if (hit && !dragging) {
       hoveredRoom = hit;
       tooltip.querySelector('.tt-icon').textContent = hit.icon || '';
       tooltip.querySelector('.tt-name').textContent = hit.name;
-      tooltip.querySelector('.tt-zone').textContent = '📍 ' + (hit.zoneName || 'Unknown Zone');
-      tooltip.querySelector('.tt-info').innerHTML = 
+      tooltip.querySelector('.tt-zone').textContent = '\u{1F4CD} ' + (hit.zoneName || 'Unknown Zone');
+      const isPortal = activeZone !== null && hit.zone !== activeZone;
+      tooltip.querySelector('.tt-info').innerHTML =
+        (isPortal ? '<b style="color:#c084fc">\u{1F300} Portal from ' + getZoneName(hit.zone) + '</b><br>' : '') +
         '<b>Sector:</b> ' + hit.sector + '<br><b>Exits:</b> ' + hit.exits.join(', ') +
         '<br><b>VNUM:</b> ' + hit.vnum;
       tooltip.style.left = Math.min(e.clientX + 16, window.innerWidth - 300) + 'px';
@@ -580,17 +662,23 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
     const hit = hitTest(mx, my);
     if (hit) {
       selectedRoom = hit;
-      roomDetails.innerHTML = 
-        '<div style="font-size:24px;margin-bottom:8px">' + (hit.icon || '📍') + '</div>' +
+      const isPortal = activeZone !== null && hit.zone !== activeZone;
+      roomDetails.innerHTML =
+        '<div style="font-size:24px;margin-bottom:8px">' + (isPortal ? '\u{1F300}' : (hit.icon || '\u{1F4CD}')) + '</div>' +
         '<strong style="font-size:15px">' + hit.name + '</strong><br/>' +
-        '<span style="color:#a5b4fc">' + (hit.zoneName || '') + '</span><br/><br/>' +
+        '<span style="color:#a5b4fc">' + (hit.zoneName || '') + '</span>' +
+        (isPortal ? '<br/><span style="color:#c084fc;font-size:12px">Portal entry — click to switch zone</span>' : '') +
+        '<br/><br/>' +
         '<span style="color:#6b7280">Sector:</span> ' + hit.sector + '<br/>' +
         '<span style="color:#6b7280">Exits:</span> ' + hit.exits.join(', ') + '<br/>' +
         '<span style="color:#6b7280">VNUM:</span> ' + hit.vnum;
+      // Double-click portal room to switch to that zone
+      if (isPortal) {
+        setTimeout(() => { setActiveZone(hit.zone); }, 300);
+      }
     }
   });
 
-  // Right-click for pathfinding
   canvas.addEventListener('contextmenu', (e) => {
     e.preventDefault();
     const rect = canvas.getBoundingClientRect();
@@ -602,70 +690,52 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
     }
   });
 
-  // Simple BFS pathfinding on client
   const computePath = (startVnum, endVnum) => {
     pathRooms.clear();
-    if (startVnum === endVnum) {
-      pathInfo.classList.add('hidden');
-      return;
-    }
+    if (startVnum === endVnum) { pathInfo.classList.add('hidden'); return; }
     const roomMap = new Map();
     state.rooms.forEach(r => roomMap.set(r.vnum, r));
     const coordMap = new Map();
     state.rooms.forEach(r => coordMap.set(r.x + ',' + r.y + ',' + r.z, r));
-
     const visited = new Set([startVnum]);
     const queue = [[startVnum, [startVnum]]];
     let foundPath = null;
-
     while (queue.length > 0) {
       const [current, path] = queue.shift();
       const room = roomMap.get(current);
       if (!room) continue;
-      
       for (const dir of room.exits) {
         const off = dirOffsets[dir];
         if (!off) continue;
         const neighbor = coordMap.get((room.x + off[0]) + ',' + (room.y + off[1]) + ',' + (room.z + off[2]));
         if (!neighbor || visited.has(neighbor.vnum)) continue;
-        
         const newPath = [...path, neighbor.vnum];
-        if (neighbor.vnum === endVnum) {
-          foundPath = newPath;
-          break;
-        }
+        if (neighbor.vnum === endVnum) { foundPath = newPath; break; }
         visited.add(neighbor.vnum);
         queue.push([neighbor.vnum, newPath]);
       }
       if (foundPath) break;
     }
-
     if (foundPath) {
       foundPath.forEach(v => pathRooms.add(v));
       const dest = roomMap.get(endVnum);
-      pathInfo.innerHTML = 
-        '<div class="path-title">🧭 Path to ' + (dest ? dest.name : 'destination') + '</div>' +
+      pathInfo.innerHTML =
+        '<div class="path-title">\u{1F9ED} Path to ' + (dest ? dest.name : 'destination') + '</div>' +
         '<div class="path-steps">' + (foundPath.length - 1) + ' rooms away</div>';
       pathInfo.classList.remove('hidden');
     } else {
-      pathInfo.innerHTML = '<div class="path-title">❌ No path found</div>';
+      pathInfo.innerHTML = '<div class="path-title">\u274C No path found</div>';
       pathInfo.classList.remove('hidden');
     }
   };
 
-  // Rounded rect helper
   const roundRect = (x, y, w, h, r) => {
     ctx.beginPath();
-    ctx.moveTo(x + r, y);
-    ctx.lineTo(x + w - r, y);
-    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
-    ctx.lineTo(x + w, y + h - r);
-    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-    ctx.lineTo(x + r, y + h);
-    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
-    ctx.lineTo(x, y + r);
-    ctx.quadraticCurveTo(x, y, x + r, y);
-    ctx.closePath();
+    ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r); ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h); ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r); ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y); ctx.closePath();
   };
 
   const render = () => {
@@ -674,20 +744,16 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
     zoom = lerp(zoom, targetZoom, 0.1);
     pulsePhase += 0.06;
     const now = Date.now();
-
     const w = canvas.clientWidth;
     const h = canvas.clientHeight;
     ctx.clearRect(0, 0, w, h);
-    
-    // Dark background
     ctx.fillStyle = '#050709';
     ctx.fillRect(0, 0, w, h);
-
     ctx.save();
     ctx.translate(pan.x, pan.y);
     ctx.scale(zoom, zoom);
 
-    // Subtle grid
+    // Grid
     ctx.strokeStyle = 'rgba(255,255,255,0.02)';
     ctx.lineWidth = 1;
     const gridSize = ROOM_SPACING;
@@ -695,60 +761,50 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
     const startY = Math.floor(-pan.y / zoom / gridSize) * gridSize - gridSize;
     const endX = startX + w / zoom + gridSize * 2;
     const endY = startY + h / zoom + gridSize * 2;
-    for (let gx = startX; gx < endX; gx += gridSize) {
-      ctx.beginPath(); ctx.moveTo(gx, startY); ctx.lineTo(gx, endY); ctx.stroke();
-    }
-    for (let gy = startY; gy < endY; gy += gridSize) {
-      ctx.beginPath(); ctx.moveTo(startX, gy); ctx.lineTo(endX, gy); ctx.stroke();
-    }
+    for (let gx = startX; gx < endX; gx += gridSize) { ctx.beginPath(); ctx.moveTo(gx, startY); ctx.lineTo(gx, endY); ctx.stroke(); }
+    for (let gy = startY; gy < endY; gy += gridSize) { ctx.beginPath(); ctx.moveTo(startX, gy); ctx.lineTo(endX, gy); ctx.stroke(); }
 
-    const rooms = state.rooms.filter(r => r.z === selectedZ);
+    const visibleAll = getVisibleRooms();
+    const rooms = visibleAll.filter(r => r.z === selectedZ);
     const frontier = state.frontier.filter(r => r.z === selectedZ);
     const roomMap = new Map();
     const coordMap = new Map();
     rooms.forEach(r => { roomMap.set(r.vnum, r); coordMap.set(r.x + ',' + r.y + ',' + r.z, r); });
 
-    // Zone boundaries (convex hull approximation)
+    // Zone boundaries
     if (showZones && state.zones.length > 0) {
       const zoneRooms = {};
-      rooms.forEach(r => {
-        if (!zoneRooms[r.zone]) zoneRooms[r.zone] = [];
-        zoneRooms[r.zone].push(r);
-      });
+      rooms.forEach(r => { if (!zoneRooms[r.zone]) zoneRooms[r.zone] = []; zoneRooms[r.zone].push(r); });
       Object.entries(zoneRooms).forEach(([zoneId, zRooms]) => {
         if (zRooms.length < 2) return;
-        const color = getZoneColor(parseInt(zoneId));
+        const zid = parseInt(zoneId);
+        const color = getZoneColor(zid);
+        const isActive = activeZone === null || activeZone === zid;
         const xs = zRooms.map(r => r.x * ROOM_SPACING);
         const ys = zRooms.map(r => r.y * ROOM_SPACING);
         const minX = Math.min(...xs) - ROOM_SIZE;
         const maxX = Math.max(...xs) + ROOM_SIZE;
         const minY = Math.min(...ys) - ROOM_SIZE;
         const maxY = Math.max(...ys) + ROOM_SIZE;
-        
-        ctx.strokeStyle = color + '40';
-        ctx.fillStyle = color + '08';
+        ctx.strokeStyle = color + (isActive ? '40' : '20');
+        ctx.fillStyle = color + (isActive ? '08' : '04');
         ctx.lineWidth = 2;
         ctx.setLineDash([8, 4]);
         roundRect(minX, minY, maxX - minX, maxY - minY, 16);
-        ctx.fill();
-        ctx.stroke();
+        ctx.fill(); ctx.stroke();
         ctx.setLineDash([]);
-        
-        // Zone label
-        ctx.fillStyle = color + 'aa';
+        ctx.fillStyle = color + (isActive ? 'aa' : '44');
         ctx.font = 'bold 11px Inter, system-ui';
-        ctx.textAlign = 'left';
-        ctx.textBaseline = 'top';
-        const zone = state.zones.find(z => z.id === parseInt(zoneId));
+        ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+        const zone = state.zones.find(z => z.id === zid);
         if (zone) ctx.fillText(zone.name, minX + 8, minY + 6);
       });
     }
 
-    // Fog of war (unexplored areas are dimmed)
+    // Fog of war
     if (showFog) {
       ctx.fillStyle = 'rgba(0,0,0,0.6)';
       ctx.fillRect(startX, startY, endX - startX, endY - startY);
-      // Cut out explored rooms
       ctx.globalCompositeOperation = 'destination-out';
       rooms.forEach(room => {
         const px = room.x * ROOM_SPACING;
@@ -761,9 +817,7 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
         grad.addColorStop(0.7, 'rgba(0,0,0,0.8)');
         grad.addColorStop(1, 'rgba(0,0,0,0)');
         ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(px, py, radius, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.beginPath(); ctx.arc(px, py, radius, 0, Math.PI * 2); ctx.fill();
       });
       ctx.globalCompositeOperation = 'source-over';
     }
@@ -772,25 +826,18 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
     ctx.lineCap = 'round';
     const drawn = new Set();
     const oneWayDrawn = new Set();
-    
-    // Helper to draw arrow head
     const drawArrow = (fromX, fromY, toX, toY, color) => {
       const headLen = 12;
       const angle = Math.atan2(toY - fromY, toX - fromX);
-      // Arrow points at 70% of the way to allow room for room circle
       const arrowX = fromX + (toX - fromX) * 0.65;
       const arrowY = fromY + (toY - fromY) * 0.65;
-      ctx.save();
-      ctx.fillStyle = color;
-      ctx.beginPath();
+      ctx.save(); ctx.fillStyle = color; ctx.beginPath();
       ctx.moveTo(arrowX, arrowY);
       ctx.lineTo(arrowX - headLen * Math.cos(angle - Math.PI / 6), arrowY - headLen * Math.sin(angle - Math.PI / 6));
       ctx.lineTo(arrowX - headLen * Math.cos(angle + Math.PI / 6), arrowY - headLen * Math.sin(angle + Math.PI / 6));
-      ctx.closePath();
-      ctx.fill();
-      ctx.restore();
+      ctx.closePath(); ctx.fill(); ctx.restore();
     };
-    
+
     rooms.forEach(room => {
       const oneWay = room.oneWayExits || [];
       room.exits.forEach(dir => {
@@ -798,58 +845,43 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
         if (!off) return;
         const target = coordMap.get((room.x + off[0]) + ',' + (room.y + off[1]) + ',' + (room.z + off[2]));
         if (!target) return;
-        
         const isOneWay = oneWay.includes(dir);
+        const isCrossZone = room.zone !== target.zone;
         const isPath = pathRooms.has(room.vnum) && pathRooms.has(target.vnum);
-        
-        // For two-way exits, only draw once
         if (!isOneWay) {
           const pair = room.vnum < target.vnum ? room.vnum + '-' + target.vnum : target.vnum + '-' + room.vnum;
           if (drawn.has(pair)) return;
           drawn.add(pair);
         } else {
-          // For one-way, track direction-specific
           const key = room.vnum + '->' + target.vnum;
           if (oneWayDrawn.has(key)) return;
           oneWayDrawn.add(key);
         }
-        
-        const x1 = room.x * ROOM_SPACING;
-        const y1 = room.y * ROOM_SPACING;
-        const x2 = target.x * ROOM_SPACING;
-        const y2 = target.y * ROOM_SPACING;
-        
-        ctx.lineWidth = isPath ? 5 : 3;
-        
+        const x1 = room.x * ROOM_SPACING, y1 = room.y * ROOM_SPACING;
+        const x2 = target.x * ROOM_SPACING, y2 = target.y * ROOM_SPACING;
+        ctx.lineWidth = isPath ? 5 : (isCrossZone ? 4 : 3);
         let lineColor;
         if (isPath) {
-          ctx.strokeStyle = '#22c55e';
-          ctx.shadowColor = '#22c55e';
-          ctx.shadowBlur = 10;
+          ctx.strokeStyle = '#22c55e'; ctx.shadowColor = '#22c55e'; ctx.shadowBlur = 10;
           lineColor = '#22c55e';
-        } else if (isOneWay) {
-          ctx.strokeStyle = '#f59e0b';  // Amber/orange for one-way
+        } else if (isCrossZone) {
+          // Portal connections: dashed purple/pink
+          ctx.strokeStyle = '#c084fc';
+          ctx.setLineDash([8, 6]);
           ctx.shadowBlur = 0;
-          lineColor = '#f59e0b';
+          lineColor = '#c084fc';
+        } else if (isOneWay) {
+          ctx.strokeStyle = '#f59e0b'; ctx.shadowBlur = 0; lineColor = '#f59e0b';
         } else {
           const grad = ctx.createLinearGradient(x1, y1, x2, y2);
           grad.addColorStop(0, 'rgba(99,102,241,0.4)');
           grad.addColorStop(1, 'rgba(168,85,247,0.4)');
-          ctx.strokeStyle = grad;
-          ctx.shadowBlur = 0;
+          ctx.strokeStyle = grad; ctx.shadowBlur = 0;
           lineColor = 'rgba(168,85,247,0.6)';
         }
-        
-        ctx.beginPath();
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(x2, y2);
-        ctx.stroke();
-        ctx.shadowBlur = 0;
-        
-        // Draw arrow for one-way exits
-        if (isOneWay) {
-          drawArrow(x1, y1, x2, y2, lineColor);
-        }
+        ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+        ctx.shadowBlur = 0; ctx.setLineDash([]);
+        if (isOneWay) drawArrow(x1, y1, x2, y2, lineColor);
       });
     });
 
@@ -860,10 +892,9 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
       const isHovered = hoveredRoom && hoveredRoom.vnum === room.vnum;
       const isSelected = selectedRoom && selectedRoom.vnum === room.vnum;
       const isPath = pathRooms.has(room.vnum);
-      const isPlayer = state.player && state.player.vnum === room.vnum;
       const zoneColor = getZoneColor(room.zone);
+      const isPortalGhost = activeZone !== null && room.zone !== activeZone;
 
-      // Reveal animation
       if (!revealed.has(room.vnum)) revealed.set(room.vnum, now);
       const revealAge = Math.min((now - revealed.get(room.vnum)) / 400, 1);
       const scale = 0.3 + revealAge * 0.7;
@@ -871,181 +902,111 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
       ctx.save();
       ctx.translate(px, py);
       ctx.scale(scale, scale);
+      if (isPortalGhost) ctx.globalAlpha = 0.5;
 
-      // Shadow
       ctx.shadowColor = isPath ? '#22c55e' : (isHovered ? zoneColor : 'rgba(0,0,0,0.6)');
       ctx.shadowBlur = isHovered || isPath ? 24 : 16;
       ctx.shadowOffsetY = 4;
 
-      // Room body
       const grad = ctx.createLinearGradient(-ROOM_SIZE/2, -ROOM_SIZE/2, ROOM_SIZE/2, ROOM_SIZE/2);
-      if (isPath) {
-        grad.addColorStop(0, '#22c55e');
-        grad.addColorStop(1, '#15803d');
-      } else {
-        grad.addColorStop(0, zoneColor);
-        grad.addColorStop(1, zoneColor + '60');
-      }
+      if (isPath) { grad.addColorStop(0, '#22c55e'); grad.addColorStop(1, '#15803d'); }
+      else { grad.addColorStop(0, zoneColor); grad.addColorStop(1, zoneColor + '60'); }
       ctx.fillStyle = grad;
       roundRect(-ROOM_SIZE/2, -ROOM_SIZE/2, ROOM_SIZE, ROOM_SIZE, ROOM_RADIUS);
       ctx.fill();
 
-      // Border
-      ctx.shadowBlur = 0;
-      ctx.shadowOffsetY = 0;
+      ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
       ctx.strokeStyle = isHovered || isSelected ? '#fff' : (isPath ? '#4ade80' : zoneColor + 'aa');
       ctx.lineWidth = isHovered || isSelected ? 3 : 1.5;
       roundRect(-ROOM_SIZE/2, -ROOM_SIZE/2, ROOM_SIZE, ROOM_SIZE, ROOM_RADIUS);
       ctx.stroke();
 
-      // Icon or symbol
-      ctx.fillStyle = '#0a0e14';
-      if (useIcons && room.icon) {
+      // Portal diamond overlay
+      if (isPortalGhost) {
+        ctx.fillStyle = '#c084fc';
+        ctx.font = '14px system-ui';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText('\u{1F300}', 0, 2);
+      } else if (useIcons && room.icon) {
         ctx.font = '20px system-ui';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillStyle = 'transparent';
-        ctx.fillText(room.icon, 0, 2);
-        // Draw emoji (they render themselves)
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
         ctx.fillStyle = '#fff';
         ctx.fillText(room.icon, 0, 2);
       } else {
+        ctx.fillStyle = '#0a0e14';
         ctx.font = 'bold 16px system-ui';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
+        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
         ctx.fillText(room.symbol, 0, 2);
       }
 
       ctx.restore();
     });
-    
-    // Store rooms with vertical exits for later drawing (after player)
-    const verticalExitRooms = rooms.filter(r => 
-      r.exits && (r.exits.includes('up') || r.exits.includes('down'))
-    );
-    
-    // Debug: log which rooms have vertical exits
-    if (verticalExitRooms.length > 0) {
-      console.log('=== Vertical exits (z=' + selectedZ + ') ===');
-      verticalExitRooms.forEach(r => {
-        const dir = [];
-        if (r.exits.includes('up')) dir.push('UP');
-        if (r.exits.includes('down')) dir.push('DOWN');
-        console.log(dir.join('+') + ':', r.vnum, r.name, '| grid:', r.x, r.y, r.z);
-      });
-    }
-    if (state.player) {
-      console.log('PLAYER room:', state.player.vnum, '| grid:', state.player.x, state.player.y, state.player.z);
-    }
 
+    // Vertical exit indicators
+    const verticalExitRooms = rooms.filter(r => r.exits && (r.exits.includes('up') || r.exits.includes('down')));
     // Frontier
     frontier.forEach(room => {
       const px = room.x * ROOM_SPACING;
       const py = room.y * ROOM_SPACING;
-      ctx.strokeStyle = 'rgba(100,116,139,0.3)';
-      ctx.lineWidth = 2;
-      ctx.setLineDash([6, 4]);
-      roundRect(px - ROOM_SIZE/2 + 4, py - ROOM_SIZE/2 + 4, ROOM_SIZE - 8, ROOM_SIZE - 8, ROOM_RADIUS - 2);
-      ctx.stroke();
-      ctx.setLineDash([]);
-      ctx.fillStyle = 'rgba(100,116,139,0.5)';
-      ctx.font = 'bold 18px system-ui';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('?', px, py + 2);
+      if (room.deathtrap) {
+        // Deathtrap frontier - red dashed border with skull
+        ctx.strokeStyle = 'rgba(239,68,68,0.6)'; ctx.lineWidth = 2;
+        ctx.setLineDash([6, 4]);
+        roundRect(px - ROOM_SIZE/2 + 4, py - ROOM_SIZE/2 + 4, ROOM_SIZE - 8, ROOM_SIZE - 8, ROOM_RADIUS - 2);
+        ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = 'rgba(239,68,68,0.7)';
+        ctx.font = 'bold 20px system-ui'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText('💀', px, py + 2);
+      } else {
+        // Normal frontier - gray dashed border with ?
+        ctx.strokeStyle = 'rgba(100,116,139,0.3)'; ctx.lineWidth = 2;
+        ctx.setLineDash([6, 4]);
+        roundRect(px - ROOM_SIZE/2 + 4, py - ROOM_SIZE/2 + 4, ROOM_SIZE - 8, ROOM_SIZE - 8, ROOM_RADIUS - 2);
+        ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = 'rgba(100,116,139,0.5)';
+        ctx.font = 'bold 18px system-ui'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+        ctx.fillText('?', px, py + 2);
+      }
     });
 
-    // Player with epic glow
+    // Player
     if (state.player && state.player.z === selectedZ) {
       const px = state.player.x * ROOM_SPACING;
       const py = state.player.y * ROOM_SPACING;
       const pulse = Math.sin(pulsePhase) * 0.35 + 0.65;
       const pulseSize = 12 + Math.sin(pulsePhase * 1.3) * 4;
-
-      // Outer rings
       for (let i = 3; i >= 0; i--) {
         ctx.fillStyle = 'rgba(251,191,36,' + (0.08 * pulse * (4 - i)) + ')';
-        ctx.beginPath();
-        ctx.arc(px, py, pulseSize + 12 + i * 8, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.beginPath(); ctx.arc(px, py, pulseSize + 12 + i * 8, 0, Math.PI * 2); ctx.fill();
       }
-
-      // Main glow
-      ctx.shadowColor = '#f59e0b';
-      ctx.shadowBlur = 30 * pulse;
+      ctx.shadowColor = '#f59e0b'; ctx.shadowBlur = 30 * pulse;
       const pGrad = ctx.createRadialGradient(px, py, 0, px, py, pulseSize);
-      pGrad.addColorStop(0, '#fef3c7');
-      pGrad.addColorStop(0.4, '#fbbf24');
-      pGrad.addColorStop(0.8, '#f59e0b');
-      pGrad.addColorStop(1, '#b45309');
+      pGrad.addColorStop(0, '#fef3c7'); pGrad.addColorStop(0.4, '#fbbf24');
+      pGrad.addColorStop(0.8, '#f59e0b'); pGrad.addColorStop(1, '#b45309');
       ctx.fillStyle = pGrad;
-      ctx.beginPath();
-      ctx.arc(px, py, pulseSize, 0, Math.PI * 2);
-      ctx.fill();
-
-      // @ symbol
+      ctx.beginPath(); ctx.arc(px, py, pulseSize, 0, Math.PI * 2); ctx.fill();
       ctx.shadowBlur = 0;
-      ctx.fillStyle = '#1c1917';
-      ctx.font = 'bold 14px system-ui';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
+      ctx.fillStyle = '#1c1917'; ctx.font = 'bold 14px system-ui';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
       ctx.fillText('@', px, py + 1);
     }
-    
-    // Draw up/down exit indicators AFTER player so they're visible on top
-    // Build a map of vnum -> coordinates from the rooms array
-    const roomCoordMap = new Map();
-    rooms.forEach(r => roomCoordMap.set(r.vnum, { x: r.x, y: r.y, z: r.z }));
-    
+
+    // Up/down indicators
     verticalExitRooms.forEach(room => {
-      // Get coordinates from the room object directly
-      const coords = roomCoordMap.get(room.vnum);
-      if (!coords) {
-        console.log('No coords for room', room.vnum);
-        return;
+      const px = room.x * ROOM_SPACING;
+      const py = room.y * ROOM_SPACING;
+      ctx.font = 'bold 11px system-ui'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      if (room.exits.includes('up')) {
+        const ux = px + ROOM_SIZE/2 - 2, uy = py - ROOM_SIZE/2 + 2;
+        ctx.fillStyle = '#22d3ee'; ctx.beginPath(); ctx.arc(ux, uy, 8, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+        ctx.fillStyle = '#0a0e14'; ctx.fillText('\u2191', ux, uy + 1);
       }
-      if (coords.z !== selectedZ) {
-        console.log('Room', room.vnum, 'on different z-level:', coords.z, 'vs', selectedZ);
-        return;
-      }
-      
-      const roomPosX = coords.x * ROOM_SPACING;
-      const roomPosY = coords.y * ROOM_SPACING;
-      const hasUp = room.exits.includes('up');
-      const hasDown = room.exits.includes('down');
-      
-      console.log('DRAW indicator: room', room.vnum, room.name, '| coords:', coords.x, coords.y, '| pixels:', roomPosX, roomPosY);
-      
-      ctx.font = 'bold 11px system-ui';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      
-      if (hasUp) {
-        const upX = roomPosX + ROOM_SIZE/2 - 2;
-        const upY = roomPosY - ROOM_SIZE/2 + 2;
-        ctx.fillStyle = '#22d3ee';
-        ctx.beginPath();
-        ctx.arc(upX, upY, 8, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.strokeStyle = '#fff';
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        ctx.fillStyle = '#0a0e14';
-        ctx.fillText('↑', upX, upY + 1);
-      }
-      
-      if (hasDown) {
-        const downX = roomPosX + ROOM_SIZE/2 - 2;
-        const downY = roomPosY + ROOM_SIZE/2 - 2;
-        ctx.fillStyle = '#dc2626';  // Bright red
-        ctx.beginPath();
-        ctx.arc(downX, downY, 9, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.strokeStyle = '#fff';
-        ctx.lineWidth = 2;
-        ctx.stroke();
-        ctx.fillStyle = '#fff';
-        ctx.fillText('↓', downX, downY + 1);
+      if (room.exits.includes('down')) {
+        const dx = px + ROOM_SIZE/2 - 2, dy = py + ROOM_SIZE/2 - 2;
+        ctx.fillStyle = '#dc2626'; ctx.beginPath(); ctx.arc(dx, dy, 9, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+        ctx.fillStyle = '#fff'; ctx.fillText('\u2193', dx, dy + 1);
       }
     });
 
@@ -1059,69 +1020,143 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
     const mh = minimap.clientHeight;
     miniCtx.clearRect(0, 0, mw, mh);
     if (rooms.length === 0) return;
-
     miniCtx.fillStyle = 'rgba(8,11,16,0.95)';
     miniCtx.fillRect(0, 0, mw, mh);
-
-    const xs = rooms.map(r => r.x);
-    const ys = rooms.map(r => r.y);
+    const xs = rooms.map(r => r.x), ys = rooms.map(r => r.y);
     const minX = Math.min(...xs), maxX = Math.max(...xs);
     const minY = Math.min(...ys), maxY = Math.max(...ys);
-    const width = maxX - minX + 1;
-    const height = maxY - minY + 1;
+    const width = maxX - minX + 1, height = maxY - minY + 1;
     const scale = Math.min((mw - 32) / (width * 10), (mh - 32) / (height * 10));
-
-    miniCtx.save();
-    miniCtx.translate(16, 16);
-    miniCtx.scale(scale, scale);
-
-    // Zone backgrounds
+    miniCtx.save(); miniCtx.translate(16, 16); miniCtx.scale(scale, scale);
     if (showZones) {
       const zoneRooms = {};
       rooms.forEach(r => { if (!zoneRooms[r.zone]) zoneRooms[r.zone] = []; zoneRooms[r.zone].push(r); });
       Object.entries(zoneRooms).forEach(([zid, zRooms]) => {
-        const color = getZoneColor(parseInt(zid));
-        miniCtx.fillStyle = color + '20';
-        zRooms.forEach(r => {
-          miniCtx.fillRect((r.x - minX) * 10, (r.y - minY) * 10, 8, 8);
-        });
+        miniCtx.fillStyle = getZoneColor(parseInt(zid)) + '20';
+        zRooms.forEach(r => { miniCtx.fillRect((r.x - minX) * 10, (r.y - minY) * 10, 8, 8); });
       });
     }
-
-    // Rooms
     rooms.forEach(room => {
       const color = pathRooms.has(room.vnum) ? '#22c55e' : getZoneColor(room.zone);
       miniCtx.fillStyle = color;
-      miniCtx.beginPath();
-      miniCtx.arc((room.x - minX) * 10 + 4, (room.y - minY) * 10 + 4, 3, 0, Math.PI * 2);
-      miniCtx.fill();
+      miniCtx.beginPath(); miniCtx.arc((room.x - minX) * 10 + 4, (room.y - minY) * 10 + 4, 3, 0, Math.PI * 2); miniCtx.fill();
     });
-
-    // Player
     if (state.player && state.player.z === selectedZ) {
       const pulse = Math.sin(pulsePhase) * 0.3 + 0.7;
       miniCtx.fillStyle = 'rgba(251,191,36,' + pulse + ')';
-      miniCtx.beginPath();
-      miniCtx.arc((state.player.x - minX) * 10 + 4, (state.player.y - minY) * 10 + 4, 6, 0, Math.PI * 2);
-      miniCtx.fill();
+      miniCtx.beginPath(); miniCtx.arc((state.player.x - minX) * 10 + 4, (state.player.y - minY) * 10 + 4, 6, 0, Math.PI * 2); miniCtx.fill();
     }
-
-    // Viewport
-    miniCtx.strokeStyle = 'rgba(255,255,255,0.25)';
-    miniCtx.lineWidth = 1.5 / scale;
+    miniCtx.strokeStyle = 'rgba(255,255,255,0.25)'; miniCtx.lineWidth = 1.5 / scale;
     const vpX = (-pan.x / zoom / ROOM_SPACING - minX) * 10;
     const vpY = (-pan.y / zoom / ROOM_SPACING - minY) * 10;
     const vpW = (canvas.clientWidth / zoom / ROOM_SPACING) * 10;
     const vpH = (canvas.clientHeight / zoom / ROOM_SPACING) * 10;
     miniCtx.strokeRect(vpX, vpY, vpW, vpH);
-
     miniCtx.restore();
   };
 
+  // Zone overview mini-map (all zones as clusters)
+  const renderZoneOverview = () => {
+    const ow = zoneOverview.clientWidth;
+    const oh = zoneOverview.clientHeight;
+    zoCtx.clearRect(0, 0, ow, oh);
+    zoCtx.fillStyle = 'rgba(8,11,16,0.95)';
+    zoCtx.fillRect(0, 0, ow, oh);
+    if (state.zones.length === 0) return;
+
+    // Compute zone centroids from all rooms
+    const zoneCentroids = {};
+    const zoneCounts = {};
+    state.rooms.forEach(r => {
+      if (!zoneCentroids[r.zone]) { zoneCentroids[r.zone] = { x: 0, y: 0 }; zoneCounts[r.zone] = 0; }
+      zoneCentroids[r.zone].x += r.x;
+      zoneCentroids[r.zone].y += r.y;
+      zoneCounts[r.zone]++;
+    });
+    const centroids = [];
+    Object.keys(zoneCentroids).forEach(zid => {
+      const n = zoneCounts[zid];
+      centroids.push({ zone: parseInt(zid), x: zoneCentroids[zid].x / n, y: zoneCentroids[zid].y / n, count: n });
+    });
+    if (centroids.length === 0) return;
+
+    const xs = centroids.map(c => c.x), ys = centroids.map(c => c.y);
+    const minX = Math.min(...xs), maxX = Math.max(...xs);
+    const minY = Math.min(...ys), maxY = Math.max(...ys);
+    const rangeX = maxX - minX || 1, rangeY = maxY - minY || 1;
+    const pad = 20;
+    const scaleX = (ow - pad * 2) / rangeX;
+    const scaleY = (oh - pad * 2) / rangeY;
+    const sc = Math.min(scaleX, scaleY);
+
+    // Draw cross-zone connections
+    zoCtx.strokeStyle = 'rgba(255,255,255,0.1)';
+    zoCtx.lineWidth = 1;
+    const connectedPairs = new Set();
+    crossZoneExits.forEach(cx => {
+      const pair = Math.min(cx.fromZone, cx.toZone) + '-' + Math.max(cx.fromZone, cx.toZone);
+      if (connectedPairs.has(pair)) return;
+      connectedPairs.add(pair);
+      const from = centroids.find(c => c.zone === cx.fromZone);
+      const to = centroids.find(c => c.zone === cx.toZone);
+      if (!from || !to) return;
+      zoCtx.beginPath();
+      zoCtx.moveTo(pad + (from.x - minX) * sc, pad + (from.y - minY) * sc);
+      zoCtx.lineTo(pad + (to.x - minX) * sc, pad + (to.y - minY) * sc);
+      zoCtx.stroke();
+    });
+
+    // Store centroid positions for click detection
+    zoneOverview._centroids = [];
+    centroids.forEach(c => {
+      const cx = pad + (c.x - minX) * sc;
+      const cy = pad + (c.y - minY) * sc;
+      const color = getZoneColor(c.zone);
+      const isActive = activeZone === c.zone;
+      const radius = Math.max(4, Math.min(12, Math.sqrt(c.count) * 1.5));
+      zoneOverview._centroids.push({ zone: c.zone, cx, cy, radius });
+
+      if (isActive) {
+        zoCtx.fillStyle = color + '40';
+        zoCtx.beginPath(); zoCtx.arc(cx, cy, radius + 6, 0, Math.PI * 2); zoCtx.fill();
+      }
+      zoCtx.fillStyle = isActive ? color : color + '99';
+      zoCtx.beginPath(); zoCtx.arc(cx, cy, radius, 0, Math.PI * 2); zoCtx.fill();
+      if (isActive) {
+        zoCtx.strokeStyle = '#fff'; zoCtx.lineWidth = 2;
+        zoCtx.beginPath(); zoCtx.arc(cx, cy, radius, 0, Math.PI * 2); zoCtx.stroke();
+      }
+    });
+
+    // Title
+    zoCtx.fillStyle = 'rgba(255,255,255,0.4)';
+    zoCtx.font = '10px Inter, system-ui';
+    zoCtx.textAlign = 'left'; zoCtx.textBaseline = 'top';
+    zoCtx.fillText('Zone Overview' + (activeZone !== null ? ' \u2022 ' + getZoneName(activeZone) : ' \u2022 All'), 6, 4);
+  };
+
+  // Click on zone overview to switch zones
+  zoneOverview.addEventListener('click', (e) => {
+    const rect = zoneOverview.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+    const centroids = zoneOverview._centroids || [];
+    let clicked = null;
+    for (const c of centroids) {
+      if (Math.hypot(mx - c.cx, my - c.cy) < c.radius + 4) { clicked = c.zone; break; }
+    }
+    if (clicked !== null) {
+      setActiveZone(clicked === activeZone ? null : clicked);
+    } else {
+      setActiveZone(null);
+    }
+  });
+
   const updateUI = () => {
     // Level select
-    const zs = [...new Set(state.rooms.map(r => r.z))].sort((a,b) => a - b);
-    zSelect.innerHTML = zs.map(z => 
+    const visibleRooms = getVisibleRooms();
+    const zs = [...new Set(visibleRooms.map(r => r.z))].sort((a,b) => a - b);
+    zSelect.innerHTML = zs.map(z =>
       '<option value="' + z + '"' + (z === selectedZ ? ' selected' : '') + '>Level ' + z + '</option>'
     ).join('');
 
@@ -1131,18 +1166,54 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
       if (playerRoom) {
         const zone = state.zones.find(z => z.id === playerRoom.zone);
         const zoneRoomCount = state.rooms.filter(r => r.zone === playerRoom.zone).length;
-        zoneInfo.innerHTML = 
-          '<div class="zone-name" style="color:' + (zone ? zone.color : '#a5b4fc') + '">' + 
+        zoneInfo.innerHTML =
+          '<div class="zone-name" style="color:' + (zone ? zone.color : '#a5b4fc') + '">' +
           (playerRoom.zoneName || 'Unknown Zone') + '</div>' +
-          '<div class="zone-stats">' + zoneRoomCount + ' rooms explored</div>';
+          '<div class="zone-stats">' + zoneRoomCount + ' rooms explored' +
+          (activeZone !== null ? ' \u2022 <span style="color:#c084fc">Filtering: ' + getZoneName(activeZone) + '</span>' : '') +
+          '</div>';
       }
     }
 
-    // Zone list
+    // Zone filter list
     if (state.zones.length > 0) {
-      zoneList.innerHTML = '<h3>Zones Explored</h3>' + state.zones.map(z => 
-        '<div class="zone-item"><span class="zone-dot" style="background:' + z.color + '"></span>' + z.name + '</div>'
+      const zoneCounts = {};
+      state.rooms.forEach(r => { zoneCounts[r.zone] = (zoneCounts[r.zone] || 0) + 1; });
+      let html = '<div class="zone-filter-item' + (activeZone === null ? ' active' : '') + '" data-zone="all">' +
+        '<span class="zf-dot" style="background:linear-gradient(135deg,#6366f1,#a855f7)"></span>' +
+        '<span class="zf-name">All Zones</span>' +
+        '<span class="zf-count">' + state.rooms.length + '</span></div>';
+      // Sort by room count descending
+      const sorted = [...state.zones].sort((a, b) => (zoneCounts[b.id] || 0) - (zoneCounts[a.id] || 0));
+      sorted.forEach(z => {
+        const count = zoneCounts[z.id] || 0;
+        const isPlayerZone = state.player && state.rooms.find(r => r.vnum === state.player.vnum && r.zone === z.id);
+        html += '<div class="zone-filter-item' + (activeZone === z.id ? ' active' : '') + '" data-zone="' + z.id + '">' +
+          '<span class="zf-dot" style="background:' + z.color + '"></span>' +
+          '<span class="zf-name">' + (isPlayerZone ? '\u{1F4CD} ' : '') + z.name + '</span>' +
+          '<span class="zf-count">' + count + '</span></div>';
+      });
+      zoneFilterList.innerHTML = html;
+      // Attach click handlers
+      zoneFilterList.querySelectorAll('.zone-filter-item').forEach(el => {
+        el.addEventListener('click', () => {
+          const zv = el.dataset.zone;
+          setActiveZone(zv === 'all' ? null : parseInt(zv));
+        });
+      });
+    }
+
+    // Zone list (bottom)
+    if (state.zones.length > 0) {
+      zoneList.innerHTML = '<h3>Zones Explored</h3>' + state.zones.map(z =>
+        '<div class="zone-item' + (activeZone === z.id ? ' active' : '') + '" data-zone="' + z.id + '"><span class="zone-dot" style="background:' + z.color + '"></span>' + z.name + '</div>'
       ).join('');
+      zoneList.querySelectorAll('.zone-item').forEach(el => {
+        el.addEventListener('click', () => {
+          const zv = parseInt(el.dataset.zone);
+          setActiveZone(zv === activeZone ? null : zv);
+        });
+      });
     }
   };
 
@@ -1157,12 +1228,39 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
   const applyState = (data) => {
     if (data.type === 'map_data') {
       state = data;
+      buildCrossZoneIndex();
       if (state.player) {
         selectedZ = state.player.z;
-        targetPan.x = canvas.clientWidth / 2 - (state.player.x * ROOM_SPACING * zoom);
-        targetPan.y = canvas.clientHeight / 2 - (state.player.y * ROOM_SPACING * zoom);
+        // Default to player's current zone on first load or zone change
+        const playerRoom = state.rooms.find(r => r.vnum === state.player.vnum);
+        if (playerRoom && state.rooms.length > 50) {
+          // Auto-switch zone filter when player changes zones
+          if (activeZone === null || (playerRoom.zone !== activeZone)) {
+            activeZone = playerRoom.zone;
+          }
+        }
+        // Center on player or zone centroid
+        if (activeZone !== null) {
+          const zoneRooms = state.rooms.filter(r => r.zone === activeZone);
+          if (zoneRooms.length > 0) {
+            // Center on player if in this zone, else zone centroid
+            if (playerRoom && playerRoom.zone === activeZone) {
+              targetPan.x = canvas.clientWidth / 2 - (state.player.x * ROOM_SPACING * zoom);
+              targetPan.y = canvas.clientHeight / 2 - (state.player.y * ROOM_SPACING * zoom);
+            } else {
+              const cx = zoneRooms.reduce((s, r) => s + r.x, 0) / zoneRooms.length;
+              const cy = zoneRooms.reduce((s, r) => s + r.y, 0) / zoneRooms.length;
+              targetPan.x = canvas.clientWidth / 2 - (cx * ROOM_SPACING * zoom);
+              targetPan.y = canvas.clientHeight / 2 - (cy * ROOM_SPACING * zoom);
+            }
+          }
+        } else {
+          targetPan.x = canvas.clientWidth / 2 - (state.player.x * ROOM_SPACING * zoom);
+          targetPan.y = canvas.clientHeight / 2 - (state.player.y * ROOM_SPACING * zoom);
+        }
       }
       updateUI();
+      renderZoneOverview();
       markPayload();
     }
   };
@@ -1191,7 +1289,6 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
     setWsStatus('connecting', 'connecting');
     ws = new WebSocket('ws://' + window.location.host);
     const fallbackTimer = setTimeout(() => { if (!wsConnected) startPolling(); }, 3000);
-
     ws.addEventListener('open', () => {
       wsConnected = true; reconnectAttempts = 0;
       clearTimeout(fallbackTimer); stopPolling();
@@ -1201,16 +1298,11 @@ aside h3{font-size:12px;color:#6b7280;margin:8px 0 6px 0;text-transform:uppercas
     ws.addEventListener('close', () => {
       wsConnected = false;
       setWsStatus('disconnected', 'reconnecting...');
-      // Exponential backoff: 1s, 2s, 4s, 8s... up to 30s
       const delay = Math.min(1000 * Math.pow(2, reconnectAttempts), maxReconnectDelay);
       reconnectAttempts++;
-      console.log(`WebSocket closed, reconnecting in ${delay}ms...`);
       setTimeout(connectWebSocket, delay);
     });
-    ws.addEventListener('error', (e) => {
-      console.error('WebSocket error:', e);
-      // close handler will trigger reconnect
-    });
+    ws.addEventListener('error', (e) => { console.error('WebSocket error:', e); });
     ws.addEventListener('message', (e) => applyState(JSON.parse(e.data)));
   };
 

@@ -45,11 +45,11 @@
       "exits": {
         "north": {
           "to_room": 5123,
-          "description": ""
+          "description": "A passage leads to A City Street"
         },
         "east": {
           "to_room": 5100,
-          "description": "",
+          "description": "A passage leads to The City Entrance",
           "door": {
             "name": "gate",
             "state": "closed",
@@ -59,11 +59,11 @@
         },
         "south": {
           "to_room": 5102,
-          "description": ""
+          "description": "A passage leads to A City Street"
         },
         "west": {
           "to_room": 5122,
-          "description": ""
+          "description": "A passage leads to The Slave Chamber"
         }
       },
       "mob_resets": [
@@ -89,11 +89,11 @@
       "exits": {
         "north": {
           "to_room": 5101,
-          "description": ""
+          "description": "A passage leads to A City Street"
         },
         "west": {
           "to_room": 5103,
-          "description": ""
+          "description": "A passage leads to A City Street"
         }
       }
     },
@@ -109,15 +109,15 @@
       "exits": {
         "east": {
           "to_room": 5102,
-          "description": ""
+          "description": "A passage leads to A City Street"
         },
         "south": {
           "to_room": 5104,
-          "description": ""
+          "description": "A passage leads to The 3rd House"
         },
         "west": {
           "to_room": 5106,
-          "description": ""
+          "description": "A passage leads to A City Street"
         }
       }
     },
@@ -133,11 +133,11 @@
       "exits": {
         "north": {
           "to_room": 5103,
-          "description": ""
+          "description": "A passage leads to A City Street"
         },
         "south": {
           "to_room": 5105,
-          "description": "",
+          "description": "A passage leads to The Throne Room",
           "door": {
             "name": "door",
             "state": "closed",
@@ -173,7 +173,7 @@
       "exits": {
         "north": {
           "to_room": 5104,
-          "description": "",
+          "description": "A passage leads to The 3rd House",
           "door": {
             "name": "door",
             "state": "closed",
@@ -201,15 +201,15 @@
       "exits": {
         "north": {
           "to_room": 5118,
-          "description": ""
+          "description": "A passage leads to The Warriors' Academy"
         },
         "east": {
           "to_room": 5103,
-          "description": ""
+          "description": "A passage leads to A City Street"
         },
         "west": {
           "to_room": 5107,
-          "description": ""
+          "description": "A passage leads to A City Street"
         }
       },
       "mob_resets": [
@@ -231,15 +231,15 @@
       "exits": {
         "north": {
           "to_room": 5110,
-          "description": ""
+          "description": "A passage leads to The Main Gate"
         },
         "east": {
           "to_room": 5106,
-          "description": ""
+          "description": "A passage leads to A City Street"
         },
         "south": {
           "to_room": 5108,
-          "description": ""
+          "description": "A passage leads to The 2nd House"
         }
       }
     },
@@ -255,11 +255,11 @@
       "exits": {
         "north": {
           "to_room": 5107,
-          "description": ""
+          "description": "A passage leads to A City Street"
         },
         "west": {
           "to_room": 5109,
-          "description": "",
+          "description": "A passage leads to The Throne Room",
           "door": {
             "name": "door",
             "state": "closed",
@@ -295,7 +295,7 @@
       "exits": {
         "east": {
           "to_room": 5108,
-          "description": "",
+          "description": "A passage leads to The 2nd House",
           "door": {
             "name": "door",
             "state": "closed",
@@ -323,11 +323,11 @@
       "exits": {
         "north": {
           "to_room": 5114,
-          "description": ""
+          "description": "A passage leads to A City Street"
         },
         "south": {
           "to_room": 5107,
-          "description": ""
+          "description": "A passage leads to A City Street"
         },
         "west": {
           "to_room": 5111,
@@ -363,7 +363,7 @@
       "exits": {
         "east": {
           "to_room": 5110,
-          "description": "",
+          "description": "A passage leads to The Main Gate",
           "door": {
             "name": "gate",
             "state": "closed",
@@ -373,7 +373,7 @@
         },
         "west": {
           "to_room": 5112,
-          "description": ""
+          "description": "A passage leads to The Throne Room"
         }
       },
       "mob_resets": [
@@ -403,7 +403,7 @@
       "exits": {
         "north": {
           "to_room": 5113,
-          "description": "",
+          "description": "A passage leads to The Main Chamber",
           "door": {
             "name": "door",
             "state": "closed",
@@ -413,7 +413,7 @@
         },
         "east": {
           "to_room": 5111,
-          "description": ""
+          "description": "A passage leads to The 1st House"
         }
       }
     },
@@ -429,7 +429,7 @@
       "exits": {
         "south": {
           "to_room": 5112,
-          "description": "",
+          "description": "A passage leads to The Throne Room",
           "door": {
             "name": "door",
             "state": "closed",
@@ -457,15 +457,15 @@
       "exits": {
         "north": {
           "to_room": 5115,
-          "description": ""
+          "description": "A passage leads to A City Street"
         },
         "east": {
           "to_room": 5117,
-          "description": ""
+          "description": "A passage leads to A City Street"
         },
         "south": {
           "to_room": 5110,
-          "description": ""
+          "description": "A passage leads to The Main Gate"
         }
       }
     },
@@ -481,11 +481,11 @@
       "exits": {
         "south": {
           "to_room": 5114,
-          "description": ""
+          "description": "A passage leads to A City Street"
         },
         "west": {
           "to_room": 5116,
-          "description": ""
+          "description": "A passage leads to The Clerics' Academy"
         }
       },
       "mob_resets": [
@@ -507,7 +507,7 @@
       "exits": {
         "east": {
           "to_room": 5115,
-          "description": ""
+          "description": "A passage leads to A City Street"
         }
       },
       "mob_resets": [
@@ -539,11 +539,11 @@
         },
         "east": {
           "to_room": 5121,
-          "description": ""
+          "description": "A passage leads to A City Street"
         },
         "west": {
           "to_room": 5114,
-          "description": ""
+          "description": "A passage leads to A City Street"
         }
       }
     },
@@ -559,7 +559,7 @@
       "exits": {
         "south": {
           "to_room": 5106,
-          "description": ""
+          "description": "A passage leads to A City Street"
         }
       },
       "mob_resets": [
@@ -585,7 +585,7 @@
       "exits": {
         "south": {
           "to_room": 5117,
-          "description": "",
+          "description": "A passage leads to A City Street",
           "door": {
             "name": "gates gate",
             "state": "closed",
@@ -595,7 +595,7 @@
         },
         "down": {
           "to_room": 5126,
-          "description": ""
+          "description": "A passage leads to The Entrance Hall"
         }
       }
     },
@@ -611,7 +611,7 @@
       "exits": {
         "south": {
           "to_room": 5121,
-          "description": ""
+          "description": "A passage leads to A City Street"
         }
       },
       "mob_resets": [
@@ -633,15 +633,15 @@
       "exits": {
         "north": {
           "to_room": 5120,
-          "description": ""
+          "description": "A passage leads to The Mages' Academy"
         },
         "east": {
           "to_room": 5123,
-          "description": ""
+          "description": "A passage leads to A City Street"
         },
         "west": {
           "to_room": 5117,
-          "description": ""
+          "description": "A passage leads to A City Street"
         }
       },
       "mob_resets": [
@@ -663,7 +663,7 @@
       "exits": {
         "east": {
           "to_room": 5101,
-          "description": ""
+          "description": "A passage leads to A City Street"
         }
       },
       "mob_resets": [
@@ -713,7 +713,7 @@
       "exits": {
         "north": {
           "to_room": 5124,
-          "description": "",
+          "description": "A passage leads to The 4th House",
           "door": {
             "name": "gate",
             "state": "closed",
@@ -723,11 +723,11 @@
         },
         "south": {
           "to_room": 5101,
-          "description": ""
+          "description": "A passage leads to A City Street"
         },
         "west": {
           "to_room": 5121,
-          "description": ""
+          "description": "A passage leads to A City Street"
         }
       }
     },
@@ -743,11 +743,11 @@
       "exits": {
         "east": {
           "to_room": 5125,
-          "description": ""
+          "description": "A passage leads to The Throne Room"
         },
         "south": {
           "to_room": 5123,
-          "description": "",
+          "description": "A passage leads to A City Street",
           "door": {
             "name": "gate",
             "state": "closed",
@@ -783,7 +783,7 @@
       "exits": {
         "west": {
           "to_room": 5124,
-          "description": ""
+          "description": "A passage leads to The 4th House"
         }
       },
       "mob_resets": [
@@ -805,11 +805,11 @@
       "exits": {
         "north": {
           "to_room": 5127,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "up": {
           "to_room": 5119,
-          "description": ""
+          "description": "A passage leads to The Entrance To The Temple Of Lloth"
         }
       }
     },
@@ -825,19 +825,19 @@
       "exits": {
         "north": {
           "to_room": 5135,
-          "description": ""
+          "description": "A passage leads to The Grand Stairway"
         },
         "south": {
           "to_room": 5126,
-          "description": ""
+          "description": "A passage leads to The Entrance Hall"
         },
         "east": {
           "to_room": 5128,
-          "description": ""
+          "description": "A passage leads to A Long Hallway"
         },
         "west": {
           "to_room": 5131,
-          "description": ""
+          "description": "A passage leads to A Long Hallway"
         }
       }
     },
@@ -853,11 +853,11 @@
       "exits": {
         "east": {
           "to_room": 5129,
-          "description": ""
+          "description": "A passage leads to A Long Hallway"
         },
         "west": {
           "to_room": 5127,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -873,7 +873,7 @@
       "exits": {
         "north": {
           "to_room": 5150,
-          "description": "",
+          "description": "A passage leads to The Weaponsmaster's Chamber",
           "door": {
             "name": "door",
             "state": "closed",
@@ -883,11 +883,11 @@
         },
         "east": {
           "to_room": 5130,
-          "description": ""
+          "description": "A passage leads to A Long Hallway"
         },
         "west": {
           "to_room": 5128,
-          "description": ""
+          "description": "A passage leads to A Long Hallway"
         }
       }
     },
@@ -903,11 +903,11 @@
       "exits": {
         "east": {
           "to_room": 5134,
-          "description": ""
+          "description": "A passage leads to A Long Hallway"
         },
         "west": {
           "to_room": 5129,
-          "description": ""
+          "description": "A passage leads to A Long Hallway"
         }
       }
     },
@@ -923,11 +923,11 @@
       "exits": {
         "east": {
           "to_room": 5127,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "west": {
           "to_room": 5132,
-          "description": ""
+          "description": "A passage leads to A Long Hallway"
         }
       }
     },
@@ -943,11 +943,11 @@
       "exits": {
         "east": {
           "to_room": 5131,
-          "description": ""
+          "description": "A passage leads to A Long Hallway"
         },
         "south": {
           "to_room": 5133,
-          "description": "",
+          "description": "A passage leads to The Warriors' Barracks",
           "door": {
             "name": "door",
             "state": "closed",
@@ -957,7 +957,7 @@
         },
         "west": {
           "to_room": 5134,
-          "description": ""
+          "description": "A passage leads to A Long Hallway"
         }
       }
     },
@@ -973,7 +973,7 @@
       "exits": {
         "north": {
           "to_room": 5131,
-          "description": "",
+          "description": "A passage leads to A Long Hallway",
           "door": {
             "name": "door",
             "state": "closed",
@@ -1001,11 +1001,11 @@
       "exits": {
         "east": {
           "to_room": 5132,
-          "description": ""
+          "description": "A passage leads to A Long Hallway"
         },
         "west": {
           "to_room": 5130,
-          "description": ""
+          "description": "A passage leads to A Long Hallway"
         }
       }
     },
@@ -1021,11 +1021,11 @@
       "exits": {
         "south": {
           "to_room": 5127,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "up": {
           "to_room": 5136,
-          "description": ""
+          "description": "A passage leads to The Grand Hallway"
         }
       }
     },
@@ -1041,11 +1041,11 @@
       "exits": {
         "north": {
           "to_room": 5138,
-          "description": ""
+          "description": "A passage leads to The Grand Hallway"
         },
         "east": {
           "to_room": 5137,
-          "description": "",
+          "description": "A passage leads to The Mages' Barracks",
           "door": {
             "name": "door",
             "state": "closed",
@@ -1055,7 +1055,7 @@
         },
         "down": {
           "to_room": 5135,
-          "description": ""
+          "description": "A passage leads to The Grand Stairway"
         }
       }
     },
@@ -1071,7 +1071,7 @@
       "exits": {
         "west": {
           "to_room": 5136,
-          "description": "",
+          "description": "A passage leads to The Grand Hallway",
           "door": {
             "name": "door",
             "state": "closed",
@@ -1093,11 +1093,11 @@
       "exits": {
         "south": {
           "to_room": 5136,
-          "description": ""
+          "description": "A passage leads to The Grand Hallway"
         },
         "west": {
           "to_room": 5139,
-          "description": "",
+          "description": "A passage leads to The Clerics' Barracks",
           "door": {
             "name": "door",
             "state": "closed",
@@ -1107,7 +1107,7 @@
         },
         "down": {
           "to_room": 5140,
-          "description": ""
+          "description": "A passage leads to The Grand Stairway"
         }
       }
     },
@@ -1123,7 +1123,7 @@
       "exits": {
         "east": {
           "to_room": 5138,
-          "description": "",
+          "description": "A passage leads to The Grand Hallway",
           "door": {
             "name": "door",
             "state": "closed",
@@ -1145,7 +1145,7 @@
       "exits": {
         "north": {
           "to_room": 5141,
-          "description": "",
+          "description": "A passage leads to The Main Chamber",
           "door": {
             "name": "doors door golden gold",
             "state": "closed",
@@ -1155,7 +1155,7 @@
         },
         "up": {
           "to_room": 5138,
-          "description": ""
+          "description": "A passage leads to The Grand Hallway"
         }
       }
     },
@@ -1171,11 +1171,11 @@
       "exits": {
         "east": {
           "to_room": 5142,
-          "description": ""
+          "description": "A passage leads to The Eastern Side Of The Main Chamber"
         },
         "south": {
           "to_room": 5140,
-          "description": "",
+          "description": "A passage leads to The Grand Stairway",
           "door": {
             "name": "doors door golden gold",
             "state": "closed",
@@ -1185,7 +1185,7 @@
         },
         "west": {
           "to_room": 5144,
-          "description": ""
+          "description": "A passage leads to The Western Side Of The Main Chamber"
         }
       }
     },
@@ -1201,11 +1201,11 @@
       "exits": {
         "north": {
           "to_room": 5145,
-          "description": ""
+          "description": "A passage leads to The Altar"
         },
         "east": {
           "to_room": 5146,
-          "description": "",
+          "description": "A passage leads to The Slave Cells",
           "door": {
             "name": "door",
             "state": "closed",
@@ -1215,7 +1215,7 @@
         },
         "south": {
           "to_room": 5141,
-          "description": ""
+          "description": "A passage leads to The Main Chamber"
         }
       }
     },
@@ -1242,11 +1242,11 @@
       "exits": {
         "north": {
           "to_room": 5145,
-          "description": ""
+          "description": "A passage leads to The Altar"
         },
         "south": {
           "to_room": 5141,
-          "description": ""
+          "description": "A passage leads to The Main Chamber"
         }
       }
     },
@@ -1262,19 +1262,19 @@
       "exits": {
         "north": {
           "to_room": 5148,
-          "description": ""
+          "description": "A passage leads to The Dias"
         },
         "east": {
           "to_room": 5142,
-          "description": ""
+          "description": "A passage leads to The Eastern Side Of The Main Chamber"
         },
         "west": {
           "to_room": 5144,
-          "description": ""
+          "description": "A passage leads to The Western Side Of The Main Chamber"
         },
         "down": {
           "to_room": 5143,
-          "description": "Thousands of spiders eye you with undisguised hunger."
+          "description": "A dark pit gapes below the altar."
         }
       }
     },
@@ -1290,7 +1290,7 @@
       "exits": {
         "north": {
           "to_room": 5147,
-          "description": "",
+          "description": "A passage leads to The Slave Pen",
           "door": {
             "name": "cell",
             "state": "closed",
@@ -1300,7 +1300,7 @@
         },
         "west": {
           "to_room": 5142,
-          "description": "",
+          "description": "A passage leads to The Eastern Side Of The Main Chamber",
           "door": {
             "name": "door",
             "state": "closed",
@@ -1322,7 +1322,7 @@
       "exits": {
         "south": {
           "to_room": 5146,
-          "description": "",
+          "description": "A passage leads to The Slave Cells",
           "door": {
             "name": "cell",
             "state": "closed",
@@ -1344,11 +1344,11 @@
       "exits": {
         "south": {
           "to_room": 5145,
-          "description": ""
+          "description": "A passage leads to The Altar"
         },
         "west": {
           "to_room": 5149,
-          "description": "",
+          "description": "A passage leads to The Treasury",
           "door": {
             "name": "door",
             "state": "open",
@@ -1376,7 +1376,7 @@
       "exits": {
         "east": {
           "to_room": 5148,
-          "description": "",
+          "description": "A passage leads to The Dias",
           "door": {
             "name": "door",
             "state": "open",
@@ -1404,7 +1404,7 @@
       "exits": {
         "south": {
           "to_room": 5129,
-          "description": "",
+          "description": "A passage leads to A Long Hallway",
           "door": {
             "name": "door",
             "state": "closed",
@@ -1747,6 +1747,22 @@
         {
           "vnum": 5125,
           "chance": 20
+        },
+        {
+          "vnum": 5151,
+          "chance": 12
+        },
+        {
+          "vnum": 5152,
+          "chance": 12
+        },
+        {
+          "vnum": 5153,
+          "chance": 12
+        },
+        {
+          "vnum": 5154,
+          "chance": 12
         }
       ],
       "loot_chance": 100
@@ -1831,7 +1847,8 @@
       "weight": 12,
       "value": 1000,
       "damage_dice": "1d8",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "treasure"
     },
     "5101": {
       "vnum": 5101,
@@ -1842,7 +1859,8 @@
       "weight": 12,
       "value": 1500,
       "damage_dice": "1d8",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "treasure"
     },
     "5102": {
       "vnum": 5102,
@@ -1853,7 +1871,8 @@
       "weight": 12,
       "value": 1750,
       "damage_dice": "2d6",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "5103": {
       "vnum": 5103,
@@ -1864,7 +1883,8 @@
       "weight": 12,
       "value": 5000,
       "damage_dice": "2d7",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "5104": {
       "vnum": 5104,
@@ -1875,7 +1895,8 @@
       "weight": 12,
       "value": 10250,
       "damage_dice": "2d8",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "5105": {
       "vnum": 5105,
@@ -1886,7 +1907,8 @@
       "weight": 12,
       "value": 10250,
       "damage_dice": "2d8",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "treasure"
     },
     "5106": {
       "vnum": 5106,
@@ -1897,7 +1919,8 @@
       "weight": 12,
       "value": 12000,
       "damage_dice": "3d6",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "5107": {
       "vnum": 5107,
@@ -1908,7 +1931,8 @@
       "weight": 12,
       "value": 15000,
       "damage_dice": "4d5",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "5108": {
       "vnum": 5108,
@@ -1918,7 +1942,10 @@
       "item_type": "armor",
       "weight": 3,
       "value": 2000,
-      "armor_bonus": 8
+      "armor_bonus": 8,
+      "type": "armor",
+      "wear_slot": "hands",
+      "armor": 2
     },
     "5109": {
       "vnum": 5109,
@@ -1927,7 +1954,8 @@
       "room_desc": "A pair of gauntlets is lying on the ground.",
       "item_type": "treasure",
       "weight": 2,
-      "value": 10000
+      "value": 10000,
+      "type": "treasure"
     },
     "5110": {
       "vnum": 5110,
@@ -1936,7 +1964,8 @@
       "room_desc": "A silvery blue wand has been dropped in the dirt.",
       "item_type": "wand",
       "weight": 1,
-      "value": 4000
+      "value": 4000,
+      "type": "wand"
     },
     "5111": {
       "vnum": 5111,
@@ -1946,7 +1975,10 @@
       "item_type": "armor",
       "weight": 5,
       "value": 6000,
-      "armor_bonus": 1
+      "armor_bonus": 1,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "5112": {
       "vnum": 5112,
@@ -1955,7 +1987,10 @@
       "room_desc": "A small ruby ring lies in the dirt.",
       "item_type": "treasure",
       "weight": 1,
-      "value": 20000
+      "value": 20000,
+      "type": "armor",
+      "wear_slot": "finger",
+      "armor": 0
     },
     "5113": {
       "vnum": 5113,
@@ -1966,7 +2001,8 @@
       "weight": 8,
       "value": 12000,
       "damage_dice": "3d4",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "5114": {
       "vnum": 5114,
@@ -1976,7 +2012,10 @@
       "item_type": "armor",
       "weight": 1,
       "value": 2000,
-      "armor_bonus": 10
+      "armor_bonus": 10,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "5115": {
       "vnum": 5115,
@@ -1985,7 +2024,8 @@
       "room_desc": "A key made of a strange metal is lying here.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "5116": {
       "vnum": 5116,
@@ -1994,7 +2034,8 @@
       "room_desc": "A large pile of golden coins is lying here.",
       "item_type": "money",
       "weight": 10,
-      "value": 17645
+      "value": 17645,
+      "type": "trash"
     },
     "5117": {
       "vnum": 5117,
@@ -2014,7 +2055,8 @@
           "value": 3
         }
       ],
-      "set_id": 51
+      "set_id": 51,
+      "type": "weapon"
     },
     "5118": {
       "vnum": 5118,
@@ -2033,7 +2075,9 @@
           "value": 1
         }
       ],
-      "set_id": 51
+      "set_id": 51,
+      "type": "armor",
+      "armor": 3
     },
     "5119": {
       "vnum": 5119,
@@ -2051,7 +2095,8 @@
           "value": 3
         }
       ],
-      "set_id": 51
+      "set_id": 51,
+      "type": "treasure"
     },
     "5120": {
       "vnum": 5120,
@@ -2069,7 +2114,8 @@
           "value": 3
         }
       ],
-      "set_id": 51
+      "set_id": 51,
+      "type": "treasure"
     },
     "5121": {
       "vnum": 5121,
@@ -2087,7 +2133,8 @@
           "value": 3
         }
       ],
-      "set_id": 51
+      "set_id": 51,
+      "type": "treasure"
     },
     "5122": {
       "vnum": 5122,
@@ -2107,7 +2154,8 @@
           "value": 3
         }
       ],
-      "set_id": 51
+      "set_id": 51,
+      "type": "treasure"
     },
     "5123": {
       "vnum": 5123,
@@ -2131,7 +2179,8 @@
           "value": 1
         }
       ],
-      "set_id": 51
+      "set_id": 51,
+      "type": "weapon"
     },
     "5124": {
       "vnum": 5124,
@@ -2151,7 +2200,8 @@
           "value": 3
         }
       ],
-      "set_id": 51
+      "set_id": 51,
+      "type": "weapon"
     },
     "5125": {
       "vnum": 5125,
@@ -2170,7 +2220,94 @@
           "value": 5
         }
       ],
-      "set_id": 51
+      "set_id": 51,
+      "type": "armor",
+      "armor": 1
+    },
+    "5151": {
+      "vnum": 5151,
+      "name": "drow shadow armor",
+      "short_desc": "drow shadow armor",
+      "room_desc": "Dark armor radiating shadow lies here.",
+      "description": "Armor woven from drow silk and shadow.",
+      "item_type": "armor",
+      "weight": 6,
+      "value": 4000,
+      "wear_slot": "body",
+      "armor_class": 6,
+      "affects": [
+        {
+          "type": "dex",
+          "value": 2
+        }
+      ],
+      "set_id": "drow_shadow",
+      "type": "armor",
+      "min_level": 20
+    },
+    "5152": {
+      "vnum": 5152,
+      "name": "drow shadow cloak",
+      "short_desc": "a drow shadow cloak",
+      "room_desc": "A cloak of living shadow lies here.",
+      "description": "Darkness clings to this cloak.",
+      "item_type": "armor",
+      "weight": 2,
+      "value": 3000,
+      "wear_slot": "about",
+      "armor_class": 3,
+      "affects": [
+        {
+          "type": "shadow_resist",
+          "value": 5
+        }
+      ],
+      "set_id": "drow_shadow",
+      "type": "armor",
+      "min_level": 20
+    },
+    "5153": {
+      "vnum": 5153,
+      "name": "drow shadow blade",
+      "short_desc": "a drow shadow blade",
+      "room_desc": "A black blade pulses with shadow.",
+      "description": "A wickedly sharp dark blade.",
+      "item_type": "weapon",
+      "weight": 3,
+      "value": 4500,
+      "wear_slot": "wield",
+      "weapon_type": "slash",
+      "damage_dice": "2d6+4",
+      "affects": [
+        {
+          "type": "hitroll",
+          "value": 3
+        }
+      ],
+      "set_id": "drow_shadow",
+      "type": "weapon",
+      "min_level": 20
+    },
+    "5154": {
+      "vnum": 5154,
+      "name": "drow shadow ring",
+      "short_desc": "a drow shadow ring",
+      "room_desc": "A ring of darkness lies here.",
+      "description": "An obsidian ring.",
+      "item_type": "armor",
+      "weight": 0,
+      "value": 3500,
+      "wear_slot": "finger",
+      "armor_class": 1,
+      "affects": [
+        {
+          "type": "poison_resist",
+          "value": 5
+        }
+      ],
+      "set_id": "drow_shadow",
+      "type": "armor",
+      "min_level": 20
     }
   }
 }

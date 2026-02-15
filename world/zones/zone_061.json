@@ -268,6 +268,30 @@
       "name": "isha",
       "short_desc": "Isha the Dark Elf",
       "vnum": 6117
+    },
+    "6198": {
+      "vnum": 6198,
+      "name": "wounded forest spirit",
+      "short_desc": "a wounded forest spirit",
+      "long_desc": "A luminous forest spirit flickers weakly here, its glow barely visible among the twisted trees.",
+      "description": "What was once a radiant being of living light is now dim and wounded, its form cracked like broken glass. The corruption of the dark forest is slowly consuming it.",
+      "level": 38,
+      "alignment": 0,
+      "hp_dice": "38d10+700",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The spirit's voice is like wind through dead leaves. 'This forest... was beautiful once. The corruption came from below, from something buried deep. The glade still holds, but for how long? If you find the silver mushrooms, follow them. The glade needs protectors.'",
+        "corruption": "The spirit shudders. 'It feeds on anger and fear. The beasts here are not evil \u2014 they are suffering. End them quickly, if you must. It is a mercy.'",
+        "default": "The forest spirit pulses faintly, its light flickering like a dying ember.",
+        "next": "Wounded Forest Spirit regards you with hollow eyes. 'The Drow City lies deeper underground \u2014 if you've conquered this forest, you may be ready for their treachery. The mines of Moria also hold secrets in their deepest levels, and the city of Thalos could use fighters like you.'"
+      }
     }
   },
   "name": "Haon-Dor, Dark Forest",
@@ -280,7 +304,8 @@
       "short_desc": "a sign",
       "value": 2,
       "vnum": 6101,
-      "weight": 10
+      "weight": 10,
+      "type": "furniture"
     },
     "6102": {
       "capacity": 1000,
@@ -290,7 +315,8 @@
       "short_desc": "a colossal tree",
       "value": 0,
       "vnum": 6102,
-      "weight": 0
+      "weight": 0,
+      "type": "treasure"
     },
     "6103": {
       "item_type": "light",
@@ -300,7 +326,8 @@
       "short_desc": "a long, grey branch",
       "value": 1,
       "vnum": 6103,
-      "weight": 20
+      "weight": 20,
+      "type": "treasure"
     },
     "6104": {
       "damage_dice": "2d6",
@@ -311,7 +338,8 @@
       "value": 60,
       "vnum": 6104,
       "weapon_type": "pound",
-      "weight": 18
+      "weight": 18,
+      "type": "treasure"
     },
     "6105": {
       "item_type": "treasure",
@@ -320,7 +348,8 @@
       "short_desc": "a long, grey branch",
       "value": 0,
       "vnum": 6105,
-      "weight": 40
+      "weight": 40,
+      "type": "treasure"
     },
     "6106": {
       "item_type": "food",
@@ -330,7 +359,8 @@
       "short_desc": "a toadstool",
       "value": 20,
       "vnum": 6106,
-      "weight": 5
+      "weight": 5,
+      "type": "treasure"
     },
     "6107": {
       "item_type": "food",
@@ -340,7 +370,8 @@
       "short_desc": "a toadstool",
       "value": 20,
       "vnum": 6107,
-      "weight": 5
+      "weight": 5,
+      "type": "treasure"
     },
     "6108": {
       "item_type": "money",
@@ -349,7 +380,8 @@
       "short_desc": "a big pile of gold coins",
       "value": 15326,
       "vnum": 6108,
-      "weight": 15
+      "weight": 15,
+      "type": "trash"
     },
     "6109": {
       "item_type": "potion",
@@ -358,7 +390,8 @@
       "short_desc": "a blue potion",
       "value": 68000,
       "vnum": 6109,
-      "weight": 2
+      "weight": 2,
+      "type": "potion"
     },
     "6110": {
       "item_type": "potion",
@@ -367,7 +400,8 @@
       "short_desc": "a musky yellow potion",
       "value": 1000,
       "vnum": 6110,
-      "weight": 2
+      "weight": 2,
+      "type": "potion"
     },
     "6111": {
       "armor_bonus": 5,
@@ -377,7 +411,10 @@
       "short_desc": "a large round shield",
       "value": 300,
       "vnum": 6111,
-      "weight": 15
+      "weight": 15,
+      "type": "armor",
+      "wear_slot": "shield",
+      "armor": 3
     },
     "6112": {
       "armor_bonus": 6,
@@ -387,7 +424,10 @@
       "short_desc": "an iron crown",
       "value": 7000,
       "vnum": 6112,
-      "weight": 20
+      "weight": 20,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "6113": {
       "item_type": "light",
@@ -397,7 +437,8 @@
       "short_desc": "an iron sceptre",
       "value": 5000,
       "vnum": 6113,
-      "weight": 10
+      "weight": 10,
+      "type": "treasure"
     },
     "6114": {
       "item_type": "treasure",
@@ -406,7 +447,10 @@
       "short_desc": "an iron ring",
       "value": 5000,
       "vnum": 6114,
-      "weight": 10
+      "weight": 10,
+      "type": "armor",
+      "wear_slot": "finger",
+      "armor": 0
     },
     "6115": {
       "damage_dice": "2d9",
@@ -417,7 +461,8 @@
       "value": 15000,
       "vnum": 6115,
       "weapon_type": "pound",
-      "weight": 10
+      "weight": 10,
+      "type": "treasure"
     },
     "6116": {
       "armor_bonus": 6,
@@ -427,7 +472,10 @@
       "short_desc": "a black dragon scale shirt",
       "value": 10000,
       "vnum": 6116,
-      "weight": 10
+      "weight": 10,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 1
     },
     "6117": {
       "armor_bonus": 6,
@@ -437,7 +485,8 @@
       "short_desc": "a black dragon scale skirt",
       "value": 5000,
       "vnum": 6117,
-      "weight": 8
+      "weight": 8,
+      "type": "treasure"
     },
     "6118": {
       "item_type": "treasure",
@@ -446,7 +495,10 @@
       "short_desc": "a black, hooded cloak",
       "value": 8000,
       "vnum": 6118,
-      "weight": 20
+      "weight": 20,
+      "type": "armor",
+      "wear_slot": "about",
+      "armor": 1
     },
     "6119": {
       "armor_bonus": 6,
@@ -456,7 +508,10 @@
       "short_desc": "a broad silver belt",
       "value": 5000,
       "vnum": 6119,
-      "weight": 4
+      "weight": 4,
+      "type": "armor",
+      "wear_slot": "waist",
+      "armor": 1
     },
     "6120": {
       "damage_dice": "3d6",
@@ -467,7 +522,8 @@
       "value": 30000,
       "vnum": 6120,
       "weapon_type": "slash",
-      "weight": 4
+      "weight": 4,
+      "type": "weapon"
     }
   },
   "rooms": {
@@ -802,7 +858,13 @@
       ],
       "name": "A Narrow Trail Through The Deep, Dark Forest",
       "sector_type": "forest",
-      "vnum": 6110
+      "vnum": 6110,
+      "mob_resets": [
+        {
+          "vnum": 6198,
+          "max": 1
+        }
+      ]
     },
     "6111": {
       "description": "The area is a dusty trail winding its way north-south between huge,\nancient trees that loom ominously above. Branches intertwine overhead,\nfiltering the light. Bird calls echo through the canopy.",

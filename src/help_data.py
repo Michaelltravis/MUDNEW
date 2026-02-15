@@ -96,26 +96,89 @@ HELP_TOPICS = {'account': {'category': 'command',
  'assassin': {'category': 'class',
               'description': 'The Assassin class.\n'
                              '\n'
-                             'SKILL TREE / PROGRESSION:\n'
-                             '- Skills/spells unlock in the order listed for your class.\n'
-                             '- Unlock tiers at levels: 2, 3, 5, 7, 10, 15, 20, 25, 30.',
+                             'Assassins are patient killers who study their prey before\n'
+                             'striking with lethal precision. Unlike rogues, assassins\n'
+                             'grow MORE dangerous the longer a fight lasts.\n'
+                             '\n'
+                             'CORE MECHANIC - INTEL SYSTEM:\n'
+                             '  Use "mark <target>" to begin studying an enemy.\n'
+                             '  Each successful attack on a marked target builds Intel (0-10).\n'
+                             '  Backstab from stealth grants bonus Intel.\n'
+                             '  At Intel thresholds, powerful abilities unlock:\n'
+                             '    Intel 3: Expose Weakness - target takes 15% more damage\n'
+                             '    Intel 6: Vital Strike   - guaranteed crit, 3x weapon damage\n'
+                             '    Intel 10: Execute Contract - instant kill below 20% HP\n'
+                             '\n'
+                             'COMBAT FLOW:\n'
+                             '  Stealth -> Mark -> Backstab (opener) -> Build Intel ->\n'
+                             '  Expose/Vital/Execute -> Vanish to re-engage if needed\n'
+                             '  Intel is preserved through Vanish!\n'
+                             '\n'
+                             'DEFENSIVE TOOLS:\n'
+                             '  Feint    - reduce incoming damage 30% for 3 rounds\n'
+                             '  Evasion  - 100% dodge for 10 seconds (3 min cooldown)\n'
+                             '  Vanish   - drop combat, re-stealth, keep Intel\n'
+                             '  Shadow Step - teleport, dodge next attack, +1 Intel\n'
+                             '\n'
+                             'TALENT TREES:\n'
+                             '  Lethality - Burst damage, crit scaling, backstab power\n'
+                             '  Poison    - DoTs, debuffs, sustain through Leech Venom\n'
+                             '  Shadow    - Evasion, stealth, survivability passives\n'
+                             '\n'
+                             'CORE SKILLS:\n'
+                             '  backstab, mark, expose, vital, execute_contract,\n'
+                             '  feint, evasion, vanish, shadow_step, sneak, hide,\n'
+                             '  dual_wield, second_attack, dodge, poison\n'
+                             '\n'
+                             'See also: HELP INTEL, HELP MARK, HELP EXPOSE,\n'
+                             '          HELP VITAL, HELP EXECUTE_CONTRACT',
               'title': 'Assassin'},
+ 'intel': {'category': 'guide',
+           'description': 'The Intel System (Assassin class)\n'
+                          '\n'
+                          'Intel is the assassin\'s core combat mechanic. It represents\n'
+                          'your knowledge of a target\'s weaknesses, gathered through\n'
+                          'observation and combat.\n'
+                          '\n'
+                          'HOW TO BUILD INTEL:\n'
+                          '  1. Use "mark <target>" to designate your prey\n'
+                          '  2. Each successful melee hit grants +1 Intel\n'
+                          '  3. Backstab from stealth grants +3 Intel\n'
+                          '     (with Intel Backstab talent)\n'
+                          '  4. Shadow Step grants +1 Intel on marked target\n'
+                          '  5. Poison ticks can grant Intel (with talent)\n'
+                          '\n'
+                          'INTEL THRESHOLDS:\n'
+                          '  Intel 3  - "expose"   : Target takes 15% more damage (30s)\n'
+                          '  Intel 6  - "vital"    : 3x weapon damage, guaranteed crit\n'
+                          '  Intel 10 - "execute_contract" : Instant kill below 20% HP\n'
+                          '\n'
+                          'INTEL RESETS WHEN:\n'
+                          '  - Target dies\n'
+                          '  - You mark a new target\n'
+                          '  - You die\n'
+                          '\n'
+                          'INTEL PERSISTS THROUGH:\n'
+                          '  - Vanish (key for re-engage cycle!)\n'
+                          '  - Fleeing\n'
+                          '\n'
+                          'TALENT SYNERGIES:\n'
+                          '  Kill or Be Killed - each Intel point = +1% dodge\n'
+                          '  Deadly Patience   - Intel >= 6 = 15% damage reduction\n'
+                          '  Intel from Poison  - poison ticks build Intel\n'
+                          '  Intel Backstab    - backstab grants +3 instead of +1\n'
+                          '\n'
+                          'See also: HELP MARK, HELP ASSASSIN',
+           'title': 'Intel System'},
  'assassinate': {'category': 'skill',
                  'classes': ['assassin'],
-                 'description': '\n'
-                                'A high‑risk, high‑damage stealth finisher.\n'
+                 'description': 'Legacy ability - replaced by the Intel system.\n'
+                                'Use "mark" to study targets and build Intel,\n'
+                                'then "execute_contract" at Intel 10 for the kill.\n'
                                 '\n'
-                                'REQUIREMENTS:\n'
-                                '- Must not be in combat\n'
-                                '- Piercing weapon required\n'
-                                '- Best while hidden/sneaking\n'
-                                '\n'
-                                'MECHANICS:\n'
-                                '- Uses your stealth vs target awareness\n'
-                                '- Higher success on lower‑level targets\n'
-                                '- Fails if target is too alert\n',
+                                'See HELP ASSASSIN, HELP INTEL, HELP EXECUTE_CONTRACT',
                  'syntax': 'assassinate',
-                 'title': 'Assassinate'},
+                 'title': 'Assassinate (Legacy)'},
  'assist': {'category': 'command',
             'description': 'Help someone in combat. Usage: assist <player>',
             'syntax': 'assist <player>',
@@ -197,8 +260,7 @@ HELP_TOPICS = {'account': {'category': 'command',
  'backstab': {'category': 'skill',
               'classes': ['assassin', 'thief'],
               'description': '\n'
-                             'Backstab is a stealth opener that delivers a massive strike. It uses your\n'
-                             'Sneak/Hide + environment to boost success and damage.\n'
+                             'Backstab is a stealth opener that delivers a massive strike.\n'
                              '\n'
                              'REQUIREMENTS:\n'
                              '- Must not be in combat\n'
@@ -206,16 +268,27 @@ HELP_TOPICS = {'account': {'category': 'command',
                              '- Best from hidden/sneaking\n'
                              '\n'
                              'MECHANICS:\n'
-                             '- Wind‑up 1–4s with spinner (can be interrupted)\n'
+                             '- Wind-up 1-4s with spinner (can be interrupted)\n'
                              '- Success roll scales with DEX + stealth + level gap\n'
                              '- Damage multiplier scales with hidden/sneak/darkness\n'
-                             '- Rare execution proc vs non‑boss targets\n'
                              '- 6s cooldown\n'
                              '\n'
+                             'ASSASSIN INTEL BONUS:\n'
+                             '- Backstab from stealth on a marked target grants +3 Intel\n'
+                             '  (or +1 without the Intel Backstab talent)\n'
+                             '- This is your primary Intel builder\n'
+                             '- Vanish -> Backstab cycle is core assassin gameplay\n'
+                             '\n'
+                             'TALENT SYNERGIES:\n'
+                             '- Intel Backstab: +3 Intel from stealth backstab\n'
+                             '- Shadow Mend: stealth backstab heals 10% of damage dealt\n'
+                             '- Improved Backstab: +5% backstab damage per rank\n'
+                             '\n'
                              'TIPS:\n'
-                             '- Cover/snuff light to improve stealth\n'
-                             '- Use hide + sneak before backstab\n',
-              'syntax': 'backstab',
+                             '- Mark target BEFORE backstabbing for Intel\n'
+                             '- Use hide + sneak before backstab\n'
+                             '- Vanish preserves Intel, so backstab again after vanishing\n',
+              'syntax': 'backstab <target>',
               'title': 'Backstab'},
  'backup': {'category': 'command',
             'description': 'Create a backup of game data (immortal only).\n'
@@ -227,11 +300,23 @@ HELP_TOPICS = {'account': {'category': 'command',
             'title': 'Backup'},
  'balance': {'category': 'command', 'description': 'Check your bank balance.', 'syntax': 'balance', 'title': 'Balance'},
  'bard': {'category': 'class',
-          'description': 'The Bard class.\n'
+          'description': 'The Bard class - master of songs, lore, and trickery.\n'
                          '\n'
-                         'SKILL TREE / PROGRESSION:\n'
-                         '- Skills/spells unlock in the order listed for your class.\n'
-                         '- Unlock tiers at levels: 2, 3, 5, 7, 10, 15, 20, 25, 30.',
+                         'CORE MECHANIC - INSPIRATION:\n'
+                         '  Build Inspiration through songs and combat (max 10).\n'
+                         '  Each point boosts all song buffs by +1%.\n'
+                         '  Spend Inspiration on powerful abilities:\n'
+                         '    Crescendo (5): Massive sonic damage\n'
+                         '    Encore (3): Double-strength song reapply\n'
+                         '    Discordant Note (4): Silence + damage\n'
+                         '    Magnum Opus (10): Party +20% everything\n'
+                         '\n'
+                         'TALENT TREES:\n'
+                         '  Performance - Song power, duration, and Inspiration gen\n'
+                         '  Lore - Knowledge, utility, XP, and item identification\n'
+                         '  Trickster - Crowd control, illusions, and debuffs\n'
+                         '\n'
+                         'See also: HELP INSPIRATION_GUIDE, HELP CRESCENDO',
           'title': 'Bard'},
  'barkskin': {'category': 'spell',
               'classes': ['cleric', 'ranger'],
@@ -247,16 +332,12 @@ HELP_TOPICS = {'account': {'category': 'command',
               'title': 'Barkskin'},
  'bash': {'category': 'skill',
           'classes': ['paladin', 'warrior'],
-          'description': '\n'
-                         'Bash to knock a target down.\n'
-                         '\n'
-                         'REQUIREMENTS:\n'
-                         '- In combat\n'
-                         '\n'
-                         'MECHANICS:\n'
-                         '- STR/DEX vs target\n'
-                         '- On success: target knocked down (sitting)\n',
-          'syntax': 'bash',
+          'description': 'Bash — Shield bash. 8s cooldown. Deals 1x damage + stun 1 round.\n\n'
+                         'Evolutions (at 50/150/300 uses):\n'
+                         '  Iron Wall: fortress_bash → bastion_bash → unbreakable_bash\n'
+                         '  Berserker: skull_crack → cranial_devastation → execution_bash\n'
+                         '  Warlord: concussive_bash → shockwave_bash → domination_bash',
+          'syntax': 'bash [target]',
           'title': 'Bash'},
  'battleshout': {'category': 'skill',
                  'classes': ['warrior'],
@@ -283,8 +364,13 @@ HELP_TOPICS = {'account': {'category': 'command',
                  'description': 'Spin striking nearby enemies.',
                  'syntax': 'blade_dance',
                  'title': 'Blade Dance'},
- 'bladestorm': {'category': 'command',
-                'description': 'Spin and strike all enemies.',
+ 'bladestorm': {'category': 'skill',
+                'classes': ['warrior'],
+                'description': 'Bladestorm — Finisher (🔴) for Warriors.\n'
+                               'AoE: Hit all enemies for weapon damage × chain count.\n'
+                               'Cooldown: 60s. Resets chain after use.\n\n'
+                               'CHAIN TYPE: Finisher — consumes chain for massive damage.\n'
+                               'NAMED COMBO: Charge → Cleave → Rend → Cleave → Bladestorm = Whirlwind of Steel',
                 'syntax': 'bladestorm',
                 'title': 'Bladestorm'},
  'bless': {'category': 'spell',
@@ -315,13 +401,10 @@ HELP_TOPICS = {'account': {'category': 'command',
            'title': 'Blink'},
  'blur': {'category': 'skill',
           'classes': ['assassin'],
-          'description': 'A class skill. Use it to gain tactical advantages in combat or utility.\n'
-                         '\n'
-                         'TRAINING:\n'
-                         '- Use PRACTICE at your class trainer.\n'
-                         '- Max 85% skill cap.',
+          'description': 'Legacy ability - removed from assassin core skills.\n'
+                         'Replaced by Evasion and Feint. See HELP EVASION, HELP FEINT.',
           'syntax': 'blur',
-          'title': 'Blur'},
+          'title': 'Blur (Legacy)'},
  'blush': {'category': 'command', 'description': 'Blush.', 'syntax': 'blush', 'title': 'Blush'},
  'bow': {'category': 'command', 'description': 'Bow.', 'syntax': 'bow', 'title': 'Bow'},
  'brief': {'category': 'command',
@@ -441,15 +524,63 @@ HELP_TOPICS = {'account': {'category': 'command',
            'title': 'Clear'},
  'cleave': {'category': 'skill',
             'classes': ['warrior'],
-            'description': 'Hit multiple nearby enemies with a wide swing.',
+            'description': 'Cleave — Hit all enemies in room. 10s cooldown. 0.8x damage each.\n\n'
+                           'Evolutions (at 50/150/300 uses):\n'
+                           '  Iron Wall: bulwark_sweep → iron_tempest → aegis_storm\n'
+                           '  Berserker: whirlwind → blood_cyclone → deathstorm\n'
+                           '  Warlord: surgical_cleave → anatomical_rend → grand_strategy',
             'syntax': 'cleave',
             'title': 'Cleave'},
+ 'charge': {'category': 'skill',
+            'classes': ['warrior'],
+            'description': 'Charge — Rush to target. 12s cooldown. 1.5x damage + 1 round stun.\n'
+                           'Must not already be fighting target.\n\n'
+                           'Evolutions (at 50/150/300 uses):\n'
+                           '  Iron Wall: ironclad_advance → juggernaut → unstoppable_force\n'
+                           '  Berserker: reckless_charge → death_from_above → extinction_event\n'
+                           '  Warlord: flanking_rush → tactical_insertion → checkmate',
+            'syntax': 'charge <target>',
+            'title': 'Charge'},
+ 'rally': {'category': 'skill',
+           'classes': ['warrior'],
+           'description': 'Rally — Self-buff/recovery. 15s cooldown. Heal 15% max HP.\n\n'
+                          'Evolutions (at 50/150/300 uses):\n'
+                          '  Iron Wall: stand_your_ground → immovable_object → eternal_guardian\n'
+                          '  Berserker: blood_frenzy → berserker_rage → avatar_of_war\n'
+                          '  Warlord: battle_orders → inspiring_command → supreme_command',
+           'syntax': 'rally',
+           'title': 'Rally'},
+ 'execute': {'category': 'skill',
+             'classes': ['warrior'],
+             'description': 'Execute — Finisher. Only usable on targets below 25% HP.\n'
+                            'Deals 3x weapon damage. 15s cooldown.\n\n'
+                            'Evolutions (at 50/150/300 uses):\n'
+                            '  Iron Wall: merciful_end → righteous_execution → divine_judgment\n'
+                            '  Berserker: overkill → massacre → annihilation\n'
+                            '  Warlord: subjugate → total_domination → absolute_authority',
+             'syntax': 'execute [target]',
+             'title': 'Execute'},
  'cleric': {'category': 'class',
             'description': 'The Cleric class.\n'
                            '\n'
-                           'SKILL TREE / PROGRESSION:\n'
-                           '- Skills/spells unlock in the order listed for your class.\n'
-                           '- Unlock tiers at levels: 2, 3, 5, 7, 10, 15, 20, 25, 30.',
+                           'CORE MECHANIC - FAITH SYSTEM:\n'
+                           '  Clerics build Faith through healing and holy damage.\n'
+                           '  Shadow-spec clerics build Faith through damage instead.\n'
+                           '  Taking damage below 30% HP grants +1 Faith (divine desperation).\n'
+                           '  Faith (0-10) fuels powerful abilities.\n'
+                           '\n'
+                           'FAITH ABILITIES:\n'
+                           '  divine_word  (3 Faith) - AoE group heal, 15% max HP. 20s CD.\n'
+                           '  holy_fire    (5 Faith) - Massive holy damage + DoT. 25s CD.\n'
+                           '  divine_intervention (10 Faith) - Invulnerable for 8s. 5min CD.\n'
+                           '  shadowform   - Toggle shadow form (+25% shadow, -30% heal)\n'
+                           '\n'
+                           'TALENT TREES:\n'
+                           '  Holy       - Healing, support, HoTs\n'
+                           '  Discipline - Shields, prevention, atonement\n'
+                           '  Shadow     - Shadow damage, DoTs, self-healing\n'
+                           '\n'
+                           'See also: HELP FAITH, HELP DIVINE_WORD, HELP HOLY_FIRE',
             'title': 'Cleric'},
  'cloak_of_shadows': {'category': 'command',
                       'description': 'Remove harmful magic effects.',
@@ -578,7 +709,7 @@ HELP_TOPICS = {'account': {'category': 'command',
  'cry': {'category': 'command', 'description': 'Cry.', 'syntax': 'cry', 'title': 'Cry'},
  'cure_critical': {'category': 'spell',
                    'classes': ['cleric'],
-                   'description': '\nHeal grievous wounds.\n\nMECHANICS:\n- Strong single‑target heal\n',
+                   'description': '\nHeal grievous wounds.\n\nMECHANICS:\n- Strong single-target heal\n',
                    'level': 1,
                    'mana': 35,
                    'syntax': "cast 'cure critical'",
@@ -630,7 +761,7 @@ HELP_TOPICS = {'account': {'category': 'command',
                       'title': 'Death From Above'},
  'death_grip': {'category': 'spell',
                 'classes': ['necromancer'],
-                'description': '\nCrush a target with necrotic force.\n\nMECHANICS:\n- Strong single‑target damage\n',
+                'description': '\nCrush a target with necrotic force.\n\nMECHANICS:\n- Strong single-target damage\n',
                 'level': 1,
                 'mana': 45,
                 'syntax': "cast 'death grip' <target>",
@@ -679,13 +810,11 @@ HELP_TOPICS = {'account': {'category': 'command',
               'title': 'Diagnose'},
  'disarm': {'category': 'skill',
             'classes': ['warrior'],
-            'description': '\n'
-                           'Disarm a target’s weapon.\n'
-                           '\n'
-                           'MECHANICS:\n'
-                           '- DEX/STR vs target DEX\n'
-                           '- Requires weapon in target’s hands\n',
-            'syntax': 'disarm',
+            'description': 'Disarm — Chain ability (🟡) for Warriors.\n'
+                           'Disarm target for 2 rounds. Extends chain.\n'
+                           'Cooldown: 15s. No resource cost.\n\n'
+                           'CHAIN TYPE: Chain — extends combo by 1.',
+            'syntax': 'disarm [target]',
             'title': 'Disarm'},
  'dismiss': {'category': 'command',
              'description': 'Dismiss a pet or companion. Usage: dismiss <pet name>',
@@ -781,14 +910,14 @@ HELP_TOPICS = {'account': {'category': 'command',
  'dual_wield': {'category': 'skill',
                 'classes': ['assassin', 'ranger'],
                 'description': '\n'
-                               'Use an off‑hand weapon.\n'
+                               'Use an off-hand weapon.\n'
                                '\n'
                                'REQUIREMENTS:\n'
                                '- Must know dual_wield\n'
-                               '- Off‑hand must be a dagger/knife/short sword\n'
+                               '- Off-hand must be a dagger/knife/short sword\n'
                                '\n'
                                'MECHANICS:\n'
-                               '- Off‑hand attacks have reduced hit/damage\n'
+                               '- Off-hand attacks have reduced hit/damage\n'
                                '- Scales with dual_wield skill\n',
                 'syntax': 'dual_wield',
                 'title': 'Dual Wield'},
@@ -893,7 +1022,20 @@ HELP_TOPICS = {'account': {'category': 'command',
                'title': 'Equipment'},
  'evasion': {'category': 'skill',
              'classes': ['assassin', 'thief'],
-             'description': 'Passive chance to evade attacks entirely (best for rogues).',
+             'description': 'Activate Evasion to dodge all attacks.\n'
+                            '\n'
+                            'ASSASSIN VERSION:\n'
+                            '- 100% dodge chance for 10 seconds\n'
+                            '- Cooldown: 180 seconds (3 minutes)\n'
+                            '- Your main "oh shit" button for boss fights\n'
+                            '- Use to survive burst damage phases\n'
+                            '- Combine with Intel building - dodge attacks while\n'
+                            '  your poisons tick and build Intel\n'
+                            '\n'
+                            'THIEF VERSION:\n'
+                            '- Passive chance to evade attacks\n'
+                            '\n'
+                            'See also: HELP FEINT, HELP VANISH',
              'syntax': 'evasion',
              'title': 'Evasion'},
  'eviscerate': {'category': 'command',
@@ -904,10 +1046,69 @@ HELP_TOPICS = {'account': {'category': 'command',
              'description': 'Examine an item in your inventory or equipment. Usage: examine <item>',
              'syntax': 'examine <item>',
              'title': 'Examine'},
- 'execute': {'category': 'command',
-             'description': 'Devastating finisher that deals more damage at low target HP.',
-             'syntax': 'execute',
+ 'execute': {'category': 'skill',
+             'classes': ['warrior'],
+             'description': 'Execute — Finisher (🔴) for Warriors.\n'
+                            'Massive damage finisher. Target must be below 30% HP\n'
+                            '(chain 5 removes this restriction). Resets chain.\n'
+                            'Cooldown: 10s.\n\n'
+                            'CHAIN TYPE: Finisher — consumes chain for massive damage.\n'
+                            'NAMED COMBOS: Bash → Rend → Execute = Butcher\'s Sequence\n'
+                            '              Hamstring → Rend → Hamstring → Execute = Death by a Thousand Cuts\n'
+                            '              Charge → Rend → Cleave → Execute = Berserker Rush\n\n'
+                            'Assassin: See HELP EXECUTE_CONTRACT for Intel finisher.',
+             'syntax': 'execute [target]',
              'title': 'Execute'},
+ 'execute_contract': {'category': 'skill',
+                      'classes': ['assassin'],
+                      'description': 'Execute Contract - the ultimate assassin finisher.\n'
+                                     '\n'
+                                     'Usage: execute_contract\n'
+                                     '\n'
+                                     'REQUIREMENTS:\n'
+                                     '- Must be an assassin\n'
+                                     '- Must be fighting your marked target\n'
+                                     '- Requires 10 Intel (maximum)\n'
+                                     '\n'
+                                     'EFFECTS:\n'
+                                     '- Target below 20% HP: INSTANT KILL\n'
+                                     '  (bosses take 5x weapon damage instead)\n'
+                                     '- Target above 20% HP: 5x weapon damage + 2x damroll\n'
+                                     '- Consumes all Intel (resets to 0)\n'
+                                     '\n'
+                                     'STRATEGY:\n'
+                                     '- This is your fight-ending move\n'
+                                     '- Build to Intel 10, whittle boss below 20%,\n'
+                                     '  then Execute for the kill\n'
+                                     '- Against non-bosses below 20%, it is a guaranteed kill\n'
+                                     '- Against bosses, still deals massive damage\n'
+                                     '\n'
+                                     'See also: HELP INTEL, HELP EXPOSE, HELP VITAL',
+                      'syntax': 'execute_contract',
+                      'title': 'Execute Contract'},
+ 'expose': {'category': 'skill',
+            'classes': ['assassin'],
+            'description': 'Expose Weakness - Intel 3 threshold ability.\n'
+                           '\n'
+                           'Usage: expose\n'
+                           '\n'
+                           'REQUIREMENTS:\n'
+                           '- Must be an assassin\n'
+                           '- Marked target must be in the room\n'
+                           '- Requires at least 3 Intel\n'
+                           '\n'
+                           'EFFECTS:\n'
+                           '- Target takes 15% more damage from you for 30 seconds\n'
+                           '- Consumes 3 Intel\n'
+                           '\n'
+                           'STRATEGY:\n'
+                           '- Use early in a boss fight to amplify all damage\n'
+                           '- Can be reapplied once you build Intel back to 3\n'
+                           '- Stacks with other damage modifiers\n'
+                           '\n'
+                           'See also: HELP INTEL, HELP VITAL, HELP EXECUTE_CONTRACT',
+            'syntax': 'expose',
+            'title': 'Expose Weakness'},
  'exits': {'category': 'command',
            'description': 'Show available exits from the current room with descriptions.',
            'syntax': 'exits',
@@ -951,7 +1152,26 @@ HELP_TOPICS = {'account': {'category': 'command',
           'title': 'Fear'},
  'feint': {'category': 'skill',
            'classes': ['assassin'],
-           'description': 'Briefly lowers target defenses; improves your next hit.',
+           'description': 'Feint - your bread-and-butter damage mitigation.\n'
+                          '\n'
+                          'Usage: feint\n'
+                          '\n'
+                          'REQUIREMENTS:\n'
+                          '- Must be in combat\n'
+                          '- Must be an assassin\n'
+                          '- Cooldown: 20 seconds\n'
+                          '\n'
+                          'EFFECTS:\n'
+                          '- Your current target deals 30% less damage to you\n'
+                          '- Lasts 3 combat rounds (~12 seconds)\n'
+                          '\n'
+                          'STRATEGY:\n'
+                          '- Use on cooldown during boss fights\n'
+                          '- Combine with Evasion for near-invulnerability\n'
+                          '- With Numbing Toxin talent, poisoned targets deal\n'
+                          '  even less damage on top of Feint\n'
+                          '\n'
+                          'See also: HELP EVASION, HELP VANISH',
            'syntax': 'feint',
            'title': 'Feint'},
  'fill': {'category': 'command',
@@ -998,7 +1218,7 @@ HELP_TOPICS = {'account': {'category': 'command',
                              '\n'
                              'MECHANICS:\n'
                              '- Damage scales with level\n'
-                             '- Single‑target burst\n',
+                             '- Single-target burst\n',
               'level': 1,
               'mana': 40,
               'syntax': "cast 'fireball' <target>",
@@ -1038,18 +1258,10 @@ HELP_TOPICS = {'account': {'category': 'command',
             'title': 'Freeze'},
  'garrote': {'category': 'skill',
              'classes': ['assassin'],
-             'description': '\n'
-                            'Ambush that constricts a target, disrupting them.\n'
-                            '\n'
-                            'REQUIREMENTS:\n'
-                            '- Must not be in combat\n'
-                            '- Target in room\n'
-                            '\n'
-                            'MECHANICS:\n'
-                            '- Uses stealth roll vs target detection\n'
-                            '- On success: bonus damage + short control window\n',
+             'description': 'Legacy ability - removed from assassin core skills.\n'
+                            'Replaced by the Intel system. See HELP ASSASSIN.',
              'syntax': 'garrote',
-             'title': 'Garrote'},
+             'title': 'Garrote (Legacy)'},
  'gather': {'category': 'command',
             'description': 'Gather resources based on environment.',
             'syntax': 'gather',
@@ -1423,11 +1635,23 @@ HELP_TOPICS = {'account': {'category': 'command',
           'syntax': 'lore',
           'title': 'Lore'},
  'mage': {'category': 'class',
-          'description': 'The Mage class.\n'
+          'description': 'The Mage class - master of arcane, fire, and frost magic.\n'
                          '\n'
-                         'SKILL TREE / PROGRESSION:\n'
-                         '- Skills/spells unlock in the order listed for your class.\n'
-                         '- Unlock tiers at levels: 2, 3, 5, 7, 10, 15, 20, 25, 30.',
+                         'CORE MECHANIC - ARCANE CHARGES:\n'
+                         '  Spells build Arcane Charges (max 5).\n'
+                         '  Each charge: +8% spell damage, +10% mana cost.\n'
+                         '  Risk/reward: more power costs more mana!\n\n'
+                         '  Spending charges:\n'
+                         '    Arcane Barrage: consume all for burst damage\n'
+                         '    Evocation: reset charges + restore 30% mana\n'
+                         '    Arcane Blast: damage + generate charge\n'
+                         '\n'
+                         'TALENT TREES:\n'
+                         '  Fire - Burst damage, DoTs, ignite effects\n'
+                         '  Frost - Control, slows, roots, shatter combos\n'
+                         '  Arcane - Charge mastery, mana efficiency, raw power\n'
+                         '\n'
+                         'See also: HELP ARCANE_CHARGES, HELP ARCANE_BARRAGE',
           'title': 'Mage'},
  'magic_missile': {'category': 'spell',
                    'classes': ['mage'],
@@ -1471,16 +1695,35 @@ HELP_TOPICS = {'account': {'category': 'command',
           'description': 'Mark a target for death, increasing damage against them.',
           'syntax': 'mark',
           'title': 'Mark'},
+ 'mark': {'category': 'skill',
+          'classes': ['assassin'],
+          'description': '\n'
+                         'Mark a target to begin building Intel (Assassin only).\n'
+                         '\n'
+                         'Usage: mark <target>\n'
+                         '       mark           (show current Intel status)\n'
+                         '\n'
+                         'EFFECTS:\n'
+                         '- Designates target for Intel tracking\n'
+                         '- Resets Intel to 0 (switching targets costs Intel!)\n'
+                         '- Each hit on marked target builds +1 Intel\n'
+                         '- Backstab from stealth builds +3 Intel\n'
+                         '- Can only mark one target at a time\n'
+                         '- Intel persists through Vanish\n'
+                         '\n'
+                         'STRATEGY:\n'
+                         '- Mark your target BEFORE engaging\n'
+                         '- Build to Intel 3 for Expose, 6 for Vital, 10 for Execute\n'
+                         '- Avoid re-marking mid-fight (resets all Intel!)\n'
+                         '\n'
+                         'See also: HELP INTEL, HELP EXPOSE, HELP VITAL\n',
+          'syntax': 'mark <target>',
+          'title': 'Mark'},
  'mark_target': {'category': 'skill',
                  'classes': ['assassin'],
-                 'description': '\n'
-                                'Mark a target to improve accuracy and track them.\n'
-                                '\n'
-                                'EFFECTS:\n'
-                                '- Improves hit chance vs marked target\n'
-                                '- Used for coordinated burst\n',
-                 'syntax': 'mark_target',
-                 'title': 'Mark Target'},
+                 'description': 'See HELP MARK - the mark command now uses the Intel system.\n',
+                 'syntax': 'mark <target>',
+                 'title': 'Mark Target (see MARK)'},
  'marked_for_death': {'category': 'command',
                       'description': 'Mark a target for lethal focus.',
                       'syntax': 'marked_for_death',
@@ -1626,6 +1869,29 @@ HELP_TOPICS = {'account': {'category': 'command',
                                 '\n'
                                 'TRAINING:\n'
                                 '- Use PRACTICE at your class trainer.',
+                 'title': 'Necromancer (Legacy)'},
+ 'necromancer': {'category': 'class',
+                 'description': 'The Necromancer class.\n'
+                                '\n'
+                                'CORE MECHANIC - SOUL SHARDS:\n'
+                                '  Necromancers harvest souls from dying enemies.\n'
+                                '  Kill an enemy: +1 Soul Shard (undead kills: +2)\n'
+                                '  Assist kill: +1 if you dealt damage\n'
+                                '  Cap: 10 Soul Shards\n'
+                                '  Passive: +5% spell damage per Shard held (up to +50%)\n'
+                                '\n'
+                                'SOUL SHARD ABILITIES:\n'
+                                '  soul_bolt   (2 Shards) - 2x spell damage as shadow. 10s CD.\n'
+                                '  drain_soul  (3 Shards) - 1.5x spell damage, heals same. 15s CD.\n'
+                                '  bone_shield (4 Shards) - Absorbs 3 hits (500 each). 60s CD.\n'
+                                '  soul_reap   (8 Shards) - Execute below 25% or 4x damage. 90s CD.\n'
+                                '\n'
+                                'TALENT TREES:\n'
+                                '  Unholy - Minions, disease, army\n'
+                                '  Blood  - Self-sustain, life drain\n'
+                                '  Frost  - Control, burst damage\n'
+                                '\n'
+                                'See also: HELP SOUL_SHARDS, HELP SOUL_BOLT',
                  'title': 'Necromancer'},
  'newgameplus': {'category': 'command',
                  'description': 'Start a New Game+ cycle after completing the main story.',
@@ -1691,9 +1957,28 @@ HELP_TOPICS = {'account': {'category': 'command',
  'paladin': {'category': 'class',
              'description': 'The Paladin class.\n'
                             '\n'
-                            'SKILL TREE / PROGRESSION:\n'
-                            '- Skills/spells unlock in the order listed for your class.\n'
-                            '- Unlock tiers at levels: 2, 3, 5, 7, 10, 15, 20, 25, 30.',
+                            'CORE MECHANIC - HOLY POWER:\n'
+                            '  Paladins build Holy Power (0-5) through righteous combat.\n'
+                            '  Melee hits: 25% chance +1 Holy Power\n'
+                            '  Smite/Bash: guaranteed +1 Holy Power\n'
+                            '  Healing an ally: +1 Holy Power\n'
+                            '\n'
+                            'HOLY POWER SPENDERS:\n'
+                            '  templars_verdict (3 HP) - 2x weapon damage + holy bonus\n'
+                            '  word_of_glory    (3 HP) - Heal self for 30% max HP\n'
+                            '  divine_storm     (5 HP) - AoE holy damage. 30s CD.\n'
+                            '\n'
+                            'OATH SYSTEM:\n'
+                            '  oath vengeance - +15% damage, -10% healing\n'
+                            '  oath devotion  - +20% healing, +10% DR\n'
+                            '  oath justice   - +10% damage, +10% healing\n'
+                            '\n'
+                            'TALENT TREES:\n'
+                            '  Holy       - Healing, support\n'
+                            '  Protection - Tanking, shields\n'
+                            '  Retribution - Damage, Holy Power generation\n'
+                            '\n'
+                            'See also: HELP HOLY_POWER, HELP OATH, HELP TEMPLARS_VERDICT',
              'title': 'Paladin'},
  'parry': {'category': 'skill',
            'classes': ['warrior'],
@@ -1839,11 +2124,24 @@ HELP_TOPICS = {'account': {'category': 'command',
              'syntax': 'rampage',
              'title': 'Rampage'},
  'ranger': {'category': 'class',
-            'description': 'The Ranger class.\n'
+            'description': 'The Ranger class - hunter, tracker, and beast master.\n'
                            '\n'
-                           'SKILL TREE / PROGRESSION:\n'
-                           '- Skills/spells unlock in the order listed for your class.\n'
-                           '- Unlock tiers at levels: 2, 3, 5, 7, 10, 15, 20, 25, 30.',
+                           'CORE MECHANIC - FOCUS:\n'
+                           '  Build Focus through steady combat (max 100).\n'
+                           '  +10 per hit, +5 passive per round, +15 on dodge.\n'
+                           '  At 100 Focus, next ability costs 50% less.\n\n'
+                           '  Abilities:\n'
+                           '    Aimed Shot (30): 2.5x damage, guaranteed hit\n'
+                           '    Kill Command (25): pet attacks for 2x damage\n'
+                           '    Rapid Fire (50): triple attack this round\n'
+                           '    Hunter\'s Mark (free): +10% damage, +5 Focus/hit\n'
+                           '\n'
+                           'TALENT TREES:\n'
+                           '  Beast Mastery - Pet power, bonding, spirit beasts\n'
+                           '  Marksmanship - Ranged burst, precision, sniper skills\n'
+                           '  Survival - Traps, self-sustain, wilderness utility\n'
+                           '\n'
+                           'See also: HELP FOCUS_GUIDE, HELP AIMED_SHOT',
             'title': 'Ranger'},
  'rapid_shot': {'category': 'command',
                 'description': 'Fire multiple arrows in quick succession.',
@@ -2066,20 +2364,32 @@ HELP_TOPICS = {'account': {'category': 'command',
                   'title': 'Shadow Dance'},
  'shadow_step': {'category': 'skill',
                  'classes': ['assassin'],
-                 'description': '\n'
-                                'Step through shadows to reposition for a strike.\n'
+                 'description': 'Shadow Step - teleport and dodge.\n'
+                                '\n'
+                                'Usage: shadowstep <target>\n'
                                 '\n'
                                 'REQUIREMENTS:\n'
-                                '- Must see the target\n'
+                                '- Must be an assassin\n'
+                                '- Target must be in the room\n'
+                                '- Cooldown: 30 seconds\n'
                                 '\n'
-                                'MECHANICS:\n'
-                                '- Teleports behind target (flavor)\n'
-                                '- Improves next attack accuracy\n',
-                 'syntax': 'shadow_step',
+                                'EFFECTS:\n'
+                                '- Teleport behind target (flavor text)\n'
+                                '- Dodge the NEXT incoming attack automatically\n'
+                                '- Grants +1 Intel on marked target\n'
+                                '\n'
+                                'STRATEGY:\n'
+                                '- Use to dodge a big hit while building Intel\n'
+                                '- Good opener: Shadow Step -> Backstab\n'
+                                '- The auto-dodge is consumed on next hit,\n'
+                                '  so use it when you anticipate a big attack\n'
+                                '\n'
+                                'See also: HELP INTEL, HELP EVASION',
+                 'syntax': 'shadowstep <target>',
                  'title': 'Shadow Step'},
  'shadowstep': {'category': 'command',
-                'description': 'Step through shadows behind target.',
-                'syntax': 'shadowstep',
+                'description': 'See HELP SHADOW_STEP.',
+                'syntax': 'shadowstep <target>',
                 'title': 'Shadowstep'},
  'shield': {'category': 'spell',
             'classes': ['mage', 'necromancer'],
@@ -2122,8 +2432,13 @@ HELP_TOPICS = {'account': {'category': 'command',
                      'mana': 35,
                      'syntax': "cast 'shield of faith'",
                      'title': 'Shield Of Faith'},
- 'shield_wall': {'category': 'command',
-                 'description': 'Reduce incoming damage for a short time.',
+ 'shield_wall': {'category': 'skill',
+                 'classes': ['warrior'],
+                 'description': 'Shield Wall — Chain ability (🟡) for Warriors.\n'
+                                'Reduce damage taken by 50% for 10s. Extends chain.\n'
+                                'Cooldown: 120s. No resource cost.\n\n'
+                                'CHAIN TYPE: Chain — extends combo by 1 (defensive chain).\n'
+                                'NAMED COMBO: Shield Slam → Shield Wall → Shield Slam = Iron Wall (duration doubled)',
                  'syntax': 'shield_wall',
                  'title': 'Shield Wall'},
  'shout': {'category': 'command', 'description': 'Shout to everyone in the zone.', 'syntax': 'shout', 'title': 'Shout'},
@@ -2266,7 +2581,7 @@ HELP_TOPICS = {'account': {'category': 'command',
               'syntax': 'stampede',
               'title': 'Stampede'},
  'stance': {'category': 'command',
-            'description': 'Switch warrior combat stance.',
+            'description': 'View warrior combo chain status (legacy stances removed).',
             'syntax': 'stance',
             'title': 'Stance'},
  'stand': {'category': 'command', 'description': 'Stand up.', 'syntax': 'stand', 'title': 'Stand'},
@@ -2359,7 +2674,7 @@ HELP_TOPICS = {'account': {'category': 'command',
                              '\n'
                              'MECHANICS:\n'
                              '- Random destination\n'
-                             '- Cannot use in no‑teleport rooms\n',
+                             '- Cannot use in no-teleport rooms\n',
               'level': 1,
               'mana': 50,
               'syntax': "cast 'teleport'",
@@ -2367,11 +2682,27 @@ HELP_TOPICS = {'account': {'category': 'command',
  'tell': {'category': 'command', 'description': 'Send a private message.', 'syntax': 'tell', 'title': 'Tell'},
  'thank': {'category': 'command', 'description': 'Thank someone.', 'syntax': 'thank', 'title': 'Thank'},
  'thief': {'category': 'class',
-           'description': 'The Thief class.\n'
+           'description': 'The Thief (Scoundrel) class.\n'
                           '\n'
-                          'SKILL TREE / PROGRESSION:\n'
-                          '- Skills/spells unlock in the order listed for your class.\n'
-                          '- Unlock tiers at levels: 2, 3, 5, 7, 10, 15, 20, 25, 30.',
+                          'CORE MECHANIC - LUCK SYSTEM:\n'
+                          '  Thieves generate Luck (0-10) through combat.\n'
+                          '  Successful hits: 15% chance +1 Luck\n'
+                          '  Critical hits: always +1 Luck\n'
+                          '  Dodge/parry: +1 Luck\n'
+                          '  At Luck >= 5, dodges trigger free counterattacks!\n'
+                          '\n'
+                          'LUCK ABILITIES:\n'
+                          '  pocket_sand  (3 Luck) - Blind target for 2 rounds. 20s CD.\n'
+                          '  low_blow     (5 Luck) - Stun + weapon damage. 30s CD.\n'
+                          '  rigged_dice  (7 Luck) - Next 3 attacks = guaranteed crits. 45s CD.\n'
+                          '  jackpot     (10 Luck) - 4x weapon damage + steal gold. 60s CD.\n'
+                          '\n'
+                          'TALENT TREES:\n'
+                          '  Fortune     - Luck generation and capitalization\n'
+                          '  Dirty Tricks - Stuns, blinds, control\n'
+                          '  Subtlety    - Stealth and ambush\n'
+                          '\n'
+                          'See also: HELP LUCK, HELP POCKET_SAND, HELP JACKPOT',
            'title': 'Thief'},
  'third_attack': {'category': 'skill',
                   'classes': ['warrior'],
@@ -2484,14 +2815,66 @@ HELP_TOPICS = {'account': {'category': 'command',
                     'mana': 30,
                     'syntax': "cast 'vampiric touch' <target>",
                     'title': 'Vampiric Touch'},
- 'vanish': {'category': 'command',
-            'description': 'Instant stealth and drop threat.',
+ 'vanish': {'category': 'skill',
+            'classes': ['assassin'],
+            'description': 'Vanish - drop combat and re-enter stealth.\n'
+                           '\n'
+                           'Usage: vanish\n'
+                           '\n'
+                           'REQUIREMENTS:\n'
+                           '- Must be an assassin\n'
+                           '- Cooldown: 60 seconds\n'
+                           '\n'
+                           'EFFECTS:\n'
+                           '- Immediately drops combat\n'
+                           '- Enter hidden + sneaking state\n'
+                           '- DOES NOT RESET INTEL (critical!)\n'
+                           '\n'
+                           'STRATEGY:\n'
+                           '- Your emergency escape button\n'
+                           '- Vanish when HP is low, heal up, then\n'
+                           '  re-engage with Backstab for bonus Intel\n'
+                           '- Intel persists through Vanish, so you\n'
+                           '  keep all progress toward Execute Contract\n'
+                           '- Shadow Mend talent: backstab from stealth\n'
+                           '  after Vanish heals you\n'
+                           '\n'
+                           'See also: HELP INTEL, HELP EVASION, HELP BACKSTAB',
             'syntax': 'vanish',
             'title': 'Vanish'},
  'vendetta': {'category': 'command',
-              'description': 'Mark target to take extra damage from you.',
+              'description': 'Legacy ability - replaced by the Intel system for assassins.\n'
+                             'See HELP INTEL and HELP MARK for the new assassin mechanics.',
               'syntax': 'vendetta',
-              'title': 'Vendetta'},
+              'title': 'Vendetta (Legacy)'},
+ 'vital': {'category': 'skill',
+           'classes': ['assassin'],
+           'description': 'Vital Strike - Intel 6 threshold ability.\n'
+                          '\n'
+                          'Usage: vital\n'
+                          '\n'
+                          'REQUIREMENTS:\n'
+                          '- Must be an assassin\n'
+                          '- Must be fighting your marked target\n'
+                          '- Requires at least 6 Intel\n'
+                          '- Cooldown: 30 seconds\n'
+                          '\n'
+                          'EFFECTS:\n'
+                          '- Deals 3x weapon damage\n'
+                          '- Guaranteed critical hit\n'
+                          '- Ignores 50% of target armor\n'
+                          '- Consumes 6 Intel\n'
+                          '\n'
+                          'STRATEGY:\n'
+                          '- Your mid-fight burst ability\n'
+                          '- Use when Intel hits 6, then rebuild for Execute\n'
+                          '- Or use Expose at 3, build back to 6, then Vital\n'
+                          '- With Deadly Patience talent: Intel >= 6 also\n'
+                          '  gives 15% damage reduction\n'
+                          '\n'
+                          'See also: HELP INTEL, HELP EXPOSE, HELP EXECUTE_CONTRACT',
+           'syntax': 'vital',
+           'title': 'Vital Strike'},
  'visible': {'category': 'command',
              'description': 'Come out of hiding or stop sneaking.',
              'syntax': 'visible',
@@ -2505,13 +2888,6 @@ HELP_TOPICS = {'account': {'category': 'command',
             'description': 'Terrifying shout that fears enemies and buffs allies.',
             'syntax': 'warcry',
             'title': 'Warcry'},
- 'warrior': {'category': 'class',
-             'description': 'The Warrior class.\n'
-                            '\n'
-                            'SKILL TREE / PROGRESSION:\n'
-                            '- Skills/spells unlock in the order listed for your class.\n'
-                            '- Unlock tiers at levels: 2, 3, 5, 7, 10, 15, 20, 25, 30.',
-             'title': 'Warrior'},
  'wave': {'category': 'command', 'description': 'Wave.', 'syntax': 'wave', 'title': 'Wave'},
  'waypoints': {'category': 'command',
                'description': 'List discovered waypoints.',
@@ -3409,82 +3785,441 @@ HELP_TOPICS = {'account': {'category': 'command',
  'fan_of_knives': {
      'category': 'skill',
      'classes': ['assassin'],
-     'title': 'Fan of Knives',
-     'description': 'Throw poisoned knives at all enemies in the room.\n\n'
-                    'MECHANICS:\n'
-                    '- AoE damage + poison\n'
-                    '- 15 second cooldown\n\n'
-                    'REQUIREMENTS:\n'
-                    '- Assassin class\n'
-                    '- Level 38\n',
+     'title': 'Fan of Knives (Legacy)',
+     'description': 'Legacy ability - removed from assassin core skills.\n'
+                    'Replaced by the Intel system. See HELP ASSASSIN.',
      'syntax': 'fan_of_knives',
-     'level': 38,
-     'cooldown': 15,
  },
  'rupture': {
      'category': 'skill',
      'classes': ['assassin'],
-     'title': 'Rupture',
-     'description': 'Cause massive bleeding with a vicious strike.\n\n'
-                    'MECHANICS:\n'
-                    '- High damage + strong bleed DoT\n'
-                    '- Bleed lasts 16 seconds\n'
-                    '- 20 second cooldown\n\n'
-                    'REQUIREMENTS:\n'
-                    '- Assassin class\n'
-                    '- Level 44\n',
-     'syntax': 'rupture [target]',
-     'level': 44,
-     'cooldown': 20,
+     'title': 'Rupture (Legacy)',
+     'description': 'Legacy ability - removed from assassin core skills.\n'
+                    'Poison DoTs are now handled through the Poison talent tree.\n'
+                    'See HELP ASSASSIN.',
+     'syntax': 'rupture',
  },
  'shadow_blades_master': {
      'category': 'skill',
      'classes': ['assassin'],
-     'title': 'Shadow Blades',
-     'description': 'Conjure shadow weapons that deal bonus damage.\n\n'
-                    'MECHANICS:\n'
-                    '- +20 damage for 24 seconds\n'
-                    '- Haste effect\n'
-                    '- 2 minute cooldown\n\n'
-                    'REQUIREMENTS:\n'
-                    '- Assassin class\n'
-                    '- Level 50\n',
+     'title': 'Shadow Blades (Legacy)',
+     'description': 'Legacy ability - removed from assassin core skills.\n'
+                    'Replaced by Shadow Blade talent (Shadow tree, Tier 5).\n'
+                    'See HELP ASSASSIN.',
      'syntax': 'shadow_blades',
-     'level': 50,
-     'cooldown': 120,
  },
  'vendetta_assassin': {
      'category': 'skill',
      'classes': ['assassin'],
-     'title': 'Vendetta',
-     'description': 'Swear a vendetta against a target - ALL damage to them is doubled.\n\n'
-                    'MECHANICS:\n'
-                    '- 100% bonus damage to target\n'
-                    '- 20 second duration\n'
-                    '- 2 minute cooldown\n\n'
-                    'REQUIREMENTS:\n'
-                    '- Assassin class\n'
-                    '- Level 56\n',
-     'syntax': 'vendetta <target>',
-     'level': 56,
-     'cooldown': 120,
+     'title': 'Vendetta (Legacy)',
+     'description': 'Legacy ability - replaced by the Intel system.\n'
+                    'Use "mark" + build Intel + "execute_contract" instead.\n'
+                    'See HELP INTEL, HELP EXECUTE_CONTRACT.',
+     'syntax': 'vendetta',
  },
  'death_mark': {
      'category': 'skill',
      'classes': ['assassin'],
-     'title': 'Death Mark',
-     'description': 'CAPSTONE ABILITY: Execute a boss at <25% HP instantly.\n\n'
-                    'MECHANICS:\n'
-                    '- INSTANT KILL on target below 25% HP\n'
-                    '- Works on bosses\n'
-                    '- 10 minute cooldown\n\n'
-                    'REQUIREMENTS:\n'
-                    '- Assassin class\n'
-                    '- Level 60\n',
-     'syntax': 'death_mark <target>',
-     'level': 60,
-     'cooldown': 600,
+     'title': 'Death Mark (Legacy)',
+     'description': 'Legacy ability - replaced by Execute Contract.\n'
+                    'Build to Intel 10 and use "execute_contract" for instant kills.\n'
+                    'See HELP EXECUTE_CONTRACT.',
+     'syntax': 'death_mark',
  },
+ # === CLASS REWORK WAVE 1 HELP ENTRIES ===
+ 'luck': {'category': 'guide',
+          'description': 'The Luck System (Thief class)\n\nLuck is the thief\'s core resource (0-10).\n\nGENERATION:\n  Successful hit: 15% chance +1 Luck\n  Critical hit: always +1 Luck\n  Dodge/parry: +1 Luck\n  Cap: 10\n\nPASSIVE:\n  At Luck >= 5, dodging triggers a free counterattack.\n\nABILITIES:\n  pocket_sand (3) - Blind target 2 rounds. 20s CD.\n  low_blow (5) - Stun + damage. 30s CD.\n  rigged_dice (7) - 3 guaranteed crits. 45s CD.\n  jackpot (10) - 4x damage + steal gold. 60s CD.\n\nSee also: HELP THIEF',
+          'title': 'Luck System'},
+ 'pocket_sand': {'category': 'skill', 'classes': ['thief'], 'description': 'Throw sand in your target\'s eyes!\n\nCost: 3 Luck\nEffect: Blind target for 2 rounds (50% miss chance)\nCooldown: 20 seconds\n\nTalent synergies:\n- Dirty Fighting: +1 round blind per rank\n- Vanishing Act: enter stealth after using', 'syntax': 'pocket_sand', 'title': 'Pocket Sand'},
+ 'low_blow': {'category': 'skill', 'classes': ['thief'], 'description': 'A devastating strike below the belt.\n\nCost: 5 Luck\nEffect: Stun target 1 round + weapon damage\nCooldown: 30 seconds\n\nTalent synergy:\n- Marked Man: target takes 10% more damage for 10s', 'syntax': 'low_blow', 'title': 'Low Blow'},
+ 'rigged_dice': {'category': 'skill', 'classes': ['thief'], 'description': 'Pull out your loaded dice.\n\nCost: 7 Luck\nEffect: Next 3 attacks are guaranteed crits\nCooldown: 45 seconds', 'syntax': 'rigged_dice', 'title': 'Rigged Dice'},
+ 'jackpot': {'category': 'skill', 'classes': ['thief'], 'description': 'Hit the jackpot!\n\nCost: 10 Luck\nEffect: 4x weapon damage + steal 25% of target gold\nCooldown: 60 seconds\n\nTalent synergies:\n- Jackpot Master: also stuns 1 round + heals 10% HP\n- Grand Heist: also steals an item from target', 'syntax': 'jackpot', 'title': 'Jackpot'},
+ 'soul_shards': {'category': 'guide',
+                 'description': 'The Soul Shard System (Necromancer class)\n\nSoul Shards (0-10) are harvested from dying enemies.\n\nGENERATION:\n  Kill an enemy: +1 Shard\n  Kill undead: +2 Shards\n  Assist kill: +1 Shard\n\nPASSIVE:\n  +5% spell damage per Shard held (up to +50% at 10)\n\nABILITIES:\n  soul_bolt (2) - 2x spell damage. 10s CD.\n  drain_soul (3) - 1.5x spell damage + heal. 15s CD.\n  bone_shield (4) - Absorb 3 hits. 60s CD.\n  soul_reap (8) - Execute or 4x damage. 90s CD.\n\nSee also: HELP NECROMANCER',
+                 'title': 'Soul Shard System'},
+ 'soul_bolt': {'category': 'skill', 'classes': ['necromancer'], 'description': 'Fire a bolt of shadow energy.\n\nCost: 2 Soul Shards\nDamage: 2x spell damage (INT*3 + Level*2)\nCooldown: 10 seconds', 'syntax': 'soul_bolt', 'title': 'Soul Bolt'},
+ 'drain_soul': {'category': 'skill', 'classes': ['necromancer'], 'description': 'Drain the life force from your target.\n\nCost: 3 Soul Shards\nDamage: 1.5x spell damage\nHeals you for the same amount\nCooldown: 15 seconds', 'syntax': 'drain_soul', 'title': 'Drain Soul'},
+ 'bone_shield': {'category': 'skill', 'classes': ['necromancer'], 'description': 'Surround yourself with a shield of bones.\n\nCost: 4 Soul Shards\nEffect: Absorbs next 3 hits (500 damage each)\nDuration: 60 seconds\nCooldown: 60 seconds\n\nTalent: Bone Armor Mastery increases absorb to 750', 'syntax': 'bone_shield', 'title': 'Bone Shield'},
+ 'soul_reap': {'category': 'skill', 'classes': ['necromancer'], 'description': 'Reap the soul of a weakened enemy.\n\nCost: 8 Soul Shards\nIf target below 25% HP (non-boss): instant kill\nBosses: 4x spell damage instead\nCooldown: 90 seconds', 'syntax': 'soul_reap', 'title': 'Soul Reap'},
+ 'holy_power': {'category': 'guide',
+                'description': 'The Holy Power System (Paladin class)\n\nHoly Power (0-5) is built through righteous combat.\n\nGENERATION:\n  Melee hit: 25% chance +1\n  Smite/Bash: guaranteed +1\n  Healing: +1\n\nSPENDERS:\n  templars_verdict (3) - 2x weapon damage + holy\n  word_of_glory (3) - Heal self 30% max HP\n  divine_storm (5) - AoE holy damage. 30s CD.\n\nOATH SYSTEM:\n  oath vengeance - +15% dmg, -10% healing\n  oath devotion - +20% healing, +10% DR\n  oath justice - +10% dmg, +10% healing\n\nSee also: HELP PALADIN, HELP OATH',
+                'title': 'Holy Power System'},
+ 'templars_verdict': {'category': 'skill', 'classes': ['paladin'], 'description': "Deliver divine judgment upon your enemy.\n\nCost: 3 Holy Power (spends all)\nDamage: 2x weapon damage + holy bonus\nNo cooldown\n\nAt 5 Holy Power with Sanctified Wrath talent: 3x damage", 'syntax': 'templars_verdict', 'title': "Templar's Verdict"},
+ 'word_of_glory': {'category': 'skill', 'classes': ['paladin'], 'description': 'Heal yourself with holy light.\n\nCost: 3 Holy Power\nHeals: 30% of max HP\nNo cooldown\n\nModified by Oath and Healing Light talent.', 'syntax': 'word_of_glory', 'title': 'Word of Glory'},
+ 'oath': {'category': 'skill', 'classes': ['paladin'], 'description': 'Swear a paladin oath.\n\nUsage: oath vengeance|devotion|justice\n\nVengeance: +15% damage, -10% healing, faster HP gen from hits\nDevotion: +20% healing, +10% DR, HP gen from heals\nJustice: +10% dmg, +10% healing, balanced\n\nSwitching oaths resets Holy Power to 0.', 'syntax': 'oath <type>', 'title': 'Oath'},
+ 'faith': {'category': 'guide',
+           'description': 'The Faith System (Cleric class)\n\nFaith (0-10) is built through healing and holy actions.\n\nGENERATION:\n  Heal an ally: +1 Faith\n  Holy damage spell: +1 Faith\n  Shadow form: damage builds Faith instead\n  Below 30% HP when hit: +1 Faith (desperation)\n\nABILITIES:\n  divine_word (3) - AoE group heal 15% HP. 20s CD.\n  holy_fire (5) - Massive holy damage + DoT. 25s CD.\n  divine_intervention (10) - Invulnerable 8s. 5min CD.\n  shadowform - Toggle shadow form\n\nSee also: HELP CLERIC',
+           'title': 'Faith System'},
+ 'divine_word': {'category': 'skill', 'classes': ['cleric'], 'description': 'Speak a divine word of healing.\n\nCost: 3 Faith\nEffect: Heals all group members in room for 15% max HP\nCooldown: 20 seconds\n\nReduced by 30% in shadow form.', 'syntax': 'divine_word', 'title': 'Divine Word'},
+ 'holy_fire': {'category': 'skill', 'classes': ['cleric'], 'description': 'Engulf your target in holy fire.\n\nCost: 5 Faith\nDamage: INT*5 + Level*3 + DoT (4 ticks)\nCooldown: 25 seconds', 'syntax': 'holy_fire', 'title': 'Holy Fire'},
+ 'divine_intervention': {'category': 'skill', 'classes': ['cleric'], 'description': 'Call upon divine power to protect.\n\nCost: 10 Faith\nEffect: Target becomes invulnerable for 8 seconds\nCooldown: 300 seconds (5 minutes)\n\nUsage: divine_intervention [target]', 'syntax': 'divine_intervention [target]', 'title': 'Divine Intervention'},
+ 'shadowform': {'category': 'skill', 'classes': ['cleric'], 'description': 'Toggle shadow form.\n\nIn shadow form:\n- +25% shadow damage\n- -30% healing done\n- Damage builds Faith instead of healing\n\nRequires Shadowform talent in the Shadow tree.', 'syntax': 'shadowform', 'title': 'Shadowform'},
+ 'arcane_charges': {'category': 'guide',
+                    'description': 'The Arcane Charge System (Mage class)\n\n'
+                                   'Mages build Arcane Charges through spellcasting.\n'
+                                   'Each charge increases spell power but also mana cost.\n\n'
+                                   'GENERATION:\n'
+                                   '- Each offensive spell: +1 Arcane Charge (max 5)\n\n'
+                                   'EFFECTS PER CHARGE:\n'
+                                   '- +8% spell damage\n'
+                                   '- +10% mana cost\n'
+                                   '- At 5 charges: +40% damage, +50% mana cost\n\n'
+                                   'SPENDING:\n'
+                                   '- Arcane Barrage: consumes all charges for burst\n'
+                                   '- Evocation: reset charges + restore 30% mana\n'
+                                   '- Various talents spend charges for abilities\n\n'
+                                   'DECAY:\n'
+                                   '- Out of combat: -1 charge per 15 seconds\n\n'
+                                   'TALENT SYNERGIES:\n'
+                                   '- Arcane Potency: charge bonus +1% per rank\n'
+                                   '- Arcane Stability: mana cost penalty reduced\n'
+                                   '- Arcane Mastery: unlock 6th charge slot\n\n'
+                                   'See also: HELP MAGE, HELP ARCANE_BARRAGE',
+                    'title': 'Arcane Charges'},
+ 'arcane_barrage': {'category': 'skill', 'classes': ['mage'],
+                    'description': 'Arcane Barrage - consume all Arcane Charges for burst damage.\n\n'
+                                   'Usage: arcane_barrage\n\n'
+                                   'Damage: charges × INT × 2\n'
+                                   'More charges = bigger burst.\n'
+                                   'No cooldown.\n\n'
+                                   'See also: HELP ARCANE_CHARGES',
+                    'syntax': 'arcane_barrage', 'title': 'Arcane Barrage'},
+ 'evocation': {'category': 'skill', 'classes': ['mage'],
+               'description': 'Evocation - restore mana and reset charges.\n\n'
+                              'Usage: evocation\n\n'
+                              'Effects:\n'
+                              '- Restores 30% max mana\n'
+                              '- Resets Arcane Charges to 0\n'
+                              'Cooldown: 120 seconds\n\n'
+                              'Use when low on mana or to shed high charge mana costs.',
+               'syntax': 'evocation', 'title': 'Evocation'},
+ 'arcane_blast': {'category': 'skill', 'classes': ['mage'],
+                  'description': 'Arcane Blast - powerful arcane damage that builds charges.\n\n'
+                                 'Usage: arcane_blast\n\n'
+                                 'Damage: INT×3 + (charges × INT)\n'
+                                 'Generates +1 Arcane Charge\n'
+                                 'Cooldown: 8 seconds\n\n'
+                                 'Your bread-and-butter damage + charge builder.',
+                  'syntax': 'arcane_blast', 'title': 'Arcane Blast'},
+ 'focus_guide': {'category': 'guide',
+                 'description': 'The Focus System (Ranger class)\n\n'
+                                'Rangers build Focus through steady combat.\n'
+                                'Spend Focus on powerful shots and pet commands.\n\n'
+                                'GENERATION:\n'
+                                '- Each melee/ranged hit: +10 Focus\n'
+                                '- Each round in combat (passive): +5 Focus\n'
+                                '- Dodge: +15 Focus\n'
+                                '- Max: 100\n\n'
+                                'ABILITIES:\n'
+                                '- Aimed Shot (30 Focus): 2.5x damage, guaranteed hit\n'
+                                '- Kill Command (25 Focus): pet attacks for 2x damage\n'
+                                '- Rapid Fire (50 Focus): triple attack this round\n'
+                                '- Hunter\'s Mark (free): +10% damage, +5 Focus/hit\n\n'
+                                'AT 100 FOCUS:\n'
+                                '- Next ability costs 50% less Focus\n\n'
+                                'See also: HELP RANGER, HELP AIMED_SHOT',
+                 'title': 'Focus (Ranger)'},
+ 'rage_guide': {'category': 'guide',
+                'description': 'The Rage System (Warrior class)\n\n'
+                               'Warriors build Rage through dealing and taking damage.\n\n'
+                               'GENERATION:\n'
+                               '- Dealing damage: +5 Rage + damage/20 bonus\n'
+                               '- Taking damage: +3 Rage + damage_taken/30 bonus\n'
+                               '- Battle Cry: instant +30 Rage\n'
+                               '- Max: 100. Decays 5/tick out of combat.\n\n'
+                               'STANCES:\n'
+                               '- Battle: +5% damage, +5% Rage gen\n'
+                               '- Defensive: -15% damage taken, -20% dealt\n'
+                               '- Berserker: +25% dealt, +15% taken, +10% Rage gen\n\n'
+                               'ABILITIES:\n'
+                               '- Execute (30 Rage): 2x damage + Rage bonus, target <20% HP\n'
+                               '- Mortal Strike (40 Rage): 2.5x damage + healing reduction\n'
+                               '- Shield Wall (50 Rage): 50% damage reduction 10s\n'
+                               '- Rampage (40 Rage): 3 rapid strikes\n'
+                               '- Bladestorm (60 Rage): AoE spin, 3 rounds\n\n'
+                               'See also: HELP WARRIOR, HELP STANCE',
+                'title': 'Rage (Warrior)'},
+ 'battle_cry': {'category': 'skill', 'classes': ['warrior'],
+                'description': 'Battle Cry - generate Rage and buff damage.\n\n'
+                               'Usage: battle_cry\n\n'
+                               'Effects:\n'
+                               '- Instantly generates 30 Rage\n'
+                               '- +10% damage for 6 seconds\n'
+                               'Cooldown: 60 seconds\n'
+                               'Cost: 0 Rage\n\n'
+                               'Your Rage kickstarter. Use at fight start.',
+                'syntax': 'battle_cry', 'title': 'Battle Cry'},
+ 'inspiration': {'category': 'guide',
+                  'description': 'The Inspiration System (Bard class)\n\n'
+                                 'Bards build Inspiration through songs, healing, and combat.\n\n'
+                                 'GENERATION:\n'
+                                 '- Performing a song: +1 per regen tick\n'
+                                 '- Landing a hit: +1 (25% chance)\n'
+                                 '- Healing an ally: +1\n'
+                                 '- Group member kills a mob: +1\n'
+                                 '- Max: 10\n\n'
+                                 'PASSIVE:\n'
+                                 '- Each Inspiration point = +1% to all song buffs\n\n'
+                                 'ABILITIES:\n'
+                                 '- Crescendo (5 Insp): Massive sonic damage (INT×5)\n'
+                                 '- Encore (3 Insp): Double-strength song reapply\n'
+                                 '- Discordant Note (4 Insp): Silence + sonic damage\n'
+                                 '- Magnum Opus (10 Insp): Party-wide +20% everything\n\n'
+                                 'See also: HELP BARD, HELP CRESCENDO',
+                  'title': 'Inspiration'},
+ 'focus': {'category': 'guide',
+           'description': 'The Focus System (Ranger class)\n\n'
+                          'Rangers build Focus through combat and agility.\n\n'
+                          'GENERATION:\n'
+                          '- Hitting a target: +10 Focus (+5 bonus on marked target)\n'
+                          '- Dodging an attack: +15 Focus\n'
+                          '- Passive in combat: +5 per regen tick\n'
+                          '- Max: 100\n\n'
+                          'SPENDING:\n'
+                          '- Aimed Shot: costs Focus for a powerful shot\n'
+                          '- Kill Command: pet attack, costs Focus\n'
+                          '- Rapid Fire: multi-shot volley, costs Focus\n'
+                          '- Bestial Wrath: pet enrage, costs Focus\n'
+                          '- Various talent abilities cost Focus\n\n'
+                          'DECAY:\n'
+                          '- Focus does not decay out of combat\n\n'
+                          'TALENT SYNERGIES:\n'
+                          '- Master Marksman: +2 Focus per hit per rank\n'
+                          '- Sniper Training: stealth attacks generate 30 Focus\n\n'
+                          'See also: HELP RANGER, HELP AIMED_SHOT, HELP HUNTERS_MARK',
+           'title': 'Focus'},
+ 'inspiration_guide': {'category': 'guide',
+                       'description': 'The Inspiration System (Bard class)\n\n'
+                                      'Bards build Inspiration through songs and combat.\n\n'
+                                      'GENERATION:\n'
+                                      '- Performing a song: +1 per round\n'
+                                      '- Landing a hit: +1 (25% chance)\n'
+                                      '- Ally heals or kills nearby: +1\n'
+                                      '- Max: 10\n\n'
+                                      'PASSIVE:\n'
+                                      '- Each Inspiration point = +1% to all song buffs\n\n'
+                                      'ABILITIES:\n'
+                                      '- Crescendo (5 Insp): Massive sonic damage (INT×5)\n'
+                                      '- Encore (3 Insp): Double-strength song reapply\n'
+                                      '- Discordant Note (4 Insp): Silence + sonic damage\n'
+                                      '- Magnum Opus (10 Insp): Party-wide +20% everything\n\n'
+                                      'See also: HELP BARD, HELP CRESCENDO',
+                       'title': 'Inspiration (Bard)'},
+ 'crescendo': {'category': 'skill', 'classes': ['bard'],
+               'description': 'Crescendo - massive sonic burst.\n\n'
+                              'Usage: crescendo\n\n'
+                              'Damage: INT × 5\n'
+                              'Cost: 5 Inspiration\n'
+                              'Cooldown: 20 seconds\n\n'
+                              'Your big damage ability. Build Inspiration through\n'
+                              'songs and combat, then unleash.',
+               'syntax': 'crescendo', 'title': 'Crescendo'},
+ 'discordant_note': {'category': 'skill', 'classes': ['bard'],
+                     'description': 'Discordant Note - silence and damage.\n\n'
+                                    'Usage: discordant_note\n\n'
+                                    'Effects:\n'
+                                    '- Silences target for 2 rounds (no spellcasting)\n'
+                                    '- Deals INT × 3 sonic damage\n'
+                                    'Cost: 4 Inspiration\n'
+                                    'Cooldown: 25 seconds',
+                     'syntax': 'discordant_note', 'title': 'Discordant Note'},
+ 'charge': {'category': 'skill',
+            'classes': ['warrior'],
+            'description': 'Charge — Opener (🟢) for Warriors.\n'
+                           'Rush at target, deals weapon damage. Must not be in combat (unless Battering Ram talent).\n'
+                           'Starts chain + initiates combat. Cooldown: 15s.\n\n'
+                           'CHAIN TYPE: Opener — starts chain at 1.',
+            'syntax': 'charge <target>',
+            'title': 'Charge'},
+ 'shield_slam': {'category': 'skill',
+                 'classes': ['warrior'],
+                 'description': 'Shield Slam — Opener (🟢) for Warriors.\n'
+                                'Requires shield. Deals weapon damage + shield armor value. Starts chain.\n'
+                                'Cooldown: 10s.\n\n'
+                                'CHAIN TYPE: Opener — starts chain at 1.',
+                 'syntax': 'shield_slam [target]',
+                 'title': 'Shield Slam'},
+ 'rend': {'category': 'skill',
+          'classes': ['warrior'],
+          'description': 'Rend — Chain ability (🟡) for Warriors.\n'
+                         'Apply a bleed DoT (weapon damage / 4 per tick, 4 ticks). Extends chain.\n'
+                         'Cooldown: 8s.\n\n'
+                         'CHAIN TYPE: Chain — extends combo by 1.',
+          'syntax': 'rend [target]',
+          'title': 'Rend'},
+ 'hamstring': {'category': 'skill',
+               'classes': ['warrior'],
+               'description': 'Hamstring — Chain ability (🟡) for Warriors.\n'
+                              'Slow target + deal 0.75x weapon damage. Extends chain.\n'
+                              'Cooldown: 6s.\n\n'
+                              'CHAIN TYPE: Chain — extends combo by 1.',
+               'syntax': 'hamstring [target]',
+               'title': 'Hamstring'},
+ 'devastating_blow': {'category': 'skill',
+                      'classes': ['warrior'],
+                      'description': 'Devastating Blow — Finisher (🔴) for Warriors.\n'
+                                     'Single target. 3x weapon damage + stun 1 round.\n'
+                                     'At chain 4+: 4x + stun 2 rounds. Resets chain.\n'
+                                     'Cooldown: 20s.\n\n'
+                                     'CHAIN TYPE: Finisher — consumes chain.',
+                      'syntax': 'devastating_blow [target]',
+                      'title': 'Devastating Blow'},
+ 'chains': {'category': 'guide',
+            'description': 'Warrior Combo Chain System\n\n'
+                           'Warriors chain abilities in sequence for escalating power.\n\n'
+                           'CHAIN TYPES:\n'
+                           '  🟢 Openers — Start or reset chain (Bash, Charge, Shield Slam)\n'
+                           '  🟡 Chains  — Extend combo +1 (Cleave, Rend, Disarm, Hamstring, Shield Wall)\n'
+                           '  🔴 Finishers — Consume chain for massive damage (Execute, Bladestorm, Devastating Blow)\n\n'
+                           'CHAIN RULES:\n'
+                           '  - Each chain link: +15% damage to next ability\n'
+                           '  - Chain max: 5 (7 with Chain Mastery talent)\n'
+                           '  - Chain decays if no chain ability within 8 seconds\n'
+                           '  - Openers mid-chain reset and start fresh at 1\n'
+                           '  - Finishers at chain 0 work but with no bonus\n\n'
+                           'NAMED COMBOS:\n'
+                           '  Specific sequences trigger powerful bonus effects!\n'
+                           '  See HELP COMBOS for the full list.\n\n'
+                           'TALENT TREES:\n'
+                           '  Vanguard — Stronger openers, chain initiation\n'
+                           '  Tactician — Longer chains, defensive bonuses\n'
+                           '  Executioner — Devastating finishers, combo mastery',
+            'title': 'Combo Chains'},
+ 'combos': {'category': 'guide',
+            'description': 'Named Combos — Warrior\n\n'
+                           'Chain specific ability sequences to trigger powerful bonus effects!\n\n'
+                           "  Bash → Rend → Execute = Butcher's Sequence\n"
+                           '    Effect: Execute ignores armor\n\n'
+                           '  Shield Slam → Disarm → Shield Slam = Fortress\n'
+                           '    Effect: 50% damage reduction for 6s\n\n'
+                           '  Charge → Cleave → Rend → Cleave → Bladestorm = Whirlwind of Steel\n'
+                           '    Effect: Bladestorm hits 3x and heals 10% HP per enemy\n\n'
+                           '  Hamstring → Rend → Hamstring → Execute = Death by a Thousand Cuts\n'
+                           '    Effect: Execute deals +50% bonus per bleed on target\n\n'
+                           '  Bash → Cleave → Bash = Stunning Assault\n'
+                           '    Effect: Stun target for 2 rounds\n\n'
+                           '  Shield Slam → Shield Wall → Shield Slam = Iron Wall\n'
+                           '    Effect: Shield Wall duration doubled\n\n'
+                           '  Charge → Rend → Cleave → Execute = Berserker Rush\n'
+                           '    Effect: Execute damage tripled\n\n'
+                           '  Bash → Cleave → Rend → Cleave → Devastating Blow = Titan\'s Combo\n'
+                           '    Effect: Devastating Blow hits ALL enemies in room',
+            'title': 'Named Combos'},
+ 'warrior': {'category': 'class',
+             'description': 'The Warrior class — master of Martial Doctrines and Ability Evolution.\n\n'
+                            'CORE MECHANIC — MOMENTUM (0-10):\n'
+                            '  Use DIFFERENT abilities in sequence to build Momentum.\n'
+                            '  Same ability twice in a row resets Momentum to 0.\n'
+                            '  Each point: +5% damage, +3% attack speed.\n'
+                            '  At 10: UNSTOPPABLE — CC immune for 4 rounds, +25% damage.\n\n'
+                            'WAR DOCTRINES:\n'
+                            '  Swear an oath to shape your abilities:\n'
+                            '  Iron Wall   — Shields, taunts, outlasting\n'
+                            '  Berserker   — Reckless offense, self-damage for power\n'
+                            '  Warlord     — Tactical CC, debuffs, group utility\n'
+                            '  Use "swear <doctrine>" to choose.\n\n'
+                            'ABILITY EVOLUTION:\n'
+                            '  6 base abilities evolve through use (50/150/300 uses).\n'
+                            '  strike, bash, cleave, charge, rally, execute\n'
+                            '  Each evolution is doctrine-specific and permanent.\n'
+                            '  Use "evolve" to see status, "evolve <ability>" to evolve.\n\n'
+                            'See also: HELP DOCTRINE, HELP MOMENTUM, HELP EVOLVE,\n'
+                            '          HELP STRIKE, HELP BASH, HELP CLEAVE,\n'
+                            '          HELP CHARGE, HELP RALLY, HELP EXECUTE',
+             'title': 'Warrior'},
+ 'doctrine': {'category': 'guide',
+              'description': 'War Doctrines — Warrior Specialization\n\n'
+                             'Warriors choose a War Doctrine that shapes their abilities.\n\n'
+                             'IRON WALL:\n'
+                             '  Defensive mastery. Shields, taunts, damage reduction.\n'
+                             '  Momentum bonus: +2% damage reduction per point.\n'
+                             '  Your abilities generate shields and taunt enemies.\n\n'
+                             'BERSERKER:\n'
+                             '  Reckless offense. Trade HP for devastating damage.\n'
+                             '  Momentum bonus: +2% lifesteal per point.\n'
+                             '  Abilities cost HP but deal massive damage.\n\n'
+                             'WARLORD:\n'
+                             '  Tactical mastery. CC, debuffs, group utility.\n'
+                             '  Momentum bonus: +1 round debuff duration per 3 Momentum.\n'
+                             '  Abilities apply debuffs and buff your group.\n\n'
+                             'Use "swear <doctrine>" to choose or switch.\n'
+                             'WARNING: Switching resets all ability evolutions!\n\n'
+                             'See also: HELP WARRIOR, HELP IRON_WALL, HELP BERSERKER, HELP WARLORD',
+              'title': 'War Doctrines'},
+ 'swear': {'category': 'command',
+           'description': 'Swear to a War Doctrine.\n\n'
+                          'Usage: swear <doctrine>\n\n'
+                          'Available doctrines: iron_wall, berserker, warlord\n\n'
+                          'Switching doctrines resets ALL ability evolutions.\n'
+                          'You will be asked to confirm before switching.',
+           'syntax': 'swear <doctrine>',
+           'title': 'Swear'},
+ 'evolve': {'category': 'command',
+            'description': 'View or perform ability evolution.\n\n'
+                           'Usage:\n'
+                           '  evolve           — Show all abilities and evolution status\n'
+                           '  evolve <ability> — Evolve an ability at its threshold\n\n'
+                           'Abilities evolve at 50, 150, and 300 uses.\n'
+                           'Each evolution is specific to your current doctrine.\n'
+                           'Evolutions are permanent until you switch doctrines.',
+            'syntax': 'evolve [ability]',
+            'title': 'Evolve'},
+ 'momentum': {'category': 'guide',
+              'description': 'Momentum — Warrior Combat Resource (0-10)\n\n'
+                             'Build Momentum by using DIFFERENT abilities in sequence.\n'
+                             'Using the same ability twice resets Momentum to 0.\n\n'
+                             'BONUSES PER POINT:\n'
+                             '  +5% damage\n'
+                             '  +3% attack speed (reduced cooldowns)\n\n'
+                             'DOCTRINE BONUSES:\n'
+                             '  Iron Wall: +2% damage reduction per point\n'
+                             '  Berserker: +2% lifesteal per point\n'
+                             '  Warlord: +1 round debuff duration per 3 points\n\n'
+                             'AT 10 MOMENTUM — UNSTOPPABLE:\n'
+                             '  CC immune for 4 combat rounds\n'
+                             '  All abilities deal +25% bonus damage\n\n'
+                             'Momentum decays by 1 per regen tick when not in combat.',
+              'title': 'Momentum'},
+ 'strike': {'category': 'skill',
+            'classes': ['warrior'],
+            'description': 'Strike — Enhanced basic attack. 4s cooldown.\n'
+                           'Deals 1.5x weapon damage.\n\n'
+                           'Evolutions (at 50/150/300 uses):\n'
+                           '  Iron Wall: shield_strike → aegis_strike → immortal_strike\n'
+                           '  Berserker: brutal_strike → savage_strike → deathwish_strike\n'
+                           '  Warlord: precision_strike → analytical_strike → mastermind_strike',
+            'syntax': 'strike [target]',
+            'title': 'Strike'},
+ 'iron_wall': {'category': 'guide',
+               'description': 'Iron Wall Doctrine — The Unbreakable Line\n\n'
+                              'Focus: Shields, taunts, damage reduction, outlasting.\n'
+                              'Momentum: +2% damage reduction per point.\n\n'
+                              'EVOLUTION EXAMPLES:\n'
+                              '  strike → shield_strike → aegis_strike → immortal_strike\n'
+                              '  bash → fortress_bash → bastion_bash → unbreakable_bash\n'
+                              '  rally → stand_your_ground → immovable_object → eternal_guardian\n'
+                              '  execute → merciful_end → righteous_execution → divine_judgment',
+               'title': 'Iron Wall'},
+ 'berserker': {'category': 'guide',
+               'description': 'Berserker Doctrine — Pain is Power\n\n'
+                              'Focus: Self-damage for devastating offense.\n'
+                              'Momentum: +2% lifesteal per point.\n\n'
+                              'EVOLUTION EXAMPLES:\n'
+                              '  strike → brutal_strike → savage_strike → deathwish_strike\n'
+                              '  charge → reckless_charge → death_from_above → extinction_event\n'
+                              '  rally → blood_frenzy → berserker_rage → avatar_of_war\n'
+                              '  execute → overkill → massacre → annihilation',
+               'title': 'Berserker'},
+ 'warlord': {'category': 'guide',
+             'description': 'Warlord Doctrine — The Tactician\n\n'
+                            'Focus: CC, debuffs, group utility.\n'
+                            'Momentum: +1 round debuff duration per 3 points.\n\n'
+                            'EVOLUTION EXAMPLES:\n'
+                            '  strike → precision_strike → analytical_strike → mastermind_strike\n'
+                            '  bash → concussive_bash → shockwave_bash → domination_bash\n'
+                            '  rally → battle_orders → inspiring_command → supreme_command\n'
+                            '  execute → subjugate → total_domination → absolute_authority',
+             'title': 'Warlord'},
 }
 
 # Category index for help listing
@@ -3581,7 +4316,9 @@ HELP_CATEGORIES = {'class': ['assassin', 'bard', 'cleric', 'mage', 'necromancer'
              'eviscerate',
              'examine',
              'execute',
+             'execute_contract',
              'exits',
+             'expose',
              'explosive_trap',
              'faction',
              'fill',
@@ -3794,6 +4531,7 @@ HELP_CATEGORIES = {'class': ['assassin', 'bard', 'cleric', 'mage', 'necromancer'
              'vanish',
              'vendetta',
              'visible',
+             'vital',
              'volley',
              'wake',
              'warcry',
@@ -3831,6 +4569,8 @@ HELP_CATEGORIES = {'class': ['assassin', 'bard', 'cleric', 'mage', 'necromancer'
            'dual_wield',
            'envenom',
            'evasion',
+           'execute_contract',
+           'expose',
            'fascinate',
            'feint',
            'garrote',
@@ -3839,6 +4579,7 @@ HELP_CATEGORIES = {'class': ['assassin', 'bard', 'cleric', 'mage', 'necromancer'
            'intimidate',
            'kick',
            'lore',
+           'mark',
            'mark_target',
            'mockery',
            'parry',
@@ -3857,7 +4598,9 @@ HELP_CATEGORIES = {'class': ['assassin', 'bard', 'cleric', 'mage', 'necromancer'
            'track',
            'trip',
            'tumble',
-           'turn_undead'],
+           'turn_undead',
+           'vanish',
+           'vital'],
  'spell': ['aegis',
            'animate_dead',
            'armor',

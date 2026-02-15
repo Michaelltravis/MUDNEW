@@ -139,9 +139,7 @@ class Character:
         if hasattr(self, 'song_debuffs') and self.song_debuffs:
             bonus += self.song_debuffs.get('hitroll', 0)  # Negative value
 
-        # Warrior precision stance hit bonus
-        if hasattr(self, 'stance') and self.stance == 'precision':
-            bonus += 4
+        # Warrior stance hit bonus removed — warriors now use Combo Chain system
 
         # Talent bonuses
         try:
@@ -194,12 +192,7 @@ class Character:
             if item and hasattr(item, 'armor'):
                 ac -= item.armor
         
-        # Warrior stance AC modifiers
-        if hasattr(self, 'stance'):
-            if self.stance == 'berserk':
-                ac += 20  # Worse AC (higher number = worse)
-            elif self.stance == 'defensive':
-                ac -= 30  # Better AC (lower number = better)
+        # Warrior stance AC modifiers removed — warriors now use Combo Chain system
 
         # Paladin Devotion Aura (nearby allies)
         if 'devotion' in self.get_paladin_auras():
@@ -258,9 +251,16 @@ class Character:
         return total
 
     def get_effective_stat(self, stat: str) -> int:
-        """Get effective stat value including equipment bonuses."""
+        """Get effective stat value including equipment bonuses and debuffs."""
         base = getattr(self, stat, 0)
-        return base + self.get_equipment_bonus(stat)
+        total = base + self.get_equipment_bonus(stat)
+        # Hunger debuff: -2 STR when starving
+        if stat == 'str' and getattr(self, 'hunger', 168) <= 0:
+            total -= 2
+        # Thirst debuff: -2 DEX when parched
+        if stat == 'dex' and getattr(self, 'thirst', 60) <= 0:
+            total -= 2
+        return total
 
 
 class Player(Character):
@@ -336,6 +336,7 @@ class Player(Character):
         self.brief_mode = False  # Shorter room descriptions
         self.compact_mode = False  # Less combat spam
         self.autoexit = True  # Show exits on room entry
+        self.show_room_vnums = False  # Show room vnum numbers
         self.ai_chat_enabled = True  # AI NPC chat enabled
         self.prompt_enabled = True   # Show prompt
 
@@ -393,14 +394,38 @@ class Player(Character):
         self.last_encore = 0            # Cooldown tracking (timestamp)
         self.lullaby_saves = {}         # Track cumulative lullaby penalties per target
 
-        # Warrior Rage & Stance System
-        self.rage = 0                   # Current rage (0-100)
+        # Warrior Rage & Stance System (legacy - kept for save compat)
+        self.rage = 0                   # Current rage (unused for warriors now)
         self.max_rage = 100             # Maximum rage
-        self.stance = 'battle'          # Current stance: battle, berserk, defensive, precision
+        self.stance = 'battle'          # Current stance (legacy)
         self.ignore_pain_absorb = 0     # Damage absorption remaining
         self.ignore_pain_ticks = 0      # Duration remaining
         self.last_warcry = 0            # Cooldown tracking (timestamp)
         self.last_battleshout = 0       # Cooldown tracking (timestamp)
+
+        # Warrior Martial Doctrine + Momentum System
+        self.war_doctrine = None        # 'iron_wall', 'berserker', 'warlord', or None
+        self.momentum = 0              # 0-10 momentum resource
+        self.ability_usage = {}        # Track uses per ability for evolution
+        self.ability_evolutions = {}   # Track evolution name per ability
+        self.last_warrior_ability = None  # Last ability used (for momentum)
+        self.unstoppable_rounds = 0    # CC immunity counter
+        self.warrior_shield = 0        # Absorb shield from abilities
+        self.warrior_shield_rounds = 0
+        self.warrior_dr_bonus = 0      # Temp DR from abilities
+        self.warrior_dr_rounds = 0
+        self.warrior_temp_armor = 0
+        self.warrior_temp_armor_rounds = 0
+        self.warrior_damage_buff = 0
+        self.warrior_damage_buff_rounds = 0
+        self.warrior_death_save_rounds = 0
+
+        # Legacy combo chain (kept for save compat, unused)
+        self.chain_count = 0
+        self.chain_sequence = []
+        self.chain_last_type = None
+        self.chain_decay_time = 0.0
+        self.chain_bonuses = {}
 
         # Ranger Companion & Tracking System
         self.animal_companion = None    # Companion Mobile object
@@ -417,14 +442,85 @@ class Player(Character):
         # Mage Arcane Charges System
         self.arcane_charges = 0         # Arcane charges (0-5)
         self.max_arcane_charges = 5
+        self.charge_decay_time = 0      # Timestamp for out-of-combat decay
+
+        # Ranger Focus System
+        self.focus = 0                  # Current focus (0-100)
+        self.hunters_mark_target = None  # Marked prey reference
+
+        # Bard Inspiration System
+        self.inspiration = 0            # Current inspiration (0-10)
+        self.active_song = None          # Current song being played
+        self.song_targets = []           # Players affected by current song
 
         # Thief Combo Point System
         self.combo_points = 0           # Current combo points (0-5)
         self.combo_target = None        # Target combo points are built on
 
-        # Cleric Divine Favor System
+        # Assassin Intel System
+        self.intel_target = None        # Mob currently marked for Intel
+        self.intel_points = 0           # Intel accumulated (0-10)
+        self.intel_thresholds = {}      # Track which thresholds triggered
+        self.expose_until = 0           # Timestamp: target takes 15% more dmg
+        self.expose_target = None       # Who is exposed
+        self.feint_until = 0            # Timestamp: feint damage reduction active
+        self.feint_reduction = 0.0      # Feint reduction amount
+        self.evasion_until = 0          # Timestamp: 100% dodge
+        self.shadowstep_dodge = False   # Next attack dodged
+        self.mark_cooldown = 0
+        self.expose_cooldown = 0
+        self.vital_cooldown = 0
+        self.execute_cooldown = 0
+        self.feint_cooldown = 0
+        self.evasion_cooldown = 0
+        self.vanish_cooldown = 0
+        self.shadowstep_cooldown = 0
+
+        # Cleric Divine Favor System (legacy)
         self.divine_favor = 0           # Divine favor points (0-100)
         self.last_turn_undead = 0       # Cooldown tracking (timestamp)
+
+        # === CLASS REWORK WAVE 1 RESOURCES ===
+
+        # Thief Luck System (Scoundrel)
+        self.luck_points = 0            # Current luck (0-10)
+        self.luck_streak = 0            # Consecutive lucky hits
+        self.rigged_dice_hits = 0       # Remaining guaranteed crits from rigged_dice
+        self.pocket_sand_cooldown = 0
+        self.low_blow_cooldown = 0
+        self.rigged_dice_cooldown = 0
+        self.jackpot_cooldown = 0
+        self.second_chance_used = False # Once per fight
+
+        # Necromancer Soul Shard System
+        self.soul_shards = 0            # Current soul shards (0-10)
+        self.active_minion = None       # Summoned minion reference
+        self.bone_shield_charges = 0    # Remaining bone shield charges
+        self.bone_shield_until = 0      # Bone shield expiry timestamp
+        self.soul_bolt_cooldown = 0
+        self.drain_soul_cooldown = 0
+        self.bone_shield_cooldown = 0
+        self.soul_reap_cooldown = 0
+
+        # Paladin Holy Power System
+        self.holy_power = 0             # Current holy power (0-5)
+        self.active_oath = None         # 'vengeance', 'devotion', 'justice', or None
+        self.divine_storm_cooldown = 0
+
+        # Cleric Faith System
+        self.faith = 0                  # Current faith (0-10)
+        self.shadow_form = False        # Shadow form toggle
+        self.divine_word_cooldown = 0
+        self.holy_fire_cooldown = 0
+        self.divine_intervention_cooldown = 0
+        self.holy_fire_dot_target = None
+        self.holy_fire_dot_ticks = 0
+        self.holy_fire_dot_damage = 0
+
+        # Blind/stun tracking for combat (used by thief abilities)
+        self.blinded_until = 0          # Timestamp when blind expires
+        self.blinded_rounds = 0         # Rounds of blind remaining
+        self.stunned_rounds = 0         # Rounds of stun remaining
 
         # Rent/Storage System
         self.storage = []  # Items in storage (inn locker)
@@ -545,6 +641,9 @@ class Player(Character):
 
         return False
 
+    # ==================== WARRIOR DOCTRINE SYSTEM ====================
+    # See warrior_abilities.py for full implementation
+
     def add_journal_entry(self, text: str, category: str = None):
         """Add a journal entry for the player."""
         if not hasattr(self, 'journal') or self.journal is None:
@@ -613,10 +712,10 @@ class Player(Character):
         from objects import create_object, create_preset_object
 
         def _make(vnum):
-            """Create object from world prototypes or preset fallback."""
-            obj = create_object(vnum, self.world if hasattr(self, 'world') else None)
+            """Create object from preset first (starter gear), then world fallback."""
+            obj = create_preset_object(vnum)
             if not obj:
-                obj = create_preset_object(vnum)
+                obj = create_object(vnum, self.world if hasattr(self, 'world') else None)
             return obj
 
         # Everyone gets basic items
@@ -794,6 +893,7 @@ class Player(Character):
             'auto_combat_settings': self.auto_combat_settings,
             'brief_mode': self.brief_mode,
             'compact_mode': self.compact_mode,
+            'show_room_vnums': self.show_room_vnums,
             'autoexit': self.autoexit,
             'recall_point': self.recall_point,
             'autorecall_hp': self.autorecall_hp,
@@ -841,6 +941,14 @@ class Player(Character):
             'last_logout': self.last_logout.isoformat(),
             'last_host': getattr(self, 'last_host', 'Unknown'),
             'total_playtime': self.total_playtime,
+            'rent_data': getattr(self, 'rent_data', None),
+            # Warrior Doctrine System
+            'war_doctrine': getattr(self, 'war_doctrine', None),
+            'momentum': getattr(self, 'momentum', 0),
+            'ability_usage': getattr(self, 'ability_usage', {}),
+            'ability_evolutions': getattr(self, 'ability_evolutions', {}),
+            'last_warrior_ability': getattr(self, 'last_warrior_ability', None),
+            'unstoppable_rounds': getattr(self, 'unstoppable_rounds', 0),
         }
         
         filepath = os.path.join(self.config.PLAYER_DIR, f"{self.name.lower()}.json")
@@ -957,6 +1065,7 @@ class Player(Character):
             player.autocombat = data.get('autocombat', False)
             player.auto_combat_settings = data.get('auto_combat_settings', player.auto_combat_settings)
             player.brief_mode = data.get('brief_mode', False)
+            player.show_room_vnums = bool(data.get('show_room_vnums', False))
             player.compact_mode = data.get('compact_mode', False)
             player.autoexit = data.get('autoexit', True)
             player.recall_point = data.get('recall_point', 3001)
@@ -1091,6 +1200,15 @@ class Player(Character):
             player.last_logout = datetime.fromisoformat(data.get('last_logout', datetime.now().isoformat()))
             player.last_login = datetime.now()
             player.total_playtime = data.get('total_playtime', 0)
+            player.rent_data = data.get('rent_data', None)
+
+            # Warrior Doctrine System
+            player.war_doctrine = data.get('war_doctrine', None)
+            player.momentum = data.get('momentum', 0)
+            player.ability_usage = data.get('ability_usage', {})
+            player.ability_evolutions = data.get('ability_evolutions', {})
+            player.last_warrior_ability = data.get('last_warrior_ability', None)
+            player.unstoppable_rounds = data.get('unstoppable_rounds', 0)
 
             # Rested XP from time offline
             try:
@@ -1341,11 +1459,11 @@ class Player(Character):
                         await self.send(f"It is currently: {', '.join(state_info)}")
                         return
 
-            # Check characters in room
-            for char in self.room.characters:
-                if char != self and target.lower() in char.name.lower():
-                    await self.show_character(char)
-                    return
+            # Check characters in room (with numbered targeting: 2.guardian)
+            char_target = self.find_target_in_room(target)
+            if char_target:
+                await self.show_character(char_target)
+                return
 
             # Check items in inventory
             for item in self.inventory:
@@ -2058,20 +2176,41 @@ class Player(Character):
                 await self.send(f"{c['yellow']}Your Ignore Pain fades.{c['reset']}")
                 self.ignore_pain_ticks = 0
 
+        # Warrior shield absorption (from doctrine abilities)
+        if amount > 0 and getattr(self, 'warrior_shield', 0) > 0:
+            absorbed = min(amount, self.warrior_shield)
+            self.warrior_shield -= absorbed
+            amount -= absorbed
+            if absorbed > 0:
+                await self.send(f"{c['cyan']}Your shield absorbs {absorbed} damage!{c['reset']}")
+            if self.warrior_shield <= 0:
+                self.warrior_shield_rounds = 0
+
+        # Warrior temporary DR bonus (from doctrine abilities)
+        if amount > 0 and getattr(self, 'warrior_dr_bonus', 0) > 0:
+            reduced = max(1, int(amount * (self.warrior_dr_bonus / 100.0)))
+            amount = max(0, amount - reduced)
+
+        # Warrior doctrine momentum DR (Iron Wall: +2% per momentum)
+        if amount > 0 and getattr(self, 'war_doctrine', None) == 'iron_wall':
+            momentum_dr = getattr(self, 'momentum', 0) * 0.02
+            if momentum_dr > 0:
+                reduced = max(1, int(amount * momentum_dr))
+                amount = max(0, amount - reduced)
+
+        # Warrior death save (Eternal Guardian)
+        if amount >= self.hp and getattr(self, 'warrior_death_save_rounds', 0) > 0:
+            amount = self.hp - 1
+            self.warrior_death_save_rounds = 0
+            await self.send(f"{c['bright_cyan']}Your Eternal Guardian saves you from death!{c['reset']}")
+
         # Damage reduction from affects
         if amount > 0 and hasattr(self, 'damage_reduction') and self.damage_reduction > 0:
             reduced = max(1, int(amount * (self.damage_reduction / 100.0)))
             amount = max(0, amount - reduced)
             await self.send(f"{c['cyan']}You shrug off {reduced} damage!{c['reset']}")
         
-        # Warrior rage gain on damage taken (+10 rage, +15 in berserk)
-        if hasattr(self, 'rage') and hasattr(self, 'char_class') and amount > 0:
-            if self.char_class.lower() == 'warrior':
-                rage_gain = 10
-                if hasattr(self, 'stance') and self.stance == 'berserk':
-                    rage_gain = int(rage_gain * 1.5)
-                self.rage = min(self.max_rage, self.rage + rage_gain)
-        
+        # Warrior rage gain on damage taken removed — warriors use Combo Chain system
         # Death Pact damage sharing - split damage 50/50 with bonded pet
         if hasattr(self, 'death_pact_target') and self.death_pact_target:
             pet = self.death_pact_target
@@ -2206,6 +2345,11 @@ class Player(Character):
 
         # Reset kill streak
         self.kill_streak = 0
+
+        # Reset Intel on death
+        self.intel_target = None
+        self.intel_points = 0
+        self.intel_thresholds = {}
             
         self.position = 'dead'
         
@@ -2310,15 +2454,71 @@ class Player(Character):
         # Process bard performance
         await self.process_performance_tick()
 
-        # Warrior rage decay out of combat
-        if hasattr(self, 'rage') and self.rage > 0:
+        # Warrior Momentum decay out of combat
+        if hasattr(self, 'momentum') and self.momentum > 0:
             if not self.is_fighting:
-                self.rage = max(0, self.rage - 5)  # Decay 5 rage per tick
+                self.momentum = max(0, self.momentum - 1)
 
-        # Mage arcane charge decay out of combat
+        # Thief Luck decay out of combat
+        if hasattr(self, 'luck_points') and self.luck_points > 0:
+            if not self.is_fighting and getattr(self, 'char_class', '').lower() == 'thief':
+                self.luck_points = max(0, self.luck_points - 1)
+
+        # Warrior Unstoppable rounds decrement (in combat)
+        if hasattr(self, 'unstoppable_rounds') and self.unstoppable_rounds > 0:
+            if self.is_fighting:
+                self.unstoppable_rounds -= 1
+                if self.unstoppable_rounds <= 0:
+                    c = self.config.COLORS
+                    await self.send(f"{c['yellow']}Your Unstoppable state fades.{c['reset']}")
+
+        # Warrior ability buff/shield decay
+        if getattr(self, 'warrior_shield_rounds', 0) > 0:
+            self.warrior_shield_rounds -= 1
+            if self.warrior_shield_rounds <= 0:
+                self.warrior_shield = 0
+        if getattr(self, 'warrior_dr_rounds', 0) > 0:
+            self.warrior_dr_rounds -= 1
+            if self.warrior_dr_rounds <= 0:
+                self.warrior_dr_bonus = 0
+        if getattr(self, 'warrior_temp_armor_rounds', 0) > 0:
+            self.warrior_temp_armor_rounds -= 1
+            if self.warrior_temp_armor_rounds <= 0:
+                self.warrior_temp_armor = 0
+        if getattr(self, 'warrior_damage_buff_rounds', 0) > 0:
+            self.warrior_damage_buff_rounds -= 1
+            if self.warrior_damage_buff_rounds <= 0:
+                self.warrior_damage_buff = 0
+        if getattr(self, 'warrior_death_save_rounds', 0) > 0:
+            self.warrior_death_save_rounds -= 1
+
+        # Mage arcane charge decay out of combat (1 per 15s)
         if hasattr(self, 'arcane_charges') and self.arcane_charges > 0:
             if not self.is_fighting:
-                self.arcane_charges = max(0, self.arcane_charges - 1)
+                import time as _time
+                now = _time.time()
+                if now >= getattr(self, 'charge_decay_time', 0):
+                    self.arcane_charges = max(0, self.arcane_charges - 1)
+                    self.charge_decay_time = now + 15
+
+        # Ranger passive focus gen in combat (+5 per round)
+        if hasattr(self, 'focus') and hasattr(self, 'char_class'):
+            if self.char_class.lower() == 'ranger' and self.is_fighting:
+                old_focus = self.focus
+                self.focus = min(100, self.focus + 5)
+                c = self.config.COLORS
+                for threshold in [25, 50, 75, 100]:
+                    if old_focus < threshold <= self.focus:
+                        await self.send(f"{c['bright_green']}[Focus: {self.focus}/100]{c['reset']}")
+                        break
+
+        # Bard inspiration from performance
+        if hasattr(self, 'inspiration') and hasattr(self, 'char_class'):
+            if self.char_class.lower() == 'bard' and getattr(self, 'performing', None):
+                if self.inspiration < 10:
+                    self.inspiration = min(10, self.inspiration + 1)
+                    c = self.config.COLORS
+                    await self.send(f"{c['bright_yellow']}[Inspiration: {self.inspiration}/10]{c['reset']}")
         
         # Warrior ignore pain tick decay
         if hasattr(self, 'ignore_pain_ticks') and self.ignore_pain_ticks > 0:
@@ -2624,7 +2824,7 @@ class Player(Character):
                     # Remove from combat
                     if char.is_fighting:
                         char.fighting = None
-                        char.is_fighting = False
+                        char.fighting = None
             
             elif special == 'sonic_damage':
                 # Symphony of destruction - deal damage
@@ -2694,10 +2894,9 @@ class Player(Character):
 
                 # Warnings and penalties based on hunger level
                 if self.hunger == 0:
-                    await self.send(f"{c['red']}You are starving to death!{c['reset']}")
-                    # Starving: lose HP
-                    damage = max(1, self.max_hp // 20)  # 5% of max HP
-                    await self.take_damage(damage)
+                    await self.send(f"{c['red']}You are starving! Your strength wanes.{c['reset']}")
+                    # Starving: apply debuff (reduced regen, -2 STR) instead of damage
+                    # Debuff is checked in regen/combat — no HP loss from hunger
 
                 elif self.hunger <= 24:  # Less than 1 day of food
                     if self.hunger == 24:
@@ -2716,10 +2915,9 @@ class Player(Character):
 
                 # Warnings and penalties based on thirst level
                 if self.thirst == 0:
-                    await self.send(f"{c['bright_red']}You are dying of thirst!{c['reset']}")
-                    # Dying of thirst: lose HP (more severe than hunger)
-                    damage = max(2, self.max_hp // 10)  # 10% of max HP
-                    await self.take_damage(damage)
+                    await self.send(f"{c['bright_red']}You are parched! Your focus falters.{c['reset']}")
+                    # Dehydrated: apply debuff (reduced regen, -2 DEX) instead of damage
+                    # Debuff is checked in regen/combat — no HP loss from thirst
 
                 elif self.thirst <= 12:  # Less than half day of water
                     if self.thirst == 12:

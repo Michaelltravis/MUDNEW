@@ -428,6 +428,10 @@
         {
           "vnum": 7201,
           "max": 1
+        },
+        {
+          "vnum": 7298,
+          "max": 1
         }
       ]
     },
@@ -1022,7 +1026,7 @@
       "exits": {
         "up": {
           "to_room": 7111,
-          "description": "",
+          "description": "The Southwestern Corner Of The Ledge",
           "door": {
             "name": "rock",
             "state": "closed",
@@ -1032,7 +1036,7 @@
         },
         "down": {
           "to_room": 7299,
-          "description": ""
+          "description": "A steep trail ascends to On The Walls Of The Abyss"
         }
       }
     },
@@ -1058,7 +1062,7 @@
         },
         "up": {
           "to_room": 7116,
-          "description": "",
+          "description": "The Northeastern Corner Of The Ledge",
           "door": {
             "name": "altar secret",
             "state": "closed",
@@ -1100,7 +1104,7 @@
         },
         "south": {
           "to_room": 7280,
-          "description": "",
+          "description": "The cobblestones lead to The Entrance",
           "door": {
             "name": "door small round",
             "state": "closed",
@@ -1295,7 +1299,7 @@
       "exits": {
         "up": {
           "to_room": 7279,
-          "description": ""
+          "description": "A steep trail ascends to The Wall Of The Abyss"
         }
       },
       "mob_resets": [
@@ -1383,7 +1387,7 @@
         },
         "west": {
           "to_room": 7321,
-          "description": ""
+          "description": "The cobblestones lead to The East Tunnel"
         }
       },
       "mob_resets": [
@@ -1413,7 +1417,7 @@
         },
         "south": {
           "to_room": 7308,
-          "description": ""
+          "description": "The cobblestones lead to The Long Tunnel"
         },
         "west": {
           "to_room": 7302,
@@ -1456,7 +1460,7 @@
         },
         "west": {
           "to_room": 7303,
-          "description": ""
+          "description": "An open path leads to The Cave T-Cross"
         }
       },
       "extra_descs": {
@@ -1539,7 +1543,7 @@
         },
         "west": {
           "to_room": 7307,
-          "description": ""
+          "description": "A steep trail ascends to A Tunnel"
         }
       }
     },
@@ -1555,7 +1559,7 @@
       "exits": {
         "north": {
           "to_room": 7308,
-          "description": ""
+          "description": "The cobblestones lead to The Long Tunnel"
         },
         "east": {
           "to_room": 7306,
@@ -1563,7 +1567,7 @@
         },
         "south": {
           "to_room": 7309,
-          "description": ""
+          "description": "The cobblestones lead to The Hot Room"
         }
       }
     },
@@ -1658,7 +1662,7 @@
       "exits": {
         "north": {
           "to_room": 7314,
-          "description": ""
+          "description": "The cobblestones lead to The Stalagmite T-Cross"
         },
         "east": {
           "to_room": 7310,
@@ -1666,7 +1670,7 @@
         },
         "south": {
           "to_room": 7312,
-          "description": ""
+          "description": "The cobblestones lead to The Stalagmite Tunnel"
         }
       },
       "extra_descs": {
@@ -1699,7 +1703,7 @@
         },
         "west": {
           "to_room": 7313,
-          "description": ""
+          "description": "A trail winds toward The Spongy Room"
         }
       },
       "mob_resets": [
@@ -1725,11 +1729,11 @@
       "exits": {
         "east": {
           "to_room": 7312,
-          "description": ""
+          "description": "The cobblestones lead to The Stalagmite Tunnel"
         },
         "west": {
           "to_room": 7345,
-          "description": ""
+          "description": "The water flows toward The Pool"
         }
       }
     },
@@ -1749,11 +1753,11 @@
         },
         "east": {
           "to_room": 7315,
-          "description": ""
+          "description": "The cobblestones lead to The Blind End Room"
         },
         "south": {
           "to_room": 7311,
-          "description": ""
+          "description": "An open path leads to The Stalagmite Cave"
         }
       }
     },
@@ -1779,7 +1783,7 @@
         },
         "west": {
           "to_room": 7314,
-          "description": ""
+          "description": "The cobblestones lead to The Stalagmite T-Cross"
         }
       },
       "extra_descs": {
@@ -1828,7 +1832,7 @@
         },
         "south": {
           "to_room": 7314,
-          "description": ""
+          "description": "The cobblestones lead to The Stalagmite T-Cross"
         }
       },
       "extra_descs": {
@@ -1969,11 +1973,11 @@
       "exits": {
         "east": {
           "to_room": 7324,
-          "description": ""
+          "description": "The cobblestones lead to The Circular Hall"
         },
         "south": {
           "to_room": 7322,
-          "description": ""
+          "description": "The cobblestones lead to The North Tunnel"
         }
       },
       "mob_resets": [
@@ -2080,19 +2084,19 @@
       "exits": {
         "north": {
           "to_room": 7331,
-          "description": ""
+          "description": "The cobblestones lead to The Glittering Room"
         },
         "east": {
           "to_room": 7330,
-          "description": ""
+          "description": "The cobblestones lead to The Windy Tunnel"
         },
         "south": {
           "to_room": 7327,
-          "description": ""
+          "description": "A passage leads to A Narrow Sewer Passage"
         },
         "west": {
           "to_room": 7325,
-          "description": ""
+          "description": "The cobblestones lead to A Dusty Tunnel"
         }
       },
       "extra_descs": {
@@ -2144,7 +2148,7 @@
         },
         "west": {
           "to_room": 7326,
-          "description": ""
+          "description": "The cobblestones lead to The Crossing"
         }
       },
       "extra_descs": {
@@ -2162,15 +2166,15 @@
       "exits": {
         "east": {
           "to_room": 7332,
-          "description": ""
+          "description": "The cobblestones lead to The Secret Passageway"
         },
         "south": {
           "to_room": 7326,
-          "description": ""
+          "description": "The cobblestones lead to The Crossing"
         },
         "west": {
           "to_room": 7333,
-          "description": ""
+          "description": "A steep trail ascends to The End Of Long Tunnel"
         }
       },
       "extra_descs": {
@@ -2280,11 +2284,11 @@
       "exits": {
         "north": {
           "to_room": 7334,
-          "description": ""
+          "description": "The cobblestones lead to The Stair-Room"
         },
         "south": {
           "to_room": 7336,
-          "description": ""
+          "description": "An open path leads to The Entrance To The Lair"
         }
       },
       "extra_descs": {
@@ -2318,7 +2322,7 @@
       "exits": {
         "north": {
           "to_room": 7335,
-          "description": ""
+          "description": "The cobblestones lead to A Dark Tunnel"
         },
         "south": {
           "to_room": 7337,
@@ -2352,15 +2356,15 @@
       "exits": {
         "north": {
           "to_room": 7336,
-          "description": ""
+          "description": "An open path leads to The Entrance To The Lair"
         },
         "south": {
           "to_room": 7338,
-          "description": ""
+          "description": "The South-Eastern Part Of The Basilisk's Cave"
         },
         "west": {
           "to_room": 7339,
-          "description": ""
+          "description": "The North-Western Part Of The Basilisk's Cave"
         }
       },
       "mob_resets": [
@@ -2415,11 +2419,11 @@
       "exits": {
         "east": {
           "to_room": 7337,
-          "description": ""
+          "description": "The North-Eastern Part Of The Basilisk's Cave"
         },
         "south": {
           "to_room": 7340,
-          "description": ""
+          "description": "The South-Western Part Of The Basilisk's Cave"
         }
       },
       "extra_descs": {
@@ -2448,15 +2452,15 @@
       "exits": {
         "north": {
           "to_room": 7339,
-          "description": ""
+          "description": "The North-Western Part Of The Basilisk's Cave"
         },
         "east": {
           "to_room": 7338,
-          "description": ""
+          "description": "The South-Eastern Part Of The Basilisk's Cave"
         },
         "south": {
           "to_room": 7341,
-          "description": ""
+          "description": "An open path leads to The Small Cave"
         }
       },
       "mob_resets": [
@@ -2583,7 +2587,7 @@
         },
         "west": {
           "to_room": 7344,
-          "description": ""
+          "description": "A steep trail ascends to The South End Of The Pool"
         }
       },
       "mob_resets": [
@@ -2604,10 +2608,12 @@
       "flags": [],
       "exits": {
         "east": {
-          "to_room": 7317
+          "to_room": 7317,
+          "description": "The cobblestones lead to The Square Lair"
         },
         "north": {
-          "to_room": 7319
+          "to_room": 7319,
+          "description": "The cobblestones lead to The Square Lair"
         }
       },
       "mob_resets": [],
@@ -2621,10 +2627,12 @@
       "flags": [],
       "exits": {
         "north": {
-          "to_room": 7326
+          "to_room": 7326,
+          "description": "The cobblestones lead to The Crossing"
         },
         "east": {
-          "to_room": 7328
+          "to_room": 7328,
+          "description": "An open path leads to The Dragon's Lair"
         }
       },
       "mob_resets": [],
@@ -2638,10 +2646,12 @@
       "flags": [],
       "exits": {
         "south": {
-          "to_room": 7328
+          "to_room": 7328,
+          "description": "An open path leads to The Dragon's Lair"
         },
         "west": {
-          "to_room": 7330
+          "to_room": 7330,
+          "description": "The cobblestones lead to The Windy Tunnel"
         }
       },
       "mob_resets": [],
@@ -2957,6 +2967,29 @@
         "aggressive",
         "sentinel"
       ]
+    },
+    "7298": {
+      "vnum": 7298,
+      "name": "maintenance worker",
+      "short_desc": "a city maintenance worker",
+      "long_desc": "A bored-looking city maintenance worker stands here, holding a faded map of the sewer system.",
+      "description": "He wears thick leather boots, heavy gloves, and a resigned expression. A lantern on his belt provides steady light, and his tools jingle with every movement.",
+      "level": 32,
+      "alignment": 0,
+      "hp_dice": "32d10+550",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The worker sighs. 'Another adventurer. Look, I don't care what you're hunting down here \u2014 just don't break any more pipes. The west passages flood regularly, so watch for rising water. And whatever you do, avoid the deep cistern. Something moved in there last week. Something big.'",
+        "cistern": "He shakes his head. 'I'm paid to fix pipes, not fight monsters. But I'll tell you this \u2014 the noise from the cistern started about a month ago. Whatever's down there, it's getting bigger.'",
+        "default": "The worker marks something on his map and mutters about overtime pay."
+      }
     }
   },
   "objects": {
@@ -2969,7 +3002,8 @@
       "weight": 6,
       "value": 16000,
       "damage_dice": "2d5",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "treasure"
     },
     "7201": {
       "vnum": 7201,
@@ -2980,7 +3014,8 @@
       "weight": 10,
       "value": 1000,
       "damage_dice": "1d6",
-      "weapon_type": "pound"
+      "weapon_type": "pound",
+      "type": "weapon"
     },
     "7202": {
       "vnum": 7202,
@@ -2991,7 +3026,8 @@
       "weight": 6,
       "value": 600,
       "damage_dice": "1d6",
-      "weapon_type": "pound"
+      "weapon_type": "pound",
+      "type": "weapon"
     },
     "7203": {
       "vnum": 7203,
@@ -3000,7 +3036,10 @@
       "room_desc": "A purple cloak lies on the floor.",
       "item_type": "treasure",
       "weight": 20,
-      "value": 5000
+      "value": 5000,
+      "type": "armor",
+      "wear_slot": "about",
+      "armor": 1
     },
     "7204": {
       "vnum": 7204,
@@ -3009,7 +3048,8 @@
       "room_desc": "A neon blue potion stands on the floor.",
       "item_type": "potion",
       "weight": 4,
-      "value": 100
+      "value": 100,
+      "type": "potion"
     },
     "7205": {
       "vnum": 7205,
@@ -3018,7 +3058,8 @@
       "room_desc": "A black key has been left on the floor.",
       "item_type": "key",
       "weight": 2,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "7206": {
       "vnum": 7206,
@@ -3028,7 +3069,8 @@
       "item_type": "armor",
       "weight": 30,
       "value": 0,
-      "armor_bonus": 1
+      "armor_bonus": 1,
+      "type": "trash"
     },
     "7207": {
       "vnum": 7207,
@@ -3038,7 +3080,8 @@
       "item_type": "armor",
       "weight": 10,
       "value": 6000,
-      "armor_bonus": 6
+      "armor_bonus": 6,
+      "type": "treasure"
     },
     "7208": {
       "vnum": 7208,
@@ -3048,7 +3091,8 @@
       "item_type": "light",
       "weight": 4,
       "value": 200,
-      "light_hours": -1
+      "light_hours": -1,
+      "type": "treasure"
     },
     "7209": {
       "vnum": 7209,
@@ -3058,7 +3102,10 @@
       "item_type": "armor",
       "weight": 10,
       "value": 75,
-      "armor_bonus": 4
+      "armor_bonus": 4,
+      "type": "armor",
+      "wear_slot": "feet",
+      "armor": 2
     },
     "7210": {
       "vnum": 7210,
@@ -3067,7 +3114,8 @@
       "room_desc": "There is a huge treasure here, looking very valuable.",
       "item_type": "money",
       "weight": 5,
-      "value": 6522
+      "value": 6522,
+      "type": "treasure"
     },
     "7211": {
       "vnum": 7211,
@@ -3078,7 +3126,8 @@
       "weight": 4,
       "value": 100,
       "damage_dice": "2d3",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "7212": {
       "vnum": 7212,
@@ -3098,7 +3147,8 @@
           "value": 2
         }
       ],
-      "set_id": 72
+      "set_id": 72,
+      "type": "weapon"
     },
     "7213": {
       "vnum": 7213,
@@ -3117,7 +3167,9 @@
           "value": 1
         }
       ],
-      "set_id": 72
+      "set_id": 72,
+      "type": "armor",
+      "armor": 3
     },
     "7214": {
       "vnum": 7214,
@@ -3135,7 +3187,8 @@
           "value": 2
         }
       ],
-      "set_id": 72
+      "set_id": 72,
+      "type": "treasure"
     },
     "7215": {
       "vnum": 7215,
@@ -3157,7 +3210,8 @@
           "value": 20
         }
       ],
-      "set_id": 72
+      "set_id": 72,
+      "type": "treasure"
     },
     "7216": {
       "vnum": 7216,
@@ -3175,7 +3229,8 @@
           "value": 2
         }
       ],
-      "set_id": 72
+      "set_id": 72,
+      "type": "note"
     },
     "7217": {
       "vnum": 7217,
@@ -3195,7 +3250,8 @@
           "value": 2
         }
       ],
-      "set_id": 72
+      "set_id": 72,
+      "type": "treasure"
     },
     "7218": {
       "vnum": 7218,
@@ -3219,7 +3275,8 @@
           "value": 1
         }
       ],
-      "set_id": 72
+      "set_id": 72,
+      "type": "weapon"
     },
     "7219": {
       "vnum": 7219,
@@ -3237,7 +3294,9 @@
           "value": 2
         }
       ],
-      "set_id": 72
+      "set_id": 72,
+      "type": "armor",
+      "armor": 0
     },
     "7220": {
       "vnum": 7220,
@@ -3255,7 +3314,9 @@
           "value": 10
         }
       ],
-      "set_id": 72
+      "set_id": 72,
+      "type": "armor",
+      "armor": 2
     }
   }
 }

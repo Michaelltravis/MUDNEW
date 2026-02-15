@@ -105,6 +105,7 @@ class RealmsMUD:
         weather_tick = 0
         pet_tick = 0
         ambient_tick = 0
+        decay_tick = 0
 
         try:
             while self.running:
@@ -122,6 +123,7 @@ class RealmsMUD:
                 weather_tick += 1
                 pet_tick += 1
                 ambient_tick += 1
+                decay_tick += 1
 
                 # Time tick (every 1 second - virtual game time)
                 if time_tick >= self.config.TICKS_PER_SECOND:
@@ -137,6 +139,11 @@ class RealmsMUD:
                 if pet_tick >= self.config.TICKS_PER_SECOND * 10:
                     await self.world.pet_tick()
                     pet_tick = 0
+
+                # Decay tick (every 6 seconds - corpses and ground items)
+                if decay_tick >= self.config.TICKS_PER_SECOND * 6:
+                    await self.world.decay_tick()
+                    decay_tick = 0
 
                 # Combat tick (every 4 seconds - slowed for readability)
                 if combat_tick >= self.config.TICKS_PER_SECOND * 4:
@@ -174,6 +181,25 @@ class RealmsMUD:
                 if ambient_tick >= self.config.TICKS_PER_SECOND * 10:
                     from ambient import AmbientManager
                     await AmbientManager.ambient_tick(self.world)
+                    # Also fire ambient_events system for richer sector-based events
+                    try:
+                        from ambient_events import AmbientEventManager
+                        import random
+                        game_time = getattr(self.world, 'game_time', None)
+                        for p in list(self.world.players.values()):
+                            if not p.room or getattr(p, 'position', 'standing') in ('sleeping', 'fighting'):
+                                continue
+                            if getattr(p, 'fighting', None):
+                                continue
+                            if random.random() > 0.05:  # 5% chance per check
+                                continue
+                            weather = p.room.zone.weather if hasattr(p.room, 'zone') and p.room.zone else None
+                            event = AmbientEventManager.get_event_for_room(p.room, game_time, weather)
+                            if event:
+                                c = p.config.COLORS
+                                await p.send(f"\r\n{c['cyan']}{event}{c['reset']}")
+                    except Exception:
+                        pass
                     ambient_tick = 0
                 
                 # NPC schedule tick (every game hour change - handled in time_tick)

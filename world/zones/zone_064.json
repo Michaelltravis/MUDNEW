@@ -12,11 +12,11 @@
       "exits": {
         "east": {
           "to_room": 6401,
-          "description": ""
+          "description": "A steep trail ascends to A Mountain Trail"
         },
         "west": {
           "to_room": 4078,
-          "description": ""
+          "description": "A steep trail ascends to In The Hidden Valley"
         }
       },
       "mob_resets": [
@@ -35,11 +35,11 @@
       "exits": {
         "east": {
           "to_room": 6402,
-          "description": ""
+          "description": "A steep trail ascends to A Mountain Trail"
         },
         "west": {
           "to_room": 6400,
-          "description": ""
+          "description": "A steep trail ascends to A Mountain Trail"
         }
       }
     },
@@ -52,11 +52,11 @@
       "exits": {
         "east": {
           "to_room": 6403,
-          "description": ""
+          "description": "A steep trail ascends to Near The Mountain's Peak"
         },
         "west": {
           "to_room": 6401,
-          "description": ""
+          "description": "A steep trail ascends to A Mountain Trail"
         }
       },
       "mob_resets": [
@@ -75,11 +75,11 @@
       "exits": {
         "east": {
           "to_room": 6404,
-          "description": ""
+          "description": "A steep trail ascends to The Trail To The Valley"
         },
         "west": {
           "to_room": 6402,
-          "description": ""
+          "description": "A steep trail ascends to A Mountain Trail"
         }
       }
     },
@@ -92,11 +92,11 @@
       "exits": {
         "east": {
           "to_room": 6405,
-          "description": ""
+          "description": "A trail winds toward In The Valley"
         },
         "west": {
           "to_room": 6403,
-          "description": ""
+          "description": "A steep trail ascends to Near The Mountain's Peak"
         }
       },
       "mob_resets": [
@@ -115,11 +115,11 @@
       "exits": {
         "east": {
           "to_room": 6406,
-          "description": ""
+          "description": "A trail winds toward In A Clearing"
         },
         "west": {
           "to_room": 6404,
-          "description": ""
+          "description": "A steep trail ascends to The Trail To The Valley"
         }
       }
     },
@@ -132,7 +132,7 @@
       "exits": {
         "west": {
           "to_room": 6405,
-          "description": ""
+          "description": "A trail winds toward In The Valley"
         },
         "down": {
           "to_room": 6407,
@@ -158,7 +158,7 @@
       "exits": {
         "south": {
           "to_room": 6408,
-          "description": "",
+          "description": "A passage leads to A Linen Closet",
           "door": {
             "name": "door",
             "state": "closed",
@@ -168,7 +168,7 @@
         },
         "west": {
           "to_room": 6409,
-          "description": ""
+          "description": "A passage leads to A Corridor"
         },
         "up": {
           "to_room": 6406,
@@ -182,7 +182,7 @@
         },
         "down": {
           "to_room": 6413,
-          "description": ""
+          "description": "A passage leads to The Stairwell"
         }
       },
       "mob_resets": [
@@ -208,7 +208,7 @@
       "exits": {
         "north": {
           "to_room": 6407,
-          "description": "",
+          "description": "A passage leads to A Stairwell",
           "door": {
             "name": "door",
             "state": "closed",
@@ -233,7 +233,7 @@
       "exits": {
         "north": {
           "to_room": 6411,
-          "description": "",
+          "description": "A passage leads to The Master Bedroom",
           "door": {
             "name": "door",
             "state": "closed",
@@ -243,11 +243,11 @@
         },
         "east": {
           "to_room": 6407,
-          "description": ""
+          "description": "A passage leads to A Stairwell"
         },
         "south": {
           "to_room": 6410,
-          "description": "",
+          "description": "A passage leads to A Bathroom",
           "door": {
             "name": "door",
             "state": "closed",
@@ -269,7 +269,7 @@
       "exits": {
         "north": {
           "to_room": 6409,
-          "description": "",
+          "description": "A passage leads to A Corridor",
           "door": {
             "name": "door",
             "state": "closed",
@@ -297,7 +297,7 @@
       "exits": {
         "south": {
           "to_room": 6409,
-          "description": "",
+          "description": "A passage leads to A Corridor",
           "door": {
             "name": "door",
             "state": "closed",
@@ -338,7 +338,7 @@
       "exits": {
         "east": {
           "to_room": 6413,
-          "description": "",
+          "description": "A passage leads to The Stairwell",
           "door": {
             "name": "door",
             "state": "closed",
@@ -379,7 +379,7 @@
       "exits": {
         "west": {
           "to_room": 6412,
-          "description": "",
+          "description": "A passage leads to The Library",
           "door": {
             "name": "door",
             "state": "closed",
@@ -389,11 +389,11 @@
         },
         "up": {
           "to_room": 6407,
-          "description": ""
+          "description": "A passage leads to A Stairwell"
         },
         "down": {
           "to_room": 6415,
-          "description": ""
+          "description": "A passage leads to A Stairwell"
         }
       }
     },
@@ -419,7 +419,7 @@
         },
         "down": {
           "to_room": 6416,
-          "description": "",
+          "description": "A passage leads to The Hidden Treasure Room",
           "door": {
             "name": "trapdoor trap",
             "state": "closed",
@@ -441,7 +441,7 @@
       "exits": {
         "west": {
           "to_room": 6417,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door",
             "state": "closed",
@@ -451,11 +451,11 @@
         },
         "up": {
           "to_room": 6413,
-          "description": ""
+          "description": "A passage leads to The Stairwell"
         },
         "down": {
           "to_room": 6422,
-          "description": ""
+          "description": "A passage leads to The Stairwell"
         }
       }
     },
@@ -471,7 +471,7 @@
       "exits": {
         "up": {
           "to_room": 6414,
-          "description": "",
+          "description": "A passage leads to A Hidden Hall",
           "door": {
             "name": "trapdoor trap",
             "state": "closed",
@@ -521,7 +521,7 @@
       "exits": {
         "north": {
           "to_room": 6419,
-          "description": "",
+          "description": "A passage leads to A Servant's Room",
           "door": {
             "name": "door",
             "state": "closed",
@@ -531,7 +531,7 @@
         },
         "east": {
           "to_room": 6415,
-          "description": "",
+          "description": "A passage leads to A Stairwell",
           "door": {
             "name": "door",
             "state": "closed",
@@ -541,7 +541,7 @@
         },
         "south": {
           "to_room": 6418,
-          "description": "",
+          "description": "A passage leads to A Servant's Room",
           "door": {
             "name": "door",
             "state": "closed",
@@ -551,7 +551,7 @@
         },
         "west": {
           "to_room": 6420,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -567,7 +567,7 @@
       "exits": {
         "north": {
           "to_room": 6417,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door",
             "state": "closed",
@@ -589,7 +589,7 @@
       "exits": {
         "south": {
           "to_room": 6417,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door",
             "state": "closed",
@@ -611,7 +611,7 @@
       "exits": {
         "north": {
           "to_room": 6421,
-          "description": "",
+          "description": "A passage leads to A Servant's Room",
           "door": {
             "name": "door",
             "state": "closed",
@@ -621,7 +621,7 @@
         },
         "east": {
           "to_room": 6417,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -637,7 +637,7 @@
       "exits": {
         "south": {
           "to_room": 6420,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door",
             "state": "closed",
@@ -659,15 +659,15 @@
       "exits": {
         "west": {
           "to_room": 6423,
-          "description": ""
+          "description": "A passage leads to The Dining Hall"
         },
         "up": {
           "to_room": 6415,
-          "description": ""
+          "description": "A passage leads to A Stairwell"
         },
         "down": {
           "to_room": 6425,
-          "description": ""
+          "description": "A passage leads to The Stairwell"
         }
       }
     },
@@ -683,7 +683,7 @@
       "exits": {
         "north": {
           "to_room": 6424,
-          "description": "",
+          "description": "A passage leads to The Kitchen Area",
           "door": {
             "name": "door",
             "state": "closed",
@@ -693,7 +693,7 @@
         },
         "east": {
           "to_room": 6422,
-          "description": ""
+          "description": "A passage leads to The Stairwell"
         }
       },
       "extra_descs": {
@@ -712,7 +712,7 @@
       "exits": {
         "south": {
           "to_room": 6423,
-          "description": "",
+          "description": "A passage leads to The Dining Hall",
           "door": {
             "name": "door",
             "state": "closed",
@@ -744,15 +744,15 @@
       "exits": {
         "west": {
           "to_room": 6426,
-          "description": ""
+          "description": "A passage leads to A Hall"
         },
         "up": {
           "to_room": 6422,
-          "description": ""
+          "description": "A passage leads to The Stairwell"
         },
         "down": {
           "to_room": 6429,
-          "description": ""
+          "description": "A passage leads to A Stairwell"
         }
       }
     },
@@ -768,15 +768,15 @@
       "exits": {
         "north": {
           "to_room": 6427,
-          "description": ""
+          "description": "A passage leads to A Hall"
         },
         "east": {
           "to_room": 6425,
-          "description": ""
+          "description": "A passage leads to The Stairwell"
         },
         "south": {
           "to_room": 6428,
-          "description": ""
+          "description": "A passage leads to A Hall"
         }
       },
       "extra_descs": {
@@ -795,7 +795,7 @@
       "exits": {
         "south": {
           "to_room": 6426,
-          "description": ""
+          "description": "A passage leads to A Hall"
         }
       },
       "extra_descs": {
@@ -814,7 +814,7 @@
       "exits": {
         "north": {
           "to_room": 6426,
-          "description": ""
+          "description": "A passage leads to A Hall"
         }
       },
       "extra_descs": {
@@ -833,15 +833,15 @@
       "exits": {
         "west": {
           "to_room": 6430,
-          "description": ""
+          "description": "A passage leads to A Mage's Office"
         },
         "up": {
           "to_room": 6425,
-          "description": ""
+          "description": "A passage leads to The Stairwell"
         },
         "down": {
           "to_room": 6431,
-          "description": ""
+          "description": "A passage leads to The Stairwell"
         }
       }
     },
@@ -857,7 +857,7 @@
       "exits": {
         "east": {
           "to_room": 6429,
-          "description": ""
+          "description": "A passage leads to A Stairwell"
         }
       },
       "extra_descs": {
@@ -876,15 +876,15 @@
       "exits": {
         "west": {
           "to_room": 6432,
-          "description": ""
+          "description": "A passage leads to A Sitting Room"
         },
         "up": {
           "to_room": 6429,
-          "description": ""
+          "description": "A passage leads to A Stairwell"
         },
         "down": {
           "to_room": 6433,
-          "description": ""
+          "description": "A passage leads to The Stairwell"
         }
       }
     },
@@ -900,7 +900,7 @@
       "exits": {
         "east": {
           "to_room": 6431,
-          "description": ""
+          "description": "A passage leads to The Stairwell"
         }
       }
     },
@@ -916,11 +916,11 @@
       "exits": {
         "west": {
           "to_room": 6434,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "up": {
           "to_room": 6431,
-          "description": ""
+          "description": "A passage leads to The Stairwell"
         }
       }
     },
@@ -936,15 +936,15 @@
       "exits": {
         "east": {
           "to_room": 6433,
-          "description": ""
+          "description": "A passage leads to The Stairwell"
         },
         "south": {
           "to_room": 6437,
-          "description": ""
+          "description": "A passage leads to The Hallway"
         },
         "west": {
           "to_room": 6435,
-          "description": ""
+          "description": "A passage leads to The Entranceway"
         }
       }
     },
@@ -960,7 +960,7 @@
       "exits": {
         "east": {
           "to_room": 6434,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "west": {
           "to_room": 6436,
@@ -1017,11 +1017,11 @@
       "exits": {
         "north": {
           "to_room": 6434,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "west": {
           "to_room": 6438,
-          "description": "",
+          "description": "A passage leads to The Stairs",
           "door": {
             "name": "door",
             "state": "closed",
@@ -1049,7 +1049,7 @@
       "exits": {
         "east": {
           "to_room": 6437,
-          "description": "",
+          "description": "A passage leads to The Hallway",
           "door": {
             "name": "door",
             "state": "closed",
@@ -1059,7 +1059,7 @@
         },
         "down": {
           "to_room": 6439,
-          "description": ""
+          "description": "A passage leads to The Stairs"
         }
       }
     },
@@ -1075,11 +1075,11 @@
       "exits": {
         "east": {
           "to_room": 6440,
-          "description": ""
+          "description": "A passage leads to An Alcove"
         },
         "up": {
           "to_room": 6438,
-          "description": ""
+          "description": "A passage leads to The Stairs"
         }
       }
     },
@@ -1095,15 +1095,15 @@
       "exits": {
         "north": {
           "to_room": 6441,
-          "description": ""
+          "description": "A passage leads to The Laboratory"
         },
         "east": {
           "to_room": 6442,
-          "description": ""
+          "description": "A passage leads to The Stairs"
         },
         "west": {
           "to_room": 6439,
-          "description": ""
+          "description": "A passage leads to The Stairs"
         }
       }
     },
@@ -1119,7 +1119,7 @@
       "exits": {
         "south": {
           "to_room": 6440,
-          "description": ""
+          "description": "A passage leads to An Alcove"
         }
       },
       "extra_descs": {
@@ -1148,11 +1148,11 @@
       "exits": {
         "west": {
           "to_room": 6440,
-          "description": ""
+          "description": "A passage leads to An Alcove"
         },
         "down": {
           "to_room": 6443,
-          "description": ""
+          "description": "A passage leads to The Stairs"
         }
       }
     },
@@ -1168,11 +1168,11 @@
       "exits": {
         "east": {
           "to_room": 6444,
-          "description": ""
+          "description": "A passage leads to The Summoning Room"
         },
         "up": {
           "to_room": 6442,
-          "description": ""
+          "description": "A passage leads to The Stairs"
         }
       }
     },
@@ -1187,11 +1187,11 @@
       "exits": {
         "north": {
           "to_room": 6445,
-          "description": ""
+          "description": "A passage leads to Inside A Pentagram"
         },
         "west": {
           "to_room": 6443,
-          "description": ""
+          "description": "A passage leads to The Stairs"
         }
       },
       "extra_descs": {
@@ -1210,7 +1210,7 @@
       "exits": {
         "south": {
           "to_room": 6444,
-          "description": ""
+          "description": "A passage leads to The Summoning Room"
         }
       }
     }
@@ -1494,7 +1494,8 @@
       "weight": 1,
       "value": 1000,
       "damage_dice": "1d4",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "6401": {
       "vnum": 6401,
@@ -1504,7 +1505,10 @@
       "item_type": "armor",
       "weight": 150,
       "value": 30000,
-      "armor_bonus": 15
+      "armor_bonus": 15,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 5
     },
     "6402": {
       "vnum": 6402,
@@ -1513,7 +1517,8 @@
       "room_desc": "A small gem lies here.",
       "item_type": "treasure",
       "weight": 1,
-      "value": 5000
+      "value": 5000,
+      "type": "treasure"
     },
     "6403": {
       "vnum": 6403,
@@ -1522,7 +1527,8 @@
       "room_desc": "A small jewel gleams here.",
       "item_type": "treasure",
       "weight": 1,
-      "value": 10000
+      "value": 10000,
+      "type": "treasure"
     },
     "6404": {
       "vnum": 6404,
@@ -1531,7 +1537,8 @@
       "room_desc": "A nice piece of sculpture is here.",
       "item_type": "treasure",
       "weight": 75,
-      "value": 20000
+      "value": 20000,
+      "type": "treasure"
     },
     "6405": {
       "vnum": 6405,
@@ -1540,7 +1547,8 @@
       "room_desc": "A small vial filled with a red fluid lies in the dust here.",
       "item_type": "potion",
       "weight": 5,
-      "value": 48000
+      "value": 48000,
+      "type": "treasure"
     },
     "6406": {
       "vnum": 6406,
@@ -1550,7 +1558,10 @@
       "item_type": "armor",
       "weight": 3,
       "value": 20000,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "neck",
+      "armor": 0
     },
     "6407": {
       "vnum": 6407,
@@ -1559,7 +1570,8 @@
       "room_desc": "A tent pole has been tossed away here.",
       "item_type": "wand",
       "weight": 10,
-      "value": 25000
+      "value": 25000,
+      "type": "treasure"
     },
     "6408": {
       "vnum": 6408,
@@ -1568,7 +1580,9 @@
       "room_desc": "A small bag filled with powder of wealth lies here.",
       "item_type": "money",
       "weight": 1,
-      "value": 100000
+      "value": 100000,
+      "type": "container",
+      "capacity": 100
     },
     "6409": {
       "vnum": 6409,
@@ -1578,7 +1592,8 @@
       "item_type": "container",
       "weight": 800,
       "value": 0,
-      "capacity": 100
+      "capacity": 100,
+      "type": "furniture"
     },
     "6410": {
       "vnum": 6410,
@@ -1587,7 +1602,8 @@
       "room_desc": "A book with a title written in moving letters rests here.",
       "item_type": "wand",
       "weight": 25,
-      "value": 100000
+      "value": 100000,
+      "type": "note"
     },
     "6411": {
       "vnum": 6411,
@@ -1596,7 +1612,8 @@
       "room_desc": "A grey-bound book lies here.",
       "item_type": "wand",
       "weight": 25,
-      "value": 300000
+      "value": 300000,
+      "type": "note"
     },
     "6412": {
       "vnum": 6412,
@@ -1606,7 +1623,8 @@
       "item_type": "light",
       "weight": 20,
       "value": 200000,
-      "light_hours": 0
+      "light_hours": 0,
+      "type": "treasure"
     },
     "6413": {
       "vnum": 6413,
@@ -1615,7 +1633,8 @@
       "room_desc": "A small black leaf of a mevais plant lies here, well preserved.",
       "item_type": "potion",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "furniture"
     },
     "6414": {
       "vnum": 6414,
@@ -1624,7 +1643,10 @@
       "room_desc": "There is a bottle of a milky fluid here.",
       "item_type": "potion",
       "weight": 12,
-      "value": 15000
+      "value": 15000,
+      "type": "drink",
+      "drinks": 10,
+      "max_drinks": 10
     },
     "6415": {
       "vnum": 6415,
@@ -1634,7 +1656,10 @@
       "item_type": "armor",
       "weight": 7,
       "value": 100000,
-      "armor_bonus": 8
+      "armor_bonus": 8,
+      "type": "weapon",
+      "weapon_type": "pound",
+      "damage_dice": "1d6"
     },
     "6416": {
       "vnum": 6416,
@@ -1644,7 +1669,8 @@
       "item_type": "container",
       "weight": 0,
       "value": 0,
-      "capacity": 500
+      "capacity": 500,
+      "type": "container"
     },
     "6417": {
       "vnum": 6417,
@@ -1654,7 +1680,8 @@
       "item_type": "container",
       "weight": 0,
       "value": 0,
-      "capacity": 500
+      "capacity": 500,
+      "type": "container"
     },
     "6418": {
       "vnum": 6418,
@@ -1664,7 +1691,8 @@
       "item_type": "container",
       "weight": 0,
       "value": 0,
-      "capacity": 500
+      "capacity": 500,
+      "type": "container"
     },
     "6419": {
       "vnum": 6419,
@@ -1675,7 +1703,8 @@
       "weight": 100,
       "value": 0,
       "capacity": 100,
-      "current": 100
+      "current": 100,
+      "type": "treasure"
     },
     "6420": {
       "vnum": 6420,
@@ -1685,7 +1714,8 @@
       "item_type": "food",
       "weight": 3,
       "value": 20,
-      "nutrition": 8
+      "nutrition": 8,
+      "type": "treasure"
     },
     "6421": {
       "vnum": 6421,
@@ -1705,7 +1735,8 @@
           "value": 2
         }
       ],
-      "set_id": 64
+      "set_id": 64,
+      "type": "weapon"
     },
     "6422": {
       "vnum": 6422,
@@ -1724,7 +1755,9 @@
           "value": 1
         }
       ],
-      "set_id": 64
+      "set_id": 64,
+      "type": "armor",
+      "armor": 3
     },
     "6423": {
       "vnum": 6423,
@@ -1742,7 +1775,8 @@
           "value": 3
         }
       ],
-      "set_id": 64
+      "set_id": 64,
+      "type": "treasure"
     },
     "6424": {
       "vnum": 6424,
@@ -1764,7 +1798,8 @@
           "value": 20
         }
       ],
-      "set_id": 64
+      "set_id": 64,
+      "type": "treasure"
     },
     "6425": {
       "vnum": 6425,
@@ -1782,7 +1817,8 @@
           "value": 3
         }
       ],
-      "set_id": 64
+      "set_id": 64,
+      "type": "treasure"
     },
     "6426": {
       "vnum": 6426,
@@ -1802,7 +1838,8 @@
           "value": 2
         }
       ],
-      "set_id": 64
+      "set_id": 64,
+      "type": "treasure"
     },
     "6427": {
       "vnum": 6427,
@@ -1826,7 +1863,8 @@
           "value": 1
         }
       ],
-      "set_id": 64
+      "set_id": 64,
+      "type": "weapon"
     },
     "6428": {
       "vnum": 6428,
@@ -1844,7 +1882,9 @@
           "value": 2
         }
       ],
-      "set_id": 64
+      "set_id": 64,
+      "type": "armor",
+      "armor": 0
     },
     "6429": {
       "vnum": 6429,
@@ -1863,7 +1903,9 @@
           "value": 5
         }
       ],
-      "set_id": 64
+      "set_id": 64,
+      "type": "armor",
+      "armor": 1
     }
   }
 }

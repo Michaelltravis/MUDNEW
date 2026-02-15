@@ -14,11 +14,11 @@
       "exits": {
         "north": {
           "to_room": 4001,
-          "description": ""
+          "description": "A rocky path climbs toward The Hills"
         },
         "south": {
           "to_room": 3500,
-          "description": ""
+          "description": "The cobblestones lead to The Plains"
         }
       }
     },
@@ -33,13 +33,19 @@
       "exits": {
         "north": {
           "to_room": 4002,
-          "description": ""
+          "description": "A rocky path climbs toward The End Of The Path"
         },
         "south": {
           "to_room": 4000,
-          "description": ""
+          "description": "A rocky path climbs toward The Hills"
         }
-      }
+      },
+      "obj_resets": [
+        {
+          "vnum": 4095,
+          "max": 1
+        }
+      ]
     },
     "4002": {
       "vnum": 4002,
@@ -52,11 +58,11 @@
       "exits": {
         "north": {
           "to_room": 4010,
-          "description": ""
+          "description": "An open path leads to The Cave"
         },
         "south": {
           "to_room": 4001,
-          "description": ""
+          "description": "A rocky path climbs toward The Hills"
         }
       }
     },
@@ -72,11 +78,11 @@
       "exits": {
         "north": {
           "to_room": 4011,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         },
         "south": {
           "to_room": 4002,
-          "description": ""
+          "description": "A rocky path climbs toward The End Of The Path"
         }
       }
     },
@@ -92,11 +98,11 @@
       "exits": {
         "north": {
           "to_room": 4014,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         },
         "south": {
           "to_room": 4010,
-          "description": ""
+          "description": "An open path leads to The Cave"
         }
       }
     },
@@ -112,11 +118,11 @@
       "exits": {
         "north": {
           "to_room": 4016,
-          "description": ""
+          "description": "An open path leads to The Large Cave"
         },
         "east": {
           "to_room": 4013,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         }
       }
     },
@@ -132,11 +138,11 @@
       "exits": {
         "east": {
           "to_room": 4014,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         },
         "west": {
           "to_room": 4012,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         }
       },
       "mob_resets": [
@@ -162,15 +168,15 @@
       "exits": {
         "north": {
           "to_room": 4018,
-          "description": ""
+          "description": "An open path leads to The Cave"
         },
         "south": {
           "to_room": 4011,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         },
         "west": {
           "to_room": 4013,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         }
       }
     },
@@ -186,11 +192,11 @@
       "exits": {
         "north": {
           "to_room": 4019,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         },
         "west": {
           "to_room": 4014,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         }
       },
       "mob_resets": [
@@ -201,6 +207,10 @@
         {
           "vnum": 4004,
           "max": 3
+        },
+        {
+          "vnum": 4098,
+          "max": 1
         }
       ]
     },
@@ -216,15 +226,15 @@
       "exits": {
         "east": {
           "to_room": 4017,
-          "description": ""
+          "description": "An open path leads to The Large Cave"
         },
         "south": {
           "to_room": 4012,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         },
         "west": {
           "to_room": 4023,
-          "description": ""
+          "description": "An open path leads to The Large Cave"
         },
         "down": {
           "to_room": 21001,
@@ -245,7 +255,7 @@
       "exits": {
         "west": {
           "to_room": 4016,
-          "description": ""
+          "description": "An open path leads to The Large Cave"
         }
       },
       "mob_resets": [
@@ -267,11 +277,11 @@
       "exits": {
         "north": {
           "to_room": 4025,
-          "description": ""
+          "description": "An open path leads to The Cave"
         },
         "south": {
           "to_room": 4014,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         }
       },
       "extra_descs": {
@@ -290,11 +300,11 @@
       "exits": {
         "north": {
           "to_room": 4026,
-          "description": ""
+          "description": "A trail winds toward The Many Tunnels"
         },
         "south": {
           "to_room": 4015,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         }
       }
     },
@@ -311,17 +321,21 @@
       "exits": {
         "north": {
           "to_room": 4027,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         },
         "down": {
           "to_room": 4064,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         }
       },
       "mob_resets": [
         {
           "vnum": 4002,
           "max": 3
+        },
+        {
+          "vnum": 4099,
+          "max": 1
         }
       ]
     },
@@ -338,11 +352,11 @@
       "exits": {
         "east": {
           "to_room": 4022,
-          "description": ""
+          "description": "A trail winds toward The Damp Tunnel"
         },
         "down": {
           "to_room": 4115,
-          "description": ""
+          "description": "A trail winds toward The Dark Passage"
         }
       },
       "mob_resets": [
@@ -368,15 +382,15 @@
       "exits": {
         "north": {
           "to_room": 4024,
-          "description": ""
+          "description": "A trail winds toward The Damp Tunnel"
         },
         "east": {
           "to_room": 4023,
-          "description": ""
+          "description": "An open path leads to The Large Cave"
         },
         "west": {
           "to_room": 4021,
-          "description": ""
+          "description": "A trail winds toward The Hole"
         }
       },
       "mob_resets": [
@@ -398,11 +412,11 @@
       "exits": {
         "east": {
           "to_room": 4016,
-          "description": ""
+          "description": "An open path leads to The Large Cave"
         },
         "west": {
           "to_room": 4022,
-          "description": ""
+          "description": "A trail winds toward The Damp Tunnel"
         }
       },
       "mob_resets": [
@@ -424,11 +438,11 @@
       "exits": {
         "south": {
           "to_room": 4022,
-          "description": ""
+          "description": "A trail winds toward The Damp Tunnel"
         },
         "west": {
           "to_room": 4059,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         }
       }
     },
@@ -444,11 +458,11 @@
       "exits": {
         "east": {
           "to_room": 4026,
-          "description": ""
+          "description": "A trail winds toward The Many Tunnels"
         },
         "south": {
           "to_room": 4018,
-          "description": ""
+          "description": "An open path leads to The Cave"
         }
       },
       "mob_resets": [
@@ -470,19 +484,19 @@
       "exits": {
         "north": {
           "to_room": 4028,
-          "description": ""
+          "description": "A trail winds toward The Smelly Tunnel"
         },
         "east": {
           "to_room": 4027,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         },
         "south": {
           "to_room": 4019,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         },
         "west": {
           "to_room": 4025,
-          "description": ""
+          "description": "An open path leads to The Cave"
         }
       }
     },
@@ -498,15 +512,15 @@
       "exits": {
         "north": {
           "to_room": 4029,
-          "description": ""
+          "description": "An open path leads to The Cave"
         },
         "south": {
           "to_room": 4020,
-          "description": ""
+          "description": "A trail winds toward The Hole"
         },
         "west": {
           "to_room": 4026,
-          "description": ""
+          "description": "A trail winds toward The Many Tunnels"
         }
       },
       "mob_resets": [
@@ -532,11 +546,11 @@
       "exits": {
         "north": {
           "to_room": 4030,
-          "description": ""
+          "description": "An open path leads to The Light Cave"
         },
         "south": {
           "to_room": 4026,
-          "description": ""
+          "description": "A trail winds toward The Many Tunnels"
         }
       },
       "mob_resets": [
@@ -562,11 +576,11 @@
       "exits": {
         "north": {
           "to_room": 4031,
-          "description": ""
+          "description": "An open path leads to The Valley"
         },
         "south": {
           "to_room": 4027,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         }
       }
     },
@@ -581,7 +595,7 @@
       "exits": {
         "south": {
           "to_room": 4028,
-          "description": ""
+          "description": "A trail winds toward The Smelly Tunnel"
         }
       },
       "extra_descs": {
@@ -603,7 +617,7 @@
       "exits": {
         "north": {
           "to_room": 4032,
-          "description": ""
+          "description": "A rocky path climbs toward The Foothills"
         },
         "east": {
           "to_room": 4045,
@@ -611,7 +625,7 @@
         },
         "south": {
           "to_room": 4029,
-          "description": ""
+          "description": "An open path leads to The Cave"
         }
       }
     },
@@ -624,11 +638,11 @@
       "exits": {
         "north": {
           "to_room": 4033,
-          "description": ""
+          "description": "The Intersection In The Foothills"
         },
         "south": {
           "to_room": 4031,
-          "description": ""
+          "description": "An open path leads to The Valley"
         }
       }
     },
@@ -641,15 +655,15 @@
       "exits": {
         "north": {
           "to_room": 4034,
-          "description": ""
+          "description": "An open path leads to The Grassy Area In The Foothills"
         },
         "east": {
           "to_room": 4037,
-          "description": ""
+          "description": "A rocky path climbs toward The Path Through The Foothills"
         },
         "south": {
           "to_room": 4032,
-          "description": ""
+          "description": "A rocky path climbs toward The Foothills"
         }
       }
     },
@@ -662,15 +676,15 @@
       "exits": {
         "north": {
           "to_room": 4035,
-          "description": ""
+          "description": "A rocky path climbs toward At The Foothills' End"
         },
         "south": {
           "to_room": 4033,
-          "description": ""
+          "description": "The Intersection In The Foothills"
         },
         "west": {
           "to_room": 4042,
-          "description": ""
+          "description": "An open path leads to The Level Foothills"
         }
       }
     },
@@ -683,11 +697,11 @@
       "exits": {
         "north": {
           "to_room": 4036,
-          "description": ""
+          "description": "An open path leads to The Plains"
         },
         "south": {
           "to_room": 4034,
-          "description": ""
+          "description": "An open path leads to The Grassy Area In The Foothills"
         }
       }
     },
@@ -700,11 +714,11 @@
       "exits": {
         "south": {
           "to_room": 4035,
-          "description": ""
+          "description": "A rocky path climbs toward At The Foothills' End"
         },
         "west": {
           "to_room": 4075,
-          "description": ""
+          "description": "A rocky path climbs toward The Copse Of Trees"
         }
       }
     },
@@ -717,11 +731,11 @@
       "exits": {
         "east": {
           "to_room": 4038,
-          "description": ""
+          "description": "A steep trail ascends to The Base Of The Mountain"
         },
         "west": {
           "to_room": 4033,
-          "description": ""
+          "description": "The Intersection In The Foothills"
         }
       }
     },
@@ -734,11 +748,11 @@
       "exits": {
         "east": {
           "to_room": 4039,
-          "description": ""
+          "description": "A steep trail ascends to A Trail Up The Mountain"
         },
         "west": {
           "to_room": 4037,
-          "description": ""
+          "description": "A rocky path climbs toward The Path Through The Foothills"
         }
       },
       "mob_resets": [
@@ -757,11 +771,11 @@
       "exits": {
         "west": {
           "to_room": 4038,
-          "description": ""
+          "description": "A steep trail ascends to The Base Of The Mountain"
         },
         "up": {
           "to_room": 4040,
-          "description": ""
+          "description": "A steep trail ascends to The Mountain Top"
         }
       }
     },
@@ -774,15 +788,15 @@
       "exits": {
         "north": {
           "to_room": 4041,
-          "description": ""
+          "description": "An open path leads to The Lion's Den"
         },
         "east": {
           "to_room": 4076,
-          "description": ""
+          "description": "A steep trail ascends to On A Mountain Trail"
         },
         "down": {
           "to_room": 4039,
-          "description": ""
+          "description": "A steep trail ascends to A Trail Up The Mountain"
         }
       },
       "obj_resets": [
@@ -804,7 +818,7 @@
       "exits": {
         "south": {
           "to_room": 4040,
-          "description": ""
+          "description": "A steep trail ascends to The Mountain Top"
         }
       },
       "mob_resets": [
@@ -823,11 +837,11 @@
       "exits": {
         "east": {
           "to_room": 4034,
-          "description": ""
+          "description": "An open path leads to The Grassy Area In The Foothills"
         },
         "west": {
           "to_room": 4043,
-          "description": ""
+          "description": "An open path leads to The Cave Entrance"
         }
       }
     },
@@ -842,11 +856,11 @@
       "exits": {
         "east": {
           "to_room": 4042,
-          "description": ""
+          "description": "An open path leads to The Level Foothills"
         },
         "west": {
           "to_room": 4044,
-          "description": ""
+          "description": "An open path leads to The Hill Giant Cave"
         }
       }
     },
@@ -862,7 +876,7 @@
       "exits": {
         "east": {
           "to_room": 4043,
-          "description": ""
+          "description": "An open path leads to The Cave Entrance"
         }
       },
       "mob_resets": [
@@ -979,7 +993,7 @@
       "exits": {
         "east": {
           "to_room": 4051,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         },
         "south": {
           "to_room": 9000,
@@ -1014,11 +1028,11 @@
       "exits": {
         "east": {
           "to_room": 4052,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         },
         "west": {
           "to_room": 4050,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         }
       }
     },
@@ -1034,11 +1048,11 @@
       "exits": {
         "east": {
           "to_room": 4100,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         },
         "west": {
           "to_room": 4051,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         }
       },
       "mob_resets": [
@@ -1060,11 +1074,11 @@
       "exits": {
         "north": {
           "to_room": 4050,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         },
         "east": {
           "to_room": 4054,
-          "description": ""
+          "description": "An open path leads to The Light Cave"
         }
       },
       "mob_resets": [
@@ -1085,15 +1099,15 @@
       "exits": {
         "east": {
           "to_room": 4055,
-          "description": ""
+          "description": "A trail winds toward The Maze"
         },
         "south": {
           "to_room": 4056,
-          "description": ""
+          "description": "An open path leads to The Light Cave"
         },
         "west": {
           "to_room": 4053,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         }
       }
     },
@@ -1109,7 +1123,7 @@
       "exits": {
         "west": {
           "to_room": 4054,
-          "description": ""
+          "description": "An open path leads to The Light Cave"
         }
       },
       "mob_resets": [
@@ -1130,11 +1144,11 @@
       "exits": {
         "north": {
           "to_room": 4054,
-          "description": ""
+          "description": "An open path leads to The Light Cave"
         },
         "south": {
           "to_room": 4061,
-          "description": ""
+          "description": "An open path leads to The Light Cave"
         }
       },
       "extra_descs": {
@@ -1159,11 +1173,11 @@
       "exits": {
         "north": {
           "to_room": 4055,
-          "description": ""
+          "description": "A trail winds toward The Maze"
         },
         "south": {
           "to_room": 4062,
-          "description": ""
+          "description": "A trail winds toward The Maze"
         }
       },
       "mob_resets": [
@@ -1185,11 +1199,11 @@
       "exits": {
         "south": {
           "to_room": 4063,
-          "description": ""
+          "description": "A trail winds toward The Maze"
         },
         "west": {
           "to_room": 4057,
-          "description": ""
+          "description": "A trail winds toward The Maze"
         }
       },
       "mob_resets": [
@@ -1212,11 +1226,11 @@
       "exits": {
         "east": {
           "to_room": 4060,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         },
         "west": {
           "to_room": 4024,
-          "description": ""
+          "description": "A trail winds toward The Damp Tunnel"
         }
       },
       "mob_resets": [
@@ -1238,11 +1252,11 @@
       "exits": {
         "east": {
           "to_room": 4061,
-          "description": ""
+          "description": "An open path leads to The Light Cave"
         },
         "west": {
           "to_room": 4059,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         }
       },
       "mob_resets": [
@@ -1263,15 +1277,15 @@
       "exits": {
         "north": {
           "to_room": 4056,
-          "description": ""
+          "description": "An open path leads to The Light Cave"
         },
         "south": {
           "to_room": 4065,
-          "description": ""
+          "description": "A trail winds toward The Maze"
         },
         "west": {
           "to_room": 4060,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         }
       }
     },
@@ -1287,11 +1301,11 @@
       "exits": {
         "east": {
           "to_room": 4063,
-          "description": ""
+          "description": "A trail winds toward The Maze"
         },
         "west": {
           "to_room": 4061,
-          "description": ""
+          "description": "An open path leads to The Light Cave"
         }
       },
       "mob_resets": [
@@ -1313,11 +1327,11 @@
       "exits": {
         "north": {
           "to_room": 4058,
-          "description": ""
+          "description": "A trail winds toward The Maze"
         },
         "east": {
           "to_room": 4064,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         }
       }
     },
@@ -1333,11 +1347,11 @@
       "exits": {
         "west": {
           "to_room": 4063,
-          "description": ""
+          "description": "A trail winds toward The Maze"
         },
         "up": {
           "to_room": 4020,
-          "description": ""
+          "description": "A trail winds toward The Hole"
         }
       },
       "mob_resets": [
@@ -1359,11 +1373,11 @@
       "exits": {
         "north": {
           "to_room": 4061,
-          "description": ""
+          "description": "An open path leads to The Light Cave"
         },
         "east": {
           "to_room": 4066,
-          "description": ""
+          "description": "A trail winds toward The Maze"
         }
       },
       "mob_resets": [
@@ -1385,15 +1399,15 @@
       "exits": {
         "north": {
           "to_room": 4062,
-          "description": ""
+          "description": "A trail winds toward The Maze"
         },
         "east": {
           "to_room": 4067,
-          "description": ""
+          "description": "A trail winds toward The Maze"
         },
         "south": {
           "to_room": 4069,
-          "description": ""
+          "description": "An open path leads to The Large Cave"
         }
       }
     },
@@ -1409,11 +1423,11 @@
       "exits": {
         "north": {
           "to_room": 4063,
-          "description": ""
+          "description": "A trail winds toward The Maze"
         },
         "west": {
           "to_room": 4066,
-          "description": ""
+          "description": "A trail winds toward The Maze"
         }
       },
       "mob_resets": [
@@ -1435,11 +1449,11 @@
       "exits": {
         "east": {
           "to_room": 4069,
-          "description": ""
+          "description": "An open path leads to The Large Cave"
         },
         "south": {
           "to_room": 4070,
-          "description": ""
+          "description": "An open path leads to The Large Cave"
         }
       },
       "mob_resets": [
@@ -1467,15 +1481,15 @@
       "exits": {
         "north": {
           "to_room": 4066,
-          "description": ""
+          "description": "A trail winds toward The Maze"
         },
         "south": {
           "to_room": 4071,
-          "description": ""
+          "description": "An open path leads to The Large Cave"
         },
         "west": {
           "to_room": 4068,
-          "description": ""
+          "description": "An open path leads to The Large Cave"
         }
       },
       "obj_resets": [
@@ -1497,7 +1511,7 @@
       "exits": {
         "north": {
           "to_room": 4068,
-          "description": ""
+          "description": "An open path leads to The Large Cave"
         },
         "east": {
           "to_room": 4128,
@@ -1534,15 +1548,15 @@
       "exits": {
         "north": {
           "to_room": 4069,
-          "description": ""
+          "description": "An open path leads to The Large Cave"
         },
         "east": {
           "to_room": 4072,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         },
         "west": {
           "to_room": 4070,
-          "description": ""
+          "description": "An open path leads to The Large Cave"
         }
       },
       "mob_resets": [
@@ -1570,15 +1584,15 @@
       "exits": {
         "east": {
           "to_room": 4073,
-          "description": ""
+          "description": "A trail winds toward The End Of The Tunnel"
         },
         "south": {
           "to_room": 4074,
-          "description": ""
+          "description": "A trail winds toward The Hole"
         },
         "west": {
           "to_room": 4071,
-          "description": ""
+          "description": "An open path leads to The Large Cave"
         }
       }
     },
@@ -1594,7 +1608,7 @@
       "exits": {
         "west": {
           "to_room": 4072,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         }
       },
       "mob_resets": [
@@ -1616,7 +1630,7 @@
       "exits": {
         "north": {
           "to_room": 4072,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         }
       },
       "extra_descs": {
@@ -1636,7 +1650,7 @@
         },
         "east": {
           "to_room": 4036,
-          "description": ""
+          "description": "An open path leads to The Plains"
         }
       }
     },
@@ -1649,11 +1663,11 @@
       "exits": {
         "west": {
           "to_room": 4040,
-          "description": ""
+          "description": "A steep trail ascends to The Mountain Top"
         },
         "down": {
           "to_room": 4077,
-          "description": ""
+          "description": "A steep trail ascends to In The Hidden Valley"
         }
       }
     },
@@ -1666,11 +1680,11 @@
       "exits": {
         "east": {
           "to_room": 6400,
-          "description": ""
+          "description": "A steep trail ascends to A Mountain Trail"
         },
         "up": {
           "to_room": 4076,
-          "description": ""
+          "description": "A steep trail ascends to On A Mountain Trail"
         }
       }
     },
@@ -1683,11 +1697,11 @@
       "exits": {
         "east": {
           "to_room": 6400,
-          "description": ""
+          "description": "A steep trail ascends to A Mountain Trail"
         },
         "up": {
           "to_room": 4076,
-          "description": ""
+          "description": "A steep trail ascends to On A Mountain Trail"
         }
       }
     },
@@ -1704,7 +1718,7 @@
       "exits": {
         "east": {
           "to_room": 4101,
-          "description": ""
+          "description": "A trail winds toward The Long Tunnel"
         },
         "west": {
           "to_room": 4129,
@@ -1734,11 +1748,11 @@
       "exits": {
         "east": {
           "to_room": 4102,
-          "description": ""
+          "description": "A trail winds toward The Long Tunnel"
         },
         "west": {
           "to_room": 4100,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         }
       }
     },
@@ -1754,11 +1768,11 @@
       "exits": {
         "east": {
           "to_room": 4103,
-          "description": ""
+          "description": "A trail winds toward The Long Tunnel"
         },
         "west": {
           "to_room": 4101,
-          "description": ""
+          "description": "A trail winds toward The Long Tunnel"
         }
       }
     },
@@ -1774,15 +1788,15 @@
       "exits": {
         "east": {
           "to_room": 4104,
-          "description": ""
+          "description": "A trail winds toward The Long Tunnel"
         },
         "south": {
           "to_room": 4106,
-          "description": ""
+          "description": "The cobblestones lead to The Golden Cave"
         },
         "west": {
           "to_room": 4102,
-          "description": ""
+          "description": "A trail winds toward The Long Tunnel"
         }
       },
       "mob_resets": [
@@ -1804,7 +1818,7 @@
       "exits": {
         "west": {
           "to_room": 4103,
-          "description": ""
+          "description": "A trail winds toward The Long Tunnel"
         }
       }
     },
@@ -1819,11 +1833,11 @@
       "exits": {
         "south": {
           "to_room": 4108,
-          "description": ""
+          "description": "The cobblestones lead to The Golden Cave"
         },
         "west": {
           "to_room": 4106,
-          "description": ""
+          "description": "The cobblestones lead to The Golden Cave"
         }
       },
       "extra_descs": {
@@ -1841,15 +1855,15 @@
       "exits": {
         "north": {
           "to_room": 4103,
-          "description": ""
+          "description": "A trail winds toward The Long Tunnel"
         },
         "east": {
           "to_room": 4105,
-          "description": ""
+          "description": "The cobblestones lead to The Golden Cave"
         },
         "south": {
           "to_room": 4109,
-          "description": ""
+          "description": "The cobblestones lead to The Golden Cave"
         }
       },
       "extra_descs": {
@@ -1868,11 +1882,11 @@
       "exits": {
         "south": {
           "to_room": 4113,
-          "description": ""
+          "description": "A trail winds toward The Passage"
         },
         "west": {
           "to_room": 4108,
-          "description": ""
+          "description": "The cobblestones lead to The Golden Cave"
         }
       }
     },
@@ -1887,15 +1901,15 @@
       "exits": {
         "north": {
           "to_room": 4105,
-          "description": ""
+          "description": "The cobblestones lead to The Golden Cave"
         },
         "east": {
           "to_room": 4107,
-          "description": ""
+          "description": "A trail winds toward The Passage"
         },
         "west": {
           "to_room": 4109,
-          "description": ""
+          "description": "The cobblestones lead to The Golden Cave"
         }
       },
       "extra_descs": {
@@ -1919,15 +1933,15 @@
       "exits": {
         "north": {
           "to_room": 4106,
-          "description": ""
+          "description": "The cobblestones lead to The Golden Cave"
         },
         "east": {
           "to_room": 4108,
-          "description": ""
+          "description": "The cobblestones lead to The Golden Cave"
         },
         "south": {
           "to_room": 4114,
-          "description": ""
+          "description": "The cobblestones lead to The Golden Cave"
         }
       },
       "extra_descs": {
@@ -1947,7 +1961,7 @@
       "exits": {
         "west": {
           "to_room": 4111,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         }
       },
       "extra_descs": {
@@ -1966,7 +1980,7 @@
       "exits": {
         "east": {
           "to_room": 4110,
-          "description": ""
+          "description": "A trail winds toward The Hole"
         },
         "south": {
           "to_room": 4126,
@@ -1974,7 +1988,7 @@
         },
         "west": {
           "to_room": 4112,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         }
       },
       "extra_descs": {
@@ -2003,11 +2017,11 @@
       "exits": {
         "east": {
           "to_room": 4111,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         },
         "west": {
           "to_room": 4113,
-          "description": ""
+          "description": "A trail winds toward The Passage"
         }
       },
       "extra_descs": {
@@ -2026,15 +2040,15 @@
       "exits": {
         "north": {
           "to_room": 4107,
-          "description": ""
+          "description": "A trail winds toward The Passage"
         },
         "east": {
           "to_room": 4112,
-          "description": ""
+          "description": "A trail winds toward The Tunnel"
         },
         "south": {
           "to_room": 4116,
-          "description": ""
+          "description": "A trail winds toward The Passage"
         }
       },
       "mob_resets": [
@@ -2055,11 +2069,11 @@
       "exits": {
         "north": {
           "to_room": 4109,
-          "description": ""
+          "description": "The cobblestones lead to The Golden Cave"
         },
         "west": {
           "to_room": 4115,
-          "description": ""
+          "description": "A trail winds toward The Dark Passage"
         }
       },
       "extra_descs": {
@@ -2084,11 +2098,11 @@
       "exits": {
         "east": {
           "to_room": 4114,
-          "description": ""
+          "description": "The cobblestones lead to The Golden Cave"
         },
         "up": {
           "to_room": 4021,
-          "description": ""
+          "description": "A trail winds toward The Hole"
         }
       }
     },
@@ -2104,11 +2118,11 @@
       "exits": {
         "north": {
           "to_room": 4113,
-          "description": ""
+          "description": "A trail winds toward The Passage"
         },
         "south": {
           "to_room": 4120,
-          "description": ""
+          "description": "A trail winds toward The Passage"
         }
       },
       "extra_descs": {
@@ -2127,11 +2141,11 @@
       "exits": {
         "north": {
           "to_room": 4114,
-          "description": ""
+          "description": "The cobblestones lead to The Golden Cave"
         },
         "south": {
           "to_room": 4122,
-          "description": ""
+          "description": "A trail winds toward The Secret Chamber"
         }
       }
     },
@@ -2150,11 +2164,11 @@
         },
         "south": {
           "to_room": 4123,
-          "description": ""
+          "description": "The cobblestones lead to The Cave"
         },
         "west": {
           "to_room": 4119,
-          "description": ""
+          "description": "The cobblestones lead to The Cave"
         }
       }
     },
@@ -2169,11 +2183,11 @@
       "exits": {
         "east": {
           "to_room": 4118,
-          "description": ""
+          "description": "The cobblestones lead to The Cave"
         },
         "south": {
           "to_room": 4124,
-          "description": ""
+          "description": "The cobblestones lead to The Cave"
         },
         "west": {
           "to_room": 4121,
@@ -2205,11 +2219,11 @@
       "exits": {
         "north": {
           "to_room": 4116,
-          "description": ""
+          "description": "A trail winds toward The Passage"
         },
         "south": {
           "to_room": 4125,
-          "description": ""
+          "description": "A trail winds toward The Passage"
         },
         "down": {
           "to_room": 4130,
@@ -2247,7 +2261,7 @@
         },
         "west": {
           "to_room": 4122,
-          "description": ""
+          "description": "A trail winds toward The Secret Chamber"
         }
       },
       "extra_descs": {
@@ -2266,11 +2280,11 @@
       "exits": {
         "north": {
           "to_room": 4117,
-          "description": ""
+          "description": "A trail winds toward The Secret Tunnel"
         },
         "east": {
           "to_room": 4121,
-          "description": ""
+          "description": "A trail winds toward The Secret Tunnel"
         }
       },
       "mob_resets": [
@@ -2291,11 +2305,11 @@
       "exits": {
         "north": {
           "to_room": 4118,
-          "description": ""
+          "description": "The cobblestones lead to The Cave"
         },
         "west": {
           "to_room": 4124,
-          "description": ""
+          "description": "The cobblestones lead to The Cave"
         }
       }
     },
@@ -2310,15 +2324,15 @@
       "exits": {
         "north": {
           "to_room": 4119,
-          "description": ""
+          "description": "The cobblestones lead to The Cave"
         },
         "east": {
           "to_room": 4123,
-          "description": ""
+          "description": "The cobblestones lead to The Cave"
         },
         "west": {
           "to_room": 4125,
-          "description": ""
+          "description": "A trail winds toward The Passage"
         }
       },
       "mob_resets": [
@@ -2339,11 +2353,11 @@
       "exits": {
         "north": {
           "to_room": 4120,
-          "description": ""
+          "description": "A trail winds toward The Passage"
         },
         "east": {
           "to_room": 4124,
-          "description": ""
+          "description": "The cobblestones lead to The Cave"
         }
       }
     },
@@ -3038,6 +3052,72 @@
       "inventory": [
         4104
       ]
+    },
+    "4098": {
+      "vnum": 4098,
+      "name": "dwarven miner",
+      "short_desc": "a grizzled dwarven miner",
+      "long_desc": "A grizzled dwarven miner sits here, resting against a collapsed tunnel wall.",
+      "description": "His beard is caked with dust and his hands are raw from pickaxe work. His eyes dart nervously toward the deeper tunnels whenever a sound echoes from below.",
+      "level": 30,
+      "alignment": 0,
+      "hp_dice": "30d10+500",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The miner wipes sweat from his brow. 'Don't go deeper than you have to, friend. I've been hearing sounds from below \u2014 not cave-ins, something worse. Rhythmic, like drums... or footsteps. Big ones.'",
+        "danger": "The miner shudders. 'The snakes down here are bad enough, but there are darker things in the deep tunnels. Stick to the lit passages if you value your skin.'",
+        "default": "The miner grunts. 'Watch your step. These tunnels have a way of swallowing folk whole.'",
+        "next": "The miner spits on the ground. 'You handle yourself well down here. The city of Thalos to the east could use capable fighters. Or if you're brave enough, the Drow lurk in their underground city far below. The sewers beneath Midgaard also hide nastier things than rats, if you catch my drift.'"
+      },
+      "loot_table": [
+        {
+          "vnum": 4001,
+          "chance": 15
+        },
+        {
+          "vnum": 4002,
+          "chance": 15
+        },
+        {
+          "vnum": 4003,
+          "chance": 15
+        },
+        {
+          "vnum": 4004,
+          "chance": 15
+        }
+      ],
+      "loot_chance": 100
+    },
+    "4099": {
+      "vnum": 4099,
+      "name": "lost adventurer",
+      "short_desc": "a lost adventurer",
+      "long_desc": "A wounded adventurer leans against the wall here, nursing a bandaged arm.",
+      "description": "She's young, barely out of her teens, with a dented shield and a sword notched beyond repair. Her eyes have the hollow look of someone who's seen too much down here.",
+      "level": 25,
+      "alignment": 0,
+      "hp_dice": "25d10+400",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The adventurer winces. 'Turn back if you can. The snakes in the tunnels have venom that'll drop you before you can scream. And further down... I saw shapes moving in the dark. Dozens of them.'",
+        "snakes": "She grips her bandaged arm. 'Poison. Got me through a gap in my armor. Carry antidotes if you have them \u2014 the green ones are the worst.'",
+        "default": "The adventurer stares blankly. 'I just want to find the way out...'"
+      }
     }
   },
   "objects": {
@@ -3049,26 +3129,53 @@
       "item_type": "armor",
       "weight": 1,
       "value": 50,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "finger",
+      "armor": 0
     },
     "4001": {
       "vnum": 4001,
-      "name": "corpse",
-      "short_desc": "a goblin's corpse",
-      "room_desc": "A halfway decayed corpse of a goblin is here, giving off a foul odor.",
-      "item_type": "container",
-      "weight": 20,
-      "value": 0,
-      "capacity": 1
+      "name": "miner's pickaxe",
+      "short_desc": "a miner's pickaxe",
+      "room_desc": "A miner's pickaxe lies here.",
+      "description": "A sturdy pickaxe used in the mines.",
+      "item_type": "weapon",
+      "weight": 4,
+      "value": 1500,
+      "wear_slot": "wield",
+      "weapon_type": "pierce",
+      "damage_dice": "2d4+2",
+      "affects": [
+        {
+          "type": "damroll",
+          "value": 2
+        }
+      ],
+      "set_id": "miners_garb",
+      "type": "weapon",
+      "min_level": 10
     },
     "4002": {
       "vnum": 4002,
-      "name": "coins",
-      "short_desc": "some coins",
-      "room_desc": "A small pile of coins is on the ground.",
-      "item_type": "money",
-      "weight": 0,
-      "value": 0
+      "name": "miner's iron helmet",
+      "short_desc": "a miner's iron helmet",
+      "room_desc": "A miner's iron helmet lies here.",
+      "description": "A dented iron helmet.",
+      "item_type": "armor",
+      "weight": 3,
+      "value": 1200,
+      "wear_slot": "head",
+      "armor_class": 3,
+      "affects": [
+        {
+          "type": "con",
+          "value": 1
+        }
+      ],
+      "set_id": "miners_garb",
+      "type": "armor",
+      "min_level": 10
     },
     "4050": {
       "vnum": 4050,
@@ -3077,7 +3184,8 @@
       "room_desc": "A purple potion is here.",
       "item_type": "potion",
       "weight": 1,
-      "value": 35500
+      "value": 35500,
+      "type": "potion"
     },
     "4051": {
       "vnum": 4051,
@@ -3087,7 +3195,10 @@
       "item_type": "armor",
       "weight": 4,
       "value": 3000,
-      "armor_bonus": -5
+      "armor_bonus": -5,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "4052": {
       "vnum": 4052,
@@ -3097,7 +3208,9 @@
       "item_type": "food",
       "weight": 1,
       "value": 9,
-      "nutrition": 2
+      "nutrition": 2,
+      "type": "food",
+      "food_value": 12
     },
     "4053": {
       "vnum": 4053,
@@ -3108,7 +3221,8 @@
       "weight": 2,
       "value": 850,
       "damage_dice": "2d4",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "4100": {
       "vnum": 4100,
@@ -3119,7 +3233,8 @@
       "weight": 8,
       "value": 10000,
       "damage_dice": "3d4",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "4101": {
       "vnum": 4101,
@@ -3129,7 +3244,10 @@
       "item_type": "armor",
       "weight": 1,
       "value": 3500,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "hands",
+      "armor": 2
     },
     "4102": {
       "vnum": 4102,
@@ -3138,7 +3256,8 @@
       "room_desc": "A scroll which reads 'ysafg', it looks very fragile and quite old.",
       "item_type": "scroll",
       "weight": 1,
-      "value": 1500
+      "value": 1500,
+      "type": "scroll"
     },
     "4103": {
       "vnum": 4103,
@@ -3148,7 +3267,8 @@
       "item_type": "food",
       "weight": 1,
       "value": 20,
-      "nutrition": 24
+      "nutrition": 24,
+      "type": "treasure"
     },
     "4104": {
       "vnum": 4104,
@@ -3158,7 +3278,8 @@
       "item_type": "food",
       "weight": 1,
       "value": 20,
-      "nutrition": 24
+      "nutrition": 24,
+      "type": "treasure"
     },
     "4120": {
       "vnum": 4120,
@@ -3166,7 +3287,7 @@
       "short_desc": "a moria delver's notes",
       "room_desc": "A bundle of notes is tucked into a stone niche.",
       "description": "Careful handwriting maps the lower tunnels.",
-      "type": "other",
+      "type": "treasure",
       "weight": 1,
       "cost": 55,
       "lore_id": "moria_notes",
@@ -3180,7 +3301,7 @@
       "short_desc": "a foreman's ledger",
       "room_desc": "A worn ledger rests beside the strongbox.",
       "description": "The pages are thick with soot and numbers.",
-      "type": "other",
+      "type": "note",
       "weight": 2,
       "cost": 60,
       "lore_id": "moria_ledger",
@@ -3194,7 +3315,7 @@
       "short_desc": "a mithril shard",
       "room_desc": "A gleaming mithril shard lies among the rubble.",
       "description": "Light dances across its silvery surface.",
-      "type": "other",
+      "type": "trash",
       "weight": 1,
       "cost": 300
     },
@@ -3228,7 +3349,7 @@
       "short_desc": "an echo stone",
       "room_desc": "A smooth stone hums softly here.",
       "description": "When held, it vibrates with distant echoes.",
-      "type": "other",
+      "type": "treasure",
       "weight": 1,
       "cost": 120
     },
@@ -3250,7 +3371,8 @@
           "value": 2
         }
       ],
-      "set_id": 40
+      "set_id": 40,
+      "type": "treasure"
     },
     "4127": {
       "vnum": 4127,
@@ -3269,7 +3391,9 @@
           "value": 1
         }
       ],
-      "set_id": 40
+      "set_id": 40,
+      "type": "armor",
+      "armor": 3
     },
     "4128": {
       "vnum": 4128,
@@ -3287,7 +3411,8 @@
           "value": 2
         }
       ],
-      "set_id": 40
+      "set_id": 40,
+      "type": "treasure"
     },
     "4129": {
       "vnum": 4129,
@@ -3305,7 +3430,8 @@
           "value": 2
         }
       ],
-      "set_id": 40
+      "set_id": 40,
+      "type": "treasure"
     },
     "4130": {
       "vnum": 4130,
@@ -3323,7 +3449,8 @@
           "value": 2
         }
       ],
-      "set_id": 40
+      "set_id": 40,
+      "type": "treasure"
     },
     "4131": {
       "vnum": 4131,
@@ -3341,7 +3468,8 @@
           "value": 2
         }
       ],
-      "set_id": 40
+      "set_id": 40,
+      "type": "furniture"
     },
     "4132": {
       "vnum": 4132,
@@ -3361,7 +3489,8 @@
           "value": 2
         }
       ],
-      "set_id": 40
+      "set_id": 40,
+      "type": "weapon"
     },
     "4133": {
       "vnum": 4133,
@@ -3383,7 +3512,9 @@
           "value": 1
         }
       ],
-      "set_id": 40
+      "set_id": 40,
+      "type": "armor",
+      "armor": 0
     },
     "4134": {
       "vnum": 4134,
@@ -3405,7 +3536,62 @@
           "value": 1
         }
       ],
-      "set_id": 40
+      "set_id": 40,
+      "type": "armor",
+      "armor": 2
+    },
+    "4095": {
+      "vnum": 4095,
+      "name": "stone signpost",
+      "short_desc": "a dwarven stone marker",
+      "room_desc": "A sturdy dwarven stone marker is set into the cave wall.",
+      "item_type": "furniture",
+      "type": "furniture",
+      "weight": 0,
+      "value": 0,
+      "readable_text": "=== MINES OF MORIA (Upper Levels) ===\nRecommended Level: 8-15\nWARNING: Goblins and cave creatures infest these tunnels\nSeek Grimjaw the Prospector for work\nDeeper levels (Level 15+) lie below"
+    },
+    "4003": {
+      "vnum": 4003,
+      "name": "miner's heavy boots",
+      "short_desc": "a pair of miner's heavy boots",
+      "room_desc": "A pair of heavy mining boots lies here.",
+      "description": "Thick-soled boots.",
+      "item_type": "armor",
+      "weight": 3,
+      "value": 1000,
+      "wear_slot": "feet",
+      "armor_class": 2,
+      "affects": [
+        {
+          "type": "max_move",
+          "value": 10
+        }
+      ],
+      "set_id": "miners_garb",
+      "type": "armor",
+      "min_level": 10
+    },
+    "4004": {
+      "vnum": 4004,
+      "name": "miner's thick gloves",
+      "short_desc": "a pair of miner's thick gloves",
+      "room_desc": "Thick mining gloves lie here.",
+      "description": "Heavy leather gloves.",
+      "item_type": "armor",
+      "weight": 1,
+      "value": 800,
+      "wear_slot": "hands",
+      "armor_class": 2,
+      "affects": [
+        {
+          "type": "str",
+          "value": 1
+        }
+      ],
+      "set_id": "miners_garb",
+      "type": "armor",
+      "min_level": 10
     }
   }
 }

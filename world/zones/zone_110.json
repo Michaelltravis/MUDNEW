@@ -19,7 +19,8 @@
           "description": "You see an exit south."
         },
         "north": {
-          "to_room": 11001
+          "to_room": 11001,
+          "description": "The path continues north"
         }
       },
       "vnum": 11000,
@@ -40,19 +41,24 @@
       "terrain": "forest",
       "exits": {
         "south": {
-          "to_room": 11000
+          "to_room": 11000,
+          "description": "The path continues south"
         },
         "north": {
-          "to_room": 11002
+          "to_room": 11002,
+          "description": "The path continues north"
         },
         "east": {
-          "to_room": 11003
+          "to_room": 11003,
+          "description": "The path continues east"
         },
         "west": {
-          "to_room": 11004
+          "to_room": 11004,
+          "description": "The path continues west"
         },
         "up": {
-          "to_room": 11005
+          "to_room": 11005,
+          "description": "The path continues up"
         }
       },
       "vnum": 11001,
@@ -73,7 +79,8 @@
       "terrain": "forest",
       "exits": {
         "south": {
-          "to_room": 11001
+          "to_room": 11001,
+          "description": "The path continues south"
         }
       },
       "vnum": 11002,
@@ -90,10 +97,12 @@
       "terrain": "forest",
       "exits": {
         "west": {
-          "to_room": 11001
+          "to_room": 11001,
+          "description": "The path continues west"
         },
         "east": {
-          "to_room": 11006
+          "to_room": 11006,
+          "description": "The path continues east"
         }
       },
       "vnum": 11003,
@@ -114,10 +123,12 @@
       "terrain": "forest",
       "exits": {
         "east": {
-          "to_room": 11001
+          "to_room": 11001,
+          "description": "The path continues east"
         },
         "north": {
-          "to_room": 11007
+          "to_room": 11007,
+          "description": "The path continues north"
         }
       },
       "vnum": 11004,
@@ -150,13 +161,16 @@
       "terrain": "forest",
       "exits": {
         "down": {
-          "to_room": 11001
+          "to_room": 11001,
+          "description": "The path continues down"
         },
         "north": {
-          "to_room": 11008
+          "to_room": 11008,
+          "description": "The path continues north"
         },
         "east": {
-          "to_room": 11009
+          "to_room": 11009,
+          "description": "The path continues east"
         }
       },
       "vnum": 11005,
@@ -164,6 +178,10 @@
         {
           "vnum": 11001,
           "max": 2
+        },
+        {
+          "vnum": 11098,
+          "max": 1
         }
       ]
     },
@@ -173,7 +191,8 @@
       "terrain": "forest",
       "exits": {
         "west": {
-          "to_room": 11003
+          "to_room": 11003,
+          "description": "The path continues west"
         }
       },
       "vnum": 11006,
@@ -190,10 +209,12 @@
       "terrain": "forest",
       "exits": {
         "south": {
-          "to_room": 11004
+          "to_room": 11004,
+          "description": "The path continues south"
         },
         "north": {
-          "to_room": 11010
+          "to_room": 11010,
+          "description": "The path continues north"
         }
       },
       "vnum": 11007,
@@ -214,7 +235,8 @@
       "terrain": "indoors",
       "exits": {
         "south": {
-          "to_room": 11005
+          "to_room": 11005,
+          "description": "The path continues south"
         }
       },
       "vnum": 11008,
@@ -235,7 +257,8 @@
       "terrain": "forest",
       "exits": {
         "west": {
-          "to_room": 11005
+          "to_room": 11005,
+          "description": "The path continues west"
         }
       },
       "vnum": 11009,
@@ -261,10 +284,12 @@
       "special": "taming_area",
       "exits": {
         "south": {
-          "to_room": 11007
+          "to_room": 11007,
+          "description": "The path continues south"
         },
         "north": {
-          "to_room": 11011
+          "to_room": 11011,
+          "description": "The path continues north"
         }
       },
       "vnum": 11010,
@@ -272,6 +297,10 @@
         {
           "vnum": 11001,
           "max": 2
+        },
+        {
+          "vnum": 11099,
+          "max": 1
         }
       ]
     },
@@ -281,10 +310,12 @@
       "terrain": "forest",
       "exits": {
         "south": {
-          "to_room": 11010
+          "to_room": 11010,
+          "description": "The path continues south"
         },
         "north": {
-          "to_room": 11012
+          "to_room": 11012,
+          "description": "The path continues north"
         }
       },
       "vnum": 11011,
@@ -305,10 +336,12 @@
       "terrain": "forest",
       "exits": {
         "south": {
-          "to_room": 11011
+          "to_room": 11011,
+          "description": "The path continues south"
         },
         "north": {
-          "to_room": 11013
+          "to_room": 11013,
+          "description": "The path continues north"
         }
       },
       "vnum": 11012,
@@ -325,7 +358,8 @@
       "terrain": "forest",
       "exits": {
         "south": {
-          "to_room": 11012
+          "to_room": 11012,
+          "description": "The path continues south"
         }
       },
       "vnum": 11013,
@@ -342,7 +376,8 @@
       "terrain": "forest",
       "exits": {
         "west": {
-          "to_room": 11001
+          "to_room": 11001,
+          "description": "The path continues west"
         }
       },
       "vnum": 11014,
@@ -638,7 +673,8 @@
         11008
       ],
       "max_in_zone": 5,
-      "vnum": 11000
+      "vnum": 11000,
+      "type": "food"
     },
     "11001": {
       "name": "healing potion",
@@ -653,7 +689,8 @@
         11002
       ],
       "max_in_zone": 3,
-      "vnum": 11001
+      "vnum": 11001,
+      "type": "potion"
     },
     "11002": {
       "name": "elven cloak",
@@ -672,7 +709,10 @@
         11008
       ],
       "max_in_zone": 2,
-      "vnum": 11002
+      "vnum": 11002,
+      "type": "armor",
+      "wear_slot": "about",
+      "armor": 1
     },
     "11003": {
       "name": "nature's tear",
@@ -687,7 +727,8 @@
         11004
       ],
       "max_in_zone": 1,
-      "vnum": 11003
+      "vnum": 11003,
+      "type": "treasure"
     },
     "11010": {
       "name": "elven longbow",
@@ -704,7 +745,8 @@
         11006
       ],
       "max_in_zone": 1,
-      "vnum": 11010
+      "vnum": 11010,
+      "type": "weapon"
     },
     "11011": {
       "name": "quiver of arrows",
@@ -719,7 +761,10 @@
         11006
       ],
       "max_in_zone": 3,
-      "vnum": 11011
+      "vnum": 11011,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 4
     },
     "11012": {
       "name": "short bow",
@@ -735,7 +780,8 @@
         11006
       ],
       "max_in_zone": 2,
-      "vnum": 11012
+      "vnum": 11012,
+      "type": "weapon"
     },
     "11013": {
       "name": "leather armor",
@@ -751,7 +797,10 @@
         11006
       ],
       "max_in_zone": 2,
-      "vnum": 11013
+      "vnum": 11013,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 4
     },
     "11014": {
       "vnum": 11014,
@@ -771,7 +820,8 @@
           "value": 2
         }
       ],
-      "set_id": 110
+      "set_id": 110,
+      "type": "weapon"
     },
     "11015": {
       "vnum": 11015,
@@ -790,7 +840,9 @@
           "value": 1
         }
       ],
-      "set_id": 110
+      "set_id": 110,
+      "type": "armor",
+      "armor": 3
     },
     "11016": {
       "vnum": 11016,
@@ -808,7 +860,8 @@
           "value": 2
         }
       ],
-      "set_id": 110
+      "set_id": 110,
+      "type": "treasure"
     },
     "11017": {
       "vnum": 11017,
@@ -830,7 +883,8 @@
           "value": 20
         }
       ],
-      "set_id": 110
+      "set_id": 110,
+      "type": "treasure"
     },
     "11018": {
       "vnum": 11018,
@@ -848,7 +902,8 @@
           "value": 2
         }
       ],
-      "set_id": 110
+      "set_id": 110,
+      "type": "treasure"
     },
     "11019": {
       "vnum": 11019,
@@ -868,7 +923,8 @@
           "value": 2
         }
       ],
-      "set_id": 110
+      "set_id": 110,
+      "type": "treasure"
     },
     "11020": {
       "vnum": 11020,
@@ -888,7 +944,8 @@
           "value": 2
         }
       ],
-      "set_id": 110
+      "set_id": 110,
+      "type": "weapon"
     },
     "11021": {
       "vnum": 11021,
@@ -912,7 +969,8 @@
           "value": 1
         }
       ],
-      "set_id": 110
+      "set_id": 110,
+      "type": "weapon"
     },
     "11022": {
       "vnum": 11022,
@@ -931,7 +989,9 @@
           "value": 1
         }
       ],
-      "set_id": 110
+      "set_id": 110,
+      "type": "armor",
+      "armor": 1
     }
   },
   "mobs": {
@@ -1189,6 +1249,53 @@
       "flags": [
         "aggressive"
       ]
+    },
+    "11098": {
+      "vnum": 11098,
+      "name": "elven bard",
+      "short_desc": "an elven bard",
+      "long_desc": "An elven bard sits upon a mossy stone here, fingers dancing across a silver-stringed lute.",
+      "description": "Her voice carries an otherworldly beauty that makes the very leaves lean closer to listen. Centuries of wisdom lie behind her ageless eyes, and her music seems to make the forest itself breathe deeper.",
+      "level": 45,
+      "alignment": 0,
+      "hp_dice": "45d10+800",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The bard's melody fades to silence. 'Silversong was ancient when the first humans drew breath. Every tree here remembers the world's beginning. The corruption in the dark forest to the south is a wound that festers \u2014 we sing to keep it from spreading. Listen to the trees, traveler. They whisper warnings to those who know how to hear.'",
+        "history": "She strums a mournful chord. 'A great evil was sealed beneath these roots long ago. The singing keeps the seal strong. If the music ever stops... well. That is why we bards never rest.'",
+        "default": "The elven bard plays a haunting melody that fills you with both joy and an inexplicable sadness.",
+        "next": "Lyralei plucks a melancholy chord. 'The forest's melody grows darker further north. But if you seek challenge beyond these woods, the Mines of Moria echo with the clash of steel, and the Dark Forest... well, few return unchanged from that place.'"
+      }
+    },
+    "11099": {
+      "vnum": 11099,
+      "name": "ancient treant",
+      "short_desc": "an ancient treant",
+      "long_desc": "An enormous treant stands here, so still it could be mistaken for a particularly gnarled oak.",
+      "description": "Centuries of growth have given it a face-like pattern in its bark, and its 'eyes' \u2014 two deep knotholes \u2014 seem to follow movement with glacial patience. Moss hangs from its branches like a green beard.",
+      "level": 50,
+      "alignment": 0,
+      "hp_dice": "50d10+1000",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The treant speaks with a voice like grinding boulders. '...Hmmm. Small thing. Fast thing. You move... too quickly. The forest... has roots deeper than mountains. Patience... is the oldest strength. The dark ones... from below... they cut and burn. Stop them... if you can. We are... too slow... to fight.'",
+        "forest": "Bark creaks as it shifts. '...The silver trees... are the heart. Protect... the heart... and the forest... survives. Harm the heart... and all... falls to shadow.'",
+        "default": "The treant is utterly still. You're not even sure it's awake."
+      }
     }
   }
 }

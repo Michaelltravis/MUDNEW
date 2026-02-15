@@ -37,6 +37,10 @@
         "south": {
           "to_room": 1204,
           "description": "The Immortal Board Room can be seen to the south."
+        },
+        "east": {
+          "to_room": 1202,
+          "description": "The ice box lies to the east."
         }
       },
       "mob_resets": [
@@ -61,7 +65,12 @@
         "soundproof",
         "no_magic"
       ],
-      "exits": {},
+      "exits": {
+        "west": {
+          "to_room": 1201,
+          "description": "The Inn of the Gods is to the west."
+        }
+      },
       "obj_resets": [
         {
           "vnum": 3097,

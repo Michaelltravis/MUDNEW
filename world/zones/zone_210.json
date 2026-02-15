@@ -16,7 +16,11 @@
       "exits": {
         "east": {
           "to_room": 21002,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
+        },
+        "up": {
+          "to_room": 4016,
+          "description": "A narrow climb leads back up to the cave."
         }
       },
       "extra_descs": {},
@@ -44,11 +48,11 @@
       "exits": {
         "west": {
           "to_room": 21001,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks - Entrance"
         },
         "south": {
           "to_room": 21022,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -67,11 +71,11 @@
       "exits": {
         "east": {
           "to_room": 21004,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21023,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -90,11 +94,11 @@
       "exits": {
         "east": {
           "to_room": 21005,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21003,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -113,19 +117,24 @@
       "exits": {
         "east": {
           "to_room": 21006,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21004,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21025,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
-      "mob_resets": [],
+      "mob_resets": [
+        {
+          "vnum": 21098,
+          "max": 1
+        }
+      ],
       "obj_resets": []
     },
     "21006": {
@@ -140,11 +149,11 @@
       "exits": {
         "west": {
           "to_room": 21005,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21026,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -168,11 +177,11 @@
       "exits": {
         "east": {
           "to_room": 21008,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21027,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -191,11 +200,11 @@
       "exits": {
         "east": {
           "to_room": 21009,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21007,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -214,11 +223,11 @@
       "exits": {
         "east": {
           "to_room": 21010,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21008,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -237,7 +246,7 @@
       "exits": {
         "west": {
           "to_room": 21009,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -256,11 +265,11 @@
       "exits": {
         "east": {
           "to_room": 21012,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21031,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -284,11 +293,11 @@
       "exits": {
         "east": {
           "to_room": 21013,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21011,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -307,11 +316,11 @@
       "exits": {
         "east": {
           "to_room": 21014,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21012,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -330,11 +339,11 @@
       "exits": {
         "east": {
           "to_room": 21015,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21013,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -353,15 +362,15 @@
       "exits": {
         "east": {
           "to_room": 21016,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21014,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21035,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -380,11 +389,11 @@
       "exits": {
         "west": {
           "to_room": 21015,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21036,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -408,7 +417,7 @@
       "exits": {
         "east": {
           "to_room": 21018,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -427,11 +436,11 @@
       "exits": {
         "west": {
           "to_room": 21017,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21038,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -455,11 +464,11 @@
       "exits": {
         "east": {
           "to_room": 21020,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21039,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -478,11 +487,11 @@
       "exits": {
         "west": {
           "to_room": 21019,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21040,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -501,7 +510,7 @@
       "exits": {
         "south": {
           "to_room": 21041,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -520,11 +529,11 @@
       "exits": {
         "north": {
           "to_room": 21002,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21042,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -543,7 +552,7 @@
       "exits": {
         "north": {
           "to_room": 21003,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -562,11 +571,11 @@
       "exits": {
         "east": {
           "to_room": 21025,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21044,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -585,11 +594,11 @@
       "exits": {
         "north": {
           "to_room": 21005,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21024,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -613,11 +622,11 @@
       "exits": {
         "north": {
           "to_room": 21006,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21046,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -636,15 +645,15 @@
       "exits": {
         "north": {
           "to_room": 21007,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21028,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21047,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -663,11 +672,11 @@
       "exits": {
         "east": {
           "to_room": 21029,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21027,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -686,11 +695,11 @@
       "exits": {
         "east": {
           "to_room": 21030,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21028,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -709,11 +718,11 @@
       "exits": {
         "east": {
           "to_room": 21031,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21029,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -737,15 +746,15 @@
       "exits": {
         "north": {
           "to_room": 21011,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21030,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21032,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -764,15 +773,15 @@
       "exits": {
         "east": {
           "to_room": 21033,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21031,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21052,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -791,7 +800,7 @@
       "exits": {
         "west": {
           "to_room": 21032,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -810,11 +819,11 @@
       "exits": {
         "east": {
           "to_room": 21035,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21054,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -833,11 +842,11 @@
       "exits": {
         "north": {
           "to_room": 21015,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21034,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -861,11 +870,11 @@
       "exits": {
         "north": {
           "to_room": 21016,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21037,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -884,11 +893,11 @@
       "exits": {
         "west": {
           "to_room": 21036,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21057,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -912,11 +921,11 @@
       "exits": {
         "north": {
           "to_room": 21018,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21039,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -935,11 +944,11 @@
       "exits": {
         "north": {
           "to_room": 21019,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21038,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -958,11 +967,11 @@
       "exits": {
         "north": {
           "to_room": 21020,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21060,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -986,11 +995,11 @@
       "exits": {
         "north": {
           "to_room": 21021,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21061,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1009,11 +1018,11 @@
       "exits": {
         "north": {
           "to_room": 21022,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21043,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1032,11 +1041,11 @@
       "exits": {
         "west": {
           "to_room": 21042,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21063,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1055,11 +1064,11 @@
       "exits": {
         "north": {
           "to_room": 21024,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21064,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1083,7 +1092,7 @@
       "exits": {
         "south": {
           "to_room": 21065,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1102,11 +1111,11 @@
       "exits": {
         "north": {
           "to_room": 21026,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21066,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1125,11 +1134,11 @@
       "exits": {
         "north": {
           "to_room": 21027,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21048,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1148,7 +1157,7 @@
       "exits": {
         "west": {
           "to_room": 21047,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1167,11 +1176,11 @@
       "exits": {
         "east": {
           "to_room": 21050,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21069,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1195,11 +1204,11 @@
       "exits": {
         "west": {
           "to_room": 21049,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21070,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1218,7 +1227,7 @@
       "exits": {
         "east": {
           "to_room": 21052,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1237,15 +1246,15 @@
       "exits": {
         "north": {
           "to_room": 21032,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21051,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21072,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1264,11 +1273,11 @@
       "exits": {
         "east": {
           "to_room": 21054,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21073,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1287,11 +1296,11 @@
       "exits": {
         "north": {
           "to_room": 21034,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21053,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1315,11 +1324,11 @@
       "exits": {
         "east": {
           "to_room": 21056,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21075,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1338,11 +1347,11 @@
       "exits": {
         "west": {
           "to_room": 21055,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21076,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1366,11 +1375,11 @@
       "exits": {
         "north": {
           "to_room": 21037,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21058,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1389,15 +1398,15 @@
       "exits": {
         "east": {
           "to_room": 21059,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21057,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21078,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1416,11 +1425,11 @@
       "exits": {
         "east": {
           "to_room": 21060,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21058,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1444,11 +1453,11 @@
       "exits": {
         "north": {
           "to_room": 21040,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21059,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1467,15 +1476,15 @@
       "exits": {
         "north": {
           "to_room": 21041,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21062,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21081,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1494,11 +1503,11 @@
       "exits": {
         "west": {
           "to_room": 21061,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21082,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1517,11 +1526,11 @@
       "exits": {
         "north": {
           "to_room": 21043,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21064,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1545,11 +1554,11 @@
       "exits": {
         "north": {
           "to_room": 21044,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21063,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1568,11 +1577,11 @@
       "exits": {
         "north": {
           "to_room": 21045,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21085,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1591,11 +1600,11 @@
       "exits": {
         "north": {
           "to_room": 21046,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21067,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1614,11 +1623,11 @@
       "exits": {
         "east": {
           "to_room": 21068,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21066,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1637,11 +1646,11 @@
       "exits": {
         "east": {
           "to_room": 21069,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21067,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1665,11 +1674,11 @@
       "exits": {
         "north": {
           "to_room": 21049,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21068,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1688,11 +1697,11 @@
       "exits": {
         "north": {
           "to_room": 21050,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21071,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1711,11 +1720,11 @@
       "exits": {
         "west": {
           "to_room": 21070,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21091,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1734,15 +1743,11 @@
       "exits": {
         "north": {
           "to_room": 21052,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "down": {
           "to_room": 22001,
-          "description": "A knot of roots and broken beams hides a plunge into deeper darkness.",
-          "hidden": true,
-          "secret": true,
-          "search_difficulty": 60,
-          "reveal_message": "You find a narrow descent hidden behind a lattice of sticks."
+          "description": "A narrow descent leads down to the castle gates."
         }
       },
       "extra_descs": {},
@@ -1761,11 +1766,11 @@
       "exits": {
         "north": {
           "to_room": 21053,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21093,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1789,7 +1794,7 @@
       "exits": {
         "east": {
           "to_room": 21075,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1808,15 +1813,15 @@
       "exits": {
         "north": {
           "to_room": 21055,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21074,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21095,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1840,11 +1845,11 @@
       "exits": {
         "north": {
           "to_room": 21056,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21077,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1863,7 +1868,7 @@
       "exits": {
         "west": {
           "to_room": 21076,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1882,11 +1887,11 @@
       "exits": {
         "north": {
           "to_room": 21058,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21098,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1910,11 +1915,11 @@
       "exits": {
         "east": {
           "to_room": 21080,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21099,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1933,11 +1938,11 @@
       "exits": {
         "west": {
           "to_room": 21079,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21100,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1956,11 +1961,11 @@
       "exits": {
         "north": {
           "to_room": 21061,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21101,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -1979,7 +1984,7 @@
       "exits": {
         "north": {
           "to_room": 21062,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2003,11 +2008,11 @@
       "exits": {
         "east": {
           "to_room": 21084,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21103,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2026,15 +2031,15 @@
       "exits": {
         "east": {
           "to_room": 21085,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21083,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21104,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2053,15 +2058,15 @@
       "exits": {
         "north": {
           "to_room": 21065,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21084,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21086,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2080,11 +2085,11 @@
       "exits": {
         "west": {
           "to_room": 21085,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21106,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2103,11 +2108,11 @@
       "exits": {
         "east": {
           "to_room": 21088,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21107,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2131,11 +2136,11 @@
       "exits": {
         "west": {
           "to_room": 21087,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21108,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2154,11 +2159,11 @@
       "exits": {
         "east": {
           "to_room": 21090,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21109,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2177,11 +2182,11 @@
       "exits": {
         "west": {
           "to_room": 21089,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21110,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2200,11 +2205,11 @@
       "exits": {
         "north": {
           "to_room": 21071,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21092,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2223,11 +2228,11 @@
       "exits": {
         "west": {
           "to_room": 21091,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21112,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2251,11 +2256,11 @@
       "exits": {
         "north": {
           "to_room": 21073,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21094,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2274,11 +2279,11 @@
       "exits": {
         "west": {
           "to_room": 21093,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21114,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2302,11 +2307,11 @@
       "exits": {
         "north": {
           "to_room": 21075,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21096,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2325,15 +2330,15 @@
       "exits": {
         "east": {
           "to_room": 21097,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21095,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21116,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2352,11 +2357,11 @@
       "exits": {
         "west": {
           "to_room": 21096,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21117,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2380,11 +2385,11 @@
       "exits": {
         "north": {
           "to_room": 21078,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21118,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2403,11 +2408,11 @@
       "exits": {
         "north": {
           "to_room": 21079,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21119,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2426,11 +2431,11 @@
       "exits": {
         "north": {
           "to_room": 21080,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21120,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2449,15 +2454,15 @@
       "exits": {
         "north": {
           "to_room": 21081,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21102,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21121,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2481,11 +2486,11 @@
       "exits": {
         "west": {
           "to_room": 21101,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21122,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2504,11 +2509,11 @@
       "exits": {
         "north": {
           "to_room": 21083,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21123,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2527,11 +2532,11 @@
       "exits": {
         "north": {
           "to_room": 21084,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21105,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2550,11 +2555,11 @@
       "exits": {
         "west": {
           "to_room": 21104,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21125,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2573,7 +2578,7 @@
       "exits": {
         "north": {
           "to_room": 21086,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2597,11 +2602,11 @@
       "exits": {
         "north": {
           "to_room": 21087,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21127,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2620,11 +2625,11 @@
       "exits": {
         "north": {
           "to_room": 21088,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21109,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2643,11 +2648,11 @@
       "exits": {
         "north": {
           "to_room": 21089,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21108,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2666,15 +2671,15 @@
       "exits": {
         "north": {
           "to_room": 21090,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21130,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21111,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2693,7 +2698,7 @@
       "exits": {
         "west": {
           "to_room": 21110,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2717,11 +2722,11 @@
       "exits": {
         "north": {
           "to_room": 21092,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21113,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2740,11 +2745,11 @@
       "exits": {
         "west": {
           "to_room": 21112,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21133,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2768,15 +2773,15 @@
       "exits": {
         "north": {
           "to_room": 21094,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21115,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21134,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2795,11 +2800,11 @@
       "exits": {
         "west": {
           "to_room": 21114,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21135,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2818,7 +2823,7 @@
       "exits": {
         "north": {
           "to_room": 21096,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2842,11 +2847,11 @@
       "exits": {
         "north": {
           "to_room": 21097,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21118,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2865,11 +2870,11 @@
       "exits": {
         "north": {
           "to_room": 21098,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21117,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2888,11 +2893,11 @@
       "exits": {
         "north": {
           "to_room": 21099,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21139,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2911,11 +2916,11 @@
       "exits": {
         "north": {
           "to_room": 21100,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21140,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2934,11 +2939,11 @@
       "exits": {
         "north": {
           "to_room": 21101,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21141,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2957,11 +2962,11 @@
       "exits": {
         "north": {
           "to_room": 21102,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21123,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -2980,11 +2985,11 @@
       "exits": {
         "north": {
           "to_room": 21103,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21122,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3003,7 +3008,7 @@
       "exits": {
         "south": {
           "to_room": 21144,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3022,11 +3027,11 @@
       "exits": {
         "north": {
           "to_room": 21105,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21145,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3050,11 +3055,11 @@
       "exits": {
         "east": {
           "to_room": 21127,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21146,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3073,11 +3078,11 @@
       "exits": {
         "north": {
           "to_room": 21107,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21126,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3096,7 +3101,7 @@
       "exits": {
         "south": {
           "to_room": 21148,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3115,11 +3120,11 @@
       "exits": {
         "east": {
           "to_room": 21130,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21149,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3138,11 +3143,11 @@
       "exits": {
         "north": {
           "to_room": 21110,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21129,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3166,11 +3171,11 @@
       "exits": {
         "east": {
           "to_room": 21132,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21151,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3189,11 +3194,11 @@
       "exits": {
         "east": {
           "to_room": 21133,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21131,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3217,11 +3222,11 @@
       "exits": {
         "north": {
           "to_room": 21113,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21132,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3240,11 +3245,11 @@
       "exits": {
         "north": {
           "to_room": 21114,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21154,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3263,11 +3268,11 @@
       "exits": {
         "north": {
           "to_room": 21115,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21136,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3291,11 +3296,11 @@
       "exits": {
         "east": {
           "to_room": 21137,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21135,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3314,11 +3319,11 @@
       "exits": {
         "east": {
           "to_room": 21138,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21136,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3337,11 +3342,11 @@
       "exits": {
         "east": {
           "to_room": 21139,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21137,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3360,11 +3365,11 @@
       "exits": {
         "north": {
           "to_room": 21119,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21138,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3383,11 +3388,11 @@
       "exits": {
         "north": {
           "to_room": 21120,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21160,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3411,11 +3416,11 @@
       "exits": {
         "north": {
           "to_room": 21121,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21161,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3434,11 +3439,11 @@
       "exits": {
         "east": {
           "to_room": 21143,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21162,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3457,11 +3462,11 @@
       "exits": {
         "east": {
           "to_room": 21144,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21142,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3480,15 +3485,15 @@
       "exits": {
         "north": {
           "to_room": 21124,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21143,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21164,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3512,11 +3517,11 @@
       "exits": {
         "north": {
           "to_room": 21125,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21165,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3535,11 +3540,11 @@
       "exits": {
         "north": {
           "to_room": 21126,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21166,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3558,11 +3563,11 @@
       "exits": {
         "east": {
           "to_room": 21148,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21167,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3581,11 +3586,11 @@
       "exits": {
         "north": {
           "to_room": 21128,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21147,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3604,11 +3609,11 @@
       "exits": {
         "north": {
           "to_room": 21129,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21150,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3632,11 +3637,11 @@
       "exits": {
         "west": {
           "to_room": 21149,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21170,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3655,11 +3660,11 @@
       "exits": {
         "north": {
           "to_room": 21131,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21152,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3683,11 +3688,11 @@
       "exits": {
         "west": {
           "to_room": 21151,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21172,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3706,7 +3711,7 @@
       "exits": {
         "south": {
           "to_room": 21173,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3725,11 +3730,11 @@
       "exits": {
         "north": {
           "to_room": 21134,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21174,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3753,7 +3758,7 @@
       "exits": {
         "east": {
           "to_room": 21156,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3772,15 +3777,15 @@
       "exits": {
         "east": {
           "to_room": 21157,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21155,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21176,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3799,11 +3804,11 @@
       "exits": {
         "east": {
           "to_room": 21158,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21156,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3822,15 +3827,15 @@
       "exits": {
         "east": {
           "to_room": 21159,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21157,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21178,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3849,7 +3854,7 @@
       "exits": {
         "west": {
           "to_room": 21158,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3873,11 +3878,11 @@
       "exits": {
         "north": {
           "to_room": 21140,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21180,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3896,11 +3901,11 @@
       "exits": {
         "north": {
           "to_room": 21141,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21162,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3919,15 +3924,15 @@
       "exits": {
         "north": {
           "to_room": 21142,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21161,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21182,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3946,7 +3951,7 @@
       "exits": {
         "east": {
           "to_room": 21164,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3970,11 +3975,11 @@
       "exits": {
         "north": {
           "to_room": 21144,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21163,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -3993,11 +3998,11 @@
       "exits": {
         "north": {
           "to_room": 21145,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21166,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4016,15 +4021,15 @@
       "exits": {
         "north": {
           "to_room": 21146,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21165,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21186,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4043,11 +4048,11 @@
       "exits": {
         "north": {
           "to_room": 21147,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21168,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4066,11 +4071,11 @@
       "exits": {
         "west": {
           "to_room": 21167,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21188,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4094,11 +4099,11 @@
       "exits": {
         "east": {
           "to_room": 21170,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21189,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4117,11 +4122,11 @@
       "exits": {
         "north": {
           "to_room": 21150,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21169,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4145,11 +4150,11 @@
       "exits": {
         "east": {
           "to_room": 21172,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21191,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4168,11 +4173,11 @@
       "exits": {
         "north": {
           "to_room": 21152,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21171,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4191,11 +4196,11 @@
       "exits": {
         "north": {
           "to_room": 21153,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21174,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4219,15 +4224,15 @@
       "exits": {
         "north": {
           "to_room": 21154,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21173,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21175,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4246,11 +4251,11 @@
       "exits": {
         "east": {
           "to_room": 21176,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21174,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4269,11 +4274,11 @@
       "exits": {
         "north": {
           "to_room": 21156,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21175,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4292,7 +4297,7 @@
       "exits": {
         "south": {
           "to_room": 21197,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4311,11 +4316,11 @@
       "exits": {
         "north": {
           "to_room": 21158,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21198,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4339,11 +4344,11 @@
       "exits": {
         "east": {
           "to_room": 21180,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21199,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4362,11 +4367,11 @@
       "exits": {
         "north": {
           "to_room": 21160,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21179,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4385,7 +4390,7 @@
       "exits": {
         "south": {
           "to_room": 21201,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4404,11 +4409,11 @@
       "exits": {
         "north": {
           "to_room": 21162,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21202,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4432,11 +4437,11 @@
       "exits": {
         "east": {
           "to_room": 21184,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21203,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4455,11 +4460,11 @@
       "exits": {
         "east": {
           "to_room": 21185,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21183,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4478,11 +4483,11 @@
       "exits": {
         "west": {
           "to_room": 21184,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21205,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4501,11 +4506,11 @@
       "exits": {
         "north": {
           "to_room": 21166,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21187,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4524,11 +4529,11 @@
       "exits": {
         "east": {
           "to_room": 21188,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21186,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4552,11 +4557,11 @@
       "exits": {
         "north": {
           "to_room": 21168,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21187,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4575,11 +4580,11 @@
       "exits": {
         "north": {
           "to_room": 21169,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21190,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4603,11 +4608,11 @@
       "exits": {
         "west": {
           "to_room": 21189,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21210,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4626,11 +4631,11 @@
       "exits": {
         "north": {
           "to_room": 21171,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21192,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4649,11 +4654,11 @@
       "exits": {
         "east": {
           "to_room": 21193,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21191,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4677,11 +4682,11 @@
       "exits": {
         "east": {
           "to_room": 21194,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21192,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4700,11 +4705,11 @@
       "exits": {
         "west": {
           "to_room": 21193,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21214,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4723,11 +4728,11 @@
       "exits": {
         "east": {
           "to_room": 21196,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21215,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4746,11 +4751,11 @@
       "exits": {
         "west": {
           "to_room": 21195,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21216,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4769,11 +4774,11 @@
       "exits": {
         "north": {
           "to_room": 21177,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21217,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4797,11 +4802,11 @@
       "exits": {
         "north": {
           "to_room": 21178,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21218,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4820,11 +4825,11 @@
       "exits": {
         "north": {
           "to_room": 21179,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21200,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4843,11 +4848,11 @@
       "exits": {
         "west": {
           "to_room": 21199,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21220,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4866,11 +4871,11 @@
       "exits": {
         "north": {
           "to_room": 21181,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21221,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4894,11 +4899,11 @@
       "exits": {
         "north": {
           "to_room": 21182,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21222,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4917,11 +4922,11 @@
       "exits": {
         "north": {
           "to_room": 21183,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21223,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4940,7 +4945,7 @@
       "exits": {
         "east": {
           "to_room": 21205,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4959,15 +4964,15 @@
       "exits": {
         "north": {
           "to_room": 21185,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21204,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21206,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -4986,11 +4991,11 @@
       "exits": {
         "east": {
           "to_room": 21207,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21205,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5014,11 +5019,11 @@
       "exits": {
         "east": {
           "to_room": 21208,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21206,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5037,11 +5042,11 @@
       "exits": {
         "east": {
           "to_room": 21209,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21207,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5065,11 +5070,11 @@
       "exits": {
         "east": {
           "to_room": 21210,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21208,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5088,15 +5093,15 @@
       "exits": {
         "north": {
           "to_room": 21190,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21211,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21209,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5115,15 +5120,15 @@
       "exits": {
         "east": {
           "to_room": 21212,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21210,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21231,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5147,11 +5152,11 @@
       "exits": {
         "east": {
           "to_room": 21213,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21211,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5170,7 +5175,7 @@
       "exits": {
         "west": {
           "to_room": 21212,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5189,11 +5194,11 @@
       "exits": {
         "north": {
           "to_room": 21194,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21234,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5212,11 +5217,11 @@
       "exits": {
         "north": {
           "to_room": 21195,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21235,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5235,11 +5240,11 @@
       "exits": {
         "north": {
           "to_room": 21196,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21236,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5263,11 +5268,11 @@
       "exits": {
         "north": {
           "to_room": 21197,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21218,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5286,15 +5291,15 @@
       "exits": {
         "north": {
           "to_room": 21198,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21217,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21219,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5313,7 +5318,7 @@
       "exits": {
         "west": {
           "to_room": 21218,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5332,11 +5337,11 @@
       "exits": {
         "north": {
           "to_room": 21200,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21240,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5355,11 +5360,11 @@
       "exits": {
         "north": {
           "to_room": 21201,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21241,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5378,11 +5383,11 @@
       "exits": {
         "north": {
           "to_room": 21202,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21242,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5401,11 +5406,11 @@
       "exits": {
         "north": {
           "to_room": 21203,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21243,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5424,11 +5429,11 @@
       "exits": {
         "east": {
           "to_room": 21225,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21244,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5447,11 +5452,11 @@
       "exits": {
         "east": {
           "to_room": 21226,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21224,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5475,11 +5480,11 @@
       "exits": {
         "west": {
           "to_room": 21225,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21246,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5498,7 +5503,7 @@
       "exits": {
         "east": {
           "to_room": 21228,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5522,15 +5527,15 @@
       "exits": {
         "east": {
           "to_room": 21229,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21227,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21248,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5549,11 +5554,11 @@
       "exits": {
         "west": {
           "to_room": 21228,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21249,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5572,7 +5577,7 @@
       "exits": {
         "south": {
           "to_room": 21250,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5596,11 +5601,11 @@
       "exits": {
         "north": {
           "to_room": 21211,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21251,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5619,11 +5624,11 @@
       "exits": {
         "east": {
           "to_room": 21233,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21252,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5642,11 +5647,11 @@
       "exits": {
         "east": {
           "to_room": 21234,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21232,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5665,11 +5670,11 @@
       "exits": {
         "north": {
           "to_room": 21214,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21233,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5688,11 +5693,11 @@
       "exits": {
         "north": {
           "to_room": 21215,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21255,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5716,11 +5721,11 @@
       "exits": {
         "north": {
           "to_room": 21216,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21237,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5739,11 +5744,11 @@
       "exits": {
         "west": {
           "to_room": 21236,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21257,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5762,11 +5767,11 @@
       "exits": {
         "east": {
           "to_room": 21239,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21258,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5785,11 +5790,11 @@
       "exits": {
         "east": {
           "to_room": 21240,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21238,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5808,15 +5813,15 @@
       "exits": {
         "north": {
           "to_room": 21220,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21239,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21260,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5840,15 +5845,15 @@
       "exits": {
         "north": {
           "to_room": 21221,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21242,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21261,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5867,11 +5872,11 @@
       "exits": {
         "north": {
           "to_room": 21222,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21241,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5890,11 +5895,11 @@
       "exits": {
         "north": {
           "to_room": 21223,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21263,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5913,15 +5918,15 @@
       "exits": {
         "north": {
           "to_room": 21224,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21264,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21245,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5945,7 +5950,7 @@
       "exits": {
         "west": {
           "to_room": 21244,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5964,11 +5969,11 @@
       "exits": {
         "north": {
           "to_room": 21226,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21266,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -5992,11 +5997,11 @@
       "exits": {
         "east": {
           "to_room": 21248,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21267,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6015,11 +6020,11 @@
       "exits": {
         "north": {
           "to_room": 21228,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21247,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6038,15 +6043,15 @@
       "exits": {
         "north": {
           "to_room": 21229,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21269,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21250,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6070,11 +6075,11 @@
       "exits": {
         "north": {
           "to_room": 21230,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21249,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6093,11 +6098,11 @@
       "exits": {
         "north": {
           "to_room": 21231,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21271,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6116,11 +6121,11 @@
       "exits": {
         "north": {
           "to_room": 21232,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21253,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6139,11 +6144,11 @@
       "exits": {
         "east": {
           "to_room": 21254,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21252,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6162,11 +6167,11 @@
       "exits": {
         "east": {
           "to_room": 21255,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21253,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6190,11 +6195,11 @@
       "exits": {
         "north": {
           "to_room": 21235,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21254,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6213,7 +6218,7 @@
       "exits": {
         "south": {
           "to_room": 21276,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6232,11 +6237,11 @@
       "exits": {
         "north": {
           "to_room": 21237,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21258,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6255,11 +6260,11 @@
       "exits": {
         "north": {
           "to_room": 21238,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21257,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6278,11 +6283,11 @@
       "exits": {
         "east": {
           "to_room": 21260,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21279,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6306,11 +6311,11 @@
       "exits": {
         "north": {
           "to_room": 21240,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21259,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6329,11 +6334,11 @@
       "exits": {
         "north": {
           "to_room": 21241,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21281,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6352,7 +6357,7 @@
       "exits": {
         "south": {
           "to_room": 21282,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6371,11 +6376,11 @@
       "exits": {
         "north": {
           "to_room": 21243,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21264,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6399,11 +6404,11 @@
       "exits": {
         "north": {
           "to_room": 21244,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21263,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6422,11 +6427,11 @@
       "exits": {
         "east": {
           "to_room": 21266,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21285,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6450,11 +6455,11 @@
       "exits": {
         "north": {
           "to_room": 21246,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21265,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6473,15 +6478,15 @@
       "exits": {
         "north": {
           "to_room": 21247,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21268,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21287,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6500,11 +6505,11 @@
       "exits": {
         "west": {
           "to_room": 21267,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21288,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6528,7 +6533,7 @@
       "exits": {
         "north": {
           "to_room": 21249,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6547,11 +6552,11 @@
       "exits": {
         "east": {
           "to_room": 21271,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21290,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6570,15 +6575,15 @@
       "exits": {
         "north": {
           "to_room": 21251,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21270,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21272,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6597,7 +6602,7 @@
       "exits": {
         "west": {
           "to_room": 21271,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6616,11 +6621,11 @@
       "exits": {
         "east": {
           "to_room": 21274,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21293,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6644,11 +6649,11 @@
       "exits": {
         "east": {
           "to_room": 21275,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21273,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6667,11 +6672,11 @@
       "exits": {
         "east": {
           "to_room": 21276,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21274,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6690,15 +6695,15 @@
       "exits": {
         "north": {
           "to_room": 21256,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21277,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21275,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6717,15 +6722,15 @@
       "exits": {
         "east": {
           "to_room": 21278,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21276,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21297,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6744,7 +6749,7 @@
       "exits": {
         "west": {
           "to_room": 21277,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6768,11 +6773,11 @@
       "exits": {
         "north": {
           "to_room": 21259,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21280,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6791,11 +6796,11 @@
       "exits": {
         "west": {
           "to_room": 21279,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21300,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6814,11 +6819,11 @@
       "exits": {
         "north": {
           "to_room": 21261,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21301,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6837,11 +6842,11 @@
       "exits": {
         "north": {
           "to_room": 21262,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21283,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6865,11 +6870,11 @@
       "exits": {
         "west": {
           "to_room": 21282,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21303,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6888,11 +6893,11 @@
       "exits": {
         "east": {
           "to_room": 21285,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21304,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6916,11 +6921,11 @@
       "exits": {
         "north": {
           "to_room": 21265,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21284,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6939,7 +6944,7 @@
       "exits": {
         "south": {
           "to_room": 21306,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6958,11 +6963,11 @@
       "exits": {
         "north": {
           "to_room": 21267,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21307,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -6986,11 +6991,11 @@
       "exits": {
         "north": {
           "to_room": 21268,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21289,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7009,11 +7014,11 @@
       "exits": {
         "east": {
           "to_room": 21290,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21288,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7032,11 +7037,11 @@
       "exits": {
         "north": {
           "to_room": 21270,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21289,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7055,11 +7060,11 @@
       "exits": {
         "east": {
           "to_room": 21292,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21311,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7078,11 +7083,11 @@
       "exits": {
         "east": {
           "to_room": 21293,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21291,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7106,11 +7111,11 @@
       "exits": {
         "north": {
           "to_room": 21273,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21292,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7129,11 +7134,11 @@
       "exits": {
         "east": {
           "to_room": 21295,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21314,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7152,11 +7157,11 @@
       "exits": {
         "west": {
           "to_room": 21294,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21315,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7175,11 +7180,11 @@
       "exits": {
         "east": {
           "to_room": 21297,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21316,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7198,11 +7203,11 @@
       "exits": {
         "north": {
           "to_room": 21277,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21296,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7226,11 +7231,11 @@
       "exits": {
         "east": {
           "to_room": 21299,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21318,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7249,11 +7254,11 @@
       "exits": {
         "east": {
           "to_room": 21300,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21298,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7272,11 +7277,11 @@
       "exits": {
         "north": {
           "to_room": 21280,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21299,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7295,11 +7300,11 @@
       "exits": {
         "north": {
           "to_room": 21281,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21302,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7323,11 +7328,11 @@
       "exits": {
         "east": {
           "to_room": 21303,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21301,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7346,15 +7351,15 @@
       "exits": {
         "north": {
           "to_room": 21283,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21302,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21323,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7378,11 +7383,11 @@
       "exits": {
         "north": {
           "to_room": 21284,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21324,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7401,7 +7406,7 @@
       "exits": {
         "south": {
           "to_room": 21325,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7420,15 +7425,15 @@
       "exits": {
         "north": {
           "to_room": 21286,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21307,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21326,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7452,11 +7457,11 @@
       "exits": {
         "north": {
           "to_room": 21287,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21306,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7475,11 +7480,11 @@
       "exits": {
         "east": {
           "to_room": 21309,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21328,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7498,11 +7503,11 @@
       "exits": {
         "west": {
           "to_room": 21308,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21329,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7521,11 +7526,11 @@
       "exits": {
         "east": {
           "to_room": 21311,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21330,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7544,11 +7549,11 @@
       "exits": {
         "north": {
           "to_room": 21291,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21310,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7572,7 +7577,7 @@
       "exits": {
         "east": {
           "to_room": 21313,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7591,15 +7596,15 @@
       "exits": {
         "east": {
           "to_room": 21314,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21312,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21333,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7618,11 +7623,11 @@
       "exits": {
         "north": {
           "to_room": 21294,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21313,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7641,7 +7646,7 @@
       "exits": {
         "north": {
           "to_room": 21295,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7660,11 +7665,11 @@
       "exits": {
         "north": {
           "to_room": 21296,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21317,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7688,11 +7693,11 @@
       "exits": {
         "east": {
           "to_room": 21318,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21316,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7711,11 +7716,11 @@
       "exits": {
         "north": {
           "to_room": 21298,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21317,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7734,7 +7739,7 @@
       "exits": {
         "east": {
           "to_room": 21320,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7753,11 +7758,11 @@
       "exits": {
         "west": {
           "to_room": 21319,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21340,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7781,7 +7786,7 @@
       "exits": {
         "south": {
           "to_room": 21341,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7800,11 +7805,11 @@
       "exits": {
         "east": {
           "to_room": 21323,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21342,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7828,11 +7833,11 @@
       "exits": {
         "north": {
           "to_room": 21303,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21322,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7851,11 +7856,11 @@
       "exits": {
         "north": {
           "to_room": 21304,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21344,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7874,11 +7879,11 @@
       "exits": {
         "north": {
           "to_room": 21305,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21345,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7902,11 +7907,11 @@
       "exits": {
         "north": {
           "to_room": 21306,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21327,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7925,11 +7930,11 @@
       "exits": {
         "east": {
           "to_room": 21328,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21326,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7948,15 +7953,15 @@
       "exits": {
         "north": {
           "to_room": 21308,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21327,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21348,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7975,7 +7980,7 @@
       "exits": {
         "north": {
           "to_room": 21309,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -7994,11 +7999,11 @@
       "exits": {
         "north": {
           "to_room": 21310,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21350,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8022,11 +8027,11 @@
       "exits": {
         "east": {
           "to_room": 21332,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21351,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8045,11 +8050,11 @@
       "exits": {
         "west": {
           "to_room": 21331,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21352,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8068,15 +8073,15 @@
       "exits": {
         "north": {
           "to_room": 21313,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21334,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21353,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8095,11 +8100,11 @@
       "exits": {
         "west": {
           "to_room": 21333,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21354,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8118,11 +8123,11 @@
       "exits": {
         "east": {
           "to_room": 21336,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21355,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8146,11 +8151,11 @@
       "exits": {
         "east": {
           "to_room": 21337,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21335,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8169,11 +8174,11 @@
       "exits": {
         "west": {
           "to_room": 21336,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21357,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8192,11 +8197,11 @@
       "exits": {
         "east": {
           "to_room": 21339,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21358,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8215,15 +8220,15 @@
       "exits": {
         "east": {
           "to_room": 21340,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21338,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21359,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8247,11 +8252,11 @@
       "exits": {
         "north": {
           "to_room": 21320,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21339,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8275,11 +8280,11 @@
       "exits": {
         "north": {
           "to_room": 21321,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21361,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8303,11 +8308,11 @@
       "exits": {
         "north": {
           "to_room": 21322,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21362,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8326,11 +8331,11 @@
       "exits": {
         "east": {
           "to_room": 21344,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21363,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8349,11 +8354,11 @@
       "exits": {
         "north": {
           "to_room": 21324,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21343,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8377,15 +8382,15 @@
       "exits": {
         "north": {
           "to_room": 21325,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21346,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21365,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8404,11 +8409,11 @@
       "exits": {
         "east": {
           "to_room": 21347,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21345,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8427,11 +8432,11 @@
       "exits": {
         "east": {
           "to_room": 21348,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21346,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8450,11 +8455,11 @@
       "exits": {
         "north": {
           "to_room": 21328,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21347,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8473,11 +8478,11 @@
       "exits": {
         "east": {
           "to_room": 21350,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21369,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8501,11 +8506,11 @@
       "exits": {
         "north": {
           "to_room": 21330,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21349,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8524,11 +8529,11 @@
       "exits": {
         "north": {
           "to_room": 21331,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21371,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8547,11 +8552,11 @@
       "exits": {
         "north": {
           "to_room": 21332,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21372,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8570,11 +8575,11 @@
       "exits": {
         "north": {
           "to_room": 21333,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21373,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8593,11 +8598,11 @@
       "exits": {
         "north": {
           "to_room": 21334,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21374,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8621,11 +8626,11 @@
       "exits": {
         "north": {
           "to_room": 21335,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21356,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8644,11 +8649,11 @@
       "exits": {
         "west": {
           "to_room": 21355,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21376,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8667,11 +8672,11 @@
       "exits": {
         "north": {
           "to_room": 21337,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21358,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8690,11 +8695,11 @@
       "exits": {
         "north": {
           "to_room": 21338,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21357,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8718,11 +8723,11 @@
       "exits": {
         "north": {
           "to_room": 21339,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21360,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8746,11 +8751,11 @@
       "exits": {
         "west": {
           "to_room": 21359,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21380,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8769,15 +8774,15 @@
       "exits": {
         "north": {
           "to_room": 21341,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21362,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21381,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8796,11 +8801,11 @@
       "exits": {
         "north": {
           "to_room": 21342,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21361,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8819,11 +8824,11 @@
       "exits": {
         "north": {
           "to_room": 21343,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21364,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8847,11 +8852,11 @@
       "exits": {
         "west": {
           "to_room": 21363,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21384,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8870,7 +8875,7 @@
       "exits": {
         "north": {
           "to_room": 21345,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8889,11 +8894,11 @@
       "exits": {
         "east": {
           "to_room": 21367,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21386,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8912,11 +8917,11 @@
       "exits": {
         "east": {
           "to_room": 21368,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21366,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8935,11 +8940,11 @@
       "exits": {
         "east": {
           "to_room": 21369,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21367,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8963,11 +8968,11 @@
       "exits": {
         "north": {
           "to_room": 21349,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21368,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -8986,11 +8991,11 @@
       "exits": {
         "east": {
           "to_room": 21371,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21390,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9009,11 +9014,11 @@
       "exits": {
         "north": {
           "to_room": 21351,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21370,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9032,11 +9037,11 @@
       "exits": {
         "north": {
           "to_room": 21352,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21392,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9055,7 +9060,7 @@
       "exits": {
         "north": {
           "to_room": 21353,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9079,11 +9084,11 @@
       "exits": {
         "north": {
           "to_room": 21354,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21375,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9102,11 +9107,11 @@
       "exits": {
         "east": {
           "to_room": 21376,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21374,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9125,15 +9130,15 @@
       "exits": {
         "north": {
           "to_room": 21356,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21375,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21377,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9152,7 +9157,7 @@
       "exits": {
         "west": {
           "to_room": 21376,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9176,11 +9181,11 @@
       "exits": {
         "east": {
           "to_room": 21379,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21398,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9204,11 +9209,11 @@
       "exits": {
         "east": {
           "to_room": 21380,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21378,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9227,15 +9232,15 @@
       "exits": {
         "north": {
           "to_room": 21360,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21379,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "south": {
           "to_room": 21400,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9254,11 +9259,11 @@
       "exits": {
         "north": {
           "to_room": 21361,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21382,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9277,11 +9282,11 @@
       "exits": {
         "east": {
           "to_room": 21383,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21381,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9305,7 +9310,7 @@
       "exits": {
         "west": {
           "to_room": 21382,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9324,11 +9329,11 @@
       "exits": {
         "north": {
           "to_room": 21364,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21385,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9347,11 +9352,11 @@
       "exits": {
         "east": {
           "to_room": 21386,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21384,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9370,15 +9375,15 @@
       "exits": {
         "north": {
           "to_room": 21366,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21385,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21387,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9397,11 +9402,11 @@
       "exits": {
         "east": {
           "to_room": 21388,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21386,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9425,11 +9430,11 @@
       "exits": {
         "east": {
           "to_room": 21389,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21387,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9448,11 +9453,11 @@
       "exits": {
         "east": {
           "to_room": 21390,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21388,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9471,11 +9476,11 @@
       "exits": {
         "north": {
           "to_room": 21370,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21389,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9494,7 +9499,7 @@
       "exits": {
         "east": {
           "to_room": 21392,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9513,15 +9518,15 @@
       "exits": {
         "north": {
           "to_room": 21372,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21391,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "east": {
           "to_room": 21393,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9545,11 +9550,11 @@
       "exits": {
         "east": {
           "to_room": 21394,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21392,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9568,11 +9573,11 @@
       "exits": {
         "east": {
           "to_room": 21395,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21393,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9591,11 +9596,11 @@
       "exits": {
         "east": {
           "to_room": 21396,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21394,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9614,11 +9619,11 @@
       "exits": {
         "east": {
           "to_room": 21397,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21395,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9642,11 +9647,11 @@
       "exits": {
         "east": {
           "to_room": 21398,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21396,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9670,11 +9675,11 @@
       "exits": {
         "north": {
           "to_room": 21378,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21397,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9693,7 +9698,7 @@
       "exits": {
         "east": {
           "to_room": 21400,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9712,11 +9717,11 @@
       "exits": {
         "north": {
           "to_room": 21380,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         },
         "west": {
           "to_room": 21399,
-          "description": ""
+          "description": "The way leads to Tunnel of Sticks"
         }
       },
       "extra_descs": {},
@@ -9768,6 +9773,30 @@
         }
       ],
       "loot_chance": 100
+    },
+    "21098": {
+      "vnum": 21098,
+      "name": "terrified traveler",
+      "short_desc": "a terrified traveler",
+      "long_desc": "A terrified traveler cowers here behind a pile of debris, eyes wide with panic.",
+      "description": "They're shaking uncontrollably, covered in scratches from the stick-like creatures that infest these tunnels. Their pack has been torn to shreds and their torch is nearly spent.",
+      "level": 25,
+      "alignment": 0,
+      "hp_dice": "25d10+400",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The traveler grabs you with frantic hands. 'The sticks! They MOVE! I thought they were just branches but they came alive and \u2014 there are hundreds of them! They fear fire, FIRE is the only thing that stops them! Please, do you have a torch? A spell? Anything? I just want to get OUT!'",
+        "sticks": "They whimper. 'They blend with the walls. You can't tell what's tunnel and what's creature until it's too late. Listen for clicking \u2014 that's how they communicate. If the clicking gets fast, they're about to attack. Go slow and burn everything suspicious.'",
+        "default": "The traveler flinches at every sound, clutching a spent torch like a lifeline.",
+        "next": "The traveler stares at you with wild eyes. 'You've reached the end of the known world, adventurer. There is nothing beyond this place but legend. You ARE the legend now.'"
+      }
     }
   },
   "objects": {
@@ -9783,7 +9812,8 @@
       "capacity": 200,
       "flags": [
         "magic"
-      ]
+      ],
+      "type": "treasure"
     }
   }
 }

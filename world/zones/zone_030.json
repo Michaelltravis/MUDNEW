@@ -90,7 +90,7 @@
       "obj_resets": [
         {
           "vnum": 3034,
-          "max": 10
+          "max": 1
         },
         {
           "vnum": 3035,
@@ -206,7 +206,7 @@
       "obj_resets": [
         {
           "vnum": 3034,
-          "max": 10
+          "max": 1
         }
       ]
     },
@@ -219,6 +219,10 @@
       "obj_resets": [
         {
           "vnum": 3035,
+          "max": 1
+        },
+        {
+          "vnum": 3299,
           "max": 1
         }
       ],
@@ -351,7 +355,7 @@
       "obj_resets": [
         {
           "vnum": 3034,
-          "max": 10
+          "max": 1
         }
       ]
     },
@@ -605,7 +609,7 @@
       "obj_resets": [
         {
           "vnum": 3034,
-          "max": 10
+          "max": 1
         }
       ]
     },
@@ -733,7 +737,7 @@
       "obj_resets": [
         {
           "vnum": 3034,
-          "max": 10
+          "max": 1
         }
       ]
     },
@@ -946,7 +950,7 @@
       "obj_resets": [
         {
           "vnum": 3034,
-          "max": 10
+          "max": 1
         }
       ]
     },
@@ -1052,6 +1056,10 @@
         "north": {
           "to_room": 3015,
           "description": "You see the main street."
+        },
+        "south": {
+          "to_room": 3032,
+          "description": "You see the pet shop store room."
         }
       },
       "extra_descs": {
@@ -1073,7 +1081,12 @@
         "indoors",
         "godroom"
       ],
-      "exits": {},
+      "exits": {
+        "north": {
+          "to_room": 3031,
+          "description": "You see the pet shop."
+        }
+      },
       "mob_resets": [
         {
           "vnum": 3090,
@@ -1093,6 +1106,34 @@
         },
         {
           "vnum": 3094,
+          "max": 1
+        },
+        {
+          "vnum": 3096,
+          "max": 1
+        },
+        {
+          "vnum": 3097,
+          "max": 1
+        },
+        {
+          "vnum": 3098,
+          "max": 1
+        },
+        {
+          "vnum": 3099,
+          "max": 1
+        },
+        {
+          "vnum": 3100,
+          "max": 1
+        },
+        {
+          "vnum": 3101,
+          "max": 1
+        },
+        {
+          "vnum": 3102,
           "max": 1
         }
       ]
@@ -1468,7 +1509,13 @@
       },
       "extra_descs": {
         "": "wall"
-      }
+      },
+      "obj_resets": [
+        {
+          "vnum": 3290,
+          "max": 1
+        }
+      ]
     },
     "3053": {
       "vnum": 3053,
@@ -1494,7 +1541,13 @@
       },
       "extra_descs": {
         "": "wall"
-      }
+      },
+      "obj_resets": [
+        {
+          "vnum": 3291,
+          "max": 1
+        }
+      ]
     },
     "3054": {
       "vnum": 3054,
@@ -1512,6 +1565,10 @@
         "south": {
           "to_room": 3001,
           "description": "You see the southern end of the temple."
+        },
+        "east": {
+          "to_room": 3055,
+          "description": "You see Odin's store."
         }
       },
       "extra_descs": {
@@ -1529,7 +1586,12 @@
         "indoors",
         "private"
       ],
-      "exits": {}
+      "exits": {
+        "west": {
+          "to_room": 3054,
+          "description": "You see the temple altar."
+        }
+      }
     },
     "3058": {
       "vnum": 3058,
@@ -1612,7 +1674,13 @@
           "to_room": 3066,
           "description": "There is a strange path leading towards a rusty gate to the west."
         }
-      }
+      },
+      "obj_resets": [
+        {
+          "vnum": 3293,
+          "max": 1
+        }
+      ]
     },
     "3062": {
       "vnum": 3062,
@@ -1694,7 +1762,13 @@
           "to_room": 3061,
           "description": "The path continues through the field to the south past an odd structure on the eastern side of the path."
         }
-      }
+      },
+      "obj_resets": [
+        {
+          "vnum": 3292,
+          "max": 1
+        }
+      ]
     },
     "3066": {
       "vnum": 3066,
@@ -1948,7 +2022,8 @@
           "description": "The Clerics' Guild entrance is to the north."
         },
         "west": {
-          "to_room": 3085
+          "to_room": 3085,
+          "description": "The Entrance To The Order Of Paladins"
         }
       },
       "mob_resets": [
@@ -2055,7 +2130,8 @@
       "flags": [],
       "exits": {
         "south": {
-          "to_room": 3013
+          "to_room": 3013,
+          "description": "The cobblestones lead to Main Street"
         }
       },
       "mob_resets": [],
@@ -2073,10 +2149,12 @@
       ],
       "exits": {
         "east": {
-          "to_room": 3078
+          "to_room": 3078,
+          "description": "The cobblestones lead to The Training Grounds"
         },
         "west": {
-          "to_room": 3086
+          "to_room": 3086,
+          "description": "The cobblestones lead to The Sanctum Of The Holy Order"
         }
       },
       "mob_resets": [
@@ -2102,7 +2180,8 @@
       ],
       "exits": {
         "east": {
-          "to_room": 3085
+          "to_room": 3085,
+          "description": "The Entrance To The Order Of Paladins"
         }
       },
       "mob_resets": [
@@ -3294,7 +3373,7 @@
       "alignment": 0,
       "hp_dice": "4d10+64",
       "damage_dice": "2d4+3",
-      "gold": 20,
+      "gold": 150,
       "exp": 240,
       "armor_class": 88,
       "flags": [
@@ -3735,6 +3814,127 @@
           "flee": "If a fight goes bad, type 'flee' to escape. No shame in living to fight another day."
         }
       }
+    },
+    "3096": {
+      "vnum": 3096,
+      "name": "tabby cat",
+      "short_desc": "a friendly tabby cat",
+      "long_desc": "A friendly tabby cat purrs softly here.",
+      "description": "This orange tabby cat has bright green eyes and a gentle disposition.",
+      "level": 2,
+      "hp_dice": "2d8+10",
+      "damage_dice": "1d4+1",
+      "ac": 90,
+      "exp": 20,
+      "gold": 30,
+      "alignment": 0,
+      "flags": [
+        "MOB_SENTINEL"
+      ],
+      "attacks": [
+        "bite"
+      ]
+    },
+    "3097": {
+      "vnum": 3097,
+      "name": "raven",
+      "short_desc": "a glossy black raven",
+      "long_desc": "A glossy black raven perches here, watching with intelligent eyes.",
+      "description": "This large raven has glossy black feathers and remarkably intelligent eyes.",
+      "level": 3,
+      "hp_dice": "2d6+8",
+      "damage_dice": "1d4+2",
+      "ac": 85,
+      "exp": 30,
+      "gold": 40,
+      "attacks": [
+        "peck"
+      ]
+    },
+    "3098": {
+      "vnum": 3098,
+      "name": "green snake",
+      "short_desc": "a green snake",
+      "long_desc": "A green snake coils here, flicking its tongue.",
+      "description": "This bright green snake is non-venomous but makes an exotic companion.",
+      "level": 4,
+      "hp_dice": "3d6+10",
+      "damage_dice": "1d6+2",
+      "ac": 80,
+      "exp": 40,
+      "gold": 50,
+      "flags": [
+        "MOB_SENTINEL"
+      ],
+      "attacks": [
+        "bite"
+      ]
+    },
+    "3099": {
+      "vnum": 3099,
+      "name": "trained hawk",
+      "short_desc": "a trained hawk",
+      "long_desc": "A trained hawk sits here on a perch, eyes scanning for prey.",
+      "description": "This fierce hawk has been trained as a hunting companion.",
+      "level": 6,
+      "hp_dice": "4d6+15",
+      "damage_dice": "1d8+3",
+      "ac": 75,
+      "exp": 80,
+      "gold": 80,
+      "attacks": [
+        "claw"
+      ]
+    },
+    "3100": {
+      "vnum": 3100,
+      "name": "trained war dog",
+      "short_desc": "a trained war dog",
+      "long_desc": "A large trained war dog stands guard here, muscles rippling.",
+      "description": "This powerful war dog has been bred and trained for combat.",
+      "level": 8,
+      "hp_dice": "6d8+30",
+      "damage_dice": "2d6+4",
+      "ac": 65,
+      "exp": 150,
+      "gold": 120,
+      "attacks": [
+        "bite"
+      ]
+    },
+    "3101": {
+      "vnum": 3101,
+      "name": "black bear",
+      "short_desc": "a young black bear",
+      "long_desc": "A young black bear lumbers here, sniffing curiously.",
+      "description": "This young black bear has been raised from a cub and is surprisingly docile.",
+      "level": 12,
+      "hp_dice": "10d8+50",
+      "damage_dice": "2d8+6",
+      "ac": 50,
+      "exp": 400,
+      "gold": 200,
+      "attacks": [
+        "claw",
+        "bite"
+      ]
+    },
+    "3102": {
+      "vnum": 3102,
+      "name": "dire wolf",
+      "short_desc": "a massive dire wolf",
+      "long_desc": "A massive dire wolf stands here, its silver fur bristling.",
+      "description": "This enormous wolf dwarfs ordinary wolves. Its silver eyes gleam with primal intelligence.",
+      "level": 15,
+      "hp_dice": "12d8+80",
+      "damage_dice": "3d6+8",
+      "ac": 40,
+      "exp": 800,
+      "gold": 350,
+      "attacks": [
+        "bite",
+        "claw"
+      ]
     }
   },
   "objects": {
@@ -3747,7 +3947,8 @@
       "weight": 65,
       "value": 300,
       "capacity": 50,
-      "current": 50
+      "current": 50,
+      "type": "container"
     },
     "3001": {
       "vnum": 3001,
@@ -3758,7 +3959,10 @@
       "weight": 10,
       "value": 20,
       "capacity": 8,
-      "current": 8
+      "current": 8,
+      "type": "drink",
+      "drinks": 10,
+      "max_drinks": 10
     },
     "3002": {
       "vnum": 3002,
@@ -3769,7 +3973,10 @@
       "weight": 10,
       "value": 10,
       "capacity": 8,
-      "current": 8
+      "current": 8,
+      "type": "drink",
+      "drinks": 10,
+      "max_drinks": 10
     },
     "3003": {
       "vnum": 3003,
@@ -3780,7 +3987,10 @@
       "weight": 10,
       "value": 50,
       "capacity": 8,
-      "current": 8
+      "current": 8,
+      "type": "drink",
+      "drinks": 10,
+      "max_drinks": 10
     },
     "3004": {
       "vnum": 3004,
@@ -3791,7 +4001,10 @@
       "weight": 10,
       "value": 20,
       "capacity": 8,
-      "current": 8
+      "current": 8,
+      "type": "drink",
+      "drinks": 10,
+      "max_drinks": 10
     },
     "3005": {
       "vnum": 3005,
@@ -3800,7 +4013,8 @@
       "room_desc": "A key made of a dull metal is lying on the ground here.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "3009": {
       "vnum": 3009,
@@ -3811,7 +4025,8 @@
       "weight": 1,
       "value": 50,
       "nutrition": 24,
-      "food_value": 30
+      "food_value": 30,
+      "type": "food"
     },
     "3010": {
       "vnum": 3010,
@@ -3822,7 +4037,8 @@
       "weight": 1,
       "value": 10,
       "nutrition": 12,
-      "food_value": 8
+      "food_value": 8,
+      "type": "food"
     },
     "3011": {
       "vnum": 3011,
@@ -3833,7 +4049,8 @@
       "weight": 1,
       "value": 5,
       "nutrition": 5,
-      "food_value": 15
+      "food_value": 15,
+      "type": "food"
     },
     "3012": {
       "vnum": 3012,
@@ -3844,7 +4061,8 @@
       "weight": 1,
       "value": 15,
       "nutrition": 15,
-      "food_value": 20
+      "food_value": 20,
+      "type": "food"
     },
     "3013": {
       "vnum": 3013,
@@ -3855,7 +4073,8 @@
       "weight": 1,
       "value": 10,
       "nutrition": 10,
-      "food_value": 25
+      "food_value": 25,
+      "type": "food"
     },
     "3014": {
       "vnum": 3014,
@@ -3866,7 +4085,8 @@
       "weight": 1,
       "value": 5,
       "nutrition": 5,
-      "food_value": 18
+      "food_value": 18,
+      "type": "food"
     },
     "3015": {
       "vnum": 3015,
@@ -3877,7 +4097,8 @@
       "weight": 5,
       "value": 24,
       "nutrition": 14,
-      "food_value": 22
+      "food_value": 22,
+      "type": "food"
     },
     "3020": {
       "vnum": 3020,
@@ -3888,7 +4109,8 @@
       "weight": 1,
       "value": 10,
       "damage_dice": "1d4",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "3021": {
       "vnum": 3021,
@@ -3899,7 +4121,8 @@
       "weight": 3,
       "value": 60,
       "damage_dice": "1d6",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "3022": {
       "vnum": 3022,
@@ -3910,7 +4133,8 @@
       "weight": 8,
       "value": 600,
       "damage_dice": "1d8",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "3023": {
       "vnum": 3023,
@@ -3921,7 +4145,8 @@
       "weight": 3,
       "value": 12,
       "damage_dice": "1d3",
-      "weapon_type": "pound"
+      "weapon_type": "pound",
+      "type": "weapon"
     },
     "3024": {
       "vnum": 3024,
@@ -3932,7 +4157,8 @@
       "weight": 6,
       "value": 50,
       "damage_dice": "1d5",
-      "weapon_type": "pound"
+      "weapon_type": "pound",
+      "type": "weapon"
     },
     "3025": {
       "vnum": 3025,
@@ -3943,7 +4169,8 @@
       "weight": 6,
       "value": 625,
       "damage_dice": "2d4",
-      "weapon_type": "pound"
+      "weapon_type": "pound",
+      "type": "weapon"
     },
     "3030": {
       "vnum": 3030,
@@ -3953,7 +4180,8 @@
       "item_type": "light",
       "weight": 1,
       "value": 10,
-      "light_hours": 24
+      "light_hours": 24,
+      "type": "light"
     },
     "3031": {
       "vnum": 3031,
@@ -3963,7 +4191,8 @@
       "item_type": "light",
       "weight": 1,
       "value": 50,
-      "light_hours": 96
+      "light_hours": 96,
+      "type": "light"
     },
     "3032": {
       "vnum": 3032,
@@ -3973,7 +4202,8 @@
       "item_type": "container",
       "weight": 2,
       "value": 20,
-      "capacity": 50
+      "capacity": 50,
+      "type": "container"
     },
     "3033": {
       "vnum": 3033,
@@ -3983,7 +4213,8 @@
       "item_type": "container",
       "weight": 5,
       "value": 50,
-      "capacity": 10
+      "capacity": 10,
+      "type": "container"
     },
     "3034": {
       "vnum": 3034,
@@ -3992,7 +4223,8 @@
       "room_desc": "An automatic teller machine has been installed in the wall here.",
       "item_type": "treasure",
       "weight": 5000,
-      "value": 0
+      "value": 0,
+      "type": "treasure"
     },
     "3035": {
       "vnum": 3035,
@@ -4007,7 +4239,8 @@
       "description": "This magnificent fountain is carved from blue-streaked marble. Crystal clear water bubbles up from the center, cascading down in gentle streams. The peaceful sound of flowing water fills the square.",
       "unlimited": true,
       "drinks": -1,
-      "capacity": 9999
+      "capacity": 9999,
+      "type": "furniture"
     },
     "3036": {
       "vnum": 3036,
@@ -4016,7 +4249,8 @@
       "room_desc": "A handy dandy cashcard is sitting on the ground here.",
       "item_type": "treasure",
       "weight": 1,
-      "value": 10000
+      "value": 10000,
+      "type": "treasure"
     },
     "3037": {
       "vnum": 3037,
@@ -4026,7 +4260,8 @@
       "item_type": "light",
       "weight": 1,
       "value": 5,
-      "light_hours": 4
+      "light_hours": 4,
+      "type": "light"
     },
     "3038": {
       "vnum": 3038,
@@ -4037,7 +4272,8 @@
       "weight": 1,
       "value": 5,
       "damage_dice": "1d1",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "treasure"
     },
     "3039": {
       "vnum": 3039,
@@ -4047,7 +4283,8 @@
       "item_type": "container",
       "weight": 10,
       "value": 100,
-      "capacity": 10
+      "capacity": 10,
+      "type": "treasure"
     },
     "3040": {
       "vnum": 3040,
@@ -4057,7 +4294,8 @@
       "item_type": "armor",
       "weight": 100,
       "value": 18000,
-      "armor_bonus": 7
+      "armor_bonus": 7,
+      "type": "treasure"
     },
     "3041": {
       "vnum": 3041,
@@ -4067,7 +4305,10 @@
       "item_type": "armor",
       "weight": 60,
       "value": 2500,
-      "armor_bonus": 5
+      "armor_bonus": 5,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 5
     },
     "3042": {
       "vnum": 3042,
@@ -4077,7 +4318,10 @@
       "item_type": "armor",
       "weight": 3,
       "value": 100,
-      "armor_bonus": 2
+      "armor_bonus": 2,
+      "type": "armor",
+      "wear_slot": "shield",
+      "armor": 3
     },
     "3043": {
       "vnum": 3043,
@@ -4087,7 +4331,10 @@
       "item_type": "armor",
       "weight": 10,
       "value": 200,
-      "armor_bonus": 2
+      "armor_bonus": 2,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 1
     },
     "3044": {
       "vnum": 3044,
@@ -4097,7 +4344,10 @@
       "item_type": "armor",
       "weight": 20,
       "value": 500,
-      "armor_bonus": 3
+      "armor_bonus": 3,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 1
     },
     "3045": {
       "vnum": 3045,
@@ -4107,7 +4357,10 @@
       "item_type": "armor",
       "weight": 40,
       "value": 1000,
-      "armor_bonus": 4
+      "armor_bonus": 4,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 5
     },
     "3046": {
       "vnum": 3046,
@@ -4117,7 +4370,8 @@
       "item_type": "armor",
       "weight": 80,
       "value": 7000,
-      "armor_bonus": 6
+      "armor_bonus": 6,
+      "type": "treasure"
     },
     "3050": {
       "vnum": 3050,
@@ -4126,7 +4380,8 @@
       "room_desc": "A scroll has carelessly been left here.",
       "item_type": "scroll",
       "weight": 1,
-      "value": 2001
+      "value": 2001,
+      "type": "scroll"
     },
     "3051": {
       "vnum": 3051,
@@ -4135,7 +4390,8 @@
       "room_desc": "A small yellow potion has carelessly been left here.",
       "item_type": "potion",
       "weight": 1,
-      "value": 400
+      "value": 400,
+      "type": "potion"
     },
     "3052": {
       "vnum": 3052,
@@ -4144,7 +4400,8 @@
       "room_desc": "A scroll has carelessly been left here.",
       "item_type": "scroll",
       "weight": 4,
-      "value": 2001
+      "value": 2001,
+      "type": "scroll"
     },
     "3053": {
       "vnum": 3053,
@@ -4153,7 +4410,8 @@
       "room_desc": "A grey wand has carelessly been left here.",
       "item_type": "wand",
       "weight": 2,
-      "value": 4000
+      "value": 4000,
+      "type": "wand"
     },
     "3054": {
       "vnum": 3054,
@@ -4162,7 +4420,10 @@
       "room_desc": "A gnarled staff has carelessly been left here.",
       "item_type": "staff",
       "weight": 17,
-      "value": 7000
+      "value": 7000,
+      "type": "weapon",
+      "weapon_type": "pound",
+      "damage_dice": "1d6"
     },
     "3055": {
       "vnum": 3055,
@@ -4171,7 +4432,10 @@
       "room_desc": "A metal staff has carelessly been left here.",
       "item_type": "staff",
       "weight": 7,
-      "value": 8500
+      "value": 8500,
+      "type": "weapon",
+      "weapon_type": "pound",
+      "damage_dice": "1d6"
     },
     "3060": {
       "vnum": 3060,
@@ -4180,7 +4444,8 @@
       "room_desc": "A raft has been left here.",
       "item_type": "boat",
       "weight": 75,
-      "value": 400
+      "value": 400,
+      "type": "treasure"
     },
     "3061": {
       "vnum": 3061,
@@ -4189,7 +4454,8 @@
       "room_desc": "A canoe has been left here.",
       "item_type": "boat",
       "weight": 32,
-      "value": 1000
+      "value": 1000,
+      "type": "treasure"
     },
     "3070": {
       "vnum": 3070,
@@ -4199,7 +4465,8 @@
       "item_type": "armor",
       "weight": 8,
       "value": 1750,
-      "armor_bonus": 6
+      "armor_bonus": 6,
+      "type": "treasure"
     },
     "3071": {
       "vnum": 3071,
@@ -4209,7 +4476,10 @@
       "item_type": "armor",
       "weight": 3,
       "value": 75,
-      "armor_bonus": 3
+      "armor_bonus": 3,
+      "type": "armor",
+      "wear_slot": "hands",
+      "armor": 2
     },
     "3075": {
       "vnum": 3075,
@@ -4219,7 +4489,10 @@
       "item_type": "armor",
       "weight": 8,
       "value": 3500,
-      "armor_bonus": 6
+      "armor_bonus": 6,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "3076": {
       "vnum": 3076,
@@ -4229,7 +4502,10 @@
       "item_type": "armor",
       "weight": 3,
       "value": 150,
-      "armor_bonus": 3
+      "armor_bonus": 3,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "3080": {
       "vnum": 3080,
@@ -4239,7 +4515,10 @@
       "item_type": "armor",
       "weight": 8,
       "value": 3500,
-      "armor_bonus": 6
+      "armor_bonus": 6,
+      "type": "armor",
+      "wear_slot": "legs",
+      "armor": 2
     },
     "3081": {
       "vnum": 3081,
@@ -4249,7 +4528,10 @@
       "item_type": "armor",
       "weight": 8,
       "value": 150,
-      "armor_bonus": 3
+      "armor_bonus": 3,
+      "type": "armor",
+      "wear_slot": "legs",
+      "armor": 2
     },
     "3085": {
       "vnum": 3085,
@@ -4259,7 +4541,10 @@
       "item_type": "armor",
       "weight": 8,
       "value": 1750,
-      "armor_bonus": 6
+      "armor_bonus": 6,
+      "type": "armor",
+      "wear_slot": "legs",
+      "armor": 2
     },
     "3086": {
       "vnum": 3086,
@@ -4269,7 +4554,10 @@
       "item_type": "armor",
       "weight": 4,
       "value": 75,
-      "armor_bonus": 2
+      "armor_bonus": 2,
+      "type": "armor",
+      "wear_slot": "legs",
+      "armor": 2
     },
     "3096": {
       "vnum": 3096,
@@ -4278,7 +4566,8 @@
       "room_desc": "A large, sociable bulletin board is mounted on a wall here.",
       "item_type": "treasure",
       "weight": 0,
-      "value": 0
+      "value": 0,
+      "type": "furniture"
     },
     "3097": {
       "vnum": 3097,
@@ -4287,7 +4576,8 @@
       "room_desc": "A large bulletin board is here, carved from a block of ice.",
       "item_type": "treasure",
       "weight": 0,
-      "value": 0
+      "value": 0,
+      "type": "furniture"
     },
     "3098": {
       "vnum": 3098,
@@ -4296,7 +4586,8 @@
       "room_desc": "A large bulletin board is mounted on a wall here.  It glows with a faint aura.",
       "item_type": "treasure",
       "weight": 0,
-      "value": 0
+      "value": 0,
+      "type": "furniture"
     },
     "3099": {
       "vnum": 3099,
@@ -4305,7 +4596,8 @@
       "room_desc": "A large bulletin board is mounted on a wall here.",
       "item_type": "treasure",
       "weight": 0,
-      "value": 0
+      "value": 0,
+      "type": "furniture"
     },
     "3100": {
       "vnum": 3100,
@@ -4320,7 +4612,8 @@
       "liquid_type": "water",
       "flags": [
         "no_take"
-      ]
+      ],
+      "type": "furniture"
     },
     "3101": {
       "vnum": 3101,
@@ -4331,7 +4624,8 @@
       "item_type": "food",
       "weight": 1,
       "value": 5,
-      "food_value": 10
+      "food_value": 10,
+      "type": "furniture"
     },
     "3102": {
       "vnum": 3102,
@@ -4345,7 +4639,10 @@
       "drink_value": 6,
       "drink_amount": 10,
       "max_drink_amount": 10,
-      "liquid_type": "water"
+      "liquid_type": "water",
+      "type": "drink",
+      "drinks": 10,
+      "max_drinks": 10
     },
     "3103": {
       "vnum": 3103,
@@ -4360,7 +4657,8 @@
       "liquid_type": "water",
       "flags": [
         "no_take"
-      ]
+      ],
+      "type": "furniture"
     },
     "3120": {
       "vnum": 3120,
@@ -4386,7 +4684,10 @@
           "type": "hitroll",
           "value": 2
         }
-      ]
+      ],
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "3121": {
       "vnum": 3121,
@@ -4413,7 +4714,10 @@
           "type": "armor",
           "value": -10
         }
-      ]
+      ],
+      "type": "weapon",
+      "weapon_type": "pierce",
+      "damage_dice": "1d6"
     },
     "3122": {
       "vnum": 3122,
@@ -4440,7 +4744,10 @@
           "type": "saves",
           "value": -5
         }
-      ]
+      ],
+      "type": "armor",
+      "wear_slot": "finger",
+      "armor": 0
     },
     "3123": {
       "vnum": 3123,
@@ -4470,7 +4777,8 @@
           "type": "dex",
           "value": 1
         }
-      ]
+      ],
+      "type": "weapon"
     },
     "3124": {
       "vnum": 3124,
@@ -4497,7 +4805,10 @@
           "type": "dex",
           "value": 2
         }
-      ]
+      ],
+      "type": "armor",
+      "wear_slot": "about",
+      "armor": 1
     },
     "3125": {
       "vnum": 3125,
@@ -4524,7 +4835,10 @@
           "type": "move",
           "value": 25
         }
-      ]
+      ],
+      "type": "armor",
+      "wear_slot": "feet",
+      "armor": 2
     },
     "3126": {
       "vnum": 3126,
@@ -4554,7 +4868,8 @@
           "type": "str",
           "value": 2
         }
-      ]
+      ],
+      "type": "weapon"
     },
     "3127": {
       "vnum": 3127,
@@ -4585,7 +4900,10 @@
           "type": "saves",
           "value": -8
         }
-      ]
+      ],
+      "type": "armor",
+      "wear_slot": "shield",
+      "armor": 3
     },
     "3128": {
       "vnum": 3128,
@@ -4622,7 +4940,10 @@
           "type": "saves",
           "value": -10
         }
-      ]
+      ],
+      "type": "armor",
+      "wear_slot": "neck",
+      "armor": 0
     },
     "3130": {
       "vnum": 3130,
@@ -4633,7 +4954,8 @@
       "item_type": "food",
       "weight": 1,
       "value": 25,
-      "food_value": 28
+      "food_value": 28,
+      "type": "food"
     },
     "3131": {
       "vnum": 3131,
@@ -4644,7 +4966,8 @@
       "item_type": "food",
       "weight": 2,
       "value": 40,
-      "food_value": 20
+      "food_value": 20,
+      "type": "food"
     },
     "3132": {
       "vnum": 3132,
@@ -4655,7 +4978,8 @@
       "item_type": "food",
       "weight": 0,
       "value": 5,
-      "food_value": 6
+      "food_value": 6,
+      "type": "food"
     },
     "3133": {
       "vnum": 3133,
@@ -4668,7 +4992,10 @@
       "value": 100,
       "capacity": 6,
       "current": 6,
-      "liquid_type": "wine"
+      "liquid_type": "wine",
+      "type": "drink",
+      "drinks": 10,
+      "max_drinks": 10
     },
     "3134": {
       "vnum": 3134,
@@ -4682,7 +5009,8 @@
       "spell_level": 10,
       "spells": [
         "cure_light"
-      ]
+      ],
+      "type": "potion"
     },
     "3135": {
       "vnum": 3135,
@@ -4696,7 +5024,8 @@
       "spell_level": 10,
       "spells": [
         "restore_mana"
-      ]
+      ],
+      "type": "potion"
     },
     "3136": {
       "vnum": 3136,
@@ -4707,7 +5036,8 @@
       "item_type": "light",
       "weight": 1,
       "value": 10,
-      "light_hours": 24
+      "light_hours": 24,
+      "type": "light"
     },
     "3137": {
       "vnum": 3137,
@@ -4717,7 +5047,8 @@
       "description": "Fifty feet of hemp rope, useful for climbing or binding.",
       "item_type": "other",
       "weight": 5,
-      "value": 20
+      "value": 20,
+      "type": "treasure"
     },
     "3138": {
       "vnum": 3138,
@@ -4727,7 +5058,8 @@
       "description": "Clean linen bandages for treating wounds.",
       "item_type": "other",
       "weight": 0,
-      "value": 15
+      "value": 15,
+      "type": "treasure"
     },
     "3200": {
       "vnum": 3200,
@@ -4738,7 +5070,8 @@
       "item_type": "poison",
       "weight": 1,
       "value": 150,
-      "poison_type": "venom"
+      "poison_type": "venom",
+      "type": "treasure"
     },
     "3201": {
       "vnum": 3201,
@@ -4749,7 +5082,8 @@
       "item_type": "poison",
       "weight": 1,
       "value": 250,
-      "poison_type": "neurotoxin"
+      "poison_type": "neurotoxin",
+      "type": "treasure"
     },
     "3202": {
       "vnum": 3202,
@@ -4760,7 +5094,8 @@
       "item_type": "poison",
       "weight": 1,
       "value": 200,
-      "poison_type": "hemotoxin"
+      "poison_type": "hemotoxin",
+      "type": "treasure"
     },
     "3210": {
       "vnum": 3210,
@@ -4768,7 +5103,7 @@
       "short_desc": "a leather-bound chronicle",
       "room_desc": "A leather-bound chronicle rests on a dusty desk.",
       "description": "The cover reads \"Chronicle of the First Wall\" in faded ink.",
-      "type": "other",
+      "type": "furniture",
       "weight": 2,
       "cost": 75,
       "lore_id": "midgaard_chronicle",
@@ -4782,13 +5117,15 @@
       "short_desc": "a sealed temple letter",
       "room_desc": "A sealed letter lies tucked into a votive bowl.",
       "description": "Wax bears the imprint of a stylized hammer.",
-      "type": "other",
+      "type": "weapon",
       "weight": 1,
       "cost": 50,
       "lore_id": "midgaard_letter",
       "lore_title": "Letter of the First High Priest",
       "lore_zone": 30,
-      "lore_text": "\"Keep the reliquary hidden. Let only those who search with pure intent find the way beneath the temple.\""
+      "lore_text": "\"Keep the reliquary hidden. Let only those who search with pure intent find the way beneath the temple.\"",
+      "weapon_type": "pound",
+      "damage_dice": "1d8"
     },
     "3212": {
       "vnum": 3212,
@@ -4841,7 +5178,8 @@
         "value": 2,
         "duration": 300
       },
-      "food_message": "The dragon's power surges through your muscles!"
+      "food_message": "The dragon's power surges through your muscles!",
+      "type": "food"
     },
     "3216": {
       "vnum": 3216,
@@ -4858,7 +5196,8 @@
         "value": 2,
         "duration": 300
       },
-      "food_message": "You feel light as a feather and quick as lightning!"
+      "food_message": "You feel light as a feather and quick as lightning!",
+      "type": "food"
     },
     "3217": {
       "vnum": 3217,
@@ -4875,7 +5214,8 @@
         "value": 3,
         "duration": 300
       },
-      "food_message": "Alien thoughts flood your mind, expanding your consciousness!"
+      "food_message": "Alien thoughts flood your mind, expanding your consciousness!",
+      "type": "treasure"
     },
     "3218": {
       "vnum": 3218,
@@ -4892,7 +5232,8 @@
         "value": 50,
         "duration": 300
       },
-      "food_message": "Warmth spreads through your body, accelerating your healing!"
+      "food_message": "Warmth spreads through your body, accelerating your healing!",
+      "type": "food"
     },
     "3219": {
       "vnum": 3219,
@@ -4909,7 +5250,8 @@
         "value": 2,
         "duration": 300
       },
-      "food_message": "The hearty stew fortifies your constitution!"
+      "food_message": "The hearty stew fortifies your constitution!",
+      "type": "furniture"
     },
     "3220": {
       "vnum": 3220,
@@ -4926,7 +5268,8 @@
         "value": 1,
         "duration": 600
       },
-      "food_message": "Divine power flows through you! All your abilities are enhanced!"
+      "food_message": "Divine power flows through you! All your abilities are enhanced!",
+      "type": "treasure"
     },
     "3221": {
       "vnum": 3221,
@@ -4943,7 +5286,8 @@
         "value": 25,
         "duration": 300
       },
-      "food_message": "Shadows cling to you, making you harder to detect!"
+      "food_message": "Shadows cling to you, making you harder to detect!",
+      "type": "food"
     },
     "3222": {
       "vnum": 3222,
@@ -4960,7 +5304,63 @@
         "value": 2,
         "duration": 300
       },
-      "food_message": "Your combat reflexes sharpen!"
+      "food_message": "Your combat reflexes sharpen!",
+      "type": "food"
+    },
+    "3290": {
+      "vnum": 3290,
+      "name": "wooden signpost",
+      "short_desc": "a weathered wooden signpost",
+      "room_desc": "A weathered wooden signpost stands here, pointing in several directions.",
+      "item_type": "furniture",
+      "type": "furniture",
+      "weight": 0,
+      "value": 0,
+      "readable_text": "=== MIDGAARD WEST GATE ===\nWest: Light Forest (Moderate - Level 3+)\n  Follow the forest path to find Ranger Thornwood\nSouth: Haon-Dor Forest (Moderate - Level 3+)\nEast: Return to Midgaard (Safe)"
+    },
+    "3291": {
+      "vnum": 3291,
+      "name": "wooden signpost",
+      "short_desc": "a weathered wooden signpost",
+      "room_desc": "A weathered wooden signpost stands here, pointing in several directions.",
+      "item_type": "furniture",
+      "type": "furniture",
+      "weight": 0,
+      "value": 0,
+      "readable_text": "=== MIDGAARD EAST GATE ===\nEast: Thalos & Eastern Realms (Challenging - Level 10+)\nWest: Return to Midgaard (Safe)"
+    },
+    "3292": {
+      "vnum": 3292,
+      "name": "wooden signpost",
+      "short_desc": "a weathered wooden signpost",
+      "room_desc": "A weathered wooden signpost stands here, pointing toward the northern wilds.",
+      "item_type": "furniture",
+      "type": "furniture",
+      "weight": 0,
+      "value": 0,
+      "readable_text": "=== NORTHERN ROAD ===\nNorth: Great Northern Forest (Dangerous - Level 5+)\n  Seek Borin the Wilderness Guide for quests\nSouth: Return to Midgaard (Safe)"
+    },
+    "3293": {
+      "vnum": 3293,
+      "name": "wooden signpost",
+      "short_desc": "a weathered wooden signpost",
+      "room_desc": "A weathered wooden signpost stands here near the Great Field.",
+      "item_type": "furniture",
+      "type": "furniture",
+      "weight": 0,
+      "value": 0,
+      "readable_text": "=== GREAT FIELD ===\nEast: Newbie Training Grounds (Safe - Level 1+)\n  Perfect for new adventurers\nNorth: Great Northern Forest (Dangerous - Level 5+)\nSouth: Midgaard City Center (Safe)"
+    },
+    "3299": {
+      "vnum": 3299,
+      "name": "quest board",
+      "short_desc": "the Adventurer's Guild quest board",
+      "room_desc": "A large quest board is mounted on the temple wall, covered in notices and contracts.",
+      "item_type": "furniture",
+      "type": "furniture",
+      "weight": 0,
+      "value": 0,
+      "readable_text": "=== QUEST BOARD - Midgaard Adventurer's Guild ===\n\nBEGINNERS (Levels 1-10):\n  Newbie Training Grounds \u2014 East of the Great Field (Level 1+)\n  Light Forest \u2014 Speak with Ranger Thornwood at the forest edge (Level 3+)\n  Haon-Dor Forest \u2014 South from the West Gate (Level 3+)\n\nINTERMEDIATE (Levels 5-20):\n  Great Northern Forest \u2014 North from the Great Field (Level 5+)\n    Borin the Wilderness Guide has work for capable adventurers\n  Orc Enclave \u2014 Scout Harken tracks orc patrols (Level 5+)\n  Silversong Forest \u2014 Lyralei the Bard seeks protectors (Level 5+)\n  Mines of Moria (Upper) \u2014 Grimjaw the Prospector at the mine entrance (Level 8+)\n  City of Thalos \u2014 Captain Varro needs desert fighters (Level 10+)\n  City Sewers \u2014 Skullcap lurks near the sewer grate (Level 10+)\n  Dark Forest \u2014 Only the brave dare enter (Level 10+)\n\nADVANCED (Levels 15-35):\n  Drow City \u2014 Zilara the Shadow Exile knows the way (Level 15+)\n    Enter through the portal in the Deserted Warehouse\n  Mines of Moria (Deep) \u2014 Grimjaw speaks of deeper horrors (Level 15+)\n  Mindflayer's Lair \u2014 Professor Mindwell needs brave souls (Level 15+)\n  Great Pyramid \u2014 Professor Khepri researches ancient secrets (Level 20+)\n  Sewer Maze \u2014 The deepest sewers hold terrible secrets (Level 20+)\n\nEXPERT (Levels 25-50):\n  Necropolis \u2014 Paladin Dawnguard leads the crusade (Level 25+)\n  Frostspire \u2014 Freja guards the frozen peaks (Level 25+)\n  Dragon's Domain \u2014 Drakon the Dragon Hunter seeks allies (Level 30+)\n  Plane of Eternal Chaos \u2014 Arcanist Veyla contains the rifts (Level 30+)\n\nLEGENDARY (Levels 50-60):\n  Castle Apocalypse \u2014 Sir Aldren the Undying guards the outer gate\n    Only the realm's greatest heroes need apply\n  Tunnel of Sticks \u2014 Reality itself is your enemy\n    You have been warned.\n\nType 'quest list' to see your active quests.\nType 'talk <npc name>' when you find a quest giver."
     }
   }
 }

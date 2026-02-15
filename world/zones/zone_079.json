@@ -157,7 +157,7 @@
       "exits": {
         "north": {
           "to_room": 7906,
-          "description": ""
+          "description": "A passage leads to The Kitchen Of Naris"
         },
         "east": {
           "to_room": 7913,
@@ -261,7 +261,7 @@
       "exits": {
         "south": {
           "to_room": 7906,
-          "description": "",
+          "description": "A passage leads to The Kitchen Of Naris",
           "door": {
             "name": "door wooden larder",
             "state": "closed",
@@ -300,7 +300,7 @@
       "exits": {
         "west": {
           "to_room": 7906,
-          "description": "",
+          "description": "A passage leads to The Kitchen Of Naris",
           "door": {
             "name": "door fridge",
             "state": "closed",
@@ -329,11 +329,11 @@
       "exits": {
         "up": {
           "to_room": 7911,
-          "description": ""
+          "description": "A passage leads to Redferne's Bedroom"
         },
         "down": {
           "to_room": 7901,
-          "description": ""
+          "description": "A passage leads to The Southern End Of The Hall"
         }
       }
     },
@@ -350,7 +350,7 @@
       "exits": {
         "east": {
           "to_room": 7903,
-          "description": "",
+          "description": "A passage leads to The Artifact Room Of Naris",
           "door": {
             "name": "safe steel",
             "state": "open",
@@ -393,7 +393,7 @@
         },
         "down": {
           "to_room": 7909,
-          "description": ""
+          "description": "A passage leads to On The Stairs"
         }
       }
     },
@@ -556,27 +556,27 @@
       "exits": {
         "north": {
           "to_room": 7914,
-          "description": ""
+          "description": "A steep trail ascends to On The Huge Chain"
         },
         "east": {
           "to_room": 7915,
-          "description": ""
+          "description": "A steep trail ascends to The Chain Where It Is Too Windy"
         },
         "south": {
           "to_room": 7916,
-          "description": ""
+          "description": "A steep trail ascends to On The Great Chain Of Naris"
         },
         "west": {
           "to_room": 7917,
-          "description": ""
+          "description": "A steep trail ascends to The Chain"
         },
         "up": {
           "to_room": 7918,
-          "description": ""
+          "description": "A steep trail ascends to The Mighty Chain Of Naris"
         },
         "down": {
           "to_room": 3120,
-          "description": ""
+          "description": "The cobblestones lead to The Road Crossing"
         }
       }
     }
@@ -679,7 +679,8 @@
       "room_desc": "A large steel key has been left here.",
       "item_type": "key",
       "weight": 2,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "7901": {
       "vnum": 7901,
@@ -688,7 +689,8 @@
       "room_desc": "A copper key has been left on the floor.",
       "item_type": "key",
       "weight": 2,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "7902": {
       "vnum": 7902,
@@ -697,7 +699,8 @@
       "room_desc": "A small brass key lies here.",
       "item_type": "key",
       "weight": 1,
-      "value": 10
+      "value": 10,
+      "type": "key"
     },
     "7903": {
       "vnum": 7903,
@@ -706,7 +709,8 @@
       "room_desc": "There is a huge treasure here, looking moderately valuable.",
       "item_type": "money",
       "weight": 5,
-      "value": 7734
+      "value": 7734,
+      "type": "treasure"
     },
     "7904": {
       "vnum": 7904,
@@ -717,7 +721,8 @@
       "weight": 0,
       "value": 0,
       "capacity": 100,
-      "key_vnum": 7902
+      "key_vnum": 7902,
+      "type": "container"
     },
     "7905": {
       "vnum": 7905,
@@ -728,7 +733,8 @@
       "weight": 0,
       "value": 0,
       "capacity": 15,
-      "key_vnum": 7902
+      "key_vnum": 7902,
+      "type": "container"
     },
     "7906": {
       "vnum": 7906,
@@ -739,7 +745,8 @@
       "weight": 3,
       "value": 6500,
       "damage_dice": "5d3",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "7907": {
       "vnum": 7907,
@@ -748,7 +755,10 @@
       "room_desc": "A large spiked bracelet has been left here.",
       "item_type": "treasure",
       "weight": 1,
-      "value": 1200
+      "value": 1200,
+      "type": "armor",
+      "wear_slot": "wrist",
+      "armor": 1
     },
     "7908": {
       "vnum": 7908,
@@ -758,7 +768,9 @@
       "item_type": "food",
       "weight": 1,
       "value": 50,
-      "nutrition": 24
+      "nutrition": 24,
+      "type": "food",
+      "food_value": 12
     },
     "7909": {
       "vnum": 7909,
@@ -767,7 +779,10 @@
       "room_desc": "A shiny goldring has been abandoned here.",
       "item_type": "treasure",
       "weight": 20,
-      "value": 3500
+      "value": 3500,
+      "type": "armor",
+      "wear_slot": "finger",
+      "armor": 0
     },
     "7910": {
       "vnum": 7910,
@@ -778,7 +793,8 @@
       "weight": 18,
       "value": 1700,
       "damage_dice": "2d8",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "7911": {
       "vnum": 7911,
@@ -788,7 +804,10 @@
       "item_type": "armor",
       "weight": 5,
       "value": 4500,
-      "armor_bonus": 7
+      "armor_bonus": 7,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "7912": {
       "vnum": 7912,
@@ -798,7 +817,10 @@
       "item_type": "armor",
       "weight": 8,
       "value": 2300,
-      "armor_bonus": 8
+      "armor_bonus": 8,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "7913": {
       "vnum": 7913,
@@ -809,7 +831,8 @@
       "weight": 22,
       "value": 3500,
       "damage_dice": "3d6",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "7914": {
       "vnum": 7914,
@@ -819,7 +842,8 @@
       "item_type": "armor",
       "weight": 70,
       "value": 20000,
-      "armor_bonus": 10
+      "armor_bonus": 10,
+      "type": "treasure"
     },
     "7915": {
       "vnum": 7915,
@@ -829,7 +853,8 @@
       "item_type": "armor",
       "weight": 40,
       "value": 12500,
-      "armor_bonus": 7
+      "armor_bonus": 7,
+      "type": "treasure"
     },
     "7916": {
       "vnum": 7916,
@@ -839,7 +864,10 @@
       "item_type": "armor",
       "weight": 14,
       "value": 2500,
-      "armor_bonus": 5
+      "armor_bonus": 5,
+      "type": "armor",
+      "wear_slot": "hands",
+      "armor": 2
     },
     "7917": {
       "vnum": 7917,
@@ -849,7 +877,10 @@
       "item_type": "armor",
       "weight": 35,
       "value": 9000,
-      "armor_bonus": 8
+      "armor_bonus": 8,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "7918": {
       "vnum": 7918,
@@ -859,7 +890,10 @@
       "item_type": "armor",
       "weight": 60,
       "value": 15000,
-      "armor_bonus": 12
+      "armor_bonus": 12,
+      "type": "armor",
+      "wear_slot": "shield",
+      "armor": 3
     },
     "7919": {
       "vnum": 7919,
@@ -869,7 +903,10 @@
       "item_type": "armor",
       "weight": 40,
       "value": 3500,
-      "armor_bonus": 5
+      "armor_bonus": 5,
+      "type": "armor",
+      "wear_slot": "feet",
+      "armor": 2
     },
     "7920": {
       "vnum": 7920,
@@ -879,7 +916,8 @@
       "item_type": "armor",
       "weight": 40,
       "value": 12500,
-      "armor_bonus": 7
+      "armor_bonus": 7,
+      "type": "treasure"
     },
     "7921": {
       "vnum": 7921,
@@ -890,7 +928,8 @@
       "weight": 45,
       "value": 60,
       "capacity": 40,
-      "current": 40
+      "current": 40,
+      "type": "container"
     }
   }
 }

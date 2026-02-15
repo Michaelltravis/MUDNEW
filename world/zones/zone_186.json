@@ -404,7 +404,8 @@
       "value": 0,
       "vnum": 18601,
       "weapon_type": "slash",
-      "weight": 4
+      "weight": 4,
+      "type": "weapon"
     },
     "18602": {
       "armor_bonus": 4,
@@ -414,7 +415,10 @@
       "short_desc": "a bright green newbie vest",
       "value": 0,
       "vnum": 18602,
-      "weight": 4
+      "weight": 4,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 1
     },
     "18603": {
       "armor_bonus": 3,
@@ -424,7 +428,10 @@
       "short_desc": "a bright newbie helm",
       "value": 0,
       "vnum": 18603,
-      "weight": 4
+      "weight": 4,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "18604": {
       "armor_bonus": 0,
@@ -434,7 +441,10 @@
       "short_desc": "a dark newbie cloak",
       "value": 100,
       "vnum": 18604,
-      "weight": 2
+      "weight": 2,
+      "type": "armor",
+      "wear_slot": "about",
+      "armor": 1
     },
     "18605": {
       "armor_bonus": 0,
@@ -444,7 +454,10 @@
       "short_desc": "a newbie signet ring",
       "value": 500,
       "vnum": 18605,
-      "weight": 1
+      "weight": 1,
+      "type": "armor",
+      "wear_slot": "finger",
+      "armor": 0
     },
     "18606": {
       "damage_dice": "1d4",
@@ -455,7 +468,8 @@
       "value": 0,
       "vnum": 18606,
       "weapon_type": "pierce",
-      "weight": 1
+      "weight": 1,
+      "type": "weapon"
     },
     "18607": {
       "armor_bonus": 0,
@@ -465,7 +479,10 @@
       "short_desc": "a pet dragon collar",
       "value": 0,
       "vnum": 18607,
-      "weight": 1
+      "weight": 1,
+      "type": "armor",
+      "wear_slot": "neck",
+      "armor": 0
     },
     "18608": {
       "item_type": "key",
@@ -474,7 +491,8 @@
       "short_desc": "a wee little key",
       "value": 0,
       "vnum": 18608,
-      "weight": 1
+      "weight": 1,
+      "type": "key"
     },
     "18609": {
       "item_type": "light",
@@ -484,7 +502,8 @@
       "short_desc": "a brightly glowing jar",
       "value": 0,
       "vnum": 18609,
-      "weight": 2
+      "weight": 2,
+      "type": "treasure"
     },
     "18610": {
       "armor_bonus": 2,
@@ -494,7 +513,8 @@
       "short_desc": "the horns of the Minotaur",
       "value": 100,
       "vnum": 18610,
-      "weight": 8
+      "weight": 8,
+      "type": "treasure"
     },
     "18611": {
       "item_type": "treasure",
@@ -503,7 +523,8 @@
       "short_desc": "the smelly hide of the Minotaur",
       "value": 100,
       "vnum": 18611,
-      "weight": 6
+      "weight": 6,
+      "type": "treasure"
     },
     "18612": {
       "armor_bonus": 4,
@@ -513,7 +534,10 @@
       "short_desc": "some cool newbie leggings",
       "value": 200,
       "vnum": 18612,
-      "weight": 4
+      "weight": 4,
+      "type": "armor",
+      "wear_slot": "legs",
+      "armor": 2
     },
     "18613": {
       "armor_bonus": 4,
@@ -523,7 +547,10 @@
       "short_desc": "some cool newbie sleeves",
       "value": 400,
       "vnum": 18613,
-      "weight": 3
+      "weight": 3,
+      "type": "armor",
+      "wear_slot": "legs",
+      "armor": 2
     },
     "18614": {
       "damage_dice": "2d6",
@@ -534,7 +561,8 @@
       "value": 300,
       "vnum": 18614,
       "weapon_type": "pound",
-      "weight": 8
+      "weight": 8,
+      "type": "weapon"
     },
     "18615": {
       "vnum": 18615,
@@ -554,7 +582,8 @@
           "value": 1
         }
       ],
-      "set_id": 186
+      "set_id": 186,
+      "type": "weapon"
     },
     "18616": {
       "vnum": 18616,
@@ -567,7 +596,9 @@
       "value": 2500,
       "wear_slot": "body",
       "armor_bonus": 2,
-      "set_id": 186
+      "set_id": 186,
+      "type": "armor",
+      "armor": 5
     },
     "18617": {
       "vnum": 18617,
@@ -586,7 +617,9 @@
           "value": 1
         }
       ],
-      "set_id": 186
+      "set_id": 186,
+      "type": "armor",
+      "armor": 3
     },
     "18618": {
       "vnum": 18618,
@@ -604,7 +637,8 @@
           "value": 1
         }
       ],
-      "set_id": 186
+      "set_id": 186,
+      "type": "treasure"
     },
     "18619": {
       "vnum": 18619,
@@ -626,7 +660,9 @@
           "value": 10
         }
       ],
-      "set_id": 186
+      "set_id": 186,
+      "type": "light",
+      "light_hours": 24
     },
     "18620": {
       "vnum": 18620,
@@ -646,7 +682,8 @@
           "value": 1
         }
       ],
-      "set_id": 186
+      "set_id": 186,
+      "type": "wand"
     },
     "18621": {
       "vnum": 18621,
@@ -666,7 +703,8 @@
           "value": 1
         }
       ],
-      "set_id": 186
+      "set_id": 186,
+      "type": "treasure"
     },
     "18622": {
       "vnum": 18622,
@@ -686,7 +724,8 @@
           "value": 1
         }
       ],
-      "set_id": 186
+      "set_id": 186,
+      "type": "weapon"
     },
     "18623": {
       "vnum": 18623,
@@ -706,7 +745,8 @@
           "value": 1
         }
       ],
-      "set_id": 186
+      "set_id": 186,
+      "type": "weapon"
     },
     "18624": {
       "vnum": 18624,
@@ -719,7 +759,9 @@
       "value": 2500,
       "wear_slot": "about",
       "armor_bonus": 1,
-      "set_id": 186
+      "set_id": 186,
+      "type": "armor",
+      "armor": 1
     }
   },
   "rooms": {

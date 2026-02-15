@@ -434,11 +434,11 @@
         },
         "east": {
           "to_room": 2515,
-          "description": ""
+          "description": "A passage leads to The Hallway"
         },
         "south": {
           "to_room": 2512,
-          "description": "",
+          "description": "A passage leads to The Entrance To The High Tower",
           "door": {
             "name": "gate diamond",
             "state": "open",
@@ -448,7 +448,7 @@
         },
         "west": {
           "to_room": 2516,
-          "description": ""
+          "description": "A passage leads to The Dining Room"
         }
       },
       "mob_resets": [
@@ -470,7 +470,7 @@
       "exits": {
         "north": {
           "to_room": 2517,
-          "description": ""
+          "description": "A passage leads to A Dark Hallway"
         },
         "east": {
           "to_room": 2518,
@@ -478,11 +478,11 @@
         },
         "south": {
           "to_room": 2513,
-          "description": ""
+          "description": "A passage leads to Inside The High Tower Of Sorcery"
         },
         "west": {
           "to_room": 2519,
-          "description": ""
+          "description": "A passage leads to The Magic Shop"
         }
       },
       "mob_resets": [
@@ -508,11 +508,11 @@
       "exits": {
         "east": {
           "to_room": 2530,
-          "description": ""
+          "description": "A passage leads to The Hallway"
         },
         "west": {
           "to_room": 2513,
-          "description": ""
+          "description": "A passage leads to Inside The High Tower Of Sorcery"
         }
       },
       "mob_resets": [
@@ -534,11 +534,11 @@
       "exits": {
         "east": {
           "to_room": 2513,
-          "description": ""
+          "description": "A passage leads to Inside The High Tower Of Sorcery"
         },
         "west": {
           "to_room": 2520,
-          "description": "",
+          "description": "A passage leads to The Kitchen",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -567,11 +567,11 @@
       "exits": {
         "south": {
           "to_room": 2514,
-          "description": ""
+          "description": "A passage leads to Common Room"
         },
         "down": {
           "to_room": 2521,
-          "description": "",
+          "description": "A passage leads to Below The Trapdoor",
           "door": {
             "name": "trapdoor",
             "state": "closed",
@@ -593,7 +593,7 @@
       "exits": {
         "west": {
           "to_room": 2514,
-          "description": ""
+          "description": "A passage leads to Common Room"
         }
       },
       "mob_resets": [
@@ -619,7 +619,7 @@
       "exits": {
         "east": {
           "to_room": 2514,
-          "description": ""
+          "description": "A passage leads to Common Room"
         }
       },
       "mob_resets": [
@@ -645,7 +645,7 @@
       "exits": {
         "east": {
           "to_room": 2516,
-          "description": "",
+          "description": "A passage leads to The Dining Room",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -692,7 +692,7 @@
       "exits": {
         "up": {
           "to_room": 2517,
-          "description": "",
+          "description": "A passage leads to A Dark Hallway",
           "door": {
             "name": "trapdoor",
             "state": "closed",
@@ -702,7 +702,7 @@
         },
         "down": {
           "to_room": 2522,
-          "description": ""
+          "description": "A passage leads to A Damp Intersection"
         }
       }
     },
@@ -719,7 +719,7 @@
       "exits": {
         "north": {
           "to_room": 2523,
-          "description": ""
+          "description": "A passage leads to A Dark Passage"
         },
         "east": {
           "to_room": 2524,
@@ -727,15 +727,15 @@
         },
         "south": {
           "to_room": 2525,
-          "description": ""
+          "description": "A passage leads to The Stagnant Pool"
         },
         "west": {
           "to_room": 2526,
-          "description": ""
+          "description": "A passage leads to A Dark Passage"
         },
         "up": {
           "to_room": 2521,
-          "description": ""
+          "description": "A passage leads to Below The Trapdoor"
         }
       }
     },
@@ -752,7 +752,7 @@
       "exits": {
         "north": {
           "to_room": 2527,
-          "description": "",
+          "description": "A passage leads to A Dark Cell",
           "door": {
             "name": "door oak",
             "state": "open",
@@ -762,7 +762,7 @@
         },
         "south": {
           "to_room": 2522,
-          "description": ""
+          "description": "A passage leads to A Damp Intersection"
         }
       }
     },
@@ -779,7 +779,7 @@
       "exits": {
         "east": {
           "to_room": 2528,
-          "description": "",
+          "description": "A passage leads to The Jailor's office",
           "door": {
             "name": "door",
             "state": "closed",
@@ -789,7 +789,7 @@
         },
         "west": {
           "to_room": 2522,
-          "description": ""
+          "description": "A passage leads to A Damp Intersection"
         }
       }
     },
@@ -806,7 +806,7 @@
       "exits": {
         "north": {
           "to_room": 2522,
-          "description": ""
+          "description": "A passage leads to A Damp Intersection"
         },
         "down": {
           "to_room": 2529,
@@ -827,7 +827,7 @@
       "exits": {
         "east": {
           "to_room": 2522,
-          "description": ""
+          "description": "A passage leads to A Damp Intersection"
         }
       }
     },
@@ -844,7 +844,7 @@
       "exits": {
         "south": {
           "to_room": 2523,
-          "description": "",
+          "description": "A passage leads to A Dark Passage",
           "door": {
             "name": "door oak",
             "state": "open",
@@ -872,7 +872,7 @@
       "exits": {
         "west": {
           "to_room": 2524,
-          "description": "",
+          "description": "A passage leads to A Dark Passage",
           "door": {
             "name": "door",
             "state": "closed",
@@ -899,7 +899,12 @@
         "indoors",
         "no_track"
       ],
-      "exits": {}
+      "exits": {
+        "up": {
+          "to_room": 2525,
+          "description": "The stagnant pool is above."
+        }
+      }
     },
     "2530": {
       "vnum": 2530,
@@ -913,7 +918,7 @@
       "exits": {
         "north": {
           "to_room": 2532,
-          "description": "",
+          "description": "A passage leads to A Store Room",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -923,11 +928,11 @@
         },
         "east": {
           "to_room": 2531,
-          "description": ""
+          "description": "A passage leads to A Bend In The Hallway"
         },
         "south": {
           "to_room": 2533,
-          "description": "",
+          "description": "A passage leads to A Broom Closet",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -937,7 +942,7 @@
         },
         "west": {
           "to_room": 2515,
-          "description": ""
+          "description": "A passage leads to The Hallway"
         }
       }
     },
@@ -953,7 +958,7 @@
       "exits": {
         "north": {
           "to_room": 2534,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -963,7 +968,7 @@
         },
         "east": {
           "to_room": 2536,
-          "description": "",
+          "description": "A passage leads to A Guest Bedroom",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -973,7 +978,7 @@
         },
         "south": {
           "to_room": 2535,
-          "description": "",
+          "description": "A passage leads to The Guardians' chamber",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -983,7 +988,7 @@
         },
         "west": {
           "to_room": 2530,
-          "description": ""
+          "description": "A passage leads to The Hallway"
         }
       }
     },
@@ -1000,7 +1005,7 @@
       "exits": {
         "south": {
           "to_room": 2530,
-          "description": "",
+          "description": "A passage leads to The Hallway",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -1023,7 +1028,7 @@
       "exits": {
         "north": {
           "to_room": 2530,
-          "description": "",
+          "description": "A passage leads to The Hallway",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -1065,11 +1070,11 @@
       "exits": {
         "north": {
           "to_room": 2538,
-          "description": ""
+          "description": "A passage leads to A hallway"
         },
         "east": {
           "to_room": 2537,
-          "description": "",
+          "description": "A passage leads to A Guest Bedroom",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -1079,7 +1084,7 @@
         },
         "south": {
           "to_room": 2531,
-          "description": "",
+          "description": "A passage leads to A Bend In The Hallway",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -1104,7 +1109,7 @@
       "exits": {
         "north": {
           "to_room": 2531,
-          "description": "",
+          "description": "A passage leads to A Bend In The Hallway",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -1148,7 +1153,7 @@
       "exits": {
         "west": {
           "to_room": 2531,
-          "description": "",
+          "description": "A passage leads to A Bend In The Hallway",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -1173,7 +1178,7 @@
       "exits": {
         "west": {
           "to_room": 2534,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -1201,7 +1206,7 @@
       "exits": {
         "east": {
           "to_room": 2539,
-          "description": "",
+          "description": "A passage leads to The Burnt Room",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -1211,11 +1216,11 @@
         },
         "south": {
           "to_room": 2534,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "up": {
           "to_room": 2540,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -1232,7 +1237,7 @@
       "exits": {
         "west": {
           "to_room": 2538,
-          "description": "",
+          "description": "A passage leads to A hallway",
           "door": {
             "name": "door charred",
             "state": "closed",
@@ -1254,7 +1259,7 @@
       "exits": {
         "north": {
           "to_room": 2542,
-          "description": "",
+          "description": "A passage leads to The Apprentices' Barracks",
           "door": {
             "name": "door oak",
             "state": "closed",
@@ -1268,11 +1273,11 @@
         },
         "west": {
           "to_room": 2543,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "down": {
           "to_room": 2538,
-          "description": ""
+          "description": "A passage leads to A hallway"
         }
       },
       "mob_resets": [
@@ -1294,7 +1299,7 @@
       "exits": {
         "west": {
           "to_room": 2540,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       },
       "extra_descs": {
@@ -1313,7 +1318,7 @@
       "exits": {
         "south": {
           "to_room": 2540,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door oak",
             "state": "closed",
@@ -1323,7 +1328,7 @@
         },
         "west": {
           "to_room": 2544,
-          "description": ""
+          "description": "A passage leads to The Apprentices' Barracks"
         }
       },
       "mob_resets": [
@@ -1353,7 +1358,7 @@
       "exits": {
         "north": {
           "to_room": 2544,
-          "description": "",
+          "description": "A passage leads to The Apprentices' Barracks",
           "door": {
             "name": "door oak",
             "state": "closed",
@@ -1363,11 +1368,11 @@
         },
         "east": {
           "to_room": 2540,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "west": {
           "to_room": 2545,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -1383,11 +1388,11 @@
       "exits": {
         "east": {
           "to_room": 2542,
-          "description": ""
+          "description": "A passage leads to The Apprentices' Barracks"
         },
         "south": {
           "to_room": 2543,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door oak",
             "state": "closed",
@@ -1433,11 +1438,11 @@
         },
         "east": {
           "to_room": 2543,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "west": {
           "to_room": 2547,
-          "description": ""
+          "description": "A passage leads to A Bend In The Hallway"
         }
       },
       "mob_resets": [
@@ -1471,7 +1476,7 @@
       "exits": {
         "south": {
           "to_room": 2545,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door oak",
             "state": "closed",
@@ -1493,11 +1498,11 @@
       "exits": {
         "east": {
           "to_room": 2545,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "south": {
           "to_room": 2548,
-          "description": ""
+          "description": "A passage leads to The Hallway"
         }
       }
     },
@@ -1513,15 +1518,15 @@
       "exits": {
         "north": {
           "to_room": 2547,
-          "description": ""
+          "description": "A passage leads to A Bend In The Hallway"
         },
         "south": {
           "to_room": 2550,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "west": {
           "to_room": 2549,
-          "description": "",
+          "description": "A passage leads to A Classroom",
           "door": {
             "name": "door metal",
             "state": "closed",
@@ -1543,7 +1548,7 @@
       "exits": {
         "east": {
           "to_room": 2548,
-          "description": "",
+          "description": "A passage leads to The Hallway",
           "door": {
             "name": "door metal",
             "state": "closed",
@@ -1587,15 +1592,15 @@
       "exits": {
         "north": {
           "to_room": 2548,
-          "description": ""
+          "description": "A passage leads to The Hallway"
         },
         "south": {
           "to_room": 2551,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "west": {
           "to_room": 2552,
-          "description": "",
+          "description": "A passage leads to An Empty Classroom",
           "door": {
             "name": "door metal",
             "state": "closed",
@@ -1617,15 +1622,15 @@
       "exits": {
         "north": {
           "to_room": 2550,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "south": {
           "to_room": 2553,
-          "description": ""
+          "description": "A passage leads to A Bend In The Hallway"
         },
         "west": {
           "to_room": 2554,
-          "description": "",
+          "description": "A passage leads to An Empty Classroom",
           "door": {
             "name": "door metal",
             "state": "closed",
@@ -1647,7 +1652,7 @@
       "exits": {
         "east": {
           "to_room": 2550,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door metal",
             "state": "closed",
@@ -1669,11 +1674,11 @@
       "exits": {
         "north": {
           "to_room": 2551,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "east": {
           "to_room": 2555,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -1689,7 +1694,7 @@
       "exits": {
         "east": {
           "to_room": 2551,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door metal",
             "state": "closed",
@@ -1733,11 +1738,11 @@
       "exits": {
         "east": {
           "to_room": 2556,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "south": {
           "to_room": 2557,
-          "description": "",
+          "description": "A passage leads to The Amphitheater",
           "door": {
             "name": "door sturdy iron",
             "state": "closed",
@@ -1747,7 +1752,7 @@
         },
         "west": {
           "to_room": 2553,
-          "description": ""
+          "description": "A passage leads to A Bend In The Hallway"
         }
       }
     },
@@ -1763,11 +1768,11 @@
       "exits": {
         "east": {
           "to_room": 2558,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "south": {
           "to_room": 2559,
-          "description": "",
+          "description": "A passage leads to The Training Room",
           "door": {
             "name": "door large oaken",
             "state": "closed",
@@ -1777,7 +1782,7 @@
         },
         "west": {
           "to_room": 2555,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -1793,7 +1798,7 @@
       "exits": {
         "north": {
           "to_room": 2555,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door sturdy iron",
             "state": "closed",
@@ -1833,11 +1838,11 @@
       "exits": {
         "east": {
           "to_room": 2560,
-          "description": ""
+          "description": "A passage leads to A Bend In The Hallway"
         },
         "south": {
           "to_room": 2561,
-          "description": "",
+          "description": "A passage leads to A Dueling Room",
           "door": {
             "name": "door small",
             "state": "closed",
@@ -1847,7 +1852,7 @@
         },
         "west": {
           "to_room": 2556,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -1863,7 +1868,7 @@
       "exits": {
         "north": {
           "to_room": 2556,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door",
             "state": "closed",
@@ -1903,11 +1908,11 @@
       "exits": {
         "north": {
           "to_room": 2562,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "west": {
           "to_room": 2558,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -1923,7 +1928,7 @@
       "exits": {
         "north": {
           "to_room": 2558,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door small",
             "state": "closed",
@@ -1945,11 +1950,11 @@
       "exits": {
         "north": {
           "to_room": 2563,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "east": {
           "to_room": 2564,
-          "description": "",
+          "description": "A passage leads to The Spellmasters' Lounge",
           "door": {
             "name": "door",
             "state": "closed",
@@ -1959,7 +1964,7 @@
         },
         "south": {
           "to_room": 2560,
-          "description": ""
+          "description": "A passage leads to A Bend In The Hallway"
         }
       }
     },
@@ -1975,11 +1980,11 @@
       "exits": {
         "north": {
           "to_room": 2566,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "east": {
           "to_room": 2565,
-          "description": "",
+          "description": "A passage leads to A Bedroom",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -1989,7 +1994,7 @@
         },
         "south": {
           "to_room": 2562,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -2005,7 +2010,7 @@
       "exits": {
         "west": {
           "to_room": 2562,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -2033,7 +2038,7 @@
       "exits": {
         "west": {
           "to_room": 2563,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -2061,11 +2066,11 @@
       "exits": {
         "north": {
           "to_room": 2568,
-          "description": ""
+          "description": "A passage leads to Below The Stairs"
         },
         "east": {
           "to_room": 2567,
-          "description": "",
+          "description": "A passage leads to The Study",
           "door": {
             "name": "door glass",
             "state": "closed",
@@ -2075,7 +2080,7 @@
         },
         "south": {
           "to_room": 2563,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -2091,7 +2096,7 @@
       "exits": {
         "west": {
           "to_room": 2566,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door glass",
             "state": "closed",
@@ -2119,11 +2124,11 @@
       "exits": {
         "south": {
           "to_room": 2566,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "up": {
           "to_room": 2569,
-          "description": ""
+          "description": "A passage leads to Atop The Stairway"
         }
       },
       "mob_resets": [
@@ -2149,11 +2154,11 @@
       "exits": {
         "west": {
           "to_room": 2570,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "down": {
           "to_room": 2568,
-          "description": ""
+          "description": "A passage leads to Below The Stairs"
         }
       }
     },
@@ -2169,7 +2174,7 @@
       "exits": {
         "north": {
           "to_room": 2571,
-          "description": "",
+          "description": "A passage leads to A Small Office",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -2179,11 +2184,11 @@
         },
         "east": {
           "to_room": 2569,
-          "description": ""
+          "description": "A passage leads to Atop The Stairway"
         },
         "west": {
           "to_room": 2572,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -2199,7 +2204,7 @@
       "exits": {
         "south": {
           "to_room": 2570,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -2209,7 +2214,7 @@
         },
         "west": {
           "to_room": 2573,
-          "description": "",
+          "description": "A passage leads to The Master Scribe's Workshop",
           "door": {
             "name": "curtain",
             "state": "closed",
@@ -2241,11 +2246,11 @@
       "exits": {
         "east": {
           "to_room": 2570,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "west": {
           "to_room": 2574,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -2261,7 +2266,7 @@
       "exits": {
         "east": {
           "to_room": 2571,
-          "description": "",
+          "description": "A passage leads to A Small Office",
           "door": {
             "name": "curtain",
             "state": "closed",
@@ -2303,11 +2308,11 @@
         },
         "east": {
           "to_room": 2572,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "west": {
           "to_room": 2576,
-          "description": ""
+          "description": "A passage leads to A Bend In The Hallway"
         }
       }
     },
@@ -2324,7 +2329,7 @@
       "exits": {
         "south": {
           "to_room": 2574,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -2352,11 +2357,11 @@
       "exits": {
         "east": {
           "to_room": 2574,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "south": {
           "to_room": 2577,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -2372,15 +2377,15 @@
       "exits": {
         "north": {
           "to_room": 2576,
-          "description": ""
+          "description": "A passage leads to A Bend In The Hallway"
         },
         "south": {
           "to_room": 2578,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "west": {
           "to_room": 2579,
-          "description": "",
+          "description": "A passage leads to A Store Room",
           "door": {
             "name": "door iron",
             "state": "open",
@@ -2402,15 +2407,15 @@
       "exits": {
         "north": {
           "to_room": 2577,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "south": {
           "to_room": 2580,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "west": {
           "to_room": 2581,
-          "description": "",
+          "description": "A passage leads to A Very Hot Room",
           "door": {
             "name": "door iron",
             "state": "closed",
@@ -2432,7 +2437,7 @@
       "exits": {
         "east": {
           "to_room": 2577,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door iron",
             "state": "open",
@@ -2442,7 +2447,7 @@
         },
         "south": {
           "to_room": 2581,
-          "description": "",
+          "description": "A passage leads to A Very Hot Room",
           "door": {
             "name": "door",
             "state": "open",
@@ -2486,11 +2491,11 @@
       "exits": {
         "north": {
           "to_room": 2578,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "south": {
           "to_room": 2583,
-          "description": ""
+          "description": "A passage leads to A Bend In The Hallway"
         }
       }
     },
@@ -2506,7 +2511,7 @@
       "exits": {
         "north": {
           "to_room": 2579,
-          "description": "",
+          "description": "A passage leads to A Store Room",
           "door": {
             "name": "door",
             "state": "open",
@@ -2516,7 +2521,7 @@
         },
         "east": {
           "to_room": 2578,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door iron",
             "state": "closed",
@@ -2526,7 +2531,7 @@
         },
         "south": {
           "to_room": 2582,
-          "description": "",
+          "description": "A passage leads to The Master Enchanter's Chamber",
           "door": {
             "name": "door",
             "state": "closed",
@@ -2536,7 +2541,7 @@
         },
         "up": {
           "to_room": 2612,
-          "description": "",
+          "description": "A passage leads to It Is Very Dark Here...",
           "door": {
             "name": "vent",
             "state": "closed",
@@ -2564,7 +2569,7 @@
       "exits": {
         "north": {
           "to_room": 2581,
-          "description": "",
+          "description": "A passage leads to A Very Hot Room",
           "door": {
             "name": "door",
             "state": "closed",
@@ -2602,11 +2607,11 @@
       "exits": {
         "north": {
           "to_room": 2580,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "east": {
           "to_room": 2584,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -2622,11 +2627,11 @@
       "exits": {
         "east": {
           "to_room": 2585,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "south": {
           "to_room": 2586,
-          "description": "",
+          "description": "A passage leads to A Laboratory",
           "door": {
             "name": "door steel",
             "state": "closed",
@@ -2636,7 +2641,7 @@
         },
         "west": {
           "to_room": 2583,
-          "description": ""
+          "description": "A passage leads to A Bend In The Hallway"
         }
       }
     },
@@ -2652,11 +2657,11 @@
       "exits": {
         "east": {
           "to_room": 2587,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "west": {
           "to_room": 2584,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -2672,7 +2677,7 @@
       "exits": {
         "north": {
           "to_room": 2584,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door steel",
             "state": "closed",
@@ -2682,7 +2687,7 @@
         },
         "east": {
           "to_room": 2588,
-          "description": ""
+          "description": "A passage leads to The Mad Alchemist's Workroom"
         }
       }
     },
@@ -2698,11 +2703,11 @@
       "exits": {
         "east": {
           "to_room": 2589,
-          "description": ""
+          "description": "A passage leads to A Bend In The Hallway"
         },
         "south": {
           "to_room": 2590,
-          "description": "",
+          "description": "A passage leads to The Pentagram Chamber",
           "door": {
             "name": "door steel",
             "state": "closed",
@@ -2712,7 +2717,7 @@
         },
         "west": {
           "to_room": 2585,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -2728,7 +2733,7 @@
       "exits": {
         "west": {
           "to_room": 2586,
-          "description": ""
+          "description": "A passage leads to A Laboratory"
         }
       },
       "mob_resets": [
@@ -2750,11 +2755,11 @@
       "exits": {
         "north": {
           "to_room": 2591,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "west": {
           "to_room": 2587,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -2770,7 +2775,7 @@
       "exits": {
         "north": {
           "to_room": 2587,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door steel",
             "state": "closed",
@@ -2802,11 +2807,11 @@
       "exits": {
         "north": {
           "to_room": 2593,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "east": {
           "to_room": 2594,
-          "description": "",
+          "description": "A passage leads to An Empty Room",
           "door": {
             "name": "door bronze",
             "state": "closed",
@@ -2816,7 +2821,7 @@
         },
         "south": {
           "to_room": 2589,
-          "description": ""
+          "description": "A passage leads to A Bend In The Hallway"
         }
       }
     },
@@ -2833,7 +2838,12 @@
         "no_track",
         "private"
       ],
-      "exits": {}
+      "exits": {
+        "north": {
+          "to_room": 2590,
+          "description": "The pentagram chamber is to the north."
+        }
+      }
     },
     "2593": {
       "vnum": 2593,
@@ -2847,11 +2857,11 @@
       "exits": {
         "north": {
           "to_room": 2596,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "east": {
           "to_room": 2595,
-          "description": "",
+          "description": "A passage leads to The Charm Master's Chamber",
           "door": {
             "name": "door bronze",
             "state": "closed",
@@ -2861,7 +2871,7 @@
         },
         "south": {
           "to_room": 2591,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -2878,7 +2888,7 @@
       "exits": {
         "west": {
           "to_room": 2591,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door bronze",
             "state": "closed",
@@ -2900,7 +2910,7 @@
       "exits": {
         "north": {
           "to_room": 2597,
-          "description": "",
+          "description": "A passage leads to The Animal Pens",
           "door": {
             "name": "cage bars",
             "state": "closed",
@@ -2910,7 +2920,7 @@
         },
         "west": {
           "to_room": 2593,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door bronze",
             "state": "closed",
@@ -2938,11 +2948,11 @@
       "exits": {
         "north": {
           "to_room": 2598,
-          "description": ""
+          "description": "A passage leads to The End Of The Hallway"
         },
         "south": {
           "to_room": 2593,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -2958,7 +2968,7 @@
       "exits": {
         "south": {
           "to_room": 2595,
-          "description": "",
+          "description": "A passage leads to The Charm Master's Chamber",
           "door": {
             "name": "cage bars",
             "state": "closed",
@@ -2980,11 +2990,11 @@
       "exits": {
         "south": {
           "to_room": 2596,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "up": {
           "to_room": 2599,
-          "description": ""
+          "description": "A passage leads to Atop The Stairway"
         }
       },
       "mob_resets": [
@@ -3010,11 +3020,11 @@
       "exits": {
         "west": {
           "to_room": 2600,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "down": {
           "to_room": 2598,
-          "description": ""
+          "description": "A passage leads to The End Of The Hallway"
         }
       }
     },
@@ -3030,7 +3040,7 @@
       "exits": {
         "north": {
           "to_room": 2601,
-          "description": "",
+          "description": "A passage leads to A Store Room",
           "door": {
             "name": "door silver",
             "state": "closed",
@@ -3040,11 +3050,11 @@
         },
         "east": {
           "to_room": 2599,
-          "description": ""
+          "description": "A passage leads to Atop The Stairway"
         },
         "west": {
           "to_room": 2604,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       },
       "mob_resets": [
@@ -3066,7 +3076,7 @@
       "exits": {
         "south": {
           "to_room": 2600,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door silver",
             "state": "closed",
@@ -3076,7 +3086,7 @@
         },
         "west": {
           "to_room": 2602,
-          "description": "",
+          "description": "A passage leads to The Master Spellbinder's Chamber",
           "door": {
             "name": "door silver",
             "state": "closed",
@@ -3104,7 +3114,7 @@
       "exits": {
         "east": {
           "to_room": 2601,
-          "description": "",
+          "description": "A passage leads to A Store Room",
           "door": {
             "name": "door silver",
             "state": "closed",
@@ -3114,7 +3124,7 @@
         },
         "west": {
           "to_room": 2603,
-          "description": "",
+          "description": "A passage leads to The Spellbinder's Cache",
           "door": {
             "name": "door silver",
             "state": "open",
@@ -3142,7 +3152,7 @@
       "exits": {
         "east": {
           "to_room": 2602,
-          "description": "",
+          "description": "A passage leads to The Master Spellbinder's Chamber",
           "door": {
             "name": "door silver",
             "state": "open",
@@ -3152,7 +3162,7 @@
         },
         "south": {
           "to_room": 2605,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door silver",
             "state": "open",
@@ -3184,11 +3194,11 @@
       "exits": {
         "east": {
           "to_room": 2600,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "west": {
           "to_room": 2605,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -3204,7 +3214,7 @@
       "exits": {
         "north": {
           "to_room": 2603,
-          "description": "",
+          "description": "A passage leads to The Spellbinder's Cache",
           "door": {
             "name": "door silver",
             "state": "open",
@@ -3214,11 +3224,11 @@
         },
         "east": {
           "to_room": 2604,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "west": {
           "to_room": 2606,
-          "description": ""
+          "description": "A passage leads to A Bend In The Hallway"
         }
       }
     },
@@ -3234,11 +3244,11 @@
       "exits": {
         "east": {
           "to_room": 2605,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "south": {
           "to_room": 2607,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -3254,11 +3264,11 @@
       "exits": {
         "north": {
           "to_room": 2606,
-          "description": ""
+          "description": "A passage leads to A Bend In The Hallway"
         },
         "south": {
           "to_room": 2608,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -3274,15 +3284,15 @@
       "exits": {
         "north": {
           "to_room": 2607,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "south": {
           "to_room": 2613,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "west": {
           "to_room": 2609,
-          "description": "",
+          "description": "A passage leads to The Golem Master's Workshop",
           "door": {
             "name": "door rusty",
             "state": "closed",
@@ -3304,11 +3314,11 @@
       "exits": {
         "north": {
           "to_room": 2610,
-          "description": ""
+          "description": "A passage leads to A Store Room"
         },
         "east": {
           "to_room": 2608,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door rusty",
             "state": "closed",
@@ -3318,11 +3328,11 @@
         },
         "south": {
           "to_room": 2611,
-          "description": ""
+          "description": "A passage leads to The Golem Chamber"
         },
         "down": {
           "to_room": 2612,
-          "description": "",
+          "description": "A passage leads to It Is Very Dark Here...",
           "door": {
             "name": "trapdoor",
             "state": "closed",
@@ -3358,7 +3368,7 @@
       "exits": {
         "south": {
           "to_room": 2609,
-          "description": ""
+          "description": "A passage leads to The Golem Master's Workshop"
         }
       }
     },
@@ -3374,7 +3384,7 @@
       "exits": {
         "north": {
           "to_room": 2609,
-          "description": ""
+          "description": "A passage leads to The Golem Master's Workshop"
         }
       },
       "mob_resets": [
@@ -3409,7 +3419,7 @@
       "exits": {
         "up": {
           "to_room": 2609,
-          "description": "",
+          "description": "A passage leads to The Golem Master's Workshop",
           "door": {
             "name": "trapdoor",
             "state": "closed",
@@ -3419,7 +3429,7 @@
         },
         "down": {
           "to_room": 2581,
-          "description": "",
+          "description": "A passage leads to A Very Hot Room",
           "door": {
             "name": "vent",
             "state": "closed",
@@ -3441,11 +3451,11 @@
       "exits": {
         "north": {
           "to_room": 2608,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "south": {
           "to_room": 2614,
-          "description": ""
+          "description": "A passage leads to A Bend In The Hallway"
         }
       }
     },
@@ -3461,11 +3471,11 @@
       "exits": {
         "north": {
           "to_room": 2613,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "east": {
           "to_room": 2615,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -3481,11 +3491,11 @@
       "exits": {
         "east": {
           "to_room": 2616,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "west": {
           "to_room": 2614,
-          "description": ""
+          "description": "A passage leads to A Bend In The Hallway"
         }
       }
     },
@@ -3501,11 +3511,11 @@
       "exits": {
         "east": {
           "to_room": 2619,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "south": {
           "to_room": 2617,
-          "description": "",
+          "description": "A passage leads to The Illusion Master's Chamber",
           "door": {
             "name": "door emerald",
             "state": "closed",
@@ -3515,7 +3525,7 @@
         },
         "west": {
           "to_room": 2615,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -3531,7 +3541,7 @@
       "exits": {
         "north": {
           "to_room": 2616,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door emerald",
             "state": "closed",
@@ -3541,7 +3551,7 @@
         },
         "west": {
           "to_room": 2618,
-          "description": ""
+          "description": "A passage leads to A Bedroom"
         }
       },
       "mob_resets": [
@@ -3567,7 +3577,7 @@
         },
         "east": {
           "to_room": 2617,
-          "description": ""
+          "description": "A passage leads to The Illusion Master's Chamber"
         },
         "south": {
           "to_room": 2618,
@@ -3591,11 +3601,11 @@
       "exits": {
         "east": {
           "to_room": 2621,
-          "description": ""
+          "description": "A passage leads to A Bend In The Hallway"
         },
         "south": {
           "to_room": 2620,
-          "description": "",
+          "description": "A passage leads to The Meditation Chamber",
           "door": {
             "name": "door glass",
             "state": "closed",
@@ -3605,7 +3615,7 @@
         },
         "west": {
           "to_room": 2616,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -3623,7 +3633,7 @@
       "exits": {
         "north": {
           "to_room": 2619,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door glass",
             "state": "closed",
@@ -3645,11 +3655,11 @@
       "exits": {
         "north": {
           "to_room": 2622,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "west": {
           "to_room": 2619,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -3665,11 +3675,11 @@
       "exits": {
         "north": {
           "to_room": 2626,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "east": {
           "to_room": 2623,
-          "description": "",
+          "description": "A passage leads to A Dark Room",
           "door": {
             "name": "door black",
             "state": "closed",
@@ -3679,7 +3689,7 @@
         },
         "south": {
           "to_room": 2621,
-          "description": ""
+          "description": "A passage leads to A Bend In The Hallway"
         }
       }
     },
@@ -3696,11 +3706,11 @@
       "exits": {
         "north": {
           "to_room": 2624,
-          "description": ""
+          "description": "A passage leads to A Dark Room"
         },
         "west": {
           "to_room": 2622,
-          "description": "",
+          "description": "A passage leads to A Hallway",
           "door": {
             "name": "door black",
             "state": "closed",
@@ -3727,7 +3737,7 @@
         },
         "south": {
           "to_room": 2623,
-          "description": ""
+          "description": "A passage leads to A Dark Room"
         }
       }
     },
@@ -3744,7 +3754,7 @@
       "exits": {
         "south": {
           "to_room": 2624,
-          "description": ""
+          "description": "A passage leads to A Dark Room"
         }
       },
       "mob_resets": [
@@ -3778,11 +3788,11 @@
       "exits": {
         "north": {
           "to_room": 2627,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "south": {
           "to_room": 2622,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -3798,11 +3808,11 @@
       "exits": {
         "north": {
           "to_room": 2628,
-          "description": ""
+          "description": "A passage leads to The End Of The Hallway"
         },
         "south": {
           "to_room": 2626,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         }
       }
     },
@@ -3818,11 +3828,11 @@
       "exits": {
         "south": {
           "to_room": 2627,
-          "description": ""
+          "description": "A passage leads to A Hallway"
         },
         "up": {
           "to_room": 2629,
-          "description": ""
+          "description": "A passage leads to A Corridor"
         }
       },
       "mob_resets": [
@@ -3848,11 +3858,11 @@
       "exits": {
         "west": {
           "to_room": 2630,
-          "description": ""
+          "description": "A passage leads to A Corridor"
         },
         "down": {
           "to_room": 2628,
-          "description": ""
+          "description": "A passage leads to The End Of The Hallway"
         }
       }
     },
@@ -3868,11 +3878,11 @@
       "exits": {
         "east": {
           "to_room": 2629,
-          "description": ""
+          "description": "A passage leads to A Corridor"
         },
         "west": {
           "to_room": 2631,
-          "description": ""
+          "description": "A passage leads to A Bend In The Corridor"
         }
       },
       "mob_resets": [
@@ -3894,11 +3904,11 @@
       "exits": {
         "east": {
           "to_room": 2630,
-          "description": ""
+          "description": "A passage leads to A Corridor"
         },
         "south": {
           "to_room": 2632,
-          "description": ""
+          "description": "A passage leads to A Corridor"
         }
       }
     },
@@ -3914,11 +3924,11 @@
       "exits": {
         "north": {
           "to_room": 2631,
-          "description": ""
+          "description": "A passage leads to A Bend In The Corridor"
         },
         "south": {
           "to_room": 2633,
-          "description": ""
+          "description": "A passage leads to An Intersection"
         }
       }
     },
@@ -3934,19 +3944,19 @@
       "exits": {
         "north": {
           "to_room": 2632,
-          "description": ""
+          "description": "A passage leads to A Corridor"
         },
         "east": {
           "to_room": 2634,
-          "description": ""
+          "description": "A passage leads to A Corridor"
         },
         "south": {
           "to_room": 2646,
-          "description": ""
+          "description": "A passage leads to A Corridor"
         },
         "west": {
           "to_room": 2636,
-          "description": ""
+          "description": "A passage leads to A Corridor"
         }
       },
       "mob_resets": [
@@ -3968,7 +3978,7 @@
       "exits": {
         "east": {
           "to_room": 2635,
-          "description": "",
+          "description": "A passage leads to The Scrying Chamber",
           "door": {
             "name": "door black",
             "state": "closed",
@@ -3978,7 +3988,7 @@
         },
         "west": {
           "to_room": 2633,
-          "description": ""
+          "description": "A passage leads to An Intersection"
         }
       }
     },
@@ -3995,7 +4005,7 @@
       "exits": {
         "west": {
           "to_room": 2634,
-          "description": "",
+          "description": "A passage leads to A Corridor",
           "door": {
             "name": "door black",
             "state": "closed",
@@ -4037,11 +4047,11 @@
       "exits": {
         "east": {
           "to_room": 2633,
-          "description": ""
+          "description": "A passage leads to An Intersection"
         },
         "west": {
           "to_room": 2637,
-          "description": "",
+          "description": "A passage leads to The Entrance To The Library",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -4067,7 +4077,7 @@
         },
         "east": {
           "to_room": 2636,
-          "description": "",
+          "description": "A passage leads to A Corridor",
           "door": {
             "name": "door wooden",
             "state": "closed",
@@ -4263,11 +4273,11 @@
       "exits": {
         "north": {
           "to_room": 2645,
-          "description": ""
+          "description": "A passage leads to The Reading Room"
         },
         "east": {
           "to_room": 2643,
-          "description": ""
+          "description": "A passage leads to In The Library"
         }
       }
     },
@@ -4283,7 +4293,7 @@
       "exits": {
         "south": {
           "to_room": 2644,
-          "description": ""
+          "description": "A passage leads to Between The Shelves"
         }
       },
       "obj_resets": [
@@ -4305,11 +4315,11 @@
       "exits": {
         "north": {
           "to_room": 2633,
-          "description": ""
+          "description": "A passage leads to An Intersection"
         },
         "south": {
           "to_room": 2647,
-          "description": ""
+          "description": "A passage leads to The End Of The Corridor"
         }
       }
     },
@@ -4325,11 +4335,11 @@
       "exits": {
         "north": {
           "to_room": 2646,
-          "description": ""
+          "description": "A passage leads to A Corridor"
         },
         "south": {
           "to_room": 2648,
-          "description": ""
+          "description": "A passage leads to The Arched Entrance"
         }
       }
     },
@@ -4345,11 +4355,11 @@
       "exits": {
         "north": {
           "to_room": 2647,
-          "description": ""
+          "description": "A passage leads to The End Of The Corridor"
         },
         "up": {
           "to_room": 2649,
-          "description": ""
+          "description": "A passage leads to The Landing"
         }
       }
     },
@@ -4365,11 +4375,11 @@
       "exits": {
         "up": {
           "to_room": 2650,
-          "description": ""
+          "description": "A passage leads to An Intersection"
         },
         "down": {
           "to_room": 2648,
-          "description": ""
+          "description": "A passage leads to The Arched Entrance"
         }
       },
       "mob_resets": [
@@ -4391,23 +4401,23 @@
       "exits": {
         "north": {
           "to_room": 2673,
-          "description": ""
+          "description": "A passage leads to A Wide Hallway"
         },
         "east": {
           "to_room": 2658,
-          "description": ""
+          "description": "A passage leads to A Dark Hallway"
         },
         "south": {
           "to_room": 2651,
-          "description": ""
+          "description": "A passage leads to A Grey Tiled Hallway"
         },
         "west": {
           "to_room": 2665,
-          "description": ""
+          "description": "A passage leads to A Bright Hallway"
         },
         "down": {
           "to_room": 2649,
-          "description": ""
+          "description": "A passage leads to The Landing"
         }
       }
     },
@@ -4423,11 +4433,11 @@
       "exits": {
         "north": {
           "to_room": 2650,
-          "description": ""
+          "description": "A passage leads to An Intersection"
         },
         "south": {
           "to_room": 2652,
-          "description": ""
+          "description": "A passage leads to A Grey Tiled Hallway"
         }
       }
     },
@@ -4443,11 +4453,11 @@
       "exits": {
         "north": {
           "to_room": 2651,
-          "description": ""
+          "description": "A passage leads to A Grey Tiled Hallway"
         },
         "south": {
           "to_room": 2653,
-          "description": "",
+          "description": "A passage leads to The Antechamber",
           "door": {
             "name": "door grey",
             "state": "closed",
@@ -4469,7 +4479,7 @@
       "exits": {
         "north": {
           "to_room": 2652,
-          "description": "",
+          "description": "A passage leads to A Grey Tiled Hallway",
           "door": {
             "name": "door grey",
             "state": "closed",
@@ -4479,7 +4489,7 @@
         },
         "south": {
           "to_room": 2654,
-          "description": ""
+          "description": "A passage leads to The Main Chamber"
         }
       },
       "mob_resets": [
@@ -4501,19 +4511,19 @@
       "exits": {
         "north": {
           "to_room": 2653,
-          "description": ""
+          "description": "A passage leads to The Antechamber"
         },
         "east": {
           "to_room": 2656,
-          "description": ""
+          "description": "A passage leads to A Closet"
         },
         "south": {
           "to_room": 2657,
-          "description": ""
+          "description": "A passage leads to A Bedroom"
         },
         "west": {
           "to_room": 2655,
-          "description": ""
+          "description": "A passage leads to The Study"
         }
       },
       "mob_resets": [
@@ -4539,7 +4549,7 @@
       "exits": {
         "east": {
           "to_room": 2654,
-          "description": ""
+          "description": "A passage leads to The Main Chamber"
         }
       }
     },
@@ -4556,7 +4566,7 @@
       "exits": {
         "west": {
           "to_room": 2654,
-          "description": ""
+          "description": "A passage leads to The Main Chamber"
         }
       }
     },
@@ -4572,7 +4582,7 @@
       "exits": {
         "north": {
           "to_room": 2654,
-          "description": ""
+          "description": "A passage leads to The Main Chamber"
         }
       }
     },
@@ -4589,11 +4599,11 @@
       "exits": {
         "west": {
           "to_room": 2650,
-          "description": ""
+          "description": "A passage leads to An Intersection"
         },
         "east": {
           "to_room": 2659,
-          "description": ""
+          "description": "A passage leads to A Dark Hallway"
         }
       }
     },
@@ -4610,11 +4620,11 @@
       "exits": {
         "east": {
           "to_room": 2660,
-          "description": ""
+          "description": "A passage leads to The End Of The Hallway"
         },
         "west": {
           "to_room": 2658,
-          "description": ""
+          "description": "A passage leads to A Dark Hallway"
         }
       }
     },
@@ -4631,7 +4641,7 @@
       "exits": {
         "east": {
           "to_room": 2661,
-          "description": "",
+          "description": "A passage leads to The Chamber Of Darkness",
           "door": {
             "name": "door obsidian",
             "state": "closed",
@@ -4641,7 +4651,7 @@
         },
         "west": {
           "to_room": 2659,
-          "description": ""
+          "description": "A passage leads to A Dark Hallway"
         }
       }
     },
@@ -4658,19 +4668,19 @@
       "exits": {
         "north": {
           "to_room": 2662,
-          "description": ""
+          "description": "A passage leads to It Is Very Dark Here..."
         },
         "east": {
           "to_room": 2664,
-          "description": ""
+          "description": "A passage leads to The Inner Chamber"
         },
         "south": {
           "to_room": 2663,
-          "description": ""
+          "description": "A passage leads to A Torture Chamber"
         },
         "west": {
           "to_room": 2660,
-          "description": "",
+          "description": "A passage leads to The End Of The Hallway",
           "door": {
             "name": "door obsidian",
             "state": "closed",
@@ -4699,7 +4709,7 @@
       "exits": {
         "south": {
           "to_room": 2661,
-          "description": ""
+          "description": "A passage leads to The Chamber Of Darkness"
         }
       }
     },
@@ -4716,7 +4726,7 @@
       "exits": {
         "north": {
           "to_room": 2661,
-          "description": ""
+          "description": "A passage leads to The Chamber Of Darkness"
         }
       }
     },
@@ -4733,7 +4743,7 @@
       "exits": {
         "west": {
           "to_room": 2661,
-          "description": ""
+          "description": "A passage leads to The Chamber Of Darkness"
         }
       },
       "mob_resets": [
@@ -4759,11 +4769,11 @@
       "exits": {
         "east": {
           "to_room": 2650,
-          "description": ""
+          "description": "A passage leads to An Intersection"
         },
         "west": {
           "to_room": 2666,
-          "description": ""
+          "description": "A passage leads to A Bright Hallway"
         }
       }
     },
@@ -4779,11 +4789,11 @@
       "exits": {
         "east": {
           "to_room": 2665,
-          "description": ""
+          "description": "A passage leads to A Bright Hallway"
         },
         "west": {
           "to_room": 2667,
-          "description": "",
+          "description": "A passage leads to An Antechamber",
           "door": {
             "name": "door ivory",
             "state": "closed",
@@ -4805,7 +4815,7 @@
       "exits": {
         "east": {
           "to_room": 2666,
-          "description": "",
+          "description": "A passage leads to A Bright Hallway",
           "door": {
             "name": "door ivory",
             "state": "closed",
@@ -4815,7 +4825,7 @@
         },
         "west": {
           "to_room": 2669,
-          "description": ""
+          "description": "A passage leads to The Chamber Of The White Light"
         }
       },
       "mob_resets": [
@@ -4837,19 +4847,19 @@
       "exits": {
         "north": {
           "to_room": 2670,
-          "description": ""
+          "description": "A passage leads to The Meditation Chamber"
         },
         "east": {
           "to_room": 2667,
-          "description": ""
+          "description": "A passage leads to An Antechamber"
         },
         "south": {
           "to_room": 2671,
-          "description": ""
+          "description": "A passage leads to A Study"
         },
         "west": {
           "to_room": 2672,
-          "description": ""
+          "description": "A passage leads to A Closet"
         }
       },
       "mob_resets": [
@@ -4875,7 +4885,7 @@
       "exits": {
         "south": {
           "to_room": 2669,
-          "description": ""
+          "description": "A passage leads to The Chamber Of The White Light"
         }
       }
     },
@@ -4891,7 +4901,7 @@
       "exits": {
         "north": {
           "to_room": 2669,
-          "description": ""
+          "description": "A passage leads to The Chamber Of The White Light"
         }
       }
     },
@@ -4908,7 +4918,7 @@
       "exits": {
         "east": {
           "to_room": 2669,
-          "description": ""
+          "description": "A passage leads to The Chamber Of The White Light"
         }
       }
     },
@@ -4924,7 +4934,7 @@
       "exits": {
         "north": {
           "to_room": 2674,
-          "description": "",
+          "description": "A passage leads to A Wide Hallway",
           "door": {
             "name": "door metal grey",
             "state": "open",
@@ -4934,7 +4944,7 @@
         },
         "south": {
           "to_room": 2650,
-          "description": ""
+          "description": "A passage leads to An Intersection"
         }
       }
     },
@@ -4950,7 +4960,7 @@
       "exits": {
         "north": {
           "to_room": 2675,
-          "description": "",
+          "description": "A passage leads to A Wide Hallway",
           "door": {
             "name": "door obsidian black",
             "state": "open",
@@ -4960,7 +4970,7 @@
         },
         "south": {
           "to_room": 2673,
-          "description": "",
+          "description": "A passage leads to A Wide Hallway",
           "door": {
             "name": "door metal grey",
             "state": "open",
@@ -4982,7 +4992,7 @@
       "exits": {
         "north": {
           "to_room": 2676,
-          "description": "",
+          "description": "A passage leads to The Entranceway",
           "door": {
             "name": "door ivory white",
             "state": "open",
@@ -4992,7 +5002,7 @@
         },
         "south": {
           "to_room": 2674,
-          "description": "",
+          "description": "A passage leads to A Wide Hallway",
           "door": {
             "name": "door obsidian black",
             "state": "open",
@@ -5014,11 +5024,11 @@
       "exits": {
         "north": {
           "to_room": 2677,
-          "description": ""
+          "description": "A passage leads to The Audience Chamber"
         },
         "south": {
           "to_room": 2675,
-          "description": "",
+          "description": "A passage leads to A Wide Hallway",
           "door": {
             "name": "door white ivory",
             "state": "open",
@@ -5040,19 +5050,19 @@
       "exits": {
         "north": {
           "to_room": 2680,
-          "description": ""
+          "description": "A passage leads to The Altar"
         },
         "east": {
           "to_room": 2678,
-          "description": ""
+          "description": "A passage leads to A Dressing Room"
         },
         "south": {
           "to_room": 2676,
-          "description": ""
+          "description": "A passage leads to The Entranceway"
         },
         "west": {
           "to_room": 2679,
-          "description": ""
+          "description": "A passage leads to The Library"
         }
       },
       "extra_descs": {
@@ -5081,7 +5091,7 @@
       "exits": {
         "west": {
           "to_room": 2677,
-          "description": ""
+          "description": "A passage leads to The Audience Chamber"
         }
       }
     },
@@ -5097,7 +5107,7 @@
       "exits": {
         "east": {
           "to_room": 2677,
-          "description": ""
+          "description": "A passage leads to The Audience Chamber"
         }
       }
     },
@@ -5113,7 +5123,7 @@
       "exits": {
         "east": {
           "to_room": 2681,
-          "description": "",
+          "description": "A passage leads to The Treasury",
           "door": {
             "name": "door secret",
             "state": "closed",
@@ -5123,11 +5133,11 @@
         },
         "south": {
           "to_room": 2677,
-          "description": ""
+          "description": "A passage leads to The Audience Chamber"
         },
         "west": {
           "to_room": 2682,
-          "description": "",
+          "description": "A passage leads to A Passage",
           "door": {
             "name": "door secret",
             "state": "closed",
@@ -5155,7 +5165,7 @@
       "exits": {
         "west": {
           "to_room": 2680,
-          "description": "",
+          "description": "A passage leads to The Altar",
           "door": {
             "name": "door secret",
             "state": "closed",
@@ -5184,7 +5194,7 @@
       "exits": {
         "east": {
           "to_room": 2680,
-          "description": "",
+          "description": "A passage leads to The Altar",
           "door": {
             "name": "door",
             "state": "closed",
@@ -5194,7 +5204,7 @@
         },
         "west": {
           "to_room": 2683,
-          "description": ""
+          "description": "A passage leads to In The Light"
         }
       },
       "obj_resets": [
@@ -5228,7 +5238,7 @@
       "exits": {
         "up": {
           "to_room": 3001,
-          "description": ""
+          "description": "A passage leads to The Temple Of Midgaard"
         }
       }
     }
@@ -6879,7 +6889,8 @@
       "room_desc": "A glinting key of diamond has been left here.",
       "item_type": "key",
       "weight": 2,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "2501": {
       "vnum": 2501,
@@ -6889,7 +6900,8 @@
       "item_type": "container",
       "weight": 1000,
       "value": 1000,
-      "capacity": 1000
+      "capacity": 1000,
+      "type": "furniture"
     },
     "2502": {
       "vnum": 2502,
@@ -6899,7 +6911,8 @@
       "item_type": "container",
       "weight": 1000,
       "value": 1000,
-      "capacity": 1000
+      "capacity": 1000,
+      "type": "container"
     },
     "2503": {
       "vnum": 2503,
@@ -6909,7 +6922,8 @@
       "item_type": "container",
       "weight": 10,
       "value": 1500,
-      "capacity": 50
+      "capacity": 50,
+      "type": "furniture"
     },
     "2504": {
       "vnum": 2504,
@@ -6919,7 +6933,9 @@
       "item_type": "food",
       "weight": 1,
       "value": 12,
-      "nutrition": 15
+      "nutrition": 15,
+      "type": "food",
+      "food_value": 12
     },
     "2505": {
       "vnum": 2505,
@@ -6929,7 +6945,9 @@
       "item_type": "food",
       "weight": 2,
       "value": 20,
-      "nutrition": 24
+      "nutrition": 24,
+      "type": "food",
+      "food_value": 12
     },
     "2506": {
       "vnum": 2506,
@@ -6939,7 +6957,9 @@
       "item_type": "food",
       "weight": 2,
       "value": 15,
-      "nutrition": 20
+      "nutrition": 20,
+      "type": "food",
+      "food_value": 12
     },
     "2507": {
       "vnum": 2507,
@@ -6948,7 +6968,8 @@
       "room_desc": "A straw broom is here leaning against the wall.",
       "item_type": "boat",
       "weight": 5,
-      "value": 5
+      "value": 5,
+      "type": "treasure"
     },
     "2508": {
       "vnum": 2508,
@@ -6958,7 +6979,8 @@
       "item_type": "container",
       "weight": 10000,
       "value": 10,
-      "capacity": 5000
+      "capacity": 5000,
+      "type": "container"
     },
     "2509": {
       "vnum": 2509,
@@ -6967,7 +6989,8 @@
       "room_desc": "A bar of silver has been left here.",
       "item_type": "treasure",
       "weight": 10,
-      "value": 1000
+      "value": 1000,
+      "type": "treasure"
     },
     "2510": {
       "vnum": 2510,
@@ -6976,7 +6999,8 @@
       "room_desc": "A bar of gold has been left here.",
       "item_type": "treasure",
       "weight": 11,
-      "value": 2000
+      "value": 2000,
+      "type": "treasure"
     },
     "2511": {
       "vnum": 2511,
@@ -6985,7 +7009,8 @@
       "room_desc": "A bar of mithril has been left here.",
       "item_type": "treasure",
       "weight": 12,
-      "value": 3000
+      "value": 3000,
+      "type": "treasure"
     },
     "2512": {
       "vnum": 2512,
@@ -6994,7 +7019,8 @@
       "room_desc": "A bar of adamantite has been left here.",
       "item_type": "treasure",
       "weight": 15,
-      "value": 5000
+      "value": 5000,
+      "type": "treasure"
     },
     "2513": {
       "vnum": 2513,
@@ -7005,7 +7031,8 @@
       "weight": 19,
       "value": 10000,
       "damage_dice": "2d6",
-      "weapon_type": "pound"
+      "weapon_type": "pound",
+      "type": "weapon"
     },
     "2514": {
       "vnum": 2514,
@@ -7016,7 +7043,8 @@
       "weight": 1000,
       "value": 1000,
       "capacity": 5000,
-      "key_vnum": 1316
+      "key_vnum": 1316,
+      "type": "container"
     },
     "2515": {
       "vnum": 2515,
@@ -7025,7 +7053,8 @@
       "room_desc": "A small key has been left here.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "2516": {
       "vnum": 2516,
@@ -7036,7 +7065,8 @@
       "weight": 8,
       "value": 10000,
       "damage_dice": "1d8",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "2517": {
       "vnum": 2517,
@@ -7047,7 +7077,8 @@
       "weight": 5,
       "value": 15000,
       "damage_dice": "3d3",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "2518": {
       "vnum": 2518,
@@ -7058,7 +7089,8 @@
       "weight": 10,
       "value": 17500,
       "damage_dice": "2d7",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "2519": {
       "vnum": 2519,
@@ -7069,7 +7101,8 @@
       "weight": 6,
       "value": 10,
       "damage_dice": "1d4",
-      "weapon_type": "claw"
+      "weapon_type": "claw",
+      "type": "weapon"
     },
     "2520": {
       "vnum": 2520,
@@ -7080,7 +7113,8 @@
       "weight": 10000,
       "value": 1,
       "capacity": 5000,
-      "key_vnum": 2523
+      "key_vnum": 2523,
+      "type": "container"
     },
     "2521": {
       "vnum": 2521,
@@ -7091,7 +7125,8 @@
       "weight": 10000,
       "value": 1,
       "capacity": 5000,
-      "key_vnum": 2523
+      "key_vnum": 2523,
+      "type": "container"
     },
     "2522": {
       "vnum": 2522,
@@ -7100,7 +7135,8 @@
       "room_desc": "An old key is here",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "2523": {
       "vnum": 2523,
@@ -7109,7 +7145,8 @@
       "room_desc": "A silvery key has been left here.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "2524": {
       "vnum": 2524,
@@ -7118,7 +7155,8 @@
       "room_desc": "A silvery key has been left here.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "2525": {
       "vnum": 2525,
@@ -7127,7 +7165,10 @@
       "room_desc": "a red and white staff is leaning against the wall here",
       "item_type": "staff",
       "weight": 8,
-      "value": 5500
+      "value": 5500,
+      "type": "weapon",
+      "weapon_type": "pound",
+      "damage_dice": "1d6"
     },
     "2526": {
       "vnum": 2526,
@@ -7136,7 +7177,10 @@
       "room_desc": "A burnt staff is leaning against the wall here.",
       "item_type": "staff",
       "weight": 6,
-      "value": 1100
+      "value": 1100,
+      "type": "weapon",
+      "weapon_type": "pound",
+      "damage_dice": "1d6"
     },
     "2527": {
       "vnum": 2527,
@@ -7145,7 +7189,8 @@
       "room_desc": "A black rod has been left here.",
       "item_type": "wand",
       "weight": 4,
-      "value": 1200
+      "value": 1200,
+      "type": "treasure"
     },
     "2528": {
       "vnum": 2528,
@@ -7154,7 +7199,8 @@
       "room_desc": "a wooden stick is here",
       "item_type": "wand",
       "weight": 4,
-      "value": 600
+      "value": 600,
+      "type": "wand"
     },
     "2529": {
       "vnum": 2529,
@@ -7163,7 +7209,8 @@
       "room_desc": "A metal wand is here.",
       "item_type": "wand",
       "weight": 5,
-      "value": 2000
+      "value": 2000,
+      "type": "wand"
     },
     "2530": {
       "vnum": 2530,
@@ -7173,7 +7220,8 @@
       "item_type": "container",
       "weight": 5000,
       "value": 5000,
-      "capacity": 1000
+      "capacity": 1000,
+      "type": "furniture"
     },
     "2531": {
       "vnum": 2531,
@@ -7182,7 +7230,8 @@
       "room_desc": "A small pair of bat wings is here.",
       "item_type": "treasure",
       "weight": 2,
-      "value": 1
+      "value": 1,
+      "type": "treasure"
     },
     "2532": {
       "vnum": 2532,
@@ -7191,7 +7240,8 @@
       "room_desc": "An eyeball has been left here",
       "item_type": "treasure",
       "weight": 1,
-      "value": 1
+      "value": 1,
+      "type": "treasure"
     },
     "2533": {
       "vnum": 2533,
@@ -7201,7 +7251,8 @@
       "item_type": "container",
       "weight": 5000,
       "value": 0,
-      "capacity": 500
+      "capacity": 500,
+      "type": "note"
     },
     "2534": {
       "vnum": 2534,
@@ -7211,7 +7262,8 @@
       "item_type": "armor",
       "weight": 4,
       "value": 10000,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "treasure"
     },
     "2535": {
       "vnum": 2535,
@@ -7221,7 +7273,8 @@
       "item_type": "container",
       "weight": 5000,
       "value": 1,
-      "capacity": 1000
+      "capacity": 1000,
+      "type": "furniture"
     },
     "2536": {
       "vnum": 2536,
@@ -7231,7 +7284,10 @@
       "item_type": "armor",
       "weight": 3,
       "value": 10000,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "neck",
+      "armor": 0
     },
     "2537": {
       "vnum": 2537,
@@ -7242,7 +7298,8 @@
       "weight": 5000,
       "value": 500000,
       "capacity": 2000,
-      "key_vnum": 2538
+      "key_vnum": 2538,
+      "type": "container"
     },
     "2538": {
       "vnum": 2538,
@@ -7251,7 +7308,8 @@
       "room_desc": "An intricately carved key has been left here.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "2539": {
       "vnum": 2539,
@@ -7260,7 +7318,8 @@
       "room_desc": "A pile of coins is here.",
       "item_type": "money",
       "weight": 23,
-      "value": 23574
+      "value": 23574,
+      "type": "trash"
     },
     "2540": {
       "vnum": 2540,
@@ -7270,7 +7329,10 @@
       "item_type": "armor",
       "weight": 5,
       "value": 2000,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "about",
+      "armor": 1
     },
     "2541": {
       "vnum": 2541,
@@ -7280,7 +7342,8 @@
       "item_type": "armor",
       "weight": 4,
       "value": 15000,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "treasure"
     },
     "2542": {
       "vnum": 2542,
@@ -7290,7 +7353,10 @@
       "item_type": "armor",
       "weight": 2,
       "value": 3500,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "feet",
+      "armor": 2
     },
     "2543": {
       "vnum": 2543,
@@ -7299,7 +7365,10 @@
       "room_desc": "A small seashell has been left here.",
       "item_type": "boat",
       "weight": 2,
-      "value": 6500
+      "value": 6500,
+      "type": "armor",
+      "wear_slot": "finger",
+      "armor": 0
     },
     "2544": {
       "vnum": 2544,
@@ -7309,7 +7378,8 @@
       "item_type": "container",
       "weight": 9,
       "value": 750,
-      "capacity": 750
+      "capacity": 750,
+      "type": "container"
     },
     "2545": {
       "vnum": 2545,
@@ -7320,7 +7390,10 @@
       "weight": 2,
       "value": 11,
       "capacity": 5,
-      "current": 5
+      "current": 5,
+      "type": "drink",
+      "drinks": 10,
+      "max_drinks": 10
     },
     "2546": {
       "vnum": 2546,
@@ -7330,7 +7403,9 @@
       "item_type": "food",
       "weight": 3,
       "value": 65,
-      "nutrition": 32
+      "nutrition": 32,
+      "type": "food",
+      "food_value": 12
     },
     "2547": {
       "vnum": 2547,
@@ -7341,7 +7416,8 @@
       "weight": 8,
       "value": 600,
       "damage_dice": "3d4",
-      "weapon_type": "sting"
+      "weapon_type": "sting",
+      "type": "weapon"
     },
     "2548": {
       "vnum": 2548,
@@ -7350,7 +7426,8 @@
       "room_desc": "Some chain shackles have been discarded here",
       "item_type": "treasure",
       "weight": 15,
-      "value": 750
+      "value": 750,
+      "type": "treasure"
     },
     "2549": {
       "vnum": 2549,
@@ -7361,7 +7438,8 @@
       "weight": 5,
       "value": 1200,
       "damage_dice": "2d4",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "2550": {
       "vnum": 2550,
@@ -7370,7 +7448,8 @@
       "room_desc": "A scroll is here.",
       "item_type": "scroll",
       "weight": 5,
-      "value": 3000
+      "value": 3000,
+      "type": "scroll"
     },
     "2551": {
       "vnum": 2551,
@@ -7379,7 +7458,8 @@
       "room_desc": "A bound scroll is here blowing in the breeze.",
       "item_type": "scroll",
       "weight": 3,
-      "value": 9500
+      "value": 9500,
+      "type": "scroll"
     },
     "2552": {
       "vnum": 2552,
@@ -7389,7 +7469,8 @@
       "item_type": "container",
       "weight": 8,
       "value": 500,
-      "capacity": 100
+      "capacity": 100,
+      "type": "treasure"
     },
     "2553": {
       "vnum": 2553,
@@ -7398,7 +7479,8 @@
       "room_desc": "An old scroll has been left here.",
       "item_type": "scroll",
       "weight": 2,
-      "value": 500
+      "value": 500,
+      "type": "scroll"
     },
     "2554": {
       "vnum": 2554,
@@ -7407,7 +7489,8 @@
       "room_desc": "A blue scroll has been left here.",
       "item_type": "scroll",
       "weight": 5,
-      "value": 20000
+      "value": 20000,
+      "type": "scroll"
     },
     "2555": {
       "vnum": 2555,
@@ -7417,7 +7500,8 @@
       "item_type": "container",
       "weight": 2,
       "value": 1750,
-      "capacity": 150
+      "capacity": 150,
+      "type": "container"
     },
     "2556": {
       "vnum": 2556,
@@ -7426,7 +7510,8 @@
       "room_desc": "A silver stirring spoon has been left here.",
       "item_type": "treasure",
       "weight": 1,
-      "value": 5650
+      "value": 5650,
+      "type": "treasure"
     },
     "2557": {
       "vnum": 2557,
@@ -7435,7 +7520,8 @@
       "room_desc": "A blue potion is here.",
       "item_type": "potion",
       "weight": 2,
-      "value": 9000
+      "value": 9000,
+      "type": "potion"
     },
     "2558": {
       "vnum": 2558,
@@ -7444,7 +7530,8 @@
       "room_desc": "A bright red potion is here.",
       "item_type": "potion",
       "weight": 2,
-      "value": 1500
+      "value": 1500,
+      "type": "potion"
     },
     "2559": {
       "vnum": 2559,
@@ -7453,7 +7540,8 @@
       "room_desc": "A green potion is here.",
       "item_type": "potion",
       "weight": 2,
-      "value": 1500
+      "value": 1500,
+      "type": "potion"
     },
     "2560": {
       "vnum": 2560,
@@ -7462,7 +7550,8 @@
       "room_desc": "An effervescent potion is bubbling away here",
       "item_type": "potion",
       "weight": 2,
-      "value": 1000
+      "value": 1000,
+      "type": "potion"
     },
     "2561": {
       "vnum": 2561,
@@ -7471,7 +7560,8 @@
       "room_desc": "A milky white potion is here.",
       "item_type": "potion",
       "weight": 2,
-      "value": 750
+      "value": 750,
+      "type": "potion"
     },
     "2562": {
       "vnum": 2562,
@@ -7480,7 +7570,10 @@
       "room_desc": "A black staff is leaning against the wall here.",
       "item_type": "staff",
       "weight": 5,
-      "value": 500
+      "value": 500,
+      "type": "weapon",
+      "weapon_type": "pound",
+      "damage_dice": "1d6"
     },
     "2563": {
       "vnum": 2563,
@@ -7489,7 +7582,8 @@
       "room_desc": "A golden flute has been left here.",
       "item_type": "staff",
       "weight": 4,
-      "value": 15000
+      "value": 15000,
+      "type": "treasure"
     },
     "2564": {
       "vnum": 2564,
@@ -7498,7 +7592,8 @@
       "room_desc": "A small figurine in the shape of a humanoid is standing here.",
       "item_type": "staff",
       "weight": 4,
-      "value": 6000
+      "value": 6000,
+      "type": "treasure"
     },
     "2565": {
       "vnum": 2565,
@@ -7508,7 +7603,10 @@
       "item_type": "container",
       "weight": 4,
       "value": 290,
-      "capacity": 20
+      "capacity": 20,
+      "type": "armor",
+      "wear_slot": "waist",
+      "armor": 1
     },
     "2566": {
       "vnum": 2566,
@@ -7517,7 +7615,8 @@
       "room_desc": "A blackened wand is here.",
       "item_type": "wand",
       "weight": 4,
-      "value": 2500
+      "value": 2500,
+      "type": "wand"
     },
     "2567": {
       "vnum": 2567,
@@ -7528,7 +7627,8 @@
       "weight": 6,
       "value": 1500,
       "damage_dice": "2d3",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "treasure"
     },
     "2568": {
       "vnum": 2568,
@@ -7538,7 +7638,8 @@
       "item_type": "container",
       "weight": 5,
       "value": 750,
-      "capacity": 50
+      "capacity": 50,
+      "type": "container"
     },
     "2569": {
       "vnum": 2569,
@@ -7547,7 +7648,8 @@
       "room_desc": "Some sparkling dust is in a pile here.",
       "item_type": "staff",
       "weight": 2,
-      "value": 1000
+      "value": 1000,
+      "type": "treasure"
     },
     "2570": {
       "vnum": 2570,
@@ -7557,7 +7659,10 @@
       "item_type": "armor",
       "weight": 5,
       "value": 1200,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "2571": {
       "vnum": 2571,
@@ -7566,7 +7671,8 @@
       "room_desc": "An ashen wand is here",
       "item_type": "wand",
       "weight": 4,
-      "value": 2000
+      "value": 2000,
+      "type": "wand"
     },
     "2572": {
       "vnum": 2572,
@@ -7577,7 +7683,8 @@
       "weight": 29,
       "value": 750,
       "damage_dice": "3d5",
-      "weapon_type": "claw"
+      "weapon_type": "claw",
+      "type": "weapon"
     },
     "2573": {
       "vnum": 2573,
@@ -7587,7 +7694,10 @@
       "item_type": "container",
       "weight": 8,
       "value": 5000,
-      "capacity": 50
+      "capacity": 50,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 1
     },
     "2574": {
       "vnum": 2574,
@@ -7597,7 +7707,10 @@
       "item_type": "armor",
       "weight": 5,
       "value": 5000,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "wrist",
+      "armor": 1
     },
     "2575": {
       "vnum": 2575,
@@ -7607,7 +7720,10 @@
       "item_type": "armor",
       "weight": 7,
       "value": 12000,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "about",
+      "armor": 1
     },
     "2576": {
       "vnum": 2576,
@@ -7618,7 +7734,8 @@
       "weight": 7,
       "value": 9000,
       "damage_dice": "2d7",
-      "weapon_type": "claw"
+      "weapon_type": "claw",
+      "type": "weapon"
     },
     "2577": {
       "vnum": 2577,
@@ -7628,7 +7745,8 @@
       "item_type": "armor",
       "weight": 5,
       "value": 5000,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "treasure"
     },
     "2578": {
       "vnum": 2578,
@@ -7638,7 +7756,10 @@
       "item_type": "container",
       "weight": 8,
       "value": 5000,
-      "capacity": 50
+      "capacity": 50,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 1
     },
     "2579": {
       "vnum": 2579,
@@ -7648,7 +7769,10 @@
       "item_type": "armor",
       "weight": 6,
       "value": 8500,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "wrist",
+      "armor": 1
     },
     "2580": {
       "vnum": 2580,
@@ -7658,7 +7782,10 @@
       "item_type": "armor",
       "weight": 8,
       "value": 9000,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "about",
+      "armor": 1
     },
     "2581": {
       "vnum": 2581,
@@ -7669,7 +7796,8 @@
       "weight": 8,
       "value": 12000,
       "damage_dice": "2d7",
-      "weapon_type": "sting"
+      "weapon_type": "sting",
+      "type": "treasure"
     },
     "2582": {
       "vnum": 2582,
@@ -7679,7 +7807,10 @@
       "item_type": "container",
       "weight": 7,
       "value": 7500,
-      "capacity": 50
+      "capacity": 50,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 1
     },
     "2583": {
       "vnum": 2583,
@@ -7689,7 +7820,10 @@
       "item_type": "armor",
       "weight": 5,
       "value": 5000,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "wrist",
+      "armor": 1
     },
     "2584": {
       "vnum": 2584,
@@ -7699,7 +7833,10 @@
       "item_type": "armor",
       "weight": 7,
       "value": 9000,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "about",
+      "armor": 1
     },
     "2585": {
       "vnum": 2585,
@@ -7710,7 +7847,8 @@
       "weight": 8,
       "value": 12000,
       "damage_dice": "2d6",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "2586": {
       "vnum": 2586,
@@ -7720,7 +7858,10 @@
       "item_type": "armor",
       "weight": 9,
       "value": 10000,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "neck",
+      "armor": 0
     },
     "2587": {
       "vnum": 2587,
@@ -7730,7 +7871,10 @@
       "item_type": "container",
       "weight": 8,
       "value": 25000,
-      "capacity": 100
+      "capacity": 100,
+      "type": "armor",
+      "wear_slot": "about",
+      "armor": 1
     },
     "2588": {
       "vnum": 2588,
@@ -7740,7 +7884,10 @@
       "item_type": "armor",
       "weight": 5,
       "value": 50000,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "finger",
+      "armor": 0
     },
     "2589": {
       "vnum": 2589,
@@ -7750,7 +7897,10 @@
       "item_type": "armor",
       "weight": 5,
       "value": 30000,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "wrist",
+      "armor": 1
     },
     "2590": {
       "vnum": 2590,
@@ -7760,7 +7910,8 @@
       "item_type": "armor",
       "weight": 6,
       "value": 20000,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "treasure"
     },
     "2591": {
       "vnum": 2591,
@@ -7771,7 +7922,8 @@
       "weight": 9,
       "value": 60000,
       "damage_dice": "3d4",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "2592": {
       "vnum": 2592,
@@ -7781,7 +7933,10 @@
       "item_type": "armor",
       "weight": 9,
       "value": 10000,
-      "armor_bonus": 10
+      "armor_bonus": 10,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 1
     },
     "2593": {
       "vnum": 2593,
@@ -7790,7 +7945,8 @@
       "room_desc": "A key made of a strange grey metal has been left here.",
       "item_type": "key",
       "weight": 2,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "2594": {
       "vnum": 2594,
@@ -7799,7 +7955,8 @@
       "room_desc": "A key made of black obsidian has been left here.",
       "item_type": "key",
       "weight": 2,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "2595": {
       "vnum": 2595,
@@ -7808,7 +7965,8 @@
       "room_desc": "A key made of white ivory has been left here.",
       "item_type": "key",
       "weight": 2,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "2596": {
       "vnum": 2596,
@@ -7828,7 +7986,8 @@
           "value": 5
         }
       ],
-      "set_id": 25
+      "set_id": 25,
+      "type": "weapon"
     },
     "2597": {
       "vnum": 2597,
@@ -7847,7 +8006,9 @@
           "value": 2
         }
       ],
-      "set_id": 25
+      "set_id": 25,
+      "type": "armor",
+      "armor": 3
     },
     "2598": {
       "vnum": 2598,
@@ -7865,7 +8026,8 @@
           "value": 5
         }
       ],
-      "set_id": 25
+      "set_id": 25,
+      "type": "treasure"
     },
     "2599": {
       "vnum": 2599,
@@ -7887,7 +8049,8 @@
           "value": 50
         }
       ],
-      "set_id": 25
+      "set_id": 25,
+      "type": "treasure"
     },
     "2600": {
       "vnum": 2600,
@@ -7909,7 +8072,8 @@
           "value": 50
         }
       ],
-      "set_id": 25
+      "set_id": 25,
+      "type": "treasure"
     },
     "2601": {
       "vnum": 2601,
@@ -7929,7 +8093,8 @@
           "value": 4
         }
       ],
-      "set_id": 25
+      "set_id": 25,
+      "type": "treasure"
     },
     "2602": {
       "vnum": 2602,
@@ -7953,7 +8118,8 @@
           "value": 2
         }
       ],
-      "set_id": 25
+      "set_id": 25,
+      "type": "weapon"
     },
     "2603": {
       "vnum": 2603,
@@ -7975,7 +8141,9 @@
           "value": 1
         }
       ],
-      "set_id": 25
+      "set_id": 25,
+      "type": "armor",
+      "armor": 0
     },
     "2604": {
       "vnum": 2604,
@@ -7994,7 +8162,9 @@
           "value": 10
         }
       ],
-      "set_id": 25
+      "set_id": 25,
+      "type": "armor",
+      "armor": 1
     }
   }
 }

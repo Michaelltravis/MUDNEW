@@ -15,11 +15,11 @@
       "exits": {
         "east": {
           "to_room": 3301,
-          "description": ""
+          "description": "A steep trail ascends to A Scraggly Trail"
         },
         "west": {
           "to_room": 3500,
-          "description": ""
+          "description": "The cobblestones lead to The Plains"
         }
       },
       "extra_descs": {
@@ -35,11 +35,11 @@
       "exits": {
         "west": {
           "to_room": 3300,
-          "description": ""
+          "description": "A steep trail ascends to A Scraggly Trail"
         },
         "down": {
           "to_room": 3302,
-          "description": ""
+          "description": "A steep trail ascends to A Groomed Path"
         }
       }
     },
@@ -52,11 +52,11 @@
       "exits": {
         "east": {
           "to_room": 3303,
-          "description": ""
+          "description": "An open path leads to Outside A House"
         },
         "up": {
           "to_room": 3301,
-          "description": ""
+          "description": "A steep trail ascends to A Scraggly Trail"
         }
       }
     },
@@ -79,7 +79,7 @@
         },
         "west": {
           "to_room": 3302,
-          "description": ""
+          "description": "A steep trail ascends to A Groomed Path"
         }
       }
     },
@@ -126,11 +126,11 @@
       "exits": {
         "east": {
           "to_room": 3306,
-          "description": ""
+          "description": "A steep trail ascends to Mountain Ridge"
         },
         "west": {
           "to_room": 3304,
-          "description": ""
+          "description": "A passage leads to The Smithery"
         }
       },
       "extra_descs": {
@@ -146,11 +146,11 @@
       "exits": {
         "south": {
           "to_room": 3307,
-          "description": ""
+          "description": "A steep trail ascends to The Mountain Ridge"
         },
         "west": {
           "to_room": 3305,
-          "description": ""
+          "description": "An open path leads to A Small Garden"
         }
       },
       "extra_descs": {
@@ -166,11 +166,11 @@
       "exits": {
         "north": {
           "to_room": 3306,
-          "description": ""
+          "description": "A steep trail ascends to Mountain Ridge"
         },
         "south": {
           "to_room": 3308,
-          "description": ""
+          "description": "A steep trail ascends to The Diverging Paths"
         }
       },
       "extra_descs": {
@@ -186,19 +186,19 @@
       "exits": {
         "north": {
           "to_room": 3307,
-          "description": ""
+          "description": "A steep trail ascends to The Mountain Ridge"
         },
         "east": {
           "to_room": 3341,
-          "description": ""
+          "description": "A steep trail ascends to A Rocky Slope"
         },
         "south": {
           "to_room": 3309,
-          "description": ""
+          "description": "A rocky path climbs toward A Steep Slope"
         },
         "west": {
           "to_room": 3359,
-          "description": ""
+          "description": "A steep trail ascends to A Rocky Slope"
         }
       },
       "extra_descs": {
@@ -214,15 +214,15 @@
       "exits": {
         "north": {
           "to_room": 3308,
-          "description": ""
+          "description": "A steep trail ascends to The Diverging Paths"
         },
         "west": {
           "to_room": 3310,
-          "description": ""
+          "description": "A rocky path climbs toward A Small Plateau"
         },
         "up": {
           "to_room": 3308,
-          "description": ""
+          "description": "A steep trail ascends to The Diverging Paths"
         }
       },
       "extra_descs": {
@@ -238,15 +238,15 @@
       "exits": {
         "east": {
           "to_room": 3309,
-          "description": ""
+          "description": "A rocky path climbs toward A Steep Slope"
         },
         "south": {
           "to_room": 3314,
-          "description": ""
+          "description": "A steep trail ascends to A Rocky Slope"
         },
         "west": {
           "to_room": 3311,
-          "description": ""
+          "description": "A rocky path climbs toward A Small Plateau"
         }
       }
     },
@@ -259,11 +259,11 @@
       "exits": {
         "east": {
           "to_room": 3310,
-          "description": ""
+          "description": "A rocky path climbs toward A Small Plateau"
         },
         "west": {
           "to_room": 3312,
-          "description": ""
+          "description": "A steep trail ascends to A Rocky Slope"
         }
       }
     },
@@ -276,11 +276,11 @@
       "exits": {
         "north": {
           "to_room": 3313,
-          "description": ""
+          "description": "A rocky path climbs toward The Overlook"
         },
         "east": {
           "to_room": 3311,
-          "description": ""
+          "description": "A rocky path climbs toward A Small Plateau"
         }
       }
     },
@@ -293,7 +293,7 @@
       "exits": {
         "south": {
           "to_room": 3312,
-          "description": ""
+          "description": "A steep trail ascends to A Rocky Slope"
         }
       }
     },
@@ -306,11 +306,11 @@
       "exits": {
         "north": {
           "to_room": 3310,
-          "description": ""
+          "description": "A rocky path climbs toward A Small Plateau"
         },
         "west": {
           "to_room": 3315,
-          "description": ""
+          "description": "A rocky path climbs toward The Depression Floor"
         }
       }
     },
@@ -323,11 +323,11 @@
       "exits": {
         "east": {
           "to_room": 3314,
-          "description": ""
+          "description": "A steep trail ascends to A Rocky Slope"
         },
         "south": {
           "to_room": 3316,
-          "description": ""
+          "description": "A rocky path climbs toward The Depression Floor"
         }
       }
     },
@@ -340,11 +340,11 @@
       "exits": {
         "north": {
           "to_room": 3315,
-          "description": ""
+          "description": "A rocky path climbs toward The Depression Floor"
         },
         "east": {
           "to_room": 3317,
-          "description": ""
+          "description": "A passage leads to A Cave Entrance"
         }
       }
     },
@@ -359,11 +359,11 @@
       "exits": {
         "east": {
           "to_room": 3318,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         },
         "west": {
           "to_room": 3316,
-          "description": ""
+          "description": "A rocky path climbs toward The Depression Floor"
         }
       },
       "mob_resets": [
@@ -384,15 +384,15 @@
       "exits": {
         "north": {
           "to_room": 3319,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         },
         "south": {
           "to_room": 3331,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         },
         "west": {
           "to_room": 3317,
-          "description": ""
+          "description": "A passage leads to A Cave Entrance"
         }
       }
     },
@@ -407,11 +407,11 @@
       "exits": {
         "east": {
           "to_room": 3320,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         },
         "south": {
           "to_room": 3318,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         }
       },
       "mob_resets": [
@@ -432,11 +432,11 @@
       "exits": {
         "east": {
           "to_room": 3321,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         },
         "west": {
           "to_room": 3319,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         }
       }
     },
@@ -451,11 +451,11 @@
       "exits": {
         "south": {
           "to_room": 3322,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         },
         "west": {
           "to_room": 3320,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         }
       },
       "mob_resets": [
@@ -476,15 +476,15 @@
       "exits": {
         "north": {
           "to_room": 3321,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         },
         "east": {
           "to_room": 3324,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         },
         "west": {
           "to_room": 3323,
-          "description": ""
+          "description": "A passage leads to A Cave"
         }
       }
     },
@@ -499,7 +499,7 @@
       "exits": {
         "east": {
           "to_room": 3322,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         }
       },
       "mob_resets": [
@@ -530,11 +530,11 @@
       "exits": {
         "south": {
           "to_room": 3325,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         },
         "west": {
           "to_room": 3322,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         }
       }
     },
@@ -549,11 +549,11 @@
       "exits": {
         "north": {
           "to_room": 3324,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         },
         "east": {
           "to_room": 3326,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         }
       },
       "mob_resets": [
@@ -574,11 +574,11 @@
       "exits": {
         "north": {
           "to_room": 3327,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         },
         "west": {
           "to_room": 3325,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         }
       }
     },
@@ -593,11 +593,11 @@
       "exits": {
         "north": {
           "to_room": 3328,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         },
         "south": {
           "to_room": 3326,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         }
       },
       "mob_resets": [
@@ -622,11 +622,11 @@
       "exits": {
         "south": {
           "to_room": 3327,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         },
         "west": {
           "to_room": 3329,
-          "description": ""
+          "description": "A passage leads to The End Of The Passageway"
         }
       }
     },
@@ -651,7 +651,7 @@
         },
         "east": {
           "to_room": 3328,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         }
       },
       "mob_resets": [
@@ -717,11 +717,11 @@
       "exits": {
         "north": {
           "to_room": 3318,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         },
         "south": {
           "to_room": 3332,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         }
       }
     },
@@ -736,11 +736,11 @@
       "exits": {
         "north": {
           "to_room": 3331,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         },
         "east": {
           "to_room": 3333,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         }
       },
       "mob_resets": [
@@ -761,11 +761,11 @@
       "exits": {
         "north": {
           "to_room": 3334,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         },
         "west": {
           "to_room": 3332,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         }
       }
     },
@@ -780,11 +780,11 @@
       "exits": {
         "east": {
           "to_room": 3335,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         },
         "south": {
           "to_room": 3333,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         }
       }
     },
@@ -799,11 +799,11 @@
       "exits": {
         "south": {
           "to_room": 3336,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         },
         "west": {
           "to_room": 3334,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         }
       }
     },
@@ -819,11 +819,11 @@
       "exits": {
         "north": {
           "to_room": 3335,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         },
         "south": {
           "to_room": 3337,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         }
       },
       "mob_resets": [
@@ -845,11 +845,11 @@
       "exits": {
         "north": {
           "to_room": 3336,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         },
         "east": {
           "to_room": 3338,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         }
       }
     },
@@ -865,11 +865,11 @@
       "exits": {
         "north": {
           "to_room": 3339,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         },
         "west": {
           "to_room": 3337,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         }
       }
     },
@@ -885,11 +885,11 @@
       "exits": {
         "east": {
           "to_room": 3340,
-          "description": ""
+          "description": "A passage leads to The End Of The Passage"
         },
         "south": {
           "to_room": 3338,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         }
       },
       "mob_resets": [
@@ -910,7 +910,7 @@
       "exits": {
         "west": {
           "to_room": 3339,
-          "description": ""
+          "description": "A passage leads to A Cave Passageway"
         }
       },
       "mob_resets": [
@@ -941,11 +941,11 @@
       "exits": {
         "east": {
           "to_room": 3342,
-          "description": ""
+          "description": "A steep trail ascends to A Rocky Slope"
         },
         "west": {
           "to_room": 3308,
-          "description": ""
+          "description": "A steep trail ascends to The Diverging Paths"
         }
       }
     },
@@ -960,11 +960,11 @@
       "exits": {
         "east": {
           "to_room": 3343,
-          "description": ""
+          "description": "The cobblestones lead to Main Road"
         },
         "west": {
           "to_room": 3341,
-          "description": ""
+          "description": "A steep trail ascends to A Rocky Slope"
         }
       }
     },
@@ -977,19 +977,19 @@
       "exits": {
         "north": {
           "to_room": 3344,
-          "description": ""
+          "description": "A passage leads to The Mountain Tavern"
         },
         "east": {
           "to_room": 3346,
-          "description": ""
+          "description": "The cobblestones lead to Main Road"
         },
         "south": {
           "to_room": 3345,
-          "description": ""
+          "description": "A passage leads to The General Store"
         },
         "west": {
           "to_room": 3342,
-          "description": ""
+          "description": "A steep trail ascends to A Rocky Slope"
         }
       },
       "extra_descs": {
@@ -1007,7 +1007,7 @@
       "exits": {
         "south": {
           "to_room": 3343,
-          "description": ""
+          "description": "The cobblestones lead to Main Road"
         }
       }
     },
@@ -1022,7 +1022,7 @@
       "exits": {
         "north": {
           "to_room": 3343,
-          "description": ""
+          "description": "The cobblestones lead to Main Road"
         }
       },
       "mob_resets": [
@@ -1041,15 +1041,15 @@
       "exits": {
         "east": {
           "to_room": 3348,
-          "description": ""
+          "description": "The cobblestones lead to The Intersection"
         },
         "south": {
           "to_room": 3347,
-          "description": ""
+          "description": "A passage leads to The Corral"
         },
         "west": {
           "to_room": 3343,
-          "description": ""
+          "description": "The cobblestones lead to Main Road"
         }
       },
       "mob_resets": [
@@ -1070,7 +1070,7 @@
       "exits": {
         "north": {
           "to_room": 3346,
-          "description": ""
+          "description": "The cobblestones lead to Main Road"
         }
       },
       "mob_resets": [
@@ -1105,19 +1105,19 @@
       "exits": {
         "north": {
           "to_room": 3349,
-          "description": ""
+          "description": "The cobblestones lead to A Small Road"
         },
         "east": {
           "to_room": 3355,
-          "description": ""
+          "description": "The cobblestones lead to Main Road"
         },
         "south": {
           "to_room": 3353,
-          "description": ""
+          "description": "The cobblestones lead to A Small Road"
         },
         "west": {
           "to_room": 3346,
-          "description": ""
+          "description": "The cobblestones lead to Main Road"
         }
       }
     },
@@ -1130,15 +1130,15 @@
       "exits": {
         "north": {
           "to_room": 3351,
-          "description": ""
+          "description": "The cobblestones lead to A Small Road"
         },
         "south": {
           "to_room": 3348,
-          "description": ""
+          "description": "The cobblestones lead to The Intersection"
         },
         "west": {
           "to_room": 3350,
-          "description": ""
+          "description": "The cobblestones lead to The Farmer's Market"
         }
       },
       "mob_resets": [
@@ -1157,7 +1157,7 @@
       "exits": {
         "east": {
           "to_room": 3349,
-          "description": ""
+          "description": "The cobblestones lead to A Small Road"
         }
       },
       "mob_resets": [
@@ -1186,7 +1186,7 @@
         },
         "south": {
           "to_room": 3349,
-          "description": ""
+          "description": "The cobblestones lead to A Small Road"
         }
       }
     },
@@ -1220,7 +1220,7 @@
       "exits": {
         "north": {
           "to_room": 3348,
-          "description": ""
+          "description": "The cobblestones lead to The Intersection"
         },
         "south": {
           "to_room": 3354,
@@ -1280,7 +1280,7 @@
         },
         "west": {
           "to_room": 3348,
-          "description": ""
+          "description": "The cobblestones lead to The Intersection"
         }
       },
       "mob_resets": [
@@ -1311,11 +1311,11 @@
         },
         "west": {
           "to_room": 3357,
-          "description": ""
+          "description": "A passage leads to The Common Room"
         },
         "up": {
           "to_room": 3358,
-          "description": ""
+          "description": "A passage leads to The Reception"
         }
       },
       "mob_resets": [
@@ -1336,7 +1336,7 @@
       "exits": {
         "east": {
           "to_room": 3356,
-          "description": ""
+          "description": "A passage leads to Stanneg Inn"
         }
       },
       "mob_resets": [
@@ -1381,7 +1381,7 @@
       "exits": {
         "down": {
           "to_room": 3356,
-          "description": ""
+          "description": "A passage leads to Stanneg Inn"
         }
       },
       "mob_resets": [
@@ -1400,11 +1400,11 @@
       "exits": {
         "east": {
           "to_room": 3308,
-          "description": ""
+          "description": "A steep trail ascends to The Diverging Paths"
         },
         "west": {
           "to_room": 3360,
-          "description": ""
+          "description": "A rocky path climbs toward A Ledge"
         }
       }
     },
@@ -1417,15 +1417,15 @@
       "exits": {
         "east": {
           "to_room": 3359,
-          "description": ""
+          "description": "A steep trail ascends to A Rocky Slope"
         },
         "up": {
           "to_room": 3363,
-          "description": ""
+          "description": "A steep trail ascends to A Mountain Trail"
         },
         "down": {
           "to_room": 3361,
-          "description": ""
+          "description": "A rocky path climbs toward Outside Of A Cottage"
         }
       }
     },
@@ -1438,11 +1438,11 @@
       "exits": {
         "west": {
           "to_room": 3362,
-          "description": ""
+          "description": "The cobblestones lead to The Torched Cottage"
         },
         "up": {
           "to_room": 3360,
-          "description": ""
+          "description": "A rocky path climbs toward A Ledge"
         }
       }
     },
@@ -1455,7 +1455,7 @@
       "exits": {
         "east": {
           "to_room": 3361,
-          "description": ""
+          "description": "A rocky path climbs toward Outside Of A Cottage"
         }
       }
     },
@@ -1468,11 +1468,11 @@
       "exits": {
         "west": {
           "to_room": 3364,
-          "description": ""
+          "description": "A steep trail ascends to A Mountain Trail"
         },
         "down": {
           "to_room": 3360,
-          "description": ""
+          "description": "A rocky path climbs toward A Ledge"
         }
       }
     },
@@ -1485,11 +1485,11 @@
       "exits": {
         "east": {
           "to_room": 3363,
-          "description": ""
+          "description": "A steep trail ascends to A Mountain Trail"
         },
         "west": {
           "to_room": 3365,
-          "description": ""
+          "description": "A steep trail ascends to A Mountain Trail"
         }
       }
     },
@@ -1502,11 +1502,11 @@
       "exits": {
         "east": {
           "to_room": 3364,
-          "description": ""
+          "description": "A steep trail ascends to A Mountain Trail"
         },
         "west": {
           "to_room": 3366,
-          "description": ""
+          "description": "A steep trail ascends to Near The Peak"
         }
       }
     },
@@ -1522,11 +1522,11 @@
       "exits": {
         "north": {
           "to_room": 3367,
-          "description": ""
+          "description": "A steep trail ascends to A Small, Dangerous Path"
         },
         "east": {
           "to_room": 3365,
-          "description": ""
+          "description": "A steep trail ascends to A Mountain Trail"
         }
       }
     },
@@ -1542,11 +1542,11 @@
       "exits": {
         "south": {
           "to_room": 3366,
-          "description": ""
+          "description": "A steep trail ascends to Near The Peak"
         },
         "up": {
           "to_room": 3368,
-          "description": ""
+          "description": "A steep trail ascends to A Small, Dangerous Path"
         }
       }
     },
@@ -1562,11 +1562,11 @@
       "exits": {
         "north": {
           "to_room": 3369,
-          "description": ""
+          "description": "A rocky path climbs toward The Cave Entrance"
         },
         "down": {
           "to_room": 3367,
-          "description": ""
+          "description": "A steep trail ascends to A Small, Dangerous Path"
         }
       },
       "mob_resets": [
@@ -1598,15 +1598,15 @@
       "exits": {
         "south": {
           "to_room": 3368,
-          "description": ""
+          "description": "A steep trail ascends to A Small, Dangerous Path"
         },
         "up": {
           "to_room": 3370,
-          "description": ""
+          "description": "A passage leads to A Sloping Tunnel"
         },
         "down": {
           "to_room": 3373,
-          "description": ""
+          "description": "A rocky path climbs toward A Sloping Tunnel"
         }
       }
     },
@@ -1624,11 +1624,11 @@
       "exits": {
         "north": {
           "to_room": 3371,
-          "description": ""
+          "description": "A rocky path climbs toward A Sloping Tunnel"
         },
         "down": {
           "to_room": 3369,
-          "description": ""
+          "description": "A rocky path climbs toward The Cave Entrance"
         }
       }
     },
@@ -1646,11 +1646,11 @@
       "exits": {
         "north": {
           "to_room": 3372,
-          "description": ""
+          "description": "A passage leads to The Pit"
         },
         "south": {
           "to_room": 3370,
-          "description": ""
+          "description": "A passage leads to A Sloping Tunnel"
         }
       },
       "extra_descs": {
@@ -1671,7 +1671,7 @@
       "exits": {
         "south": {
           "to_room": 3371,
-          "description": ""
+          "description": "A rocky path climbs toward A Sloping Tunnel"
         }
       }
     },
@@ -1689,11 +1689,11 @@
       "exits": {
         "up": {
           "to_room": 3369,
-          "description": ""
+          "description": "A rocky path climbs toward The Cave Entrance"
         },
         "down": {
           "to_room": 3374,
-          "description": ""
+          "description": "A rocky path climbs toward A Sloping Tunnel"
         }
       }
     },
@@ -1711,11 +1711,11 @@
       "exits": {
         "north": {
           "to_room": 3375,
-          "description": ""
+          "description": "A rocky path climbs toward The Lair"
         },
         "up": {
           "to_room": 3373,
-          "description": ""
+          "description": "A rocky path climbs toward A Sloping Tunnel"
         }
       }
     },
@@ -1732,7 +1732,7 @@
       "exits": {
         "south": {
           "to_room": 3374,
-          "description": ""
+          "description": "A rocky path climbs toward A Sloping Tunnel"
         }
       },
       "mob_resets": [
@@ -2341,7 +2341,9 @@
       "item_type": "food",
       "weight": 1,
       "value": 8,
-      "nutrition": 8
+      "nutrition": 8,
+      "type": "food",
+      "food_value": 12
     },
     "3301": {
       "vnum": 3301,
@@ -2351,7 +2353,8 @@
       "item_type": "food",
       "weight": 100,
       "value": 1000,
-      "nutrition": 24
+      "nutrition": 24,
+      "type": "treasure"
     },
     "3302": {
       "vnum": 3302,
@@ -2360,7 +2363,8 @@
       "room_desc": "A HUGE zither made of gold rests in the corner",
       "item_type": "treasure",
       "weight": 40,
-      "value": 200000
+      "value": 200000,
+      "type": "treasure"
     },
     "3303": {
       "vnum": 3303,
@@ -2369,7 +2373,9 @@
       "room_desc": "You can smell a barrel on the other side of the room from here.",
       "item_type": "treasure",
       "weight": 20,
-      "value": 100000
+      "value": 100000,
+      "type": "container",
+      "capacity": 100
     },
     "3304": {
       "vnum": 3304,
@@ -2378,7 +2384,8 @@
       "room_desc": "There is a statue of Aglandiir here, made of solid gold.",
       "item_type": "treasure",
       "weight": 30,
-      "value": 150000
+      "value": 150000,
+      "type": "furniture"
     },
     "3305": {
       "vnum": 3305,
@@ -2389,7 +2396,8 @@
       "weight": 16,
       "value": 10000,
       "damage_dice": "1d12",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "3306": {
       "vnum": 3306,
@@ -2398,7 +2406,8 @@
       "room_desc": "A vial of a dun fluid is here.",
       "item_type": "potion",
       "weight": 1,
-      "value": 10000
+      "value": 10000,
+      "type": "potion"
     },
     "3307": {
       "vnum": 3307,
@@ -2407,7 +2416,10 @@
       "room_desc": "Aglandiir's crown sits here, radiating a shield.",
       "item_type": "treasure",
       "weight": 400,
-      "value": 0
+      "value": 0,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "3308": {
       "vnum": 3308,
@@ -2417,7 +2429,9 @@
       "item_type": "food",
       "weight": 1,
       "value": 5,
-      "nutrition": 4
+      "nutrition": 4,
+      "type": "food",
+      "food_value": 12
     },
     "3309": {
       "vnum": 3309,
@@ -2427,7 +2441,9 @@
       "item_type": "food",
       "weight": 1,
       "value": 10,
-      "nutrition": 12
+      "nutrition": 12,
+      "type": "food",
+      "food_value": 12
     },
     "3310": {
       "vnum": 3310,
@@ -2437,7 +2453,9 @@
       "item_type": "food",
       "weight": 3,
       "value": 8,
-      "nutrition": 8
+      "nutrition": 8,
+      "type": "food",
+      "food_value": 12
     },
     "3311": {
       "vnum": 3311,
@@ -2448,7 +2466,8 @@
       "weight": 8,
       "value": 1000000,
       "damage_dice": "3d5",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "3312": {
       "vnum": 3312,
@@ -2459,7 +2478,8 @@
       "weight": 15,
       "value": 750000,
       "damage_dice": "2d7",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "3313": {
       "vnum": 3313,
@@ -2470,7 +2490,8 @@
       "weight": 10,
       "value": 10000000,
       "damage_dice": "4d6",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "3314": {
       "vnum": 3314,
@@ -2479,7 +2500,8 @@
       "room_desc": "A dismembered and burnt corpse lies on the ground here.",
       "item_type": "treasure",
       "weight": 1,
-      "value": 1
+      "value": 1,
+      "type": "trash"
     },
     "3315": {
       "vnum": 3315,
@@ -2490,7 +2512,8 @@
       "weight": 10,
       "value": 500,
       "damage_dice": "1d7",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "3316": {
       "vnum": 3316,
@@ -2500,7 +2523,8 @@
       "item_type": "container",
       "weight": 50,
       "value": 100,
-      "capacity": 200
+      "capacity": 200,
+      "type": "container"
     },
     "3317": {
       "vnum": 3317,
@@ -2511,7 +2535,8 @@
       "weight": 6,
       "value": 400,
       "damage_dice": "1d5",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "3318": {
       "vnum": 3318,
@@ -2521,7 +2546,10 @@
       "item_type": "armor",
       "weight": 6,
       "value": 5000,
-      "armor_bonus": 6
+      "armor_bonus": 6,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 1
     },
     "3319": {
       "vnum": 3319,
@@ -2532,7 +2560,10 @@
       "weight": 2,
       "value": 5,
       "capacity": 1,
-      "current": 1
+      "current": 1,
+      "type": "drink",
+      "drinks": 10,
+      "max_drinks": 10
     },
     "3320": {
       "vnum": 3320,
@@ -2543,7 +2574,10 @@
       "weight": 2,
       "value": 8,
       "capacity": 1,
-      "current": 1
+      "current": 1,
+      "type": "drink",
+      "drinks": 10,
+      "max_drinks": 10
     },
     "3321": {
       "vnum": 3321,
@@ -2554,7 +2588,8 @@
       "weight": 1,
       "value": 10,
       "capacity": 1,
-      "current": 1
+      "current": 1,
+      "type": "treasure"
     },
     "3322": {
       "vnum": 3322,
@@ -2574,7 +2609,8 @@
           "value": 4
         }
       ],
-      "set_id": 33
+      "set_id": 33,
+      "type": "weapon"
     },
     "3323": {
       "vnum": 3323,
@@ -2593,7 +2629,9 @@
           "value": 1
         }
       ],
-      "set_id": 33
+      "set_id": 33,
+      "type": "armor",
+      "armor": 3
     },
     "3324": {
       "vnum": 3324,
@@ -2611,7 +2649,8 @@
           "value": 4
         }
       ],
-      "set_id": 33
+      "set_id": 33,
+      "type": "treasure"
     },
     "3325": {
       "vnum": 3325,
@@ -2633,7 +2672,8 @@
           "value": 30
         }
       ],
-      "set_id": 33
+      "set_id": 33,
+      "type": "treasure"
     },
     "3326": {
       "vnum": 3326,
@@ -2651,7 +2691,8 @@
           "value": 4
         }
       ],
-      "set_id": 33
+      "set_id": 33,
+      "type": "treasure"
     },
     "3327": {
       "vnum": 3327,
@@ -2671,7 +2712,8 @@
           "value": 3
         }
       ],
-      "set_id": 33
+      "set_id": 33,
+      "type": "treasure"
     },
     "3328": {
       "vnum": 3328,
@@ -2695,7 +2737,8 @@
           "value": 2
         }
       ],
-      "set_id": 33
+      "set_id": 33,
+      "type": "weapon"
     },
     "3329": {
       "vnum": 3329,
@@ -2717,7 +2760,9 @@
           "value": 1
         }
       ],
-      "set_id": 33
+      "set_id": 33,
+      "type": "armor",
+      "armor": 0
     },
     "3330": {
       "vnum": 3330,
@@ -2736,7 +2781,9 @@
           "value": 1
         }
       ],
-      "set_id": 33
+      "set_id": 33,
+      "type": "armor",
+      "armor": 1
     }
   }
 }

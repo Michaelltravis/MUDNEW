@@ -159,7 +159,8 @@ class Room:
                     await player.send(f"{c['blue']}Visibility is reduced by the weather.{c['reset']}")
 
         # Room name
-        await player.send(f"{c['cyan']}{self.name}{c['reset']}")
+        vnum_str = f" {c['yellow']}[{self.vnum}]{c['reset']}" if getattr(player, 'show_room_vnums', False) else ""
+        await player.send(f"{c['cyan']}{self.name}{vnum_str}{c['reset']}")
         
         # Dynamic atmospheric description based on time/weather
         try:
@@ -305,7 +306,11 @@ class Room:
                         desc = f"{char.name} is here, fighting {char.fighting.name}."
                         await player.send(f"{char_color}{desc}{owner_tag}{label_msg}{sneak_indicator}{c['reset']}")
                 elif hasattr(char, 'long_desc'):
-                    await player.send(f"{char_color}{char.long_desc}{owner_tag}{label_msg}{fighting_msg}{sneak_indicator}{c['reset']}")
+                    # Show mob name hint so players know what keyword to use
+                    name_hint = ""
+                    if hasattr(char, 'vnum') and not hasattr(char, 'connection'):
+                        name_hint = f" {c['bright_black']}({char.name}){c['reset']}"
+                    await player.send(f"{char_color}{char.long_desc}{name_hint}{owner_tag}{label_msg}{fighting_msg}{sneak_indicator}{c['reset']}")
                 else:
                     await player.send(f"{char_color}{char.name} is standing here.{owner_tag}{label_msg}{fighting_msg}{sneak_indicator}{c['reset']}")
 
@@ -915,6 +920,61 @@ class World:
         """Process pet timers and expiration."""
         from pets import PetManager
         await PetManager.pet_tick(self)
+
+    async def decay_tick(self):
+        """Process corpse decay and ground item decay.
+        
+        Corpses decay after ~5 minutes real time (50 ticks at 6s/tick).
+        When a corpse decays, its contents drop to the ground.
+        Ground items (non-permanent) decay after 2-3 MUD days (~30 min real time).
+        """
+        for room in self.rooms.values():
+            if not hasattr(room, 'items'):
+                continue
+            items_to_remove = []
+            items_to_add = []
+            
+            for item in room.items:
+                # Initialize decay timer if not set
+                if not hasattr(item, 'decay_timer'):
+                    if 'corpse' in getattr(item, 'name', '').lower():
+                        item.decay_timer = 50  # ~5 min at 6s per tick
+                    elif getattr(item, 'item_type', '') in ('key',):
+                        item.decay_timer = 300  # Keys last longer (~30 min)
+                    elif hasattr(item, '_permanent') and item._permanent:
+                        item.decay_timer = -1  # Never decay (zone resets)
+                    else:
+                        item.decay_timer = -1  # Don't decay zone-spawned items
+                
+                if item.decay_timer < 0:
+                    continue  # Permanent item
+                    
+                item.decay_timer -= 1
+                
+                if item.decay_timer <= 0:
+                    if 'corpse' in getattr(item, 'name', '').lower():
+                        # Corpse decays — drop contents to ground
+                        contents = getattr(item, 'contents', [])
+                        for contained in contents:
+                            contained.decay_timer = 500  # ~50 min for dropped items
+                            items_to_add.append(contained)
+                        # Notify players in room
+                        for char in room.characters:
+                            if hasattr(char, 'send'):
+                                c = char.config.COLORS
+                                await char.send(f"{c['yellow']}{item.short_desc} decays, leaving behind its contents.{c['reset']}")
+                    else:
+                        # Regular item decays
+                        for char in room.characters:
+                            if hasattr(char, 'send'):
+                                c = char.config.COLORS
+                                await char.send(f"{c['yellow']}{item.short_desc} crumbles to dust.{c['reset']}")
+                    items_to_remove.append(item)
+            
+            for item in items_to_remove:
+                room.items.remove(item)
+            for item in items_to_add:
+                room.items.append(item)
 
     async def process_npcs(self):
         """Process NPC AI."""

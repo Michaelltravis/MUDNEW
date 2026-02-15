@@ -151,7 +151,8 @@
       "room_desc": "This object is BAD!  If you see it, there must be a bug in the game.  Please",
       "item_type": "treasure",
       "weight": 0,
-      "value": 0
+      "value": 0,
+      "type": "treasure"
     },
     "1": {
       "vnum": 1,
@@ -161,7 +162,8 @@
       "item_type": "armor",
       "weight": 0,
       "value": 0,
-      "armor_bonus": 6
+      "armor_bonus": 6,
+      "type": "treasure"
     },
     "10": {
       "vnum": 10,
@@ -171,7 +173,9 @@
       "item_type": "food",
       "weight": 1,
       "value": 50,
-      "nutrition": 24
+      "nutrition": 24,
+      "type": "food",
+      "food_value": 12
     }
   }
 }

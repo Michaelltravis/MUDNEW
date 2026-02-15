@@ -35,6 +35,7 @@ class Object:
         self.set_id = None      # Zone set id
         self.weight = 1
         self.cost = 0
+        self.value = 0  # Alias for shop system compatibility
         
         # Weapon properties
         self.damage_dice = "1d4"
@@ -50,6 +51,7 @@ class Object:
         self.is_locked = False
         self.locked = False  # Backward compatibility
         self.key_vnum = None
+        self.lock_difficulty = 0
         
         # Consumable properties
         self.food_value = 0
@@ -146,7 +148,8 @@ class Object:
         obj.wear_slot = data.get('wear_slot')
         obj.set_id = data.get('set_id')
         obj.weight = data.get('weight', 1)
-        obj.cost = data.get('cost', 0)
+        obj.cost = data.get('cost', data.get('value', 0))
+        obj.value = obj.cost  # Alias for shop system compatibility
         obj.damage_dice = data.get('damage_dice', '1d4')
         obj.weapon_type = data.get('weapon_type', 'hit')
         obj.armor = data.get('armor', 0)
@@ -187,9 +190,15 @@ class Object:
         obj.description = proto.get('description', 'You see nothing special.')
         obj.item_type = proto.get('item_type', proto.get('type', 'other'))
         obj.wear_slot = proto.get('wear_slot')
+        # Support wear_flags list (CircleMUD-style) as fallback for wear_slot
+        if not obj.wear_slot and proto.get('wear_flags'):
+            flags = proto['wear_flags']
+            if isinstance(flags, list) and flags:
+                obj.wear_slot = flags[0]  # Use first wear flag as slot
         obj.set_id = proto.get('set_id')
         obj.weight = proto.get('weight', 1)
-        obj.cost = proto.get('cost', 0)
+        obj.cost = proto.get('cost', proto.get('value', 0))
+        obj.value = obj.cost  # Alias for shop system compatibility
         obj.damage_dice = proto.get('damage_dice', '1d4')
         obj.weapon_type = proto.get('weapon_type', 'hit')
         obj.armor = proto.get('armor', 0)
@@ -213,6 +222,17 @@ class Object:
         obj.lore_text = proto.get('lore_text')
         obj.lore_zone = proto.get('lore_zone')
         obj.readable_text = proto.get('readable_text')
+        obj.water_speed = proto.get('water_speed', 0)
+        obj.lock_difficulty = proto.get('lock_difficulty', 0)
+        obj.pick_difficulty = proto.get('lock_difficulty', proto.get('pick_difficulty', 50))
+
+        # Populate contents from 'contains' vnum list
+        contains_vnums = proto.get('contains', [])
+        if contains_vnums and world:
+            for cvnum in contains_vnums:
+                child = create_object(cvnum, world)
+                if child:
+                    obj.contents.append(child)
 
         return obj
 
@@ -383,6 +403,30 @@ PRESET_OBJECTS = {
          'armor': 1, 'wear_pos': 'about'},
     51: {'vnum': 51, 'name': 'a poison vial', 'short_desc': 'a small vial of poison',
          'room_desc': 'A vial of poison sits here.', 'type': 'other', 'weight': 1, 'cost': 25},
+    # === TUTORIAL REWARD ITEMS ===
+    100: {
+        'vnum': 100,
+        'name': 'a minor healing potion',
+        'short_desc': 'a small vial of red liquid',
+        'room_desc': 'A small vial of red liquid sits here.',
+        'description': 'A small glass vial filled with a glowing red liquid. It will restore a modest amount of health when quaffed.',
+        'type': 'potion',
+        'weight': 1,
+        'cost': 15,
+        'spell': 'cure light',
+        'spell_level': 5,
+    },
+    101: {
+        'vnum': 101,
+        'name': 'a ration of travel bread',
+        'short_desc': 'a ration of travel bread',
+        'room_desc': 'A wrapped ration of bread lies here.',
+        'description': 'A hearty ration of travel bread, wrapped in cloth to keep it fresh.',
+        'type': 'food',
+        'weight': 1,
+        'cost': 8,
+        'food_value': 18,
+    },
     9010: {
         'vnum': 9010,
         'name': 'the Midgaard guard blade',
@@ -533,6 +577,32 @@ PRESET_OBJECTS = {
         'type': 'treasure',
         'weight': 1,
         'cost': 1500,
+    },
+    # Watercraft - reduce water movement costs
+    60: {
+        'vnum': 60, 'name': 'a wooden raft',
+        'short_desc': 'a crude wooden raft',
+        'room_desc': 'A crude wooden raft is propped up here.',
+        'description': 'A simple raft lashed together from logs and rope. It floats, barely. Better than swimming.',
+        'item_type': 'boat', 'weight': 30, 'cost': 100,
+        'water_speed': 0.5,  # 50% reduction
+    },
+    61: {
+        'vnum': 61, 'name': 'a birch canoe',
+        'short_desc': 'a lightweight birch canoe',
+        'room_desc': 'A sleek birch canoe rests here.',
+        'description': 'A well-crafted canoe carved from birch wood. Light enough to carry, fast enough to outrun most river currents.',
+        'item_type': 'boat', 'weight': 20, 'cost': 500,
+        'water_speed': 0.7,  # 70% reduction
+    },
+    62: {
+        'vnum': 62, 'name': 'an elven skiff',
+        'short_desc': 'an elegant elven skiff',
+        'room_desc': 'An elegant elven skiff of pale wood sits here, barely touching the ground.',
+        'description': 'This masterwork vessel was crafted by elven shipwrights. Its hull is impossibly thin yet strong, and faint enchantments make it glide through water with almost no effort. Even deep ocean crossings become trivial.',
+        'item_type': 'boat', 'weight': 15, 'cost': 5000,
+        'water_speed': 0.9,  # 90% reduction
+        'flags': ['glow'],
     },
 }
 

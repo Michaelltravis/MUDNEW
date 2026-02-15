@@ -132,19 +132,19 @@
       "exits": {
         "north": {
           "to_room": 5406,
-          "description": ""
+          "description": "The cobblestones lead to The Center Of Market Square"
         },
         "east": {
           "to_room": 5407,
-          "description": ""
+          "description": "The cobblestones lead to Southeastern Market Square"
         },
         "south": {
           "to_room": 5404,
-          "description": ""
+          "description": "The cobblestones lead to The Medina"
         },
         "west": {
           "to_room": 5408,
-          "description": ""
+          "description": "The cobblestones lead to Southwestern Market Square"
         }
       },
       "mob_resets": [
@@ -163,19 +163,19 @@
       "exits": {
         "north": {
           "to_room": 5415,
-          "description": ""
+          "description": "The cobblestones lead to Northern Market Square"
         },
         "east": {
           "to_room": 5417,
-          "description": ""
+          "description": "The cobblestones lead to Eastern Market Square"
         },
         "south": {
           "to_room": 5405,
-          "description": ""
+          "description": "The cobblestones lead to Southern Market Square"
         },
         "west": {
           "to_room": 5409,
-          "description": ""
+          "description": "The cobblestones lead to Western Market Square"
         }
       },
       "extra_descs": {
@@ -215,19 +215,19 @@
       "exits": {
         "north": {
           "to_room": 5417,
-          "description": ""
+          "description": "The cobblestones lead to Eastern Market Square"
         },
         "east": {
           "to_room": 5529,
-          "description": ""
+          "description": "A passage leads to Abdul's Armour"
         },
         "south": {
           "to_room": 5536,
-          "description": ""
+          "description": "A passage leads to Igor's Implements Of Destruction"
         },
         "west": {
           "to_room": 5405,
-          "description": ""
+          "description": "The cobblestones lead to Southern Market Square"
         }
       },
       "mob_resets": [
@@ -246,11 +246,11 @@
       "exits": {
         "north": {
           "to_room": 5409,
-          "description": ""
+          "description": "The cobblestones lead to Western Market Square"
         },
         "east": {
           "to_room": 5405,
-          "description": ""
+          "description": "The cobblestones lead to Southern Market Square"
         },
         "south": {
           "to_room": 5535,
@@ -277,19 +277,19 @@
       "exits": {
         "north": {
           "to_room": 5414,
-          "description": ""
+          "description": "The cobblestones lead to Northwestern Market Square"
         },
         "east": {
           "to_room": 5406,
-          "description": ""
+          "description": "The cobblestones lead to The Center Of Market Square"
         },
         "south": {
           "to_room": 5408,
-          "description": ""
+          "description": "The cobblestones lead to Southwestern Market Square"
         },
         "west": {
           "to_room": 5426,
-          "description": ""
+          "description": "The cobblestones lead to West Main Street"
         }
       }
     },
@@ -306,7 +306,7 @@
         },
         "east": {
           "to_room": 5437,
-          "description": ""
+          "description": "The cobblestones lead to East Ishtar Drive"
         },
         "south": {
           "to_room": 5412,
@@ -314,7 +314,7 @@
         },
         "west": {
           "to_room": 5436,
-          "description": ""
+          "description": "The cobblestones lead to West Ishtar Drive"
         }
       },
       "mob_resets": [
@@ -339,7 +339,7 @@
       "exits": {
         "north": {
           "to_room": 5413,
-          "description": "",
+          "description": "Inside The South Gate Of New Thalos",
           "door": {
             "name": "gate",
             "state": "closed",
@@ -349,7 +349,7 @@
         },
         "south": {
           "to_room": 5039,
-          "description": ""
+          "description": "An open path leads to The Great Eastern Desert"
         }
       },
       "mob_resets": [
@@ -378,15 +378,15 @@
       "exits": {
         "north": {
           "to_room": 5410,
-          "description": ""
+          "description": "The cobblestones lead to The Common Square"
         },
         "south": {
           "to_room": 5413,
-          "description": ""
+          "description": "Inside The South Gate Of New Thalos"
         },
         "down": {
           "to_room": 5485,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         }
       },
       "mob_resets": [
@@ -405,11 +405,11 @@
       "exits": {
         "north": {
           "to_room": 5412,
-          "description": ""
+          "description": "The cobblestones lead to The Southern Bridge"
         },
         "south": {
           "to_room": 5411,
-          "description": "",
+          "description": "Outside The Southern Gate Of New Thalos",
           "door": {
             "name": "gate",
             "state": "closed",
@@ -438,19 +438,19 @@
       "exits": {
         "north": {
           "to_room": 5514,
-          "description": ""
+          "description": "A passage leads to Ahkeem's Stuff"
         },
         "east": {
           "to_room": 5415,
-          "description": ""
+          "description": "The cobblestones lead to Northern Market Square"
         },
         "south": {
           "to_room": 5409,
-          "description": ""
+          "description": "The cobblestones lead to Western Market Square"
         },
         "west": {
           "to_room": 5521,
-          "description": ""
+          "description": "A passage leads to The Bank"
         }
       },
       "mob_resets": [
@@ -473,19 +473,19 @@
       "exits": {
         "north": {
           "to_room": 5418,
-          "description": ""
+          "description": "The cobblestones lead to Sultan's Walk"
         },
         "east": {
           "to_room": 5416,
-          "description": ""
+          "description": "The cobblestones lead to Northeastern Market Square"
         },
         "south": {
           "to_room": 5406,
-          "description": ""
+          "description": "The cobblestones lead to The Center Of Market Square"
         },
         "west": {
           "to_room": 5414,
-          "description": ""
+          "description": "The cobblestones lead to Northwestern Market Square"
         }
       },
       "mob_resets": [
@@ -508,19 +508,19 @@
       "exits": {
         "north": {
           "to_room": 5515,
-          "description": ""
+          "description": "A passage leads to Vera's Veggies"
         },
         "east": {
           "to_room": 5522,
-          "description": ""
+          "description": "A passage leads to The Butchery"
         },
         "south": {
           "to_room": 5417,
-          "description": ""
+          "description": "The cobblestones lead to Eastern Market Square"
         },
         "west": {
           "to_room": 5415,
-          "description": ""
+          "description": "The cobblestones lead to Northern Market Square"
         }
       },
       "mob_resets": [
@@ -539,19 +539,19 @@
       "exits": {
         "north": {
           "to_room": 5416,
-          "description": ""
+          "description": "The cobblestones lead to Northeastern Market Square"
         },
         "east": {
           "to_room": 5427,
-          "description": ""
+          "description": "The cobblestones lead to East Main Street"
         },
         "south": {
           "to_room": 5407,
-          "description": ""
+          "description": "The cobblestones lead to Southeastern Market Square"
         },
         "west": {
           "to_room": 5406,
-          "description": ""
+          "description": "The cobblestones lead to The Center Of Market Square"
         }
       }
     },
@@ -564,11 +564,11 @@
       "exits": {
         "north": {
           "to_room": 5419,
-          "description": ""
+          "description": "The cobblestones lead to Sultan's Walk"
         },
         "south": {
           "to_room": 5415,
-          "description": ""
+          "description": "The cobblestones lead to Northern Market Square"
         }
       },
       "mob_resets": [
@@ -587,11 +587,11 @@
       "exits": {
         "north": {
           "to_room": 5420,
-          "description": ""
+          "description": "The cobblestones lead to Sultan's Walk"
         },
         "south": {
           "to_room": 5418,
-          "description": ""
+          "description": "The cobblestones lead to Sultan's Walk"
         }
       },
       "mob_resets": [
@@ -610,19 +610,19 @@
       "exits": {
         "north": {
           "to_room": 5421,
-          "description": ""
+          "description": "The cobblestones lead to Sultan's Walk"
         },
         "east": {
           "to_room": 5400,
-          "description": ""
+          "description": "A passage leads to The Entrance To The Dancing Daemon Inn"
         },
         "south": {
           "to_room": 5419,
-          "description": ""
+          "description": "The cobblestones lead to Sultan's Walk"
         },
         "west": {
           "to_room": 5558,
-          "description": ""
+          "description": "The cobblestones lead to The Palace Gate"
         }
       },
       "mob_resets": [
@@ -641,11 +641,11 @@
       "exits": {
         "north": {
           "to_room": 5422,
-          "description": ""
+          "description": "Inside The Northern Gate Of New Thalos"
         },
         "south": {
           "to_room": 5420,
-          "description": ""
+          "description": "The cobblestones lead to Sultan's Walk"
         }
       }
     },
@@ -658,7 +658,7 @@
       "exits": {
         "north": {
           "to_room": 5567,
-          "description": "",
+          "description": "Outside The Northern Gate Of New Thalos",
           "door": {
             "name": "gate",
             "state": "closed",
@@ -668,15 +668,15 @@
         },
         "east": {
           "to_room": 5449,
-          "description": ""
+          "description": "The cobblestones lead to The Casbah"
         },
         "south": {
           "to_room": 5421,
-          "description": ""
+          "description": "The cobblestones lead to Sultan's Walk"
         },
         "west": {
           "to_room": 5448,
-          "description": ""
+          "description": "The cobblestones lead to The Casbah"
         }
       },
       "mob_resets": [
@@ -701,15 +701,15 @@
       "exits": {
         "east": {
           "to_room": 5424,
-          "description": ""
+          "description": "The cobblestones lead to West Main Street"
         },
         "south": {
           "to_room": 5526,
-          "description": ""
+          "description": "A passage leads to The Entrance To The Guild of Warriors"
         },
         "west": {
           "to_room": 5569,
-          "description": "",
+          "description": "Outside The West Gate Of New Thalos",
           "door": {
             "name": "gate",
             "state": "closed",
@@ -738,19 +738,19 @@
       "exits": {
         "north": {
           "to_room": 5520,
-          "description": ""
+          "description": "The cobblestones lead to Temple Square"
         },
         "east": {
           "to_room": 5425,
-          "description": ""
+          "description": "The cobblestones lead to West Main Street"
         },
         "south": {
           "to_room": 5527,
-          "description": ""
+          "description": "A passage leads to The Repair Shop"
         },
         "west": {
           "to_room": 5423,
-          "description": ""
+          "description": "Inside The West Gate Of New Thalos"
         }
       },
       "mob_resets": [
@@ -769,19 +769,19 @@
       "exits": {
         "north": {
           "to_room": 5471,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         },
         "east": {
           "to_room": 5426,
-          "description": ""
+          "description": "The cobblestones lead to West Main Street"
         },
         "south": {
           "to_room": 5472,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         },
         "west": {
           "to_room": 5424,
-          "description": ""
+          "description": "The cobblestones lead to West Main Street"
         }
       },
       "mob_resets": [
@@ -808,11 +808,11 @@
       "exits": {
         "east": {
           "to_room": 5409,
-          "description": ""
+          "description": "The cobblestones lead to Western Market Square"
         },
         "west": {
           "to_room": 5425,
-          "description": ""
+          "description": "The cobblestones lead to West Main Street"
         }
       },
       "extra_descs": {
@@ -834,11 +834,11 @@
       "exits": {
         "east": {
           "to_room": 5428,
-          "description": ""
+          "description": "The cobblestones lead to East Main Street"
         },
         "west": {
           "to_room": 5417,
-          "description": ""
+          "description": "The cobblestones lead to Eastern Market Square"
         }
       },
       "mob_resets": [
@@ -857,19 +857,19 @@
       "exits": {
         "north": {
           "to_room": 5464,
-          "description": ""
+          "description": "The cobblestones lead to Guildsman's Row"
         },
         "east": {
           "to_room": 5429,
-          "description": ""
+          "description": "The cobblestones lead to East Main Street"
         },
         "south": {
           "to_room": 5465,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         },
         "west": {
           "to_room": 5427,
-          "description": ""
+          "description": "The cobblestones lead to East Main Street"
         }
       },
       "extra_descs": {
@@ -891,19 +891,19 @@
       "exits": {
         "north": {
           "to_room": 5523,
-          "description": ""
+          "description": "A passage leads to The Witch's Brew"
         },
         "east": {
           "to_room": 5430,
-          "description": ""
+          "description": "The cobblestones lead to East Main Street"
         },
         "south": {
           "to_room": 5530,
-          "description": ""
+          "description": "A passage leads to The Mercenaries' Guild"
         },
         "west": {
           "to_room": 5428,
-          "description": ""
+          "description": "The cobblestones lead to East Main Street"
         }
       },
       "mob_resets": [
@@ -922,15 +922,15 @@
       "exits": {
         "north": {
           "to_room": 5524,
-          "description": ""
+          "description": "A passage leads to Braheem's Magic Shop"
         },
         "east": {
           "to_room": 5431,
-          "description": ""
+          "description": "Inside the Eastern Gate of New Thalos"
         },
         "west": {
           "to_room": 5429,
-          "description": ""
+          "description": "The cobblestones lead to East Main Street"
         }
       },
       "mob_resets": [
@@ -951,11 +951,11 @@
       "exits": {
         "north": {
           "to_room": 5525,
-          "description": ""
+          "description": "A passage leads to The Entrance To The Mages' Tower"
         },
         "east": {
           "to_room": 5568,
-          "description": "",
+          "description": "Outside The Eastern Gate Of New Thalos",
           "door": {
             "name": "gate",
             "state": "closed",
@@ -965,7 +965,7 @@
         },
         "west": {
           "to_room": 5430,
-          "description": ""
+          "description": "The cobblestones lead to East Main Street"
         }
       },
       "mob_resets": [
@@ -991,7 +991,7 @@
       "exits": {
         "south": {
           "to_room": 5441,
-          "description": ""
+          "description": "The cobblestones lead to East Ishtar Drive"
         }
       },
       "mob_resets": [
@@ -1010,11 +1010,11 @@
       "exits": {
         "north": {
           "to_room": 5540,
-          "description": ""
+          "description": "A passage leads to The Warehouse"
         },
         "east": {
           "to_room": 5434,
-          "description": ""
+          "description": "The cobblestones lead to West Ishtar Drive"
         }
       },
       "mob_resets": [
@@ -1041,15 +1041,15 @@
       "exits": {
         "north": {
           "to_room": 5541,
-          "description": ""
+          "description": "A passage leads to The Warehouse"
         },
         "east": {
           "to_room": 5435,
-          "description": ""
+          "description": "The cobblestones lead to West Ishtar Drive"
         },
         "west": {
           "to_room": 5433,
-          "description": ""
+          "description": "The cobblestones lead to West Ishtar Drive"
         }
       },
       "mob_resets": [
@@ -1072,19 +1072,19 @@
       "exits": {
         "north": {
           "to_room": 5542,
-          "description": ""
+          "description": "A passage leads to The Shipwright"
         },
         "east": {
           "to_room": 5436,
-          "description": ""
+          "description": "The cobblestones lead to West Ishtar Drive"
         },
         "south": {
           "to_room": 5443,
-          "description": ""
+          "description": "The cobblestones lead to The Boat Ramp"
         },
         "west": {
           "to_room": 5434,
-          "description": ""
+          "description": "The cobblestones lead to West Ishtar Drive"
         }
       },
       "mob_resets": [
@@ -1103,11 +1103,11 @@
       "exits": {
         "east": {
           "to_room": 5410,
-          "description": ""
+          "description": "The cobblestones lead to The Common Square"
         },
         "west": {
           "to_room": 5435,
-          "description": ""
+          "description": "The cobblestones lead to West Ishtar Drive"
         }
       }
     },
@@ -1120,15 +1120,15 @@
       "exits": {
         "north": {
           "to_room": 5544,
-          "description": ""
+          "description": "A passage leads to The Forge"
         },
         "east": {
           "to_room": 5439,
-          "description": ""
+          "description": "The cobblestones lead to East Ishtar Drive"
         },
         "west": {
           "to_room": 5410,
-          "description": ""
+          "description": "The cobblestones lead to The Common Square"
         }
       }
     },
@@ -1141,11 +1141,11 @@
       "exits": {
         "east": {
           "to_room": 5440,
-          "description": ""
+          "description": "The cobblestones lead to East Ishtar Drive"
         },
         "west": {
           "to_room": 5439,
-          "description": ""
+          "description": "The cobblestones lead to East Ishtar Drive"
         }
       }
     },
@@ -1158,15 +1158,15 @@
       "exits": {
         "north": {
           "to_room": 5545,
-          "description": ""
+          "description": "The cobblestones lead to The Royal Stables"
         },
         "east": {
           "to_room": 5438,
-          "description": ""
+          "description": "The cobblestones lead to East Ishtar Drive"
         },
         "west": {
           "to_room": 5437,
-          "description": ""
+          "description": "The cobblestones lead to East Ishtar Drive"
         }
       }
     },
@@ -1183,11 +1183,11 @@
         },
         "east": {
           "to_room": 5441,
-          "description": ""
+          "description": "The cobblestones lead to East Ishtar Drive"
         },
         "west": {
           "to_room": 5438,
-          "description": ""
+          "description": "The cobblestones lead to East Ishtar Drive"
         }
       }
     },
@@ -1200,15 +1200,15 @@
       "exits": {
         "north": {
           "to_room": 5432,
-          "description": ""
+          "description": "A passage leads to Cassandra's Catch Of The Day"
         },
         "east": {
           "to_room": 5442,
-          "description": ""
+          "description": "The cobblestones lead to East Ishtar Drive"
         },
         "west": {
           "to_room": 5440,
-          "description": ""
+          "description": "The cobblestones lead to East Ishtar Drive"
         }
       }
     },
@@ -1221,11 +1221,11 @@
       "exits": {
         "north": {
           "to_room": 5547,
-          "description": ""
+          "description": "The cobblestones lead to The Dump"
         },
         "west": {
           "to_room": 5441,
-          "description": ""
+          "description": "The cobblestones lead to East Ishtar Drive"
         }
       },
       "extra_descs": {
@@ -1243,11 +1243,11 @@
       "exits": {
         "north": {
           "to_room": 5435,
-          "description": ""
+          "description": "The cobblestones lead to West Ishtar Drive"
         },
         "south": {
           "to_room": 5486,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         }
       },
       "mob_resets": [
@@ -1270,11 +1270,11 @@
       "exits": {
         "east": {
           "to_room": 5445,
-          "description": ""
+          "description": "The cobblestones lead to West Casbah"
         },
         "south": {
           "to_room": 5553,
-          "description": "",
+          "description": "A passage leads to The Jail",
           "door": {
             "name": "gate",
             "state": "open",
@@ -1284,7 +1284,7 @@
         },
         "up": {
           "to_room": 5559,
-          "description": ""
+          "description": "A passage leads to The Northwest Tower"
         }
       },
       "mob_resets": [
@@ -1307,15 +1307,15 @@
       "exits": {
         "east": {
           "to_room": 5446,
-          "description": ""
+          "description": "The cobblestones lead to The Casbah"
         },
         "south": {
           "to_room": 5554,
-          "description": ""
+          "description": "A passage leads to City Hall"
         },
         "west": {
           "to_room": 5444,
-          "description": ""
+          "description": "The cobblestones lead to West Casbah"
         }
       },
       "mob_resets": [
@@ -1338,15 +1338,15 @@
       "exits": {
         "east": {
           "to_room": 5447,
-          "description": ""
+          "description": "The cobblestones lead to The Casbah"
         },
         "south": {
           "to_room": 5458,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         },
         "west": {
           "to_room": 5445,
-          "description": ""
+          "description": "The cobblestones lead to West Casbah"
         }
       },
       "mob_resets": [
@@ -1365,11 +1365,11 @@
       "exits": {
         "east": {
           "to_room": 5448,
-          "description": ""
+          "description": "The cobblestones lead to The Casbah"
         },
         "west": {
           "to_room": 5446,
-          "description": ""
+          "description": "The cobblestones lead to The Casbah"
         }
       },
       "mob_resets": [
@@ -1388,11 +1388,11 @@
       "exits": {
         "east": {
           "to_room": 5422,
-          "description": ""
+          "description": "Inside The Northern Gate Of New Thalos"
         },
         "west": {
           "to_room": 5447,
-          "description": ""
+          "description": "The cobblestones lead to The Casbah"
         }
       }
     },
@@ -1405,11 +1405,11 @@
       "exits": {
         "east": {
           "to_room": 5450,
-          "description": ""
+          "description": "The cobblestones lead to The Casbah"
         },
         "west": {
           "to_room": 5422,
-          "description": ""
+          "description": "Inside The Northern Gate Of New Thalos"
         }
       },
       "mob_resets": [
@@ -1428,11 +1428,11 @@
       "exits": {
         "east": {
           "to_room": 5451,
-          "description": ""
+          "description": "The cobblestones lead to The Casbah"
         },
         "west": {
           "to_room": 5449,
-          "description": ""
+          "description": "The cobblestones lead to The Casbah"
         }
       },
       "mob_resets": [
@@ -1451,15 +1451,15 @@
       "exits": {
         "east": {
           "to_room": 5452,
-          "description": ""
+          "description": "The cobblestones lead to The Casbah"
         },
         "south": {
           "to_room": 5460,
-          "description": ""
+          "description": "The cobblestones lead to Guildsman's Row"
         },
         "west": {
           "to_room": 5450,
-          "description": ""
+          "description": "The cobblestones lead to The Casbah"
         }
       }
     },
@@ -1472,11 +1472,11 @@
       "exits": {
         "east": {
           "to_room": 5453,
-          "description": ""
+          "description": "The cobblestones lead to The Casbah"
         },
         "west": {
           "to_room": 5451,
-          "description": ""
+          "description": "The cobblestones lead to The Casbah"
         }
       },
       "mob_resets": [
@@ -1495,11 +1495,11 @@
       "exits": {
         "east": {
           "to_room": 5454,
-          "description": ""
+          "description": "The cobblestones lead to The Casbah"
         },
         "west": {
           "to_room": 5452,
-          "description": ""
+          "description": "The cobblestones lead to The Casbah"
         }
       },
       "mob_resets": [
@@ -1518,15 +1518,15 @@
       "exits": {
         "south": {
           "to_room": 5455,
-          "description": ""
+          "description": "The cobblestones lead to Kali Row"
         },
         "west": {
           "to_room": 5453,
-          "description": ""
+          "description": "The cobblestones lead to The Casbah"
         },
         "up": {
           "to_room": 5562,
-          "description": ""
+          "description": "A passage leads to The Northeast Tower"
         }
       }
     },
@@ -1539,15 +1539,15 @@
       "exits": {
         "north": {
           "to_room": 5454,
-          "description": ""
+          "description": "The cobblestones lead to The Casbah"
         },
         "south": {
           "to_room": 5456,
-          "description": ""
+          "description": "The cobblestones lead to Kali Row"
         },
         "west": {
           "to_room": 5551,
-          "description": ""
+          "description": "A passage leads to The Library"
         }
       },
       "mob_resets": [
@@ -1570,11 +1570,11 @@
       "exits": {
         "north": {
           "to_room": 5455,
-          "description": ""
+          "description": "The cobblestones lead to Kali Row"
         },
         "west": {
           "to_room": 5552,
-          "description": ""
+          "description": "A passage leads to The Dance Hall"
         }
       }
     },
@@ -1590,11 +1590,11 @@
       "exits": {
         "north": {
           "to_room": 5478,
-          "description": ""
+          "description": "The cobblestones lead to Underground"
         },
         "south": {
           "to_room": 5480,
-          "description": ""
+          "description": "The cobblestones lead to Underground"
         }
       }
     },
@@ -1607,11 +1607,11 @@
       "exits": {
         "north": {
           "to_room": 5446,
-          "description": ""
+          "description": "The cobblestones lead to The Casbah"
         },
         "south": {
           "to_room": 5459,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         }
       }
     },
@@ -1626,7 +1626,7 @@
       "exits": {
         "north": {
           "to_room": 5458,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         },
         "down": {
           "to_room": 5475,
@@ -1649,19 +1649,19 @@
       "exits": {
         "north": {
           "to_room": 5451,
-          "description": ""
+          "description": "The cobblestones lead to The Casbah"
         },
         "east": {
           "to_room": 5556,
-          "description": ""
+          "description": "A passage leads to The Masons' Guild"
         },
         "south": {
           "to_room": 5461,
-          "description": ""
+          "description": "The cobblestones lead to Guildsman's Row"
         },
         "west": {
           "to_room": 5555,
-          "description": ""
+          "description": "A passage leads to The Boyer/Fletchers' Guild"
         }
       }
     },
@@ -1674,19 +1674,19 @@
       "exits": {
         "north": {
           "to_room": 5460,
-          "description": ""
+          "description": "The cobblestones lead to Guildsman's Row"
         },
         "east": {
           "to_room": 5507,
-          "description": ""
+          "description": "A passage leads to The Craftsmans' Guild"
         },
         "south": {
           "to_room": 5462,
-          "description": ""
+          "description": "The cobblestones lead to Guildsman's Row"
         },
         "west": {
           "to_room": 5506,
-          "description": ""
+          "description": "A passage leads to The Weavers' Guild"
         }
       }
     },
@@ -1699,19 +1699,19 @@
       "exits": {
         "north": {
           "to_room": 5461,
-          "description": ""
+          "description": "The cobblestones lead to Guildsman's Row"
         },
         "east": {
           "to_room": 5511,
-          "description": ""
+          "description": "A passage leads to The Museum Of The Greater Gods"
         },
         "south": {
           "to_room": 5463,
-          "description": ""
+          "description": "The cobblestones lead to Guildsman's Row"
         },
         "west": {
           "to_room": 5564,
-          "description": ""
+          "description": "A passage leads to The Tanners' Guild"
         }
       },
       "mob_resets": [
@@ -1730,15 +1730,15 @@
       "exits": {
         "north": {
           "to_room": 5462,
-          "description": ""
+          "description": "The cobblestones lead to Guildsman's Row"
         },
         "east": {
           "to_room": 5516,
-          "description": ""
+          "description": "A passage leads to The Museum Of The Greater Gods"
         },
         "south": {
           "to_room": 5464,
-          "description": ""
+          "description": "The cobblestones lead to Guildsman's Row"
         }
       },
       "mob_resets": [
@@ -1757,11 +1757,11 @@
       "exits": {
         "north": {
           "to_room": 5463,
-          "description": ""
+          "description": "The cobblestones lead to Guildsman's Row"
         },
         "south": {
           "to_room": 5428,
-          "description": ""
+          "description": "The cobblestones lead to East Main Street"
         }
       }
     },
@@ -1777,11 +1777,11 @@
       "exits": {
         "north": {
           "to_room": 5428,
-          "description": ""
+          "description": "The cobblestones lead to East Main Street"
         },
         "south": {
           "to_room": 5466,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         }
       },
       "mob_resets": [
@@ -1802,15 +1802,15 @@
       "exits": {
         "north": {
           "to_room": 5465,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         },
         "east": {
           "to_room": 5467,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         },
         "west": {
           "to_room": 5537,
-          "description": ""
+          "description": "A passage leads to Ye Old Leather Shoppe"
         }
       },
       "mob_resets": [
@@ -1843,15 +1843,15 @@
       "exits": {
         "east": {
           "to_room": 5538,
-          "description": ""
+          "description": "A passage leads to Smuggler's Inn"
         },
         "south": {
           "to_room": 5468,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         },
         "west": {
           "to_room": 5466,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         }
       },
       "mob_resets": [
@@ -1873,11 +1873,11 @@
       "exits": {
         "north": {
           "to_room": 5467,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         },
         "south": {
           "to_room": 5440,
-          "description": ""
+          "description": "The cobblestones lead to East Ishtar Drive"
         }
       },
       "mob_resets": [
@@ -1906,11 +1906,11 @@
       "exits": {
         "east": {
           "to_room": 5470,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         },
         "south": {
           "to_room": 5471,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         }
       },
       "extra_descs": {
@@ -1934,7 +1934,7 @@
       "exits": {
         "west": {
           "to_room": 5469,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         },
         "down": {
           "to_room": 5478,
@@ -1960,11 +1960,11 @@
       "exits": {
         "north": {
           "to_room": 5469,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         },
         "south": {
           "to_room": 5425,
-          "description": ""
+          "description": "The cobblestones lead to West Main Street"
         }
       },
       "extra_descs": {
@@ -1983,11 +1983,11 @@
       "exits": {
         "north": {
           "to_room": 5425,
-          "description": ""
+          "description": "The cobblestones lead to West Main Street"
         },
         "south": {
           "to_room": 5473,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         }
       }
     },
@@ -2002,11 +2002,11 @@
       "exits": {
         "north": {
           "to_room": 5472,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         },
         "east": {
           "to_room": 5474,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         }
       },
       "mob_resets": [
@@ -2027,7 +2027,7 @@
       "exits": {
         "west": {
           "to_room": 5473,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         },
         "down": {
           "to_room": 5481,
@@ -2053,11 +2053,11 @@
       "exits": {
         "south": {
           "to_room": 5476,
-          "description": ""
+          "description": "The cobblestones lead to Underground"
         },
         "up": {
           "to_room": 5459,
-          "description": "",
+          "description": "The cobblestones lead to Alley",
           "door": {
             "name": "man hole manhole",
             "state": "closed",
@@ -2079,11 +2079,11 @@
       "exits": {
         "north": {
           "to_room": 5475,
-          "description": ""
+          "description": "The cobblestones lead to Underground"
         },
         "south": {
           "to_room": 5477,
-          "description": ""
+          "description": "The cobblestones lead to Underground"
         }
       }
     },
@@ -2099,15 +2099,15 @@
       "exits": {
         "north": {
           "to_room": 5476,
-          "description": ""
+          "description": "The cobblestones lead to Underground"
         },
         "east": {
           "to_room": 5478,
-          "description": ""
+          "description": "The cobblestones lead to Underground"
         },
         "west": {
           "to_room": 5479,
-          "description": ""
+          "description": "The cobblestones lead to Underground"
         }
       }
     },
@@ -2123,15 +2123,15 @@
       "exits": {
         "south": {
           "to_room": 5457,
-          "description": ""
+          "description": "The cobblestones lead to Underground"
         },
         "west": {
           "to_room": 5477,
-          "description": ""
+          "description": "The cobblestones lead to Underground"
         },
         "up": {
           "to_room": 5470,
-          "description": "",
+          "description": "The cobblestones lead to Alley",
           "door": {
             "name": "manhole man hole",
             "state": "closed",
@@ -2153,7 +2153,7 @@
       "exits": {
         "east": {
           "to_room": 5477,
-          "description": ""
+          "description": "The cobblestones lead to Underground"
         }
       }
     },
@@ -2169,11 +2169,11 @@
       "exits": {
         "north": {
           "to_room": 5457,
-          "description": ""
+          "description": "The cobblestones lead to Underground"
         },
         "south": {
           "to_room": 5481,
-          "description": ""
+          "description": "The cobblestones lead to Underground"
         }
       }
     },
@@ -2189,15 +2189,15 @@
       "exits": {
         "north": {
           "to_room": 5480,
-          "description": ""
+          "description": "The cobblestones lead to Underground"
         },
         "east": {
           "to_room": 5482,
-          "description": ""
+          "description": "The cobblestones lead to Underground"
         },
         "up": {
           "to_room": 5474,
-          "description": "",
+          "description": "The cobblestones lead to Alley",
           "door": {
             "name": "manhole man hole",
             "state": "closed",
@@ -2219,11 +2219,11 @@
       "exits": {
         "east": {
           "to_room": 5492,
-          "description": ""
+          "description": "The cobblestones lead to Underground"
         },
         "west": {
           "to_room": 5481,
-          "description": ""
+          "description": "The cobblestones lead to Underground"
         }
       }
     },
@@ -2236,11 +2236,11 @@
       "exits": {
         "east": {
           "to_room": 5624,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         },
         "west": {
           "to_room": 5484,
-          "description": "",
+          "description": "Deep waters churn near River Ishtar",
           "door": {
             "name": "grating",
             "state": "closed",
@@ -2259,7 +2259,7 @@
       "exits": {
         "east": {
           "to_room": 5483,
-          "description": "",
+          "description": "Deep waters churn near River Ishtar",
           "door": {
             "name": "grating",
             "state": "closed",
@@ -2269,7 +2269,7 @@
         },
         "west": {
           "to_room": 5485,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         }
       }
     },
@@ -2282,15 +2282,15 @@
       "exits": {
         "east": {
           "to_room": 5484,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         },
         "west": {
           "to_room": 5486,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         },
         "up": {
           "to_room": 5412,
-          "description": ""
+          "description": "The cobblestones lead to The Southern Bridge"
         }
       }
     },
@@ -2303,15 +2303,15 @@
       "exits": {
         "north": {
           "to_room": 5443,
-          "description": ""
+          "description": "The cobblestones lead to The Boat Ramp"
         },
         "east": {
           "to_room": 5485,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         },
         "west": {
           "to_room": 5487,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         }
       }
     },
@@ -2324,11 +2324,11 @@
       "exits": {
         "east": {
           "to_room": 5486,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         },
         "west": {
           "to_room": 5623,
-          "description": "",
+          "description": "Deep waters churn near River Ishtar",
           "door": {
             "name": "grating",
             "state": "closed",
@@ -2350,7 +2350,7 @@
       "exits": {
         "east": {
           "to_room": 5489,
-          "description": ""
+          "description": "The cobblestones lead to A Dark Passage"
         }
       }
     },
@@ -2366,11 +2366,11 @@
       "exits": {
         "east": {
           "to_room": 5490,
-          "description": ""
+          "description": "The cobblestones lead to A Dark Passage"
         },
         "west": {
           "to_room": 5488,
-          "description": ""
+          "description": "The cobblestones lead to A Dark Passage"
         }
       }
     },
@@ -2386,11 +2386,11 @@
       "exits": {
         "east": {
           "to_room": 5491,
-          "description": ""
+          "description": "The cobblestones lead to A Dark Passage"
         },
         "west": {
           "to_room": 5489,
-          "description": ""
+          "description": "The cobblestones lead to A Dark Passage"
         }
       },
       "extra_descs": {
@@ -2409,11 +2409,11 @@
       "exits": {
         "west": {
           "to_room": 5490,
-          "description": ""
+          "description": "The cobblestones lead to A Dark Passage"
         },
         "up": {
           "to_room": 5570,
-          "description": "",
+          "description": "An open path leads to Outside The Wall",
           "door": {
             "name": "secret",
             "state": "closed",
@@ -2438,11 +2438,11 @@
       "exits": {
         "east": {
           "to_room": 5493,
-          "description": ""
+          "description": "The cobblestones lead to Underground"
         },
         "west": {
           "to_room": 5482,
-          "description": ""
+          "description": "The cobblestones lead to Underground"
         }
       }
     },
@@ -2458,11 +2458,11 @@
       "exits": {
         "east": {
           "to_room": 5500,
-          "description": ""
+          "description": "A passage leads to Underground"
         },
         "west": {
           "to_room": 5492,
-          "description": ""
+          "description": "The cobblestones lead to Underground"
         }
       }
     },
@@ -2478,11 +2478,11 @@
       "exits": {
         "east": {
           "to_room": 5501,
-          "description": ""
+          "description": "A passage leads to Underground"
         },
         "west": {
           "to_room": 5493,
-          "description": ""
+          "description": "The cobblestones lead to Underground"
         }
       }
     },
@@ -2498,11 +2498,11 @@
       "exits": {
         "east": {
           "to_room": 5502,
-          "description": ""
+          "description": "A passage leads to Underground"
         },
         "west": {
           "to_room": 5500,
-          "description": ""
+          "description": "A passage leads to Underground"
         }
       }
     },
@@ -2518,11 +2518,11 @@
       "exits": {
         "east": {
           "to_room": 5488,
-          "description": ""
+          "description": "The cobblestones lead to A Dark Passage"
         },
         "west": {
           "to_room": 5501,
-          "description": ""
+          "description": "A passage leads to Underground"
         }
       }
     },
@@ -2549,7 +2549,7 @@
         },
         "up": {
           "to_room": 5519,
-          "description": ""
+          "description": "A passage leads to Nectar Of The Gods"
         }
       },
       "mob_resets": [
@@ -2570,7 +2570,7 @@
       "exits": {
         "south": {
           "to_room": 5508,
-          "description": ""
+          "description": "A passage leads to Inside The Temple"
         }
       },
       "mob_resets": [
@@ -2593,7 +2593,7 @@
       "exits": {
         "south": {
           "to_room": 5509,
-          "description": ""
+          "description": "A passage leads to Inside The Temple"
         }
       },
       "extra_descs": {
@@ -2611,7 +2611,7 @@
       "exits": {
         "east": {
           "to_room": 5461,
-          "description": ""
+          "description": "The cobblestones lead to Guildsman's Row"
         }
       }
     },
@@ -2626,7 +2626,7 @@
       "exits": {
         "west": {
           "to_room": 5461,
-          "description": ""
+          "description": "The cobblestones lead to Guildsman's Row"
         }
       },
       "mob_resets": [
@@ -2648,15 +2648,15 @@
       "exits": {
         "north": {
           "to_room": 5504,
-          "description": ""
+          "description": "A passage leads to The Chamber Of The High Priest"
         },
         "east": {
           "to_room": 5509,
-          "description": ""
+          "description": "A passage leads to Inside The Temple"
         },
         "south": {
           "to_room": 5512,
-          "description": ""
+          "description": "A passage leads to The Entrance To The Guild of Clerics"
         }
       },
       "mob_resets": [
@@ -2679,19 +2679,19 @@
       "exits": {
         "north": {
           "to_room": 5505,
-          "description": ""
+          "description": "A passage leads to By The Altar"
         },
         "east": {
           "to_room": 5510,
-          "description": ""
+          "description": "A passage leads to The Donation Room"
         },
         "south": {
           "to_room": 5513,
-          "description": ""
+          "description": "The cobblestones lead to The Temple Gates"
         },
         "west": {
           "to_room": 5508,
-          "description": ""
+          "description": "A passage leads to Inside The Temple"
         }
       },
       "mob_resets": [
@@ -2717,7 +2717,7 @@
       "exits": {
         "west": {
           "to_room": 5509,
-          "description": ""
+          "description": "A passage leads to Inside The Temple"
         }
       }
     },
@@ -2733,11 +2733,11 @@
       "exits": {
         "south": {
           "to_room": 5516,
-          "description": ""
+          "description": "A passage leads to The Museum Of The Greater Gods"
         },
         "west": {
           "to_room": 5462,
-          "description": ""
+          "description": "The cobblestones lead to Guildsman's Row"
         }
       },
       "mob_resets": [
@@ -2772,11 +2772,11 @@
       "exits": {
         "north": {
           "to_room": 5508,
-          "description": ""
+          "description": "A passage leads to Inside The Temple"
         },
         "south": {
           "to_room": 5519,
-          "description": ""
+          "description": "A passage leads to Nectar Of The Gods"
         }
       },
       "mob_resets": [
@@ -2795,15 +2795,15 @@
       "exits": {
         "north": {
           "to_room": 5509,
-          "description": ""
+          "description": "A passage leads to Inside The Temple"
         },
         "south": {
           "to_room": 5520,
-          "description": ""
+          "description": "The cobblestones lead to Temple Square"
         },
         "down": {
           "to_room": 5520,
-          "description": ""
+          "description": "The cobblestones lead to Temple Square"
         }
       },
       "mob_resets": [
@@ -2828,7 +2828,7 @@
       "exits": {
         "south": {
           "to_room": 5414,
-          "description": ""
+          "description": "The cobblestones lead to Northwestern Market Square"
         }
       },
       "mob_resets": [
@@ -2857,7 +2857,7 @@
       "exits": {
         "south": {
           "to_room": 5416,
-          "description": ""
+          "description": "The cobblestones lead to Northeastern Market Square"
         }
       },
       "mob_resets": [
@@ -2879,11 +2879,11 @@
       "exits": {
         "north": {
           "to_room": 5511,
-          "description": ""
+          "description": "A passage leads to The Museum Of The Greater Gods"
         },
         "west": {
           "to_room": 5463,
-          "description": ""
+          "description": "The cobblestones lead to Guildsman's Row"
         }
       },
       "mob_resets": [
@@ -2917,7 +2917,7 @@
       "exits": {
         "east": {
           "to_room": 5518,
-          "description": ""
+          "description": "The cobblestones lead to The Mages' Courtyard"
         },
         "south": {
           "to_room": 5524,
@@ -2931,7 +2931,7 @@
         },
         "up": {
           "to_room": 5548,
-          "description": ""
+          "description": "A passage leads to The Mage's Laboratory"
         }
       }
     },
@@ -2946,11 +2946,11 @@
       "exits": {
         "south": {
           "to_room": 5525,
-          "description": ""
+          "description": "A passage leads to The Entrance To The Mages' Tower"
         },
         "west": {
           "to_room": 5517,
-          "description": ""
+          "description": "A passage leads to The Base Of The Tower"
         }
       }
     },
@@ -2967,11 +2967,11 @@
       "exits": {
         "north": {
           "to_room": 5512,
-          "description": ""
+          "description": "A passage leads to The Entrance To The Guild of Clerics"
         },
         "down": {
           "to_room": 5503,
-          "description": ""
+          "description": "A passage leads to Clerics' Sanctum"
         }
       }
     },
@@ -2987,15 +2987,15 @@
       "exits": {
         "north": {
           "to_room": 5513,
-          "description": ""
+          "description": "The cobblestones lead to The Temple Gates"
         },
         "south": {
           "to_room": 5424,
-          "description": ""
+          "description": "The cobblestones lead to West Main Street"
         },
         "up": {
           "to_room": 5513,
-          "description": ""
+          "description": "The cobblestones lead to The Temple Gates"
         }
       }
     },
@@ -3011,7 +3011,7 @@
       "exits": {
         "east": {
           "to_room": 5414,
-          "description": ""
+          "description": "The cobblestones lead to Northwestern Market Square"
         }
       },
       "mob_resets": [
@@ -3038,7 +3038,7 @@
       "exits": {
         "west": {
           "to_room": 5416,
-          "description": ""
+          "description": "The cobblestones lead to Northeastern Market Square"
         }
       },
       "extra_descs": {
@@ -3066,7 +3066,7 @@
       "exits": {
         "south": {
           "to_room": 5429,
-          "description": ""
+          "description": "The cobblestones lead to East Main Street"
         }
       },
       "mob_resets": [
@@ -3091,7 +3091,7 @@
       "exits": {
         "south": {
           "to_room": 5430,
-          "description": ""
+          "description": "The cobblestones lead to East Main Street"
         }
       },
       "extra_descs": {
@@ -3121,11 +3121,11 @@
       "exits": {
         "north": {
           "to_room": 5518,
-          "description": ""
+          "description": "The cobblestones lead to The Mages' Courtyard"
         },
         "south": {
           "to_room": 5431,
-          "description": ""
+          "description": "Inside the Eastern Gate of New Thalos"
         }
       },
       "mob_resets": [
@@ -3148,11 +3148,11 @@
       "exits": {
         "north": {
           "to_room": 5423,
-          "description": ""
+          "description": "Inside The West Gate Of New Thalos"
         },
         "south": {
           "to_room": 5533,
-          "description": ""
+          "description": "A passage leads to The Whet Stone"
         }
       },
       "mob_resets": [
@@ -3174,7 +3174,7 @@
       "exits": {
         "north": {
           "to_room": 5424,
-          "description": ""
+          "description": "The cobblestones lead to West Main Street"
         }
       },
       "extra_descs": {
@@ -3192,7 +3192,7 @@
       "exits": {
         "east": {
           "to_room": 5408,
-          "description": ""
+          "description": "The cobblestones lead to Southwestern Market Square"
         }
       },
       "mob_resets": [
@@ -3213,7 +3213,7 @@
       "exits": {
         "west": {
           "to_room": 5407,
-          "description": ""
+          "description": "The cobblestones lead to Southeastern Market Square"
         }
       },
       "extra_descs": {
@@ -3237,7 +3237,7 @@
       "exits": {
         "north": {
           "to_room": 5429,
-          "description": ""
+          "description": "The cobblestones lead to East Main Street"
         },
         "east": {
           "to_room": 5532,
@@ -3248,6 +3248,10 @@
             "locked": false,
             "key_vnum": null
           }
+        },
+        "south": {
+          "to_room": 5531,
+          "description": "The inner guild hall lies south."
         }
       }
     },
@@ -3260,7 +3264,12 @@
         "indoors",
         "private"
       ],
-      "exits": {},
+      "exits": {
+        "north": {
+          "to_room": 5530,
+          "description": "The guild entrance is north."
+        }
+      },
       "mob_resets": [
         {
           "vnum": 5464,
@@ -3282,11 +3291,11 @@
       "exits": {
         "south": {
           "to_room": 5539,
-          "description": ""
+          "description": "A passage leads to The Filthy Unicorn"
         },
         "west": {
           "to_room": 5530,
-          "description": "",
+          "description": "A passage leads to The Mercenaries' Guild",
           "door": {
             "name": "door secret",
             "state": "closed",
@@ -3319,11 +3328,11 @@
       "exits": {
         "north": {
           "to_room": 5526,
-          "description": ""
+          "description": "A passage leads to The Entrance To The Guild of Warriors"
         },
         "east": {
           "to_room": 5534,
-          "description": ""
+          "description": "A passage leads to The Tournament And Practice Yard"
         }
       }
     },
@@ -3350,7 +3359,7 @@
         },
         "west": {
           "to_room": 5533,
-          "description": ""
+          "description": "A passage leads to The Whet Stone"
         }
       },
       "mob_resets": [
@@ -3371,7 +3380,7 @@
       "exits": {
         "north": {
           "to_room": 5408,
-          "description": ""
+          "description": "The cobblestones lead to Southwestern Market Square"
         }
       },
       "mob_resets": [
@@ -3392,7 +3401,7 @@
       "exits": {
         "north": {
           "to_room": 5407,
-          "description": ""
+          "description": "The cobblestones lead to Southeastern Market Square"
         }
       },
       "extra_descs": {
@@ -3416,7 +3425,7 @@
       "exits": {
         "east": {
           "to_room": 5466,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         }
       },
       "mob_resets": [
@@ -3437,7 +3446,7 @@
       "exits": {
         "west": {
           "to_room": 5467,
-          "description": ""
+          "description": "The cobblestones lead to Alley"
         }
       },
       "mob_resets": [
@@ -3460,11 +3469,11 @@
       "exits": {
         "north": {
           "to_room": 5532,
-          "description": ""
+          "description": "A passage leads to Entrance To The Thieves' Guild"
         },
         "down": {
           "to_room": 5546,
-          "description": ""
+          "description": "A passage leads to The Secret Yard"
         }
       }
     },
@@ -3479,11 +3488,11 @@
       "exits": {
         "east": {
           "to_room": 5541,
-          "description": ""
+          "description": "A passage leads to The Warehouse"
         },
         "south": {
           "to_room": 5433,
-          "description": ""
+          "description": "The cobblestones lead to West Ishtar Drive"
         }
       }
     },
@@ -3498,11 +3507,11 @@
       "exits": {
         "south": {
           "to_room": 5434,
-          "description": ""
+          "description": "The cobblestones lead to West Ishtar Drive"
         },
         "west": {
           "to_room": 5540,
-          "description": ""
+          "description": "A passage leads to The Warehouse"
         }
       }
     },
@@ -3517,11 +3526,11 @@
       "exits": {
         "east": {
           "to_room": 5543,
-          "description": ""
+          "description": "A passage leads to The Drafting Room"
         },
         "south": {
           "to_room": 5435,
-          "description": ""
+          "description": "The cobblestones lead to West Ishtar Drive"
         }
       },
       "mob_resets": [
@@ -3542,7 +3551,7 @@
       "exits": {
         "west": {
           "to_room": 5542,
-          "description": ""
+          "description": "A passage leads to The Shipwright"
         }
       }
     },
@@ -3557,7 +3566,7 @@
       "exits": {
         "south": {
           "to_room": 5437,
-          "description": ""
+          "description": "The cobblestones lead to East Ishtar Drive"
         }
       },
       "mob_resets": [
@@ -3578,11 +3587,11 @@
       "exits": {
         "east": {
           "to_room": 5549,
-          "description": ""
+          "description": "A passage leads to The Hay Loft"
         },
         "south": {
           "to_room": 5439,
-          "description": ""
+          "description": "The cobblestones lead to East Ishtar Drive"
         }
       },
       "mob_resets": [
@@ -3635,7 +3644,7 @@
         },
         "up": {
           "to_room": 5539,
-          "description": ""
+          "description": "A passage leads to The Filthy Unicorn"
         }
       },
       "mob_resets": [
@@ -3654,7 +3663,7 @@
       "exits": {
         "south": {
           "to_room": 5442,
-          "description": ""
+          "description": "The cobblestones lead to East Ishtar Drive"
         }
       }
     },
@@ -3671,7 +3680,7 @@
       "exits": {
         "down": {
           "to_room": 5517,
-          "description": ""
+          "description": "A passage leads to The Base Of The Tower"
         }
       },
       "mob_resets": [
@@ -3692,7 +3701,7 @@
       "exits": {
         "west": {
           "to_room": 5545,
-          "description": ""
+          "description": "The cobblestones lead to The Royal Stables"
         }
       },
       "mob_resets": [
@@ -3713,11 +3722,11 @@
       "exits": {
         "north": {
           "to_room": 5560,
-          "description": ""
+          "description": "A passage leads to The Guard House"
         },
         "east": {
           "to_room": 5558,
-          "description": "",
+          "description": "The cobblestones lead to The Palace Gate",
           "door": {
             "name": "gate",
             "state": "open",
@@ -3727,11 +3736,11 @@
         },
         "south": {
           "to_room": 5557,
-          "description": ""
+          "description": "A passage leads to The Guard House"
         },
         "west": {
           "to_room": 5605,
-          "description": ""
+          "description": "A passage leads to A Hall"
         }
       }
     },
@@ -3747,7 +3756,7 @@
       "exits": {
         "east": {
           "to_room": 5455,
-          "description": ""
+          "description": "The cobblestones lead to Kali Row"
         }
       },
       "mob_resets": [
@@ -3768,7 +3777,7 @@
       "exits": {
         "east": {
           "to_room": 5456,
-          "description": ""
+          "description": "The cobblestones lead to Kali Row"
         }
       },
       "extra_descs": {
@@ -3790,7 +3799,7 @@
       "exits": {
         "north": {
           "to_room": 5444,
-          "description": "",
+          "description": "The cobblestones lead to West Casbah",
           "door": {
             "name": "gate",
             "state": "open",
@@ -3811,7 +3820,7 @@
       "exits": {
         "north": {
           "to_room": 5445,
-          "description": ""
+          "description": "The cobblestones lead to West Casbah"
         }
       },
       "mob_resets": [
@@ -3832,7 +3841,7 @@
       "exits": {
         "east": {
           "to_room": 5460,
-          "description": ""
+          "description": "The cobblestones lead to Guildsman's Row"
         }
       },
       "mob_resets": [
@@ -3853,7 +3862,7 @@
       "exits": {
         "west": {
           "to_room": 5460,
-          "description": ""
+          "description": "The cobblestones lead to Guildsman's Row"
         }
       }
     },
@@ -3868,7 +3877,7 @@
       "exits": {
         "north": {
           "to_room": 5550,
-          "description": ""
+          "description": "A passage leads to The Grand Entrance"
         }
       }
     },
@@ -3881,11 +3890,11 @@
       "exits": {
         "east": {
           "to_room": 5420,
-          "description": ""
+          "description": "The cobblestones lead to Sultan's Walk"
         },
         "west": {
           "to_room": 5550,
-          "description": "",
+          "description": "A passage leads to The Grand Entrance",
           "door": {
             "name": "gate",
             "state": "open",
@@ -3906,7 +3915,7 @@
       "exits": {
         "down": {
           "to_room": 5444,
-          "description": ""
+          "description": "The cobblestones lead to West Casbah"
         }
       }
     },
@@ -3921,7 +3930,7 @@
       "exits": {
         "south": {
           "to_room": 5550,
-          "description": ""
+          "description": "A passage leads to The Grand Entrance"
         }
       }
     },
@@ -3936,7 +3945,7 @@
       "exits": {
         "north": {
           "to_room": 5563,
-          "description": "",
+          "description": "A passage leads to A Hall",
           "door": {
             "name": "door",
             "state": "closed",
@@ -3946,7 +3955,7 @@
         },
         "west": {
           "to_room": 5571,
-          "description": ""
+          "description": "A passage leads to The Grand Dining Hall"
         }
       },
       "mob_resets": [
@@ -3975,7 +3984,7 @@
       "exits": {
         "down": {
           "to_room": 5454,
-          "description": ""
+          "description": "The cobblestones lead to The Casbah"
         }
       }
     },
@@ -3990,7 +3999,7 @@
       "exits": {
         "south": {
           "to_room": 5561,
-          "description": "",
+          "description": "A passage leads to The Kitchen",
           "door": {
             "name": "door small",
             "state": "closed",
@@ -4000,7 +4009,7 @@
         },
         "west": {
           "to_room": 5572,
-          "description": ""
+          "description": "A passage leads to A Hall"
         }
       }
     },
@@ -4015,7 +4024,7 @@
       "exits": {
         "east": {
           "to_room": 5462,
-          "description": ""
+          "description": "The cobblestones lead to Guildsman's Row"
         }
       },
       "extra_descs": {
@@ -4033,7 +4042,7 @@
       "exits": {
         "north": {
           "to_room": 5566,
-          "description": "",
+          "description": "A passage leads to The Shrine Of Allah",
           "door": {
             "name": "door",
             "state": "closed",
@@ -4043,7 +4052,7 @@
         },
         "west": {
           "to_room": 5574,
-          "description": ""
+          "description": "A passage leads to A Hall"
         }
       },
       "extra_descs": {
@@ -4062,7 +4071,7 @@
       "exits": {
         "south": {
           "to_room": 5565,
-          "description": "",
+          "description": "A passage leads to A Hall",
           "door": {
             "name": "door",
             "state": "closed",
@@ -4089,11 +4098,11 @@
       "exits": {
         "north": {
           "to_room": 5681,
-          "description": ""
+          "description": "An open path leads to On The Plains"
         },
         "south": {
           "to_room": 5422,
-          "description": "",
+          "description": "Inside The Northern Gate Of New Thalos",
           "door": {
             "name": "gate",
             "state": "closed",
@@ -4118,15 +4127,15 @@
       "exits": {
         "east": {
           "to_room": 5690,
-          "description": ""
+          "description": "An open path leads to On A Road"
         },
         "south": {
           "to_room": 5570,
-          "description": ""
+          "description": "An open path leads to Outside The Wall"
         },
         "west": {
           "to_room": 5431,
-          "description": "",
+          "description": "Inside the Eastern Gate of New Thalos",
           "door": {
             "name": "gate",
             "state": "closed",
@@ -4151,7 +4160,7 @@
       "exits": {
         "east": {
           "to_room": 5423,
-          "description": "",
+          "description": "Inside The West Gate Of New Thalos",
           "door": {
             "name": "gate",
             "state": "closed",
@@ -4161,7 +4170,7 @@
         },
         "west": {
           "to_room": 5618,
-          "description": ""
+          "description": "An open path leads to On A Road"
         }
       },
       "mob_resets": [
@@ -4180,7 +4189,7 @@
       "exits": {
         "north": {
           "to_room": 5568,
-          "description": ""
+          "description": "Outside The Eastern Gate Of New Thalos"
         }
       }
     },
@@ -4195,7 +4204,7 @@
       "exits": {
         "north": {
           "to_room": 5572,
-          "description": "",
+          "description": "A passage leads to A Hall",
           "door": {
             "name": "doors double",
             "state": "closed",
@@ -4205,7 +4214,7 @@
         },
         "east": {
           "to_room": 5561,
-          "description": ""
+          "description": "A passage leads to The Kitchen"
         }
       }
     },
@@ -4220,15 +4229,15 @@
       "exits": {
         "north": {
           "to_room": 5573,
-          "description": ""
+          "description": "A passage leads to A Hall"
         },
         "east": {
           "to_room": 5563,
-          "description": ""
+          "description": "A passage leads to A Hall"
         },
         "south": {
           "to_room": 5571,
-          "description": "",
+          "description": "A passage leads to The Grand Dining Hall",
           "door": {
             "name": "doors double",
             "state": "closed",
@@ -4238,7 +4247,7 @@
         },
         "west": {
           "to_room": 5577,
-          "description": ""
+          "description": "A passage leads to A Hall"
         }
       },
       "mob_resets": [
@@ -4259,19 +4268,19 @@
       "exits": {
         "north": {
           "to_room": 5574,
-          "description": ""
+          "description": "A passage leads to A Hall"
         },
         "east": {
           "to_room": 5605,
-          "description": ""
+          "description": "A passage leads to A Hall"
         },
         "south": {
           "to_room": 5572,
-          "description": ""
+          "description": "A passage leads to A Hall"
         },
         "west": {
           "to_room": 5578,
-          "description": ""
+          "description": "An open path leads to The Sultan's Garden"
         }
       }
     },
@@ -4286,7 +4295,7 @@
       "exits": {
         "north": {
           "to_room": 5575,
-          "description": "",
+          "description": "A passage leads to The Entrance To The Dungeon",
           "door": {
             "name": "door iron heavy",
             "state": "closed",
@@ -4296,15 +4305,15 @@
         },
         "east": {
           "to_room": 5565,
-          "description": ""
+          "description": "A passage leads to A Hall"
         },
         "south": {
           "to_room": 5573,
-          "description": ""
+          "description": "A passage leads to A Hall"
         },
         "west": {
           "to_room": 5579,
-          "description": ""
+          "description": "A passage leads to A Hall"
         }
       }
     },
@@ -4319,7 +4328,7 @@
       "exits": {
         "south": {
           "to_room": 5574,
-          "description": "",
+          "description": "A passage leads to A Hall",
           "door": {
             "name": "door iron",
             "state": "closed",
@@ -4329,7 +4338,7 @@
         },
         "down": {
           "to_room": 5591,
-          "description": "",
+          "description": "A passage leads to The Jailer's Room",
           "door": {
             "name": "grating steel",
             "state": "closed",
@@ -4350,7 +4359,7 @@
       "exits": {
         "north": {
           "to_room": 5577,
-          "description": "",
+          "description": "A passage leads to A Hall",
           "door": {
             "name": "door",
             "state": "closed",
@@ -4374,11 +4383,11 @@
       "exits": {
         "east": {
           "to_room": 5572,
-          "description": ""
+          "description": "A passage leads to A Hall"
         },
         "south": {
           "to_room": 5576,
-          "description": "",
+          "description": "A passage leads to A Guest Room",
           "door": {
             "name": "door",
             "state": "closed",
@@ -4388,7 +4397,7 @@
         },
         "west": {
           "to_room": 5582,
-          "description": ""
+          "description": "A passage leads to A Hall"
         }
       }
     },
@@ -4401,11 +4410,11 @@
       "exits": {
         "east": {
           "to_room": 5573,
-          "description": ""
+          "description": "A passage leads to A Hall"
         },
         "west": {
           "to_room": 5583,
-          "description": ""
+          "description": "A passage leads to The Garden Gazebo"
         }
       },
       "extra_descs": {
@@ -4429,7 +4438,7 @@
       "exits": {
         "north": {
           "to_room": 5580,
-          "description": "",
+          "description": "A passage leads to The Art Exhibit",
           "door": {
             "name": "door",
             "state": "closed",
@@ -4439,11 +4448,11 @@
         },
         "east": {
           "to_room": 5574,
-          "description": ""
+          "description": "A passage leads to A Hall"
         },
         "west": {
           "to_room": 5584,
-          "description": ""
+          "description": "A passage leads to A Hall"
         }
       },
       "extra_descs": {
@@ -4461,7 +4470,7 @@
       "exits": {
         "south": {
           "to_room": 5579,
-          "description": "",
+          "description": "A passage leads to A Hall",
           "door": {
             "name": "door",
             "state": "closed",
@@ -4491,7 +4500,7 @@
       "exits": {
         "north": {
           "to_room": 5582,
-          "description": "",
+          "description": "A passage leads to A Hall",
           "door": {
             "name": "door",
             "state": "closed",
@@ -4518,11 +4527,11 @@
       "exits": {
         "east": {
           "to_room": 5577,
-          "description": ""
+          "description": "A passage leads to A Hall"
         },
         "south": {
           "to_room": 5581,
-          "description": "",
+          "description": "A passage leads to A Guest Room",
           "door": {
             "name": "door",
             "state": "closed",
@@ -4532,7 +4541,7 @@
         },
         "west": {
           "to_room": 5587,
-          "description": "",
+          "description": "A passage leads to The Harem",
           "door": {
             "name": "door",
             "state": "open",
@@ -4559,7 +4568,7 @@
       "exits": {
         "east": {
           "to_room": 5578,
-          "description": ""
+          "description": "An open path leads to The Sultan's Garden"
         }
       },
       "mob_resets": [
@@ -4584,7 +4593,7 @@
       "exits": {
         "north": {
           "to_room": 5585,
-          "description": "",
+          "description": "A passage leads to The Guard Room",
           "door": {
             "name": "door",
             "state": "closed",
@@ -4594,11 +4603,11 @@
         },
         "east": {
           "to_room": 5579,
-          "description": ""
+          "description": "A passage leads to A Hall"
         },
         "west": {
           "to_room": 5589,
-          "description": "",
+          "description": "A passage leads to The Throne Room",
           "door": {
             "name": "door",
             "state": "closed",
@@ -4619,7 +4628,7 @@
       "exits": {
         "south": {
           "to_room": 5584,
-          "description": "",
+          "description": "A passage leads to A Hall",
           "door": {
             "name": "door",
             "state": "closed",
@@ -4640,7 +4649,7 @@
       "exits": {
         "north": {
           "to_room": 5587,
-          "description": ""
+          "description": "A passage leads to The Harem"
         }
       }
     },
@@ -4655,7 +4664,7 @@
       "exits": {
         "north": {
           "to_room": 5588,
-          "description": "",
+          "description": "A passage leads to A Small room",
           "door": {
             "name": "door secret",
             "state": "closed",
@@ -4665,7 +4674,7 @@
         },
         "east": {
           "to_room": 5582,
-          "description": "",
+          "description": "A passage leads to A Hall",
           "door": {
             "name": "door",
             "state": "open",
@@ -4675,7 +4684,7 @@
         },
         "south": {
           "to_room": 5586,
-          "description": ""
+          "description": "A passage leads to The Guard Room"
         }
       },
       "mob_resets": [
@@ -4744,7 +4753,7 @@
       "exits": {
         "north": {
           "to_room": 5589,
-          "description": "",
+          "description": "A passage leads to The Throne Room",
           "door": {
             "name": "door",
             "state": "closed",
@@ -4754,7 +4763,7 @@
         },
         "south": {
           "to_room": 5587,
-          "description": "",
+          "description": "A passage leads to The Harem",
           "door": {
             "name": "door secret",
             "state": "closed",
@@ -4781,7 +4790,7 @@
       "exits": {
         "north": {
           "to_room": 5590,
-          "description": "",
+          "description": "A passage leads to The Treasure Room",
           "door": {
             "name": "throne",
             "state": "open",
@@ -4791,7 +4800,7 @@
         },
         "east": {
           "to_room": 5584,
-          "description": "",
+          "description": "A passage leads to A Hall",
           "door": {
             "name": "door",
             "state": "closed",
@@ -4801,7 +4810,7 @@
         },
         "south": {
           "to_room": 5588,
-          "description": "",
+          "description": "A passage leads to A Small room",
           "door": {
             "name": "door",
             "state": "closed",
@@ -4844,7 +4853,7 @@
       "exits": {
         "south": {
           "to_room": 5589,
-          "description": "",
+          "description": "A passage leads to The Throne Room",
           "door": {
             "name": "door",
             "state": "open",
@@ -4866,7 +4875,7 @@
       "exits": {
         "east": {
           "to_room": 5592,
-          "description": "",
+          "description": "A passage leads to A Tunnel In The Dungeon",
           "door": {
             "name": "door",
             "state": "closed",
@@ -4876,7 +4885,7 @@
         },
         "up": {
           "to_room": 5575,
-          "description": "",
+          "description": "A passage leads to The Entrance To The Dungeon",
           "door": {
             "name": "steel",
             "state": "closed",
@@ -4904,7 +4913,7 @@
       "exits": {
         "north": {
           "to_room": 5597,
-          "description": "",
+          "description": "A passage leads to The Cell",
           "door": {
             "name": "cell",
             "state": "open",
@@ -4914,11 +4923,11 @@
         },
         "east": {
           "to_room": 5593,
-          "description": ""
+          "description": "A passage leads to A Tunnel In The Dungeon"
         },
         "south": {
           "to_room": 5601,
-          "description": "",
+          "description": "A passage leads to The Cell",
           "door": {
             "name": "cell",
             "state": "open",
@@ -4928,7 +4937,7 @@
         },
         "west": {
           "to_room": 5491,
-          "description": "",
+          "description": "The cobblestones lead to A Dark Passage",
           "door": {
             "name": "door",
             "state": "closed",
@@ -4950,7 +4959,7 @@
       "exits": {
         "north": {
           "to_room": 5598,
-          "description": "",
+          "description": "A passage leads to The Cell",
           "door": {
             "name": "cell",
             "state": "open",
@@ -4960,11 +4969,11 @@
         },
         "east": {
           "to_room": 5594,
-          "description": ""
+          "description": "A passage leads to A Tunnel In The Dungeon"
         },
         "south": {
           "to_room": 5602,
-          "description": "",
+          "description": "A passage leads to The Cell",
           "door": {
             "name": "cell",
             "state": "open",
@@ -4974,7 +4983,7 @@
         },
         "west": {
           "to_room": 5592,
-          "description": ""
+          "description": "A passage leads to A Tunnel In The Dungeon"
         }
       }
     },
@@ -4990,7 +4999,7 @@
       "exits": {
         "north": {
           "to_room": 5599,
-          "description": "",
+          "description": "A passage leads to The Cell",
           "door": {
             "name": "cell",
             "state": "open",
@@ -5000,11 +5009,11 @@
         },
         "east": {
           "to_room": 5595,
-          "description": ""
+          "description": "A passage leads to A Tunnel In The Dungeon"
         },
         "south": {
           "to_room": 5603,
-          "description": "",
+          "description": "A passage leads to The Cell",
           "door": {
             "name": "cell",
             "state": "open",
@@ -5014,7 +5023,7 @@
         },
         "west": {
           "to_room": 5593,
-          "description": ""
+          "description": "A passage leads to A Tunnel In The Dungeon"
         }
       }
     },
@@ -5030,7 +5039,7 @@
       "exits": {
         "north": {
           "to_room": 5600,
-          "description": "",
+          "description": "A passage leads to The Cell",
           "door": {
             "name": "cell",
             "state": "open",
@@ -5040,7 +5049,7 @@
         },
         "east": {
           "to_room": 5596,
-          "description": "",
+          "description": "A passage leads to The Secret Cell",
           "door": {
             "name": "crack",
             "state": "open",
@@ -5050,7 +5059,7 @@
         },
         "south": {
           "to_room": 5604,
-          "description": "",
+          "description": "A passage leads to The Cell",
           "door": {
             "name": "cell",
             "state": "open",
@@ -5060,7 +5069,7 @@
         },
         "west": {
           "to_room": 5594,
-          "description": ""
+          "description": "A passage leads to A Tunnel In The Dungeon"
         }
       }
     },
@@ -5078,7 +5087,7 @@
       "exits": {
         "west": {
           "to_room": 5595,
-          "description": "",
+          "description": "A passage leads to A Tunnel In The Dungeon",
           "door": {
             "name": "crack",
             "state": "open",
@@ -5108,7 +5117,7 @@
       "exits": {
         "south": {
           "to_room": 5592,
-          "description": "",
+          "description": "A passage leads to A Tunnel In The Dungeon",
           "door": {
             "name": "cell",
             "state": "open",
@@ -5138,7 +5147,7 @@
       "exits": {
         "south": {
           "to_room": 5593,
-          "description": "",
+          "description": "A passage leads to A Tunnel In The Dungeon",
           "door": {
             "name": "cell",
             "state": "open",
@@ -5168,7 +5177,7 @@
       "exits": {
         "south": {
           "to_room": 5594,
-          "description": "",
+          "description": "A passage leads to A Tunnel In The Dungeon",
           "door": {
             "name": "cell",
             "state": "open",
@@ -5214,7 +5223,7 @@
       "exits": {
         "south": {
           "to_room": 5595,
-          "description": "",
+          "description": "A passage leads to A Tunnel In The Dungeon",
           "door": {
             "name": "cell",
             "state": "open",
@@ -5244,7 +5253,7 @@
       "exits": {
         "north": {
           "to_room": 5592,
-          "description": "",
+          "description": "A passage leads to A Tunnel In The Dungeon",
           "door": {
             "name": "cell",
             "state": "open",
@@ -5274,7 +5283,7 @@
       "exits": {
         "north": {
           "to_room": 5593,
-          "description": "",
+          "description": "A passage leads to A Tunnel In The Dungeon",
           "door": {
             "name": "cell",
             "state": "open",
@@ -5304,7 +5313,7 @@
       "exits": {
         "north": {
           "to_room": 5594,
-          "description": "",
+          "description": "A passage leads to A Tunnel In The Dungeon",
           "door": {
             "name": "cell",
             "state": "open",
@@ -5334,7 +5343,7 @@
       "exits": {
         "north": {
           "to_room": 5595,
-          "description": "",
+          "description": "A passage leads to A Tunnel In The Dungeon",
           "door": {
             "name": "cell",
             "state": "open",
@@ -5361,11 +5370,11 @@
       "exits": {
         "east": {
           "to_room": 5550,
-          "description": ""
+          "description": "A passage leads to The Grand Entrance"
         },
         "west": {
           "to_room": 5573,
-          "description": ""
+          "description": "A passage leads to A Hall"
         }
       }
     },
@@ -5378,11 +5387,11 @@
       "exits": {
         "south": {
           "to_room": 5607,
-          "description": ""
+          "description": "A steep trail ascends to A Path Through The Mountains"
         },
         "west": {
           "to_room": 5611,
-          "description": ""
+          "description": "A steep trail ascends to A Path Through The Mountains"
         }
       }
     },
@@ -5395,11 +5404,11 @@
       "exits": {
         "north": {
           "to_room": 5606,
-          "description": ""
+          "description": "A steep trail ascends to A Path Through The Mountains"
         },
         "east": {
           "to_room": 5608,
-          "description": ""
+          "description": "A steep trail ascends to The Edge Of The Ravine"
         }
       }
     },
@@ -5412,11 +5421,11 @@
       "exits": {
         "east": {
           "to_room": 5609,
-          "description": ""
+          "description": "An open path leads to On A Rope Bridge"
         },
         "west": {
           "to_room": 5607,
-          "description": ""
+          "description": "A steep trail ascends to A Path Through The Mountains"
         }
       }
     },
@@ -5429,11 +5438,11 @@
       "exits": {
         "east": {
           "to_room": 5627,
-          "description": ""
+          "description": "A steep trail ascends to The Edge Of The Ravine"
         },
         "west": {
           "to_room": 5608,
-          "description": ""
+          "description": "A steep trail ascends to The Edge Of The Ravine"
         }
       }
     },
@@ -5446,7 +5455,7 @@
       "exits": {
         "east": {
           "to_room": 5611,
-          "description": ""
+          "description": "A steep trail ascends to A Path Through The Mountains"
         }
       }
     },
@@ -5459,11 +5468,11 @@
       "exits": {
         "east": {
           "to_room": 5606,
-          "description": ""
+          "description": "A steep trail ascends to A Path Through The Mountains"
         },
         "west": {
           "to_room": 5610,
-          "description": ""
+          "description": "A steep trail ascends to The Ledge Around The Valley"
         }
       }
     },
@@ -5476,11 +5485,11 @@
       "exits": {
         "south": {
           "to_room": 5613,
-          "description": ""
+          "description": "A steep trail ascends to In The Foothills"
         },
         "west": {
           "to_room": 5629,
-          "description": ""
+          "description": "A steep trail ascends to A Path Through The Mountains"
         }
       }
     },
@@ -5493,11 +5502,11 @@
       "exits": {
         "north": {
           "to_room": 5612,
-          "description": ""
+          "description": "On The Eastern Edge Of The Mountains"
         },
         "east": {
           "to_room": 5614,
-          "description": ""
+          "description": "A steep trail ascends to In The Foothills"
         }
       }
     },
@@ -5510,11 +5519,11 @@
       "exits": {
         "south": {
           "to_room": 5615,
-          "description": ""
+          "description": "A steep trail ascends to A Rocky Trail"
         },
         "west": {
           "to_room": 5613,
-          "description": ""
+          "description": "A steep trail ascends to In The Foothills"
         }
       }
     },
@@ -5527,15 +5536,15 @@
       "exits": {
         "north": {
           "to_room": 5614,
-          "description": ""
+          "description": "A steep trail ascends to In The Foothills"
         },
         "east": {
           "to_room": 5630,
-          "description": ""
+          "description": "A rocky path climbs toward On A Road"
         },
         "south": {
           "to_room": 5645,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         }
       }
     },
@@ -5548,11 +5557,11 @@
       "exits": {
         "east": {
           "to_room": 5617,
-          "description": ""
+          "description": "An open path leads to On A Road"
         },
         "south": {
           "to_room": 5633,
-          "description": ""
+          "description": "An open path leads to On A Road"
         }
       }
     },
@@ -5565,11 +5574,11 @@
       "exits": {
         "east": {
           "to_room": 5618,
-          "description": ""
+          "description": "An open path leads to On A Road"
         },
         "west": {
           "to_room": 5616,
-          "description": ""
+          "description": "An open path leads to On A Road"
         }
       },
       "mob_resets": [
@@ -5588,11 +5597,11 @@
       "exits": {
         "east": {
           "to_room": 5569,
-          "description": ""
+          "description": "Outside The West Gate Of New Thalos"
         },
         "west": {
           "to_room": 5617,
-          "description": ""
+          "description": "An open path leads to On A Road"
         }
       }
     },
@@ -5622,11 +5631,11 @@
       "exits": {
         "east": {
           "to_room": 5621,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         },
         "west": {
           "to_room": 5639,
-          "description": ""
+          "description": "Deep waters churn near A Split In The River"
         }
       }
     },
@@ -5639,11 +5648,11 @@
       "exits": {
         "east": {
           "to_room": 5622,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         },
         "west": {
           "to_room": 5620,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         }
       }
     },
@@ -5656,11 +5665,11 @@
       "exits": {
         "east": {
           "to_room": 5644,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         },
         "west": {
           "to_room": 5621,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         }
       }
     },
@@ -5673,7 +5682,7 @@
       "exits": {
         "east": {
           "to_room": 5487,
-          "description": "",
+          "description": "Deep waters churn near River Ishtar",
           "door": {
             "name": "grating",
             "state": "closed",
@@ -5683,7 +5692,7 @@
         },
         "west": {
           "to_room": 5649,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         }
       }
     },
@@ -5696,11 +5705,11 @@
       "exits": {
         "east": {
           "to_room": 5625,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         },
         "west": {
           "to_room": 5483,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         }
       }
     },
@@ -5713,11 +5722,11 @@
       "exits": {
         "east": {
           "to_room": 5626,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         },
         "west": {
           "to_room": 5624,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         }
       }
     },
@@ -5730,11 +5739,11 @@
       "exits": {
         "east": {
           "to_room": 5684,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         },
         "west": {
           "to_room": 5625,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         }
       }
     },
@@ -5747,11 +5756,11 @@
       "exits": {
         "east": {
           "to_room": 5628,
-          "description": ""
+          "description": "A steep trail ascends to A Path Through The Mountains"
         },
         "west": {
           "to_room": 5609,
-          "description": ""
+          "description": "An open path leads to On A Rope Bridge"
         }
       }
     },
@@ -5764,15 +5773,15 @@
       "exits": {
         "east": {
           "to_room": 5629,
-          "description": ""
+          "description": "A steep trail ascends to A Path Through The Mountains"
         },
         "south": {
           "to_room": 4049,
-          "description": ""
+          "description": "A rocky path climbs toward The Foothills"
         },
         "west": {
           "to_room": 5627,
-          "description": ""
+          "description": "A steep trail ascends to The Edge Of The Ravine"
         }
       }
     },
@@ -5785,11 +5794,11 @@
       "exits": {
         "east": {
           "to_room": 5612,
-          "description": ""
+          "description": "On The Eastern Edge Of The Mountains"
         },
         "west": {
           "to_room": 5628,
-          "description": ""
+          "description": "A steep trail ascends to A Path Through The Mountains"
         }
       }
     },
@@ -5802,11 +5811,11 @@
       "exits": {
         "east": {
           "to_room": 5631,
-          "description": ""
+          "description": "An open path leads to On A Road"
         },
         "west": {
           "to_room": 5615,
-          "description": ""
+          "description": "A steep trail ascends to A Rocky Trail"
         }
       }
     },
@@ -5819,11 +5828,11 @@
       "exits": {
         "east": {
           "to_room": 5632,
-          "description": ""
+          "description": "An open path leads to On A Road"
         },
         "west": {
           "to_room": 5630,
-          "description": ""
+          "description": "A rocky path climbs toward On A Road"
         }
       },
       "mob_resets": [
@@ -5846,11 +5855,11 @@
       "exits": {
         "east": {
           "to_room": 5633,
-          "description": ""
+          "description": "An open path leads to On A Road"
         },
         "west": {
           "to_room": 5631,
-          "description": ""
+          "description": "An open path leads to On A Road"
         }
       }
     },
@@ -5863,15 +5872,15 @@
       "exits": {
         "north": {
           "to_room": 5616,
-          "description": ""
+          "description": "An open path leads to On A Road"
         },
         "south": {
           "to_room": 5649,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         },
         "west": {
           "to_room": 5632,
-          "description": ""
+          "description": "An open path leads to On A Road"
         }
       }
     },
@@ -5884,11 +5893,11 @@
       "exits": {
         "north": {
           "to_room": 5619,
-          "description": ""
+          "description": "The Headwaters Of The River Of Lost Souls"
         },
         "south": {
           "to_room": 5635,
-          "description": ""
+          "description": "Deep waters churn near The River Of Lost Souls"
         }
       }
     },
@@ -5901,11 +5910,11 @@
       "exits": {
         "north": {
           "to_room": 5634,
-          "description": ""
+          "description": "Deep waters churn near The River Of Lost Souls"
         },
         "south": {
           "to_room": 5636,
-          "description": ""
+          "description": "Deep waters churn near The River Of Lost Souls"
         }
       }
     },
@@ -5918,11 +5927,11 @@
       "exits": {
         "north": {
           "to_room": 5635,
-          "description": ""
+          "description": "Deep waters churn near The River Of Lost Souls"
         },
         "south": {
           "to_room": 5637,
-          "description": ""
+          "description": "Deep waters churn near The River Of Lost Souls"
         }
       }
     },
@@ -5935,11 +5944,11 @@
       "exits": {
         "north": {
           "to_room": 5636,
-          "description": ""
+          "description": "Deep waters churn near The River Of Lost Souls"
         },
         "south": {
           "to_room": 5638,
-          "description": ""
+          "description": "Deep waters churn near The River Of Lost Souls"
         }
       }
     },
@@ -5952,11 +5961,11 @@
       "exits": {
         "north": {
           "to_room": 5637,
-          "description": ""
+          "description": "Deep waters churn near The River Of Lost Souls"
         },
         "south": {
           "to_room": 5639,
-          "description": ""
+          "description": "Deep waters churn near A Split In The River"
         }
       }
     },
@@ -5969,15 +5978,15 @@
       "exits": {
         "north": {
           "to_room": 5638,
-          "description": ""
+          "description": "Deep waters churn near The River Of Lost Souls"
         },
         "east": {
           "to_room": 5620,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         },
         "south": {
           "to_room": 5640,
-          "description": ""
+          "description": "Deep waters churn near The River Of Lost Souls"
         }
       }
     },
@@ -5990,11 +5999,11 @@
       "exits": {
         "north": {
           "to_room": 5639,
-          "description": ""
+          "description": "Deep waters churn near A Split In The River"
         },
         "south": {
           "to_room": 5641,
-          "description": ""
+          "description": "Deep waters churn near The River Of Lost Souls"
         }
       }
     },
@@ -6007,11 +6016,11 @@
       "exits": {
         "north": {
           "to_room": 5640,
-          "description": ""
+          "description": "Deep waters churn near The River Of Lost Souls"
         },
         "south": {
           "to_room": 5642,
-          "description": ""
+          "description": "Deep waters churn near The River Of Lost Souls"
         }
       }
     },
@@ -6024,11 +6033,11 @@
       "exits": {
         "north": {
           "to_room": 5641,
-          "description": ""
+          "description": "Deep waters churn near The River Of Lost Souls"
         },
         "south": {
           "to_room": 5643,
-          "description": ""
+          "description": "Deep waters churn near The River Of Lost Souls"
         }
       }
     },
@@ -6041,11 +6050,11 @@
       "exits": {
         "north": {
           "to_room": 5642,
-          "description": ""
+          "description": "Deep waters churn near The River Of Lost Souls"
         },
         "south": {
           "to_room": 5004,
-          "description": ""
+          "description": "Deep waters churn near A Tunnel Intersection"
         }
       }
     },
@@ -6058,11 +6067,11 @@
       "exits": {
         "east": {
           "to_room": 5645,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         },
         "west": {
           "to_room": 5622,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         }
       }
     },
@@ -6075,15 +6084,15 @@
       "exits": {
         "north": {
           "to_room": 5615,
-          "description": ""
+          "description": "A steep trail ascends to A Rocky Trail"
         },
         "east": {
           "to_room": 5646,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         },
         "west": {
           "to_room": 5644,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         }
       }
     },
@@ -6096,11 +6105,11 @@
       "exits": {
         "east": {
           "to_room": 5647,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         },
         "west": {
           "to_room": 5645,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         }
       }
     },
@@ -6113,11 +6122,11 @@
       "exits": {
         "east": {
           "to_room": 5648,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         },
         "west": {
           "to_room": 5646,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         }
       }
     },
@@ -6130,11 +6139,11 @@
       "exits": {
         "east": {
           "to_room": 5649,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         },
         "west": {
           "to_room": 5647,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         }
       }
     },
@@ -6147,15 +6156,15 @@
       "exits": {
         "north": {
           "to_room": 5633,
-          "description": ""
+          "description": "An open path leads to On A Road"
         },
         "east": {
           "to_room": 5623,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         },
         "west": {
           "to_room": 5648,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         }
       }
     },
@@ -6168,19 +6177,19 @@
       "exits": {
         "north": {
           "to_room": 5652,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "east": {
           "to_room": 5656,
-          "description": ""
+          "description": "A passage leads to In The Mountains"
         },
         "south": {
           "to_room": 5654,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "west": {
           "to_room": 5657,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         }
       }
     },
@@ -6193,19 +6202,19 @@
       "exits": {
         "north": {
           "to_room": 5652,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "east": {
           "to_room": 5655,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "south": {
           "to_room": 5652,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "west": {
           "to_room": 5651,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         }
       }
     },
@@ -6218,7 +6227,7 @@
       "exits": {
         "north": {
           "to_room": 5654,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "east": {
           "to_room": 5639,
@@ -6232,11 +6241,11 @@
         },
         "south": {
           "to_room": 5656,
-          "description": ""
+          "description": "A passage leads to In The Mountains"
         },
         "west": {
           "to_room": 5657,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         }
       }
     },
@@ -6249,19 +6258,19 @@
       "exits": {
         "north": {
           "to_room": 5654,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "east": {
           "to_room": 5658,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "south": {
           "to_room": 5657,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "west": {
           "to_room": 5660,
-          "description": ""
+          "description": "Deep waters churn near The Headwaters Of The Dark River"
         }
       }
     },
@@ -6274,19 +6283,19 @@
       "exits": {
         "north": {
           "to_room": 5655,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "east": {
           "to_room": 5659,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "south": {
           "to_room": 5658,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "west": {
           "to_room": 5654,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         }
       }
     },
@@ -6299,19 +6308,19 @@
       "exits": {
         "north": {
           "to_room": 5653,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "east": {
           "to_room": 5658,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "south": {
           "to_room": 5655,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "west": {
           "to_room": 5651,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         }
       }
     },
@@ -6324,19 +6333,19 @@
       "exits": {
         "north": {
           "to_room": 5654,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "east": {
           "to_room": 5658,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "south": {
           "to_room": 5654,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "west": {
           "to_room": 5654,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         }
       }
     },
@@ -6349,19 +6358,19 @@
       "exits": {
         "north": {
           "to_room": 5655,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "east": {
           "to_room": 5657,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "south": {
           "to_room": 5659,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "west": {
           "to_room": 5654,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         }
       }
     },
@@ -6374,19 +6383,19 @@
       "exits": {
         "north": {
           "to_room": 5652,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "east": {
           "to_room": 5659,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "south": {
           "to_room": 5654,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "west": {
           "to_room": 5658,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         }
       }
     },
@@ -6401,11 +6410,11 @@
       "exits": {
         "east": {
           "to_room": 5654,
-          "description": ""
+          "description": "A steep trail ascends to In The Mountains"
         },
         "west": {
           "to_room": 5661,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         }
       }
     },
@@ -6420,11 +6429,11 @@
       "exits": {
         "east": {
           "to_room": 5660,
-          "description": ""
+          "description": "Deep waters churn near The Headwaters Of The Dark River"
         },
         "west": {
           "to_room": 5662,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         }
       }
     },
@@ -6439,11 +6448,11 @@
       "exits": {
         "east": {
           "to_room": 5661,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         },
         "west": {
           "to_room": 5663,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         }
       }
     },
@@ -6458,11 +6467,11 @@
       "exits": {
         "east": {
           "to_room": 5662,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         },
         "west": {
           "to_room": 5664,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         }
       }
     },
@@ -6477,11 +6486,11 @@
       "exits": {
         "east": {
           "to_room": 5663,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         },
         "south": {
           "to_room": 5665,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         }
       }
     },
@@ -6496,11 +6505,11 @@
       "exits": {
         "north": {
           "to_room": 5664,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         },
         "south": {
           "to_room": 5666,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         }
       }
     },
@@ -6515,11 +6524,11 @@
       "exits": {
         "north": {
           "to_room": 5665,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         },
         "west": {
           "to_room": 5667,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         }
       }
     },
@@ -6535,11 +6544,11 @@
       "exits": {
         "east": {
           "to_room": 5666,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         },
         "west": {
           "to_room": 5668,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         }
       }
     },
@@ -6555,11 +6564,11 @@
       "exits": {
         "east": {
           "to_room": 5667,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         },
         "south": {
           "to_room": 5669,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         }
       }
     },
@@ -6575,15 +6584,15 @@
       "exits": {
         "north": {
           "to_room": 5672,
-          "description": ""
+          "description": "An open path leads to On A Small Ledge"
         },
         "east": {
           "to_room": 5668,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         },
         "west": {
           "to_room": 5670,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         }
       }
     },
@@ -6599,11 +6608,11 @@
       "exits": {
         "east": {
           "to_room": 5669,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         },
         "west": {
           "to_room": 5671,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         }
       }
     },
@@ -6619,11 +6628,11 @@
       "exits": {
         "east": {
           "to_room": 5670,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         },
         "south": {
           "to_room": 5005,
-          "description": ""
+          "description": "Deep waters churn near An Underground Lake"
         }
       }
     },
@@ -6639,7 +6648,7 @@
       "exits": {
         "south": {
           "to_room": 5669,
-          "description": ""
+          "description": "Deep waters churn near On The Dark River"
         }
       }
     },
@@ -6652,19 +6661,19 @@
       "exits": {
         "north": {
           "to_room": 5682,
-          "description": ""
+          "description": "An open path leads to On The Plains"
         },
         "east": {
           "to_room": 5681,
-          "description": ""
+          "description": "An open path leads to On The Plains"
         },
         "south": {
           "to_room": 5567,
-          "description": ""
+          "description": "Outside The Northern Gate Of New Thalos"
         },
         "west": {
           "to_room": 5681,
-          "description": ""
+          "description": "An open path leads to On The Plains"
         }
       }
     },
@@ -6677,19 +6686,19 @@
       "exits": {
         "north": {
           "to_room": 5683,
-          "description": ""
+          "description": "An open path leads to The Edge Of The Forest"
         },
         "east": {
           "to_room": 5682,
-          "description": ""
+          "description": "An open path leads to On The Plains"
         },
         "south": {
           "to_room": 5681,
-          "description": ""
+          "description": "An open path leads to On The Plains"
         },
         "west": {
           "to_room": 5682,
-          "description": ""
+          "description": "An open path leads to On The Plains"
         }
       }
     },
@@ -6702,15 +6711,15 @@
       "exits": {
         "east": {
           "to_room": 5683,
-          "description": ""
+          "description": "An open path leads to The Edge Of The Forest"
         },
         "south": {
           "to_room": 5682,
-          "description": ""
+          "description": "An open path leads to On The Plains"
         },
         "west": {
           "to_room": 5683,
-          "description": ""
+          "description": "An open path leads to The Edge Of The Forest"
         }
       }
     },
@@ -6723,11 +6732,11 @@
       "exits": {
         "east": {
           "to_room": 5685,
-          "description": ""
+          "description": "Deep waters churn near The River Delta"
         },
         "west": {
           "to_room": 5626,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         }
       }
     },
@@ -6740,11 +6749,11 @@
       "exits": {
         "east": {
           "to_room": 5686,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         },
         "west": {
           "to_room": 5684,
-          "description": ""
+          "description": "Deep waters churn near River Ishtar"
         }
       }
     },
@@ -6757,19 +6766,19 @@
       "exits": {
         "north": {
           "to_room": 5687,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         },
         "east": {
           "to_room": 5686,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         },
         "south": {
           "to_room": 5686,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         },
         "west": {
           "to_room": 5685,
-          "description": ""
+          "description": "Deep waters churn near The River Delta"
         }
       }
     },
@@ -6782,15 +6791,15 @@
       "exits": {
         "north": {
           "to_room": 5695,
-          "description": ""
+          "description": "The cobblestones lead to On A Dock"
         },
         "east": {
           "to_room": 5696,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         },
         "south": {
           "to_room": 5686,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         }
       }
     },
@@ -6803,15 +6812,15 @@
       "exits": {
         "north": {
           "to_room": 5688,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         },
         "east": {
           "to_room": 5697,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         },
         "south": {
           "to_room": 5695,
-          "description": ""
+          "description": "The cobblestones lead to On A Dock"
         }
       }
     },
@@ -6824,23 +6833,23 @@
       "exits": {
         "north": {
           "to_room": 5697,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         },
         "east": {
           "to_room": 5689,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         },
         "south": {
           "to_room": 5696,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         },
         "west": {
           "to_room": 5695,
-          "description": ""
+          "description": "The cobblestones lead to On A Dock"
         },
         "down": {
           "to_room": 5698,
-          "description": ""
+          "description": "Deep waters churn near Under The dock"
         }
       }
     },
@@ -6853,11 +6862,11 @@
       "exits": {
         "east": {
           "to_room": 5691,
-          "description": ""
+          "description": "An open path leads to On A Road"
         },
         "west": {
           "to_room": 5568,
-          "description": ""
+          "description": "Outside The Eastern Gate Of New Thalos"
         }
       }
     },
@@ -6870,11 +6879,11 @@
       "exits": {
         "east": {
           "to_room": 5692,
-          "description": ""
+          "description": "An open path leads to On A Road"
         },
         "west": {
           "to_room": 5690,
-          "description": ""
+          "description": "An open path leads to On A Road"
         }
       }
     },
@@ -6887,11 +6896,11 @@
       "exits": {
         "east": {
           "to_room": 5693,
-          "description": ""
+          "description": "An open path leads to On A Road"
         },
         "west": {
           "to_room": 5691,
-          "description": ""
+          "description": "An open path leads to On A Road"
         }
       },
       "mob_resets": [
@@ -6910,11 +6919,11 @@
       "exits": {
         "east": {
           "to_room": 5694,
-          "description": ""
+          "description": "An open path leads to Near The Shore"
         },
         "west": {
           "to_room": 5692,
-          "description": ""
+          "description": "An open path leads to On A Road"
         }
       }
     },
@@ -6927,11 +6936,11 @@
       "exits": {
         "east": {
           "to_room": 5695,
-          "description": ""
+          "description": "The cobblestones lead to On A Dock"
         },
         "west": {
           "to_room": 5693,
-          "description": ""
+          "description": "An open path leads to On A Road"
         }
       }
     },
@@ -6944,19 +6953,19 @@
       "exits": {
         "north": {
           "to_room": 5688,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         },
         "east": {
           "to_room": 5689,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         },
         "south": {
           "to_room": 5687,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         },
         "west": {
           "to_room": 5694,
-          "description": ""
+          "description": "An open path leads to Near The Shore"
         }
       }
     },
@@ -6969,15 +6978,15 @@
       "exits": {
         "north": {
           "to_room": 5689,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         },
         "east": {
           "to_room": 5696,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         },
         "west": {
           "to_room": 5687,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         }
       }
     },
@@ -6990,19 +6999,19 @@
       "exits": {
         "north": {
           "to_room": 5697,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         },
         "east": {
           "to_room": 5697,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         },
         "south": {
           "to_room": 5689,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         },
         "west": {
           "to_room": 5688,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         }
       }
     },
@@ -7015,7 +7024,7 @@
       "exits": {
         "west": {
           "to_room": 5699,
-          "description": "",
+          "description": "Deep waters churn near The Lair Of The Ixitxachitl",
           "door": {
             "name": "grate",
             "state": "closed",
@@ -7025,7 +7034,7 @@
         },
         "up": {
           "to_room": 5697,
-          "description": ""
+          "description": "Deep waters churn near The Dragon Sea"
         }
       }
     },
@@ -7038,7 +7047,7 @@
       "exits": {
         "east": {
           "to_room": 5698,
-          "description": "",
+          "description": "Deep waters churn near Under The dock",
           "door": {
             "name": "grate",
             "state": "closed",
@@ -9301,7 +9310,8 @@
       "room_desc": "A large key bearing the crest of New Thalos lies here.",
       "item_type": "key",
       "weight": 5,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "5401": {
       "vnum": 5401,
@@ -9310,7 +9320,8 @@
       "room_desc": "The heavy city key lies here in the dust",
       "item_type": "key",
       "weight": 5,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "5402": {
       "vnum": 5402,
@@ -9319,7 +9330,8 @@
       "room_desc": "The large central fountain domintating the central square rests here.",
       "item_type": "fountain",
       "weight": 9999,
-      "value": 0
+      "value": 0,
+      "type": "furniture"
     },
     "5403": {
       "vnum": 5403,
@@ -9330,7 +9342,8 @@
       "weight": 5,
       "value": 1200,
       "damage_dice": "2d5",
-      "weapon_type": "crush"
+      "weapon_type": "crush",
+      "type": "weapon"
     },
     "5404": {
       "vnum": 5404,
@@ -9341,7 +9354,8 @@
       "weight": 3,
       "value": 2100,
       "damage_dice": "1d12",
-      "weapon_type": "bludgeon"
+      "weapon_type": "bludgeon",
+      "type": "weapon"
     },
     "5405": {
       "vnum": 5405,
@@ -9352,7 +9366,8 @@
       "weight": 4,
       "value": 1900,
       "damage_dice": "2d6",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "treasure"
     },
     "5406": {
       "vnum": 5406,
@@ -9363,7 +9378,8 @@
       "weight": 3,
       "value": 5400,
       "damage_dice": "1d8",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "treasure"
     },
     "5408": {
       "vnum": 5408,
@@ -9374,7 +9390,8 @@
       "weight": 3,
       "value": 1250,
       "damage_dice": "1d8",
-      "weapon_type": "sting"
+      "weapon_type": "sting",
+      "type": "treasure"
     },
     "5409": {
       "vnum": 5409,
@@ -9385,7 +9402,8 @@
       "weight": 3,
       "value": 1870,
       "damage_dice": "1d10",
-      "weapon_type": "bludgeon"
+      "weapon_type": "bludgeon",
+      "type": "treasure"
     },
     "5410": {
       "vnum": 5410,
@@ -9396,7 +9414,8 @@
       "weight": 4,
       "value": 1953,
       "damage_dice": "2d4",
-      "weapon_type": "bite"
+      "weapon_type": "bite",
+      "type": "treasure"
     },
     "5411": {
       "vnum": 5411,
@@ -9407,7 +9426,8 @@
       "weight": 1,
       "value": 500,
       "damage_dice": "2d4",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "treasure"
     },
     "5412": {
       "vnum": 5412,
@@ -9418,7 +9438,8 @@
       "weight": 18,
       "value": 12580,
       "damage_dice": "2d8",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "5413": {
       "vnum": 5413,
@@ -9429,7 +9450,8 @@
       "weight": 10,
       "value": 1200,
       "damage_dice": "1d9",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "5414": {
       "vnum": 5414,
@@ -9440,7 +9462,8 @@
       "weight": 10,
       "value": 3100,
       "damage_dice": "1d8",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "5415": {
       "vnum": 5415,
@@ -9450,7 +9473,10 @@
       "item_type": "armor",
       "weight": 25,
       "value": 3400,
-      "armor_bonus": 8
+      "armor_bonus": 8,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 5
     },
     "5417": {
       "vnum": 5417,
@@ -9460,7 +9486,8 @@
       "item_type": "armor",
       "weight": 28,
       "value": 4000,
-      "armor_bonus": 9
+      "armor_bonus": 9,
+      "type": "treasure"
     },
     "5418": {
       "vnum": 5418,
@@ -9470,7 +9497,8 @@
       "item_type": "armor",
       "weight": 6,
       "value": 1385,
-      "armor_bonus": 5
+      "armor_bonus": 5,
+      "type": "treasure"
     },
     "5419": {
       "vnum": 5419,
@@ -9480,7 +9508,8 @@
       "item_type": "armor",
       "weight": 5,
       "value": 2500,
-      "armor_bonus": 4
+      "armor_bonus": 4,
+      "type": "treasure"
     },
     "5420": {
       "vnum": 5420,
@@ -9490,7 +9519,10 @@
       "item_type": "armor",
       "weight": 1,
       "value": 10,
-      "armor_bonus": 1
+      "armor_bonus": 1,
+      "type": "armor",
+      "wear_slot": "shield",
+      "armor": 3
     },
     "5421": {
       "vnum": 5421,
@@ -9500,7 +9532,10 @@
       "item_type": "armor",
       "weight": 8,
       "value": 175,
-      "armor_bonus": 7
+      "armor_bonus": 7,
+      "type": "armor",
+      "wear_slot": "shield",
+      "armor": 3
     },
     "5422": {
       "vnum": 5422,
@@ -9510,7 +9545,10 @@
       "item_type": "armor",
       "weight": 6,
       "value": 30,
-      "armor_bonus": 1
+      "armor_bonus": 1,
+      "type": "armor",
+      "wear_slot": "shield",
+      "armor": 3
     },
     "5423": {
       "vnum": 5423,
@@ -9520,7 +9558,10 @@
       "item_type": "armor",
       "weight": 6,
       "value": 600,
-      "armor_bonus": 3
+      "armor_bonus": 3,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 1
     },
     "5424": {
       "vnum": 5424,
@@ -9530,7 +9571,10 @@
       "item_type": "armor",
       "weight": 2,
       "value": 350,
-      "armor_bonus": 2
+      "armor_bonus": 2,
+      "type": "armor",
+      "wear_slot": "legs",
+      "armor": 2
     },
     "5425": {
       "vnum": 5425,
@@ -9540,7 +9584,10 @@
       "item_type": "armor",
       "weight": 2,
       "value": 65,
-      "armor_bonus": 1
+      "armor_bonus": 1,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "5426": {
       "vnum": 5426,
@@ -9550,7 +9597,10 @@
       "item_type": "armor",
       "weight": 2,
       "value": 850,
-      "armor_bonus": 2
+      "armor_bonus": 2,
+      "type": "armor",
+      "wear_slot": "legs",
+      "armor": 2
     },
     "5427": {
       "vnum": 5427,
@@ -9560,7 +9610,10 @@
       "item_type": "armor",
       "weight": 2,
       "value": 150,
-      "armor_bonus": 2
+      "armor_bonus": 2,
+      "type": "armor",
+      "wear_slot": "hands",
+      "armor": 2
     },
     "5428": {
       "vnum": 5428,
@@ -9570,7 +9623,10 @@
       "item_type": "armor",
       "weight": 2,
       "value": 410,
-      "armor_bonus": 2
+      "armor_bonus": 2,
+      "type": "armor",
+      "wear_slot": "feet",
+      "armor": 2
     },
     "5429": {
       "vnum": 5429,
@@ -9580,7 +9636,10 @@
       "item_type": "armor",
       "weight": 10,
       "value": 650,
-      "armor_bonus": 3
+      "armor_bonus": 3,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 1
     },
     "5430": {
       "vnum": 5430,
@@ -9590,7 +9649,10 @@
       "item_type": "armor",
       "weight": 3,
       "value": 500,
-      "armor_bonus": 3
+      "armor_bonus": 3,
+      "type": "armor",
+      "wear_slot": "legs",
+      "armor": 2
     },
     "5431": {
       "vnum": 5431,
@@ -9600,7 +9662,10 @@
       "item_type": "armor",
       "weight": 3,
       "value": 500,
-      "armor_bonus": 3
+      "armor_bonus": 3,
+      "type": "armor",
+      "wear_slot": "legs",
+      "armor": 2
     },
     "5432": {
       "vnum": 5432,
@@ -9610,7 +9675,10 @@
       "item_type": "armor",
       "weight": 3,
       "value": 500,
-      "armor_bonus": 3
+      "armor_bonus": 3,
+      "type": "armor",
+      "wear_slot": "hands",
+      "armor": 2
     },
     "5433": {
       "vnum": 5433,
@@ -9620,7 +9688,10 @@
       "item_type": "armor",
       "weight": 3,
       "value": 50,
-      "armor_bonus": 5
+      "armor_bonus": 5,
+      "type": "armor",
+      "wear_slot": "shield",
+      "armor": 3
     },
     "5434": {
       "vnum": 5434,
@@ -9630,7 +9701,8 @@
       "item_type": "container",
       "weight": 1,
       "value": 20,
-      "capacity": 50
+      "capacity": 50,
+      "type": "container"
     },
     "5435": {
       "vnum": 5435,
@@ -9640,7 +9712,8 @@
       "item_type": "light",
       "weight": 1,
       "value": 100,
-      "light_hours": 48
+      "light_hours": 48,
+      "type": "light"
     },
     "5436": {
       "vnum": 5436,
@@ -9650,7 +9723,8 @@
       "item_type": "container",
       "weight": 8,
       "value": 100,
-      "capacity": 75
+      "capacity": 75,
+      "type": "container"
     },
     "5437": {
       "vnum": 5437,
@@ -9660,7 +9734,8 @@
       "item_type": "container",
       "weight": 4,
       "value": 250,
-      "capacity": 50
+      "capacity": 50,
+      "type": "container"
     },
     "5438": {
       "vnum": 5438,
@@ -9670,7 +9745,10 @@
       "item_type": "container",
       "weight": 3,
       "value": 100,
-      "capacity": 25
+      "capacity": 25,
+      "type": "armor",
+      "wear_slot": "waist",
+      "armor": 1
     },
     "5439": {
       "vnum": 5439,
@@ -9680,7 +9758,8 @@
       "item_type": "light",
       "weight": 1,
       "value": 35,
-      "light_hours": 50
+      "light_hours": 50,
+      "type": "light"
     },
     "5440": {
       "vnum": 5440,
@@ -9690,7 +9769,9 @@
       "item_type": "food",
       "weight": 1,
       "value": 5,
-      "nutrition": 5
+      "nutrition": 5,
+      "type": "food",
+      "food_value": 12
     },
     "5441": {
       "vnum": 5441,
@@ -9700,7 +9781,9 @@
       "item_type": "food",
       "weight": 1,
       "value": 3,
-      "nutrition": 3
+      "nutrition": 3,
+      "type": "food",
+      "food_value": 12
     },
     "5442": {
       "vnum": 5442,
@@ -9710,7 +9793,9 @@
       "item_type": "food",
       "weight": 2,
       "value": 20,
-      "nutrition": 20
+      "nutrition": 20,
+      "type": "food",
+      "food_value": 12
     },
     "5443": {
       "vnum": 5443,
@@ -9720,7 +9805,9 @@
       "item_type": "food",
       "weight": 3,
       "value": 25,
-      "nutrition": 25
+      "nutrition": 25,
+      "type": "food",
+      "food_value": 12
     },
     "5445": {
       "vnum": 5445,
@@ -9730,7 +9817,8 @@
       "item_type": "food",
       "weight": 1,
       "value": 1,
-      "nutrition": 1
+      "nutrition": 1,
+      "type": "treasure"
     },
     "5446": {
       "vnum": 5446,
@@ -9740,7 +9828,10 @@
       "item_type": "armor",
       "weight": 2,
       "value": 2,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "waist",
+      "armor": 1
     },
     "5447": {
       "vnum": 5447,
@@ -9750,7 +9841,10 @@
       "item_type": "armor",
       "weight": 3,
       "value": 390,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "feet",
+      "armor": 2
     },
     "5448": {
       "vnum": 5448,
@@ -9760,7 +9854,10 @@
       "item_type": "armor",
       "weight": 2,
       "value": 4550,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "about",
+      "armor": 1
     },
     "5449": {
       "vnum": 5449,
@@ -9770,7 +9867,10 @@
       "item_type": "armor",
       "weight": 1,
       "value": 375,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "waist",
+      "armor": 1
     },
     "5450": {
       "vnum": 5450,
@@ -9780,7 +9880,10 @@
       "item_type": "armor",
       "weight": 1,
       "value": 120,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "legs",
+      "armor": 2
     },
     "5451": {
       "vnum": 5451,
@@ -9790,7 +9893,10 @@
       "item_type": "armor",
       "weight": 2,
       "value": 90,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 1
     },
     "5452": {
       "vnum": 5452,
@@ -9800,7 +9906,10 @@
       "item_type": "armor",
       "weight": 2,
       "value": 2500,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 1
     },
     "5453": {
       "vnum": 5453,
@@ -9810,7 +9919,10 @@
       "item_type": "armor",
       "weight": 1,
       "value": 15,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "feet",
+      "armor": 2
     },
     "5454": {
       "vnum": 5454,
@@ -9820,7 +9932,10 @@
       "item_type": "armor",
       "weight": 1,
       "value": 20,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "waist",
+      "armor": 1
     },
     "5455": {
       "vnum": 5455,
@@ -9830,7 +9945,10 @@
       "item_type": "armor",
       "weight": 1,
       "value": 3800,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 1
     },
     "5456": {
       "vnum": 5456,
@@ -9840,7 +9958,9 @@
       "item_type": "food",
       "weight": 1,
       "value": 3,
-      "nutrition": 2
+      "nutrition": 2,
+      "type": "food",
+      "food_value": 12
     },
     "5457": {
       "vnum": 5457,
@@ -9850,7 +9970,9 @@
       "item_type": "food",
       "weight": 1,
       "value": 4,
-      "nutrition": 3
+      "nutrition": 3,
+      "type": "food",
+      "food_value": 12
     },
     "5458": {
       "vnum": 5458,
@@ -9860,7 +9982,9 @@
       "item_type": "food",
       "weight": 1,
       "value": 8,
-      "nutrition": 2
+      "nutrition": 2,
+      "type": "food",
+      "food_value": 12
     },
     "5459": {
       "vnum": 5459,
@@ -9870,7 +9994,9 @@
       "item_type": "food",
       "weight": 1,
       "value": 2,
-      "nutrition": 1
+      "nutrition": 1,
+      "type": "food",
+      "food_value": 12
     },
     "5460": {
       "vnum": 5460,
@@ -9880,7 +10006,9 @@
       "item_type": "food",
       "weight": 1,
       "value": 4,
-      "nutrition": 2
+      "nutrition": 2,
+      "type": "food",
+      "food_value": 12
     },
     "5461": {
       "vnum": 5461,
@@ -9890,7 +10018,9 @@
       "item_type": "food",
       "weight": 2,
       "value": 10,
-      "nutrition": 10
+      "nutrition": 10,
+      "type": "food",
+      "food_value": 12
     },
     "5462": {
       "vnum": 5462,
@@ -9900,7 +10030,9 @@
       "item_type": "food",
       "weight": 5,
       "value": 20,
-      "nutrition": 15
+      "nutrition": 15,
+      "type": "food",
+      "food_value": 12
     },
     "5463": {
       "vnum": 5463,
@@ -9910,7 +10042,9 @@
       "item_type": "food",
       "weight": 3,
       "value": 12,
-      "nutrition": 12
+      "nutrition": 12,
+      "type": "food",
+      "food_value": 12
     },
     "5464": {
       "vnum": 5464,
@@ -9920,7 +10054,9 @@
       "item_type": "food",
       "weight": 1,
       "value": 8,
-      "nutrition": 8
+      "nutrition": 8,
+      "type": "food",
+      "food_value": 12
     },
     "5465": {
       "vnum": 5465,
@@ -9930,7 +10066,8 @@
       "item_type": "food",
       "weight": 1,
       "value": 4,
-      "nutrition": 4
+      "nutrition": 4,
+      "type": "treasure"
     },
     "5467": {
       "vnum": 5467,
@@ -9941,7 +10078,8 @@
       "weight": 1,
       "value": 1800,
       "capacity": 5,
-      "current": 5
+      "current": 5,
+      "type": "treasure"
     },
     "5468": {
       "vnum": 5468,
@@ -9952,7 +10090,8 @@
       "weight": 1,
       "value": 3800,
       "capacity": 1,
-      "current": 1
+      "current": 1,
+      "type": "treasure"
     },
     "5469": {
       "vnum": 5469,
@@ -9963,7 +10102,10 @@
       "weight": 1,
       "value": 8000,
       "capacity": 2,
-      "current": 2
+      "current": 2,
+      "type": "drink",
+      "drinks": 10,
+      "max_drinks": 10
     },
     "5470": {
       "vnum": 5470,
@@ -9972,7 +10114,8 @@
       "room_desc": "A glowing blue vial lies here.",
       "item_type": "potion",
       "weight": 1,
-      "value": 800
+      "value": 800,
+      "type": "treasure"
     },
     "5471": {
       "vnum": 5471,
@@ -9981,7 +10124,8 @@
       "room_desc": "A deep-green potion lies here.",
       "item_type": "potion",
       "weight": 1,
-      "value": 5000
+      "value": 5000,
+      "type": "potion"
     },
     "5472": {
       "vnum": 5472,
@@ -9990,7 +10134,8 @@
       "room_desc": "A crystal clear potion lies here.",
       "item_type": "potion",
       "weight": 1,
-      "value": 3000
+      "value": 3000,
+      "type": "potion"
     },
     "5473": {
       "vnum": 5473,
@@ -9999,7 +10144,8 @@
       "room_desc": "An off-white potion lies here.",
       "item_type": "potion",
       "weight": 1,
-      "value": 3000
+      "value": 3000,
+      "type": "potion"
     },
     "5474": {
       "vnum": 5474,
@@ -10008,7 +10154,8 @@
       "room_desc": "A dark blue potion lies here.",
       "item_type": "potion",
       "weight": 1,
-      "value": 4000
+      "value": 4000,
+      "type": "potion"
     },
     "5475": {
       "vnum": 5475,
@@ -10019,7 +10166,10 @@
       "weight": 1,
       "value": 500,
       "capacity": 5,
-      "current": 5
+      "current": 5,
+      "type": "drink",
+      "drinks": 10,
+      "max_drinks": 10
     },
     "5476": {
       "vnum": 5476,
@@ -10030,7 +10180,8 @@
       "weight": 15,
       "value": 900,
       "capacity": 10,
-      "current": 10
+      "current": 10,
+      "type": "container"
     },
     "5477": {
       "vnum": 5477,
@@ -10041,7 +10192,8 @@
       "weight": 1,
       "value": 350,
       "capacity": 1,
-      "current": 1
+      "current": 1,
+      "type": "treasure"
     },
     "5478": {
       "vnum": 5478,
@@ -10050,7 +10202,8 @@
       "room_desc": "A scroll of recall lies here.",
       "item_type": "scroll",
       "weight": 4,
-      "value": 2000
+      "value": 2000,
+      "type": "scroll"
     },
     "5479": {
       "vnum": 5479,
@@ -10059,7 +10212,8 @@
       "room_desc": "A grey-silver wand lies here.",
       "item_type": "wand",
       "weight": 1,
-      "value": 10000
+      "value": 10000,
+      "type": "wand"
     },
     "5480": {
       "vnum": 5480,
@@ -10068,7 +10222,8 @@
       "room_desc": "A wand of glinting yellow lies here.",
       "item_type": "wand",
       "weight": 1,
-      "value": 666
+      "value": 666,
+      "type": "wand"
     },
     "5481": {
       "vnum": 5481,
@@ -10077,7 +10232,8 @@
       "room_desc": "A wand of oak lies here.",
       "item_type": "wand",
       "weight": 1,
-      "value": 500
+      "value": 500,
+      "type": "wand"
     },
     "5482": {
       "vnum": 5482,
@@ -10086,7 +10242,8 @@
       "room_desc": "A pink wand lies here",
       "item_type": "wand",
       "weight": 1,
-      "value": 5000
+      "value": 5000,
+      "type": "wand"
     },
     "5483": {
       "vnum": 5483,
@@ -10097,7 +10254,8 @@
       "weight": 2,
       "value": 100,
       "damage_dice": "1d4",
-      "weapon_type": "sting"
+      "weapon_type": "sting",
+      "type": "treasure"
     },
     "5484": {
       "vnum": 5484,
@@ -10108,7 +10266,8 @@
       "weight": 5,
       "value": 100,
       "damage_dice": "1d5",
-      "weapon_type": "hit"
+      "weapon_type": "hit",
+      "type": "weapon"
     },
     "5485": {
       "vnum": 5485,
@@ -10119,7 +10278,8 @@
       "weight": 1,
       "value": 100,
       "damage_dice": "1d3",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "furniture"
     },
     "5486": {
       "vnum": 5486,
@@ -10130,7 +10290,8 @@
       "weight": 24,
       "value": 200,
       "damage_dice": "2d3",
-      "weapon_type": "crush"
+      "weapon_type": "crush",
+      "type": "weapon"
     },
     "5487": {
       "vnum": 5487,
@@ -10140,7 +10301,10 @@
       "item_type": "armor",
       "weight": 2,
       "value": 1000,
-      "armor_bonus": 1
+      "armor_bonus": 1,
+      "type": "armor",
+      "wear_slot": "feet",
+      "armor": 2
     },
     "5488": {
       "vnum": 5488,
@@ -10149,7 +10313,8 @@
       "room_desc": "A saddle lies here.",
       "item_type": "treasure",
       "weight": 4,
-      "value": 100
+      "value": 100,
+      "type": "treasure"
     },
     "5489": {
       "vnum": 5489,
@@ -10160,7 +10325,8 @@
       "weight": 1,
       "value": 50,
       "damage_dice": "1d4",
-      "weapon_type": "whip"
+      "weapon_type": "whip",
+      "type": "treasure"
     },
     "5490": {
       "vnum": 5490,
@@ -10171,7 +10337,8 @@
       "weight": 10,
       "value": 100,
       "damage_dice": "1d30",
-      "weapon_type": "crush"
+      "weapon_type": "crush",
+      "type": "treasure"
     },
     "5491": {
       "vnum": 5491,
@@ -10181,7 +10348,8 @@
       "item_type": "food",
       "weight": 1,
       "value": 10,
-      "nutrition": 6
+      "nutrition": 6,
+      "type": "treasure"
     },
     "5492": {
       "vnum": 5492,
@@ -10192,7 +10360,8 @@
       "weight": 12,
       "value": 18000,
       "damage_dice": "5d3",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "5493": {
       "vnum": 5493,
@@ -10201,7 +10370,8 @@
       "room_desc": "The key to the jail lies here.",
       "item_type": "key",
       "weight": 1,
-      "value": 100
+      "value": 100,
+      "type": "key"
     },
     "5494": {
       "vnum": 5494,
@@ -10210,7 +10380,8 @@
       "room_desc": "The dungeon key lies here.",
       "item_type": "key",
       "weight": 1,
-      "value": 100
+      "value": 100,
+      "type": "key"
     },
     "5495": {
       "vnum": 5495,
@@ -10221,7 +10392,8 @@
       "weight": 2,
       "value": 400,
       "damage_dice": "3d6",
-      "weapon_type": "claw"
+      "weapon_type": "claw",
+      "type": "treasure"
     },
     "5496": {
       "vnum": 5496,
@@ -10232,7 +10404,8 @@
       "weight": 16,
       "value": 25000,
       "damage_dice": "4d4",
-      "weapon_type": "crush"
+      "weapon_type": "crush",
+      "type": "weapon"
     },
     "5497": {
       "vnum": 5497,
@@ -10252,7 +10425,8 @@
           "value": 3
         }
       ],
-      "set_id": 54
+      "set_id": 54,
+      "type": "weapon"
     },
     "5498": {
       "vnum": 5498,
@@ -10271,7 +10445,9 @@
           "value": 1
         }
       ],
-      "set_id": 54
+      "set_id": 54,
+      "type": "armor",
+      "armor": 3
     },
     "5499": {
       "vnum": 5499,
@@ -10289,7 +10465,8 @@
           "value": 3
         }
       ],
-      "set_id": 54
+      "set_id": 54,
+      "type": "treasure"
     },
     "5500": {
       "vnum": 5500,
@@ -10311,7 +10488,8 @@
           "value": 25
         }
       ],
-      "set_id": 54
+      "set_id": 54,
+      "type": "treasure"
     },
     "5501": {
       "vnum": 5501,
@@ -10329,7 +10507,8 @@
           "value": 3
         }
       ],
-      "set_id": 54
+      "set_id": 54,
+      "type": "treasure"
     },
     "5502": {
       "vnum": 5502,
@@ -10349,7 +10528,8 @@
           "value": 3
         }
       ],
-      "set_id": 54
+      "set_id": 54,
+      "type": "treasure"
     },
     "5503": {
       "vnum": 5503,
@@ -10369,7 +10549,8 @@
           "value": 3
         }
       ],
-      "set_id": 54
+      "set_id": 54,
+      "type": "weapon"
     },
     "5504": {
       "vnum": 5504,
@@ -10391,7 +10572,9 @@
           "value": 1
         }
       ],
-      "set_id": 54
+      "set_id": 54,
+      "type": "armor",
+      "armor": 0
     },
     "5505": {
       "vnum": 5505,
@@ -10410,7 +10593,9 @@
           "value": 1
         }
       ],
-      "set_id": 54
+      "set_id": 54,
+      "type": "armor",
+      "armor": 1
     }
   }
 }

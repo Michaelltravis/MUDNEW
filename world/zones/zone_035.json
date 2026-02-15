@@ -12,15 +12,15 @@
       "exits": {
         "north": {
           "to_room": 4000,
-          "description": ""
+          "description": "A rocky path climbs toward The Hills"
         },
         "east": {
           "to_room": 3300,
-          "description": ""
+          "description": "A steep trail ascends to A Scraggly Trail"
         },
         "south": {
           "to_room": 3501,
-          "description": ""
+          "description": "The cobblestones lead to The Lane"
         }
       }
     },
@@ -33,11 +33,11 @@
       "exits": {
         "north": {
           "to_room": 3500,
-          "description": ""
+          "description": "The cobblestones lead to The Plains"
         },
         "south": {
           "to_room": 3502,
-          "description": ""
+          "description": "The cobblestones lead to The Laneway"
         }
       }
     },
@@ -50,7 +50,7 @@
       "exits": {
         "north": {
           "to_room": 3501,
-          "description": ""
+          "description": "The cobblestones lead to The Lane"
         },
         "east": {
           "to_room": 15000,
@@ -58,7 +58,7 @@
         },
         "west": {
           "to_room": 3503,
-          "description": ""
+          "description": "The cobblestones lead to The City Entrance"
         },
         "down": {
           "to_room": 6500,
@@ -77,11 +77,11 @@
       "exits": {
         "east": {
           "to_room": 3502,
-          "description": ""
+          "description": "The cobblestones lead to The Laneway"
         },
         "west": {
           "to_room": 3053,
-          "description": ""
+          "description": "The cobblestones lead to Outside The East Gate Of Midgaard"
         }
       }
     },
@@ -1230,7 +1230,8 @@
       "weight": 3,
       "value": 60,
       "damage_dice": "1d6",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "3501": {
       "vnum": 3501,
@@ -1241,7 +1242,8 @@
       "weight": 8,
       "value": 600,
       "damage_dice": "1d9",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "3502": {
       "vnum": 3502,
@@ -1252,7 +1254,8 @@
       "weight": 3,
       "value": 12,
       "damage_dice": "1d3",
-      "weapon_type": "pound"
+      "weapon_type": "pound",
+      "type": "weapon"
     },
     "3503": {
       "vnum": 3503,
@@ -1262,7 +1265,10 @@
       "item_type": "armor",
       "weight": 20,
       "value": 500,
-      "armor_bonus": 5
+      "armor_bonus": 5,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 1
     },
     "3504": {
       "vnum": 3504,
@@ -1273,7 +1279,8 @@
       "weight": 15,
       "value": 500,
       "damage_dice": "5d1",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "3505": {
       "vnum": 3505,
@@ -1283,7 +1290,8 @@
       "item_type": "container",
       "weight": 25,
       "value": 0,
-      "capacity": 20
+      "capacity": 20,
+      "type": "trash"
     },
     "3506": {
       "vnum": 3506,
@@ -1293,7 +1301,8 @@
       "item_type": "container",
       "weight": 25,
       "value": 0,
-      "capacity": 20
+      "capacity": 20,
+      "type": "trash"
     },
     "3507": {
       "vnum": 3507,
@@ -1304,7 +1313,8 @@
       "weight": 4,
       "value": 1000,
       "damage_dice": "3d3",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "weapon"
     },
     "3508": {
       "vnum": 3508,
@@ -1314,7 +1324,8 @@
       "item_type": "armor",
       "weight": 1,
       "value": 25,
-      "armor_bonus": 5
+      "armor_bonus": 5,
+      "type": "treasure"
     },
     "3509": {
       "vnum": 3509,

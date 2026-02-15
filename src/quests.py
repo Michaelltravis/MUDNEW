@@ -145,7 +145,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 1,
         'level_max': 8,
-        'quest_giver': 3105,  # Mayor in Midgaard
+        'quest_giver': 7090,  # Skullcap the Rat-Catcher
         'objectives': [
             {'type': 'kill', 'description': 'Slay sewer rats', 'target': 'rat', 'required': 8}
         ],
@@ -158,7 +158,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 3,
         'level_max': 12,
-        'quest_giver': 3105,  # Mayor
+        'quest_giver': 6090,  # Ranger Thornwood
         'objectives': [
             {'type': 'kill', 'description': 'Slay goblins', 'target': 'goblin', 'required': 10}
         ],
@@ -214,7 +214,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 8,
         'level_max': 18,
-        'quest_giver': 3006,  # Captain Stolar
+        'quest_giver': 10090,  # Scout Harken
         'objectives': [
             {'type': 'kill', 'description': 'Slay orcs', 'target': 'orc', 'required': 15}
         ],
@@ -227,7 +227,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 10,
         'level_max': 20,
-        'quest_giver': 3006,  # Captain Stolar
+        'quest_giver': 6090,  # Ranger Thornwood
         'objectives': [
             {'type': 'kill', 'description': 'Slay giant spiders', 'target': 'spider', 'required': 12}
         ],
@@ -240,7 +240,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 12,
         'level_max': 22,
-        'quest_giver': 3006,  # Captain Stolar
+        'quest_giver': 4050,  # Grimjaw the Prospector
         'objectives': [
             {'type': 'kill', 'description': 'Slay Moria orcs', 'target': 'orc', 'required': 20}
         ],
@@ -255,7 +255,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 15,
         'level_max': 28,
-        'quest_giver': 3006,  # Captain Stolar
+        'quest_giver': 6590,  # Zilara the Shadow Exile
         'objectives': [
             {'type': 'kill', 'description': 'Slay drow', 'target': 'drow', 'required': 10}
         ],
@@ -268,7 +268,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 20,
         'level_max': 35,
-        'quest_giver': 3105,  # Mayor
+        'quest_giver': 14090,  # Paladin Dawnguard
         'objectives': [
             {'type': 'kill', 'description': 'Destroy zombies', 'target': 'zombie', 'required': 10},
             {'type': 'kill', 'description': 'Destroy skeletons', 'target': 'skeleton', 'required': 10}
@@ -282,7 +282,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 18,
         'level_max': 30,
-        'quest_giver': 3006,  # Captain Stolar
+        'quest_giver': 5290,  # Captain Varro
         'objectives': [
             {'type': 'kill', 'description': 'Slay nomad raiders', 'target': 'nomad', 'required': 15}
         ],
@@ -297,7 +297,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 25,
         'level_max': 45,
-        'quest_giver': 3105,  # Mayor
+        'quest_giver': 16090,  # Arcanist Veyla
         'objectives': [
             {'type': 'kill', 'description': 'Slay demons', 'target': 'demon', 'required': 8}
         ],
@@ -310,7 +310,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 30,
         'level_max': 50,
-        'quest_giver': 3006,  # Captain Stolar
+        'quest_giver': 8090,  # Drakon the Dragon Hunter
         'objectives': [
             {'type': 'kill', 'description': 'Slay a dragon', 'target': 'dragon', 'required': 1}
         ],
@@ -323,7 +323,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 28,
         'level_max': 45,
-        'quest_giver': 3105,  # Mayor
+        'quest_giver': 16090,  # Arcanist Veyla
         'objectives': [
             {'type': 'kill', 'description': 'Slay elementals', 'target': 'elemental', 'required': 6}
         ],
@@ -351,7 +351,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 1,
         'level_max': 15,
-        'quest_giver': 3105,  # Mayor
+        'quest_giver': 7090,  # Skullcap the Rat-Catcher
         'objectives': [
             {'type': 'kill', 'description': 'Clear sewer creatures', 'target': 'any', 'required': 15}
         ],
@@ -366,7 +366,7 @@ QUEST_DEFINITIONS = {
         'type': 'visit',
         'level_min': 10,
         'level_max': 30,
-        'quest_giver': 3006,  # Captain Stolar
+        'quest_giver': 7090,  # Skullcap the Rat-Catcher
         'objectives': [
             {'type': 'visit', 'description': 'Find the hidden passage', 'target': '3074', 'required': 1}
         ],
@@ -380,7 +380,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 12,
         'level_max': 25,
-        'quest_giver': 3006,  # Captain Stolar
+        'quest_giver': 7090,  # Skullcap the Rat-Catcher
         'objectives': [
             {'type': 'kill', 'description': 'Slay the Sewer King', 'target': 'sewer king', 'required': 1}
         ],
@@ -394,7 +394,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 18,
         'level_max': 30,
-        'quest_giver': 3006,  # Captain Stolar
+        'quest_giver': 7090,  # Skullcap the Rat-Catcher
         'objectives': [
             {'type': 'kill', 'description': 'Slay the Shadow Assassin', 'target': 'shadow assassin', 'required': 1}
         ],
@@ -408,7 +408,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 22,
         'level_max': 35,
-        'quest_giver': 3006,  # Captain Stolar
+        'quest_giver': 7090,  # Skullcap the Rat-Catcher
         'objectives': [
             {'type': 'kill', 'description': 'Defeat the Ancient Guardian', 'target': 'ancient guardian', 'required': 1}
         ],
@@ -478,7 +478,7 @@ QUEST_DEFINITIONS = {
         'type': 'visit',
         'level_min': 5,
         'level_max': 20,
-        'quest_giver': 3006,  # Captain Stolar
+        'quest_giver': 6090,  # Ranger Thornwood
         'objectives': [
             {'type': 'visit', 'description': 'Explore the forest edge', 'target': '20001', 'required': 1},
             {'type': 'visit', 'description': 'Find the hidden glade', 'target': '20010', 'required': 1}
@@ -493,7 +493,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 5,
         'level_max': 15,
-        'quest_giver': 3006,  # Captain Stolar
+        'quest_giver': 6090,  # Ranger Thornwood
         'objectives': [
             {'type': 'kill', 'description': 'Slay forest wolves', 'target': 'forest wolf', 'required': 8},
             {'type': 'kill', 'description': 'Slay dire wolves', 'target': 'dire wolf', 'required': 3}
@@ -507,7 +507,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 6,
         'level_max': 18,
-        'quest_giver': 3006,  # Captain Stolar
+        'quest_giver': 6090,  # Ranger Thornwood
         'objectives': [
             {'type': 'kill', 'description': 'Kill giant spiders', 'target': 'giant spider', 'required': 10},
             {'type': 'kill', 'description': 'Kill venomous spiders', 'target': 'venomous spider', 'required': 5}
@@ -522,7 +522,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 10,
         'level_max': 20,
-        'quest_giver': 3006,  # Captain Stolar
+        'quest_giver': 6090,  # Ranger Thornwood
         'objectives': [
             {'type': 'kill', 'description': 'Slay the Spider Queen', 'target': 'spider queen', 'required': 1}
         ],
@@ -535,7 +535,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 12,
         'level_max': 22,
-        'quest_giver': 3006,  # Captain Stolar
+        'quest_giver': 6090,  # Ranger Thornwood
         'objectives': [
             {'type': 'kill', 'description': 'Defeat the Alpha Wolf', 'target': 'alpha wolf', 'required': 1}
         ],
@@ -670,7 +670,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 13,
         'level_max': 22,
-        'quest_giver': 3105,
+        'quest_giver': 6590,
         'objectives': [
             {'type': 'kill', 'description': 'Slay drow scouts', 'target': 'drow', 'required': 6}
         ],
@@ -762,7 +762,7 @@ QUEST_DEFINITIONS = {
         'type': 'talk',
         'level_min': 5,
         'level_max': 20,
-        'quest_giver': 3105,
+        'quest_giver': 6090,
         'objectives': [
             {'type': 'talk', 'description': 'Speak with the druidic envoy', 'target': '3105', 'required': 1}
         ],
@@ -777,7 +777,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 6,
         'level_max': 22,
-        'quest_giver': 3105,
+        'quest_giver': 6090,
         'objectives': [
             {'type': 'kill', 'description': 'Destroy blighted creatures', 'target': 'any', 'required': 6}
         ],
@@ -792,7 +792,7 @@ QUEST_DEFINITIONS = {
         'type': 'talk',
         'level_min': 8,
         'level_max': 24,
-        'quest_giver': 3105,
+        'quest_giver': 6090,
         'objectives': [
             {'type': 'talk', 'description': 'Return to the druidic envoy', 'target': '3105', 'required': 1}
         ],
@@ -807,7 +807,7 @@ QUEST_DEFINITIONS = {
         'type': 'talk',
         'level_min': 8,
         'level_max': 24,
-        'quest_giver': 3006,
+        'quest_giver': 4050,
         'objectives': [
             {'type': 'talk', 'description': 'Speak with Captain Stolar about the crest', 'target': '3006', 'required': 1}
         ],
@@ -822,7 +822,7 @@ QUEST_DEFINITIONS = {
         'type': 'kill',
         'level_min': 10,
         'level_max': 26,
-        'quest_giver': 3006,
+        'quest_giver': 4050,
         'objectives': [
             {'type': 'kill', 'description': 'Slay Moria orcs', 'target': 'orc', 'required': 12}
         ],
@@ -837,7 +837,7 @@ QUEST_DEFINITIONS = {
         'type': 'talk',
         'level_min': 12,
         'level_max': 28,
-        'quest_giver': 3006,
+        'quest_giver': 4050,
         'objectives': [
             {'type': 'talk', 'description': 'Return to Captain Stolar', 'target': '3006', 'required': 1}
         ],
@@ -1181,75 +1181,62 @@ QUEST_DEFINITIONS = {
     # ========== TUTORIAL QUESTS ==========
     'tutorial_1_awakening': {
         'name': 'Awakening',
-        'description': 'Speak with Sage Aldric at the Temple to begin your training.',
+        'description': 'Speak with Sage Aldric at the Temple to begin your training. He is right here in the Temple with you. Simply type "talk aldric" to speak with him.',
         'type': 'tutorial',
         'level_min': 1,
         'level_max': 5,
         'quest_giver': 3200,
         'auto_start': True,
         'objectives': [
-            {'type': 'talk', 'description': 'Speak with Sage Aldric', 'target': '3200', 'required': 1}
+            {'type': 'talk', 'description': 'Speak with Sage Aldric (type "talk aldric")', 'target': '3200', 'required': 1}
         ],
-        'rewards': {'exp': 50, 'gold': 10},
+        'rewards': {'exp': 50, 'gold': 10, 'items': [100]},
         'next_quest': 'tutorial_2_look_around',
         'repeatable': False
     },
     'tutorial_2_look_around': {
         'name': 'Eyes Open',
-        'description': 'Learn to observe your surroundings by exploring the Temple area.',
+        'description': 'Learn to observe your surroundings by exploring near the Temple. Head south from the Temple to reach Temple Square, then go back north and continue north to the Temple Altar.',
         'type': 'tutorial',
         'level_min': 1,
         'level_max': 5,
         'quest_giver': 3200,
         'objectives': [
-            {'type': 'visit', 'description': 'Visit the Temple Square', 'target': '3005', 'required': 1},
-            {'type': 'visit', 'description': 'Visit the Temple Altar', 'target': '3054', 'required': 1}
+            {'type': 'visit', 'description': 'Visit the Temple Square (go south from the Temple)', 'target': '3005', 'required': 1},
+            {'type': 'visit', 'description': 'Visit the Temple Altar (go north twice from the Temple)', 'target': '3054', 'required': 1}
         ],
-        'rewards': {'exp': 75, 'gold': 15},
+        'rewards': {'exp': 75, 'gold': 15, 'items': [3]},
         'next_quest': 'tutorial_3_know_thyself',
         'repeatable': False
     },
     'tutorial_3_know_thyself': {
         'name': 'Know Thyself',
-        'description': 'Learn about your character using score, equipment, and inventory.',
+        'description': 'Learn about your character by checking your stats, gear, and abilities. Try each of these commands: score, equipment, inventory, skills, and spells.',
         'type': 'tutorial',
         'level_min': 1,
         'level_max': 5,
         'quest_giver': 3200,
         'objectives': [
-            {'type': 'command', 'description': 'Check your score', 'target': 'score', 'required': 1},
-            {'type': 'command', 'description': 'View your equipment', 'target': 'equipment', 'required': 1},
-            {'type': 'command', 'description': 'Check your inventory', 'target': 'inventory', 'required': 1}
+            {'type': 'command', 'description': 'Check your score (type "score")', 'target': 'score', 'required': 1},
+            {'type': 'command', 'description': 'View your equipment (type "equipment")', 'target': 'equipment', 'required': 1},
+            {'type': 'command', 'description': 'Check your inventory (type "inventory")', 'target': 'inventory', 'required': 1},
+            {'type': 'command', 'description': 'View your skills (type "skills")', 'target': 'skills', 'required': 1},
+            {'type': 'command', 'description': 'View your spells (type "spells")', 'target': 'spells', 'required': 1}
         ],
-        'rewards': {'exp': 100, 'gold': 20},
-        'next_quest': 'tutorial_4_skills',
-        'repeatable': False
-    },
-    'tutorial_4_skills': {
-        'name': 'The Way of Your Class',
-        'description': 'Learn about your class abilities using skills and spells commands.',
-        'type': 'tutorial',
-        'level_min': 1,
-        'level_max': 5,
-        'quest_giver': 3200,
-        'objectives': [
-            {'type': 'command', 'description': 'View your skills', 'target': 'skills', 'required': 1},
-            {'type': 'command', 'description': 'View your spells', 'target': 'spells', 'required': 1}
-        ],
-        'rewards': {'exp': 100, 'gold': 25, 'practices': 2},
+        'rewards': {'exp': 200, 'gold': 45, 'practices': 2, 'items': [101]},
         'next_quest': 'tutorial_5_combat',
         'repeatable': False
     },
     'tutorial_5_combat': {
         'name': 'Blood and Steel',
-        'description': 'Learn combat by defeating a training dummy at the Training Grounds.',
+        'description': 'Learn combat by defeating a training dummy at the Training Grounds. From the Temple, go south to Temple Square, then west to the Cleric Guild entrance, then south to the Training Grounds.',
         'type': 'tutorial',
         'level_min': 1,
         'level_max': 5,
         'quest_giver': 3200,
         'objectives': [
-            {'type': 'visit', 'description': 'Go to the Training Grounds', 'target': '3078', 'required': 1},
-            {'type': 'kill', 'description': 'Defeat a training dummy', 'target': 'dummy', 'required': 1}
+            {'type': 'visit', 'description': 'Go to the Training Grounds (south, west, south from Temple)', 'target': '3078', 'required': 1},
+            {'type': 'kill', 'description': 'Defeat a training dummy (type "kill dummy")', 'target': 'dummy', 'required': 1}
         ],
         'rewards': {'exp': 150, 'gold': 30},
         'next_quest': 'tutorial_6_healing',
@@ -1257,15 +1244,15 @@ QUEST_DEFINITIONS = {
     },
     'tutorial_6_healing': {
         'name': 'The Art of Survival',
-        'description': 'Learn to recover from injuries using rest, stand, and eating.',
+        'description': 'Learn to recover from injuries. Try resting, standing back up, and eating food. You can do this anywhere.',
         'type': 'tutorial',
         'level_min': 1,
         'level_max': 5,
         'quest_giver': 3200,
         'objectives': [
-            {'type': 'command', 'description': 'Rest to recover', 'target': 'rest', 'required': 1},
-            {'type': 'command', 'description': 'Stand back up', 'target': 'stand', 'required': 1},
-            {'type': 'command', 'description': 'Eat some food', 'target': 'eat', 'required': 1}
+            {'type': 'command', 'description': 'Rest to recover (type "rest")', 'target': 'rest', 'required': 1},
+            {'type': 'command', 'description': 'Stand back up (type "stand")', 'target': 'stand', 'required': 1},
+            {'type': 'command', 'description': 'Eat some food (type "eat bread" or similar)', 'target': 'eat', 'required': 1}
         ],
         'rewards': {'exp': 100, 'gold': 25},
         'next_quest': 'tutorial_7_shopping',
@@ -1273,15 +1260,15 @@ QUEST_DEFINITIONS = {
     },
     'tutorial_7_shopping': {
         'name': 'Tools of the Trade',
-        'description': 'Learn to buy and sell at shops.',
+        'description': 'Learn to buy and sell at shops. The Weapon Shop is north of Main Street. From the Temple, go south to Temple Square, south to Market Square, east twice, then north to the Weapon Shop.',
         'type': 'tutorial',
         'level_min': 1,
         'level_max': 5,
         'quest_giver': 3200,
         'objectives': [
-            {'type': 'visit', 'description': 'Visit the Weapon Shop', 'target': '3031', 'required': 1},
-            {'type': 'command', 'description': 'View shop inventory', 'target': 'list', 'required': 1},
-            {'type': 'command', 'description': 'Buy any item', 'target': 'buy', 'required': 1}
+            {'type': 'visit', 'description': 'Visit the Weapon Shop (south, south, east, east, north from Temple)', 'target': '3011', 'required': 1},
+            {'type': 'command', 'description': 'View shop inventory (type "list")', 'target': 'list', 'required': 1},
+            {'type': 'command', 'description': 'Buy any item (type "buy <item>")', 'target': 'buy', 'required': 1}
         ],
         'rewards': {'exp': 125, 'gold': 100},
         'next_quest': 'tutorial_8_exploration',
@@ -1289,15 +1276,15 @@ QUEST_DEFINITIONS = {
     },
     'tutorial_8_exploration': {
         'name': 'Into the Unknown',
-        'description': 'Venture beyond the city and prove yourself ready for adventure.',
+        'description': 'Venture beyond the city walls! Head to the East Gate and fight a creature outside. From the Temple, go south, south, east, east, east to reach the East Gate, then east again to go outside. Try fighting a rabbit, a fox, or a deer in the Light Forest — they are safe for your level. Return to the Temple when done.',
         'type': 'tutorial',
         'level_min': 1,
         'level_max': 5,
         'quest_giver': 3200,
         'objectives': [
-            {'type': 'visit', 'description': 'Visit the South Gate', 'target': '3053', 'required': 1},
-            {'type': 'kill', 'description': 'Defeat a creature outside the city', 'target': 'any', 'required': 1},
-            {'type': 'visit', 'description': 'Return to the Temple', 'target': '3001', 'required': 1}
+            {'type': 'visit', 'description': 'Reach Outside the East Gate (go south, south, east, east, east, east from Temple)', 'target': '3053', 'required': 1},
+            {'type': 'kill', 'description': 'Defeat a creature outside the city (try "kill rabbit" or "kill fox")', 'target': 'any', 'required': 1},
+            {'type': 'visit', 'description': 'Return to the Temple (go west back through the gate, then retrace your steps north)', 'target': '3001', 'required': 1}
         ],
         'rewards': {'exp': 300, 'gold': 150, 'title': 'the Initiated'},
         'next_quest': 'tutorial_9_newbie_zone',
@@ -1305,16 +1292,16 @@ QUEST_DEFINITIONS = {
     },
     'tutorial_9_newbie_zone': {
         'name': 'Proving Grounds',
-        'description': 'Sage Aldric recommends testing your skills in the Newbie Zone east of the Great Field.',
+        'description': 'Test your skills in the Newbie Zone! The Great Field is north of the Temple, past the Altar. From the Temple, go north three times to reach the Great Field, then go east to enter the Newbie Zone. Defeat 3 creatures there, then return to the Temple.',
         'type': 'tutorial',
         'level_min': 1,
         'level_max': 7,
         'quest_giver': 3200,
         'objectives': [
-            {'type': 'visit', 'description': 'Find the Great Field', 'target': '3061', 'required': 1},
-            {'type': 'visit', 'description': 'Enter the Newbie Zone', 'target': '18600', 'required': 1},
-            {'type': 'kill', 'description': 'Defeat creatures in the Newbie Zone', 'target': 'any', 'required': 3},
-            {'type': 'visit', 'description': 'Return to Sage Aldric', 'target': '3001', 'required': 1}
+            {'type': 'visit', 'description': 'Find the Great Field (go north 3 times from the Temple)', 'target': '3061', 'required': 1},
+            {'type': 'visit', 'description': 'Enter the Newbie Zone (go east from the Great Field)', 'target': '18600', 'required': 1},
+            {'type': 'kill', 'description': 'Defeat 3 creatures in the Newbie Zone', 'target': 'any', 'required': 3},
+            {'type': 'visit', 'description': 'Return to Sage Aldric at the Temple (go west, then south 3 times)', 'target': '3001', 'required': 1}
         ],
         'rewards': {'exp': 500, 'gold': 200},
         'repeatable': False
@@ -1852,7 +1839,11 @@ class QuestManager:
 
             # Check if quest is complete
             if quest.is_complete():
-                await QuestManager._notify_quest_complete(player, quest)
+                player.last_quest_progress_time = datetime.now()
+                player.last_quest_hint_sent = False
+                # Skip generic banner for tutorials (they auto-complete with their own banner)
+                if not quest.quest_id.startswith('tutorial_'):
+                    await QuestManager._notify_quest_complete(player, quest)
 
     @staticmethod
     async def _notify_quest_complete(player: 'Player', quest: ActiveQuest):
@@ -2121,15 +2112,35 @@ class QuestManager:
             player.title = quest.rewards['title']
             await player.send(f"{c['bright_magenta']}You have earned the title: {quest.rewards['title']}!{c['reset']}")
         
+        if quest.rewards.get('items'):
+            from objects import create_preset_object
+            for item_vnum in quest.rewards['items']:
+                try:
+                    item = create_preset_object(item_vnum)
+                    if item:
+                        if not hasattr(player, 'inventory'):
+                            player.inventory = []
+                        player.inventory.append(item)
+                        await player.send(f"{c['bright_cyan']}You receive {item.short_desc}!{c['reset']}")
+                except Exception as e:
+                    logger.warning(f"Failed to give tutorial reward item {item_vnum}: {e}")
+        
+        # Update quest progress timestamp
+        player.last_quest_progress_time = datetime.now()
+        player.last_quest_hint_sent = False
+        
         # Move to completed
         if not hasattr(player, 'quests_completed'):
             player.quests_completed = []
         player.quests_completed.append(quest.quest_id)
         player.active_quests.remove(quest)
         
-        # Start next tutorial quest if exists
+        # Start next tutorial quest
         quest_def = QUEST_DEFINITIONS.get(quest.quest_id, {})
         next_quest = quest_def.get('next_quest')
+        # Skip tutorial_4_skills since it's been merged into tutorial_3
+        if next_quest == 'tutorial_4_skills':
+            next_quest = 'tutorial_5_combat'
         if next_quest and next_quest in QUEST_DEFINITIONS:
             await player.send(f"\r\n{c['cyan']}New objective available...{c['reset']}\r\n")
             await QuestManager.accept_quest(player, next_quest)
@@ -2141,5 +2152,102 @@ class QuestManager:
             await player.send(f"{c['bright_yellow']}║  You are now ready to explore the world on your own.        ║{c['reset']}")
             await player.send(f"{c['bright_yellow']}║  Type 'help' for commands, 'quests' for more adventures!    ║{c['reset']}")
             await player.send(f"{c['bright_yellow']}╚══════════════════════════════════════════════════════════════╝{c['reset']}\r\n")
+            
+            # Post-tutorial guidance based on player level
+            plevel = getattr(player, 'level', 1)
+            if plevel < 5:
+                await player.send(f"{c['bright_cyan']}Sage Aldric tells you, 'Venture to the Light Forest west of the city gates. Ranger Thornwood can guide your next steps. Check the quest board in Temple Square for more opportunities!'{c['reset']}\r\n")
+            elif plevel < 10:
+                await player.send(f"{c['bright_cyan']}Sage Aldric tells you, 'The Great Northern Forest to the north holds challenges worthy of your skill. Seek Borin the Wilderness Guide there. Or try the Orc Enclave if you crave real danger!'{c['reset']}\r\n")
+            else:
+                await player.send(f"{c['bright_cyan']}Sage Aldric tells you, 'You've outgrown my teachings, adventurer! Seek Grimjaw in the Mines of Moria, or travel east to the city of Thalos. Check the quest board in Temple Square for the full list of adventures!'{c['reset']}\r\n")
         
         return True
+
+    # Static lookup for tutorial compass directions: {from_room: {target_room: direction_hint}}
+    TUTORIAL_ROOM_HINTS = {
+        # Directions to Temple Square (3005)
+        '3001': {'3005': 'south', '3054': 'north', '3078': 'south', '3011': 'south', '3053': 'south', '3061': 'north', '18600': 'north'},
+        '3005': {'3001': 'north', '3054': 'north', '3078': 'west', '3011': 'south', '3053': 'east', '3061': 'north', '18600': 'north'},
+        '3054': {'3001': 'south', '3005': 'south', '3078': 'south', '3061': 'north', '18600': 'north'},
+        '3059': {'3001': 'south', '3061': 'north', '18600': 'north'},
+        '3060': {'3001': 'south', '3061': 'north', '18600': 'north'},
+        '3061': {'3001': 'south', '18600': 'east'},
+        '3004': {'3078': 'south', '3005': 'east', '3001': 'east'},
+        '3014': {'3005': 'north', '3011': 'east', '3053': 'east', '3001': 'north'},
+        '3015': {'3011': 'east', '3053': 'east', '3001': 'west'},
+        '3016': {'3011': 'north', '3053': 'east', '3001': 'west'},
+        '3041': {'3053': 'east', '3001': 'west'},
+        '3078': {'3001': 'north', '3005': 'north'},
+    }
+
+    @staticmethod
+    async def check_auto_hint(player: 'Player'):
+        """Send a periodic hint if player hasn't made tutorial progress in 5+ minutes."""
+        tutorial_quest = None
+        for quest in getattr(player, 'active_quests', []):
+            if quest.quest_id.startswith('tutorial_'):
+                tutorial_quest = quest
+                break
+        
+        if not tutorial_quest:
+            return
+        
+        now = datetime.now()
+        last_progress = getattr(player, 'last_quest_progress_time', None)
+        if not last_progress:
+            player.last_quest_progress_time = now
+            return
+        
+        elapsed = (now - last_progress).total_seconds()
+        if elapsed < 300:  # 5 minutes
+            return
+        
+        # Only send once per 5-minute window
+        if getattr(player, 'last_quest_hint_sent', False):
+            return
+        
+        # Find first incomplete objective
+        for obj in tutorial_quest.objectives:
+            if not obj.completed:
+                c = player.config.COLORS
+                await player.send(
+                    f"\r\n{c['bright_cyan']}[Hint] Your current objective: {obj.description}. "
+                    f"Type 'hint' for directions.{c['reset']}"
+                )
+                player.last_quest_hint_sent = True
+                # Reset timer so next hint comes in another 5 min
+                player.last_quest_progress_time = now
+                break
+
+    @staticmethod
+    async def show_compass_hint(player: 'Player'):
+        """Show a subtle directional hint toward the tutorial objective room."""
+        tutorial_quest = None
+        for quest in getattr(player, 'active_quests', []):
+            if quest.quest_id.startswith('tutorial_'):
+                tutorial_quest = quest
+                break
+        
+        if not tutorial_quest or not player.room:
+            return
+        
+        current_room = str(player.room.vnum)
+        
+        # Find first incomplete visit objective
+        for obj in tutorial_quest.objectives:
+            if obj.completed or obj.type not in ('visit',):
+                continue
+            
+            target_room = obj.target
+            if current_room == target_room:
+                continue  # Already here
+            
+            hints = QuestManager.TUTORIAL_ROOM_HINTS.get(current_room, {})
+            direction = hints.get(target_room)
+            if direction:
+                c = player.config.COLORS
+                await player.send(
+                    f"{c['cyan']}You sense your objective lies to the {direction}.{c['reset']}"
+                )
+            break  # Only show one hint

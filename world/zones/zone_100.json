@@ -15,10 +15,12 @@
       "terrain": "underground",
       "exits": {
         "up": {
-          "to_room": 5001
+          "to_room": 5001,
+          "description": "Deep waters churn near A Long Tunnel"
         },
         "down": {
-          "to_room": 10001
+          "to_room": 10001,
+          "description": "The path continues down"
         },
         "west": {
           "to_room": 6500,
@@ -43,10 +45,12 @@
       "terrain": "underground",
       "exits": {
         "up": {
-          "to_room": 10000
+          "to_room": 10000,
+          "description": "The path continues up"
         },
         "down": {
-          "to_room": 10002
+          "to_room": 10002,
+          "description": "The path continues down"
         }
       },
       "vnum": 10001,
@@ -63,19 +67,24 @@
       "terrain": "underground",
       "exits": {
         "up": {
-          "to_room": 10001
+          "to_room": 10001,
+          "description": "The path continues up"
         },
         "north": {
-          "to_room": 10003
+          "to_room": 10003,
+          "description": "The path continues north"
         },
         "east": {
-          "to_room": 10004
+          "to_room": 10004,
+          "description": "The path continues east"
         },
         "south": {
-          "to_room": 10005
+          "to_room": 10005,
+          "description": "The path continues south"
         },
         "west": {
-          "to_room": 10006
+          "to_room": 10006,
+          "description": "The path continues west"
         }
       },
       "vnum": 10002,
@@ -96,10 +105,12 @@
       "terrain": "underground",
       "exits": {
         "south": {
-          "to_room": 10002
+          "to_room": 10002,
+          "description": "The path continues south"
         },
         "east": {
-          "to_room": 10007
+          "to_room": 10007,
+          "description": "The path continues east"
         }
       },
       "vnum": 10003,
@@ -120,10 +131,12 @@
       "terrain": "underground",
       "exits": {
         "west": {
-          "to_room": 10002
+          "to_room": 10002,
+          "description": "The path continues west"
         },
         "south": {
-          "to_room": 10008
+          "to_room": 10008,
+          "description": "The path continues south"
         }
       },
       "vnum": 10004,
@@ -140,13 +153,16 @@
       "terrain": "underground",
       "exits": {
         "north": {
-          "to_room": 10002
+          "to_room": 10002,
+          "description": "The path continues north"
         },
         "east": {
-          "to_room": 10008
+          "to_room": 10008,
+          "description": "The path continues east"
         },
         "south": {
-          "to_room": 10009
+          "to_room": 10009,
+          "description": "The path continues south"
         }
       },
       "vnum": 10005,
@@ -163,10 +179,12 @@
       "terrain": "underground",
       "exits": {
         "east": {
-          "to_room": 10002
+          "to_room": 10002,
+          "description": "The path continues east"
         },
         "south": {
-          "to_room": 10010
+          "to_room": 10010,
+          "description": "The path continues south"
         }
       },
       "vnum": 10006,
@@ -183,10 +201,12 @@
       "terrain": "underground",
       "exits": {
         "west": {
-          "to_room": 10003
+          "to_room": 10003,
+          "description": "The path continues west"
         },
         "down": {
-          "to_room": 10011
+          "to_room": 10011,
+          "description": "The path continues down"
         }
       },
       "vnum": 10007,
@@ -203,10 +223,12 @@
       "terrain": "underground",
       "exits": {
         "north": {
-          "to_room": 10004
+          "to_room": 10004,
+          "description": "The path continues north"
         },
         "west": {
-          "to_room": 10005
+          "to_room": 10005,
+          "description": "The path continues west"
         }
       },
       "vnum": 10008,
@@ -223,10 +245,12 @@
       "terrain": "underground",
       "exits": {
         "north": {
-          "to_room": 10005
+          "to_room": 10005,
+          "description": "The path continues north"
         },
         "south": {
-          "to_room": 10012
+          "to_room": 10012,
+          "description": "The path continues south"
         }
       },
       "vnum": 10009,
@@ -243,13 +267,16 @@
       "terrain": "underground",
       "exits": {
         "north": {
-          "to_room": 10006
+          "to_room": 10006,
+          "description": "The path continues north"
         },
         "east": {
-          "to_room": 10012
+          "to_room": 10012,
+          "description": "The path continues east"
         },
         "south": {
-          "to_room": 10013
+          "to_room": 10013,
+          "description": "The path continues south"
         }
       },
       "vnum": 10010,
@@ -261,6 +288,10 @@
         {
           "vnum": 10006,
           "max": 1
+        },
+        {
+          "vnum": 10098,
+          "max": 1
         }
       ]
     },
@@ -270,13 +301,16 @@
       "terrain": "underground",
       "exits": {
         "up": {
-          "to_room": 10007
+          "to_room": 10007,
+          "description": "The path continues up"
         },
         "south": {
-          "to_room": 10014
+          "to_room": 10014,
+          "description": "The path continues south"
         },
         "down": {
-          "to_room": 10015
+          "to_room": 10015,
+          "description": "The path continues down"
         }
       },
       "vnum": 10011,
@@ -293,13 +327,16 @@
       "terrain": "underground",
       "exits": {
         "north": {
-          "to_room": 10009
+          "to_room": 10009,
+          "description": "The path continues north"
         },
         "west": {
-          "to_room": 10010
+          "to_room": 10010,
+          "description": "The path continues west"
         },
         "south": {
-          "to_room": 10016
+          "to_room": 10016,
+          "description": "The path continues south"
         }
       },
       "vnum": 10012,
@@ -320,7 +357,8 @@
       "terrain": "underground",
       "exits": {
         "north": {
-          "to_room": 10010
+          "to_room": 10010,
+          "description": "The path continues north"
         }
       },
       "vnum": 10013,
@@ -341,13 +379,16 @@
       "terrain": "underground",
       "exits": {
         "north": {
-          "to_room": 10011
+          "to_room": 10011,
+          "description": "The path continues north"
         },
         "east": {
-          "to_room": 10016
+          "to_room": 10016,
+          "description": "The path continues east"
         },
         "south": {
-          "to_room": 10017
+          "to_room": 10017,
+          "description": "The path continues south"
         }
       },
       "vnum": 10014,
@@ -372,16 +413,22 @@
       "terrain": "underground",
       "exits": {
         "up": {
-          "to_room": 10011
+          "to_room": 10011,
+          "description": "The path continues up"
         },
         "south": {
-          "to_room": 10018
+          "to_room": 10018,
+          "description": "The path continues south"
         }
       },
       "vnum": 10015,
       "mob_resets": [
         {
           "vnum": 10004,
+          "max": 1
+        },
+        {
+          "vnum": 10099,
           "max": 1
         }
       ]
@@ -392,13 +439,16 @@
       "terrain": "underground",
       "exits": {
         "north": {
-          "to_room": 10012
+          "to_room": 10012,
+          "description": "The path continues north"
         },
         "west": {
-          "to_room": 10014
+          "to_room": 10014,
+          "description": "The path continues west"
         },
         "south": {
-          "to_room": 10019
+          "to_room": 10019,
+          "description": "The path continues south"
         }
       },
       "vnum": 10016
@@ -409,13 +459,16 @@
       "terrain": "underground",
       "exits": {
         "north": {
-          "to_room": 10014
+          "to_room": 10014,
+          "description": "The path continues north"
         },
         "east": {
-          "to_room": 10019
+          "to_room": 10019,
+          "description": "The path continues east"
         },
         "west": {
-          "to_room": 10020
+          "to_room": 10020,
+          "description": "The path continues west"
         }
       },
       "vnum": 10017,
@@ -432,7 +485,8 @@
       "terrain": "underground",
       "exits": {
         "north": {
-          "to_room": 10015
+          "to_room": 10015,
+          "description": "The path continues north"
         }
       },
       "vnum": 10018,
@@ -453,10 +507,12 @@
       "terrain": "underground",
       "exits": {
         "north": {
-          "to_room": 10016
+          "to_room": 10016,
+          "description": "The path continues north"
         },
         "west": {
-          "to_room": 10017
+          "to_room": 10017,
+          "description": "The path continues west"
         }
       },
       "vnum": 10019,
@@ -473,10 +529,12 @@
       "terrain": "underground",
       "exits": {
         "east": {
-          "to_room": 10017
+          "to_room": 10017,
+          "description": "The path continues east"
         },
         "south": {
-          "to_room": 10021
+          "to_room": 10021,
+          "description": "The path continues south"
         }
       },
       "vnum": 10020,
@@ -497,10 +555,12 @@
       "terrain": "underground",
       "exits": {
         "north": {
-          "to_room": 10020
+          "to_room": 10020,
+          "description": "The path continues north"
         },
         "down": {
-          "to_room": 10022
+          "to_room": 10022,
+          "description": "The path continues down"
         }
       },
       "vnum": 10021,
@@ -517,7 +577,8 @@
       "terrain": "underground",
       "exits": {
         "up": {
-          "to_room": 10021
+          "to_room": 10021,
+          "description": "The path continues up"
         }
       },
       "vnum": 10022,
@@ -534,7 +595,8 @@
       "terrain": "underground",
       "exits": {
         "north": {
-          "to_room": 10005
+          "to_room": 10005,
+          "description": "The path continues north"
         }
       },
       "vnum": 10023,
@@ -559,7 +621,8 @@
       "terrain": "underground",
       "exits": {
         "west": {
-          "to_room": 10002
+          "to_room": 10002,
+          "description": "The path continues west"
         }
       },
       "vnum": 10024,
@@ -833,7 +896,8 @@
         10014
       ],
       "max_in_zone": 10,
-      "vnum": 10000
+      "vnum": 10000,
+      "type": "treasure"
     },
     "10001": {
       "name": "gold nugget",
@@ -849,7 +913,8 @@
         10018
       ],
       "max_in_zone": 5,
-      "vnum": 10001
+      "vnum": 10001,
+      "type": "treasure"
     },
     "10002": {
       "name": "mining helmet",
@@ -868,7 +933,10 @@
         10003
       ],
       "max_in_zone": 3,
-      "vnum": 10002
+      "vnum": 10002,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "10003": {
       "name": "mithril ore",
@@ -884,7 +952,8 @@
         10018
       ],
       "max_in_zone": 2,
-      "vnum": 10003
+      "vnum": 10003,
+      "type": "treasure"
     },
     "10004": {
       "name": "spider silk",
@@ -898,7 +967,10 @@
         10019
       ],
       "max_in_zone": 4,
-      "vnum": 10004
+      "vnum": 10004,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 4
     },
     "10005": {
       "name": "crystal shard",
@@ -914,7 +986,8 @@
         10018
       ],
       "max_in_zone": 3,
-      "vnum": 10005
+      "vnum": 10005,
+      "type": "furniture"
     },
     "10010": {
       "name": "masterwork battleaxe",
@@ -931,7 +1004,8 @@
         10023
       ],
       "max_in_zone": 1,
-      "vnum": 10010
+      "vnum": 10010,
+      "type": "weapon"
     },
     "10011": {
       "name": "plate mail",
@@ -947,7 +1021,10 @@
         10023
       ],
       "max_in_zone": 1,
-      "vnum": 10011
+      "vnum": 10011,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 5
     },
     "10012": {
       "name": "warhammer",
@@ -963,7 +1040,8 @@
         10023
       ],
       "max_in_zone": 2,
-      "vnum": 10012
+      "vnum": 10012,
+      "type": "weapon"
     },
     "10013": {
       "name": "chain mail",
@@ -979,7 +1057,10 @@
         10023
       ],
       "max_in_zone": 2,
-      "vnum": 10013
+      "vnum": 10013,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 5
     },
     "10020": {
       "name": "miner's pickaxe",
@@ -991,7 +1072,8 @@
       "weight": 8,
       "weapon_type": "pick",
       "damage_dice": "1d8+1",
-      "vnum": 10020
+      "vnum": 10020,
+      "type": "furniture"
     },
     "10021": {
       "name": "leather work vest",
@@ -1003,7 +1085,10 @@
       "weight": 5,
       "armor_location": "body",
       "armor_class": 5,
-      "vnum": 10021
+      "vnum": 10021,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 1
     },
     "10022": {
       "name": "crude kobold spear",
@@ -1015,7 +1100,8 @@
       "weight": 4,
       "weapon_type": "spear",
       "damage_dice": "1d6",
-      "vnum": 10022
+      "vnum": 10022,
+      "type": "weapon"
     },
     "10023": {
       "name": "patchwork leather",
@@ -1027,7 +1113,10 @@
       "weight": 6,
       "armor_location": "body",
       "armor_class": 3,
-      "vnum": 10023
+      "vnum": 10023,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 4
     },
     "10024": {
       "name": "venom gland",
@@ -1037,7 +1126,8 @@
       "item_type": "ingredient",
       "value": 100,
       "weight": 1,
-      "vnum": 10024
+      "vnum": 10024,
+      "type": "furniture"
     },
     "10025": {
       "name": "elemental core",
@@ -1048,7 +1138,8 @@
       "value": 1000,
       "weight": 5,
       "magic_bonus": 2,
-      "vnum": 10025
+      "vnum": 10025,
+      "type": "treasure"
     },
     "10026": {
       "name": "blacksmith's apron",
@@ -1060,7 +1151,10 @@
       "weight": 8,
       "armor_location": "body",
       "armor_class": 8,
-      "vnum": 10026
+      "vnum": 10026,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 4
     },
     "10027": {
       "vnum": 10027,
@@ -1080,7 +1174,8 @@
           "value": 3
         }
       ],
-      "set_id": 100
+      "set_id": 100,
+      "type": "treasure"
     },
     "10028": {
       "vnum": 10028,
@@ -1099,7 +1194,9 @@
           "value": 1
         }
       ],
-      "set_id": 100
+      "set_id": 100,
+      "type": "armor",
+      "armor": 3
     },
     "10029": {
       "vnum": 10029,
@@ -1117,7 +1214,8 @@
           "value": 3
         }
       ],
-      "set_id": 100
+      "set_id": 100,
+      "type": "treasure"
     },
     "10030": {
       "vnum": 10030,
@@ -1139,7 +1237,8 @@
           "value": 25
         }
       ],
-      "set_id": 100
+      "set_id": 100,
+      "type": "furniture"
     },
     "10031": {
       "vnum": 10031,
@@ -1159,7 +1258,8 @@
           "value": 2
         }
       ],
-      "set_id": 100
+      "set_id": 100,
+      "type": "treasure"
     },
     "10032": {
       "vnum": 10032,
@@ -1177,7 +1277,10 @@
           "value": 2
         }
       ],
-      "set_id": 100
+      "set_id": 100,
+      "type": "weapon",
+      "weapon_type": "pound",
+      "damage_dice": "1d8"
     },
     "10033": {
       "vnum": 10033,
@@ -1197,7 +1300,8 @@
           "value": 2
         }
       ],
-      "set_id": 100
+      "set_id": 100,
+      "type": "weapon"
     },
     "10034": {
       "vnum": 10034,
@@ -1215,7 +1319,9 @@
           "value": 2
         }
       ],
-      "set_id": 100
+      "set_id": 100,
+      "type": "armor",
+      "armor": 2
     },
     "10035": {
       "vnum": 10035,
@@ -1234,7 +1340,9 @@
           "value": 1
         }
       ],
-      "set_id": 100
+      "set_id": 100,
+      "type": "armor",
+      "armor": 1
     }
   },
   "mobs": {
@@ -1495,6 +1603,53 @@
         "sentinel"
       ],
       "special": "shopkeeper"
+    },
+    "10098": {
+      "vnum": 10098,
+      "name": "orc shaman",
+      "short_desc": "an orc shaman",
+      "long_desc": "An old orc shaman kneels here before a crude altar, chanting in a guttural tongue.",
+      "description": "Unlike the warriors, this orc is draped in fetishes and bone necklaces. War paint covers every inch of exposed skin, and the air around him shimmers with barely-contained primal energy.",
+      "level": 40,
+      "alignment": 0,
+      "hp_dice": "40d10+700",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The shaman opens one bloodshot eye. 'You stink of the soft-lands. But the spirits say you are not to be killed... yet. The warchief gathers an army. Soon the green tide will wash over your cities. Unless someone stops him.' He grins with yellowed tusks. 'I wonder who that might be.'",
+        "warchief": "The shaman spits. 'Grokmar is strong but stupid. He listens to the dark whispers from the cave below camp. That voice is not orcish. It is something older. Something that uses orcs like pawns.'",
+        "default": "The shaman resumes chanting, bones rattling with each guttural word.",
+        "next": "The shaman's eyes narrow. 'Strong, for a soft-skin. The city of Thalos to the east always needs warriors. Or if you seek true darkness, the Drow lurk beneath the earth in their cursed city.'"
+      }
+    },
+    "10099": {
+      "vnum": 10099,
+      "name": "caged prisoner",
+      "short_desc": "a caged prisoner",
+      "long_desc": "A bruised and battered prisoner huddles inside a crude iron cage here.",
+      "description": "The prisoner's fine clothes are torn and filthy, suggesting they were once someone of importance. Fresh bruises cover old ones, and their eyes plead silently for help.",
+      "level": 10,
+      "alignment": 0,
+      "hp_dice": "10d10+500",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The prisoner grabs the bars desperately. 'Please! I'm a merchant from Thalos \u2014 they captured my caravan three days ago. The others were taken deeper into the camp for... I don't want to think about it. The cage key is on the orc captain's belt. Please, I'll pay anything!'",
+        "orcs": "They whisper frantically. 'There's more of them than you think \u2014 warrens beneath the camp with hundreds more. They're breeding war beasts down there too. This isn't a raiding party, it's an invasion force.'",
+        "default": "The prisoner rattles the cage bars weakly, hope and despair warring in their eyes."
+      }
     }
   }
 }

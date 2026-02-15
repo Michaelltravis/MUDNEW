@@ -474,6 +474,49 @@
       "name": "duckling",
       "short_desc": "the duckling",
       "vnum": 6018
+    },
+    "6098": {
+      "vnum": 6098,
+      "name": "forest hermit",
+      "short_desc": "an old hermit",
+      "long_desc": "An old hermit sits here in the hollow of a massive oak, whittling a small figurine.",
+      "description": "His hair is tangled with leaves and small twigs, and his clothes are patched together from animal hides and bark. Despite his wild appearance, his eyes are sharp and knowing.",
+      "level": 35,
+      "alignment": 0,
+      "hp_dice": "35d10+600",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The hermit looks up from his whittling. 'The light forest is kind enough, if you respect it. But never go east after dark \u2014 the dark forest has teeth, friend. Literal teeth. The trees themselves hunger for flesh there.'",
+        "dark forest": "He shakes his head slowly. 'Something corrupted it long ago. The creatures there were once gentle. Now even the deer have gone mad. There's a hidden glade deep within though, still pure. Follow the silver mushrooms if you can find them.'",
+        "default": "The hermit returns to his whittling. 'The forest provides for those who listen.'",
+        "next": "The hermit strokes his beard thoughtfully. 'If you've proven yourself against the wolves and bandits here, the Great Northern Forest to the north holds far greater dangers. Levels 8 and above, I'd wager. Or seek the mines of Moria \u2014 dwarves speak of trouble in the deep.'"
+      },
+      "loot_table": [
+        {
+          "vnum": 6001,
+          "chance": 15
+        },
+        {
+          "vnum": 6002,
+          "chance": 15
+        },
+        {
+          "vnum": 6003,
+          "chance": 15
+        },
+        {
+          "vnum": 6004,
+          "chance": 15
+        }
+      ],
+      "loot_chance": 100
     }
   },
   "name": "Haon-Dor, Light Forest",
@@ -488,47 +531,93 @@
       "value": 50,
       "vnum": 6000,
       "weapon_type": "slash",
-      "weight": 12
+      "weight": 12,
+      "type": "weapon"
     },
     "6001": {
-      "armor_bonus": 1,
-      "item_type": "armor",
-      "name": "shirt",
-      "room_desc": "A chequered shirt lies here.",
-      "short_desc": "a chequered shirt",
-      "value": 20,
       "vnum": 6001,
-      "weight": 2
+      "name": "forest stalker's leather armor",
+      "short_desc": "forest stalker's leather armor",
+      "room_desc": "A set of forest stalker's leather armor lies here.",
+      "description": "Supple green-dyed leather.",
+      "item_type": "armor",
+      "weight": 5,
+      "value": 1500,
+      "wear_slot": "body",
+      "armor_class": 4,
+      "affects": [
+        {
+          "type": "dex",
+          "value": 1
+        }
+      ],
+      "set_id": "forest_stalker",
+      "type": "armor",
+      "min_level": 10
     },
     "6002": {
-      "armor_bonus": 2,
-      "item_type": "armor",
-      "name": "boots",
-      "room_desc": "A pair of worn leather boots lies here.",
-      "short_desc": "a pair of worn leather boots",
-      "value": 60,
       "vnum": 6002,
-      "weight": 4
+      "name": "forest stalker's cloak",
+      "short_desc": "a forest stalker's cloak",
+      "room_desc": "A green cloak lies here.",
+      "description": "A leaf-patterned cloak.",
+      "item_type": "armor",
+      "weight": 2,
+      "value": 1000,
+      "wear_slot": "about",
+      "armor_class": 2,
+      "affects": [
+        {
+          "type": "dex",
+          "value": 1
+        }
+      ],
+      "set_id": "forest_stalker",
+      "type": "armor",
+      "min_level": 10
     },
     "6003": {
-      "capacity": 200,
-      "item_type": "container",
-      "name": "fireplace",
-      "room_desc": "A fireplace made from stone is set against the east wall.",
-      "short_desc": "a fireplace",
-      "value": 0,
       "vnum": 6003,
-      "weight": 0
+      "name": "forest stalker's boots",
+      "short_desc": "a pair of forest stalker's boots",
+      "room_desc": "Soft leather boots lie here.",
+      "description": "Silent-step boots.",
+      "item_type": "armor",
+      "weight": 2,
+      "value": 800,
+      "wear_slot": "feet",
+      "armor_class": 2,
+      "affects": [
+        {
+          "type": "max_move",
+          "value": 15
+        }
+      ],
+      "set_id": "forest_stalker",
+      "type": "armor",
+      "min_level": 10
     },
     "6004": {
-      "item_type": "light",
-      "light_hours": 100,
-      "name": "lantern",
-      "room_desc": "A hooded brass lantern has been left here.",
-      "short_desc": "a hooded brass lantern",
-      "value": 60,
       "vnum": 6004,
-      "weight": 4
+      "name": "forest stalker's longbow",
+      "short_desc": "a forest stalker's longbow",
+      "room_desc": "A finely crafted longbow lies here.",
+      "description": "An elven-style longbow.",
+      "item_type": "weapon",
+      "weight": 3,
+      "value": 1500,
+      "wear_slot": "wield",
+      "weapon_type": "pierce",
+      "damage_dice": "2d4+3",
+      "affects": [
+        {
+          "type": "hitroll",
+          "value": 2
+        }
+      ],
+      "set_id": "forest_stalker",
+      "type": "weapon",
+      "min_level": 10
     },
     "6005": {
       "capacity": 100,
@@ -539,7 +628,8 @@
       "short_desc": "a wooden chest",
       "value": 100,
       "vnum": 6005,
-      "weight": 20
+      "weight": 20,
+      "type": "container"
     },
     "6006": {
       "item_type": "key",
@@ -548,7 +638,8 @@
       "short_desc": "a small brass key",
       "value": 0,
       "vnum": 6006,
-      "weight": 1
+      "weight": 1,
+      "type": "key"
     },
     "6007": {
       "item_type": "money",
@@ -557,7 +648,8 @@
       "short_desc": "a heap of gold coins",
       "value": 127,
       "vnum": 6007,
-      "weight": 1
+      "weight": 1,
+      "type": "trash"
     },
     "6010": {
       "item_type": "food",
@@ -567,7 +659,8 @@
       "short_desc": "some blackberries",
       "value": 0,
       "vnum": 6010,
-      "weight": 1
+      "weight": 1,
+      "type": "treasure"
     },
     "6011": {
       "item_type": "food",
@@ -577,7 +670,9 @@
       "short_desc": "a mushroom",
       "value": 10,
       "vnum": 6011,
-      "weight": 1
+      "weight": 1,
+      "type": "food",
+      "food_value": 12
     },
     "6012": {
       "item_type": "treasure",
@@ -586,7 +681,8 @@
       "short_desc": "a large sign",
       "value": 0,
       "vnum": 6012,
-      "weight": 100
+      "weight": 100,
+      "type": "furniture"
     },
     "6013": {
       "capacity": 40,
@@ -597,7 +693,8 @@
       "short_desc": "a barrel",
       "value": 60,
       "vnum": 6013,
-      "weight": 45
+      "weight": 45,
+      "type": "container"
     },
     "6014": {
       "item_type": "fountain",
@@ -606,7 +703,8 @@
       "short_desc": "a small brook",
       "value": 0,
       "vnum": 6014,
-      "weight": 0
+      "weight": 0,
+      "type": "treasure"
     },
     "6015": {
       "item_type": "fountain",
@@ -615,7 +713,8 @@
       "short_desc": "the lake",
       "value": 0,
       "vnum": 6015,
-      "weight": 0
+      "weight": 0,
+      "type": "treasure"
     },
     "6016": {
       "damage_dice": "1d7",
@@ -626,7 +725,8 @@
       "value": 1,
       "vnum": 6016,
       "weapon_type": "pound",
-      "weight": 16
+      "weight": 16,
+      "type": "treasure"
     },
     "6017": {
       "capacity": 100,
@@ -636,7 +736,8 @@
       "short_desc": "the corpse of a boar",
       "value": 1,
       "vnum": 6017,
-      "weight": 500
+      "weight": 500,
+      "type": "trash"
     },
     "6018": {
       "item_type": "food",
@@ -646,7 +747,9 @@
       "short_desc": "a large slab of meat",
       "value": 40,
       "vnum": 6018,
-      "weight": 15
+      "weight": 15,
+      "type": "food",
+      "food_value": 12
     },
     "6019": {
       "item_type": "treasure",
@@ -655,7 +758,8 @@
       "short_desc": "a pair of boar tusks",
       "value": 60,
       "vnum": 6019,
-      "weight": 10
+      "weight": 10,
+      "type": "treasure"
     },
     "6020": {
       "item_type": "boat",
@@ -664,7 +768,8 @@
       "short_desc": "a hollow log",
       "value": 2,
       "vnum": 6020,
-      "weight": 48
+      "weight": 48,
+      "type": "treasure"
     },
     "6021": {
       "capacity": 30,
@@ -674,7 +779,8 @@
       "short_desc": "the bird's nest",
       "value": 0,
       "vnum": 6021,
-      "weight": 0
+      "weight": 0,
+      "type": "treasure"
     },
     "6022": {
       "item_type": "food",
@@ -684,7 +790,9 @@
       "short_desc": "a blue robin's egg",
       "value": 10,
       "vnum": 6022,
-      "weight": 1
+      "weight": 1,
+      "type": "food",
+      "food_value": 12
     },
     "6023": {
       "item_type": "food",
@@ -694,7 +802,9 @@
       "short_desc": "a piece of rabbit meat",
       "value": 29,
       "vnum": 6023,
-      "weight": 5
+      "weight": 5,
+      "type": "food",
+      "food_value": 12
     },
     "6024": {
       "item_type": "food",
@@ -704,7 +814,9 @@
       "short_desc": "a piece of venison",
       "value": 80,
       "vnum": 6024,
-      "weight": 10
+      "weight": 10,
+      "type": "food",
+      "food_value": 12
     },
     "6050": {
       "vnum": 6050,
@@ -712,7 +824,7 @@
       "short_desc": "a barkbound journal",
       "room_desc": "A barkbound journal rests on the platform.",
       "description": "The pages are stitched with reed fibers and smell of pine.",
-      "type": "other",
+      "type": "note",
       "weight": 2,
       "cost": 60,
       "lore_id": "haondor_journal",
@@ -726,7 +838,7 @@
       "short_desc": "an oath of Haon-Dor",
       "room_desc": "A scroll of green vellum lies atop the altar.",
       "description": "Leaf-inked vows spiral down the page.",
-      "type": "other",
+      "type": "furniture",
       "weight": 1,
       "cost": 45,
       "lore_id": "haondor_oath",
@@ -787,7 +899,8 @@
           "value": 1
         }
       ],
-      "set_id": 60
+      "set_id": 60,
+      "type": "weapon"
     },
     "6056": {
       "vnum": 6056,
@@ -806,7 +919,9 @@
           "value": 1
         }
       ],
-      "set_id": 60
+      "set_id": 60,
+      "type": "armor",
+      "armor": 3
     },
     "6057": {
       "vnum": 6057,
@@ -824,7 +939,8 @@
           "value": 1
         }
       ],
-      "set_id": 60
+      "set_id": 60,
+      "type": "treasure"
     },
     "6058": {
       "vnum": 6058,
@@ -846,7 +962,8 @@
           "value": 15
         }
       ],
-      "set_id": 60
+      "set_id": 60,
+      "type": "treasure"
     },
     "6059": {
       "vnum": 6059,
@@ -864,7 +981,8 @@
           "value": 1
         }
       ],
-      "set_id": 60
+      "set_id": 60,
+      "type": "treasure"
     },
     "6060": {
       "vnum": 6060,
@@ -884,7 +1002,8 @@
           "value": 1
         }
       ],
-      "set_id": 60
+      "set_id": 60,
+      "type": "treasure"
     },
     "6061": {
       "vnum": 6061,
@@ -904,7 +1023,8 @@
           "value": 1
         }
       ],
-      "set_id": 60
+      "set_id": 60,
+      "type": "weapon"
     },
     "6062": {
       "vnum": 6062,
@@ -928,7 +1048,8 @@
           "value": 1
         }
       ],
-      "set_id": 60
+      "set_id": 60,
+      "type": "weapon"
     },
     "6063": {
       "vnum": 6063,
@@ -946,7 +1067,20 @@
           "value": 1
         }
       ],
-      "set_id": 60
+      "set_id": 60,
+      "type": "armor",
+      "armor": 2
+    },
+    "6095": {
+      "vnum": 6095,
+      "name": "wooden signpost",
+      "short_desc": "a carved wooden signpost",
+      "room_desc": "A carved wooden signpost stands at the forest entrance.",
+      "item_type": "furniture",
+      "type": "furniture",
+      "weight": 0,
+      "value": 0,
+      "readable_text": "=== LIGHT FOREST ===\nRecommended Level: 3-10\nEast: Return to Midgaard\nDeeper into forest: Increasing danger\nSeek Ranger Thornwood for guidance and quests"
     }
   },
   "rooms": {
@@ -975,6 +1109,10 @@
         {
           "max": 1,
           "vnum": 6012
+        },
+        {
+          "vnum": 6095,
+          "max": 1
         }
       ],
       "sector_type": "field",
@@ -1107,6 +1245,10 @@
         {
           "max": 4,
           "vnum": 6008
+        },
+        {
+          "vnum": 6098,
+          "max": 1
         }
       ],
       "name": "A Small Path In The Dense Forest",
@@ -2780,7 +2922,8 @@
       "flags": [],
       "exits": {
         "south": {
-          "to_room": 6009
+          "to_room": 6009,
+          "description": "A trail winds toward Outside A Small Cabin In The Forest"
         }
       },
       "mob_resets": [],
@@ -2794,7 +2937,8 @@
       "flags": [],
       "exits": {
         "down": {
-          "to_room": 6032
+          "to_room": 6032,
+          "description": "Midway To The Top Of The Large Oak"
         }
       },
       "mob_resets": [],

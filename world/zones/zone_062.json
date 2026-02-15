@@ -12,7 +12,7 @@
       "exits": {
         "east": {
           "to_room": 6201,
-          "description": ""
+          "description": "A trail winds toward In The Forest"
         }
       },
       "extra_descs": {
@@ -28,11 +28,11 @@
       "exits": {
         "east": {
           "to_room": 6202,
-          "description": ""
+          "description": "A trail winds toward In The Forest"
         },
         "west": {
           "to_room": 6200,
-          "description": ""
+          "description": "A trail winds toward In The Forest"
         }
       },
       "extra_descs": {
@@ -48,11 +48,11 @@
       "exits": {
         "east": {
           "to_room": 6203,
-          "description": ""
+          "description": "A trail winds toward In The Forest"
         },
         "west": {
           "to_room": 6201,
-          "description": ""
+          "description": "A trail winds toward In The Forest"
         }
       },
       "extra_descs": {
@@ -68,15 +68,15 @@
       "exits": {
         "east": {
           "to_room": 6204,
-          "description": ""
+          "description": "A trail winds toward In The Forest"
         },
         "south": {
           "to_room": 6139,
-          "description": ""
+          "description": "A trail winds toward On The Narrow Trail"
         },
         "west": {
           "to_room": 6202,
-          "description": ""
+          "description": "A trail winds toward In The Forest"
         }
       },
       "extra_descs": {
@@ -92,11 +92,11 @@
       "exits": {
         "east": {
           "to_room": 6205,
-          "description": ""
+          "description": "A trail winds toward In The Forest"
         },
         "west": {
           "to_room": 6203,
-          "description": ""
+          "description": "A trail winds toward In The Forest"
         }
       },
       "extra_descs": {
@@ -112,11 +112,11 @@
       "exits": {
         "north": {
           "to_room": 6206,
-          "description": ""
+          "description": "A trail winds toward In The Forest"
         },
         "west": {
           "to_room": 6204,
-          "description": ""
+          "description": "A trail winds toward In The Forest"
         }
       },
       "extra_descs": {
@@ -132,11 +132,11 @@
       "exits": {
         "north": {
           "to_room": 6207,
-          "description": ""
+          "description": "A trail winds toward In The Forest"
         },
         "south": {
           "to_room": 6205,
-          "description": ""
+          "description": "A trail winds toward In The Forest"
         }
       },
       "extra_descs": {
@@ -152,11 +152,11 @@
       "exits": {
         "north": {
           "to_room": 6208,
-          "description": ""
+          "description": "A trail winds toward In The Forest"
         },
         "south": {
           "to_room": 6206,
-          "description": ""
+          "description": "A trail winds toward In The Forest"
         }
       },
       "extra_descs": {
@@ -172,15 +172,15 @@
       "exits": {
         "north": {
           "to_room": 6209,
-          "description": ""
+          "description": "A trail winds toward The River's Edge"
         },
         "south": {
           "to_room": 6207,
-          "description": ""
+          "description": "A trail winds toward In The Forest"
         },
         "west": {
           "to_room": 6210,
-          "description": ""
+          "description": "A steep trail ascends to Just Passing Through..."
         }
       },
       "extra_descs": {
@@ -196,7 +196,7 @@
       "exits": {
         "south": {
           "to_room": 6208,
-          "description": ""
+          "description": "A trail winds toward In The Forest"
         }
       },
       "extra_descs": {
@@ -214,11 +214,11 @@
       "exits": {
         "east": {
           "to_room": 6208,
-          "description": ""
+          "description": "A trail winds toward In The Forest"
         },
         "west": {
           "to_room": 6211,
-          "description": ""
+          "description": "A trail winds toward The Edge Of The Orc Enclave"
         }
       }
     },
@@ -231,19 +231,19 @@
       "exits": {
         "north": {
           "to_room": 6213,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "east": {
           "to_room": 6211,
-          "description": ""
+          "description": "A trail winds toward The Edge Of The Orc Enclave"
         },
         "south": {
           "to_room": 6217,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "west": {
           "to_room": 6228,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         }
       },
       "extra_descs": {
@@ -265,11 +265,11 @@
       "exits": {
         "north": {
           "to_room": 6214,
-          "description": ""
+          "description": "An open path leads to The River's Edge"
         },
         "south": {
           "to_room": 6212,
-          "description": ""
+          "description": "A trail winds toward A Clearing In The Forest"
         }
       }
     },
@@ -282,11 +282,11 @@
       "exits": {
         "south": {
           "to_room": 6213,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "west": {
           "to_room": 6215,
-          "description": ""
+          "description": "An open path leads to The River's Edge"
         }
       },
       "mob_resets": [
@@ -305,11 +305,11 @@
       "exits": {
         "east": {
           "to_room": 6214,
-          "description": ""
+          "description": "An open path leads to The River's Edge"
         },
         "west": {
           "to_room": 6216,
-          "description": ""
+          "description": "An open path leads to The River's Edge"
         }
       }
     },
@@ -322,7 +322,7 @@
       "exits": {
         "east": {
           "to_room": 6215,
-          "description": ""
+          "description": "An open path leads to The River's Edge"
         }
       },
       "mob_resets": [
@@ -341,11 +341,11 @@
       "exits": {
         "north": {
           "to_room": 6212,
-          "description": ""
+          "description": "A trail winds toward A Clearing In The Forest"
         },
         "south": {
           "to_room": 6219,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         }
       }
     },
@@ -358,11 +358,11 @@
       "exits": {
         "north": {
           "to_room": 6233,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "south": {
           "to_room": 6226,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         }
       },
       "mob_resets": [
@@ -381,11 +381,11 @@
       "exits": {
         "north": {
           "to_room": 6217,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "west": {
           "to_room": 6220,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         }
       },
       "mob_resets": [
@@ -408,11 +408,11 @@
       "exits": {
         "east": {
           "to_room": 6219,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "west": {
           "to_room": 6221,
-          "description": ""
+          "description": "A trail winds toward A Small Clearing"
         }
       }
     },
@@ -425,15 +425,15 @@
       "exits": {
         "east": {
           "to_room": 6220,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "south": {
           "to_room": 6222,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "west": {
           "to_room": 6227,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         }
       },
       "extra_descs": {
@@ -455,15 +455,15 @@
       "exits": {
         "north": {
           "to_room": 6221,
-          "description": ""
+          "description": "A trail winds toward A Small Clearing"
         },
         "east": {
           "to_room": 6223,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "west": {
           "to_room": 6225,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         }
       }
     },
@@ -476,11 +476,11 @@
       "exits": {
         "east": {
           "to_room": 6224,
-          "description": ""
+          "description": "A trail winds toward The Dead End"
         },
         "west": {
           "to_room": 6222,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         }
       },
       "mob_resets": [
@@ -499,7 +499,7 @@
       "exits": {
         "west": {
           "to_room": 6223,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         }
       },
       "mob_resets": [
@@ -526,11 +526,11 @@
       "exits": {
         "east": {
           "to_room": 6222,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "west": {
           "to_room": 6226,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         }
       },
       "mob_resets": [
@@ -551,7 +551,7 @@
       "exits": {
         "north": {
           "to_room": 6218,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         }
       }
     },
@@ -564,11 +564,11 @@
       "exits": {
         "north": {
           "to_room": 6232,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "east": {
           "to_room": 6221,
-          "description": ""
+          "description": "A trail winds toward A Small Clearing"
         }
       },
       "mob_resets": [
@@ -587,11 +587,11 @@
       "exits": {
         "east": {
           "to_room": 6212,
-          "description": ""
+          "description": "A trail winds toward A Clearing In The Forest"
         },
         "west": {
           "to_room": 6229,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         }
       }
     },
@@ -604,11 +604,11 @@
       "exits": {
         "east": {
           "to_room": 6228,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "south": {
           "to_room": 6230,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         }
       },
       "mob_resets": [
@@ -627,15 +627,15 @@
       "exits": {
         "north": {
           "to_room": 6229,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "east": {
           "to_room": 6231,
-          "description": ""
+          "description": "A trail winds toward A Clearing"
         },
         "west": {
           "to_room": 6232,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         }
       },
       "mob_resets": [
@@ -654,7 +654,7 @@
       "exits": {
         "west": {
           "to_room": 6230,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         }
       }
     },
@@ -667,15 +667,15 @@
       "exits": {
         "east": {
           "to_room": 6230,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "south": {
           "to_room": 6227,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "west": {
           "to_room": 6233,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         }
       }
     },
@@ -688,15 +688,15 @@
       "exits": {
         "east": {
           "to_room": 6232,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "south": {
           "to_room": 6218,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "west": {
           "to_room": 6234,
-          "description": ""
+          "description": "A rocky path climbs toward A Rocky Trail"
         }
       }
     },
@@ -709,15 +709,15 @@
       "exits": {
         "north": {
           "to_room": 6241,
-          "description": ""
+          "description": "A rocky path climbs toward A Rocky Trail"
         },
         "east": {
           "to_room": 6233,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "west": {
           "to_room": 6242,
-          "description": ""
+          "description": "A steep trail ascends to A Cave Entrance"
         }
       },
       "mob_resets": [
@@ -736,11 +736,11 @@
       "exits": {
         "south": {
           "to_room": 6229,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "west": {
           "to_room": 6236,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         }
       }
     },
@@ -753,15 +753,15 @@
       "exits": {
         "east": {
           "to_room": 6235,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "south": {
           "to_room": 6237,
-          "description": ""
+          "description": "An open path leads to A Large Clearing"
         },
         "west": {
           "to_room": 6238,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         }
       },
       "mob_resets": [
@@ -780,7 +780,7 @@
       "exits": {
         "north": {
           "to_room": 6236,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         }
       }
     },
@@ -793,15 +793,15 @@
       "exits": {
         "north": {
           "to_room": 6239,
-          "description": ""
+          "description": "An open path leads to A River's Edge"
         },
         "east": {
           "to_room": 6236,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "west": {
           "to_room": 6241,
-          "description": ""
+          "description": "A rocky path climbs toward A Rocky Trail"
         }
       },
       "mob_resets": [
@@ -820,11 +820,11 @@
       "exits": {
         "south": {
           "to_room": 6238,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "west": {
           "to_room": 6240,
-          "description": ""
+          "description": "An open path leads to A River's Edge"
         }
       }
     },
@@ -837,11 +837,11 @@
       "exits": {
         "east": {
           "to_room": 6239,
-          "description": ""
+          "description": "An open path leads to A River's Edge"
         },
         "south": {
           "to_room": 6241,
-          "description": ""
+          "description": "A rocky path climbs toward A Rocky Trail"
         }
       },
       "mob_resets": [
@@ -860,15 +860,15 @@
       "exits": {
         "north": {
           "to_room": 6240,
-          "description": ""
+          "description": "An open path leads to A River's Edge"
         },
         "east": {
           "to_room": 6238,
-          "description": ""
+          "description": "A trail winds toward A Forest Trail"
         },
         "south": {
           "to_room": 6234,
-          "description": ""
+          "description": "A rocky path climbs toward A Rocky Trail"
         }
       }
     },
@@ -883,11 +883,11 @@
       "exits": {
         "east": {
           "to_room": 6234,
-          "description": ""
+          "description": "A rocky path climbs toward A Rocky Trail"
         },
         "west": {
           "to_room": 6243,
-          "description": ""
+          "description": "A rocky path climbs toward A Tunnel Forking"
         }
       }
     },
@@ -903,15 +903,15 @@
       "exits": {
         "north": {
           "to_room": 6255,
-          "description": ""
+          "description": "A rocky path climbs toward A Tunnel"
         },
         "east": {
           "to_room": 6242,
-          "description": ""
+          "description": "A steep trail ascends to A Cave Entrance"
         },
         "west": {
           "to_room": 6244,
-          "description": ""
+          "description": "A rocky path climbs toward A Tunnel"
         }
       },
       "extra_descs": {
@@ -930,11 +930,11 @@
       "exits": {
         "east": {
           "to_room": 6243,
-          "description": ""
+          "description": "A rocky path climbs toward A Tunnel Forking"
         },
         "west": {
           "to_room": 6245,
-          "description": ""
+          "description": "A steep trail ascends to A Tunnel"
         }
       },
       "mob_resets": [
@@ -956,11 +956,11 @@
       "exits": {
         "east": {
           "to_room": 6244,
-          "description": ""
+          "description": "A rocky path climbs toward A Tunnel"
         },
         "west": {
           "to_room": 6251,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         }
       }
     },
@@ -975,11 +975,11 @@
       "exits": {
         "east": {
           "to_room": 6247,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         },
         "south": {
           "to_room": 6249,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         }
       },
       "mob_resets": [
@@ -1000,15 +1000,15 @@
       "exits": {
         "east": {
           "to_room": 6248,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         },
         "south": {
           "to_room": 6250,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         },
         "west": {
           "to_room": 6246,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         }
       }
     },
@@ -1024,11 +1024,11 @@
       "exits": {
         "south": {
           "to_room": 6251,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         },
         "west": {
           "to_room": 6247,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         }
       }
     },
@@ -1043,15 +1043,15 @@
       "exits": {
         "north": {
           "to_room": 6246,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         },
         "east": {
           "to_room": 6250,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         },
         "south": {
           "to_room": 6252,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         }
       },
       "mob_resets": [
@@ -1072,19 +1072,19 @@
       "exits": {
         "north": {
           "to_room": 6247,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         },
         "east": {
           "to_room": 6251,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         },
         "south": {
           "to_room": 6253,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         },
         "west": {
           "to_room": 6249,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         }
       },
       "mob_resets": [
@@ -1109,19 +1109,19 @@
       "exits": {
         "north": {
           "to_room": 6248,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         },
         "east": {
           "to_room": 6245,
-          "description": ""
+          "description": "A steep trail ascends to A Tunnel"
         },
         "south": {
           "to_room": 6254,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         },
         "west": {
           "to_room": 6250,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         }
       },
       "mob_resets": [
@@ -1146,11 +1146,11 @@
       "exits": {
         "north": {
           "to_room": 6249,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         },
         "east": {
           "to_room": 6253,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         }
       },
       "mob_resets": [
@@ -1171,15 +1171,15 @@
       "exits": {
         "north": {
           "to_room": 6250,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         },
         "east": {
           "to_room": 6254,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         },
         "west": {
           "to_room": 6252,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         }
       },
       "mob_resets": [
@@ -1204,11 +1204,11 @@
       "exits": {
         "north": {
           "to_room": 6251,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         },
         "west": {
           "to_room": 6253,
-          "description": ""
+          "description": "A rocky path climbs toward A Cave"
         }
       },
       "mob_resets": [
@@ -1235,7 +1235,7 @@
       "exits": {
         "south": {
           "to_room": 6243,
-          "description": ""
+          "description": "A rocky path climbs toward A Tunnel Forking"
         },
         "west": {
           "to_room": 6256,
@@ -1260,11 +1260,11 @@
       "exits": {
         "north": {
           "to_room": 6258,
-          "description": ""
+          "description": "A passage leads to A Tunnel"
         },
         "east": {
           "to_room": 6255,
-          "description": "",
+          "description": "A rocky path climbs toward A Tunnel",
           "door": {
             "name": "door steel",
             "state": "open",
@@ -1316,11 +1316,11 @@
       "exits": {
         "north": {
           "to_room": 6266,
-          "description": ""
+          "description": "A passage leads to The Laboratory"
         },
         "south": {
           "to_room": 6256,
-          "description": ""
+          "description": "A passage leads to A Tunnel"
         }
       }
     },
@@ -1335,11 +1335,11 @@
       "exits": {
         "east": {
           "to_room": 6260,
-          "description": ""
+          "description": "A passage leads to The Laboratory"
         },
         "south": {
           "to_room": 6262,
-          "description": ""
+          "description": "A passage leads to The Laboratory"
         }
       },
       "mob_resets": [
@@ -1370,11 +1370,11 @@
         },
         "south": {
           "to_room": 6263,
-          "description": ""
+          "description": "A passage leads to The Laboratory"
         },
         "west": {
           "to_room": 6259,
-          "description": ""
+          "description": "A passage leads to The Laboratory"
         }
       }
     },
@@ -1416,15 +1416,15 @@
       "exits": {
         "north": {
           "to_room": 6259,
-          "description": ""
+          "description": "A passage leads to The Laboratory"
         },
         "east": {
           "to_room": 6263,
-          "description": ""
+          "description": "A passage leads to The Laboratory"
         },
         "south": {
           "to_room": 6265,
-          "description": ""
+          "description": "A passage leads to The Laboratory"
         }
       }
     },
@@ -1439,7 +1439,7 @@
       "exits": {
         "north": {
           "to_room": 6260,
-          "description": ""
+          "description": "A passage leads to The Laboratory"
         },
         "east": {
           "to_room": 6264,
@@ -1453,11 +1453,11 @@
         },
         "south": {
           "to_room": 6266,
-          "description": ""
+          "description": "A passage leads to The Laboratory"
         },
         "west": {
           "to_room": 6262,
-          "description": ""
+          "description": "A passage leads to The Laboratory"
         }
       }
     },
@@ -1499,11 +1499,11 @@
       "exits": {
         "north": {
           "to_room": 6262,
-          "description": ""
+          "description": "A passage leads to The Laboratory"
         },
         "east": {
           "to_room": 6266,
-          "description": ""
+          "description": "A passage leads to The Laboratory"
         }
       },
       "mob_resets": [
@@ -1524,7 +1524,7 @@
       "exits": {
         "north": {
           "to_room": 6263,
-          "description": ""
+          "description": "A passage leads to The Laboratory"
         },
         "east": {
           "to_room": 6267,
@@ -1538,11 +1538,11 @@
         },
         "south": {
           "to_room": 6258,
-          "description": ""
+          "description": "A passage leads to A Tunnel"
         },
         "west": {
           "to_room": 6265,
-          "description": ""
+          "description": "A passage leads to The Laboratory"
         }
       }
     },
@@ -1580,10 +1580,12 @@
       "flags": [],
       "exits": {
         "east": {
-          "to_room": 6210
+          "to_room": 6210,
+          "description": "A steep trail ascends to Just Passing Through..."
         },
         "west": {
-          "to_room": 6212
+          "to_room": 6212,
+          "description": "A trail winds toward A Clearing In The Forest"
         }
       },
       "mob_resets": [],
@@ -1981,7 +1983,8 @@
       "room_desc": "A key sits here.",
       "item_type": "key",
       "weight": 1,
-      "value": 20
+      "value": 20,
+      "type": "key"
     },
     "6201": {
       "vnum": 6201,
@@ -1991,7 +1994,8 @@
       "item_type": "armor",
       "weight": 20,
       "value": 100,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "treasure"
     },
     "6202": {
       "vnum": 6202,
@@ -2001,7 +2005,8 @@
       "item_type": "armor",
       "weight": 20,
       "value": 100,
-      "armor_bonus": 0
+      "armor_bonus": 0,
+      "type": "treasure"
     },
     "6203": {
       "vnum": 6203,
@@ -2011,7 +2016,8 @@
       "item_type": "light",
       "weight": 1,
       "value": 10000,
-      "light_hours": -1
+      "light_hours": -1,
+      "type": "note"
     },
     "6204": {
       "vnum": 6204,
@@ -2022,7 +2028,8 @@
       "weight": 12,
       "value": 10,
       "damage_dice": "2d2",
-      "weapon_type": "pound"
+      "weapon_type": "pound",
+      "type": "weapon"
     },
     "6205": {
       "vnum": 6205,
@@ -2033,7 +2040,8 @@
       "weight": 1,
       "value": 100000,
       "damage_dice": "3d7",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "6206": {
       "vnum": 6206,
@@ -2053,7 +2061,8 @@
           "value": 2
         }
       ],
-      "set_id": 62
+      "set_id": 62,
+      "type": "weapon"
     },
     "6207": {
       "vnum": 6207,
@@ -2072,7 +2081,9 @@
           "value": 1
         }
       ],
-      "set_id": 62
+      "set_id": 62,
+      "type": "armor",
+      "armor": 3
     },
     "6208": {
       "vnum": 6208,
@@ -2090,7 +2101,8 @@
           "value": 2
         }
       ],
-      "set_id": 62
+      "set_id": 62,
+      "type": "treasure"
     },
     "6209": {
       "vnum": 6209,
@@ -2112,7 +2124,8 @@
           "value": 20
         }
       ],
-      "set_id": 62
+      "set_id": 62,
+      "type": "treasure"
     },
     "6210": {
       "vnum": 6210,
@@ -2130,7 +2143,8 @@
           "value": 2
         }
       ],
-      "set_id": 62
+      "set_id": 62,
+      "type": "treasure"
     },
     "6211": {
       "vnum": 6211,
@@ -2150,7 +2164,8 @@
           "value": 2
         }
       ],
-      "set_id": 62
+      "set_id": 62,
+      "type": "treasure"
     },
     "6212": {
       "vnum": 6212,
@@ -2170,7 +2185,8 @@
           "value": 2
         }
       ],
-      "set_id": 62
+      "set_id": 62,
+      "type": "weapon"
     },
     "6213": {
       "vnum": 6213,
@@ -2190,7 +2206,8 @@
           "value": 2
         }
       ],
-      "set_id": 62
+      "set_id": 62,
+      "type": "weapon"
     },
     "6214": {
       "vnum": 6214,
@@ -2208,7 +2225,9 @@
           "value": 1
         }
       ],
-      "set_id": 62
+      "set_id": 62,
+      "type": "armor",
+      "armor": 1
     }
   }
 }

@@ -13,11 +13,26 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "north": {"to_room": 18001},
-        "south": {"to_room": 3065, "description": "The great field of Midgaard stretches to the south."}
+        "north": {
+          "to_room": 18001,
+          "description": "A trail winds toward A Winding Forest Path"
+        },
+        "south": {
+          "to_room": 3065,
+          "description": "The great field of Midgaard stretches to the south."
+        }
       },
       "mob_resets": [
-        {"vnum": 18001, "max": 2}
+        {
+          "vnum": 18001,
+          "max": 2
+        }
+      ],
+      "obj_resets": [
+        {
+          "vnum": 18095,
+          "max": 1
+        }
       ]
     },
     "18001": {
@@ -27,12 +42,24 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "north": {"to_room": 18002},
-        "east": {"to_room": 18010},
-        "south": {"to_room": 18000}
+        "north": {
+          "to_room": 18002,
+          "description": "A trail winds toward Dense Woodland"
+        },
+        "east": {
+          "to_room": 18010,
+          "description": "A trail winds toward Eastern Forest Trail"
+        },
+        "south": {
+          "to_room": 18000,
+          "description": "A trail winds toward Edge of the Northern Forest"
+        }
       },
       "mob_resets": [
-        {"vnum": 18000, "max": 2}
+        {
+          "vnum": 18000,
+          "max": 2
+        }
       ]
     },
     "18002": {
@@ -42,12 +69,24 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "north": {"to_room": 18003},
-        "west": {"to_room": 18015},
-        "south": {"to_room": 18001}
+        "north": {
+          "to_room": 18003,
+          "description": "A trail winds toward By the Frozen Stream"
+        },
+        "west": {
+          "to_room": 18015,
+          "description": "A trail winds toward Western Game Trail"
+        },
+        "south": {
+          "to_room": 18001,
+          "description": "A trail winds toward A Winding Forest Path"
+        }
       },
       "mob_resets": [
-        {"vnum": 18001, "max": 1}
+        {
+          "vnum": 18001,
+          "max": 1
+        }
       ]
     },
     "18003": {
@@ -57,12 +96,30 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "north": {"to_room": 18004},
-        "east": {"to_room": 18011},
-        "south": {"to_room": 18002}
+        "north": {
+          "to_room": 18004,
+          "description": "A trail winds toward Northern Bank of the Stream"
+        },
+        "east": {
+          "to_room": 18011,
+          "description": "A trail winds toward Deep in the Eastern Woods"
+        },
+        "south": {
+          "to_room": 18002,
+          "description": "A trail winds toward Dense Woodland"
+        }
       },
       "obj_resets": [
-        {"vnum": 18020, "max": 1}
+        {
+          "vnum": 18020,
+          "max": 1
+        }
+      ],
+      "mob_resets": [
+        {
+          "vnum": 18098,
+          "max": 1
+        }
       ]
     },
     "18004": {
@@ -72,12 +129,24 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "north": {"to_room": 18005},
-        "northwest": {"to_room": 18006},
-        "south": {"to_room": 18003}
+        "north": {
+          "to_room": 18005,
+          "description": "A trail winds toward The Whispering Pines"
+        },
+        "northwest": {
+          "to_room": 18006,
+          "description": "A trail winds toward Outside the Ranger's Cabin"
+        },
+        "south": {
+          "to_room": 18003,
+          "description": "A trail winds toward By the Frozen Stream"
+        }
       },
       "mob_resets": [
-        {"vnum": 18002, "max": 1}
+        {
+          "vnum": 18002,
+          "max": 1
+        }
       ]
     },
     "18005": {
@@ -87,12 +156,24 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "north": {"to_room": 18007},
-        "east": {"to_room": 18012},
-        "south": {"to_room": 18004}
+        "north": {
+          "to_room": 18007,
+          "description": "A trail winds toward A Snow-Dusted Glade"
+        },
+        "east": {
+          "to_room": 18012,
+          "description": "A trail winds toward A Bandit's Ambush Point"
+        },
+        "south": {
+          "to_room": 18004,
+          "description": "A trail winds toward Northern Bank of the Stream"
+        }
       },
       "mob_resets": [
-        {"vnum": 18003, "max": 1}
+        {
+          "vnum": 18003,
+          "max": 1
+        }
       ]
     },
     "18006": {
@@ -102,11 +183,20 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "southeast": {"to_room": 18004},
-        "inside": {"to_room": 18020}
+        "southeast": {
+          "to_room": 18004,
+          "description": "A trail winds toward Northern Bank of the Stream"
+        },
+        "inside": {
+          "to_room": 18020,
+          "description": "A passage leads to Inside the Ranger's Cabin"
+        }
       },
       "mob_resets": [
-        {"vnum": 18006, "max": 1}
+        {
+          "vnum": 18006,
+          "max": 1
+        }
       ]
     },
     "18007": {
@@ -116,12 +206,24 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "north": {"to_room": 18008},
-        "west": {"to_room": 18016},
-        "south": {"to_room": 18005}
+        "north": {
+          "to_room": 18008,
+          "description": "A rocky path climbs toward Rising Ground"
+        },
+        "west": {
+          "to_room": 18016,
+          "description": "A trail winds toward A Moonlit Clearing"
+        },
+        "south": {
+          "to_room": 18005,
+          "description": "A trail winds toward The Whispering Pines"
+        }
       },
       "mob_resets": [
-        {"vnum": 18000, "max": 3}
+        {
+          "vnum": 18000,
+          "max": 3
+        }
       ]
     },
     "18008": {
@@ -131,12 +233,24 @@
       "sector_type": "hills",
       "flags": [],
       "exits": {
-        "north": {"to_room": 18009},
-        "east": {"to_room": 18013},
-        "south": {"to_room": 18007}
+        "north": {
+          "to_room": 18009,
+          "description": "A rocky path climbs toward The Ancient Standing Stones"
+        },
+        "east": {
+          "to_room": 18013,
+          "description": "A rocky path climbs toward Rocky Forest Edge"
+        },
+        "south": {
+          "to_room": 18007,
+          "description": "A trail winds toward A Snow-Dusted Glade"
+        }
       },
       "mob_resets": [
-        {"vnum": 18002, "max": 2}
+        {
+          "vnum": 18002,
+          "max": 2
+        }
       ]
     },
     "18009": {
@@ -146,14 +260,26 @@
       "sector_type": "hills",
       "flags": [],
       "exits": {
-        "north": {"to_room": 18025},
-        "south": {"to_room": 18008}
+        "north": {
+          "to_room": 18025,
+          "description": "A rocky path climbs toward The Forest's End"
+        },
+        "south": {
+          "to_room": 18008,
+          "description": "A rocky path climbs toward Rising Ground"
+        }
       },
       "mob_resets": [
-        {"vnum": 18004, "max": 2}
+        {
+          "vnum": 18004,
+          "max": 2
+        }
       ],
       "obj_resets": [
-        {"vnum": 18021, "max": 1}
+        {
+          "vnum": 18021,
+          "max": 1
+        }
       ]
     },
     "18010": {
@@ -163,11 +289,24 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "north": {"to_room": 18011},
-        "west": {"to_room": 18001}
+        "north": {
+          "to_room": 18011,
+          "description": "A trail winds toward Deep in the Eastern Woods"
+        },
+        "west": {
+          "to_room": 18001,
+          "description": "A trail winds toward A Winding Forest Path"
+        }
       },
       "mob_resets": [
-        {"vnum": 18005, "max": 3}
+        {
+          "vnum": 18005,
+          "max": 3
+        },
+        {
+          "vnum": 18099,
+          "max": 1
+        }
       ]
     },
     "18011": {
@@ -177,13 +316,28 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "north": {"to_room": 18012},
-        "south": {"to_room": 18010},
-        "west": {"to_room": 18003}
+        "north": {
+          "to_room": 18012,
+          "description": "A trail winds toward A Bandit's Ambush Point"
+        },
+        "south": {
+          "to_room": 18010,
+          "description": "A trail winds toward Eastern Forest Trail"
+        },
+        "west": {
+          "to_room": 18003,
+          "description": "A trail winds toward By the Frozen Stream"
+        }
       },
       "mob_resets": [
-        {"vnum": 18005, "max": 2},
-        {"vnum": 18001, "max": 1}
+        {
+          "vnum": 18005,
+          "max": 2
+        },
+        {
+          "vnum": 18001,
+          "max": 1
+        }
       ]
     },
     "18012": {
@@ -193,15 +347,30 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "north": {"to_room": 18013},
-        "south": {"to_room": 18011},
-        "west": {"to_room": 18005}
+        "north": {
+          "to_room": 18013,
+          "description": "A rocky path climbs toward Rocky Forest Edge"
+        },
+        "south": {
+          "to_room": 18011,
+          "description": "A trail winds toward Deep in the Eastern Woods"
+        },
+        "west": {
+          "to_room": 18005,
+          "description": "A trail winds toward The Whispering Pines"
+        }
       },
       "mob_resets": [
-        {"vnum": 18005, "max": 4}
+        {
+          "vnum": 18005,
+          "max": 4
+        }
       ],
       "obj_resets": [
-        {"vnum": 18022, "max": 1}
+        {
+          "vnum": 18022,
+          "max": 1
+        }
       ]
     },
     "18013": {
@@ -211,12 +380,24 @@
       "sector_type": "hills",
       "flags": [],
       "exits": {
-        "north": {"to_room": 18014},
-        "south": {"to_room": 18012},
-        "west": {"to_room": 18008}
+        "north": {
+          "to_room": 18014,
+          "description": "A rocky path climbs toward The Forest's Northern Edge"
+        },
+        "south": {
+          "to_room": 18012,
+          "description": "A trail winds toward A Bandit's Ambush Point"
+        },
+        "west": {
+          "to_room": 18008,
+          "description": "A rocky path climbs toward Rising Ground"
+        }
       },
       "mob_resets": [
-        {"vnum": 18002, "max": 1}
+        {
+          "vnum": 18002,
+          "max": 1
+        }
       ]
     },
     "18014": {
@@ -226,8 +407,14 @@
       "sector_type": "hills",
       "flags": [],
       "exits": {
-        "north": {"to_room": 19000, "description": "The icy slopes of the Frostspire rise to the north."},
-        "south": {"to_room": 18013}
+        "north": {
+          "to_room": 19000,
+          "description": "The icy slopes of the Frostspire rise to the north."
+        },
+        "south": {
+          "to_room": 18013,
+          "description": "A rocky path climbs toward Rocky Forest Edge"
+        }
       }
     },
     "18015": {
@@ -237,11 +424,20 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "west": {"to_room": 18017},
-        "east": {"to_room": 18002}
+        "west": {
+          "to_room": 18017,
+          "description": "A trail winds toward Bear Territory"
+        },
+        "east": {
+          "to_room": 18002,
+          "description": "A trail winds toward Dense Woodland"
+        }
       },
       "mob_resets": [
-        {"vnum": 18001, "max": 2}
+        {
+          "vnum": 18001,
+          "max": 2
+        }
       ]
     },
     "18016": {
@@ -251,14 +447,26 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "east": {"to_room": 18007},
-        "west": {"to_room": 18018}
+        "east": {
+          "to_room": 18007,
+          "description": "A trail winds toward A Snow-Dusted Glade"
+        },
+        "west": {
+          "to_room": 18018,
+          "description": "A trail winds toward Northwestern Forest"
+        }
       },
       "mob_resets": [
-        {"vnum": 18004, "max": 3}
+        {
+          "vnum": 18004,
+          "max": 3
+        }
       ],
       "obj_resets": [
-        {"vnum": 18023, "max": 1}
+        {
+          "vnum": 18023,
+          "max": 1
+        }
       ]
     },
     "18017": {
@@ -268,11 +476,20 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "north": {"to_room": 18018},
-        "east": {"to_room": 18015}
+        "north": {
+          "to_room": 18018,
+          "description": "A trail winds toward Northwestern Forest"
+        },
+        "east": {
+          "to_room": 18015,
+          "description": "A trail winds toward Western Game Trail"
+        }
       },
       "mob_resets": [
-        {"vnum": 18002, "max": 1}
+        {
+          "vnum": 18002,
+          "max": 1
+        }
       ]
     },
     "18018": {
@@ -282,13 +499,28 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "north": {"to_room": 18019},
-        "east": {"to_room": 18016},
-        "south": {"to_room": 18017}
+        "north": {
+          "to_room": 18019,
+          "description": "A trail winds toward Frozen Wetlands"
+        },
+        "east": {
+          "to_room": 18016,
+          "description": "A trail winds toward A Moonlit Clearing"
+        },
+        "south": {
+          "to_room": 18017,
+          "description": "A trail winds toward Bear Territory"
+        }
       },
       "mob_resets": [
-        {"vnum": 18000, "max": 2},
-        {"vnum": 18001, "max": 1}
+        {
+          "vnum": 18000,
+          "max": 2
+        },
+        {
+          "vnum": 18001,
+          "max": 1
+        }
       ]
     },
     "18019": {
@@ -298,11 +530,20 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "north": {"to_room": 18025},
-        "south": {"to_room": 18018}
+        "north": {
+          "to_room": 18025,
+          "description": "A rocky path climbs toward The Forest's End"
+        },
+        "south": {
+          "to_room": 18018,
+          "description": "A trail winds toward Northwestern Forest"
+        }
       },
       "mob_resets": [
-        {"vnum": 18003, "max": 2}
+        {
+          "vnum": 18003,
+          "max": 2
+        }
       ]
     },
     "18020": {
@@ -310,16 +551,30 @@
       "name": "Inside the Ranger's Cabin",
       "description": "The interior of the cabin is warm and cozy, heated by a crackling fire in a fieldstone hearth. Animal pelts and hunting trophies cover the walls, and a simple wooden table holds the remains of a recent meal. A straw mattress in the corner serves as a bed, covered with thick wool blankets. Bundles of dried herbs hang from the rafters, filling the air with a pleasant, medicinal scent. This is clearly the home of someone who knows the forest intimately.",
       "sector_type": "inside",
-      "flags": ["indoors"],
+      "flags": [
+        "indoors"
+      ],
       "exits": {
-        "outside": {"to_room": 18006}
+        "outside": {
+          "to_room": 18006,
+          "description": "A trail winds toward Outside the Ranger's Cabin"
+        }
       },
       "mob_resets": [
-        {"vnum": 18007, "max": 1}
+        {
+          "vnum": 18007,
+          "max": 1
+        }
       ],
       "obj_resets": [
-        {"vnum": 18024, "max": 1},
-        {"vnum": 18025, "max": 1}
+        {
+          "vnum": 18024,
+          "max": 1
+        },
+        {
+          "vnum": 18025,
+          "max": 1
+        }
       ]
     },
     "18021": {
@@ -329,10 +584,16 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "out": {"to_room": 18016}
+        "out": {
+          "to_room": 18016,
+          "description": "A trail winds toward A Moonlit Clearing"
+        }
       },
       "obj_resets": [
-        {"vnum": 18026, "max": 1}
+        {
+          "vnum": 18026,
+          "max": 1
+        }
       ]
     },
     "18022": {
@@ -342,15 +603,30 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "east": {"to_room": 18012}
+        "east": {
+          "to_room": 18012,
+          "description": "A trail winds toward A Bandit's Ambush Point"
+        }
       },
       "mob_resets": [
-        {"vnum": 18005, "max": 5},
-        {"vnum": 18008, "max": 1}
+        {
+          "vnum": 18005,
+          "max": 5
+        },
+        {
+          "vnum": 18008,
+          "max": 1
+        }
       ],
       "obj_resets": [
-        {"vnum": 18027, "max": 2},
-        {"vnum": 18028, "max": 1}
+        {
+          "vnum": 18027,
+          "max": 2
+        },
+        {
+          "vnum": 18028,
+          "max": 1
+        }
       ]
     },
     "18023": {
@@ -360,8 +636,14 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "south": {"to_room": 18005},
-        "west": {"to_room": 18024}
+        "south": {
+          "to_room": 18005,
+          "description": "A trail winds toward The Whispering Pines"
+        },
+        "west": {
+          "to_room": 18024,
+          "description": "A trail winds toward The Wolf Den"
+        }
       }
     },
     "18024": {
@@ -371,11 +653,20 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "east": {"to_room": 18023}
+        "east": {
+          "to_room": 18023,
+          "description": "A trail winds toward A Frozen Pond"
+        }
       },
       "mob_resets": [
-        {"vnum": 18000, "max": 4},
-        {"vnum": 18009, "max": 1}
+        {
+          "vnum": 18000,
+          "max": 4
+        },
+        {
+          "vnum": 18009,
+          "max": 1
+        }
       ]
     },
     "18025": {
@@ -385,9 +676,18 @@
       "sector_type": "hills",
       "flags": [],
       "exits": {
-        "north": {"to_room": 19000, "description": "The frozen slopes of the Frostspire await."},
-        "east": {"to_room": 18009},
-        "south": {"to_room": 18019}
+        "north": {
+          "to_room": 19000,
+          "description": "The frozen slopes of the Frostspire await."
+        },
+        "east": {
+          "to_room": 18009,
+          "description": "A rocky path climbs toward The Ancient Standing Stones"
+        },
+        "south": {
+          "to_room": 18019,
+          "description": "A trail winds toward Frozen Wetlands"
+        }
       }
     }
   },
@@ -404,7 +704,10 @@
       "gold": 0,
       "exp": 400,
       "armor_class": 75,
-      "flags": ["aggressive", "stay_zone"],
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ],
       "special": null,
       "description": "This is a large grey wolf with a thick winter coat. Its yellow eyes gleam with predatory intelligence, and its lips are pulled back to reveal sharp fangs stained with old blood. Powerful muscles ripple beneath its fur as it moves with silent grace."
     },
@@ -420,7 +723,10 @@
       "gold": 0,
       "exp": 50,
       "armor_class": 90,
-      "flags": ["wimpy", "stay_zone"],
+      "flags": [
+        "wimpy",
+        "stay_zone"
+      ],
       "special": null,
       "description": "This deer has a thick brown coat touched with white on its belly and throat. Large, dark eyes regard you nervously, and its ears swivel constantly, listening for danger. Its legs are tensed, ready to flee at the first sign of threat."
     },
@@ -436,11 +742,17 @@
       "gold": 0,
       "exp": 800,
       "armor_class": 65,
-      "flags": ["aggressive", "stay_zone"],
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ],
       "special": null,
       "description": "This bear is enormous, standing nearly seven feet tall when it rises on its hind legs. Its thick black fur is matted with burrs and dried blood from recent kills. Long claws, each as thick as a finger, gouge the earth with every step. Its small eyes hold a violent, hungry gleam.",
       "loot_table": [
-        {"vnum": 18029, "chance": 30}
+        {
+          "vnum": 18029,
+          "chance": 30
+        }
       ],
       "loot_chance": 100
     },
@@ -456,7 +768,10 @@
       "gold": 0,
       "exp": 600,
       "armor_class": 70,
-      "flags": ["aggressive", "stay_zone"],
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ],
       "special": null,
       "description": "This wolf is larger than its timber wolf cousins, with a coat of pure white that provides perfect camouflage in the snow. Frost clings to its fur, and its breath comes in clouds of mist. There is something unnatural about this creature, as if it is more a spirit of winter than a mere animal."
     },
@@ -472,7 +787,10 @@
       "gold": 50,
       "exp": 450,
       "armor_class": 60,
-      "flags": ["stay_zone", "slow_wander"],
+      "flags": [
+        "stay_zone",
+        "slow_wander"
+      ],
       "special": null,
       "description": "This tiny creature appears to be made of concentrated moonlight, its form shifting and flickering as it moves. Delicate wings beat too fast to see, and a musical giggling accompanies its every movement. Its eyes are bright with ancient mischief."
     },
@@ -488,12 +806,22 @@
       "gold": 150,
       "exp": 500,
       "armor_class": 70,
-      "flags": ["aggressive", "stay_zone", "helper"],
+      "flags": [
+        "aggressive",
+        "stay_zone",
+        "helper"
+      ],
       "special": null,
       "description": "This bandit is a hard-bitten survivor, his face scarred and weathered by years of living rough in the forest. He wears a mismatched collection of stolen clothing and armor, and his eyes constantly dart about, looking for threats and opportunities alike. A cruel smile plays on his cracked lips.",
       "loot_table": [
-        {"vnum": 18027, "chance": 40},
-        {"vnum": 18022, "chance": 20}
+        {
+          "vnum": 18027,
+          "chance": 40
+        },
+        {
+          "vnum": 18022,
+          "chance": 20
+        }
       ],
       "loot_chance": 100
     },
@@ -509,7 +837,10 @@
       "gold": 0,
       "exp": 0,
       "armor_class": 50,
-      "flags": ["sentinel", "stay_zone"],
+      "flags": [
+        "sentinel",
+        "stay_zone"
+      ],
       "special": null,
       "description": "Eldric is a weathered man in his fifties, with grey-streaked hair and keen green eyes that miss nothing. He wears practical leather armor and carries a well-maintained longbow. His face bears the scars of many encounters with the forest's dangers, but his expression is calm and welcoming. He has lived in these woods for thirty years and knows every tree, every trail, every creature that calls this place home."
     },
@@ -525,7 +856,10 @@
       "gold": 25,
       "exp": 100,
       "armor_class": 85,
-      "flags": ["sentinel", "stay_zone"],
+      "flags": [
+        "sentinel",
+        "stay_zone"
+      ],
       "special": null,
       "description": "Bjorn is an ancient man with a long white beard and wild, unkempt hair. His eyes hold a distant, slightly mad gleam, as if he sees things invisible to others. He wears ragged furs and speaks in riddles and half-remembered prophecies. Some say he was once a great wizard who lost his mind, others that he is blessed with second sight. He seems harmless enough, if somewhat unsettling."
     },
@@ -541,12 +875,23 @@
       "gold": 500,
       "exp": 1200,
       "armor_class": 55,
-      "flags": ["aggressive", "sentinel", "stay_zone", "helper"],
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "stay_zone",
+        "helper"
+      ],
       "special": null,
       "description": "The man known as Scarface earned his name from the horrible wound that runs from his forehead to his chin, destroying one eye and twisting his face into a permanent grimace. Despite his disfigurement, he is a cunning and dangerous leader who has united the forest bandits under his cruel rule. He carries a notched sword that has ended many lives.",
       "loot_table": [
-        {"vnum": 18030, "chance": 50},
-        {"vnum": 18027, "chance": 100}
+        {
+          "vnum": 18030,
+          "chance": 50
+        },
+        {
+          "vnum": 18027,
+          "chance": 100
+        }
       ],
       "loot_chance": 100
     },
@@ -562,13 +907,66 @@
       "gold": 0,
       "exp": 1500,
       "armor_class": 50,
-      "flags": ["aggressive", "sentinel", "stay_zone"],
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "stay_zone"
+      ],
       "special": null,
       "description": "This is the largest wolf you have ever seen, easily the size of a small horse. Its silver-grey fur is thick and luxurious, and its amber eyes gleam with a terrifying intelligence far beyond that of a normal animal. Scars on its muzzle and flanks speak of many battles for dominance. This is the alpha of the forest pack, and all other wolves defer to it.",
       "loot_table": [
-        {"vnum": 18031, "chance": 40}
+        {
+          "vnum": 18031,
+          "chance": 40
+        }
       ],
       "loot_chance": 100
+    },
+    "18098": {
+      "vnum": 18098,
+      "name": "grizzled trapper",
+      "short_desc": "a grizzled trapper",
+      "long_desc": "A grizzled trapper kneels here checking a line of snares, his breath misting in the cold air.",
+      "description": "He's a mountain of a man wrapped in fur and leather, with a scarred face that speaks of years surviving in the wild. A massive hunting knife hangs at his belt, well-used but well-maintained.",
+      "level": 35,
+      "alignment": 0,
+      "hp_dice": "35d10+600",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The trapper barely looks up. 'Forest's restless lately. The wolves are moving south \u2014 means something bigger pushed them out of the north. Bears have been aggressive too, not hibernating when they should. Something's wrong deeper in. If you're heading north, travel light and keep a fire going at night. Always.'",
+        "wolves": "He checks a snare. 'The alpha of the northern pack is smart \u2014 almost too smart. Fights like a general, not an animal. Some say it's enchanted. I say it doesn't matter \u2014 steel kills enchanted same as natural.'",
+        "default": "The trapper resets a snare with practiced efficiency, barely making a sound.",
+        "next": "The trapper leans in close. 'You've got grit, I'll give you that. If you're looking for more, the Mines of Moria lie to the east \u2014 Grimjaw the Prospector could use help. Or head to Thalos if you want to test your steel against real fighters.'"
+      }
+    },
+    "18099": {
+      "vnum": 18099,
+      "name": "sleeping bear",
+      "short_desc": "an enormous sleeping bear",
+      "long_desc": "An enormous bear sleeps here in a shallow cave, snoring with thunderous rumbles.",
+      "description": "This bear is absolutely massive \u2014 easily the largest you've ever seen. Its fur is thick and dark, scarred from countless battles. Even in sleep, its claws look deadly. Disturbing it would be extremely unwise.",
+      "level": 45,
+      "alignment": 0,
+      "hp_dice": "45d10+900",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The bear opens one eye, regards you with disinterest, and goes back to sleep. A low growl reminds you that 'disinterest' can change to 'murderous rage' very quickly.",
+        "default": "The bear snores. The ground vibrates slightly."
+      }
     }
   },
   "objects": {
@@ -587,7 +985,7 @@
       "name": "runed stone fragment",
       "short_desc": "a fragment of runed stone",
       "room_desc": "A piece of ancient runed stone lies among the monoliths.",
-      "type": "other",
+      "type": "treasure",
       "weight": 5,
       "cost": 200
     },
@@ -607,7 +1005,7 @@
       "name": "moonpetal flower",
       "short_desc": "a shimmering moonpetal flower",
       "room_desc": "A delicate flower shimmers with ethereal light here.",
-      "type": "other",
+      "type": "treasure",
       "weight": 0,
       "cost": 100
     },
@@ -616,7 +1014,7 @@
       "name": "ranger's map",
       "short_desc": "a hand-drawn map of the northern forest",
       "room_desc": "A weathered map lies on the table.",
-      "type": "other",
+      "type": "furniture",
       "weight": 1,
       "cost": 75
     },
@@ -669,7 +1067,9 @@
       "weight": 20,
       "cost": 150,
       "ac_apply": -3,
-      "wear_flags": ["body"]
+      "wear_flags": [
+        "body"
+      ]
     },
     "18030": {
       "vnum": 18030,
@@ -687,9 +1087,20 @@
       "name": "alpha wolf fang",
       "short_desc": "a massive wolf fang",
       "room_desc": "An enormous wolf fang lies on the ground.",
-      "type": "other",
+      "type": "treasure",
       "weight": 1,
       "cost": 200
+    },
+    "18095": {
+      "vnum": 18095,
+      "name": "wooden signpost",
+      "short_desc": "a weathered signpost",
+      "room_desc": "A weathered signpost stands at the forest edge, scarred by claw marks.",
+      "item_type": "furniture",
+      "type": "furniture",
+      "weight": 0,
+      "value": 0,
+      "readable_text": "=== GREAT NORTHERN FOREST ===\nRecommended Level: 5-15\nWARNING: Wolves and worse roam these woods\nSouth: Return to Midgaard\nSeek Borin the Wilderness Guide for quests"
     }
   }
 }

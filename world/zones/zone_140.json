@@ -15,10 +15,12 @@
       "terrain": "undead",
       "exits": {
         "north": {
-          "to_room": 7099
+          "to_room": 7099,
+          "description": "A passage leads to The Threshold Of The Necropolis"
         },
         "south": {
-          "to_room": 14001
+          "to_room": 14001,
+          "description": "The way leads to Avenue of Tombs"
         },
         "up": {
           "to_room": 7000,
@@ -51,16 +53,20 @@
       "terrain": "undead",
       "exits": {
         "north": {
-          "to_room": 14000
+          "to_room": 14000,
+          "description": "The way leads to Gates of the Dead"
         },
         "south": {
-          "to_room": 14002
+          "to_room": 14002,
+          "description": "The way leads to Plaza of Bones"
         },
         "east": {
-          "to_room": 14003
+          "to_room": 14003,
+          "description": "The way leads to Crypt Row"
         },
         "west": {
-          "to_room": 14004
+          "to_room": 14004,
+          "description": "The way leads to The Pauper's Field"
         }
       },
       "vnum": 14001,
@@ -81,16 +87,20 @@
       "terrain": "undead",
       "exits": {
         "north": {
-          "to_room": 14001
+          "to_room": 14001,
+          "description": "The way leads to Avenue of Tombs"
         },
         "south": {
-          "to_room": 14005
+          "to_room": 14005,
+          "description": "The way leads to Temple of the Death God"
         },
         "east": {
-          "to_room": 14006
+          "to_room": 14006,
+          "description": "The way leads to Mausoleum District"
         },
         "west": {
-          "to_room": 14007
+          "to_room": 14007,
+          "description": "The way leads to The Charnel House"
         }
       },
       "vnum": 14002,
@@ -109,6 +119,10 @@
         {
           "vnum": 14005,
           "max": 1
+        },
+        {
+          "vnum": 14099,
+          "max": 1
         }
       ],
       "obj_resets": []
@@ -119,10 +133,12 @@
       "terrain": "undead",
       "exits": {
         "west": {
-          "to_room": 14001
+          "to_room": 14001,
+          "description": "The way leads to Avenue of Tombs"
         },
         "south": {
-          "to_room": 14006
+          "to_room": 14006,
+          "description": "The way leads to Mausoleum District"
         }
       },
       "vnum": 14003,
@@ -151,7 +167,8 @@
       "terrain": "undead",
       "exits": {
         "east": {
-          "to_room": 14001
+          "to_room": 14001,
+          "description": "The way leads to Avenue of Tombs"
         }
       },
       "vnum": 14004,
@@ -180,10 +197,12 @@
       "terrain": "undead",
       "exits": {
         "north": {
-          "to_room": 14002
+          "to_room": 14002,
+          "description": "The way leads to Plaza of Bones"
         },
         "south": {
-          "to_room": 14008
+          "to_room": 14008,
+          "description": "The way leads to Sanctum of Dark Rites"
         }
       },
       "vnum": 14005,
@@ -202,6 +221,10 @@
         {
           "vnum": 14004,
           "max": 1
+        },
+        {
+          "vnum": 14098,
+          "max": 1
         }
       ],
       "obj_resets": []
@@ -212,13 +235,16 @@
       "terrain": "undead",
       "exits": {
         "north": {
-          "to_room": 14003
+          "to_room": 14003,
+          "description": "The way leads to Crypt Row"
         },
         "west": {
-          "to_room": 14002
+          "to_room": 14002,
+          "description": "The way leads to Plaza of Bones"
         },
         "south": {
-          "to_room": 14009
+          "to_room": 14009,
+          "description": "The way leads to Vampire's Mausoleum"
         }
       },
       "vnum": 14006,
@@ -239,10 +265,12 @@
       "terrain": "undead",
       "exits": {
         "east": {
-          "to_room": 14002
+          "to_room": 14002,
+          "description": "The way leads to Plaza of Bones"
         },
         "south": {
-          "to_room": 14010
+          "to_room": 14010,
+          "description": "The way leads to Ghoul Warren"
         }
       },
       "vnum": 14007,
@@ -267,7 +295,8 @@
       "terrain": "undead",
       "exits": {
         "north": {
-          "to_room": 14005
+          "to_room": 14005,
+          "description": "The way leads to Temple of the Death God"
         }
       },
       "vnum": 14008,
@@ -288,7 +317,8 @@
       "terrain": "undead",
       "exits": {
         "north": {
-          "to_room": 14006
+          "to_room": 14006,
+          "description": "The way leads to Mausoleum District"
         }
       },
       "vnum": 14009,
@@ -317,10 +347,12 @@
       "terrain": "undead",
       "exits": {
         "north": {
-          "to_room": 14007
+          "to_room": 14007,
+          "description": "The way leads to The Charnel House"
         },
         "down": {
-          "to_room": 14011
+          "to_room": 14011,
+          "description": "The way leads to Underground Burial Chambers"
         }
       },
       "vnum": 14010,
@@ -345,13 +377,16 @@
       "terrain": "underground",
       "exits": {
         "up": {
-          "to_room": 14010
+          "to_room": 14010,
+          "description": "The way leads to Ghoul Warren"
         },
         "south": {
-          "to_room": 14012
+          "to_room": 14012,
+          "description": "The way leads to The Ossuary"
         },
         "east": {
-          "to_room": 14013
+          "to_room": 14013,
+          "description": "The way leads to Catacombs"
         }
       },
       "vnum": 14011,
@@ -384,7 +419,8 @@
       "terrain": "underground",
       "exits": {
         "north": {
-          "to_room": 14011
+          "to_room": 14011,
+          "description": "The way leads to Underground Burial Chambers"
         }
       },
       "vnum": 14012,
@@ -409,10 +445,12 @@
       "terrain": "underground",
       "exits": {
         "west": {
-          "to_room": 14011
+          "to_room": 14011,
+          "description": "The way leads to Underground Burial Chambers"
         },
         "south": {
-          "to_room": 14014
+          "to_room": 14014,
+          "description": "The way leads to The Deep Crypts"
         }
       },
       "vnum": 14013,
@@ -437,10 +475,12 @@
       "terrain": "underground",
       "exits": {
         "north": {
-          "to_room": 14013
+          "to_room": 14013,
+          "description": "The way leads to Catacombs"
         },
         "east": {
-          "to_room": 14015
+          "to_room": 14015,
+          "description": "The way leads to Ancient Burial Chamber"
         }
       },
       "vnum": 14014,
@@ -469,7 +509,8 @@
       "terrain": "underground",
       "exits": {
         "west": {
-          "to_room": 14014
+          "to_room": 14014,
+          "description": "The way leads to The Deep Crypts"
         }
       },
       "vnum": 14015,
@@ -502,13 +543,16 @@
       "terrain": "undead",
       "exits": {
         "north": {
-          "to_room": 14002
+          "to_room": 14002,
+          "description": "The way leads to Plaza of Bones"
         },
         "south": {
-          "to_room": 14017
+          "to_room": 14017,
+          "description": "The way leads to The Black Library"
         },
         "east": {
-          "to_room": 14018
+          "to_room": 14018,
+          "description": "The way leads to Summoning Chamber"
         }
       },
       "vnum": 14016,
@@ -537,7 +581,8 @@
       "terrain": "undead",
       "exits": {
         "north": {
-          "to_room": 14016
+          "to_room": 14016,
+          "description": "The way leads to Necromancer's Quarter"
         }
       },
       "vnum": 14017,
@@ -562,7 +607,8 @@
       "terrain": "undead",
       "exits": {
         "west": {
-          "to_room": 14016
+          "to_room": 14016,
+          "description": "The way leads to Necromancer's Quarter"
         }
       },
       "vnum": 14018,
@@ -587,10 +633,12 @@
       "terrain": "undead",
       "exits": {
         "west": {
-          "to_room": 14002
+          "to_room": 14002,
+          "description": "The way leads to Plaza of Bones"
         },
         "up": {
-          "to_room": 14020
+          "to_room": 14020,
+          "description": "The way leads to Tower Entrance Hall"
         }
       },
       "vnum": 14019,
@@ -631,10 +679,12 @@
       "terrain": "undead",
       "exits": {
         "down": {
-          "to_room": 14019
+          "to_room": 14019,
+          "description": "The way leads to The Lich Tower Approach"
         },
         "up": {
-          "to_room": 14021
+          "to_room": 14021,
+          "description": "The way leads to Trophy Hall"
         }
       },
       "vnum": 14020,
@@ -659,10 +709,12 @@
       "terrain": "undead",
       "exits": {
         "down": {
-          "to_room": 14020
+          "to_room": 14020,
+          "description": "The way leads to Tower Entrance Hall"
         },
         "up": {
-          "to_room": 14022
+          "to_room": 14022,
+          "description": "The way leads to Library of the Damned"
         }
       },
       "vnum": 14021,
@@ -683,10 +735,12 @@
       "terrain": "undead",
       "exits": {
         "down": {
-          "to_room": 14021
+          "to_room": 14021,
+          "description": "The way leads to Trophy Hall"
         },
         "up": {
-          "to_room": 14023
+          "to_room": 14023,
+          "description": "The way leads to The Ritual Chamber"
         }
       },
       "vnum": 14022,
@@ -707,10 +761,12 @@
       "terrain": "undead",
       "exits": {
         "down": {
-          "to_room": 14022
+          "to_room": 14022,
+          "description": "The way leads to Library of the Damned"
         },
         "up": {
-          "to_room": 14024
+          "to_room": 14024,
+          "description": "The way leads to The Phylactery Chamber"
         }
       },
       "vnum": 14023,
@@ -743,7 +799,8 @@
       "terrain": "undead",
       "exits": {
         "down": {
-          "to_room": 14023
+          "to_room": 14023,
+          "description": "The way leads to The Ritual Chamber"
         }
       },
       "vnum": 14024,
@@ -772,10 +829,12 @@
       "terrain": "undead",
       "exits": {
         "east": {
-          "to_room": 14002
+          "to_room": 14002,
+          "description": "The way leads to Plaza of Bones"
         },
         "south": {
-          "to_room": 14026
+          "to_room": 14026,
+          "description": "The way leads to Chapel of Lost Hope"
         }
       },
       "vnum": 14025,
@@ -804,7 +863,8 @@
       "terrain": "undead",
       "exits": {
         "north": {
-          "to_room": 14025
+          "to_room": 14025,
+          "description": "The way leads to Graveyard of Heroes"
         }
       },
       "vnum": 14026,
@@ -833,7 +893,8 @@
       "terrain": "undead",
       "exits": {
         "north": {
-          "to_room": 14019
+          "to_room": 14019,
+          "description": "The way leads to The Lich Tower Approach"
         }
       },
       "vnum": 14027,
@@ -866,7 +927,8 @@
       "terrain": "undead",
       "exits": {
         "west": {
-          "to_room": 14001
+          "to_room": 14001,
+          "description": "The way leads to Avenue of Tombs"
         }
       },
       "vnum": 14028,
@@ -891,10 +953,12 @@
       "terrain": "undead",
       "exits": {
         "east": {
-          "to_room": 14016
+          "to_room": 14016,
+          "description": "The way leads to Necromancer's Quarter"
         },
         "west": {
-          "to_room": 14030
+          "to_room": 14030,
+          "description": "The way leads to Verdant Dragon Lair"
         }
       },
       "vnum": 14029,
@@ -937,7 +1001,8 @@
       "flags": [],
       "exits": {
         "east": {
-          "to_room": 14029
+          "to_room": 14029,
+          "description": "The way leads to The Corpse Market"
         }
       },
       "extra_descs": {},
@@ -1228,85 +1293,101 @@
         14022
       ],
       "max_in_zone": 2,
-      "vnum": 14000
+      "vnum": 14000,
+      "type": "note"
     },
     "14001": {
-      "name": "death knight armor",
-      "short_desc": "a suit of black plate armor",
-      "long_desc": "Black armor covered in profane symbols stands here on display.",
-      "description": "This armor was worn by a fallen paladin, corrupted into service of evil. The plate is black as midnight and etched with symbols of death. Despite its dark appearance, it's incredibly protective and grants unholy strength. The armor whispers to those who wear it, encouraging dark deeds. It's both a powerful tool and a corrupting influence.",
+      "vnum": 14001,
+      "name": "bone plate armor",
+      "short_desc": "bone plate armor",
+      "room_desc": "Armor made of fused bones lies here.",
+      "description": "Necromantic bone armor.",
       "item_type": "armor",
-      "value": 2000,
-      "weight": 50,
-      "armor_location": "body",
-      "armor_class": 18,
-      "magic_bonus": 2,
-      "special_properties": [
-        "strength_bonus",
-        "cursed"
+      "weight": 8,
+      "value": 14000,
+      "wear_slot": "body",
+      "armor_class": 9,
+      "affects": [
+        {
+          "type": "int",
+          "value": 2
+        },
+        {
+          "type": "shadow_resist",
+          "value": 5
+        }
       ],
-      "spawn_rooms": [
-        14021,
-        14025
-      ],
-      "max_in_zone": 1,
-      "vnum": 14001
+      "set_id": "necromancers_regalia",
+      "type": "armor",
+      "min_level": 35
     },
     "14002": {
-      "name": "bone wand",
-      "short_desc": "a wand carved from a lich's finger bone",
-      "long_desc": "A wand of yellowed bone lies here, cold to the touch.",
-      "description": "This wand is carved from the finger bone of a lich - a powerful necromantic focus. It enhances death magic and can cast certain necromancy spells on its own. The bone is carved with tiny runes and capped with a black onyx. It feels wrong to touch, like holding something that should not exist.",
-      "item_type": "wand",
-      "value": 1500,
-      "weight": 1,
-      "magic_bonus": 2,
-      "charges": 20,
-      "special_properties": [
-        "casts_animate_dead"
+      "vnum": 14002,
+      "name": "skull-topped staff",
+      "short_desc": "a skull-topped staff",
+      "room_desc": "A staff topped with a skull lies here.",
+      "description": "A necromancer's staff.",
+      "item_type": "weapon",
+      "weight": 5,
+      "value": 13000,
+      "wear_slot": "wield",
+      "weapon_type": "pound",
+      "damage_dice": "3d6+4",
+      "affects": [
+        {
+          "type": "int",
+          "value": 2
+        },
+        {
+          "type": "damroll",
+          "value": 3
+        }
       ],
-      "spawn_rooms": [
-        14008,
-        14018
-      ],
-      "max_in_zone": 2,
-      "vnum": 14002
+      "set_id": "necromancers_regalia",
+      "type": "weapon",
+      "min_level": 35
     },
     "14003": {
-      "name": "vampire's fangs",
-      "short_desc": "a pair of elongated vampire fangs",
-      "long_desc": "Two sharp fangs rest here, still dripping blood.",
-      "description": "These fangs were taken from a destroyed vampire. They retain a fragment of vampiric power - when worn, they grant enhanced senses and the ability to drain life from enemies. They're macabre and disturbing, but undeniably powerful. Some vampire hunters collect these as trophies.",
-      "item_type": "ingredient",
-      "value": 800,
-      "weight": 1,
-      "magic_bonus": 1,
-      "special_properties": [
-        "life_drain_on_hit"
+      "vnum": 14003,
+      "name": "death shroud cloak",
+      "short_desc": "a death shroud cloak",
+      "room_desc": "A cloak of deathly shrouds lies here.",
+      "description": "Woven from grave cloth.",
+      "item_type": "armor",
+      "weight": 2,
+      "value": 11000,
+      "wear_slot": "about",
+      "armor_class": 4,
+      "affects": [
+        {
+          "type": "shadow_resist",
+          "value": 10
+        }
       ],
-      "spawn_rooms": [
-        14009
-      ],
-      "max_in_zone": 1,
-      "vnum": 14003
+      "set_id": "necromancers_regalia",
+      "type": "armor",
+      "min_level": 35
     },
     "14004": {
-      "name": "skull chalice",
-      "short_desc": "a chalice carved from a human skull",
-      "long_desc": "A drinking vessel made from a skull sits here, lined with silver.",
-      "description": "This chalice is carved from a human skull and lined with silver. Necromancers use it in dark rituals, filling it with blood for offerings. The skull's teeth are embedded with gems. It's both valuable and deeply unsettling. Drinking from it is said to grant temporary protection from undead.",
-      "item_type": "treasure",
-      "value": 1000,
-      "weight": 3,
-      "special_properties": [
-        "undead_protection"
+      "vnum": 14004,
+      "name": "ring of the lich",
+      "short_desc": "a ring of the lich",
+      "room_desc": "A ring pulsing with dark energy lies here.",
+      "description": "Cold to the touch.",
+      "item_type": "armor",
+      "weight": 0,
+      "value": 12000,
+      "wear_slot": "finger",
+      "armor_class": 2,
+      "affects": [
+        {
+          "type": "max_mana",
+          "value": 30
+        }
       ],
-      "spawn_rooms": [
-        14005,
-        14008
-      ],
-      "max_in_zone": 2,
-      "vnum": 14004
+      "set_id": "necromancers_regalia",
+      "type": "armor",
+      "min_level": 35
     },
     "14005": {
       "name": "phylactery shard",
@@ -1321,7 +1402,8 @@
         14024
       ],
       "max_in_zone": 1,
-      "vnum": 14005
+      "vnum": 14005,
+      "type": "trash"
     },
     "14010": {
       "vnum": 14010,
@@ -1379,7 +1461,8 @@
           "value": 2
         }
       ],
-      "set_id": 140
+      "set_id": 140,
+      "type": "weapon"
     },
     "9102": {
       "vnum": 9102,
@@ -1406,7 +1489,8 @@
           "value": 2
         }
       ],
-      "set_id": 140
+      "set_id": 140,
+      "type": "weapon"
     },
     "9103": {
       "vnum": 9103,
@@ -1432,7 +1516,8 @@
           "value": 2
         }
       ],
-      "set_id": 140
+      "set_id": 140,
+      "type": "treasure"
     },
     "9104": {
       "vnum": 9104,
@@ -1454,7 +1539,8 @@
           "value": 10
         }
       ],
-      "set_id": 140
+      "set_id": 140,
+      "type": "treasure"
     },
     "14013": {
       "vnum": 14013,
@@ -1474,7 +1560,8 @@
           "value": 5
         }
       ],
-      "set_id": 140
+      "set_id": 140,
+      "type": "weapon"
     },
     "14014": {
       "vnum": 14014,
@@ -1493,7 +1580,9 @@
           "value": 2
         }
       ],
-      "set_id": 140
+      "set_id": 140,
+      "type": "armor",
+      "armor": 3
     },
     "14015": {
       "vnum": 14015,
@@ -1511,7 +1600,8 @@
           "value": 5
         }
       ],
-      "set_id": 140
+      "set_id": 140,
+      "type": "treasure"
     },
     "14016": {
       "vnum": 14016,
@@ -1533,7 +1623,8 @@
           "value": 40
         }
       ],
-      "set_id": 140
+      "set_id": 140,
+      "type": "treasure"
     },
     "14017": {
       "vnum": 14017,
@@ -1555,7 +1646,8 @@
           "value": 40
         }
       ],
-      "set_id": 140
+      "set_id": 140,
+      "type": "treasure"
     },
     "14018": {
       "vnum": 14018,
@@ -1575,7 +1667,8 @@
           "value": 4
         }
       ],
-      "set_id": 140
+      "set_id": 140,
+      "type": "treasure"
     },
     "14019": {
       "vnum": 14019,
@@ -1599,7 +1692,8 @@
           "value": 2
         }
       ],
-      "set_id": 140
+      "set_id": 140,
+      "type": "weapon"
     },
     "14020": {
       "vnum": 14020,
@@ -1621,7 +1715,9 @@
           "value": 1
         }
       ],
-      "set_id": 140
+      "set_id": 140,
+      "type": "armor",
+      "armor": 0
     },
     "14021": {
       "vnum": 14021,
@@ -1640,7 +1736,9 @@
           "value": 10
         }
       ],
-      "set_id": 140
+      "set_id": 140,
+      "type": "armor",
+      "armor": 1
     },
     "14090": {
       "vnum": 14090,
@@ -1661,7 +1759,9 @@
           "type": "sneak",
           "value": 7
         }
-      ]
+      ],
+      "type": "armor",
+      "armor": 1
     },
     "14091": {
       "vnum": 14091,
@@ -1682,7 +1782,8 @@
           "type": "ambush",
           "value": 10
         }
-      ]
+      ],
+      "type": "treasure"
     },
     "14092": {
       "vnum": 14092,
@@ -1703,7 +1804,8 @@
           "type": "track",
           "value": 10
         }
-      ]
+      ],
+      "type": "treasure"
     },
     "14093": {
       "vnum": 14093,
@@ -1724,7 +1826,8 @@
           "type": "poison_cloud",
           "value": 12
         }
-      ]
+      ],
+      "type": "treasure"
     }
   },
   "mobs": {
@@ -2047,30 +2150,56 @@
         {
           "vnum": 14093,
           "chance": 10
+        },
+        {
+          "vnum": 14001,
+          "chance": 25
+        },
+        {
+          "vnum": 14002,
+          "chance": 25
+        },
+        {
+          "vnum": 14003,
+          "chance": 25
+        },
+        {
+          "vnum": 14004,
+          "chance": 25
         }
       ],
       "boss_loot_chance": 85,
       "boss_config": {
         "enrage_time": 120,
         "enrage_multiplier": 1.8,
-        "ability_interval": 5.0,
+        "ability_interval": 4.5,
         "phases": [
           {
-            "threshold": 70,
-            "message": "Verdraxx exhales a choking poison cloud!"
-          },
-          {
-            "threshold": 35,
-            "message": "Verdraxx thrashes wildly, scales oozing venom!"
+            "threshold": 40,
+            "message": "\u001b[32mVerdraxx summons the dead from the earth! A necrotic aura fills the chamber!\u001b[0m",
+            "spawn_adds": {
+              "14008": 2
+            }
           }
         ],
         "abilities": [
           {
             "name": "Poison Breath",
-            "telegraph": "Verdraxx inhales deeply, green mist swirling in its maw!",
+            "telegraph": "\u001b[32mVerdraxx inhales deeply, green mist swirling!\u001b[0m",
             "cast_time": 3,
-            "cooldown": 18,
-            "damage_dice": "6d6+10",
+            "cooldown": 16,
+            "damage_dice": "6d6+12",
+            "aoe": true,
+            "dodge": true,
+            "interruptible": true,
+            "vulnerable_after": 4
+          },
+          {
+            "name": "Vine Entangle",
+            "telegraph": "Vines erupt from the ground, grasping at you!",
+            "cast_time": 2,
+            "cooldown": 12,
+            "damage_dice": "3d6+6",
             "aoe": true,
             "dodge": true
           },
@@ -2079,8 +2208,30 @@
             "telegraph": "Verdraxx spits a glob of venom!",
             "cast_time": 1,
             "cooldown": 8,
-            "damage_dice": "3d8+6",
+            "damage_dice": "3d8+8",
             "dodge": true
+          },
+          {
+            "name": "Necrotic Breath",
+            "telegraph": "\u001b[35mVerdraxx exhales a wave of necrotic energy!\u001b[0m",
+            "cast_time": 3,
+            "cooldown": 15,
+            "damage_dice": "5d8+15",
+            "aoe": true,
+            "dodge": true,
+            "interruptible": true,
+            "min_phase": 1
+          },
+          {
+            "name": "Raise Dead",
+            "telegraph": "Verdraxx commands the dead to rise!",
+            "cast_time": 3,
+            "cooldown": 25,
+            "damage": 0,
+            "min_phase": 1,
+            "summon": {
+              "14008": 2
+            }
           }
         ]
       },
@@ -2130,6 +2281,53 @@
         }
       ],
       "loot_chance": 100
+    },
+    "14098": {
+      "vnum": 14098,
+      "name": "restless ghost",
+      "short_desc": "a restless ghost",
+      "long_desc": "A translucent ghost floats here, wringing its spectral hands in eternal distress.",
+      "description": "The ghost wears the faded remnants of a noble's attire. Its face is frozen in an expression of profound regret, and faint chains of ethereal light bind it to this place.",
+      "level": 42,
+      "alignment": 0,
+      "hp_dice": "42d10+800",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The ghost wails softly. 'I was a lord of these lands, once. I sought eternal life and found eternal death instead. The necromancer promised salvation \u2014 he delivered damnation. His phylactery is hidden in the deepest crypt, pulsing with stolen souls. Destroy it, and perhaps we can all finally rest.'",
+        "necromancer": "The ghost's form flickers with rage. 'He was my court wizard. I trusted him. He murdered us all in a single night and raised us as his servants. The crypt beneath the great mausoleum \u2014 that is where his power dwells.'",
+        "default": "The ghost stares at its translucent hands, murmuring. 'What have I become...'",
+        "next": "The ghost's hollow voice echoes. 'There are places darker still than this graveyard. The Dragon's Domain... fire and death await there. And the Plane of Eternal Chaos \u2014 reality itself unravels. Only the truly powerful survive such places.'"
+      }
+    },
+    "14099": {
+      "vnum": 14099,
+      "name": "grave keeper",
+      "short_desc": "a morose grave keeper",
+      "long_desc": "A hunched grave keeper shuffles here, lantern in one hand and shovel in the other.",
+      "description": "He is the only living soul who dwells in the Necropolis willingly. His skin is sallow, his eyes permanently red-rimmed, and he speaks to the dead more than the living.",
+      "level": 35,
+      "alignment": 0,
+      "hp_dice": "35d10+600",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The grave keeper eyes you wearily. 'Another hero come to cleanse the dead. They all say that. Most end up joining my... residents. Word of advice \u2014 the skeletons are mindless, easy. The ghouls are cunning. But the wraiths... the wraiths remember who they were. That makes them dangerous. And angry.'",
+        "dead": "He leans on his shovel. 'Don't disturb the sealed tombs. Some things are buried for a reason. The ones with iron chains on the doors? Those aren't to keep robbers out. They're to keep what's inside IN.'",
+        "default": "The grave keeper hums a funeral dirge and adjusts a crooked headstone."
+      }
     }
   }
 }

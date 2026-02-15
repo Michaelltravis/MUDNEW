@@ -116,11 +116,11 @@
       "exits": {
         "north": {
           "to_room": 6506,
-          "description": ""
+          "description": "A passage leads to A Bend In The Narrow Path"
         },
         "south": {
           "to_room": 6540,
-          "description": ""
+          "description": "A passage leads to The Dark Path"
         }
       }
     },
@@ -133,11 +133,11 @@
       "exits": {
         "east": {
           "to_room": 6503,
-          "description": ""
+          "description": "A rocky path climbs toward The Top Of The Mountain"
         },
         "west": {
           "to_room": 6513,
-          "description": "",
+          "description": "A passage leads to Inside The Entrance",
           "door": {
             "name": "door",
             "state": "open",
@@ -174,11 +174,11 @@
       "exits": {
         "east": {
           "to_room": 6507,
-          "description": ""
+          "description": "A passage leads to The Narrow Path"
         },
         "south": {
           "to_room": 6504,
-          "description": ""
+          "description": "A passage leads to The Narrow Path"
         }
       },
       "extra_descs": {
@@ -196,11 +196,11 @@
       "exits": {
         "north": {
           "to_room": 6508,
-          "description": ""
+          "description": "A passage leads to The Narrow North-South Path"
         },
         "west": {
           "to_room": 6506,
-          "description": ""
+          "description": "A passage leads to A Bend In The Narrow Path"
         }
       }
     },
@@ -215,11 +215,11 @@
       "exits": {
         "north": {
           "to_room": 6509,
-          "description": ""
+          "description": "A passage leads to The Door To The Kingdom"
         },
         "south": {
           "to_room": 6507,
-          "description": ""
+          "description": "A passage leads to The Narrow Path"
         }
       },
       "mob_resets": [
@@ -240,7 +240,7 @@
       "exits": {
         "north": {
           "to_room": 6510,
-          "description": "",
+          "description": "A passage leads to On The Path To The Castle",
           "door": {
             "name": "door",
             "state": "open",
@@ -250,11 +250,11 @@
         },
         "south": {
           "to_room": 6508,
-          "description": ""
+          "description": "A passage leads to The Narrow North-South Path"
         },
         "west": {
           "to_room": 6522,
-          "description": ""
+          "description": "A passage leads to A Guard House"
         }
       },
       "mob_resets": [
@@ -279,11 +279,11 @@
       "exits": {
         "north": {
           "to_room": 6511,
-          "description": ""
+          "description": "A passage leads to Still On The Path To The Castle"
         },
         "south": {
           "to_room": 6509,
-          "description": "",
+          "description": "A passage leads to The Door To The Kingdom",
           "door": {
             "name": "door",
             "state": "open",
@@ -304,11 +304,11 @@
       "exits": {
         "north": {
           "to_room": 6512,
-          "description": ""
+          "description": "A passage leads to The Door To The Castle"
         },
         "south": {
           "to_room": 6510,
-          "description": ""
+          "description": "A passage leads to On The Path To The Castle"
         }
       }
     },
@@ -323,7 +323,7 @@
       "exits": {
         "east": {
           "to_room": 6525,
-          "description": "",
+          "description": "A passage leads to Inside Of Castle Strangelove",
           "door": {
             "name": "door",
             "state": "open",
@@ -333,7 +333,7 @@
         },
         "south": {
           "to_room": 6511,
-          "description": ""
+          "description": "A passage leads to Still On The Path To The Castle"
         }
       },
       "mob_resets": [
@@ -393,11 +393,11 @@
       "exits": {
         "north": {
           "to_room": 6515,
-          "description": ""
+          "description": "A passage leads to A Turn In The Road"
         },
         "south": {
           "to_room": 6513,
-          "description": ""
+          "description": "A passage leads to Inside The Entrance"
         }
       }
     },
@@ -412,7 +412,7 @@
       "exits": {
         "south": {
           "to_room": 6514,
-          "description": ""
+          "description": "A passage leads to The Path"
         },
         "west": {
           "to_room": 6516,
@@ -438,11 +438,11 @@
       "exits": {
         "north": {
           "to_room": 6517,
-          "description": ""
+          "description": "A passage leads to The Path To The North Of The Shop"
         },
         "east": {
           "to_room": 6515,
-          "description": ""
+          "description": "A passage leads to A Turn In The Road"
         }
       },
       "mob_resets": [
@@ -463,15 +463,15 @@
       "exits": {
         "north": {
           "to_room": 6518,
-          "description": ""
+          "description": "A passage leads to North Of The Shops"
         },
         "south": {
           "to_room": 6516,
-          "description": ""
+          "description": "A passage leads to The Hide & Tooth Shop"
         },
         "west": {
           "to_room": 6535,
-          "description": ""
+          "description": "A passage leads to Granite Head's Bakery"
         }
       }
     },
@@ -486,11 +486,11 @@
       "exits": {
         "east": {
           "to_room": 6519,
-          "description": ""
+          "description": "A passage leads to A Path By The Hospital"
         },
         "south": {
           "to_room": 6517,
-          "description": ""
+          "description": "A passage leads to The Path To The North Of The Shop"
         }
       }
     },
@@ -505,15 +505,15 @@
       "exits": {
         "north": {
           "to_room": 6534,
-          "description": ""
+          "description": "A passage leads to The Hospital"
         },
         "east": {
           "to_room": 6520,
-          "description": ""
+          "description": "A passage leads to A Path Next To The Barracks"
         },
         "west": {
           "to_room": 6518,
-          "description": ""
+          "description": "A passage leads to North Of The Shops"
         }
       }
     },
@@ -528,17 +528,21 @@
       "exits": {
         "east": {
           "to_room": 6521,
-          "description": ""
+          "description": "A passage leads to The Entrance To The Barracks"
         },
         "west": {
           "to_room": 6519,
-          "description": ""
+          "description": "A passage leads to A Path By The Hospital"
         }
       },
       "mob_resets": [
         {
           "vnum": 6505,
           "max": 2
+        },
+        {
+          "vnum": 6598,
+          "max": 1
         }
       ]
     },
@@ -553,7 +557,7 @@
       "exits": {
         "south": {
           "to_room": 6523,
-          "description": "",
+          "description": "A passage leads to The First Barrack Room",
           "door": {
             "name": "door",
             "state": "closed",
@@ -563,7 +567,7 @@
         },
         "west": {
           "to_room": 6520,
-          "description": ""
+          "description": "A passage leads to A Path Next To The Barracks"
         }
       },
       "mob_resets": [
@@ -600,7 +604,7 @@
       "exits": {
         "east": {
           "to_room": 6509,
-          "description": ""
+          "description": "A passage leads to The Door To The Kingdom"
         }
       },
       "extra_descs": {
@@ -618,7 +622,7 @@
       "exits": {
         "north": {
           "to_room": 6521,
-          "description": "",
+          "description": "A passage leads to The Entrance To The Barracks",
           "door": {
             "name": "door",
             "state": "closed",
@@ -628,7 +632,7 @@
         },
         "south": {
           "to_room": 6524,
-          "description": ""
+          "description": "A passage leads to The Back Of The Barracks"
         }
       },
       "mob_resets": [
@@ -657,7 +661,7 @@
       "exits": {
         "north": {
           "to_room": 6523,
-          "description": ""
+          "description": "A passage leads to The First Barrack Room"
         }
       },
       "mob_resets": [
@@ -686,7 +690,7 @@
       "exits": {
         "west": {
           "to_room": 6512,
-          "description": "",
+          "description": "A passage leads to The Door To The Castle",
           "door": {
             "name": "door",
             "state": "open",
@@ -696,9 +700,15 @@
         },
         "up": {
           "to_room": 6528,
-          "description": ""
+          "description": "A passage leads to On The Stairs In Castle Strangelove"
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 6599,
+          "max": 1
+        }
+      ]
     },
     "6526": {
       "vnum": 6526,
@@ -741,7 +751,7 @@
       "exits": {
         "up": {
           "to_room": 6526,
-          "description": "",
+          "description": "A passage leads to A Store Room",
           "door": {
             "name": "trapdoor",
             "state": "closed",
@@ -768,11 +778,11 @@
       "exits": {
         "up": {
           "to_room": 6529,
-          "description": ""
+          "description": "A passage leads to On The Stairs"
         },
         "down": {
           "to_room": 6525,
-          "description": ""
+          "description": "A passage leads to Inside Of Castle Strangelove"
         }
       }
     },
@@ -787,11 +797,11 @@
       "exits": {
         "up": {
           "to_room": 6530,
-          "description": ""
+          "description": "A passage leads to At The Top Of The Stairs"
         },
         "down": {
           "to_room": 6528,
-          "description": ""
+          "description": "A passage leads to On The Stairs In Castle Strangelove"
         }
       }
     },
@@ -806,11 +816,11 @@
       "exits": {
         "east": {
           "to_room": 6531,
-          "description": ""
+          "description": "A passage leads to The Queen's Waiting Room"
         },
         "down": {
           "to_room": 6529,
-          "description": ""
+          "description": "A passage leads to On The Stairs"
         }
       }
     },
@@ -825,7 +835,7 @@
       "exits": {
         "north": {
           "to_room": 6532,
-          "description": "",
+          "description": "A passage leads to The Queen's Bedroom",
           "door": {
             "name": "door",
             "state": "closed",
@@ -835,7 +845,7 @@
         },
         "west": {
           "to_room": 6530,
-          "description": ""
+          "description": "A passage leads to At The Top Of The Stairs"
         }
       }
     },
@@ -850,7 +860,7 @@
       "exits": {
         "south": {
           "to_room": 6531,
-          "description": "",
+          "description": "A passage leads to The Queen's Waiting Room",
           "door": {
             "name": "door",
             "state": "closed",
@@ -860,7 +870,7 @@
         },
         "west": {
           "to_room": 6554,
-          "description": "",
+          "description": "The cobblestones lead to The Treasury",
           "door": {
             "name": "door wooden",
             "state": "open",
@@ -870,7 +880,7 @@
         },
         "down": {
           "to_room": 6533,
-          "description": ""
+          "description": "A passage leads to The North Side Of Castle Strangelove"
         }
       },
       "obj_resets": [
@@ -889,7 +899,7 @@
       "exits": {
         "up": {
           "to_room": 6532,
-          "description": ""
+          "description": "A passage leads to The Queen's Bedroom"
         }
       }
     },
@@ -904,7 +914,7 @@
       "exits": {
         "south": {
           "to_room": 6519,
-          "description": ""
+          "description": "A passage leads to A Path By The Hospital"
         }
       },
       "mob_resets": [
@@ -934,7 +944,7 @@
       "exits": {
         "east": {
           "to_room": 6517,
-          "description": ""
+          "description": "A passage leads to The Path To The North Of The Shop"
         }
       },
       "mob_resets": [
@@ -955,11 +965,11 @@
       "exits": {
         "north": {
           "to_room": 6504,
-          "description": ""
+          "description": "A passage leads to The Narrow Path"
         },
         "east": {
           "to_room": 6541,
-          "description": "",
+          "description": "A passage leads to The Mine Entrance",
           "door": {
             "name": "door",
             "state": "closed",
@@ -969,7 +979,7 @@
         },
         "west": {
           "to_room": 6503,
-          "description": ""
+          "description": "A rocky path climbs toward The Top Of The Mountain"
         }
       },
       "mob_resets": [
@@ -1000,7 +1010,7 @@
       "exits": {
         "west": {
           "to_room": 6540,
-          "description": "",
+          "description": "A passage leads to The Dark Path",
           "door": {
             "name": "door",
             "state": "closed",
@@ -1010,7 +1020,7 @@
         },
         "down": {
           "to_room": 6542,
-          "description": ""
+          "description": "A passage leads to At The Bottom Of The Mineshaft"
         }
       }
     },
@@ -1026,11 +1036,11 @@
       "exits": {
         "east": {
           "to_room": 6543,
-          "description": ""
+          "description": "A passage leads to On The Path Inside The Mine"
         },
         "up": {
           "to_room": 6541,
-          "description": ""
+          "description": "A passage leads to The Mine Entrance"
         }
       },
       "mob_resets": [
@@ -1056,11 +1066,11 @@
       "exits": {
         "east": {
           "to_room": 6544,
-          "description": ""
+          "description": "A passage leads to The Mine Crossroad"
         },
         "west": {
           "to_room": 6542,
-          "description": ""
+          "description": "A passage leads to At The Bottom Of The Mineshaft"
         }
       },
       "mob_resets": [
@@ -1090,7 +1100,7 @@
       "exits": {
         "north": {
           "to_room": 6546,
-          "description": "",
+          "description": "A passage leads to The Mine Maze",
           "door": {
             "name": "door",
             "state": "open",
@@ -1100,15 +1110,15 @@
         },
         "east": {
           "to_room": 6545,
-          "description": ""
+          "description": "A passage leads to The Coal Room"
         },
         "south": {
           "to_room": 6551,
-          "description": ""
+          "description": "A passage leads to The Mining Equipment Room"
         },
         "west": {
           "to_room": 6543,
-          "description": ""
+          "description": "A passage leads to On The Path Inside The Mine"
         }
       }
     },
@@ -1124,7 +1134,7 @@
       "exits": {
         "west": {
           "to_room": 6544,
-          "description": ""
+          "description": "A passage leads to The Mine Crossroad"
         }
       },
       "obj_resets": [
@@ -1146,11 +1156,11 @@
       "exits": {
         "east": {
           "to_room": 6547,
-          "description": ""
+          "description": "A passage leads to At The Maze Inscription"
         },
         "south": {
           "to_room": 6544,
-          "description": "",
+          "description": "A passage leads to The Mine Crossroad",
           "door": {
             "name": "door",
             "state": "open",
@@ -1172,15 +1182,15 @@
       "exits": {
         "north": {
           "to_room": 6548,
-          "description": ""
+          "description": "A passage leads to The Maze"
         },
         "east": {
           "to_room": 6544,
-          "description": ""
+          "description": "A passage leads to The Mine Crossroad"
         },
         "west": {
           "to_room": 6546,
-          "description": ""
+          "description": "A passage leads to The Mine Maze"
         }
       }
     },
@@ -1196,15 +1206,15 @@
       "exits": {
         "north": {
           "to_room": 6549,
-          "description": ""
+          "description": "A passage leads to The Maze"
         },
         "south": {
           "to_room": 6547,
-          "description": ""
+          "description": "A passage leads to At The Maze Inscription"
         },
         "west": {
           "to_room": 6548,
-          "description": ""
+          "description": "A passage leads to The Maze"
         }
       },
       "mob_resets": [
@@ -1226,15 +1236,15 @@
       "exits": {
         "north": {
           "to_room": 6548,
-          "description": ""
+          "description": "A passage leads to The Maze"
         },
         "south": {
           "to_room": 6548,
-          "description": ""
+          "description": "A passage leads to The Maze"
         },
         "west": {
           "to_room": 6550,
-          "description": ""
+          "description": "A passage leads to The Maze"
         }
       },
       "mob_resets": [
@@ -1256,19 +1266,19 @@
       "exits": {
         "north": {
           "to_room": 6549,
-          "description": ""
+          "description": "A passage leads to The Maze"
         },
         "east": {
           "to_room": 6549,
-          "description": ""
+          "description": "A passage leads to The Maze"
         },
         "south": {
           "to_room": 6552,
-          "description": ""
+          "description": "A passage leads to The End Of The Maze"
         },
         "west": {
           "to_room": 6548,
-          "description": ""
+          "description": "A passage leads to The Maze"
         }
       }
     },
@@ -1284,7 +1294,7 @@
       "exits": {
         "north": {
           "to_room": 6544,
-          "description": ""
+          "description": "A passage leads to The Mine Crossroad"
         }
       },
       "obj_resets": [
@@ -1306,11 +1316,11 @@
       "exits": {
         "north": {
           "to_room": 6550,
-          "description": ""
+          "description": "A passage leads to The Maze"
         },
         "south": {
           "to_room": 6553,
-          "description": ""
+          "description": "A passage leads to The Mazekeeper's Room"
         }
       }
     },
@@ -1326,7 +1336,7 @@
       "exits": {
         "north": {
           "to_room": 6552,
-          "description": ""
+          "description": "A passage leads to The End Of The Maze"
         }
       },
       "mob_resets": [
@@ -1348,7 +1358,7 @@
       "exits": {
         "east": {
           "to_room": 6532,
-          "description": "",
+          "description": "A passage leads to The Queen's Bedroom",
           "door": {
             "name": "door",
             "state": "open",
@@ -1840,6 +1850,53 @@
         }
       ],
       "loot_chance": 100
+    },
+    "6598": {
+      "vnum": 6598,
+      "name": "drow child",
+      "short_desc": "a drow child",
+      "long_desc": "A drow child crouches here in the shadows, playing with small bones arranged like toys.",
+      "description": "Her silver-white hair is cut short and uneven, and her large violet eyes watch you with a mix of curiosity and suspicion. She can't be more than six or seven years old.",
+      "level": 20,
+      "alignment": 0,
+      "hp_dice": "20d10+800",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The child looks up with wide eyes. 'Mother says I'm not to talk to surface-dwellers. She says you all burn in the sun. Is that true? Do you really burn?' She pauses. 'The priestesses are angry today. Stay away from the temple. When they're angry, people disappear.'",
+        "priestess": "She whispers. 'Priestess Zilvra took a slave to the altar last night. I heard screaming. Mother says it's an honor. I don't think the slave agreed.'",
+        "default": "The drow child arranges her bone toys into little formations, humming a haunting melody.",
+        "next": "The drow child whispers conspiratorially. 'The mindflayers in their lair make even the priestesses nervous. And above, in the sun-scorched desert, a great pyramid holds treasures older than our city. But you didn't hear that from me.'"
+      }
+    },
+    "6599": {
+      "vnum": 6599,
+      "name": "chained slave",
+      "short_desc": "a chained slave",
+      "long_desc": "A gaunt figure sits chained to the cavern wall here, barely alive.",
+      "description": "Once a surface dweller, now reduced to skin and bone. Iron manacles have worn grooves into his wrists. His spirit is broken, but a faint spark of defiance still lingers in his sunken eyes.",
+      "level": 15,
+      "alignment": 0,
+      "hp_dice": "15d10+600",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 100,
+      "flags": [
+        "sentinel"
+      ],
+      "special": "flavor_npc",
+      "talk_responses": {
+        "hello": "The slave rasps. 'Don't... waste your pity on me. I'm dead already. But listen \u2014 the drow keep their best weapons in the armory past the mushroom gardens. And the priestesses... they draw power from the spider shrine. Destroy it, and they weaken. Please... someone has to stop them.'",
+        "escape": "He rattles his chains weakly. 'These chains are drow-forged. Nothing short of adamantine will break them. But maybe someday... someone strong enough will come.'",
+        "default": "The slave stares at the ground, breathing shallowly."
+      }
     }
   },
   "objects": {
@@ -1850,7 +1907,8 @@
       "room_desc": "There is a key for the treasury lying here.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "6501": {
       "vnum": 6501,
@@ -1859,7 +1917,8 @@
       "room_desc": "A large pile of treasure has been left here, it must be the Queen's.",
       "item_type": "money",
       "weight": 20,
-      "value": 65000
+      "value": 65000,
+      "type": "treasure"
     },
     "6502": {
       "vnum": 6502,
@@ -1868,7 +1927,8 @@
       "room_desc": "There is a key to the mines lying here.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "6503": {
       "vnum": 6503,
@@ -1877,7 +1937,8 @@
       "room_desc": "There is a bright golden key lying here.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "6504": {
       "vnum": 6504,
@@ -1888,7 +1949,8 @@
       "weight": 13,
       "value": 5500,
       "damage_dice": "2d6",
-      "weapon_type": "pound"
+      "weapon_type": "pound",
+      "type": "weapon"
     },
     "6505": {
       "vnum": 6505,
@@ -1898,7 +1960,10 @@
       "item_type": "armor",
       "weight": 80,
       "value": 4500,
-      "armor_bonus": 6
+      "armor_bonus": 6,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 5
     },
     "6506": {
       "vnum": 6506,
@@ -1907,7 +1972,8 @@
       "room_desc": "There is a long, black stick lying here.",
       "item_type": "staff",
       "weight": 1,
-      "value": 100
+      "value": 100,
+      "type": "treasure"
     },
     "6507": {
       "vnum": 6507,
@@ -1917,7 +1983,8 @@
       "item_type": "light",
       "weight": 1,
       "value": 100,
-      "light_hours": 0
+      "light_hours": 0,
+      "type": "treasure"
     },
     "6508": {
       "vnum": 6508,
@@ -1928,7 +1995,8 @@
       "weight": 12,
       "value": 3000,
       "damage_dice": "2d3",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "6509": {
       "vnum": 6509,
@@ -1939,7 +2007,8 @@
       "weight": 14,
       "value": 5000,
       "damage_dice": "2d7",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "6510": {
       "vnum": 6510,
@@ -1949,7 +2018,10 @@
       "item_type": "armor",
       "weight": 4,
       "value": 2500,
-      "armor_bonus": 4
+      "armor_bonus": 4,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "6511": {
       "vnum": 6511,
@@ -1958,7 +2030,10 @@
       "room_desc": "A golden dwarven ring is lying here.",
       "item_type": "treasure",
       "weight": 1,
-      "value": 10000
+      "value": 10000,
+      "type": "armor",
+      "wear_slot": "finger",
+      "armor": 0
     },
     "6512": {
       "vnum": 6512,
@@ -1968,7 +2043,10 @@
       "item_type": "armor",
       "weight": 2,
       "value": 4000,
-      "armor_bonus": 1
+      "armor_bonus": 1,
+      "type": "armor",
+      "wear_slot": "hands",
+      "armor": 2
     },
     "6513": {
       "vnum": 6513,
@@ -1977,7 +2055,8 @@
       "room_desc": "There is a chunk of coal here.",
       "item_type": "treasure",
       "weight": 100,
-      "value": 0
+      "value": 0,
+      "type": "treasure"
     },
     "6514": {
       "vnum": 6514,
@@ -1988,7 +2067,8 @@
       "weight": 9,
       "value": 300,
       "damage_dice": "2d3",
-      "weapon_type": "pierce"
+      "weapon_type": "pierce",
+      "type": "treasure"
     },
     "6515": {
       "vnum": 6515,
@@ -1997,7 +2077,8 @@
       "room_desc": "There is a deep green key lying here.",
       "item_type": "key",
       "weight": 10,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "6516": {
       "vnum": 6516,
@@ -2006,7 +2087,8 @@
       "room_desc": "Someone seems to have dropped an old key.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "6517": {
       "vnum": 6517,
@@ -2026,7 +2108,8 @@
           "value": 3
         }
       ],
-      "set_id": 65
+      "set_id": 65,
+      "type": "weapon"
     },
     "6518": {
       "vnum": 6518,
@@ -2045,7 +2128,9 @@
           "value": 1
         }
       ],
-      "set_id": 65
+      "set_id": 65,
+      "type": "armor",
+      "armor": 3
     },
     "6519": {
       "vnum": 6519,
@@ -2063,7 +2148,8 @@
           "value": 4
         }
       ],
-      "set_id": 65
+      "set_id": 65,
+      "type": "treasure"
     },
     "6520": {
       "vnum": 6520,
@@ -2085,7 +2171,8 @@
           "value": 30
         }
       ],
-      "set_id": 65
+      "set_id": 65,
+      "type": "treasure"
     },
     "6521": {
       "vnum": 6521,
@@ -2103,7 +2190,8 @@
           "value": 3
         }
       ],
-      "set_id": 65
+      "set_id": 65,
+      "type": "treasure"
     },
     "6522": {
       "vnum": 6522,
@@ -2123,7 +2211,8 @@
           "value": 3
         }
       ],
-      "set_id": 65
+      "set_id": 65,
+      "type": "furniture"
     },
     "6523": {
       "vnum": 6523,
@@ -2143,7 +2232,8 @@
           "value": 3
         }
       ],
-      "set_id": 65
+      "set_id": 65,
+      "type": "key"
     },
     "6524": {
       "vnum": 6524,
@@ -2165,7 +2255,9 @@
           "value": 1
         }
       ],
-      "set_id": 65
+      "set_id": 65,
+      "type": "armor",
+      "armor": 0
     },
     "6525": {
       "vnum": 6525,
@@ -2184,7 +2276,9 @@
           "value": 1
         }
       ],
-      "set_id": 65
+      "set_id": 65,
+      "type": "armor",
+      "armor": 1
     }
   }
 }

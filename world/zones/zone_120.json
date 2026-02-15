@@ -163,6 +163,10 @@
         "south": {
           "to_room": 12006,
           "description": "You can barely make out a storefront through the foliage."
+        },
+        "west": {
+          "to_room": 12000,
+          "description": "The coliseum gates are to the west."
         }
       },
       "extra_descs": {
@@ -291,8 +295,8 @@
           "description": "There is a large oval dirt-track in that direction."
         },
         "south": {
-          "to_room": 12010,
-          "description": "You can hear the clash of weapons and the thunder of hooves in that direction."
+          "to_room": 12000,
+          "description": "The coliseum gates lie to the south."
         }
       },
       "extra_descs": {
@@ -461,7 +465,7 @@
         },
         "up": {
           "to_room": 12023,
-          "description": ""
+          "description": "The cobblestones lead to The Common Seating"
         },
         "down": {
           "to_room": 12017,
@@ -495,11 +499,11 @@
       "exits": {
         "up": {
           "to_room": 12010,
-          "description": ""
+          "description": "An open path leads to The Jousting Arena"
         },
         "down": {
           "to_room": 12016,
-          "description": ""
+          "description": "An open path leads to The Race Track"
         }
       }
     },
@@ -1087,7 +1091,7 @@
         },
         "south": {
           "to_room": 12038,
-          "description": "",
+          "description": "A passage leads to The House Of Commons",
           "door": {
             "name": "door doublehung",
             "state": "closed",
@@ -1636,7 +1640,7 @@
         },
         "east": {
           "to_room": 12061,
-          "description": ""
+          "description": "A passage leads to The Torture Chamber"
         }
       },
       "extra_descs": {
@@ -1675,7 +1679,7 @@
       "exits": {
         "east": {
           "to_room": 12030,
-          "description": ""
+          "description": "The cobblestones lead to Nero Drive"
         }
       },
       "mob_resets": [
@@ -1717,11 +1721,11 @@
       "exits": {
         "east": {
           "to_room": 12065,
-          "description": ""
+          "description": "The cobblestones lead to Clay Road"
         },
         "west": {
           "to_room": 12051,
-          "description": "",
+          "description": "The cobblestones lead to The East Gate Of Rome",
           "door": {
             "name": "gate",
             "state": "closed",
@@ -1742,11 +1746,11 @@
       "exits": {
         "east": {
           "to_room": 12066,
-          "description": ""
+          "description": "The cobblestones lead to Clay Road"
         },
         "west": {
           "to_room": 12064,
-          "description": ""
+          "description": "The cobblestones lead to Before Rome"
         }
       }
     },
@@ -1761,11 +1765,11 @@
       "exits": {
         "east": {
           "to_room": 12067,
-          "description": ""
+          "description": "The cobblestones lead to The End Of The Clay Road"
         },
         "west": {
           "to_room": 12065,
-          "description": ""
+          "description": "The cobblestones lead to Clay Road"
         }
       }
     },
@@ -1812,7 +1816,16 @@
       "description": "Massive stone gates mark the entrance to the great Roman Coliseum. The roar of crowds can be heard from within, and the smell of sand and sweat fills the air.",
       "sector_type": "city",
       "flags": [],
-      "exits": {},
+      "exits": {
+        "north": {
+          "to_room": 12009,
+          "description": "The practice area lies north."
+        },
+        "east": {
+          "to_room": 12005,
+          "description": "An abandoned gate stands to the east."
+        }
+      },
       "mob_resets": [],
       "obj_resets": [],
       "vnum": 12000
@@ -1824,10 +1837,12 @@
       "flags": [],
       "exits": {
         "west": {
-          "to_room": 12004
+          "to_room": 12004,
+          "description": "The cobblestones lead to The Southern Commoner's Seats"
         },
         "east": {
-          "to_room": 12018
+          "to_room": 12018,
+          "description": "The South Entrance To The Coliseum"
         }
       },
       "mob_resets": [],
@@ -1841,7 +1856,8 @@
       "flags": [],
       "exits": {
         "north": {
-          "to_room": 12039
+          "to_room": 12039,
+          "description": "The cobblestones lead to Clay Avenue"
         }
       },
       "mob_resets": [],
@@ -1855,7 +1871,8 @@
       "flags": [],
       "exits": {
         "south": {
-          "to_room": 12058
+          "to_room": 12058,
+          "description": "A rocky path climbs toward The Valley Of The Gods"
         }
       },
       "mob_resets": [],
@@ -2985,7 +3002,10 @@
       "room_desc": "There is a pewter ring lying here.",
       "item_type": "treasure",
       "weight": 5,
-      "value": 15000
+      "value": 15000,
+      "type": "armor",
+      "wear_slot": "finger",
+      "armor": 0
     },
     "12001": {
       "vnum": 12001,
@@ -2995,7 +3015,10 @@
       "item_type": "armor",
       "weight": 5,
       "value": 10000,
-      "armor_bonus": 4
+      "armor_bonus": 4,
+      "type": "armor",
+      "wear_slot": "waist",
+      "armor": 1
     },
     "12002": {
       "vnum": 12002,
@@ -3005,7 +3028,10 @@
       "item_type": "armor",
       "weight": 25,
       "value": 12000,
-      "armor_bonus": 8
+      "armor_bonus": 8,
+      "type": "armor",
+      "wear_slot": "head",
+      "armor": 2
     },
     "12003": {
       "vnum": 12003,
@@ -3014,7 +3040,8 @@
       "room_desc": "A coach's whistle has been left here.",
       "item_type": "treasure",
       "weight": 1,
-      "value": 1000
+      "value": 1000,
+      "type": "treasure"
     },
     "12004": {
       "vnum": 12004,
@@ -3023,7 +3050,8 @@
       "room_desc": "There is an odd object laying on the ground here.",
       "item_type": "treasure",
       "weight": 1,
-      "value": 15000
+      "value": 15000,
+      "type": "treasure"
     },
     "12005": {
       "vnum": 12005,
@@ -3032,7 +3060,8 @@
       "room_desc": "A woman's hairpin is lying here.",
       "item_type": "treasure",
       "weight": 1,
-      "value": 3000
+      "value": 3000,
+      "type": "treasure"
     },
     "12006": {
       "vnum": 12006,
@@ -3042,7 +3071,9 @@
       "item_type": "food",
       "weight": 1,
       "value": 5,
-      "nutrition": 4
+      "nutrition": 4,
+      "type": "food",
+      "food_value": 12
     },
     "12007": {
       "vnum": 12007,
@@ -3052,7 +3083,9 @@
       "item_type": "food",
       "weight": 1,
       "value": 6,
-      "nutrition": 6
+      "nutrition": 6,
+      "type": "food",
+      "food_value": 12
     },
     "12008": {
       "vnum": 12008,
@@ -3062,7 +3095,10 @@
       "item_type": "armor",
       "weight": 2,
       "value": 250,
-      "armor_bonus": 2
+      "armor_bonus": 2,
+      "type": "armor",
+      "wear_slot": "feet",
+      "armor": 2
     },
     "12010": {
       "vnum": 12010,
@@ -3072,7 +3108,9 @@
       "item_type": "food",
       "weight": 1,
       "value": 11,
-      "nutrition": 8
+      "nutrition": 8,
+      "type": "food",
+      "food_value": 12
     },
     "12011": {
       "vnum": 12011,
@@ -3081,7 +3119,10 @@
       "room_desc": "A bracelet, made from silver and gold, has been carelessly left here.",
       "item_type": "treasure",
       "weight": 14,
-      "value": 10000
+      "value": 10000,
+      "type": "armor",
+      "wear_slot": "wrist",
+      "armor": 1
     },
     "12012": {
       "vnum": 12012,
@@ -3090,7 +3131,10 @@
       "room_desc": "A sapphire ring has been left here.",
       "item_type": "treasure",
       "weight": 20,
-      "value": 35000
+      "value": 35000,
+      "type": "armor",
+      "wear_slot": "finger",
+      "armor": 0
     },
     "12013": {
       "vnum": 12013,
@@ -3099,7 +3143,10 @@
       "room_desc": "A beautiful jade pendant has been left here.",
       "item_type": "treasure",
       "weight": 30,
-      "value": 16500
+      "value": 16500,
+      "type": "armor",
+      "wear_slot": "neck",
+      "armor": 0
     },
     "12014": {
       "vnum": 12014,
@@ -3108,7 +3155,10 @@
       "room_desc": "Froboz' robe has been dropped here.",
       "item_type": "treasure",
       "weight": 5,
-      "value": 15000
+      "value": 15000,
+      "type": "armor",
+      "wear_slot": "body",
+      "armor": 1
     },
     "12015": {
       "vnum": 12015,
@@ -3119,7 +3169,8 @@
       "weight": 16,
       "value": 15000,
       "damage_dice": "3d8",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "12016": {
       "vnum": 12016,
@@ -3130,7 +3181,8 @@
       "weight": 14,
       "value": 10000,
       "damage_dice": "3d5",
-      "weapon_type": "slash"
+      "weapon_type": "slash",
+      "type": "weapon"
     },
     "12017": {
       "vnum": 12017,
@@ -3140,7 +3192,10 @@
       "item_type": "armor",
       "weight": 15,
       "value": 25000,
-      "armor_bonus": 8
+      "armor_bonus": 8,
+      "type": "armor",
+      "wear_slot": "hands",
+      "armor": 2
     },
     "12018": {
       "vnum": 12018,
@@ -3150,7 +3205,8 @@
       "item_type": "armor",
       "weight": 135,
       "value": 50000,
-      "armor_bonus": 8
+      "armor_bonus": 8,
+      "type": "treasure"
     },
     "12019": {
       "vnum": 12019,
@@ -3160,7 +3216,10 @@
       "item_type": "armor",
       "weight": 45,
       "value": 8750,
-      "armor_bonus": 8
+      "armor_bonus": 8,
+      "type": "armor",
+      "wear_slot": "feet",
+      "armor": 2
     },
     "12020": {
       "vnum": 12020,
@@ -3171,7 +3230,8 @@
       "weight": 22,
       "value": 100000,
       "damage_dice": "4d6",
-      "weapon_type": "crush"
+      "weapon_type": "crush",
+      "type": "treasure"
     },
     "12021": {
       "vnum": 12021,
@@ -3181,7 +3241,8 @@
       "item_type": "armor",
       "weight": 30,
       "value": 100000,
-      "armor_bonus": 15
+      "armor_bonus": 15,
+      "type": "treasure"
     },
     "12022": {
       "vnum": 12022,
@@ -3190,7 +3251,10 @@
       "room_desc": "Someone has left the crystal necklace of knowledge here.",
       "item_type": "treasure",
       "weight": 35,
-      "value": 50000
+      "value": 50000,
+      "type": "armor",
+      "wear_slot": "neck",
+      "armor": 0
     },
     "12023": {
       "vnum": 12023,
@@ -3200,7 +3264,10 @@
       "item_type": "armor",
       "weight": 14,
       "value": 75000,
-      "armor_bonus": 8
+      "armor_bonus": 8,
+      "type": "armor",
+      "wear_slot": "feet",
+      "armor": 2
     },
     "12024": {
       "vnum": 12024,
@@ -3209,7 +3276,8 @@
       "room_desc": "A scroll has been carelessly left here.",
       "item_type": "scroll",
       "weight": 2,
-      "value": 5000
+      "value": 5000,
+      "type": "scroll"
     },
     "12025": {
       "vnum": 12025,
@@ -3218,7 +3286,8 @@
       "room_desc": "An ornate scroll has been left here.",
       "item_type": "scroll",
       "weight": 2,
-      "value": 7000
+      "value": 7000,
+      "type": "scroll"
     },
     "12026": {
       "vnum": 12026,
@@ -3227,7 +3296,8 @@
       "room_desc": "A plain scroll is lying on the ground.",
       "item_type": "scroll",
       "weight": 2,
-      "value": 8000
+      "value": 8000,
+      "type": "scroll"
     },
     "12027": {
       "vnum": 12027,
@@ -3236,7 +3306,9 @@
       "room_desc": "There is a small, sweet-smelling bag here on the ground.",
       "item_type": "wand",
       "weight": 5,
-      "value": 15000
+      "value": 15000,
+      "type": "container",
+      "capacity": 100
     },
     "12028": {
       "vnum": 12028,
@@ -3245,7 +3317,10 @@
       "room_desc": "A Kodarta staff has been carelessly left here.",
       "item_type": "staff",
       "weight": 6,
-      "value": 35000
+      "value": 35000,
+      "type": "weapon",
+      "weapon_type": "pound",
+      "damage_dice": "1d6"
     },
     "12029": {
       "vnum": 12029,
@@ -3254,7 +3329,8 @@
       "room_desc": "There is a prototype of a new magical wand lying here.",
       "item_type": "wand",
       "weight": 26,
-      "value": 20000
+      "value": 20000,
+      "type": "wand"
     },
     "12030": {
       "vnum": 12030,
@@ -3263,7 +3339,8 @@
       "room_desc": "There is a flask, containing a blaze orange potion, resting here.",
       "item_type": "potion",
       "weight": 8,
-      "value": 1000
+      "value": 1000,
+      "type": "potion"
     },
     "12031": {
       "vnum": 12031,
@@ -3274,7 +3351,8 @@
       "weight": 13,
       "value": 3000,
       "damage_dice": "5d1",
-      "weapon_type": "pound"
+      "weapon_type": "pound",
+      "type": "weapon"
     },
     "12032": {
       "vnum": 12032,
@@ -3285,7 +3363,10 @@
       "weight": 3,
       "value": 10,
       "capacity": 3,
-      "current": 3
+      "current": 3,
+      "type": "drink",
+      "drinks": 10,
+      "max_drinks": 10
     },
     "12033": {
       "vnum": 12033,
@@ -3294,7 +3375,8 @@
       "room_desc": "There is a rusted key here.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "12034": {
       "vnum": 12034,
@@ -3303,7 +3385,8 @@
       "room_desc": "A double sided key has been left here.",
       "item_type": "key",
       "weight": 10,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "12035": {
       "vnum": 12035,
@@ -3312,7 +3395,8 @@
       "room_desc": "A diamond studded key is sitting on the ground.",
       "item_type": "key",
       "weight": 30,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "12036": {
       "vnum": 12036,
@@ -3321,7 +3405,8 @@
       "room_desc": "A key with a pearl handle is sitting on the ground.",
       "item_type": "key",
       "weight": 10,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "12037": {
       "vnum": 12037,
@@ -3330,7 +3415,8 @@
       "room_desc": "There is an aquamarine colored key here.",
       "item_type": "key",
       "weight": 10,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "12038": {
       "vnum": 12038,
@@ -3339,7 +3425,8 @@
       "room_desc": "An opal key has been left here.",
       "item_type": "key",
       "weight": 20,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "12039": {
       "vnum": 12039,
@@ -3348,7 +3435,8 @@
       "room_desc": "A steel key is lying on the ground.",
       "item_type": "key",
       "weight": 1,
-      "value": 0
+      "value": 0,
+      "type": "key"
     },
     "12040": {
       "vnum": 12040,
@@ -3368,7 +3456,8 @@
           "value": 3
         }
       ],
-      "set_id": 120
+      "set_id": 120,
+      "type": "weapon"
     },
     "12041": {
       "vnum": 12041,
@@ -3387,7 +3476,9 @@
           "value": 1
         }
       ],
-      "set_id": 120
+      "set_id": 120,
+      "type": "armor",
+      "armor": 3
     },
     "12042": {
       "vnum": 12042,
@@ -3405,7 +3496,8 @@
           "value": 4
         }
       ],
-      "set_id": 120
+      "set_id": 120,
+      "type": "treasure"
     },
     "12043": {
       "vnum": 12043,
@@ -3427,7 +3519,8 @@
           "value": 35
         }
       ],
-      "set_id": 120
+      "set_id": 120,
+      "type": "treasure"
     },
     "12044": {
       "vnum": 12044,
@@ -3445,7 +3538,8 @@
           "value": 3
         }
       ],
-      "set_id": 120
+      "set_id": 120,
+      "type": "treasure"
     },
     "12045": {
       "vnum": 12045,
@@ -3465,7 +3559,8 @@
           "value": 3
         }
       ],
-      "set_id": 120
+      "set_id": 120,
+      "type": "treasure"
     },
     "12046": {
       "vnum": 12046,
@@ -3489,7 +3584,8 @@
           "value": 1
         }
       ],
-      "set_id": 120
+      "set_id": 120,
+      "type": "weapon"
     },
     "12047": {
       "vnum": 12047,
@@ -3511,7 +3607,9 @@
           "value": 1
         }
       ],
-      "set_id": 120
+      "set_id": 120,
+      "type": "armor",
+      "armor": 0
     },
     "12048": {
       "vnum": 12048,
@@ -3530,7 +3628,9 @@
           "value": 1
         }
       ],
-      "set_id": 120
+      "set_id": 120,
+      "type": "armor",
+      "armor": 1
     }
   }
 }
