@@ -1,0 +1,100 @@
+{
+  "number": 250,
+  "name": "The Blood Pit Arena",
+  "lifespan": 30,
+  "reset_mode": 2,
+  "description": "A legendary arena where warriors test their mettle in opt-in PvP combat. No death, no item loss — only glory.",
+  "rooms": {
+    "25000": {
+      "vnum": 25000,
+      "name": "The Arena Lobby",
+      "description": "A grand atrium of polished obsidian and bronze torches greets you. Banners\nof past champions hang from the vaulted ceiling, their names stitched in\ngold thread. The Arena Master stands behind a carved stone podium, ready to\nfacilitate matches. A massive archway to the north leads toward the fighting\npits, while stairs spiral upward to a spectator gallery.\n\nThis is a safe zone — no combat is permitted here.",
+      "sector_type": "city",
+      "flags": ["indoors", "safe", "no_mob", "arena_lobby"],
+      "exits": {
+        "up": {
+          "to_room": 25006,
+          "description": "Stairs lead up to the spectator gallery."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 25000,
+          "max": 1
+        }
+      ]
+    },
+    "25001": {
+      "vnum": 25001,
+      "name": "Arena: The Open Sands",
+      "description": "A vast circular pit of golden sand stretches before you, surrounded by\ntowering stone walls. The roar of spectators echoes from the gallery above.\nThere is nowhere to hide here — only raw skill determines the victor.\nBlood stains darken patches of the sand.",
+      "sector_type": "desert",
+      "flags": ["arena_combat"],
+      "exits": {}
+    },
+    "25002": {
+      "vnum": 25002,
+      "name": "Arena: The Pillared Hall",
+      "description": "Massive stone pillars rise from the arena floor, providing cover and\ncreating deadly corridors. Shadows dance between the columns as torchlight\nflickers. A shrewd fighter can use these pillars to their advantage,\nbreaking line of sight and setting up ambushes.",
+      "sector_type": "inside",
+      "flags": ["indoors", "arena_combat"],
+      "exits": {}
+    },
+    "25003": {
+      "vnum": 25003,
+      "name": "Arena: The Elevated Platforms",
+      "description": "A series of stone platforms rise at varying heights above a shallow pit.\nNarrow bridges connect the platforms, and the footing is treacherous.\nCombatants must balance aggression with caution — one wrong step\ncould leave you at a dangerous disadvantage.",
+      "sector_type": "mountain",
+      "flags": ["arena_combat"],
+      "exits": {}
+    },
+    "25004": {
+      "vnum": 25004,
+      "name": "Arena: The Water Pit",
+      "description": "Ankle-deep water covers the floor of this sunken arena. Waves ripple\noutward with every movement, and the footing is slippery on the submerged\nstone tiles. Rusted grates along the walls drain the water slowly, but\nit never quite empties. The damp air carries the scent of iron and salt.",
+      "sector_type": "water_swim",
+      "flags": ["arena_combat"],
+      "exits": {}
+    },
+    "25005": {
+      "vnum": 25005,
+      "name": "Arena: The Lava Bridge",
+      "description": "A narrow stone bridge spans a bubbling pit of molten rock. The heat is\nnearly unbearable, and waves of shimmering air distort your vision.\nThe bridge is barely wide enough for two combatants to face each other.\nOne solid blow could send a fighter tumbling toward the lava below —\nthough enchantments prevent actual death.",
+      "sector_type": "inside",
+      "flags": ["indoors", "arena_combat"],
+      "exits": {}
+    },
+    "25006": {
+      "vnum": 25006,
+      "name": "The Spectator Gallery",
+      "description": "Tiered stone benches overlook the arena pits below through enchanted\ncrystal panels. The magic of the arena projects images of ongoing fights\nonto the panels, allowing spectators to watch every blow in vivid detail.\nCheers and gasps fill the air as combatants clash below. Stairs lead\nback down to the lobby.",
+      "sector_type": "city",
+      "flags": ["indoors", "safe", "no_mob", "arena_gallery"],
+      "exits": {
+        "down": {
+          "to_room": 25000,
+          "description": "Stairs lead down to the arena lobby."
+        }
+      }
+    }
+  },
+  "mobs": {
+    "25000": {
+      "vnum": 25000,
+      "name": "arena master",
+      "short_desc": "the Arena Master",
+      "long_desc": "The Arena Master stands here, arms crossed, surveying the crowd.",
+      "level": 50,
+      "alignment": 0,
+      "hp_dice": "20d10+2000",
+      "damage_dice": "5d8+30",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": -50,
+      "flags": ["sentinel", "no_charm", "no_summon", "no_sleep", "no_bash", "no_blind", "no_kill"],
+      "special": "arena_master",
+      "description": "A towering figure clad in ceremonial black and gold armor. Countless scars\ntell the tale of a lifetime in the arena. His eyes miss nothing."
+    }
+  },
+  "objects": {}
+}

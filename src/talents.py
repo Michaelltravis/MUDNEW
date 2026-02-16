@@ -1769,7 +1769,14 @@ class TalentManager:
                     await player.send(f"{c['bright_cyan']}New ability unlocked: {skill_name.replace('_', ' ').title()}!{c['reset']}")
                 
                 break
-        
+
+        # Achievement: talent tree mastery
+        try:
+            from achievements import AchievementManager
+            await AchievementManager.check_talent_mastery(player)
+        except Exception:
+            pass
+
         return True
     
     @staticmethod
@@ -1832,6 +1839,26 @@ class TalentManager:
                     if talent.effects.get('passive') == passive_name:
                         return True
         
+        return False
+
+    @staticmethod
+    def has_maxed_tree(player: 'Player') -> bool:
+        """Check if the player has maxed out all talents in any single tree."""
+        if not hasattr(player, 'talents') or not player.talents:
+            return False
+        char_class = getattr(player, 'char_class', 'warrior').lower()
+        trees = CLASS_TALENT_TREES.get(char_class, [])
+        for tree in trees:
+            all_maxed = True
+            if not tree['talents']:
+                continue
+            for talent_id, talent in tree['talents'].items():
+                rank = player.talents.get(talent_id, 0)
+                if rank < talent.max_rank:
+                    all_maxed = False
+                    break
+            if all_maxed:
+                return True
         return False
 
     @staticmethod

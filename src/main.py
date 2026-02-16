@@ -106,6 +106,7 @@ class RealmsMUD:
         pet_tick = 0
         ambient_tick = 0
         decay_tick = 0
+        world_event_tick = 0
 
         try:
             while self.running:
@@ -209,7 +210,25 @@ class RealmsMUD:
                 if zone_tick >= self.config.TICKS_PER_SECOND * 900:
                     await self.world.zone_reset_tick()
                     zone_tick = 0
+
+                # World event tick (every 30 seconds)
+                world_event_tick += 1
+                if world_event_tick >= self.config.TICKS_PER_SECOND * 30:
+                    if self.world.event_manager:
+                        try:
+                            await self.world.event_manager.tick()
+                        except Exception as e:
+                            logger.error(f"World event tick error: {e}")
+                    world_event_tick = 0
                 
+                # Auction house expiration tick (every 5 minutes)
+                if autosave_tick == self.config.TICKS_PER_SECOND * 150:
+                    try:
+                        from auction_house import AuctionHouse
+                        AuctionHouse.process_expirations()
+                    except Exception as e:
+                        logger.error(f"Auction expiration tick error: {e}")
+
                 # Autosave tick (every 5 minutes)
                 if autosave_tick >= self.config.TICKS_PER_SECOND * 300:
                     await self.world.autosave()

@@ -167,6 +167,16 @@ class CombatHandler:
         if not attacker or attacker.hp <= 0:
             return
 
+        # Auto-dismount non-combat mounts
+        for combatant in (attacker, defender):
+            if hasattr(combatant, 'mount') and combatant.mount:
+                from mounts import MountManager
+                if MountManager.should_auto_dismount(combatant):
+                    mount_name = combatant.mount.name
+                    combatant.mount = None
+                    if hasattr(combatant, 'send'):
+                        await combatant.send(f"{c['yellow']}You quickly dismount from {mount_name} as combat begins!{c['reset']}")
+
         attacker.fighting = defender
         defender.fighting = attacker
         attacker.position = 'fighting'
@@ -206,6 +216,14 @@ class CombatHandler:
                 f"{c['red']}{attacker.name} attacks {defender.name}!{c['reset']}",
                 exclude=[attacker, defender]
             )
+
+        # First combat contextual hint about class resource
+        try:
+            from tips import TipManager
+            if hasattr(attacker, 'connection'):
+                await TipManager.show_contextual_hint(attacker, 'first_combat_resource')
+        except Exception:
+            pass
 
         # Apply NG+ scaling to NPCs facing NG+ players
         if hasattr(attacker, 'connection') and not hasattr(defender, 'connection'):
@@ -323,6 +341,14 @@ class CombatHandler:
                 vision_mod = weather.get_vision_modifier()
                 if vision_mod < 1.0:
                     hit_roll -= int((1.0 - vision_mod) * 6)
+
+            # World event fog penalty
+            try:
+                world = getattr(attacker, 'world', None)
+                if world and hasattr(world, 'event_manager') and world.event_manager:
+                    hit_roll -= world.event_manager.get_fog_accuracy_penalty()
+            except Exception:
+                pass
 
         # Lower AC = better armor = harder to hit (higher defense)
         defense = 10 - (defender.get_armor_class() // 10)
@@ -579,7 +605,7 @@ class CombatHandler:
                 crit_mult = 2.0  # 200% damage
                 # Thief gets better crits
                 if char_class == 'thief':
-                    crit_mult = 2.5  # 250% damage
+                    crit_mult = 2.25  # 225% damage
                 damage = int(damage * crit_mult)
                 if hasattr(attacker, 'send'):
                     await attacker.send(f"{c['bright_yellow']}*** CRITICAL HIT! ***{c['reset']}")
@@ -636,10 +662,17 @@ class CombatHandler:
             # Bystander message
             try:
                 if attacker.room:
+                    bystander_msg = f"{c['white']}{attacker.name} {they_verb} {defender.name}.{c['reset']}"
                     await attacker.room.send_to_room(
-                        f"{c['white']}{attacker.name} {they_verb} {defender.name}.{c['reset']}",
+                        bystander_msg,
                         exclude=[attacker, defender]
                     )
+                    # Arena spectator broadcast
+                    try:
+                        from arena import ArenaManager
+                        await ArenaManager.handle_arena_combat_message(attacker, defender, bystander_msg)
+                    except Exception:
+                        pass
             except Exception:
                 pass
 
@@ -743,7 +776,7 @@ class CombatHandler:
             # Paladin Holy Power generation on hit
             if hasattr(attacker, 'holy_power') and hasattr(attacker, 'char_class'):
                 if attacker.char_class.lower() == 'paladin':
-                    hp_chance = 25
+                    hp_chance = 30
                     try:
                         from talents import TalentManager
                         hp_chance += TalentManager.get_talent_rank(attacker, 'benediction') * 3
@@ -772,7 +805,7 @@ class CombatHandler:
             # Ranger focus generation on hit
             if hasattr(attacker, 'focus') and hasattr(attacker, 'char_class'):
                 if attacker.char_class.lower() == 'ranger':
-                    focus_gain = 10
+                    focus_gain = 8
                     # Bonus focus on marked target
                     if getattr(attacker, 'hunters_mark_target', None) == defender:
                         focus_gain += 5
@@ -790,13 +823,21 @@ class CombatHandler:
                                 await attacker.send(f"{c['bright_green']}[Focus: {attacker.focus}/100]{c['reset']}")
                             break
 
-            # Bard inspiration generation on hit (25% chance)
+            # Bard inspiration generation on hit (33% chance)
             if hasattr(attacker, 'inspiration') and hasattr(attacker, 'char_class'):
                 if attacker.char_class.lower() == 'bard':
-                    if random.randint(1, 100) <= 25 and attacker.inspiration < 10:
+                    if random.randint(1, 100) <= 33 and attacker.inspiration < 10:
                         attacker.inspiration = min(10, attacker.inspiration + 1)
                         if hasattr(attacker, 'send'):
                             await attacker.send(f"{c['bright_yellow']}[Inspiration: {attacker.inspiration}/10]{c['reset']}")
+
+            # Necromancer Soul Shard generation on hit (15% chance)
+            if hasattr(attacker, 'soul_shards') and hasattr(attacker, 'char_class'):
+                if attacker.char_class.lower() == 'necromancer':
+                    if random.randint(1, 100) <= 15 and attacker.soul_shards < 10:
+                        attacker.soul_shards = min(10, attacker.soul_shards + 1)
+                        if hasattr(attacker, 'send'):
+                            await attacker.send(f"{c['bright_magenta']}[Soul Shards: {attacker.soul_shards}/10]{c['reset']}")
 
             # Thief combo point generation on hit
             if hasattr(attacker, 'combo_points') and hasattr(attacker, 'char_class'):
@@ -919,6 +960,44 @@ class CombatHandler:
                     # Pet joins combat to help owner
                     if not pet.is_fighting or random.randint(1, 100) <= 50:  # 50% chance per round
                         await cls.pet_attack(pet, defender)
+
+        # Combat companion attacks (class-based companion)
+        if hasattr(attacker, 'combat_companion') and attacker.combat_companion:
+            cc = attacker.combat_companion
+            if cc.is_alive and cc.behavior != 'passive' and defender.is_alive:
+                cc_dmg = cc.get_damage()
+                if cc_dmg > 0:
+                    # Defend mode: companion absorbs some damage instead
+                    if cc.behavior == 'defend':
+                        if hasattr(attacker, 'send'):
+                            await attacker.send(f"{c['cyan']}{cc.name} guards you vigilantly.{c['reset']}")
+                    else:
+                        if hasattr(attacker, 'send'):
+                            await attacker.send(f"{c['green']}{cc.name} {cc.attack_desc} {defender.name}! [{cc_dmg}]{c['reset']}")
+                        if hasattr(defender, 'send'):
+                            await defender.send(f"{c['red']}{cc.name} {cc.attack_desc} you! [{cc_dmg}]{c['reset']}")
+                        killed = await defender.take_damage(cc_dmg, attacker)
+                        if killed:
+                            await cls.handle_death(attacker, defender)
+
+        # Mount fire aura (nightmare) — deals fire damage to attacker's target
+        if hasattr(attacker, 'mount') and attacker.mount and getattr(attacker.mount, 'fire_aura', False):
+            if defender.is_alive:
+                fire_dmg = random.randint(3, 8) + attacker.level // 3
+                if hasattr(attacker, 'send'):
+                    await attacker.send(f"{c['bright_red']}Your {attacker.mount.name}'s flames sear {defender.name}! [{fire_dmg}]{c['reset']}")
+                if hasattr(defender, 'send'):
+                    await defender.send(f"{c['bright_red']}Flames from {attacker.mount.name} burn you! [{fire_dmg}]{c['reset']}")
+                killed = await defender.take_damage(fire_dmg, attacker)
+                if killed:
+                    await cls.handle_death(attacker, defender)
+
+        # Combat companion takes damage when in defend mode (absorbs 15% of damage dealt to owner)
+        if hasattr(defender, 'combat_companion') and defender.combat_companion:
+            cc = defender.combat_companion
+            if cc.is_alive and cc.behavior == 'defend':
+                # This is handled on the defender side — companion absorbs some incoming hits
+                pass  # Actual absorption is applied in take_damage override if needed
 
     @classmethod
     async def auto_combat(cls, player: 'Player'):
@@ -1134,6 +1213,16 @@ class CombatHandler:
             return
         victim._death_processed = True
 
+        # Arena PvP intercept — no real death in arena
+        try:
+            from arena import ArenaManager
+            if hasattr(killer, 'connection') and hasattr(victim, 'connection'):
+                if await ArenaManager.handle_arena_death(killer, victim):
+                    victim._death_processed = False
+                    return
+        except Exception:
+            pass
+
         # Reset Intel for any assassin whose intel_target was the victim
         if victim.room:
             for char in victim.room.characters:
@@ -1255,78 +1344,139 @@ class CombatHandler:
 
         if hasattr(exp_recipient, 'gain_exp') and hasattr(victim, 'exp'):
             exp_base = getattr(victim, 'exp', 100)
-            killer_level = getattr(exp_recipient, 'level', 1)
             victim_level = getattr(victim, 'level', 1)
-            level_diff = victim_level - killer_level
 
-            # Smooth exp scaling curve:
-            # +5 or more levels: +50% bonus (challenging)
-            # +3 to +4 levels: +30% bonus
-            # +1 to +2 levels: +15% bonus (sweet spot)
-            # Same level: 100%
-            # -1 to -2 levels: 80%
-            # -3 to -4 levels: 50%
-            # -5 to -7 levels: 25%
-            # -8 or more: 10% (gray)
-            if level_diff >= 5:
-                exp_mult = 1.5
-            elif level_diff >= 3:
-                exp_mult = 1.3
-            elif level_diff >= 1:
-                exp_mult = 1.15
-            elif level_diff >= -2:
-                exp_mult = 1.0 if level_diff >= 0 else 0.8
-            elif level_diff >= -4:
-                exp_mult = 0.5
-            elif level_diff >= -7:
-                exp_mult = 0.25
+            # Double XP world event check
+            try:
+                world = getattr(exp_recipient, 'world', None)
+                if world and hasattr(world, 'event_manager') and world.event_manager and world.event_manager.has_double_xp():
+                    exp_base = int(exp_base * 2)
+            except Exception:
+                pass
+
+            # --- GROUP XP SHARING ---
+            group = getattr(exp_recipient, 'group', None)
+            if group and len(group.members) > 1:
+                # Distribute XP among group members in the same room
+                exp_shares = group.get_exp_share(exp_base, room=exp_recipient.room)
+                for member, share in exp_shares.items():
+                    if not hasattr(member, 'gain_exp'):
+                        continue
+                    member_level = getattr(member, 'level', 1)
+                    level_diff = victim_level - member_level
+                    if level_diff >= 5:
+                        m_mult = 1.5
+                    elif level_diff >= 3:
+                        m_mult = 1.3
+                    elif level_diff >= 1:
+                        m_mult = 1.15
+                    elif level_diff >= -2:
+                        m_mult = 1.0 if level_diff >= 0 else 0.8
+                    elif level_diff >= -4:
+                        m_mult = 0.5
+                    elif level_diff >= -7:
+                        m_mult = 0.25
+                    else:
+                        m_mult = 0.1
+                    member_base = int(share * m_mult)
+                    m_bonuses = {'kill': member_base}
+                    # Boss bonus
+                    if getattr(victim, 'is_boss', False):
+                        bb = int(member_base * member.config.BOSS_XP_BONUS_PERCENT)
+                        if bb > 0:
+                            m_bonuses['boss'] = bb
+                    # Kill streak (only for the actual killer)
+                    if member == exp_recipient and hasattr(member, 'kill_streak'):
+                        member.kill_streak = max(0, member.kill_streak) + 1
+                        if hasattr(member, 'best_kill_streak'):
+                            member.best_kill_streak = max(member.best_kill_streak, member.kill_streak)
+                        streak_mult = min(member.config.STREAK_XP_BONUS_CAP,
+                                          member.kill_streak * member.config.STREAK_XP_BONUS_PER_KILL)
+                        sb = int(member_base * streak_mult)
+                        if sb > 0:
+                            m_bonuses['streak'] = sb
+                    # Rested XP
+                    if hasattr(member, 'rested_xp') and member.rested_xp > 0:
+                        rb = min(member.rested_xp, member_base)
+                        member.rested_xp -= rb
+                        if rb > 0:
+                            m_bonuses['rested'] = rb
+                    total_gain = sum(m_bonuses.values())
+                    if total_gain > 0:
+                        await member.gain_exp(total_gain, breakdown=m_bonuses)
+                        if hasattr(member, 'send'):
+                            await member.send(f"{c['bright_yellow']}You gain {total_gain} experience points!{c['reset']}")
+                            bp = []
+                            if m_bonuses.get('boss'):
+                                bp.append(f"Boss +{m_bonuses['boss']}")
+                            if m_bonuses.get('streak'):
+                                bp.append(f"Streak +{m_bonuses['streak']}")
+                            if m_bonuses.get('rested'):
+                                bp.append(f"Rested +{m_bonuses['rested']}")
+                            extra_members = len(exp_shares) - 1
+                            if extra_members > 0:
+                                bp.append(f"Group +{extra_members * 10}%")
+                            if bp:
+                                await member.send(f"{c['cyan']}Bonuses: {', '.join(bp)}{c['reset']}")
             else:
-                exp_mult = 0.1  # Gray mob
+                # Solo XP (original logic)
+                killer_level = getattr(exp_recipient, 'level', 1)
+                level_diff = victim_level - killer_level
+                if level_diff >= 5:
+                    exp_mult = 1.5
+                elif level_diff >= 3:
+                    exp_mult = 1.3
+                elif level_diff >= 1:
+                    exp_mult = 1.15
+                elif level_diff >= -2:
+                    exp_mult = 1.0 if level_diff >= 0 else 0.8
+                elif level_diff >= -4:
+                    exp_mult = 0.5
+                elif level_diff >= -7:
+                    exp_mult = 0.25
+                else:
+                    exp_mult = 0.1
 
-            exp_base = int(exp_base * exp_mult)
+                exp_base = int(exp_base * exp_mult)
+                bonuses = {'kill': exp_base}
 
-            bonuses = {'kill': exp_base}
+                boss_bonus = 0
+                if getattr(victim, 'is_boss', False):
+                    boss_bonus = int(exp_base * exp_recipient.config.BOSS_XP_BONUS_PERCENT)
+                    if boss_bonus > 0:
+                        bonuses['boss'] = boss_bonus
 
-            # Boss kill bonus
-            boss_bonus = 0
-            if getattr(victim, 'is_boss', False):
-                boss_bonus = int(exp_base * exp_recipient.config.BOSS_XP_BONUS_PERCENT)
-                if boss_bonus > 0:
-                    bonuses['boss'] = boss_bonus
+                streak_bonus = 0
+                if hasattr(exp_recipient, 'kill_streak'):
+                    exp_recipient.kill_streak = max(0, exp_recipient.kill_streak) + 1
+                    if hasattr(exp_recipient, 'best_kill_streak'):
+                        exp_recipient.best_kill_streak = max(exp_recipient.best_kill_streak, exp_recipient.kill_streak)
+                    streak_mult = min(exp_recipient.config.STREAK_XP_BONUS_CAP,
+                                      exp_recipient.kill_streak * exp_recipient.config.STREAK_XP_BONUS_PER_KILL)
+                    streak_bonus = int(exp_base * streak_mult)
+                    if streak_bonus > 0:
+                        bonuses['streak'] = streak_bonus
 
-            # Kill streak bonus
-            streak_bonus = 0
-            if hasattr(exp_recipient, 'kill_streak'):
-                exp_recipient.kill_streak = max(0, exp_recipient.kill_streak) + 1
-                if hasattr(exp_recipient, 'best_kill_streak'):
-                    exp_recipient.best_kill_streak = max(exp_recipient.best_kill_streak, exp_recipient.kill_streak)
-                streak_mult = min(exp_recipient.config.STREAK_XP_BONUS_CAP,
-                                  exp_recipient.kill_streak * exp_recipient.config.STREAK_XP_BONUS_PER_KILL)
-                streak_bonus = int(exp_base * streak_mult)
-                if streak_bonus > 0:
-                    bonuses['streak'] = streak_bonus
+                rested_bonus = 0
+                if hasattr(exp_recipient, 'rested_xp') and exp_recipient.rested_xp > 0:
+                    rested_bonus = min(exp_recipient.rested_xp, exp_base)
+                    exp_recipient.rested_xp -= rested_bonus
+                    if rested_bonus > 0:
+                        bonuses['rested'] = rested_bonus
 
-            # Rested XP bonus
-            rested_bonus = 0
-            if hasattr(exp_recipient, 'rested_xp') and exp_recipient.rested_xp > 0:
-                rested_bonus = min(exp_recipient.rested_xp, exp_base)
-                exp_recipient.rested_xp -= rested_bonus
-                if rested_bonus > 0:
-                    bonuses['rested'] = rested_bonus
-
-            total_gain = sum(bonuses.values())
-            await exp_recipient.gain_exp(total_gain, breakdown=bonuses)
-            if hasattr(exp_recipient, 'send'):
-                await exp_recipient.send(f"{c['bright_yellow']}You gain {total_gain} experience points!{c['reset']}")
-                bonus_parts = []
-                if boss_bonus:
-                    bonus_parts.append(f"Boss +{boss_bonus}")
-                if streak_bonus:
-                    bonus_parts.append(f"Streak +{streak_bonus}")
-                if rested_bonus:
-                    bonus_parts.append(f"Rested +{rested_bonus}")
-                if bonus_parts:
-                    await exp_recipient.send(f"{c['cyan']}Bonuses: {', '.join(bonus_parts)}{c['reset']}")
+                total_gain = sum(bonuses.values())
+                await exp_recipient.gain_exp(total_gain, breakdown=bonuses)
+                if hasattr(exp_recipient, 'send'):
+                    await exp_recipient.send(f"{c['bright_yellow']}You gain {total_gain} experience points!{c['reset']}")
+                    bonus_parts = []
+                    if boss_bonus:
+                        bonus_parts.append(f"Boss +{boss_bonus}")
+                    if streak_bonus:
+                        bonus_parts.append(f"Streak +{streak_bonus}")
+                    if rested_bonus:
+                        bonus_parts.append(f"Rested +{rested_bonus}")
+                    if bonus_parts:
+                        await exp_recipient.send(f"{c['cyan']}Bonuses: {', '.join(bonus_parts)}{c['reset']}")
 
         # Check quest progress for kills (use exp_recipient for pet kills)
         quest_holder = exp_recipient if 'exp_recipient' in dir() else killer
@@ -1344,10 +1494,11 @@ class CombatHandler:
             except Exception as e:
                 logger.debug(f"Achievement check error: {e}")
 
-        # Faction reputation loss for killing faction mobs
+        # Faction reputation: explicit mob faction tag AND auto-gain from mob keywords
         if hasattr(killer, 'connection'):
             try:
                 from factions import FactionManager
+                # Legacy explicit faction tag
                 faction_key = FactionManager.normalize_key(getattr(victim, 'faction', None))
                 if faction_key:
                     rep_data = getattr(victim, 'faction_rep', None)
@@ -1356,6 +1507,8 @@ class CombatHandler:
                     else:
                         amount = rep_data if isinstance(rep_data, int) else -10
                         await FactionManager.apply_reputation_change(killer, faction_key, amount, reason='Slaying a faction member')
+                # Auto-gain from mob name/keywords (new faction system)
+                await FactionManager.on_mob_kill(killer, victim)
             except Exception:
                 pass
 
@@ -1490,6 +1643,12 @@ class CombatHandler:
                     killer.gold += victim.gold
                     if hasattr(killer, 'send'):
                         await killer.send(f"{c['yellow']}You get {victim.gold} gold coins from the corpse.{c['reset']}")
+                    # Achievement: gold earned
+                    try:
+                        from achievements import AchievementManager
+                        await AchievementManager.check_gold(killer, victim.gold)
+                    except Exception:
+                        pass
                     victim.gold = 0  # Remove gold so it doesn't appear in corpse
                     gold_looted = True
 

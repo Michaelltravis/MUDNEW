@@ -1,0 +1,79 @@
+{
+  "number": 32,
+  "name": "Midgaard Stables",
+  "lifespan": 30,
+  "rooms": {
+    "3200": {
+      "vnum": 3200,
+      "name": "Stable Road",
+      "description": "A wide cobblestone road leads south from the bustling streets of Midgaard toward a large wooden stable complex. The scent of hay and horses fills the air. A weathered sign reads 'Midgaard Royal Stables - Finest Mounts in the Realm'. Hoofprints and wheel ruts mark the well-traveled path.",
+      "sector_type": "city",
+      "flags": ["no_mob"],
+      "exits": {
+        "north": {"room_vnum": 3053},
+        "south": {"room_vnum": 3201}
+      }
+    },
+    "3201": {
+      "vnum": 3201,
+      "name": "Midgaard Royal Stables - Main Hall",
+      "description": "You stand in the main hall of the Royal Stables. Sturdy wooden stalls line both sides of the wide central aisle. The sweet smell of fresh hay mingles with the warm scent of horses. Saddles, bridles, and riding gear hang from pegs along the walls. The stable master oversees all business from a small desk near the entrance. A passage to the east leads to the premium stables, while the training paddock lies to the south.",
+      "sector_type": "city",
+      "flags": ["peaceful", "no_mob"],
+      "exits": {
+        "north": {"room_vnum": 3200},
+        "east": {"room_vnum": 3202},
+        "south": {"room_vnum": 3203}
+      }
+    },
+    "3202": {
+      "vnum": 3202,
+      "name": "Premium Stables",
+      "description": "These stalls are larger and better-appointed than the common ones. Brass nameplates mark each stall, and the bedding is fresh and deep. War horses stamp impatiently in their reinforced stalls, while more exotic mounts peer from behind enchanted barriers. A sign lists the available mounts and their prices.",
+      "sector_type": "city",
+      "flags": ["peaceful", "no_mob"],
+      "exits": {
+        "west": {"room_vnum": 3201}
+      }
+    },
+    "3203": {
+      "vnum": 3203,
+      "name": "Training Paddock",
+      "description": "A large open paddock stretches out behind the stables, enclosed by a sturdy wooden fence. Riders practice their skills here, circling the paddock on various mounts. A few hay bales serve as practice targets. The ground is packed earth, worn smooth by countless hooves.",
+      "sector_type": "field",
+      "flags": ["peaceful"],
+      "exits": {
+        "north": {"room_vnum": 3201}
+      }
+    }
+  },
+  "mobs": {
+    "3200": {
+      "vnum": 3200,
+      "name": "the stable master",
+      "short_desc": "Brynn the Stable Master",
+      "long_desc": "Brynn the Stable Master stands here, sizing up potential riders.",
+      "description": "A stout, weathered man with calloused hands and a knowing look. Brynn has spent his entire life around horses and exotic mounts. He can tell a rider's skill at a glance.",
+      "level": 25,
+      "alignment": 500,
+      "hp_dice": "5d10+100",
+      "damage_dice": "2d6+5",
+      "gold": 500,
+      "flags": ["sentinel", "no_charm", "helper"],
+      "special": "stable_master",
+      "keywords": ["brynn", "stable", "master", "stablemaster"],
+      "talk_responses": {
+        "default": "Brynn says, 'Looking for a mount? Type STABLE LIST to see what we have, or STABLE BUY <mount> to purchase one.'",
+        "horse": "Brynn says, 'A fine choice! Our riding horses are 2,000 gold. Reliable and swift.'",
+        "warhorse": "Brynn says, 'War horses are trained for battle — 5,000 gold. They won't throw you when swords clash!'",
+        "nightmare": "Brynn lowers his voice, 'Nightmares... those aren't for sale. Earn the Dark Brotherhood's trust, and they might gift you one.'",
+        "griffin": "Brynn whistles, 'Griffins are wild and proud. I've heard they nest in Shadowspire. Slay the right beast and one might bond to you.'",
+        "clockwork": "Brynn scratches his head, 'Clockwork Steeds? Those come from the Clockwork Foundry. Never need feeding, those mechanical beasts.'"
+      }
+    }
+  },
+  "objects": {},
+  "resets": [
+    {"type": "mob", "vnum": 3200, "room": 3201, "max": 1}
+  ]
+}

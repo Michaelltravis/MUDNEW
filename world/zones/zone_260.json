@@ -1,0 +1,743 @@
+{
+  "number": 260,
+  "name": "Midgaard Housing District",
+  "builders": "System",
+  "reset_time": 1800,
+  "reset_mode": 2,
+  "top": 26099,
+  "rooms": {
+    "26000": {
+      "vnum": 26000,
+      "name": "Housing District - Main Street",
+      "description": "A broad cobblestone street lined with well-maintained houses stretches before you. Iron lampposts cast warm light over manicured hedges and wrought-iron fences. A large sign above a storefront reads \"Midgaard Real Estate - Homes for Distinguished Adventurers\". The air smells of fresh paint and cut grass. To the north and south, quieter residential lanes branch off into the district.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 26001,
+          "description": "A residential lane leads north."
+        },
+        "south": {
+          "to_room": 26011,
+          "description": "A residential lane leads south."
+        },
+        "west": {
+          "to_room": 3042,
+          "description": "Wall Road leads back into Midgaard."
+        },
+        "east": {
+          "to_room": 26021,
+          "description": "A furniture shop lies to the east."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [
+        {
+          "vnum": 26000,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "26021": {
+      "vnum": 26021,
+      "name": "Hearth & Home Furnishings",
+      "description": "This cozy shop is filled with sample furniture pieces. Sturdy oak beds, elegant dining tables, and ornate display cases line the walls. A cheerful shopkeeper arranges a display of carved bookshelves near the entrance. A sign reads: \"Furnish your home! Buy furniture here and use house furnish to install it.\"",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 26000,
+          "description": "The main street lies west."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [
+        {
+          "vnum": 26001,
+          "max": 1
+        }
+      ],
+      "obj_resets": []
+    },
+    "26001": {
+      "vnum": 26001,
+      "name": "Residential Lane - Plot #1",
+      "description": "A small house plot sits beside the lane, marked with a brass plaque reading \"Plot #1 (Small)\". A modest cottage could be built here.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful",
+        "house_plot:small:1"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 26000,
+          "description": "The lane continues south."
+        },
+        "north": {
+          "to_room": 26002,
+          "description": "The lane continues north."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "26002": {
+      "vnum": 26002,
+      "name": "Residential Lane - Plot #2",
+      "description": "A small house plot sits beside the lane, marked with a brass plaque reading \"Plot #2 (Small)\". A modest cottage could be built here.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful",
+        "house_plot:small:2"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 26001,
+          "description": "The lane continues south."
+        },
+        "north": {
+          "to_room": 26003,
+          "description": "The lane continues north."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "26003": {
+      "vnum": 26003,
+      "name": "Residential Lane - Plot #3",
+      "description": "A small house plot sits beside the lane, marked with a brass plaque reading \"Plot #3 (Small)\". A modest cottage could be built here.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful",
+        "house_plot:small:3"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 26002,
+          "description": "The lane continues south."
+        },
+        "north": {
+          "to_room": 26004,
+          "description": "The lane continues north."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "26004": {
+      "vnum": 26004,
+      "name": "Residential Lane - Plot #4",
+      "description": "A small house plot sits beside the lane, marked with a brass plaque reading \"Plot #4 (Small)\". A modest cottage could be built here.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful",
+        "house_plot:small:4"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 26003,
+          "description": "The lane continues south."
+        },
+        "north": {
+          "to_room": 26005,
+          "description": "The lane continues north."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "26005": {
+      "vnum": 26005,
+      "name": "Residential Lane - Plot #5",
+      "description": "A medium house plot sits beside the lane, marked with a brass plaque reading \"Plot #5 (Medium)\". A comfortable townhouse could be built here.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful",
+        "house_plot:medium:5"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 26004,
+          "description": "The lane continues south."
+        },
+        "north": {
+          "to_room": 26006,
+          "description": "The lane continues north."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "26006": {
+      "vnum": 26006,
+      "name": "Residential Lane - Plot #6",
+      "description": "A medium house plot sits beside the lane, marked with a brass plaque reading \"Plot #6 (Medium)\". A comfortable townhouse could be built here.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful",
+        "house_plot:medium:6"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 26005,
+          "description": "The lane continues south."
+        },
+        "north": {
+          "to_room": 26007,
+          "description": "The lane continues north."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "26007": {
+      "vnum": 26007,
+      "name": "Residential Lane - Plot #7",
+      "description": "A medium house plot sits beside the lane, marked with a brass plaque reading \"Plot #7 (Medium)\". A comfortable townhouse could be built here.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful",
+        "house_plot:medium:7"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 26006,
+          "description": "The lane continues south."
+        },
+        "north": {
+          "to_room": 26008,
+          "description": "The lane continues north."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "26008": {
+      "vnum": 26008,
+      "name": "Residential Lane - Plot #8",
+      "description": "A large house plot sits beside the lane, marked with a brass plaque reading \"Plot #8 (Large)\". A grand estate could be built here.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful",
+        "house_plot:large:8"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 26007,
+          "description": "The lane continues south."
+        },
+        "north": {
+          "to_room": 26009,
+          "description": "The lane continues north."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "26009": {
+      "vnum": 26009,
+      "name": "Residential Lane - Plot #9",
+      "description": "A large house plot sits beside the lane, marked with a brass plaque reading \"Plot #9 (Large)\". A grand estate could be built here.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful",
+        "house_plot:large:9"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 26008,
+          "description": "The lane continues south."
+        },
+        "north": {
+          "to_room": 26010,
+          "description": "The lane continues north."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "26010": {
+      "vnum": 26010,
+      "name": "Residential Lane - Plot #10",
+      "description": "A large house plot sits beside the lane, marked with a brass plaque reading \"Plot #10 (Large)\". A grand estate could be built here.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful",
+        "house_plot:large:10"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 26009,
+          "description": "The lane continues south."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "26011": {
+      "vnum": 26011,
+      "name": "Residential Lane - Plot #11",
+      "description": "A small house plot sits beside the lane, marked with a brass plaque reading \"Plot #11 (Small)\". A modest cottage could be built here.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful",
+        "house_plot:small:11"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 26000,
+          "description": "The lane continues north."
+        },
+        "south": {
+          "to_room": 26012,
+          "description": "The lane continues south."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "26012": {
+      "vnum": 26012,
+      "name": "Residential Lane - Plot #12",
+      "description": "A small house plot sits beside the lane, marked with a brass plaque reading \"Plot #12 (Small)\". A modest cottage could be built here.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful",
+        "house_plot:small:12"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 26011,
+          "description": "The lane continues north."
+        },
+        "south": {
+          "to_room": 26013,
+          "description": "The lane continues south."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "26013": {
+      "vnum": 26013,
+      "name": "Residential Lane - Plot #13",
+      "description": "A small house plot sits beside the lane, marked with a brass plaque reading \"Plot #13 (Small)\". A modest cottage could be built here.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful",
+        "house_plot:small:13"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 26012,
+          "description": "The lane continues north."
+        },
+        "south": {
+          "to_room": 26014,
+          "description": "The lane continues south."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "26014": {
+      "vnum": 26014,
+      "name": "Residential Lane - Plot #14",
+      "description": "A small house plot sits beside the lane, marked with a brass plaque reading \"Plot #14 (Small)\". A modest cottage could be built here.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful",
+        "house_plot:small:14"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 26013,
+          "description": "The lane continues north."
+        },
+        "south": {
+          "to_room": 26015,
+          "description": "The lane continues south."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "26015": {
+      "vnum": 26015,
+      "name": "Residential Lane - Plot #15",
+      "description": "A medium house plot sits beside the lane, marked with a brass plaque reading \"Plot #15 (Medium)\". A comfortable townhouse could be built here.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful",
+        "house_plot:medium:15"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 26014,
+          "description": "The lane continues north."
+        },
+        "south": {
+          "to_room": 26016,
+          "description": "The lane continues south."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "26016": {
+      "vnum": 26016,
+      "name": "Residential Lane - Plot #16",
+      "description": "A medium house plot sits beside the lane, marked with a brass plaque reading \"Plot #16 (Medium)\". A comfortable townhouse could be built here.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful",
+        "house_plot:medium:16"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 26015,
+          "description": "The lane continues north."
+        },
+        "south": {
+          "to_room": 26017,
+          "description": "The lane continues south."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "26017": {
+      "vnum": 26017,
+      "name": "Residential Lane - Plot #17",
+      "description": "A medium house plot sits beside the lane, marked with a brass plaque reading \"Plot #17 (Medium)\". A comfortable townhouse could be built here.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful",
+        "house_plot:medium:17"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 26016,
+          "description": "The lane continues north."
+        },
+        "south": {
+          "to_room": 26018,
+          "description": "The lane continues south."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "26018": {
+      "vnum": 26018,
+      "name": "Residential Lane - Plot #18",
+      "description": "A large house plot sits beside the lane, marked with a brass plaque reading \"Plot #18 (Large)\". A grand estate could be built here.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful",
+        "house_plot:large:18"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 26017,
+          "description": "The lane continues north."
+        },
+        "south": {
+          "to_room": 26019,
+          "description": "The lane continues south."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "26019": {
+      "vnum": 26019,
+      "name": "Residential Lane - Plot #19",
+      "description": "A large house plot sits beside the lane, marked with a brass plaque reading \"Plot #19 (Large)\". A grand estate could be built here.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful",
+        "house_plot:large:19"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 26018,
+          "description": "The lane continues north."
+        },
+        "south": {
+          "to_room": 26020,
+          "description": "The lane continues south."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [],
+      "obj_resets": []
+    },
+    "26020": {
+      "vnum": 26020,
+      "name": "Residential Lane - Plot #20",
+      "description": "A large house plot sits beside the lane, marked with a brass plaque reading \"Plot #20 (Large)\". A grand estate could be built here.",
+      "sector_type": "city",
+      "flags": [
+        "no_mob",
+        "peaceful",
+        "house_plot:large:20"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 26019,
+          "description": "The lane continues north."
+        }
+      },
+      "extra_descs": {},
+      "hidden_items": [],
+      "puzzles": [],
+      "mob_resets": [],
+      "obj_resets": []
+    }
+  },
+  "mobs": {
+    "26000": {
+      "vnum": 26000,
+      "name": "agent",
+      "short_desc": "Reginald the Real Estate Agent",
+      "long_desc": "Reginald the Real Estate Agent stands here, polishing a brass key.",
+      "level": 30,
+      "alignment": 500,
+      "hp_dice": "10d10+500",
+      "damage_dice": "1d4+1",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": 0,
+      "flags": [
+        "sentinel",
+        "aware",
+        "no_charm",
+        "no_summon",
+        "no_sleep",
+        "no_attack"
+      ],
+      "description": "Reginald is a well-dressed halfling with a perpetual smile and an impressive collection of brass keys hanging from his belt. He knows every property in the housing district and is eager to help adventurers find their dream home.",
+      "special": "real_estate",
+      "ai_config": {
+        "behaviors": [
+          "helpful",
+          "talkative"
+        ],
+        "greet_message": "Welcome to Midgaard Housing District! Looking to buy a home? Type \"house list\" to see available properties!",
+        "topics": {
+          "house": "We have small cottages, medium townhouses, and grand estates! Type \"house list\" to see what's available.",
+          "price": "Small homes: 5,000 gold. Medium: 15,000 gold. Large: 50,000 gold. A worthy investment!",
+          "furniture": "Visit Hearth & Home Furnishings to the east for beds, tables, trophy cases, and more!"
+        }
+      }
+    },
+    "26001": {
+      "vnum": 26001,
+      "name": "carpenter",
+      "short_desc": "Helga the Carpenter",
+      "long_desc": "Helga the Carpenter is here, sanding a beautiful oak table.",
+      "level": 25,
+      "alignment": 500,
+      "hp_dice": "8d10+300",
+      "damage_dice": "1d4+1",
+      "gold": 50000,
+      "exp": 0,
+      "armor_class": 0,
+      "flags": [
+        "sentinel",
+        "aware",
+        "no_charm",
+        "no_summon",
+        "no_sleep",
+        "no_attack"
+      ],
+      "description": "Helga is a stout dwarven woman with sawdust in her beard and calloused hands that speak of decades of fine woodworking.",
+      "special": "shopkeeper",
+      "shop_config": {
+        "sells": [
+          26050,
+          26051,
+          26052,
+          26053,
+          26054
+        ],
+        "buys": [],
+        "markup": 1.0,
+        "markdown": 0.3
+      },
+      "inventory": [
+        26050,
+        26051,
+        26052,
+        26053,
+        26054
+      ]
+    }
+  },
+  "objects": {
+    "26050": {
+      "vnum": 26050,
+      "name": "bed",
+      "short_desc": "an oak four-poster bed",
+      "room_desc": "A sturdy oak four-poster bed stands here.",
+      "description": "A beautiful bed with silk sheets. Resting here restores HP faster.",
+      "item_type": "furniture",
+      "type": "furniture",
+      "weight": 50,
+      "value": 2000,
+      "furniture_bonus": "hp_regen",
+      "flags": [
+        "no_take_from_house"
+      ]
+    },
+    "26051": {
+      "vnum": 26051,
+      "name": "table",
+      "short_desc": "an elegant dining table",
+      "room_desc": "An elegant dining table with carved legs sits here.",
+      "description": "A finely crafted dining table that seats six.",
+      "item_type": "furniture",
+      "type": "furniture",
+      "weight": 50,
+      "value": 1500,
+      "furniture_bonus": "none",
+      "flags": [
+        "no_take_from_house"
+      ]
+    },
+    "26052": {
+      "vnum": 26052,
+      "name": "trophy case",
+      "short_desc": "an ornate trophy case",
+      "room_desc": "An ornate glass trophy case gleams in the light.",
+      "description": "A glass-fronted case for displaying achievements and trophies.",
+      "item_type": "furniture",
+      "type": "furniture",
+      "weight": 50,
+      "value": 5000,
+      "furniture_bonus": "trophy_display",
+      "flags": [
+        "no_take_from_house"
+      ]
+    },
+    "26053": {
+      "vnum": 26053,
+      "name": "weapon rack",
+      "short_desc": "a polished weapon rack",
+      "room_desc": "A polished wooden weapon rack stands against the wall.",
+      "description": "A wall-mounted rack for displaying prized weapons.",
+      "item_type": "furniture",
+      "type": "furniture",
+      "weight": 50,
+      "value": 3000,
+      "furniture_bonus": "weapon_display",
+      "flags": [
+        "no_take_from_house"
+      ]
+    },
+    "26054": {
+      "vnum": 26054,
+      "name": "bookshelf",
+      "short_desc": "a tall mahogany bookshelf",
+      "room_desc": "A tall mahogany bookshelf stretches to the ceiling.",
+      "description": "A beautiful bookshelf for storing knowledge and lore.",
+      "item_type": "furniture",
+      "type": "furniture",
+      "weight": 50,
+      "value": 2500,
+      "furniture_bonus": "lore_display",
+      "flags": [
+        "no_take_from_house"
+      ]
+    }
+  }
+}

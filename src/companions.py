@@ -372,6 +372,232 @@ class Companion(Mobile):
         await SpellHandler.cast_spell(self, spell, target.name)
 
 
+# ─── Class-Based Combat Companions (unlocked at level 20) ─────────
+
+COMBAT_COMPANION_TYPES: Dict[str, Dict] = {
+    'warrior': {
+        'name': 'War Hound',
+        'short_desc': 'a fierce war hound',
+        'long_desc': 'A massive armored war hound stands here, growling menacingly.',
+        'companion_type': 'Fighter',
+        'damage_dice': '2d6',
+        'base_hp_mult': 0.6,       # 60% of player max_hp
+        'damage_scale': 0.30,      # ~30% of player DPS
+        'attack_desc': 'lunges and bites',
+        'special': 'knockdown',    # chance to stun
+    },
+    'assassin': {
+        'name': 'Shadow Cat',
+        'short_desc': 'a sleek shadow cat',
+        'long_desc': 'A dark-furred cat crouches in the shadows, eyes gleaming.',
+        'companion_type': 'Rogue',
+        'damage_dice': '2d5',
+        'base_hp_mult': 0.45,
+        'damage_scale': 0.30,
+        'attack_desc': 'slashes with razor claws',
+        'special': 'bleed',
+    },
+    'mage': {
+        'name': 'Arcane Familiar',
+        'short_desc': 'an arcane familiar',
+        'long_desc': 'A shimmering arcane construct hovers here, crackling with energy.',
+        'companion_type': 'Mage',
+        'damage_dice': '2d4',
+        'base_hp_mult': 0.35,
+        'damage_scale': 0.30,
+        'attack_desc': 'zaps with arcane bolts',
+        'special': 'mana_regen',   # helps owner regen mana
+    },
+    'ranger': {
+        'name': 'Timber Wolf',
+        'short_desc': 'a loyal timber wolf',
+        'long_desc': 'A large timber wolf pads alongside its master, ears alert.',
+        'companion_type': 'Fighter',
+        'damage_dice': '2d6',
+        'base_hp_mult': 0.55,
+        'damage_scale': 0.30,
+        'attack_desc': 'snarls and bites',
+        'special': 'track',
+    },
+    'cleric': {
+        'name': 'Guardian Spirit',
+        'short_desc': 'a glowing guardian spirit',
+        'long_desc': 'A translucent spirit shimmers with holy light.',
+        'companion_type': 'Healer',
+        'damage_dice': '1d6',
+        'base_hp_mult': 0.40,
+        'damage_scale': 0.20,
+        'attack_desc': 'smites with holy light',
+        'special': 'heal_owner',
+    },
+    'thief': {
+        'name': 'Street Urchin',
+        'short_desc': 'a nimble street urchin',
+        'long_desc': 'A quick-fingered urchin lurks nearby, ready to help.',
+        'companion_type': 'Rogue',
+        'damage_dice': '2d4',
+        'base_hp_mult': 0.40,
+        'damage_scale': 0.30,
+        'attack_desc': 'stabs with a shiv',
+        'special': 'pickpocket',
+    },
+    'paladin': {
+        'name': 'Celestial Stag',
+        'short_desc': 'a radiant celestial stag',
+        'long_desc': 'A magnificent stag with glowing antlers stands here.',
+        'companion_type': 'Fighter',
+        'damage_dice': '2d5',
+        'base_hp_mult': 0.50,
+        'damage_scale': 0.25,
+        'attack_desc': 'charges with radiant antlers',
+        'special': 'aura_heal',
+    },
+    'necromancer': {
+        'name': 'Shade Wraith',
+        'short_desc': 'a hovering shade wraith',
+        'long_desc': 'A dark wraith hovers silently, tendrils of shadow drifting from it.',
+        'companion_type': 'Mage',
+        'damage_dice': '2d5',
+        'base_hp_mult': 0.40,
+        'damage_scale': 0.30,
+        'attack_desc': 'drains with shadow tendrils',
+        'special': 'lifedrain',
+    },
+    'bard': {
+        'name': 'Dancing Sprite',
+        'short_desc': 'a tiny dancing sprite',
+        'long_desc': 'A mischievous sprite dances in the air, trailing sparkles.',
+        'companion_type': 'Healer',
+        'damage_dice': '1d6',
+        'base_hp_mult': 0.35,
+        'damage_scale': 0.20,
+        'attack_desc': 'zings with fae sparks',
+        'special': 'inspire',
+    },
+}
+
+
+class CombatCompanion:
+    """A class-based combat companion that fights alongside the player."""
+
+    def __init__(self, owner: 'Player', companion_key: str):
+        self.owner = owner
+        self.companion_key = companion_key
+        cfg = COMBAT_COMPANION_TYPES.get(companion_key, COMBAT_COMPANION_TYPES['warrior'])
+        self.name = cfg['name']
+        self.short_desc = cfg['short_desc']
+        self.long_desc = cfg['long_desc']
+        self.damage_dice = cfg['damage_dice']
+        self.base_hp_mult = cfg.get('base_hp_mult', 0.5)
+        self.damage_scale = cfg.get('damage_scale', 0.30)
+        self.attack_desc = cfg.get('attack_desc', 'attacks')
+        self.special = cfg.get('special', None)
+
+        # State
+        self.hp = 1
+        self.max_hp = 1
+        self.level = 1
+        self.behavior = 'attack'   # attack, defend, passive
+        self.knocked_out = False
+        self.ko_timer = 0           # ticks until revive
+
+        self.sync_to_owner()
+
+    def sync_to_owner(self):
+        """Scale stats to owner level."""
+        if not self.owner:
+            return
+        self.level = max(1, self.owner.level)
+        old_max = self.max_hp
+        self.max_hp = max(10, int(self.owner.max_hp * self.base_hp_mult))
+        if old_max != self.max_hp:
+            self.hp = self.max_hp
+        if self.knocked_out:
+            self.hp = 0
+
+    @property
+    def is_alive(self):
+        return self.hp > 0 and not self.knocked_out
+
+    def get_damage(self) -> int:
+        """Calculate companion damage (~30% of player DPS)."""
+        from mobs import Mobile
+        base = Mobile.roll_dice(self.damage_dice)
+        # Scale with level
+        level_bonus = self.level // 3
+        total = base + level_bonus
+        # Defend mode: half damage
+        if self.behavior == 'defend':
+            total = max(1, total // 2)
+        elif self.behavior == 'passive':
+            total = 0
+        return max(0, total)
+
+    def take_damage(self, amount: int) -> bool:
+        """Take damage. Returns True if knocked out."""
+        self.hp -= amount
+        if self.hp <= 0:
+            self.hp = 0
+            self.knocked_out = True
+            self.ko_timer = 30  # revives after ~30 ticks of rest
+            return True
+        return False
+
+    def try_revive(self):
+        """Attempt revive during rest."""
+        if self.knocked_out:
+            self.ko_timer -= 1
+            if self.ko_timer <= 0:
+                self.knocked_out = False
+                self.hp = self.max_hp // 2
+                return True
+        return False
+
+    def rest_revive(self):
+        """Instantly revive when owner rests/sleeps."""
+        if self.knocked_out:
+            self.knocked_out = False
+            self.hp = self.max_hp
+            self.ko_timer = 0
+            return True
+        return False
+
+    def to_dict(self) -> dict:
+        return {
+            'kind': 'combat_companion',
+            'companion_key': self.companion_key,
+            'hp': self.hp,
+            'max_hp': self.max_hp,
+            'level': self.level,
+            'behavior': self.behavior,
+            'knocked_out': self.knocked_out,
+            'ko_timer': self.ko_timer,
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict, owner: 'Player') -> 'CombatCompanion':
+        cc = cls(owner, data.get('companion_key', 'warrior'))
+        cc.hp = data.get('hp', cc.max_hp)
+        cc.max_hp = data.get('max_hp', cc.max_hp)
+        cc.behavior = data.get('behavior', 'attack')
+        cc.knocked_out = data.get('knocked_out', False)
+        cc.ko_timer = data.get('ko_timer', 0)
+        return cc
+
+    @staticmethod
+    def can_unlock(player) -> bool:
+        """Check if player meets requirements for a combat companion."""
+        return player.level >= 20
+
+    @staticmethod
+    def get_available_type(player) -> Optional[str]:
+        """Get the combat companion type for the player's class."""
+        char_class = getattr(player, 'char_class', 'warrior').lower()
+        if char_class in COMBAT_COMPANION_TYPES:
+            return char_class
+        return 'warrior'  # fallback
+
+
 class CompanionManager:
     """Hiring and management for companions."""
 

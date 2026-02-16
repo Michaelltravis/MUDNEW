@@ -3,14 +3,111 @@ Help system data for RealmsMUD.
 Contains detailed information about commands, skills, spells, and game mechanics.
 """
 
-HELP_TOPICS = {'account': {'category': 'command',
+HELP_TOPICS = {'auction': {'category': 'command',
+             'description': 'The Auction House — player-to-player trading system.\n\n'
+                            'Visit Guildmaster Harlan at Market Square (room 3014) to trade.\n\n'
+                            'COMMANDS:\n'
+                            '  auction list [category]        — Browse listings\n'
+                            '  auction sell <item> <price>     — List item for fixed price (5% fee)\n'
+                            '  auction sell <item> <price> auction — List as auction with bidding\n'
+                            '  auction buy <id>               — Buy a listed item\n'
+                            '  auction bid <id> <amount>      — Bid on an auction listing\n'
+                            '  auction cancel <id>            — Cancel your listing\n'
+                            '  auction search <keyword>       — Search listings by name\n'
+                            '  auction history                — View your recent transactions\n'
+                            '  auction collect                — Collect pending gold/items\n\n'
+                            'CATEGORIES: weapons, armor, materials, consumables, misc\n\n'
+                            'RULES:\n'
+                            '  - 5% listing fee (non-refundable)\n'
+                            '  - 10% transaction tax on sales (gold sink)\n'
+                            '  - Max 10 active listings per player\n'
+                            '  - Listings expire after 48 hours (items returned via mail)\n'
+                            '  - Cannot auction soulbound or quest items\n'
+                            '  - Auction bids: min bid is 50% of buyout price\n\n'
+                            'Aliases: auc, ah\n\n'
+                            'See also: HELP MAIL, HELP SHOP',
+             'syntax': 'auction <subcommand> [args]'},
+             'auction house': {'category': 'general',
+             'description': 'See HELP AUCTION for auction house commands.',
+             'syntax': 'auction'},
+             'arena': {'category': 'command',
+             'description': 'The PvP Arena System — opt-in player vs player combat.\n\n'
+                            'Travel to The Blood Pit Arena (zone 250) to compete.\n\n'
+                            'COMMANDS:\n'
+                            '  challenge <player> — Challenge someone to a duel (both in lobby)\n'
+                            '  accept / decline   — Respond to a challenge\n'
+                            '  arena join         — Queue for random matchmaking\n'
+                            '  arena leave        — Leave the queue\n'
+                            '  arena stats        — View your PvP record (wins/losses/rating)\n'
+                            '  arena top          — Leaderboard (top 10 by rating)\n\n'
+                            'RULES:\n'
+                            '  - ELO-style rating system (start at 1000)\n'
+                            '  - No death on loss — loser teleported to lobby at 1 HP\n'
+                            '  - No XP loss, no item loss\n'
+                            '  - Winner earns arena points + gold reward\n'
+                            '  - Spectators can watch from the gallery above the lobby\n'
+                            '  - PvP is opt-in only — no combat outside the arena',
+             'syntax': 'arena [join|leave|stats|top]',
+             'title': 'Arena (PvP)'},
+ 'challenge': {'category': 'command',
+               'description': 'Challenge another player to an arena duel.\n'
+                              'Both players must be in the Arena Lobby.\n\n'
+                              'Usage: challenge <player>',
+               'syntax': 'challenge <player>',
+               'title': 'Challenge'},
+ 'account': {'category': 'command',
              'description': 'View and manage your account. Usage: account [create|chars|info]',
              'syntax': 'account [create|chars|info]',
              'title': 'Account'},
  'achievements': {'category': 'command',
-                  'description': 'List earned achievements and progress. Usage: achievements [all|progress]',
-                  'syntax': 'achievements [all|progress]',
+                  'description': 'View your achievements and progress toward earning them.\n\n'
+                                 'Achievements are earned by completing goals across several categories:\n'
+                                 '  Combat      - Kill enemies, defeat bosses, survive without dying\n'
+                                 '  Exploration - Visit rooms, complete zones, travel the world\n'
+                                 '  Progression - Reach level milestones\n'
+                                 '  Class       - Master your class at level 50, max talent trees\n'
+                                 '  Social      - Join groups, complete quests\n'
+                                 '  Wealth      - Earn gold milestones (1k, 10k, 100k)\n'
+                                 '  Collection  - Read lore items, collect equipment sets\n\n'
+                                 'Earning achievements grants points, titles, gold, XP, and permanent stat bonuses.\n'
+                                 'Use "title" to equip a title earned from achievements.\n'
+                                 'Progress bars show how close you are to each achievement.',
+                  'syntax': 'achievements [category]\n  achievements combat\n  achievements exploration',
                   'title': 'Achievements'},
+ 'title': {'category': 'command',
+           'description': 'View or set your display title from earned achievements.\n\n'
+                          'Titles are unlocked by earning achievements. Your title appears after\n'
+                          'your name (e.g. "Gandalf the Slayer").\n\n'
+                          'With no arguments, shows all available titles.\n'
+                          'Use "title <name>" or "title <number>" to set your title.\n'
+                          'Use "title none" to reset to the default title.',
+           'syntax': 'title [name|number|none]',
+           'title': 'Title'},
+ 'quests': {'category': 'command',
+            'description': 'The Quest Journal shows all your active and completed quests,\n'
+                           'organized by category: Main Story, Side Quests, Daily, Faction, and Dungeon.\n\n'
+                           'COMMANDS:\n'
+                           '  quests               - Show active quests grouped by category\n'
+                           '  quests completed      - Show completed quests\n'
+                           '  quests daily          - Show available daily quests and status\n'
+                           '  quests main           - Filter to main story quests\n'
+                           '  quests side           - Filter to side quests\n'
+                           '  quests faction        - Filter to faction quests\n'
+                           '  quests dungeon        - Filter to dungeon quests\n'
+                           '  quests track <name>   - Track a quest (progress shown in prompt)\n'
+                           '  quests untrack        - Stop tracking a quest\n\n'
+                           'QUEST TYPES:\n'
+                           '  Main Story  - Multi-part storyline quests\n'
+                           '  Side Quests - Optional adventures and quest chains\n'
+                           '  Daily       - Repeatable quests that reset at midnight\n'
+                           '  Faction     - Quests tied to faction reputation\n'
+                           '  Dungeon     - Dungeon exploration quest chains\n\n'
+                           'QUEST GIVERS:\n'
+                           '  NPCs with [!] have quests available for you.\n'
+                           '  NPCs with [?] are ready to accept a completed quest turn-in.\n\n'
+                           'See also: quest, journal, track',
+            'syntax': 'quests [completed|daily|main|side|faction|dungeon|track|untrack]',
+            'title': 'Quest Journal'},
  'adrenaline_rush': {'category': 'command',
                      'description': 'Burst of speed.',
                      'syntax': 'adrenaline_rush',
@@ -30,9 +127,22 @@ HELP_TOPICS = {'account': {'category': 'command',
         'description': 'Toggle AI chat on/off. Usage: ai on|off',
         'syntax': 'ai on|off',
         'title': 'Ai'},
- 'aimed_shot': {'category': 'command',
-                'description': 'Powerful ranged shot.',
-                'syntax': 'aimed_shot',
+ 'aimed_shot': {'category': 'skill',
+                'classes': ['ranger'],
+                'description': 'Aimed Shot — A precisely aimed ranged strike.\n\n'
+                               'MECHANICS:\n'
+                               '- Deals 2.5x weapon damage, guaranteed hit\n'
+                               '- +10% bonus damage on Hunter\'s Marked targets\n'
+                               '- Cost: 30 Focus (15 at 100 Focus)\n'
+                               '- Cooldown: 12 seconds\n\n'
+                               'TALENT SYNERGIES:\n'
+                               '- Careful Aim: +3% damage per rank\n\n'
+                               'STRATEGY:\n'
+                               '- Your bread-and-butter damage ability\n'
+                               '- Mark target first for the 10% bonus\n'
+                               '- At max Focus, costs only 15 — use it!\n\n'
+                               'See also: HELP FOCUS, HELP HUNTERS_MARK, HELP RANGER',
+                'syntax': 'aimed_shot [target]',
                 'title': 'Aimed Shot'},
  'aistatus': {'category': 'command',
               'description': 'Check AI service status (admin command).',
@@ -515,8 +625,19 @@ HELP_TOPICS = {'account': {'category': 'command',
                  'title': 'Chill Touch'},
  'circle': {'category': 'skill',
             'classes': ['thief'],
-            'description': 'Strike a distracted target for a bonus attack.',
-            'syntax': 'circle',
+            'description': 'Circle — Dart behind a distracted enemy for a quick strike.\n\n'
+                           'REQUIREMENTS:\n'
+                           '- Target must be fighting someone else (not you)\n'
+                           '- Target must be in the room\n\n'
+                           'MECHANICS:\n'
+                           '- Delivers a bonus attack against the distracted target\n'
+                           '- Great for group fights where the tank holds aggro\n\n'
+                           'STRATEGY:\n'
+                           '- Let your group\'s tank engage first\n'
+                           '- Circle for free bonus damage while they\'re distracted\n'
+                           '- Combines well with backstab opener → circle followup\n\n'
+                           'See also: HELP BACKSTAB, HELP THIEF',
+            'syntax': 'circle [target]',
             'title': 'Circle'},
  'clear': {'category': 'command',
            'description': 'Clear the screen.\n\nUsage: clear',
@@ -644,8 +765,22 @@ HELP_TOPICS = {'account': {'category': 'command',
              'syntax': 'compact          - Toggle compact mode on/off',
              'title': 'Compact'},
  'companion': {'category': 'command',
-               'description': "Show your companion's stats. Usage: companion",
-               'syntax': 'companion',
+               'description': 'Manage your combat companion.\n\n'
+                              'Combat companions unlock at level 20. Each class gets a thematic companion:\n'
+                              '  Warrior: War Hound      Assassin: Shadow Cat     Mage: Arcane Familiar\n'
+                              '  Ranger: Timber Wolf      Cleric: Guardian Spirit  Thief: Street Urchin\n'
+                              '  Paladin: Celestial Stag  Necro: Shade Wraith      Bard: Dancing Sprite\n\n'
+                              'COMMANDS:\n'
+                              '  companion           - Show companion status\n'
+                              '  companion summon     - Summon your companion\n'
+                              '  companion dismiss    - Dismiss your companion\n'
+                              '  companion attack     - Set to attack mode (deals ~30% of your DPS)\n'
+                              '  companion defend     - Set to defend mode (guards you, reduced damage)\n'
+                              '  companion passive    - Set to passive mode (no attacks)\n\n'
+                              'Your companion levels with you, has its own HP, and can be knocked out\n'
+                              '(but not killed). It revives after resting.\n\n'
+                              'See also: mount, stable',
+               'syntax': 'companion [summon|dismiss|attack|defend|passive|status]',
                'title': 'Companion'},
  'companions': {'category': 'command',
                 'description': 'List your current companions. Usage: companions',
@@ -709,10 +844,20 @@ HELP_TOPICS = {'account': {'category': 'command',
  'cry': {'category': 'command', 'description': 'Cry.', 'syntax': 'cry', 'title': 'Cry'},
  'cure_critical': {'category': 'spell',
                    'classes': ['cleric'],
-                   'description': '\nHeal grievous wounds.\n\nMECHANICS:\n- Strong single-target heal\n',
+                   'description': 'Cure Critical Wounds — Channel divine power to mend grievous injuries.\n\n'
+                                  'MECHANICS:\n'
+                                  '- Strong single-target heal\n'
+                                  '- Heals more than Cure Serious, less than Heal\n'
+                                  '- Mana: 35\n'
+                                  '- Builds +1 Faith on cast\n\n'
+                                  'STRATEGY:\n'
+                                  '- Your mid-tier healing spell\n'
+                                  '- Use for moderate damage; save Heal for emergencies\n'
+                                  '- Each cast builds Faith toward Divine Word or Holy Fire\n\n'
+                                  'See also: HELP FAITH, HELP HEAL, HELP CURE_SERIOUS',
                    'level': 1,
                    'mana': 35,
-                   'syntax': "cast 'cure critical'",
+                   'syntax': "cast 'cure critical' [target]",
                    'title': 'Cure Critical'},
  'cure_light': {'category': 'spell',
                 'classes': ['bard', 'cleric', 'paladin', 'ranger'],
@@ -761,7 +906,17 @@ HELP_TOPICS = {'account': {'category': 'command',
                       'title': 'Death From Above'},
  'death_grip': {'category': 'spell',
                 'classes': ['necromancer'],
-                'description': '\nCrush a target with necrotic force.\n\nMECHANICS:\n- Strong single-target damage\n',
+                'description': 'Death Grip — Crush a target with tendrils of necrotic energy.\n\n'
+                               'MECHANICS:\n'
+                               '- Strong single-target necrotic damage\n'
+                               '- Mana: 45\n'
+                               '- One of the necromancer\'s hardest-hitting spells\n'
+                               '- Generates +1 Soul Shard on kill\n\n'
+                               'STRATEGY:\n'
+                               '- Your heavy damage spell for tough targets\n'
+                               '- Use after debuffs (Enervation, Blindness) are applied\n'
+                               '- Save Soul Shards for Soul Bolt/Soul Reap for burst\n\n'
+                               'See also: HELP SOUL_SHARDS, HELP FINGER_OF_DEATH, HELP NECROMANCER',
                 'level': 1,
                 'mana': 45,
                 'syntax': "cast 'death grip' <target>",
@@ -877,8 +1032,19 @@ HELP_TOPICS = {'account': {'category': 'command',
                    'mana': 75,
                    'syntax': "cast 'divine shield'",
                    'title': 'Divine Shield'},
- 'divine_storm': {'category': 'command',
-                  'description': 'Holy whirlwind attack.',
+ 'divine_storm': {'category': 'skill',
+                  'classes': ['paladin'],
+                  'description': 'Divine Storm — Unleash a burst of holy energy hitting all enemies.\n\n'
+                                 'MECHANICS:\n'
+                                 '- AoE holy damage to all enemies in the room\n'
+                                 '- Deals 1.5x weapon damage + damroll to each target\n'
+                                 '- Cost: 5 Holy Power (consumes all)\n'
+                                 '- Cooldown: 30 seconds\n\n'
+                                 'STRATEGY:\n'
+                                 '- Save for multi-mob pulls\n'
+                                 '- Build Holy Power with Smite/Bash, then Storm\n'
+                                 '- Use Templar\'s Verdict for single target instead\n\n'
+                                 'See also: HELP HOLY_POWER, HELP TEMPLARS_VERDICT, HELP PALADIN',
                   'syntax': 'divine_storm',
                   'title': 'Divine Storm'},
  'divinefavor': {'category': 'command',
@@ -966,8 +1132,19 @@ HELP_TOPICS = {'account': {'category': 'command',
                     'mana': 100,
                     'syntax': "cast 'enchant weapon'",
                     'title': 'Enchant Weapon'},
- 'encore': {'category': 'command',
-            'description': "Boost your current song's effects temporarily.",
+ 'encore': {'category': 'skill',
+            'classes': ['bard'],
+            'description': 'Encore — Reapply your active song at double strength.\n\n'
+                           'MECHANICS:\n'
+                           '- Your current song buff is doubled for 2 ticks\n'
+                           '- Must be actively performing a song\n'
+                           '- Cost: 3 Inspiration (2 with Encore Mastery talent)\n'
+                           '- Cooldown: 30 seconds\n\n'
+                           'STRATEGY:\n'
+                           '- Use during boss fights to double your song buffs\n'
+                           '- Pairs well with Song of Valor or Song of Healing\n'
+                           '- Build Inspiration through performance, then Encore\n\n'
+                           'See also: HELP INSPIRATION, HELP SONGS, HELP BARD',
             'syntax': 'encore',
             'title': 'Encore'},
  'energy_drain': {'category': 'spell',
@@ -985,7 +1162,17 @@ HELP_TOPICS = {'account': {'category': 'command',
                   'title': 'Energy Drain'},
  'enervation': {'category': 'spell',
                 'classes': ['necromancer'],
-                'description': '\nDrain life force, weakening a target.\n\nMECHANICS:\n- Damage + debuff\n',
+                'description': 'Enervation — Sap a target\'s vitality, weakening them.\n\n'
+                               'MECHANICS:\n'
+                               '- Deals necrotic damage\n'
+                               '- Applies a debuff reducing target\'s combat effectiveness\n'
+                               '- Mana: 35\n'
+                               '- Generates +1 Soul Shard on kill\n\n'
+                               'STRATEGY:\n'
+                               '- Open with Enervation to weaken tough enemies\n'
+                               '- Follow up with damage spells while they\'re debuffed\n'
+                               '- Stack with Blindness and Weaken for maximum control\n\n'
+                               'See also: HELP SOUL_SHARDS, HELP WEAKEN, HELP NECROMANCER',
                 'level': 1,
                 'mana': 35,
                 'syntax': "cast 'enervation' <target>",
@@ -1304,16 +1491,36 @@ HELP_TOPICS = {'account': {'category': 'command',
  'greet': {'category': 'command', 'description': 'Greet someone.', 'syntax': 'greet', 'title': 'Greet'},
  'grin': {'category': 'command', 'description': 'Grin.', 'syntax': 'grin', 'title': 'Grin'},
  'group': {'category': 'command',
-           'description': 'Manage your group. CircleMUD-style group commands.\n'
+           'description': 'Manage your group/party for multiplayer dungeon runs.\n'
+                          'Max group size: 6 players.\n'
                           '\n'
                           'Usage:\n'
-                          '    group           - Show group status\n'
-                          '    group all       - Group all players following you\n'
-                          '    group <player>  - Add a player following you to your group\n'
-                          '    group leave     - Leave your current group\n'
-                          '    group disband   - Disband the group (leader only)\n'
-                          '    group kick <n>  - Remove player from group (leader only)',
-           'syntax': 'group           - Show group status',
+                          '    group               - Show group status\n'
+                          '    group <player>      - Invite a player to your group\n'
+                          '    group accept        - Accept a pending invitation\n'
+                          '    group decline       - Decline a pending invitation\n'
+                          '    group leave         - Leave your current group\n'
+                          '    group list          - Show group status\n'
+                          '    group kick <player> - Remove player (leader only)\n'
+                          '    group leader <player> - Transfer leadership (leader only)\n'
+                          '    group loot <mode>   - Set loot: freeforall or roundrobin\n'
+                          '    group follow        - Toggle auto-follow on/off\n'
+                          '    group disband       - Disband the group (leader only)\n'
+                          '    group all           - Group all followers\n'
+                          '\n'
+                          'XP Sharing: When a grouped player kills a mob, XP splits\n'
+                          'among group members in the same room with a +10% bonus per\n'
+                          'extra member to incentivize grouping.\n'
+                          '\n'
+                          'Loot Modes:\n'
+                          '  freeforall - Anyone can loot (default)\n'
+                          '  roundrobin - Loot rotates among members\n'
+                          '\n'
+                          'Group Effects: Bard songs and Paladin auras affect group\n'
+                          'members in the same room.\n'
+                          '\n'
+                          'See also: GTELL, FOLLOW, SPLIT',
+           'syntax': 'group <player>      - Invite a player',
            'title': 'Group'},
  'group_heal': {'category': 'spell',
                 'classes': ['cleric'],
@@ -1329,7 +1536,13 @@ HELP_TOPICS = {'account': {'category': 'command',
                 'title': 'Group Heal'},
  'grumble': {'category': 'command', 'description': 'Grumble.', 'syntax': 'grumble', 'title': 'Grumble'},
  'gtell': {'category': 'command',
-           'description': 'Send a message to your group. Usage: gtell <message>',
+           'description': 'Send a message to all group members regardless of location.\n'
+                          'Aliases: gt, grouptell\n'
+                          '\n'
+                          'Usage: gtell <message>\n'
+                          '\n'
+                          'You must be in a group to use this command.\n'
+                          'See also: GROUP',
            'syntax': 'gtell <message>',
            'title': 'Gtell'},
  'harm': {'category': 'spell',
@@ -1439,14 +1652,79 @@ HELP_TOPICS = {'account': {'category': 'command',
                'syntax': 'holysmite',
                'title': 'Holysmite'},
  'house': {'category': 'command',
-           'description': 'Manage housing. Usage: house [buy|info]',
-           'syntax': 'house [buy|info]',
-           'title': 'House'},
+           'description': 'Player Housing System — own a home in the Midgaard Housing District!\n\n'
+                          'COMMANDS:\n'
+                          '  house list              — View all plots (available and owned)\n'
+                          '  house buy               — Purchase the plot you\'re standing on\n'
+                          '  house sell              — Sell your house (50% refund, chest must be empty)\n'
+                          '  house info              — View your house details\n'
+                          '  house enter / home      — Teleport to your house (30 min cooldown)\n'
+                          '  house lock / unlock     — Control who can enter\n'
+                          '  house invite <player>   — Add a player to your guest list\n'
+                          '  house name <name>       — Name your house\n'
+                          '  house decorate <desc>   — Set a custom room description\n'
+                          '  house furnish [item]    — View or install furniture\n'
+                          '  house storage           — View chest contents\n'
+                          '  store <item>            — Store an item in your chest (max 50)\n'
+                          '  retrieve <item>         — Take an item from your chest\n\n'
+                          'PRICES:\n'
+                          '  Small Cottage:    5,000 gold  (Plots 1-4, 11-14)\n'
+                          '  Medium Townhouse: 15,000 gold (Plots 5-7, 15-17)\n'
+                          '  Grand Estate:     50,000 gold (Plots 8-10, 18-20)\n\n'
+                          'FURNITURE (buy from Hearth & Home Furnishings in the district):\n'
+                          '  Bed          — 2,000g — +50% HP regen when resting at home\n'
+                          '  Table        — 1,500g — Decorative\n'
+                          '  Trophy Case  — 5,000g — Displays achievements to visitors\n'
+                          '  Weapon Rack  — 3,000g — Display your finest weapons\n'
+                          '  Bookshelf    — 2,500g — Stores and displays lore\n\n'
+                          'NOTES:\n'
+                          '  - One house per player\n'
+                          '  - Storage persists across sessions (max 50 items)\n'
+                          '  - Locked houses only allow owner and invited guests',
+           'syntax': 'house [buy|sell|list|info|enter|lock|unlock|invite|name|decorate|furnish|storage]',
+           'title': 'Housing'},
+ 'home': {'category': 'command',
+          'description': 'Teleport to your house from anywhere. 30 minute cooldown.\n'
+                         'Alias for \'house enter\'. Stops combat before teleporting.',
+          'syntax': 'home',
+          'title': 'Home (Teleport)'},
+ 'housing': {'category': 'guide',
+             'description': 'See HELP HOUSE for full housing system documentation.',
+             'syntax': 'help house',
+             'title': 'Housing'},
+ 'events': {'category': 'command',
+            'description': 'View active world events.\n\n'
+                           'World events occur periodically and include:\n'
+                           '  - Invasions: Defend zones from monster attacks\n'
+                           '  - World Bosses: Powerful foes requiring group effort\n'
+                           '  - Treasure Hunts: Follow clues to hidden treasure\n'
+                           '  - Double XP: Temporary XP boost for all players\n'
+                           '  - Weather Events: Dense fog affecting visibility/combat',
+            'syntax': 'events',
+            'title': 'World Events'},
+ 'furnish': {'category': 'command',
+             'description': 'View or install furniture in your house.\n'
+                            'Alias for \'house furnish\'. Must be inside your house.',
+             'syntax': 'house furnish [item]',
+             'title': 'Furnish'},
  'hug': {'category': 'command', 'description': 'Hug someone.', 'syntax': 'hug', 'title': 'Hug'},
- 'hunters_mark': {'category': 'command',
-                  'description': 'Mark a target for increased damage from your attacks.',
-                  'syntax': 'hunters_mark',
-                  'title': 'Hunters Mark'},
+ 'hunters_mark': {'category': 'skill',
+                  'classes': ['ranger'],
+                  'description': "Hunter's Mark — Mark a target as prey.\n\n"
+                                 'MECHANICS:\n'
+                                 '- +10% damage to marked target from all your attacks\n'
+                                 '- +5 bonus Focus per hit on marked target\n'
+                                 '- Free (no Focus cost)\n'
+                                 '- Toggle: use again on same target to remove\n'
+                                 '- Only one mark active at a time\n\n'
+                                 'TALENT SYNERGIES:\n'
+                                 "- Predator's Mark: also reduces target's armor\n\n"
+                                 'STRATEGY:\n'
+                                 '- Always mark before engaging — it\'s free!\n'
+                                 '- The +5 Focus/hit helps fuel Aimed Shot and Rapid Fire\n\n'
+                                 'See also: HELP FOCUS, HELP AIMED_SHOT, HELP RANGER',
+                  'syntax': 'hunters_mark [target]',
+                  'title': "Hunter's Mark"},
  'ice_armor': {'category': 'spell',
                'classes': ['mage'],
                'description': 'Ice Armor\n'
@@ -1750,12 +2028,17 @@ HELP_TOPICS = {'account': {'category': 'command',
            'title': 'Medit'},
  'meteor_swarm': {'category': 'spell',
                   'classes': ['mage'],
-                  'description': '\n'
-                                 'Call down a swarm of meteors.\n'
-                                 '\n'
+                  'description': 'Meteor Swarm — Call down a devastating barrage of meteors.\n\n'
                                  'MECHANICS:\n'
-                                 '- Heavy AoE damage\n'
-                                 '- High mana cost\n',
+                                 '- Heavy single-target damage\n'
+                                 '- Generates +1 Arcane Charge on cast\n'
+                                 '- Damage boosted by Arcane Charges (+8% per charge)\n'
+                                 '- Mana: 80 (increased by +10% per Arcane Charge)\n\n'
+                                 'STRATEGY:\n'
+                                 '- One of the mage\'s most powerful offensive spells\n'
+                                 '- Stack charges with Arcane Blast, then Meteor Swarm\n'
+                                 '- Follow up with Arcane Barrage to consume charges\n\n'
+                                 'See also: HELP ARCANE_CHARGES, HELP ARCANE_BARRAGE, HELP MAGE',
                   'level': 1,
                   'mana': 80,
                   'syntax': "cast 'meteor swarm' <target>",
@@ -1812,10 +2095,31 @@ HELP_TOPICS = {'account': {'category': 'command',
                    'title': 'Mortal Strike'},
  'motd': {'category': 'command', 'description': 'Display the Message of the Day.', 'syntax': 'motd', 'title': 'Motd'},
  'mount': {'category': 'command',
-           'description': 'Mount a owned/tamed mount. Usage: mount [name]',
+           'description': 'Mount a creature you own.\n\n'
+                          'With no arguments, lists your owned mounts.\n'
+                          'Mounts increase movement speed and may provide combat bonuses.\n\n'
+                          'MOUNT TYPES:\n'
+                          '  Horse           - +50% speed, 2,000 gold (stables)\n'
+                          '  War Horse       - +50% speed, +2 damroll, stays mounted in combat, 5,000 gold\n'
+                          '  Nightmare       - +75% speed, fire aura damage, Dark Brotherhood faction reward\n'
+                          '  Griffin         - +100% speed, can fly over impassable terrain, rare Shadowspire drop\n'
+                          '  Clockwork Steed - +75% speed, never tires, rare Clockwork Foundry drop\n\n'
+                          'You are automatically dismounted when entering combat unless riding a\n'
+                          'War Horse or Nightmare. Use FEED to keep mount loyalty up.\n\n'
+                          'See also: dismount, stable, feed, mounts',
            'syntax': 'mount [name]',
            'title': 'Mount'},
- 'mounts': {'category': 'command', 'description': 'List your owned mounts.', 'syntax': 'mounts', 'title': 'Mounts'},
+ 'mounts': {'category': 'command',
+            'description': 'List your owned mounts. Same as typing "mount" with no arguments.',
+            'syntax': 'mounts',
+            'title': 'Mounts'},
+ 'feed': {'category': 'command',
+          'description': 'Feed your mount to restore loyalty.\n\n'
+                         'Uses a food item from inventory, or costs 10 gold if you have no food.\n'
+                         'Mount loyalty decays over time. Low loyalty reduces speed bonuses.\n\n'
+                         'See also: mount, stable',
+          'syntax': 'feed',
+          'title': 'Feed'},
  'move': {'category': 'command', 'description': 'Move in a direction.', 'syntax': 'move', 'title': 'Move'},
  'mute': {'category': 'command',
           'description': "Mute a player so they can't talk (immortal only).\n\nUsage: mute <player>",
@@ -2209,7 +2513,35 @@ HELP_TOPICS = {'account': {'category': 'command',
             'syntax': 'report',
             'title': 'Report'},
  'reputation': {'category': 'command',
-                'description': 'Show reputation standings with all factions.',
+                'description': '\n'
+                               'Show your reputation standings with all factions.\n'
+                               '\n'
+                               'USAGE:\n'
+                               '  reputation          - Show all faction standings with progress bars\n'
+                               '  reputation <faction> - Show detailed info for a specific faction\n'
+                               '  rep                  - Shortcut alias\n'
+                               '\n'
+                               'FACTIONS:\n'
+                               '  Midgaard Guard    - City protectors (kill bandits/undead, guard quests)\n'
+                               '  Thieves Guild     - Underground syndicate (pickpocket, steal, shady quests)\n'
+                               '  Arcane Circle     - Mage scholars (identify items, kill magical creatures)\n'
+                               "  Nature's Wardens  - Druids/rangers (kill undead, protect animals, forage)\n"
+                               '  Dark Brotherhood  - Evil faction (kill guards, assassinate, dark rituals)\n'
+                               '  Merchant League   - Traders (buy/sell large amounts, trade quests)\n'
+                               '\n'
+                               'REPUTATION LEVELS (0-1000 points each):\n'
+                               '  Hated -> Hostile -> Unfriendly -> Neutral -> Friendly -> Honored -> Revered -> Exalted\n'
+                               '\n'
+                               'REWARDS BY TIER:\n'
+                               '  Friendly - Discount at faction shops\n'
+                               '  Honored  - Access to faction-specific quests\n'
+                               '  Revered  - Faction title, special equipment\n'
+                               '  Exalted  - Unique mount/pet, powerful item\n'
+                               '\n'
+                               'OPPOSING FACTIONS:\n'
+                               '  Thieves Guild vs Midgaard Guard\n'
+                               "  Dark Brotherhood vs Nature's Wardens\n"
+                               '  Gaining rep with one loses rep with its rival.\n',
                 'syntax': 'reputation',
                 'title': 'Reputation'},
  'rescue': {'category': 'skill',
@@ -2573,8 +2905,18 @@ HELP_TOPICS = {'account': {'category': 'command',
            'syntax': 'split <amount>',
            'title': 'Split'},
  'stable': {'category': 'command',
-            'description': 'Stable services. Usage: stable [list|buy <mount>]',
-            'syntax': 'stable [list|buy <mount>]',
+            'description': 'Access the Midgaard Royal Stables.\n\n'
+                           'COMMANDS:\n'
+                           '  stable list       - View available mounts and prices\n'
+                           '  stable buy <mount> - Purchase a mount\n'
+                           '  stable store      - Safely stable your current mount\n\n'
+                           'The stables are located south of the East Gate of Midgaard (room 3201).\n'
+                           'Brynn the Stable Master can answer questions about different mounts.\n\n'
+                           'PURCHASABLE MOUNTS:\n'
+                           '  Horse        - 2,000 gold (+50% speed)\n'
+                           '  War Horse    - 5,000 gold (+50% speed, +2 damroll, combat-ready)\n\n'
+                           'See also: mount, dismount, feed',
+            'syntax': 'stable [list|buy <mount>|store]',
             'title': 'Stable'},
  'stampede': {'category': 'command',
               'description': 'Command all pets to attack.',
@@ -2755,8 +3097,17 @@ HELP_TOPICS = {'account': {'category': 'command',
             'title': 'Travel'},
  'trip': {'category': 'skill',
           'classes': ['thief'],
-          'description': 'Knock a target down with a leg sweep.',
-          'syntax': 'trip',
+          'description': 'Trip — Sweep a target\'s legs to knock them down.\n\n'
+                         'MECHANICS:\n'
+                         '- Success based on trip skill + DEX vs target DEX\n'
+                         '- On success: target is knocked to sitting position\n'
+                         '- Sitting targets have reduced combat effectiveness\n'
+                         '- No cooldown\n\n'
+                         'STRATEGY:\n'
+                         '- Use to interrupt casters or gain advantage\n'
+                         '- Higher DEX improves your success rate\n\n'
+                         'See also: HELP THIEF',
+          'syntax': 'trip [target]',
           'title': 'Trip'},
  'tumble': {'category': 'skill',
             'classes': ['thief'],
@@ -2810,7 +3161,17 @@ HELP_TOPICS = {'account': {'category': 'command',
            'title': 'Value'},
  'vampiric_touch': {'category': 'spell',
                     'classes': ['necromancer'],
-                    'description': '\nDrain life from a target.\n\nMECHANICS:\n- Deals damage and heals you\n',
+                    'description': 'Vampiric Touch — Drain the life force from a target to sustain yourself.\n\n'
+                                   'MECHANICS:\n'
+                                   '- Deals necrotic damage to target\n'
+                                   '- Heals you for the damage dealt\n'
+                                   '- Mana: 30\n'
+                                   '- Generates +1 Soul Shard on kill\n\n'
+                                   'STRATEGY:\n'
+                                   '- Your primary sustain spell\n'
+                                   '- Use to keep HP topped off while dealing damage\n'
+                                   '- Pairs well with Drain Soul for double sustain\n\n'
+                                   'See also: HELP SOUL_SHARDS, HELP DRAIN_SOUL, HELP NECROMANCER',
                     'level': 1,
                     'mana': 30,
                     'syntax': "cast 'vampiric touch' <target>",
@@ -4220,9 +4581,179 @@ HELP_TOPICS = {'account': {'category': 'command',
                             '  rally → battle_orders → inspiring_command → supreme_command\n'
                             '  execute → subjugate → total_domination → absolute_authority',
              'title': 'Warlord'},
+ 'crafting': {'category': 'command',
+              'description': 'The crafting system lets you gather materials and create items.\n\n'
+                             'GATHERING COMMANDS:\n'
+                             '  mine       — Mine ore from mountain/cave rooms\n'
+                             '  forage     — Gather herbs from forest/field rooms\n'
+                             '  skin [corpse] — Skin animal corpses for hides\n'
+                             '  fish       — Fish in water rooms\n'
+                             '  gather     — Auto-detect and gather from your environment\n\n'
+                             'CRAFTING COMMANDS:\n'
+                             '  craft list        — Show recipes available at current station\n'
+                             '  craft <recipe_id> — Craft an item (must be at correct station)\n'
+                             '  recipes [discipline] — Show all your known recipes\n\n'
+                             'CRAFTING STATIONS (found in Midgaard shops):\n'
+                             '  Forge (Weapon Shop / Armory) — Blacksmithing\n'
+                             '  Alchemy Table (Magic Shop) — Alchemy\n'
+                             '  Workbench (General Store) — Leatherworking\n'
+                             '  Enchanting Circle (Mages Guild) — Enchanting\n\n'
+                             'DISCIPLINES: Blacksmithing, Alchemy, Leatherworking, Enchanting\n'
+                             'Each has its own level (1-20) gained by crafting.\n\n'
+                             'RECIPE DISCOVERY: Learn recipes from scrolls, quest rewards, or drops.\n'
+                             'Everyone starts with: Copper Dagger, Healing Potion, Leather Vest.\n\n'
+                             'CRITICAL CRAFTS: 5% chance to create a superior quality item (+1 stats).\n'
+                             'ENCHANTING: Requires the target item to be equipped.',
+              'syntax': 'craft <recipe> | craft list | recipes | mine | forage | skin | fish',
+              'title': 'Crafting System'},
+ 'mine': {'category': 'command',
+          'description': 'Mine ore from mountain, hills, or dungeon rooms.\n'
+                         'Uses the mining skill. Higher skill = better chance and rarer ores.\n'
+                         'Costs 5 movement points per attempt.',
+          'syntax': 'mine',
+          'title': 'Mine'},
+ 'forage': {'category': 'command',
+            'description': 'Forage for herbs in forest, field, or swamp rooms.\n'
+                           'Uses the herbalism skill. Higher skill = rarer herbs.\n'
+                           'Costs 3 movement points per attempt.',
+            'syntax': 'forage',
+            'title': 'Forage'},
+ 'skin': {'category': 'command',
+          'description': 'Skin an animal corpse to obtain hides and pelts.\n'
+                         'Uses the skinning skill. The type of hide depends on the creature.\n'
+                         'Each corpse can only be skinned once. Costs 3 movement points.',
+          'syntax': 'skin [corpse]',
+          'title': 'Skin'},
+ 'fish': {'category': 'command',
+          'description': 'Fish in water rooms to catch fish.\n'
+                         'Uses the fishing skill. Rare golden carp have alchemical uses.\n'
+                         'Costs 3 movement points per attempt.',
+          'syntax': 'fish',
+          'title': 'Fish'},
+ 'recipes': {'category': 'command',
+             'description': 'Display all recipes you have learned, organized by discipline.\n'
+                            'Shows crafting level, XP progress, required materials, and level.\n'
+                            'Filter by discipline: recipes blacksmithing',
+             'syntax': 'recipes [discipline]',
+             'title': 'Recipes'},
 }
 
 # Category index for help listing
+# Social & Communication help entries
+HELP_TOPICS.update({
+    'global': {'category': 'command', 'description': 'Send a message on the global chat channel.\n\nUsage: global <message>\n\nAll online players with the channel enabled will see your message.\nRate limited to prevent spam.\n\nSee also: channel, trade, newbie, lfg', 'syntax': 'global <message>', 'title': 'Global Chat'},
+    'newbie_channel': {'category': 'command', 'description': 'Send a message on the newbie help channel.\n\nUsage: newbie <message>\n\nAvailable to players level 1-15 and designated helpers.', 'syntax': 'newbie <message>', 'title': 'Newbie Channel'},
+    'newbie': {'category': 'general', 'title': 'New Player Guide',
+        'description': """Welcome to RealmsMUD! Here's everything you need to know, in the order you'll need it.
+
+GETTING STARTED (Level 1-5)
+  Movement:    north, south, east, west, up, down (or n, s, e, w, u, d)
+  Look around: 'look' or 'l' to see the room, 'look <thing>' to examine
+  Your stats:  'score' shows HP, mana, class resource, and stats
+  Gear:        'equipment' (eq) and 'inventory' (i)
+  Combat:      'kill <target>' to attack, 'flee' to escape
+  Healing:     'rest' to recover, 'eat'/'drink' for sustenance
+  Shops:       'list' to browse, 'buy <item>', 'sell <item>'
+  Hint:        'hint' gives guidance on your current tutorial quest
+
+SKILLS & CLASS RESOURCES (Level 1+)
+  Type 'skills' and 'spells' to see your abilities.
+  Each class has a unique resource shown in your 'score':
+    Warrior: Rage (builds in combat)    Mage: Mana (spent on spells)
+    Thief: Combo Points (build & spend) Cleric: Divine Favor (from healing)
+    Ranger: Focus (builds in combat)    Paladin: Holy Power (radiant energy)
+    Bard: Inspiration (from performing) Necromancer: Soul Fragments (from kills)
+  Use 'practice' at a guildmaster to improve skills.
+
+COMMUNICATION
+  'say <msg>'       - Talk to people in your room
+  'tell <player> <msg>' - Private message
+  'global <msg>'    - Global chat channel
+  'newbie <msg>'    - New player help channel (levels 1-15)
+  'channel list'    - See all available channels
+  'who'             - See who's online
+
+QUESTS & EXPLORATION
+  NPCs with [!] have quests for you — type 'talk <name>'
+  NPCs with [?] are waiting for you to complete a quest
+  'quests'          - View your active quest log
+  'hint'            - Get help on your current objective
+  Explore! You earn bonus XP for discovering new rooms.
+
+GROUPING (Level 1+)
+  'group invite <player>' - Invite someone to your group
+  'group'            - See your group status
+  'gtell <msg>'      - Talk to your group
+  Groups share XP and make tough fights easier!
+
+CRAFTING & GATHERING (Level 5+)
+  Some rooms have resource nodes — look for them as you explore.
+  'mine'             - Mine ore from rock deposits
+  'forage'           - Gather herbs and plants
+  'fish'             - Fish in bodies of water
+  'craft'            - Combine materials into gear
+
+TALENTS (Level 10)
+  At level 10 you unlock talents! Type 'talents' to see your tree.
+  Customize your build — respec available later.
+
+COMPANIONS (Level 20)
+  At level 20 you can recruit a companion! Type 'companion' to learn more.
+  They fight alongside you and have their own abilities.
+
+MOUNTS (Level 15+)
+  Purchase or tame mounts for faster travel.
+  'mount' and 'dismount' to ride. Some mounts are combat-capable!
+
+HOUSING (Level 20+)
+  Buy a home in the Realms! 'housing' for details.
+  Decorate, store items, and invite friends.
+
+ACHIEVEMENTS
+  'achievements' — Track your progress across dozens of goals.
+  Earn titles, gold, and bragging rights!
+
+PvP ARENA (Level 10+)
+  'arena' — Challenge other players in structured PvP.
+  Earn PvP rating and exclusive rewards.
+
+PRESTIGE CLASSES (Level 50)
+  At the level cap, unlock powerful prestige specializations.
+  Type 'help prestige' when you reach level 50.
+
+USEFUL COMMANDS
+  'help <topic>'     - Detailed help on any command
+  'commands'         - Full command list
+  'consider <mob>'   - Check if you can handle a fight
+  'map'              - View a web-based area map
+  'recall'           - Return to the Temple (costs move)
+
+Need help? Use the 'newbie' channel — friendly players are always around!"""},
+    'trade_channel': {'category': 'command', 'description': 'Send a message on the trade/economy channel.\n\nUsage: trade <message>', 'syntax': 'trade <message>', 'title': 'Trade Channel'},
+    'lfg_channel': {'category': 'command', 'description': 'Send a message on the Looking For Group channel.\n\nUsage: lfg <message>', 'syntax': 'lfg <message>', 'title': 'LFG Channel'},
+    'channel': {'category': 'command', 'description': 'Manage your chat channel subscriptions.\n\nUsage:\n  channel list         - Show all channels\n  channel on <name>    - Enable a channel\n  channel off <name>   - Disable a channel\n\nChannels: global, newbie, trade, lfg', 'syntax': 'channel list | channel on/off <name>', 'title': 'Channel Management'},
+    'friend': {'category': 'command', 'description': 'Manage your friends list.\n\nUsage:\n  friend list          - Show friends and online status\n  friend add <player>  - Add a friend\n  friend remove <player> - Remove a friend\n  friend notify        - Toggle login/logout notifications', 'syntax': 'friend add/remove/list/notify', 'title': 'Friends List'},
+    'ignore': {'category': 'command', 'description': 'Ignore a player, blocking their tells, channels, and emotes.\n\nUsage:\n  ignore              - Show your ignore list\n  ignore <player>     - Add to ignore list\n  unignore <player>   - Remove from ignore list', 'syntax': 'ignore [player]', 'title': 'Ignore'},
+    'note': {'category': 'command', 'description': 'Keep private notes about other players (only you see them).\n\nUsage:\n  note                - Show all noted players\n  note <player>       - Show notes for a player\n  note <player> <text> - Add a note', 'syntax': 'note [player] [text]', 'title': 'Player Notes'},
+    'finger': {'category': 'command', 'description': 'Show detailed info about a player (online or offline).\n\nUsage: finger <player>\nAlias: whois\n\nShows race, class, level, prestige, guild, last login, playtime,\nPvP rating, achievements, and faction standings.', 'syntax': 'finger <player>', 'title': 'Finger / Whois'},
+    'accept': {'category': 'command', 'description': 'Accept a pending trade or duel request.\n\nUsage: accept\n\nSee also: trade, duel, decline', 'syntax': 'accept', 'title': 'Accept'},
+    'decline': {'category': 'command', 'description': 'Decline a pending trade or duel request.\n\nUsage: decline\n\nSee also: trade, duel, accept', 'syntax': 'decline', 'title': 'Decline'},
+    'duel': {'category': 'command', 'description': 'Challenge another player to a duel.\n\nUsage: duel <player>\n\nBoth players must accept. Death in a duel is non-permanent.\n\nSee also: accept, decline, arena', 'syntax': 'duel <player>', 'title': 'Duel'},
+    'lfg': {'category': 'command', 'description': 'Send a message on the Looking For Group channel.\n\nUsage: lfg <message>\n\nSee also: channel, group', 'syntax': 'lfg <message>', 'title': 'LFG'},
+    'mail': {'category': 'command', 'description': 'In-game mail system for offline messaging.\n\nUsage:\n  mail             - Check your mailbox\n  mail read <id>   - Read a message\n  mail send <player> <subject> - Send mail\n  mail delete <id> - Delete a message\n\nSee also: tell, friend', 'syntax': 'mail [read|send|delete] [args]', 'title': 'Mail'},
+    'newbie': {'category': 'command', 'description': 'Send a message on the newbie help channel.\n\nUsage: newbie <message>\n\nAvailable to all players. Helpers and experienced players often respond.\n\nSee also: channel, help', 'syntax': 'newbie <message>', 'title': 'Newbie'},
+    'prestige': {'category': 'command', 'description': 'View or select a prestige class.\n\nUsage:\n  prestige           - Show available prestige classes\n  prestige <class>   - Select a prestige class\n\nPrestige classes unlock at level 30+ with specific requirements.\nThey grant powerful new abilities and specialization.\n\nSee also: class, skills, spells', 'syntax': 'prestige [class]', 'title': 'Prestige Classes'},
+    'respec': {'category': 'command', 'description': 'Reset your skill and talent points for redistribution.\n\nUsage: respec\n\nCosts gold based on level. Resets all trained skills and talents.\n\nSee also: practice, train, talents', 'syntax': 'respec', 'title': 'Respec'},
+    'specialize': {'category': 'command', 'description': 'Choose a class specialization path.\n\nUsage: specialize <path>\n\nSee also: prestige, class', 'syntax': 'specialize <path>', 'title': 'Specialize'},
+    'slip': {'category': 'command', 'description': 'Slip gold to another player covertly (thief skill).\n\nUsage: slip <amount> <player>\n\nRequires the slip skill. May go unnoticed by others.\n\nSee also: give, steal', 'syntax': 'slip <amount> <player>', 'title': 'Slip'},
+    'trade': {'category': 'command', 'description': 'Initiate a trade with another player.\n\nUsage:\n  trade <player>         - Request a trade\n  trade add <item>       - Add item to trade window\n  trade gold <amount>    - Offer gold\n  trade confirm          - Confirm your side\n  trade cancel           - Cancel trade\n\nSee also: accept, decline, auction', 'syntax': 'trade <player>', 'title': 'Trade'},
+    'unignore': {'category': 'command', 'description': 'Remove a player from your ignore list.\n\nUsage: unignore <player>\n\nSee also: ignore', 'syntax': 'unignore <player>', 'title': 'Unignore'},
+    'use': {'category': 'command', 'description': 'Use an item from your inventory.\n\nUsage: use <item>\n\nActivates the special effect of usable items like potions, scrolls, wands.\n\nSee also: quaff, recite, zap', 'syntax': 'use <item>', 'title': 'Use'},
+    'vnums': {'category': 'command', 'description': 'Toggle vnum display in room names (builder/immortal tool).\n\nUsage: vnums\n\nSee also: goto, stat', 'syntax': 'vnums', 'title': 'Vnums'},
+    'wevent': {'category': 'command', 'description': 'View current and upcoming world events.\n\nUsage: wevent [list]\n\nShows active world events, invasions, and special happenings.\n\nSee also: time, weather', 'syntax': 'wevent [list]', 'title': 'World Events'},
+    'whois': {'category': 'command', 'description': 'Show info about a player. Alias for finger.\n\nUsage: whois <player>\n\nSee also: finger, who', 'syntax': 'whois <player>', 'title': 'Whois'},
+})
+
 HELP_CATEGORIES = {'class': ['assassin', 'bard', 'cleric', 'mage', 'necromancer', 'paladin', 'ranger', 'thief', 'warrior'],
  'command': ['account',
              'achievements',
@@ -4672,6 +5203,13 @@ HELP_CATEGORIES = {'class': ['assassin', 'bard', 'cleric', 'mage', 'necromancer'
            'vampiric_touch',
            'weaken',
            'word_of_recall']}
+
+# Merge prestige help entries
+try:
+    from prestige import PRESTIGE_HELP_ENTRIES
+    HELP_TOPICS.update(PRESTIGE_HELP_ENTRIES)
+except Exception:
+    pass
 
 def get_help_text(topic: str) -> str:
     """Get formatted help text for a topic."""

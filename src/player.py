@@ -96,15 +96,26 @@ class Character:
         return 0
 
     def get_paladin_auras(self) -> set:
-        """Return active paladin auras affecting this character (nearby allies)."""
+        """Return active paladin auras affecting this character.
+        
+        Checks group members and other characters in the same room.
+        """
         auras = set()
         try:
+            chars_to_check = set()
             if self.room:
-                for char in getattr(self.room, 'characters', []):
-                    if hasattr(char, 'char_class') and str(char.char_class).lower() == 'paladin':
-                        aura = getattr(char, 'active_aura', None)
-                        if aura:
-                            auras.add(aura)
+                chars_to_check.update(getattr(self.room, 'characters', []))
+            # Also check group members in same room
+            group = getattr(self, 'group', None)
+            if group:
+                for m in group.members:
+                    if m.room == self.room:
+                        chars_to_check.add(m)
+            for char in chars_to_check:
+                if hasattr(char, 'char_class') and str(char.char_class).lower() == 'paladin':
+                    aura = getattr(char, 'active_aura', None)
+                    if aura:
+                        auras.add(aura)
         except Exception:
             pass
         return auras
@@ -180,6 +191,10 @@ class Character:
         if hasattr(self, 'song_debuffs') and self.song_debuffs:
             bonus += self.song_debuffs.get('damroll', 0)  # Negative value
 
+        # Mount combat bonus (war horse, nightmare)
+        if hasattr(self, 'mount') and self.mount and hasattr(self.mount, 'damroll_bonus'):
+            bonus += self.mount.damroll_bonus
+
         return bonus
         
     def get_armor_class(self):
@@ -254,6 +269,12 @@ class Character:
         """Get effective stat value including equipment bonuses and debuffs."""
         base = getattr(self, stat, 0)
         total = base + self.get_equipment_bonus(stat)
+        # Achievement stat bonuses
+        try:
+            from achievements import AchievementManager
+            total += AchievementManager.get_stat_bonus(self, stat)
+        except Exception:
+            pass
         # Hunger debuff: -2 STR when starving
         if stat == 'str' and getattr(self, 'hunger', 168) <= 0:
             total -= 2
@@ -297,6 +318,8 @@ class Player(Character):
         self.quest_chains = {}  # chain_id -> {stage, completed, choices, history}
         self.dialogue_state = {}  # npc_vnum -> dialogue node id
         self.active_quests = []  # List of ActiveQuest objects
+        self.daily_quest_completions = {}  # quest_id -> ISO datetime string
+        self.tracked_quest = None  # quest_id being tracked in prompt
 
         # Procedural dungeon tracking
         self.active_dungeon = None
@@ -375,12 +398,15 @@ class Player(Character):
         self.bank_gold = 0  # Gold stored in the bank
 
         # Mount System
-        self.mount = None  # Currently mounted creature
-        self.owned_mounts = []  # List of owned mount vnums
+        self.mount = None  # Currently mounted creature (Mount dataclass or None)
+        self.owned_mounts = []  # List of owned mount dicts [{key, loyalty}, ...]
 
         # Companion System
         self.companions = []
         self.last_companion_upkeep_day = None
+
+        # Combat Companion (class-based, unlocked at level 20)
+        self.combat_companion = None  # CombatCompanion instance or None
 
         # Bard Performance System
         self.performing = None          # Current song key being performed
@@ -560,6 +586,17 @@ class Player(Character):
             FactionManager.ensure_player_reputation(self)
         except Exception:
             pass
+
+        # Prestige Class System
+        self.prestige_class = None      # Prestige class key (e.g., 'champion', 'archmage')
+        self.prestige_cooldowns = {}    # Ability cooldowns {ability_key: timestamp}
+
+        # Arena PvP stats
+        self.arena_wins = 0
+        self.arena_losses = 0
+        self.arena_rating = 1000
+        self.arena_highest_rating = 1000
+        self.arena_points = 0
 
         # Timestamps
         self.created_at = datetime.now()
@@ -878,6 +915,8 @@ class Player(Character):
             'quest_chains': self.quest_chains,
             'dialogue_state': self.dialogue_state,
             'active_quests': [q.to_dict() for q in self.active_quests],
+            'daily_quest_completions': getattr(self, 'daily_quest_completions', {}),
+            'tracked_quest': getattr(self, 'tracked_quest', None),
             'flags': list(self.flags),
             'inventory': [item.to_dict() for item in self.inventory],
             'equipment': {slot: item.to_dict() if item else None
@@ -905,11 +944,15 @@ class Player(Character):
             'last_hunger_hour': self.last_hunger_hour,
             'last_thirst_hour': self.last_thirst_hour,
             'owned_mounts': self.owned_mounts,
+            'active_mount': self.mount.to_dict() if self.mount else None,
+            'combat_companion': self.combat_companion.to_dict() if self.combat_companion else None,
             'last_companion_upkeep_day': self.last_companion_upkeep_day,
             'storage': [item.to_dict() for item in self.storage],
             'storage_location': self.storage_location,
             'achievements': self.achievements,
             'achievement_progress': self.achievement_progress,
+            'available_titles': getattr(self, 'available_titles', []),
+            'lore_read': list(getattr(self, 'lore_read', set())),
             'explored_rooms': list(self.explored_rooms),
             'discovered_exits': [list(x) for x in self.discovered_exits],
             'secret_rooms_found': list(self.secret_rooms_found),
@@ -949,6 +992,24 @@ class Player(Character):
             'ability_evolutions': getattr(self, 'ability_evolutions', {}),
             'last_warrior_ability': getattr(self, 'last_warrior_ability', None),
             'unstoppable_rounds': getattr(self, 'unstoppable_rounds', 0),
+            # Prestige Class System
+            'prestige_class': getattr(self, 'prestige_class', None),
+            # Arena PvP stats
+            'arena_wins': getattr(self, 'arena_wins', 0),
+            'arena_losses': getattr(self, 'arena_losses', 0),
+            'arena_rating': getattr(self, 'arena_rating', 1000),
+            'arena_highest_rating': getattr(self, 'arena_highest_rating', 1000),
+            'arena_points': getattr(self, 'arena_points', 0),
+            # Crafting system
+            'known_recipes': getattr(self, 'known_recipes', None),
+            'crafting_levels': getattr(self, 'crafting_levels', None),
+            'crafting_xp': getattr(self, 'crafting_xp', None),
+            # Social system
+            'friends_list': getattr(self, 'friends_list', []),
+            'ignore_list': getattr(self, 'ignore_list', []),
+            'player_notes': getattr(self, 'player_notes', {}),
+            'disabled_channels': list(getattr(self, 'disabled_channels', set())),
+            'friend_notify': getattr(self, 'friend_notify', True),
         }
         
         filepath = os.path.join(self.config.PLAYER_DIR, f"{self.name.lower()}.json")
@@ -1055,6 +1116,8 @@ class Player(Character):
             # Load active quests
             from quests import ActiveQuest
             player.active_quests = [ActiveQuest.from_dict(q) for q in data.get('active_quests', [])]
+            player.daily_quest_completions = data.get('daily_quest_completions', {})
+            player.tracked_quest = data.get('tracked_quest', None)
 
             player.flags = set(data.get('flags', []))
             player.custom_aliases = data.get('custom_aliases', {})
@@ -1078,6 +1141,16 @@ class Player(Character):
             player.last_hunger_hour = data.get('last_hunger_hour', 0)
             player.last_thirst_hour = data.get('last_thirst_hour', 0)
             player.owned_mounts = data.get('owned_mounts', [])
+            # Restore active mount
+            active_mount_data = data.get('active_mount')
+            if active_mount_data:
+                from mounts import MountManager
+                player.mount = MountManager.load_mount(active_mount_data)
+            # Restore combat companion
+            combat_comp_data = data.get('combat_companion')
+            if combat_comp_data:
+                from companions import CombatCompanion
+                player.combat_companion = CombatCompanion.from_dict(combat_comp_data, player)
             player.last_companion_upkeep_day = data.get('last_companion_upkeep_day', None)
 
             from objects import Object
@@ -1091,6 +1164,8 @@ class Player(Character):
             # Load achievements
             player.achievements = data.get('achievements', {})
             player.achievement_progress = data.get('achievement_progress', {})
+            player.available_titles = data.get('available_titles', [])
+            player.lore_read = set(data.get('lore_read', []))
             player.explored_rooms = set(data.get('explored_rooms', []))
             player.discovered_exits = set(tuple(x) for x in data.get('discovered_exits', []))
             player.secret_rooms_found = set(data.get('secret_rooms_found', []))
@@ -1209,6 +1284,35 @@ class Player(Character):
             player.ability_evolutions = data.get('ability_evolutions', {})
             player.last_warrior_ability = data.get('last_warrior_ability', None)
             player.unstoppable_rounds = data.get('unstoppable_rounds', 0)
+
+            # Arena PvP stats
+            # Prestige Class System
+            player.prestige_class = data.get('prestige_class', None)
+            player.prestige_cooldowns = {}
+
+            player.arena_wins = data.get('arena_wins', 0)
+            player.arena_losses = data.get('arena_losses', 0)
+            player.arena_rating = data.get('arena_rating', 1000)
+            player.arena_highest_rating = data.get('arena_highest_rating', 1000)
+            player.arena_points = data.get('arena_points', 0)
+
+            # Crafting system
+            try:
+                from crafting import load_crafting_data
+                load_crafting_data(player, {
+                    'known_recipes': data.get('known_recipes'),
+                    'crafting_levels': data.get('crafting_levels'),
+                    'crafting_xp': data.get('crafting_xp'),
+                })
+            except Exception:
+                pass
+
+            # Social system
+            player.friends_list = data.get('friends_list', [])
+            player.ignore_list = data.get('ignore_list', [])
+            player.player_notes = data.get('player_notes', {})
+            player.disabled_channels = set(data.get('disabled_channels', []))
+            player.friend_notify = data.get('friend_notify', True)
 
             # Rested XP from time offline
             try:
@@ -1821,8 +1925,10 @@ class Player(Character):
 
         self.exp += amount
 
-        # Check for level up
-        while self.exp >= self.exp_to_level():
+        # Check for level up (respect prestige level cap)
+        from prestige import get_max_level
+        max_lvl = get_max_level(self)
+        while self.exp >= self.exp_to_level() and self.level < max_lvl:
             await self.level_up()
             
     def exp_to_level(self) -> int:
@@ -1949,6 +2055,13 @@ class Player(Character):
         try:
             from tips import TipManager
             await TipManager.show_event_tip(self, 'level_up')
+            # Contextual hints at milestone levels
+            if self.level == 10:
+                await TipManager.show_contextual_hint(self, 'level_10')
+            elif self.level == 20:
+                await TipManager.show_contextual_hint(self, 'level_20')
+            elif self.level == 50:
+                await TipManager.show_contextual_hint(self, 'level_50')
         except Exception:
             pass
         

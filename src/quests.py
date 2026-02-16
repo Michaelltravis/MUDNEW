@@ -1290,6 +1290,286 @@ QUEST_DEFINITIONS = {
         'next_quest': 'tutorial_9_newbie_zone',
         'repeatable': False
     },
+    # ========== THE SHADOW CONSPIRACY (5-part Main Story Chain) ==========
+    'shadow_conspiracy_1': {
+        'name': 'Whispers in the Dark',
+        'description': "People have been vanishing from Midgaard's streets at night. Captain Stolar suspects foul play. Investigate the disappearance sites and question witnesses.",
+        'type': 'visit',
+        'category': 'main_story',
+        'level_min': 10,
+        'level_max': 25,
+        'quest_giver': 3006,
+        'objectives': [
+            {'type': 'visit', 'description': 'Investigate the dark alley near the market', 'target': '3014', 'required': 1},
+            {'type': 'visit', 'description': 'Search the abandoned warehouse district', 'target': '3069', 'required': 1},
+            {'type': 'talk', 'description': 'Question the night watchman', 'target': '3006', 'required': 1}
+        ],
+        'rewards': {'exp': 800, 'gold': 200, 'items': []},
+        'repeatable': False,
+        'chain_id': 'shadow_conspiracy',
+        'chain_stage': 'sc_investigate'
+    },
+    'shadow_conspiracy_2': {
+        'name': 'Trail of Shadows',
+        'description': "Strange ritual markings at the disappearance sites. Track the clues through the sewers and the forest — someone is leaving a trail of dark magic.",
+        'type': 'kill',
+        'category': 'main_story',
+        'level_min': 12,
+        'level_max': 25,
+        'quest_giver': 3006,
+        'objectives': [
+            {'type': 'kill', 'description': 'Slay shadow-tainted rats in the sewers', 'target': 'rat', 'required': 6},
+            {'type': 'visit', 'description': 'Follow the ritual markings into the forest', 'target': '20010', 'required': 1},
+            {'type': 'kill', 'description': 'Defeat the shadow scout', 'target': 'shadow', 'required': 1}
+        ],
+        'rewards': {'exp': 1200, 'gold': 350, 'items': ['Shadow Sigil Fragment']},
+        'repeatable': False,
+        'chain_id': 'shadow_conspiracy',
+        'chain_stage': 'sc_trail'
+    },
+    'shadow_conspiracy_3': {
+        'name': 'The Cultist Hideout',
+        'description': "The shadow sigil leads to a hidden cultist hideout beneath the old ruins. Infiltrate their lair and discover the mastermind.",
+        'type': 'kill',
+        'category': 'main_story',
+        'level_min': 14,
+        'level_max': 28,
+        'quest_giver': 3006,
+        'objectives': [
+            {'type': 'kill', 'description': 'Defeat cultist acolytes', 'target': 'cultist', 'required': 8},
+            {'type': 'kill', 'description': 'Slay the cultist warlock', 'target': 'warlock', 'required': 1},
+        ],
+        'rewards': {'exp': 2000, 'gold': 600, 'items': ['Cultist Cipher Key']},
+        'repeatable': False,
+        'chain_id': 'shadow_conspiracy',
+        'chain_stage': 'sc_infiltrate'
+    },
+    'shadow_conspiracy_4': {
+        'name': 'The Shadow Lord',
+        'description': "The cultists serve a Shadow Lord who plans to tear open a rift to the Plane of Shadows. Stop the ritual and destroy him!",
+        'type': 'kill',
+        'category': 'main_story',
+        'level_min': 16,
+        'level_max': 30,
+        'quest_giver': 3006,
+        'objectives': [
+            {'type': 'kill', 'description': 'Defeat shadow guardians', 'target': 'shadow', 'required': 4},
+            {'type': 'kill', 'description': 'Destroy the Shadow Lord', 'target': 'shadow lord', 'required': 1}
+        ],
+        'rewards': {'exp': 3500, 'gold': 1000, 'items': ['Shadowbane Amulet']},
+        'repeatable': False,
+        'chain_id': 'shadow_conspiracy',
+        'chain_stage': 'sc_boss'
+    },
+    'shadow_conspiracy_5': {
+        'name': 'Unraveling the Conspiracy',
+        'description': "The Shadow Lord's dying words hint at a traitor within Midgaard's walls. Present evidence to the Mayor and expose the conspiracy.",
+        'type': 'talk',
+        'category': 'main_story',
+        'level_min': 18,
+        'level_max': 30,
+        'quest_giver': 3105,
+        'objectives': [
+            {'type': 'talk', 'description': 'Present the evidence to the Mayor', 'target': '3105', 'required': 1},
+            {'type': 'talk', 'description': 'Confront the traitor with Captain Stolar', 'target': '3006', 'required': 1}
+        ],
+        'rewards': {'exp': 4000, 'gold': 1500, 'reputation': {'midgaard': 500}},
+        'repeatable': False,
+        'chain_id': 'shadow_conspiracy',
+        'chain_stage': 'sc_reveal'
+    },
+
+    # ========== RISE OF THE CLOCKWORK (3-part Dungeon Chain) ==========
+    'clockwork_1': {
+        'name': 'The Broken Automaton',
+        'description': "A dwarven tinkerer found a broken automaton from the ancient Clockwork Foundry. Help gather repair parts from the ruins.",
+        'type': 'collect',
+        'category': 'dungeon',
+        'level_min': 12,
+        'level_max': 25,
+        'quest_giver': 4050,
+        'objectives': [
+            {'type': 'kill', 'description': 'Salvage gears from clockwork wreckage', 'target': 'clockwork', 'required': 5},
+            {'type': 'talk', 'description': 'Return parts to Grimjaw', 'target': '4050', 'required': 1}
+        ],
+        'rewards': {'exp': 1000, 'gold': 300, 'reputation': {'dwarves': 150}},
+        'repeatable': False,
+        'chain_id': 'clockwork_rising',
+        'chain_stage': 'cw_repair'
+    },
+    'clockwork_2': {
+        'name': 'Heart of the Foundry',
+        'description': "The automaton stirs to life but its memory is corrupted. Venture into the sealed Clockwork Foundry and recover the master control rod from the Forge Guardian.",
+        'type': 'kill',
+        'category': 'dungeon',
+        'level_min': 15,
+        'level_max': 28,
+        'quest_giver': 4050,
+        'objectives': [
+            {'type': 'kill', 'description': 'Destroy malfunctioning clockwork soldiers', 'target': 'clockwork', 'required': 10},
+            {'type': 'kill', 'description': 'Defeat the Forge Guardian', 'target': 'forge guardian', 'required': 1}
+        ],
+        'rewards': {'exp': 2500, 'gold': 700, 'items': ['Clockwork Shield'], 'reputation': {'dwarves': 250}},
+        'repeatable': False,
+        'chain_id': 'clockwork_rising',
+        'chain_stage': 'cw_foundry'
+    },
+    'clockwork_3': {
+        'name': 'Activate the Core',
+        'description': "With the control rod, reactivate the Foundry's central core. The ancient defense system will fight back — battle through to bring the Foundry online!",
+        'type': 'kill',
+        'category': 'dungeon',
+        'level_min': 18,
+        'level_max': 30,
+        'quest_giver': 4050,
+        'objectives': [
+            {'type': 'kill', 'description': 'Defeat clockwork sentinels', 'target': 'sentinel', 'required': 6},
+            {'type': 'kill', 'description': 'Destroy the Core Warden', 'target': 'core warden', 'required': 1}
+        ],
+        'rewards': {'exp': 4000, 'gold': 1200, 'items': ['Clockwork Companion Blueprint'],
+                    'reputation': {'dwarves': 400}},
+        'repeatable': False,
+        'chain_id': 'clockwork_rising',
+        'chain_stage': 'cw_core'
+    },
+
+    # ========== THE FACTION WAR (3-part Faction Chain) ==========
+    'faction_war_1': {
+        'name': 'Tensions Rise',
+        'description': "The City Guard and the Thieves' Guild are on the brink of war. Both seek your aid. Hear both sides before choosing.",
+        'type': 'talk',
+        'category': 'faction',
+        'level_min': 10,
+        'level_max': 30,
+        'quest_giver': 3006,
+        'objectives': [
+            {'type': 'talk', 'description': "Hear the Guard's case from Captain Stolar", 'target': '3006', 'required': 1},
+            {'type': 'talk', 'description': "Hear the Guild's case from the Mayor", 'target': '3105', 'required': 1}
+        ],
+        'rewards': {'exp': 600, 'gold': 150},
+        'repeatable': False,
+        'chain_id': 'faction_war',
+        'chain_stage': 'fw_tensions'
+    },
+    'faction_war_2_guard': {
+        'name': 'For the Guard!',
+        'description': "You side with the Guard. Root out guild safe houses and arrest their enforcers.",
+        'type': 'kill',
+        'category': 'faction',
+        'level_min': 12,
+        'level_max': 30,
+        'quest_giver': 3006,
+        'objectives': [
+            {'type': 'kill', 'description': 'Defeat guild enforcers', 'target': 'thief', 'required': 8},
+            {'type': 'kill', 'description': 'Capture the guild lieutenant', 'target': 'guild lieutenant', 'required': 1}
+        ],
+        'rewards': {'exp': 2000, 'gold': 600, 'items': ['Guard Captain Badge'],
+                    'reputation': {'midgaard': 400, 'thieves_guild': -300}},
+        'repeatable': False,
+        'chain_id': 'faction_war',
+        'chain_stage': 'fw_guard'
+    },
+    'faction_war_2_thieves': {
+        'name': "Honor Among Thieves",
+        'description': "You side with the Guild. Intercept guard patrols and steal evidence of their corruption.",
+        'type': 'kill',
+        'category': 'faction',
+        'level_min': 12,
+        'level_max': 30,
+        'quest_giver': 3105,
+        'objectives': [
+            {'type': 'kill', 'description': 'Ambush corrupt guard patrols', 'target': 'guard', 'required': 8},
+        ],
+        'rewards': {'exp': 2000, 'gold': 800, 'items': ['Shadowstep Boots'],
+                    'reputation': {'thieves_guild': 400, 'midgaard': -300}},
+        'repeatable': False,
+        'chain_id': 'faction_war',
+        'chain_stage': 'fw_thieves'
+    },
+    'faction_war_3_guard': {
+        'name': 'Justice Prevails',
+        'description': "Storm the Thieves' Guild headquarters and arrest the Guildmaster!",
+        'type': 'kill',
+        'category': 'faction',
+        'level_min': 15,
+        'level_max': 35,
+        'quest_giver': 3006,
+        'objectives': [
+            {'type': 'kill', 'description': 'Fight through guild defenders', 'target': 'thief', 'required': 12},
+            {'type': 'kill', 'description': 'Defeat the Guildmaster', 'target': 'guildmaster', 'required': 1}
+        ],
+        'rewards': {'exp': 4000, 'gold': 1500, 'items': ['Sword of Justice'],
+                    'reputation': {'midgaard': 600}},
+        'repeatable': False,
+        'chain_id': 'faction_war',
+        'chain_stage': 'fw_guard_finale'
+    },
+    'faction_war_3_thieves': {
+        'name': 'The Great Heist',
+        'description': "The ultimate caper: break into the Guard Armory and steal the Commander's war plans to ensure the Guild's survival.",
+        'type': 'kill',
+        'category': 'faction',
+        'level_min': 15,
+        'level_max': 35,
+        'quest_giver': 3105,
+        'objectives': [
+            {'type': 'kill', 'description': 'Neutralize armory guards', 'target': 'guard', 'required': 10},
+            {'type': 'talk', 'description': 'Deliver plans to the Guildmaster', 'target': '3105', 'required': 1}
+        ],
+        'rewards': {'exp': 4000, 'gold': 2000, 'items': ['Cloak of Shadows'],
+                    'reputation': {'thieves_guild': 600}},
+        'repeatable': False,
+        'chain_id': 'faction_war',
+        'chain_stage': 'fw_thieves_finale'
+    },
+
+    # ========== DAILY QUESTS ==========
+    'daily_bounty': {
+        'name': 'Bounty Board',
+        'description': "The bounty board lists dangerous creatures that need culling. Check back daily!",
+        'type': 'kill',
+        'category': 'daily',
+        'level_min': 3,
+        'level_max': 50,
+        'quest_giver': 3006,
+        'objectives': [
+            {'type': 'kill', 'description': 'Slay bounty targets', 'target': 'any', 'required': 10}
+        ],
+        'rewards': {'exp': 500, 'gold': 150},
+        'repeatable': True,
+        'daily': True
+    },
+    'daily_gather': {
+        'name': 'Gather Resources',
+        'description': "The city stockpiles run low. Gather materials from the wilds.",
+        'type': 'collect',
+        'category': 'daily',
+        'level_min': 3,
+        'level_max': 50,
+        'quest_giver': 3105,
+        'objectives': [
+            {'type': 'collect', 'description': 'Gather resource materials', 'target': '9004', 'required': 5}
+        ],
+        'rewards': {'exp': 400, 'gold': 120},
+        'repeatable': True,
+        'daily': True
+    },
+    'daily_arena': {
+        'name': 'Arena Champion',
+        'description': "Win arena matches to earn glory and coin!",
+        'type': 'kill',
+        'category': 'daily',
+        'level_min': 5,
+        'level_max': 50,
+        'quest_giver': 3006,
+        'objectives': [
+            {'type': 'kill', 'description': 'Win arena matches', 'target': 'arena_win', 'required': 3}
+        ],
+        'rewards': {'exp': 600, 'gold': 200, 'arena_points': 50},
+        'repeatable': True,
+        'daily': True
+    },
+
     'tutorial_9_newbie_zone': {
         'name': 'Proving Grounds',
         'description': 'Test your skills in the Newbie Zone! The Great Field is north of the Temple, past the Altar. From the Temple, go north three times to reach the Great Field, then go east to enter the Newbie Zone. Defeat 3 creatures there, then return to the Temple.',
@@ -1304,6 +1584,51 @@ QUEST_DEFINITIONS = {
             {'type': 'visit', 'description': 'Return to Sage Aldric at the Temple (go west, then south 3 times)', 'target': '3001', 'required': 1}
         ],
         'rewards': {'exp': 500, 'gold': 200},
+        'next_quest': 'tutorial_10_skills',
+        'repeatable': False
+    },
+    'tutorial_10_skills': {
+        'name': 'Inner Power',
+        'description': 'Learn about your class abilities! Check your skills and spells, then use one in or out of combat. Each class has a unique resource — warriors build Rage, mages spend Mana, thieves build Combo Points, and more. Type "score" to see yours!',
+        'type': 'tutorial',
+        'level_min': 1,
+        'level_max': 10,
+        'quest_giver': 3200,
+        'objectives': [
+            {'type': 'command', 'description': 'Check your skills (type "skills")', 'target': 'skills', 'required': 1},
+            {'type': 'command', 'description': 'Check your score to see your class resource (type "score")', 'target': 'score', 'required': 1},
+        ],
+        'rewards': {'exp': 150, 'gold': 50},
+        'next_quest': 'tutorial_11_communication',
+        'repeatable': False
+    },
+    'tutorial_11_communication': {
+        'name': 'Finding Your Voice',
+        'description': 'The Realms are more fun with friends! Learn to communicate with other players. Try the global chat channel and check out the newbie channel for help.',
+        'type': 'tutorial',
+        'level_min': 1,
+        'level_max': 10,
+        'quest_giver': 3200,
+        'objectives': [
+            {'type': 'command', 'description': 'See who is online (type "who")', 'target': 'who', 'required': 1},
+            {'type': 'command', 'description': 'Check available channels (type "channel list")', 'target': 'channel', 'required': 1},
+        ],
+        'rewards': {'exp': 100, 'gold': 25},
+        'next_quest': 'tutorial_12_quests_groups',
+        'repeatable': False
+    },
+    'tutorial_12_quests_groups': {
+        'name': 'Strength in Numbers',
+        'description': 'Learn about quests and grouping! Look for NPCs with [!] above their name — they have quests for you. Check your quest log with "quests". You can also form groups with other players using "group invite <player>".',
+        'type': 'tutorial',
+        'level_min': 1,
+        'level_max': 10,
+        'quest_giver': 3200,
+        'objectives': [
+            {'type': 'command', 'description': 'Check your quest log (type "quests")', 'target': 'quests', 'required': 1},
+            {'type': 'command', 'description': 'Learn about groups (type "group")', 'target': 'group', 'required': 1},
+        ],
+        'rewards': {'exp': 150, 'gold': 50},
         'repeatable': False
     },
 }
@@ -1392,6 +1717,47 @@ QUEST_CHAINS = {
         'stages': {
             'md_choice': {'quest_id': 'mercy_or_wrath', 'next': 'md_final'},
             'md_final': {'quest_id': 'aftermath', 'next': None}
+        }
+    },
+    'shadow_conspiracy': {
+        'name': 'The Shadow Conspiracy',
+        'start_stage': 'sc_investigate',
+        'stages': {
+            'sc_investigate': {'quest_id': 'shadow_conspiracy_1', 'next': 'sc_trail', 'act': 'Part 1: Investigation'},
+            'sc_trail': {'quest_id': 'shadow_conspiracy_2', 'next': 'sc_infiltrate', 'act': 'Part 2: The Trail'},
+            'sc_infiltrate': {'quest_id': 'shadow_conspiracy_3', 'next': 'sc_boss', 'act': 'Part 3: Infiltration'},
+            'sc_boss': {'quest_id': 'shadow_conspiracy_4', 'next': 'sc_reveal', 'act': 'Part 4: Boss Fight'},
+            'sc_reveal': {'quest_id': 'shadow_conspiracy_5', 'next': None, 'act': 'Part 5: The Truth'}
+        }
+    },
+    'clockwork_rising': {
+        'name': 'Rise of the Clockwork',
+        'start_stage': 'cw_repair',
+        'stages': {
+            'cw_repair': {'quest_id': 'clockwork_1', 'next': 'cw_foundry', 'act': 'Part 1: Repair'},
+            'cw_foundry': {'quest_id': 'clockwork_2', 'next': 'cw_core', 'act': 'Part 2: The Foundry'},
+            'cw_core': {'quest_id': 'clockwork_3', 'next': None, 'act': 'Part 3: The Core'}
+        }
+    },
+    'faction_war': {
+        'name': 'The Faction War',
+        'start_stage': 'fw_tensions',
+        'stages': {
+            'fw_tensions': {
+                'quest_id': 'faction_war_1',
+                'act': 'Part 1: Choose Your Side',
+                'branches': {
+                    'faction_side': {
+                        'guard': 'fw_guard',
+                        'thieves': 'fw_thieves'
+                    }
+                },
+                'next': 'fw_guard'
+            },
+            'fw_guard': {'quest_id': 'faction_war_2_guard', 'next': 'fw_guard_finale', 'act': 'Part 2: Guard Path'},
+            'fw_thieves': {'quest_id': 'faction_war_2_thieves', 'next': 'fw_thieves_finale', 'act': 'Part 2: Thieves Path'},
+            'fw_guard_finale': {'quest_id': 'faction_war_3_guard', 'next': None, 'act': 'Part 3: Guard Finale'},
+            'fw_thieves_finale': {'quest_id': 'faction_war_3_thieves', 'next': None, 'act': 'Part 3: Thieves Finale'}
         }
     }
 }
@@ -1715,6 +2081,11 @@ class QuestManager:
             await player.send("That quest is not available right now.")
             return
 
+        # Check daily quest cooldown
+        if quest_def.get('daily') and not QuestManager.can_accept_daily(player, quest_id):
+            await player.send("You've already completed this daily quest today. Come back tomorrow!")
+            return
+
         # Create active quest
         objectives = [
             QuestObjective(
@@ -1921,11 +2292,25 @@ class QuestManager:
             except Exception:
                 pass
 
+        # Arena points reward
+        if quest.rewards.get('arena_points'):
+            player.arena_points = getattr(player, 'arena_points', 0) + quest.rewards['arena_points']
+            await player.send(f"{c['bright_cyan']}You earn {quest.rewards['arena_points']} arena points!{c['reset']}")
+
         # Move quest to completed
         if not hasattr(player, 'quests_completed'):
             player.quests_completed = []
         player.quests_completed.append(quest_id)
         player.active_quests.remove(quest)
+
+        # Record daily quest completion
+        quest_def = QUEST_DEFINITIONS.get(quest_id, {})
+        if quest_def.get('daily'):
+            QuestManager.record_daily_completion(player, quest_id)
+
+        # Clear tracked quest if it was this one
+        if getattr(player, 'tracked_quest', None) == quest_id:
+            player.tracked_quest = None
 
         QuestManager.advance_chain_from_quest(player, quest_id)
 
@@ -2032,6 +2417,10 @@ class QuestManager:
                 except Exception:
                     pass
 
+            # Check daily quest cooldown
+            if quest_def.get('daily') and not QuestManager.can_accept_daily(player, quest_id):
+                continue
+
             available.append(quest_id)
 
         return available
@@ -2058,9 +2447,14 @@ class QuestManager:
         c = player.config.COLORS
         await player.send(f"\r\n{c['bright_cyan']}╔══════════════════════════════════════════════════════════════╗{c['reset']}")
         await player.send(f"{c['bright_cyan']}║{c['bright_yellow']}           WELCOME, NEW ADVENTURER!                           {c['bright_cyan']}║{c['reset']}")
+        await player.send(f"{c['bright_cyan']}╠══════════════════════════════════════════════════════════════╣{c['reset']}")
+        await player.send(f"{c['bright_cyan']}║{c['white']}  The Realms offer:                                          {c['bright_cyan']}║{c['reset']}")
+        await player.send(f"{c['bright_cyan']}║{c['white']}    ⚔ Epic quests & story arcs    🛡 8 unique classes        {c['bright_cyan']}║{c['reset']}")
+        await player.send(f"{c['bright_cyan']}║{c['white']}    🛠 Crafting & gathering       🐴 Mounts & companions     {c['bright_cyan']}║{c['reset']}")
+        await player.send(f"{c['bright_cyan']}║{c['white']}    🏠 Player housing            🏟 PvP Arena               {c['bright_cyan']}║{c['reset']}")
         await player.send(f"{c['bright_cyan']}╚══════════════════════════════════════════════════════════════╝{c['reset']}")
         await player.send(f"\r\n{c['white']}Sage Aldric at the Temple can teach you the ways of the Realms.")
-        await player.send(f"He is waiting for you in the Temple to the north.{c['reset']}\r\n")
+        await player.send(f"Type {c['bright_green']}hint{c['white']} anytime for guidance, or {c['bright_green']}help newbie{c['white']} for a full guide.{c['reset']}\r\n")
         
         # Auto-accept the first tutorial quest
         await QuestManager.accept_quest(player, 'tutorial_1_awakening')
@@ -2149,8 +2543,13 @@ class QuestManager:
             await player.send(f"\r\n{c['bright_yellow']}╔══════════════════════════════════════════════════════════════╗{c['reset']}")
             await player.send(f"{c['bright_yellow']}║     CONGRATULATIONS! You have completed the tutorial!        ║{c['reset']}")
             await player.send(f"{c['bright_yellow']}║                                                              ║{c['reset']}")
-            await player.send(f"{c['bright_yellow']}║  You are now ready to explore the world on your own.        ║{c['reset']}")
-            await player.send(f"{c['bright_yellow']}║  Type 'help' for commands, 'quests' for more adventures!    ║{c['reset']}")
+            await player.send(f"{c['bright_yellow']}║  The Realms have so much more to offer:                     ║{c['reset']}")
+            await player.send(f"{c['bright_yellow']}║    ⚔ Quests & story arcs — look for NPCs with [!]          ║{c['reset']}")
+            await player.send(f"{c['bright_yellow']}║    🛠 Crafting & gathering — mine, forage, fish             ║{c['reset']}")
+            await player.send(f"{c['bright_yellow']}║    🐴 Mounts, housing, achievements — as you grow!          ║{c['reset']}")
+            await player.send(f"{c['bright_yellow']}║    🏟 PvP Arena — test yourself against other players       ║{c['reset']}")
+            await player.send(f"{c['bright_yellow']}║                                                              ║{c['reset']}")
+            await player.send(f"{c['bright_yellow']}║  Type 'help newbie' for a full guide, 'quests' for more!    ║{c['reset']}")
             await player.send(f"{c['bright_yellow']}╚══════════════════════════════════════════════════════════════╝{c['reset']}\r\n")
             
             # Post-tutorial guidance based on player level
@@ -2251,3 +2650,81 @@ class QuestManager:
                     f"{c['cyan']}You sense your objective lies to the {direction}.{c['reset']}"
                 )
             break  # Only show one hint
+
+    @staticmethod
+    def get_quest_category(quest_id: str) -> str:
+        """Return the display category for a quest."""
+        quest_def = QUEST_DEFINITIONS.get(quest_id, {})
+        # Explicit category
+        cat = quest_def.get('category')
+        if cat:
+            return cat
+        # Infer from chain or type
+        chain_id = quest_def.get('chain_id')
+        if chain_id == 'main_story':
+            return 'main_story'
+        if quest_def.get('daily'):
+            return 'daily'
+        if quest_def.get('type') == 'tutorial':
+            return 'side'
+        # Check if part of a chain
+        if chain_id:
+            chain_def = QUEST_CHAINS.get(chain_id, {})
+            name = chain_def.get('name', '').lower()
+            if 'faction' in name or 'guard' in name or 'thief' in name:
+                return 'faction'
+            if 'dungeon' in name or 'foundry' in name or 'clockwork' in name:
+                return 'dungeon'
+            return 'side'
+        return 'side'
+
+    @staticmethod
+    def get_quest_giver_indicator(player, npc_vnum: int) -> str:
+        """Return '!' if NPC has available quests, '?' if ready to turn in, '' otherwise."""
+        # Check for quests ready to turn in
+        for quest in getattr(player, 'active_quests', []):
+            if quest.is_complete():
+                quest_def = QUEST_DEFINITIONS.get(quest.quest_id, {})
+                if quest_def.get('quest_giver') == npc_vnum:
+                    return '?'
+        # Check for available quests
+        available = QuestManager.get_available_quests(player, npc_vnum)
+        if available:
+            return '!'
+        return ''
+
+    @staticmethod
+    def can_accept_daily(player, quest_id: str) -> bool:
+        """Check if player can accept a daily quest (not already done today)."""
+        quest_def = QUEST_DEFINITIONS.get(quest_id, {})
+        if not quest_def.get('daily'):
+            return True
+        daily_completions = getattr(player, 'daily_quest_completions', {})
+        last_done = daily_completions.get(quest_id)
+        if not last_done:
+            return True
+        from datetime import datetime
+        try:
+            last_dt = datetime.fromisoformat(last_done) if isinstance(last_done, str) else last_done
+            now = datetime.now()
+            return now.date() > last_dt.date()
+        except Exception:
+            return True
+
+    @staticmethod
+    def record_daily_completion(player, quest_id: str):
+        """Record that a daily quest was completed today."""
+        if not hasattr(player, 'daily_quest_completions'):
+            player.daily_quest_completions = {}
+        from datetime import datetime
+        player.daily_quest_completions[quest_id] = datetime.now().isoformat()
+
+
+# Quest category display info
+QUEST_CATEGORY_INFO = {
+    'main_story': {'name': 'Main Story', 'color': 'bright_yellow', 'icon': '★'},
+    'side': {'name': 'Side Quests', 'color': 'bright_cyan', 'icon': '◆'},
+    'daily': {'name': 'Daily', 'color': 'bright_green', 'icon': '↻'},
+    'faction': {'name': 'Faction', 'color': 'bright_magenta', 'icon': '⚑'},
+    'dungeon': {'name': 'Dungeon', 'color': 'bright_red', 'icon': '⚔'},
+}

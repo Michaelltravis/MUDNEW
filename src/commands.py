@@ -44,7 +44,7 @@ class CommandHandler:
         'ge': 'get', 'ta': 'take', 'pi': 'pick',
         'pu': 'put', 'dp': 'drop',
         'gi': 'give',
-        'we': 'wear', 'wi': 'wield', 'ho': 'hold', 'rem': 'remove',
+        'we': 'wear', 'wi': 'wield', 'ho': 'wield', 'rem': 'remove',
         'c': 'cast',
         'pr': 'practice',
         'whe': 'where',
@@ -54,14 +54,17 @@ class CommandHandler:
         'worldmap': 'map',
         'party': 'companions',
         'rep': 'reputation',
+        'ach': 'achievements',
+        'achieve': 'achievements',
         'se': 'search',
         'rd': 'read',
         'jr': 'journal',
+        'qs': 'quests',
         'lo': 'lore',
         'dod': 'dodge',
         'int': 'interrupt',
         'newgame+': 'newgameplus',
-        'mm': 'minimap',
+        'mmap': 'minimap',
         'undead': 'raise',
         'imb': 'imbue',
         'stone': 'soulstone',
@@ -83,7 +86,7 @@ class CommandHandler:
         'ramp': 'rampage',
         'wc': 'warcry',
         'ip': 'ignorepain',
-        'bs': 'battleshout',
+        'bsh': 'battleshout',
         'resc': 'rescue',
         'ham': 'hamstring',
         'dblow': 'devastating_blow',
@@ -91,7 +94,7 @@ class CommandHandler:
         # Ranger commands
         'comp': 'companion',
         'pet': 'companion',
-        'tr': 'track',
+        'tra': 'track',
         'camo': 'camouflage',
         'amb': 'ambush',
         # Paladin commands
@@ -144,14 +147,28 @@ class CommandHandler:
         'sblade': 'shadow_blade',
         'sblink': 'shadow_blink',
         'sstr': 'silence_strike',
+        # Crafting
+        'mi': 'mine',
+        'fo': 'forage',
+        'sk': 'skin',
+        'fis': 'fish',
+        'cr': 'craft',
         # Mail/Trade/Duel
         'ma': 'mail',
+        'auc': 'auction',
+        'ah': 'auction',
         'du': 'duel',
+        'ch': 'challenge',
+        'ar': 'arena',
+        'gl': 'global',
+        'tr': 'trade',
+        'fi': 'finger',
+        'spec': 'specialize',
+        'prest': 'prestige',
     }
 
     COMMAND_ALIASES = {
         'bs': 'backstab',
-        'shadowstep': 'shadow_step',
         'pocketsand': 'pocket_sand',
         'lowblow': 'low_blow',
         'riggeddice': 'rigged_dice',
@@ -180,8 +197,8 @@ class CommandHandler:
         'discordantnote': 'discordant_note',
         'magnumopus': 'magnum_opus',
         'deathfromabove': 'death_from_above',
-        'fb': 'fireball',
-        'mm': 'magic_missile',
+        'fb': 'cast',
+        'mm': 'cast',
         'tv': 'templars_verdict',
         'wog': 'word_of_glory',
         'sb': 'soul_bolt',
@@ -541,6 +558,22 @@ class CommandHandler:
             if discovered:
                 key, info = discovered
                 await player.send(f"{c['bright_cyan']}Waypoint discovered: {info['name']}{c['reset']}")
+        except Exception:
+            pass
+
+        # Contextual hints for new players
+        try:
+            from tips import TipManager
+            # Gathering room hint
+            if hasattr(target_room, 'resource_nodes') and target_room.resource_nodes:
+                await TipManager.show_contextual_hint(player, 'gathering_room')
+            elif hasattr(target_room, 'flags') and any(f in getattr(target_room, 'flags', []) for f in ('mine', 'forage', 'fish', 'gathering')):
+                await TipManager.show_contextual_hint(player, 'gathering_room')
+            # Quest giver hint - check for NPCs with available quests
+            for npc in getattr(target_room, 'characters', []):
+                if hasattr(npc, 'vnum') and getattr(npc, 'quest_giver', False):
+                    await TipManager.show_contextual_hint(player, 'quest_giver')
+                    break
         except Exception:
             pass
 
@@ -1073,6 +1106,25 @@ class CommandHandler:
         await PuzzleManager.request_hint(player)
 
     @classmethod
+    async def cmd_achievements(cls, player: 'Player', args: List[str]):
+        """View achievements and progress."""
+        from achievements import AchievementManager
+        category = args[0].lower() if args else None
+        valid_cats = {'combat', 'exploration', 'progression', 'class', 'social', 'wealth', 'collection'}
+        if category and category not in valid_cats:
+            category = None
+        await AchievementManager.show_achievements(player, category)
+
+    @classmethod
+    async def cmd_title(cls, player: 'Player', args: List[str]):
+        """Set or view your display title from earned achievements."""
+        from achievements import AchievementManager
+        if not args:
+            await AchievementManager.show_titles(player)
+        else:
+            await AchievementManager.set_title(player, ' '.join(args))
+
+    @classmethod
     async def cmd_collections(cls, player: 'Player', args: List[str]):
         """View collection progress."""
         from collection_system import CollectionManager
@@ -1163,6 +1215,13 @@ class CommandHandler:
             return
 
         c = player.config.COLORS
+
+        # Recipe scroll: learn the recipe
+        if 'recipe_scroll' in getattr(item, 'flags', set()):
+            from crafting import handle_recipe_scroll
+            await handle_recipe_scroll(player, item)
+            return
+
         await player.send(f"{c['bright_cyan']}{item.lore_title or item.short_desc}{c['reset']}")
         await player.send(f"{c['white']}{text}{c['reset']}")
 
@@ -1427,7 +1486,9 @@ class CommandHandler:
         await player.send(f"{c['cyan']}{TL}{H*W}{TR}{c['reset']}")
         await player.send(f"{c['cyan']}{V}{c['bright_yellow']} {player.name} {player.title:<52}{c['cyan']}{V}{c['reset']}")
         await player.send(f"{c['cyan']}{LT}{H*W}{RT}{c['reset']}")
-        await player.send(f"{c['cyan']}{V} {c['white']}Race: {race_info.get('name', player.race):<12} Class: {class_info.get('name', player.char_class):<12} Level: {player.level:<3}{c['cyan']}    {V}{c['reset']}")
+        from prestige import get_class_display
+        display_class = get_class_display(player)
+        await player.send(f"{c['cyan']}{V} {c['white']}Race: {race_info.get('name', player.race):<12} Class: {display_class:<12} Level: {player.level:<3}{c['cyan']}    {V}{c['reset']}")
         await player.send(f"{c['cyan']}{LT}{H*W}{RT}{c['reset']}")
         # Calculate effective max values with equipment bonuses
         eff_max_hp = player.max_hp + player.get_equipment_bonus('hp')
@@ -1666,22 +1727,47 @@ class CommandHandler:
             
     @classmethod
     async def cmd_who(cls, player: 'Player', args: List[str]):
-        """Show online players."""
+        """Show online players with class, level, prestige, guild, title, idle time, and zone."""
+        import time as _time
         c = player.config.COLORS
-        players = player.world.players.values()
+        players = list(player.world.players.values())
         
-        await player.send(f"{c['cyan']}╔══════════════════════════════════════════════════════════════╗{c['reset']}")
-        await player.send(f"{c['cyan']}║{c['bright_yellow']}                    Players Online                            {c['cyan']}║{c['reset']}")
-        await player.send(f"{c['cyan']}╠══════════════════════════════════════════════════════════════╣{c['reset']}")
+        await player.send(f"{c['cyan']}╔══════════════════════════════════════════════════════════════════════╗{c['reset']}")
+        await player.send(f"{c['cyan']}║{c['bright_yellow']}                         Players Online                               {c['cyan']}║{c['reset']}")
+        await player.send(f"{c['cyan']}╠══════════════════════════════════════════════════════════════════════╣{c['reset']}")
         
         for p in players:
-            race = player.config.RACES.get(p.race, {}).get('name', p.race)[:8]
-            cls_name = player.config.CLASSES.get(p.char_class, {}).get('name', p.char_class)[:8]
-            await player.send(f"{c['cyan']}║ {c['white']}[{p.level:>2} {race:<8} {cls_name:<8}] {c['bright_green']}{p.name} {p.title}{c['cyan']}{' ' * (62 - 25 - len(p.name) - len(p.title))}║{c['reset']}")
+            cls_name = player.config.CLASSES.get(p.char_class, {}).get('name', p.char_class)[:10]
+            from prestige import get_prestige_display_name
+            prestige_name = get_prestige_display_name(p)
+            prestige_str = f"/{prestige_name[:8]}" if prestige_name else ""
+            guild = getattr(p, 'guild', None)
+            guild_str = f" <{guild[:10]}>" if guild else ""
+            title_str = getattr(p, 'title', '') or ''
+            zone_name = ''
+            if p.room and p.room.zone:
+                zone_name = p.room.zone.name[:15]
+            # Idle time
+            idle_secs = 0
+            if hasattr(p, 'connection') and p.connection and hasattr(p.connection, 'last_input_time'):
+                idle_secs = int(_time.time() - p.connection.last_input_time)
+            idle_str = ''
+            if idle_secs > 300:
+                idle_min = idle_secs // 60
+                idle_str = f" (idle {idle_min}m)"
             
-        await player.send(f"{c['cyan']}╠══════════════════════════════════════════════════════════════╣{c['reset']}")
-        await player.send(f"{c['cyan']}║ {c['white']}{len(list(players))} player(s) online{' ' * 43}{c['cyan']}║{c['reset']}")
-        await player.send(f"{c['cyan']}╚══════════════════════════════════════════════════════════════╝{c['reset']}")
+            line = f"[{p.level:>2} {cls_name}{prestige_str}]{guild_str} {p.name} {title_str}{idle_str}"
+            if zone_name:
+                line += f" - {zone_name}"
+            # Pad to fit box
+            pad = max(0, 68 - len(line))
+            await player.send(f"{c['cyan']}║ {c['bright_green']}{line}{' ' * pad}{c['cyan']}║{c['reset']}")
+            
+        await player.send(f"{c['cyan']}╠══════════════════════════════════════════════════════════════════════╣{c['reset']}")
+        count_str = f"{len(players)} player(s) online"
+        pad = max(0, 68 - len(count_str))
+        await player.send(f"{c['cyan']}║ {c['white']}{count_str}{' ' * pad}{c['cyan']}║{c['reset']}")
+        await player.send(f"{c['cyan']}╚══════════════════════════════════════════════════════════════════════╝{c['reset']}")
 
     @classmethod
     async def cmd_daily(cls, player: 'Player', args: List[str]):
@@ -8615,7 +8701,13 @@ class CommandHandler:
         message = ' '.join(args)
         c = player.config.COLORS
         
-        await player.room.send_to_room(f"{c['yellow']}{player.name} {message}{c['reset']}")
+        # Send to room, respecting ignore lists
+        from social import is_ignored
+        if player.room:
+            for char in player.room.characters:
+                if hasattr(char, 'connection') and char.connection:
+                    if char == player or not is_ignored(char, player.name):
+                        await char.send(f"{c['yellow']}{player.name} {message}{c['reset']}")
         
     @classmethod
     async def cmd_tell(cls, player: 'Player', args: List[str]):
@@ -8634,6 +8726,12 @@ class CommandHandler:
             return
             
         if getattr(target, 'notell', False):
+            await player.send(f"{c['yellow']}{target.name} is not accepting tells.{c['reset']}")
+            return
+
+        # Check ignore list
+        from social import is_ignored
+        if is_ignored(target, player.name):
             await player.send(f"{c['yellow']}{target.name} is not accepting tells.{c['reset']}")
             return
         
@@ -8668,6 +8766,11 @@ class CommandHandler:
         player.position = 'resting'
         await player.send("You rest and begin to recuperate.")
         await player.room.send_to_room(f"{player.name} rests.", exclude=[player])
+        # Revive knocked-out combat companion
+        if hasattr(player, 'combat_companion') and player.combat_companion and player.combat_companion.knocked_out:
+            if player.combat_companion.rest_revive():
+                c = player.config.COLORS
+                await player.send(f"{c['bright_green']}{player.combat_companion.name} revives and is ready to fight again!{c['reset']}")
         
     @classmethod
     async def cmd_sleep(cls, player: 'Player', args: List[str]):
@@ -8681,6 +8784,11 @@ class CommandHandler:
         player.position = 'sleeping'
         await player.send("You go to sleep.")
         await player.room.send_to_room(f"{player.name} goes to sleep.", exclude=[player])
+        # Revive knocked-out combat companion
+        if hasattr(player, 'combat_companion') and player.combat_companion and player.combat_companion.knocked_out:
+            if player.combat_companion.rest_revive():
+                c = player.config.COLORS
+                await player.send(f"{c['bright_green']}{player.combat_companion.name} revives and is ready to fight again!{c['reset']}")
         
     @classmethod
     async def cmd_wake(cls, player: 'Player', args: List[str]):
@@ -8996,13 +9104,27 @@ class CommandHandler:
 
     @classmethod
     async def cmd_reputation(cls, player: 'Player', args: List[str]):
-        """Show reputation standings with all factions."""
+        """Show reputation standings with all factions.
+        Usage: reputation [faction_name] - Shows all factions or details for one."""
         from factions import FactionManager
         c = player.config.COLORS
+
+        if args:
+            # Show detail for a specific faction
+            key = FactionManager.normalize_key(' '.join(args))
+            if not key:
+                await player.send(f"{c['yellow']}Unknown faction. Type 'rep' to see all factions.{c['reset']}")
+                return
+            lines = FactionManager.format_faction_detail(player, key)
+            for line in lines:
+                await player.send(f"{c['white']}{line}{c['reset']}")
+            return
+
+        await player.send(f"\n{c['bright_cyan']}═══ Faction Reputation ═══{c['reset']}")
         lines = FactionManager.format_reputation_summary(player)
-        await player.send(f"{c['bright_cyan']}Faction Reputation:{c['reset']}")
         for line in lines:
-            await player.send(f"  {line}")
+            await player.send(line)
+        await player.send(f"\n{c['cyan']}Use 'rep <faction>' for details. Use 'faction <name>' for full info.{c['reset']}")
 
     @classmethod
     async def cmd_faction(cls, player: 'Player', args: List[str]):
@@ -9024,28 +9146,48 @@ class CommandHandler:
 
     @classmethod
     async def cmd_gather(cls, player: 'Player', args: List[str]):
-        """Gather resources based on environment."""
+        """Gather resources based on environment (auto-detects type)."""
         from crafting import gather
         await gather(player)
 
     @classmethod
+    async def cmd_mine(cls, player: 'Player', args: List[str]):
+        """Mine ore from mountain or cave rooms."""
+        from crafting import cmd_mine
+        await cmd_mine(player, args)
+
+    @classmethod
+    async def cmd_forage(cls, player: 'Player', args: List[str]):
+        """Forage for herbs in forest or field rooms."""
+        from crafting import cmd_forage
+        await cmd_forage(player, args)
+
+    @classmethod
+    async def cmd_skin(cls, player: 'Player', args: List[str]):
+        """Skin an animal corpse for hides and pelts."""
+        from crafting import cmd_skin
+        await cmd_skin(player, args)
+
+    @classmethod
+    async def cmd_fish(cls, player: 'Player', args: List[str]):
+        """Fish in water rooms."""
+        from crafting import cmd_fish
+        await cmd_fish(player, args)
+
+    @classmethod
+    async def cmd_recipes(cls, player: 'Player', args: List[str]):
+        """Show your known crafting recipes."""
+        from crafting import show_recipes
+        await show_recipes(player, args)
+
+    @classmethod
     async def cmd_craft(cls, player: 'Player', args: List[str]):
         """Craft an item from a recipe."""
-        from crafting import craft, list_recipes
+        from crafting import craft, craft_list
         c = player.config.COLORS
 
         if not args or args[0] == 'list':
-            recipes = list_recipes()
-            await player.send(f"{c['bright_yellow']}Available Recipes:{c['reset']}")
-            for recipe_id, recipe in recipes.items():
-                ingredients = ", ".join(
-                    f"{amt}x {mat.replace('_', ' ')}" for mat, amt in recipe.ingredients.items()
-                )
-                await player.send(
-                    f"  {c['cyan']}{recipe_id}{c['reset']}: {recipe.name} "
-                    f"({recipe.skill} {recipe.skill_required}%) - {ingredients}"
-                )
-            await player.send(f"{c['white']}Use 'craft <recipe_id>' to craft an item.{c['reset']}")
+            await craft_list(player, args[1:] if len(args) > 1 else None)
             return
 
         await craft(player, args[0])
@@ -9528,6 +9670,163 @@ class CommandHandler:
     async def cmd_questlog(cls, player: 'Player', args: List[str]):
         """Show quest log (alias for quest log)."""
         await cls.cmd_quest(player, ['log'])
+
+    @classmethod
+    async def cmd_quests(cls, player: 'Player', args: List[str]):
+        """Quest journal — view active and completed quests by category.
+        
+        Usage:
+            quests               - Show all active quests grouped by category
+            quests completed     - Show completed quests
+            quests daily         - Show available daily quests
+            quests main          - Show main story quests only
+            quests side          - Show side quests only
+            quests faction       - Show faction quests only
+            quests dungeon       - Show dungeon quests only
+            quests track <name>  - Track a quest (show progress in prompt)
+            quests untrack       - Stop tracking
+        """
+        from quests import QuestManager, QUEST_DEFINITIONS, QUEST_CATEGORY_INFO
+
+        c = player.config.COLORS
+        sub = args[0].lower() if args else None
+
+        # Track/untrack subcommands
+        if sub == 'track':
+            if len(args) < 2:
+                await player.send(f"{c['yellow']}Usage: quests track <quest name or id>{c['reset']}")
+                return
+            search = ' '.join(args[1:]).lower()
+            for quest in getattr(player, 'active_quests', []):
+                if search in quest.quest_id.lower() or search in quest.name.lower():
+                    player.tracked_quest = quest.quest_id
+                    await player.send(f"{c['bright_green']}Now tracking: {quest.name}{c['reset']}")
+                    return
+            await player.send(f"{c['red']}No active quest matching '{search}'.{c['reset']}")
+            return
+
+        if sub == 'untrack':
+            player.tracked_quest = None
+            await player.send(f"{c['cyan']}Quest tracking disabled.{c['reset']}")
+            return
+
+        # Completed quests view
+        if sub == 'completed':
+            completed = getattr(player, 'quests_completed', [])
+            if not completed:
+                await player.send(f"{c['yellow']}You haven't completed any quests yet.{c['reset']}")
+                return
+            await player.send(f"\r\n{c['cyan']}╔══════════════════════════════════════════════════════════════╗{c['reset']}")
+            await player.send(f"{c['cyan']}║{c['bright_yellow']}  QUEST JOURNAL - Completed ({len(completed)} quests)                     {c['cyan']}║{c['reset']}")
+            await player.send(f"{c['cyan']}╚══════════════════════════════════════════════════════════════╝{c['reset']}")
+            # Group by category
+            by_cat = {}
+            for qid in completed:
+                cat = QuestManager.get_quest_category(qid)
+                by_cat.setdefault(cat, []).append(qid)
+            for cat_key in ['main_story', 'side', 'daily', 'faction', 'dungeon']:
+                quests = by_cat.get(cat_key, [])
+                if not quests:
+                    continue
+                info = QUEST_CATEGORY_INFO.get(cat_key, {'name': cat_key.title(), 'color': 'white', 'icon': '-'})
+                await player.send(f"\r\n  {c[info['color']]}{info['icon']} {info['name']}{c['reset']}")
+                for qid in quests:
+                    qdef = QUEST_DEFINITIONS.get(qid, {})
+                    name = qdef.get('name', qid)
+                    await player.send(f"    {c['green']}✓{c['reset']} {name}")
+            await player.send("")
+            return
+
+        # Daily quests view
+        if sub == 'daily':
+            await player.send(f"\r\n{c['cyan']}╔══════════════════════════════════════════════════════════════╗{c['reset']}")
+            await player.send(f"{c['cyan']}║{c['bright_green']}  DAILY QUESTS                                                {c['cyan']}║{c['reset']}")
+            await player.send(f"{c['cyan']}╚══════════════════════════════════════════════════════════════╝{c['reset']}")
+            for qid, qdef in QUEST_DEFINITIONS.items():
+                if not qdef.get('daily'):
+                    continue
+                can_do = QuestManager.can_accept_daily(player, qid)
+                already_active = QuestManager.has_active_quest(player, qid)
+                if already_active:
+                    status = f"{c['yellow']}In Progress{c['reset']}"
+                elif can_do:
+                    status = f"{c['bright_green']}Available{c['reset']}"
+                else:
+                    status = f"{c['bright_black']}Done Today{c['reset']}"
+                await player.send(f"\r\n  {c['bright_white']}{qdef['name']}{c['reset']} [{status}]")
+                await player.send(f"  {c['white']}{qdef['description']}{c['reset']}")
+                rewards = []
+                if qdef['rewards'].get('exp'):
+                    rewards.append(f"{qdef['rewards']['exp']} XP")
+                if qdef['rewards'].get('gold'):
+                    rewards.append(f"{qdef['rewards']['gold']} gold")
+                if rewards:
+                    await player.send(f"  {c['yellow']}Rewards: {', '.join(rewards)}{c['reset']}")
+            await player.send(f"\r\n  {c['cyan']}Daily quests reset at midnight.{c['reset']}\r\n")
+            return
+
+        # Filter by specific category
+        cat_filter = None
+        cat_map = {'main': 'main_story', 'story': 'main_story', 'side': 'side',
+                    'faction': 'faction', 'dungeon': 'dungeon'}
+        if sub and sub in cat_map:
+            cat_filter = cat_map[sub]
+
+        # Active quests view (default)
+        active = getattr(player, 'active_quests', [])
+        if not active:
+            await player.send(f"{c['yellow']}You have no active quests. Talk to NPCs to find adventures!{c['reset']}")
+            return
+
+        await player.send(f"\r\n{c['cyan']}╔══════════════════════════════════════════════════════════════╗{c['reset']}")
+        title_str = "QUEST JOURNAL"
+        if cat_filter:
+            info = QUEST_CATEGORY_INFO.get(cat_filter, {})
+            title_str = f"QUEST JOURNAL - {info.get('name', cat_filter.title())}"
+        await player.send(f"{c['cyan']}║{c['bright_yellow']}  {title_str:<58}{c['cyan']}║{c['reset']}")
+        await player.send(f"{c['cyan']}╚══════════════════════════════════════════════════════════════╝{c['reset']}")
+
+        # Group active quests by category
+        by_cat = {}
+        for quest in active:
+            cat = QuestManager.get_quest_category(quest.quest_id)
+            if cat_filter and cat != cat_filter:
+                continue
+            by_cat.setdefault(cat, []).append(quest)
+
+        if not by_cat:
+            await player.send(f"\r\n  {c['yellow']}No quests in this category.{c['reset']}\r\n")
+            return
+
+        tracked = getattr(player, 'tracked_quest', None)
+
+        for cat_key in ['main_story', 'side', 'daily', 'faction', 'dungeon']:
+            quests = by_cat.get(cat_key, [])
+            if not quests:
+                continue
+            info = QUEST_CATEGORY_INFO.get(cat_key, {'name': cat_key.title(), 'color': 'white', 'icon': '-'})
+            await player.send(f"\r\n  {c[info['color']]}{info['icon']} {info['name']}{c['reset']}")
+
+            for quest in quests:
+                track_mark = f" {c['bright_yellow']}[TRACKED]{c['reset']}" if tracked == quest.quest_id else ""
+                if quest.is_complete():
+                    status = f"{c['bright_green']}COMPLETE{c['reset']}"
+                else:
+                    done = sum(1 for o in quest.objectives if o.completed)
+                    total = len(quest.objectives)
+                    status = f"{c['yellow']}{done}/{total}{c['reset']}"
+                await player.send(f"    {c['bright_white']}{quest.name}{c['reset']} [{status}]{track_mark}")
+
+                for obj in quest.objectives:
+                    if obj.completed:
+                        await player.send(f"      {c['green']}✓ {obj.description}{c['reset']}")
+                    else:
+                        await player.send(f"      {c['white']}  {obj.description} ({obj.current}/{obj.required}){c['reset']}")
+
+                if quest.is_complete():
+                    await player.send(f"      {c['bright_green']}→ Return to quest giver!{c['reset']}")
+
+        await player.send(f"\r\n  {c['cyan']}Commands: quests completed | daily | track <name> | untrack{c['reset']}\r\n")
 
     @classmethod
     async def cmd_story(cls, player: 'Player', args: List[str]):
@@ -11278,15 +11577,23 @@ class CommandHandler:
 
     @classmethod
     async def cmd_group(cls, player: 'Player', args: List[str]):
-        """Manage your group. CircleMUD-style group commands.
+        """Manage your group/party for multiplayer dungeon runs.
         
         Usage:
-            group           - Show group status
-            group all       - Group all players following you
-            group <player>  - Add a player following you to your group
-            group leave     - Leave your current group
-            group disband   - Disband the group (leader only)
-            group kick <n>  - Remove player from group (leader only)
+            group               - Show group status
+            group <player>      - Invite a player to your group
+            group accept        - Accept a pending group invitation
+            group decline       - Decline a pending group invitation
+            group leave         - Leave your current group
+            group list          - Show group status (same as no args)
+            group kick <player> - Remove player from group (leader only)
+            group leader <player> - Transfer leadership (leader only)
+            group loot <mode>   - Set loot mode: freeforall or roundrobin
+            group follow        - Toggle auto-follow on/off
+            group disband       - Disband the group (leader only)
+            group all           - Group all players following you
+        
+        Max group size: 6 players. The first person to invite becomes leader.
         """
         from groups import GroupManager
 
@@ -11299,105 +11606,159 @@ class CommandHandler:
 
         action = args[0].lower()
 
-        # Leave group
+        # --- accept / decline ---
+        if action == 'accept':
+            await GroupManager.accept_invite(player)
+            return
+        if action == 'decline':
+            await GroupManager.decline_invite(player)
+            return
+
+        # --- list (alias for no-args) ---
+        if action == 'list':
+            await GroupManager.show_group(player)
+            return
+
+        # --- leave ---
         if action == 'leave':
             await GroupManager.leave_group(player)
             return
             
-        # Disband group (leader only)
+        # --- disband (leader only) ---
         if action == 'disband':
-            if not hasattr(player, 'group') or not player.group:
+            if not getattr(player, 'group', None):
                 await player.send(f"{c['yellow']}You're not in a group.{c['reset']}")
                 return
             if player.group.leader != player:
                 await player.send(f"{c['red']}Only the group leader can disband the group.{c['reset']}")
                 return
-            # Notify all members
             for member in player.group.members:
                 if member != player:
                     await member.send(f"{c['yellow']}{player.name} has disbanded the group.{c['reset']}")
             player.group.disband()
             await player.send(f"{c['yellow']}You disband the group.{c['reset']}")
             return
-            
-        # Group all followers
-        if action == 'all':
-            # Find all players following this player in the same room
-            followers = []
-            for char in player.room.characters:
-                if char != player and hasattr(char, 'connection'):
-                    if hasattr(char, 'following') and char.following == player:
-                        followers.append(char)
-            
-            if not followers:
-                await player.send(f"{c['yellow']}No one is following you here.{c['reset']}")
-                return
-            
-            # Add each follower to the group
-            added = 0
-            for follower in followers:
-                success = await GroupManager.join_group(player, follower)
-                if success:
-                    added += 1
-            
-            if added > 0:
-                await player.send(f"{c['green']}Added {added} follower(s) to your group.{c['reset']}")
-            else:
-                await player.send(f"{c['yellow']}Could not add any followers to the group.{c['reset']}")
-            return
-            
-        # Kick player from group
-        if action == 'kick' and len(args) > 1:
-            if not hasattr(player, 'group') or not player.group:
+
+        # --- leader <player> (transfer leadership) ---
+        if action == 'leader' and len(args) > 1:
+            if not getattr(player, 'group', None):
                 await player.send(f"{c['yellow']}You're not in a group.{c['reset']}")
                 return
             if player.group.leader != player:
-                await player.send(f"{c['red']}Only the group leader can kick members.{c['reset']}")
+                await player.send(f"{c['red']}Only the current leader can transfer leadership.{c['reset']}")
                 return
-            
             target_name = ' '.join(args[1:]).lower()
             target = None
             for member in player.group.members:
                 if member.name.lower().startswith(target_name) and member != player:
                     target = member
                     break
-            
             if not target:
                 await player.send(f"{c['red']}'{target_name}' is not in your group.{c['reset']}")
                 return
-            
+            player.group.set_leader(target)
+            for member in player.group.members:
+                await member.send(f"{c['bright_green']}{target.name} is now the group leader.{c['reset']}")
+            return
+
+        # --- loot <mode> ---
+        if action == 'loot':
+            if not getattr(player, 'group', None):
+                await player.send(f"{c['yellow']}You're not in a group.{c['reset']}")
+                return
+            if player.group.leader != player:
+                await player.send(f"{c['red']}Only the leader can change loot mode.{c['reset']}")
+                return
+            if len(args) < 2:
+                current = 'Round-Robin' if player.group.loot_mode == 'roundrobin' else 'Free-for-All'
+                await player.send(f"{c['cyan']}Current loot mode: {current}. Use 'group loot freeforall' or 'group loot roundrobin'.{c['reset']}")
+                return
+            mode = args[1].lower().replace('-', '').replace('_', '')
+            if mode in ('ffa', 'freeforall', 'free'):
+                player.group.loot_mode = 'freeforall'
+                for member in player.group.members:
+                    await member.send(f"{c['bright_green']}Loot mode set to Free-for-All.{c['reset']}")
+            elif mode in ('rr', 'roundrobin', 'round'):
+                player.group.loot_mode = 'roundrobin'
+                for member in player.group.members:
+                    await member.send(f"{c['bright_green']}Loot mode set to Round-Robin.{c['reset']}")
+            else:
+                await player.send(f"{c['red']}Unknown loot mode. Use 'freeforall' or 'roundrobin'.{c['reset']}")
+            return
+
+        # --- follow (toggle auto-follow) ---
+        if action == 'follow':
+            if not getattr(player, 'group', None):
+                await player.send(f"{c['yellow']}You're not in a group.{c['reset']}")
+                return
+            group = player.group
+            group.auto_follow = not group.auto_follow
+            state = 'ON' if group.auto_follow else 'OFF'
+            # Update following pointers for all non-leader members
+            for member in group.members:
+                if member != group.leader:
+                    member.following = group.leader if group.auto_follow else None
+                await member.send(f"{c['cyan']}Group auto-follow is now {state}.{c['reset']}")
+            return
+
+        # --- kick <player> ---
+        if action == 'kick' and len(args) > 1:
+            if not getattr(player, 'group', None):
+                await player.send(f"{c['yellow']}You're not in a group.{c['reset']}")
+                return
+            if player.group.leader != player:
+                await player.send(f"{c['red']}Only the group leader can kick members.{c['reset']}")
+                return
+            target_name = ' '.join(args[1:]).lower()
+            target = None
+            for member in player.group.members:
+                if member.name.lower().startswith(target_name) and member != player:
+                    target = member
+                    break
+            if not target:
+                await player.send(f"{c['red']}'{target_name}' is not in your group.{c['reset']}")
+                return
             player.group.remove_member(target)
-            target.group = None
             await player.send(f"{c['yellow']}You kick {target.name} from the group.{c['reset']}")
             await target.send(f"{c['yellow']}{player.name} kicks you from the group.{c['reset']}")
             for member in player.group.members:
                 if member != player:
                     await member.send(f"{c['yellow']}{target.name} has been kicked from the group.{c['reset']}")
             return
+            
+        # --- group all (legacy: group all followers) ---
+        if action == 'all':
+            followers = []
+            for char in player.room.characters:
+                if char != player and hasattr(char, 'connection'):
+                    if getattr(char, 'following', None) == player:
+                        followers.append(char)
+            if not followers:
+                await player.send(f"{c['yellow']}No one is following you here.{c['reset']}")
+                return
+            added = 0
+            for follower in followers:
+                success = await GroupManager.join_group(player, follower)
+                if success:
+                    added += 1
+            if added > 0:
+                await player.send(f"{c['green']}Added {added} follower(s) to your group.{c['reset']}")
+            else:
+                await player.send(f"{c['yellow']}Could not add any followers to the group.{c['reset']}")
+            return
 
-        # Add specific player to group - they must be following you
+        # --- group <player> (invite) ---
         target_name = ' '.join(args).lower()
-
-        # Find target in room
         target = None
         for char in player.room.characters:
-            if char != player and hasattr(char, 'connection'):  # Is a player
+            if char != player and hasattr(char, 'connection'):
                 if char.name.lower().startswith(target_name):
                     target = char
                     break
-
         if not target:
             await player.send(f"{c['red']}Player '{target_name}' not found here.{c['reset']}")
             return
-            
-        # Check if target is following you (CircleMUD requirement)
-        if not hasattr(target, 'following') or target.following != player:
-            await player.send(f"{c['yellow']}{target.name} must be following you to join your group.{c['reset']}")
-            await player.send(f"{c['cyan']}Tell them to 'follow {player.name}' first.{c['reset']}")
-            return
-
-        # Try to add to group
-        success = await GroupManager.join_group(player, target)
+        await GroupManager.invite(player, target)
     
     @classmethod
     async def cmd_ungroup(cls, player: 'Player', args: List[str]):
@@ -12442,6 +12803,170 @@ class CommandHandler:
         else:
             await player.send(f"{c['yellow']}Noshout OFF. You can hear shouts.{c['reset']}")
 
+    # ==================== SOCIAL & COMMUNICATION ====================
+
+    @classmethod
+    async def cmd_global(cls, player: 'Player', args: List[str]):
+        """Send a message on the global chat channel. Usage: global <message>"""
+        if not args:
+            await player.send("Global what?")
+            return
+        from social import send_channel_message
+        await send_channel_message(player, 'global', ' '.join(args))
+
+    @classmethod
+    async def cmd_newbie(cls, player: 'Player', args: List[str]):
+        """Send a message on the newbie help channel (levels 1-15 + helpers). Usage: newbie <message>"""
+        if not args:
+            await player.send("Newbie what?")
+            return
+        from social import send_channel_message
+        await send_channel_message(player, 'newbie', ' '.join(args))
+
+    @classmethod
+    async def cmd_trade(cls, player: 'Player', args: List[str]):
+        """Send a message on the trade channel. Usage: trade <message>"""
+        if not args:
+            await player.send("Trade what?")
+            return
+        from social import send_channel_message
+        await send_channel_message(player, 'trade', ' '.join(args))
+
+    @classmethod
+    async def cmd_lfg(cls, player: 'Player', args: List[str]):
+        """Send a message on the LFG (Looking For Group) channel. Usage: lfg <message>"""
+        if not args:
+            await player.send("LFG what?")
+            return
+        from social import send_channel_message
+        await send_channel_message(player, 'lfg', ' '.join(args))
+
+    @classmethod
+    async def cmd_channel(cls, player: 'Player', args: List[str]):
+        """Manage chat channels. Usage: channel list | channel on/off <name>"""
+        from social import CHANNELS, can_access_channel, is_channel_on
+        c = player.config.COLORS
+
+        if not args or args[0].lower() == 'list':
+            await player.send(f"\r\n{c['cyan']}═══ Chat Channels ═══{c['reset']}")
+            for key, ch in CHANNELS.items():
+                access = can_access_channel(player, key)
+                enabled = is_channel_on(player, key)
+                color = c.get(ch['color'], c['white'])
+                status = f"{c['bright_green']}ON" if enabled else f"{c['red']}OFF"
+                access_str = "" if access else f" {c['bright_black']}(locked)"
+                await player.send(f"  {color}{ch['name']:<10}{c['reset']} {status}{c['reset']} - {ch['description']}{access_str}{c['reset']}")
+            await player.send(f"{c['white']}Use 'channel on/off <name>' to toggle.{c['reset']}")
+            return
+
+        if len(args) < 2:
+            await player.send(f"{c['yellow']}Usage: channel on/off <name>{c['reset']}")
+            return
+
+        action = args[0].lower()
+        ch_name = args[1].lower()
+
+        if ch_name not in CHANNELS:
+            await player.send(f"{c['red']}Unknown channel '{ch_name}'. Use 'channel list'.{c['reset']}")
+            return
+
+        if not hasattr(player, 'disabled_channels'):
+            player.disabled_channels = set()
+
+        if action == 'on':
+            player.disabled_channels.discard(ch_name)
+            await player.send(f"{c['bright_green']}{CHANNELS[ch_name]['name']} channel turned ON.{c['reset']}")
+        elif action == 'off':
+            player.disabled_channels.add(ch_name)
+            await player.send(f"{c['yellow']}{CHANNELS[ch_name]['name']} channel turned OFF.{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}Usage: channel on/off <name>{c['reset']}")
+
+    @classmethod
+    async def cmd_friend(cls, player: 'Player', args: List[str]):
+        """Manage your friends list. Usage: friend add/remove/list/notify"""
+        from social import add_friend, remove_friend, show_friends
+        c = player.config.COLORS
+
+        if not args or args[0].lower() == 'list':
+            await show_friends(player)
+            return
+
+        action = args[0].lower()
+        if action == 'add':
+            if len(args) < 2:
+                await player.send(f"{c['yellow']}Usage: friend add <player>{c['reset']}")
+                return
+            await add_friend(player, args[1])
+        elif action == 'remove':
+            if len(args) < 2:
+                await player.send(f"{c['yellow']}Usage: friend remove <player>{c['reset']}")
+                return
+            await remove_friend(player, args[1])
+        elif action == 'notify':
+            player.friend_notify = not getattr(player, 'friend_notify', True)
+            if player.friend_notify:
+                await player.send(f"{c['bright_green']}Friend login/logout notifications ON.{c['reset']}")
+            else:
+                await player.send(f"{c['yellow']}Friend login/logout notifications OFF.{c['reset']}")
+        else:
+            await player.send(f"{c['yellow']}Usage: friend add/remove/list/notify{c['reset']}")
+
+    @classmethod
+    async def cmd_ignore(cls, player: 'Player', args: List[str]):
+        """Ignore a player (blocks tells, channels, emotes). Usage: ignore <player>"""
+        c = player.config.COLORS
+        if not args:
+            # Show ignore list
+            ignored = getattr(player, 'ignore_list', [])
+            if not ignored:
+                await player.send(f"{c['yellow']}Your ignore list is empty.{c['reset']}")
+            else:
+                await player.send(f"\r\n{c['cyan']}═══ Ignore List ═══{c['reset']}")
+                for name in ignored:
+                    await player.send(f"  {c['white']}{name}{c['reset']}")
+            return
+        from social import ignore_player
+        await ignore_player(player, args[0])
+
+    @classmethod
+    async def cmd_unignore(cls, player: 'Player', args: List[str]):
+        """Remove a player from your ignore list. Usage: unignore <player>"""
+        if not args:
+            await player.send("Unignore whom?")
+            return
+        from social import unignore_player
+        await unignore_player(player, args[0])
+
+    @classmethod
+    async def cmd_note(cls, player: 'Player', args: List[str]):
+        """Add private notes about players. Usage: note [player] [text]"""
+        from social import add_note, show_notes
+
+        if not args:
+            await show_notes(player)
+            return
+
+        if len(args) == 1:
+            await show_notes(player, args[0])
+            return
+
+        await add_note(player, args[0], ' '.join(args[1:]))
+
+    @classmethod
+    async def cmd_finger(cls, player: 'Player', args: List[str]):
+        """Show detailed info about a player. Usage: finger <player>"""
+        if not args:
+            await player.send("Finger whom?")
+            return
+        from social import show_finger
+        await show_finger(player, args[0])
+
+    @classmethod
+    async def cmd_whois(cls, player: 'Player', args: List[str]):
+        """Show detailed info about a player. Alias for finger."""
+        await cls.cmd_finger(player, args)
+
     # ==================== PLAYER FEEDBACK ====================
 
     @classmethod
@@ -12954,117 +13479,33 @@ class CommandHandler:
     # ==================== SOCIAL COMMANDS ====================
 
     SOCIALS = {
-        'smile': {
-            'no_arg_self': 'You smile happily.',
-            'no_arg_room': '$n smiles happily.',
-            'with_arg_self': 'You smile at $N.',
-            'with_arg_target': '$n smiles at you.',
-            'with_arg_room': '$n smiles at $N.',
-        },
-        'laugh': {
-            'no_arg_self': 'You laugh out loud.',
-            'no_arg_room': '$n laughs out loud.',
-            'with_arg_self': 'You laugh at $N.',
-            'with_arg_target': '$n laughs at you.',
-            'with_arg_room': '$n laughs at $N.',
-        },
-        'nod': {
-            'no_arg_self': 'You nod solemnly.',
-            'no_arg_room': '$n nods solemnly.',
-            'with_arg_self': 'You nod at $N.',
-            'with_arg_target': '$n nods at you.',
-            'with_arg_room': '$n nods at $N.',
-        },
-        'bow': {
-            'no_arg_self': 'You bow deeply.',
-            'no_arg_room': '$n bows deeply.',
-            'with_arg_self': 'You bow before $N.',
-            'with_arg_target': '$n bows before you.',
-            'with_arg_room': '$n bows before $N.',
-        },
-        'wave': {
-            'no_arg_self': 'You wave.',
-            'no_arg_room': '$n waves.',
-            'with_arg_self': 'You wave at $N.',
-            'with_arg_target': '$n waves at you.',
-            'with_arg_room': '$n waves at $N.',
-        },
+        # --- Affection ---
         'hug': {
             'no_arg_self': 'You need a hug!',
             'no_arg_room': '$n looks like $e needs a hug.',
             'with_arg_self': 'You hug $N warmly.',
             'with_arg_target': '$n hugs you warmly.',
             'with_arg_room': '$n hugs $N warmly.',
+            'self_self': 'You hug yourself.',
+            'self_room': '$n hugs $mself.',
         },
-        'dance': {
-            'no_arg_self': 'You dance joyfully!',
-            'no_arg_room': '$n dances joyfully!',
-            'with_arg_self': 'You dance with $N.',
-            'with_arg_target': '$n asks you to dance.',
-            'with_arg_room': '$n dances with $N.',
+        'kiss': {
+            'no_arg_self': 'You pucker up, but no one is there.',
+            'no_arg_room': '$n puckers up, looking for someone to kiss.',
+            'with_arg_self': 'You kiss $N tenderly.',
+            'with_arg_target': '$n kisses you tenderly.',
+            'with_arg_room': '$n kisses $N tenderly.',
+            'self_self': 'You kiss your own hand. Classy.',
+            'self_room': '$n kisses $s own hand.',
         },
-        'comfort': {
-            'no_arg_self': 'You console yourself.',
-            'no_arg_room': '$n looks like $e needs comfort.',
-            'with_arg_self': 'You comfort $N.',
-            'with_arg_target': '$n comforts you.',
-            'with_arg_room': '$n comforts $N.',
-        },
-        'ponder': {
-            'no_arg_self': 'You ponder the situation.',
-            'no_arg_room': '$n ponders the situation.',
-            'with_arg_self': 'You ponder $N thoughtfully.',
-            'with_arg_target': '$n ponders you thoughtfully.',
-            'with_arg_room': '$n ponders $N thoughtfully.',
-        },
-        'shrug': {
-            'no_arg_self': 'You shrug.',
-            'no_arg_room': '$n shrugs helplessly.',
-            'with_arg_self': 'You shrug at $N.',
-            'with_arg_target': '$n shrugs at you.',
-            'with_arg_room': '$n shrugs at $N.',
-        },
-        'giggle': {
-            'no_arg_self': 'You giggle.',
-            'no_arg_room': '$n giggles.',
-            'with_arg_self': 'You giggle at $N.',
-            'with_arg_target': '$n giggles at you.',
-            'with_arg_room': '$n giggles at $N.',
-        },
-        'sigh': {
-            'no_arg_self': 'You sigh loudly.',
-            'no_arg_room': '$n sighs loudly.',
-            'with_arg_self': 'You sigh at $N.',
-            'with_arg_target': '$n sighs at you.',
-            'with_arg_room': '$n sighs at $N.',
-        },
-        'wink': {
-            'no_arg_self': 'You wink suggestively.',
-            'no_arg_room': '$n winks suggestively.',
-            'with_arg_self': 'You wink at $N.',
-            'with_arg_target': '$n winks at you.',
-            'with_arg_room': '$n winks at $N.',
-        },
-        'grin': {
-            'no_arg_self': 'You grin evilly.',
-            'no_arg_room': '$n grins evilly.',
-            'with_arg_self': 'You grin evilly at $N.',
-            'with_arg_target': '$n grins evilly at you.',
-            'with_arg_room': '$n grins evilly at $N.',
-        },
-        'cry': {
-            'no_arg_self': 'You cry softly.',
-            'no_arg_room': '$n cries softly.',
-            'with_arg_self': 'You cry on $N\'s shoulder.',
-            'with_arg_target': '$n cries on your shoulder.',
-            'with_arg_room': '$n cries on $N\'s shoulder.',
-        },
-        'snicker': {
-            'no_arg_self': 'You snicker.',
-            'no_arg_room': '$n snickers.',
-            'with_arg_self': 'You snicker at $N.',
-            'with_arg_target': '$n snickers at you.',
-            'with_arg_room': '$n snickers at $N.',
+        'cuddle': {
+            'no_arg_self': 'You curl up and cuddle with a pillow.',
+            'no_arg_room': '$n curls up and cuddles with an imaginary pillow.',
+            'with_arg_self': 'You cuddle up to $N.',
+            'with_arg_target': '$n cuddles up to you.',
+            'with_arg_room': '$n cuddles up to $N.',
+            'self_self': 'You wrap your arms around yourself.',
+            'self_room': '$n wraps $s arms around $mself.',
         },
         'pat': {
             'no_arg_self': 'You pat yourself on the back.',
@@ -13072,83 +13513,36 @@ class CommandHandler:
             'with_arg_self': 'You pat $N on the head.',
             'with_arg_target': '$n pats you on the head.',
             'with_arg_room': '$n pats $N on the head.',
+            'self_self': 'You pat yourself on the back.',
+            'self_room': '$n pats $mself on the back.',
         },
-        'thank': {
-            'no_arg_self': 'You thank everyone.',
-            'no_arg_room': '$n thanks everyone.',
-            'with_arg_self': 'You thank $N heartily.',
-            'with_arg_target': '$n thanks you heartily.',
-            'with_arg_room': '$n thanks $N heartily.',
+        'comfort': {
+            'no_arg_self': 'You console yourself.',
+            'no_arg_room': '$n looks like $e needs comfort.',
+            'with_arg_self': 'You comfort $N.',
+            'with_arg_target': '$n comforts you.',
+            'with_arg_room': '$n comforts $N.',
+            'self_self': 'You comfort yourself. There, there.',
+            'self_room': '$n comforts $mself. There, there.',
         },
-        'cheer': {
-            'no_arg_self': 'You cheer loudly!',
-            'no_arg_room': '$n cheers loudly!',
-            'with_arg_self': 'You cheer for $N!',
-            'with_arg_target': '$n cheers for you!',
-            'with_arg_room': '$n cheers for $N!',
+        # --- Greetings ---
+        'wave': {
+            'no_arg_self': 'You wave.',
+            'no_arg_room': '$n waves.',
+            'with_arg_self': 'You wave at $N.',
+            'with_arg_target': '$n waves at you.',
+            'with_arg_room': '$n waves at $N.',
+            'self_self': 'You wave at yourself in a mirror.',
+            'self_room': '$n waves at $mself.',
         },
-        'glare': {
-            'no_arg_self': 'You glare at nothing in particular.',
-            'no_arg_room': '$n glares around $mself.',
-            'with_arg_self': 'You glare icily at $N.',
-            'with_arg_target': '$n glares icily at you.',
-            'with_arg_room': '$n glares at $N.',
-        },
-        'grumble': {
-            'no_arg_self': 'You grumble.',
-            'no_arg_room': '$n grumbles.',
-            'with_arg_self': 'You grumble at $N.',
-            'with_arg_target': '$n grumbles at you.',
-            'with_arg_room': '$n grumbles at $N.',
-        },
-        'yawn': {
-            'no_arg_self': 'You yawn sleepily.',
-            'no_arg_room': '$n yawns sleepily.',
-            'with_arg_self': 'You yawn in $N\'s face.',
-            'with_arg_target': '$n yawns in your face.',
-            'with_arg_room': '$n yawns in $N\'s face.',
-        },
-        'cackle': {
-            'no_arg_self': 'You cackle gleefully!',
-            'no_arg_room': '$n cackles gleefully!',
-            'with_arg_self': 'You cackle at $N.',
-            'with_arg_target': '$n cackles at you.',
-            'with_arg_room': '$n cackles at $N.',
-        },
-        'slap': {
-            'no_arg_self': 'You slap yourself. Ouch!',
-            'no_arg_room': '$n slaps $mself. Ouch!',
-            'with_arg_self': 'You slap $N across the face!',
-            'with_arg_target': '$n slaps you across the face!',
-            'with_arg_room': '$n slaps $N across the face!',
-        },
-        'tickle': {
-            'no_arg_self': 'You tickle yourself. How silly.',
-            'no_arg_room': '$n tickles $mself. How silly.',
-            'with_arg_self': 'You tickle $N.',
-            'with_arg_target': '$n tickles you. Hee hee!',
-            'with_arg_room': '$n tickles $N.',
-        },
-        'apologize': {
-            'no_arg_self': 'You apologize for your behavior.',
-            'no_arg_room': '$n apologizes for $s behavior.',
-            'with_arg_self': 'You apologize to $N profusely.',
-            'with_arg_target': '$n apologizes to you profusely.',
-            'with_arg_room': '$n apologizes to $N profusely.',
-        },
-        'greet': {
-            'no_arg_self': 'You greet everyone cheerfully.',
-            'no_arg_room': '$n greets everyone cheerfully.',
-            'with_arg_self': 'You greet $N cheerfully.',
-            'with_arg_target': '$n greets you cheerfully.',
-            'with_arg_room': '$n greets $N cheerfully.',
-        },
-        'poke': {
-            'no_arg_self': 'You poke yourself in the ribs.',
-            'no_arg_room': '$n pokes $mself in the ribs.',
-            'with_arg_self': 'You poke $N in the ribs.',
-            'with_arg_target': '$n pokes you in the ribs.',
-            'with_arg_room': '$n pokes $N in the ribs.',
+        'bow': {
+            'no_arg_self': 'You bow deeply.',
+            'no_arg_room': '$n bows deeply.',
+            'with_arg_self': 'You bow before $N.',
+            'with_arg_target': '$n bows before you.',
+            'with_arg_room': '$n bows before $N.',
+            'self_self': 'You bow to yourself. How humble.',
+            'self_room': '$n bows to $mself.',
         },
         'salute': {
             'no_arg_self': 'You salute smartly.',
@@ -13156,6 +13550,227 @@ class CommandHandler:
             'with_arg_self': 'You salute $N.',
             'with_arg_target': '$n salutes you.',
             'with_arg_room': '$n salutes $N.',
+            'self_self': 'You salute yourself in the mirror.',
+            'self_room': '$n salutes $mself.',
+        },
+        'nod': {
+            'no_arg_self': 'You nod solemnly.',
+            'no_arg_room': '$n nods solemnly.',
+            'with_arg_self': 'You nod at $N.',
+            'with_arg_target': '$n nods at you.',
+            'with_arg_room': '$n nods at $N.',
+            'self_self': 'You nod to yourself in agreement.',
+            'self_room': '$n nods to $mself.',
+        },
+        'curtsy': {
+            'no_arg_self': 'You curtsy gracefully.',
+            'no_arg_room': '$n curtsies gracefully.',
+            'with_arg_self': 'You curtsy before $N.',
+            'with_arg_target': '$n curtsies before you.',
+            'with_arg_room': '$n curtsies before $N.',
+            'self_self': 'You curtsy to yourself. How regal.',
+            'self_room': '$n curtsies to $mself.',
+        },
+        'greet': {
+            'no_arg_self': 'You greet everyone cheerfully.',
+            'no_arg_room': '$n greets everyone cheerfully.',
+            'with_arg_self': 'You greet $N cheerfully.',
+            'with_arg_target': '$n greets you cheerfully.',
+            'with_arg_room': '$n greets $N cheerfully.',
+            'self_self': 'You greet yourself. Hello, you!',
+            'self_room': '$n greets $mself.',
+        },
+        # --- Fun ---
+        'dance': {
+            'no_arg_self': 'You dance wildly!',
+            'no_arg_room': '$n dances wildly!',
+            'with_arg_self': 'You dance with $N.',
+            'with_arg_target': '$n dances with you.',
+            'with_arg_room': '$n dances with $N.',
+            'self_self': 'You dance with yourself, spinning in circles.',
+            'self_room': '$n dances with $mself, spinning in circles.',
+        },
+        'laugh': {
+            'no_arg_self': 'You laugh out loud.',
+            'no_arg_room': '$n laughs out loud.',
+            'with_arg_self': 'You laugh at $N.',
+            'with_arg_target': '$n laughs at you.',
+            'with_arg_room': '$n laughs at $N.',
+            'self_self': 'You laugh at yourself.',
+            'self_room': '$n laughs at $mself.',
+        },
+        'giggle': {
+            'no_arg_self': 'You giggle.',
+            'no_arg_room': '$n giggles.',
+            'with_arg_self': 'You giggle at $N.',
+            'with_arg_target': '$n giggles at you.',
+            'with_arg_room': '$n giggles at $N.',
+            'self_self': 'You giggle at yourself.',
+            'self_room': '$n giggles at $mself.',
+        },
+        'cheer': {
+            'no_arg_self': 'You cheer loudly!',
+            'no_arg_room': '$n cheers loudly!',
+            'with_arg_self': 'You cheer for $N!',
+            'with_arg_target': '$n cheers for you!',
+            'with_arg_room': '$n cheers for $N!',
+            'self_self': 'You cheer for yourself!',
+            'self_room': '$n cheers for $mself!',
+        },
+        'clap': {
+            'no_arg_self': 'You clap your hands together.',
+            'no_arg_room': '$n claps $s hands together.',
+            'with_arg_self': 'You clap for $N.',
+            'with_arg_target': '$n claps for you.',
+            'with_arg_room': '$n claps for $N.',
+            'self_self': 'You give yourself a round of applause.',
+            'self_room': '$n gives $mself a round of applause.',
+        },
+        'whistle': {
+            'no_arg_self': 'You whistle a jaunty tune.',
+            'no_arg_room': '$n whistles a jaunty tune.',
+            'with_arg_self': 'You whistle at $N.',
+            'with_arg_target': '$n whistles at you.',
+            'with_arg_room': '$n whistles at $N.',
+            'self_self': 'You whistle to yourself.',
+            'self_room': '$n whistles to $mself.',
+        },
+        'wink': {
+            'no_arg_self': 'You wink suggestively.',
+            'no_arg_room': '$n winks suggestively.',
+            'with_arg_self': 'You wink at $N.',
+            'with_arg_target': '$n winks at you.',
+            'with_arg_room': '$n winks at $N.',
+            'self_self': 'You wink at yourself. Lookin\' good.',
+            'self_room': '$n winks at $mself.',
+        },
+        # --- Rude ---
+        'slap': {
+            'no_arg_self': 'You slap yourself. Ouch!',
+            'no_arg_room': '$n slaps $mself. Ouch!',
+            'with_arg_self': 'You slap $N across the face!',
+            'with_arg_target': '$n slaps you across the face!',
+            'with_arg_room': '$n slaps $N across the face!',
+            'self_self': 'You slap yourself. Ouch!',
+            'self_room': '$n slaps $mself. Ouch!',
+        },
+        'poke': {
+            'no_arg_self': 'You poke yourself in the ribs.',
+            'no_arg_room': '$n pokes $mself in the ribs.',
+            'with_arg_self': 'You poke $N in the ribs.',
+            'with_arg_target': '$n pokes you in the ribs.',
+            'with_arg_room': '$n pokes $N in the ribs.',
+            'self_self': 'You poke yourself in the ribs.',
+            'self_room': '$n pokes $mself in the ribs.',
+        },
+        'bonk': {
+            'no_arg_self': 'You bonk yourself on the head.',
+            'no_arg_room': '$n bonks $mself on the head.',
+            'with_arg_self': 'You bonk $N on the head!',
+            'with_arg_target': '$n bonks you on the head!',
+            'with_arg_room': '$n bonks $N on the head!',
+            'self_self': 'You bonk yourself on the head.',
+            'self_room': '$n bonks $mself on the head.',
+        },
+        'facepalm': {
+            'no_arg_self': 'You facepalm.',
+            'no_arg_room': '$n facepalms.',
+            'with_arg_self': 'You facepalm at $N.',
+            'with_arg_target': '$n facepalms at you.',
+            'with_arg_room': '$n facepalms at $N.',
+            'self_self': 'You facepalm at yourself.',
+            'self_room': '$n facepalms at $mself.',
+        },
+        'shrug': {
+            'no_arg_self': 'You shrug helplessly.',
+            'no_arg_room': '$n shrugs helplessly.',
+            'with_arg_self': 'You shrug at $N.',
+            'with_arg_target': '$n shrugs at you.',
+            'with_arg_room': '$n shrugs at $N.',
+            'self_self': 'You shrug at yourself.',
+            'self_room': '$n shrugs at $mself.',
+        },
+        'eyeroll': {
+            'no_arg_self': 'You roll your eyes.',
+            'no_arg_room': '$n rolls $s eyes.',
+            'with_arg_self': 'You roll your eyes at $N.',
+            'with_arg_target': '$n rolls $s eyes at you.',
+            'with_arg_room': '$n rolls $s eyes at $N.',
+            'self_self': 'You roll your eyes at yourself.',
+            'self_room': '$n rolls $s eyes at $mself.',
+        },
+        'spit': {
+            'no_arg_self': 'You spit on the ground.',
+            'no_arg_room': '$n spits on the ground.',
+            'with_arg_self': 'You spit at $N!',
+            'with_arg_target': '$n spits at you!',
+            'with_arg_room': '$n spits at $N!',
+            'self_self': 'You spit on yourself. Gross.',
+            'self_room': '$n spits on $mself. Gross.',
+        },
+        # --- Expressions ---
+        'cry': {
+            'no_arg_self': 'You cry softly.',
+            'no_arg_room': '$n cries softly.',
+            'with_arg_self': 'You cry on $N\'s shoulder.',
+            'with_arg_target': '$n cries on your shoulder.',
+            'with_arg_room': '$n cries on $N\'s shoulder.',
+            'self_self': 'You cry to yourself.',
+            'self_room': '$n cries to $mself.',
+        },
+        'sigh': {
+            'no_arg_self': 'You sigh loudly.',
+            'no_arg_room': '$n sighs loudly.',
+            'with_arg_self': 'You sigh at $N.',
+            'with_arg_target': '$n sighs at you.',
+            'with_arg_room': '$n sighs at $N.',
+            'self_self': 'You sigh at yourself.',
+            'self_room': '$n sighs at $mself.',
+        },
+        'gasp': {
+            'no_arg_self': 'You gasp in shock!',
+            'no_arg_room': '$n gasps in shock!',
+            'with_arg_self': 'You gasp at $N!',
+            'with_arg_target': '$n gasps at you!',
+            'with_arg_room': '$n gasps at $N!',
+            'self_self': 'You gasp at yourself!',
+            'self_room': '$n gasps at $mself!',
+        },
+        'scream': {
+            'no_arg_self': 'You scream at the top of your lungs!',
+            'no_arg_room': '$n screams at the top of $s lungs!',
+            'with_arg_self': 'You scream at $N!',
+            'with_arg_target': '$n screams at you!',
+            'with_arg_room': '$n screams at $N!',
+            'self_self': 'You scream at yourself!',
+            'self_room': '$n screams at $mself!',
+        },
+        'yawn': {
+            'no_arg_self': 'You yawn sleepily.',
+            'no_arg_room': '$n yawns sleepily.',
+            'with_arg_self': 'You yawn in $N\'s face.',
+            'with_arg_target': '$n yawns in your face.',
+            'with_arg_room': '$n yawns in $N\'s face.',
+            'self_self': 'You yawn at yourself.',
+            'self_room': '$n yawns at $mself.',
+        },
+        'stretch': {
+            'no_arg_self': 'You stretch your tired muscles.',
+            'no_arg_room': '$n stretches $s tired muscles.',
+            'with_arg_self': 'You stretch languidly in front of $N.',
+            'with_arg_target': '$n stretches languidly in front of you.',
+            'with_arg_room': '$n stretches languidly in front of $N.',
+            'self_self': 'You stretch your tired muscles.',
+            'self_room': '$n stretches $s tired muscles.',
+        },
+        'flex': {
+            'no_arg_self': 'You flex your muscles impressively!',
+            'no_arg_room': '$n flexes $s muscles impressively!',
+            'with_arg_self': 'You flex your muscles at $N.',
+            'with_arg_target': '$n flexes $s muscles at you.',
+            'with_arg_room': '$n flexes $s muscles at $N.',
+            'self_self': 'You flex at yourself admiringly.',
+            'self_room': '$n flexes at $mself admiringly.',
         },
         'cringe': {
             'no_arg_self': 'You cringe in terror.',
@@ -13163,6 +13778,173 @@ class CommandHandler:
             'with_arg_self': 'You cringe away from $N.',
             'with_arg_target': '$n cringes away from you.',
             'with_arg_room': '$n cringes away from $N.',
+            'self_self': 'You cringe at yourself.',
+            'self_room': '$n cringes at $mself.',
+        },
+        # --- Actions ---
+        'sit': {
+            'no_arg_self': 'You sit down.',
+            'no_arg_room': '$n sits down.',
+            'with_arg_self': 'You sit down next to $N.',
+            'with_arg_target': '$n sits down next to you.',
+            'with_arg_room': '$n sits down next to $N.',
+            'self_self': 'You sit down.',
+            'self_room': '$n sits down.',
+        },
+        'kneel': {
+            'no_arg_self': 'You kneel on the ground.',
+            'no_arg_room': '$n kneels on the ground.',
+            'with_arg_self': 'You kneel before $N.',
+            'with_arg_target': '$n kneels before you.',
+            'with_arg_room': '$n kneels before $N.',
+            'self_self': 'You kneel on the ground.',
+            'self_room': '$n kneels on the ground.',
+        },
+        'meditate': {
+            'no_arg_self': 'You close your eyes and meditate.',
+            'no_arg_room': '$n closes $s eyes and begins to meditate.',
+            'with_arg_self': 'You meditate alongside $N.',
+            'with_arg_target': '$n meditates alongside you.',
+            'with_arg_room': '$n meditates alongside $N.',
+            'self_self': 'You close your eyes and meditate.',
+            'self_room': '$n closes $s eyes and begins to meditate.',
+        },
+        'pray': {
+            'no_arg_self': 'You pray to the gods for guidance.',
+            'no_arg_room': '$n prays to the gods for guidance.',
+            'with_arg_self': 'You pray for $N\'s well-being.',
+            'with_arg_target': '$n prays for your well-being.',
+            'with_arg_room': '$n prays for $N\'s well-being.',
+            'self_self': 'You pray for yourself.',
+            'self_room': '$n prays for $mself.',
+        },
+        # --- Combat Flavor ---
+        'battlecry': {
+            'no_arg_self': 'You let out a mighty battle cry!',
+            'no_arg_room': '$n lets out a mighty battle cry!',
+            'with_arg_self': 'You let out a battle cry at $N!',
+            'with_arg_target': '$n lets out a battle cry at you!',
+            'with_arg_room': '$n lets out a battle cry at $N!',
+            'self_self': 'You roar at yourself. Intimidating.',
+            'self_room': '$n roars at $mself.',
+        },
+        'taunt': {
+            'no_arg_self': 'You taunt your enemies!',
+            'no_arg_room': '$n taunts $s enemies!',
+            'with_arg_self': 'You taunt $N mercilessly!',
+            'with_arg_target': '$n taunts you mercilessly!',
+            'with_arg_room': '$n taunts $N mercilessly!',
+            'self_self': 'You taunt yourself. That\'s... sad.',
+            'self_room': '$n taunts $mself.',
+        },
+        'challenge_emote': {
+            'no_arg_self': 'You issue a challenge to all comers!',
+            'no_arg_room': '$n issues a challenge to all comers!',
+            'with_arg_self': 'You challenge $N to single combat!',
+            'with_arg_target': '$n challenges you to single combat!',
+            'with_arg_room': '$n challenges $N to single combat!',
+            'self_self': 'You challenge yourself. Inner demons, beware.',
+            'self_room': '$n challenges $mself.',
+        },
+        'surrender': {
+            'no_arg_self': 'You raise your hands in surrender.',
+            'no_arg_room': '$n raises $s hands in surrender.',
+            'with_arg_self': 'You surrender to $N.',
+            'with_arg_target': '$n surrenders to you.',
+            'with_arg_room': '$n surrenders to $N.',
+            'self_self': 'You surrender to yourself.',
+            'self_room': '$n surrenders to $mself.',
+        },
+        # --- Existing socials kept ---
+        'smile': {
+            'no_arg_self': 'You smile happily.',
+            'no_arg_room': '$n smiles happily.',
+            'with_arg_self': 'You smile at $N.',
+            'with_arg_target': '$n smiles at you.',
+            'with_arg_room': '$n smiles at $N.',
+            'self_self': 'You smile at yourself.',
+            'self_room': '$n smiles at $mself.',
+        },
+        'ponder': {
+            'no_arg_self': 'You ponder the situation.',
+            'no_arg_room': '$n ponders the situation.',
+            'with_arg_self': 'You ponder $N thoughtfully.',
+            'with_arg_target': '$n ponders you thoughtfully.',
+            'with_arg_room': '$n ponders $N thoughtfully.',
+            'self_self': 'You ponder yourself thoughtfully.',
+            'self_room': '$n ponders $mself thoughtfully.',
+        },
+        'grin': {
+            'no_arg_self': 'You grin evilly.',
+            'no_arg_room': '$n grins evilly.',
+            'with_arg_self': 'You grin evilly at $N.',
+            'with_arg_target': '$n grins evilly at you.',
+            'with_arg_room': '$n grins evilly at $N.',
+            'self_self': 'You grin at yourself evilly.',
+            'self_room': '$n grins at $mself evilly.',
+        },
+        'snicker': {
+            'no_arg_self': 'You snicker.',
+            'no_arg_room': '$n snickers.',
+            'with_arg_self': 'You snicker at $N.',
+            'with_arg_target': '$n snickers at you.',
+            'with_arg_room': '$n snickers at $N.',
+            'self_self': 'You snicker at yourself.',
+            'self_room': '$n snickers at $mself.',
+        },
+        'thank': {
+            'no_arg_self': 'You thank everyone.',
+            'no_arg_room': '$n thanks everyone.',
+            'with_arg_self': 'You thank $N heartily.',
+            'with_arg_target': '$n thanks you heartily.',
+            'with_arg_room': '$n thanks $N heartily.',
+            'self_self': 'You thank yourself. You deserve it.',
+            'self_room': '$n thanks $mself.',
+        },
+        'glare': {
+            'no_arg_self': 'You glare at nothing in particular.',
+            'no_arg_room': '$n glares around $mself.',
+            'with_arg_self': 'You glare icily at $N.',
+            'with_arg_target': '$n glares icily at you.',
+            'with_arg_room': '$n glares at $N.',
+            'self_self': 'You glare at yourself.',
+            'self_room': '$n glares at $mself.',
+        },
+        'grumble': {
+            'no_arg_self': 'You grumble.',
+            'no_arg_room': '$n grumbles.',
+            'with_arg_self': 'You grumble at $N.',
+            'with_arg_target': '$n grumbles at you.',
+            'with_arg_room': '$n grumbles at $N.',
+            'self_self': 'You grumble at yourself.',
+            'self_room': '$n grumbles at $mself.',
+        },
+        'cackle': {
+            'no_arg_self': 'You cackle gleefully!',
+            'no_arg_room': '$n cackles gleefully!',
+            'with_arg_self': 'You cackle at $N.',
+            'with_arg_target': '$n cackles at you.',
+            'with_arg_room': '$n cackles at $N.',
+            'self_self': 'You cackle at yourself.',
+            'self_room': '$n cackles at $mself.',
+        },
+        'tickle': {
+            'no_arg_self': 'You tickle yourself. How silly.',
+            'no_arg_room': '$n tickles $mself. How silly.',
+            'with_arg_self': 'You tickle $N.',
+            'with_arg_target': '$n tickles you. Hee hee!',
+            'with_arg_room': '$n tickles $N.',
+            'self_self': 'You tickle yourself. How silly.',
+            'self_room': '$n tickles $mself. How silly.',
+        },
+        'apologize': {
+            'no_arg_self': 'You apologize for your behavior.',
+            'no_arg_room': '$n apologizes for $s behavior.',
+            'with_arg_self': 'You apologize to $N profusely.',
+            'with_arg_target': '$n apologizes to you profusely.',
+            'with_arg_room': '$n apologizes to $N profusely.',
+            'self_self': 'You apologize to yourself.',
+            'self_room': '$n apologizes to $mself.',
         },
         'blush': {
             'no_arg_self': 'You blush.',
@@ -13170,8 +13952,27 @@ class CommandHandler:
             'with_arg_self': 'You blush at $N.',
             'with_arg_target': '$n blushes at you.',
             'with_arg_room': '$n blushes at $N.',
+            'self_self': 'You blush at yourself.',
+            'self_room': '$n blushes at $mself.',
         },
     }
+
+    @classmethod
+    def _social_sub(cls, msg: str, player, target=None):
+        """Substitute social message tokens ($n, $N, $e, $s, $m, $mself)."""
+        sex = getattr(player, 'sex', 'neutral')
+        he = 'he' if sex == 'male' else ('she' if sex == 'female' else 'they')
+        his = 'his' if sex == 'male' else ('her' if sex == 'female' else 'their')
+        him = 'him' if sex == 'male' else ('her' if sex == 'female' else 'them')
+        himself = 'himself' if sex == 'male' else ('herself' if sex == 'female' else 'themselves')
+        msg = msg.replace('$n', player.name)
+        msg = msg.replace('$e', he)
+        msg = msg.replace('$mself', himself)
+        msg = msg.replace('$s', his)
+        msg = msg.replace('$m', him)
+        if target:
+            msg = msg.replace('$N', target.name)
+        return msg
 
     @classmethod
     async def cmd_social(cls, player: 'Player', social_name: str, args: List[str]):
@@ -13181,28 +13982,23 @@ class CommandHandler:
 
         c = player.config.COLORS
         social = cls.SOCIALS[social_name]
+        from social import is_ignored
 
         # No target - social to room
         if not args:
-            # Message to self
             await player.send(f"{c['cyan']}{social['no_arg_self']}{c['reset']}")
-
-            # Message to room
-            msg = social['no_arg_room']
-            msg = msg.replace('$n', player.name)
-            sex = getattr(player, 'sex', 'neutral')
-            msg = msg.replace('$e', 'he' if sex == 'male' else ('she' if sex == 'female' else 'they'))
-            msg = msg.replace('$s', 'his' if sex == 'male' else ('her' if sex == 'female' else 'their'))
-            msg = msg.replace('$m', 'him' if sex == 'male' else ('her' if sex == 'female' else 'them'))
-            await player.room.send_to_room(f"{c['cyan']}{msg}{c['reset']}", exclude=[player])
-
+            msg = cls._social_sub(social['no_arg_room'], player)
+            if player.room:
+                for char in player.room.characters:
+                    if char != player and hasattr(char, 'send') and not is_ignored(char, player.name):
+                        await char.send(f"{c['cyan']}{msg}{c['reset']}")
         else:
             # Find target
             target_name = ' '.join(args).lower()
             target = None
 
             for char in player.room.characters:
-                if char != player and char.name.lower().startswith(target_name):
+                if char.name.lower().startswith(target_name):
                     target = char
                     break
 
@@ -13210,188 +14006,200 @@ class CommandHandler:
                 await player.send(f"{c['red']}Who do you want to {social_name}?{c['reset']}")
                 return True
 
-            # Can't target self with argument
+            # Self-target
             if target == player:
-                await player.send(f"{c['red']}You can't {social_name} yourself!{c['reset']}")
+                self_msg = social.get('self_self', social['no_arg_self'])
+                await player.send(f"{c['cyan']}{self_msg}{c['reset']}")
+                room_msg = cls._social_sub(social.get('self_room', social['no_arg_room']), player)
+                if player.room:
+                    for char in player.room.characters:
+                        if char != player and hasattr(char, 'send') and not is_ignored(char, player.name):
+                            await char.send(f"{c['cyan']}{room_msg}{c['reset']}")
+                return True
+
+            # Check ignore list on target
+            if hasattr(target, 'send') and is_ignored(target, player.name):
+                await player.send(f"{c['red']}{target.name} is ignoring you.{c['reset']}")
                 return True
 
             # Message to self
-            msg_self = social['with_arg_self']
-            msg_self = msg_self.replace('$N', target.name)
+            msg_self = cls._social_sub(social['with_arg_self'], player, target)
             await player.send(f"{c['cyan']}{msg_self}{c['reset']}")
 
             # Message to target
             if hasattr(target, 'send'):
-                msg_target = social['with_arg_target']
-                msg_target = msg_target.replace('$n', player.name)
+                msg_target = cls._social_sub(social['with_arg_target'], player, target)
                 await target.send(f"{c['cyan']}{msg_target}{c['reset']}")
 
             # Message to room
-            msg_room = social['with_arg_room']
-            msg_room = msg_room.replace('$n', player.name)
-            msg_room = msg_room.replace('$N', target.name)
-            await player.room.send_to_room(
-                f"{c['cyan']}{msg_room}{c['reset']}",
-                exclude=[player, target]
-            )
+            msg_room = cls._social_sub(social['with_arg_room'], player, target)
+            if player.room:
+                for char in player.room.characters:
+                    if char not in (player, target) and hasattr(char, 'send') and not is_ignored(char, player.name):
+                        await char.send(f"{c['cyan']}{msg_room}{c['reset']}")
 
         return True
 
-    # Generate individual social command methods
+    # Generate individual social command methods for every social in SOCIALS dict.
+    # Each is a thin wrapper around cmd_social for command dispatch.
+
     @classmethod
     async def cmd_smile(cls, player: 'Player', args: List[str]):
-        """Smile at someone."""
         await cls.cmd_social(player, 'smile', args)
-
     @classmethod
     async def cmd_laugh(cls, player: 'Player', args: List[str]):
-        """Laugh."""
         await cls.cmd_social(player, 'laugh', args)
-
     @classmethod
     async def cmd_nod(cls, player: 'Player', args: List[str]):
-        """Nod."""
         await cls.cmd_social(player, 'nod', args)
-
     @classmethod
     async def cmd_bow(cls, player: 'Player', args: List[str]):
-        """Bow."""
         await cls.cmd_social(player, 'bow', args)
-
     @classmethod
     async def cmd_wave(cls, player: 'Player', args: List[str]):
-        """Wave."""
         await cls.cmd_social(player, 'wave', args)
-
     @classmethod
     async def cmd_hug(cls, player: 'Player', args: List[str]):
-        """Hug someone."""
         await cls.cmd_social(player, 'hug', args)
-
     @classmethod
-    async def cmd_dance(cls, player: 'Player', args: List[str]):
-        """Dance."""
-        await cls.cmd_social(player, 'dance', args)
-
+    async def cmd_kiss(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'kiss', args)
     @classmethod
-    async def cmd_comfort(cls, player: 'Player', args: List[str]):
-        """Comfort someone."""
-        await cls.cmd_social(player, 'comfort', args)
-
-    @classmethod
-    async def cmd_ponder(cls, player: 'Player', args: List[str]):
-        """Ponder."""
-        await cls.cmd_social(player, 'ponder', args)
-
-    @classmethod
-    async def cmd_shrug(cls, player: 'Player', args: List[str]):
-        """Shrug."""
-        await cls.cmd_social(player, 'shrug', args)
-
-    @classmethod
-    async def cmd_giggle(cls, player: 'Player', args: List[str]):
-        """Giggle."""
-        await cls.cmd_social(player, 'giggle', args)
-
-    @classmethod
-    async def cmd_sigh(cls, player: 'Player', args: List[str]):
-        """Sigh."""
-        await cls.cmd_social(player, 'sigh', args)
-
-    @classmethod
-    async def cmd_wink(cls, player: 'Player', args: List[str]):
-        """Wink."""
-        await cls.cmd_social(player, 'wink', args)
-
-    @classmethod
-    async def cmd_grin(cls, player: 'Player', args: List[str]):
-        """Grin."""
-        await cls.cmd_social(player, 'grin', args)
-
-    @classmethod
-    async def cmd_cry(cls, player: 'Player', args: List[str]):
-        """Cry."""
-        await cls.cmd_social(player, 'cry', args)
-
-    @classmethod
-    async def cmd_snicker(cls, player: 'Player', args: List[str]):
-        """Snicker."""
-        await cls.cmd_social(player, 'snicker', args)
-
+    async def cmd_cuddle(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'cuddle', args)
     @classmethod
     async def cmd_pat(cls, player: 'Player', args: List[str]):
-        """Pat someone."""
         await cls.cmd_social(player, 'pat', args)
-
     @classmethod
-    async def cmd_thank(cls, player: 'Player', args: List[str]):
-        """Thank someone."""
-        await cls.cmd_social(player, 'thank', args)
-
+    async def cmd_comfort(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'comfort', args)
     @classmethod
-    async def cmd_cheer(cls, player: 'Player', args: List[str]):
-        """Cheer."""
-        await cls.cmd_social(player, 'cheer', args)
-
-    @classmethod
-    async def cmd_glare(cls, player: 'Player', args: List[str]):
-        """Glare at someone."""
-        await cls.cmd_social(player, 'glare', args)
-
-    @classmethod
-    async def cmd_grumble(cls, player: 'Player', args: List[str]):
-        """Grumble."""
-        await cls.cmd_social(player, 'grumble', args)
-
-    @classmethod
-    async def cmd_yawn(cls, player: 'Player', args: List[str]):
-        """Yawn."""
-        await cls.cmd_social(player, 'yawn', args)
-
-    @classmethod
-    async def cmd_cackle(cls, player: 'Player', args: List[str]):
-        """Cackle."""
-        await cls.cmd_social(player, 'cackle', args)
-
-    @classmethod
-    async def cmd_slap(cls, player: 'Player', args: List[str]):
-        """Slap someone."""
-        await cls.cmd_social(player, 'slap', args)
-
-    @classmethod
-    async def cmd_tickle(cls, player: 'Player', args: List[str]):
-        """Tickle someone."""
-        await cls.cmd_social(player, 'tickle', args)
-
-    @classmethod
-    async def cmd_apologize(cls, player: 'Player', args: List[str]):
-        """Apologize."""
-        await cls.cmd_social(player, 'apologize', args)
-
+    async def cmd_curtsy(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'curtsy', args)
     @classmethod
     async def cmd_greet(cls, player: 'Player', args: List[str]):
-        """Greet someone."""
         await cls.cmd_social(player, 'greet', args)
-
-    @classmethod
-    async def cmd_poke(cls, player: 'Player', args: List[str]):
-        """Poke someone."""
-        await cls.cmd_social(player, 'poke', args)
-
     @classmethod
     async def cmd_salute(cls, player: 'Player', args: List[str]):
-        """Salute."""
         await cls.cmd_social(player, 'salute', args)
-
+    @classmethod
+    async def cmd_dance(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'dance', args)
+    @classmethod
+    async def cmd_giggle(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'giggle', args)
+    @classmethod
+    async def cmd_cheer(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'cheer', args)
+    @classmethod
+    async def cmd_clap(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'clap', args)
+    @classmethod
+    async def cmd_whistle(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'whistle', args)
+    @classmethod
+    async def cmd_wink(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'wink', args)
+    @classmethod
+    async def cmd_slap(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'slap', args)
+    @classmethod
+    async def cmd_poke(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'poke', args)
+    @classmethod
+    async def cmd_bonk(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'bonk', args)
+    @classmethod
+    async def cmd_facepalm(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'facepalm', args)
+    @classmethod
+    async def cmd_shrug(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'shrug', args)
+    @classmethod
+    async def cmd_eyeroll(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'eyeroll', args)
+    @classmethod
+    async def cmd_spit(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'spit', args)
+    @classmethod
+    async def cmd_cry(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'cry', args)
+    @classmethod
+    async def cmd_sigh(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'sigh', args)
+    @classmethod
+    async def cmd_gasp(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'gasp', args)
+    @classmethod
+    async def cmd_scream(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'scream', args)
+    @classmethod
+    async def cmd_yawn(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'yawn', args)
+    @classmethod
+    async def cmd_stretch(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'stretch', args)
+    @classmethod
+    async def cmd_flex(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'flex', args)
     @classmethod
     async def cmd_cringe(cls, player: 'Player', args: List[str]):
-        """Cringe."""
         await cls.cmd_social(player, 'cringe', args)
-
+    @classmethod
+    async def cmd_kneel(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'kneel', args)
+    @classmethod
+    async def cmd_meditate(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'meditate', args)
+    @classmethod
+    async def cmd_pray(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'pray', args)
+    @classmethod
+    async def cmd_battlecry(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'battlecry', args)
+    @classmethod
+    async def cmd_taunt(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'taunt', args)
+    @classmethod
+    async def cmd_challenge_emote(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'challenge_emote', args)
+    @classmethod
+    async def cmd_surrender(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'surrender', args)
+    @classmethod
+    async def cmd_grin(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'grin', args)
+    @classmethod
+    async def cmd_snicker(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'snicker', args)
+    @classmethod
+    async def cmd_thank(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'thank', args)
+    @classmethod
+    async def cmd_glare(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'glare', args)
+    @classmethod
+    async def cmd_grumble(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'grumble', args)
+    @classmethod
+    async def cmd_cackle(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'cackle', args)
+    @classmethod
+    async def cmd_tickle(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'tickle', args)
+    @classmethod
+    async def cmd_apologize(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'apologize', args)
     @classmethod
     async def cmd_blush(cls, player: 'Player', args: List[str]):
-        """Blush."""
         await cls.cmd_social(player, 'blush', args)
+    @classmethod
+    async def cmd_ponder(cls, player: 'Player', args: List[str]):
+        await cls.cmd_social(player, 'ponder', args)
+    @classmethod
+    async def cmd_sit_social(cls, player: 'Player', args: List[str]):
+        """Sit social emote (use 'sit' for the position command)."""
+        await cls.cmd_social(player, 'sit', args)
 
     # ==================== UTILITY ====================
 
@@ -13523,83 +14331,6 @@ class CommandHandler:
         # Disconnect
         if player.connection:
             await player.connection.disconnect()
-
-    # ==================== MOUNTS ====================
-
-    @classmethod
-    async def cmd_mount(cls, player: 'Player', args: List[str]):
-        """Mount a creature."""
-        c = player.config.COLORS
-
-        if player.mount:
-            await player.send(f"{c['yellow']}You are already mounted!{c['reset']}")
-            return
-
-        if not args:
-            await player.send("Mount what?")
-            return
-
-        mount_name = ' '.join(args).lower()
-
-        # Find mount in room (must be your own mount or a tame creature)
-        mount = None
-        from mobs import Mobile
-        for char in player.room.characters:
-            if isinstance(char, Mobile) and mount_name in char.name.lower():
-                # Check if it's a mountable creature
-                if hasattr(char, 'is_mount') and char.is_mount:
-                    mount = char
-                    break
-
-        if not mount:
-            await player.send(f"{c['yellow']}There's no mount here by that name.{c['reset']}")
-            return
-
-        # Mount the creature
-        player.mount = mount
-        await player.send(f"{c['green']}You mount {mount.name}.{c['reset']}")
-        await player.room.send_to_room(
-            f"{player.name} mounts {mount.name}.",
-            exclude=[player]
-        )
-
-    @classmethod
-    async def cmd_dismount(cls, player: 'Player', args: List[str]):
-        """Dismount from your current mount."""
-        c = player.config.COLORS
-
-        if not player.mount:
-            await player.send(f"{c['yellow']}You are not mounted.{c['reset']}")
-            return
-
-        mount_name = player.mount.name
-        player.mount = None
-
-        await player.send(f"{c['green']}You dismount from {mount_name}.{c['reset']}")
-        await player.room.send_to_room(
-            f"{player.name} dismounts from {mount_name}.",
-            exclude=[player]
-        )
-
-    @classmethod
-    async def cmd_mounts(cls, player: 'Player', args: List[str]):
-        """List your owned mounts."""
-        c = player.config.COLORS
-
-        if not player.owned_mounts:
-            await player.send(f"{c['yellow']}You don't own any mounts.{c['reset']}")
-            await player.send(f"{c['cyan']}Visit the stables to purchase a mount!{c['reset']}")
-            return
-
-        await player.send(f"{c['cyan']}╔════════════════════════════════════════╗{c['reset']}")
-        await player.send(f"{c['cyan']}║{c['bright_yellow']}         Your Mounts                  {c['cyan']}║{c['reset']}")
-        await player.send(f"{c['cyan']}╠════════════════════════════════════════╣{c['reset']}")
-
-        for mount_vnum in player.owned_mounts:
-            # In a real implementation, you'd load mount data from vnums
-            await player.send(f"{c['cyan']}║ {c['yellow']}Mount #{mount_vnum:<30}{c['cyan']}║{c['reset']}")
-
-        await player.send(f"{c['cyan']}╚════════════════════════════════════════╝{c['reset']}")
 
     # ==================== RENT/STORAGE ====================
 
@@ -14675,35 +15406,57 @@ class CommandHandler:
 
     @classmethod
     async def cmd_mount(cls, player: 'Player', args: List[str]):
-        """Mount a owned/tamed mount. Usage: mount [name]"""
+        """Mount an owned mount. Usage: mount [name]"""
         from mounts import MountManager
 
         c = player.config.COLORS
 
+        if player.is_fighting:
+            await player.send(f"{c['red']}You can't mount while fighting!{c['reset']}")
+            return
+
+        if player.mount:
+            await player.send(f"{c['yellow']}You are already riding {player.mount.name}.{c['reset']}")
+            return
+
         if not args:
-            if player.mount:
-                await player.send(f"{c['green']}You are riding {player.mount.name}.{c['reset']}")
-            else:
-                await player.send(f"{c['yellow']}You are not mounted.{c['reset']}")
+            # Show owned mounts
+            if not player.owned_mounts:
+                await player.send(f"{c['yellow']}You don't own any mounts. Visit a stable to buy one!{c['reset']}")
+                return
+            await player.send(f"{c['cyan']}Your mounts:{c['reset']}")
+            for m in player.owned_mounts:
+                mkey = m if isinstance(m, str) else m.get('key', '?')
+                loyalty = m.get('loyalty', 100) if isinstance(m, dict) else 100
+                tmpl = MountManager.get_mount_template(mkey)
+                desc = tmpl['description'] if tmpl else ''
+                name = tmpl['name'] if tmpl else mkey
+                await player.send(f"  {c['bright_green']}{mkey}{c['reset']} — {name} (loyalty: {loyalty}) {desc}")
+            await player.send(f"{c['cyan']}Use: mount <name>{c['reset']}")
             return
 
         target_name = ' '.join(args).lower()
 
-        # Try to mount an owned mount
-        if target_name in player.owned_mounts:
-            mount = MountManager.create_mount(target_name)
+        # Check owned mounts
+        mount_data = MountManager.get_owned_mount_data(player, target_name)
+        if mount_data:
+            loyalty = mount_data.get('loyalty', 100) if isinstance(mount_data, dict) else 100
+            mount = MountManager.create_mount(target_name, loyalty=loyalty)
             if not mount:
-                await player.send(f"{c['red']}You can't mount that.{c['reset']}")
+                await player.send(f"{c['red']}Can't mount that.{c['reset']}")
                 return
             player.mount = mount
-            await player.send(f"{c['bright_green']}You mount your {mount.name}.{c['reset']}")
+            await player.send(f"{c['bright_green']}You mount {mount.name}.{c['reset']}")
+            if player.room:
+                await player.room.send_to_room(
+                    f"{player.name} mounts {mount.name}.", exclude=[player])
             return
 
-        # Try to tame and mount from room
+        # Try to tame from room
         target = None
         if player.room:
             for char in player.room.characters:
-                if char != player and hasattr(char, 'name') and char.name.lower().startswith(target_name):
+                if char != player and hasattr(char, 'name') and target_name in char.name.lower():
                     target = char
                     break
 
@@ -14715,7 +15468,7 @@ class CommandHandler:
                     await player.send(f"{c['bright_green']}You mount your new {player.mount.name}.{c['reset']}")
             return
 
-        await player.send(f"{c['red']}You don't own a '{target_name}', and none is here to tame.{c['reset']}")
+        await player.send(f"{c['red']}You don't own '{target_name}'. Use 'mount' to see your mounts.{c['reset']}")
 
     @classmethod
     async def cmd_dismount(cls, player: 'Player', args: List[str]):
@@ -14724,36 +15477,188 @@ class CommandHandler:
         if not player.mount:
             await player.send(f"{c['yellow']}You are not mounted.{c['reset']}")
             return
-        await player.send(f"{c['green']}You dismount {player.mount.name}.{c['reset']}")
+        mount_name = player.mount.name
+        # Save loyalty back to owned_mounts
+        for m in player.owned_mounts:
+            if isinstance(m, dict) and m.get('key') == player.mount.key:
+                m['loyalty'] = player.mount.loyalty
+                break
         player.mount = None
+        await player.send(f"{c['green']}You dismount from {mount_name}.{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(
+                f"{player.name} dismounts from {mount_name}.", exclude=[player])
 
     @classmethod
     async def cmd_stable(cls, player: 'Player', args: List[str]):
-        """Stable services. Usage: stable [list|buy <mount>]"""
+        """Stable services. Usage: stable [list|buy <mount>|store]"""
         from mounts import MountManager
 
         c = player.config.COLORS
 
-        if not player.room or player.room.sector_type != 'city':
-            await player.send(f"{c['red']}You need to be in a city to use a stable.{c['reset']}")
+        # Check for stable master NPC in room
+        has_stable = False
+        if player.room:
+            for char in player.room.characters:
+                if hasattr(char, 'special') and char.special == 'stable_master':
+                    has_stable = True
+                    break
+            # Also allow in city sector type as fallback
+            if not has_stable and player.room.sector_type == 'city':
+                has_stable = True
+
+        if not has_stable:
+            await player.send(f"{c['red']}You need to be at a stable to use this command.{c['reset']}")
             return
 
         if not args or args[0].lower() == 'list':
-            await player.send(f"{c['cyan']}Available mounts:{c['reset']}")
-            for name, info in MountManager.list_mounts().items():
-                await player.send(f"  {c['bright_green']}{name}{c['reset']} - {info['cost']} gold ({info['description']})")
+            await player.send(f"\n{c['bright_cyan']}═══════════ Midgaard Stables ═══════════{c['reset']}")
+            await player.send(f"{c['cyan']}Available for purchase:{c['reset']}")
+            for name, info in MountManager.list_purchasable_mounts().items():
+                cost_str = f"{info['cost']} gold" if info['cost'] > 0 else "Not for sale"
+                await player.send(f"  {c['bright_green']}{name:<18}{c['yellow']}{cost_str:<12}{c['white']}{info['description']}{c['reset']}")
+            special_mounts = {k: v for k, v in MountManager.list_mounts().items() if not v.get('purchasable')}
+            await player.send(f"\n{c['cyan']}Special mounts (rare drops & faction rewards):{c['reset']}")
+            for name, info in special_mounts.items():
+                await player.send(f"  {c['bright_magenta']}{name:<18}{c['white']}{info['description']}{c['reset']}")
             if player.owned_mounts:
-                await player.send(f"{c['cyan']}Owned mounts:{c['reset']} {', '.join(player.owned_mounts)}")
+                await player.send(f"\n{c['cyan']}Your mounts:{c['reset']}")
+                for m in player.owned_mounts:
+                    mkey = m if isinstance(m, str) else m.get('key', '?')
+                    await player.send(f"  {c['bright_green']}{mkey}{c['reset']}")
+            await player.send(f"{c['bright_cyan']}════════════════════════════════════════{c['reset']}\n")
             return
 
         if args[0].lower() == 'buy' and len(args) > 1:
             mount_name = args[1].lower()
-            success = await MountManager.buy_mount(player, mount_name)
-            if success:
-                await player.send(f"{c['green']}Your {mount_name} is ready to be mounted.{c['reset']}")
+            await MountManager.buy_mount(player, mount_name)
             return
 
-        await player.send(f"{c['yellow']}Usage: stable [list|buy <mount>]{c['reset']}")
+        if args[0].lower() == 'store':
+            if player.mount:
+                await cls.cmd_dismount(player, [])
+                await player.send(f"{c['green']}Your mount is safely stabled.{c['reset']}")
+            else:
+                await player.send(f"{c['yellow']}You're not riding anything to stable.{c['reset']}")
+            return
+
+        await player.send(f"{c['yellow']}Usage: stable [list|buy <mount>|store]{c['reset']}")
+
+    @classmethod
+    async def cmd_feed(cls, player: 'Player', args: List[str]):
+        """Feed your mount to maintain loyalty. Usage: feed [mount]"""
+        c = player.config.COLORS
+
+        if not player.mount:
+            await player.send(f"{c['yellow']}You are not riding a mount to feed.{c['reset']}")
+            return
+
+        # Check if player has food
+        food_item = None
+        for item in player.inventory:
+            if getattr(item, 'item_type', '') == 'food':
+                food_item = item
+                break
+
+        if not food_item:
+            # Allow feeding without food for 10 gold
+            if player.gold >= 10:
+                player.gold -= 10
+                msg = player.mount.feed()
+                await player.send(f"{c['green']}{msg} (Cost: 10 gold){c['reset']}")
+            else:
+                await player.send(f"{c['red']}You have no food and not enough gold (10g) to feed your mount.{c['reset']}")
+            return
+
+        player.inventory.remove(food_item)
+        msg = player.mount.feed()
+        await player.send(f"{c['green']}{msg}{c['reset']}")
+
+    @classmethod
+    async def cmd_mounts(cls, player: 'Player', args: List[str]):
+        """List your owned mounts."""
+        await cls.cmd_mount(player, [])
+
+    # ==================== COMBAT COMPANIONS ====================
+
+    @classmethod
+    async def cmd_companion(cls, player: 'Player', args: List[str]):
+        """Manage your combat companion. Usage: companion [attack|defend|passive|status|summon|dismiss]"""
+        from companions import CombatCompanion, COMBAT_COMPANION_TYPES
+
+        c = player.config.COLORS
+
+        if not args:
+            # Show status
+            if player.combat_companion:
+                cc = player.combat_companion
+                hp_pct = (cc.hp / cc.max_hp * 100) if cc.max_hp > 0 else 0
+                if hp_pct > 75: hp_color = c['bright_green']
+                elif hp_pct > 50: hp_color = c['green']
+                elif hp_pct > 25: hp_color = c['yellow']
+                else: hp_color = c['red']
+
+                status = "KNOCKED OUT" if cc.knocked_out else cc.behavior.upper()
+                await player.send(f"\n{c['bright_cyan']}═══ Combat Companion ═══{c['reset']}")
+                await player.send(f"  {c['white']}{cc.name}{c['reset']} (Lv {cc.level})")
+                await player.send(f"  {hp_color}HP: {cc.hp}/{cc.max_hp}{c['reset']}")
+                await player.send(f"  Mode: {c['bright_yellow']}{status}{c['reset']}")
+                if cc.knocked_out:
+                    await player.send(f"  {c['red']}Revives after resting ({cc.ko_timer} ticks remaining){c['reset']}")
+                await player.send(f"{c['bright_cyan']}════════════════════════{c['reset']}\n")
+            else:
+                if CombatCompanion.can_unlock(player):
+                    comp_key = CombatCompanion.get_available_type(player)
+                    cfg = COMBAT_COMPANION_TYPES.get(comp_key, {})
+                    await player.send(f"{c['cyan']}You can summon a {cfg.get('name', 'companion')}! Use: companion summon{c['reset']}")
+                else:
+                    await player.send(f"{c['yellow']}Combat companions unlock at level 20.{c['reset']}")
+            return
+
+        sub = args[0].lower()
+
+        if sub == 'summon':
+            if player.combat_companion:
+                await player.send(f"{c['yellow']}You already have {player.combat_companion.name} as your companion.{c['reset']}")
+                return
+            if not CombatCompanion.can_unlock(player):
+                await player.send(f"{c['red']}You must be level 20 to summon a combat companion.{c['reset']}")
+                return
+            comp_key = CombatCompanion.get_available_type(player)
+            cc = CombatCompanion(player, comp_key)
+            player.combat_companion = cc
+            await player.send(f"{c['bright_green']}{cc.name} appears at your side!{c['reset']}")
+            if player.room:
+                await player.room.send_to_room(
+                    f"{c['cyan']}{cc.name} materializes beside {player.name}.{c['reset']}",
+                    exclude=[player])
+            return
+
+        if sub == 'dismiss':
+            if not player.combat_companion:
+                await player.send(f"{c['yellow']}You have no combat companion.{c['reset']}")
+                return
+            name = player.combat_companion.name
+            player.combat_companion = None
+            await player.send(f"{c['yellow']}{name} fades away.{c['reset']}")
+            return
+
+        if sub in ('attack', 'defend', 'passive'):
+            if not player.combat_companion:
+                await player.send(f"{c['yellow']}You have no combat companion.{c['reset']}")
+                return
+            if player.combat_companion.knocked_out:
+                await player.send(f"{c['red']}{player.combat_companion.name} is knocked out!{c['reset']}")
+                return
+            player.combat_companion.behavior = sub
+            await player.send(f"{c['green']}{player.combat_companion.name} is now in {sub.upper()} mode.{c['reset']}")
+            return
+
+        if sub == 'status':
+            await cls.cmd_companion(player, [])
+            return
+
+        await player.send(f"{c['yellow']}Usage: companion [summon|dismiss|attack|defend|passive|status]{c['reset']}")
 
     # ==================== PETS ====================
 
@@ -14898,83 +15803,85 @@ class CommandHandler:
 
     @classmethod
     async def cmd_house(cls, player: 'Player', args: List[str]):
-        """Manage housing. Usage: house [buy|info]"""
+        """Manage housing. Usage: house [buy|sell|list|info|lock|unlock|invite|name|decorate|furnish|enter|storage]"""
         from housing import HouseManager
 
         c = player.config.COLORS
 
         if not args or args[0].lower() == 'info':
-            if getattr(player, 'house_vnum', None):
-                await player.send(f"{c['green']}You own a house at room {player.house_vnum}.{c['reset']}")
-            else:
-                await player.send(f"{c['yellow']}You do not own a house.{c['reset']}")
-                await player.send(f"{c['cyan']}Use 'house buy' in a city to purchase one.{c['reset']}")
+            await HouseManager.show_info(player)
             return
 
-        if args[0].lower() == 'buy':
+        sub = args[0].lower()
+
+        if sub == 'buy':
             await HouseManager.buy_house(player)
-            return
+        elif sub == 'sell':
+            await HouseManager.sell_house(player)
+        elif sub == 'list':
+            await HouseManager.list_houses(player)
+        elif sub == 'enter':
+            await HouseManager.teleport_home(player)
+        elif sub == 'lock':
+            await HouseManager.lock_house(player)
+        elif sub == 'unlock':
+            await HouseManager.unlock_house(player)
+        elif sub == 'invite':
+            if len(args) < 2:
+                await player.send(f"{c['yellow']}Usage: house invite <player>{c['reset']}")
+                return
+            await HouseManager.invite_guest(player, args[1])
+        elif sub == 'name':
+            if len(args) < 2:
+                await player.send(f"{c['yellow']}Usage: house name <name>{c['reset']}")
+                return
+            await HouseManager.set_name(player, ' '.join(args[1:]))
+        elif sub == 'decorate':
+            if len(args) < 2:
+                await player.send(f"{c['yellow']}Usage: house decorate <description>{c['reset']}")
+                return
+            await HouseManager.set_description(player, ' '.join(args[1:]))
+        elif sub == 'furnish':
+            if len(args) < 2:
+                await HouseManager.show_furniture(player)
+            else:
+                await HouseManager.install_furniture(player, ' '.join(args[1:]))
+        elif sub == 'storage':
+            await HouseManager.show_storage(player)
+        else:
+            await player.send(f"{c['yellow']}Housing commands: house [buy|sell|list|info|enter|lock|unlock|invite|name|decorate|furnish|storage]{c['reset']}")
 
-        await player.send(f"{c['yellow']}Usage: house [buy|info]{c['reset']}")
+    @classmethod
+    async def cmd_home(cls, player: 'Player', args: List[str]):
+        """Teleport to your house. Alias for 'house enter'."""
+        from housing import HouseManager
+        await HouseManager.teleport_home(player)
 
     @classmethod
     async def cmd_store(cls, player: 'Player', args: List[str]):
-        """Store an item in your house. Usage: store <item>"""
+        """Store an item in your house chest. Usage: store <item>"""
         from housing import HouseManager
 
         c = player.config.COLORS
-        if not HouseManager.in_house(player):
-            await player.send(f"{c['red']}You must be in your house to store items.{c['reset']}")
-            return
 
         if not args:
-            await player.send(f"{c['yellow']}Usage: store <item>{c['reset']}")
+            # Show storage contents if in house
+            await HouseManager.show_storage(player)
             return
 
-        item_name = ' '.join(args).lower()
-        item = None
-        for obj in player.inventory:
-            if obj.name.lower().startswith(item_name):
-                item = obj
-                break
-
-        if not item:
-            await player.send(f"{c['red']}You don't have that item.{c['reset']}")
-            return
-
-        player.inventory.remove(item)
-        player.house_storage.append(item)
-        await player.send(f"{c['green']}You store {item.short_desc}.{c['reset']}")
+        await HouseManager.store_item(player, ' '.join(args))
 
     @classmethod
     async def cmd_retrieve(cls, player: 'Player', args: List[str]):
-        """Retrieve an item from your house. Usage: retrieve <item>"""
+        """Retrieve an item from your house chest. Usage: retrieve <item>"""
         from housing import HouseManager
 
         c = player.config.COLORS
-        if not HouseManager.in_house(player):
-            await player.send(f"{c['red']}You must be in your house to retrieve items.{c['reset']}")
-            return
-
         if not args:
             await player.send(f"{c['yellow']}Usage: retrieve <item>{c['reset']}")
             return
 
-        item_name = ' '.join(args).lower()
-        item = None
-        for obj in player.house_storage:
-            if obj.name.lower().startswith(item_name):
-                item = obj
-                break
-
-        if not item:
-            await player.send(f"{c['red']}That item is not in your house storage.{c['reset']}")
-            return
-
-        player.house_storage.remove(item)
-        player.inventory.append(item)
-        await cls._record_collection_item(player, item)
-        await player.send(f"{c['green']}You retrieve {item.short_desc}.{c['reset']}")
+        await HouseManager.retrieve_item(player, ' '.join(args))
 
     @classmethod
     async def cmd_dungeon(cls, player: 'Player', args: List[str]):
@@ -18525,6 +19432,180 @@ class CommandHandler:
     # ==================== MAIL SYSTEM ====================
 
     @classmethod
+    @classmethod
+    async def cmd_auction(cls, player: 'Player', args: List[str]):
+        """Auction house commands for buying and selling items.
+
+        Usage:
+            auction list [category]      - Browse listings
+            auction sell <item> <price> [auction] - List item for sale
+            auction buy <id>             - Purchase a listing
+            auction bid <id> <amount>    - Bid on an auction listing
+            auction cancel <id>          - Cancel your listing
+            auction search <keyword>     - Search listings
+            auction history              - Your recent transactions
+            auction collect              - Collect pending gold/items
+        """
+        from auction_house import AuctionHouse, AUCTION_HOUSE_ROOM, AUCTIONEER_NAME, CATEGORIES
+        c = player.config.COLORS
+
+        if not args:
+            await player.send(f"\n{c['bright_cyan']}═══ Auction House ═══{c['reset']}")
+            await player.send(f"{c['white']}Commands:{c['reset']}")
+            await player.send(f"  {c['bright_green']}auction list [category]{c['white']}  - Browse (weapons/armor/materials/consumables/misc)")
+            await player.send(f"  {c['bright_green']}auction sell <item> <price>{c['white']} - List item (5% fee)")
+            await player.send(f"  {c['bright_green']}auction sell <item> <price> auction{c['white']} - List as auction with min bid")
+            await player.send(f"  {c['bright_green']}auction buy <id>{c['white']}           - Buy a listing")
+            await player.send(f"  {c['bright_green']}auction bid <id> <amount>{c['white']}  - Bid on auction")
+            await player.send(f"  {c['bright_green']}auction cancel <id>{c['white']}        - Cancel your listing")
+            await player.send(f"  {c['bright_green']}auction search <keyword>{c['white']}   - Search listings")
+            await player.send(f"  {c['bright_green']}auction history{c['white']}            - Recent transactions")
+            await player.send(f"  {c['bright_green']}auction collect{c['white']}            - Collect pending gold/items")
+            await player.send(f"\n{c['yellow']}Visit {AUCTIONEER_NAME} at Market Square to trade.{c['reset']}")
+            return
+
+        sub = args[0].lower()
+
+        if sub == 'list':
+            category = args[1].lower() if len(args) > 1 else None
+            if category and category not in CATEGORIES:
+                await player.send(f"{c['yellow']}Categories: {', '.join(CATEGORIES.keys())}{c['reset']}")
+                return
+            listings = AuctionHouse.get_active_listings(category=category)
+            if not listings:
+                await player.send(f"{c['yellow']}No active listings{' in ' + category if category else ''}.{c['reset']}")
+                return
+            header = f"{'#':<5} {'Price':>9} {'Item':<30} {'Category':<12} {'Seller':<14} {'Time'}"
+            await player.send(f"\n{c['bright_cyan']}═══ Auction House Listings ═══{c['reset']}")
+            await player.send(f"  {c['white']}{header}{c['reset']}")
+            for listing in listings[:30]:
+                await player.send(AuctionHouse.format_listing(listing, c))
+            await player.send(f"{c['white']}  ({len(listings)} listing{'s' if len(listings)!=1 else ''}){c['reset']}")
+
+        elif sub == 'sell':
+            if len(args) < 3:
+                await player.send(f"{c['yellow']}Usage: auction sell <item> <price> [auction]{c['reset']}")
+                return
+
+            # Parse: last arg is price (and optionally "auction" after)
+            is_auction = args[-1].lower() == 'auction'
+            if is_auction:
+                if len(args) < 4:
+                    await player.send(f"{c['yellow']}Usage: auction sell <item> <price> auction{c['reset']}")
+                    return
+                try:
+                    price = int(args[-2])
+                except ValueError:
+                    await player.send(f"{c['red']}Invalid price.{c['reset']}")
+                    return
+                item_name = ' '.join(args[1:-2])
+            else:
+                try:
+                    price = int(args[-1])
+                except ValueError:
+                    await player.send(f"{c['red']}Invalid price. Usage: auction sell <item> <price>{c['reset']}")
+                    return
+                item_name = ' '.join(args[1:-1])
+
+            if not item_name:
+                await player.send(f"{c['yellow']}What item do you want to sell?{c['reset']}")
+                return
+
+            # Find item in inventory
+            item = None
+            for inv_item in player.inventory:
+                if item_name.lower() in inv_item.name.lower() or item_name.lower() in getattr(inv_item, 'short_desc', '').lower():
+                    item = inv_item
+                    break
+            if not item:
+                await player.send(f"{c['red']}You don't have '{item_name}' in your inventory.{c['reset']}")
+                return
+
+            result = AuctionHouse.create_listing(player, item, price, is_auction=is_auction, min_bid=max(1, price // 2) if is_auction else 0)
+            color = c['bright_green'] if result['success'] else c['red']
+            await player.send(f"{color}{result['message']}{c['reset']}")
+
+        elif sub == 'buy':
+            if len(args) < 2:
+                await player.send(f"{c['yellow']}Usage: auction buy <id>{c['reset']}")
+                return
+            try:
+                lid = int(args[1])
+            except ValueError:
+                await player.send(f"{c['red']}Invalid listing ID.{c['reset']}")
+                return
+            result = AuctionHouse.buy_listing(player, lid)
+            color = c['bright_green'] if result['success'] else c['red']
+            await player.send(f"{color}{result['message']}{c['reset']}")
+
+        elif sub == 'bid':
+            if len(args) < 3:
+                await player.send(f"{c['yellow']}Usage: auction bid <id> <amount>{c['reset']}")
+                return
+            try:
+                lid = int(args[1])
+                amount = int(args[2])
+            except ValueError:
+                await player.send(f"{c['red']}Invalid ID or amount.{c['reset']}")
+                return
+            result = AuctionHouse.place_bid(player, lid, amount)
+            color = c['bright_green'] if result['success'] else c['red']
+            await player.send(f"{color}{result['message']}{c['reset']}")
+
+        elif sub == 'cancel':
+            if len(args) < 2:
+                await player.send(f"{c['yellow']}Usage: auction cancel <id>{c['reset']}")
+                return
+            try:
+                lid = int(args[1])
+            except ValueError:
+                await player.send(f"{c['red']}Invalid listing ID.{c['reset']}")
+                return
+            result = AuctionHouse.cancel_listing(player, lid)
+            color = c['bright_green'] if result['success'] else c['red']
+            await player.send(f"{color}{result['message']}{c['reset']}")
+
+        elif sub == 'search':
+            if len(args) < 2:
+                await player.send(f"{c['yellow']}Usage: auction search <keyword>{c['reset']}")
+                return
+            keyword = ' '.join(args[1:])
+            listings = AuctionHouse.get_active_listings(keyword=keyword)
+            if not listings:
+                await player.send(f"{c['yellow']}No listings matching '{keyword}'.{c['reset']}")
+                return
+            await player.send(f"\n{c['bright_cyan']}═══ Search: '{keyword}' ═══{c['reset']}")
+            for listing in listings[:20]:
+                await player.send(AuctionHouse.format_listing(listing, c))
+            await player.send(f"{c['white']}  ({len(listings)} result{'s' if len(listings)!=1 else ''}){c['reset']}")
+
+        elif sub == 'history':
+            history = AuctionHouse.get_player_history(player.name)
+            if not history:
+                await player.send(f"{c['yellow']}No transaction history.{c['reset']}")
+                return
+            await player.send(f"\n{c['bright_cyan']}═══ Your Auction History ═══{c['reset']}")
+            for h in history[-15:]:
+                role = 'SOLD' if h.get('seller', '').lower() == player.name.lower() else 'BOUGHT'
+                color = c['bright_green'] if role == 'SOLD' else c['bright_yellow']
+                ts = datetime.fromtimestamp(h['time']).strftime('%m/%d %H:%M')
+                await player.send(f"  {color}{role:<7}{c['white']}{h['item_name']:<25} {c['yellow']}{h['price']}g {c['blue']}{ts}{c['reset']}")
+
+        elif sub == 'collect':
+            gold = AuctionHouse.collect_pending_gold(player)
+            items = AuctionHouse.collect_pending_items(player)
+            if not gold and not items:
+                await player.send(f"{c['yellow']}Nothing to collect.{c['reset']}")
+                return
+            if gold:
+                await player.send(f"{c['bright_green']}Collected {gold} gold from sales!{c['reset']}")
+            for item in items:
+                await player.send(f"{c['bright_green']}Received: {getattr(item, 'short_desc', item.name)}{c['reset']}")
+
+        else:
+            await player.send(f"{c['yellow']}Unknown auction command. Type 'auction' for help.{c['reset']}")
+
+    @classmethod
     async def cmd_mail(cls, player: 'Player', args: List[str]):
         """Send, read, list, and delete mail.
 
@@ -18852,6 +19933,41 @@ class CommandHandler:
         await target.send(f"\r\n{c['bright_yellow']}{player.name} challenges you to a duel{wager_msg}! Type 'duel accept' to accept.{c['reset']}")
 
     # =========================================================================
+    # PVP ARENA COMMANDS
+    # =========================================================================
+
+    @classmethod
+    async def cmd_challenge(cls, player: 'Player', args: List[str]):
+        """Challenge another player to an arena duel. Both must be in the Arena Lobby."""
+        from arena import ArenaManager
+        await ArenaManager.cmd_challenge(player, args)
+
+    @classmethod
+    async def cmd_accept(cls, player: 'Player', args: List[str]):
+        """Accept a pending arena challenge."""
+        from arena import ArenaManager
+        await ArenaManager.cmd_accept(player, args)
+
+    @classmethod
+    async def cmd_decline(cls, player: 'Player', args: List[str]):
+        """Decline a pending arena challenge."""
+        from arena import ArenaManager
+        await ArenaManager.cmd_decline(player, args)
+
+    @classmethod
+    async def cmd_arena(cls, player: 'Player', args: List[str]):
+        """Arena system: join queue, view stats, leaderboard.
+
+        Usage:
+            arena join   — Queue for random matchmaking
+            arena leave  — Leave the queue
+            arena stats  — View your PvP record
+            arena top    — Leaderboard (top 10)
+        """
+        from arena import ArenaManager
+        await ArenaManager.cmd_arena(player, args)
+
+    # =========================================================================
     # WAVE 2 CLASS REWORK - New Commands
     # =========================================================================
 
@@ -19159,3 +20275,125 @@ class CommandHandler:
         if killed:
             from combat import CombatHandler
             await CombatHandler.handle_death(player, target)
+
+    # ==================== WORLD EVENTS ====================
+
+    @classmethod
+    async def cmd_events(cls, player: 'Player', args: List[str]):
+        """Show active world events and time remaining."""
+        c = player.config.COLORS
+        em = getattr(player.world, 'event_manager', None)
+        if not em:
+            await player.send(f"{c['yellow']}No event system available.{c['reset']}")
+            return
+
+        summaries = em.get_active_summaries()
+        if not summaries:
+            await player.send(f"{c['cyan']}There are no active world events right now.{c['reset']}")
+            await player.send(f"{c['white']}Events trigger automatically every 30-60 minutes.{c['reset']}")
+            return
+
+        await player.send(f"\n{c['bright_cyan']}═══ Active World Events ═══{c['reset']}")
+        for s in summaries:
+            await player.send(f"  {c['bright_white']}{s}{c['reset']}")
+        await player.send("")
+
+    @classmethod
+    async def cmd_wevent(cls, player: 'Player', args: List[str]):
+        """Immortal command to manage world events.
+        Usage: wevent start <type> | wevent stop [type] | wevent list | wevent log
+        Types: invasion, world_boss, treasure_hunt, double_xp, weather, storm, fog, blizzard
+        """
+        c = player.config.COLORS
+
+        if not player.is_immortal:
+            await player.send("Huh?!?")
+            return
+
+        em = getattr(player.world, 'event_manager', None)
+        if not em:
+            await player.send(f"{c['red']}Event system not initialized.{c['reset']}")
+            return
+
+        if not args:
+            await player.send(f"{c['yellow']}Usage: wevent start <type> | wevent stop [type] | wevent list | wevent log{c['reset']}")
+            await player.send(f"{c['white']}Types: invasion, world_boss, treasure_hunt, double_xp, weather, storm, fog, blizzard{c['reset']}")
+            return
+
+        sub = args[0].lower()
+
+        if sub == 'start':
+            if len(args) < 2:
+                await player.send(f"{c['yellow']}Usage: wevent start <type>{c['reset']}")
+                await player.send(f"{c['white']}Types: invasion, world_boss, treasure_hunt, double_xp, weather, storm, fog, blizzard{c['reset']}")
+                return
+            event_type = args[1].lower()
+            event = await em.start_event(event_type)
+            if event:
+                await player.send(f"{c['bright_green']}Started {event.event_type} event!{c['reset']}")
+            else:
+                await player.send(f"{c['red']}Failed to start event. Unknown type or duplicate already active.{c['reset']}")
+
+        elif sub == 'stop':
+            event_type = args[1].lower() if len(args) > 1 else None
+            stopped = await em.stop_event(event_type)
+            if stopped:
+                await player.send(f"{c['bright_green']}Event(s) stopped.{c['reset']}")
+            else:
+                await player.send(f"{c['yellow']}No matching active events to stop.{c['reset']}")
+
+        elif sub == 'list':
+            summaries = em.get_active_summaries()
+            if not summaries:
+                await player.send(f"{c['cyan']}No active events.{c['reset']}")
+            else:
+                await player.send(f"\n{c['bright_cyan']}═══ Active World Events ═══{c['reset']}")
+                for s in summaries:
+                    await player.send(f"  {c['bright_white']}{s}{c['reset']}")
+
+        elif sub == 'log':
+            log = em.get_log(20)
+            if not log:
+                await player.send(f"{c['cyan']}No event history yet.{c['reset']}")
+            else:
+                await player.send(f"\n{c['bright_cyan']}═══ Event History (last 20) ═══{c['reset']}")
+                import datetime
+                for entry in reversed(log):
+                    ts = datetime.datetime.fromtimestamp(entry['time']).strftime('%H:%M:%S')
+                    await player.send(f"  {c['white']}[{ts}] {entry['type']} — {entry['status']}{c['reset']}")
+
+        else:
+            await player.send(f"{c['yellow']}Usage: wevent start <type> | wevent stop [type] | wevent list | wevent log{c['reset']}")
+
+
+    # =========================================================================
+    # PRESTIGE CLASS SYSTEM
+    # =========================================================================
+
+    @classmethod
+    async def cmd_specialize(cls, player: 'Player', args: List[str]):
+        """Choose your prestige class specialization at level 50.
+        
+        Usage: specialize [class name]
+        Type 'specialize' alone to see available options.
+        """
+        from prestige import cmd_specialize
+        await cmd_specialize(player, args)
+
+    @classmethod
+    async def cmd_respec(cls, player: 'Player', args: List[str]):
+        """Reset your prestige specialization for 50,000 gold.
+        
+        Usage: respec
+        """
+        from prestige import cmd_respec
+        await cmd_respec(player, args)
+
+    @classmethod
+    async def cmd_prestige(cls, player: 'Player', args: List[str]):
+        """View your prestige class info and abilities.
+        
+        Usage: prestige
+        """
+        from prestige import cmd_prestige
+        await cmd_prestige(player, args)

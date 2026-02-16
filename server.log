@@ -1,700 +1,135 @@
-2026-02-13 23:07:24,280 - RealmsMUD - INFO - ============================================================
-2026-02-13 23:07:24,280 - RealmsMUD - INFO - RealmsMUD - Fantasy Multi-User Dungeon
-2026-02-13 23:07:24,280 - RealmsMUD - INFO - ============================================================
-2026-02-13 23:07:24,280 - RealmsMUD - INFO - Initializing game systems...
-2026-02-13 23:07:24,280 - time_system - INFO - Game time initialized: 12:00 PM, Day 1 of Early Summer, Year 1000
-2026-02-13 23:07:24,280 - RealmsMUD.World - INFO - Loading world...
-2026-02-13 23:07:24,281 - RealmsMUD.World - INFO - Loaded zone 50: The Great Eastern Desert (74 rooms)
-2026-02-13 23:07:24,284 - RealmsMUD.World - INFO - Loaded zone 210: Tunnel of Sticks (400 rooms)
-2026-02-13 23:07:24,285 - RealmsMUD.World - INFO - Loaded zone 31: Southern part of Midgaard (54 rooms)
-2026-02-13 23:07:24,286 - RealmsMUD.World - INFO - Loaded zone 70: The Sewer, First Level (67 rooms)
-2026-02-13 23:07:24,286 - RealmsMUD.World - INFO - Loaded zone 71: The Second Sewer (26 rooms)
-2026-02-13 23:07:24,287 - RealmsMUD.World - INFO - Loaded zone 30: Northern Midgaard Main City (75 rooms)
-2026-02-13 23:07:24,287 - RealmsMUD.World - INFO - Loaded zone 180: The Great Northern Forest (26 rooms)
-2026-02-13 23:07:24,288 - RealmsMUD.World - INFO - Loaded zone 51: Drow City (51 rooms)
-2026-02-13 23:07:24,289 - RealmsMUD.World - INFO - Loaded zone 220: Castle Apocalypse (77 rooms)
-2026-02-13 23:07:24,290 - RealmsMUD.World - INFO - Loaded zone 60: Haon-Dor, Light Forest (64 rooms)
-2026-02-13 23:07:24,291 - RealmsMUD.World - INFO - Loaded zone 40: Mines of Moria (103 rooms)
-2026-02-13 23:07:24,291 - RealmsMUD.World - INFO - Loaded zone 200: Forest of Shadows (10 rooms)
-2026-02-13 23:07:24,291 - RealmsMUD.World - INFO - Loaded zone 186: Newbie Zone (41 rooms)
-2026-02-13 23:07:24,292 - RealmsMUD.World - INFO - Loaded zone 190: The Frostspire (27 rooms)
-2026-02-13 23:07:24,292 - RealmsMUD.World - INFO - Loaded zone 0: Limbo - Internal (3 rooms)
-2026-02-13 23:07:24,292 - RealmsMUD.World - INFO - Loaded zone 61: Haon-Dor, Dark Forest (48 rooms)
-2026-02-13 23:07:24,293 - RealmsMUD.World - INFO - Loaded zone 36: The Chessboard of Midgaard (67 rooms)
-2026-02-13 23:07:24,294 - RealmsMUD.World - INFO - Loaded zone 62: The Orc Enclave (68 rooms)
-2026-02-13 23:07:24,294 - RealmsMUD.World - INFO - Loaded zone 35: Miden'Nir (45 rooms)
-2026-02-13 23:07:24,295 - RealmsMUD.World - INFO - Loaded zone 150: King Welmar's Castle (75 rooms)
-2026-02-13 23:07:24,295 - RealmsMUD.World - INFO - Loaded zone 15: The Straight Path (41 rooms)
-2026-02-13 23:07:24,297 - RealmsMUD.World - INFO - Loaded zone 54: New Thalos (285 rooms)
-2026-02-13 23:07:24,298 - RealmsMUD.World - INFO - Loaded zone 110: Silversong Elven Village (15 rooms)
-2026-02-13 23:07:24,298 - RealmsMUD.World - INFO - Loaded zone 80: The Dragon's Domain (5 rooms)
-2026-02-13 23:07:24,298 - RealmsMUD.World - INFO - Loaded zone 79: Redferne's Residence (20 rooms)
-2026-02-13 23:07:24,298 - RealmsMUD.World - INFO - Loaded zone 63: Arachnos (52 rooms)
-2026-02-13 23:07:24,299 - RealmsMUD.World - INFO - Loaded zone 130: The Sunken Ruins of Atal'narath (18 rooms)
-2026-02-13 23:07:24,299 - RealmsMUD.World - INFO - Loaded zone 140: The Necropolis of Eternal Night (31 rooms)
-2026-02-13 23:07:24,300 - RealmsMUD.World - INFO - Loaded zone 52: The City Of Thalos (51 rooms)
-2026-02-13 23:07:24,301 - RealmsMUD.World - INFO - Loaded zone 25: The High Tower Of Magic (183 rooms)
-2026-02-13 23:07:24,301 - RealmsMUD.World - INFO - Loaded zone 160: The Plane of Eternal Chaos (26 rooms)
-2026-02-13 23:07:24,302 - RealmsMUD.World - INFO - Loaded zone 72: The Sewer Maze (87 rooms)
-2026-02-13 23:07:24,302 - RealmsMUD.World - INFO - Loaded zone 64: Rand's Tower (46 rooms)
-2026-02-13 23:07:24,303 - RealmsMUD.World - INFO - Loaded zone 33: The Three Of Swords (76 rooms)
-2026-02-13 23:07:24,303 - RealmsMUD.World - INFO - Loaded zone 9: River Island Of Minos (24 rooms)
-2026-02-13 23:07:24,304 - RealmsMUD.World - INFO - Loaded zone 65: The Dwarven Kingdom (51 rooms)
-2026-02-13 23:07:24,304 - RealmsMUD.World - INFO - Loaded zone 120: Rome (66 rooms)
-2026-02-13 23:07:24,304 - RealmsMUD.World - INFO - Loaded zone 73: The Mindflayer's Lair (3 rooms)
-2026-02-13 23:07:24,305 - RealmsMUD.World - INFO - Loaded zone 53: The Great Pyramid (61 rooms)
-2026-02-13 23:07:24,305 - RealmsMUD.World - INFO - Loaded zone 12: God Simplex (7 rooms)
-2026-02-13 23:07:24,305 - RealmsMUD.World - INFO - Loaded zone 100: The Dwarven Mines of Khaz-Durum (25 rooms)
-2026-02-13 23:07:24,306 - RealmsMUD.World - INFO - Loaded zone 90: The Haunted Swamp (20 rooms)
-2026-02-13 23:07:24,322 - RealmsMUD.Shops - INFO - Created shop for waiter (vnum 3043) with 1 items
-2026-02-13 23:07:24,322 - RealmsMUD.Shops - INFO - Created shop for bartender (vnum 3040) with 1 items
-2026-02-13 23:07:24,323 - RealmsMUD.Shops - INFO - Created shop for grocer (vnum 3002) with 7 items
-2026-02-13 23:07:24,323 - RealmsMUD.Shops - INFO - Created shop for weaponsmith (vnum 3003) with 1 items
-2026-02-13 23:07:24,323 - RealmsMUD.Shops - INFO - Created shop for waiter (vnum 3042) with 1 items
-2026-02-13 23:07:24,323 - RealmsMUD.Shops - INFO - Created shop for armourer (vnum 3004) with 1 items
-2026-02-13 23:07:24,323 - RealmsMUD.Shops - INFO - Created shop for waiter (vnum 3045) with 1 items
-2026-02-13 23:07:24,324 - RealmsMUD.Shops - INFO - Created shop for waiter (vnum 3044) with 1 items
-2026-02-13 23:07:24,324 - RealmsMUD.Shops - INFO - Created shop for wizard (vnum 3000) with 4 items
-2026-02-13 23:07:24,325 - RealmsMUD.Shops - INFO - Created shop for filthy (vnum 3046) with 1 items
-2026-02-13 23:07:24,325 - RealmsMUD.Shops - INFO - Created shop for captain (vnum 3006) with 1 items
-2026-02-13 23:07:24,325 - RealmsMUD.Shops - INFO - Created shop for sailor (vnum 3007) with 0 items
-2026-02-13 23:07:24,325 - RealmsMUD.Shops - INFO - Created shop for wally (vnum 3009) with 1 items
-2026-02-13 23:07:24,345 - RealmsMUD.Shops - INFO - Created shop for chef (vnum 15022) with 1 items
-2026-02-13 23:07:24,347 - RealmsMUD.Shops - INFO - Created shop for astrologer (vnum 15019) with 1 items
-2026-02-13 23:07:24,349 - RealmsMUD.Shops - INFO - Created shop for bartender (vnum 5405) with 1 items
-2026-02-13 23:07:24,349 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:07:24,350 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:07:24,351 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:07:24,351 - RealmsMUD.Shops - INFO - Created shop for cassandra (vnum 5418) with 0 items
-2026-02-13 23:07:24,352 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:07:24,352 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:07:24,353 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:07:24,354 - RealmsMUD.Shops - INFO - Created shop for ahkeem (vnum 5413) with 1 items
-2026-02-13 23:07:24,354 - RealmsMUD.Shops - INFO - Created shop for vera (vnum 5414) with 1 items
-2026-02-13 23:07:24,354 - RealmsMUD.Shops - INFO - Created shop for butch (vnum 5415) with 1 items
-2026-02-13 23:07:24,354 - RealmsMUD.Shops - INFO - Created shop for elriva (vnum 5479) with 1 items
-2026-02-13 23:07:24,355 - RealmsMUD.Shops - INFO - Created shop for braheem (vnum 5480) with 1 items
-2026-02-13 23:07:24,355 - RealmsMUD.Shops - INFO - Created shop for shopkeeper (vnum 5411) with 1 items
-2026-02-13 23:07:24,355 - RealmsMUD.Shops - INFO - Created shop for abdul (vnum 5416) with 1 items
-2026-02-13 23:07:24,355 - RealmsMUD.Shops - INFO - Created shop for baker (vnum 5410) with 1 items
-2026-02-13 23:07:24,355 - RealmsMUD.Shops - INFO - Created shop for igor (vnum 5417) with 1 items
-2026-02-13 23:07:24,355 - RealmsMUD.Shops - INFO - Created shop for stitch (vnum 5484) with 1 items
-2026-02-13 23:07:24,355 - RealmsMUD.Shops - INFO - Created shop for patch (vnum 5483) with 1 items
-2026-02-13 23:07:24,355 - RealmsMUD.Shops - INFO - Created shop for shipwright (vnum 5465) with 1 items
-2026-02-13 23:07:24,355 - RealmsMUD.Shops - INFO - Created shop for blacksmith (vnum 5466) with 1 items
-2026-02-13 23:07:24,374 - RealmsMUD.Shops - INFO - Created shop for strick (vnum 2505) with 1 items
-2026-02-13 23:07:24,374 - RealmsMUD.Shops - INFO - Created shop for tatorious (vnum 2506) with 1 items
-2026-02-13 23:07:24,398 - RealmsMUD.Shops - INFO - Created shop for storekeeper (vnum 3301) with 1 items
-2026-02-13 23:07:24,398 - RealmsMUD.Shops - INFO - Created shop for cowgirl (vnum 3302) with 1 items
-2026-02-13 23:07:24,398 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
-2026-02-13 23:07:24,398 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
-2026-02-13 23:07:24,399 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
-2026-02-13 23:07:24,399 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
-2026-02-13 23:07:24,402 - RealmsMUD.Shops - INFO - Created shop for storekeeper (vnum 6503) with 1 items
-2026-02-13 23:07:24,404 - RealmsMUD.Shops - INFO - Created shop for baker (vnum 6504) with 1 items
-2026-02-13 23:07:24,406 - RealmsMUD.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
-2026-02-13 23:07:24,406 - RealmsMUD.Shops - INFO - Created shop for shopkeeper (vnum 12011) with 1 items
-2026-02-13 23:07:24,406 - RealmsMUD.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
-2026-02-13 23:07:24,408 - RealmsMUD.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
-2026-02-13 23:07:24,409 - RealmsMUD.Shops - INFO - Created shop for peddler (vnum 12012) with 1 items
-2026-02-13 23:07:24,410 - RealmsMUD.Shops - INFO - Created shop for shopkeeper (vnum 12034) with 1 items
-2026-02-13 23:07:24,412 - RealmsMUD.Shops - INFO - Created shop for baker (vnum 12036) with 2 items
-2026-02-13 23:07:24,412 - RealmsMUD.Shops - INFO - Created shop for grocer (vnum 12037) with 2 items
-2026-02-13 23:07:24,424 - RealmsMUD.World - INFO - World loaded: 42 zones, 2594 rooms
-2026-02-13 23:07:24,424 - RealmsMUD.WebMap - INFO - Web map server listening on 0.0.0.0:4001
-2026-02-13 23:07:24,499 - web_client - INFO - Web client listening on http://0.0.0.0:4003
-2026-02-13 23:07:24,499 - RealmsMUD - INFO - Initialization complete!
-2026-02-13 23:07:24,499 - RealmsMUD - INFO - Starting server on port 4000...
-2026-02-13 23:07:24,499 - RealmsMUD.Server - INFO - Server listening on 0.0.0.0:4000
-2026-02-13 23:12:30,687 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-13 23:17:37,090 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-13 23:19:39,573 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 1 of Early Summer, Year 1000
-2026-02-13 23:22:43,390 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:22:43,392 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:22:43,394 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:22:43,396 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:22:43,397 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:22:43,398 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:22:43,435 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-13 23:23:44,565 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 1 of Early Summer, Year 1000
-2026-02-13 23:27:49,617 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-13 23:31:54,653 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 2 of Early Summer, Year 1000
-2026-02-13 23:32:55,941 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-13 23:38:02,410 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:38:02,411 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:38:02,413 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:38:02,416 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:38:02,416 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:38:02,418 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:38:02,495 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-13 23:43:08,707 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-13 23:44:09,943 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 2 of Early Summer, Year 1000
-2026-02-13 23:48:15,644 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-13 23:53:22,087 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:53:22,089 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:53:22,091 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:53:22,093 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:53:22,094 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:53:22,096 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-13 23:53:22,159 - RealmsMUD.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
-2026-02-13 23:53:22,160 - RealmsMUD.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
-2026-02-13 23:53:22,163 - RealmsMUD.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
-2026-02-13 23:53:22,183 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-13 23:56:25,936 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 2 of Early Summer, Year 1000
-2026-02-13 23:58:28,485 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 00:03:34,764 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 00:08:40,970 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 2 of Early Summer, Year 1000
-2026-02-14 00:08:41,123 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:08:41,125 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:08:41,127 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:08:41,130 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:08:41,131 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:08:41,133 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:08:41,226 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 00:12:46,223 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 2 of Early Summer, Year 1000
-2026-02-14 00:13:47,491 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 00:18:53,834 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 00:20:56,322 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 3 of Early Summer, Year 1000
-2026-02-14 00:24:00,327 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:24:00,329 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:24:00,331 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:24:00,334 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:24:00,335 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:24:00,337 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:24:00,394 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 00:28:27,232 - aiohttp.access - INFO - 94.26.88.9 [14/Feb/2026:00:28:27 -0800] "UNKNOWN / HTTP/1.0" 400 205 "-" "-"
-2026-02-14 00:29:06,657 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 00:33:11,661 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 3 of Early Summer, Year 1000
-2026-02-14 00:34:13,006 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 00:39:19,452 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:39:19,454 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:39:19,456 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:39:19,459 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:39:19,460 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:39:19,463 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:39:19,568 - RealmsMUD.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
-2026-02-14 00:39:19,570 - RealmsMUD.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
-2026-02-14 00:39:19,573 - RealmsMUD.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
-2026-02-14 00:39:19,599 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 00:44:25,915 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 00:45:27,349 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 3 of Early Summer, Year 1000
-2026-02-14 00:49:32,453 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 00:54:38,905 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:54:38,908 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:54:38,910 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:54:38,914 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:54:38,915 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:54:38,917 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 00:54:38,979 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 00:57:42,672 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 3 of Early Summer, Year 1000
-2026-02-14 00:59:29,265 - RealmsMUD.Server - INFO - New connection from ('85.217.149.2', 33502)
-2026-02-14 00:59:29,362 - RealmsMUD.Server - INFO - Connection closed: ('85.217.149.2', 33502)
-2026-02-14 00:59:45,303 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 01:01:47,786 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 3 of Early Summer, Year 1000
-2026-02-14 01:04:51,683 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 01:09:57,977 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 4 of Early Summer, Year 1000
-2026-02-14 01:09:58,156 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:09:58,159 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:09:58,162 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:09:58,165 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:09:58,166 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:09:58,169 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:09:58,279 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 01:15:04,674 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 01:20:11,041 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 01:22:13,549 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 4 of Early Summer, Year 1000
-2026-02-14 01:25:17,529 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:25:17,532 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:25:17,534 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:25:17,538 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:25:17,539 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:25:17,542 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:25:17,646 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 01:30:23,938 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 01:34:28,937 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 4 of Early Summer, Year 1000
-2026-02-14 01:35:30,275 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 01:40:36,906 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:40:36,908 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:40:36,911 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:40:36,915 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:40:36,916 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:40:36,919 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:40:37,035 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 01:45:43,499 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 01:46:44,738 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 4 of Early Summer, Year 1000
-2026-02-14 01:49:46,550 - RealmsMUD.Server - INFO - New connection from ('94.26.88.9', 64705)
-2026-02-14 01:49:46,725 - RealmsMUD.Server - INFO - Connection closed: ('94.26.88.9', 64705)
-2026-02-14 01:49:46,725 - asyncio - ERROR - Task exception was never retrieved
-future: <Task finished name='Task-16' coro=<MUDServer.handle_connection() done, defined at /Users/michaeltravis/clawd/projects/RealmsMUD/src/server.py:1277> exception=AttributeError("'MUDServer' object has no attribute 'address'")>
-Traceback (most recent call last):
-  File "/Users/michaeltravis/clawd/projects/RealmsMUD/src/server.py", line 1313, in handle_connection
-    logger.info(f"Connection lost for {self.address}: {e}")
-AttributeError: 'MUDServer' object has no attribute 'address'
-2026-02-14 01:50:49,867 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 4 of Early Summer, Year 1000
-2026-02-14 01:50:49,910 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 01:55:56,409 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:55:56,413 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:55:56,416 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:55:56,420 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:55:56,421 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:55:56,424 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-14 01:55:56,492 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 01:59:00,283 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 5 of Early Summer, Year 1000
-2026-02-14 02:01:02,860 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 02:06:09,177 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 02:11:15,508 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 5 of Early Summer, Year 1000
-2026-02-14 02:11:15,868 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 02:16:22,231 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 02:21:28,597 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 02:23:31,207 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 5 of Early Summer, Year 1000
-2026-02-14 02:26:35,234 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 02:31:41,605 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 02:35:46,713 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 5 of Early Summer, Year 1000
-2026-02-14 02:36:48,037 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 02:39:51,843 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 5 of Early Summer, Year 1000
-2026-02-14 02:41:54,747 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 02:47:01,385 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 02:48:02,630 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 6 of Early Summer, Year 1000
-2026-02-14 02:52:07,853 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 02:57:14,523 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 03:00:18,355 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 6 of Early Summer, Year 1000
-2026-02-14 03:02:20,983 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 03:07:27,429 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 03:12:33,992 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 6 of Early Summer, Year 1000
-2026-02-14 03:12:34,337 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 03:17:40,795 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 03:22:47,370 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 03:24:49,921 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 6 of Early Summer, Year 1000
-2026-02-14 03:27:54,100 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 03:28:55,319 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 6 of Early Summer, Year 1000
-2026-02-14 03:33:00,661 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 03:37:05,922 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 7 of Early Summer, Year 1000
-2026-02-14 03:38:07,257 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 03:43:14,166 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 03:48:22,026 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 03:49:23,304 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 7 of Early Summer, Year 1000
-2026-02-14 03:53:28,720 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 03:58:35,471 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 04:01:39,296 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 7 of Early Summer, Year 1000
-2026-02-14 04:03:42,075 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 04:08:48,656 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 04:13:55,215 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 7 of Early Summer, Year 1000
-2026-02-14 04:13:55,572 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 04:18:00,721 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 7 of Early Summer, Year 1000
-2026-02-14 04:19:02,093 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 04:24:08,751 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 04:26:11,326 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 8 of Early Summer, Year 1000
-2026-02-14 04:29:15,566 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 04:34:22,099 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 04:38:27,317 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 8 of Early Summer, Year 1000
-2026-02-14 04:39:28,697 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 04:44:35,600 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 04:49:42,704 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 04:50:44,016 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 8 of Early Summer, Year 1000
-2026-02-14 04:54:49,344 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 04:59:56,133 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 05:03:00,017 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 8 of Early Summer, Year 1000
-2026-02-14 05:05:02,676 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 05:07:05,298 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 8 of Early Summer, Year 1000
-2026-02-14 05:10:09,256 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 05:15:15,836 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 9 of Early Summer, Year 1000
-2026-02-14 05:15:16,248 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 05:20:22,832 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 05:25:29,489 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 05:27:32,112 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 9 of Early Summer, Year 1000
-2026-02-14 05:30:36,301 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 05:35:42,896 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 05:39:48,127 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 9 of Early Summer, Year 1000
-2026-02-14 05:40:49,479 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 05:45:56,940 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 05:51:03,581 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 05:52:04,876 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 9 of Early Summer, Year 1000
-2026-02-14 05:56:10,195 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 9 of Early Summer, Year 1000
-2026-02-14 05:56:10,241 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 06:01:17,131 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 06:04:21,017 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 10 of Early Summer, Year 1000
-2026-02-14 06:06:23,674 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 06:11:30,410 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 06:16:37,021 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 10 of Early Summer, Year 1000
-2026-02-14 06:16:37,383 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 06:21:43,972 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 06:26:50,669 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 06:28:53,277 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 10 of Early Summer, Year 1000
-2026-02-14 06:31:57,493 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 06:37:04,088 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 06:41:09,365 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 10 of Early Summer, Year 1000
-2026-02-14 06:42:10,723 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 06:45:15,283 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 10 of Early Summer, Year 1000
-2026-02-14 06:47:18,406 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 06:52:24,980 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 06:53:26,262 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 11 of Early Summer, Year 1000
-2026-02-14 06:57:31,626 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 07:02:38,446 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 07:05:42,318 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 11 of Early Summer, Year 1000
-2026-02-14 07:07:45,021 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 07:12:51,666 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 07:17:58,261 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 11 of Early Summer, Year 1000
-2026-02-14 07:17:58,632 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 07:21:10,716 - RealmsMUD.Server - INFO - New connection from ('199.45.154.130', 13798)
-2026-02-14 07:21:10,903 - RealmsMUD.Server - INFO - Connection closed: ('199.45.154.130', 13798)
-2026-02-14 07:21:10,904 - asyncio - ERROR - Task exception was never retrieved
-future: <Task finished name='Task-26' coro=<MUDServer.handle_connection() done, defined at /Users/michaeltravis/clawd/projects/RealmsMUD/src/server.py:1277> exception=AttributeError("'MUDServer' object has no attribute 'address'")>
-Traceback (most recent call last):
-  File "/Users/michaeltravis/clawd/projects/RealmsMUD/src/server.py", line 1313, in handle_connection
-    logger.info(f"Connection lost for {self.address}: {e}")
-AttributeError: 'MUDServer' object has no attribute 'address'
-2026-02-14 07:21:15,913 - RealmsMUD.Server - INFO - New connection from ('199.45.154.130', 13814)
-2026-02-14 07:21:16,220 - RealmsMUD.Server - INFO - Connection closed: ('199.45.154.130', 13814)
-2026-02-14 07:21:16,220 - asyncio - ERROR - Task exception was never retrieved
-future: <Task finished name='Task-29' coro=<MUDServer.handle_connection() done, defined at /Users/michaeltravis/clawd/projects/RealmsMUD/src/server.py:1277> exception=AttributeError("'MUDServer' object has no attribute 'address'")>
-Traceback (most recent call last):
-  File "/Users/michaeltravis/clawd/projects/RealmsMUD/src/server.py", line 1313, in handle_connection
-    logger.info(f"Connection lost for {self.address}: {e}")
-AttributeError: 'MUDServer' object has no attribute 'address'
-2026-02-14 07:23:05,257 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 07:28:11,933 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 07:30:14,534 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 11 of Early Summer, Year 1000
-2026-02-14 07:33:18,823 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 07:34:20,045 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 11 of Early Summer, Year 1000
-2026-02-14 07:38:25,446 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 07:42:30,693 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 12 of Early Summer, Year 1000
-2026-02-14 07:43:32,051 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 07:48:39,477 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 07:53:46,131 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 07:54:47,421 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 12 of Early Summer, Year 1000
-2026-02-14 07:58:20,131 - aiohttp.access - INFO - 162.216.149.131 [14/Feb/2026:07:58:20 -0800] "GET / HTTP/1.0" 200 6425 "-" "-"
-2026-02-14 07:58:52,848 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 07:59:20,149 - aiohttp.access - INFO - 162.216.149.131 [14/Feb/2026:07:59:20 -0800] "UNKNOWN / HTTP/1.0" 400 209 "-" "-"
-2026-02-14 08:03:59,600 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 08:06:49,034 - aiohttp.access - INFO - 162.216.149.131 [14/Feb/2026:08:06:49 -0800] "GET / HTTP/1.1" 200 6425 "-" "Hello from Palo Alto Networks, find out more about our scans in https://docs-cortex.paloaltonetworks.com/r/1/Cortex-Xpanse/Scanning-activity"
-2026-02-14 08:07:03,504 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 12 of Early Summer, Year 1000
-2026-02-14 08:09:06,205 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 08:14:12,877 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 08:19:19,560 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 12 of Early Summer, Year 1000
-2026-02-14 08:19:19,974 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 08:23:25,264 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 12 of Early Summer, Year 1000
-2026-02-14 08:24:26,617 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 08:25:50,178 - RealmsMUD.WebMap - INFO - WebSocket message is None, closing connection for client
-2026-02-14 08:29:33,345 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 08:31:36,046 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 13 of Early Summer, Year 1000
-2026-02-14 08:34:40,263 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 08:39:46,860 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 08:43:52,169 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 13 of Early Summer, Year 1000
-2026-02-14 08:44:53,527 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 08:45:53,795 - RealmsMUD.Server - INFO - New connection from ('18.144.164.186', 47714)
-2026-02-14 08:46:03,918 - RealmsMUD.Server - INFO - Connection closed: ('18.144.164.186', 47714)
-2026-02-14 08:50:01,142 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 08:55:07,738 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 08:56:09,034 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 13 of Early Summer, Year 1000
-2026-02-14 09:00:05,272 - RealmsMUD.Server - INFO - New connection from ('45.135.193.11', 47214)
-2026-02-14 09:00:05,419 - RealmsMUD.Server - INFO - Connection closed: ('45.135.193.11', 47214)
-2026-02-14 09:00:05,576 - RealmsMUD.Server - INFO - New connection from ('45.135.193.11', 47226)
-2026-02-14 09:00:05,730 - RealmsMUD.Server - INFO - Connection closed: ('45.135.193.11', 47226)
-2026-02-14 09:00:05,883 - RealmsMUD.Server - INFO - New connection from ('45.135.193.11', 47240)
-2026-02-14 09:00:06,033 - RealmsMUD.Server - INFO - Connection closed: ('45.135.193.11', 47240)
-2026-02-14 09:00:06,192 - RealmsMUD.Server - INFO - New connection from ('45.135.193.11', 47252)
-2026-02-14 09:00:06,343 - RealmsMUD.Server - INFO - Connection closed: ('45.135.193.11', 47252)
-2026-02-14 09:00:06,498 - RealmsMUD.Server - INFO - New connection from ('45.135.193.11', 47262)
-2026-02-14 09:00:06,701 - RealmsMUD.Server - INFO - Connection closed: ('45.135.193.11', 47262)
-2026-02-14 09:00:14,480 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 09:05:21,418 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 09:08:25,370 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 13 of Early Summer, Year 1000
-2026-02-14 09:10:28,066 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 09:12:30,677 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 13 of Early Summer, Year 1000
-2026-02-14 09:15:34,695 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 09:20:41,326 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 14 of Early Summer, Year 1000
-2026-02-14 09:20:41,703 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 09:25:48,300 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 09:30:55,021 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 09:32:57,632 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 14 of Early Summer, Year 1000
-2026-02-14 09:36:01,894 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 09:41:08,535 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 09:45:14,477 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 14 of Early Summer, Year 1000
-2026-02-14 09:46:15,831 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 09:51:22,924 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 09:56:29,508 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 09:57:30,794 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 14 of Early Summer, Year 1000
-2026-02-14 10:01:36,168 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 14 of Early Summer, Year 1000
-2026-02-14 10:01:36,213 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 10:06:43,063 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 10:09:47,015 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 15 of Early Summer, Year 1000
-2026-02-14 10:11:49,711 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 10:15:07,202 - RealmsMUD.Server - INFO - New connection from ('3.129.187.38', 59864)
-2026-02-14 10:15:07,308 - RealmsMUD.Server - INFO - Connection closed: ('3.129.187.38', 59864)
-2026-02-14 10:16:50,609 - RealmsMUD.Server - INFO - New connection from ('3.129.187.38', 36102)
-2026-02-14 10:16:50,676 - RealmsMUD.Server - INFO - Connection closed: ('3.129.187.38', 36102)
-2026-02-14 10:16:50,676 - asyncio - ERROR - Task exception was never retrieved
-future: <Task finished name='Task-102' coro=<MUDServer.handle_connection() done, defined at /Users/michaeltravis/clawd/projects/RealmsMUD/src/server.py:1277> exception=AttributeError("'MUDServer' object has no attribute 'address'")>
-Traceback (most recent call last):
-  File "/Users/michaeltravis/clawd/projects/RealmsMUD/src/server.py", line 1313, in handle_connection
-    logger.info(f"Connection lost for {self.address}: {e}")
-AttributeError: 'MUDServer' object has no attribute 'address'
-2026-02-14 10:16:56,365 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 10:20:53,427 - RealmsMUD.Server - INFO - New connection from ('3.129.187.38', 43358)
-2026-02-14 10:20:53,500 - RealmsMUD.Server - INFO - Connection closed: ('3.129.187.38', 43358)
-2026-02-14 10:20:53,501 - asyncio - ERROR - Task exception was never retrieved
-future: <Task finished name='Task-111' coro=<MUDServer.handle_connection() done, defined at /Users/michaeltravis/clawd/projects/RealmsMUD/src/server.py:1277> exception=AttributeError("'MUDServer' object has no attribute 'address'")>
-Traceback (most recent call last):
-  File "/Users/michaeltravis/clawd/projects/RealmsMUD/src/server.py", line 1313, in handle_connection
-    logger.info(f"Connection lost for {self.address}: {e}")
-AttributeError: 'MUDServer' object has no attribute 'address'
-2026-02-14 10:22:03,038 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 15 of Early Summer, Year 1000
-2026-02-14 10:22:03,409 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 10:22:55,478 - RealmsMUD.Server - INFO - New connection from ('3.129.187.38', 59702)
-2026-02-14 10:22:55,574 - RealmsMUD.Server - INFO - Connection closed: ('3.129.187.38', 59702)
-2026-02-14 10:27:10,027 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 10:32:15,396 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 10:34:16,767 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 15 of Early Summer, Year 1000
-2026-02-14 10:37:19,170 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 10:42:22,609 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 10:46:25,416 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 15 of Early Summer, Year 1000
-2026-02-14 10:47:26,153 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 10:50:28,939 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 15 of Early Summer, Year 1000
-2026-02-14 10:52:30,875 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 10:57:34,319 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 10:58:34,980 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 16 of Early Summer, Year 1000
-2026-02-14 11:02:37,838 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 11:07:41,506 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 11:10:43,403 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 16 of Early Summer, Year 1000
-2026-02-14 11:12:45,445 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 11:17:51,779 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 11:22:58,122 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 16 of Early Summer, Year 1000
-2026-02-14 11:22:58,556 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 11:28:04,938 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 11:33:11,603 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 11:35:14,323 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 16 of Early Summer, Year 1000
-2026-02-14 11:38:18,549 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 11:39:19,771 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 16 of Early Summer, Year 1000
-2026-02-14 11:43:25,197 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 11:47:30,679 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 17 of Early Summer, Year 1000
-2026-02-14 11:48:32,027 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 11:53:39,015 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 11:58:45,681 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 11:59:46,969 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 17 of Early Summer, Year 1000
-2026-02-14 12:03:52,339 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 12:08:59,340 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 12:12:03,386 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 17 of Early Summer, Year 1000
-2026-02-14 12:14:06,075 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 12:19:12,801 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 12:24:19,536 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 17 of Early Summer, Year 1000
-2026-02-14 12:24:19,909 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 12:28:25,244 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 17 of Early Summer, Year 1000
-2026-02-14 12:29:26,599 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 12:34:33,335 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 12:36:35,924 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 18 of Early Summer, Year 1000
-2026-02-14 12:39:40,261 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 12:44:46,913 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 12:48:52,477 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 18 of Early Summer, Year 1000
-2026-02-14 12:49:53,839 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 12:55:00,976 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 13:00:07,654 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 13:01:08,943 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 18 of Early Summer, Year 1000
-2026-02-14 13:05:14,394 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 13:10:20,064 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 13:13:22,158 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 18 of Early Summer, Year 1000
-2026-02-14 13:15:24,386 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 13:17:26,980 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 18 of Early Summer, Year 1000
-2026-02-14 13:20:31,080 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 13:25:37,811 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 19 of Early Summer, Year 1000
-2026-02-14 13:25:38,184 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 13:30:44,904 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 13:35:51,657 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 13:37:54,245 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 19 of Early Summer, Year 1000
-2026-02-14 13:40:58,591 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 13:46:05,445 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 13:50:10,809 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 19 of Early Summer, Year 1000
-2026-02-14 13:51:12,151 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 13:56:19,206 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 14:01:25,841 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 14:02:27,123 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 19 of Early Summer, Year 1000
-2026-02-14 14:06:32,464 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 19 of Early Summer, Year 1000
-2026-02-14 14:06:32,510 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 14:11:39,431 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 14:14:43,407 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 20 of Early Summer, Year 1000
-2026-02-14 14:16:46,100 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 14:21:52,771 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 14:26:59,423 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 20 of Early Summer, Year 1000
-2026-02-14 14:26:59,832 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 14:32:06,557 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 14:37:13,269 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 14:39:15,862 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 20 of Early Summer, Year 1000
-2026-02-14 14:42:20,185 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 14:47:27,036 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 14:51:32,311 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 20 of Early Summer, Year 1000
-2026-02-14 14:52:33,700 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 14:55:37,705 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 20 of Early Summer, Year 1000
-2026-02-14 14:57:40,793 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 15:02:47,455 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 15:03:48,826 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 21 of Early Summer, Year 1000
-2026-02-14 15:07:54,186 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 15:13:01,107 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 15:16:05,039 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 21 of Early Summer, Year 1000
-2026-02-14 15:18:07,719 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 15:23:14,396 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 15:28:21,095 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 21 of Early Summer, Year 1000
-2026-02-14 15:28:21,472 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 15:33:28,147 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 15:38:34,932 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 15:40:37,639 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 21 of Early Summer, Year 1000
-2026-02-14 15:43:41,852 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 15:44:43,075 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 21 of Early Summer, Year 1000
-2026-02-14 15:48:48,985 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 15:52:54,410 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 22 of Early Summer, Year 1000
-2026-02-14 15:53:17,983 - RealmsMUD.Server - INFO - New connection from ('66.132.153.128', 22222)
-2026-02-14 15:53:18,456 - RealmsMUD.Server - INFO - Connection closed: ('66.132.153.128', 22222)
-2026-02-14 15:53:18,456 - asyncio - ERROR - Task exception was never retrieved
-future: <Task finished name='Task-126' coro=<MUDServer.handle_connection() done, defined at /Users/michaeltravis/clawd/projects/RealmsMUD/src/server.py:1277> exception=AttributeError("'MUDServer' object has no attribute 'address'")>
-Traceback (most recent call last):
-  File "/Users/michaeltravis/clawd/projects/RealmsMUD/src/server.py", line 1313, in handle_connection
-    logger.info(f"Connection lost for {self.address}: {e}")
-AttributeError: 'MUDServer' object has no attribute 'address'
-2026-02-14 15:53:29,102 - RealmsMUD.Server - INFO - New connection from ('66.132.153.128', 45330)
-2026-02-14 15:53:29,187 - RealmsMUD.Server - INFO - Connection closed: ('66.132.153.128', 45330)
-2026-02-14 15:53:29,187 - asyncio - ERROR - Task exception was never retrieved
-future: <Task finished name='Task-129' coro=<MUDServer.handle_connection() done, defined at /Users/michaeltravis/clawd/projects/RealmsMUD/src/server.py:1277> exception=AttributeError("'MUDServer' object has no attribute 'address'")>
-Traceback (most recent call last):
-  File "/Users/michaeltravis/clawd/projects/RealmsMUD/src/server.py", line 1313, in handle_connection
-    logger.info(f"Connection lost for {self.address}: {e}")
-AttributeError: 'MUDServer' object has no attribute 'address'
-2026-02-14 15:53:55,771 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 15:59:02,825 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 16:04:09,471 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 16:05:10,750 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 22 of Early Summer, Year 1000
-2026-02-14 16:09:16,180 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 16:14:23,072 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 16:17:27,004 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 22 of Early Summer, Year 1000
-2026-02-14 16:19:29,787 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 16:24:36,526 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 16:29:43,207 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 22 of Early Summer, Year 1000
-2026-02-14 16:29:43,577 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 16:33:48,817 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 22 of Early Summer, Year 1000
-2026-02-14 16:34:50,170 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 16:39:56,966 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 16:41:59,561 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 23 of Early Summer, Year 1000
-2026-02-14 16:45:04,135 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 16:50:10,826 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 16:54:16,063 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 23 of Early Summer, Year 1000
-2026-02-14 16:55:17,549 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 17:00:24,557 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 17:05:31,216 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 17:06:32,509 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 23 of Early Summer, Year 1000
-2026-02-14 17:10:37,874 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 17:15:44,698 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 17:18:48,617 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 23 of Early Summer, Year 1000
-2026-02-14 17:20:51,299 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 17:22:53,998 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 23 of Early Summer, Year 1000
-2026-02-14 17:25:57,999 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 17:31:04,707 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 24 of Early Summer, Year 1000
-2026-02-14 17:31:05,130 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 17:36:11,766 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 17:41:18,425 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 17:43:21,157 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 24 of Early Summer, Year 1000
-2026-02-14 17:46:25,891 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 17:48:26,377 - RealmsMUD.Server - INFO - New connection from ('20.119.86.71', 44986)
-2026-02-14 17:48:26,470 - RealmsMUD.Server - INFO - Connection closed: ('20.119.86.71', 44986)
-2026-02-14 17:51:32,590 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 17:55:37,957 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 24 of Early Summer, Year 1000
-2026-02-14 17:56:39,309 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 17:57:56,435 - aiohttp.access - INFO - 162.216.149.245 [14/Feb/2026:17:57:56 -0800] "GET /.well-known/security.txt HTTP/1.1" 404 173 "-" "Hello from Palo Alto Networks, find out more about our scans in https://docs-cortex.paloaltonetworks.com/r/1/Cortex-Xpanse/Scanning-activity"
-2026-02-14 18:00:40,386 - aiohttp.access - INFO - 88.214.25.124 [14/Feb/2026:18:00:40 -0800] "UNKNOWN / HTTP/1.0" 400 205 "-" "-"
-2026-02-14 18:01:46,368 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 18:06:52,994 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 18:07:54,276 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 24 of Early Summer, Year 1000
-2026-02-14 18:10:06,672 - RealmsMUD.WebMap - ERROR - Web map client error: not enough values to unpack (expected 3, got 2)
-2026-02-14 18:11:59,663 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 24 of Early Summer, Year 1000
-2026-02-14 18:11:59,709 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 18:17:06,654 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 18:20:10,526 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 25 of Early Summer, Year 1000
-2026-02-14 18:22:13,365 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 18:27:19,993 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 18:32:26,663 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 25 of Early Summer, Year 1000
-2026-02-14 18:32:27,025 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 18:37:33,678 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 18:42:40,430 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 18:44:43,036 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 25 of Early Summer, Year 1000
-2026-02-14 18:47:47,569 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 18:52:54,216 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 18:56:59,447 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 25 of Early Summer, Year 1000
-2026-02-14 18:58:00,986 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 19:01:04,918 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 25 of Early Summer, Year 1000
-2026-02-14 19:03:08,107 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 19:08:14,691 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 19:09:15,993 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 26 of Early Summer, Year 1000
-2026-02-14 19:13:21,396 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 19:18:28,264 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 19:21:32,285 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 26 of Early Summer, Year 1000
-2026-02-14 19:22:52,753 - RealmsMUD.WebMap - ERROR - Web map client error: not enough values to unpack (expected 3, got 1)
-2026-02-14 19:23:34,970 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 19:25:23,853 - RealmsMUD.Server - INFO - New connection from ('127.0.0.1', 53249)
-2026-02-14 19:25:27,734 - RealmsMUD.WebMap - INFO - WebSocket message is None, closing connection for client
-2026-02-14 19:25:28,758 - aiohttp.access - INFO - 100.88.81.109 [14/Feb/2026:19:25:23 -0800] "GET /ws HTTP/1.1" 101 0 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.2 Safari/605.1.15"
-2026-02-14 19:25:28,758 - RealmsMUD.Server - INFO - Connection closed: ('127.0.0.1', 53249)
-2026-02-14 19:28:41,731 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 19:33:48,449 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 26 of Early Summer, Year 1000
-2026-02-14 19:33:48,820 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 19:38:55,480 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 19:44:02,262 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 19:46:05,741 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 26 of Early Summer, Year 1000
-2026-02-14 19:49:09,996 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 19:50:11,225 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 26 of Early Summer, Year 1000
-2026-02-14 19:54:16,719 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 19:58:22,068 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 27 of Early Summer, Year 1000
-2026-02-14 19:59:23,421 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 20:04:30,409 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 20:09:37,078 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 20:10:38,359 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 27 of Early Summer, Year 1000
-2026-02-14 20:13:33,169 - RealmsMUD.WebMap - INFO - WebSocket message is None, closing connection for client
-2026-02-14 20:14:43,795 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 20:19:50,708 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 20:22:54,656 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 27 of Early Summer, Year 1000
-2026-02-14 20:24:57,394 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 20:30:04,073 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 20:35:10,757 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 27 of Early Summer, Year 1000
-2026-02-14 20:35:11,168 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 20:39:16,480 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 27 of Early Summer, Year 1000
-2026-02-14 20:40:17,837 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 20:45:24,654 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 20:47:27,255 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 28 of Early Summer, Year 1000
-2026-02-14 20:50:31,516 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 20:55:38,233 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 20:59:43,459 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 28 of Early Summer, Year 1000
-2026-02-14 21:00:44,890 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 21:05:51,929 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 21:10:58,566 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 21:11:59,915 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 28 of Early Summer, Year 1000
-2026-02-14 21:16:05,246 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 21:21:12,177 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 21:24:16,198 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 28 of Early Summer, Year 1000
-2026-02-14 21:26:18,885 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 21:28:21,562 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 28 of Early Summer, Year 1000
-2026-02-14 21:31:25,564 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 21:36:32,228 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 29 of Early Summer, Year 1000
-2026-02-14 21:36:32,606 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 21:41:39,270 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 21:41:58,786 - aiohttp.access - INFO - 162.216.150.68 [14/Feb/2026:21:41:58 -0800] "GET / HTTP/1.0" 200 6425 "-" "-"
-2026-02-14 21:42:57,635 - aiohttp.access - INFO - 162.216.150.68 [14/Feb/2026:21:42:57 -0800] "UNKNOWN / HTTP/1.0" 400 209 "-" "-"
-2026-02-14 21:46:46,228 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 21:47:52,603 - aiohttp.access - INFO - 162.216.150.68 [14/Feb/2026:21:47:52 -0800] "GET / HTTP/1.1" 200 6425 "-" "Hello from Palo Alto Networks, find out more about our scans in https://docs-cortex.paloaltonetworks.com/r/1/Cortex-Xpanse/Scanning-activity"
-2026-02-14 21:48:48,923 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 29 of Early Summer, Year 1000
-2026-02-14 21:51:53,130 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 21:56:23,067 - aiohttp.access - INFO - 148.153.188.254 [14/Feb/2026:21:56:23 -0800] "UNKNOWN / HTTP/1.0" 400 213 "-" "-"
-2026-02-14 21:56:23,233 - aiohttp.access - INFO - 148.153.188.254 [14/Feb/2026:21:56:23 -0800] "GET / HTTP/1.1" 200 6425 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4 240.111 Safari/537.36"
-2026-02-14 21:56:23,398 - aiohttp.access - INFO - 148.153.188.254 [14/Feb/2026:21:56:23 -0800] "UNKNOWN / HTTP/1.0" 400 213 "-" "-"
-2026-02-14 21:56:23,579 - aiohttp.access - INFO - 148.153.188.254 [14/Feb/2026:21:56:23 -0800] "UNKNOWN / HTTP/1.0" 400 213 "-" "-"
-2026-02-14 21:56:23,742 - aiohttp.access - INFO - 148.153.188.254 [14/Feb/2026:21:56:23 -0800] "UNKNOWN / HTTP/1.0" 400 213 "-" "-"
-2026-02-14 21:56:23,903 - aiohttp.access - INFO - 148.153.188.254 [14/Feb/2026:21:56:23 -0800] "UNKNOWN / HTTP/1.0" 400 213 "-" "-"
-2026-02-14 21:56:24,085 - aiohttp.access - INFO - 148.153.188.254 [14/Feb/2026:21:56:24 -0800] "UNKNOWN / HTTP/1.0" 400 213 "-" "-"
-2026-02-14 21:56:24,240 - aiohttp.access - INFO - 148.153.188.254 [14/Feb/2026:21:56:24 -0800] "UNKNOWN / HTTP/1.0" 400 213 "-" "-"
-2026-02-14 21:56:24,415 - aiohttp.access - INFO - 148.153.188.254 [14/Feb/2026:21:56:24 -0800] "UNKNOWN / HTTP/1.0" 400 213 "-" "-"
-2026-02-14 21:56:24,598 - aiohttp.access - INFO - 148.153.188.254 [14/Feb/2026:21:56:24 -0800] "UNKNOWN / HTTP/1.0" 400 213 "-" "-"
-2026-02-14 21:56:24,755 - aiohttp.access - INFO - 148.153.188.254 [14/Feb/2026:21:56:24 -0800] "UNKNOWN / HTTP/1.0" 400 213 "-" "-"
-2026-02-14 21:56:24,912 - aiohttp.access - INFO - 148.153.188.254 [14/Feb/2026:21:56:24 -0800] "UNKNOWN / HTTP/1.0" 400 213 "-" "-"
-2026-02-14 21:56:59,765 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 22:01:05,178 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 29 of Early Summer, Year 1000
-2026-02-14 22:02:06,541 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 22:07:13,641 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 22:12:20,359 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 22:13:21,652 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 29 of Early Summer, Year 1000
-2026-02-14 22:17:27,033 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 29 of Early Summer, Year 1000
-2026-02-14 22:17:27,078 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-14 22:22:33,947 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-15 19:50:39,275 - RealmsMUD - INFO - ============================================================
+2026-02-15 19:50:39,276 - RealmsMUD - INFO - RealmsMUD - Fantasy Multi-User Dungeon
+2026-02-15 19:50:39,276 - RealmsMUD - INFO - ============================================================
+2026-02-15 19:50:39,276 - RealmsMUD - INFO - Initializing game systems...
+2026-02-15 19:50:39,276 - time_system - INFO - Game time initialized: 12:00 PM, Day 1 of Early Summer, Year 1000
+2026-02-15 19:50:39,276 - RealmsMUD.World - INFO - Loading world...
+2026-02-15 19:50:39,277 - RealmsMUD.World - INFO - Loaded zone 50: The Great Eastern Desert (74 rooms)
+2026-02-15 19:50:39,280 - RealmsMUD.World - INFO - Loaded zone 210: Tunnel of Sticks (400 rooms)
+2026-02-15 19:50:39,280 - RealmsMUD.World - INFO - Loaded zone 31: Southern part of Midgaard (54 rooms)
+2026-02-15 19:50:39,281 - RealmsMUD.World - INFO - Loaded zone 70: The Sewer, First Level (67 rooms)
+2026-02-15 19:50:39,281 - RealmsMUD.World - INFO - Loaded zone 71: The Second Sewer (26 rooms)
+2026-02-15 19:50:39,282 - RealmsMUD.World - INFO - Loaded zone 30: Northern Midgaard Main City (75 rooms)
+2026-02-15 19:50:39,282 - RealmsMUD.World - INFO - Loaded zone 180: The Great Northern Forest (26 rooms)
+2026-02-15 19:50:39,283 - RealmsMUD.World - INFO - Loaded zone 250: The Blood Pit Arena (7 rooms)
+2026-02-15 19:50:39,283 - RealmsMUD.World - INFO - Loaded zone 51: Drow City (51 rooms)
+2026-02-15 19:50:39,284 - RealmsMUD.World - INFO - Loaded zone 220: Castle Apocalypse (77 rooms)
+2026-02-15 19:50:39,285 - RealmsMUD.World - INFO - Loaded zone 60: Haon-Dor, Light Forest (64 rooms)
+2026-02-15 19:50:39,286 - RealmsMUD.World - INFO - Loaded zone 40: Mines of Moria (103 rooms)
+2026-02-15 19:50:39,286 - RealmsMUD.World - INFO - Loaded zone 200: Forest of Shadows (10 rooms)
+2026-02-15 19:50:39,286 - RealmsMUD.World - INFO - Loaded zone 186: Newbie Zone (41 rooms)
+2026-02-15 19:50:39,286 - RealmsMUD.World - INFO - Loaded zone 240: The Sunken Temple of Nereus (25 rooms)
+2026-02-15 19:50:39,287 - RealmsMUD.World - INFO - Loaded zone 190: The Frostspire (27 rooms)
+2026-02-15 19:50:39,287 - RealmsMUD.World - INFO - Loaded zone 0: Limbo - Internal (3 rooms)
+2026-02-15 19:50:39,287 - RealmsMUD.World - INFO - Loaded zone 61: Haon-Dor, Dark Forest (48 rooms)
+2026-02-15 19:50:39,288 - RealmsMUD.World - INFO - Loaded zone 36: The Chessboard of Midgaard (67 rooms)
+2026-02-15 19:50:39,288 - RealmsMUD.World - INFO - Loaded zone 260: Midgaard Housing District (22 rooms)
+2026-02-15 19:50:39,289 - RealmsMUD.World - INFO - Loaded zone 62: The Orc Enclave (68 rooms)
+2026-02-15 19:50:39,289 - RealmsMUD.World - INFO - Loaded zone 35: Miden'Nir (45 rooms)
+2026-02-15 19:50:39,290 - RealmsMUD.World - INFO - Loaded zone 150: King Welmar's Castle (75 rooms)
+2026-02-15 19:50:39,290 - RealmsMUD.World - INFO - Loaded zone 15: The Straight Path (41 rooms)
+2026-02-15 19:50:39,293 - RealmsMUD.World - INFO - Loaded zone 54: New Thalos (285 rooms)
+2026-02-15 19:50:39,293 - RealmsMUD.World - INFO - Loaded zone 238: The Haunted Monastery (25 rooms)
+2026-02-15 19:50:39,294 - RealmsMUD.World - INFO - Loaded zone 110: Silversong Elven Village (15 rooms)
+2026-02-15 19:50:39,294 - RealmsMUD.World - INFO - Loaded zone 80: The Dragon's Domain (5 rooms)
+2026-02-15 19:50:39,294 - RealmsMUD.World - INFO - Loaded zone 79: Redferne's Residence (20 rooms)
+2026-02-15 19:50:39,294 - RealmsMUD.World - INFO - Loaded zone 235: The Goblin Warrens (20 rooms)
+2026-02-15 19:50:39,295 - RealmsMUD.World - INFO - Loaded zone 63: Arachnos (52 rooms)
+2026-02-15 19:50:39,295 - RealmsMUD.World - INFO - Loaded zone 130: The Sunken Ruins of Atal'narath (18 rooms)
+2026-02-15 19:50:39,295 - RealmsMUD.World - INFO - Loaded zone 245: Shadowspire Citadel (30 rooms)
+2026-02-15 19:50:39,296 - RealmsMUD.World - INFO - Loaded zone 140: The Necropolis of Eternal Night (31 rooms)
+2026-02-15 19:50:39,297 - RealmsMUD.World - INFO - Loaded zone 52: The City Of Thalos (51 rooms)
+2026-02-15 19:50:39,298 - RealmsMUD.World - INFO - Loaded zone 25: The High Tower Of Magic (183 rooms)
+2026-02-15 19:50:39,299 - RealmsMUD.World - INFO - Loaded zone 160: The Plane of Eternal Chaos (26 rooms)
+2026-02-15 19:50:39,299 - RealmsMUD.World - INFO - Loaded zone 72: The Sewer Maze (87 rooms)
+2026-02-15 19:50:39,300 - RealmsMUD.World - INFO - Loaded zone 64: Rand's Tower (46 rooms)
+2026-02-15 19:50:39,300 - RealmsMUD.World - INFO - Loaded zone 33: The Three Of Swords (76 rooms)
+2026-02-15 19:50:39,301 - RealmsMUD.World - INFO - Loaded zone 9: River Island Of Minos (24 rooms)
+2026-02-15 19:50:39,301 - RealmsMUD.World - INFO - Loaded zone 32: Midgaard Stables (4 rooms)
+2026-02-15 19:50:39,301 - RealmsMUD.World - INFO - Loaded zone 65: The Dwarven Kingdom (51 rooms)
+2026-02-15 19:50:39,302 - RealmsMUD.World - INFO - Loaded zone 120: Rome (66 rooms)
+2026-02-15 19:50:39,302 - RealmsMUD.World - INFO - Loaded zone 73: The Mindflayer's Lair (3 rooms)
+2026-02-15 19:50:39,302 - RealmsMUD.World - INFO - Loaded zone 248: The Clockwork Foundry (30 rooms)
+2026-02-15 19:50:39,303 - RealmsMUD.World - INFO - Loaded zone 53: The Great Pyramid (61 rooms)
+2026-02-15 19:50:39,303 - RealmsMUD.World - INFO - Loaded zone 12: God Simplex (7 rooms)
+2026-02-15 19:50:39,304 - RealmsMUD.World - INFO - Loaded zone 100: The Dwarven Mines of Khaz-Durum (25 rooms)
+2026-02-15 19:50:39,304 - RealmsMUD.World - INFO - Loaded zone 90: The Haunted Swamp (20 rooms)
+2026-02-15 19:50:39,321 - RealmsMUD.Shops - INFO - Created shop for waiter (vnum 3043) with 1 items
+2026-02-15 19:50:39,321 - RealmsMUD.Shops - INFO - Created shop for bartender (vnum 3040) with 1 items
+2026-02-15 19:50:39,321 - RealmsMUD.Shops - INFO - Created shop for grocer (vnum 3002) with 7 items
+2026-02-15 19:50:39,321 - RealmsMUD.Shops - INFO - Created shop for weaponsmith (vnum 3003) with 1 items
+2026-02-15 19:50:39,322 - RealmsMUD.Shops - INFO - Created shop for waiter (vnum 3042) with 1 items
+2026-02-15 19:50:39,322 - RealmsMUD.Shops - INFO - Created shop for armourer (vnum 3004) with 1 items
+2026-02-15 19:50:39,322 - RealmsMUD.Shops - INFO - Created shop for waiter (vnum 3045) with 1 items
+2026-02-15 19:50:39,323 - RealmsMUD.Shops - INFO - Created shop for waiter (vnum 3044) with 1 items
+2026-02-15 19:50:39,323 - RealmsMUD.Shops - INFO - Created shop for wizard (vnum 3000) with 4 items
+2026-02-15 19:50:39,323 - RealmsMUD.Shops - INFO - Created shop for filthy (vnum 3046) with 1 items
+2026-02-15 19:50:39,324 - RealmsMUD.Shops - INFO - Created shop for captain (vnum 3006) with 1 items
+2026-02-15 19:50:39,324 - RealmsMUD.Shops - INFO - Created shop for sailor (vnum 3007) with 0 items
+2026-02-15 19:50:39,324 - RealmsMUD.Shops - INFO - Created shop for wally (vnum 3009) with 1 items
+2026-02-15 19:50:39,344 - RealmsMUD.Shops - INFO - Created shop for carpenter (vnum 26001) with 5 items
+2026-02-15 19:50:39,347 - RealmsMUD.Shops - INFO - Created shop for chef (vnum 15022) with 1 items
+2026-02-15 19:50:39,348 - RealmsMUD.Shops - INFO - Created shop for astrologer (vnum 15019) with 1 items
+2026-02-15 19:50:39,350 - RealmsMUD.Shops - INFO - Created shop for bartender (vnum 5405) with 1 items
+2026-02-15 19:50:39,351 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-15 19:50:39,352 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-15 19:50:39,353 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-15 19:50:39,353 - RealmsMUD.Shops - INFO - Created shop for cassandra (vnum 5418) with 0 items
+2026-02-15 19:50:39,354 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-15 19:50:39,354 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-15 19:50:39,355 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-15 19:50:39,356 - RealmsMUD.Shops - INFO - Created shop for ahkeem (vnum 5413) with 1 items
+2026-02-15 19:50:39,356 - RealmsMUD.Shops - INFO - Created shop for vera (vnum 5414) with 1 items
+2026-02-15 19:50:39,356 - RealmsMUD.Shops - INFO - Created shop for butch (vnum 5415) with 1 items
+2026-02-15 19:50:39,357 - RealmsMUD.Shops - INFO - Created shop for elriva (vnum 5479) with 1 items
+2026-02-15 19:50:39,357 - RealmsMUD.Shops - INFO - Created shop for braheem (vnum 5480) with 1 items
+2026-02-15 19:50:39,357 - RealmsMUD.Shops - INFO - Created shop for shopkeeper (vnum 5411) with 1 items
+2026-02-15 19:50:39,357 - RealmsMUD.Shops - INFO - Created shop for abdul (vnum 5416) with 1 items
+2026-02-15 19:50:39,357 - RealmsMUD.Shops - INFO - Created shop for baker (vnum 5410) with 1 items
+2026-02-15 19:50:39,357 - RealmsMUD.Shops - INFO - Created shop for igor (vnum 5417) with 1 items
+2026-02-15 19:50:39,357 - RealmsMUD.Shops - INFO - Created shop for stitch (vnum 5484) with 1 items
+2026-02-15 19:50:39,357 - RealmsMUD.Shops - INFO - Created shop for patch (vnum 5483) with 1 items
+2026-02-15 19:50:39,358 - RealmsMUD.Shops - INFO - Created shop for shipwright (vnum 5465) with 1 items
+2026-02-15 19:50:39,358 - RealmsMUD.Shops - INFO - Created shop for blacksmith (vnum 5466) with 1 items
+2026-02-15 19:50:39,379 - RealmsMUD.Shops - INFO - Created shop for strick (vnum 2505) with 1 items
+2026-02-15 19:50:39,380 - RealmsMUD.Shops - INFO - Created shop for tatorious (vnum 2506) with 1 items
+2026-02-15 19:50:39,404 - RealmsMUD.Shops - INFO - Created shop for storekeeper (vnum 3301) with 1 items
+2026-02-15 19:50:39,404 - RealmsMUD.Shops - INFO - Created shop for cowgirl (vnum 3302) with 1 items
+2026-02-15 19:50:39,404 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-02-15 19:50:39,404 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-02-15 19:50:39,404 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-02-15 19:50:39,405 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-02-15 19:50:39,409 - RealmsMUD.Shops - INFO - Created shop for storekeeper (vnum 6503) with 1 items
+2026-02-15 19:50:39,410 - RealmsMUD.Shops - INFO - Created shop for baker (vnum 6504) with 1 items
+2026-02-15 19:50:39,412 - RealmsMUD.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
+2026-02-15 19:50:39,412 - RealmsMUD.Shops - INFO - Created shop for shopkeeper (vnum 12011) with 1 items
+2026-02-15 19:50:39,413 - RealmsMUD.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
+2026-02-15 19:50:39,415 - RealmsMUD.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
+2026-02-15 19:50:39,415 - RealmsMUD.Shops - INFO - Created shop for peddler (vnum 12012) with 1 items
+2026-02-15 19:50:39,417 - RealmsMUD.Shops - INFO - Created shop for shopkeeper (vnum 12034) with 1 items
+2026-02-15 19:50:39,418 - RealmsMUD.Shops - INFO - Created shop for baker (vnum 12036) with 2 items
+2026-02-15 19:50:39,418 - RealmsMUD.Shops - INFO - Created shop for grocer (vnum 12037) with 2 items
+2026-02-15 19:50:39,435 - RealmsMUD.Factions - INFO - Spawned faction NPC: Captain Aldren in room 3005
+2026-02-15 19:50:39,435 - RealmsMUD.Factions - INFO - Spawned faction NPC: Whisper in room 3044
+2026-02-15 19:50:39,435 - RealmsMUD.Factions - INFO - Spawned faction NPC: Archmage Thessaly in room 3017
+2026-02-15 19:50:39,435 - RealmsMUD.Factions - INFO - Spawned faction NPC: Elder Oakhart in room 3600
+2026-02-15 19:50:39,435 - RealmsMUD.Factions - INFO - Spawned faction NPC: the Shrouded Figure in room 3100
+2026-02-15 19:50:39,435 - RealmsMUD.Factions - INFO - Spawned faction NPC: Guildmaster Brennan in room 3014
+2026-02-15 19:50:39,435 - RealmsMUD.Factions - INFO - Spawned 6 faction NPCs
+2026-02-15 19:50:39,436 - RealmsMUD.World - INFO - World loaded: 50 zones, 2753 rooms
+2026-02-15 19:50:39,436 - RealmsMUD.WebMap - INFO - Web map server listening on 0.0.0.0:4001
+2026-02-15 19:50:39,517 - web_client - INFO - Web client listening on http://0.0.0.0:4003
+2026-02-15 19:50:39,517 - RealmsMUD - INFO - Initialization complete!
+2026-02-15 19:50:39,517 - RealmsMUD - INFO - Starting server on port 4000...
+2026-02-15 19:50:39,517 - RealmsMUD.Server - INFO - Server listening on 0.0.0.0:4000
+2026-02-15 19:55:45,839 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-15 20:00:52,200 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-15 20:02:54,703 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 1 of Early Summer, Year 1000
+2026-02-15 20:05:58,522 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-15 20:05:58,524 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-15 20:05:58,525 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-15 20:05:58,528 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-15 20:05:58,528 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-15 20:05:58,530 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-15 20:05:58,568 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-15 20:06:59,672 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 1 of Early Summer, Year 1000

@@ -1,0 +1,704 @@
+{
+  "number": 235,
+  "name": "The Goblin Warrens",
+  "lifespan": 25,
+  "rooms": {
+    "23500": {
+      "vnum": 23500,
+      "name": "Entrance to the Goblin Warrens",
+      "description": "A jagged crack in the hillside opens into darkness below. The stench of\nrot and smoke wafts up from the depths. Crude goblin totems fashioned\nfrom bones and feathers flank the entrance, warning trespassers away.\nScratched into the rock are tally marks — hundreds of them.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "north": {
+          "to_room": 6100,
+          "description": "A forest trail leads back to the wilderness."
+        },
+        "down": {
+          "to_room": 23501,
+          "description": "Rough-hewn steps descend into the warrens."
+        }
+      }
+    },
+    "23501": {
+      "vnum": 23501,
+      "name": "A Twisting Tunnel",
+      "description": "The tunnel winds erratically through packed earth and stone, barely tall\nenough for a human to stand upright. Goblin graffiti covers the walls —\ncrudely drawn stick figures in violent poses. Small alcoves have been\ncarved into the walls, holding guttering tallow candles.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "up": {
+          "to_room": 23500,
+          "description": "Steps lead up to the entrance."
+        },
+        "south": {
+          "to_room": 23502,
+          "description": "The tunnel continues deeper."
+        },
+        "east": {
+          "to_room": 23505,
+          "description": "A narrow passage branches east."
+        }
+      }
+    },
+    "23502": {
+      "vnum": 23502,
+      "name": "A Trapped Corridor",
+      "description": "Suspicious holes line the walls at ankle and chest height. The floor is\nuneven, with certain flagstones sitting slightly higher than others. A\nfew rusted crossbow bolts are embedded in the far wall, evidence that\nthe traps here are very real. Goblin laughter echoes faintly ahead.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "north": {
+          "to_room": 23501,
+          "description": "The tunnel leads back north."
+        },
+        "south": {
+          "to_room": 23503,
+          "description": "The corridor continues past the traps."
+        }
+      }
+    },
+    "23503": {
+      "vnum": 23503,
+      "name": "A Guard Post",
+      "description": "A crude barricade of overturned carts and sharpened stakes blocks most\nof the tunnel. Behind it, a small fire pit smolders, and the remains of\na recent meal — mostly bones — are scattered about. This is clearly a\nforward guard position for the goblin tribe.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "north": {
+          "to_room": 23502,
+          "description": "The trapped corridor lies to the north."
+        },
+        "west": {
+          "to_room": 23504,
+          "description": "A wider passage opens to the west."
+        },
+        "south": {
+          "to_room": 23507,
+          "description": "A descending tunnel leads deeper."
+        }
+      }
+    },
+    "23504": {
+      "vnum": 23504,
+      "name": "Goblin Barracks",
+      "description": "Filthy straw pallets line the walls, each barely more than a pile of\nrags. Crude weapons — chipped swords, bent spears, clubs studded with\nnails — are stacked in disorganized heaps. The air is thick with the\nstench of unwashed goblin. Dozens sleep here, though the room could\nhold twice as many.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "east": {
+          "to_room": 23503,
+          "description": "The guard post lies to the east."
+        }
+      }
+    },
+    "23505": {
+      "vnum": 23505,
+      "name": "A Narrow Crevice",
+      "description": "You squeeze through a crack barely wide enough for a human. The walls\nare slick with moisture and some luminescent fungus provides an eerie\nblue-green glow. Spider webs stretch across the upper reaches, thick\nas rope and sticky to the touch.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors", "tunnel"],
+      "exits": {
+        "west": {
+          "to_room": 23501,
+          "description": "The main tunnel lies to the west."
+        },
+        "east": {
+          "to_room": 23506,
+          "description": "The crevice widens into a cavern."
+        }
+      }
+    },
+    "23506": {
+      "vnum": 23506,
+      "name": "Spider Nest Cavern",
+      "description": "Thick webs blanket every surface of this domed cavern. Cocooned shapes\nhang from the ceiling — some goblin-sized, others disturbingly larger.\nThe webs vibrate with unseen movement. Egg sacs the size of melons\ncluster in the corners, some already split open. Bones crunch underfoot.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "west": {
+          "to_room": 23505,
+          "description": "A narrow crevice leads west."
+        }
+      }
+    },
+    "23507": {
+      "vnum": 23507,
+      "name": "A Descending Passage",
+      "description": "The tunnel slopes sharply downward, the walls growing damper as you\ndescend. Crude steps have been hacked into the stone at irregular\nintervals. The sound of rushing water grows louder with each step.\nMoss and pale fungus cling to every surface.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "north": {
+          "to_room": 23503,
+          "description": "The passage ascends to the guard post."
+        },
+        "south": {
+          "to_room": 23508,
+          "description": "The tunnel opens into a larger space."
+        },
+        "east": {
+          "to_room": 23512,
+          "description": "A side passage leads east."
+        }
+      }
+    },
+    "23508": {
+      "vnum": 23508,
+      "name": "The Mushroom Farm",
+      "description": "A vast cavern has been converted into an underground garden. Rows upon\nrows of mushrooms grow in carefully tended beds of composted refuse.\nSome caps glow with phosphorescent light, illuminating the space in\nshifting colors. Goblin farmers tend the crops with surprising care,\nthe one task they seem to take seriously.",
+      "sector_type": "inside",
+      "flags": ["indoors"],
+      "exits": {
+        "north": {
+          "to_room": 23507,
+          "description": "The passage ascends northward."
+        },
+        "south": {
+          "to_room": 23509,
+          "description": "More mushroom beds stretch to the south."
+        },
+        "west": {
+          "to_room": 23510,
+          "description": "A tunnel leads toward the sound of water."
+        }
+      }
+    },
+    "23509": {
+      "vnum": 23509,
+      "name": "Deep Mushroom Groves",
+      "description": "The mushrooms here grow enormous — some taller than a goblin, their\ncaps broad enough to shelter under. Bioluminescent spores drift through\nthe air like lazy fireflies. The air is thick and humid, almost tropical.\nSomething about the spores makes your head swim pleasantly.",
+      "sector_type": "inside",
+      "flags": ["indoors"],
+      "exits": {
+        "north": {
+          "to_room": 23508,
+          "description": "The mushroom farm continues north."
+        },
+        "east": {
+          "to_room": 23514,
+          "description": "A passage leads toward the goblin market."
+        }
+      }
+    },
+    "23510": {
+      "vnum": 23510,
+      "name": "Underground River Bank",
+      "description": "A swift underground river cuts through the stone here, its dark waters\nrushing past with surprising force. A crude rope bridge spans the gap,\nswaying dangerously. The goblins have built a small dock of lashed-\ntogether timbers on this side, where a few leaky coracles are tied up.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "east": {
+          "to_room": 23508,
+          "description": "The mushroom farm lies to the east."
+        },
+        "west": {
+          "to_room": 23511,
+          "description": "The rope bridge crosses the river."
+        }
+      }
+    },
+    "23511": {
+      "vnum": 23511,
+      "name": "Far Side of the River",
+      "description": "Having crossed the treacherous rope bridge, you stand on a narrow ledge\non the river's far side. The water roars below, black and cold. A tunnel\nhas been carved into the rock face here, leading deeper into territory\nthe common goblins seem to avoid. Large, heavy footprints mark the mud.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "east": {
+          "to_room": 23510,
+          "description": "The rope bridge leads back across the river."
+        },
+        "west": {
+          "to_room": 23515,
+          "description": "Heavy footprints lead into a large tunnel."
+        }
+      }
+    },
+    "23512": {
+      "vnum": 23512,
+      "name": "Shaman's Antechamber",
+      "description": "Strange symbols painted in blood and mushroom dye cover every surface.\nSmall animal skulls hang from the ceiling on sinew threads, clacking\ntogether in an unfelt breeze. The air smells of incense and something\nacrid. Fetishes made of bone and feather ward the entrance to the south.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "west": {
+          "to_room": 23507,
+          "description": "The main passage lies to the west."
+        },
+        "south": {
+          "to_room": 23513,
+          "description": "The shaman's sanctum lies beyond the fetishes."
+        }
+      }
+    },
+    "23513": {
+      "vnum": 23513,
+      "name": "The Shaman's Sanctum",
+      "description": "A large fire pit dominates the center of this circular chamber, its\nflames burning an unnatural green. Shelves carved into the walls hold\njars of preserved organs, dried herbs, and things best left unidentified.\nA throne of stacked skulls sits against the far wall, and the air\ncrackles with crude but potent magical energy.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "north": {
+          "to_room": 23512,
+          "description": "The antechamber lies to the north."
+        }
+      }
+    },
+    "23514": {
+      "vnum": 23514,
+      "name": "Goblin Market",
+      "description": "A chaotic bazaar fills this wide cavern. Goblins hawk stolen goods from\nramshackle stalls — dented armor, chipped weapons, moldy food, and the\noccasional genuinely valuable item pilfered from unlucky travelers.\nArguments and fistfights break out constantly over prices and territory.",
+      "sector_type": "inside",
+      "flags": ["indoors"],
+      "exits": {
+        "west": {
+          "to_room": 23509,
+          "description": "The mushroom groves lie to the west."
+        },
+        "north": {
+          "to_room": 23516,
+          "description": "A wide tunnel leads toward the throne room."
+        }
+      }
+    },
+    "23515": {
+      "vnum": 23515,
+      "name": "Cave Troll Den",
+      "description": "The stench hits you before you see anything — a wall of rotting meat\nand unwashed troll. This large cavern serves as home to the warrens'\ncave trolls, kept as enforcers by the goblin king. Enormous bones are\nscattered about, cracked open for marrow. The trolls eye you with\ndim but hungry intelligence.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "east": {
+          "to_room": 23511,
+          "description": "The tunnel leads back toward the river."
+        },
+        "north": {
+          "to_room": 23517,
+          "description": "A passage leads toward the throne room."
+        }
+      }
+    },
+    "23516": {
+      "vnum": 23516,
+      "name": "Approach to the Throne",
+      "description": "The tunnel widens dramatically here, its walls reinforced with timber\nand crude masonry. Goblin banners — scraps of cloth daubed with tribal\nsymbols — hang from iron spikes. Two massive braziers burn on either\nside of a pair of heavy wooden doors to the north, flanked by the\nking's elite guard.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "south": {
+          "to_room": 23514,
+          "description": "The goblin market lies to the south."
+        },
+        "north": {
+          "to_room": 23518,
+          "description": "Heavy doors lead to the throne room."
+        },
+        "west": {
+          "to_room": 23517,
+          "description": "A passage leads to the troll pens."
+        }
+      }
+    },
+    "23517": {
+      "vnum": 23517,
+      "name": "Behind the Throne",
+      "description": "A cramped passage connects the troll den to the back of the throne room.\nThis is the king's escape route — and his way of unleashing trolls on\nenemies from behind. The walls are scratched with claw marks, and the\nfloor is worn smooth by heavy troll feet.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "south": {
+          "to_room": 23515,
+          "description": "The cave troll den lies to the south."
+        },
+        "east": {
+          "to_room": 23516,
+          "description": "The approach to the throne lies east."
+        },
+        "north": {
+          "to_room": 23518,
+          "description": "A hidden entrance to the throne room."
+        }
+      }
+    },
+    "23518": {
+      "vnum": 23518,
+      "name": "The Goblin Throne Room",
+      "description": "A surprisingly grand chamber opens before you, its vaulted ceiling\nsupported by natural stone pillars. At the far end, atop a dais built\nfrom plundered stonework, sits a massive throne cobbled together from\nweapons, shields, and bones. Torches line the walls, casting flickering\nlight over piles of tribute — coins, gems, and stolen goods heaped\ncarelessly around the throne. This is the seat of power for the entire\nwarren.",
+      "sector_type": "inside",
+      "flags": ["indoors"],
+      "exits": {
+        "south": {
+          "to_room": 23516,
+          "description": "The approach tunnel leads south."
+        },
+        "east": {
+          "to_room": 23519,
+          "description": "A passage leads to the king's treasury."
+        }
+      }
+    },
+    "23519": {
+      "vnum": 23519,
+      "name": "The King's Treasury",
+      "description": "Behind a heavy iron door lies the goblin king's personal hoard. Chests\nof stolen coins, racks of pilfered weapons, bolts of cloth, and crates\nof provisions fill the room. A large iron-bound chest sits in the center,\nsecured with three heavy locks. This is the accumulated plunder of\nyears of raiding surface settlements.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "west": {
+          "to_room": 23518,
+          "description": "The throne room lies to the west."
+        }
+      }
+    }
+  },
+  "mobs": {
+    "23500": {
+      "vnum": 23500,
+      "name": "goblin scout",
+      "short_desc": "a goblin scout",
+      "long_desc": "A wiry goblin crouches here, watching the tunnels with beady eyes.",
+      "description": "This small, green-skinned creature is lean and quick, with oversized ears that twitch at every sound. It carries a short bow and a quiver of crude arrows, and its eyes dart about constantly, alert for intruders.",
+      "level": 15,
+      "alignment": -500,
+      "hp_dice": "5d8+100",
+      "damage_dice": "2d6+3",
+      "gold": 45,
+      "exp": 850,
+      "armor_class": 6,
+      "flags": ["stay_zone", "wimpy", "helper"],
+      "room": 23501
+    },
+    "23501": {
+      "vnum": 23501,
+      "name": "goblin scout",
+      "short_desc": "a goblin scout",
+      "long_desc": "A goblin scout lurks in the shadows, arrow nocked.",
+      "description": "Another of the warrens' many sentries, this goblin wears dark leather and keeps to the shadows. Its bow is strung and ready.",
+      "level": 15,
+      "alignment": -500,
+      "hp_dice": "5d8+100",
+      "damage_dice": "2d6+3",
+      "gold": 40,
+      "exp": 850,
+      "armor_class": 6,
+      "flags": ["stay_zone", "wimpy", "helper"],
+      "room": 23502
+    },
+    "23502": {
+      "vnum": 23502,
+      "name": "goblin guard",
+      "short_desc": "a goblin guard",
+      "long_desc": "A goblin guard stands behind the barricade, spear in hand.",
+      "description": "Larger than the scouts, this goblin wears a crude iron helmet and carries a spear with a jagged tip. It stands its ground with unusual discipline for its kind.",
+      "level": 17,
+      "alignment": -500,
+      "hp_dice": "6d8+150",
+      "damage_dice": "2d8+4",
+      "gold": 60,
+      "exp": 1200,
+      "armor_class": 4,
+      "flags": ["stay_zone", "helper", "sentinel"],
+      "room": 23503
+    },
+    "23503": {
+      "vnum": 23503,
+      "name": "goblin guard",
+      "short_desc": "a goblin guard",
+      "long_desc": "A goblin guard patrols the barracks entrance.",
+      "description": "This guard looks bored but alert, occasionally prodding sleeping goblins with the butt of its spear.",
+      "level": 17,
+      "alignment": -500,
+      "hp_dice": "6d8+150",
+      "damage_dice": "2d8+4",
+      "gold": 55,
+      "exp": 1200,
+      "armor_class": 4,
+      "flags": ["stay_zone", "helper", "sentinel"],
+      "room": 23504
+    },
+    "23504": {
+      "vnum": 23504,
+      "name": "cave spider",
+      "short_desc": "a massive cave spider",
+      "long_desc": "A massive cave spider crouches among the webs, its many eyes gleaming.",
+      "description": "This spider is the size of a large dog, its bloated body covered in coarse black hair. Venom drips from fangs as long as daggers. It moves with terrifying speed among its webs.",
+      "level": 18,
+      "alignment": -300,
+      "hp_dice": "7d8+120",
+      "damage_dice": "2d8+5",
+      "gold": 0,
+      "exp": 1400,
+      "armor_class": 3,
+      "flags": ["stay_zone", "aggressive", "sentinel"],
+      "room": 23506
+    },
+    "23505": {
+      "vnum": 23505,
+      "name": "cave spider",
+      "short_desc": "a venomous cave spider",
+      "long_desc": "A venomous spider descends from the ceiling on a silk thread.",
+      "description": "Slightly smaller than its nest-mate but more aggressive, this spider's abdomen pulses with venom sacs visible through translucent chitin.",
+      "level": 16,
+      "alignment": -300,
+      "hp_dice": "6d8+80",
+      "damage_dice": "2d6+4",
+      "gold": 0,
+      "exp": 1100,
+      "armor_class": 4,
+      "flags": ["stay_zone", "aggressive", "sentinel"],
+      "room": 23506
+    },
+    "23506": {
+      "vnum": 23506,
+      "name": "goblin farmer",
+      "short_desc": "a goblin mushroom farmer",
+      "long_desc": "A goblin tends the mushroom beds with a small trowel.",
+      "description": "This goblin is plumper than most, with soil-stained hands and a surprisingly gentle demeanor. It hums tunelessly while working the fungal gardens.",
+      "level": 12,
+      "alignment": -300,
+      "hp_dice": "4d8+60",
+      "damage_dice": "1d6+2",
+      "gold": 20,
+      "exp": 500,
+      "armor_class": 8,
+      "flags": ["stay_zone", "wimpy", "helper"],
+      "room": 23508
+    },
+    "23507": {
+      "vnum": 23507,
+      "name": "goblin farmer",
+      "short_desc": "a goblin mushroom farmer",
+      "long_desc": "A goblin farmer harvests glowing mushrooms into a basket.",
+      "description": "This fungus-tender carries a woven basket overflowing with luminescent mushroom caps. It seems more interested in its work than in fighting.",
+      "level": 12,
+      "alignment": -300,
+      "hp_dice": "4d8+60",
+      "damage_dice": "1d6+2",
+      "gold": 15,
+      "exp": 500,
+      "armor_class": 8,
+      "flags": ["stay_zone", "wimpy", "helper"],
+      "room": 23509
+    },
+    "23508": {
+      "vnum": 23508,
+      "name": "goblin shaman",
+      "short_desc": "a goblin shaman",
+      "long_desc": "A goblin shaman dances around the green fire, chanting.",
+      "description": "Taller than most goblins and draped in a cloak of bat wings, this shaman wields crude but genuine magical power. Its eyes glow faintly green, and sparks crackle between its gnarled fingers. Bone fetishes rattle at its belt.",
+      "level": 22,
+      "alignment": -700,
+      "hp_dice": "8d8+250",
+      "damage_dice": "3d6+6",
+      "gold": 200,
+      "exp": 3500,
+      "armor_class": 2,
+      "flags": ["stay_zone", "helper", "sentinel"],
+      "room": 23513,
+      "equipment": {
+        "hold": 23502
+      }
+    },
+    "23509": {
+      "vnum": 23509,
+      "name": "goblin berserker",
+      "short_desc": "a goblin berserker",
+      "long_desc": "A scarred goblin berserker paces restlessly, axes in both hands.",
+      "description": "This goblin is covered in ritual scars and war paint. Larger and more muscular than its kin, it fights with reckless fury, dual-wielding crude hand axes. Foam flecks its lips.",
+      "level": 20,
+      "alignment": -600,
+      "hp_dice": "7d8+200",
+      "damage_dice": "3d6+5",
+      "gold": 80,
+      "exp": 2800,
+      "armor_class": 3,
+      "flags": ["stay_zone", "aggressive", "helper"],
+      "room": 23516
+    },
+    "23510": {
+      "vnum": 23510,
+      "name": "goblin berserker",
+      "short_desc": "a goblin berserker",
+      "long_desc": "A frothing goblin berserker guards the throne room approach.",
+      "description": "Elite among the goblin warriors, this berserker has proven itself in countless battles. Its axes are notched but sharp, and its eyes hold a manic gleam.",
+      "level": 20,
+      "alignment": -600,
+      "hp_dice": "7d8+200",
+      "damage_dice": "3d6+5",
+      "gold": 85,
+      "exp": 2800,
+      "armor_class": 3,
+      "flags": ["stay_zone", "aggressive", "helper"],
+      "room": 23516
+    },
+    "23511": {
+      "vnum": 23511,
+      "name": "cave troll",
+      "short_desc": "a hulking cave troll",
+      "long_desc": "A massive cave troll squats here, gnawing on a bone.",
+      "description": "Standing nearly eight feet tall, this troll is a mountain of grey-green muscle and thick hide. Its small, piggy eyes regard you with dim malice. Regenerating flesh knits over old wounds even as you watch.",
+      "level": 23,
+      "alignment": -800,
+      "hp_dice": "10d8+400",
+      "damage_dice": "3d8+8",
+      "gold": 50,
+      "exp": 4500,
+      "armor_class": 0,
+      "flags": ["stay_zone", "aggressive", "sentinel"],
+      "room": 23515
+    },
+    "23512": {
+      "vnum": 23512,
+      "name": "cave troll",
+      "short_desc": "a scarred cave troll",
+      "long_desc": "A battle-scarred troll looms in the shadows, sniffing the air.",
+      "description": "This troll bears the marks of many fights — missing fingers, a torn ear, burns that failed to fully regenerate. Despite its wounds, it remains a terrifying combatant.",
+      "level": 23,
+      "alignment": -800,
+      "hp_dice": "10d8+400",
+      "damage_dice": "3d8+8",
+      "gold": 40,
+      "exp": 4500,
+      "armor_class": 0,
+      "flags": ["stay_zone", "aggressive", "sentinel"],
+      "room": 23515
+    },
+    "23513": {
+      "vnum": 23513,
+      "name": "Goblin King Grizznak",
+      "short_desc": "Goblin King Grizznak",
+      "long_desc": "Goblin King Grizznak sits upon his throne of weapons, surveying his domain.",
+      "description": "Grizznak is enormous for a goblin — nearly human-sized, with thick muscles and cunning intelligence gleaming in his yellow eyes. A crown of beaten gold sits atop his scarred head, and he wields a massive cleaver in one hand. He has united the scattered goblin tribes through a combination of brutality, cunning, and the loyalty of his cave troll enforcers. He will not give up his throne without a fight to the death.",
+      "level": 25,
+      "alignment": -900,
+      "hp_dice": "20d10+14800",
+      "damage_dice": "4d8+12",
+      "gold": 2000,
+      "exp": 15000,
+      "armor_class": -4,
+      "flags": ["stay_zone", "sentinel", "helper", "aware"],
+      "room": 23518,
+      "equipment": {
+        "head": 23500,
+        "wield": 23503
+      },
+      "special": {
+        "type": "boss",
+        "call_for_help": true,
+        "call_range": 2,
+        "abilities": ["cleave", "war_cry"]
+      }
+    },
+    "23514": {
+      "vnum": 23514,
+      "name": "goblin merchant",
+      "short_desc": "a shifty goblin merchant",
+      "long_desc": "A goblin merchant hawks questionable wares from a rickety stall.",
+      "description": "This goblin wears a patchwork vest with dozens of pockets, each stuffed with trinkets and stolen goods. It grins with a mouthful of gold-capped teeth, beckoning you closer.",
+      "level": 14,
+      "alignment": -400,
+      "hp_dice": "5d8+80",
+      "damage_dice": "2d4+2",
+      "gold": 500,
+      "exp": 600,
+      "armor_class": 7,
+      "flags": ["stay_zone", "wimpy", "sentinel"],
+      "room": 23514
+    }
+  },
+  "objects": {
+    "23500": {
+      "vnum": 23500,
+      "name": "Crown of the Goblin King",
+      "short_desc": "the Crown of the Goblin King",
+      "room_desc": "A crown of beaten gold, studded with crude gems, lies here.",
+      "item_type": "armor",
+      "wear_location": "head",
+      "weight": 3,
+      "value": 15000,
+      "armor_bonus": 4,
+      "flags": ["unique"],
+      "affects": [
+        {"type": "charisma", "value": 2},
+        {"type": "hitpoints", "value": 50}
+      ],
+      "min_level": 20,
+      "type": "armor"
+    },
+    "23501": {
+      "vnum": 23501,
+      "name": "Troll-Hide Shield",
+      "short_desc": "a shield of troll hide",
+      "room_desc": "A large shield covered in thick, grey-green troll hide rests against the wall.",
+      "item_type": "armor",
+      "wear_location": "shield",
+      "weight": 12,
+      "value": 8000,
+      "armor_bonus": 5,
+      "flags": [],
+      "affects": [
+        {"type": "constitution", "value": 1},
+        {"type": "hp_regen", "value": 2}
+      ],
+      "min_level": 18,
+      "type": "armor"
+    },
+    "23502": {
+      "vnum": 23502,
+      "name": "Shaman's Totem",
+      "short_desc": "the Shaman's Totem",
+      "room_desc": "A gnarled wooden totem pulsing with green energy lies here.",
+      "item_type": "staff",
+      "weight": 4,
+      "value": 12000,
+      "damage_dice": "2d6+4",
+      "weapon_type": "bludgeon",
+      "flags": ["glow", "magic"],
+      "affects": [
+        {"type": "intelligence", "value": 2},
+        {"type": "mana", "value": 30}
+      ],
+      "min_level": 18,
+      "type": "weapon"
+    },
+    "23503": {
+      "vnum": 23503,
+      "name": "Grizznak's Cleaver",
+      "short_desc": "Grizznak's massive cleaver",
+      "room_desc": "A massive, blood-stained cleaver lies on the ground.",
+      "item_type": "weapon",
+      "weight": 15,
+      "value": 10000,
+      "damage_dice": "4d6+5",
+      "weapon_type": "slash",
+      "flags": [],
+      "affects": [
+        {"type": "strength", "value": 2},
+        {"type": "damroll", "value": 3}
+      ],
+      "min_level": 20,
+      "type": "weapon"
+    },
+    "23504": {
+      "vnum": 23504,
+      "name": "spider silk rope",
+      "short_desc": "a coil of spider silk rope",
+      "room_desc": "A coil of incredibly strong spider silk rope lies here.",
+      "item_type": "treasure",
+      "weight": 2,
+      "value": 500,
+      "type": "treasure"
+    },
+    "23505": {
+      "vnum": 23505,
+      "name": "luminescent mushroom",
+      "short_desc": "a luminescent mushroom",
+      "room_desc": "A softly glowing mushroom sits on the ground.",
+      "item_type": "light",
+      "weight": 1,
+      "value": 50,
+      "type": "light"
+    }
+  }
+}

@@ -1,0 +1,558 @@
+{
+  "number": 240,
+  "name": "The Sunken Temple of Nereus",
+  "lifespan": 30,
+  "rooms": {
+    "24000": {
+      "vnum": 24000,
+      "name": "Temple Entrance - Submerged Archway",
+      "description": "Massive stone pillars, encrusted with barnacles and sea anemones, frame a\nyawning archway that descends into darkness. The water here is murky, tinged\ngreen with algae. Ancient runes glow faintly along the lintel, their magic\nstill holding after millennia beneath the waves. Bubbles stream upward from\ncracks in the stonework.",
+      "sector_type": "underwater",
+      "flags": ["no_mob"],
+      "zone_mechanic": {
+        "type": "drowning_timer",
+        "damage_per_tick": 25,
+        "message": "Your lungs burn as the water presses in around you!",
+        "immunity_item": "pearl_of_water_breathing",
+        "immunity_flag": "water_breathing"
+      },
+      "exits": {
+        "down": {
+          "to_room": 24001,
+          "description": "The archway descends into the flooded temple."
+        },
+        "east": {
+          "to_room": 24002,
+          "description": "A coral-encrusted passage leads east."
+        }
+      }
+    },
+    "24001": {
+      "vnum": 24001,
+      "name": "Flooded Grand Hall",
+      "description": "This was once a magnificent ceremonial hall. Towering columns of blue-veined\nmarble rise from the silted floor, their capitals carved with leaping dolphins\nand crashing waves. Schools of luminescent fish dart between the pillars,\ncasting eerie shifting light across the mosaic floor depicting Nereus rising\nfrom the deep.",
+      "sector_type": "underwater",
+      "flags": [],
+      "exits": {
+        "up": { "to_room": 24000, "description": "The entrance archway above." },
+        "north": { "to_room": 24003, "description": "A dark corridor stretches north." },
+        "south": { "to_room": 24005, "description": "Coral growths frame a southern passage." },
+        "east": { "to_room": 24007, "description": "A narrow crack in the wall leads east." }
+      },
+      "mob_resets": [
+        { "vnum": 24001, "max": 2 },
+        { "vnum": 24002, "max": 1 }
+      ]
+    },
+    "24002": {
+      "vnum": 24002,
+      "name": "Coral Garden - Air Pocket",
+      "description": "A magnificent underwater garden sprawls before you, alive with swaying sea\nfans, branching staghorn coral, and luminous jellyfish drifting lazily overhead.\nMost remarkably, a large air pocket is trapped beneath an overhanging dome of\nbrain coral. You can breathe freely here, and the sweet taste of fresh air is\nalmost intoxicating after the crushing depths.",
+      "sector_type": "underwater",
+      "flags": ["air_pocket"],
+      "zone_mechanic": {
+        "type": "air_pocket",
+        "heals_drowning": true,
+        "message": "You gulp fresh air gratefully. The drowning pressure fades."
+      },
+      "exits": {
+        "west": { "to_room": 24000, "description": "Back toward the entrance." },
+        "south": { "to_room": 24004, "description": "A winding path through the coral." }
+      }
+    },
+    "24003": {
+      "vnum": 24003,
+      "name": "Dark Corridor of the Drowned",
+      "description": "The corridor walls are lined with alcoves, each containing the skeletal remains\nof ancient priests, their bony hands still clutching rusted ceremonial tridents.\nPhosphorescent moss clings to the ceiling, casting a sickly green glow. The\nwater here is colder, and a faint current tugs at your legs.",
+      "sector_type": "underwater",
+      "flags": [],
+      "exits": {
+        "south": { "to_room": 24001, "description": "Back to the grand hall." },
+        "north": { "to_room": 24006, "description": "The corridor continues into darkness." },
+        "west": { "to_room": 24008, "description": "A side passage leads west." }
+      },
+      "mob_resets": [
+        { "vnum": 24003, "max": 2 }
+      ]
+    },
+    "24004": {
+      "vnum": 24004,
+      "name": "Coral Labyrinth",
+      "description": "Towering formations of living coral create a bewildering maze. Brain coral\nthe size of boulders blocks direct paths, while delicate fire coral lines\nnarrow gaps that sting the unwary. Moray eels peer from dark crevices with\nmalevolent eyes. The water pulses with bioluminescent light.",
+      "sector_type": "underwater",
+      "flags": [],
+      "exits": {
+        "north": { "to_room": 24002, "description": "Back to the coral garden." },
+        "east": { "to_room": 24005, "description": "A gap in the coral wall." },
+        "south": { "to_room": 24009, "description": "Deeper into the labyrinth." }
+      },
+      "mob_resets": [
+        { "vnum": 24004, "max": 3 }
+      ]
+    },
+    "24005": {
+      "vnum": 24005,
+      "name": "Tidal Surge Chamber",
+      "description": "This circular chamber acts as a junction for powerful tidal currents. Water\nrushes through channels cut into the walls, creating a roaring vortex in the\ncenter. Debris and bones swirl in the maelstrom. Doorways lead in several\ndirections, each fighting against the relentless pull of the water.",
+      "sector_type": "underwater",
+      "flags": [],
+      "exits": {
+        "north": { "to_room": 24001, "description": "The grand hall lies north." },
+        "west": { "to_room": 24004, "description": "Coral formations to the west." },
+        "south": { "to_room": 24010, "description": "A passage leads deeper south." },
+        "east": { "to_room": 24011, "description": "A reinforced doorway to the east." }
+      },
+      "mob_resets": [
+        { "vnum": 24001, "max": 1 },
+        { "vnum": 24005, "max": 1 }
+      ]
+    },
+    "24006": {
+      "vnum": 24006,
+      "name": "Sahuagin Barracks",
+      "description": "Crude sleeping pallets made of woven kelp line the walls of this repurposed\ntemple chamber. Weapons racks hold coral-tipped spears and jagged shell blades.\nThe Sahuagin have made this their forward base, and the water reeks of fish\nblood and violence. Trophy skulls of surface-dwellers adorn the walls.",
+      "sector_type": "underwater",
+      "flags": [],
+      "exits": {
+        "south": { "to_room": 24003, "description": "The corridor leads south." },
+        "east": { "to_room": 24012, "description": "A guarded passage." }
+      },
+      "mob_resets": [
+        { "vnum": 24001, "max": 3 },
+        { "vnum": 24002, "max": 1 }
+      ]
+    },
+    "24007": {
+      "vnum": 24007,
+      "name": "Pressure Chamber",
+      "description": "The walls of this narrow chamber press inward, the stone groaning under\nimmense oceanic pressure. Cracks spiderweb across the ceiling, and jets of\nhigh-pressure water shoot across the room at random intervals. The pressure\nhere is crushing, making every movement an effort of will.",
+      "sector_type": "underwater",
+      "flags": [],
+      "zone_mechanic": {
+        "type": "pressure_damage",
+        "damage_per_tick": 40,
+        "message": "The crushing pressure squeezes the life from your body!"
+      },
+      "exits": {
+        "west": { "to_room": 24001, "description": "Back to the grand hall." },
+        "east": { "to_room": 24013, "description": "Through the pressurized passage." }
+      },
+      "mob_resets": [
+        { "vnum": 24004, "max": 2 }
+      ]
+    },
+    "24008": {
+      "vnum": 24008,
+      "name": "Kelp Forest Chamber",
+      "description": "Giant kelp rises from the floor like an underwater forest, swaying hypnotically\nin unseen currents. Visibility drops to nearly nothing within the dense fronds.\nSomething large moves through the kelp ahead — you catch glimpses of scales\nand fins before it vanishes again.",
+      "sector_type": "underwater",
+      "flags": [],
+      "exits": {
+        "east": { "to_room": 24003, "description": "The corridor to the east." },
+        "south": { "to_room": 24014, "description": "Deeper into the kelp." }
+      },
+      "mob_resets": [
+        { "vnum": 24003, "max": 1 },
+        { "vnum": 24005, "max": 2 }
+      ]
+    },
+    "24009": {
+      "vnum": 24009,
+      "name": "Sunken Reliquary",
+      "description": "Stone shelves line the walls of this sacred chamber, holding corroded relics\nof the old faith. A large altar of black basalt dominates the center, its\nsurface carved with waves and sea serpents. Something glints within a niche\nbehind the altar. The water here tastes of ancient magic.",
+      "sector_type": "underwater",
+      "flags": [],
+      "exits": {
+        "north": { "to_room": 24004, "description": "Back through the labyrinth." },
+        "east": { "to_room": 24010, "description": "An arched doorway." }
+      },
+      "obj_resets": [
+        { "vnum": 24003, "max": 1 }
+      ]
+    },
+    "24010": {
+      "vnum": 24010,
+      "name": "Flooded Processional",
+      "description": "A wide processional way stretches before you, flanked by statues of mer-priests\nin attitudes of worship. Their stone eyes seem to follow your passage. The\nmosaic floor depicts the journey of souls to Nereus's undersea paradise.\nSediment swirls with each step, obscuring ancient patterns.",
+      "sector_type": "underwater",
+      "flags": [],
+      "exits": {
+        "north": { "to_room": 24005, "description": "The tidal chamber." },
+        "west": { "to_room": 24009, "description": "The reliquary." },
+        "south": { "to_room": 24015, "description": "The processional continues south." }
+      },
+      "mob_resets": [
+        { "vnum": 24003, "max": 2 }
+      ]
+    },
+    "24011": {
+      "vnum": 24011,
+      "name": "Sea Witch's Sanctum",
+      "description": "Curtains of woven seaweed partition this chamber into a series of grottos.\nBubbling cauldrons of glowing green liquid sit atop coral pedestals, tended\nby schools of enchanted fish. Shelves of jars contain preserved eyes, tentacles,\nand other unspeakable components. Dark magic saturates the water here.",
+      "sector_type": "underwater",
+      "flags": [],
+      "exits": {
+        "west": { "to_room": 24005, "description": "Back to the tidal chamber." },
+        "south": { "to_room": 24016, "description": "A hidden passage behind the shelves." }
+      },
+      "mob_resets": [
+        { "vnum": 24005, "max": 2 }
+      ]
+    },
+    "24012": {
+      "vnum": 24012,
+      "name": "Sahuagin War Room",
+      "description": "A large table of polished shell dominates this chamber, its surface etched\nwith crude maps of the surrounding waters and coastal settlements. Sahuagin\ncommanders plot their raids here, pushing carved bone tokens across the map.\nBattle trophies — helms, shields, and severed heads — line the walls.",
+      "sector_type": "underwater",
+      "flags": [],
+      "exits": {
+        "west": { "to_room": 24006, "description": "The barracks." },
+        "south": { "to_room": 24017, "description": "A reinforced passage." }
+      },
+      "mob_resets": [
+        { "vnum": 24002, "max": 2 },
+        { "vnum": 24001, "max": 1 }
+      ]
+    },
+    "24013": {
+      "vnum": 24013,
+      "name": "Deep Trench Access - Air Pocket",
+      "description": "The passage opens into a natural cave where a massive air pocket has formed\nbeneath a dome of volcanic rock. Stalactites drip fresh water from above,\nand the air, while stale, is breathable. A trench drops away to the south,\nplunging into abyssal darkness. You can rest here and catch your breath.",
+      "sector_type": "underwater",
+      "flags": ["air_pocket"],
+      "zone_mechanic": {
+        "type": "air_pocket",
+        "heals_drowning": true,
+        "message": "You surface into the air pocket and breathe deeply."
+      },
+      "exits": {
+        "west": { "to_room": 24007, "description": "The pressure chamber." },
+        "south": { "to_room": 24018, "description": "The trench descends into darkness." }
+      }
+    },
+    "24014": {
+      "vnum": 24014,
+      "name": "Merfolk Graveyard",
+      "description": "Rows of coral-encrusted sarcophagi stretch across the ocean floor, the final\nresting place of ancient merfolk royalty. Many have been broken open, their\ncontents scattered by looters or darker forces. Ghostly blue lights flicker\nabove the disturbed graves. The corrupted dead do not rest easily here.",
+      "sector_type": "underwater",
+      "flags": [],
+      "exits": {
+        "north": { "to_room": 24008, "description": "The kelp forest." },
+        "east": { "to_room": 24015, "description": "The processional." }
+      },
+      "mob_resets": [
+        { "vnum": 24003, "max": 3 }
+      ]
+    },
+    "24015": {
+      "vnum": 24015,
+      "name": "Hall of the Tides",
+      "description": "Four massive fountains — impossible underwater, yet functioning through pure\nmagic — shoot streams of glowing water toward a central vortex. The room\npulses with tidal energy, and the currents shift unpredictably. Ancient\nmerfolk used this chamber to commune with the ocean itself.",
+      "sector_type": "underwater",
+      "flags": [],
+      "exits": {
+        "north": { "to_room": 24010, "description": "The processional." },
+        "west": { "to_room": 24014, "description": "The graveyard." },
+        "south": { "to_room": 24019, "description": "Toward the inner sanctum." },
+        "east": { "to_room": 24016, "description": "Passage to the east." }
+      },
+      "mob_resets": [
+        { "vnum": 24003, "max": 1 },
+        { "vnum": 24001, "max": 1 }
+      ]
+    },
+    "24016": {
+      "vnum": 24016,
+      "name": "Treasure Vault Antechamber",
+      "description": "Heavy bronze doors, green with verdigris, stand ajar. The locking mechanism —\nan ingenious system of coral gears and shell tumblers — has been smashed by\nbrute force. Beyond, you can see the gleam of gold through the murky water.\nGuards have been posted. Whatever remains inside is still well-defended.",
+      "sector_type": "underwater",
+      "flags": [],
+      "exits": {
+        "north": { "to_room": 24011, "description": "The sea witch's sanctum." },
+        "west": { "to_room": 24015, "description": "Hall of the Tides." },
+        "south": { "to_room": 24020, "description": "Into the treasure vault." }
+      },
+      "mob_resets": [
+        { "vnum": 24001, "max": 2 },
+        { "vnum": 24002, "max": 1 }
+      ]
+    },
+    "24017": {
+      "vnum": 24017,
+      "name": "Flooded Armory",
+      "description": "Racks of weapons stand in orderly rows — tridents, harpoons, nets weighted\nwith lead. Many have been claimed by the Sahuagin, but some ancient merfolk\nweapons remain, their enchantments still faintly glowing through the rust\nand coral growth. A strong current flows from the south.",
+      "sector_type": "underwater",
+      "flags": [],
+      "exits": {
+        "north": { "to_room": 24012, "description": "The war room." },
+        "south": { "to_room": 24021, "description": "A descending passage." }
+      },
+      "obj_resets": [
+        { "vnum": 24001, "max": 1 }
+      ],
+      "mob_resets": [
+        { "vnum": 24001, "max": 1 }
+      ]
+    },
+    "24018": {
+      "vnum": 24018,
+      "name": "The Abyssal Trench",
+      "description": "The trench plunges into darkness so absolute that even magical light struggles\nto penetrate. Bioluminescent creatures drift past — anglerfish with lantern\nlures, translucent jellyfish trailing stinging tendrils. The pressure here\nis immense, and strange sounds echo from below: groaning, clicking, something\nvast shifting in its sleep.",
+      "sector_type": "underwater",
+      "flags": [],
+      "zone_mechanic": {
+        "type": "pressure_damage",
+        "damage_per_tick": 50,
+        "message": "The abyssal pressure threatens to crush you!"
+      },
+      "exits": {
+        "north": { "to_room": 24013, "description": "The air pocket above." },
+        "down": { "to_room": 24022, "description": "Into the deepest depths." }
+      },
+      "mob_resets": [
+        { "vnum": 24004, "max": 2 }
+      ]
+    },
+    "24019": {
+      "vnum": 24019,
+      "name": "Inner Sanctum - Air Pocket",
+      "description": "The inner sanctum of the temple is dominated by a massive statue of Nereus,\ntrident raised, carved from a single piece of aquamarine. A divine air pocket\nsurrounds the statue — the god's last gift to his faithful. You can breathe\nfreely here. The statue's eyes glow with residual divine power.",
+      "sector_type": "underwater",
+      "flags": ["air_pocket"],
+      "zone_mechanic": {
+        "type": "air_pocket",
+        "heals_drowning": true,
+        "message": "The blessing of Nereus fills your lungs with sweet air."
+      },
+      "exits": {
+        "north": { "to_room": 24015, "description": "Hall of the Tides." },
+        "south": { "to_room": 24023, "description": "Toward the Kraken's domain." }
+      }
+    },
+    "24020": {
+      "vnum": 24020,
+      "name": "Treasure Vault of Nereus",
+      "description": "Mountains of gold coins, encrusted with coral and sea growth, fill this\nvast chamber. Jeweled scepters, pearl necklaces, and enchanted artifacts\nglitter through the murky water. This was the offering vault of the temple,\nwhere worshippers left tribute to the sea god. Much has been looted, but\nsome treasures remain hidden beneath the silt.",
+      "sector_type": "underwater",
+      "flags": [],
+      "exits": {
+        "north": { "to_room": 24016, "description": "The antechamber." }
+      },
+      "obj_resets": [
+        { "vnum": 24002, "max": 1 }
+      ],
+      "mob_resets": [
+        { "vnum": 24005, "max": 1 },
+        { "vnum": 24004, "max": 2 }
+      ]
+    },
+    "24021": {
+      "vnum": 24021,
+      "name": "Collapsed Wing",
+      "description": "This section of the temple has partially collapsed. Massive stone blocks\nlean against each other at precarious angles, creating a labyrinth of\nnarrow crawlspaces. Sand and debris choke the lower passages. Somewhere\nahead, a faint current suggests a way through the rubble.",
+      "sector_type": "underwater",
+      "flags": [],
+      "exits": {
+        "north": { "to_room": 24017, "description": "The armory." },
+        "east": { "to_room": 24023, "description": "Through the rubble, eastward." }
+      },
+      "mob_resets": [
+        { "vnum": 24004, "max": 2 }
+      ]
+    },
+    "24022": {
+      "vnum": 24022,
+      "name": "The Kraken's Grotto",
+      "description": "An enormous natural cavern opens before you, its walls scarred by the passage\nof something immense. Shattered ship hulls and whale bones litter the floor.\nThe water here is thick with ink, reducing visibility to mere feet. A massive\ntentacle slowly unfurls from the darkness ahead. You have found the Kraken's\nlair.",
+      "sector_type": "underwater",
+      "flags": [],
+      "exits": {
+        "up": { "to_room": 24018, "description": "The trench above." },
+        "east": { "to_room": 24024, "description": "Deeper into the grotto." }
+      },
+      "mob_resets": [
+        { "vnum": 24006, "max": 1 }
+      ]
+    },
+    "24023": {
+      "vnum": 24023,
+      "name": "Sanctum of the Deep",
+      "description": "This sacred chamber lies at the very heart of the temple. The walls are\ncovered in murals depicting the creation of the ocean, still vivid despite\nthe millennia. A massive stone altar stands before a whirlpool that descends\ninto the earth itself. The water hums with power. This is where Nereus\nonce walked among mortals.",
+      "sector_type": "underwater",
+      "flags": [],
+      "exits": {
+        "north": { "to_room": 24019, "description": "The inner sanctum." },
+        "west": { "to_room": 24021, "description": "The collapsed wing." },
+        "down": { "to_room": 24024, "description": "Into the whirlpool." }
+      },
+      "mob_resets": [
+        { "vnum": 24002, "max": 1 },
+        { "vnum": 24005, "max": 1 }
+      ]
+    },
+    "24024": {
+      "vnum": 24024,
+      "name": "The Kraken's Throne Room",
+      "description": "At the absolute deepest point of the temple, where divine architecture meets\nnatural cavern, sits a throne of fused coral and bone — the seat of the Kraken\nitself. The beast has claimed this sacred place as its own, wrapping its massive\ntentacles around the pillars like a living nightmare. Ancient treasures are\nwoven into its nest. The water throbs with each beat of its three hearts.",
+      "sector_type": "underwater",
+      "flags": ["no_recall"],
+      "exits": {
+        "west": { "to_room": 24022, "description": "The grotto." },
+        "up": { "to_room": 24023, "description": "The sanctum above." }
+      },
+      "mob_resets": [
+        { "vnum": 24006, "max": 1 }
+      ],
+      "obj_resets": [
+        { "vnum": 24001, "max": 1 }
+      ]
+    }
+  },
+  "mobs": {
+    "24001": {
+      "vnum": 24001,
+      "name": "sahuagin warrior",
+      "short_desc": "a Sahuagin warrior",
+      "long_desc": "A Sahuagin warrior snarls at you, brandishing a coral-tipped spear.",
+      "level": 42,
+      "alignment": -500,
+      "hp_dice": "20d10+2800",
+      "damage_dice": "4d8+18",
+      "gold": 450,
+      "exp": 8500,
+      "armor_class": 25,
+      "flags": ["aggressive"],
+      "description": "This fish-headed humanoid stands over six feet tall, its scaled body rippling\nwith lean muscle. Razor-sharp claws tip its webbed fingers, and rows of needle\nteeth fill its gaping maw. Cold, predatory intelligence gleams in its black eyes."
+    },
+    "24002": {
+      "vnum": 24002,
+      "name": "sea witch",
+      "short_desc": "a Sea Witch",
+      "long_desc": "A Sea Witch hovers in the water, dark magic swirling around her claws.",
+      "level": 46,
+      "alignment": -800,
+      "hp_dice": "22d10+4500",
+      "damage_dice": "5d8+22",
+      "gold": 800,
+      "exp": 12000,
+      "armor_class": 30,
+      "flags": ["aggressive", "no_charm"],
+      "description": "Part merfolk, part something far darker, this creature has traded beauty for\npower. Her lower body is that of a moray eel, and her fingers end in venomous\nbarbs. Stolen souls swirl in jars at her belt, and her eyes glow with stolen magic."
+    },
+    "24003": {
+      "vnum": 24003,
+      "name": "corrupted merfolk",
+      "short_desc": "a corrupted merfolk",
+      "long_desc": "A corrupted merfolk drifts here, its eyes vacant and body twisted.",
+      "level": 43,
+      "alignment": -300,
+      "hp_dice": "18d10+3200",
+      "damage_dice": "4d8+16",
+      "gold": 350,
+      "exp": 9000,
+      "armor_class": 22,
+      "flags": ["aggressive"],
+      "description": "Once beautiful, this merfolk has been twisted by dark magic into a grotesque\nparody of its former self. Its scales are blackened and peeling, its tail\nsplit and malformed. It attacks with mindless ferocity, any trace of its\nformer intelligence drowned in corruption."
+    },
+    "24004": {
+      "vnum": 24004,
+      "name": "giant crab",
+      "short_desc": "a giant crab",
+      "long_desc": "A giant crab clicks its massive pincers menacingly.",
+      "level": 40,
+      "alignment": 0,
+      "hp_dice": "25d10+3000",
+      "damage_dice": "3d10+20",
+      "gold": 200,
+      "exp": 7500,
+      "armor_class": 40,
+      "flags": ["aggressive"],
+      "description": "This monstrous crustacean is the size of a wagon, its shell encrusted with\nbarnacles and coral. Its pincers could snap a man in half, and its beady\nblack eyes swivel independently, tracking multiple threats at once."
+    },
+    "24005": {
+      "vnum": 24005,
+      "name": "sea witch elder",
+      "short_desc": "a Sea Witch Elder",
+      "long_desc": "A Sea Witch Elder chants dark incantations, tentacles writhing.",
+      "level": 48,
+      "alignment": -900,
+      "hp_dice": "25d10+6000",
+      "damage_dice": "6d8+25",
+      "gold": 1200,
+      "exp": 15000,
+      "armor_class": 35,
+      "flags": ["aggressive", "no_charm", "no_sleep"],
+      "description": "Ancient beyond reckoning, this sea witch has fused with an octopus, her\nlower body a mass of powerful tentacles. She commands the darkest currents\nof ocean magic, and the water itself bends to her will."
+    },
+    "24006": {
+      "vnum": 24006,
+      "name": "the Kraken",
+      "short_desc": "the Kraken",
+      "long_desc": "THE KRAKEN towers before you, a nightmare of tentacles and destruction!",
+      "level": 50,
+      "alignment": -1000,
+      "hp_dice": "100d10+50000",
+      "damage_dice": "10d10+40",
+      "gold": 5000,
+      "exp": 100000,
+      "armor_class": 50,
+      "flags": ["aggressive", "no_charm", "no_summmon", "no_sleep", "no_bash", "no_blind", "sentinel"],
+      "description": "Words fail to capture the horror before you. The Kraken is a living mountain\nof muscle and malice. Its body fills the cavern, tentacles thick as ancient\noaks coiling and uncoiling endlessly. Each sucker is ringed with razor-sharp\nhooks. Its beak could shatter a warship, and its eyes — ancient, intelligent,\nand utterly merciless — fix upon you with terrible hunger. This is the apex\npredator of the deep, and you are in its domain."
+    }
+  },
+  "objects": {
+    "24001": {
+      "vnum": 24001,
+      "name": "Trident of the Deep",
+      "short_desc": "the Trident of the Deep",
+      "room_desc": "A magnificent trident pulses with oceanic power here.",
+      "item_type": "weapon",
+      "weight": 12,
+      "value": 50000,
+      "type": "weapon",
+      "damage_dice": "6d8+15",
+      "weapon_type": "trident",
+      "flags": ["glow", "hum", "magic"],
+      "min_level": 45,
+      "effects": {
+        "hitroll": 8,
+        "damroll": 10,
+        "water_breathing": true
+      }
+    },
+    "24002": {
+      "vnum": 24002,
+      "name": "Coral Plate Armor",
+      "short_desc": "a suit of Coral Plate Armor",
+      "room_desc": "A suit of shimmering coral plate armor lies here.",
+      "item_type": "armor",
+      "weight": 30,
+      "value": 45000,
+      "type": "armor",
+      "armor_bonus": 45,
+      "flags": ["magic"],
+      "min_level": 42,
+      "effects": {
+        "armor_class": -35,
+        "hp": 200,
+        "water_breathing": true
+      }
+    },
+    "24003": {
+      "vnum": 24003,
+      "name": "Pearl of Water Breathing",
+      "short_desc": "a Pearl of Water Breathing",
+      "room_desc": "A luminous pearl glows softly on the ground.",
+      "item_type": "treasure",
+      "weight": 1,
+      "value": 30000,
+      "type": "treasure",
+      "flags": ["glow", "magic"],
+      "min_level": 40,
+      "effects": {
+        "water_breathing": true,
+        "hp_regen": 10
+      }
+    }
+  }
+}

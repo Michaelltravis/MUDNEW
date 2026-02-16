@@ -296,6 +296,19 @@ class Room:
                 except Exception:
                     pass
                 
+                # Quest giver indicator (! or ?)
+                quest_indicator = ""
+                if hasattr(char, 'vnum') and not hasattr(char, 'connection'):
+                    try:
+                        from quests import QuestManager
+                        qi = QuestManager.get_quest_giver_indicator(player, char.vnum)
+                        if qi == '!':
+                            quest_indicator = f" {c['bright_yellow']}[!]{c['reset']}"
+                        elif qi == '?':
+                            quest_indicator = f" {c['bright_green']}[?]{c['reset']}"
+                    except Exception:
+                        pass
+
                 # Build the character description line
                 if hasattr(char, 'fighting') and char.fighting:
                     # CircleMUD style: replace desc with fighting message
@@ -310,9 +323,15 @@ class Room:
                     name_hint = ""
                     if hasattr(char, 'vnum') and not hasattr(char, 'connection'):
                         name_hint = f" {c['bright_black']}({char.name}){c['reset']}"
-                    await player.send(f"{char_color}{char.long_desc}{name_hint}{owner_tag}{label_msg}{fighting_msg}{sneak_indicator}{c['reset']}")
+                    await player.send(f"{char_color}{char.long_desc}{name_hint}{quest_indicator}{owner_tag}{label_msg}{fighting_msg}{sneak_indicator}{c['reset']}")
+                elif hasattr(char, 'connection') and char.connection:
+                    # Player character - show title and prestige class
+                    title_str = getattr(char, 'title', '') or ''
+                    prestige = getattr(char, 'prestige_class', None)
+                    prestige_str = f" {c['bright_yellow']}[{prestige}]{c['reset']}" if prestige else ""
+                    await player.send(f"{c['bright_green']}{char.name} {title_str}{prestige_str} is standing here.{label_msg}{fighting_msg}{sneak_indicator}{c['reset']}")
                 else:
-                    await player.send(f"{char_color}{char.name} is standing here.{owner_tag}{label_msg}{fighting_msg}{sneak_indicator}{c['reset']}")
+                    await player.send(f"{char_color}{char.name} is standing here.{quest_indicator}{owner_tag}{label_msg}{fighting_msg}{sneak_indicator}{c['reset']}")
 
                 # Show active debuffs/buffs on the character (limited, flavorful)
                 if hasattr(char, 'affects') and char.affects:
@@ -527,6 +546,9 @@ class World:
 
         # Initialize game time system
         self.game_time = GameTime()
+
+        # World events manager (initialized after load)
+        self.event_manager = None
         
     async def load(self):
         """Load the world from files."""
@@ -560,7 +582,18 @@ class World:
         
         # Reset zones (spawn mobs and objects)
         await self.reset_all_zones()
+
+        # Spawn faction NPCs
+        try:
+            from factions import spawn_faction_npcs
+            spawn_faction_npcs(self)
+        except Exception as e:
+            logger.warning(f"Failed to spawn faction NPCs: {e}")
         
+        # Initialize world events system
+        from world_events import WorldEventManager
+        self.event_manager = WorldEventManager(self)
+
         logger.info(f"World loaded: {len(self.zones)} zones, {len(self.rooms)} rooms")
         
     async def load_zone_file(self, filepath: str):
@@ -775,12 +808,21 @@ class World:
                     await player.connection.send_prompt()
 
         # Process NPC combat
+        from mob_ai import mob_ai_tick
         for npc in list(self.npcs):
             if npc.is_fighting:
                 # Check if target is still valid
                 if npc.fighting is None or npc.fighting.hp <= 0 or (hasattr(npc.fighting, 'room') and npc.fighting not in npc.room.characters):
                     npc.fighting = None
                     npc.position = 'standing'
+                    continue
+                # Run intelligent mob AI before the auto-attack round
+                try:
+                    await mob_ai_tick(npc)
+                except Exception as e:
+                    logger.debug(f"Mob AI error for {npc.name}: {e}")
+                # Re-check fighting state (AI may have caused flee/death)
+                if not npc.is_fighting or not npc.fighting:
                     continue
                 await CombatHandler.one_round(npc, npc.fighting)
                 

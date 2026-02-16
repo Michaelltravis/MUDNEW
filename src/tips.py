@@ -131,6 +131,25 @@ EVENT_TIPS = {
     'found_secret': "You found a secret! Keep searching - there may be more hidden things.",
 }
 
+# Contextual hints shown once per player at key moments
+CONTEXTUAL_HINTS = {
+    'gathering_room': "You notice resource nodes here! Try 'mine', 'forage', or 'fish' to gather materials for crafting.",
+    'quest_giver': "This NPC has a [!] marker — they have a quest for you! Type 'talk <name>' to learn more.",
+    'first_combat_resource': {
+        'warrior': "As a warrior, you build Rage when dealing and taking damage. Spend it on powerful abilities!",
+        'mage': "As a mage, you spend Mana to cast spells. Keep an eye on it with 'score'!",
+        'thief': "As a thief, you build Combo Points with each attack. Spend them on finishing moves!",
+        'cleric': "As a cleric, you earn Divine Favor when healing allies. It powers your strongest prayers!",
+        'ranger': "As a ranger, you build Focus in combat. Use it for devastating precision attacks!",
+        'paladin': "As a paladin, you radiate Holy Power. It fuels your smites and auras!",
+        'bard': "As a bard, your Inspiration grows as you perform. Use it to empower your songs!",
+        'necromancer': "As a necromancer, you harvest Soul Fragments from fallen foes. They fuel your dark arts!",
+    },
+    'level_10': "You've reached level 10! Type 'talents' to see your talent tree — customize your playstyle!",
+    'level_20': "Level 20 unlocked! Type 'companion' to learn about companions that can fight alongside you.",
+    'level_50': "Level 50 — the pinnacle! Prestige classes are now available. Type 'help prestige' to learn more.",
+}
+
 
 class TipManager:
     """Manages tip delivery to players."""
@@ -206,3 +225,38 @@ class TipManager:
         if event in EVENT_TIPS:
             c = player.config.COLORS
             await player.send(f"\r\n{c['bright_cyan']}{EVENT_TIPS[event]}{c['reset']}\r\n")
+
+    # Track which contextual hints each player has seen
+    _contextual_shown = {}  # player_name -> set of hint keys
+
+    @classmethod
+    async def show_contextual_hint(cls, player: 'Player', hint_key: str) -> bool:
+        """Show a one-time contextual hint. Returns True if hint was shown."""
+        shown = cls._contextual_shown.get(player.name, set())
+        # Also check player's persistent hints_shown attribute
+        persistent = getattr(player, 'hints_shown', set())
+        if hint_key in shown or hint_key in persistent:
+            return False
+
+        hint = CONTEXTUAL_HINTS.get(hint_key)
+        if hint is None:
+            return False
+
+        # Handle dict hints (class-specific)
+        if isinstance(hint, dict):
+            char_class = str(getattr(player, 'char_class', '')).lower()
+            hint = hint.get(char_class)
+            if not hint:
+                return False
+
+        c = player.config.COLORS
+        await player.send(f"\r\n{c['bright_cyan']}💡 {hint}{c['reset']}\r\n")
+
+        # Mark as shown
+        if player.name not in cls._contextual_shown:
+            cls._contextual_shown[player.name] = set()
+        cls._contextual_shown[player.name].add(hint_key)
+        if not hasattr(player, 'hints_shown'):
+            player.hints_shown = set()
+        player.hints_shown.add(hint_key)
+        return True

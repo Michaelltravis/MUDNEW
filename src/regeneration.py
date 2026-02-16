@@ -104,6 +104,14 @@ class RegenerationCalculator:
             elif character.thirst <= 8:
                 regen *= 0.7
 
+        # Housing bed bonus (resting/sleeping at home with bed)
+        if hasattr(character, 'name') and character.position in ['sleeping', 'resting']:
+            try:
+                from housing import HouseManager
+                regen *= HouseManager.get_home_regen_bonus(character)
+            except Exception:
+                pass
+
         return max(1, int(regen))
 
     @staticmethod

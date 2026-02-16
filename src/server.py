@@ -439,7 +439,8 @@ class Connection:
         c = self.config.COLORS
         await self.send(f"\r\n{c['bright_cyan']}══════════════════════════════════════════════════════════════{c['reset']}")
         await self.send(f"{c['bright_yellow']}  Welcome to RealmsMUD, {self.player.name}!{c['reset']}")
-        await self.send(f"{c['white']}  Type 'help' for a list of commands.{c['reset']}")
+        await self.send(f"{c['white']}  A world of quests, combat, crafting, and adventure awaits.{c['reset']}")
+        await self.send(f"{c['white']}  Type {c['bright_green']}help newbie{c['white']} for a new player guide, or {c['bright_green']}hint{c['white']} for tips.{c['reset']}")
         await self.send(f"{c['bright_cyan']}══════════════════════════════════════════════════════════════{c['reset']}\r\n")
 
         # Process rent charges from previous session

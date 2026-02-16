@@ -1,0 +1,795 @@
+{
+  "number": 238,
+  "name": "The Haunted Monastery",
+  "lifespan": 30,
+  "rooms": {
+    "23800": {
+      "vnum": 23800,
+      "name": "The Monastery Gates",
+      "description": "Crumbling stone gates stand before what was once a grand monastery.\nRusted iron hinges hold the remains of oak doors, now rotted to splinters.\nGargoyle statues flank the entrance, their features worn but still\nmenacing. A cold wind moans through the ruins, carrying whispers that\nalmost form words. The road continues to the south.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 6200,
+          "description": "The road leads back to the plains."
+        },
+        "north": {
+          "to_room": 23801,
+          "description": "A weed-choked path leads to the monastery courtyard."
+        }
+      }
+    },
+    "23801": {
+      "vnum": 23801,
+      "name": "The Monastery Courtyard",
+      "description": "A once-beautiful courtyard has fallen to ruin. Cracked flagstones are\nthrust apart by gnarled weeds. A dry fountain stands in the center, its\nbasin filled with dead leaves and brackish water. The monastery buildings\nloom on three sides — the chapel to the north, the dormitory to the east,\nand the library to the west. An oppressive silence hangs over everything.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 23800,
+          "description": "The monastery gates lie to the south."
+        },
+        "north": {
+          "to_room": 23802,
+          "description": "The chapel entrance beckons."
+        },
+        "east": {
+          "to_room": 23810,
+          "description": "The dormitory wing stretches to the east."
+        },
+        "west": {
+          "to_room": 23814,
+          "description": "The library wing lies to the west."
+        }
+      }
+    },
+    "23802": {
+      "vnum": 23802,
+      "name": "The Crumbling Chapel",
+      "description": "The chapel's vaulted ceiling has partially collapsed, letting shafts of\ngrey light fall upon rows of rotting pews. The altar at the far end is\ncracked but still standing, and faded frescoes of holy scenes peel from\nthe walls. Despite the decay, a faint warmth lingers here — an echo of\nthe faith that once filled this place. Undead seem uneasy here.",
+      "sector_type": "inside",
+      "flags": ["indoors"],
+      "room_effects": ["consecrated"],
+      "exits": {
+        "south": {
+          "to_room": 23801,
+          "description": "The courtyard lies to the south."
+        },
+        "north": {
+          "to_room": 23803,
+          "description": "Steps lead up behind the altar."
+        },
+        "down": {
+          "to_room": 23806,
+          "description": "Stone stairs descend into the crypt."
+        },
+        "east": {
+          "to_room": 23804,
+          "description": "A side passage leads to the vestry."
+        }
+      }
+    },
+    "23803": {
+      "vnum": 23803,
+      "name": "The Bell Tower Base",
+      "description": "A narrow spiral staircase winds upward into the bell tower. The walls\nare carved with prayers and the names of departed monks. Cobwebs thick\nas curtains fill the stairwell, and something moves in the darkness above.\nA cold draft whistles down from the belfry.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "south": {
+          "to_room": 23802,
+          "description": "The chapel lies below."
+        },
+        "up": {
+          "to_room": 23805,
+          "description": "The spiral stairs ascend to the belfry."
+        }
+      }
+    },
+    "23804": {
+      "vnum": 23804,
+      "name": "The Vestry",
+      "description": "This small room once held the monastery's sacred vestments and ritual\nitems. Smashed cabinets line the walls, their contents scattered and\ndefiled. Holy symbols have been inverted and smeared with dark stains.\nWhatever corruption took this monastery began — or ended — here.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "room_effects": ["desecrated"],
+      "exits": {
+        "west": {
+          "to_room": 23802,
+          "description": "The chapel lies to the west."
+        }
+      }
+    },
+    "23805": {
+      "vnum": 23805,
+      "name": "The Belfry",
+      "description": "The great bronze bell still hangs in its frame, green with verdigris.\nThrough the open arches, you can see the surrounding countryside — a\nbleak panorama of grey moors and dark forests. The wind howls through\nthe openings, and the bell occasionally shifts with a low, mournful\ntone. Something has nested among the rafters above.",
+      "sector_type": "inside",
+      "flags": ["indoors"],
+      "exits": {
+        "down": {
+          "to_room": 23803,
+          "description": "The spiral stairs descend."
+        }
+      }
+    },
+    "23806": {
+      "vnum": 23806,
+      "name": "The Upper Crypt",
+      "description": "Stone sarcophagi line both walls of this underground corridor, each\nbearing the carved likeness of the monk interred within. Most lids\nare still sealed, but a few have been pushed aside, revealing empty\ninteriors. The air is frigid and still. Faint scratching sounds come\nfrom inside some of the sealed tombs.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "up": {
+          "to_room": 23802,
+          "description": "Stairs ascend to the chapel."
+        },
+        "down": {
+          "to_room": 23807,
+          "description": "Deeper stairs lead to the lower crypt."
+        },
+        "east": {
+          "to_room": 23808,
+          "description": "A passage leads to the ossuary."
+        }
+      }
+    },
+    "23807": {
+      "vnum": 23807,
+      "name": "The Lower Crypt",
+      "description": "The oldest tombs in the monastery lie here, their inscriptions worn to\nillegibility. A pervasive wrongness fills the air — the dead here do not\nrest easily. Dark stains seep from beneath sealed sarcophagi, and the\ntemperature has dropped to near freezing. Unholy energy pulses through\nthe stones. The undead draw strength from this corruption.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "room_effects": ["desecrated"],
+      "exits": {
+        "up": {
+          "to_room": 23806,
+          "description": "Stairs lead up to the upper crypt."
+        },
+        "south": {
+          "to_room": 23809,
+          "description": "A tunnel leads deeper into the catacombs."
+        }
+      }
+    },
+    "23808": {
+      "vnum": 23808,
+      "name": "The Ossuary",
+      "description": "The walls, ceiling, and pillars of this chamber are constructed entirely\nfrom human bones, arranged in elaborate patterns. Skulls form arches,\nfemurs create columns, and ribcages line the ceiling in macabre\ndecorative rows. Despite the grim materials, the craftsmanship is\nundeniable. Something watches from the hollow eye sockets.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "west": {
+          "to_room": 23806,
+          "description": "The upper crypt lies to the west."
+        }
+      }
+    },
+    "23809": {
+      "vnum": 23809,
+      "name": "The Catacombs - North",
+      "description": "Ancient tunnels stretch in every direction, carved from living rock and\nlined with burial niches. Many have been broken open, their occupants\ngone. The darkness here is almost tangible, pressing in on your light\nsource. Unholy whispers echo from every direction, making navigation\ntreacherous.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "room_effects": ["desecrated"],
+      "exits": {
+        "north": {
+          "to_room": 23807,
+          "description": "The lower crypt lies to the north."
+        },
+        "south": {
+          "to_room": 23820,
+          "description": "The catacombs continue south."
+        },
+        "east": {
+          "to_room": 23821,
+          "description": "A side tunnel branches east."
+        }
+      }
+    },
+    "23810": {
+      "vnum": 23810,
+      "name": "The Dormitory Corridor",
+      "description": "A long hallway stretches through the dormitory wing. Doors line both\nsides, most hanging from broken hinges. The floorboards creak ominously\nunderfoot, and cold drafts seep from beneath closed doors. Scratching\nsounds and muffled moans drift from the monk's former cells.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "west": {
+          "to_room": 23801,
+          "description": "The courtyard lies to the west."
+        },
+        "north": {
+          "to_room": 23811,
+          "description": "More cells lie to the north."
+        },
+        "east": {
+          "to_room": 23812,
+          "description": "The corridor continues to the refectory."
+        }
+      }
+    },
+    "23811": {
+      "vnum": 23811,
+      "name": "The Monk's Cells",
+      "description": "Tiny rooms branch off from this section of corridor, each barely large\nenough for a pallet and a prayer desk. Personal effects lie scattered —\nrosaries, prayer books, simple wooden cups. In several cells, the pallets\nhave been torn apart, the straw scattered as if by clawing hands.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "south": {
+          "to_room": 23810,
+          "description": "The dormitory corridor continues south."
+        },
+        "east": {
+          "to_room": 23813,
+          "description": "A door leads to the abbot's quarters."
+        }
+      }
+    },
+    "23812": {
+      "vnum": 23812,
+      "name": "The Refectory",
+      "description": "Long wooden tables fill this dining hall, still set with tarnished\nplates and cups as if the monks simply vanished mid-meal. Food has long\nsince rotted away, but dark stains remain. The kitchen lies through an\narch to the north, and the smell of something burning — though no fire\nis visible — drifts through the room.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "west": {
+          "to_room": 23810,
+          "description": "The dormitory corridor lies to the west."
+        }
+      }
+    },
+    "23813": {
+      "vnum": 23813,
+      "name": "The Abbot's Quarters",
+      "description": "Considerably larger than the monks' cells, the abbot's quarters still\nhold an air of authority. A carved mahogany desk dominates the room,\ncovered in yellowed manuscripts. A four-poster bed, its curtains in\ntatters, stands against one wall. A portrait of the last abbot hangs\nabove the desk — and its eyes seem to follow you. The room is\nsurprisingly well-preserved, as if maintained by unseen hands.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "west": {
+          "to_room": 23811,
+          "description": "The monk's cells lie to the west."
+        }
+      }
+    },
+    "23814": {
+      "vnum": 23814,
+      "name": "The Library Entrance",
+      "description": "Tall double doors, one hanging askew, open into the monastery's famous\nlibrary. The smell of old parchment and mildew fills the air. Towering\nbookshelves stretch into the gloom, many collapsed under the weight of\ncenturies. Scattered pages drift across the floor like autumn leaves.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "east": {
+          "to_room": 23801,
+          "description": "The courtyard lies to the east."
+        },
+        "west": {
+          "to_room": 23815,
+          "description": "The library continues deeper."
+        },
+        "north": {
+          "to_room": 23816,
+          "description": "A reading alcove lies to the north."
+        }
+      }
+    },
+    "23815": {
+      "vnum": 23815,
+      "name": "The Deep Library",
+      "description": "The oldest and most valuable texts were kept in this inner section.\nMany shelves are empty — their contents removed or destroyed. But some\ntomes remain, chained to their lecterns with iron links. Faint\nluminescence emanates from certain books, their pages inscribed with\nforgotten prayers and sacred knowledge. This area retains a faint\nblessing. Undead recoil from the sacred texts.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "room_effects": ["consecrated"],
+      "exits": {
+        "east": {
+          "to_room": 23814,
+          "description": "The library entrance lies to the east."
+        },
+        "south": {
+          "to_room": 23817,
+          "description": "A locked door leads to the scriptorium."
+        }
+      }
+    },
+    "23816": {
+      "vnum": 23816,
+      "name": "A Reading Alcove",
+      "description": "A small alcove with a stone bench and a narrow window — now just a\nhole in the wall. A single candle burns on the ledge, though no one\ncould have lit it. The flame doesn't flicker. On the bench lies an\nopen book, its pages turning by themselves, though there is no wind.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "south": {
+          "to_room": 23814,
+          "description": "The library entrance lies to the south."
+        }
+      }
+    },
+    "23817": {
+      "vnum": 23817,
+      "name": "The Scriptorium",
+      "description": "Rows of writing desks fill this room, each equipped with dried-out\ninkwells and crumbling quills. Unfinished manuscripts lie on several\ndesks, the handwriting trailing off mid-sentence. One desk has been\nsmashed to pieces, and dark scratches gouge the stone floor around it\nas if something was dragged away.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "north": {
+          "to_room": 23815,
+          "description": "The deep library lies to the north."
+        }
+      }
+    },
+    "23818": {
+      "vnum": 23818,
+      "name": "The Armory",
+      "description": "Racks of weapons and armor stands line the walls — the monastery\nmaintained a small but well-equipped guard. Most equipment has rusted\nbeyond use, but a few suits of plate armor remain standing in their\nalcoves, unnervingly upright. As you watch, one of them shifts slightly\nwith a metallic groan.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "south": {
+          "to_room": 23810,
+          "description": "The dormitory corridor lies to the south."
+        }
+      }
+    },
+    "23819": {
+      "vnum": 23819,
+      "name": "The Meditation Garden",
+      "description": "What was once a serene garden of raked gravel and carefully tended\nbonsai is now an overgrown tangle. Yet a stone circle in the center\nremains clear, and sitting within it brings a faint sense of peace.\nThe ground here has been consecrated by centuries of prayer, and the\nblessing holds despite the corruption elsewhere. Undead will not\nwillingly enter this place.",
+      "sector_type": "field",
+      "flags": [],
+      "room_effects": ["consecrated"],
+      "exits": {
+        "south": {
+          "to_room": 23801,
+          "description": "The courtyard lies to the south."
+        }
+      }
+    },
+    "23820": {
+      "vnum": 23820,
+      "name": "The Catacombs - Central Chamber",
+      "description": "The tunnels converge on a large underground chamber. A black altar\nstands in the center, stained with old blood and surrounded by\nscattered bones. Unholy symbols are carved into every surface. This\nis where the corruption originated — where the last abbot performed\nthe ritual that damned the entire monastery. The very air throbs with\ndark power. Undead are at their strongest here.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "room_effects": ["desecrated"],
+      "exits": {
+        "north": {
+          "to_room": 23809,
+          "description": "The catacombs continue north."
+        },
+        "east": {
+          "to_room": 23822,
+          "description": "A passage leads to the ritual chamber."
+        },
+        "west": {
+          "to_room": 23823,
+          "description": "A collapsed tunnel opens to the west."
+        }
+      }
+    },
+    "23821": {
+      "vnum": 23821,
+      "name": "The Catacombs - Eastern Passage",
+      "description": "Bones spill from broken niches along this narrow passage. The floor is\nlittered with shattered urns and scattered grave goods. Something has\nbeen systematically breaking open every burial niche, collecting the\nremains for some dark purpose.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "west": {
+          "to_room": 23809,
+          "description": "The northern catacombs lie to the west."
+        },
+        "south": {
+          "to_room": 23822,
+          "description": "The passage curves south."
+        }
+      }
+    },
+    "23822": {
+      "vnum": 23822,
+      "name": "The Ritual Chamber",
+      "description": "A perfect circle has been carved into the stone floor, filled with\nsigils that still glow with a faint, sickly light. This is where the\nAbbot's Ghost holds court, bound to the site of his greatest sin.\nCandles of black wax burn with pale flames around the circle's edge.\nThe walls weep moisture that smells of grave earth and incense.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "room_effects": ["desecrated"],
+      "exits": {
+        "west": {
+          "to_room": 23820,
+          "description": "The central chamber lies to the west."
+        },
+        "north": {
+          "to_room": 23821,
+          "description": "A passage leads north."
+        }
+      }
+    },
+    "23823": {
+      "vnum": 23823,
+      "name": "Collapsed Tunnel",
+      "description": "Part of the catacomb ceiling has given way here, creating a sloping\npile of rubble that leads up to the monastery gardens above. Roots\nfrom surface plants dangle through the gap. This could serve as an\nescape route — or an ambush point. Fresh scratch marks on the rubble\nsuggest something uses this passage regularly.",
+      "sector_type": "inside",
+      "flags": ["dark", "indoors"],
+      "exits": {
+        "east": {
+          "to_room": 23820,
+          "description": "The central chamber lies to the east."
+        },
+        "up": {
+          "to_room": 23819,
+          "description": "Rubble slopes up to the meditation garden."
+        }
+      }
+    },
+    "23824": {
+      "vnum": 23824,
+      "name": "The Reliquary",
+      "description": "Behind the altar in the chapel, a hidden door opens into this small\nchamber. Glass cases — most shattered — once held sacred relics. A few\nremain: a saint's finger bone, a vial of blessed water, a fragment of\nholy scripture. The room radiates calm. Even the whispers of the dead\nfall silent here.",
+      "sector_type": "inside",
+      "flags": ["indoors"],
+      "room_effects": ["consecrated"],
+      "exits": {
+        "south": {
+          "to_room": 23802,
+          "description": "The chapel lies to the south."
+        }
+      }
+    }
+  },
+  "mobs": {
+    "23800": {
+      "vnum": 23800,
+      "name": "restless monk",
+      "short_desc": "a restless monk",
+      "long_desc": "The translucent shade of a monk shuffles along, muttering prayers.",
+      "description": "This ghostly figure retains the shape of a robed monk, its features blurred and shifting. It shuffles endlessly through the corridors, repeating prayers from a life long ended. Its eyes are hollow voids of sorrow.",
+      "level": 25,
+      "alignment": -200,
+      "hp_dice": "8d8+200",
+      "damage_dice": "3d6+5",
+      "gold": 0,
+      "exp": 2500,
+      "armor_class": 2,
+      "flags": ["stay_zone", "undead"],
+      "room": 23810
+    },
+    "23801": {
+      "vnum": 23801,
+      "name": "restless monk",
+      "short_desc": "a restless monk",
+      "long_desc": "A ghostly monk kneels in prayer, oblivious to the living.",
+      "description": "Another shade of the monastery's former inhabitants. This one seems more peaceful, kneeling in eternal prayer, but will attack if disturbed.",
+      "level": 25,
+      "alignment": -200,
+      "hp_dice": "8d8+200",
+      "damage_dice": "3d6+5",
+      "gold": 0,
+      "exp": 2500,
+      "armor_class": 2,
+      "flags": ["stay_zone", "undead"],
+      "room": 23811
+    },
+    "23802": {
+      "vnum": 23802,
+      "name": "restless monk",
+      "short_desc": "a wailing monk",
+      "long_desc": "A wailing monk drifts through the refectory, reaching for a meal it can never eat.",
+      "description": "This spirit seems trapped in the moment of its death, endlessly reaching for the dining table. Its wails are more sorrowful than threatening.",
+      "level": 26,
+      "alignment": -200,
+      "hp_dice": "8d8+220",
+      "damage_dice": "3d6+6",
+      "gold": 0,
+      "exp": 2700,
+      "armor_class": 2,
+      "flags": ["stay_zone", "undead", "sentinel"],
+      "room": 23812
+    },
+    "23803": {
+      "vnum": 23803,
+      "name": "spectral priest",
+      "short_desc": "a spectral priest",
+      "long_desc": "A spectral priest floats above the ground, dark energy crackling around its hands.",
+      "description": "More powerful than the common monk spirits, this priest retains knowledge of the divine — now twisted to dark purpose. Its robes shimmer between priestly white and void black, and it commands unholy magic with devastating effect.",
+      "level": 30,
+      "alignment": -600,
+      "hp_dice": "10d8+350",
+      "damage_dice": "3d8+8",
+      "gold": 0,
+      "exp": 5000,
+      "armor_class": 0,
+      "flags": ["stay_zone", "undead", "aggressive", "sentinel"],
+      "room": 23807,
+      "special": {
+        "abilities": ["curse", "energy_drain"]
+      }
+    },
+    "23804": {
+      "vnum": 23804,
+      "name": "spectral priest",
+      "short_desc": "a spectral priest",
+      "long_desc": "A spectral priest stands before the defiled vestry, guarding it jealously.",
+      "description": "This priest spirit guards the site of the monastery's original corruption. Dark energy swirls around it protectively.",
+      "level": 30,
+      "alignment": -600,
+      "hp_dice": "10d8+350",
+      "damage_dice": "3d8+8",
+      "gold": 0,
+      "exp": 5000,
+      "armor_class": 0,
+      "flags": ["stay_zone", "undead", "aggressive", "sentinel"],
+      "room": 23804
+    },
+    "23805": {
+      "vnum": 23805,
+      "name": "bone collector",
+      "short_desc": "a bone collector",
+      "long_desc": "A hunched, skeletal figure scurries about, gathering bones into a sack.",
+      "description": "Neither fully alive nor truly undead, the bone collector is a wretched creature that haunts burial sites. It obsessively gathers bones, adding them to the ossuary walls with disturbing precision. Its own body is a patchwork of stolen skeletal parts.",
+      "level": 27,
+      "alignment": -500,
+      "hp_dice": "9d8+250",
+      "damage_dice": "3d6+6",
+      "gold": 30,
+      "exp": 3200,
+      "armor_class": 1,
+      "flags": ["stay_zone", "undead", "scavenger"],
+      "room": 23808
+    },
+    "23806": {
+      "vnum": 23806,
+      "name": "bone collector",
+      "short_desc": "a bone collector",
+      "long_desc": "A bone collector crouches among the burial niches, prying them open.",
+      "description": "This bone collector works methodically through the catacombs, breaking open niches and sorting the contents. It clutches a femur like a club.",
+      "level": 27,
+      "alignment": -500,
+      "hp_dice": "9d8+250",
+      "damage_dice": "3d6+6",
+      "gold": 25,
+      "exp": 3200,
+      "armor_class": 1,
+      "flags": ["stay_zone", "undead", "scavenger"],
+      "room": 23821
+    },
+    "23807": {
+      "vnum": 23807,
+      "name": "possessed armor",
+      "short_desc": "a possessed suit of armor",
+      "long_desc": "A suit of plate armor stands motionless — then its visor snaps toward you.",
+      "description": "This full suit of plate armor moves without any visible occupant. Dark energy animates it, purple light flickering behind the visor. It wields a heavy mace with mechanical precision, its movements jerky but devastatingly powerful.",
+      "level": 29,
+      "alignment": -400,
+      "hp_dice": "10d8+300",
+      "damage_dice": "3d8+7",
+      "gold": 0,
+      "exp": 4200,
+      "armor_class": -2,
+      "flags": ["stay_zone", "undead", "sentinel", "aggressive"],
+      "room": 23818
+    },
+    "23808": {
+      "vnum": 23808,
+      "name": "possessed armor",
+      "short_desc": "a possessed suit of armor",
+      "long_desc": "A suit of armor lurches forward, swinging a rusted sword.",
+      "description": "Another animated suit, this one wields a corroded longsword. Dents and scratches cover its surface from encounters with previous intruders. None of them survived.",
+      "level": 29,
+      "alignment": -400,
+      "hp_dice": "10d8+300",
+      "damage_dice": "3d8+7",
+      "gold": 0,
+      "exp": 4200,
+      "armor_class": -2,
+      "flags": ["stay_zone", "undead", "sentinel"],
+      "room": 23818
+    },
+    "23809": {
+      "vnum": 23809,
+      "name": "shadow bat",
+      "short_desc": "a shadow bat",
+      "long_desc": "A bat made of living shadow swoops silently through the belfry.",
+      "description": "Not a true bat but a manifestation of the monastery's dark energy, this creature is made of shadow and malice. Its eyes burn red and its bite drains warmth from the living.",
+      "level": 26,
+      "alignment": -300,
+      "hp_dice": "7d8+150",
+      "damage_dice": "2d8+5",
+      "gold": 0,
+      "exp": 2000,
+      "armor_class": 3,
+      "flags": ["stay_zone", "aggressive"],
+      "room": 23805
+    },
+    "23810": {
+      "vnum": 23810,
+      "name": "shadow bat",
+      "short_desc": "a shadow bat",
+      "long_desc": "A shadow bat hangs from the rafters, watching with burning eyes.",
+      "description": "This shadow bat clings to the ceiling, folding its insubstantial wings around itself like a cloak of darkness. It drops silently on unsuspecting prey.",
+      "level": 26,
+      "alignment": -300,
+      "hp_dice": "7d8+150",
+      "damage_dice": "2d8+5",
+      "gold": 0,
+      "exp": 2000,
+      "armor_class": 3,
+      "flags": ["stay_zone", "aggressive"],
+      "room": 23805
+    },
+    "23811": {
+      "vnum": 23811,
+      "name": "catacomb crawler",
+      "short_desc": "a catacomb crawler",
+      "long_desc": "A pale, eyeless creature skitters across the catacomb ceiling.",
+      "description": "This elongated, insectoid creature has adapted to life in the catacombs. Pale and eyeless, it navigates by vibration and hunts anything that disturbs its domain. Multiple legs end in hooked claws that grip stone effortlessly.",
+      "level": 28,
+      "alignment": -300,
+      "hp_dice": "9d8+270",
+      "damage_dice": "3d6+7",
+      "gold": 0,
+      "exp": 3800,
+      "armor_class": 1,
+      "flags": ["stay_zone", "aggressive", "sentinel"],
+      "room": 23809
+    },
+    "23812": {
+      "vnum": 23812,
+      "name": "The Abbot's Ghost",
+      "short_desc": "the Abbot's Ghost",
+      "long_desc": "The towering specter of the Abbot hovers above the ritual circle, eyes blazing with unholy fire.",
+      "description": "Once the spiritual leader of this monastery, the Abbot was corrupted by a forbidden text and performed the ritual that killed every monk within these walls, binding their souls — including his own — to the monastery for eternity. His ghost is immensely powerful, wreathed in dark energy, and consumed by guilt twisted into rage. He wields the very prayers he once used to heal as weapons of destruction. Only by defeating him can the monastery's curse be broken.",
+      "level": 35,
+      "alignment": -1000,
+      "hp_dice": "25d10+29750",
+      "damage_dice": "4d10+15",
+      "gold": 0,
+      "exp": 30000,
+      "armor_class": -6,
+      "flags": ["stay_zone", "sentinel", "undead", "aware"],
+      "room": 23822,
+      "equipment": {
+        "wield": 23800
+      },
+      "special": {
+        "type": "boss",
+        "abilities": ["unholy_word", "soul_drain", "summon_undead", "phase_shift"],
+        "phase_2_hp_percent": 50,
+        "phase_2_message": "The Abbot's Ghost screams in anguish! 'You cannot save them! NONE of us can be saved!' Dark energy explodes outward as the specter's form doubles in size.",
+        "room_effect_interaction": {
+          "consecrated": {"damage_taken_modifier": 1.5, "damage_dealt_modifier": 0.7},
+          "desecrated": {"damage_taken_modifier": 0.7, "damage_dealt_modifier": 1.5}
+        }
+      }
+    },
+    "23813": {
+      "vnum": 23813,
+      "name": "spectral librarian",
+      "short_desc": "a spectral librarian",
+      "long_desc": "A ghostly figure drifts between the shelves, reshelvng books with translucent hands.",
+      "description": "This spirit seems less hostile than others, still performing its duties from life. However, it reacts violently to anyone who disturbs the books.",
+      "level": 27,
+      "alignment": -100,
+      "hp_dice": "8d8+220",
+      "damage_dice": "3d6+5",
+      "gold": 0,
+      "exp": 2800,
+      "armor_class": 2,
+      "flags": ["stay_zone", "undead", "sentinel"],
+      "room": 23815
+    }
+  },
+  "objects": {
+    "23800": {
+      "vnum": 23800,
+      "name": "Abbot's Holy Mace",
+      "short_desc": "the Abbot's Holy Mace",
+      "room_desc": "A golden mace radiating faint holy light lies here, freed from its spectral wielder.",
+      "item_type": "weapon",
+      "weight": 10,
+      "value": 30000,
+      "damage_dice": "4d7+8",
+      "weapon_type": "bludgeon",
+      "flags": ["glow", "magic", "unique", "anti_evil"],
+      "affects": [
+        {"type": "wisdom", "value": 3},
+        {"type": "hitroll", "value": 4},
+        {"type": "damroll", "value": 4}
+      ],
+      "min_level": 28,
+      "type": "weapon"
+    },
+    "23801": {
+      "vnum": 23801,
+      "name": "Spectral Robes",
+      "short_desc": "the Spectral Robes",
+      "room_desc": "Shimmering robes that seem to phase in and out of existence lie folded here.",
+      "item_type": "armor",
+      "wear_location": "body",
+      "weight": 3,
+      "value": 25000,
+      "armor_bonus": 6,
+      "flags": ["glow", "magic", "unique"],
+      "affects": [
+        {"type": "intelligence", "value": 3},
+        {"type": "mana", "value": 50},
+        {"type": "saving_spell", "value": -3}
+      ],
+      "min_level": 27,
+      "type": "armor"
+    },
+    "23802": {
+      "vnum": 23802,
+      "name": "Tome of Sacred Knowledge",
+      "short_desc": "the Tome of Sacred Knowledge",
+      "room_desc": "A heavy tome bound in white leather glows softly on a lectern.",
+      "item_type": "treasure",
+      "weight": 5,
+      "value": 20000,
+      "flags": ["glow", "magic", "unique"],
+      "affects": [
+        {"type": "wisdom", "value": 2},
+        {"type": "intelligence", "value": 2},
+        {"type": "mana", "value": 40}
+      ],
+      "min_level": 25,
+      "type": "treasure"
+    },
+    "23803": {
+      "vnum": 23803,
+      "name": "holy water",
+      "short_desc": "a vial of holy water",
+      "room_desc": "A small glass vial of clear, glowing water sits here.",
+      "item_type": "potion",
+      "weight": 1,
+      "value": 200,
+      "flags": ["glow"],
+      "type": "potion",
+      "special": {
+        "use_effect": "consecrate_room",
+        "duration_seconds": 300,
+        "description": "Using holy water in a room temporarily consecrates it for 5 minutes, making undead take 50% more damage and deal 30% less damage in that room."
+      }
+    },
+    "23804": {
+      "vnum": 23804,
+      "name": "monk's prayer beads",
+      "short_desc": "a strand of prayer beads",
+      "room_desc": "A strand of wooden prayer beads lies on the ground.",
+      "item_type": "treasure",
+      "weight": 1,
+      "value": 100,
+      "type": "treasure"
+    },
+    "23805": {
+      "vnum": 23805,
+      "name": "rusted monastery key",
+      "short_desc": "a rusted iron key",
+      "room_desc": "A rusted iron key lies among the debris.",
+      "item_type": "key",
+      "weight": 1,
+      "value": 0,
+      "type": "key"
+    }
+  },
+  "zone_mechanics": {
+    "holy_unholy_system": {
+      "description": "Rooms in this zone can be consecrated or desecrated. Undead mobs receive modifiers based on room state.",
+      "consecrated_rooms": [23802, 23815, 23819, 23824],
+      "desecrated_rooms": [23804, 23807, 23809, 23820, 23822],
+      "neutral_rooms": "all others",
+      "effects": {
+        "consecrated": {
+          "undead_damage_taken_modifier": 1.5,
+          "undead_damage_dealt_modifier": 0.7,
+          "undead_hp_regen": false
+        },
+        "desecrated": {
+          "undead_damage_taken_modifier": 0.7,
+          "undead_damage_dealt_modifier": 1.5,
+          "undead_hp_regen": true
+        }
+      },
+      "holy_water_item": 23803,
+      "holy_water_duration_seconds": 300,
+      "holy_water_effect": "Temporarily changes a desecrated or neutral room to consecrated for 5 minutes."
+    }
+  }
+}

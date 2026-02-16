@@ -67,6 +67,11 @@ class Object:
         self.affects = []  # [{type, value}, ...]
         self.flags = set()
 
+        # Rarity & proc system (legendary.py)
+        self.rarity = 'common'  # common, uncommon, rare, epic, legendary
+        self.procs = []  # [{type, effect, chance, damage, desc}, ...]
+        self.drop_source = None  # Boss name for legendaries
+
         # Lore/Readable text
         self.lore_id = None
         self.lore_title = None
@@ -133,6 +138,9 @@ class Object:
             'lore_zone': self.lore_zone,
             'readable_text': self.readable_text,
             'timer': self.timer,
+            'rarity': self.rarity,
+            'procs': self.procs,
+            'drop_source': self.drop_source,
         }
         
     @classmethod
@@ -172,6 +180,9 @@ class Object:
         obj.lore_zone = data.get('lore_zone')
         obj.readable_text = data.get('readable_text')
         obj.timer = data.get('timer', -1)
+        obj.rarity = data.get('rarity', 'common')
+        obj.procs = data.get('procs', [])
+        obj.drop_source = data.get('drop_source', None)
 
         # Load contents recursively
         obj.contents = [cls.from_dict(item_data, world) 

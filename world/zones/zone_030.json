@@ -362,11 +362,12 @@
     "3010": {
       "vnum": 3010,
       "name": "The General Store",
-      "description": "This isside the general store. All sorts of items are stacked on shelves\nbehind the counter, safely out of your reach. A small note hangs on the\nwall. The ceiling hangs low overhead. The walls are rough-hewn and cold\nto the touch.",
+      "description": "This isside the general store. All sorts of items are stacked on shelves\nbehind the counter, safely out of your reach. A small note hangs on the\nwall. The ceiling hangs low overhead. The walls are rough-hewn and cold\nto the touch.\nA sturdy workbench with leatherworking tools occupies the back.",
       "sector_type": "inside",
       "flags": [
         "indoors",
-        "no_magic"
+        "no_magic",
+        "workbench"
       ],
       "exits": {
         "south": {
@@ -387,11 +388,12 @@
     "3011": {
       "vnum": 3011,
       "name": "The Weapon Shop",
-      "description": "This isside the weapon shop. There is a small note on the counter. The\nair is still and musty. Shadows gather in the corners. The air is stale\nand the walls close. Shadows pool in the corners, undisturbed.",
+      "description": "This isside the weapon shop. There is a small note on the counter. The\nair is still and musty. Shadows gather in the corners. The air is stale\nand the walls close. Shadows pool in the corners, undisturbed.\nA massive dwarven forge dominates one corner, its coals glowing hot.",
       "sector_type": "inside",
       "flags": [
         "indoors",
-        "no_magic"
+        "no_magic",
+        "forge"
       ],
       "exits": {
         "south": {
@@ -468,7 +470,7 @@
     "3014": {
       "vnum": 3014,
       "name": "Market Square",
-      "description": "This area is the market square, the famous Square of Midgaard. A large,\npeculiar looking statue is standing in the middle of the square. Roads\nlead in every direction, north to the temple square, south to the common\nsquare, east and westbound is the main street. A grand marble building\nto the west bears the sign 'First National Bank'. A small stone\nfountain bubbles cheerfully near the statue. The statue's base hums\nfaintly, runes flickering when no one looks directly at them. The smell\nof smoke and humanity hangs in the air. Vendors and pedestrians bustle\npast.",
+      "description": "This area is the market square, the famous Square of Midgaard. A large,\npeculiar looking statue is standing in the middle of the square. Roads\nlead in every direction, north to the temple square, south to the common\nsquare, east and westbound is the main street. A grand marble building\nto the west bears the sign 'First National Bank'. A small stone\nfountain bubbles cheerfully near the statue. The statue's base hums\nfaintly, runes flickering when no one looks directly at them. The smell\nof smoke and humanity hangs in the air. Vendors and pedestrians bustle\npast.\nA sturdy oak counter stands near the statue where Guildmaster Harlan\nconducts the Auction House, calling out prices and finalizing deals.",
       "sector_type": "city",
       "flags": [],
       "obj_resets": [
@@ -516,6 +518,9 @@
           "vnum": 3068,
           "max": 4
         }
+      ],
+      "mobs": [
+        3099
       ]
     },
     "3015": {
@@ -577,10 +582,11 @@
     "3017": {
       "vnum": 3017,
       "name": "The Entrance To The Mages' Guild",
-      "description": "The entrance hall to this guild is a small, poor lighted room. The air\nis still and musty. Shadows gather in the corners. The air is stale and\nthe walls close. Shadows pool in the corners, undisturbed.",
+      "description": "The entrance hall to this guild is a small, poor lighted room. The air\nis still and musty. Shadows gather in the corners. The air is stale and\nthe walls close. Shadows pool in the corners, undisturbed.\nA glowing enchanting circle is inscribed on the floor.",
       "sector_type": "inside",
       "flags": [
-        "indoors"
+        "indoors",
+        "enchanting_circle"
       ],
       "exits": {
         "north": {
@@ -676,11 +682,12 @@
     "3020": {
       "vnum": 3020,
       "name": "The Armory",
-      "description": "The armory with all kinds of armors on the walls and in the window. You\nsee helmets, shields and chain mails. To the north is the main street.\nOn the wall is a small note. The ceiling hangs low overhead. Dust motes\ndrift in the stale air.",
+      "description": "The armory with all kinds of armors on the walls and in the window. You\nsee helmets, shields and chain mails. To the north is the main street.\nOn the wall is a small note. The ceiling hangs low overhead. Dust motes\ndrift in the stale air.\nA well-maintained forge stands ready for use.",
       "sector_type": "inside",
       "flags": [
         "indoors",
-        "no_magic"
+        "no_magic",
+        "forge"
       ],
       "exits": {
         "north": {
@@ -1141,11 +1148,12 @@
     "3033": {
       "vnum": 3033,
       "name": "The Magic Shop",
-      "description": "Behind the counter you see various items, neatly placed in racks,\npresumably most of them are magic. The air is still and musty. Dust\nmotes drift in the stale air.",
+      "description": "Behind the counter you see various items, neatly placed in racks,\npresumably most of them are magic. The air is still and musty. Dust\nmotes drift in the stale air.\nAn alchemy table covered in vials and burners sits against the wall.",
       "sector_type": "inside",
       "flags": [
         "indoors",
-        "no_magic"
+        "no_magic",
+        "alchemy_table"
       ],
       "exits": {
         "south": {
@@ -1266,6 +1274,10 @@
         "south": {
           "to_room": 3043,
           "description": "The road continues further south."
+        },
+        "east": {
+          "to_room": 26000,
+          "description": "A sign points east to the Midgaard Housing District."
         }
       },
       "extra_descs": {
@@ -1537,6 +1549,10 @@
             "locked": false,
             "key_vnum": 3112
           }
+        },
+        "south": {
+          "to_room": 3200,
+          "description": "You see a path leading to the Royal Stables."
         }
       },
       "extra_descs": {
@@ -3872,19 +3888,26 @@
     },
     "3099": {
       "vnum": 3099,
-      "name": "trained hawk",
-      "short_desc": "a trained hawk",
-      "long_desc": "A trained hawk sits here on a perch, eyes scanning for prey.",
-      "description": "This fierce hawk has been trained as a hunting companion.",
-      "level": 6,
-      "hp_dice": "4d6+15",
-      "damage_dice": "1d8+3",
-      "ac": 75,
-      "exp": 80,
-      "gold": 80,
-      "attacks": [
-        "claw"
-      ]
+      "name": "guildmaster harlan auctioneer",
+      "short_desc": "Guildmaster Harlan, the Auctioneer",
+      "long_desc": "Guildmaster Harlan stands behind a wide oak counter, overseeing the Auction House.",
+      "level": 50,
+      "alignment": 1000,
+      "hp_dice": "10d10+500",
+      "damage_dice": "1d1+50000",
+      "gold": 0,
+      "exp": 0,
+      "armor_class": -100,
+      "flags": [
+        "special",
+        "sentinel",
+        "no_charm",
+        "no_summon",
+        "shopkeeper"
+      ],
+      "description": "Guildmaster Harlan is a broad-shouldered dwarf with keen eyes and ink-stained\nfingers. He runs Midgaard's Auction House with ruthless efficiency, ensuring\nevery transaction is fair \u2014 for a reasonable fee, of course. His oak counter\nis covered with ledgers, contracts, and a brass bell.",
+      "special": "auctioneer",
+      "room": 3014
     },
     "3100": {
       "vnum": 3100,

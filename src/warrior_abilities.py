@@ -1108,6 +1108,13 @@ async def cmd_evolve(player, args: list):
     await player.send(f"{c['cyan']}  {evo_desc}{c['reset']}")
     await player.send(f"{c['bright_yellow']}═══════════════════════════════════════════════════{c['reset']}")
 
+    # Achievement: Doctrine Devoted
+    try:
+        from achievements import AchievementManager
+        await AchievementManager.check_doctrine_devoted(player)
+    except Exception:
+        pass
+
 
 # ============================================================================
 # SAVE/LOAD HELPERS
