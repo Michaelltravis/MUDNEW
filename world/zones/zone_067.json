@@ -1,0 +1,447 @@
+{
+  "number": 67,
+  "name": "The Eastern Highlands",
+  "lifespan": 25,
+  "rooms": {
+    "6700": {
+      "vnum": 6700,
+      "name": "The Highland Trail",
+      "description": "The forest gives way to rocky, windswept terrain as the trail climbs\neastward into the highlands. Loose scree crunches underfoot, and hardy\nscrub grass clings to crevices between the stones. The air is thinner\nhere, carrying the scent of wild thyme and distant smoke.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 6601,
+          "description": "The trail descends west into the forest."
+        },
+        "east": {
+          "to_room": 6701,
+          "description": "The highland trail continues east."
+        }
+      }
+    },
+    "6701": {
+      "vnum": 6701,
+      "name": "Windswept Ridge",
+      "description": "A long ridge of exposed rock stretches east and west, buffeted by\nrelentless wind. The views are spectacular \u2014 to the west, endless\nforest; to the east, a landscape of rocky plateaus and deep ravines.\nA cairn of stacked stones marks the trail here.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 6700,
+          "description": "The trail descends toward the forest."
+        },
+        "east": {
+          "to_room": 6702,
+          "description": "The ridge path continues east."
+        },
+        "south": {
+          "to_room": 6708,
+          "description": "A steep path descends toward the coast."
+        }
+      }
+    },
+    "6702": {
+      "vnum": 6702,
+      "name": "The Ruined Watchtower",
+      "description": "The crumbling remains of a stone watchtower perch on the ridge's highest\npoint. Only two walls still stand, but the view from here is commanding.\nScorch marks and old arrow holes tell of a violent end to whatever\ngarrison once manned this post. A rusty iron ladder leads up to what\nremains of the second floor.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 6701,
+          "description": "The ridge path leads west."
+        },
+        "east": {
+          "to_room": 6703,
+          "description": "A cliffside path descends east."
+        },
+        "up": {
+          "to_room": 6712,
+          "description": "A rusty ladder leads to the upper floor."
+        }
+      },
+      "extra_descs": {
+        "scorch marks arrows": "The tower was attacked from the east. Whatever came over the highlands hit this watchtower first."
+      },
+      "gathering_nodes": [
+        {
+          "type": "mining",
+          "resource": "iron ore",
+          "respawn_minutes": 60
+        }
+      ]
+    },
+    "6703": {
+      "vnum": 6703,
+      "name": "Cliffside Path",
+      "description": "The path narrows dramatically, clinging to the face of a sheer cliff.\nTo your left, a wall of stone rises vertically; to your right, a\nsickening drop into a boulder-strewn ravine far below. The wind\ntugs at your clothing, and loose pebbles skitter over the edge\ninto the void.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 6702,
+          "description": "The path widens near the watchtower."
+        },
+        "east": {
+          "to_room": 6704,
+          "description": "The cliff path continues precariously."
+        }
+      }
+    },
+    "6704": {
+      "vnum": 6704,
+      "name": "The Highland Crossroads",
+      "description": "The cliffside path opens onto a rocky plateau where several trails\nconverge. A battered signpost stands at the center, surrounded by\nthe remains of old campfires. To the north, a dark trail leads toward\nan ominous structure on a distant hilltop. To the southeast, the land\ngrows darker and more desolate.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 6703,
+          "description": "The cliffside path clings to the cliff face."
+        },
+        "north": {
+          "to_room": 6705,
+          "description": "A dark trail leads toward the monastery."
+        },
+        "southeast": {
+          "to_room": 6709,
+          "description": "The path descends toward shadow-shrouded lands."
+        },
+        "south": {
+          "to_room": 6713,
+          "description": "A narrow trail descends toward the southern coast."
+        }
+      },
+      "extra_descs": {
+        "signpost sign": "The signpost reads:\n  NORTH - Haunted Monastery (cursed ground!)\n  SOUTHEAST - Shadowspire Citadel (certain death)\n  WEST - The Ridge / Northern Wilderness\n  SOUTH - Coastal Path to the Sunken Coast"
+      }
+    },
+    "6705": {
+      "vnum": 6705,
+      "name": "The Dark Trail",
+      "description": "The trail narrows as it climbs toward a looming structure silhouetted\nagainst grey clouds. Dead trees line the path, their bare branches\nreaching like skeletal fingers. An unnatural chill seeps from the\nground, and no birds sing here. Faded prayer ribbons hang from the\nbranches, their blessings long spent.",
+      "sector_type": "hills",
+      "flags": [
+        "dark"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 6704,
+          "description": "The trail returns to the crossroads."
+        },
+        "north": {
+          "to_room": 6706,
+          "description": "The trail leads toward the monastery gates."
+        }
+      }
+    },
+    "6706": {
+      "vnum": 6706,
+      "name": "Before the Monastery Gates",
+      "description": "Massive iron gates stand before you, hanging askew on rusted hinges.\nBeyond them, the dark silhouette of the Haunted Monastery rises against\nthe sky. A cold wind moans through the gate bars, carrying whispers\nthat might be words \u2014 or might be your imagination. The ground is\nbarren and cracked, as if the very earth recoils from this place.",
+      "sector_type": "hills",
+      "flags": [
+        "dark"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 6705,
+          "description": "The dark trail leads away from the monastery."
+        },
+        "north": {
+          "to_room": 23800,
+          "description": "The gates lead into the Haunted Monastery."
+        }
+      }
+    },
+    "6707": {
+      "vnum": 6707,
+      "name": "Highland Scrubland",
+      "description": "Low, tough shrubs and wind-blasted grass cover this stretch of highland.\nRabbit warrens dot the ground, and a hawk circles lazily overhead. The\nterrain is uneven but not treacherous, offering good visibility in all\ndirections. Stone outcroppings provide shelter from the worst of the wind.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 6704,
+          "description": "The trail leads north to the crossroads."
+        }
+      },
+      "gathering_nodes": [
+        {
+          "type": "mining",
+          "resource": "rough quartz",
+          "respawn_minutes": 45
+        }
+      ]
+    },
+    "6708": {
+      "vnum": 6708,
+      "name": "Southern Descent",
+      "description": "The highland trail begins a steep descent southward. The air grows\nwarmer and more humid, carrying the faint salt tang of the sea. Rocky\nterrain gradually gives way to sandy soil and coastal grasses. Seabirds\nwheel overhead, their cries echoing off the cliff faces.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 6701,
+          "description": "The trail climbs back up to the ridge."
+        },
+        "south": {
+          "to_room": 6800,
+          "description": "The path descends to the Sunken Coast."
+        }
+      }
+    },
+    "6709": {
+      "vnum": 6709,
+      "name": "The Blighted Path",
+      "description": "The landscape grows increasingly desolate as the path winds southeast.\nThe grass is grey and brittle, the rocks stained with dark streaks.\nAn oppressive atmosphere presses down, and shadows seem to move\nindependently of the feeble light. Something deeply wrong pervades\nthis place.",
+      "sector_type": "hills",
+      "flags": [
+        "dark"
+      ],
+      "exits": {
+        "northwest": {
+          "to_room": 6704,
+          "description": "The path returns to the highland crossroads."
+        },
+        "southeast": {
+          "to_room": 6710,
+          "description": "The blighted path continues toward darkness."
+        }
+      }
+    },
+    "6710": {
+      "vnum": 6710,
+      "name": "The Shadow Approach",
+      "description": "Dark spires pierce the perpetually overcast sky ahead. The citadel of\nShadowspire looms in the distance, its impossible architecture defying\nreason. The path here is lined with blackened pillars inscribed with\nglyphs that seem to writhe when viewed from the corner of your eye.",
+      "sector_type": "hills",
+      "flags": [
+        "dark"
+      ],
+      "exits": {
+        "northwest": {
+          "to_room": 6709,
+          "description": "The blighted path leads back to the highlands."
+        },
+        "east": {
+          "to_room": 6711,
+          "description": "The path leads to the citadel gates."
+        }
+      }
+    },
+    "6711": {
+      "vnum": 6711,
+      "name": "Before Shadowspire Citadel",
+      "description": "The gates of Shadowspire Citadel rise before you, forged from some metal\nblacker than iron. Tendrils of shadow seep from the gaps between the\nmassive doors, pooling on the ground like dark fog. The temperature drops\nsharply here, and your breath mists in the unnatural cold. Beyond these\ngates lies one of the most feared places in the realm.",
+      "sector_type": "hills",
+      "flags": [
+        "dark"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 6710,
+          "description": "The shadow approach leads back to the highlands."
+        },
+        "north": {
+          "to_room": 24500,
+          "description": "The black gates lead into Shadowspire Citadel."
+        }
+      }
+    },
+    "6712": {
+      "vnum": 6712,
+      "name": "Watchtower Upper Floor",
+      "description": "What remains of the tower's second floor is little more than a stone\nplatform open to the sky. The view is extraordinary \u2014 you can see for\nmiles in every direction. An old spyglass, green with verdigris, is\nmounted on a swivel bracket, still pointing east toward the dark lands.",
+      "sector_type": "inside",
+      "flags": [],
+      "exits": {
+        "down": {
+          "to_room": 6702,
+          "description": "The ladder leads back down."
+        }
+      },
+      "extra_descs": {
+        "spyglass": "Through the spyglass you can make out the dark spires of Shadowspire far\nto the east, and closer, the crumbling monastery on its lonely hill."
+      }
+    },
+    "6713": {
+      "vnum": 6713,
+      "name": "Narrow Coastal Descent",
+      "description": "A narrow switchback trail descends the southern face of the highlands.\nThe rock is slick with sea spray carried on the wind, and hardy coastal\nplants cling to every ledge. Far below, you can see the glittering\nexpanse of the sea and a strip of rocky coastline.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 6704,
+          "description": "The trail climbs back up to the crossroads."
+        },
+        "south": {
+          "to_room": 6803,
+          "description": "The trail continues down to the coastal path."
+        }
+      }
+    }
+  },
+  "mobs": {
+    "6700": {
+      "vnum": 6700,
+      "name": "highland raider",
+      "short_desc": "a highland raider",
+      "long_desc": "A fierce highland raider stands here, weapons drawn.",
+      "description": "This raider wears fur-lined leather armor and carries a notched battle axe.\nBlue woad tattoos cover exposed skin, and cold eyes assess you as either\nthreat or prey.",
+      "level": 22,
+      "hp_dice": "7d10+80",
+      "damage_dice": "3d5+5",
+      "exp": 2200,
+      "gold": 45,
+      "alignment": -400,
+      "armor_class": 55,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ]
+    },
+    "6701": {
+      "vnum": 6701,
+      "name": "mountain lion",
+      "short_desc": "a mountain lion",
+      "long_desc": "A sleek mountain lion crouches on a rocky ledge, tail twitching.",
+      "description": "A tawny mountain lion with powerful haunches and razor-sharp claws. It\nwatches you with predatory patience, muscles coiled to spring.",
+      "level": 25,
+      "hp_dice": "8d10+90",
+      "damage_dice": "3d6+4",
+      "exp": 2800,
+      "gold": 0,
+      "alignment": -100,
+      "armor_class": 50,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ]
+    },
+    "6702": {
+      "vnum": 6702,
+      "name": "harpy",
+      "short_desc": "a shrieking harpy",
+      "long_desc": "A harpy perches on a rock outcropping, shrieking at passersby.",
+      "description": "This wretched creature has the body of a giant vulture and the twisted\nface of a woman. Its feathers are matted with filth, and its talons\nare stained dark with old blood.",
+      "level": 30,
+      "hp_dice": "10d10+100",
+      "damage_dice": "3d7+5",
+      "exp": 3500,
+      "gold": 20,
+      "alignment": -600,
+      "armor_class": 45,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ]
+    },
+    "6703": {
+      "vnum": 6703,
+      "name": "highland hermit",
+      "short_desc": "a highland hermit",
+      "long_desc": "A weathered hermit sits cross-legged on a flat stone, watching the world.",
+      "description": "This old hermit has lived in the highlands for decades. His skin is\nleathered by wind and sun, but his eyes are sharp and knowing. He\nseems willing to share wisdom with respectful travelers.",
+      "level": 15,
+      "hp_dice": "5d8+40",
+      "damage_dice": "1d6+2",
+      "exp": 0,
+      "gold": 10,
+      "alignment": 750,
+      "armor_class": 80,
+      "flags": [
+        "sentinel",
+        "helper"
+      ]
+    },
+    "6704": {
+      "vnum": 6704,
+      "name": "raider chieftain",
+      "short_desc": "the raider chieftain",
+      "long_desc": "The highland raider chieftain stands here, a massive figure draped in furs.",
+      "description": "The chieftain is enormous, standing a full head taller than most warriors.\nScars crisscross his arms and face, each one a badge of survival. A\nnecklace of teeth and bones rattles at his chest.",
+      "level": 35,
+      "hp_dice": "12d10+130",
+      "damage_dice": "4d6+7",
+      "exp": 5000,
+      "gold": 200,
+      "alignment": -500,
+      "armor_class": 35,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ]
+    }
+  },
+  "objects": {
+    "6700": {
+      "vnum": 6700,
+      "name": "highland battle axe",
+      "short_desc": "a notched highland battle axe",
+      "description": "A heavy battle axe with a notched iron head and leather-wrapped haft.",
+      "type": "weapon",
+      "weight": 8,
+      "cost": 150
+    }
+  },
+  "resets": [
+    {
+      "command": "M",
+      "mob_vnum": 6700,
+      "max_exist": 3,
+      "room_vnum": 6703,
+      "comment": "raider on cliff path"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6700,
+      "max_exist": 3,
+      "room_vnum": 6701,
+      "comment": "raider on ridge"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6701,
+      "max_exist": 2,
+      "room_vnum": 6700,
+      "comment": "mountain lion on trail"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6701,
+      "max_exist": 2,
+      "room_vnum": 6703,
+      "comment": "mountain lion on cliff"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6702,
+      "max_exist": 2,
+      "room_vnum": 6712,
+      "comment": "harpy at watchtower"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6702,
+      "max_exist": 2,
+      "room_vnum": 6710,
+      "comment": "harpy on shadow approach"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6703,
+      "max_exist": 1,
+      "room_vnum": 6707,
+      "comment": "hermit in scrubland"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6704,
+      "max_exist": 1,
+      "room_vnum": 6704,
+      "comment": "chieftain at crossroads"
+    }
+  ]
+}

@@ -848,6 +848,14 @@ class CombatHandler:
                     if attacker.combo_points < 5:
                         attacker.combo_points += 1
 
+            # Legendary proc system: on-hit effects
+            if not killed:
+                try:
+                    from legendary import trigger_on_hit_procs
+                    await trigger_on_hit_procs(attacker, defender, damage, weapon)
+                except Exception:
+                    pass
+
             # Apply poison effects from envenomed weapon
             if not killed and weapon and hasattr(weapon, 'envenomed') and weapon.envenomed:
                 await cls.apply_poison_effect(attacker, defender, weapon)
@@ -1313,6 +1321,29 @@ class CombatHandler:
                             if loot_obj:
                                 victim.inventory.append(loot_obj)
                                 break  # Old format: one drop only
+
+        # Legendary item drop check for bosses
+        if not hasattr(victim, 'connection') and hasattr(victim, 'inventory'):
+            try:
+                from legendary import get_legendary_drop_for_boss, create_legendary, announce_legendary_drop
+                leg_vnum = get_legendary_drop_for_boss(victim)
+                if leg_vnum:
+                    leg_item = create_legendary(leg_vnum, killer.world if hasattr(killer, 'world') else None)
+                    if leg_item:
+                        victim.inventory.append(leg_item)
+                        # Server-wide announcement
+                        killer_name = getattr(exp_recipient, 'name', getattr(killer, 'name', 'Someone'))
+                        world = getattr(killer, 'world', None) or getattr(exp_recipient, 'world', None)
+                        await announce_legendary_drop(world, killer_name, leg_item.short_desc)
+            except Exception as e:
+                logger.debug(f"Legendary drop check error: {e}")
+
+        # On-kill procs (legendary/epic item effects)
+        try:
+            from legendary import trigger_on_kill_procs
+            await trigger_on_kill_procs(exp_recipient, victim)
+        except Exception:
+            pass
 
         # Universal rare drop chance for all mobs (consumables/gold)
         if not hasattr(victim, 'connection') and hasattr(victim, 'inventory'):

@@ -1,0 +1,410 @@
+{
+  "number": 69,
+  "name": "The Ashlands",
+  "lifespan": 20,
+  "rooms": {
+    "6900": {
+      "vnum": 6900,
+      "name": "The Scorched Shore",
+      "description": "The sea laps against black volcanic sand, hissing where waves meet\ngeothermally heated rock. Steam rises from vents scattered across the\nbeach, and the air reeks of sulfur. To the north, the waters lead back\nto the Sunken Coast. Inland, a hellish landscape of ash and magma awaits.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "northwest": {
+          "to_room": 6810,
+          "description": "The sea route leads back to the reef."
+        },
+        "east": {
+          "to_room": 6901,
+          "description": "A path leads inland through the ash."
+        }
+      }
+    },
+    "6901": {
+      "vnum": 6901,
+      "name": "Ash-Covered Trail",
+      "description": "A trail cuts through knee-deep drifts of grey volcanic ash. Every step\nsends up choking clouds of fine particles. The skeletal remains of trees\njut from the ash like blackened bones. Somewhere ahead, an orange glow\npulses against the perpetually overcast sky.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 6900,
+          "description": "The trail leads back to the scorched shore."
+        },
+        "east": {
+          "to_room": 6902,
+          "description": "The trail continues through the ashfields."
+        }
+      }
+    },
+    "6902": {
+      "vnum": 6902,
+      "name": "The Ashfields",
+      "description": "A vast expanse of grey ash stretches in every direction, broken only by\njutting spires of black obsidian and the occasional steam vent belching\nsulfurous gas. The ground is uncomfortably warm underfoot, and cracks\nin the earth glow with the dull red of magma far below. Nothing grows\nhere. Nothing should live here.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 6901,
+          "description": "The trail leads back toward the coast."
+        },
+        "north": {
+          "to_room": 6903,
+          "description": "A path winds between obsidian spires."
+        },
+        "east": {
+          "to_room": 6906,
+          "description": "The ash grows deeper toward the volcanic heart."
+        }
+      },
+      "gathering_nodes": [
+        {
+          "type": "mining",
+          "resource": "obsidian shards",
+          "respawn_minutes": 45
+        }
+      ]
+    },
+    "6903": {
+      "vnum": 6903,
+      "name": "Obsidian Spire Field",
+      "description": "Towering spires of black volcanic glass erupt from the ashen ground,\nsome reaching thirty feet into the smoky sky. They catch what little\nlight exists and throw it back in razor-sharp reflections. The spaces\nbetween the spires create a natural maze, and something moves in the\nshadows between them.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 6902,
+          "description": "The ashfields stretch south."
+        },
+        "north": {
+          "to_room": 6904,
+          "description": "A gap between spires leads further north."
+        },
+        "east": {
+          "to_room": 6907,
+          "description": "A narrow path winds through the spires."
+        }
+      },
+      "gathering_nodes": [
+        {
+          "type": "mining",
+          "resource": "obsidian chunks",
+          "respawn_minutes": 60
+        }
+      ]
+    },
+    "6904": {
+      "vnum": 6904,
+      "name": "The Cinder Wastes",
+      "description": "The ground crunches with every step \u2014 not ash here, but solidified\ncinders and pumice, sharp enough to cut through thin boots. Rivers of\ncooled lava snake across the landscape in frozen black streams. In the\ndistance, a massive structure belches smoke and steam \u2014 the Clockwork\nFoundry, built into the side of a dormant volcano.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 6903,
+          "description": "The obsidian spires rise to the south."
+        },
+        "north": {
+          "to_room": 6905,
+          "description": "The path leads toward the Foundry."
+        },
+        "west": {
+          "to_room": 6910,
+          "description": "A scorched trail winds westward."
+        }
+      }
+    },
+    "6905": {
+      "vnum": 6905,
+      "name": "Before the Clockwork Foundry",
+      "description": "Enormous blast doors of riveted iron are set into the volcanic rock face.\nPipes and vents protrude from the mountainside around them, releasing\nregular blasts of steam and smoke. The ground vibrates with the rhythm\nof vast machinery working deep within. A signpost \u2014 incongruously neat\namid the desolation \u2014 stands beside the doors.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 6904,
+          "description": "The cinder wastes stretch south."
+        },
+        "north": {
+          "to_room": 24800,
+          "description": "The blast doors lead into the Clockwork Foundry."
+        }
+      },
+      "extra_descs": {
+        "signpost sign": "A brass plaque reads:\n  CLOCKWORK FOUNDRY\n  Authorized Personnel Only\n  Trespassers Will Be Processed\n  (Management is not responsible for dismemberment)"
+      }
+    },
+    "6906": {
+      "vnum": 6906,
+      "name": "Steam Vent Valley",
+      "description": "A depression in the ashlands is filled with hissing steam vents that\nerupt at irregular intervals, sending boiling columns of vapor twenty\nfeet into the air. The ground between vents is crusted with yellow\nsulfur deposits and mineral stains of vivid orange and green. The heat\nis nearly unbearable.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 6902,
+          "description": "The ashfields continue west."
+        },
+        "north": {
+          "to_room": 6907,
+          "description": "A treacherous path leads north through the steam."
+        }
+      },
+      "gathering_nodes": [
+        {
+          "type": "mining",
+          "resource": "sulfur crystals",
+          "respawn_minutes": 40
+        }
+      ]
+    },
+    "6907": {
+      "vnum": 6907,
+      "name": "The Magma Flows",
+      "description": "Here the earth's fury is laid bare. Rivers of molten rock flow sluggishly\nthrough channels carved over millennia, casting everything in hellish\norange light. The heat distorts the air into shimmering waves, and the\nroar of flowing magma drowns out all but the loudest sounds. Narrow\nbridges of cooled stone span the flows.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 6906,
+          "description": "The steam vent valley lies south."
+        },
+        "west": {
+          "to_room": 6903,
+          "description": "A path leads west through obsidian spires."
+        },
+        "north": {
+          "to_room": 6908,
+          "description": "A stone bridge crosses the widest flow."
+        }
+      }
+    },
+    "6908": {
+      "vnum": 6908,
+      "name": "The Burning Bridge",
+      "description": "A narrow bridge of volcanic stone arches over a wide river of magma.\nThe stone is hot enough to burn bare skin, and the bridge sways\nalarmingly under your weight. Chunks of rock occasionally break from\nthe edges and plunge into the molten river below with brilliant\nsplashes of orange fire.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 6907,
+          "description": "The magma flows lie on the southern bank."
+        },
+        "north": {
+          "to_room": 6909,
+          "description": "The bridge reaches the northern bank."
+        }
+      }
+    },
+    "6909": {
+      "vnum": 6909,
+      "name": "The Apocalypse Approach",
+      "description": "Beyond the magma flows, the landscape takes on an even more nightmarish\nquality. The sky is permanently stained red, and the air crackles with\nstrange energy. In the distance, the dark towers of a fortress rise \u2014\nCastle Apocalypse, seat of unimaginable power. The road here is paved\nwith blackened skulls, fused together by volcanic heat.",
+      "sector_type": "field",
+      "flags": [
+        "dark"
+      ],
+      "exits": {
+        "south": {
+          "to_room": 6908,
+          "description": "The burning bridge spans the magma."
+        }
+      },
+      "extra_descs": {
+        "skulls road": "Thousands of skulls, fused into a macabre roadway by intense heat.\nSome still seem to be screaming."
+      }
+    },
+    "6910": {
+      "vnum": 6910,
+      "name": "Scorched Wasteland",
+      "description": "A desolate expanse where even the ash has been burned away, leaving\nbare, cracked rock that radiates heat. The remains of some great battle\nlitter the ground \u2014 twisted metal, shattered weapons, and scorched\nbones. Whatever happened here was cataclysmic.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 6904,
+          "description": "The cinder wastes continue east."
+        }
+      },
+      "extra_descs": {
+        "battle remains bones": "The armor fragments bear no recognizable insignia. Whatever army\nfought here has been erased from history along with its soldiers."
+      }
+    },
+    "6911": {
+      "vnum": 6911,
+      "name": "A Sheltered Hollow",
+      "description": "A depression in the rock, shielded from the worst of the heat and ash\nby overhanging volcanic formations. Someone has built a crude shelter\nhere from scavenged metal and stone. A fire pit glows with embers that\nnever seem to die \u2014 fueled by volcanic gas seeping from below.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 6902,
+          "description": "The ashfields stretch outside."
+        }
+      }
+    }
+  },
+  "mobs": {
+    "6900": {
+      "vnum": 6900,
+      "name": "fire elemental",
+      "short_desc": "a fire elemental",
+      "long_desc": "A swirling column of flame dances here, radiating intense heat.",
+      "description": "This elemental is a vortex of living fire, roughly humanoid in shape.\nFlames of white, orange, and blue spiral around a blindingly bright\ncore. The air around it shimmers and distorts.",
+      "level": 42,
+      "hp_dice": "14d10+140",
+      "damage_dice": "4d6+8",
+      "exp": 5500,
+      "gold": 0,
+      "alignment": -200,
+      "armor_class": 30,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ]
+    },
+    "6901": {
+      "vnum": 6901,
+      "name": "ash wraith",
+      "short_desc": "an ash wraith",
+      "long_desc": "A spectral figure of swirling ash and ember hovers here, moaning.",
+      "description": "This undead horror is formed from volcanic ash animated by dark magic.\nIts form shifts constantly, vaguely humanoid one moment and a shapeless\ncloud the next. Embers glow like malevolent eyes within its form.",
+      "level": 45,
+      "hp_dice": "15d10+150",
+      "damage_dice": "4d7+7",
+      "exp": 6000,
+      "gold": 0,
+      "alignment": -800,
+      "armor_class": 25,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ]
+    },
+    "6902": {
+      "vnum": 6902,
+      "name": "magma crawler",
+      "short_desc": "a magma crawler",
+      "long_desc": "A massive insectoid creature of molten rock crawls along the ground.",
+      "description": "This nightmarish creature resembles a centipede the size of a horse,\nits segmented body composed of cooling and reheating rock. Magma seeps\nfrom the joints between its segments, and its mandibles glow white-hot.",
+      "level": 48,
+      "hp_dice": "16d10+170",
+      "damage_dice": "5d6+9",
+      "exp": 7000,
+      "gold": 0,
+      "alignment": -300,
+      "armor_class": 20,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ]
+    },
+    "6903": {
+      "vnum": 6903,
+      "name": "volcanic drake",
+      "short_desc": "a volcanic drake",
+      "long_desc": "A drake of black scales and smoldering wings perches on an obsidian spire.",
+      "description": "This lesser dragon is native to the Ashlands, its scales black as obsidian\nand veined with glowing orange cracks like cooling lava. Smoke curls from\nits nostrils, and its eyes burn with primordial fire.",
+      "level": 55,
+      "hp_dice": "20d10+220",
+      "damage_dice": "5d8+12",
+      "exp": 12000,
+      "gold": 0,
+      "alignment": -400,
+      "armor_class": 15,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ]
+    },
+    "6904": {
+      "vnum": 6904,
+      "name": "ashland scavenger",
+      "short_desc": "an ashland scavenger",
+      "long_desc": "A desperate-looking scavenger picks through debris, protected by heavy wrappings.",
+      "description": "This scavenger is bundled in layers of heat-resistant wrappings and wears\nthick goggles against the ash. They make a living collecting obsidian,\nsulfur, and salvage from the wastes, and know these lands intimately.",
+      "level": 20,
+      "hp_dice": "6d8+50",
+      "damage_dice": "2d5+3",
+      "exp": 0,
+      "gold": 50,
+      "alignment": 200,
+      "armor_class": 60,
+      "flags": [
+        "sentinel",
+        "helper"
+      ]
+    }
+  },
+  "objects": {
+    "6900": {
+      "vnum": 6900,
+      "name": "obsidian blade",
+      "short_desc": "a razor-sharp obsidian blade",
+      "description": "A blade knapped from volcanic obsidian, its edge impossibly thin and sharp.",
+      "type": "weapon",
+      "weight": 4,
+      "cost": 300
+    }
+  },
+  "resets": [
+    {
+      "command": "M",
+      "mob_vnum": 6900,
+      "max_exist": 2,
+      "room_vnum": 6907,
+      "comment": "fire elemental at magma flows"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6900,
+      "max_exist": 2,
+      "room_vnum": 6906,
+      "comment": "fire elemental in steam valley"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6901,
+      "max_exist": 2,
+      "room_vnum": 6901,
+      "comment": "ash wraith on trail"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6901,
+      "max_exist": 2,
+      "room_vnum": 6910,
+      "comment": "ash wraith in wasteland"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6902,
+      "max_exist": 2,
+      "room_vnum": 6903,
+      "comment": "magma crawler in spires"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6902,
+      "max_exist": 2,
+      "room_vnum": 6908,
+      "comment": "magma crawler on bridge"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6903,
+      "max_exist": 1,
+      "room_vnum": 6909,
+      "comment": "volcanic drake at apocalypse approach"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6904,
+      "max_exist": 1,
+      "room_vnum": 6911,
+      "comment": "scavenger in hollow"
+    }
+  ]
+}

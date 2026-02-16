@@ -1,0 +1,441 @@
+{
+  "number": 68,
+  "name": "The Sunken Coast",
+  "lifespan": 30,
+  "rooms": {
+    "6800": {
+      "vnum": 6800,
+      "name": "The Coastal Bluffs",
+      "description": "The highlands give way to windswept coastal bluffs overlooking a vast,\ngrey-green sea. Salt spray mists the air, and the crash of waves against\nthe cliffs far below creates a constant, thunderous rhythm. A winding\npath descends along the bluff face toward a stretch of rocky shoreline.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 6708,
+          "description": "The trail climbs back into the Eastern Highlands."
+        },
+        "south": {
+          "to_room": 6801,
+          "description": "The path descends toward the shore."
+        }
+      }
+    },
+    "6801": {
+      "vnum": 6801,
+      "name": "Rocky Shoreline",
+      "description": "A stretch of dark, wave-smoothed rocks extends along the base of the\nbluffs. Tide pools teem with small crabs and anemones, and strands of\nkelp lie drying in the sun. The air is thick with the briny smell of\nthe sea. To the east, a ramshackle dock juts into the water.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 6800,
+          "description": "The bluff path climbs upward."
+        },
+        "east": {
+          "to_room": 6802,
+          "description": "A path leads to the old docks."
+        },
+        "south": {
+          "to_room": 6804,
+          "description": "The shoreline continues south."
+        }
+      },
+      "gathering_nodes": [
+        {
+          "type": "fishing",
+          "resource": "saltwater fish",
+          "respawn_minutes": 20
+        }
+      ]
+    },
+    "6802": {
+      "vnum": 6802,
+      "name": "The Smuggler's Dock",
+      "description": "A weathered wooden dock extends over dark water, its planks slick with\nalgae and salt. Several small boats are tied up here, rocking in the\nchop. Crates and barrels are stacked haphazardly nearby, some bearing\nno merchant marks \u2014 smuggled goods, most likely. A rough tavern has\nbeen built into the cliff face.",
+      "sector_type": "city",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 6801,
+          "description": "The rocky shoreline stretches west."
+        },
+        "south": {
+          "to_room": 6805,
+          "description": "A pier extends further out over the water."
+        }
+      },
+      "extra_descs": {
+        "crates barrels": "The unmarked crates contain various goods \u2014 silks, spices, and bottles\nof exotic liquor. Definitely not legitimate trade."
+      }
+    },
+    "6803": {
+      "vnum": 6803,
+      "name": "Coastal Path",
+      "description": "A narrow path hugs the cliff face, connecting the highlands above to\nthe coast below. Sea spray keeps the rocks perpetually wet, and tough\nsea grass grows in every crack. The path is treacherous but passable,\nwith rope handholds driven into the rock at the worst spots.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 6713,
+          "description": "The path climbs up to the highlands."
+        },
+        "south": {
+          "to_room": 6804,
+          "description": "The path continues along the coast."
+        }
+      }
+    },
+    "6804": {
+      "vnum": 6804,
+      "name": "Driftwood Beach",
+      "description": "A crescent of grey sand littered with driftwood and the bleached bones\nof sea creatures. The beach is sheltered from the worst winds by tall\nrock formations on either side. Charred driftwood and empty bottles mark\nwhere pirates have made camp. A cave mouth yawns in the cliff to the east.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 6801,
+          "description": "The shoreline continues north."
+        },
+        "west": {
+          "to_room": 6803,
+          "description": "The coastal path leads to the highlands."
+        },
+        "east": {
+          "to_room": 6806,
+          "description": "A dark cave opens in the cliff face."
+        },
+        "south": {
+          "to_room": 6809,
+          "description": "The beach narrows toward the reef shallows."
+        }
+      },
+      "gathering_nodes": [
+        {
+          "type": "foraging",
+          "resource": "driftwood",
+          "respawn_minutes": 30
+        }
+      ]
+    },
+    "6805": {
+      "vnum": 6805,
+      "name": "The Outer Pier",
+      "description": "The end of the pier extends over deeper water, dark and fathomless. Fish\nswirl in schools below the planks, and a weathered fisherman's chair sits\nat the end, bolted to the deck. A signpost has been nailed to a piling.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 6802,
+          "description": "The dock leads back to shore."
+        }
+      },
+      "extra_descs": {
+        "signpost sign": "Scrawled in charcoal:\n  'The temple lies beneath the waves to the south.\n   Only fools and the desperate dive those waters.\n   - Captain Blackhand'"
+      },
+      "gathering_nodes": [
+        {
+          "type": "fishing",
+          "resource": "deep sea catch",
+          "respawn_minutes": 15
+        }
+      ]
+    },
+    "6806": {
+      "vnum": 6806,
+      "name": "Tidal Cave Entrance",
+      "description": "The cave mouth opens wide enough for three people abreast, but narrows\nquickly. Water drips from stalactites and pools on the uneven floor.\nThe walls glisten with minerals, and bioluminescent algae provides a\nfaint blue-green glow. The tide line is clearly visible \u2014 this cave\nfloods regularly.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 6804,
+          "description": "Daylight streams from the beach outside."
+        },
+        "east": {
+          "to_room": 6807,
+          "description": "The cave continues deeper."
+        }
+      }
+    },
+    "6807": {
+      "vnum": 6807,
+      "name": "Tidal Cave - The Grotto",
+      "description": "The cave opens into a beautiful grotto, its ceiling studded with\nglowing crystals that reflect in the still pool of seawater below.\nAncient carvings decorate the walls \u2014 depictions of a great temple\nsinking beneath the waves. This place feels sacred, preserved by\nthe sea itself.",
+      "sector_type": "inside",
+      "flags": [
+        "dark",
+        "indoors"
+      ],
+      "exits": {
+        "west": {
+          "to_room": 6806,
+          "description": "The cave leads back toward the entrance."
+        },
+        "down": {
+          "to_room": 6808,
+          "description": "A flooded passage descends into darkness."
+        }
+      },
+      "extra_descs": {
+        "carvings walls": "The carvings show a magnificent temple dedicated to Nereus, god of the\nsea. A great catastrophe \u2014 perhaps a tidal wave \u2014 swallowed it whole.\nThe final panel shows a glowing trident deep within the sunken ruins."
+      }
+    },
+    "6808": {
+      "vnum": 6808,
+      "name": "Flooded Passage",
+      "description": "You plunge into dark, cold water that fills the passage completely.\nBioluminescent creatures drift past like living stars, providing just\nenough light to navigate. The passage slopes steeply downward, the\npressure building in your ears. Ancient stone blocks line the walls \u2014\nyou're entering the outer ruins of the sunken temple.",
+      "sector_type": "water_noswim",
+      "flags": [
+        "dark"
+      ],
+      "exits": {
+        "up": {
+          "to_room": 6807,
+          "description": "The passage ascends to the grotto above."
+        },
+        "down": {
+          "to_room": 24000,
+          "description": "The passage descends into the Sunken Temple."
+        }
+      }
+    },
+    "6809": {
+      "vnum": 6809,
+      "name": "Reef Shallows",
+      "description": "The water here is barely waist-deep, crystal clear over a reef of\nvibrant coral. Tropical fish in impossible colors dart between the\ncoral heads, and sea urchins cling to every surface. The reef extends\nfar out to sea, creating a natural breakwater. Watch your step \u2014 the\ncoral is sharp as razors.",
+      "sector_type": "water_swim",
+      "flags": [],
+      "exits": {
+        "north": {
+          "to_room": 6804,
+          "description": "The beach stretches north."
+        },
+        "east": {
+          "to_room": 6810,
+          "description": "The reef extends eastward."
+        }
+      },
+      "gathering_nodes": [
+        {
+          "type": "fishing",
+          "resource": "exotic shellfish",
+          "respawn_minutes": 25
+        }
+      ]
+    },
+    "6810": {
+      "vnum": 6810,
+      "name": "The Reef's Edge",
+      "description": "The reef drops away suddenly here into deep blue water. Standing on the\nlast shelf of coral, you can see down into an abyss where great shadows\nmove slowly in the depths. The current is strong, pulling toward the\nopen sea. To the southeast, volcanic smoke rises from a distant shore.",
+      "sector_type": "water_swim",
+      "flags": [],
+      "exits": {
+        "west": {
+          "to_room": 6809,
+          "description": "The shallow reef stretches back to shore."
+        },
+        "southeast": {
+          "to_room": 6900,
+          "description": "A treacherous sea path leads toward volcanic shores."
+        }
+      }
+    },
+    "6811": {
+      "vnum": 6811,
+      "name": "The Cliff Tavern",
+      "description": "Carved into the cliff face behind the docks, this rough establishment\nserves as both tavern and trading post for the coast's less reputable\nvisitors. Lanterns swing from the low ceiling, casting swaying shadows.\nA scarred wooden bar runs along one wall, tended by a one-eyed barkeep\nwho asks no questions.",
+      "sector_type": "inside",
+      "flags": [
+        "indoors"
+      ],
+      "exits": {
+        "east": {
+          "to_room": 6802,
+          "description": "The door opens onto the docks."
+        }
+      }
+    }
+  },
+  "mobs": {
+    "6800": {
+      "vnum": 6800,
+      "name": "coastal pirate",
+      "short_desc": "a coastal pirate",
+      "long_desc": "A weathered pirate lounges here, cutlass at his hip.",
+      "description": "This pirate has the look of a man who's spent his life at sea \u2014 sun-darkened\nskin, salt-crusted clothing, and a missing finger on his left hand. His\ncutlass is well-maintained despite his slovenly appearance.",
+      "level": 32,
+      "hp_dice": "10d10+100",
+      "damage_dice": "3d6+6",
+      "exp": 3200,
+      "gold": 80,
+      "alignment": -500,
+      "armor_class": 45,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ]
+    },
+    "6801": {
+      "vnum": 6801,
+      "name": "giant crab",
+      "short_desc": "a giant crab",
+      "long_desc": "A giant crab scuttles sideways across the rocks, claws clacking.",
+      "description": "This crab is the size of a large dog, with a shell encrusted with barnacles\nand claws that could sever a hand. It moves with surprising speed.",
+      "level": 30,
+      "hp_dice": "9d10+85",
+      "damage_dice": "3d5+5",
+      "exp": 2500,
+      "gold": 0,
+      "alignment": 0,
+      "armor_class": 35,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ]
+    },
+    "6802": {
+      "vnum": 6802,
+      "name": "smuggler",
+      "short_desc": "a shifty smuggler",
+      "long_desc": "A shifty-looking smuggler eyes you suspiciously from the shadows.",
+      "description": "This smuggler wears dark clothing designed to blend into the night. A\nnetwork of scars on his hands speaks to a life of knife-work and rope-burns.",
+      "level": 35,
+      "hp_dice": "11d10+110",
+      "damage_dice": "3d7+5",
+      "exp": 3800,
+      "gold": 150,
+      "alignment": -400,
+      "armor_class": 40,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ]
+    },
+    "6803": {
+      "vnum": 6803,
+      "name": "sea serpent",
+      "short_desc": "a sea serpent",
+      "long_desc": "A serpentine form undulates through the water, scales gleaming.",
+      "description": "This sea serpent is as long as three men laid end to end, with iridescent\nscales and needle-sharp fangs. It moves through the water with terrifying\ngrace.",
+      "level": 40,
+      "hp_dice": "14d10+140",
+      "damage_dice": "4d6+8",
+      "exp": 5500,
+      "gold": 0,
+      "alignment": -200,
+      "armor_class": 30,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ]
+    },
+    "6804": {
+      "vnum": 6804,
+      "name": "old fisherman",
+      "short_desc": "an old fisherman",
+      "long_desc": "An old fisherman sits mending his nets, humming a sea shanty.",
+      "description": "This ancient fisherman has weathered more storms than he can count. His\nknowledge of these waters is encyclopedic, and he's always willing to\nshare tales of the sunken temple beneath the waves.",
+      "level": 10,
+      "hp_dice": "4d8+30",
+      "damage_dice": "1d4+1",
+      "exp": 0,
+      "gold": 30,
+      "alignment": 500,
+      "armor_class": 90,
+      "flags": [
+        "sentinel",
+        "helper"
+      ]
+    },
+    "6805": {
+      "vnum": 6805,
+      "name": "pirate captain",
+      "short_desc": "Captain Blackhand",
+      "long_desc": "Captain Blackhand stands here, a fearsome figure in a tattered greatcoat.",
+      "description": "Captain Blackhand earned her name from the black leather glove she never\nremoves from her right hand. Rumor has it the hand beneath is cursed \u2014\nor mechanical. She commands the smuggling operation on this coast with\nan iron will and a sharp blade.",
+      "level": 45,
+      "hp_dice": "16d10+160",
+      "damage_dice": "4d7+9",
+      "exp": 7000,
+      "gold": 500,
+      "alignment": -600,
+      "armor_class": 25,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ]
+    }
+  },
+  "objects": {
+    "6800": {
+      "vnum": 6800,
+      "name": "pirate cutlass",
+      "short_desc": "a rusty pirate cutlass",
+      "description": "A curved cutlass with a tarnished brass guard and leather-wrapped grip.",
+      "type": "weapon",
+      "weight": 5,
+      "cost": 100
+    }
+  },
+  "resets": [
+    {
+      "command": "M",
+      "mob_vnum": 6800,
+      "max_exist": 3,
+      "room_vnum": 6802,
+      "comment": "pirate at docks"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6800,
+      "max_exist": 3,
+      "room_vnum": 6804,
+      "comment": "pirate on beach"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6801,
+      "max_exist": 2,
+      "room_vnum": 6801,
+      "comment": "crab on shore"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6801,
+      "max_exist": 2,
+      "room_vnum": 6809,
+      "comment": "crab in shallows"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6802,
+      "max_exist": 2,
+      "room_vnum": 6806,
+      "comment": "smuggler in cave"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6803,
+      "max_exist": 1,
+      "room_vnum": 6810,
+      "comment": "sea serpent at reef edge"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6804,
+      "max_exist": 1,
+      "room_vnum": 6805,
+      "comment": "fisherman on pier"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6805,
+      "max_exist": 1,
+      "room_vnum": 6811,
+      "comment": "captain in tavern"
+    }
+  ]
+}

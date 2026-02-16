@@ -118,6 +118,20 @@ TIPS = {
         "Tip: 'Gossip' sends a message to all players online.",
         "Tip: 'Emote' lets you express actions creatively.",
         "Tip: 'Who' shows who else is playing.",
+        "Tip: Use the 'newbie' channel to ask for help — friendly players are listening!",
+        "Tip: 'Group invite <player>' to team up for tough fights!",
+    ],
+
+    # Systems tips (shown after players have some experience)
+    'systems': [
+        "Tip: Look for NPCs with [!] — they have quests for you!",
+        "Tip: Type 'quests' to check your quest log and objectives.",
+        "Tip: Try 'mine', 'forage', or 'fish' when you find resource nodes.",
+        "Tip: Type 'achievements' to see goals and track your progress.",
+        "Tip: At level 10, unlock your talent tree with 'talents'!",
+        "Tip: Type 'help newbie' for a comprehensive new player guide.",
+        "Tip: At level 20, you can recruit a companion to fight alongside you!",
+        "Tip: Visit the PvP Arena for competitive combat against other players.",
     ],
 }
 

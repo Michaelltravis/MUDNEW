@@ -6,9 +6,11 @@
     "24500": {
       "vnum": 24500,
       "name": "Citadel Gates - The Threshold",
-      "description": "Two immense gates of black iron stand before you, their surfaces crawling\nwith shadow that moves independently of any light source. The air here is\nwrong — too still, too cold, and sounds arrive a half-second late, as if\nreality itself is lagging. Beyond the gates, darkness waits like a living thing.",
+      "description": "Two immense gates of black iron stand before you, their surfaces crawling\nwith shadow that moves independently of any light source. The air here is\nwrong \u2014 too still, too cold, and sounds arrive a half-second late, as if\nreality itself is lagging. Beyond the gates, darkness waits like a living thing.",
       "sector_type": "inside",
-      "flags": ["no_mob"],
+      "flags": [
+        "no_mob"
+      ],
       "zone_mechanic": {
         "type": "shadow_corruption",
         "corruption_per_room": 5,
@@ -17,29 +19,51 @@
         "corruption_message": "Darkness seeps into your soul. Shadow corruption: {level}%"
       },
       "exits": {
-        "north": { "to_room": 24501, "description": "Through the gates into the citadel." }
+        "north": {
+          "to_room": 24501,
+          "description": "Through the gates into the citadel."
+        },
+        "south": {
+          "to_room": 6711,
+          "description": "The gates lead back to the highlands."
+        }
       }
     },
     "24501": {
       "vnum": 24501,
       "name": "Shadow Vestibule",
-      "description": "The vestibule beyond the gates is bathed in a sourceless grey light that\ncasts no shadows — because the shadows here move on their own. Dark tendrils\ncreep along the walls like ivy, and the floor reflects nothing, as if made\nof solidified darkness. Three corridors branch from here.",
+      "description": "The vestibule beyond the gates is bathed in a sourceless grey light that\ncasts no shadows \u2014 because the shadows here move on their own. Dark tendrils\ncreep along the walls like ivy, and the floor reflects nothing, as if made\nof solidified darkness. Three corridors branch from here.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24500, "description": "Back to the gates." },
-        "north": { "to_room": 24504, "description": "A wide corridor leads deeper." },
-        "east": { "to_room": 24502, "description": "A narrow passage to the east." },
-        "west": { "to_room": 24503, "description": "Shadows thicken to the west." }
+        "south": {
+          "to_room": 24500,
+          "description": "Back to the gates."
+        },
+        "north": {
+          "to_room": 24504,
+          "description": "A wide corridor leads deeper."
+        },
+        "east": {
+          "to_room": 24502,
+          "description": "A narrow passage to the east."
+        },
+        "west": {
+          "to_room": 24503,
+          "description": "Shadows thicken to the west."
+        }
       },
       "mob_resets": [
-        { "vnum": 24501, "max": 2 }
+        {
+          "vnum": 24501,
+          "max": 2
+        }
       ]
     },
     "24502": {
       "vnum": 24502,
       "name": "Hall of Flickering Torches",
-      "description": "Iron sconces line the walls, each holding a torch that burns with pale\nlavender flame. The light they cast is wrong — it creates more shadows\nthan it dispels, and the shadows move when you're not looking directly\nat them. Still, the light provides some comfort in this forsaken place.",
+      "description": "Iron sconces line the walls, each holding a torch that burns with pale\nlavender flame. The light they cast is wrong \u2014 it creates more shadows\nthan it dispels, and the shadows move when you're not looking directly\nat them. Still, the light provides some comfort in this forsaken place.",
       "sector_type": "inside",
       "flags": [],
       "zone_mechanic": {
@@ -48,8 +72,14 @@
         "message": "The torchlight pushes back the creeping darkness within you."
       },
       "exits": {
-        "west": { "to_room": 24501, "description": "The vestibule." },
-        "north": { "to_room": 24505, "description": "Deeper into the hall." }
+        "west": {
+          "to_room": 24501,
+          "description": "The vestibule."
+        },
+        "north": {
+          "to_room": 24505,
+          "description": "Deeper into the hall."
+        }
       }
     },
     "24503": {
@@ -59,27 +89,51 @@
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "east": { "to_room": 24501, "description": "The vestibule." },
-        "north": { "to_room": 24506, "description": "The gallery continues." }
+        "east": {
+          "to_room": 24501,
+          "description": "The vestibule."
+        },
+        "north": {
+          "to_room": 24506,
+          "description": "The gallery continues."
+        }
       },
       "mob_resets": [
-        { "vnum": 24502, "max": 1 }
+        {
+          "vnum": 24502,
+          "max": 1
+        }
       ]
     },
     "24504": {
       "vnum": 24504,
       "name": "Corridor of Dread",
-      "description": "The corridor stretches impossibly long, far longer than the exterior of the\ncitadel should allow. The walls pulse like a heartbeat, and your footsteps\necho back to you changed — heavier, more numerous, as if something walks\nbeside you just out of sight. The temperature drops with each step.",
+      "description": "The corridor stretches impossibly long, far longer than the exterior of the\ncitadel should allow. The walls pulse like a heartbeat, and your footsteps\necho back to you changed \u2014 heavier, more numerous, as if something walks\nbeside you just out of sight. The temperature drops with each step.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24501, "description": "The vestibule." },
-        "north": { "to_room": 24507, "description": "The corridor continues into darkness." },
-        "east": { "to_room": 24505, "description": "A side passage." }
+        "south": {
+          "to_room": 24501,
+          "description": "The vestibule."
+        },
+        "north": {
+          "to_room": 24507,
+          "description": "The corridor continues into darkness."
+        },
+        "east": {
+          "to_room": 24505,
+          "description": "A side passage."
+        }
       },
       "mob_resets": [
-        { "vnum": 24501, "max": 2 },
-        { "vnum": 24503, "max": 1 }
+        {
+          "vnum": 24501,
+          "max": 2
+        },
+        {
+          "vnum": 24503,
+          "max": 1
+        }
       ]
     },
     "24505": {
@@ -95,78 +149,138 @@
         "hidden_exit": "down"
       },
       "exits": {
-        "south": { "to_room": 24502, "description": "The torch hall." },
-        "west": { "to_room": 24504, "description": "The corridor." },
-        "down": { "to_room": 24515, "description": "Through the mirror... (hidden)" }
+        "south": {
+          "to_room": 24502,
+          "description": "The torch hall."
+        },
+        "west": {
+          "to_room": 24504,
+          "description": "The corridor."
+        },
+        "down": {
+          "to_room": 24515,
+          "description": "Through the mirror... (hidden)"
+        }
       },
       "mob_resets": [
-        { "vnum": 24503, "max": 2 }
+        {
+          "vnum": 24503,
+          "max": 2
+        }
       ]
     },
     "24506": {
       "vnum": 24506,
       "name": "Shadow Armory",
-      "description": "Weapons forged of solidified shadow hang on the walls — swords that drink\nlight, shields that absorb hope. The armory is attended by silent shadow\nservants who move with mechanical precision, maintaining weapons that\nhave never been used by mortal hands.",
+      "description": "Weapons forged of solidified shadow hang on the walls \u2014 swords that drink\nlight, shields that absorb hope. The armory is attended by silent shadow\nservants who move with mechanical precision, maintaining weapons that\nhave never been used by mortal hands.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24503, "description": "The whispering gallery." },
-        "east": { "to_room": 24507, "description": "Into the main halls." }
+        "south": {
+          "to_room": 24503,
+          "description": "The whispering gallery."
+        },
+        "east": {
+          "to_room": 24507,
+          "description": "Into the main halls."
+        }
       },
       "mob_resets": [
-        { "vnum": 24501, "max": 2 },
-        { "vnum": 24504, "max": 1 }
+        {
+          "vnum": 24501,
+          "max": 2
+        },
+        {
+          "vnum": 24504,
+          "max": 1
+        }
       ]
     },
     "24507": {
       "vnum": 24507,
       "name": "The Umbral Crossroads",
-      "description": "Four passages meet at this junction, marked by a black obelisk that\nhovers three feet above the floor, slowly rotating. Shadow runes crawl\nacross its surface, rearranging themselves into warnings in dead languages.\nThe darkness here is almost tangible — you can feel it pressing against\nyour skin like cold fingers.",
+      "description": "Four passages meet at this junction, marked by a black obelisk that\nhovers three feet above the floor, slowly rotating. Shadow runes crawl\nacross its surface, rearranging themselves into warnings in dead languages.\nThe darkness here is almost tangible \u2014 you can feel it pressing against\nyour skin like cold fingers.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24504, "description": "The corridor." },
-        "west": { "to_room": 24506, "description": "The shadow armory." },
-        "north": { "to_room": 24508, "description": "Toward the inner citadel." },
-        "east": { "to_room": 24509, "description": "A passage to the east." }
+        "south": {
+          "to_room": 24504,
+          "description": "The corridor."
+        },
+        "west": {
+          "to_room": 24506,
+          "description": "The shadow armory."
+        },
+        "north": {
+          "to_room": 24508,
+          "description": "Toward the inner citadel."
+        },
+        "east": {
+          "to_room": 24509,
+          "description": "A passage to the east."
+        }
       },
       "mob_resets": [
-        { "vnum": 24502, "max": 2 }
+        {
+          "vnum": 24502,
+          "max": 2
+        }
       ]
     },
     "24508": {
       "vnum": 24508,
       "name": "Void Antechamber",
-      "description": "The walls here have dissolved into pure void — not darkness, but the\ncomplete absence of anything. Stars that aren't stars drift in the\nnothingness beyond the narrow stone walkway. Step off the path and you\nfall forever. The walkway leads north toward a massive set of doors\npulsing with shadow energy.",
+      "description": "The walls here have dissolved into pure void \u2014 not darkness, but the\ncomplete absence of anything. Stars that aren't stars drift in the\nnothingness beyond the narrow stone walkway. Step off the path and you\nfall forever. The walkway leads north toward a massive set of doors\npulsing with shadow energy.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24507, "description": "The crossroads." },
-        "north": { "to_room": 24510, "description": "Through the pulsing doors." }
+        "south": {
+          "to_room": 24507,
+          "description": "The crossroads."
+        },
+        "north": {
+          "to_room": 24510,
+          "description": "Through the pulsing doors."
+        }
       },
       "mob_resets": [
-        { "vnum": 24502, "max": 1 },
-        { "vnum": 24504, "max": 1 }
+        {
+          "vnum": 24502,
+          "max": 1
+        },
+        {
+          "vnum": 24504,
+          "max": 1
+        }
       ]
     },
     "24509": {
       "vnum": 24509,
       "name": "Nightmare Kennels",
-      "description": "Cages of shadow-wrought iron line this chamber, most standing open.\nClaw marks gouge the stone floors, and the air reeks of something\npredatory. Whatever was kept here has been released — or has escaped.\nDistant howling echoes through the halls, drawing closer.",
+      "description": "Cages of shadow-wrought iron line this chamber, most standing open.\nClaw marks gouge the stone floors, and the air reeks of something\npredatory. Whatever was kept here has been released \u2014 or has escaped.\nDistant howling echoes through the halls, drawing closer.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "west": { "to_room": 24507, "description": "The crossroads." },
-        "north": { "to_room": 24511, "description": "Deeper into the kennels." }
+        "west": {
+          "to_room": 24507,
+          "description": "The crossroads."
+        },
+        "north": {
+          "to_room": 24511,
+          "description": "Deeper into the kennels."
+        }
       },
       "mob_resets": [
-        { "vnum": 24504, "max": 3 }
+        {
+          "vnum": 24504,
+          "max": 3
+        }
       ]
     },
     "24510": {
       "vnum": 24510,
       "name": "Hall of Eclipsed Light",
-      "description": "Once, this grand hall was illuminated by a magnificent chandelier of\ncrystal and gold. Now the crystals have turned black, and the chandelier\nradiates darkness instead of light. Inverted shadows — bright spots in\nthe darkness — mark where light once fell. The effect is deeply unsettling.",
+      "description": "Once, this grand hall was illuminated by a magnificent chandelier of\ncrystal and gold. Now the crystals have turned black, and the chandelier\nradiates darkness instead of light. Inverted shadows \u2014 bright spots in\nthe darkness \u2014 mark where light once fell. The effect is deeply unsettling.",
       "sector_type": "inside",
       "flags": [],
       "zone_mechanic": {
@@ -175,9 +289,18 @@
         "message": "The inverted light here paradoxically soothes your corruption."
       },
       "exits": {
-        "south": { "to_room": 24508, "description": "The antechamber." },
-        "north": { "to_room": 24512, "description": "Deeper into the citadel." },
-        "east": { "to_room": 24511, "description": "A connecting passage." }
+        "south": {
+          "to_room": 24508,
+          "description": "The antechamber."
+        },
+        "north": {
+          "to_room": 24512,
+          "description": "Deeper into the citadel."
+        },
+        "east": {
+          "to_room": 24511,
+          "description": "A connecting passage."
+        }
       }
     },
     "24511": {
@@ -187,19 +310,34 @@
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24509, "description": "The kennels." },
-        "west": { "to_room": 24510, "description": "The eclipsed hall." },
-        "north": { "to_room": 24513, "description": "A narrow stairway up." }
+        "south": {
+          "to_room": 24509,
+          "description": "The kennels."
+        },
+        "west": {
+          "to_room": 24510,
+          "description": "The eclipsed hall."
+        },
+        "north": {
+          "to_room": 24513,
+          "description": "A narrow stairway up."
+        }
       },
       "mob_resets": [
-        { "vnum": 24504, "max": 2 },
-        { "vnum": 24501, "max": 1 }
+        {
+          "vnum": 24504,
+          "max": 2
+        },
+        {
+          "vnum": 24501,
+          "max": 1
+        }
       ]
     },
     "24512": {
       "vnum": 24512,
       "name": "Shadow Library",
-      "description": "Bookshelves stretch into impossible heights, filled with tomes bound in\nshadow-leather. The books write themselves — dark knowledge flowing onto\npages that weren't blank a moment ago. Reading them too long causes the\nwords to crawl off the page and into your mind. Some knowledge is better\nleft unlearned.",
+      "description": "Bookshelves stretch into impossible heights, filled with tomes bound in\nshadow-leather. The books write themselves \u2014 dark knowledge flowing onto\npages that weren't blank a moment ago. Reading them too long causes the\nwords to crawl off the page and into your mind. Some knowledge is better\nleft unlearned.",
       "sector_type": "inside",
       "flags": [],
       "zone_mechanic": {
@@ -209,26 +347,47 @@
         "hidden_exit": "up"
       },
       "exits": {
-        "south": { "to_room": 24510, "description": "The eclipsed hall." },
-        "north": { "to_room": 24514, "description": "A winding staircase." },
-        "up": { "to_room": 24520, "description": "A hidden passage above (hidden)." }
+        "south": {
+          "to_room": 24510,
+          "description": "The eclipsed hall."
+        },
+        "north": {
+          "to_room": 24514,
+          "description": "A winding staircase."
+        },
+        "up": {
+          "to_room": 24520,
+          "description": "A hidden passage above (hidden)."
+        }
       },
       "mob_resets": [
-        { "vnum": 24503, "max": 2 }
+        {
+          "vnum": 24503,
+          "max": 2
+        }
       ]
     },
     "24513": {
       "vnum": 24513,
       "name": "Spiral Staircase of Shadows",
-      "description": "A tight spiral staircase winds upward through the tower. Each step is a\ndifferent shade of darkness — some solid, some disturbingly yielding\nunderfoot. Shadow hands reach from the walls, grasping at ankles and\nwrists. The ascent feels like climbing through a nightmare.",
+      "description": "A tight spiral staircase winds upward through the tower. Each step is a\ndifferent shade of darkness \u2014 some solid, some disturbingly yielding\nunderfoot. Shadow hands reach from the walls, grasping at ankles and\nwrists. The ascent feels like climbing through a nightmare.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24511, "description": "Down to the feeding pit." },
-        "up": { "to_room": 24516, "description": "The staircase winds upward." }
+        "south": {
+          "to_room": 24511,
+          "description": "Down to the feeding pit."
+        },
+        "up": {
+          "to_room": 24516,
+          "description": "The staircase winds upward."
+        }
       },
       "mob_resets": [
-        { "vnum": 24501, "max": 2 }
+        {
+          "vnum": 24501,
+          "max": 2
+        }
       ]
     },
     "24514": {
@@ -243,41 +402,74 @@
         "message": "The corruption crystal floods your soul with darkness!"
       },
       "exits": {
-        "south": { "to_room": 24512, "description": "The library." },
-        "north": { "to_room": 24517, "description": "Beyond the corruption." }
+        "south": {
+          "to_room": 24512,
+          "description": "The library."
+        },
+        "north": {
+          "to_room": 24517,
+          "description": "Beyond the corruption."
+        }
       },
       "mob_resets": [
-        { "vnum": 24502, "max": 2 },
-        { "vnum": 24501, "max": 2 }
+        {
+          "vnum": 24502,
+          "max": 2
+        },
+        {
+          "vnum": 24501,
+          "max": 2
+        }
       ]
     },
     "24515": {
       "vnum": 24515,
       "name": "Mirror Realm - Inverted Chamber",
-      "description": "You stepped through the mirror and everything is reversed. The room is\nidentical to the one you left, but wrong — text reads backwards, gravity\nfeels slightly off, and your reflection in the mirrors here shows the\nreal room you came from. A passage leads deeper into this inverted space.",
+      "description": "You stepped through the mirror and everything is reversed. The room is\nidentical to the one you left, but wrong \u2014 text reads backwards, gravity\nfeels slightly off, and your reflection in the mirrors here shows the\nreal room you came from. A passage leads deeper into this inverted space.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "up": { "to_room": 24505, "description": "Back through the mirror." },
-        "north": { "to_room": 24518, "description": "Deeper into the mirror realm." }
+        "up": {
+          "to_room": 24505,
+          "description": "Back through the mirror."
+        },
+        "north": {
+          "to_room": 24518,
+          "description": "Deeper into the mirror realm."
+        }
       },
       "mob_resets": [
-        { "vnum": 24503, "max": 3 }
+        {
+          "vnum": 24503,
+          "max": 3
+        }
       ]
     },
     "24516": {
       "vnum": 24516,
       "name": "Tower of Whispers",
-      "description": "The upper tower opens into a circular chamber where the whispers of a\nthousand damned souls create a constant, maddening drone. Wind howls\nthrough narrow arrow slits, and through them you can see nothing but\nvoid — no sky, no ground, just infinite darkness stretching forever.",
+      "description": "The upper tower opens into a circular chamber where the whispers of a\nthousand damned souls create a constant, maddening drone. Wind howls\nthrough narrow arrow slits, and through them you can see nothing but\nvoid \u2014 no sky, no ground, just infinite darkness stretching forever.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "down": { "to_room": 24513, "description": "The spiral staircase." },
-        "north": { "to_room": 24519, "description": "Higher into the tower." }
+        "down": {
+          "to_room": 24513,
+          "description": "The spiral staircase."
+        },
+        "north": {
+          "to_room": 24519,
+          "description": "Higher into the tower."
+        }
       },
       "mob_resets": [
-        { "vnum": 24502, "max": 1 },
-        { "vnum": 24503, "max": 1 }
+        {
+          "vnum": 24502,
+          "max": 1
+        },
+        {
+          "vnum": 24503,
+          "max": 1
+        }
       ]
     },
     "24517": {
@@ -287,30 +479,51 @@
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24514, "description": "The corruption chamber." },
-        "east": { "to_room": 24519, "description": "Connecting passage." }
+        "south": {
+          "to_room": 24514,
+          "description": "The corruption chamber."
+        },
+        "east": {
+          "to_room": 24519,
+          "description": "Connecting passage."
+        }
       },
       "mob_resets": [
-        { "vnum": 24501, "max": 2 }
+        {
+          "vnum": 24501,
+          "max": 2
+        }
       ],
       "obj_resets": [
-        { "vnum": 24502, "max": 1 }
+        {
+          "vnum": 24502,
+          "max": 1
+        }
       ]
     },
     "24518": {
       "vnum": 24518,
       "name": "Mirror Realm - Throne of Reflections",
-      "description": "In this inverted throne room, a mirror-image throne sits upon a ceiling\nthat is also a floor. Reality folds in on itself here. Sitting on the\nthrone is a perfect copy of Shadow Lord Malachar — or perhaps this is\nthe real one, and the other is the copy. The mirror realm holds its own\ntreasures for those brave enough to claim them.",
+      "description": "In this inverted throne room, a mirror-image throne sits upon a ceiling\nthat is also a floor. Reality folds in on itself here. Sitting on the\nthrone is a perfect copy of Shadow Lord Malachar \u2014 or perhaps this is\nthe real one, and the other is the copy. The mirror realm holds its own\ntreasures for those brave enough to claim them.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24515, "description": "The inverted chamber." }
+        "south": {
+          "to_room": 24515,
+          "description": "The inverted chamber."
+        }
       },
       "mob_resets": [
-        { "vnum": 24503, "max": 2 }
+        {
+          "vnum": 24503,
+          "max": 2
+        }
       ],
       "obj_resets": [
-        { "vnum": 24503, "max": 1 }
+        {
+          "vnum": 24503,
+          "max": 1
+        }
       ]
     },
     "24519": {
@@ -325,126 +538,224 @@
         "message": "The pure light washes through you, burning away the shadow corruption!"
       },
       "exits": {
-        "south": { "to_room": 24516, "description": "The tower." },
-        "west": { "to_room": 24517, "description": "The shadow forge." },
-        "north": { "to_room": 24521, "description": "Toward the throne room." }
+        "south": {
+          "to_room": 24516,
+          "description": "The tower."
+        },
+        "west": {
+          "to_room": 24517,
+          "description": "The shadow forge."
+        },
+        "north": {
+          "to_room": 24521,
+          "description": "Toward the throne room."
+        }
       }
     },
     "24520": {
       "vnum": 24520,
       "name": "Hidden Observatory",
-      "description": "A secret room above the library, accessed only by those who read the\nright tome. A massive telescope made of shadow-glass points into the\nvoid. Through it, you can see other planes of existence — worlds of\nfire, ice, and pure chaos swirling in the darkness between realities.",
+      "description": "A secret room above the library, accessed only by those who read the\nright tome. A massive telescope made of shadow-glass points into the\nvoid. Through it, you can see other planes of existence \u2014 worlds of\nfire, ice, and pure chaos swirling in the darkness between realities.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "down": { "to_room": 24512, "description": "Back to the library." },
-        "north": { "to_room": 24521, "description": "A secret passage to the north." }
+        "down": {
+          "to_room": 24512,
+          "description": "Back to the library."
+        },
+        "north": {
+          "to_room": 24521,
+          "description": "A secret passage to the north."
+        }
       }
     },
     "24521": {
       "vnum": 24521,
       "name": "Approach to the Throne",
-      "description": "A grand corridor lined with pillars of solidified shadow leads to massive\ndouble doors ahead. The doors are carved with scenes of the Shadow Lord's\nconquest — worlds consumed by darkness, stars extinguished, gods brought\nlow. The power emanating from beyond is staggering.",
+      "description": "A grand corridor lined with pillars of solidified shadow leads to massive\ndouble doors ahead. The doors are carved with scenes of the Shadow Lord's\nconquest \u2014 worlds consumed by darkness, stars extinguished, gods brought\nlow. The power emanating from beyond is staggering.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24519, "description": "The sanctum of light." },
-        "west": { "to_room": 24520, "description": "The observatory." },
-        "north": { "to_room": 24522, "description": "Through the grand doors." }
+        "south": {
+          "to_room": 24519,
+          "description": "The sanctum of light."
+        },
+        "west": {
+          "to_room": 24520,
+          "description": "The observatory."
+        },
+        "north": {
+          "to_room": 24522,
+          "description": "Through the grand doors."
+        }
       },
       "mob_resets": [
-        { "vnum": 24502, "max": 2 },
-        { "vnum": 24504, "max": 2 }
+        {
+          "vnum": 24502,
+          "max": 2
+        },
+        {
+          "vnum": 24504,
+          "max": 2
+        }
       ]
     },
     "24522": {
       "vnum": 24522,
       "name": "Void Gallery",
-      "description": "The walls of this gallery have been replaced entirely by windows into the\nvoid. Cosmic horrors drift past — entities of impossible geometry and\nsickening grace. They press against the barriers, testing for weakness.\nThe gallery serves as both a trophy hall and a warning.",
+      "description": "The walls of this gallery have been replaced entirely by windows into the\nvoid. Cosmic horrors drift past \u2014 entities of impossible geometry and\nsickening grace. They press against the barriers, testing for weakness.\nThe gallery serves as both a trophy hall and a warning.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24521, "description": "The approach." },
-        "north": { "to_room": 24523, "description": "Closer to the throne." },
-        "east": { "to_room": 24524, "description": "A side chamber." }
+        "south": {
+          "to_room": 24521,
+          "description": "The approach."
+        },
+        "north": {
+          "to_room": 24523,
+          "description": "Closer to the throne."
+        },
+        "east": {
+          "to_room": 24524,
+          "description": "A side chamber."
+        }
       },
       "mob_resets": [
-        { "vnum": 24502, "max": 2 }
+        {
+          "vnum": 24502,
+          "max": 2
+        }
       ]
     },
     "24523": {
       "vnum": 24523,
       "name": "Shadow Guard Barracks",
-      "description": "Malachar's elite guard rest here between shifts. Shadow-forged armor\nstands on racks, and weapons hum with dark energy. The guards themselves\nare barely distinguishable from the shadows they serve — half-formed\nthings of darkness given purpose and malice.",
+      "description": "Malachar's elite guard rest here between shifts. Shadow-forged armor\nstands on racks, and weapons hum with dark energy. The guards themselves\nare barely distinguishable from the shadows they serve \u2014 half-formed\nthings of darkness given purpose and malice.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24522, "description": "The void gallery." },
-        "north": { "to_room": 24525, "description": "Toward the throne room." }
+        "south": {
+          "to_room": 24522,
+          "description": "The void gallery."
+        },
+        "north": {
+          "to_room": 24525,
+          "description": "Toward the throne room."
+        }
       },
       "mob_resets": [
-        { "vnum": 24501, "max": 3 },
-        { "vnum": 24502, "max": 1 }
+        {
+          "vnum": 24501,
+          "max": 3
+        },
+        {
+          "vnum": 24502,
+          "max": 1
+        }
       ]
     },
     "24524": {
       "vnum": 24524,
       "name": "Soul Prison",
-      "description": "Hundreds of crystallized souls float in this chamber, each trapped in a\nprism of shadow energy. Their faces are frozen in expressions of eternal\nagony. These are the source of Malachar's power — each soul fuels his\ndark magic. Some prisms flicker weakly, their occupants nearly consumed.",
+      "description": "Hundreds of crystallized souls float in this chamber, each trapped in a\nprism of shadow energy. Their faces are frozen in expressions of eternal\nagony. These are the source of Malachar's power \u2014 each soul fuels his\ndark magic. Some prisms flicker weakly, their occupants nearly consumed.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "west": { "to_room": 24522, "description": "The void gallery." },
-        "north": { "to_room": 24526, "description": "A dark passage." }
+        "west": {
+          "to_room": 24522,
+          "description": "The void gallery."
+        },
+        "north": {
+          "to_room": 24526,
+          "description": "A dark passage."
+        }
       },
       "mob_resets": [
-        { "vnum": 24501, "max": 2 }
+        {
+          "vnum": 24501,
+          "max": 2
+        }
       ]
     },
     "24525": {
       "vnum": 24525,
       "name": "Antechamber of the Shadow Throne",
-      "description": "The final chamber before the throne room. The air is so thick with shadow\nenergy that it's nearly solid. Dark lightning crackles between the pillars.\nThe temperature has dropped below freezing, yet no frost forms — the cold\nis metaphysical, the chill of absolute darkness reaching into your soul.",
+      "description": "The final chamber before the throne room. The air is so thick with shadow\nenergy that it's nearly solid. Dark lightning crackles between the pillars.\nThe temperature has dropped below freezing, yet no frost forms \u2014 the cold\nis metaphysical, the chill of absolute darkness reaching into your soul.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24523, "description": "The barracks." },
-        "east": { "to_room": 24526, "description": "The soul prison passage." },
-        "north": { "to_room": 24527, "description": "THE THRONE OF SHADOWS." }
+        "south": {
+          "to_room": 24523,
+          "description": "The barracks."
+        },
+        "east": {
+          "to_room": 24526,
+          "description": "The soul prison passage."
+        },
+        "north": {
+          "to_room": 24527,
+          "description": "THE THRONE OF SHADOWS."
+        }
       },
       "mob_resets": [
-        { "vnum": 24502, "max": 2 },
-        { "vnum": 24504, "max": 2 }
+        {
+          "vnum": 24502,
+          "max": 2
+        },
+        {
+          "vnum": 24504,
+          "max": 2
+        }
       ]
     },
     "24526": {
       "vnum": 24526,
       "name": "Ritual Chamber",
-      "description": "A pentagram of shadow energy is etched into the floor, its lines still\nglowing with residual power. This is where Malachar performs his darkest\nrituals — soul consumption, plane-tearing, and worse. Arcane instruments\nof unspeakable purpose line the walls. The air tastes of despair.",
+      "description": "A pentagram of shadow energy is etched into the floor, its lines still\nglowing with residual power. This is where Malachar performs his darkest\nrituals \u2014 soul consumption, plane-tearing, and worse. Arcane instruments\nof unspeakable purpose line the walls. The air tastes of despair.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24524, "description": "The soul prison." },
-        "west": { "to_room": 24525, "description": "The antechamber." }
+        "south": {
+          "to_room": 24524,
+          "description": "The soul prison."
+        },
+        "west": {
+          "to_room": 24525,
+          "description": "The antechamber."
+        }
       },
       "mob_resets": [
-        { "vnum": 24503, "max": 2 }
+        {
+          "vnum": 24503,
+          "max": 2
+        }
       ]
     },
     "24527": {
       "vnum": 24527,
       "name": "The Throne of Shadows",
-      "description": "The heart of Shadowspire Citadel. A throne of pure crystallized darkness\nhovers above a platform of void-stone. Shadow Lord Malachar sits upon it,\nhis form shifting between solid and ethereal. The room itself is alive —\nwalls of living shadow pulse and writhe, and the ceiling opens into an\nabyss of stars that have been extinguished. Reality bends around the\nthrone, and the very concept of light seems like a distant memory.\nThis is where hope comes to die.",
+      "description": "The heart of Shadowspire Citadel. A throne of pure crystallized darkness\nhovers above a platform of void-stone. Shadow Lord Malachar sits upon it,\nhis form shifting between solid and ethereal. The room itself is alive \u2014\nwalls of living shadow pulse and writhe, and the ceiling opens into an\nabyss of stars that have been extinguished. Reality bends around the\nthrone, and the very concept of light seems like a distant memory.\nThis is where hope comes to die.",
       "sector_type": "inside",
-      "flags": ["no_recall"],
+      "flags": [
+        "no_recall"
+      ],
       "exits": {
-        "south": { "to_room": 24525, "description": "Retreat to the antechamber." }
+        "south": {
+          "to_room": 24525,
+          "description": "Retreat to the antechamber."
+        }
       },
       "mob_resets": [
-        { "vnum": 24505, "max": 1 }
+        {
+          "vnum": 24505,
+          "max": 1
+        }
       ],
       "obj_resets": [
-        { "vnum": 24501, "max": 1 }
+        {
+          "vnum": 24501,
+          "max": 1
+        }
       ]
     },
     "24528": {
@@ -454,25 +765,43 @@
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "up": { "to_room": 24507, "description": "Back to the crossroads." }
+        "up": {
+          "to_room": 24507,
+          "description": "Back to the crossroads."
+        }
       },
       "mob_resets": [
-        { "vnum": 24501, "max": 2 }
+        {
+          "vnum": 24501,
+          "max": 2
+        }
       ]
     },
     "24529": {
       "vnum": 24529,
       "name": "Chamber of Echoes",
-      "description": "Every sound in this room repeats endlessly, layering upon itself until\nthe cacophony becomes maddening. Your own heartbeat thunders back at\nyou amplified a thousandfold. The shadows here dance to the rhythm of\nthe echoes, forming shapes that almost — but not quite — resolve into\nrecognizable forms.",
+      "description": "Every sound in this room repeats endlessly, layering upon itself until\nthe cacophony becomes maddening. Your own heartbeat thunders back at\nyou amplified a thousandfold. The shadows here dance to the rhythm of\nthe echoes, forming shapes that almost \u2014 but not quite \u2014 resolve into\nrecognizable forms.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "west": { "to_room": 24509, "description": "The nightmare kennels." },
-        "north": { "to_room": 24528, "description": "The dungeon cells." }
+        "west": {
+          "to_room": 24509,
+          "description": "The nightmare kennels."
+        },
+        "north": {
+          "to_room": 24528,
+          "description": "The dungeon cells."
+        }
       },
       "mob_resets": [
-        { "vnum": 24503, "max": 1 },
-        { "vnum": 24504, "max": 1 }
+        {
+          "vnum": 24503,
+          "max": 1
+        },
+        {
+          "vnum": 24504,
+          "max": 1
+        }
       ]
     }
   },
@@ -489,8 +818,10 @@
       "gold": 500,
       "exp": 10000,
       "armor_class": 30,
-      "flags": ["aggressive"],
-      "description": "More absence than presence, the Shadow Stalker is a tear in reality shaped\nlike a predator. It moves without sound, strikes without warning, and\nfades back into darkness between heartbeats. Only its eyes are visible —\ntwin points of cold, hungry light."
+      "flags": [
+        "aggressive"
+      ],
+      "description": "More absence than presence, the Shadow Stalker is a tear in reality shaped\nlike a predator. It moves without sound, strikes without warning, and\nfades back into darkness between heartbeats. Only its eyes are visible \u2014\ntwin points of cold, hungry light."
     },
     "24502": {
       "vnum": 24502,
@@ -504,7 +835,10 @@
       "gold": 750,
       "exp": 14000,
       "armor_class": 35,
-      "flags": ["aggressive", "no_charm"],
+      "flags": [
+        "aggressive",
+        "no_charm"
+      ],
       "description": "This entity exists simultaneously in multiple planes, its form flickering\nbetween solid and transparent. Where it walks, reality cracks and splinters.\nIt wields the void itself as a weapon, and its touch can send pieces of\nyou to dimensions from which there is no return."
     },
     "24503": {
@@ -519,8 +853,10 @@
       "gold": 600,
       "exp": 11500,
       "armor_class": 28,
-      "flags": ["aggressive"],
-      "description": "The Mirror Wraith is a horrifying reflection — it copies the appearance\nof whoever looks at it, but twisted and corrupted. Your face, but with\nblack void where the eyes should be. Your body, but wrong, jointed\nbackwards, moving in ways that make your mind recoil."
+      "flags": [
+        "aggressive"
+      ],
+      "description": "The Mirror Wraith is a horrifying reflection \u2014 it copies the appearance\nof whoever looks at it, but twisted and corrupted. Your face, but with\nblack void where the eyes should be. Your body, but wrong, jointed\nbackwards, moving in ways that make your mind recoil."
     },
     "24504": {
       "vnum": 24504,
@@ -534,8 +870,11 @@
       "gold": 650,
       "exp": 13000,
       "armor_class": 38,
-      "flags": ["aggressive", "no_sleep"],
-      "description": "Born from the collective nightmares of a thousand sleeping minds, this\nbeast has no fixed form. It shifts constantly — now a wolf with too many\nlegs, now a spider with human hands, now something that defies description\nentirely. The only constant is its hunger and its hatred of the waking world."
+      "flags": [
+        "aggressive",
+        "no_sleep"
+      ],
+      "description": "Born from the collective nightmares of a thousand sleeping minds, this\nbeast has no fixed form. It shifts constantly \u2014 now a wolf with too many\nlegs, now a spider with human hands, now something that defies description\nentirely. The only constant is its hunger and its hatred of the waking world."
     },
     "24505": {
       "vnum": 24505,
@@ -549,8 +888,16 @@
       "gold": 8000,
       "exp": 150000,
       "armor_class": 60,
-      "flags": ["aggressive", "no_charm", "no_summmon", "no_sleep", "no_bash", "no_blind", "sentinel"],
-      "description": "Shadow Lord Malachar was once a mortal wizard who sought to master the\nvoid between worlds. He succeeded beyond his wildest nightmares. Now more\nshadow than man, he exists as the living nexus of all darkness. His form\nis regal and terrible — a king of shadows wearing a crown of extinct\nstars. His voice is the silence between heartbeats, and his gaze is the\ndarkness that waits at the end of all things. To face him is to face\nthe death of light itself."
+      "flags": [
+        "aggressive",
+        "no_charm",
+        "no_summmon",
+        "no_sleep",
+        "no_bash",
+        "no_blind",
+        "sentinel"
+      ],
+      "description": "Shadow Lord Malachar was once a mortal wizard who sought to master the\nvoid between worlds. He succeeded beyond his wildest nightmares. Now more\nshadow than man, he exists as the living nexus of all darkness. His form\nis regal and terrible \u2014 a king of shadows wearing a crown of extinct\nstars. His voice is the silence between heartbeats, and his gaze is the\ndarkness that waits at the end of all things. To face him is to face\nthe death of light itself."
     }
   },
   "objects": {
@@ -564,7 +911,10 @@
       "value": 65000,
       "type": "armor",
       "armor_bonus": 35,
-      "flags": ["magic", "hum"],
+      "flags": [
+        "magic",
+        "hum"
+      ],
       "min_level": 48,
       "effects": {
         "armor_class": -30,
@@ -584,7 +934,11 @@
       "type": "weapon",
       "damage_dice": "8d8+18",
       "weapon_type": "long_sword",
-      "flags": ["glow", "hum", "magic"],
+      "flags": [
+        "glow",
+        "hum",
+        "magic"
+      ],
       "min_level": 50,
       "effects": {
         "hitroll": 10,
@@ -602,7 +956,10 @@
       "weight": 2,
       "value": 55000,
       "type": "treasure",
-      "flags": ["glow", "magic"],
+      "flags": [
+        "glow",
+        "magic"
+      ],
       "min_level": 45,
       "effects": {
         "shadow_resistance": 100,

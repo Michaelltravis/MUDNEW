@@ -85,7 +85,11 @@ class Object:
     def get_description(self) -> str:
         """Get the full description of the object."""
         c = self.config.COLORS
-        lines = [f"{c['cyan']}{self.short_desc}{c['reset']}"]
+        try:
+            from legendary import colorize_item_name
+            lines = [colorize_item_name(self, self.config)]
+        except Exception:
+            lines = [f"{c['cyan']}{self.short_desc}{c['reset']}"]
         lines.append(f"{c['white']}{self.description}{c['reset']}")
         
         if self.item_type == 'weapon':
@@ -235,6 +239,9 @@ class Object:
         obj.readable_text = proto.get('readable_text')
         obj.water_speed = proto.get('water_speed', 0)
         obj.lock_difficulty = proto.get('lock_difficulty', 0)
+        obj.rarity = proto.get('rarity', 'common')
+        obj.procs = proto.get('procs', [])
+        obj.drop_source = proto.get('drop_source', None)
         obj.pick_difficulty = proto.get('lock_difficulty', proto.get('pick_difficulty', 50))
 
         # Populate contents from 'contains' vnum list

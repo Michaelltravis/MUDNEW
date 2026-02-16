@@ -165,6 +165,8 @@ class CommandHandler:
         'fi': 'finger',
         'spec': 'specialize',
         'prest': 'prestige',
+        'ins': 'inspect',
+        'insp': 'inspect',
     }
 
     COMMAND_ALIASES = {
@@ -570,10 +572,13 @@ class CommandHandler:
             elif hasattr(target_room, 'flags') and any(f in getattr(target_room, 'flags', []) for f in ('mine', 'forage', 'fish', 'gathering')):
                 await TipManager.show_contextual_hint(player, 'gathering_room')
             # Quest giver hint - check for NPCs with available quests
+            from quests import QuestManager
             for npc in getattr(target_room, 'characters', []):
-                if hasattr(npc, 'vnum') and getattr(npc, 'quest_giver', False):
-                    await TipManager.show_contextual_hint(player, 'quest_giver')
-                    break
+                if hasattr(npc, 'vnum') and not hasattr(npc, 'connection'):
+                    npc_vnum = getattr(npc, 'vnum', None)
+                    if npc_vnum and QuestManager.get_available_quests(player, npc_vnum):
+                        await TipManager.show_contextual_hint(player, 'quest_giver')
+                        break
         except Exception:
             pass
 
@@ -1610,6 +1615,33 @@ class CommandHandler:
         await player.send(f"{c['cyan']}{BL}{H*W}{BR}{c['reset']}")
         
     @classmethod
+    @classmethod
+    async def cmd_inspect(cls, player: 'Player', args: List[str]):
+        """Inspect an item in detail — shows rarity, procs, lore, drop source.
+        
+        Usage: inspect <item>
+        """
+        if not args:
+            await player.send("Inspect what?")
+            return
+        target_name = ' '.join(args).lower()
+        item = None
+        for candidate in player.inventory + list(player.equipment.values()) + (player.room.items if player.room else []):
+            if candidate and (target_name in getattr(candidate, 'name', '').lower() or target_name in getattr(candidate, 'short_desc', '').lower()):
+                item = candidate
+                break
+        if not item:
+            await player.send("You don't see that here.")
+            return
+        try:
+            from legendary import format_inspect
+            lines = format_inspect(item, player.config)
+            for line in lines:
+                await player.send(line)
+        except Exception:
+            await player.send(item.get_description())
+
+    @classmethod
     async def cmd_inventory(cls, player: 'Player', args: List[str]):
         """Show inventory."""
         c = player.config.COLORS
@@ -1618,8 +1650,9 @@ class CommandHandler:
         if not player.inventory:
             await player.send(f"  {c['white']}Nothing.{c['reset']}")
         else:
+            from legendary import colorize_item_name
             for item in player.inventory:
-                await player.send(f"  {c['yellow']}{item.short_desc}{c['reset']}")
+                await player.send(f"  {colorize_item_name(item, player.config)}")
 
     @classmethod
     async def cmd_clear(cls, player: 'Player', args: List[str]):
@@ -1712,15 +1745,17 @@ class CommandHandler:
                 slot_desc = slot_names.get(slot, f'<{slot}>')
                 
                 # Special display for light sources
+                from legendary import colorize_item_name
+                colored_name = colorize_item_name(item, player.config)
                 if slot == 'light' or (slot == 'hold' and getattr(item, 'item_type', '') == 'light'):
                     is_lit = getattr(item, 'light_lit', True)
                     if is_lit:
                         light_status = f"{c['bright_yellow']}(blazing){c['reset']}"
                     else:
                         light_status = f"{c['bright_black']}(dark){c['reset']}"
-                    await player.send(f"  {c['green']}{slot_desc:20}{c['yellow']}{item.short_desc} {light_status}")
+                    await player.send(f"  {c['green']}{slot_desc:20}{colored_name} {light_status}")
                 else:
-                    await player.send(f"  {c['green']}{slot_desc:20}{c['yellow']}{item.short_desc}{c['reset']}")
+                    await player.send(f"  {c['green']}{slot_desc:20}{colored_name}{c['reset']}")
                 
         if not has_equipment:
             await player.send(f"  {c['white']}Nothing.{c['reset']}")

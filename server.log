@@ -1,135 +1,128 @@
-2026-02-15 19:50:39,275 - RealmsMUD - INFO - ============================================================
-2026-02-15 19:50:39,276 - RealmsMUD - INFO - RealmsMUD - Fantasy Multi-User Dungeon
-2026-02-15 19:50:39,276 - RealmsMUD - INFO - ============================================================
-2026-02-15 19:50:39,276 - RealmsMUD - INFO - Initializing game systems...
-2026-02-15 19:50:39,276 - time_system - INFO - Game time initialized: 12:00 PM, Day 1 of Early Summer, Year 1000
-2026-02-15 19:50:39,276 - RealmsMUD.World - INFO - Loading world...
-2026-02-15 19:50:39,277 - RealmsMUD.World - INFO - Loaded zone 50: The Great Eastern Desert (74 rooms)
-2026-02-15 19:50:39,280 - RealmsMUD.World - INFO - Loaded zone 210: Tunnel of Sticks (400 rooms)
-2026-02-15 19:50:39,280 - RealmsMUD.World - INFO - Loaded zone 31: Southern part of Midgaard (54 rooms)
-2026-02-15 19:50:39,281 - RealmsMUD.World - INFO - Loaded zone 70: The Sewer, First Level (67 rooms)
-2026-02-15 19:50:39,281 - RealmsMUD.World - INFO - Loaded zone 71: The Second Sewer (26 rooms)
-2026-02-15 19:50:39,282 - RealmsMUD.World - INFO - Loaded zone 30: Northern Midgaard Main City (75 rooms)
-2026-02-15 19:50:39,282 - RealmsMUD.World - INFO - Loaded zone 180: The Great Northern Forest (26 rooms)
-2026-02-15 19:50:39,283 - RealmsMUD.World - INFO - Loaded zone 250: The Blood Pit Arena (7 rooms)
-2026-02-15 19:50:39,283 - RealmsMUD.World - INFO - Loaded zone 51: Drow City (51 rooms)
-2026-02-15 19:50:39,284 - RealmsMUD.World - INFO - Loaded zone 220: Castle Apocalypse (77 rooms)
-2026-02-15 19:50:39,285 - RealmsMUD.World - INFO - Loaded zone 60: Haon-Dor, Light Forest (64 rooms)
-2026-02-15 19:50:39,286 - RealmsMUD.World - INFO - Loaded zone 40: Mines of Moria (103 rooms)
-2026-02-15 19:50:39,286 - RealmsMUD.World - INFO - Loaded zone 200: Forest of Shadows (10 rooms)
-2026-02-15 19:50:39,286 - RealmsMUD.World - INFO - Loaded zone 186: Newbie Zone (41 rooms)
-2026-02-15 19:50:39,286 - RealmsMUD.World - INFO - Loaded zone 240: The Sunken Temple of Nereus (25 rooms)
-2026-02-15 19:50:39,287 - RealmsMUD.World - INFO - Loaded zone 190: The Frostspire (27 rooms)
-2026-02-15 19:50:39,287 - RealmsMUD.World - INFO - Loaded zone 0: Limbo - Internal (3 rooms)
-2026-02-15 19:50:39,287 - RealmsMUD.World - INFO - Loaded zone 61: Haon-Dor, Dark Forest (48 rooms)
-2026-02-15 19:50:39,288 - RealmsMUD.World - INFO - Loaded zone 36: The Chessboard of Midgaard (67 rooms)
-2026-02-15 19:50:39,288 - RealmsMUD.World - INFO - Loaded zone 260: Midgaard Housing District (22 rooms)
-2026-02-15 19:50:39,289 - RealmsMUD.World - INFO - Loaded zone 62: The Orc Enclave (68 rooms)
-2026-02-15 19:50:39,289 - RealmsMUD.World - INFO - Loaded zone 35: Miden'Nir (45 rooms)
-2026-02-15 19:50:39,290 - RealmsMUD.World - INFO - Loaded zone 150: King Welmar's Castle (75 rooms)
-2026-02-15 19:50:39,290 - RealmsMUD.World - INFO - Loaded zone 15: The Straight Path (41 rooms)
-2026-02-15 19:50:39,293 - RealmsMUD.World - INFO - Loaded zone 54: New Thalos (285 rooms)
-2026-02-15 19:50:39,293 - RealmsMUD.World - INFO - Loaded zone 238: The Haunted Monastery (25 rooms)
-2026-02-15 19:50:39,294 - RealmsMUD.World - INFO - Loaded zone 110: Silversong Elven Village (15 rooms)
-2026-02-15 19:50:39,294 - RealmsMUD.World - INFO - Loaded zone 80: The Dragon's Domain (5 rooms)
-2026-02-15 19:50:39,294 - RealmsMUD.World - INFO - Loaded zone 79: Redferne's Residence (20 rooms)
-2026-02-15 19:50:39,294 - RealmsMUD.World - INFO - Loaded zone 235: The Goblin Warrens (20 rooms)
-2026-02-15 19:50:39,295 - RealmsMUD.World - INFO - Loaded zone 63: Arachnos (52 rooms)
-2026-02-15 19:50:39,295 - RealmsMUD.World - INFO - Loaded zone 130: The Sunken Ruins of Atal'narath (18 rooms)
-2026-02-15 19:50:39,295 - RealmsMUD.World - INFO - Loaded zone 245: Shadowspire Citadel (30 rooms)
-2026-02-15 19:50:39,296 - RealmsMUD.World - INFO - Loaded zone 140: The Necropolis of Eternal Night (31 rooms)
-2026-02-15 19:50:39,297 - RealmsMUD.World - INFO - Loaded zone 52: The City Of Thalos (51 rooms)
-2026-02-15 19:50:39,298 - RealmsMUD.World - INFO - Loaded zone 25: The High Tower Of Magic (183 rooms)
-2026-02-15 19:50:39,299 - RealmsMUD.World - INFO - Loaded zone 160: The Plane of Eternal Chaos (26 rooms)
-2026-02-15 19:50:39,299 - RealmsMUD.World - INFO - Loaded zone 72: The Sewer Maze (87 rooms)
-2026-02-15 19:50:39,300 - RealmsMUD.World - INFO - Loaded zone 64: Rand's Tower (46 rooms)
-2026-02-15 19:50:39,300 - RealmsMUD.World - INFO - Loaded zone 33: The Three Of Swords (76 rooms)
-2026-02-15 19:50:39,301 - RealmsMUD.World - INFO - Loaded zone 9: River Island Of Minos (24 rooms)
-2026-02-15 19:50:39,301 - RealmsMUD.World - INFO - Loaded zone 32: Midgaard Stables (4 rooms)
-2026-02-15 19:50:39,301 - RealmsMUD.World - INFO - Loaded zone 65: The Dwarven Kingdom (51 rooms)
-2026-02-15 19:50:39,302 - RealmsMUD.World - INFO - Loaded zone 120: Rome (66 rooms)
-2026-02-15 19:50:39,302 - RealmsMUD.World - INFO - Loaded zone 73: The Mindflayer's Lair (3 rooms)
-2026-02-15 19:50:39,302 - RealmsMUD.World - INFO - Loaded zone 248: The Clockwork Foundry (30 rooms)
-2026-02-15 19:50:39,303 - RealmsMUD.World - INFO - Loaded zone 53: The Great Pyramid (61 rooms)
-2026-02-15 19:50:39,303 - RealmsMUD.World - INFO - Loaded zone 12: God Simplex (7 rooms)
-2026-02-15 19:50:39,304 - RealmsMUD.World - INFO - Loaded zone 100: The Dwarven Mines of Khaz-Durum (25 rooms)
-2026-02-15 19:50:39,304 - RealmsMUD.World - INFO - Loaded zone 90: The Haunted Swamp (20 rooms)
-2026-02-15 19:50:39,321 - RealmsMUD.Shops - INFO - Created shop for waiter (vnum 3043) with 1 items
-2026-02-15 19:50:39,321 - RealmsMUD.Shops - INFO - Created shop for bartender (vnum 3040) with 1 items
-2026-02-15 19:50:39,321 - RealmsMUD.Shops - INFO - Created shop for grocer (vnum 3002) with 7 items
-2026-02-15 19:50:39,321 - RealmsMUD.Shops - INFO - Created shop for weaponsmith (vnum 3003) with 1 items
-2026-02-15 19:50:39,322 - RealmsMUD.Shops - INFO - Created shop for waiter (vnum 3042) with 1 items
-2026-02-15 19:50:39,322 - RealmsMUD.Shops - INFO - Created shop for armourer (vnum 3004) with 1 items
-2026-02-15 19:50:39,322 - RealmsMUD.Shops - INFO - Created shop for waiter (vnum 3045) with 1 items
-2026-02-15 19:50:39,323 - RealmsMUD.Shops - INFO - Created shop for waiter (vnum 3044) with 1 items
-2026-02-15 19:50:39,323 - RealmsMUD.Shops - INFO - Created shop for wizard (vnum 3000) with 4 items
-2026-02-15 19:50:39,323 - RealmsMUD.Shops - INFO - Created shop for filthy (vnum 3046) with 1 items
-2026-02-15 19:50:39,324 - RealmsMUD.Shops - INFO - Created shop for captain (vnum 3006) with 1 items
-2026-02-15 19:50:39,324 - RealmsMUD.Shops - INFO - Created shop for sailor (vnum 3007) with 0 items
-2026-02-15 19:50:39,324 - RealmsMUD.Shops - INFO - Created shop for wally (vnum 3009) with 1 items
-2026-02-15 19:50:39,344 - RealmsMUD.Shops - INFO - Created shop for carpenter (vnum 26001) with 5 items
-2026-02-15 19:50:39,347 - RealmsMUD.Shops - INFO - Created shop for chef (vnum 15022) with 1 items
-2026-02-15 19:50:39,348 - RealmsMUD.Shops - INFO - Created shop for astrologer (vnum 15019) with 1 items
-2026-02-15 19:50:39,350 - RealmsMUD.Shops - INFO - Created shop for bartender (vnum 5405) with 1 items
-2026-02-15 19:50:39,351 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-15 19:50:39,352 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-15 19:50:39,353 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-15 19:50:39,353 - RealmsMUD.Shops - INFO - Created shop for cassandra (vnum 5418) with 0 items
-2026-02-15 19:50:39,354 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-15 19:50:39,354 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-15 19:50:39,355 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-15 19:50:39,356 - RealmsMUD.Shops - INFO - Created shop for ahkeem (vnum 5413) with 1 items
-2026-02-15 19:50:39,356 - RealmsMUD.Shops - INFO - Created shop for vera (vnum 5414) with 1 items
-2026-02-15 19:50:39,356 - RealmsMUD.Shops - INFO - Created shop for butch (vnum 5415) with 1 items
-2026-02-15 19:50:39,357 - RealmsMUD.Shops - INFO - Created shop for elriva (vnum 5479) with 1 items
-2026-02-15 19:50:39,357 - RealmsMUD.Shops - INFO - Created shop for braheem (vnum 5480) with 1 items
-2026-02-15 19:50:39,357 - RealmsMUD.Shops - INFO - Created shop for shopkeeper (vnum 5411) with 1 items
-2026-02-15 19:50:39,357 - RealmsMUD.Shops - INFO - Created shop for abdul (vnum 5416) with 1 items
-2026-02-15 19:50:39,357 - RealmsMUD.Shops - INFO - Created shop for baker (vnum 5410) with 1 items
-2026-02-15 19:50:39,357 - RealmsMUD.Shops - INFO - Created shop for igor (vnum 5417) with 1 items
-2026-02-15 19:50:39,357 - RealmsMUD.Shops - INFO - Created shop for stitch (vnum 5484) with 1 items
-2026-02-15 19:50:39,357 - RealmsMUD.Shops - INFO - Created shop for patch (vnum 5483) with 1 items
-2026-02-15 19:50:39,358 - RealmsMUD.Shops - INFO - Created shop for shipwright (vnum 5465) with 1 items
-2026-02-15 19:50:39,358 - RealmsMUD.Shops - INFO - Created shop for blacksmith (vnum 5466) with 1 items
-2026-02-15 19:50:39,379 - RealmsMUD.Shops - INFO - Created shop for strick (vnum 2505) with 1 items
-2026-02-15 19:50:39,380 - RealmsMUD.Shops - INFO - Created shop for tatorious (vnum 2506) with 1 items
-2026-02-15 19:50:39,404 - RealmsMUD.Shops - INFO - Created shop for storekeeper (vnum 3301) with 1 items
-2026-02-15 19:50:39,404 - RealmsMUD.Shops - INFO - Created shop for cowgirl (vnum 3302) with 1 items
-2026-02-15 19:50:39,404 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
-2026-02-15 19:50:39,404 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
-2026-02-15 19:50:39,404 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
-2026-02-15 19:50:39,405 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
-2026-02-15 19:50:39,409 - RealmsMUD.Shops - INFO - Created shop for storekeeper (vnum 6503) with 1 items
-2026-02-15 19:50:39,410 - RealmsMUD.Shops - INFO - Created shop for baker (vnum 6504) with 1 items
-2026-02-15 19:50:39,412 - RealmsMUD.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
-2026-02-15 19:50:39,412 - RealmsMUD.Shops - INFO - Created shop for shopkeeper (vnum 12011) with 1 items
-2026-02-15 19:50:39,413 - RealmsMUD.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
-2026-02-15 19:50:39,415 - RealmsMUD.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
-2026-02-15 19:50:39,415 - RealmsMUD.Shops - INFO - Created shop for peddler (vnum 12012) with 1 items
-2026-02-15 19:50:39,417 - RealmsMUD.Shops - INFO - Created shop for shopkeeper (vnum 12034) with 1 items
-2026-02-15 19:50:39,418 - RealmsMUD.Shops - INFO - Created shop for baker (vnum 12036) with 2 items
-2026-02-15 19:50:39,418 - RealmsMUD.Shops - INFO - Created shop for grocer (vnum 12037) with 2 items
-2026-02-15 19:50:39,435 - RealmsMUD.Factions - INFO - Spawned faction NPC: Captain Aldren in room 3005
-2026-02-15 19:50:39,435 - RealmsMUD.Factions - INFO - Spawned faction NPC: Whisper in room 3044
-2026-02-15 19:50:39,435 - RealmsMUD.Factions - INFO - Spawned faction NPC: Archmage Thessaly in room 3017
-2026-02-15 19:50:39,435 - RealmsMUD.Factions - INFO - Spawned faction NPC: Elder Oakhart in room 3600
-2026-02-15 19:50:39,435 - RealmsMUD.Factions - INFO - Spawned faction NPC: the Shrouded Figure in room 3100
-2026-02-15 19:50:39,435 - RealmsMUD.Factions - INFO - Spawned faction NPC: Guildmaster Brennan in room 3014
-2026-02-15 19:50:39,435 - RealmsMUD.Factions - INFO - Spawned 6 faction NPCs
-2026-02-15 19:50:39,436 - RealmsMUD.World - INFO - World loaded: 50 zones, 2753 rooms
-2026-02-15 19:50:39,436 - RealmsMUD.WebMap - INFO - Web map server listening on 0.0.0.0:4001
-2026-02-15 19:50:39,517 - web_client - INFO - Web client listening on http://0.0.0.0:4003
-2026-02-15 19:50:39,517 - RealmsMUD - INFO - Initialization complete!
-2026-02-15 19:50:39,517 - RealmsMUD - INFO - Starting server on port 4000...
-2026-02-15 19:50:39,517 - RealmsMUD.Server - INFO - Server listening on 0.0.0.0:4000
-2026-02-15 19:55:45,839 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-15 20:00:52,200 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-15 20:02:54,703 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 1 of Early Summer, Year 1000
-2026-02-15 20:05:58,522 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-15 20:05:58,524 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-15 20:05:58,525 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-15 20:05:58,528 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-15 20:05:58,528 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-15 20:05:58,530 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
-2026-02-15 20:05:58,568 - RealmsMUD.World - INFO - Autosaved 0 players
-2026-02-15 20:06:59,672 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 1 of Early Summer, Year 1000
+2026-02-15 20:11:54,164 - RealmsMUD - INFO - ============================================================
+2026-02-15 20:11:54,164 - RealmsMUD - INFO - RealmsMUD - Fantasy Multi-User Dungeon
+2026-02-15 20:11:54,164 - RealmsMUD - INFO - ============================================================
+2026-02-15 20:11:54,164 - RealmsMUD - INFO - Initializing game systems...
+2026-02-15 20:11:54,164 - time_system - INFO - Game time initialized: 12:00 PM, Day 1 of Early Summer, Year 1000
+2026-02-15 20:11:54,164 - RealmsMUD.World - INFO - Loading world...
+2026-02-15 20:11:54,164 - RealmsMUD.World - INFO - Loaded zone 50: The Great Eastern Desert (74 rooms)
+2026-02-15 20:11:54,167 - RealmsMUD.World - INFO - Loaded zone 210: Tunnel of Sticks (400 rooms)
+2026-02-15 20:11:54,167 - RealmsMUD.World - INFO - Loaded zone 31: Southern part of Midgaard (54 rooms)
+2026-02-15 20:11:54,167 - RealmsMUD.World - INFO - Loaded zone 66: The Northern Wilderness (14 rooms)
+2026-02-15 20:11:54,168 - RealmsMUD.World - INFO - Loaded zone 70: The Sewer, First Level (67 rooms)
+2026-02-15 20:11:54,168 - RealmsMUD.World - INFO - Loaded zone 71: The Second Sewer (26 rooms)
+2026-02-15 20:11:54,168 - RealmsMUD.World - INFO - Loaded zone 67: The Eastern Highlands (14 rooms)
+2026-02-15 20:11:54,169 - RealmsMUD.World - INFO - Loaded zone 30: Northern Midgaard Main City (75 rooms)
+2026-02-15 20:11:54,169 - RealmsMUD.World - INFO - Loaded zone 180: The Great Northern Forest (26 rooms)
+2026-02-15 20:11:54,169 - RealmsMUD.World - INFO - Loaded zone 250: The Blood Pit Arena (7 rooms)
+2026-02-15 20:11:54,170 - RealmsMUD.World - INFO - Loaded zone 51: Drow City (51 rooms)
+2026-02-15 20:11:54,170 - RealmsMUD.World - INFO - Loaded zone 220: Castle Apocalypse (77 rooms)
+2026-02-15 20:11:54,171 - RealmsMUD.World - INFO - Loaded zone 60: Haon-Dor, Light Forest (64 rooms)
+2026-02-15 20:11:54,171 - RealmsMUD.World - INFO - Loaded zone 40: Mines of Moria (103 rooms)
+2026-02-15 20:11:54,171 - RealmsMUD.World - INFO - Loaded zone 200: Forest of Shadows (10 rooms)
+2026-02-15 20:11:54,172 - RealmsMUD.World - INFO - Loaded zone 186: Newbie Zone (41 rooms)
+2026-02-15 20:11:54,172 - RealmsMUD.World - INFO - Loaded zone 240: The Sunken Temple of Nereus (25 rooms)
+2026-02-15 20:11:54,172 - RealmsMUD.World - INFO - Loaded zone 190: The Frostspire (27 rooms)
+2026-02-15 20:11:54,172 - RealmsMUD.World - INFO - Loaded zone 0: Limbo - Internal (3 rooms)
+2026-02-15 20:11:54,173 - RealmsMUD.World - INFO - Loaded zone 61: Haon-Dor, Dark Forest (48 rooms)
+2026-02-15 20:11:54,173 - RealmsMUD.World - INFO - Loaded zone 36: The Chessboard of Midgaard (67 rooms)
+2026-02-15 20:11:54,173 - RealmsMUD.World - INFO - Loaded zone 260: Midgaard Housing District (22 rooms)
+2026-02-15 20:11:54,174 - RealmsMUD.World - INFO - Loaded zone 62: The Orc Enclave (68 rooms)
+2026-02-15 20:11:54,174 - RealmsMUD.World - INFO - Loaded zone 35: Miden'Nir (45 rooms)
+2026-02-15 20:11:54,175 - RealmsMUD.World - INFO - Loaded zone 150: King Welmar's Castle (75 rooms)
+2026-02-15 20:11:54,175 - RealmsMUD.World - INFO - Loaded zone 15: The Straight Path (41 rooms)
+2026-02-15 20:11:54,177 - RealmsMUD.World - INFO - Loaded zone 54: New Thalos (285 rooms)
+2026-02-15 20:11:54,177 - RealmsMUD.World - INFO - Loaded zone 238: The Haunted Monastery (25 rooms)
+2026-02-15 20:11:54,177 - RealmsMUD.World - INFO - Loaded zone 110: Silversong Elven Village (15 rooms)
+2026-02-15 20:11:54,177 - RealmsMUD.World - INFO - Loaded zone 80: The Dragon's Domain (5 rooms)
+2026-02-15 20:11:54,177 - RealmsMUD.World - INFO - Loaded zone 79: Redferne's Residence (20 rooms)
+2026-02-15 20:11:54,178 - RealmsMUD.World - INFO - Loaded zone 235: The Goblin Warrens (20 rooms)
+2026-02-15 20:11:54,178 - RealmsMUD.World - INFO - Loaded zone 63: Arachnos (52 rooms)
+2026-02-15 20:11:54,178 - RealmsMUD.World - INFO - Loaded zone 130: The Sunken Ruins of Atal'narath (18 rooms)
+2026-02-15 20:11:54,178 - RealmsMUD.World - INFO - Loaded zone 245: Shadowspire Citadel (30 rooms)
+2026-02-15 20:11:54,178 - RealmsMUD.World - INFO - Loaded zone 68: The Sunken Coast (12 rooms)
+2026-02-15 20:11:54,179 - RealmsMUD.World - INFO - Loaded zone 140: The Necropolis of Eternal Night (31 rooms)
+2026-02-15 20:11:54,179 - RealmsMUD.World - INFO - Loaded zone 52: The City Of Thalos (51 rooms)
+2026-02-15 20:11:54,181 - RealmsMUD.World - INFO - Loaded zone 25: The High Tower Of Magic (183 rooms)
+2026-02-15 20:11:54,181 - RealmsMUD.World - INFO - Loaded zone 160: The Plane of Eternal Chaos (26 rooms)
+2026-02-15 20:11:54,181 - RealmsMUD.World - INFO - Loaded zone 72: The Sewer Maze (87 rooms)
+2026-02-15 20:11:54,182 - RealmsMUD.World - INFO - Loaded zone 64: Rand's Tower (46 rooms)
+2026-02-15 20:11:54,182 - RealmsMUD.World - INFO - Loaded zone 33: The Three Of Swords (76 rooms)
+2026-02-15 20:11:54,182 - RealmsMUD.World - INFO - Loaded zone 9: River Island Of Minos (24 rooms)
+2026-02-15 20:11:54,182 - RealmsMUD.World - INFO - Loaded zone 32: Midgaard Stables (4 rooms)
+2026-02-15 20:11:54,183 - RealmsMUD.World - INFO - Loaded zone 65: The Dwarven Kingdom (51 rooms)
+2026-02-15 20:11:54,183 - RealmsMUD.World - INFO - Loaded zone 120: Rome (66 rooms)
+2026-02-15 20:11:54,183 - RealmsMUD.World - INFO - Loaded zone 73: The Mindflayer's Lair (3 rooms)
+2026-02-15 20:11:54,183 - RealmsMUD.World - INFO - Loaded zone 248: The Clockwork Foundry (30 rooms)
+2026-02-15 20:11:54,184 - RealmsMUD.World - INFO - Loaded zone 53: The Great Pyramid (61 rooms)
+2026-02-15 20:11:54,184 - RealmsMUD.World - INFO - Loaded zone 12: God Simplex (7 rooms)
+2026-02-15 20:11:54,184 - RealmsMUD.World - INFO - Loaded zone 100: The Dwarven Mines of Khaz-Durum (25 rooms)
+2026-02-15 20:11:54,184 - RealmsMUD.World - INFO - Loaded zone 69: The Ashlands (12 rooms)
+2026-02-15 20:11:54,185 - RealmsMUD.World - INFO - Loaded zone 90: The Haunted Swamp (20 rooms)
+2026-02-15 20:11:54,205 - RealmsMUD.Shops - INFO - Created shop for waiter (vnum 3043) with 1 items
+2026-02-15 20:11:54,205 - RealmsMUD.Shops - INFO - Created shop for bartender (vnum 3040) with 1 items
+2026-02-15 20:11:54,205 - RealmsMUD.Shops - INFO - Created shop for grocer (vnum 3002) with 7 items
+2026-02-15 20:11:54,206 - RealmsMUD.Shops - INFO - Created shop for weaponsmith (vnum 3003) with 1 items
+2026-02-15 20:11:54,206 - RealmsMUD.Shops - INFO - Created shop for waiter (vnum 3042) with 1 items
+2026-02-15 20:11:54,206 - RealmsMUD.Shops - INFO - Created shop for armourer (vnum 3004) with 1 items
+2026-02-15 20:11:54,206 - RealmsMUD.Shops - INFO - Created shop for waiter (vnum 3045) with 1 items
+2026-02-15 20:11:54,206 - RealmsMUD.Shops - INFO - Created shop for waiter (vnum 3044) with 1 items
+2026-02-15 20:11:54,207 - RealmsMUD.Shops - INFO - Created shop for wizard (vnum 3000) with 4 items
+2026-02-15 20:11:54,207 - RealmsMUD.Shops - INFO - Created shop for filthy (vnum 3046) with 1 items
+2026-02-15 20:11:54,207 - RealmsMUD.Shops - INFO - Created shop for captain (vnum 3006) with 1 items
+2026-02-15 20:11:54,207 - RealmsMUD.Shops - INFO - Created shop for sailor (vnum 3007) with 0 items
+2026-02-15 20:11:54,207 - RealmsMUD.Shops - INFO - Created shop for wally (vnum 3009) with 1 items
+2026-02-15 20:11:54,227 - RealmsMUD.Shops - INFO - Created shop for carpenter (vnum 26001) with 5 items
+2026-02-15 20:11:54,230 - RealmsMUD.Shops - INFO - Created shop for chef (vnum 15022) with 1 items
+2026-02-15 20:11:54,231 - RealmsMUD.Shops - INFO - Created shop for astrologer (vnum 15019) with 1 items
+2026-02-15 20:11:54,234 - RealmsMUD.Shops - INFO - Created shop for bartender (vnum 5405) with 1 items
+2026-02-15 20:11:54,234 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-15 20:11:54,235 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-15 20:11:54,236 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-15 20:11:54,236 - RealmsMUD.Shops - INFO - Created shop for cassandra (vnum 5418) with 0 items
+2026-02-15 20:11:54,237 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-15 20:11:54,237 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-15 20:11:54,238 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-15 20:11:54,239 - RealmsMUD.Shops - INFO - Created shop for ahkeem (vnum 5413) with 1 items
+2026-02-15 20:11:54,239 - RealmsMUD.Shops - INFO - Created shop for vera (vnum 5414) with 1 items
+2026-02-15 20:11:54,239 - RealmsMUD.Shops - INFO - Created shop for butch (vnum 5415) with 1 items
+2026-02-15 20:11:54,240 - RealmsMUD.Shops - INFO - Created shop for elriva (vnum 5479) with 1 items
+2026-02-15 20:11:54,240 - RealmsMUD.Shops - INFO - Created shop for braheem (vnum 5480) with 1 items
+2026-02-15 20:11:54,240 - RealmsMUD.Shops - INFO - Created shop for shopkeeper (vnum 5411) with 1 items
+2026-02-15 20:11:54,240 - RealmsMUD.Shops - INFO - Created shop for abdul (vnum 5416) with 1 items
+2026-02-15 20:11:54,240 - RealmsMUD.Shops - INFO - Created shop for baker (vnum 5410) with 1 items
+2026-02-15 20:11:54,240 - RealmsMUD.Shops - INFO - Created shop for igor (vnum 5417) with 1 items
+2026-02-15 20:11:54,240 - RealmsMUD.Shops - INFO - Created shop for stitch (vnum 5484) with 1 items
+2026-02-15 20:11:54,240 - RealmsMUD.Shops - INFO - Created shop for patch (vnum 5483) with 1 items
+2026-02-15 20:11:54,241 - RealmsMUD.Shops - INFO - Created shop for shipwright (vnum 5465) with 1 items
+2026-02-15 20:11:54,241 - RealmsMUD.Shops - INFO - Created shop for blacksmith (vnum 5466) with 1 items
+2026-02-15 20:11:54,262 - RealmsMUD.Shops - INFO - Created shop for strick (vnum 2505) with 1 items
+2026-02-15 20:11:54,262 - RealmsMUD.Shops - INFO - Created shop for tatorious (vnum 2506) with 1 items
+2026-02-15 20:11:54,287 - RealmsMUD.Shops - INFO - Created shop for storekeeper (vnum 3301) with 1 items
+2026-02-15 20:11:54,287 - RealmsMUD.Shops - INFO - Created shop for cowgirl (vnum 3302) with 1 items
+2026-02-15 20:11:54,287 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-02-15 20:11:54,287 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-02-15 20:11:54,287 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-02-15 20:11:54,287 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-02-15 20:11:54,291 - RealmsMUD.Shops - INFO - Created shop for storekeeper (vnum 6503) with 1 items
+2026-02-15 20:11:54,293 - RealmsMUD.Shops - INFO - Created shop for baker (vnum 6504) with 1 items
+2026-02-15 20:11:54,294 - RealmsMUD.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
+2026-02-15 20:11:54,295 - RealmsMUD.Shops - INFO - Created shop for shopkeeper (vnum 12011) with 1 items
+2026-02-15 20:11:54,295 - RealmsMUD.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
+2026-02-15 20:11:54,297 - RealmsMUD.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
+2026-02-15 20:11:54,298 - RealmsMUD.Shops - INFO - Created shop for peddler (vnum 12012) with 1 items
+2026-02-15 20:11:54,299 - RealmsMUD.Shops - INFO - Created shop for shopkeeper (vnum 12034) with 1 items
+2026-02-15 20:11:54,301 - RealmsMUD.Shops - INFO - Created shop for baker (vnum 12036) with 2 items
+2026-02-15 20:11:54,301 - RealmsMUD.Shops - INFO - Created shop for grocer (vnum 12037) with 2 items
+2026-02-15 20:11:54,317 - RealmsMUD.Factions - INFO - Spawned faction NPC: Captain Aldren in room 3005
+2026-02-15 20:11:54,317 - RealmsMUD.Factions - INFO - Spawned faction NPC: Whisper in room 3044
+2026-02-15 20:11:54,317 - RealmsMUD.Factions - INFO - Spawned faction NPC: Archmage Thessaly in room 3017
+2026-02-15 20:11:54,317 - RealmsMUD.Factions - INFO - Spawned faction NPC: Elder Oakhart in room 3600
+2026-02-15 20:11:54,317 - RealmsMUD.Factions - INFO - Spawned faction NPC: the Shrouded Figure in room 3100
+2026-02-15 20:11:54,317 - RealmsMUD.Factions - INFO - Spawned faction NPC: Guildmaster Brennan in room 3014
+2026-02-15 20:11:54,317 - RealmsMUD.Factions - INFO - Spawned 6 faction NPCs
+2026-02-15 20:11:54,318 - RealmsMUD.World - INFO - World loaded: 54 zones, 2805 rooms
+2026-02-15 20:11:54,318 - RealmsMUD.WebMap - INFO - Web map server listening on 0.0.0.0:4001
+2026-02-15 20:11:54,368 - web_client - INFO - Web client listening on http://0.0.0.0:4003
+2026-02-15 20:11:54,368 - RealmsMUD - INFO - Initialization complete!
+2026-02-15 20:11:54,368 - RealmsMUD - INFO - Starting server on port 4000...
+2026-02-15 20:11:54,368 - RealmsMUD.Server - INFO - Server listening on 0.0.0.0:4000

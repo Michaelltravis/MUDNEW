@@ -6,31 +6,52 @@
     "24800": {
       "vnum": 24800,
       "name": "Foundry Entrance - Blast Doors",
-      "description": "Massive blast doors of riveted steel stand open, venting clouds of steam\nand the rhythmic CHUNK-CHUNK-CHUNK of enormous machinery. The heat hits\nyou like a wall. Beyond the doors, a corridor of interlocking gears forms\nthe walls, ceiling, and floor — everything here moves, turns, and meshes\nwith mechanical precision. Welcome to the Clockwork Foundry.",
+      "description": "Massive blast doors of riveted steel stand open, venting clouds of steam\nand the rhythmic CHUNK-CHUNK-CHUNK of enormous machinery. The heat hits\nyou like a wall. Beyond the doors, a corridor of interlocking gears forms\nthe walls, ceiling, and floor \u2014 everything here moves, turns, and meshes\nwith mechanical precision. Welcome to the Clockwork Foundry.",
       "sector_type": "inside",
-      "flags": ["no_mob"],
+      "flags": [
+        "no_mob"
+      ],
       "zone_mechanic": {
         "type": "steam_pressure",
         "lever_system": true,
         "description": "Steam pressure controls access to various areas. Pull levers to redirect steam."
       },
       "exits": {
-        "north": { "to_room": 24801, "description": "Into the foundry." }
+        "north": {
+          "to_room": 24801,
+          "description": "Into the foundry."
+        },
+        "south": {
+          "to_room": 6905,
+          "description": "The blast doors open to the Ashlands outside."
+        }
       }
     },
     "24801": {
       "vnum": 24801,
       "name": "Intake Corridor",
-      "description": "A long corridor lined with conveyor belts carrying raw ore, scrap metal,\nand unidentifiable components deeper into the foundry. Mechanical arms\nswing overhead, sorting materials with frightening speed and precision.\nThe noise is deafening — grinding gears, hissing pistons, and the\nconstant clang of metal on metal.",
+      "description": "A long corridor lined with conveyor belts carrying raw ore, scrap metal,\nand unidentifiable components deeper into the foundry. Mechanical arms\nswing overhead, sorting materials with frightening speed and precision.\nThe noise is deafening \u2014 grinding gears, hissing pistons, and the\nconstant clang of metal on metal.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24800, "description": "The entrance." },
-        "north": { "to_room": 24802, "description": "Deeper into the foundry." },
-        "east": { "to_room": 24803, "description": "A side passage." }
+        "south": {
+          "to_room": 24800,
+          "description": "The entrance."
+        },
+        "north": {
+          "to_room": 24802,
+          "description": "Deeper into the foundry."
+        },
+        "east": {
+          "to_room": 24803,
+          "description": "A side passage."
+        }
       },
       "mob_resets": [
-        { "vnum": 24801, "max": 2 }
+        {
+          "vnum": 24801,
+          "max": 2
+        }
       ]
     },
     "24802": {
@@ -40,13 +61,28 @@
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24801, "description": "The intake corridor." },
-        "north": { "to_room": 24805, "description": "Through the gears." },
-        "west": { "to_room": 24804, "description": "A maintenance hatch." }
+        "south": {
+          "to_room": 24801,
+          "description": "The intake corridor."
+        },
+        "north": {
+          "to_room": 24805,
+          "description": "Through the gears."
+        },
+        "west": {
+          "to_room": 24804,
+          "description": "A maintenance hatch."
+        }
       },
       "mob_resets": [
-        { "vnum": 24801, "max": 2 },
-        { "vnum": 24803, "max": 1 }
+        {
+          "vnum": 24801,
+          "max": 2
+        },
+        {
+          "vnum": 24803,
+          "max": 1
+        }
       ]
     },
     "24803": {
@@ -63,11 +99,20 @@
         "controlling_lever": "lever_alpha"
       },
       "exits": {
-        "west": { "to_room": 24801, "description": "The intake corridor." },
-        "north": { "to_room": 24806, "description": "The tunnel continues." }
+        "west": {
+          "to_room": 24801,
+          "description": "The intake corridor."
+        },
+        "north": {
+          "to_room": 24806,
+          "description": "The tunnel continues."
+        }
       },
       "mob_resets": [
-        { "vnum": 24802, "max": 1 }
+        {
+          "vnum": 24802,
+          "max": 1
+        }
       ]
     },
     "24804": {
@@ -77,11 +122,20 @@
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "east": { "to_room": 24802, "description": "The gear room." },
-        "north": { "to_room": 24807, "description": "Further into maintenance." }
+        "east": {
+          "to_room": 24802,
+          "description": "The gear room."
+        },
+        "north": {
+          "to_room": 24807,
+          "description": "Further into maintenance."
+        }
       },
       "mob_resets": [
-        { "vnum": 24803, "max": 3 }
+        {
+          "vnum": 24803,
+          "max": 3
+        }
       ]
     },
     "24805": {
@@ -91,18 +145,30 @@
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24802, "description": "The gear room." },
-        "north": { "to_room": 24808, "description": "Further down the line." },
-        "east": { "to_room": 24806, "description": "A connecting corridor." }
+        "south": {
+          "to_room": 24802,
+          "description": "The gear room."
+        },
+        "north": {
+          "to_room": 24808,
+          "description": "Further down the line."
+        },
+        "east": {
+          "to_room": 24806,
+          "description": "A connecting corridor."
+        }
       },
       "mob_resets": [
-        { "vnum": 24801, "max": 3 }
+        {
+          "vnum": 24801,
+          "max": 3
+        }
       ]
     },
     "24806": {
       "vnum": 24806,
       "name": "Lever Room Alpha",
-      "description": "A control station with a massive brass lever dominates this room. Gauges,\ndials, and pressure meters cover the walls, their needles jumping erratically.\nThe lever is currently in the UP position. A placard reads: 'STEAM ROUTING\nALPHA — PULL TO REDIRECT.' The choice could open new paths or seal old ones.",
+      "description": "A control station with a massive brass lever dominates this room. Gauges,\ndials, and pressure meters cover the walls, their needles jumping erratically.\nThe lever is currently in the UP position. A placard reads: 'STEAM ROUTING\nALPHA \u2014 PULL TO REDIRECT.' The choice could open new paths or seal old ones.",
       "sector_type": "inside",
       "flags": [],
       "zone_mechanic": {
@@ -112,39 +178,72 @@
         "effect": "Pulling this lever redirects steam from Steam Tunnel Alpha, making it safe but flooding Steam Tunnel Beta."
       },
       "exits": {
-        "south": { "to_room": 24803, "description": "Steam Tunnel Alpha." },
-        "west": { "to_room": 24805, "description": "The assembly line." },
-        "north": { "to_room": 24809, "description": "A passage north." }
+        "south": {
+          "to_room": 24803,
+          "description": "Steam Tunnel Alpha."
+        },
+        "west": {
+          "to_room": 24805,
+          "description": "The assembly line."
+        },
+        "north": {
+          "to_room": 24809,
+          "description": "A passage north."
+        }
       }
     },
     "24807": {
       "vnum": 24807,
       "name": "Scrap Heap",
-      "description": "Mountains of discarded parts, failed prototypes, and worn-out components\nfill this chamber nearly to the ceiling. Somewhere in the heap, things\nstill move — twitching limbs, spinning gears, clicking mandibles.\nThe scrap is alive with half-functional rejects, cobbled together from\nparts never meant to work as one.",
+      "description": "Mountains of discarded parts, failed prototypes, and worn-out components\nfill this chamber nearly to the ceiling. Somewhere in the heap, things\nstill move \u2014 twitching limbs, spinning gears, clicking mandibles.\nThe scrap is alive with half-functional rejects, cobbled together from\nparts never meant to work as one.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24804, "description": "The maintenance bay." },
-        "east": { "to_room": 24808, "description": "The assembly area." }
+        "south": {
+          "to_room": 24804,
+          "description": "The maintenance bay."
+        },
+        "east": {
+          "to_room": 24808,
+          "description": "The assembly area."
+        }
       },
       "mob_resets": [
-        { "vnum": 24801, "max": 2 },
-        { "vnum": 24803, "max": 2 }
+        {
+          "vnum": 24801,
+          "max": 2
+        },
+        {
+          "vnum": 24803,
+          "max": 2
+        }
       ]
     },
     "24808": {
       "vnum": 24808,
       "name": "Assembly Line Beta",
-      "description": "This section of the assembly line produces heavier units — steam golems\nand siege machines. The scale is staggering. Partially assembled golems\ntwice the height of a man stand in rows, their boiler-chests still cold.\nThe assembly arms here are proportionally massive, swinging with bone-\ncrushing force.",
+      "description": "This section of the assembly line produces heavier units \u2014 steam golems\nand siege machines. The scale is staggering. Partially assembled golems\ntwice the height of a man stand in rows, their boiler-chests still cold.\nThe assembly arms here are proportionally massive, swinging with bone-\ncrushing force.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24805, "description": "Assembly Line Alpha." },
-        "west": { "to_room": 24807, "description": "The scrap heap." },
-        "north": { "to_room": 24811, "description": "Onward through the foundry." }
+        "south": {
+          "to_room": 24805,
+          "description": "Assembly Line Alpha."
+        },
+        "west": {
+          "to_room": 24807,
+          "description": "The scrap heap."
+        },
+        "north": {
+          "to_room": 24811,
+          "description": "Onward through the foundry."
+        }
       },
       "mob_resets": [
-        { "vnum": 24802, "max": 2 }
+        {
+          "vnum": 24802,
+          "max": 2
+        }
       ]
     },
     "24809": {
@@ -154,17 +253,26 @@
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24806, "description": "The lever room." },
-        "north": { "to_room": 24812, "description": "Beyond the coolant tanks." }
+        "south": {
+          "to_room": 24806,
+          "description": "The lever room."
+        },
+        "north": {
+          "to_room": 24812,
+          "description": "Beyond the coolant tanks."
+        }
       },
       "mob_resets": [
-        { "vnum": 24803, "max": 2 }
+        {
+          "vnum": 24803,
+          "max": 2
+        }
       ]
     },
     "24810": {
       "vnum": 24810,
       "name": "Steam Tunnel Beta",
-      "description": "A secondary steam tunnel, currently dormant. The pipes here are cold and\ndry — the steam has been rerouted elsewhere. Condensation drips from\nthe ceiling, and the silence after the constant roar of the foundry\nis almost eerie. Warning placards indicate this tunnel can be flooded\nwith steam at any moment.",
+      "description": "A secondary steam tunnel, currently dormant. The pipes here are cold and\ndry \u2014 the steam has been rerouted elsewhere. Condensation drips from\nthe ceiling, and the silence after the constant roar of the foundry\nis almost eerie. Warning placards indicate this tunnel can be flooded\nwith steam at any moment.",
       "sector_type": "inside",
       "flags": [],
       "zone_mechanic": {
@@ -176,31 +284,55 @@
         "currently_active": false
       },
       "exits": {
-        "south": { "to_room": 24811, "description": "The junction." },
-        "north": { "to_room": 24816, "description": "A shortcut forward." }
+        "south": {
+          "to_room": 24811,
+          "description": "The junction."
+        },
+        "north": {
+          "to_room": 24816,
+          "description": "A shortcut forward."
+        }
       }
     },
     "24811": {
       "vnum": 24811,
       "name": "Central Junction",
-      "description": "A massive circular room where multiple corridors and conveyor systems\nconverge. A central pillar of spinning gears extends from floor to\nceiling, its purpose unclear but clearly vital — the entire foundry\nseems to pulse in time with its rotation. Control panels ring the base.",
+      "description": "A massive circular room where multiple corridors and conveyor systems\nconverge. A central pillar of spinning gears extends from floor to\nceiling, its purpose unclear but clearly vital \u2014 the entire foundry\nseems to pulse in time with its rotation. Control panels ring the base.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24808, "description": "Assembly Line Beta." },
-        "north": { "to_room": 24813, "description": "The main corridor continues." },
-        "east": { "to_room": 24812, "description": "Toward the coolant chamber." },
-        "west": { "to_room": 24810, "description": "Steam Tunnel Beta." }
+        "south": {
+          "to_room": 24808,
+          "description": "Assembly Line Beta."
+        },
+        "north": {
+          "to_room": 24813,
+          "description": "The main corridor continues."
+        },
+        "east": {
+          "to_room": 24812,
+          "description": "Toward the coolant chamber."
+        },
+        "west": {
+          "to_room": 24810,
+          "description": "Steam Tunnel Beta."
+        }
       },
       "mob_resets": [
-        { "vnum": 24801, "max": 2 },
-        { "vnum": 24804, "max": 1 }
+        {
+          "vnum": 24801,
+          "max": 2
+        },
+        {
+          "vnum": 24804,
+          "max": 1
+        }
       ]
     },
     "24812": {
       "vnum": 24812,
       "name": "Lever Room Beta",
-      "description": "Another control station, identical to the first but controlling different\nsteam routes. The brass lever here is DOWN. A schematic on the wall shows\nthe steam routing system — an intricate network of valves and pressure\nchambers. Understanding the system is key to navigating the deeper foundry.",
+      "description": "Another control station, identical to the first but controlling different\nsteam routes. The brass lever here is DOWN. A schematic on the wall shows\nthe steam routing system \u2014 an intricate network of valves and pressure\nchambers. Understanding the system is key to navigating the deeper foundry.",
       "sector_type": "inside",
       "flags": [],
       "zone_mechanic": {
@@ -210,8 +342,14 @@
         "effect": "Pulling this lever redirects steam from Tunnel Beta, opening a shortcut but flooding the Furnace Approach."
       },
       "exits": {
-        "south": { "to_room": 24809, "description": "The coolant chamber." },
-        "west": { "to_room": 24811, "description": "The central junction." }
+        "south": {
+          "to_room": 24809,
+          "description": "The coolant chamber."
+        },
+        "west": {
+          "to_room": 24811,
+          "description": "The central junction."
+        }
       }
     },
     "24813": {
@@ -221,41 +359,74 @@
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24811, "description": "The central junction." },
-        "north": { "to_room": 24814, "description": "Through the corridor." }
+        "south": {
+          "to_room": 24811,
+          "description": "The central junction."
+        },
+        "north": {
+          "to_room": 24814,
+          "description": "Through the corridor."
+        }
       },
       "mob_resets": [
-        { "vnum": 24804, "max": 3 }
+        {
+          "vnum": 24804,
+          "max": 3
+        }
       ]
     },
     "24814": {
       "vnum": 24814,
       "name": "Power Core Observation",
-      "description": "A reinforced window looks down into the foundry's power core — a miniature\nstar contained within a cage of electromagnetic fields. The light is\nblinding, the heat immense even through the shielding. This is what\npowers the entire complex, an artificial sun harnessed by mechanical genius.",
+      "description": "A reinforced window looks down into the foundry's power core \u2014 a miniature\nstar contained within a cage of electromagnetic fields. The light is\nblinding, the heat immense even through the shielding. This is what\npowers the entire complex, an artificial sun harnessed by mechanical genius.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24813, "description": "The Tesla corridor." },
-        "north": { "to_room": 24815, "description": "Deeper into the foundry." },
-        "east": { "to_room": 24816, "description": "A side passage." }
+        "south": {
+          "to_room": 24813,
+          "description": "The Tesla corridor."
+        },
+        "north": {
+          "to_room": 24815,
+          "description": "Deeper into the foundry."
+        },
+        "east": {
+          "to_room": 24816,
+          "description": "A side passage."
+        }
       }
     },
     "24815": {
       "vnum": 24815,
       "name": "Weapons Testing Range",
-      "description": "Targets of reinforced steel — many scorched, melted, or riddled with\nholes — stand at the far end of this long chamber. Weapon prototypes\nline racks along the walls: cannons that fire gears, crossbows powered\nby compressed steam, gauntlets that crackle with stored lightning.\nSome still fire sporadically at nothing.",
+      "description": "Targets of reinforced steel \u2014 many scorched, melted, or riddled with\nholes \u2014 stand at the far end of this long chamber. Weapon prototypes\nline racks along the walls: cannons that fire gears, crossbows powered\nby compressed steam, gauntlets that crackle with stored lightning.\nSome still fire sporadically at nothing.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24814, "description": "Power core observation." },
-        "north": { "to_room": 24817, "description": "Through the testing range." }
+        "south": {
+          "to_room": 24814,
+          "description": "Power core observation."
+        },
+        "north": {
+          "to_room": 24817,
+          "description": "Through the testing range."
+        }
       },
       "mob_resets": [
-        { "vnum": 24801, "max": 2 },
-        { "vnum": 24804, "max": 1 }
+        {
+          "vnum": 24801,
+          "max": 2
+        },
+        {
+          "vnum": 24804,
+          "max": 1
+        }
       ],
       "obj_resets": [
-        { "vnum": 24802, "max": 1 }
+        {
+          "vnum": 24802,
+          "max": 1
+        }
       ]
     },
     "24816": {
@@ -265,24 +436,45 @@
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "west": { "to_room": 24814, "description": "Power core observation." },
-        "south": { "to_room": 24810, "description": "Steam Tunnel Beta." },
-        "north": { "to_room": 24820, "description": "The pneumatic tube shoots you forward!" }
+        "west": {
+          "to_room": 24814,
+          "description": "Power core observation."
+        },
+        "south": {
+          "to_room": 24810,
+          "description": "Steam Tunnel Beta."
+        },
+        "north": {
+          "to_room": 24820,
+          "description": "The pneumatic tube shoots you forward!"
+        }
       }
     },
     "24817": {
       "vnum": 24817,
       "name": "Officer's Quarters",
-      "description": "The clockwork officers — larger, more ornate versions of the soldiers —\nrecharge here in alcoves fitted with power cables. Maps of surface\nlands cover the walls, marked with tactical notations. The Foundry\nisn't just building an army — it's planning a war.",
+      "description": "The clockwork officers \u2014 larger, more ornate versions of the soldiers \u2014\nrecharge here in alcoves fitted with power cables. Maps of surface\nlands cover the walls, marked with tactical notations. The Foundry\nisn't just building an army \u2014 it's planning a war.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24815, "description": "The testing range." },
-        "north": { "to_room": 24818, "description": "Toward the upper foundry." }
+        "south": {
+          "to_room": 24815,
+          "description": "The testing range."
+        },
+        "north": {
+          "to_room": 24818,
+          "description": "Toward the upper foundry."
+        }
       },
       "mob_resets": [
-        { "vnum": 24801, "max": 3 },
-        { "vnum": 24802, "max": 1 }
+        {
+          "vnum": 24801,
+          "max": 3
+        },
+        {
+          "vnum": 24802,
+          "max": 1
+        }
       ]
     },
     "24818": {
@@ -299,14 +491,20 @@
         "controlling_lever": "lever_gamma"
       },
       "exits": {
-        "south": { "to_room": 24817, "description": "The officers' quarters." },
-        "north": { "to_room": 24821, "description": "Through the scalding tunnel." }
+        "south": {
+          "to_room": 24817,
+          "description": "The officers' quarters."
+        },
+        "north": {
+          "to_room": 24821,
+          "description": "Through the scalding tunnel."
+        }
       }
     },
     "24819": {
       "vnum": 24819,
       "name": "Lever Room Gamma",
-      "description": "The final lever room. This one is more heavily guarded than the others,\nand the lever mechanism is more complex — a series of valves and wheels\nrather than a simple pull-lever. Getting the combination right is\nessential. Getting it wrong could be catastrophic.",
+      "description": "The final lever room. This one is more heavily guarded than the others,\nand the lever mechanism is more complex \u2014 a series of valves and wheels\nrather than a simple pull-lever. Getting the combination right is\nessential. Getting it wrong could be catastrophic.",
       "sector_type": "inside",
       "flags": [],
       "zone_mechanic": {
@@ -316,74 +514,136 @@
         "effect": "Operating this valve system shuts down Steam Tunnel Gamma, clearing the path to the Furnace Core."
       },
       "exits": {
-        "south": { "to_room": 24820, "description": "The landing chamber." }
+        "south": {
+          "to_room": 24820,
+          "description": "The landing chamber."
+        }
       },
       "mob_resets": [
-        { "vnum": 24801, "max": 2 },
-        { "vnum": 24804, "max": 2 }
+        {
+          "vnum": 24801,
+          "max": 2
+        },
+        {
+          "vnum": 24804,
+          "max": 2
+        }
       ]
     },
     "24820": {
       "vnum": 24820,
       "name": "Pneumatic Landing Chamber",
-      "description": "The receiving end of the pneumatic tube system. The walls are heavily\npadded — and heavily dented. Crumpled bits of metal and the occasional\nbone suggest not everyone (or everything) survives the trip. Multiple\ncorridors branch from here, leading deeper into the upper foundry.",
+      "description": "The receiving end of the pneumatic tube system. The walls are heavily\npadded \u2014 and heavily dented. Crumpled bits of metal and the occasional\nbone suggest not everyone (or everything) survives the trip. Multiple\ncorridors branch from here, leading deeper into the upper foundry.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24816, "description": "The pneumatic tube (return)." },
-        "north": { "to_room": 24819, "description": "The lever room." },
-        "east": { "to_room": 24821, "description": "Toward the furnace." }
+        "south": {
+          "to_room": 24816,
+          "description": "The pneumatic tube (return)."
+        },
+        "north": {
+          "to_room": 24819,
+          "description": "The lever room."
+        },
+        "east": {
+          "to_room": 24821,
+          "description": "Toward the furnace."
+        }
       },
       "mob_resets": [
-        { "vnum": 24803, "max": 2 }
+        {
+          "vnum": 24803,
+          "max": 2
+        }
       ]
     },
     "24821": {
       "vnum": 24821,
       "name": "Furnace Approach",
-      "description": "The heat here is staggering. The walls glow dull red, and the air\nshimmers like a desert mirage. Ahead, the Furnace Core blazes with\nthe light of a captive star. The approach is lined with inactive\nclockwork sentries — they'll activate if the Archon commands it.",
+      "description": "The heat here is staggering. The walls glow dull red, and the air\nshimmers like a desert mirage. Ahead, the Furnace Core blazes with\nthe light of a captive star. The approach is lined with inactive\nclockwork sentries \u2014 they'll activate if the Archon commands it.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24818, "description": "Steam Tunnel Gamma." },
-        "west": { "to_room": 24820, "description": "The landing chamber." },
-        "north": { "to_room": 24822, "description": "The furnace antechamber." }
+        "south": {
+          "to_room": 24818,
+          "description": "Steam Tunnel Gamma."
+        },
+        "west": {
+          "to_room": 24820,
+          "description": "The landing chamber."
+        },
+        "north": {
+          "to_room": 24822,
+          "description": "The furnace antechamber."
+        }
       },
       "mob_resets": [
-        { "vnum": 24801, "max": 2 },
-        { "vnum": 24802, "max": 1 }
+        {
+          "vnum": 24801,
+          "max": 2
+        },
+        {
+          "vnum": 24802,
+          "max": 1
+        }
       ]
     },
     "24822": {
       "vnum": 24822,
       "name": "Furnace Antechamber",
-      "description": "The last chamber before the Furnace Core. Emergency systems line the\nwalls — fire suppression, pressure release, emergency shutdown. All\nhave been disabled. The doors ahead are sealed with a complex mechanical\nlock. Through the viewport, you can see the Archon Prime, standing\nmotionless at the heart of the inferno, waiting.",
+      "description": "The last chamber before the Furnace Core. Emergency systems line the\nwalls \u2014 fire suppression, pressure release, emergency shutdown. All\nhave been disabled. The doors ahead are sealed with a complex mechanical\nlock. Through the viewport, you can see the Archon Prime, standing\nmotionless at the heart of the inferno, waiting.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24821, "description": "The approach." },
-        "north": { "to_room": 24823, "description": "Into the Furnace Core." }
+        "south": {
+          "to_room": 24821,
+          "description": "The approach."
+        },
+        "north": {
+          "to_room": 24823,
+          "description": "Into the Furnace Core."
+        }
       },
       "mob_resets": [
-        { "vnum": 24802, "max": 2 },
-        { "vnum": 24804, "max": 2 }
+        {
+          "vnum": 24802,
+          "max": 2
+        },
+        {
+          "vnum": 24804,
+          "max": 2
+        }
       ]
     },
     "24823": {
       "vnum": 24823,
       "name": "The Furnace Core",
-      "description": "The heart of the Clockwork Foundry blazes before you. A miniature sun\nhangs suspended in a cage of electromagnetic coils, bathing everything in\nblinding white light. Rivers of molten metal flow through channels in\nthe floor, feeding the foundry's endless production. At the center,\nstanding in the inferno as if it were a gentle breeze, is Archon Prime —\nthe mechanical god of this place. Twenty feet tall, forged from adamantine\nand powered by a fragment of the captive star itself, it turns to face\nyou with eyes of burning plasma. The Foundry's master has been expecting you.",
+      "description": "The heart of the Clockwork Foundry blazes before you. A miniature sun\nhangs suspended in a cage of electromagnetic coils, bathing everything in\nblinding white light. Rivers of molten metal flow through channels in\nthe floor, feeding the foundry's endless production. At the center,\nstanding in the inferno as if it were a gentle breeze, is Archon Prime \u2014\nthe mechanical god of this place. Twenty feet tall, forged from adamantine\nand powered by a fragment of the captive star itself, it turns to face\nyou with eyes of burning plasma. The Foundry's master has been expecting you.",
       "sector_type": "inside",
-      "flags": ["no_recall"],
+      "flags": [
+        "no_recall"
+      ],
       "exits": {
-        "south": { "to_room": 24822, "description": "The antechamber." }
+        "south": {
+          "to_room": 24822,
+          "description": "The antechamber."
+        }
       },
       "mob_resets": [
-        { "vnum": 24805, "max": 1 }
+        {
+          "vnum": 24805,
+          "max": 1
+        }
       ],
       "obj_resets": [
-        { "vnum": 24801, "max": 1 },
-        { "vnum": 24803, "max": 1 }
+        {
+          "vnum": 24801,
+          "max": 1
+        },
+        {
+          "vnum": 24803,
+          "max": 1
+        }
       ]
     },
     "24824": {
@@ -393,81 +653,135 @@
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "west": { "to_room": 24811, "description": "The central junction." },
-        "north": { "to_room": 24813, "description": "The Tesla corridor." }
+        "west": {
+          "to_room": 24811,
+          "description": "The central junction."
+        },
+        "north": {
+          "to_room": 24813,
+          "description": "The Tesla corridor."
+        }
       },
       "mob_resets": [
-        { "vnum": 24801, "max": 2 }
+        {
+          "vnum": 24801,
+          "max": 2
+        }
       ]
     },
     "24825": {
       "vnum": 24825,
       "name": "Prototype Laboratory",
-      "description": "This sealed laboratory contains the Foundry's experimental projects.\nHalf-finished machines of bizarre design fill the room — flying drones,\nsubmersible golems, weapons that defy conventional understanding. A\nmassive blueprint on the wall shows Archon Prime's design, annotated\nin a mechanical language.",
+      "description": "This sealed laboratory contains the Foundry's experimental projects.\nHalf-finished machines of bizarre design fill the room \u2014 flying drones,\nsubmersible golems, weapons that defy conventional understanding. A\nmassive blueprint on the wall shows Archon Prime's design, annotated\nin a mechanical language.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24814, "description": "Power core observation." }
+        "south": {
+          "to_room": 24814,
+          "description": "Power core observation."
+        }
       },
       "mob_resets": [
-        { "vnum": 24803, "max": 3 }
+        {
+          "vnum": 24803,
+          "max": 3
+        }
       ]
     },
     "24826": {
       "vnum": 24826,
       "name": "Exhaust Vents",
-      "description": "Massive exhaust vents dominate this chamber, periodically blasting\nsuperheated air upward with hurricane force. Between blasts, the\nvents provide a precarious shortcut through the foundry's upper\nlevels. Timing is everything — a mistimed crossing means being\nblasted into the ceiling.",
+      "description": "Massive exhaust vents dominate this chamber, periodically blasting\nsuperheated air upward with hurricane force. Between blasts, the\nvents provide a precarious shortcut through the foundry's upper\nlevels. Timing is everything \u2014 a mistimed crossing means being\nblasted into the ceiling.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "west": { "to_room": 24809, "description": "The coolant chamber." },
-        "north": { "to_room": 24815, "description": "The testing range." }
+        "west": {
+          "to_room": 24809,
+          "description": "The coolant chamber."
+        },
+        "north": {
+          "to_room": 24815,
+          "description": "The testing range."
+        }
       },
       "mob_resets": [
-        { "vnum": 24804, "max": 2 }
+        {
+          "vnum": 24804,
+          "max": 2
+        }
       ]
     },
     "24827": {
       "vnum": 24827,
       "name": "Coal Bunker",
-      "description": "Mountains of coal — or something like coal, but blacker and denser —\nfill this storage chamber. Automated carts trundle along tracks, carrying\nfuel to the furnace. The dust here is thick and flammable. A single\nspark could turn this room into an inferno. Mining golems work\ntirelessly, breaking apart larger chunks.",
+      "description": "Mountains of coal \u2014 or something like coal, but blacker and denser \u2014\nfill this storage chamber. Automated carts trundle along tracks, carrying\nfuel to the furnace. The dust here is thick and flammable. A single\nspark could turn this room into an inferno. Mining golems work\ntirelessly, breaking apart larger chunks.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "east": { "to_room": 24817, "description": "The officers' quarters." }
+        "east": {
+          "to_room": 24817,
+          "description": "The officers' quarters."
+        }
       },
       "mob_resets": [
-        { "vnum": 24802, "max": 2 }
+        {
+          "vnum": 24802,
+          "max": 2
+        }
       ]
     },
     "24828": {
       "vnum": 24828,
       "name": "Compression Chamber",
-      "description": "This sealed chamber uses immense mechanical presses to compress raw\nmaterials into building components. The presses slam down with\nearth-shaking force every few seconds. Between compressions, the\nchamber is navigable — but getting caught between the plates would\nreduce anything to a thin sheet of metal.",
+      "description": "This sealed chamber uses immense mechanical presses to compress raw\nmaterials into building components. The presses slam down with\nearth-shaking force every few seconds. Between compressions, the\nchamber is navigable \u2014 but getting caught between the plates would\nreduce anything to a thin sheet of metal.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "west": { "to_room": 24808, "description": "Assembly Line Beta." },
-        "north": { "to_room": 24811, "description": "The central junction." }
+        "west": {
+          "to_room": 24808,
+          "description": "Assembly Line Beta."
+        },
+        "north": {
+          "to_room": 24811,
+          "description": "The central junction."
+        }
       },
       "mob_resets": [
-        { "vnum": 24801, "max": 1 },
-        { "vnum": 24802, "max": 1 }
+        {
+          "vnum": 24801,
+          "max": 1
+        },
+        {
+          "vnum": 24802,
+          "max": 1
+        }
       ]
     },
     "24829": {
       "vnum": 24829,
       "name": "Control Room",
-      "description": "The nerve center of the Clockwork Foundry. Banks of switches, levers,\nand gauges cover every surface. Pneumatic tubes carry messages between\nsections. A massive central display — a mechanical map of the entire\nfoundry — shows the status of every system in real-time. From here,\nthe entire complex can be controlled.",
+      "description": "The nerve center of the Clockwork Foundry. Banks of switches, levers,\nand gauges cover every surface. Pneumatic tubes carry messages between\nsections. A massive central display \u2014 a mechanical map of the entire\nfoundry \u2014 shows the status of every system in real-time. From here,\nthe entire complex can be controlled.",
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": { "to_room": 24822, "description": "The furnace antechamber." },
-        "west": { "to_room": 24821, "description": "The furnace approach." }
+        "south": {
+          "to_room": 24822,
+          "description": "The furnace antechamber."
+        },
+        "west": {
+          "to_room": 24821,
+          "description": "The furnace approach."
+        }
       },
       "mob_resets": [
-        { "vnum": 24801, "max": 2 },
-        { "vnum": 24804, "max": 1 }
+        {
+          "vnum": 24801,
+          "max": 2
+        },
+        {
+          "vnum": 24804,
+          "max": 1
+        }
       ]
     }
   },
@@ -484,7 +798,11 @@
       "gold": 400,
       "exp": 12000,
       "armor_class": 40,
-      "flags": ["aggressive", "no_charm", "no_sleep"],
+      "flags": [
+        "aggressive",
+        "no_charm",
+        "no_sleep"
+      ],
       "description": "This mechanical warrior stands six feet tall, its body a masterwork of\ninterlocking plates, gears, and pistons. Steam vents from joints as it\nmoves with surprising fluidity. Its eyes are glass lenses that glow\nwith an inner amber light, and its hands end in razor-sharp blade-fingers\nthat can switch to crushing grips in an instant."
     },
     "24802": {
@@ -499,7 +817,12 @@
       "gold": 600,
       "exp": 16000,
       "armor_class": 50,
-      "flags": ["aggressive", "no_charm", "no_sleep", "no_bash"],
+      "flags": [
+        "aggressive",
+        "no_charm",
+        "no_sleep",
+        "no_bash"
+      ],
       "description": "Twelve feet of iron, brass, and fury. The Steam Golem is a walking\nboiler room, its torso a pressurized chamber that vents scalding steam\nthrough nozzles on its arms and back. Its fists are wrecking balls,\nand the ground shakes with each thunderous step. The heat radiating\nfrom its body is intense enough to blister skin at ten paces."
     },
     "24803": {
@@ -514,8 +837,11 @@
       "gold": 200,
       "exp": 8000,
       "armor_class": 25,
-      "flags": ["no_charm", "no_sleep"],
-      "description": "A floating sphere of polished brass, roughly three feet in diameter,\nsurrounded by a halo of articulated arms. Each arm ends in a different\ntool — wrenches, welders, soldering irons, saws. The drone repairs\ndamaged units on the battlefield, and can turn its tools to offensive\npurposes with disturbing effectiveness."
+      "flags": [
+        "no_charm",
+        "no_sleep"
+      ],
+      "description": "A floating sphere of polished brass, roughly three feet in diameter,\nsurrounded by a halo of articulated arms. Each arm ends in a different\ntool \u2014 wrenches, welders, soldering irons, saws. The drone repairs\ndamaged units on the battlefield, and can turn its tools to offensive\npurposes with disturbing effectiveness."
     },
     "24804": {
       "vnum": 24804,
@@ -529,7 +855,12 @@
       "gold": 500,
       "exp": 14000,
       "armor_class": 35,
-      "flags": ["aggressive", "no_charm", "no_sleep", "sentinel"],
+      "flags": [
+        "aggressive",
+        "no_charm",
+        "no_sleep",
+        "sentinel"
+      ],
       "description": "This stationary defense unit consists of twin Tesla coils mounted on a\nrotating base. Arcs of blue-white lightning crackle between the coils,\nand the air around it smells of ozone and burning. It can discharge\nmassive bolts of electricity at anything it identifies as an intruder,\nand its targeting systems are devastatingly accurate."
     },
     "24805": {
@@ -544,8 +875,16 @@
       "gold": 12000,
       "exp": 200000,
       "armor_class": 70,
-      "flags": ["aggressive", "no_charm", "no_summmon", "no_sleep", "no_bash", "no_blind", "sentinel"],
-      "description": "Archon Prime is the masterwork of the Clockwork Foundry — a mechanical\nentity that has transcended mere engineering to become something approaching\ndivinity. Twenty feet tall, forged from adamantine alloy and powered by a\nfragment of captured stellar energy, it moves with the grace of a dancer\nand the force of an avalanche. Its body is a cathedral of gears, each\none perfect, each one necessary. Its eyes burn with the light of its\nstellar heart, and when it speaks, the foundry itself trembles. It was\nbuilt to create. It has decided to conquer."
+      "flags": [
+        "aggressive",
+        "no_charm",
+        "no_summmon",
+        "no_sleep",
+        "no_bash",
+        "no_blind",
+        "sentinel"
+      ],
+      "description": "Archon Prime is the masterwork of the Clockwork Foundry \u2014 a mechanical\nentity that has transcended mere engineering to become something approaching\ndivinity. Twenty feet tall, forged from adamantine alloy and powered by a\nfragment of captured stellar energy, it moves with the grace of a dancer\nand the force of an avalanche. Its body is a cathedral of gears, each\none perfect, each one necessary. Its eyes burn with the light of its\nstellar heart, and when it speaks, the foundry itself trembles. It was\nbuilt to create. It has decided to conquer."
     }
   },
   "objects": {
@@ -559,7 +898,10 @@
       "value": 70000,
       "type": "armor",
       "armor_bonus": 30,
-      "flags": ["magic", "hum"],
+      "flags": [
+        "magic",
+        "hum"
+      ],
       "min_level": 52,
       "effects": {
         "armor_class": -25,
@@ -579,7 +921,11 @@
       "type": "weapon",
       "damage_dice": "9d8+20",
       "weapon_type": "crossbow",
-      "flags": ["glow", "hum", "magic"],
+      "flags": [
+        "glow",
+        "hum",
+        "magic"
+      ],
       "min_level": 55,
       "effects": {
         "hitroll": 12,
@@ -596,7 +942,11 @@
       "weight": 1,
       "value": 100000,
       "type": "treasure",
-      "flags": ["glow", "hum", "magic"],
+      "flags": [
+        "glow",
+        "hum",
+        "magic"
+      ],
       "min_level": 55,
       "effects": {
         "hp_regen": 30,

@@ -1771,8 +1771,8 @@
       "flags": [],
       "exits": {
         "north": {
-          "to_room": 18000,
-          "description": "The dark trees of the Great Northern Forest loom to the north."
+          "to_room": 6600,
+          "description": "A road leads north into the wilderness."
         },
         "south": {
           "to_room": 3061,

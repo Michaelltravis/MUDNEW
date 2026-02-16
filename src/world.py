@@ -234,7 +234,13 @@ class Room:
 
         # Items in room
         for item in self.items:
-            await player.send(f"{c['yellow']}{item.room_desc}{c['reset']}")
+            try:
+                from legendary import get_rarity_color, RARITY_TIERS
+                rarity = getattr(item, 'rarity', 'common') or 'common'
+                rcolor = c.get(RARITY_TIERS.get(rarity, {}).get('color_code', 'yellow'), c['yellow'])
+                await player.send(f"{rcolor}{item.room_desc}{c['reset']}")
+            except Exception:
+                await player.send(f"{c['yellow']}{item.room_desc}{c['reset']}")
 
         # Display case for collections in player housing
         try:
@@ -593,6 +599,15 @@ class World:
         # Initialize world events system
         from world_events import WorldEventManager
         self.event_manager = WorldEventManager(self)
+
+        # Register legendary item prototypes
+        try:
+            from legendary import LEGENDARY_ITEMS
+            for vnum, proto in LEGENDARY_ITEMS.items():
+                if vnum not in self.obj_prototypes:
+                    self.obj_prototypes[vnum] = proto
+        except Exception as e:
+            logger.warning(f"Failed to register legendary items: {e}")
 
         logger.info(f"World loaded: {len(self.zones)} zones, {len(self.rooms)} rooms")
         

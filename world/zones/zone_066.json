@@ -1,0 +1,457 @@
+{
+  "number": 66,
+  "name": "The Northern Wilderness",
+  "lifespan": 30,
+  "rooms": {
+    "6600": {
+      "vnum": 6600,
+      "name": "The North Road - Midgaard Outskirts",
+      "description": "The cobblestones of Midgaard give way to a packed-dirt road heading north\ninto dense forest. A weathered signpost stands at the junction, its arms\npointing in several directions. The city walls loom behind you to the south,\noffering a last glimpse of civilization before the wilderness swallows the path.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 3065,
+          "description": "The road leads back toward Midgaard."
+        },
+        "north": {
+          "to_room": 6601,
+          "description": "The road plunges into the forest."
+        }
+      },
+      "extra_descs": {
+        "signpost sign": "The signpost reads:\n  NORTH - The Northern Wilderness\n  NORTHWEST - Goblin Warrens (DANGER)\n  EAST - The Eastern Highlands\n  SOUTH - Midgaard"
+      }
+    },
+    "6601": {
+      "vnum": 6601,
+      "name": "A Forest Road",
+      "description": "Tall oaks and elms form a canopy overhead, dappling the road with shifting\npatches of sunlight. Birds call from the branches, and the undergrowth\nrustles with small creatures. The road is well-worn but narrow, with\nwagon ruts cutting deep into the soft earth.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 6600,
+          "description": "The road leads south toward Midgaard."
+        },
+        "north": {
+          "to_room": 6602,
+          "description": "The forest road continues north."
+        },
+        "east": {
+          "to_room": 6700,
+          "description": "A rocky trail branches east toward the highlands."
+        }
+      }
+    },
+    "6602": {
+      "vnum": 6602,
+      "name": "A Forest Clearing",
+      "description": "The trees pull back from the road here, creating a broad clearing carpeted\nwith wildflowers and clover. A ring of stones marks an old campfire, and\nseveral logs have been dragged around it for seating. This looks like a\nregular rest stop for travelers and merchants.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 6601,
+          "description": "The forest road leads south."
+        },
+        "north": {
+          "to_room": 6603,
+          "description": "The road continues into deeper forest."
+        },
+        "west": {
+          "to_room": 6608,
+          "description": "A faint trail leads west into the trees."
+        }
+      },
+      "extra_descs": {
+        "campfire stones ring": "The ashes are cold but recent. Someone camped here within the last few days."
+      },
+      "gathering_nodes": [
+        {
+          "type": "foraging",
+          "resource": "wild herbs",
+          "respawn_minutes": 30
+        }
+      ]
+    },
+    "6603": {
+      "vnum": 6603,
+      "name": "Deep Forest Road",
+      "description": "The forest grows ancient here. Massive trees tower overhead, their trunks\nwide enough for two people to hide behind. Moss drapes from every branch,\nand the air is thick with the smell of loam and decay. The road narrows\nto little more than a footpath, barely visible beneath fallen leaves.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 6602,
+          "description": "The road widens southward."
+        },
+        "north": {
+          "to_room": 6604,
+          "description": "The path descends toward the sound of water."
+        }
+      }
+    },
+    "6604": {
+      "vnum": 6604,
+      "name": "The River Crossing",
+      "description": "A broad, shallow river cuts across the path here. Flat stones have been\nlaid across the riverbed to form a crude ford, though water still swirls\nankle-deep over them. The current is gentle but persistent, carrying\nautumn leaves downstream. Fish dart between the rocks in the clear water.",
+      "sector_type": "water_swim",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 6603,
+          "description": "The forest path climbs away from the river."
+        },
+        "north": {
+          "to_room": 6605,
+          "description": "The path continues on the far bank."
+        }
+      },
+      "gathering_nodes": [
+        {
+          "type": "fishing",
+          "resource": "river trout",
+          "respawn_minutes": 20
+        }
+      ]
+    },
+    "6605": {
+      "vnum": 6605,
+      "name": "Northern Forest - Fork in the Road",
+      "description": "Beyond the river, the forest thins slightly and the path splits. To the\nnorthwest, the trail grows rougher and climbs into rocky hills \u2014 a crude\nsign scratched on a tree reads 'GOBLINS' with an arrow. To the northeast,\nthe path follows the river upstream through birch groves.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 6604,
+          "description": "The path leads back to the river crossing."
+        },
+        "northwest": {
+          "to_room": 6606,
+          "description": "A rough trail climbs toward goblin territory."
+        },
+        "northeast": {
+          "to_room": 6609,
+          "description": "A birch-lined path follows the river."
+        }
+      }
+    },
+    "6606": {
+      "vnum": 6606,
+      "name": "Rocky Hill Trail",
+      "description": "The trail steepens sharply as it climbs through increasingly sparse\nforest into rocky terrain. Goblin tracks are visible in the mud \u2014\nsmall, clawed footprints in groups of three or four. The trees give\nway to scrubby bushes and exposed boulders. A foul smell drifts\nfrom somewhere ahead.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "southeast": {
+          "to_room": 6605,
+          "description": "The trail descends back to the forest fork."
+        },
+        "north": {
+          "to_room": 6607,
+          "description": "The trail continues toward a dark hillside."
+        }
+      }
+    },
+    "6607": {
+      "vnum": 6607,
+      "name": "Outside the Goblin Warrens",
+      "description": "The trail ends at a jagged crack in a barren hillside. Crude totems of\nbone and feather flank the dark opening, and the stench of goblin\nhabitation is unmistakable. Scratch marks and old bloodstains mark the\nrocks around the entrance. The forest lies safely to the south.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 6606,
+          "description": "The trail leads back through rocky hills."
+        },
+        "north": {
+          "to_room": 23500,
+          "description": "The dark crack leads into the Goblin Warrens."
+        }
+      }
+    },
+    "6608": {
+      "vnum": 6608,
+      "name": "A Shaded Grove",
+      "description": "A quiet grove of ancient willows, their trailing branches forming a\nnatural curtain around a small mossy clearing. Mushrooms grow in fairy\nrings around the bases of the trees, and the air hums with insects.\nThis place feels peaceful \u2014 almost unnaturally so.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "east": {
+          "to_room": 6602,
+          "description": "A faint trail leads back to the clearing."
+        }
+      },
+      "gathering_nodes": [
+        {
+          "type": "foraging",
+          "resource": "woodland mushrooms",
+          "respawn_minutes": 45
+        }
+      ]
+    },
+    "6609": {
+      "vnum": 6609,
+      "name": "Birch Grove Along the River",
+      "description": "Slender white birch trees line both banks of the river here, their papery\nbark peeling in curls. The water babbles over smooth stones, and shafts\nof golden light filter through the canopy. A family of deer watches you\nwarily from the far bank before bounding away.",
+      "sector_type": "forest",
+      "flags": [],
+      "exits": {
+        "southwest": {
+          "to_room": 6605,
+          "description": "The path returns to the forest fork."
+        },
+        "north": {
+          "to_room": 6610,
+          "description": "The river path continues north."
+        }
+      }
+    },
+    "6610": {
+      "vnum": 6610,
+      "name": "The Old Stone Bridge",
+      "description": "An ancient stone bridge arches over the river, its surface worn smooth by\ncountless feet over centuries. Moss fills the cracks between the stones,\nand carved faces \u2014 worn nearly featureless by time \u2014 peer out from the\nbridgework. A merchant's cart lies overturned nearby, its contents long\nsince looted.",
+      "sector_type": "field",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 6609,
+          "description": "The birch-lined path follows the river south."
+        },
+        "north": {
+          "to_room": 6611,
+          "description": "The road continues into the northern reaches."
+        }
+      }
+    },
+    "6611": {
+      "vnum": 6611,
+      "name": "The Mountain Pass Approach",
+      "description": "The forest falls away entirely here as the road begins climbing into\nbarren foothills. Wind whips across exposed rock, and the temperature\ndrops noticeably. Snow dusts the highest peaks visible to the north.\nA weathered signpost leans drunkenly at the trailside.",
+      "sector_type": "hills",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 6610,
+          "description": "The road descends back toward the forest."
+        },
+        "north": {
+          "to_room": 6612,
+          "description": "The mountain pass climbs higher."
+        }
+      },
+      "extra_descs": {
+        "signpost sign": "Barely legible: 'Mountain Pass - Proceed with caution. Bandits reported.'"
+      }
+    },
+    "6612": {
+      "vnum": 6612,
+      "name": "The Mountain Pass",
+      "description": "A narrow pass cuts between two towering peaks, the walls of stone rising\nsheer on either side. The wind howls through this natural corridor,\ncarrying flurries of snow. Rocky outcroppings provide perfect ambush\npoints, and you notice boot prints in the thin layer of frost \u2014 several\nsets, all recent.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 6611,
+          "description": "The pass descends southward."
+        },
+        "north": {
+          "to_room": 6613,
+          "description": "The pass opens to a vista beyond."
+        }
+      }
+    },
+    "6613": {
+      "vnum": 6613,
+      "name": "Northern Vista",
+      "description": "The pass opens onto a breathtaking vista of the northern lands. Rolling\nhills stretch to the horizon, dark with pine forests and cut by silver\nrivers. Far to the northeast, a dark structure perches on a distant\nhilltop \u2014 perhaps a monastery of some kind. The wilderness spreads in\nevery direction, wild and untamed.",
+      "sector_type": "mountain",
+      "flags": [],
+      "exits": {
+        "south": {
+          "to_room": 6612,
+          "description": "The mountain pass leads south."
+        }
+      }
+    }
+  },
+  "mobs": {
+    "6600": {
+      "vnum": 6600,
+      "name": "timber wolf",
+      "short_desc": "a timber wolf",
+      "long_desc": "A large timber wolf prowls through the undergrowth, watching you with yellow eyes.",
+      "description": "This wolf is lean and powerful, with thick grey fur and intelligent yellow\neyes. It moves with the easy confidence of a predator in its own territory.",
+      "level": 10,
+      "hp_dice": "4d8+40",
+      "damage_dice": "2d4+2",
+      "exp": 450,
+      "gold": 0,
+      "alignment": -200,
+      "armor_class": 80,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ]
+    },
+    "6601": {
+      "vnum": 6601,
+      "name": "black bear",
+      "short_desc": "a black bear",
+      "long_desc": "A large black bear lumbers through the forest, sniffing the air.",
+      "description": "This bear is massive, easily weighing several hundred pounds. Its thick\nblack fur is matted with burrs and its claws are as long as daggers.",
+      "level": 14,
+      "hp_dice": "6d8+60",
+      "damage_dice": "2d6+3",
+      "exp": 800,
+      "gold": 0,
+      "alignment": 0,
+      "armor_class": 70,
+      "flags": [
+        "stay_zone"
+      ]
+    },
+    "6602": {
+      "vnum": 6602,
+      "name": "forest bandit",
+      "short_desc": "a forest bandit",
+      "long_desc": "A rough-looking bandit lurks in the shadows, hand on sword.",
+      "description": "This bandit wears mismatched leather armor and a dark cloak. A jagged\nscar runs across one cheek, and his eyes dart nervously, sizing you up.",
+      "level": 16,
+      "hp_dice": "5d10+50",
+      "damage_dice": "2d5+4",
+      "exp": 1000,
+      "gold": 35,
+      "alignment": -500,
+      "armor_class": 65,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ]
+    },
+    "6603": {
+      "vnum": 6603,
+      "name": "bandit captain",
+      "short_desc": "the bandit captain",
+      "long_desc": "A scarred bandit captain surveys his territory with cold eyes.",
+      "description": "The captain of the forest bandits is a battle-hardened warrior wearing\nwell-maintained chainmail beneath his forest-green cloak. He carries a\nfine longsword that was clearly stolen from someone of means.",
+      "level": 20,
+      "hp_dice": "8d10+80",
+      "damage_dice": "3d5+5",
+      "exp": 2000,
+      "gold": 120,
+      "alignment": -600,
+      "armor_class": 50,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ]
+    },
+    "6604": {
+      "vnum": 6604,
+      "name": "traveling merchant",
+      "short_desc": "a traveling merchant",
+      "long_desc": "A stout merchant rests by the roadside, guarding his pack.",
+      "description": "This cheerful merchant carries an enormous pack stuffed with goods. He\nseems to know these roads well and is happy to share directions with\ntravelers \u2014 for the price of a friendly ear.",
+      "level": 8,
+      "hp_dice": "3d8+30",
+      "damage_dice": "1d4+1",
+      "exp": 0,
+      "gold": 200,
+      "alignment": 500,
+      "armor_class": 90,
+      "flags": [
+        "sentinel",
+        "helper"
+      ]
+    },
+    "6605": {
+      "vnum": 6605,
+      "name": "young deer",
+      "short_desc": "a young deer",
+      "long_desc": "A young deer grazes peacefully among the wildflowers.",
+      "description": "A graceful young deer with soft brown eyes and spotted flanks.",
+      "level": 3,
+      "hp_dice": "2d6+10",
+      "damage_dice": "1d3+0",
+      "exp": 50,
+      "gold": 0,
+      "alignment": 0,
+      "armor_class": 95,
+      "flags": [
+        "wimpy",
+        "stay_zone"
+      ]
+    }
+  },
+  "objects": {
+    "6600": {
+      "vnum": 6600,
+      "name": "wolf pelt",
+      "short_desc": "a thick wolf pelt",
+      "description": "A thick grey wolf pelt, soft and well-furred.",
+      "type": "treasure",
+      "weight": 3,
+      "cost": 25
+    }
+  },
+  "resets": [
+    {
+      "command": "M",
+      "mob_vnum": 6600,
+      "max_exist": 3,
+      "room_vnum": 6603,
+      "comment": "wolf in deep forest"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6600,
+      "max_exist": 3,
+      "room_vnum": 6609,
+      "comment": "wolf by river"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6601,
+      "max_exist": 2,
+      "room_vnum": 6608,
+      "comment": "bear in grove"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6602,
+      "max_exist": 3,
+      "room_vnum": 6612,
+      "comment": "bandit in pass"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6602,
+      "max_exist": 3,
+      "room_vnum": 6606,
+      "comment": "bandit on hill trail"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6603,
+      "max_exist": 1,
+      "room_vnum": 6612,
+      "comment": "bandit captain in pass"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6604,
+      "max_exist": 1,
+      "room_vnum": 6602,
+      "comment": "merchant in clearing"
+    },
+    {
+      "command": "M",
+      "mob_vnum": 6605,
+      "max_exist": 2,
+      "room_vnum": 6609,
+      "comment": "deer by river"
+    }
+  ]
+}

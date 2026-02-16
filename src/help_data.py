@@ -4643,7 +4643,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
 HELP_TOPICS.update({
     'global': {'category': 'command', 'description': 'Send a message on the global chat channel.\n\nUsage: global <message>\n\nAll online players with the channel enabled will see your message.\nRate limited to prevent spam.\n\nSee also: channel, trade, newbie, lfg', 'syntax': 'global <message>', 'title': 'Global Chat'},
     'newbie_channel': {'category': 'command', 'description': 'Send a message on the newbie help channel.\n\nUsage: newbie <message>\n\nAvailable to players level 1-15 and designated helpers.', 'syntax': 'newbie <message>', 'title': 'Newbie Channel'},
-    'newbie': {'category': 'general', 'title': 'New Player Guide',
+    'newbie': {'category': 'general', 'syntax': 'help newbie', 'title': 'New Player Guide',
         'description': """Welcome to RealmsMUD! Here's everything you need to know, in the order you'll need it.
 
 GETTING STARTED (Level 1-5)
