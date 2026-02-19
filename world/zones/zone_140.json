@@ -553,6 +553,9 @@
         "east": {
           "to_room": 14018,
           "description": "The way leads to Summoning Chamber"
+        },
+        "west": {
+          "to_room": 14029
         }
       },
       "vnum": 14016,
@@ -639,6 +642,9 @@
         "up": {
           "to_room": 14020,
           "description": "The way leads to Tower Entrance Hall"
+        },
+        "south": {
+          "to_room": 14027
         }
       },
       "vnum": 14019,

@@ -1015,6 +1015,9 @@
         "east": {
           "to_room": 7050,
           "description": "You can just make out a smaller room with a chair."
+        },
+        "west": {
+          "to_room": 7024
         }
       },
       "mob_resets": [
@@ -1382,6 +1385,9 @@
         "south": {
           "to_room": 7051,
           "description": "You can see a room with a lot of light in it.  You can't make out any details."
+        },
+        "west": {
+          "to_room": 7037
         }
       },
       "mob_resets": [

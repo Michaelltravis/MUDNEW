@@ -218,6 +218,9 @@
         "east": {
           "to_room": 24509,
           "description": "A passage to the east."
+        },
+        "down": {
+          "to_room": 24528
         }
       },
       "mob_resets": [
@@ -268,6 +271,9 @@
         "north": {
           "to_room": 24511,
           "description": "Deeper into the kennels."
+        },
+        "east": {
+          "to_room": 24529
         }
       },
       "mob_resets": [
@@ -566,6 +572,9 @@
         "north": {
           "to_room": 24521,
           "description": "A secret passage to the north."
+        },
+        "east": {
+          "to_room": 24521
         }
       }
     },
@@ -768,6 +777,9 @@
         "up": {
           "to_room": 24507,
           "description": "Back to the crossroads."
+        },
+        "south": {
+          "to_room": 24529
         }
       },
       "mob_resets": [

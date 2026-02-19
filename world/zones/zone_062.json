@@ -552,6 +552,9 @@
         "north": {
           "to_room": 6218,
           "description": "A trail winds toward A Forest Trail"
+        },
+        "east": {
+          "to_room": 6225
         }
       }
     },
@@ -609,6 +612,9 @@
         "south": {
           "to_room": 6230,
           "description": "A trail winds toward A Forest Trail"
+        },
+        "north": {
+          "to_room": 6235
         }
       },
       "mob_resets": [

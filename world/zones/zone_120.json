@@ -337,6 +337,9 @@
         "up": {
           "to_room": 12003,
           "description": "You see a set of steps leading up into the spectator stands."
+        },
+        "down": {
+          "to_room": 12017
         }
       },
       "extra_descs": {
@@ -658,6 +661,9 @@
         "south": {
           "to_room": 12024,
           "description": "You see hundreds, perhaps thousands of people."
+        },
+        "down": {
+          "to_room": 12016
         }
       },
       "mob_resets": [

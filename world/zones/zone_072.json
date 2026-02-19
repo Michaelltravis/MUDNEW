@@ -1208,7 +1208,11 @@
         "no_mob",
         "indoors"
       ],
-      "exits": {},
+      "exits": {
+        "east": {
+          "to_room": 7283
+        }
+      },
       "extra_descs": {
         "": "writing wall"
       }
@@ -2269,6 +2273,9 @@
         "south": {
           "to_room": 7335,
           "description": "Nothing but darkness..."
+        },
+        "east": {
+          "to_room": 7333
         }
       }
     },

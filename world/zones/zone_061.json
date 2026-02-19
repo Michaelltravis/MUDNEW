@@ -1490,6 +1490,9 @@
         "west": {
           "description": "To the west is the entrance to the cave-like structure.",
           "to_room": 6134
+        },
+        "down": {
+          "to_room": 6131
         }
       },
       "extra_descs": {

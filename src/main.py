@@ -60,7 +60,11 @@ class RealmsMUD:
 
         # Start web map server
         self.web_map = WebMapServer(self.world, self.config)
-        await self.web_map.start()
+        try:
+            await self.web_map.start()
+        except OSError as e:
+            logger.warning(f"Web map server failed to start: {e} — continuing without web map")
+            self.web_map = None
         # Expose for map updates
         self.world.web_map = self.web_map
 
@@ -217,6 +221,8 @@ class RealmsMUD:
                     if self.world.event_manager:
                         try:
                             await self.world.event_manager.tick()
+                        except asyncio.CancelledError:
+                            logger.error("World event tick cancelled (swallowed)")
                         except Exception as e:
                             logger.error(f"World event tick error: {e}")
                     world_event_tick = 0

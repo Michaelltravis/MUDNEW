@@ -133,7 +133,7 @@
           "to_room": 18005,
           "description": "A trail winds toward The Whispering Pines"
         },
-        "northwest": {
+        "west": {
           "to_room": 18006,
           "description": "A trail winds toward Outside the Ranger's Cabin"
         },
@@ -183,7 +183,7 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "southeast": {
+        "east": {
           "to_room": 18004,
           "description": "A trail winds toward Northern Bank of the Stream"
         },
@@ -267,6 +267,9 @@
         "south": {
           "to_room": 18008,
           "description": "A rocky path climbs toward Rising Ground"
+        },
+        "west": {
+          "to_room": 18025
         }
       },
       "mob_resets": [

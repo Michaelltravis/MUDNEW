@@ -2007,6 +2007,9 @@
         "east": {
           "to_room": 5474,
           "description": "The cobblestones lead to Alley"
+        },
+        "west": {
+          "to_room": 5534
         }
       },
       "mob_resets": [
@@ -2154,6 +2157,9 @@
         "east": {
           "to_room": 5477,
           "description": "The cobblestones lead to Underground"
+        },
+        "west": {
+          "to_room": 5503
         }
       }
     },
@@ -2351,6 +2357,9 @@
         "east": {
           "to_room": 5489,
           "description": "The cobblestones lead to A Dark Passage"
+        },
+        "west": {
+          "to_room": 5502
         }
       }
     },
@@ -2371,6 +2380,9 @@
         "west": {
           "to_room": 5488,
           "description": "The cobblestones lead to A Dark Passage"
+        },
+        "north": {
+          "to_room": 5546
         }
       }
     },
@@ -2420,6 +2432,9 @@
             "locked": false,
             "key_vnum": null
           }
+        },
+        "east": {
+          "to_room": 5592
         }
       },
       "extra_descs": {
@@ -3092,6 +3107,9 @@
         "south": {
           "to_room": 5430,
           "description": "The cobblestones lead to East Main Street"
+        },
+        "north": {
+          "to_room": 5517
         }
       },
       "extra_descs": {
@@ -4190,6 +4208,9 @@
         "north": {
           "to_room": 5568,
           "description": "Outside The Eastern Gate Of New Thalos"
+        },
+        "down": {
+          "to_room": 5491
         }
       }
     },
@@ -5987,6 +6008,9 @@
         "south": {
           "to_room": 5640,
           "description": "Deep waters churn near The River Of Lost Souls"
+        },
+        "west": {
+          "to_room": 5653
         }
       }
     },
@@ -6569,6 +6593,9 @@
         "south": {
           "to_room": 5669,
           "description": "Deep waters churn near On The Dark River"
+        },
+        "west": {
+          "to_room": 5669
         }
       }
     },
@@ -7012,6 +7039,9 @@
         "west": {
           "to_room": 5688,
           "description": "Deep waters churn near The Dragon Sea"
+        },
+        "down": {
+          "to_room": 5698
         }
       }
     },

@@ -109,6 +109,9 @@
         "up": {
           "to_room": 6306,
           "description": "An open path leads to On The Busy Path"
+        },
+        "north": {
+          "to_room": 6308
         }
       }
     },
@@ -126,6 +129,9 @@
         "down": {
           "to_room": 6305,
           "description": "An open path leads to Beneath The Busy Path"
+        },
+        "west": {
+          "to_room": 6308
         }
       },
       "mob_resets": [
@@ -153,6 +159,9 @@
         "east": {
           "to_room": 6308,
           "description": "An open path leads to On The Busy Path"
+        },
+        "south": {
+          "to_room": 6308
         }
       }
     },
@@ -384,6 +393,9 @@
         "up": {
           "to_room": 6323,
           "description": "An open path leads to The Web Forest"
+        },
+        "east": {
+          "to_room": 6325
         }
       }
     },
@@ -401,6 +413,9 @@
         "west": {
           "to_room": 6324,
           "description": "An open path leads to The Slave Pit"
+        },
+        "south": {
+          "to_room": 6324
         }
       }
     },
@@ -467,6 +482,9 @@
         "up": {
           "to_room": 6331,
           "description": "An open path leads to The Base Of The Web"
+        },
+        "south": {
+          "to_room": 6331
         }
       },
       "mob_resets": [
@@ -502,6 +520,12 @@
         "west": {
           "to_room": 6334,
           "description": "An open path leads to On A Cloud"
+        },
+        "down": {
+          "to_room": 6330
+        },
+        "up": {
+          "to_room": 6334
         }
       },
       "mob_resets": [
@@ -556,6 +580,9 @@
         "west": {
           "to_room": 6335,
           "description": "An open path leads to A Link In The Ethereal Web"
+        },
+        "north": {
+          "to_room": 6331
         }
       },
       "mob_resets": [
@@ -575,6 +602,12 @@
         "down": {
           "to_room": 6331,
           "description": "An open path leads to The Base Of The Web"
+        },
+        "east": {
+          "to_room": 6331
+        },
+        "north": {
+          "to_room": 6333
         }
       }
     },
@@ -592,6 +625,9 @@
         "west": {
           "to_room": 6331,
           "description": "An open path leads to The Base Of The Web"
+        },
+        "north": {
+          "to_room": 6332
         }
       },
       "mob_resets": [
@@ -632,6 +668,9 @@
         "down": {
           "to_room": 6331,
           "description": "An open path leads to The Base Of The Web"
+        },
+        "north": {
+          "to_room": 6336
         }
       },
       "mob_resets": [
@@ -672,6 +711,9 @@
         "down": {
           "to_room": 6331,
           "description": "An open path leads to The Base Of The Web"
+        },
+        "west": {
+          "to_room": 6341
         }
       },
       "mob_resets": [
@@ -699,6 +741,12 @@
         "up": {
           "to_room": 6345,
           "description": "An open path leads to A Link In The Ethereal Web"
+        },
+        "east": {
+          "to_room": 6341
+        },
+        "down": {
+          "to_room": 6345
         }
       }
     },
@@ -847,6 +895,9 @@
         "north": {
           "to_room": 6368,
           "description": "An open path leads to The Realm Of The Hopeless"
+        },
+        "south": {
+          "to_room": 6366
         }
       },
       "extra_descs": {
@@ -869,6 +920,9 @@
         "north": {
           "to_room": 6369,
           "description": "An open path leads to The Realm Of The Hopeless"
+        },
+        "south": {
+          "to_room": 6367
         }
       }
     },
@@ -899,6 +953,9 @@
         "east": {
           "to_room": 6371,
           "description": "An open path leads to The Single Spider Line"
+        },
+        "north": {
+          "to_room": 6369
         }
       },
       "mob_resets": [
@@ -922,6 +979,9 @@
         "south": {
           "to_room": 6372,
           "description": "An open path leads to The Single Spider Line"
+        },
+        "west": {
+          "to_room": 6370
         }
       }
     },
@@ -974,7 +1034,11 @@
         "death",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "north": {
+          "to_room": 6373
+        }
+      }
     },
     "6390": {
       "vnum": 6390,
@@ -986,6 +1050,9 @@
         "east": {
           "to_room": 6391,
           "description": "An open path leads to The Sticky Chamber"
+        },
+        "up": {
+          "to_room": 6365
         }
       }
     },
@@ -1003,6 +1070,9 @@
         "down": {
           "to_room": 6331,
           "description": "An open path leads to The Base Of The Web"
+        },
+        "west": {
+          "to_room": 6390
         }
       }
     },

@@ -426,7 +426,11 @@ class Room:
             if exit_data:
                 # Copy the exit data
                 processed_exit = dict(exit_data)
-                
+
+                # Normalize legacy exit key
+                if 'room_vnum' in processed_exit and 'to_room' not in processed_exit:
+                    processed_exit['to_room'] = processed_exit['room_vnum']
+
                 # Check for door flags and convert to door object
                 exit_flags = list(exit_data.get('flags', []))  # Make a copy
                 if 'door' in exit_flags or exit_data.get('door'):
@@ -680,12 +684,15 @@ class World:
                 max_count = mob_reset.get('max', 1)
                 max_existing = mob_reset.get('max_existing')
                 
-                # Count existing mobs tied to this spawn (home room) so wandering mobs don't duplicate.
+                # Count existing mobs for this vnum in the zone (prevents dupes when they wander)
                 current = sum(
                     1 for npc in self.npcs
                     if hasattr(npc, 'vnum')
                     and npc.vnum == mob_vnum
-                    and (getattr(npc, 'home_room', None) == room or npc.room == room)
+                    and (
+                        getattr(npc, 'home_zone', None) == zone.number
+                        or (npc.room and npc.room.zone == zone)
+                    )
                 )
 
                 if max_existing is not None:

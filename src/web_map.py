@@ -8,6 +8,7 @@ import base64
 import hashlib
 import json
 import logging
+import os
 from typing import Optional
 from urllib.parse import parse_qs, urlparse
 
@@ -121,7 +122,12 @@ class WebMapServer:
                 writer.close()
                 return
             request_line = request.decode(errors='ignore').strip()
-            method, path, _ = request_line.split(' ', 2)
+            parts = request_line.split(' ', 2)
+            if len(parts) < 2:
+                writer.close()
+                return
+            method = parts[0]
+            path = parts[1]
 
             headers = {}
             while True:
@@ -167,6 +173,30 @@ class WebMapServer:
                 payload = build_map_payload(player, mode='full')
                 logger.info(f"/state: returning {len(payload.get('rooms', []))} rooms for '{player_name}'")
                 await self._http_response(writer, 200, 'OK', json.dumps(payload), content_type='application/json')
+            elif path.startswith('/sprites/'):
+                # Serve sprite images
+                sprite_file = path.replace('/sprites/', '')
+                sprite_path = os.path.join(os.path.dirname(__file__), 'web_isometric', 'sprites', sprite_file)
+                try:
+                    with open(sprite_path, 'rb') as f:
+                        data = f.read()
+                    ext = sprite_file.rsplit('.', 1)[-1].lower()
+                    ct = {'png': 'image/png', 'jpg': 'image/jpeg', 'gif': 'image/gif', 'webp': 'image/webp'}.get(ext, 'image/png')
+                    writer.write(f"HTTP/1.1 200 OK\r\nContent-Type: {ct}\r\nContent-Length: {len(data)}\r\nAccess-Control-Allow-Origin: *\r\n\r\n".encode())
+                    writer.write(data)
+                    await writer.drain()
+                    return
+                except FileNotFoundError:
+                    await self._http_response(writer, 404, 'Not Found', 'Sprite not found')
+            elif path.startswith('/iso') or path.startswith('/isometric'):
+                # Serve the isometric 3D view
+                iso_path = os.path.join(os.path.dirname(__file__), 'web_isometric', 'index.html')
+                try:
+                    with open(iso_path, 'r', encoding='utf-8') as f:
+                        iso_html = f.read()
+                    await self._http_response(writer, 200, 'OK', iso_html, content_type='text/html')
+                except FileNotFoundError:
+                    await self._http_response(writer, 404, 'Not Found', 'Isometric view not found')
             else:
                 await self._http_response(writer, 200, 'OK', self._html(), content_type='text/html')
 
@@ -260,15 +290,18 @@ class WebMapServer:
         try:
             header = await reader.readexactly(2)
             if not header:
+                logger.info("WebSocket: empty header received")
                 return None
             b1, b2 = header[0], header[1]
             opcode = b1 & 0x0F
             masked = b2 & 0x80
             length = b2 & 0x7F
             
+            logger.debug(f"WebSocket frame: opcode={opcode}, masked={masked}, length={length}")
+            
             # Handle close frame
             if opcode == 0x8:
-                logger.debug("WebSocket close frame received")
+                logger.info("WebSocket close frame received from client")
                 return None
             
             if length == 126:
@@ -295,11 +328,11 @@ class WebMapServer:
                 return ''  # Return empty string to continue loop
             
             return data.decode('utf-8', errors='ignore')
-        except asyncio.IncompleteReadError:
-            logger.debug("WebSocket connection closed (incomplete read)")
+        except asyncio.IncompleteReadError as e:
+            logger.info(f"WebSocket connection closed (incomplete read): {e}")
             return None
         except (ConnectionResetError, BrokenPipeError, ConnectionError, OSError) as e:
-            logger.debug(f"WebSocket read error: {e}")
+            logger.info(f"WebSocket read error: {e}")
             return None
         except Exception as e:
             logger.warning(f"WebSocket read unexpected error: {e}")

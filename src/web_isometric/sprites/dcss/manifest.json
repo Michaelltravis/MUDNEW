@@ -1,0 +1,704 @@
+{
+  "_meta": {
+    "source": "Dungeon Crawl Stone Soup (DCSS)",
+    "license": "CC0 / Public Domain",
+    "sourceRepo": "https://github.com/crawl/crawl",
+    "sourcePath": "crawl-ref/source/rltiles/mon/",
+    "notes": "Sprites are original DCSS sizes (32x32 or 64x64 px). Client handles scaling. 'mindflayer' mapped to tentacled_monstrosity (no IP-encumbered mindflayer in DCSS). New sprites added Feb 2026: hydra, treant, myconoid, beholder (great_orb_of_eyes), broodmother, spider queen (arachne), jorogumo/drider, otyugh, abomination, small animals (quokka/inugami/elephant), satyr, pharaoh boss (khufu)."
+  },
+  "mobTypes": {
+    "dragon": {
+      "description": "Dragon family",
+      "defaultSprite": "dragons/fire_dragon.png",
+      "variants": {
+        "fire": "dragons/fire_dragon.png",
+        "ice": "dragons/ice_dragon.png",
+        "golden": "dragons/golden_dragon.png",
+        "shadow": "dragons/shadow_dragon.png",
+        "storm": "dragons/storm_dragon.png"
+      }
+    },
+    "undead": {
+      "description": "Undead family",
+      "defaultSprite": "undead/zombie_gnoll.png",
+      "variants": {
+        "skeleton": "undead/skeletal_warrior.png",
+        "zombie": "undead/zombie_gnoll.png",
+        "ghost": "undead/ghost.png",
+        "lich": "undead/lich.png",
+        "mummy": "undead/mummy.png",
+        "ghoul": "undead/ghoul.png",
+        "bone_dragon": "undead/bone_dragon.png",
+        "vampire": "undead/vampire.png",
+        "vampire_knight": "undead/vampire_knight.png"
+      }
+    },
+    "skeleton": {
+      "description": "Skeleton (undead)",
+      "defaultSprite": "undead/skeletal_warrior.png",
+      "variants": {
+        "warrior": "undead/skeletal_warrior.png"
+      }
+    },
+    "zombie": {
+      "description": "Zombie (undead)",
+      "defaultSprite": "undead/zombie_gnoll.png",
+      "variants": {
+        "gnoll": "undead/zombie_gnoll.png",
+        "troll": "undead/zombie_troll.png"
+      }
+    },
+    "ghost": {
+      "description": "Ghost / wraith (undead)",
+      "defaultSprite": "undead/ghost.png",
+      "variants": {
+        "ghost": "undead/ghost.png"
+      }
+    },
+    "lich": {
+      "description": "Lich (undead spellcaster)",
+      "defaultSprite": "undead/lich.png",
+      "variants": {
+        "lich": "undead/lich.png",
+        "ancient_lich": "undead/ancient_lich.png"
+      }
+    },
+    "vampire": {
+      "description": "Vampire (undead)",
+      "defaultSprite": "undead/vampire.png",
+      "variants": {
+        "vampire": "undead/vampire.png",
+        "vampire_knight": "undead/vampire_knight.png"
+      }
+    },
+    "demon": {
+      "description": "Demon family",
+      "defaultSprite": "demons/balrug.png",
+      "variants": {
+        "balrug": "demons/balrug.png",
+        "efreet": "demons/efreet.png",
+        "executioner": "demons/executioner.png",
+        "sun_demon": "demons/sun_demon.png",
+        "soul_eater": "demons/soul_eater.png",
+        "reaper": "demons/reaper.png"
+      }
+    },
+    "devil": {
+      "description": "Devil / imp",
+      "defaultSprite": "demons/red_devil.png",
+      "variants": {
+        "red_devil": "demons/red_devil.png",
+        "ice_devil": "demons/ice_devil.png"
+      }
+    },
+    "beast": {
+      "description": "Natural beast family",
+      "defaultSprite": "animals/wolf.png",
+      "variants": {
+        "wolf": "animals/wolf.png",
+        "wolf_spider": "animals/wolf_spider.png",
+        "jumping_spider": "animals/jumping_spider.png",
+        "black_bear": "animals/black_bear.png",
+        "polar_bear": "animals/polar_bear.png",
+        "basilisk": "animals/basilisk.png"
+      }
+    },
+    "wolf": {
+      "description": "Wolf",
+      "defaultSprite": "animals/wolf.png",
+      "variants": {
+        "wolf": "animals/wolf.png"
+      }
+    },
+    "bear": {
+      "description": "Bear",
+      "defaultSprite": "animals/black_bear.png",
+      "variants": {
+        "black_bear": "animals/black_bear.png",
+        "polar_bear": "animals/polar_bear.png"
+      }
+    },
+    "spider": {
+      "description": "Spider",
+      "defaultSprite": "animals/wolf_spider.png",
+      "variants": {
+        "wolf_spider": "animals/wolf_spider.png",
+        "jumping_spider": "animals/jumping_spider.png"
+      }
+    },
+    "humanoid": {
+      "description": "Humanoid monsters",
+      "defaultSprite": "humanoids/orc.png",
+      "variants": {
+        "orc": "humanoids/orc.png",
+        "orc_warrior": "humanoids/orc_warrior.png",
+        "orc_knight": "humanoids/orc_knight.png",
+        "goblin": "humanoids/goblin.png",
+        "gnoll": "humanoids/gnoll.png",
+        "gnoll_sergeant": "humanoids/gnoll_sergeant.png",
+        "troll": "humanoids/troll.png",
+        "deep_troll": "humanoids/deep_troll.png",
+        "ogre": "humanoids/ogre.png"
+      }
+    },
+    "orc": {
+      "description": "Orc",
+      "defaultSprite": "humanoids/orc.png",
+      "variants": {
+        "orc": "humanoids/orc.png",
+        "orc_warrior": "humanoids/orc_warrior.png",
+        "orc_knight": "humanoids/orc_knight.png"
+      }
+    },
+    "goblin": {
+      "description": "Goblin",
+      "defaultSprite": "humanoids/goblin.png",
+      "variants": {
+        "goblin": "humanoids/goblin.png"
+      }
+    },
+    "gnoll": {
+      "description": "Gnoll",
+      "defaultSprite": "humanoids/gnoll.png",
+      "variants": {
+        "gnoll": "humanoids/gnoll.png",
+        "gnoll_sergeant": "humanoids/gnoll_sergeant.png"
+      }
+    },
+    "troll": {
+      "description": "Troll",
+      "defaultSprite": "humanoids/troll.png",
+      "variants": {
+        "troll": "humanoids/troll.png",
+        "deep_troll": "humanoids/deep_troll.png"
+      }
+    },
+    "giant": {
+      "description": "Giant",
+      "defaultSprite": "giants/stone_giant.png",
+      "variants": {
+        "fire_giant": "giants/fire_giant.png",
+        "frost_giant": "giants/frost_giant.png",
+        "stone_giant": "giants/stone_giant.png",
+        "cyclops": "giants/cyclops.png",
+        "titan": "giants/titan.png"
+      }
+    },
+    "elemental": {
+      "description": "Elemental",
+      "defaultSprite": "elementals/fire_elemental.png",
+      "variants": {
+        "fire": "elementals/fire_elemental.png",
+        "earth": "elementals/earth_elemental.png",
+        "air": "elementals/air_elemental.png",
+        "water": "elementals/water_elemental.png",
+        "iron": "elementals/iron_elemental.png"
+      }
+    },
+    "golem": {
+      "description": "Golem / construct",
+      "defaultSprite": "golems/iron_golem.png",
+      "variants": {
+        "iron": "golems/iron_golem.png",
+        "flesh": "golems/flesh_golem.png",
+        "electric": "golems/electric_golem.png",
+        "blazeheart": "golems/blazeheart_golem.png",
+        "gargoyle": "golems/gargoyle.png"
+      }
+    },
+    "angel": {
+      "description": "Angel / holy being",
+      "defaultSprite": "holy/angel.png",
+      "variants": {
+        "angel": "holy/angel.png",
+        "cherub": "holy/cherub.png",
+        "seraph": "holy/seraph.png",
+        "daeva": "holy/daeva.png"
+      }
+    },
+    "boss": {
+      "description": "Boss-tier monsters",
+      "defaultSprite": "boss/dragon_boss.png",
+      "variants": {
+        "dragon_boss": "boss/dragon_boss.png",
+        "lich_boss": "boss/lich_boss.png",
+        "demon_boss": "boss/demon_boss.png",
+        "giant_boss": "boss/giant_boss.png"
+      }
+    },
+    "mindflayer": {
+      "description": "Mind-affecting aberration (proxy: tentacled monstrosity \u2014 no DCSS mindflayer exists due to IP)",
+      "defaultSprite": "misc/mindflayer.png",
+      "variants": {
+        "tentacled_monstrosity": "misc/mindflayer.png"
+      }
+    },
+    "medusa": {
+      "description": "Medusa / gorgon",
+      "defaultSprite": "misc/medusa.png",
+      "variants": {
+        "medusa": "misc/medusa.png"
+      }
+    },
+    "hydra": {
+      "description": "Multi-headed dragon-serpent",
+      "defaultSprite": "dragons/hydra.png",
+      "variants": {
+        "hydra": "dragons/hydra.png",
+        "cryohydra": "dragons/hydra.png"
+      }
+    },
+    "treant": {
+      "description": "Animated tree creature",
+      "defaultSprite": "fungi_plants/treant.png",
+      "variants": {
+        "treant": "fungi_plants/treant.png"
+      }
+    },
+    "myconoid": {
+      "description": "Sentient fungus / mushroom creature",
+      "defaultSprite": "fungi_plants/wandering_mushroom.png",
+      "variants": {
+        "myconoid": "fungi_plants/wandering_mushroom.png",
+        "mushroom": "fungi_plants/wandering_mushroom.png"
+      }
+    },
+    "beholder": {
+      "description": "Floating eye sphere aberration",
+      "defaultSprite": "eyes/great_orb_of_eyes.png",
+      "variants": {
+        "beholder": "eyes/great_orb_of_eyes.png",
+        "orb_of_eyes": "eyes/great_orb_of_eyes.png"
+      }
+    },
+    "spider_queen": {
+      "description": "Boss-tier spider sorceress",
+      "defaultSprite": "boss/arachne.png",
+      "variants": {
+        "spider_queen": "boss/arachne.png",
+        "arachne": "boss/arachne.png"
+      }
+    },
+    "broodmother": {
+      "description": "Giant egg-laying brood spider",
+      "defaultSprite": "animals/broodmother.png",
+      "variants": {
+        "broodmother": "animals/broodmother.png"
+      }
+    },
+    "jorogumo": {
+      "description": "Spider-woman hybrid / drider",
+      "defaultSprite": "demihumanoids/jorogumo.png",
+      "variants": {
+        "jorogumo": "demihumanoids/jorogumo.png",
+        "yochlol": "demihumanoids/jorogumo.png"
+      }
+    },
+    "otyugh": {
+      "description": "Ugly aberrant garbage beast",
+      "defaultSprite": "aberrations/ugly_thing.png",
+      "variants": {
+        "otyugh": "aberrations/ugly_thing.png",
+        "ugly_thing": "aberrations/ugly_thing.png"
+      }
+    },
+    "abomination": {
+      "description": "Large monstrous abomination",
+      "defaultSprite": "aberrations/abomination_large.png",
+      "variants": {
+        "abomination": "aberrations/abomination_large.png",
+        "grotesque": "aberrations/abomination_large.png"
+      }
+    },
+    "small_animal": {
+      "description": "Small woodland creature (rabbit, squirrel, chipmunk)",
+      "defaultSprite": "animals/quokka.png",
+      "variants": {
+        "rabbit": "animals/quokka.png",
+        "squirrel": "animals/quokka.png",
+        "chipmunk": "animals/quokka.png"
+      }
+    },
+    "fox": {
+      "description": "Fox / fox-spirit",
+      "defaultSprite": "animals/inugami.png",
+      "variants": {
+        "fox": "animals/inugami.png",
+        "inugami": "animals/inugami.png"
+      }
+    },
+    "elephant": {
+      "description": "Elephant",
+      "defaultSprite": "animals/elephant.png",
+      "variants": {
+        "elephant": "animals/elephant.png"
+      }
+    },
+    "frog": {
+      "description": "Frog / toad",
+      "defaultSprite": "animals/bullfrog.png",
+      "variants": {
+        "frog": "animals/bullfrog.png",
+        "toad": "animals/bullfrog.png"
+      }
+    },
+    "pharaoh": {
+      "description": "Egyptian pharaoh / mummy king boss",
+      "defaultSprite": "boss/khufu.png",
+      "variants": {
+        "khufu": "boss/khufu.png",
+        "pharaoh": "boss/khufu.png",
+        "ramses": "boss/khufu.png"
+      }
+    },
+    "satyr": {
+      "description": "Half-goat, half-human creature",
+      "defaultSprite": "demihumanoids/satyr.png",
+      "variants": {
+        "satyr": "demihumanoids/satyr.png"
+      }
+    }
+  },
+  "allSprites": {
+    "dragons/fire_dragon.png": {
+      "category": "dragon",
+      "variant": "fire"
+    },
+    "dragons/ice_dragon.png": {
+      "category": "dragon",
+      "variant": "ice"
+    },
+    "dragons/golden_dragon.png": {
+      "category": "dragon",
+      "variant": "golden"
+    },
+    "dragons/shadow_dragon.png": {
+      "category": "dragon",
+      "variant": "shadow"
+    },
+    "dragons/storm_dragon.png": {
+      "category": "dragon",
+      "variant": "storm"
+    },
+    "undead/skeletal_warrior.png": {
+      "category": "skeleton",
+      "variant": "warrior"
+    },
+    "undead/zombie_gnoll.png": {
+      "category": "zombie",
+      "variant": "gnoll"
+    },
+    "undead/zombie_troll.png": {
+      "category": "zombie",
+      "variant": "troll"
+    },
+    "undead/ghost.png": {
+      "category": "ghost",
+      "variant": "ghost"
+    },
+    "undead/lich.png": {
+      "category": "lich",
+      "variant": "lich"
+    },
+    "undead/ancient_lich.png": {
+      "category": "lich",
+      "variant": "ancient_lich"
+    },
+    "undead/vampire.png": {
+      "category": "vampire",
+      "variant": "vampire"
+    },
+    "undead/vampire_knight.png": {
+      "category": "vampire",
+      "variant": "vampire_knight"
+    },
+    "undead/mummy.png": {
+      "category": "undead",
+      "variant": "mummy"
+    },
+    "undead/ghoul.png": {
+      "category": "undead",
+      "variant": "ghoul"
+    },
+    "undead/bone_dragon.png": {
+      "category": "undead",
+      "variant": "bone_dragon"
+    },
+    "demons/balrug.png": {
+      "category": "demon",
+      "variant": "balrug"
+    },
+    "demons/efreet.png": {
+      "category": "demon",
+      "variant": "efreet"
+    },
+    "demons/executioner.png": {
+      "category": "demon",
+      "variant": "executioner"
+    },
+    "demons/red_devil.png": {
+      "category": "devil",
+      "variant": "red_devil"
+    },
+    "demons/ice_devil.png": {
+      "category": "devil",
+      "variant": "ice_devil"
+    },
+    "demons/sun_demon.png": {
+      "category": "demon",
+      "variant": "sun_demon"
+    },
+    "demons/soul_eater.png": {
+      "category": "demon",
+      "variant": "soul_eater"
+    },
+    "demons/reaper.png": {
+      "category": "demon",
+      "variant": "reaper"
+    },
+    "animals/wolf.png": {
+      "category": "wolf",
+      "variant": "wolf"
+    },
+    "animals/wolf_spider.png": {
+      "category": "spider",
+      "variant": "wolf_spider"
+    },
+    "animals/jumping_spider.png": {
+      "category": "spider",
+      "variant": "jumping_spider"
+    },
+    "animals/black_bear.png": {
+      "category": "bear",
+      "variant": "black_bear"
+    },
+    "animals/polar_bear.png": {
+      "category": "bear",
+      "variant": "polar_bear"
+    },
+    "animals/basilisk.png": {
+      "category": "beast",
+      "variant": "basilisk"
+    },
+    "humanoids/orc.png": {
+      "category": "orc",
+      "variant": "orc"
+    },
+    "humanoids/orc_warrior.png": {
+      "category": "orc",
+      "variant": "orc_warrior"
+    },
+    "humanoids/orc_knight.png": {
+      "category": "orc",
+      "variant": "orc_knight"
+    },
+    "humanoids/goblin.png": {
+      "category": "goblin",
+      "variant": "goblin"
+    },
+    "humanoids/gnoll.png": {
+      "category": "gnoll",
+      "variant": "gnoll"
+    },
+    "humanoids/gnoll_sergeant.png": {
+      "category": "gnoll",
+      "variant": "gnoll_sergeant"
+    },
+    "humanoids/troll.png": {
+      "category": "troll",
+      "variant": "troll"
+    },
+    "humanoids/deep_troll.png": {
+      "category": "troll",
+      "variant": "deep_troll"
+    },
+    "humanoids/ogre.png": {
+      "category": "humanoid",
+      "variant": "ogre"
+    },
+    "giants/fire_giant.png": {
+      "category": "giant",
+      "variant": "fire_giant"
+    },
+    "giants/frost_giant.png": {
+      "category": "giant",
+      "variant": "frost_giant"
+    },
+    "giants/stone_giant.png": {
+      "category": "giant",
+      "variant": "stone_giant"
+    },
+    "giants/cyclops.png": {
+      "category": "giant",
+      "variant": "cyclops"
+    },
+    "giants/titan.png": {
+      "category": "giant",
+      "variant": "titan"
+    },
+    "golems/iron_golem.png": {
+      "category": "golem",
+      "variant": "iron"
+    },
+    "golems/flesh_golem.png": {
+      "category": "golem",
+      "variant": "flesh"
+    },
+    "golems/electric_golem.png": {
+      "category": "golem",
+      "variant": "electric"
+    },
+    "golems/blazeheart_golem.png": {
+      "category": "golem",
+      "variant": "blazeheart"
+    },
+    "golems/gargoyle.png": {
+      "category": "golem",
+      "variant": "gargoyle"
+    },
+    "elementals/fire_elemental.png": {
+      "category": "elemental",
+      "variant": "fire"
+    },
+    "elementals/earth_elemental.png": {
+      "category": "elemental",
+      "variant": "earth"
+    },
+    "elementals/air_elemental.png": {
+      "category": "elemental",
+      "variant": "air"
+    },
+    "elementals/water_elemental.png": {
+      "category": "elemental",
+      "variant": "water"
+    },
+    "elementals/iron_elemental.png": {
+      "category": "elemental",
+      "variant": "iron"
+    },
+    "holy/angel.png": {
+      "category": "angel",
+      "variant": "angel"
+    },
+    "holy/cherub.png": {
+      "category": "angel",
+      "variant": "cherub"
+    },
+    "holy/seraph.png": {
+      "category": "angel",
+      "variant": "seraph"
+    },
+    "holy/daeva.png": {
+      "category": "angel",
+      "variant": "daeva"
+    },
+    "boss/dragon_boss.png": {
+      "category": "boss",
+      "variant": "dragon_boss"
+    },
+    "boss/lich_boss.png": {
+      "category": "boss",
+      "variant": "lich_boss"
+    },
+    "boss/demon_boss.png": {
+      "category": "boss",
+      "variant": "demon_boss"
+    },
+    "boss/giant_boss.png": {
+      "category": "boss",
+      "variant": "giant_boss"
+    },
+    "misc/mindflayer.png": {
+      "category": "mindflayer",
+      "variant": "tentacled_monstrosity"
+    },
+    "misc/medusa.png": {
+      "category": "medusa",
+      "variant": "medusa"
+    },
+    "dragons/hydra.png": {
+      "category": "hydra",
+      "variant": "hydra"
+    },
+    "fungi_plants/treant.png": {
+      "category": "treant",
+      "variant": "treant"
+    },
+    "fungi_plants/wandering_mushroom.png": {
+      "category": "myconoid",
+      "variant": "myconoid"
+    },
+    "fungi_plants/toadstool.png": {
+      "category": "myconoid",
+      "variant": "toadstool"
+    },
+    "eyes/great_orb_of_eyes.png": {
+      "category": "beholder",
+      "variant": "beholder"
+    },
+    "eyes/eye_of_devastation.png": {
+      "category": "beholder",
+      "variant": "eye_of_devastation"
+    },
+    "animals/broodmother.png": {
+      "category": "broodmother",
+      "variant": "broodmother"
+    },
+    "animals/quokka.png": {
+      "category": "small_animal",
+      "variant": "quokka"
+    },
+    "animals/inugami.png": {
+      "category": "fox",
+      "variant": "inugami"
+    },
+    "animals/elephant.png": {
+      "category": "elephant",
+      "variant": "elephant"
+    },
+    "animals/hell_hound.png": {
+      "category": "beast",
+      "variant": "hell_hound"
+    },
+    "animals/bullfrog.png": {
+      "category": "frog",
+      "variant": "bullfrog"
+    },
+    "animals/butterfly.png": {
+      "category": "beast",
+      "variant": "butterfly"
+    },
+    "aberrations/ugly_thing.png": {
+      "category": "otyugh",
+      "variant": "ugly_thing"
+    },
+    "aberrations/abomination_large.png": {
+      "category": "abomination",
+      "variant": "abomination"
+    },
+    "demihumanoids/jorogumo.png": {
+      "category": "jorogumo",
+      "variant": "jorogumo"
+    },
+    "demihumanoids/entropy_weaver.png": {
+      "category": "jorogumo",
+      "variant": "entropy_weaver"
+    },
+    "demihumanoids/satyr.png": {
+      "category": "satyr",
+      "variant": "satyr"
+    },
+    "boss/arachne.png": {
+      "category": "spider_queen",
+      "variant": "arachne"
+    },
+    "boss/ignacio.png": {
+      "category": "boss",
+      "variant": "ignacio"
+    },
+    "boss/khufu.png": {
+      "category": "pharaoh",
+      "variant": "khufu"
+    }
+  }
+}

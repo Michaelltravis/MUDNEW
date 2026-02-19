@@ -1318,7 +1318,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "west": {
+          "to_room": 22100
+        }
+      }
     },
     "22151": {
       "vnum": 22151,
@@ -1330,7 +1334,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "east": {
+          "to_room": 22100
+        }
+      }
     },
     "22152": {
       "vnum": 22152,
@@ -1342,7 +1350,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "north": {
+          "to_room": 22101
+        }
+      }
     },
     "22153": {
       "vnum": 22153,
@@ -1354,7 +1366,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "east": {
+          "to_room": 22101
+        }
+      }
     },
     "22154": {
       "vnum": 22154,
@@ -1366,7 +1382,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "south": {
+          "to_room": 22102
+        }
+      }
     },
     "22155": {
       "vnum": 22155,
@@ -1378,7 +1398,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "west": {
+          "to_room": 22102
+        }
+      }
     },
     "22156": {
       "vnum": 22156,
@@ -1390,7 +1414,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "north": {
+          "to_room": 22103
+        }
+      }
     },
     "22157": {
       "vnum": 22157,
@@ -1402,7 +1430,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "east": {
+          "to_room": 22103
+        }
+      }
     },
     "22158": {
       "vnum": 22158,
@@ -1414,7 +1446,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "south": {
+          "to_room": 22104
+        }
+      }
     },
     "22159": {
       "vnum": 22159,
@@ -1426,7 +1462,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "west": {
+          "to_room": 22104
+        }
+      }
     },
     "22160": {
       "vnum": 22160,
@@ -1438,7 +1478,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "north": {
+          "to_room": 22105
+        }
+      }
     },
     "22161": {
       "vnum": 22161,
@@ -1450,7 +1494,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "east": {
+          "to_room": 22105
+        }
+      }
     },
     "22162": {
       "vnum": 22162,
@@ -1462,7 +1510,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "south": {
+          "to_room": 22106
+        }
+      }
     },
     "22163": {
       "vnum": 22163,
@@ -1474,7 +1526,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "west": {
+          "to_room": 22106
+        }
+      }
     },
     "22164": {
       "vnum": 22164,
@@ -1486,7 +1542,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "north": {
+          "to_room": 22107
+        }
+      }
     },
     "22165": {
       "vnum": 22165,
@@ -1498,7 +1558,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "east": {
+          "to_room": 22107
+        }
+      }
     },
     "22166": {
       "vnum": 22166,
@@ -1510,7 +1574,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "south": {
+          "to_room": 22108
+        }
+      }
     },
     "22167": {
       "vnum": 22167,
@@ -1522,7 +1590,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "west": {
+          "to_room": 22108
+        }
+      }
     },
     "22168": {
       "vnum": 22168,
@@ -1534,7 +1606,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "north": {
+          "to_room": 22109
+        }
+      }
     },
     "22169": {
       "vnum": 22169,
@@ -1546,7 +1622,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "east": {
+          "to_room": 22109
+        }
+      }
     },
     "22170": {
       "vnum": 22170,
@@ -1558,7 +1638,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "south": {
+          "to_room": 22110
+        }
+      }
     },
     "22171": {
       "vnum": 22171,
@@ -1570,7 +1654,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "west": {
+          "to_room": 22110
+        }
+      }
     },
     "22172": {
       "vnum": 22172,
@@ -1582,7 +1670,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "north": {
+          "to_room": 22111
+        }
+      }
     },
     "22173": {
       "vnum": 22173,
@@ -1594,7 +1686,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "east": {
+          "to_room": 22111
+        }
+      }
     },
     "22174": {
       "vnum": 22174,
@@ -1606,7 +1702,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "south": {
+          "to_room": 22112
+        }
+      }
     },
     "22175": {
       "vnum": 22175,
@@ -1618,7 +1718,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "west": {
+          "to_room": 22112
+        }
+      }
     },
     "22176": {
       "vnum": 22176,
@@ -1630,7 +1734,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "north": {
+          "to_room": 22113
+        }
+      }
     },
     "22177": {
       "vnum": 22177,
@@ -1642,7 +1750,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "east": {
+          "to_room": 22113
+        }
+      }
     },
     "22178": {
       "vnum": 22178,
@@ -1654,7 +1766,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "south": {
+          "to_room": 22114
+        }
+      }
     },
     "22179": {
       "vnum": 22179,
@@ -1666,7 +1782,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "north": {
+          "to_room": 22114
+        }
+      }
     },
     "22180": {
       "vnum": 22180,
@@ -1678,7 +1798,11 @@
         "dark",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "west": {
+          "to_room": 22114
+        }
+      }
     }
   },
   "mobs": {

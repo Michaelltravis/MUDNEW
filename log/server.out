@@ -1,0 +1,234 @@
+
+    ╔═══════════════════════════════════════════════════════════════╗
+    ║                                                               ║
+    ║   ██████╗ ███████╗ █████╗ ██╗     ███╗   ███╗███████╗         ║
+    ║   ██╔══██╗██╔════╝██╔══██╗██║     ████╗ ████║██╔════╝         ║
+    ║   ██████╔╝█████╗  ███████║██║     ██╔████╔██║███████╗         ║
+    ║   ██╔══██╗██╔══╝  ██╔══██║██║     ██║╚██╔╝██║╚════██║         ║
+    ║   ██║  ██║███████╗██║  ██║███████╗██║ ╚═╝ ██║███████║         ║
+    ║   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝╚══════╝         ║
+    ║                       MUD                                     ║
+    ║                                                               ║
+    ╚═══════════════════════════════════════════════════════════════╝
+
+    Starting RealmsMUD server on port 4000...
+
+2026-02-19 13:43:24,087 - RealmsMUD - INFO - ============================================================
+2026-02-19 13:43:24,087 - RealmsMUD - INFO - RealmsMUD - Fantasy Multi-User Dungeon
+2026-02-19 13:43:24,087 - RealmsMUD - INFO - ============================================================
+2026-02-19 13:43:24,087 - RealmsMUD - INFO - Initializing game systems...
+2026-02-19 13:43:24,087 - time_system - INFO - Game time initialized: 12:00 PM, Day 1 of Early Summer, Year 1000
+2026-02-19 13:43:24,087 - RealmsMUD.World - INFO - Loading world...
+2026-02-19 13:43:24,087 - RealmsMUD.World - INFO - Loaded zone 50: The Great Eastern Desert (74 rooms)
+2026-02-19 13:43:24,089 - RealmsMUD.World - INFO - Loaded zone 210: Tunnel of Sticks (400 rooms)
+2026-02-19 13:43:24,090 - RealmsMUD.World - INFO - Loaded zone 31: Southern part of Midgaard (54 rooms)
+2026-02-19 13:43:24,090 - RealmsMUD.World - INFO - Loaded zone 66: The Northern Wilderness (14 rooms)
+2026-02-19 13:43:24,090 - RealmsMUD.World - INFO - Loaded zone 70: The Sewer, First Level (67 rooms)
+2026-02-19 13:43:24,091 - RealmsMUD.World - INFO - Loaded zone 71: The Second Sewer (26 rooms)
+2026-02-19 13:43:24,091 - RealmsMUD.World - INFO - Loaded zone 67: The Eastern Highlands (14 rooms)
+2026-02-19 13:43:24,091 - RealmsMUD.World - INFO - Loaded zone 30: Northern Midgaard Main City (75 rooms)
+2026-02-19 13:43:24,092 - RealmsMUD.World - INFO - Loaded zone 180: The Great Northern Forest (26 rooms)
+2026-02-19 13:43:24,092 - RealmsMUD.World - INFO - Loaded zone 250: The Blood Pit Arena (7 rooms)
+2026-02-19 13:43:24,092 - RealmsMUD.World - INFO - Loaded zone 51: Drow City (51 rooms)
+2026-02-19 13:43:24,093 - RealmsMUD.World - INFO - Loaded zone 220: Castle Apocalypse (77 rooms)
+2026-02-19 13:43:24,093 - RealmsMUD.World - INFO - Loaded zone 60: Haon-Dor, Light Forest (64 rooms)
+2026-02-19 13:43:24,094 - RealmsMUD.World - INFO - Loaded zone 40: Mines of Moria (103 rooms)
+2026-02-19 13:43:24,094 - RealmsMUD.World - INFO - Loaded zone 200: Forest of Shadows (10 rooms)
+2026-02-19 13:43:24,094 - RealmsMUD.World - INFO - Loaded zone 186: Newbie Zone (41 rooms)
+2026-02-19 13:43:24,094 - RealmsMUD.World - INFO - Loaded zone 240: The Sunken Temple of Nereus (25 rooms)
+2026-02-19 13:43:24,095 - RealmsMUD.World - INFO - Loaded zone 190: The Frostspire (27 rooms)
+2026-02-19 13:43:24,095 - RealmsMUD.World - INFO - Loaded zone 0: Limbo - Internal (3 rooms)
+2026-02-19 13:43:24,095 - RealmsMUD.World - INFO - Loaded zone 61: Haon-Dor, Dark Forest (48 rooms)
+2026-02-19 13:43:24,096 - RealmsMUD.World - INFO - Loaded zone 36: The Chessboard of Midgaard (67 rooms)
+2026-02-19 13:43:24,096 - RealmsMUD.World - INFO - Loaded zone 260: Midgaard Housing District (22 rooms)
+2026-02-19 13:43:24,096 - RealmsMUD.World - INFO - Loaded zone 62: The Orc Enclave (68 rooms)
+2026-02-19 13:43:24,096 - RealmsMUD.World - INFO - Loaded zone 35: Miden'Nir (45 rooms)
+2026-02-19 13:43:24,097 - RealmsMUD.World - INFO - Loaded zone 150: King Welmar's Castle (75 rooms)
+2026-02-19 13:43:24,097 - RealmsMUD.World - INFO - Loaded zone 15: The Straight Path (41 rooms)
+2026-02-19 13:43:24,099 - RealmsMUD.World - INFO - Loaded zone 54: New Thalos (285 rooms)
+2026-02-19 13:43:24,099 - RealmsMUD.World - INFO - Loaded zone 238: The Haunted Monastery (25 rooms)
+2026-02-19 13:43:24,099 - RealmsMUD.World - INFO - Loaded zone 110: Silversong Elven Village (15 rooms)
+2026-02-19 13:43:24,099 - RealmsMUD.World - INFO - Loaded zone 80: The Dragon's Domain (5 rooms)
+2026-02-19 13:43:24,099 - RealmsMUD.World - INFO - Loaded zone 79: Redferne's Residence (20 rooms)
+2026-02-19 13:43:24,100 - RealmsMUD.World - INFO - Loaded zone 235: The Goblin Warrens (20 rooms)
+2026-02-19 13:43:24,100 - RealmsMUD.World - INFO - Loaded zone 63: Arachnos (52 rooms)
+2026-02-19 13:43:24,100 - RealmsMUD.World - INFO - Loaded zone 130: The Sunken Ruins of Atal'narath (18 rooms)
+2026-02-19 13:43:24,100 - RealmsMUD.World - INFO - Loaded zone 245: Shadowspire Citadel (30 rooms)
+2026-02-19 13:43:24,100 - RealmsMUD.World - INFO - Loaded zone 68: The Sunken Coast (12 rooms)
+2026-02-19 13:43:24,101 - RealmsMUD.World - INFO - Loaded zone 140: The Necropolis of Eternal Night (31 rooms)
+2026-02-19 13:43:24,101 - RealmsMUD.World - INFO - Loaded zone 52: The City Of Thalos (51 rooms)
+2026-02-19 13:43:24,102 - RealmsMUD.World - INFO - Loaded zone 25: The High Tower Of Magic (183 rooms)
+2026-02-19 13:43:24,103 - RealmsMUD.World - INFO - Loaded zone 160: The Plane of Eternal Chaos (26 rooms)
+2026-02-19 13:43:24,103 - RealmsMUD.World - INFO - Loaded zone 72: The Sewer Maze (87 rooms)
+2026-02-19 13:43:24,103 - RealmsMUD.World - INFO - Loaded zone 64: Rand's Tower (46 rooms)
+2026-02-19 13:43:24,104 - RealmsMUD.World - INFO - Loaded zone 33: The Three Of Swords (76 rooms)
+2026-02-19 13:43:24,104 - RealmsMUD.World - INFO - Loaded zone 9: River Island Of Minos (24 rooms)
+2026-02-19 13:43:24,104 - RealmsMUD.World - INFO - Loaded zone 32: Midgaard Stables (4 rooms)
+2026-02-19 13:43:24,104 - RealmsMUD.World - INFO - Loaded zone 65: The Dwarven Kingdom (51 rooms)
+2026-02-19 13:43:24,105 - RealmsMUD.World - INFO - Loaded zone 120: Rome (66 rooms)
+2026-02-19 13:43:24,105 - RealmsMUD.World - INFO - Loaded zone 73: The Mindflayer's Lair (3 rooms)
+2026-02-19 13:43:24,105 - RealmsMUD.World - INFO - Loaded zone 248: The Clockwork Foundry (30 rooms)
+2026-02-19 13:43:24,106 - RealmsMUD.World - INFO - Loaded zone 53: The Great Pyramid (61 rooms)
+2026-02-19 13:43:24,106 - RealmsMUD.World - INFO - Loaded zone 12: God Simplex (7 rooms)
+2026-02-19 13:43:24,106 - RealmsMUD.World - INFO - Loaded zone 100: The Dwarven Mines of Khaz-Durum (25 rooms)
+2026-02-19 13:43:24,106 - RealmsMUD.World - INFO - Loaded zone 69: The Ashlands (12 rooms)
+2026-02-19 13:43:24,106 - RealmsMUD.World - INFO - Loaded zone 90: The Haunted Swamp (20 rooms)
+2026-02-19 13:43:24,111 - RealmsMUD.Shops - INFO - Created shop for waiter (vnum 3043) with 1 items
+2026-02-19 13:43:24,112 - RealmsMUD.Shops - INFO - Created shop for bartender (vnum 3040) with 1 items
+2026-02-19 13:43:24,112 - RealmsMUD.Shops - INFO - Created shop for grocer (vnum 3002) with 7 items
+2026-02-19 13:43:24,112 - RealmsMUD.Shops - INFO - Created shop for weaponsmith (vnum 3003) with 1 items
+2026-02-19 13:43:24,112 - RealmsMUD.Shops - INFO - Created shop for waiter (vnum 3042) with 1 items
+2026-02-19 13:43:24,112 - RealmsMUD.Shops - INFO - Created shop for armourer (vnum 3004) with 1 items
+2026-02-19 13:43:24,112 - RealmsMUD.Shops - INFO - Created shop for waiter (vnum 3045) with 1 items
+2026-02-19 13:43:24,113 - RealmsMUD.Shops - INFO - Created shop for waiter (vnum 3044) with 1 items
+2026-02-19 13:43:24,113 - RealmsMUD.Shops - INFO - Created shop for wizard (vnum 3000) with 4 items
+2026-02-19 13:43:24,113 - RealmsMUD.Shops - INFO - Created shop for filthy (vnum 3046) with 1 items
+2026-02-19 13:43:24,113 - RealmsMUD.Shops - INFO - Created shop for captain (vnum 3006) with 1 items
+2026-02-19 13:43:24,113 - RealmsMUD.Shops - INFO - Created shop for sailor (vnum 3007) with 0 items
+2026-02-19 13:43:24,113 - RealmsMUD.Shops - INFO - Created shop for wally (vnum 3009) with 1 items
+2026-02-19 13:43:24,128 - RealmsMUD.Shops - INFO - Created shop for carpenter (vnum 26001) with 5 items
+2026-02-19 13:43:24,130 - RealmsMUD.Shops - INFO - Created shop for chef (vnum 15022) with 1 items
+2026-02-19 13:43:24,131 - RealmsMUD.Shops - INFO - Created shop for astrologer (vnum 15019) with 1 items
+2026-02-19 13:43:24,133 - RealmsMUD.Shops - INFO - Created shop for bartender (vnum 5405) with 1 items
+2026-02-19 13:43:24,133 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-19 13:43:24,134 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-19 13:43:24,134 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-19 13:43:24,135 - RealmsMUD.Shops - INFO - Created shop for cassandra (vnum 5418) with 0 items
+2026-02-19 13:43:24,135 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-19 13:43:24,136 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-19 13:43:24,136 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-19 13:43:24,137 - RealmsMUD.Shops - INFO - Created shop for ahkeem (vnum 5413) with 1 items
+2026-02-19 13:43:24,137 - RealmsMUD.Shops - INFO - Created shop for vera (vnum 5414) with 1 items
+2026-02-19 13:43:24,137 - RealmsMUD.Shops - INFO - Created shop for butch (vnum 5415) with 1 items
+2026-02-19 13:43:24,138 - RealmsMUD.Shops - INFO - Created shop for elriva (vnum 5479) with 1 items
+2026-02-19 13:43:24,138 - RealmsMUD.Shops - INFO - Created shop for braheem (vnum 5480) with 1 items
+2026-02-19 13:43:24,138 - RealmsMUD.Shops - INFO - Created shop for shopkeeper (vnum 5411) with 1 items
+2026-02-19 13:43:24,138 - RealmsMUD.Shops - INFO - Created shop for abdul (vnum 5416) with 1 items
+2026-02-19 13:43:24,138 - RealmsMUD.Shops - INFO - Created shop for baker (vnum 5410) with 1 items
+2026-02-19 13:43:24,138 - RealmsMUD.Shops - INFO - Created shop for igor (vnum 5417) with 1 items
+2026-02-19 13:43:24,138 - RealmsMUD.Shops - INFO - Created shop for stitch (vnum 5484) with 1 items
+2026-02-19 13:43:24,138 - RealmsMUD.Shops - INFO - Created shop for patch (vnum 5483) with 1 items
+2026-02-19 13:43:24,138 - RealmsMUD.Shops - INFO - Created shop for shipwright (vnum 5465) with 1 items
+2026-02-19 13:43:24,138 - RealmsMUD.Shops - INFO - Created shop for blacksmith (vnum 5466) with 1 items
+2026-02-19 13:43:24,153 - RealmsMUD.Shops - INFO - Created shop for strick (vnum 2505) with 1 items
+2026-02-19 13:43:24,153 - RealmsMUD.Shops - INFO - Created shop for tatorious (vnum 2506) with 1 items
+2026-02-19 13:43:24,169 - RealmsMUD.Shops - INFO - Created shop for storekeeper (vnum 3301) with 1 items
+2026-02-19 13:43:24,169 - RealmsMUD.Shops - INFO - Created shop for cowgirl (vnum 3302) with 1 items
+2026-02-19 13:43:24,169 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-02-19 13:43:24,169 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-02-19 13:43:24,169 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-02-19 13:43:24,169 - RealmsMUD.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-02-19 13:43:24,172 - RealmsMUD.Shops - INFO - Created shop for storekeeper (vnum 6503) with 1 items
+2026-02-19 13:43:24,173 - RealmsMUD.Shops - INFO - Created shop for baker (vnum 6504) with 1 items
+2026-02-19 13:43:24,175 - RealmsMUD.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
+2026-02-19 13:43:24,175 - RealmsMUD.Shops - INFO - Created shop for shopkeeper (vnum 12011) with 1 items
+2026-02-19 13:43:24,175 - RealmsMUD.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
+2026-02-19 13:43:24,177 - RealmsMUD.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
+2026-02-19 13:43:24,177 - RealmsMUD.Shops - INFO - Created shop for peddler (vnum 12012) with 1 items
+2026-02-19 13:43:24,178 - RealmsMUD.Shops - INFO - Created shop for shopkeeper (vnum 12034) with 1 items
+2026-02-19 13:43:24,180 - RealmsMUD.Shops - INFO - Created shop for baker (vnum 12036) with 2 items
+2026-02-19 13:43:24,180 - RealmsMUD.Shops - INFO - Created shop for grocer (vnum 12037) with 2 items
+2026-02-19 13:43:24,190 - RealmsMUD.Factions - INFO - Spawned faction NPC: Captain Aldren in room 3005
+2026-02-19 13:43:24,190 - RealmsMUD.Factions - INFO - Spawned faction NPC: Whisper in room 3044
+2026-02-19 13:43:24,190 - RealmsMUD.Factions - INFO - Spawned faction NPC: Archmage Thessaly in room 3017
+2026-02-19 13:43:24,190 - RealmsMUD.Factions - INFO - Spawned faction NPC: Elder Oakhart in room 3600
+2026-02-19 13:43:24,190 - RealmsMUD.Factions - INFO - Spawned faction NPC: the Shrouded Figure in room 3100
+2026-02-19 13:43:24,190 - RealmsMUD.Factions - INFO - Spawned faction NPC: Guildmaster Brennan in room 3014
+2026-02-19 13:43:24,190 - RealmsMUD.Factions - INFO - Spawned 6 faction NPCs
+2026-02-19 13:43:24,191 - RealmsMUD.World - INFO - World loaded: 54 zones, 2805 rooms
+2026-02-19 13:43:24,191 - RealmsMUD.WebMap - INFO - Web map server listening on 0.0.0.0:4001
+2026-02-19 13:43:24,241 - RealmsMUD - WARNING - Admin dashboard failed to start: [Errno 48] error while attempting to bind on address ('0.0.0.0', 4002): address already in use
+2026-02-19 13:43:24,242 - web_client - INFO - Web client listening on http://0.0.0.0:4003
+2026-02-19 13:43:24,242 - RealmsMUD - INFO - Initialization complete!
+2026-02-19 13:43:24,242 - RealmsMUD - INFO - Starting server on port 4000...
+2026-02-19 13:43:24,242 - RealmsMUD.Server - INFO - Server listening on 0.0.0.0:4000
+2026-02-19 13:43:25,593 - RealmsMUD.WebMap - INFO - WebSocket subscribe: player='Avikan' mode='full'
+2026-02-19 13:43:25,593 - RealmsMUD.WebMap - WARNING - Player 'Avikan' not found in world.players (online: [])
+2026-02-19 13:48:30,594 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-19 13:53:36,856 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-19 13:55:39,361 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 1 of Early Summer, Year 1000
+2026-02-19 13:58:43,193 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-19 13:58:43,194 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-19 13:58:43,196 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-19 13:58:43,198 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-19 13:58:43,199 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-19 13:58:43,200 - RealmsMUD.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-19 13:58:43,226 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-19 13:59:44,368 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 1 of Early Summer, Year 1000
+2026-02-19 14:00:58,964 - RealmsMUD.WebMap - INFO - WebSocket close frame received from client
+2026-02-19 14:00:58,965 - RealmsMUD.WebMap - INFO - WebSocket message is None, closing connection for client
+2026-02-19 14:01:01,629 - RealmsMUD.Server - INFO - New connection from ('127.0.0.1', 50213)
+2026-02-19 14:01:02,648 - RealmsMUD.Player - INFO - Loaded player: Avikan
+2026-02-19 14:01:02,649 - RealmsMUD.World - INFO - Player entered world: Avikan
+2026-02-19 14:01:02,659 - RealmsMUD.WebMap - INFO - notify_player called for 'Avikan', connected clients: []
+2026-02-19 14:01:02,660 - RealmsMUD.WebMap - WARNING - notify_player: NO connected clients for 'Avikan' (total clients: 0, names: [])
+2026-02-19 14:01:02,680 - RealmsMUD.WebMap - INFO - WebSocket subscribe: player='Avikan' mode='full'
+2026-02-19 14:01:02,731 - RealmsMUD.WebMap - INFO - Sending initial map: 2805 rooms
+2026-02-19 14:01:38,700 - RealmsMUD.WebMap - INFO - notify_player called for 'Avikan', connected clients: ['Avikan']
+2026-02-19 14:01:38,780 - RealmsMUD.WebMap - INFO - notify_player: sending 2805 rooms to 'Avikan'
+2026-02-19 14:01:38,835 - RealmsMUD.WebMap - INFO - notify_player: send SUCCESS for 'Avikan'
+2026-02-19 14:01:39,568 - RealmsMUD.WebMap - INFO - notify_player called for 'Avikan', connected clients: ['Avikan']
+2026-02-19 14:01:39,630 - RealmsMUD.WebMap - INFO - notify_player: sending 2805 rooms to 'Avikan'
+2026-02-19 14:01:39,665 - RealmsMUD.WebMap - INFO - notify_player: send SUCCESS for 'Avikan'
+2026-02-19 14:01:40,582 - RealmsMUD.WebMap - INFO - notify_player called for 'Avikan', connected clients: ['Avikan']
+2026-02-19 14:01:40,642 - RealmsMUD.WebMap - INFO - notify_player: sending 2805 rooms to 'Avikan'
+2026-02-19 14:01:40,674 - RealmsMUD.WebMap - INFO - notify_player: send SUCCESS for 'Avikan'
+2026-02-19 14:03:49,432 - RealmsMUD.World - INFO - Autosaved 1 players
+2026-02-19 14:07:54,389 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 2 of Early Summer, Year 1000
+2026-02-19 14:08:55,713 - RealmsMUD.World - INFO - Autosaved 1 players
+2026-02-19 14:14:02,070 - RealmsMUD.World - INFO - Autosaved 1 players
+2026-02-19 14:19:08,220 - RealmsMUD.World - INFO - Autosaved 1 players
+2026-02-19 14:20:09,450 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 2 of Early Summer, Year 1000
+2026-02-19 14:22:45,235 - RealmsMUD.WebMap - INFO - WebSocket connection closed (incomplete read): 0 bytes read on a total of 2 expected bytes
+2026-02-19 14:22:45,235 - RealmsMUD.WebMap - INFO - WebSocket message is None, closing connection for client
+2026-02-19 14:22:45,239 - aiohttp.access - INFO - 72.35.136.199 [19/Feb/2026:14:01:01 -0800] "GET /ws HTTP/1.1" 101 0 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+2026-02-19 14:22:45,240 - RealmsMUD.Server - INFO - Connection closed: ('127.0.0.1', 50213)
+2026-02-19 14:22:45,251 - RealmsMUD.World - INFO - Player left world: Avikan
+2026-02-19 14:24:14,447 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-19 14:29:20,799 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-19 14:32:24,497 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 2 of Early Summer, Year 1000
+2026-02-19 14:33:44,563 - RealmsMUD.Server - INFO - New connection from ('185.247.137.72', 46439)
+2026-02-19 14:33:46,563 - RealmsMUD.Server - INFO - Connection lost for ('185.247.137.72', 46439): [Errno 54] Connection reset by peer
+2026-02-19 14:33:46,563 - RealmsMUD.Server - INFO - Connection closed: ('185.247.137.72', 46439)
+2026-02-19 14:34:27,016 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-19 14:39:33,226 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-19 14:44:39,451 - RealmsMUD.World - INFO - Time: 6:00 PM, Day 2 of Early Summer, Year 1000
+2026-02-19 14:44:39,598 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-19 14:46:09,771 - RealmsMUD.Server - INFO - New connection from ('18.116.101.220', 47666)
+2026-02-19 14:46:09,851 - RealmsMUD.Server - INFO - Connection closed: ('18.116.101.220', 47666)
+2026-02-19 14:46:37,518 - RealmsMUD.Server - INFO - New connection from ('18.116.101.220', 46192)
+2026-02-19 14:46:37,790 - RealmsMUD.Server - INFO - Connection closed: ('18.116.101.220', 46192)
+2026-02-19 14:46:44,241 - RealmsMUD.Server - INFO - New connection from ('3.129.187.38', 60132)
+2026-02-19 14:46:44,349 - RealmsMUD.Server - INFO - Connection closed: ('3.129.187.38', 60132)
+2026-02-19 14:47:16,199 - RealmsMUD.Server - INFO - New connection from ('18.116.101.220', 50628)
+2026-02-19 14:47:16,275 - RealmsMUD.Server - INFO - Connection closed: ('18.116.101.220', 50628)
+2026-02-19 14:48:09,318 - RealmsMUD.Server - INFO - New connection from ('18.116.101.220', 60728)
+2026-02-19 14:48:09,574 - RealmsMUD.Server - INFO - Connection closed: ('18.116.101.220', 60728)
+2026-02-19 14:48:44,960 - RealmsMUD.World - INFO - Time: 8:00 PM, Day 2 of Early Summer, Year 1000
+2026-02-19 14:49:46,225 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-19 14:50:08,631 - RealmsMUD.Server - INFO - New connection from ('18.116.101.220', 50308)
+2026-02-19 14:50:08,711 - RealmsMUD.Server - INFO - Connection lost for ('18.116.101.220', 50308): [Errno 32] Broken pipe
+2026-02-19 14:50:08,711 - RealmsMUD.Server - INFO - Connection closed: ('18.116.101.220', 50308)
+2026-02-19 14:50:52,304 - RealmsMUD.Server - INFO - New connection from ('18.116.101.220', 50484)
+2026-02-19 14:50:52,372 - RealmsMUD.Server - INFO - Connection lost for ('18.116.101.220', 50484): [Errno 32] Broken pipe
+2026-02-19 14:50:52,372 - RealmsMUD.Server - INFO - Connection closed: ('18.116.101.220', 50484)
+2026-02-19 14:52:02,966 - RealmsMUD.Server - INFO - New connection from ('3.129.187.38', 54628)
+2026-02-19 14:52:03,032 - RealmsMUD.Server - INFO - Connection closed: ('3.129.187.38', 54628)
+2026-02-19 14:52:11,318 - RealmsMUD.WebMap - INFO - WebSocket subscribe: player='Avikan' mode='full'
+2026-02-19 14:52:11,318 - RealmsMUD.WebMap - WARNING - Player 'Avikan' not found in world.players (online: [])
+2026-02-19 14:54:52,481 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-19 14:55:06,584 - RealmsMUD.Server - INFO - New connection from ('3.129.187.38', 56516)
+2026-02-19 14:55:06,660 - RealmsMUD.Server - INFO - Connection closed: ('3.129.187.38', 56516)
+2026-02-19 14:56:54,978 - RealmsMUD.World - INFO - Time: 12:00 AM, Day 3 of Early Summer, Year 1000
+2026-02-19 14:57:14,226 - RealmsMUD.Server - INFO - New connection from ('3.129.187.38', 52954)
+2026-02-19 14:57:14,297 - RealmsMUD.Server - INFO - Connection closed: ('3.129.187.38', 52954)
+2026-02-19 14:59:58,860 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-19 15:00:36,619 - RealmsMUD.Server - INFO - New connection from ('3.129.187.38', 58262)
+2026-02-19 15:00:36,682 - RealmsMUD.Server - INFO - Connection lost for ('3.129.187.38', 58262): [Errno 32] Broken pipe
+2026-02-19 15:00:36,683 - RealmsMUD.Server - INFO - Connection closed: ('3.129.187.38', 58262)
+2026-02-19 15:05:05,066 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-19 15:09:10,107 - RealmsMUD.World - INFO - Time: 6:00 AM, Day 3 of Early Summer, Year 1000
+2026-02-19 15:10:11,369 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-19 15:15:17,788 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-19 15:20:23,938 - RealmsMUD.World - INFO - Autosaved 0 players
+2026-02-19 15:21:25,173 - RealmsMUD.World - INFO - Time: 12:00 PM, Day 3 of Early Summer, Year 1000

@@ -251,6 +251,9 @@
           "requires_light": true,
           "secret": true,
           "reveal_message": "You pry up a loose flagstone, exposing a hidden way down."
+        },
+        "up": {
+          "to_room": 3001
         }
       }
     },

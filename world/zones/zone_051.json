@@ -928,6 +928,9 @@
         "west": {
           "to_room": 5132,
           "description": "A passage leads to A Long Hallway"
+        },
+        "south": {
+          "to_room": 5133
         }
       }
     },
@@ -1186,6 +1189,9 @@
         "west": {
           "to_room": 5144,
           "description": "A passage leads to The Western Side Of The Main Chamber"
+        },
+        "north": {
+          "to_room": 5142
         }
       }
     },
@@ -1216,6 +1222,9 @@
         "south": {
           "to_room": 5141,
           "description": "A passage leads to The Main Chamber"
+        },
+        "west": {
+          "to_room": 5141
         }
       }
     },
@@ -1228,7 +1237,11 @@
         "death",
         "indoors"
       ],
-      "exits": {}
+      "exits": {
+        "up": {
+          "to_room": 5145
+        }
+      }
     },
     "5144": {
       "vnum": 5144,
@@ -1247,6 +1260,9 @@
         "south": {
           "to_room": 5141,
           "description": "A passage leads to The Main Chamber"
+        },
+        "east": {
+          "to_room": 5141
         }
       }
     },
@@ -1275,6 +1291,9 @@
         "down": {
           "to_room": 5143,
           "description": "A dark pit gapes below the altar."
+        },
+        "south": {
+          "to_room": 5142
         }
       }
     },

@@ -104,7 +104,7 @@
           "to_room": 6705,
           "description": "A dark trail leads toward the monastery."
         },
-        "southeast": {
+        "east": {
           "to_room": 6709,
           "description": "The path descends toward shadow-shrouded lands."
         },
@@ -201,11 +201,11 @@
         "dark"
       ],
       "exits": {
-        "northwest": {
+        "west": {
           "to_room": 6704,
           "description": "The path returns to the highland crossroads."
         },
-        "southeast": {
+        "east": {
           "to_room": 6710,
           "description": "The blighted path continues toward darkness."
         }
@@ -220,7 +220,7 @@
         "dark"
       ],
       "exits": {
-        "northwest": {
+        "west": {
           "to_room": 6709,
           "description": "The blighted path leads back to the highlands."
         },

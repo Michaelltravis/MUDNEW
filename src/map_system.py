@@ -5,6 +5,7 @@ Map rendering and coordinate utilities for RealmsMUD.
 from typing import Dict, Tuple, Set, List, Optional
 
 from config import Config
+from affects import AffectManager
 
 DIR_OFFSETS = {
     'north': (0, -1, 0),
@@ -480,6 +481,28 @@ def build_map_payload(player, mode: str = 'full') -> dict:
         if zone_num not in zones_seen:
             zones_seen[zone_num] = zone_name
         
+        # Build mob list for this room
+        mob_list = []
+        if hasattr(room, 'characters'):
+            for entity in room.characters:
+                if hasattr(entity, 'account_name'):
+                    continue  # skip players
+                mob_info = {
+                    'name': getattr(entity, 'name', 'Unknown'),
+                    'level': getattr(entity, 'level', 1),
+                    'hostile': getattr(entity, 'aggressive', False) or getattr(entity, 'hostile', False),
+                    'boss': 'boss' in (getattr(entity, 'flags', None) or []) or getattr(entity, 'is_boss', False),
+                    'shopkeeper': hasattr(entity, 'shop'),
+                    'flags': list(getattr(entity, 'flags', []) or []),
+                }
+                # Include HP if available
+                hp = getattr(entity, 'hp', None)
+                max_hp = getattr(entity, 'max_hp', None)
+                if hp is not None and max_hp:
+                    mob_info['hp'] = hp
+                    mob_info['maxHp'] = max_hp
+                mob_list.append(mob_info)
+
         room_items.append({
             'vnum': vnum,
             'name': room.name,
@@ -494,6 +517,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'exits': exits,
             'oneWayExits': one_way_exits,
             'flags': list(room.flags) if hasattr(room, 'flags') else [],
+            'mobs': mob_list,
         })
 
     player_coord = coords[start_vnum]
@@ -527,5 +551,40 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'x': player_coord[0],
             'y': player_coord[1],
             'z': player_coord[2],
+            'hp': getattr(player, 'hp', 0),
+            'max_hp': getattr(player, 'max_hp', 1),
+            'mana': getattr(player, 'mana', 0),
+            'max_mana': getattr(player, 'max_mana', 1),
+            'move': getattr(player, 'move', 0),
+            'max_move': getattr(player, 'max_move', 1),
+            'level': getattr(player, 'level', 1),
+            'char_class': getattr(player, 'char_class', ''),
+            'race': getattr(player, 'race', ''),
+            'class_skills': Config().CLASSES.get(getattr(player,'char_class','').lower(), {}).get('skills', []),
+            'class_spells': Config().CLASSES.get(getattr(player,'char_class','').lower(), {}).get('spells', []),
+            'title': getattr(player, 'title', ''),
+            'str': getattr(player, 'str', 0),
+            'int': getattr(player, 'int', 0),
+            'wis': getattr(player, 'wis', 0),
+            'dex': getattr(player, 'dex', 0),
+            'con': getattr(player, 'con', 0),
+            'cha': getattr(player, 'cha', 0),
+            'hitroll': getattr(player, 'hitroll', 0),
+            'damroll': getattr(player, 'damroll', 0),
+            'armor_class': getattr(player, 'armor_class', 0),
+            'gold': getattr(player, 'gold', 0),
+            'exp': getattr(player, 'exp', 0),
+            'equipment': {
+                slot: {'name': item.name, 'affects': getattr(item, 'affects', [])}
+                for slot, item in getattr(player, 'equipment', {}).items()
+                if item is not None
+            },
+            'inventory': [
+                {'name': item.name, 'item_type': getattr(item, 'item_type', 'other')}
+                for item in getattr(player, 'inventory', [])
+            ],
+            'skills': dict(getattr(player, 'skills', {})),
+            'talents': dict(getattr(player, 'talents', {})),
+            'affects': AffectManager.save_affects(player),
         }
     }

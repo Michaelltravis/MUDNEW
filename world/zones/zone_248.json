@@ -237,6 +237,9 @@
         "north": {
           "to_room": 24811,
           "description": "Onward through the foundry."
+        },
+        "east": {
+          "to_room": 24828
         }
       },
       "mob_resets": [
@@ -260,6 +263,9 @@
         "north": {
           "to_room": 24812,
           "description": "Beyond the coolant tanks."
+        },
+        "east": {
+          "to_room": 24826
         }
       },
       "mob_resets": [
@@ -291,6 +297,9 @@
         "north": {
           "to_room": 24816,
           "description": "A shortcut forward."
+        },
+        "east": {
+          "to_room": 24811
         }
       }
     },
@@ -464,6 +473,9 @@
         "north": {
           "to_room": 24818,
           "description": "Toward the upper foundry."
+        },
+        "west": {
+          "to_room": 24827
         }
       },
       "mob_resets": [
@@ -575,6 +587,9 @@
         "north": {
           "to_room": 24822,
           "description": "The furnace antechamber."
+        },
+        "east": {
+          "to_room": 24829
         }
       },
       "mob_resets": [

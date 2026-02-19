@@ -177,6 +177,9 @@
         "west": {
           "to_room": 4013,
           "description": "A trail winds toward The Tunnel"
+        },
+        "east": {
+          "to_room": 4015
         }
       }
     },
@@ -443,6 +446,9 @@
         "west": {
           "to_room": 4059,
           "description": "A trail winds toward The Tunnel"
+        },
+        "east": {
+          "to_room": 4059
         }
       }
     },
@@ -1124,6 +1130,9 @@
         "west": {
           "to_room": 4054,
           "description": "An open path leads to The Light Cave"
+        },
+        "south": {
+          "to_room": 4057
         }
       },
       "mob_resets": [
@@ -1178,6 +1187,9 @@
         "south": {
           "to_room": 4062,
           "description": "A trail winds toward The Maze"
+        },
+        "east": {
+          "to_room": 4058
         }
       },
       "mob_resets": [
@@ -1286,6 +1298,9 @@
         "west": {
           "to_room": 4060,
           "description": "A trail winds toward The Tunnel"
+        },
+        "east": {
+          "to_room": 4062
         }
       }
     },
@@ -1306,6 +1321,12 @@
         "west": {
           "to_room": 4061,
           "description": "An open path leads to The Light Cave"
+        },
+        "north": {
+          "to_room": 4057
+        },
+        "south": {
+          "to_room": 4066
         }
       },
       "mob_resets": [
@@ -1332,6 +1353,12 @@
         "east": {
           "to_room": 4064,
           "description": "A trail winds toward The Tunnel"
+        },
+        "west": {
+          "to_room": 4062
+        },
+        "south": {
+          "to_room": 4067
         }
       }
     },
@@ -1408,6 +1435,9 @@
         "south": {
           "to_room": 4069,
           "description": "An open path leads to The Large Cave"
+        },
+        "west": {
+          "to_room": 4065
         }
       }
     },
@@ -2074,6 +2104,9 @@
         "west": {
           "to_room": 4115,
           "description": "A trail winds toward The Dark Passage"
+        },
+        "south": {
+          "to_room": 4117
         }
       },
       "extra_descs": {

@@ -409,6 +409,9 @@
             "locked": true,
             "key_vnum": 2500
           }
+        },
+        "south": {
+          "to_room": 2511
         }
       },
       "mob_resets": [
@@ -5239,6 +5242,9 @@
         "up": {
           "to_room": 3001,
           "description": "A passage leads to The Temple Of Midgaard"
+        },
+        "east": {
+          "to_room": 2682
         }
       }
     }

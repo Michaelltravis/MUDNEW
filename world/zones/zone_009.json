@@ -55,6 +55,9 @@
         "south": {
           "to_room": 903,
           "description": "Deep waters churn near The Scenic Route"
+        },
+        "west": {
+          "to_room": 903
         }
       }
     },
@@ -72,6 +75,9 @@
         "west": {
           "to_room": 904,
           "description": "Deep waters churn near The Swift River Delta"
+        },
+        "north": {
+          "to_room": 902
         }
       }
     },
@@ -227,6 +233,12 @@
         "south": {
           "to_room": 909,
           "description": "Deep waters churn near The Last Stop"
+        },
+        "down": {
+          "to_room": 922
+        },
+        "up": {
+          "to_room": 923
         }
       },
       "mob_resets": [
@@ -342,6 +354,9 @@
         "east": {
           "to_room": 916,
           "description": "The cobblestones lead to The Second Trial Of Minos"
+        },
+        "north": {
+          "to_room": 914
         }
       },
       "mob_resets": [
@@ -372,6 +387,9 @@
         "south": {
           "to_room": 917,
           "description": "A passage leads to The Third Trial Of Minos"
+        },
+        "west": {
+          "to_room": 915
         }
       },
       "mob_resets": [
@@ -398,6 +416,9 @@
         "east": {
           "to_room": 918,
           "description": "A passage leads to The Fourth Trial Of Minos"
+        },
+        "north": {
+          "to_room": 916
         }
       },
       "mob_resets": [
@@ -420,6 +441,9 @@
         "south": {
           "to_room": 919,
           "description": "A passage leads to The Fifth Trial Of Minos"
+        },
+        "west": {
+          "to_room": 917
         }
       },
       "mob_resets": [
@@ -442,6 +466,9 @@
         "east": {
           "to_room": 920,
           "description": "A passage leads to The Sixth Trial Of Minos"
+        },
+        "north": {
+          "to_room": 918
         }
       },
       "mob_resets": [
@@ -468,6 +495,9 @@
         "up": {
           "to_room": 923,
           "description": "A rocky path climbs toward Above, On The Beach"
+        },
+        "west": {
+          "to_room": 919
         }
       },
       "mob_resets": [
@@ -500,6 +530,9 @@
             "locked": true,
             "key_vnum": 900
           }
+        },
+        "north": {
+          "to_room": 920
         }
       },
       "mob_resets": [
@@ -523,6 +556,9 @@
         "up": {
           "to_room": 910,
           "description": "An open path leads to The Beach Head"
+        },
+        "west": {
+          "to_room": 921
         }
       },
       "obj_resets": [

@@ -120,6 +120,9 @@
         "down": {
           "to_room": 1506,
           "description": "A passage leads to Halls of the Forgotten"
+        },
+        "south": {
+          "to_room": 1504
         }
       },
       "mob_resets": [

@@ -213,6 +213,9 @@
         "up": {
           "to_room": 5008,
           "description": "A steep trail ascends to The Cave-In"
+        },
+        "down": {
+          "to_room": 5070
         }
       },
       "mob_resets": [
@@ -525,6 +528,9 @@
         "south": {
           "to_room": 5021,
           "description": "A steep trail ascends to The Fungus Temple"
+        },
+        "west": {
+          "to_room": 5021
         }
       }
     },
@@ -608,6 +614,9 @@
         "south": {
           "to_room": 5027,
           "description": "Sand as far as the eye can see."
+        },
+        "west": {
+          "to_room": 5007
         }
       }
     },

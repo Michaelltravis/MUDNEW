@@ -10,7 +10,7 @@
       "sector_type": "field",
       "flags": [],
       "exits": {
-        "northwest": {
+        "west": {
           "to_room": 6810,
           "description": "The sea route leads back to the reef."
         },

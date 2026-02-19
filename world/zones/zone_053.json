@@ -73,6 +73,9 @@
         "down": {
           "to_room": 5301,
           "description": "Far below you are the burning sands of the desert."
+        },
+        "east": {
+          "to_room": 5303
         }
       },
       "extra_descs": {
@@ -107,6 +110,9 @@
         "down": {
           "to_room": 5307,
           "description": "This side of the pyramid has a dangerous drop before the sandy floor."
+        },
+        "south": {
+          "to_room": 5302
         }
       },
       "extra_descs": {
@@ -141,6 +147,9 @@
         "down": {
           "to_room": 5307,
           "description": "This side of the pyramid has a dangerous drop before the sandy floor."
+        },
+        "north": {
+          "to_room": 5302
         }
       },
       "extra_descs": {
@@ -169,6 +178,9 @@
         "down": {
           "to_room": 5307,
           "description": "This side of the pyramid has a dangerous drop before the sandy floor."
+        },
+        "west": {
+          "to_room": 5303
         }
       },
       "extra_descs": {
@@ -242,6 +254,15 @@
         "down": {
           "to_room": 5308,
           "description": "A ladder descends into darkness."
+        },
+        "south": {
+          "to_room": 5306
+        },
+        "north": {
+          "to_room": 5306
+        },
+        "east": {
+          "to_room": 5306
         }
       }
     },
@@ -398,6 +419,9 @@
         "up": {
           "to_room": 5337,
           "description": "A small hole above your head leads into a dank chamber."
+        },
+        "east": {
+          "to_room": 5337
         }
       }
     },
@@ -507,6 +531,9 @@
         "south": {
           "to_room": 5319,
           "description": "You see a rocky crevasse that proceeds deep under the pyramid."
+        },
+        "up": {
+          "to_room": 5315
         }
       },
       "extra_descs": {
@@ -1051,6 +1078,9 @@
         "west": {
           "to_room": 5312,
           "description": "You see only blackness through the hole in the floor."
+        },
+        "down": {
+          "to_room": 5312
         }
       },
       "mob_resets": [
@@ -1084,6 +1114,9 @@
         "down": {
           "to_room": 5341,
           "description": "The stairs spiral down into a dusty hallway."
+        },
+        "west": {
+          "to_room": 5337
         }
       }
     },
@@ -1378,6 +1411,9 @@
         "west": {
           "to_room": 5347,
           "description": "The arched hall proceeds into a sandstone crypt."
+        },
+        "south": {
+          "to_room": 5349
         }
       },
       "mob_resets": [
@@ -1407,6 +1443,9 @@
         "south": {
           "to_room": 5351,
           "description": "The arched hall proceeds to the south."
+        },
+        "west": {
+          "to_room": 5348
         }
       },
       "mob_resets": [
@@ -1679,6 +1718,9 @@
             "locked": true,
             "key_vnum": 5317
           }
+        },
+        "down": {
+          "to_room": 5359
         }
       },
       "extra_descs": {
@@ -1709,6 +1751,9 @@
         "down": {
           "to_room": 5360,
           "description": "The way leads to Bronze Dragon Lair"
+        },
+        "north": {
+          "to_room": 5358
         }
       },
       "obj_resets": [

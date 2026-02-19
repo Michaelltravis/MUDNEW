@@ -1,0 +1,93 @@
+{
+  "updates": [
+    {
+      "date": "February 16, 2026",
+      "version": "0.9.3",
+      "changes": [
+        "Text now word-wraps cleanly at 80 columns",
+        "Fixed 'who' box truncating zone names",
+        "Fixed server crash caused by world event invasions",
+        "Server stability improvements for async event handling"
+      ]
+    },
+    {
+      "date": "February 15, 2026",
+      "version": "0.9.2",
+      "changes": [
+        "NEW: Mob AI system — casters, bosses, pack mobs, healers, cowards",
+        "NEW: Group/Party system — 6-max, invite, XP sharing, round-robin loot",
+        "NEW: World Events — invasions, world bosses, treasure hunts, double XP",
+        "NEW: 51 Achievements across 7 categories with progress tracking",
+        "NEW: PvP Arena (Blood Pit) with ELO ratings and spectator gallery",
+        "NEW: 6 Factions with 8 reputation levels and tiered rewards",
+        "NEW: Player Housing — 20 plots, furniture bonuses, storage",
+        "NEW: Crafting system — 23 materials, 34 recipes, levels 1-20",
+        "NEW: Quest Journal with quest chains and daily quests",
+        "NEW: Mounts (5) and Companions (9) system",
+        "NEW: Auction House with fixed price + bidding",
+        "NEW: 18 Prestige Class specializations (level 60)",
+        "NEW: Social/Chat channels — global, trade, LFG, newbie",
+        "NEW: 52 emotes with targeted/untargeted/self-target variants",
+        "NEW: 5 new dungeon zones (Goblin Warrens, Haunted Monastery, Sunken Temple, Shadowspire, Clockwork Foundry)",
+        "16 new help entries added"
+      ]
+    },
+    {
+      "date": "February 14, 2026",
+      "version": "0.9.1",
+      "changes": [
+        "All 9 classes fully reworked with unique resource mechanics",
+        "Warrior: Doctrine + Evolution system (no talent trees)",
+        "Assassin: Intel system, Thief: Luck, Necromancer: Soul Shards",
+        "Paladin: Holy Power + Oaths, Cleric: Faith, Mage: Arcane Charges",
+        "Ranger: Focus, Bard: Inspiration",
+        "216 talents across 8 classes (9 per tree, 3 trees each)",
+        "369 mobs rebalanced across 39 zones",
+        "Castle Apocalypse bosses massively buffed",
+        "Boss regen capped at 500 HP/tick, poison blocks troll regen",
+        "Balance pass: Thief crit, Ranger Focus, Bard Inspiration, Paladin, Necro tweaked",
+        "549+ help topics documented"
+      ]
+    },
+    {
+      "date": "February 13, 2026",
+      "version": "0.9.0",
+      "changes": [
+        "NEW: Talent trees with two-column display",
+        "NEW: Skills command with talent abilities section",
+        "Fixed vanish crash (is_fighting property)",
+        "Fixed mob death double-corpse bug",
+        "Fixed account creation crash",
+        "Idle timeout extended to 30 minutes",
+        "Room vnum display toggle command added"
+      ]
+    },
+    {
+      "date": "February 12, 2026",
+      "version": "0.8.0",
+      "changes": [
+        "NEW: 10 Equipment Sets (Miner's Garb through Frostlord's Mantle)",
+        "NEW: 11 Boss phases (Death, Kirgan, War, Pestilence, Famine, etc.)",
+        "NEW: Ambient events, tips, factions, mail, trading, dueling wired up",
+        "Castle Apocalypse deathtrail rebuilt (14-room path)",
+        "Web map zone auto-switch and layers",
+        "3,559 exit descriptions across 37 zones",
+        "77 new shop items, 7 new pets, rent system",
+        "Tutorial overhaul with walking directions and hint command"
+      ]
+    },
+    {
+      "date": "February 11, 2026",
+      "version": "0.7.0",
+      "changes": [
+        "72 containers, ~50 keys, 96 items, 12 locked boss doors",
+        "15 quest givers with 27 quests and Quest Board",
+        "1,091 objects audited and fixed",
+        "30 flavor NPCs across 18 zones",
+        "17 progression hook NPCs, 8 signposts",
+        "13 orphaned rooms connected",
+        "Smart command matching — no underscores needed"
+      ]
+    }
+  ]
+}

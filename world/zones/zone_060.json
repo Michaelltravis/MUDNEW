@@ -1554,6 +1554,9 @@
         "south": {
           "description": "The small path leads south through the trees.",
           "to_room": 6017
+        },
+        "up": {
+          "to_room": 6031
         }
       },
       "extra_descs": {
@@ -2488,6 +2491,9 @@
         "south": {
           "description": "The path winds its way between the trees.",
           "to_room": 6068
+        },
+        "east": {
+          "to_room": 6076
         }
       },
       "extra_descs": {
@@ -2628,6 +2634,9 @@
         "south": {
           "description": "The path winds its way between the trees.",
           "to_room": 6075
+        },
+        "west": {
+          "to_room": 6079
         }
       },
       "extra_descs": {
@@ -2753,6 +2762,9 @@
         "south": {
           "description": "All you see are trees and hillsides.",
           "to_room": 6076
+        },
+        "west": {
+          "to_room": 6080
         }
       },
       "extra_descs": {

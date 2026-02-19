@@ -312,6 +312,9 @@
         "south": {
           "to_room": 7109,
           "description": "The ledge continues further south into darkness."
+        },
+        "west": {
+          "to_room": 7190
         }
       },
       "mob_resets": [
@@ -511,6 +514,12 @@
         "south": {
           "to_room": 7190,
           "description": "You stare into mid-air, and right under there is absolutely nothing but darkness.  You shiver by the thought of falling that distance."
+        },
+        "west": {
+          "to_room": 7106
+        },
+        "down": {
+          "to_room": 7190
         }
       },
       "mob_resets": [
@@ -600,6 +609,9 @@
         "west": {
           "to_room": 7111,
           "description": "The Southwestern Corner Of The Ledge"
+        },
+        "down": {
+          "to_room": 7114
         }
       },
       "mob_resets": [
@@ -675,6 +687,12 @@
         "west": {
           "to_room": 7114,
           "description": "You stare into mid-air, and right under there is absolutely nothing but darkness.  You shiver by the thought of falling that distance."
+        },
+        "east": {
+          "to_room": 7114
+        },
+        "north": {
+          "to_room": 7116
         }
       },
       "mob_resets": [
@@ -706,6 +724,9 @@
         "west": {
           "to_room": 7114,
           "description": "You stare into mid-air, and right under there is absolutely nothing but darkness.  You shiver by the thought of falling that distance."
+        },
+        "north": {
+          "to_room": 7117
         }
       },
       "mob_resets": [
@@ -737,6 +758,9 @@
         "west": {
           "to_room": 7114,
           "description": "You stare into mid-air, and right under there is absolutely nothing but darkness.  You shiver by the thought of falling that distance."
+        },
+        "north": {
+          "to_room": 7118
         }
       },
       "mob_resets": [
@@ -772,6 +796,9 @@
         "west": {
           "to_room": 7114,
           "description": "You stare into mid-air, and right under there is absolutely nothing but darkness.  You shiver by the thought of falling that distance."
+        },
+        "north": {
+          "to_room": 7114
         }
       },
       "mob_resets": [

@@ -199,6 +199,9 @@
         "west": {
           "to_room": 3359,
           "description": "A steep trail ascends to A Rocky Slope"
+        },
+        "down": {
+          "to_room": 3309
         }
       },
       "extra_descs": {

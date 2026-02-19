@@ -134,6 +134,10 @@ class Mobile(Character):
         # Behavior flags
         self.flags = set()
         self.special = None  # Special behavior (shopkeeper, healer, etc.)
+
+        # Faction (used by faction_aggressive_ai)
+        self.faction = None
+        self.faction_rep = None
         
         # AI state
         self.hate_list = []  # Characters this mob is angry at
@@ -772,7 +776,7 @@ class Mobile(Character):
             
     async def faction_aggressive_ai(self) -> bool:
         """Attack on sight if faction reputation is hostile."""
-        if not self.room or not self.faction:
+        if not self.room or not getattr(self, 'faction', None):
             return False
 
         # Don't attack in peaceful rooms

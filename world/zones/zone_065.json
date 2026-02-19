@@ -1215,6 +1215,9 @@
         "west": {
           "to_room": 6548,
           "description": "A passage leads to The Maze"
+        },
+        "east": {
+          "to_room": 6548
         }
       },
       "mob_resets": [

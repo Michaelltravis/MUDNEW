@@ -127,11 +127,11 @@
           "to_room": 6604,
           "description": "The path leads back to the river crossing."
         },
-        "northwest": {
+        "west": {
           "to_room": 6606,
           "description": "A rough trail climbs toward goblin territory."
         },
-        "northeast": {
+        "north": {
           "to_room": 6609,
           "description": "A birch-lined path follows the river."
         }
@@ -144,7 +144,7 @@
       "sector_type": "hills",
       "flags": [],
       "exits": {
-        "southeast": {
+        "east": {
           "to_room": 6605,
           "description": "The trail descends back to the forest fork."
         },
@@ -198,7 +198,7 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "southwest": {
+        "south": {
           "to_room": 6605,
           "description": "The path returns to the forest fork."
         },

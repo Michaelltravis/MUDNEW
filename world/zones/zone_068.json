@@ -82,6 +82,9 @@
         "south": {
           "to_room": 6804,
           "description": "The path continues along the coast."
+        },
+        "east": {
+          "to_room": 6804
         }
       }
     },
@@ -237,7 +240,7 @@
           "to_room": 6809,
           "description": "The shallow reef stretches back to shore."
         },
-        "southeast": {
+        "east": {
           "to_room": 6900,
           "description": "A treacherous sea path leads toward volcanic shores."
         }

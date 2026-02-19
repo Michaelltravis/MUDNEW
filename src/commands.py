@@ -314,6 +314,26 @@ class CommandHandler:
                     dir_list = f"{c['bright_yellow']}, {c['bright_green']}".join(dir_matches)
                     await player.send(f"{c['yellow']}Did you mean: {c['bright_green']}{dir_list}{c['reset']}")
                 else:
+                    # Check dynamic room exits (non-cardinal like 'portal', 'arch')
+                    if player.room and getattr(player.room, 'exits', None):
+                        exits = list(player.room.exits.keys())
+                        # Exact match
+                        if cmd in exits:
+                            await cls.cmd_move(player, cmd)
+                            return
+                        # Prefix match (unique)
+                        exit_matches = [e for e in exits if e.startswith(cmd)]
+                        if len(exit_matches) == 1:
+                            c = player.config.COLORS
+                            if original_cmd != exit_matches[0]:
+                                await player.send(f"{c['cyan']}[{exit_matches[0]}]{c['reset']}")
+                            await cls.cmd_move(player, exit_matches[0])
+                            return
+                        # Match first token of multi-word exit keys
+                        token_matches = [e for e in exits if e.split()[0] == cmd]
+                        if len(token_matches) == 1:
+                            await cls.cmd_move(player, token_matches[0])
+                            return
                     await player.send(f"Huh?!? '{original_cmd}' is not a valid command. Type 'help' for a list.")
 
     @classmethod
@@ -1781,7 +1801,7 @@ class CommandHandler:
             title_str = getattr(p, 'title', '') or ''
             zone_name = ''
             if p.room and p.room.zone:
-                zone_name = p.room.zone.name[:15]
+                zone_name = p.room.zone.name[:20]
             # Idle time
             idle_secs = 0
             if hasattr(p, 'connection') and p.connection and hasattr(p.connection, 'last_input_time'):
@@ -1794,8 +1814,10 @@ class CommandHandler:
             line = f"[{p.level:>2} {cls_name}{prestige_str}]{guild_str} {p.name} {title_str}{idle_str}"
             if zone_name:
                 line += f" - {zone_name}"
-            # Pad to fit box
-            pad = max(0, 68 - len(line))
+            # Truncate/pad to fit box (68 chars content area)
+            if len(line) > 68:
+                line = line[:68]
+            pad = 68 - len(line)
             await player.send(f"{c['cyan']}║ {c['bright_green']}{line}{' ' * pad}{c['cyan']}║{c['reset']}")
             
         await player.send(f"{c['cyan']}╠══════════════════════════════════════════════════════════════════════╣{c['reset']}")

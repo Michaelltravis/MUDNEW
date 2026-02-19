@@ -6,11 +6,65 @@ Handles network connections and player sessions.
 
 import asyncio
 import logging
+import re
+import textwrap
 from typing import Dict, Optional
 from datetime import datetime
 import hashlib
 import os
 import json
+
+_ANSI_RE = re.compile(r'\x1b\[[0-9;]*m')
+_BOX_CHARS = set('║╔╗╚╝═╠╣╬╦╩─│┌┐└┘├┤┬┴┼')
+
+def _wrap_line(line: str, width: int = 80) -> str:
+    """Word-wrap a single line, preserving ANSI codes."""
+    stripped = _ANSI_RE.sub('', line)
+    # Skip wrapping for short lines or box-drawing lines
+    if len(stripped) <= width:
+        return line
+    # Check if line (after stripping ANSI) starts with box chars
+    first_visible = stripped.lstrip()
+    if first_visible and first_visible[0] in _BOX_CHARS:
+        return line
+    # Wrap using the stripped version, then re-insert ANSI codes
+    # Strategy: collect ANSI tokens with positions, wrap plain text, reinsert
+    tokens = []
+    plain = ''
+    for part in re.split(r'(\x1b\[[0-9;]*m)', line):
+        if part.startswith('\x1b['):
+            tokens.append((len(plain), part))
+        else:
+            plain += part
+    wrapped_plain = textwrap.fill(plain, width=width)
+    # Reinsert ANSI codes at their original character positions
+    result = []
+    ti = 0
+    for i, ch in enumerate(wrapped_plain):
+        while ti < len(tokens) and tokens[ti][0] <= i:
+            # Adjust: tokens map to original plain positions, but wrapped may have
+            # replaced spaces with newlines. Use a simpler approach.
+            pass
+            ti += 1
+        result.append(ch)
+    # Simpler approach: just wrap with ANSI by splitting and rejoining
+    # Remove ANSI, wrap, then try to preserve leading ANSI per original line
+    leading_ansi = ''
+    m = re.match(r'^(\x1b\[[0-9;]*m)+', line)
+    if m:
+        leading_ansi = m.group(0)
+    trailing_ansi = ''
+    m2 = re.search(r'(\x1b\[[0-9;]*m)+$', line)
+    if m2:
+        trailing_ansi = m2.group(0)
+    wrapped = textwrap.fill(stripped, width=width)
+    # Re-apply leading ANSI to each wrapped line
+    lines = wrapped.split('\n')
+    return '\n'.join(leading_ansi + l for l in lines) + (trailing_ansi if trailing_ansi and not lines[-1].endswith(trailing_ansi) else '')
+
+def _wrap_text(text: str, width: int = 80) -> str:
+    """Wrap multi-line text preserving newlines."""
+    return '\n'.join(_wrap_line(line, width) for line in text.split('\n'))
 
 from config import Config
 
@@ -68,12 +122,16 @@ class Connection:
         try:
             if message is None:
                 return
+            # Word-wrap before sending
+            message = _wrap_text(message, 80)
             # Convert all newlines to \r\n for telnet compatibility
             message = message.replace('\r\n', '\n').replace('\n', '\r\n')
             if newline and not message.endswith('\r\n'):
                 message += '\r\n'
             self.writer.write(message.encode('utf-8'))
             await self.writer.drain()
+        except asyncio.CancelledError:
+            logger.debug(f"Send cancelled for {self.address}")
         except (ConnectionResetError, BrokenPipeError, ConnectionAbortedError, OSError):
             logger.debug(f"Connection lost while sending to {self.address}")
         except Exception as e:
@@ -1278,7 +1336,7 @@ class MUDServer:
     async def handle_connection(self, reader: asyncio.StreamReader, writer: asyncio.StreamWriter):
         """Handle a new connection."""
         conn = Connection(reader, writer, self)
-        conn_id = f"{conn.address[0]}:{conn.address[1]}"
+        conn_id = f"{conn.address[0]}:{conn.address[1]}" if conn.address else f"unknown-{id(conn)}"
         self.connections[conn_id] = conn
         
         try:
@@ -1311,7 +1369,8 @@ class MUDServer:
                         await conn.send("\r\nConnection timed out. Goodbye!\r\n")
                     break
                 except (ConnectionResetError, BrokenPipeError, ConnectionAbortedError, OSError) as e:
-                    logger.info(f"Connection lost for {self.address}: {e}")
+                    addr = getattr(conn, 'address', 'unknown')
+                    logger.info(f"Connection lost for {addr}: {e}")
                     break
                 except Exception as e:
                     import traceback

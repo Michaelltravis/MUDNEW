@@ -403,6 +403,9 @@
         "south": {
           "to_room": 23801,
           "description": "The courtyard lies to the south."
+        },
+        "down": {
+          "to_room": 23823
         }
       }
     },

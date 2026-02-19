@@ -469,6 +469,9 @@
         "down": {
           "to_room": 3120,
           "description": "Down below, you see the huge chain anchored to the ground at the Road Crossing of southern Midgaard."
+        },
+        "south": {
+          "to_room": 7920
         }
       }
     },
@@ -488,6 +491,9 @@
         "down": {
           "to_room": 7920,
           "description": "THAT WAY IS CERTAIN DEATH!!!!  You can see the wind tearing at the chain down below you.  It swings like a furious serpent from side to side!  The descent is ABSOLUTELY out of the QUESTION."
+        },
+        "west": {
+          "to_room": 7920
         }
       }
     },
@@ -507,6 +513,9 @@
         "down": {
           "to_room": 7915,
           "description": "The chain down there is swinging wildly back and forth.  Going down there will be pretty risky!"
+        },
+        "north": {
+          "to_room": 7920
         }
       }
     },
@@ -522,6 +531,12 @@
         "down": {
           "to_room": 7914,
           "description": "That way seems safe enough... now."
+        },
+        "up": {
+          "to_room": 7918
+        },
+        "east": {
+          "to_room": 7920
         }
       }
     },
