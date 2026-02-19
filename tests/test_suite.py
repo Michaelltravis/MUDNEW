@@ -14,7 +14,7 @@ from typing import Optional, List, Tuple
 
 # Log to console and file
 import os
-log_path = '/Users/michaeltravis/clawd/projects/RealmsMUD/logs/tests.log'
+log_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'logs', 'tests.log')
 os.makedirs(os.path.dirname(log_path), exist_ok=True)
 log_handlers = [
     logging.StreamHandler(),
