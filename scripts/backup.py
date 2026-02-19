@@ -178,6 +178,14 @@ def list_backups():
     return backups
 
 
+def is_within_directory(directory, target):
+    """Check if target path is within the directory."""
+    abs_directory = os.path.realpath(directory)
+    abs_target = os.path.realpath(target)
+    prefix = os.path.commonpath([abs_directory, abs_target])
+    return prefix == abs_directory
+
+
 def restore_backup(backup_file, dry_run=False):
     """Restore from a backup archive."""
     backup_path = Path(backup_file)
@@ -212,11 +220,14 @@ def restore_backup(backup_file, dry_run=False):
             if member.name == "manifest.json":
                 continue
             
-            # Determine destination
+            # Determine destination and expected base directory
+            base_dir = PROJECT_ROOT
             if member.name.startswith("players/"):
                 dest = DATA_DIR / member.name
+                base_dir = DATA_DIR / "players"
             elif member.name.startswith("zones/"):
                 dest = WORLD_DIR / member.name
+                base_dir = WORLD_DIR / "zones"
             elif member.name.startswith("config/"):
                 filename = Path(member.name).name
                 if filename == "config.py":
@@ -227,10 +238,19 @@ def restore_backup(backup_file, dry_run=False):
                     dest = DATA_DIR / filename
                 else:
                     dest = DATA_DIR / filename
+                # For config files, we use Path(member.name).name which is already safe
+                base_dir = dest.parent
             else:
                 dest = PROJECT_ROOT / member.name
+                base_dir = PROJECT_ROOT
             
             action = "would restore" if dry_run else "restoring"
+
+            # Security check: Ensure destination is within the expected base directory
+            if not is_within_directory(base_dir, dest):
+                print(f"  [SECURITY WARNING] Skipping {member.name}: Path traversal detected!")
+                continue
+
             print(f"  {action}: {member.name} -> {dest}")
             
             if not dry_run:
