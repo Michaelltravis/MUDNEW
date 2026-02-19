@@ -831,8 +831,8 @@ CLIENT_HTML = '''<!DOCTYPE html>
             <h1>Realms<span>MUD</span></h1>
         </div>
         <div class="header-controls">
-            <button class="header-btn" id="settings-btn">⚙️</button>
-            <button class="header-btn active" id="toggle-map">🗺️ Map</button>
+            <button class="header-btn" id="settings-btn" aria-label="Settings">⚙️</button>
+            <button class="header-btn active" id="toggle-map" aria-label="Toggle Map">🗺️ Map</button>
             <span class="status-badge" id="status">Connected</span>
         </div>
     </header>
@@ -843,12 +843,12 @@ CLIENT_HTML = '''<!DOCTYPE html>
             <div class="room-info" id="room-info" style="display:none;">
                 <span class="room-name" id="room-name">Unknown Location</span>
                 <div class="room-exits" id="room-exits">
-                    <button class="exit-btn" data-dir="north" title="North">N</button>
-                    <button class="exit-btn" data-dir="south" title="South">S</button>
-                    <button class="exit-btn" data-dir="east" title="East">E</button>
-                    <button class="exit-btn" data-dir="west" title="West">W</button>
-                    <button class="exit-btn" data-dir="up" title="Up">U</button>
-                    <button class="exit-btn" data-dir="down" title="Down">D</button>
+                <button class="exit-btn" data-dir="north" title="North" aria-label="Go North">N</button>
+                <button class="exit-btn" data-dir="south" title="South" aria-label="Go South">S</button>
+                <button class="exit-btn" data-dir="east" title="East" aria-label="Go East">E</button>
+                <button class="exit-btn" data-dir="west" title="West" aria-label="Go West">W</button>
+                <button class="exit-btn" data-dir="up" title="Up" aria-label="Go Up">U</button>
+                <button class="exit-btn" data-dir="down" title="Down" aria-label="Go Down">D</button>
                 </div>
             </div>
             <div id="terminal"></div>
@@ -857,7 +857,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
         <div class="map-panel" id="map-panel">
             <div class="map-header">
                 <span>🗺️ World Map</span>
-                <button id="close-map" title="Close map">✕</button>
+                <button id="close-map" title="Close map" aria-label="Close Map">✕</button>
             </div>
             <iframe id="map-frame" src="about:blank"></iframe>
         </div>
@@ -902,7 +902,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
         
         <div id="input-area">
             <span class="input-prompt">&gt;</span>
-            <input type="text" id="command-input" placeholder="Enter command..." autocomplete="off" autofocus>
+            <input type="text" id="command-input" placeholder="Enter command..." aria-label="Command Input" autocomplete="off" autofocus>
             <button class="send-btn" id="send-btn">Send</button>
         </div>
     </div>
@@ -912,7 +912,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
         <div class="modal-content">
             <div class="modal-header">
                 <h2>⚙️ Settings</h2>
-                <button class="close-modal" id="close-settings">✕</button>
+                <button class="close-modal" id="close-settings" aria-label="Close Settings">✕</button>
             </div>
             <div class="modal-body">
                 <div class="setting-group">
