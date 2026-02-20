@@ -1565,6 +1565,9 @@ class CommandHandler:
         db = 100 - player.get_armor_class()
         pb = int(getattr(player, 'damage_reduction', 0))
         await player.send(f"{c['cyan']}{V} {c['white']}Combat: OB {ob:>+3}  DB {db:>+3}  PB {pb:>2}%{c['cyan']}                     {V}{c['reset']}")
+        mood = getattr(player, 'stance', 'normal')
+        wimpy = int(getattr(player, 'wimpy', 0))
+        await player.send(f"{c['cyan']}{V} {c['white']}Mood: {c['bright_cyan']}{mood:<10}{c['white']} Wimpy: {wimpy:<4}{c['cyan']}                       {V}{c['reset']}")
 
         # Show hunger and thirst status
         hunger_cond = player.get_hunger_condition()
@@ -12678,7 +12681,7 @@ class CommandHandler:
         sub = args[0].lower()
         rest = args[1:]
 
-        if sub in ('mood', 'stance'):
+        if sub in ('mood', 'stance', 'emood', 'chgmode'):
             await cls.cmd_stance(player, rest)
             return
         if sub == 'wimpy':
