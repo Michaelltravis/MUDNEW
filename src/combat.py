@@ -484,6 +484,13 @@ class CombatHandler:
         if hasattr(defender, 'skills'):
             shield_bonus = defender.get_shield_evasion_bonus() if hasattr(defender, 'get_shield_evasion_bonus') else 0
             dodge = defender.skills.get('dodge', 0) + shield_bonus
+            # DB weighting: shield magic + armor weight + stance should influence dodge chance
+            try:
+                base_db = 100 - defender.get_armor_class() if hasattr(defender, 'get_armor_class') else 0
+                eff_db = defender.get_db_value() if hasattr(defender, 'get_db_value') else base_db
+                dodge += max(-10, min(10, (eff_db - base_db) // 2))
+            except Exception:
+                pass
             # Kill or Be Killed: +1% dodge per Intel point
             try:
                 from talents import TalentManager
@@ -532,6 +539,13 @@ class CombatHandler:
                         await attacker.take_damage(counter_dmg, defender)
                 return
             parry = defender.skills.get('parry', 0)
+            try:
+                # PB weighting: stance + parry/shield synergy should influence parry reliability
+                base_pb = int(getattr(defender, 'damage_reduction', 0))
+                eff_pb = defender.get_pb_value() if hasattr(defender, 'get_pb_value') else base_pb
+                parry += max(-8, min(8, (eff_pb - base_pb)))
+            except Exception:
+                pass
             if parry and defender.equipment.get('wield') and random.randint(1, 100) <= parry:
                 if hasattr(defender, 'send'):
                     await defender.send(f"{c['cyan']}You parry {attacker.name}'s attack!{c['reset']}")

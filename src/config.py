@@ -57,10 +57,15 @@ class Config:
 
     # Combat stance modifiers (offense vs defense tradeoff)
     STANCE_MODIFIERS = {
-        'aggressive': {'hit': 3, 'dam': 3, 'ac': 10},   # more offense, worse defense
-        'normal': {'hit': 0, 'dam': 0, 'ac': 0},
-        'defensive': {'hit': -2, 'dam': -2, 'ac': -10},  # less offense, better defense
+        # hit/dam affect OB directly, ac/db affect avoidance, pb affects mitigation
+        'aggressive': {'hit': 3, 'dam': 3, 'ac': 10, 'db': -4, 'pb': -5},   # more offense, lower mitigation/avoidance
+        'normal': {'hit': 0, 'dam': 0, 'ac': 0, 'db': 0, 'pb': 0},
+        'defensive': {'hit': -2, 'dam': -2, 'ac': -10, 'db': 4, 'pb': 8},  # less offense, stronger avoidance/mitigation
     }
+
+    # DB/PB weight handling
+    ARMOR_WEIGHT_DB_SOFTCAP = 20
+    ARMOR_WEIGHT_PB_SOFTCAP = 24
 
     # Movement economy (combat/escape)
     COMBAT_MOVE_COST = 1

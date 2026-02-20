@@ -97,6 +97,34 @@ class Character:
             return 0
         return max((bonuses.get(flag, 0) for flag in self.affect_flags), default=0)
 
+    def get_db_value(self) -> int:
+        """Derived Dodge/Avoidance value (MUME-style DB analogue)."""
+        base_db = 100 - self.get_armor_class()
+        stance = getattr(self, 'stance', 'normal')
+        stance_mods = self.config.STANCE_MODIFIERS.get(stance, self.config.STANCE_MODIFIERS['normal'])
+        stance_db = int(stance_mods.get('db', 0))
+        shield_magic = self.get_shield_evasion_bonus()
+        dodge_skill = int(getattr(self, 'skills', {}).get('dodge', 0)) // 5
+        dodge_item = self.get_equipment_bonus('dodge')
+        wt = self.get_armor_weight()
+        softcap = int(getattr(self.config, 'ARMOR_WEIGHT_DB_SOFTCAP', 20))
+        weight_penalty = max(0, wt - softcap) // 2
+        return base_db + stance_db + shield_magic + dodge_skill + dodge_item - weight_penalty
+
+    def get_pb_value(self) -> int:
+        """Derived Parry/Block mitigation value (MUME-style PB analogue)."""
+        base_pb = int(getattr(self, 'damage_reduction', 0))
+        stance = getattr(self, 'stance', 'normal')
+        stance_mods = self.config.STANCE_MODIFIERS.get(stance, self.config.STANCE_MODIFIERS['normal'])
+        stance_pb = int(stance_mods.get('pb', 0))
+        parry_skill = int(getattr(self, 'skills', {}).get('parry', 0)) // 8
+        shield_block = int(getattr(self, 'skills', {}).get('shield_block', 0)) // 10
+        wt = self.get_armor_weight()
+        softcap = int(getattr(self.config, 'ARMOR_WEIGHT_PB_SOFTCAP', 24))
+        weight_penalty = max(0, wt - softcap) // 3
+        pb = base_pb + stance_pb + parry_skill + shield_block - weight_penalty
+        return max(0, min(80, pb))
+
     @property
     def is_alive(self):
         return self.hp > 0
@@ -2507,9 +2535,10 @@ class Player(Character):
             self.warrior_death_save_rounds = 0
             await self.send(f"{c['bright_cyan']}Your Eternal Guardian saves you from death!{c['reset']}")
 
-        # Damage reduction from affects
-        if amount > 0 and hasattr(self, 'damage_reduction') and self.damage_reduction > 0:
-            reduced = max(1, int(amount * (self.damage_reduction / 100.0)))
+        # Damage reduction / PB mitigation (affects + stance + parry/shield skill interactions)
+        effective_pb = self.get_pb_value() if hasattr(self, 'get_pb_value') else int(getattr(self, 'damage_reduction', 0))
+        if amount > 0 and effective_pb > 0:
+            reduced = max(1, int(amount * (effective_pb / 100.0)))
             amount = max(0, amount - reduced)
             await self.send(f"{c['cyan']}You shrug off {reduced} damage!{c['reset']}")
         
