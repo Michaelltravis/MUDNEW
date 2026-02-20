@@ -1672,6 +1672,11 @@
                 const t = line.replace(/\s+/g, ' ').trim();
                 if (!t) return;
 
+                // Never treat updates/changelog/help listing lines as combat
+                if (/RECENT UPDATES|Showing \d+ update\(s\)|Report bugs with:|^═══ \d{4}-\d{2}-\d{2}|^•\s/i.test(t)) {
+                    return;
+                }
+
                 // Level up (handled separately)
                 if (/you gain a level|welcome to level/i.test(t)) {
                     _triggerLevelUp();
@@ -1740,8 +1745,8 @@
                     return;
                 }
 
-                // Mob attacks someone else in room
-                if (/\b(hits|wounds|mauls|claws|bites|kicks|blasts|zaps|strikes|slashes|smashes|crushes|pierces|sears|scorches|gores|slams|stabs|batters)\b/i.test(t) && !/^you /i.test(t) && !/you\b/i.test(t)) {
+                // Mob attacks someone else in room (require an explicit target to avoid false positives like "Midnight strikes")
+                if (/^[A-Za-z][A-Za-z' -]+\s+(hits|wounds|mauls|claws|bites|kicks|blasts|zaps|strikes|slashes|smashes|crushes|pierces|sears|scorches|gores|slams|stabs|batters)\s+[A-Za-z][A-Za-z' -]+[.!]?$/i.test(t) && !/^you /i.test(t) && !/you\b/i.test(t)) {
                     _addCombatLine(t, 'mob');
                     _enterCombat();
                     return;

@@ -1,6 +1,25 @@
 {
   "updates": [
     {
+      "date": "2026-02-20",
+      "version": "0.10.2",
+      "changes": [
+        "MUME Adoption Batch E QA: escape/flee/disengage only consume moves on viable attempts",
+        "Default stance initialization normalized to normal for new characters",
+        "Rescue failure now gives low-noise feedback to ally and attacker"
+      ]
+    },
+    {
+      "date": "2026-02-19",
+      "version": "0.10.1",
+      "changes": [
+        "MUME Adoption Batch A: stance system, tactical command, wimpy auto-flee, escape/disengage split, movement economy core",
+        "MUME Adoption Batch B: armor absorb scaling, shield evasion bonuses, briskness movement recovery, stat-linked skill bonuses",
+        "MUME Adoption Batch C/D: protect-rescue-assist group control, tactical/consider polish, progression hooks and edge-case fixes",
+        "Major endgame world expansion: Ashen Expanse, Drowned Reliquary, Black Observatory, Crown of Bone, and Shattered Throne"
+      ]
+    },
+    {
       "date": "2026-02-06",
       "version": "0.9.6",
       "changes": [
