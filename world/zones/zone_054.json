@@ -6736,17 +6736,21 @@
       "sector_type": "field",
       "flags": [],
       "exits": {
+        "north": {
+          "to_room": 27000,
+          "description": "An ancient forest beckons to the north."
+        },
         "east": {
-          "to_room": 5683,
-          "description": "An open path leads to The Edge Of The Forest"
+          "to_room": 5682,
+          "description": "The plains continue to the east."
         },
         "south": {
           "to_room": 5682,
-          "description": "An open path leads to On The Plains"
+          "description": "The open plains stretch to the south."
         },
         "west": {
-          "to_room": 5683,
-          "description": "An open path leads to The Edge Of The Forest"
+          "to_room": 5682,
+          "description": "The plains continue to the west."
         }
       }
     },

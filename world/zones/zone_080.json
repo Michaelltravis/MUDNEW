@@ -1,750 +1,749 @@
 {
-  "number": 80,
-  "name": "The Dragon's Domain",
-  "builders": "Realmers",
-  "lifespan": 45,
-  "reset_mode": 2,
-  "top": 8099,
-  "rooms": {
-    "8001": {
-      "vnum": 8001,
-      "name": "The Mountain Pass",
-      "description": "The path winds ever upward through jagged peaks. The air grows\nthin and cold. Far below, the world stretches out like a map.\nAhead, a cave mouth glows with inner fire - the lair of the \nlegendary dragon Scorathax. A swirling portal of chaotic energy\nhovers high above, leading to another plane of existence.",
-      "sector_type": "mountain",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 8002,
-          "description": "The way leads to The Dragon's Gate"
+    "number": 80,
+    "name": "The Dragon's Domain",
+    "builders": "Realmers",
+    "lifespan": 45,
+    "reset_mode": 2,
+    "top": 8099,
+    "rooms": {
+        "8001": {
+            "vnum": 8001,
+            "name": "The Mountain Pass",
+            "description": "The path winds ever upward through jagged peaks. The air grows\nthin and cold. Far below, the world stretches out like a map.\nAhead, a cave mouth glows with inner fire - the lair of the \nlegendary dragon Scorathax. A swirling portal of chaotic energy\nhovers high above, leading to another plane of existence.",
+            "sector_type": "mountain",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 8002,
+                    "description": "The way leads to The Dragon's Gate"
+                },
+                "south": {
+                    "to_room": 5065,
+                    "description": "A treacherous mountain path descends toward the desert caves below."
+                },
+                "up": {
+                    "to_room": 16000,
+                    "description": "A swirling portal of chaotic energy leads upward to another plane."
+                }
+            },
+            "extra_descs": {},
+            "mob_resets": [
+                {
+                    "vnum": 8001,
+                    "max": 2
+                },
+                {
+                    "vnum": 8098,
+                    "max": 1
+                }
+            ],
+            "obj_resets": []
         },
-        "south": {
-          "to_room": 5065,
-          "description": "A treacherous mountain path descends toward the desert caves below."
+        "8002": {
+            "vnum": 8002,
+            "name": "The Dragon's Gate",
+            "description": "Massive stone pillars frame the entrance to the dragon's lair.\nAncient draconic runes warn all who approach. The ground is scorched\nblack, and the bones of previous challengers litter the area. Heat\nemanates from within.",
+            "sector_type": "dungeon",
+            "flags": [],
+            "exits": {
+                "south": {
+                    "to_room": 8001,
+                    "description": "A steep trail ascends to The Mountain Pass"
+                },
+                "north": {
+                    "to_room": 8003,
+                    "description": "The way leads to The Treasure Cavern"
+                }
+            },
+            "extra_descs": {},
+            "mob_resets": [
+                {
+                    "vnum": 8002,
+                    "max": 2
+                },
+                {
+                    "vnum": 8099,
+                    "max": 1
+                }
+            ],
+            "obj_resets": []
         },
-        "up": {
-          "to_room": 16000,
-          "description": "A swirling portal of chaotic energy leads upward to another plane."
+        "8003": {
+            "vnum": 8003,
+            "name": "The Treasure Cavern",
+            "description": "Mountains of gold, jewels, and magical artifacts fill this vast\ncavern - the accumulated hoard of centuries. The wealth here is\nbeyond imagination. And coiled atop it all, awaiting challengers...",
+            "sector_type": "dungeon",
+            "flags": [],
+            "exits": {
+                "south": {
+                    "to_room": 8002,
+                    "description": "The way leads to The Dragon's Gate"
+                }
+            },
+            "extra_descs": {},
+            "mob_resets": [
+                {
+                    "vnum": 8003,
+                    "max": 1
+                }
+            ],
+            "obj_resets": []
+        },
+        "8000": {
+            "name": "The Edge Of Chaos",
+            "description": "Reality seems to fracture at the edges here. Colors shift and blend in impossible ways, and the ground beneath your feet feels unstable, as if it might dissolve at any moment.",
+            "sector_type": "flying",
+            "flags": [],
+            "exits": {
+                "up": {
+                    "to_room": 16000,
+                    "description": "The path continues up"
+                }
+            },
+            "mob_resets": [],
+            "obj_resets": [],
+            "vnum": 8000
+        },
+        "8099": {
+            "name": "A Rift In The Planes",
+            "description": "A shimmering rift hangs in the air, connecting this plane to another. Chaotic energy crackles around its edges.",
+            "sector_type": "flying",
+            "flags": [],
+            "exits": {
+                "east": {
+                    "to_room": 16000,
+                    "description": "The path continues east"
+                }
+            },
+            "mob_resets": [],
+            "obj_resets": [],
+            "vnum": 8099
         }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 8001,
-          "max": 2
-        },
-        {
-          "vnum": 8098,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
     },
-    "8002": {
-      "vnum": 8002,
-      "name": "The Dragon's Gate",
-      "description": "Massive stone pillars frame the entrance to the dragon's lair.\nAncient draconic runes warn all who approach. The ground is scorched\nblack, and the bones of previous challengers litter the area. Heat\nemanates from within.",
-      "sector_type": "dungeon",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 8001,
-          "description": "A steep trail ascends to The Mountain Pass"
+    "mobs": {
+        "8001": {
+            "vnum": 8001,
+            "name": "a dragon-kin warrior",
+            "short_desc": "A scaled dragon-kin warrior",
+            "long_desc": "A humanoid with dragon features guards the path.",
+            "level": 35,
+            "hp_dice": "35d10+436",
+            "damage_dice": "9d8+14",
+            "gold": 100,
+            "exp": 2100,
+            "alignment": -500,
+            "flags": [
+                "aggressive"
+            ],
+            "special": "firebreath",
+            "armor_class": -5
         },
-        "north": {
-          "to_room": 8003,
-          "description": "The way leads to The Treasure Cavern"
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 8002,
-          "max": 2
+        "8002": {
+            "vnum": 8002,
+            "name": "a fire elemental",
+            "short_desc": "A blazing fire elemental",
+            "long_desc": "A vaguely humanoid shape of living flame crackles here.",
+            "level": 30,
+            "hp_dice": "30d10+376",
+            "damage_dice": "8d8+11",
+            "gold": 0,
+            "exp": 1800,
+            "alignment": 0,
+            "flags": [
+                "aggressive"
+            ],
+            "special": "fireimmune",
+            "armor_class": 10
         },
-        {
-          "vnum": 8099,
-          "max": 1
-        }
-      ],
-      "obj_resets": []
-    },
-    "8003": {
-      "vnum": 8003,
-      "name": "The Treasure Cavern",
-      "description": "Mountains of gold, jewels, and magical artifacts fill this vast\ncavern - the accumulated hoard of centuries. The wealth here is\nbeyond imagination. And coiled atop it all, awaiting challengers...",
-      "sector_type": "dungeon",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 8002,
-          "description": "The way leads to The Dragon's Gate"
-        }
-      },
-      "extra_descs": {},
-      "mob_resets": [
-        {
-          "vnum": 8003,
-          "max": 1
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 80,
-          "max": 1
+        "8003": {
+            "vnum": 8003,
+            "name": "Scorathax the Red Dragon",
+            "short_desc": "Scorathax the Red Dragon",
+            "long_desc": "A colossal red dragon coils atop a mountain of gold, eyes blazing with fire.",
+            "level": 50,
+            "hp_dice": "50d10+616",
+            "damage_dice": "13d8+18",
+            "gold": 10000,
+            "exp": 3000,
+            "alignment": -500,
+            "flags": [
+                "boss",
+                "sentinel"
+            ],
+            "special": "dragon",
+            "boss": true,
+            "boss_id": "red_dragon",
+            "boss_title": "the Dragonslayer",
+            "boss_achievement": "boss_red_dragon",
+            "boss_loot_table": [
+                {
+                    "vnum": 9003,
+                    "chance": 100
+                },
+                {
+                    "vnum": 9002,
+                    "chance": 35
+                },
+                {
+                    "vnum": 9001,
+                    "chance": 35
+                },
+                {
+                    "vnum": 9004,
+                    "chance": 25
+                },
+                {
+                    "vnum": 9005,
+                    "chance": 25
+                },
+                {
+                    "vnum": 9006,
+                    "chance": 10
+                },
+                {
+                    "vnum": 9007,
+                    "chance": 10
+                },
+                {
+                    "vnum": 9008,
+                    "chance": 10
+                },
+                {
+                    "vnum": 8001,
+                    "chance": 25
+                },
+                {
+                    "vnum": 8002,
+                    "chance": 25
+                },
+                {
+                    "vnum": 8003,
+                    "chance": 25
+                },
+                {
+                    "vnum": 8004,
+                    "chance": 25
+                },
+                {
+                    "vnum": 80,
+                    "chance": 100
+                },
+                {
+                    "vnum": 81,
+                    "chance": 100
+                },
+                {
+                    "vnum": 82,
+                    "chance": 100
+                }
+            ],
+            "boss_loot_chance": 90,
+            "boss_config": {
+                "enrage_time": 120,
+                "enrage_multiplier": 2.0,
+                "ability_interval": 4.5,
+                "phases": [
+                    {
+                        "threshold": 60,
+                        "message": "\u001b[31mScorathax spreads its wings and takes flight! Fire rains from above!\u001b[0m",
+                        "spawn_adds": {
+                            "8001": 2
+                        }
+                    },
+                    {
+                        "threshold": 30,
+                        "message": "\u001b[31mScorathax crashes to earth in desperate fury! The room ignites!\u001b[0m"
+                    }
+                ],
+                "abilities": [
+                    {
+                        "name": "Fire Breath Cone",
+                        "telegraph": "\u001b[31mScorathax rears back, heat building in its maw!\u001b[0m",
+                        "cast_time": 3,
+                        "cooldown": 16,
+                        "damage_dice": "6d6+15",
+                        "aoe": true,
+                        "dodge": true,
+                        "interruptible": true,
+                        "vulnerable_after": 4,
+                        "phase": 0
+                    },
+                    {
+                        "name": "Tail Sweep",
+                        "telegraph": "Scorathax pivots, tail sweeping low!",
+                        "cast_time": 1,
+                        "cooldown": 8,
+                        "damage_dice": "3d8+8",
+                        "dodge": true
+                    },
+                    {
+                        "name": "Aerial Firebolt",
+                        "telegraph": "Scorathax dives from above, wreathed in flame!",
+                        "cast_time": 2,
+                        "cooldown": 10,
+                        "damage_dice": "5d6+12",
+                        "dodge": true,
+                        "min_phase": 1
+                    },
+                    {
+                        "name": "Rain of Fire",
+                        "telegraph": "\u001b[31mScorathax breathes a torrent of fire across the room!\u001b[0m",
+                        "cast_time": 3,
+                        "cooldown": 14,
+                        "damage_dice": "4d8+10",
+                        "aoe": true,
+                        "dodge": true,
+                        "min_phase": 1
+                    },
+                    {
+                        "name": "Desperate Fury",
+                        "telegraph": "\u001b[31mScorathax thrashes wildly, claws and teeth everywhere!\u001b[0m",
+                        "cast_time": 1,
+                        "cooldown": 6,
+                        "damage_dice": "5d8+15",
+                        "aoe": true,
+                        "dodge": true,
+                        "min_phase": 2
+                    },
+                    {
+                        "name": "Room-Wide Inferno",
+                        "telegraph": "\u001b[31mThe entire chamber erupts in dragonfire!\u001b[0m",
+                        "cast_time": 3,
+                        "cooldown": 18,
+                        "damage_dice": "7d6+20",
+                        "aoe": true,
+                        "dodge": true,
+                        "interruptible": true,
+                        "vulnerable_after": 5,
+                        "min_phase": 2
+                    }
+                ]
+            },
+            "armor_class": -10,
+            "equipment_rolls": [
+                {
+                    "slot": "wield",
+                    "vnum": 9002,
+                    "chance": 50
+                }
+            ]
         },
-        {
-          "vnum": 81,
-          "max": 1
-        },
-        {
-          "vnum": 82,
-          "max": 1
-        }
-      ]
-    },
-    "8000": {
-      "name": "The Edge Of Chaos",
-      "description": "Reality seems to fracture at the edges here. Colors shift and blend in impossible ways, and the ground beneath your feet feels unstable, as if it might dissolve at any moment.",
-      "sector_type": "flying",
-      "flags": [],
-      "exits": {
-        "up": {
-          "to_room": 16000,
-          "description": "The path continues up"
-        }
-      },
-      "mob_resets": [],
-      "obj_resets": [],
-      "vnum": 8000
-    },
-    "8099": {
-      "name": "A Rift In The Planes",
-      "description": "A shimmering rift hangs in the air, connecting this plane to another. Chaotic energy crackles around its edges.",
-      "sector_type": "flying",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 16000,
-          "description": "The path continues east"
-        }
-      },
-      "mob_resets": [],
-      "obj_resets": [],
-      "vnum": 8099
-    }
-  },
-  "mobs": {
-    "8001": {
-      "vnum": 8001,
-      "name": "a dragon-kin warrior",
-      "short_desc": "A scaled dragon-kin warrior",
-      "long_desc": "A humanoid with dragon features guards the path.",
-      "level": 35,
-      "hp_dice": "35d10+436",
-      "damage_dice": "9d8+14",
-      "gold": 100,
-      "exp": 2100,
-      "alignment": -500,
-      "flags": [
-        "aggressive"
-      ],
-      "special": "firebreath",
-      "armor_class": -5
-    },
-    "8002": {
-      "vnum": 8002,
-      "name": "a fire elemental",
-      "short_desc": "A blazing fire elemental",
-      "long_desc": "A vaguely humanoid shape of living flame crackles here.",
-      "level": 30,
-      "hp_dice": "30d10+376",
-      "damage_dice": "8d8+11",
-      "gold": 0,
-      "exp": 1800,
-      "alignment": 0,
-      "flags": [
-        "aggressive"
-      ],
-      "special": "fireimmune",
-      "armor_class": 10
-    },
-    "8003": {
-      "vnum": 8003,
-      "name": "Scorathax the Red Dragon",
-      "short_desc": "Scorathax the Red Dragon",
-      "long_desc": "A colossal red dragon coils atop a mountain of gold, eyes blazing with fire.",
-      "level": 50,
-      "hp_dice": "50d10+616",
-      "damage_dice": "13d8+18",
-      "gold": 10000,
-      "exp": 3000,
-      "alignment": -500,
-      "flags": [
-        "boss",
-        "sentinel"
-      ],
-      "special": "dragon",
-      "boss": true,
-      "boss_id": "red_dragon",
-      "boss_title": "the Dragonslayer",
-      "boss_achievement": "boss_red_dragon",
-      "boss_loot_table": [
-        {
-          "vnum": 9003,
-          "chance": 100
-        },
-        {
-          "vnum": 9002,
-          "chance": 35
-        },
-        {
-          "vnum": 9001,
-          "chance": 35
-        },
-        {
-          "vnum": 9004,
-          "chance": 25
-        },
-        {
-          "vnum": 9005,
-          "chance": 25
-        },
-        {
-          "vnum": 9006,
-          "chance": 10
-        },
-        {
-          "vnum": 9007,
-          "chance": 10
-        },
-        {
-          "vnum": 9008,
-          "chance": 10
-        },
-        {
-          "vnum": 8001,
-          "chance": 25
-        },
-        {
-          "vnum": 8002,
-          "chance": 25
-        },
-        {
-          "vnum": 8003,
-          "chance": 25
-        },
-        {
-          "vnum": 8004,
-          "chance": 25
-        }
-      ],
-      "boss_loot_chance": 90,
-      "boss_config": {
-        "enrage_time": 120,
-        "enrage_multiplier": 2.0,
-        "ability_interval": 4.5,
-        "phases": [
-          {
-            "threshold": 60,
-            "message": "\u001b[31mScorathax spreads its wings and takes flight! Fire rains from above!\u001b[0m",
-            "spawn_adds": {
-              "8001": 2
+        "8098": {
+            "vnum": 8098,
+            "name": "charred skeleton",
+            "short_desc": "a charred adventurer's skeleton",
+            "long_desc": "The charred remains of an adventurer lie here, one bony hand still clutching a scorched journal.",
+            "description": "The skeleton is fused to the rock by dragonfire. Whatever killed this person did so in an instant. A partially legible journal lies open beneath the skeletal fingers.",
+            "level": 1,
+            "alignment": 0,
+            "hp_dice": "1d10+5000",
+            "damage_dice": "1d4+1",
+            "gold": 0,
+            "exp": 0,
+            "armor_class": 100,
+            "flags": [
+                "sentinel"
+            ],
+            "special": "flavor_npc",
+            "talk_responses": {
+                "hello": "You read the charred journal: 'Day 12 \u2014 The dragon sleeps on a hoard beyond imagination. Its breath melts stone. We tried the eastern approach and lost three men. The ONLY safe path is from below, through the caves. The beast is blind in its left eye \u2014 always strike from the left. If you're reading this, I failed. Don't repeat my mistake \u2014 bring fire resist\u2014' The rest is burned away.",
+                "journal": "The journal's final legible entry reads: 'The scales are weakest at the belly. We needed acid or enchanted weapons. Mundane steel just bounced off. Gods forgive us for trying with iron swords.'",
+                "default": "The skeleton grins its eternal grin. The journal flutters in a hot updraft.",
+                "next": "Faint words appear in the skeleton's scorched journal: 'For those who survive the dragons, only two challenges remain \u2014 Castle Apocalypse, where Sir Aldren leads his endless crusade, and the Tunnel of Sticks, where reality itself is a weapon. These are places for the mightiest heroes alone.'"
             }
-          },
-          {
-            "threshold": 30,
-            "message": "\u001b[31mScorathax crashes to earth in desperate fury! The room ignites!\u001b[0m"
-          }
-        ],
-        "abilities": [
-          {
-            "name": "Fire Breath Cone",
-            "telegraph": "\u001b[31mScorathax rears back, heat building in its maw!\u001b[0m",
-            "cast_time": 3,
-            "cooldown": 16,
-            "damage_dice": "6d6+15",
-            "aoe": true,
-            "dodge": true,
-            "interruptible": true,
-            "vulnerable_after": 4,
-            "phase": 0
-          },
-          {
-            "name": "Tail Sweep",
-            "telegraph": "Scorathax pivots, tail sweeping low!",
-            "cast_time": 1,
-            "cooldown": 8,
-            "damage_dice": "3d8+8",
-            "dodge": true
-          },
-          {
-            "name": "Aerial Firebolt",
-            "telegraph": "Scorathax dives from above, wreathed in flame!",
-            "cast_time": 2,
-            "cooldown": 10,
-            "damage_dice": "5d6+12",
-            "dodge": true,
-            "min_phase": 1
-          },
-          {
-            "name": "Rain of Fire",
-            "telegraph": "\u001b[31mScorathax breathes a torrent of fire across the room!\u001b[0m",
-            "cast_time": 3,
-            "cooldown": 14,
-            "damage_dice": "4d8+10",
-            "aoe": true,
-            "dodge": true,
-            "min_phase": 1
-          },
-          {
-            "name": "Desperate Fury",
-            "telegraph": "\u001b[31mScorathax thrashes wildly, claws and teeth everywhere!\u001b[0m",
-            "cast_time": 1,
-            "cooldown": 6,
-            "damage_dice": "5d8+15",
-            "aoe": true,
-            "dodge": true,
-            "min_phase": 2
-          },
-          {
-            "name": "Room-Wide Inferno",
-            "telegraph": "\u001b[31mThe entire chamber erupts in dragonfire!\u001b[0m",
-            "cast_time": 3,
-            "cooldown": 18,
-            "damage_dice": "7d6+20",
-            "aoe": true,
-            "dodge": true,
-            "interruptible": true,
-            "vulnerable_after": 5,
-            "min_phase": 2
-          }
-        ]
-      },
-      "armor_class": -10,
-      "equipment_rolls": [
-        {
-          "slot": "wield",
-          "vnum": 9002,
-          "chance": 50
+        },
+        "8099": {
+            "vnum": 8099,
+            "name": "lizardfolk observer",
+            "short_desc": "a fire-resistant lizardfolk",
+            "long_desc": "A lizardfolk crouches here behind a heat-blackened boulder, watching the domain with slit-pupiled eyes.",
+            "description": "Its scales are an unusual deep crimson, adapted to survive near volcanic heat. It carries no weapons \u2014 just a leather satchel filled with charcoal sketches of the dragon.",
+            "level": 35,
+            "alignment": 0,
+            "hp_dice": "35d10+600",
+            "damage_dice": "1d4+1",
+            "gold": 0,
+            "exp": 0,
+            "armor_class": 100,
+            "flags": [
+                "sentinel"
+            ],
+            "special": "flavor_npc",
+            "talk_responses": {
+                "hello": "The lizardfolk speaks in a rasping hiss. 'I study the great one. For years now. It flies at dawn and dusk \u2014 that is when the lair is empty. The hoard draws fools like moths to flame. Be smarter than a moth. The dragon remembers every coin. Steal even one, and it will hunt you across the world.'",
+                "dragon": "It flips through charcoal sketches. 'The great one is ancient. Intelligent. It speaks, if you can survive long enough to listen. Some say it guards something beneath the hoard \u2014 not treasure, but a seal. What it seals... I dare not guess.'",
+                "default": "The lizardfolk watches the sky nervously, sketching something in charcoal."
+            }
         }
-      ]
     },
-    "8098": {
-      "vnum": 8098,
-      "name": "charred skeleton",
-      "short_desc": "a charred adventurer's skeleton",
-      "long_desc": "The charred remains of an adventurer lie here, one bony hand still clutching a scorched journal.",
-      "description": "The skeleton is fused to the rock by dragonfire. Whatever killed this person did so in an instant. A partially legible journal lies open beneath the skeletal fingers.",
-      "level": 1,
-      "alignment": 0,
-      "hp_dice": "1d10+5000",
-      "damage_dice": "1d4+1",
-      "gold": 0,
-      "exp": 0,
-      "armor_class": 100,
-      "flags": [
-        "sentinel"
-      ],
-      "special": "flavor_npc",
-      "talk_responses": {
-        "hello": "You read the charred journal: 'Day 12 \u2014 The dragon sleeps on a hoard beyond imagination. Its breath melts stone. We tried the eastern approach and lost three men. The ONLY safe path is from below, through the caves. The beast is blind in its left eye \u2014 always strike from the left. If you're reading this, I failed. Don't repeat my mistake \u2014 bring fire resist\u2014' The rest is burned away.",
-        "journal": "The journal's final legible entry reads: 'The scales are weakest at the belly. We needed acid or enchanted weapons. Mundane steel just bounced off. Gods forgive us for trying with iron swords.'",
-        "default": "The skeleton grins its eternal grin. The journal flutters in a hot updraft.",
-        "next": "Faint words appear in the skeleton's scorched journal: 'For those who survive the dragons, only two challenges remain \u2014 Castle Apocalypse, where Sir Aldren leads his endless crusade, and the Tunnel of Sticks, where reality itself is a weapon. These are places for the mightiest heroes alone.'"
-      }
-    },
-    "8099": {
-      "vnum": 8099,
-      "name": "lizardfolk observer",
-      "short_desc": "a fire-resistant lizardfolk",
-      "long_desc": "A lizardfolk crouches here behind a heat-blackened boulder, watching the domain with slit-pupiled eyes.",
-      "description": "Its scales are an unusual deep crimson, adapted to survive near volcanic heat. It carries no weapons \u2014 just a leather satchel filled with charcoal sketches of the dragon.",
-      "level": 35,
-      "alignment": 0,
-      "hp_dice": "35d10+600",
-      "damage_dice": "1d4+1",
-      "gold": 0,
-      "exp": 0,
-      "armor_class": 100,
-      "flags": [
-        "sentinel"
-      ],
-      "special": "flavor_npc",
-      "talk_responses": {
-        "hello": "The lizardfolk speaks in a rasping hiss. 'I study the great one. For years now. It flies at dawn and dusk \u2014 that is when the lair is empty. The hoard draws fools like moths to flame. Be smarter than a moth. The dragon remembers every coin. Steal even one, and it will hunt you across the world.'",
-        "dragon": "It flips through charcoal sketches. 'The great one is ancient. Intelligent. It speaks, if you can survive long enough to listen. Some say it guards something beneath the hoard \u2014 not treasure, but a seal. What it seals... I dare not guess.'",
-        "default": "The lizardfolk watches the sky nervously, sketching something in charcoal."
-      }
+    "objects": {
+        "80": {
+            "vnum": 80,
+            "name": "Dragonsbane",
+            "short_desc": "the legendary sword Dragonsbane",
+            "room_desc": "A sword of legend gleams among the treasure.",
+            "type": "weapon",
+            "weight": 8,
+            "cost": 50000,
+            "damage_dice": "4d6",
+            "weapon_type": "slash",
+            "affects": [
+                {
+                    "type": "hitroll",
+                    "value": 5
+                },
+                {
+                    "type": "damroll",
+                    "value": 5
+                },
+                {
+                    "type": "str",
+                    "value": 2
+                }
+            ]
+        },
+        "81": {
+            "vnum": 81,
+            "name": "dragonscale armor",
+            "short_desc": "armor of red dragonscale",
+            "room_desc": "Armor crafted from dragon scales lies here.",
+            "type": "armor",
+            "weight": 30,
+            "cost": 40000,
+            "armor": 50,
+            "wear_slot": "body",
+            "affects": [
+                {
+                    "type": "ac",
+                    "value": -30
+                },
+                {
+                    "type": "con",
+                    "value": 2
+                }
+            ]
+        },
+        "82": {
+            "vnum": 82,
+            "name": "the dragon's hoard",
+            "short_desc": "a mountain of gold",
+            "room_desc": "An immense pile of gold and treasure dominates the cavern.",
+            "type": "money",
+            "weight": 1000,
+            "cost": 100000
+        },
+        "83": {
+            "vnum": 83,
+            "name": "a dragonfang blade",
+            "short_desc": "a dragonfang blade",
+            "room_desc": "A blade carved from a dragon fang gleams here.",
+            "type": "weapon",
+            "weight": 7,
+            "cost": 3200,
+            "damage_dice": "3d6+3",
+            "weapon_type": "slash"
+        },
+        "84": {
+            "vnum": 84,
+            "name": "a scale-forged shield",
+            "short_desc": "a scale-forged shield",
+            "room_desc": "A shield of interlocking dragon scales rests here.",
+            "type": "armor",
+            "weight": 12,
+            "cost": 2800,
+            "armor": 18,
+            "wear_slot": "shield"
+        },
+        "85": {
+            "vnum": 85,
+            "name": "an emberheart talisman",
+            "short_desc": "an emberheart talisman",
+            "room_desc": "A talisman warm to the touch lies here.",
+            "type": "treasure",
+            "weight": 1,
+            "cost": 2500
+        },
+        "9001": {
+            "vnum": 9001,
+            "name": "cinderstring lute",
+            "short_desc": "\u001b[91ma cinderstring \u001b[95mlute\u001b[0m\u001b[91m\u001b[0m",
+            "room_desc": "\u001b[91mA cinderstring \u001b[95mlute\u001b[0m\u001b[91m rests here, warm to the touch.\u001b[0m",
+            "description": "A bardic lute strung with ember\u2011touched strings.",
+            "item_type": "weapon",
+            "wear_slot": "wield",
+            "weapon_type": "mace",
+            "damage_dice": "2d6+4",
+            "weight": 5,
+            "value": 12000,
+            "flags": [
+                "magic"
+            ],
+            "affects": [
+                {
+                    "type": "cha",
+                    "value": 2
+                },
+                {
+                    "type": "int",
+                    "value": 1
+                }
+            ],
+            "type": "treasure"
+        },
+        "9002": {
+            "vnum": 9002,
+            "name": "flamebound greatsword",
+            "short_desc": "\u001b[91ma flamebound \u001b[91mgreatsword\u001b[0m\u001b[91m\u001b[0m",
+            "room_desc": "\u001b[91mA massive flamebound \u001b[91mgreatsword\u001b[0m\u001b[91m lies here.\u001b[0m",
+            "description": "A warrior\u2019s blade wreathed in faint heat.",
+            "item_type": "weapon",
+            "wear_slot": "wield",
+            "weapon_type": "slash",
+            "damage_dice": "3d6+6",
+            "weight": 15,
+            "value": 18000,
+            "flags": [
+                "magic"
+            ],
+            "affects": [
+                {
+                    "type": "damroll",
+                    "value": 4
+                },
+                {
+                    "type": "hitroll",
+                    "value": 2
+                }
+            ],
+            "type": "weapon"
+        },
+        "9003": {
+            "vnum": 9003,
+            "name": "scale of the red dragon",
+            "short_desc": "\u001b[91ma scale of the red dragon\u001b[0m",
+            "room_desc": "\u001b[91mA crimson dragon scale glints here.\u001b[0m",
+            "description": "A massive scale, still warm with draconic heat.",
+            "item_type": "armor",
+            "wear_slot": "neck1",
+            "armor_bonus": 4,
+            "weight": 2,
+            "value": 15000,
+            "flags": [
+                "magic"
+            ],
+            "affects": [
+                {
+                    "type": "fire_resist",
+                    "value": 10
+                }
+            ],
+            "type": "treasure"
+        },
+        "9004": {
+            "vnum": 9004,
+            "name": "cinderstep cloak",
+            "short_desc": "\u001b[91mthe cinderstep cloak\u001b[0m",
+            "room_desc": "\u001b[91mA cloak of embers smolders here.\u001b[0m",
+            "description": "A dragon\u2011forged cloak that swallows light and muffles footsteps.",
+            "item_type": "armor",
+            "wear_slot": "back",
+            "armor_bonus": 3,
+            "weight": 2,
+            "value": 22000,
+            "flags": [
+                "magic"
+            ],
+            "affects": [
+                {
+                    "type": "sneak",
+                    "value": 8
+                },
+                {
+                    "type": "no_track",
+                    "value": 1
+                }
+            ],
+            "type": "armor",
+            "armor": 1
+        },
+        "9005": {
+            "vnum": 9005,
+            "name": "wyrmfang gloves",
+            "short_desc": "\u001b[91mwyrmfang gloves\u001b[0m",
+            "room_desc": "\u001b[91mA pair of red\u2011scaled gloves lies here.\u001b[0m",
+            "description": "Gloves tipped with dragon\u2011tooth barbs, ideal for a killing thrust.",
+            "item_type": "armor",
+            "wear_slot": "hands",
+            "armor_bonus": 2,
+            "weight": 1,
+            "value": 24000,
+            "flags": [
+                "magic"
+            ],
+            "affects": [
+                {
+                    "type": "backstab",
+                    "value": 12
+                }
+            ],
+            "type": "armor",
+            "armor": 2
+        },
+        "9006": {
+            "vnum": 9006,
+            "name": "gauntlets of the warlord",
+            "short_desc": "\u001b[91mgauntlets of the warlord\u001b[0m",
+            "room_desc": "\u001b[91mA pair of heavy gauntlets rests here.\u001b[0m",
+            "description": "Warlord gauntlets that empower crushing blows.",
+            "item_type": "armor",
+            "wear_slot": "hands",
+            "armor_bonus": 3,
+            "weight": 3,
+            "value": 26000,
+            "flags": [
+                "magic"
+            ],
+            "affects": [
+                {
+                    "type": "bash",
+                    "value": 10
+                }
+            ],
+            "type": "treasure"
+        },
+        "9007": {
+            "vnum": 9007,
+            "name": "embercall pendant",
+            "short_desc": "\u001b[91mthe embercall pendant\u001b[0m",
+            "room_desc": "\u001b[91mA pendant of smoldering ember rests here.\u001b[0m",
+            "description": "A pendant that deepens the heat of fireball magic.",
+            "item_type": "armor",
+            "wear_slot": "neck1",
+            "armor_bonus": 1,
+            "weight": 1,
+            "value": 26000,
+            "flags": [
+                "magic"
+            ],
+            "affects": [
+                {
+                    "type": "fireball",
+                    "value": 12
+                }
+            ],
+            "type": "armor",
+            "armor": 0
+        },
+        "9008": {
+            "vnum": 9008,
+            "name": "glacial torque",
+            "short_desc": "\u001b[94mthe glacial torque\u001b[0m",
+            "room_desc": "\u001b[94mA frost\u2011rimmed torque lies here.\u001b[0m",
+            "description": "A torque that sharpens the bite of ice spells.",
+            "item_type": "armor",
+            "wear_slot": "neck2",
+            "armor_bonus": 1,
+            "weight": 1,
+            "value": 26000,
+            "flags": [
+                "magic"
+            ],
+            "affects": [
+                {
+                    "type": "ice_blast",
+                    "value": 12
+                }
+            ],
+            "type": "armor",
+            "armor": 0
+        },
+        "8001": {
+            "vnum": 8001,
+            "name": "dragonscale breastplate",
+            "short_desc": "a dragonscale breastplate",
+            "room_desc": "A breastplate of red dragon scales lies here.",
+            "description": "Scales from a mighty dragon.",
+            "item_type": "armor",
+            "weight": 10,
+            "value": 15000,
+            "wear_slot": "body",
+            "armor_class": 10,
+            "affects": [
+                {
+                    "type": "fire_resist",
+                    "value": 10
+                },
+                {
+                    "type": "con",
+                    "value": 2
+                }
+            ],
+            "set_id": "dragonscale",
+            "type": "armor",
+            "min_level": 35
+        },
+        "8002": {
+            "vnum": 8002,
+            "name": "dragonscale helm",
+            "short_desc": "a dragonscale helm",
+            "room_desc": "A helm of dragon scales lies here.",
+            "description": "A fearsome horned helm.",
+            "item_type": "armor",
+            "weight": 4,
+            "value": 12000,
+            "wear_slot": "head",
+            "armor_class": 6,
+            "affects": [
+                {
+                    "type": "fire_resist",
+                    "value": 5
+                }
+            ],
+            "set_id": "dragonscale",
+            "type": "armor",
+            "min_level": 35
+        },
+        "8003": {
+            "vnum": 8003,
+            "name": "dragonscale gauntlets",
+            "short_desc": "a pair of dragonscale gauntlets",
+            "room_desc": "Dragonscale gauntlets lie here.",
+            "description": "Scaled gauntlets.",
+            "item_type": "armor",
+            "weight": 3,
+            "value": 10000,
+            "wear_slot": "hands",
+            "armor_class": 5,
+            "affects": [
+                {
+                    "type": "str",
+                    "value": 2
+                }
+            ],
+            "set_id": "dragonscale",
+            "type": "armor",
+            "min_level": 35
+        },
+        "8004": {
+            "vnum": 8004,
+            "name": "dragonscale shield",
+            "short_desc": "a dragonscale shield",
+            "room_desc": "A shield of dragon scales lies here.",
+            "description": "An impenetrable shield.",
+            "item_type": "armor",
+            "weight": 6,
+            "value": 12000,
+            "wear_slot": "shield",
+            "armor_class": 8,
+            "affects": [
+                {
+                    "type": "max_hp",
+                    "value": 25
+                }
+            ],
+            "set_id": "dragonscale",
+            "type": "armor",
+            "min_level": 35
+        }
     }
-  },
-  "objects": {
-    "80": {
-      "vnum": 80,
-      "name": "Dragonsbane",
-      "short_desc": "the legendary sword Dragonsbane",
-      "room_desc": "A sword of legend gleams among the treasure.",
-      "type": "weapon",
-      "weight": 8,
-      "cost": 50000,
-      "damage_dice": "4d6",
-      "weapon_type": "slash",
-      "affects": [
-        {
-          "type": "hitroll",
-          "value": 5
-        },
-        {
-          "type": "damroll",
-          "value": 5
-        },
-        {
-          "type": "str",
-          "value": 2
-        }
-      ]
-    },
-    "81": {
-      "vnum": 81,
-      "name": "dragonscale armor",
-      "short_desc": "armor of red dragonscale",
-      "room_desc": "Armor crafted from dragon scales lies here.",
-      "type": "armor",
-      "weight": 30,
-      "cost": 40000,
-      "armor": 50,
-      "wear_slot": "body",
-      "affects": [
-        {
-          "type": "ac",
-          "value": -30
-        },
-        {
-          "type": "con",
-          "value": 2
-        }
-      ]
-    },
-    "82": {
-      "vnum": 82,
-      "name": "the dragon's hoard",
-      "short_desc": "a mountain of gold",
-      "room_desc": "An immense pile of gold and treasure dominates the cavern.",
-      "type": "money",
-      "weight": 1000,
-      "cost": 100000
-    },
-    "83": {
-      "vnum": 83,
-      "name": "a dragonfang blade",
-      "short_desc": "a dragonfang blade",
-      "room_desc": "A blade carved from a dragon fang gleams here.",
-      "type": "weapon",
-      "weight": 7,
-      "cost": 3200,
-      "damage_dice": "3d6+3",
-      "weapon_type": "slash"
-    },
-    "84": {
-      "vnum": 84,
-      "name": "a scale-forged shield",
-      "short_desc": "a scale-forged shield",
-      "room_desc": "A shield of interlocking dragon scales rests here.",
-      "type": "armor",
-      "weight": 12,
-      "cost": 2800,
-      "armor": 18,
-      "wear_slot": "shield"
-    },
-    "85": {
-      "vnum": 85,
-      "name": "an emberheart talisman",
-      "short_desc": "an emberheart talisman",
-      "room_desc": "A talisman warm to the touch lies here.",
-      "type": "treasure",
-      "weight": 1,
-      "cost": 2500
-    },
-    "9001": {
-      "vnum": 9001,
-      "name": "cinderstring lute",
-      "short_desc": "\u001b[91ma cinderstring \u001b[95mlute\u001b[0m\u001b[91m\u001b[0m",
-      "room_desc": "\u001b[91mA cinderstring \u001b[95mlute\u001b[0m\u001b[91m rests here, warm to the touch.\u001b[0m",
-      "description": "A bardic lute strung with ember\u2011touched strings.",
-      "item_type": "weapon",
-      "wear_slot": "wield",
-      "weapon_type": "mace",
-      "damage_dice": "2d6+4",
-      "weight": 5,
-      "value": 12000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "cha",
-          "value": 2
-        },
-        {
-          "type": "int",
-          "value": 1
-        }
-      ],
-      "type": "treasure"
-    },
-    "9002": {
-      "vnum": 9002,
-      "name": "flamebound greatsword",
-      "short_desc": "\u001b[91ma flamebound \u001b[91mgreatsword\u001b[0m\u001b[91m\u001b[0m",
-      "room_desc": "\u001b[91mA massive flamebound \u001b[91mgreatsword\u001b[0m\u001b[91m lies here.\u001b[0m",
-      "description": "A warrior\u2019s blade wreathed in faint heat.",
-      "item_type": "weapon",
-      "wear_slot": "wield",
-      "weapon_type": "slash",
-      "damage_dice": "3d6+6",
-      "weight": 15,
-      "value": 18000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "damroll",
-          "value": 4
-        },
-        {
-          "type": "hitroll",
-          "value": 2
-        }
-      ],
-      "type": "weapon"
-    },
-    "9003": {
-      "vnum": 9003,
-      "name": "scale of the red dragon",
-      "short_desc": "\u001b[91ma scale of the red dragon\u001b[0m",
-      "room_desc": "\u001b[91mA crimson dragon scale glints here.\u001b[0m",
-      "description": "A massive scale, still warm with draconic heat.",
-      "item_type": "armor",
-      "wear_slot": "neck1",
-      "armor_bonus": 4,
-      "weight": 2,
-      "value": 15000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "fire_resist",
-          "value": 10
-        }
-      ],
-      "type": "treasure"
-    },
-    "9004": {
-      "vnum": 9004,
-      "name": "cinderstep cloak",
-      "short_desc": "\u001b[91mthe cinderstep cloak\u001b[0m",
-      "room_desc": "\u001b[91mA cloak of embers smolders here.\u001b[0m",
-      "description": "A dragon\u2011forged cloak that swallows light and muffles footsteps.",
-      "item_type": "armor",
-      "wear_slot": "back",
-      "armor_bonus": 3,
-      "weight": 2,
-      "value": 22000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "sneak",
-          "value": 8
-        },
-        {
-          "type": "no_track",
-          "value": 1
-        }
-      ],
-      "type": "armor",
-      "armor": 1
-    },
-    "9005": {
-      "vnum": 9005,
-      "name": "wyrmfang gloves",
-      "short_desc": "\u001b[91mwyrmfang gloves\u001b[0m",
-      "room_desc": "\u001b[91mA pair of red\u2011scaled gloves lies here.\u001b[0m",
-      "description": "Gloves tipped with dragon\u2011tooth barbs, ideal for a killing thrust.",
-      "item_type": "armor",
-      "wear_slot": "hands",
-      "armor_bonus": 2,
-      "weight": 1,
-      "value": 24000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "backstab",
-          "value": 12
-        }
-      ],
-      "type": "armor",
-      "armor": 2
-    },
-    "9006": {
-      "vnum": 9006,
-      "name": "gauntlets of the warlord",
-      "short_desc": "\u001b[91mgauntlets of the warlord\u001b[0m",
-      "room_desc": "\u001b[91mA pair of heavy gauntlets rests here.\u001b[0m",
-      "description": "Warlord gauntlets that empower crushing blows.",
-      "item_type": "armor",
-      "wear_slot": "hands",
-      "armor_bonus": 3,
-      "weight": 3,
-      "value": 26000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "bash",
-          "value": 10
-        }
-      ],
-      "type": "treasure"
-    },
-    "9007": {
-      "vnum": 9007,
-      "name": "embercall pendant",
-      "short_desc": "\u001b[91mthe embercall pendant\u001b[0m",
-      "room_desc": "\u001b[91mA pendant of smoldering ember rests here.\u001b[0m",
-      "description": "A pendant that deepens the heat of fireball magic.",
-      "item_type": "armor",
-      "wear_slot": "neck1",
-      "armor_bonus": 1,
-      "weight": 1,
-      "value": 26000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "fireball",
-          "value": 12
-        }
-      ],
-      "type": "armor",
-      "armor": 0
-    },
-    "9008": {
-      "vnum": 9008,
-      "name": "glacial torque",
-      "short_desc": "\u001b[94mthe glacial torque\u001b[0m",
-      "room_desc": "\u001b[94mA frost\u2011rimmed torque lies here.\u001b[0m",
-      "description": "A torque that sharpens the bite of ice spells.",
-      "item_type": "armor",
-      "wear_slot": "neck2",
-      "armor_bonus": 1,
-      "weight": 1,
-      "value": 26000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "ice_blast",
-          "value": 12
-        }
-      ],
-      "type": "armor",
-      "armor": 0
-    },
-    "8001": {
-      "vnum": 8001,
-      "name": "dragonscale breastplate",
-      "short_desc": "a dragonscale breastplate",
-      "room_desc": "A breastplate of red dragon scales lies here.",
-      "description": "Scales from a mighty dragon.",
-      "item_type": "armor",
-      "weight": 10,
-      "value": 15000,
-      "wear_slot": "body",
-      "armor_class": 10,
-      "affects": [
-        {
-          "type": "fire_resist",
-          "value": 10
-        },
-        {
-          "type": "con",
-          "value": 2
-        }
-      ],
-      "set_id": "dragonscale",
-      "type": "armor",
-      "min_level": 35
-    },
-    "8002": {
-      "vnum": 8002,
-      "name": "dragonscale helm",
-      "short_desc": "a dragonscale helm",
-      "room_desc": "A helm of dragon scales lies here.",
-      "description": "A fearsome horned helm.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 12000,
-      "wear_slot": "head",
-      "armor_class": 6,
-      "affects": [
-        {
-          "type": "fire_resist",
-          "value": 5
-        }
-      ],
-      "set_id": "dragonscale",
-      "type": "armor",
-      "min_level": 35
-    },
-    "8003": {
-      "vnum": 8003,
-      "name": "dragonscale gauntlets",
-      "short_desc": "a pair of dragonscale gauntlets",
-      "room_desc": "Dragonscale gauntlets lie here.",
-      "description": "Scaled gauntlets.",
-      "item_type": "armor",
-      "weight": 3,
-      "value": 10000,
-      "wear_slot": "hands",
-      "armor_class": 5,
-      "affects": [
-        {
-          "type": "str",
-          "value": 2
-        }
-      ],
-      "set_id": "dragonscale",
-      "type": "armor",
-      "min_level": 35
-    },
-    "8004": {
-      "vnum": 8004,
-      "name": "dragonscale shield",
-      "short_desc": "a dragonscale shield",
-      "room_desc": "A shield of dragon scales lies here.",
-      "description": "An impenetrable shield.",
-      "item_type": "armor",
-      "weight": 6,
-      "value": 12000,
-      "wear_slot": "shield",
-      "armor_class": 8,
-      "affects": [
-        {
-          "type": "max_hp",
-          "value": 25
-        }
-      ],
-      "set_id": "dragonscale",
-      "type": "armor",
-      "min_level": 35
-    }
-  }
 }

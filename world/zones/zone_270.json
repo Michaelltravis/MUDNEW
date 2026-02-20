@@ -1,0 +1,806 @@
+{
+    "number": 270,
+    "name": "The Whispering Woods",
+    "reset_interval": 15,
+    "level_min": 25,
+    "level_max": 40,
+    "rooms": {
+        "27000": {
+            "vnum": 27000,
+            "name": "Entrance to the Whispering Woods",
+            "description": "Ancient oaks tower overhead, their gnarled branches forming a natural archway into the forest. Dappled sunlight filters through the canopy, casting dancing shadows on the moss-covered ground. A well-worn path leads deeper into the woods, while the open plains stretch to the south. Strange whispers seem to emanate from the trees themselves, giving this forest its name.",
+            "sector_type": "forest",
+            "exits": {
+                "north": {
+                    "to_room": 27001,
+                    "description": "The path continues deeper into the woods."
+                },
+                "south": {
+                    "to_room": 5683,
+                    "description": "The forest edge and open plains lie to the south."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 27001,
+                    "max": 1
+                }
+            ]
+        },
+        "27001": {
+            "vnum": 27001,
+            "name": "A Winding Forest Path",
+            "description": "The path winds between massive tree trunks, some so wide that three men could not link arms around them. Ferns and wildflowers carpet the forest floor. The whispering grows louder here, and if you listen closely, you might catch fragments of ancient songs carried on the breeze.",
+            "sector_type": "forest",
+            "exits": {
+                "north": {
+                    "to_room": 27002
+                },
+                "east": {
+                    "to_room": 27010
+                },
+                "south": {
+                    "to_room": 27000
+                },
+                "west": {
+                    "to_room": 27005
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 27002,
+                    "max": 2
+                }
+            ]
+        },
+        "27002": {
+            "vnum": 27002,
+            "name": "Beneath the Elder Oak",
+            "description": "An enormous oak dominates this clearing, its trunk easily fifty feet across. Ancient runes are carved into the bark, glowing faintly with silver light. Local legend says this tree has stood since before the founding of New Thalos. A hollow in the trunk seems large enough to enter.",
+            "sector_type": "forest",
+            "exits": {
+                "north": {
+                    "to_room": 27003
+                },
+                "east": {
+                    "to_room": 27011
+                },
+                "south": {
+                    "to_room": 27001
+                },
+                "enter": {
+                    "to_room": 27020,
+                    "description": "A dark hollow in the massive trunk."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 27010,
+                    "max": 1
+                }
+            ]
+        },
+        "27003": {
+            "vnum": 27003,
+            "name": "The Druid's Grove",
+            "description": "Standing stones form a perfect circle in this peaceful clearing. Soft grass grows between them, and the air hums with natural magic. Druids have tended this grove for generations, and their presence has blessed the land. Flowers bloom here in every season.",
+            "sector_type": "field",
+            "flags": [
+                "peaceful",
+                "no_mob"
+            ],
+            "exits": {
+                "north": {
+                    "to_room": 27004
+                },
+                "south": {
+                    "to_room": 27002
+                },
+                "west": {
+                    "to_room": 27006
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 27003,
+                    "max": 1
+                }
+            ]
+        },
+        "27004": {
+            "vnum": 27004,
+            "name": "The Moonlit Pool",
+            "description": "A crystal-clear pool reflects the sky above, seeming to glow with its own inner light even during the day. Silver fish dart beneath the surface, and white lilies float serenely. The water is said to have healing properties, blessed by the moon goddess herself.",
+            "sector_type": "water_swim",
+            "exits": {
+                "south": {
+                    "to_room": 27003
+                },
+                "west": {
+                    "to_room": 27007
+                }
+            }
+        },
+        "27005": {
+            "vnum": 27005,
+            "name": "Tangled Undergrowth",
+            "description": "The forest becomes denser here, with thorny brambles and twisted vines making passage difficult. Strange rustling sounds come from the undergrowth, and pairs of gleaming eyes watch from the shadows. This part of the forest feels wilder, less welcoming.",
+            "sector_type": "forest",
+            "exits": {
+                "north": {
+                    "to_room": 27006
+                },
+                "east": {
+                    "to_room": 27001
+                },
+                "west": {
+                    "to_room": 27015
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 27004,
+                    "max": 3
+                },
+                {
+                    "vnum": 27005,
+                    "max": 2
+                }
+            ]
+        },
+        "27006": {
+            "vnum": 27006,
+            "name": "A Mossy Clearing",
+            "description": "Thick green moss covers everything in this small clearing - the ground, the fallen logs, even the lower trunks of the surrounding trees. Mushrooms of every color grow in fairy rings, and the air smells of rich earth and growing things.",
+            "sector_type": "forest",
+            "exits": {
+                "north": {
+                    "to_room": 27007
+                },
+                "east": {
+                    "to_room": 27003
+                },
+                "south": {
+                    "to_room": 27005
+                },
+                "west": {
+                    "to_room": 27016
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 27006,
+                    "max": 2
+                }
+            ]
+        },
+        "27007": {
+            "vnum": 27007,
+            "name": "The Fairy Ring",
+            "description": "A perfect circle of red-capped mushrooms grows here, marking a place where the boundary between worlds grows thin. On moonlit nights, they say you can see the fey folk dancing here. Even now, motes of light drift lazily through the air, and distant music seems to play just at the edge of hearing.",
+            "sector_type": "forest",
+            "exits": {
+                "east": {
+                    "to_room": 27004
+                },
+                "south": {
+                    "to_room": 27006
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 27007,
+                    "max": 2
+                },
+                {
+                    "vnum": 27008,
+                    "max": 1
+                }
+            ]
+        },
+        "27010": {
+            "vnum": 27010,
+            "name": "Eastern Trail",
+            "description": "The path here is less traveled, marked only by the occasional deer track. Birdsong fills the air, and squirrels chatter angrily at intruders from the branches above. The forest feels peaceful here, untouched by darkness.",
+            "sector_type": "forest",
+            "exits": {
+                "north": {
+                    "to_room": 27011
+                },
+                "east": {
+                    "to_room": 27012
+                },
+                "west": {
+                    "to_room": 27001
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 27002,
+                    "max": 1
+                }
+            ]
+        },
+        "27011": {
+            "vnum": 27011,
+            "name": "Sunlit Glade",
+            "description": "A break in the canopy allows golden sunlight to pour into this clearing. Butterflies dance among the wildflowers, and a fallen log provides a natural bench. This would be a pleasant spot to rest, if not for the occasional howl echoing from the east.",
+            "sector_type": "field",
+            "exits": {
+                "north": {
+                    "to_room": 27013
+                },
+                "east": {
+                    "to_room": 27014
+                },
+                "south": {
+                    "to_room": 27010
+                },
+                "west": {
+                    "to_room": 27002
+                }
+            }
+        },
+        "27012": {
+            "vnum": 27012,
+            "name": "Rocky Outcropping",
+            "description": "Massive boulders jut from the forest floor here, remnants of some ancient geological upheaval. Caves and crevices riddle the rock face, providing homes for various creatures. Scratch marks on the stone suggest something large uses this area.",
+            "sector_type": "mountain",
+            "exits": {
+                "west": {
+                    "to_room": 27010
+                },
+                "cave": {
+                    "to_room": 27021,
+                    "description": "A dark cave entrance beckons."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 27009,
+                    "max": 1
+                }
+            ]
+        },
+        "27013": {
+            "vnum": 27013,
+            "name": "The Ancient Shrine",
+            "description": "Crumbling stone pillars mark the remains of a shrine to some forgotten deity. Vines have reclaimed much of the structure, but the altar at the center remains clear, as if the forest itself respects this holy place. Offerings of flowers and berries have been left here recently.",
+            "sector_type": "inside",
+            "exits": {
+                "south": {
+                    "to_room": 27011
+                }
+            },
+            "obj_resets": [
+                {
+                    "vnum": 27001,
+                    "max": 1
+                }
+            ]
+        },
+        "27014": {
+            "vnum": 27014,
+            "name": "The Corrupted Glade",
+            "description": "Something is terribly wrong here. The trees are blackened and twisted, their bark weeping dark sap. The grass has withered to grey ash, and a sickly purple mist clings to the ground. The source of the corruption seems to lie to the north.",
+            "sector_type": "forest",
+            "exits": {
+                "north": {
+                    "to_room": 27022
+                },
+                "west": {
+                    "to_room": 27011
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 27011,
+                    "max": 2
+                },
+                {
+                    "vnum": 27012,
+                    "max": 1
+                }
+            ]
+        },
+        "27015": {
+            "vnum": 27015,
+            "name": "Deep in the Brambles",
+            "description": "Thorny vines form an almost impenetrable wall here. Only a narrow path remains clear, seemingly maintained by the small creatures that call this area home. The thorns are razor-sharp and drip with a suspicious-looking fluid.",
+            "sector_type": "forest",
+            "exits": {
+                "east": {
+                    "to_room": 27005
+                },
+                "north": {
+                    "to_room": 27016
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 27004,
+                    "max": 2
+                },
+                {
+                    "vnum": 27013,
+                    "max": 1
+                }
+            ]
+        },
+        "27016": {
+            "vnum": 27016,
+            "name": "Thornvine Hollow",
+            "description": "The brambles have grown so thick here that they form a natural dome overhead. Within this thorny cathedral, surprisingly, there is a sense of safety. Small woodland creatures have made their homes in the walls of thorns, protected from larger predators.",
+            "sector_type": "forest",
+            "exits": {
+                "east": {
+                    "to_room": 27006
+                },
+                "south": {
+                    "to_room": 27015
+                },
+                "north": {
+                    "to_room": 27017
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 27006,
+                    "max": 1
+                }
+            ]
+        },
+        "27017": {
+            "vnum": 27017,
+            "name": "The Hunter's Camp",
+            "description": "An abandoned campsite lies here, though 'abandoned' may not be the right word - the fire pit still holds warm coals, and supplies are neatly arranged. Whoever camps here clearly knows the forest well. Animal pelts hang from a makeshift rack, and traps are piled nearby.",
+            "sector_type": "field",
+            "exits": {
+                "south": {
+                    "to_room": 27016
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 27014,
+                    "max": 1
+                }
+            ],
+            "obj_resets": [
+                {
+                    "vnum": 27002,
+                    "max": 1
+                }
+            ]
+        },
+        "27020": {
+            "vnum": 27020,
+            "name": "Inside the Elder Oak",
+            "description": "The hollow interior of the ancient oak is larger than it should be - magic has clearly been at work here. Shelves carved into the living wood hold dusty tomes and strange artifacts. A small bed of dried leaves and soft moss occupies one corner. This is clearly someone's home.",
+            "sector_type": "inside",
+            "exits": {
+                "out": {
+                    "to_room": 27002,
+                    "description": "The forest clearing outside."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 27010,
+                    "max": 1
+                }
+            ],
+            "obj_resets": []
+        },
+        "27021": {
+            "vnum": 27021,
+            "name": "Bear's Den",
+            "description": "This shallow cave reeks of animal musk. Bones are scattered across the floor - the remains of countless meals. Crude scratch marks on the walls mark this as the territory of something large and aggressive. Deep growling echoes from the darkness.",
+            "sector_type": "cave",
+            "exits": {
+                "out": {
+                    "to_room": 27012,
+                    "description": "Back to the rocky outcropping."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 27015,
+                    "max": 1
+                }
+            ]
+        },
+        "27022": {
+            "vnum": 27022,
+            "name": "The Heart of Corruption",
+            "description": "At the center of the blighted area stands a twisted altar of black stone, pulsing with malevolent energy. Dark tendrils spread from it into the earth, poisoning everything they touch. Something must have desecrated this once-sacred place. A powerful creature guards the altar, bound to protect it.",
+            "sector_type": "dungeon",
+            "exits": {
+                "south": {
+                    "to_room": 27014
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 27016,
+                    "max": 1
+                }
+            ],
+            "obj_resets": []
+        }
+    },
+    "mobs": {
+        "27001": {
+            "vnum": 27001,
+            "name": "a forest guardian",
+            "short_desc": "A forest guardian watches over the entrance.",
+            "long_desc": "This tall figure seems to be made of living wood and leaves, with glowing green eyes that observe all who enter the forest.",
+            "level": 28,
+            "hp": 350,
+            "damage": "3d8+5",
+            "armor": 3,
+            "gold": 50,
+            "exp": 1200,
+            "alignment": 500,
+            "hostile": false,
+            "flags": [
+                "sentinel",
+                "helper"
+            ],
+            "ai_type": "guardian"
+        },
+        "27002": {
+            "vnum": 27002,
+            "name": "a woodland deer",
+            "short_desc": "A graceful deer grazes peacefully.",
+            "long_desc": "This beautiful deer has a coat of dappled brown and white. It watches you with large, gentle eyes.",
+            "level": 12,
+            "hp": 80,
+            "damage": "1d6+1",
+            "armor": 1,
+            "gold": 0,
+            "exp": 150,
+            "alignment": 100,
+            "hostile": false,
+            "flags": [
+                "wimpy"
+            ]
+        },
+        "27003": {
+            "vnum": 27003,
+            "name": "an ancient druid",
+            "short_desc": "An ancient druid tends the sacred grove.",
+            "long_desc": "This elderly man wears robes of green and brown, blending perfectly with the forest. His eyes hold centuries of wisdom.",
+            "level": 35,
+            "hp": 500,
+            "damage": "4d6+8",
+            "armor": 4,
+            "gold": 200,
+            "exp": 3500,
+            "alignment": 1000,
+            "hostile": false,
+            "flags": [
+                "sentinel",
+                "helper",
+                "memory"
+            ],
+            "ai_type": "caster",
+            "special": "shopkeeper"
+        },
+        "27004": {
+            "vnum": 27004,
+            "name": "a giant spider",
+            "short_desc": "A giant spider lurks in the shadows.",
+            "long_desc": "This massive arachnid is the size of a large dog, with venom dripping from its fangs.",
+            "level": 26,
+            "hp": 280,
+            "damage": "2d8+4",
+            "armor": 2,
+            "gold": 30,
+            "exp": 900,
+            "alignment": -200,
+            "hostile": true,
+            "flags": [
+                "aggressive"
+            ],
+            "ai_type": "ambusher"
+        },
+        "27005": {
+            "vnum": 27005,
+            "name": "a thornvine creeper",
+            "short_desc": "A thornvine creeper slithers through the brush.",
+            "long_desc": "This animated mass of thorny vines moves with sinister purpose, leaving scratches on everything it passes.",
+            "level": 28,
+            "hp": 320,
+            "damage": "3d6+5",
+            "armor": 3,
+            "gold": 0,
+            "exp": 1100,
+            "alignment": -100,
+            "hostile": true,
+            "flags": [
+                "aggressive"
+            ]
+        },
+        "27006": {
+            "vnum": 27006,
+            "name": "a pixie",
+            "short_desc": "A tiny pixie flutters about mischievously.",
+            "long_desc": "This tiny winged creature glows with soft light. It giggles at your presence, clearly planning some prank.",
+            "level": 20,
+            "hp": 100,
+            "damage": "2d4+2",
+            "armor": 1,
+            "gold": 15,
+            "exp": 400,
+            "alignment": 200,
+            "hostile": false,
+            "flags": [
+                "wimpy"
+            ],
+            "ai_type": "caster"
+        },
+        "27007": {
+            "vnum": 27007,
+            "name": "a woodland sprite",
+            "short_desc": "A woodland sprite dances among the mushrooms.",
+            "long_desc": "This ethereal being seems to be made of moonlight and flower petals. It regards you with curious silver eyes.",
+            "level": 25,
+            "hp": 200,
+            "damage": "2d6+3",
+            "armor": 2,
+            "gold": 100,
+            "exp": 800,
+            "alignment": 500,
+            "hostile": false,
+            "flags": [
+                "memory"
+            ],
+            "ai_type": "caster"
+        },
+        "27008": {
+            "vnum": 27008,
+            "name": "a fey noble",
+            "short_desc": "A regal fey noble observes you imperiously.",
+            "long_desc": "Tall and impossibly beautiful, this fey creature wears robes of woven starlight. Power radiates from them.",
+            "level": 38,
+            "hp": 600,
+            "damage": "4d8+10",
+            "armor": 5,
+            "gold": 500,
+            "exp": 5000,
+            "alignment": 300,
+            "hostile": false,
+            "flags": [
+                "sentinel",
+                "memory"
+            ],
+            "ai_type": "caster"
+        },
+        "27009": {
+            "vnum": 27009,
+            "name": "a dire wolf",
+            "short_desc": "A massive dire wolf snarls at you.",
+            "long_desc": "This wolf is twice the size of a normal one, with matted grey fur and burning yellow eyes. Saliva drips from its fangs.",
+            "level": 30,
+            "hp": 400,
+            "damage": "3d8+6",
+            "armor": 3,
+            "gold": 0,
+            "exp": 1500,
+            "alignment": -300,
+            "hostile": true,
+            "flags": [
+                "aggressive"
+            ],
+            "ai_type": "pack_hunter"
+        },
+        "27010": {
+            "vnum": 27010,
+            "name": "the Oakfather",
+            "short_desc": "The ancient Oakfather dwells within his tree.",
+            "long_desc": "This being appears to be the spirit of the great oak itself - a wizened face formed of bark, with moss for hair and acorns for eyes. He is ancient beyond measure.",
+            "level": 40,
+            "hp": 800,
+            "damage": "5d6+10",
+            "armor": 5,
+            "gold": 1000,
+            "exp": 8000,
+            "alignment": 1000,
+            "hostile": false,
+            "flags": [
+                "sentinel",
+                "memory",
+                "boss"
+            ],
+            "ai_type": "caster",
+            "special": "shopkeeper",
+            "boss_loot_table": [
+                {
+                    "vnum": 27003,
+                    "chance": 100
+                }
+            ]
+        },
+        "27011": {
+            "vnum": 27011,
+            "name": "a blighted treant",
+            "short_desc": "A corrupted treant shambles about, moaning.",
+            "long_desc": "Once a noble guardian of the forest, this treant has been twisted by dark magic. Black sap oozes from cracks in its bark.",
+            "level": 32,
+            "hp": 450,
+            "damage": "3d10+7",
+            "armor": 4,
+            "gold": 0,
+            "exp": 2000,
+            "alignment": -500,
+            "hostile": true,
+            "flags": [
+                "aggressive"
+            ]
+        },
+        "27012": {
+            "vnum": 27012,
+            "name": "a shadow beast",
+            "short_desc": "A shadow beast prowls through the corruption.",
+            "long_desc": "This creature seems to be made of living darkness, with only two burning red eyes visible in its shifting form.",
+            "level": 34,
+            "hp": 380,
+            "damage": "4d6+8",
+            "armor": 3,
+            "gold": 80,
+            "exp": 2500,
+            "alignment": -700,
+            "hostile": true,
+            "flags": [
+                "aggressive"
+            ],
+            "ai_type": "ambusher"
+        },
+        "27013": {
+            "vnum": 27013,
+            "name": "a venomous thornback",
+            "short_desc": "A venomous thornback hisses at you.",
+            "long_desc": "This reptilian creature is covered in razor-sharp thorns. Venom glistens on each spine.",
+            "level": 29,
+            "hp": 300,
+            "damage": "2d8+5",
+            "armor": 4,
+            "gold": 40,
+            "exp": 1300,
+            "alignment": -200,
+            "hostile": true,
+            "flags": [
+                "aggressive"
+            ]
+        },
+        "27014": {
+            "vnum": 27014,
+            "name": "Theron the Hunter",
+            "short_desc": "Theron the Hunter sharpens his knife.",
+            "long_desc": "This grizzled woodsman has lived in the forest for decades. Scars cross his weathered face, and his eyes miss nothing.",
+            "level": 35,
+            "hp": 550,
+            "damage": "3d8+8",
+            "armor": 4,
+            "gold": 300,
+            "exp": 3000,
+            "alignment": 200,
+            "hostile": false,
+            "flags": [
+                "sentinel",
+                "memory",
+                "helper"
+            ],
+            "ai_type": "ranger"
+        },
+        "27015": {
+            "vnum": 27015,
+            "name": "Grimclaw the Great Bear",
+            "short_desc": "Grimclaw the Great Bear rises to challenge you!",
+            "long_desc": "This enormous bear stands twelve feet tall on its hind legs. Scars crisscross its brown fur, testament to countless battles won.",
+            "level": 36,
+            "hp": 700,
+            "damage": "4d10+12",
+            "armor": 4,
+            "gold": 0,
+            "exp": 5500,
+            "alignment": -100,
+            "hostile": true,
+            "flags": [
+                "aggressive",
+                "boss",
+                "stay_zone"
+            ]
+        },
+        "27016": {
+            "vnum": 27016,
+            "name": "the Blightlord",
+            "short_desc": "The Blightlord guards the corrupted altar.",
+            "long_desc": "Once a powerful druid, this being has been consumed by dark magic. Writhing shadows swirl around its gaunt form, and its eyes burn with unholy fire. It is the source of the corruption spreading through the forest.",
+            "level": 40,
+            "hp": 1000,
+            "damage": "5d8+15",
+            "armor": 5,
+            "gold": 800,
+            "exp": 12000,
+            "alignment": -1000,
+            "hostile": true,
+            "flags": [
+                "aggressive",
+                "boss",
+                "sentinel",
+                "memory"
+            ],
+            "ai_type": "caster",
+            "boss_loot_table": [
+                {
+                    "vnum": 27004,
+                    "chance": 100
+                }
+            ]
+        }
+    },
+    "objects": {
+        "27001": {
+            "vnum": 27001,
+            "name": "a faded prayer scroll",
+            "short_desc": "A faded prayer scroll lies on the altar.",
+            "long_desc": "This ancient scroll contains prayers to a forgotten nature deity.",
+            "item_type": "scroll",
+            "level": 30,
+            "weight": 1,
+            "cost": 500
+        },
+        "27002": {
+            "vnum": 27002,
+            "name": "a hunter's skinning knife",
+            "short_desc": "A well-worn skinning knife rests here.",
+            "long_desc": "This knife has been sharpened countless times and is still razor-sharp.",
+            "item_type": "weapon",
+            "level": 32,
+            "weight": 2,
+            "cost": 800,
+            "damage": "2d6+4",
+            "weapon_type": "dagger"
+        },
+        "27003": {
+            "vnum": 27003,
+            "name": "a tome of forest lore",
+            "short_desc": "An ancient tome sits on a wooden shelf.",
+            "long_desc": "This book contains centuries of accumulated knowledge about the Whispering Woods.",
+            "item_type": "scroll",
+            "level": 35,
+            "weight": 3,
+            "cost": 2000
+        },
+        "27004": {
+            "vnum": 27004,
+            "name": "the Blightstone Amulet",
+            "short_desc": "A dark amulet pulses with corruption.",
+            "long_desc": "This black stone amulet radiates palpable evil. It is the focus of the corruption.",
+            "item_type": "armor",
+            "wear_flags": [
+                "neck"
+            ],
+            "level": 40,
+            "weight": 1,
+            "cost": 5000,
+            "armor": 3,
+            "affects": [
+                {
+                    "type": "hitroll",
+                    "value": 5
+                },
+                {
+                    "type": "damroll",
+                    "value": 5
+                },
+                {
+                    "type": "hp",
+                    "value": 50
+                }
+            ]
+        }
+    }
+}

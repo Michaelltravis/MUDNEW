@@ -1,2630 +1,2629 @@
 {
-  "number": 52,
-  "name": "The City Of Thalos",
-  "lifespan": 15,
-  "rooms": {
-    "5200": {
-      "vnum": 5200,
-      "name": "The Grand Gate Of Thalos",
-      "description": "The area opens in the archway of a gigantic stone archway. The two steel\ngates have been forced open and have rusted in place. A hollow gust of\nwind blows by you into the deserted, and seemingly destroyed, city. The\ncobblestones are worn smooth by countless feet. Buildings crowd together\non all sides.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 5044,
-          "description": "The desert sands stretch on for miles and miles."
+    "number": 52,
+    "name": "The City Of Thalos",
+    "lifespan": 15,
+    "rooms": {
+        "5200": {
+            "vnum": 5200,
+            "name": "The Grand Gate Of Thalos",
+            "description": "The area opens in the archway of a gigantic stone archway. The two steel\ngates have been forced open and have rusted in place. A hollow gust of\nwind blows by you into the deserted, and seemingly destroyed, city. The\ncobblestones are worn smooth by countless feet. Buildings crowd together\non all sides.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "east": {
+                    "to_room": 5044,
+                    "description": "The desert sands stretch on for miles and miles."
+                },
+                "west": {
+                    "to_room": 5201,
+                    "description": "You see devastation everywhere.  Houses lie in ruin and skeletons litter the streets.  You see strange beasts stalking the shadows."
+                }
+            },
+            "obj_resets": [
+                {
+                    "vnum": 5295,
+                    "max": 1
+                }
+            ]
         },
-        "west": {
-          "to_room": 5201,
-          "description": "You see devastation everywhere.  Houses lie in ruin and skeletons litter the streets.  You see strange beasts stalking the shadows."
+        "5201": {
+            "vnum": 5201,
+            "name": "Main Street",
+            "description": "This was once a magnificent street, but now is in total ruin. The\nstreets are barren and windswept and the silence is unending. To the\nsouth you see a ruined cottage while north leads into a dark back alley.\nHowls and screams echo through the deserted city. Vendors and\npedestrians bustle past. The smell of smoke and humanity hangs in the\nair.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5239,
+                    "description": "It seems to be a dark alley."
+                },
+                "east": {
+                    "to_room": 5200,
+                    "description": "The entrance to the city lies this way."
+                },
+                "south": {
+                    "to_room": 5235,
+                    "description": "A ruined shack lies to the south."
+                },
+                "west": {
+                    "to_room": 5202,
+                    "description": "Main Street lies this way."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5298,
+                    "max": 1
+                }
+            ]
+        },
+        "5202": {
+            "vnum": 5202,
+            "name": "Main Street",
+            "description": "This was once a magnificent street, but now is in total ruin. The\nstreets are barren and windswept and the silence is unending. On one\nside is a collapsed house while on the other is the entrance to a large\nruined mansion. Eerie sounds echo within the mansion. Near the center of\ntown you see a large domed building, relatively intact. The sounds of\ncity life echo around. The smell of smoke and humanity hangs in the\nair.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5236,
+                    "description": "The remnants of a store lie this way."
+                },
+                "east": {
+                    "to_room": 5201,
+                    "description": "The cobblestones lead to Main Street"
+                },
+                "south": {
+                    "to_room": 5232,
+                    "description": "It looks like what used to be the main building in the city."
+                },
+                "west": {
+                    "to_room": 5203,
+                    "description": "A withered garden path lies this way."
+                }
+            },
+            "obj_resets": [
+                {
+                    "vnum": 5230,
+                    "max": 1
+                }
+            ]
+        },
+        "5203": {
+            "vnum": 5203,
+            "name": "A Garden Path",
+            "description": "A circular path surrounds a magnificent domed temple in the center of\nthe city. Flowers have withered away and the once lush trees are bare.\nVines and ivy snake up the sides of the temple and entangle themselves\naround your feet. A sudden volley of howls pierces the air. The smell of\nsmoke and humanity hangs in the air. The sounds of city life echo around\nyou.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5204,
+                    "description": "The garden path continues around the building."
+                },
+                "east": {
+                    "to_room": 5202,
+                    "description": "This is the main street leading to the city's entrance."
+                },
+                "south": {
+                    "to_room": 5206,
+                    "description": "The garden path continues around the building."
+                },
+                "west": {
+                    "to_room": 5250,
+                    "description": "Inside the temple, small patches of light shoot through each doorway as well as a few holes in the ceiling."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5201,
+                    "max": 25
+                }
+            ]
+        },
+        "5204": {
+            "vnum": 5204,
+            "name": "A Garden Path",
+            "description": "A circular path surrounds a magnificent domed temple in the center of\nthe city. Flowers have withered away and the once lush trees are bare.\nVines and ivy snake up the sides of the temple and entangle themselves\naround your feet. The sounds of city life echo around. The smell of\nsmoke and humanity hangs in the air.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5211,
+                    "description": "A side street leads of to the northern half of the city."
+                },
+                "east": {
+                    "to_room": 5203,
+                    "description": "The garden path continues around the building."
+                },
+                "south": {
+                    "to_room": 5250,
+                    "description": "Inside the temple, small patches of light shoot through each doorway as well as a few holes in the ceiling."
+                },
+                "west": {
+                    "to_room": 5205,
+                    "description": "The garden path continues around the building."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5201,
+                    "max": 25
+                }
+            ]
+        },
+        "5205": {
+            "vnum": 5205,
+            "name": "A Garden Path",
+            "description": "A circular path surrounds a magnificent domed temple in the center of\nthe city. Flowers have withered away and the once lush trees are bare.\nVines and ivy creep up the sides of the temple and entangle themselves\naround your feet. Buildings crowd together on all sides. The\ncobblestones are worn smooth by countless feet.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5204,
+                    "description": "The garden path continues around the building."
+                },
+                "east": {
+                    "to_room": 5250,
+                    "description": "Inside the temple, small patches of light shoot through each doorway as well as a few cracks in the ceiling."
+                },
+                "south": {
+                    "to_room": 5206,
+                    "description": "The garden path continues around the building."
+                },
+                "west": {
+                    "to_room": 5207,
+                    "description": "What looks like a market place lies this way."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5209,
+                    "max": 25
+                }
+            ],
+            "obj_resets": [
+                {
+                    "vnum": 5231,
+                    "max": 1
+                }
+            ]
+        },
+        "5206": {
+            "vnum": 5206,
+            "name": "A Garden Path",
+            "description": "A circular path surrounds a magnificent domed temple in the center of\nthe city. Flowers have withered away and the once lush trees are bare.\nVines and ivy creep up the sides of the temple and entangle themselves\naround your feet. The cobblestones are worn smooth by countless feet.\nBuildings crowd together on all sides.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5250,
+                    "description": "Inside the temple, small patches of light shoot through each doorway as well as a few cracks in the ceiling."
+                },
+                "east": {
+                    "to_room": 5203,
+                    "description": "The garden path continues around the building."
+                },
+                "south": {
+                    "to_room": 5212,
+                    "description": "A small side street leads to the southern half of the city."
+                },
+                "west": {
+                    "to_room": 5205,
+                    "description": "The garden path continues around the building."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5201,
+                    "max": 25
+                }
+            ]
+        },
+        "5207": {
+            "vnum": 5207,
+            "name": "The Market Place",
+            "description": "The area opens in the middle of a large square lined on each side with\nbaskets, carts, and stands of all shapes and sizes. Abandoned, these\nlittle shops still contain some of their goods once sold to a demanding\npublic. The sounds of city life echo around. The smell of smoke and\nhumanity hangs in the air.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5225,
+                    "description": "A small table has been toppled over, spilling fine jewellery and gems onto the ground."
+                },
+                "east": {
+                    "to_room": 5205,
+                    "description": "A small garden path encircles a large domed temple in the center of the  city."
+                },
+                "south": {
+                    "to_room": 5220,
+                    "description": "Rotted remains of fruits and vegetables lie strewn about."
+                },
+                "west": {
+                    "to_room": 5208,
+                    "description": "The market place continues."
+                }
+            }
+        },
+        "5208": {
+            "vnum": 5208,
+            "name": "The Market Place",
+            "description": "The area opens at the end of the market square. Stands and carts line\neach side, filled with remnants of fine foods and exquisite goods.\nVendors and pedestrians bustle past. The smell of smoke and humanity\nhangs in the air.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5222,
+                    "description": "Tattered carpets and ruined bales of silk sit idly by a run down stand."
+                },
+                "east": {
+                    "to_room": 5207,
+                    "description": "The center of the market lies this way."
+                },
+                "south": {
+                    "to_room": 5217,
+                    "description": "From the massive stench, this must have been a meat and poultry stand. It lies totally bare."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5201,
+                    "max": 25
+                }
+            ],
+            "obj_resets": [
+                {
+                    "vnum": 5232,
+                    "max": 1
+                }
+            ]
+        },
+        "5209": {
+            "vnum": 5209,
+            "name": "A Side Street",
+            "description": "This small side street leads east and west into back alleys while to the\nsouth you see the temple. The incessant howling tears at your mind. The\nsounds of city life echo around. Vendors and pedestrians bustle\npast.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "east": {
+                    "to_room": 5243,
+                    "description": "The cobblestones lead to A Back Alley"
+                },
+                "south": {
+                    "to_room": 5210,
+                    "description": "The cobblestones lead to A Side Street"
+                },
+                "west": {
+                    "to_room": 5228,
+                    "description": "The cobblestones lead to A Back Alley"
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5209,
+                    "max": 25
+                }
+            ]
+        },
+        "5210": {
+            "vnum": 5210,
+            "name": "A Side Street",
+            "description": "This is the common section of the city. Ruined buildings made of clay\nand stone is all the view has to offer. Most of these homes are nothing\nbut piles of rubble, but some look almost safe enough to venture into.\nThe street continues north and south and buildings line the street. The\ncobblestones are worn smooth by countless feet. The smell of smoke and\nhumanity hangs in the air.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5209,
+                    "description": "The cobblestones lead to A Side Street"
+                },
+                "east": {
+                    "to_room": 5244,
+                    "description": "A small doorway leads into a partially collapsed house.",
+                    "door": {
+                        "name": "east door",
+                        "state": "closed",
+                        "locked": false,
+                        "key_vnum": null
+                    }
+                },
+                "south": {
+                    "to_room": 5211,
+                    "description": "The cobblestones lead to A Side Street"
+                },
+                "west": {
+                    "to_room": 5226,
+                    "description": "A small clay dwelling sits here."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5299,
+                    "max": 1
+                }
+            ]
+        },
+        "5211": {
+            "vnum": 5211,
+            "name": "A Side Street",
+            "description": "This small side street leads away from the garden path to the south.\naround stand large piles or rubble where the houses of commoners\nused to be. A lone howl makes you worry greatly about your safety here.\nThe cobblestones are worn smooth by countless feet. The smell of smoke\nand humanity hangs in the air.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5210,
+                    "description": "The cobblestones lead to A Side Street"
+                },
+                "east": {
+                    "to_room": 5237,
+                    "description": "An unusually tall dwelling stands looming over you."
+                },
+                "south": {
+                    "to_room": 5204,
+                    "description": "A garden path circles around the temple."
+                },
+                "west": {
+                    "to_room": 5227,
+                    "description": "Here lies a small stone house with a thatched roof."
+                }
+            },
+            "obj_resets": [
+                {
+                    "vnum": 5233,
+                    "max": 1
+                }
+            ]
+        },
+        "5212": {
+            "vnum": 5212,
+            "name": "A Side Street",
+            "description": "This small side street leads south away from the temple into the\nbusiness section of town. The destruction that leveled this city was not\nbiased; these important looking buildings have been almost totally\ndestroyed. There is a hole in the wall of a very large structure to the\neast. The sounds of city life echo around. Vendors and pedestrians\nbustle past.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5206,
+                    "description": "A small garden path encircles the temple."
+                },
+                "east": {
+                    "to_room": 5232,
+                    "description": "This possibly could be the city hall."
+                },
+                "south": {
+                    "to_room": 5213,
+                    "description": "The cobblestones lead to A Side Street"
+                },
+                "west": {
+                    "to_room": 5221,
+                    "description": "Inside the building you see long pieces of metal, an oven, and some anvils."
+                }
+            }
+        },
+        "5213": {
+            "vnum": 5213,
+            "name": "A Side Street",
+            "description": "This small side street is lined with the remains of once great\nbuildings. To the west is a dark, foreboding structure while to the east\nlies the entrance to a small tavern. The street continues north and\nsouth. Buildings crowd together on all sides. The cobblestones are worn\nsmooth by countless feet.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5212,
+                    "description": "The cobblestones lead to A Side Street"
+                },
+                "east": {
+                    "to_room": 5230,
+                    "description": "From the looks of it, this was once a two story abode.  The entire second floor has collapsed leaving a very little part of the bar still free from debris."
+                },
+                "south": {
+                    "to_room": 5214,
+                    "description": "The cobblestones lead to A Side Street"
+                },
+                "west": {
+                    "to_room": 5219,
+                    "description": "This seems to be the only guild house in the entire city.  Its dark nature makes you wonder about its origins."
+                }
+            }
+        },
+        "5214": {
+            "vnum": 5214,
+            "name": "A Side Street",
+            "description": "This is the end of a long street leading to the center of the city. A\nlong dark alley runs east and west. The sounds of city life echo around\nyou. The cobblestones are worn smooth by countless feet.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5213,
+                    "description": "The cobblestones lead to A Side Street"
+                },
+                "east": {
+                    "to_room": 5229,
+                    "description": "The cobblestones lead to An Abandoned Shop"
+                },
+                "west": {
+                    "to_room": 5218,
+                    "description": "The cobblestones lead to A Back Alley"
+                }
+            },
+            "obj_resets": [
+                {
+                    "vnum": 5234,
+                    "max": 1
+                }
+            ]
+        },
+        "5215": {
+            "vnum": 5215,
+            "name": "Under A Ruined Watchtower",
+            "description": "The area opens at the base of a tall watchtower built to protect the\ncity from invaders. From the looks of things, it did not do a good job.\nThe cobblestones are worn smooth by countless feet. The sounds of city\nlife echo around.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5216,
+                    "description": "The cobblestones lead to A Back Alley"
+                },
+                "east": {
+                    "to_room": 5218,
+                    "description": "The cobblestones lead to A Back Alley"
+                },
+                "up": {
+                    "to_room": 5247,
+                    "description": "The cobblestones lead to The South-West Watchtower"
+                }
+            }
+        },
+        "5216": {
+            "vnum": 5216,
+            "name": "A Back Alley",
+            "description": "This alley leads to the rear of what used to be a meat stand. You wince\nat the stench. South is one of the city watchtowers. Vendors and\npedestrians bustle past. The smell of smoke and humanity hangs in the\nair.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5217,
+                    "description": "You see the back-side of the market place meat stand."
+                },
+                "south": {
+                    "to_room": 5215,
+                    "description": "A tall watchtower stands a silent vigil over the city."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5209,
+                    "max": 25
+                }
+            ]
+        },
+        "5217": {
+            "vnum": 5217,
+            "name": "The Meat Stand",
+            "description": "A large stand has been set up here with metal hooks and wooden racks in\nthe background. Hanging on the hooks are very small scraps of meat and\nother game. This stand is relatively empty, and a sudden burst of\nhowling and screaming makes you realize why this is so. Buildings crowd\ntogether on all sides. The cobblestones are worn smooth by countless\nfeet.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5208,
+                    "description": "The market place lies this way."
+                },
+                "east": {
+                    "to_room": 5220,
+                    "description": "This is a cart full of rotted vegetables and fruits."
+                },
+                "south": {
+                    "to_room": 5216,
+                    "description": "The cobblestones lead to A Back Alley"
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5207,
+                    "max": 4
+                }
+            ],
+            "obj_resets": [
+                {
+                    "vnum": 5219,
+                    "max": 5
+                },
+                {
+                    "vnum": 5235,
+                    "max": 1
+                }
+            ]
+        },
+        "5218": {
+            "vnum": 5218,
+            "name": "A Back Alley",
+            "description": "A narrow alley leads east to a wider street and west to one of the city\nwatchtowers. The smell of smoke and humanity hangs in the air. The\nsounds of city life echo around.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "east": {
+                    "to_room": 5214,
+                    "description": "A small side street greets you."
+                },
+                "west": {
+                    "to_room": 5215,
+                    "description": "A tall watchtower stands a silent vigil over the city."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5201,
+                    "max": 25
+                }
+            ]
+        },
+        "5219": {
+            "vnum": 5219,
+            "name": "The Guild House",
+            "description": "This is what once was this city's ONLY guild house. Tables and chairs\nhave been smashed and broken weapons lie strewn about the floor as if\nsome massive battle had taken place here. Draped along the back wall is\na tattered, jet-black banner with the symbol of the Darkside set upon\nit. Vendors and pedestrians bustle past. The smell of smoke and humanity\nhangs in the air.",
+            "sector_type": "city",
+            "flags": [
+                "indoors"
+            ],
+            "exits": {
+                "east": {
+                    "to_room": 5213,
+                    "description": "A small side street runs past the building."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5201,
+                    "max": 25
+                },
+                {
+                    "vnum": 5204,
+                    "max": 1
+                }
+            ]
+        },
+        "5220": {
+            "vnum": 5220,
+            "name": "The Produce Stand",
+            "description": "A large cart sits here carrying rotted fruit and vegetables. Flies swarm\nall about what seems to be the last remaining bits of food left in the\ncity. Vendors and pedestrians bustle past. The cobblestones are worn\nsmooth by countless feet.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5207,
+                    "description": "The market place is deserted."
+                },
+                "west": {
+                    "to_room": 5217,
+                    "description": "A strong stench emanates from the meat stand next to you."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5201,
+                    "max": 25
+                }
+            ],
+            "obj_resets": [
+                {
+                    "vnum": 5236,
+                    "max": 1
+                }
+            ]
+        },
+        "5221": {
+            "vnum": 5221,
+            "name": "The Smithy",
+            "description": "In here you find tools and anvils used to make various weapons and\nitems. The walls have been stripped clean and only a few incomplete\npieces of armor and weaponry are left. The sounds of city life echo\naround. The cobblestones are worn smooth by countless feet.",
+            "sector_type": "city",
+            "flags": [
+                "indoors"
+            ],
+            "exits": {
+                "east": {
+                    "to_room": 5212,
+                    "description": "A small side street runs past the building."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5209,
+                    "max": 25
+                }
+            ]
+        },
+        "5222": {
+            "vnum": 5222,
+            "name": "The Tapestry Stand",
+            "description": "Tattered and torn tapestries and rugs lie heaped in piles. Fancy robes\nand various articles of clothing are now just rags. You stare at the\nstrange piles for a long time until a piercing howl makes you think\nthese might be beds. The cobblestones are worn smooth by countless feet.\nVendors and pedestrians bustle past.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5223,
+                    "description": "The cobblestones lead to A Back Alley"
+                },
+                "east": {
+                    "to_room": 5225,
+                    "description": "A fine jewellery stand lies in ruin next to you."
+                },
+                "south": {
+                    "to_room": 5208,
+                    "description": "The market place is deserted."
+                }
+            }
+        },
+        "5223": {
+            "vnum": 5223,
+            "name": "A Back Alley",
+            "description": "A narrow alley leads north to one of the city watchtowers while to the\nsouth there lies a market stand full of torn clothes and rugs. Vendors\nand pedestrians bustle past. The smell of smoke and humanity hangs in\nthe air.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5224,
+                    "description": "A tall watchtower stands a silent vigil over the city."
+                },
+                "south": {
+                    "to_room": 5222,
+                    "description": "The cobblestones lead to The Tapestry Stand"
+                }
+            }
+        },
+        "5224": {
+            "vnum": 5224,
+            "name": "Under The Watchtower",
+            "description": "The area opens under one of the city watchtowers built to protect the\ncity from invaders. Obviously, it failed. Vendors and pedestrians bustle\npast. The smell of smoke and humanity hangs in the air.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "east": {
+                    "to_room": 5228,
+                    "description": "The cobblestones lead to A Back Alley"
+                },
+                "south": {
+                    "to_room": 5223,
+                    "description": "The cobblestones lead to A Back Alley"
+                },
+                "up": {
+                    "to_room": 5246,
+                    "description": "Above you looms a tall watchtower."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5209,
+                    "max": 25
+                }
+            ],
+            "obj_resets": [
+                {
+                    "vnum": 5237,
+                    "max": 1
+                }
+            ]
+        },
+        "5225": {
+            "vnum": 5225,
+            "name": "The Jewellery Stand",
+            "description": "A table has been tipped over, spilling fine jewellery and gems across\nthe market place. Most of these trinkets are battered and tarnished and\nfew would have any value anymore. The cobblestones are worn smooth by\ncountless feet. Vendors and pedestrians bustle past.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "south": {
+                    "to_room": 5207,
+                    "description": "The market place is deserted."
+                },
+                "west": {
+                    "to_room": 5222,
+                    "description": "Next to you is a stand full of ruined clothes and rugs."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5201,
+                    "max": 25
+                }
+            ]
+        },
+        "5226": {
+            "vnum": 5226,
+            "name": "A Ruined Clay Dwelling",
+            "description": "This was once a very plain house with nothing more than a few chairs and\na bed. A cold fireplace suggests that the city has been abandoned for\nquite a while. Almost nothing remains of this humble abode. The\ncobblestones are worn smooth by countless feet. Vendors and pedestrians\nbustle past.",
+            "sector_type": "city",
+            "flags": [
+                "indoors"
+            ],
+            "exits": {
+                "east": {
+                    "to_room": 5210,
+                    "description": "Outside is a small side street."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5201,
+                    "max": 25
+                },
+                {
+                    "vnum": 5203,
+                    "max": 1
+                }
+            ]
+        },
+        "5227": {
+            "vnum": 5227,
+            "name": "A Collapsed Stone Dwelling",
+            "description": "This small house has completely collapsed upon itself leaving piles of\ndebris here and there. A few rafters still stand with thatched straw\nhanging down and a hot wind gusts through the hollow dwelling. The\nsounds of city life echo around. The smell of smoke and humanity\nhangs in the air.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "east": {
+                    "to_room": 5211,
+                    "description": "A small side street runs past the house."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5207,
+                    "max": 4
+                }
+            ],
+            "obj_resets": [
+                {
+                    "vnum": 5238,
+                    "max": 1
+                }
+            ]
+        },
+        "5228": {
+            "vnum": 5228,
+            "name": "A Back Alley",
+            "description": "A narrow alley leads west to one of the city watchtowers and east to a\nsmall side street. The smell of smoke and humanity hangs in the air.\nBuildings crowd together on all sides.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "east": {
+                    "to_room": 5209,
+                    "description": "The cobblestones lead to A Side Street"
+                },
+                "west": {
+                    "to_room": 5224,
+                    "description": "The cobblestones lead to Under The Watchtower"
+                }
+            }
+        },
+        "5229": {
+            "vnum": 5229,
+            "name": "An Abandoned Shop",
+            "description": "From the outside this place looks like an ordinary pile of rubble, but\ninside these cramped quarters you discover what used to be a shop filled\nwith armor, weapons, and various other goods. A small sign flutters in\nthe wind. The smell of smoke and humanity hangs in the air. The\ncobblestones are worn smooth by countless feet.",
+            "sector_type": "city",
+            "flags": [
+                "indoors"
+            ],
+            "exits": {
+                "west": {
+                    "to_room": 5214,
+                    "description": "A small side street runs past the shop."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5209,
+                    "max": 25
+                },
+                {
+                    "vnum": 5202,
+                    "max": 1
+                }
+            ],
+            "obj_resets": [
+                {
+                    "vnum": 5207,
+                    "max": 5
+                }
+            ]
+        },
+        "5230": {
+            "vnum": 5230,
+            "name": "The Tavern Of The Sun",
+            "description": "A glorious place in its prime, this tavern now lies in ruin; tables and\nchairs are broken scattered, bottles and glasses shattered, and a small\nperformance stage crushed. Musical instruments and personal belongings\nlie under the rubble, but the people they once belonged to are not with\nthem. Looking up you see that the entire second floor and roof has\nfallen in, leaving a gaping hole above. The smell of smoke and humanity\nhangs in the air. The sounds of city life echo around.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "west": {
+                    "to_room": 5213,
+                    "description": "A small side street runs past the tavern."
+                }
+            },
+            "obj_resets": [
+                {
+                    "vnum": 5250,
+                    "max": 2
+                },
+                {
+                    "vnum": 5251,
+                    "max": 2
+                },
+                {
+                    "vnum": 5239,
+                    "max": 1
+                }
+            ]
+        },
+        "5231": {
+            "vnum": 5231,
+            "name": "The South Wing Of The City Hall",
+            "description": "The area opens in a large room attached to this end of the hallway which\nleads back north to the reception area. Pedestals and columns have\nfallen and most of the valuable items have been taken, leaving worthless\ndebris. A few chairs have survived, as well as a large curved desk. To\nthe east is a vine-covered archway leading out into a private courtyard.\nBuildings crowd together on all sides. The sounds of city life echo\naround.",
+            "sector_type": "city",
+            "flags": [
+                "indoors"
+            ],
+            "exits": {
+                "north": {
+                    "to_room": 5232,
+                    "description": "The long hallway leads back to the main reception area of the city hall."
+                },
+                "east": {
+                    "to_room": 5234,
+                    "description": "The Private Gardens And Courtyard Of Thalos"
+                }
+            },
+            "obj_resets": [
+                {
+                    "vnum": 5225,
+                    "max": 1
+                }
+            ]
+        },
+        "5232": {
+            "vnum": 5232,
+            "name": "The City Hall",
+            "description": "This is the main reception area of Thalos' city hall. The walls have\nbeen charred and scored massively and debris is spread from wall to\nwall. A large gaping hole in the west wall allows you to see out to one\nof the city's side streets. Obviously no one will be seeing you through\ntoday. Hallways lead south and east. Buildings crowd together on all\nsides. The cobblestones are worn smooth by countless feet.",
+            "sector_type": "city",
+            "flags": [
+                "indoors"
+            ],
+            "exits": {
+                "north": {
+                    "to_room": 5202,
+                    "description": "Main street runs past the city hall."
+                },
+                "east": {
+                    "to_room": 5233,
+                    "description": "A hallway leads to the east wing of the city hall."
+                },
+                "south": {
+                    "to_room": 5231,
+                    "description": "A hallway leads to the south wing of the city hall."
+                },
+                "west": {
+                    "to_room": 5212,
+                    "description": "The cobblestones lead to A Side Street"
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5201,
+                    "max": 25
+                },
+                {
+                    "vnum": 5207,
+                    "max": 4
+                }
+            ]
+        },
+        "5234": {
+            "vnum": 5234,
+            "name": "The Private Gardens And Courtyard Of Thalos",
+            "description": "What a shame that this mass destruction also touched this once beautiful\nplace. The temple's garden path has nothing on this garden. Flowers and\ntrees have been smashed into the ground and lawn benches thrown through\nwalls. A large marble fountain in the center of the courtyard still\nstands, though, defying any attempts to destroy its beauty. Above stands\nthe remnants of one of the watchtowers. Archways north and west lead\nback into the city hall. The smell of smoke and humanity hangs in the\nair. The sounds of city life echo around.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5233,
+                    "description": "The cobblestones lead to The City Hall Foyer"
+                },
+                "west": {
+                    "to_room": 5231,
+                    "description": "The cobblestones lead to The South Wing Of The City Hall"
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5209,
+                    "max": 25
+                }
+            ],
+            "obj_resets": [
+                {
+                    "vnum": 5220,
+                    "max": 1
+                },
+                {
+                    "vnum": 5240,
+                    "max": 1
+                }
+            ]
+        },
+        "5235": {
+            "vnum": 5235,
+            "name": "A Small Guard House",
+            "description": "This was once the barracks for Thalos' Cityguards. Now just an empty\nshell, this small shack still stands guarding the entrance both to the\ncity and to the city hall. The smell of smoke and humanity hangs in the\nair. The cobblestones are worn smooth by countless feet.",
+            "sector_type": "city",
+            "flags": [
+                "indoors"
+            ],
+            "exits": {
+                "north": {
+                    "to_room": 5201,
+                    "description": "Main street runs by this building."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5201,
+                    "max": 25
+                }
+            ]
+        },
+        "5236": {
+            "vnum": 5236,
+            "name": "A Collapsed Home",
+            "description": "All that's left of this house is a few scattered piles of rubble and a\nvery large blast crater. Obviously someone or something important was\nonce housed here. A shrieking howl chills your blood. The smell of smoke\nand humanity hangs in the air. The cobblestones are worn smooth by\ncountless feet.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "south": {
+                    "to_room": 5202,
+                    "description": "Main street runs past this ruined home."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5201,
+                    "max": 25
+                },
+                {
+                    "vnum": 5206,
+                    "max": 1
+                }
+            ]
+        },
+        "5237": {
+            "vnum": 5237,
+            "name": "A Tall Dwelling",
+            "description": "This seems to be the tallest structure remaining in the city. At one\ntime this could have been an inn of some sort, but now it is just a\nmess. The back wall as been completely knocked down revealing an\nentrance into another building through yet another collapsed wall.\nBetween the two buildings are a few blast craters and boulders. An old\nset of wooden steps leads up to a creaking second floor. The\ncobblestones are worn smooth by countless feet. Buildings crowd together\non all sides.",
+            "sector_type": "city",
+            "flags": [
+                "indoors"
+            ],
+            "exits": {
+                "east": {
+                    "to_room": 5238,
+                    "description": "The cobblestones lead to A Small Shack"
+                },
+                "west": {
+                    "to_room": 5211,
+                    "description": "A small side street winds past the dwelling."
+                },
+                "up": {
+                    "to_room": 5245,
+                    "description": "The stairs and even the entire second floor itself looks very unsafe for travel.  Gusts of wind make them creak and shudder."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5201,
+                    "max": 25
+                }
+            ]
+        },
+        "5238": {
+            "vnum": 5238,
+            "name": "A Small Shack",
+            "description": "This cramped dwelling could not have housed more than one person. Now\nwith the back wall missing, it could hold many more. Looking around\nfind broken shelves and workbenches with various vials and pouches\nspilling contents all across the floor. This was possibly the magic shop\nof the city. The doorway to the east is blocked, making the only exit\nback west. Vendors and pedestrians bustle past. The cobblestones are\nworn smooth by countless feet.",
+            "sector_type": "city",
+            "flags": [
+                "indoors"
+            ],
+            "exits": {
+                "west": {
+                    "to_room": 5237,
+                    "description": "The cobblestones lead to A Tall Dwelling"
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5205,
+                    "max": 1
+                }
+            ],
+            "obj_resets": [
+                {
+                    "vnum": 5210,
+                    "max": 2
+                },
+                {
+                    "vnum": 5211,
+                    "max": 2
+                },
+                {
+                    "vnum": 5213,
+                    "max": 2
+                },
+                {
+                    "vnum": 5241,
+                    "max": 1
+                }
+            ]
+        },
+        "5239": {
+            "vnum": 5239,
+            "name": "A Back Alley",
+            "description": "A narrow back alley goes south to main street and north towards a\nwatchtower. A mass of howls catches you of guard. The smell of smoke and\nhumanity hangs in the air. The sounds of city life echo around.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5240,
+                    "description": "The cobblestones lead to A Back Alley"
+                },
+                "south": {
+                    "to_room": 5201,
+                    "description": "Main street runs past here."
+                }
+            }
+        },
+        "5240": {
+            "vnum": 5240,
+            "name": "A Back Alley",
+            "description": "A narrow back alley leads north to one of the city watchtowers and south\ntowards main street. To the west is a doorway to a small house blocked\nby debris. The cobblestones are worn smooth by countless feet. Buildings\ncrowd together on all sides.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "north": {
+                    "to_room": 5241,
+                    "description": "A tall watchtower stands a silent vigil over the city."
+                },
+                "south": {
+                    "to_room": 5239,
+                    "description": "The cobblestones lead to A Back Alley"
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5209,
+                    "max": 25
+                }
+            ]
+        },
+        "5241": {
+            "vnum": 5241,
+            "name": "Under A Watchtower",
+            "description": "The area opens under a tall watchtower. Narrow back alleys lead west and\nsouth and a very weak looking ladder leads up into the tower. above, you\nhear the screams of tens of starving lamias! Beware! The smell of smoke\nand humanity hangs in the air. Vendors and pedestrians bustle past.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "south": {
+                    "to_room": 5240,
+                    "description": "The cobblestones lead to A Back Alley"
+                },
+                "west": {
+                    "to_room": 5243,
+                    "description": "The cobblestones lead to A Back Alley"
+                },
+                "up": {
+                    "to_room": 5248,
+                    "description": "Winds howl high above your head in the tower above.  You hear the screams of tens of howling lamias above you!"
+                }
+            },
+            "obj_resets": [
+                {
+                    "vnum": 5242,
+                    "max": 1
+                }
+            ]
+        },
+        "5242": {
+            "vnum": 5242,
+            "name": "A Bath House",
+            "description": "This was once the bath house for the commoners of the city. Hot steamy\nwater still wells up from a hole in the floor. Obviously there is a hot\nspring located under the city (making the decision to put a city here\nseem much more reasonable). Closer inspection of the water yields a dead\nbody floating around in it, skin melted away from months of floating in\nthere. The west wall has collapsed revealing another collapsed house.\nThe cobblestones are worn smooth by countless feet. Buildings crowd\ntogether on all sides.",
+            "sector_type": "city",
+            "flags": [
+                "indoors"
+            ],
+            "exits": {
+                "north": {
+                    "to_room": 5243,
+                    "description": "The cobblestones lead to A Back Alley"
+                },
+                "west": {
+                    "to_room": 5244,
+                    "description": "The wall has collapsed on the adjoining house, creating a new opening in it."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5201,
+                    "max": 25
+                }
+            ],
+            "obj_resets": [
+                {
+                    "vnum": 5228,
+                    "max": 10
+                }
+            ]
+        },
+        "5243": {
+            "vnum": 5243,
+            "name": "A Back Alley",
+            "description": "A narrow back alley leads west to a small side street and east to one of\nthe city watchtowers. Great amounts of steam issue forth from the\nbuilding to the south. The cobblestones are worn smooth by countless\nfeet. The smell of smoke and humanity hangs in the air.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "east": {
+                    "to_room": 5241,
+                    "description": "A watchtower stands a silent vigil over the city."
+                },
+                "south": {
+                    "to_room": 5242,
+                    "description": "The cobblestones lead to A Bath House"
+                },
+                "west": {
+                    "to_room": 5209,
+                    "description": "A side street runs by here."
+                }
+            }
+        },
+        "5244": {
+            "vnum": 5244,
+            "name": "An Upright House",
+            "description": "This home is practically the only one around that is still standing.\nExcept for the massive hole in the east wall, everything else looks\nintact, including the windows. Great amounts of steam issue forth from\nthe hole in the east wall. Vendors and pedestrians bustle past.\nBuildings crowd together on all sides.",
+            "sector_type": "city",
+            "flags": [
+                "indoors"
+            ],
+            "exits": {
+                "east": {
+                    "to_room": 5242,
+                    "description": "The cobblestones lead to A Bath House"
+                },
+                "west": {
+                    "to_room": 5210,
+                    "description": "A small side street runs past the house."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5207,
+                    "max": 4
+                }
+            ]
+        },
+        "5245": {
+            "vnum": 5245,
+            "name": "On The Second Floor",
+            "description": "The minute you step off onto this floor you realize it was a mistake.\nThe old rotted floorboards suddenly give way and you fall down, impaling\nyourself on jagged boards below. Buildings crowd together on all sides.\nThe cobblestones are worn smooth by countless feet.",
+            "sector_type": "city",
+            "flags": [
+                "death",
+                "indoors"
+            ],
+            "exits": {
+                "down": {
+                    "to_room": 5237,
+                    "description": "The first floor is below."
+                }
+            }
+        },
+        "5246": {
+            "vnum": 5246,
+            "name": "The North-West Watchtower",
+            "description": "The area opens atop one of the city watchtowers. The view is magnificent\nfrom here and Visible is all the way to the western mountains. No wonder\nthis place stood for so long. The smell of smoke and humanity hangs in\nthe air. The sounds of city life echo around.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "down": {
+                    "to_room": 5224,
+                    "description": "The city lies below."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5208,
+                    "max": 3
+                }
+            ],
+            "obj_resets": [
+                {
+                    "vnum": 5243,
+                    "max": 1
+                }
+            ]
+        },
+        "5247": {
+            "vnum": 5247,
+            "name": "The South-West Watchtower",
+            "description": "The area opens atop one of the city watchtowers. The view is magnificent\nfrom here and Visible is all the way to the western mountains. To the\nsouth the desert stretches to the horizon. No wonder this place stood\nfor so long. The cobblestones are worn smooth by countless feet. The\nsmell of smoke and humanity hangs in the air.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "down": {
+                    "to_room": 5215,
+                    "description": "The city lies below."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5208,
+                    "max": 3
+                }
+            ]
+        },
+        "5248": {
+            "vnum": 5248,
+            "name": "The North-East Watchtower",
+            "description": "The area opens atop one of the city watchtowers. The view is magnificent\nfrom here and you the desert sand stretches to the horizon. No wonder\nthis place stood for so long. The ladder leading down seems rotted in\nsome places! The sounds of city life echo around. The cobblestones are\nworn smooth by countless feet.",
+            "sector_type": "city",
+            "flags": [
+                "no_mob"
+            ],
+            "exits": {
+                "down": {
+                    "to_room": 5249,
+                    "description": "The city lies below... far, far below."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5208,
+                    "max": 3
+                }
+            ]
+        },
+        "5249": {
+            "vnum": 5249,
+            "name": "Under A Watchtower",
+            "description": "As you descend the ladder, the rotted rungs break, sending you quickly\nto your demise far below on the city street. Splat. The smell of smoke\nand humanity hangs in the air. The cobblestones are worn smooth by\ncountless feet.",
+            "sector_type": "city",
+            "flags": [
+                "death",
+                "indoors"
+            ],
+            "exits": {
+                "up": {
+                    "to_room": 5248,
+                    "description": "The watchtower is above."
+                }
+            }
+        },
+        "5250": {
+            "vnum": 5250,
+            "name": "The Temple Of Thalos",
+            "description": "The area opens within one of the most holy places in the realm. This\nstunning domed temple once housed the city's worshipers en masse.\nUnfortunately, it succumbed to the destruction brought on this city.\nLong benches lie toppled and the altar desecrated. Large chunks of stone\nhave fallen from the walls and roof, sending sunlight streaming in on\nyou. A few books lie about, conveying to you a holy message in a strange\ntongue. Wind gusts through the four archways and howls and screams can\nbe heard from all parts of the city. The sounds of city life echo\naround. The smell of smoke and humanity hangs in the air.",
+            "sector_type": "city",
+            "flags": [
+                "no_mob",
+                "indoors",
+                "no_magic"
+            ],
+            "exits": {
+                "north": {
+                    "to_room": 5204,
+                    "description": "A side street leads to the northern half of the city."
+                },
+                "east": {
+                    "to_room": 5203,
+                    "description": "Main street leads out to the main gate of the city."
+                },
+                "south": {
+                    "to_room": 5206,
+                    "description": "A side street leads to the southern part of the city."
+                },
+                "west": {
+                    "to_room": 5205,
+                    "description": "The market place lies this way."
+                }
+            },
+            "mob_resets": [
+                {
+                    "vnum": 5200,
+                    "max": 1
+                }
+            ],
+            "obj_resets": []
+        },
+        "5233": {
+            "name": "The City Hall Foyer",
+            "description": "A grand foyer connects the eastern wing of the city hall to the private gardens. Polished marble floors reflect the light from ornate chandeliers.",
+            "sector_type": "city",
+            "flags": [],
+            "exits": {
+                "west": {
+                    "to_room": 5232,
+                    "description": "The cobblestones lead to The City Hall"
+                },
+                "south": {
+                    "to_room": 5234,
+                    "description": "The Private Gardens And Courtyard Of Thalos"
+                }
+            },
+            "mob_resets": [],
+            "obj_resets": [],
+            "vnum": 5233
         }
-      },
-      "obj_resets": [
-        {
-          "vnum": 5295,
-          "max": 1
-        }
-      ]
     },
-    "5201": {
-      "vnum": 5201,
-      "name": "Main Street",
-      "description": "This was once a magnificent street, but now is in total ruin. The\nstreets are barren and windswept and the silence is unending. To the\nsouth you see a ruined cottage while north leads into a dark back alley.\nHowls and screams echo through the deserted city. Vendors and\npedestrians bustle past. The smell of smoke and humanity hangs in the\nair.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5239,
-          "description": "It seems to be a dark alley."
+    "mobs": {
+        "5200": {
+            "vnum": 5200,
+            "name": "beholder",
+            "short_desc": "the mighty beholder",
+            "long_desc": "You meet a beholder's deadly gaze!",
+            "level": 45,
+            "alignment": -870,
+            "hp_dice": "45d10+520",
+            "damage_dice": "12d8+16",
+            "gold": 6000,
+            "exp": 5000,
+            "armor_class": 25,
+            "flags": [
+                "no_bash",
+                "special",
+                "aggressive",
+                "memory",
+                "no_summmon",
+                "sentinel",
+                "no_charm",
+                "boss"
+            ],
+            "description": "It has a large central eye that projects an anti-magic ray and ten\neyestalks atop the round body which can do anything from charm you\nto disintegrate you.  Beholders are not known for their personality.",
+            "equipment": {
+                "hold": 5217,
+                "shield": 5208,
+                "neck1": 5223
+            },
+            "boss": true,
+            "boss_id": "beholder",
+            "boss_title": "the Eye Slayer",
+            "boss_achievement": "boss_beholder",
+            "boss_loot_table": [
+                {
+                    "vnum": 9401,
+                    "chance": 50
+                },
+                {
+                    "vnum": 9402,
+                    "chance": 50
+                },
+                {
+                    "vnum": 52090,
+                    "chance": 25
+                },
+                {
+                    "vnum": 52091,
+                    "chance": 10
+                },
+                {
+                    "vnum": 52092,
+                    "chance": 10
+                },
+                {
+                    "vnum": 52093,
+                    "chance": 10
+                },
+                {
+                    "vnum": 5244,
+                    "chance": 100
+                }
+            ],
+            "boss_loot_chance": 85,
+            "boss_config": {
+                "enrage_time": 120,
+                "enrage_multiplier": 1.8,
+                "ability_interval": 5.0,
+                "phases": [
+                    {
+                        "threshold": 70,
+                        "message": "The beholder's eyestalks begin to glow!"
+                    },
+                    {
+                        "threshold": 35,
+                        "message": "The beholder floats higher, eyes blazing!"
+                    }
+                ],
+                "abilities": [
+                    {
+                        "name": "Disintegration Ray",
+                        "telegraph": "A central eye locks onto you with lethal focus!",
+                        "cast_time": 2,
+                        "cooldown": 14,
+                        "damage_dice": "6d6+10",
+                        "dodge": true
+                    },
+                    {
+                        "name": "Mind Spike",
+                        "telegraph": "Psychic energy ripples from the beholder!",
+                        "cast_time": 1,
+                        "cooldown": 10,
+                        "damage_dice": "4d8+8",
+                        "aoe": true,
+                        "dodge": true
+                    }
+                ]
+            },
+            "equipment_rolls": [
+                {
+                    "slot": "hold",
+                    "vnum": 9402,
+                    "chance": 50
+                }
+            ],
+            "loot_table": [
+                {
+                    "vnum": 9403,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9404,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9405,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9406,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9407,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9408,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9409,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9410,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9411,
+                    "chance": 20
+                }
+            ],
+            "loot_chance": 100
         },
-        "east": {
-          "to_room": 5200,
-          "description": "The entrance to the city lies this way."
+        "5201": {
+            "vnum": 5201,
+            "name": "lamia",
+            "short_desc": "the lamia",
+            "long_desc": "A strange lamia stands here waiting for her next meal.",
+            "level": 12,
+            "alignment": -1000,
+            "hp_dice": "12d10+160",
+            "damage_dice": "4d6+6",
+            "gold": 6000,
+            "exp": 720,
+            "armor_class": 64,
+            "flags": [
+                "special",
+                "scavenger",
+                "stay_zone",
+                "aggr_good"
+            ],
+            "description": "This is a creature with the upper torso of a beautiful woman, but the lower\nbody of a four-legged beast.  She licks her lips as she looks at you greedily."
         },
-        "south": {
-          "to_room": 5235,
-          "description": "A ruined shack lies to the south."
+        "5202": {
+            "vnum": 5202,
+            "name": "mimic",
+            "short_desc": "the mimic",
+            "long_desc": "A strong chest lies in one corner of the room.",
+            "level": 11,
+            "alignment": 10,
+            "hp_dice": "11d10+148",
+            "damage_dice": "3d6+8",
+            "gold": 6500,
+            "exp": 660,
+            "armor_class": 67,
+            "flags": [
+                "sentinel",
+                "no_bash",
+                "no_blind"
+            ],
+            "description": "A strong, wooden chest bound with iron straps and a heavy padlock on the\nfront.",
+            "equipment": {
+                "hold": 5214
+            }
         },
-        "west": {
-          "to_room": 5202,
-          "description": "Main Street lies this way."
+        "5203": {
+            "vnum": 5203,
+            "name": "mimic",
+            "short_desc": "the mimic",
+            "long_desc": "Two skeletons lie crushed under a large boulder.",
+            "level": 14,
+            "alignment": -10,
+            "hp_dice": "14d10+184",
+            "damage_dice": "4d6+9",
+            "gold": 10000,
+            "exp": 840,
+            "armor_class": 58,
+            "flags": [
+                "sentinel",
+                "no_bash",
+                "no_blind"
+            ],
+            "description": "This large boulder seems to have been dropped here at some point, since\nthere aren't any boulders native to this area.  The two skeletons beneath\nit are simply that, bones... no rags or anything else appears to be\nattached to them.",
+            "inventory": [
+                5215
+            ],
+            "loot_table": [
+                {
+                    "vnum": 9403,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9404,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9405,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9406,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9407,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9408,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9409,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9410,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9411,
+                    "chance": 20
+                }
+            ],
+            "loot_chance": 100
+        },
+        "5204": {
+            "vnum": 5204,
+            "name": "mimic",
+            "short_desc": "the mimic",
+            "long_desc": "The stone floor of this house has been ripped apart.",
+            "level": 11,
+            "alignment": -140,
+            "hp_dice": "11d10+148",
+            "damage_dice": "3d6+8",
+            "gold": 5250,
+            "exp": 660,
+            "armor_class": 67,
+            "flags": [
+                "sentinel",
+                "no_bash",
+                "no_blind"
+            ],
+            "description": "What a mess, you wonder to yourself what could have caused this rampant\ndestruction.",
+            "inventory": [
+                5218
+            ]
+        },
+        "5205": {
+            "vnum": 5205,
+            "name": "mimic",
+            "short_desc": "the mimic",
+            "long_desc": "Some broken shards of pottery lie strewn about the floor.",
+            "level": 11,
+            "alignment": 200,
+            "hp_dice": "11d10+148",
+            "damage_dice": "3d6+8",
+            "gold": 4900,
+            "exp": 660,
+            "armor_class": 67,
+            "flags": [
+                "sentinel",
+                "no_bash",
+                "no_blind"
+            ],
+            "description": "The pottery shards appear to have been part of a large vase at one point,\nprobably before the city fell.",
+            "equipment": {
+                "hold": 5214
+            }
+        },
+        "5206": {
+            "vnum": 5206,
+            "name": "mimic",
+            "short_desc": "the mimic",
+            "long_desc": "A few wooden planks lie stacked on a low shelf.",
+            "level": 11,
+            "alignment": 0,
+            "hp_dice": "11d10+148",
+            "damage_dice": "3d6+8",
+            "gold": 6000,
+            "exp": 660,
+            "armor_class": 67,
+            "flags": [
+                "sentinel",
+                "no_bash",
+                "no_blind"
+            ],
+            "description": "The fact that these planks still rest on this shelf leads you to believe\nthat someone has been here before you...",
+            "equipment": {
+                "about": 5222
+            }
+        },
+        "5208": {
+            "vnum": 5208,
+            "name": "golem",
+            "short_desc": "the stone golem",
+            "long_desc": "In the corner you see a large, stone golem faithfully standing watch.",
+            "level": 25,
+            "alignment": 800,
+            "hp_dice": "5d10+450",
+            "damage_dice": "2d8+37",
+            "gold": 74625,
+            "exp": 984,
+            "armor_class": -5,
+            "flags": [
+                "sentinel",
+                "aggr_evil",
+                "memory",
+                "no_charm",
+                "no_summmon",
+                "no_sleep",
+                "no_bash",
+                "no_blind"
+            ],
+            "description": "It is a big chunk of rock that has been magically formed into a giant stone\ncreature.  He stands here still guarding the city.",
+            "equipment": {
+                "hold": 5226,
+                "body": 5200,
+                "wield": 5221
+            },
+            "loot_table": [
+                {
+                    "vnum": 9403,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9404,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9405,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9406,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9407,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9408,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9409,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9410,
+                    "chance": 20
+                },
+                {
+                    "vnum": 9411,
+                    "chance": 20
+                }
+            ],
+            "loot_chance": 100
+        },
+        "5209": {
+            "vnum": 5209,
+            "name": "lamia",
+            "short_desc": "the lamia",
+            "long_desc": "A strange lamia stands here waiting for her next meal.",
+            "level": 9,
+            "alignment": -500,
+            "hp_dice": "9d10+124",
+            "damage_dice": "3d5+6",
+            "gold": 4250,
+            "exp": 540,
+            "armor_class": 73,
+            "flags": [
+                "special",
+                "sentinel",
+                "aggressive",
+                "stay_zone"
+            ],
+            "description": "This is a creature with the upper torso of a beautiful woman, but the lower\nbody of a four-legged beast.  She licks her lips as she looks at you greedily."
+        },
+        "5298": {
+            "vnum": 5298,
+            "name": "street vendor",
+            "short_desc": "a loud street vendor",
+            "long_desc": "A street vendor stands here, hawking questionable wares from a rickety cart.",
+            "description": "He's missing two fingers on his left hand and has the shrewd eyes of someone who's cheated death \u2014 and customers \u2014 more times than he can count.",
+            "level": 35,
+            "alignment": 0,
+            "hp_dice": "35d10+600",
+            "damage_dice": "1d4+1",
+            "gold": 0,
+            "exp": 0,
+            "armor_class": 100,
+            "flags": [
+                "sentinel"
+            ],
+            "special": "flavor_npc",
+            "talk_responses": {
+                "hello": "The vendor grins wide. 'Finest goods in Thalos! Well, maybe not finest, but definitely cheapest. Say, you hear about the new tax the council pushed through? Bunch of crooks, the lot of them. At least I'm honest about my dishonesty!'",
+                "politics": "He leans in conspiratorially. 'Word is the harbor master's been taking bribes from pirates. That's why the docks have been so dangerous lately.'",
+                "default": "The vendor waves a hand. 'Browse all you like! Everything's negotiable, except my prices \u2014 those are final.'",
+                "next": "The vendor glances around nervously. 'Between you and me, if you're looking for real adventure, the Drow City lies hidden beneath the earth \u2014 speak to Zilara the Shadow Exile if you dare. The deep mines of Moria also hold treasures beyond imagining... and horrors to match.'"
+            }
+        },
+        "5299": {
+            "vnum": 5299,
+            "name": "drunk sailor",
+            "short_desc": "a drunk sailor",
+            "long_desc": "A drunk sailor slumps against a barrel here, reeking of cheap rum.",
+            "description": "His weathered face tells tales of a thousand storms, and his bloodshot eyes struggle to focus on anything. A faded tattoo of a kraken adorns his forearm.",
+            "level": 30,
+            "alignment": 0,
+            "hp_dice": "30d10+500",
+            "damage_dice": "1d4+1",
+            "gold": 0,
+            "exp": 0,
+            "armor_class": 100,
+            "flags": [
+                "sentinel"
+            ],
+            "special": "flavor_npc",
+            "talk_responses": {
+                "hello": "The sailor belches loudly. 'I've shailed \u2014 sailed \u2014 every ocean there is, and I'll tell you this for free: there's things in the deep water that'd make a dragon weep. Saw a tentacle once, thick as a mast, just... reaching up from below.'",
+                "sea": "He clutches his rum bottle. 'The eastern waters are the worst. Ships vanish there. No wreckage, no bodies. Just... gone. I won't sail east again, not for all the gold in Thalos.'",
+                "default": "The sailor hiccups. 'Buy me a drink and I'll tell you about the time I outran a sea serpent... probably.'"
+            }
         }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5298,
-          "max": 1
-        }
-      ]
     },
-    "5202": {
-      "vnum": 5202,
-      "name": "Main Street",
-      "description": "This was once a magnificent street, but now is in total ruin. The\nstreets are barren and windswept and the silence is unending. On one\nside is a collapsed house while on the other is the entrance to a large\nruined mansion. Eerie sounds echo within the mansion. Near the center of\ntown you see a large domed building, relatively intact. The sounds of\ncity life echo around. The smell of smoke and humanity hangs in the\nair.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5236,
-          "description": "The remnants of a store lie this way."
-        },
-        "east": {
-          "to_room": 5201,
-          "description": "The cobblestones lead to Main Street"
-        },
-        "south": {
-          "to_room": 5232,
-          "description": "It looks like what used to be the main building in the city."
-        },
-        "west": {
-          "to_room": 5203,
-          "description": "A withered garden path lies this way."
+    "objects": {
+        "5200": {
+            "vnum": 5200,
+            "name": "vest",
+            "short_desc": "a ringmail vest",
+            "room_desc": "A vest made of iron rings lies heaped on the floor.",
+            "item_type": "armor",
+            "weight": 60,
+            "value": 12000,
+            "armor_bonus": 6,
+            "type": "armor",
+            "wear_slot": "body",
+            "armor": 1
+        },
+        "5201": {
+            "vnum": 5201,
+            "name": "helm",
+            "short_desc": "an iron helm",
+            "room_desc": "An iron helm has been left on the ground.",
+            "item_type": "armor",
+            "weight": 10,
+            "value": 5000,
+            "armor_bonus": 7,
+            "type": "armor",
+            "wear_slot": "head",
+            "armor": 2
+        },
+        "5202": {
+            "vnum": 5202,
+            "name": "gauntlets",
+            "short_desc": "a pair of iron gauntlets",
+            "room_desc": "A pair of iron gauntlets rests heavily on the ground.",
+            "item_type": "armor",
+            "weight": 10,
+            "value": 2200,
+            "armor_bonus": 7,
+            "type": "treasure"
+        },
+        "5203": {
+            "vnum": 5203,
+            "name": "sleeves",
+            "short_desc": "a pair of iron sleeves",
+            "room_desc": "A set of iron sleeves lies on the ground.",
+            "item_type": "armor",
+            "weight": 10,
+            "value": 2450,
+            "armor_bonus": 7,
+            "type": "armor",
+            "wear_slot": "legs",
+            "armor": 2
+        },
+        "5204": {
+            "vnum": 5204,
+            "name": "boots",
+            "short_desc": "a pair of iron boots",
+            "room_desc": "A pair of iron boots has been left here.",
+            "item_type": "armor",
+            "weight": 6,
+            "value": 800,
+            "armor_bonus": 4,
+            "type": "armor",
+            "wear_slot": "feet",
+            "armor": 2
+        },
+        "5205": {
+            "vnum": 5205,
+            "name": "greaves",
+            "short_desc": "a set of iron greaves",
+            "room_desc": "A set of iron greaves lie here unattended.",
+            "item_type": "armor",
+            "weight": 10,
+            "value": 5400,
+            "armor_bonus": 7,
+            "type": "armor",
+            "wear_slot": "feet",
+            "armor": 2
+        },
+        "5206": {
+            "vnum": 5206,
+            "name": "girth",
+            "short_desc": "an iron girth",
+            "room_desc": "A small iron girth lies at your feet.",
+            "item_type": "armor",
+            "weight": 6,
+            "value": 4200,
+            "armor_bonus": 4,
+            "type": "treasure"
+        },
+        "5207": {
+            "vnum": 5207,
+            "name": "plate",
+            "short_desc": "a battered iron breast plate",
+            "room_desc": "A battered iron breast plate lies here.",
+            "item_type": "armor",
+            "weight": 125,
+            "value": 13000,
+            "armor_bonus": 5,
+            "type": "treasure"
+        },
+        "5208": {
+            "vnum": 5208,
+            "name": "shield",
+            "short_desc": "a sturdy iron shield",
+            "room_desc": "A small, but sturdy, iron shield has been left here.",
+            "item_type": "armor",
+            "weight": 5,
+            "value": 500,
+            "armor_bonus": 5,
+            "type": "armor",
+            "wear_slot": "shield",
+            "armor": 3
+        },
+        "5210": {
+            "vnum": 5210,
+            "name": "potion",
+            "short_desc": "a black potion",
+            "room_desc": "A jet black potion sits upright waiting to be taken.",
+            "item_type": "potion",
+            "weight": 5,
+            "value": 6000,
+            "type": "potion"
+        },
+        "5211": {
+            "vnum": 5211,
+            "name": "potion",
+            "short_desc": "an orange potion",
+            "room_desc": "A small orange potion lies here.",
+            "item_type": "potion",
+            "weight": 10,
+            "value": 7500,
+            "type": "potion"
+        },
+        "5213": {
+            "vnum": 5213,
+            "name": "staff",
+            "short_desc": "a green serpentine staff",
+            "room_desc": "A green serpentine staff has been left here.",
+            "item_type": "staff",
+            "weight": 12,
+            "value": 6600,
+            "type": "weapon",
+            "weapon_type": "pound",
+            "damage_dice": "1d6"
+        },
+        "5214": {
+            "vnum": 5214,
+            "name": "ball",
+            "short_desc": "a smooth quartz ball",
+            "room_desc": "A smooth quartz ball lies here gleaming.",
+            "item_type": "light",
+            "weight": 30,
+            "value": 3050,
+            "light_hours": 72,
+            "type": "treasure"
+        },
+        "5215": {
+            "vnum": 5215,
+            "name": "scroll",
+            "short_desc": "a tattered scroll",
+            "room_desc": "A worn and tattered scroll has been left here.",
+            "item_type": "scroll",
+            "weight": 15,
+            "value": 11000,
+            "type": "scroll"
+        },
+        "5216": {
+            "vnum": 5216,
+            "name": "scroll",
+            "short_desc": "a bound scroll",
+            "room_desc": "A bound scroll of detection lies at your feet.",
+            "item_type": "scroll",
+            "weight": 15,
+            "value": 4200,
+            "type": "scroll"
+        },
+        "5217": {
+            "vnum": 5217,
+            "name": "flute",
+            "short_desc": "a silver flute",
+            "room_desc": "A brilliant silver flute glimmers from beneath a rock.",
+            "item_type": "staff",
+            "weight": 3,
+            "value": 10500,
+            "type": "treasure"
+        },
+        "5218": {
+            "vnum": 5218,
+            "name": "talisman",
+            "short_desc": "a demon-faced talisman",
+            "room_desc": "A demon-faced talisman glares at you angrily.",
+            "item_type": "armor",
+            "weight": 11,
+            "value": 2500,
+            "armor_bonus": 5,
+            "type": "treasure"
+        },
+        "5219": {
+            "vnum": 5219,
+            "name": "venison",
+            "short_desc": "a chunk of venison",
+            "room_desc": "A large chunk of venison sits here, ready to be eaten.",
+            "item_type": "food",
+            "weight": 20,
+            "value": 100,
+            "nutrition": 24,
+            "type": "food",
+            "food_value": 12
+        },
+        "5220": {
+            "vnum": 5220,
+            "name": "fountain",
+            "short_desc": "a large cracked fountain",
+            "room_desc": "a large cracked fountain",
+            "item_type": "fountain",
+            "weight": 0,
+            "value": 0,
+            "type": "furniture"
+        },
+        "5221": {
+            "vnum": 5221,
+            "name": "sword",
+            "short_desc": "a two-handed sword",
+            "room_desc": "A nice two-handed sword hangs on a hook in the wall.",
+            "item_type": "weapon",
+            "weight": 22,
+            "value": 55000,
+            "damage_dice": "3d6",
+            "weapon_type": "slash",
+            "type": "weapon"
+        },
+        "5222": {
+            "vnum": 5222,
+            "name": "robe",
+            "short_desc": "a black silk robe",
+            "room_desc": "A black silk robe lies heaped in one corner.",
+            "item_type": "armor",
+            "weight": 6,
+            "value": 1300,
+            "armor_bonus": 1,
+            "type": "armor",
+            "wear_slot": "body",
+            "armor": 1
+        },
+        "5223": {
+            "vnum": 5223,
+            "name": "cloak",
+            "short_desc": "a dark green cloak",
+            "room_desc": "A beautiful dark green cloak has been dropped here by someone.",
+            "item_type": "armor",
+            "weight": 12,
+            "value": 14500,
+            "armor_bonus": 0,
+            "type": "armor",
+            "wear_slot": "about",
+            "armor": 1
+        },
+        "5224": {
+            "vnum": 5224,
+            "name": "seal",
+            "short_desc": "an engraved ebony seal",
+            "room_desc": "A small, engraved ebony seal is here.",
+            "item_type": "key",
+            "weight": 2,
+            "value": 0,
+            "type": "treasure"
+        },
+        "5225": {
+            "vnum": 5225,
+            "name": "desk",
+            "short_desc": "the desk",
+            "room_desc": "the desk",
+            "item_type": "container",
+            "weight": 0,
+            "value": 0,
+            "capacity": 100,
+            "key_vnum": 5224,
+            "type": "furniture"
+        },
+        "5226": {
+            "vnum": 5226,
+            "name": "seal",
+            "short_desc": "an engraved ivory seal",
+            "room_desc": "A small, engraved ivory seal lies here.",
+            "item_type": "key",
+            "weight": 2,
+            "value": 0,
+            "type": "treasure"
+        },
+        "5227": {
+            "vnum": 5227,
+            "name": "cabinet",
+            "short_desc": "the glass cabinet",
+            "room_desc": "the glass cabinet",
+            "item_type": "container",
+            "weight": 0,
+            "value": 0,
+            "capacity": 500,
+            "key_vnum": 5226,
+            "type": "container"
+        },
+        "5228": {
+            "vnum": 5228,
+            "name": "arm",
+            "short_desc": "a half-rotted arm",
+            "room_desc": "A half-rotted arm floats lazily past your feet.",
+            "item_type": "food",
+            "weight": 20,
+            "value": 0,
+            "nutrition": 50,
+            "type": "treasure"
+        },
+        "5230": {
+            "vnum": 5230,
+            "name": "stone",
+            "short_desc": "a pale blue stone",
+            "room_desc": "A pale blue stone sits here.",
+            "item_type": "treasure",
+            "weight": 10,
+            "value": 5500,
+            "type": "treasure"
+        },
+        "5231": {
+            "vnum": 5231,
+            "name": "stone",
+            "short_desc": "a scarlet and blue stone",
+            "room_desc": "A pretty scarlet and blue stone has been dropped here.",
+            "item_type": "treasure",
+            "weight": 10,
+            "value": 5500,
+            "type": "treasure"
+        },
+        "5232": {
+            "vnum": 5232,
+            "name": "stone",
+            "short_desc": "an incandescent blue stone",
+            "room_desc": "A small incandescent blue stone lies here.",
+            "item_type": "treasure",
+            "weight": 10,
+            "value": 5500,
+            "type": "treasure"
+        },
+        "5233": {
+            "vnum": 5233,
+            "name": "stone",
+            "short_desc": "a deep red stone",
+            "room_desc": "Someone has left a deep red stone here.",
+            "item_type": "treasure",
+            "weight": 10,
+            "value": 5500,
+            "type": "treasure"
+        },
+        "5234": {
+            "vnum": 5234,
+            "name": "stone",
+            "short_desc": "a pink stone",
+            "room_desc": "A tiny pink stone lies at your feet.",
+            "item_type": "treasure",
+            "weight": 10,
+            "value": 5500,
+            "type": "treasure"
+        },
+        "5235": {
+            "vnum": 5235,
+            "name": "stone",
+            "short_desc": "a pearly white stone",
+            "room_desc": "A lovely, pearly white stone has been carelessly left here.",
+            "item_type": "treasure",
+            "weight": 10,
+            "value": 8700,
+            "type": "treasure"
+        },
+        "5236": {
+            "vnum": 5236,
+            "name": "stone",
+            "short_desc": "a pale lavender stone",
+            "room_desc": "A beautiful pale lavender stone lies here.",
+            "item_type": "treasure",
+            "weight": 10,
+            "value": 4300,
+            "type": "treasure"
+        },
+        "5237": {
+            "vnum": 5237,
+            "name": "stone",
+            "short_desc": "a lavender and green stone",
+            "room_desc": "A stunning lavender and green stone rests on the ground.",
+            "item_type": "treasure",
+            "weight": 10,
+            "value": 4700,
+            "type": "treasure"
+        },
+        "5238": {
+            "vnum": 5238,
+            "name": "stone",
+            "short_desc": "a dusty rose stone",
+            "room_desc": "A stone is here, sort of a dusty rose color and very pretty.",
+            "item_type": "treasure",
+            "weight": 10,
+            "value": 9800,
+            "type": "treasure"
+        },
+        "5239": {
+            "vnum": 5239,
+            "name": "stone",
+            "short_desc": "a dull grey stone",
+            "room_desc": "You can barely make out a dull grey stone on the ground.",
+            "item_type": "treasure",
+            "weight": 10,
+            "value": 20,
+            "type": "treasure"
+        },
+        "5240": {
+            "vnum": 5240,
+            "name": "stone",
+            "short_desc": "a vibrant purple stone",
+            "room_desc": "A stunningly vibrant purple stone attracts your attention.",
+            "item_type": "treasure",
+            "weight": 10,
+            "value": 10200,
+            "type": "treasure"
+        },
+        "5241": {
+            "vnum": 5241,
+            "name": "stone",
+            "short_desc": "a pink and green stone",
+            "room_desc": "A bright pink and green stone has been left here.",
+            "item_type": "treasure",
+            "weight": 10,
+            "value": 6600,
+            "type": "treasure"
+        },
+        "5242": {
+            "vnum": 5242,
+            "name": "stone",
+            "short_desc": "a pale green stone",
+            "room_desc": "A pale green stone lies here collecting dust.",
+            "item_type": "treasure",
+            "weight": 10,
+            "value": 7100,
+            "type": "treasure"
+        },
+        "5243": {
+            "vnum": 5243,
+            "name": "stone",
+            "short_desc": "a clear stone",
+            "room_desc": "An odd clear stone lies at your feet.",
+            "item_type": "treasure",
+            "weight": 10,
+            "value": 8900,
+            "type": "treasure"
+        },
+        "5244": {
+            "vnum": 5244,
+            "name": "stone",
+            "short_desc": "an iridescent stone",
+            "room_desc": "A large iridescent stone has been left here.",
+            "item_type": "treasure",
+            "weight": 10,
+            "value": 3700,
+            "type": "treasure"
+        },
+        "5250": {
+            "vnum": 5250,
+            "name": "mandolin",
+            "short_desc": "a mandolin",
+            "room_desc": "A mandolin lies against the wall.",
+            "item_type": "staff",
+            "weight": 20,
+            "value": 3000,
+            "type": "treasure"
+        },
+        "5251": {
+            "vnum": 5251,
+            "name": "harp",
+            "short_desc": "a golden harp",
+            "room_desc": "A battered golden harp has been tipped over.",
+            "item_type": "staff",
+            "weight": 100,
+            "value": 2500,
+            "type": "treasure"
+        },
+        "9401": {
+            "vnum": 9401,
+            "name": "eye of providence",
+            "short_desc": "\u001b[93mthe Eye of Providence\u001b[0m",
+            "room_desc": "\u001b[93mA floating ocular gem stares blankly.\u001b[0m",
+            "description": "A cleric\u2019s relic carved from a beholder\u2019s central eye.",
+            "item_type": "armor",
+            "wear_slot": "neck1",
+            "armor_bonus": 3,
+            "weight": 1,
+            "value": 14000,
+            "flags": [
+                "magic"
+            ],
+            "affects": [
+                {
+                    "type": "wis",
+                    "value": 3
+                },
+                {
+                    "type": "max_mana",
+                    "value": 30
+                }
+            ],
+            "set_id": 52,
+            "type": "treasure"
+        },
+        "9402": {
+            "vnum": 9402,
+            "name": "orb of insight",
+            "short_desc": "\u001b[93man \u001b[96morb\u001b[0m\u001b[93m of insight\u001b[0m",
+            "room_desc": "\u001b[93mA glossy \u001b[96morb\u001b[0m\u001b[93m pulses with psychic energy.\u001b[0m",
+            "description": "A wizard\u2019s trinket drawn from a beholder\u2019s mind.",
+            "item_type": "armor",
+            "wear_slot": "hold",
+            "armor_bonus": 1,
+            "weight": 1,
+            "value": 12000,
+            "flags": [
+                "magic"
+            ],
+            "affects": [
+                {
+                    "type": "int",
+                    "value": 2
+                },
+                {
+                    "type": "wis",
+                    "value": 1
+                }
+            ],
+            "set_id": 52,
+            "type": "treasure"
+        },
+        "9403": {
+            "vnum": 9403,
+            "name": "thalos legion blade",
+            "short_desc": "a Thalos legion blade",
+            "room_desc": "A Thalos legion blade lies here.",
+            "description": "A legion sword.",
+            "item_type": "weapon",
+            "weight": 4,
+            "value": 4000,
+            "wear_slot": "wield",
+            "weapon_type": "slash",
+            "damage_dice": "2d6+4",
+            "affects": [
+                {
+                    "type": "damroll",
+                    "value": 3
+                }
+            ],
+            "set_id": 52,
+            "type": "weapon"
+        },
+        "9404": {
+            "vnum": 9404,
+            "name": "aureate shield",
+            "short_desc": "an aureate shield",
+            "room_desc": "An aureate shield lies here.",
+            "description": "A paladin's shield.",
+            "item_type": "armor",
+            "weight": 4,
+            "value": 4000,
+            "wear_slot": "shield",
+            "armor_bonus": 3,
+            "affects": [
+                {
+                    "type": "cha",
+                    "value": 1
+                }
+            ],
+            "set_id": 52,
+            "type": "armor",
+            "armor": 3
+        },
+        "9405": {
+            "vnum": 9405,
+            "name": "black sun sigil",
+            "short_desc": "a black sun sigil",
+            "room_desc": "A black sun sigil lies here.",
+            "description": "A deathknight's sigil.",
+            "item_type": "armor",
+            "weight": 4,
+            "value": 4000,
+            "wear_slot": "neck1",
+            "affects": [
+                {
+                    "type": "damroll",
+                    "value": 3
+                }
+            ],
+            "set_id": 52,
+            "type": "treasure"
+        },
+        "9406": {
+            "vnum": 9406,
+            "name": "sun\u2011blessed reliquary",
+            "short_desc": "a sun\u2011blessed reliquary",
+            "room_desc": "A sun\u2011blessed reliquary lies here.",
+            "description": "A cleric's reliquary.",
+            "item_type": "armor",
+            "weight": 4,
+            "value": 4000,
+            "wear_slot": "hold",
+            "affects": [
+                {
+                    "type": "wis",
+                    "value": 2
+                },
+                {
+                    "type": "max_mana",
+                    "value": 25
+                }
+            ],
+            "set_id": 52,
+            "type": "treasure"
+        },
+        "9407": {
+            "vnum": 9407,
+            "name": "marble\u2011inlaid focus",
+            "short_desc": "a marble\u2011inlaid focus",
+            "room_desc": "A marble\u2011inlaid focus lies here.",
+            "description": "A mage's focus.",
+            "item_type": "armor",
+            "weight": 4,
+            "value": 4000,
+            "wear_slot": "hold",
+            "affects": [
+                {
+                    "type": "int",
+                    "value": 3
+                }
+            ],
+            "set_id": 52,
+            "type": "treasure"
+        },
+        "9408": {
+            "vnum": 9408,
+            "name": "laurel lyre",
+            "short_desc": "a laurel lyre",
+            "room_desc": "A laurel lyre lies here.",
+            "description": "A bard's lyre.",
+            "item_type": "weapon",
+            "weight": 4,
+            "value": 4000,
+            "wear_slot": "wield",
+            "weapon_type": "mace",
+            "damage_dice": "1d6+2",
+            "affects": [
+                {
+                    "type": "cha",
+                    "value": 3
+                }
+            ],
+            "set_id": 52,
+            "type": "treasure"
+        },
+        "9409": {
+            "vnum": 9409,
+            "name": "civic stiletto",
+            "short_desc": "a civic stiletto",
+            "room_desc": "A civic stiletto lies here.",
+            "description": "A rogue's stiletto.",
+            "item_type": "weapon",
+            "weight": 4,
+            "value": 4000,
+            "wear_slot": "wield",
+            "weapon_type": "pierce",
+            "damage_dice": "1d6+2",
+            "affects": [
+                {
+                    "type": "dex",
+                    "value": 3
+                },
+                {
+                    "type": "hitroll",
+                    "value": 1
+                }
+            ],
+            "set_id": 52,
+            "type": "weapon"
+        },
+        "9410": {
+            "vnum": 9410,
+            "name": "gladiator's band",
+            "short_desc": "a gladiator's band",
+            "room_desc": "A gladiator's band lies here.",
+            "description": "A ranger's ring.",
+            "item_type": "armor",
+            "weight": 4,
+            "value": 4000,
+            "wear_slot": "finger1",
+            "affects": [
+                {
+                    "type": "dex",
+                    "value": 2
+                }
+            ],
+            "set_id": 52,
+            "type": "armor",
+            "armor": 0
+        },
+        "9411": {
+            "vnum": 9411,
+            "name": "thalos mantle",
+            "short_desc": "a Thalos mantle",
+            "room_desc": "A Thalos mantle lies here.",
+            "description": "A city mantle.",
+            "item_type": "armor",
+            "weight": 4,
+            "value": 4000,
+            "wear_slot": "about",
+            "armor_bonus": 2,
+            "set_id": 52,
+            "type": "armor",
+            "armor": 1
+        },
+        "52090": {
+            "vnum": 52090,
+            "name": "hood of the unblinking",
+            "short_desc": "\u001b[95mthe hood of the unblinking\u001b[0m",
+            "room_desc": "\u001b[95mA hood with an unblinking eye motif lies here.\u001b[0m",
+            "description": "A hood said to turn away tracking eyes.",
+            "item_type": "armor",
+            "wear_slot": "head",
+            "armor_bonus": 2,
+            "weight": 2,
+            "value": 20000,
+            "flags": [
+                "magic"
+            ],
+            "affects": [
+                {
+                    "type": "no_track",
+                    "value": 1
+                },
+                {
+                    "type": "sneak",
+                    "value": 5
+                }
+            ],
+            "type": "armor",
+            "armor": 2
+        },
+        "52091": {
+            "vnum": 52091,
+            "name": "reliquary of the eye",
+            "short_desc": "\u001b[95mthe reliquary of the eye\u001b[0m",
+            "room_desc": "\u001b[95mA jeweled reliquary rests here.\u001b[0m",
+            "description": "A reliquary that strengthens restorative miracles.",
+            "item_type": "armor",
+            "wear_slot": "neck1",
+            "armor_bonus": 1,
+            "weight": 1,
+            "value": 24000,
+            "flags": [
+                "magic"
+            ],
+            "affects": [
+                {
+                    "type": "heal_power",
+                    "value": 12
+                }
+            ],
+            "type": "treasure"
+        },
+        "52092": {
+            "vnum": 52092,
+            "name": "amulet of the grave",
+            "short_desc": "\u001b[95mthe amulet of the grave\u001b[0m",
+            "room_desc": "\u001b[95mA dark amulet rests here.\u001b[0m",
+            "description": "An amulet that deepens vampiric touch.",
+            "item_type": "armor",
+            "wear_slot": "neck2",
+            "armor_bonus": 1,
+            "weight": 1,
+            "value": 24000,
+            "flags": [
+                "magic"
+            ],
+            "affects": [
+                {
+                    "type": "vampiric_touch",
+                    "value": 12
+                }
+            ],
+            "type": "armor",
+            "armor": 0
+        },
+        "52093": {
+            "vnum": 52093,
+            "name": "torch of judgment",
+            "short_desc": "\u001b[95mthe torch of judgment\u001b[0m",
+            "room_desc": "\u001b[95mA votive torch rests here.\u001b[0m",
+            "description": "A sacred token that strengthens turning the undead.",
+            "item_type": "armor",
+            "wear_slot": "hold",
+            "armor_bonus": 0,
+            "weight": 1,
+            "value": 24000,
+            "flags": [
+                "magic"
+            ],
+            "affects": [
+                {
+                    "type": "turn_undead",
+                    "value": 12
+                }
+            ],
+            "type": "light",
+            "light_hours": 24
+        },
+        "5295": {
+            "vnum": 5295,
+            "name": "wooden signpost",
+            "short_desc": "a sun-bleached signpost",
+            "room_desc": "A sun-bleached wooden signpost stands at the city entrance.",
+            "item_type": "furniture",
+            "type": "furniture",
+            "weight": 0,
+            "value": 0,
+            "readable_text": "=== CITY OF THALOS ===\nRecommended Level: 10-20\nA bustling desert city with dangers in its streets\nSeek Captain Varro for military contracts\nWest: Return toward Midgaard"
         }
-      },
-      "obj_resets": [
-        {
-          "vnum": 5230,
-          "max": 1
-        }
-      ]
-    },
-    "5203": {
-      "vnum": 5203,
-      "name": "A Garden Path",
-      "description": "A circular path surrounds a magnificent domed temple in the center of\nthe city. Flowers have withered away and the once lush trees are bare.\nVines and ivy snake up the sides of the temple and entangle themselves\naround your feet. A sudden volley of howls pierces the air. The smell of\nsmoke and humanity hangs in the air. The sounds of city life echo around\nyou.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5204,
-          "description": "The garden path continues around the building."
-        },
-        "east": {
-          "to_room": 5202,
-          "description": "This is the main street leading to the city's entrance."
-        },
-        "south": {
-          "to_room": 5206,
-          "description": "The garden path continues around the building."
-        },
-        "west": {
-          "to_room": 5250,
-          "description": "Inside the temple, small patches of light shoot through each doorway as well as a few holes in the ceiling."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5201,
-          "max": 25
-        }
-      ]
-    },
-    "5204": {
-      "vnum": 5204,
-      "name": "A Garden Path",
-      "description": "A circular path surrounds a magnificent domed temple in the center of\nthe city. Flowers have withered away and the once lush trees are bare.\nVines and ivy snake up the sides of the temple and entangle themselves\naround your feet. The sounds of city life echo around. The smell of\nsmoke and humanity hangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5211,
-          "description": "A side street leads of to the northern half of the city."
-        },
-        "east": {
-          "to_room": 5203,
-          "description": "The garden path continues around the building."
-        },
-        "south": {
-          "to_room": 5250,
-          "description": "Inside the temple, small patches of light shoot through each doorway as well as a few holes in the ceiling."
-        },
-        "west": {
-          "to_room": 5205,
-          "description": "The garden path continues around the building."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5201,
-          "max": 25
-        }
-      ]
-    },
-    "5205": {
-      "vnum": 5205,
-      "name": "A Garden Path",
-      "description": "A circular path surrounds a magnificent domed temple in the center of\nthe city. Flowers have withered away and the once lush trees are bare.\nVines and ivy creep up the sides of the temple and entangle themselves\naround your feet. Buildings crowd together on all sides. The\ncobblestones are worn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5204,
-          "description": "The garden path continues around the building."
-        },
-        "east": {
-          "to_room": 5250,
-          "description": "Inside the temple, small patches of light shoot through each doorway as well as a few cracks in the ceiling."
-        },
-        "south": {
-          "to_room": 5206,
-          "description": "The garden path continues around the building."
-        },
-        "west": {
-          "to_room": 5207,
-          "description": "What looks like a market place lies this way."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5209,
-          "max": 25
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 5231,
-          "max": 1
-        }
-      ]
-    },
-    "5206": {
-      "vnum": 5206,
-      "name": "A Garden Path",
-      "description": "A circular path surrounds a magnificent domed temple in the center of\nthe city. Flowers have withered away and the once lush trees are bare.\nVines and ivy creep up the sides of the temple and entangle themselves\naround your feet. The cobblestones are worn smooth by countless feet.\nBuildings crowd together on all sides.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5250,
-          "description": "Inside the temple, small patches of light shoot through each doorway as well as a few cracks in the ceiling."
-        },
-        "east": {
-          "to_room": 5203,
-          "description": "The garden path continues around the building."
-        },
-        "south": {
-          "to_room": 5212,
-          "description": "A small side street leads to the southern half of the city."
-        },
-        "west": {
-          "to_room": 5205,
-          "description": "The garden path continues around the building."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5201,
-          "max": 25
-        }
-      ]
-    },
-    "5207": {
-      "vnum": 5207,
-      "name": "The Market Place",
-      "description": "The area opens in the middle of a large square lined on each side with\nbaskets, carts, and stands of all shapes and sizes. Abandoned, these\nlittle shops still contain some of their goods once sold to a demanding\npublic. The sounds of city life echo around. The smell of smoke and\nhumanity hangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5225,
-          "description": "A small table has been toppled over, spilling fine jewellery and gems onto the ground."
-        },
-        "east": {
-          "to_room": 5205,
-          "description": "A small garden path encircles a large domed temple in the center of the  city."
-        },
-        "south": {
-          "to_room": 5220,
-          "description": "Rotted remains of fruits and vegetables lie strewn about."
-        },
-        "west": {
-          "to_room": 5208,
-          "description": "The market place continues."
-        }
-      }
-    },
-    "5208": {
-      "vnum": 5208,
-      "name": "The Market Place",
-      "description": "The area opens at the end of the market square. Stands and carts line\neach side, filled with remnants of fine foods and exquisite goods.\nVendors and pedestrians bustle past. The smell of smoke and humanity\nhangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5222,
-          "description": "Tattered carpets and ruined bales of silk sit idly by a run down stand."
-        },
-        "east": {
-          "to_room": 5207,
-          "description": "The center of the market lies this way."
-        },
-        "south": {
-          "to_room": 5217,
-          "description": "From the massive stench, this must have been a meat and poultry stand. It lies totally bare."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5201,
-          "max": 25
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 5232,
-          "max": 1
-        }
-      ]
-    },
-    "5209": {
-      "vnum": 5209,
-      "name": "A Side Street",
-      "description": "This small side street leads east and west into back alleys while to the\nsouth you see the temple. The incessant howling tears at your mind. The\nsounds of city life echo around. Vendors and pedestrians bustle\npast.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 5243,
-          "description": "The cobblestones lead to A Back Alley"
-        },
-        "south": {
-          "to_room": 5210,
-          "description": "The cobblestones lead to A Side Street"
-        },
-        "west": {
-          "to_room": 5228,
-          "description": "The cobblestones lead to A Back Alley"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5209,
-          "max": 25
-        }
-      ]
-    },
-    "5210": {
-      "vnum": 5210,
-      "name": "A Side Street",
-      "description": "This is the common section of the city. Ruined buildings made of clay\nand stone is all the view has to offer. Most of these homes are nothing\nbut piles of rubble, but some look almost safe enough to venture into.\nThe street continues north and south and buildings line the street. The\ncobblestones are worn smooth by countless feet. The smell of smoke and\nhumanity hangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5209,
-          "description": "The cobblestones lead to A Side Street"
-        },
-        "east": {
-          "to_room": 5244,
-          "description": "A small doorway leads into a partially collapsed house.",
-          "door": {
-            "name": "east door",
-            "state": "closed",
-            "locked": false,
-            "key_vnum": null
-          }
-        },
-        "south": {
-          "to_room": 5211,
-          "description": "The cobblestones lead to A Side Street"
-        },
-        "west": {
-          "to_room": 5226,
-          "description": "A small clay dwelling sits here."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5299,
-          "max": 1
-        }
-      ]
-    },
-    "5211": {
-      "vnum": 5211,
-      "name": "A Side Street",
-      "description": "This small side street leads away from the garden path to the south.\naround stand large piles or rubble where the houses of commoners\nused to be. A lone howl makes you worry greatly about your safety here.\nThe cobblestones are worn smooth by countless feet. The smell of smoke\nand humanity hangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5210,
-          "description": "The cobblestones lead to A Side Street"
-        },
-        "east": {
-          "to_room": 5237,
-          "description": "An unusually tall dwelling stands looming over you."
-        },
-        "south": {
-          "to_room": 5204,
-          "description": "A garden path circles around the temple."
-        },
-        "west": {
-          "to_room": 5227,
-          "description": "Here lies a small stone house with a thatched roof."
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 5233,
-          "max": 1
-        }
-      ]
-    },
-    "5212": {
-      "vnum": 5212,
-      "name": "A Side Street",
-      "description": "This small side street leads south away from the temple into the\nbusiness section of town. The destruction that leveled this city was not\nbiased; these important looking buildings have been almost totally\ndestroyed. There is a hole in the wall of a very large structure to the\neast. The sounds of city life echo around. Vendors and pedestrians\nbustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5206,
-          "description": "A small garden path encircles the temple."
-        },
-        "east": {
-          "to_room": 5232,
-          "description": "This possibly could be the city hall."
-        },
-        "south": {
-          "to_room": 5213,
-          "description": "The cobblestones lead to A Side Street"
-        },
-        "west": {
-          "to_room": 5221,
-          "description": "Inside the building you see long pieces of metal, an oven, and some anvils."
-        }
-      }
-    },
-    "5213": {
-      "vnum": 5213,
-      "name": "A Side Street",
-      "description": "This small side street is lined with the remains of once great\nbuildings. To the west is a dark, foreboding structure while to the east\nlies the entrance to a small tavern. The street continues north and\nsouth. Buildings crowd together on all sides. The cobblestones are worn\nsmooth by countless feet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5212,
-          "description": "The cobblestones lead to A Side Street"
-        },
-        "east": {
-          "to_room": 5230,
-          "description": "From the looks of it, this was once a two story abode.  The entire second floor has collapsed leaving a very little part of the bar still free from debris."
-        },
-        "south": {
-          "to_room": 5214,
-          "description": "The cobblestones lead to A Side Street"
-        },
-        "west": {
-          "to_room": 5219,
-          "description": "This seems to be the only guild house in the entire city.  Its dark nature makes you wonder about its origins."
-        }
-      }
-    },
-    "5214": {
-      "vnum": 5214,
-      "name": "A Side Street",
-      "description": "This is the end of a long street leading to the center of the city. A\nlong dark alley runs east and west. The sounds of city life echo around\nyou. The cobblestones are worn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5213,
-          "description": "The cobblestones lead to A Side Street"
-        },
-        "east": {
-          "to_room": 5229,
-          "description": "The cobblestones lead to An Abandoned Shop"
-        },
-        "west": {
-          "to_room": 5218,
-          "description": "The cobblestones lead to A Back Alley"
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 5234,
-          "max": 1
-        }
-      ]
-    },
-    "5215": {
-      "vnum": 5215,
-      "name": "Under A Ruined Watchtower",
-      "description": "The area opens at the base of a tall watchtower built to protect the\ncity from invaders. From the looks of things, it did not do a good job.\nThe cobblestones are worn smooth by countless feet. The sounds of city\nlife echo around.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5216,
-          "description": "The cobblestones lead to A Back Alley"
-        },
-        "east": {
-          "to_room": 5218,
-          "description": "The cobblestones lead to A Back Alley"
-        },
-        "up": {
-          "to_room": 5247,
-          "description": "The cobblestones lead to The South-West Watchtower"
-        }
-      }
-    },
-    "5216": {
-      "vnum": 5216,
-      "name": "A Back Alley",
-      "description": "This alley leads to the rear of what used to be a meat stand. You wince\nat the stench. South is one of the city watchtowers. Vendors and\npedestrians bustle past. The smell of smoke and humanity hangs in the\nair.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5217,
-          "description": "You see the back-side of the market place meat stand."
-        },
-        "south": {
-          "to_room": 5215,
-          "description": "A tall watchtower stands a silent vigil over the city."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5209,
-          "max": 25
-        }
-      ]
-    },
-    "5217": {
-      "vnum": 5217,
-      "name": "The Meat Stand",
-      "description": "A large stand has been set up here with metal hooks and wooden racks in\nthe background. Hanging on the hooks are very small scraps of meat and\nother game. This stand is relatively empty, and a sudden burst of\nhowling and screaming makes you realize why this is so. Buildings crowd\ntogether on all sides. The cobblestones are worn smooth by countless\nfeet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5208,
-          "description": "The market place lies this way."
-        },
-        "east": {
-          "to_room": 5220,
-          "description": "This is a cart full of rotted vegetables and fruits."
-        },
-        "south": {
-          "to_room": 5216,
-          "description": "The cobblestones lead to A Back Alley"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5207,
-          "max": 4
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 5219,
-          "max": 5
-        },
-        {
-          "vnum": 5235,
-          "max": 1
-        }
-      ]
-    },
-    "5218": {
-      "vnum": 5218,
-      "name": "A Back Alley",
-      "description": "A narrow alley leads east to a wider street and west to one of the city\nwatchtowers. The smell of smoke and humanity hangs in the air. The\nsounds of city life echo around.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 5214,
-          "description": "A small side street greets you."
-        },
-        "west": {
-          "to_room": 5215,
-          "description": "A tall watchtower stands a silent vigil over the city."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5201,
-          "max": 25
-        }
-      ]
-    },
-    "5219": {
-      "vnum": 5219,
-      "name": "The Guild House",
-      "description": "This is what once was this city's ONLY guild house. Tables and chairs\nhave been smashed and broken weapons lie strewn about the floor as if\nsome massive battle had taken place here. Draped along the back wall is\na tattered, jet-black banner with the symbol of the Darkside set upon\nit. Vendors and pedestrians bustle past. The smell of smoke and humanity\nhangs in the air.",
-      "sector_type": "city",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5213,
-          "description": "A small side street runs past the building."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5201,
-          "max": 25
-        },
-        {
-          "vnum": 5204,
-          "max": 1
-        }
-      ]
-    },
-    "5220": {
-      "vnum": 5220,
-      "name": "The Produce Stand",
-      "description": "A large cart sits here carrying rotted fruit and vegetables. Flies swarm\nall about what seems to be the last remaining bits of food left in the\ncity. Vendors and pedestrians bustle past. The cobblestones are worn\nsmooth by countless feet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5207,
-          "description": "The market place is deserted."
-        },
-        "west": {
-          "to_room": 5217,
-          "description": "A strong stench emanates from the meat stand next to you."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5201,
-          "max": 25
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 5236,
-          "max": 1
-        }
-      ]
-    },
-    "5221": {
-      "vnum": 5221,
-      "name": "The Smithy",
-      "description": "In here you find tools and anvils used to make various weapons and\nitems. The walls have been stripped clean and only a few incomplete\npieces of armor and weaponry are left. The sounds of city life echo\naround. The cobblestones are worn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5212,
-          "description": "A small side street runs past the building."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5209,
-          "max": 25
-        }
-      ]
-    },
-    "5222": {
-      "vnum": 5222,
-      "name": "The Tapestry Stand",
-      "description": "Tattered and torn tapestries and rugs lie heaped in piles. Fancy robes\nand various articles of clothing are now just rags. You stare at the\nstrange piles for a long time until a piercing howl makes you think\nthese might be beds. The cobblestones are worn smooth by countless feet.\nVendors and pedestrians bustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5223,
-          "description": "The cobblestones lead to A Back Alley"
-        },
-        "east": {
-          "to_room": 5225,
-          "description": "A fine jewellery stand lies in ruin next to you."
-        },
-        "south": {
-          "to_room": 5208,
-          "description": "The market place is deserted."
-        }
-      }
-    },
-    "5223": {
-      "vnum": 5223,
-      "name": "A Back Alley",
-      "description": "A narrow alley leads north to one of the city watchtowers while to the\nsouth there lies a market stand full of torn clothes and rugs. Vendors\nand pedestrians bustle past. The smell of smoke and humanity hangs in\nthe air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5224,
-          "description": "A tall watchtower stands a silent vigil over the city."
-        },
-        "south": {
-          "to_room": 5222,
-          "description": "The cobblestones lead to The Tapestry Stand"
-        }
-      }
-    },
-    "5224": {
-      "vnum": 5224,
-      "name": "Under The Watchtower",
-      "description": "The area opens under one of the city watchtowers built to protect the\ncity from invaders. Obviously, it failed. Vendors and pedestrians bustle\npast. The smell of smoke and humanity hangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 5228,
-          "description": "The cobblestones lead to A Back Alley"
-        },
-        "south": {
-          "to_room": 5223,
-          "description": "The cobblestones lead to A Back Alley"
-        },
-        "up": {
-          "to_room": 5246,
-          "description": "Above you looms a tall watchtower."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5209,
-          "max": 25
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 5237,
-          "max": 1
-        }
-      ]
-    },
-    "5225": {
-      "vnum": 5225,
-      "name": "The Jewellery Stand",
-      "description": "A table has been tipped over, spilling fine jewellery and gems across\nthe market place. Most of these trinkets are battered and tarnished and\nfew would have any value anymore. The cobblestones are worn smooth by\ncountless feet. Vendors and pedestrians bustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 5207,
-          "description": "The market place is deserted."
-        },
-        "west": {
-          "to_room": 5222,
-          "description": "Next to you is a stand full of ruined clothes and rugs."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5201,
-          "max": 25
-        }
-      ]
-    },
-    "5226": {
-      "vnum": 5226,
-      "name": "A Ruined Clay Dwelling",
-      "description": "This was once a very plain house with nothing more than a few chairs and\na bed. A cold fireplace suggests that the city has been abandoned for\nquite a while. Almost nothing remains of this humble abode. The\ncobblestones are worn smooth by countless feet. Vendors and pedestrians\nbustle past.",
-      "sector_type": "city",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5210,
-          "description": "Outside is a small side street."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5201,
-          "max": 25
-        },
-        {
-          "vnum": 5203,
-          "max": 1
-        }
-      ]
-    },
-    "5227": {
-      "vnum": 5227,
-      "name": "A Collapsed Stone Dwelling",
-      "description": "This small house has completely collapsed upon itself leaving piles of\ndebris here and there. A few rafters still stand with thatched straw\nhanging down and a hot wind gusts through the hollow dwelling. The\nsounds of city life echo around. The smell of smoke and humanity\nhangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 5211,
-          "description": "A small side street runs past the house."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5207,
-          "max": 4
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 5238,
-          "max": 1
-        }
-      ]
-    },
-    "5228": {
-      "vnum": 5228,
-      "name": "A Back Alley",
-      "description": "A narrow alley leads west to one of the city watchtowers and east to a\nsmall side street. The smell of smoke and humanity hangs in the air.\nBuildings crowd together on all sides.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 5209,
-          "description": "The cobblestones lead to A Side Street"
-        },
-        "west": {
-          "to_room": 5224,
-          "description": "The cobblestones lead to Under The Watchtower"
-        }
-      }
-    },
-    "5229": {
-      "vnum": 5229,
-      "name": "An Abandoned Shop",
-      "description": "From the outside this place looks like an ordinary pile of rubble, but\ninside these cramped quarters you discover what used to be a shop filled\nwith armor, weapons, and various other goods. A small sign flutters in\nthe wind. The smell of smoke and humanity hangs in the air. The\ncobblestones are worn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 5214,
-          "description": "A small side street runs past the shop."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5209,
-          "max": 25
-        },
-        {
-          "vnum": 5202,
-          "max": 1
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 5207,
-          "max": 5
-        }
-      ]
-    },
-    "5230": {
-      "vnum": 5230,
-      "name": "The Tavern Of The Sun",
-      "description": "A glorious place in its prime, this tavern now lies in ruin; tables and\nchairs are broken scattered, bottles and glasses shattered, and a small\nperformance stage crushed. Musical instruments and personal belongings\nlie under the rubble, but the people they once belonged to are not with\nthem. Looking up you see that the entire second floor and roof has\nfallen in, leaving a gaping hole above. The smell of smoke and humanity\nhangs in the air. The sounds of city life echo around.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "west": {
-          "to_room": 5213,
-          "description": "A small side street runs past the tavern."
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 5250,
-          "max": 2
-        },
-        {
-          "vnum": 5251,
-          "max": 2
-        },
-        {
-          "vnum": 5239,
-          "max": 1
-        }
-      ]
-    },
-    "5231": {
-      "vnum": 5231,
-      "name": "The South Wing Of The City Hall",
-      "description": "The area opens in a large room attached to this end of the hallway which\nleads back north to the reception area. Pedestals and columns have\nfallen and most of the valuable items have been taken, leaving worthless\ndebris. A few chairs have survived, as well as a large curved desk. To\nthe east is a vine-covered archway leading out into a private courtyard.\nBuildings crowd together on all sides. The sounds of city life echo\naround.",
-      "sector_type": "city",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5232,
-          "description": "The long hallway leads back to the main reception area of the city hall."
-        },
-        "east": {
-          "to_room": 5234,
-          "description": "The Private Gardens And Courtyard Of Thalos"
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 5225,
-          "max": 1
-        }
-      ]
-    },
-    "5232": {
-      "vnum": 5232,
-      "name": "The City Hall",
-      "description": "This is the main reception area of Thalos' city hall. The walls have\nbeen charred and scored massively and debris is spread from wall to\nwall. A large gaping hole in the west wall allows you to see out to one\nof the city's side streets. Obviously no one will be seeing you through\ntoday. Hallways lead south and east. Buildings crowd together on all\nsides. The cobblestones are worn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5202,
-          "description": "Main street runs past the city hall."
-        },
-        "east": {
-          "to_room": 5233,
-          "description": "A hallway leads to the east wing of the city hall."
-        },
-        "south": {
-          "to_room": 5231,
-          "description": "A hallway leads to the south wing of the city hall."
-        },
-        "west": {
-          "to_room": 5212,
-          "description": "The cobblestones lead to A Side Street"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5201,
-          "max": 25
-        },
-        {
-          "vnum": 5207,
-          "max": 4
-        }
-      ]
-    },
-    "5234": {
-      "vnum": 5234,
-      "name": "The Private Gardens And Courtyard Of Thalos",
-      "description": "What a shame that this mass destruction also touched this once beautiful\nplace. The temple's garden path has nothing on this garden. Flowers and\ntrees have been smashed into the ground and lawn benches thrown through\nwalls. A large marble fountain in the center of the courtyard still\nstands, though, defying any attempts to destroy its beauty. Above stands\nthe remnants of one of the watchtowers. Archways north and west lead\nback into the city hall. The smell of smoke and humanity hangs in the\nair. The sounds of city life echo around.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5233,
-          "description": "The cobblestones lead to The City Hall Foyer"
-        },
-        "west": {
-          "to_room": 5231,
-          "description": "The cobblestones lead to The South Wing Of The City Hall"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5209,
-          "max": 25
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 5220,
-          "max": 1
-        },
-        {
-          "vnum": 5240,
-          "max": 1
-        }
-      ]
-    },
-    "5235": {
-      "vnum": 5235,
-      "name": "A Small Guard House",
-      "description": "This was once the barracks for Thalos' Cityguards. Now just an empty\nshell, this small shack still stands guarding the entrance both to the\ncity and to the city hall. The smell of smoke and humanity hangs in the\nair. The cobblestones are worn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5201,
-          "description": "Main street runs by this building."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5201,
-          "max": 25
-        }
-      ]
-    },
-    "5236": {
-      "vnum": 5236,
-      "name": "A Collapsed Home",
-      "description": "All that's left of this house is a few scattered piles of rubble and a\nvery large blast crater. Obviously someone or something important was\nonce housed here. A shrieking howl chills your blood. The smell of smoke\nand humanity hangs in the air. The cobblestones are worn smooth by\ncountless feet.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 5202,
-          "description": "Main street runs past this ruined home."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5201,
-          "max": 25
-        },
-        {
-          "vnum": 5206,
-          "max": 1
-        }
-      ]
-    },
-    "5237": {
-      "vnum": 5237,
-      "name": "A Tall Dwelling",
-      "description": "This seems to be the tallest structure remaining in the city. At one\ntime this could have been an inn of some sort, but now it is just a\nmess. The back wall as been completely knocked down revealing an\nentrance into another building through yet another collapsed wall.\nBetween the two buildings are a few blast craters and boulders. An old\nset of wooden steps leads up to a creaking second floor. The\ncobblestones are worn smooth by countless feet. Buildings crowd together\non all sides.",
-      "sector_type": "city",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5238,
-          "description": "The cobblestones lead to A Small Shack"
-        },
-        "west": {
-          "to_room": 5211,
-          "description": "A small side street winds past the dwelling."
-        },
-        "up": {
-          "to_room": 5245,
-          "description": "The stairs and even the entire second floor itself looks very unsafe for travel.  Gusts of wind make them creak and shudder."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5201,
-          "max": 25
-        }
-      ]
-    },
-    "5238": {
-      "vnum": 5238,
-      "name": "A Small Shack",
-      "description": "This cramped dwelling could not have housed more than one person. Now\nwith the back wall missing, it could hold many more. Looking around\nfind broken shelves and workbenches with various vials and pouches\nspilling contents all across the floor. This was possibly the magic shop\nof the city. The doorway to the east is blocked, making the only exit\nback west. Vendors and pedestrians bustle past. The cobblestones are\nworn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "west": {
-          "to_room": 5237,
-          "description": "The cobblestones lead to A Tall Dwelling"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5205,
-          "max": 1
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 5210,
-          "max": 2
-        },
-        {
-          "vnum": 5211,
-          "max": 2
-        },
-        {
-          "vnum": 5213,
-          "max": 2
-        },
-        {
-          "vnum": 5241,
-          "max": 1
-        }
-      ]
-    },
-    "5239": {
-      "vnum": 5239,
-      "name": "A Back Alley",
-      "description": "A narrow back alley goes south to main street and north towards a\nwatchtower. A mass of howls catches you of guard. The smell of smoke and\nhumanity hangs in the air. The sounds of city life echo around.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5240,
-          "description": "The cobblestones lead to A Back Alley"
-        },
-        "south": {
-          "to_room": 5201,
-          "description": "Main street runs past here."
-        }
-      }
-    },
-    "5240": {
-      "vnum": 5240,
-      "name": "A Back Alley",
-      "description": "A narrow back alley leads north to one of the city watchtowers and south\ntowards main street. To the west is a doorway to a small house blocked\nby debris. The cobblestones are worn smooth by countless feet. Buildings\ncrowd together on all sides.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "north": {
-          "to_room": 5241,
-          "description": "A tall watchtower stands a silent vigil over the city."
-        },
-        "south": {
-          "to_room": 5239,
-          "description": "The cobblestones lead to A Back Alley"
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5209,
-          "max": 25
-        }
-      ]
-    },
-    "5241": {
-      "vnum": 5241,
-      "name": "Under A Watchtower",
-      "description": "The area opens under a tall watchtower. Narrow back alleys lead west and\nsouth and a very weak looking ladder leads up into the tower. above, you\nhear the screams of tens of starving lamias! Beware! The smell of smoke\nand humanity hangs in the air. Vendors and pedestrians bustle past.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "south": {
-          "to_room": 5240,
-          "description": "The cobblestones lead to A Back Alley"
-        },
-        "west": {
-          "to_room": 5243,
-          "description": "The cobblestones lead to A Back Alley"
-        },
-        "up": {
-          "to_room": 5248,
-          "description": "Winds howl high above your head in the tower above.  You hear the screams of tens of howling lamias above you!"
-        }
-      },
-      "obj_resets": [
-        {
-          "vnum": 5242,
-          "max": 1
-        }
-      ]
-    },
-    "5242": {
-      "vnum": 5242,
-      "name": "A Bath House",
-      "description": "This was once the bath house for the commoners of the city. Hot steamy\nwater still wells up from a hole in the floor. Obviously there is a hot\nspring located under the city (making the decision to put a city here\nseem much more reasonable). Closer inspection of the water yields a dead\nbody floating around in it, skin melted away from months of floating in\nthere. The west wall has collapsed revealing another collapsed house.\nThe cobblestones are worn smooth by countless feet. Buildings crowd\ntogether on all sides.",
-      "sector_type": "city",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5243,
-          "description": "The cobblestones lead to A Back Alley"
-        },
-        "west": {
-          "to_room": 5244,
-          "description": "The wall has collapsed on the adjoining house, creating a new opening in it."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5201,
-          "max": 25
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 5228,
-          "max": 10
-        }
-      ]
-    },
-    "5243": {
-      "vnum": 5243,
-      "name": "A Back Alley",
-      "description": "A narrow back alley leads west to a small side street and east to one of\nthe city watchtowers. Great amounts of steam issue forth from the\nbuilding to the south. The cobblestones are worn smooth by countless\nfeet. The smell of smoke and humanity hangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "east": {
-          "to_room": 5241,
-          "description": "A watchtower stands a silent vigil over the city."
-        },
-        "south": {
-          "to_room": 5242,
-          "description": "The cobblestones lead to A Bath House"
-        },
-        "west": {
-          "to_room": 5209,
-          "description": "A side street runs by here."
-        }
-      }
-    },
-    "5244": {
-      "vnum": 5244,
-      "name": "An Upright House",
-      "description": "This home is practically the only one around that is still standing.\nExcept for the massive hole in the east wall, everything else looks\nintact, including the windows. Great amounts of steam issue forth from\nthe hole in the east wall. Vendors and pedestrians bustle past.\nBuildings crowd together on all sides.",
-      "sector_type": "city",
-      "flags": [
-        "indoors"
-      ],
-      "exits": {
-        "east": {
-          "to_room": 5242,
-          "description": "The cobblestones lead to A Bath House"
-        },
-        "west": {
-          "to_room": 5210,
-          "description": "A small side street runs past the house."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5207,
-          "max": 4
-        }
-      ]
-    },
-    "5245": {
-      "vnum": 5245,
-      "name": "On The Second Floor",
-      "description": "The minute you step off onto this floor you realize it was a mistake.\nThe old rotted floorboards suddenly give way and you fall down, impaling\nyourself on jagged boards below. Buildings crowd together on all sides.\nThe cobblestones are worn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [
-        "death",
-        "indoors"
-      ],
-      "exits": {
-        "down": {
-          "to_room": 5237,
-          "description": "The first floor is below."
-        }
-      }
-    },
-    "5246": {
-      "vnum": 5246,
-      "name": "The North-West Watchtower",
-      "description": "The area opens atop one of the city watchtowers. The view is magnificent\nfrom here and Visible is all the way to the western mountains. No wonder\nthis place stood for so long. The smell of smoke and humanity hangs in\nthe air. The sounds of city life echo around.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "down": {
-          "to_room": 5224,
-          "description": "The city lies below."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5208,
-          "max": 3
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 5243,
-          "max": 1
-        }
-      ]
-    },
-    "5247": {
-      "vnum": 5247,
-      "name": "The South-West Watchtower",
-      "description": "The area opens atop one of the city watchtowers. The view is magnificent\nfrom here and Visible is all the way to the western mountains. To the\nsouth the desert stretches to the horizon. No wonder this place stood\nfor so long. The cobblestones are worn smooth by countless feet. The\nsmell of smoke and humanity hangs in the air.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "down": {
-          "to_room": 5215,
-          "description": "The city lies below."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5208,
-          "max": 3
-        }
-      ]
-    },
-    "5248": {
-      "vnum": 5248,
-      "name": "The North-East Watchtower",
-      "description": "The area opens atop one of the city watchtowers. The view is magnificent\nfrom here and you the desert sand stretches to the horizon. No wonder\nthis place stood for so long. The ladder leading down seems rotted in\nsome places! The sounds of city life echo around. The cobblestones are\nworn smooth by countless feet.",
-      "sector_type": "city",
-      "flags": [
-        "no_mob"
-      ],
-      "exits": {
-        "down": {
-          "to_room": 5249,
-          "description": "The city lies below... far, far below."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5208,
-          "max": 3
-        }
-      ]
-    },
-    "5249": {
-      "vnum": 5249,
-      "name": "Under A Watchtower",
-      "description": "As you descend the ladder, the rotted rungs break, sending you quickly\nto your demise far below on the city street. Splat. The smell of smoke\nand humanity hangs in the air. The cobblestones are worn smooth by\ncountless feet.",
-      "sector_type": "city",
-      "flags": [
-        "death",
-        "indoors"
-      ],
-      "exits": {
-        "up": {
-          "to_room": 5248,
-          "description": "The watchtower is above."
-        }
-      }
-    },
-    "5250": {
-      "vnum": 5250,
-      "name": "The Temple Of Thalos",
-      "description": "The area opens within one of the most holy places in the realm. This\nstunning domed temple once housed the city's worshipers en masse.\nUnfortunately, it succumbed to the destruction brought on this city.\nLong benches lie toppled and the altar desecrated. Large chunks of stone\nhave fallen from the walls and roof, sending sunlight streaming in on\nyou. A few books lie about, conveying to you a holy message in a strange\ntongue. Wind gusts through the four archways and howls and screams can\nbe heard from all parts of the city. The sounds of city life echo\naround. The smell of smoke and humanity hangs in the air.",
-      "sector_type": "city",
-      "flags": [
-        "no_mob",
-        "indoors",
-        "no_magic"
-      ],
-      "exits": {
-        "north": {
-          "to_room": 5204,
-          "description": "A side street leads to the northern half of the city."
-        },
-        "east": {
-          "to_room": 5203,
-          "description": "Main street leads out to the main gate of the city."
-        },
-        "south": {
-          "to_room": 5206,
-          "description": "A side street leads to the southern part of the city."
-        },
-        "west": {
-          "to_room": 5205,
-          "description": "The market place lies this way."
-        }
-      },
-      "mob_resets": [
-        {
-          "vnum": 5200,
-          "max": 1
-        }
-      ],
-      "obj_resets": [
-        {
-          "vnum": 5244,
-          "max": 1
-        }
-      ]
-    },
-    "5233": {
-      "name": "The City Hall Foyer",
-      "description": "A grand foyer connects the eastern wing of the city hall to the private gardens. Polished marble floors reflect the light from ornate chandeliers.",
-      "sector_type": "city",
-      "flags": [],
-      "exits": {
-        "west": {
-          "to_room": 5232,
-          "description": "The cobblestones lead to The City Hall"
-        },
-        "south": {
-          "to_room": 5234,
-          "description": "The Private Gardens And Courtyard Of Thalos"
-        }
-      },
-      "mob_resets": [],
-      "obj_resets": [],
-      "vnum": 5233
     }
-  },
-  "mobs": {
-    "5200": {
-      "vnum": 5200,
-      "name": "beholder",
-      "short_desc": "the mighty beholder",
-      "long_desc": "You meet a beholder's deadly gaze!",
-      "level": 45,
-      "alignment": -870,
-      "hp_dice": "45d10+520",
-      "damage_dice": "12d8+16",
-      "gold": 6000,
-      "exp": 5000,
-      "armor_class": 25,
-      "flags": [
-        "no_bash",
-        "special",
-        "aggressive",
-        "memory",
-        "no_summmon",
-        "sentinel",
-        "no_charm",
-        "boss"
-      ],
-      "description": "It has a large central eye that projects an anti-magic ray and ten\neyestalks atop the round body which can do anything from charm you\nto disintegrate you.  Beholders are not known for their personality.",
-      "equipment": {
-        "hold": 5217,
-        "shield": 5208,
-        "neck1": 5223
-      },
-      "boss": true,
-      "boss_id": "beholder",
-      "boss_title": "the Eye Slayer",
-      "boss_achievement": "boss_beholder",
-      "boss_loot_table": [
-        {
-          "vnum": 9401,
-          "chance": 50
-        },
-        {
-          "vnum": 9402,
-          "chance": 50
-        },
-        {
-          "vnum": 52090,
-          "chance": 25
-        },
-        {
-          "vnum": 52091,
-          "chance": 10
-        },
-        {
-          "vnum": 52092,
-          "chance": 10
-        },
-        {
-          "vnum": 52093,
-          "chance": 10
-        }
-      ],
-      "boss_loot_chance": 85,
-      "boss_config": {
-        "enrage_time": 120,
-        "enrage_multiplier": 1.8,
-        "ability_interval": 5.0,
-        "phases": [
-          {
-            "threshold": 70,
-            "message": "The beholder's eyestalks begin to glow!"
-          },
-          {
-            "threshold": 35,
-            "message": "The beholder floats higher, eyes blazing!"
-          }
-        ],
-        "abilities": [
-          {
-            "name": "Disintegration Ray",
-            "telegraph": "A central eye locks onto you with lethal focus!",
-            "cast_time": 2,
-            "cooldown": 14,
-            "damage_dice": "6d6+10",
-            "dodge": true
-          },
-          {
-            "name": "Mind Spike",
-            "telegraph": "Psychic energy ripples from the beholder!",
-            "cast_time": 1,
-            "cooldown": 10,
-            "damage_dice": "4d8+8",
-            "aoe": true,
-            "dodge": true
-          }
-        ]
-      },
-      "equipment_rolls": [
-        {
-          "slot": "hold",
-          "vnum": 9402,
-          "chance": 50
-        }
-      ],
-      "loot_table": [
-        {
-          "vnum": 9403,
-          "chance": 20
-        },
-        {
-          "vnum": 9404,
-          "chance": 20
-        },
-        {
-          "vnum": 9405,
-          "chance": 20
-        },
-        {
-          "vnum": 9406,
-          "chance": 20
-        },
-        {
-          "vnum": 9407,
-          "chance": 20
-        },
-        {
-          "vnum": 9408,
-          "chance": 20
-        },
-        {
-          "vnum": 9409,
-          "chance": 20
-        },
-        {
-          "vnum": 9410,
-          "chance": 20
-        },
-        {
-          "vnum": 9411,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100
-    },
-    "5201": {
-      "vnum": 5201,
-      "name": "lamia",
-      "short_desc": "the lamia",
-      "long_desc": "A strange lamia stands here waiting for her next meal.",
-      "level": 12,
-      "alignment": -1000,
-      "hp_dice": "12d10+160",
-      "damage_dice": "4d6+6",
-      "gold": 6000,
-      "exp": 720,
-      "armor_class": 64,
-      "flags": [
-        "special",
-        "scavenger",
-        "stay_zone",
-        "aggr_good"
-      ],
-      "description": "This is a creature with the upper torso of a beautiful woman, but the lower\nbody of a four-legged beast.  She licks her lips as she looks at you greedily."
-    },
-    "5202": {
-      "vnum": 5202,
-      "name": "mimic",
-      "short_desc": "the mimic",
-      "long_desc": "A strong chest lies in one corner of the room.",
-      "level": 11,
-      "alignment": 10,
-      "hp_dice": "11d10+148",
-      "damage_dice": "3d6+8",
-      "gold": 6500,
-      "exp": 660,
-      "armor_class": 67,
-      "flags": [
-        "sentinel",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "A strong, wooden chest bound with iron straps and a heavy padlock on the\nfront.",
-      "equipment": {
-        "hold": 5214
-      }
-    },
-    "5203": {
-      "vnum": 5203,
-      "name": "mimic",
-      "short_desc": "the mimic",
-      "long_desc": "Two skeletons lie crushed under a large boulder.",
-      "level": 14,
-      "alignment": -10,
-      "hp_dice": "14d10+184",
-      "damage_dice": "4d6+9",
-      "gold": 10000,
-      "exp": 840,
-      "armor_class": 58,
-      "flags": [
-        "sentinel",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "This large boulder seems to have been dropped here at some point, since\nthere aren't any boulders native to this area.  The two skeletons beneath\nit are simply that, bones... no rags or anything else appears to be\nattached to them.",
-      "inventory": [
-        5215
-      ],
-      "loot_table": [
-        {
-          "vnum": 9403,
-          "chance": 20
-        },
-        {
-          "vnum": 9404,
-          "chance": 20
-        },
-        {
-          "vnum": 9405,
-          "chance": 20
-        },
-        {
-          "vnum": 9406,
-          "chance": 20
-        },
-        {
-          "vnum": 9407,
-          "chance": 20
-        },
-        {
-          "vnum": 9408,
-          "chance": 20
-        },
-        {
-          "vnum": 9409,
-          "chance": 20
-        },
-        {
-          "vnum": 9410,
-          "chance": 20
-        },
-        {
-          "vnum": 9411,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100
-    },
-    "5204": {
-      "vnum": 5204,
-      "name": "mimic",
-      "short_desc": "the mimic",
-      "long_desc": "The stone floor of this house has been ripped apart.",
-      "level": 11,
-      "alignment": -140,
-      "hp_dice": "11d10+148",
-      "damage_dice": "3d6+8",
-      "gold": 5250,
-      "exp": 660,
-      "armor_class": 67,
-      "flags": [
-        "sentinel",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "What a mess, you wonder to yourself what could have caused this rampant\ndestruction.",
-      "inventory": [
-        5218
-      ]
-    },
-    "5205": {
-      "vnum": 5205,
-      "name": "mimic",
-      "short_desc": "the mimic",
-      "long_desc": "Some broken shards of pottery lie strewn about the floor.",
-      "level": 11,
-      "alignment": 200,
-      "hp_dice": "11d10+148",
-      "damage_dice": "3d6+8",
-      "gold": 4900,
-      "exp": 660,
-      "armor_class": 67,
-      "flags": [
-        "sentinel",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "The pottery shards appear to have been part of a large vase at one point,\nprobably before the city fell.",
-      "equipment": {
-        "hold": 5214
-      }
-    },
-    "5206": {
-      "vnum": 5206,
-      "name": "mimic",
-      "short_desc": "the mimic",
-      "long_desc": "A few wooden planks lie stacked on a low shelf.",
-      "level": 11,
-      "alignment": 0,
-      "hp_dice": "11d10+148",
-      "damage_dice": "3d6+8",
-      "gold": 6000,
-      "exp": 660,
-      "armor_class": 67,
-      "flags": [
-        "sentinel",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "The fact that these planks still rest on this shelf leads you to believe\nthat someone has been here before you...",
-      "equipment": {
-        "about": 5222
-      }
-    },
-    "5208": {
-      "vnum": 5208,
-      "name": "golem",
-      "short_desc": "the stone golem",
-      "long_desc": "In the corner you see a large, stone golem faithfully standing watch.",
-      "level": 25,
-      "alignment": 800,
-      "hp_dice": "5d10+450",
-      "damage_dice": "2d8+37",
-      "gold": 74625,
-      "exp": 984,
-      "armor_class": -5,
-      "flags": [
-        "sentinel",
-        "aggr_evil",
-        "memory",
-        "no_charm",
-        "no_summmon",
-        "no_sleep",
-        "no_bash",
-        "no_blind"
-      ],
-      "description": "It is a big chunk of rock that has been magically formed into a giant stone\ncreature.  He stands here still guarding the city.",
-      "equipment": {
-        "hold": 5226,
-        "body": 5200,
-        "wield": 5221
-      },
-      "loot_table": [
-        {
-          "vnum": 9403,
-          "chance": 20
-        },
-        {
-          "vnum": 9404,
-          "chance": 20
-        },
-        {
-          "vnum": 9405,
-          "chance": 20
-        },
-        {
-          "vnum": 9406,
-          "chance": 20
-        },
-        {
-          "vnum": 9407,
-          "chance": 20
-        },
-        {
-          "vnum": 9408,
-          "chance": 20
-        },
-        {
-          "vnum": 9409,
-          "chance": 20
-        },
-        {
-          "vnum": 9410,
-          "chance": 20
-        },
-        {
-          "vnum": 9411,
-          "chance": 20
-        }
-      ],
-      "loot_chance": 100
-    },
-    "5209": {
-      "vnum": 5209,
-      "name": "lamia",
-      "short_desc": "the lamia",
-      "long_desc": "A strange lamia stands here waiting for her next meal.",
-      "level": 9,
-      "alignment": -500,
-      "hp_dice": "9d10+124",
-      "damage_dice": "3d5+6",
-      "gold": 4250,
-      "exp": 540,
-      "armor_class": 73,
-      "flags": [
-        "special",
-        "sentinel",
-        "aggressive",
-        "stay_zone"
-      ],
-      "description": "This is a creature with the upper torso of a beautiful woman, but the lower\nbody of a four-legged beast.  She licks her lips as she looks at you greedily."
-    },
-    "5298": {
-      "vnum": 5298,
-      "name": "street vendor",
-      "short_desc": "a loud street vendor",
-      "long_desc": "A street vendor stands here, hawking questionable wares from a rickety cart.",
-      "description": "He's missing two fingers on his left hand and has the shrewd eyes of someone who's cheated death \u2014 and customers \u2014 more times than he can count.",
-      "level": 35,
-      "alignment": 0,
-      "hp_dice": "35d10+600",
-      "damage_dice": "1d4+1",
-      "gold": 0,
-      "exp": 0,
-      "armor_class": 100,
-      "flags": [
-        "sentinel"
-      ],
-      "special": "flavor_npc",
-      "talk_responses": {
-        "hello": "The vendor grins wide. 'Finest goods in Thalos! Well, maybe not finest, but definitely cheapest. Say, you hear about the new tax the council pushed through? Bunch of crooks, the lot of them. At least I'm honest about my dishonesty!'",
-        "politics": "He leans in conspiratorially. 'Word is the harbor master's been taking bribes from pirates. That's why the docks have been so dangerous lately.'",
-        "default": "The vendor waves a hand. 'Browse all you like! Everything's negotiable, except my prices \u2014 those are final.'",
-        "next": "The vendor glances around nervously. 'Between you and me, if you're looking for real adventure, the Drow City lies hidden beneath the earth \u2014 speak to Zilara the Shadow Exile if you dare. The deep mines of Moria also hold treasures beyond imagining... and horrors to match.'"
-      }
-    },
-    "5299": {
-      "vnum": 5299,
-      "name": "drunk sailor",
-      "short_desc": "a drunk sailor",
-      "long_desc": "A drunk sailor slumps against a barrel here, reeking of cheap rum.",
-      "description": "His weathered face tells tales of a thousand storms, and his bloodshot eyes struggle to focus on anything. A faded tattoo of a kraken adorns his forearm.",
-      "level": 30,
-      "alignment": 0,
-      "hp_dice": "30d10+500",
-      "damage_dice": "1d4+1",
-      "gold": 0,
-      "exp": 0,
-      "armor_class": 100,
-      "flags": [
-        "sentinel"
-      ],
-      "special": "flavor_npc",
-      "talk_responses": {
-        "hello": "The sailor belches loudly. 'I've shailed \u2014 sailed \u2014 every ocean there is, and I'll tell you this for free: there's things in the deep water that'd make a dragon weep. Saw a tentacle once, thick as a mast, just... reaching up from below.'",
-        "sea": "He clutches his rum bottle. 'The eastern waters are the worst. Ships vanish there. No wreckage, no bodies. Just... gone. I won't sail east again, not for all the gold in Thalos.'",
-        "default": "The sailor hiccups. 'Buy me a drink and I'll tell you about the time I outran a sea serpent... probably.'"
-      }
-    }
-  },
-  "objects": {
-    "5200": {
-      "vnum": 5200,
-      "name": "vest",
-      "short_desc": "a ringmail vest",
-      "room_desc": "A vest made of iron rings lies heaped on the floor.",
-      "item_type": "armor",
-      "weight": 60,
-      "value": 12000,
-      "armor_bonus": 6,
-      "type": "armor",
-      "wear_slot": "body",
-      "armor": 1
-    },
-    "5201": {
-      "vnum": 5201,
-      "name": "helm",
-      "short_desc": "an iron helm",
-      "room_desc": "An iron helm has been left on the ground.",
-      "item_type": "armor",
-      "weight": 10,
-      "value": 5000,
-      "armor_bonus": 7,
-      "type": "armor",
-      "wear_slot": "head",
-      "armor": 2
-    },
-    "5202": {
-      "vnum": 5202,
-      "name": "gauntlets",
-      "short_desc": "a pair of iron gauntlets",
-      "room_desc": "A pair of iron gauntlets rests heavily on the ground.",
-      "item_type": "armor",
-      "weight": 10,
-      "value": 2200,
-      "armor_bonus": 7,
-      "type": "treasure"
-    },
-    "5203": {
-      "vnum": 5203,
-      "name": "sleeves",
-      "short_desc": "a pair of iron sleeves",
-      "room_desc": "A set of iron sleeves lies on the ground.",
-      "item_type": "armor",
-      "weight": 10,
-      "value": 2450,
-      "armor_bonus": 7,
-      "type": "armor",
-      "wear_slot": "legs",
-      "armor": 2
-    },
-    "5204": {
-      "vnum": 5204,
-      "name": "boots",
-      "short_desc": "a pair of iron boots",
-      "room_desc": "A pair of iron boots has been left here.",
-      "item_type": "armor",
-      "weight": 6,
-      "value": 800,
-      "armor_bonus": 4,
-      "type": "armor",
-      "wear_slot": "feet",
-      "armor": 2
-    },
-    "5205": {
-      "vnum": 5205,
-      "name": "greaves",
-      "short_desc": "a set of iron greaves",
-      "room_desc": "A set of iron greaves lie here unattended.",
-      "item_type": "armor",
-      "weight": 10,
-      "value": 5400,
-      "armor_bonus": 7,
-      "type": "armor",
-      "wear_slot": "feet",
-      "armor": 2
-    },
-    "5206": {
-      "vnum": 5206,
-      "name": "girth",
-      "short_desc": "an iron girth",
-      "room_desc": "A small iron girth lies at your feet.",
-      "item_type": "armor",
-      "weight": 6,
-      "value": 4200,
-      "armor_bonus": 4,
-      "type": "treasure"
-    },
-    "5207": {
-      "vnum": 5207,
-      "name": "plate",
-      "short_desc": "a battered iron breast plate",
-      "room_desc": "A battered iron breast plate lies here.",
-      "item_type": "armor",
-      "weight": 125,
-      "value": 13000,
-      "armor_bonus": 5,
-      "type": "treasure"
-    },
-    "5208": {
-      "vnum": 5208,
-      "name": "shield",
-      "short_desc": "a sturdy iron shield",
-      "room_desc": "A small, but sturdy, iron shield has been left here.",
-      "item_type": "armor",
-      "weight": 5,
-      "value": 500,
-      "armor_bonus": 5,
-      "type": "armor",
-      "wear_slot": "shield",
-      "armor": 3
-    },
-    "5210": {
-      "vnum": 5210,
-      "name": "potion",
-      "short_desc": "a black potion",
-      "room_desc": "A jet black potion sits upright waiting to be taken.",
-      "item_type": "potion",
-      "weight": 5,
-      "value": 6000,
-      "type": "potion"
-    },
-    "5211": {
-      "vnum": 5211,
-      "name": "potion",
-      "short_desc": "an orange potion",
-      "room_desc": "A small orange potion lies here.",
-      "item_type": "potion",
-      "weight": 10,
-      "value": 7500,
-      "type": "potion"
-    },
-    "5213": {
-      "vnum": 5213,
-      "name": "staff",
-      "short_desc": "a green serpentine staff",
-      "room_desc": "A green serpentine staff has been left here.",
-      "item_type": "staff",
-      "weight": 12,
-      "value": 6600,
-      "type": "weapon",
-      "weapon_type": "pound",
-      "damage_dice": "1d6"
-    },
-    "5214": {
-      "vnum": 5214,
-      "name": "ball",
-      "short_desc": "a smooth quartz ball",
-      "room_desc": "A smooth quartz ball lies here gleaming.",
-      "item_type": "light",
-      "weight": 30,
-      "value": 3050,
-      "light_hours": 72,
-      "type": "treasure"
-    },
-    "5215": {
-      "vnum": 5215,
-      "name": "scroll",
-      "short_desc": "a tattered scroll",
-      "room_desc": "A worn and tattered scroll has been left here.",
-      "item_type": "scroll",
-      "weight": 15,
-      "value": 11000,
-      "type": "scroll"
-    },
-    "5216": {
-      "vnum": 5216,
-      "name": "scroll",
-      "short_desc": "a bound scroll",
-      "room_desc": "A bound scroll of detection lies at your feet.",
-      "item_type": "scroll",
-      "weight": 15,
-      "value": 4200,
-      "type": "scroll"
-    },
-    "5217": {
-      "vnum": 5217,
-      "name": "flute",
-      "short_desc": "a silver flute",
-      "room_desc": "A brilliant silver flute glimmers from beneath a rock.",
-      "item_type": "staff",
-      "weight": 3,
-      "value": 10500,
-      "type": "treasure"
-    },
-    "5218": {
-      "vnum": 5218,
-      "name": "talisman",
-      "short_desc": "a demon-faced talisman",
-      "room_desc": "A demon-faced talisman glares at you angrily.",
-      "item_type": "armor",
-      "weight": 11,
-      "value": 2500,
-      "armor_bonus": 5,
-      "type": "treasure"
-    },
-    "5219": {
-      "vnum": 5219,
-      "name": "venison",
-      "short_desc": "a chunk of venison",
-      "room_desc": "A large chunk of venison sits here, ready to be eaten.",
-      "item_type": "food",
-      "weight": 20,
-      "value": 100,
-      "nutrition": 24,
-      "type": "food",
-      "food_value": 12
-    },
-    "5220": {
-      "vnum": 5220,
-      "name": "fountain",
-      "short_desc": "a large cracked fountain",
-      "room_desc": "a large cracked fountain",
-      "item_type": "fountain",
-      "weight": 0,
-      "value": 0,
-      "type": "furniture"
-    },
-    "5221": {
-      "vnum": 5221,
-      "name": "sword",
-      "short_desc": "a two-handed sword",
-      "room_desc": "A nice two-handed sword hangs on a hook in the wall.",
-      "item_type": "weapon",
-      "weight": 22,
-      "value": 55000,
-      "damage_dice": "3d6",
-      "weapon_type": "slash",
-      "type": "weapon"
-    },
-    "5222": {
-      "vnum": 5222,
-      "name": "robe",
-      "short_desc": "a black silk robe",
-      "room_desc": "A black silk robe lies heaped in one corner.",
-      "item_type": "armor",
-      "weight": 6,
-      "value": 1300,
-      "armor_bonus": 1,
-      "type": "armor",
-      "wear_slot": "body",
-      "armor": 1
-    },
-    "5223": {
-      "vnum": 5223,
-      "name": "cloak",
-      "short_desc": "a dark green cloak",
-      "room_desc": "A beautiful dark green cloak has been dropped here by someone.",
-      "item_type": "armor",
-      "weight": 12,
-      "value": 14500,
-      "armor_bonus": 0,
-      "type": "armor",
-      "wear_slot": "about",
-      "armor": 1
-    },
-    "5224": {
-      "vnum": 5224,
-      "name": "seal",
-      "short_desc": "an engraved ebony seal",
-      "room_desc": "A small, engraved ebony seal is here.",
-      "item_type": "key",
-      "weight": 2,
-      "value": 0,
-      "type": "treasure"
-    },
-    "5225": {
-      "vnum": 5225,
-      "name": "desk",
-      "short_desc": "the desk",
-      "room_desc": "the desk",
-      "item_type": "container",
-      "weight": 0,
-      "value": 0,
-      "capacity": 100,
-      "key_vnum": 5224,
-      "type": "furniture"
-    },
-    "5226": {
-      "vnum": 5226,
-      "name": "seal",
-      "short_desc": "an engraved ivory seal",
-      "room_desc": "A small, engraved ivory seal lies here.",
-      "item_type": "key",
-      "weight": 2,
-      "value": 0,
-      "type": "treasure"
-    },
-    "5227": {
-      "vnum": 5227,
-      "name": "cabinet",
-      "short_desc": "the glass cabinet",
-      "room_desc": "the glass cabinet",
-      "item_type": "container",
-      "weight": 0,
-      "value": 0,
-      "capacity": 500,
-      "key_vnum": 5226,
-      "type": "container"
-    },
-    "5228": {
-      "vnum": 5228,
-      "name": "arm",
-      "short_desc": "a half-rotted arm",
-      "room_desc": "A half-rotted arm floats lazily past your feet.",
-      "item_type": "food",
-      "weight": 20,
-      "value": 0,
-      "nutrition": 50,
-      "type": "treasure"
-    },
-    "5230": {
-      "vnum": 5230,
-      "name": "stone",
-      "short_desc": "a pale blue stone",
-      "room_desc": "A pale blue stone sits here.",
-      "item_type": "treasure",
-      "weight": 10,
-      "value": 5500,
-      "type": "treasure"
-    },
-    "5231": {
-      "vnum": 5231,
-      "name": "stone",
-      "short_desc": "a scarlet and blue stone",
-      "room_desc": "A pretty scarlet and blue stone has been dropped here.",
-      "item_type": "treasure",
-      "weight": 10,
-      "value": 5500,
-      "type": "treasure"
-    },
-    "5232": {
-      "vnum": 5232,
-      "name": "stone",
-      "short_desc": "an incandescent blue stone",
-      "room_desc": "A small incandescent blue stone lies here.",
-      "item_type": "treasure",
-      "weight": 10,
-      "value": 5500,
-      "type": "treasure"
-    },
-    "5233": {
-      "vnum": 5233,
-      "name": "stone",
-      "short_desc": "a deep red stone",
-      "room_desc": "Someone has left a deep red stone here.",
-      "item_type": "treasure",
-      "weight": 10,
-      "value": 5500,
-      "type": "treasure"
-    },
-    "5234": {
-      "vnum": 5234,
-      "name": "stone",
-      "short_desc": "a pink stone",
-      "room_desc": "A tiny pink stone lies at your feet.",
-      "item_type": "treasure",
-      "weight": 10,
-      "value": 5500,
-      "type": "treasure"
-    },
-    "5235": {
-      "vnum": 5235,
-      "name": "stone",
-      "short_desc": "a pearly white stone",
-      "room_desc": "A lovely, pearly white stone has been carelessly left here.",
-      "item_type": "treasure",
-      "weight": 10,
-      "value": 8700,
-      "type": "treasure"
-    },
-    "5236": {
-      "vnum": 5236,
-      "name": "stone",
-      "short_desc": "a pale lavender stone",
-      "room_desc": "A beautiful pale lavender stone lies here.",
-      "item_type": "treasure",
-      "weight": 10,
-      "value": 4300,
-      "type": "treasure"
-    },
-    "5237": {
-      "vnum": 5237,
-      "name": "stone",
-      "short_desc": "a lavender and green stone",
-      "room_desc": "A stunning lavender and green stone rests on the ground.",
-      "item_type": "treasure",
-      "weight": 10,
-      "value": 4700,
-      "type": "treasure"
-    },
-    "5238": {
-      "vnum": 5238,
-      "name": "stone",
-      "short_desc": "a dusty rose stone",
-      "room_desc": "A stone is here, sort of a dusty rose color and very pretty.",
-      "item_type": "treasure",
-      "weight": 10,
-      "value": 9800,
-      "type": "treasure"
-    },
-    "5239": {
-      "vnum": 5239,
-      "name": "stone",
-      "short_desc": "a dull grey stone",
-      "room_desc": "You can barely make out a dull grey stone on the ground.",
-      "item_type": "treasure",
-      "weight": 10,
-      "value": 20,
-      "type": "treasure"
-    },
-    "5240": {
-      "vnum": 5240,
-      "name": "stone",
-      "short_desc": "a vibrant purple stone",
-      "room_desc": "A stunningly vibrant purple stone attracts your attention.",
-      "item_type": "treasure",
-      "weight": 10,
-      "value": 10200,
-      "type": "treasure"
-    },
-    "5241": {
-      "vnum": 5241,
-      "name": "stone",
-      "short_desc": "a pink and green stone",
-      "room_desc": "A bright pink and green stone has been left here.",
-      "item_type": "treasure",
-      "weight": 10,
-      "value": 6600,
-      "type": "treasure"
-    },
-    "5242": {
-      "vnum": 5242,
-      "name": "stone",
-      "short_desc": "a pale green stone",
-      "room_desc": "A pale green stone lies here collecting dust.",
-      "item_type": "treasure",
-      "weight": 10,
-      "value": 7100,
-      "type": "treasure"
-    },
-    "5243": {
-      "vnum": 5243,
-      "name": "stone",
-      "short_desc": "a clear stone",
-      "room_desc": "An odd clear stone lies at your feet.",
-      "item_type": "treasure",
-      "weight": 10,
-      "value": 8900,
-      "type": "treasure"
-    },
-    "5244": {
-      "vnum": 5244,
-      "name": "stone",
-      "short_desc": "an iridescent stone",
-      "room_desc": "A large iridescent stone has been left here.",
-      "item_type": "treasure",
-      "weight": 10,
-      "value": 3700,
-      "type": "treasure"
-    },
-    "5250": {
-      "vnum": 5250,
-      "name": "mandolin",
-      "short_desc": "a mandolin",
-      "room_desc": "A mandolin lies against the wall.",
-      "item_type": "staff",
-      "weight": 20,
-      "value": 3000,
-      "type": "treasure"
-    },
-    "5251": {
-      "vnum": 5251,
-      "name": "harp",
-      "short_desc": "a golden harp",
-      "room_desc": "A battered golden harp has been tipped over.",
-      "item_type": "staff",
-      "weight": 100,
-      "value": 2500,
-      "type": "treasure"
-    },
-    "9401": {
-      "vnum": 9401,
-      "name": "eye of providence",
-      "short_desc": "\u001b[93mthe Eye of Providence\u001b[0m",
-      "room_desc": "\u001b[93mA floating ocular gem stares blankly.\u001b[0m",
-      "description": "A cleric\u2019s relic carved from a beholder\u2019s central eye.",
-      "item_type": "armor",
-      "wear_slot": "neck1",
-      "armor_bonus": 3,
-      "weight": 1,
-      "value": 14000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "wis",
-          "value": 3
-        },
-        {
-          "type": "max_mana",
-          "value": 30
-        }
-      ],
-      "set_id": 52,
-      "type": "treasure"
-    },
-    "9402": {
-      "vnum": 9402,
-      "name": "orb of insight",
-      "short_desc": "\u001b[93man \u001b[96morb\u001b[0m\u001b[93m of insight\u001b[0m",
-      "room_desc": "\u001b[93mA glossy \u001b[96morb\u001b[0m\u001b[93m pulses with psychic energy.\u001b[0m",
-      "description": "A wizard\u2019s trinket drawn from a beholder\u2019s mind.",
-      "item_type": "armor",
-      "wear_slot": "hold",
-      "armor_bonus": 1,
-      "weight": 1,
-      "value": 12000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "int",
-          "value": 2
-        },
-        {
-          "type": "wis",
-          "value": 1
-        }
-      ],
-      "set_id": 52,
-      "type": "treasure"
-    },
-    "9403": {
-      "vnum": 9403,
-      "name": "thalos legion blade",
-      "short_desc": "a Thalos legion blade",
-      "room_desc": "A Thalos legion blade lies here.",
-      "description": "A legion sword.",
-      "item_type": "weapon",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "wield",
-      "weapon_type": "slash",
-      "damage_dice": "2d6+4",
-      "affects": [
-        {
-          "type": "damroll",
-          "value": 3
-        }
-      ],
-      "set_id": 52,
-      "type": "weapon"
-    },
-    "9404": {
-      "vnum": 9404,
-      "name": "aureate shield",
-      "short_desc": "an aureate shield",
-      "room_desc": "An aureate shield lies here.",
-      "description": "A paladin's shield.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "shield",
-      "armor_bonus": 3,
-      "affects": [
-        {
-          "type": "cha",
-          "value": 1
-        }
-      ],
-      "set_id": 52,
-      "type": "armor",
-      "armor": 3
-    },
-    "9405": {
-      "vnum": 9405,
-      "name": "black sun sigil",
-      "short_desc": "a black sun sigil",
-      "room_desc": "A black sun sigil lies here.",
-      "description": "A deathknight's sigil.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "neck1",
-      "affects": [
-        {
-          "type": "damroll",
-          "value": 3
-        }
-      ],
-      "set_id": 52,
-      "type": "treasure"
-    },
-    "9406": {
-      "vnum": 9406,
-      "name": "sun\u2011blessed reliquary",
-      "short_desc": "a sun\u2011blessed reliquary",
-      "room_desc": "A sun\u2011blessed reliquary lies here.",
-      "description": "A cleric's reliquary.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "hold",
-      "affects": [
-        {
-          "type": "wis",
-          "value": 2
-        },
-        {
-          "type": "max_mana",
-          "value": 25
-        }
-      ],
-      "set_id": 52,
-      "type": "treasure"
-    },
-    "9407": {
-      "vnum": 9407,
-      "name": "marble\u2011inlaid focus",
-      "short_desc": "a marble\u2011inlaid focus",
-      "room_desc": "A marble\u2011inlaid focus lies here.",
-      "description": "A mage's focus.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "hold",
-      "affects": [
-        {
-          "type": "int",
-          "value": 3
-        }
-      ],
-      "set_id": 52,
-      "type": "treasure"
-    },
-    "9408": {
-      "vnum": 9408,
-      "name": "laurel lyre",
-      "short_desc": "a laurel lyre",
-      "room_desc": "A laurel lyre lies here.",
-      "description": "A bard's lyre.",
-      "item_type": "weapon",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "wield",
-      "weapon_type": "mace",
-      "damage_dice": "1d6+2",
-      "affects": [
-        {
-          "type": "cha",
-          "value": 3
-        }
-      ],
-      "set_id": 52,
-      "type": "treasure"
-    },
-    "9409": {
-      "vnum": 9409,
-      "name": "civic stiletto",
-      "short_desc": "a civic stiletto",
-      "room_desc": "A civic stiletto lies here.",
-      "description": "A rogue's stiletto.",
-      "item_type": "weapon",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "wield",
-      "weapon_type": "pierce",
-      "damage_dice": "1d6+2",
-      "affects": [
-        {
-          "type": "dex",
-          "value": 3
-        },
-        {
-          "type": "hitroll",
-          "value": 1
-        }
-      ],
-      "set_id": 52,
-      "type": "weapon"
-    },
-    "9410": {
-      "vnum": 9410,
-      "name": "gladiator's band",
-      "short_desc": "a gladiator's band",
-      "room_desc": "A gladiator's band lies here.",
-      "description": "A ranger's ring.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "finger1",
-      "affects": [
-        {
-          "type": "dex",
-          "value": 2
-        }
-      ],
-      "set_id": 52,
-      "type": "armor",
-      "armor": 0
-    },
-    "9411": {
-      "vnum": 9411,
-      "name": "thalos mantle",
-      "short_desc": "a Thalos mantle",
-      "room_desc": "A Thalos mantle lies here.",
-      "description": "A city mantle.",
-      "item_type": "armor",
-      "weight": 4,
-      "value": 4000,
-      "wear_slot": "about",
-      "armor_bonus": 2,
-      "set_id": 52,
-      "type": "armor",
-      "armor": 1
-    },
-    "52090": {
-      "vnum": 52090,
-      "name": "hood of the unblinking",
-      "short_desc": "\u001b[95mthe hood of the unblinking\u001b[0m",
-      "room_desc": "\u001b[95mA hood with an unblinking eye motif lies here.\u001b[0m",
-      "description": "A hood said to turn away tracking eyes.",
-      "item_type": "armor",
-      "wear_slot": "head",
-      "armor_bonus": 2,
-      "weight": 2,
-      "value": 20000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "no_track",
-          "value": 1
-        },
-        {
-          "type": "sneak",
-          "value": 5
-        }
-      ],
-      "type": "armor",
-      "armor": 2
-    },
-    "52091": {
-      "vnum": 52091,
-      "name": "reliquary of the eye",
-      "short_desc": "\u001b[95mthe reliquary of the eye\u001b[0m",
-      "room_desc": "\u001b[95mA jeweled reliquary rests here.\u001b[0m",
-      "description": "A reliquary that strengthens restorative miracles.",
-      "item_type": "armor",
-      "wear_slot": "neck1",
-      "armor_bonus": 1,
-      "weight": 1,
-      "value": 24000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "heal_power",
-          "value": 12
-        }
-      ],
-      "type": "treasure"
-    },
-    "52092": {
-      "vnum": 52092,
-      "name": "amulet of the grave",
-      "short_desc": "\u001b[95mthe amulet of the grave\u001b[0m",
-      "room_desc": "\u001b[95mA dark amulet rests here.\u001b[0m",
-      "description": "An amulet that deepens vampiric touch.",
-      "item_type": "armor",
-      "wear_slot": "neck2",
-      "armor_bonus": 1,
-      "weight": 1,
-      "value": 24000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "vampiric_touch",
-          "value": 12
-        }
-      ],
-      "type": "armor",
-      "armor": 0
-    },
-    "52093": {
-      "vnum": 52093,
-      "name": "torch of judgment",
-      "short_desc": "\u001b[95mthe torch of judgment\u001b[0m",
-      "room_desc": "\u001b[95mA votive torch rests here.\u001b[0m",
-      "description": "A sacred token that strengthens turning the undead.",
-      "item_type": "armor",
-      "wear_slot": "hold",
-      "armor_bonus": 0,
-      "weight": 1,
-      "value": 24000,
-      "flags": [
-        "magic"
-      ],
-      "affects": [
-        {
-          "type": "turn_undead",
-          "value": 12
-        }
-      ],
-      "type": "light",
-      "light_hours": 24
-    },
-    "5295": {
-      "vnum": 5295,
-      "name": "wooden signpost",
-      "short_desc": "a sun-bleached signpost",
-      "room_desc": "A sun-bleached wooden signpost stands at the city entrance.",
-      "item_type": "furniture",
-      "type": "furniture",
-      "weight": 0,
-      "value": 0,
-      "readable_text": "=== CITY OF THALOS ===\nRecommended Level: 10-20\nA bustling desert city with dangers in its streets\nSeek Captain Varro for military contracts\nWest: Return toward Midgaard"
-    }
-  }
 }
