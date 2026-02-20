@@ -8,11 +8,9 @@ import asyncio
 import logging
 import re
 import textwrap
-from typing import Dict, Optional
+from typing import Dict
 from datetime import datetime
-import hashlib
 import os
-import json
 
 _ANSI_RE = re.compile(r'\x1b\[[0-9;]*m')
 _BOX_CHARS = set('║╔╗╚╝═╠╣╬╦╩─│┌┐└┘├┤┬┴┼')
