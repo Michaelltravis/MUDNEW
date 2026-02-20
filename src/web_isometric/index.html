@@ -1782,29 +1782,14 @@
                     return;
                 }
 
-                // Player skill / spell use
-                if (/^you (cast|use|channel|chant|invoke|activate|unleash|trigger|backstab|ambush|execute|study|expose|vital|attempt|prepare|charge)/i.test(t)
-                    || /^you.*\b(spell|skill|ability|power|technique)\b/i.test(t)
-                    || /chants? some words|you begin chanting|you complete the spell|casting is interrupted/i.test(t)) {
-                    _addCombatLine(t, 'skill');
-                    _enterCombat();
-                    return;
-                }
-
-                // Mob casts / uses ability
-                if (/chants? some words|begins? to cast|invokes?|calls? upon|unleashes?|channels?/i.test(t) && !/^you /i.test(t)) {
-                    _addCombatLine(t, 'skill');
-                    _enterCombat();
-                    return;
-                }
-
-                // Resource / status updates during combat (intel, luck, holy power, etc.)
+                // Ignore skill/resource proc chatter in combat log (keep this panel for combat events)
                 if (/\[(Intel|Luck|Holy Power|Momentum|Faith|Soul Shard|Arcane|Inspiration|Focus|Rage):/i.test(t)
                     || /\b(Unstoppable|Expose Weakness unlocked|Vital Strike unlocked|Execute Contract|unlocked)\b/i.test(t)
                     || /you are stunned|stun resist|you resist the stun|your vendetta/i.test(t)
-                    || /counters?!|counter-?attack/i.test(t)) {
-                    _addCombatLine(t, 'skill');
-                    _enterCombat();
+                    || /counters?!|counter-?attack/i.test(t)
+                    || /^you (cast|use|channel|chant|invoke|activate|unleash|trigger|backstab|ambush|execute|study|expose|vital|attempt|prepare|charge)/i.test(t)
+                    || /^you.*\b(spell|skill|ability|power|technique)\b/i.test(t)
+                    || /chants? some words|you begin chanting|you complete the spell|casting is interrupted|begins? to cast|invokes?|calls? upon|unleashes?|channels?/i.test(t)) {
                     return;
                 }
 
@@ -5082,13 +5067,24 @@
                 const skillRows = Object.entries(skills)
                     .filter(([k,v]) => v > 0 && (allowed.size === 0 || allowed.has(k.toLowerCase())))
                     .sort((a,b)=>a[0].localeCompare(b[0]))
-                    .map(([k,v]) => `<div class="cs-skill-row"><span class="cs-skill-name">${fmtName(k)}</span><span class="cs-skill-val">${v}%</span></div>`)
+                    .map(([k,v]) => {
+                        const val = Number(v) || 0;
+                        const status = val >= 85
+                            ? `<span class="cs-skill-val" style="color:#7ee787">MASTERED</span>`
+                            : `<span class="cs-skill-val">${val}%</span>`;
+                        return `<div class="cs-skill-row"><span class="cs-skill-name">${fmtName(k)}</span>${status}</div>`;
+                    })
                     .join('');
+                const classSpells = p.class_spells || [];
+                const spellRows = classSpells.length
+                    ? classSpells.map(sp => `<div class="cs-skill-row"><span class="cs-skill-name">${fmtName(sp)}</span><span class="cs-skill-val">0%</span></div>`).join('')
+                    : '<div class="cs-empty">(none)</div>';
                 const talentRows = Object.entries(talents).sort((a,b)=>a[0].localeCompare(b[0])).map(([k,v]) =>
                     `<div class="cs-skill-row"><span class="cs-skill-name">${fmtName(k)}</span><span class="cs-skill-val" style="color:#ffcc44">★${v}</span></div>`
                 ).join('');
                 content.innerHTML = `
                   ${skillRows  ? `<div class="cs-section-title">Skills</div><div class="cs-skill-grid">${skillRows}</div>` : ''}
+                  <div class="cs-section-title">Spells</div><div class="cs-skill-grid">${spellRows}</div>
                   ${talentRows ? `<div class="cs-section-title">Talents</div><div class="cs-skill-grid">${talentRows}</div>` : ''}
                   ${!skillRows && !talentRows ? '<div class="cs-empty">No skills</div>' : ''}
                 `;
