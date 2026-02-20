@@ -1501,10 +1501,25 @@ class Player(Character):
                     if next_room.characters:
                         await self.send(f"\n{c['green']}You see:{c['reset']}")
                         for char in next_room.characters:
-                            if hasattr(char, 'short_desc'):
-                                await self.send(f"  {char.short_desc}")
+                            mob_flags = set(getattr(char, 'flags', set()) or [])
+                            mob_name  = getattr(char, 'name', '')
+                            mob_align = getattr(char, 'alignment', 0)
+                            if hasattr(char, 'owner') and char.owner:
+                                peek_color = c['bright_magenta']
+                            elif 'boss' in mob_flags:
+                                peek_color = c['bright_magenta']
+                            elif 'aggressive' in mob_flags or 'aggro' in mob_flags:
+                                peek_color = c['bright_red']
+                            elif 'shopkeeper' in mob_flags or 'friendly' in mob_flags or mob_align >= 500:
+                                peek_color = c['bright_green']
+                            elif mob_name and not mob_name.startswith(('a ', 'an ', 'the ', 'some ')):
+                                peek_color = c['bright_yellow']
+                            elif hasattr(char, 'connection'):
+                                peek_color = c['bright_green']
                             else:
-                                await self.send(f"  {char.name}")
+                                peek_color = c['yellow']
+                            label = getattr(char, 'short_desc', None) or mob_name
+                            await self.send(f"  {peek_color}{label}{c['reset']}")
 
                     # Show obvious items
                     if next_room.items:
@@ -1672,10 +1687,29 @@ class Player(Character):
                     label_msg = f" {c['bright_yellow']}({label_name}){c['reset']}"
                     break
         
-        if hasattr(char, 'long_desc'):
-            await self.send(f"{char.long_desc}{label_msg}")
+        # Determine color for this NPC
+        mob_flags = set(getattr(char, 'flags', set()) or [])
+        mob_name  = getattr(char, 'name', '')
+        mob_align = getattr(char, 'alignment', 0)
+        if hasattr(char, 'connection'):
+            char_color = c['bright_green']
+        elif hasattr(char, 'owner') and char.owner:
+            char_color = c['bright_magenta']
+        elif 'boss' in mob_flags:
+            char_color = c['bright_magenta']
+        elif 'aggressive' in mob_flags or 'aggro' in mob_flags:
+            char_color = c['bright_red']
+        elif 'shopkeeper' in mob_flags or 'friendly' in mob_flags or mob_align >= 500:
+            char_color = c['bright_green']
+        elif mob_name and not mob_name.startswith(('a ', 'an ', 'the ', 'some ')):
+            char_color = c['bright_yellow']
         else:
-            await self.send(f"You see {char.name}.{label_msg}")
+            char_color = c['yellow']
+
+        if hasattr(char, 'long_desc'):
+            await self.send(f"{char_color}{char.long_desc}{c['reset']}{label_msg}")
+        else:
+            await self.send(f"{char_color}You see {char.name}.{c['reset']}{label_msg}")
             
         # Show condition
         hp_pct = char.hp / char.max_hp if char.max_hp > 0 else 0

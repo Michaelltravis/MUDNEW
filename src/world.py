@@ -275,9 +275,9 @@ class Room:
                             label_msg = f" {c['bright_yellow']}({label_name}){c['reset']}"
                             break
 
-                # Color pets/summons differently from regular NPCs
+                # Color NPCs by type/disposition so they stand out from the room text
                 if hasattr(char, 'owner') and char.owner:
-                    # This is a pet/summon - use magenta
+                    # Pet/summon
                     if char.owner == player:
                         char_color = c['bright_magenta']  # Your pets
                         owner_tag = f" {c['green']}(yours){c['reset']}"
@@ -285,8 +285,26 @@ class Room:
                         char_color = c['magenta']  # Other player's pets
                         owner_tag = f" {c['yellow']}({char.owner.name}'s){c['reset']}"
                 else:
-                    char_color = c['bright_cyan']  # Regular NPCs
                     owner_tag = ""
+                    mob_flags = set(getattr(char, 'flags', set()) or [])
+                    mob_name  = getattr(char, 'name', '')
+                    mob_align = getattr(char, 'alignment', 0)
+
+                    if 'boss' in mob_flags:
+                        # Boss — bright magenta, unmistakable
+                        char_color = c['bright_magenta']
+                    elif 'aggressive' in mob_flags or 'aggro' in mob_flags:
+                        # Attacks on sight — bright red, danger
+                        char_color = c['bright_red']
+                    elif 'shopkeeper' in mob_flags or 'friendly' in mob_flags or 'vendor' in mob_flags or mob_align >= 500:
+                        # Safe/friendly NPC — bright green
+                        char_color = c['bright_green']
+                    elif mob_name and not mob_name.startswith(('a ', 'an ', 'the ', 'some ')):
+                        # Named NPC (e.g. "Theron the Hunter", "Grimclaw") — bright yellow
+                        char_color = c['bright_yellow']
+                    else:
+                        # Generic neutral mob — yellow (visible but not alarming)
+                        char_color = c['yellow']
 
                 # Randomly visible sneaking mobs
                 sneak_indicator = ""
@@ -325,11 +343,11 @@ class Room:
                         desc = f"{char.name} is here, fighting {char.fighting.name}."
                         await player.send(f"{char_color}{desc}{owner_tag}{label_msg}{sneak_indicator}{c['reset']}")
                 elif hasattr(char, 'long_desc'):
-                    # Show mob name hint so players know what keyword to use
+                    # Show mob keyword hint so players know what to target
                     name_hint = ""
                     if hasattr(char, 'vnum') and not hasattr(char, 'connection'):
-                        name_hint = f" {c['bright_black']}({char.name}){c['reset']}"
-                    await player.send(f"{char_color}{char.long_desc}{name_hint}{quest_indicator}{owner_tag}{label_msg}{fighting_msg}{sneak_indicator}{c['reset']}")
+                        name_hint = f" {c['white']}({char.name}){c['reset']}"
+                    await player.send(f"{char_color}{char.long_desc}{c['reset']}{name_hint}{quest_indicator}{owner_tag}{label_msg}{fighting_msg}{sneak_indicator}")
                 elif hasattr(char, 'connection') and char.connection:
                     # Player character - show title and prestige class
                     title_str = getattr(char, 'title', '') or ''
