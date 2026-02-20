@@ -1575,9 +1575,15 @@ class CommandHandler:
         await player.send(f"{c['cyan']}{V} {c['white']}Armor Class: {player.get_armor_class():<4}  Hitroll: {total_hitroll:>+3}  Damroll: {total_damroll:>+3}{c['cyan']}            {V}{c['reset']}")
         # OB/DB/PB quick tactical readout
         ob = player.get_hit_bonus()
-        db = player.get_db_value() if hasattr(player, 'get_db_value') else (100 - player.get_armor_class())
-        pb = player.get_pb_value() if hasattr(player, 'get_pb_value') else int(getattr(player, 'damage_reduction', 0))
+        db_info = player.get_db_breakdown() if hasattr(player, 'get_db_breakdown') else {'total': (100 - player.get_armor_class())}
+        pb_info = player.get_pb_breakdown() if hasattr(player, 'get_pb_breakdown') else {'total': int(getattr(player, 'damage_reduction', 0))}
+        db = db_info.get('total', 0)
+        pb = pb_info.get('total', 0)
         await player.send(f"{c['cyan']}{V} {c['white']}Combat: OB {ob:>+3}  DB {db:>+3}  PB {pb:>2}%{c['cyan']}                     {V}{c['reset']}")
+        db_break = f"base {db_info.get('base',0):+d} st {db_info.get('stance',0):+d} sh {db_info.get('shield',0):+d} dg {db_info.get('dodge_skill',0):+d}/{db_info.get('dodge_item',0):+d} wt -{db_info.get('weight_penalty',0)}"
+        pb_break = f"base {pb_info.get('base',0):+d} st {pb_info.get('stance',0):+d} pa {pb_info.get('parry',0):+d} sb {pb_info.get('shield_block',0):+d} wt -{pb_info.get('weight_penalty',0)}"
+        await player.send(f"{c['cyan']}{V} {c['bright_black']}DB:{db_break[:50]:<50}{c['cyan']}{V}{c['reset']}")
+        await player.send(f"{c['cyan']}{V} {c['bright_black']}PB:{pb_break[:50]:<50}{c['cyan']}{V}{c['reset']}")
         mood = getattr(player, 'stance', 'normal')
         wimpy = int(getattr(player, 'wimpy', 0))
         await player.send(f"{c['cyan']}{V} {c['white']}Mood: {c['bright_cyan']}{mood:<10}{c['white']} Wimpy: {wimpy:<4}{c['cyan']}                       {V}{c['reset']}")
@@ -4384,8 +4390,10 @@ class CommandHandler:
         stance = getattr(player, 'stance', 'normal')
         stance_label = stance.title()
         ob = player.get_hit_bonus()
-        db = player.get_db_value() if hasattr(player, 'get_db_value') else (100 - player.get_armor_class())
-        pb = player.get_pb_value() if hasattr(player, 'get_pb_value') else int(getattr(player, 'damage_reduction', 0))
+        db_info = player.get_db_breakdown() if hasattr(player, 'get_db_breakdown') else {'total': (100 - player.get_armor_class())}
+        pb_info = player.get_pb_breakdown() if hasattr(player, 'get_pb_breakdown') else {'total': int(getattr(player, 'damage_reduction', 0))}
+        db = db_info.get('total', 0)
+        pb = pb_info.get('total', 0)
         ac = player.get_armor_class()
         wimpy = getattr(player, 'wimpy', 0)
         flee_chance = CombatHandler.get_flee_chance(player)
@@ -4440,6 +4448,9 @@ class CommandHandler:
             f"| Disengage {dis_status}{protect_display}"
         )
         await player.send(line)
+        db_break = f"DB base {db_info.get('base',0):+d} st {db_info.get('stance',0):+d} sh {db_info.get('shield',0):+d} dg {db_info.get('dodge_skill',0):+d}/{db_info.get('dodge_item',0):+d} wt -{db_info.get('weight_penalty',0)}"
+        pb_break = f"PB base {pb_info.get('base',0):+d} st {pb_info.get('stance',0):+d} pa {pb_info.get('parry',0):+d} sb {pb_info.get('shield_block',0):+d} wt -{pb_info.get('weight_penalty',0)}"
+        await player.send(f"{c['bright_black']}{db_break} | {pb_break}{c['reset']}")
 
     @classmethod
     async def cmd_secondwind(cls, player: 'Player', args: List[str]):

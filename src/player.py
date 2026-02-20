@@ -125,6 +125,50 @@ class Character:
         pb = base_pb + stance_pb + parry_skill + shield_block - weight_penalty
         return max(0, min(80, pb))
 
+    def get_db_breakdown(self) -> dict:
+        """Return DB components for tactical/stat display."""
+        base_db = 100 - self.get_armor_class()
+        stance = getattr(self, 'stance', 'normal')
+        stance_mods = self.config.STANCE_MODIFIERS.get(stance, self.config.STANCE_MODIFIERS['normal'])
+        stance_db = int(stance_mods.get('db', 0))
+        shield_magic = self.get_shield_evasion_bonus()
+        dodge_skill = int(getattr(self, 'skills', {}).get('dodge', 0)) // 5
+        dodge_item = self.get_equipment_bonus('dodge')
+        wt = self.get_armor_weight()
+        softcap = int(getattr(self.config, 'ARMOR_WEIGHT_DB_SOFTCAP', 20))
+        weight_penalty = max(0, wt - softcap) // 2
+        total = base_db + stance_db + shield_magic + dodge_skill + dodge_item - weight_penalty
+        return {
+            'total': total,
+            'base': base_db,
+            'stance': stance_db,
+            'shield': shield_magic,
+            'dodge_skill': dodge_skill,
+            'dodge_item': dodge_item,
+            'weight_penalty': weight_penalty,
+        }
+
+    def get_pb_breakdown(self) -> dict:
+        """Return PB components for tactical/stat display."""
+        base_pb = int(getattr(self, 'damage_reduction', 0))
+        stance = getattr(self, 'stance', 'normal')
+        stance_mods = self.config.STANCE_MODIFIERS.get(stance, self.config.STANCE_MODIFIERS['normal'])
+        stance_pb = int(stance_mods.get('pb', 0))
+        parry_skill = int(getattr(self, 'skills', {}).get('parry', 0)) // 8
+        shield_block = int(getattr(self, 'skills', {}).get('shield_block', 0)) // 10
+        wt = self.get_armor_weight()
+        softcap = int(getattr(self.config, 'ARMOR_WEIGHT_PB_SOFTCAP', 24))
+        weight_penalty = max(0, wt - softcap) // 3
+        total = max(0, min(80, base_pb + stance_pb + parry_skill + shield_block - weight_penalty))
+        return {
+            'total': total,
+            'base': base_pb,
+            'stance': stance_pb,
+            'parry': parry_skill,
+            'shield_block': shield_block,
+            'weight_penalty': weight_penalty,
+        }
+
     @property
     def is_alive(self):
         return self.hp > 0
