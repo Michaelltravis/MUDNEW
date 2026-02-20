@@ -851,7 +851,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
                 <button class="exit-btn" data-dir="down" title="Down" aria-label="Go Down">D</button>
                 </div>
             </div>
-            <div id="terminal"></div>
+            <div id="terminal" role="log" aria-live="polite"></div>
         </div>
         
         <div class="map-panel" id="map-panel">
@@ -947,6 +947,16 @@ CLIENT_HTML = '''<!DOCTYPE html>
                         <button class="setting-btn toggle" id="timestamp-toggle">OFF</button>
                     </div>
                 </div>
+
+                <div class="shortcuts-section">
+                    <h3>⌨️ Keyboard Shortcuts</h3>
+                    <div class="shortcuts-grid">
+                        <div class="shortcut-item"><kbd>/</kbd> Focus Input</div>
+                        <div class="shortcut-item"><kbd>m</kbd> Toggle Map</div>
+                        <div class="shortcut-item"><kbd>Esc</kbd> Close Modal</div>
+                        <div class="shortcut-item"><kbd>↑/↓</kbd> History</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1033,6 +1043,44 @@ CLIENT_HTML = '''<!DOCTYPE html>
             min-width: 40px;
             text-align: center;
             font-size: 12px;
+        }
+
+        .shortcuts-section {
+            margin-top: 16px;
+            border-top: 1px solid #4a4a6a;
+            padding-top: 12px;
+        }
+
+        .shortcuts-section h3 {
+            font-size: 13px;
+            color: #88c0d0;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .shortcuts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .shortcut-item {
+            font-size: 12px;
+            color: #a0a0b0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        kbd {
+            background: #2a2a4a;
+            border: 1px solid #4a4a6a;
+            border-radius: 4px;
+            padding: 2px 6px;
+            color: #e6edf3;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            box-shadow: 0 2px 0 #1a1a2e;
         }
     </style>
     
@@ -1300,17 +1348,25 @@ CLIENT_HTML = '''<!DOCTYPE html>
             terminal.style.fontSize = settings.fontSize + 'px';
             document.getElementById('font-size-display').textContent = settings.fontSize + 'px';
             
-            document.getElementById('autoscroll-toggle').classList.toggle('active', settings.autoScroll);
-            document.getElementById('autoscroll-toggle').textContent = settings.autoScroll ? 'ON' : 'OFF';
+            const autoscrollBtn = document.getElementById('autoscroll-toggle');
+            autoscrollBtn.classList.toggle('active', settings.autoScroll);
+            autoscrollBtn.textContent = settings.autoScroll ? 'ON' : 'OFF';
+            autoscrollBtn.setAttribute('aria-pressed', settings.autoScroll);
             
-            document.getElementById('echo-toggle').classList.toggle('active', settings.echo);
-            document.getElementById('echo-toggle').textContent = settings.echo ? 'ON' : 'OFF';
+            const echoBtn = document.getElementById('echo-toggle');
+            echoBtn.classList.toggle('active', settings.echo);
+            echoBtn.textContent = settings.echo ? 'ON' : 'OFF';
+            echoBtn.setAttribute('aria-pressed', settings.echo);
             
-            document.getElementById('sound-toggle').classList.toggle('active', settings.sound);
-            document.getElementById('sound-toggle').textContent = settings.sound ? 'ON' : 'OFF';
+            const soundBtn = document.getElementById('sound-toggle');
+            soundBtn.classList.toggle('active', settings.sound);
+            soundBtn.textContent = settings.sound ? 'ON' : 'OFF';
+            soundBtn.setAttribute('aria-pressed', settings.sound);
             
-            document.getElementById('timestamp-toggle').classList.toggle('active', settings.timestamps);
-            document.getElementById('timestamp-toggle').textContent = settings.timestamps ? 'ON' : 'OFF';
+            const timestampBtn = document.getElementById('timestamp-toggle');
+            timestampBtn.classList.toggle('active', settings.timestamps);
+            timestampBtn.textContent = settings.timestamps ? 'ON' : 'OFF';
+            timestampBtn.setAttribute('aria-pressed', settings.timestamps);
         }
         
         function saveSettings() {
@@ -1391,7 +1447,7 @@ if __name__ == '__main__':
     async def main():
         client = WebClient()
         await client.start()
-        print(f"Web client running at http://localhost:4003")
+        print("Web client running at http://localhost:4003")
         print("Press Ctrl+C to stop")
         try:
             while True:
