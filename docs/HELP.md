@@ -691,7 +691,17 @@ Usage:
 ### Flee
 **Syntax:** `flee`
 
-Flee from combat.
+Panic and flee combat in a random direction.
+
+### Escape
+**Syntax:** `escape <direction>`
+
+Attempt a directed escape from combat. Higher success if you know escape/slip.
+
+### Disengage
+**Syntax:** `disengage`
+
+Step out of combat if you're not the primary target.
 
 ### Follow
 **Syntax:** `follow <player> or follow self`
@@ -1492,6 +1502,11 @@ Empower attacks with holy damage.
 
 Search the room for hidden exits or items.
 
+### Second Wind
+**Syntax:** `secondwind`
+
+Convert stamina or mana into a burst of movement recovery.
+
 ### Sell
 **Syntax:** `sell <item>`
 
@@ -1708,9 +1723,9 @@ Stable services. Usage: stable [list|buy <mount>]
 Command all pets to attack.
 
 ### Stance
-**Syntax:** `stance`
+**Syntax:** `stance [aggressive|normal|defensive]`
 
-Switch warrior combat stance.
+Set your combat stance (offense vs defense tradeoff).
 
 ### Stand
 **Syntax:** `stand`
@@ -1748,6 +1763,11 @@ Show main story quest progress.
 **Syntax:** `sunder_armor`
 
 Reduce target armor temporarily.
+
+### Tactical
+**Syntax:** `tactical`
+
+Show a concise combat stat line (OB/DB/PB, stance, wimpy, flee risk).
 
 ### Take
 **Syntax:** `take`
@@ -1969,7 +1989,7 @@ Wield a weapon.
 ### Wimpy
 **Syntax:** `wimpy [hp amount]`
 
-Set auto-flee HP threshold. Usage: wimpy [hp amount]
+Set auto-flee HP threshold for combat. Usage: wimpy [hp amount]
 
 ### Wink
 **Syntax:** `wink`

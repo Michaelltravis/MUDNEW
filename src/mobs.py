@@ -1218,6 +1218,13 @@ class Mobile(Character):
         bonus += (self.dex - 10) // 2
         # STR provides minor bonus
         bonus += (self.str - 10) // 4
+        try:
+            from config import Config
+            stance = getattr(self, 'stance', 'normal')
+            stance_mods = Config.STANCE_MODIFIERS.get(stance, Config.STANCE_MODIFIERS['normal'])
+            bonus += stance_mods.get('hit', 0)
+        except Exception:
+            pass
         return bonus
 
     def get_damage_bonus(self):
@@ -1225,6 +1232,13 @@ class Mobile(Character):
         bonus = getattr(self, 'damroll', 0) or (self.level // 4)
         # STR is primary factor for damage
         bonus += (self.str - 10) // 2
+        try:
+            from config import Config
+            stance = getattr(self, 'stance', 'normal')
+            stance_mods = Config.STANCE_MODIFIERS.get(stance, Config.STANCE_MODIFIERS['normal'])
+            bonus += stance_mods.get('dam', 0)
+        except Exception:
+            pass
         return bonus
         
     def get_armor_class(self):
@@ -1232,4 +1246,11 @@ class Mobile(Character):
         ac = self.armor_class
         # DEX improves AC (makes you harder to hit)
         ac -= (self.dex - 10) // 2 * 10
+        try:
+            from config import Config
+            stance = getattr(self, 'stance', 'normal')
+            stance_mods = Config.STANCE_MODIFIERS.get(stance, Config.STANCE_MODIFIERS['normal'])
+            ac += stance_mods.get('ac', 0)
+        except Exception:
+            pass
         return ac

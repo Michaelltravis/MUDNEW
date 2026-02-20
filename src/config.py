@@ -54,6 +54,31 @@ class Config:
     # Combat Settings
     PULSE_VIOLENCE = 2  # seconds between combat rounds
     PULSE_MOBILE = 10  # seconds between mob actions
+
+    # Combat stance modifiers (offense vs defense tradeoff)
+    STANCE_MODIFIERS = {
+        'aggressive': {'hit': 3, 'dam': 3, 'ac': 10},   # more offense, worse defense
+        'normal': {'hit': 0, 'dam': 0, 'ac': 0},
+        'defensive': {'hit': -2, 'dam': -2, 'ac': -10},  # less offense, better defense
+    }
+
+    # Movement economy (combat/escape)
+    COMBAT_MOVE_COST = 1
+    FLEE_MOVE_COST = 10
+    ESCAPE_MOVE_COST = 12
+    DISENGAGE_MOVE_COST = 6
+    COMBAT_FATIGUE_HIT_PENALTY = 2
+    COMBAT_FATIGUE_DAMAGE_PENALTY = 0.10
+
+    FLEE_COOLDOWN_SECONDS = 6
+    ESCAPE_COOLDOWN_SECONDS = 8
+    DISENGAGE_COOLDOWN_SECONDS = 6
+
+    # Second Wind (mobility recovery)
+    SECOND_WIND_COOLDOWN_SECONDS = 60
+    SECOND_WIND_RESTORE_PCT = 0.25
+    SECOND_WIND_BUFF_SECONDS = 30
+    SECOND_WIND_REGEN_BONUS = 0.5
     
     # Character Creation
     STARTING_GOLD = 100

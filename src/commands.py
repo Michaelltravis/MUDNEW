@@ -6,6 +6,7 @@ All player commands and their implementations.
 
 import logging
 import random
+import time
 from typing import List, TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -38,6 +39,13 @@ class CommandHandler:
         'h': 'help', '?': 'help',
         'q': 'quit',
         'fl': 'flee',
+        'esc': 'escape',
+        'dis': 'disengage',
+        'dg': 'disengage',
+        'tac': 'tactical',
+        'tact': 'tactical',
+        'cstat': 'tactical',
+        'swind': 'secondwind',
         'dr': 'drink', 'ea': 'eat',
         'sl': 'sleep', 'wa': 'wake', 're': 'rest', 'st': 'stand',
         'op': 'open', 'cl': 'close',
@@ -3152,22 +3160,11 @@ class CommandHandler:
         direction = args[0].lower()
         dir_map = {'n':'north','s':'south','e':'east','w':'west','u':'up','d':'down'}
         direction = dir_map.get(direction, direction)
-        if direction not in player.config.DIRECTIONS:
+        if player.room and direction not in player.room.exits and direction not in player.config.DIRECTIONS:
             await player.send("That's not a valid direction.")
             return
-        import random
-        chance = player.skills.get('slip', 0) + (player.dex - 10)
-        if random.randint(1, 100) > max(5, chance):
-            await player.send(f"{c['yellow']}You fail to slip away!{c['reset']}")
-            return
-        # End combat
-        if player.fighting and hasattr(player.fighting, 'fighting') and player.fighting.fighting == player:
-            player.fighting.fighting = None
-        player.fighting = None
-        player.position = 'standing'
-        await player.send(f"{c['green']}You slip away!{c['reset']}")
-        # Move
-        await CommandHandler.cmd_move(player, direction)
+        from combat import CombatHandler
+        await CombatHandler.attempt_escape(player, direction)
 
     @classmethod
     async def cmd_visible(cls, player: 'Player', args: List[str]):
@@ -4297,7 +4294,103 @@ class CommandHandler:
             
         from combat import CombatHandler
         await CombatHandler.attempt_flee(player)
-        
+
+    @classmethod
+    async def cmd_escape(cls, player: 'Player', args: List[str]):
+        """Escape from combat to a chosen direction. Usage: escape <direction>"""
+        c = player.config.COLORS
+        if not player.is_fighting:
+            await player.send(f"{c['yellow']}You're not fighting anyone.{c['reset']}")
+            return
+        if not args:
+            await player.send(f"{c['yellow']}Escape which direction?{c['reset']}")
+            return
+        direction = args[0].lower()
+        dir_map = {'n':'north','s':'south','e':'east','w':'west','u':'up','d':'down'}
+        direction = dir_map.get(direction, direction)
+        if player.room and direction not in player.room.exits and direction not in player.config.DIRECTIONS:
+            await player.send(f"{c['red']}That's not a valid direction.{c['reset']}")
+            return
+        from combat import CombatHandler
+        await CombatHandler.attempt_escape(player, direction)
+
+    @classmethod
+    async def cmd_disengage(cls, player: 'Player', args: List[str]):
+        """Disengage from combat if you're not the primary target."""
+        c = player.config.COLORS
+        if not player.is_fighting:
+            await player.send(f"{c['yellow']}You're not fighting anyone.{c['reset']}")
+            return
+        from combat import CombatHandler
+        await CombatHandler.attempt_disengage(player)
+
+    @classmethod
+    async def cmd_tactical(cls, player: 'Player', args: List[str]):
+        """Show concise tactical combat readout."""
+        from combat import CombatHandler
+        c = player.config.COLORS
+        stance = getattr(player, 'stance', 'normal')
+        stance_label = stance.title()
+        ob = player.get_hit_bonus()
+        db = 100 - player.get_armor_class()
+        pb = int(getattr(player, 'damage_reduction', 0))
+        ac = player.get_armor_class()
+        wimpy = getattr(player, 'wimpy', 0)
+        flee_chance = CombatHandler.get_flee_chance(player)
+        flee_risk = CombatHandler.get_flee_risk_label(flee_chance)
+        cooldown = int(max(0, getattr(player, 'flee_cooldown_until', 0) - time.time()))
+        if flee_chance <= 0:
+            flee_display = f"{c['red']}0% (winded){c['reset']}"
+        else:
+            cd_text = f", cd {cooldown}s" if cooldown > 0 else ""
+            flee_display = f"{c['white']}{flee_chance}% ({flee_risk}{cd_text}){c['reset']}"
+        wimpy_display = f"{wimpy}" if wimpy > 0 else "off"
+        line = (
+            f"{c['white']}Tactical:{c['reset']} "
+            f"HP {player.hp}/{player.max_hp} "
+            f"MN {player.mana}/{player.max_mana} "
+            f"MV {player.move}/{player.max_move} "
+            f"| {c['bright_cyan']}OB/DB/PB{c['reset']} {ob:+d}/{db:+d}/{pb}% "
+            f"| AC {ac:+d} Mit {pb}% "
+            f"| Stance {stance_label} "
+            f"| Wimpy {wimpy_display} "
+            f"| Flee {flee_display}"
+        )
+        await player.send(line)
+
+    @classmethod
+    async def cmd_secondwind(cls, player: 'Player', args: List[str]):
+        """Recover movement points with a burst of endurance."""
+        c = player.config.COLORS
+        now = time.time()
+        if now < getattr(player, 'second_wind_cooldown_until', 0):
+            remaining = int(getattr(player, 'second_wind_cooldown_until', 0) - now)
+            await player.send(f"{c['yellow']}Second Wind is on cooldown ({remaining}s).{c['reset']}")
+            return
+        if player.position == 'sleeping':
+            await player.send(f"{c['yellow']}You need to wake up first.{c['reset']}")
+            return
+        # Determine resource cost by class type
+        caster_classes = {'mage', 'cleric', 'necromancer', 'bard'}
+        char_class = str(getattr(player, 'char_class', '')).lower()
+        restore = max(10, int(player.max_move * player.config.SECOND_WIND_RESTORE_PCT))
+        if char_class in caster_classes:
+            cost = max(10, int(player.max_mana * 0.10))
+            if player.mana < cost:
+                await player.send(f"{c['red']}You lack the mana to steady your breathing.{c['reset']}")
+                return
+            player.mana -= cost
+        else:
+            cost = max(10, int(player.max_hp * 0.08))
+            if player.hp <= cost + 1:
+                await player.send(f"{c['red']}You're too hurt to push for a second wind.{c['reset']}")
+                return
+            player.hp -= cost
+        player.move = min(player.max_move, player.move + restore)
+        player.second_wind_until = now + player.config.SECOND_WIND_BUFF_SECONDS
+        player.second_wind_cooldown_until = now + player.config.SECOND_WIND_COOLDOWN_SECONDS
+        await player.send(f"{c['bright_green']}You catch a second wind, restoring {restore} move.{c['reset']}")
+
     @classmethod
     async def cmd_dodge(cls, player: 'Player', args: List[str]):
         """Attempt to dodge a telegraphed boss attack."""
@@ -5872,13 +5965,42 @@ class CommandHandler:
     
     @classmethod
     async def cmd_stance(cls, player: 'Player', args: List[str]):
-        """Show warrior doctrine status."""
+        """Set combat stance (aggressive/normal/defensive)."""
         c = player.config.COLORS
-        if player.char_class.lower() != 'warrior':
-            await player.send(f"{c['red']}Only warriors use the doctrine system!{c['reset']}")
+        stance_mods = player.config.STANCE_MODIFIERS
+        if not args:
+            current = getattr(player, 'stance', 'normal')
+            mods = stance_mods.get(current, stance_mods['normal'])
+            await player.send(
+                f"{c['white']}Current stance:{c['reset']} {c['bright_cyan']}{current.title()}{c['reset']} "
+                f"(Hit {mods.get('hit', 0):+d}, Dam {mods.get('dam', 0):+d}, AC {mods.get('ac', 0):+d})"
+            )
+            await player.send(
+                f"{c['white']}Available:{c['reset']} aggressive, normal, defensive"
+            )
+            await player.send(f"{c['yellow']}Tip:{c['reset']} Warrior doctrine status is now under {c['white']}doctrine{c['reset']}.")
             return
-        from warrior_abilities import cmd_doctrine
-        await cmd_doctrine(player, args)
+
+        requested = args[0].lower()
+        mapping = {
+            'agg': 'aggressive',
+            'aggressive': 'aggressive',
+            'norm': 'normal',
+            'normal': 'normal',
+            'def': 'defensive',
+            'defensive': 'defensive',
+        }
+        stance = mapping.get(requested)
+        if not stance:
+            await player.send(f"{c['red']}Invalid stance. Use: aggressive, normal, defensive.{c['reset']}")
+            return
+
+        player.stance = stance
+        mods = stance_mods.get(stance, stance_mods['normal'])
+        await player.send(
+            f"{c['green']}You shift to {stance.title()} stance.{c['reset']} "
+            f"(Hit {mods.get('hit', 0):+d}, Dam {mods.get('dam', 0):+d}, AC {mods.get('ac', 0):+d})"
+        )
 
     @classmethod
     async def cmd_doctrine(cls, player: 'Player', args: List[str]):

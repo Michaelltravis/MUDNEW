@@ -86,6 +86,41 @@ class CombatHandler:
         return f"[{'█' * filled}{'░' * empty}]"
 
     @classmethod
+    def get_flee_chance(cls, player: 'Player') -> int:
+        """Calculate flee chance for a player (0-95)."""
+        base = 50 + (player.dex - 10) * 2
+        stance = getattr(player, 'stance', 'normal')
+        if stance == 'defensive':
+            base += 5
+        elif stance == 'aggressive':
+            base -= 5
+        if getattr(player, 'move', 0) < cls.config.FLEE_MOVE_COST:
+            return 0
+        return max(5, min(95, base))
+
+    @classmethod
+    def get_escape_chance(cls, player: 'Player') -> int:
+        """Calculate directed escape chance based on skill or dex."""
+        skill = 0
+        if hasattr(player, 'skills'):
+            if 'escape' in player.skills:
+                skill = player.skills.get('escape', 0)
+            elif 'slip' in player.skills:
+                skill = player.skills.get('slip', 0)
+        base = (25 + (player.dex - 10)) if skill <= 0 else (skill + (player.dex - 10))
+        if getattr(player, 'move', 0) < cls.config.ESCAPE_MOVE_COST:
+            return 0
+        return max(5, min(95, base))
+
+    @classmethod
+    def get_flee_risk_label(cls, chance: int) -> str:
+        if chance >= 75:
+            return 'low'
+        if chance >= 55:
+            return 'medium'
+        return 'high'
+
+    @classmethod
     async def call_guards_for_help(cls, guard: 'Character', attacker: 'Character'):
         """Guard calls for help - nearby guards within 3 rooms come to assist."""
         if not guard.room:
@@ -270,6 +305,20 @@ class CombatHandler:
             
         c = cls.config.COLORS
 
+        # Combat movement cost (fatigue)
+        fatigue_penalty = 0
+        if hasattr(attacker, 'connection'):
+            move_cost = cls.config.COMBAT_MOVE_COST
+            if move_cost > 0:
+                attacker.move = max(0, attacker.move - move_cost)
+            if attacker.move <= 0:
+                fatigue_penalty = cls.config.COMBAT_FATIGUE_HIT_PENALTY
+                last_notice = getattr(attacker, '_winded_notice_until', 0)
+                if time.time() > last_notice:
+                    attacker._winded_notice_until = time.time() + 8
+                    if hasattr(attacker, 'send'):
+                        await attacker.send(f"{c['yellow']}You're winded and your attacks slow!{c['reset']}")
+
         # Auto-combat skills/spells
         if hasattr(attacker, 'autocombat') and attacker.autocombat:
             await cls.auto_combat(attacker)
@@ -313,6 +362,8 @@ class CombatHandler:
 
         # Calculate hits
         hit_roll = random.randint(1, 20) + attacker.get_hit_bonus()
+        if fatigue_penalty:
+            hit_roll -= fatigue_penalty
         if blinded:
             if random.randint(1, 100) <= 50:
                 if hasattr(attacker, 'send'):
@@ -470,6 +521,9 @@ class CombatHandler:
                 damage = random.randint(1, 3)
 
             damage += attacker.get_damage_bonus()
+
+            if fatigue_penalty:
+                damage = max(1, int(damage * (1.0 - cls.config.COMBAT_FATIGUE_DAMAGE_PENALTY)))
 
             # Warrior stance modifiers removed — warriors now use Combo Chain system
 
@@ -1781,7 +1835,7 @@ class CombatHandler:
                 char2.position = 'standing'
 
     @classmethod
-    async def attempt_flee(cls, player: 'Player'):
+    async def attempt_flee(cls, player: 'Player', auto: bool = False):
         """Attempt to flee from combat."""
         if not player.is_fighting:
             # If mobs are still attacking, set fighting to one of them
@@ -1796,6 +1850,17 @@ class CombatHandler:
                 return
 
         c = cls.config.COLORS
+        now = time.time()
+        if now < getattr(player, 'flee_cooldown_until', 0):
+            if not auto:
+                await player.send(f"{c['yellow']}You need a moment before you can flee again.{c['reset']}")
+            return
+
+        if player.move < cls.config.FLEE_MOVE_COST:
+            if not auto:
+                await player.send(f"{c['red']}You're too winded to flee!{c['reset']}")
+            return
+        player.move = max(0, player.move - cls.config.FLEE_MOVE_COST)
 
         # Check for available exits
         available_exits = [d for d, e in player.room.exits.items() if e and e.get('room')]
@@ -1805,7 +1870,11 @@ class CombatHandler:
             return
 
         # Chance to flee based on dexterity
-        flee_chance = 50 + (player.dex - 10) * 2
+        flee_chance = cls.get_flee_chance(player)
+        player.flee_cooldown_until = now + cls.config.FLEE_COOLDOWN_SECONDS
+
+        if auto:
+            await player.send(f"{c['yellow']}You panic and try to flee!{c['reset']}")
 
         if random.randint(1, 100) <= flee_chance:
             direction = random.choice(available_exits)
@@ -1829,6 +1898,83 @@ class CombatHandler:
             await player.send(f"{c['yellow']}You lose {exp_loss} experience points.{c['reset']}")
         else:
             await player.send(f"{c['red']}PANIC! You couldn't escape!{c['reset']}")
+
+    @classmethod
+    async def attempt_escape(cls, player: 'Player', direction: str):
+        """Attempt a directed escape from combat."""
+        if not player.is_fighting:
+            return False
+
+        c = cls.config.COLORS
+        now = time.time()
+        if now < getattr(player, 'escape_cooldown_until', 0):
+            await player.send(f"{c['yellow']}You need a moment before you can escape again.{c['reset']}")
+            return False
+
+        if player.move < cls.config.ESCAPE_MOVE_COST:
+            await player.send(f"{c['red']}You're too winded to escape that way!{c['reset']}")
+            return False
+        player.move = max(0, player.move - cls.config.ESCAPE_MOVE_COST)
+
+        exit_data = player.room.exits.get(direction)
+        if not exit_data or not exit_data.get('room'):
+            await player.send(f"{c['red']}You can't escape that way!{c['reset']}")
+            return False
+
+        escape_chance = cls.get_escape_chance(player)
+        player.escape_cooldown_until = now + cls.config.ESCAPE_COOLDOWN_SECONDS
+
+        if random.randint(1, 100) > escape_chance:
+            await player.send(f"{c['yellow']}You fail to escape!{c['reset']}")
+            return False
+
+        enemy = player.fighting
+        await cls.end_combat(player, enemy)
+        await player.send(f"{c['green']}You escape {direction}!{c['reset']}")
+        await player.room.send_to_room(
+            f"{player.name} escapes {direction}.",
+            exclude=[player]
+        )
+
+        from commands import CommandHandler
+        await CommandHandler.cmd_move(player, direction)
+        return True
+
+    @classmethod
+    async def attempt_disengage(cls, player: 'Player') -> bool:
+        """Attempt to disengage when not the primary target."""
+        if not player.is_fighting:
+            return False
+
+        c = cls.config.COLORS
+        now = time.time()
+        if now < getattr(player, 'disengage_cooldown_until', 0):
+            await player.send(f"{c['yellow']}You need a moment before you can disengage again.{c['reset']}")
+            return False
+
+        if player.move < cls.config.DISENGAGE_MOVE_COST:
+            await player.send(f"{c['red']}You're too winded to disengage!{c['reset']}")
+            return False
+        player.move = max(0, player.move - cls.config.DISENGAGE_MOVE_COST)
+
+        # Can't disengage if any enemies are still focusing you
+        if player.room:
+            attackers = [ch for ch in player.room.characters if hasattr(ch, 'fighting') and ch.fighting == player]
+            if attackers:
+                await player.send(f"{c['red']}You're the focus of the fight! Try flee or escape.{c['reset']}")
+                return False
+
+        player.disengage_cooldown_until = now + cls.config.DISENGAGE_COOLDOWN_SECONDS
+        player.fighting = None
+        if player.position == 'fighting':
+            player.position = 'standing'
+        await player.send(f"{c['green']}You disengage from combat.{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(
+                f"{player.name} disengages from the fight.",
+                exclude=[player]
+            )
+        return True
 
     @classmethod
     async def do_kick(cls, player: 'Player', target: 'Character' = None):

@@ -9,6 +9,7 @@ import os
 import hashlib
 import random
 import logging
+import time
 from datetime import datetime
 from typing import List, Dict, Optional, TYPE_CHECKING
 
@@ -56,6 +57,13 @@ class Character:
         # State
         self.position = 'standing'
         self.fighting = None
+        self.stance = 'normal'
+        self.wimpy = 0
+        self.flee_cooldown_until = 0
+        self.escape_cooldown_until = 0
+        self.disengage_cooldown_until = 0
+        self.second_wind_until = 0
+        self.second_wind_cooldown_until = 0
         
         # Equipment and inventory
         self.inventory = []
@@ -150,7 +158,13 @@ class Character:
         if hasattr(self, 'song_debuffs') and self.song_debuffs:
             bonus += self.song_debuffs.get('hitroll', 0)  # Negative value
 
-        # Warrior stance hit bonus removed — warriors now use Combo Chain system
+        # Stance modifiers
+        try:
+            stance = getattr(self, 'stance', 'normal')
+            stance_mods = self.config.STANCE_MODIFIERS.get(stance, self.config.STANCE_MODIFIERS['normal'])
+            bonus += stance_mods.get('hit', 0)
+        except Exception:
+            pass
 
         # Talent bonuses
         try:
@@ -195,6 +209,14 @@ class Character:
         if hasattr(self, 'mount') and self.mount and hasattr(self.mount, 'damroll_bonus'):
             bonus += self.mount.damroll_bonus
 
+        # Stance modifiers
+        try:
+            stance = getattr(self, 'stance', 'normal')
+            stance_mods = self.config.STANCE_MODIFIERS.get(stance, self.config.STANCE_MODIFIERS['normal'])
+            bonus += stance_mods.get('dam', 0)
+        except Exception:
+            pass
+
         return bonus
         
     def get_armor_class(self):
@@ -207,7 +229,13 @@ class Character:
             if item and hasattr(item, 'armor'):
                 ac -= item.armor
         
-        # Warrior stance AC modifiers removed — warriors now use Combo Chain system
+        # Stance modifiers
+        try:
+            stance = getattr(self, 'stance', 'normal')
+            stance_mods = self.config.STANCE_MODIFIERS.get(stance, self.config.STANCE_MODIFIERS['normal'])
+            ac += stance_mods.get('ac', 0)
+        except Exception:
+            pass
 
         # Paladin Devotion Aura (nearby allies)
         if 'devotion' in self.get_paladin_auras():
@@ -932,6 +960,8 @@ class Player(Character):
             'auto_combat_settings': self.auto_combat_settings,
             'brief_mode': self.brief_mode,
             'compact_mode': self.compact_mode,
+            'stance': getattr(self, 'stance', 'normal'),
+            'wimpy': getattr(self, 'wimpy', 0),
             'show_room_vnums': self.show_room_vnums,
             'autoexit': self.autoexit,
             'recall_point': self.recall_point,
@@ -1130,6 +1160,8 @@ class Player(Character):
             player.brief_mode = data.get('brief_mode', False)
             player.show_room_vnums = bool(data.get('show_room_vnums', False))
             player.compact_mode = data.get('compact_mode', False)
+            player.stance = data.get('stance', 'normal')
+            player.wimpy = data.get('wimpy', 0)
             player.autoexit = data.get('autoexit', True)
             player.recall_point = data.get('recall_point', 3001)
             player.autorecall_hp = data.get('autorecall_hp', None)
@@ -2424,6 +2456,19 @@ class Player(Character):
                 try:
                     from tips import TipManager
                     await TipManager.show_event_tip(self, 'low_health')
+                except Exception:
+                    pass
+
+        # Auto-flee (wimpy)
+        if self.hp > 0 and self.is_fighting:
+            wimpy = getattr(self, 'wimpy', 0)
+            if wimpy and self.hp <= wimpy:
+                try:
+                    now = time.time()
+                    if now >= getattr(self, 'auto_flee_cooldown_until', 0):
+                        self.auto_flee_cooldown_until = now + 3
+                        from combat import CombatHandler
+                        await CombatHandler.attempt_flee(self, auto=True)
                 except Exception:
                     pass
 

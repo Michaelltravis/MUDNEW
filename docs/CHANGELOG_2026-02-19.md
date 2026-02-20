@@ -1,5 +1,27 @@
 # Changelog — 2026-02-19
 
+## MUME Adoption Batch A (Combat Core)
+
+### Added
+- **Stance system:** `stance` command with aggressive/normal/defensive tradeoffs applied to hit/damage/AC.
+- **Escape toolkit:** `escape` (directed), `disengage` (non-primary target), and `flee` (panic/random) now separated with clear messaging and cooldowns.
+- **Second Wind:** `secondwind` restores movement points with a short regen surge; costs mana for casters, HP for martial classes.
+- **Tactical telemetry:** `tactical` command provides a concise combat stat line (OB/DB/PB, stance, mitigation, wimpy, flee risk).
+
+### Improved
+- **Wimpy auto-flee:** wimpy threshold now triggers auto-flee attempts during combat.
+- **Movement economy:** combat rounds and escape actions now consume movement points; winded penalties apply when movement is depleted.
+
+### Balancing Notes & Defaults
+- Stance modifiers: Aggressive (+3 hit/+3 dam/+10 AC), Defensive (-2 hit/-2 dam/-10 AC), Normal (0/0/0).
+- Combat move drain: 1 move per combat round; winded penalty at 0 move (hit -2, damage -10%).
+- Escape costs: flee 10 move (random), escape 12 move (directed), disengage 6 move.
+- Cooldowns: flee 6s, escape 8s, disengage 6s.
+- Second Wind: restores 25% max move, 60s cooldown, 30s +50% move regen surge.
+- Wimpy default remains off (0).
+
+---
+
 ## MUME Adoption Batch A
 
 ### Added

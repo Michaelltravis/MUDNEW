@@ -13,6 +13,7 @@ Provides sophisticated regeneration calculations based on multiple factors:
 """
 
 import logging
+import time
 from typing import TYPE_CHECKING, Optional
 
 if TYPE_CHECKING:
@@ -247,6 +248,14 @@ class RegenerationCalculator:
         if hasattr(character, 'race'):
             race_mult = RegenerationCalculator._get_race_move_modifier(character.race)
             regen *= race_mult
+
+        # Second Wind mobility surge
+        try:
+            from config import Config
+            if getattr(character, 'second_wind_until', 0) > time.time():
+                regen *= (1.0 + Config.SECOND_WIND_REGEN_BONUS)
+        except Exception:
+            pass
 
         # Hunger/Thirst penalties (players only)
         if hasattr(character, 'hunger'):
