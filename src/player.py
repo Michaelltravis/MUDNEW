@@ -475,7 +475,7 @@ class Player(Character):
         # Warrior Rage & Stance System (legacy - kept for save compat)
         self.rage = 0                   # Current rage (unused for warriors now)
         self.max_rage = 100             # Maximum rage
-        self.stance = 'battle'          # Current stance (legacy)
+        self.stance = 'normal'          # Current stance (legacy)
         self.ignore_pain_absorb = 0     # Damage absorption remaining
         self.ignore_pain_ticks = 0      # Duration remaining
         self.last_warcry = 0            # Cooldown tracking (timestamp)

@@ -82,6 +82,14 @@
 
 ---
 
+## MUME Adoption Batch E (QA/Balancing)
+
+### Improved
+- Escape/flee/disengage now only spend movement when the attempt is actually viable (valid exits/targets, no forced focus).
+- Default stance initialization aligned to `normal` for new characters to match stance system output.
+
+---
+
 ## MUME Adoption Batch A
 
 ### Added

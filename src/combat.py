@@ -1909,18 +1909,18 @@ class CombatHandler:
                 await player.send(f"{c['yellow']}You need {remaining}s before you can flee again.{c['reset']}")
             return
 
-        if player.move < cls.config.FLEE_MOVE_COST:
-            if not auto:
-                await player.send(f"{c['red']}You're too winded to flee!{c['reset']}")
-            return
-        player.move = max(0, player.move - cls.config.FLEE_MOVE_COST)
-
         # Check for available exits
         available_exits = [d for d, e in player.room.exits.items() if e and e.get('room')]
 
         if not available_exits:
             await player.send(f"{c['red']}There's nowhere to flee to!{c['reset']}")
             return
+
+        if player.move < cls.config.FLEE_MOVE_COST:
+            if not auto:
+                await player.send(f"{c['red']}You're too winded to flee!{c['reset']}")
+            return
+        player.move = max(0, player.move - cls.config.FLEE_MOVE_COST)
 
         # Chance to flee based on dexterity
         flee_chance = cls.get_flee_chance(player)
@@ -1966,15 +1966,15 @@ class CombatHandler:
             await player.send(f"{c['yellow']}You need {remaining}s before you can escape again.{c['reset']}")
             return False
 
-        if player.move < cls.config.ESCAPE_MOVE_COST:
-            await player.send(f"{c['red']}You're too winded to escape that way!{c['reset']}")
-            return False
-        player.move = max(0, player.move - cls.config.ESCAPE_MOVE_COST)
-
         exit_data = player.room.exits.get(direction)
         if not exit_data or not exit_data.get('room'):
             await player.send(f"{c['red']}You can't escape that way!{c['reset']}")
             return False
+
+        if player.move < cls.config.ESCAPE_MOVE_COST:
+            await player.send(f"{c['red']}You're too winded to escape that way!{c['reset']}")
+            return False
+        player.move = max(0, player.move - cls.config.ESCAPE_MOVE_COST)
 
         escape_chance = cls.get_escape_chance(player)
         escape_risk = cls.get_escape_risk_label(escape_chance)
@@ -2009,17 +2009,17 @@ class CombatHandler:
             await player.send(f"{c['yellow']}You need {remaining}s before you can disengage again.{c['reset']}")
             return False
 
-        if player.move < cls.config.DISENGAGE_MOVE_COST:
-            await player.send(f"{c['red']}You're too winded to disengage!{c['reset']}")
-            return False
-        player.move = max(0, player.move - cls.config.DISENGAGE_MOVE_COST)
-
         # Can't disengage if any enemies are still focusing you
         if player.room:
             attackers = [ch for ch in player.room.characters if hasattr(ch, 'fighting') and ch.fighting == player]
             if attackers:
                 await player.send(f"{c['red']}Enemies are focused on you. Try flee or escape.{c['reset']}")
                 return False
+
+        if player.move < cls.config.DISENGAGE_MOVE_COST:
+            await player.send(f"{c['red']}You're too winded to disengage!{c['reset']}")
+            return False
+        player.move = max(0, player.move - cls.config.DISENGAGE_MOVE_COST)
 
         player.disengage_cooldown_until = now + cls.config.DISENGAGE_COOLDOWN_SECONDS
         player.fighting = None
