@@ -46,6 +46,26 @@
 
 ---
 
+## MUME Adoption Batch C (Group Combat Control & Telemetry)
+
+### Added
+- **Protect command:** warriors/paladins can guard an ally and intercept attacks based on rescue/shield skill and STR/CON.
+- **Assist polish:** assist now joins a fight without automatically stealing aggro.
+- **Protection telemetry:** `tactical` now surfaces protect/guard status alongside escape/disengage readiness.
+
+### Improved
+- **Rescue scaling:** rescue success now scales with rescue skill, STR/DEX, and stance, with clear attacker messaging.
+- **Consider readout:** now includes stance, movement state (winded/steady), and key defense layers (parry/dodge/block/mitigation).
+- **Escape clarity:** flee/escape/disengage cooldowns now report remaining seconds and consistent risk messaging.
+
+### Balancing Notes & Defaults
+- Rescue cooldown: 6s.
+- Protect intercept cooldown: 4s.
+- Protect intercept chance: based on rescue or shield block skill + STR/CON (defensive stance bonus, winded penalty).
+- Escape/flee risk labels standardized (low/medium/high) across panic vs controlled exits.
+
+---
+
 ## MUME Adoption Batch A
 
 ### Added

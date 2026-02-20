@@ -113,7 +113,56 @@ class CombatHandler:
         return max(5, min(95, base))
 
     @classmethod
+    def get_rescue_chance(cls, rescuer: 'Player', ally: 'Player' = None, attacker: 'Character' = None) -> int:
+        """Calculate rescue chance based on skill, stats, and stance."""
+        if hasattr(rescuer, 'get_skill_level'):
+            skill = rescuer.get_skill_level('rescue')
+        else:
+            skill = getattr(getattr(rescuer, 'skills', {}), 'get', lambda *_: 0)('rescue', 0)
+        base = skill + (getattr(rescuer, 'str', 10) - 10) * 2 + (getattr(rescuer, 'dex', 10) - 10)
+        stance = getattr(rescuer, 'stance', 'normal')
+        if stance == 'defensive':
+            base += 6
+        elif stance == 'aggressive':
+            base -= 4
+        if getattr(rescuer, 'move', 0) < cls.config.COMBAT_MOVE_COST:
+            base -= 10
+        if ally is not None and getattr(rescuer, 'protecting', None) == ally:
+            base += 4
+        return max(5, min(95, base))
+
+    @classmethod
+    def get_protect_chance(cls, protector: 'Player', target: 'Player' = None, attacker: 'Character' = None) -> int:
+        """Calculate protection intercept chance based on skills and stats."""
+        if hasattr(protector, 'get_skill_level'):
+            rescue = protector.get_skill_level('rescue')
+            block = protector.get_skill_level('shield_block')
+        else:
+            skills = getattr(protector, 'skills', {})
+            rescue = skills.get('rescue', 0)
+            block = skills.get('shield_block', 0)
+        base = max(rescue, int(block * 0.75))
+        base += (getattr(protector, 'str', 10) - 10) * 2
+        base += (getattr(protector, 'con', 10) - 10) * 2
+        stance = getattr(protector, 'stance', 'normal')
+        if stance == 'defensive':
+            base += 8
+        elif stance == 'aggressive':
+            base -= 4
+        if getattr(protector, 'move', 0) < cls.config.FLEE_MOVE_COST:
+            base -= 12
+        return max(5, min(95, base))
+
+    @classmethod
     def get_flee_risk_label(cls, chance: int) -> str:
+        if chance >= 75:
+            return 'low'
+        if chance >= 55:
+            return 'medium'
+        return 'high'
+
+    @classmethod
+    def get_escape_risk_label(cls, chance: int) -> str:
         if chance >= 75:
             return 'low'
         if chance >= 55:
@@ -1856,7 +1905,8 @@ class CombatHandler:
         now = time.time()
         if now < getattr(player, 'flee_cooldown_until', 0):
             if not auto:
-                await player.send(f"{c['yellow']}You need a moment before you can flee again.{c['reset']}")
+                remaining = int(max(0, getattr(player, 'flee_cooldown_until', 0) - now))
+                await player.send(f"{c['yellow']}You need {remaining}s before you can flee again.{c['reset']}")
             return
 
         if player.move < cls.config.FLEE_MOVE_COST:
@@ -1874,10 +1924,11 @@ class CombatHandler:
 
         # Chance to flee based on dexterity
         flee_chance = cls.get_flee_chance(player)
+        flee_risk = cls.get_flee_risk_label(flee_chance)
         player.flee_cooldown_until = now + cls.config.FLEE_COOLDOWN_SECONDS
 
         if auto:
-            await player.send(f"{c['yellow']}You panic and try to flee!{c['reset']}")
+            await player.send(f"{c['yellow']}You panic and try to flee ({flee_risk} risk)!{c['reset']}")
 
         if random.randint(1, 100) <= flee_chance:
             direction = random.choice(available_exits)
@@ -1900,7 +1951,7 @@ class CombatHandler:
             player.exp = max(0, player.exp - exp_loss)
             await player.send(f"{c['yellow']}You lose {exp_loss} experience points.{c['reset']}")
         else:
-            await player.send(f"{c['red']}PANIC! You couldn't escape!{c['reset']}")
+            await player.send(f"{c['red']}You fail to flee ({flee_risk} risk)!{c['reset']}")
 
     @classmethod
     async def attempt_escape(cls, player: 'Player', direction: str):
@@ -1911,7 +1962,8 @@ class CombatHandler:
         c = cls.config.COLORS
         now = time.time()
         if now < getattr(player, 'escape_cooldown_until', 0):
-            await player.send(f"{c['yellow']}You need a moment before you can escape again.{c['reset']}")
+            remaining = int(max(0, getattr(player, 'escape_cooldown_until', 0) - now))
+            await player.send(f"{c['yellow']}You need {remaining}s before you can escape again.{c['reset']}")
             return False
 
         if player.move < cls.config.ESCAPE_MOVE_COST:
@@ -1925,10 +1977,11 @@ class CombatHandler:
             return False
 
         escape_chance = cls.get_escape_chance(player)
+        escape_risk = cls.get_escape_risk_label(escape_chance)
         player.escape_cooldown_until = now + cls.config.ESCAPE_COOLDOWN_SECONDS
 
         if random.randint(1, 100) > escape_chance:
-            await player.send(f"{c['yellow']}You fail to escape!{c['reset']}")
+            await player.send(f"{c['yellow']}You fail to escape ({escape_risk} risk).{c['reset']}")
             return False
 
         enemy = player.fighting
@@ -1952,7 +2005,8 @@ class CombatHandler:
         c = cls.config.COLORS
         now = time.time()
         if now < getattr(player, 'disengage_cooldown_until', 0):
-            await player.send(f"{c['yellow']}You need a moment before you can disengage again.{c['reset']}")
+            remaining = int(max(0, getattr(player, 'disengage_cooldown_until', 0) - now))
+            await player.send(f"{c['yellow']}You need {remaining}s before you can disengage again.{c['reset']}")
             return False
 
         if player.move < cls.config.DISENGAGE_MOVE_COST:
@@ -1964,7 +2018,7 @@ class CombatHandler:
         if player.room:
             attackers = [ch for ch in player.room.characters if hasattr(ch, 'fighting') and ch.fighting == player]
             if attackers:
-                await player.send(f"{c['red']}You're the focus of the fight! Try flee or escape.{c['reset']}")
+                await player.send(f"{c['red']}Enemies are focused on you. Try flee or escape.{c['reset']}")
                 return False
 
         player.disengage_cooldown_until = now + cls.config.DISENGAGE_COOLDOWN_SECONDS

@@ -62,6 +62,9 @@ class Character:
         self.flee_cooldown_until = 0
         self.escape_cooldown_until = 0
         self.disengage_cooldown_until = 0
+        self.rescue_cooldown_until = 0
+        self.protect_cooldown_until = 0
+        self.protecting = None
         self.second_wind_until = 0
         self.second_wind_cooldown_until = 0
         
@@ -2325,6 +2328,60 @@ class Player(Character):
         c = self.config.COLORS
         damage_type = damage_type or 'physical'
         
+        # Player protection intercept - check if any ally is protecting this player
+        if attacker and self.room and amount > 0:
+            now = time.time()
+            protectors = []
+            for char in self.room.characters:
+                if char == self or char == attacker:
+                    continue
+                if getattr(char, 'protecting', None) != self:
+                    continue
+                if getattr(char, 'hp', 0) <= 0:
+                    continue
+                if getattr(char, 'is_fighting', False):
+                    continue
+                if now < getattr(char, 'protect_cooldown_until', 0):
+                    continue
+                protectors.append(char)
+            if protectors:
+                from combat import CombatHandler
+                best = None
+                best_chance = 0
+                for protector in protectors:
+                    chance = CombatHandler.get_protect_chance(protector, self, attacker)
+                    if chance > best_chance:
+                        best = protector
+                        best_chance = chance
+                if best and random.randint(1, 100) <= best_chance:
+                    best.protect_cooldown_until = now + self.config.PROTECT_INTERCEPT_COOLDOWN_SECONDS
+                    await self.send(f"{c['bright_green']}{best.name} leaps in front of you, taking the blow!{c['reset']}")
+                    if hasattr(best, 'send'):
+                        await best.send(f"{c['bright_green']}You intercept the attack meant for {self.name}!{c['reset']}")
+                    if hasattr(attacker, 'send'):
+                        await attacker.send(f"{c['red']}{best.name} intercepts your attack on {self.name}!{c['reset']}")
+                    await self.room.send_to_room(
+                        f"{c['cyan']}{best.name} throws themselves in front of {self.name}!{c['reset']}",
+                        exclude=[self, best]
+                    )
+
+                    # Protector takes damage and optionally engages attacker
+                    best.hp -= amount
+                    if not getattr(best, 'is_fighting', False):
+                        best.fighting = attacker
+                        best.position = 'fighting'
+                        if hasattr(best, 'target'):
+                            best.target = attacker
+
+                    # Check if protector died
+                    if best.hp <= 0:
+                        await self.room.send_to_room(
+                            f"{c['red']}{best.name} collapses from the intercepted blow!{c['reset']}"
+                        )
+                        if hasattr(best, 'die'):
+                            await best.die(attacker)
+                    return False
+
         # Pet protection intercept - check if any pet is protecting this player
         if attacker and self.room and amount > 0:
             from pets import PetManager

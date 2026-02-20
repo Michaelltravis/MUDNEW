@@ -57,6 +57,7 @@ class CommandHandler:
         'pr': 'practice',
         'whe': 'where',
         'con': 'consider',
+        'prot': 'protect',
         'rec': 'recall',
         'zones': 'map',
         'worldmap': 'map',
@@ -2591,6 +2592,38 @@ class CommandHandler:
             )
         except Exception:
             pass
+
+        # Stance, movement, and defense layers
+        try:
+            stance = getattr(target, 'stance', 'normal')
+            stance_label = stance.title() if isinstance(stance, str) else 'Normal'
+            move = getattr(target, 'move', None)
+            if move is None:
+                move_state = "steady"
+            else:
+                move_state = "winded" if move < player.config.FLEE_MOVE_COST else "steady"
+            defenses = []
+            shield_bonus = target.get_shield_evasion_bonus() if hasattr(target, 'get_shield_evasion_bonus') else 0
+            if shield_bonus > 0:
+                defenses.append(f"shield +{shield_bonus}%")
+            skills = getattr(target, 'skills', {}) or {}
+            if skills.get('parry', 0) > 0:
+                defenses.append('parry')
+            if skills.get('dodge', 0) > 0:
+                defenses.append('dodge')
+            if skills.get('shield_block', 0) > 0:
+                defenses.append('block')
+            if skills.get('evasion', 0) > 0:
+                defenses.append('evasion')
+            if getattr(target, 'damage_reduction', 0) > 0:
+                defenses.append(f"mit {int(getattr(target, 'damage_reduction', 0))}%")
+            defenses_display = ', '.join(defenses[:4]) if defenses else 'baseline'
+            await player.send(
+                f"{c['white']}State:{c['reset']} "
+                f"Stance {stance_label} | Move {move_state} | Defenses: {defenses_display}"
+            )
+        except Exception:
+            pass
         
         # Health assessment
         hp_ratio = target.hp / max(1, target.max_hp)
@@ -4338,15 +4371,42 @@ class CommandHandler:
         wimpy = getattr(player, 'wimpy', 0)
         flee_chance = CombatHandler.get_flee_chance(player)
         flee_risk = CombatHandler.get_flee_risk_label(flee_chance)
-        cooldown = int(max(0, getattr(player, 'flee_cooldown_until', 0) - time.time()))
+        flee_cd = int(max(0, getattr(player, 'flee_cooldown_until', 0) - time.time()))
         if flee_chance <= 0:
             flee_display = f"{c['red']}0% (winded){c['reset']}"
         else:
-            cd_text = f", cd {cooldown}s" if cooldown > 0 else ""
+            cd_text = f", cd {flee_cd}s" if flee_cd > 0 else ""
             flee_display = f"{c['white']}{flee_chance}% ({flee_risk}{cd_text}){c['reset']}"
+        escape_chance = CombatHandler.get_escape_chance(player)
+        escape_risk = CombatHandler.get_escape_risk_label(escape_chance)
+        escape_cd = int(max(0, getattr(player, 'escape_cooldown_until', 0) - time.time()))
+        if escape_chance <= 0:
+            escape_display = f"{c['red']}0% (winded){c['reset']}"
+        else:
+            cd_text = f", cd {escape_cd}s" if escape_cd > 0 else ""
+            escape_display = f"{c['white']}{escape_chance}% ({escape_risk}{cd_text}){c['reset']}"
+        dis_cd = int(max(0, getattr(player, 'disengage_cooldown_until', 0) - time.time()))
+        dis_status = "ready" if dis_cd <= 0 else f"cd {dis_cd}s"
+        if player.room:
+            attackers = [ch for ch in player.room.characters if hasattr(ch, 'fighting') and ch.fighting == player]
+            if attackers:
+                dis_status = "blocked"
         wimpy_display = f"{wimpy}" if wimpy > 0 else "off"
         shield_bonus = player.get_shield_evasion_bonus() if hasattr(player, 'get_shield_evasion_bonus') else 0
         shield_display = f" | Shield +{shield_bonus}%" if shield_bonus > 0 else ""
+        protecting = getattr(player, 'protecting', None)
+        guarded_by = None
+        if player.room:
+            for char in player.room.characters:
+                if getattr(char, 'protecting', None) == player:
+                    guarded_by = char
+                    break
+        protect_bits = []
+        if protecting:
+            protect_bits.append(f"Protect {protecting.name}")
+        if guarded_by:
+            protect_bits.append(f"Guarded by {guarded_by.name}")
+        protect_display = f" | {' / '.join(protect_bits)}" if protect_bits else ""
         line = (
             f"{c['white']}Tactical:{c['reset']} "
             f"HP {player.hp}/{player.max_hp} "
@@ -4356,7 +4416,9 @@ class CommandHandler:
             f"| AC {ac:+d} Mit {pb}% "
             f"| Stance {stance_label} "
             f"| Wimpy {wimpy_display} "
-            f"| Flee {flee_display}"
+            f"| Flee {flee_display} "
+            f"| Escape {escape_display} "
+            f"| Disengage {dis_status}{protect_display}"
         )
         await player.send(line)
 
@@ -6092,7 +6154,8 @@ class CommandHandler:
     async def cmd_rescue(cls, player: 'Player', args: List[str]):
         """Rescue an ally from combat, becoming the new target."""
         c = player.config.COLORS
-        import random
+        import random, time
+        from combat import CombatHandler
         
         if player.char_class.lower() not in ('warrior', 'paladin'):
             await player.send(f"{c['red']}Only warriors and paladins can rescue!{c['reset']}")
@@ -6100,6 +6163,12 @@ class CommandHandler:
         
         if 'rescue' not in player.skills:
             await player.send(f"{c['red']}You haven't learned rescue!{c['reset']}")
+            return
+
+        now = time.time()
+        if now < getattr(player, 'rescue_cooldown_until', 0):
+            remaining = int(max(0, getattr(player, 'rescue_cooldown_until', 0) - now))
+            await player.send(f"{c['yellow']}You need {remaining}s before you can rescue again.{c['reset']}")
             return
         
         if not args:
@@ -6134,26 +6203,31 @@ class CommandHandler:
             await player.send(f"{c['yellow']}{ally.name} has no attacker to rescue from!{c['reset']}")
             return
         
-        skill_level = player.skills.get('rescue', 50)
+        skill_level = CombatHandler.get_rescue_chance(player, ally, attacker)
+        player.rescue_cooldown_until = now + player.config.RESCUE_COOLDOWN_SECONDS
         
         if random.randint(1, 100) <= skill_level:
             # Successful rescue
             await player.send(f"{c['bright_green']}You heroically rescue {ally.name} from {attacker.name}!{c['reset']}")
-            await ally.send(f"{c['bright_green']}{player.name} rescues you from {attacker.name}!{c['reset']}")
+            if hasattr(ally, 'send'):
+                await ally.send(f"{c['bright_green']}{player.name} rescues you from {attacker.name}!{c['reset']}")
+            if hasattr(attacker, 'send'):
+                await attacker.send(f"{c['red']}{player.name} wrests {ally.name} away from you!{c['reset']}")
             if player.room:
                 await player.room.send_to_room(
-                    f"{player.name} heroically rescues {ally.name}!",
+                    f"{c['cyan']}{player.name} heroically rescues {ally.name}!{c['reset']}",
                     exclude=[player, ally]
                 )
             
             # Switch aggro
-            ally.fighting = None
             ally.fighting = None
             ally.position = 'standing'
             
             attacker.fighting = player
             player.fighting = attacker
             player.position = 'fighting'
+            if hasattr(player, 'target'):
+                player.target = attacker
             
             # Gain rage for the heroic act
             if player.char_class.lower() == 'warrior':
@@ -12460,13 +12534,82 @@ class CommandHandler:
             await player.send(f"{c['yellow']}{target.name} isn't fighting anyone!{c['reset']}")
             return
         
+        if player.is_fighting and player.fighting != enemy:
+            await player.send(f"{c['yellow']}You're already fighting {player.fighting.name}.{c['reset']}")
+            return
+
         await player.send(f"{c['green']}You rush to assist {target.name}!{c['reset']}")
         # Only send to target if they can receive messages (players, not pets)
         if hasattr(target, 'send'):
             await target.send(f"{c['green']}{player.name} rushes to assist you!{c['reset']}")
-        await CombatHandler.start_combat(player, enemy)
+
+        # Join the fight without stealing the target
+        if not enemy.is_fighting:
+            await CombatHandler.start_combat(player, enemy)
+        else:
+            player.fighting = enemy
+            player.position = 'fighting'
+            if hasattr(player, 'target'):
+                player.target = enemy
 
     @classmethod
+    @classmethod
+    async def cmd_protect(cls, player: 'Player', args: List[str]):
+        """Protect an ally, intercepting attacks. Usage: protect <ally>|protect off"""
+        c = player.config.COLORS
+
+        if player.char_class.lower() not in ('warrior', 'paladin'):
+            await player.send(f"{c['red']}Only warriors and paladins can protect allies!{c['reset']}")
+            return
+
+        if 'rescue' not in player.skills and 'shield_block' not in player.skills:
+            await player.send(f"{c['red']}You haven't learned how to protect allies yet.{c['reset']}")
+            return
+
+        if not args:
+            current = getattr(player, 'protecting', None)
+            if current:
+                await player.send(f"{c['cyan']}You are protecting {current.name}.{c['reset']}")
+                await player.send(f"{c['white']}Use 'protect <name>' to switch or 'protect off' to stop.{c['reset']}")
+            else:
+                await player.send(f"{c['yellow']}Protect whom?{c['reset']}")
+            return
+
+        target_name = ' '.join(args).lower()
+        if target_name in ('off', 'none', 'clear', 'stop'):
+            player.protecting = None
+            await player.send(f"{c['yellow']}You relax your protective stance.{c['reset']}")
+            return
+
+        if not player.room:
+            await player.send(f"{c['red']}You don't see anyone here to protect.{c['reset']}")
+            return
+
+        from mobs import Mobile
+        target = None
+        for char in player.room.characters:
+            if char == player:
+                continue
+            if isinstance(char, Mobile):
+                continue
+            if target_name in char.name.lower():
+                target = char
+                break
+
+        if not target:
+            await player.send(f"{c['red']}You don't see '{target_name}' here.{c['reset']}")
+            return
+
+        player.protecting = target
+        await player.send(f"{c['bright_green']}You move to protect {target.name}.{c['reset']}")
+        if hasattr(target, 'send'):
+            await target.send(f"{c['bright_green']}{player.name} moves to protect you.{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(
+                f"{c['cyan']}{player.name} takes a defensive stance in front of {target.name}.{c['reset']}",
+                exclude=[player, target]
+            )
+
     async def cmd_wimpy(cls, player: 'Player', args: List[str]):
         """Set auto-flee HP threshold. Usage: wimpy [hp amount]"""
         c = player.config.COLORS

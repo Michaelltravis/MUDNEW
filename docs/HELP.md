@@ -194,6 +194,16 @@ Ask an NPC a question using LLM-powered conversation.
 
 Help someone in combat. Usage: assist <player>
 
+### Protect
+**Syntax:** `protect <ally>|protect off`
+
+Protect an ally by intercepting attacks. Warriors and paladins only.
+
+MECHANICS:
+- Intercept chance scales with rescue/shield skill and STR/CON
+- Defensive stance improves intercepts
+- Short intercept cooldown prevents chaining
+
 ### At
 **Syntax:** `at <location> <command>`
 
@@ -691,17 +701,30 @@ Usage:
 ### Flee
 **Syntax:** `flee`
 
-Panic and flee combat in a random direction.
+Panic flee from combat in a random direction.
+
+MECHANICS:
+- Chance scales with DEX and stance
+- Costs move and has a short cooldown
+- On success: random exit, small XP loss
 
 ### Escape
 **Syntax:** `escape <direction>`
 
-Attempt a directed escape from combat. Higher success if you know escape/slip.
+Attempt a controlled escape in a chosen direction.
+
+MECHANICS:
+- Chance scales with escape skill (or DEX)
+- Costs move and has a short cooldown
 
 ### Disengage
 **Syntax:** `disengage`
 
-Step out of combat if you're not the primary target.
+Break off combat if enemies aren't focused on you.
+
+MECHANICS:
+- Requires you not be the current focus
+- Costs move and has a short cooldown
 
 ### Follow
 **Syntax:** `follow <player> or follow self`
@@ -1767,7 +1790,7 @@ Reduce target armor temporarily.
 ### Tactical
 **Syntax:** `tactical`
 
-Show a concise combat stat line (OB/DB/PB, shield evasion, stance, wimpy, flee risk).
+Show a concise combat stat line (OB/DB/PB, shield evasion, stance, wimpy, flee/escape risk, disengage, protect).
 
 ### Take
 **Syntax:** `take`
@@ -2381,8 +2404,9 @@ MECHANICS:
 Rescue an ally by pulling aggro.
 
 MECHANICS:
-- Success based on skill and level
-- On success: target switches to you
+- Success scales with rescue skill, STR/DEX, and stance
+- On success: attacker switches to you
+- Short cooldown between attempts
 
 
 ### Scan

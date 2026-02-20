@@ -295,6 +295,19 @@ HELP_TOPICS = {'auction': {'category': 'command',
             'description': 'Help someone in combat. Usage: assist <player>',
             'syntax': 'assist <player>',
             'title': 'Assist'},
+ 'protect': {'category': 'command',
+             'description': 'Protect an ally by intercepting attacks. Warriors and paladins only.\n'
+                            '\n'
+                            'Usage:\n'
+                            '  protect <ally>   - Guard an ally\n'
+                            '  protect off      - Stop protecting\n'
+                            '\n'
+                            'MECHANICS:\n'
+                            '- Intercept chance scales with rescue/shield skill and STR/CON\n'
+                            '- Defensive stance improves intercepts\n'
+                            '- Short intercept cooldown prevents chaining',
+             'syntax': 'protect <ally>|protect off',
+             'title': 'Protect'},
  'at': {'category': 'command',
         'description': 'Execute a command at another location (immortal only).\n'
                        '\n'
@@ -1000,7 +1013,11 @@ HELP_TOPICS = {'auction': {'category': 'command',
               'syntax': 'dismount',
               'title': 'Dismount'},
  'disengage': {'category': 'command',
-              'description': "Disengage from combat if you're not the primary target.",
+              'description': "Break off combat if enemies aren't focused on you.\n"
+                             "\n"
+                             "MECHANICS:\n"
+                             "- Requires you not be the current focus\n"
+                             "- Costs move and has a short cooldown",
               'syntax': 'disengage',
               'title': 'Disengage'},
  'dispel_evil': {'category': 'spell',
@@ -1321,7 +1338,11 @@ HELP_TOPICS = {'auction': {'category': 'command',
             'syntax': 'expose',
             'title': 'Expose Weakness'},
  'escape': {'category': 'command',
-            'description': 'Attempt a directed escape from combat. Usage: escape <direction>',
+            'description': 'Attempt a controlled escape in a chosen direction.\n'
+                           '\n'
+                           'MECHANICS:\n'
+                           '- Chance scales with escape skill (or DEX)\n'
+                           '- Costs move and has a short cooldown',
             'syntax': 'escape <direction>',
             'title': 'Escape'},
  'exits': {'category': 'command',
@@ -1451,7 +1472,15 @@ HELP_TOPICS = {'auction': {'category': 'command',
                  'mana': 60,
                  'syntax': "cast 'flamestrike' <target>",
                  'title': 'Flamestrike'},
- 'flee': {'category': 'command', 'description': 'Flee from combat.', 'syntax': 'flee', 'title': 'Flee'},
+ 'flee': {'category': 'command',
+          'description': 'Panic flee from combat in a random direction.\n'
+                         '\n'
+                         'MECHANICS:\n'
+                         '- Chance scales with DEX and stance\n'
+                         '- Costs move and has a short cooldown\n'
+                         '- On success: random exit, small XP loss',
+          'syntax': 'flee',
+          'title': 'Flee'},
  'fly': {'category': 'spell',
          'classes': ['mage'],
          'description': "Fly\nTARGET: defensive\n\nCASTING:\n- Use `cast 'fly'`.\n- Mana cost applies per cast.",
@@ -2578,8 +2607,9 @@ HELP_TOPICS = {'auction': {'category': 'command',
                            'Rescue an ally by pulling aggro.\n'
                            '\n'
                            'MECHANICS:\n'
-                           '- Success based on skill and level\n'
-                           '- On success: target switches to you\n',
+                           '- Success scales with rescue skill, STR/DEX, and stance\n'
+                           '- On success: attacker switches to you\n'
+                           '- Short cooldown between attempts\n',
             'syntax': 'rescue',
             'title': 'Rescue'},
  'rest': {'category': 'command', 'description': 'Rest to regenerate faster.', 'syntax': 'rest', 'title': 'Rest'},
@@ -3035,7 +3065,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
                   'syntax': 'sunder_armor',
                   'title': 'Sunder Armor'},
  'tactical': {'category': 'command',
-              'description': 'Show concise combat telemetry (OB/DB/PB, shield evasion, stance, wimpy, flee risk).',
+              'description': 'Show concise combat telemetry (OB/DB/PB, shield evasion, stance, wimpy, flee/escape risk, disengage, protect).',
               'syntax': 'tactical',
               'title': 'Tactical'},
  'take': {'category': 'command', 'description': 'Alias for get.', 'syntax': 'take', 'title': 'Take'},
@@ -5011,6 +5041,7 @@ HELP_CATEGORIES = {'class': ['assassin', 'bard', 'cleric', 'mage', 'necromancer'
              'predators_mark',
              'preparation',
              'prompt',
+             'protect',
              'pull',
              'purge',
              'push',

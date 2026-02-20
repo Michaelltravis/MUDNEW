@@ -66,6 +66,7 @@ A complete reference of all player commands, organized by category.
 | `bash` | | War/Pal | Shield bash, can stun |
 | `backstab <target>` | | Thi/Ass | Sneak attack from behind |
 | `rescue <ally>` | `resc` | War/Pal | Pull enemy off an ally |
+| `protect <ally>` | `prot` | War/Pal | Intercept attacks on an ally |
 | `disarm` | | Warrior | Knock weapon from enemy |
 | `trip` | | Thief | Trip enemy, causing fall |
 | `circle` | | Thief | Circle behind for extra damage |

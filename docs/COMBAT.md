@@ -84,6 +84,7 @@ Lower AC = Better Defense
 | `kick` | Basic kick attack | `kick` |
 | `bash` | Shield bash (may stun) | `bash <target>` |
 | `rescue` | Pull enemy off ally | `rescue <ally>` |
+| `protect` | Intercept attacks on ally | `protect <ally>` |
 | `disarm` | Knock weapon away | `disarm <target>` |
 
 ### The Second Attack / Third Attack
@@ -491,7 +492,13 @@ Members:
 **Assist:**
 ```bash
 > assist thorin
-You assist Thorin, attacking the orc!
+You rush to assist Thorin!
+```
+
+**Protect:**
+```bash
+> protect gandalf
+You move to protect Gandalf.
 ```
 
 **Rescue:**
@@ -586,8 +593,8 @@ Your mind feels refreshed!
 ATTACKING           DEFENDING           SUPPORT
 ─────────────       ─────────────       ─────────────
 kill <target>       flee                rescue <ally>
-kick                consider <mob>      assist <ally>
-bash <target>       cast sanctuary      cast heal <ally>
+kick                consider <mob>      protect <ally>
+bash <target>       cast sanctuary      assist <ally>
 backstab <target>   rest                cast group_heal
 cast <spell>        quaff potion        gtell <message>
 
