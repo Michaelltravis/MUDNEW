@@ -679,6 +679,10 @@
         "up": {
           "to_room": 24023,
           "description": "The sanctum above."
+        },
+        "east": {
+          "to_room": 28500,
+          "description": "A black trench opens east into the Drowned Reliquary."
         }
       },
       "mob_resets": [

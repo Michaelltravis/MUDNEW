@@ -1,0 +1,1469 @@
+{
+  "number": 285,
+  "name": "The Drowned Reliquary",
+  "lifespan": 25,
+  "reset_mode": 2,
+  "level_min": 60,
+  "level_max": 64,
+  "rooms": {
+    "28500": {
+      "vnum": 28500,
+      "name": "Drowned Reliquary - Sunken Antechamber",
+      "description": "Bubbles rise in slow chains over broken statuary. strands of kelp sway like\ncurtains. The silence is broken only by the slow creak of the temple as it\nsettles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "south": {
+          "to_room": 28506,
+          "description": "Silted steps descend to the south."
+        },
+        "east": {
+          "to_room": 28501,
+          "description": "A flooded passage opens to the east."
+        },
+        "west": {
+          "to_room": 24024,
+          "description": "A spiraling trench leads back toward the Sunken Temple."
+        }
+      },
+      "zone_mechanic": {
+        "type": "drowning_timer",
+        "damage_per_tick": 30,
+        "message": "Your lungs burn as the deep presses in around you!",
+        "immunity_item": "pearl_of_water_breathing",
+        "immunity_flag": "water_breathing"
+      }
+    },
+    "28501": {
+      "vnum": 28501,
+      "name": "Hall of Salted Echoes",
+      "description": "Schools of pale fish drift by over coral-laced pillars. a pressure hum fills\nyour skull. The silence is broken only by the slow creak of the temple as it\nsettles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "south": {
+          "to_room": 28507,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28500,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28502,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28501,
+          "max": 2
+        }
+      ]
+    },
+    "28502": {
+      "vnum": 28502,
+      "name": "Barnacle Gallery",
+      "description": "Coral filigree crowns the stonework over pearl-inlaid glyphs. a hymn seems to\necho in the deep. The silence is broken only by the slow creak of the temple\nas it settles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "south": {
+          "to_room": 28508,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28501,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28503,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28502,
+          "max": 2
+        }
+      ]
+    },
+    "28503": {
+      "vnum": 28503,
+      "name": "Silted Processional",
+      "description": "The current tugs at your cloak over pearl-inlaid glyphs. drowned candles\ngutter with blue flame. The silence is broken only by the slow creak of the\ntemple as it settles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "south": {
+          "to_room": 28509,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28502,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28504,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28503,
+          "max": 2
+        }
+      ]
+    },
+    "28504": {
+      "vnum": 28504,
+      "name": "Pearl-Locked Vestibule",
+      "description": "Silt curls into the water with each step over coral-laced pillars. a current\ncircles like a watchful eye. The silence is broken only by the slow creak of\nthe temple as it settles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "south": {
+          "to_room": 28510,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28503,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28505,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28504,
+          "max": 2
+        }
+      ]
+    },
+    "28505": {
+      "vnum": 28505,
+      "name": "Tideworn Arcade",
+      "description": "Cold water presses against every surface over sea-polished stone. a pressure\nhum fills your skull. The silence is broken only by the slow creak of the\ntemple as it settles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "south": {
+          "to_room": 28511,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28504,
+          "description": "The reliquary halls continue west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28505,
+          "max": 2
+        }
+      ]
+    },
+    "28506": {
+      "vnum": 28506,
+      "name": "Chapel of Murmurs",
+      "description": "The current tugs at your cloak over gilded mosaics. shadows gather in the\ncorners. The silence is broken only by the slow creak of the temple as it\nsettles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28500,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28512,
+          "description": "Silted steps descend to the south."
+        },
+        "east": {
+          "to_room": 28507,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28506,
+          "max": 2
+        }
+      ]
+    },
+    "28507": {
+      "vnum": 28507,
+      "name": "Altar of the Deep",
+      "description": "Cold water presses against every surface over coral-laced pillars. a hymn\nseems to echo in the deep. The silence is broken only by the slow creak of the\ntemple as it settles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28501,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28513,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28506,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28508,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28507,
+          "max": 2
+        }
+      ]
+    },
+    "28508": {
+      "vnum": 28508,
+      "name": "Reliquary Passage",
+      "description": "Barnacles crust the ancient walls over broken statuary. drowned candles gutter\nwith blue flame. The silence is broken only by the slow creak of the temple as\nit settles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28502,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28514,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28507,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28509,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28508,
+          "max": 2
+        }
+      ]
+    },
+    "28509": {
+      "vnum": 28509,
+      "name": "Mosaic of the Drowned",
+      "description": "Coral filigree crowns the stonework over gilded mosaics. ghostly bells ring\nwithout source. The silence is broken only by the slow creak of the temple as\nit settles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28503,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28515,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28508,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28510,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28509,
+          "max": 2
+        }
+      ]
+    },
+    "28510": {
+      "vnum": 28510,
+      "name": "Vault of Coils",
+      "description": "Barnacles crust the ancient walls over broken statuary. shadows gather in the\ncorners. The silence is broken only by the slow creak of the temple as it\nsettles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28504,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28516,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28509,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28511,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28501,
+          "max": 2
+        }
+      ]
+    },
+    "28511": {
+      "vnum": 28511,
+      "name": "Sarcophagus Row",
+      "description": "Barnacles crust the ancient walls over algae-darkened tiles. the water smells\nfaintly of incense. The silence is broken only by the slow creak of the temple\nas it settles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28505,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28517,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28510,
+          "description": "The reliquary halls continue west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28502,
+          "max": 2
+        }
+      ]
+    },
+    "28512": {
+      "vnum": 28512,
+      "name": "Brine-Swept Cloister",
+      "description": "Barnacles crust the ancient walls over collapsed arches. strands of kelp sway\nlike curtains. The silence is broken only by the slow creak of the temple as\nit settles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28506,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28518,
+          "description": "Silted steps descend to the south."
+        },
+        "east": {
+          "to_room": 28513,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28503,
+          "max": 2
+        }
+      ]
+    },
+    "28513": {
+      "vnum": 28513,
+      "name": "Grave of Tides",
+      "description": "The current tugs at your cloak over gilded mosaics. the water smells faintly\nof incense. The silence is broken only by the slow creak of the temple as it\nsettles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28507,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28519,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28512,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28514,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28504,
+          "max": 2
+        }
+      ]
+    },
+    "28514": {
+      "vnum": 28514,
+      "name": "Gilt Coral Chamber",
+      "description": "Schools of pale fish drift by over collapsed arches. a pressure hum fills your\nskull. The silence is broken only by the slow creak of the temple as it\nsettles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28508,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28520,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28513,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28515,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28505,
+          "max": 2
+        }
+      ]
+    },
+    "28515": {
+      "vnum": 28515,
+      "name": "Threnody Hall",
+      "description": "Faint blue light pulses from runes over gilded mosaics. shadows gather in the\ncorners. The silence is broken only by the slow creak of the temple as it\nsettles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28509,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28521,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28514,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28516,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28506,
+          "max": 2
+        }
+      ]
+    },
+    "28516": {
+      "vnum": 28516,
+      "name": "The Submerged Library",
+      "description": "Faint blue light pulses from runes over cracked marble. a pressure hum fills\nyour skull. The silence is broken only by the slow creak of the temple as it\nsettles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28510,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28522,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28515,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28517,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28507,
+          "max": 2
+        }
+      ]
+    },
+    "28517": {
+      "vnum": 28517,
+      "name": "Catacombs of Kelp",
+      "description": "Schools of pale fish drift by over gilded mosaics. strands of kelp sway like\ncurtains. The silence is broken only by the slow creak of the temple as it\nsettles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28511,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28523,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28516,
+          "description": "The reliquary halls continue west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28508,
+          "max": 2
+        }
+      ]
+    },
+    "28518": {
+      "vnum": 28518,
+      "name": "Seaweed Ossuary",
+      "description": "Cold water presses against every surface over coral-laced pillars. a hymn\nseems to echo in the deep. The silence is broken only by the slow creak of the\ntemple as it settles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28512,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28524,
+          "description": "Silted steps descend to the south."
+        },
+        "east": {
+          "to_room": 28519,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28510,
+          "max": 1
+        }
+      ]
+    },
+    "28519": {
+      "vnum": 28519,
+      "name": "Chorus of Bubbles",
+      "description": "The current tugs at your cloak over algae-darkened tiles. ghostly bells ring\nwithout source. The silence is broken only by the slow creak of the temple as\nit settles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28513,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28525,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28518,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28520,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28501,
+          "max": 2
+        }
+      ]
+    },
+    "28520": {
+      "vnum": 28520,
+      "name": "Abyssal Reliquary",
+      "description": "Faint blue light pulses from runes over collapsed arches. a pressure hum fills\nyour skull. The silence is broken only by the slow creak of the temple as it\nsettles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28514,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28526,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28519,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28521,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28502,
+          "max": 2
+        }
+      ]
+    },
+    "28521": {
+      "vnum": 28521,
+      "name": "Chamber of Reliquaries",
+      "description": "Silt curls into the water with each step over sea-polished stone. the water\nsmells faintly of incense. The silence is broken only by the slow creak of the\ntemple as it settles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28515,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28527,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28520,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28522,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28503,
+          "max": 2
+        }
+      ]
+    },
+    "28522": {
+      "vnum": 28522,
+      "name": "Shrine of the Last Psalm",
+      "description": "Coral filigree crowns the stonework over broken statuary. strands of kelp sway\nlike curtains. The silence is broken only by the slow creak of the temple as\nit settles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28516,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28528,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28521,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28523,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28511,
+          "max": 1
+        }
+      ]
+    },
+    "28523": {
+      "vnum": 28523,
+      "name": "Drowned Confessional",
+      "description": "Schools of pale fish drift by over broken statuary. a pressure hum fills your\nskull. The silence is broken only by the slow creak of the temple as it\nsettles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28517,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28529,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28522,
+          "description": "The reliquary halls continue west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28505,
+          "max": 2
+        }
+      ]
+    },
+    "28524": {
+      "vnum": 28524,
+      "name": "Sunken Sacristy",
+      "description": "Schools of pale fish drift by over cracked marble. a hymn seems to echo in the\ndeep. The silence is broken only by the slow creak of the temple as it settles\nin the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28518,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28530,
+          "description": "Silted steps descend to the south."
+        },
+        "east": {
+          "to_room": 28525,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28506,
+          "max": 2
+        }
+      ]
+    },
+    "28525": {
+      "vnum": 28525,
+      "name": "Sanctum of the Blue Flame",
+      "description": "Bubbles rise in slow chains over sea-polished stone. shadows gather in the\ncorners. The silence is broken only by the slow creak of the temple as it\nsettles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28519,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28531,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28524,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28526,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28507,
+          "max": 2
+        }
+      ]
+    },
+    "28526": {
+      "vnum": 28526,
+      "name": "The Flooded Spire",
+      "description": "Silt curls into the water with each step over coral-laced pillars. a current\ncircles like a watchful eye. The silence is broken only by the slow creak of\nthe temple as it settles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28520,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28532,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28525,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28527,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28508,
+          "max": 2
+        }
+      ]
+    },
+    "28527": {
+      "vnum": 28527,
+      "name": "Echoing Rotunda",
+      "description": "Faint blue light pulses from runes over sea-polished stone. the water smells\nfaintly of incense. The silence is broken only by the slow creak of the temple\nas it settles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28521,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28533,
+          "description": "Silted steps descend to the south."
+        },
+        "west": {
+          "to_room": 28526,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28528,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28509,
+          "max": 2
+        }
+      ]
+    },
+    "28528": {
+      "vnum": 28528,
+      "name": "Chasm of the Lost",
+      "description": "Bubbles rise in slow chains over broken statuary. a hymn seems to echo in the\ndeep. The silence is broken only by the slow creak of the temple as it settles\nin the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28522,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28534,
+          "description": "Cold currents flow south through the spire."
+        },
+        "west": {
+          "to_room": 28527,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28529,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28501,
+          "max": 2
+        }
+      ]
+    },
+    "28529": {
+      "vnum": 28529,
+      "name": "Deepwater Transept",
+      "description": "Schools of pale fish drift by over broken statuary. the water smells faintly\nof incense. The silence is broken only by the slow creak of the temple as it\nsettles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28523,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "south": {
+          "to_room": 28535,
+          "description": "A heavy pressure draws you toward the sepulcher to the south."
+        },
+        "west": {
+          "to_room": 28528,
+          "description": "The reliquary halls continue west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28502,
+          "max": 2
+        }
+      ]
+    },
+    "28530": {
+      "vnum": 28530,
+      "name": "The Salt Priory",
+      "description": "Faint blue light pulses from runes over algae-darkened tiles. ghostly bells\nring without source. The silence is broken only by the slow creak of the\ntemple as it settles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28524,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "east": {
+          "to_room": 28531,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28503,
+          "max": 2
+        }
+      ]
+    },
+    "28531": {
+      "vnum": 28531,
+      "name": "Reliquary Crossroads",
+      "description": "Faint blue light pulses from runes over cracked marble. shadows gather in the\ncorners. The silence is broken only by the slow creak of the temple as it\nsettles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28525,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "west": {
+          "to_room": 28530,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28532,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28504,
+          "max": 2
+        }
+      ]
+    },
+    "28532": {
+      "vnum": 28532,
+      "name": "Warden's Threshold",
+      "description": "Barnacles crust the ancient walls over sea-polished stone. a current circles\nlike a watchful eye. The silence is broken only by the slow creak of the\ntemple as it settles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28526,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "west": {
+          "to_room": 28531,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28533,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28505,
+          "max": 2
+        }
+      ]
+    },
+    "28533": {
+      "vnum": 28533,
+      "name": "Lichgate Approach",
+      "description": "Schools of pale fish drift by over gilded mosaics. drowned candles gutter with\nblue flame. The silence is broken only by the slow creak of the temple as it\nsettles in the deep.",
+      "sector_type": "underwater",
+      "exits": {
+        "north": {
+          "to_room": 28527,
+          "description": "An aisle of drowned stone leads north."
+        },
+        "west": {
+          "to_room": 28532,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28534,
+          "description": "A flooded passage opens to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28506,
+          "max": 2
+        }
+      ]
+    },
+    "28534": {
+      "vnum": 28534,
+      "name": "Reliquary Throne",
+      "description": "Coral filigree crowns the stonework over broken statuary. ghostly bells ring\nwithout source. The silence is broken only by the slow creak of the temple as\nit settles in the deep.",
+      "sector_type": "underwater",
+      "flags": [
+        "no_recall"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 28528,
+          "description": "The reliquary spire rises back north."
+        },
+        "west": {
+          "to_room": 28533,
+          "description": "The reliquary halls continue west."
+        },
+        "east": {
+          "to_room": 28535,
+          "description": "A gate of chained coral bars the way east."
+        }
+      }
+    },
+    "28535": {
+      "vnum": 28535,
+      "name": "Thalassine Sepulcher",
+      "description": "Silt curls into the water with each step over algae-darkened tiles. drowned\ncandles gutter with blue flame. The silence is broken only by the slow creak\nof the temple as it settles in the deep.",
+      "sector_type": "underwater",
+      "flags": [
+        "no_recall"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 28529,
+          "description": "The reliquary hall ascends toward the drowned nave."
+        },
+        "west": {
+          "to_room": 28534,
+          "description": "The spire offers a retreat westward."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28520,
+          "max": 1
+        }
+      ]
+    }
+  },
+  "mobs": {
+    "28501": {
+      "vnum": 28501,
+      "name": "drowned acolyte",
+      "short_desc": "a drowned acolyte",
+      "long_desc": "A drowned acolyte drifts in prayer, eyes hollow.",
+      "level": 60,
+      "alignment": -400,
+      "hp_dice": "28d10+3200",
+      "damage_dice": "6d10+24",
+      "gold": 900,
+      "exp": 16000,
+      "armor_class": 32,
+      "flags": [
+        "aggressive"
+      ],
+      "description": "This priest's vestments billow like seaweed, and his lips move in a silent litany."
+    },
+    "28502": {
+      "vnum": 28502,
+      "name": "barnacle knight",
+      "short_desc": "a barnacle knight",
+      "long_desc": "A barnacle knight stands guard, armor fused with coral.",
+      "level": 61,
+      "alignment": -200,
+      "hp_dice": "32d10+3800",
+      "damage_dice": "7d10+26",
+      "gold": 1100,
+      "exp": 17500,
+      "armor_class": 28,
+      "flags": [
+        "aggressive",
+        "sentinel"
+      ],
+      "description": "A once-holy guardian, now crusted with barnacles and wielding a rusted halberd."
+    },
+    "28503": {
+      "vnum": 28503,
+      "name": "reliquary guardian",
+      "short_desc": "a reliquary guardian",
+      "long_desc": "A reliquary guardian glides forward, trident poised.",
+      "level": 61,
+      "alignment": 0,
+      "hp_dice": "34d10+4200",
+      "damage_dice": "8d10+28",
+      "gold": 700,
+      "exp": 18000,
+      "armor_class": 34,
+      "flags": [
+        "aggressive",
+        "no_charm"
+      ],
+      "description": "Bronze plates fused to its frame bear the crest of the old sea-priesthood."
+    },
+    "28504": {
+      "vnum": 28504,
+      "name": "coral revenant",
+      "short_desc": "a coral revenant",
+      "long_desc": "A coral revenant claws its way from the silt.",
+      "level": 60,
+      "alignment": -300,
+      "hp_dice": "26d10+3000",
+      "damage_dice": "6d10+22",
+      "gold": 600,
+      "exp": 15500,
+      "armor_class": 30,
+      "flags": [
+        "aggressive",
+        "no_sleep"
+      ],
+      "description": "A drowned corpse entombed in coral, it lashes out with encrusted claws."
+    },
+    "28505": {
+      "vnum": 28505,
+      "name": "tideworn assassin",
+      "short_desc": "a tideworn assassin",
+      "long_desc": "A tideworn assassin slips through the water, blade low.",
+      "level": 61,
+      "alignment": -500,
+      "hp_dice": "27d10+3100",
+      "damage_dice": "7d10+25",
+      "gold": 1200,
+      "exp": 17000,
+      "armor_class": 26,
+      "flags": [
+        "aggressive"
+      ],
+      "description": "This assassin's skin is scaled and slick, and his eyes never blink."
+    },
+    "28506": {
+      "vnum": 28506,
+      "name": "abyssal cantor",
+      "short_desc": "an abyssal cantor",
+      "long_desc": "An abyssal cantor sings a note that twists the water around you.",
+      "level": 62,
+      "alignment": -700,
+      "hp_dice": "30d10+3600",
+      "damage_dice": "7d10+26",
+      "gold": 1400,
+      "exp": 18500,
+      "armor_class": 29,
+      "flags": [
+        "aggressive",
+        "no_charm"
+      ],
+      "description": "Clad in kelp-robes, the cantor's voice reverberates in your bones."
+    },
+    "28507": {
+      "vnum": 28507,
+      "name": "drowned herald",
+      "short_desc": "a drowned herald",
+      "long_desc": "A drowned herald drifts forward, carrying a broken banner.",
+      "level": 62,
+      "alignment": -450,
+      "hp_dice": "31d10+3700",
+      "damage_dice": "8d10+27",
+      "gold": 1000,
+      "exp": 19000,
+      "armor_class": 31,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ],
+      "description": "Once the temple's announcer, it now proclaims ruin in a voice of bubbles."
+    },
+    "28508": {
+      "vnum": 28508,
+      "name": "silted behemoth",
+      "short_desc": "a silted behemoth",
+      "long_desc": "A silted behemoth lumbers here, dragging broken chains.",
+      "level": 63,
+      "alignment": -200,
+      "hp_dice": "38d10+5200",
+      "damage_dice": "9d10+32",
+      "gold": 1800,
+      "exp": 22000,
+      "armor_class": 24,
+      "flags": [
+        "aggressive",
+        "no_sleep"
+      ],
+      "description": "This giant's body is wrapped in rusted chains and draped with kelp."
+    },
+    "28509": {
+      "vnum": 28509,
+      "name": "saltbound warden",
+      "short_desc": "a saltbound warden",
+      "long_desc": "A saltbound warden watches in silence, spear leveled.",
+      "level": 62,
+      "alignment": -350,
+      "hp_dice": "33d10+4100",
+      "damage_dice": "8d10+28",
+      "gold": 1300,
+      "exp": 20000,
+      "armor_class": 27,
+      "flags": [
+        "aggressive",
+        "sentinel"
+      ],
+      "description": "Ancient armor fitted with coral plates encases this relentless guard."
+    },
+    "28510": {
+      "vnum": 28510,
+      "name": "reliquary abbot",
+      "short_desc": "the Reliquary Abbot",
+      "long_desc": "The Reliquary Abbot glides forward, crozier raised.",
+      "level": 63,
+      "alignment": -800,
+      "hp_dice": "50d10+7200",
+      "damage_dice": "10d10+34",
+      "gold": 2400,
+      "exp": 27000,
+      "armor_class": 18,
+      "flags": [
+        "aggressive",
+        "stay_zone",
+        "no_charm"
+      ],
+      "description": "Once the keeper of the temple's greatest relics, he now guards them in death.",
+      "loot_table": [
+        {
+          "vnum": 28550,
+          "chance": 35
+        },
+        {
+          "vnum": 28556,
+          "chance": 25
+        },
+        {
+          "vnum": 28553,
+          "chance": 20
+        }
+      ]
+    },
+    "28511": {
+      "vnum": 28511,
+      "name": "drowned sanctifier",
+      "short_desc": "the Drowned Sanctifier",
+      "long_desc": "The Drowned Sanctifier raises a coral-tipped staff, water swirling.",
+      "level": 63,
+      "alignment": -750,
+      "hp_dice": "48d10+7000",
+      "damage_dice": "10d10+33",
+      "gold": 2300,
+      "exp": 26500,
+      "armor_class": 19,
+      "flags": [
+        "aggressive",
+        "stay_zone",
+        "no_charm"
+      ],
+      "description": "This drowned priest channels the deep, its eyes glowing with abyssal light.",
+      "loot_table": [
+        {
+          "vnum": 28551,
+          "chance": 30
+        },
+        {
+          "vnum": 28555,
+          "chance": 25
+        },
+        {
+          "vnum": 28557,
+          "chance": 20
+        }
+      ]
+    },
+    "28520": {
+      "vnum": 28520,
+      "name": "thalassine lich",
+      "short_desc": "the Thalassine Lich",
+      "long_desc": "The Thalassine Lich rises from its throne, eyes burning cold blue.",
+      "level": 64,
+      "alignment": -1000,
+      "hp_dice": "85d10+14000",
+      "damage_dice": "15d10+48",
+      "gold": 9000,
+      "exp": 60000,
+      "armor_class": -12,
+      "flags": [
+        "boss",
+        "aggressive",
+        "sentinel",
+        "no_charm",
+        "no_sleep"
+      ],
+      "boss": true,
+      "boss_id": "thalassine_lich",
+      "boss_loot_table": [
+        {
+          "vnum": 28558,
+          "chance": 100
+        },
+        {
+          "vnum": 28552,
+          "chance": 60
+        },
+        {
+          "vnum": 28554,
+          "chance": 35
+        }
+      ],
+      "boss_loot_chance": 100,
+      "description": "A skeletal monarch draped in seaweed and gold, its crown held together by spectral force.",
+      "max_hp": 17000,
+      "ac": -35
+    }
+  },
+  "objects": {
+    "28550": {
+      "vnum": 28550,
+      "name": "Tideworn Mace",
+      "short_desc": "the Tideworn Mace",
+      "room_desc": "A mace of coral and brass lies here, dripping seawater.",
+      "item_type": "weapon",
+      "weapon_type": "bludgeon",
+      "damage_dice": "9d6+22",
+      "weight": 10,
+      "value": 115000,
+      "type": "weapon",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 60,
+      "effects": {
+        "wisdom": 3,
+        "hitroll": 8,
+        "damroll": 10
+      }
+    },
+    "28551": {
+      "vnum": 28551,
+      "name": "Reliquary Scepter",
+      "short_desc": "the Reliquary Scepter",
+      "room_desc": "A scepter capped with a pearl relic rests here.",
+      "item_type": "weapon",
+      "weapon_type": "staff",
+      "damage_dice": "8d6+20",
+      "weight": 7,
+      "value": 118000,
+      "type": "weapon",
+      "flags": [
+        "magic",
+        "glow"
+      ],
+      "min_level": 60,
+      "effects": {
+        "intelligence": 4,
+        "mana_regen": 18,
+        "hitroll": 6
+      }
+    },
+    "28552": {
+      "vnum": 28552,
+      "name": "Abyssal Mantle",
+      "short_desc": "the Abyssal Mantle",
+      "room_desc": "A mantle of deep-blue silk floats weightlessly here.",
+      "item_type": "armor",
+      "wear_slot": "about",
+      "armor_bonus": 20,
+      "weight": 3,
+      "value": 125000,
+      "type": "armor",
+      "flags": [
+        "magic",
+        "glow"
+      ],
+      "min_level": 60,
+      "effects": {
+        "intelligence": 4,
+        "armor_class": -16,
+        "mana_regen": 15
+      }
+    },
+    "28553": {
+      "vnum": 28553,
+      "name": "Barnacle-etched Greaves",
+      "short_desc": "Barnacle-etched Greaves",
+      "room_desc": "Heavy greaves etched with barnacles rest on the stone.",
+      "item_type": "armor",
+      "wear_slot": "legs",
+      "armor_bonus": 30,
+      "weight": 9,
+      "value": 110000,
+      "type": "armor",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 60,
+      "effects": {
+        "strength": 3,
+        "constitution": 3,
+        "armor_class": -18
+      }
+    },
+    "28554": {
+      "vnum": 28554,
+      "name": "Coral-thread Cloak",
+      "short_desc": "the Coral-thread Cloak",
+      "room_desc": "A cloak woven with coral threads drifts here.",
+      "item_type": "armor",
+      "wear_slot": "about",
+      "armor_bonus": 18,
+      "weight": 3,
+      "value": 100000,
+      "type": "armor",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 60,
+      "effects": {
+        "dexterity": 4,
+        "hitroll": 7,
+        "move_regen": 10
+      }
+    },
+    "28555": {
+      "vnum": 28555,
+      "name": "Siltshadow Stiletto",
+      "short_desc": "the Siltshadow Stiletto",
+      "room_desc": "A thin stiletto of dark steel lies half-buried in silt.",
+      "item_type": "weapon",
+      "weapon_type": "pierce",
+      "damage_dice": "8d6+20",
+      "weight": 3,
+      "value": 98000,
+      "type": "weapon",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 60,
+      "effects": {
+        "dexterity": 4,
+        "hitroll": 9,
+        "damroll": 8
+      }
+    },
+    "28556": {
+      "vnum": 28556,
+      "name": "Hymnkeeper's Chord",
+      "short_desc": "the Hymnkeeper's Chord",
+      "room_desc": "A stringed relic hums with a low, watery tone.",
+      "item_type": "armor",
+      "wear_slot": "hold",
+      "armor_bonus": 5,
+      "weight": 2,
+      "value": 92000,
+      "type": "treasure",
+      "flags": [
+        "magic",
+        "glow"
+      ],
+      "min_level": 60,
+      "affects": [
+        {
+          "type": "charisma",
+          "value": 3
+        },
+        {
+          "type": "mana_regen",
+          "value": 12
+        }
+      ]
+    },
+    "28557": {
+      "vnum": 28557,
+      "name": "Drowned Soulstone",
+      "short_desc": "a Drowned Soulstone",
+      "room_desc": "A dark soulstone pulses with trapped bubbles of light.",
+      "item_type": "armor",
+      "wear_slot": "hold",
+      "armor_bonus": 8,
+      "weight": 2,
+      "value": 105000,
+      "type": "treasure",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 60,
+      "effects": {
+        "intelligence": 4,
+        "mana_regen": 15,
+        "armor_class": -10
+      }
+    },
+    "28558": {
+      "vnum": 28558,
+      "name": "Lichwarden Staff",
+      "short_desc": "the Lichwarden Staff",
+      "room_desc": "A staff topped with a drowned skull lies here, cold to the touch.",
+      "item_type": "weapon",
+      "weapon_type": "staff",
+      "damage_dice": "10d6+24",
+      "weight": 8,
+      "value": 170000,
+      "type": "weapon",
+      "flags": [
+        "magic",
+        "glow",
+        "hum"
+      ],
+      "min_level": 62,
+      "effects": {
+        "intelligence": 5,
+        "hitroll": 10,
+        "damroll": 10,
+        "mana_regen": 20
+      }
+    }
+  }
+}

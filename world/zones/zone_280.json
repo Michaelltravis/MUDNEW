@@ -1,0 +1,1490 @@
+{
+  "number": 280,
+  "name": "The Ashen Expanse",
+  "lifespan": 25,
+  "reset_mode": 2,
+  "level_min": 58,
+  "level_max": 62,
+  "rooms": {
+    "28000": {
+      "vnum": 28000,
+      "name": "Ashen Expanse - Blackened Causeway",
+      "description": "Faint lightning flickers in the clouds over burnt flagstones. thin steam vents\nhiss. The silence here feels heavy, broken only by the crackle of distant\nflame.",
+      "sector_type": "field",
+      "exits": {
+        "south": {
+          "to_room": 28006,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "east": {
+          "to_room": 28001,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        },
+        "west": {
+          "to_room": 6909,
+          "description": "The skull-paved road back to the Ashlands lies west."
+        }
+      }
+    },
+    "28001": {
+      "vnum": 28001,
+      "name": "Cinderwind Flats",
+      "description": "Faint lightning flickers in the clouds over burnt flagstones. a dry heat\npresses on your lungs. The silence here feels heavy, broken only by the\ncrackle of distant flame.",
+      "sector_type": "field",
+      "exits": {
+        "south": {
+          "to_room": 28007,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28000,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28002,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28001,
+          "max": 2
+        }
+      ]
+    },
+    "28002": {
+      "vnum": 28002,
+      "name": "Glass Dune Rise",
+      "description": "Ash drifts in slow spirals over burnt flagstones. orange glows pulse from\ncracks. The silence here feels heavy, broken only by the crackle of distant\nflame.",
+      "sector_type": "field",
+      "exits": {
+        "south": {
+          "to_room": 28008,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28001,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28003,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28002,
+          "max": 2
+        }
+      ]
+    },
+    "28003": {
+      "vnum": 28003,
+      "name": "Charred Marker Stones",
+      "description": "Black grit crunches underfoot over burnt flagstones. ash-coated bones litter\nthe ground. The silence here feels heavy, broken only by the crackle of\ndistant flame.",
+      "sector_type": "field",
+      "exits": {
+        "south": {
+          "to_room": 28009,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28002,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28004,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28003,
+          "max": 2
+        }
+      ]
+    },
+    "28004": {
+      "vnum": 28004,
+      "name": "Obsidian Spur",
+      "description": "Black grit crunches underfoot over smoldering fissures. ash-coated bones\nlitter the ground. The silence here feels heavy, broken only by the crackle of\ndistant flame.",
+      "sector_type": "field",
+      "exits": {
+        "south": {
+          "to_room": 28010,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28003,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28005,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28004,
+          "max": 2
+        }
+      ]
+    },
+    "28005": {
+      "vnum": 28005,
+      "name": "Smoldering Wash",
+      "description": "A bitter sulfur tang hangs in the air over charred stone pylons. distant\nthunder rolls without rain. The silence here feels heavy, broken only by the\ncrackle of distant flame.",
+      "sector_type": "field",
+      "exits": {
+        "south": {
+          "to_room": 28011,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28004,
+          "description": "The blackened ground slopes west toward darker stone."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28005,
+          "max": 2
+        }
+      ]
+    },
+    "28006": {
+      "vnum": 28006,
+      "name": "Ashfall Hollow",
+      "description": "Faint lightning flickers in the clouds over charred stone pylons. orange glows\npulse from cracks. The silence here feels heavy, broken only by the crackle of\ndistant flame.",
+      "sector_type": "hills",
+      "exits": {
+        "north": {
+          "to_room": 28000,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28012,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "east": {
+          "to_room": 28007,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28006,
+          "max": 2
+        }
+      ]
+    },
+    "28007": {
+      "vnum": 28007,
+      "name": "Soot-Choked Cut",
+      "description": "Ash drifts in slow spirals over fractured obsidian. a trail of fused skulls\nmarks the way. The silence here feels heavy, broken only by the crackle of\ndistant flame.",
+      "sector_type": "hills",
+      "exits": {
+        "north": {
+          "to_room": 28001,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28013,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28006,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28008,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28007,
+          "max": 2
+        }
+      ]
+    },
+    "28008": {
+      "vnum": 28008,
+      "name": "Fumarole Shelf",
+      "description": "Fine soot clings to everything over charred stone pylons. embers glow like\nfallen stars. The silence here feels heavy, broken only by the crackle of\ndistant flame.",
+      "sector_type": "hills",
+      "exits": {
+        "north": {
+          "to_room": 28002,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28014,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28007,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28009,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28008,
+          "max": 2
+        }
+      ]
+    },
+    "28009": {
+      "vnum": 28009,
+      "name": "Cinderflow Crossing",
+      "description": "The wind carries a low, furnace-like roar over smoldering fissures. ash-coated\nbones litter the ground. The silence here feels heavy, broken only by the\ncrackle of distant flame.",
+      "sector_type": "hills",
+      "exits": {
+        "north": {
+          "to_room": 28003,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28015,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28008,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28010,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28009,
+          "max": 2
+        }
+      ]
+    },
+    "28010": {
+      "vnum": 28010,
+      "name": "Rift of Embers",
+      "description": "Faint lightning flickers in the clouds over cracked lava plates. a dry heat\npresses on your lungs. The silence here feels heavy, broken only by the\ncrackle of distant flame.",
+      "sector_type": "hills",
+      "exits": {
+        "north": {
+          "to_room": 28004,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28016,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28009,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28011,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28001,
+          "max": 2
+        }
+      ]
+    },
+    "28011": {
+      "vnum": 28011,
+      "name": "Scorched Surveyor's Line",
+      "description": "Fine soot clings to everything over burnt flagstones. thin steam vents hiss.\nThe silence here feels heavy, broken only by the crackle of distant flame.",
+      "sector_type": "hills",
+      "exits": {
+        "north": {
+          "to_room": 28005,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28017,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28010,
+          "description": "The blackened ground slopes west toward darker stone."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28002,
+          "max": 2
+        }
+      ]
+    },
+    "28012": {
+      "vnum": 28012,
+      "name": "Basalt Steppe",
+      "description": "A bitter sulfur tang hangs in the air over glass-smooth dunes. ash-coated\nbones litter the ground. The silence here feels heavy, broken only by the\ncrackle of distant flame.",
+      "sector_type": "field",
+      "exits": {
+        "north": {
+          "to_room": 28006,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28018,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "east": {
+          "to_room": 28013,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28003,
+          "max": 2
+        }
+      ]
+    },
+    "28013": {
+      "vnum": 28013,
+      "name": "Ashen Scarfield",
+      "description": "Ash drifts in slow spirals over fractured obsidian. a red sky looms overhead.\nThe silence here feels heavy, broken only by the crackle of distant flame.",
+      "sector_type": "field",
+      "exits": {
+        "north": {
+          "to_room": 28007,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28019,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28012,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28014,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28004,
+          "max": 2
+        }
+      ]
+    },
+    "28014": {
+      "vnum": 28014,
+      "name": "Blistered Ridge",
+      "description": "Ash drifts in slow spirals over charred stone pylons. embers glow like fallen\nstars. The silence here feels heavy, broken only by the crackle of distant\nflame.",
+      "sector_type": "field",
+      "exits": {
+        "north": {
+          "to_room": 28008,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28020,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28013,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28015,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28005,
+          "max": 2
+        }
+      ]
+    },
+    "28015": {
+      "vnum": 28015,
+      "name": "Crackling Fault",
+      "description": "Cinders skitter across the ground over charred stone pylons. ash-coated bones\nlitter the ground. The silence here feels heavy, broken only by the crackle of\ndistant flame.",
+      "sector_type": "field",
+      "exits": {
+        "north": {
+          "to_room": 28009,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28021,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28014,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28016,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28006,
+          "max": 2
+        }
+      ]
+    },
+    "28016": {
+      "vnum": 28016,
+      "name": "Redglass Basin",
+      "description": "Ash drifts in slow spirals over slag-black ridges. distant thunder rolls\nwithout rain. The silence here feels heavy, broken only by the crackle of\ndistant flame.",
+      "sector_type": "field",
+      "exits": {
+        "north": {
+          "to_room": 28010,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28022,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28015,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28017,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28007,
+          "max": 2
+        }
+      ]
+    },
+    "28017": {
+      "vnum": 28017,
+      "name": "Ashwind Verge",
+      "description": "Fine soot clings to everything over smoldering fissures. a trail of fused\nskulls marks the way. The silence here feels heavy, broken only by the crackle\nof distant flame.",
+      "sector_type": "field",
+      "exits": {
+        "north": {
+          "to_room": 28011,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28023,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28016,
+          "description": "The blackened ground slopes west toward darker stone."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28008,
+          "max": 2
+        }
+      ]
+    },
+    "28018": {
+      "vnum": 28018,
+      "name": "Coalspine Pass",
+      "description": "Fine soot clings to everything over fractured obsidian. distant thunder rolls\nwithout rain. The silence here feels heavy, broken only by the crackle of\ndistant flame.",
+      "sector_type": "field",
+      "exits": {
+        "north": {
+          "to_room": 28012,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28024,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "east": {
+          "to_room": 28019,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28010,
+          "max": 1
+        }
+      ]
+    },
+    "28019": {
+      "vnum": 28019,
+      "name": "The Ember Run",
+      "description": "A bitter sulfur tang hangs in the air over jagged basalt. ash-coated bones\nlitter the ground. The silence here feels heavy, broken only by the crackle of\ndistant flame.",
+      "sector_type": "field",
+      "exits": {
+        "north": {
+          "to_room": 28013,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28025,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28018,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28020,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28001,
+          "max": 2
+        }
+      ]
+    },
+    "28020": {
+      "vnum": 28020,
+      "name": "Smokespire Flats",
+      "description": "Cinders skitter across the ground over fractured obsidian. distant thunder\nrolls without rain. The silence here feels heavy, broken only by the crackle\nof distant flame.",
+      "sector_type": "field",
+      "exits": {
+        "north": {
+          "to_room": 28014,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28026,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28019,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28021,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28002,
+          "max": 2
+        }
+      ]
+    },
+    "28021": {
+      "vnum": 28021,
+      "name": "Sintered Terrace",
+      "description": "Faint lightning flickers in the clouds over jagged basalt. a dry heat presses\non your lungs. The silence here feels heavy, broken only by the crackle of\ndistant flame.",
+      "sector_type": "field",
+      "exits": {
+        "north": {
+          "to_room": 28015,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28027,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28020,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28022,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28003,
+          "max": 2
+        }
+      ]
+    },
+    "28022": {
+      "vnum": 28022,
+      "name": "Burnt Banner Stones",
+      "description": "Faint lightning flickers in the clouds over fractured obsidian. thin steam\nvents hiss. The silence here feels heavy, broken only by the crackle of\ndistant flame.",
+      "sector_type": "field",
+      "exits": {
+        "north": {
+          "to_room": 28016,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28028,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28021,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28023,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28011,
+          "max": 1
+        }
+      ]
+    },
+    "28023": {
+      "vnum": 28023,
+      "name": "The Furnace Road",
+      "description": "Black grit crunches underfoot over fractured obsidian. ash-coated bones litter\nthe ground. The silence here feels heavy, broken only by the crackle of\ndistant flame.",
+      "sector_type": "field",
+      "exits": {
+        "north": {
+          "to_room": 28017,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28029,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28022,
+          "description": "The blackened ground slopes west toward darker stone."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28005,
+          "max": 2
+        }
+      ]
+    },
+    "28024": {
+      "vnum": 28024,
+      "name": "Cinderward Shelf",
+      "description": "Fine soot clings to everything over slag-black ridges. orange glows pulse from\ncracks. The silence here feels heavy, broken only by the crackle of distant\nflame.",
+      "sector_type": "field",
+      "exits": {
+        "north": {
+          "to_room": 28018,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28030,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "east": {
+          "to_room": 28025,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28006,
+          "max": 2
+        }
+      ]
+    },
+    "28025": {
+      "vnum": 28025,
+      "name": "Ashen Labyrinth",
+      "description": "A bitter sulfur tang hangs in the air over fractured obsidian. thin steam\nvents hiss. The silence here feels heavy, broken only by the crackle of\ndistant flame.",
+      "sector_type": "field",
+      "exits": {
+        "north": {
+          "to_room": 28019,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28031,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28024,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28026,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28007,
+          "max": 2
+        }
+      ]
+    },
+    "28026": {
+      "vnum": 28026,
+      "name": "Obsidian Barrens",
+      "description": "The wind carries a low, furnace-like roar over glass-smooth dunes. ash-coated\nbones litter the ground. The silence here feels heavy, broken only by the\ncrackle of distant flame.",
+      "sector_type": "field",
+      "exits": {
+        "north": {
+          "to_room": 28020,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28032,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28025,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28027,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28008,
+          "max": 2
+        }
+      ]
+    },
+    "28027": {
+      "vnum": 28027,
+      "name": "Fellglass Moraine",
+      "description": "Cinders skitter across the ground over jagged basalt. distant thunder rolls\nwithout rain. The silence here feels heavy, broken only by the crackle of\ndistant flame.",
+      "sector_type": "field",
+      "exits": {
+        "north": {
+          "to_room": 28021,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28033,
+          "description": "A trail of cinders leads south through the haze."
+        },
+        "west": {
+          "to_room": 28026,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28028,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28009,
+          "max": 2
+        }
+      ]
+    },
+    "28028": {
+      "vnum": 28028,
+      "name": "Caldera Verge",
+      "description": "The wind carries a low, furnace-like roar over charred stone pylons. distant\nthunder rolls without rain. The silence here feels heavy, broken only by the\ncrackle of distant flame.",
+      "sector_type": "field",
+      "exits": {
+        "north": {
+          "to_room": 28022,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28034,
+          "description": "Ashen arches rise toward a gate of embers."
+        },
+        "west": {
+          "to_room": 28027,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28029,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28001,
+          "max": 2
+        }
+      ]
+    },
+    "28029": {
+      "vnum": 28029,
+      "name": "Searing Switchback",
+      "description": "Ash drifts in slow spirals over fractured obsidian. distant thunder rolls\nwithout rain. The silence here feels heavy, broken only by the crackle of\ndistant flame.",
+      "sector_type": "field",
+      "exits": {
+        "north": {
+          "to_room": 28023,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "south": {
+          "to_room": 28035,
+          "description": "Heat ripples toward the pyre to the south."
+        },
+        "west": {
+          "to_room": 28028,
+          "description": "The blackened ground slopes west toward darker stone."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28002,
+          "max": 2
+        }
+      ]
+    },
+    "28030": {
+      "vnum": 28030,
+      "name": "The Cinder Maze",
+      "description": "Cinders skitter across the ground over fractured obsidian. a dry heat presses\non your lungs. The silence here feels heavy, broken only by the crackle of\ndistant flame.",
+      "sector_type": "hills",
+      "exits": {
+        "north": {
+          "to_room": 28024,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "east": {
+          "to_room": 28031,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28003,
+          "max": 2
+        }
+      ]
+    },
+    "28031": {
+      "vnum": 28031,
+      "name": "Crown of Ash",
+      "description": "Heat haze warps the horizon over charred stone pylons. a dry heat presses on\nyour lungs. The silence here feels heavy, broken only by the crackle of\ndistant flame.",
+      "sector_type": "hills",
+      "exits": {
+        "north": {
+          "to_room": 28025,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "west": {
+          "to_room": 28030,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28032,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28004,
+          "max": 2
+        }
+      ]
+    },
+    "28032": {
+      "vnum": 28032,
+      "name": "Embercourt Approach",
+      "description": "Cinders skitter across the ground over charred stone pylons. embers glow like\nfallen stars. The silence here feels heavy, broken only by the crackle of\ndistant flame.",
+      "sector_type": "hills",
+      "exits": {
+        "north": {
+          "to_room": 28026,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "west": {
+          "to_room": 28031,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28033,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28005,
+          "max": 2
+        }
+      ]
+    },
+    "28033": {
+      "vnum": 28033,
+      "name": "Ashen Gatehouse",
+      "description": "Fine soot clings to everything over jagged basalt. distant thunder rolls\nwithout rain. The silence here feels heavy, broken only by the crackle of\ndistant flame.",
+      "sector_type": "hills",
+      "exits": {
+        "north": {
+          "to_room": 28027,
+          "description": "The ashen expanse stretches north beneath the red sky."
+        },
+        "west": {
+          "to_room": 28032,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28034,
+          "description": "Heat shimmer dances over a scorched path to the east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28006,
+          "max": 2
+        }
+      ]
+    },
+    "28034": {
+      "vnum": 28034,
+      "name": "Throne of the Ember Sovereign",
+      "description": "Ash drifts in slow spirals over glass-smooth dunes. a dry heat presses on your\nlungs. The silence here feels heavy, broken only by the crackle of distant\nflame.",
+      "sector_type": "hills",
+      "flags": [
+        "no_recall"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 28028,
+          "description": "The cinder maze twists back north."
+        },
+        "west": {
+          "to_room": 28033,
+          "description": "The blackened ground slopes west toward darker stone."
+        },
+        "east": {
+          "to_room": 28035,
+          "description": "A gate of burning sigils stands to the east."
+        }
+      }
+    },
+    "28035": {
+      "vnum": 28035,
+      "name": "The Sovereign's Pyre",
+      "description": "The wind carries a low, furnace-like roar over jagged basalt. a trail of fused\nskulls marks the way. The silence here feels heavy, broken only by the crackle\nof distant flame.",
+      "sector_type": "hills",
+      "flags": [
+        "no_recall"
+      ],
+      "exits": {
+        "north": {
+          "to_room": 28029,
+          "description": "A scorched stair ascends toward the approach."
+        },
+        "west": {
+          "to_room": 28034,
+          "description": "Ashen arches lead back to the gatehouse."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 28020,
+          "max": 1
+        }
+      ]
+    }
+  },
+  "mobs": {
+    "28001": {
+      "vnum": 28001,
+      "name": "ash wraith",
+      "short_desc": "an ash wraith",
+      "long_desc": "An ash wraith coils through the air, its form barely solid.",
+      "level": 58,
+      "alignment": -600,
+      "hp_dice": "28d10+3200",
+      "damage_dice": "6d10+24",
+      "gold": 900,
+      "exp": 15000,
+      "armor_class": 35,
+      "flags": [
+        "aggressive",
+        "no_charm",
+        "no_sleep"
+      ],
+      "description": "A humanoid silhouette made of drifting ash and cold ember-glow. Its touch leaves frostbite and soot in equal measure."
+    },
+    "28002": {
+      "vnum": 28002,
+      "name": "cinder marauder",
+      "short_desc": "a cinder marauder",
+      "long_desc": "A cinder marauder stalks the flats, ember-blade in hand.",
+      "level": 59,
+      "alignment": -300,
+      "hp_dice": "30d10+3600",
+      "damage_dice": "7d10+26",
+      "gold": 1100,
+      "exp": 16500,
+      "armor_class": 30,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ],
+      "description": "Wrapped in scorched mail, this raider wields a blade that smokes with every swing."
+    },
+    "28003": {
+      "vnum": 28003,
+      "name": "obsidian golem",
+      "short_desc": "an obsidian golem",
+      "long_desc": "An obsidian golem grinds forward, shards shedding from its fists.",
+      "level": 60,
+      "alignment": 0,
+      "hp_dice": "34d10+4200",
+      "damage_dice": "8d10+28",
+      "gold": 600,
+      "exp": 17500,
+      "armor_class": 40,
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "no_charm",
+        "no_sleep"
+      ],
+      "description": "A hulking mass of black glass bound with molten seams. Each step leaves a glassy footprint that cools instantly."
+    },
+    "28004": {
+      "vnum": 28004,
+      "name": "ashbound huntress",
+      "short_desc": "an ashbound huntress",
+      "long_desc": "An ashbound huntress watches you, bow drawn.",
+      "level": 58,
+      "alignment": -200,
+      "hp_dice": "26d10+3000",
+      "damage_dice": "6d10+22",
+      "gold": 950,
+      "exp": 15000,
+      "armor_class": 28,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ],
+      "description": "Her eyes glow like banked coals, and her arrows trail sparks as they fly."
+    },
+    "28005": {
+      "vnum": 28005,
+      "name": "slag hound",
+      "short_desc": "a slag hound",
+      "long_desc": "A slag hound prowls here, teeth like hot iron.",
+      "level": 58,
+      "alignment": -100,
+      "hp_dice": "24d10+2800",
+      "damage_dice": "5d10+20",
+      "gold": 400,
+      "exp": 13000,
+      "armor_class": 25,
+      "flags": [
+        "aggressive"
+      ],
+      "description": "A low-slung beast with a coat of molten slag, it leaves glowing pawprints in the ash."
+    },
+    "28006": {
+      "vnum": 28006,
+      "name": "ember-touched warlock",
+      "short_desc": "an ember-touched warlock",
+      "long_desc": "An ember-touched warlock mutters over a circle of cinders.",
+      "level": 60,
+      "alignment": -700,
+      "hp_dice": "27d10+3400",
+      "damage_dice": "6d10+24",
+      "gold": 1200,
+      "exp": 17000,
+      "armor_class": 33,
+      "flags": [
+        "aggressive",
+        "no_charm"
+      ],
+      "description": "Charred robes hang in strips from this caster's frame. His fingers end in ember-black talons."
+    },
+    "28007": {
+      "vnum": 28007,
+      "name": "glasswing harrier",
+      "short_desc": "a glasswing harrier",
+      "long_desc": "A glasswing harrier circles overhead, wings slicing the air.",
+      "level": 59,
+      "alignment": -150,
+      "hp_dice": "25d10+2900",
+      "damage_dice": "6d10+23",
+      "gold": 500,
+      "exp": 14500,
+      "armor_class": 27,
+      "flags": [
+        "aggressive"
+      ],
+      "description": "A predatory wyvern with translucent wings of razor glass. Its shriek grates like breaking bottles."
+    },
+    "28008": {
+      "vnum": 28008,
+      "name": "furnace sentinel",
+      "short_desc": "a furnace sentinel",
+      "long_desc": "A furnace sentinel stands guard, core blazing.",
+      "level": 61,
+      "alignment": 0,
+      "hp_dice": "36d10+4800",
+      "damage_dice": "9d10+30",
+      "gold": 800,
+      "exp": 19000,
+      "armor_class": 38,
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "no_charm",
+        "no_sleep"
+      ],
+      "description": "A knight of black iron, hollow-chested, with a roaring furnace where a heart should be."
+    },
+    "28009": {
+      "vnum": 28009,
+      "name": "magma reaver",
+      "short_desc": "a magma reaver",
+      "long_desc": "A magma reaver stalks here, molten blade dripping fire.",
+      "level": 61,
+      "alignment": -400,
+      "hp_dice": "33d10+4400",
+      "damage_dice": "8d10+28",
+      "gold": 1300,
+      "exp": 18500,
+      "armor_class": 32,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ],
+      "description": "This towering brute bleeds lava from cracks in its armor, leaving smoking trails in its wake."
+    },
+    "28010": {
+      "vnum": 28010,
+      "name": "cinder warden",
+      "short_desc": "Cinder Warden Kael",
+      "long_desc": "Cinder Warden Kael bars the way, spear wreathed in smoke.",
+      "level": 62,
+      "alignment": -500,
+      "hp_dice": "48d10+6800",
+      "damage_dice": "10d10+34",
+      "gold": 2200,
+      "exp": 26000,
+      "armor_class": 20,
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "stay_zone",
+        "no_charm",
+        "no_sleep"
+      ],
+      "description": "The Warden's armor is forged from slag and bone, and his spear burns with a low, crimson flame.",
+      "loot_table": [
+        {
+          "vnum": 28050,
+          "chance": 30
+        },
+        {
+          "vnum": 28054,
+          "chance": 25
+        },
+        {
+          "vnum": 28057,
+          "chance": 20
+        }
+      ]
+    },
+    "28011": {
+      "vnum": 28011,
+      "name": "scoria matron",
+      "short_desc": "the Scoria Matron",
+      "long_desc": "The Scoria Matron rises from the ash, towering and hateful.",
+      "level": 62,
+      "alignment": -650,
+      "hp_dice": "50d10+7200",
+      "damage_dice": "10d10+36",
+      "gold": 2400,
+      "exp": 27000,
+      "armor_class": 18,
+      "flags": [
+        "aggressive",
+        "stay_zone",
+        "no_charm",
+        "no_sleep"
+      ],
+      "description": "A massive elemental of fused cinder and basalt. Her voice is a grinding avalanche of stone.",
+      "loot_table": [
+        {
+          "vnum": 28051,
+          "chance": 35
+        },
+        {
+          "vnum": 28052,
+          "chance": 25
+        },
+        {
+          "vnum": 28055,
+          "chance": 20
+        }
+      ]
+    },
+    "28020": {
+      "vnum": 28020,
+      "name": "ember sovereign",
+      "short_desc": "the Ember Sovereign",
+      "long_desc": "The Ember Sovereign stands amid the pyre, crowned in living flame.",
+      "level": 62,
+      "alignment": -900,
+      "hp_dice": "80d10+12000",
+      "damage_dice": "14d10+45",
+      "gold": 8000,
+      "exp": 50000,
+      "armor_class": -10,
+      "flags": [
+        "boss",
+        "aggressive",
+        "sentinel",
+        "no_charm",
+        "no_sleep"
+      ],
+      "boss": true,
+      "boss_id": "ember_sovereign",
+      "boss_loot_table": [
+        {
+          "vnum": 28058,
+          "chance": 100
+        },
+        {
+          "vnum": 28059,
+          "chance": 60
+        },
+        {
+          "vnum": 28053,
+          "chance": 35
+        }
+      ],
+      "boss_loot_chance": 100,
+      "description": "A monarch of living ember and obsidian plate, its eyes are twin furnaces. Each motion sends sparks spiraling through the air.",
+      "max_hp": 15000,
+      "ac": -30
+    }
+  },
+  "objects": {
+    "28050": {
+      "vnum": 28050,
+      "name": "Cinderbrand Greatsword",
+      "short_desc": "the Cinderbrand Greatsword",
+      "room_desc": "A massive greatsword of black steel smolders here.",
+      "item_type": "weapon",
+      "weapon_type": "slash",
+      "damage_dice": "10d6+24",
+      "weight": 14,
+      "value": 120000,
+      "type": "weapon",
+      "flags": [
+        "magic",
+        "hum"
+      ],
+      "min_level": 58,
+      "effects": {
+        "strength": 4,
+        "hitroll": 10,
+        "damroll": 12
+      }
+    },
+    "28051": {
+      "vnum": 28051,
+      "name": "Emberguard Bulwark",
+      "short_desc": "the Emberguard Bulwark",
+      "room_desc": "A shield of scorched iron rests here, still warm to the touch.",
+      "item_type": "armor",
+      "wear_slot": "shield",
+      "armor_bonus": 35,
+      "weight": 12,
+      "value": 110000,
+      "type": "armor",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 58,
+      "effects": {
+        "wisdom": 3,
+        "armor_class": -22,
+        "hp_regen": 15
+      }
+    },
+    "28052": {
+      "vnum": 28052,
+      "name": "Pyreweave Robe",
+      "short_desc": "a Pyreweave Robe",
+      "room_desc": "A robe woven of ember-silk lies in a neat fold.",
+      "item_type": "armor",
+      "wear_slot": "body",
+      "armor_bonus": 22,
+      "weight": 5,
+      "value": 105000,
+      "type": "armor",
+      "flags": [
+        "magic",
+        "glow"
+      ],
+      "min_level": 58,
+      "effects": {
+        "intelligence": 5,
+        "mana_regen": 20,
+        "armor_class": -18
+      }
+    },
+    "28053": {
+      "vnum": 28053,
+      "name": "Ashen Stalker Dagger",
+      "short_desc": "the Ashen Stalker Dagger",
+      "room_desc": "A thin dagger of dark glass lies here, edges razor-sharp.",
+      "item_type": "weapon",
+      "weapon_type": "pierce",
+      "damage_dice": "8d6+20",
+      "weight": 4,
+      "value": 98000,
+      "type": "weapon",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 58,
+      "effects": {
+        "dexterity": 4,
+        "hitroll": 10,
+        "damroll": 8
+      }
+    },
+    "28054": {
+      "vnum": 28054,
+      "name": "Smoldering Longbow",
+      "short_desc": "a Smoldering Longbow",
+      "room_desc": "A longbow of charred yew smolders faintly here.",
+      "item_type": "weapon",
+      "weapon_type": "bow",
+      "damage_dice": "9d6+22",
+      "weight": 6,
+      "value": 102000,
+      "type": "weapon",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 58,
+      "effects": {
+        "dexterity": 4,
+        "hitroll": 9,
+        "damroll": 10
+      }
+    },
+    "28055": {
+      "vnum": 28055,
+      "name": "Cinderwind Lyre",
+      "short_desc": "the Cinderwind Lyre",
+      "room_desc": "A lyre strung with ember-sinew glows softly here.",
+      "item_type": "armor",
+      "wear_slot": "hold",
+      "armor_bonus": 5,
+      "weight": 3,
+      "value": 90000,
+      "type": "treasure",
+      "flags": [
+        "magic",
+        "glow"
+      ],
+      "min_level": 58,
+      "affects": [
+        {
+          "type": "charisma",
+          "value": 3
+        },
+        {
+          "type": "mana_regen",
+          "value": 10
+        }
+      ]
+    },
+    "28056": {
+      "vnum": 28056,
+      "name": "Ashglass Ring",
+      "short_desc": "an Ashglass Ring",
+      "room_desc": "A ring of translucent ashglass lies here.",
+      "item_type": "armor",
+      "wear_slot": "finger",
+      "armor_bonus": 5,
+      "weight": 1,
+      "value": 75000,
+      "type": "armor",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 58,
+      "effects": {
+        "hitroll": 6,
+        "damroll": 6
+      }
+    },
+    "28057": {
+      "vnum": 28057,
+      "name": "Cinderward Cloak",
+      "short_desc": "the Cinderward Cloak",
+      "room_desc": "A heavy cloak of soot-dark fabric lies here.",
+      "item_type": "armor",
+      "wear_slot": "about",
+      "armor_bonus": 18,
+      "weight": 4,
+      "value": 85000,
+      "type": "armor",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 58,
+      "effects": {
+        "constitution": 3,
+        "armor_class": -12
+      }
+    },
+    "28058": {
+      "vnum": 28058,
+      "name": "Crown of the Ember Sovereign",
+      "short_desc": "the Crown of the Ember Sovereign",
+      "room_desc": "A crown of living embers flickers here.",
+      "item_type": "armor",
+      "wear_slot": "head",
+      "armor_bonus": 25,
+      "weight": 2,
+      "value": 160000,
+      "type": "armor",
+      "flags": [
+        "magic",
+        "glow",
+        "hum"
+      ],
+      "min_level": 60,
+      "effects": {
+        "strength": 3,
+        "intelligence": 3,
+        "hitroll": 8,
+        "damroll": 8
+      }
+    },
+    "28059": {
+      "vnum": 28059,
+      "name": "Heartstone of the Expanse",
+      "short_desc": "the Heartstone of the Expanse",
+      "room_desc": "A pulsing stone veined with ember-light lies here.",
+      "item_type": "armor",
+      "wear_slot": "neck1",
+      "armor_bonus": 10,
+      "weight": 2,
+      "value": 150000,
+      "type": "treasure",
+      "flags": [
+        "magic",
+        "glow"
+      ],
+      "min_level": 60,
+      "effects": {
+        "hp_regen": 25,
+        "mana_regen": 15,
+        "move_regen": 15
+      }
+    }
+  }
+}

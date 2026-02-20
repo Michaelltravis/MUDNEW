@@ -208,6 +208,10 @@
         "south": {
           "to_room": 6908,
           "description": "The burning bridge spans the magma."
+        },
+        "east": {
+          "to_room": 28000,
+          "description": "A furnace-lit road cuts east into the Ashen Expanse."
         }
       },
       "extra_descs": {
