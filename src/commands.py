@@ -6242,6 +6242,11 @@ class CommandHandler:
                 await player.send(f"{c['red']}(+15 rage){c['reset']}")
         else:
             await player.send(f"{c['yellow']}You fail to rescue {ally.name}!{c['reset']}")
+            # Low-noise failure visibility for involved parties
+            if hasattr(ally, 'send'):
+                await ally.send(f"{c['yellow']}{player.name} tries to rescue you, but fails.{c['reset']}")
+            if hasattr(attacker, 'send'):
+                await attacker.send(f"{c['cyan']}{player.name} attempts to pull {ally.name} away from you, but fails.{c['reset']}")
     
     @classmethod
     async def cmd_disarm(cls, player: 'Player', args: List[str]):

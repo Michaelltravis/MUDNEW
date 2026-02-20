@@ -75,6 +75,7 @@
 - **Protect edge cases:** linkdead protectors are ignored/cleared; pet intercepts now respect cooldowns.
 - **Multiple protectors messaging:** protect command now notes when someone is already guarding the target.
 - **Rescue progression:** successful rescues can improve rescue skill.
+- **Failed rescue visibility:** ally + attacker now receive concise feedback when a rescue attempt fails.
 
 ### Validation
 - Ran `python3 -m py_compile` on all `src/*.py`.
