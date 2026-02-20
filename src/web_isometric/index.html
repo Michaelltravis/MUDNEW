@@ -1103,6 +1103,31 @@
             color: #ffb3e6;
             font-size: 12px;
         }
+        .combat-log-line.miss {
+            border-color: #555;
+            color: #999;
+            font-size: 11px;
+        }
+        .combat-log-line.dodge {
+            border-color: #44aaff;
+            color: #88ccff;
+            font-size: 11px;
+        }
+        .combat-log-line.skill {
+            border-color: #bb88ff;
+            color: #ddbbff;
+            font-size: 11px;
+        }
+        .combat-log-line.mob {
+            border-color: #ff8844;
+            color: #ffbb99;
+            font-size: 11px;
+        }
+        .combat-log-line.info {
+            border-color: #444;
+            color: #bbb;
+            font-size: 11px;
+        }
 
         /* Level Up Banner */
         #levelup-banner {
@@ -1611,61 +1636,47 @@
             }
         }
 
+        // --- In-combat state tracker ---
+        let _inCombat = false;
+        let _combatTimer = null;
+        function _enterCombat() {
+            _inCombat = true;
+            if (_combatTimer) clearTimeout(_combatTimer);
+            _combatTimer = setTimeout(() => { _inCombat = false; }, 5000);
+        }
+
+        // Lines that should never appear in the combat log even during combat
+        function _isNonCombatLine(t) {
+            return /^\[?\s*Exits:/i.test(t)          // exit list
+                || /^You (are in|have entered|leave|go |move )/i.test(t) // movement
+                || /^(Your inventory|You are carrying|Equipment|Wearing)/i.test(t)
+                || /^\d+\/\d+hp/i.test(t)             // prompt
+                || /^(You look|You see|The room|It is)/i.test(t);
+        }
+
         function _parseCombatText(text) {
             const lines = text.split('\n');
             lines.forEach(line => {
                 const t = line.replace(/\s+/g, ' ').trim();
                 if (!t) return;
 
-                // Level up (handled separately, has its own full effect)
+                // Level up (handled separately)
                 if (/you gain a level|welcome to level/i.test(t)) {
                     _triggerLevelUp();
+                    _enterCombat();
                     return;
                 }
 
                 // Elemental resist / immune / absorb
                 if (/resist|resisted|immune|immunity|absorbs? the|no effect on you/i.test(t)) {
                     _addCombatLine(t, 'resist');
+                    _enterCombat();
                     return;
                 }
                 // Vulnerable / exposed
                 if (/vulnerable|exposed|weak to|takes extra|sears through/i.test(t)) {
                     _addCombatLine(t, 'vuln');
-                    return;
-                }
-
-                // Player takes damage
-                if (/\bhit(?:s)? you\b|\bwound(?:s)? you\b|\bmaul(?:s)? you\b|\bclaw(?:s)? you\b|bites you|kicks you|blasts you|zaps you|strikes you|slashes you|smashes you|crushes you|pierces you|you are hit\b/i.test(t)) {
-                    _addCombatLine(t, 'damage');
-                    screenFlash('rgba(220,20,20,0.38)', 520);
-                    cameraShake(0.35, 400);
-                    return;
-                }
-
-                // Critical hits / massive blows (player dealing)
-                if (/CRITICAL HIT|ANNIHILATE|OBLITERATE|MASSACRE|DEMOLISH|\*\*\*.*CRITICAL|\bDEVASTAT/i.test(t)) {
-                    _addCombatLine(t, 'critical');
-                    screenFlash('rgba(255,100,0,0.3)', 300);
-                    return;
-                }
-
-                // Player attacks / deals damage
-                if (/^you (hit|wound|maul|claw|bite|kick|blast|zap|strike|slash|smash|crush|pierce|annihilate|obliterate|massacre|demolish|feint|backstab|disembowel|dismember|eviscerate)/i.test(t)) {
-                    _addCombatLine(t, 'attack');
-                    return;
-                }
-
-                // Heals
-                if (/you feel better|you recover|you are healed|you feel your wounds|health restored/i.test(t)) {
-                    _addCombatLine(t, 'heal');
-                    return;
-                }
-
-                // Mob kill (player scores a kill) — gold "kill" type
-                if (/is dead!|has been killed|is slain!/i.test(t) && !/you are dead|you are slain/i.test(t)) {
-                    _addCombatLine(t, 'kill');
-                    const deadMatch = t.match(/^(?:the\s+)?(.+?)\s+(?:is dead!|has been killed|is slain!)/i);
-                    if (deadMatch) markMobDead(deadMatch[1].trim());
+                    _enterCombat();
                     return;
                 }
 
@@ -1673,7 +1684,135 @@
                 if (/you are dead!|you are slain/i.test(t)) {
                     _addCombatLine(t, 'death');
                     screenFlash('rgba(0,0,0,0.85)', 2500);
+                    _inCombat = false;
                     return;
+                }
+
+                // Mob kill (player scores a kill)
+                if (/is dead!|has been killed|is slain!/i.test(t) && !/you are dead|you are slain/i.test(t)) {
+                    _addCombatLine(t, 'kill');
+                    const deadMatch = t.match(/^(?:the\s+)?(.+?)\s+(?:is dead!|has been killed|is slain!)/i);
+                    if (deadMatch) markMobDead(deadMatch[1].trim());
+                    _enterCombat();
+                    return;
+                }
+
+                // Critical hits / massive blows (player dealing)
+                if (/CRITICAL HIT|ANNIHILATE|OBLITERATE|MASSACRE|DEMOLISH|\*\*\*.*CRITICAL|\bDEVASTAT/i.test(t)) {
+                    _addCombatLine(t, 'critical');
+                    screenFlash('rgba(255,100,0,0.3)', 300);
+                    _enterCombat();
+                    return;
+                }
+
+                // Player takes damage (mob attacks hitting player)
+                if (/\bhit(?:s)? you\b|\bwound(?:s)? you\b|\bmaul(?:s)? you\b|\bclaw(?:s)? you\b|\bbite(?:s)? you\b|\bkick(?:s)? you\b|\bblast(?:s)? you\b|\bzap(?:s)? you\b|\bstrike(?:s)? you\b|\bslash(?:es)? you\b|\bsmash(?:es)? you\b|\bcrush(?:es)? you\b|\bpierc(?:e|es) you\b|\battack(?:s)? you\b|\bsear(?:s)? you\b|\bsing(?:s)? you\b|\bscorch(?:es)? you\b|\bgore(?:s)? you\b|\bslam(?:s)? you\b|\bstab(?:s)? you\b|\bbatter(?:s)? you\b/i.test(t)) {
+                    _addCombatLine(t, 'damage');
+                    screenFlash('rgba(220,20,20,0.38)', 520);
+                    cameraShake(0.35, 400);
+                    _enterCombat();
+                    return;
+                }
+
+                // Player attacks / deals damage to mob
+                if (/^you (hit|wound|maul|claw|bite|kick|blast|zap|strike|slash|smash|crush|pierce|annihilate|obliterate|massacre|demolish|feint|backstab|disembowel|dismember|eviscerate|sear|scorch|gore|slam|stab|batter|rend|shred|impale|ravage|lacerate)/i.test(t)) {
+                    _addCombatLine(t, 'attack');
+                    _enterCombat();
+                    return;
+                }
+
+                // Combat initiation — mob attacks / charges
+                if (/attacks you!| charges at you| lunges at you|is fighting YOU/i.test(t)) {
+                    _addCombatLine(t, 'mob');
+                    _enterCombat();
+                    return;
+                }
+
+                // Mob attacks someone else in room
+                if (/\b(hits|wounds|mauls|claws|bites|kicks|blasts|zaps|strikes|slashes|smashes|crushes|pierces|sears|scorches|gores|slams|stabs|batters)\b/i.test(t) && !/^you /i.test(t) && !/you\b/i.test(t)) {
+                    _addCombatLine(t, 'mob');
+                    _enterCombat();
+                    return;
+                }
+
+                // Player misses / swings wide
+                if (/you miss|you swing|your attack misses|fails to connect|you fail to|cannot attack|stunned and/i.test(t)) {
+                    _addCombatLine(t, 'miss');
+                    _enterCombat();
+                    return;
+                }
+
+                // Mob misses player
+                if (/misses you|swings wide|fails to hit you|attack goes wide/i.test(t)) {
+                    _addCombatLine(t, 'miss');
+                    _enterCombat();
+                    return;
+                }
+
+                // Player dodges / evades
+                if (/you dodge|you evade|you effortlessly evade|you dodge.*shadow|ghost.*dodge|you sidestep/i.test(t)) {
+                    _addCombatLine(t, 'dodge');
+                    _enterCombat();
+                    return;
+                }
+
+                // Player parries / blocks
+                if (/you parry|you block|your shield|bone shield|you deflect/i.test(t)) {
+                    _addCombatLine(t, 'dodge');
+                    _enterCombat();
+                    return;
+                }
+
+                // Mob dodges / parries / blocks
+                if (/dodges your|evades your|parries your|blocks your|deflects your|is untouchable|dodge.*shadow/i.test(t)) {
+                    _addCombatLine(t, 'miss');
+                    _enterCombat();
+                    return;
+                }
+
+                // Player skill / spell use
+                if (/^you (cast|use|channel|chant|invoke|activate|unleash|trigger|backstab|ambush|execute|study|expose|vital|attempt|prepare|charge)/i.test(t)
+                    || /^you.*\b(spell|skill|ability|power|technique)\b/i.test(t)
+                    || /chants? some words|you begin chanting|you complete the spell|casting is interrupted/i.test(t)) {
+                    _addCombatLine(t, 'skill');
+                    _enterCombat();
+                    return;
+                }
+
+                // Mob casts / uses ability
+                if (/chants? some words|begins? to cast|invokes?|calls? upon|unleashes?|channels?/i.test(t) && !/^you /i.test(t)) {
+                    _addCombatLine(t, 'skill');
+                    _enterCombat();
+                    return;
+                }
+
+                // Resource / status updates during combat (intel, luck, holy power, etc.)
+                if (/\[(Intel|Luck|Holy Power|Momentum|Faith|Soul Shard|Arcane|Inspiration|Focus|Rage):/i.test(t)
+                    || /\b(Unstoppable|Expose Weakness unlocked|Vital Strike unlocked|Execute Contract|unlocked)\b/i.test(t)
+                    || /you are stunned|stun resist|you resist the stun|your vendetta/i.test(t)
+                    || /counters?!|counter-?attack/i.test(t)) {
+                    _addCombatLine(t, 'skill');
+                    _enterCombat();
+                    return;
+                }
+
+                // Heals (player or mob)
+                if (/you feel better|you recover|you are healed|you feel your wounds|health restored|you regenerate|you gain \d+ hit/i.test(t)) {
+                    _addCombatLine(t, 'heal');
+                    _enterCombat();
+                    return;
+                }
+
+                // Damage numbers in brackets [42] or [42 damage] — catch any line with a bracket damage value
+                if (/\[\d+\s*(dmg|damage)?\]/.test(t) && _inCombat) {
+                    _addCombatLine(t, 'info');
+                    _enterCombat();
+                    return;
+                }
+
+                // Catch-all: route anything during active combat that isn't clearly non-combat
+                if (_inCombat && !_isNonCombatLine(t)) {
+                    _addCombatLine(t, 'info');
                 }
             });
         }
