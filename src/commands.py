@@ -12632,6 +12632,7 @@ class CommandHandler:
                 exclude=[player, target]
             )
 
+    @classmethod
     async def cmd_wimpy(cls, player: 'Player', args: List[str]):
         """Set auto-flee HP threshold. Usage: wimpy [hp amount]"""
         c = player.config.COLORS
@@ -12661,6 +12662,30 @@ class CommandHandler:
             await player.send(f"{c['green']}You will flee when HP drops below {amount}.{c['reset']}")
         else:
             await player.send(f"{c['yellow']}Wimpy disabled.{c['reset']}")
+
+    @classmethod
+    async def cmd_change(cls, player: 'Player', args: List[str]):
+        """MUME-style change command wrapper. Usage: change mood <mode> | change wimpy <hp> | change color <scheme>"""
+        c = player.config.COLORS
+
+        if not args:
+            await player.send(f"{c['yellow']}Usage: change mood <aggressive|normal|defensive>, change wimpy <hp>, change color <scheme>{c['reset']}")
+            return
+
+        sub = args[0].lower()
+        rest = args[1:]
+
+        if sub in ('mood', 'stance'):
+            await cls.cmd_stance(player, rest)
+            return
+        if sub == 'wimpy':
+            await cls.cmd_wimpy(player, rest)
+            return
+        if sub in ('color', 'colour'):
+            await cls.cmd_color(player, rest)
+            return
+
+        await player.send(f"{c['yellow']}Unknown change option '{sub}'. Try: mood, wimpy, color.{c['reset']}")
 
     @classmethod
     async def cmd_junk(cls, player: 'Player', args: List[str]):

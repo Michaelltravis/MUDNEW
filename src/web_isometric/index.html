@@ -4676,11 +4676,16 @@
         
         function sendCurrentCommand() {
             const input = document.getElementById('command-input');
-            const cmd = input.value.trim();
-            if (cmd) {
-                sendCommand(cmd);
+            const raw = input.value;
+            const cmd = raw.trim();
+            // Important: send empty command on ENTER so paginated help can continue
+            if (raw.length === 0 || cmd.length === 0) {
+                sendCommand('');
                 input.value = '';
+                return;
             }
+            sendCommand(cmd);
+            input.value = '';
         }
         
         // ============================================
