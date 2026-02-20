@@ -251,6 +251,19 @@ class CommandHandler:
         # Also check COMMAND_ALIASES (underscore-free shortcuts)
         cmd = cls.COMMAND_ALIASES.get(cmd, cmd)
 
+        # Hard-route MUME-style change commands to avoid prefix collisions (e.g., changelog)
+        if cmd in ('change', 'chang', 'ch') and args:
+            sub = args[0].lower()
+            if sub in ('mood', 'stance', 'emood', 'chgmode'):
+                await cls.cmd_stance(player, args[1:])
+                return
+            if sub == 'wimpy':
+                await cls.cmd_wimpy(player, args[1:])
+                return
+            if sub in ('color', 'colour'):
+                await cls.cmd_color(player, args[1:])
+                return
+
         # Try combining cmd + first arg as underscore-separated command
         # e.g., "shadow step goblin" -> try cmd_shadow_step with args ["goblin"]
         if args and not getattr(cls, f'cmd_{cmd}', None):
