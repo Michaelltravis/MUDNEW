@@ -1,0 +1,1777 @@
+{
+  "number": 300,
+  "name": "The Shattered Throne",
+  "lifespan": 25,
+  "reset_mode": 2,
+  "level_min": 68,
+  "level_max": 70,
+  "rooms": {
+    "30000": {
+      "vnum": 30000,
+      "name": "Shattered Throne - Fractured Causeway",
+      "description": "Black basalt plates buckle beneath your boots over a split imperial banner hangs in midair, trapped in a tear of violet light. The fortress ahead is cracked like glass, its edges drifting in slow, impossible arcs.",
+      "sector_type": "mountain",
+      "exits": {
+        "south": {
+          "to_room": 30008,
+          "description": "A slanted ramp descends south toward the outer ward."
+        },
+        "west": {
+          "to_room": 29035,
+          "description": "The iris-gate of the Black Observatory glows to the west."
+        }
+      }
+    },
+    "30001": {
+      "vnum": 30001,
+      "name": "Shattered Throne - Bonebreaker Gate",
+      "description": "A jagged portcullis of fused bone and iron stands open over shards of marble drift above a chasm. The air thrums with a choir of fractured reality.",
+      "sector_type": "mountain",
+      "exits": {
+        "east": {
+          "to_room": 30002,
+          "description": "A fractured arcade runs east between cracked pillars."
+        },
+        "south": {
+          "to_room": 30009,
+          "description": "A debris-strewn path dips south into the ward."
+        },
+        "west": {
+          "to_room": 29535,
+          "description": "A bonebridge rattles west toward the Crown of Bone."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30001,
+          "max": 2
+        }
+      ]
+    },
+    "30002": {
+      "vnum": 30002,
+      "name": "Riven Courtyard",
+      "description": "A courtyard of split flagstones is frozen mid-collapse over statues of emperors hang in the air, their faces erased by voidlight. The wind smells of ozone and old incense.",
+      "sector_type": "mountain",
+      "exits": {
+        "east": {
+          "to_room": 30003,
+          "description": "A corridor of fractured marble continues east."
+        },
+        "south": {
+          "to_room": 30010,
+          "description": "Steps broken by gravity lean south into the ward."
+        },
+        "west": {
+          "to_room": 30001,
+          "description": "The bonebreaker gate lies back to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30002,
+          "max": 2
+        }
+      ]
+    },
+    "30003": {
+      "vnum": 30003,
+      "name": "Rift-Split Arcade",
+      "description": "Cracked columns rise in uneven rows over a glowing fissure threads through the floor like molten glass. Distant thunder pulses from somewhere beyond the walls.",
+      "sector_type": "mountain",
+      "exits": {
+        "east": {
+          "to_room": 30004,
+          "description": "An imperial arcade stretches east beneath shattered vaults."
+        },
+        "south": {
+          "to_room": 30011,
+          "description": "A fractured stair leads south into deeper ruin."
+        },
+        "west": {
+          "to_room": 30002,
+          "description": "The riven courtyard opens to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30003,
+          "max": 2
+        }
+      ]
+    },
+    "30004": {
+      "vnum": 30004,
+      "name": "Imperial Barricades",
+      "description": "Collapsed barricades of black iron choke the passage over flickering wards stutter across their surfaces. The air tastes metallic, as if the world itself is bleeding.",
+      "sector_type": "mountain",
+      "exits": {
+        "east": {
+          "to_room": 30005,
+          "description": "A torn parade lane runs east past the barricades."
+        },
+        "south": {
+          "to_room": 30012,
+          "description": "A ramp slides south into the inner ward."
+        },
+        "west": {
+          "to_room": 30003,
+          "description": "The rift-split arcade lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30004,
+          "max": 2
+        }
+      ]
+    },
+    "30005": {
+      "vnum": 30005,
+      "name": "Torn Parade Ground",
+      "description": "A long parade ground is split by a jagged chasm over banners flutter without wind, caught in time. The fortress walls groan with distant strain.",
+      "sector_type": "mountain",
+      "exits": {
+        "east": {
+          "to_room": 30006,
+          "description": "The broken march continues east along the wall."
+        },
+        "south": {
+          "to_room": 30013,
+          "description": "A shattered stair drops south into a reinforced corridor."
+        },
+        "west": {
+          "to_room": 30004,
+          "description": "The imperial barricades loom to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30005,
+          "max": 2
+        }
+      ]
+    },
+    "30006": {
+      "vnum": 30006,
+      "name": "Nullwind Bastion",
+      "description": "A bastion of star-metal juts over the void over a windless gale presses at your skin, heavy with arcane static. The stones here hum with warding power.",
+      "sector_type": "mountain",
+      "exits": {
+        "east": {
+          "to_room": 30007,
+          "description": "The bastion narrows east toward the break."
+        },
+        "south": {
+          "to_room": 30014,
+          "description": "A narrow stair drops south into a rift-lit hall."
+        },
+        "west": {
+          "to_room": 30005,
+          "description": "The parade ground lies back to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30006,
+          "max": 2
+        }
+      ]
+    },
+    "30007": {
+      "vnum": 30007,
+      "name": "Edge of the Break",
+      "description": "The fortress ends in a jagged cliff over a canyon of fractured reality boils beneath, flashing with impossible colors. The cold here is absolute.",
+      "sector_type": "mountain",
+      "exits": {
+        "south": {
+          "to_room": 30015,
+          "description": "A broken stair spirals south into the inner keep."
+        },
+        "west": {
+          "to_room": 30006,
+          "description": "The nullwind bastion stretches back west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30007,
+          "max": 1
+        }
+      ]
+    },
+    "30008": {
+      "vnum": 30008,
+      "name": "Outer Ward - Shardwatch",
+      "description": "A ring of cracked watchtowers leans inward over broken mirrors of obsidian reflect a sky split in two. The floor trembles with distant footsteps.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30000,
+          "description": "The fractured causeway rises back north."
+        },
+        "east": {
+          "to_room": 30009,
+          "description": "A guardwalk runs east along the ruined wall."
+        },
+        "south": {
+          "to_room": 30016,
+          "description": "A stair drops south into the inner ward."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30001,
+          "max": 2
+        }
+      ]
+    },
+    "30009": {
+      "vnum": 30009,
+      "name": "Outer Ward - Collapse Gallery",
+      "description": "Stone ribs jut from the walls over a gallery of collapsed murals depicts a coronation frozen mid-shatter. Dust hangs in slow spirals.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30001,
+          "description": "The bonebreaker gate lies back to the north."
+        },
+        "east": {
+          "to_room": 30010,
+          "description": "A slanted hallway continues east into the ward."
+        },
+        "south": {
+          "to_room": 30017,
+          "description": "A fractured arch falls south into a shadowed hall."
+        },
+        "west": {
+          "to_room": 30008,
+          "description": "The shardwatch ring opens to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30002,
+          "max": 2
+        }
+      ]
+    },
+    "30010": {
+      "vnum": 30010,
+      "name": "Outer Ward - Gravemark Stairs",
+      "description": "Broken stairs float inches above the ground over a violet seam runs along the ceiling, leaking cold light. Echoes feel heavy, as if weighed down.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30002,
+          "description": "The riven courtyard lies back north."
+        },
+        "east": {
+          "to_room": 30011,
+          "description": "A cracked corridor continues east."
+        },
+        "south": {
+          "to_room": 30018,
+          "description": "A reinforced doorway sinks south into a guard hall."
+        },
+        "west": {
+          "to_room": 30009,
+          "description": "The collapse gallery opens to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30003,
+          "max": 2
+        }
+      ]
+    },
+    "30011": {
+      "vnum": 30011,
+      "name": "Outer Ward - Rifted Hall",
+      "description": "A jagged split runs the length of the hall over stones on either side move at different speeds, like mismatched clocks. The smell of ozone thickens.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30003,
+          "description": "The rift-split arcade lies back north."
+        },
+        "east": {
+          "to_room": 30012,
+          "description": "The shattered hall continues east."
+        },
+        "south": {
+          "to_room": 30019,
+          "description": "A wide stair descends south into a strategic chamber."
+        },
+        "west": {
+          "to_room": 30010,
+          "description": "The gravemark stairs rise to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30004,
+          "max": 2
+        }
+      ]
+    },
+    "30012": {
+      "vnum": 30012,
+      "name": "Outer Ward - Rupture Armory",
+      "description": "Racks of cracked weapons lean against the walls over armor plates float in midair, slowly rotating. The temperature drops with each breath.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30004,
+          "description": "The imperial barricades lie back north."
+        },
+        "east": {
+          "to_room": 30013,
+          "description": "A scorched hall runs east."
+        },
+        "south": {
+          "to_room": 30020,
+          "description": "A reinforced threshold sinks south into the inner keep."
+        },
+        "west": {
+          "to_room": 30011,
+          "description": "The rifted hall opens to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30005,
+          "max": 2
+        }
+      ]
+    },
+    "30013": {
+      "vnum": 30013,
+      "name": "Outer Ward - Broken Bastion",
+      "description": "A bastion wall has sheared away over a red horizon flickers beyond, cut into thin slices of light. The stones here vibrate underfoot.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30005,
+          "description": "The torn parade ground lies back north."
+        },
+        "east": {
+          "to_room": 30014,
+          "description": "A narrow passage continues east."
+        },
+        "south": {
+          "to_room": 30021,
+          "description": "A darkened stair falls south into the keep."
+        },
+        "west": {
+          "to_room": 30012,
+          "description": "The rupture armory lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30006,
+          "max": 2
+        }
+      ]
+    },
+    "30014": {
+      "vnum": 30014,
+      "name": "Outer Ward - Riftguard Steps",
+      "description": "Heavy steps lead toward a central shaft over wards are carved into the walls, each one split down the middle. A steady drumbeat echoes.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30006,
+          "description": "The nullwind bastion lies back north."
+        },
+        "east": {
+          "to_room": 30015,
+          "description": "The steps continue east toward a breach in the keep."
+        },
+        "south": {
+          "to_room": 30022,
+          "description": "A narrow stair drops south into the lower halls."
+        },
+        "west": {
+          "to_room": 30013,
+          "description": "The broken bastion opens to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30007,
+          "max": 2
+        }
+      ]
+    },
+    "30015": {
+      "vnum": 30015,
+      "name": "Outer Ward - Breachpoint",
+      "description": "A yawning rupture splits the wall over fragments of the keep drift in slow orbit. A long shadow moves behind the rift, watching.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30007,
+          "description": "The edge of the break lies back north."
+        },
+        "south": {
+          "to_room": 30023,
+          "description": "A fractured passage drops south into the inner sanctum."
+        },
+        "west": {
+          "to_room": 30014,
+          "description": "The riftguard steps lead back west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30008,
+          "max": 1
+        }
+      ]
+    },
+    "30016": {
+      "vnum": 30016,
+      "name": "Inner Ward - Shattered Drill Hall",
+      "description": "A vast hall of cracked tiles echoes with phantom marching over broken helms hang in midair like a frozen storm. The air is sharp and cold.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30008,
+          "description": "The shardwatch ring lies back north."
+        },
+        "east": {
+          "to_room": 30017,
+          "description": "A fractured corridor continues east."
+        },
+        "south": {
+          "to_room": 30024,
+          "description": "A black stair descends south into the throne complex."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30001,
+          "max": 2
+        }
+      ]
+    },
+    "30017": {
+      "vnum": 30017,
+      "name": "Inner Ward - Riftforge Gallery",
+      "description": "A gallery of shattered forges lines the walls over molten slag hangs in midair, glowing faintly. The hum of broken enchantments never stops.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30009,
+          "description": "The collapse gallery lies back north."
+        },
+        "east": {
+          "to_room": 30018,
+          "description": "A guard hall stretches east under cracked arches."
+        },
+        "south": {
+          "to_room": 30025,
+          "description": "A narrow stair descends south."
+        },
+        "west": {
+          "to_room": 30016,
+          "description": "The shattered drill hall lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30002,
+          "max": 2
+        }
+      ]
+    },
+    "30018": {
+      "vnum": 30018,
+      "name": "Hall of the Fractured Vanguard",
+      "description": "An iron dais rises from the center over banners of the imperial vanguard hang in tattered arcs. Heavy footsteps echo here with deliberate intent.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30010,
+          "description": "The gravemark stairs rise back north."
+        },
+        "east": {
+          "to_room": 30019,
+          "description": "A strategic corridor continues east."
+        },
+        "south": {
+          "to_room": 30026,
+          "description": "A dark vault drops south into the choir hall."
+        },
+        "west": {
+          "to_room": 30017,
+          "description": "The riftforge gallery lies to the west."
+        }
+      },
+      "flags": [
+        "no_recall"
+      ],
+      "mob_resets": [
+        {
+          "vnum": 30015,
+          "max": 1
+        }
+      ]
+    },
+    "30019": {
+      "vnum": 30019,
+      "name": "Inner Ward - Tactics Chamber",
+      "description": "A shattered war table spans the room over floating map shards trace routes through impossible terrain. The air smells of cold steel.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30011,
+          "description": "The rifted hall lies back north."
+        },
+        "east": {
+          "to_room": 30020,
+          "description": "A reinforced hall continues east."
+        },
+        "south": {
+          "to_room": 30027,
+          "description": "A narrow stair descends south into the throne approach."
+        },
+        "west": {
+          "to_room": 30018,
+          "description": "The vanguard hall opens to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30003,
+          "max": 2
+        }
+      ]
+    },
+    "30020": {
+      "vnum": 30020,
+      "name": "Inner Ward - Riftguard Bastion",
+      "description": "Dark stone buttresses brace the ceiling over a ring of sigils rotates without sound. The atmosphere feels tightly controlled and oppressive.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30012,
+          "description": "The rupture armory lies back north."
+        },
+        "east": {
+          "to_room": 30021,
+          "description": "A cracked passage continues east."
+        },
+        "south": {
+          "to_room": 30028,
+          "description": "A steep stair descends south into a fractured nave."
+        },
+        "west": {
+          "to_room": 30019,
+          "description": "The tactics chamber lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30004,
+          "max": 2
+        }
+      ]
+    },
+    "30021": {
+      "vnum": 30021,
+      "name": "Inner Ward - Broken Oath Corridor",
+      "description": "A narrow corridor is etched with snapped oaths over the floor is inlaid with shattered seals. Every step stirs a low, regretful hum.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30013,
+          "description": "The broken bastion lies back north."
+        },
+        "east": {
+          "to_room": 30022,
+          "description": "The corridor continues east toward the throne complex."
+        },
+        "south": {
+          "to_room": 30029,
+          "description": "A narrow stair descends south."
+        },
+        "west": {
+          "to_room": 30020,
+          "description": "The riftguard bastion lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30005,
+          "max": 2
+        }
+      ]
+    },
+    "30022": {
+      "vnum": 30022,
+      "name": "Inner Ward - Nullward Landing",
+      "description": "A landing of black glass overlooks a deep shaft over the light here bends, flattening colors into gray. The silence is heavy and complete.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30014,
+          "description": "The riftguard steps lie back north."
+        },
+        "east": {
+          "to_room": 30023,
+          "description": "A broken stair continues east."
+        },
+        "south": {
+          "to_room": 30030,
+          "description": "A darkened stair drops south into the throne approach."
+        },
+        "west": {
+          "to_room": 30021,
+          "description": "The broken oath corridor lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30006,
+          "max": 2
+        }
+      ]
+    },
+    "30023": {
+      "vnum": 30023,
+      "name": "Inner Ward - Riftlight Bridge",
+      "description": "A thin bridge of light spans a split in the keep over each step sends ripples across the air. The far side shimmers with cold resolve.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30015,
+          "description": "The breachpoint lies back north."
+        },
+        "south": {
+          "to_room": 30031,
+          "description": "The bridge descends south into the throne antechamber."
+        },
+        "west": {
+          "to_room": 30022,
+          "description": "The nullward landing lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30007,
+          "max": 1
+        }
+      ]
+    },
+    "30024": {
+      "vnum": 30024,
+      "name": "Throne Approach - Splintered Nave",
+      "description": "A nave of cracked pillars stretches onward over fractured mosaics depict a coronation torn into pieces. The air tastes of lightning and ash.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30016,
+          "description": "The shattered drill hall lies back north."
+        },
+        "east": {
+          "to_room": 30025,
+          "description": "A broken arcade continues east."
+        },
+        "south": {
+          "to_room": 30032,
+          "description": "A grand stair descends south into the inner sanctum."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30001,
+          "max": 2
+        }
+      ]
+    },
+    "30025": {
+      "vnum": 30025,
+      "name": "Throne Approach - Echoed Crossing",
+      "description": "A crossing of broken arches shivers with phantom voices over each step echoes twice, once forward and once behind. The light here bends strangely.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30017,
+          "description": "The riftforge gallery lies back north."
+        },
+        "east": {
+          "to_room": 30026,
+          "description": "A dark choir hall opens east."
+        },
+        "south": {
+          "to_room": 30033,
+          "description": "A fractured stair drops south toward the throne."
+        },
+        "west": {
+          "to_room": 30024,
+          "description": "The splintered nave lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30002,
+          "max": 2
+        }
+      ]
+    },
+    "30026": {
+      "vnum": 30026,
+      "name": "Choir of the Rifted Hymn",
+      "description": "A circle of cracked choir stalls faces a shattered pulpit over notes hang in the air like glass shards, singing without voices. A chill settles in your bones.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30018,
+          "description": "The vanguard hall lies back north."
+        },
+        "east": {
+          "to_room": 30027,
+          "description": "A riven aisle stretches east."
+        },
+        "south": {
+          "to_room": 30034,
+          "description": "A dark passage descends south into the sanctum."
+        },
+        "west": {
+          "to_room": 30025,
+          "description": "The echoed crossing lies to the west."
+        }
+      },
+      "flags": [
+        "no_recall"
+      ],
+      "mob_resets": [
+        {
+          "vnum": 30016,
+          "max": 1
+        }
+      ]
+    },
+    "30027": {
+      "vnum": 30027,
+      "name": "Throne Approach - Rifted Arcade",
+      "description": "A high arcade is split by a vertical tear over stone fragments hover like beads on invisible strings. A low chant reverberates from deeper within.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30019,
+          "description": "The tactics chamber lies back north."
+        },
+        "east": {
+          "to_room": 30028,
+          "description": "The shattered arcade continues east."
+        },
+        "south": {
+          "to_room": 30035,
+          "description": "A wide stair descends south into the throne wing."
+        },
+        "west": {
+          "to_room": 30026,
+          "description": "The choir hall lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30003,
+          "max": 2
+        }
+      ]
+    },
+    "30028": {
+      "vnum": 30028,
+      "name": "Throne Approach - Fracture Nave",
+      "description": "Pillars here are split into multiple offsets over each slice of stone casts a different shadow. The air thrums with restrained power.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30020,
+          "description": "The riftguard bastion lies back north."
+        },
+        "east": {
+          "to_room": 30029,
+          "description": "A cracked passage continues east."
+        },
+        "south": {
+          "to_room": 30036,
+          "description": "A stair descends south into the throne antechamber."
+        },
+        "west": {
+          "to_room": 30027,
+          "description": "The rifted arcade lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30004,
+          "max": 2
+        }
+      ]
+    },
+    "30029": {
+      "vnum": 30029,
+      "name": "Throne Approach - Broken Oath Hall",
+      "description": "An oath hall lies in ruin over broken sigils drip with faint light, each one half-erased. The air is heavy with lingering judgment.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30021,
+          "description": "The broken oath corridor lies back north."
+        },
+        "east": {
+          "to_room": 30030,
+          "description": "A darkened corridor continues east."
+        },
+        "south": {
+          "to_room": 30037,
+          "description": "A steep stair descends south into the throne wing."
+        },
+        "west": {
+          "to_room": 30028,
+          "description": "The fracture nave lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30005,
+          "max": 2
+        }
+      ]
+    },
+    "30030": {
+      "vnum": 30030,
+      "name": "Throne Approach - Nullward Gallery",
+      "description": "A gallery of black glass stretches onward over reflections show a throne that is not here. The sound of your heartbeat seems delayed.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30022,
+          "description": "The nullward landing lies back north."
+        },
+        "east": {
+          "to_room": 30031,
+          "description": "The gallery continues east toward a luminous gate."
+        },
+        "south": {
+          "to_room": 30038,
+          "description": "A dark stair descends south into the inner sanctum."
+        },
+        "west": {
+          "to_room": 30029,
+          "description": "The broken oath hall lies to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 30006,
+          "max": 2
+        }
+      ]
+    },
+    "30031": {
+      "vnum": 30031,
+      "name": "Throne Approach - Shattergate",
+      "description": "A gate of split crystal stands ahead over a pale light spills through like a blade. The silence here is thick and expectant.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30023,
+          "description": "The riftlight bridge lies back north."
+        },
+        "south": {
+          "to_room": 30039,
+          "description": "The shattergate opens south into the throne chamber."
+        },
+        "west": {
+          "to_room": 30030,
+          "description": "The nullward gallery lies to the west."
+        }
+      },
+      "flags": [
+        "no_recall"
+      ],
+      "mob_resets": [
+        {
+          "vnum": 30007,
+          "max": 1
+        }
+      ]
+    },
+    "30032": {
+      "vnum": 30032,
+      "name": "Sanctum - Splintered Dais",
+      "description": "A fractured dais rises from a black floor over shards of a throne float above it, glittering with cold light. The air smells of burning oathstone.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30024,
+          "description": "The splintered nave lies back north."
+        },
+        "east": {
+          "to_room": 30033,
+          "description": "A narrow passage leads east around the dais."
+        },
+        "south": {
+          "to_room": 30039,
+          "description": "A silent stair descends south into the throne chamber."
+        }
+      },
+      "flags": [
+        "no_recall"
+      ],
+      "mob_resets": [
+        {
+          "vnum": 30017,
+          "max": 1
+        }
+      ]
+    },
+    "30033": {
+      "vnum": 30033,
+      "name": "Sanctum - Rifted Procession",
+      "description": "A processional hall is split into layered slices over each layer shows a different moment of imperial glory. The walls hum with latent power.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30025,
+          "description": "The echoed crossing lies back north."
+        },
+        "east": {
+          "to_room": 30034,
+          "description": "A shattered corridor continues east."
+        },
+        "south": {
+          "to_room": 30039,
+          "description": "A broken arch descends south into the throne chamber."
+        },
+        "west": {
+          "to_room": 30032,
+          "description": "The splintered dais lies to the west."
+        }
+      },
+      "flags": [
+        "no_recall"
+      ]
+    },
+    "30034": {
+      "vnum": 30034,
+      "name": "Sanctum - Choir Vault",
+      "description": "A vaulted chamber rings with a silent hymn over shattered crystal pipes line the walls, each one vibrating faintly. Frost coats every surface.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30026,
+          "description": "The rifted choir lies back north."
+        },
+        "east": {
+          "to_room": 30035,
+          "description": "A narrow passage continues east."
+        },
+        "south": {
+          "to_room": 30039,
+          "description": "A shattered stair drops south into the throne chamber."
+        },
+        "west": {
+          "to_room": 30033,
+          "description": "The rifted procession lies to the west."
+        }
+      },
+      "flags": [
+        "no_recall"
+      ]
+    },
+    "30035": {
+      "vnum": 30035,
+      "name": "Sanctum - Fracture Walk",
+      "description": "A narrow walkway runs along a chasm of broken reality over the edges glow with violet fire that never burns out. The air crackles with energy.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30027,
+          "description": "The rifted arcade lies back north."
+        },
+        "east": {
+          "to_room": 30036,
+          "description": "The walkway continues east."
+        },
+        "south": {
+          "to_room": 30039,
+          "description": "A slanted stair descends south into the throne chamber."
+        },
+        "west": {
+          "to_room": 30034,
+          "description": "The choir vault lies to the west."
+        }
+      },
+      "flags": [
+        "no_recall"
+      ]
+    },
+    "30036": {
+      "vnum": 30036,
+      "name": "Sanctum - Riftguard Gallery",
+      "description": "A gallery of shattered shields lines the walls over each shield reflects a different sky. The room feels anchored by heavy warding.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30028,
+          "description": "The fracture nave lies back north."
+        },
+        "east": {
+          "to_room": 30037,
+          "description": "A narrow passage continues east."
+        },
+        "south": {
+          "to_room": 30039,
+          "description": "A broad stair descends south into the throne chamber."
+        },
+        "west": {
+          "to_room": 30035,
+          "description": "The fracture walk lies to the west."
+        }
+      },
+      "flags": [
+        "no_recall"
+      ]
+    },
+    "30037": {
+      "vnum": 30037,
+      "name": "Sanctum - Oathbreaker Passage",
+      "description": "A tight passage is lined with snapped oathstones over the stones pulse like slow heartbeats, then fade. The air tastes of cold iron.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30029,
+          "description": "The broken oath hall lies back north."
+        },
+        "east": {
+          "to_room": 30038,
+          "description": "The passage continues east toward a darkened gate."
+        },
+        "south": {
+          "to_room": 30039,
+          "description": "A narrow stair descends south into the throne chamber."
+        },
+        "west": {
+          "to_room": 30036,
+          "description": "The riftguard gallery lies to the west."
+        }
+      },
+      "flags": [
+        "no_recall"
+      ]
+    },
+    "30038": {
+      "vnum": 30038,
+      "name": "Sanctum - Silent Gate",
+      "description": "A silent gate stands before the throne room over the air here is perfectly still, as if the world itself is holding its breath. Cold light spills from the seam.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30030,
+          "description": "The nullward gallery lies back north."
+        },
+        "south": {
+          "to_room": 30039,
+          "description": "The silent gate opens south into the throne chamber."
+        },
+        "west": {
+          "to_room": 30037,
+          "description": "The oathbreaker passage lies to the west."
+        }
+      },
+      "flags": [
+        "no_recall"
+      ]
+    },
+    "30039": {
+      "vnum": 30039,
+      "name": "The Shattered Throne",
+      "description": "A throne of split obsidian floats above a chasm over its fragments orbit a hollow core that drinks all light. Reality bends here, and the air vibrates with imperial fury.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 30031,
+          "description": "The shattergate lies back to the north."
+        }
+      },
+      "flags": [
+        "no_recall"
+      ],
+      "mob_resets": [
+        {
+          "vnum": 30020,
+          "max": 1
+        }
+      ]
+    }
+  },
+  "mobs": {
+    "30001": {
+      "vnum": 30001,
+      "name": "imperial bulwark",
+      "short_desc": "an imperial bulwark",
+      "long_desc": "An imperial bulwark braces its shield against the broken hall.",
+      "level": 68,
+      "alignment": -500,
+      "hp_dice": "45d10+7000",
+      "damage_dice": "11d10+36",
+      "gold": 2200,
+      "exp": 26000,
+      "armor_class": 18,
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "no_charm"
+      ],
+      "description": "A towering guardian in shattered plate, it holds the line with unyielding force."
+    },
+    "30002": {
+      "vnum": 30002,
+      "name": "rift arcanist",
+      "short_desc": "a rift arcanist",
+      "long_desc": "A rift arcanist bends the air with a crackling sigil.",
+      "level": 68,
+      "alignment": -450,
+      "hp_dice": "38d10+5200",
+      "damage_dice": "11d10+38",
+      "gold": 2100,
+      "exp": 25500,
+      "armor_class": 24,
+      "flags": [
+        "aggressive",
+        "no_sleep"
+      ],
+      "description": "Robed in fractured starlight, the arcanist tears at the seams of reality."
+    },
+    "30003": {
+      "vnum": 30003,
+      "name": "throne confessor",
+      "short_desc": "a throne confessor",
+      "long_desc": "A throne confessor murmurs a broken litany over the ruins.",
+      "level": 68,
+      "alignment": -350,
+      "hp_dice": "36d10+5000",
+      "damage_dice": "9d10+32",
+      "gold": 2000,
+      "exp": 25000,
+      "armor_class": 26,
+      "flags": [
+        "aggressive",
+        "no_sleep"
+      ],
+      "description": "Clad in cracked ceremonial robes, the confessor radiates a chilling devotion."
+    },
+    "30004": {
+      "vnum": 30004,
+      "name": "fractureblade stalker",
+      "short_desc": "a fractureblade stalker",
+      "long_desc": "A fractureblade stalker glides between the shards in silence.",
+      "level": 69,
+      "alignment": -600,
+      "hp_dice": "40d10+5600",
+      "damage_dice": "12d10+40",
+      "gold": 2300,
+      "exp": 27000,
+      "armor_class": 20,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ],
+      "description": "A lean assassin of black glass, it strikes from impossible angles."
+    },
+    "30005": {
+      "vnum": 30005,
+      "name": "reality mauler",
+      "short_desc": "a reality mauler",
+      "long_desc": "A reality mauler drags a fractured hammer through the rubble.",
+      "level": 69,
+      "alignment": -550,
+      "hp_dice": "44d10+6400",
+      "damage_dice": "12d10+42",
+      "gold": 2400,
+      "exp": 27200,
+      "armor_class": 21,
+      "flags": [
+        "aggressive"
+      ],
+      "description": "Its hammerhead flickers with voidlight, leaving afterimages in the air."
+    },
+    "30006": {
+      "vnum": 30006,
+      "name": "null-ward sentinel",
+      "short_desc": "a null-ward sentinel",
+      "long_desc": "A null-ward sentinel stands unmoving, its eyes cold.",
+      "level": 69,
+      "alignment": -500,
+      "hp_dice": "46d10+6800",
+      "damage_dice": "12d10+42",
+      "gold": 2500,
+      "exp": 27500,
+      "armor_class": 19,
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "no_charm"
+      ],
+      "description": "A guardian of star-metal wards, it hums with suppressive power."
+    },
+    "30007": {
+      "vnum": 30007,
+      "name": "riftbound cantor",
+      "short_desc": "a riftbound cantor",
+      "long_desc": "A riftbound cantor intones a fractured hymn under its breath.",
+      "level": 69,
+      "alignment": -400,
+      "hp_dice": "38d10+5200",
+      "damage_dice": "10d10+36",
+      "gold": 2100,
+      "exp": 26500,
+      "armor_class": 23,
+      "flags": [
+        "aggressive",
+        "no_sleep"
+      ],
+      "description": "A spectral cantor whose voice twists magic into jagged shards."
+    },
+    "30008": {
+      "vnum": 30008,
+      "name": "riftwarden juggernaut",
+      "short_desc": "a riftwarden juggernaut",
+      "long_desc": "A riftwarden juggernaut heaves a shield the size of a door.",
+      "level": 69,
+      "alignment": -650,
+      "hp_dice": "48d10+7200",
+      "damage_dice": "13d10+44",
+      "gold": 2600,
+      "exp": 28000,
+      "armor_class": 17,
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "no_charm"
+      ],
+      "description": "A living bulwark forged in a broken oath, it blocks the path with brutal resolve."
+    },
+    "30015": {
+      "vnum": 30015,
+      "name": "marshal Kyrell",
+      "short_desc": "Marshal Kyrell",
+      "long_desc": "Marshal Kyrell stands atop a fractured dais, shield raised.",
+      "level": 69,
+      "alignment": -800,
+      "hp_dice": "70d10+11000",
+      "damage_dice": "14d10+46",
+      "gold": 6500,
+      "exp": 42000,
+      "armor_class": -6,
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "no_charm",
+        "no_sleep"
+      ],
+      "description": "The fractured vanguard marshal radiates iron discipline and unbroken wrath.",
+      "loot_table": [
+        {
+          "vnum": 30050,
+          "chance": 35
+        },
+        {
+          "vnum": 30051,
+          "chance": 30
+        },
+        {
+          "vnum": 30052,
+          "chance": 25
+        },
+        {
+          "vnum": 30062,
+          "chance": 20
+        }
+      ]
+    },
+    "30016": {
+      "vnum": 30016,
+      "name": "choir-matron Serathis",
+      "short_desc": "Choir-Matron Serathis",
+      "long_desc": "Choir-Matron Serathis hovers above the shattered choir, singing.",
+      "level": 69,
+      "alignment": -750,
+      "hp_dice": "68d10+10500",
+      "damage_dice": "13d10+44",
+      "gold": 6200,
+      "exp": 41500,
+      "armor_class": -4,
+      "flags": [
+        "aggressive",
+        "no_charm",
+        "no_sleep"
+      ],
+      "description": "A fractured hymnist of the throne, her song mends allies and shreds foes.",
+      "loot_table": [
+        {
+          "vnum": 30053,
+          "chance": 30
+        },
+        {
+          "vnum": 30054,
+          "chance": 30
+        },
+        {
+          "vnum": 30058,
+          "chance": 30
+        },
+        {
+          "vnum": 30060,
+          "chance": 20
+        }
+      ]
+    },
+    "30017": {
+      "vnum": 30017,
+      "name": "shatterblade Veyl",
+      "short_desc": "Shatterblade Veyl",
+      "long_desc": "Shatterblade Veyl appears in a flicker of broken light.",
+      "level": 70,
+      "alignment": -900,
+      "hp_dice": "72d10+11200",
+      "damage_dice": "15d10+48",
+      "gold": 6800,
+      "exp": 43000,
+      "armor_class": -8,
+      "flags": [
+        "aggressive",
+        "no_charm",
+        "no_sleep",
+        "stay_zone"
+      ],
+      "description": "A killer of the shattered court, Veyl strikes from the rifts between moments.",
+      "loot_table": [
+        {
+          "vnum": 30055,
+          "chance": 30
+        },
+        {
+          "vnum": 30056,
+          "chance": 30
+        },
+        {
+          "vnum": 30057,
+          "chance": 30
+        },
+        {
+          "vnum": 30063,
+          "chance": 20
+        }
+      ]
+    },
+    "30020": {
+      "vnum": 30020,
+      "name": "shattered emperor",
+      "short_desc": "the Shattered Emperor",
+      "long_desc": "The Shattered Emperor rises from the broken throne, haloed in voidlight.",
+      "level": 70,
+      "alignment": -1000,
+      "hp_dice": "110d10+18000",
+      "damage_dice": "16d10+52",
+      "gold": 11000,
+      "exp": 62000,
+      "armor_class": -16,
+      "flags": [
+        "boss",
+        "aggressive",
+        "sentinel",
+        "no_charm",
+        "no_sleep"
+      ],
+      "boss": true,
+      "boss_id": "shattered_emperor",
+      "boss_loot_table": [
+        {
+          "vnum": 30059,
+          "chance": 100
+        },
+        {
+          "vnum": 30061,
+          "chance": 60
+        },
+        {
+          "vnum": 30065,
+          "chance": 40
+        },
+        {
+          "vnum": 30064,
+          "chance": 35
+        }
+      ],
+      "boss_loot_chance": 100,
+      "description": "A sovereign of broken reality, armored in fractured obsidian and imperial wrath.",
+      "max_hp": 23000,
+      "ac": -40
+    }
+  },
+  "objects": {
+    "30050": {
+      "vnum": 30050,
+      "name": "Thronebreaker Greatsword",
+      "short_desc": "the Thronebreaker Greatsword",
+      "room_desc": "A colossal greatsword rests here, its blade split with violet light.",
+      "item_type": "weapon",
+      "weapon_type": "slash",
+      "damage_dice": "12d6+30",
+      "weight": 18,
+      "value": 190000,
+      "type": "weapon",
+      "flags": [
+        "magic",
+        "glow"
+      ],
+      "min_level": 68,
+      "effects": {
+        "strength": 5,
+        "hitroll": 12,
+        "damroll": 14
+      }
+    },
+    "30051": {
+      "vnum": 30051,
+      "name": "Imperial Lumenblade",
+      "short_desc": "the Imperial Lumenblade",
+      "room_desc": "A radiant longsword burns with a fractured halo of light.",
+      "item_type": "weapon",
+      "weapon_type": "slash",
+      "damage_dice": "11d6+28",
+      "weight": 12,
+      "value": 185000,
+      "type": "weapon",
+      "flags": [
+        "magic",
+        "glow"
+      ],
+      "min_level": 68,
+      "effects": {
+        "strength": 4,
+        "hitroll": 11,
+        "damroll": 12,
+        "hp_regen": 18
+      }
+    },
+    "30052": {
+      "vnum": 30052,
+      "name": "Aegis of the Fractured Oath",
+      "short_desc": "the Aegis of the Fractured Oath",
+      "room_desc": "A shield of split obsidian hums with a low, steady ward.",
+      "item_type": "armor",
+      "wear_slot": "shield",
+      "armor_bonus": 42,
+      "weight": 14,
+      "value": 175000,
+      "type": "armor",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 68,
+      "effects": {
+        "wisdom": 4,
+        "armor_class": -26,
+        "hp_regen": 20
+      }
+    },
+    "30053": {
+      "vnum": 30053,
+      "name": "Riftweaver Staff",
+      "short_desc": "the Riftweaver Staff",
+      "room_desc": "A staff of black crystal crackles with caged lightning.",
+      "item_type": "weapon",
+      "weapon_type": "staff",
+      "damage_dice": "10d6+26",
+      "weight": 8,
+      "value": 180000,
+      "type": "weapon",
+      "flags": [
+        "magic",
+        "glow"
+      ],
+      "min_level": 68,
+      "effects": {
+        "intelligence": 5,
+        "mana_regen": 22,
+        "armor_class": -12
+      }
+    },
+    "30054": {
+      "vnum": 30054,
+      "name": "Gravebound Scepter",
+      "short_desc": "the Gravebound Scepter",
+      "room_desc": "A scepter of dark bone rests here, pulsing with cold power.",
+      "item_type": "weapon",
+      "weapon_type": "staff",
+      "damage_dice": "10d6+25",
+      "weight": 7,
+      "value": 175000,
+      "type": "weapon",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 68,
+      "effects": {
+        "intelligence": 4,
+        "mana_regen": 20,
+        "life_drain": 6
+      }
+    },
+    "30055": {
+      "vnum": 30055,
+      "name": "Stormrend Longbow",
+      "short_desc": "the Stormrend Longbow",
+      "room_desc": "A longbow of storm-wrought sinew hums with power.",
+      "item_type": "weapon",
+      "weapon_type": "bow",
+      "damage_dice": "11d6+27",
+      "weight": 9,
+      "value": 175000,
+      "type": "weapon",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 68,
+      "effects": {
+        "dexterity": 5,
+        "hitroll": 11,
+        "damroll": 12
+      }
+    },
+    "30056": {
+      "vnum": 30056,
+      "name": "Veilripper Dirk",
+      "short_desc": "the Veilripper Dirk",
+      "room_desc": "A slim dirk of violet glass lies here, its edge humming.",
+      "item_type": "weapon",
+      "weapon_type": "pierce",
+      "damage_dice": "10d6+24",
+      "weight": 3,
+      "value": 170000,
+      "type": "weapon",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 68,
+      "effects": {
+        "dexterity": 5,
+        "hitroll": 10,
+        "damroll": 11,
+        "backstab": 8
+      }
+    },
+    "30057": {
+      "vnum": 30057,
+      "name": "Voidglass Kris",
+      "short_desc": "the Voidglass Kris",
+      "room_desc": "A jagged kris of black glass reflects no light.",
+      "item_type": "weapon",
+      "weapon_type": "pierce",
+      "damage_dice": "10d6+25",
+      "weight": 4,
+      "value": 172000,
+      "type": "weapon",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 68,
+      "effects": {
+        "dexterity": 5,
+        "hitroll": 10,
+        "damroll": 12,
+        "backstab": 9
+      }
+    },
+    "30058": {
+      "vnum": 30058,
+      "name": "Hymn of Shattered Strings",
+      "short_desc": "the Hymn of Shattered Strings",
+      "room_desc": "A crystalline lute hums with a fractured, haunting chord.",
+      "item_type": "armor",
+      "wear_slot": "hold",
+      "armor_bonus": 8,
+      "weight": 2,
+      "value": 165000,
+      "type": "treasure",
+      "flags": [
+        "magic",
+        "glow"
+      ],
+      "min_level": 68,
+      "effects": {
+        "charisma": 5,
+        "mana_regen": 20,
+        "song_power": 7
+      }
+    },
+    "30059": {
+      "vnum": 30059,
+      "name": "Crown of the Shattered Throne",
+      "short_desc": "the Crown of the Shattered Throne",
+      "room_desc": "A jagged crown of obsidian floats here, rimmed in voidlight.",
+      "item_type": "armor",
+      "wear_slot": "head",
+      "armor_bonus": 24,
+      "weight": 3,
+      "value": 210000,
+      "type": "armor",
+      "flags": [
+        "magic",
+        "glow"
+      ],
+      "min_level": 70,
+      "effects": {
+        "intelligence": 4,
+        "wisdom": 4,
+        "armor_class": -18,
+        "hp_regen": 22
+      }
+    },
+    "30060": {
+      "vnum": 30060,
+      "name": "Mantle of Tearing Realities",
+      "short_desc": "the Mantle of Tearing Realities",
+      "room_desc": "A mantle of split velvet ripples without wind.",
+      "item_type": "armor",
+      "wear_slot": "about",
+      "armor_bonus": 20,
+      "weight": 4,
+      "value": 185000,
+      "type": "armor",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 69,
+      "effects": {
+        "dexterity": 3,
+        "armor_class": -16,
+        "mana_regen": 18
+      }
+    },
+    "30061": {
+      "vnum": 30061,
+      "name": "Imperial Fractureplate",
+      "short_desc": "the Imperial Fractureplate",
+      "room_desc": "A massive breastplate of split star-metal rests here.",
+      "item_type": "armor",
+      "wear_slot": "body",
+      "armor_bonus": 48,
+      "weight": 22,
+      "value": 220000,
+      "type": "armor",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 70,
+      "effects": {
+        "strength": 4,
+        "armor_class": -28,
+        "hp_regen": 24
+      }
+    },
+    "30062": {
+      "vnum": 30062,
+      "name": "Gauntlets of the Riftguard",
+      "short_desc": "the Gauntlets of the Riftguard",
+      "room_desc": "A pair of black gauntlets glows with suppressed energy.",
+      "item_type": "armor",
+      "wear_slot": "hands",
+      "armor_bonus": 16,
+      "weight": 6,
+      "value": 160000,
+      "type": "armor",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 68,
+      "effects": {
+        "strength": 3,
+        "hitroll": 8,
+        "damroll": 8
+      }
+    },
+    "30063": {
+      "vnum": 30063,
+      "name": "Boots of the Broken March",
+      "short_desc": "the Boots of the Broken March",
+      "room_desc": "Heavy boots of cracked leather stand in quiet defiance.",
+      "item_type": "armor",
+      "wear_slot": "feet",
+      "armor_bonus": 16,
+      "weight": 5,
+      "value": 155000,
+      "type": "armor",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 68,
+      "effects": {
+        "dexterity": 3,
+        "move_regen": 18,
+        "armor_class": -10
+      }
+    },
+    "30064": {
+      "vnum": 30064,
+      "name": "Emperor's Hollow Signet",
+      "short_desc": "the Emperor's Hollow Signet",
+      "room_desc": "A black signet ring rests here, its seal cracked down the center.",
+      "item_type": "armor",
+      "wear_slot": "finger",
+      "armor_bonus": 8,
+      "weight": 1,
+      "value": 210000,
+      "type": "treasure",
+      "flags": [
+        "magic",
+        "glow"
+      ],
+      "min_level": 70,
+      "effects": {
+        "strength": 2,
+        "intelligence": 2,
+        "armor_class": -12,
+        "mana_regen": 12
+      }
+    },
+    "30065": {
+      "vnum": 30065,
+      "name": "Shard of the Shattered Throne",
+      "short_desc": "the Shard of the Shattered Throne",
+      "room_desc": "A shard of obsidian floats here, drinking the light around it.",
+      "item_type": "armor",
+      "wear_slot": "hold",
+      "armor_bonus": 10,
+      "weight": 2,
+      "value": 225000,
+      "type": "treasure",
+      "flags": [
+        "magic",
+        "glow"
+      ],
+      "min_level": 70,
+      "effects": {
+        "strength": 2,
+        "dexterity": 2,
+        "constitution": 2,
+        "intelligence": 2,
+        "wisdom": 2,
+        "charisma": 2,
+        "hp_regen": 20,
+        "mana_regen": 20
+      }
+    }
+  }
+}

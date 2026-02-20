@@ -984,6 +984,10 @@
         "west": {
           "to_room": 29534,
           "description": "The skull-arched gate lies west, rattling softly."
+        },
+        "east": {
+          "to_room": 30001,
+          "description": "A fractured bonebridge stretches east into a shattered fortress."
         }
       },
       "flags": [

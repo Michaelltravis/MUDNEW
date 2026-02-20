@@ -97,3 +97,40 @@
 - **Bosses:** 2
 - **Loot Items:** 20
 - **Notable Mechanics:** No-recall boss chambers; endgame AI flags (aggressive, sentinel, no_charm/no_sleep); deep-chain progression from Batch 1 endgame zones
+
+---
+
+## Batch 3 — Endgame Content (Misthollow)
+
+### Added: The Shattered Throne (Zone 300, Level 68–70+)
+- New raid-tier fortress/throne complex (40 rooms) branching east from **Black Observatory (room 29035)** and **Crown of Bone (room 29535)**.
+- Theme: fractured imperial fortress, reality tears, shattered throne sanctum.
+- Mobs: imperial bulwarks (tank), rift arcanists (caster), throne confessors (healer), fractureblade stalkers (assassin), reality maulers, null-ward sentinels, riftbound cantors, riftwarden juggernauts.
+- Minibosses: **Marshal Kyrell**, **Choir-Matron Serathis**, **Shatterblade Veyl** (class loot tables).
+- Final boss: **The Shattered Emperor** (boss loot table; no ground placement).
+- Loot highlights:
+  - **Thronebreaker Greatsword** (warrior)
+  - **Imperial Lumenblade** / **Aegis of the Fractured Oath** (paladin/cleric)
+  - **Riftweaver Staff** (mage)
+  - **Gravebound Scepter** (necromancer)
+  - **Stormrend Longbow** (ranger)
+  - **Veilripper Dirk** (thief)
+  - **Voidglass Kris** (assassin)
+  - **Hymn of Shattered Strings** (bard)
+  - **Crown of the Shattered Throne**, **Imperial Fractureplate**, **Shard of the Shattered Throne**
+
+### Connections & Integrity
+- Added new zone exits:
+  - Black Observatory 29035 → Shattered Throne 30000
+  - Crown of Bone 29535 → Shattered Throne 30001
+- Boss loot handled via boss loot tables (no ground spawns).
+
+---
+
+## Batch 3 Summary
+- **Rooms:** 40
+- **Mobs:** 12 total (including 3 minibosses)
+- **Minibosses:** 3
+- **Bosses:** 1
+- **Loot Items:** 16
+- **Notable Mechanics:** Dual-branch endgame convergence; no-recall sanctum and boss chamber; raid-tier archetype packs (tank/caster/healer/assassin)

@@ -984,6 +984,10 @@
         "west": {
           "to_room": 29034,
           "description": "The iris-gate lies west, pulsing with cold light."
+        },
+        "east": {
+          "to_room": 30000,
+          "description": "A fractured imperial gate yawns east into a shattered fortress."
         }
       },
       "flags": [
