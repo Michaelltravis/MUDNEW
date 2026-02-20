@@ -1,0 +1,1463 @@
+{
+  "number": 295,
+  "name": "Crown of Bone",
+  "lifespan": 25,
+  "reset_mode": 2,
+  "level_min": 64,
+  "level_max": 68,
+  "rooms": {
+    "29500": {
+      "vnum": 29500,
+      "name": "Crown of Bone - Charnel Threshold",
+      "description": "Bleached ribs arch overhead over a black altar is ringed with teeth. The silence is broken only by distant grinding.",
+      "sector_type": "inside",
+      "exits": {
+        "south": {
+          "to_room": 29506,
+          "description": "A stair of ribs descends to the south."
+        },
+        "east": {
+          "to_room": 29501,
+          "description": "A corridor of bone runs east."
+        },
+        "west": {
+          "to_room": 28535,
+          "description": "A drowned arch yawns west, leading back to the reliquary."
+        }
+      }
+    },
+    "29501": {
+      "vnum": 29501,
+      "name": "Hall of Jawbones",
+      "description": "Pale bone dust swirls in the air over carved vertebrae form a winding floor. Your breath sounds loud in the ossuary gloom.",
+      "sector_type": "inside",
+      "exits": {
+        "south": {
+          "to_room": 29507,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29500,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29502,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29501,
+          "max": 2
+        }
+      ]
+    },
+    "29502": {
+      "vnum": 29502,
+      "name": "The Ossuary Walk",
+      "description": "A dry cold settles into your skin over skull mosaics stare from every surface. A chill rises from deep in the catacomb.",
+      "sector_type": "inside",
+      "exits": {
+        "south": {
+          "to_room": 29508,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29501,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29503,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29502,
+          "max": 2
+        }
+      ]
+    },
+    "29503": {
+      "vnum": 29503,
+      "name": "Ribbed Passage",
+      "description": "Stacks of skulls line the walls over a bone bridge spans a hollow abyss. Somewhere, a chain scrapes across bone.",
+      "sector_type": "inside",
+      "exits": {
+        "south": {
+          "to_room": 29509,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29502,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29504,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29503,
+          "max": 2
+        }
+      ]
+    },
+    "29504": {
+      "vnum": 29504,
+      "name": "The Spine Gallery",
+      "description": "A faint rattle follows every step over rib cages hang like curtains. The air tastes of dust and old incense.",
+      "sector_type": "inside",
+      "exits": {
+        "south": {
+          "to_room": 29510,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29503,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29505,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29504,
+          "max": 2
+        }
+      ]
+    },
+    "29505": {
+      "vnum": 29505,
+      "name": "The Bleached Gate",
+      "description": "Chiseled femurs form the pillars over the walls are fused with ancient armor. You feel watched by empty sockets.",
+      "sector_type": "inside",
+      "exits": {
+        "south": {
+          "to_room": 29511,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29504,
+          "description": "The ossuary hall stretches west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29505,
+          "max": 2
+        }
+      ]
+    },
+    "29506": {
+      "vnum": 29506,
+      "name": "Gravewind Steps",
+      "description": "Bone lanterns glow with sickly light over a pile of broken shields lies here. The floor vibrates with slow, heavy steps.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29500,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29512,
+          "description": "A stair of ribs descends to the south."
+        },
+        "east": {
+          "to_room": 29507,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29506,
+          "max": 2
+        }
+      ]
+    },
+    "29507": {
+      "vnum": 29507,
+      "name": "The Bone Arcade",
+      "description": "A bitter scent of grave soil lingers over a cracked sarcophagus gapes open. A low chant echoes through the ribs.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29501,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29513,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29506,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29508,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29507,
+          "max": 2
+        }
+      ]
+    },
+    "29508": {
+      "vnum": 29508,
+      "name": "Knuckle Junction",
+      "description": "The corridor tightens like a spine over runes are etched into polished bone. The Crown of Bone looms with patient malice.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29502,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29514,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29507,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29509,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29502,
+          "max": 2
+        },
+        {
+          "vnum": 29503,
+          "max": 2
+        }
+      ]
+    },
+    "29509": {
+      "vnum": 29509,
+      "name": "Marrow Channel",
+      "description": "Bleached ribs arch overhead over a black altar is ringed with teeth. The silence is broken only by distant grinding.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29503,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29515,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29508,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29510,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29501,
+          "max": 2
+        },
+        {
+          "vnum": 29505,
+          "max": 2
+        }
+      ]
+    },
+    "29510": {
+      "vnum": 29510,
+      "name": "The Silent Rotunda",
+      "description": "Pale bone dust swirls in the air over carved vertebrae form a winding floor. Your breath sounds loud in the ossuary gloom.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29504,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29516,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29509,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29511,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29504,
+          "max": 2
+        }
+      ]
+    },
+    "29511": {
+      "vnum": 29511,
+      "name": "Charnel Antechamber",
+      "description": "A dry cold settles into your skin over skull mosaics stare from every surface. A chill rises from deep in the catacomb.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29505,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29517,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29510,
+          "description": "The ossuary hall stretches west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29506,
+          "max": 2
+        }
+      ]
+    },
+    "29512": {
+      "vnum": 29512,
+      "name": "Skull Stacks",
+      "description": "Stacks of skulls line the walls over a bone bridge spans a hollow abyss. Somewhere, a chain scrapes across bone.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29506,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29518,
+          "description": "A stair of ribs descends to the south."
+        },
+        "east": {
+          "to_room": 29513,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29501,
+          "max": 2
+        }
+      ]
+    },
+    "29513": {
+      "vnum": 29513,
+      "name": "The Tithe Vault",
+      "description": "A faint rattle follows every step over rib cages hang like curtains. The air tastes of dust and old incense.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29507,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29519,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29512,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29514,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29502,
+          "max": 2
+        }
+      ]
+    },
+    "29514": {
+      "vnum": 29514,
+      "name": "The Hollow Reliquary",
+      "description": "Chiseled femurs form the pillars over the walls are fused with ancient armor. You feel watched by empty sockets.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29508,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29520,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29513,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29515,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29503,
+          "max": 2
+        }
+      ]
+    },
+    "29515": {
+      "vnum": 29515,
+      "name": "The Bone Chorus",
+      "description": "Bone lanterns glow with sickly light over a pile of broken shields lies here. The floor vibrates with slow, heavy steps.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29509,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29521,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29514,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29516,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29505,
+          "max": 2
+        }
+      ]
+    },
+    "29516": {
+      "vnum": 29516,
+      "name": "Crypt of Rattling Chains",
+      "description": "A bitter scent of grave soil lingers over a cracked sarcophagus gapes open. A low chant echoes through the ribs.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29510,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29522,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29515,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29517,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29510,
+          "max": 1
+        }
+      ]
+    },
+    "29517": {
+      "vnum": 29517,
+      "name": "The Marrow Loom",
+      "description": "The corridor tightens like a spine over runes are etched into polished bone. The Crown of Bone looms with patient malice.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29511,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29523,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29516,
+          "description": "The ossuary hall stretches west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29506,
+          "max": 2
+        }
+      ]
+    },
+    "29518": {
+      "vnum": 29518,
+      "name": "Sarcophagus Row",
+      "description": "Bleached ribs arch overhead over a black altar is ringed with teeth. The silence is broken only by distant grinding.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29512,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29524,
+          "description": "A stair of ribs descends to the south."
+        },
+        "east": {
+          "to_room": 29519,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29507,
+          "max": 2
+        }
+      ]
+    },
+    "29519": {
+      "vnum": 29519,
+      "name": "The Dusty Nave",
+      "description": "Pale bone dust swirls in the air over carved vertebrae form a winding floor. Your breath sounds loud in the ossuary gloom.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29513,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29525,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29518,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29520,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29502,
+          "max": 2
+        }
+      ]
+    },
+    "29520": {
+      "vnum": 29520,
+      "name": "The Ossuary Crucible",
+      "description": "A dry cold settles into your skin over skull mosaics stare from every surface. A chill rises from deep in the catacomb.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29514,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29526,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29519,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29521,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29503,
+          "max": 2
+        }
+      ]
+    },
+    "29521": {
+      "vnum": 29521,
+      "name": "Clavicle Passage",
+      "description": "Stacks of skulls line the walls over a bone bridge spans a hollow abyss. Somewhere, a chain scrapes across bone.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29515,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29527,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29520,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29522,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29505,
+          "max": 2
+        }
+      ]
+    },
+    "29522": {
+      "vnum": 29522,
+      "name": "The Sepulcher Bridge",
+      "description": "A faint rattle follows every step over rib cages hang like curtains. The air tastes of dust and old incense.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29516,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29528,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29521,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29523,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29511,
+          "max": 1
+        }
+      ]
+    },
+    "29523": {
+      "vnum": 29523,
+      "name": "The Pale Atrium",
+      "description": "Chiseled femurs form the pillars over the walls are fused with ancient armor. You feel watched by empty sockets.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29517,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29529,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29522,
+          "description": "The ossuary hall stretches west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29506,
+          "max": 2
+        }
+      ]
+    },
+    "29524": {
+      "vnum": 29524,
+      "name": "The Bone Bastion",
+      "description": "Bone lanterns glow with sickly light over a pile of broken shields lies here. The floor vibrates with slow, heavy steps.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29518,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29530,
+          "description": "A stair of ribs descends to the south."
+        },
+        "east": {
+          "to_room": 29525,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29510,
+          "max": 1
+        }
+      ]
+    },
+    "29525": {
+      "vnum": 29525,
+      "name": "The Rattlecell",
+      "description": "A bitter scent of grave soil lingers over a cracked sarcophagus gapes open. A low chant echoes through the ribs.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29519,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29531,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29524,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29526,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29504,
+          "max": 2
+        }
+      ]
+    },
+    "29526": {
+      "vnum": 29526,
+      "name": "The Grave Regent's Walk",
+      "description": "The corridor tightens like a spine over runes are etched into polished bone. The Crown of Bone looms with patient malice.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29520,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29532,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29525,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29527,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29505,
+          "max": 2
+        }
+      ]
+    },
+    "29527": {
+      "vnum": 29527,
+      "name": "The Shattered Ossuary",
+      "description": "Bleached ribs arch overhead over a black altar is ringed with teeth. The silence is broken only by distant grinding.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29521,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29533,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29526,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29528,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29507,
+          "max": 2
+        }
+      ]
+    },
+    "29528": {
+      "vnum": 29528,
+      "name": "The Charnel Spire",
+      "description": "Pale bone dust swirls in the air over carved vertebrae form a winding floor. Your breath sounds loud in the ossuary gloom.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29522,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29534,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29527,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29529,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29503,
+          "max": 2
+        }
+      ]
+    },
+    "29529": {
+      "vnum": 29529,
+      "name": "The Hollow Crown",
+      "description": "A dry cold settles into your skin over skull mosaics stare from every surface. A chill rises from deep in the catacomb.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29523,
+          "description": "The bone-lined passage leads back north."
+        },
+        "south": {
+          "to_room": 29535,
+          "description": "A stair of ribs descends to the south."
+        },
+        "west": {
+          "to_room": 29528,
+          "description": "The ossuary hall stretches west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29506,
+          "max": 2
+        }
+      ]
+    },
+    "29530": {
+      "vnum": 29530,
+      "name": "The Gravefall Causeway",
+      "description": "Stacks of skulls line the walls over a bone bridge spans a hollow abyss. Somewhere, a chain scrapes across bone.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29524,
+          "description": "The bone-lined passage leads back north."
+        },
+        "east": {
+          "to_room": 29531,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29502,
+          "max": 2
+        }
+      ]
+    },
+    "29531": {
+      "vnum": 29531,
+      "name": "The Tomb of Echoes",
+      "description": "A faint rattle follows every step over rib cages hang like curtains. The air tastes of dust and old incense.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29525,
+          "description": "The bone-lined passage leads back north."
+        },
+        "west": {
+          "to_room": 29530,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29532,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29501,
+          "max": 2
+        }
+      ]
+    },
+    "29532": {
+      "vnum": 29532,
+      "name": "The Ossuary Apex",
+      "description": "Chiseled femurs form the pillars over the walls are fused with ancient armor. You feel watched by empty sockets.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29526,
+          "description": "The bone-lined passage leads back north."
+        },
+        "west": {
+          "to_room": 29531,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29533,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29504,
+          "max": 2
+        }
+      ]
+    },
+    "29533": {
+      "vnum": 29533,
+      "name": "The Marrow Gate",
+      "description": "Bone lanterns glow with sickly light over a pile of broken shields lies here. The floor vibrates with slow, heavy steps.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29527,
+          "description": "The bone-lined passage leads back north."
+        },
+        "west": {
+          "to_room": 29532,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29534,
+          "description": "A corridor of bone runs east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29505,
+          "max": 2
+        }
+      ]
+    },
+    "29534": {
+      "vnum": 29534,
+      "name": "The Crowned Vault",
+      "description": "A bitter scent of grave soil lingers over a cracked sarcophagus gapes open. A low chant echoes through the ribs.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29528,
+          "description": "The bone-lined passage leads back north."
+        },
+        "west": {
+          "to_room": 29533,
+          "description": "The ossuary hall stretches west."
+        },
+        "east": {
+          "to_room": 29535,
+          "description": "A crown-shaped arch of fused skulls opens to the east."
+        }
+      },
+      "flags": [
+        "no_recall"
+      ]
+    },
+    "29535": {
+      "vnum": 29535,
+      "name": "The Throne of Bones",
+      "description": "The corridor tightens like a spine over runes are etched into polished bone. The Crown of Bone looms with patient malice.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29529,
+          "description": "The bone-lined passage leads back north."
+        },
+        "west": {
+          "to_room": 29534,
+          "description": "The skull-arched gate lies west, rattling softly."
+        }
+      },
+      "flags": [
+        "no_recall"
+      ],
+      "mob_resets": [
+        {
+          "vnum": 29520,
+          "max": 1
+        }
+      ]
+    }
+  },
+  "mobs": {
+    "29501": {
+      "vnum": 29501,
+      "name": "bone thrall",
+      "short_desc": "a bone thrall",
+      "long_desc": "A bone thrall clatters forward, empty sockets staring.",
+      "level": 64,
+      "alignment": -350,
+      "hp_dice": "32d10+4200",
+      "damage_dice": "8d10+28",
+      "gold": 1500,
+      "exp": 21000,
+      "armor_class": 26,
+      "flags": [
+        "aggressive"
+      ],
+      "description": "Strips of armor and muscle hang from the thrall's pale frame."
+    },
+    "29502": {
+      "vnum": 29502,
+      "name": "ossuary archer",
+      "short_desc": "an ossuary archer",
+      "long_desc": "An ossuary archer nocks a bone-tipped arrow.",
+      "level": 65,
+      "alignment": -250,
+      "hp_dice": "33d10+4400",
+      "damage_dice": "9d10+30",
+      "gold": 1700,
+      "exp": 22000,
+      "armor_class": 24,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ],
+      "description": "This skeletal marksman is bound in lacquered bone plates."
+    },
+    "29503": {
+      "vnum": 29503,
+      "name": "marrow priest",
+      "short_desc": "a marrow priest",
+      "long_desc": "A marrow priest raises a staff of fused vertebrae.",
+      "level": 65,
+      "alignment": -500,
+      "hp_dice": "34d10+4600",
+      "damage_dice": "9d10+31",
+      "gold": 1800,
+      "exp": 23000,
+      "armor_class": 22,
+      "flags": [
+        "aggressive",
+        "no_sleep"
+      ],
+      "description": "Its robes are stitched from funerary wrappings and bone dust."
+    },
+    "29504": {
+      "vnum": 29504,
+      "name": "gravebound juggernaut",
+      "short_desc": "a gravebound juggernaut",
+      "long_desc": "A gravebound juggernaut lumbers here, bones grinding.",
+      "level": 66,
+      "alignment": -100,
+      "hp_dice": "38d10+5200",
+      "damage_dice": "10d10+33",
+      "gold": 2000,
+      "exp": 24500,
+      "armor_class": 20,
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "no_charm",
+        "no_sleep"
+      ],
+      "description": "A hulking mass of fused skeletons, it wields a pillar of femurs."
+    },
+    "29505": {
+      "vnum": 29505,
+      "name": "spine reaver",
+      "short_desc": "a spine reaver",
+      "long_desc": "A spine reaver skitters across the bone tiles.",
+      "level": 65,
+      "alignment": -600,
+      "hp_dice": "34d10+4500",
+      "damage_dice": "9d10+32",
+      "gold": 1600,
+      "exp": 23000,
+      "armor_class": 23,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ],
+      "description": "Its bladed limbs are built from sharpened ribs and teeth."
+    },
+    "29506": {
+      "vnum": 29506,
+      "name": "sepulcher wraith",
+      "short_desc": "a sepulcher wraith",
+      "long_desc": "A sepulcher wraith drifts through the ossuary, whispering.",
+      "level": 66,
+      "alignment": -450,
+      "hp_dice": "36d10+4800",
+      "damage_dice": "10d10+34",
+      "gold": 1900,
+      "exp": 25000,
+      "armor_class": 21,
+      "flags": [
+        "aggressive",
+        "no_charm",
+        "no_sleep"
+      ],
+      "description": "A tattered spirit bound to bone, it chills everything it passes."
+    },
+    "29507": {
+      "vnum": 29507,
+      "name": "ribcage sentinel",
+      "short_desc": "a ribcage sentinel",
+      "long_desc": "A ribcage sentinel stands watch, jaws clacking.",
+      "level": 66,
+      "alignment": -200,
+      "hp_dice": "37d10+5000",
+      "damage_dice": "10d10+34",
+      "gold": 2100,
+      "exp": 25500,
+      "armor_class": 19,
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "no_charm",
+        "no_sleep"
+      ],
+      "description": "A hollow guardian of bone plate, its core filled with cold blue fire."
+    },
+    "29510": {
+      "vnum": 29510,
+      "name": "charnel choir vicar",
+      "short_desc": "the Charnel Choir Vicar",
+      "long_desc": "The Charnel Choir Vicar sings, each note cutting like a blade.",
+      "level": 66,
+      "alignment": -650,
+      "hp_dice": "52d10+7600",
+      "damage_dice": "11d10+36",
+      "gold": 3000,
+      "exp": 33000,
+      "armor_class": 16,
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "stay_zone",
+        "no_charm",
+        "no_sleep"
+      ],
+      "description": "Its voice is layered with a hundred dead throats, bound to a single will.",
+      "loot_table": [
+        {
+          "vnum": 29550,
+          "chance": 30
+        },
+        {
+          "vnum": 29554,
+          "chance": 25
+        },
+        {
+          "vnum": 29556,
+          "chance": 20
+        }
+      ]
+    },
+    "29511": {
+      "vnum": 29511,
+      "name": "ossuary harvester",
+      "short_desc": "the Ossuary Harvester",
+      "long_desc": "The Ossuary Harvester hefts a cleaver of bone.",
+      "level": 66,
+      "alignment": -500,
+      "hp_dice": "54d10+7800",
+      "damage_dice": "11d10+38",
+      "gold": 3200,
+      "exp": 34000,
+      "armor_class": 15,
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "stay_zone",
+        "no_charm",
+        "no_sleep"
+      ],
+      "description": "A massive collector of bones, it moves with deliberate, brutal purpose.",
+      "loot_table": [
+        {
+          "vnum": 29551,
+          "chance": 35
+        },
+        {
+          "vnum": 29555,
+          "chance": 25
+        },
+        {
+          "vnum": 29557,
+          "chance": 20
+        }
+      ]
+    },
+    "29520": {
+      "vnum": 29520,
+      "name": "bone-crowned sovereign",
+      "short_desc": "the Bone-Crowned Sovereign",
+      "long_desc": "The Bone-Crowned Sovereign rises from its throne, regalia clattering.",
+      "level": 68,
+      "alignment": -900,
+      "hp_dice": "90d10+14000",
+      "damage_dice": "15d10+50",
+      "gold": 11000,
+      "exp": 60000,
+      "armor_class": -14,
+      "flags": [
+        "boss",
+        "aggressive",
+        "sentinel",
+        "no_charm",
+        "no_sleep"
+      ],
+      "boss": true,
+      "boss_id": "bone_crowned_sovereign",
+      "boss_loot_table": [
+        {
+          "vnum": 29558,
+          "chance": 100
+        },
+        {
+          "vnum": 29559,
+          "chance": 60
+        },
+        {
+          "vnum": 29552,
+          "chance": 35
+        }
+      ],
+      "boss_loot_chance": 100,
+      "description": "A monarch draped in bone-laced armor, its crown a lattice of skulls.",
+      "max_hp": 19000,
+      "ac": -34
+    }
+  },
+  "objects": {
+    "29550": {
+      "vnum": 29550,
+      "name": "Gravewind Greatsword",
+      "short_desc": "the Gravewind Greatsword",
+      "room_desc": "A massive greatsword of bone and iron lies here.",
+      "item_type": "weapon",
+      "weapon_type": "slash",
+      "damage_dice": "12d6+28",
+      "weight": 16,
+      "value": 190000,
+      "type": "weapon",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 64,
+      "effects": {
+        "strength": 5,
+        "hitroll": 12,
+        "damroll": 14
+      }
+    },
+    "29551": {
+      "vnum": 29551,
+      "name": "Ossuary Bulwark",
+      "short_desc": "the Ossuary Bulwark",
+      "room_desc": "A shield of interlocked femurs rests here.",
+      "item_type": "armor",
+      "wear_slot": "shield",
+      "armor_bonus": 40,
+      "weight": 13,
+      "value": 175000,
+      "type": "armor",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 64,
+      "effects": {
+        "wisdom": 3,
+        "armor_class": -26,
+        "hp_regen": 20
+      }
+    },
+    "29552": {
+      "vnum": 29552,
+      "name": "Skullcaller Wand",
+      "short_desc": "the Skullcaller Wand",
+      "room_desc": "A wand carved from a finger bone rests here.",
+      "item_type": "weapon",
+      "weapon_type": "staff",
+      "damage_dice": "10d6+24",
+      "weight": 5,
+      "value": 180000,
+      "type": "weapon",
+      "flags": [
+        "magic",
+        "glow"
+      ],
+      "min_level": 64,
+      "effects": {
+        "intelligence": 5,
+        "hitroll": 9,
+        "damroll": 9,
+        "mana_regen": 18
+      }
+    },
+    "29553": {
+      "vnum": 29553,
+      "name": "Rattlebind Longbow",
+      "short_desc": "the Rattlebind Longbow",
+      "room_desc": "A longbow strung with sinew hangs here.",
+      "item_type": "weapon",
+      "weapon_type": "bow",
+      "damage_dice": "11d6+26",
+      "weight": 8,
+      "value": 170000,
+      "type": "weapon",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 64,
+      "effects": {
+        "dexterity": 4,
+        "hitroll": 11,
+        "damroll": 12
+      }
+    },
+    "29554": {
+      "vnum": 29554,
+      "name": "Marrowcarver Stiletto",
+      "short_desc": "the Marrowcarver Stiletto",
+      "room_desc": "A stiletto of polished bone lies here, razor sharp.",
+      "item_type": "weapon",
+      "weapon_type": "pierce",
+      "damage_dice": "10d6+24",
+      "weight": 3,
+      "value": 165000,
+      "type": "weapon",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 64,
+      "effects": {
+        "dexterity": 5,
+        "hitroll": 10,
+        "damroll": 11,
+        "backstab": 7
+      }
+    },
+    "29555": {
+      "vnum": 29555,
+      "name": "Cadaverous Lute",
+      "short_desc": "the Cadaverous Lute",
+      "room_desc": "A lute strung with sinew rests here, silent.",
+      "item_type": "armor",
+      "wear_slot": "hold",
+      "armor_bonus": 6,
+      "weight": 2,
+      "value": 160000,
+      "type": "treasure",
+      "flags": [
+        "magic",
+        "glow"
+      ],
+      "min_level": 64,
+      "effects": {
+        "charisma": 4,
+        "mana_regen": 16,
+        "song_power": 6
+      }
+    },
+    "29556": {
+      "vnum": 29556,
+      "name": "Boneweft Cowl",
+      "short_desc": "the Boneweft Cowl",
+      "room_desc": "A hood stitched with bone shards lies here.",
+      "item_type": "armor",
+      "wear_slot": "head",
+      "armor_bonus": 20,
+      "weight": 2,
+      "value": 165000,
+      "type": "armor",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 64,
+      "effects": {
+        "intelligence": 4,
+        "mana_regen": 14,
+        "armor_class": -12
+      }
+    },
+    "29557": {
+      "vnum": 29557,
+      "name": "Gravebinder Mail",
+      "short_desc": "the Gravebinder Mail",
+      "room_desc": "A suit of mail of etched bone rests here.",
+      "item_type": "armor",
+      "wear_slot": "body",
+      "armor_bonus": 30,
+      "weight": 12,
+      "value": 175000,
+      "type": "armor",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 64,
+      "effects": {
+        "strength": 3,
+        "armor_class": -18,
+        "hp_regen": 12
+      }
+    },
+    "29558": {
+      "vnum": 29558,
+      "name": "Crown of the Ossuary",
+      "short_desc": "the Crown of the Ossuary",
+      "room_desc": "A crown of fused skulls lies here, whispering softly.",
+      "item_type": "armor",
+      "wear_slot": "head",
+      "armor_bonus": 22,
+      "weight": 3,
+      "value": 240000,
+      "type": "armor",
+      "flags": [
+        "magic",
+        "glow",
+        "hum"
+      ],
+      "min_level": 66,
+      "effects": {
+        "strength": 2,
+        "wisdom": 2,
+        "hitroll": 8,
+        "damroll": 8,
+        "hp_regen": 15
+      }
+    },
+    "29559": {
+      "vnum": 29559,
+      "name": "Sovereign's Boneblade",
+      "short_desc": "the Sovereign's Boneblade",
+      "room_desc": "A blade carved from a giant's femur lies here.",
+      "item_type": "weapon",
+      "weapon_type": "slash",
+      "damage_dice": "13d6+30",
+      "weight": 12,
+      "value": 260000,
+      "type": "weapon",
+      "flags": [
+        "magic",
+        "hum"
+      ],
+      "min_level": 66,
+      "effects": {
+        "strength": 6,
+        "hitroll": 13,
+        "damroll": 15
+      }
+    }
+  }
+}

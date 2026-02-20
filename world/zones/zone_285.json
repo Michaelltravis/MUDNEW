@@ -986,6 +986,10 @@
         "west": {
           "to_room": 28534,
           "description": "The spire offers a retreat westward."
+        },
+        "east": {
+          "to_room": 29500,
+          "description": "A bone-lined fissure yawns to the east, devouring the light."
         }
       },
       "mob_resets": [

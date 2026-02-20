@@ -979,6 +979,10 @@
         "west": {
           "to_room": 28034,
           "description": "Ashen arches lead back to the gatehouse."
+        },
+        "east": {
+          "to_room": 29000,
+          "description": "A stair of obsidian rises into a blackened observatory to the east."
         }
       },
       "mob_resets": [

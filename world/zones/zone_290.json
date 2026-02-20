@@ -1,0 +1,1461 @@
+{
+  "number": 290,
+  "name": "The Black Observatory",
+  "lifespan": 25,
+  "reset_mode": 2,
+  "level_min": 62,
+  "level_max": 66,
+  "rooms": {
+    "29000": {
+      "vnum": 29000,
+      "name": "Black Observatory - Shattered Causeway",
+      "description": "Black stone walls swallow the light over a cracked lens rests in its cradle. The observatory breathes with distant, patient thunder.",
+      "sector_type": "mountain",
+      "exits": {
+        "south": {
+          "to_room": 29006,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "east": {
+          "to_room": 29001,
+          "description": "An obsidian corridor stretches east."
+        },
+        "west": {
+          "to_room": 28035,
+          "description": "A gate of burning sigils lies west, beyond the causeway."
+        }
+      }
+    },
+    "29001": {
+      "vnum": 29001,
+      "name": "Ashglass Landing",
+      "description": "Cold starlight gleams on obsidian tiles over ancient brass rings turn without touch. You sense the pull of a sky that no longer exists.",
+      "sector_type": "mountain",
+      "exits": {
+        "south": {
+          "to_room": 29007,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29000,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29002,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29001,
+          "max": 2
+        }
+      ]
+    },
+    "29002": {
+      "vnum": 29002,
+      "name": "Basalt Walkway",
+      "description": "A thin shimmer clings to the air over star charts are etched into the stone. The air smells of ash and cold iron.",
+      "sector_type": "mountain",
+      "exits": {
+        "south": {
+          "to_room": 29008,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29001,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29003,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29002,
+          "max": 2
+        }
+      ]
+    },
+    "29003": {
+      "vnum": 29003,
+      "name": "Shaded Meridian",
+      "description": "Dustless floors reflect a dim sky over a spiraling stair vanishes into gloom. A pressure builds behind your eyes, then fades.",
+      "sector_type": "mountain",
+      "exits": {
+        "south": {
+          "to_room": 29009,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29002,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29004,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29003,
+          "max": 2
+        }
+      ]
+    },
+    "29004": {
+      "vnum": 29004,
+      "name": "The Dark Meridian",
+      "description": "The silence here feels weighty over blackened brass instruments line the walls. Every sound feels smothered by velvet dark.",
+      "sector_type": "mountain",
+      "exits": {
+        "south": {
+          "to_room": 29010,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29003,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29005,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29004,
+          "max": 2
+        }
+      ]
+    },
+    "29005": {
+      "vnum": 29005,
+      "name": "The Eclipse Bridge",
+      "description": "A low hum vibrates through the masonry over slender catwalks arc above. A whisper of gravity tugs at your cloak.",
+      "sector_type": "mountain",
+      "exits": {
+        "south": {
+          "to_room": 29011,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29004,
+          "description": "A shadowed passage opens to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29005,
+          "max": 2
+        }
+      ]
+    },
+    "29006": {
+      "vnum": 29006,
+      "name": "Starseer Steps",
+      "description": "Faint constellations crawl along the ceiling over ink-dark glass panels show no reflection. The void beyond seems to listen.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29000,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29012,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "east": {
+          "to_room": 29007,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29006,
+          "max": 2
+        }
+      ]
+    },
+    "29007": {
+      "vnum": 29007,
+      "name": "Hall of Sooted Lenses",
+      "description": "Shadows pool like still water over a mosaic of night skies sprawls underfoot. Your footsteps echo like drops in a well.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29001,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29013,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29006,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29008,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29007,
+          "max": 2
+        }
+      ]
+    },
+    "29008": {
+      "vnum": 29008,
+      "name": "The Celestial Gallery",
+      "description": "A bitter metallic chill rides the air over runes pulse with a faint violet hue. A faint vibration hints at unseen machinery.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29002,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29014,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29007,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29009,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29002,
+          "max": 2
+        },
+        {
+          "vnum": 29004,
+          "max": 2
+        }
+      ]
+    },
+    "29009": {
+      "vnum": 29009,
+      "name": "Oculus Vestibule",
+      "description": "Black stone walls swallow the light over a cracked lens rests in its cradle. The observatory breathes with distant, patient thunder.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29003,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29015,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29008,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29010,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29001,
+          "max": 2
+        },
+        {
+          "vnum": 29005,
+          "max": 2
+        }
+      ]
+    },
+    "29010": {
+      "vnum": 29010,
+      "name": "The Hollow Orrery",
+      "description": "Cold starlight gleams on obsidian tiles over ancient brass rings turn without touch. You sense the pull of a sky that no longer exists.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29004,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29016,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29009,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29011,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29006,
+          "max": 2
+        }
+      ]
+    },
+    "29011": {
+      "vnum": 29011,
+      "name": "Abyssal Landing",
+      "description": "A thin shimmer clings to the air over star charts are etched into the stone. The air smells of ash and cold iron.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29005,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29017,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29010,
+          "description": "A shadowed passage opens to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29003,
+          "max": 2
+        }
+      ]
+    },
+    "29012": {
+      "vnum": 29012,
+      "name": "Skyless Court",
+      "description": "Dustless floors reflect a dim sky over a spiraling stair vanishes into gloom. A pressure builds behind your eyes, then fades.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29006,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29018,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "east": {
+          "to_room": 29013,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29001,
+          "max": 2
+        }
+      ]
+    },
+    "29013": {
+      "vnum": 29013,
+      "name": "Chamber of Black Charts",
+      "description": "The silence here feels weighty over blackened brass instruments line the walls. Every sound feels smothered by velvet dark.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29007,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29019,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29012,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29014,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29002,
+          "max": 2
+        }
+      ]
+    },
+    "29014": {
+      "vnum": 29014,
+      "name": "Oculus Nexus",
+      "description": "A low hum vibrates through the masonry over slender catwalks arc above. A whisper of gravity tugs at your cloak.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29008,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29020,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29013,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29015,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29004,
+          "max": 2
+        }
+      ]
+    },
+    "29015": {
+      "vnum": 29015,
+      "name": "The Silent Aperture",
+      "description": "Faint constellations crawl along the ceiling over ink-dark glass panels show no reflection. The void beyond seems to listen.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29009,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29021,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29014,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29016,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29005,
+          "max": 2
+        }
+      ]
+    },
+    "29016": {
+      "vnum": 29016,
+      "name": "Curator's Stacks",
+      "description": "Shadows pool like still water over a mosaic of night skies sprawls underfoot. Your footsteps echo like drops in a well.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29010,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29022,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29015,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29017,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29010,
+          "max": 1
+        }
+      ]
+    },
+    "29017": {
+      "vnum": 29017,
+      "name": "Nightglass Concourse",
+      "description": "A bitter metallic chill rides the air over runes pulse with a faint violet hue. A faint vibration hints at unseen machinery.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29011,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29023,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29016,
+          "description": "A shadowed passage opens to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29006,
+          "max": 2
+        }
+      ]
+    },
+    "29018": {
+      "vnum": 29018,
+      "name": "Graviton Corridor",
+      "description": "Black stone walls swallow the light over a cracked lens rests in its cradle. The observatory breathes with distant, patient thunder.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29012,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29024,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "east": {
+          "to_room": 29019,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29007,
+          "max": 2
+        }
+      ]
+    },
+    "29019": {
+      "vnum": 29019,
+      "name": "Spectral Reading Room",
+      "description": "Cold starlight gleams on obsidian tiles over ancient brass rings turn without touch. You sense the pull of a sky that no longer exists.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29013,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29025,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29018,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29020,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29002,
+          "max": 2
+        }
+      ]
+    },
+    "29020": {
+      "vnum": 29020,
+      "name": "Lensforge Vault",
+      "description": "A thin shimmer clings to the air over star charts are etched into the stone. The air smells of ash and cold iron.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29014,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29026,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29019,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29021,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29003,
+          "max": 2
+        }
+      ]
+    },
+    "29021": {
+      "vnum": 29021,
+      "name": "The Starless Axis",
+      "description": "Dustless floors reflect a dim sky over a spiraling stair vanishes into gloom. A pressure builds behind your eyes, then fades.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29015,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29027,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29020,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29022,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29005,
+          "max": 2
+        }
+      ]
+    },
+    "29022": {
+      "vnum": 29022,
+      "name": "Astral Calculation Hall",
+      "description": "The silence here feels weighty over blackened brass instruments line the walls. Every sound feels smothered by velvet dark.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29016,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29028,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29021,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29023,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29011,
+          "max": 1
+        }
+      ]
+    },
+    "29023": {
+      "vnum": 29023,
+      "name": "The Far Lens",
+      "description": "A low hum vibrates through the masonry over slender catwalks arc above. A whisper of gravity tugs at your cloak.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29017,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29029,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29022,
+          "description": "A shadowed passage opens to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29006,
+          "max": 2
+        }
+      ]
+    },
+    "29024": {
+      "vnum": 29024,
+      "name": "Voidglass Bastion",
+      "description": "Faint constellations crawl along the ceiling over ink-dark glass panels show no reflection. The void beyond seems to listen.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29018,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29030,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "east": {
+          "to_room": 29025,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29010,
+          "max": 1
+        }
+      ]
+    },
+    "29025": {
+      "vnum": 29025,
+      "name": "The Meridian Lock",
+      "description": "Shadows pool like still water over a mosaic of night skies sprawls underfoot. Your footsteps echo like drops in a well.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29019,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29031,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29024,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29026,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29004,
+          "max": 2
+        }
+      ]
+    },
+    "29026": {
+      "vnum": 29026,
+      "name": "The Umbral Stair",
+      "description": "A bitter metallic chill rides the air over runes pulse with a faint violet hue. A faint vibration hints at unseen machinery.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29020,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29032,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29025,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29027,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29005,
+          "max": 2
+        }
+      ]
+    },
+    "29027": {
+      "vnum": 29027,
+      "name": "The Prism Chapel",
+      "description": "Black stone walls swallow the light over a cracked lens rests in its cradle. The observatory breathes with distant, patient thunder.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29021,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29033,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29026,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29028,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29007,
+          "max": 2
+        }
+      ]
+    },
+    "29028": {
+      "vnum": 29028,
+      "name": "The Observatory Spine",
+      "description": "Cold starlight gleams on obsidian tiles over ancient brass rings turn without touch. You sense the pull of a sky that no longer exists.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29022,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29034,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29027,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29029,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29003,
+          "max": 2
+        }
+      ]
+    },
+    "29029": {
+      "vnum": 29029,
+      "name": "Catwalk of Falling Stars",
+      "description": "A thin shimmer clings to the air over star charts are etched into the stone. The air smells of ash and cold iron.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29023,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "south": {
+          "to_room": 29035,
+          "description": "The black stone path continues south into the gloom."
+        },
+        "west": {
+          "to_room": 29028,
+          "description": "A shadowed passage opens to the west."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29006,
+          "max": 2
+        }
+      ]
+    },
+    "29030": {
+      "vnum": 29030,
+      "name": "The Resonant Span",
+      "description": "Dustless floors reflect a dim sky over a spiraling stair vanishes into gloom. A pressure builds behind your eyes, then fades.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29024,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "east": {
+          "to_room": 29031,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29002,
+          "max": 2
+        }
+      ]
+    },
+    "29031": {
+      "vnum": 29031,
+      "name": "Orbiting Cloister",
+      "description": "The silence here feels weighty over blackened brass instruments line the walls. Every sound feels smothered by velvet dark.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29025,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "west": {
+          "to_room": 29030,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29032,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29001,
+          "max": 2
+        }
+      ]
+    },
+    "29032": {
+      "vnum": 29032,
+      "name": "The Black Zenith",
+      "description": "A low hum vibrates through the masonry over slender catwalks arc above. A whisper of gravity tugs at your cloak.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29026,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "west": {
+          "to_room": 29031,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29033,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29004,
+          "max": 2
+        }
+      ]
+    },
+    "29033": {
+      "vnum": 29033,
+      "name": "The Twilight Scriptorium",
+      "description": "Faint constellations crawl along the ceiling over ink-dark glass panels show no reflection. The void beyond seems to listen.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29027,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "west": {
+          "to_room": 29032,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29034,
+          "description": "An obsidian corridor stretches east."
+        }
+      },
+      "mob_resets": [
+        {
+          "vnum": 29005,
+          "max": 2
+        }
+      ]
+    },
+    "29034": {
+      "vnum": 29034,
+      "name": "The Eventide Gate",
+      "description": "Shadows pool like still water over a mosaic of night skies sprawls underfoot. Your footsteps echo like drops in a well.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29028,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "west": {
+          "to_room": 29033,
+          "description": "A shadowed passage opens to the west."
+        },
+        "east": {
+          "to_room": 29035,
+          "description": "A sealed iris of star-metal opens to the east."
+        }
+      },
+      "flags": [
+        "no_recall"
+      ]
+    },
+    "29035": {
+      "vnum": 29035,
+      "name": "The Eclipse Crown",
+      "description": "A bitter metallic chill rides the air over runes pulse with a faint violet hue. A faint vibration hints at unseen machinery.",
+      "sector_type": "inside",
+      "exits": {
+        "north": {
+          "to_room": 29029,
+          "description": "A narrow stair climbs north beneath the arching stone."
+        },
+        "west": {
+          "to_room": 29034,
+          "description": "The iris-gate lies west, pulsing with cold light."
+        }
+      },
+      "flags": [
+        "no_recall"
+      ],
+      "mob_resets": [
+        {
+          "vnum": 29020,
+          "max": 1
+        }
+      ]
+    }
+  },
+  "mobs": {
+    "29001": {
+      "vnum": 29001,
+      "name": "starbound acolyte",
+      "short_desc": "a starbound acolyte",
+      "long_desc": "A starbound acolyte traces charts in the air with glowing fingers.",
+      "level": 62,
+      "alignment": -250,
+      "hp_dice": "30d10+3600",
+      "damage_dice": "7d10+26",
+      "gold": 1200,
+      "exp": 19000,
+      "armor_class": 28,
+      "flags": [
+        "aggressive"
+      ],
+      "description": "Robed in midnight cloth, the acolyte murmurs to constellations only it can see."
+    },
+    "29002": {
+      "vnum": 29002,
+      "name": "obsidian lens-keeper",
+      "short_desc": "an obsidian lens-keeper",
+      "long_desc": "An obsidian lens-keeper adjusts an enormous lens with iron care.",
+      "level": 63,
+      "alignment": -300,
+      "hp_dice": "32d10+4000",
+      "damage_dice": "8d10+28",
+      "gold": 1400,
+      "exp": 20000,
+      "armor_class": 26,
+      "flags": [
+        "aggressive",
+        "sentinel"
+      ],
+      "description": "Hunched and armored, the keeper's hands are blackened from star-metal heat."
+    },
+    "29003": {
+      "vnum": 29003,
+      "name": "voidglass sentinel",
+      "short_desc": "a voidglass sentinel",
+      "long_desc": "A voidglass sentinel glides forward, blades gleaming dark.",
+      "level": 64,
+      "alignment": -200,
+      "hp_dice": "34d10+4400",
+      "damage_dice": "9d10+30",
+      "gold": 1500,
+      "exp": 21000,
+      "armor_class": 24,
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "no_charm"
+      ],
+      "description": "Its armor is translucent and hungry, swallowing the light around it."
+    },
+    "29004": {
+      "vnum": 29004,
+      "name": "gravitic wisp",
+      "short_desc": "a gravitic wisp",
+      "long_desc": "A gravitic wisp spirals by, tugging at your gear.",
+      "level": 62,
+      "alignment": -150,
+      "hp_dice": "28d10+3200",
+      "damage_dice": "6d10+24",
+      "gold": 900,
+      "exp": 17500,
+      "armor_class": 32,
+      "flags": [
+        "aggressive"
+      ],
+      "description": "A mote of compressed night that warps the air with every drift."
+    },
+    "29005": {
+      "vnum": 29005,
+      "name": "nightglass stalker",
+      "short_desc": "a nightglass stalker",
+      "long_desc": "A nightglass stalker prowls with glassy silence.",
+      "level": 63,
+      "alignment": -450,
+      "hp_dice": "31d10+3800",
+      "damage_dice": "8d10+29",
+      "gold": 1300,
+      "exp": 20500,
+      "armor_class": 22,
+      "flags": [
+        "aggressive",
+        "stay_zone"
+      ],
+      "description": "Its limbs are thin as needles, and its eyes are holes in the world."
+    },
+    "29006": {
+      "vnum": 29006,
+      "name": "umbral astrologer",
+      "short_desc": "an umbral astrologer",
+      "long_desc": "An umbral astrologer chants, stars circling in its wake.",
+      "level": 64,
+      "alignment": -350,
+      "hp_dice": "33d10+4200",
+      "damage_dice": "8d10+30",
+      "gold": 1600,
+      "exp": 22000,
+      "armor_class": 25,
+      "flags": [
+        "aggressive",
+        "no_sleep"
+      ],
+      "description": "This mage's eyes are constellations, and its voice bends the air."
+    },
+    "29007": {
+      "vnum": 29007,
+      "name": "astral construct",
+      "short_desc": "an astral construct",
+      "long_desc": "An astral construct creaks forward, plated in star-metal.",
+      "level": 65,
+      "alignment": 0,
+      "hp_dice": "36d10+4800",
+      "damage_dice": "10d10+32",
+      "gold": 1900,
+      "exp": 23500,
+      "armor_class": 20,
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "no_charm",
+        "no_sleep"
+      ],
+      "description": "A towering machine of brass and obsidian, driven by cold, patient intent."
+    },
+    "29010": {
+      "vnum": 29010,
+      "name": "curator nyx",
+      "short_desc": "Curator Nyx",
+      "long_desc": "Curator Nyx hovers over the archives, eyes glowing sapphire.",
+      "level": 65,
+      "alignment": -600,
+      "hp_dice": "48d10+6800",
+      "damage_dice": "10d10+34",
+      "gold": 2600,
+      "exp": 30000,
+      "armor_class": 18,
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "stay_zone",
+        "no_charm",
+        "no_sleep"
+      ],
+      "description": "Nyx's robe trails like a comet tail, and her voice is a measured, lethal whisper.",
+      "loot_table": [
+        {
+          "vnum": 29050,
+          "chance": 30
+        },
+        {
+          "vnum": 29054,
+          "chance": 25
+        },
+        {
+          "vnum": 29056,
+          "chance": 20
+        }
+      ]
+    },
+    "29011": {
+      "vnum": 29011,
+      "name": "voidglass warden",
+      "short_desc": "the Voidglass Warden",
+      "long_desc": "The Voidglass Warden stands ready, its shield a slab of night.",
+      "level": 65,
+      "alignment": -500,
+      "hp_dice": "50d10+7200",
+      "damage_dice": "10d10+36",
+      "gold": 2800,
+      "exp": 31000,
+      "armor_class": 16,
+      "flags": [
+        "aggressive",
+        "sentinel",
+        "stay_zone",
+        "no_charm",
+        "no_sleep"
+      ],
+      "description": "A guardian of star-metal and voidglass, it does not move unless challenged.",
+      "loot_table": [
+        {
+          "vnum": 29051,
+          "chance": 35
+        },
+        {
+          "vnum": 29055,
+          "chance": 25
+        },
+        {
+          "vnum": 29057,
+          "chance": 20
+        }
+      ]
+    },
+    "29020": {
+      "vnum": 29020,
+      "name": "eclipse regent",
+      "short_desc": "the Eclipse Regent",
+      "long_desc": "The Eclipse Regent rises from the crown dais, haloed in voidlight.",
+      "level": 66,
+      "alignment": -900,
+      "hp_dice": "85d10+13000",
+      "damage_dice": "14d10+48",
+      "gold": 9000,
+      "exp": 56000,
+      "armor_class": -12,
+      "flags": [
+        "boss",
+        "aggressive",
+        "sentinel",
+        "no_charm",
+        "no_sleep"
+      ],
+      "boss": true,
+      "boss_id": "eclipse_regent",
+      "boss_loot_table": [
+        {
+          "vnum": 29058,
+          "chance": 100
+        },
+        {
+          "vnum": 29059,
+          "chance": 60
+        },
+        {
+          "vnum": 29052,
+          "chance": 35
+        }
+      ],
+      "boss_loot_chance": 100,
+      "description": "A monarch of starless light, armored in obsidian plates that drink every glow.",
+      "max_hp": 17000,
+      "ac": -32
+    }
+  },
+  "objects": {
+    "29050": {
+      "vnum": 29050,
+      "name": "Starforged Glaive",
+      "short_desc": "the Starforged Glaive",
+      "room_desc": "A glaive of star-metal rests here, cold to the touch.",
+      "item_type": "weapon",
+      "weapon_type": "slash",
+      "damage_dice": "11d6+26",
+      "weight": 15,
+      "value": 165000,
+      "type": "weapon",
+      "flags": [
+        "magic",
+        "glow"
+      ],
+      "min_level": 62,
+      "effects": {
+        "strength": 4,
+        "hitroll": 11,
+        "damroll": 13
+      }
+    },
+    "29051": {
+      "vnum": 29051,
+      "name": "Voidglass Aegis",
+      "short_desc": "the Voidglass Aegis",
+      "room_desc": "A shield of dark glass hums with distant thunder.",
+      "item_type": "armor",
+      "wear_slot": "shield",
+      "armor_bonus": 38,
+      "weight": 12,
+      "value": 155000,
+      "type": "armor",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 62,
+      "effects": {
+        "wisdom": 3,
+        "armor_class": -24,
+        "hp_regen": 18
+      }
+    },
+    "29052": {
+      "vnum": 29052,
+      "name": "Eclipse Lens",
+      "short_desc": "the Eclipse Lens",
+      "room_desc": "A black crystal lens floats here, turning slowly.",
+      "item_type": "armor",
+      "wear_slot": "hold",
+      "armor_bonus": 8,
+      "weight": 2,
+      "value": 175000,
+      "type": "treasure",
+      "flags": [
+        "magic",
+        "glow"
+      ],
+      "min_level": 64,
+      "effects": {
+        "intelligence": 4,
+        "mana_regen": 18,
+        "armor_class": -12
+      }
+    },
+    "29053": {
+      "vnum": 29053,
+      "name": "Nebulae Longbow",
+      "short_desc": "the Nebulae Longbow",
+      "room_desc": "A longbow woven of star-sinew glimmers faintly.",
+      "item_type": "weapon",
+      "weapon_type": "bow",
+      "damage_dice": "10d6+24",
+      "weight": 8,
+      "value": 150000,
+      "type": "weapon",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 62,
+      "effects": {
+        "dexterity": 4,
+        "hitroll": 10,
+        "damroll": 11
+      }
+    },
+    "29054": {
+      "vnum": 29054,
+      "name": "Nightglass Stiletto",
+      "short_desc": "the Nightglass Stiletto",
+      "room_desc": "A slim stiletto of black glass lies here.",
+      "item_type": "weapon",
+      "weapon_type": "pierce",
+      "damage_dice": "9d6+22",
+      "weight": 3,
+      "value": 145000,
+      "type": "weapon",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 62,
+      "effects": {
+        "dexterity": 4,
+        "hitroll": 9,
+        "damroll": 10,
+        "backstab": 6
+      }
+    },
+    "29055": {
+      "vnum": 29055,
+      "name": "Lyre of Orbits",
+      "short_desc": "the Lyre of Orbits",
+      "room_desc": "A silvered lyre hums with a distant, celestial chord.",
+      "item_type": "armor",
+      "wear_slot": "hold",
+      "armor_bonus": 6,
+      "weight": 2,
+      "value": 140000,
+      "type": "treasure",
+      "flags": [
+        "magic",
+        "glow"
+      ],
+      "min_level": 62,
+      "effects": {
+        "charisma": 4,
+        "mana_regen": 15,
+        "song_power": 5
+      }
+    },
+    "29056": {
+      "vnum": 29056,
+      "name": "Astral Seer's Diadem",
+      "short_desc": "the Astral Seer's Diadem",
+      "room_desc": "A circlet of star-metal rests here, its gems unlit.",
+      "item_type": "armor",
+      "wear_slot": "head",
+      "armor_bonus": 18,
+      "weight": 2,
+      "value": 135000,
+      "type": "armor",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 62,
+      "effects": {
+        "intelligence": 3,
+        "wisdom": 3,
+        "mana_regen": 12
+      }
+    },
+    "29057": {
+      "vnum": 29057,
+      "name": "Eventide Mantle",
+      "short_desc": "the Eventide Mantle",
+      "room_desc": "A cloak woven of dusk hangs here.",
+      "item_type": "armor",
+      "wear_slot": "about",
+      "armor_bonus": 24,
+      "weight": 3,
+      "value": 145000,
+      "type": "armor",
+      "flags": [
+        "magic"
+      ],
+      "min_level": 62,
+      "effects": {
+        "intelligence": 3,
+        "armor_class": -14,
+        "mana_regen": 10
+      }
+    },
+    "29058": {
+      "vnum": 29058,
+      "name": "Crown of the Black Observatory",
+      "short_desc": "the Crown of the Black Observatory",
+      "room_desc": "A crown of star-metal floats here, lightless and cold.",
+      "item_type": "armor",
+      "wear_slot": "head",
+      "armor_bonus": 20,
+      "weight": 3,
+      "value": 220000,
+      "type": "armor",
+      "flags": [
+        "magic",
+        "glow",
+        "hum"
+      ],
+      "min_level": 64,
+      "effects": {
+        "strength": 2,
+        "intelligence": 2,
+        "hitroll": 8,
+        "damroll": 8,
+        "mana_regen": 12
+      }
+    },
+    "29059": {
+      "vnum": 29059,
+      "name": "Regent's Starblade",
+      "short_desc": "the Regent's Starblade",
+      "room_desc": "A blade of condensed starlight lies here, dim yet deadly.",
+      "item_type": "weapon",
+      "weapon_type": "slash",
+      "damage_dice": "12d6+28",
+      "weight": 10,
+      "value": 240000,
+      "type": "weapon",
+      "flags": [
+        "magic",
+        "glow",
+        "hum"
+      ],
+      "min_level": 64,
+      "effects": {
+        "strength": 5,
+        "hitroll": 12,
+        "damroll": 14
+      }
+    }
+  }
+}
