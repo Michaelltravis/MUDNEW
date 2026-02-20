@@ -2339,6 +2339,9 @@ class Player(Character):
                     continue
                 if getattr(char, 'hp', 0) <= 0:
                     continue
+                if hasattr(char, 'connection') and char.connection is None:
+                    char.protecting = None
+                    continue
                 if getattr(char, 'is_fighting', False):
                     continue
                 if now < getattr(char, 'protect_cooldown_until', 0):
@@ -2365,6 +2368,16 @@ class Player(Character):
                         exclude=[self, best]
                     )
 
+                    # Skill progression hook
+                    try:
+                        if hasattr(best, 'improve_skill'):
+                            rescue_skill = best.skills.get('rescue', 0) if hasattr(best, 'skills') else 0
+                            block_skill = best.skills.get('shield_block', 0) if hasattr(best, 'skills') else 0
+                            skill_to_improve = 'shield_block' if block_skill >= rescue_skill and block_skill > 0 else 'rescue'
+                            await best.improve_skill(skill_to_improve, difficulty=7)
+                    except Exception:
+                        pass
+
                     # Protector takes damage and optionally engages attacker
                     best.hp -= amount
                     if not getattr(best, 'is_fighting', False):
@@ -2375,6 +2388,7 @@ class Player(Character):
 
                     # Check if protector died
                     if best.hp <= 0:
+                        best.protecting = None
                         await self.room.send_to_room(
                             f"{c['red']}{best.name} collapses from the intercepted blow!{c['reset']}"
                         )
@@ -2385,17 +2399,23 @@ class Player(Character):
         # Pet protection intercept - check if any pet is protecting this player
         if attacker and self.room and amount > 0:
             from pets import PetManager
+            now = time.time()
             for char in self.room.characters:
                 # Check if this is a pet protecting us
                 if hasattr(char, 'ai_state') and hasattr(char, 'owner'):
                     protecting = char.ai_state.get('protecting')
                     if protecting == self and char.hp > 0 and not char.is_fighting:
+                        if hasattr(char.owner, 'connection') and char.owner.connection is None:
+                            continue
+                        if now < getattr(char, 'protect_cooldown_until', 0):
+                            continue
                         # 60% chance to intercept, higher if pet has shield_wall ability
                         intercept_chance = 60
                         if hasattr(char, 'special_abilities') and 'shield_wall' in char.special_abilities:
                             intercept_chance = 75
                         
                         if random.randint(1, 100) <= intercept_chance:
+                            char.protect_cooldown_until = now + self.config.PROTECT_INTERCEPT_COOLDOWN_SECONDS
                             # Pet intercepts the attack!
                             await self.send(f"{c['bright_green']}{char.name} leaps in front of you, taking the blow!{c['reset']}")
                             await char.owner.send(f"{c['bright_green']}{char.name} intercepts an attack on {self.name}!{c['reset']}")

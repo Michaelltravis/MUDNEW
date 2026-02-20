@@ -305,6 +305,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
                             'MECHANICS:\n'
                             '- Intercept chance scales with rescue/shield skill and STR/CON\n'
                             '- Defensive stance improves intercepts\n'
+                            '- Successful intercepts can improve rescue/shield block\n'
                             '- Short intercept cooldown prevents chaining',
              'syntax': 'protect <ally>|protect off',
              'title': 'Protect'},

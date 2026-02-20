@@ -66,6 +66,21 @@
 
 ---
 
+## MUME Adoption Batch D (Polish & Validation)
+
+### Added
+- **Protect progression hook:** successful intercepts can improve rescue or shield block skill.
+
+### Improved
+- **Protect edge cases:** linkdead protectors are ignored/cleared; pet intercepts now respect cooldowns.
+- **Multiple protectors messaging:** protect command now notes when someone is already guarding the target.
+- **Rescue progression:** successful rescues can improve rescue skill.
+
+### Validation
+- Ran `python3 -m py_compile` on all `src/*.py`.
+
+---
+
 ## MUME Adoption Batch A
 
 ### Added
@@ -213,3 +228,17 @@
 - **Bosses:** 1
 - **Loot Items:** 16
 - **Notable Mechanics:** Dual-branch endgame convergence; no-recall sanctum and boss chamber; raid-tier archetype packs (tank/caster/healer/assassin)
+
+---
+
+## Overnight Recap (Batch D)
+- **Commits:** HEAD (see git log)
+- **Files touched:**
+  - `src/player.py`
+  - `src/commands.py`
+  - `src/help_data.py`
+  - `docs/CHANGELOG_2026-02-19.md`
+- **Notes:** protect/rescue progression hooks added; intercept edge cases tightened; pet protect cooldown now honored.
+- **Recommended next steps:**
+  - Consider a lightweight log line for failed rescue attempts if players want more feedback.
+  - Review protect/progression tuning once live combat logs are available.

@@ -6218,6 +6218,13 @@ class CommandHandler:
                     f"{c['cyan']}{player.name} heroically rescues {ally.name}!{c['reset']}",
                     exclude=[player, ally]
                 )
+
+            # Skill progression hook
+            try:
+                if hasattr(player, 'improve_skill'):
+                    await player.improve_skill('rescue', difficulty=6)
+            except Exception:
+                pass
             
             # Switch aggro
             ally.fighting = None
@@ -12599,6 +12606,16 @@ class CommandHandler:
         if not target:
             await player.send(f"{c['red']}You don't see '{target_name}' here.{c['reset']}")
             return
+
+        existing_protectors = [
+            char for char in player.room.characters
+            if char != player and getattr(char, 'protecting', None) == target
+        ]
+        if existing_protectors:
+            names = ', '.join(ch.name for ch in existing_protectors[:2])
+            if len(existing_protectors) > 2:
+                names = f"{names} and others"
+            await player.send(f"{c['yellow']}Note: {target.name} is already being protected by {names}.{c['reset']}")
 
         player.protecting = target
         await player.send(f"{c['bright_green']}You move to protect {target.name}.{c['reset']}")
