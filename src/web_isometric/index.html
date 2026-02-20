@@ -1800,17 +1800,14 @@
                     return;
                 }
 
-                // Damage numbers in brackets [42] or [42 damage] — catch any line with a bracket damage value
+                // Damage numbers in brackets [42] or [42 damage]
                 if (/\[\d+\s*(dmg|damage)?\]/.test(t) && _inCombat) {
                     _addCombatLine(t, 'info');
                     _enterCombat();
                     return;
                 }
 
-                // Catch-all: route anything during active combat that isn't clearly non-combat
-                if (_inCombat && !_isNonCombatLine(t)) {
-                    _addCombatLine(t, 'info');
-                }
+                // No catch-all: only explicit combat patterns should enter combat log.
             });
         }
 
