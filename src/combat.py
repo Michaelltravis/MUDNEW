@@ -433,7 +433,8 @@ class CombatHandler:
 
         # Avoidance checks
         if hasattr(defender, 'skills'):
-            dodge = defender.skills.get('dodge', 0)
+            shield_bonus = defender.get_shield_evasion_bonus() if hasattr(defender, 'get_shield_evasion_bonus') else 0
+            dodge = defender.skills.get('dodge', 0) + shield_bonus
             # Kill or Be Killed: +1% dodge per Intel point
             try:
                 from talents import TalentManager
@@ -503,6 +504,8 @@ class CombatHandler:
                 return
             # Evasion (chance to avoid entirely)
             evasion = defender.skills.get('evasion', 0)
+            if evasion:
+                evasion += shield_bonus
             if evasion and random.randint(1, 100) <= max(5, evasion // 2):
                 if hasattr(defender, 'send'):
                     await defender.send(f"{c['cyan']}You evade the attack!{c['reset']}")

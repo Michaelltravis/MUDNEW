@@ -533,7 +533,7 @@ class CombatCompanion:
             total = 0
         return max(0, total)
 
-    def take_damage(self, amount: int) -> bool:
+    def take_damage(self, amount: int, attacker=None, damage_type: str = 'physical') -> bool:
         """Take damage. Returns True if knocked out."""
         self.hp -= amount
         if self.hp <= 0:

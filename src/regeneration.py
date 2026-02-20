@@ -257,6 +257,14 @@ class RegenerationCalculator:
         except Exception:
             pass
 
+        # Briskness mobility surge
+        try:
+            from config import Config
+            if hasattr(character, 'affect_flags') and 'briskness' in character.affect_flags:
+                regen *= (1.0 + Config.BRISKNESS_REGEN_BONUS)
+        except Exception:
+            pass
+
         # Hunger/Thirst penalties (players only)
         if hasattr(character, 'hunger'):
             if character.hunger <= 5:

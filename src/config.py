@@ -79,6 +79,28 @@ class Config:
     SECOND_WIND_RESTORE_PCT = 0.25
     SECOND_WIND_BUFF_SECONDS = 30
     SECOND_WIND_REGEN_BONUS = 0.5
+
+    # Briskness (mobility surge)
+    BRISKNESS_INSTANT_PCT = 0.20
+    BRISKNESS_REGEN_BONUS = 0.35
+    BRISKNESS_DURATION_TICKS = 18
+    BRISKNESS_WILDERNESS_BONUS = 0.20
+
+    # Absorption shields
+    ABSORB_LEVEL_BONUS = 4
+    ABSORB_PROF_SCALING = 0.5
+    ABSORB_ARMOR_SOFTCAP = 20
+    ABSORB_ARMOR_PENALTY_PER_WEIGHT = 0.02
+    ABSORB_ARMOR_MAX_PENALTY = 0.40
+    ABSORB_MAGIC_TYPES = {'magic', 'fire', 'cold', 'lightning', 'acid', 'arcane', 'holy', 'shadow'}
+
+    # Shield-style evasion bonuses
+    SHIELD_EVASION_BONUSES = {
+        'shielded': 4,
+        'holy_shield': 6,
+        'divine_shield': 6,
+        'aegis_ward': 4,
+    }
     
     # Character Creation
     STARTING_GOLD = 100
@@ -296,7 +318,7 @@ class Config:
             'skills': ['track', 'sneak', 'hide', 'second_attack', 'dual_wield', 'dodge', 'scan',
                       'aimed_shot', 'kill_command', 'rapid_fire', 'hunters_mark', 'tame'],
             'spells': ['cure_light', 'detect_magic', 'faerie_fire', 'call_lightning',
-                      'barkskin', 'entangle'],
+                      'barkskin', 'entangle', 'briskness'],
             # Rangers can tame animal companions: wolf, bear, hawk, cat, boar
             # Level 31-60: volley (32), camouflage_master (38), serpent_sting (44),
             #              rapid_fire (50), kill_command (56), alpha_pack (60)

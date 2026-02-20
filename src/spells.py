@@ -137,7 +137,7 @@ SPELLS = {
         'target': 'defensive',
         'duration_ticks': 100,  # ~10 min base, scales with level
         'scales_duration': True,
-        'affects': [{'type': 'ac', 'value': -20}],
+        'affects': [{'type': 'ac', 'value': -20}, {'type': 'armour_ward', 'value': 60}],
         'message_self': 'You feel protected by magical armor.',
         'message_other': '$N is surrounded by a shimmering shield.',
     },
@@ -523,7 +523,7 @@ SPELLS = {
         'target': 'defensive',
         'duration_ticks': 100,  # ~10 min base, scales with level
         'scales_duration': True,
-        'affects': [{'type': 'ac', 'value': -30}],  # Better than armor
+        'affects': [{'type': 'ac', 'value': -30}, {'type': 'shielded', 'value': 1}],  # Better than armor
         'message_self': 'A shimmering force shield surrounds you!',
         'message_other': 'A shimmering force shield surrounds $N!',
     },
@@ -615,7 +615,7 @@ SPELLS = {
         'mana_cost': 35,
         'target': 'defensive',
         'duration_ticks': 18,
-        'affects': [{'type': 'ac', 'value': -25}, {'type': 'saving_throw', 'value': 2}],
+        'affects': [{'type': 'ac', 'value': -25}, {'type': 'saving_throw', 'value': 2}, {'type': 'shielded', 'value': 1}],
         'message_self': 'Divine power shields you from harm!',
         'message_other': 'Divine light surrounds $N protectively!',
     },
@@ -636,6 +636,16 @@ SPELLS = {
         'affects': [{'type': 'ac', 'value': -35}],  # Natural armor, very strong
         'message_self': 'Your skin becomes as tough as bark!',
         'message_other': '$N\'s skin becomes thick and bark-like!',
+    },
+    'briskness': {
+        'name': 'Briskness',
+        'mana_cost': 30,
+        'target': 'defensive',
+        'duration_ticks': 18,
+        'affects': [{'type': 'briskness', 'value': 1}],
+        'special': 'briskness',
+        'message_self': 'A burst of speed fills your limbs.',
+        'message_other': '$N moves with sudden briskness.',
     },
     'righteous_fury': {
         'name': 'Righteous Fury',
@@ -2170,7 +2180,8 @@ class SpellHandler:
                     await caster.send(f"{c['bright_yellow']}*** CRITICAL SPELL! ***{c['reset']}")
 
                 # Apply spell damage
-                killed = await target.take_damage(damage, caster)
+                damage_type = spell.get('damage_type', 'magic')
+                killed = await target.take_damage(damage, caster, damage_type=damage_type)
                 
                 await caster.send(f"{c['bright_red']}Your spell does {damage} damage to {target.name}!{c['reset']}")
 
@@ -2299,17 +2310,57 @@ class SpellHandler:
                 # Level 30: 100 + 60 = 160 ticks (~16 min)
                 duration = duration + (caster.level * 2)
             for affect in spell['affects']:
-                await cls.apply_affect(target, affect, duration, spell['name'], caster.level)
+                await cls.apply_affect(target, affect, duration, spell['name'], caster.level, caster=caster, spell_key=spell_name)
                 
         # Handle special spells
         if spell.get('special'):
             await cls.handle_special_spell(caster, target, spell)
             
     @classmethod
-    async def apply_affect(cls, target: 'Character', affect: dict, duration: int, spell_name: str = 'unknown', caster_level: int = 1):
+    def _scale_absorb_value(cls, base_value: int, caster_level: int, caster: Optional['Character'],
+                            target: Optional['Character'], spell_key: Optional[str]) -> int:
+        """Scale absorption pool by level, proficiency, and armor weight penalties."""
+        value = base_value + (caster_level * cls.config.ABSORB_LEVEL_BONUS)
+
+        proficiency = 0
+        try:
+            if caster and spell_key:
+                proficiency = caster.spells.get(spell_key, 0)
+        except Exception:
+            proficiency = 0
+        value += int(base_value * (proficiency / 100) * cls.config.ABSORB_PROF_SCALING)
+
+        # Prime stat bonus for the caster
+        try:
+            if caster and hasattr(caster, 'char_class'):
+                prime = caster.config.CLASSES.get(str(caster.char_class).lower(), {}).get('prime_stat')
+                if prime and hasattr(caster, prime):
+                    value += max(0, (getattr(caster, prime) - 10) * 2)
+        except Exception:
+            pass
+
+        # Armor weight penalty on the target
+        try:
+            if target and hasattr(target, 'get_armor_weight'):
+                weight = target.get_armor_weight()
+                if weight > cls.config.ABSORB_ARMOR_SOFTCAP:
+                    over = weight - cls.config.ABSORB_ARMOR_SOFTCAP
+                    penalty = min(cls.config.ABSORB_ARMOR_MAX_PENALTY, over * cls.config.ABSORB_ARMOR_PENALTY_PER_WEIGHT)
+                    value = int(value * (1 - penalty))
+        except Exception:
+            pass
+
+        return max(1, int(value))
+
+    @classmethod
+    async def apply_affect(cls, target: 'Character', affect: dict, duration: int, spell_name: str = 'unknown',
+                           caster_level: int = 1, caster: Optional['Character'] = None, spell_key: Optional[str] = None):
         """Apply a spell affect to a character using the AffectManager."""
         affect_type = affect['type']
         value = affect['value']
+
+        if affect_type in ('divine_shield', 'stoneskin', 'armour_ward'):
+            value = cls._scale_absorb_value(value, caster_level, caster, target, spell_key)
 
         # Determine if this is a stat modification or a flag
         stat_types = {'hitroll', 'damroll', 'ac', 'str', 'int', 'wis', 'dex', 'con', 'cha',
@@ -2321,7 +2372,8 @@ class SpellHandler:
                      'blink', 'prot_evil', 'prot_good', 'divine_shield', 'invulnerable',
                      'detect_evil', 'charmed', 'entangled', 'sleeping', 'stunned', 'slow',
                      'combustion', 'presence_of_mind', 'arcane_power', 'guardian_spirit',
-                     'beacon_of_light', 'holy_shield', 'divine_guardian', 'aegis_ward', 'shadowform'}
+                     'beacon_of_light', 'holy_shield', 'divine_guardian', 'aegis_ward', 'shadowform',
+                     'armour_ward', 'briskness', 'shielded'}
 
         # Create affect data for AffectManager
         affect_data = {
@@ -2362,7 +2414,7 @@ class SpellHandler:
         elif affect_type in flag_types:
             affect_data['type'] = AffectManager.TYPE_FLAG
             # Absorption shields keep their value, other flags are binary
-            if affect_type not in ('divine_shield', 'stoneskin'):
+            if affect_type not in ('divine_shield', 'stoneskin', 'armour_ward'):
                 affect_data['value'] = 1  # Flags are binary (on/off)
         elif affect_type == 'sleep':
             # Special case: sleep changes position immediately
@@ -2389,6 +2441,28 @@ class SpellHandler:
                 if hasattr(caster, attr):
                     setattr(caster, attr, 0)
             await caster.send(f"{c['cyan']}Your frost power surges anew.{c['reset']}")
+            return
+
+        elif special == 'briskness':
+            restore = max(10, int(target.max_move * cls.config.BRISKNESS_INSTANT_PCT))
+            # Rangers regain more in the wild
+            try:
+                natural = {'field', 'forest', 'hills', 'mountain', 'swamp', 'desert'}
+                if getattr(target, 'char_class', '').lower() == 'ranger' and getattr(target, 'room', None):
+                    if getattr(target.room, 'sector_type', '') in natural:
+                        restore = int(restore * (1 + cls.config.BRISKNESS_WILDERNESS_BONUS))
+            except Exception:
+                pass
+            old_move = target.move
+            target.move = min(target.max_move, target.move + restore)
+            actual = target.move - old_move
+            if actual > 0:
+                if target == caster:
+                    await caster.send(f"{c['bright_green']}You surge with briskness, restoring {actual} move.{c['reset']}")
+                else:
+                    await caster.send(f"{c['bright_green']}{target.name} surges with briskness (+{actual} move).{c['reset']}")
+                    if hasattr(target, 'send'):
+                        await target.send(f"{c['bright_green']}A burst of briskness restores {actual} move.{c['reset']}")
             return
 
         elif special == 'mana_rift':

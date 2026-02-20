@@ -1073,13 +1073,15 @@ class Mobile(Character):
                 from combat import CombatHandler
                 await CombatHandler.handle_death(self, target)
                 
-    async def take_damage(self, amount: int, attacker: 'Character' = None) -> bool:
+    async def take_damage(self, amount: int, attacker: 'Character' = None, damage_type: str = 'physical') -> bool:
         """Take damage, return True if killed."""
+        damage_type = damage_type or 'physical'
         
-        # Absorb shields (divine_shield / stoneskin)
+        # Absorb shields (divine_shield / stoneskin / armour_ward)
         try:
+            absorb_allowed = damage_type == 'physical' or damage_type in Config.ABSORB_MAGIC_TYPES
             for affect in self.affects[:]:
-                if affect.applies_to in ('divine_shield', 'stoneskin') and amount > 0:
+                if affect.applies_to in ('divine_shield', 'stoneskin', 'armour_ward') and amount > 0 and absorb_allowed:
                     absorbed = min(amount, affect.value)
                     affect.value -= absorbed
                     amount -= absorbed

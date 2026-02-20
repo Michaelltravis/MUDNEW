@@ -72,7 +72,28 @@ class Character:
         # Affects
         self.affects = []
         self.affect_flags = set()  # Flags applied by affects (sanctuary, invisible, etc.)
-        
+
+    def get_armor_weight(self) -> int:
+        """Total weight of equipped armor pieces (used for absorption penalties)."""
+        total = 0
+        for item in getattr(self, 'equipment', {}).values():
+            if not item:
+                continue
+            if getattr(item, 'item_type', '') == 'armor':
+                total += getattr(item, 'weight', 0)
+        return total
+
+    def get_shield_evasion_bonus(self) -> int:
+        """Evasion bonus from shield-style magical effects."""
+        try:
+            bonuses = self.config.SHIELD_EVASION_BONUSES
+        except Exception:
+            from config import Config
+            bonuses = Config.SHIELD_EVASION_BONUSES
+        if not hasattr(self, 'affect_flags'):
+            return 0
+        return max((bonuses.get(flag, 0) for flag in self.affect_flags), default=0)
+
     @property
     def is_alive(self):
         return self.hp > 0
@@ -679,13 +700,37 @@ class Player(Character):
         return per
 
     def get_skill_level(self, skill: str) -> int:
-        """Base skill level plus equipment bonus for that skill."""
+        """Base skill level plus equipment and stat bonuses for that skill."""
         base = 0
         try:
             base = self.skills.get(skill, 0)
         except Exception:
             base = 0
-        return base + self.get_equipment_bonus(skill)
+
+        stat_map = {
+            'dodge': 'dex',
+            'evasion': 'dex',
+            'parry': 'dex',
+            'shield_block': 'str',
+            'bash': 'str',
+            'kick': 'str',
+            'cleave': 'str',
+            'charge': 'str',
+            'execute': 'str',
+            'backstab': 'dex',
+            'sneak': 'dex',
+            'hide': 'dex',
+            'pick_lock': 'dex',
+            'steal': 'dex',
+            'track': 'wis',
+            'tame': 'wis',
+        }
+        stat_bonus = 0
+        stat_key = stat_map.get(skill)
+        if stat_key and hasattr(self, stat_key):
+            stat_bonus = (getattr(self, stat_key) - 10) // 2
+
+        return base + self.get_equipment_bonus(skill) + stat_bonus
 
     def can_see_in_dark(self) -> bool:
         """Determine if the player can see in dark conditions."""
@@ -2275,9 +2320,10 @@ class Player(Character):
         else:
             return "*** ANNIHILATE ***"
             
-    async def take_damage(self, amount: int, attacker: 'Character' = None) -> bool:
+    async def take_damage(self, amount: int, attacker: 'Character' = None, damage_type: str = 'physical') -> bool:
         """Take damage, return True if killed."""
         c = self.config.COLORS
+        damage_type = damage_type or 'physical'
         
         # Pet protection intercept - check if any pet is protecting this player
         if attacker and self.room and amount > 0:
@@ -2329,10 +2375,11 @@ class Player(Character):
                             
                             return False  # Player takes no damage
         
-        # Absorb shields (divine_shield / stoneskin)
+        # Absorb shields (divine_shield / stoneskin / armour_ward)
         try:
+            absorb_allowed = damage_type == 'physical' or damage_type in self.config.ABSORB_MAGIC_TYPES
             for affect in self.affects[:]:
-                if affect.applies_to in ('divine_shield', 'stoneskin') and amount > 0:
+                if affect.applies_to in ('divine_shield', 'stoneskin', 'armour_ward') and amount > 0 and absorb_allowed:
                     absorbed = min(amount, affect.value)
                     affect.value -= absorbed
                     amount -= absorbed

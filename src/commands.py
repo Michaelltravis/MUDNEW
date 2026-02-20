@@ -4345,12 +4345,14 @@ class CommandHandler:
             cd_text = f", cd {cooldown}s" if cooldown > 0 else ""
             flee_display = f"{c['white']}{flee_chance}% ({flee_risk}{cd_text}){c['reset']}"
         wimpy_display = f"{wimpy}" if wimpy > 0 else "off"
+        shield_bonus = player.get_shield_evasion_bonus() if hasattr(player, 'get_shield_evasion_bonus') else 0
+        shield_display = f" | Shield +{shield_bonus}%" if shield_bonus > 0 else ""
         line = (
             f"{c['white']}Tactical:{c['reset']} "
             f"HP {player.hp}/{player.max_hp} "
             f"MN {player.mana}/{player.max_mana} "
             f"MV {player.move}/{player.max_move} "
-            f"| {c['bright_cyan']}OB/DB/PB{c['reset']} {ob:+d}/{db:+d}/{pb}% "
+            f"| {c['bright_cyan']}OB/DB/PB{c['reset']} {ob:+d}/{db:+d}/{pb}%{shield_display} "
             f"| AC {ac:+d} Mit {pb}% "
             f"| Stance {stance_label} "
             f"| Wimpy {wimpy_display} "

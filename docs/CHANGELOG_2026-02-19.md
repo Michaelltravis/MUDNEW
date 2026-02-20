@@ -22,6 +22,30 @@
 
 ---
 
+## MUME Adoption Batch B (Spells & Skills Interaction)
+
+### Added
+- **Armour ward absorb:** `armor` now grants a depleting absorb pool that scales with caster level and spell proficiency, then fades with duration.
+- **Shield evasion boost:** shield-style effects now add dodge/evasion bonuses and surface in `tactical` telemetry.
+- **Briskness:** new ranger mobility spell restores movement immediately and grants a short regen surge.
+- **Stat-linked skill bonuses:** key skills now add a small bonus from their primary stat (e.g., DEX for dodge/evasion, STR for bash).
+
+### Improved
+- Absorption wards now mitigate physical damage plus selected magical categories.
+- Heavy armor reduces absorb effectiveness for ward-style buffs.
+- Tactical output now includes shield evasion bonuses when active.
+
+### Balancing Notes & Defaults
+- Armour ward base: 60 absorb on `armor`.
+- Absorb scaling: +4 per caster level; +50% of base at 100% proficiency.
+- Prime stat bonus: +2 absorb per point above 10 in the class prime stat.
+- Armor penalty: softcap 20 total armor weight; -2% absorb per weight over softcap, up to 40%.
+- Shield evasion bonuses: shielded +4%, holy/divine shield +6%, aegis ward +4%.
+- Briskness: +20% max move instant restore, +35% move regen for 18 ticks; +20% instant restore in wilderness.
+- Skill stat bonus: (stat-10)//2 for dodge/evasion/parry, bash/kick/cleave/charge/execute, backstab/sneak/hide, track/tame.
+
+---
+
 ## MUME Adoption Batch A
 
 ### Added

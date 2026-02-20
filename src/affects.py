@@ -81,7 +81,8 @@ class AffectManager:
         'detect_evil', 'charmed', 'entangled', 'sleeping',
         'combustion', 'presence_of_mind', 'arcane_power',
         'guardian_spirit', 'beacon_of_light', 'holy_shield',
-        'divine_guardian', 'aegis_ward', 'shadowform'
+        'divine_guardian', 'aegis_ward', 'shadowform',
+        'armour_ward', 'briskness', 'shielded'
     }
 
     @staticmethod

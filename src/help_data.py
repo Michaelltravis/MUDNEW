@@ -191,8 +191,8 @@ HELP_TOPICS = {'auction': {'category': 'command',
             'title': 'Answer'},
  'apologize': {'category': 'command', 'description': 'Apologize.', 'syntax': 'apologize', 'title': 'Apologize'},
  'armor': {'category': 'spell',
-           'classes': ['bard', 'cleric', 'mage', 'necromancer'],
-           'description': "Armor\nTARGET: defensive\n\nCASTING:\n- Use `cast 'armor'`.\n- Mana cost applies per cast.",
+           'classes': ['bard', 'cleric', 'mage', 'necromancer', 'ranger'],
+           'description': "Armor\nTARGET: defensive\n\nCASTING:\n- Use `cast 'armor'`.\n- Mana cost applies per cast.\n\nMECHANICS:\n- Boosts armor class and grants a small absorb ward.\n- Absorb scales with caster level and proficiency.\n- Heavy armor reduces the ward's effectiveness.",
            'level': 1,
            'mana': 15,
            'syntax': "cast 'armor'",
@@ -442,6 +442,23 @@ HELP_TOPICS = {'auction': {'category': 'command',
               'mana': 40,
               'syntax': "cast 'barkskin'",
               'title': 'Barkskin'},
+ 'briskness': {'category': 'spell',
+               'classes': ['ranger'],
+               'description': 'Briskness\n'
+                              'TARGET: defensive\n'
+                              '\n'
+                              'CASTING:\n'
+                              "- Use `cast 'briskness'`.\n"
+                              '- Mana cost applies per cast.\n'
+                              '\n'
+                              'MECHANICS:\n'
+                              '- Restores a burst of movement immediately.\n'
+                              '- Grants a short-term move regen surge.\n'
+                              '- Wilderness terrain boosts the instant recovery for rangers.',
+               'level': 1,
+               'mana': 30,
+               'syntax': "cast 'briskness'",
+               'title': 'Briskness'},
  'bash': {'category': 'skill',
           'classes': ['paladin', 'warrior'],
           'description': 'Bash — Shield bash. 8s cooldown. Deals 1x damage + stun 1 round.\n\n'
@@ -2745,7 +2762,10 @@ HELP_TOPICS = {'auction': {'category': 'command',
                            '\n'
                            'CASTING:\n'
                            "- Use `cast 'shield'`.\n"
-                           '- Mana cost applies per cast.',
+                           '- Mana cost applies per cast.\n'
+                           '\n'
+                           'MECHANICS:\n'
+                           '- Improves armor class and grants a minor evasion boost.',
             'level': 1,
             'mana': 25,
             'syntax': "cast 'shield'",
@@ -2774,7 +2794,10 @@ HELP_TOPICS = {'auction': {'category': 'command',
                                     '\n'
                                     'CASTING:\n'
                                     "- Use `cast 'shield of faith'`.\n"
-                                    '- Mana cost applies per cast.',
+                                    '- Mana cost applies per cast.\n'
+                                    '\n'
+                                    'MECHANICS:\n'
+                                    '- Improves armor class and grants a minor evasion boost.',
                      'level': 1,
                      'mana': 35,
                      'syntax': "cast 'shield of faith'",
@@ -2971,6 +2994,19 @@ HELP_TOPICS = {'auction': {'category': 'command',
                'mana': 60,
                'syntax': "cast 'stoneskin'",
                'title': 'Stoneskin'},
+ 'stats': {'category': 'info',
+           'description': 'Stats & Influences\n'
+                          '\n'
+                          'STR: melee damage, shield block, bash/kick/cleave/charge.\n'
+                          'DEX: accuracy, dodge/evasion/parry, stealth skills, move regen.\n'
+                          'CON: max HP, HP regeneration, resilience.\n'
+                          'INT: spell damage/crit, mana pool/regen (casters).\n'
+                          'WIS: healing potency, spell resilience, tracking/taming.\n'
+                          'CHA: bard inspiration, social checks, vendor reactions.\n'
+                          '\n'
+                          'Many skills add a small bonus from their primary stat.',
+           'syntax': 'stats',
+           'title': 'Stats'},
  'stop': {'category': 'command',
           'description': 'Stop the current bard performance.',
           'syntax': 'stop',
@@ -2999,7 +3035,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
                   'syntax': 'sunder_armor',
                   'title': 'Sunder Armor'},
  'tactical': {'category': 'command',
-              'description': 'Show concise combat telemetry (OB/DB/PB, stance, wimpy, flee risk).',
+              'description': 'Show concise combat telemetry (OB/DB/PB, shield evasion, stance, wimpy, flee risk).',
               'syntax': 'tactical',
               'title': 'Tactical'},
  'take': {'category': 'command', 'description': 'Alias for get.', 'syntax': 'take', 'title': 'Take'},

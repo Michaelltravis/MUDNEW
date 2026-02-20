@@ -1767,7 +1767,7 @@ Reduce target armor temporarily.
 ### Tactical
 **Syntax:** `tactical`
 
-Show a concise combat stat line (OB/DB/PB, stance, wimpy, flee risk).
+Show a concise combat stat line (OB/DB/PB, shield evasion, stance, wimpy, flee risk).
 
 ### Take
 **Syntax:** `take`
@@ -2565,7 +2565,7 @@ MECHANICS:
 
 ### Armor
 **Syntax:** `cast 'armor'`
-**Classes:** bard, cleric, mage, necromancer
+**Classes:** bard, cleric, mage, necromancer, ranger
 **Level/Mana:** 1 / 15
 
 Armor
@@ -2574,6 +2574,11 @@ TARGET: defensive
 CASTING:
 - Use `cast 'armor'`.
 - Mana cost applies per cast.
+
+MECHANICS:
+- Boosts armor class and grants a small absorb ward.
+- Absorb scales with caster level and proficiency.
+- Heavy armor reduces the ward's effectiveness.
 
 ### Barkskin
 **Syntax:** `cast 'barkskin'`
@@ -2586,6 +2591,23 @@ TARGET: defensive
 CASTING:
 - Use `cast 'barkskin'`.
 - Mana cost applies per cast.
+
+### Briskness
+**Syntax:** `cast 'briskness'`
+**Classes:** ranger
+**Level/Mana:** 1 / 30
+
+Briskness
+TARGET: defensive
+
+CASTING:
+- Use `cast 'briskness'`.
+- Mana cost applies per cast.
+
+MECHANICS:
+- Restores a burst of movement immediately.
+- Grants a short-term move regen surge.
+- Wilderness terrain boosts the instant recovery for rangers.
 
 ### Bless
 **Syntax:** `cast 'bless'`
@@ -3292,6 +3314,9 @@ CASTING:
 - Use `cast 'shield'`.
 - Mana cost applies per cast.
 
+MECHANICS:
+- Improves armor class and grants a minor evasion boost.
+
 ### Shield Of Faith
 **Syntax:** `cast 'shield of faith'`
 **Classes:** cleric, paladin
@@ -3303,6 +3328,9 @@ TARGET: defensive
 CASTING:
 - Use `cast 'shield of faith'`.
 - Mana cost applies per cast.
+
+MECHANICS:
+- Improves armor class and grants a minor evasion boost.
 
 ### Sleep
 **Syntax:** `cast 'sleep' <target>`
@@ -3351,6 +3379,20 @@ TARGET: defensive
 CASTING:
 - Use `cast 'stoneskin'`.
 - Mana cost applies per cast.
+
+### Stats
+**Syntax:** `stats`
+
+Stats & Influences
+
+STR: melee damage, shield block, bash/kick/cleave/charge.
+DEX: accuracy, dodge/evasion/parry, stealth skills, move regen.
+CON: max HP, HP regeneration, resilience.
+INT: spell damage/crit, mana pool/regen (casters).
+WIS: healing potency, spell resilience, tracking/taming.
+CHA: bard inspiration, social checks, vendor reactions.
+
+Many skills add a small bonus from their primary stat.
 
 ### Summon
 **Syntax:** `cast 'summon'`
