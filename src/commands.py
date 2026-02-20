@@ -12314,7 +12314,7 @@ class CommandHandler:
                     if char != player and hasattr(char, 'send'):
                         await char.send(f"{c['white']}{player.name} quaffs {target_obj.short_desc}.{c['reset']}")
             # Apply spell effects
-            from spells import SpellManager
+            from spells import SpellHandler as SpellManager
             target = player
             if len(args) > 1:
                 # Find target
@@ -12345,7 +12345,7 @@ class CommandHandler:
         elif item_type == 'scroll':
             await player.send(f"{c['bright_cyan']}You recite {target_obj.short_desc}.{c['reset']}")
             effects = getattr(target_obj, 'spell_effects', [])
-            from spells import SpellManager
+            from spells import SpellHandler as SpellManager
             target = player
             if len(args) > 1:
                 target_arg = args[1].lower()
@@ -12369,7 +12369,7 @@ class CommandHandler:
                 return
             await player.send(f"{c['bright_magenta']}You wave {target_obj.short_desc}.{c['reset']}")
             effects = getattr(target_obj, 'spell_effects', [])
-            from spells import SpellManager
+            from spells import SpellHandler as SpellManager
             target = player
             if len(args) > 1:
                 target_arg = args[1].lower()
@@ -12397,7 +12397,7 @@ class CommandHandler:
                 return
             await player.send(f"{c['bright_magenta']}You tap {target_obj.short_desc}.{c['reset']}")
             effects = getattr(target_obj, 'spell_effects', [])
-            from spells import SpellManager
+            from spells import SpellHandler as SpellManager
             for effect in effects:
                 spell_name = effect if isinstance(effect, str) else effect.get('spell', '')
                 if spell_name:

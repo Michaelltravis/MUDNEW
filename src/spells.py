@@ -3321,7 +3321,7 @@ class SpellHandler:
                 await caster.send(f"{c['yellow']}Your charm fails to affect anyone.{c['reset']}")
 
     @classmethod
-    async def apply_spell_effect(cls, caster: 'Player', target: 'Character', spell_name: str):
+    async def apply_spell_effect(cls, caster: 'Player', target: 'Character', spell_name: str, level: int = None):
         """Apply a spell effect (for potions, scrolls, etc.)."""
         spell = SPELLS.get(spell_name)
         if spell:
