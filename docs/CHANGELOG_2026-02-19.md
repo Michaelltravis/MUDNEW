@@ -1,5 +1,18 @@
 # Changelog — 2026-02-19
 
+## MUME Adoption Batch A
+
+### Added
+- Guided tutorial step prompts for tutorial quests, including one-time contextual hints for movement, inventory, wielding, and quest acceptance.
+- Tutorial hint cadence integrated into movement, inventory, and wield flows (non-intrusive, one-time).
+
+### Improved
+- Quest journal: lookup by area or name/ID ("quests <area>" and "quests <name>") with concise summaries.
+- Consider output: clearer threat messaging plus tactical OB/DB/PB-style quick readout.
+- Score output: added OB/DB/PB tactical line for readability.
+
+---
+
 ## Batch 1 — Endgame Content (Misthollow)
 
 ### Added: The Ashen Expanse (Zone 280, Level 58–62)

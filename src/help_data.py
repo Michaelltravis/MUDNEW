@@ -88,6 +88,8 @@ HELP_TOPICS = {'auction': {'category': 'command',
                            'organized by category: Main Story, Side Quests, Daily, Faction, and Dungeon.\n\n'
                            'COMMANDS:\n'
                            '  quests               - Show active quests grouped by category\n'
+                           '  quests <area>         - Filter quests by area\n'
+                           '  quests <name>         - Look up a quest by name or ID\n'
                            '  quests completed      - Show completed quests\n'
                            '  quests daily          - Show available daily quests and status\n'
                            '  quests main           - Filter to main story quests\n'
@@ -106,7 +108,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
                            '  NPCs with [!] have quests available for you.\n'
                            '  NPCs with [?] are ready to accept a completed quest turn-in.\n\n'
                            'See also: quest, journal, track',
-            'syntax': 'quests [completed|daily|main|side|faction|dungeon|track|untrack]',
+            'syntax': 'quests [<area>|<name>|completed|daily|main|side|faction|dungeon|track|untrack]',
             'title': 'Quest Journal'},
  'adrenaline_rush': {'category': 'command',
                      'description': 'Burst of speed.',
@@ -791,8 +793,9 @@ HELP_TOPICS = {'auction': {'category': 'command',
              'syntax': 'compare <item>',
              'title': 'Compare'},
  'consider': {'category': 'command',
-              'description': 'Consider how tough a mob is and learn about its capabilities.',
-              'syntax': 'consider',
+              'description': 'Consider how tough a mob is and learn about its capabilities.\n'
+                             'Shows a threat estimate plus quick combat stats.',
+              'syntax': 'consider <mob>',
               'title': 'Consider'},
  'countersong': {'category': 'skill',
                  'classes': ['bard'],

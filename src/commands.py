@@ -599,6 +599,8 @@ class CommandHandler:
                     if npc_vnum and QuestManager.get_available_quests(player, npc_vnum):
                         await TipManager.show_contextual_hint(player, 'quest_giver')
                         break
+            # Tutorial movement prompt (one-time)
+            await TipManager.show_tutorial_hint(player, 'tutorial_move')
         except Exception:
             pass
 
@@ -1546,6 +1548,11 @@ class CommandHandler:
         total_hitroll = player.hitroll + player.get_equipment_bonus('hitroll')
         total_damroll = player.damroll + player.get_equipment_bonus('damroll')
         await player.send(f"{c['cyan']}{V} {c['white']}Armor Class: {player.get_armor_class():<4}  Hitroll: {total_hitroll:>+3}  Damroll: {total_damroll:>+3}{c['cyan']}            {V}{c['reset']}")
+        # OB/DB/PB quick tactical readout
+        ob = player.get_hit_bonus()
+        db = 100 - player.get_armor_class()
+        pb = int(getattr(player, 'damage_reduction', 0))
+        await player.send(f"{c['cyan']}{V} {c['white']}Combat: OB {ob:>+3}  DB {db:>+3}  PB {pb:>2}%{c['cyan']}                     {V}{c['reset']}")
 
         # Show hunger and thirst status
         hunger_cond = player.get_hunger_condition()
@@ -1673,6 +1680,12 @@ class CommandHandler:
             from legendary import colorize_item_name
             for item in player.inventory:
                 await player.send(f"  {colorize_item_name(item, player.config)}")
+
+        try:
+            from tips import TipManager
+            await TipManager.show_tutorial_hint(player, 'tutorial_inventory')
+        except Exception:
+            pass
 
     @classmethod
     async def cmd_clear(cls, player: 'Player', args: List[str]):
@@ -2508,41 +2521,68 @@ class CommandHandler:
             msg = f"{c['bright_cyan']}Now where did that chicken go?{c['reset']}"
             exp_note = "gray (10% exp)"
             danger = "Trivial"
+            advice = "No real danger."
         elif diff <= -7:
             msg = f"{c['cyan']}You could kill {target.name} naked and weaponless.{c['reset']}"
             exp_note = "trivial (25% exp)"
             danger = "Trivial"
+            advice = "Very low risk."
         elif diff <= -4:
             msg = f"{c['cyan']}{target.name} is far beneath your skill.{c['reset']}"
             exp_note = "easy (50% exp)"
             danger = "Easy"
+            advice = "You should win easily."
         elif diff <= -2:
             msg = f"{c['bright_green']}{target.name} looks like an easy kill.{c['reset']}"
             exp_note = "green (80% exp)"
             danger = "Easy"
+            advice = "You should win with minimal risk."
         elif diff <= 1:
             msg = f"{c['green']}A perfect match!{c['reset']}"
             exp_note = "even (100% exp)"
             danger = "Even"
+            advice = "Expect a fair fight."
         elif diff <= 2:
             msg = f"{c['yellow']}{target.name} might put up a fight.{c['reset']}"
             exp_note = "yellow (+15% exp)"
             danger = "Moderate"
+            advice = "Be ready to heal or flee."
         elif diff <= 4:
             msg = f"{c['yellow']}{target.name} says 'Do you feel lucky, punk?'{c['reset']}"
             exp_note = "challenging (+30% exp)"
             danger = "Challenging"
+            advice = "Bring consumables or a friend."
         elif diff <= 6:
             msg = f"{c['bright_red']}{target.name} laughs at your puny weapons.{c['reset']}"
             exp_note = "dangerous (+50% exp)"
             danger = "Dangerous"
+            advice = "High risk without a group."
         else:
             msg = f"{c['red']}Death will thank you for your gift.{c['reset']}"
             exp_note = "suicide (+50% exp)"
             danger = "DEADLY"
+            advice = "Avoid unless you have a strong group."
             
         await player.send(msg)
-        await player.send(f"{c['white']}Level: {target_level}  |  Difficulty: {danger}  |  XP: {exp_note}{c['reset']}")
+        await player.send(f"{c['white']}Threat: {danger}  |  Level: {target_level} vs You {player.level}  |  XP: {exp_note}{c['reset']}")
+        await player.send(f"{c['white']}Outcome: {advice}{c['reset']}")
+
+        # Tactical quick stats (OB/DB/PB style)
+        try:
+            player_ob = player.get_hit_bonus()
+            player_db = 100 - player.get_armor_class()
+            player_pb = int(getattr(player, 'damage_reduction', 0))
+            target_ob = target.get_hit_bonus() if hasattr(target, 'get_hit_bonus') else getattr(target, 'hitroll', 0)
+            target_db = 100 - (target.get_armor_class() if hasattr(target, 'get_armor_class') else getattr(target, 'armor_class', 100))
+            target_pb = int(getattr(target, 'damage_reduction', 0))
+            await player.send(
+                f"{c['white']}Tactics:{c['reset']} "
+                f"{c['bright_cyan']}OB/DB/PB{c['reset']} "
+                f"{c['white']}You {player_ob:+d}/{player_db:+d}/{player_pb}% "
+                f"| {target.name} {target_ob:+d}/{target_db:+d}/{target_pb}%{c['reset']}"
+            )
+        except Exception:
+            pass
         
         # Health assessment
         hp_ratio = target.hp / max(1, target.max_hp)
@@ -8432,6 +8472,11 @@ class CommandHandler:
                         f"{player.name} off-hands {item.short_desc}.",
                         exclude=[player]
                     )
+                    try:
+                        from tips import TipManager
+                        await TipManager.show_tutorial_hint(player, 'tutorial_wield')
+                    except Exception:
+                        pass
                     return
                     
                 player.inventory.remove(item)
@@ -8441,6 +8486,11 @@ class CommandHandler:
                     f"{player.name} wields {item.short_desc}.",
                     exclude=[player]
                 )
+                try:
+                    from tips import TipManager
+                    await TipManager.show_tutorial_hint(player, 'tutorial_wield')
+                except Exception:
+                    pass
                 return
                 
         await player.send(f"You don't have '{item_name}'.")
@@ -9828,6 +9878,81 @@ class CommandHandler:
                     'faction': 'faction', 'dungeon': 'dungeon'}
         if sub and sub in cat_map:
             cat_filter = cat_map[sub]
+
+        # Area or name lookup (quests <area> | quests <name>)
+        if sub and sub not in cat_map:
+            if sub not in ('completed', 'daily', 'track', 'untrack'):
+                term = ' '.join(args).strip().lower()
+                active = getattr(player, 'active_quests', [])
+
+                def _raw_area(qid=None, qdef=None):
+                    return QuestManager.get_quest_area(player, quest_id=qid, quest_def=qdef)
+
+                def _quest_area(qid=None, qdef=None):
+                    return _raw_area(qid=qid, qdef=qdef) or 'Unknown'
+
+                # Detect area matches from known quest definitions
+                known_areas = {(area).lower() for area in (_raw_area(qdef=qdef) for qdef in QUEST_DEFINITIONS.values()) if area}
+                is_area = any(term in area for area in known_areas)
+
+                if is_area:
+                    area_matches = [(q, _quest_area(qid=q.quest_id)) for q in active if term in _quest_area(qid=q.quest_id).lower()]
+                    if area_matches:
+                        await player.send(f"\r\n{c['cyan']}╔══════════════════════════════════════════════════════════════╗{c['reset']}")
+                        await player.send(f"{c['cyan']}║{c['bright_yellow']}  QUESTS IN {area_matches[0][1][:46]:<46}{c['cyan']}║{c['reset']}")
+                        await player.send(f"{c['cyan']}╚══════════════════════════════════════════════════════════════╝{c['reset']}")
+                        for quest, area in area_matches:
+                            done = sum(1 for o in quest.objectives if o.completed)
+                            total = len(quest.objectives)
+                            await player.send(f"  {c['bright_white']}{quest.name}{c['reset']} {c['yellow']}[{done}/{total}]{c['reset']}")
+                        await player.send("")
+                        return
+
+                    area_defs = [(qid, qdef, _quest_area(qdef=qdef)) for qid, qdef in QUEST_DEFINITIONS.items()
+                                 if term in _quest_area(qdef=qdef).lower()]
+                    if area_defs:
+                        await player.send(f"\r\n{c['cyan']}╔══════════════════════════════════════════════════════════════╗{c['reset']}")
+                        await player.send(f"{c['cyan']}║{c['bright_yellow']}  QUESTS BY AREA                                             {c['cyan']}║{c['reset']}")
+                        await player.send(f"{c['cyan']}╚══════════════════════════════════════════════════════════════╝{c['reset']}")
+                        for qid, qdef, area in area_defs[:12]:
+                            lvl = f"L{qdef.get('level_min', 1)}-{qdef.get('level_max', 1)}"
+                            await player.send(f"  {c['bright_white']}{qdef.get('name', qid)}{c['reset']} {c['bright_black']}({qid}){c['reset']} {c['yellow']}[{lvl}]{c['reset']}")
+                        if len(area_defs) > 12:
+                            await player.send(f"  {c['bright_black']}...and {len(area_defs) - 12} more. Use a narrower area search.{c['reset']}")
+                        await player.send("")
+                        return
+
+                # Name/abbrev lookup
+                name_matches = [q for q in active if term in q.quest_id.lower() or term in q.name.lower()]
+                if name_matches:
+                    await player.send(f"\r\n{c['cyan']}╔══════════════════════════════════════════════════════════════╗{c['reset']}")
+                    await player.send(f"{c['cyan']}║{c['bright_yellow']}  QUEST MATCHES                                              {c['cyan']}║{c['reset']}")
+                    await player.send(f"{c['cyan']}╚══════════════════════════════════════════════════════════════╝{c['reset']}")
+                    for quest in name_matches:
+                        area = _quest_area(qid=quest.quest_id)
+                        done = sum(1 for o in quest.objectives if o.completed)
+                        total = len(quest.objectives)
+                        await player.send(f"  {c['bright_white']}{quest.name}{c['reset']} {c['yellow']}[{done}/{total}]{c['reset']} {c['bright_black']}({area}){c['reset']}")
+                    await player.send("")
+                    return
+
+                def_matches = [(qid, qdef) for qid, qdef in QUEST_DEFINITIONS.items()
+                               if term in qid.lower() or term in qdef.get('name', '').lower()]
+                if def_matches:
+                    await player.send(f"\r\n{c['cyan']}╔══════════════════════════════════════════════════════════════╗{c['reset']}")
+                    await player.send(f"{c['cyan']}║{c['bright_yellow']}  QUEST LOOKUP                                               {c['cyan']}║{c['reset']}")
+                    await player.send(f"{c['cyan']}╚══════════════════════════════════════════════════════════════╝{c['reset']}")
+                    for qid, qdef in def_matches[:10]:
+                        area = _quest_area(qdef=qdef)
+                        lvl = f"L{qdef.get('level_min', 1)}-{qdef.get('level_max', 1)}"
+                        await player.send(f"  {c['bright_white']}{qdef.get('name', qid)}{c['reset']} {c['bright_black']}({qid}){c['reset']} {c['yellow']}[{lvl}]{c['reset']} {c['bright_black']}{area}{c['reset']}")
+                    if len(def_matches) > 10:
+                        await player.send(f"  {c['bright_black']}...and {len(def_matches) - 10} more. Try a narrower name search.{c['reset']}")
+                    await player.send("")
+                    return
+
+                await player.send(f"{c['yellow']}No quests found matching '{term}'.{c['reset']}")
+                return
 
         # Active quests view (default)
         active = getattr(player, 'active_quests', [])

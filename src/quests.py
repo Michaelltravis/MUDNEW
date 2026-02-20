@@ -2005,6 +2005,42 @@ class QuestManager:
         return f"{act} - Current: {quest_name}"
 
     @staticmethod
+    def _build_quest_giver_area_map(world) -> Dict[int, str]:
+        area_map: Dict[int, str] = {}
+        if not world:
+            return area_map
+        for zone in getattr(world, 'zones', {}).values():
+            zone_name = getattr(zone, 'name', 'Unknown')
+            for vnum in getattr(zone, 'mobs', {}).keys():
+                try:
+                    area_map[int(vnum)] = zone_name
+                except (TypeError, ValueError):
+                    continue
+        return area_map
+
+    @staticmethod
+    def get_quest_area(player: 'Player', quest_id: Optional[str] = None, quest_def: Optional[Dict[str, Any]] = None) -> Optional[str]:
+        if quest_def is None and quest_id:
+            quest_def = QUEST_DEFINITIONS.get(quest_id, {})
+        if not quest_def:
+            return None
+        area = quest_def.get('area') or quest_def.get('region') or quest_def.get('zone')
+        if area:
+            return area
+        quest_giver = quest_def.get('quest_giver')
+        world = getattr(player, 'world', None)
+        if not quest_giver or not world:
+            return None
+        area_map = getattr(world, '_quest_giver_area_map', None)
+        if area_map is None:
+            area_map = QuestManager._build_quest_giver_area_map(world)
+            setattr(world, '_quest_giver_area_map', area_map)
+        try:
+            return area_map.get(int(quest_giver))
+        except (TypeError, ValueError):
+            return None
+
+    @staticmethod
     async def offer_quest(player: 'Player', quest_id: str):
         """
         Offer a quest to the player.
@@ -2118,7 +2154,29 @@ class QuestManager:
 
         c = player.config.COLORS
         await player.send(f"{c['bright_green']}Quest accepted: {quest_def['name']}{c['reset']}")
+        # Tutorial step prompt
+        if quest_id.startswith('tutorial_'):
+            first_obj = quest_def.get('objectives', [{}])[0]
+            step_desc = first_obj.get('description')
+            if step_desc:
+                await player.send(f"{c['bright_cyan']}Tutorial step:{c['reset']} {step_desc}")
+        try:
+            from tips import TipManager
+            await TipManager.show_tutorial_hint(player, 'tutorial_quest_accept')
+        except Exception:
+            pass
         logger.info(f"{player.name} accepted quest {quest_id}")
+
+    @staticmethod
+    async def _tutorial_next_step(player: 'Player', quest: ActiveQuest):
+        if not quest.quest_id.startswith('tutorial_'):
+            return
+        next_obj = next((obj for obj in quest.objectives if not obj.completed), None)
+        c = player.config.COLORS
+        if next_obj:
+            await player.send(f"{c['bright_cyan']}Next step:{c['reset']} {next_obj.description}")
+        else:
+            await player.send(f"{c['bright_green']}Tutorial step complete!{c['reset']}")
 
     @staticmethod
     async def check_quest_progress(player: 'Player', event_type: str, event_data: Dict):
@@ -2151,6 +2209,7 @@ class QuestManager:
 
                         if obj.completed:
                             await player.send(f"{c['bright_green']}Objective complete!{c['reset']}")
+                            await QuestManager._tutorial_next_step(player, quest)
 
                 elif obj.type == 'collect' and event_type == 'collect':
                     # Check if collected item matches target
@@ -2166,6 +2225,7 @@ class QuestManager:
 
                         if obj.completed:
                             await player.send(f"{c['bright_green']}Objective complete!{c['reset']}")
+                            await QuestManager._tutorial_next_step(player, quest)
 
                 elif obj.type == 'talk' and event_type == 'talk':
                     npc_vnum = str(event_data.get('npc_vnum', ''))
@@ -2180,6 +2240,7 @@ class QuestManager:
 
                         if obj.completed:
                             await player.send(f"{c['bright_green']}Objective complete!{c['reset']}")
+                            await QuestManager._tutorial_next_step(player, quest)
 
                 elif obj.type in ('visit', 'explore') and event_type in ('visit', 'explore'):
                     room_vnum = str(event_data.get('room_vnum', ''))
@@ -2192,6 +2253,7 @@ class QuestManager:
 
                         if obj.completed:
                             await player.send(f"{c['bright_green']}Objective complete!{c['reset']}")
+                            await QuestManager._tutorial_next_step(player, quest)
 
                 elif obj.type == 'command' and event_type == 'command':
                     # Check if command matches target
@@ -2207,6 +2269,7 @@ class QuestManager:
 
                         if obj.completed:
                             await player.send(f"{c['bright_green']}Objective complete!{c['reset']}")
+                            await QuestManager._tutorial_next_step(player, quest)
 
             # Check if quest is complete
             if quest.is_complete():

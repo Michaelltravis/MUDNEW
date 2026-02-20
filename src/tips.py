@@ -162,6 +162,11 @@ CONTEXTUAL_HINTS = {
     'level_10': "You've reached level 10! Type 'talents' to see your talent tree — customize your playstyle!",
     'level_20': "Level 20 unlocked! Type 'companion' to learn about companions that can fight alongside you.",
     'level_50': "Level 50 — the pinnacle! Prestige classes are now available. Type 'help prestige' to learn more.",
+    # Tutorial step prompts (one-time, skippable)
+    'tutorial_move': "New here? Use N/S/E/W (or 'n'/'s') to move. 'look' repeats a room description.",
+    'tutorial_inventory': "Use 'inventory' to see your items. Try 'wield <weapon>' or 'wear <item>' to equip gear.",
+    'tutorial_wield': "Wielded weapons boost your damage. Check 'score' for a quick combat readout.",
+    'tutorial_quest_accept': "Quest accepted! Use 'quests' to track objectives, and 'hint' for guidance.",
 }
 
 
@@ -274,3 +279,22 @@ class TipManager:
             player.hints_shown = set()
         player.hints_shown.add(hint_key)
         return True
+
+    @classmethod
+    def _tutorial_active(cls, player: 'Player') -> bool:
+        """Return True if tutorial hints should be shown for this player."""
+        if getattr(player, 'tutorial_hints_enabled', True) is False:
+            return False
+        if getattr(player, 'level', 1) > 10:
+            return False
+        completed = set(getattr(player, 'quests_completed', []) or [])
+        if 'tutorial_12_quests_groups' in completed:
+            return False
+        return True
+
+    @classmethod
+    async def show_tutorial_hint(cls, player: 'Player', hint_key: str) -> bool:
+        """Show a tutorial hint if the player is still in the tutorial flow."""
+        if not cls._tutorial_active(player):
+            return False
+        return await cls.show_contextual_hint(player, hint_key)
