@@ -1,5 +1,5 @@
 """
-RealmsMUD Travel & Waypoints
+Misthollow Travel & Waypoints
 ===========================
 Fast travel waypoint system.
 """

@@ -1,5 +1,5 @@
 """
-RealmsMUD Boss Framework
+Misthollow Boss Framework
 ========================
 Bosses extend Mobile with phases, telegraphed abilities, adds, and enrage timers.
 """
@@ -12,7 +12,7 @@ from typing import Dict, List, Optional
 from mobs import Mobile
 from combat import CombatHandler
 
-logger = logging.getLogger('RealmsMUD.Bosses')
+logger = logging.getLogger('Misthollow.Bosses')
 
 
 class Boss(Mobile):

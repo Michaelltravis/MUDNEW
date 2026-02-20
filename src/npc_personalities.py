@@ -1,5 +1,5 @@
 """
-RealmsMUD NPC Personalities
+Misthollow NPC Personalities
 ===========================
 System prompts and personalities for LLM-powered NPCs.
 """

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-RealmsMUD Supervisor
+Misthollow Supervisor
 - Auto-restarts on crash
 - Discord webhook alerts
 - Health monitoring
@@ -16,11 +16,11 @@ import signal
 from datetime import datetime
 
 # Configuration
-MUD_DIR = "/Users/michaeltravis/clawd/projects/RealmsMUD"
+MUD_DIR = "/Users/michaeltravis/clawd/projects/Misthollow"
 MUD_CMD = ["python3", "src/main.py"]
 LOG_FILE = os.path.join(MUD_DIR, "server.log")
 PID_FILE = os.path.join(MUD_DIR, "mud.pid")
-DISCORD_WEBHOOK = os.environ.get("REALMSMUD_DISCORD_WEBHOOK", "")
+DISCORD_WEBHOOK = os.environ.get("MISTHOLLOW_DISCORD_WEBHOOK", "")
 MAX_RESTARTS = 5
 RESTART_WINDOW = 300  # 5 minutes
 RESTART_DELAY = 5
@@ -37,7 +37,7 @@ def send_discord_alert(title: str, message: str, color: int = 0xFF0000):
     
     payload = {
         "embeds": [{
-            "title": f"🎮 RealmsMUD: {title}",
+            "title": f"🎮 Misthollow: {title}",
             "description": message,
             "color": color,
             "timestamp": datetime.utcnow().isoformat() + "Z"
@@ -107,7 +107,7 @@ def main():
     signal.signal(signal.SIGINT, handle_signal)
     signal.signal(signal.SIGTERM, handle_signal)
     
-    print(f"[SUPERVISOR] Starting RealmsMUD supervisor...")
+    print(f"[SUPERVISOR] Starting Misthollow supervisor...")
     print(f"[SUPERVISOR] Discord alerts: {'enabled' if DISCORD_WEBHOOK else 'disabled'}")
     
     send_discord_alert("Starting", "Server supervisor initializing...", 0x00FF00)

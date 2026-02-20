@@ -1,5 +1,5 @@
 """
-RealmsMUD Prestige Class System
+Misthollow Prestige Class System
 ===============================
 At level 50, players can specialize into an advanced prestige class.
 Each base class has two prestige options with 3 unique abilities each.
@@ -14,7 +14,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from player import Player
 
-logger = logging.getLogger('RealmsMUD.Prestige')
+logger = logging.getLogger('Misthollow.Prestige')
 
 RESPEC_COST = 50000  # 50K gold
 

@@ -1,5 +1,5 @@
 """
-Web Client for RealmsMUD
+Web Client for Misthollow
 A browser-based terminal interface with WebSocket-to-telnet bridge.
 Port 4003 by default.
 """
@@ -182,7 +182,7 @@ class WebClient:
             await ws.close()
             return ws
         
-        await ws.send_json({'type': 'connected', 'data': 'Connected to RealmsMUD'})
+        await ws.send_json({'type': 'connected', 'data': 'Connected to Misthollow'})
         
         # Start read loop
         read_task = asyncio.create_task(bridge.read_loop())
@@ -226,7 +226,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RealmsMUD</title>
+    <title>Misthollow</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -819,7 +819,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
     <div class="welcome-overlay" id="welcome-overlay">
         <div class="welcome-content">
             <div class="welcome-logo">⚔️</div>
-            <h1 class="welcome-title">Realms<span>MUD</span></h1>
+            <h1 class="welcome-title">Mist<span>hollow</span></h1>
             <p class="welcome-subtitle">A classic text adventure awaits</p>
             <p class="welcome-status" id="welcome-status">Connecting to server...</p>
         </div>
@@ -828,7 +828,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
     <header>
         <div class="logo">
             <span class="logo-icon">⚔️</span>
-            <h1>Realms<span>MUD</span></h1>
+            <h1>Mist<span>hollow</span></h1>
         </div>
         <div class="header-controls">
             <button class="header-btn" id="settings-btn" aria-label="Settings">⚙️</button>

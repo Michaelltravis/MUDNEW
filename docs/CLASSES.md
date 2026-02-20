@@ -1,6 +1,6 @@
-# RealmsMUD Class Guide
+# Misthollow Class Guide
 
-RealmsMUD features 9 unique classes, each with distinct playstyles and three talent specialization trees. This guide covers everything you need to know about choosing and mastering your class.
+Misthollow features 9 unique classes, each with distinct playstyles and three talent specialization trees. This guide covers everything you need to know about choosing and mastering your class.
 
 ---
 

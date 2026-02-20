@@ -1,5 +1,5 @@
 """
-RealmsMUD Combat System
+Misthollow Combat System
 =======================
 Handles all combat mechanics.
 """
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 from config import Config
 
-logger = logging.getLogger('RealmsMUD.Combat')
+logger = logging.getLogger('Misthollow.Combat')
 
 
 class CombatHandler:

@@ -1,5 +1,5 @@
 """
-RealmsMUD Companion System
+Misthollow Companion System
 ==========================
 Hireable NPC companions that adventure alongside players.
 """
@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 from mobs import Mobile
 from config import Config
 
-logger = logging.getLogger('RealmsMUD.Companions')
+logger = logging.getLogger('Misthollow.Companions')
 
 # Companion type definitions
 COMPANION_TYPE_CONFIG: Dict[str, Dict] = {

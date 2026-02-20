@@ -1,4 +1,4 @@
-# Class System Implementation Complete - RealmsMUD
+# Class System Implementation Complete - Misthollow
 
 **Date:** 2026-02-02  
 **Status:** All major classes now have unique mechanics!

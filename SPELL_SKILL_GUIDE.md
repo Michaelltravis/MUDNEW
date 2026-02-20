@@ -1,4 +1,4 @@
-# RealmsMUD Complete Spell & Skill Guide
+# Misthollow Complete Spell & Skill Guide
 
 ## Table of Contents
 - [Mage Spells](#mage-spells)
@@ -875,4 +875,4 @@ Result: 5-6 attacks per round with bonuses
 
 ---
 
-This guide covers all spells and skills currently implemented in RealmsMUD!
+This guide covers all spells and skills currently implemented in Misthollow!

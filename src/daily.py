@@ -1,5 +1,5 @@
 """
-Daily Login Bonus System for RealmsMUD
+Daily Login Bonus System for Misthollow
 
 Rewards players for logging in daily with progressive bonuses.
 """

@@ -1,5 +1,5 @@
 """
-RealmsMUD Commands
+Misthollow Commands
 ==================
 All player commands and their implementations.
 """
@@ -15,7 +15,7 @@ from config import Config
 import os
 import json
 
-logger = logging.getLogger('RealmsMUD.Commands')
+logger = logging.getLogger('Misthollow.Commands')
 
 
 class CommandHandler:
@@ -2370,7 +2370,7 @@ class CommandHandler:
         # Build output lines
         lines = []
         lines.append(f"{c['bright_cyan']}{'═' * 70}")
-        lines.append(f"{c['bright_yellow']}{'REALMSMUD HELP INDEX':^70}")
+        lines.append(f"{c['bright_yellow']}{'MISTHOLLOW HELP INDEX':^70}")
         lines.append(f"{c['bright_cyan']}{'═' * 70}{c['reset']}")
         lines.append(f"{c['white']}Type 'help <topic>' for detailed information on any topic.{c['reset']}")
         lines.append("")
@@ -13105,8 +13105,8 @@ class CommandHandler:
         """Display server news and updates."""
         c = player.config.COLORS
         
-        await player.send(f"{c['bright_cyan']}=== RealmsMUD News ==={c['reset']}")
-        await player.send(f"{c['white']}Welcome to RealmsMUD!{c['reset']}")
+        await player.send(f"{c['bright_cyan']}=== Misthollow News ==={c['reset']}")
+        await player.send(f"{c['white']}Welcome to Misthollow!{c['reset']}")
         await player.send(f"")
         await player.send(f"{c['yellow']}Recent Updates:{c['reset']}")
         await player.send(f"  - 7 unique class systems (Bard, Warrior, Ranger, Paladin, Thief, Cleric, Necromancer)")

@@ -1,8 +1,8 @@
-# RealmsMUD OLC Spec (OasisOLC‑style)
+# Misthollow OLC Spec (OasisOLC‑style)
 
 ## Goals
 - Provide in‑game, menu‑driven world building that mirrors CircleMUD’s OasisOLC
-- Preserve RealmsMUD JSON file format for rooms/mobs/objects/zones
+- Preserve Misthollow JSON file format for rooms/mobs/objects/zones
 - Enforce building rules from the OasisOLC handbook
 
 ## Building Rules (Enforced Guidance)
@@ -99,7 +99,7 @@ Notes:
 
 ---
 
-# Data Model Mapping (RealmsMUD JSON)
+# Data Model Mapping (Misthollow JSON)
 
 ## Rooms (`world/zones/zone_XXX.json` → rooms)
 - `name`, `description`, `sector_type`, `flags`

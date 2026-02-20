@@ -1,5 +1,5 @@
 """
-RealmsMUD Legendary Item System
+Misthollow Legendary Item System
 ================================
 Item rarity tiers, procs/effects, legendary items, drop system, and announcements.
 """
@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 
 from config import Config
 
-logger = logging.getLogger('RealmsMUD.Legendary')
+logger = logging.getLogger('Misthollow.Legendary')
 
 # ═══════════════════════════════════════════════════════════════
 # RARITY SYSTEM

@@ -1,6 +1,6 @@
-# Getting Started with RealmsMUD
+# Getting Started with Misthollow
 
-Welcome to RealmsMUD! This guide will help you create your first character and take your first steps in the world of the Realms.
+Welcome to Misthollow! This guide will help you create your first character and take your first steps in the world of the Realms.
 
 ---
 
@@ -28,7 +28,7 @@ telnet <server-address> 4000
 telnet localhost 4000
 ```
 
-You should see the welcome screen with the RealmsMUD banner!
+You should see the welcome screen with the Misthollow banner!
 
 ---
 
@@ -39,7 +39,7 @@ When you connect for the first time, you'll be prompted to create an account.
 ### Account Creation
 
 ```
-Welcome to RealmsMUD!
+Welcome to Misthollow!
 
 Enter your account name (or 'new' for a new account): new
 Enter a name for your new account: MyAccount

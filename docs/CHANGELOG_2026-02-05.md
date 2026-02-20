@@ -1,4 +1,4 @@
-# RealmsMUD Changelog - February 5, 2026
+# Misthollow Changelog - February 5, 2026
 
 ## Guard Call-for-Help Mechanic - COMPLETE ✅
 

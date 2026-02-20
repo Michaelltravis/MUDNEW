@@ -1,5 +1,5 @@
 """
-RealmsMUD LLM Client
+Misthollow LLM Client
 ====================
 Connects to LM Studio (or any OpenAI-compatible API) for NPC conversations.
 """
@@ -10,7 +10,7 @@ import logging
 import json
 from typing import Optional, Dict, List
 
-logger = logging.getLogger('RealmsMUD.LLM')
+logger = logging.getLogger('Misthollow.LLM')
 
 
 class LLMClient:

@@ -1,4 +1,4 @@
-# RealmsMUD Research Journal
+# Misthollow Research Journal
 *Ram's self-improvement journey into MUD design, game theory, and engagement mechanics*
 
 ---
@@ -9,7 +9,7 @@
 - Research what makes MUDs engaging for solo play
 - Study game balance theory
 - Learn from successful MUD designs
-- Apply learnings to improve RealmsMUD
+- Apply learnings to improve Misthollow
 
 ---
 
@@ -48,7 +48,7 @@ Richard Bartle's 1996 taxonomy identifies 4 player types, mapped to card suits:
 ### 5 MUD Styles
 
 1. **PvE (Hack-and-Slash)** - Kill mobs, gain XP, collect loot
-   - *This is RealmsMUD's primary style*
+   - *This is Misthollow's primary style*
    - Classes, levels, skills, spells
    - Quests and achievements
    - Low-stakes (can revive after death)
@@ -73,7 +73,7 @@ Richard Bartle's 1996 taxonomy identifies 4 player types, mapped to card suits:
 From CG Spectrum research:
 
 1. **Core Mechanics** - The fundamental actions players repeat
-   - RealmsMUD: Movement, Combat, Character Progression
+   - Misthollow: Movement, Combat, Character Progression
    
 2. **Feedback Loops** - Satisfying cycle of action → reward → progression
    - Kill mob → Gain XP → Level up → Get stronger → Kill harder mobs
@@ -94,7 +94,7 @@ From CG Spectrum research:
 
 ---
 
-### Key Insights for RealmsMUD Solo Play
+### Key Insights for Misthollow Solo Play
 
 #### What Solo Players Need (from Reddit research):
 > "I've occasionally found the act of wandering around a largely empty MUD a little sad"
@@ -174,7 +174,7 @@ Tomorrow, test these hypotheses:
 - Each +1 has consistent % improvement
 - Works better for RPGs with level progression
 
-### RealmsMUD Current Formula Analysis
+### Misthollow Current Formula Analysis
 
 Our damage: `roll_dice(weapon_dice) + damroll + stat_bonus`
 Our defense: `10 - (AC // 10)` (fixed today!)
@@ -223,7 +223,7 @@ Created `fix_mob_balance.py` with:
 
 ## System Audit: What We Already Have
 
-After researching, I checked what RealmsMUD already implements. Pleasantly surprised!
+After researching, I checked what Misthollow already implements. Pleasantly surprised!
 
 ### ✅ Achievement System (achievements.py)
 Already exists with:

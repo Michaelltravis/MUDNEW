@@ -1,5 +1,5 @@
 """
-Ambient Events System for RealmsMUD
+Ambient Events System for Misthollow
 
 Generates random atmospheric events that make the world feel alive:
 - Traveling merchants passing through

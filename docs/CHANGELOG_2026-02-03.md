@@ -1,8 +1,8 @@
-# RealmsMUD Development Changelog
+# Misthollow Development Changelog
 ## Session: February 3, 2026
 
 ### Overview
-Major feature expansion bringing RealmsMUD up to CircleMUD standards and beyond, with modern enhancements including AI-powered NPC dialogue.
+Major feature expansion bringing Misthollow up to CircleMUD standards and beyond, with modern enhancements including AI-powered NPC dialogue.
 
 ---
 

@@ -1,5 +1,5 @@
 """
-RealmsMUD Account System
+Misthollow Account System
 ========================
 Manages player accounts with multi-character support.
 """
@@ -180,7 +180,7 @@ class AccountManager:
             return False
         
         msg = EmailMessage()
-        msg['Subject'] = 'RealmsMUD Password Reset'
+        msg['Subject'] = 'Misthollow Password Reset'
         msg['From'] = cfg.SMTP_FROM
         msg['To'] = account.settings['email']
         msg.set_content(

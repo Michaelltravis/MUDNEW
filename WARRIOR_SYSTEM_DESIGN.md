@@ -1,4 +1,4 @@
-# Warrior System Design - RealmsMUD
+# Warrior System Design - Misthollow
 
 **Date:** 2026-02-02  
 **Goal:** Give warriors tactical depth through Rage and Stance systems

@@ -1,5 +1,5 @@
 """
-RealmsMUD Mobiles (NPCs)
+Misthollow Mobiles (NPCs)
 ========================
 Non-player characters and monsters.
 """
@@ -16,7 +16,7 @@ from player import Character
 from affects import AffectManager
 from regeneration import RegenerationCalculator
 
-logger = logging.getLogger('RealmsMUD.Mobs')
+logger = logging.getLogger('Misthollow.Mobs')
 
 # Equipment tables (vnums from zone_030_circlemud.json)
 EQUIPMENT_TIERS = {

@@ -1,9 +1,9 @@
 #!/bin/bash
-# RealmsMUD Backup Script
+# Misthollow Backup Script
 # Run via cron: 0 */6 * * * /path/to/backup.sh
 
-BACKUP_DIR="/Users/michaeltravis/clawd/projects/RealmsMUD/backups"
-DATA_DIR="/Users/michaeltravis/clawd/projects/RealmsMUD/lib"
+BACKUP_DIR="/Users/michaeltravis/clawd/projects/Misthollow/backups"
+DATA_DIR="/Users/michaeltravis/clawd/projects/Misthollow/lib"
 DATE=$(date +%Y%m%d_%H%M%S)
 BACKUP_FILE="$BACKUP_DIR/realmsmud_backup_$DATE.tar.gz"
 

@@ -1,4 +1,4 @@
-# LLM-Powered NPC System - RealmsMUD
+# LLM-Powered NPC System - Misthollow
 
 **Date:** 2026-02-02  
 **Status:** Ready for testing (needs LM Studio)
@@ -28,7 +28,7 @@ NPCs can now have intelligent conversations with players using a local LLM (via 
 - Click "Start Server"
 - Server runs on `http://localhost:1234`
 
-### 4. Restart RealmsMUD
+### 4. Restart Misthollow
 - The MUD will auto-detect LM Studio when available
 - If not running, players get a fallback message
 

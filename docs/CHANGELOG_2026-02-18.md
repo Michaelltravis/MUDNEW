@@ -1,4 +1,4 @@
-# RealmsMUD Changelog — Wednesday, February 18, 2026
+# Misthollow Changelog — Wednesday, February 18, 2026
 
 ## Summary
 Major isometric client day. Comprehensive work on the web-based 3D iso client (`/iso`),

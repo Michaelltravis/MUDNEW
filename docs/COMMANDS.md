@@ -1,4 +1,4 @@
-# RealmsMUD Command Reference
+# Misthollow Command Reference
 
 A complete reference of all player commands, organized by category.
 

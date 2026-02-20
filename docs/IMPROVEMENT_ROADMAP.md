@@ -1,4 +1,4 @@
-# RealmsMUD Improvement Roadmap
+# Misthollow Improvement Roadmap
 *Based on game design research - February 2026*
 
 ---

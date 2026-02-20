@@ -1,5 +1,5 @@
 """
-Atmosphere System for RealmsMUD
+Atmosphere System for Misthollow
 
 Generates dynamic atmospheric descriptions based on:
 - Time of day (dawn, morning, afternoon, dusk, evening, night)

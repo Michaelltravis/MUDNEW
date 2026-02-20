@@ -1,5 +1,5 @@
 """
-RealmsMUD Ambient Message System
+Misthollow Ambient Message System
 ================================
 Adds life to the world through periodic flavor text based on location,
 time of day, weather, and random events.
@@ -13,7 +13,7 @@ if TYPE_CHECKING:
     from player import Player
     from world import World
 
-logger = logging.getLogger('RealmsMUD.Ambient')
+logger = logging.getLogger('Misthollow.Ambient')
 
 # Ambient messages by sector type
 SECTOR_AMBIENTS = {

@@ -1,4 +1,4 @@
-# RealmsMUD Help Reference
+# Misthollow Help Reference
 
 This file is generated from in-game help topics to preserve documentation.
 

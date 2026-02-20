@@ -1,4 +1,4 @@
-# RealmsMUD - A Fantasy Multi-User Dungeon
+# Misthollow - A Fantasy Multi-User Dungeon
 
 ```
     ╔═══════════════════════════════════════════════════════════════╗

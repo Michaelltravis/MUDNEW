@@ -1,5 +1,5 @@
 """
-RealmsMUD Group System
+Misthollow Group System
 ======================
 Party formation, XP sharing, loot rules, group chat, auto-follow, and group effects.
 """
@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 from config import Config
 
-logger = logging.getLogger('RealmsMUD.Groups')
+logger = logging.getLogger('Misthollow.Groups')
 
 MAX_GROUP_SIZE = 6
 

@@ -2273,7 +2273,7 @@ class QuestManager:
                         await player.send(f"{c['cyan']}  → {item.short_desc}{c['reset']}")
                 except Exception as e:
                     import logging
-                    logging.getLogger('RealmsMUD.Quests').warning(f"Failed to give quest item {item_vnum}: {e}")
+                    logging.getLogger('Misthollow.Quests').warning(f"Failed to give quest item {item_vnum}: {e}")
 
         # Quest completion bonus XP
         try:

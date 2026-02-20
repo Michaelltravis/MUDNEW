@@ -1,5 +1,5 @@
 """
-RealmsMUD Mail System
+Misthollow Mail System
 =====================
 Allows players to send, read, and manage in-game mail.
 Mail is stored in lib/mail/<playername>.json
@@ -11,7 +11,7 @@ import logging
 from datetime import datetime
 from typing import List, Dict, Optional
 
-logger = logging.getLogger('RealmsMUD.Mail')
+logger = logging.getLogger('Misthollow.Mail')
 
 MAIL_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'lib', 'mail')
 

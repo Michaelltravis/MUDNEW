@@ -1,4 +1,4 @@
-# RealmsMUD
+# Misthollow
 
 ```
     ╔═══════════════════════════════════════════════════════════════╗
@@ -16,7 +16,7 @@
 
 **A Modern Fantasy Multi-User Dungeon**
 
-RealmsMUD is a feature-rich text-based multiplayer RPG inspired by classic MUDs like CircleMUD and DikuMUD, built from the ground up in Python 3. Dive into a rich fantasy world with friends, battle monsters, cast spells, and become a legend.
+Misthollow is a feature-rich text-based multiplayer RPG inspired by classic MUDs like CircleMUD and DikuMUD, built from the ground up in Python 3. Dive into a rich fantasy world with friends, battle monsters, cast spells, and become a legend.
 
 ---
 
@@ -120,7 +120,7 @@ telnet your-server-ip 4000
 
 ## 🛠️ Builder Tools (OLC)
 
-RealmsMUD includes OasisOLC-style in-game building tools:
+Misthollow includes OasisOLC-style in-game building tools:
 
 | Command | Description |
 |---------|-------------|
@@ -148,7 +148,7 @@ All editors are menu-driven. Type the option number to edit that field.
 ## 🏗️ Project Structure
 
 ```
-RealmsMUD/
+Misthollow/
 ├── src/
 │   ├── main.py         # Server entry point
 │   ├── server.py       # Network/connection handling

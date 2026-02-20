@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 from config import Config
 
-logger = logging.getLogger('RealmsMUD.Warrior')
+logger = logging.getLogger('Misthollow.Warrior')
 
 # ============================================================================
 # CONSTANTS

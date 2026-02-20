@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-RealmsMUD Automated Test Suite
+Misthollow Automated Test Suite
 ==============================
 Tests core MUD functionality via socket connection.
 """
@@ -173,7 +173,7 @@ class TestResult:
 
 
 class MUDTestSuite:
-    """Test suite for RealmsMUD."""
+    """Test suite for Misthollow."""
     
     def __init__(self, host: str = 'localhost', port: int = 4000):
         self.client = MUDClient(host, port)
@@ -184,7 +184,7 @@ class MUDTestSuite:
     def run_all(self, smoke: bool = False) -> bool:
         """Run all tests (or smoke subset)."""
         logger.info("=" * 50)
-        logger.info("RealmsMUD Test Suite" + (" (SMOKE)" if smoke else ""))
+        logger.info("Misthollow Test Suite" + (" (SMOKE)" if smoke else ""))
         logger.info("=" * 50)
         
         if not self.client.connect():

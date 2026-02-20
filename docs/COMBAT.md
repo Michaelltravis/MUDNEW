@@ -1,6 +1,6 @@
-# RealmsMUD Combat Guide
+# Misthollow Combat Guide
 
-Master the art of combat in RealmsMUD! This guide covers everything from basic attacks to advanced class mechanics.
+Master the art of combat in Misthollow! This guide covers everything from basic attacks to advanced class mechanics.
 
 ---
 

@@ -1,11 +1,11 @@
-# RealmsMUD Crypto Integration Ideas
+# Misthollow Crypto Integration Ideas
 ## Status: TABLED - Revisit Later
 ## Date: February 3, 2026
 
 ---
 
 ## Overview
-Exploring Solana integration for RealmsMUD - items/characters as NFTs, potential token economy.
+Exploring Solana integration for Misthollow - items/characters as NFTs, potential token economy.
 
 ## Potential Approaches
 

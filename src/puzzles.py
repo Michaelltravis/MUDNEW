@@ -1,5 +1,5 @@
 """
-RealmsMUD Puzzle System
+Misthollow Puzzle System
 =======================
 Room-based puzzles: riddles, levers, symbol matching, environmental sequences.
 """
@@ -7,7 +7,7 @@ Room-based puzzles: riddles, levers, symbol matching, environmental sequences.
 import logging
 from typing import Dict, List, Optional
 
-logger = logging.getLogger('RealmsMUD.Puzzles')
+logger = logging.getLogger('Misthollow.Puzzles')
 
 
 class PuzzleManager:

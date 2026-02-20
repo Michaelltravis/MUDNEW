@@ -1,5 +1,5 @@
 """
-RealmsMUD Pet/Companion System
+Misthollow Pet/Companion System
 ===============================
 Supports temporary summons, persistent companions, and undead servants.
 """
@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 from mobs import Mobile
 from config import Config
 
-logger = logging.getLogger('RealmsMUD.Pets')
+logger = logging.getLogger('Misthollow.Pets')
 
 
 class Pet(Mobile):

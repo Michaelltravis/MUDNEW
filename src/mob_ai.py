@@ -20,7 +20,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from mobs import Mobile
 
-logger = logging.getLogger('RealmsMUD.MobAI')
+logger = logging.getLogger('Misthollow.MobAI')
 
 # ---------------------------------------------------------------------------
 # Flag / keyword classification

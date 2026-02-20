@@ -1,5 +1,5 @@
 """
-Web map server for RealmsMUD.
+Web map server for Misthollow.
 Serves a lightweight HTML/JS interface and a minimal WebSocket for live updates.
 """
 
@@ -14,7 +14,7 @@ from urllib.parse import parse_qs, urlparse
 
 from map_system import build_map_payload
 
-logger = logging.getLogger('RealmsMUD.WebMap')
+logger = logging.getLogger('Misthollow.WebMap')
 
 
 class WebMapClient:
@@ -365,7 +365,7 @@ class WebMapServer:
 <head>
   <meta charset=\"utf-8\" />
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />
-  <title>RealmsMUD Map</title>
+  <title>Misthollow Map</title>
   <link rel=\"stylesheet\" href=\"/map.css\" />
   <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">
   <link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap\" rel=\"stylesheet\">
@@ -373,7 +373,7 @@ class WebMapServer:
 <body>
   <div id=\"app\">
     <header>
-      <h1>⚔️ RealmsMUD</h1>
+      <h1>⚔️ Misthollow</h1>
       <div class=\"controls\">
         <label>Level <select id=\"zSelect\"></select></label>
         <label>Zoom <input id=\"zoom\" type=\"range\" min=\"0.3\" max=\"3\" step=\"0.1\" value=\"1\" /></label>

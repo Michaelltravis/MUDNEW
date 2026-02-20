@@ -1,5 +1,5 @@
 """
-RealmsMUD Housing System
+Misthollow Housing System
 ========================
 Full player housing with purchasing, storage, furniture, and teleportation.
 """
@@ -10,7 +10,7 @@ import time
 import logging
 from typing import Optional, Dict, List
 
-logger = logging.getLogger('RealmsMUD.Housing')
+logger = logging.getLogger('Misthollow.Housing')
 
 # House sizes and costs
 HOUSE_SIZES = {

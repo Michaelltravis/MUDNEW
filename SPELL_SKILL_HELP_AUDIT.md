@@ -86,7 +86,7 @@ Each generated help entry includes:
 
 1. **Merge help files** into help_data.py:
    ```bash
-   cd ~/clawd/projects/RealmsMUD
+   cd ~/clawd/projects/Misthollow
    python3 tools/merge_help.py
    ```
    OR manually copy entries from `tools/generated_help.py` into `src/help_data.py` before the closing `}` at line 952.

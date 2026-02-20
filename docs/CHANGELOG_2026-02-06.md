@@ -1,4 +1,4 @@
-# RealmsMUD Changelog - February 6, 2026
+# Misthollow Changelog - February 6, 2026
 
 ## UX / QoL
 - **Autoexit** now persists and defaults **ON** (exits show on room entry).

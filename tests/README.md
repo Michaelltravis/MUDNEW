@@ -1,4 +1,4 @@
-# RealmsMUD Testing Tools
+# Misthollow Testing Tools
 
 ## 1) Automated Test Suite
 Runs core command checks via socket.

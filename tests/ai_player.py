@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-RealmsMUD AI Player Agent
+Misthollow AI Player Agent
 =========================
 Connects to the MUD and uses a local LLM (LM Studio) to play.
 Designed for exploratory testing and bug discovery.

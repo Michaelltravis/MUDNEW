@@ -9,7 +9,7 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple
 import logging
 
-logger = logging.getLogger('RealmsMUD.Factions')
+logger = logging.getLogger('Misthollow.Factions')
 
 
 REPUTATION_LEVELS = [

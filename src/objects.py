@@ -1,5 +1,5 @@
 """
-RealmsMUD Objects
+Misthollow Objects
 =================
 Items, equipment, and containers.
 """
@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 from config import Config
 
-logger = logging.getLogger('RealmsMUD.Objects')
+logger = logging.getLogger('Misthollow.Objects')
 
 
 class Object:

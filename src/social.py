@@ -1,5 +1,5 @@
 """
-RealmsMUD Social & Communication System
+Misthollow Social & Communication System
 ========================================
 Chat channels, friends, ignore, player notes, finger/whois.
 """
@@ -11,7 +11,7 @@ from typing import List, Dict, Optional, TYPE_CHECKING
 if TYPE_CHECKING:
     from player import Player
 
-logger = logging.getLogger('RealmsMUD.Social')
+logger = logging.getLogger('Misthollow.Social')
 
 # ==================== CHAT CHANNELS ====================
 

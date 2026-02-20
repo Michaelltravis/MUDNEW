@@ -1,5 +1,5 @@
 """
-RealmsMUD Shop System
+Misthollow Shop System
 =====================
 Merchant NPCs for buying and selling items.
 """
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 from config import Config
 
-logger = logging.getLogger('RealmsMUD.Shops')
+logger = logging.getLogger('Misthollow.Shops')
 
 
 class ShopKeeper:

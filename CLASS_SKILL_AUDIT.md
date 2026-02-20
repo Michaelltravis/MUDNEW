@@ -1,4 +1,4 @@
-# Class Skills & Spells Audit - RealmsMUD
+# Class Skills & Spells Audit - Misthollow
 
 **Date:** 2026-02-02  
 **Purpose:** Audit all classes to ensure unique, engaging abilities comparable to the Necromancer system
@@ -280,4 +280,4 @@ The Assassin shows what a well-designed class looks like:
 
 ---
 
-*This audit identifies RealmsMUD's class balance issues. The goal is to make every class feel as unique and engaging as Assassin and Necromancer.*
+*This audit identifies Misthollow's class balance issues. The goal is to make every class feel as unique and engaging as Assassin and Necromancer.*

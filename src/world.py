@@ -1,5 +1,5 @@
 """
-RealmsMUD World
+Misthollow World
 ===============
 World management - zones, rooms, mobs, objects.
 """
@@ -20,7 +20,7 @@ from config import Config
 from time_system import GameTime
 from weather import Weather
 
-logger = logging.getLogger('RealmsMUD.World')
+logger = logging.getLogger('Misthollow.World')
 
 
 class Room:

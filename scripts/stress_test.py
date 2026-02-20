@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-RealmsMUD Stress Test
+Misthollow Stress Test
 Simulates multiple concurrent connections
 """
 
@@ -116,7 +116,7 @@ async def stress_connection(conn_id, char_num):
 async def main():
     print(f"""
 ╔══════════════════════════════════════════════════════════════╗
-║              RealmsMUD Stress Test                           ║
+║              Misthollow Stress Test                           ║
 ╠══════════════════════════════════════════════════════════════╣
 ║  Total connections:  {NUM_CONNECTIONS:<4}                                   ║
 ║  Concurrent max:     {CONCURRENT_MAX:<4}                                   ║

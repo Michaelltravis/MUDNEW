@@ -1,5 +1,5 @@
 """
-RealmsMUD Collection System
+Misthollow Collection System
 ===========================
 Tracks collectible sets and rewards.
 """
@@ -7,7 +7,7 @@ Tracks collectible sets and rewards.
 import logging
 from typing import Dict, List
 
-logger = logging.getLogger('RealmsMUD.Collections')
+logger = logging.getLogger('Misthollow.Collections')
 
 
 COLLECTION_SETS: Dict[str, Dict] = {

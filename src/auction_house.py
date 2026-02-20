@@ -1,5 +1,5 @@
 """
-RealmsMUD Auction House
+Misthollow Auction House
 =======================
 Player economy system with fixed-price and bidding listings.
 Persisted to data/auction_house.json independent of player saves.
@@ -15,7 +15,7 @@ from typing import List, Dict, Optional, TYPE_CHECKING
 if TYPE_CHECKING:
     from player import Player
 
-logger = logging.getLogger('RealmsMUD.AuctionHouse')
+logger = logging.getLogger('Misthollow.AuctionHouse')
 
 DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'data')
 AUCTION_FILE = os.path.join(DATA_DIR, 'auction_house.json')

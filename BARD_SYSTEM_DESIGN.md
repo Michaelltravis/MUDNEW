@@ -1,4 +1,4 @@
-# Bard System Design - RealmsMUD
+# Bard System Design - Misthollow
 
 **Date:** 2026-02-02  
 **Goal:** Give bards a unique, engaging song-based identity

@@ -1,5 +1,5 @@
 """
-NPC Schedule System for RealmsMUD
+NPC Schedule System for Misthollow
 
 Makes NPCs feel alive by giving them daily routines:
 - Merchants open/close their shops

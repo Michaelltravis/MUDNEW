@@ -1,5 +1,5 @@
 """
-RealmsMUD Spells
+Misthollow Spells
 ================
 Magic system and spell effects.
 """
@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from config import Config
 from affects import AffectManager
 
-logger = logging.getLogger('RealmsMUD.Spells')
+logger = logging.getLogger('Misthollow.Spells')
 
 # Spell definitions
 SPELLS = {

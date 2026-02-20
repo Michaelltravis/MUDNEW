@@ -1,5 +1,5 @@
 """
-Map rendering and coordinate utilities for RealmsMUD.
+Map rendering and coordinate utilities for Misthollow.
 """
 
 from typing import Dict, Tuple, Set, List, Optional

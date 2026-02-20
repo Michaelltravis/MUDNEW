@@ -1,5 +1,5 @@
 """
-RealmsMUD World Events System
+Misthollow World Events System
 ==============================
 Dynamic world events that trigger periodically to keep the world feeling alive.
 Event types: Invasion, World Boss, Treasure Hunt, Double XP, Weather Events.
@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 from config import Config
 
-logger = logging.getLogger('RealmsMUD.WorldEvents')
+logger = logging.getLogger('Misthollow.WorldEvents')
 
 # ─── Event Announcements ─────────────────────────────────────────────────────
 

@@ -1,9 +1,9 @@
-# RealmsMUD World Map
+# Misthollow World Map
 
 ## The Known Realms - Complete Atlas
 
 ### World Overview
-The world of RealmsMUD consists of 16 interconnected zones spanning from the bustling city of Midgaard to the chaotic Plane of Eternal Chaos. Adventurers will journey through forests, dungeons, swamps, mines, temples, and otherworldly planes as they grow in power.
+The world of Misthollow consists of 16 interconnected zones spanning from the bustling city of Midgaard to the chaotic Plane of Eternal Chaos. Adventurers will journey through forests, dungeons, swamps, mines, temples, and otherworldly planes as they grow in power.
 
 ---
 

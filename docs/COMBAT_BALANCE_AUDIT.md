@@ -120,7 +120,7 @@ Envenom and poison effects are balanced with charges and duration.
 
 ### Priority 1: Apply Mob Balance Fix
 ```bash
-cd /Users/michaeltravis/clawd/projects/RealmsMUD
+cd /Users/michaeltravis/clawd/projects/Misthollow
 python3 scripts/fix_mob_balance.py --apply
 ```
 

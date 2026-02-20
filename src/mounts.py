@@ -1,5 +1,5 @@
 """
-RealmsMUD Mount System
+Misthollow Mount System
 ======================
 Handles buyable and tameable mounts that boost travel speed.
 """
@@ -9,7 +9,7 @@ import logging
 from dataclasses import dataclass, field
 from typing import Dict, Optional
 
-logger = logging.getLogger('RealmsMUD.Mounts')
+logger = logging.getLogger('Misthollow.Mounts')
 
 
 @dataclass

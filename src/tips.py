@@ -1,5 +1,5 @@
 """
-RealmsMUD Tips System
+Misthollow Tips System
 =====================
 Provides helpful tips to players at appropriate moments.
 """

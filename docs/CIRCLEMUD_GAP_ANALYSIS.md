@@ -1,8 +1,8 @@
-# CircleMUD Gap Analysis for RealmsMUD
+# CircleMUD Gap Analysis for Misthollow
 ## Updated: February 3, 2026
 
 ## Summary
-RealmsMUD now has **230+ commands** vs CircleMUD's ~80 core commands. All major CircleMUD features implemented plus significant expansions.
+Misthollow now has **230+ commands** vs CircleMUD's ~80 core commands. All major CircleMUD features implemented plus significant expansions.
 
 ---
 
@@ -171,7 +171,7 @@ RealmsMUD now has **230+ commands** vs CircleMUD's ~80 core commands. All major 
 
 ## 📊 COMMAND COUNT COMPARISON
 
-| Category | CircleMUD | RealmsMUD |
+| Category | CircleMUD | Misthollow |
 |----------|-----------|-----------|
 | Movement | 8 | 15+ |
 | Communication | 10 | 15+ |

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-RealmsMUD Automated Backup System
+Misthollow Automated Backup System
 
 Creates timestamped backups of:
 - Player save files (data/players/)
@@ -297,7 +297,7 @@ def prune_backups(days):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="RealmsMUD Backup System")
+    parser = argparse.ArgumentParser(description="Misthollow Backup System")
     parser.add_argument("--players", action="store_true", help="Back up players only")
     parser.add_argument("--world", action="store_true", help="Back up world/zones only")
     parser.add_argument("--logs", action="store_true", help="Include logs in backup")

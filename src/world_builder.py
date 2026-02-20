@@ -1,5 +1,5 @@
 """
-RealmsMUD World Builder
+Misthollow World Builder
 =======================
 Creates the default fantasy world with zones, rooms, NPCs, and items.
 """
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
 
 from config import Config
 
-logger = logging.getLogger('RealmsMUD.WorldBuilder')
+logger = logging.getLogger('Misthollow.WorldBuilder')
 
 
 class WorldBuilder:

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-RealmsMUD - A Fantasy CircleMUD-style Multi-User Dungeon
+Misthollow - A Fantasy CircleMUD-style Multi-User Dungeon
 =========================================================
 A complete fantasy MUD with character classes, combat, magic, quests, and more.
 """
@@ -29,9 +29,9 @@ logging.basicConfig(
         logging.StreamHandler()
     ]
 )
-logger = logging.getLogger('RealmsMUD')
+logger = logging.getLogger('Misthollow')
 
-class RealmsMUD:
+class Misthollow:
     """Main MUD application class."""
     
     def __init__(self):
@@ -47,7 +47,7 @@ class RealmsMUD:
     async def initialize(self):
         """Initialize the MUD world and systems."""
         logger.info("=" * 60)
-        logger.info("RealmsMUD - Fantasy Multi-User Dungeon")
+        logger.info("Misthollow - Fantasy Multi-User Dungeon")
         logger.info("=" * 60)
         logger.info("Initializing game systems...")
         
@@ -256,7 +256,7 @@ class RealmsMUD:
             
     async def shutdown(self):
         """Gracefully shut down the MUD."""
-        logger.info("Shutting down RealmsMUD...")
+        logger.info("Shutting down Misthollow...")
         self.running = False
         
         if self.world:
@@ -275,7 +275,7 @@ class RealmsMUD:
 
 async def main():
     """Entry point."""
-    mud = RealmsMUD()
+    mud = Misthollow()
     
     # Handle shutdown signals (Unix only - Windows uses KeyboardInterrupt)
     if sys.platform != 'win32':

@@ -1,4 +1,4 @@
-# Ranger System Design - RealmsMUD
+# Ranger System Design - Misthollow
 
 **Date:** 2026-02-02  
 **Goal:** Give rangers their core identity: Animal Companions + Tracking

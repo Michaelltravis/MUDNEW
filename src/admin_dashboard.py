@@ -1,5 +1,5 @@
 """
-RealmsMUD Admin Dashboard
+Misthollow Admin Dashboard
 Web-based admin interface on port 4002
 """
 
@@ -41,7 +41,7 @@ class AdminDashboard:
         html = '''<!DOCTYPE html>
 <html>
 <head>
-    <title>RealmsMUD Admin Dashboard</title>
+    <title>Misthollow Admin Dashboard</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
@@ -71,7 +71,7 @@ class AdminDashboard:
     </style>
 </head>
 <body>
-    <h1>🎮 RealmsMUD Admin Dashboard</h1>
+    <h1>🎮 Misthollow Admin Dashboard</h1>
     
     <div class="grid">
         <div class="card">

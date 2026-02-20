@@ -5,7 +5,7 @@
 
 To rollback all changes:
 ```bash
-cd /Users/michaeltravis/clawd/projects/RealmsMUD
+cd /Users/michaeltravis/clawd/projects/Misthollow
 python3 scripts/backup.py --restore realmsmud_full_20260205_225701.tar.gz
 pkill -9 -f "main.py"; sleep 2; nohup python3 src/main.py > server.log 2>&1 &
 ```
@@ -153,7 +153,7 @@ Clears the terminal screen using ANSI escape sequences.
 If you don't like any changes, restore the pre-work backup:
 
 ```bash
-cd /Users/michaeltravis/clawd/projects/RealmsMUD
+cd /Users/michaeltravis/clawd/projects/Misthollow
 python3 scripts/backup.py --restore realmsmud_full_20260205_225701.tar.gz
 pkill -9 -f "main.py"; sleep 2; nohup python3 src/main.py > server.log 2>&1 &
 ```

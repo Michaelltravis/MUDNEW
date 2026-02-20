@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-RealmsMUD Mob Balance Fix Script
+Misthollow Mob Balance Fix Script
 ================================
 Fixes broken damage dice and exp values from CircleMUD conversion.
 
@@ -217,7 +217,7 @@ def process_zone_file(zone_path: Path, dry_run: bool = True) -> dict:
 
 def main():
     import argparse
-    parser = argparse.ArgumentParser(description="Fix mob balance in RealmsMUD zones")
+    parser = argparse.ArgumentParser(description="Fix mob balance in Misthollow zones")
     parser.add_argument("--apply", action="store_true", help="Actually apply fixes (default is dry-run)")
     parser.add_argument("--zone", type=str, help="Process only this zone file")
     parser.add_argument("--verbose", "-v", action="store_true", help="Show all changes")
@@ -232,7 +232,7 @@ def main():
     else:
         zone_files = sorted(zones_dir.glob("zone_*.json"))
     
-    print(f"{'DRY RUN - ' if dry_run else ''}RealmsMUD Mob Balance Fix")
+    print(f"{'DRY RUN - ' if dry_run else ''}Misthollow Mob Balance Fix")
     print("=" * 60)
     
     total_checked = 0

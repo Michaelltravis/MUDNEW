@@ -1,5 +1,5 @@
 """
-Discovery Journal System for RealmsMUD
+Discovery Journal System for Misthollow
 Tracks player discoveries, lore, NPCs met, and exploration progress.
 Compatible with the existing journal list format.
 """

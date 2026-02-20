@@ -1,5 +1,5 @@
 """
-RealmsMUD Player
+Misthollow Player
 ================
 Player character class with stats, combat, inventory, etc.
 """
@@ -20,7 +20,7 @@ from config import Config
 from affects import AffectManager
 from regeneration import RegenerationCalculator
 
-logger = logging.getLogger('RealmsMUD.Player')
+logger = logging.getLogger('Misthollow.Player')
 
 class Character:
     """Base class for all characters (players and NPCs)."""

@@ -1,5 +1,5 @@
 """
-Talent Tree System for RealmsMUD
+Talent Tree System for Misthollow
 
 Each class has 3 specialization trees. Players earn talent points
 as they level and can spend them to unlock powerful abilities and

@@ -1,5 +1,5 @@
 """
-Achievement System for RealmsMUD
+Achievement System for Misthollow
 
 Tracks player accomplishments and awards titles/bonuses.
 Achievements are checked on relevant events (kills, levels, exploration, etc.)

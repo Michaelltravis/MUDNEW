@@ -1,5 +1,5 @@
 """
-RealmsMUD Configuration
+Misthollow Configuration
 =======================
 Game settings and constants.
 """

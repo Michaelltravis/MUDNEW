@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RealmsMUD - Isometric View</title>
+    <title>Misthollow - Isometric View</title>
     <style>
         * {
             margin: 0;
@@ -1191,7 +1191,7 @@
     
     <!-- Login Panel -->
     <div id="login-panel">
-        <h2>🗺️ RealmsMUD</h2>
+        <h2>🗺️ Misthollow</h2>
         <input type="text" id="account-name" placeholder="Account name" autofocus>
         <input type="password" id="account-password" placeholder="Password">
         <button onclick="connect()">Enter World</button>
@@ -1280,7 +1280,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         // ============================================
-        // RealmsMUD Isometric Client v2
+        // Misthollow Isometric Client v2
         // ============================================
         
         const CONFIG = {
@@ -4404,7 +4404,7 @@
             mudWs = new WebSocket(`${protocol}//${host}:${CONFIG.MUD_PORT}/ws`);
             
             mudWs.onopen = () => {
-                appendOutput('<span style="color:#4ade80">Connected to RealmsMUD</span><br>');
+                appendOutput('<span style="color:#4ade80">Connected to Misthollow</span><br>');
                 setTimeout(() => {
                     mudWs.send(JSON.stringify({ type: 'input', data: account }));
                     setTimeout(() => {

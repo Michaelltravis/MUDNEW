@@ -1,5 +1,5 @@
 """
-RealmsMUD AI Service
+Misthollow AI Service
 ====================
 Local LLM integration via LM Studio for dynamic content generation.
 Connects to LM Studio's OpenAI-compatible API on localhost:1234.
@@ -14,7 +14,7 @@ import hashlib
 from typing import Optional, Dict, List, Any
 from dataclasses import dataclass
 
-logger = logging.getLogger('RealmsMUD.AI')
+logger = logging.getLogger('Misthollow.AI')
 
 @dataclass
 class AIConfig:

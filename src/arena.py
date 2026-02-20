@@ -1,5 +1,5 @@
 """
-RealmsMUD PvP Arena System
+Misthollow PvP Arena System
 ==========================
 Opt-in PvP arena with ELO rating, matchmaking, and spectating.
 """
@@ -13,7 +13,7 @@ from typing import Dict, List, Optional, TYPE_CHECKING
 if TYPE_CHECKING:
     from player import Player
 
-logger = logging.getLogger('RealmsMUD.Arena')
+logger = logging.getLogger('Misthollow.Arena')
 
 # Arena room vnums
 ARENA_LOBBY_VNUM = 25000

@@ -1,5 +1,5 @@
 """
-RealmsMUD Server
+Misthollow Server
 ================
 Handles network connections and player sessions.
 """
@@ -66,7 +66,7 @@ def _wrap_text(text: str, width: int = 80) -> str:
 
 from config import Config
 
-logger = logging.getLogger('RealmsMUD.Server')
+logger = logging.getLogger('Misthollow.Server')
 
 class Connection:
     """Represents a single client connection."""
@@ -494,7 +494,7 @@ class Connection:
         # Show welcome message
         c = self.config.COLORS
         await self.send(f"\r\n{c['bright_cyan']}══════════════════════════════════════════════════════════════{c['reset']}")
-        await self.send(f"{c['bright_yellow']}  Welcome to RealmsMUD, {self.player.name}!{c['reset']}")
+        await self.send(f"{c['bright_yellow']}  Welcome to Misthollow, {self.player.name}!{c['reset']}")
         await self.send(f"{c['white']}  A world of quests, combat, crafting, and adventure awaits.{c['reset']}")
         await self.send(f"{c['white']}  Type {c['bright_green']}help newbie{c['white']} for a new player guide, or {c['bright_green']}hint{c['white']} for tips.{c['reset']}")
         await self.send(f"{c['bright_cyan']}══════════════════════════════════════════════════════════════{c['reset']}\r\n")
@@ -533,7 +533,7 @@ class Connection:
                 self.player.rent_data = None
         except Exception as e:
             import logging
-            logging.getLogger('RealmsMUD').error(f"Rent processing error: {e}")
+            logging.getLogger('Misthollow').error(f"Rent processing error: {e}")
 
         if room:
             room.characters.append(self.player)
@@ -579,7 +579,7 @@ class Connection:
                 await CommandHandler._room_entry_triggers(self.player)
             except Exception as e:
                 import logging
-                logging.getLogger('RealmsMUD').error(f"Room entry trigger error: {e}")
+                logging.getLogger('Misthollow').error(f"Room entry trigger error: {e}")
 
             # Web map update
             if hasattr(self.world, 'web_map') and self.world.web_map:
@@ -913,7 +913,7 @@ class Connection:
         await self.send(f"  {c['white']}Your IP:{c['reset']}     {addr}")
         await self.send(f"  {c['white']}Your Port:{c['reset']}   {port}")
         await self.send(f"  {c['white']}Connected:{c['reset']}   {hours}h {mins}m {secs}s")
-        await self.send(f"  {c['white']}Server:{c['reset']}      RealmsMUD v1.0")
+        await self.send(f"  {c['white']}Server:{c['reset']}      Misthollow v1.0")
         await self.send(f"{c['bright_cyan']}{'═' * 40}{c['reset']}")
     
     async def show_lag(self):
@@ -1388,17 +1388,18 @@ class MUDServer:
 {c['bright_cyan']}
     ===================================================================
 
-        ____  _____    _    _     __  __ ____    __  __ _   _ ____
-       |  _ \\| ____|  / \\  | |   |  \\/  / ___|  |  \\/  | | | |  _ \\
-       | |_) |  _|   / _ \\ | |   | |\\/| \\___ \\  | |\\/| | | | | | | |
-       |  _ <| |___ / ___ \\| |___| |  | |___) | | |  | | |_| | |_| |
-       |_| \\_\\_____/_/   \\_\\_____|_|  |_|____/  |_|  |_|\\___/|____/
+      ___  ________ _____ _____ _   _ _____ _      _     _____  _    _
+     |  \\/  |_   _/  ___|_   _| | | |  _  | |    | |   |  _  || |  | |
+     | .  . | | | \\ `--.  | | | |_| | | | | |    | |   | | | || |  | |
+     | |\\/| | | |  `--. \\ | | |  _  | | | | |    | |   | | | || |/\\| |
+     | |  | |_| |_/\\__/ / | | | | | \\ \\_/ / |____| |___\\ \\_/ /\\  /\\  /
+     \\_|  |_/\\___/\\____/  \\_/ \\_| |_/\\___/\\_____/\\_____/\\___/  \\/  \\/
 
     ===================================================================
 
     {c['white']}Welcome, brave adventurer, to a world of fantasy and magic!
     Explore vast dungeons, battle fearsome creatures, and
-    forge your legend in the Realms!
+    forge your legend in Misthollow!
 
     {c['bright_green']}* 8 unique races with special abilities
     * 8 character classes to master
