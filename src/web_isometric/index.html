@@ -1657,13 +1657,20 @@
             _combatTimer = setTimeout(() => { _inCombat = false; }, 5000);
         }
 
-        // Lines that should never appear in the combat log even during combat
+        // Lines that should never appear in the combat log
         function _isNonCombatLine(t) {
-            return /^\[?\s*Exits:/i.test(t)          // exit list
-                || /^You (are in|have entered|leave|go |move )/i.test(t) // movement
+            return /^\[?\s*Exits:/i.test(t)                       // exit list
+                || /^\d+\/\d+hp\b/i.test(t)                     // prompt
+                || /^>\s*/.test(t)                                // command echo
+                || /^\[[0-9]+\]$/.test(t)                        // bare room ids
+                || /\[[0-9]{3,6}\]$/.test(t)                     // room headers e.g. [27022]
+                || /\b(stands here|is here\.|lies here\.|has been placed here\.|mounted on a wall here\.)/i.test(t)
                 || /^(Your inventory|You are carrying|Equipment|Wearing)/i.test(t)
-                || /^\d+\/\d+hp/i.test(t)             // prompt
-                || /^(You look|You see|The room|It is)/i.test(t);
+                || /^(You look|You see|The room|It is|At the center|At the |Something is |A chill runs|Midnight strikes\.|A shooting star)/i.test(t)
+                || /^Showing \d+ update\(s\)/i.test(t)
+                || /^Report bugs with:/i.test(t)
+                || /^═══ \d{4}-\d{2}-\d{2}/.test(t)
+                || /^•\s/.test(t);
         }
 
         function _parseCombatText(text) {
@@ -1671,6 +1678,9 @@
             lines.forEach(line => {
                 const t = line.replace(/\s+/g, ' ').trim();
                 if (!t) return;
+
+                // Hard filter non-combat world/UI lines before pattern matching
+                if (_isNonCombatLine(t)) return;
 
                 // Never treat updates/changelog/help listing lines as combat
                 if (/RECENT UPDATES|Showing \d+ update\(s\)|Report bugs with:|^═══ \d{4}-\d{2}-\d{2}|^•\s/i.test(t)) {
