@@ -270,3 +270,12 @@
 - Normalize DB/PB source caps and contribution ceilings.
 - Increase explicit WIL impact on escape stability/panic resistance.
 - Add concise `help tactical` formula summary for player transparency.
+
+## MUME Numeric Tuning Pass 1
+
+### Tuned
+- **Escape stability (WIL):** flee/escape now include capped willpower composure bonus; high-WIL builds panic less.
+- **Cooldown composure:** WIL slightly reduces flee/escape/disengage cooldowns (small capped effect).
+- **DB/PB source caps:** shield/stance/skill/item contributions now have explicit ceilings to prevent single-source dominance.
+- **Weight penalties:** DB/PB weight penalties are capped for predictable scaling.
+- **Help clarity:** `help tactical` now includes concise OB/DB/PB and escape/flee formula summary.

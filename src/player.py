@@ -134,9 +134,18 @@ class Character:
         shield_magic = self.get_shield_evasion_bonus()
         dodge_skill = int(getattr(self, 'skills', {}).get('dodge', 0)) // 5
         dodge_item = self.get_equipment_bonus('dodge')
+
+        # Cap per-source contribution so no single source dominates DB
+        shield_magic = max(-5, min(12, shield_magic))
+        dodge_skill = max(0, min(20, dodge_skill))
+        dodge_item = max(-8, min(15, dodge_item))
+        stance_db = max(-8, min(8, stance_db))
+
         wt = self.get_armor_weight()
         softcap = int(getattr(self.config, 'ARMOR_WEIGHT_DB_SOFTCAP', 20))
         weight_penalty = max(0, wt - softcap) // 2
+        weight_penalty = min(30, weight_penalty)
+
         total = base_db + stance_db + shield_magic + dodge_skill + dodge_item - weight_penalty
         return {
             'total': total,
@@ -156,9 +165,17 @@ class Character:
         stance_pb = int(stance_mods.get('pb', 0))
         parry_skill = int(getattr(self, 'skills', {}).get('parry', 0)) // 8
         shield_block = int(getattr(self, 'skills', {}).get('shield_block', 0)) // 10
+
+        # Cap per-source contribution so PB remains predictable
+        stance_pb = max(-10, min(12, stance_pb))
+        parry_skill = max(0, min(15, parry_skill))
+        shield_block = max(0, min(10, shield_block))
+
         wt = self.get_armor_weight()
         softcap = int(getattr(self.config, 'ARMOR_WEIGHT_PB_SOFTCAP', 24))
         weight_penalty = max(0, wt - softcap) // 3
+        weight_penalty = min(20, weight_penalty)
+
         total = max(0, min(80, base_pb + stance_pb + parry_skill + shield_block - weight_penalty))
         return {
             'total': total,

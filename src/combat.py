@@ -88,7 +88,13 @@ class CombatHandler:
     @classmethod
     def get_flee_chance(cls, player: 'Player') -> int:
         """Calculate flee chance for a player (0-95)."""
-        base = 50 + (player.dex - 10) * 2
+        dex = getattr(player, 'dex', 10)
+        wil = getattr(player, 'wil', 10)
+        base = 50 + (dex - 10) * 2
+
+        # Willpower adds composure under pressure (capped so it doesn't dominate)
+        base += max(-4, min(8, wil - 10))
+
         stance = getattr(player, 'stance', 'normal')
         if stance == 'defensive':
             base += 5
@@ -100,14 +106,19 @@ class CombatHandler:
 
     @classmethod
     def get_escape_chance(cls, player: 'Player') -> int:
-        """Calculate directed escape chance based on skill or dex."""
+        """Calculate directed escape chance based on skill + dex + willpower."""
         skill = 0
         if hasattr(player, 'skills'):
             if 'escape' in player.skills:
                 skill = player.skills.get('escape', 0)
             elif 'slip' in player.skills:
                 skill = player.skills.get('slip', 0)
-        base = (25 + (player.dex - 10)) if skill <= 0 else (skill + (player.dex - 10))
+
+        dex = getattr(player, 'dex', 10)
+        wil = getattr(player, 'wil', 10)
+        wil_mod = max(-3, min(6, wil - 10))
+
+        base = (25 + (dex - 10) + wil_mod) if skill <= 0 else (skill + (dex - 10) + wil_mod)
         if getattr(player, 'move', 0) < cls.config.ESCAPE_MOVE_COST:
             return 0
         return max(5, min(95, base))
@@ -1939,7 +1950,10 @@ class CombatHandler:
         # Chance to flee based on dexterity
         flee_chance = cls.get_flee_chance(player)
         flee_risk = cls.get_flee_risk_label(flee_chance)
-        player.flee_cooldown_until = now + cls.config.FLEE_COOLDOWN_SECONDS
+        wil = getattr(player, 'wil', 10)
+        composure = max(0, min(2, (wil - 10) // 4))
+        flee_cd = max(1, cls.config.FLEE_COOLDOWN_SECONDS - composure)
+        player.flee_cooldown_until = now + flee_cd
 
         if auto:
             await player.send(f"{c['yellow']}You panic and try to flee ({flee_risk} risk)!{c['reset']}")
@@ -1992,7 +2006,10 @@ class CombatHandler:
 
         escape_chance = cls.get_escape_chance(player)
         escape_risk = cls.get_escape_risk_label(escape_chance)
-        player.escape_cooldown_until = now + cls.config.ESCAPE_COOLDOWN_SECONDS
+        wil = getattr(player, 'wil', 10)
+        composure = max(0, min(2, (wil - 10) // 4))
+        escape_cd = max(1, cls.config.ESCAPE_COOLDOWN_SECONDS - composure)
+        player.escape_cooldown_until = now + escape_cd
 
         if random.randint(1, 100) > escape_chance:
             await player.send(f"{c['yellow']}You fail to escape ({escape_risk} risk).{c['reset']}")
@@ -2035,7 +2052,10 @@ class CombatHandler:
             return False
         player.move = max(0, player.move - cls.config.DISENGAGE_MOVE_COST)
 
-        player.disengage_cooldown_until = now + cls.config.DISENGAGE_COOLDOWN_SECONDS
+        wil = getattr(player, 'wil', 10)
+        composure = max(0, min(1, (wil - 10) // 5))
+        disengage_cd = max(1, cls.config.DISENGAGE_COOLDOWN_SECONDS - composure)
+        player.disengage_cooldown_until = now + disengage_cd
         player.fighting = None
         if player.position == 'fighting':
             player.position = 'standing'
