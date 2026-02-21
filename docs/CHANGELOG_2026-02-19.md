@@ -279,3 +279,14 @@
 - **DB/PB source caps:** shield/stance/skill/item contributions now have explicit ceilings to prevent single-source dominance.
 - **Weight penalties:** DB/PB weight penalties are capped for predictable scaling.
 - **Help clarity:** `help tactical` now includes concise OB/DB/PB and escape/flee formula summary.
+
+## MUME Numeric Tuning Pass 2 (Live Calibration)
+
+### Tuned
+- **Stance spread increased:** aggressive now pushes OB harder with clearer DB/PB downside; defensive now gives stronger PB/DB with lower OB.
+- **DB/PB caps moved to config constants:** source ceilings are now centralized and tunable without code edits.
+- **Calibration target:** make stance choice materially visible in hit pressure vs mitigation for endgame fights.
+
+### Config knobs added
+- `DB_CAP_SHIELD_MAGIC`, `DB_CAP_DODGE_SKILL`, `DB_CAP_DODGE_ITEM`, `DB_CAP_STANCE`, `DB_CAP_WEIGHT_PENALTY`
+- `PB_CAP_STANCE`, `PB_CAP_PARRY`, `PB_CAP_SHIELD_BLOCK`, `PB_CAP_WEIGHT_PENALTY`

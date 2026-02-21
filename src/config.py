@@ -57,15 +57,30 @@ class Config:
 
     # Combat stance modifiers (offense vs defense tradeoff)
     STANCE_MODIFIERS = {
-        # hit/dam affect OB directly, ac/db affect avoidance, pb affects mitigation
-        'aggressive': {'hit': 3, 'dam': 3, 'ac': 10, 'db': -4, 'pb': -5},   # more offense, lower mitigation/avoidance
+        # Pass 2 tuning targets:
+        # - Aggressive assassins should land meaningfully more (OB up) but feel squishier (DB/PB down)
+        # - Defensive tanks should mitigate noticeably more (PB up) while losing some kill pressure (OB down)
+        'aggressive': {'hit': 4, 'dam': 4, 'ac': 12, 'db': -6, 'pb': -8},
         'normal': {'hit': 0, 'dam': 0, 'ac': 0, 'db': 0, 'pb': 0},
-        'defensive': {'hit': -2, 'dam': -2, 'ac': -10, 'db': 4, 'pb': 8},  # less offense, stronger avoidance/mitigation
+        'defensive': {'hit': -3, 'dam': -2, 'ac': -12, 'db': 6, 'pb': 10},
     }
 
     # DB/PB weight handling
     ARMOR_WEIGHT_DB_SOFTCAP = 20
     ARMOR_WEIGHT_PB_SOFTCAP = 24
+
+    # DB contribution caps (pass 2)
+    DB_CAP_SHIELD_MAGIC = 12
+    DB_CAP_DODGE_SKILL = 20
+    DB_CAP_DODGE_ITEM = 15
+    DB_CAP_STANCE = 8
+    DB_CAP_WEIGHT_PENALTY = 30
+
+    # PB contribution caps (pass 2)
+    PB_CAP_STANCE = 12
+    PB_CAP_PARRY = 15
+    PB_CAP_SHIELD_BLOCK = 10
+    PB_CAP_WEIGHT_PENALTY = 20
 
     # Movement economy (combat/escape)
     COMBAT_MOVE_COST = 1

@@ -136,15 +136,21 @@ class Character:
         dodge_item = self.get_equipment_bonus('dodge')
 
         # Cap per-source contribution so no single source dominates DB
-        shield_magic = max(-5, min(12, shield_magic))
-        dodge_skill = max(0, min(20, dodge_skill))
-        dodge_item = max(-8, min(15, dodge_item))
-        stance_db = max(-8, min(8, stance_db))
+        cap_shield = int(getattr(self.config, 'DB_CAP_SHIELD_MAGIC', 12))
+        cap_dodge_skill = int(getattr(self.config, 'DB_CAP_DODGE_SKILL', 20))
+        cap_dodge_item = int(getattr(self.config, 'DB_CAP_DODGE_ITEM', 15))
+        cap_stance = int(getattr(self.config, 'DB_CAP_STANCE', 8))
+        cap_weight = int(getattr(self.config, 'DB_CAP_WEIGHT_PENALTY', 30))
+
+        shield_magic = max(-5, min(cap_shield, shield_magic))
+        dodge_skill = max(0, min(cap_dodge_skill, dodge_skill))
+        dodge_item = max(-8, min(cap_dodge_item, dodge_item))
+        stance_db = max(-cap_stance, min(cap_stance, stance_db))
 
         wt = self.get_armor_weight()
         softcap = int(getattr(self.config, 'ARMOR_WEIGHT_DB_SOFTCAP', 20))
         weight_penalty = max(0, wt - softcap) // 2
-        weight_penalty = min(30, weight_penalty)
+        weight_penalty = min(cap_weight, weight_penalty)
 
         total = base_db + stance_db + shield_magic + dodge_skill + dodge_item - weight_penalty
         return {
@@ -167,14 +173,19 @@ class Character:
         shield_block = int(getattr(self, 'skills', {}).get('shield_block', 0)) // 10
 
         # Cap per-source contribution so PB remains predictable
-        stance_pb = max(-10, min(12, stance_pb))
-        parry_skill = max(0, min(15, parry_skill))
-        shield_block = max(0, min(10, shield_block))
+        cap_stance = int(getattr(self.config, 'PB_CAP_STANCE', 12))
+        cap_parry = int(getattr(self.config, 'PB_CAP_PARRY', 15))
+        cap_shield_block = int(getattr(self.config, 'PB_CAP_SHIELD_BLOCK', 10))
+        cap_weight = int(getattr(self.config, 'PB_CAP_WEIGHT_PENALTY', 20))
+
+        stance_pb = max(-cap_stance, min(cap_stance, stance_pb))
+        parry_skill = max(0, min(cap_parry, parry_skill))
+        shield_block = max(0, min(cap_shield_block, shield_block))
 
         wt = self.get_armor_weight()
         softcap = int(getattr(self.config, 'ARMOR_WEIGHT_PB_SOFTCAP', 24))
         weight_penalty = max(0, wt - softcap) // 3
-        weight_penalty = min(20, weight_penalty)
+        weight_penalty = min(cap_weight, weight_penalty)
 
         total = max(0, min(80, base_pb + stance_pb + parry_skill + shield_block - weight_penalty))
         return {
