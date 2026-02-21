@@ -251,3 +251,22 @@
 - **Recommended next steps:**
   - Consider a lightweight log line for failed rescue attempts if players want more feedback.
   - Review protect/progression tuning once live combat logs are available.
+
+---
+
+## MUME Mapping Sheet (Design/Tuning)
+
+### Added
+- New design document: `docs/MUME_TO_MISTHOLLOW_COMBAT_MAPPING.md`
+- Captures MUME -> Misthollow mapping for:
+  - OB/DB/PB telemetry model
+  - stance (mood) tradeoffs
+  - shield + armor-weight DB/PB behavior
+  - stat interactions (STR/DEX/CON/INT/WIS/WIL/PER)
+  - flee/escape/disengage identity
+  - movement economy and group-control triangle
+
+### Next Pass Targets
+- Normalize DB/PB source caps and contribution ceilings.
+- Increase explicit WIL impact on escape stability/panic resistance.
+- Add concise `help tactical` formula summary for player transparency.
