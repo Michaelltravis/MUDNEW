@@ -1,0 +1,2 @@
+INFO:__main__:Web client listening on http://0.0.0.0:4003
+INFO:aiohttp.access:127.0.0.1 [21/Feb/2026:23:52:17 +0000] "GET / HTTP/1.1" 200 39469 "-" "curl/8.5.0"
