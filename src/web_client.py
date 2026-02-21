@@ -947,6 +947,16 @@ CLIENT_HTML = '''<!DOCTYPE html>
                         <button class="setting-btn toggle" id="timestamp-toggle">OFF</button>
                     </div>
                 </div>
+
+                <div class="setting-group" style="display: block; border-top: 1px solid #4a4a6a; margin-top: 16px; padding-top: 12px;">
+                    <label style="margin-bottom: 8px; display: block;">Keyboard Shortcuts</label>
+                    <div class="shortcuts-grid">
+                        <div class="shortcut-item"><span class="kbd">/</span> Focus Input</div>
+                        <div class="shortcut-item"><span class="kbd">m</span> Toggle Map</div>
+                        <div class="shortcut-item"><span class="kbd">Esc</span> Close Modal</div>
+                        <div class="shortcut-item"><span class="kbd">↑/↓</span> History</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1033,6 +1043,34 @@ CLIENT_HTML = '''<!DOCTYPE html>
             min-width: 40px;
             text-align: center;
             font-size: 12px;
+        }
+
+        /* Keyboard Shortcuts */
+        .shortcuts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .shortcut-item {
+            font-size: 12px;
+            color: #a0a0b0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .kbd {
+            background: #2a2a4a;
+            border: 1px solid #4a4a6a;
+            border-radius: 4px;
+            padding: 2px 6px;
+            color: #e6edf3;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            min-width: 24px;
+            text-align: center;
         }
     </style>
     
