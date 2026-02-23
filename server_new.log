@@ -1,0 +1,178 @@
+
+    ╔═══════════════════════════════════════════════════════════════╗
+    ║                                                               ║
+    ║   ██████╗ ███████╗ █████╗ ██╗     ███╗   ███╗███████╗         ║
+    ║   ██╔══██╗██╔════╝██╔══██╗██║     ████╗ ████║██╔════╝         ║
+    ║   ██████╔╝█████╗  ███████║██║     ██╔████╔██║███████╗         ║
+    ║   ██╔══██╗██╔══╝  ██╔══██║██║     ██║╚██╔╝██║╚════██║         ║
+    ║   ██║  ██║███████╗██║  ██║███████╗██║ ╚═╝ ██║███████║         ║
+    ║   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝╚══════╝         ║
+    ║                       MUD                                     ║
+    ║                                                               ║
+    ╚═══════════════════════════════════════════════════════════════╝
+
+    Starting RealmsMUD server on port 4000...
+
+2026-02-23 23:48:36,711 - Misthollow - INFO - ============================================================
+2026-02-23 23:48:36,711 - Misthollow - INFO - Misthollow - Fantasy Multi-User Dungeon
+2026-02-23 23:48:36,711 - Misthollow - INFO - ============================================================
+2026-02-23 23:48:36,711 - Misthollow - INFO - Initializing game systems...
+2026-02-23 23:48:36,712 - time_system - INFO - Game time initialized: 12:00 PM, Day 1 of Early Summer, Year 1000
+2026-02-23 23:48:36,712 - Misthollow.World - INFO - Loading world...
+2026-02-23 23:48:36,714 - Misthollow.World - INFO - Loaded zone 62: The Orc Enclave (68 rooms)
+2026-02-23 23:48:36,715 - Misthollow.World - INFO - Loaded zone 0: Limbo - Internal (3 rooms)
+2026-02-23 23:48:36,715 - Misthollow.World - INFO - Loaded zone 73: The Mindflayer's Lair (3 rooms)
+2026-02-23 23:48:36,716 - Misthollow.World - INFO - Loaded zone 31: Southern part of Midgaard (54 rooms)
+2026-02-23 23:48:36,716 - Misthollow.World - INFO - Loaded zone 200: Forest of Shadows (10 rooms)
+2026-02-23 23:48:36,717 - Misthollow.World - INFO - Loaded zone 248: The Clockwork Foundry (30 rooms)
+2026-02-23 23:48:36,718 - Misthollow.World - INFO - Loaded zone 260: Midgaard Housing District (22 rooms)
+2026-02-23 23:48:36,718 - Misthollow.World - INFO - Loaded zone 9: River Island Of Minos (24 rooms)
+2026-02-23 23:48:36,720 - Misthollow.World - INFO - Loaded zone 72: The Sewer Maze (87 rooms)
+2026-02-23 23:48:36,721 - Misthollow.World - INFO - Loaded zone 35: Miden'Nir (45 rooms)
+2026-02-23 23:48:36,722 - Misthollow.World - INFO - Loaded zone 295: Crown of Bone (36 rooms)
+2026-02-23 23:48:36,724 - Misthollow.World - INFO - Loaded zone 150: King Welmar's Castle (75 rooms)
+2026-02-23 23:48:36,725 - Misthollow.World - INFO - Loaded zone 270: The Whispering Woods (19 rooms)
+2026-02-23 23:48:36,727 - Misthollow.World - INFO - Loaded zone 64: Rand's Tower (46 rooms)
+2026-02-23 23:48:36,729 - Misthollow.World - INFO - Loaded zone 120: Rome (66 rooms)
+2026-02-23 23:48:36,731 - Misthollow.World - INFO - Loaded zone 70: The Sewer, First Level (67 rooms)
+2026-02-23 23:48:36,733 - Misthollow.World - INFO - Loaded zone 61: Haon-Dor, Dark Forest (48 rooms)
+2026-02-23 23:48:36,734 - Misthollow.World - INFO - Loaded zone 15: The Straight Path (41 rooms)
+2026-02-23 23:48:36,737 - Misthollow.World - INFO - Loaded zone 40: Mines of Moria (103 rooms)
+2026-02-23 23:48:36,737 - Misthollow.World - INFO - Loaded zone 130: The Sunken Ruins of Atal'narath (18 rooms)
+2026-02-23 23:48:36,738 - Misthollow.World - INFO - Loaded zone 68: The Sunken Coast (12 rooms)
+2026-02-23 23:48:36,744 - Misthollow.World - INFO - Loaded zone 54: New Thalos (285 rooms)
+2026-02-23 23:48:36,748 - Misthollow.World - INFO - Loaded zone 30: Northern Midgaard Main City (75 rooms)
+2026-02-23 23:48:36,748 - Misthollow.World - INFO - Loaded zone 80: The Dragon's Domain (5 rooms)
+2026-02-23 23:48:36,750 - Misthollow.World - INFO - Loaded zone 60: Haon-Dor, Light Forest (64 rooms)
+2026-02-23 23:48:36,756 - Misthollow.World - INFO - Loaded zone 210: Tunnel of Sticks (400 rooms)
+2026-02-23 23:48:36,757 - Misthollow.World - INFO - Loaded zone 51: Drow City (51 rooms)
+2026-02-23 23:48:36,759 - Misthollow.World - INFO - Loaded zone 65: The Dwarven Kingdom (51 rooms)
+2026-02-23 23:48:36,760 - Misthollow.World - INFO - Loaded zone 245: Shadowspire Citadel (30 rooms)
+2026-02-23 23:48:36,764 - Misthollow.World - INFO - Loaded zone 25: The High Tower Of Magic (183 rooms)
+2026-02-23 23:48:36,765 - Misthollow.World - INFO - Loaded zone 90: The Haunted Swamp (20 rooms)
+2026-02-23 23:48:36,766 - Misthollow.World - INFO - Loaded zone 66: The Northern Wilderness (14 rooms)
+2026-02-23 23:48:36,768 - Misthollow.World - INFO - Loaded zone 220: Castle Apocalypse (77 rooms)
+2026-02-23 23:48:36,768 - Misthollow.World - INFO - Loaded zone 238: The Haunted Monastery (25 rooms)
+2026-02-23 23:48:36,770 - Misthollow.World - INFO - Loaded zone 52: The City Of Thalos (51 rooms)
+2026-02-23 23:48:36,771 - Misthollow.World - INFO - Loaded zone 100: The Dwarven Mines of Khaz-Durum (25 rooms)
+2026-02-23 23:48:36,771 - Misthollow.World - INFO - Loaded zone 235: The Goblin Warrens (20 rooms)
+2026-02-23 23:48:36,773 - Misthollow.World - INFO - Loaded zone 63: Arachnos (52 rooms)
+2026-02-23 23:48:36,773 - Misthollow.World - INFO - Loaded zone 240: The Sunken Temple of Nereus (25 rooms)
+2026-02-23 23:48:36,774 - Misthollow.World - INFO - Loaded zone 71: The Second Sewer (26 rooms)
+2026-02-23 23:48:36,775 - Misthollow.World - INFO - Loaded zone 180: The Great Northern Forest (26 rooms)
+2026-02-23 23:48:36,775 - Misthollow.World - INFO - Loaded zone 32: Midgaard Stables (4 rooms)
+2026-02-23 23:48:36,776 - Misthollow.World - INFO - Loaded zone 79: Redferne's Residence (20 rooms)
+2026-02-23 23:48:36,777 - Misthollow.World - INFO - Loaded zone 110: Silversong Elven Village (15 rooms)
+2026-02-23 23:48:36,778 - Misthollow.World - INFO - Loaded zone 285: The Drowned Reliquary (36 rooms)
+2026-02-23 23:48:36,779 - Misthollow.World - INFO - Loaded zone 12: God Simplex (7 rooms)
+2026-02-23 23:48:36,780 - Misthollow.World - INFO - Loaded zone 186: Newbie Zone (41 rooms)
+2026-02-23 23:48:36,781 - Misthollow.World - INFO - Loaded zone 140: The Necropolis of Eternal Night (31 rooms)
+2026-02-23 23:48:36,782 - Misthollow.World - INFO - Loaded zone 160: The Plane of Eternal Chaos (26 rooms)
+2026-02-23 23:48:36,783 - Misthollow.World - INFO - Loaded zone 190: The Frostspire (27 rooms)
+2026-02-23 23:48:36,784 - Misthollow.World - INFO - Loaded zone 280: The Ashen Expanse (36 rooms)
+2026-02-23 23:48:36,786 - Misthollow.World - INFO - Loaded zone 33: The Three Of Swords (76 rooms)
+2026-02-23 23:48:36,788 - Misthollow.World - INFO - Loaded zone 50: The Great Eastern Desert (74 rooms)
+2026-02-23 23:48:36,790 - Misthollow.World - INFO - Loaded zone 53: The Great Pyramid (61 rooms)
+2026-02-23 23:48:36,792 - Misthollow.World - INFO - Loaded zone 36: The Chessboard of Midgaard (67 rooms)
+2026-02-23 23:48:36,792 - Misthollow.World - INFO - Loaded zone 290: The Black Observatory (36 rooms)
+2026-02-23 23:48:36,794 - Misthollow.World - INFO - Loaded zone 300: The Shattered Throne (40 rooms)
+2026-02-23 23:48:36,794 - Misthollow.World - INFO - Loaded zone 69: The Ashlands (12 rooms)
+2026-02-23 23:48:36,794 - Misthollow.World - INFO - Loaded zone 250: The Blood Pit Arena (7 rooms)
+2026-02-23 23:48:36,795 - Misthollow.World - INFO - Loaded zone 67: The Eastern Highlands (14 rooms)
+2026-02-23 23:48:36,813 - Misthollow.Shops - INFO - Created shop for carpenter (vnum 26001) with 5 items
+2026-02-23 23:48:36,822 - Misthollow.Shops - INFO - Created shop for chef (vnum 15022) with 1 items
+2026-02-23 23:48:36,826 - Misthollow.Shops - INFO - Created shop for astrologer (vnum 15019) with 1 items
+2026-02-23 23:48:36,834 - Misthollow.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
+2026-02-23 23:48:36,835 - Misthollow.Shops - INFO - Created shop for shopkeeper (vnum 12011) with 1 items
+2026-02-23 23:48:36,835 - Misthollow.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
+2026-02-23 23:48:36,838 - Misthollow.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
+2026-02-23 23:48:36,839 - Misthollow.Shops - INFO - Created shop for peddler (vnum 12012) with 1 items
+2026-02-23 23:48:36,840 - Misthollow.Shops - INFO - Created shop for shopkeeper (vnum 12034) with 1 items
+2026-02-23 23:48:36,843 - Misthollow.Shops - INFO - Created shop for baker (vnum 12036) with 2 items
+2026-02-23 23:48:36,843 - Misthollow.Shops - INFO - Created shop for grocer (vnum 12037) with 2 items
+2026-02-23 23:48:36,865 - Misthollow.Shops - INFO - Created shop for bartender (vnum 5405) with 1 items
+2026-02-23 23:48:36,866 - Misthollow.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-23 23:48:36,868 - Misthollow.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-23 23:48:36,870 - Misthollow.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-23 23:48:36,871 - Misthollow.Shops - INFO - Created shop for cassandra (vnum 5418) with 0 items
+2026-02-23 23:48:36,874 - Misthollow.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-23 23:48:36,875 - Misthollow.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-23 23:48:36,879 - Misthollow.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-02-23 23:48:36,880 - Misthollow.Shops - INFO - Created shop for ahkeem (vnum 5413) with 1 items
+2026-02-23 23:48:36,881 - Misthollow.Shops - INFO - Created shop for vera (vnum 5414) with 1 items
+2026-02-23 23:48:36,882 - Misthollow.Shops - INFO - Created shop for butch (vnum 5415) with 1 items
+2026-02-23 23:48:36,883 - Misthollow.Shops - INFO - Created shop for elriva (vnum 5479) with 1 items
+2026-02-23 23:48:36,883 - Misthollow.Shops - INFO - Created shop for braheem (vnum 5480) with 1 items
+2026-02-23 23:48:36,884 - Misthollow.Shops - INFO - Created shop for shopkeeper (vnum 5411) with 1 items
+2026-02-23 23:48:36,884 - Misthollow.Shops - INFO - Created shop for abdul (vnum 5416) with 1 items
+2026-02-23 23:48:36,885 - Misthollow.Shops - INFO - Created shop for baker (vnum 5410) with 1 items
+2026-02-23 23:48:36,885 - Misthollow.Shops - INFO - Created shop for igor (vnum 5417) with 1 items
+2026-02-23 23:48:36,885 - Misthollow.Shops - INFO - Created shop for stitch (vnum 5484) with 1 items
+2026-02-23 23:48:36,886 - Misthollow.Shops - INFO - Created shop for patch (vnum 5483) with 1 items
+2026-02-23 23:48:36,886 - Misthollow.Shops - INFO - Created shop for shipwright (vnum 5465) with 1 items
+2026-02-23 23:48:36,886 - Misthollow.Shops - INFO - Created shop for blacksmith (vnum 5466) with 1 items
+2026-02-23 23:48:36,897 - Misthollow.Shops - INFO - Created shop for waiter (vnum 3043) with 1 items
+2026-02-23 23:48:36,899 - Misthollow.Shops - INFO - Created shop for bartender (vnum 3040) with 1 items
+2026-02-23 23:48:36,900 - Misthollow.Shops - INFO - Created shop for grocer (vnum 3002) with 7 items
+2026-02-23 23:48:36,900 - Misthollow.Shops - INFO - Created shop for weaponsmith (vnum 3003) with 1 items
+2026-02-23 23:48:36,902 - Misthollow.Shops - INFO - Created shop for waiter (vnum 3042) with 1 items
+2026-02-23 23:48:36,902 - Misthollow.Shops - INFO - Created shop for armourer (vnum 3004) with 1 items
+2026-02-23 23:48:36,903 - Misthollow.Shops - INFO - Created shop for waiter (vnum 3045) with 1 items
+2026-02-23 23:48:36,905 - Misthollow.Shops - INFO - Created shop for waiter (vnum 3044) with 1 items
+2026-02-23 23:48:36,908 - Misthollow.Shops - INFO - Created shop for wizard (vnum 3000) with 4 items
+2026-02-23 23:48:36,910 - Misthollow.Shops - INFO - Created shop for filthy (vnum 3046) with 1 items
+2026-02-23 23:48:36,911 - Misthollow.Shops - INFO - Created shop for captain (vnum 3006) with 1 items
+2026-02-23 23:48:36,911 - Misthollow.Shops - INFO - Created shop for sailor (vnum 3007) with 0 items
+2026-02-23 23:48:36,911 - Misthollow.Shops - INFO - Created shop for wally (vnum 3009) with 1 items
+2026-02-23 23:48:36,949 - Misthollow.Shops - INFO - Created shop for storekeeper (vnum 6503) with 1 items
+2026-02-23 23:48:36,953 - Misthollow.Shops - INFO - Created shop for baker (vnum 6504) with 1 items
+2026-02-23 23:48:36,966 - Misthollow.Shops - INFO - Created shop for strick (vnum 2505) with 1 items
+2026-02-23 23:48:36,966 - Misthollow.Shops - INFO - Created shop for tatorious (vnum 2506) with 1 items
+2026-02-23 23:48:37,160 - Misthollow.Shops - INFO - Created shop for storekeeper (vnum 3301) with 1 items
+2026-02-23 23:48:37,161 - Misthollow.Shops - INFO - Created shop for cowgirl (vnum 3302) with 1 items
+2026-02-23 23:48:37,162 - Misthollow.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-02-23 23:48:37,162 - Misthollow.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-02-23 23:48:37,163 - Misthollow.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-02-23 23:48:37,163 - Misthollow.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-02-23 23:48:37,235 - Misthollow.Factions - INFO - Spawned faction NPC: Captain Aldren in room 3005
+2026-02-23 23:48:37,235 - Misthollow.Factions - INFO - Spawned faction NPC: Whisper in room 3044
+2026-02-23 23:48:37,235 - Misthollow.Factions - INFO - Spawned faction NPC: Archmage Thessaly in room 3017
+2026-02-23 23:48:37,235 - Misthollow.Factions - INFO - Spawned faction NPC: Elder Oakhart in room 3600
+2026-02-23 23:48:37,235 - Misthollow.Factions - INFO - Spawned faction NPC: the Shrouded Figure in room 3100
+2026-02-23 23:48:37,236 - Misthollow.Factions - INFO - Spawned faction NPC: Guildmaster Brennan in room 3014
+2026-02-23 23:48:37,236 - Misthollow.Factions - INFO - Spawned 6 faction NPCs
+2026-02-23 23:48:37,237 - Misthollow.World - INFO - World loaded: 60 zones, 3008 rooms
+2026-02-23 23:48:37,238 - Misthollow.WebMap - INFO - Web map server listening on 0.0.0.0:4001
+2026-02-23 23:48:37,525 - web_client - INFO - Web client listening on http://0.0.0.0:4003
+2026-02-23 23:48:37,526 - Misthollow - INFO - Initialization complete!
+2026-02-23 23:48:37,526 - Misthollow - INFO - Starting server on port 4000...
+2026-02-23 23:48:37,526 - Misthollow.Server - INFO - Server listening on 0.0.0.0:4000
+2026-02-23 23:49:27,398 - aiohttp.access - INFO - 127.0.0.1 [23/Feb/2026:23:49:27 +0000] "GET / HTTP/1.1" 200 41245 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/143.0.7499.4 Safari/537.36"
+2026-02-23 23:49:27,935 - Misthollow.Server - INFO - New connection from ('127.0.0.1', 38282)
+2026-02-23 23:49:28,947 - Misthollow.WebMap - INFO - WebSocket close frame received from client
+2026-02-23 23:49:28,947 - Misthollow.WebMap - INFO - WebSocket message is None, closing connection for client
+2026-02-23 23:49:28,948 - aiohttp.access - INFO - 127.0.0.1 [23/Feb/2026:23:49:27 +0000] "GET /ws HTTP/1.1" 101 0 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/143.0.7499.4 Safari/537.36"
+2026-02-23 23:49:28,948 - Misthollow.Server - INFO - Connection closed: ('127.0.0.1', 38282)
+2026-02-23 23:50:43,365 - Misthollow - INFO - Shutting down Misthollow...
+2026-02-23 23:50:43,366 - Misthollow.World - INFO - Saved all 0 players
+2026-02-23 23:50:43,366 - Misthollow.Server - INFO - Shutting down server...
+2026-02-23 23:50:43,366 - Misthollow - INFO - Shutdown complete. Farewell!
+2026-02-23 23:50:43,446 - Misthollow - INFO - Shutting down Misthollow...
+2026-02-23 23:50:43,446 - Misthollow.World - INFO - Saved all 0 players
+2026-02-23 23:50:43,446 - Misthollow.Server - INFO - Shutting down server...
+2026-02-23 23:50:43,446 - Misthollow - INFO - Shutdown complete. Farewell!
+
+    ===============================================================
+
+      ___  ________ _____ _____ _   _ _____ _      _     _____  _    _
+     |  \/  |_   _/  ___|_   _| | | |  _  | |    | |   |  _  || |  | |
+     | .  . | | | \ `--.  | | | |_| | | | | |    | |   | | | || |  | |
+     | |\/| | | |  `--. \ | | |  _  | | | | |    | |   | | | || |/\| |
+     | |  | |_| |_/\__/ / | | | | | \ \_/ / |____| |___\ \_/ /\  /\  /
+     \_|  |_/\___/\____/  \_/ \_| |_/\___/\_____/\_____/\___/  \/  \/
+
+           A World of Shadow and Mystery
+
+    ===============================================================
+
+Admin dashboard running on http://localhost:4002
