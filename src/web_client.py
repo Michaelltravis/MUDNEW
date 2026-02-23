@@ -916,35 +916,53 @@ CLIENT_HTML = '''<!DOCTYPE html>
             </div>
             <div class="modal-body">
                 <div class="setting-group">
-                    <label>Font Size</label>
-                    <div class="setting-control">
-                        <button class="setting-btn" id="font-decrease">A-</button>
-                        <span id="font-size-display">14px</span>
-                        <button class="setting-btn" id="font-increase">A+</button>
+                    <label id="lbl-font">Font Size</label>
+                    <div class="setting-control" role="group" aria-labelledby="lbl-font">
+                        <button class="setting-btn" id="font-decrease" aria-label="Decrease font size">A-</button>
+                        <span id="font-size-display" aria-live="polite">14px</span>
+                        <button class="setting-btn" id="font-increase" aria-label="Increase font size">A+</button>
                     </div>
                 </div>
                 <div class="setting-group">
-                    <label>Scroll on Output</label>
+                    <label id="lbl-autoscroll">Scroll on Output</label>
                     <div class="setting-control">
-                        <button class="setting-btn toggle active" id="autoscroll-toggle">ON</button>
+                        <button class="setting-btn toggle active" id="autoscroll-toggle" aria-labelledby="lbl-autoscroll" aria-pressed="true">ON</button>
                     </div>
                 </div>
                 <div class="setting-group">
-                    <label>Command Echo</label>
+                    <label id="lbl-echo">Command Echo</label>
                     <div class="setting-control">
-                        <button class="setting-btn toggle active" id="echo-toggle">ON</button>
+                        <button class="setting-btn toggle active" id="echo-toggle" aria-labelledby="lbl-echo" aria-pressed="true">ON</button>
                     </div>
                 </div>
                 <div class="setting-group">
-                    <label>Sound Effects</label>
+                    <label id="lbl-sound">Sound Effects</label>
                     <div class="setting-control">
-                        <button class="setting-btn toggle" id="sound-toggle">OFF</button>
+                        <button class="setting-btn toggle" id="sound-toggle" aria-labelledby="lbl-sound" aria-pressed="false">OFF</button>
                     </div>
                 </div>
                 <div class="setting-group">
-                    <label>Timestamps</label>
+                    <label id="lbl-timestamps">Timestamps</label>
                     <div class="setting-control">
-                        <button class="setting-btn toggle" id="timestamp-toggle">OFF</button>
+                        <button class="setting-btn toggle" id="timestamp-toggle" aria-labelledby="lbl-timestamps" aria-pressed="false">OFF</button>
+                    </div>
+                </div>
+
+                <div class="shortcuts-info">
+                    <h3>⌨️ Keyboard Shortcuts</h3>
+                    <div class="shortcut-list">
+                        <div class="shortcut-item">
+                            <span class="key">/</span> <span class="desc">Focus input</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <span class="key">m</span> <span class="desc">Toggle map</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <span class="key">↑</span><span class="key">↓</span> <span class="desc">History</span>
+                        </div>
+                        <div class="shortcut-item">
+                            <span class="key">Esc</span> <span class="desc">Close modal</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1033,6 +1051,39 @@ CLIENT_HTML = '''<!DOCTYPE html>
             min-width: 40px;
             text-align: center;
             font-size: 12px;
+        }
+
+        .shortcuts-info {
+            margin-top: 20px;
+            border-top: 1px solid #4a4a6a;
+            padding-top: 15px;
+        }
+        .shortcuts-info h3 {
+            font-size: 14px;
+            color: #88c0d0;
+            margin-bottom: 10px;
+        }
+        .shortcut-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .shortcut-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #a0a0b0;
+        }
+        .shortcut-item .key {
+            background: #2a2a4a;
+            border: 1px solid #4a4a6a;
+            border-radius: 4px;
+            padding: 2px 6px;
+            color: #fff;
+            font-family: monospace;
+            min-width: 24px;
+            text-align: center;
         }
     </style>
     
@@ -1300,17 +1351,17 @@ CLIENT_HTML = '''<!DOCTYPE html>
             terminal.style.fontSize = settings.fontSize + 'px';
             document.getElementById('font-size-display').textContent = settings.fontSize + 'px';
             
-            document.getElementById('autoscroll-toggle').classList.toggle('active', settings.autoScroll);
-            document.getElementById('autoscroll-toggle').textContent = settings.autoScroll ? 'ON' : 'OFF';
-            
-            document.getElementById('echo-toggle').classList.toggle('active', settings.echo);
-            document.getElementById('echo-toggle').textContent = settings.echo ? 'ON' : 'OFF';
-            
-            document.getElementById('sound-toggle').classList.toggle('active', settings.sound);
-            document.getElementById('sound-toggle').textContent = settings.sound ? 'ON' : 'OFF';
-            
-            document.getElementById('timestamp-toggle').classList.toggle('active', settings.timestamps);
-            document.getElementById('timestamp-toggle').textContent = settings.timestamps ? 'ON' : 'OFF';
+            function updateToggle(id, isActive) {
+                const btn = document.getElementById(id);
+                btn.classList.toggle('active', isActive);
+                btn.textContent = isActive ? 'ON' : 'OFF';
+                btn.setAttribute('aria-pressed', isActive);
+            }
+
+            updateToggle('autoscroll-toggle', settings.autoScroll);
+            updateToggle('echo-toggle', settings.echo);
+            updateToggle('sound-toggle', settings.sound);
+            updateToggle('timestamp-toggle', settings.timestamps);
         }
         
         function saveSettings() {
