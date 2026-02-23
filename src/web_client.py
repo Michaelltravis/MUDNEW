@@ -916,35 +916,45 @@ CLIENT_HTML = '''<!DOCTYPE html>
             </div>
             <div class="modal-body">
                 <div class="setting-group">
-                    <label>Font Size</label>
+                    <label id="lbl-font-size">Font Size</label>
                     <div class="setting-control">
-                        <button class="setting-btn" id="font-decrease">A-</button>
-                        <span id="font-size-display">14px</span>
-                        <button class="setting-btn" id="font-increase">A+</button>
+                        <button class="setting-btn" id="font-decrease" aria-label="Decrease font size">A-</button>
+                        <span id="font-size-display" aria-live="polite">14px</span>
+                        <button class="setting-btn" id="font-increase" aria-label="Increase font size">A+</button>
                     </div>
                 </div>
                 <div class="setting-group">
-                    <label>Scroll on Output</label>
+                    <label id="lbl-autoscroll">Scroll on Output</label>
                     <div class="setting-control">
-                        <button class="setting-btn toggle active" id="autoscroll-toggle">ON</button>
+                        <button class="setting-btn toggle active" id="autoscroll-toggle" aria-labelledby="lbl-autoscroll" aria-pressed="true">ON</button>
                     </div>
                 </div>
                 <div class="setting-group">
-                    <label>Command Echo</label>
+                    <label id="lbl-echo">Command Echo</label>
                     <div class="setting-control">
-                        <button class="setting-btn toggle active" id="echo-toggle">ON</button>
+                        <button class="setting-btn toggle active" id="echo-toggle" aria-labelledby="lbl-echo" aria-pressed="true">ON</button>
                     </div>
                 </div>
                 <div class="setting-group">
-                    <label>Sound Effects</label>
+                    <label id="lbl-sound">Sound Effects</label>
                     <div class="setting-control">
-                        <button class="setting-btn toggle" id="sound-toggle">OFF</button>
+                        <button class="setting-btn toggle" id="sound-toggle" aria-labelledby="lbl-sound" aria-pressed="false">OFF</button>
                     </div>
                 </div>
                 <div class="setting-group">
-                    <label>Timestamps</label>
+                    <label id="lbl-timestamps">Timestamps</label>
                     <div class="setting-control">
-                        <button class="setting-btn toggle" id="timestamp-toggle">OFF</button>
+                        <button class="setting-btn toggle" id="timestamp-toggle" aria-labelledby="lbl-timestamps" aria-pressed="false">OFF</button>
+                    </div>
+                </div>
+
+                <div style="border-top: 1px solid #4a4a6a; margin: 16px 0 12px; padding-top: 12px;">
+                    <h3 style="font-size: 14px; color: #88c0d0; margin-bottom: 8px;">⌨️ Shortcuts</h3>
+                    <div style="font-size: 12px; color: #a0a0b0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                        <div><kbd style="background: #2a2a4a; padding: 2px 6px; border-radius: 4px; border: 1px solid #4a4a6a; color: #e6edf3;">M</kbd> Toggle Map</div>
+                        <div><kbd style="background: #2a2a4a; padding: 2px 6px; border-radius: 4px; border: 1px solid #4a4a6a; color: #e6edf3;">/</kbd> Focus Input</div>
+                        <div><kbd style="background: #2a2a4a; padding: 2px 6px; border-radius: 4px; border: 1px solid #4a4a6a; color: #e6edf3;">Esc</kbd> Close Settings</div>
+                        <div><kbd style="background: #2a2a4a; padding: 2px 6px; border-radius: 4px; border: 1px solid #4a4a6a; color: #e6edf3;">⬆/⬇</kbd> History</div>
                     </div>
                 </div>
             </div>
@@ -1300,17 +1310,25 @@ CLIENT_HTML = '''<!DOCTYPE html>
             terminal.style.fontSize = settings.fontSize + 'px';
             document.getElementById('font-size-display').textContent = settings.fontSize + 'px';
             
-            document.getElementById('autoscroll-toggle').classList.toggle('active', settings.autoScroll);
-            document.getElementById('autoscroll-toggle').textContent = settings.autoScroll ? 'ON' : 'OFF';
+            const autoscrollBtn = document.getElementById('autoscroll-toggle');
+            autoscrollBtn.classList.toggle('active', settings.autoScroll);
+            autoscrollBtn.textContent = settings.autoScroll ? 'ON' : 'OFF';
+            autoscrollBtn.setAttribute('aria-pressed', settings.autoScroll);
             
-            document.getElementById('echo-toggle').classList.toggle('active', settings.echo);
-            document.getElementById('echo-toggle').textContent = settings.echo ? 'ON' : 'OFF';
+            const echoBtn = document.getElementById('echo-toggle');
+            echoBtn.classList.toggle('active', settings.echo);
+            echoBtn.textContent = settings.echo ? 'ON' : 'OFF';
+            echoBtn.setAttribute('aria-pressed', settings.echo);
             
-            document.getElementById('sound-toggle').classList.toggle('active', settings.sound);
-            document.getElementById('sound-toggle').textContent = settings.sound ? 'ON' : 'OFF';
+            const soundBtn = document.getElementById('sound-toggle');
+            soundBtn.classList.toggle('active', settings.sound);
+            soundBtn.textContent = settings.sound ? 'ON' : 'OFF';
+            soundBtn.setAttribute('aria-pressed', settings.sound);
             
-            document.getElementById('timestamp-toggle').classList.toggle('active', settings.timestamps);
-            document.getElementById('timestamp-toggle').textContent = settings.timestamps ? 'ON' : 'OFF';
+            const timestampBtn = document.getElementById('timestamp-toggle');
+            timestampBtn.classList.toggle('active', settings.timestamps);
+            timestampBtn.textContent = settings.timestamps ? 'ON' : 'OFF';
+            timestampBtn.setAttribute('aria-pressed', settings.timestamps);
         }
         
         function saveSettings() {
@@ -1391,7 +1409,7 @@ if __name__ == '__main__':
     async def main():
         client = WebClient()
         await client.start()
-        print(f"Web client running at http://localhost:4003")
+        print("Web client running at http://localhost:4003")
         print("Press Ctrl+C to stop")
         try:
             while True:
