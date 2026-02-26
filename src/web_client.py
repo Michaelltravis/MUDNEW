@@ -851,7 +851,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
                 <button class="exit-btn" data-dir="down" title="Down" aria-label="Go Down">D</button>
                 </div>
             </div>
-            <div id="terminal"></div>
+            <div id="terminal" role="log" aria-live="polite"></div>
         </div>
         
         <div class="map-panel" id="map-panel">
@@ -1103,7 +1103,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
         }
         
         function appendOutput(html) {
-            terminal.innerHTML += html;
+            terminal.insertAdjacentHTML('beforeend', html);
             terminal.scrollTop = terminal.scrollHeight;
             
             // Detect player name
@@ -1391,7 +1391,7 @@ if __name__ == '__main__':
     async def main():
         client = WebClient()
         await client.start()
-        print(f"Web client running at http://localhost:4003")
+        print("Web client running at http://localhost:4003")
         print("Press Ctrl+C to stop")
         try:
             while True:
