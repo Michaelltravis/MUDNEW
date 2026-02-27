@@ -902,7 +902,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
         
         <div id="input-area">
             <span class="input-prompt">&gt;</span>
-            <input type="text" id="command-input" placeholder="Enter command..." aria-label="Command Input" autocomplete="off" autofocus>
+            <input type="text" id="command-input" placeholder="Enter command... (/ to focus)" aria-label="Command Input" autocomplete="off" autofocus>
             <button class="send-btn" id="send-btn">Send</button>
         </div>
     </div>
@@ -1103,8 +1103,14 @@ CLIENT_HTML = '''<!DOCTYPE html>
         }
         
         function appendOutput(html) {
+            // Check if user is scrolled to bottom BEFORE adding content
+            const wasAtBottom = terminal.scrollHeight - terminal.scrollTop - terminal.clientHeight < 50;
+
             terminal.insertAdjacentHTML('beforeend', html);
-            terminal.scrollTop = terminal.scrollHeight;
+
+            if (settings.autoScroll && wasAtBottom) {
+                terminal.scrollTop = terminal.scrollHeight;
+            }
             
             // Detect player name
             if (!playerName) {
