@@ -1057,6 +1057,15 @@ CLIENT_HTML = '''<!DOCTYPE html>
         let playerName = null;
         let inCombat = false;
         
+        // Load settings from localStorage
+        let settings = {
+            fontSize: parseInt(localStorage.getItem('mudFontSize') || '14'),
+            autoScroll: localStorage.getItem('mudAutoScroll') !== 'false',
+            echo: localStorage.getItem('mudEcho') !== 'false',
+            sound: localStorage.getItem('mudSound') === 'true',
+            timestamps: localStorage.getItem('mudTimestamps') === 'true'
+        };
+
         // Set map URL
         const mapUrl = `${location.protocol}//${location.hostname}:4001`;
         mapFrame.src = mapUrl;
@@ -1103,8 +1112,15 @@ CLIENT_HTML = '''<!DOCTYPE html>
         }
         
         function appendOutput(html) {
+            // Check if user is scrolled to the bottom before appending
+            const isScrolledToBottom = terminal.scrollHeight - terminal.scrollTop <= terminal.clientHeight + 5;
+
             terminal.insertAdjacentHTML('beforeend', html);
-            terminal.scrollTop = terminal.scrollHeight;
+
+            // Smart scroll: only auto-scroll if autoScroll setting is on AND user was already at the bottom
+            if (settings.autoScroll && isScrolledToBottom) {
+                terminal.scrollTop = terminal.scrollHeight;
+            }
             
             // Detect player name
             if (!playerName) {
@@ -1285,15 +1301,6 @@ CLIENT_HTML = '''<!DOCTYPE html>
         const settingsModal = document.getElementById('settings-modal');
         const settingsBtn = document.getElementById('settings-btn');
         const closeSettingsBtn = document.getElementById('close-settings');
-        
-        // Load settings from localStorage
-        let settings = {
-            fontSize: parseInt(localStorage.getItem('mudFontSize') || '14'),
-            autoScroll: localStorage.getItem('mudAutoScroll') !== 'false',
-            echo: localStorage.getItem('mudEcho') !== 'false',
-            sound: localStorage.getItem('mudSound') === 'true',
-            timestamps: localStorage.getItem('mudTimestamps') === 'true'
-        };
         
         // Apply settings
         function applySettings() {
