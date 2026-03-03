@@ -328,6 +328,11 @@ CLIENT_HTML = '''<!DOCTYPE html>
             background: var(--accent-glow);
         }
         
+        button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
         .header-btn.active {
             background: var(--accent);
             color: var(--bg-color);
@@ -918,9 +923,9 @@ CLIENT_HTML = '''<!DOCTYPE html>
                 <div class="setting-group">
                     <label>Font Size</label>
                     <div class="setting-control">
-                        <button class="setting-btn" id="font-decrease">A-</button>
+                        <button class="setting-btn" id="font-decrease" aria-label="Decrease font size">A-</button>
                         <span id="font-size-display">14px</span>
-                        <button class="setting-btn" id="font-increase">A+</button>
+                        <button class="setting-btn" id="font-increase" aria-label="Increase font size">A+</button>
                     </div>
                 </div>
                 <div class="setting-group">
