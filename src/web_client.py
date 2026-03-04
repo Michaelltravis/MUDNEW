@@ -237,6 +237,11 @@ CLIENT_HTML = '''<!DOCTYPE html>
             padding: 0;
         }
         
+        button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
         :root {
             --bg-color: #0c0c0c;
             --terminal-bg: #0d1117;
@@ -1103,8 +1108,14 @@ CLIENT_HTML = '''<!DOCTYPE html>
         }
         
         function appendOutput(html) {
+            const isScrolledToBottom = Math.abs(terminal.scrollHeight - terminal.scrollTop - terminal.clientHeight) <= 10;
+            const shouldScroll = typeof settings !== 'undefined' ? settings.autoScroll && isScrolledToBottom : isScrolledToBottom;
+
             terminal.insertAdjacentHTML('beforeend', html);
-            terminal.scrollTop = terminal.scrollHeight;
+
+            if (shouldScroll) {
+                terminal.scrollTop = terminal.scrollHeight;
+            }
             
             // Detect player name
             if (!playerName) {
