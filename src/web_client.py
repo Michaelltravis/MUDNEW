@@ -328,6 +328,17 @@ CLIENT_HTML = '''<!DOCTYPE html>
             background: var(--accent-glow);
         }
         
+        .header-btn:focus-visible,
+        .exit-btn:focus-visible,
+        .quick-btn:focus-visible,
+        .send-btn:focus-visible,
+        .setting-btn:focus-visible,
+        .close-modal:focus-visible,
+        .map-header button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
         .header-btn.active {
             background: var(--accent);
             color: var(--bg-color);
