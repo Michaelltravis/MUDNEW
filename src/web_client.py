@@ -237,6 +237,12 @@ CLIENT_HTML = '''<!DOCTYPE html>
             padding: 0;
         }
         
+        button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+            box-shadow: 0 0 0 4px var(--accent-glow);
+        }
+
         :root {
             --bg-color: #0c0c0c;
             --terminal-bg: #0d1117;
