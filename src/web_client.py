@@ -786,6 +786,12 @@ CLIENT_HTML = '''<!DOCTYPE html>
             color: var(--warning);
         }
         
+        /* Focus visible for accessibility */
+        button:focus-visible, input:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
         /* Mobile */
         @media (max-width: 900px) {
             .map-panel {
@@ -1103,8 +1109,15 @@ CLIENT_HTML = '''<!DOCTYPE html>
         }
         
         function appendOutput(html) {
+            // Check if user is scrolled to the bottom before adding new content
+            const isScrolledToBottom = Math.abs((terminal.scrollHeight - terminal.scrollTop) - terminal.clientHeight) < 5;
+
             terminal.insertAdjacentHTML('beforeend', html);
-            terminal.scrollTop = terminal.scrollHeight;
+
+            // Smart scroll: only scroll to bottom if autoScroll is enabled AND user was already at the bottom
+            if (settings.autoScroll && isScrolledToBottom) {
+                terminal.scrollTop = terminal.scrollHeight;
+            }
             
             // Detect player name
             if (!playerName) {
