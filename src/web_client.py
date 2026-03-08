@@ -265,6 +265,12 @@ CLIENT_HTML = '''<!DOCTYPE html>
             flex-direction: column;
             overflow: hidden;
         }
+
+        button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
         
         /* Header */
         header {
