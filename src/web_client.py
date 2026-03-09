@@ -1103,8 +1103,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
         }
         
         function appendOutput(html) {
+            const isAtBottom = Math.abs(terminal.scrollHeight - terminal.scrollTop - terminal.clientHeight) < 10;
             terminal.insertAdjacentHTML('beforeend', html);
-            terminal.scrollTop = terminal.scrollHeight;
+
+            const autoScrollEnabled = typeof settings !== 'undefined' ? settings.autoScroll : true;
+            if (autoScrollEnabled && isAtBottom) {
+                terminal.scrollTop = terminal.scrollHeight;
+            }
             
             // Detect player name
             if (!playerName) {
