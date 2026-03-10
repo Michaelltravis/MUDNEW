@@ -1103,8 +1103,24 @@ CLIENT_HTML = '''<!DOCTYPE html>
         }
         
         function appendOutput(html) {
+            // Check if we are at the bottom before adding new content
+            const isAtBottom = Math.abs(terminal.scrollHeight - terminal.scrollTop - terminal.clientHeight) < 10;
+
             terminal.insertAdjacentHTML('beforeend', html);
-            terminal.scrollTop = terminal.scrollHeight;
+
+            // Auto-scroll if at the bottom AND settings allow it
+            let shouldScroll = true;
+            try {
+                if (typeof settings !== 'undefined' && settings.autoScroll === false) {
+                    shouldScroll = false;
+                }
+            } catch (e) {
+                // settings might be in temporal dead zone, default to true
+            }
+
+            if (isAtBottom && shouldScroll) {
+                terminal.scrollTop = terminal.scrollHeight;
+            }
             
             // Detect player name
             if (!playerName) {
