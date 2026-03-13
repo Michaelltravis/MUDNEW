@@ -4,6 +4,6 @@
 **Learning:** Terminal-like interfaces in web clients need `role="log"` and `aria-live="polite"` to be announced by screen readers.
 **Action:** Always check `div`s used as terminals for these attributes.
 
-## 2024-05-23 - Smart Scrolling UX
-**Learning:** Terminal interfaces that auto-scroll unconditionally can frustrate users trying to read history when new text arrives. Checking if the scroll position is already at the bottom before auto-scrolling solves this without needing complex state management.
-**Action:** Implement "Smart Scroll" (checking `scrollHeight - clientHeight <= scrollTop + 1`) in text-heavy interfaces rather than unconditional auto-scrolling.
+## 2024-05-24 - Smart Auto-Scrolling
+**Learning:** Terminal output in the web client should implement 'Smart Scroll', where auto-scrolling only occurs if the user is currently at the bottom of the scroll container. To handle high-DPI sub-pixel scrolling differences safely, check if `Math.abs(scrollHeight - scrollTop - clientHeight) < 10`. Also when checking `settings.autoScroll` declared with `let` later, wrap the access in a `try...catch` block to safely handle Temporal Dead Zone errors.
+**Action:** Always implement Smart Scroll checking for sub-pixel offsets and TDZ handling for auto-scrolling terminal elements.

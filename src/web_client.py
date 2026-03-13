@@ -265,6 +265,12 @@ CLIENT_HTML = '''<!DOCTYPE html>
             flex-direction: column;
             overflow: hidden;
         }
+
+        button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
         
         /* Header */
         header {
@@ -1103,11 +1109,22 @@ CLIENT_HTML = '''<!DOCTYPE html>
         }
         
         function appendOutput(html) {
-            const isScrolledToBottom = terminal.scrollHeight - terminal.clientHeight <= terminal.scrollTop + 1;
+            // Check if we are at the bottom before adding new content
+            const isAtBottom = Math.abs(terminal.scrollHeight - terminal.scrollTop - terminal.clientHeight) < 10;
+
             terminal.insertAdjacentHTML('beforeend', html);
 
-            // Only auto-scroll if the user is at the bottom and autoScroll setting is enabled
-            if (isScrolledToBottom && (typeof settings === 'undefined' || settings.autoScroll !== false)) {
+            // Auto-scroll if at the bottom AND settings allow it
+            let shouldScroll = true;
+            try {
+                if (typeof settings !== 'undefined' && settings.autoScroll === false) {
+                    shouldScroll = false;
+                }
+            } catch (e) {
+                // settings might be in temporal dead zone, default to true
+            }
+
+            if (isAtBottom && shouldScroll) {
                 terminal.scrollTop = terminal.scrollHeight;
             }
             
