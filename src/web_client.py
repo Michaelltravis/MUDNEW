@@ -930,27 +930,27 @@ CLIENT_HTML = '''<!DOCTYPE html>
                     </div>
                 </div>
                 <div class="setting-group">
-                    <label>Scroll on Output</label>
+                    <label id="autoscroll-label">Scroll on Output</label>
                     <div class="setting-control">
-                        <button class="setting-btn toggle active" id="autoscroll-toggle">ON</button>
+                        <button class="setting-btn toggle active" id="autoscroll-toggle" role="switch" aria-checked="true" aria-labelledby="autoscroll-label">ON</button>
                     </div>
                 </div>
                 <div class="setting-group">
-                    <label>Command Echo</label>
+                    <label id="echo-label">Command Echo</label>
                     <div class="setting-control">
-                        <button class="setting-btn toggle active" id="echo-toggle">ON</button>
+                        <button class="setting-btn toggle active" id="echo-toggle" role="switch" aria-checked="true" aria-labelledby="echo-label">ON</button>
                     </div>
                 </div>
                 <div class="setting-group">
-                    <label>Sound Effects</label>
+                    <label id="sound-label">Sound Effects</label>
                     <div class="setting-control">
-                        <button class="setting-btn toggle" id="sound-toggle">OFF</button>
+                        <button class="setting-btn toggle" id="sound-toggle" role="switch" aria-checked="false" aria-labelledby="sound-label">OFF</button>
                     </div>
                 </div>
                 <div class="setting-group">
-                    <label>Timestamps</label>
+                    <label id="timestamp-label">Timestamps</label>
                     <div class="setting-control">
-                        <button class="setting-btn toggle" id="timestamp-toggle">OFF</button>
+                        <button class="setting-btn toggle" id="timestamp-toggle" role="switch" aria-checked="false" aria-labelledby="timestamp-label">OFF</button>
                     </div>
                 </div>
             </div>
@@ -1324,15 +1324,19 @@ CLIENT_HTML = '''<!DOCTYPE html>
             
             document.getElementById('autoscroll-toggle').classList.toggle('active', settings.autoScroll);
             document.getElementById('autoscroll-toggle').textContent = settings.autoScroll ? 'ON' : 'OFF';
+            document.getElementById('autoscroll-toggle').setAttribute('aria-checked', settings.autoScroll.toString());
             
             document.getElementById('echo-toggle').classList.toggle('active', settings.echo);
             document.getElementById('echo-toggle').textContent = settings.echo ? 'ON' : 'OFF';
+            document.getElementById('echo-toggle').setAttribute('aria-checked', settings.echo.toString());
             
             document.getElementById('sound-toggle').classList.toggle('active', settings.sound);
             document.getElementById('sound-toggle').textContent = settings.sound ? 'ON' : 'OFF';
+            document.getElementById('sound-toggle').setAttribute('aria-checked', settings.sound.toString());
             
             document.getElementById('timestamp-toggle').classList.toggle('active', settings.timestamps);
             document.getElementById('timestamp-toggle').textContent = settings.timestamps ? 'ON' : 'OFF';
+            document.getElementById('timestamp-toggle').setAttribute('aria-checked', settings.timestamps.toString());
         }
         
         function saveSettings() {
