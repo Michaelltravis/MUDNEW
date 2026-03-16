@@ -585,12 +585,17 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .exit-btn:hover {
+        .exit-btn:hover:not(:disabled) {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
         }
         
+        .exit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         .exit-btn.available {
             color: var(--success);
             border-color: var(--success);
@@ -620,13 +625,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
             gap: 4px;
         }
         
-        .quick-btn:hover {
+        .quick-btn:hover:not(:disabled) {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
         }
         
-        .quick-btn:active {
+        .quick-btn:active:not(:disabled) {
             transform: scale(0.96);
         }
         
@@ -635,10 +640,15 @@ CLIENT_HTML = '''<!DOCTYPE html>
             color: var(--danger);
         }
         
-        .quick-btn.combat:hover {
+        .quick-btn.combat:hover:not(:disabled) {
             background: rgba(248, 81, 73, 0.15);
         }
         
+        .quick-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         /* Input area */
         #input-area {
             display: flex;
@@ -671,6 +681,12 @@ CLIENT_HTML = '''<!DOCTYPE html>
             box-shadow: 0 0 0 3px var(--accent-glow);
         }
         
+        #command-input:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: var(--panel-bg);
+        }
+
         #command-input::placeholder {
             color: var(--text-dim);
             opacity: 0.6;
@@ -689,15 +705,21 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .send-btn:hover {
+        .send-btn:hover:not(:disabled) {
             filter: brightness(1.1);
             transform: translateY(-1px);
         }
         
-        .send-btn:active {
+        .send-btn:active:not(:disabled) {
             transform: translateY(0);
         }
         
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            filter: grayscale(100%);
+        }
+
         /* ANSI Colors - Enhanced */
         .ansi-black { color: #636e7b; }
         .ansi-red { color: #ff7b72; }
@@ -1072,6 +1094,15 @@ CLIENT_HTML = '''<!DOCTYPE html>
             status.className = 'status-badge ' + state;
         }
         
+        function disableControls(message) {
+            input.disabled = true;
+            input.placeholder = message || "Connection lost...";
+            sendBtn.disabled = true;
+            document.querySelectorAll('.quick-btn, .exit-btn').forEach(btn => {
+                btn.disabled = true;
+            });
+        }
+
         function updateVitals(hp, maxHp, mana, maxMana, move, maxMove) {
             vitalsBar.style.display = 'flex';
             
@@ -1221,11 +1252,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
             ws.onclose = () => {
                 setStatus('disconnected', 'Disconnected');
                 appendOutput('<span class="ansi-yellow">\\n--- Connection closed. Refresh to reconnect. ---\\n</span>');
+                disableControls('Disconnected. Refresh to reconnect.');
             };
             
             ws.onerror = () => {
                 setStatus('disconnected', 'Error');
                 welcomeStatus.textContent = 'Connection failed. Is the server running?';
+                disableControls('Connection error.');
             };
         }
         

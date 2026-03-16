@@ -9,3 +9,6 @@
 ## 2024-05-25 - Custom Toggle Switches
 **Learning:** Custom toggle buttons (e.g., in settings modals) must implement semantic switch attributes including `role='switch'`, dynamic `aria-checked` states ('true' or 'false'), and explicit labels via `aria-labelledby` or `aria-label`. Otherwise, screen readers don't know the state of the toggle.
 **Action:** Always ensure toggle buttons implement ARIA switch semantics.
+## 2024-05-26 - Disabled State UX
+**Learning:** When elements like inputs or buttons become disabled (e.g., due to a lost connection), it is crucial to visually indicate their state using reduced opacity, `cursor: not-allowed`, and greyscale filters. Additionally, hover and active CSS states must be modified to use `:not(:disabled)` so inactive controls don't trigger interactive effects, preventing user confusion. Placeholders on inputs should also update to explain *why* the input is disabled.
+**Action:** Always verify that disabled elements do not trigger hover/active animations, and ensure explanatory text is provided when controls are deactivated.
