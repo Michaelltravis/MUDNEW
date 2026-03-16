@@ -17147,6 +17147,7 @@ class CommandHandler:
         
         import subprocess
         import sys
+        import re
         from pathlib import Path
         
         script_path = Path(__file__).parent.parent / "scripts" / "backup.py"
@@ -17171,6 +17172,14 @@ class CommandHandler:
                 await player.send(f"{c['red']}Usage: backup restore <filename>{c['reset']}")
                 return
             filename = args[1]
+
+            # Security: Validate filename to prevent command/argument injection
+            # Only allow alphanumeric, dots, underscores, and hyphens.
+            # Must not start with a hyphen.
+            if not re.match(r'^[a-zA-Z0-9._][a-zA-Z0-9._-]*$', filename):
+                await player.send(f"{c['red']}Invalid backup filename. Only alphanumeric characters, dots, underscores, and hyphens are allowed, and it cannot start with a hyphen.{c['reset']}")
+                return
+
             await player.send(f"{c['yellow']}Restoring from {filename}...{c['reset']}")
             result = subprocess.run(
                 [sys.executable, str(script_path), '--restore', filename],
