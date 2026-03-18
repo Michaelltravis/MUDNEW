@@ -605,7 +605,10 @@
         "memory",
         "helper"
       ],
-      "description": "Part kestrel, part bear, part wolf.  Parts is parts, and makes an ugly whole."
+      "description": "Part kestrel, part bear, part wolf.  Parts is parts, and makes an ugly whole.",
+      "inventory": [
+        908
+      ]
     },
     "901": {
       "vnum": 901,
@@ -628,7 +631,10 @@
       "description": "This is the ultimate swordsman.",
       "equipment": {
         "hold": 901
-      }
+      },
+      "inventory": [
+        901
+      ]
     },
     "902": {
       "vnum": 902,
@@ -648,7 +654,10 @@
         "memory",
         "helper"
       ],
-      "description": "All bandages, no personality."
+      "description": "All bandages, no personality.",
+      "inventory": [
+        907
+      ]
     },
     "903": {
       "vnum": 903,
@@ -668,7 +677,12 @@
         "memory",
         "helper"
       ],
-      "description": "This scaly creature looks like it is well adapted to its underground\nhabitat.  He looks very powerful."
+      "description": "This scaly creature looks like it is well adapted to its underground\nhabitat.  He looks very powerful.",
+      "inventory": [
+        902,
+        905,
+        901
+      ]
     },
     "904": {
       "vnum": 904,
@@ -692,7 +706,10 @@
       "equipment": {
         "hands": 903,
         "hold": 902
-      }
+      },
+      "inventory": [
+        908
+      ]
     },
     "905": {
       "vnum": 905,
@@ -715,7 +732,10 @@
       "description": "Franz is no girlie man.  He is very muscular and looks as if he could\nsqueeze your head like a grapefruit.",
       "equipment": {
         "wield": 905
-      }
+      },
+      "inventory": [
+        903
+      ]
     },
     "906": {
       "vnum": 906,
@@ -738,7 +758,10 @@
       "description": "Hanz is no girlie man.  He is very muscular and looks as if he could\nlift a large dragon.",
       "equipment": {
         "wield": 907
-      }
+      },
+      "inventory": [
+        908
+      ]
     },
     "907": {
       "vnum": 907,
@@ -765,7 +788,12 @@
       "equipment": {
         "shield": 901,
         "hold": 900
-      }
+      },
+      "inventory": [
+        907,
+        905,
+        906
+      ]
     },
     "908": {
       "vnum": 908,
@@ -784,7 +812,11 @@
         "stay_zone",
         "no_bash"
       ],
-      "description": "The turtle's shell is the size of a small house and looks as hard as rock."
+      "description": "The turtle's shell is the size of a small house and looks as hard as rock.",
+      "inventory": [
+        907,
+        909
+      ]
     },
     "909": {
       "vnum": 909,
@@ -802,7 +834,10 @@
         "aggressive",
         "stay_zone"
       ],
-      "description": "The sea hag is terribly fightful and has razor sharp teeth."
+      "description": "The sea hag is terribly fightful and has razor sharp teeth.",
+      "inventory": [
+        903
+      ]
     },
     "910": {
       "vnum": 910,
@@ -828,7 +863,10 @@
       "description": "The merman has a powerful tail fin instead of legs.",
       "equipment": {
         "wield": 908
-      }
+      },
+      "inventory": [
+        902
+      ]
     },
     "911": {
       "vnum": 911,
@@ -847,7 +885,10 @@
         "aggressive",
         "no_bash"
       ],
-      "description": "It looks like a crab... what more can be said?"
+      "description": "It looks like a crab... what more can be said?",
+      "inventory": [
+        904
+      ]
     }
   },
   "objects": {
@@ -872,7 +913,8 @@
       "armor_bonus": 12,
       "type": "armor",
       "wear_slot": "shield",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 3
     },
     "902": {
       "vnum": 902,
@@ -893,7 +935,8 @@
       "weight": 8,
       "value": 2000,
       "armor_bonus": 5,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 4
     },
     "904": {
       "vnum": 904,
@@ -906,7 +949,8 @@
       "light_hours": -1,
       "type": "armor",
       "wear_slot": "finger",
-      "armor": 0
+      "armor": 6,
+      "armor_class": 4
     },
     "905": {
       "vnum": 905,
@@ -964,7 +1008,8 @@
       "value": 5000,
       "type": "armor",
       "wear_slot": "feet",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 3
     }
   }
 }

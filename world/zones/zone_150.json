@@ -2081,7 +2081,11 @@
         "no_bash",
         "no_blind"
       ],
-      "description": "The ghost is almost translucent, and looks really SCARY!"
+      "description": "The ghost is almost translucent, and looks really SCARY!",
+      "inventory": [
+        15012,
+        15006
+      ]
     },
     "15003": {
       "vnum": 15003,
@@ -2103,7 +2107,10 @@
       "equipment": {
         "wield": 3022,
         "body": 15015
-      }
+      },
+      "inventory": [
+        15014
+      ]
     },
     "15004": {
       "vnum": 15004,
@@ -2126,7 +2133,11 @@
       "equipment": {
         "wield": 15006,
         "body": 15015
-      }
+      },
+      "inventory": [
+        15030,
+        15002
+      ]
     },
     "15005": {
       "vnum": 15005,
@@ -2149,7 +2160,10 @@
       "equipment": {
         "wield": 15006,
         "body": 15015
-      }
+      },
+      "inventory": [
+        15003
+      ]
     },
     "15006": {
       "vnum": 15006,
@@ -2171,7 +2185,10 @@
       "equipment": {
         "wield": 3022,
         "body": 15015
-      }
+      },
+      "inventory": [
+        15029
+      ]
     },
     "15007": {
       "vnum": 15007,
@@ -2193,7 +2210,10 @@
       "equipment": {
         "wield": 3022,
         "body": 15015
-      }
+      },
+      "inventory": [
+        15008
+      ]
     },
     "15008": {
       "vnum": 15008,
@@ -2215,7 +2235,11 @@
       "equipment": {
         "wield": 3022,
         "body": 15015
-      }
+      },
+      "inventory": [
+        15005,
+        15024
+      ]
     },
     "15009": {
       "vnum": 15009,
@@ -2237,7 +2261,10 @@
       "equipment": {
         "wield": 3022,
         "body": 15015
-      }
+      },
+      "inventory": [
+        15026
+      ]
     },
     "15010": {
       "vnum": 15010,
@@ -2259,7 +2286,11 @@
       "equipment": {
         "wield": 3022,
         "body": 15015
-      }
+      },
+      "inventory": [
+        15022,
+        15002
+      ]
     },
     "15011": {
       "vnum": 15011,
@@ -2281,7 +2312,11 @@
       "equipment": {
         "wield": 3022,
         "body": 15015
-      }
+      },
+      "inventory": [
+        15016,
+        15020
+      ]
     },
     "15012": {
       "vnum": 15012,
@@ -2303,7 +2338,11 @@
       "equipment": {
         "body": 15015,
         "wield": 15016
-      }
+      },
+      "inventory": [
+        15005,
+        15024
+      ]
     },
     "15013": {
       "vnum": 15013,
@@ -2325,7 +2364,11 @@
       "description": "Aged, but experienced, the Training Master is skilled in the use\nof virtually every weapon type invented by Man.",
       "equipment": {
         "wield": 3022
-      }
+      },
+      "inventory": [
+        15022,
+        15008
+      ]
     },
     "15014": {
       "vnum": 15014,
@@ -2340,7 +2383,12 @@
       "exp": 642,
       "armor_class": -1,
       "flags": [],
-      "description": "This is a young, powerfully built man, whose primary function\nis to make Royal Announcements."
+      "description": "This is a young, powerfully built man, whose primary function\nis to make Royal Announcements.",
+      "inventory": [
+        15003,
+        15002,
+        15030
+      ]
     },
     "15015": {
       "vnum": 15015,
@@ -2363,7 +2411,10 @@
         "no_charm",
         "no_summmon"
       ],
-      "description": "You remember a time almost a decade ago, when the news of the day\nwas how this man had slaughtered the entire population of the little\nvillage of Townsbridge.  He was imprisoned, and here he is - a shadow\nof the undoubtedly great warrior he once was, but still to be reckoned\nwith."
+      "description": "You remember a time almost a decade ago, when the news of the day\nwas how this man had slaughtered the entire population of the little\nvillage of Townsbridge.  He was imprisoned, and here he is - a shadow\nof the undoubtedly great warrior he once was, but still to be reckoned\nwith.",
+      "inventory": [
+        15024
+      ]
     },
     "15016": {
       "vnum": 15016,
@@ -2402,7 +2453,11 @@
         "special",
         "stay_zone"
       ],
-      "description": "Although she has a menial job, she seems to like it."
+      "description": "Although she has a menial job, she seems to like it.",
+      "inventory": [
+        15005,
+        15020
+      ]
     },
     "15018": {
       "vnum": 15018,
@@ -2421,7 +2476,10 @@
         "no_bash",
         "no_blind"
       ],
-      "description": "Very large indeed, and they say cockroaches are hard to kill..."
+      "description": "Very large indeed, and they say cockroaches are hard to kill...",
+      "inventory": [
+        15009
+      ]
     },
     "15019": {
       "vnum": 15019,
@@ -2518,7 +2576,12 @@
       "equipment": {
         "wield": 3022,
         "body": 15015
-      }
+      },
+      "inventory": [
+        15000,
+        15002,
+        15003
+      ]
     },
     "15021": {
       "vnum": 15021,
@@ -2540,7 +2603,10 @@
       "equipment": {
         "wield": 3022,
         "body": 15015
-      }
+      },
+      "inventory": [
+        15006
+      ]
     },
     "15022": {
       "vnum": 15022,
@@ -2645,7 +2711,10 @@
       "equipment": {
         "wield": 3022,
         "body": 15015
-      }
+      },
+      "inventory": [
+        15003
+      ]
     },
     "15026": {
       "vnum": 15026,
@@ -2667,7 +2736,10 @@
       "equipment": {
         "wield": 3022,
         "body": 15015
-      }
+      },
+      "inventory": [
+        15012
+      ]
     },
     "15027": {
       "vnum": 15027,
@@ -2689,7 +2761,11 @@
       "equipment": {
         "wield": 3022,
         "body": 15015
-      }
+      },
+      "inventory": [
+        15028,
+        15016
+      ]
     },
     "15028": {
       "vnum": 15028,
@@ -2711,7 +2787,10 @@
       "equipment": {
         "wield": 3022,
         "body": 15015
-      }
+      },
+      "inventory": [
+        15006
+      ]
     },
     "15029": {
       "vnum": 15029,
@@ -2733,7 +2812,10 @@
       "equipment": {
         "wield": 3022,
         "body": 15015
-      }
+      },
+      "inventory": [
+        15016
+      ]
     },
     "15030": {
       "vnum": 15030,
@@ -2755,7 +2837,10 @@
         "no_sleep",
         "no_blind"
       ],
-      "description": "It is entirely possible that this zombie was once one of the villagers\nof Townsbridge who has been brought to an undead life by a fuelling\ndesire for revenge."
+      "description": "It is entirely possible that this zombie was once one of the villagers\nof Townsbridge who has been brought to an undead life by a fuelling\ndesire for revenge.",
+      "inventory": [
+        15030
+      ]
     },
     "15031": {
       "vnum": 15031,
@@ -2777,7 +2862,11 @@
         "no_sleep",
         "no_blind"
       ],
-      "description": "It is entirely possible that this skeleton was once one of the villagers\nof Townsbridge who has been brought to an undead life by a fuelling desire\nfor revenge."
+      "description": "It is entirely possible that this skeleton was once one of the villagers\nof Townsbridge who has been brought to an undead life by a fuelling desire\nfor revenge.",
+      "inventory": [
+        15008,
+        15024
+      ]
     },
     "15032": {
       "vnum": 15032,
@@ -2845,7 +2934,11 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        15004,
+        15002
+      ]
     }
   },
   "objects": {
@@ -2892,7 +2985,8 @@
       "armor_bonus": 7,
       "type": "armor",
       "wear_slot": "head",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 4
     },
     "15004": {
       "vnum": 15004,
@@ -3023,7 +3117,8 @@
       "armor_bonus": 5,
       "type": "armor",
       "wear_slot": "body",
-      "armor": 5
+      "armor": 5,
+      "armor_class": 3
     },
     "15016": {
       "vnum": 15016,
@@ -3141,7 +3236,8 @@
       ],
       "set_id": 150,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 5
     },
     "15025": {
       "vnum": 15025,
@@ -3160,7 +3256,8 @@
         }
       ],
       "set_id": 150,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 9
     },
     "15026": {
       "vnum": 15026,
@@ -3183,7 +3280,8 @@
         }
       ],
       "set_id": 150,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 9
     },
     "15027": {
       "vnum": 15027,
@@ -3202,7 +3300,8 @@
         }
       ],
       "set_id": 150,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 13
     },
     "15028": {
       "vnum": 15028,
@@ -3272,7 +3371,8 @@
       ],
       "set_id": 150,
       "type": "armor",
-      "armor": 0
+      "armor": 8,
+      "armor_class": 4
     },
     "15031": {
       "vnum": 15031,
@@ -3287,7 +3387,8 @@
       "armor_bonus": 3,
       "set_id": 150,
       "type": "armor",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 3
     }
   }
 }

@@ -764,7 +764,8 @@
       "vnum": 11011,
       "type": "armor",
       "wear_slot": "body",
-      "armor": 4
+      "armor": 4,
+      "armor_class": 4
     },
     "11012": {
       "name": "short bow",
@@ -842,7 +843,8 @@
       ],
       "set_id": 110,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 4
     },
     "11016": {
       "vnum": 11016,
@@ -861,7 +863,8 @@
         }
       ],
       "set_id": 110,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 10
     },
     "11017": {
       "vnum": 11017,
@@ -884,7 +887,8 @@
         }
       ],
       "set_id": 110,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 10
     },
     "11018": {
       "vnum": 11018,
@@ -903,7 +907,8 @@
         }
       ],
       "set_id": 110,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 11
     },
     "11019": {
       "vnum": 11019,
@@ -991,7 +996,8 @@
       ],
       "set_id": 110,
       "type": "armor",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 3
     }
   },
   "mobs": {
@@ -1010,6 +1016,9 @@
       "armor_class": 85,
       "flags": [
         "sentinel"
+      ],
+      "inventory": [
+        11011
       ]
     },
     "11002": {
@@ -1067,7 +1076,10 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        11019
+      ]
     },
     "11003": {
       "vnum": 11003,
@@ -1123,7 +1135,10 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        11015
+      ]
     },
     "11004": {
       "vnum": 11004,
@@ -1141,7 +1156,11 @@
       "flags": [
         "sentinel"
       ],
-      "special": "shopkeeper"
+      "special": "shopkeeper",
+      "inventory": [
+        11022,
+        11019
+      ]
     },
     "11005": {
       "vnum": 11005,
@@ -1158,6 +1177,10 @@
       "armor_class": 94,
       "flags": [
         "sentinel"
+      ],
+      "inventory": [
+        11011,
+        11021
       ]
     },
     "11006": {
@@ -1214,7 +1237,11 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        11019,
+        11011
+      ]
     },
     "11007": {
       "vnum": 11007,
@@ -1231,6 +1258,10 @@
       "armor_class": 80,
       "flags": [
         "sentinel"
+      ],
+      "inventory": [
+        11022,
+        11014
       ]
     },
     "11008": {
@@ -1248,6 +1279,10 @@
       "armor_class": 82,
       "flags": [
         "aggressive"
+      ],
+      "inventory": [
+        11014,
+        11018
       ]
     },
     "11098": {
@@ -1272,7 +1307,12 @@
         "history": "She strums a mournful chord. 'A great evil was sealed beneath these roots long ago. The singing keeps the seal strong. If the music ever stops... well. That is why we bards never rest.'",
         "default": "The elven bard plays a haunting melody that fills you with both joy and an inexplicable sadness.",
         "next": "Lyralei plucks a melancholy chord. 'The forest's melody grows darker further north. But if you seek challenge beyond these woods, the Mines of Moria echo with the clash of steel, and the Dark Forest... well, few return unchanged from that place.'"
-      }
+      },
+      "inventory": [
+        11011,
+        11015,
+        11022
+      ]
     },
     "11099": {
       "vnum": 11099,
@@ -1295,7 +1335,11 @@
         "hello": "The treant speaks with a voice like grinding boulders. '...Hmmm. Small thing. Fast thing. You move... too quickly. The forest... has roots deeper than mountains. Patience... is the oldest strength. The dark ones... from below... they cut and burn. Stop them... if you can. We are... too slow... to fight.'",
         "forest": "Bark creaks as it shifts. '...The silver trees... are the heart. Protect... the heart... and the forest... survives. Harm the heart... and all... falls to shadow.'",
         "default": "The treant is utterly still. You're not even sure it's awake."
-      }
+      },
+      "inventory": [
+        11000,
+        11014
+      ]
     }
   }
 }

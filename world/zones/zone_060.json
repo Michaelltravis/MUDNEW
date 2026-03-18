@@ -63,7 +63,10 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        6012
+      ]
     },
     "6001": {
       "alignment": 0,
@@ -87,7 +90,7 @@
         6023,
         6023
       ],
-      "level": 0,
+      "level": 1,
       "long_desc": "A small rabbit is foraging in the bushes here.",
       "name": "rabbit",
       "short_desc": "the rabbit",
@@ -148,7 +151,11 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        6055,
+        6004
+      ]
     },
     "6003": {
       "alignment": -150,
@@ -166,7 +173,10 @@
       "long_desc": "A ferocious rabbit is here, glaring hungrily at you.",
       "name": "rabbit",
       "short_desc": "the ferocious rabbit",
-      "vnum": 6003
+      "vnum": 6003,
+      "inventory": [
+        6021
+      ]
     },
     "6004": {
       "alignment": 350,
@@ -204,7 +214,10 @@
       "long_desc": "A brown fox is stalking rabbits through the underbrush here.",
       "name": "fox",
       "short_desc": "the brown fox",
-      "vnum": 6005
+      "vnum": 6005,
+      "inventory": [
+        6058
+      ]
     },
     "6006": {
       "alignment": 0,
@@ -217,11 +230,14 @@
       ],
       "gold": 12,
       "hp_dice": "1d10+16",
-      "level": 0,
+      "level": 1,
       "long_desc": "A large bird with a broken wing has been cornered here.",
       "name": "bird",
       "short_desc": "the bird",
-      "vnum": 6006
+      "vnum": 6006,
+      "inventory": [
+        6002
+      ]
     },
     "6007": {
       "alignment": -150,
@@ -239,7 +255,11 @@
       "long_desc": "A medium sized bobcat is stalking a bird here.",
       "name": "bobcat",
       "short_desc": "the bobcat",
-      "vnum": 6007
+      "vnum": 6007,
+      "inventory": [
+        6004,
+        6058
+      ]
     },
     "6008": {
       "alignment": 200,
@@ -252,11 +272,14 @@
       ],
       "gold": 12,
       "hp_dice": "1d10+16",
-      "level": 0,
+      "level": 1,
       "long_desc": "A sparrow is flapping around by the ground.",
       "name": "sparrow",
       "short_desc": "the sparrow",
-      "vnum": 6008
+      "vnum": 6008,
+      "inventory": [
+        6019
+      ]
     },
     "6009": {
       "alignment": 200,
@@ -269,11 +292,14 @@
       ],
       "gold": 12,
       "hp_dice": "1d10+16",
-      "level": 0,
+      "level": 1,
       "long_desc": "A robin is hopping around looking for bugs to eat.",
       "name": "robin",
       "short_desc": "the robin",
-      "vnum": 6009
+      "vnum": 6009,
+      "inventory": [
+        6004
+      ]
     },
     "6010": {
       "alignment": 200,
@@ -290,7 +316,10 @@
       "long_desc": "A squirrel is here seeking refuge in its nest.",
       "name": "squirrel",
       "short_desc": "the squirrel",
-      "vnum": 6010
+      "vnum": 6010,
+      "inventory": [
+        6011
+      ]
     },
     "6011": {
       "alignment": 50,
@@ -307,7 +336,11 @@
       "long_desc": "A furry brown badger is curled up under a log here.",
       "name": "badger",
       "short_desc": "the sleepy badger",
-      "vnum": 6011
+      "vnum": 6011,
+      "inventory": [
+        6060,
+        6061
+      ]
     },
     "6012": {
       "alignment": 150,
@@ -324,7 +357,10 @@
       "long_desc": "A grey squirrel with a bushy tail is foraging for nuts here.",
       "name": "grey",
       "short_desc": "the grey squirrel",
-      "vnum": 6012
+      "vnum": 6012,
+      "inventory": [
+        6059
+      ]
     },
     "6013": {
       "alignment": 170,
@@ -337,11 +373,15 @@
       ],
       "gold": 20,
       "hp_dice": "1d10+16",
-      "level": 0,
+      "level": 1,
       "long_desc": "A small brown-red chipmunk dashes from tree to tree here.",
       "name": "chipmunk",
       "short_desc": "the small chipmunk",
-      "vnum": 6013
+      "vnum": 6013,
+      "inventory": [
+        6022,
+        6056
+      ]
     },
     "6014": {
       "alignment": -20,
@@ -360,7 +400,10 @@
       "long_desc": "A large black bird flits about here, picking at bits of carrion.",
       "name": "crow",
       "short_desc": "the large black crow",
-      "vnum": 6014
+      "vnum": 6014,
+      "inventory": [
+        6052
+      ]
     },
     "6015": {
       "alignment": -700,
@@ -418,7 +461,10 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        6018
+      ]
     },
     "6016": {
       "alignment": 350,
@@ -452,11 +498,14 @@
       ],
       "gold": 15,
       "hp_dice": "1d10+16",
-      "level": 0,
+      "level": 1,
       "long_desc": "A fish is swimming about here.",
       "name": "fish",
       "short_desc": "the fish",
-      "vnum": 6017
+      "vnum": 6017,
+      "inventory": [
+        6056
+      ]
     },
     "6018": {
       "alignment": 1000,
@@ -469,11 +518,14 @@
       ],
       "gold": 0,
       "hp_dice": "1d1+0",
-      "level": 0,
+      "level": 1,
       "long_desc": "A duckling is swimming around in the pond.",
       "name": "duckling",
       "short_desc": "the duckling",
-      "vnum": 6018
+      "vnum": 6018,
+      "inventory": [
+        6022
+      ]
     },
     "6098": {
       "vnum": 6098,
@@ -516,7 +568,11 @@
           "chance": 15
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        6056,
+        6018
+      ]
     }
   },
   "name": "Haon-Dor, Light Forest",
@@ -553,7 +609,8 @@
       ],
       "set_id": "forest_stalker",
       "type": "armor",
-      "min_level": 10
+      "min_level": 10,
+      "armor": 5
     },
     "6002": {
       "vnum": 6002,
@@ -574,7 +631,8 @@
       ],
       "set_id": "forest_stalker",
       "type": "armor",
-      "min_level": 10
+      "min_level": 10,
+      "armor": 8
     },
     "6003": {
       "vnum": 6003,
@@ -595,7 +653,8 @@
       ],
       "set_id": "forest_stalker",
       "type": "armor",
-      "min_level": 10
+      "min_level": 10,
+      "armor": 10
     },
     "6004": {
       "vnum": 6004,
@@ -869,7 +928,8 @@
       "wear_slot": "neck",
       "armor": 1,
       "weight": 1,
-      "cost": 220
+      "cost": 220,
+      "armor_class": 1
     },
     "6054": {
       "vnum": 6054,
@@ -921,7 +981,8 @@
       ],
       "set_id": 60,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 2
     },
     "6057": {
       "vnum": 6057,
@@ -940,7 +1001,8 @@
         }
       ],
       "set_id": 60,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 8
     },
     "6058": {
       "vnum": 6058,
@@ -963,7 +1025,8 @@
         }
       ],
       "set_id": 60,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 6
     },
     "6059": {
       "vnum": 6059,
@@ -982,7 +1045,8 @@
         }
       ],
       "set_id": 60,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 10
     },
     "6060": {
       "vnum": 6060,
@@ -1069,7 +1133,8 @@
       ],
       "set_id": 60,
       "type": "armor",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 1
     },
     "6095": {
       "vnum": 6095,

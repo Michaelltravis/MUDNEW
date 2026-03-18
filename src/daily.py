@@ -122,7 +122,8 @@ class DailyBonusManager:
             if total >= milestone_day and milestone_day not in milestones:
                 # Award milestone item
                 try:
-                    item = player.world.create_object(milestone_reward['item_vnum'])
+                    from objects import create_object, create_preset_object
+                    item = create_object(milestone_reward['item_vnum'], player.world) or create_preset_object(milestone_reward['item_vnum'])
                     if item:
                         player.inventory.append(item)
                         milestones.append(milestone_day)

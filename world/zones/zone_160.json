@@ -1132,7 +1132,8 @@
       ],
       "set_id": "chaos_weave",
       "type": "armor",
-      "min_level": 40
+      "min_level": 40,
+      "armor": 9
     },
     "16002": {
       "vnum": 16002,
@@ -1157,7 +1158,8 @@
       ],
       "set_id": "chaos_weave",
       "type": "armor",
-      "min_level": 40
+      "min_level": 40,
+      "armor": 14
     },
     "16003": {
       "vnum": 16003,
@@ -1208,7 +1210,8 @@
       ],
       "set_id": "chaos_weave",
       "type": "armor",
-      "min_level": 40
+      "min_level": 40,
+      "armor": 9
     },
     "16005": {
       "name": "demon heart",
@@ -1287,7 +1290,8 @@
       ],
       "set_id": 160,
       "type": "armor",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 4
     },
     "9303": {
       "vnum": 9303,
@@ -1310,7 +1314,8 @@
         }
       ],
       "set_id": 160,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 13
     },
     "16006": {
       "vnum": 16006,
@@ -1356,7 +1361,8 @@
       ],
       "set_id": 160,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 3
     },
     "16008": {
       "vnum": 16008,
@@ -1379,7 +1385,8 @@
         }
       ],
       "set_id": 160,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 8
     },
     "16009": {
       "vnum": 16009,
@@ -1402,7 +1409,8 @@
         }
       ],
       "set_id": 160,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 13
     },
     "16010": {
       "vnum": 16010,
@@ -1425,7 +1433,8 @@
         }
       ],
       "set_id": 160,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 13
     },
     "16011": {
       "vnum": 16011,
@@ -1495,7 +1504,8 @@
       ],
       "set_id": 160,
       "type": "armor",
-      "armor": 0
+      "armor": 9,
+      "armor_class": 5
     },
     "16014": {
       "vnum": 16014,
@@ -1516,7 +1526,8 @@
       ],
       "set_id": 160,
       "type": "armor",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 4
     },
     "16090": {
       "vnum": 16090,
@@ -1542,7 +1553,8 @@
           "value": 1
         }
       ],
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 11
     },
     "16091": {
       "vnum": 16091,
@@ -1565,7 +1577,8 @@
         }
       ],
       "type": "armor",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 3
     },
     "16092": {
       "vnum": 16092,
@@ -1591,7 +1604,8 @@
           "value": -10
         }
       ],
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 8
     },
     "16093": {
       "vnum": 16093,
@@ -1613,7 +1627,8 @@
           "value": 12
         }
       ],
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 14
     },
     "16094": {
       "vnum": 16094,
@@ -1635,7 +1650,8 @@
           "value": 12
         }
       ],
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 9
     }
   },
   "mobs": {
@@ -1655,6 +1671,9 @@
       "flags": [
         "aggressive",
         "fly"
+      ],
+      "inventory": [
+        16093
       ]
     },
     "16002": {
@@ -1673,6 +1692,11 @@
       "flags": [
         "aggressive",
         "sentinel"
+      ],
+      "inventory": [
+        16092,
+        16004,
+        16008
       ]
     },
     "16003": {
@@ -1690,6 +1714,9 @@
       "armor_class": 7,
       "flags": [
         "aggressive"
+      ],
+      "inventory": [
+        16002
       ]
     },
     "16004": {
@@ -1709,6 +1736,10 @@
         "aggressive",
         "sentinel",
         "fly"
+      ],
+      "inventory": [
+        16009,
+        16094
       ]
     },
     "16005": {
@@ -1726,6 +1757,11 @@
       "armor_class": -8,
       "flags": [
         "aggressive"
+      ],
+      "inventory": [
+        16002,
+        16001,
+        16004
       ]
     },
     "16006": {
@@ -1743,6 +1779,11 @@
       "armor_class": -5,
       "flags": [
         "aggressive"
+      ],
+      "inventory": [
+        16093,
+        16014,
+        9302
       ]
     },
     "16007": {
@@ -1761,6 +1802,11 @@
       "flags": [
         "aggressive",
         "spellcaster"
+      ],
+      "inventory": [
+        16012,
+        16001,
+        16013
       ]
     },
     "16008": {
@@ -1820,7 +1866,10 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        16008
+      ]
     },
     "16009": {
       "vnum": 16009,
@@ -1879,7 +1928,12 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        16004,
+        9301,
+        16094
+      ]
     },
     "16010": {
       "vnum": 16010,
@@ -1896,6 +1950,9 @@
       "armor_class": 13,
       "flags": [
         "aggressive"
+      ],
+      "inventory": [
+        16094
       ]
     },
     "16025": {
@@ -2102,7 +2159,13 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        9302,
+        16093,
+        16002,
+        16007
+      ]
     },
     "16098": {
       "vnum": 16098,
@@ -2126,7 +2189,10 @@
         "nexus": "They grab your arm with surprising strength. 'The Nexus is where all the planes bleed together. Reality is thinnest there. The elementals are drawn to it like moths. If you can survive the convergence, you can reshape the chaos around you. Or it reshapes you. Fifty-fifty, really.'",
         "default": "The traveler checks their spinning compass and mutters equations that hurt your brain to overhear.",
         "next": "The traveler's form flickers between dimensions. 'Beyond chaos lies only apocalypse. Castle Apocalypse stands as the final bastion \u2014 Sir Aldren the Undying guards its outer gate. And the Tunnel of Sticks... don't ask. Just don't. Unless you're level 50 and have a death wish.'"
-      }
+      },
+      "inventory": [
+        16091
+      ]
     },
     "16099": {
       "vnum": 16099,
@@ -2149,7 +2215,10 @@
         "hello": "You read the inscription at the crystal's base: 'HERE FELL COMMANDER PYRIXIS OF THE ELEMENTAL CONCORDANCE, FROZEN AT THE MOMENT OF CONVERGENCE. LET ALL WHO PASS KNOW: THE PLANES WERE NEVER MEANT TO TOUCH. WHAT WAS MERGED MUST BE SUNDERED, OR ALL REALMS FALL TO CHAOS.'",
         "inscription": "Examining closer, smaller text reads: 'The Convergence can be reversed. Four elemental anchors must be activated: fire, water, earth, air. They are scattered across this plane. Find them. The alternative is oblivion.'",
         "default": "The crystallized elemental stands in eternal silence. Light pulses within like a slow heartbeat."
-      }
+      },
+      "inventory": [
+        16002
+      ]
     }
   }
 }

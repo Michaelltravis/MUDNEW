@@ -1615,14 +1615,17 @@
       "flags": [
         "wimpy"
       ],
-      "description": "That is one nice looking deer!"
+      "description": "That is one nice looking deer!",
+      "inventory": [
+        6203
+      ]
     },
     "6201": {
       "vnum": 6201,
       "name": "rabbit",
       "short_desc": "the rabbit",
       "long_desc": "A small rabbit nibbles at a leaf here.",
-      "level": 0,
+      "level": 1,
       "alignment": 0,
       "hp_dice": "1d10+16",
       "damage_dice": "1d4",
@@ -1632,14 +1635,18 @@
       "flags": [
         "wimpy"
       ],
-      "description": "It is a small, furry rodent with big ears."
+      "description": "It is a small, furry rodent with big ears.",
+      "inventory": [
+        6208,
+        6209
+      ]
     },
     "6202": {
       "vnum": 6202,
       "name": "squirrel",
       "short_desc": "the squirrel",
       "long_desc": "A squirrel spots you and runs around a tree!",
-      "level": 0,
+      "level": 1,
       "alignment": 0,
       "hp_dice": "1d10+16",
       "damage_dice": "1d4",
@@ -1649,7 +1656,11 @@
       "flags": [
         "wimpy"
       ],
-      "description": "It is a small, brown squirrel.  Kind of like a\nfuzzy high-tension spring."
+      "description": "It is a small, brown squirrel.  Kind of like a\nfuzzy high-tension spring.",
+      "inventory": [
+        6213,
+        6202
+      ]
     },
     "6203": {
       "vnum": 6203,
@@ -1670,7 +1681,11 @@
       "description": "He looks angry, desperate, and maybe a little sick.\nHis green skin is definitely mottled, and he seems to\nlimp a little bit...",
       "equipment": {
         "wield": 6204
-      }
+      },
+      "inventory": [
+        6213,
+        6209
+      ]
     },
     "6204": {
       "vnum": 6204,
@@ -1693,7 +1708,11 @@
       "description": "He wears a crown of oak leaves to show he is a leader.  He\ncarries a club to show he is a warrior.  You wonder how good\nhe is at both.",
       "equipment": {
         "wield": 6204
-      }
+      },
+      "inventory": [
+        6208,
+        6209
+      ]
     },
     "6205": {
       "vnum": 6205,
@@ -1710,7 +1729,10 @@
       "flags": [
         "wimpy"
       ],
-      "description": "As you stare her down, she raises her hands slowly, as if to\nsay, 'Don't kill me'."
+      "description": "As you stare her down, she raises her hands slowly, as if to\nsay, 'Don't kill me'.",
+      "inventory": [
+        6206
+      ]
     },
     "6206": {
       "vnum": 6206,
@@ -1727,7 +1749,10 @@
       "flags": [
         "wimpy"
       ],
-      "description": "She is raggedy, and seems to be covered with sores."
+      "description": "She is raggedy, and seems to be covered with sores.",
+      "inventory": [
+        6210
+      ]
     },
     "6207": {
       "vnum": 6207,
@@ -1745,7 +1770,10 @@
         "sentinel",
         "wimpy"
       ],
-      "description": "She is too far gone to move very quickly.  You could\nkill her easily."
+      "description": "She is too far gone to move very quickly.  You could\nkill her easily.",
+      "inventory": [
+        6214
+      ]
     },
     "6208": {
       "vnum": 6208,
@@ -1760,7 +1788,10 @@
       "exp": 360,
       "armor_class": 82,
       "flags": [],
-      "description": "Its body has been twisted beyond all hope.  It is dying, and\nnothing will stop that."
+      "description": "Its body has been twisted beyond all hope.  It is dying, and\nnothing will stop that.",
+      "inventory": [
+        6206
+      ]
     },
     "6209": {
       "vnum": 6209,
@@ -1778,7 +1809,10 @@
       "description": "It doesn't even appear to have registered your arrival... it is\njust talking to itself.  Its body is a twisted wreck of orc, man,\nbeast, and what-not.",
       "equipment": {
         "wield": 6204
-      }
+      },
+      "inventory": [
+        6205
+      ]
     },
     "6210": {
       "vnum": 6210,
@@ -1840,7 +1874,11 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        6205,
+        6208
+      ]
     },
     "6211": {
       "vnum": 6211,
@@ -1917,7 +1955,11 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        6206,
+        6214
+      ]
     },
     "6213": {
       "vnum": 6213,
@@ -1978,7 +2020,11 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        6205,
+        6210
+      ]
     }
   },
   "objects": {
@@ -2001,7 +2047,8 @@
       "weight": 20,
       "value": 100,
       "armor_bonus": 0,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 10
     },
     "6202": {
       "vnum": 6202,
@@ -2012,7 +2059,8 @@
       "weight": 20,
       "value": 100,
       "armor_bonus": 0,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 10
     },
     "6203": {
       "vnum": 6203,
@@ -2089,7 +2137,8 @@
       ],
       "set_id": 62,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 1
     },
     "6208": {
       "vnum": 6208,
@@ -2108,7 +2157,8 @@
         }
       ],
       "set_id": 62,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 10
     },
     "6209": {
       "vnum": 6209,
@@ -2131,7 +2181,8 @@
         }
       ],
       "set_id": 62,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 5
     },
     "6210": {
       "vnum": 6210,
@@ -2150,7 +2201,8 @@
         }
       ],
       "set_id": 62,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 10
     },
     "6211": {
       "vnum": 6211,
@@ -2233,7 +2285,8 @@
       ],
       "set_id": 62,
       "type": "armor",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 3
     }
   }
 }

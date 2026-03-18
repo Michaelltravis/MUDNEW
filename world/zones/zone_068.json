@@ -18,7 +18,13 @@
           "to_room": 6801,
           "description": "The path descends toward the shore."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 6800,
+          "max": 1
+        }
+      ]
     },
     "6801": {
       "vnum": 6801,
@@ -46,6 +52,12 @@
           "resource": "saltwater fish",
           "respawn_minutes": 20
         }
+      ],
+      "mob_resets": [
+        {
+          "vnum": 6801,
+          "max": 1
+        }
       ]
     },
     "6802": {
@@ -66,7 +78,13 @@
       },
       "extra_descs": {
         "crates barrels": "The unmarked crates contain various goods \u2014 silks, spices, and bottles\nof exotic liquor. Definitely not legitimate trade."
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 6802,
+          "max": 1
+        }
+      ]
     },
     "6803": {
       "vnum": 6803,
@@ -86,7 +104,13 @@
         "east": {
           "to_room": 6804
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 6803,
+          "max": 1
+        }
+      ]
     },
     "6804": {
       "vnum": 6804,
@@ -118,6 +142,12 @@
           "resource": "driftwood",
           "respawn_minutes": 30
         }
+      ],
+      "mob_resets": [
+        {
+          "vnum": 6804,
+          "max": 1
+        }
       ]
     },
     "6805": {
@@ -140,6 +170,12 @@
           "type": "fishing",
           "resource": "deep sea catch",
           "respawn_minutes": 15
+        }
+      ],
+      "mob_resets": [
+        {
+          "vnum": 6805,
+          "max": 1
         }
       ]
     },
@@ -279,6 +315,9 @@
       "flags": [
         "aggressive",
         "stay_zone"
+      ],
+      "inventory": [
+        6800
       ]
     },
     "6801": {
@@ -297,6 +336,9 @@
       "flags": [
         "aggressive",
         "stay_zone"
+      ],
+      "inventory": [
+        6800
       ]
     },
     "6802": {
@@ -315,6 +357,9 @@
       "flags": [
         "aggressive",
         "stay_zone"
+      ],
+      "inventory": [
+        6800
       ]
     },
     "6803": {
@@ -333,6 +378,9 @@
       "flags": [
         "aggressive",
         "stay_zone"
+      ],
+      "inventory": [
+        6800
       ]
     },
     "6804": {
@@ -351,6 +399,9 @@
       "flags": [
         "sentinel",
         "helper"
+      ],
+      "inventory": [
+        6800
       ]
     },
     "6805": {
@@ -369,6 +420,9 @@
       "flags": [
         "aggressive",
         "stay_zone"
+      ],
+      "inventory": [
+        6800
       ]
     }
   },
@@ -380,7 +434,8 @@
       "description": "A curved cutlass with a tarnished brass guard and leather-wrapped grip.",
       "type": "weapon",
       "weight": 5,
-      "cost": 100
+      "cost": 100,
+      "damage_dice": "2d4+4"
     }
   },
   "resets": [

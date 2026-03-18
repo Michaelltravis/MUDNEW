@@ -21,7 +21,13 @@
       },
       "extra_descs": {
         "signpost sign": "The signpost reads:\n  NORTH - The Northern Wilderness\n  NORTHWEST - Goblin Warrens (DANGER)\n  EAST - The Eastern Highlands\n  SOUTH - Midgaard"
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 6600,
+          "max": 1
+        }
+      ]
     },
     "6601": {
       "vnum": 6601,
@@ -42,7 +48,13 @@
           "to_room": 6700,
           "description": "A rocky trail branches east toward the highlands."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 6601,
+          "max": 1
+        }
+      ]
     },
     "6602": {
       "vnum": 6602,
@@ -73,6 +85,12 @@
           "resource": "wild herbs",
           "respawn_minutes": 30
         }
+      ],
+      "mob_resets": [
+        {
+          "vnum": 6602,
+          "max": 1
+        }
       ]
     },
     "6603": {
@@ -90,7 +108,13 @@
           "to_room": 6604,
           "description": "The path descends toward the sound of water."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 6603,
+          "max": 1
+        }
+      ]
     },
     "6604": {
       "vnum": 6604,
@@ -114,6 +138,12 @@
           "resource": "river trout",
           "respawn_minutes": 20
         }
+      ],
+      "mob_resets": [
+        {
+          "vnum": 6604,
+          "max": 1
+        }
       ]
     },
     "6605": {
@@ -135,7 +165,13 @@
           "to_room": 6609,
           "description": "A birch-lined path follows the river."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 6605,
+          "max": 1
+        }
+      ]
     },
     "6606": {
       "vnum": 6606,
@@ -293,6 +329,9 @@
       "flags": [
         "aggressive",
         "stay_zone"
+      ],
+      "inventory": [
+        6600
       ]
     },
     "6601": {
@@ -310,6 +349,9 @@
       "armor_class": 70,
       "flags": [
         "stay_zone"
+      ],
+      "inventory": [
+        6600
       ]
     },
     "6602": {
@@ -328,6 +370,9 @@
       "flags": [
         "aggressive",
         "stay_zone"
+      ],
+      "inventory": [
+        6600
       ]
     },
     "6603": {
@@ -346,6 +391,9 @@
       "flags": [
         "aggressive",
         "stay_zone"
+      ],
+      "inventory": [
+        6600
       ]
     },
     "6604": {
@@ -364,6 +412,9 @@
       "flags": [
         "sentinel",
         "helper"
+      ],
+      "inventory": [
+        6600
       ]
     },
     "6605": {
@@ -382,6 +433,9 @@
       "flags": [
         "wimpy",
         "stay_zone"
+      ],
+      "inventory": [
+        6600
       ]
     }
   },

@@ -1011,7 +1011,13 @@
         "no_charm",
         "no_sleep"
       ],
-      "description": "A humanoid silhouette made of drifting ash and cold ember-glow. Its touch leaves frostbite and soot in equal measure."
+      "description": "A humanoid silhouette made of drifting ash and cold ember-glow. Its touch leaves frostbite and soot in equal measure.",
+      "inventory": [
+        28053,
+        28055,
+        28054,
+        28051
+      ]
     },
     "28002": {
       "vnum": 28002,
@@ -1029,7 +1035,11 @@
         "aggressive",
         "stay_zone"
       ],
-      "description": "Wrapped in scorched mail, this raider wields a blade that smokes with every swing."
+      "description": "Wrapped in scorched mail, this raider wields a blade that smokes with every swing.",
+      "inventory": [
+        28053,
+        28057
+      ]
     },
     "28003": {
       "vnum": 28003,
@@ -1049,7 +1059,12 @@
         "no_charm",
         "no_sleep"
       ],
-      "description": "A hulking mass of black glass bound with molten seams. Each step leaves a glassy footprint that cools instantly."
+      "description": "A hulking mass of black glass bound with molten seams. Each step leaves a glassy footprint that cools instantly.",
+      "inventory": [
+        28058,
+        28055,
+        28056
+      ]
     },
     "28004": {
       "vnum": 28004,
@@ -1067,7 +1082,11 @@
         "aggressive",
         "stay_zone"
       ],
-      "description": "Her eyes glow like banked coals, and her arrows trail sparks as they fly."
+      "description": "Her eyes glow like banked coals, and her arrows trail sparks as they fly.",
+      "inventory": [
+        28053,
+        28056
+      ]
     },
     "28005": {
       "vnum": 28005,
@@ -1084,7 +1103,12 @@
       "flags": [
         "aggressive"
       ],
-      "description": "A low-slung beast with a coat of molten slag, it leaves glowing pawprints in the ash."
+      "description": "A low-slung beast with a coat of molten slag, it leaves glowing pawprints in the ash.",
+      "inventory": [
+        28058,
+        28052,
+        28053
+      ]
     },
     "28006": {
       "vnum": 28006,
@@ -1102,7 +1126,12 @@
         "aggressive",
         "no_charm"
       ],
-      "description": "Charred robes hang in strips from this caster's frame. His fingers end in ember-black talons."
+      "description": "Charred robes hang in strips from this caster's frame. His fingers end in ember-black talons.",
+      "inventory": [
+        28056,
+        28055,
+        28057
+      ]
     },
     "28007": {
       "vnum": 28007,
@@ -1119,7 +1148,13 @@
       "flags": [
         "aggressive"
       ],
-      "description": "A predatory wyvern with translucent wings of razor glass. Its shriek grates like breaking bottles."
+      "description": "A predatory wyvern with translucent wings of razor glass. Its shriek grates like breaking bottles.",
+      "inventory": [
+        28050,
+        28051,
+        28056,
+        28052
+      ]
     },
     "28008": {
       "vnum": 28008,
@@ -1139,7 +1174,12 @@
         "no_charm",
         "no_sleep"
       ],
-      "description": "A knight of black iron, hollow-chested, with a roaring furnace where a heart should be."
+      "description": "A knight of black iron, hollow-chested, with a roaring furnace where a heart should be.",
+      "inventory": [
+        28050,
+        28051,
+        28057
+      ]
     },
     "28009": {
       "vnum": 28009,
@@ -1157,7 +1197,11 @@
         "aggressive",
         "stay_zone"
       ],
-      "description": "This towering brute bleeds lava from cracks in its armor, leaving smoking trails in its wake."
+      "description": "This towering brute bleeds lava from cracks in its armor, leaving smoking trails in its wake.",
+      "inventory": [
+        28052,
+        28059
+      ]
     },
     "28010": {
       "vnum": 28010,
@@ -1192,6 +1236,12 @@
           "vnum": 28057,
           "chance": 20
         }
+      ],
+      "inventory": [
+        28051,
+        28052,
+        28056,
+        28059
       ]
     },
     "28011": {
@@ -1226,6 +1276,11 @@
           "vnum": 28055,
           "chance": 20
         }
+      ],
+      "inventory": [
+        28051,
+        28057,
+        28059
       ]
     },
     "28020": {
@@ -1266,7 +1321,12 @@
       "boss_loot_chance": 100,
       "description": "A monarch of living ember and obsidian plate, its eyes are twin furnaces. Each motion sends sparks spiraling through the air.",
       "max_hp": 15000,
-      "ac": -30
+      "ac": -30,
+      "inventory": [
+        28056,
+        28055,
+        28050
+      ]
     }
   },
   "objects": {
@@ -1311,7 +1371,9 @@
         "wisdom": 3,
         "armor_class": -22,
         "hp_regen": 15
-      }
+      },
+      "armor_class": 9,
+      "armor": 13
     },
     "28052": {
       "vnum": 28052,
@@ -1333,7 +1395,9 @@
         "intelligence": 5,
         "mana_regen": 20,
         "armor_class": -18
-      }
+      },
+      "armor_class": 7,
+      "armor": 14
     },
     "28053": {
       "vnum": 28053,
@@ -1402,7 +1466,8 @@
           "type": "mana_regen",
           "value": 10
         }
-      ]
+      ],
+      "armor": 13
     },
     "28056": {
       "vnum": 28056,
@@ -1422,7 +1487,9 @@
       "effects": {
         "hitroll": 6,
         "damroll": 6
-      }
+      },
+      "armor_class": 7,
+      "armor": 18
     },
     "28057": {
       "vnum": 28057,
@@ -1442,7 +1509,9 @@
       "effects": {
         "constitution": 3,
         "armor_class": -12
-      }
+      },
+      "armor_class": 8,
+      "armor": 11
     },
     "28058": {
       "vnum": 28058,
@@ -1466,7 +1535,9 @@
         "intelligence": 3,
         "hitroll": 8,
         "damroll": 8
-      }
+      },
+      "armor_class": 7,
+      "armor": 15
     },
     "28059": {
       "vnum": 28059,
@@ -1488,7 +1559,8 @@
         "hp_regen": 25,
         "mana_regen": 15,
         "move_regen": 15
-      }
+      },
+      "armor": 14
     }
   }
 }

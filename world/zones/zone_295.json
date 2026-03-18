@@ -1017,7 +1017,11 @@
       "flags": [
         "aggressive"
       ],
-      "description": "Strips of armor and muscle hang from the thrall's pale frame."
+      "description": "Strips of armor and muscle hang from the thrall's pale frame.",
+      "inventory": [
+        29558,
+        29552
+      ]
     },
     "29502": {
       "vnum": 29502,
@@ -1035,7 +1039,11 @@
         "aggressive",
         "stay_zone"
       ],
-      "description": "This skeletal marksman is bound in lacquered bone plates."
+      "description": "This skeletal marksman is bound in lacquered bone plates.",
+      "inventory": [
+        29556,
+        29551
+      ]
     },
     "29503": {
       "vnum": 29503,
@@ -1053,7 +1061,11 @@
         "aggressive",
         "no_sleep"
       ],
-      "description": "Its robes are stitched from funerary wrappings and bone dust."
+      "description": "Its robes are stitched from funerary wrappings and bone dust.",
+      "inventory": [
+        29558,
+        29555
+      ]
     },
     "29504": {
       "vnum": 29504,
@@ -1073,7 +1085,11 @@
         "no_charm",
         "no_sleep"
       ],
-      "description": "A hulking mass of fused skeletons, it wields a pillar of femurs."
+      "description": "A hulking mass of fused skeletons, it wields a pillar of femurs.",
+      "inventory": [
+        29552,
+        29557
+      ]
     },
     "29505": {
       "vnum": 29505,
@@ -1091,7 +1107,12 @@
         "aggressive",
         "stay_zone"
       ],
-      "description": "Its bladed limbs are built from sharpened ribs and teeth."
+      "description": "Its bladed limbs are built from sharpened ribs and teeth.",
+      "inventory": [
+        29553,
+        29559,
+        29555
+      ]
     },
     "29506": {
       "vnum": 29506,
@@ -1110,7 +1131,11 @@
         "no_charm",
         "no_sleep"
       ],
-      "description": "A tattered spirit bound to bone, it chills everything it passes."
+      "description": "A tattered spirit bound to bone, it chills everything it passes.",
+      "inventory": [
+        29559,
+        29551
+      ]
     },
     "29507": {
       "vnum": 29507,
@@ -1130,7 +1155,13 @@
         "no_charm",
         "no_sleep"
       ],
-      "description": "A hollow guardian of bone plate, its core filled with cold blue fire."
+      "description": "A hollow guardian of bone plate, its core filled with cold blue fire.",
+      "inventory": [
+        29557,
+        29550,
+        29551,
+        29555
+      ]
     },
     "29510": {
       "vnum": 29510,
@@ -1165,6 +1196,11 @@
           "vnum": 29556,
           "chance": 20
         }
+      ],
+      "inventory": [
+        29555,
+        29554,
+        29551
       ]
     },
     "29511": {
@@ -1200,6 +1236,11 @@
           "vnum": 29557,
           "chance": 20
         }
+      ],
+      "inventory": [
+        29557,
+        29556,
+        29553
       ]
     },
     "29520": {
@@ -1240,7 +1281,13 @@
       "boss_loot_chance": 100,
       "description": "A monarch draped in bone-laced armor, its crown a lattice of skulls.",
       "max_hp": 19000,
-      "ac": -34
+      "ac": -34,
+      "inventory": [
+        29555,
+        29557,
+        29559,
+        29556
+      ]
     }
   },
   "objects": {
@@ -1284,7 +1331,9 @@
         "wisdom": 3,
         "armor_class": -26,
         "hp_regen": 20
-      }
+      },
+      "armor_class": 9,
+      "armor": 15
     },
     "29552": {
       "vnum": 29552,
@@ -1372,7 +1421,8 @@
         "charisma": 4,
         "mana_regen": 16,
         "song_power": 6
-      }
+      },
+      "armor": 18
     },
     "29556": {
       "vnum": 29556,
@@ -1393,7 +1443,9 @@
         "intelligence": 4,
         "mana_regen": 14,
         "armor_class": -12
-      }
+      },
+      "armor_class": 7,
+      "armor": 17
     },
     "29557": {
       "vnum": 29557,
@@ -1414,7 +1466,9 @@
         "strength": 3,
         "armor_class": -18,
         "hp_regen": 12
-      }
+      },
+      "armor_class": 9,
+      "armor": 17
     },
     "29558": {
       "vnum": 29558,
@@ -1439,7 +1493,9 @@
         "hitroll": 8,
         "damroll": 8,
         "hp_regen": 15
-      }
+      },
+      "armor_class": 10,
+      "armor": 18
     },
     "29559": {
       "vnum": 29559,

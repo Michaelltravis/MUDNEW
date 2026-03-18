@@ -824,7 +824,7 @@
       "vnum": 9003,
       "type": "armor",
       "wear_slot": "neck",
-      "armor": 0
+      "armor": 8
     },
     "9004": {
       "name": "swamp mushroom",
@@ -890,7 +890,8 @@
       ],
       "set_id": 90,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 3
     },
     "9007": {
       "vnum": 9007,
@@ -909,7 +910,8 @@
         }
       ],
       "set_id": 90,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 10
     },
     "9008": {
       "vnum": 9008,
@@ -932,7 +934,8 @@
         }
       ],
       "set_id": 90,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 11
     },
     "9009": {
       "vnum": 9009,
@@ -955,7 +958,8 @@
         }
       ],
       "set_id": 90,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 10
     },
     "9010": {
       "vnum": 9010,
@@ -1025,7 +1029,8 @@
       ],
       "set_id": 90,
       "type": "armor",
-      "armor": 0
+      "armor": 13,
+      "armor_class": 4
     },
     "9013": {
       "vnum": 9013,
@@ -1049,7 +1054,8 @@
       ],
       "set_id": 90,
       "type": "armor",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 4
     }
   },
   "mobs": {
@@ -1069,6 +1075,10 @@
       "flags": [
         "aggressive",
         "sentinel"
+      ],
+      "inventory": [
+        9001,
+        9011
       ]
     },
     "9002": {
@@ -1087,6 +1097,9 @@
       "flags": [
         "aggressive",
         "undead"
+      ],
+      "inventory": [
+        9004
       ]
     },
     "9003": {
@@ -1105,6 +1118,10 @@
       "flags": [
         "aggressive",
         "undead"
+      ],
+      "inventory": [
+        9009,
+        9003
       ]
     },
     "9004": {
@@ -1163,7 +1180,10 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        9008
+      ]
     },
     "9005": {
       "vnum": 9005,
@@ -1180,6 +1200,9 @@
       "armor_class": 67,
       "flags": [
         "aggressive"
+      ],
+      "inventory": [
+        9010
       ]
     },
     "9006": {
@@ -1199,6 +1222,9 @@
         "aggressive",
         "undead",
         "fly"
+      ],
+      "inventory": [
+        9001
       ]
     },
     "9007": {
@@ -1256,7 +1282,12 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        9010,
+        9007,
+        9001
+      ]
     },
     "9008": {
       "vnum": 9008,
@@ -1313,7 +1344,10 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        9009
+      ]
     }
   }
 }

@@ -5274,7 +5274,11 @@
         "no_bash",
         "no_blind"
       ],
-      "description": "It seems to be made of nothing more than darkness..."
+      "description": "It seems to be made of nothing more than darkness...",
+      "inventory": [
+        2507,
+        2557
+      ]
     },
     "2501": {
       "vnum": 2501,
@@ -5292,7 +5296,11 @@
         "special",
         "wimpy"
       ],
-      "description": "He looks haggard and sickly; no doubt he's been lost here for quite some time."
+      "description": "He looks haggard and sickly; no doubt he's been lost here for quite some time.",
+      "inventory": [
+        2554,
+        2548
+      ]
     },
     "2502": {
       "vnum": 2502,
@@ -5310,7 +5318,10 @@
         "scavenger",
         "wimpy"
       ],
-      "description": "Edgar says 'pardon me, can you tell me where to buy cups?'\n\nYou see before you, one of Midgaard's finest fighting elite, the mighty\nbunny slayer himself, Edgar the Horrible!"
+      "description": "Edgar says 'pardon me, can you tell me where to buy cups?'\n\nYou see before you, one of Midgaard's finest fighting elite, the mighty\nbunny slayer himself, Edgar the Horrible!",
+      "inventory": [
+        2541
+      ]
     },
     "2503": {
       "vnum": 2503,
@@ -5338,7 +5349,12 @@
       "description": "It looks quite strong.",
       "equipment": {
         "hold": 2500
-      }
+      },
+      "inventory": [
+        2597,
+        2550,
+        2525
+      ]
     },
     "2504": {
       "vnum": 2504,
@@ -5357,7 +5373,11 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "He seems to be contemplating life, love and the mysteries of the universe.\nThen again, he may just have a headache."
+      "description": "He seems to be contemplating life, love and the mysteries of the universe.\nThen again, he may just have a headache.",
+      "inventory": [
+        2583,
+        2551
+      ]
     },
     "2505": {
       "vnum": 2505,
@@ -5445,7 +5465,11 @@
       "description": "She does not look like the typical cook you would find in a kitchen,\nbut she certainly fits what you would expect in a tower fulls of\nmages.",
       "equipment": {
         "wield": 2547
-      }
+      },
+      "inventory": [
+        2576,
+        2579
+      ]
     },
     "2508": {
       "vnum": 2508,
@@ -5466,7 +5490,11 @@
         "wimpy",
         "helper"
       ],
-      "description": "This young man is busy adding strange ingredients to the large pot."
+      "description": "This young man is busy adding strange ingredients to the large pot.",
+      "inventory": [
+        2592,
+        2590
+      ]
     },
     "2509": {
       "vnum": 2509,
@@ -5488,7 +5516,11 @@
       "description": "Though his clothes are all in rags, you can see that at one time they\nmust have been fine garments.  A metal muzzle has been fitted over the\npoor wretch's mouth, whether to keep him from screaming, or to silence\nhis spell casting you cannot tell.\n\nHe looks quite mad, no doubt he has been mistreated horribly.",
       "equipment": {
         "waist": 2548
-      }
+      },
+      "inventory": [
+        2504,
+        2560
+      ]
     },
     "2510": {
       "vnum": 2510,
@@ -5509,7 +5541,12 @@
       "description": "He looks rather dirty.",
       "equipment": {
         "hold": 2522
-      }
+      },
+      "inventory": [
+        2534,
+        2519,
+        2589
+      ]
     },
     "2511": {
       "vnum": 2511,
@@ -5535,7 +5572,10 @@
         "no_bash",
         "no_blind"
       ],
-      "description": "The broom screams 'Take that you lout!'"
+      "description": "The broom screams 'Take that you lout!'",
+      "inventory": [
+        2519
+      ]
     },
     "2512": {
       "vnum": 2512,
@@ -5556,7 +5596,10 @@
         "no_bash",
         "no_blind"
       ],
-      "description": "The hands twitch with anticipation of strangling someone."
+      "description": "The hands twitch with anticipation of strangling someone.",
+      "inventory": [
+        2603
+      ]
     },
     "2513": {
       "vnum": 2513,
@@ -5576,7 +5619,11 @@
         "no_sleep",
         "no_bash"
       ],
-      "description": "The eyes smoulder with hatred."
+      "description": "The eyes smoulder with hatred.",
+      "inventory": [
+        2554,
+        2569
+      ]
     },
     "2514": {
       "vnum": 2514,
@@ -5597,7 +5644,10 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "He looks quite sleepy."
+      "description": "He looks quite sleepy.",
+      "inventory": [
+        2591
+      ]
     },
     "2515": {
       "vnum": 2515,
@@ -5618,7 +5668,11 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "She looks quite intent on her studies."
+      "description": "She looks quite intent on her studies.",
+      "inventory": [
+        2562,
+        2570
+      ]
     },
     "2516": {
       "vnum": 2516,
@@ -5639,7 +5693,11 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "He looks to be oblivious to all but the spell he is memorizing."
+      "description": "He looks to be oblivious to all but the spell he is memorizing.",
+      "inventory": [
+        2603,
+        2580
+      ]
     },
     "2517": {
       "vnum": 2517,
@@ -5660,7 +5718,11 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "He seems to be dreaming."
+      "description": "He seems to be dreaming.",
+      "inventory": [
+        2599,
+        2549
+      ]
     },
     "2518": {
       "vnum": 2518,
@@ -5681,7 +5743,11 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "He looks like a mischievous youth."
+      "description": "He looks like a mischievous youth.",
+      "inventory": [
+        2536,
+        2557
+      ]
     },
     "2519": {
       "vnum": 2519,
@@ -5701,7 +5767,10 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "The little ball of fur looks very unhappy.  Singed fur and a few minor\nburns mark its mottled coat."
+      "description": "The little ball of fur looks very unhappy.  Singed fur and a few minor\nburns mark its mottled coat.",
+      "inventory": [
+        2546
+      ]
     },
     "2520": {
       "vnum": 2520,
@@ -5722,7 +5791,11 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "The student yawns."
+      "description": "The student yawns.",
+      "inventory": [
+        2520,
+        2576
+      ]
     },
     "2521": {
       "vnum": 2521,
@@ -5742,7 +5815,10 @@
         "aggressive",
         "wimpy"
       ],
-      "description": "He looks quite angry at your interruption."
+      "description": "He looks quite angry at your interruption.",
+      "inventory": [
+        2547
+      ]
     },
     "2522": {
       "vnum": 2522,
@@ -5763,7 +5839,11 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "He blinks in and out of existence, trying to master the spell."
+      "description": "He blinks in and out of existence, trying to master the spell.",
+      "inventory": [
+        2601,
+        2516
+      ]
     },
     "2523": {
       "vnum": 2523,
@@ -5783,7 +5863,11 @@
         "aggressive",
         "wimpy"
       ],
-      "description": "The teacher is quite fierce and rather frightening."
+      "description": "The teacher is quite fierce and rather frightening.",
+      "inventory": [
+        2603,
+        2533
+      ]
     },
     "2524": {
       "vnum": 2524,
@@ -5804,7 +5888,11 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "She looks to have collapsed from sheer boredom."
+      "description": "She looks to have collapsed from sheer boredom.",
+      "inventory": [
+        2528,
+        2571
+      ]
     },
     "2525": {
       "vnum": 2525,
@@ -5825,7 +5913,12 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "This wizzened old man looks like he could easily pass for the oldest\nliving man.  Of course, having heard stories about some of the magic\navailable to the people living here, and what toll the magic draws...\nthis man might be as young as you."
+      "description": "This wizzened old man looks like he could easily pass for the oldest\nliving man.  Of course, having heard stories about some of the magic\navailable to the people living here, and what toll the magic draws...\nthis man might be as young as you.",
+      "inventory": [
+        2590,
+        2587,
+        2603
+      ]
     },
     "2526": {
       "vnum": 2526,
@@ -5849,7 +5942,11 @@
       "description": "This young fellow looks quite confident in his abilities to defend\nhimself.",
       "equipment": {
         "wield": 2549
-      }
+      },
+      "inventory": [
+        2513,
+        2562
+      ]
     },
     "2527": {
       "vnum": 2527,
@@ -5874,7 +5971,10 @@
       "description": "She looks quite rugged. In fact, she more resembles a warrior than a magic\nuser.",
       "equipment": {
         "hold": 2549
-      }
+      },
+      "inventory": [
+        2574
+      ]
     },
     "2528": {
       "vnum": 2528,
@@ -5893,7 +5993,11 @@
         "sentinel",
         "stay_zone"
       ],
-      "description": "The teacher looks to be worn out by a long day of magic working, difficult\nspells, and inattentive students."
+      "description": "The teacher looks to be worn out by a long day of magic working, difficult\nspells, and inattentive students.",
+      "inventory": [
+        2536,
+        2518
+      ]
     },
     "2529": {
       "vnum": 2529,
@@ -5913,7 +6017,11 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "Dreams of magic and power are probably flowing through his head right\nnow, better not wake him up."
+      "description": "Dreams of magic and power are probably flowing through his head right\nnow, better not wake him up.",
+      "inventory": [
+        2603,
+        2525
+      ]
     },
     "2530": {
       "vnum": 2530,
@@ -5934,7 +6042,11 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "He appears to be copying out some spell ingredients or components right\nnow."
+      "description": "He appears to be copying out some spell ingredients or components right\nnow.",
+      "inventory": [
+        2534,
+        2579
+      ]
     },
     "2531": {
       "vnum": 2531,
@@ -5955,7 +6067,11 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "She is quite cute.  Too bad her only interest seems to be the words of\nlore she is translating."
+      "description": "She is quite cute.  Too bad her only interest seems to be the words of\nlore she is translating.",
+      "inventory": [
+        2559,
+        2585
+      ]
     },
     "2532": {
       "vnum": 2532,
@@ -6054,7 +6170,10 @@
         "no_bash",
         "no_blind"
       ],
-      "description": "It looks quite sharp."
+      "description": "It looks quite sharp.",
+      "inventory": [
+        2589
+      ]
     },
     "2536": {
       "vnum": 2536,
@@ -6078,7 +6197,12 @@
       "description": "He looks like he has been quaffing too many potions.  His eyes dart\naround wildly, and he starts to drool.\n\nThe Mad Alchemist throws back his head and cackles with insane glee!",
       "equipment": {
         "hold": 2555
-      }
+      },
+      "inventory": [
+        2577,
+        2550,
+        2532
+      ]
     },
     "2537": {
       "vnum": 2537,
@@ -6102,7 +6226,12 @@
       "description": "The Summoner looks to be hard at work, concentrating on keeping control\nover the gateway before he loses his soul to the creatures on the other\nside of it.",
       "equipment": {
         "hold": 2562
-      }
+      },
+      "inventory": [
+        2586,
+        2573,
+        2554
+      ]
     },
     "2538": {
       "vnum": 2538,
@@ -6152,7 +6281,10 @@
         "no_bash",
         "no_blind"
       ],
-      "description": "He looks flammable."
+      "description": "He looks flammable.",
+      "inventory": [
+        2546
+      ]
     },
     "2540": {
       "vnum": 2540,
@@ -6203,7 +6335,11 @@
       "description": "The Golem Master appears to be very meticulous about his work, to\nthe point of fussing over it.",
       "equipment": {
         "hold": 2567
-      }
+      },
+      "inventory": [
+        2591,
+        2548
+      ]
     },
     "2542": {
       "vnum": 2542,
@@ -6228,7 +6364,12 @@
         "no_bash",
         "no_blind"
       ],
-      "description": "It looks like a statue, until you see it shamble towards you."
+      "description": "It looks like a statue, until you see it shamble towards you.",
+      "inventory": [
+        2529,
+        2571,
+        2559
+      ]
     },
     "2543": {
       "vnum": 2543,
@@ -6253,7 +6394,10 @@
         "no_bash",
         "no_blind"
       ],
-      "description": "He looks rather dim witted."
+      "description": "He looks rather dim witted.",
+      "inventory": [
+        2590
+      ]
     },
     "2544": {
       "vnum": 2544,
@@ -6278,7 +6422,11 @@
         "no_bash",
         "no_blind"
       ],
-      "description": "It looks to be made of a potpourri of different body parts; some don't\neven resemble anything human."
+      "description": "It looks to be made of a potpourri of different body parts; some don't\neven resemble anything human.",
+      "inventory": [
+        2600,
+        2597
+      ]
     },
     "2545": {
       "vnum": 2545,
@@ -6303,7 +6451,10 @@
         "no_bash",
         "no_blind"
       ],
-      "description": "It looks like a bunch of old rags, quite surprising it can actually walk."
+      "description": "It looks like a bunch of old rags, quite surprising it can actually walk.",
+      "inventory": [
+        2548
+      ]
     },
     "2546": {
       "vnum": 2546,
@@ -6328,7 +6479,11 @@
         "no_bash",
         "no_blind"
       ],
-      "description": "It seems to be forged of dark metal.  It looks strong and durable,\nbut somewhat un-intelligent."
+      "description": "It seems to be forged of dark metal.  It looks strong and durable,\nbut somewhat un-intelligent.",
+      "inventory": [
+        2527,
+        2509
+      ]
     },
     "2547": {
       "vnum": 2547,
@@ -6353,7 +6508,10 @@
         "no_bash",
         "no_blind"
       ],
-      "description": "This large golem almost looks like it is made of dirt."
+      "description": "This large golem almost looks like it is made of dirt.",
+      "inventory": [
+        2541
+      ]
     },
     "2548": {
       "vnum": 2548,
@@ -6377,7 +6535,11 @@
       "description": "The image of an ugly dragon flickers slightly, and where the dragon\nwas now stands a small harmless looking old man.",
       "equipment": {
         "waist": 2568
-      }
+      },
+      "inventory": [
+        2582,
+        2570
+      ]
     },
     "2549": {
       "vnum": 2549,
@@ -6402,7 +6564,10 @@
       "equipment": {
         "neck1": 2570,
         "hold": 2571
-      }
+      },
+      "inventory": [
+        2586
+      ]
     },
     "2550": {
       "vnum": 2550,
@@ -6425,7 +6590,10 @@
         "no_sleep",
         "no_blind"
       ],
-      "description": "It feels no pain, and hacks at you ruthlessly."
+      "description": "It feels no pain, and hacks at you ruthlessly.",
+      "inventory": [
+        2553
+      ]
     },
     "2551": {
       "vnum": 2551,
@@ -6451,7 +6619,12 @@
       "description": "This thing seems to be the reanimated corpse of a giant, creating an\nenormous zombie.",
       "equipment": {
         "wield": 2572
-      }
+      },
+      "inventory": [
+        2588,
+        2584,
+        2560
+      ]
     },
     "2552": {
       "vnum": 2552,
@@ -6471,7 +6644,10 @@
         "aggressive",
         "stay_zone"
       ],
-      "description": "She has no face at all, just blank skin, rather disturbing.  From about\nwhere her mouth should be, comes a disgusting giggling sound that makes\nyour skin crawl with revulsion."
+      "description": "She has no face at all, just blank skin, rather disturbing.  From about\nwhere her mouth should be, comes a disgusting giggling sound that makes\nyour skin crawl with revulsion.",
+      "inventory": [
+        2543
+      ]
     },
     "2553": {
       "vnum": 2553,
@@ -6492,7 +6668,11 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "He looks like a rather peaceful old man."
+      "description": "He looks like a rather peaceful old man.",
+      "inventory": [
+        2587,
+        2576
+      ]
     },
     "2554": {
       "vnum": 2554,
@@ -6517,7 +6697,11 @@
       "equipment": {
         "about": 2573,
         "wrist1": 2574
-      }
+      },
+      "inventory": [
+        2552,
+        2601
+      ]
     },
     "2555": {
       "vnum": 2555,
@@ -6535,7 +6719,11 @@
         "sentinel",
         "stay_zone"
       ],
-      "description": "The grey cat cocks an ear towards you, sensing your scrutiny, then purrs\ncontentedly.  It looks rather harmless, until you notice its very large\nclaws."
+      "description": "The grey cat cocks an ear towards you, sensing your scrutiny, then purrs\ncontentedly.  It looks rather harmless, until you notice its very large\nclaws.",
+      "inventory": [
+        2576,
+        2574
+      ]
     },
     "2556": {
       "vnum": 2556,
@@ -6630,7 +6818,12 @@
       "equipment": {
         "about": 2578,
         "wrist1": 2579
-      }
+      },
+      "inventory": [
+        2579,
+        2603,
+        2573
+      ]
     },
     "2558": {
       "vnum": 2558,
@@ -6648,7 +6841,11 @@
         "sentinel",
         "stay_zone"
       ],
-      "description": "It looks both mean and dangerous.  Petting seems to be completely out of\nthe question."
+      "description": "It looks both mean and dangerous.  Petting seems to be completely out of\nthe question.",
+      "inventory": [
+        2549,
+        2566
+      ]
     },
     "2559": {
       "vnum": 2559,
@@ -6743,7 +6940,11 @@
       "equipment": {
         "about": 2582,
         "wrist1": 2583
-      }
+      },
+      "inventory": [
+        2553,
+        2583
+      ]
     },
     "2561": {
       "vnum": 2561,
@@ -6761,7 +6962,11 @@
         "sentinel",
         "stay_zone"
       ],
-      "description": "It seems to be nothing more than a large ball of fluff with claws."
+      "description": "It seems to be nothing more than a large ball of fluff with claws.",
+      "inventory": [
+        2537,
+        2573
+      ]
     },
     "2562": {
       "vnum": 2562,
@@ -6813,7 +7018,10 @@
       "description": "It looks incredibly large for a cat, no doubt a giant of its species.\nA beautiful jewel encrusted collar about its neck is its only adornment.",
       "equipment": {
         "neck1": 2586
-      }
+      },
+      "inventory": [
+        2586
+      ]
     },
     "2564": {
       "vnum": 2564,
@@ -7269,7 +7477,8 @@
       "weight": 4,
       "value": 10000,
       "armor_bonus": 0,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 2
     },
     "2535": {
       "vnum": 2535,
@@ -7293,7 +7502,8 @@
       "armor_bonus": 0,
       "type": "armor",
       "wear_slot": "neck",
-      "armor": 0
+      "armor": 5,
+      "armor_class": 3
     },
     "2537": {
       "vnum": 2537,
@@ -7338,7 +7548,8 @@
       "armor_bonus": 0,
       "type": "armor",
       "wear_slot": "about",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 2
     },
     "2541": {
       "vnum": 2541,
@@ -7349,7 +7560,8 @@
       "weight": 4,
       "value": 15000,
       "armor_bonus": 0,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 6
     },
     "2542": {
       "vnum": 2542,
@@ -7362,7 +7574,8 @@
       "armor_bonus": 0,
       "type": "armor",
       "wear_slot": "feet",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 4
     },
     "2543": {
       "vnum": 2543,
@@ -7374,7 +7587,8 @@
       "value": 6500,
       "type": "armor",
       "wear_slot": "finger",
-      "armor": 0
+      "armor": 2,
+      "armor_class": 4
     },
     "2544": {
       "vnum": 2544,
@@ -7612,7 +7826,8 @@
       "capacity": 20,
       "type": "armor",
       "wear_slot": "waist",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 2
     },
     "2566": {
       "vnum": 2566,
@@ -7668,7 +7883,8 @@
       "armor_bonus": 0,
       "type": "armor",
       "wear_slot": "head",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 2
     },
     "2571": {
       "vnum": 2571,
@@ -7703,7 +7919,8 @@
       "capacity": 50,
       "type": "armor",
       "wear_slot": "body",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 3
     },
     "2574": {
       "vnum": 2574,
@@ -7716,7 +7933,8 @@
       "armor_bonus": 0,
       "type": "armor",
       "wear_slot": "wrist",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 4
     },
     "2575": {
       "vnum": 2575,
@@ -7729,7 +7947,8 @@
       "armor_bonus": 0,
       "type": "armor",
       "wear_slot": "about",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 4
     },
     "2576": {
       "vnum": 2576,
@@ -7752,7 +7971,8 @@
       "weight": 5,
       "value": 5000,
       "armor_bonus": 0,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 4
     },
     "2578": {
       "vnum": 2578,
@@ -7765,7 +7985,8 @@
       "capacity": 50,
       "type": "armor",
       "wear_slot": "body",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 3
     },
     "2579": {
       "vnum": 2579,
@@ -7778,7 +7999,8 @@
       "armor_bonus": 0,
       "type": "armor",
       "wear_slot": "wrist",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 2
     },
     "2580": {
       "vnum": 2580,
@@ -7791,7 +8013,8 @@
       "armor_bonus": 0,
       "type": "armor",
       "wear_slot": "about",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 4
     },
     "2581": {
       "vnum": 2581,
@@ -7816,7 +8039,8 @@
       "capacity": 50,
       "type": "armor",
       "wear_slot": "body",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 2
     },
     "2583": {
       "vnum": 2583,
@@ -7829,7 +8053,8 @@
       "armor_bonus": 0,
       "type": "armor",
       "wear_slot": "wrist",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 4
     },
     "2584": {
       "vnum": 2584,
@@ -7842,7 +8067,8 @@
       "armor_bonus": 0,
       "type": "armor",
       "wear_slot": "about",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 3
     },
     "2585": {
       "vnum": 2585,
@@ -7867,7 +8093,8 @@
       "armor_bonus": 0,
       "type": "armor",
       "wear_slot": "neck",
-      "armor": 0
+      "armor": 4,
+      "armor_class": 4
     },
     "2587": {
       "vnum": 2587,
@@ -7880,7 +8107,8 @@
       "capacity": 100,
       "type": "armor",
       "wear_slot": "about",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 2
     },
     "2588": {
       "vnum": 2588,
@@ -7893,7 +8121,8 @@
       "armor_bonus": 0,
       "type": "armor",
       "wear_slot": "finger",
-      "armor": 0
+      "armor": 4,
+      "armor_class": 3
     },
     "2589": {
       "vnum": 2589,
@@ -7906,7 +8135,8 @@
       "armor_bonus": 0,
       "type": "armor",
       "wear_slot": "wrist",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 4
     },
     "2590": {
       "vnum": 2590,
@@ -7917,7 +8147,8 @@
       "weight": 6,
       "value": 20000,
       "armor_bonus": 0,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 6
     },
     "2591": {
       "vnum": 2591,
@@ -7942,7 +8173,8 @@
       "armor_bonus": 10,
       "type": "armor",
       "wear_slot": "body",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 4
     },
     "2593": {
       "vnum": 2593,
@@ -8014,7 +8246,8 @@
       ],
       "set_id": 25,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 3
     },
     "2598": {
       "vnum": 2598,
@@ -8033,7 +8266,8 @@
         }
       ],
       "set_id": 25,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 6
     },
     "2599": {
       "vnum": 2599,
@@ -8056,7 +8290,8 @@
         }
       ],
       "set_id": 25,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 2
     },
     "2600": {
       "vnum": 2600,
@@ -8079,7 +8314,8 @@
         }
       ],
       "set_id": 25,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 2
     },
     "2601": {
       "vnum": 2601,
@@ -8149,7 +8385,8 @@
       ],
       "set_id": 25,
       "type": "armor",
-      "armor": 0
+      "armor": 2,
+      "armor_class": 2
     },
     "2604": {
       "vnum": 2604,
@@ -8170,7 +8407,8 @@
       ],
       "set_id": 25,
       "type": "armor",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 3
     }
   }
 }

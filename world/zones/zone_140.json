@@ -1325,7 +1325,8 @@
       ],
       "set_id": "necromancers_regalia",
       "type": "armor",
-      "min_level": 35
+      "min_level": 35,
+      "armor": 17
     },
     "14002": {
       "vnum": 14002,
@@ -1372,7 +1373,8 @@
       ],
       "set_id": "necromancers_regalia",
       "type": "armor",
-      "min_level": 35
+      "min_level": 35,
+      "armor": 9
     },
     "14004": {
       "vnum": 14004,
@@ -1393,7 +1395,8 @@
       ],
       "set_id": "necromancers_regalia",
       "type": "armor",
-      "min_level": 35
+      "min_level": 35,
+      "armor": 11
     },
     "14005": {
       "name": "phylactery shard",
@@ -1429,7 +1432,8 @@
       "weight": 2,
       "cost": 2600,
       "armor": 10,
-      "wear_slot": "head"
+      "wear_slot": "head",
+      "armor_class": 4
     },
     "14012": {
       "vnum": 14012,
@@ -1523,7 +1527,8 @@
         }
       ],
       "set_id": 140,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 10
     },
     "9104": {
       "vnum": 9104,
@@ -1546,7 +1551,8 @@
         }
       ],
       "set_id": 140,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 13
     },
     "14013": {
       "vnum": 14013,
@@ -1588,7 +1594,8 @@
       ],
       "set_id": 140,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 3
     },
     "14015": {
       "vnum": 14015,
@@ -1607,7 +1614,8 @@
         }
       ],
       "set_id": 140,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 8
     },
     "14016": {
       "vnum": 14016,
@@ -1630,7 +1638,8 @@
         }
       ],
       "set_id": 140,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 12
     },
     "14017": {
       "vnum": 14017,
@@ -1653,7 +1662,8 @@
         }
       ],
       "set_id": 140,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 11
     },
     "14018": {
       "vnum": 14018,
@@ -1723,7 +1733,8 @@
       ],
       "set_id": 140,
       "type": "armor",
-      "armor": 0
+      "armor": 10,
+      "armor_class": 5
     },
     "14021": {
       "vnum": 14021,
@@ -1744,7 +1755,8 @@
       ],
       "set_id": 140,
       "type": "armor",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 4
     },
     "14090": {
       "vnum": 14090,
@@ -1767,7 +1779,8 @@
         }
       ],
       "type": "armor",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 4
     },
     "14091": {
       "vnum": 14091,
@@ -1789,7 +1802,8 @@
           "value": 10
         }
       ],
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 10
     },
     "14092": {
       "vnum": 14092,
@@ -1811,7 +1825,8 @@
           "value": 10
         }
       ],
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 8
     },
     "14093": {
       "vnum": 14093,
@@ -1833,7 +1848,8 @@
           "value": 12
         }
       ],
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 10
     }
   },
   "mobs": {
@@ -1853,6 +1869,9 @@
       "flags": [
         "aggressive",
         "undead"
+      ],
+      "inventory": [
+        9101
       ]
     },
     "14002": {
@@ -1871,6 +1890,11 @@
       "flags": [
         "aggressive",
         "undead"
+      ],
+      "inventory": [
+        14019,
+        9103,
+        14021
       ]
     },
     "14003": {
@@ -1890,6 +1914,11 @@
         "aggressive",
         "undead",
         "fly"
+      ],
+      "inventory": [
+        14016,
+        9101,
+        14003
       ]
     },
     "14004": {
@@ -1909,6 +1938,9 @@
         "aggressive",
         "undead",
         "sentinel"
+      ],
+      "inventory": [
+        14021
       ]
     },
     "14005": {
@@ -1927,6 +1959,11 @@
       "flags": [
         "aggressive",
         "undead"
+      ],
+      "inventory": [
+        14003,
+        14091,
+        9102
       ]
     },
     "14006": {
@@ -1946,6 +1983,10 @@
         "aggressive",
         "undead",
         "fly"
+      ],
+      "inventory": [
+        14012,
+        14093
       ]
     },
     "14007": {
@@ -1965,6 +2006,9 @@
         "aggressive",
         "sentinel",
         "spellcaster"
+      ],
+      "inventory": [
+        9102
       ]
     },
     "14008": {
@@ -2024,7 +2068,11 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        14018,
+        14015
+      ]
     },
     "14009": {
       "vnum": 14009,
@@ -2082,7 +2130,10 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        14012
+      ]
     },
     "14010": {
       "vnum": 14010,
@@ -2101,6 +2152,11 @@
         "aggressive",
         "undead",
         "fly"
+      ],
+      "inventory": [
+        14091,
+        14003,
+        14010
       ]
     },
     "14030": {
@@ -2286,7 +2342,11 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        14001,
+        14093
+      ]
     },
     "14098": {
       "vnum": 14098,
@@ -2310,7 +2370,11 @@
         "necromancer": "The ghost's form flickers with rage. 'He was my court wizard. I trusted him. He murdered us all in a single night and raised us as his servants. The crypt beneath the great mausoleum \u2014 that is where his power dwells.'",
         "default": "The ghost stares at its translucent hands, murmuring. 'What have I become...'",
         "next": "The ghost's hollow voice echoes. 'There are places darker still than this graveyard. The Dragon's Domain... fire and death await there. And the Plane of Eternal Chaos \u2014 reality itself unravels. Only the truly powerful survive such places.'"
-      }
+      },
+      "inventory": [
+        9101,
+        14092
+      ]
     },
     "14099": {
       "vnum": 14099,
@@ -2333,7 +2397,12 @@
         "hello": "The grave keeper eyes you wearily. 'Another hero come to cleanse the dead. They all say that. Most end up joining my... residents. Word of advice \u2014 the skeletons are mindless, easy. The ghouls are cunning. But the wraiths... the wraiths remember who they were. That makes them dangerous. And angry.'",
         "dead": "He leans on his shovel. 'Don't disturb the sealed tombs. Some things are buried for a reason. The ones with iron chains on the doors? Those aren't to keep robbers out. They're to keep what's inside IN.'",
         "default": "The grave keeper hums a funeral dirge and adjusts a crooked headstone."
-      }
+      },
+      "inventory": [
+        9101,
+        14004,
+        14012
+      ]
     }
   }
 }

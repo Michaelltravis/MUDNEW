@@ -2798,7 +2798,10 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        7211
+      ]
     },
     "7202": {
       "vnum": 7202,
@@ -2823,7 +2826,11 @@
       "description": "This mindflayer is six feet high.  It has a small mace in its belt, and is\ndressed in purple and black cloth.  It has four small tentacles in the center\nof its head.",
       "equipment": {
         "wield": 7202
-      }
+      },
+      "inventory": [
+        7213,
+        7207
+      ]
     },
     "7203": {
       "vnum": 7203,
@@ -2847,7 +2854,11 @@
       "description": "The wererat is about four feet tall.  It looks very much like rat, except\nthat it is standing.",
       "equipment": {
         "wield": 7211
-      }
+      },
+      "inventory": [
+        7205,
+        7209
+      ]
     },
     "7204": {
       "vnum": 7204,
@@ -2904,7 +2915,11 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        7217,
+        7209
+      ]
     },
     "7205": {
       "vnum": 7205,
@@ -2921,6 +2936,9 @@
       "armor_class": 0,
       "flags": [
         "aggressive"
+      ],
+      "inventory": [
+        7200
       ]
     },
     "7206": {
@@ -2938,6 +2956,10 @@
       "armor_class": -5,
       "flags": [
         "aggressive"
+      ],
+      "inventory": [
+        7207,
+        7202
       ]
     },
     "7207": {
@@ -2955,6 +2977,9 @@
       "armor_class": -10,
       "flags": [
         "aggressive"
+      ],
+      "inventory": [
+        7210
       ]
     },
     "7208": {
@@ -2973,6 +2998,9 @@
       "flags": [
         "aggressive",
         "sentinel"
+      ],
+      "inventory": [
+        7212
       ]
     },
     "7298": {
@@ -2996,7 +3024,12 @@
         "hello": "The worker sighs. 'Another adventurer. Look, I don't care what you're hunting down here \u2014 just don't break any more pipes. The west passages flood regularly, so watch for rising water. And whatever you do, avoid the deep cistern. Something moved in there last week. Something big.'",
         "cistern": "He shakes his head. 'I'm paid to fix pipes, not fight monsters. But I'll tell you this \u2014 the noise from the cistern started about a month ago. Whatever's down there, it's getting bigger.'",
         "default": "The worker marks something on his map and mutters about overtime pay."
-      }
+      },
+      "inventory": [
+        7211,
+        7208,
+        7220
+      ]
     }
   },
   "objects": {
@@ -3046,7 +3079,8 @@
       "value": 5000,
       "type": "armor",
       "wear_slot": "about",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 4
     },
     "7204": {
       "vnum": 7204,
@@ -3077,7 +3111,8 @@
       "weight": 30,
       "value": 0,
       "armor_bonus": 1,
-      "type": "trash"
+      "type": "trash",
+      "armor": 12
     },
     "7207": {
       "vnum": 7207,
@@ -3088,7 +3123,8 @@
       "weight": 10,
       "value": 6000,
       "armor_bonus": 6,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 9
     },
     "7208": {
       "vnum": 7208,
@@ -3112,7 +3148,8 @@
       "armor_bonus": 4,
       "type": "armor",
       "wear_slot": "feet",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 2
     },
     "7210": {
       "vnum": 7210,
@@ -3176,7 +3213,8 @@
       ],
       "set_id": 72,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 3
     },
     "7214": {
       "vnum": 7214,
@@ -3195,7 +3233,8 @@
         }
       ],
       "set_id": 72,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 10
     },
     "7215": {
       "vnum": 7215,
@@ -3218,7 +3257,8 @@
         }
       ],
       "set_id": 72,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 11
     },
     "7216": {
       "vnum": 7216,
@@ -3237,7 +3277,8 @@
         }
       ],
       "set_id": 72,
-      "type": "note"
+      "type": "note",
+      "armor": 10
     },
     "7217": {
       "vnum": 7217,
@@ -3303,7 +3344,8 @@
       ],
       "set_id": 72,
       "type": "armor",
-      "armor": 0
+      "armor": 9,
+      "armor_class": 2
     },
     "7220": {
       "vnum": 7220,
@@ -3323,7 +3365,8 @@
       ],
       "set_id": 72,
       "type": "armor",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 3
     }
   }
 }

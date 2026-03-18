@@ -561,8 +561,8 @@ class TreasureHuntEvent(WorldEvent):
 
         # Create the item
         from objects import Object
-        item = Object()
-        item.vnum = 98000 + random.randint(0, 999)
+        item_vnum = 98000 + random.randint(0, 999)
+        item = Object(item_vnum, self.world)
         item.name = self.treasure_template["name"]
         item.short_desc = self.treasure_template["short_desc"]
         item.long_desc = self.treasure_template["long_desc"]

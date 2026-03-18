@@ -60,7 +60,11 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        18603,
+        18601
+      ]
     },
     "18602": {
       "alignment": 0,
@@ -79,7 +83,10 @@
       "long_desc": "The newbie monster stands here looking confused.  Kill him!  Kill him!",
       "name": "newbie",
       "short_desc": "the newbie monster",
-      "vnum": 18602
+      "vnum": 18602,
+      "inventory": [
+        18613
+      ]
     },
     "18603": {
       "alignment": 100,
@@ -97,7 +104,10 @@
       "long_desc": "Someone's little pet dragon has gotten loose, and is sniffing about here.",
       "name": "dragon",
       "short_desc": "the baby dragon",
-      "vnum": 18603
+      "vnum": 18603,
+      "inventory": [
+        18618
+      ]
     },
     "18604": {
       "alignment": 0,
@@ -152,7 +162,10 @@
       "long_desc": "A creepy little crawling thing is scuttling along the floor at your feet.",
       "name": "crawler",
       "short_desc": "the creepy crawler",
-      "vnum": 18606
+      "vnum": 18606,
+      "inventory": [
+        18614
+      ]
     },
     "18607": {
       "alignment": -500,
@@ -167,7 +180,10 @@
       "long_desc": "A VERY gaunt looking newbie... it looks like a zombie!",
       "name": "newbie",
       "short_desc": "the zombiefied newbie",
-      "vnum": 18607
+      "vnum": 18607,
+      "inventory": [
+        18622
+      ]
     },
     "18608": {
       "alignment": -800,
@@ -182,7 +198,10 @@
       "long_desc": "A funny little imp-like thing (a quasit perhaps?) is sneaking about here.",
       "name": "quasit",
       "short_desc": "the quasit",
-      "vnum": 18608
+      "vnum": 18608,
+      "inventory": [
+        18620
+      ]
     },
     "18609": {
       "alignment": -1000,
@@ -244,7 +263,11 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        18617,
+        18616
+      ]
     },
     "18610": {
       "alignment": -850,
@@ -302,7 +325,11 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        18616,
+        18612
+      ]
     },
     "18611": {
       "alignment": -500,
@@ -320,7 +347,10 @@
       "long_desc": "A newbie is here annoying the hell out of you.",
       "name": "newbie",
       "short_desc": "the annoying newbie",
-      "vnum": 18611
+      "vnum": 18611,
+      "inventory": [
+        18616
+      ]
     },
     "18612": {
       "alignment": 0,
@@ -335,7 +365,10 @@
       "long_desc": "A newbie is here looking terribly confused.",
       "name": "newbie",
       "short_desc": "the clueless newbie",
-      "vnum": 18612
+      "vnum": 18612,
+      "inventory": [
+        18615
+      ]
     },
     "18613": {
       "alignment": 100,
@@ -353,7 +386,10 @@
       "long_desc": "A newbie is here talking a lot.",
       "name": "newbie",
       "short_desc": "the talkative newbie",
-      "vnum": 18613
+      "vnum": 18613,
+      "inventory": [
+        18612
+      ]
     },
     "18614": {
       "alignment": 300,
@@ -368,7 +404,11 @@
       "long_desc": "A newbie is here wandering about aimlessly.",
       "name": "newbie",
       "short_desc": "the lost newbie",
-      "vnum": 18614
+      "vnum": 18614,
+      "inventory": [
+        18613,
+        18623
+      ]
     },
     "18615": {
       "alignment": 500,
@@ -389,7 +429,11 @@
       "long_desc": "A newbie is here, and he looks quite sure of himself.",
       "name": "newbie",
       "short_desc": "the smart newbie",
-      "vnum": 18615
+      "vnum": 18615,
+      "inventory": [
+        18602,
+        18616
+      ]
     }
   },
   "name": "Newbie Zone",
@@ -418,7 +462,8 @@
       "weight": 4,
       "type": "armor",
       "wear_slot": "body",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 3
     },
     "18603": {
       "armor_bonus": 3,
@@ -431,7 +476,8 @@
       "weight": 4,
       "type": "armor",
       "wear_slot": "head",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 2
     },
     "18604": {
       "armor_bonus": 0,
@@ -444,7 +490,8 @@
       "weight": 2,
       "type": "armor",
       "wear_slot": "about",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 3
     },
     "18605": {
       "armor_bonus": 0,
@@ -457,7 +504,8 @@
       "weight": 1,
       "type": "armor",
       "wear_slot": "finger",
-      "armor": 0
+      "armor": 8,
+      "armor_class": 2
     },
     "18606": {
       "damage_dice": "1d4",
@@ -482,7 +530,8 @@
       "weight": 1,
       "type": "armor",
       "wear_slot": "neck",
-      "armor": 0
+      "armor": 14,
+      "armor_class": 3
     },
     "18608": {
       "item_type": "key",
@@ -514,7 +563,8 @@
       "value": 100,
       "vnum": 18610,
       "weight": 8,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 8
     },
     "18611": {
       "item_type": "treasure",
@@ -537,7 +587,8 @@
       "weight": 4,
       "type": "armor",
       "wear_slot": "legs",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 3
     },
     "18613": {
       "armor_bonus": 4,
@@ -550,7 +601,8 @@
       "weight": 3,
       "type": "armor",
       "wear_slot": "legs",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 3
     },
     "18614": {
       "damage_dice": "2d6",
@@ -598,7 +650,8 @@
       "armor_bonus": 2,
       "set_id": 186,
       "type": "armor",
-      "armor": 5
+      "armor": 5,
+      "armor_class": 4
     },
     "18617": {
       "vnum": 18617,
@@ -619,7 +672,8 @@
       ],
       "set_id": 186,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 3
     },
     "18618": {
       "vnum": 18618,
@@ -638,7 +692,8 @@
         }
       ],
       "set_id": 186,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 14
     },
     "18619": {
       "vnum": 18619,
@@ -662,7 +717,8 @@
       ],
       "set_id": 186,
       "type": "light",
-      "light_hours": 24
+      "light_hours": 24,
+      "armor": 14
     },
     "18620": {
       "vnum": 18620,
@@ -761,7 +817,8 @@
       "armor_bonus": 1,
       "set_id": 186,
       "type": "armor",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 1
     }
   },
   "rooms": {

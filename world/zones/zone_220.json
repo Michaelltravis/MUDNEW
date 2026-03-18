@@ -1837,7 +1837,13 @@
       "ac": -60,
       "hitroll": 30,
       "damroll": 25,
-      "xp": 15000
+      "xp": 15000,
+      "inventory": [
+        22001,
+        22081,
+        22100,
+        22052
+      ]
     },
     "22031": {
       "vnum": 22031,
@@ -1870,7 +1876,11 @@
       "ac": -60,
       "hitroll": 30,
       "damroll": 25,
-      "xp": 15000
+      "xp": 15000,
+      "inventory": [
+        22083,
+        22004
+      ]
     },
     "22040": {
       "vnum": 22040,
@@ -1894,7 +1904,12 @@
       "ac": -50,
       "hitroll": 25,
       "damroll": 20,
-      "xp": 10000
+      "xp": 10000,
+      "inventory": [
+        22084,
+        22080,
+        22060
+      ]
     },
     "22100": {
       "vnum": 22100,
@@ -2007,7 +2022,12 @@
       "ac": -110,
       "hitroll": 60,
       "damroll": 55,
-      "xp": 200000
+      "xp": 200000,
+      "inventory": [
+        22086,
+        22089,
+        22097
+      ]
     },
     "22070": {
       "vnum": 22070,
@@ -2101,7 +2121,12 @@
       "ac": -90,
       "hitroll": 45,
       "damroll": 40,
-      "xp": 80000
+      "xp": 80000,
+      "inventory": [
+        22001,
+        22060,
+        22096
+      ]
     },
     "22071": {
       "vnum": 22071,
@@ -2194,7 +2219,13 @@
       "ac": -85,
       "hitroll": 50,
       "damroll": 45,
-      "xp": 90000
+      "xp": 90000,
+      "inventory": [
+        22092,
+        22102,
+        22100,
+        22061
+      ]
     },
     "22072": {
       "vnum": 22072,
@@ -2283,7 +2314,12 @@
       "ac": -85,
       "hitroll": 42,
       "damroll": 38,
-      "xp": 80000
+      "xp": 80000,
+      "inventory": [
+        22061,
+        22060,
+        22089
+      ]
     },
     "22073": {
       "vnum": 22073,
@@ -2416,7 +2452,12 @@
       "ac": -100,
       "hitroll": 55,
       "damroll": 50,
-      "xp": 120000
+      "xp": 120000,
+      "inventory": [
+        22090,
+        22062,
+        22096
+      ]
     },
     "22098": {
       "vnum": 22098,
@@ -2445,7 +2486,11 @@
       "ac": -30,
       "hitroll": 15,
       "damroll": 12,
-      "xp": 3000
+      "xp": 3000,
+      "inventory": [
+        22100,
+        22088
+      ]
     },
     "22099": {
       "vnum": 22099,
@@ -2473,7 +2518,11 @@
       "ac": -55,
       "hitroll": 28,
       "damroll": 22,
-      "xp": 12000
+      "xp": 12000,
+      "inventory": [
+        22097,
+        22060
+      ]
     }
   },
   "objects": {
@@ -2520,7 +2569,8 @@
           "value": 4
         }
       ],
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 14
     },
     "22060": {
       "vnum": 22060,
@@ -2577,7 +2627,8 @@
       ],
       "description": "This plate armor is forged from the ruins of fallen fortresses, each piece bearing the scars of apocalyptic battles.",
       "type": "armor",
-      "armor": 4
+      "armor": 4,
+      "armor_class": 11
     },
     "22062": {
       "vnum": 22062,
@@ -2607,7 +2658,8 @@
         }
       ],
       "type": "armor",
-      "armor": 0
+      "armor": 12,
+      "armor_class": 9
     },
     "22070": {
       "vnum": 22070,
@@ -2643,7 +2695,8 @@
         }
       ],
       "type": "armor",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 9
     },
     "22081": {
       "vnum": 22081,
@@ -2665,7 +2718,8 @@
         }
       ],
       "type": "armor",
-      "armor": 0
+      "armor": 14,
+      "armor_class": 7
     },
     "22082": {
       "vnum": 22082,
@@ -2720,7 +2774,8 @@
           "value": 8
         }
       ],
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 17
     },
     "22084": {
       "vnum": 22084,
@@ -2745,7 +2800,8 @@
           "value": 10
         }
       ],
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 11
     },
     "22085": {
       "vnum": 22085,
@@ -2774,7 +2830,8 @@
           "value": -10
         }
       ],
-      "type": "trash"
+      "type": "trash",
+      "armor": 13
     },
     "22086": {
       "vnum": 22086,
@@ -2834,7 +2891,8 @@
         }
       ],
       "description": "The veil is woven from shadow and silence, colder than death. It obscures the wearer from both sight and fate.",
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 11
     },
     "22088": {
       "vnum": 22088,
@@ -2861,7 +2919,8 @@
       ],
       "description": "This ring is cold to the touch, colder still to the soul. It belonged to Death itself, and carries a fragment of that finality.",
       "type": "armor",
-      "armor": 0
+      "armor": 17,
+      "armor_class": 8
     },
     "22089": {
       "vnum": 22089,
@@ -2890,7 +2949,8 @@
           "value": -10
         }
       ],
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 18
     },
     "22090": {
       "vnum": 22090,
@@ -2915,7 +2975,8 @@
           "value": 3
         }
       ],
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 15
     },
     "22091": {
       "vnum": 22091,
@@ -2941,7 +3002,8 @@
         }
       ],
       "type": "armor",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 10
     },
     "22092": {
       "vnum": 22092,
@@ -2971,7 +3033,8 @@
         }
       ],
       "type": "armor",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 7
     },
     "22094": {
       "vnum": 22094,
@@ -3000,7 +3063,8 @@
           "value": -10
         }
       ],
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 11
     },
     "22095": {
       "vnum": 22095,
@@ -3025,7 +3089,8 @@
           "value": 12
         }
       ],
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 17
     },
     "22096": {
       "vnum": 22096,
@@ -3051,7 +3116,8 @@
         }
       ],
       "type": "armor",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 9
     },
     "22097": {
       "vnum": 22097,
@@ -3076,7 +3142,8 @@
           "value": 8
         }
       ],
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 14
     },
     "22098": {
       "vnum": 22098,
@@ -3101,7 +3168,8 @@
           "value": 10
         }
       ],
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 11
     },
     "22099": {
       "vnum": 22099,
@@ -3127,7 +3195,8 @@
         }
       ],
       "type": "armor",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 8
     },
     "22100": {
       "vnum": 22100,
@@ -3157,7 +3226,8 @@
         }
       ],
       "type": "armor",
-      "armor": 0
+      "armor": 11,
+      "armor_class": 8
     },
     "22101": {
       "vnum": 22101,
@@ -3186,7 +3256,8 @@
           "value": -10
         }
       ],
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 16
     },
     "22102": {
       "vnum": 22102,
@@ -3211,7 +3282,8 @@
           "value": 1
         }
       ],
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 14
     },
     "22071": {
       "vnum": 22071,
@@ -3246,7 +3318,8 @@
       ],
       "set_id": "apocalypse_raiment",
       "type": "armor",
-      "min_level": 50
+      "min_level": 50,
+      "armor": 14
     },
     "22002": {
       "vnum": 22002,
@@ -3271,7 +3344,8 @@
       ],
       "set_id": "apocalypse_raiment",
       "type": "armor",
-      "min_level": 50
+      "min_level": 50,
+      "armor": 15
     },
     "22003": {
       "vnum": 22003,
@@ -3296,7 +3370,8 @@
       ],
       "set_id": "apocalypse_raiment",
       "type": "armor",
-      "min_level": 50
+      "min_level": 50,
+      "armor": 9
     },
     "22004": {
       "vnum": 22004,
@@ -3321,7 +3396,8 @@
       ],
       "set_id": "apocalypse_raiment",
       "type": "armor",
-      "min_level": 50
+      "min_level": 50,
+      "armor": 15
     }
   }
 }

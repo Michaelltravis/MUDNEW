@@ -22,7 +22,13 @@
           "to_room": 3127,
           "description": "The promenade continues far south."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3100,
+          "max": 1
+        }
+      ]
     },
     "3101": {
       "vnum": 3101,
@@ -43,7 +49,13 @@
           "to_room": 3100,
           "description": "You see the Concourse."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3101,
+          "max": 1
+        }
+      ]
     },
     "3102": {
       "vnum": 3102,
@@ -64,7 +76,13 @@
           "to_room": 3101,
           "description": "You see the promenade."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3102,
+          "max": 1
+        }
+      ]
     },
     "3103": {
       "vnum": 3103,
@@ -85,7 +103,13 @@
           "to_room": 3102,
           "description": "You see the promenade."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3103,
+          "max": 1
+        }
+      ]
     },
     "3104": {
       "vnum": 3104,
@@ -105,7 +129,13 @@
       },
       "extra_descs": {
         "": "wall"
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3104,
+          "max": 1
+        }
+      ]
     },
     "3105": {
       "vnum": 3105,
@@ -128,7 +158,13 @@
           "to_room": 3108,
           "description": "You see the park."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3105,
+          "max": 1
+        }
+      ]
     },
     "3106": {
       "vnum": 3106,
@@ -144,7 +180,13 @@
           "to_room": 3105,
           "description": "You see the park entrance."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3106,
+          "max": 1
+        }
+      ]
     },
     "3107": {
       "vnum": 3107,
@@ -161,7 +203,13 @@
           "to_room": 3113,
           "description": "The cobblestones lead to A Path In The Park"
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3120,
+          "max": 1
+        }
+      ]
     },
     "3108": {
       "vnum": 3108,
@@ -182,7 +230,13 @@
           "to_room": 3107,
           "description": "The cobblestones lead to A Small Path In The Park"
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3121,
+          "max": 1
+        }
+      ]
     },
     "3109": {
       "vnum": 3109,
@@ -199,7 +253,13 @@
           "to_room": 3108,
           "description": "The cobblestones lead to A Small Path In The Park"
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3122,
+          "max": 1
+        }
+      ]
     },
     "3110": {
       "vnum": 3110,
@@ -220,7 +280,13 @@
             "key_vnum": 3105
           }
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 3123,
+          "max": 1
+        }
+      ]
     },
     "3111": {
       "vnum": 3111,
@@ -1092,7 +1158,14 @@
         "buys": [],
         "markup": 3101.0,
         "markdown": 3102.0
-      }
+      },
+      "inventory": [
+        3116,
+        3110,
+        3104,
+        3103,
+        3102
+      ]
     },
     "3101": {
       "vnum": 3101,
@@ -1109,7 +1182,11 @@
       "flags": [
         "sentinel"
       ],
-      "description": "The Sexton looks like he is relaxing after another gravedigging job."
+      "description": "The Sexton looks like he is relaxing after another gravedigging job.",
+      "inventory": [
+        3115,
+        3100
+      ]
     },
     "3102": {
       "vnum": 3102,
@@ -1128,7 +1205,11 @@
         "scavenger",
         "aggressive"
       ],
-      "description": "A very angry chief."
+      "description": "A very angry chief.",
+      "inventory": [
+        3117,
+        3116
+      ]
     },
     "3103": {
       "vnum": 3103,
@@ -1147,7 +1228,10 @@
         "scavenger",
         "aggressive"
       ],
-      "description": "A big, strong, angry guard."
+      "description": "A big, strong, angry guard.",
+      "inventory": [
+        3102
+      ]
     },
     "3104": {
       "vnum": 3104,
@@ -1164,7 +1248,11 @@
       "flags": [
         "sentinel"
       ],
-      "description": "She looks very busy.\n\nThe Secretary says 'Sorry, but the Mayor is extremely busy today.'\nThe Secretary says 'Please sit down and have a seat in the meantime.'"
+      "description": "She looks very busy.\n\nThe Secretary says 'Sorry, but the Mayor is extremely busy today.'\nThe Secretary says 'Please sit down and have a seat in the meantime.'",
+      "inventory": [
+        3116,
+        3117
+      ]
     },
     "3105": {
       "vnum": 3105,
@@ -1185,7 +1273,12 @@
         "no_charm",
         "no_summmon"
       ],
-      "description": "He is a stocky, middle-aged man with thin, grey hair."
+      "description": "He is a stocky, middle-aged man with thin, grey hair.",
+      "inventory": [
+        3116,
+        3110,
+        3103
+      ]
     },
     "3106": {
       "vnum": 3106,
@@ -1202,7 +1295,10 @@
       "flags": [
         "wimpy"
       ],
-      "description": "He is very good at his job - completely dissolved in tears."
+      "description": "He is very good at his job - completely dissolved in tears.",
+      "inventory": [
+        3100
+      ]
     },
     "3120": {
       "vnum": 3120,
@@ -1219,14 +1315,17 @@
       "flags": [
         "sentinel"
       ],
-      "description": "The white swan is very elegant."
+      "description": "The white swan is very elegant.",
+      "inventory": [
+        3117
+      ]
     },
     "3121": {
       "vnum": 3121,
       "name": "duckling",
       "short_desc": "the duckling",
       "long_desc": "A duckling is swimming around in the pond.",
-      "level": 0,
+      "level": 1,
       "alignment": 1000,
       "hp_dice": "1d1+0",
       "damage_dice": "1d1+0",
@@ -1236,14 +1335,17 @@
       "flags": [
         "sentinel"
       ],
-      "description": "The duckling is adorable, it looks most of all like a tiny furball."
+      "description": "The duckling is adorable, it looks most of all like a tiny furball.",
+      "inventory": [
+        3117
+      ]
     },
     "3122": {
       "vnum": 3122,
       "name": "sparrow",
       "short_desc": "the sparrow",
       "long_desc": "A sparrow is flapping around on the ground.",
-      "level": 0,
+      "level": 1,
       "alignment": 1000,
       "hp_dice": "1d3+0",
       "damage_dice": "2d6+0",
@@ -1254,7 +1356,10 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "The sparrow looks like it is enjoying life."
+      "description": "The sparrow looks like it is enjoying life.",
+      "inventory": [
+        3102
+      ]
     },
     "3123": {
       "vnum": 3123,
@@ -1271,7 +1376,11 @@
       "flags": [
         "stay_zone"
       ],
-      "description": "The duck is quite fat.  It looks like it is enjoying life."
+      "description": "The duck is quite fat.  It looks like it is enjoying life.",
+      "inventory": [
+        3110,
+        3102
+      ]
     }
   },
   "objects": {

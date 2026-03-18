@@ -2328,7 +2328,8 @@ class QuestManager:
             # Create and give items to player
             for item_vnum in quest.rewards['items']:
                 try:
-                    item = player.world.create_object(item_vnum)
+                    from objects import create_object, create_preset_object
+                    item = create_object(item_vnum, player.world) or create_preset_object(item_vnum)
                     if item:
                         if not hasattr(player, 'inventory'):
                             player.inventory = []

@@ -1405,7 +1405,12 @@
         "hands": 6512,
         "head": 6510,
         "finger1": 6511
-      }
+      },
+      "inventory": [
+        6518,
+        6504,
+        6508
+      ]
     },
     "6501": {
       "vnum": 6501,
@@ -1424,7 +1429,11 @@
         "memory",
         "helper"
       ],
-      "description": "He is very dirty, and looks extremely over-worked."
+      "description": "He is very dirty, and looks extremely over-worked.",
+      "inventory": [
+        6516,
+        6503
+      ]
     },
     "6502": {
       "vnum": 6502,
@@ -1450,7 +1459,11 @@
       "description": "A black, almost transparent wraith.",
       "equipment": {
         "hold": 6503
-      }
+      },
+      "inventory": [
+        6525,
+        6519
+      ]
     },
     "6503": {
       "vnum": 6503,
@@ -1628,7 +1641,12 @@
       "flags": [
         "stay_zone"
       ],
-      "description": "This scaly creature looks like it is well adapted to its underground\nhabitat.  He looks very powerful."
+      "description": "This scaly creature looks like it is well adapted to its underground\nhabitat.  He looks very powerful.",
+      "inventory": [
+        6519,
+        6504,
+        6525
+      ]
     },
     "6506": {
       "vnum": 6506,
@@ -1649,7 +1667,10 @@
       "description": "The giant is about 18 feet tall, with arms of steel, and looks in\nexcellent physical condition.",
       "equipment": {
         "body": 6505
-      }
+      },
+      "inventory": [
+        6504
+      ]
     },
     "6507": {
       "vnum": 6507,
@@ -1670,7 +1691,11 @@
       "description": "The mineworker is very tired, and very dirty, and he has bulging muscles.",
       "equipment": {
         "wield": 6508
-      }
+      },
+      "inventory": [
+        6513,
+        6514
+      ]
     },
     "6508": {
       "vnum": 6508,
@@ -1692,7 +1717,10 @@
       "equipment": {
         "hands": 6512,
         "wield": 6508
-      }
+      },
+      "inventory": [
+        6519
+      ]
     },
     "6509": {
       "vnum": 6509,
@@ -1714,7 +1742,12 @@
       "description": "He is a very skilled healer, and extremely faithful to his god.",
       "equipment": {
         "hold": 6506
-      }
+      },
+      "inventory": [
+        6510,
+        6501,
+        6525
+      ]
     },
     "6510": {
       "vnum": 6510,
@@ -1734,7 +1767,10 @@
       ],
       "equipment": {
         "wield": 7211
-      }
+      },
+      "inventory": [
+        6505
+      ]
     },
     "6511": {
       "vnum": 6511,
@@ -1753,7 +1789,11 @@
       ],
       "equipment": {
         "wield": 7211
-      }
+      },
+      "inventory": [
+        6508,
+        6518
+      ]
     },
     "6514": {
       "vnum": 6514,
@@ -1773,7 +1813,11 @@
       ],
       "equipment": {
         "wield": 6509
-      }
+      },
+      "inventory": [
+        6503,
+        6513
+      ]
     },
     "6516": {
       "vnum": 6516,
@@ -1796,7 +1840,11 @@
       "description": "He looks VERY tough.",
       "equipment": {
         "hold": 6500
-      }
+      },
+      "inventory": [
+        6508,
+        6521
+      ]
     },
     "6517": {
       "vnum": 6517,
@@ -1852,7 +1900,10 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        6519
+      ]
     },
     "6598": {
       "vnum": 6598,
@@ -1876,7 +1927,12 @@
         "priestess": "She whispers. 'Priestess Zilvra took a slave to the altar last night. I heard screaming. Mother says it's an honor. I don't think the slave agreed.'",
         "default": "The drow child arranges her bone toys into little formations, humming a haunting melody.",
         "next": "The drow child whispers conspiratorially. 'The mindflayers in their lair make even the priestesses nervous. And above, in the sun-scorched desert, a great pyramid holds treasures older than our city. But you didn't hear that from me.'"
-      }
+      },
+      "inventory": [
+        6514,
+        6501,
+        6506
+      ]
     },
     "6599": {
       "vnum": 6599,
@@ -1899,7 +1955,10 @@
         "hello": "The slave rasps. 'Don't... waste your pity on me. I'm dead already. But listen \u2014 the drow keep their best weapons in the armory past the mushroom gardens. And the priestesses... they draw power from the spider shrine. Destroy it, and they weaken. Please... someone has to stop them.'",
         "escape": "He rattles his chains weakly. 'These chains are drow-forged. Nothing short of adamantine will break them. But maybe someday... someone strong enough will come.'",
         "default": "The slave stares at the ground, breathing shallowly."
-      }
+      },
+      "inventory": [
+        6521
+      ]
     }
   },
   "objects": {
@@ -1966,7 +2025,8 @@
       "armor_bonus": 6,
       "type": "armor",
       "wear_slot": "body",
-      "armor": 5
+      "armor": 5,
+      "armor_class": 5
     },
     "6506": {
       "vnum": 6506,
@@ -2024,7 +2084,8 @@
       "armor_bonus": 4,
       "type": "armor",
       "wear_slot": "head",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 3
     },
     "6511": {
       "vnum": 6511,
@@ -2036,7 +2097,8 @@
       "value": 10000,
       "type": "armor",
       "wear_slot": "finger",
-      "armor": 0
+      "armor": 6,
+      "armor_class": 2
     },
     "6512": {
       "vnum": 6512,
@@ -2049,7 +2111,8 @@
       "armor_bonus": 1,
       "type": "armor",
       "wear_slot": "hands",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 4
     },
     "6513": {
       "vnum": 6513,
@@ -2133,7 +2196,8 @@
       ],
       "set_id": 65,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 6
     },
     "6519": {
       "vnum": 6519,
@@ -2152,7 +2216,8 @@
         }
       ],
       "set_id": 65,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 5
     },
     "6520": {
       "vnum": 6520,
@@ -2175,7 +2240,8 @@
         }
       ],
       "set_id": 65,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 6
     },
     "6521": {
       "vnum": 6521,
@@ -2194,7 +2260,8 @@
         }
       ],
       "set_id": 65,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 10
     },
     "6522": {
       "vnum": 6522,
@@ -2260,7 +2327,8 @@
       ],
       "set_id": 65,
       "type": "armor",
-      "armor": 0
+      "armor": 8,
+      "armor_class": 3
     },
     "6525": {
       "vnum": 6525,
@@ -2281,7 +2349,8 @@
       ],
       "set_id": 65,
       "type": "armor",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 2
     }
   }
 }

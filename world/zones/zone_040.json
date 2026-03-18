@@ -2547,7 +2547,11 @@
         "special",
         "sentinel"
       ],
-      "description": "It looks harmless."
+      "description": "It looks harmless.",
+      "inventory": [
+        4053,
+        4132
+      ]
     },
     "4002": {
       "vnum": 4002,
@@ -2564,7 +2568,10 @@
       "flags": [
         "sentinel"
       ],
-      "description": "It looks completely harmless."
+      "description": "It looks completely harmless.",
+      "inventory": [
+        4120
+      ]
     },
     "4003": {
       "vnum": 4003,
@@ -2582,7 +2589,10 @@
         "scavenger",
         "stay_zone"
       ],
-      "description": "It looks ugly."
+      "description": "It looks ugly.",
+      "inventory": [
+        4126
+      ]
     },
     "4004": {
       "vnum": 4004,
@@ -2601,7 +2611,11 @@
         "aggressive",
         "stay_zone"
       ],
-      "description": "You notice an evil look in its eyes..."
+      "description": "You notice an evil look in its eyes...",
+      "inventory": [
+        4131,
+        4120
+      ]
     },
     "4005": {
       "vnum": 4005,
@@ -2622,7 +2636,10 @@
       "description": "He looks dreadful.",
       "equipment": {
         "finger1": 4000
-      }
+      },
+      "inventory": [
+        4050
+      ]
     },
     "4050": {
       "vnum": 4050,
@@ -2703,7 +2720,11 @@
         "aggressive",
         "stay_zone"
       ],
-      "description": "He seems to know his way with weapons."
+      "description": "He seems to know his way with weapons.",
+      "inventory": [
+        4100,
+        4129
+      ]
     },
     "4052": {
       "vnum": 4052,
@@ -2721,7 +2742,10 @@
         "scavenger",
         "stay_zone"
       ],
-      "description": "The hobgoblin looks quite lost."
+      "description": "The hobgoblin looks quite lost.",
+      "inventory": [
+        4104
+      ]
     },
     "4053": {
       "vnum": 4053,
@@ -2740,7 +2764,11 @@
         "sentinel",
         "aggressive"
       ],
-      "description": "The snake looks quite mean."
+      "description": "The snake looks quite mean.",
+      "inventory": [
+        4100,
+        4125
+      ]
     },
     "4054": {
       "vnum": 4054,
@@ -2757,7 +2785,11 @@
       "flags": [
         "sentinel"
       ],
-      "description": "The centipede doesn't really seem to notice you."
+      "description": "The centipede doesn't really seem to notice you.",
+      "inventory": [
+        4051,
+        4120
+      ]
     },
     "4055": {
       "vnum": 4055,
@@ -2798,7 +2830,10 @@
         "aggressive",
         "stay_zone"
       ],
-      "description": "Well, he doesn't seem to be friendly."
+      "description": "Well, he doesn't seem to be friendly.",
+      "inventory": [
+        4101
+      ]
     },
     "4057": {
       "vnum": 4057,
@@ -2816,7 +2851,10 @@
         "aggressive",
         "stay_zone"
       ],
-      "description": "The lion looks very nasty with huge claws and big teeth."
+      "description": "The lion looks very nasty with huge claws and big teeth.",
+      "inventory": [
+        4134
+      ]
     },
     "4058": {
       "vnum": 4058,
@@ -2873,7 +2911,10 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        4120
+      ]
     },
     "4100": {
       "vnum": 4100,
@@ -3003,7 +3044,10 @@
       "description": "He seems to be counting a handful of coins.  Maybe you ought to count YOUR\ngold too...",
       "equipment": {
         "wield": 4053
-      }
+      },
+      "inventory": [
+        4002
+      ]
     },
     "4104": {
       "vnum": 4104,
@@ -3023,7 +3067,11 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "It is quite disgusting to look at."
+      "description": "It is quite disgusting to look at.",
+      "inventory": [
+        4101,
+        4129
+      ]
     },
     "4105": {
       "vnum": 4105,
@@ -3040,7 +3088,11 @@
       "flags": [
         "sentinel"
       ],
-      "description": "Well it doesn't seem to pay any attention to you."
+      "description": "Well it doesn't seem to pay any attention to you.",
+      "inventory": [
+        4103,
+        4104
+      ]
     },
     "4106": {
       "vnum": 4106,
@@ -3127,7 +3179,10 @@
           "chance": 15
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        4050
+      ]
     },
     "4099": {
       "vnum": 4099,
@@ -3150,7 +3205,10 @@
         "hello": "The adventurer winces. 'Turn back if you can. The snakes in the tunnels have venom that'll drop you before you can scream. And further down... I saw shapes moving in the dark. Dozens of them.'",
         "snakes": "She grips her bandaged arm. 'Poison. Got me through a gap in my armor. Carry antidotes if you have them \u2014 the green ones are the worst.'",
         "default": "The adventurer stares blankly. 'I just want to find the way out...'"
-      }
+      },
+      "inventory": [
+        4101
+      ]
     }
   },
   "objects": {
@@ -3165,7 +3223,8 @@
       "armor_bonus": 0,
       "type": "armor",
       "wear_slot": "finger",
-      "armor": 0
+      "armor": 10,
+      "armor_class": 1
     },
     "4001": {
       "vnum": 4001,
@@ -3208,7 +3267,8 @@
       ],
       "set_id": "miners_garb",
       "type": "armor",
-      "min_level": 10
+      "min_level": 10,
+      "armor": 7
     },
     "4050": {
       "vnum": 4050,
@@ -3231,7 +3291,8 @@
       "armor_bonus": -5,
       "type": "armor",
       "wear_slot": "head",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 2
     },
     "4052": {
       "vnum": 4052,
@@ -3280,7 +3341,8 @@
       "armor_bonus": 0,
       "type": "armor",
       "wear_slot": "hands",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 1
     },
     "4102": {
       "vnum": 4102,
@@ -3426,7 +3488,8 @@
       ],
       "set_id": 40,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 1
     },
     "4128": {
       "vnum": 4128,
@@ -3445,7 +3508,8 @@
         }
       ],
       "set_id": 40,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 7
     },
     "4129": {
       "vnum": 4129,
@@ -3464,7 +3528,8 @@
         }
       ],
       "set_id": 40,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 10
     },
     "4130": {
       "vnum": 4130,
@@ -3483,7 +3548,8 @@
         }
       ],
       "set_id": 40,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 6
     },
     "4131": {
       "vnum": 4131,
@@ -3502,7 +3568,8 @@
         }
       ],
       "set_id": 40,
-      "type": "furniture"
+      "type": "furniture",
+      "armor": 8
     },
     "4132": {
       "vnum": 4132,
@@ -3547,7 +3614,8 @@
       ],
       "set_id": 40,
       "type": "armor",
-      "armor": 0
+      "armor": 5,
+      "armor_class": 2
     },
     "4134": {
       "vnum": 4134,
@@ -3571,7 +3639,8 @@
       ],
       "set_id": 40,
       "type": "armor",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 1
     },
     "4095": {
       "vnum": 4095,
@@ -3603,7 +3672,8 @@
       ],
       "set_id": "miners_garb",
       "type": "armor",
-      "min_level": 10
+      "min_level": 10,
+      "armor": 6
     },
     "4004": {
       "vnum": 4004,
@@ -3624,7 +3694,8 @@
       ],
       "set_id": "miners_garb",
       "type": "armor",
-      "min_level": 10
+      "min_level": 10,
+      "armor": 9
     }
   }
 }

@@ -486,7 +486,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
         if hasattr(room, 'characters'):
             for entity in room.characters:
                 if hasattr(entity, 'account_name'):
-                    continue  # skip players
+                    continue  # skip players (handled below)
                 mob_info = {
                     'name': getattr(entity, 'name', 'Unknown'),
                     'level': getattr(entity, 'level', 1),
@@ -503,6 +503,40 @@ def build_map_payload(player, mode: str = 'full') -> dict:
                     mob_info['maxHp'] = max_hp
                 mob_list.append(mob_info)
 
+        # Build other-players list for this room
+        player_list = []
+        if hasattr(room, 'characters'):
+            for entity in room.characters:
+                if hasattr(entity, 'account_name') and entity is not player:
+                    player_list.append({
+                        'name': getattr(entity, 'name', 'Unknown'),
+                        'level': getattr(entity, 'level', 1),
+                        'char_class': getattr(entity, 'char_class', ''),
+                        'hp': getattr(entity, 'hp', 0),
+                        'maxHp': getattr(entity, 'max_hp', 1),
+                    })
+
+        # Build door info for exits
+        doors = {}
+        if hasattr(room, 'exits'):
+            raw_exits = room.exits if isinstance(room.exits, dict) else {}
+            for direction, exit_data in raw_exits.items():
+                if isinstance(exit_data, dict) and 'door' in exit_data:
+                    door = exit_data['door']
+                    doors[direction] = {
+                        'name': door.get('name', 'door'),
+                        'state': door.get('state', 'open'),
+                        'locked': bool(door.get('locked', False)),
+                    }
+
+        # Items on ground
+        item_list = []
+        for item in getattr(room, 'contents', []):
+            item_list.append({
+                'name': getattr(item, 'name', 'something'),
+                'type': getattr(item, 'item_type', 'other'),
+            })
+
         room_items.append({
             'vnum': vnum,
             'name': room.name,
@@ -518,6 +552,9 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'oneWayExits': one_way_exits,
             'flags': list(room.flags) if hasattr(room, 'flags') else [],
             'mobs': mob_list,
+            'players': player_list,
+            'doors': doors,
+            'items': item_list,
         })
 
     player_coord = coords[start_vnum]
@@ -540,11 +577,37 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'color': zone_colors[i % len(zone_colors)],
         })
     
+    # Game time info
+    time_info = {}
+    world = getattr(player, 'world', None)
+    if world and hasattr(world, 'game_time'):
+        gt = world.game_time
+        time_info = {
+            'hour': getattr(gt, 'hour', 12),
+            'period': gt.get_period() if hasattr(gt, 'get_period') else 'afternoon',
+            'day': getattr(gt, 'day', 1),
+            'month': getattr(gt, 'month', 6),
+            'year': getattr(gt, 'year', 1000),
+        }
+
+    # Weather info for current zone
+    weather_info = {}
+    if player.room and player.room.zone and hasattr(player.room.zone, 'weather'):
+        w = player.room.zone.weather
+        weather_info = {
+            'sky': getattr(w, 'sky_condition', 'clear'),
+            'temperature': getattr(w, 'temperature', 70),
+            'wind': getattr(w, 'wind_speed', 0),
+            'precipitation': getattr(w, 'precipitation', 'none'),
+        }
+
     return {
         'type': 'map_data',
         'rooms': room_items,
         'frontier': valid_frontier,
         'zones': zones_list,
+        'time': time_info,
+        'weather': weather_info,
         'player': {
             'name': player.name,
             'vnum': start_vnum,

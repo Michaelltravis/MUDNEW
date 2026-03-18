@@ -1005,6 +1005,9 @@
       "armor_class": 85,
       "flags": [
         "aggressive"
+      ],
+      "inventory": [
+        7199
       ]
     },
     "7102": {
@@ -1062,7 +1065,10 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        7196
+      ]
     },
     "7103": {
       "vnum": 7103,
@@ -1119,7 +1125,11 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        7195,
+        7191
+      ]
     },
     "7104": {
       "vnum": 7104,
@@ -1137,6 +1147,9 @@
       "flags": [
         "aggressive",
         "thief"
+      ],
+      "inventory": [
+        7195
       ]
     },
     "7105": {
@@ -1193,7 +1206,11 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        7192,
+        7193
+      ]
     },
     "7106": {
       "vnum": 7106,
@@ -1210,6 +1227,10 @@
       "armor_class": 88,
       "flags": [
         "sentinel"
+      ],
+      "inventory": [
+        7190,
+        7197
       ]
     }
   },
@@ -1224,7 +1245,8 @@
       "value": 16000,
       "type": "armor",
       "wear_slot": "finger",
-      "armor": 0
+      "armor": 11,
+      "armor_class": 3
     },
     "7191": {
       "vnum": 7191,
@@ -1266,7 +1288,8 @@
       ],
       "set_id": 71,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 1
     },
     "7193": {
       "vnum": 7193,
@@ -1285,7 +1308,8 @@
         }
       ],
       "set_id": 71,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 14
     },
     "7194": {
       "vnum": 7194,
@@ -1308,7 +1332,8 @@
         }
       ],
       "set_id": 71,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 12
     },
     "7195": {
       "vnum": 7195,
@@ -1327,7 +1352,8 @@
         }
       ],
       "set_id": 71,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 14
     },
     "7196": {
       "vnum": 7196,
@@ -1393,7 +1419,8 @@
       ],
       "set_id": 71,
       "type": "armor",
-      "armor": 0
+      "armor": 11,
+      "armor_class": 3
     },
     "7199": {
       "vnum": 7199,
@@ -1413,7 +1440,8 @@
       ],
       "set_id": 71,
       "type": "armor",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 3
     }
   }
 }

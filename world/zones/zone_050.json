@@ -1901,7 +1901,11 @@
       "description": "Dressed in loose fitting rags, this man looks like he could use some rest.",
       "equipment": {
         "wield": 7211
-      }
+      },
+      "inventory": [
+        5018,
+        5007
+      ]
     },
     "5001": {
       "vnum": 5001,
@@ -1922,7 +1926,10 @@
       "description": "Dressed in loose fitting rags, this man looks like he could use LOTS of\nrest.",
       "equipment": {
         "wield": 3022
-      }
+      },
+      "inventory": [
+        5029
+      ]
     },
     "5002": {
       "vnum": 5002,
@@ -1939,7 +1946,10 @@
       "flags": [
         "stay_zone"
       ],
-      "description": "This relatively harmless snake has bright alternating bands of red, yellow\nand black."
+      "description": "This relatively harmless snake has bright alternating bands of red, yellow\nand black.",
+      "inventory": [
+        5019
+      ]
     },
     "5003": {
       "vnum": 5003,
@@ -1956,7 +1966,10 @@
       "flags": [
         "stay_zone"
       ],
-      "description": "The little tail is mighty dangerous for such a small creature."
+      "description": "The little tail is mighty dangerous for such a small creature.",
+      "inventory": [
+        5019
+      ]
     },
     "5004": {
       "vnum": 5004,
@@ -2109,7 +2122,11 @@
       "description": "He is clad in silk robes lined with gold thread. At his side is a large,\nengraved cutlass.  He has an especially haughty air about him.",
       "equipment": {
         "wield": 5016
-      }
+      },
+      "inventory": [
+        5007,
+        5000
+      ]
     },
     "5007": {
       "vnum": 5007,
@@ -2131,7 +2148,10 @@
       "description": "This is the nomad leader's second in command.  His clothes are richly woven\nof silk and gold thread.  A nasty cutlass hangs at his side.",
       "equipment": {
         "wield": 5017
-      }
+      },
+      "inventory": [
+        5019
+      ]
     },
     "5008": {
       "vnum": 5008,
@@ -2151,7 +2171,11 @@
       "description": "This warrior is dressed in typical nomad clothing and looks quite mean.",
       "equipment": {
         "wield": 5018
-      }
+      },
+      "inventory": [
+        5030,
+        5032
+      ]
     },
     "5009": {
       "vnum": 5009,
@@ -2169,7 +2193,10 @@
         "sentinel",
         "wimpy"
       ],
-      "description": "She looks quite thin and weak."
+      "description": "She looks quite thin and weak.",
+      "inventory": [
+        5005
+      ]
     },
     "5010": {
       "vnum": 5010,
@@ -2237,7 +2264,11 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        5026,
+        5021
+      ]
     },
     "5011": {
       "vnum": 5011,
@@ -2258,7 +2289,11 @@
       "description": "This half-spider, half-drow creature is a formidable opponent.",
       "equipment": {
         "wield": 3022
-      }
+      },
+      "inventory": [
+        5005,
+        5018
+      ]
     },
     "5012": {
       "vnum": 5012,
@@ -2279,7 +2314,10 @@
       "description": "The duergar could probably crush your head as easily as he does those\nrocks.",
       "equipment": {
         "wield": 5000
-      }
+      },
+      "inventory": [
+        5063
+      ]
     },
     "5013": {
       "vnum": 5013,
@@ -2297,7 +2335,10 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "The myconoid looks something like a giant mushroom (and probably has the\nsame effect)."
+      "description": "The myconoid looks something like a giant mushroom (and probably has the\nsame effect).",
+      "inventory": [
+        5062
+      ]
     },
     "5014": {
       "vnum": 5014,
@@ -2320,7 +2361,11 @@
       "description": "The shaman shoots spores into the air.",
       "equipment": {
         "neck1": 5003
-      }
+      },
+      "inventory": [
+        5029,
+        5026
+      ]
     },
     "5015": {
       "vnum": 5015,
@@ -2341,7 +2386,11 @@
         "no_bash",
         "no_blind"
       ],
-      "description": "Looking a little closer at this oasis, you begin to wonder why\nit seems to be moving about..."
+      "description": "Looking a little closer at this oasis, you begin to wonder why\nit seems to be moving about...",
+      "inventory": [
+        5021,
+        5055
+      ]
     },
     "5017": {
       "vnum": 5017,
@@ -2360,7 +2409,11 @@
         "aggressive",
         "no_bash"
       ],
-      "description": "It is advisable not to mess with this creature.  After all, you\nhave heard many a horror story about experiences with camels.\nBad experiences."
+      "description": "It is advisable not to mess with this creature.  After all, you\nhave heard many a horror story about experiences with camels.\nBad experiences.",
+      "inventory": [
+        5030,
+        5018
+      ]
     },
     "5098": {
       "vnum": 5098,
@@ -2383,7 +2436,10 @@
         "hello": "The torchbearer's voice cracks. 'They went deeper. All of them. Said there was treasure past the underground lake. None came back. I can still hear the echoes of their screams sometimes... or maybe that's just the wind.'",
         "treasure": "He laughs bitterly. 'Gold means nothing when you're dead. But if you must know \u2014 the richest veins are near the lake. That's where the worst things live, too.'",
         "default": "The torchbearer clutches his guttering torch. 'Please... do you know the way out?'"
-      }
+      },
+      "inventory": [
+        5030
+      ]
     }
   },
   "objects": {
@@ -2422,7 +2478,8 @@
       "armor_bonus": 0,
       "type": "armor",
       "wear_slot": "neck",
-      "armor": 0
+      "armor": 8,
+      "armor_class": 2
     },
     "5005": {
       "vnum": 5005,
@@ -2526,7 +2583,8 @@
       "armor_bonus": 0,
       "type": "armor",
       "wear_slot": "head",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 1
     },
     "5015": {
       "vnum": 5015,
@@ -2649,7 +2707,8 @@
       "armor_bonus": -5,
       "type": "armor",
       "wear_slot": "wrist",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 3
     },
     "5026": {
       "vnum": 5026,
@@ -2782,7 +2841,8 @@
       "wear_slot": "neck",
       "armor": 1,
       "weight": 1,
-      "cost": 230
+      "cost": 230,
+      "armor_class": 2
     },
     "5055": {
       "vnum": 5055,
@@ -2824,7 +2884,8 @@
       ],
       "set_id": 50,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 1
     },
     "5057": {
       "vnum": 5057,
@@ -2843,7 +2904,8 @@
         }
       ],
       "set_id": 50,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 7
     },
     "5058": {
       "vnum": 5058,
@@ -2866,7 +2928,8 @@
         }
       ],
       "set_id": 50,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 8
     },
     "5059": {
       "vnum": 5059,
@@ -2885,7 +2948,8 @@
         }
       ],
       "set_id": 50,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 6
     },
     "5060": {
       "vnum": 5060,
@@ -2971,7 +3035,8 @@
         }
       ],
       "set_id": 50,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 5
     }
   }
 }

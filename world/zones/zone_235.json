@@ -21,7 +21,13 @@
           "to_room": 23501,
           "description": "Rough-hewn steps descend into the warrens."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23500,
+          "max": 1
+        }
+      ]
     },
     "23501": {
       "vnum": 23501,
@@ -45,7 +51,13 @@
           "to_room": 23505,
           "description": "A narrow passage branches east."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23501,
+          "max": 1
+        }
+      ]
     },
     "23502": {
       "vnum": 23502,
@@ -65,7 +77,13 @@
           "to_room": 23503,
           "description": "The corridor continues past the traps."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23502,
+          "max": 1
+        }
+      ]
     },
     "23503": {
       "vnum": 23503,
@@ -89,7 +107,13 @@
           "to_room": 23507,
           "description": "A descending tunnel leads deeper."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23503,
+          "max": 1
+        }
+      ]
     },
     "23504": {
       "vnum": 23504,
@@ -105,7 +129,13 @@
           "to_room": 23503,
           "description": "The guard post lies to the east."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23504,
+          "max": 1
+        }
+      ]
     },
     "23505": {
       "vnum": 23505,
@@ -126,7 +156,13 @@
           "to_room": 23506,
           "description": "The crevice widens into a cavern."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23505,
+          "max": 1
+        }
+      ]
     },
     "23506": {
       "vnum": 23506,
@@ -142,7 +178,13 @@
           "to_room": 23505,
           "description": "A narrow crevice leads west."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23506,
+          "max": 1
+        }
+      ]
     },
     "23507": {
       "vnum": 23507,
@@ -166,7 +208,13 @@
           "to_room": 23512,
           "description": "A side passage leads east."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23507,
+          "max": 1
+        }
+      ]
     },
     "23508": {
       "vnum": 23508,
@@ -189,7 +237,13 @@
           "to_room": 23510,
           "description": "A tunnel leads toward the sound of water."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23508,
+          "max": 1
+        }
+      ]
     },
     "23509": {
       "vnum": 23509,
@@ -208,7 +262,13 @@
           "to_room": 23514,
           "description": "A passage leads toward the goblin market."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23509,
+          "max": 1
+        }
+      ]
     },
     "23510": {
       "vnum": 23510,
@@ -228,7 +288,13 @@
           "to_room": 23511,
           "description": "The rope bridge crosses the river."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23510,
+          "max": 1
+        }
+      ]
     },
     "23511": {
       "vnum": 23511,
@@ -248,7 +314,13 @@
           "to_room": 23515,
           "description": "Heavy footprints lead into a large tunnel."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23511,
+          "max": 1
+        }
+      ]
     },
     "23512": {
       "vnum": 23512,
@@ -268,7 +340,13 @@
           "to_room": 23513,
           "description": "The shaman's sanctum lies beyond the fetishes."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23512,
+          "max": 1
+        }
+      ]
     },
     "23513": {
       "vnum": 23513,
@@ -284,7 +362,13 @@
           "to_room": 23512,
           "description": "The antechamber lies to the north."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23513,
+          "max": 1
+        }
+      ]
     },
     "23514": {
       "vnum": 23514,
@@ -303,7 +387,13 @@
           "to_room": 23516,
           "description": "A wide tunnel leads toward the throne room."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23514,
+          "max": 1
+        }
+      ]
     },
     "23515": {
       "vnum": 23515,
@@ -428,7 +518,11 @@
         "wimpy",
         "helper"
       ],
-      "room": 23501
+      "room": 23501,
+      "inventory": [
+        23500,
+        23504
+      ]
     },
     "23501": {
       "vnum": 23501,
@@ -448,7 +542,10 @@
         "wimpy",
         "helper"
       ],
-      "room": 23502
+      "room": 23502,
+      "inventory": [
+        23501
+      ]
     },
     "23502": {
       "vnum": 23502,
@@ -468,7 +565,12 @@
         "helper",
         "sentinel"
       ],
-      "room": 23503
+      "room": 23503,
+      "inventory": [
+        23501,
+        23500,
+        23502
+      ]
     },
     "23503": {
       "vnum": 23503,
@@ -488,7 +590,12 @@
         "helper",
         "sentinel"
       ],
-      "room": 23504
+      "room": 23504,
+      "inventory": [
+        23501,
+        23503,
+        23500
+      ]
     },
     "23504": {
       "vnum": 23504,
@@ -508,7 +615,11 @@
         "aggressive",
         "sentinel"
       ],
-      "room": 23506
+      "room": 23506,
+      "inventory": [
+        23502,
+        23500
+      ]
     },
     "23505": {
       "vnum": 23505,
@@ -528,7 +639,12 @@
         "aggressive",
         "sentinel"
       ],
-      "room": 23506
+      "room": 23506,
+      "inventory": [
+        23503,
+        23505,
+        23504
+      ]
     },
     "23506": {
       "vnum": 23506,
@@ -548,7 +664,11 @@
         "wimpy",
         "helper"
       ],
-      "room": 23508
+      "room": 23508,
+      "inventory": [
+        23500,
+        23503
+      ]
     },
     "23507": {
       "vnum": 23507,
@@ -568,7 +688,10 @@
         "wimpy",
         "helper"
       ],
-      "room": 23509
+      "room": 23509,
+      "inventory": [
+        23502
+      ]
     },
     "23508": {
       "vnum": 23508,
@@ -591,7 +714,12 @@
       "room": 23513,
       "equipment": {
         "hold": 23502
-      }
+      },
+      "inventory": [
+        23500,
+        23502,
+        23504
+      ]
     },
     "23509": {
       "vnum": 23509,
@@ -611,7 +739,11 @@
         "aggressive",
         "helper"
       ],
-      "room": 23516
+      "room": 23516,
+      "inventory": [
+        23504,
+        23503
+      ]
     },
     "23510": {
       "vnum": 23510,
@@ -631,7 +763,10 @@
         "aggressive",
         "helper"
       ],
-      "room": 23516
+      "room": 23516,
+      "inventory": [
+        23505
+      ]
     },
     "23511": {
       "vnum": 23511,
@@ -651,7 +786,10 @@
         "aggressive",
         "sentinel"
       ],
-      "room": 23515
+      "room": 23515,
+      "inventory": [
+        23504
+      ]
     },
     "23512": {
       "vnum": 23512,
@@ -671,7 +809,10 @@
         "aggressive",
         "sentinel"
       ],
-      "room": 23515
+      "room": 23515,
+      "inventory": [
+        23500
+      ]
     },
     "23513": {
       "vnum": 23513,
@@ -705,7 +846,11 @@
           "cleave",
           "war_cry"
         ]
-      }
+      },
+      "inventory": [
+        23504,
+        23501
+      ]
     },
     "23514": {
       "vnum": 23514,
@@ -725,7 +870,10 @@
         "wimpy",
         "sentinel"
       ],
-      "room": 23514
+      "room": 23514,
+      "inventory": [
+        23502
+      ]
     }
   },
   "objects": {
@@ -753,7 +901,9 @@
         }
       ],
       "min_level": 20,
-      "type": "armor"
+      "type": "armor",
+      "armor_class": 5,
+      "armor": 13
     },
     "23501": {
       "vnum": 23501,
@@ -777,7 +927,9 @@
         }
       ],
       "min_level": 18,
-      "type": "armor"
+      "type": "armor",
+      "armor_class": 4,
+      "armor": 17
     },
     "23502": {
       "vnum": 23502,

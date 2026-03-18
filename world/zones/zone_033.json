@@ -1790,7 +1790,10 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "This farmer is a resident of Stanneg by the Mountains,\nand as such, is one of the most boring people on earth."
+      "description": "This farmer is a resident of Stanneg by the Mountains,\nand as such, is one of the most boring people on earth.",
+      "inventory": [
+        3326
+      ]
     },
     "3301": {
       "vnum": 3301,
@@ -1893,7 +1896,14 @@
         ],
         "markup": 3037.0,
         "markdown": 3038.0
-      }
+      },
+      "inventory": [
+        3327,
+        3308,
+        3313,
+        3312,
+        3330
+      ]
     },
     "3303": {
       "vnum": 3303,
@@ -1919,7 +1929,15 @@
         "buys": [],
         "markup": 3320.0,
         "markdown": 3321.0
-      }
+      },
+      "inventory": [
+        3313,
+        3310,
+        3309,
+        3328,
+        3318,
+        3302
+      ]
     },
     "3304": {
       "vnum": 3304,
@@ -2032,7 +2050,12 @@
         "no_charm",
         "no_bash"
       ],
-      "description": "This Cyclops throws rocks real good.  With one eye though, \nhitting the target is another matter.  He looks at you and \ngrowls as he misses again!"
+      "description": "This Cyclops throws rocks real good.  With one eye though, \nhitting the target is another matter.  He looks at you and \ngrowls as he misses again!",
+      "inventory": [
+        3313,
+        3305,
+        3321
+      ]
     },
     "3307": {
       "vnum": 3307,
@@ -2054,7 +2077,11 @@
       "equipment": {
         "body": 3318,
         "wield": 3312
-      }
+      },
+      "inventory": [
+        3323,
+        3305
+      ]
     },
     "3308": {
       "vnum": 3308,
@@ -2114,7 +2141,12 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        3300,
+        3311,
+        3322
+      ]
     },
     "3309": {
       "vnum": 3309,
@@ -2131,7 +2163,11 @@
       "flags": [
         "sentinel"
       ],
-      "description": "He looks like a retired farmer now making an honest living in an inn.\nMore power to him!"
+      "description": "He looks like a retired farmer now making an honest living in an inn.\nMore power to him!",
+      "inventory": [
+        3317,
+        3324
+      ]
     },
     "3310": {
       "vnum": 3310,
@@ -2148,7 +2184,10 @@
       "flags": [
         "sentinel"
       ],
-      "description": "He is old and greying, but seems to have been able to\nkeep his mental faculties through the years.  A large\nwoolen sweater is wrapped about him for warmth.  His\nblue eyes dance with amusement as he notices your weapons,\nbut he doesn't seem too terribly startled."
+      "description": "He is old and greying, but seems to have been able to\nkeep his mental faculties through the years.  A large\nwoolen sweater is wrapped about him for warmth.  His\nblue eyes dance with amusement as he notices your weapons,\nbut he doesn't seem too terribly startled.",
+      "inventory": [
+        3327
+      ]
     },
     "3311": {
       "vnum": 3311,
@@ -2170,7 +2209,11 @@
       "description": "He looks mean, as if the very personality of the mountains\nhad infected him with hardness.  His stride is purposeful,\nhis face weathered, his eyes cold and dark.  Others are\nstanding out of his way as he walks on by.",
       "equipment": {
         "wield": 3317
-      }
+      },
+      "inventory": [
+        3310,
+        3306
+      ]
     },
     "3312": {
       "vnum": 3312,
@@ -2187,7 +2230,11 @@
       "flags": [
         "sentinel"
       ],
-      "description": "He looks harried from the way he hastily takes orders and \nrushes in the back to get food, and to the bar for drinks.  \nHe doesn't even spare you a glance as he passes by."
+      "description": "He looks harried from the way he hastily takes orders and \nrushes in the back to get food, and to the bar for drinks.  \nHe doesn't even spare you a glance as he passes by.",
+      "inventory": [
+        3313,
+        3319
+      ]
     },
     "3313": {
       "vnum": 3313,
@@ -2204,7 +2251,10 @@
       "flags": [
         "sentinel"
       ],
-      "description": "She looks harried from the way she hastily takes orders and rushes\nin the back to get food, and to the bar for drinks.  She doesn't\neven spare you a glance as she passes by."
+      "description": "She looks harried from the way she hastily takes orders and rushes\nin the back to get food, and to the bar for drinks.  She doesn't\neven spare you a glance as she passes by.",
+      "inventory": [
+        3328
+      ]
     },
     "3314": {
       "vnum": 3314,
@@ -2249,7 +2299,12 @@
       "description": "Whew!  Has this guy ever seen a bath?  His face, hands, arms...\nnearly every bit of him is covered with grime, dust, dirt and\ndecay.  His sword is polished and cleaned though...",
       "equipment": {
         "wield": 3315
-      }
+      },
+      "inventory": [
+        3308,
+        3306,
+        3315
+      ]
     },
     "3316": {
       "vnum": 3316,
@@ -2271,7 +2326,11 @@
       "description": "He may be a bandit, but he's no slacker.  You wonder\nwho would be able to keep these bandits in line enough\nto pull a good guard duty...\n\n(boy is this guy DIRTY!!!)",
       "equipment": {
         "wield": 3315
-      }
+      },
+      "inventory": [
+        3310,
+        3329
+      ]
     },
     "3317": {
       "vnum": 3317,
@@ -2289,7 +2348,11 @@
         "sentinel",
         "wimpy"
       ],
-      "description": "The slave looks up at you with pleading eyes.  He\nwants his freedom.  The chains around his ankles are\ntight, and you wonder if you should set him free, and\nif you even can."
+      "description": "The slave looks up at you with pleading eyes.  He\nwants his freedom.  The chains around his ankles are\ntight, and you wonder if you should set him free, and\nif you even can.",
+      "inventory": [
+        3305,
+        3327
+      ]
     },
     "3318": {
       "vnum": 3318,
@@ -2309,7 +2372,11 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "This farmer is a resident of Stanneg by the Mountains,\nand as such, is one of the most boring people on earth."
+      "description": "This farmer is a resident of Stanneg by the Mountains,\nand as such, is one of the most boring people on earth.",
+      "inventory": [
+        3322,
+        3318
+      ]
     },
     "3319": {
       "vnum": 3319,
@@ -2332,7 +2399,11 @@
       "description": "He looks mean, as if the very personality of the mountains\nhad infected him with hardness.  His stride is purposeful,\nhis face weathered, his eyes cold and dark.  Others are\nstanding out of his way as he walks on by.",
       "equipment": {
         "wield": 3317
-      }
+      },
+      "inventory": [
+        3329,
+        3323
+      ]
     }
   },
   "objects": {
@@ -2422,7 +2493,8 @@
       "value": 0,
       "type": "armor",
       "wear_slot": "head",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 3
     },
     "3308": {
       "vnum": 3308,
@@ -2552,7 +2624,8 @@
       "armor_bonus": 6,
       "type": "armor",
       "wear_slot": "body",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 4
     },
     "3319": {
       "vnum": 3319,
@@ -2634,7 +2707,8 @@
       ],
       "set_id": 33,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 4
     },
     "3324": {
       "vnum": 3324,
@@ -2653,7 +2727,8 @@
         }
       ],
       "set_id": 33,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 4
     },
     "3325": {
       "vnum": 3325,
@@ -2676,7 +2751,8 @@
         }
       ],
       "set_id": 33,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 5
     },
     "3326": {
       "vnum": 3326,
@@ -2695,7 +2771,8 @@
         }
       ],
       "set_id": 33,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 5
     },
     "3327": {
       "vnum": 3327,
@@ -2765,7 +2842,8 @@
       ],
       "set_id": 33,
       "type": "armor",
-      "armor": 0
+      "armor": 4,
+      "armor_class": 4
     },
     "3330": {
       "vnum": 3330,
@@ -2786,7 +2864,8 @@
       ],
       "set_id": 33,
       "type": "armor",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 4
     }
   }
 }

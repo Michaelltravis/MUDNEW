@@ -17,7 +17,11 @@
       "long_desc": "A vicious warg is here, snarling angrily at you.",
       "name": "warg",
       "short_desc": "the vicious warg",
-      "vnum": 6100
+      "vnum": 6100,
+      "inventory": [
+        6117,
+        6102
+      ]
     },
     "6101": {
       "alignment": -350,
@@ -35,7 +39,10 @@
       "long_desc": "A ferocious warg is here, snarling angrily at you.",
       "name": "warg",
       "short_desc": "the ferocious warg",
-      "vnum": 6101
+      "vnum": 6101,
+      "inventory": [
+        6103
+      ]
     },
     "6102": {
       "alignment": -150,
@@ -53,7 +60,10 @@
       "long_desc": "A large, grey wolf is here, glaring hungrily at you.",
       "name": "wolf",
       "short_desc": "the large, grey wolf",
-      "vnum": 6102
+      "vnum": 6102,
+      "inventory": [
+        6105
+      ]
     },
     "6103": {
       "alignment": -150,
@@ -71,7 +81,10 @@
       "long_desc": "A large, black wolf is here, glaring hungrily at you.",
       "name": "wolf",
       "short_desc": "the large, black wolf",
-      "vnum": 6103
+      "vnum": 6103,
+      "inventory": [
+        6117
+      ]
     },
     "6110": {
       "alignment": 0,
@@ -94,7 +107,12 @@
       "long_desc": "A huge, ancient tree towers above you.",
       "name": "tree",
       "short_desc": "the ancient tree",
-      "vnum": 6110
+      "vnum": 6110,
+      "inventory": [
+        6114,
+        6118,
+        6106
+      ]
     },
     "6111": {
       "alignment": 0,
@@ -117,7 +135,12 @@
       "long_desc": "A huge, ancient tree towers above you.",
       "name": "tree",
       "short_desc": "the ancient tree",
-      "vnum": 6111
+      "vnum": 6111,
+      "inventory": [
+        6113,
+        6104,
+        6109
+      ]
     },
     "6112": {
       "alignment": -1000,
@@ -164,7 +187,10 @@
       "long_desc": "A huge, poisonous spider is here.",
       "name": "spider",
       "short_desc": "the huge, poisonous spider",
-      "vnum": 6113
+      "vnum": 6113,
+      "inventory": [
+        6116
+      ]
     },
     "6114": {
       "alignment": -1000,
@@ -214,7 +240,11 @@
       "long_desc": "Shargugh the Forest Brownie is here, grinning broadly at you.",
       "name": "shargugh",
       "short_desc": "Shargugh",
-      "vnum": 6115
+      "vnum": 6115,
+      "inventory": [
+        6111,
+        6119
+      ]
     },
     "6116": {
       "alignment": 0,
@@ -267,7 +297,11 @@
       "long_desc": "Isha the Dark Elf is here, observing you silently.",
       "name": "isha",
       "short_desc": "Isha the Dark Elf",
-      "vnum": 6117
+      "vnum": 6117,
+      "inventory": [
+        6119,
+        6104
+      ]
     },
     "6198": {
       "vnum": 6198,
@@ -291,7 +325,10 @@
         "corruption": "The spirit shudders. 'It feeds on anger and fear. The beasts here are not evil \u2014 they are suffering. End them quickly, if you must. It is a mercy.'",
         "default": "The forest spirit pulses faintly, its light flickering like a dying ember.",
         "next": "Wounded Forest Spirit regards you with hollow eyes. 'The Drow City lies deeper underground \u2014 if you've conquered this forest, you may be ready for their treachery. The mines of Moria also hold secrets in their deepest levels, and the city of Thalos could use fighters like you.'"
-      }
+      },
+      "inventory": [
+        6114
+      ]
     }
   },
   "name": "Haon-Dor, Dark Forest",
@@ -414,7 +451,8 @@
       "weight": 15,
       "type": "armor",
       "wear_slot": "shield",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 3
     },
     "6112": {
       "armor_bonus": 6,
@@ -427,7 +465,8 @@
       "weight": 20,
       "type": "armor",
       "wear_slot": "head",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 2
     },
     "6113": {
       "item_type": "light",
@@ -450,7 +489,8 @@
       "weight": 10,
       "type": "armor",
       "wear_slot": "finger",
-      "armor": 0
+      "armor": 10,
+      "armor_class": 2
     },
     "6115": {
       "damage_dice": "2d9",
@@ -475,7 +515,8 @@
       "weight": 10,
       "type": "armor",
       "wear_slot": "body",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 2
     },
     "6117": {
       "armor_bonus": 6,
@@ -486,7 +527,8 @@
       "value": 5000,
       "vnum": 6117,
       "weight": 8,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 10
     },
     "6118": {
       "item_type": "treasure",
@@ -498,7 +540,8 @@
       "weight": 20,
       "type": "armor",
       "wear_slot": "about",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 3
     },
     "6119": {
       "armor_bonus": 6,
@@ -511,7 +554,8 @@
       "weight": 4,
       "type": "armor",
       "wear_slot": "waist",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 2
     },
     "6120": {
       "damage_dice": "3d6",

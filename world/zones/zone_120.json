@@ -1907,7 +1907,11 @@
       "equipment": {
         "wield": 3022,
         "shield": 3042
-      }
+      },
+      "inventory": [
+        12045,
+        12018
+      ]
     },
     "12001": {
       "vnum": 12001,
@@ -1929,7 +1933,10 @@
       "equipment": {
         "wield": 3021,
         "shield": 3042
-      }
+      },
+      "inventory": [
+        12004
+      ]
     },
     "12003": {
       "vnum": 12003,
@@ -1946,7 +1953,10 @@
       "flags": [
         "sentinel"
       ],
-      "description": "The spectator is filthy, half drunk and screaming his head off."
+      "description": "The spectator is filthy, half drunk and screaming his head off.",
+      "inventory": [
+        12024
+      ]
     },
     "12004": {
       "vnum": 12004,
@@ -1994,7 +2004,10 @@
       "description": "A very pretty young woman who was captured instead of being killed when\nthe Roman legions subjugated her land.",
       "equipment": {
         "wield": 3023
-      }
+      },
+      "inventory": [
+        12014
+      ]
     },
     "12006": {
       "vnum": 12006,
@@ -2015,7 +2028,11 @@
       "equipment": {
         "wield": 3022,
         "head": 12002
-      }
+      },
+      "inventory": [
+        12044,
+        12025
+      ]
     },
     "12007": {
       "vnum": 12007,
@@ -2036,7 +2053,11 @@
       "equipment": {
         "wield": 3021,
         "feet": 12008
-      }
+      },
+      "inventory": [
+        12022,
+        12011
+      ]
     },
     "12008": {
       "vnum": 12008,
@@ -2219,7 +2240,10 @@
       "equipment": {
         "wield": 3020,
         "feet": 12008
-      }
+      },
+      "inventory": [
+        12013
+      ]
     },
     "12014": {
       "vnum": 12014,
@@ -2240,7 +2264,11 @@
       "equipment": {
         "wield": 3022,
         "wrist2": 12011
-      }
+      },
+      "inventory": [
+        12035,
+        12030
+      ]
     },
     "12015": {
       "vnum": 12015,
@@ -2261,7 +2289,12 @@
       "description": "He seems to be waiting for you to either buy a ticket or to get out\nof his way so that he can sell tickets to people that actually want\nthem.",
       "equipment": {
         "wield": 12015
-      }
+      },
+      "inventory": [
+        12044,
+        12014,
+        12030
+      ]
     },
     "12016": {
       "vnum": 12016,
@@ -2308,7 +2341,11 @@
         "stay_zone",
         "memory"
       ],
-      "description": "It appears to be your ordinary citizen going about his business."
+      "description": "It appears to be your ordinary citizen going about his business.",
+      "inventory": [
+        12017,
+        12044
+      ]
     },
     "12018": {
       "vnum": 12018,
@@ -2332,7 +2369,11 @@
       "description": "You see a strong, loyal public defender.",
       "equipment": {
         "wield": 3022
-      }
+      },
+      "inventory": [
+        12045,
+        12013
+      ]
     },
     "12019": {
       "vnum": 12019,
@@ -2355,7 +2396,11 @@
         "wield": 3021,
         "feet": 12008,
         "body": 12018
-      }
+      },
+      "inventory": [
+        12044,
+        12020
+      ]
     },
     "12020": {
       "vnum": 12020,
@@ -2407,7 +2452,10 @@
         "wield": 3022,
         "shield": 3042,
         "body": 3046
-      }
+      },
+      "inventory": [
+        12020
+      ]
     },
     "12022": {
       "vnum": 12022,
@@ -2429,7 +2477,10 @@
       "equipment": {
         "wield": 3022,
         "finger2": 12012
-      }
+      },
+      "inventory": [
+        12046
+      ]
     },
     "12023": {
       "vnum": 12023,
@@ -2541,7 +2592,11 @@
         "shield": 3042,
         "body": 3046,
         "feet": 12008
-      }
+      },
+      "inventory": [
+        12024,
+        12012
+      ]
     },
     "12027": {
       "vnum": 12027,
@@ -2614,7 +2669,11 @@
       "equipment": {
         "wield": 3024,
         "body": 3043
-      }
+      },
+      "inventory": [
+        12021,
+        12047
+      ]
     },
     "12030": {
       "vnum": 12030,
@@ -2682,7 +2741,11 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        12021,
+        12019
+      ]
     },
     "12031": {
       "vnum": 12031,
@@ -2710,7 +2773,12 @@
       "description": "Venus is probably one of the most beautiful women you have ever seen\nif not THE most beautiful.  She is very powerful and tough under that\nouter image of beauty.",
       "equipment": {
         "neck1": 12022
-      }
+      },
+      "inventory": [
+        12000,
+        12023,
+        12031
+      ]
     },
     "12032": {
       "vnum": 12032,
@@ -2739,7 +2807,11 @@
       "equipment": {
         "hold": 12016,
         "waist": 12021
-      }
+      },
+      "inventory": [
+        12047,
+        12002
+      ]
     },
     "12033": {
       "vnum": 12033,
@@ -2766,7 +2838,10 @@
       "description": "Mercury is a handsome, youthful God and wears a large grin on his face.",
       "equipment": {
         "feet": 12023
-      }
+      },
+      "inventory": [
+        12045
+      ]
     },
     "12034": {
       "vnum": 12034,
@@ -3011,7 +3086,8 @@
       "value": 15000,
       "type": "armor",
       "wear_slot": "finger",
-      "armor": 0
+      "armor": 12,
+      "armor_class": 2
     },
     "12001": {
       "vnum": 12001,
@@ -3024,7 +3100,8 @@
       "armor_bonus": 4,
       "type": "armor",
       "wear_slot": "waist",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 4
     },
     "12002": {
       "vnum": 12002,
@@ -3037,7 +3114,8 @@
       "armor_bonus": 8,
       "type": "armor",
       "wear_slot": "head",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 3
     },
     "12003": {
       "vnum": 12003,
@@ -3104,7 +3182,8 @@
       "armor_bonus": 2,
       "type": "armor",
       "wear_slot": "feet",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 4
     },
     "12010": {
       "vnum": 12010,
@@ -3128,7 +3207,8 @@
       "value": 10000,
       "type": "armor",
       "wear_slot": "wrist",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 4
     },
     "12012": {
       "vnum": 12012,
@@ -3140,7 +3220,8 @@
       "value": 35000,
       "type": "armor",
       "wear_slot": "finger",
-      "armor": 0
+      "armor": 9,
+      "armor_class": 4
     },
     "12013": {
       "vnum": 12013,
@@ -3152,7 +3233,8 @@
       "value": 16500,
       "type": "armor",
       "wear_slot": "neck",
-      "armor": 0
+      "armor": 10,
+      "armor_class": 4
     },
     "12014": {
       "vnum": 12014,
@@ -3164,7 +3246,8 @@
       "value": 15000,
       "type": "armor",
       "wear_slot": "body",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 3
     },
     "12015": {
       "vnum": 12015,
@@ -3201,7 +3284,8 @@
       "armor_bonus": 8,
       "type": "armor",
       "wear_slot": "hands",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 2
     },
     "12018": {
       "vnum": 12018,
@@ -3212,7 +3296,8 @@
       "weight": 135,
       "value": 50000,
       "armor_bonus": 8,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 12
     },
     "12019": {
       "vnum": 12019,
@@ -3225,7 +3310,8 @@
       "armor_bonus": 8,
       "type": "armor",
       "wear_slot": "feet",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 3
     },
     "12020": {
       "vnum": 12020,
@@ -3248,7 +3334,8 @@
       "weight": 30,
       "value": 100000,
       "armor_bonus": 15,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 12
     },
     "12022": {
       "vnum": 12022,
@@ -3260,7 +3347,8 @@
       "value": 50000,
       "type": "armor",
       "wear_slot": "neck",
-      "armor": 0
+      "armor": 11,
+      "armor_class": 3
     },
     "12023": {
       "vnum": 12023,
@@ -3273,7 +3361,8 @@
       "armor_bonus": 8,
       "type": "armor",
       "wear_slot": "feet",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 4
     },
     "12024": {
       "vnum": 12024,
@@ -3484,7 +3573,8 @@
       ],
       "set_id": 120,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 4
     },
     "12042": {
       "vnum": 12042,
@@ -3503,7 +3593,8 @@
         }
       ],
       "set_id": 120,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 11
     },
     "12043": {
       "vnum": 12043,
@@ -3526,7 +3617,8 @@
         }
       ],
       "set_id": 120,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 12
     },
     "12044": {
       "vnum": 12044,
@@ -3545,7 +3637,8 @@
         }
       ],
       "set_id": 120,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 8
     },
     "12045": {
       "vnum": 12045,
@@ -3615,7 +3708,8 @@
       ],
       "set_id": 120,
       "type": "armor",
-      "armor": 0
+      "armor": 12,
+      "armor_class": 2
     },
     "12048": {
       "vnum": 12048,
@@ -3636,7 +3730,8 @@
       ],
       "set_id": 120,
       "type": "armor",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 2
     }
   }
 }

@@ -1331,10 +1331,47 @@ class MUDServer:
         
         asyncio.create_task(self.server.serve_forever())
         
+    # --- IP Ban List ---
+    BANNED_IPS = {
+        # Scanners / bots
+        '204.76.203.210', '193.111.248.141', '157.245.224.87',
+        '157.230.157.100', '18.116.101.220', '3.129.187.38',
+        '89.42.231.182', '204.76.203.215', '3.130.168.2',
+        '167.94.138.171', '16.58.56.214', '206.168.34.58',
+        # China
+        '106.117.108.141', '110.177.176.239', '110.177.181.3',
+        '111.162.156.51', '111.162.158.127', '112.122.236.114',
+        '113.57.185.86', '119.164.101.49', '119.48.135.48',
+        '121.29.84.65', '122.96.28.137', '123.160.223.73',
+        '123.160.223.74', '123.191.141.46', '123.191.159.14',
+        '123.245.85.154', '124.117.192.143', '124.117.192.29',
+        '124.117.193.197', '14.135.75.17', '171.12.10.208',
+        '171.12.10.76', '171.37.93.108', '220.167.232.177',
+        '220.167.233.72', '220.197.78.186', '221.199.14.242',
+        '221.199.73.249', '221.207.34.83', '222.176.200.45',
+        '222.176.201.50', '222.176.201.94', '222.186.13.130',
+        '223.166.22.174', '223.166.22.191', '223.166.22.35',
+        '27.47.27.109', '59.173.109.209', '60.13.7.147',
+        '60.16.200.153',
+        # Scanners (added Mar 15)
+        '85.217.149.48',
+    }
+
     async def handle_connection(self, reader: asyncio.StreamReader, writer: asyncio.StreamWriter):
         """Handle a new connection."""
         conn = Connection(reader, writer, self)
         conn_id = f"{conn.address[0]}:{conn.address[1]}" if conn.address else f"unknown-{id(conn)}"
+
+        # Block banned IPs immediately
+        client_ip = conn.address[0] if conn.address else None
+        if client_ip and client_ip in self.BANNED_IPS:
+            logger.info(f"Blocked banned IP: {client_ip}")
+            try:
+                writer.close()
+            except Exception:
+                pass
+            return
+
         self.connections[conn_id] = conn
         
         try:

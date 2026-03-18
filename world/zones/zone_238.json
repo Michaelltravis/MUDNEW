@@ -18,7 +18,13 @@
           "to_room": 23801,
           "description": "A weed-choked path leads to the monastery courtyard."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23800,
+          "max": 1
+        }
+      ]
     },
     "23801": {
       "vnum": 23801,
@@ -43,7 +49,13 @@
           "to_room": 23814,
           "description": "The library wing lies to the west."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23801,
+          "max": 1
+        }
+      ]
     },
     "23802": {
       "vnum": 23802,
@@ -73,7 +85,13 @@
           "to_room": 23804,
           "description": "A side passage leads to the vestry."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23802,
+          "max": 1
+        }
+      ]
     },
     "23803": {
       "vnum": 23803,
@@ -93,7 +111,13 @@
           "to_room": 23805,
           "description": "The spiral stairs ascend to the belfry."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23803,
+          "max": 1
+        }
+      ]
     },
     "23804": {
       "vnum": 23804,
@@ -112,7 +136,13 @@
           "to_room": 23802,
           "description": "The chapel lies to the west."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23804,
+          "max": 1
+        }
+      ]
     },
     "23805": {
       "vnum": 23805,
@@ -127,7 +157,13 @@
           "to_room": 23803,
           "description": "The spiral stairs descend."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23805,
+          "max": 1
+        }
+      ]
     },
     "23806": {
       "vnum": 23806,
@@ -151,7 +187,13 @@
           "to_room": 23808,
           "description": "A passage leads to the ossuary."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23806,
+          "max": 1
+        }
+      ]
     },
     "23807": {
       "vnum": 23807,
@@ -174,7 +216,13 @@
           "to_room": 23809,
           "description": "A tunnel leads deeper into the catacombs."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23807,
+          "max": 1
+        }
+      ]
     },
     "23808": {
       "vnum": 23808,
@@ -190,7 +238,13 @@
           "to_room": 23806,
           "description": "The upper crypt lies to the west."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23808,
+          "max": 1
+        }
+      ]
     },
     "23809": {
       "vnum": 23809,
@@ -217,7 +271,13 @@
           "to_room": 23821,
           "description": "A side tunnel branches east."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23809,
+          "max": 1
+        }
+      ]
     },
     "23810": {
       "vnum": 23810,
@@ -241,7 +301,13 @@
           "to_room": 23812,
           "description": "The corridor continues to the refectory."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23810,
+          "max": 1
+        }
+      ]
     },
     "23811": {
       "vnum": 23811,
@@ -261,7 +327,13 @@
           "to_room": 23813,
           "description": "A door leads to the abbot's quarters."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23811,
+          "max": 1
+        }
+      ]
     },
     "23812": {
       "vnum": 23812,
@@ -277,7 +349,13 @@
           "to_room": 23810,
           "description": "The dormitory corridor lies to the west."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23812,
+          "max": 1
+        }
+      ]
     },
     "23813": {
       "vnum": 23813,
@@ -293,7 +371,13 @@
           "to_room": 23811,
           "description": "The monk's cells lie to the west."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 23813,
+          "max": 1
+        }
+      ]
     },
     "23814": {
       "vnum": 23814,
@@ -536,7 +620,10 @@
         "stay_zone",
         "undead"
       ],
-      "room": 23810
+      "room": 23810,
+      "inventory": [
+        23801
+      ]
     },
     "23801": {
       "vnum": 23801,
@@ -555,7 +642,11 @@
         "stay_zone",
         "undead"
       ],
-      "room": 23811
+      "room": 23811,
+      "inventory": [
+        23803,
+        23800
+      ]
     },
     "23802": {
       "vnum": 23802,
@@ -575,7 +666,11 @@
         "undead",
         "sentinel"
       ],
-      "room": 23812
+      "room": 23812,
+      "inventory": [
+        23804,
+        23800
+      ]
     },
     "23803": {
       "vnum": 23803,
@@ -602,7 +697,10 @@
           "curse",
           "energy_drain"
         ]
-      }
+      },
+      "inventory": [
+        23802
+      ]
     },
     "23804": {
       "vnum": 23804,
@@ -623,7 +721,12 @@
         "aggressive",
         "sentinel"
       ],
-      "room": 23804
+      "room": 23804,
+      "inventory": [
+        23800,
+        23802,
+        23801
+      ]
     },
     "23805": {
       "vnum": 23805,
@@ -643,7 +746,12 @@
         "undead",
         "scavenger"
       ],
-      "room": 23808
+      "room": 23808,
+      "inventory": [
+        23804,
+        23802,
+        23803
+      ]
     },
     "23806": {
       "vnum": 23806,
@@ -663,7 +771,10 @@
         "undead",
         "scavenger"
       ],
-      "room": 23821
+      "room": 23821,
+      "inventory": [
+        23804
+      ]
     },
     "23807": {
       "vnum": 23807,
@@ -684,7 +795,11 @@
         "sentinel",
         "aggressive"
       ],
-      "room": 23818
+      "room": 23818,
+      "inventory": [
+        23800,
+        23801
+      ]
     },
     "23808": {
       "vnum": 23808,
@@ -704,7 +819,10 @@
         "undead",
         "sentinel"
       ],
-      "room": 23818
+      "room": 23818,
+      "inventory": [
+        23804
+      ]
     },
     "23809": {
       "vnum": 23809,
@@ -723,7 +841,12 @@
         "stay_zone",
         "aggressive"
       ],
-      "room": 23805
+      "room": 23805,
+      "inventory": [
+        23802,
+        23804,
+        23803
+      ]
     },
     "23810": {
       "vnum": 23810,
@@ -742,7 +865,10 @@
         "stay_zone",
         "aggressive"
       ],
-      "room": 23805
+      "room": 23805,
+      "inventory": [
+        23800
+      ]
     },
     "23811": {
       "vnum": 23811,
@@ -762,7 +888,12 @@
         "aggressive",
         "sentinel"
       ],
-      "room": 23809
+      "room": 23809,
+      "inventory": [
+        23804,
+        23802,
+        23803
+      ]
     },
     "23812": {
       "vnum": 23812,
@@ -807,7 +938,12 @@
             "damage_dealt_modifier": 1.5
           }
         }
-      }
+      },
+      "inventory": [
+        23801,
+        23800,
+        23803
+      ]
     },
     "23813": {
       "vnum": 23813,
@@ -827,7 +963,11 @@
         "undead",
         "sentinel"
       ],
-      "room": 23815
+      "room": 23815,
+      "inventory": [
+        23801,
+        23803
+      ]
     }
   },
   "objects": {
@@ -894,7 +1034,9 @@
         }
       ],
       "min_level": 27,
-      "type": "armor"
+      "type": "armor",
+      "armor_class": 5,
+      "armor": 11
     },
     "23802": {
       "vnum": 23802,

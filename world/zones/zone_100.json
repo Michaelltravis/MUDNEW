@@ -970,7 +970,8 @@
       "vnum": 10004,
       "type": "armor",
       "wear_slot": "body",
-      "armor": 4
+      "armor": 4,
+      "armor_class": 4
     },
     "10005": {
       "name": "crystal shard",
@@ -1196,7 +1197,8 @@
       ],
       "set_id": 100,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 3
     },
     "10029": {
       "vnum": 10029,
@@ -1215,7 +1217,8 @@
         }
       ],
       "set_id": 100,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 10
     },
     "10030": {
       "vnum": 10030,
@@ -1238,7 +1241,8 @@
         }
       ],
       "set_id": 100,
-      "type": "furniture"
+      "type": "furniture",
+      "armor": 15
     },
     "10031": {
       "vnum": 10031,
@@ -1280,7 +1284,8 @@
       "set_id": 100,
       "type": "weapon",
       "weapon_type": "pound",
-      "damage_dice": "1d8"
+      "damage_dice": "1d8",
+      "armor": 13
     },
     "10033": {
       "vnum": 10033,
@@ -1321,7 +1326,8 @@
       ],
       "set_id": 100,
       "type": "armor",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 4
     },
     "10035": {
       "vnum": 10035,
@@ -1342,7 +1348,8 @@
       ],
       "set_id": 100,
       "type": "armor",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 2
     }
   },
   "mobs": {
@@ -1361,6 +1368,10 @@
       "armor_class": 70,
       "flags": [
         "sentinel"
+      ],
+      "inventory": [
+        10025,
+        10023
       ]
     },
     "10002": {
@@ -1418,7 +1429,11 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        10023,
+        10025
+      ]
     },
     "10003": {
       "vnum": 10003,
@@ -1474,7 +1489,12 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        10010,
+        10029,
+        10028
+      ]
     },
     "10004": {
       "vnum": 10004,
@@ -1492,6 +1512,10 @@
       "flags": [
         "aggressive",
         "thief"
+      ],
+      "inventory": [
+        10010,
+        10025
       ]
     },
     "10005": {
@@ -1509,6 +1533,10 @@
       "armor_class": 76,
       "flags": [
         "aggressive"
+      ],
+      "inventory": [
+        10029,
+        10003
       ]
     },
     "10006": {
@@ -1527,6 +1555,10 @@
       "flags": [
         "aggressive",
         "sentinel"
+      ],
+      "inventory": [
+        10028,
+        10025
       ]
     },
     "10007": {
@@ -1584,7 +1616,12 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        10010,
+        10000,
+        10034
+      ]
     },
     "10008": {
       "vnum": 10008,
@@ -1602,7 +1639,10 @@
       "flags": [
         "sentinel"
       ],
-      "special": "shopkeeper"
+      "special": "shopkeeper",
+      "inventory": [
+        10011
+      ]
     },
     "10098": {
       "vnum": 10098,
@@ -1626,7 +1666,11 @@
         "warchief": "The shaman spits. 'Grokmar is strong but stupid. He listens to the dark whispers from the cave below camp. That voice is not orcish. It is something older. Something that uses orcs like pawns.'",
         "default": "The shaman resumes chanting, bones rattling with each guttural word.",
         "next": "The shaman's eyes narrow. 'Strong, for a soft-skin. The city of Thalos to the east always needs warriors. Or if you seek true darkness, the Drow lurk beneath the earth in their cursed city.'"
-      }
+      },
+      "inventory": [
+        10025,
+        10013
+      ]
     },
     "10099": {
       "vnum": 10099,
@@ -1649,7 +1693,11 @@
         "hello": "The prisoner grabs the bars desperately. 'Please! I'm a merchant from Thalos \u2014 they captured my caravan three days ago. The others were taken deeper into the camp for... I don't want to think about it. The cage key is on the orc captain's belt. Please, I'll pay anything!'",
         "orcs": "They whisper frantically. 'There's more of them than you think \u2014 warrens beneath the camp with hundreds more. They're breeding war beasts down there too. This isn't a raiding party, it's an invasion force.'",
         "default": "The prisoner rattles the cage bars weakly, hope and despair warring in their eyes."
-      }
+      },
+      "inventory": [
+        10025,
+        10011
+      ]
     }
   }
 }

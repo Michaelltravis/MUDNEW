@@ -1146,7 +1146,10 @@
         "scavenger",
         "stay_zone"
       ],
-      "description": "He looks freshly hatched and sprightly.  His young fangs are just\ngrowing in as of late."
+      "description": "He looks freshly hatched and sprightly.  His young fangs are just\ngrowing in as of late.",
+      "inventory": [
+        6307
+      ]
     },
     "6302": {
       "vnum": 6302,
@@ -1190,7 +1193,10 @@
         "sentinel",
         "aggressive"
       ],
-      "description": "The wolf spider is hairy, very hairy."
+      "description": "The wolf spider is hairy, very hairy.",
+      "inventory": [
+        6315
+      ]
     },
     "6304": {
       "vnum": 6304,
@@ -1228,7 +1234,10 @@
         "sentinel",
         "aggressive"
       ],
-      "description": "You notice a glazed look in her eyes."
+      "description": "You notice a glazed look in her eyes.",
+      "inventory": [
+        6309
+      ]
     },
     "6306": {
       "vnum": 6306,
@@ -1268,7 +1277,10 @@
         "scavenger",
         "stay_zone"
       ],
-      "description": "She winks in and out of reality.  It looks like it'd be difficult to hit her\nwithout a magical weapon."
+      "description": "She winks in and out of reality.  It looks like it'd be difficult to hit her\nwithout a magical weapon.",
+      "inventory": [
+        6309
+      ]
     },
     "6308": {
       "vnum": 6308,
@@ -1287,7 +1299,10 @@
         "stay_zone",
         "memory"
       ],
-      "description": "The slave does not mind you, but will fight like a warrior if attacked.\nHe serves the spider Empress, Arachnos, though whether it is by choice\nor because he was beguiled, you are not fully certain."
+      "description": "The slave does not mind you, but will fight like a warrior if attacked.\nHe serves the spider Empress, Arachnos, though whether it is by choice\nor because he was beguiled, you are not fully certain.",
+      "inventory": [
+        6302
+      ]
     },
     "6309": {
       "vnum": 6309,
@@ -1307,7 +1322,11 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "Demoniac in nature, but more mischievous.  He twiddles his thumbs\nand creates a magical treasure!"
+      "description": "Demoniac in nature, but more mischievous.  He twiddles his thumbs\nand creates a magical treasure!",
+      "inventory": [
+        6310,
+        6311
+      ]
     },
     "6310": {
       "vnum": 6310,
@@ -1325,7 +1344,11 @@
         "sentinel",
         "aggressive"
       ],
-      "description": "The Bird Spider has very powerful jaws."
+      "description": "The Bird Spider has very powerful jaws.",
+      "inventory": [
+        6314,
+        6306
+      ]
     },
     "6311": {
       "vnum": 6311,
@@ -1429,7 +1452,10 @@
         "aggressive",
         "stay_zone"
       ],
-      "description": "He looks like a lazy bum who sleeps half the time."
+      "description": "He looks like a lazy bum who sleeps half the time.",
+      "inventory": [
+        6303
+      ]
     },
     "6314": {
       "vnum": 6314,
@@ -1630,7 +1656,10 @@
       "flags": [
         "sentinel"
       ],
-      "description": "It is a rather small dragon, and you almost feel sad about killing it."
+      "description": "It is a rather small dragon, and you almost feel sad about killing it.",
+      "inventory": [
+        6301
+      ]
     },
     "6317": {
       "vnum": 6317,
@@ -1647,7 +1676,11 @@
       "flags": [
         "sentinel"
       ],
-      "description": "A medium-sized dragon -- seems it hasn't killed anything yet by itself, \nthough there is a first time for everything..."
+      "description": "A medium-sized dragon -- seems it hasn't killed anything yet by itself, \nthough there is a first time for everything...",
+      "inventory": [
+        6315,
+        6308
+      ]
     }
   },
   "objects": {
@@ -1684,7 +1717,8 @@
       "armor_bonus": 6,
       "type": "armor",
       "wear_slot": "head",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 2
     },
     "6303": {
       "vnum": 6303,
@@ -1695,7 +1729,8 @@
       "weight": 5,
       "value": 20000,
       "armor_bonus": 6,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 8
     },
     "6304": {
       "vnum": 6304,
@@ -1708,7 +1743,8 @@
       "armor_bonus": 8,
       "type": "armor",
       "wear_slot": "head",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 4
     },
     "6305": {
       "vnum": 6305,
@@ -1729,7 +1765,8 @@
       "weight": 2,
       "cost": 1400,
       "armor": 7,
-      "wear_slot": "shoulders"
+      "wear_slot": "shoulders",
+      "armor_class": 2
     },
     "6307": {
       "vnum": 6307,
@@ -1791,7 +1828,8 @@
       ],
       "set_id": 63,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 2
     },
     "6311": {
       "vnum": 6311,
@@ -1810,7 +1848,8 @@
         }
       ],
       "set_id": 63,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 9
     },
     "6312": {
       "vnum": 6312,
@@ -1833,7 +1872,8 @@
         }
       ],
       "set_id": 63,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 13
     },
     "6313": {
       "vnum": 6313,
@@ -1852,7 +1892,8 @@
         }
       ],
       "set_id": 63,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 5
     },
     "6314": {
       "vnum": 6314,
@@ -1922,7 +1963,8 @@
       ],
       "set_id": 63,
       "type": "armor",
-      "armor": 0
+      "armor": 9,
+      "armor_class": 4
     },
     "6317": {
       "vnum": 6317,
@@ -1943,7 +1985,8 @@
       ],
       "set_id": 63,
       "type": "armor",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 2
     }
   }
 }

@@ -797,7 +797,8 @@
       ],
       "set_id": 130,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 4
     },
     "13007": {
       "vnum": 13007,
@@ -816,7 +817,8 @@
         }
       ],
       "set_id": 130,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 9
     },
     "13008": {
       "vnum": 13008,
@@ -839,7 +841,8 @@
         }
       ],
       "set_id": 130,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 14
     },
     "13009": {
       "vnum": 13009,
@@ -858,7 +861,8 @@
         }
       ],
       "set_id": 130,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 9
     },
     "13010": {
       "vnum": 13010,
@@ -928,7 +932,8 @@
       ],
       "set_id": 130,
       "type": "armor",
-      "armor": 0
+      "armor": 14,
+      "armor_class": 3
     },
     "13013": {
       "vnum": 13013,
@@ -949,7 +954,8 @@
       ],
       "set_id": 130,
       "type": "armor",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 3
     }
   },
   "mobs": {
@@ -969,6 +975,9 @@
       "flags": [
         "aggressive",
         "sentinel"
+      ],
+      "inventory": [
+        13002
       ]
     },
     "13002": {
@@ -986,6 +995,10 @@
       "armor_class": 55,
       "flags": [
         "aggressive"
+      ],
+      "inventory": [
+        13006,
+        13003
       ]
     },
     "13003": {
@@ -1043,7 +1056,10 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        13003
+      ]
     },
     "13004": {
       "vnum": 13004,
@@ -1061,6 +1077,9 @@
       "flags": [
         "aggressive",
         "undead"
+      ],
+      "inventory": [
+        13001
       ]
     },
     "13005": {
@@ -1078,6 +1097,10 @@
       "armor_class": 58,
       "flags": [
         "aggressive"
+      ],
+      "inventory": [
+        13007,
+        13012
       ]
     },
     "13006": {
@@ -1095,6 +1118,11 @@
       "armor_class": 49,
       "flags": [
         "aggressive"
+      ],
+      "inventory": [
+        13001,
+        13010,
+        13008
       ]
     },
     "13007": {
@@ -1153,7 +1181,10 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        13008
+      ]
     },
     "13008": {
       "vnum": 13008,
@@ -1210,7 +1241,12 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        13012,
+        13001,
+        13003
+      ]
     }
   }
 }

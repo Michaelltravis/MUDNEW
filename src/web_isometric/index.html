@@ -1141,6 +1141,77 @@
             font-size: 11px;
         }
 
+        /* Zone Label Toast */
+        #zone-toast {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 22px;
+            font-weight: 700;
+            color: #ffd700;
+            text-shadow: 0 0 12px rgba(255,215,0,0.5), 0 2px 4px #000;
+            z-index: 200;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            white-space: nowrap;
+            letter-spacing: 2px;
+        }
+        #zone-toast.visible { opacity: 1; }
+
+        /* Chat Bubbles */
+        .chat-bubble-overlay {
+            position: fixed;
+            pointer-events: none;
+            z-index: 160;
+            background: rgba(255,255,255,0.95);
+            color: #111;
+            padding: 6px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            max-width: 200px;
+            word-wrap: break-word;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .chat-bubble-overlay.visible { opacity: 1; }
+        .chat-bubble-overlay::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid rgba(255,255,255,0.95);
+        }
+
+        /* Weather Overlay */
+        #weather-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 50;
+        }
+        #weather-overlay canvas {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Time indicator */
+        #time-indicator {
+            position: fixed;
+            top: 65px;
+            left: 20px;
+            font-size: 11px;
+            color: #888;
+            z-index: 100;
+            pointer-events: none;
+        }
+        #time-indicator .period { color: #ffd700; font-weight: bold; }
+
         /* Level Up Banner */
         #levelup-banner {
             position: fixed;
@@ -1162,6 +1233,9 @@
 </head>
 <body>
     <div id="canvas-container"></div>
+    <div id="zone-toast"></div>
+    <div id="weather-overlay"><canvas id="weather-canvas"></canvas></div>
+    <div id="time-indicator"></div>
     
     <!-- Top Bar -->
     <div id="top-bar" class="hidden">
@@ -1278,10 +1352,11 @@
     <!-- Login Panel -->
     <div id="login-panel">
         <h2>🗺️ Misthollow</h2>
-        <input type="text" id="account-name" placeholder="Account name" autofocus>
+        <input type="text" id="account-name" placeholder="Character name" autofocus>
         <input type="password" id="account-password" placeholder="Password">
         <button onclick="connect()">Enter World</button>
-        <div class="info">Isometric 3D Client</div>
+        <button onclick="createAccount()" style="background:linear-gradient(135deg,#16a34a,#10b981);margin-top:8px;">Create New Account</button>
+        <div class="info">New? Click Create New Account. Your name becomes your character.</div>
     </div>
     
     <!-- Map View Controls -->
@@ -1385,8 +1460,10 @@
             LERP_SPEED: 0.08,
             MIN_ZOOM: 20,
             MAX_ZOOM: 100,
-            MUD_PORT: 4003,
-            MAP_PORT: 4001,
+            MUD_PORT: window.location.port || (window.location.protocol === 'https:' ? 443 : 80),
+            MAP_PORT: window.location.port || (window.location.protocol === 'https:' ? 443 : 80),
+            _DIRECT_MUD_PORT: 4003,
+            _DIRECT_MAP_PORT: 4001,
         };
         
         // Sector colors: top, side, emissive (glow), roughness, metalness, edgeColor
@@ -1457,6 +1534,241 @@
             9: 'flee'
         };
         
+        // ============================================
+        // NEW FEATURE STATE
+        // ============================================
+        let lastZoneName = '';
+        let gameTime = { hour: 12, period: 'afternoon' };
+        let gameWeather = { sky: 'clear', precipitation: 'none' };
+        let chatBubbles = []; // {element, born, duration}
+        let weatherParticles = null; // canvas 2d context
+        let dayNightAmbient = null; // THREE.AmbientLight ref
+        let dayNightDir = null; // THREE.DirectionalLight ref
+        let torchLight = null; // THREE.PointLight ref
+        let waterMaterials = []; // for shimmer animation
+        let lootSparkles = []; // {mesh, born}
+
+        // Zone-specific tile color overrides
+        const ZONE_TILESETS = {
+            190: { top: 0xd0e8ff, side: 0x9ab8dd, emissive: 0x112233, name: 'snow' },    // Frostspire
+            50:  { top: 0xe8c860, side: 0xc0a040, emissive: 0x181000, name: 'sand' },    // Desert
+            69:  { top: 0x882200, side: 0x551100, emissive: 0x331100, name: 'lava' },    // Ashlands
+            68:  { top: 0x2288ee, side: 0x1155aa, emissive: 0x001133, name: 'water' },   // River zones
+            70:  { top: 0x2288ee, side: 0x1155aa, emissive: 0x001133, name: 'water' },
+            71:  { top: 0x2288ee, side: 0x1155aa, emissive: 0x001133, name: 'water' },
+            72:  { top: 0x2288ee, side: 0x1155aa, emissive: 0x001133, name: 'water' },
+            130: { top: 0x3a5538, side: 0x1e3320, emissive: 0x041008, name: 'sewer' },
+            240: { top: 0x1166bb, side: 0x0d3d88, emissive: 0x000d22, name: 'water' },
+        };
+
+        // ============================================
+        // ZONE LABEL TOAST
+        // ============================================
+        function showZoneToast(zoneName) {
+            if (!zoneName || zoneName === lastZoneName) return;
+            lastZoneName = zoneName;
+            const el = document.getElementById('zone-toast');
+            el.textContent = `— ${zoneName} —`;
+            el.classList.add('visible');
+            clearTimeout(el._hideTimer);
+            el._hideTimer = setTimeout(() => el.classList.remove('visible'), 3000);
+        }
+
+        // ============================================
+        // DAY/NIGHT CYCLE
+        // ============================================
+        function updateDayNight(timeInfo) {
+            if (!timeInfo || timeInfo.hour === undefined) return;
+            gameTime = timeInfo;
+            const hour = timeInfo.hour;
+            const period = timeInfo.period || 'afternoon';
+
+            // Update time indicator
+            const el = document.getElementById('time-indicator');
+            const icons = { night: '🌙', dawn: '🌅', morning: '☀️', afternoon: '☀️', dusk: '🌇', evening: '🌙' };
+            el.innerHTML = `${icons[period] || '☀️'} <span class="period">${period}</span> (${hour}:00)`;
+
+            if (!dayNightAmbient) return;
+
+            // Ambient light intensity based on time
+            let ambientIntensity, dirIntensity, ambientColor, dirColor;
+            if (period === 'night') {
+                ambientIntensity = 0.15; dirIntensity = 0.05;
+                ambientColor = 0x2233aa; dirColor = 0x4444aa;
+            } else if (period === 'dawn' || period === 'dusk') {
+                ambientIntensity = 0.4; dirIntensity = 0.3;
+                ambientColor = 0xff8844; dirColor = 0xffaa66;
+            } else if (period === 'evening') {
+                ambientIntensity = 0.25; dirIntensity = 0.15;
+                ambientColor = 0x4455aa; dirColor = 0x6666bb;
+            } else {
+                ambientIntensity = 0.6; dirIntensity = 0.8;
+                ambientColor = 0xffffff; dirColor = 0xfff5e0;
+            }
+
+            dayNightAmbient.intensity = ambientIntensity;
+            dayNightAmbient.color.setHex(ambientColor);
+            dayNightDir.intensity = dirIntensity;
+            dayNightDir.color.setHex(dirColor);
+
+            // Torch light around player at night/evening
+            if (torchLight) {
+                const dark = period === 'night' || period === 'evening';
+                torchLight.intensity = dark ? 1.5 : 0;
+                torchLight.color.setHex(0xffaa44);
+                torchLight.distance = 15;
+            }
+        }
+
+        // ============================================
+        // WEATHER EFFECTS
+        // ============================================
+        function updateWeatherEffects(weatherInfo) {
+            if (!weatherInfo) return;
+            gameWeather = weatherInfo;
+            const canvas = document.getElementById('weather-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            // Cancel previous weather animation
+            if (canvas._animId) cancelAnimationFrame(canvas._animId);
+            canvas._particles = [];
+
+            const sky = weatherInfo.sky || 'clear';
+            const precip = weatherInfo.precipitation || 'none';
+
+            if (sky === 'clear' || sky === 'partly_cloudy') {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                return;
+            }
+
+            // Create particles
+            const count = sky === 'stormy' ? 300 : sky === 'rainy' ? 200 : sky === 'snowy' ? 150 : 80;
+            for (let i = 0; i < count; i++) {
+                canvas._particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    speed: sky === 'snowy' ? 0.5 + Math.random() * 1.5 : 4 + Math.random() * 8,
+                    size: sky === 'snowy' ? 2 + Math.random() * 3 : 1,
+                    drift: sky === 'snowy' ? (Math.random() - 0.5) * 0.5 : (Math.random() - 0.5) * 2,
+                    len: sky === 'snowy' ? 0 : 8 + Math.random() * 12,
+                });
+            }
+
+            function drawWeather() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                // Fog/overcast overlay
+                if (sky === 'foggy' || sky === 'overcast') {
+                    ctx.fillStyle = sky === 'foggy' ? 'rgba(150,150,150,0.25)' : 'rgba(80,80,80,0.15)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                }
+                // Sandstorm tint
+                if (precip === 'sand' || sky === 'stormy') {
+                    // only for desert zones, handled by zone check
+                }
+
+                canvas._particles.forEach(p => {
+                    p.y += p.speed;
+                    p.x += p.drift;
+                    if (p.y > canvas.height) { p.y = -10; p.x = Math.random() * canvas.width; }
+                    if (p.x < 0) p.x = canvas.width;
+                    if (p.x > canvas.width) p.x = 0;
+
+                    if (sky === 'snowy') {
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                        ctx.fillStyle = 'rgba(255,255,255,0.7)';
+                        ctx.fill();
+                    } else {
+                        // Rain
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p.x + p.drift, p.y + p.len);
+                        ctx.strokeStyle = 'rgba(150,180,255,0.35)';
+                        ctx.lineWidth = p.size;
+                        ctx.stroke();
+                    }
+                });
+                canvas._animId = requestAnimationFrame(drawWeather);
+            }
+            drawWeather();
+        }
+
+        // ============================================
+        // CHAT BUBBLES
+        // ============================================
+        function spawnChatBubble(text, speakerName) {
+            // Find the speaker's position on screen
+            let worldPos = null;
+            if (playerMarker && speakerName && speakerName.toLowerCase() === playerName.toLowerCase()) {
+                worldPos = playerMarker.position.clone();
+            } else {
+                // Try to find the speaker as mob or other player in current room
+                if (playerMarker) worldPos = playerMarker.position.clone();
+            }
+            if (!worldPos) return;
+
+            const bubble = document.createElement('div');
+            bubble.className = 'chat-bubble-overlay';
+            bubble.textContent = text.slice(0, 100);
+            document.body.appendChild(bubble);
+
+            const entry = { element: bubble, born: Date.now(), duration: 4000, worldPos };
+            chatBubbles.push(entry);
+            requestAnimationFrame(() => bubble.classList.add('visible'));
+
+            setTimeout(() => {
+                bubble.classList.remove('visible');
+                setTimeout(() => {
+                    bubble.remove();
+                    const idx = chatBubbles.indexOf(entry);
+                    if (idx >= 0) chatBubbles.splice(idx, 1);
+                }, 300);
+            }, 4000);
+        }
+
+        function updateChatBubblePositions() {
+            if (!camera || !renderer) return;
+            chatBubbles.forEach(b => {
+                const screenPos = b.worldPos.clone().project(camera);
+                const hw = renderer.domElement.clientWidth / 2;
+                const hh = renderer.domElement.clientHeight / 2;
+                b.element.style.left = (screenPos.x * hw + hw - 50) + 'px';
+                b.element.style.top = (-screenPos.y * hh + hh - 60) + 'px';
+            });
+        }
+
+        // ============================================
+        // LOOT SPARKLE
+        // ============================================
+        function addLootSparkle(mesh) {
+            const geo = new THREE.BufferGeometry();
+            const count = 6;
+            const positions = new Float32Array(count * 3);
+            for (let i = 0; i < count; i++) {
+                positions[i*3] = (Math.random()-0.5) * 1.5;
+                positions[i*3+1] = 0.3 + Math.random() * 0.5;
+                positions[i*3+2] = (Math.random()-0.5) * 1.5;
+            }
+            geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const mat = new THREE.PointsMaterial({ color: 0xffdd44, size: 0.15, transparent: true, opacity: 0.8, depthTest: false });
+            const points = new THREE.Points(geo, mat);
+            points.userData.sparkle = true;
+            mesh.add(points);
+            lootSparkles.push({ mesh: points, born: Date.now() });
+        }
+
+        function updateLootSparkles() {
+            const time = Date.now() * 0.003;
+            lootSparkles.forEach(s => {
+                if (s.mesh.material) {
+                    s.mesh.material.opacity = 0.4 + Math.sin(time + s.born) * 0.4;
+                    s.mesh.rotation.y = time * 0.5;
+                }
+            });
+        }
+
         // ============================================
         // VFX SYSTEMS
         // ============================================
@@ -1957,16 +2269,20 @@
             renderer.shadowMap.type = THREE.PCFSoftShadowMap;
             container.appendChild(renderer.domElement);
             
-            // Lighting — boosted for MeshStandardMaterial
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.55);
-            scene.add(ambientLight);
+            // Lighting — boosted for MeshStandardMaterial (day/night aware)
+            dayNightAmbient = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(dayNightAmbient);
 
-            const dirLight = new THREE.DirectionalLight(0xfff5e0, 1.1);
-            dirLight.position.set(20, 40, 20);
-            dirLight.castShadow = true;
-            dirLight.shadow.mapSize.width = 2048;
-            dirLight.shadow.mapSize.height = 2048;
-            scene.add(dirLight);
+            dayNightDir = new THREE.DirectionalLight(0xfff5e0, 0.8);
+            dayNightDir.position.set(20, 40, 20);
+            dayNightDir.castShadow = true;
+            dayNightDir.shadow.mapSize.width = 2048;
+            dayNightDir.shadow.mapSize.height = 2048;
+            scene.add(dayNightDir);
+
+            // Torch point light follows player at night
+            torchLight = new THREE.PointLight(0xffaa44, 0, 15, 2);
+            scene.add(torchLight);
 
             // Cool fill from opposite side for depth contrast
             const fillLight = new THREE.DirectionalLight(0x8899cc, 0.45);
@@ -2190,6 +2506,35 @@
             tickAnimators();
             updateFloatingTexts();
             updateHitParticles();
+            updateLootSparkles();
+            updateChatBubblePositions();
+
+            // Water shimmer effect
+            waterMaterials.forEach(mat => {
+                if (mat.emissiveIntensity !== undefined) {
+                    mat.emissiveIntensity = 0.3 + Math.sin(time * 3 + mat.id * 0.7) * 0.2;
+                }
+            });
+
+            // Torch follows player
+            if (torchLight && playerMarker) {
+                torchLight.position.copy(playerMarker.position);
+                torchLight.position.y += 2;
+                // Flicker
+                if (torchLight.intensity > 0) {
+                    torchLight.intensity = 1.2 + Math.sin(time * 10) * 0.3 + Math.sin(time * 17) * 0.15;
+                }
+            }
+
+            // Idle mob sprite bob
+            roomMeshes.forEach(mesh => {
+                if (!mesh.userData.room) return;
+                mesh.children.forEach(child => {
+                    if (child.userData?.isMobSprite) {
+                        child.position.y = child.userData._baseY + Math.sin(time * 2 + child.id * 0.5) * 0.03;
+                    }
+                });
+            });
 
             renderer.render(scene, camera);
         }
@@ -2208,8 +2553,17 @@
         }
         
         function createRoomMesh(room, isCurrentRoom = false) {
-            const cfg = SECTOR_COLORS[room.sector] || SECTOR_COLORS['default'];
-            const isWater = room.sector?.includes('water') || room.sector === 'underwater';
+            // Zone-specific tileset override
+            const zoneTile = ZONE_TILESETS[room.zone];
+            let cfg = SECTOR_COLORS[room.sector] || SECTOR_COLORS['default'];
+            if (zoneTile && room.sector !== 'water_swim' && room.sector !== 'water_noswim') {
+                cfg = { ...cfg, top: zoneTile.top, side: zoneTile.side, emissive: zoneTile.emissive };
+            }
+            const isWater = room.sector?.includes('water') || room.sector === 'underwater' || (zoneTile && zoneTile.name === 'water');
+
+            // Fog of war: dim rooms that aren't current or adjacent
+            const isNearby = isCurrentRoom; // adjacency checked later in renderMap
+            const fogDim = (!isCurrentRoom && room._fogDist && room._fogDist > 3) ? 0.4 : 1.0;
 
             const geometry = new THREE.BoxGeometry(
                 CONFIG.TILE_SIZE,
@@ -2222,13 +2576,26 @@
                 emissive: isCurrentRoom ? 0x443300 : (cfg.emissive || 0x000000),
                 roughness: cfg.roughness ?? 0.85,
                 metalness: cfg.metalness ?? 0.05,
+                transparent: fogDim < 1,
+                opacity: fogDim,
             });
+
+            // Water shimmer: track material for animation
+            if (isWater) {
+                topMaterial.emissive = new THREE.Color(0x003366);
+                topMaterial.emissiveIntensity = 0.3;
+                topMaterial.metalness = 0.4;
+                topMaterial.roughness = 0.05;
+                waterMaterials.push(topMaterial);
+            }
 
             const sideMaterial = new THREE.MeshStandardMaterial({
                 color: cfg.side,
                 emissive: cfg.emissive ? new THREE.Color(cfg.emissive).multiplyScalar(0.5) : 0x000000,
                 roughness: (cfg.roughness ?? 0.85) + 0.05,
                 metalness: cfg.metalness ?? 0.05,
+                transparent: fogDim < 1,
+                opacity: fogDim,
             });
 
             const materials = [
@@ -2256,9 +2623,56 @@
             const edgeOpacity = isCurrentRoom ? 1.0 : 0.35;
             const line = new THREE.LineSegments(
                 edges,
-                new THREE.LineBasicMaterial({ color: edgeColor, transparent: true, opacity: edgeOpacity })
+                new THREE.LineBasicMaterial({ color: edgeColor, transparent: true, opacity: edgeOpacity * fogDim })
             );
             mesh.add(line);
+
+            // Door indicators
+            if (room.doors) {
+                const doorDirMap = { north: {x:0,z:-0.9}, south: {x:0,z:0.9}, east: {x:0.9,z:0}, west: {x:-0.9,z:0} };
+                Object.entries(room.doors).forEach(([dir, door]) => {
+                    const dpos = doorDirMap[dir];
+                    if (!dpos) return;
+                    const doorGeo = new THREE.BoxGeometry(dir === 'north' || dir === 'south' ? 0.6 : 0.1, 0.6, dir === 'east' || dir === 'west' ? 0.6 : 0.1);
+                    const doorColor = door.locked ? 0xcc2200 : door.state === 'closed' ? 0xaa8833 : 0x44aa44;
+                    const doorMat = new THREE.MeshStandardMaterial({ color: doorColor, emissive: door.locked ? 0x330000 : 0x000000 });
+                    const doorMesh = new THREE.Mesh(doorGeo, doorMat);
+                    doorMesh.position.set(dpos.x, CONFIG.TILE_HEIGHT * 0.5 + 0.3, dpos.z);
+                    mesh.add(doorMesh);
+                });
+            }
+
+            // Loot sparkle for items on ground
+            if (room.items && room.items.length > 0) {
+                addLootSparkle(mesh);
+            }
+
+            // Other players — small colored markers
+            if (room.players && room.players.length > 0) {
+                room.players.forEach((p, i) => {
+                    const pGeo = new THREE.CylinderGeometry(0.15, 0.15, 0.4, 8);
+                    const pMat = new THREE.MeshStandardMaterial({ color: 0x44aaff, emissive: 0x112244 });
+                    const pMesh = new THREE.Mesh(pGeo, pMat);
+                    pMesh.position.set(-0.5 + i * 0.4, CONFIG.TILE_HEIGHT + 0.3, -0.5);
+                    mesh.add(pMesh);
+
+                    // Nameplate
+                    const label = makeNameLabel(p.name, '#44aaff');
+                    label.position.set(-0.5 + i * 0.4, CONFIG.TILE_HEIGHT + 0.9, -0.5);
+                    label.scale.set(1.2, 0.4, 1);
+                    mesh.add(label);
+
+                    // Class icon as small text
+                    if (p.char_class) {
+                        const classIcons = { warrior: '⚔️', mage: '🔮', cleric: '✝️', thief: '🗡️', ranger: '🏹', necromancer: '💀', bard: '🎵' };
+                        const icon = classIcons[p.char_class.toLowerCase()] || '👤';
+                        const iconLabel = makeNameLabel(icon, '#ffffff');
+                        iconLabel.position.set(-0.5 + i * 0.4, CONFIG.TILE_HEIGHT + 1.2, -0.5);
+                        iconLabel.scale.set(0.8, 0.3, 1);
+                        mesh.add(iconLabel);
+                    }
+                });
+            }
 
             return mesh;
         }
@@ -3111,7 +3525,28 @@
                 group.add(ring);
             }
 
-            group.userData = { mob: mob, mobType: mobType };
+            group.userData = { mob: mob, mobType: mobType, isMobSprite: true, _baseY: 0 };
+
+            // Floating health bar for mobs with HP data
+            if (mob.hp !== undefined && mob.maxHp) {
+                const hpPct = Math.max(0, mob.hp / mob.maxHp);
+                const barW = 0.8, barH = 0.08;
+                const bgGeo = new THREE.PlaneGeometry(barW, barH);
+                const bgMat = new THREE.MeshBasicMaterial({ color: 0x333333, transparent: true, opacity: 0.7, depthTest: false });
+                const bg = new THREE.Mesh(bgGeo, bgMat);
+                bg.position.y = CONFIG.TILE_HEIGHT + dotR * 2 + 0.35;
+                bg.renderOrder = 998;
+                group.add(bg);
+
+                const fgGeo = new THREE.PlaneGeometry(barW * hpPct, barH);
+                const hpColor = hpPct > 0.5 ? 0x44ff44 : hpPct > 0.25 ? 0xffaa00 : 0xff2222;
+                const fgMat = new THREE.MeshBasicMaterial({ color: hpColor, transparent: true, opacity: 0.9, depthTest: false });
+                const fg = new THREE.Mesh(fgGeo, fgMat);
+                fg.position.y = bg.position.y;
+                fg.position.x = -(barW * (1 - hpPct)) / 2;
+                fg.renderOrder = 999;
+                group.add(fg);
+            }
 
             // Position dots in a circle; tighten radius when crowded
             const maxVisible = hasOverflow ? 5 : total;
@@ -3189,11 +3624,44 @@
             roomData.clear();
             // Clear animators (except player)
             activeAnimators.length = 0;
+            waterMaterials.length = 0;
+            lootSparkles.length = 0;
             
             if (!visibleRooms || visibleRooms.length === 0) return;
+
+            // Update day/night and weather
+            if (data.time) updateDayNight(data.time);
+            if (data.weather) updateWeatherEffects(data.weather);
             
             allRoomsData = visibleRooms;
             const playerVnum = data.player?.vnum;
+
+            // Compute fog of war distance from player room
+            if (playerVnum) {
+                const playerRoom = visibleRooms.find(r => r.vnum === playerVnum);
+                if (playerRoom) {
+                    const bfsQueue = [{ vnum: playerVnum, dist: 0 }];
+                    const visited = new Set([playerVnum]);
+                    const distMap = new Map([[playerVnum, 0]]);
+                    while (bfsQueue.length > 0) {
+                        const { vnum: cv, dist } = bfsQueue.shift();
+                        const cr = visibleRooms.find(r => r.vnum === cv);
+                        if (!cr) continue;
+                        const dirOff = { north:{x:0,y:-1,z:0}, south:{x:0,y:1,z:0}, east:{x:1,y:0,z:0}, west:{x:-1,y:0,z:0}, up:{x:0,y:0,z:1}, down:{x:0,y:0,z:-1} };
+                        (cr.exits || []).forEach(dir => {
+                            const o = dirOff[dir];
+                            if (!o) return;
+                            const neighbor = visibleRooms.find(r => r.x === cr.x+o.x && r.y === cr.y+o.y && r.z === cr.z+o.z);
+                            if (neighbor && !visited.has(neighbor.vnum)) {
+                                visited.add(neighbor.vnum);
+                                distMap.set(neighbor.vnum, dist + 1);
+                                bfsQueue.push({ vnum: neighbor.vnum, dist: dist + 1 });
+                            }
+                        });
+                    }
+                    visibleRooms.forEach(r => { r._fogDist = distMap.get(r.vnum) ?? 999; });
+                }
+            }
             
             // Create room meshes
             const roomPositions = new Map();
@@ -3322,6 +3790,10 @@
                     else if (currentRoom?.vnum !== room.vnum) SFX.click();
                     // Clear death state when entering a new room
                     if (currentRoom?.vnum !== room.vnum) deadMobNames.clear();
+                    // Zone label toast on zone change
+                    if (room.zoneName && (!currentRoom || currentRoom.zone !== room.zone)) {
+                        showZoneToast(room.zoneName);
+                    }
                     currentRoom = room;
                     updateRoomInfo(room);
                     startAmbientSound(room.sector);
@@ -3614,6 +4086,9 @@
                             <div style="color:#aaa;font-size:11px;margin-top:2px">Exits: ${exits}${oneWay ? ` <span style=\"color:#d8a\">(one-way: ${oneWay})</span>` : ''}</div>
                             ${hazard ? `<div style="color:#ff7777;font-size:11px;margin-top:2px">${hazard}</div>` : ''}
                             ${mobList ? `<div style="color:#888;font-size:11px;margin-top:5px">Mobs: ${mobList}${mobNames.length > 3 ? '...' : ''}${hostileCount ? ` <span style=\"color:#ff8888\">(${hostileCount} hostile)</span>` : ''}</div>` : ''}
+                            ${room.players?.length ? `<div style="color:#44aaff;font-size:11px;margin-top:3px">Players: ${room.players.map(p=>p.name).join(', ')}</div>` : ''}
+                            ${room.items?.length ? `<div style="color:#ddaa44;font-size:11px;margin-top:3px">Items: ${room.items.slice(0,3).map(i=>i.name).join(', ')}${room.items.length>3?'...':''}</div>` : ''}
+                            ${room.doors && Object.keys(room.doors).length ? `<div style="font-size:11px;margin-top:3px">${Object.entries(room.doors).map(([d,info])=>`<span style="color:${info.locked?'#ff4444':'#aaaa44'}">${d}: ${info.name} [${info.locked?'🔒locked':info.state}]</span>`).join(' ')}</div>` : ''}
                         `;
                         tooltip.style.display = 'block';
                         tooltip.style.left = event.clientX + 15 + 'px';
@@ -4499,6 +4974,24 @@
                     const mesh = roomMeshes.get(currentRoom.vnum);
                     const hitType = /cast|blast|spell/i.test(text) ? 'magic' : 'slash';
                     if (mesh) spawnHitParticles(mesh.position.clone(), hitType);
+                    // Shake and flash the target mob sprite
+                    if (mesh) {
+                        mesh.children.forEach(child => {
+                            if (child.userData?.isMobSprite || child.userData?.mob) {
+                                const origX = child.position.x;
+                                child.position.x += 0.1;
+                                setTimeout(() => { child.position.x = origX - 0.08; }, 50);
+                                setTimeout(() => { child.position.x = origX; }, 120);
+                                // Flash red
+                                const dot = child.children?.[0];
+                                if (dot?.material?.color) {
+                                    const oc = dot.material.color.getHex();
+                                    dot.material.color.setHex(0xff0000);
+                                    setTimeout(() => dot.material.color.setHex(oc), 200);
+                                }
+                            }
+                        });
+                    }
                 }
                 if (playerMarker) {
                     const label = dmgNum ? dmgNum.toString() : (Math.floor(Math.random()*40+10)).toString();
@@ -4512,9 +5005,20 @@
             if (/hits you|strikes you|claws you|bites you|slashes you|mauls you/i.test(text)) {
                 if (playerAnim) playerAnim.setState('hurt');
                 screenFlash('rgba(220,20,20,0.3)', 400);
+                cameraShake(0.3, 200);
                 SFX.hurt();
                 if (dmgNum && playerMarker) {
                     spawnFloatingText(playerMarker.position.clone(), '-' + dmgNum, '#ff4444');
+                }
+                // Flash player marker red briefly
+                if (playerMarker) {
+                    playerMarker.children.forEach(c => {
+                        if (c.material && c.material.color) {
+                            const origColor = c.material.color.getHex();
+                            c.material.color.setHex(0xff0000);
+                            setTimeout(() => c.material.color.setHex(origColor), 200);
+                        }
+                    });
                 }
             }
 
@@ -4564,12 +5068,92 @@
 
             // Parse combat events for VFX
             _parseCombatText(text);
+
+            // Chat bubbles for say/shout
+            const sayMatch = text.match(/(\w+) says? '([^']+)'/);
+            if (sayMatch) spawnChatBubble(sayMatch[2], sayMatch[1]);
+            const shoutMatch = text.match(/(\w+) shouts? '([^']+)'/);
+            if (shoutMatch) spawnChatBubble(shoutMatch[2], shoutMatch[1]);
         }
         
         // ============================================
         // WebSocket Connection
         // ============================================
         
+        let isCreatingAccount = false;
+
+        function createAccount() {
+            const account = document.getElementById('account-name').value.trim();
+            const password = document.getElementById('account-password').value;
+
+            if (!account) { alert('Please enter a character name'); return; }
+            if (!password || password.length < 4) { alert('Password must be at least 4 characters'); return; }
+
+            isCreatingAccount = true;
+
+            document.getElementById('login-panel').style.display = 'none';
+            document.getElementById('top-bar').classList.remove('hidden');
+            document.getElementById('minimap').classList.remove('hidden');
+            document.getElementById('zoom-controls').classList.remove('hidden');
+            document.getElementById('map-view-controls').classList.remove('hidden');
+            document.getElementById('hotkey-bar').classList.remove('hidden');
+            initHotkeyCooldowns();
+            document.getElementById('controls-help').classList.remove('hidden');
+            document.getElementById('text-panel').classList.remove('hidden');
+            document.getElementById('combat-panel').classList.remove('hidden');
+
+            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const host = window.location.hostname || 'localhost';
+            const isBehindProxy = !window.location.port || window.location.port == 80 || window.location.port == 443;
+            const mudHost = isBehindProxy ? window.location.hostname.replace('map.', 'mud.') : host;
+            const mudWsUrl = isBehindProxy
+                ? `${protocol}//${mudHost}/ws`
+                : `${protocol}//${host}:${CONFIG._DIRECT_MUD_PORT}/ws`;
+            mudWs = new WebSocket(mudWsUrl);
+
+            mudWs.onopen = () => {
+                appendOutput('<span style="color:#4ade80">Creating new account...</span><br>');
+                // Send name
+                setTimeout(() => {
+                    mudWs.send(JSON.stringify({ type: 'input', data: account }));
+                    // Confirm create ("y")
+                    setTimeout(() => {
+                        mudWs.send(JSON.stringify({ type: 'input', data: 'y' }));
+                        // Send password
+                        setTimeout(() => {
+                            mudWs.send(JSON.stringify({ type: 'input', data: password }));
+                            // Confirm password
+                            setTimeout(() => {
+                                mudWs.send(JSON.stringify({ type: 'input', data: password }));
+                            }, 500);
+                        }, 500);
+                    }, 500);
+                }, 500);
+            };
+
+            mudWs.onmessage = (event) => {
+                try {
+                    const data = JSON.parse(event.data);
+                    if (data.type === 'output') {
+                        appendOutput(data.data);
+                        const text = data.data.replace(/<[^>]+>/g, '');
+                        if (text.includes('Welcome') || text.includes('MOTD') || text.includes('class') || text.includes('Choose')) {
+                            onLoggedIn();
+                        }
+                    }
+                    if (data.type === 'mapsync') {
+                        playerName = data.player;
+                        connectMapSocket();
+                    }
+                } catch(e) {}
+            };
+
+            mudWs.onclose = () => {
+                appendOutput('<span style="color:#f87171">Disconnected</span><br>');
+                mudWs = null;
+            };
+        }
+
         function connect() {
             const account = document.getElementById('account-name').value.trim();
             const password = document.getElementById('account-password').value;
@@ -4593,7 +5177,14 @@
             const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
             const host = window.location.hostname || 'localhost';
             
-            mudWs = new WebSocket(`${protocol}//${host}:${CONFIG.MUD_PORT}/ws`);
+            // Route through reverse proxy if on port 80/443, direct if on original ports
+            // When behind reverse proxy, MUD websocket goes through mud.frostpine.net
+            const isBehindProxy = !window.location.port || window.location.port == 80 || window.location.port == 443;
+            const mudHost = isBehindProxy ? window.location.hostname.replace('map.', 'mud.') : host;
+            const mudWsUrl = isBehindProxy
+                ? `${protocol}//${mudHost}/ws`
+                : `${protocol}//${host}:${CONFIG._DIRECT_MUD_PORT}/ws`;
+            mudWs = new WebSocket(mudWsUrl);
             
             mudWs.onopen = () => {
                 appendOutput('<span style="color:#4ade80">Connected to Misthollow</span><br>');
@@ -4640,8 +5231,12 @@
             
             const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
             const host = window.location.hostname || 'localhost';
+            const _isBehindProxy = !window.location.port || window.location.port == 80 || window.location.port == 443;
             
-            mapWs = new WebSocket(`${protocol}//${host}:${CONFIG.MAP_PORT}`);
+            const mapWsUrl = _isBehindProxy
+                ? `${protocol}//${host}`
+                : `${protocol}//${host}:${CONFIG._DIRECT_MAP_PORT}`;
+            mapWs = new WebSocket(mapWsUrl);
             
             mapWs.onopen = () => {
                 mapWs.send(JSON.stringify({ type: 'subscribe', player: playerName, mode: 'full' }));

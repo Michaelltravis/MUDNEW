@@ -1034,7 +1034,11 @@
         "no_bash",
         "no_blind"
       ],
-      "description": "The sight is for each man a different, a mirror into the true nature of\neach person's body and soul.  At first a proud, bitter old man, but just\nas easily a gentle extended hand, a smile, and gardens... gardens."
+      "description": "The sight is for each man a different, a mirror into the true nature of\neach person's body and soul.  At first a proud, bitter old man, but just\nas easily a gentle extended hand, a smile, and gardens... gardens.",
+      "inventory": [
+        1501,
+        1504
+      ]
     },
     "1501": {
       "vnum": 1501,
@@ -1055,7 +1059,10 @@
       "description": "At first you see nothing but a bright and comforting glow; then the\nimage sharpens suddenly, and you see a face, eyes, hands, but then\nthat too fades, and you see nothing.",
       "equipment": {
         "hold": 1500
-      }
+      },
+      "inventory": [
+        1503
+      ]
     },
     "1502": {
       "vnum": 1502,
@@ -1076,7 +1083,12 @@
       "description": "Known as the Messenger, it is this angel that has brought the Divine Word\nto the chosen prophets, and in turn brought the Seal of the Prophets on a\nmiraculous journey to the holy city of Jerusalem.",
       "equipment": {
         "hold": 1501
-      }
+      },
+      "inventory": [
+        1503,
+        1502,
+        1514
+      ]
     },
     "1503": {
       "vnum": 1503,
@@ -1097,7 +1109,11 @@
       "description": "It is impossible to get a solid glance at the archangel.  He is nothing\nthat is human, and with a mere whisper, he dispels every image that you\nattempt to create in your mind.",
       "equipment": {
         "shield": 1503
-      }
+      },
+      "inventory": [
+        1507,
+        1514
+      ]
     },
     "1504": {
       "vnum": 1504,
@@ -1118,7 +1134,11 @@
       "description": "After the Fall of the bringer of light, the Lord had need for the\nservice of a fourth, and it was this angel, Uriel, that rose to the\nhighest ranks.",
       "equipment": {
         "wield": 1502
-      }
+      },
+      "inventory": [
+        1512,
+        1503
+      ]
     },
     "1505": {
       "vnum": 1505,
@@ -1139,7 +1159,11 @@
       "description": "The monster before you seems to be nothing more than a baby or young\nchild, wrapped in a glowing white cloth, but as you try to walk past,\nthe beast grins and cackles, drawing its sword and blocking the way.",
       "equipment": {
         "hold": 1508
-      }
+      },
+      "inventory": [
+        1503,
+        1511
+      ]
     },
     "1506": {
       "vnum": 1506,
@@ -1159,7 +1183,11 @@
       "description": "He is dimly aware of your gaze.  Chuckling softly, you hear him mutter\nsomething obscure: dragons, the temple, the falling of great empires.\nHe laughs at you and takes another drink.",
       "equipment": {
         "hold": 1509
-      }
+      },
+      "inventory": [
+        1507,
+        1514
+      ]
     },
     "1507": {
       "vnum": 1507,
@@ -1177,7 +1205,12 @@
         "scavenger",
         "stay_zone"
       ],
-      "description": "You have heard legends of these creatures, the mischievous little demons\nsaid to be trapped in lamps and bottles, capable of granting all kinds of\npowerful wishes.  To you, it looks like nothing more than an annoying little\nsprite."
+      "description": "You have heard legends of these creatures, the mischievous little demons\nsaid to be trapped in lamps and bottles, capable of granting all kinds of\npowerful wishes.  To you, it looks like nothing more than an annoying little\nsprite.",
+      "inventory": [
+        1501,
+        1507,
+        1504
+      ]
     },
     "1508": {
       "vnum": 1508,
@@ -1198,7 +1231,12 @@
       "description": "He wears a faded uniform, decorated with honors of his own creation,\nslackened jaws and pasty white bags sagging under his ugly, hating eyes.\nA tuft of reckless dark hair scatters across his forehead, and his right\nhand shakes and shakes.",
       "equipment": {
         "arms": 1504
-      }
+      },
+      "inventory": [
+        1512,
+        1504,
+        1506
+      ]
     },
     "1509": {
       "vnum": 1509,
@@ -1216,7 +1254,12 @@
         "sentinel",
         "aggressive"
       ],
-      "description": "The darkest skin, and eyes so white.  Covered only in a shoddy woolen\ntunic, he has not bathed in months nor eaten in days, and yet his smile,\nso charming."
+      "description": "The darkest skin, and eyes so white.  Covered only in a shoddy woolen\ntunic, he has not bathed in months nor eaten in days, and yet his smile,\nso charming.",
+      "inventory": [
+        1501,
+        1503,
+        1507
+      ]
     },
     "1510": {
       "vnum": 1510,
@@ -1234,7 +1277,11 @@
         "sentinel",
         "scavenger"
       ],
-      "description": "You see nothing but the sadness of a man who would sell his own God."
+      "description": "You see nothing but the sadness of a man who would sell his own God.",
+      "inventory": [
+        1511,
+        1502
+      ]
     },
     "1511": {
       "vnum": 1511,
@@ -1254,7 +1301,10 @@
       "description": "Richly clothed and postured in arrogance and love of power, he looks at\nyou with nothing more than a smirk of contempt.",
       "equipment": {
         "neck1": 1512
-      }
+      },
+      "inventory": [
+        1505
+      ]
     },
     "1512": {
       "vnum": 1512,
@@ -1274,7 +1324,12 @@
       "description": "You see a simple man, dressed in dark and unadorned robes, bent over and\npensive, reliving the memories of a man he never thought would die.",
       "equipment": {
         "wield": 1505
-      }
+      },
+      "inventory": [
+        1503,
+        1507,
+        1500
+      ]
     },
     "1513": {
       "vnum": 1513,
@@ -1291,7 +1346,10 @@
       "flags": [
         "sentinel"
       ],
-      "description": "You are amazed at the piety of the man.  He looks at you in sadness,\nsaying: \"I do not wish to fight you, but if you refuse the truth of\nthe Word, then I must.\""
+      "description": "You are amazed at the piety of the man.  He looks at you in sadness,\nsaying: \"I do not wish to fight you, but if you refuse the truth of\nthe Word, then I must.\"",
+      "inventory": [
+        1512
+      ]
     },
     "1514": {
       "vnum": 1514,
@@ -1312,7 +1370,11 @@
       "description": "He was chosen as leader by a clique of jealous rivals who could agree\nupon no other.  The memory of the Prophet fading quickly from the minds\nof the faithful, he could do little, and was in the end killed by his\nenemies.",
       "equipment": {
         "light": 1510
-      }
+      },
+      "inventory": [
+        1500,
+        1501
+      ]
     },
     "1515": {
       "vnum": 1515,
@@ -1333,7 +1395,10 @@
       "description": "Some view him as the closest to God among all of the Caliphs, the one\nmost deserving of our respect and reverence.  Still others saw him as\na schismatic, a heretic, one to be killed and forgotten.  To look at\nhim now is for you to decide for yourself.",
       "equipment": {
         "hands": 1511
-      }
+      },
+      "inventory": [
+        1505
+      ]
     },
     "1516": {
       "vnum": 1516,
@@ -1352,7 +1417,10 @@
         "scavenger",
         "aggressive"
       ],
-      "description": "He smiles calmly, and begins to tell you of the time when he would not\nkneel, would not prostrate himself before the first human beings.  And\nthen he gestures at you, smiling, and conjures an image of all the \ntemptations that will be yours if you in turn but follow him."
+      "description": "He smiles calmly, and begins to tell you of the time when he would not\nkneel, would not prostrate himself before the first human beings.  And\nthen he gestures at you, smiling, and conjures an image of all the \ntemptations that will be yours if you in turn but follow him.",
+      "inventory": [
+        1505
+      ]
     },
     "1517": {
       "vnum": 1517,
@@ -1374,7 +1442,11 @@
       "description": "There is no physical figure attached to the presence that dominates this\nplace, just tormented laughter, moaning, screaming, and begging.",
       "equipment": {
         "light": 1514
-      }
+      },
+      "inventory": [
+        1513,
+        1501
+      ]
     },
     "1518": {
       "vnum": 1518,
@@ -1396,7 +1468,11 @@
       "description": "The serpent of babylon, the aged and violet hued monster that has \nwatched all of mankind succumb before its power, turns to you as\nits last victim.",
       "equipment": {
         "neck1": 1513
-      }
+      },
+      "inventory": [
+        1505,
+        1501
+      ]
     },
     "1519": {
       "vnum": 1519,
@@ -1435,7 +1511,11 @@
       "flags": [
         "sentinel"
       ],
-      "description": "The baby is barely aware of your presence, lost in a sleepy and\ncontented yawn."
+      "description": "The baby is barely aware of your presence, lost in a sleepy and\ncontented yawn.",
+      "inventory": [
+        1505,
+        1507
+      ]
     },
     "1521": {
       "vnum": 1521,
@@ -1452,7 +1532,10 @@
       "flags": [
         "sentinel"
       ],
-      "description": "He is young, and has not yet seen the bloodiness of this world.  You follow\nhis gaze and notice that he is gazing in wonderment at the fullness of the\nmoon."
+      "description": "He is young, and has not yet seen the bloodiness of this world.  You follow\nhis gaze and notice that he is gazing in wonderment at the fullness of the\nmoon.",
+      "inventory": [
+        1504
+      ]
     },
     "1522": {
       "vnum": 1522,
@@ -1470,7 +1553,10 @@
         "sentinel",
         "memory"
       ],
-      "description": "He is tired, the lines of age marking his face, but in his robe, \nkneeling, he is the image of perfect contentment."
+      "description": "He is tired, the lines of age marking his face, but in his robe, \nkneeling, he is the image of perfect contentment.",
+      "inventory": [
+        1503
+      ]
     },
     "1523": {
       "vnum": 1523,
@@ -1538,7 +1624,8 @@
       "armor_bonus": 15,
       "type": "armor",
       "wear_slot": "shield",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 2
     },
     "1504": {
       "vnum": 1504,
@@ -1550,7 +1637,8 @@
       "value": 15,
       "type": "armor",
       "wear_slot": "wrist",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 3
     },
     "1505": {
       "vnum": 1505,
@@ -1628,7 +1716,8 @@
       "armor_bonus": 5,
       "type": "armor",
       "wear_slot": "hands",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 3
     },
     "1512": {
       "vnum": 1512,
@@ -1640,7 +1729,8 @@
       "value": 5000,
       "type": "armor",
       "wear_slot": "neck",
-      "armor": 0
+      "armor": 4,
+      "armor_class": 2
     },
     "1513": {
       "vnum": 1513,
@@ -1652,7 +1742,8 @@
       "value": 7500,
       "type": "armor",
       "wear_slot": "neck",
-      "armor": 0
+      "armor": 6,
+      "armor_class": 3
     },
     "1514": {
       "vnum": 1514,

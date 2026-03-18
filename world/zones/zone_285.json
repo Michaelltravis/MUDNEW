@@ -1016,7 +1016,13 @@
       "flags": [
         "aggressive"
       ],
-      "description": "This priest's vestments billow like seaweed, and his lips move in a silent litany."
+      "description": "This priest's vestments billow like seaweed, and his lips move in a silent litany.",
+      "inventory": [
+        28553,
+        28558,
+        28557,
+        28552
+      ]
     },
     "28502": {
       "vnum": 28502,
@@ -1034,7 +1040,13 @@
         "aggressive",
         "sentinel"
       ],
-      "description": "A once-holy guardian, now crusted with barnacles and wielding a rusted halberd."
+      "description": "A once-holy guardian, now crusted with barnacles and wielding a rusted halberd.",
+      "inventory": [
+        28554,
+        28550,
+        28551,
+        28558
+      ]
     },
     "28503": {
       "vnum": 28503,
@@ -1052,7 +1064,11 @@
         "aggressive",
         "no_charm"
       ],
-      "description": "Bronze plates fused to its frame bear the crest of the old sea-priesthood."
+      "description": "Bronze plates fused to its frame bear the crest of the old sea-priesthood.",
+      "inventory": [
+        28553,
+        28555
+      ]
     },
     "28504": {
       "vnum": 28504,
@@ -1070,7 +1086,11 @@
         "aggressive",
         "no_sleep"
       ],
-      "description": "A drowned corpse entombed in coral, it lashes out with encrusted claws."
+      "description": "A drowned corpse entombed in coral, it lashes out with encrusted claws.",
+      "inventory": [
+        28554,
+        28551
+      ]
     },
     "28505": {
       "vnum": 28505,
@@ -1087,7 +1107,13 @@
       "flags": [
         "aggressive"
       ],
-      "description": "This assassin's skin is scaled and slick, and his eyes never blink."
+      "description": "This assassin's skin is scaled and slick, and his eyes never blink.",
+      "inventory": [
+        28553,
+        28556,
+        28554,
+        28551
+      ]
     },
     "28506": {
       "vnum": 28506,
@@ -1105,7 +1131,11 @@
         "aggressive",
         "no_charm"
       ],
-      "description": "Clad in kelp-robes, the cantor's voice reverberates in your bones."
+      "description": "Clad in kelp-robes, the cantor's voice reverberates in your bones.",
+      "inventory": [
+        28554,
+        28557
+      ]
     },
     "28507": {
       "vnum": 28507,
@@ -1123,7 +1153,13 @@
         "aggressive",
         "stay_zone"
       ],
-      "description": "Once the temple's announcer, it now proclaims ruin in a voice of bubbles."
+      "description": "Once the temple's announcer, it now proclaims ruin in a voice of bubbles.",
+      "inventory": [
+        28550,
+        28554,
+        28557,
+        28558
+      ]
     },
     "28508": {
       "vnum": 28508,
@@ -1141,7 +1177,13 @@
         "aggressive",
         "no_sleep"
       ],
-      "description": "This giant's body is wrapped in rusted chains and draped with kelp."
+      "description": "This giant's body is wrapped in rusted chains and draped with kelp.",
+      "inventory": [
+        28550,
+        28558,
+        28553,
+        28551
+      ]
     },
     "28509": {
       "vnum": 28509,
@@ -1159,7 +1201,12 @@
         "aggressive",
         "sentinel"
       ],
-      "description": "Ancient armor fitted with coral plates encases this relentless guard."
+      "description": "Ancient armor fitted with coral plates encases this relentless guard.",
+      "inventory": [
+        28555,
+        28557,
+        28558
+      ]
     },
     "28510": {
       "vnum": 28510,
@@ -1192,6 +1239,11 @@
           "vnum": 28553,
           "chance": 20
         }
+      ],
+      "inventory": [
+        28553,
+        28557,
+        28551
       ]
     },
     "28511": {
@@ -1225,6 +1277,10 @@
           "vnum": 28557,
           "chance": 20
         }
+      ],
+      "inventory": [
+        28554,
+        28557
       ]
     },
     "28520": {
@@ -1265,7 +1321,11 @@
       "boss_loot_chance": 100,
       "description": "A skeletal monarch draped in seaweed and gold, its crown held together by spectral force.",
       "max_hp": 17000,
-      "ac": -35
+      "ac": -35,
+      "inventory": [
+        28554,
+        28550
+      ]
     }
   },
   "objects": {
@@ -1332,7 +1392,9 @@
         "intelligence": 4,
         "armor_class": -16,
         "mana_regen": 15
-      }
+      },
+      "armor_class": 9,
+      "armor": 14
     },
     "28553": {
       "vnum": 28553,
@@ -1353,7 +1415,9 @@
         "strength": 3,
         "constitution": 3,
         "armor_class": -18
-      }
+      },
+      "armor_class": 10,
+      "armor": 15
     },
     "28554": {
       "vnum": 28554,
@@ -1374,7 +1438,9 @@
         "dexterity": 4,
         "hitroll": 7,
         "move_regen": 10
-      }
+      },
+      "armor_class": 10,
+      "armor": 15
     },
     "28555": {
       "vnum": 28555,
@@ -1422,7 +1488,8 @@
           "type": "mana_regen",
           "value": 12
         }
-      ]
+      ],
+      "armor": 13
     },
     "28557": {
       "vnum": 28557,
@@ -1443,7 +1510,8 @@
         "intelligence": 4,
         "mana_regen": 15,
         "armor_class": -10
-      }
+      },
+      "armor": 18
     },
     "28558": {
       "vnum": 28558,

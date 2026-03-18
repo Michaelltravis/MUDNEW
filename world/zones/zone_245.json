@@ -833,7 +833,11 @@
       "flags": [
         "aggressive"
       ],
-      "description": "More absence than presence, the Shadow Stalker is a tear in reality shaped\nlike a predator. It moves without sound, strikes without warning, and\nfades back into darkness between heartbeats. Only its eyes are visible \u2014\ntwin points of cold, hungry light."
+      "description": "More absence than presence, the Shadow Stalker is a tear in reality shaped\nlike a predator. It moves without sound, strikes without warning, and\nfades back into darkness between heartbeats. Only its eyes are visible \u2014\ntwin points of cold, hungry light.",
+      "inventory": [
+        24503,
+        24501
+      ]
     },
     "24502": {
       "vnum": 24502,
@@ -851,7 +855,11 @@
         "aggressive",
         "no_charm"
       ],
-      "description": "This entity exists simultaneously in multiple planes, its form flickering\nbetween solid and transparent. Where it walks, reality cracks and splinters.\nIt wields the void itself as a weapon, and its touch can send pieces of\nyou to dimensions from which there is no return."
+      "description": "This entity exists simultaneously in multiple planes, its form flickering\nbetween solid and transparent. Where it walks, reality cracks and splinters.\nIt wields the void itself as a weapon, and its touch can send pieces of\nyou to dimensions from which there is no return.",
+      "inventory": [
+        24501,
+        24503
+      ]
     },
     "24503": {
       "vnum": 24503,
@@ -868,7 +876,11 @@
       "flags": [
         "aggressive"
       ],
-      "description": "The Mirror Wraith is a horrifying reflection \u2014 it copies the appearance\nof whoever looks at it, but twisted and corrupted. Your face, but with\nblack void where the eyes should be. Your body, but wrong, jointed\nbackwards, moving in ways that make your mind recoil."
+      "description": "The Mirror Wraith is a horrifying reflection \u2014 it copies the appearance\nof whoever looks at it, but twisted and corrupted. Your face, but with\nblack void where the eyes should be. Your body, but wrong, jointed\nbackwards, moving in ways that make your mind recoil.",
+      "inventory": [
+        24503,
+        24502
+      ]
     },
     "24504": {
       "vnum": 24504,
@@ -886,7 +898,11 @@
         "aggressive",
         "no_sleep"
       ],
-      "description": "Born from the collective nightmares of a thousand sleeping minds, this\nbeast has no fixed form. It shifts constantly \u2014 now a wolf with too many\nlegs, now a spider with human hands, now something that defies description\nentirely. The only constant is its hunger and its hatred of the waking world."
+      "description": "Born from the collective nightmares of a thousand sleeping minds, this\nbeast has no fixed form. It shifts constantly \u2014 now a wolf with too many\nlegs, now a spider with human hands, now something that defies description\nentirely. The only constant is its hunger and its hatred of the waking world.",
+      "inventory": [
+        24501,
+        24503
+      ]
     },
     "24505": {
       "vnum": 24505,
@@ -909,7 +925,12 @@
         "no_blind",
         "sentinel"
       ],
-      "description": "Shadow Lord Malachar was once a mortal wizard who sought to master the\nvoid between worlds. He succeeded beyond his wildest nightmares. Now more\nshadow than man, he exists as the living nexus of all darkness. His form\nis regal and terrible \u2014 a king of shadows wearing a crown of extinct\nstars. His voice is the silence between heartbeats, and his gaze is the\ndarkness that waits at the end of all things. To face him is to face\nthe death of light itself."
+      "description": "Shadow Lord Malachar was once a mortal wizard who sought to master the\nvoid between worlds. He succeeded beyond his wildest nightmares. Now more\nshadow than man, he exists as the living nexus of all darkness. His form\nis regal and terrible \u2014 a king of shadows wearing a crown of extinct\nstars. His voice is the silence between heartbeats, and his gaze is the\ndarkness that waits at the end of all things. To face him is to face\nthe death of light itself.",
+      "inventory": [
+        24501,
+        24503,
+        24502
+      ]
     }
   },
   "objects": {
@@ -933,7 +954,9 @@
         "dexterity": 3,
         "stealth": 25,
         "shadow_resistance": 50
-      }
+      },
+      "armor_class": 5,
+      "armor": 13
     },
     "24502": {
       "vnum": 24502,

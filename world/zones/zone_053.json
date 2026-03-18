@@ -1819,7 +1819,10 @@
         "aggressive",
         "stay_zone"
       ],
-      "description": "The asp is a small, smooth-scaled snake the color of worn pottery.\nThe poison bite of this snake has felled many a mighty pharoah."
+      "description": "The asp is a small, smooth-scaled snake the color of worn pottery.\nThe poison bite of this snake has felled many a mighty pharoah.",
+      "inventory": [
+        5326
+      ]
     },
     "5301": {
       "vnum": 5301,
@@ -1838,7 +1841,11 @@
         "aggressive",
         "stay_zone"
       ],
-      "description": "The cobra snake waves back and forth before you, its hood displaying brilliant\ncolors designed to serve notice to its prey that it is about to strike."
+      "description": "The cobra snake waves back and forth before you, its hood displaying brilliant\ncolors designed to serve notice to its prey that it is about to strike.",
+      "inventory": [
+        5325,
+        9205
+      ]
     },
     "5302": {
       "vnum": 5302,
@@ -1856,7 +1863,10 @@
         "aggressive",
         "stay_zone"
       ],
-      "description": "The mongoose is a wily rodent, a quick hunter of nasty poisonous snakes.\nShe sniffs you and appears to be looking for food in your hand."
+      "description": "The mongoose is a wily rodent, a quick hunter of nasty poisonous snakes.\nShe sniffs you and appears to be looking for food in your hand.",
+      "inventory": [
+        9207
+      ]
     },
     "5303": {
       "vnum": 5303,
@@ -1879,7 +1889,10 @@
       "equipment": {
         "wield": 5300,
         "about": 5301
-      }
+      },
+      "inventory": [
+        53091
+      ]
     },
     "5304": {
       "vnum": 5304,
@@ -1901,7 +1914,11 @@
       "description": "The thief brushes against you briefly, then slinks back into the shadows.",
       "equipment": {
         "wield": 5302
-      }
+      },
+      "inventory": [
+        9207,
+        53093
+      ]
     },
     "5305": {
       "vnum": 5305,
@@ -1926,7 +1943,11 @@
       "equipment": {
         "head": 5303,
         "wield": 5302
-      }
+      },
+      "inventory": [
+        5324,
+        5312
+      ]
     },
     "5306": {
       "vnum": 5306,
@@ -1950,7 +1971,11 @@
         "no_bash",
         "no_blind"
       ],
-      "description": "The carpet is simply beautiful, made from intricately woven silken material.  \nIt seems to rise up at the touch of your feet.  Wait, it is rising, a few feet\nabove the ground!  In fact, it seems to be ALIVE!"
+      "description": "The carpet is simply beautiful, made from intricately woven silken material.  \nIt seems to rise up at the touch of your feet.  Wait, it is rising, a few feet\nabove the ground!  In fact, it seems to be ALIVE!",
+      "inventory": [
+        9204,
+        5313
+      ]
     },
     "5307": {
       "vnum": 5307,
@@ -2003,7 +2028,11 @@
         "no_sleep",
         "no_blind"
       ],
-      "description": "The sandman is exactly that -- some sort of strange being formed from the sands\nof the desert floor.  It seems quite large and strong and at home in the heat\nand sandy winds."
+      "description": "The sandman is exactly that -- some sort of strange being formed from the sands\nof the desert floor.  It seems quite large and strong and at home in the heat\nand sandy winds.",
+      "inventory": [
+        9205,
+        5310
+      ]
     },
     "5309": {
       "vnum": 5309,
@@ -2032,7 +2061,12 @@
       "description": "The efreeti is a mighty being formed from living fire.  He gazes down at\nyou with disdain and scorn, arms folded across his mighty chest.",
       "equipment": {
         "hold": 5307
-      }
+      },
+      "inventory": [
+        53092,
+        5304,
+        9211
+      ]
     },
     "5310": {
       "vnum": 5310,
@@ -2091,7 +2125,11 @@
       "description": "The djinn is a mighty being formed from the air itself and frequently\nimprisoned in a small lamp, used to do the bidding of those who find him.\nHe smiles down at you congenially, arms folded across his blue-tinged \nskin, and strokes his goatee.",
       "equipment": {
         "hold": 5313
-      }
+      },
+      "inventory": [
+        9211,
+        5322
+      ]
     },
     "5312": {
       "vnum": 5312,
@@ -2114,7 +2152,10 @@
         "no_summmon",
         "no_bash"
       ],
-      "description": "The hieracosphinx are cunning, small, but nasty creatures, having the heads\nof birds, mighty wingspans, and a full set of four paws to rend their victims\nto pieces.  They tend to be quite jealous of the sharper wits of their older\ncousins."
+      "description": "The hieracosphinx are cunning, small, but nasty creatures, having the heads\nof birds, mighty wingspans, and a full set of four paws to rend their victims\nto pieces.  They tend to be quite jealous of the sharper wits of their older\ncousins.",
+      "inventory": [
+        53091
+      ]
     },
     "5313": {
       "vnum": 5313,
@@ -2259,7 +2300,13 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        9204,
+        5308,
+        53093,
+        9201
+      ]
     },
     "5317": {
       "vnum": 5317,
@@ -2416,7 +2463,12 @@
           }
         ]
       },
-      "armor_class": 16
+      "armor_class": 16,
+      "inventory": [
+        9202,
+        5304,
+        5324
+      ]
     },
     "5360": {
       "vnum": 5360,
@@ -2549,7 +2601,12 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        5314,
+        5321,
+        9208
+      ]
     },
     "5398": {
       "vnum": 5398,
@@ -2573,7 +2630,11 @@
         "traps": "He traces a pattern in the dust. 'The builders were clever. Look for discolored stones \u2014 those are usually triggers. And never touch golden sarcophagi directly. Always check for needles in the lid seams.'",
         "default": "The tomb robber eyes you warily. 'You didn't see me here. I wasn't here. Got it?'",
         "next": "The tomb robber's eyes gleam with fear and greed. 'The Necropolis makes this tomb look like a children's playground. Seek Paladin Dawnguard there if you dare. And I've heard whispers of a Frostspire in the frozen north \u2014 ancient magic and terrible cold.'"
-      }
+      },
+      "inventory": [
+        5322,
+        5314
+      ]
     },
     "5399": {
       "vnum": 5399,
@@ -2596,7 +2657,11 @@
         "hello": "The ghost pauses its eternal sweeping. 'The master sleeps... but not peacefully. His tomb was sealed with blood and bone. Those who disturb his rest join his court \u2014 forever. The pharaoh's curse is not metaphor, traveler. It is promise.'",
         "pharaoh": "The ghost's voice echoes. 'He was a god among men, and cruel as the desert sun. Even death could not humble him. His treasure room lies in the deepest chamber, but the way is guarded by those who served him in life... and now in death.'",
         "default": "The ghostly servant resumes sweeping, murmuring in a forgotten language."
-      }
+      },
+      "inventory": [
+        5300,
+        9202
+      ]
     }
   },
   "objects": {
@@ -2623,7 +2688,8 @@
       "armor_bonus": 4,
       "type": "armor",
       "wear_slot": "body",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 2
     },
     "5302": {
       "vnum": 5302,
@@ -2648,7 +2714,8 @@
       "armor_bonus": 5,
       "type": "armor",
       "wear_slot": "head",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 2
     },
     "5304": {
       "vnum": 5304,
@@ -2659,7 +2726,8 @@
       "weight": 15,
       "value": 1250,
       "armor_bonus": 5,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 6
     },
     "5305": {
       "vnum": 5305,
@@ -2768,7 +2836,8 @@
       "weight": 9,
       "value": 10000,
       "armor_bonus": 7,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 9
     },
     "5315": {
       "vnum": 5315,
@@ -2841,7 +2910,8 @@
       ],
       "set_id": "pharaohs_legacy",
       "type": "armor",
-      "min_level": 25
+      "min_level": 25,
+      "armor": 7
     },
     "5321": {
       "vnum": 5321,
@@ -2862,7 +2932,8 @@
       ],
       "set_id": "pharaohs_legacy",
       "type": "armor",
-      "min_level": 25
+      "min_level": 25,
+      "armor": 5
     },
     "5322": {
       "vnum": 5322,
@@ -2905,7 +2976,8 @@
       ],
       "set_id": "pharaohs_legacy",
       "type": "armor",
-      "min_level": 25
+      "min_level": 25,
+      "armor": 8
     },
     "5324": {
       "vnum": 5324,
@@ -2928,7 +3000,8 @@
       "armor_bonus": 8,
       "type": "armor",
       "wear_slot": "finger",
-      "armor": 0
+      "armor": 9,
+      "armor_class": 4
     },
     "5326": {
       "vnum": 5326,
@@ -2951,7 +3024,8 @@
       "armor_bonus": 10,
       "type": "armor",
       "wear_slot": "legs",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 4
     },
     "5328": {
       "vnum": 5328,
@@ -2982,7 +3056,8 @@
       "weight": 4,
       "cost": 1600,
       "armor": 8,
-      "wear_slot": "body"
+      "wear_slot": "body",
+      "armor_class": 4
     },
     "9201": {
       "vnum": 9201,
@@ -3010,7 +3085,8 @@
       ],
       "set_id": 53,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 4
     },
     "9202": {
       "vnum": 9202,
@@ -3037,7 +3113,8 @@
         }
       ],
       "set_id": 53,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 10
     },
     "9203": {
       "vnum": 9203,
@@ -3060,7 +3137,8 @@
         }
       ],
       "set_id": 53,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 14
     },
     "9204": {
       "vnum": 9204,
@@ -3102,7 +3180,8 @@
       ],
       "set_id": 53,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 4
     },
     "9206": {
       "vnum": 9206,
@@ -3121,7 +3200,8 @@
         }
       ],
       "set_id": 53,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 9
     },
     "9207": {
       "vnum": 9207,
@@ -3144,7 +3224,8 @@
         }
       ],
       "set_id": 53,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 7
     },
     "9208": {
       "vnum": 9208,
@@ -3163,7 +3244,8 @@
         }
       ],
       "set_id": 53,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 7
     },
     "9209": {
       "vnum": 9209,
@@ -3233,7 +3315,8 @@
       ],
       "set_id": 53,
       "type": "armor",
-      "armor": 0
+      "armor": 9,
+      "armor_class": 4
     },
     "9212": {
       "vnum": 9212,
@@ -3254,7 +3337,8 @@
       ],
       "set_id": 53,
       "type": "armor",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 4
     },
     "53090": {
       "vnum": 53090,
@@ -3277,7 +3361,8 @@
         }
       ],
       "type": "armor",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 3
     },
     "53091": {
       "vnum": 53091,
@@ -3300,7 +3385,8 @@
         }
       ],
       "type": "armor",
-      "armor": 0
+      "armor": 14,
+      "armor_class": 4
     },
     "53092": {
       "vnum": 53092,
@@ -3322,7 +3408,8 @@
           "value": 12
         }
       ],
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 10
     },
     "53093": {
       "vnum": 53093,
@@ -3344,7 +3431,8 @@
           "value": 12
         }
       ],
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 8
     }
   }
 }

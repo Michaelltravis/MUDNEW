@@ -1017,7 +1017,11 @@
       "flags": [
         "aggressive"
       ],
-      "description": "Robed in midnight cloth, the acolyte murmurs to constellations only it can see."
+      "description": "Robed in midnight cloth, the acolyte murmurs to constellations only it can see.",
+      "inventory": [
+        29050,
+        29053
+      ]
     },
     "29002": {
       "vnum": 29002,
@@ -1035,7 +1039,13 @@
         "aggressive",
         "sentinel"
       ],
-      "description": "Hunched and armored, the keeper's hands are blackened from star-metal heat."
+      "description": "Hunched and armored, the keeper's hands are blackened from star-metal heat.",
+      "inventory": [
+        29055,
+        29050,
+        29056,
+        29053
+      ]
     },
     "29003": {
       "vnum": 29003,
@@ -1054,7 +1064,12 @@
         "sentinel",
         "no_charm"
       ],
-      "description": "Its armor is translucent and hungry, swallowing the light around it."
+      "description": "Its armor is translucent and hungry, swallowing the light around it.",
+      "inventory": [
+        29050,
+        29054,
+        29056
+      ]
     },
     "29004": {
       "vnum": 29004,
@@ -1071,7 +1086,12 @@
       "flags": [
         "aggressive"
       ],
-      "description": "A mote of compressed night that warps the air with every drift."
+      "description": "A mote of compressed night that warps the air with every drift.",
+      "inventory": [
+        29050,
+        29053,
+        29056
+      ]
     },
     "29005": {
       "vnum": 29005,
@@ -1089,7 +1109,11 @@
         "aggressive",
         "stay_zone"
       ],
-      "description": "Its limbs are thin as needles, and its eyes are holes in the world."
+      "description": "Its limbs are thin as needles, and its eyes are holes in the world.",
+      "inventory": [
+        29057,
+        29051
+      ]
     },
     "29006": {
       "vnum": 29006,
@@ -1107,7 +1131,13 @@
         "aggressive",
         "no_sleep"
       ],
-      "description": "This mage's eyes are constellations, and its voice bends the air."
+      "description": "This mage's eyes are constellations, and its voice bends the air.",
+      "inventory": [
+        29058,
+        29059,
+        29050,
+        29051
+      ]
     },
     "29007": {
       "vnum": 29007,
@@ -1127,7 +1157,11 @@
         "no_charm",
         "no_sleep"
       ],
-      "description": "A towering machine of brass and obsidian, driven by cold, patient intent."
+      "description": "A towering machine of brass and obsidian, driven by cold, patient intent.",
+      "inventory": [
+        29058,
+        29057
+      ]
     },
     "29010": {
       "vnum": 29010,
@@ -1162,6 +1196,12 @@
           "vnum": 29056,
           "chance": 20
         }
+      ],
+      "inventory": [
+        29051,
+        29050,
+        29052,
+        29054
       ]
     },
     "29011": {
@@ -1197,6 +1237,12 @@
           "vnum": 29057,
           "chance": 20
         }
+      ],
+      "inventory": [
+        29052,
+        29058,
+        29054,
+        29055
       ]
     },
     "29020": {
@@ -1237,7 +1283,11 @@
       "boss_loot_chance": 100,
       "description": "A monarch of starless light, armored in obsidian plates that drink every glow.",
       "max_hp": 17000,
-      "ac": -32
+      "ac": -32,
+      "inventory": [
+        29051,
+        29058
+      ]
     }
   },
   "objects": {
@@ -1282,7 +1332,9 @@
         "wisdom": 3,
         "armor_class": -24,
         "hp_regen": 18
-      }
+      },
+      "armor_class": 7,
+      "armor": 18
     },
     "29052": {
       "vnum": 29052,
@@ -1304,7 +1356,8 @@
         "intelligence": 4,
         "mana_regen": 18,
         "armor_class": -12
-      }
+      },
+      "armor": 13
     },
     "29053": {
       "vnum": 29053,
@@ -1369,7 +1422,8 @@
         "charisma": 4,
         "mana_regen": 15,
         "song_power": 5
-      }
+      },
+      "armor": 18
     },
     "29056": {
       "vnum": 29056,
@@ -1390,7 +1444,9 @@
         "intelligence": 3,
         "wisdom": 3,
         "mana_regen": 12
-      }
+      },
+      "armor_class": 10,
+      "armor": 11
     },
     "29057": {
       "vnum": 29057,
@@ -1411,7 +1467,9 @@
         "intelligence": 3,
         "armor_class": -14,
         "mana_regen": 10
-      }
+      },
+      "armor_class": 7,
+      "armor": 12
     },
     "29058": {
       "vnum": 29058,
@@ -1436,7 +1494,9 @@
         "hitroll": 8,
         "damroll": 8,
         "mana_regen": 12
-      }
+      },
+      "armor_class": 7,
+      "armor": 11
     },
     "29059": {
       "vnum": 29059,

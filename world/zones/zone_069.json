@@ -18,7 +18,13 @@
           "to_room": 6901,
           "description": "A path leads inland through the ash."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 6900,
+          "max": 1
+        }
+      ]
     },
     "6901": {
       "vnum": 6901,
@@ -35,7 +41,13 @@
           "to_room": 6902,
           "description": "The trail continues through the ashfields."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 6901,
+          "max": 1
+        }
+      ]
     },
     "6902": {
       "vnum": 6902,
@@ -62,6 +74,12 @@
           "type": "mining",
           "resource": "obsidian shards",
           "respawn_minutes": 45
+        }
+      ],
+      "mob_resets": [
+        {
+          "vnum": 6902,
+          "max": 1
         }
       ]
     },
@@ -91,6 +109,12 @@
           "resource": "obsidian chunks",
           "respawn_minutes": 60
         }
+      ],
+      "mob_resets": [
+        {
+          "vnum": 6903,
+          "max": 1
+        }
       ]
     },
     "6904": {
@@ -112,7 +136,13 @@
           "to_room": 6910,
           "description": "A scorched trail winds westward."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 6904,
+          "max": 1
+        }
+      ]
     },
     "6905": {
       "vnum": 6905,
@@ -267,6 +297,9 @@
       "flags": [
         "aggressive",
         "stay_zone"
+      ],
+      "inventory": [
+        6900
       ]
     },
     "6901": {
@@ -285,6 +318,9 @@
       "flags": [
         "aggressive",
         "stay_zone"
+      ],
+      "inventory": [
+        6900
       ]
     },
     "6902": {
@@ -303,6 +339,9 @@
       "flags": [
         "aggressive",
         "stay_zone"
+      ],
+      "inventory": [
+        6900
       ]
     },
     "6903": {
@@ -321,6 +360,9 @@
       "flags": [
         "aggressive",
         "stay_zone"
+      ],
+      "inventory": [
+        6900
       ]
     },
     "6904": {
@@ -339,6 +381,9 @@
       "flags": [
         "sentinel",
         "helper"
+      ],
+      "inventory": [
+        6900
       ]
     }
   },
@@ -350,7 +395,8 @@
       "description": "A blade knapped from volcanic obsidian, its edge impossibly thin and sharp.",
       "type": "weapon",
       "weight": 4,
-      "cost": 300
+      "cost": 300,
+      "damage_dice": "1d10+5"
     }
   },
   "resets": [

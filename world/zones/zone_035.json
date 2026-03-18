@@ -1011,7 +1011,11 @@
         "aggr_good",
         "no_bash"
       ],
-      "description": "This huge winged creature looks really menacing as it circles only inches\nabove your head, flapping its wings and squawking very loudly."
+      "description": "This huge winged creature looks really menacing as it circles only inches\nabove your head, flapping its wings and squawking very loudly.",
+      "inventory": [
+        3501,
+        3510
+      ]
     },
     "3501": {
       "vnum": 3501,
@@ -1034,7 +1038,11 @@
       "description": "You see before you a small and twisted creature with knotted muscles and\ndisgustingly green skin.  Doesn't look like the type you'd invite to dinner.",
       "equipment": {
         "wield": 3502
-      }
+      },
+      "inventory": [
+        3507,
+        3502
+      ]
     },
     "3502": {
       "vnum": 3502,
@@ -1057,7 +1065,10 @@
       "description": "The goblin lieutenant is rather angry, and looking for one of his men to\nbeat up upon, but maybe you will do just fine...",
       "equipment": {
         "wield": 3500
-      }
+      },
+      "inventory": [
+        3511
+      ]
     },
     "3503": {
       "vnum": 3503,
@@ -1131,7 +1142,11 @@
             }
           }
         ]
-      }
+      },
+      "inventory": [
+        3509,
+        3500
+      ]
     },
     "3504": {
       "vnum": 3504,
@@ -1152,7 +1167,10 @@
       "description": "The poor boy has numerous cuts and scratches, but appears to be all right.\nHe is apparently the only survivor of the ambush.",
       "equipment": {
         "hold": 3508
-      }
+      },
+      "inventory": [
+        3503
+      ]
     },
     "3505": {
       "vnum": 3505,
@@ -1172,7 +1190,11 @@
         "memory",
         "helper"
       ],
-      "description": "The Innkeeper now spends most of his days waiting for customers, while the\nnights are spent watching out for goblins.  His inn is no longer the happy\nplace that is used to be in days past."
+      "description": "The Innkeeper now spends most of his days waiting for customers, while the\nnights are spent watching out for goblins.  His inn is no longer the happy\nplace that is used to be in days past.",
+      "inventory": [
+        3504,
+        3508
+      ]
     },
     "3506": {
       "vnum": 3506,
@@ -1195,7 +1217,10 @@
       "description": "You can smell the alcohol on his breath from across the room.  This poor\nbard has been sitting here quite a while, drinking himself into oblivion.",
       "equipment": {
         "wield": 3502
-      }
+      },
+      "inventory": [
+        3501
+      ]
     },
     "3507": {
       "vnum": 3507,
@@ -1217,7 +1242,11 @@
       "description": "The man is obviously an outlaw, and has no qualms about slashing you into\nlittle bits.",
       "equipment": {
         "body": 3503
-      }
+      },
+      "inventory": [
+        3507,
+        3505
+      ]
     }
   },
   "objects": {
@@ -1268,7 +1297,8 @@
       "armor_bonus": 5,
       "type": "armor",
       "wear_slot": "body",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 3
     },
     "3504": {
       "vnum": 3504,
@@ -1325,7 +1355,8 @@
       "weight": 1,
       "value": 25,
       "armor_bonus": 5,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 2
     },
     "3509": {
       "vnum": 3509,
@@ -1336,7 +1367,8 @@
       "weight": 2,
       "cost": 900,
       "armor": 6,
-      "wear_slot": "head"
+      "wear_slot": "head",
+      "armor_class": 3
     },
     "3510": {
       "vnum": 3510,

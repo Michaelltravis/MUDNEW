@@ -128,6 +128,8 @@ class WebMapServer:
                 return
             method = parts[0]
             path = parts[1]
+            logger.info(f"HTTP request: method='{method}' path='{path}' raw='{request_line[:80]}'")
+
 
             headers = {}
             while True:
@@ -145,8 +147,14 @@ class WebMapServer:
                 await self._handle_websocket(reader, writer, headers)
                 return
 
-            if method != 'GET':
+            if method not in ('GET', 'HEAD', 'OPTIONS'):
+                logger.warning(f"Unexpected HTTP method: '{method}' for path '{path}'")
                 await self._http_response(writer, 405, 'Method Not Allowed', 'Method Not Allowed')
+                return
+            
+            # Handle OPTIONS preflight
+            if method == 'OPTIONS':
+                self.send_response(200)
                 return
 
             if path.startswith('/map.js'):
@@ -197,6 +205,15 @@ class WebMapServer:
                     await self._http_response(writer, 200, 'OK', iso_html, content_type='text/html')
                 except FileNotFoundError:
                     await self._http_response(writer, 404, 'Not Found', 'Isometric view not found')
+            elif path.startswith('/2d'):
+                # Serve the Phaser 2D top-down view
+                client2d_path = os.path.join(os.path.dirname(__file__), 'web_isometric', 'client2d.html')
+                try:
+                    with open(client2d_path, 'r', encoding='utf-8') as f:
+                        client2d_html = f.read()
+                    await self._http_response(writer, 200, 'OK', client2d_html, content_type='text/html')
+                except FileNotFoundError:
+                    await self._http_response(writer, 404, 'Not Found', '2D client not found')
             else:
                 await self._http_response(writer, 200, 'OK', self._html(), content_type='text/html')
 

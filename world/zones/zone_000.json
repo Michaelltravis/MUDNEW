@@ -72,7 +72,11 @@
         "no_bash",
         "no_blind"
       ],
-      "description": "Is that some type of differential curve involving some strange, and\nunknown calculus that she seems to be made out of?"
+      "description": "Is that some type of differential curve involving some strange, and\nunknown calculus that she seems to be made out of?",
+      "inventory": [
+        0,
+        10
+      ]
     },
     "10": {
       "vnum": 10,
@@ -89,7 +93,11 @@
       "flags": [
         "sentinel"
       ],
-      "description": "This clone is nothing to look at.  No, really, it is quite boring."
+      "description": "This clone is nothing to look at.  No, really, it is quite boring.",
+      "inventory": [
+        10,
+        1
+      ]
     },
     "11": {
       "vnum": 11,
@@ -106,7 +114,11 @@
       "flags": [
         "sentinel"
       ],
-      "description": "This strange humanoid is moving rather slowly, and appears to be\na corpse, a walking corpse!  It must be a zombie or something of\nthe sort."
+      "description": "This strange humanoid is moving rather slowly, and appears to be\na corpse, a walking corpse!  It must be a zombie or something of\nthe sort.",
+      "inventory": [
+        0,
+        1
+      ]
     },
     "19": {
       "vnum": 19,
@@ -123,7 +135,11 @@
       "flags": [
         "sentinel"
       ],
-      "description": "As you stare at this amorphous shape, it begins to appear to take\nthe shape of a cloud-like humanoid."
+      "description": "As you stare at this amorphous shape, it begins to appear to take\nthe shape of a cloud-like humanoid.",
+      "inventory": [
+        1,
+        0
+      ]
     },
     "20": {
       "vnum": 20,
@@ -140,7 +156,10 @@
       "flags": [
         "sentinel"
       ],
-      "description": "This creature is the essence of the elements, and appears to be\nwaiting patiently for something to occur."
+      "description": "This creature is the essence of the elements, and appears to be\nwaiting patiently for something to occur.",
+      "inventory": [
+        1
+      ]
     }
   },
   "objects": {
@@ -163,7 +182,8 @@
       "weight": 0,
       "value": 0,
       "armor_bonus": 6,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 3
     },
     "10": {
       "vnum": 10,

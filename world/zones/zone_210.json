@@ -9747,7 +9747,10 @@
       ],
       "special": "none",
       "armor_class": 20,
-      "detect_bonus": 60
+      "detect_bonus": 60,
+      "inventory": [
+        21050
+      ]
     },
     "21011": {
       "vnum": 21011,
@@ -9772,7 +9775,10 @@
           "chance": 5
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        21050
+      ]
     },
     "21098": {
       "vnum": 21098,
@@ -9796,7 +9802,10 @@
         "sticks": "They whimper. 'They blend with the walls. You can't tell what's tunnel and what's creature until it's too late. Listen for clicking \u2014 that's how they communicate. If the clicking gets fast, they're about to attack. Go slow and burn everything suspicious.'",
         "default": "The traveler flinches at every sound, clutching a spent torch like a lifeline.",
         "next": "The traveler stares at you with wild eyes. 'You've reached the end of the known world, adventurer. There is nothing beyond this place but legend. You ARE the legend now.'"
-      }
+      },
+      "inventory": [
+        21050
+      ]
     }
   },
   "objects": {

@@ -629,7 +629,10 @@
         "shield": 7918,
         "feet": 7919,
         "arms": 7920
-      }
+      },
+      "inventory": [
+        7913
+      ]
     },
     "7901": {
       "vnum": 7901,
@@ -773,7 +776,8 @@
       "value": 1200,
       "type": "armor",
       "wear_slot": "wrist",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 4
     },
     "7908": {
       "vnum": 7908,
@@ -797,7 +801,8 @@
       "value": 3500,
       "type": "armor",
       "wear_slot": "finger",
-      "armor": 0
+      "armor": 11,
+      "armor_class": 3
     },
     "7910": {
       "vnum": 7910,
@@ -822,7 +827,8 @@
       "armor_bonus": 7,
       "type": "armor",
       "wear_slot": "head",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 3
     },
     "7912": {
       "vnum": 7912,
@@ -835,7 +841,8 @@
       "armor_bonus": 8,
       "type": "armor",
       "wear_slot": "head",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 3
     },
     "7913": {
       "vnum": 7913,
@@ -858,7 +865,8 @@
       "weight": 70,
       "value": 20000,
       "armor_bonus": 10,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 13
     },
     "7915": {
       "vnum": 7915,
@@ -869,7 +877,8 @@
       "weight": 40,
       "value": 12500,
       "armor_bonus": 7,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 15
     },
     "7916": {
       "vnum": 7916,
@@ -882,7 +891,8 @@
       "armor_bonus": 5,
       "type": "armor",
       "wear_slot": "hands",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 2
     },
     "7917": {
       "vnum": 7917,
@@ -895,7 +905,8 @@
       "armor_bonus": 8,
       "type": "armor",
       "wear_slot": "head",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 3
     },
     "7918": {
       "vnum": 7918,
@@ -908,7 +919,8 @@
       "armor_bonus": 12,
       "type": "armor",
       "wear_slot": "shield",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 3
     },
     "7919": {
       "vnum": 7919,
@@ -921,7 +933,8 @@
       "armor_bonus": 5,
       "type": "armor",
       "wear_slot": "feet",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 2
     },
     "7920": {
       "vnum": 7920,
@@ -932,7 +945,8 @@
       "weight": 40,
       "value": 12500,
       "armor_bonus": 7,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 14
     },
     "7921": {
       "vnum": 7921,

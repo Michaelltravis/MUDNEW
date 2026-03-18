@@ -1232,7 +1232,10 @@
         "stay_zone",
         "wimpy"
       ],
-      "description": "This goat is acclimated to the rugged terrain of the \nmountains.  It looks at you and shies away a little."
+      "description": "This goat is acclimated to the rugged terrain of the \nmountains.  It looks at you and shies away a little.",
+      "inventory": [
+        6401
+      ]
     },
     "6401": {
       "vnum": 6401,
@@ -1257,7 +1260,10 @@
         "no_sleep",
         "no_blind"
       ],
-      "description": "This demon has pure malevolence for anything living.  \nOops!  You're living!  I guess that means you!"
+      "description": "This demon has pure malevolence for anything living.  \nOops!  You're living!  I guess that means you!",
+      "inventory": [
+        6405
+      ]
     },
     "6402": {
       "vnum": 6402,
@@ -1352,7 +1358,10 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        6425
+      ]
     },
     "6404": {
       "vnum": 6404,
@@ -1417,7 +1426,12 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        6405,
+        6424,
+        6407
+      ]
     },
     "6405": {
       "vnum": 6405,
@@ -1481,7 +1495,12 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        6428,
+        6405,
+        6401
+      ]
     }
   },
   "objects": {
@@ -1508,7 +1527,8 @@
       "armor_bonus": 15,
       "type": "armor",
       "wear_slot": "body",
-      "armor": 5
+      "armor": 5,
+      "armor_class": 4
     },
     "6402": {
       "vnum": 6402,
@@ -1561,7 +1581,8 @@
       "armor_bonus": 0,
       "type": "armor",
       "wear_slot": "neck",
-      "armor": 0
+      "armor": 5,
+      "armor_class": 2
     },
     "6407": {
       "vnum": 6407,
@@ -1659,7 +1680,8 @@
       "armor_bonus": 8,
       "type": "weapon",
       "weapon_type": "pound",
-      "damage_dice": "1d6"
+      "damage_dice": "1d6",
+      "armor": 10
     },
     "6416": {
       "vnum": 6416,
@@ -1757,7 +1779,8 @@
       ],
       "set_id": 64,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 3
     },
     "6423": {
       "vnum": 6423,
@@ -1776,7 +1799,8 @@
         }
       ],
       "set_id": 64,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 10
     },
     "6424": {
       "vnum": 6424,
@@ -1799,7 +1823,8 @@
         }
       ],
       "set_id": 64,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 10
     },
     "6425": {
       "vnum": 6425,
@@ -1818,7 +1843,8 @@
         }
       ],
       "set_id": 64,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 9
     },
     "6426": {
       "vnum": 6426,
@@ -1884,7 +1910,8 @@
       ],
       "set_id": 64,
       "type": "armor",
-      "armor": 0
+      "armor": 10,
+      "armor_class": 2
     },
     "6429": {
       "vnum": 6429,
@@ -1905,7 +1932,8 @@
       ],
       "set_id": 64,
       "type": "armor",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 4
     }
   }
 }

@@ -1792,7 +1792,10 @@
       "equipment": {
         "body": 3600,
         "wield": 3602
-      }
+      },
+      "inventory": [
+        3612
+      ]
     },
     "3601": {
       "vnum": 3601,
@@ -1816,7 +1819,10 @@
       "equipment": {
         "body": 3601,
         "wield": 3603
-      }
+      },
+      "inventory": [
+        3614
+      ]
     },
     "3602": {
       "vnum": 3602,
@@ -1839,7 +1845,10 @@
       "description": "The Black Rook is a very large man-made tomb on wheels.  Just\nfrom the looks of it, it will probably be YOUR tomb.",
       "equipment": {
         "body": 3604
-      }
+      },
+      "inventory": [
+        3606
+      ]
     },
     "3603": {
       "vnum": 3603,
@@ -1862,7 +1871,10 @@
       "description": "The White Rook is a very large man-made tomb on wheels.  Just\nfrom the looks of it, it will probably be YOUR tomb.",
       "equipment": {
         "body": 3605
-      }
+      },
+      "inventory": [
+        3600
+      ]
     },
     "3604": {
       "vnum": 3604,
@@ -1883,7 +1895,11 @@
       "description": "The Black Knight is here, riding his ebony black war horse.  His eyes\nflash behind his visor in vengence.",
       "equipment": {
         "wield": 3606
-      }
+      },
+      "inventory": [
+        3604,
+        3612
+      ]
     },
     "3605": {
       "vnum": 3605,
@@ -1904,7 +1920,10 @@
       "description": "The White Knight is here, riding his ivory white war horse.  His eyes\ngleam behind his visor in joy.",
       "equipment": {
         "wield": 3607
-      }
+      },
+      "inventory": [
+        3605
+      ]
     },
     "3606": {
       "vnum": 3606,
@@ -1924,7 +1943,10 @@
       "description": "The Black Bishop seems willing to help you straight into your grave so\nhe can bless you properly.",
       "equipment": {
         "hold": 3608
-      }
+      },
+      "inventory": [
+        3600
+      ]
     },
     "3607": {
       "vnum": 3607,
@@ -1944,7 +1966,10 @@
       "description": "The White Bishop seems willing to help you in any possible so that he can\nattain a higher spirituality.",
       "equipment": {
         "hold": 3609
-      }
+      },
+      "inventory": [
+        3617
+      ]
     },
     "3608": {
       "vnum": 3608,
@@ -1967,7 +1992,10 @@
       "description": "The Black Queen is a strikingly beautiful woman with pale skin and a\nmass of dark hair that crowns her head like a black cloud.  If looks\ncould kill, you would already be dead.",
       "equipment": {
         "head": 3610
-      }
+      },
+      "inventory": [
+        3608
+      ]
     },
     "3609": {
       "vnum": 3609,
@@ -1990,7 +2018,11 @@
       "description": "The White Queen is a stunningly beautiful woman with dark skin and a mass\nof light hair that frames her head like the sun.  This is surely love at\nfirst sight for you.",
       "equipment": {
         "head": 3611
-      }
+      },
+      "inventory": [
+        3612,
+        3613
+      ]
     },
     "3610": {
       "vnum": 3610,
@@ -2059,7 +2091,8 @@
       "armor_bonus": 1,
       "type": "armor",
       "wear_slot": "body",
-      "armor": 4
+      "armor": 4,
+      "armor_class": 3
     },
     "3601": {
       "vnum": 3601,
@@ -2072,7 +2105,8 @@
       "armor_bonus": 1,
       "type": "armor",
       "wear_slot": "body",
-      "armor": 4
+      "armor": 4,
+      "armor_class": 2
     },
     "3602": {
       "vnum": 3602,
@@ -2109,7 +2143,8 @@
       "armor_bonus": 2,
       "type": "armor",
       "wear_slot": "body",
-      "armor": 4
+      "armor": 4,
+      "armor_class": 1
     },
     "3605": {
       "vnum": 3605,
@@ -2122,7 +2157,8 @@
       "armor_bonus": 2,
       "type": "armor",
       "wear_slot": "body",
-      "armor": 4
+      "armor": 4,
+      "armor_class": 3
     },
     "3606": {
       "vnum": 3606,
@@ -2183,7 +2219,8 @@
       "armor_bonus": 2,
       "type": "armor",
       "wear_slot": "head",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 1
     },
     "3611": {
       "vnum": 3611,
@@ -2196,7 +2233,8 @@
       "armor_bonus": 2,
       "type": "armor",
       "wear_slot": "head",
-      "armor": 2
+      "armor": 2,
+      "armor_class": 3
     },
     "3612": {
       "vnum": 3612,

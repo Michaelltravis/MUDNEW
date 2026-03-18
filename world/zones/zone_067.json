@@ -18,7 +18,13 @@
           "to_room": 6701,
           "description": "The highland trail continues east."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 6700,
+          "max": 1
+        }
+      ]
     },
     "6701": {
       "vnum": 6701,
@@ -39,7 +45,13 @@
           "to_room": 6708,
           "description": "A steep path descends toward the coast."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 6701,
+          "max": 1
+        }
+      ]
     },
     "6702": {
       "vnum": 6702,
@@ -70,6 +82,12 @@
           "resource": "iron ore",
           "respawn_minutes": 60
         }
+      ],
+      "mob_resets": [
+        {
+          "vnum": 6702,
+          "max": 1
+        }
       ]
     },
     "6703": {
@@ -87,7 +105,13 @@
           "to_room": 6704,
           "description": "The cliff path continues precariously."
         }
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 6703,
+          "max": 1
+        }
+      ]
     },
     "6704": {
       "vnum": 6704,
@@ -115,7 +139,13 @@
       },
       "extra_descs": {
         "signpost sign": "The signpost reads:\n  NORTH - Haunted Monastery (cursed ground!)\n  SOUTHEAST - Shadowspire Citadel (certain death)\n  WEST - The Ridge / Northern Wilderness\n  SOUTH - Coastal Path to the Sunken Coast"
-      }
+      },
+      "mob_resets": [
+        {
+          "vnum": 6704,
+          "max": 1
+        }
+      ]
     },
     "6705": {
       "vnum": 6705,
@@ -300,6 +330,9 @@
       "flags": [
         "aggressive",
         "stay_zone"
+      ],
+      "inventory": [
+        6700
       ]
     },
     "6701": {
@@ -318,6 +351,9 @@
       "flags": [
         "aggressive",
         "stay_zone"
+      ],
+      "inventory": [
+        6700
       ]
     },
     "6702": {
@@ -336,6 +372,9 @@
       "flags": [
         "aggressive",
         "stay_zone"
+      ],
+      "inventory": [
+        6700
       ]
     },
     "6703": {
@@ -354,6 +393,9 @@
       "flags": [
         "sentinel",
         "helper"
+      ],
+      "inventory": [
+        6700
       ]
     },
     "6704": {
@@ -372,6 +414,9 @@
       "flags": [
         "aggressive",
         "stay_zone"
+      ],
+      "inventory": [
+        6700
       ]
     }
   },
@@ -383,7 +428,8 @@
       "description": "A heavy battle axe with a notched iron head and leather-wrapped haft.",
       "type": "weapon",
       "weight": 8,
-      "cost": 150
+      "cost": 150,
+      "damage_dice": "1d8+2"
     }
   },
   "resets": [

@@ -818,7 +818,12 @@
         "no_charm",
         "no_sleep"
       ],
-      "description": "This mechanical warrior stands six feet tall, its body a masterwork of\ninterlocking plates, gears, and pistons. Steam vents from joints as it\nmoves with surprising fluidity. Its eyes are glass lenses that glow\nwith an inner amber light, and its hands end in razor-sharp blade-fingers\nthat can switch to crushing grips in an instant."
+      "description": "This mechanical warrior stands six feet tall, its body a masterwork of\ninterlocking plates, gears, and pistons. Steam vents from joints as it\nmoves with surprising fluidity. Its eyes are glass lenses that glow\nwith an inner amber light, and its hands end in razor-sharp blade-fingers\nthat can switch to crushing grips in an instant.",
+      "inventory": [
+        24801,
+        24802,
+        24803
+      ]
     },
     "24802": {
       "vnum": 24802,
@@ -838,7 +843,11 @@
         "no_sleep",
         "no_bash"
       ],
-      "description": "Twelve feet of iron, brass, and fury. The Steam Golem is a walking\nboiler room, its torso a pressurized chamber that vents scalding steam\nthrough nozzles on its arms and back. Its fists are wrecking balls,\nand the ground shakes with each thunderous step. The heat radiating\nfrom its body is intense enough to blister skin at ten paces."
+      "description": "Twelve feet of iron, brass, and fury. The Steam Golem is a walking\nboiler room, its torso a pressurized chamber that vents scalding steam\nthrough nozzles on its arms and back. Its fists are wrecking balls,\nand the ground shakes with each thunderous step. The heat radiating\nfrom its body is intense enough to blister skin at ten paces.",
+      "inventory": [
+        24801,
+        24803
+      ]
     },
     "24803": {
       "vnum": 24803,
@@ -856,7 +865,12 @@
         "no_charm",
         "no_sleep"
       ],
-      "description": "A floating sphere of polished brass, roughly three feet in diameter,\nsurrounded by a halo of articulated arms. Each arm ends in a different\ntool \u2014 wrenches, welders, soldering irons, saws. The drone repairs\ndamaged units on the battlefield, and can turn its tools to offensive\npurposes with disturbing effectiveness."
+      "description": "A floating sphere of polished brass, roughly three feet in diameter,\nsurrounded by a halo of articulated arms. Each arm ends in a different\ntool \u2014 wrenches, welders, soldering irons, saws. The drone repairs\ndamaged units on the battlefield, and can turn its tools to offensive\npurposes with disturbing effectiveness.",
+      "inventory": [
+        24802,
+        24803,
+        24801
+      ]
     },
     "24804": {
       "vnum": 24804,
@@ -876,7 +890,12 @@
         "no_sleep",
         "sentinel"
       ],
-      "description": "This stationary defense unit consists of twin Tesla coils mounted on a\nrotating base. Arcs of blue-white lightning crackle between the coils,\nand the air around it smells of ozone and burning. It can discharge\nmassive bolts of electricity at anything it identifies as an intruder,\nand its targeting systems are devastatingly accurate."
+      "description": "This stationary defense unit consists of twin Tesla coils mounted on a\nrotating base. Arcs of blue-white lightning crackle between the coils,\nand the air around it smells of ozone and burning. It can discharge\nmassive bolts of electricity at anything it identifies as an intruder,\nand its targeting systems are devastatingly accurate.",
+      "inventory": [
+        24801,
+        24803,
+        24802
+      ]
     },
     "24805": {
       "vnum": 24805,
@@ -899,7 +918,11 @@
         "no_blind",
         "sentinel"
       ],
-      "description": "Archon Prime is the masterwork of the Clockwork Foundry \u2014 a mechanical\nentity that has transcended mere engineering to become something approaching\ndivinity. Twenty feet tall, forged from adamantine alloy and powered by a\nfragment of captured stellar energy, it moves with the grace of a dancer\nand the force of an avalanche. Its body is a cathedral of gears, each\none perfect, each one necessary. Its eyes burn with the light of its\nstellar heart, and when it speaks, the foundry itself trembles. It was\nbuilt to create. It has decided to conquer."
+      "description": "Archon Prime is the masterwork of the Clockwork Foundry \u2014 a mechanical\nentity that has transcended mere engineering to become something approaching\ndivinity. Twenty feet tall, forged from adamantine alloy and powered by a\nfragment of captured stellar energy, it moves with the grace of a dancer\nand the force of an avalanche. Its body is a cathedral of gears, each\none perfect, each one necessary. Its eyes burn with the light of its\nstellar heart, and when it speaks, the foundry itself trembles. It was\nbuilt to create. It has decided to conquer.",
+      "inventory": [
+        24801,
+        24803
+      ]
     }
   },
   "objects": {
@@ -923,7 +946,9 @@
         "strength": 4,
         "hitroll": 6,
         "damroll": 8
-      }
+      },
+      "armor_class": 8,
+      "armor": 13
     },
     "24802": {
       "vnum": 24802,

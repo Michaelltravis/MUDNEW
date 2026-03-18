@@ -112,6 +112,10 @@
       ],
       "special_attacks": [
         "petrify_gaze"
+      ],
+      "inventory": [
+        7310,
+        7304
       ]
     },
     "7302": {
@@ -133,6 +137,10 @@
       ],
       "special_attacks": [
         "psychic_scream"
+      ],
+      "inventory": [
+        7309,
+        7303
       ]
     },
     "7303": {
@@ -157,6 +165,10 @@
       "special_attacks": [
         "mind_blast",
         "extract_brain"
+      ],
+      "inventory": [
+        7301,
+        7310
       ]
     },
     "7304": {
@@ -244,8 +256,122 @@
         ]
       },
       "boss": true,
-      "boss_id": "master_mindflayer"
+      "boss_id": "master_mindflayer",
+      "inventory": [
+        7311
+      ]
     }
   },
-  "objects": {}
+  "objects": {
+    "7300": {
+      "vnum": 7300,
+      "name": "psionic blade",
+      "short_desc": "a shimmering psionic blade",
+      "room_desc": "A blade of pure psychic energy hums on the ground.",
+      "type": "weapon",
+      "item_type": "weapon",
+      "weight": 5,
+      "value": 5000,
+      "damage_dice": "3d8+8",
+      "weapon_type": "exotic"
+    },
+    "7301": {
+      "vnum": 7301,
+      "name": "mindflayer robes",
+      "short_desc": "robes of the mindflayer",
+      "room_desc": "Dark purple robes emanate psychic energy.",
+      "type": "armor",
+      "item_type": "armor",
+      "weight": 8,
+      "value": 4000,
+      "armor": 14,
+      "wear_slot": "body"
+    },
+    "7302": {
+      "vnum": 7302,
+      "name": "tentacle crown",
+      "short_desc": "a crown of writhing tentacles",
+      "room_desc": "A horrific crown of tentacles writhes on the floor.",
+      "type": "armor",
+      "item_type": "armor",
+      "weight": 3,
+      "value": 6000,
+      "armor": 10,
+      "wear_slot": "head"
+    },
+    "7303": {
+      "vnum": 7303,
+      "name": "potion of psionic resistance",
+      "short_desc": "a potion of psionic resistance",
+      "room_desc": "A glowing purple potion sits here.",
+      "type": "potion",
+      "item_type": "potion",
+      "weight": 1,
+      "value": 800
+    },
+    "7304": {
+      "vnum": 7304,
+      "name": "brain jar",
+      "short_desc": "a jar containing a preserved brain",
+      "room_desc": "A jar with a floating brain sits here.",
+      "type": "treasure",
+      "item_type": "treasure",
+      "weight": 4,
+      "value": 3000
+    },
+    "7305": {
+      "vnum": 7305,
+      "name": "elder brain fragment",
+      "short_desc": "a fragment of the elder brain",
+      "room_desc": "A pulsing fragment of brain tissue lies here.",
+      "type": "treasure",
+      "item_type": "treasure",
+      "weight": 2,
+      "value": 10000
+    },
+    "7306": {
+      "vnum": 7306,
+      "name": "thrall collar",
+      "short_desc": "a psychic thrall collar",
+      "room_desc": "A metal collar crackles with psychic energy.",
+      "type": "armor",
+      "item_type": "armor",
+      "weight": 2,
+      "value": 2500,
+      "armor": 6,
+      "wear_slot": "neck"
+    },
+    "7307": {
+      "vnum": 7307,
+      "name": "cerebral shield",
+      "short_desc": "a shield of mental fortitude",
+      "room_desc": "A translucent shield pulses with thought energy.",
+      "type": "armor",
+      "item_type": "armor",
+      "weight": 10,
+      "value": 4500,
+      "armor": 16,
+      "wear_slot": "shield"
+    },
+    "7308": {
+      "vnum": 7308,
+      "name": "illithid key",
+      "short_desc": "a strange organic key",
+      "room_desc": "A fleshy, organic key lies here.",
+      "type": "key",
+      "item_type": "key",
+      "weight": 1,
+      "value": 0
+    },
+    "7309": {
+      "vnum": 7309,
+      "name": "potion of healing",
+      "short_desc": "a potion of healing",
+      "room_desc": "A red potion sits here.",
+      "type": "potion",
+      "item_type": "potion",
+      "weight": 1,
+      "value": 500
+    }
+  }
 }

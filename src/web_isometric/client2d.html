@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Misthollow — 2D Client</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@800&family=Plus+Jakarta+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.87.0/dist/phaser.min.js"></script>
+  <style>
+    :root {
+      --bg: #0a0e17;
+      --bg-soft: #101826;
+      --panel: rgba(15, 23, 42, 0.72);
+      --panel-strong: rgba(10, 14, 23, 0.88);
+      --line: rgba(148, 163, 184, 0.1);
+      --line-strong: rgba(148, 163, 184, 0.18);
+      --text: #e5eefb;
+      --muted: #90a4bd;
+      --teal: #10b981;
+      --teal-deep: #0f8f67;
+      --red: #ef4444;
+      --blue: #3b82f6;
+      --green: #22c55e;
+      --gold: #f6c453;
+      --shadow: 0 18px 60px rgba(0, 0, 0, 0.42);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+      --topbar-h: 60px;
+      --bottombar-h: 60px;
+      --panel-gap: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(16, 185, 129, 0.14), transparent 28%),
+        radial-gradient(circle at top right, rgba(59, 130, 246, 0.12), transparent 30%),
+        linear-gradient(180deg, #0c1220 0%, #0a0e17 100%);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,0.02), rgba(255,255,255,0.01)),
+        repeating-linear-gradient(
+          90deg,
+          transparent 0,
+          transparent 120px,
+          rgba(148,163,184,0.025) 120px,
+          rgba(148,163,184,0.025) 121px
+        );
+      mix-blend-mode: screen;
+      opacity: 0.6;
+    }
+
+    .app-shell {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-rows: var(--topbar-h) 1fr var(--bottombar-h);
+      gap: var(--panel-gap);
+      padding: 14px;
+    }
+
+    .glass {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px) saturate(120%);
+      -webkit-backdrop-filter: blur(18px) saturate(120%);
+    }
+
+    .top-bar,
+    .bottom-bar,
+    .panel,
+    .login-card,
+    .combat-indicator {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .top-bar::before,
+    .bottom-bar::before,
+    .panel::before,
+    .login-card::before,
+    .combat-indicator::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(135deg, rgba(255,255,255,0.04), transparent 40%, rgba(16,185,129,0.04));
+    }
+
+    .top-bar {
+      border-radius: var(--radius-xl);
+      display: flex;
+      align-items: center;
+      padding: 10px 18px;
+      gap: 18px;
+    }
+
+    .bars {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .stat {
+      min-width: 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .stat-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .bar-track {
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.11);
+      border: 1px solid rgba(255,255,255,0.04);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 0%;
+      border-radius: inherit;
+      transition: width 220ms ease;
+      position: relative;
+    }
+
+    .bar-fill::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(255,255,255,0.12), transparent 55%);
+      pointer-events: none;
+    }
+
+    .bar-fill.hp { background: linear-gradient(90deg, #b91c1c, #ef4444); box-shadow: 0 0 20px rgba(239,68,68,0.33); }
+    .bar-fill.mana { background: linear-gradient(90deg, #1d4ed8, #3b82f6); box-shadow: 0 0 20px rgba(59,130,246,0.33); }
+    .bar-fill.move { background: linear-gradient(90deg, #15803d, #22c55e); box-shadow: 0 0 20px rgba(34,197,94,0.33); }
+
+    .room-meta {
+      width: min(28vw, 360px);
+      min-width: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+      text-align: right;
+    }
+
+    .room-label {
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(148,163,184,0.76);
+    }
+
+    .room-name {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-shadow: 0 0 16px rgba(16,185,129,0.15);
+    }
+
+    .main-content {
+      min-height: 0;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(320px, 2fr);
+      gap: var(--panel-gap);
+    }
+
+    .panel {
+      border-radius: var(--radius-xl);
+      min-height: 0;
+      border: 1px solid var(--line);
+    }
+
+    .map-panel {
+      position: relative;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    #phaser-root {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    #phaser-root canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+      cursor: crosshair;
+    }
+
+    .map-overlay {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      right: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .map-chip {
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(10, 14, 23, 0.7);
+      border: 1px solid rgba(148,163,184,0.12);
+      color: #d5e4f7;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      backdrop-filter: blur(12px);
+    }
+
+    .text-panel {
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+      min-height: 0;
+      background: linear-gradient(180deg, rgba(13,19,32,0.86), rgba(9,13,23,0.94));
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      z-index: 1;
+    }
+
+    .panel-title {
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: #e8f3ff;
+    }
+
+    .connection-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+
+    .connection-dot::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #64748b;
+      box-shadow: 0 0 0 0 rgba(100,116,139,0.45);
+    }
+
+    .connection-dot.online::before {
+      background: var(--teal);
+      box-shadow: 0 0 18px rgba(16,185,129,0.7);
+    }
+
+    .output {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding-right: 4px;
+      white-space: pre-wrap;
+      line-height: 1.65;
+      font-size: 14px;
+      color: #dbe7f6;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(148,163,184,0.32) transparent;
+    }
+
+    .output::-webkit-scrollbar { width: 8px; }
+    .output::-webkit-scrollbar-thumb {
+      background: rgba(148,163,184,0.25);
+      border-radius: 999px;
+    }
+
+    .output-line {
+      padding: 9px 11px;
+      margin-bottom: 8px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.018);
+      border: 1px solid rgba(148,163,184,0.06);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+      animation: fadeIn 180ms ease;
+    }
+
+    .output-line.system {
+      color: #93c5fd;
+      background: rgba(37, 99, 235, 0.08);
+      border-color: rgba(59,130,246,0.14);
+    }
+
+    .output-line.combat {
+      color: #fecaca;
+      background: rgba(185,28,28,0.12);
+      border-color: rgba(239,68,68,0.18);
+    }
+
+    .output-line.command {
+      color: #b7f7de;
+      background: rgba(16,185,129,0.08);
+      border-color: rgba(16,185,129,0.16);
+    }
+
+    .bottom-bar {
+      border-radius: var(--radius-xl);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px;
+    }
+
+    .command-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .prompt {
+      flex: 1;
+      min-width: 0;
+      height: 100%;
+      border-radius: 16px;
+      border: 1px solid rgba(148,163,184,0.14);
+      background: rgba(3, 7, 18, 0.42);
+      color: var(--text);
+      padding: 0 16px;
+      outline: none;
+      font-size: 15px;
+      transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .prompt:focus {
+      border-color: rgba(16,185,129,0.55);
+      box-shadow: 0 0 0 4px rgba(16,185,129,0.12);
+      background: rgba(2, 6, 23, 0.72);
+    }
+
+    .btn {
+      height: 100%;
+      border: none;
+      border-radius: 16px;
+      padding: 0 18px;
+      font-family: inherit;
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+      transition: transform 120ms ease, box-shadow 180ms ease, background 180ms ease, opacity 180ms ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981, #0d9f72);
+      color: white;
+      box-shadow: 0 10px 22px rgba(16,185,129,0.24);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #0f8f67, #0b6d50);
+      color: white;
+      box-shadow: 0 10px 22px rgba(15,143,103,0.22);
+    }
+
+    .btn-ghost {
+      background: rgba(148,163,184,0.08);
+      color: #dbe7f6;
+      border: 1px solid rgba(148,163,184,0.12);
+    }
+
+    .login-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at center, rgba(16,185,129,0.12), transparent 36%),
+        rgba(4, 7, 12, 0.78);
+      transition: opacity 220ms ease, visibility 220ms ease;
+    }
+
+    .login-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .login-card {
+      width: min(460px, 100%);
+      padding: 28px;
+      border-radius: 28px;
+      border: 1px solid rgba(148,163,184,0.14);
+      background: linear-gradient(180deg, rgba(13,19,32,0.88), rgba(9,13,23,0.96));
+      backdrop-filter: blur(24px) saturate(120%);
+      box-shadow: 0 30px 80px rgba(0,0,0,0.55);
+    }
+
+    .login-kicker {
+      margin-bottom: 8px;
+      color: #80ffd6;
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+    }
+
+    .login-title {
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      text-shadow: 0 0 30px rgba(16,185,129,0.18);
+    }
+
+    .login-subtitle {
+      margin: 14px 0 20px;
+      color: #b1c2d9;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .login-fields {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .input {
+      width: 100%;
+      height: 52px;
+      border-radius: 16px;
+      border: 1px solid rgba(148,163,184,0.14);
+      background: rgba(2,6,23,0.46);
+      color: var(--text);
+      outline: none;
+      padding: 0 16px;
+      font-family: inherit;
+      font-size: 15px;
+      transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    }
+
+    .input:focus {
+      border-color: rgba(16,185,129,0.48);
+      box-shadow: 0 0 0 4px rgba(16,185,129,0.1);
+      background: rgba(2,6,23,0.7);
+    }
+
+    .login-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .status-line {
+      min-height: 20px;
+      color: #8feec8;
+      font-size: 13px;
+    }
+
+    .hint-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .combat-indicator {
+      position: fixed;
+      top: calc(14px + var(--topbar-h) + 12px);
+      right: 28px;
+      z-index: 20;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(127,29,29,0.9), rgba(220,38,38,0.82));
+      border: 1px solid rgba(252,165,165,0.22);
+      color: #fff6f6;
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+      box-shadow: 0 18px 34px rgba(127,29,29,0.35), 0 0 24px rgba(248,113,113,0.25);
+      opacity: 0;
+      transform: translateY(-8px) scale(0.98);
+      transition: opacity 180ms ease, transform 180ms ease;
+      pointer-events: none;
+    }
+
+    .combat-indicator.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .footer-meta {
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 1080px) {
+      .main-content {
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(280px, 52vh) minmax(220px, 1fr);
+      }
+
+      .room-meta {
+        display: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .app-shell {
+        padding: 10px;
+        gap: 10px;
+      }
+
+      .top-bar {
+        padding: 8px 10px;
+        gap: 10px;
+      }
+
+      .bars {
+        gap: 8px;
+      }
+
+      .stat-head {
+        font-size: 9px;
+      }
+
+      .bottom-bar {
+        padding: 8px;
+      }
+
+      .login-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .combat-indicator {
+        top: calc(10px + var(--topbar-h) + 10px);
+        right: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="top-bar glass">
+      <div class="bars">
+        <div class="stat">
+          <div class="stat-head"><span>HP</span><span id="hp-text">0 / 0</span></div>
+          <div class="bar-track"><div class="bar-fill hp" id="hp-fill"></div></div>
+        </div>
+        <div class="stat">
+          <div class="stat-head"><span>Mana</span><span id="mana-text">0 / 0</span></div>
+          <div class="bar-track"><div class="bar-fill mana" id="mana-fill"></div></div>
+        </div>
+        <div class="stat">
+          <div class="stat-head"><span>Move</span><span id="move-text">0 / 0</span></div>
+          <div class="bar-track"><div class="bar-fill move" id="move-fill"></div></div>
+        </div>
+      </div>
+      <div class="room-meta">
+        <div class="room-label">Current Room</div>
+        <div class="room-name" id="room-name">Awaiting login…</div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section class="panel map-panel glass">
+        <div id="phaser-root"></div>
+        <div class="map-overlay">
+          <div class="map-chip" id="zone-chip">Mist Chart: Offline</div>
+          <div class="map-chip" id="time-chip">No time data</div>
+        </div>
+      </section>
+
+      <aside class="panel text-panel glass">
+        <div class="panel-header">
+          <div class="panel-title">Chronicle Feed</div>
+          <div class="connection-dot" id="connection-status">Disconnected</div>
+        </div>
+        <div class="output" id="output"></div>
+      </aside>
+    </main>
+
+    <footer class="bottom-bar glass">
+      <div class="command-wrap">
+        <input id="command-input" class="prompt" type="text" autocomplete="off" spellcheck="false" placeholder="Speak to the void… try look, north, score, say hello" />
+        <button id="send-btn" class="btn btn-primary">Send</button>
+      </div>
+      <button id="reconnect-btn" class="btn btn-ghost">Reconnect</button>
+      <div class="footer-meta" id="footer-meta">Idle</div>
+    </footer>
+  </div>
+
+  <div class="combat-indicator" id="combat-indicator">⚔️ In Combat</div>
+
+  <div class="login-overlay" id="login-overlay">
+    <div class="login-card glass">
+      <div class="login-kicker">Misthollow Gate</div>
+      <h1 class="login-title">⚔️ Misthollow</h1>
+      <p class="login-subtitle">New? Type a name → say Y → set password</p>
+      <div class="login-fields">
+        <input id="login-name" class="input" type="text" autocomplete="username" placeholder="Character name" />
+        <input id="login-pass" class="input" type="password" autocomplete="current-password" placeholder="Password" />
+      </div>
+      <div class="login-actions">
+        <button id="login-enter" class="btn btn-primary">Enter World</button>
+        <button id="login-create" class="btn btn-secondary">Create New Account</button>
+      </div>
+      <div class="status-line" id="login-status">Ready when you are.</div>
+      <div class="hint-row">
+        <span>WASD / Arrows to move</span>
+        <span>Click a room to pathfind</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const host = window.location.hostname || 'localhost';
+      const isBehindProxy = !window.location.port || window.location.port == 80 || window.location.port == 443;
+
+      const mudHost = isBehindProxy ? host.replace('map.', 'mud.') : host;
+      const mudWsUrl = isBehindProxy ? `${protocol}//${mudHost}/ws` : `${protocol}//${host}:4003/ws`;
+      const mapWsUrl = isBehindProxy ? `${protocol}//${host}` : `${protocol}//${host}:4001`;
+
+      const TILE_SIZE = 48;
+      const ROOM_SPACING = 64;
+      const TERRAIN_SPRITESHEET_URL = '/sprites/terrain_atlas.png';
+      const MOB_SPRITES = {
+        mob_goblin: '/sprites/mob_goblin.png',
+        mob_skeleton: '/sprites/mob_skeleton.png',
+        mob_demon: '/sprites/mob_demon.png',
+        mob_dragon: '/sprites/mob_dragon.png',
+        mob_beast: '/sprites/mob_beast.png',
+        mob_mindflayer: '/sprites/mob_mindflayer.png',
+        mob_humanoid: '/sprites/mob_humanoid.png',
+      };
+      const TERRAIN_FRAMES = {
+        city: 512,
+        town: 512,
+        forest: 609,
+        outdoor: 609,
+        field: 609,
+        dungeon: 285,
+        desert: 678,
+        cave: 264,
+        rock: 264,
+        swamp: 386,
+        water: 386,
+        default: 609,
+      };
+      const MOB_TYPE_RULES = [
+        { terms: ['goblin', 'gnoll', 'orc', 'kobold'], key: 'mob_goblin' },
+        { terms: ['skeleton', 'zombie', 'undead', 'ghoul', 'lich', 'vampire'], key: 'mob_skeleton' },
+        { terms: ['demon', 'devil'], key: 'mob_demon' },
+        { terms: ['dragon'], key: 'mob_dragon' },
+        { terms: ['wolf', 'bear', 'lion', 'animal'], key: 'mob_beast' },
+        { terms: ['mindflayer', 'illithid'], key: 'mob_mindflayer' },
+        { terms: ['humanoid', 'guard', 'soldier', 'bandit'], key: 'mob_humanoid' },
+      ];
+
+      const DIRECTIONS = {
+        north: { dx: 0, dy: 1, short: 'n', reverse: 'south' },
+        south: { dx: 0, dy: -1, short: 's', reverse: 'north' },
+        east: { dx: 1, dy: 0, short: 'e', reverse: 'west' },
+        west: { dx: -1, dy: 0, short: 'w', reverse: 'east' },
+        northeast: { dx: 1, dy: 1, short: 'ne', reverse: 'southwest' },
+        northwest: { dx: -1, dy: 1, short: 'nw', reverse: 'southeast' },
+        southeast: { dx: 1, dy: -1, short: 'se', reverse: 'northwest' },
+        southwest: { dx: -1, dy: -1, short: 'sw', reverse: 'northeast' },
+      };
+
+      const COMBAT_PATTERNS = [
+        /you hit/i,
+        /you slash/i,
+        /you pierce/i,
+        /you attack/i,
+        /you smite/i,
+        /is dead!/i,
+        /you are fighting/i,
+        /starts using/i,
+        /hits you/i,
+        /slashes you/i,
+        /attacks you/i,
+      ];
+
+      const ROOM_LOGIN_PATTERNS = [
+        /^\[[0-9]+\]\s+/m,
+        /\bExits?:\b/i,
+        /You are in/i,
+        /Obvious exits:/i,
+      ];
+
+      const state = {
+        mudSocket: null,
+        mapSocket: null,
+        playerName: '',
+        playerPassword: '',
+        creatingAccount: false,
+        mudConnected: false,
+        mapConnected: false,
+        isLoggedIn: false,
+        loginSequenceStarted: false,
+        rooms: [],
+        roomMap: new Map(),
+        coordMap: new Map(),
+        player: null,
+        currentRoomVnum: null,
+        currentRoomName: 'Awaiting login…',
+        currentZone: 'Unknown Region',
+        visited: new Set(),
+        commandHistory: [],
+        historyIndex: -1,
+        lastCombatAt: 0,
+        combat: false,
+        pendingPath: [],
+        phaserReady: false,
+        queuedMapData: null,
+      };
+
+      const els = {
+        output: document.getElementById('output'),
+        hpFill: document.getElementById('hp-fill'),
+        manaFill: document.getElementById('mana-fill'),
+        moveFill: document.getElementById('move-fill'),
+        hpText: document.getElementById('hp-text'),
+        manaText: document.getElementById('mana-text'),
+        moveText: document.getElementById('move-text'),
+        roomName: document.getElementById('room-name'),
+        commandInput: document.getElementById('command-input'),
+        sendBtn: document.getElementById('send-btn'),
+        reconnectBtn: document.getElementById('reconnect-btn'),
+        connectionStatus: document.getElementById('connection-status'),
+        footerMeta: document.getElementById('footer-meta'),
+        combatIndicator: document.getElementById('combat-indicator'),
+        loginOverlay: document.getElementById('login-overlay'),
+        loginName: document.getElementById('login-name'),
+        loginPass: document.getElementById('login-pass'),
+        loginEnter: document.getElementById('login-enter'),
+        loginCreate: document.getElementById('login-create'),
+        loginStatus: document.getElementById('login-status'),
+        zoneChip: document.getElementById('zone-chip'),
+        timeChip: document.getElementById('time-chip'),
+      };
+
+      function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+
+      function setLoginStatus(text, isError = false) {
+        els.loginStatus.textContent = text;
+        els.loginStatus.style.color = isError ? '#fca5a5' : '#8feec8';
+      }
+
+      function setFooter(text) {
+        els.footerMeta.textContent = text;
+      }
+
+      function setConnectionStatus() {
+        const text = state.mudConnected
+          ? (state.mapConnected ? 'World + Map Online' : 'World Online')
+          : 'Disconnected';
+        els.connectionStatus.textContent = text;
+        els.connectionStatus.classList.toggle('online', state.mudConnected);
+        setFooter(`${state.mudConnected ? 'MUD connected' : 'MUD offline'} • ${state.mapConnected ? 'Map synced' : 'Map offline'}`);
+      }
+
+      function clampPercent(value, max) {
+        if (!max || max <= 0) return 0;
+        return Math.max(0, Math.min(100, (value / max) * 100));
+      }
+
+      function updateBar(fillEl, textEl, value, max) {
+        const safeValue = Number.isFinite(+value) ? +value : 0;
+        const safeMax = Number.isFinite(+max) && +max > 0 ? +max : 0;
+        fillEl.style.width = `${clampPercent(safeValue, safeMax)}%`;
+        textEl.textContent = `${safeValue} / ${safeMax}`;
+      }
+
+      function updateStats(player = {}) {
+        updateBar(els.hpFill, els.hpText, player.hp, player.max_hp);
+        updateBar(els.manaFill, els.manaText, player.mana, player.max_mana);
+        updateBar(els.moveFill, els.moveText, player.move, player.max_move);
+      }
+
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function appendOutput(text, type = 'normal') {
+        const line = document.createElement('div');
+        line.className = `output-line ${type}`;
+        line.innerHTML = escapeHtml(text);
+        els.output.appendChild(line);
+        els.output.scrollTop = els.output.scrollHeight;
+      }
+
+      function updateCombatStateFromOutput(text) {
+        if (COMBAT_PATTERNS.some(pattern => pattern.test(text))) {
+          state.lastCombatAt = Date.now();
+          state.combat = true;
+        } else if (/you are no longer fighting|combat has ended|you stop fighting|you flee/i.test(text)) {
+          state.combat = false;
+        }
+        syncCombatIndicator();
+      }
+
+      function syncCombatIndicator() {
+        if (state.combat && Date.now() - state.lastCombatAt > 12000) {
+          state.combat = false;
+        }
+        els.combatIndicator.classList.toggle('active', state.combat);
+      }
+
+      setInterval(syncCombatIndicator, 1500);
+
+      function normalizeLineBreaks(text) {
+        return String(text || '').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+      }
+
+      function inferLoginSuccess(text) {
+        if (state.isLoggedIn) return;
+        const normalized = normalizeLineBreaks(text);
+        const welcome = /welcome/i.test(normalized);
+        const roomLike = ROOM_LOGIN_PATTERNS.some(pattern => pattern.test(normalized));
+        if (welcome || roomLike) {
+          state.isLoggedIn = true;
+          els.loginOverlay.classList.add('hidden');
+          setFooter('Inside Misthollow');
+          setLoginStatus('Entered the world. Try look if the void acts smug.');
+        }
+      }
+
+      function sendMudCommand(command, echo = true) {
+        const trimmed = String(command || '').trim();
+        if (!trimmed || !state.mudSocket || state.mudSocket.readyState !== WebSocket.OPEN) return false;
+        state.mudSocket.send(trimmed);
+        if (echo) {
+          appendOutput(`> ${trimmed}`, 'command');
+        }
+        return true;
+      }
+
+      function queueHistory(command) {
+        if (!command) return;
+        const last = state.commandHistory[state.commandHistory.length - 1];
+        if (last !== command) {
+          state.commandHistory.push(command);
+        }
+        state.historyIndex = state.commandHistory.length;
+      }
+
+      function submitCommand() {
+        const command = els.commandInput.value.trim();
+        if (!command) return;
+        if (sendMudCommand(command)) {
+          queueHistory(command);
+          els.commandInput.value = '';
+        }
+      }
+
+      async function runLoginSequence() {
+        if (state.loginSequenceStarted || !state.mudSocket || state.mudSocket.readyState !== WebSocket.OPEN) return;
+        state.loginSequenceStarted = true;
+        setLoginStatus(state.creatingAccount ? 'Forging a new soul…' : 'Opening the gate…');
+        try {
+          await sleep(500);
+          sendMudCommand(state.playerName, false);
+          await sleep(500);
+          if (state.creatingAccount) {
+            sendMudCommand('y', false);
+            await sleep(500);
+            sendMudCommand(state.playerPassword, false);
+            await sleep(500);
+            sendMudCommand(state.playerPassword, false);
+            setLoginStatus('Account ritual sent. If the realm argues, read the feed.');
+          } else {
+            sendMudCommand(state.playerPassword, false);
+            setLoginStatus('Credentials sent. Hoping the gatekeeper is awake.');
+          }
+        } catch (error) {
+          setLoginStatus(`Login sequence failed: ${error.message}`, true);
+        }
+      }
+
+      function mapRoomCoordKey(x, y, z = 0) {
+        return `${x},${y},${z}`;
+      }
+
+      function rebuildMaps(rooms) {
+        state.rooms = Array.isArray(rooms) ? rooms : [];
+        state.roomMap = new Map();
+        state.coordMap = new Map();
+        for (const room of state.rooms) {
+          state.roomMap.set(String(room.vnum), room);
+          state.coordMap.set(mapRoomCoordKey(room.x, room.y, room.z || 0), room);
+        }
+      }
+
+      function findCurrentRoom(player) {
+        if (!player) return null;
+        if (player.vnum && state.roomMap.has(String(player.vnum))) {
+          return state.roomMap.get(String(player.vnum));
+        }
+        return null;
+      }
+
+      function updateHeaderRoom(room) {
+        if (!room) return;
+        state.currentRoomVnum = room.vnum;
+        state.currentRoomName = room.name || 'Unknown Room';
+        state.currentZone = room.zone || 'Unknown Region';
+        state.visited.add(String(room.vnum));
+        els.roomName.textContent = room.name || 'Unknown Room';
+        els.zoneChip.textContent = room.zone ? `${room.zone}` : 'Unknown Region';
+      }
+
+      function updateTimeChip(time) {
+        if (!time || typeof time !== 'object') {
+          els.timeChip.textContent = 'No time data';
+          return;
+        }
+        const parts = [];
+        if (time.hour !== undefined) parts.push(`Hour ${time.hour}`);
+        if (time.day !== undefined) parts.push(`Day ${time.day}`);
+        if (time.month !== undefined) parts.push(`Month ${time.month}`);
+        if (time.year !== undefined) parts.push(`Year ${time.year}`);
+        els.timeChip.textContent = parts.length ? parts.join(' • ') : 'Time unknown';
+      }
+
+      function handleMapData(payload) {
+        rebuildMaps(payload.rooms || []);
+        state.player = payload.player || state.player;
+        updateStats(state.player || {});
+        updateTimeChip(payload.time);
+        const currentRoom = findCurrentRoom(state.player);
+        if (currentRoom) updateHeaderRoom(currentRoom);
+        if (window.mudScene && typeof window.mudScene.setMapData === 'function') {
+          window.mudScene.setMapData(state.rooms, state.player, state.visited, state.currentRoomVnum);
+        } else {
+          state.queuedMapData = { rooms: state.rooms, player: state.player, visited: new Set(state.visited), currentRoomVnum: state.currentRoomVnum };
+        }
+      }
+
+      function ensureMapSocket() {
+        if (!state.playerName) return;
+        if (state.mapSocket && (state.mapSocket.readyState === WebSocket.OPEN || state.mapSocket.readyState === WebSocket.CONNECTING)) return;
+
+        state.mapSocket = new WebSocket(mapWsUrl);
+
+        state.mapSocket.addEventListener('open', () => {
+          state.mapConnected = true;
+          setConnectionStatus();
+          state.mapSocket.send(JSON.stringify({ type: 'subscribe', player: state.playerName, mode: 'full' }));
+          appendOutput('[map] cartography stream engaged', 'system');
+        });
+
+        state.mapSocket.addEventListener('message', event => {
+          try {
+            const payload = JSON.parse(event.data);
+            if (payload.type === 'map_data') {
+              handleMapData(payload);
+            }
+          } catch (error) {
+            console.warn('Map socket parse error:', error);
+          }
+        });
+
+        state.mapSocket.addEventListener('close', () => {
+          state.mapConnected = false;
+          setConnectionStatus();
+        });
+
+        state.mapSocket.addEventListener('error', () => {
+          state.mapConnected = false;
+          setConnectionStatus();
+          appendOutput('[map] cartography stream error', 'system');
+        });
+      }
+
+      function handleMudMessage(raw) {
+        let payload = raw;
+        try {
+          payload = JSON.parse(raw);
+        } catch (_) {
+          payload = { type: 'output', data: raw };
+        }
+
+        if (payload.type === 'output') {
+          const text = normalizeLineBreaks(payload.data || '');
+          const lines = text.split('\n').filter(line => line.trim().length > 0);
+          if (!lines.length) {
+            appendOutput(text, 'normal');
+          } else {
+            for (const line of lines) {
+              const type = COMBAT_PATTERNS.some(pattern => pattern.test(line)) ? 'combat' : 'normal';
+              appendOutput(line, type);
+            }
+          }
+          inferLoginSuccess(text);
+          updateCombatStateFromOutput(text);
+        } else if (payload.type === 'mapsync') {
+          if (payload.player) {
+            state.playerName = payload.player;
+          }
+          appendOutput(`[world] map sync granted for ${state.playerName}`, 'system');
+          ensureMapSocket();
+        }
+      }
+
+      function closeSockets() {
+        if (state.mudSocket) {
+          try { state.mudSocket.close(); } catch (_) {}
+        }
+        if (state.mapSocket) {
+          try { state.mapSocket.close(); } catch (_) {}
+        }
+        state.mudSocket = null;
+        state.mapSocket = null;
+        state.mudConnected = false;
+        state.mapConnected = false;
+        setConnectionStatus();
+      }
+
+      function connectMud() {
+        closeSockets();
+        state.loginSequenceStarted = false;
+        state.isLoggedIn = false;
+        appendOutput(`[system] connecting to ${mudWsUrl}`, 'system');
+        setLoginStatus('Connecting to the world…');
+
+        state.mudSocket = new WebSocket(mudWsUrl);
+
+        state.mudSocket.addEventListener('open', () => {
+          state.mudConnected = true;
+          setConnectionStatus();
+          appendOutput('[system] world socket connected', 'system');
+          runLoginSequence();
+        });
+
+        state.mudSocket.addEventListener('message', event => {
+          handleMudMessage(event.data);
+        });
+
+        state.mudSocket.addEventListener('close', () => {
+          state.mudConnected = false;
+          setConnectionStatus();
+          appendOutput('[system] world socket closed', 'system');
+        });
+
+        state.mudSocket.addEventListener('error', () => {
+          state.mudConnected = false;
+          setConnectionStatus();
+          setLoginStatus('Could not reach the gate. Check the socket path.', true);
+          appendOutput('[system] world socket error', 'system');
+        });
+      }
+
+      function beginLogin(createAccount = false) {
+        const name = els.loginName.value.trim();
+        const pass = els.loginPass.value;
+        if (!name || !pass) {
+          setLoginStatus('Need both name and password. Ancient magic has standards.', true);
+          return;
+        }
+        state.playerName = name;
+        state.playerPassword = pass;
+        state.creatingAccount = createAccount;
+        connectMud();
+      }
+
+      function directionFromDelta(dx, dy) {
+        for (const [name, def] of Object.entries(DIRECTIONS)) {
+          if (def.dx === dx && def.dy === dy) return name;
+        }
+        return null;
+      }
+
+      function getNeighbor(room, dirName) {
+        const dir = DIRECTIONS[dirName];
+        if (!room || !dir) return null;
+        return state.coordMap.get(mapRoomCoordKey(room.x + dir.dx, room.y + dir.dy, room.z || 0)) || null;
+      }
+
+      function buildAdjacency() {
+        const graph = new Map();
+        for (const room of state.rooms) {
+          const id = String(room.vnum);
+          graph.set(id, []);
+          const exits = Array.isArray(room.exits) ? room.exits.map(x => String(x).toLowerCase()) : [];
+          for (const exitName of exits) {
+            const neighbor = getNeighbor(room, exitName);
+            if (neighbor) {
+              graph.get(id).push({ room: neighbor, dir: exitName });
+            }
+          }
+        }
+        return graph;
+      }
+
+      function findPathToRoom(targetVnum) {
+        const startId = String(state.currentRoomVnum || '');
+        const targetId = String(targetVnum || '');
+        if (!startId || !targetId || startId === targetId) return [];
+        const graph = buildAdjacency();
+        const queue = [startId];
+        const visited = new Set([startId]);
+        const prev = new Map();
+
+        while (queue.length) {
+          const current = queue.shift();
+          if (current === targetId) break;
+          const neighbors = graph.get(current) || [];
+          for (const edge of neighbors) {
+            const nextId = String(edge.room.vnum);
+            if (!visited.has(nextId)) {
+              visited.add(nextId);
+              prev.set(nextId, { from: current, dir: edge.dir });
+              queue.push(nextId);
+            }
+          }
+        }
+
+        if (!prev.has(targetId)) return null;
+        const steps = [];
+        let cursor = targetId;
+        while (cursor !== startId) {
+          const step = prev.get(cursor);
+          if (!step) break;
+          steps.push(step.dir);
+          cursor = step.from;
+        }
+        return steps.reverse();
+      }
+
+      async function followPath(path) {
+        if (!Array.isArray(path) || !path.length) return;
+        state.pendingPath = [...path];
+        for (const step of path) {
+          if (!sendMudCommand(DIRECTIONS[step]?.short || step, true)) {
+            break;
+          }
+          await sleep(180);
+        }
+        state.pendingPath = [];
+      }
+
+      function movePlayer(dirKey) {
+        const dir = DIRECTIONS[dirKey];
+        if (!dir) return;
+        sendMudCommand(dir.short, true);
+      }
+
+      function terrainFrameForSector(sector) {
+        const key = String(sector || 'default').toLowerCase();
+        return TERRAIN_FRAMES[key] ?? TERRAIN_FRAMES.default;
+      }
+
+      function dominantMobSprite(room) {
+        if (!Array.isArray(room?.mobs) || !room.mobs.length) return null;
+        const counts = new Map();
+
+        for (const mob of room.mobs) {
+          const name = String(mob?.name || '').toLowerCase();
+          if (!name) continue;
+          for (const rule of MOB_TYPE_RULES) {
+            if (rule.terms.some(term => name.includes(term))) {
+              counts.set(rule.key, (counts.get(rule.key) || 0) + 1);
+              break;
+            }
+          }
+        }
+
+        if (!counts.size) return null;
+
+        let bestKey = null;
+        let bestCount = -1;
+        for (const [key, count] of counts.entries()) {
+          if (count > bestCount) {
+            bestKey = key;
+            bestCount = count;
+          }
+        }
+        return bestKey;
+      }
+
+      class MudMapScene extends Phaser.Scene {
+        constructor() {
+          super({ key: 'MudMapScene' });
+          this.tileGroup = null;
+          this.interactionGroup = null;
+          this.exitLayer = null;
+          this.highlightLayer = null;
+          this.markerLayer = null;
+          this.rooms = [];
+          this.roomObjects = [];
+          this.player = null;
+          this.playerMarker = null;
+          this.playerGlow = null;
+          this.currentRoomVnum = null;
+          this.hoverLabel = null;
+          this.visited = new Set();
+          this.cameraLerp = 0.08;
+          this.targetCamera = new Phaser.Math.Vector2(0, 0);
+          this.assetsReady = false;
+        }
+
+        preload() {
+          this.load.spritesheet('terrain', TERRAIN_SPRITESHEET_URL, { frameWidth: 32, frameHeight: 32 });
+          for (const [key, url] of Object.entries(MOB_SPRITES)) {
+            this.load.image(key, url);
+          }
+
+          this.load.once('complete', () => {
+            this.assetsReady = true;
+            if (this.rooms.length) {
+              this.renderMap();
+            }
+          });
+        }
+
+        create() {
+          this.cameras.main.setBackgroundColor('#09111d');
+          this.tileGroup = this.add.group();
+          this.interactionGroup = this.add.group();
+          this.exitLayer = this.add.graphics();
+          this.highlightLayer = this.add.graphics();
+          this.markerLayer = this.add.container(0, 0);
+
+          this.hoverLabel = this.add.text(14, this.scale.height - 18, '', {
+            fontFamily: 'Plus Jakarta Sans, sans-serif',
+            fontSize: '13px',
+            color: '#dbe7f6',
+            backgroundColor: 'rgba(10,14,23,0.75)',
+            padding: { x: 10, y: 6 },
+          }).setOrigin(0, 1).setScrollFactor(0).setDepth(100);
+          this.hoverLabel.setVisible(false);
+
+          this.input.on('gameobjectdown', (_, gameObject) => {
+            if (gameObject && gameObject.roomData) {
+              const path = findPathToRoom(gameObject.roomData.vnum);
+              if (path === null) {
+                appendOutput('[map] no path found to that room', 'system');
+                return;
+              }
+              if (!path.length) return;
+              appendOutput(`[map] pathing: ${path.map(step => DIRECTIONS[step]?.short || step).join(' ')}`, 'system');
+              followPath(path);
+            }
+          });
+
+          this.input.on('gameobjectover', (_, gameObject) => {
+            if (gameObject && gameObject.roomData) {
+              this.hoverLabel.setText(`${gameObject.roomData.name || 'Unknown Room'}  •  ${gameObject.roomData.zone || 'Unknown'}`);
+              this.hoverLabel.setVisible(true);
+            }
+          });
+
+          this.input.on('gameobjectout', () => {
+            this.hoverLabel.setVisible(false);
+          });
+
+          window.addEventListener('resize', () => this.resizeToContainer());
+          this.resizeToContainer();
+          state.phaserReady = true;
+          window.mudScene = this;
+          if (state.queuedMapData) {
+            const queued = state.queuedMapData;
+            this.setMapData(queued.rooms, queued.player, queued.visited, queued.currentRoomVnum);
+            state.queuedMapData = null;
+          }
+        }
+
+        resizeToContainer() {
+          const root = document.getElementById('phaser-root');
+          if (!root) return;
+          const width = Math.max(320, root.clientWidth);
+          const height = Math.max(220, root.clientHeight);
+          this.scale.resize(width, height);
+          this.cameras.main.setSize(width, height);
+          if (this.hoverLabel) this.hoverLabel.setPosition(14, height - 18);
+        }
+
+        setMapData(rooms, player, visited, currentRoomVnum) {
+          this.rooms = Array.isArray(rooms) ? rooms : [];
+          this.player = player || null;
+          this.currentRoomVnum = currentRoomVnum || (player ? player.vnum : null);
+          this.visited = new Set(visited || []);
+          if (this.assetsReady) {
+            this.renderMap();
+          }
+        }
+
+        worldPos(room) {
+          return {
+            x: room.x * ROOM_SPACING,
+            y: -room.y * ROOM_SPACING,
+          };
+        }
+
+        clearRenderObjects() {
+          if (this.tileGroup) {
+            this.tileGroup.clear(true, true);
+          }
+          if (this.interactionGroup) {
+            this.interactionGroup.clear(true, true);
+          }
+          if (this.markerLayer) {
+            this.markerLayer.removeAll(true);
+          }
+          if (this.exitLayer) {
+            this.exitLayer.clear();
+          }
+          if (this.highlightLayer) {
+            this.highlightLayer.clear();
+          }
+          this.roomObjects = [];
+        }
+
+        renderMap() {
+          if (!this.assetsReady) return;
+
+          this.clearRenderObjects();
+
+          if (!this.rooms.length) return;
+
+          const drawnConnections = new Set();
+
+          for (const room of this.rooms) {
+            const roomObj = this.makeRoom(room);
+            this.roomObjects.push(roomObj);
+          }
+
+          this.exitLayer.lineStyle(4, 0x10b981, 0.16);
+          for (const room of this.rooms) {
+            const { x, y } = this.worldPos(room);
+            const exits = Array.isArray(room.exits) ? room.exits.map(v => String(v).toLowerCase()) : [];
+            for (const exitName of exits) {
+              const dir = DIRECTIONS[exitName];
+              if (!dir) continue;
+              const neighbor = state.coordMap.get(mapRoomCoordKey(room.x + dir.dx, room.y + dir.dy, room.z || 0));
+              if (!neighbor) continue;
+              const key = [room.vnum, neighbor.vnum].sort().join(':');
+              if (drawnConnections.has(key)) continue;
+              drawnConnections.add(key);
+              const other = this.worldPos(neighbor);
+              this.exitLayer.strokeLineShape(new Phaser.Geom.Line(x, y, other.x, other.y));
+            }
+          }
+
+          const currentRoom = state.roomMap.get(String(this.currentRoomVnum || '')) || null;
+          if (currentRoom) {
+            const { x, y } = this.worldPos(currentRoom);
+            this.highlightLayer.lineStyle(2, 0x10b981, 1);
+            this.highlightLayer.strokeRect(x - TILE_SIZE / 2, y - TILE_SIZE / 2, TILE_SIZE, TILE_SIZE);
+            this.targetCamera.set(x, y);
+          }
+
+          if (this.player) {
+            const playerRoom = state.roomMap.get(String(this.player.vnum || this.currentRoomVnum || '')) || currentRoom;
+            if (playerRoom) {
+              const { x, y } = this.worldPos(playerRoom);
+              const glow = this.add.circle(x, y, 18, 0x10b981, 0.18);
+              const marker = this.add.circle(x, y, 9, 0x3decc0, 0.95).setStrokeStyle(3, 0xdbfff4, 0.75);
+              this.markerLayer.add([glow, marker]);
+              this.playerGlow = glow;
+              this.playerMarker = marker;
+            }
+          }
+        }
+
+        makeRoom(room) {
+          const pos = this.worldPos(room);
+          const visited = this.visited.has(String(room.vnum));
+          const tile = this.add.image(pos.x, pos.y, 'terrain', terrainFrameForSector(room.sector));
+          tile.setScale(TILE_SIZE / 32);
+          tile.setAlpha(visited ? 1 : 0.35);
+          tile.roomData = room;
+          this.tileGroup.add(tile);
+
+          const hit = this.add.rectangle(pos.x, pos.y, TILE_SIZE, TILE_SIZE, 0x000000, 0.001)
+            .setInteractive({ useHandCursor: true });
+          hit.roomData = room;
+          this.interactionGroup.add(hit);
+
+          const mobSpriteKey = dominantMobSprite(room);
+          if (mobSpriteKey && this.textures.exists(mobSpriteKey)) {
+            const mobIcon = this.add.image(pos.x + TILE_SIZE / 2 - 12, pos.y - TILE_SIZE / 2, mobSpriteKey)
+              .setOrigin(0, 0)
+              .setDisplaySize(24, 24)
+              .setAlpha(visited ? 1 : 0.7);
+            this.markerLayer.add(mobIcon);
+          }
+
+          return { tile, hit, room };
+        }
+
+        update() {
+          const cam = this.cameras.main;
+          cam.scrollX = Phaser.Math.Linear(cam.scrollX, this.targetCamera.x - cam.width / 2, this.cameraLerp);
+          cam.scrollY = Phaser.Math.Linear(cam.scrollY, this.targetCamera.y - cam.height / 2, this.cameraLerp);
+        }
+      }
+
+      const phaserConfig = {
+        type: Phaser.AUTO,
+        parent: 'phaser-root',
+        width: Math.max(320, document.getElementById('phaser-root').clientWidth || 960),
+        height: Math.max(220, document.getElementById('phaser-root').clientHeight || 640),
+        transparent: true,
+        antialias: true,
+        scene: [MudMapScene],
+      };
+
+      const game = new Phaser.Game(phaserConfig);
+      window.mudGame = game;
+
+      document.addEventListener('keydown', event => {
+        if (event.target === els.commandInput) return;
+        const key = event.key.toLowerCase();
+        if (key === 'arrowup' || key === 'w') { event.preventDefault(); movePlayer('north'); }
+        else if (key === 'arrowdown' || key === 's') { event.preventDefault(); movePlayer('south'); }
+        else if (key === 'arrowleft' || key === 'a') { event.preventDefault(); movePlayer('west'); }
+        else if (key === 'arrowright' || key === 'd') { event.preventDefault(); movePlayer('east'); }
+      });
+
+      els.commandInput.addEventListener('keydown', event => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          submitCommand();
+        } else if (event.key === 'ArrowUp') {
+          if (!state.commandHistory.length) return;
+          event.preventDefault();
+          state.historyIndex = Math.max(0, state.historyIndex - 1);
+          els.commandInput.value = state.commandHistory[state.historyIndex] || '';
+          requestAnimationFrame(() => els.commandInput.setSelectionRange(els.commandInput.value.length, els.commandInput.value.length));
+        } else if (event.key === 'ArrowDown') {
+          if (!state.commandHistory.length) return;
+          event.preventDefault();
+          state.historyIndex = Math.min(state.commandHistory.length, state.historyIndex + 1);
+          els.commandInput.value = state.commandHistory[state.historyIndex] || '';
+        }
+      });
+
+      els.sendBtn.addEventListener('click', submitCommand);
+      els.reconnectBtn.addEventListener('click', () => {
+        if (!state.playerName || !state.playerPassword) {
+          els.loginOverlay.classList.remove('hidden');
+          setLoginStatus('Need credentials before I can reconnect. Shocking, I know.');
+          return;
+        }
+        connectMud();
+      });
+
+      els.loginEnter.addEventListener('click', () => beginLogin(false));
+      els.loginCreate.addEventListener('click', () => beginLogin(true));
+
+      els.loginPass.addEventListener('keydown', event => {
+        if (event.key === 'Enter') beginLogin(false);
+      });
+
+      els.loginName.addEventListener('keydown', event => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          els.loginPass.focus();
+        }
+      });
+
+      updateStats({ hp: 0, max_hp: 0, mana: 0, max_mana: 0, move: 0, max_move: 0 });
+      setConnectionStatus();
+      appendOutput('Misthollow client ready. Enter credentials to connect.', 'system');
+      els.loginName.focus();
+    })();
+  </script>
+</body>
+</html>

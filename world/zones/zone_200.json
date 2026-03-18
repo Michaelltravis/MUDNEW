@@ -269,7 +269,11 @@
       "flags": [
         "aggressive"
       ],
-      "description": "This wolf is part of the forest pack. Its gray fur is matted and scarred from countless hunts."
+      "description": "This wolf is part of the forest pack. Its gray fur is matted and scarred from countless hunts.",
+      "inventory": [
+        20007,
+        20002
+      ]
     },
     "20002": {
       "vnum": 20002,
@@ -286,7 +290,10 @@
       "flags": [
         "aggressive"
       ],
-      "description": "This spider is the size of a large dog. Venom drips from its fangs."
+      "description": "This spider is the size of a large dog. Venom drips from its fangs.",
+      "inventory": [
+        20004
+      ]
     },
     "20003": {
       "vnum": 20003,
@@ -304,7 +311,11 @@
         "aggressive",
         "hunter"
       ],
-      "description": "This spider's venom is particularly potent. Its bright markings warn of danger."
+      "description": "This spider's venom is particularly potent. Its bright markings warn of danger.",
+      "inventory": [
+        20008,
+        20010
+      ]
     },
     "20004": {
       "vnum": 20004,
@@ -321,7 +332,11 @@
       "flags": [
         "sentinel"
       ],
-      "description": "This spider specializes in creating elaborate trap webs."
+      "description": "This spider specializes in creating elaborate trap webs.",
+      "inventory": [
+        20005,
+        20004
+      ]
     },
     "20005": {
       "vnum": 20005,
@@ -378,7 +393,11 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        20015,
+        20010
+      ]
     },
     "20006": {
       "vnum": 20006,
@@ -396,7 +415,10 @@
         "aggressive",
         "hunter"
       ],
-      "description": "This dire wolf is nearly the size of a horse. Its fangs are as long as daggers."
+      "description": "This dire wolf is nearly the size of a horse. Its fangs are as long as daggers.",
+      "inventory": [
+        20005
+      ]
     },
     "20007": {
       "vnum": 20007,
@@ -455,7 +477,11 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        20009,
+        20015
+      ]
     },
     "20008": {
       "vnum": 20008,
@@ -514,7 +540,10 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        20011
+      ]
     }
   },
   "objects": {
@@ -601,7 +630,8 @@
       ],
       "type": "armor",
       "wear_slot": "about",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 2
     },
     "20005": {
       "vnum": 20005,
@@ -631,7 +661,8 @@
       ],
       "type": "armor",
       "wear_slot": "neck",
-      "armor": 0
+      "armor": 13,
+      "armor_class": 3
     },
     "20006": {
       "vnum": 20006,
@@ -661,7 +692,8 @@
       ],
       "type": "armor",
       "wear_slot": "body",
-      "armor": 4
+      "armor": 4,
+      "armor_class": 1
     },
     "20007": {
       "vnum": 20007,
@@ -703,7 +735,8 @@
       ],
       "set_id": 200,
       "type": "armor",
-      "armor": 3
+      "armor": 3,
+      "armor_class": 2
     },
     "20009": {
       "vnum": 20009,
@@ -722,7 +755,8 @@
         }
       ],
       "set_id": 200,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 14
     },
     "20010": {
       "vnum": 20010,
@@ -741,7 +775,8 @@
         }
       ],
       "set_id": 200,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 18
     },
     "20011": {
       "vnum": 20011,
@@ -760,7 +795,8 @@
         }
       ],
       "set_id": 200,
-      "type": "treasure"
+      "type": "treasure",
+      "armor": 18
     },
     "20012": {
       "vnum": 20012,
@@ -852,7 +888,8 @@
       ],
       "set_id": 200,
       "type": "armor",
-      "armor": 1
+      "armor": 1,
+      "armor_class": 3
     }
   }
 }

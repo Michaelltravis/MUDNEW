@@ -827,6 +827,12 @@ CLIENT_HTML = '''<!DOCTYPE html>
             <div class="welcome-logo">⚔️</div>
             <h1 class="welcome-title">Mist<span>hollow</span></h1>
             <p class="welcome-subtitle">A classic text adventure awaits</p>
+            <div style="text-align:left;background:rgba(0,0,0,0.3);border-radius:12px;padding:16px 20px;margin:16px 0;font-size:0.85rem;line-height:1.6;max-width:340px;">
+                <div style="color:#4ade80;font-weight:600;margin-bottom:8px;">🆕 New Player?</div>
+                <div style="color:#94a3b8;">Type any name → say <b style="color:#e2e8f0;">Y</b> to create → pick a password → choose your class!</div>
+                <div style="color:#4ade80;font-weight:600;margin:12px 0 8px;">🔑 Returning?</div>
+                <div style="color:#94a3b8;">Type your name → enter your password</div>
+            </div>
             <p class="welcome-status" id="welcome-status">Connecting to server...</p>
         </div>
     </div>

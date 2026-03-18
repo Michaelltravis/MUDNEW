@@ -16,7 +16,7 @@ import signal
 from datetime import datetime
 
 # Configuration
-MUD_DIR = "/Users/michaeltravis/clawd/projects/Misthollow"
+MUD_DIR = "/Users/michaeltravis/clawd/projects/RealmsMUD"
 MUD_CMD = ["python3", "src/main.py"]
 LOG_FILE = os.path.join(MUD_DIR, "server.log")
 PID_FILE = os.path.join(MUD_DIR, "mud.pid")

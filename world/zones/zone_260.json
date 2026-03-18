@@ -618,7 +618,12 @@
           "price": "Small homes: 5,000 gold. Medium: 15,000 gold. Large: 50,000 gold. A worthy investment!",
           "furniture": "Visit Hearth & Home Furnishings to the east for beds, tables, trophy cases, and more!"
         }
-      }
+      },
+      "inventory": [
+        26050,
+        26052,
+        26053
+      ]
     },
     "26001": {
       "vnum": 26001,

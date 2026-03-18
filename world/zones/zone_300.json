@@ -1132,7 +1132,13 @@
         "sentinel",
         "no_charm"
       ],
-      "description": "A towering guardian in shattered plate, it holds the line with unyielding force."
+      "description": "A towering guardian in shattered plate, it holds the line with unyielding force.",
+      "inventory": [
+        30060,
+        30054,
+        30063,
+        30055
+      ]
     },
     "30002": {
       "vnum": 30002,
@@ -1150,7 +1156,11 @@
         "aggressive",
         "no_sleep"
       ],
-      "description": "Robed in fractured starlight, the arcanist tears at the seams of reality."
+      "description": "Robed in fractured starlight, the arcanist tears at the seams of reality.",
+      "inventory": [
+        30053,
+        30065
+      ]
     },
     "30003": {
       "vnum": 30003,
@@ -1168,7 +1178,13 @@
         "aggressive",
         "no_sleep"
       ],
-      "description": "Clad in cracked ceremonial robes, the confessor radiates a chilling devotion."
+      "description": "Clad in cracked ceremonial robes, the confessor radiates a chilling devotion.",
+      "inventory": [
+        30055,
+        30060,
+        30056,
+        30058
+      ]
     },
     "30004": {
       "vnum": 30004,
@@ -1186,7 +1202,11 @@
         "aggressive",
         "stay_zone"
       ],
-      "description": "A lean assassin of black glass, it strikes from impossible angles."
+      "description": "A lean assassin of black glass, it strikes from impossible angles.",
+      "inventory": [
+        30053,
+        30065
+      ]
     },
     "30005": {
       "vnum": 30005,
@@ -1203,7 +1223,11 @@
       "flags": [
         "aggressive"
       ],
-      "description": "Its hammerhead flickers with voidlight, leaving afterimages in the air."
+      "description": "Its hammerhead flickers with voidlight, leaving afterimages in the air.",
+      "inventory": [
+        30061,
+        30055
+      ]
     },
     "30006": {
       "vnum": 30006,
@@ -1222,7 +1246,13 @@
         "sentinel",
         "no_charm"
       ],
-      "description": "A guardian of star-metal wards, it hums with suppressive power."
+      "description": "A guardian of star-metal wards, it hums with suppressive power.",
+      "inventory": [
+        30059,
+        30065,
+        30064,
+        30058
+      ]
     },
     "30007": {
       "vnum": 30007,
@@ -1240,7 +1270,12 @@
         "aggressive",
         "no_sleep"
       ],
-      "description": "A spectral cantor whose voice twists magic into jagged shards."
+      "description": "A spectral cantor whose voice twists magic into jagged shards.",
+      "inventory": [
+        30061,
+        30052,
+        30055
+      ]
     },
     "30008": {
       "vnum": 30008,
@@ -1259,7 +1294,13 @@
         "sentinel",
         "no_charm"
       ],
-      "description": "A living bulwark forged in a broken oath, it blocks the path with brutal resolve."
+      "description": "A living bulwark forged in a broken oath, it blocks the path with brutal resolve.",
+      "inventory": [
+        30057,
+        30053,
+        30054,
+        30055
+      ]
     },
     "30015": {
       "vnum": 30015,
@@ -1297,6 +1338,12 @@
           "vnum": 30062,
           "chance": 20
         }
+      ],
+      "inventory": [
+        30059,
+        30053,
+        30050,
+        30061
       ]
     },
     "30016": {
@@ -1334,6 +1381,12 @@
           "vnum": 30060,
           "chance": 20
         }
+      ],
+      "inventory": [
+        30057,
+        30063,
+        30058,
+        30056
       ]
     },
     "30017": {
@@ -1372,6 +1425,12 @@
           "vnum": 30063,
           "chance": 20
         }
+      ],
+      "inventory": [
+        30063,
+        30059,
+        30050,
+        30060
       ]
     },
     "30020": {
@@ -1416,7 +1475,12 @@
       "boss_loot_chance": 100,
       "description": "A sovereign of broken reality, armored in fractured obsidian and imperial wrath.",
       "max_hp": 23000,
-      "ac": -40
+      "ac": -40,
+      "inventory": [
+        30050,
+        30064,
+        30059
+      ]
     }
   },
   "objects": {
@@ -1484,7 +1548,9 @@
         "wisdom": 4,
         "armor_class": -26,
         "hp_regen": 20
-      }
+      },
+      "armor_class": 13,
+      "armor": 17
     },
     "30053": {
       "vnum": 30053,
@@ -1614,7 +1680,8 @@
         "charisma": 5,
         "mana_regen": 20,
         "song_power": 7
-      }
+      },
+      "armor": 9
     },
     "30059": {
       "vnum": 30059,
@@ -1637,7 +1704,9 @@
         "wisdom": 4,
         "armor_class": -18,
         "hp_regen": 22
-      }
+      },
+      "armor_class": 11,
+      "armor": 14
     },
     "30060": {
       "vnum": 30060,
@@ -1658,7 +1727,9 @@
         "dexterity": 3,
         "armor_class": -16,
         "mana_regen": 18
-      }
+      },
+      "armor_class": 12,
+      "armor": 16
     },
     "30061": {
       "vnum": 30061,
@@ -1679,7 +1750,9 @@
         "strength": 4,
         "armor_class": -28,
         "hp_regen": 24
-      }
+      },
+      "armor_class": 14,
+      "armor": 16
     },
     "30062": {
       "vnum": 30062,
@@ -1700,7 +1773,9 @@
         "strength": 3,
         "hitroll": 8,
         "damroll": 8
-      }
+      },
+      "armor_class": 12,
+      "armor": 12
     },
     "30063": {
       "vnum": 30063,
@@ -1721,7 +1796,9 @@
         "dexterity": 3,
         "move_regen": 18,
         "armor_class": -10
-      }
+      },
+      "armor_class": 11,
+      "armor": 16
     },
     "30064": {
       "vnum": 30064,
@@ -1744,7 +1821,8 @@
         "intelligence": 2,
         "armor_class": -12,
         "mana_regen": 12
-      }
+      },
+      "armor": 17
     },
     "30065": {
       "vnum": 30065,
@@ -1771,7 +1849,8 @@
         "charisma": 2,
         "hp_regen": 20,
         "mana_regen": 20
-      }
+      },
+      "armor": 13
     }
   }
 }

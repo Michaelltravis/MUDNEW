@@ -712,7 +712,10 @@
         "stay_zone"
       ],
       "special": null,
-      "description": "This is a large grey wolf with a thick winter coat. Its yellow eyes gleam with predatory intelligence, and its lips are pulled back to reveal sharp fangs stained with old blood. Powerful muscles ripple beneath its fur as it moves with silent grace."
+      "description": "This is a large grey wolf with a thick winter coat. Its yellow eyes gleam with predatory intelligence, and its lips are pulled back to reveal sharp fangs stained with old blood. Powerful muscles ripple beneath its fur as it moves with silent grace.",
+      "inventory": [
+        18020
+      ]
     },
     "18001": {
       "vnum": 18001,
@@ -731,7 +734,11 @@
         "stay_zone"
       ],
       "special": null,
-      "description": "This deer has a thick brown coat touched with white on its belly and throat. Large, dark eyes regard you nervously, and its ears swivel constantly, listening for danger. Its legs are tensed, ready to flee at the first sign of threat."
+      "description": "This deer has a thick brown coat touched with white on its belly and throat. Large, dark eyes regard you nervously, and its ears swivel constantly, listening for danger. Its legs are tensed, ready to flee at the first sign of threat.",
+      "inventory": [
+        18029,
+        18025
+      ]
     },
     "18002": {
       "vnum": 18002,
@@ -757,7 +764,11 @@
           "chance": 30
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        18020,
+        18031
+      ]
     },
     "18003": {
       "vnum": 18003,
@@ -776,7 +787,10 @@
         "stay_zone"
       ],
       "special": null,
-      "description": "This wolf is larger than its timber wolf cousins, with a coat of pure white that provides perfect camouflage in the snow. Frost clings to its fur, and its breath comes in clouds of mist. There is something unnatural about this creature, as if it is more a spirit of winter than a mere animal."
+      "description": "This wolf is larger than its timber wolf cousins, with a coat of pure white that provides perfect camouflage in the snow. Frost clings to its fur, and its breath comes in clouds of mist. There is something unnatural about this creature, as if it is more a spirit of winter than a mere animal.",
+      "inventory": [
+        18020
+      ]
     },
     "18004": {
       "vnum": 18004,
@@ -795,7 +809,10 @@
         "slow_wander"
       ],
       "special": null,
-      "description": "This tiny creature appears to be made of concentrated moonlight, its form shifting and flickering as it moves. Delicate wings beat too fast to see, and a musical giggling accompanies its every movement. Its eyes are bright with ancient mischief."
+      "description": "This tiny creature appears to be made of concentrated moonlight, its form shifting and flickering as it moves. Delicate wings beat too fast to see, and a musical giggling accompanies its every movement. Its eyes are bright with ancient mischief.",
+      "inventory": [
+        18031
+      ]
     },
     "18005": {
       "vnum": 18005,
@@ -826,7 +843,10 @@
           "chance": 20
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        18031
+      ]
     },
     "18006": {
       "vnum": 18006,
@@ -845,7 +865,10 @@
         "stay_zone"
       ],
       "special": null,
-      "description": "Eldric is a weathered man in his fifties, with grey-streaked hair and keen green eyes that miss nothing. He wears practical leather armor and carries a well-maintained longbow. His face bears the scars of many encounters with the forest's dangers, but his expression is calm and welcoming. He has lived in these woods for thirty years and knows every tree, every trail, every creature that calls this place home."
+      "description": "Eldric is a weathered man in his fifties, with grey-streaked hair and keen green eyes that miss nothing. He wears practical leather armor and carries a well-maintained longbow. His face bears the scars of many encounters with the forest's dangers, but his expression is calm and welcoming. He has lived in these woods for thirty years and knows every tree, every trail, every creature that calls this place home.",
+      "inventory": [
+        18027
+      ]
     },
     "18007": {
       "vnum": 18007,
@@ -864,7 +887,11 @@
         "stay_zone"
       ],
       "special": null,
-      "description": "Bjorn is an ancient man with a long white beard and wild, unkempt hair. His eyes hold a distant, slightly mad gleam, as if he sees things invisible to others. He wears ragged furs and speaks in riddles and half-remembered prophecies. Some say he was once a great wizard who lost his mind, others that he is blessed with second sight. He seems harmless enough, if somewhat unsettling."
+      "description": "Bjorn is an ancient man with a long white beard and wild, unkempt hair. His eyes hold a distant, slightly mad gleam, as if he sees things invisible to others. He wears ragged furs and speaks in riddles and half-remembered prophecies. Some say he was once a great wizard who lost his mind, others that he is blessed with second sight. He seems harmless enough, if somewhat unsettling.",
+      "inventory": [
+        18020,
+        18025
+      ]
     },
     "18008": {
       "vnum": 18008,
@@ -896,7 +923,10 @@
           "chance": 100
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        18029
+      ]
     },
     "18009": {
       "vnum": 18009,
@@ -923,7 +953,11 @@
           "chance": 40
         }
       ],
-      "loot_chance": 100
+      "loot_chance": 100,
+      "inventory": [
+        18021,
+        18029
+      ]
     },
     "18098": {
       "vnum": 18098,
@@ -947,7 +981,12 @@
         "wolves": "He checks a snare. 'The alpha of the northern pack is smart \u2014 almost too smart. Fights like a general, not an animal. Some say it's enchanted. I say it doesn't matter \u2014 steel kills enchanted same as natural.'",
         "default": "The trapper resets a snare with practiced efficiency, barely making a sound.",
         "next": "The trapper leans in close. 'You've got grit, I'll give you that. If you're looking for more, the Mines of Moria lie to the east \u2014 Grimjaw the Prospector could use help. Or head to Thalos if you want to test your steel against real fighters.'"
-      }
+      },
+      "inventory": [
+        18020,
+        18021,
+        18023
+      ]
     },
     "18099": {
       "vnum": 18099,
@@ -969,7 +1008,13 @@
       "talk_responses": {
         "hello": "The bear opens one eye, regards you with disinterest, and goes back to sleep. A low growl reminds you that 'disinterest' can change to 'murderous rage' very quickly.",
         "default": "The bear snores. The ground vibrates slightly."
-      }
+      },
+      "inventory": [
+        18021,
+        18023,
+        18022,
+        18029
+      ]
     }
   },
   "objects": {
@@ -1072,7 +1117,9 @@
       "ac_apply": -3,
       "wear_flags": [
         "body"
-      ]
+      ],
+      "armor_class": 2,
+      "armor": 14
     },
     "18030": {
       "vnum": 18030,

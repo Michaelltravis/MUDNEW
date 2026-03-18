@@ -715,7 +715,12 @@
       "flags": [
         "aggressive"
       ],
-      "description": "This fish-headed humanoid stands over six feet tall, its scaled body rippling\nwith lean muscle. Razor-sharp claws tip its webbed fingers, and rows of needle\nteeth fill its gaping maw. Cold, predatory intelligence gleams in its black eyes."
+      "description": "This fish-headed humanoid stands over six feet tall, its scaled body rippling\nwith lean muscle. Razor-sharp claws tip its webbed fingers, and rows of needle\nteeth fill its gaping maw. Cold, predatory intelligence gleams in its black eyes.",
+      "inventory": [
+        24002,
+        24003,
+        24001
+      ]
     },
     "24002": {
       "vnum": 24002,
@@ -733,7 +738,11 @@
         "aggressive",
         "no_charm"
       ],
-      "description": "Part merfolk, part something far darker, this creature has traded beauty for\npower. Her lower body is that of a moray eel, and her fingers end in venomous\nbarbs. Stolen souls swirl in jars at her belt, and her eyes glow with stolen magic."
+      "description": "Part merfolk, part something far darker, this creature has traded beauty for\npower. Her lower body is that of a moray eel, and her fingers end in venomous\nbarbs. Stolen souls swirl in jars at her belt, and her eyes glow with stolen magic.",
+      "inventory": [
+        24001,
+        24002
+      ]
     },
     "24003": {
       "vnum": 24003,
@@ -750,7 +759,12 @@
       "flags": [
         "aggressive"
       ],
-      "description": "Once beautiful, this merfolk has been twisted by dark magic into a grotesque\nparody of its former self. Its scales are blackened and peeling, its tail\nsplit and malformed. It attacks with mindless ferocity, any trace of its\nformer intelligence drowned in corruption."
+      "description": "Once beautiful, this merfolk has been twisted by dark magic into a grotesque\nparody of its former self. Its scales are blackened and peeling, its tail\nsplit and malformed. It attacks with mindless ferocity, any trace of its\nformer intelligence drowned in corruption.",
+      "inventory": [
+        24003,
+        24002,
+        24001
+      ]
     },
     "24004": {
       "vnum": 24004,
@@ -767,7 +781,11 @@
       "flags": [
         "aggressive"
       ],
-      "description": "This monstrous crustacean is the size of a wagon, its shell encrusted with\nbarnacles and coral. Its pincers could snap a man in half, and its beady\nblack eyes swivel independently, tracking multiple threats at once."
+      "description": "This monstrous crustacean is the size of a wagon, its shell encrusted with\nbarnacles and coral. Its pincers could snap a man in half, and its beady\nblack eyes swivel independently, tracking multiple threats at once.",
+      "inventory": [
+        24001,
+        24003
+      ]
     },
     "24005": {
       "vnum": 24005,
@@ -786,7 +804,12 @@
         "no_charm",
         "no_sleep"
       ],
-      "description": "Ancient beyond reckoning, this sea witch has fused with an octopus, her\nlower body a mass of powerful tentacles. She commands the darkest currents\nof ocean magic, and the water itself bends to her will."
+      "description": "Ancient beyond reckoning, this sea witch has fused with an octopus, her\nlower body a mass of powerful tentacles. She commands the darkest currents\nof ocean magic, and the water itself bends to her will.",
+      "inventory": [
+        24001,
+        24003,
+        24002
+      ]
     },
     "24006": {
       "vnum": 24006,
@@ -809,7 +832,12 @@
         "no_blind",
         "sentinel"
       ],
-      "description": "Words fail to capture the horror before you. The Kraken is a living mountain\nof muscle and malice. Its body fills the cavern, tentacles thick as ancient\noaks coiling and uncoiling endlessly. Each sucker is ringed with razor-sharp\nhooks. Its beak could shatter a warship, and its eyes \u2014 ancient, intelligent,\nand utterly merciless \u2014 fix upon you with terrible hunger. This is the apex\npredator of the deep, and you are in its domain."
+      "description": "Words fail to capture the horror before you. The Kraken is a living mountain\nof muscle and malice. Its body fills the cavern, tentacles thick as ancient\noaks coiling and uncoiling endlessly. Each sucker is ringed with razor-sharp\nhooks. Its beak could shatter a warship, and its eyes \u2014 ancient, intelligent,\nand utterly merciless \u2014 fix upon you with terrible hunger. This is the apex\npredator of the deep, and you are in its domain.",
+      "inventory": [
+        24002,
+        24001,
+        24003
+      ]
     }
   },
   "objects": {
@@ -854,7 +882,9 @@
         "armor_class": -35,
         "hp": 200,
         "water_breathing": true
-      }
+      },
+      "armor_class": 9,
+      "armor": 17
     },
     "24003": {
       "vnum": 24003,
