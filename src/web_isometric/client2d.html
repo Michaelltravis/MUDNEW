@@ -30,6 +30,7 @@
       --radius-lg: 18px;
       --radius-md: 14px;
       --topbar-h: 60px;
+      --hotbar-h: 48px;
       --bottombar-h: 60px;
       --panel-gap: 16px;
     }
@@ -72,7 +73,7 @@
       width: 100%;
       height: 100%;
       display: grid;
-      grid-template-rows: var(--topbar-h) 1fr var(--bottombar-h);
+      grid-template-rows: var(--topbar-h) 1fr calc(var(--hotbar-h) + var(--bottombar-h) + 10px);
       gap: var(--panel-gap);
       padding: 14px;
     }
@@ -86,19 +87,27 @@
     }
 
     .top-bar,
+    .bottom-stack,
     .bottom-bar,
+    .hotbar,
     .panel,
     .login-card,
-    .combat-indicator {
+    .combat-indicator,
+    #target-bar,
+    .hotbar-config-pop {
       position: relative;
       overflow: hidden;
     }
 
     .top-bar::before,
+    .bottom-stack::before,
     .bottom-bar::before,
+    .hotbar::before,
     .panel::before,
     .login-card::before,
-    .combat-indicator::before {
+    .combat-indicator::before,
+    #target-bar::before,
+    .hotbar-config-pop::before {
       content: "";
       position: absolute;
       inset: 0;
@@ -169,10 +178,11 @@
     .bar-fill.hp { background: linear-gradient(90deg, #b91c1c, #ef4444); box-shadow: 0 0 20px rgba(239,68,68,0.33); }
     .bar-fill.mana { background: linear-gradient(90deg, #1d4ed8, #3b82f6); box-shadow: 0 0 20px rgba(59,130,246,0.33); }
     .bar-fill.move { background: linear-gradient(90deg, #15803d, #22c55e); box-shadow: 0 0 20px rgba(34,197,94,0.33); }
+    .bar-fill.target { background: linear-gradient(90deg, #7f1d1d, #ef4444); box-shadow: 0 0 18px rgba(239,68,68,0.28); }
 
     .room-meta {
-      width: min(28vw, 360px);
-      min-width: 220px;
+      width: min(30vw, 420px);
+      min-width: 240px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -195,6 +205,16 @@
       overflow: hidden;
       text-overflow: ellipsis;
       text-shadow: 0 0 16px rgba(16,185,129,0.15);
+    }
+
+    .time-head {
+      margin-top: 2px;
+      font-size: 12px;
+      color: #cde7de;
+      opacity: 0.9;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .top-actions {
@@ -319,7 +339,7 @@
       align-items: center;
       justify-content: space-between;
       padding-bottom: 12px;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       border-bottom: 1px solid var(--line);
       position: relative;
       z-index: 1;
@@ -359,6 +379,98 @@
       box-shadow: 0 0 18px rgba(16,185,129,0.7);
     }
 
+    #target-bar {
+      display: none;
+      margin-bottom: 12px;
+      border-radius: 18px;
+      background: rgba(15, 23, 42, 0.82);
+      border: 1px solid rgba(239, 68, 68, 0.16);
+      padding: 12px 14px;
+      box-shadow: 0 12px 26px rgba(0,0,0,0.18);
+    }
+
+    #target-bar.active {
+      display: block;
+    }
+
+    .target-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #f5c2c2;
+    }
+
+    .target-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      color: #fff0f0;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .tabs-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      border: 1px solid rgba(148,163,184,0.12);
+      background: rgba(10,14,23,0.45);
+      color: #c6d4e8;
+      min-width: 86px;
+      height: 38px;
+      padding: 0 14px;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: border-color 180ms ease, background 180ms ease, transform 120ms ease;
+    }
+
+    .tab-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(16,185,129,0.3);
+    }
+
+    .tab-btn.active {
+      background: rgba(11, 37, 31, 0.8);
+      border-color: rgba(16,185,129,0.45);
+      color: #edfff7;
+      box-shadow: inset 0 -2px 0 rgba(16,185,129,0.9);
+    }
+
+    .tab-unread {
+      min-width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: #ef4444;
+      color: white;
+      font-size: 10px;
+      line-height: 18px;
+      padding: 0 5px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 2px rgba(10,14,23,0.85);
+    }
+
+    .tab-unread.visible {
+      display: inline-flex;
+    }
+
     .output-wrap {
       position: relative;
       flex: 1;
@@ -378,6 +490,11 @@
       color: #dbe7f6;
       scrollbar-width: thin;
       scrollbar-color: rgba(148,163,184,0.32) transparent;
+      display: none;
+    }
+
+    .output.active {
+      display: block;
     }
 
     .output::-webkit-scrollbar { width: 8px; }
@@ -524,12 +641,54 @@
       line-height: 1.55;
     }
 
-    .bottom-bar {
+    .bottom-stack {
       border-radius: var(--radius-xl);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .hotbar {
+      height: var(--hotbar-h);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 2px;
+    }
+
+    .hotbar-slot {
+      width: 80px;
+      min-width: 80px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(148,163,184,0.15);
+      color: #dce6f5;
+      font-family: inherit;
+      font-size: 12px;
+      cursor: pointer;
+      transition: border-color 180ms ease, transform 120ms ease, box-shadow 180ms ease, background 180ms ease;
+      text-transform: lowercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hotbar-slot:hover {
+      transform: translateY(-1px);
+      border-color: rgba(16,185,129,0.5);
+      box-shadow: 0 0 0 3px rgba(16,185,129,0.12);
+      background: rgba(15,23,42,0.95);
+    }
+
+    .bottom-bar {
+      height: var(--bottombar-h);
+      border-radius: 18px;
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 10px;
+      padding: 0;
     }
 
     .command-wrap {
@@ -538,6 +697,7 @@
       align-items: center;
       gap: 12px;
       min-width: 0;
+      height: 100%;
     }
 
     .prompt {
@@ -680,10 +840,46 @@
     }
 
     .login-subtitle {
-      margin: 0 0 20px;
+      margin: 0 0 12px;
       color: #b1c2d9;
       line-height: 1.6;
       font-size: 14px;
+    }
+
+    .login-welcome,
+    .login-autologin,
+    .login-forget {
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .login-welcome {
+      color: #d4fff1;
+      display: none;
+    }
+
+    .login-welcome.active { display: block; }
+
+    .login-autologin {
+      color: #8feec8;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .login-autologin.active {
+      display: flex;
+    }
+
+    .linkish {
+      border: none;
+      background: transparent;
+      color: #7dd3fc;
+      cursor: pointer;
+      font: inherit;
+      padding: 0;
+      text-decoration: underline;
     }
 
     .login-fields {
@@ -792,6 +988,58 @@
       -webkit-backdrop-filter: blur(12px);
     }
 
+    .hotbar-config-pop {
+      position: fixed;
+      z-index: 90;
+      display: none;
+      width: 220px;
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(15,23,42,0.96);
+      border: 1px solid rgba(148,163,184,0.16);
+      box-shadow: 0 24px 44px rgba(0,0,0,0.35);
+    }
+
+    .hotbar-config-pop.active {
+      display: block;
+    }
+
+    .hotbar-config-title {
+      margin-bottom: 8px;
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .hotbar-config-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .hotbar-config-row input {
+      flex: 1;
+      height: 36px;
+      border-radius: 10px;
+      border: 1px solid rgba(148,163,184,0.14);
+      background: rgba(2,6,23,0.7);
+      color: var(--text);
+      padding: 0 10px;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .hotbar-config-row button {
+      height: 36px;
+      border-radius: 10px;
+      border: none;
+      padding: 0 12px;
+      background: linear-gradient(135deg, #10b981, #0f8f67);
+      color: white;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(4px); }
       to { opacity: 1; transform: translateY(0); }
@@ -864,10 +1112,6 @@
         height: 100px;
       }
 
-      .bottom-bar {
-        padding: 8px;
-      }
-
       .login-actions {
         grid-template-columns: 1fr;
       }
@@ -885,6 +1129,7 @@
     @media (max-width: 560px) {
       .top-bar {
         flex-wrap: wrap;
+        height: auto;
       }
 
       .top-actions {
@@ -921,6 +1166,7 @@
       <div class="room-meta">
         <div class="room-label">Current Room</div>
         <div class="room-name" id="room-name">Awaiting login…</div>
+        <div class="time-head" id="time-head">🌙 Night · Hour 0</div>
       </div>
       <div class="top-actions">
         <button id="sidebar-toggle" class="icon-btn" type="button" aria-label="Toggle status sidebar" title="Toggle status sidebar">⚔️</button>
@@ -942,8 +1188,23 @@
           <div class="panel-title">Chronicle Feed</div>
           <div class="connection-dot" id="connection-status">Disconnected</div>
         </div>
+        <div id="target-bar">
+          <div class="target-head">
+            <span>⚔️ Target lock</span>
+            <span id="target-hp-text">100%</span>
+          </div>
+          <div class="target-name" id="target-name">⚔️ TARGET: None</div>
+          <div class="bar-track" style="margin-top:8px;"><div class="bar-fill target" id="target-fill"></div></div>
+        </div>
+        <div class="tabs-bar" id="output-tabs">
+          <button class="tab-btn active" data-tab="all">All <span class="tab-unread" data-unread="all">0</span></button>
+          <button class="tab-btn" data-tab="combat">Combat <span class="tab-unread" data-unread="combat">0</span></button>
+          <button class="tab-btn" data-tab="chat">Chat <span class="tab-unread" data-unread="chat">0</span></button>
+        </div>
         <div class="output-wrap">
-          <div class="output" id="output"></div>
+          <div class="output active" id="output-all"></div>
+          <div class="output" id="output-combat"></div>
+          <div class="output" id="output-chat"></div>
           <div class="status-sidebar" id="status-sidebar">
             <div>
               <div class="sidebar-title">Field Ledger</div>
@@ -970,25 +1231,40 @@
       </aside>
     </main>
 
-    <footer class="bottom-bar glass">
-      <div class="command-wrap">
-        <input id="command-input" class="prompt" type="text" autocomplete="off" spellcheck="false" placeholder="Speak to the void… try look, north, score, say hello" />
-        <button id="send-btn" class="btn btn-primary">Send</button>
+    <footer class="bottom-stack glass">
+      <div class="hotbar" id="hotbar"></div>
+      <div class="bottom-bar">
+        <div class="command-wrap">
+          <input id="command-input" class="prompt" type="text" autocomplete="off" spellcheck="false" placeholder="Speak to the void… try look, north, score, say hello" />
+          <button id="send-btn" class="btn btn-primary">Send</button>
+        </div>
+        <button id="reconnect-btn" class="btn btn-ghost">Reconnect</button>
+        <div class="footer-meta" id="footer-meta">Idle</div>
       </div>
-      <button id="reconnect-btn" class="btn btn-ghost">Reconnect</button>
-      <div class="footer-meta" id="footer-meta">Idle</div>
     </footer>
   </div>
 
   <div class="combat-indicator" id="combat-indicator">⚔️ In Combat</div>
   <div id="room-tooltip"></div>
+  <div id="hotbar-config-pop" class="hotbar-config-pop glass">
+    <div class="hotbar-config-title">Set hotbar command</div>
+    <div class="hotbar-config-row">
+      <input id="hotbar-config-input" type="text" maxlength="40" placeholder="command" />
+      <button id="hotbar-config-save" type="button">Save</button>
+    </div>
+  </div>
 
   <div class="login-overlay" id="login-overlay">
     <div class="login-card glass">
       <div class="login-kicker">Misthollow Gate</div>
       <h1 class="login-title">⚔️ Misthollow</h1>
       <p class="login-epigraph">Where shadows breathe and legends are forged</p>
-      <p class="login-subtitle">New? Type a name → say Y → set password</p>
+      <p class="login-subtitle" id="login-subtitle">New? Type a name → say Y → set password</p>
+      <div class="login-welcome" id="login-welcome"></div>
+      <div class="login-autologin" id="login-autologin">
+        <span id="login-autologin-text">Auto-login in 3s…</span>
+        <button id="login-autologin-cancel" class="linkish" type="button">Cancel</button>
+      </div>
       <div class="login-fields">
         <input id="login-name" class="input" type="text" autocomplete="username" placeholder="Character name" />
         <input id="login-pass" class="input" type="password" autocomplete="current-password" placeholder="Password" />
@@ -999,6 +1275,7 @@
       </div>
       <div class="status-line" id="login-status">Ready when you are.</div>
       <div class="server-line">🟢 Server Online · Misthollow MUD</div>
+      <div class="login-forget"><button id="login-forget" class="linkish" type="button">Forget me</button></div>
       <div class="hint-row">
         <span>WASD / Arrows to move</span>
         <span>Click a room to pathfind</span>
@@ -1019,6 +1296,21 @@
       const TILE_SIZE = 48;
       const ROOM_SPACING = 64;
       const TERRAIN_SPRITESHEET_URL = '/sprites/terrain_atlas.png';
+      const HOTBAR_KEY = 'misthollow_hotbar';
+      const ALIASES_KEY = 'misthollow_aliases';
+      const NAME_KEY = 'misthollow_name';
+      const PW_KEY = 'misthollow_pw';
+      const DEFAULT_HOTBAR = ['kill', 'backstab', 'look', 'score', 'inventory', 'north', 'south', 'east'];
+      const DEFAULT_ALIASES = { k: 'kill', l: 'look', i: 'inventory', eq: 'equipment', sc: 'score', h: 'help' };
+      const OUTPUT_LIMIT = 500;
+      const CARDINAL_DIRECTIONS = ['north', 'south', 'east', 'west'];
+      const CHAT_PATTERN = /^(You say|Someone says|\w+ says|You tell|\w+ tells you|You shout|\w+ shouts)/i;
+      const PLAYER_DIR_MAP = {
+        n: 'up', north: 'up',
+        s: 'down', south: 'down',
+        e: 'right', east: 'right',
+        w: 'left', west: 'left',
+      };
       const MINIMAP_COLORS = {
         city: '#9aabb8',
         town: '#9aabb8',
@@ -1059,6 +1351,7 @@
         underwater: 386,
         default: 609,
       };
+      const WALL_TILE_FRAME = 0;
       const WATER_ANIMATION_FRAMES = [384, 385, 386, 387];
       const MOB_TYPE_RULES = [
         { terms: ['goblin', 'gnoll', 'orc', 'kobold'], key: 'mob_goblin' },
@@ -1094,12 +1387,15 @@
         /you attack/i,
         /you smite/i,
         /you blast/i,
+        /you miss/i,
         /is dead!/i,
         /you are fighting/i,
         /starts using/i,
         /hits you/i,
         /slashes you/i,
         /attacks you/i,
+        /casts/i,
+        /heals/i,
       ];
       const SOUND_COMBAT_PATTERN = /you hit|you slash|you pierce|you smite|you blast|\bhits you\b|\bslashes you\b|\battacks you\b/i;
       const SOUND_LEVEL_PATTERN = /you gain a level|you are now level/i;
@@ -1111,6 +1407,8 @@
         /You are in/i,
         /Obvious exits:/i,
       ];
+      const HIT_TARGET_PATTERN = /You (?:hit|slash|pierce|smite|blast|attack) ([A-Za-z' -]+?)(?:\.|!| for| with|\b)/i;
+      const MISS_TARGET_PATTERN = /You miss ([A-Za-z' -]+?)(?:\.|!|\b)/i;
 
       const state = {
         mudSocket: null,
@@ -1129,6 +1427,7 @@
         currentRoomVnum: null,
         currentRoomName: 'Awaiting login…',
         currentZone: 'Unknown Region',
+        currentTime: null,
         visited: new Set(),
         commandHistory: [],
         historyIndex: -1,
@@ -1139,11 +1438,38 @@
         queuedMapData: null,
         sidebarOpen: false,
         audioCtx: null,
-        audioReady: false,
+        outputTabs: {
+          active: 'all',
+          nodes: {},
+          scrollTop: { all: 0, combat: 0, chat: 0 },
+          unread: { all: 0, combat: 0, chat: 0 },
+        },
+        hotbar: [],
+        hotbarEditIndex: null,
+        autoLoginTimer: null,
+        autoLoginCountdown: 0,
+        aliases: {},
+        pendingMoveDirection: 'down',
+        lastMoveDirection: 'down',
+        lastRoomData: null,
+        target: {
+          name: '',
+          hp: 100,
+        },
       };
 
       const els = {
-        output: document.getElementById('output'),
+        outputs: {
+          all: document.getElementById('output-all'),
+          combat: document.getElementById('output-combat'),
+          chat: document.getElementById('output-chat'),
+        },
+        tabButtons: Array.from(document.querySelectorAll('.tab-btn')),
+        tabUnread: {
+          all: document.querySelector('[data-unread="all"]'),
+          combat: document.querySelector('[data-unread="combat"]'),
+          chat: document.querySelector('[data-unread="chat"]'),
+        },
         hpFill: document.getElementById('hp-fill'),
         manaFill: document.getElementById('mana-fill'),
         moveFill: document.getElementById('move-fill'),
@@ -1154,18 +1480,29 @@
         sidebarMana: document.getElementById('sidebar-mana'),
         sidebarMove: document.getElementById('sidebar-move'),
         roomName: document.getElementById('room-name'),
+        timeHead: document.getElementById('time-head'),
         commandInput: document.getElementById('command-input'),
         sendBtn: document.getElementById('send-btn'),
         reconnectBtn: document.getElementById('reconnect-btn'),
         connectionStatus: document.getElementById('connection-status'),
         footerMeta: document.getElementById('footer-meta'),
         combatIndicator: document.getElementById('combat-indicator'),
+        targetBar: document.getElementById('target-bar'),
+        targetName: document.getElementById('target-name'),
+        targetFill: document.getElementById('target-fill'),
+        targetHpText: document.getElementById('target-hp-text'),
         loginOverlay: document.getElementById('login-overlay'),
         loginName: document.getElementById('login-name'),
         loginPass: document.getElementById('login-pass'),
         loginEnter: document.getElementById('login-enter'),
         loginCreate: document.getElementById('login-create'),
         loginStatus: document.getElementById('login-status'),
+        loginSubtitle: document.getElementById('login-subtitle'),
+        loginWelcome: document.getElementById('login-welcome'),
+        loginAuto: document.getElementById('login-autologin'),
+        loginAutoText: document.getElementById('login-autologin-text'),
+        loginAutoCancel: document.getElementById('login-autologin-cancel'),
+        loginForget: document.getElementById('login-forget'),
         zoneChip: document.getElementById('zone-chip'),
         timeChip: document.getElementById('time-chip'),
         minimap: document.getElementById('minimap-canvas'),
@@ -1173,10 +1510,57 @@
         sidebar: document.getElementById('status-sidebar'),
         sidebarToggle: document.getElementById('sidebar-toggle'),
         quickButtons: Array.from(document.querySelectorAll('.quick-btn')),
+        hotbar: document.getElementById('hotbar'),
+        hotbarConfigPop: document.getElementById('hotbar-config-pop'),
+        hotbarConfigInput: document.getElementById('hotbar-config-input'),
+        hotbarConfigSave: document.getElementById('hotbar-config-save'),
       };
 
       function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
+      }
+
+      function safeLocalStorageGet(key) {
+        try { return window.localStorage.getItem(key); } catch (_) { return null; }
+      }
+
+      function safeLocalStorageSet(key, value) {
+        try { window.localStorage.setItem(key, value); } catch (_) {}
+      }
+
+      function safeLocalStorageRemove(key) {
+        try { window.localStorage.removeItem(key); } catch (_) {}
+      }
+
+      function loadAliases() {
+        const raw = safeLocalStorageGet(ALIASES_KEY);
+        if (!raw) return { ...DEFAULT_ALIASES };
+        try {
+          const parsed = JSON.parse(raw);
+          return parsed && typeof parsed === 'object' ? parsed : { ...DEFAULT_ALIASES };
+        } catch (_) {
+          return { ...DEFAULT_ALIASES };
+        }
+      }
+
+      function saveAliases() {
+        safeLocalStorageSet(ALIASES_KEY, JSON.stringify(state.aliases));
+      }
+
+      function loadHotbar() {
+        const raw = safeLocalStorageGet(HOTBAR_KEY);
+        if (!raw) return [...DEFAULT_HOTBAR];
+        try {
+          const parsed = JSON.parse(raw);
+          if (Array.isArray(parsed) && parsed.length) {
+            return parsed.slice(0, 8).map(v => String(v || '').trim() || '').concat(DEFAULT_HOTBAR).slice(0, 8);
+          }
+        } catch (_) {}
+        return [...DEFAULT_HOTBAR];
+      }
+
+      function saveHotbar() {
+        safeLocalStorageSet(HOTBAR_KEY, JSON.stringify(state.hotbar));
       }
 
       function setLoginStatus(text, isError = false) {
@@ -1242,7 +1626,18 @@
         return escaped.replace(EXIT_WORD_PATTERN, match => `<span class="exit-link" data-exit="${match.toLowerCase()}">${match}</span>`);
       }
 
-      function appendOutput(text, type = 'normal') {
+      function isCombatLine(text) {
+        return COMBAT_PATTERNS.some(pattern => pattern.test(text));
+      }
+
+      function routeTabsForLine(text) {
+        const tabs = ['all'];
+        if (isCombatLine(text)) tabs.push('combat');
+        if (CHAT_PATTERN.test(text)) tabs.push('chat');
+        return tabs;
+      }
+
+      function makeOutputLine(text, type = 'normal') {
         const line = document.createElement('div');
         line.className = `output-line ${type}`;
         const safeText = String(text ?? '');
@@ -1251,31 +1646,127 @@
         } else {
           line.innerHTML = `<span class="output-fragment" style="color:${colorForLine(safeText)}">${processExitLinks(safeText)}</span>`;
         }
-        els.output.appendChild(line);
-        els.output.scrollTop = els.output.scrollHeight;
+        return line;
+      }
+
+      function updateUnreadBadge(tab) {
+        const badge = els.tabUnread[tab];
+        const count = state.outputTabs.unread[tab] || 0;
+        if (!badge) return;
+        badge.textContent = count;
+        badge.classList.toggle('visible', count > 0);
+      }
+
+      function switchOutputTab(tab) {
+        if (!els.outputs[tab] || state.outputTabs.active === tab) {
+          state.outputTabs.unread[tab] = 0;
+          updateUnreadBadge(tab);
+          return;
+        }
+        const current = state.outputTabs.active;
+        if (els.outputs[current]) {
+          state.outputTabs.scrollTop[current] = els.outputs[current].scrollTop;
+          els.outputs[current].classList.remove('active');
+        }
+        state.outputTabs.active = tab;
+        els.outputs[tab].classList.add('active');
+        els.outputs[tab].scrollTop = state.outputTabs.scrollTop[tab] || els.outputs[tab].scrollHeight;
+        state.outputTabs.unread[tab] = 0;
+        updateUnreadBadge(tab);
+        els.tabButtons.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tab));
+      }
+
+      function appendOutput(text, type = 'normal') {
+        const safeText = String(text ?? '');
+        const tabs = type === 'system' || type === 'command' ? ['all'] : routeTabsForLine(safeText);
+        tabs.forEach(tab => {
+          const node = els.outputs[tab];
+          if (!node) return;
+          const shouldStick = tab === state.outputTabs.active && (node.scrollHeight - node.scrollTop - node.clientHeight < 40);
+          const lineNode = makeOutputLine(safeText, type);
+          node.appendChild(lineNode);
+          while (node.childElementCount > OUTPUT_LIMIT) {
+            if (node.firstChild) node.firstChild.remove();
+          }
+          if (tab === state.outputTabs.active) {
+            if (shouldStick) node.scrollTop = node.scrollHeight;
+          } else {
+            state.outputTabs.unread[tab] = (state.outputTabs.unread[tab] || 0) + 1;
+            updateUnreadBadge(tab);
+          }
+        });
+      }
+
+      function guessCombatTargetFromRoom() {
+        const room = state.lastRoomData || state.roomMap.get(String(state.currentRoomVnum || ''));
+        if (room && Array.isArray(room.mobs) && room.mobs.length) {
+          return room.mobs[0]?.name || '';
+        }
+        return '';
+      }
+
+      function updateTargetBar() {
+        if (!state.combat) {
+          els.targetBar.classList.remove('active');
+          return;
+        }
+        if (!state.target.name) {
+          state.target.name = guessCombatTargetFromRoom() || 'Unknown foe';
+        }
+        els.targetBar.classList.add('active');
+        els.targetName.textContent = `⚔️ TARGET: ${state.target.name}`;
+        els.targetFill.style.width = `${Math.max(0, Math.min(100, state.target.hp))}%`;
+        els.targetHpText.textContent = `${Math.round(Math.max(0, Math.min(100, state.target.hp)))}%`;
       }
 
       function updateCombatStateFromOutput(text) {
         if (COMBAT_PATTERNS.some(pattern => pattern.test(text))) {
           state.lastCombatAt = Date.now();
           state.combat = true;
+          const hitMatch = text.match(HIT_TARGET_PATTERN);
+          const missMatch = text.match(MISS_TARGET_PATTERN);
+          if (hitMatch?.[1]) {
+            state.target.name = hitMatch[1].trim();
+            state.target.hp = Math.max(0, state.target.hp - 8);
+          } else if (missMatch?.[1]) {
+            state.target.name = missMatch[1].trim();
+            state.target.hp = Math.min(100, state.target.hp + 2);
+          } else if (!state.target.name) {
+            state.target.name = guessCombatTargetFromRoom() || state.target.name;
+          }
         } else if (/you are no longer fighting|combat has ended|you stop fighting|you flee/i.test(text)) {
           state.combat = false;
+          state.target.hp = 100;
+        }
+        if (/is dead!/i.test(text) || /you have slain/i.test(text)) {
+          state.target.hp = 0;
         }
         syncCombatIndicator();
+        updateTargetBar();
       }
 
       function syncCombatIndicator() {
         if (state.combat && Date.now() - state.lastCombatAt > 12000) {
           state.combat = false;
+          state.target.hp = 100;
+        }
+        if (!state.combat) {
+          state.target.name = '';
         }
         els.combatIndicator.classList.toggle('active', state.combat);
+        updateTargetBar();
       }
 
       setInterval(syncCombatIndicator, 1500);
 
       function normalizeLineBreaks(text) {
         return String(text || '').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+      }
+
+      function saveCredentials() {
+        if (!state.playerName || !state.playerPassword) return;
+        safeLocalStorageSet(NAME_KEY, state.playerName);
+        safeLocalStorageSet(PW_KEY, btoa(state.playerPassword));
       }
 
       function inferLoginSuccess(text) {
@@ -1288,6 +1779,7 @@
           els.loginOverlay.classList.add('hidden');
           setFooter('Inside Misthollow');
           setLoginStatus('Entered the world. Try look if the void acts smug.');
+          saveCredentials();
         }
       }
 
@@ -1354,35 +1846,82 @@
           return;
         }
         if (SOUND_HEAL_PATTERN.test(line)) {
-          // heal only colors, no separate sound requested
+          // still no extra heal ping; we're not making everything beep like a casino
         }
       }
 
-      function sendMudCommand(command, echo = true) {
+      function handleAliasCommand(command) {
         const trimmed = String(command || '').trim();
+        if (!trimmed) return { handled: false, command: '' };
+        const parts = trimmed.split(/\s+/);
+        const base = parts[0].toLowerCase();
+
+        if (base === 'alias') {
+          if (parts.length < 3) {
+            appendOutput(`[aliases] usage: alias <short> <command>`, 'system');
+            return { handled: true, command: '' };
+          }
+          const key = parts[1].toLowerCase();
+          const value = parts.slice(2).join(' ').trim();
+          state.aliases[key] = value;
+          saveAliases();
+          appendOutput(`[aliases] ${key} → ${value}`, 'system');
+          return { handled: true, command: '' };
+        }
+
+        if (base === 'unalias') {
+          if (parts[1]) {
+            delete state.aliases[parts[1].toLowerCase()];
+            saveAliases();
+            appendOutput(`[aliases] removed ${parts[1].toLowerCase()}`, 'system');
+          } else {
+            appendOutput(`[aliases] usage: unalias <short>`, 'system');
+          }
+          return { handled: true, command: '' };
+        }
+
+        if (base === 'aliases') {
+          const entries = Object.entries(state.aliases);
+          if (!entries.length) {
+            appendOutput('[aliases] none set', 'system');
+          } else {
+            entries.sort((a, b) => a[0].localeCompare(b[0]));
+            entries.forEach(([key, value]) => appendOutput(`[aliases] ${key} → ${value}`, 'system'));
+          }
+          return { handled: true, command: '' };
+        }
+
+        const alias = state.aliases[trimmed.toLowerCase()];
+        if (alias) {
+          return { handled: false, command: alias };
+        }
+
+        return { handled: false, command: trimmed };
+      }
+
+      function sendMudCommand(command, echo = true) {
+        const resolved = handleAliasCommand(command);
+        if (resolved.handled) return true;
+        const trimmed = String(resolved.command || '').trim();
         if (!trimmed || !state.mudSocket || state.mudSocket.readyState !== WebSocket.OPEN) return false;
         state.mudSocket.send(trimmed);
-        if (echo) {
-          appendOutput(`> ${trimmed}`, 'command');
-        }
+        if (echo) appendOutput(`> ${trimmed}`, 'command');
         return true;
       }
 
       function queueHistory(command) {
         if (!command) return;
         const last = state.commandHistory[state.commandHistory.length - 1];
-        if (last !== command) {
-          state.commandHistory.push(command);
-        }
+        if (last !== command) state.commandHistory.push(command);
         state.historyIndex = state.commandHistory.length;
       }
 
-      function submitCommand() {
-        const command = els.commandInput.value.trim();
+      function submitCommand(forced) {
+        const command = forced ?? els.commandInput.value.trim();
         if (!command) return;
         if (sendMudCommand(command)) {
           queueHistory(command);
-          els.commandInput.value = '';
+          if (!forced) els.commandInput.value = '';
         }
       }
 
@@ -1438,21 +1977,43 @@
         state.currentRoomName = room.name || 'Unknown Room';
         state.currentZone = room.zone || 'Unknown Region';
         state.visited.add(String(room.vnum));
+        state.lastRoomData = room;
         els.roomName.textContent = room.name || 'Unknown Room';
         els.zoneChip.textContent = room.zone ? `${room.zone}` : 'Unknown Region';
+        if (state.combat && !state.target.name) {
+          state.target.name = guessCombatTargetFromRoom() || state.target.name;
+          updateTargetBar();
+        }
+      }
+
+      function getTimeTheme(time) {
+        const hour = Number(time?.hour);
+        const period = String(time?.period || '').toLowerCase();
+        if (period.includes('dawn') || (hour >= 5 && hour < 6)) {
+          return { label: '🌅 Dawn', tint: 0xffcc88, alpha: 0.15, bg: '#1b1711' };
+        }
+        if (period.includes('dusk') || (hour >= 17 && hour < 19)) {
+          return { label: '🌆 Dusk', tint: 0xff9955, alpha: 0.2, bg: '#1d120d' };
+        }
+        if (period.includes('night') || hour >= 19 || hour < 5) {
+          return { label: '🌙 Night', tint: 0x334466, alpha: 0.35, bg: '#07111b' };
+        }
+        return { label: '☀️ Day', tint: 0xffffff, alpha: 0, bg: '#09111d' };
       }
 
       function updateTimeChip(time) {
+        state.currentTime = time || null;
         if (!time || typeof time !== 'object') {
           els.timeChip.textContent = 'No time data';
+          els.timeHead.textContent = '🌙 Night · Hour 0';
+          if (window.mudScene?.applyTimeTint) window.mudScene.applyTimeTint(null);
           return;
         }
-        const parts = [];
-        if (time.hour !== undefined) parts.push(`Hour ${time.hour}`);
-        if (time.day !== undefined) parts.push(`Day ${time.day}`);
-        if (time.month !== undefined) parts.push(`Month ${time.month}`);
-        if (time.year !== undefined) parts.push(`Year ${time.year}`);
-        els.timeChip.textContent = parts.length ? parts.join(' • ') : 'Time unknown';
+        const theme = getTimeTheme(time);
+        const hourPart = time.hour !== undefined ? `Hour ${time.hour}` : 'Hour ?';
+        els.timeChip.textContent = `${theme.label} • ${hourPart}`;
+        els.timeHead.textContent = `${theme.label} · ${hourPart}`;
+        if (window.mudScene?.applyTimeTint) window.mudScene.applyTimeTint(time);
       }
 
       function renderMinimap() {
@@ -1511,11 +2072,13 @@
         renderMinimap();
         if (previousVnum && state.currentRoomVnum && String(previousVnum) !== String(state.currentRoomVnum)) {
           playSound('move');
+          state.lastMoveDirection = state.pendingMoveDirection || state.lastMoveDirection || 'down';
+          state.target.hp = state.combat ? state.target.hp : 100;
         }
         if (window.mudScene && typeof window.mudScene.setMapData === 'function') {
-          window.mudScene.setMapData(state.rooms, state.player, state.visited, state.currentRoomVnum);
+          window.mudScene.setMapData(state.rooms, state.player, state.visited, state.currentRoomVnum, payload.time);
         } else {
-          state.queuedMapData = { rooms: state.rooms, player: state.player, visited: new Set(state.visited), currentRoomVnum: state.currentRoomVnum };
+          state.queuedMapData = { rooms: state.rooms, player: state.player, visited: new Set(state.visited), currentRoomVnum: state.currentRoomVnum, time: payload.time };
         }
       }
 
@@ -1570,13 +2133,13 @@
             appendOutput(text, 'normal');
           } else {
             for (const line of lines) {
-              const type = COMBAT_PATTERNS.some(pattern => pattern.test(line)) ? 'combat' : 'normal';
+              const type = isCombatLine(line) ? 'combat' : 'normal';
               appendOutput(line, type);
               handleLineSounds(line);
+              updateCombatStateFromOutput(line);
             }
           }
           inferLoginSuccess(text);
-          updateCombatStateFromOutput(text);
         } else if (payload.type === 'mapsync') {
           if (payload.player) {
             state.playerName = payload.player;
@@ -1602,6 +2165,7 @@
 
       function connectMud() {
         closeSockets();
+        clearAutoLogin();
         state.loginSequenceStarted = false;
         state.isLoggedIn = false;
         appendOutput(`[system] connecting to ${mudWsUrl}`, 'system');
@@ -1637,6 +2201,7 @@
       function beginLogin(createAccount = false) {
         const name = els.loginName.value.trim();
         const pass = els.loginPass.value;
+
         if (!name || !pass) {
           setLoginStatus('Need both name and password. Ancient magic has standards.', true);
           return;
@@ -1645,6 +2210,50 @@
         state.playerPassword = pass;
         state.creatingAccount = createAccount;
         connectMud();
+      }
+
+      function clearAutoLogin() {
+        if (state.autoLoginTimer) {
+          clearInterval(state.autoLoginTimer);
+          state.autoLoginTimer = null;
+        }
+        els.loginAuto.classList.remove('active');
+      }
+
+      function setupStoredCredentials() {
+        const savedName = safeLocalStorageGet(NAME_KEY);
+        const savedPw = safeLocalStorageGet(PW_KEY);
+        if (!savedName || !savedPw) return;
+        let decoded = '';
+        try { decoded = atob(savedPw); } catch (_) { decoded = ''; }
+        els.loginName.value = savedName;
+        els.loginPass.value = decoded;
+        els.loginSubtitle.textContent = 'New? Type a name → say Y → set password';
+        els.loginWelcome.textContent = `Welcome back, ${savedName}!`;
+        els.loginWelcome.classList.add('active');
+        state.autoLoginCountdown = 3;
+        els.loginAuto.classList.add('active');
+        els.loginAutoText.textContent = `Auto-login in ${state.autoLoginCountdown}s…`;
+        state.autoLoginTimer = setInterval(() => {
+          state.autoLoginCountdown -= 1;
+          if (state.autoLoginCountdown <= 0) {
+            clearAutoLogin();
+            beginLogin(false);
+            return;
+          }
+          els.loginAutoText.textContent = `Auto-login in ${state.autoLoginCountdown}s…`;
+        }, 1000);
+      }
+
+      function forgetStoredCredentials() {
+        safeLocalStorageRemove(NAME_KEY);
+        safeLocalStorageRemove(PW_KEY);
+        els.loginName.value = '';
+        els.loginPass.value = '';
+        els.loginWelcome.classList.remove('active');
+        els.loginWelcome.textContent = '';
+        clearAutoLogin();
+        setLoginStatus('Memory wiped. Very dramatic.', false);
       }
 
       function getNeighbor(room, dirName) {
@@ -1712,6 +2321,7 @@
           if (!sendMudCommand(DIRECTIONS[step]?.short || step, true)) {
             break;
           }
+          state.pendingMoveDirection = PLAYER_DIR_MAP[DIRECTIONS[step]?.short || step] || state.pendingMoveDirection;
           await sleep(180);
         }
         state.pendingPath = [];
@@ -1720,6 +2330,7 @@
       function movePlayer(dirKey) {
         const dir = DIRECTIONS[dirKey];
         if (!dir) return;
+        state.pendingMoveDirection = PLAYER_DIR_MAP[dir.short] || state.pendingMoveDirection;
         sendMudCommand(dir.short, true);
       }
 
@@ -1784,6 +2395,35 @@
         els.sidebarToggle.classList.toggle('active', state.sidebarOpen);
       }
 
+      function renderHotbar() {
+        els.hotbar.innerHTML = '';
+        state.hotbar.forEach((command, index) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'hotbar-slot';
+          btn.textContent = command || 'empty';
+          btn.dataset.index = index;
+          btn.addEventListener('click', () => {
+            if (command) submitCommand(command);
+          });
+          btn.addEventListener('contextmenu', event => {
+            event.preventDefault();
+            state.hotbarEditIndex = index;
+            els.hotbarConfigInput.value = command || '';
+            els.hotbarConfigPop.style.left = `${Math.min(window.innerWidth - 240, event.clientX)}px`;
+            els.hotbarConfigPop.style.top = `${Math.min(window.innerHeight - 90, event.clientY)}px`;
+            els.hotbarConfigPop.classList.add('active');
+            requestAnimationFrame(() => els.hotbarConfigInput.focus());
+          });
+          els.hotbar.appendChild(btn);
+        });
+      }
+
+      function closeHotbarPopup() {
+        els.hotbarConfigPop.classList.remove('active');
+        state.hotbarEditIndex = null;
+      }
+
       class MudMapScene extends Phaser.Scene {
         constructor() {
           super({ key: 'MudMapScene' });
@@ -1792,6 +2432,8 @@
           this.exitLayer = null;
           this.highlightLayer = null;
           this.markerLayer = null;
+          this.overlayLayer = null;
+          this.particleLayer = null;
           this.rooms = [];
           this.roomObjects = [];
           this.roomObjectMap = new Map();
@@ -1803,6 +2445,9 @@
           this.assetsReady = false;
           this.waterAnimReady = false;
           this.lastPanTarget = null;
+          this.timeData = null;
+          this.timeOverlay = null;
+          this.particleTextureReady = false;
         }
 
         preload() {
@@ -1814,9 +2459,8 @@
           this.load.once('complete', () => {
             this.assetsReady = true;
             this.ensureAnimations();
-            if (this.rooms.length) {
-              this.renderMap();
-            }
+            this.ensureParticleTexture();
+            if (this.rooms.length) this.renderMap();
           });
         }
 
@@ -1827,6 +2471,13 @@
           this.exitLayer = this.add.graphics();
           this.highlightLayer = this.add.graphics();
           this.markerLayer = this.add.container(0, 0);
+          this.particleLayer = this.add.container(0, 0);
+          this.overlayLayer = this.add.container(0, 0);
+          this.timeOverlay = this.add.rectangle(0, 0, this.scale.width, this.scale.height, 0xffffff, 0)
+            .setOrigin(0)
+            .setScrollFactor(0)
+            .setDepth(999)
+            .setBlendMode(Phaser.BlendModes.MULTIPLY);
 
           this.input.on('gameobjectdown', (_, gameObject) => {
             if (gameObject && gameObject.roomData) {
@@ -1842,25 +2493,16 @@
           });
 
           this.input.on('gameobjectover', pointer, gameObject => {
-            if (gameObject && gameObject.roomData) {
-              showTooltip(gameObject.roomData.name || 'Unknown Room', pointer);
-            }
+            if (gameObject && gameObject.roomData) showTooltip(gameObject.roomData.name || 'Unknown Room', pointer);
           });
 
           this.input.on('gameobjectmove', pointer, gameObject => {
-            if (gameObject && gameObject.roomData) {
-              moveTooltip(pointer);
-            }
+            if (gameObject && gameObject.roomData) moveTooltip(pointer);
           });
 
-          this.input.on('gameobjectout', () => {
-            hideTooltip();
-          });
-
+          this.input.on('gameobjectout', () => hideTooltip());
           this.input.on('pointermove', pointer => {
-            if (els.tooltip.style.visibility === 'visible') {
-              moveTooltip(pointer);
-            }
+            if (els.tooltip.style.visibility === 'visible') moveTooltip(pointer);
           });
 
           window.addEventListener('resize', () => this.resizeToContainer());
@@ -1869,7 +2511,7 @@
           window.mudScene = this;
           if (state.queuedMapData) {
             const queued = state.queuedMapData;
-            this.setMapData(queued.rooms, queued.player, queued.visited, queued.currentRoomVnum);
+            this.setMapData(queued.rooms, queued.player, queued.visited, queued.currentRoomVnum, queued.time);
             state.queuedMapData = null;
           }
         }
@@ -1887,6 +2529,19 @@
           this.waterAnimReady = true;
         }
 
+        ensureParticleTexture() {
+          if (this.particleTextureReady || this.textures.exists('particle-dot')) {
+            this.particleTextureReady = true;
+            return;
+          }
+          const g = this.make.graphics({ x: 0, y: 0, add: false });
+          g.fillStyle(0xffffff, 1);
+          g.fillCircle(4, 4, 4);
+          g.generateTexture('particle-dot', 8, 8);
+          g.destroy();
+          this.particleTextureReady = true;
+        }
+
         resizeToContainer() {
           const root = document.getElementById('phaser-root');
           if (!root) return;
@@ -1894,30 +2549,39 @@
           const height = Math.max(220, root.clientHeight);
           this.scale.resize(width, height);
           this.cameras.main.setSize(width, height);
+          if (this.timeOverlay) this.timeOverlay.setSize(width, height);
         }
 
-        setMapData(rooms, player, visited, currentRoomVnum) {
+        setMapData(rooms, player, visited, currentRoomVnum, time) {
           const previousRoomVnum = this.currentRoomVnum;
           this.rooms = Array.isArray(rooms) ? rooms : [];
           this.player = player || null;
           this.currentRoomVnum = currentRoomVnum || (player ? player.vnum : null);
           this.visited = new Set(visited || []);
-          if (this.assetsReady) {
-            this.renderMap(previousRoomVnum);
-          }
+          this.timeData = time || this.timeData;
+          if (this.assetsReady) this.renderMap(previousRoomVnum);
+          this.applyTimeTint(this.timeData);
+        }
+
+        applyTimeTint(time) {
+          this.timeData = time || null;
+          if (!this.cameras?.main || !this.timeOverlay) return;
+          const theme = getTimeTheme(time || {});
+          this.cameras.main.setBackgroundColor(theme.bg);
+          this.timeOverlay.fillColor = theme.tint;
+          this.timeOverlay.fillAlpha = theme.alpha;
         }
 
         worldPos(room) {
-          return {
-            x: room.x * ROOM_SPACING,
-            y: -room.y * ROOM_SPACING,
-          };
+          return { x: room.x * ROOM_SPACING, y: -room.y * ROOM_SPACING };
         }
 
         clearRenderObjects() {
           if (this.tileGroup) this.tileGroup.clear(true, true);
           if (this.interactionGroup) this.interactionGroup.clear(true, true);
           if (this.markerLayer) this.markerLayer.removeAll(true);
+          if (this.particleLayer) this.particleLayer.removeAll(true);
+          if (this.overlayLayer) this.overlayLayer.removeAll(true);
           if (this.exitLayer) this.exitLayer.clear();
           if (this.highlightLayer) this.highlightLayer.clear();
           this.roomObjects = [];
@@ -1927,11 +2591,11 @@
         renderMap(previousRoomVnum = null) {
           if (!this.assetsReady) return;
           this.ensureAnimations();
+          this.ensureParticleTexture();
           this.clearRenderObjects();
           if (!this.rooms.length) return;
 
           const drawnConnections = new Set();
-
           for (const room of this.rooms) {
             const roomObj = this.makeRoom(room);
             this.roomObjects.push(roomObj);
@@ -1968,23 +2632,19 @@
             const playerRoom = state.roomMap.get(String(this.player.vnum || this.currentRoomVnum || '')) || currentRoom;
             if (playerRoom) {
               const { x, y } = this.worldPos(playerRoom);
-              const glow = this.add.circle(x, y, 18, 0x10b981, 0.18);
-              const marker = this.add.circle(x, y, 9, 0x3decc0, 0.95).setStrokeStyle(3, 0xdbfff4, 0.75);
-              this.markerLayer.add([glow, marker]);
-              this.playerGlow = glow;
-              this.playerMarker = marker;
+              this.drawPlayerMarker(x, y);
+              this.drawOtherPlayers(playerRoom, x, y);
+              this.createAmbientForVisibleRooms(playerRoom);
             }
           }
+          this.applyTimeTint(this.timeData);
         }
 
         panToRoom(room, previousRoomVnum) {
           const { x, y } = this.worldPos(room);
           const cam = this.cameras.main;
-          if (!previousRoomVnum || String(previousRoomVnum) === String(room.vnum) || !this.lastPanTarget) {
-            cam.centerOn(x, y);
-          } else {
-            cam.pan(x, y, 300, 'Sine.easeInOut');
-          }
+          if (!previousRoomVnum || String(previousRoomVnum) === String(room.vnum) || !this.lastPanTarget) cam.centerOn(x, y);
+          else cam.pan(x, y, 300, 'Sine.easeInOut');
           this.lastPanTarget = { x, y };
         }
 
@@ -2002,6 +2662,143 @@
           });
         }
 
+        drawWallSegments(room, pos, visited) {
+          const exits = new Set((Array.isArray(room.exits) ? room.exits : []).map(v => String(v).toLowerCase()));
+          const wallColor = 0x1a0a2e;
+          const alpha = visited ? 0.7 : 0.35;
+          const thickness = 8;
+          CARDINAL_DIRECTIONS.forEach(dir => {
+            if (exits.has(dir) || exits.has(DIRECTIONS[dir]?.short)) return;
+            const strip = this.add.graphics();
+            strip.fillStyle(wallColor, alpha);
+            if (dir === 'north') strip.fillRect(pos.x - TILE_SIZE / 2, pos.y - TILE_SIZE / 2, TILE_SIZE, thickness);
+            if (dir === 'south') strip.fillRect(pos.x - TILE_SIZE / 2, pos.y + TILE_SIZE / 2 - thickness, TILE_SIZE, thickness);
+            if (dir === 'west') strip.fillRect(pos.x - TILE_SIZE / 2, pos.y - TILE_SIZE / 2, thickness, TILE_SIZE);
+            if (dir === 'east') strip.fillRect(pos.x + TILE_SIZE / 2 - thickness, pos.y - TILE_SIZE / 2, thickness, TILE_SIZE);
+            this.overlayLayer.add(strip);
+
+            const offsetX = dir === 'east' ? 12 : dir === 'west' ? -12 : 0;
+            const offsetY = dir === 'south' ? 12 : dir === 'north' ? -12 : 0;
+            const wallAccent = this.add.image(pos.x + offsetX, pos.y + offsetY, 'terrain', WALL_TILE_FRAME)
+              .setScale(0.35)
+              .setAlpha(visited ? 0.28 : 0.16)
+              .setTint(0x4b5563);
+            this.overlayLayer.add(wallAccent);
+          });
+        }
+
+        drawPlayerMarker(x, y) {
+          const glow = this.add.circle(x, y, 18, 0x10b981, 0.18);
+          glow.setStrokeStyle(2, 0x34d399, 0.25);
+          const marker = this.add.graphics();
+          marker.x = x;
+          marker.y = y;
+          this.redrawPlayerArrow(marker, state.lastMoveDirection || 'down');
+          this.tweens.add({
+            targets: marker,
+            scaleX: 1.1,
+            scaleY: 1.1,
+            duration: 750,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut',
+          });
+          this.markerLayer.add([glow, marker]);
+          this.playerGlow = glow;
+          this.playerMarker = marker;
+        }
+
+        redrawPlayerArrow(graphics, direction) {
+          const pointsByDir = {
+            down: [[0, 12], [-8, -4], [8, -4]],
+            up: [[0, -12], [-8, 4], [8, 4]],
+            left: [[-12, 0], [4, -8], [4, 8]],
+            right: [[12, 0], [-4, -8], [-4, 8]],
+          };
+          const pts = pointsByDir[direction] || pointsByDir.down;
+          graphics.clear();
+          graphics.fillStyle(0x10b981, 1);
+          graphics.lineStyle(2, 0xa7f3d0, 0.95);
+          graphics.fillPoints(pts.map(([px, py]) => new Phaser.Geom.Point(px, py)), true);
+          graphics.strokePoints(pts.map(([px, py]) => new Phaser.Geom.Point(px, py)), true, true);
+          graphics.fillStyle(0x10b981, 0.25);
+          graphics.fillCircle(0, 0, 14);
+        }
+
+        drawOtherPlayers(room, x, y) {
+          const otherPlayers = Array.isArray(room?.players)
+            ? room.players.filter(p => String(p?.name || p).trim() && String(p?.name || p).trim().toLowerCase() !== String(state.playerName || '').trim().toLowerCase())
+            : [];
+          otherPlayers.forEach((entry, index) => {
+            const name = String(entry?.name || entry).trim();
+            const px = x + 16 + ((index % 2) * 14);
+            const py = y + 10 + (Math.floor(index / 2) * 18);
+            const glow = this.add.circle(px, py, 10, 0xffffff, 0.12);
+            const dot = this.add.circle(px, py, 8, 0xffffff, 0.95).setStrokeStyle(2, 0xe2e8f0, 0.8);
+            const label = this.add.text(px, py + 10, name, {
+              fontFamily: 'Plus Jakarta Sans',
+              fontSize: '8px',
+              color: '#ffffff',
+              stroke: '#020617',
+              strokeThickness: 2,
+              align: 'center',
+            }).setOrigin(0.5, 0);
+            this.markerLayer.add([glow, dot, label]);
+          });
+        }
+
+        particleConfigForSector(sector, pos) {
+          const key = String(sector || 'default').toLowerCase();
+          if (key === 'dungeon' || key === 'cave') {
+            return { tint: 0x9ca3af, alpha: { start: 0.3, end: 0 }, scale: { start: 0.18, end: 0.04 }, speedY: { min: 5, max: 15 }, speedX: { min: -4, max: 4 }, gravityY: 8 };
+          }
+          if (key === 'forest' || key === 'outdoor' || key === 'field') {
+            return { tint: 0x4ade80, alpha: { start: 0.4, end: 0 }, scale: { start: 0.26, end: 0.06 }, speedY: { min: -15, max: -5 }, speedX: { min: -5, max: 5 }, gravityY: -2 };
+          }
+          if (key === 'city' || key === 'town') {
+            return { tint: 0xfb923c, alpha: { start: 0.4, end: 0 }, scale: { start: 0.18, end: 0.05 }, speedY: { min: -14, max: -6 }, speedX: { min: -4, max: 4 }, gravityY: -4 };
+          }
+          if (key === 'swamp' || key === 'water' || key === 'underwater') {
+            return { tint: 0x2dd4bf, alpha: { start: 0.35, end: 0 }, scale: { start: 0.18, end: 0.08 }, speedY: { min: -12, max: -5 }, speedX: { min: -3, max: 3 }, gravityY: -2 };
+          }
+          return null;
+        }
+
+        createAmbientForVisibleRooms(currentRoom) {
+          if (!currentRoom || !this.particleTextureReady) return;
+          const visibleRooms = [currentRoom];
+          const exits = Array.isArray(currentRoom.exits) ? currentRoom.exits.map(v => String(v).toLowerCase()) : [];
+          exits.forEach(exitName => {
+            const dir = DIRECTIONS[exitName];
+            if (!dir || exitName === 'up' || exitName === 'down') return;
+            const neighbor = state.coordMap.get(mapRoomCoordKey(currentRoom.x + dir.dx, currentRoom.y + dir.dy, currentRoom.z || 0));
+            if (neighbor) visibleRooms.push(neighbor);
+          });
+          const uniqueRooms = new Map(visibleRooms.map(room => [String(room.vnum), room]));
+          uniqueRooms.forEach(room => {
+            const cfg = this.particleConfigForSector(room.sector);
+            if (!cfg) return;
+            const pos = this.worldPos(room);
+            const particles = this.add.particles(pos.x, pos.y, 'particle-dot', {
+              lifespan: 2000,
+              quantity: 1,
+              frequency: 320,
+              maxParticles: 15,
+              alpha: cfg.alpha,
+              scale: cfg.scale,
+              speedX: cfg.speedX,
+              speedY: cfg.speedY,
+              gravityY: cfg.gravityY,
+              tint: cfg.tint,
+              emitZone: {
+                type: 'random',
+                source: new Phaser.Geom.Rectangle(-TILE_SIZE / 2, -TILE_SIZE / 2, TILE_SIZE, TILE_SIZE),
+              },
+            });
+            this.particleLayer.add(particles);
+          });
+        }
+
         makeRoom(room) {
           const pos = this.worldPos(room);
           const visited = this.visited.has(String(room.vnum));
@@ -2014,17 +2811,16 @@
           tile.setAlpha(visited ? 1 : 0.35);
           tile.roomData = room;
           tile.setInteractive({ useHandCursor: true });
-          if (isWater && tile.anims) {
-            tile.play('terrain-water-loop');
-          }
+          if (isWater && tile.anims) tile.play('terrain-water-loop');
           this.tileGroup.add(tile);
+
+          this.drawWallSegments(room, pos, visited);
 
           tile.on('pointerover', pointer => showTooltip(room.name || 'Unknown Room', pointer));
           tile.on('pointermove', pointer => moveTooltip(pointer));
           tile.on('pointerout', hideTooltip);
 
-          const hit = this.add.rectangle(pos.x, pos.y, TILE_SIZE, TILE_SIZE, 0x000000, 0.001)
-            .setInteractive({ useHandCursor: true });
+          const hit = this.add.rectangle(pos.x, pos.y, TILE_SIZE, TILE_SIZE, 0x000000, 0.001).setInteractive({ useHandCursor: true });
           hit.roomData = room;
           this.interactionGroup.add(hit);
 
@@ -2056,7 +2852,7 @@
 
       document.addEventListener('keydown', event => {
         ensureAudioContext();
-        if (event.target === els.commandInput) return;
+        if (event.target === els.commandInput || event.target === els.hotbarConfigInput) return;
         const key = event.key.toLowerCase();
         if (key === 'arrowup' || key === 'w') { event.preventDefault(); movePlayer('north'); }
         else if (key === 'arrowdown' || key === 's') { event.preventDefault(); movePlayer('south'); }
@@ -2086,7 +2882,7 @@
         }
       });
 
-      els.sendBtn.addEventListener('click', submitCommand);
+      els.sendBtn.addEventListener('click', () => submitCommand());
       els.reconnectBtn.addEventListener('click', () => {
         if (!state.playerName || !state.playerPassword) {
           els.loginOverlay.classList.remove('hidden');
@@ -2098,6 +2894,8 @@
 
       els.loginEnter.addEventListener('click', () => beginLogin(false));
       els.loginCreate.addEventListener('click', () => beginLogin(true));
+      els.loginAutoCancel.addEventListener('click', clearAutoLogin);
+      els.loginForget.addEventListener('click', forgetStoredCredentials);
 
       els.loginPass.addEventListener('keydown', event => {
         if (event.key === 'Enter') beginLogin(false);
@@ -2110,27 +2908,59 @@
         }
       });
 
-      els.output.addEventListener('click', event => {
-        const exitEl = event.target.closest('.exit-link');
-        if (!exitEl) return;
-        const dir = exitEl.dataset.exit;
-        if (!dir) return;
-        sendMudCommand(dir, true);
+      Object.entries(els.outputs).forEach(([tab, node]) => {
+        node.addEventListener('click', event => {
+          const exitEl = event.target.closest('.exit-link');
+          if (!exitEl) return;
+          const dir = exitEl.dataset.exit;
+          if (!dir) return;
+          state.pendingMoveDirection = PLAYER_DIR_MAP[dir] || state.pendingMoveDirection;
+          sendMudCommand(dir, true);
+        });
+        node.addEventListener('scroll', () => {
+          if (state.outputTabs.active === tab) state.outputTabs.scrollTop[tab] = node.scrollTop;
+        });
+      });
+
+      els.tabButtons.forEach(button => {
+        button.addEventListener('click', () => switchOutputTab(button.dataset.tab));
       });
 
       els.sidebarToggle.addEventListener('click', () => toggleSidebar());
       els.quickButtons.forEach(button => {
         button.addEventListener('click', () => {
           const command = button.dataset.command;
-          if (command) sendMudCommand(command, true);
+          if (command) submitCommand(command);
         });
       });
 
+      els.hotbarConfigSave.addEventListener('click', () => {
+        if (state.hotbarEditIndex === null) return;
+        state.hotbar[state.hotbarEditIndex] = els.hotbarConfigInput.value.trim() || `slot${state.hotbarEditIndex + 1}`;
+        saveHotbar();
+        renderHotbar();
+        closeHotbarPopup();
+      });
+
+      els.hotbarConfigInput.addEventListener('keydown', event => {
+        if (event.key === 'Enter') els.hotbarConfigSave.click();
+        if (event.key === 'Escape') closeHotbarPopup();
+      });
+
+      document.addEventListener('mousedown', event => {
+        if (!els.hotbarConfigPop.classList.contains('active')) return;
+        if (!els.hotbarConfigPop.contains(event.target)) closeHotbarPopup();
+      });
+
+      state.aliases = loadAliases();
+      state.hotbar = loadHotbar();
+      renderHotbar();
       updateStats({ hp: 0, max_hp: 0, mana: 0, max_mana: 0, move: 0, max_move: 0 });
       setConnectionStatus();
       renderMinimap();
       appendOutput('Misthollow client ready. Enter credentials to connect.', 'system');
-      els.loginName.focus();
+      setupStoredCredentials();
+      if (!els.loginName.value) els.loginName.focus();
     })();
   </script>
 </body>
