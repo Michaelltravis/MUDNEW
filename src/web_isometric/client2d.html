@@ -254,7 +254,7 @@
     .main-content {
       min-height: 0;
       display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(320px, 2fr);
+      grid-template-columns: minmax(0, 5fr) minmax(280px, 1.4fr);
       gap: var(--panel-gap);
     }
 
@@ -310,6 +310,39 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+
+    .zoom-controls {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      z-index: 20;
+    }
+
+    .zoom-btn {
+      width: 32px;
+      height: 32px;
+      background: rgba(9,17,29,0.85);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px;
+      color: rgba(255,255,255,0.8);
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .zoom-btn:hover {
+      background: rgba(16,185,129,0.2);
+      border-color: rgba(16,185,129,0.5);
+      color: #10b981;
     }
 
     #minimap-canvas {
@@ -1180,6 +1213,11 @@
           <div class="map-chip" id="zone-chip">Mist Chart: Offline</div>
           <div class="map-chip" id="time-chip">No time data</div>
         </div>
+        <div class="zoom-controls">
+          <button class="zoom-btn" id="zoom-in-btn" title="Zoom in">+</button>
+          <button class="zoom-btn" id="zoom-reset-btn" title="Reset zoom">⟳</button>
+          <button class="zoom-btn" id="zoom-out-btn" title="Zoom out">−</button>
+        </div>
         <canvas id="minimap-canvas" width="160" height="120"></canvas>
       </section>
 
@@ -1294,7 +1332,11 @@
       const mapWsUrl = isBehindProxy ? `${protocol}//${host}` : `${protocol}//${host}:4001`;
 
       const TILE_SIZE = 48;
-      const ROOM_SPACING = 64;
+      const ROOM_SPACING = 80;
+      let MAP_ZOOM = 1.0;
+      const MAP_ZOOM_MIN = 0.3;
+      const MAP_ZOOM_MAX = 3.0;
+      const MAP_ZOOM_STEP = 0.2;
       const TERRAIN_SPRITESHEET_URL = '/sprites/terrain_atlas.png';
       const HOTBAR_KEY = 'misthollow_hotbar';
       const ALIASES_KEY = 'misthollow_aliases';
@@ -1364,14 +1406,14 @@
       ];
 
       const DIRECTIONS = {
-        north: { dx: 0, dy: 1, short: 'n', reverse: 'south' },
-        south: { dx: 0, dy: -1, short: 's', reverse: 'north' },
+        north: { dx: 0, dy: -1, short: 'n', reverse: 'south' },
+        south: { dx: 0, dy: 1, short: 's', reverse: 'north' },
         east: { dx: 1, dy: 0, short: 'e', reverse: 'west' },
         west: { dx: -1, dy: 0, short: 'w', reverse: 'east' },
-        northeast: { dx: 1, dy: 1, short: 'ne', reverse: 'southwest' },
-        northwest: { dx: -1, dy: 1, short: 'nw', reverse: 'southeast' },
-        southeast: { dx: 1, dy: -1, short: 'se', reverse: 'northwest' },
-        southwest: { dx: -1, dy: -1, short: 'sw', reverse: 'northeast' },
+        northeast: { dx: 1, dy: -1, short: 'ne', reverse: 'southwest' },
+        northwest: { dx: -1, dy: -1, short: 'nw', reverse: 'southeast' },
+        southeast: { dx: 1, dy: 1, short: 'se', reverse: 'northwest' },
+        southwest: { dx: -1, dy: 1, short: 'sw', reverse: 'northeast' },
         up: { dx: 0, dy: 0, short: 'up', reverse: 'down' },
         down: { dx: 0, dy: 0, short: 'down', reverse: 'up' },
       };
@@ -1452,6 +1494,9 @@
         pendingMoveDirection: 'down',
         lastMoveDirection: 'down',
         lastRoomData: null,
+        mapRetryTimers: [],
+        mapResubscribeInterval: null,
+        lastMapDataAt: 0,
         target: {
           name: '',
           hp: 100,
@@ -1759,8 +1804,23 @@
 
       setInterval(syncCombatIndicator, 1500);
 
+      function decodeHtmlEntities(text) {
+        const el = document.createElement('textarea');
+        el.innerHTML = String(text || '');
+        return el.value;
+      }
+
+      function stripServerMarkup(text) {
+        return decodeHtmlEntities(
+          String(text || '')
+            .replace(/<br\s*\/?>/gi, '\n')
+            .replace(/<\/p>/gi, '\n')
+            .replace(/<[^>]+>/g, '')
+        );
+      }
+
       function normalizeLineBreaks(text) {
-        return String(text || '').replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+        return stripServerMarkup(text).replace(/\r\n/g, '\n').replace(/\r/g, '\n');
       }
 
       function saveCredentials() {
@@ -2044,7 +2104,8 @@
           const color = MINIMAP_COLORS[key] || MINIMAP_COLORS.default;
           const visited = state.visited.has(String(room.vnum));
           const px = pad + Math.round(((room.x - minX) / spanX) * Math.max(1, plotW - 3));
-          const py = pad + Math.round((1 - ((room.y - minY) / spanY)) * Math.max(1, plotH - 3));
+          // Server: north = -y, so lower y value = further north = top of screen
+          const py = pad + Math.round(((room.y - minY) / spanY) * Math.max(1, plotH - 3));
           ctx.save();
           ctx.globalAlpha = visited ? 1 : 0.4;
           ctx.fillStyle = color;
@@ -2055,14 +2116,45 @@
         const currentRoom = state.roomMap.get(String(state.currentRoomVnum || ''));
         if (currentRoom) {
           const px = pad + Math.round(((currentRoom.x - minX) / spanX) * Math.max(1, plotW - 5));
-          const py = pad + Math.round((1 - ((currentRoom.y - minY) / spanY)) * Math.max(1, plotH - 5));
+          const py = pad + Math.round(((currentRoom.y - minY) / spanY) * Math.max(1, plotH - 5));
           ctx.fillStyle = '#10b981';
           ctx.fillRect(px, py, 5, 5);
         }
       }
 
+      function stopMapResubscribeLoop() {
+        if (state.mapResubscribeInterval) {
+          clearInterval(state.mapResubscribeInterval);
+          state.mapResubscribeInterval = null;
+        }
+      }
+
+      function clearMapRetryTimers() {
+        state.mapRetryTimers.forEach(timer => clearTimeout(timer));
+        state.mapRetryTimers = [];
+      }
+
+      function startMapResubscribeLoop() {
+        stopMapResubscribeLoop();
+        state.mapResubscribeInterval = setInterval(() => {
+          if (!state.mapSocket || state.mapSocket.readyState !== WebSocket.OPEN) return;
+          if (state.rooms.length && (Date.now() - state.lastMapDataAt) < 5000) return;
+          sendMapSubscribe();
+        }, 2000);
+      }
+
+      function sendMapSubscribe() {
+        if (!state.playerName || !state.mapSocket || state.mapSocket.readyState !== WebSocket.OPEN) return;
+        state.mapSocket.send(JSON.stringify({ type: 'subscribe', player: state.playerName, mode: 'full' }));
+      }
+
       function handleMapData(payload) {
+        clearMapRetryTimers();
+        state.lastMapDataAt = Date.now();
         rebuildMaps(payload.rooms || []);
+        if (state.rooms.length) {
+          stopMapResubscribeLoop();
+        }
         const previousVnum = state.currentRoomVnum;
         state.player = payload.player || state.player;
         updateStats(state.player || {});
@@ -2091,7 +2183,16 @@
         state.mapSocket.addEventListener('open', () => {
           state.mapConnected = true;
           setConnectionStatus();
-          state.mapSocket.send(JSON.stringify({ type: 'subscribe', player: state.playerName, mode: 'full' }));
+          sendMapSubscribe();
+          clearMapRetryTimers();
+          [500, 1500, 3000].forEach(delay => {
+            state.mapRetryTimers.push(setTimeout(() => {
+              if (!state.rooms.length || (Date.now() - state.lastMapDataAt) > 2000) {
+                sendMapSubscribe();
+              }
+            }, delay));
+          });
+          startMapResubscribeLoop();
           appendOutput('[map] cartography stream engaged', 'system');
         });
 
@@ -2107,11 +2208,15 @@
         });
 
         state.mapSocket.addEventListener('close', () => {
+          clearMapRetryTimers();
+          stopMapResubscribeLoop();
           state.mapConnected = false;
           setConnectionStatus();
         });
 
         state.mapSocket.addEventListener('error', () => {
+          clearMapRetryTimers();
+          stopMapResubscribeLoop();
           state.mapConnected = false;
           setConnectionStatus();
           appendOutput('[map] cartography stream error', 'system');
@@ -2146,10 +2251,14 @@
           }
           appendOutput(`[world] map sync granted for ${state.playerName}`, 'system');
           ensureMapSocket();
+          sendMapSubscribe();
+          startMapResubscribeLoop();
         }
       }
 
       function closeSockets() {
+        clearMapRetryTimers();
+        stopMapResubscribeLoop();
         if (state.mudSocket) {
           try { state.mudSocket.close(); } catch (_) {}
         }
@@ -2466,6 +2575,7 @@
 
         create() {
           this.cameras.main.setBackgroundColor('#09111d');
+          this.cameras.main.setZoom(MAP_ZOOM);
           this.tileGroup = this.add.group();
           this.interactionGroup = this.add.group();
           this.exitLayer = this.add.graphics();
@@ -2492,17 +2602,17 @@
             }
           });
 
-          this.input.on('gameobjectover', pointer, gameObject => {
-            if (gameObject && gameObject.roomData) showTooltip(gameObject.roomData.name || 'Unknown Room', pointer);
+          this.input.on('gameobjectover', (ptr, gameObject) => {
+            if (gameObject && gameObject.roomData) showTooltip(gameObject.roomData.name || 'Unknown Room', ptr);
           });
 
-          this.input.on('gameobjectmove', pointer, gameObject => {
-            if (gameObject && gameObject.roomData) moveTooltip(pointer);
+          this.input.on('gameobjectmove', (ptr, gameObject) => {
+            if (gameObject && gameObject.roomData) moveTooltip(ptr);
           });
 
           this.input.on('gameobjectout', () => hideTooltip());
-          this.input.on('pointermove', pointer => {
-            if (els.tooltip.style.visibility === 'visible') moveTooltip(pointer);
+          this.input.on('pointermove', ptr => {
+            if (els.tooltip.style.visibility === 'visible') moveTooltip(ptr);
           });
 
           window.addEventListener('resize', () => this.resizeToContainer());
@@ -2513,6 +2623,14 @@
             const queued = state.queuedMapData;
             this.setMapData(queued.rooms, queued.player, queued.visited, queued.currentRoomVnum, queued.time);
             state.queuedMapData = null;
+          }
+        }
+
+        update() {
+          if (state.queuedMapData) {
+            const queued = state.queuedMapData;
+            state.queuedMapData = null;
+            this.setMapData(queued.rooms, queued.player, queued.visited, queued.currentRoomVnum, queued.time);
           }
         }
 
@@ -2549,6 +2667,7 @@
           const height = Math.max(220, root.clientHeight);
           this.scale.resize(width, height);
           this.cameras.main.setSize(width, height);
+          this.cameras.main.setZoom(MAP_ZOOM);
           if (this.timeOverlay) this.timeOverlay.setSize(width, height);
         }
 
@@ -2573,7 +2692,9 @@
         }
 
         worldPos(room) {
-          return { x: room.x * ROOM_SPACING, y: -room.y * ROOM_SPACING };
+          // Server: north = dy -1, south = dy +1. Phaser: y increases downward.
+          // So server y already matches Phaser orientation — no negation needed.
+          return { x: room.x * ROOM_SPACING, y: room.y * ROOM_SPACING };
         }
 
         clearRenderObjects() {
@@ -2590,6 +2711,7 @@
 
         renderMap(previousRoomVnum = null) {
           if (!this.assetsReady) return;
+          this.cameras.main.setZoom(MAP_ZOOM);
           this.ensureAnimations();
           this.ensureParticleTexture();
           this.clearRenderObjects();
@@ -2643,6 +2765,7 @@
         panToRoom(room, previousRoomVnum) {
           const { x, y } = this.worldPos(room);
           const cam = this.cameras.main;
+          cam.setZoom(MAP_ZOOM);
           if (!previousRoomVnum || String(previousRoomVnum) === String(room.vnum) || !this.lastPanTarget) cam.centerOn(x, y);
           else cam.pan(x, y, 300, 'Sine.easeInOut');
           this.lastPanTarget = { x, y };
@@ -2852,7 +2975,16 @@
 
       document.addEventListener('keydown', event => {
         ensureAudioContext();
-        if (event.target === els.commandInput || event.target === els.hotbarConfigInput) return;
+        const target = event.target;
+        const isTypingTarget = target && (
+          target === els.commandInput ||
+          target === els.hotbarConfigInput ||
+          target === els.loginName ||
+          target === els.loginPass ||
+          target.isContentEditable ||
+          ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName)
+        );
+        if (isTypingTarget) return;
         const key = event.key.toLowerCase();
         if (key === 'arrowup' || key === 'w') { event.preventDefault(); movePlayer('north'); }
         else if (key === 'arrowdown' || key === 's') { event.preventDefault(); movePlayer('south'); }
@@ -2927,6 +3059,22 @@
       });
 
       els.sidebarToggle.addEventListener('click', () => toggleSidebar());
+
+      function setMapZoom(z) {
+        MAP_ZOOM = Math.max(MAP_ZOOM_MIN, Math.min(MAP_ZOOM_MAX, z));
+        const scene = window.mudGame?.scene?.scenes?.[0];
+        if (scene) scene.cameras.main.setZoom(MAP_ZOOM);
+      }
+
+      document.getElementById('zoom-in-btn')?.addEventListener('click', () => setMapZoom(MAP_ZOOM + MAP_ZOOM_STEP));
+      document.getElementById('zoom-out-btn')?.addEventListener('click', () => setMapZoom(MAP_ZOOM - MAP_ZOOM_STEP));
+      document.getElementById('zoom-reset-btn')?.addEventListener('click', () => setMapZoom(1.0));
+
+      // Scroll to zoom on the map panel
+      document.querySelector('.map-panel')?.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        setMapZoom(MAP_ZOOM + (e.deltaY < 0 ? MAP_ZOOM_STEP : -MAP_ZOOM_STEP));
+      }, { passive: false });
       els.quickButtons.forEach(button => {
         button.addEventListener('click', () => {
           const command = button.dataset.command;
