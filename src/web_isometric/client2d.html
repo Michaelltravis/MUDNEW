@@ -6,7 +6,7 @@
   <title>Misthollow — 2D Client</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@800&family=Plus+Jakarta+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/phaser@3.87.0/dist/phaser.min.js"></script>
   <style>
     :root {
@@ -24,6 +24,7 @@
       --blue: #3b82f6;
       --green: #22c55e;
       --gold: #f6c453;
+      --purple: #a78bfa;
       --shadow: 0 18px 60px rgba(0, 0, 0, 0.42);
       --radius-xl: 24px;
       --radius-lg: 18px;
@@ -196,6 +197,40 @@
       text-shadow: 0 0 16px rgba(16,185,129,0.15);
     }
 
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(148,163,184,0.14);
+      border-radius: 14px;
+      background: rgba(10,14,23,0.5);
+      color: #e5eefb;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: transform 140ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.2);
+    }
+
+    .icon-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(16,185,129,0.34);
+      background: rgba(10,14,23,0.8);
+    }
+
+    .icon-btn.active {
+      border-color: rgba(16,185,129,0.46);
+      box-shadow: 0 0 0 4px rgba(16,185,129,0.12);
+      background: rgba(11, 37, 31, 0.9);
+    }
+
     .main-content {
       min-height: 0;
       display: grid;
@@ -232,12 +267,13 @@
       position: absolute;
       top: 14px;
       left: 14px;
-      right: 14px;
+      right: 190px;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       pointer-events: none;
       z-index: 5;
+      gap: 10px;
     }
 
     .map-chip {
@@ -250,6 +286,24 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       backdrop-filter: blur(12px);
+      max-width: 48%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    #minimap-canvas {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 160px;
+      height: 120px;
+      background: rgba(10,14,23,0.85);
+      border: 1px solid rgba(16,185,129,0.3);
+      border-radius: 8px;
+      z-index: 6;
+      pointer-events: none;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.24);
     }
 
     .text-panel {
@@ -269,6 +323,7 @@
       border-bottom: 1px solid var(--line);
       position: relative;
       z-index: 1;
+      gap: 12px;
     }
 
     .panel-title {
@@ -287,6 +342,7 @@
       text-transform: uppercase;
       letter-spacing: 0.14em;
       color: var(--muted);
+      white-space: nowrap;
     }
 
     .connection-dot::before {
@@ -303,11 +359,17 @@
       box-shadow: 0 0 18px rgba(16,185,129,0.7);
     }
 
+    .output-wrap {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+      overflow: hidden;
+    }
+
     .output {
       position: relative;
       z-index: 1;
-      flex: 1;
-      min-height: 0;
+      height: 100%;
       overflow-y: auto;
       padding-right: 4px;
       white-space: pre-wrap;
@@ -332,6 +394,7 @@
       border: 1px solid rgba(148,163,184,0.06);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
       animation: fadeIn 180ms ease;
+      word-break: break-word;
     }
 
     .output-line.system {
@@ -341,7 +404,6 @@
     }
 
     .output-line.combat {
-      color: #fecaca;
       background: rgba(185,28,28,0.12);
       border-color: rgba(239,68,68,0.18);
     }
@@ -350,6 +412,116 @@
       color: #b7f7de;
       background: rgba(16,185,129,0.08);
       border-color: rgba(16,185,129,0.16);
+    }
+
+    .output-fragment {
+      white-space: pre-wrap;
+    }
+
+    .exit-link {
+      color: #10b981;
+      cursor: pointer;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+
+    .exit-link:hover {
+      color: #34d399;
+    }
+
+    .status-sidebar {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 260px;
+      background: rgba(10,14,23,0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-left: 1px solid rgba(148,163,184,0.12);
+      z-index: 50;
+      padding: 16px;
+      transition: transform 0.25s ease;
+      transform: translateX(100%);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: -18px 0 40px rgba(0,0,0,0.28);
+    }
+
+    .status-sidebar.open {
+      transform: translateX(0);
+    }
+
+    .sidebar-title {
+      font-family: 'Outfit', sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 0.92rem;
+      margin-bottom: 4px;
+    }
+
+    .sidebar-section {
+      border: 1px solid rgba(148,163,184,0.08);
+      background: rgba(255,255,255,0.025);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .sidebar-section h3 {
+      margin: 0 0 10px;
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .sidebar-stat-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .sidebar-stat-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 14px;
+    }
+
+    .sidebar-stat-row span:first-child {
+      color: var(--muted);
+    }
+
+    .quick-actions {
+      display: grid;
+      gap: 10px;
+    }
+
+    .quick-btn {
+      width: 100%;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid rgba(16,185,129,0.16);
+      background: rgba(16,185,129,0.08);
+      color: var(--text);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 500;
+      transition: transform 120ms ease, background 180ms ease, border-color 180ms ease;
+    }
+
+    .quick-btn:hover {
+      transform: translateY(-1px);
+      background: rgba(16,185,129,0.14);
+      border-color: rgba(16,185,129,0.28);
+    }
+
+    .sidebar-note {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
     }
 
     .bottom-bar {
@@ -450,6 +622,36 @@
       background: linear-gradient(180deg, rgba(13,19,32,0.88), rgba(9,13,23,0.96));
       backdrop-filter: blur(24px) saturate(120%);
       box-shadow: 0 30px 80px rgba(0,0,0,0.55);
+      isolation: isolate;
+    }
+
+    .login-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      border: 1px solid rgba(255,255,255,0.03);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .login-card::before {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      z-index: 0;
+      opacity: 0.42;
+      filter: blur(36px);
+      background:
+        radial-gradient(circle at 20% 30%, rgba(16,185,129,0.45), transparent 26%),
+        radial-gradient(circle at 72% 32%, rgba(56,189,248,0.35), transparent 28%),
+        radial-gradient(circle at 54% 72%, rgba(16,185,129,0.32), transparent 28%);
+      animation: auroraShift 8s ease-in-out infinite;
+    }
+
+    .login-card > * {
+      position: relative;
+      z-index: 2;
     }
 
     .login-kicker {
@@ -469,8 +671,16 @@
       text-shadow: 0 0 30px rgba(16,185,129,0.18);
     }
 
+    .login-epigraph {
+      margin: 10px 0 14px;
+      color: rgba(177,194,217,0.88);
+      line-height: 1.6;
+      font-size: 14px;
+      font-style: italic;
+    }
+
     .login-subtitle {
-      margin: 14px 0 20px;
+      margin: 0 0 20px;
       color: #b1c2d9;
       line-height: 1.6;
       font-size: 14px;
@@ -513,6 +723,14 @@
       min-height: 20px;
       color: #8feec8;
       font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .server-line {
+      color: #d7fff1;
+      font-size: 13px;
+      margin-bottom: 12px;
+      opacity: 0.9;
     }
 
     .hint-row {
@@ -556,9 +774,38 @@
       white-space: nowrap;
     }
 
+    #room-tooltip {
+      position: fixed;
+      top: 0;
+      left: 0;
+      visibility: hidden;
+      pointer-events: none;
+      z-index: 70;
+      background: rgba(10,14,23,0.92);
+      border: 1px solid rgba(148,163,184,0.2);
+      border-radius: 8px;
+      padding: 6px 12px;
+      color: #e5eefb;
+      font: 12px 'Plus Jakarta Sans', sans-serif;
+      box-shadow: 0 16px 30px rgba(0,0,0,0.3);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(4px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes auroraShift {
+      0%, 100% {
+        transform: translate3d(-3%, -2%, 0) scale(1.02) rotate(0deg);
+        filter: blur(36px) saturate(1.05);
+      }
+      50% {
+        transform: translate3d(4%, 3%, 0) scale(1.08) rotate(8deg);
+        filter: blur(42px) saturate(1.2);
+      }
     }
 
     @media (max-width: 1080px) {
@@ -572,7 +819,7 @@
       }
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 768px) {
       .app-shell {
         padding: 10px;
         gap: 10px;
@@ -591,6 +838,32 @@
         font-size: 9px;
       }
 
+      .main-content {
+        grid-template-columns: 1fr;
+        grid-template-rows: calc(60vh - var(--topbar-h)) calc(40vh - var(--bottombar-h));
+      }
+
+      .map-panel,
+      .text-panel {
+        width: 100%;
+      }
+
+      .map-overlay {
+        right: 14px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .map-chip {
+        max-width: calc(100% - 174px);
+      }
+
+      #minimap-canvas {
+        width: 132px;
+        height: 100px;
+      }
+
       .bottom-bar {
         padding: 8px;
       }
@@ -602,6 +875,28 @@
       .combat-indicator {
         top: calc(10px + var(--topbar-h) + 10px);
         right: 14px;
+      }
+
+      .status-sidebar {
+        width: min(82vw, 260px);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .top-bar {
+        flex-wrap: wrap;
+      }
+
+      .top-actions {
+        margin-left: auto;
+      }
+
+      .command-wrap {
+        gap: 8px;
+      }
+
+      .footer-meta {
+        display: none;
       }
     }
   </style>
@@ -627,6 +922,9 @@
         <div class="room-label">Current Room</div>
         <div class="room-name" id="room-name">Awaiting login…</div>
       </div>
+      <div class="top-actions">
+        <button id="sidebar-toggle" class="icon-btn" type="button" aria-label="Toggle status sidebar" title="Toggle status sidebar">⚔️</button>
+      </div>
     </header>
 
     <main class="main-content">
@@ -636,6 +934,7 @@
           <div class="map-chip" id="zone-chip">Mist Chart: Offline</div>
           <div class="map-chip" id="time-chip">No time data</div>
         </div>
+        <canvas id="minimap-canvas" width="160" height="120"></canvas>
       </section>
 
       <aside class="panel text-panel glass">
@@ -643,7 +942,31 @@
           <div class="panel-title">Chronicle Feed</div>
           <div class="connection-dot" id="connection-status">Disconnected</div>
         </div>
-        <div class="output" id="output"></div>
+        <div class="output-wrap">
+          <div class="output" id="output"></div>
+          <div class="status-sidebar" id="status-sidebar">
+            <div>
+              <div class="sidebar-title">Field Ledger</div>
+              <div class="sidebar-note">Quick status and command shortcuts. Because typing everything manually is a noble but inefficient way to suffer.</div>
+            </div>
+            <section class="sidebar-section">
+              <h3>Stats</h3>
+              <div class="sidebar-stat-grid">
+                <div class="sidebar-stat-row"><span>HP</span><strong id="sidebar-hp">0 / 0</strong></div>
+                <div class="sidebar-stat-row"><span>Mana</span><strong id="sidebar-mana">0 / 0</strong></div>
+                <div class="sidebar-stat-row"><span>Move</span><strong id="sidebar-move">0 / 0</strong></div>
+              </div>
+            </section>
+            <section class="sidebar-section">
+              <h3>Send commands</h3>
+              <div class="quick-actions">
+                <button type="button" class="quick-btn" data-command="score">score</button>
+                <button type="button" class="quick-btn" data-command="inventory">inventory</button>
+                <button type="button" class="quick-btn" data-command="equipment">equipment</button>
+              </div>
+            </section>
+          </div>
+        </div>
       </aside>
     </main>
 
@@ -658,11 +981,13 @@
   </div>
 
   <div class="combat-indicator" id="combat-indicator">⚔️ In Combat</div>
+  <div id="room-tooltip"></div>
 
   <div class="login-overlay" id="login-overlay">
     <div class="login-card glass">
       <div class="login-kicker">Misthollow Gate</div>
       <h1 class="login-title">⚔️ Misthollow</h1>
+      <p class="login-epigraph">Where shadows breathe and legends are forged</p>
       <p class="login-subtitle">New? Type a name → say Y → set password</p>
       <div class="login-fields">
         <input id="login-name" class="input" type="text" autocomplete="username" placeholder="Character name" />
@@ -673,6 +998,7 @@
         <button id="login-create" class="btn btn-secondary">Create New Account</button>
       </div>
       <div class="status-line" id="login-status">Ready when you are.</div>
+      <div class="server-line">🟢 Server Online · Misthollow MUD</div>
       <div class="hint-row">
         <span>WASD / Arrows to move</span>
         <span>Click a room to pathfind</span>
@@ -693,6 +1019,22 @@
       const TILE_SIZE = 48;
       const ROOM_SPACING = 64;
       const TERRAIN_SPRITESHEET_URL = '/sprites/terrain_atlas.png';
+      const MINIMAP_COLORS = {
+        city: '#9aabb8',
+        town: '#9aabb8',
+        forest: '#2a9940',
+        outdoor: '#2a9940',
+        field: '#2a9940',
+        dungeon: '#4a2255',
+        desert: '#e0c878',
+        swamp: '#4a6638',
+        water: '#4a6638',
+        underwater: '#4a6638',
+        cave: '#5a4030',
+        rock: '#5a4030',
+        default: '#6a6888',
+      };
+      const WATER_SECTORS = new Set(['swamp', 'water', 'underwater']);
       const MOB_SPRITES = {
         mob_goblin: '/sprites/mob_goblin.png',
         mob_skeleton: '/sprites/mob_skeleton.png',
@@ -714,8 +1056,10 @@
         rock: 264,
         swamp: 386,
         water: 386,
+        underwater: 386,
         default: 609,
       };
+      const WATER_ANIMATION_FRAMES = [384, 385, 386, 387];
       const MOB_TYPE_RULES = [
         { terms: ['goblin', 'gnoll', 'orc', 'kobold'], key: 'mob_goblin' },
         { terms: ['skeleton', 'zombie', 'undead', 'ghoul', 'lich', 'vampire'], key: 'mob_skeleton' },
@@ -735,7 +1079,13 @@
         northwest: { dx: -1, dy: 1, short: 'nw', reverse: 'southeast' },
         southeast: { dx: 1, dy: -1, short: 'se', reverse: 'northwest' },
         southwest: { dx: -1, dy: -1, short: 'sw', reverse: 'northeast' },
+        up: { dx: 0, dy: 0, short: 'up', reverse: 'down' },
+        down: { dx: 0, dy: 0, short: 'down', reverse: 'up' },
       };
+
+      const EXIT_WORDS = ['north', 'south', 'east', 'west', 'northeast', 'northwest', 'southeast', 'southwest', 'up', 'down', 'n', 's', 'e', 'w', 'ne', 'nw', 'se', 'sw'];
+      const EXIT_WORD_PATTERN = new RegExp(`\\b(${EXIT_WORDS.join('|')})\\b`, 'gi');
+      const EXIT_LINE_PATTERN = /(exits:|obvious exits:)/i;
 
       const COMBAT_PATTERNS = [
         /you hit/i,
@@ -743,6 +1093,7 @@
         /you pierce/i,
         /you attack/i,
         /you smite/i,
+        /you blast/i,
         /is dead!/i,
         /you are fighting/i,
         /starts using/i,
@@ -750,7 +1101,10 @@
         /slashes you/i,
         /attacks you/i,
       ];
-
+      const SOUND_COMBAT_PATTERN = /you hit|you slash|you pierce|you smite|you blast|\bhits you\b|\bslashes you\b|\battacks you\b/i;
+      const SOUND_LEVEL_PATTERN = /you gain a level|you are now level/i;
+      const SOUND_DEATH_PATTERN = /you are dead|you have been slain/i;
+      const SOUND_HEAL_PATTERN = /you heal|you restore|healed|restored|regen/i;
       const ROOM_LOGIN_PATTERNS = [
         /^\[[0-9]+\]\s+/m,
         /\bExits?:\b/i,
@@ -783,6 +1137,9 @@
         pendingPath: [],
         phaserReady: false,
         queuedMapData: null,
+        sidebarOpen: false,
+        audioCtx: null,
+        audioReady: false,
       };
 
       const els = {
@@ -793,6 +1150,9 @@
         hpText: document.getElementById('hp-text'),
         manaText: document.getElementById('mana-text'),
         moveText: document.getElementById('move-text'),
+        sidebarHp: document.getElementById('sidebar-hp'),
+        sidebarMana: document.getElementById('sidebar-mana'),
+        sidebarMove: document.getElementById('sidebar-move'),
         roomName: document.getElementById('room-name'),
         commandInput: document.getElementById('command-input'),
         sendBtn: document.getElementById('send-btn'),
@@ -808,6 +1168,11 @@
         loginStatus: document.getElementById('login-status'),
         zoneChip: document.getElementById('zone-chip'),
         timeChip: document.getElementById('time-chip'),
+        minimap: document.getElementById('minimap-canvas'),
+        tooltip: document.getElementById('room-tooltip'),
+        sidebar: document.getElementById('status-sidebar'),
+        sidebarToggle: document.getElementById('sidebar-toggle'),
+        quickButtons: Array.from(document.querySelectorAll('.quick-btn')),
       };
 
       function sleep(ms) {
@@ -848,6 +1213,9 @@
         updateBar(els.hpFill, els.hpText, player.hp, player.max_hp);
         updateBar(els.manaFill, els.manaText, player.mana, player.max_mana);
         updateBar(els.moveFill, els.moveText, player.move, player.max_move);
+        els.sidebarHp.textContent = `${Number.isFinite(+player.hp) ? +player.hp : 0} / ${Number.isFinite(+player.max_hp) ? +player.max_hp : 0}`;
+        els.sidebarMana.textContent = `${Number.isFinite(+player.mana) ? +player.mana : 0} / ${Number.isFinite(+player.max_mana) ? +player.max_mana : 0}`;
+        els.sidebarMove.textContent = `${Number.isFinite(+player.move) ? +player.move : 0} / ${Number.isFinite(+player.max_move) ? +player.max_move : 0}`;
       }
 
       function escapeHtml(str) {
@@ -859,10 +1227,30 @@
           .replace(/'/g, '&#39;');
       }
 
+      function colorForLine(text) {
+        if (/^You (say|tell|ask|exclaim)/i.test(text)) return '#38bdf8';
+        if (/you cast|spell|mana|arcane|holy|divine/i.test(text)) return '#a78bfa';
+        if (/is dead!|you have slain|killed|you gain \d+ experience/i.test(text)) return '#f6c453';
+        if (/you heal|you restore|healed|restored|regen/i.test(text)) return '#22c55e';
+        if (/you hit|you slash|you pierce|you smite|you blast|\bhits you\b|\bslashes you\b|\battacks you\b/i.test(text)) return '#ef4444';
+        return '#e5eefb';
+      }
+
+      function processExitLinks(line) {
+        if (!EXIT_LINE_PATTERN.test(line)) return escapeHtml(line);
+        const escaped = escapeHtml(line);
+        return escaped.replace(EXIT_WORD_PATTERN, match => `<span class="exit-link" data-exit="${match.toLowerCase()}">${match}</span>`);
+      }
+
       function appendOutput(text, type = 'normal') {
         const line = document.createElement('div');
         line.className = `output-line ${type}`;
-        line.innerHTML = escapeHtml(text);
+        const safeText = String(text ?? '');
+        if (type === 'system' || type === 'command') {
+          line.innerHTML = `<span class="output-fragment" style="color:${type === 'system' ? '#93c5fd' : '#b7f7de'}">${escapeHtml(safeText)}</span>`;
+        } else {
+          line.innerHTML = `<span class="output-fragment" style="color:${colorForLine(safeText)}">${processExitLinks(safeText)}</span>`;
+        }
         els.output.appendChild(line);
         els.output.scrollTop = els.output.scrollHeight;
       }
@@ -900,6 +1288,73 @@
           els.loginOverlay.classList.add('hidden');
           setFooter('Inside Misthollow');
           setLoginStatus('Entered the world. Try look if the void acts smug.');
+        }
+      }
+
+      function ensureAudioContext() {
+        if (state.audioCtx) {
+          if (state.audioCtx.state === 'suspended') {
+            state.audioCtx.resume().catch(() => {});
+          }
+          return state.audioCtx;
+        }
+        const AudioContextRef = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextRef) return null;
+        try {
+          state.audioCtx = new AudioContextRef();
+          if (state.audioCtx.state === 'suspended') {
+            state.audioCtx.resume().catch(() => {});
+          }
+          return state.audioCtx;
+        } catch (_) {
+          return null;
+        }
+      }
+
+      function playSound(type) {
+        const audioCtx = ensureAudioContext();
+        if (!audioCtx) return;
+        const o = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        o.connect(g); g.connect(audioCtx.destination);
+        const t = audioCtx.currentTime;
+        if (type === 'move') {
+          o.frequency.setValueAtTime(220, t); o.frequency.linearRampToValueAtTime(180, t + 0.08);
+          g.gain.setValueAtTime(0.08, t); g.gain.linearRampToValueAtTime(0, t + 0.12);
+          o.start(t); o.stop(t + 0.12);
+        } else if (type === 'combat') {
+          o.type = 'sawtooth';
+          o.frequency.setValueAtTime(80, t); o.frequency.linearRampToValueAtTime(40, t + 0.15);
+          g.gain.setValueAtTime(0.15, t); g.gain.linearRampToValueAtTime(0, t + 0.2);
+          o.start(t); o.stop(t + 0.2);
+        } else if (type === 'levelup') {
+          o.type = 'triangle';
+          o.frequency.setValueAtTime(440, t); o.frequency.linearRampToValueAtTime(880, t + 0.3);
+          g.gain.setValueAtTime(0.12, t); g.gain.linearRampToValueAtTime(0, t + 0.4);
+          o.start(t); o.stop(t + 0.4);
+        } else if (type === 'death') {
+          o.type = 'sawtooth';
+          o.frequency.setValueAtTime(200, t); o.frequency.linearRampToValueAtTime(30, t + 0.5);
+          g.gain.setValueAtTime(0.2, t); g.gain.linearRampToValueAtTime(0, t + 0.6);
+          o.start(t); o.stop(t + 0.6);
+        }
+      }
+
+      function handleLineSounds(line) {
+        if (SOUND_DEATH_PATTERN.test(line)) {
+          playSound('death');
+          return;
+        }
+        if (SOUND_LEVEL_PATTERN.test(line)) {
+          playSound('levelup');
+          return;
+        }
+        if (SOUND_COMBAT_PATTERN.test(line)) {
+          playSound('combat');
+          return;
+        }
+        if (SOUND_HEAL_PATTERN.test(line)) {
+          // heal only colors, no separate sound requested
         }
       }
 
@@ -1000,13 +1455,63 @@
         els.timeChip.textContent = parts.length ? parts.join(' • ') : 'Time unknown';
       }
 
+      function renderMinimap() {
+        const canvas = els.minimap;
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+        const width = canvas.width;
+        const height = canvas.height;
+        ctx.clearRect(0, 0, width, height);
+
+        if (!state.rooms.length) return;
+
+        const xs = state.rooms.map(room => Number(room.x) || 0);
+        const ys = state.rooms.map(room => Number(room.y) || 0);
+        const minX = Math.min(...xs);
+        const maxX = Math.max(...xs);
+        const minY = Math.min(...ys);
+        const maxY = Math.max(...ys);
+        const spanX = Math.max(1, maxX - minX);
+        const spanY = Math.max(1, maxY - minY);
+        const pad = 10;
+        const plotW = width - pad * 2;
+        const plotH = height - pad * 2;
+
+        for (const room of state.rooms) {
+          const key = String(room.sector || 'default').toLowerCase();
+          const color = MINIMAP_COLORS[key] || MINIMAP_COLORS.default;
+          const visited = state.visited.has(String(room.vnum));
+          const px = pad + Math.round(((room.x - minX) / spanX) * Math.max(1, plotW - 3));
+          const py = pad + Math.round((1 - ((room.y - minY) / spanY)) * Math.max(1, plotH - 3));
+          ctx.save();
+          ctx.globalAlpha = visited ? 1 : 0.4;
+          ctx.fillStyle = color;
+          ctx.fillRect(px, py, 3, 3);
+          ctx.restore();
+        }
+
+        const currentRoom = state.roomMap.get(String(state.currentRoomVnum || ''));
+        if (currentRoom) {
+          const px = pad + Math.round(((currentRoom.x - minX) / spanX) * Math.max(1, plotW - 5));
+          const py = pad + Math.round((1 - ((currentRoom.y - minY) / spanY)) * Math.max(1, plotH - 5));
+          ctx.fillStyle = '#10b981';
+          ctx.fillRect(px, py, 5, 5);
+        }
+      }
+
       function handleMapData(payload) {
         rebuildMaps(payload.rooms || []);
+        const previousVnum = state.currentRoomVnum;
         state.player = payload.player || state.player;
         updateStats(state.player || {});
         updateTimeChip(payload.time);
         const currentRoom = findCurrentRoom(state.player);
         if (currentRoom) updateHeaderRoom(currentRoom);
+        renderMinimap();
+        if (previousVnum && state.currentRoomVnum && String(previousVnum) !== String(state.currentRoomVnum)) {
+          playSound('move');
+        }
         if (window.mudScene && typeof window.mudScene.setMapData === 'function') {
           window.mudScene.setMapData(state.rooms, state.player, state.visited, state.currentRoomVnum);
         } else {
@@ -1067,6 +1572,7 @@
             for (const line of lines) {
               const type = COMBAT_PATTERNS.some(pattern => pattern.test(line)) ? 'combat' : 'normal';
               appendOutput(line, type);
+              handleLineSounds(line);
             }
           }
           inferLoginSuccess(text);
@@ -1141,13 +1647,6 @@
         connectMud();
       }
 
-      function directionFromDelta(dx, dy) {
-        for (const [name, def] of Object.entries(DIRECTIONS)) {
-          if (def.dx === dx && def.dy === dy) return name;
-        }
-        return null;
-      }
-
       function getNeighbor(room, dirName) {
         const dir = DIRECTIONS[dirName];
         if (!room || !dir) return null;
@@ -1161,6 +1660,7 @@
           graph.set(id, []);
           const exits = Array.isArray(room.exits) ? room.exits.map(x => String(x).toLowerCase()) : [];
           for (const exitName of exits) {
+            if (!DIRECTIONS[exitName] || exitName === 'up' || exitName === 'down') continue;
             const neighbor = getNeighbor(room, exitName);
             if (neighbor) {
               graph.get(id).push({ room: neighbor, dir: exitName });
@@ -1228,6 +1728,11 @@
         return TERRAIN_FRAMES[key] ?? TERRAIN_FRAMES.default;
       }
 
+      function sectorColorForMinimap(sector) {
+        const key = String(sector || 'default').toLowerCase();
+        return MINIMAP_COLORS[key] || MINIMAP_COLORS.default;
+      }
+
       function dominantMobSprite(room) {
         if (!Array.isArray(room?.mobs) || !room.mobs.length) return null;
         const counts = new Map();
@@ -1256,6 +1761,29 @@
         return bestKey;
       }
 
+      function showTooltip(text, pointer) {
+        if (!text) return;
+        els.tooltip.textContent = text;
+        moveTooltip(pointer);
+        els.tooltip.style.visibility = 'visible';
+      }
+
+      function moveTooltip(pointer) {
+        if (!pointer) return;
+        els.tooltip.style.left = `${pointer.event?.clientX ?? pointer.x + 12}px`;
+        els.tooltip.style.top = `${pointer.event?.clientY ?? pointer.y + 12}px`;
+      }
+
+      function hideTooltip() {
+        els.tooltip.style.visibility = 'hidden';
+      }
+
+      function toggleSidebar(force) {
+        state.sidebarOpen = typeof force === 'boolean' ? force : !state.sidebarOpen;
+        els.sidebar.classList.toggle('open', state.sidebarOpen);
+        els.sidebarToggle.classList.toggle('active', state.sidebarOpen);
+      }
+
       class MudMapScene extends Phaser.Scene {
         constructor() {
           super({ key: 'MudMapScene' });
@@ -1266,15 +1794,15 @@
           this.markerLayer = null;
           this.rooms = [];
           this.roomObjects = [];
+          this.roomObjectMap = new Map();
           this.player = null;
           this.playerMarker = null;
           this.playerGlow = null;
           this.currentRoomVnum = null;
-          this.hoverLabel = null;
           this.visited = new Set();
-          this.cameraLerp = 0.08;
-          this.targetCamera = new Phaser.Math.Vector2(0, 0);
           this.assetsReady = false;
+          this.waterAnimReady = false;
+          this.lastPanTarget = null;
         }
 
         preload() {
@@ -1285,6 +1813,7 @@
 
           this.load.once('complete', () => {
             this.assetsReady = true;
+            this.ensureAnimations();
             if (this.rooms.length) {
               this.renderMap();
             }
@@ -1299,15 +1828,6 @@
           this.highlightLayer = this.add.graphics();
           this.markerLayer = this.add.container(0, 0);
 
-          this.hoverLabel = this.add.text(14, this.scale.height - 18, '', {
-            fontFamily: 'Plus Jakarta Sans, sans-serif',
-            fontSize: '13px',
-            color: '#dbe7f6',
-            backgroundColor: 'rgba(10,14,23,0.75)',
-            padding: { x: 10, y: 6 },
-          }).setOrigin(0, 1).setScrollFactor(0).setDepth(100);
-          this.hoverLabel.setVisible(false);
-
           this.input.on('gameobjectdown', (_, gameObject) => {
             if (gameObject && gameObject.roomData) {
               const path = findPathToRoom(gameObject.roomData.vnum);
@@ -1321,15 +1841,26 @@
             }
           });
 
-          this.input.on('gameobjectover', (_, gameObject) => {
+          this.input.on('gameobjectover', pointer, gameObject => {
             if (gameObject && gameObject.roomData) {
-              this.hoverLabel.setText(`${gameObject.roomData.name || 'Unknown Room'}  •  ${gameObject.roomData.zone || 'Unknown'}`);
-              this.hoverLabel.setVisible(true);
+              showTooltip(gameObject.roomData.name || 'Unknown Room', pointer);
+            }
+          });
+
+          this.input.on('gameobjectmove', pointer, gameObject => {
+            if (gameObject && gameObject.roomData) {
+              moveTooltip(pointer);
             }
           });
 
           this.input.on('gameobjectout', () => {
-            this.hoverLabel.setVisible(false);
+            hideTooltip();
+          });
+
+          this.input.on('pointermove', pointer => {
+            if (els.tooltip.style.visibility === 'visible') {
+              moveTooltip(pointer);
+            }
           });
 
           window.addEventListener('resize', () => this.resizeToContainer());
@@ -1343,6 +1874,19 @@
           }
         }
 
+        ensureAnimations() {
+          if (this.waterAnimReady) return;
+          if (!this.anims.exists('terrain-water-loop')) {
+            this.anims.create({
+              key: 'terrain-water-loop',
+              frames: WATER_ANIMATION_FRAMES.map(frame => ({ key: 'terrain', frame })),
+              frameRate: 4,
+              repeat: -1,
+            });
+          }
+          this.waterAnimReady = true;
+        }
+
         resizeToContainer() {
           const root = document.getElementById('phaser-root');
           if (!root) return;
@@ -1350,16 +1894,16 @@
           const height = Math.max(220, root.clientHeight);
           this.scale.resize(width, height);
           this.cameras.main.setSize(width, height);
-          if (this.hoverLabel) this.hoverLabel.setPosition(14, height - 18);
         }
 
         setMapData(rooms, player, visited, currentRoomVnum) {
+          const previousRoomVnum = this.currentRoomVnum;
           this.rooms = Array.isArray(rooms) ? rooms : [];
           this.player = player || null;
           this.currentRoomVnum = currentRoomVnum || (player ? player.vnum : null);
           this.visited = new Set(visited || []);
           if (this.assetsReady) {
-            this.renderMap();
+            this.renderMap(previousRoomVnum);
           }
         }
 
@@ -1371,29 +1915,19 @@
         }
 
         clearRenderObjects() {
-          if (this.tileGroup) {
-            this.tileGroup.clear(true, true);
-          }
-          if (this.interactionGroup) {
-            this.interactionGroup.clear(true, true);
-          }
-          if (this.markerLayer) {
-            this.markerLayer.removeAll(true);
-          }
-          if (this.exitLayer) {
-            this.exitLayer.clear();
-          }
-          if (this.highlightLayer) {
-            this.highlightLayer.clear();
-          }
+          if (this.tileGroup) this.tileGroup.clear(true, true);
+          if (this.interactionGroup) this.interactionGroup.clear(true, true);
+          if (this.markerLayer) this.markerLayer.removeAll(true);
+          if (this.exitLayer) this.exitLayer.clear();
+          if (this.highlightLayer) this.highlightLayer.clear();
           this.roomObjects = [];
+          this.roomObjectMap.clear();
         }
 
-        renderMap() {
+        renderMap(previousRoomVnum = null) {
           if (!this.assetsReady) return;
-
+          this.ensureAnimations();
           this.clearRenderObjects();
-
           if (!this.rooms.length) return;
 
           const drawnConnections = new Set();
@@ -1401,6 +1935,7 @@
           for (const room of this.rooms) {
             const roomObj = this.makeRoom(room);
             this.roomObjects.push(roomObj);
+            this.roomObjectMap.set(String(room.vnum), roomObj);
           }
 
           this.exitLayer.lineStyle(4, 0x10b981, 0.16);
@@ -1409,7 +1944,7 @@
             const exits = Array.isArray(room.exits) ? room.exits.map(v => String(v).toLowerCase()) : [];
             for (const exitName of exits) {
               const dir = DIRECTIONS[exitName];
-              if (!dir) continue;
+              if (!dir || exitName === 'up' || exitName === 'down') continue;
               const neighbor = state.coordMap.get(mapRoomCoordKey(room.x + dir.dx, room.y + dir.dy, room.z || 0));
               if (!neighbor) continue;
               const key = [room.vnum, neighbor.vnum].sort().join(':');
@@ -1425,7 +1960,8 @@
             const { x, y } = this.worldPos(currentRoom);
             this.highlightLayer.lineStyle(2, 0x10b981, 1);
             this.highlightLayer.strokeRect(x - TILE_SIZE / 2, y - TILE_SIZE / 2, TILE_SIZE, TILE_SIZE);
-            this.targetCamera.set(x, y);
+            this.panToRoom(currentRoom, previousRoomVnum);
+            this.popCurrentRoom();
           }
 
           if (this.player) {
@@ -1441,14 +1977,51 @@
           }
         }
 
+        panToRoom(room, previousRoomVnum) {
+          const { x, y } = this.worldPos(room);
+          const cam = this.cameras.main;
+          if (!previousRoomVnum || String(previousRoomVnum) === String(room.vnum) || !this.lastPanTarget) {
+            cam.centerOn(x, y);
+          } else {
+            cam.pan(x, y, 300, 'Sine.easeInOut');
+          }
+          this.lastPanTarget = { x, y };
+        }
+
+        popCurrentRoom() {
+          const current = this.roomObjectMap.get(String(this.currentRoomVnum || ''));
+          if (!current || !current.tile) return;
+          this.tweens.killTweensOf(current.tile);
+          current.tile.setScale(TILE_SIZE / 32);
+          this.tweens.add({
+            targets: current.tile,
+            scale: (TILE_SIZE / 32) * 1.15,
+            duration: 100,
+            yoyo: true,
+            ease: 'Sine.easeInOut',
+          });
+        }
+
         makeRoom(room) {
           const pos = this.worldPos(room);
           const visited = this.visited.has(String(room.vnum));
-          const tile = this.add.image(pos.x, pos.y, 'terrain', terrainFrameForSector(room.sector));
+          const sectorKey = String(room.sector || 'default').toLowerCase();
+          const isWater = WATER_SECTORS.has(sectorKey);
+          const tile = isWater
+            ? this.add.sprite(pos.x, pos.y, 'terrain', terrainFrameForSector(room.sector))
+            : this.add.image(pos.x, pos.y, 'terrain', terrainFrameForSector(room.sector));
           tile.setScale(TILE_SIZE / 32);
           tile.setAlpha(visited ? 1 : 0.35);
           tile.roomData = room;
+          tile.setInteractive({ useHandCursor: true });
+          if (isWater && tile.anims) {
+            tile.play('terrain-water-loop');
+          }
           this.tileGroup.add(tile);
+
+          tile.on('pointerover', pointer => showTooltip(room.name || 'Unknown Room', pointer));
+          tile.on('pointermove', pointer => moveTooltip(pointer));
+          tile.on('pointerout', hideTooltip);
 
           const hit = this.add.rectangle(pos.x, pos.y, TILE_SIZE, TILE_SIZE, 0x000000, 0.001)
             .setInteractive({ useHandCursor: true });
@@ -1464,13 +2037,7 @@
             this.markerLayer.add(mobIcon);
           }
 
-          return { tile, hit, room };
-        }
-
-        update() {
-          const cam = this.cameras.main;
-          cam.scrollX = Phaser.Math.Linear(cam.scrollX, this.targetCamera.x - cam.width / 2, this.cameraLerp);
-          cam.scrollY = Phaser.Math.Linear(cam.scrollY, this.targetCamera.y - cam.height / 2, this.cameraLerp);
+          return { tile, hit, room, color: sectorColorForMinimap(room.sector) };
         }
       }
 
@@ -1488,6 +2055,7 @@
       window.mudGame = game;
 
       document.addEventListener('keydown', event => {
+        ensureAudioContext();
         if (event.target === els.commandInput) return;
         const key = event.key.toLowerCase();
         if (key === 'arrowup' || key === 'w') { event.preventDefault(); movePlayer('north'); }
@@ -1495,6 +2063,10 @@
         else if (key === 'arrowleft' || key === 'a') { event.preventDefault(); movePlayer('west'); }
         else if (key === 'arrowright' || key === 'd') { event.preventDefault(); movePlayer('east'); }
       });
+
+      document.addEventListener('click', () => {
+        ensureAudioContext();
+      }, { passive: true });
 
       els.commandInput.addEventListener('keydown', event => {
         if (event.key === 'Enter') {
@@ -1538,8 +2110,25 @@
         }
       });
 
+      els.output.addEventListener('click', event => {
+        const exitEl = event.target.closest('.exit-link');
+        if (!exitEl) return;
+        const dir = exitEl.dataset.exit;
+        if (!dir) return;
+        sendMudCommand(dir, true);
+      });
+
+      els.sidebarToggle.addEventListener('click', () => toggleSidebar());
+      els.quickButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const command = button.dataset.command;
+          if (command) sendMudCommand(command, true);
+        });
+      });
+
       updateStats({ hp: 0, max_hp: 0, mana: 0, max_mana: 0, move: 0, max_move: 0 });
       setConnectionStatus();
+      renderMinimap();
       appendOutput('Misthollow client ready. Enter credentials to connect.', 'system');
       els.loginName.focus();
     })();
