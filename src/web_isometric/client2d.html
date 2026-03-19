@@ -3010,19 +3010,11 @@
           const exits = new Set((Array.isArray(room.exits) ? room.exits : []).map(v => String(v).toLowerCase()));
           const half = TILE_SIZE / 2;
           const g = this.add.graphics();
-
+          // Only draw walls on blocked edges — open edges are exits (no marker needed)
+          g.lineStyle(4, 0x060910, visited ? 1.0 : 0.65);
           CARDINAL_DIRECTIONS.forEach(dir => {
             const hasExit = exits.has(dir) || exits.has(DIRECTIONS[dir]?.short);
-            if (hasExit && visited) {
-              // Bright teal line on open exit edge — visible at any zoom
-              g.lineStyle(2, 0x34d399, 0.85);
-              if (dir === 'north') g.strokeLineShape(new Phaser.Geom.Line(pos.x - half + 4, pos.y - half, pos.x + half - 4, pos.y - half));
-              if (dir === 'south') g.strokeLineShape(new Phaser.Geom.Line(pos.x - half + 4, pos.y + half, pos.x + half - 4, pos.y + half));
-              if (dir === 'west')  g.strokeLineShape(new Phaser.Geom.Line(pos.x - half, pos.y - half + 4, pos.x - half, pos.y + half - 4));
-              if (dir === 'east')  g.strokeLineShape(new Phaser.Geom.Line(pos.x + half, pos.y - half + 4, pos.x + half, pos.y + half - 4));
-            } else if (!hasExit) {
-              // Thick dark wall on blocked edge
-              g.lineStyle(5, 0x060910, visited ? 0.95 : 0.6);
+            if (!hasExit) {
               if (dir === 'north') g.strokeLineShape(new Phaser.Geom.Line(pos.x - half, pos.y - half, pos.x + half, pos.y - half));
               if (dir === 'south') g.strokeLineShape(new Phaser.Geom.Line(pos.x - half, pos.y + half, pos.x + half, pos.y + half));
               if (dir === 'west')  g.strokeLineShape(new Phaser.Geom.Line(pos.x - half, pos.y - half, pos.x - half, pos.y + half));
@@ -3106,23 +3098,7 @@
         }
 
         drawVerticalExitMarkers(room, x, y) {
-          if (!room) return;
-          const exits = new Set((Array.isArray(room.exits) ? room.exits : []).map(v => String(v).toLowerCase()));
-          const markers = [];
-          if (exits.has('up')) markers.push({ text: '↑', dx: -14, dy: -14, color: '#fde68a' });
-          if (exits.has('down')) markers.push({ text: '↓', dx: 14, dy: -14, color: '#93c5fd' });
-          markers.forEach(({ text, dx, dy, color }) => {
-            const badge = this.add.circle(x + dx, y + dy, 8, 0x020617, 0.78).setStrokeStyle(1, 0x94a3b8, 0.45);
-            const label = this.add.text(x + dx, y + dy, text, {
-              fontFamily: 'Plus Jakarta Sans',
-              fontSize: '11px',
-              fontStyle: 'bold',
-              color,
-              stroke: '#020617',
-              strokeThickness: 2,
-            }).setOrigin(0.5);
-            this.markerLayer.add([badge, label]);
-          });
+          // Intentionally empty — up/down exits shown only on player room via drawPlayerExitLabels
         }
 
         drawOtherPlayers(room, x, y) {
@@ -3300,18 +3276,7 @@
               .setAlpha(visited ? 1 : 0.7);
             this.markerLayer.add(mobIcon);
           }
-          if (mobCount >= 2) {
-            const bx = pos.x + TILE_SIZE / 2 - 6;
-            const by = pos.y + TILE_SIZE / 2 - 6;
-            const badge = this.add.circle(bx, by, 8, 0xdc2626, 0.92).setStrokeStyle(1.5, 0xfca5a5, 1);
-            const countText = this.add.text(bx, by, String(mobCount), {
-              fontFamily: 'Plus Jakarta Sans',
-              fontSize: '10px',
-              fontStyle: 'bold',
-              color: '#ffffff',
-            }).setOrigin(0.5);
-            this.markerLayer.add([badge, countText]);
-          }
+          // Mob count badges removed — mob sprites already indicate presence; badges overclutter the map
 
           return { tileBg, tile, hit, room, color: sectorColorForMinimap(room.sector) };
         }
