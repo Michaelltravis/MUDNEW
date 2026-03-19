@@ -3008,26 +3008,44 @@
 
         drawWallSegments(room, pos, visited) {
           const exits = new Set((Array.isArray(room.exits) ? room.exits : []).map(v => String(v).toLowerCase()));
-          const wallColor = 0x1a0a2e;
-          const alpha = visited ? 0.7 : 0.35;
-          const thickness = 8;
-          CARDINAL_DIRECTIONS.forEach(dir => {
-            if (exits.has(dir) || exits.has(DIRECTIONS[dir]?.short)) return;
-            const strip = this.add.graphics();
-            strip.fillStyle(wallColor, alpha);
-            if (dir === 'north') strip.fillRect(pos.x - TILE_SIZE / 2, pos.y - TILE_SIZE / 2, TILE_SIZE, thickness);
-            if (dir === 'south') strip.fillRect(pos.x - TILE_SIZE / 2, pos.y + TILE_SIZE / 2 - thickness, TILE_SIZE, thickness);
-            if (dir === 'west') strip.fillRect(pos.x - TILE_SIZE / 2, pos.y - TILE_SIZE / 2, thickness, TILE_SIZE);
-            if (dir === 'east') strip.fillRect(pos.x + TILE_SIZE / 2 - thickness, pos.y - TILE_SIZE / 2, thickness, TILE_SIZE);
-            this.overlayLayer.add(strip);
+          const half = TILE_SIZE / 2;
+          const wallThick = 5;
+          const wallColor = 0x0a0a14;
+          const wallAlpha = visited ? 0.85 : 0.5;
+          const arrowColor = 0x34d399;
+          const arrowAlpha = visited ? 0.9 : 0.5;
 
-            const offsetX = dir === 'east' ? 12 : dir === 'west' ? -12 : 0;
-            const offsetY = dir === 'south' ? 12 : dir === 'north' ? -12 : 0;
-            const wallAccent = this.add.image(pos.x + offsetX, pos.y + offsetY, 'terrain', WALL_TILE_FRAME)
-              .setScale(0.35)
-              .setAlpha(visited ? 0.28 : 0.16)
-              .setTint(0x4b5563);
-            this.overlayLayer.add(wallAccent);
+          CARDINAL_DIRECTIONS.forEach(dir => {
+            const hasExit = exits.has(dir) || exits.has(DIRECTIONS[dir]?.short);
+            const g = this.add.graphics();
+
+            if (!hasExit) {
+              // Solid wall — thick dark bar on that edge
+              g.fillStyle(wallColor, wallAlpha);
+              if (dir === 'north') g.fillRect(pos.x - half, pos.y - half, TILE_SIZE, wallThick);
+              if (dir === 'south') g.fillRect(pos.x - half, pos.y + half - wallThick, TILE_SIZE, wallThick);
+              if (dir === 'west')  g.fillRect(pos.x - half, pos.y - half, wallThick, TILE_SIZE);
+              if (dir === 'east')  g.fillRect(pos.x + half - wallThick, pos.y - half, wallThick, TILE_SIZE);
+            } else if (visited) {
+              // Exit gap — draw a bright arrow chevron pointing outward from the tile edge
+              g.lineStyle(2, arrowColor, arrowAlpha);
+              g.fillStyle(arrowColor, arrowAlpha * 0.85);
+              const aw = 7, ah = 5; // arrow half-width, arrow depth
+              if (dir === 'north') {
+                const cx = pos.x, cy = pos.y - half + 3;
+                g.fillTriangle(cx, cy - ah, cx - aw, cy + ah, cx + aw, cy + ah);
+              } else if (dir === 'south') {
+                const cx = pos.x, cy = pos.y + half - 3;
+                g.fillTriangle(cx, cy + ah, cx - aw, cy - ah, cx + aw, cy - ah);
+              } else if (dir === 'west') {
+                const cx = pos.x - half + 3, cy = pos.y;
+                g.fillTriangle(cx - ah, cy, cx + ah, cy - aw, cx + ah, cy + aw);
+              } else if (dir === 'east') {
+                const cx = pos.x + half - 3, cy = pos.y;
+                g.fillTriangle(cx + ah, cy, cx - ah, cy - aw, cx - ah, cy + aw);
+              }
+            }
+            this.overlayLayer.add(g);
           });
         }
 
