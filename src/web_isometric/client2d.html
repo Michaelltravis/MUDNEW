@@ -1925,9 +1925,10 @@
           return;
         }
         els.combatPopout.style.display = 'block';
-        // Build combatants list
-        const currentRoom = state.roomMap.get(String(state.currentRoomVnum || ''));
+        // Use lastRoomData first (freshest), fall back to roomMap
+        const currentRoom = state.lastRoomData || state.roomMap.get(String(state.currentRoomVnum || ''));
         const mobs = currentRoom && Array.isArray(currentRoom.mobs) ? currentRoom.mobs : [];
+        console.log('[combat-popout] room:', currentRoom?.vnum, 'mobs:', mobs, 'target:', state.target.name);
         const otherPlayers = currentRoom && Array.isArray(currentRoom.players)
           ? currentRoom.players.filter(p => String(p?.name || p).toLowerCase() !== String(state.playerName || '').toLowerCase())
           : [];
