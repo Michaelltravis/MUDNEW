@@ -1299,6 +1299,10 @@
                 <div class="sidebar-stat-row"><span>Move</span><strong id="sidebar-move">0 / 0</strong></div>
               </div>
             </section>
+            <section class="sidebar-section" id="sidebar-threats-section" style="display:none;">
+              <h3>⚔️ Room Threats</h3>
+              <div id="sidebar-threats-list" style="display:flex;flex-direction:column;gap:4px;margin-top:4px;"></div>
+            </section>
             <section class="sidebar-section">
               <h3>Send commands</h3>
               <div class="quick-actions">
@@ -1621,6 +1625,8 @@
         combatPopout: document.getElementById('combat-popout'),
         combatPopoutCombatants: document.getElementById('combat-popout-combatants'),
         combatPopoutLog: document.getElementById('combat-popout-log'),
+        sidebarThreatsSection: document.getElementById('sidebar-threats-section'),
+        sidebarThreatsList: document.getElementById('sidebar-threats-list'),
         targetBar: document.getElementById('target-bar'),
         targetName: document.getElementById('target-name'),
         targetFill: document.getElementById('target-fill'),
@@ -1913,6 +1919,7 @@
         els.combatIndicator.classList.toggle('active', state.combat);
         updateTargetBar();
         updateCombatPopout();
+        updateSidebarThreats();
       }
 
       setInterval(syncCombatIndicator, 1500);
@@ -1981,6 +1988,28 @@
         });
 
         els.combatPopoutCombatants.innerHTML = html;
+      }
+
+      function updateSidebarThreats() {
+        if (!els.sidebarThreatsSection || !els.sidebarThreatsList) return;
+        const room = state.lastRoomData || state.roomMap.get(String(state.currentRoomVnum || ''));
+        const mobs = room && Array.isArray(room.mobs) ? room.mobs : [];
+        if (!mobs.length) {
+          els.sidebarThreatsSection.style.display = 'none';
+          return;
+        }
+        els.sidebarThreatsSection.style.display = '';
+        els.sidebarThreatsList.innerHTML = mobs.map(mob => {
+          const name = String(mob?.name || mob || 'Unknown').trim();
+          const isTarget = state.combat && name.toLowerCase() === (state.target.name || '').toLowerCase();
+          const hpPct = isTarget ? Math.max(0, Math.min(100, state.target.hp)) : null;
+          const hpColor = !hpPct ? '#f87171' : hpPct > 60 ? '#f87171' : hpPct > 30 ? '#fbbf24' : '#ef4444';
+          return `<div style="display:flex;align-items:center;gap:6px;padding:3px 6px;border-radius:5px;background:${isTarget ? 'rgba(239,68,68,0.1)' : 'rgba(255,255,255,0.03)'};border:1px solid ${isTarget ? 'rgba(239,68,68,0.3)' : 'transparent'};">
+            <span style="font-size:13px;">${isTarget ? '🎯' : '👹'}</span>
+            <span style="flex:1;font-size:11px;font-weight:${isTarget ? '700' : '500'};color:${isTarget ? '#fca5a5' : '#94a3b8'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${name}</span>
+            ${isTarget && hpPct !== null ? `<div style="width:36px;height:4px;background:rgba(255,255,255,0.1);border-radius:2px;flex-shrink:0;"><div style="height:100%;width:${hpPct}%;background:${hpColor};border-radius:2px;transition:width 0.3s;"></div></div><span style="font-size:10px;color:${hpColor};min-width:22px;text-align:right;">${Math.round(hpPct)}%</span>` : ''}
+          </div>`;
+        }).join('');
       }
 
       function appendCombatPopoutLine(text, color) {
@@ -2289,6 +2318,10 @@
           state.target.name = guessCombatTargetFromRoom() || state.target.name;
           updateTargetBar();
         }
+        updateSidebarThreats();
+        // Auto-open sidebar when entering a room with mobs
+        const roomMobs = room && Array.isArray(room.mobs) ? room.mobs : [];
+        if (roomMobs.length && !state.sidebarOpen) toggleSidebar(true);
       }
 
       function getTimeTheme(time) {
