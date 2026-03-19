@@ -526,11 +526,11 @@
       z-index: 1;
       height: 100%;
       overflow-y: auto;
-      padding-right: 4px;
+      padding: 6px 0 8px 0;
       white-space: pre-wrap;
-      line-height: 1.65;
-      font-size: 14px;
-      color: #dbe7f6;
+      line-height: 1.55;
+      font-size: 13px;
+      color: #cbd5e1;
       scrollbar-width: thin;
       scrollbar-color: rgba(148,163,184,0.32) transparent;
       display: none;
@@ -547,31 +547,53 @@
     }
 
     .output-line {
-      padding: 9px 11px;
-      margin-bottom: 8px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.018);
-      border: 1px solid rgba(148,163,184,0.06);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
-      animation: fadeIn 180ms ease;
+      padding: 1px 10px;
+      margin: 0;
+      border-radius: 0;
+      background: none;
+      border: none;
+      box-shadow: none;
+      animation: fadeIn 120ms ease;
       word-break: break-word;
+      line-height: 1.55;
+    }
+
+    .output-line + .output-line {
+      margin-top: 0;
+    }
+
+    /* Visual separator between "paragraphs" — blank lines from MUD */
+    .output-line.blank {
+      height: 6px;
+      padding: 0;
     }
 
     .output-line.system {
-      color: #93c5fd;
-      background: rgba(37, 99, 235, 0.08);
-      border-color: rgba(59,130,246,0.14);
+      color: #64748b;
+      font-size: 11px;
+      padding: 0 10px;
+      opacity: 0.7;
+    }
+
+    .output-line.prompt {
+      color: #475569;
+      font-size: 11px;
+      padding: 1px 10px;
+      opacity: 0.55;
+      font-family: monospace;
     }
 
     .output-line.combat {
-      background: rgba(185,28,28,0.12);
-      border-color: rgba(239,68,68,0.18);
+      background: rgba(185,28,28,0.06);
+      border-left: 2px solid rgba(239,68,68,0.4);
     }
 
     .output-line.command {
-      color: #b7f7de;
-      background: rgba(16,185,129,0.08);
-      border-color: rgba(16,185,129,0.16);
+      color: #34d399;
+      background: rgba(16,185,129,0.05);
+      border-left: 2px solid rgba(16,185,129,0.3);
+      font-size: 12px;
+      padding: 1px 10px 1px 9px;
     }
 
     .output-fragment {
@@ -1755,12 +1777,28 @@
         return tabs;
       }
 
+      const PROMPT_PATTERN = /^\d+\/\d+hp\s+\d+\/\d+mp/i;
+
       function makeOutputLine(text, type = 'normal') {
         const line = document.createElement('div');
-        line.className = `output-line ${type}`;
         const safeText = String(text ?? '');
+
+        // Blank line → small spacer
+        if (type === 'normal' && safeText.trim() === '') {
+          line.className = 'output-line blank';
+          return line;
+        }
+
+        // Stat prompt line → dim monospace
+        if (type === 'normal' && PROMPT_PATTERN.test(safeText)) {
+          line.className = 'output-line prompt';
+          line.textContent = safeText;
+          return line;
+        }
+
+        line.className = `output-line ${type}`;
         if (type === 'system' || type === 'command') {
-          line.innerHTML = `<span class="output-fragment" style="color:${type === 'system' ? '#93c5fd' : '#b7f7de'}">${escapeHtml(safeText)}</span>`;
+          line.innerHTML = `<span class="output-fragment" style="color:${type === 'system' ? '#64748b' : '#34d399'}">${escapeHtml(safeText)}</span>`;
         } else {
           line.innerHTML = `<span class="output-fragment" style="color:${colorForLine(safeText)}">${processExitLinks(safeText)}</span>`;
         }
