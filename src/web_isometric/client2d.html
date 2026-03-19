@@ -1219,6 +1219,17 @@
     <main class="main-content">
       <section class="panel map-panel glass">
         <div id="phaser-root"></div>
+        <!-- Combat Popout Overlay -->
+        <div id="combat-popout" style="display:none;position:absolute;bottom:12px;right:12px;width:260px;background:rgba(6,9,16,0.93);border:1px solid rgba(239,68,68,0.5);border-radius:10px;box-shadow:0 0 24px rgba(239,68,68,0.25),0 4px 16px rgba(0,0,0,0.7);z-index:200;font-family:'Plus Jakarta Sans',sans-serif;overflow:hidden;">
+          <div style="background:linear-gradient(90deg,rgba(127,29,29,0.8),rgba(6,9,16,0.6));padding:7px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(239,68,68,0.3);">
+            <span style="font-size:15px;">⚔️</span>
+            <span style="font-size:11px;font-weight:700;color:#fca5a5;letter-spacing:0.08em;text-transform:uppercase;">Combat</span>
+          </div>
+          <!-- Combatants -->
+          <div id="combat-popout-combatants" style="padding:8px 10px;display:flex;flex-direction:column;gap:5px;border-bottom:1px solid rgba(255,255,255,0.07);"></div>
+          <!-- Scrolling combat log -->
+          <div id="combat-popout-log" style="height:110px;overflow-y:auto;padding:6px 10px;display:flex;flex-direction:column;gap:2px;font-size:11px;line-height:1.4;"></div>
+        </div>
         <div class="map-overlay">
           <div class="map-chip" id="zone-chip">Mist Chart: Offline</div>
           <div class="map-chip" id="time-chip">No time data</div>
@@ -1585,6 +1596,9 @@
         connectionStatus: document.getElementById('connection-status'),
         footerMeta: document.getElementById('footer-meta'),
         combatIndicator: document.getElementById('combat-indicator'),
+        combatPopout: document.getElementById('combat-popout'),
+        combatPopoutCombatants: document.getElementById('combat-popout-combatants'),
+        combatPopoutLog: document.getElementById('combat-popout-log'),
         targetBar: document.getElementById('target-bar'),
         targetName: document.getElementById('target-name'),
         targetFill: document.getElementById('target-fill'),
@@ -1728,6 +1742,12 @@
         return COMBAT_PATTERNS.some(pattern => pattern.test(text));
       }
 
+      function maybeFeedCombatPopout(text) {
+        if (!state.combat || !isCombatLine(text)) return;
+        const color = colorForLine(text);
+        appendCombatPopoutLine(text, color);
+      }
+
       function routeTabsForLine(text) {
         const tabs = ['all'];
         if (isCombatLine(text)) tabs.push('combat');
@@ -1776,6 +1796,7 @@
 
       function appendOutput(text, type = 'normal') {
         const safeText = String(text ?? '');
+        if (type === 'normal') maybeFeedCombatPopout(safeText);
         const tabs = type === 'system' || type === 'command' ? ['all'] : routeTabsForLine(safeText);
         tabs.forEach(tab => {
           const node = els.outputs[tab];
@@ -1853,9 +1874,86 @@
         }
         els.combatIndicator.classList.toggle('active', state.combat);
         updateTargetBar();
+        updateCombatPopout();
       }
 
       setInterval(syncCombatIndicator, 1500);
+
+      function updateCombatPopout() {
+        if (!els.combatPopout) return;
+        if (!state.combat) {
+          els.combatPopout.style.display = 'none';
+          if (els.combatPopoutLog) els.combatPopoutLog.innerHTML = '';
+          return;
+        }
+        els.combatPopout.style.display = 'block';
+        // Build combatants list
+        const currentRoom = state.roomMap.get(String(state.currentRoomVnum || ''));
+        const mobs = currentRoom && Array.isArray(currentRoom.mobs) ? currentRoom.mobs : [];
+        const otherPlayers = currentRoom && Array.isArray(currentRoom.players)
+          ? currentRoom.players.filter(p => String(p?.name || p).toLowerCase() !== String(state.playerName || '').toLowerCase())
+          : [];
+
+        let html = '';
+        // Player row
+        const playerHp = state.player?.hp ?? 100;
+        const playerMaxHp = state.player?.maxHp ?? 100;
+        const playerHpPct = Math.max(0, Math.min(100, playerMaxHp > 0 ? Math.round(playerHp / playerMaxHp * 100) : 100));
+        const playerHpColor = playerHpPct > 60 ? '#34d399' : playerHpPct > 30 ? '#fbbf24' : '#f87171';
+        html += `<div style="display:flex;align-items:center;gap:7px;">
+          <div style="font-size:16px;line-height:1;">🧙</div>
+          <div style="flex:1;min-width:0;">
+            <div style="font-size:10px;font-weight:700;color:#e2e8f0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${state.playerName || 'You'}</div>
+            <div style="height:5px;background:rgba(255,255,255,0.1);border-radius:3px;margin-top:2px;">
+              <div style="height:100%;width:${playerHpPct}%;background:${playerHpColor};border-radius:3px;transition:width 0.3s;"></div>
+            </div>
+          </div>
+          <div style="font-size:10px;color:${playerHpColor};font-weight:600;min-width:28px;text-align:right;">${playerHpPct}%</div>
+        </div>`;
+
+        // Other players in room
+        otherPlayers.forEach(p => {
+          const name = String(p?.name || p).trim();
+          html += `<div style="display:flex;align-items:center;gap:7px;">
+            <div style="font-size:14px;line-height:1;">👤</div>
+            <div style="flex:1;min-width:0;font-size:10px;color:#93c5fd;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${name}</div>
+          </div>`;
+        });
+
+        // Separator
+        if (mobs.length > 0) {
+          html += `<div style="height:1px;background:rgba(239,68,68,0.25);margin:2px 0;"></div>`;
+        }
+
+        // Mob rows
+        mobs.forEach(mob => {
+          const name = String(mob?.name || mob || 'Unknown').trim();
+          const isTarget = name.toLowerCase() === (state.target.name || '').toLowerCase();
+          const mobHpPct = isTarget ? Math.max(0, Math.min(100, state.target.hp)) : 100;
+          const mobHpColor = mobHpPct > 60 ? '#f87171' : mobHpPct > 30 ? '#fbbf24' : '#ef4444';
+          html += `<div style="display:flex;align-items:center;gap:7px;${isTarget ? 'background:rgba(239,68,68,0.1);border-radius:4px;padding:1px 3px;margin:-1px -3px;' : ''}">
+            <div style="font-size:14px;line-height:1;">${isTarget ? '🎯' : '👹'}</div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:10px;font-weight:${isTarget ? '700' : '500'};color:${isTarget ? '#fca5a5' : '#cbd5e1'};white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${name}</div>
+              ${isTarget ? `<div style="height:4px;background:rgba(255,255,255,0.1);border-radius:2px;margin-top:2px;"><div style="height:100%;width:${mobHpPct}%;background:${mobHpColor};border-radius:2px;transition:width 0.3s;"></div></div>` : ''}
+            </div>
+            ${isTarget ? `<div style="font-size:10px;color:${mobHpColor};font-weight:600;min-width:28px;text-align:right;">${Math.round(mobHpPct)}%</div>` : ''}
+          </div>`;
+        });
+
+        els.combatPopoutCombatants.innerHTML = html;
+      }
+
+      function appendCombatPopoutLine(text, color) {
+        if (!els.combatPopoutLog || !state.combat) return;
+        const line = document.createElement('div');
+        line.style.cssText = `color:${color || '#94a3b8'};white-space:pre-wrap;word-break:break-word;`;
+        line.textContent = text;
+        els.combatPopoutLog.appendChild(line);
+        // Keep max 60 lines
+        while (els.combatPopoutLog.children.length > 60) els.combatPopoutLog.removeChild(els.combatPopoutLog.firstChild);
+        els.combatPopoutLog.scrollTop = els.combatPopoutLog.scrollHeight;
+      }
 
       function decodeHtmlEntities(text) {
         const el = document.createElement('textarea');
