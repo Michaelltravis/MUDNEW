@@ -3009,44 +3009,27 @@
         drawWallSegments(room, pos, visited) {
           const exits = new Set((Array.isArray(room.exits) ? room.exits : []).map(v => String(v).toLowerCase()));
           const half = TILE_SIZE / 2;
-          const wallThick = 5;
-          const wallColor = 0x0a0a14;
-          const wallAlpha = visited ? 0.85 : 0.5;
-          const arrowColor = 0x34d399;
-          const arrowAlpha = visited ? 0.9 : 0.5;
+          const g = this.add.graphics();
 
           CARDINAL_DIRECTIONS.forEach(dir => {
             const hasExit = exits.has(dir) || exits.has(DIRECTIONS[dir]?.short);
-            const g = this.add.graphics();
-
-            if (!hasExit) {
-              // Solid wall — thick dark bar on that edge
-              g.fillStyle(wallColor, wallAlpha);
-              if (dir === 'north') g.fillRect(pos.x - half, pos.y - half, TILE_SIZE, wallThick);
-              if (dir === 'south') g.fillRect(pos.x - half, pos.y + half - wallThick, TILE_SIZE, wallThick);
-              if (dir === 'west')  g.fillRect(pos.x - half, pos.y - half, wallThick, TILE_SIZE);
-              if (dir === 'east')  g.fillRect(pos.x + half - wallThick, pos.y - half, wallThick, TILE_SIZE);
-            } else if (visited) {
-              // Exit gap — draw a bright arrow chevron pointing outward from the tile edge
-              g.lineStyle(2, arrowColor, arrowAlpha);
-              g.fillStyle(arrowColor, arrowAlpha * 0.85);
-              const aw = 7, ah = 5; // arrow half-width, arrow depth
-              if (dir === 'north') {
-                const cx = pos.x, cy = pos.y - half + 3;
-                g.fillTriangle(cx, cy - ah, cx - aw, cy + ah, cx + aw, cy + ah);
-              } else if (dir === 'south') {
-                const cx = pos.x, cy = pos.y + half - 3;
-                g.fillTriangle(cx, cy + ah, cx - aw, cy - ah, cx + aw, cy - ah);
-              } else if (dir === 'west') {
-                const cx = pos.x - half + 3, cy = pos.y;
-                g.fillTriangle(cx - ah, cy, cx + ah, cy - aw, cx + ah, cy + aw);
-              } else if (dir === 'east') {
-                const cx = pos.x + half - 3, cy = pos.y;
-                g.fillTriangle(cx + ah, cy, cx - ah, cy - aw, cx - ah, cy + aw);
-              }
+            if (hasExit && visited) {
+              // Bright teal line on open exit edge — visible at any zoom
+              g.lineStyle(2, 0x34d399, 0.85);
+              if (dir === 'north') g.strokeLineShape(new Phaser.Geom.Line(pos.x - half + 4, pos.y - half, pos.x + half - 4, pos.y - half));
+              if (dir === 'south') g.strokeLineShape(new Phaser.Geom.Line(pos.x - half + 4, pos.y + half, pos.x + half - 4, pos.y + half));
+              if (dir === 'west')  g.strokeLineShape(new Phaser.Geom.Line(pos.x - half, pos.y - half + 4, pos.x - half, pos.y + half - 4));
+              if (dir === 'east')  g.strokeLineShape(new Phaser.Geom.Line(pos.x + half, pos.y - half + 4, pos.x + half, pos.y + half - 4));
+            } else if (!hasExit) {
+              // Thick dark wall on blocked edge
+              g.lineStyle(5, 0x060910, visited ? 0.95 : 0.6);
+              if (dir === 'north') g.strokeLineShape(new Phaser.Geom.Line(pos.x - half, pos.y - half, pos.x + half, pos.y - half));
+              if (dir === 'south') g.strokeLineShape(new Phaser.Geom.Line(pos.x - half, pos.y + half, pos.x + half, pos.y + half));
+              if (dir === 'west')  g.strokeLineShape(new Phaser.Geom.Line(pos.x - half, pos.y - half, pos.x - half, pos.y + half));
+              if (dir === 'east')  g.strokeLineShape(new Phaser.Geom.Line(pos.x + half, pos.y - half, pos.x + half, pos.y + half));
             }
-            this.overlayLayer.add(g);
           });
+          this.overlayLayer.add(g);
         }
 
         drawPlayerMarker(x, y, room = null) {
@@ -3317,7 +3300,7 @@
               .setAlpha(visited ? 1 : 0.7);
             this.markerLayer.add(mobIcon);
           }
-          if (mobCount > 0) {
+          if (mobCount >= 2) {
             const bx = pos.x + TILE_SIZE / 2 - 6;
             const by = pos.y + TILE_SIZE / 2 - 6;
             const badge = this.add.circle(bx, by, 8, 0xdc2626, 0.92).setStrokeStyle(1.5, 0xfca5a5, 1);
