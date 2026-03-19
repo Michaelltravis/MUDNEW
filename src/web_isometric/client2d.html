@@ -3048,9 +3048,18 @@
             repeat: -1,
             ease: 'Sine.easeInOut',
           });
-          this.markerLayer.add([glow, marker]);
+          const youLabel = this.add.text(x, y + 22, 'YOU', {
+            fontFamily: 'Plus Jakarta Sans',
+            fontSize: '10px',
+            fontStyle: 'bold',
+            color: '#34d399',
+            stroke: '#0f172a',
+            strokeThickness: 3,
+          }).setOrigin(0.5);
+          this.markerLayer.add([glow, marker, youLabel]);
           this.playerGlow = glow;
           this.playerMarker = marker;
+          this.playerYouLabel = youLabel;
           this.drawPlayerExitLabels(room, x, y);
         }
 
@@ -3280,12 +3289,25 @@
           this.interactionGroup.add(hit);
 
           const mobSpriteKey = dominantMobSprite(room);
+          const mobCount = Array.isArray(room.mobs) ? room.mobs.length : 0;
           if (mobSpriteKey && this.textures.exists(mobSpriteKey)) {
             const mobIcon = this.add.image(pos.x + TILE_SIZE / 2 - 12, pos.y - TILE_SIZE / 2, mobSpriteKey)
               .setOrigin(0, 0)
               .setDisplaySize(24, 24)
               .setAlpha(visited ? 1 : 0.7);
             this.markerLayer.add(mobIcon);
+          }
+          if (mobCount > 0) {
+            const bx = pos.x + TILE_SIZE / 2 - 6;
+            const by = pos.y + TILE_SIZE / 2 - 6;
+            const badge = this.add.circle(bx, by, 8, 0xdc2626, 0.92).setStrokeStyle(1.5, 0xfca5a5, 1);
+            const countText = this.add.text(bx, by, String(mobCount), {
+              fontFamily: 'Plus Jakarta Sans',
+              fontSize: '10px',
+              fontStyle: 'bold',
+              color: '#ffffff',
+            }).setOrigin(0.5);
+            this.markerLayer.add([badge, countText]);
           }
 
           return { tileBg, tile, hit, room, color: sectorColorForMinimap(room.sector) };
