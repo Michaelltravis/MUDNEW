@@ -585,7 +585,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .exit-btn:hover {
+        .exit-btn:not(:disabled):hover {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
@@ -620,13 +620,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
             gap: 4px;
         }
         
-        .quick-btn:hover {
+        .quick-btn:not(:disabled):hover {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
         }
         
-        .quick-btn:active {
+        .quick-btn:not(:disabled):active {
             transform: scale(0.96);
         }
         
@@ -635,7 +635,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             color: var(--danger);
         }
         
-        .quick-btn.combat:hover {
+        .quick-btn.combat:not(:disabled):hover {
             background: rgba(248, 81, 73, 0.15);
         }
         
@@ -689,15 +689,20 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .send-btn:hover {
+        .send-btn:not(:disabled):hover {
             filter: brightness(1.1);
             transform: translateY(-1px);
         }
         
-        .send-btn:active {
+        .send-btn:not(:disabled):active {
             transform: translateY(0);
         }
         
+        .send-btn:disabled, .quick-btn:disabled, .exit-btn:disabled, #command-input:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         /* ANSI Colors - Enhanced */
         .ansi-black { color: #636e7b; }
         .ansi-red { color: #ff7b72; }
@@ -1091,6 +1096,16 @@ CLIENT_HTML = '''<!DOCTYPE html>
             document.getElementById('move-fill').style.width = Math.max(0, Math.min(100, (move/maxMove)*100)) + '%';
         }
         
+        function setInteractiveDisabled(disabled, placeholderText) {
+            input.disabled = disabled;
+            if (placeholderText) {
+                input.placeholder = placeholderText;
+            }
+            sendBtn.disabled = disabled;
+            document.querySelectorAll('.quick-btn').forEach(btn => btn.disabled = disabled);
+            document.querySelectorAll('.exit-btn').forEach(btn => btn.disabled = disabled);
+        }
+
         function updateRoomInfo(name, exits) {
             roomInfo.style.display = 'flex';
             roomName.textContent = name;
@@ -1201,11 +1216,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
         
         function connect() {
             welcomeStatus.textContent = 'Connecting to server...';
+            setInteractiveDisabled(true, 'Connecting...');
             const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
             ws = new WebSocket(`${protocol}//${location.host}/ws`);
             
             ws.onopen = () => {
                 setStatus('', 'Connected');
+                setInteractiveDisabled(false, 'Enter command...');
                 welcomeOverlay.classList.add('hidden');
             };
             
@@ -1226,11 +1243,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
             
             ws.onclose = () => {
                 setStatus('disconnected', 'Disconnected');
+                setInteractiveDisabled(true, 'Disconnected');
                 appendOutput('<span class="ansi-yellow">\\n--- Connection closed. Refresh to reconnect. ---\\n</span>');
             };
             
             ws.onerror = () => {
                 setStatus('disconnected', 'Error');
+                setInteractiveDisabled(true, 'Disconnected');
                 welcomeStatus.textContent = 'Connection failed. Is the server running?';
             };
         }
