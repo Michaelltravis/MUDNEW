@@ -4,6 +4,7 @@ Misthollow Commands
 All player commands and their implementations.
 """
 
+import itertools
 import logging
 import random
 import time
@@ -8035,7 +8036,7 @@ class CommandHandler:
         if len(args) >= 2 and 'from' not in args:
             # Check if last argument might be a container
             potential_container = args[-1].lower()
-            for item in player.inventory + player.room.items:
+            for item in itertools.chain(player.inventory, player.room.items):
                 if hasattr(item, 'item_type') and item.item_type == 'container':
                     if potential_container in item.name.lower() or potential_container in item.short_desc.lower():
                         from_container = True
@@ -8073,7 +8074,7 @@ class CommandHandler:
                 container_name = ' '.join(args[from_idx+1:]).lower()
 
             # Find container using numbered targeting (e.g., "2.corpse")
-            container = find_in_list(player.inventory + player.room.items, container_name)
+            container = find_in_list(itertools.chain(player.inventory, player.room.items), container_name)
             if container and getattr(container, 'item_type', None) != 'container':
                 container = None
 
@@ -8491,7 +8492,7 @@ class CommandHandler:
 
         # Find container in inventory or room
         container = None
-        for item in player.inventory + player.room.items:
+        for item in itertools.chain(player.inventory, player.room.items):
             if container_name in item.name.lower():
                 if hasattr(item, 'item_type') and item.item_type == 'container':
                     container = item
@@ -10976,7 +10977,7 @@ class CommandHandler:
 
         # Check for container first
         container = None
-        for item in player.inventory + player.room.items:
+        for item in itertools.chain(player.inventory, player.room.items):
             if target_name in item.name.lower():
                 if hasattr(item, 'item_type') and item.item_type == 'container':
                     container = item
@@ -11080,7 +11081,7 @@ class CommandHandler:
 
         # Check for container first
         container = None
-        for item in player.inventory + player.room.items:
+        for item in itertools.chain(player.inventory, player.room.items):
             if target_name in item.name.lower():
                 if hasattr(item, 'item_type') and item.item_type == 'container':
                     container = item
@@ -11174,7 +11175,7 @@ class CommandHandler:
 
         # Check for container first
         container = None
-        for item in player.inventory + player.room.items:
+        for item in itertools.chain(player.inventory, player.room.items):
             if target_name in item.name.lower():
                 if hasattr(item, 'item_type') and item.item_type == 'container':
                     container = item
@@ -11283,7 +11284,7 @@ class CommandHandler:
 
         # Check for container first
         container = None
-        for item in player.inventory + player.room.items:
+        for item in itertools.chain(player.inventory, player.room.items):
             if target_name in item.name.lower():
                 if hasattr(item, 'item_type') and item.item_type == 'container':
                     container = item
@@ -11389,7 +11390,7 @@ class CommandHandler:
 
         # Check for container first
         container = None
-        for item in player.inventory + player.room.items:
+        for item in itertools.chain(player.inventory, player.room.items):
             if target_name in item.name.lower():
                 if hasattr(item, 'item_type') and item.item_type == 'container':
                     container = item
@@ -16996,7 +16997,7 @@ class CommandHandler:
             return
             
         # Try to find an object
-        for item in player.room.items + player.inventory:
+        for item in itertools.chain(player.room.items, player.inventory):
             if target_name in item.name.lower():
                 await player.send(f"{c['bright_cyan']}=== Object Stats: {item.name} ==={c['reset']}")
                 await player.send(f"{c['white']}Vnum: {item.vnum}  Type: {item.item_type}")
