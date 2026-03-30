@@ -585,7 +585,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .exit-btn:hover {
+        .exit-btn:not(:disabled):hover {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
@@ -620,13 +620,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
             gap: 4px;
         }
         
-        .quick-btn:hover {
+        .quick-btn:not(:disabled):hover {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
         }
         
-        .quick-btn:active {
+        .quick-btn:not(:disabled):active {
             transform: scale(0.96);
         }
         
@@ -635,7 +635,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             color: var(--danger);
         }
         
-        .quick-btn.combat:hover {
+        .quick-btn.combat:not(:disabled):hover {
             background: rgba(248, 81, 73, 0.15);
         }
         
@@ -666,7 +666,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        #command-input:focus {
+        #command-input:not(:disabled):focus {
             border-color: var(--accent);
             box-shadow: 0 0 0 3px var(--accent-glow);
         }
@@ -689,15 +689,20 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .send-btn:hover {
+        .send-btn:not(:disabled):hover {
             filter: brightness(1.1);
             transform: translateY(-1px);
         }
         
-        .send-btn:active {
+        .send-btn:not(:disabled):active {
             transform: translateY(0);
         }
         
+        #command-input:disabled, .send-btn:disabled, .quick-btn:disabled, .exit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         /* ANSI Colors - Enhanced */
         .ansi-black { color: #636e7b; }
         .ansi-red { color: #ff7b72; }
@@ -1073,6 +1078,23 @@ CLIENT_HTML = '''<!DOCTYPE html>
         const mapUrl = `${location.protocol}//${location.hostname}:4001`;
         mapFrame.src = mapUrl;
         
+        function setInputsDisabled(disabled, placeholder) {
+            input.disabled = disabled;
+            sendBtn.disabled = disabled;
+
+            if (placeholder) {
+                input.placeholder = placeholder;
+            }
+
+            document.querySelectorAll('.quick-btn').forEach(btn => {
+                btn.disabled = disabled;
+            });
+
+            document.querySelectorAll('.exit-btn').forEach(btn => {
+                btn.disabled = disabled;
+            });
+        }
+
         function setStatus(state, text) {
             status.textContent = text;
             status.className = 'status-badge ' + state;
@@ -1200,12 +1222,14 @@ CLIENT_HTML = '''<!DOCTYPE html>
         closeMapBtn.addEventListener('click', toggleMap);
         
         function connect() {
+            setInputsDisabled(true, 'Connecting...');
             welcomeStatus.textContent = 'Connecting to server...';
             const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
             ws = new WebSocket(`${protocol}//${location.host}/ws`);
             
             ws.onopen = () => {
                 setStatus('', 'Connected');
+                setInputsDisabled(false, 'Enter command...');
                 welcomeOverlay.classList.add('hidden');
             };
             
@@ -1226,11 +1250,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
             
             ws.onclose = () => {
                 setStatus('disconnected', 'Disconnected');
+                setInputsDisabled(true, 'Disconnected. Refresh to reconnect.');
                 appendOutput('<span class="ansi-yellow">\\n--- Connection closed. Refresh to reconnect. ---\\n</span>');
             };
             
             ws.onerror = () => {
                 setStatus('disconnected', 'Error');
+                setInputsDisabled(true, 'Connection error.');
                 welcomeStatus.textContent = 'Connection failed. Is the server running?';
             };
         }
