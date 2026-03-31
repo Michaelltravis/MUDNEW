@@ -620,13 +620,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
             gap: 4px;
         }
         
-        .quick-btn:hover {
+        .quick-btn:not(:disabled):hover {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
         }
         
-        .quick-btn:active {
+        .quick-btn:not(:disabled):active {
             transform: scale(0.96);
         }
         
@@ -635,8 +635,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
             color: var(--danger);
         }
         
-        .quick-btn.combat:hover {
+        .quick-btn.combat:not(:disabled):hover {
             background: rgba(248, 81, 73, 0.15);
+        }
+
+        .quick-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
         
         /* Input area */
@@ -666,7 +671,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        #command-input:focus {
+        #command-input:not(:disabled):focus {
             border-color: var(--accent);
             box-shadow: 0 0 0 3px var(--accent-glow);
         }
@@ -674,6 +679,12 @@ CLIENT_HTML = '''<!DOCTYPE html>
         #command-input::placeholder {
             color: var(--text-dim);
             opacity: 0.6;
+        }
+
+        #command-input:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background-color: var(--panel-bg);
         }
         
         .send-btn {
@@ -689,13 +700,19 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .send-btn:hover {
+        .send-btn:not(:disabled):hover {
             filter: brightness(1.1);
             transform: translateY(-1px);
         }
         
-        .send-btn:active {
+        .send-btn:not(:disabled):active {
             transform: translateY(0);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background-color: var(--border-color);
         }
         
         /* ANSI Colors - Enhanced */
@@ -902,20 +919,20 @@ CLIENT_HTML = '''<!DOCTYPE html>
         </div>
         
         <div class="quick-commands">
-            <button class="quick-btn" data-cmd="look">👁️ Look</button>
-            <button class="quick-btn" data-cmd="inventory">🎒 Inv</button>
-            <button class="quick-btn" data-cmd="equipment">⚔️ Gear</button>
-            <button class="quick-btn" data-cmd="score">📊 Stats</button>
-            <button class="quick-btn" data-cmd="quest">📜 Quest</button>
-            <button class="quick-btn" data-cmd="who">👥 Who</button>
-            <button class="quick-btn" data-cmd="help">❓ Help</button>
-            <button class="quick-btn combat" data-cmd="flee">🏃 Flee</button>
+            <button class="quick-btn" data-cmd="look" disabled>👁️ Look</button>
+            <button class="quick-btn" data-cmd="inventory" disabled>🎒 Inv</button>
+            <button class="quick-btn" data-cmd="equipment" disabled>⚔️ Gear</button>
+            <button class="quick-btn" data-cmd="score" disabled>📊 Stats</button>
+            <button class="quick-btn" data-cmd="quest" disabled>📜 Quest</button>
+            <button class="quick-btn" data-cmd="who" disabled>👥 Who</button>
+            <button class="quick-btn" data-cmd="help" disabled>❓ Help</button>
+            <button class="quick-btn combat" data-cmd="flee" disabled>🏃 Flee</button>
         </div>
         
         <div id="input-area">
             <span class="input-prompt">&gt;</span>
-            <input type="text" id="command-input" placeholder="Enter command..." aria-label="Command Input" autocomplete="off" autofocus>
-            <button class="send-btn" id="send-btn">Send</button>
+            <input type="text" id="command-input" placeholder="Connecting..." aria-label="Command Input" autocomplete="off" autofocus disabled>
+            <button class="send-btn" id="send-btn" disabled>Send</button>
         </div>
     </div>
     
@@ -1078,6 +1095,20 @@ CLIENT_HTML = '''<!DOCTYPE html>
             status.className = 'status-badge ' + state;
         }
         
+        function setControlsEnabled(enabled, placeholderText) {
+            input.disabled = !enabled;
+            input.placeholder = placeholderText;
+            sendBtn.disabled = !enabled;
+
+            document.querySelectorAll('.quick-btn').forEach(btn => {
+                btn.disabled = !enabled;
+            });
+
+            if (enabled) {
+                input.focus();
+            }
+        }
+
         function updateVitals(hp, maxHp, mana, maxMana, move, maxMove) {
             vitalsBar.style.display = 'flex';
             
@@ -1207,6 +1238,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             ws.onopen = () => {
                 setStatus('', 'Connected');
                 welcomeOverlay.classList.add('hidden');
+                setControlsEnabled(true, 'Enter command...');
             };
             
             ws.onmessage = (event) => {
@@ -1227,11 +1259,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
             ws.onclose = () => {
                 setStatus('disconnected', 'Disconnected');
                 appendOutput('<span class="ansi-yellow">\\n--- Connection closed. Refresh to reconnect. ---\\n</span>');
+                setControlsEnabled(false, 'Disconnected');
             };
             
             ws.onerror = () => {
                 setStatus('disconnected', 'Error');
                 welcomeStatus.textContent = 'Connection failed. Is the server running?';
+                setControlsEnabled(false, 'Disconnected');
             };
         }
         
