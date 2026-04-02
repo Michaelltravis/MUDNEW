@@ -585,7 +585,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .exit-btn:hover {
+        .exit-btn:not(:disabled):hover {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
@@ -620,13 +620,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
             gap: 4px;
         }
         
-        .quick-btn:hover {
+        .quick-btn:not(:disabled):hover {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
         }
         
-        .quick-btn:active {
+        .quick-btn:not(:disabled):active {
             transform: scale(0.96);
         }
         
@@ -635,7 +635,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             color: var(--danger);
         }
         
-        .quick-btn.combat:hover {
+        .quick-btn.combat:not(:disabled):hover {
             background: rgba(248, 81, 73, 0.15);
         }
         
@@ -689,15 +689,20 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .send-btn:hover {
+        .send-btn:not(:disabled):hover {
             filter: brightness(1.1);
             transform: translateY(-1px);
         }
         
-        .send-btn:active {
+        .send-btn:not(:disabled):active {
             transform: translateY(0);
         }
         
+        button:disabled, input:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         /* ANSI Colors - Enhanced */
         .ansi-black { color: #636e7b; }
         .ansi-red { color: #ff7b72; }
@@ -1077,6 +1082,14 @@ CLIENT_HTML = '''<!DOCTYPE html>
             status.textContent = text;
             status.className = 'status-badge ' + state;
         }
+
+        function setInteractiveState(disabled, placeholderText) {
+            const inputs = document.querySelectorAll('#command-input, .send-btn, .quick-btn, .exit-btn');
+            inputs.forEach(el => el.disabled = disabled);
+            if (placeholderText) {
+                input.placeholder = placeholderText;
+            }
+        }
         
         function updateVitals(hp, maxHp, mana, maxMana, move, maxMove) {
             vitalsBar.style.display = 'flex';
@@ -1201,12 +1214,15 @@ CLIENT_HTML = '''<!DOCTYPE html>
         
         function connect() {
             welcomeStatus.textContent = 'Connecting to server...';
+            setInteractiveState(true, 'Connecting...');
             const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
             ws = new WebSocket(`${protocol}//${location.host}/ws`);
             
             ws.onopen = () => {
                 setStatus('', 'Connected');
                 welcomeOverlay.classList.add('hidden');
+                setInteractiveState(false, 'Enter command...');
+                input.focus();
             };
             
             ws.onmessage = (event) => {
@@ -1226,11 +1242,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
             
             ws.onclose = () => {
                 setStatus('disconnected', 'Disconnected');
+                setInteractiveState(true, 'Disconnected. Refresh to reconnect.');
                 appendOutput('<span class="ansi-yellow">\\n--- Connection closed. Refresh to reconnect. ---\\n</span>');
             };
             
             ws.onerror = () => {
                 setStatus('disconnected', 'Error');
+                setInteractiveState(true, 'Connection error.');
                 welcomeStatus.textContent = 'Connection failed. Is the server running?';
             };
         }
