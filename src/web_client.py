@@ -620,13 +620,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
             gap: 4px;
         }
         
-        .quick-btn:hover {
+        .quick-btn:not(:disabled):hover {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
         }
         
-        .quick-btn:active {
+        .quick-btn:not(:disabled):active {
             transform: scale(0.96);
         }
         
@@ -635,7 +635,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             color: var(--danger);
         }
         
-        .quick-btn.combat:hover {
+        .quick-btn.combat:not(:disabled):hover {
             background: rgba(248, 81, 73, 0.15);
         }
         
@@ -689,12 +689,12 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .send-btn:hover {
+        .send-btn:not(:disabled):hover {
             filter: brightness(1.1);
             transform: translateY(-1px);
         }
         
-        .send-btn:active {
+        .send-btn:not(:disabled):active {
             transform: translateY(0);
         }
         
@@ -1198,15 +1198,36 @@ CLIENT_HTML = '''<!DOCTYPE html>
         
         toggleMapBtn.addEventListener('click', toggleMap);
         closeMapBtn.addEventListener('click', toggleMap);
+
+        function setInputState(disabled, placeholder) {
+            input.disabled = disabled;
+            if (placeholder) {
+                input.placeholder = placeholder;
+            }
+            input.style.opacity = disabled ? '0.5' : '1';
+            input.style.cursor = disabled ? 'not-allowed' : 'text';
+
+            sendBtn.disabled = disabled;
+            sendBtn.style.opacity = disabled ? '0.5' : '1';
+            sendBtn.style.cursor = disabled ? 'not-allowed' : 'pointer';
+
+            document.querySelectorAll('.quick-btn').forEach(btn => {
+                btn.disabled = disabled;
+                btn.style.opacity = disabled ? '0.5' : '1';
+                btn.style.cursor = disabled ? 'not-allowed' : 'pointer';
+            });
+        }
         
         function connect() {
             welcomeStatus.textContent = 'Connecting to server...';
+            setInputState(true, 'Connecting...');
             const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
             ws = new WebSocket(`${protocol}//${location.host}/ws`);
             
             ws.onopen = () => {
                 setStatus('', 'Connected');
                 welcomeOverlay.classList.add('hidden');
+                setInputState(false, 'Enter command...');
             };
             
             ws.onmessage = (event) => {
@@ -1226,11 +1247,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
             
             ws.onclose = () => {
                 setStatus('disconnected', 'Disconnected');
+                setInputState(true, 'Disconnected');
                 appendOutput('<span class="ansi-yellow">\\n--- Connection closed. Refresh to reconnect. ---\\n</span>');
             };
             
             ws.onerror = () => {
                 setStatus('disconnected', 'Error');
+                setInputState(true, 'Disconnected');
                 welcomeStatus.textContent = 'Connection failed. Is the server running?';
             };
         }
