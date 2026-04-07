@@ -328,7 +328,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             gap: 6px;
         }
         
-        .header-btn:hover {
+        .header-btn:not(:disabled):hover {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
@@ -464,7 +464,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .map-header button:hover {
+        .map-header button:not(:disabled):hover {
             color: var(--accent);
             background: var(--accent-glow);
         }
@@ -585,7 +585,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .exit-btn:hover {
+        .exit-btn:not(:disabled):hover {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
@@ -620,13 +620,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
             gap: 4px;
         }
         
-        .quick-btn:hover {
+        .quick-btn:not(:disabled):hover {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
         }
         
-        .quick-btn:active {
+        .quick-btn:not(:disabled):active {
             transform: scale(0.96);
         }
         
@@ -635,7 +635,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             color: var(--danger);
         }
         
-        .quick-btn.combat:hover {
+        .quick-btn.combat:not(:disabled):hover {
             background: rgba(248, 81, 73, 0.15);
         }
         
@@ -689,12 +689,12 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .send-btn:hover {
+        .send-btn:not(:disabled):hover {
             filter: brightness(1.1);
             transform: translateY(-1px);
         }
         
-        .send-btn:active {
+        .send-btn:not(:disabled):active {
             transform: translateY(0);
         }
         
@@ -1002,7 +1002,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             font-size: 18px;
             cursor: pointer;
         }
-        .close-modal:hover { color: #fff; }
+        .close-modal:not(:disabled):hover { color: #fff; }
         .modal-body {
             padding: 16px;
         }
@@ -1030,7 +1030,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             cursor: pointer;
             font-size: 12px;
         }
-        .setting-btn:hover {
+        .setting-btn:not(:disabled):hover {
             background: #3a3a5a;
         }
         .setting-btn.toggle {
@@ -1045,6 +1045,10 @@ CLIENT_HTML = '''<!DOCTYPE html>
             min-width: 40px;
             text-align: center;
             font-size: 12px;
+        }
+        button:disabled, input:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
     </style>
     
@@ -1183,6 +1187,20 @@ CLIENT_HTML = '''<!DOCTYPE html>
             }
         }
         
+        function setInputState(enabled, placeholderText) {
+            input.disabled = !enabled;
+            input.placeholder = placeholderText;
+            sendBtn.disabled = !enabled;
+
+            document.querySelectorAll('.quick-btn').forEach(btn => {
+                btn.disabled = !enabled;
+            });
+
+            document.querySelectorAll('.exit-btn').forEach(btn => {
+                btn.disabled = !enabled;
+            });
+        }
+
         function updateMapPlayer() {
             if (playerName && mapFrame.contentWindow) {
                 try {
@@ -1201,12 +1219,14 @@ CLIENT_HTML = '''<!DOCTYPE html>
         
         function connect() {
             welcomeStatus.textContent = 'Connecting to server...';
+            setInputState(false, 'Connecting...');
             const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
             ws = new WebSocket(`${protocol}//${location.host}/ws`);
             
             ws.onopen = () => {
                 setStatus('', 'Connected');
                 welcomeOverlay.classList.add('hidden');
+                setInputState(true, 'Enter command...');
             };
             
             ws.onmessage = (event) => {
@@ -1226,11 +1246,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
             
             ws.onclose = () => {
                 setStatus('disconnected', 'Disconnected');
+                setInputState(false, 'Disconnected');
                 appendOutput('<span class="ansi-yellow">\\n--- Connection closed. Refresh to reconnect. ---\\n</span>');
             };
             
             ws.onerror = () => {
                 setStatus('disconnected', 'Error');
+                setInputState(false, 'Disconnected');
                 welcomeStatus.textContent = 'Connection failed. Is the server running?';
             };
         }
