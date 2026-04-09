@@ -9,3 +9,6 @@
 ## 2024-05-25 - Custom Toggle Switches
 **Learning:** Custom toggle buttons (e.g., in settings modals) must implement semantic switch attributes including `role='switch'`, dynamic `aria-checked` states ('true' or 'false'), and explicit labels via `aria-labelledby` or `aria-label`. Otherwise, screen readers don't know the state of the toggle.
 **Action:** Always ensure toggle buttons implement ARIA switch semantics.
+## 2026-04-09 - Connection State Feedback
+**Learning:** Visually and programmatically disable interactive input elements during WebSocket connection initialization and failure. Use CSS :not(:disabled) on hover/active pseudo-classes and update placeholders to explicitly explain the disabled state.
+**Action:** Always programmatically disable inputs and update CSS hover states during pending or failed connection states.
