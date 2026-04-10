@@ -334,6 +334,11 @@ CLIENT_HTML = '''<!DOCTYPE html>
             background: var(--accent-glow);
         }
         
+        button:disabled, input:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         .header-btn.active {
             background: var(--accent);
             color: var(--bg-color);
@@ -585,7 +590,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .exit-btn:hover {
+        .exit-btn:not(:disabled):hover {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
@@ -620,7 +625,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             gap: 4px;
         }
         
-        .quick-btn:hover {
+        .quick-btn:not(:disabled):hover {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
@@ -635,7 +640,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             color: var(--danger);
         }
         
-        .quick-btn.combat:hover {
+        .quick-btn.combat:not(:disabled):hover {
             background: rgba(248, 81, 73, 0.15);
         }
         
@@ -689,12 +694,12 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .send-btn:hover {
+        .send-btn:not(:disabled):hover {
             filter: brightness(1.1);
             transform: translateY(-1px);
         }
         
-        .send-btn:active {
+        .send-btn:not(:disabled):active {
             transform: translateY(0);
         }
         
@@ -855,12 +860,12 @@ CLIENT_HTML = '''<!DOCTYPE html>
             <div class="room-info" id="room-info" style="display:none;">
                 <span class="room-name" id="room-name">Unknown Location</span>
                 <div class="room-exits" id="room-exits">
-                <button class="exit-btn" data-dir="north" title="North" aria-label="Go North">N</button>
-                <button class="exit-btn" data-dir="south" title="South" aria-label="Go South">S</button>
-                <button class="exit-btn" data-dir="east" title="East" aria-label="Go East">E</button>
-                <button class="exit-btn" data-dir="west" title="West" aria-label="Go West">W</button>
-                <button class="exit-btn" data-dir="up" title="Up" aria-label="Go Up">U</button>
-                <button class="exit-btn" data-dir="down" title="Down" aria-label="Go Down">D</button>
+                <button class="exit-btn" data-dir="north" title="North" aria-label="Go North" disabled>N</button>
+                <button class="exit-btn" data-dir="south" title="South" aria-label="Go South" disabled>S</button>
+                <button class="exit-btn" data-dir="east" title="East" aria-label="Go East" disabled>E</button>
+                <button class="exit-btn" data-dir="west" title="West" aria-label="Go West" disabled>W</button>
+                <button class="exit-btn" data-dir="up" title="Up" aria-label="Go Up" disabled>U</button>
+                <button class="exit-btn" data-dir="down" title="Down" aria-label="Go Down" disabled>D</button>
                 </div>
             </div>
             <div id="terminal" role="log" aria-live="polite"></div>
@@ -902,20 +907,20 @@ CLIENT_HTML = '''<!DOCTYPE html>
         </div>
         
         <div class="quick-commands">
-            <button class="quick-btn" data-cmd="look">👁️ Look</button>
-            <button class="quick-btn" data-cmd="inventory">🎒 Inv</button>
-            <button class="quick-btn" data-cmd="equipment">⚔️ Gear</button>
-            <button class="quick-btn" data-cmd="score">📊 Stats</button>
-            <button class="quick-btn" data-cmd="quest">📜 Quest</button>
-            <button class="quick-btn" data-cmd="who">👥 Who</button>
-            <button class="quick-btn" data-cmd="help">❓ Help</button>
-            <button class="quick-btn combat" data-cmd="flee">🏃 Flee</button>
+            <button class="quick-btn" data-cmd="look" disabled>👁️ Look</button>
+            <button class="quick-btn" data-cmd="inventory" disabled>🎒 Inv</button>
+            <button class="quick-btn" data-cmd="equipment" disabled>⚔️ Gear</button>
+            <button class="quick-btn" data-cmd="score" disabled>📊 Stats</button>
+            <button class="quick-btn" data-cmd="quest" disabled>📜 Quest</button>
+            <button class="quick-btn" data-cmd="who" disabled>👥 Who</button>
+            <button class="quick-btn" data-cmd="help" disabled>❓ Help</button>
+            <button class="quick-btn combat" data-cmd="flee" disabled>🏃 Flee</button>
         </div>
         
         <div id="input-area">
             <span class="input-prompt">&gt;</span>
-            <input type="text" id="command-input" placeholder="Enter command..." aria-label="Command Input" autocomplete="off" autofocus>
-            <button class="send-btn" id="send-btn">Send</button>
+            <input type="text" id="command-input" placeholder="Connecting..." aria-label="Command Input" autocomplete="off" autofocus disabled>
+            <button class="send-btn" id="send-btn" disabled>Send</button>
         </div>
     </div>
     
@@ -1076,6 +1081,22 @@ CLIENT_HTML = '''<!DOCTYPE html>
         function setStatus(state, text) {
             status.textContent = text;
             status.className = 'status-badge ' + state;
+
+            const isConnected = state === '';
+            const input = document.getElementById('command-input');
+            const buttons = document.querySelectorAll('.quick-btn, .exit-btn, .send-btn');
+
+            if (input) {
+                input.disabled = !isConnected;
+                if (!isConnected) {
+                    input.placeholder = state === 'disconnected' ? 'Disconnected' : 'Connecting...';
+                } else {
+                    input.placeholder = 'Enter command...';
+                    input.focus();
+                }
+            }
+
+            buttons.forEach(btn => btn.disabled = !isConnected);
         }
         
         function updateVitals(hp, maxHp, mana, maxMana, move, maxMove) {
@@ -1200,6 +1221,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
         closeMapBtn.addEventListener('click', toggleMap);
         
         function connect() {
+            setStatus('connecting', 'Connecting...');
             welcomeStatus.textContent = 'Connecting to server...';
             const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
             ws = new WebSocket(`${protocol}//${location.host}/ws`);
