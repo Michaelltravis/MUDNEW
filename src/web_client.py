@@ -328,7 +328,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             gap: 6px;
         }
         
-        .header-btn:hover {
+        .header-btn:not(:disabled):hover {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
@@ -464,7 +464,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .map-header button:hover {
+        .map-header button:not(:disabled):hover {
             color: var(--accent);
             background: var(--accent-glow);
         }
@@ -585,12 +585,19 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .exit-btn:hover {
+        .exit-btn:not(:disabled):hover {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
         }
         
+        .exit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            border-color: var(--border-color);
+            color: var(--text-dim);
+        }
+
         .exit-btn.available {
             color: var(--success);
             border-color: var(--success);
@@ -620,13 +627,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
             gap: 4px;
         }
         
-        .quick-btn:hover {
+        .quick-btn:not(:disabled):hover {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
         }
         
-        .quick-btn:active {
+        .quick-btn:not(:disabled):active {
             transform: scale(0.96);
         }
         
@@ -635,10 +642,15 @@ CLIENT_HTML = '''<!DOCTYPE html>
             color: var(--danger);
         }
         
-        .quick-btn.combat:hover {
+        .quick-btn.combat:not(:disabled):hover {
             background: rgba(248, 81, 73, 0.15);
         }
         
+        .quick-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         /* Input area */
         #input-area {
             display: flex;
@@ -671,6 +683,12 @@ CLIENT_HTML = '''<!DOCTYPE html>
             box-shadow: 0 0 0 3px var(--accent-glow);
         }
         
+        #command-input:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: var(--panel-bg);
+        }
+
         #command-input::placeholder {
             color: var(--text-dim);
             opacity: 0.6;
@@ -689,15 +707,22 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .send-btn:hover {
+        .send-btn:not(:disabled):hover {
             filter: brightness(1.1);
             transform: translateY(-1px);
         }
         
-        .send-btn:active {
+        .send-btn:not(:disabled):active {
             transform: translateY(0);
         }
         
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: var(--border-color);
+            color: var(--text-dim);
+        }
+
         /* ANSI Colors - Enhanced */
         .ansi-black { color: #636e7b; }
         .ansi-red { color: #ff7b72; }
@@ -1199,14 +1224,33 @@ CLIENT_HTML = '''<!DOCTYPE html>
         toggleMapBtn.addEventListener('click', toggleMap);
         closeMapBtn.addEventListener('click', toggleMap);
         
+        function setControlsEnabled(enabled, placeholder) {
+            input.disabled = !enabled;
+            sendBtn.disabled = !enabled;
+
+            if (placeholder) {
+                input.placeholder = placeholder;
+            }
+
+            document.querySelectorAll('.quick-btn').forEach(btn => {
+                btn.disabled = !enabled;
+            });
+
+            document.querySelectorAll('.exit-btn').forEach(btn => {
+                btn.disabled = !enabled;
+            });
+        }
+
         function connect() {
             welcomeStatus.textContent = 'Connecting to server...';
+            setControlsEnabled(false, 'Connecting...');
             const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
             ws = new WebSocket(`${protocol}//${location.host}/ws`);
             
             ws.onopen = () => {
                 setStatus('', 'Connected');
                 welcomeOverlay.classList.add('hidden');
+                setControlsEnabled(true, 'Enter command...');
             };
             
             ws.onmessage = (event) => {
@@ -1226,11 +1270,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
             
             ws.onclose = () => {
                 setStatus('disconnected', 'Disconnected');
+                setControlsEnabled(false, 'Disconnected');
                 appendOutput('<span class="ansi-yellow">\\n--- Connection closed. Refresh to reconnect. ---\\n</span>');
             };
             
             ws.onerror = () => {
                 setStatus('disconnected', 'Error');
+                setControlsEnabled(false, 'Disconnected');
                 welcomeStatus.textContent = 'Connection failed. Is the server running?';
             };
         }
