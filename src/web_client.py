@@ -585,12 +585,17 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .exit-btn:hover {
+        .exit-btn:not(:disabled):hover {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
         }
         
+        .exit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         .exit-btn.available {
             color: var(--success);
             border-color: var(--success);
@@ -620,13 +625,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
             gap: 4px;
         }
         
-        .quick-btn:hover {
+        .quick-btn:not(:disabled):hover {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
         }
         
-        .quick-btn:active {
+        .quick-btn:not(:disabled):active {
             transform: scale(0.96);
         }
         
@@ -635,10 +640,15 @@ CLIENT_HTML = '''<!DOCTYPE html>
             color: var(--danger);
         }
         
-        .quick-btn.combat:hover {
+        .quick-btn.combat:not(:disabled):hover {
             background: rgba(248, 81, 73, 0.15);
         }
         
+        .quick-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         /* Input area */
         #input-area {
             display: flex;
@@ -689,15 +699,20 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .send-btn:hover {
+        .send-btn:not(:disabled):hover {
             filter: brightness(1.1);
             transform: translateY(-1px);
         }
         
-        .send-btn:active {
+        .send-btn:not(:disabled):active {
             transform: translateY(0);
         }
         
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         /* ANSI Colors - Enhanced */
         .ansi-black { color: #636e7b; }
         .ansi-red { color: #ff7b72; }
@@ -1078,6 +1093,20 @@ CLIENT_HTML = '''<!DOCTYPE html>
             status.className = 'status-badge ' + state;
         }
         
+        function setInteractiveState(connected, placeholderText) {
+            input.disabled = !connected;
+            sendBtn.disabled = !connected;
+            input.placeholder = placeholderText;
+
+            document.querySelectorAll('.quick-btn').forEach(btn => {
+                btn.disabled = !connected;
+            });
+
+            document.querySelectorAll('.exit-btn').forEach(btn => {
+                btn.disabled = !connected;
+            });
+        }
+
         function updateVitals(hp, maxHp, mana, maxMana, move, maxMove) {
             vitalsBar.style.display = 'flex';
             
@@ -1201,11 +1230,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
         
         function connect() {
             welcomeStatus.textContent = 'Connecting to server...';
+            setInteractiveState(false, 'Connecting...');
             const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
             ws = new WebSocket(`${protocol}//${location.host}/ws`);
             
             ws.onopen = () => {
                 setStatus('', 'Connected');
+                setInteractiveState(true, 'Enter command...');
                 welcomeOverlay.classList.add('hidden');
             };
             
@@ -1226,11 +1257,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
             
             ws.onclose = () => {
                 setStatus('disconnected', 'Disconnected');
+                setInteractiveState(false, 'Disconnected');
                 appendOutput('<span class="ansi-yellow">\\n--- Connection closed. Refresh to reconnect. ---\\n</span>');
             };
             
             ws.onerror = () => {
                 setStatus('disconnected', 'Error');
+                setInteractiveState(false, 'Disconnected');
                 welcomeStatus.textContent = 'Connection failed. Is the server running?';
             };
         }
