@@ -1,0 +1,213 @@
+
+    ╔═══════════════════════════════════════════════════════════════╗
+    ║                                                               ║
+    ║   ██████╗ ███████╗ █████╗ ██╗     ███╗   ███╗███████╗         ║
+    ║   ██╔══██╗██╔════╝██╔══██╗██║     ████╗ ████║██╔════╝         ║
+    ║   ██████╔╝█████╗  ███████║██║     ██╔████╔██║███████╗         ║
+    ║   ██╔══██╗██╔══╝  ██╔══██║██║     ██║╚██╔╝██║╚════██║         ║
+    ║   ██║  ██║███████╗██║  ██║███████╗██║ ╚═╝ ██║███████║         ║
+    ║   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝╚══════╝         ║
+    ║                       MUD                                     ║
+    ║                                                               ║
+    ╚═══════════════════════════════════════════════════════════════╝
+
+    Starting RealmsMUD server on port 4000...
+
+2026-04-21 22:46:18,818 - Misthollow - INFO - ============================================================
+2026-04-21 22:46:18,818 - Misthollow - INFO - Misthollow - Fantasy Multi-User Dungeon
+2026-04-21 22:46:18,818 - Misthollow - INFO - ============================================================
+2026-04-21 22:46:18,818 - Misthollow - INFO - Initializing game systems...
+2026-04-21 22:46:18,818 - time_system - INFO - Game time initialized: 12:00 PM, Day 1 of Early Summer, Year 1000
+2026-04-21 22:46:18,818 - Misthollow.World - INFO - Loading world...
+2026-04-21 22:46:18,820 - Misthollow.World - INFO - Loaded zone 62: The Orc Enclave (68 rooms)
+2026-04-21 22:46:18,821 - Misthollow.World - INFO - Loaded zone 190: The Frostspire (27 rooms)
+2026-04-21 22:46:18,821 - Misthollow.World - INFO - Loaded zone 250: The Blood Pit Arena (7 rooms)
+2026-04-21 22:46:18,824 - Misthollow.World - INFO - Loaded zone 50: The Great Eastern Desert (74 rooms)
+2026-04-21 22:46:18,826 - Misthollow.World - INFO - Loaded zone 120: Rome (66 rooms)
+2026-04-21 22:46:18,827 - Misthollow.World - INFO - Loaded zone 200: Forest of Shadows (10 rooms)
+2026-04-21 22:46:18,828 - Misthollow.World - INFO - Loaded zone 100: The Dwarven Mines of Khaz-Durum (25 rooms)
+2026-04-21 22:46:18,829 - Misthollow.World - INFO - Loaded zone 260: Midgaard Housing District (22 rooms)
+2026-04-21 22:46:18,831 - Misthollow.World - INFO - Loaded zone 150: King Welmar's Castle (75 rooms)
+2026-04-21 22:46:18,832 - Misthollow.World - INFO - Loaded zone 280: The Ashen Expanse (36 rooms)
+2026-04-21 22:46:18,833 - Misthollow.World - INFO - Loaded zone 35: Miden'Nir (45 rooms)
+2026-04-21 22:46:18,834 - Misthollow.World - INFO - Loaded zone 186: Newbie Zone (41 rooms)
+2026-04-21 22:46:18,835 - Misthollow.World - INFO - Loaded zone 140: The Necropolis of Eternal Night (31 rooms)
+2026-04-21 22:46:18,836 - Misthollow.World - INFO - Loaded zone 0: Limbo - Internal (3 rooms)
+2026-04-21 22:46:18,836 - Misthollow.World - INFO - Loaded zone 245: Shadowspire Citadel (30 rooms)
+2026-04-21 22:46:18,839 - Misthollow.World - INFO - Loaded zone 220: Castle Apocalypse (77 rooms)
+2026-04-21 22:46:18,840 - Misthollow.World - INFO - Loaded zone 130: The Sunken Ruins of Atal'narath (18 rooms)
+2026-04-21 22:46:18,840 - Misthollow.World - INFO - Loaded zone 80: The Dragon's Domain (5 rooms)
+2026-04-21 22:46:18,841 - Misthollow.World - INFO - Loaded zone 66: The Northern Wilderness (14 rooms)
+2026-04-21 22:46:18,843 - Misthollow.World - INFO - Loaded zone 36: The Chessboard of Midgaard (67 rooms)
+2026-04-21 22:46:18,844 - Misthollow.World - INFO - Loaded zone 61: Haon-Dor, Dark Forest (48 rooms)
+2026-04-21 22:46:18,848 - Misthollow.World - INFO - Loaded zone 25: The High Tower Of Magic (183 rooms)
+2026-04-21 22:46:18,849 - Misthollow.World - INFO - Loaded zone 79: Redferne's Residence (20 rooms)
+2026-04-21 22:46:18,851 - Misthollow.World - INFO - Loaded zone 52: The City Of Thalos (51 rooms)
+2026-04-21 22:46:18,852 - Misthollow.World - INFO - Loaded zone 63: Arachnos (52 rooms)
+2026-04-21 22:46:18,854 - Misthollow.World - INFO - Loaded zone 31: Southern part of Midgaard (54 rooms)
+2026-04-21 22:46:18,854 - Misthollow.World - INFO - Loaded zone 248: The Clockwork Foundry (30 rooms)
+2026-04-21 22:46:18,861 - Misthollow.World - INFO - Loaded zone 210: Tunnel of Sticks (400 rooms)
+2026-04-21 22:46:18,862 - Misthollow.World - INFO - Loaded zone 15: The Straight Path (41 rooms)
+2026-04-21 22:46:18,862 - Misthollow.World - INFO - Loaded zone 73: The Mindflayer's Lair (3 rooms)
+2026-04-21 22:46:18,863 - Misthollow.World - INFO - Loaded zone 240: The Sunken Temple of Nereus (25 rooms)
+2026-04-21 22:46:18,864 - Misthollow.World - INFO - Loaded zone 300: The Shattered Throne (40 rooms)
+2026-04-21 22:46:18,865 - Misthollow.World - INFO - Loaded zone 64: Rand's Tower (46 rooms)
+2026-04-21 22:46:18,867 - Misthollow.World - INFO - Loaded zone 33: The Three Of Swords (76 rooms)
+2026-04-21 22:46:18,868 - Misthollow.World - INFO - Loaded zone 290: The Black Observatory (36 rooms)
+2026-04-21 22:46:18,869 - Misthollow.World - INFO - Loaded zone 32: Midgaard Stables (4 rooms)
+2026-04-21 22:46:18,869 - Misthollow.World - INFO - Loaded zone 180: The Great Northern Forest (26 rooms)
+2026-04-21 22:46:18,871 - Misthollow.World - INFO - Loaded zone 72: The Sewer Maze (87 rooms)
+2026-04-21 22:46:18,872 - Misthollow.World - INFO - Loaded zone 160: The Plane of Eternal Chaos (26 rooms)
+2026-04-21 22:46:18,873 - Misthollow.World - INFO - Loaded zone 9: River Island Of Minos (24 rooms)
+2026-04-21 22:46:18,875 - Misthollow.World - INFO - Loaded zone 51: Drow City (51 rooms)
+2026-04-21 22:46:18,875 - Misthollow.World - INFO - Loaded zone 110: Silversong Elven Village (15 rooms)
+2026-04-21 22:46:18,877 - Misthollow.World - INFO - Loaded zone 60: Haon-Dor, Light Forest (64 rooms)
+2026-04-21 22:46:18,878 - Misthollow.World - INFO - Loaded zone 235: The Goblin Warrens (20 rooms)
+2026-04-21 22:46:18,879 - Misthollow.World - INFO - Loaded zone 71: The Second Sewer (26 rooms)
+2026-04-21 22:46:18,880 - Misthollow.World - INFO - Loaded zone 90: The Haunted Swamp (20 rooms)
+2026-04-21 22:46:18,881 - Misthollow.World - INFO - Loaded zone 53: The Great Pyramid (61 rooms)
+2026-04-21 22:46:18,882 - Misthollow.World - INFO - Loaded zone 295: Crown of Bone (36 rooms)
+2026-04-21 22:46:18,883 - Misthollow.World - INFO - Loaded zone 12: God Simplex (7 rooms)
+2026-04-21 22:46:18,883 - Misthollow.World - INFO - Loaded zone 68: The Sunken Coast (12 rooms)
+2026-04-21 22:46:18,885 - Misthollow.World - INFO - Loaded zone 65: The Dwarven Kingdom (51 rooms)
+2026-04-21 22:46:18,885 - Misthollow.World - INFO - Loaded zone 69: The Ashlands (12 rooms)
+2026-04-21 22:46:18,892 - Misthollow.World - INFO - Loaded zone 54: New Thalos (285 rooms)
+2026-04-21 22:46:18,893 - Misthollow.World - INFO - Loaded zone 238: The Haunted Monastery (25 rooms)
+2026-04-21 22:46:18,894 - Misthollow.World - INFO - Loaded zone 285: The Drowned Reliquary (36 rooms)
+2026-04-21 22:46:18,895 - Misthollow.World - INFO - Loaded zone 70: The Sewer, First Level (67 rooms)
+2026-04-21 22:46:18,896 - Misthollow.World - INFO - Loaded zone 270: The Whispering Woods (19 rooms)
+2026-04-21 22:46:18,898 - Misthollow.World - INFO - Loaded zone 40: Mines of Moria (103 rooms)
+2026-04-21 22:46:18,899 - Misthollow.World - INFO - Loaded zone 67: The Eastern Highlands (14 rooms)
+2026-04-21 22:46:18,902 - Misthollow.World - INFO - Loaded zone 30: Northern Midgaard Main City (75 rooms)
+2026-04-21 22:46:19,052 - Misthollow.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
+2026-04-21 22:46:19,052 - Misthollow.Shops - INFO - Created shop for shopkeeper (vnum 12011) with 1 items
+2026-04-21 22:46:19,053 - Misthollow.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
+2026-04-21 22:46:19,055 - Misthollow.Shops - INFO - Created shop for vendor (vnum 12016) with 0 items
+2026-04-21 22:46:19,055 - Misthollow.Shops - INFO - Created shop for peddler (vnum 12012) with 1 items
+2026-04-21 22:46:19,057 - Misthollow.Shops - INFO - Created shop for shopkeeper (vnum 12034) with 1 items
+2026-04-21 22:46:19,058 - Misthollow.Shops - INFO - Created shop for baker (vnum 12036) with 2 items
+2026-04-21 22:46:19,058 - Misthollow.Shops - INFO - Created shop for grocer (vnum 12037) with 2 items
+2026-04-21 22:46:19,067 - Misthollow.Shops - INFO - Created shop for carpenter (vnum 26001) with 5 items
+2026-04-21 22:46:19,068 - Misthollow.Shops - INFO - Created shop for chef (vnum 15022) with 1 items
+2026-04-21 22:46:19,074 - Misthollow.Shops - INFO - Created shop for astrologer (vnum 15019) with 1 items
+2026-04-21 22:46:19,102 - Misthollow.Shops - INFO - Created shop for strick (vnum 2505) with 1 items
+2026-04-21 22:46:19,103 - Misthollow.Shops - INFO - Created shop for tatorious (vnum 2506) with 1 items
+2026-04-21 22:46:19,158 - Misthollow.Shops - INFO - Created shop for storekeeper (vnum 3301) with 1 items
+2026-04-21 22:46:19,159 - Misthollow.Shops - INFO - Created shop for cowgirl (vnum 3302) with 1 items
+2026-04-21 22:46:19,159 - Misthollow.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-04-21 22:46:19,160 - Misthollow.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-04-21 22:46:19,160 - Misthollow.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-04-21 22:46:19,160 - Misthollow.Shops - INFO - Created shop for horse (vnum 3303) with 1 items
+2026-04-21 22:46:19,285 - Misthollow.Shops - INFO - Created shop for storekeeper (vnum 6503) with 1 items
+2026-04-21 22:46:19,291 - Misthollow.Shops - INFO - Created shop for baker (vnum 6504) with 1 items
+2026-04-21 22:46:19,296 - Misthollow.Shops - INFO - Created shop for bartender (vnum 5405) with 1 items
+2026-04-21 22:46:19,297 - Misthollow.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-04-21 22:46:19,302 - Misthollow.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-04-21 22:46:19,307 - Misthollow.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-04-21 22:46:19,309 - Misthollow.Shops - INFO - Created shop for cassandra (vnum 5418) with 0 items
+2026-04-21 22:46:19,314 - Misthollow.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-04-21 22:46:19,316 - Misthollow.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-04-21 22:46:19,322 - Misthollow.Shops - INFO - Created shop for nomad (vnum 5433) with 0 items
+2026-04-21 22:46:19,325 - Misthollow.Shops - INFO - Created shop for ahkeem (vnum 5413) with 1 items
+2026-04-21 22:46:19,326 - Misthollow.Shops - INFO - Created shop for vera (vnum 5414) with 1 items
+2026-04-21 22:46:19,328 - Misthollow.Shops - INFO - Created shop for butch (vnum 5415) with 1 items
+2026-04-21 22:46:19,329 - Misthollow.Shops - INFO - Created shop for elriva (vnum 5479) with 1 items
+2026-04-21 22:46:19,330 - Misthollow.Shops - INFO - Created shop for braheem (vnum 5480) with 1 items
+2026-04-21 22:46:19,332 - Misthollow.Shops - INFO - Created shop for shopkeeper (vnum 5411) with 1 items
+2026-04-21 22:46:19,332 - Misthollow.Shops - INFO - Created shop for abdul (vnum 5416) with 1 items
+2026-04-21 22:46:19,334 - Misthollow.Shops - INFO - Created shop for baker (vnum 5410) with 1 items
+2026-04-21 22:46:19,334 - Misthollow.Shops - INFO - Created shop for igor (vnum 5417) with 1 items
+2026-04-21 22:46:19,335 - Misthollow.Shops - INFO - Created shop for stitch (vnum 5484) with 1 items
+2026-04-21 22:46:19,335 - Misthollow.Shops - INFO - Created shop for patch (vnum 5483) with 1 items
+2026-04-21 22:46:19,336 - Misthollow.Shops - INFO - Created shop for shipwright (vnum 5465) with 1 items
+2026-04-21 22:46:19,336 - Misthollow.Shops - INFO - Created shop for blacksmith (vnum 5466) with 1 items
+2026-04-21 22:46:19,436 - Misthollow.Shops - INFO - Created shop for waiter (vnum 3043) with 1 items
+2026-04-21 22:46:19,439 - Misthollow.Shops - INFO - Created shop for bartender (vnum 3040) with 1 items
+2026-04-21 22:46:19,441 - Misthollow.Shops - INFO - Created shop for grocer (vnum 3002) with 7 items
+2026-04-21 22:46:19,441 - Misthollow.Shops - INFO - Created shop for weaponsmith (vnum 3003) with 1 items
+2026-04-21 22:46:19,445 - Misthollow.Shops - INFO - Created shop for waiter (vnum 3042) with 1 items
+2026-04-21 22:46:19,446 - Misthollow.Shops - INFO - Created shop for armourer (vnum 3004) with 1 items
+2026-04-21 22:46:19,448 - Misthollow.Shops - INFO - Created shop for waiter (vnum 3045) with 1 items
+2026-04-21 22:46:19,453 - Misthollow.Shops - INFO - Created shop for waiter (vnum 3044) with 1 items
+2026-04-21 22:46:19,459 - Misthollow.Shops - INFO - Created shop for wizard (vnum 3000) with 4 items
+2026-04-21 22:46:19,461 - Misthollow.Shops - INFO - Created shop for filthy (vnum 3046) with 1 items
+2026-04-21 22:46:19,463 - Misthollow.Shops - INFO - Created shop for captain (vnum 3006) with 1 items
+2026-04-21 22:46:19,463 - Misthollow.Shops - INFO - Created shop for sailor (vnum 3007) with 0 items
+2026-04-21 22:46:19,464 - Misthollow.Shops - INFO - Created shop for wally (vnum 3009) with 1 items
+2026-04-21 22:46:19,480 - Misthollow.Factions - INFO - Spawned faction NPC: Captain Aldren in room 3005
+2026-04-21 22:46:19,481 - Misthollow.Factions - INFO - Spawned faction NPC: Whisper in room 3044
+2026-04-21 22:46:19,481 - Misthollow.Factions - INFO - Spawned faction NPC: Archmage Thessaly in room 3017
+2026-04-21 22:46:19,481 - Misthollow.Factions - INFO - Spawned faction NPC: Elder Oakhart in room 3600
+2026-04-21 22:46:19,481 - Misthollow.Factions - INFO - Spawned faction NPC: the Shrouded Figure in room 3100
+2026-04-21 22:46:19,481 - Misthollow.Factions - INFO - Spawned faction NPC: Guildmaster Brennan in room 3014
+2026-04-21 22:46:19,481 - Misthollow.Factions - INFO - Spawned 6 faction NPCs
+2026-04-21 22:46:19,503 - Misthollow.World - INFO - World loaded: 60 zones, 3008 rooms
+2026-04-21 22:46:19,504 - Misthollow.WebMap - INFO - Web map server listening on 0.0.0.0:4001
+2026-04-21 22:46:19,765 - Misthollow - WARNING - Web client failed to start: [Errno 98] error while attempting to bind on address ('0.0.0.0', 4003): [errno 98] address already in use
+2026-04-21 22:46:19,766 - Misthollow - INFO - Initialization complete!
+2026-04-21 22:46:19,766 - Misthollow - INFO - Starting server on port 4000...
+2026-04-21 22:46:19,766 - Misthollow.Server - INFO - Server listening on 0.0.0.0:4000
+2026-04-21 22:47:12,520 - Misthollow.WebMap - INFO - HTTP request: method='GET' path='/' raw='GET / HTTP/1.1'
+2026-04-21 22:47:12,702 - Misthollow.WebMap - INFO - HTTP request: method='GET' path='/map.css' raw='GET /map.css HTTP/1.1'
+2026-04-21 22:47:12,713 - Misthollow.WebMap - INFO - HTTP request: method='GET' path='/map.js' raw='GET /map.js HTTP/1.1'
+2026-04-21 22:47:12,753 - Misthollow.Server - INFO - New connection from ('127.0.0.1', 45866)
+2026-04-21 22:47:12,998 - Misthollow.WebMap - INFO - HTTP request: method='GET' path='/' raw='GET / HTTP/1.1'
+2026-04-21 22:47:19,199 - Misthollow.WebMap - INFO - WebSocket close frame received from client
+2026-04-21 22:47:19,199 - Misthollow.WebMap - INFO - WebSocket message is None, closing connection for client
+2026-04-21 22:47:19,199 - Misthollow.Server - INFO - Connection closed: ('127.0.0.1', 45866)
+2026-04-21 22:47:46,287 - Misthollow.WebMap - INFO - HTTP request: method='GET' path='/' raw='GET / HTTP/1.1'
+2026-04-21 22:47:46,309 - Misthollow.WebMap - INFO - HTTP request: method='GET' path='/map.css' raw='GET /map.css HTTP/1.1'
+2026-04-21 22:47:46,312 - Misthollow.WebMap - INFO - HTTP request: method='GET' path='/map.js' raw='GET /map.js HTTP/1.1'
+2026-04-21 22:47:46,344 - Misthollow.Server - INFO - New connection from ('127.0.0.1', 42436)
+2026-04-21 22:47:46,419 - Misthollow.WebMap - INFO - HTTP request: method='GET' path='/' raw='GET / HTTP/1.1'
+2026-04-21 22:47:52,517 - Misthollow.WebMap - INFO - WebSocket close frame received from client
+2026-04-21 22:47:52,518 - Misthollow.WebMap - INFO - WebSocket message is None, closing connection for client
+2026-04-21 22:47:52,522 - Misthollow.Server - INFO - Connection closed: ('127.0.0.1', 42436)
+2026-04-21 22:48:15,610 - Misthollow.WebMap - INFO - HTTP request: method='GET' path='/' raw='GET / HTTP/1.1'
+2026-04-21 22:48:15,613 - Misthollow.Server - INFO - New connection from ('127.0.0.1', 52042)
+2026-04-21 22:48:15,678 - Misthollow.WebMap - INFO - HTTP request: method='GET' path='/map.css' raw='GET /map.css HTTP/1.1'
+2026-04-21 22:48:15,681 - Misthollow.WebMap - INFO - HTTP request: method='GET' path='/map.js' raw='GET /map.js HTTP/1.1'
+2026-04-21 22:48:15,702 - Misthollow.WebMap - INFO - HTTP request: method='GET' path='/' raw='GET / HTTP/1.1'
+2026-04-21 22:48:17,899 - Misthollow.Server - INFO - Connection closed: ('127.0.0.1', 52042)
+2026-04-21 22:48:19,086 - Misthollow.WebMap - INFO - WebSocket close frame received from client
+2026-04-21 22:48:19,086 - Misthollow.WebMap - INFO - WebSocket message is None, closing connection for client
+2026-04-21 22:48:59,778 - Misthollow.Server - INFO - New connection from ('127.0.0.1', 40676)
+2026-04-21 22:49:10,281 - Misthollow.Player - INFO - Created new character: Tester (human warrior)
+2026-04-21 22:49:10,292 - Misthollow.World - INFO - Player entered world: Tester
+2026-04-21 22:49:10,304 - daily - INFO - Daily bonus awarded to Tester: streak=1, total=1
+2026-04-21 22:49:11,356 - Misthollow.WebMap - INFO - notify_player called for 'Tester', connected clients: []
+2026-04-21 22:49:11,356 - Misthollow.WebMap - WARNING - notify_player: NO connected clients for 'Tester' (total clients: 0, names: [])
+2026-04-21 22:49:11,360 - quests - INFO - Tester accepted quest tutorial_1_awakening
+2026-04-21 22:49:18,792 - Misthollow.WebMap - INFO - notify_player called for 'Tester', connected clients: []
+2026-04-21 22:49:18,792 - Misthollow.WebMap - WARNING - notify_player: NO connected clients for 'Tester' (total clients: 0, names: [])
+2026-04-21 22:49:19,788 - Misthollow.WebMap - INFO - notify_player called for 'Tester', connected clients: []
+2026-04-21 22:49:19,788 - Misthollow.WebMap - WARNING - notify_player: NO connected clients for 'Tester' (total clients: 0, names: [])
+2026-04-21 22:49:35,797 - Misthollow.WebMap - INFO - notify_player called for 'Tester', connected clients: []
+2026-04-21 22:49:35,798 - Misthollow.WebMap - WARNING - notify_player: NO connected clients for 'Tester' (total clients: 0, names: [])
+2026-04-21 22:49:36,798 - Misthollow.WebMap - INFO - notify_player called for 'Tester', connected clients: []
+2026-04-21 22:49:36,798 - Misthollow.WebMap - WARNING - notify_player: NO connected clients for 'Tester' (total clients: 0, names: [])
+2026-04-21 22:49:39,799 - Misthollow.WebMap - INFO - notify_player called for 'Tester', connected clients: []
+2026-04-21 22:49:39,799 - Misthollow.WebMap - WARNING - notify_player: NO connected clients for 'Tester' (total clients: 0, names: [])
+2026-04-21 22:49:40,799 - Misthollow.WebMap - INFO - notify_player called for 'Tester', connected clients: []
+2026-04-21 22:49:40,800 - Misthollow.WebMap - WARNING - notify_player: NO connected clients for 'Tester' (total clients: 0, names: [])
+2026-04-21 22:49:41,800 - Misthollow.WebMap - INFO - notify_player called for 'Tester', connected clients: []
+2026-04-21 22:49:41,800 - Misthollow.WebMap - WARNING - notify_player: NO connected clients for 'Tester' (total clients: 0, names: [])
+2026-04-21 22:49:47,803 - Misthollow.WebMap - INFO - notify_player called for 'Tester', connected clients: []
+2026-04-21 22:49:47,803 - Misthollow.WebMap - WARNING - notify_player: NO connected clients for 'Tester' (total clients: 0, names: [])
+2026-04-21 22:49:53,806 - Misthollow.WebMap - INFO - notify_player called for 'Tester', connected clients: []
+2026-04-21 22:49:53,807 - Misthollow.WebMap - WARNING - notify_player: NO connected clients for 'Tester' (total clients: 0, names: [])
+2026-04-21 22:49:55,807 - Misthollow.WebMap - INFO - notify_player called for 'Tester', connected clients: []
+2026-04-21 22:49:55,807 - Misthollow.WebMap - WARNING - notify_player: NO connected clients for 'Tester' (total clients: 0, names: [])
+2026-04-21 22:49:59,809 - Misthollow.WebMap - INFO - notify_player called for 'Tester', connected clients: []
+2026-04-21 22:49:59,810 - Misthollow.WebMap - WARNING - notify_player: NO connected clients for 'Tester' (total clients: 0, names: [])
+2026-04-21 22:50:00,810 - Misthollow.WebMap - INFO - notify_player called for 'Tester', connected clients: []
+2026-04-21 22:50:00,810 - Misthollow.WebMap - WARNING - notify_player: NO connected clients for 'Tester' (total clients: 0, names: [])
+2026-04-21 22:50:04,812 - Misthollow.WebMap - INFO - notify_player called for 'Tester', connected clients: []
+2026-04-21 22:50:04,812 - Misthollow.WebMap - WARNING - notify_player: NO connected clients for 'Tester' (total clients: 0, names: [])
+2026-04-21 22:50:05,812 - Misthollow.WebMap - INFO - notify_player called for 'Tester', connected clients: []
+2026-04-21 22:50:05,813 - Misthollow.WebMap - WARNING - notify_player: NO connected clients for 'Tester' (total clients: 0, names: [])
+2026-04-21 22:50:06,814 - Misthollow.Server - INFO - Connection closed: ('127.0.0.1', 40676)
+2026-04-21 22:50:06,815 - Misthollow.World - INFO - Player left world: Tester
+2026-04-21 22:50:06,815 - Misthollow.Server - INFO - Connection closed: ('127.0.0.1', 40676)
+2026-04-21 22:50:06,817 - Misthollow.World - INFO - Player left world: Tester
+2026-04-21 22:51:23,475 - Misthollow.World - INFO - Autosaved 0 players

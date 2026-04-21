@@ -585,7 +585,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .exit-btn:hover {
+        .exit-btn:not(:disabled):hover {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
@@ -620,13 +620,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
             gap: 4px;
         }
         
-        .quick-btn:hover {
+        .quick-btn:not(:disabled):hover {
             border-color: var(--accent);
             color: var(--accent);
             background: var(--accent-glow);
         }
         
-        .quick-btn:active {
+        .quick-btn:not(:disabled):active {
             transform: scale(0.96);
         }
         
@@ -635,7 +635,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
             color: var(--danger);
         }
         
-        .quick-btn.combat:hover {
+        .quick-btn.combat:not(:disabled):hover {
             background: rgba(248, 81, 73, 0.15);
         }
         
@@ -689,13 +689,18 @@ CLIENT_HTML = '''<!DOCTYPE html>
             transition: all 0.15s;
         }
         
-        .send-btn:hover {
+        .send-btn:not(:disabled):hover {
             filter: brightness(1.1);
             transform: translateY(-1px);
         }
         
-        .send-btn:active {
+        .send-btn:not(:disabled):active {
             transform: translateY(0);
+        }
+
+        button:disabled, input:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
         
         /* ANSI Colors - Enhanced */
@@ -1199,12 +1204,24 @@ CLIENT_HTML = '''<!DOCTYPE html>
         toggleMapBtn.addEventListener('click', toggleMap);
         closeMapBtn.addEventListener('click', toggleMap);
         
+        function setInputState(disabled, placeholderText) {
+            input.disabled = disabled;
+            sendBtn.disabled = disabled;
+            input.placeholder = placeholderText;
+
+            document.querySelectorAll('.quick-btn, .exit-btn').forEach(btn => {
+                btn.disabled = disabled;
+            });
+        }
+
         function connect() {
+            setInputState(true, 'Connecting...');
             welcomeStatus.textContent = 'Connecting to server...';
             const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
             ws = new WebSocket(`${protocol}//${location.host}/ws`);
             
             ws.onopen = () => {
+                setInputState(false, 'Enter command...');
                 setStatus('', 'Connected');
                 welcomeOverlay.classList.add('hidden');
             };
@@ -1225,11 +1242,13 @@ CLIENT_HTML = '''<!DOCTYPE html>
             };
             
             ws.onclose = () => {
+                setInputState(true, 'Disconnected');
                 setStatus('disconnected', 'Disconnected');
                 appendOutput('<span class="ansi-yellow">\\n--- Connection closed. Refresh to reconnect. ---\\n</span>');
             };
             
             ws.onerror = () => {
+                setInputState(true, 'Error connecting');
                 setStatus('disconnected', 'Error');
                 welcomeStatus.textContent = 'Connection failed. Is the server running?';
             };
