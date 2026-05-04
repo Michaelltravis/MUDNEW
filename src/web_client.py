@@ -931,7 +931,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
                     <label>Font Size</label>
                     <div class="setting-control">
                         <button class="setting-btn" id="font-decrease">A-</button>
-                        <span id="font-size-display">14px</span>
+                        <span id="font-size-display" aria-live="polite">14px</span>
                         <button class="setting-btn" id="font-increase">A+</button>
                     </div>
                 </div>
@@ -1328,6 +1328,17 @@ CLIENT_HTML = '''<!DOCTYPE html>
             terminal.style.fontSize = settings.fontSize + 'px';
             document.getElementById('font-size-display').textContent = settings.fontSize + 'px';
             
+            const fontDec = document.getElementById('font-decrease');
+            const fontInc = document.getElementById('font-increase');
+
+            fontDec.disabled = settings.fontSize <= 10;
+            fontDec.style.opacity = fontDec.disabled ? '0.5' : '1';
+            fontDec.style.cursor = fontDec.disabled ? 'not-allowed' : 'pointer';
+
+            fontInc.disabled = settings.fontSize >= 24;
+            fontInc.style.opacity = fontInc.disabled ? '0.5' : '1';
+            fontInc.style.cursor = fontInc.disabled ? 'not-allowed' : 'pointer';
+
             const autoscrollToggle = document.getElementById('autoscroll-toggle');
             autoscrollToggle.classList.toggle('active', settings.autoScroll);
             autoscrollToggle.textContent = settings.autoScroll ? 'ON' : 'OFF';
