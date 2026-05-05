@@ -1,0 +1,3 @@
+## 2026-05-05 - Font Size Accessibility Controls
+**Learning:** Font size adjusters without explicit `aria-label`s just sound like "A minus" or "A plus" to screen readers, and screen readers will ignore dynamic boundary limits unless there is an `aria-live` element announcing the current size, and a physical `disabled` attribute synced with the button bounds.
+**Action:** When implementing custom size increment/decrement controls, pair HTML `disabled` attributes with custom inline styles (`opacity` and `cursor`) to signify inactive states when standard CSS classes are unavailable. Always include an `aria-live="polite"` element for dynamic reading.
