@@ -1,0 +1,120 @@
+2026-05-06 22:38:52,682 - INFO - ==================================================
+2026-05-06 22:38:52,682 - INFO - Misthollow Test Suite
+2026-05-06 22:38:52,682 - INFO - ==================================================
+2026-05-06 22:38:52,686 - ERROR - Connection failed: [Errno 111] Connection refused
+2026-05-06 22:38:52,686 - ERROR - Could not connect to MUD
+2026-05-06 22:39:43,022 - INFO - ==================================================
+2026-05-06 22:39:43,022 - INFO - Misthollow Test Suite
+2026-05-06 22:39:43,022 - INFO - ==================================================
+2026-05-06 22:39:43,024 - INFO - Connected to localhost:4000
+2026-05-06 22:39:55,028 - INFO - Logged in as Tester
+2026-05-06 22:39:55,028 - INFO -
+[Basic Commands]
+2026-05-06 22:39:56,029 - INFO -   ✓ PASS: look - 2030 chars
+2026-05-06 22:39:57,029 - INFO -   ✓ PASS: score
+2026-05-06 22:39:58,030 - INFO -   ✓ PASS: inventory
+2026-05-06 22:39:59,031 - INFO -   ✓ PASS: equipment
+2026-05-06 22:40:00,031 - INFO -   ✓ PASS: who
+2026-05-06 22:40:01,032 - INFO -   ✓ PASS: help
+2026-05-06 22:40:01,032 - INFO -
+[Movement]
+2026-05-06 22:40:03,033 - INFO -   ✓ PASS: move south
+2026-05-06 22:40:04,034 - INFO -   ✓ PASS: move north
+2026-05-06 22:40:05,034 - INFO -   ✓ PASS: exits
+2026-05-06 22:40:05,034 - INFO -
+[Info Commands]
+2026-05-06 22:40:06,035 - INFO -   ✓ PASS: time
+2026-05-06 22:40:07,036 - INFO -   ✓ PASS: weather
+2026-05-06 22:40:08,036 - INFO -   ✓ PASS: commands
+2026-05-06 22:40:09,037 - INFO -   ✓ PASS: levels
+2026-05-06 22:40:10,038 - INFO -   ✓ PASS: diagnose
+2026-05-06 22:40:10,038 - INFO -
+[Communication]
+2026-05-06 22:40:11,038 - INFO -   ✓ PASS: say
+2026-05-06 22:40:12,039 - INFO -   ✓ PASS: gossip
+2026-05-06 22:40:13,040 - INFO -   ✓ PASS: emote
+2026-05-06 22:40:13,040 - INFO -
+[Inventory]
+2026-05-06 22:40:14,041 - INFO -   ✓ PASS: get
+2026-05-06 22:40:15,041 - INFO -   ✓ PASS: drop
+2026-05-06 22:40:15,041 - INFO -
+[Settings]
+2026-05-06 22:40:16,042 - INFO -   ✓ PASS: toggle
+2026-05-06 22:40:17,042 - INFO -   ✓ PASS: brief
+2026-05-06 22:40:19,044 - INFO -   ✓ PASS: color
+2026-05-06 22:40:19,044 - INFO -
+[Shops]
+2026-05-06 22:40:22,045 - INFO -   ✓ PASS: list
+2026-05-06 22:40:23,046 - INFO -   ✓ PASS: value
+2026-05-06 22:40:25,047 - INFO -
+[Banking]
+2026-05-06 22:40:28,048 - INFO -   ✓ PASS: balance
+2026-05-06 22:40:29,049 - INFO -   ✓ PASS: deposit
+2026-05-06 22:40:30,049 - INFO -   ✓ PASS: withdraw
+2026-05-06 22:40:32,050 - INFO -
+[Combat Prep]
+2026-05-06 22:40:33,051 - INFO -   ✗ FAIL: consider
+2026-05-06 22:40:34,052 - INFO -   ✓ PASS: wimpy
+2026-05-06 22:40:35,053 - INFO -   ✓ PASS: skills
+2026-05-06 22:40:36,054 - INFO -   ✓ PASS: spells
+2026-05-06 22:40:36,054 - INFO -
+[Food & Drink]
+2026-05-06 22:40:37,055 - INFO -   ✓ PASS: eat status
+2026-05-06 22:40:39,056 - INFO -   ✓ PASS: drink fountain
+2026-05-06 22:40:40,057 - INFO -
+[Pets]
+2026-05-06 22:40:41,057 - INFO -   ✓ PASS: pet
+2026-05-06 22:40:42,058 - INFO -   ✓ PASS: order
+2026-05-06 22:40:43,059 - INFO -   ✓ PASS: group
+2026-05-06 22:40:43,059 - INFO -
+[Hidden Dungeon]
+2026-05-06 22:40:46,060 - INFO -   ✓ PASS: search hidden
+2026-05-06 22:40:47,061 - INFO -   ✓ PASS: open trapdoor
+2026-05-06 22:40:48,061 - INFO -   ✓ PASS: enter dungeon
+2026-05-06 22:40:50,562 - INFO - Disconnected
+2026-05-06 22:40:50,563 - INFO -
+==================================================
+2026-05-06 22:40:50,563 - INFO - TEST RESULTS SUMMARY
+2026-05-06 22:40:50,563 - INFO - ==================================================
+2026-05-06 22:40:50,563 - INFO -   ✓ look
+2026-05-06 22:40:50,563 - INFO -   ✓ score
+2026-05-06 22:40:50,563 - INFO -   ✓ inventory
+2026-05-06 22:40:50,563 - INFO -   ✓ equipment
+2026-05-06 22:40:50,563 - INFO -   ✓ who
+2026-05-06 22:40:50,563 - INFO -   ✓ help
+2026-05-06 22:40:50,563 - INFO -   ✓ move south
+2026-05-06 22:40:50,563 - INFO -   ✓ move north
+2026-05-06 22:40:50,563 - INFO -   ✓ exits
+2026-05-06 22:40:50,563 - INFO -   ✓ time
+2026-05-06 22:40:50,563 - INFO -   ✓ weather
+2026-05-06 22:40:50,563 - INFO -   ✓ commands
+2026-05-06 22:40:50,564 - INFO -   ✓ levels
+2026-05-06 22:40:50,564 - INFO -   ✓ diagnose
+2026-05-06 22:40:50,564 - INFO -   ✓ say
+2026-05-06 22:40:50,564 - INFO -   ✓ gossip
+2026-05-06 22:40:50,564 - INFO -   ✓ emote
+2026-05-06 22:40:50,564 - INFO -   ✓ get
+2026-05-06 22:40:50,564 - INFO -   ✓ drop
+2026-05-06 22:40:50,564 - INFO -   ✓ toggle
+2026-05-06 22:40:50,564 - INFO -   ✓ brief
+2026-05-06 22:40:50,564 - INFO -   ✓ color
+2026-05-06 22:40:50,564 - INFO -   ✓ list
+2026-05-06 22:40:50,564 - INFO -   ✓ value
+2026-05-06 22:40:50,564 - INFO -   ✓ balance
+2026-05-06 22:40:50,564 - INFO -   ✓ deposit
+2026-05-06 22:40:50,564 - INFO -   ✓ withdraw
+2026-05-06 22:40:50,564 - INFO -   ✗ consider
+2026-05-06 22:40:50,564 - INFO -   ✓ wimpy
+2026-05-06 22:40:50,564 - INFO -   ✓ skills
+2026-05-06 22:40:50,564 - INFO -   ✓ spells
+2026-05-06 22:40:50,564 - INFO -   ✓ eat status
+2026-05-06 22:40:50,564 - INFO -   ✓ drink fountain
+2026-05-06 22:40:50,565 - INFO -   ✓ pet
+2026-05-06 22:40:50,565 - INFO -   ✓ order
+2026-05-06 22:40:50,565 - INFO -   ✓ group
+2026-05-06 22:40:50,565 - INFO -   ✓ search hidden
+2026-05-06 22:40:50,565 - INFO -   ✓ open trapdoor
+2026-05-06 22:40:50,565 - INFO -   ✓ enter dungeon
+2026-05-06 22:40:50,565 - INFO - --------------------------------------------------
+2026-05-06 22:40:50,565 - INFO - Passed: 38/39 (97%)
+2026-05-06 22:40:50,565 - INFO - Failed tests: consider

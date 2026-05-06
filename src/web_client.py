@@ -930,9 +930,9 @@ CLIENT_HTML = '''<!DOCTYPE html>
                 <div class="setting-group">
                     <label>Font Size</label>
                     <div class="setting-control">
-                        <button class="setting-btn" id="font-decrease">A-</button>
-                        <span id="font-size-display">14px</span>
-                        <button class="setting-btn" id="font-increase">A+</button>
+                        <button class="setting-btn" id="font-decrease" aria-label="Decrease font size">A-</button>
+                        <span id="font-size-display" aria-live="polite">14px</span>
+                        <button class="setting-btn" id="font-increase" aria-label="Increase font size">A+</button>
                     </div>
                 </div>
                 <div class="setting-group">
@@ -1328,6 +1328,17 @@ CLIENT_HTML = '''<!DOCTYPE html>
             terminal.style.fontSize = settings.fontSize + 'px';
             document.getElementById('font-size-display').textContent = settings.fontSize + 'px';
             
+            const fontDecrease = document.getElementById('font-decrease');
+            const fontIncrease = document.getElementById('font-increase');
+
+            fontDecrease.disabled = settings.fontSize <= 10;
+            fontDecrease.style.opacity = fontDecrease.disabled ? '0.5' : '';
+            fontDecrease.style.cursor = fontDecrease.disabled ? 'not-allowed' : '';
+
+            fontIncrease.disabled = settings.fontSize >= 24;
+            fontIncrease.style.opacity = fontIncrease.disabled ? '0.5' : '';
+            fontIncrease.style.cursor = fontIncrease.disabled ? 'not-allowed' : '';
+
             const autoscrollToggle = document.getElementById('autoscroll-toggle');
             autoscrollToggle.classList.toggle('active', settings.autoScroll);
             autoscrollToggle.textContent = settings.autoScroll ? 'ON' : 'OFF';
