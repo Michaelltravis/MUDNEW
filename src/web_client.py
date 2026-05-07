@@ -930,9 +930,9 @@ CLIENT_HTML = '''<!DOCTYPE html>
                 <div class="setting-group">
                     <label>Font Size</label>
                     <div class="setting-control">
-                        <button class="setting-btn" id="font-decrease">A-</button>
-                        <span id="font-size-display">14px</span>
-                        <button class="setting-btn" id="font-increase">A+</button>
+                        <button class="setting-btn" id="font-decrease" aria-label="Decrease font size">A-</button>
+                        <span id="font-size-display" aria-live="polite">14px</span>
+                        <button class="setting-btn" id="font-increase" aria-label="Increase font size">A+</button>
                     </div>
                 </div>
                 <div class="setting-group">
@@ -1328,6 +1328,29 @@ CLIENT_HTML = '''<!DOCTYPE html>
             terminal.style.fontSize = settings.fontSize + 'px';
             document.getElementById('font-size-display').textContent = settings.fontSize + 'px';
             
+            const fontDecreaseBtn = document.getElementById('font-decrease');
+            const fontIncreaseBtn = document.getElementById('font-increase');
+
+            if (settings.fontSize <= 10) {
+                fontDecreaseBtn.disabled = true;
+                fontDecreaseBtn.style.opacity = '0.5';
+                fontDecreaseBtn.style.cursor = 'not-allowed';
+            } else {
+                fontDecreaseBtn.disabled = false;
+                fontDecreaseBtn.style.opacity = '1';
+                fontDecreaseBtn.style.cursor = 'pointer';
+            }
+
+            if (settings.fontSize >= 24) {
+                fontIncreaseBtn.disabled = true;
+                fontIncreaseBtn.style.opacity = '0.5';
+                fontIncreaseBtn.style.cursor = 'not-allowed';
+            } else {
+                fontIncreaseBtn.disabled = false;
+                fontIncreaseBtn.style.opacity = '1';
+                fontIncreaseBtn.style.cursor = 'pointer';
+            }
+
             const autoscrollToggle = document.getElementById('autoscroll-toggle');
             autoscrollToggle.classList.toggle('active', settings.autoScroll);
             autoscrollToggle.textContent = settings.autoScroll ? 'ON' : 'OFF';
