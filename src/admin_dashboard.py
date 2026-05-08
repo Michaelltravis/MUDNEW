@@ -104,34 +104,64 @@ class AdminDashboard:
     </div>
     
     <script>
+        function createStatRow(label, value, valueClass = 'stat-value') {
+            const div = document.createElement('div');
+            div.className = 'stat';
+            const labelSpan = document.createElement('span');
+            labelSpan.textContent = label;
+            const valueSpan = document.createElement('span');
+            valueSpan.className = valueClass;
+            valueSpan.textContent = value;
+            div.appendChild(labelSpan);
+            div.appendChild(valueSpan);
+            return div;
+        }
+
         async function fetchStats() {
             const res = await fetch('/api/stats');
             const data = await res.json();
-            document.getElementById('stats').innerHTML = `
-                <div class="stat"><span>Status</span><span class="stat-value status-ok">● Online</span></div>
-                <div class="stat"><span>Uptime</span><span class="stat-value">${data.uptime}</span></div>
-                <div class="stat"><span>Players Online</span><span class="stat-value">${data.players_online}</span></div>
-                <div class="stat"><span>Total Rooms</span><span class="stat-value">${data.total_rooms}</span></div>
-                <div class="stat"><span>Total NPCs</span><span class="stat-value">${data.total_npcs}</span></div>
-                <div class="stat"><span>Active Combats</span><span class="stat-value">${data.active_combats}</span></div>
-                <div class="stat"><span>Memory</span><span class="stat-value">${data.memory_mb} MB</span></div>
-            `;
+            const statsContainer = document.getElementById('stats');
+            statsContainer.innerHTML = '';
+            statsContainer.appendChild(createStatRow('Status', '● Online', 'stat-value status-ok'));
+            statsContainer.appendChild(createStatRow('Uptime', data.uptime));
+            statsContainer.appendChild(createStatRow('Players Online', data.players_online));
+            statsContainer.appendChild(createStatRow('Total Rooms', data.total_rooms));
+            statsContainer.appendChild(createStatRow('Total NPCs', data.total_npcs));
+            statsContainer.appendChild(createStatRow('Active Combats', data.active_combats));
+            statsContainer.appendChild(createStatRow('Memory', data.memory_mb + ' MB'));
         }
         
         async function fetchPlayers() {
             const res = await fetch('/api/players');
             const data = await res.json();
             document.getElementById('player-count').textContent = data.length;
+            const playersContainer = document.getElementById('players');
+            playersContainer.innerHTML = '';
+
             if (data.length === 0) {
-                document.getElementById('players').innerHTML = '<div style="color: #888;">No players online</div>';
+                const emptyDiv = document.createElement('div');
+                emptyDiv.style.color = '#888';
+                emptyDiv.textContent = 'No players online';
+                playersContainer.appendChild(emptyDiv);
                 return;
             }
-            document.getElementById('players').innerHTML = data.map(p => `
-                <div class="player">
-                    <div class="player-name">${p.name}</div>
-                    <div class="player-info">Level ${p.level} ${p.class} | HP: ${p.hp}/${p.max_hp} | Room: ${p.room}</div>
-                </div>
-            `).join('');
+
+            data.forEach(p => {
+                const playerDiv = document.createElement('div');
+                playerDiv.className = 'player';
+
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'player-name';
+                nameDiv.textContent = p.name;
+
+                const infoDiv = document.createElement('div');
+                infoDiv.className = 'player-info';
+                infoDiv.textContent = `Level ${p.level} ${p.class} | HP: ${p.hp}/${p.max_hp} | Room: ${p.room}`;
+
+                playerDiv.appendChild(nameDiv);
+                playerDiv.appendChild(infoDiv);
+                playersContainer.appendChild(playerDiv);
+            });
         }
         
         async function fetchLogs() {
