@@ -95,6 +95,10 @@ def is_broken_damage(damage_dice: str, level: int) -> bool:
     if not damage_dice:
         return False
     
+    # Specific broken strings from CircleMUD conversion
+    if damage_dice in ["1d1+0", "0d0+0", "1d2+0"]:
+        return level > 1
+
     # Parse the damage string
     try:
         dice_part = damage_dice
@@ -118,7 +122,8 @@ def is_broken_damage(damage_dice: str, level: int) -> bool:
                 num_dice = int(parts[0])
                 die_size = int(parts[1])
                 # If num_dice matches level and die_size matches level, it's the broken formula
-                if num_dice == level and die_size == level:
+                # Level 1 mobs often have 1d1 which is fine
+                if num_dice == level and die_size == level and level > 1:
                     return True
                 # Or if average damage is way too high
                 avg_damage = (num_dice * (die_size + 1) / 2) + bonus
