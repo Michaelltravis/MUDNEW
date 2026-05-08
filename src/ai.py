@@ -12,7 +12,7 @@ Provides sophisticated AI behaviors for NPCs including:
 
 import random
 import logging
-from typing import List, Dict, Any, Optional, TYPE_CHECKING
+from typing import List, Dict, Any, TYPE_CHECKING
 from abc import ABC, abstractmethod
 
 if TYPE_CHECKING:
