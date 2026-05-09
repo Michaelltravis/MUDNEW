@@ -8,4 +8,6 @@
 
 ## 2024-05-25 - Custom Toggle Switches
 **Learning:** Custom toggle buttons (e.g., in settings modals) must implement semantic switch attributes including `role='switch'`, dynamic `aria-checked` states ('true' or 'false'), and explicit labels via `aria-labelledby` or `aria-label`. Otherwise, screen readers don't know the state of the toggle.
-**Action:** Always ensure toggle buttons implement ARIA switch semantics.
+**Action:** Always ensure toggle buttons implement ARIA switch semantics.## 2024-05-09 - Accessible Stepper Controls in Settings
+**Learning:** For custom numeric steppers in settings modals (like font size controls), developers often implement JavaScript boundaries without synchronizing the HTML `disabled` state or providing visual cues. This leaves screen readers unaware of the limits and can confuse keyboard/mouse users who keep clicking unreactive buttons. Additionally, the value display itself often lacks `aria-live` making changes silent to screen readers.
+**Action:** Always add `aria-live="polite"` to the value display element of a stepper. In the JavaScript update function, explicitly toggle the `disabled` property on the boundary buttons (e.g., `decreaseBtn.disabled = true;`) and synchronize visual feedback using inline styles (e.g., `opacity: 0.5` and `cursor: not-allowed`) if no existing CSS utility classes exist.
