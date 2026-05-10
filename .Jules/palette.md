@@ -9,3 +9,6 @@
 ## 2024-05-25 - Custom Toggle Switches
 **Learning:** Custom toggle buttons (e.g., in settings modals) must implement semantic switch attributes including `role='switch'`, dynamic `aria-checked` states ('true' or 'false'), and explicit labels via `aria-labelledby` or `aria-label`. Otherwise, screen readers don't know the state of the toggle.
 **Action:** Always ensure toggle buttons implement ARIA switch semantics.
+## 2024-05-10 - Stepper Component Accessibility and Constraints
+**Learning:** Adding dynamic disabled states to custom boundary-limited controls (like font size steppers) visually communicates limits effectively, but requires corresponding inline CSS (`opacity` and `cursor`) updates when avoiding custom CSS additions.
+**Action:** Always implement disabled attributes alongside visual cue styling when building or updating boundary-based custom steppers.
