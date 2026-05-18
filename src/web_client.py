@@ -931,7 +931,7 @@ CLIENT_HTML = '''<!DOCTYPE html>
                     <label>Font Size</label>
                     <div class="setting-control">
                         <button class="setting-btn" id="font-decrease">A-</button>
-                        <span id="font-size-display">14px</span>
+                        <span id="font-size-display" aria-live="polite">14px</span>
                         <button class="setting-btn" id="font-increase">A+</button>
                     </div>
                 </div>
@@ -1030,8 +1030,12 @@ CLIENT_HTML = '''<!DOCTYPE html>
             cursor: pointer;
             font-size: 12px;
         }
-        .setting-btn:hover {
+        .setting-btn:hover:not(:disabled) {
             background: #3a3a5a;
+        }
+        .setting-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
         .setting-btn.toggle {
             min-width: 40px;
@@ -1328,6 +1332,9 @@ CLIENT_HTML = '''<!DOCTYPE html>
             terminal.style.fontSize = settings.fontSize + 'px';
             document.getElementById('font-size-display').textContent = settings.fontSize + 'px';
             
+            document.getElementById('font-decrease').disabled = settings.fontSize <= 10;
+            document.getElementById('font-increase').disabled = settings.fontSize >= 24;
+
             const autoscrollToggle = document.getElementById('autoscroll-toggle');
             autoscrollToggle.classList.toggle('active', settings.autoScroll);
             autoscrollToggle.textContent = settings.autoScroll ? 'ON' : 'OFF';
