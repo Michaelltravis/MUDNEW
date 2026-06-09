@@ -205,6 +205,31 @@ class WebMapServer:
                     await self._http_response(writer, 200, 'OK', iso_html, content_type='text/html')
                 except FileNotFoundError:
                     await self._http_response(writer, 404, 'Not Found', 'Isometric view not found')
+            elif path.startswith('/platformer/'):
+                # Serve platformer client assets (js/css only, no traversal)
+                asset_dir = os.path.realpath(os.path.join(os.path.dirname(__file__), 'web_isometric', 'platformer'))
+                asset_file = path.split('?', 1)[0].replace('/platformer/', '', 1)
+                asset_path = os.path.realpath(os.path.join(asset_dir, asset_file))
+                ext = asset_file.rsplit('.', 1)[-1].lower() if '.' in asset_file else ''
+                if not asset_path.startswith(asset_dir + os.sep) or ext not in ('js', 'css'):
+                    await self._http_response(writer, 404, 'Not Found', 'Not found')
+                    return
+                try:
+                    with open(asset_path, 'r', encoding='utf-8') as f:
+                        body = f.read()
+                    ct = 'application/javascript' if ext == 'js' else 'text/css'
+                    await self._http_response(writer, 200, 'OK', body, content_type=ct)
+                except FileNotFoundError:
+                    await self._http_response(writer, 404, 'Not Found', 'Asset not found')
+            elif path.startswith('/platformer'):
+                # Serve the 2D platformer client
+                plat_path = os.path.join(os.path.dirname(__file__), 'web_isometric', 'platformer.html')
+                try:
+                    with open(plat_path, 'r', encoding='utf-8') as f:
+                        plat_html = f.read()
+                    await self._http_response(writer, 200, 'OK', plat_html, content_type='text/html')
+                except FileNotFoundError:
+                    await self._http_response(writer, 404, 'Not Found', 'Platformer client not found')
             elif path.startswith('/2d'):
                 # Serve the Phaser 2D top-down view
                 client2d_path = os.path.join(os.path.dirname(__file__), 'web_isometric', 'client2d.html')

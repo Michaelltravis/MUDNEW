@@ -601,10 +601,40 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'precipitation': getattr(w, 'precipitation', 'none'),
         }
 
+    # Detailed info for the player's current room (used by the platformer client)
+    current_room = None
+    if player.room:
+        cur = player.room
+        cur_exits = {}
+        raw_exits = cur.exits if isinstance(getattr(cur, 'exits', None), dict) else {}
+        for direction, exit_data in _iter_visible_exits(cur, player):
+            door = None
+            raw = raw_exits.get(direction)
+            if isinstance(raw, dict) and 'door' in raw:
+                d = raw['door']
+                door = {
+                    'name': d.get('name', 'door'),
+                    'state': d.get('state', 'open'),
+                    'locked': bool(d.get('locked', False)),
+                }
+            cur_exits[direction] = {
+                'to_room': _get_exit_target_vnum(exit_data),
+                'door': door,
+            }
+        current_room = {
+            'vnum': cur.vnum,
+            'name': cur.name,
+            'description': getattr(cur, 'description', '') or '',
+            'sector': getattr(cur, 'sector_type', '') or '',
+            'flags': list(cur.flags) if hasattr(cur, 'flags') else [],
+            'exits': cur_exits,
+        }
+
     return {
         'type': 'map_data',
         'rooms': room_items,
         'frontier': valid_frontier,
+        'current_room': current_room,
         'zones': zones_list,
         'time': time_info,
         'weather': weather_info,
