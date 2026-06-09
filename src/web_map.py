@@ -12,7 +12,7 @@ import os
 from typing import Optional
 from urllib.parse import parse_qs, urlparse
 
-from map_system import build_map_payload
+from map_system import build_map_payload, build_combat_payload
 
 logger = logging.getLogger('Misthollow.WebMap')
 
@@ -114,6 +114,21 @@ class WebMapServer:
             logger.info(f"Removed dead WebSocket client for '{client.player_name}'")
         if matching_clients == 0:
             logger.warning(f"notify_player: NO connected clients for '{player.name}' (total clients: {len(self.clients)}, names: {client_names})")
+
+    async def notify_combat(self, player):
+        """Push a lightweight vitals/entity update during combat rounds."""
+        dead_clients = []
+        for client in list(self.clients):
+            if not client.player_name or client.player_name.lower() != player.name.lower():
+                continue
+            try:
+                payload = build_combat_payload(player)
+                if not await self._ws_send(client.writer, json.dumps(payload)):
+                    dead_clients.append(client)
+            except Exception:
+                dead_clients.append(client)
+        for client in dead_clients:
+            self.clients.discard(client)
 
     async def _handle_client(self, reader, writer):
         try:

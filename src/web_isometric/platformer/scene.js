@@ -113,6 +113,7 @@
 
       // bus wiring
       MH.bus.on('map', payload => this.onMap(payload));
+      MH.bus.on('combat.update', payload => this.onCombatUpdate(payload));
       MH.bus.on('combat.hit', e => this.fxHit(e));
       MH.bus.on('combat.miss', e => this.fxMiss(e));
       MH.bus.on('combat.taken', () => this.fxTaken());
@@ -358,13 +359,18 @@
         }
       });
 
-      // cosmetic patrol for walking mobs
+      // hostile mobs stalk the player (cosmetic — real aggro is server-side);
+      // everything else gets a gentle patrol
       if (spec.kind === 'mob' && !spec.data.shopkeeper) {
-        ent.patrol = this.tweens.add({
-          targets: ent.sprite, x: slot.x + 20, duration: 2200 + (MH.hashStr(key) % 1400),
-          yoyo: true, repeat: -1, ease: 'sine.inOut', delay: MH.hashStr(key) % 1000,
-          onUpdate: () => { ent.sprite.setFlipX(ent.sprite.x < (ent.prevX || ent.sprite.x)); ent.prevX = ent.sprite.x; },
-        });
+        if (spec.data.hostile) {
+          ent.stalker = true;
+        } else {
+          ent.patrol = this.tweens.add({
+            targets: ent.sprite, x: slot.x + 20, duration: 2200 + (MH.hashStr(key) % 1400),
+            yoyo: true, repeat: -1, ease: 'sine.inOut', delay: MH.hashStr(key) % 1000,
+            onUpdate: () => { ent.sprite.setFlipX(ent.sprite.x < (ent.prevX || ent.sprite.x)); ent.prevX = ent.sprite.x; },
+          });
+        }
       }
       return ent;
     }
@@ -533,6 +539,25 @@
       MH.sendCommand(dir);
     }
 
+    // per-combat-round vitals push: update entity HP in place, no rebuild
+    onCombatUpdate(payload) {
+      if (!this.layout || payload.vnum !== this.layout.vnum) return;
+      (payload.mobs || []).forEach((mob, i) => {
+        const ent = this.entities.get(`mob:${mob.name}:${i}`);
+        if (!ent) return;
+        this.updateEntity(ent, Object.assign({}, ent.data, mob));
+        // a mob actively fighting us becomes the target if we have none
+        if (mob.fighting && !this.target) {
+          this.target = ent;
+          MH.bus.emit('target.set', ent.data);
+        }
+      });
+      (payload.players || []).forEach(p => {
+        const ent = this.entities.get(`pl:${p.name}`);
+        if (ent) this.updateEntity(ent, Object.assign({}, ent.data, p));
+      });
+    }
+
     // ---------- map payload ----------
     onMap(payload) {
       const cur = payload.current_room;
@@ -673,6 +698,30 @@
             this.requestMove(zone.exitDir);
           }
         }
+      }
+
+      // hostile mobs walk toward the player; fighting mobs press in close
+      const dt = this.game.loop.delta / 1000;
+      for (const ent of this.entities.values()) {
+        if (!ent.stalker && !(ent.data && ent.data.fighting)) continue;
+        if (!ent.sprite || ent.kind !== 'mob') continue;
+        const dx = this.player.x - ent.sprite.x;
+        const stop = ent.data.fighting ? 26 : 40;
+        if (Math.abs(dx) > stop) {
+          const speed = ent.data.fighting ? 55 : 32;
+          ent.sprite.x += Math.sign(dx) * speed * dt;
+          ent.sprite.setFlipX(dx < 0);
+          const tex = ent.sprite.texture.key;
+          if (!ent.sprite.anims.currentAnim || !ent.sprite.anims.currentAnim.key.endsWith('walk')) ent.sprite.play(`${tex}_walk`, true);
+        } else if (ent.data.fighting) {
+          // lunge animation while trading blows
+          const tex = ent.sprite.texture.key;
+          if (!ent.sprite.anims.isPlaying || ent.sprite.anims.currentAnim.key.endsWith('walk')) ent.sprite.play(`${tex}_attack`, true);
+          ent.sprite.setFlipX(dx < 0);
+        }
+        // keep feet on the terrain as they cross the heightmap
+        const tileX = Phaser.Math.Clamp(Math.floor(ent.sprite.x / T), 0, this.layout.W - 1);
+        ent.sprite.y = (this.layout.hm[tileX] - 1) * T - 16;
       }
 
       // hp bars + labels follow sprites

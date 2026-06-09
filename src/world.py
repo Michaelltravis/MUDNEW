@@ -846,6 +846,12 @@ class World:
                 # Send prompt after combat round so player always sees HP
                 if hasattr(player, 'connection') and player.connection:
                     await player.connection.send_prompt()
+                # Push live vitals to graphical web clients every round
+                if getattr(self, 'web_map', None):
+                    try:
+                        await self.web_map.notify_combat(player)
+                    except Exception as e:
+                        logger.debug(f"notify_combat failed for {player.name}: {e}")
 
         # Process NPC combat
         from mob_ai import mob_ai_tick

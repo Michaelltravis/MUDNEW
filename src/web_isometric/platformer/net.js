@@ -160,6 +160,14 @@
     MH.bus.emit('map', payload);
   }
 
+  // server pushes these every combat round: vitals + current-room entities
+  function handleCombatUpdate(payload) {
+    const st = MH.state;
+    if (st.player && payload.player) Object.assign(st.player, payload.player);
+    if (payload.in_combat != null) MH.setCombat(!!payload.in_combat);
+    MH.bus.emit('combat.update', payload);
+  }
+
   function ensureMapSocket() {
     const st = MH.state;
     if (!st.playerName) return;
@@ -179,6 +187,7 @@
       try {
         const payload = JSON.parse(event.data);
         if (payload.type === 'map_data') handleMapData(payload);
+        else if (payload.type === 'combat_update') handleCombatUpdate(payload);
       } catch (err) {
         console.warn('map socket parse error', err);
       }
@@ -194,6 +203,8 @@
     if (st.inCombat === on) return;
     st.inCombat = on;
     MH.bus.emit('combat.state', on);
+    // fallback only: the server now pushes combat_update every round,
+    // so this just guards against missed frames
     if (on && !st.combatPollTimer) {
       st.combatPollTimer = setInterval(async () => {
         if (!st.playerName) return;
@@ -201,7 +212,7 @@
           const res = await fetch(MH.urls.state(st.playerName));
           if (res.ok) handleMapData(await res.json());
         } catch (_) { /* server hiccup; next tick retries */ }
-      }, 1500);
+      }, 4000);
     } else if (!on && st.combatPollTimer) {
       clearInterval(st.combatPollTimer);
       st.combatPollTimer = null;

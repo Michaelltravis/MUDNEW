@@ -120,13 +120,82 @@
     flashTimer = setTimeout(() => els.flashLine.classList.remove('show'), 2200);
   }
 
-  // ---- chat overlay ----
+  // ---- chat: tabbed panel + ambient overlay ----
+  const chatStore = { all: [], say: [], channel: [], tell: [] };
+  const unread = { say: 0, channel: 0, tell: 0 };
+  let activeTab = 'all';
+
+  function classifyChat(line) {
+    if (/^(You tell|\w+ tells you)/i.test(line)) return 'tell';
+    if (/^(You (gossip|shout|chat)|\w+ (gossips|shouts|chats))|^\[\w+\]/i.test(line)) return 'channel';
+    if (/^(You say|\w+ says)/i.test(line)) return 'say';
+    return 'say';
+  }
+
+  function renderChatBody() {
+    const lines = chatStore[activeTab];
+    els.chatBody.innerHTML = '';
+    for (const { line, kind } of lines.slice(-120)) {
+      const div = document.createElement('div');
+      div.className = kind;
+      div.textContent = line;
+      els.chatBody.appendChild(div);
+    }
+    els.chatBody.scrollTop = els.chatBody.scrollHeight;
+  }
+
+  function updateBadges() {
+    document.querySelectorAll('.chat-tab').forEach(tab => {
+      const name = tab.dataset.tab;
+      const badge = tab.querySelector('.badge');
+      if (!badge || name === 'all') return;
+      badge.textContent = unread[name] > 9 ? '9+' : String(unread[name] || '');
+      badge.classList.toggle('show', unread[name] > 0);
+    });
+  }
+
+  function chatPanelOpen() { return els.chatPanel.classList.contains('open'); }
+  function toggleChatPanel(open) {
+    const on = open != null ? open : !chatPanelOpen();
+    els.chatPanel.classList.toggle('open', on);
+    els.chatLog.style.display = on ? 'none' : '';
+    if (on) {
+      unread[activeTab] = 0;
+      renderChatBody();
+      updateBadges();
+      els.chatInput.focus();
+    } else {
+      setTyping(false);
+    }
+  }
+
   function chatLine(line) {
-    const div = document.createElement('div');
-    div.textContent = line;
-    els.chatLog.appendChild(div);
-    while (els.chatLog.children.length > 8) els.chatLog.removeChild(els.chatLog.firstChild);
-    setTimeout(() => { if (div.parentNode) div.parentNode.removeChild(div); }, 12500);
+    const kind = classifyChat(line);
+    const entry = { line, kind };
+    chatStore.all.push(entry);
+    chatStore[kind].push(entry);
+    for (const k of Object.keys(chatStore)) if (chatStore[k].length > 400) chatStore[k].shift();
+
+    if (chatPanelOpen()) {
+      if (activeTab === 'all' || activeTab === kind) renderChatBody();
+      else { unread[kind]++; updateBadges(); }
+    } else {
+      if (unread[kind] !== undefined) { unread[kind]++; updateBadges(); }
+      // ambient floating line
+      const div = document.createElement('div');
+      div.textContent = line;
+      els.chatLog.appendChild(div);
+      while (els.chatLog.children.length > 8) els.chatLog.removeChild(els.chatLog.firstChild);
+      setTimeout(() => { if (div.parentNode) div.parentNode.removeChild(div); }, 12500);
+    }
+  }
+
+  function sendChat() {
+    const msg = els.chatInput.value.trim();
+    if (!msg) return;
+    const mode = els.chatMode.value;
+    MH.sendCommand(mode === 'reply' ? `reply ${msg}` : `${mode} ${msg}`);
+    els.chatInput.value = '';
   }
 
   // ---- modals ----
@@ -231,7 +300,8 @@
         targetFrame: $('target-frame'), targetName: $('target-name'), targetHp: $('target-hp'), targetHpTxt: $('target-hp-txt'),
         hotbar: $('hotbar'), commandInput: $('command-input'),
         drawer: $('drawer'), drawerLog: $('drawer-log'), drawerTab: $('drawer-tab'),
-        chatLog: $('chat-log'),
+        chatLog: $('chat-log'), chatPanel: $('chat-panel'), chatBody: $('chat-body'),
+        chatInput: $('chat-input'), chatMode: $('chat-mode'),
         invBody: $('inv-body'), journalBody: $('journal-body'), shopBody: $('shop-body'), spellsBody: $('spells-body'),
       });
 
@@ -266,8 +336,28 @@
       MH.bus.on('terminal.echo', cmd => appendTerminal(`> ${cmd}`, 'cmd'));
       els.drawerTab.addEventListener('click', () => els.drawer.classList.toggle('open'));
 
+      // chat panel
+      document.querySelectorAll('.chat-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.chat-tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          activeTab = tab.dataset.tab;
+          if (unread[activeTab] !== undefined) unread[activeTab] = 0;
+          renderChatBody();
+          updateBadges();
+        });
+      });
+      els.chatInput.addEventListener('focus', () => setTyping(true));
+      els.chatInput.addEventListener('blur', () => setTyping(false));
+      els.chatInput.addEventListener('keydown', e => {
+        e.stopPropagation();
+        if (e.key === 'Enter') sendChat();
+        else if (e.key === 'Escape') toggleChatPanel(false);
+      });
+
       // game events
       MH.bus.on('map', payload => updateHud(payload.player));
+      MH.bus.on('combat.update', () => updateHud(MH.state.player));
       MH.bus.on('room.entered', ({ room, zoneName }) => showRoom(room, zoneName));
       MH.bus.on('flash', flash);
       MH.bus.on('move.blocked', e => {}); // scene flashes it
@@ -301,7 +391,8 @@
 
       // global keys
       window.addEventListener('keydown', e => {
-        if (document.activeElement === els.commandInput || document.activeElement === els.loginName || document.activeElement === els.loginPass) return;
+        const typingEls = [els.commandInput, els.loginName, els.loginPass, els.chatInput];
+        if (typingEls.includes(document.activeElement)) return;
         if (e.key === 'Enter') { e.preventDefault(); els.commandInput.focus(); return; }
         if (e.key === 'Escape') { closeModals(); return; }
         if (e.key === '`' || e.key === '~') { e.preventDefault(); els.drawer.classList.toggle('open'); return; }
@@ -311,6 +402,7 @@
         if (k === 'i') { renderInventory(); openModal('modal-inv'); }
         else if (k === 'j') { openJournal(); }
         else if (k === 'k') { renderSpells(); openModal('modal-spells'); }
+        else if (k === 't') { e.preventDefault(); toggleChatPanel(); }
         if (e.key === ' ') e.preventDefault(); // don't scroll the page
       });
     },

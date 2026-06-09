@@ -409,6 +409,61 @@ def render_ascii_map(player, mode: str = 'local', size: int = 11) -> str:
     return '\n'.join(lines)
 
 
+def build_combat_payload(player) -> dict:
+    """Lightweight push for live combat: vitals + current-room entities only.
+
+    Sent every violence round, so it must stay cheap — no BFS, no room list.
+    """
+    room = player.room
+    mobs = []
+    others = []
+    if room and hasattr(room, 'characters'):
+        for entity in room.characters:
+            if hasattr(entity, 'account_name'):
+                if entity is not player:
+                    others.append({
+                        'name': getattr(entity, 'name', 'Unknown'),
+                        'level': getattr(entity, 'level', 1),
+                        'char_class': getattr(entity, 'char_class', ''),
+                        'hp': getattr(entity, 'hp', 0),
+                        'maxHp': getattr(entity, 'max_hp', 1),
+                    })
+                continue
+            mob = {
+                'name': getattr(entity, 'name', 'Unknown'),
+                'level': getattr(entity, 'level', 1),
+                'hostile': getattr(entity, 'aggressive', False) or getattr(entity, 'hostile', False),
+                'boss': 'boss' in (getattr(entity, 'flags', None) or []) or getattr(entity, 'is_boss', False),
+                'shopkeeper': hasattr(entity, 'shop'),
+                'fighting': bool(getattr(entity, 'fighting', None) is player),
+            }
+            hp = getattr(entity, 'hp', None)
+            max_hp = getattr(entity, 'max_hp', None)
+            if hp is not None and max_hp:
+                mob['hp'] = hp
+                mob['maxHp'] = max_hp
+            mobs.append(mob)
+    return {
+        'type': 'combat_update',
+        'vnum': room.vnum if room else None,
+        'in_combat': bool(getattr(player, 'fighting', None)),
+        'player': {
+            'name': player.name,
+            'hp': getattr(player, 'hp', 0),
+            'max_hp': getattr(player, 'max_hp', 1),
+            'mana': getattr(player, 'mana', 0),
+            'max_mana': getattr(player, 'max_mana', 1),
+            'move': getattr(player, 'move', 0),
+            'max_move': getattr(player, 'max_move', 1),
+            'level': getattr(player, 'level', 1),
+            'exp': getattr(player, 'exp', 0),
+            'gold': getattr(player, 'gold', 0),
+        },
+        'mobs': mobs,
+        'players': others,
+    }
+
+
 def build_map_payload(player, mode: str = 'full') -> dict:
     """Build map data payload for the web map UI."""
     explored = set(getattr(player, 'explored_rooms', set()))

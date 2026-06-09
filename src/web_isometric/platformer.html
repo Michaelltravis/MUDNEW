@@ -163,7 +163,41 @@
   }
   #drawer-tab:hover { color: var(--green); border-color: var(--green); }
 
-  /* ---- Chat overlay ---- */
+  /* ---- Tabbed chat panel (T to toggle) ---- */
+  #chat-panel {
+    position: absolute; left: 12px; bottom: 64px; z-index: 25;
+    width: 360px; height: 240px; display: none; flex-direction: column;
+    background: rgba(13,15,21,0.92); border: 1px solid var(--border); border-radius: 5px;
+  }
+  #chat-panel.open { display: flex; }
+  #chat-tabs { display: flex; border-bottom: 1px solid var(--border); }
+  .chat-tab {
+    flex: 1; text-align: center; padding: 5px 0; font-size: 10px; letter-spacing: 1px;
+    color: var(--dim); cursor: pointer; position: relative;
+  }
+  .chat-tab.active { color: var(--gold); border-bottom: 1px solid var(--gold); }
+  .chat-tab .badge {
+    position: absolute; top: 1px; right: 6px; background: var(--red); color: #fff;
+    font-size: 8px; border-radius: 6px; padding: 0 4px; display: none;
+  }
+  .chat-tab .badge.show { display: inline; }
+  #chat-body { flex: 1; overflow-y: auto; padding: 6px 9px; font-size: 11px; line-height: 1.5; }
+  #chat-body .say { color: #c8e0c8; }
+  #chat-body .channel { color: #c9a8e0; }
+  #chat-body .tell { color: #e0c98a; }
+  #chat-body .other { color: var(--dim); }
+  #chat-input-row { display: flex; border-top: 1px solid var(--border); }
+  #chat-mode {
+    background: #0d0f15; color: var(--gold); border: none; border-right: 1px solid var(--border);
+    font-family: inherit; font-size: 10px; padding: 0 4px;
+  }
+  #chat-input {
+    flex: 1; background: transparent; border: none; color: var(--text);
+    font-family: inherit; font-size: 11px; padding: 7px 8px;
+  }
+  #chat-input:focus { outline: none; }
+
+  /* ---- Ambient chat overlay (when panel is closed) ---- */
   #chat-log {
     position: absolute; left: 12px; bottom: 64px; z-index: 18; width: 320px; max-height: 180px;
     overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end;
@@ -225,6 +259,25 @@
   </div>
 
   <div id="chat-log"></div>
+  <div id="chat-panel">
+    <div id="chat-tabs">
+      <div class="chat-tab active" data-tab="all">ALL<span class="badge"></span></div>
+      <div class="chat-tab" data-tab="say">SAY<span class="badge"></span></div>
+      <div class="chat-tab" data-tab="channel">CHANNELS<span class="badge"></span></div>
+      <div class="chat-tab" data-tab="tell">TELLS<span class="badge"></span></div>
+    </div>
+    <div id="chat-body"></div>
+    <div id="chat-input-row">
+      <select id="chat-mode">
+        <option value="say">say</option>
+        <option value="gossip">gossip</option>
+        <option value="shout">shout</option>
+        <option value="tell">tell</option>
+        <option value="reply">reply</option>
+      </select>
+      <input id="chat-input" type="text" autocomplete="off" spellcheck="false" placeholder="speak… (Esc closes, T toggles)">
+    </div>
+  </div>
   <div id="hotbar"></div>
 
   <div id="command-row">
@@ -255,7 +308,7 @@
     <div class="modal-body" id="spells-body"></div>
   </div>
 
-  <div id="help-chip">A/D move · Space jump · W door/ladder · S hatch · F attack · I inv · J journal · K spells · ~ terminal · Enter command</div>
+  <div id="help-chip">A/D move · Space jump · W door/ladder · S hatch · F attack · T chat · I inv · J journal · K spells · ~ terminal · Enter command</div>
 
   <div id="login-overlay">
     <div id="login-box">
