@@ -152,6 +152,16 @@
     setBar(els.barMove, els.txtMove, player.move || 0, player.max_move || 1);
     els.hudLevel.textContent = `Lv ${player.level} ${player.char_class || ''}`;
     els.hudGold.textContent = `${player.gold || 0} gold`;
+    // xp progress within the current level (exp is cumulative)
+    const floor = player.exp_floor || 0, next = player.exp_to_level || 0;
+    if (next > floor) {
+      const frac = Math.max(0, Math.min(1, ((player.exp || 0) - floor) / (next - floor)));
+      els.barXp.style.width = `${frac * 100}%`;
+      els.hudXpTxt.textContent = `${Math.floor(frac * 100)}% xp`;
+    } else {
+      els.barXp.style.width = '100%';
+      els.hudXpTxt.textContent = '';
+    }
   }
 
   // ---- target frame ----
@@ -528,6 +538,7 @@
         roomName: $('room-name'), roomZone: $('room-zone'), roomDesc: $('room-desc'), flashLine: $('flash-line'),
         hudName: $('hud-name'), barHp: $('bar-hp'), txtHp: $('txt-hp'), barMana: $('bar-mana'), txtMana: $('txt-mana'),
         barMove: $('bar-move'), txtMove: $('txt-move'), hudLevel: $('hud-level'), hudGold: $('hud-gold'),
+        barXp: $('bar-xp'), hudXpTxt: $('hud-xp-txt'),
         targetFrame: $('target-frame'), targetName: $('target-name'), targetHp: $('target-hp'), targetHpTxt: $('target-hp-txt'),
         hotbar: $('hotbar'), commandInput: $('command-input'),
         drawer: $('drawer'), drawerLog: $('drawer-log'), drawerTab: $('drawer-tab'),

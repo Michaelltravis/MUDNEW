@@ -1876,6 +1876,12 @@ class CombatHandler:
             # Player corpses last longer (10 min), mob corpses 5 min
             if hasattr(victim, 'connection'):
                 corpse.decay_timer = 100  # ~10 min real time (player)
+                # leave a memorial for graphical clients
+                try:
+                    from gravestones import GravestoneRegistry
+                    GravestoneRegistry.record(victim.room.vnum, victim.name, getattr(killer, 'name', 'something'))
+                except Exception:
+                    pass
             else:
                 corpse.decay_timer = 50  # ~5 min real time (mob)
             victim.room.items.append(corpse)

@@ -409,6 +409,30 @@ def render_ascii_map(player, mode: str = 'local', size: int = 11) -> str:
     return '\n'.join(lines)
 
 
+def _exp_thresholds(player):
+    """Return (exp floor of current level, exp needed for next level).
+
+    exp is cumulative, so within-level progress is
+    (exp - floor) / (next - floor). Mirrors Player.exp_to_level().
+    """
+    try:
+        nxt = player.exp_to_level()
+    except Exception:
+        return 0, 0
+    lvl = getattr(player, 'level', 1)
+    if lvl <= 1:
+        return 0, nxt
+    cfg = player.config
+    thr = getattr(cfg, 'HIGH_LEVEL_THRESHOLD', 30)
+    prev = lvl - 1
+    if prev <= thr:
+        floor = int(cfg.BASE_EXP * (cfg.EXP_MULTIPLIER ** (prev - 1)))
+    else:
+        level_30 = int(cfg.BASE_EXP * (cfg.EXP_MULTIPLIER ** (thr - 1)))
+        floor = int(level_30 * (getattr(cfg, 'HIGH_LEVEL_EXP_MULTIPLIER', 1.6) ** (prev - thr)))
+    return floor, nxt
+
+
 def build_combat_payload(player) -> dict:
     """Lightweight push for live combat: vitals + current-room entities only.
 
@@ -457,6 +481,8 @@ def build_combat_payload(player) -> dict:
             'max_move': getattr(player, 'max_move', 1),
             'level': getattr(player, 'level', 1),
             'exp': getattr(player, 'exp', 0),
+            'exp_floor': _exp_thresholds(player)[0],
+            'exp_to_level': _exp_thresholds(player)[1],
             'gold': getattr(player, 'gold', 0),
         },
         'mobs': mobs,
@@ -676,6 +702,11 @@ def build_map_payload(player, mode: str = 'full') -> dict:
                 'to_room': _get_exit_target_vnum(exit_data),
                 'door': door,
             }
+        try:
+            from gravestones import GravestoneRegistry
+            stones = GravestoneRegistry.for_room(cur.vnum)
+        except Exception:
+            stones = []
         current_room = {
             'vnum': cur.vnum,
             'name': cur.name,
@@ -683,6 +714,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'sector': getattr(cur, 'sector_type', '') or '',
             'flags': list(cur.flags) if hasattr(cur, 'flags') else [],
             'exits': cur_exits,
+            'gravestones': stones,
         }
 
     return {
@@ -722,6 +754,8 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'armor_class': getattr(player, 'armor_class', 0),
             'gold': getattr(player, 'gold', 0),
             'exp': getattr(player, 'exp', 0),
+            'exp_floor': _exp_thresholds(player)[0],
+            'exp_to_level': _exp_thresholds(player)[1],
             'equipment': {
                 slot: {'name': item.name, 'affects': getattr(item, 'affects', [])}
                 for slot, item in getattr(player, 'equipment', {}).items()

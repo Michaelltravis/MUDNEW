@@ -598,13 +598,18 @@
       try { localStorage.setItem('misthollow_deaths', JSON.stringify(deaths)); } catch (_) {}
     }
     placeGravestones(layout) {
-      for (const d of this.deathLog()) {
-        if (d.vnum !== layout.vnum) continue;
-        const col = 6 + (MH.hashStr(String(d.ts)) % (layout.W - 12));
+      // server-shared memorials win (everyone sees them); local log is the
+      // fallback for older servers that don't send the key
+      const stones = Array.isArray(layout.gravestones)
+        ? layout.gravestones
+        : this.deathLog().filter(d => d.vnum === layout.vnum);
+      for (const d of stones) {
+        const col = 6 + (MH.hashStr(String(d.ts) + (d.name || '')) % (layout.W - 12));
         const x = col * T + T / 2, y = layout.hm[col] * T;
         const g = this.add.image(x, y, 't_grave').setOrigin(0.5, 1).setDepth(2);
         this.tileLayer.add(g);
-        const label = this.add.text(x, y - 26, `here lies ${d.name}`, {
+        const slain = d.killer ? `${d.name}, slain by ${d.killer}` : d.name;
+        const label = this.add.text(x, y - 26, `here lies ${slain}`, {
           fontFamily: 'Courier New', fontSize: '8px', fontStyle: 'italic', color: '#8a90a4',
         }).setOrigin(0.5, 1).setAlpha(0.7).setDepth(2);
         this.tileLayer.add(label);

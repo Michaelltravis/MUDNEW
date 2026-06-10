@@ -165,6 +165,7 @@
     return {
       vnum, theme, sector, flags,
       description: roomData.description || '',
+      gravestones: roomData.gravestones,   // server-shared memorials, if provided
       W, H, T,
       grid, hm,
       pool, isUnderwater,
