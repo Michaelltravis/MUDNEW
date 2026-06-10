@@ -312,6 +312,20 @@
   #combat-chip.show { display: block; }
   @keyframes combatpulse { 0%,100% { box-shadow: 0 0 4px rgba(255,60,60,0.3); } 50% { box-shadow: 0 0 14px rgba(255,60,60,0.8); } }
 
+  /* ---- combat log (auto-appears during fights) ---- */
+  #combat-log {
+    position: absolute; right: 12px; bottom: 220px; z-index: 21;
+    width: 280px; max-height: 170px; overflow: hidden; display: none;
+    background: rgba(13,15,21,0.88); border: 1px solid #4a2828; border-radius: 5px;
+    padding: 6px 9px; font-size: 11px; line-height: 1.55;
+  }
+  #combat-log.show { display: block; }
+  #combat-log .head { color: #ff6a6a; font-size: 9px; letter-spacing: 2px; margin-bottom: 3px; }
+  #combat-log .you { color: #8ce0a0; }
+  #combat-log .them { color: #ff8a8a; }
+  #combat-log .miss { color: #7a8094; }
+  #combat-log .info { color: #c9b8e0; }
+
   /* ---- low-HP vignette ---- */
   #vignette {
     position: absolute; inset: 0; z-index: 35; pointer-events: none; opacity: 0;
@@ -355,6 +369,7 @@
   <div id="vignette"></div>
   <div id="hit-flash"></div>
   <div id="combat-chip">⚔ IN COMBAT</div>
+  <div id="combat-log"><div class="head">COMBAT</div><div id="combat-log-lines"></div></div>
   <div id="mob-tip"></div>
   <div id="minimap-wrap">
     <div class="mm-head"><span>CARTOGRAPHY</span><span id="mm-toggle" title="resize (M)">⤢</span></div>

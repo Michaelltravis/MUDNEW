@@ -99,6 +99,11 @@
       MH.bus.on('nav.goto', dir => this.navTo(dir));
       MH.bus.on('player.attack', () => this.tryAttack());
       MH.bus.on('combat.flee', e => this.fxFlee(e));
+      MH.bus.on('player.heal', () => this.fxHeal());
+      MH.bus.on('terminal.echo', cmd => {
+        const m = String(cmd).match(/^cast '([^']+)'/i);
+        if (m) this.lastSpell = { name: m[1], ts: Date.now() };
+      });
       MH.bus.on('mob.death', e => this.fxMobDeath(e));
       MH.bus.on('player.death', () => this.fxPlayerDeath());
       MH.bus.on('level.up', () => this.fxLevelUp());
@@ -138,6 +143,7 @@
       this.exitZones = [];
       if (this.featureZones) this.featureZones.forEach(z => z.destroy());
       this.featureZones = [];
+      this.corpses = [];
       if (this.weatherEmitter) { this.weatherEmitter.destroy(); this.weatherEmitter = null; }
       if (this.bubbleEmitter) { this.bubbleEmitter.destroy(); this.bubbleEmitter = null; }
 
@@ -447,10 +453,22 @@
       const ent = { key, kind: spec.kind, data: spec.data };
 
       if (spec.kind === 'item') {
-        ent.sprite = this.add.image(slot.x, slot.y, this.safeTex(MH.smoothSprites.itemKey(spec.data.type), 'fx_glow')).setDepth(5).setScale(0.85 / MH.SMOOTH_SS);
-        this.tweens.add({ targets: ent.sprite, y: slot.y - 3, duration: 900, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        const isCorpse = /corpse/i.test(spec.data.name || '');
+        const texKey = isCorpse ? 'sm_corpse' : this.safeTex(MH.smoothSprites.itemKey(spec.data.type), 'fx_glow');
+        ent.sprite = this.add.image(slot.x, slot.y, texKey).setDepth(5).setScale(0.9 / MH.SMOOTH_SS);
+        if (!isCorpse) {
+          this.tweens.add({ targets: ent.sprite, y: slot.y - 3, duration: 900, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        }
         ent.sprite.setInteractive({ useHandCursor: true });
-        ent.sprite.on('pointerdown', () => MH.sendCommand(`get ${MH.mobKeyword(spec.data.name)}`));
+        ent.sprite.on('pointerdown', () => {
+          if (isCorpse) { MH.sendCommand('get all corpse'); MH.bus.emit('flash', 'You loot the corpse…'); }
+          else MH.sendCommand(`get ${MH.mobKeyword(spec.data.name)}`);
+        });
+        if (isCorpse) {
+          ent.label = this.add.text(slot.x, slot.y - 12, this.shortName(spec.data.name), {
+            fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '6px', color: '#9a8f80',
+          }).setOrigin(0.5, 1).setDepth(5).setAlpha(0.8);
+        }
         return ent;
       }
 
@@ -578,6 +596,65 @@
       return null;
     }
 
+    // ---------- spell & melee effects ----------
+    static SPELL_ELEMENTS = [
+      [/fire|burn|flame|inferno/i, 0xff8a3c],
+      [/lightning|shock|storm/i, 0x9adcff],
+      [/chill|frost|ice|cone of cold/i, 0xbfeaff],
+      [/missile|force|arcane|magic/i, 0xc792ff],
+      [/acid|poison|venom/i, 0x9ee05a],
+      [/holy|smite|divine|flamestrike/i, 0xffe9a0],
+      [/harm|drain|necro|shadow|curse/i, 0xb05ae0],
+    ];
+    elementFor(text) {
+      for (const [re, color] of TopRoomScene.SPELL_ELEMENTS) {
+        if (re.test(text)) return color;
+      }
+      return null;
+    }
+    projectileFx(x0, y0, x1, y1, color) {
+      const bolt = this.add.image(x0, y0, 'fx_glow')
+        .setBlendMode(Phaser.BlendModes.ADD).setScale(0.22).setTint(color).setDepth(60);
+      const trail = this.add.particles(x0, y0, 'px_white', {
+        speed: 8, lifespan: 280, quantity: 2, scale: { start: 0.5, end: 0 },
+        alpha: { start: 0.8, end: 0 }, tint: color, blendMode: 'ADD',
+      }).setDepth(59);
+      trail.startFollow(bolt);
+      this.tweens.add({
+        targets: bolt, x: x1, y: y1, duration: 230, ease: 'sine.in',
+        onComplete: () => {
+          const burst = this.add.particles(x1, y1, 'px_white', {
+            speed: { min: 40, max: 110 }, lifespan: 380, quantity: 14,
+            scale: { start: 0.9, end: 0 }, tint: color, blendMode: 'ADD', emitting: false,
+          }).setDepth(60);
+          burst.explode(14);
+          const flash = this.add.image(x1, y1, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+            .setScale(0.5).setTint(color).setDepth(60);
+          this.tweens.add({ targets: flash, scale: 0.1, alpha: 0, duration: 260, onComplete: () => flash.destroy() });
+          this.time.delayedCall(600, () => { burst.destroy(); trail.destroy(); });
+          bolt.destroy();
+        },
+      });
+    }
+    slashFx(x, y, towardX) {
+      const arc = this.add.image(x, y - 4, 'fx_slash')
+        .setScale(0.9 / MH.SMOOTH_SS).setDepth(60)
+        .setFlipX(towardX < x).setAlpha(0.95)
+        .setRotation((towardX < x ? -0.5 : 0.5));
+      this.tweens.add({
+        targets: arc, rotation: arc.rotation + (towardX < x ? -1.1 : 1.1), alpha: 0,
+        scale: 1.15 / MH.SMOOTH_SS, duration: 220, ease: 'cubic.out',
+        onComplete: () => arc.destroy(),
+      });
+    }
+    fxHeal() {
+      const rise = this.add.particles(this.player.x, this.player.y + 6, 'px_white', {
+        x: { min: -8, max: 8 }, speedY: { min: -45, max: -25 }, lifespan: 800,
+        quantity: 3, scale: { start: 0.7, end: 0 }, tint: 0x7dff9a, blendMode: 'ADD',
+      }).setDepth(60);
+      this.time.delayedCall(900, () => rise.destroy());
+    }
+
     // ---------- FX (shared design with the side view) ----------
     dmgStyle(dmg) {
       if (dmg == null) return { color: '#ffe080', size: 9, shake: 0 };
@@ -595,7 +672,12 @@
       this.time.delayedCall(80, () => ent.sprite && ent.sprite.clearTint());
       const ang = Math.atan2(ent.sprite.y - this.player.y, ent.sprite.x - this.player.x);
       this.tweens.add({ targets: ent.sprite, x: ent.sprite.x + Math.cos(ang) * 5, y: ent.sprite.y + Math.sin(ang) * 5, duration: 70, yoyo: true });
-      this.spark(ent.sprite.x, ent.sprite.y - 6, 0xffe080);
+      // spell in flight? element projectile. otherwise: steel.
+      const spellColor = this.elementFor(e.line || '')
+        || (this.lastSpell && Date.now() - this.lastSpell.ts < 4000 ? (this.elementFor(this.lastSpell.name) || 0xc792ff) : null);
+      if (spellColor) this.projectileFx(this.player.x, this.player.y - 6, ent.sprite.x, ent.sprite.y - 6, spellColor);
+      else this.slashFx(ent.sprite.x, ent.sprite.y, this.player.x >= ent.sprite.x ? ent.sprite.x - 10 : ent.sprite.x + 10);
+      this.spark(ent.sprite.x, ent.sprite.y - 6, spellColor || 0xffe080);
       const st = this.dmgStyle(e.dmg);
       if (st.shake) this.cameras.main.shake(90, st.shake);
       this.damageNumber(ent.sprite.x, ent.sprite.y - 16, e.dmg != null ? String(e.dmg) : 'hit', st.color, st.size);
@@ -610,6 +692,10 @@
       const st = this.dmgStyle(e && e.dmg);
       this.cameras.main.shake(80, Math.max(0.004, st.shake));
       const atk = e && e.from ? this.findEntityByText(e.from) : null;
+      const inColor = this.elementFor((e && e.line) || '');
+      if (atk && atk.sprite && inColor) {
+        this.projectileFx(atk.sprite.x, atk.sprite.y - 6, this.player.x, this.player.y - 6, inColor);
+      }
       if (atk && atk.sprite) {
         const ang = Math.atan2(this.player.y - atk.sprite.y, this.player.x - atk.sprite.x);
         this.player.x += Math.cos(ang) * 6;
@@ -658,6 +744,16 @@
       if (ent && ent.sprite) {
         ent.sprite.setFrame('death');
         this.poof(ent.sprite.x, ent.sprite.y);
+        // a body remains where it fell (the lootable corpse item follows
+        // in the next payload; this is the visual continuity)
+        const corpse = this.add.image(ent.sprite.x, ent.sprite.y + 4, 'sm_corpse')
+          .setScale(0.9 / MH.SMOOTH_SS).setDepth(4).setAlpha(0);
+        this.tweens.add({ targets: corpse, alpha: 1, duration: 400, delay: 250 });
+        corpse.setInteractive({ useHandCursor: true });
+        corpse.on('pointerdown', () => { MH.sendCommand('get all corpse'); MH.bus.emit('flash', 'You loot the corpse…'); });
+        (this.corpses = this.corpses || []).push(corpse);
+        if (this.corpses.length > 8) { const old = this.corpses.shift(); old.destroy(); }
+        this.tileLayer.add(corpse);
       }
       if (this.target && ent === this.target) { this.target = null; MH.bus.emit('target.clear'); }
     }

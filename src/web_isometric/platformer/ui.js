@@ -683,6 +683,7 @@
         invBody: $('inv-body'), journalBody: $('journal-body'), shopBody: $('shop-body'), spellsBody: $('spells-body'),
         minimap: $('minimap'), mmToggle: $('mm-toggle'), vignette: $('vignette'), mobTip: $('mob-tip'),
         compass: $('compass'), hitFlash: $('hit-flash'), combatChip: $('combat-chip'),
+        combatLog: $('combat-log'), combatLogLines: $('combat-log-lines'),
       });
 
       // login
@@ -753,7 +754,35 @@
       MH.bus.on('move.blocked', e => {}); // scene flashes it
       MH.bus.on('chat', e => chatLine(e.line));
       MH.bus.on('target.set', setTarget);
-      MH.bus.on('combat.taken', () => {
+      // live combat log: every exchange visible at a glance
+      let clogHideTimer = null;
+      const clogLine = (text, cls) => {
+        const div = document.createElement('div');
+        div.className = cls;
+        div.textContent = text;
+        els.combatLogLines.appendChild(div);
+        while (els.combatLogLines.children.length > 7) els.combatLogLines.removeChild(els.combatLogLines.firstChild);
+        els.combatLog.classList.add('show');
+        clearTimeout(clogHideTimer);
+        clogHideTimer = setTimeout(() => { if (!MH.state.inCombat) els.combatLog.classList.remove('show'); }, 4000);
+      };
+      MH.bus.on('combat.hit', e => clogLine(e.dmg != null ? `You hit ${e.target} for ${e.dmg}` : `You hit ${e.target}`, 'you'));
+      MH.bus.on('combat.miss', e => clogLine(`You miss ${e.target}`, 'miss'));
+      MH.bus.on('combat.dodged', () => clogLine('They miss you', 'miss'));
+      MH.bus.on('mob.death', e => clogLine(`${e.name || 'It'} dies!`, 'info'));
+      MH.bus.on('player.exp', e => clogLine(`+${e.amount} experience`, 'info'));
+      MH.bus.on('combat.flee', () => clogLine('You flee!', 'info'));
+      MH.bus.on('combat.state', on => {
+        if (!on) { clearTimeout(clogHideTimer); clogHideTimer = setTimeout(() => els.combatLog.classList.remove('show'), 3000); }
+      });
+      // the chip pulses with each server combat round
+      MH.bus.on('combat.update', () => {
+        els.combatChip.style.transform = 'translateX(-50%) scale(1.12)';
+        setTimeout(() => { els.combatChip.style.transform = 'translateX(-50%) scale(1)'; }, 140);
+      });
+
+      MH.bus.on('combat.taken', e => {
+        clogLine(e && e.dmg != null ? `${e.from || 'They'} hit YOU for ${e.dmg}` : 'They hit YOU', 'them');
         els.hitFlash.classList.remove('go');
         void els.hitFlash.offsetWidth;
         els.hitFlash.classList.add('go');

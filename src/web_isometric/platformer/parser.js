@@ -5,11 +5,13 @@
   const MH = window.MH = window.MH || {};
 
   const HIT_TARGET = /^You (?:hit|slash|pierce|smite|blast|attack|pound|crush|whip|claw|sting|bite|kick|bash|cleave|backstab) (?:at )?([A-Za-z' -]+?)(?:\.|!| for| with| very| extremely| hard|$)/i;
-  // full format: "Your maul slashes a janitor! [23 damage]"  compact: "You slash a janitor. [23]"
-  const HIT_DMG_FULL = /^Your .+? \w+s? (.+?)! \[(\d+) damage\]/i;
+  // full format: "Your <damage word> <verb>s <target>! [23 damage]" - damage
+  // words can be multi-word ("barely scratch"), so anchor on the verb list
+  const VERBS = 'hits|stings|whips|slashes|bites|bludgeons|crushes|pounds|claws|mauls|thrashes|pierces|blasts|punches|stabs|slices|cleaves|smashes';
+  const HIT_DMG_FULL = new RegExp(`^Your .+? (?:${VERBS}) (.+?)! \\[(\\d+) damage\\]`, 'i');
   const HIT_DMG_COMPACT = /^You \w+ (.+?)\. \[(\d+)\]/i;
   // incoming: "a janitor's scratch hits you! [3 damage]"  compact: "a janitor hits you. [3]"
-  const TAKEN_DMG_FULL = /^(.+?)'s .+? you! \[(\d+) damage\]/i;
+  const TAKEN_DMG_FULL = new RegExp(`^(.+?)'s .+? (?:${VERBS}) you! \\[(\\d+) damage\\]`, 'i');
   const TAKEN_DMG_COMPACT = /^(.+?) \w+s? you\. \[(\d+)\]/i;
   const EXP_GAIN = /You receive (\d+) experience/i;
   const MISS_TARGET = /^You miss ([A-Za-z' -]+?)(?:\.|!|$)/i;
@@ -31,8 +33,12 @@
   const GOLD_LINE = /you (?:get|receive|find) (\d+) (?:gold )?coins?/i;
 
   MH.parseLine = function parseLine(msg) {
-    const line = typeof msg === 'string' ? msg : msg.line;
+    let line = typeof msg === 'string' ? msg : msg.line;
     const chunkLen = typeof msg === 'object' ? (msg.chunkLen || 99) : 99;
+    // the MUD prompt has no trailing newline, so it glues to the next
+    // message - strip it before matching
+    line = line.replace(/^\s*\d+\/\d+hp.*?>\s*/i, '');
+    if (!line.trim()) return;
     const bus = MH.bus;
     let m;
 

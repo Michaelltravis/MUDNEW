@@ -325,6 +325,49 @@
       draw(ctx);
       scene.textures.addCanvas(key, c);
     }
+    {
+      // corpse: slumped remains
+      const CW = 22 * SS, CH = 14 * SS;
+      const [c, ctx] = canvasOf(CW, CH);
+      softShadow(ctx, CW / 2, CH * 0.8, CW * 0.9, CH * 0.5);
+      const g = ctx.createLinearGradient(0, 0, 0, CH);
+      g.addColorStop(0, '#8a7868');
+      g.addColorStop(1, '#574a3e');
+      ctx.fillStyle = g;
+      rr(ctx, CW * 0.08, CH * 0.3, CW * 0.84, CH * 0.5, CH * 0.24);
+      ctx.fill();
+      outline(ctx, 0.4);
+      // a pale bone
+      ctx.strokeStyle = '#d8d2c4';
+      ctx.lineWidth = 1.6 * SS;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(CW * 0.62, CH * 0.42); ctx.lineTo(CW * 0.78, CH * 0.3);
+      ctx.stroke();
+      scene.textures.addCanvas('sm_corpse', c);
+    }
+    {
+      // slash arc for melee hits
+      const AW = 36 * SS, AH = 36 * SS;
+      const [c, ctx] = canvasOf(AW, AH);
+      const g = ctx.createLinearGradient(0, 0, AW, 0);
+      g.addColorStop(0, 'rgba(255,255,255,0)');
+      g.addColorStop(0.5, 'rgba(255,255,255,0.95)');
+      g.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.strokeStyle = g;
+      ctx.lineWidth = 3.4 * SS;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.arc(AW / 2, AH * 1.05, AW * 0.52, Math.PI * 1.22, Math.PI * 1.78);
+      ctx.stroke();
+      ctx.lineWidth = 1.6 * SS;
+      ctx.strokeStyle = 'rgba(255,255,255,0.5)';
+      ctx.beginPath();
+      ctx.arc(AW / 2, AH * 1.05, AW * 0.42, Math.PI * 1.26, Math.PI * 1.74);
+      ctx.stroke();
+      scene.textures.addCanvas('fx_slash', c);
+    }
+
     // smooth item orbs by type colour
     const ITEM_COLORS = {
       weapon: '#cdd4e2', armor: '#93a0b5', potion: '#d65a96', scroll: '#dccfa6',
