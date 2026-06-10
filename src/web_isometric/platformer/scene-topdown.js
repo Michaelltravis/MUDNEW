@@ -542,6 +542,17 @@
       const hp = ent.data.hp;
       if (!max || hp == null) return;
       const frac = Math.max(0, Math.min(1, hp / max));
+      // badly wounded mobs visibly smolder
+      if (frac < 0.3 && !ent.smoke && ent.sprite) {
+        ent.smoke = this.add.particles(0, 0, 'px_poof', {
+          follow: ent.sprite, followOffset: { x: 0, y: -8 },
+          speedY: { min: -16, max: -8 }, lifespan: 900, frequency: 350,
+          scale: { start: 0.5, end: 0 }, alpha: { start: 0.4, end: 0 },
+        }).setDepth(7);
+      } else if (frac >= 0.3 && ent.smoke) {
+        ent.smoke.destroy();
+        ent.smoke = null;
+      }
       const x = ent.sprite.x - 9, y = ent.sprite.y - 16;
       ent.hpbar.fillStyle(0x000000, 0.7).fillRect(x, y, 18, 2);
       ent.hpbar.fillStyle(frac > 0.5 ? 0x6fd685 : frac > 0.25 ? 0xe8c168 : 0xe06c6c, 1).fillRect(x, y, 18 * frac, 2);
@@ -550,6 +561,7 @@
       if (ent.patrol) ent.patrol.stop();
       if (ent.breath) ent.breath.stop();
       if (ent.wanderTween) ent.wanderTween.stop();
+      if (ent.smoke) ent.smoke.destroy();
       ['sprite', 'label', 'hpbar', 'fightMark'].forEach(k => { if (ent[k]) ent[k].destroy(); });
     }
     shortName(name) {
@@ -579,6 +591,7 @@
       if (this.dead || !this.layout) return;
       // sword thrust animation regardless
       const tex = this.playerTex();
+      this.afterimage(this.player, 0xd0e0ff);
       this.player.setFrame(`atk_${this.facing}`);
       this.time.delayedCall(180, () => { if (!this.dead) this.player.setFrame(`${this.facing}0`); });
       if (this.layout.peaceful) { MH.bus.emit('flash', 'A calm presence here forbids violence.'); return; }
@@ -1035,7 +1048,13 @@
       ent.sprite.setTintFill(0xffffff);
       this.time.delayedCall(80, () => ent.sprite && ent.sprite.clearTint());
       const ang = Math.atan2(ent.sprite.y - this.player.y, ent.sprite.x - this.player.x);
-      this.tweens.add({ targets: ent.sprite, x: ent.sprite.x + Math.cos(ang) * 5, y: ent.sprite.y + Math.sin(ang) * 5, duration: 70, yoyo: true });
+      const kb = e.dmg != null ? Math.min(12, 4 + e.dmg * 0.25) : 5;
+      this.tweens.add({ targets: ent.sprite, x: ent.sprite.x + Math.cos(ang) * kb, y: ent.sprite.y + Math.sin(ang) * kb, duration: 70, yoyo: true });
+      this.squash(ent.sprite);
+      this.impactLines(ent.sprite.x, ent.sprite.y - 6);
+      if (e.dmg != null && e.dmg >= 8) this.freezeFrame(e.dmg >= 25 ? 95 : 60);
+      if (e.dmg != null && e.dmg >= 5) this.bloodSplat(ent.sprite.x, ent.sprite.y, e.dmg >= 20);
+      this.afterimage(this.player);
       // class ability in flight? play its signature effect. otherwise steel.
       const fx = this.abilityFxFor(e.line || '')
         || (this.lastAbility && Date.now() - this.lastAbility.ts < 4000 ? this.abilityFxFor(this.lastAbility.name) : null);
@@ -1056,6 +1075,12 @@
       this.time.delayedCall(90, () => this.player.clearTint());
       const st = this.dmgStyle(e && e.dmg);
       this.cameras.main.shake(80, Math.max(0.004, st.shake));
+      this.squash(this.player);
+      this.impactLines(this.player.x, this.player.y - 6, 0xff8080);
+      if (e && e.dmg != null && e.dmg >= 6) {
+        this.freezeFrame(e.dmg >= 20 ? 90 : 55);
+        this.bloodSplat(this.player.x, this.player.y, e.dmg >= 15);
+      }
       const atk = e && e.from ? this.findEntityByText(e.from) : null;
       const inColor = this.elementFor((e && e.line) || '');
       if (atk && atk.sprite && inColor) {
@@ -1098,6 +1123,60 @@
       }
     }
 
+    // hit-stop: the universal crunch. freeze the world for a few frames
+    // on solid impacts (Vlambeer/Hades school of game feel)
+    freezeFrame(ms = 70) {
+      if (this._frozen) return;
+      this._frozen = true;
+      this.tweens.timeScale = 0.05;
+      this.physics.world.timeScale = 10;
+      this.anims.globalTimeScale = 0.05;
+      setTimeout(() => {
+        this.tweens.timeScale = 1;
+        this.physics.world.timeScale = 1;
+        this.anims.globalTimeScale = 1;
+        this._frozen = false;
+      }, ms);
+    }
+    // squash & stretch: bodies deform on impact
+    squash(sprite) {
+      if (!sprite || !sprite.active) return;
+      const sx = sprite.scaleX, sy = sprite.scaleY;
+      this.tweens.add({
+        targets: sprite, scaleX: sx * 1.28, scaleY: sy * 0.72,
+        duration: 60, yoyo: true, ease: 'cubic.out',
+        onComplete: () => { if (sprite.active) sprite.setScale(sx, sy); },
+      });
+    }
+    // impact frame: radial white lines snapping out from the hit point
+    impactLines(x, y, color = 0xffffff) {
+      const g = this.add.graphics().setDepth(61);
+      for (let i = 0; i < 6; i++) {
+        const a = (i / 6) * Math.PI * 2 + Math.random() * 0.4;
+        g.lineStyle(1.4, color, 0.95);
+        g.lineBetween(x + Math.cos(a) * 5, y + Math.sin(a) * 5, x + Math.cos(a) * 13, y + Math.sin(a) * 13);
+      }
+      this.tweens.add({ targets: g, alpha: 0, duration: 140, onComplete: () => g.destroy() });
+    }
+    // wounds stay on the floor
+    bloodSplat(x, y, heavy = false) {
+      const g = this.add.graphics().setDepth(2);
+      g.fillStyle(0x6a1818, heavy ? 0.5 : 0.35);
+      for (let i = 0; i < (heavy ? 5 : 3); i++) {
+        g.fillEllipse(x + (Math.random() * 14 - 7), y + 6 + (Math.random() * 8 - 4), 5 + Math.random() * 5, 3 + Math.random() * 3);
+      }
+      this.tileLayer.add(g);
+      this.tweens.add({ targets: g, alpha: 0, duration: 2500, delay: 6000, onComplete: () => g.destroy() });
+    }
+    // afterimage trail for dashes and strikes
+    afterimage(sprite, tint = 0xffffff) {
+      if (!sprite || !sprite.active) return;
+      const ghost = this.add.image(sprite.x, sprite.y, sprite.texture.key, sprite.frame.name)
+        .setScale(sprite.scaleX, sprite.scaleY).setFlipX(sprite.flipX)
+        .setAlpha(0.4).setTint(tint).setDepth(sprite.depth - 0.1);
+      this.tweens.add({ targets: ghost, alpha: 0, duration: 220, onComplete: () => ghost.destroy() });
+    }
+
     zoomPunch() {
       const cam = this.cameras.main;
       const base = cam.zoom;
@@ -1113,6 +1192,23 @@
     fxMobDeath(e) {
       const ent = this.findEntityByText(e.name) || this.target;
       if (ent && ent.sprite) {
+        const dx = ent.sprite.x, dy = ent.sprite.y;
+        // the killing blow earns drama: freeze, flash, shatter, and a
+        // soul drifting free of the body
+        this.freezeFrame(110);
+        ent.sprite.setTintFill(0xffffff);
+        this.time.delayedCall(90, () => ent.sprite && ent.sprite.active && ent.sprite.clearTint());
+        const shards = this.add.particles(dx, dy - 6, 'px_white', {
+          speed: { min: 60, max: 150 }, lifespan: 520, quantity: 12,
+          scale: { start: 1.1, end: 0 }, tint: [0xffffff, 0xd0d6e4], emitting: false,
+          gravityY: 160,
+        }).setDepth(60);
+        shards.explode(12);
+        this.time.delayedCall(800, () => shards.destroy());
+        const soul = this.add.image(dx, dy - 8, 'fx_glow')
+          .setBlendMode(Phaser.BlendModes.ADD).setScale(0.16).setTint(0xbcd2ff).setAlpha(0.85).setDepth(60);
+        this.tweens.add({ targets: soul, y: dy - 42, alpha: 0, scale: 0.05, duration: 1400, ease: 'sine.out', onComplete: () => soul.destroy() });
+        this.bloodSplat(dx, dy, true);
         ent.sprite.setFrame('death');
         this.poof(ent.sprite.x, ent.sprite.y);
         // a body remains where it fell (the lootable corpse item follows
@@ -1195,11 +1291,19 @@
       this.time.delayedCall(700, () => emitter.destroy());
     }
     damageNumber(x, y, text, color, size = 9) {
+      const crit = size >= 12;
       const t = this.add.text(x + (Math.random() * 10 - 5), y, text, {
-        fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: `${size}px`, color, stroke: '#000', strokeThickness: 2,
-      }).setOrigin(0.5).setDepth(60).setScale(1.4);
-      this.tweens.add({ targets: t, scale: 1, duration: 110 });
-      this.tweens.add({ targets: t, y: y - 16, alpha: 0, duration: 800, delay: 110, onComplete: () => t.destroy() });
+        fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3,
+        fontSize: `${crit ? size + 3 : size}px`, color,
+        stroke: '#000', strokeThickness: crit ? 3 : 2,
+        fontStyle: crit ? 'bold' : 'normal',
+      }).setOrigin(0.5).setDepth(62).setScale(crit ? 2.4 : 1.4);
+      this.tweens.add({ targets: t, scale: 1, duration: crit ? 160 : 110, ease: 'back.out' });
+      this.tweens.add({
+        targets: t, y: y - (crit ? 24 : 16), x: t.x + (Math.random() * 24 - 12),
+        alpha: 0, duration: crit ? 950 : 800, delay: 110, onComplete: () => t.destroy(),
+      });
+      if (crit) this.impactLines(x, y, Phaser.Display.Color.HexStringToColor(color).color);
     }
 
     // ---------- movement / exits ----------
@@ -1353,6 +1457,18 @@
       // the MUD fights in rounds: give each round a visible beat - the
       // fighters feint toward each other as the server resolves the exchange
       if (payload.in_combat) {
+        // telegraph: ~1.5s into the round (just before the next exchange),
+        // the attacker rears up - you can FEEL the hit coming
+        this.time.delayedCall(1450, () => {
+          if (!MH.state.inCombat) return;
+          for (const ent2 of this.entities.values()) {
+            if (!ent2.data || !ent2.data.fighting || !ent2.sprite || !ent2.sprite.active) continue;
+            this.tweens.add({ targets: ent2.sprite, scaleX: ent2.sprite.scaleX * 1.12, scaleY: ent2.sprite.scaleY * 1.12, duration: 160, yoyo: true });
+            ent2.sprite.setTint(0xffb0a0);
+            this.time.delayedCall(330, () => ent2.sprite && ent2.sprite.active && ent2.sprite.clearTint());
+            break;
+          }
+        });
         for (const ent of this.entities.values()) {
           if (!ent.data || !ent.data.fighting || !ent.sprite) continue;
           const ang = Math.atan2(this.player.y - ent.sprite.y, this.player.x - ent.sprite.x);

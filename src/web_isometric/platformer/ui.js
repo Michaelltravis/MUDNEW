@@ -39,9 +39,34 @@
     o.connect(g); g.connect(ctx.destination);
     o.start(t); o.stop(t + dur + 0.02);
   }
+  // white-noise burst layered under tones = physical crunch
+  let noiseBuf = null;
+  function noise({ dur = 0.07, vol = 0.1, delay = 0, low = false }) {
+    const ctx = audio();
+    if (!ctx) return;
+    if (!noiseBuf) {
+      noiseBuf = ctx.createBuffer(1, ctx.sampleRate * 0.2, ctx.sampleRate);
+      const data = noiseBuf.getChannelData(0);
+      for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1;
+    }
+    const srcN = ctx.createBufferSource();
+    srcN.buffer = noiseBuf;
+    const g = ctx.createGain();
+    const t = ctx.currentTime + delay;
+    g.gain.setValueAtTime(vol, t);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    let node = srcN;
+    if (low) {
+      const f = ctx.createBiquadFilter();
+      f.type = 'lowpass'; f.frequency.value = 700;
+      srcN.connect(f); node = f;
+    }
+    node.connect(g); g.connect(ctx.destination);
+    srcN.start(t); srcN.stop(t + dur + 0.02);
+  }
   const sfx = {
-    hit: () => tone({ f: 320, f2: 240, type: 'square', dur: 0.08, vol: 0.06 }),
-    taken: () => { tone({ f: 130, f2: 70, type: 'sawtooth', dur: 0.2, vol: 0.14 }); },
+    hit: () => { tone({ f: 320, f2: 240, type: 'square', dur: 0.08, vol: 0.05 }); noise({ dur: 0.05, vol: 0.07 }); },
+    taken: () => { tone({ f: 130, f2: 70, type: 'sawtooth', dur: 0.2, vol: 0.12 }); noise({ dur: 0.1, vol: 0.14, low: true }); },
     death: () => [200, 150, 110, 80].forEach((f, i) => tone({ f, type: 'sawtooth', dur: 0.3, vol: 0.12, delay: i * 0.2 })),
     level: () => [261, 329, 392, 523].forEach((f, i) => tone({ f, type: 'triangle', dur: 0.14, vol: 0.09, delay: i * 0.13 })),
     move: () => tone({ f: 220, f2: 180, type: 'sine', dur: 0.08, vol: 0.04 }),
