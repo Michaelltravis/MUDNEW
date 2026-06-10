@@ -6,14 +6,46 @@
   const MH = window.MH = window.MH || {};
   const NAME_KEY = 'misthollow_name';
   const PW_KEY = 'misthollow_pw';
-  const HOTBAR_KEY = 'misthollow_plat_hotbar';
-  const DEFAULT_HOTBAR = ['kill', 'look', 'flee', 'rest', 'stand', 'inventory', 'score', 'quests'];
+  const HOTBAR_KEY = 'misthollow_plat_hotbar_v2';
+  const DEFAULT_HOTBAR = ['attack', 'look', 'flee', 'rest', 'stand', 'inventory', 'score', 'quests'];
 
   const $ = id => document.getElementById(id);
   const els = {};
 
   function lsGet(k) { try { return localStorage.getItem(k); } catch (_) { return null; } }
   function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (_) {} }
+
+  // ---- WebAudio cues: you should HEAR combat ----
+  let audioCtx = null;
+  function audio() {
+    if (audioCtx) { if (audioCtx.state === 'suspended') audioCtx.resume().catch(() => {}); return audioCtx; }
+    const Ref = window.AudioContext || window.webkitAudioContext;
+    if (!Ref) return null;
+    try { audioCtx = new Ref(); } catch (_) { return null; }
+    return audioCtx;
+  }
+  function tone({ f = 440, f2 = null, type = 'square', dur = 0.12, vol = 0.08, delay = 0 }) {
+    const ctx = audio();
+    if (!ctx) return;
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    const t = ctx.currentTime + delay;
+    o.type = type;
+    o.frequency.setValueAtTime(f, t);
+    if (f2) o.frequency.linearRampToValueAtTime(f2, t + dur);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(vol, t + 0.015);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(ctx.destination);
+    o.start(t); o.stop(t + dur + 0.02);
+  }
+  const sfx = {
+    hit: () => tone({ f: 320, f2: 240, type: 'square', dur: 0.08, vol: 0.06 }),
+    taken: () => { tone({ f: 130, f2: 70, type: 'sawtooth', dur: 0.2, vol: 0.14 }); },
+    death: () => [200, 150, 110, 80].forEach((f, i) => tone({ f, type: 'sawtooth', dur: 0.3, vol: 0.12, delay: i * 0.2 })),
+    level: () => [261, 329, 392, 523].forEach((f, i) => tone({ f, type: 'triangle', dur: 0.14, vol: 0.09, delay: i * 0.13 })),
+    move: () => tone({ f: 220, f2: 180, type: 'sine', dur: 0.08, vol: 0.04 }),
+    engage: () => { tone({ f: 90, f2: 60, type: 'sawtooth', dur: 0.25, vol: 0.12 }); tone({ f: 520, dur: 0.1, vol: 0.05, delay: 0.05 }); },
+  };
 
   // ---- output capture for shop/journal panels ----
   let capture = null;
@@ -121,13 +153,39 @@
     });
   }
 
+  // raw commands print to the hidden terminal, which reads as "nothing
+  // happened" - so peek the response into the flash banner
+  async function commandWithPeek(cmd) {
+    const p = captureOutput(1100);
+    MH.sendCommand(cmd);
+    const lines = await p;
+    const first = lines.find(l => l.trim() && !/^\d+\/\d+hp/i.test(l) && !/^>/.test(l));
+    if (first) flash(first.slice(0, 90));
+  }
+
   function useHotbar(i) {
     const cmd = hotbar[i];
     if (!cmd) return;
-    // contextual targeting: "kill" or "cast 'x'" alone get the current target appended
-    const t = currentTarget ? MH.mobKeyword(currentTarget.name) : '';
-    if ((cmd === 'kill' || /^cast '[^']+'$/.test(cmd)) && t) MH.sendCommand(`${cmd} ${t}`);
-    else MH.sendCommand(cmd);
+    // slots map to real UI where possible - commands shouldn't vanish into
+    // the void
+    if (cmd === 'attack' || cmd === 'kill') {
+      const t = currentTarget ? MH.mobKeyword(currentTarget.name) : '';
+      if (cmd === 'kill' && t) MH.sendCommand(`kill ${t}`);
+      else MH.bus.emit('player.attack');
+    } else if (cmd === 'inventory' || cmd === 'equipment') {
+      renderInventory(); openModal('modal-inv');
+    } else if (cmd === 'quests' || cmd === 'journal') {
+      openJournal();
+    } else if (cmd === 'score') {
+      openTextPanel('score');
+    } else if (cmd === 'look') {
+      if (lastRoomShown) showRoom(lastRoomShown.room, lastRoomShown.zoneName);
+      commandWithPeek('look');
+    } else if (/^cast '[^']+'$/.test(cmd) && currentTarget) {
+      MH.sendCommand(`${cmd} ${MH.mobKeyword(currentTarget.name)}`);
+    } else {
+      commandWithPeek(cmd);
+    }
     // cooldown sweep ~ one combat round
     const slot = els.hotbar.children[i];
     if (slot) {
@@ -178,7 +236,9 @@
 
   // ---- room banner / description ----
   let descTimer = null;
+  let lastRoomShown = null;
   function showRoom(room, zoneName) {
+    lastRoomShown = { room, zoneName };
     els.roomName.textContent = room.name || '';
     els.roomZone.textContent = zoneName || '';
     const desc = (room.description || '').trim();
@@ -334,6 +394,15 @@
       });
       el.addEventListener('dragstart', e => e.dataTransfer.setData('text/plain', el.dataset.cmd));
     });
+  }
+
+  async function openTextPanel(cmd) {
+    openModal('modal-journal');
+    els.journalBody.textContent = '…';
+    const p = captureOutput(1300);
+    MH.sendCommand(cmd, false);
+    const lines = await p;
+    els.journalBody.textContent = lines.length ? lines.join('\n') : `(no response to '${cmd}')`;
   }
 
   async function openJournal() {
@@ -577,7 +646,7 @@
         chatInput: $('chat-input'), chatMode: $('chat-mode'),
         invBody: $('inv-body'), journalBody: $('journal-body'), shopBody: $('shop-body'), spellsBody: $('spells-body'),
         minimap: $('minimap'), mmToggle: $('mm-toggle'), vignette: $('vignette'), mobTip: $('mob-tip'),
-        compass: $('compass'),
+        compass: $('compass'), hitFlash: $('hit-flash'), combatChip: $('combat-chip'),
       });
 
       // login
@@ -648,6 +717,20 @@
       MH.bus.on('move.blocked', e => {}); // scene flashes it
       MH.bus.on('chat', e => chatLine(e.line));
       MH.bus.on('target.set', setTarget);
+      MH.bus.on('combat.taken', () => {
+        els.hitFlash.classList.remove('go');
+        void els.hitFlash.offsetWidth;
+        els.hitFlash.classList.add('go');
+        sfx.taken();
+      });
+      MH.bus.on('combat.hit', () => sfx.hit());
+      MH.bus.on('combat.state', on => {
+        els.combatChip.classList.toggle('show', on);
+        if (on) sfx.engage();
+      });
+      MH.bus.on('player.death', () => sfx.death());
+      MH.bus.on('level.up', () => sfx.level());
+      MH.bus.on('room.entered', () => sfx.move());
       MH.bus.on('target.update', setTarget);
       MH.bus.on('target.clear', () => setTarget(null));
       MH.bus.on('level.up', e => flash(e.line));

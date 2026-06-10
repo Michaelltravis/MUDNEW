@@ -989,13 +989,16 @@
     MH.game = new Phaser.Game({
       type: Phaser.AUTO,
       parent: 'game-root',
-      width: GAME_W,
-      height: GAME_H,
+      width: window.innerWidth,
+      height: window.innerHeight,
       pixelArt: true,
+      roundPixels: true,
       backgroundColor: '#0b0c10',
       physics: { default: 'arcade', arcade: { gravity: { y: 900 }, debug: false } },
       input: { gamepad: true },
-      scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
+      // native-resolution canvas; each scene picks an integer camera zoom so
+      // pixels stay crisp at any window size
+      scale: { mode: Phaser.Scale.RESIZE, autoCenter: Phaser.Scale.CENTER_BOTH },
       scene: [BootScene, GalleryScene, RoomScene, MH.TopRoomScene],
     });
   };

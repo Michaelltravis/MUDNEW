@@ -1017,13 +1017,11 @@
     const rng = MH.mulberry32(MH.hashStr('td' + name));
     const T = 16;
     {
-      // floor: soft dithered ground seen from above
+      // floor: clean ground with just a whisper of texture (crisp > noisy)
       const [c, ctx] = canvasOf(T, T);
       ctx.fillStyle = p.fillA; ctx.fillRect(0, 0, T, T);
       ctx.fillStyle = p.fillB;
-      for (let y = 0; y < T; y++) for (let x = 0; x < T; x++) if (rng() < 0.18) ctx.fillRect(x, y, 1, 1);
-      ctx.fillStyle = shade(p.fillA, 12);
-      for (let i = 0; i < 3; i++) ctx.fillRect(Math.floor(rng() * 14), Math.floor(rng() * 14), 2, 1);
+      for (let y = 0; y < T; y++) for (let x = 0; x < T; x++) if (rng() < 0.05) ctx.fillRect(x, y, 1, 1);
       scene.textures.addCanvas(`td_${name}_floor`, c);
     }
     {

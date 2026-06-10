@@ -22,8 +22,15 @@
       this.physics.world.gravity.y = 0;
       this.physics.world.setBounds(0, 0, this.pxW, this.pxH);
       this.cameras.main.setBounds(0, 0, this.pxW, this.pxH);
-      this.cameras.main.setZoom(2);
-      this.cameras.main.centerOn(this.pxW / 2, this.pxH / 2);
+      this.cameras.main.setRoundPixels(true);
+      // integer zoom for crisp pixels at any window size
+      const fit = () => {
+        const z = Math.max(2, Math.floor(Math.min(this.scale.width / this.pxW, this.scale.height / this.pxH)));
+        this.cameras.main.setZoom(z);
+        this.cameras.main.centerOn(this.pxW / 2, this.pxH / 2);
+      };
+      fit();
+      this.scale.on('resize', fit);
 
       this.solids = this.physics.add.staticGroup();
       this.tileLayer = this.add.layer();
@@ -74,6 +81,7 @@
       MH.bus.on('player.exp', e => this.fxExp(e));
       MH.bus.on('walk.step', dir => this.requestMove(dir));
       MH.bus.on('nav.goto', dir => this.navTo(dir));
+      MH.bus.on('player.attack', () => this.tryAttack());
       MH.bus.on('mob.death', e => this.fxMobDeath(e));
       MH.bus.on('player.death', () => this.fxPlayerDeath());
       MH.bus.on('level.up', () => this.fxLevelUp());
@@ -86,6 +94,13 @@
     }
 
     playerTex() { return MH.tdSprites.playerKey(MH.state.player && MH.state.player.char_class); }
+
+    // never render Phaser's NULL missing-texture box: substitute and log
+    safeTex(key, fallback) {
+      if (this.textures.exists(key)) return key;
+      console.warn(`[misthollow] missing texture '${key}', using '${fallback}'`);
+      return fallback;
+    }
 
     // ---------- room construction ----------
     buildRoom(layout, entryDir) {
@@ -116,6 +131,7 @@
         for (let x = 0; x < layout.W; x++) {
           const cell = layout.grid[y * layout.W + x];
           const img = this.add.image(x * T, y * T, `td_${th}_floor`).setOrigin(0, 0);
+          if ((x + y) % 2) img.setTint(0xf2f2f2);   // subtle checker
           this.bgLayer.add(img);
           if (cell === BLOCK) {
             const isBorder = x === 0 || y === 0 || x === layout.W - 1 || y === layout.H - 1;
@@ -187,7 +203,7 @@
         const zone = layout.exits[dir] && layout.exits[dir].to_zone;
         if (!zone) return;
         const post = this.add.text(x, y, `→ ${zone}`, {
-          fontFamily: 'Courier New', fontSize: '7px', fontStyle: 'italic', color: '#e8c168',
+          fontFamily: 'Courier New', resolution: 3, fontSize: '7px', fontStyle: 'italic', color: '#e8c168',
           backgroundColor: '#10131ea8', padding: { x: 2, y: 1 },
         }).setOrigin(0.5, 0.5).setDepth(5).setAlpha(0.9);
         this.tileLayer.add(post);
@@ -251,7 +267,7 @@
         zone.exitDir = p.name;
         this.featureZones.push(zone);
         const hint = this.add.text(p.x * T + T / 2, (p.y - 1.2) * T, p.name, {
-          fontFamily: 'Courier New', fontSize: '7px', color: '#b87cf0',
+          fontFamily: 'Courier New', resolution: 3, fontSize: '7px', color: '#b87cf0',
         }).setOrigin(0.5, 1).setDepth(3);
         this.tileLayer.add(hint);
         signpost(p.name, p.x * T + T / 2, (p.y - 2) * T);
@@ -266,7 +282,7 @@
       Phaser.Utils.Array.Shuffle(frags);
       frags.slice(0, 2).forEach((frag, i) => {
         const tx = this.add.text(40 + rng() * (this.pxW - 220), 40 + i * 80 + rng() * 30, frag, {
-          fontFamily: 'Courier New', fontSize: '8px', fontStyle: 'italic', color: '#ffffff',
+          fontFamily: 'Courier New', resolution: 3, fontSize: '8px', fontStyle: 'italic', color: '#ffffff',
         }).setAlpha(0.16).setDepth(4);
         this.tweens.add({ targets: tx, y: tx.y - 6, duration: 9000 + rng() * 3000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
         this.bgLayer.add(tx);
@@ -295,7 +311,7 @@
         this.tileLayer.add(g);
         const slain = d.killer ? `${d.name}, slain by ${d.killer}` : d.name;
         const label = this.add.text(sx, sy - 18, `here lies ${slain}`, {
-          fontFamily: 'Courier New', fontSize: '7px', fontStyle: 'italic', color: '#8a90a4',
+          fontFamily: 'Courier New', resolution: 3, fontSize: '7px', fontStyle: 'italic', color: '#8a90a4',
         }).setOrigin(0.5, 1).setAlpha(0.7).setDepth(3);
         this.tileLayer.add(label);
       });
@@ -324,14 +340,14 @@
       const ent = { key, kind: spec.kind, data: spec.data };
 
       if (spec.kind === 'item') {
-        ent.sprite = this.add.image(slot.x, slot.y, MH.sprites.itemKey(spec.data.type)).setDepth(5);
+        ent.sprite = this.add.image(slot.x, slot.y, this.safeTex(MH.sprites.itemKey(spec.data.type), 'px_star')).setDepth(5);
         this.tweens.add({ targets: ent.sprite, y: slot.y - 3, duration: 900, yoyo: true, repeat: -1, ease: 'sine.inOut' });
         ent.sprite.setInteractive({ useHandCursor: true });
         ent.sprite.on('pointerdown', () => MH.sendCommand(`get ${MH.mobKeyword(spec.data.name)}`));
         return ent;
       }
 
-      const tex = spec.kind === 'player' ? MH.tdSprites.playerKey(spec.data.char_class) : MH.tdSprites.mobKey(spec.data.name);
+      const tex = this.safeTex(spec.kind === 'player' ? MH.tdSprites.playerKey(spec.data.char_class) : MH.tdSprites.mobKey(spec.data.name), 'td_mob_citizen');
       ent.sprite = this.add.sprite(slot.x, slot.y, tex, 'd0').setDepth(8);
       ent.sprite.play(`${tex}_walkd`);
       ent.sprite.anims.pause();
@@ -340,7 +356,7 @@
 
       const labelColor = spec.kind === 'player' ? '#6ca8e0' : (spec.data.hostile ? '#e06c6c' : (spec.data.shopkeeper ? '#e8c168' : '#c8ccd8'));
       ent.label = this.add.text(slot.x, slot.y - 18, this.shortName(spec.data.name), {
-        fontFamily: 'Courier New', fontSize: '7px', color: labelColor,
+        fontFamily: 'Courier New', resolution: 3, fontSize: '7px', color: labelColor,
       }).setOrigin(0.5, 1).setDepth(9);
       ent.hpbar = this.add.graphics().setDepth(9);
       this.drawHpBar(ent);
@@ -371,6 +387,18 @@
     updateEntity(ent, data) {
       ent.data = data;
       this.drawHpBar(ent);
+      // loud telegraph: red swords + red name over whoever is attacking YOU
+      if (data.fighting && !ent.fightMark) {
+        ent.fightMark = this.add.text(ent.sprite.x, ent.sprite.y - 26, '⚔', {
+          fontFamily: 'Courier New', resolution: 3, fontSize: '12px', color: '#ff5050', stroke: '#000', strokeThickness: 2,
+        }).setOrigin(0.5, 1).setDepth(20);
+        this.tweens.add({ targets: ent.fightMark, scale: 1.3, duration: 380, yoyo: true, repeat: -1 });
+        if (ent.label) ent.label.setColor('#ff5050');
+      } else if (!data.fighting && ent.fightMark) {
+        ent.fightMark.destroy();
+        ent.fightMark = null;
+        if (ent.label) ent.label.setColor(ent.kind === 'player' ? '#6ca8e0' : (data.hostile ? '#e06c6c' : '#c8ccd8'));
+      }
       if (this.target && this.target.key === ent.key) MH.bus.emit('target.update', data);
     }
     drawHpBar(ent) {
@@ -386,7 +414,7 @@
     }
     destroyEntity(ent) {
       if (ent.patrol) ent.patrol.stop();
-      ['sprite', 'label', 'hpbar'].forEach(k => { if (ent[k]) ent[k].destroy(); });
+      ['sprite', 'label', 'hpbar', 'fightMark'].forEach(k => { if (ent[k]) ent[k].destroy(); });
     }
     shortName(name) {
       const n = String(name || '');
@@ -484,7 +512,7 @@
     }
     fxExp(e) {
       const t = this.add.text(this.player.x, this.player.y - 22, `+${e.amount} xp`, {
-        fontFamily: 'Courier New', fontSize: '9px', color: '#e8c168', stroke: '#000', strokeThickness: 2,
+        fontFamily: 'Courier New', resolution: 3, fontSize: '9px', color: '#e8c168', stroke: '#000', strokeThickness: 2,
       }).setOrigin(0.5).setDepth(60);
       this.tweens.add({ targets: t, y: t.y - 18, alpha: 0, duration: 1400, ease: 'sine.out', onComplete: () => t.destroy() });
     }
@@ -536,14 +564,14 @@
       }
       if (!/^(you hear|a |an |the |somewhere|in the distance|dust|wind|water|shadows)/i.test(line)) return;
       const t = this.add.text(40 + Math.random() * (this.pxW - 200), 40 + Math.random() * 100, line, {
-        fontFamily: 'Courier New', fontSize: '8px', fontStyle: 'italic', color: '#c8d0e4',
+        fontFamily: 'Courier New', resolution: 3, fontSize: '8px', fontStyle: 'italic', color: '#c8d0e4',
       }).setAlpha(0).setDepth(45);
       this.tweens.add({ targets: t, alpha: 0.45, duration: 900, yoyo: true, hold: 3600, onComplete: () => t.destroy() });
     }
     bubbleOver(ent, text, color = '#dce4f0') {
       if (!ent || !ent.sprite) return;
       const bubble = this.add.text(ent.sprite.x, ent.sprite.y - 24, String(text).slice(0, 50), {
-        fontFamily: 'Courier New', fontSize: '7px', color, backgroundColor: '#10131ecc',
+        fontFamily: 'Courier New', resolution: 3, fontSize: '7px', color, backgroundColor: '#10131ecc',
         padding: { x: 3, y: 1 }, wordWrap: { width: 120 },
       }).setOrigin(0.5, 1).setDepth(60);
       this.tweens.add({ targets: bubble, y: bubble.y - 6, alpha: 0, delay: 2800, duration: 700, onComplete: () => bubble.destroy() });
@@ -564,7 +592,7 @@
     }
     damageNumber(x, y, text, color, size = 9) {
       const t = this.add.text(x + (Math.random() * 10 - 5), y, text, {
-        fontFamily: 'Courier New', fontSize: `${size}px`, color, stroke: '#000', strokeThickness: 2,
+        fontFamily: 'Courier New', resolution: 3, fontSize: `${size}px`, color, stroke: '#000', strokeThickness: 2,
       }).setOrigin(0.5).setDepth(60).setScale(1.4);
       this.tweens.add({ targets: t, scale: 1, duration: 110 });
       this.tweens.add({ targets: t, y: y - 16, alpha: 0, duration: 800, delay: 110, onComplete: () => t.destroy() });
@@ -866,6 +894,7 @@
       // labels + hp bars follow
       for (const ent of this.entities.values()) {
         if (ent.label && ent.sprite) { ent.label.x = ent.sprite.x; ent.label.y = ent.sprite.y - (ent.data.boss ? 26 : 18); }
+        if (ent.fightMark && ent.sprite) { ent.fightMark.x = ent.sprite.x; ent.fightMark.y = ent.sprite.y - 26; }
         if (ent.hpbar && ent.sprite) this.drawHpBar(ent);
       }
       // depth-sort actors by y so overlap reads correctly
