@@ -633,13 +633,255 @@
     }
   }
 
-  function genActor(scene, key, body, pal, accs, alpha) {
+  // ---------- distinct mob silhouettes ----------
+  // each archetype reads at a glance: dragons have wings and horns, wolves
+  // have snouts and tails, insects skitter on six legs, elementals float
+  function drawDragon(ctx, ox, frame, pal) {
+    const u = SS, cx = ox + 12 * u, cy = 12 * u;
+    if (frame === 'death') { ctx.fillStyle = pal.outfit; rr(ctx, cx - 9 * u, cy + 3 * u, 18 * u, 5 * u, 2 * u); ctx.fill(); return; }
+    const flap = frame.endsWith('1') ? -2 : 1;
+    const facing = frame.startsWith('atk_') ? frame.slice(4) : frame[0];
+    softShadow(ctx, cx, 21 * u, 17 * u, 5 * u);
+    // wings: two arcs sweeping back
+    ctx.fillStyle = shade(pal.outfit, -34);
+    [[-1], [1]].forEach(([sx]) => {
+      ctx.save();
+      ctx.translate(cx + sx * 4 * u, cy - u + flap * u * 0.7);
+      ctx.rotate(sx * (0.85 + flap * 0.08));
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.quadraticCurveTo(sx * 8 * u, -7 * u, sx * 10.5 * u, -u);
+      ctx.quadraticCurveTo(sx * 7 * u, -2 * u, sx * 4.5 * u, u);
+      ctx.closePath(); ctx.fill();
+      ctx.restore();
+    });
+    // tail: curved sweep
+    ctx.strokeStyle = shade(pal.outfit, -10);
+    ctx.lineWidth = 2.2 * u; ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(cx - (facing === 's' ? 6 : 0) * u, cy + 4 * u);
+    ctx.quadraticCurveTo(cx - 10 * u, cy + 7 * u, cx - 11 * u, cy + 2 * u);
+    ctx.stroke();
+    // body: muscular ellipse with belly plate
+    const bg = ctx.createLinearGradient(0, cy - 5 * u, 0, cy + 7 * u);
+    bg.addColorStop(0, shade(pal.outfit, 24));
+    bg.addColorStop(1, shade(pal.outfit, -26));
+    ctx.fillStyle = bg;
+    ctx.beginPath();
+    ctx.ellipse(cx, cy + 2 * u, 6.4 * u, 5 * u, 0, 0, Math.PI * 2);
+    ctx.fill();
+    outline(ctx);
+    ctx.fillStyle = shade(pal.trim, 10);
+    ctx.beginPath();
+    ctx.ellipse(cx, cy + 4 * u, 3.4 * u, 2.4 * u, 0, 0, Math.PI * 2);
+    ctx.fill();
+    // neck + horned head toward facing
+    const hx = facing === 's' ? cx + 7 * u : cx + 2 * u;
+    const hy = facing === 'u' ? cy - 8 * u : cy - 6 * u;
+    ctx.strokeStyle = shade(pal.outfit, 6);
+    ctx.lineWidth = 3 * u;
+    ctx.beginPath(); ctx.moveTo(cx + u, cy - u); ctx.lineTo(hx, hy + 2 * u); ctx.stroke();
+    const hg = ctx.createRadialGradient(hx - u, hy - u, u, hx, hy, 4 * u);
+    hg.addColorStop(0, shade(pal.outfit, 30));
+    hg.addColorStop(1, shade(pal.outfit, -16));
+    ctx.fillStyle = hg;
+    ctx.beginPath(); ctx.ellipse(hx, hy, 3.4 * u, 2.6 * u, facing === 's' ? 0.25 : 0, 0, Math.PI * 2); ctx.fill();
+    outline(ctx);
+    // horns
+    ctx.strokeStyle = '#e8dcc0';
+    ctx.lineWidth = 1.3 * u;
+    ctx.beginPath();
+    ctx.moveTo(hx - 1.5 * u, hy - 2 * u); ctx.lineTo(hx - 3 * u, hy - 4.5 * u);
+    ctx.moveTo(hx + 1.5 * u, hy - 2 * u); ctx.lineTo(hx + 3 * u, hy - 4.5 * u);
+    ctx.stroke();
+    // eye ember
+    ctx.fillStyle = '#ffd44a';
+    ctx.beginPath(); ctx.arc(hx + (facing === 's' ? 1.6 : -1.2) * u, hy - 0.4 * u, 0.7 * u, 0, Math.PI * 2); ctx.fill();
+    if (frame.startsWith('atk_')) {
+      // fire breath puff
+      const fg = ctx.createRadialGradient(hx + 4 * u, hy, u, hx + 5 * u, hy, 4 * u);
+      fg.addColorStop(0, 'rgba(255,200,80,0.95)');
+      fg.addColorStop(1, 'rgba(255,100,30,0)');
+      ctx.fillStyle = fg;
+      ctx.beginPath(); ctx.arc(hx + 5 * u, hy, 4 * u, 0, Math.PI * 2); ctx.fill();
+    }
+    if (frame === 'hurt') { ctx.fillStyle = 'rgba(255,70,70,0.45)'; ctx.beginPath(); ctx.ellipse(cx, cy + 2 * u, 6.4 * u, 5 * u, 0, 0, Math.PI * 2); ctx.fill(); }
+  }
+  function drawBeastWolf(ctx, ox, frame, pal) {
+    const u = SS, cx = ox + 12 * u, cy = 13 * u;
+    if (frame === 'death') { ctx.fillStyle = pal.outfit; rr(ctx, cx - 8 * u, cy + 3 * u, 16 * u, 4.5 * u, 2 * u); ctx.fill(); return; }
+    const facing = frame.startsWith('atk_') ? frame.slice(4) : frame[0];
+    const step = frame.endsWith('1') ? 1 : 0;
+    softShadow(ctx, cx, 20.5 * u, 15 * u, 4.4 * u);
+    const horiz = facing === 's';
+    // tail
+    ctx.strokeStyle = shade(pal.outfit, -8);
+    ctx.lineWidth = 2 * u; ctx.lineCap = 'round';
+    ctx.beginPath();
+    if (horiz) { ctx.moveTo(cx - 7 * u, cy); ctx.quadraticCurveTo(cx - 10 * u, cy - 4 * u, cx - 9 * u, cy - 6 * u); }
+    else { ctx.moveTo(cx, cy + (facing === 'd' ? -6 : 6) * u); ctx.quadraticCurveTo(cx + 3 * u, cy + (facing === 'd' ? -9 : 9) * u, cx + 2 * u, cy + (facing === 'd' ? -11 : 11) * u); }
+    ctx.stroke();
+    // body
+    const bg = ctx.createLinearGradient(0, cy - 5 * u, 0, cy + 6 * u);
+    bg.addColorStop(0, shade(pal.outfit, 20));
+    bg.addColorStop(1, shade(pal.outfit, -24));
+    ctx.fillStyle = bg;
+    ctx.beginPath();
+    if (horiz) ctx.ellipse(cx, cy, 7 * u, 4.2 * u, 0, 0, Math.PI * 2);
+    else ctx.ellipse(cx, cy, 4.2 * u, 7 * u, 0, 0, Math.PI * 2);
+    ctx.fill();
+    outline(ctx);
+    // head with snout + ears
+    const hx = horiz ? cx + 7.5 * u : cx;
+    const hy = horiz ? cy - 2 * u : (facing === 'd' ? cy + 7.5 * u : cy - 7.5 * u);
+    ctx.fillStyle = shade(pal.outfit, 12);
+    ctx.beginPath(); ctx.arc(hx, hy, 3 * u, 0, Math.PI * 2); ctx.fill();
+    outline(ctx);
+    // snout
+    ctx.fillStyle = shade(pal.outfit, -6);
+    ctx.beginPath();
+    if (horiz) ctx.ellipse(hx + 2.6 * u, hy + 0.6 * u, 2 * u, 1.3 * u, 0, 0, Math.PI * 2);
+    else ctx.ellipse(hx, hy + (facing === 'd' ? 2.4 : -2.4) * u, 1.3 * u, 1.8 * u, 0, 0, Math.PI * 2);
+    ctx.fill();
+    // ears
+    ctx.fillStyle = shade(pal.outfit, -16);
+    ctx.beginPath();
+    ctx.moveTo(hx - 2.4 * u, hy - 2 * u); ctx.lineTo(hx - 3.4 * u, hy - 4.6 * u); ctx.lineTo(hx - 0.8 * u, hy - 2.8 * u);
+    ctx.moveTo(hx + 1 * u, hy - 2.4 * u); ctx.lineTo(hx + 1.6 * u, hy - 5 * u); ctx.lineTo(hx + 3 * u, hy - 2.2 * u);
+    ctx.fill();
+    // eye
+    ctx.fillStyle = '#ffd44a';
+    ctx.beginPath(); ctx.arc(hx + (horiz ? 1 : -1) * u, hy - 0.6 * u, 0.6 * u, 0, Math.PI * 2); ctx.fill();
+    // legs
+    ctx.fillStyle = shade(pal.outfit2, -8);
+    ctx.beginPath();
+    ctx.arc(cx - 4 * u + step * u, 19 * u, 1.5 * u, 0, Math.PI * 2);
+    ctx.arc(cx + 4 * u - step * u, 19 * u, 1.5 * u, 0, Math.PI * 2);
+    ctx.fill();
+    if (frame === 'hurt') { ctx.fillStyle = 'rgba(255,70,70,0.45)'; ctx.beginPath(); ctx.arc(cx, cy, 6 * u, 0, Math.PI * 2); ctx.fill(); }
+  }
+  function drawInsect(ctx, ox, frame, pal) {
+    const u = SS, cx = ox + 12 * u, cy = 12.5 * u;
+    if (frame === 'death') { ctx.fillStyle = pal.outfit; rr(ctx, cx - 6 * u, cy + 4 * u, 12 * u, 3.5 * u, 1.5 * u); ctx.fill(); return; }
+    const step = frame.endsWith('1') ? 1 : 0;
+    softShadow(ctx, cx, 20 * u, 13 * u, 4 * u);
+    // six legs
+    ctx.strokeStyle = shade(pal.outfit, -20);
+    ctx.lineWidth = 1.1 * u; ctx.lineCap = 'round';
+    for (let i = -1; i <= 1; i++) {
+      const ly = cy + i * 2.4 * u;
+      const bend = (i + 1) % 2 === step ? 1.4 : 0;
+      ctx.beginPath();
+      ctx.moveTo(cx - 3 * u, ly); ctx.lineTo(cx - 7 * u, ly + (2 + bend) * u);
+      ctx.moveTo(cx + 3 * u, ly); ctx.lineTo(cx + 7 * u, ly + (2 + (1.4 - bend)) * u);
+      ctx.stroke();
+    }
+    // segmented body: abdomen, thorax, head
+    const seg = (sy, r, light) => {
+      const g = ctx.createRadialGradient(cx - u, sy - u, u, cx, sy, r);
+      g.addColorStop(0, shade(pal.outfit, 26 + light));
+      g.addColorStop(1, shade(pal.outfit, -22));
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(cx, sy, r, 0, Math.PI * 2); ctx.fill();
+      outline(ctx, 0.4);
+    };
+    seg(cy + 3.4 * u, 4 * u, 0);
+    seg(cy - 1 * u, 3 * u, 6);
+    seg(cy - 4.6 * u, 2.2 * u, 12);
+    // mandibles + antennae
+    ctx.strokeStyle = shade(pal.trim, 10);
+    ctx.lineWidth = u;
+    ctx.beginPath();
+    ctx.moveTo(cx - 1.4 * u, cy - 6 * u); ctx.quadraticCurveTo(cx - 3 * u, cy - 8.5 * u, cx - 2 * u, cy - 9.5 * u);
+    ctx.moveTo(cx + 1.4 * u, cy - 6 * u); ctx.quadraticCurveTo(cx + 3 * u, cy - 8.5 * u, cx + 2 * u, cy - 9.5 * u);
+    ctx.stroke();
+    ctx.fillStyle = '#ff6a4a';
+    ctx.beginPath();
+    ctx.arc(cx - u, cy - 5 * u, 0.6 * u, 0, Math.PI * 2);
+    ctx.arc(cx + u, cy - 5 * u, 0.6 * u, 0, Math.PI * 2);
+    ctx.fill();
+    if (frame === 'hurt') { ctx.fillStyle = 'rgba(255,70,70,0.45)'; ctx.beginPath(); ctx.arc(cx, cy, 6 * u, 0, Math.PI * 2); ctx.fill(); }
+  }
+  function drawElemental(ctx, ox, frame, pal) {
+    const u = SS, cx = ox + 12 * u, cy = 12 * u;
+    if (frame === 'death') {
+      ctx.fillStyle = shade(pal.outfit, -10);
+      [[-5, 2], [0, 4], [5, 2.5]].forEach(([dx, r]) => { ctx.beginPath(); ctx.arc(cx + dx * u, 19 * u, r * u, 0, Math.PI * 2); ctx.fill(); });
+      return;
+    }
+    const hover = frame.endsWith('1') ? -1.4 : 0;
+    softShadow(ctx, cx, 20.5 * u, 12 * u, 3.6 * u);
+    // glowing core
+    const core = ctx.createRadialGradient(cx, cy + hover * u, u, cx, cy + hover * u, 5 * u);
+    core.addColorStop(0, '#fff6d8');
+    core.addColorStop(0.4, shade(pal.trim, 30));
+    core.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = core;
+    ctx.beginPath(); ctx.arc(cx, cy + hover * u, 5 * u, 0, Math.PI * 2); ctx.fill();
+    // orbiting rock chunks
+    const rock = (dx, dy, r, rot) => {
+      ctx.save();
+      ctx.translate(cx + dx * u, cy + (dy + hover) * u);
+      ctx.rotate(rot);
+      const g = ctx.createLinearGradient(0, -r * u, 0, r * u);
+      g.addColorStop(0, shade(pal.outfit, 28));
+      g.addColorStop(1, shade(pal.outfit, -28));
+      ctx.fillStyle = g;
+      rr(ctx, -r * u, -r * u * 0.8, r * 2 * u, r * 1.6 * u, r * u * 0.4);
+      ctx.fill();
+      outline(ctx, 0.4);
+      ctx.restore();
+    };
+    rock(0, -5.5, 2.6, 0.2);
+    rock(-5, 2, 2.2, -0.4);
+    rock(5, 2.5, 2.4, 0.5);
+    rock(0, 6.5, 1.8, 0.1);
+    if (frame === 'hurt') { ctx.fillStyle = 'rgba(255,70,70,0.4)'; ctx.beginPath(); ctx.arc(cx, cy, 7 * u, 0, Math.PI * 2); ctx.fill(); }
+  }
+  function drawGhostly(ctx, ox, frame, pal) {
+    const u = SS, cx = ox + 12 * u, cy = 11 * u;
+    if (frame === 'death') { ctx.fillStyle = 'rgba(184,200,224,0.4)'; ctx.beginPath(); ctx.arc(cx, 18 * u, 4 * u, 0, Math.PI * 2); ctx.fill(); return; }
+    const sway = frame.endsWith('1') ? 1.2 : -1.2;
+    // teardrop body with a wavy hem
+    const g = ctx.createLinearGradient(0, cy - 7 * u, 0, cy + 9 * u);
+    g.addColorStop(0, 'rgba(230,240,255,0.95)');
+    g.addColorStop(1, 'rgba(150,170,210,0.25)');
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.arc(cx, cy - 2 * u, 4.6 * u, Math.PI, 0);
+    ctx.quadraticCurveTo(cx + 5 * u, cy + 4 * u, cx + (3.4 + sway * 0.4) * u, cy + 8 * u);
+    ctx.quadraticCurveTo(cx + 1.6 * u, cy + 6 * u, cx, cy + 8.4 * u);
+    ctx.quadraticCurveTo(cx - 1.6 * u, cy + 6 * u, cx - (3.4 - sway * 0.4) * u, cy + 8 * u);
+    ctx.quadraticCurveTo(cx - 5 * u, cy + 4 * u, cx - 4.6 * u, cy - 2 * u);
+    ctx.closePath(); ctx.fill();
+    // hollow eyes + mouth
+    ctx.fillStyle = 'rgba(20,26,48,0.85)';
+    ctx.beginPath();
+    ctx.ellipse(cx - 1.8 * u, cy - 2.4 * u, 0.9 * u, 1.4 * u, 0, 0, Math.PI * 2);
+    ctx.ellipse(cx + 1.8 * u, cy - 2.4 * u, 0.9 * u, 1.4 * u, 0, 0, Math.PI * 2);
+    ctx.ellipse(cx, cy + 0.6 * u, 0.8 * u, 1.1 * u, 0, 0, Math.PI * 2);
+    ctx.fill();
+    if (frame === 'hurt') { ctx.fillStyle = 'rgba(255,70,70,0.35)'; ctx.beginPath(); ctx.arc(cx, cy, 5.5 * u, 0, Math.PI * 2); ctx.fill(); }
+  }
+
+  const CUSTOM_MOB_DRAWERS = {
+    dragon: drawDragon,
+    beast: drawBeastWolf,
+    insect: drawInsect,
+    elemental: drawElemental,
+    ghost: drawGhostly,
+    bird: null,   // flyer body reads fine for birds
+  };
+
+  function genActor(scene, key, body, pal, accs, alpha, archKey) {
     if (scene.textures.exists(key)) return;
     const [c, ctx] = canvasOf(FW * TD_FRAMES.length, FH);
     if (alpha) ctx.globalAlpha = alpha;
+    const custom = archKey && CUSTOM_MOB_DRAWERS[archKey];
     TD_FRAMES.forEach((frame, i) => {
       const ox = i * FW;
-      if (body === 'quad') drawQuad(ctx, ox, frame, pal);
+      if (custom) custom(ctx, ox, frame, pal);
+      else if (body === 'quad') drawQuad(ctx, ox, frame, pal);
       else if (body === 'blob') drawBlob(ctx, ox, frame, pal);
       else if (body === 'flyer') drawFlyer(ctx, ox, frame, pal);
       else { drawHumanoid(ctx, ox, frame, pal); (accs || []).forEach(a => accessory(ctx, ox, frame, a, pal)); }
@@ -657,7 +899,7 @@
       }
       for (const rule of MH.sprites.MOB_RULES) {
         const pal = Object.assign({ skin: '#d8a878', hair: '#5a4a32', weapon: '#cdd4e2' }, rule.pal);
-        genActor(scene, `td_mob_${rule.key}`, rule.body, pal, rule.acc, rule.alpha);
+        genActor(scene, `td_mob_${rule.key}`, rule.body, pal, rule.acc, rule.alpha, rule.key);
       }
       MH.tdSprites.registerAnims(scene);
     },

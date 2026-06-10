@@ -99,6 +99,7 @@
       MH.bus.on('nav.goto', dir => this.navTo(dir));
       MH.bus.on('player.attack', () => this.tryAttack());
       MH.bus.on('combat.flee', e => this.fxFlee(e));
+      MH.bus.on('combat.state', on => { if (!on) this.preferredRange = null; });
       MH.bus.on('player.heal', () => this.fxHeal());
       MH.bus.on('terminal.echo', cmd => {
         const c = String(cmd);
@@ -118,6 +119,12 @@
     }
 
     playerTex() { return MH.tdSprites.playerKey(MH.state.player && MH.state.player.char_class); }
+
+    classRange() {
+      const cls = String((MH.state.player && MH.state.player.char_class) || '').toLowerCase();
+      return ['mage', 'necromancer', 'cleric', 'bard'].includes(cls) ? 60
+        : cls === 'ranger' ? 64 : 24;
+    }
 
     // never render Phaser's NULL missing-texture box: substitute and log
     safeTex(key, fallback) {
@@ -603,22 +610,55 @@
     // ---------- per-class ability effects ----------
     // every class reads differently in combat: warriors shock the earth,
     // rangers loose arrows, necromancers drain life, bards weaponize music
+    // Audited from config.CLASSES: 70 skills + 100 spells across 9 classes.
+    // Every ability gets a visual TYPE, a COLOR, and a RANGE class that
+    // drives positioning: melee abilities step you in, ranged ones hold
+    // distance, self/ally effects play on you.
     static ABILITY_FX = [
-      [/backstab|assassinate|garrote/i,        { type: 'shadowstrike', color: 0x8a8af0 }],
-      [/bash|slam|smash/i,                     { type: 'shockwave', color: 0xd8c8a0 }],
-      [/cleave|whirlwind/i,                    { type: 'bigslash', color: 0xffffff }],
-      [/charge/i,                              { type: 'dash', color: 0xd8c8a0 }],
-      [/kick|punch|strike/i,                   { type: 'impact', color: 0xffe080 }],
-      [/aimed shot|rapid fire|shot|arrow|fire at/i, { type: 'arrow', color: 0xd8e8c0 }],
-      [/smite|holy|divine|judgement/i,         { type: 'column', color: 0xffe9a0 }],
-      [/cure|heal|restore/i,                   { type: 'healburst', color: 0x7dff9a }],
-      [/drain|harm|chill touch|vampiric/i,     { type: 'drain', color: 0xb05ae0 }],
-      [/song|sing|chant|dirge|melody|sonic/i,  { type: 'notes', color: 0xffa8d8 }],
-      [/fire|burn|flame|inferno/i,             { type: 'bolt', color: 0xff8a3c }],
-      [/lightning|shock|storm/i,               { type: 'bolt', color: 0x9adcff }],
-      [/frost|ice|chill|cold/i,                { type: 'bolt', color: 0xbfeaff }],
-      [/acid|poison|venom/i,                   { type: 'bolt', color: 0x9ee05a }],
-      [/missile|arcane|magic|blast/i,          { type: 'bolt', color: 0xc792ff }],
+      // --- precision strikes & shadow work ---
+      [/backstab|assassinate|garrote|execute_contract|execute contract|vital/i, { type: 'shadowstrike', color: 0x8a8af0, range: 'melee' }],
+      [/shadow.?step|vanish|sneak|hide|invisibility|blink/i,                    { type: 'stealth', color: 0x6a6af0, range: 'self' }],
+      [/feint|trip|low.?blow|circle/i,                                          { type: 'impact', color: 0xc0c8d8, range: 'melee' }],
+      [/pocket.?sand/i,                                                         { type: 'cone', color: 0xd8c08a, range: 'close' }],
+      [/steal|rigged|jackpot/i,                                                 { type: 'coins', color: 0xffd44a, range: 'melee' }],
+      [/mark|expose|hunters.?mark|track|scan/i,                                 { type: 'mark', color: 0xff5050, range: 'ranged' }],
+      // --- warrior steel ---
+      [/bash|slam|hammer of justice/i,                                          { type: 'shockwave', color: 0xd8c8a0, range: 'melee' }],
+      [/cleave|whirlwind|divine.?storm/i,                                       { type: 'bigslash', color: 0xffffff, range: 'melee' }],
+      [/charge|death.?grip/i,                                                   { type: 'dash', color: 0xd8c8a0, range: 'ranged' }],
+      [/kick|punch|strike|smite$|execute/i,                                     { type: 'impact', color: 0xffe080, range: 'melee' }],
+      [/rally|heroism|oath|doctrine|swear|evolve|briskness|haste|icy.?veins|time.?warp/i, { type: 'rally', color: 0xffd44a, range: 'self' }],
+      // --- ranger ---
+      [/aimed.?shot|rapid.?fire|kill.?command|shot|arrow/i,                     { type: 'arrow', color: 0xd8e8c0, range: 'ranged' }],
+      [/entangle|barkskin/i,                                                    { type: 'vines', color: 0x6ab04a, range: 'ranged' }],
+      [/faerie.?fire/i,                                                         { type: 'mark', color: 0xd070ff, range: 'ranged' }],
+      // --- holy ---
+      [/holy.?smite|holy.?fire|flamestrike|judgement|templars|crusaders|divine.?word|word.?of.?glory|dispel.?evil/i, { type: 'column', color: 0xffe9a0, range: 'ranged' }],
+      [/turn.?undead|consecration|righteous|avenging/i,                         { type: 'nova', color: 0xffe9a0, range: 'self' }],
+      [/cure|heal|mend|lightwell|serenity|resurrect|spirit.?link|word.?of.?recall/i, { type: 'healburst', color: 0x7dff9a, range: 'ally' }],
+      [/bless|sanctuary|aegis|holy.?aura|divine.?(shield|protection|intervention)|shield.?of.?faith|hand.?of.?freedom|protection.?from/i, { type: 'buff', color: 0xffe9a0, range: 'self' }],
+      // --- necromancy ---
+      [/drain|vampiric|energy.?drain|soul.?(reap|harvest)/i,                    { type: 'drain', color: 0xb05ae0, range: 'ranged' }],
+      [/chill.?touch|plague.?strike|touch/i,                                    { type: 'touch', color: 0x9adcff, range: 'melee' }],
+      [/soul.?bolt|death.?coil|finger.?of.?death|harm$|enervation/i,            { type: 'bolt', color: 0xb05ae0, range: 'ranged' }],
+      [/fear|weaken|blindness|curse|mockery|slow$/i,                            { type: 'debuff', color: 0x8a4ad6, range: 'ranged' }],
+      [/poison|venom|acid/i,                                                    { type: 'debuff', color: 0x9ee05a, range: 'ranged' }],
+      [/animate.?dead|summon|gargoyle|corpse.?shield|bone.?shield|apocalypse/i, { type: 'nova', color: 0x8a4ad6, range: 'self' }],
+      // --- bard ---
+      [/song|sing|chant|dirge|melody|sonic|note|discord|crescendo|encore|requiem|hymn|chord|epic.?tale|magnum|countersong|fascinate|charm|siren/i, { type: 'notes', color: 0xffa8d8, range: 'ranged' }],
+      [/sleep/i,                                                                { type: 'sleep', color: 0xb8c4e8, range: 'ranged' }],
+      // --- arcane artillery ---
+      [/magic.?missile|arcane.?barrage/i,                                       { type: 'missiles', color: 0xc792ff, range: 'ranged' }],
+      [/burning.?hands|color.?spray|breathes|breath/i,                          { type: 'cone', color: 0xff8a3c, range: 'close' }],
+      [/fireball|combustion/i,                                                  { type: 'bigbolt', color: 0xff8a3c, range: 'ranged' }],
+      [/meteor/i,                                                               { type: 'meteor', color: 0xff8a3c, range: 'ranged' }],
+      [/chain.?lightning/i,                                                     { type: 'chainzap', color: 0x9adcff, range: 'ranged' }],
+      [/lightning|call.?lightning|shock|storm/i,                                { type: 'zap', color: 0x9adcff, range: 'ranged' }],
+      [/arcane.?(blast|explosion)|earthquake/i,                                 { type: 'nova', color: 0xc792ff, range: 'self' }],
+      [/frost|ice|chill|cold/i,                                                 { type: 'bolt', color: 0xbfeaff, range: 'ranged' }],
+      [/fire|burn|flame|inferno/i,                                              { type: 'bolt', color: 0xff8a3c, range: 'ranged' }],
+      [/armor|shield$|stoneskin|mirror.?image|displacement|mana.?shield|spell.?reflection|ice.?armor|fire.?shield/i, { type: 'buff', color: 0x9adcff, range: 'self' }],
+      [/missile|arcane|magic|blast/i,                                           { type: 'bolt', color: 0xc792ff, range: 'ranged' }],
     ];
     abilityFxFor(text) {
       for (const [re, fx] of TopRoomScene.ABILITY_FX) {
@@ -629,16 +669,141 @@
     playAbilityFx(fx, target) {
       const tx = target ? target.x : this.player.x + 30;
       const ty = target ? target.y : this.player.y;
+      // range drives positioning: melee/close abilities step you in,
+      // ranged ones back you off - distance becomes legible
+      const dist = Math.hypot(tx - this.player.x, ty - this.player.y);
+      this.preferredRange = { melee: 24, close: 30, ranged: 64 }[fx.range] || this.preferredRange;
+      if ((fx.range === 'melee' && dist > 30) || (fx.range === 'close' && dist > 40)) {
+        const want = fx.range === 'melee' ? 20 : 30;
+        const ang = Math.atan2(ty - this.player.y, tx - this.player.x);
+        this.tweens.add({
+          targets: this.player,
+          x: tx - Math.cos(ang) * want, y: ty - Math.sin(ang) * want,
+          duration: 140, ease: 'cubic.in',
+          onComplete: () => this.renderAbilityFx(fx, tx, ty),
+        });
+        return;
+      }
+      if (fx.range === 'ranged' && target && dist < 34) {
+        const ang = Math.atan2(this.player.y - ty, this.player.x - tx);
+        this.tweens.add({
+          targets: this.player,
+          x: this.player.x + Math.cos(ang) * 22, y: this.player.y + Math.sin(ang) * 22,
+          duration: 130, ease: 'cubic.out',
+          onComplete: () => this.renderAbilityFx(fx, tx, ty),
+        });
+        return;
+      }
+      this.renderAbilityFx(fx, tx, ty);
+    }
+    renderAbilityFx(fx, tx, ty) {
       const px = this.player.x, py = this.player.y;
       switch (fx.type) {
         case 'bolt':
           this.projectileFx(px, py - 6, tx, ty - 6, fx.color);
           break;
+        case 'missiles': {
+          for (let i = 0; i < 3; i++) {
+            this.time.delayedCall(i * 110, () => this.projectileFx(px, py - 6 + (i - 1) * 3, tx, ty - 6, fx.color));
+          }
+          break;
+        }
         case 'arrow': {
           const arrow = this.add.rectangle(px, py - 6, 10, 1.6, 0xeae6d8).setDepth(60);
           arrow.setRotation(Math.atan2(ty - py, tx - px));
           this.tweens.add({ targets: arrow, x: tx, y: ty - 6, duration: 130, ease: 'linear',
             onComplete: () => { this.spark(tx, ty - 6, fx.color); arrow.destroy(); } });
+          break;
+        }
+        case 'cone': {
+          const base = Math.atan2(ty - py, tx - px);
+          const fan = this.add.particles(px + Math.cos(base) * 8, py - 4 + Math.sin(base) * 8, 'px_white', {
+            speed: { min: 70, max: 130 },
+            angle: { min: Phaser.Math.RadToDeg(base) - 24, max: Phaser.Math.RadToDeg(base) + 24 },
+            lifespan: 360, quantity: 6, frequency: 30,
+            scale: { start: 0.9, end: 0 }, tint: [fx.color, 0xfff0c0], blendMode: 'ADD',
+          }).setDepth(60);
+          this.time.delayedCall(420, () => fan.stop());
+          this.time.delayedCall(900, () => fan.destroy());
+          break;
+        }
+        case 'zap': {
+          const g = this.add.graphics().setDepth(60);
+          const seg = 6;
+          for (const [width, color, alpha] of [[3, fx.color, 0.9], [1.2, 0xffffff, 1]]) {
+            g.lineStyle(width, color, alpha);
+            g.beginPath();
+            g.moveTo(px, py - 8);
+            for (let i = 1; i <= seg; i++) {
+              const t = i / seg;
+              g.lineTo(px + (tx - px) * t + (i < seg ? (Math.random() * 14 - 7) : 0),
+                       (py - 8) + ((ty - 6) - (py - 8)) * t + (i < seg ? (Math.random() * 14 - 7) : 0));
+            }
+            g.strokePath();
+          }
+          this.cameras.main.flash(90, 160, 200, 255, false);
+          this.spark(tx, ty - 6, fx.color);
+          this.tweens.add({ targets: g, alpha: 0, duration: 200, delay: 60, onComplete: () => g.destroy() });
+          break;
+        }
+        case 'chainzap': {
+          this.renderAbilityFx({ type: 'zap', color: fx.color }, tx, ty);
+          const second = [...this.entities.values()].find(e =>
+            e.kind === 'mob' && e.sprite && Math.hypot(e.sprite.x - tx, e.sprite.y - ty) > 6 &&
+            Math.hypot(e.sprite.x - tx, e.sprite.y - ty) < 70);
+          if (second) {
+            this.time.delayedCall(140, () => {
+              const g2 = this.add.graphics().setDepth(60);
+              g2.lineStyle(2, fx.color, 0.85);
+              g2.lineBetween(tx, ty - 6, second.sprite.x, second.sprite.y - 6);
+              this.spark(second.sprite.x, second.sprite.y - 6, fx.color);
+              this.tweens.add({ targets: g2, alpha: 0, duration: 220, onComplete: () => g2.destroy() });
+            });
+          }
+          break;
+        }
+        case 'bigbolt': {
+          const bolt = this.add.image(px, py - 6, 'fx_glow')
+            .setBlendMode(Phaser.BlendModes.ADD).setScale(0.45).setTint(fx.color).setDepth(60);
+          this.tweens.add({
+            targets: bolt, x: tx, y: ty - 6, duration: 330, ease: 'sine.in',
+            onComplete: () => {
+              bolt.destroy();
+              const ring = this.add.circle(tx, ty - 4, 5).setStrokeStyle(3, fx.color, 0.9).setDepth(60);
+              this.tweens.add({ targets: ring, radius: 30, alpha: 0, duration: 380, ease: 'cubic.out', onComplete: () => ring.destroy() });
+              const burst = this.add.particles(tx, ty - 6, 'px_white', {
+                speed: { min: 50, max: 140 }, lifespan: 450, quantity: 20,
+                scale: { start: 1, end: 0 }, tint: [fx.color, 0xfff0c0], blendMode: 'ADD', emitting: false,
+              }).setDepth(60);
+              burst.explode(20);
+              this.cameras.main.shake(110, 0.005);
+              this.time.delayedCall(700, () => burst.destroy());
+            },
+          });
+          break;
+        }
+        case 'meteor': {
+          for (let i = 0; i < 3; i++) {
+            const ox = tx + (i - 1) * 18 + (Math.random() * 10 - 5);
+            this.time.delayedCall(i * 160, () => {
+              const rock = this.add.image(ox + 26, ty - 110, 'fx_glow')
+                .setBlendMode(Phaser.BlendModes.ADD).setScale(0.35).setTint(fx.color).setDepth(60);
+              this.tweens.add({
+                targets: rock, x: ox, y: ty - 4, duration: 240, ease: 'cubic.in',
+                onComplete: () => {
+                  rock.destroy();
+                  this.renderAbilityFx({ type: 'shockwave', color: fx.color }, ox, ty);
+                },
+              });
+            });
+          }
+          break;
+        }
+        case 'touch': {
+          const hand = this.add.image(tx, ty - 8, 'fx_glow')
+            .setBlendMode(Phaser.BlendModes.ADD).setScale(0.08).setTint(fx.color).setDepth(60);
+          this.tweens.add({ targets: hand, scale: 0.42, alpha: 0, duration: 360, ease: 'cubic.out', onComplete: () => hand.destroy() });
+          this.spark(tx, ty - 6, fx.color);
           break;
         }
         case 'column': {
@@ -657,12 +822,19 @@
           this.cameras.main.shake(70, 0.003);
           break;
         }
+        case 'nova': {
+          const ring = this.add.circle(px, py, 6).setStrokeStyle(3, fx.color, 0.9).setDepth(60);
+          this.tweens.add({ targets: ring, radius: 52, alpha: 0, duration: 480, ease: 'cubic.out', onComplete: () => ring.destroy() });
+          const ring2 = this.add.circle(px, py, 4).setStrokeStyle(1.5, 0xffffff, 0.7).setDepth(60);
+          this.tweens.add({ targets: ring2, radius: 38, alpha: 0, duration: 420, delay: 80, ease: 'cubic.out', onComplete: () => ring2.destroy() });
+          this.cameras.main.shake(90, 0.004);
+          break;
+        }
         case 'bigslash':
           this.slashFx(tx, ty, px >= tx ? tx - 10 : tx + 10);
           this.time.delayedCall(90, () => this.slashFx(tx, ty - 4, px >= tx ? tx + 10 : tx - 10));
           break;
         case 'shadowstrike': {
-          // blink behind the target, strike, blink back
           const ghost = this.add.sprite(px, py, this.playerTex(), 'atk_s')
             .setScale(1 / MH.SMOOTH_SS).setAlpha(0.5).setTint(0x6a6af0).setDepth(60);
           this.tweens.add({ targets: ghost, x: tx + (px < tx ? 12 : -12), y: ty, alpha: 0.9, duration: 110,
@@ -676,7 +848,7 @@
           const v = { x: tx - px, y: ty - py };
           const d = Math.hypot(v.x, v.y) || 1;
           this.tweens.add({ targets: this.player, x: tx - (v.x / d) * 16, y: ty - (v.y / d) * 16, duration: 130, ease: 'cubic.in',
-            onComplete: () => this.playAbilityFx({ type: 'shockwave', color: fx.color }, target) });
+            onComplete: () => this.renderAbilityFx({ type: 'shockwave', color: fx.color }, tx, ty) });
           break;
         }
         case 'drain':
@@ -702,6 +874,80 @@
               duration: 600 + i * 110, ease: 'sine.out', delay: i * 70, onComplete: () => note.destroy() });
           }
           this.time.delayedCall(500, () => this.spark(tx, ty - 6, fx.color));
+          break;
+        }
+        case 'debuff': {
+          for (let i = 0; i < 6; i++) {
+            const mote = this.add.image(tx, ty - 36, 'px_white').setTint(fx.color)
+              .setBlendMode(Phaser.BlendModes.ADD).setScale(0.8).setDepth(60);
+            const ang0 = (i / 6) * Math.PI * 2;
+            this.tweens.add({
+              targets: mote, duration: 520, delay: i * 40, ease: 'sine.in',
+              x: tx, y: ty - 4, scale: 0.1,
+              onUpdate: (tw, t2) => {
+                const k = tw.progress;
+                t2.x = tx + Math.cos(ang0 + k * 4) * 14 * (1 - k);
+                t2.y = (ty - 36) + 32 * k;
+              },
+              onComplete: () => mote.destroy(),
+            });
+          }
+          break;
+        }
+        case 'sleep': {
+          const z = this.add.text(tx, ty - 18, 'z Z z', {
+            fontFamily: 'Georgia, serif', resolution: 3, fontSize: '10px', fontStyle: 'italic', color: '#b8c4e8',
+          }).setOrigin(0.5).setDepth(60);
+          this.tweens.add({ targets: z, y: ty - 34, alpha: 0, duration: 1300, ease: 'sine.out', onComplete: () => z.destroy() });
+          break;
+        }
+        case 'vines': {
+          const g = this.add.graphics().setDepth(60);
+          g.lineStyle(2, fx.color, 0.9);
+          for (let i = 0; i < 3; i++) {
+            g.beginPath();
+            g.arc(tx, ty + 2 - i * 4, 9 - i * 2, Math.PI * 0.1 * i, Math.PI * (1.6 + 0.1 * i));
+            g.strokePath();
+          }
+          this.tweens.add({ targets: g, alpha: 0, duration: 900, delay: 350, onComplete: () => g.destroy() });
+          break;
+        }
+        case 'mark': {
+          const ring = this.add.circle(tx, ty - 8, 13).setStrokeStyle(2, fx.color, 0.95).setDepth(60);
+          const cross = this.add.text(tx, ty - 8, '+', {
+            fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '12px', color: '#ff6a6a',
+          }).setOrigin(0.5).setDepth(60);
+          this.tweens.add({ targets: ring, scale: 0.55, duration: 260, ease: 'cubic.in' });
+          this.tweens.add({ targets: [ring, cross], alpha: 0, duration: 400, delay: 500, onComplete: () => { ring.destroy(); cross.destroy(); } });
+          break;
+        }
+        case 'coins': {
+          for (let i = 0; i < 5; i++) {
+            const coin = this.add.image(tx + (Math.random() * 12 - 6), ty - 8, 'px_star')
+              .setTint(0xffd44a).setDepth(60).setScale(1.1);
+            this.tweens.add({
+              targets: coin, x: px, y: py - 6, duration: 320 + i * 70, ease: 'cubic.in',
+              delay: i * 60, onComplete: () => coin.destroy(),
+            });
+          }
+          break;
+        }
+        case 'rally': {
+          const up = this.add.particles(px, py + 4, 'px_star', {
+            x: { min: -12, max: 12 }, speedY: { min: -55, max: -30 }, lifespan: 700,
+            quantity: 3, scale: { start: 1, end: 0 }, tint: fx.color, blendMode: 'ADD',
+          }).setDepth(60);
+          this.time.delayedCall(800, () => up.destroy());
+          this.zoomPunch();
+          break;
+        }
+        case 'stealth': {
+          this.player.setAlpha(0.35);
+          const ghost = this.add.particles(px, py, 'px_poof', {
+            speed: 14, lifespan: 500, quantity: 8, scale: { start: 0.9, end: 0 }, emitting: false,
+          }).setDepth(60);
+          ghost.explode(8);
+          this.time.delayedCall(2200, () => { this.player.setAlpha(1); ghost.destroy(); });
           break;
         }
         case 'healburst':
@@ -1256,7 +1502,8 @@
         const baseAng = Math.atan2(this.player.y - tgt.y, this.player.x - tgt.x);
         const sway = Math.sin(now / 850) * 0.55;
         const orbitAng = baseAng + sway * 0.06;
-        const dist = Phaser.Math.Clamp(Phaser.Math.Distance.Between(this.player.x, this.player.y, tgt.x, tgt.y), 24, 38);
+        const want = this.preferredRange || this.classRange();
+        const dist = Phaser.Math.Clamp(Phaser.Math.Distance.Between(this.player.x, this.player.y, tgt.x, tgt.y), want - 6, want + 8);
         const ox = tgt.x + Math.cos(orbitAng) * dist;
         const oy = tgt.y + Math.sin(orbitAng) * dist;
         this.player.x += (ox - this.player.x) * 0.035;
@@ -1299,7 +1546,8 @@
         if (!ent.sprite) continue;
         const dx = this.player.x - ent.sprite.x, dy = this.player.y - ent.sprite.y;
         const d = Math.hypot(dx, dy);
-        const stop = ent.data.fighting ? 16 : 26;
+        const casterMob = /caster|ghost|elemental/.test(ent.sprite.texture.key);
+        const stop = ent.data.fighting ? (casterMob ? 52 : 16) : 26;
         if (d > stop) {
           const speed = ent.data.fighting ? 90 : 48;
           ent.sprite.x += (dx / d) * speed * dt;
