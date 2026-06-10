@@ -617,7 +617,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
 
         # Items on ground
         item_list = []
-        for item in getattr(room, 'contents', []):
+        for item in (getattr(room, 'items', None) or getattr(room, 'contents', []))[:12]:
             item_list.append({
                 'name': getattr(item, 'name', 'something'),
                 'type': getattr(item, 'item_type', 'other'),

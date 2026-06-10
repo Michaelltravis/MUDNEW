@@ -101,8 +101,10 @@
       MH.bus.on('combat.flee', e => this.fxFlee(e));
       MH.bus.on('player.heal', () => this.fxHeal());
       MH.bus.on('terminal.echo', cmd => {
-        const m = String(cmd).match(/^cast '([^']+)'/i);
-        if (m) this.lastSpell = { name: m[1], ts: Date.now() };
+        const c = String(cmd);
+        const m = c.match(/^cast '([^']+)'/i);
+        if (m) this.lastAbility = { name: m[1], ts: Date.now() };
+        else if (this.abilityFxFor(c.split(/\s+/)[0] || '')) this.lastAbility = { name: c.split(/\s+/)[0], ts: Date.now() };
       });
       MH.bus.on('mob.death', e => this.fxMobDeath(e));
       MH.bus.on('player.death', () => this.fxPlayerDeath());
@@ -497,14 +499,14 @@
       ent.sprite.on('pointermove', pointer => MH.bus.emit('mob.tip', { data: ent.data, kind: ent.kind, x: pointer.event.clientX, y: pointer.event.clientY }));
       ent.sprite.on('pointerout', () => MH.bus.emit('mob.tip.hide'));
 
+      // idle breathing: everything alive moves a little
+      ent.breath = this.tweens.add({
+        targets: ent.sprite, scaleY: ent.sprite.scaleY * 1.04, duration: 1100 + (MH.hashStr(key) % 600),
+        yoyo: true, repeat: -1, ease: 'sine.inOut', delay: MH.hashStr(key) % 800,
+      });
       if (spec.kind === 'mob' && !spec.data.shopkeeper) {
         if (spec.data.hostile) ent.stalker = true;
-        else {
-          ent.patrol = this.tweens.add({
-            targets: ent.sprite, x: slot.x + 14, duration: 2400 + (MH.hashStr(key) % 1400),
-            yoyo: true, repeat: -1, ease: 'sine.inOut', delay: MH.hashStr(key) % 1000,
-          });
-        }
+        else ent.wanderAt = Date.now() + 1500 + (MH.hashStr(key) % 3000);
       }
       return ent;
     }
@@ -539,6 +541,8 @@
     }
     destroyEntity(ent) {
       if (ent.patrol) ent.patrol.stop();
+      if (ent.breath) ent.breath.stop();
+      if (ent.wanderTween) ent.wanderTween.stop();
       ['sprite', 'label', 'hpbar', 'fightMark'].forEach(k => { if (ent[k]) ent[k].destroy(); });
     }
     shortName(name) {
@@ -596,7 +600,121 @@
       return null;
     }
 
-    // ---------- spell & melee effects ----------
+    // ---------- per-class ability effects ----------
+    // every class reads differently in combat: warriors shock the earth,
+    // rangers loose arrows, necromancers drain life, bards weaponize music
+    static ABILITY_FX = [
+      [/backstab|assassinate|garrote/i,        { type: 'shadowstrike', color: 0x8a8af0 }],
+      [/bash|slam|smash/i,                     { type: 'shockwave', color: 0xd8c8a0 }],
+      [/cleave|whirlwind/i,                    { type: 'bigslash', color: 0xffffff }],
+      [/charge/i,                              { type: 'dash', color: 0xd8c8a0 }],
+      [/kick|punch|strike/i,                   { type: 'impact', color: 0xffe080 }],
+      [/aimed shot|rapid fire|shot|arrow|fire at/i, { type: 'arrow', color: 0xd8e8c0 }],
+      [/smite|holy|divine|judgement/i,         { type: 'column', color: 0xffe9a0 }],
+      [/cure|heal|restore/i,                   { type: 'healburst', color: 0x7dff9a }],
+      [/drain|harm|chill touch|vampiric/i,     { type: 'drain', color: 0xb05ae0 }],
+      [/song|sing|chant|dirge|melody|sonic/i,  { type: 'notes', color: 0xffa8d8 }],
+      [/fire|burn|flame|inferno/i,             { type: 'bolt', color: 0xff8a3c }],
+      [/lightning|shock|storm/i,               { type: 'bolt', color: 0x9adcff }],
+      [/frost|ice|chill|cold/i,                { type: 'bolt', color: 0xbfeaff }],
+      [/acid|poison|venom/i,                   { type: 'bolt', color: 0x9ee05a }],
+      [/missile|arcane|magic|blast/i,          { type: 'bolt', color: 0xc792ff }],
+    ];
+    abilityFxFor(text) {
+      for (const [re, fx] of TopRoomScene.ABILITY_FX) {
+        if (re.test(text)) return fx;
+      }
+      return null;
+    }
+    playAbilityFx(fx, target) {
+      const tx = target ? target.x : this.player.x + 30;
+      const ty = target ? target.y : this.player.y;
+      const px = this.player.x, py = this.player.y;
+      switch (fx.type) {
+        case 'bolt':
+          this.projectileFx(px, py - 6, tx, ty - 6, fx.color);
+          break;
+        case 'arrow': {
+          const arrow = this.add.rectangle(px, py - 6, 10, 1.6, 0xeae6d8).setDepth(60);
+          arrow.setRotation(Math.atan2(ty - py, tx - px));
+          this.tweens.add({ targets: arrow, x: tx, y: ty - 6, duration: 130, ease: 'linear',
+            onComplete: () => { this.spark(tx, ty - 6, fx.color); arrow.destroy(); } });
+          break;
+        }
+        case 'column': {
+          const beam = this.add.rectangle(tx, ty - 60, 14, 0, fx.color, 0.55).setOrigin(0.5, 0)
+            .setBlendMode(Phaser.BlendModes.ADD).setDepth(60);
+          this.tweens.add({ targets: beam, height: 64, duration: 160, ease: 'cubic.in',
+            onComplete: () => {
+              this.spark(tx, ty - 6, fx.color);
+              this.tweens.add({ targets: beam, alpha: 0, duration: 260, onComplete: () => beam.destroy() });
+            } });
+          break;
+        }
+        case 'shockwave': {
+          const ring = this.add.circle(tx, ty, 4).setStrokeStyle(2.5, fx.color, 0.9).setDepth(60);
+          this.tweens.add({ targets: ring, radius: 26, alpha: 0, duration: 320, ease: 'cubic.out', onComplete: () => ring.destroy() });
+          this.cameras.main.shake(70, 0.003);
+          break;
+        }
+        case 'bigslash':
+          this.slashFx(tx, ty, px >= tx ? tx - 10 : tx + 10);
+          this.time.delayedCall(90, () => this.slashFx(tx, ty - 4, px >= tx ? tx + 10 : tx - 10));
+          break;
+        case 'shadowstrike': {
+          // blink behind the target, strike, blink back
+          const ghost = this.add.sprite(px, py, this.playerTex(), 'atk_s')
+            .setScale(1 / MH.SMOOTH_SS).setAlpha(0.5).setTint(0x6a6af0).setDepth(60);
+          this.tweens.add({ targets: ghost, x: tx + (px < tx ? 12 : -12), y: ty, alpha: 0.9, duration: 110,
+            onComplete: () => {
+              this.slashFx(tx, ty, ghost.x);
+              this.tweens.add({ targets: ghost, alpha: 0, duration: 180, onComplete: () => ghost.destroy() });
+            } });
+          break;
+        }
+        case 'dash': {
+          const v = { x: tx - px, y: ty - py };
+          const d = Math.hypot(v.x, v.y) || 1;
+          this.tweens.add({ targets: this.player, x: tx - (v.x / d) * 16, y: ty - (v.y / d) * 16, duration: 130, ease: 'cubic.in',
+            onComplete: () => this.playAbilityFx({ type: 'shockwave', color: fx.color }, target) });
+          break;
+        }
+        case 'drain':
+          this.projectileFx(px, py - 6, tx, ty - 6, fx.color);
+          this.time.delayedCall(320, () => {
+            const back = this.add.particles(tx, ty - 6, 'px_white', {
+              speed: 10, lifespan: 600, quantity: 3, scale: { start: 0.6, end: 0 },
+              tint: 0x7dff9a, blendMode: 'ADD',
+            }).setDepth(60);
+            const orb = this.add.image(tx, ty - 6, 'fx_glow').setScale(0.15).setTint(0x7dff9a)
+              .setBlendMode(Phaser.BlendModes.ADD).setDepth(60);
+            back.startFollow(orb);
+            this.tweens.add({ targets: orb, x: this.player.x, y: this.player.y - 6, duration: 380, ease: 'sine.out',
+              onComplete: () => { this.fxHeal(); orb.destroy(); this.time.delayedCall(400, () => back.destroy()); } });
+          });
+          break;
+        case 'notes': {
+          for (let i = 0; i < 4; i++) {
+            const note = this.add.text(px, py - 10, i % 2 ? '♪' : '♫', {
+              fontFamily: 'Georgia, serif', resolution: 3, fontSize: '10px', color: '#ffa8d8',
+            }).setOrigin(0.5).setDepth(60).setAlpha(0.9);
+            this.tweens.add({ targets: note, x: tx + (i - 1.5) * 8, y: ty - 14 - i * 4, alpha: 0,
+              duration: 600 + i * 110, ease: 'sine.out', delay: i * 70, onComplete: () => note.destroy() });
+          }
+          this.time.delayedCall(500, () => this.spark(tx, ty - 6, fx.color));
+          break;
+        }
+        case 'healburst':
+          this.fxHeal();
+          break;
+        case 'impact':
+        default:
+          this.spark(tx, ty - 6, fx.color);
+          this.slashFx(tx, ty, px >= tx ? tx - 10 : tx + 10);
+          break;
+      }
+    }
+
     static SPELL_ELEMENTS = [
       [/fire|burn|flame|inferno/i, 0xff8a3c],
       [/lightning|shock|storm/i, 0x9adcff],
@@ -672,12 +790,12 @@
       this.time.delayedCall(80, () => ent.sprite && ent.sprite.clearTint());
       const ang = Math.atan2(ent.sprite.y - this.player.y, ent.sprite.x - this.player.x);
       this.tweens.add({ targets: ent.sprite, x: ent.sprite.x + Math.cos(ang) * 5, y: ent.sprite.y + Math.sin(ang) * 5, duration: 70, yoyo: true });
-      // spell in flight? element projectile. otherwise: steel.
-      const spellColor = this.elementFor(e.line || '')
-        || (this.lastSpell && Date.now() - this.lastSpell.ts < 4000 ? (this.elementFor(this.lastSpell.name) || 0xc792ff) : null);
-      if (spellColor) this.projectileFx(this.player.x, this.player.y - 6, ent.sprite.x, ent.sprite.y - 6, spellColor);
+      // class ability in flight? play its signature effect. otherwise steel.
+      const fx = this.abilityFxFor(e.line || '')
+        || (this.lastAbility && Date.now() - this.lastAbility.ts < 4000 ? this.abilityFxFor(this.lastAbility.name) : null);
+      if (fx) this.playAbilityFx(fx, ent.sprite);
       else this.slashFx(ent.sprite.x, ent.sprite.y, this.player.x >= ent.sprite.x ? ent.sprite.x - 10 : ent.sprite.x + 10);
-      this.spark(ent.sprite.x, ent.sprite.y - 6, spellColor || 0xffe080);
+      this.spark(ent.sprite.x, ent.sprite.y - 6, (fx && fx.color) || 0xffe080);
       const st = this.dmgStyle(e.dmg);
       if (st.shake) this.cameras.main.shake(90, st.shake);
       this.damageNumber(ent.sprite.x, ent.sprite.y - 16, e.dmg != null ? String(e.dmg) : 'hit', st.color, st.size);
@@ -979,6 +1097,23 @@
 
     onCombatUpdate(payload) {
       if (!this.layout || payload.vnum !== this.layout.vnum) return;
+      // the MUD fights in rounds: give each round a visible beat - the
+      // fighters feint toward each other as the server resolves the exchange
+      if (payload.in_combat) {
+        for (const ent of this.entities.values()) {
+          if (!ent.data || !ent.data.fighting || !ent.sprite) continue;
+          const ang = Math.atan2(this.player.y - ent.sprite.y, this.player.x - ent.sprite.x);
+          this.tweens.add({
+            targets: ent.sprite, x: ent.sprite.x + Math.cos(ang) * 6, y: ent.sprite.y + Math.sin(ang) * 6,
+            duration: 120, yoyo: true, ease: 'cubic.out',
+          });
+          this.tweens.add({
+            targets: this.player, x: this.player.x - Math.cos(ang) * 4, y: this.player.y - Math.sin(ang) * 4,
+            duration: 120, yoyo: true, ease: 'cubic.out', delay: 60,
+          });
+          break;
+        }
+      }
       (payload.mobs || []).forEach((mob, i) => {
         const ent = this.entities.get(`mob:${mob.name}:${i}`);
         if (!ent) return;
@@ -1103,6 +1238,32 @@
         }
       }
 
+      // calm NPCs wander to nearby spots, walk there, then idle
+      const now = Date.now();
+      for (const ent of this.entities.values()) {
+        if (ent.kind !== 'mob' || ent.stalker || (ent.data && ent.data.fighting) || ent.data.shopkeeper) continue;
+        if (!ent.wanderAt || now < ent.wanderAt || ent.wanderTween) continue;
+        const L = this.layout, T2 = TD().T;
+        const tx = Phaser.Math.Clamp(ent.homeX + (Math.random() * 90 - 45), 2.5 * T2, this.pxW - 2.5 * T2);
+        const ty = Phaser.Math.Clamp(ent.homeY + (Math.random() * 60 - 30), 2.5 * T2, this.pxH - 2.5 * T2);
+        const cell = L.grid[Math.floor(ty / T2) * L.W + Math.floor(tx / T2)];
+        if (cell !== 0) { ent.wanderAt = now + 1200; continue; }
+        const dist = Phaser.Math.Distance.Between(ent.sprite.x, ent.sprite.y, tx, ty);
+        const tex = ent.sprite.texture.key;
+        const anim = Math.abs(tx - ent.sprite.x) > Math.abs(ty - ent.sprite.y) ? `${tex}_walks` : (ty > ent.sprite.y ? `${tex}_walkd` : `${tex}_walku`);
+        ent.sprite.setFlipX(tx < ent.sprite.x && anim.endsWith('walks'));
+        ent.sprite.play(anim);
+        ent.wanderTween = this.tweens.add({
+          targets: ent.sprite, x: tx, y: ty, duration: (dist / 26) * 1000, ease: 'sine.inOut',
+          onComplete: () => {
+            ent.wanderTween = null;
+            ent.wanderAt = Date.now() + 2500 + Math.random() * 5000;
+            ent.sprite.anims.stop();
+            ent.sprite.setFrame('d0');
+          },
+        });
+      }
+
       // stalking hostiles / fighters press in (2D)
       const dt = this.game.loop.delta / 1000;
       for (const ent of this.entities.values()) {
@@ -1125,6 +1286,15 @@
       }
 
       if (this.heroGlow) { this.heroGlow.x = this.player.x; this.heroGlow.y = this.player.y; }
+
+      // footstep dust gives weight to movement
+      const moving = Math.abs(this.player.body.velocity.x) + Math.abs(this.player.body.velocity.y) > 10;
+      if (moving && (!this._lastStep || now - this._lastStep > 260)) {
+        this._lastStep = now;
+        const puff = this.add.image(this.player.x, this.player.y + 9, 'px_poof')
+          .setScale(0.6).setAlpha(0.35).setDepth(6);
+        this.tweens.add({ targets: puff, scale: 1.3, alpha: 0, duration: 380, onComplete: () => puff.destroy() });
+      }
 
       // labels + hp bars follow
       for (const ent of this.entities.values()) {
