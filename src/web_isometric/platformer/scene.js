@@ -126,6 +126,7 @@
       MH.bus.on('move.blocked', e => this.onMoveBlocked(e));
       MH.bus.on('ui.typing', on => { this.input.keyboard.enabled = !on; });
       MH.bus.on('chat', e => this.fxChatBubble(e));
+      MH.bus.on('ambient.candidate', e => this.fxAmbient(e));
 
       if (MH.state.lastPayload) this.onMap(MH.state.lastPayload);
     }
@@ -251,6 +252,9 @@
 
       // exits: visuals + sensor zones
       this.buildExits(layout, th);
+
+      // memorials for past deaths in this room
+      this.placeGravestones(layout);
 
       // physics feel
       const grav = layout.lowGravity ? 220 : (layout.isUnderwater ? 120 : 900);
@@ -385,6 +389,13 @@
           else this.attackEntity(ent);
         }
       });
+      ent.sprite.on('pointerover', pointer => {
+        MH.bus.emit('mob.tip', { data: ent.data, kind: ent.kind, x: pointer.event.clientX, y: pointer.event.clientY });
+      });
+      ent.sprite.on('pointermove', pointer => {
+        MH.bus.emit('mob.tip', { data: ent.data, kind: ent.kind, x: pointer.event.clientX, y: pointer.event.clientY });
+      });
+      ent.sprite.on('pointerout', () => MH.bus.emit('mob.tip.hide'));
 
       // hostile mobs stalk the player (cosmetic — real aggro is server-side);
       // everything else gets a gentle patrol
@@ -523,6 +534,7 @@
     }
     fxPlayerDeath() {
       this.dead = true;
+      this.recordDeath();
       this.player.anims.play(`${this.playerTex()}_death`);
       this.cameras.main.fade(1200, 0, 0, 0, false, (_c, t) => {
         if (t === 1) {
@@ -538,17 +550,64 @@
       emitter.explode(24);
       this.time.delayedCall(1200, () => emitter.destroy());
     }
+    bubbleOver(ent, text, color = '#dce4f0') {
+      if (!ent || !ent.sprite) return;
+      const bubble = this.add.text(ent.sprite.x, ent.sprite.y - 56, String(text).slice(0, 56), {
+        fontFamily: 'Courier New', fontSize: '9px', color, backgroundColor: '#10131ecc',
+        padding: { x: 4, y: 2 }, wordWrap: { width: 160 },
+      }).setOrigin(0.5, 1).setDepth(60);
+      this.tweens.add({ targets: bubble, y: bubble.y - 8, alpha: 0, delay: 2800, duration: 700, onComplete: () => bubble.destroy() });
+    }
     fxChatBubble(e) {
       const m = e.line.match(/^(\w+) says?,? '?(.*?)'?$/i);
       if (!m) return;
       for (const ent of this.entities.values()) {
         if (ent.label && ent.data.name && String(ent.data.name).toLowerCase().includes(m[1].toLowerCase())) {
-          const bubble = this.add.text(ent.sprite.x, ent.sprite.y - 56, m[2].slice(0, 40), {
-            fontFamily: 'Courier New', fontSize: '9px', color: '#dce4f0', backgroundColor: '#10131ecc', padding: { x: 4, y: 2 },
-          }).setOrigin(0.5, 1).setDepth(60);
-          this.tweens.add({ targets: bubble, y: bubble.y - 8, alpha: 0, delay: 2600, duration: 700, onComplete: () => bubble.destroy() });
+          this.bubbleOver(ent, m[2]);
           break;
         }
+      }
+    }
+    // ambient narrative: attribute to a room mob if named, else drift as ghost text
+    fxAmbient(e) {
+      const line = e.line.trim();
+      if (!line || line.length > 110) return;
+      if (/\d+\/\d+(hp|mp|mv)/i.test(line) || /^>/.test(line) || /^\[/.test(line)) return;
+      const lower = line.toLowerCase();
+      for (const ent of this.entities.values()) {
+        if (ent.kind !== 'mob') continue;
+        const kw = mobKeyword(ent.data.name);
+        if (kw.length > 2 && lower.includes(kw)) { this.bubbleOver(ent, line, '#b8c0d4'); return; }
+      }
+      if (!/^(you hear|a |an |the |somewhere|in the distance|dust|wind|water|shadows)/i.test(line)) return;
+      const rng = Math.random();
+      const t = this.add.text(120 + rng * (GAME_W - 380), 90 + Math.random() * 160, line, {
+        fontFamily: 'Courier New', fontSize: '10px', fontStyle: 'italic', color: '#c8d0e4',
+      }).setAlpha(0).setDepth(45);
+      this.tweens.add({ targets: t, alpha: 0.4, duration: 900, yoyo: true, hold: 3800, onComplete: () => t.destroy() });
+    }
+    // client-side death memorials, kept in localStorage
+    deathLog() {
+      try { return JSON.parse(localStorage.getItem('misthollow_deaths')) || []; } catch (_) { return []; }
+    }
+    recordDeath() {
+      if (!this.layout) return;
+      const deaths = this.deathLog();
+      deaths.push({ vnum: this.layout.vnum, name: MH.state.playerName, ts: Date.now() });
+      while (deaths.length > 25) deaths.shift();
+      try { localStorage.setItem('misthollow_deaths', JSON.stringify(deaths)); } catch (_) {}
+    }
+    placeGravestones(layout) {
+      for (const d of this.deathLog()) {
+        if (d.vnum !== layout.vnum) continue;
+        const col = 6 + (MH.hashStr(String(d.ts)) % (layout.W - 12));
+        const x = col * T + T / 2, y = layout.hm[col] * T;
+        const g = this.add.image(x, y, 't_grave').setOrigin(0.5, 1).setDepth(2);
+        this.tileLayer.add(g);
+        const label = this.add.text(x, y - 26, `here lies ${d.name}`, {
+          fontFamily: 'Courier New', fontSize: '8px', fontStyle: 'italic', color: '#8a90a4',
+        }).setOrigin(0.5, 1).setAlpha(0.7).setDepth(2);
+        this.tileLayer.add(label);
       }
     }
     spark(x, y, color) {
@@ -686,11 +745,31 @@
     update() {
       if (!this.layout || this.dead) return;
       const k = this.keys;
-      const left = k.left.isDown || k.left2.isDown;
-      const right = k.right.isDown || k.right2.isDown;
-      const up = k.up.isDown || k.up2.isDown;
-      const down = k.down.isDown || k.down2.isDown;
-      const jump = Phaser.Input.Keyboard.JustDown(k.jump);
+      // gamepad: left stick / dpad move, A jump, X attack, B = up-action, Y = down-action
+      const pad = this.input.gamepad && this.input.gamepad.total ? this.input.gamepad.getPad(0) : null;
+      let padLeft = false, padRight = false, padUp = false, padDown = false, padJump = false;
+      if (pad) {
+        const ax = pad.axes.length ? pad.axes[0].getValue() : 0;
+        const ay = pad.axes.length > 1 ? pad.axes[1].getValue() : 0;
+        padLeft = ax < -0.35 || pad.left;
+        padRight = ax > 0.35 || pad.right;
+        padUp = ay < -0.5 || pad.up || pad.B;
+        padDown = ay > 0.5 || pad.down || pad.Y;
+        padJump = pad.A && !this._padAHeld;
+        this._padAHeld = pad.A;
+        if (pad.X && !this._padXHeld) this.tryAttack();
+        this._padXHeld = pad.X;
+      }
+      const left = k.left.isDown || k.left2.isDown || padLeft;
+      const right = k.right.isDown || k.right2.isDown || padRight;
+      const up = k.up.isDown || k.up2.isDown || padUp;
+      const down = k.down.isDown || k.down2.isDown || padDown;
+      const jump = Phaser.Input.Keyboard.JustDown(k.jump) || padJump;
+      // edge-detect gamepad up/down for door/hatch interactions
+      const padUpJust = padUp && !this._padUpHeld;
+      const padDownJust = padDown && !this._padDownHeld;
+      this._padUpHeld = padUp;
+      this._padDownHeld = padDown;
       const body = this.player.body;
       const tex = this.playerTex();
       const locked = !!MH.state.pendingMove && Date.now() - MH.state.pendingMove.sentAt < 2500;
@@ -748,9 +827,9 @@
             } else if ((zone.exitDir === 'east' && right) || (zone.exitDir === 'west' && left)) {
               this.requestMove(zone.exitDir);
             }
-          } else if (zone.exitMode === 'press-up' && Phaser.Input.Keyboard.JustDown(k.up) ) {
+          } else if (zone.exitMode === 'press-up' && (Phaser.Input.Keyboard.JustDown(k.up) || padUpJust)) {
             this.requestMove(zone.exitDir);
-          } else if (zone.exitMode === 'press-down' && (Phaser.Input.Keyboard.JustDown(k.down))) {
+          } else if (zone.exitMode === 'press-down' && (Phaser.Input.Keyboard.JustDown(k.down) || padDownJust)) {
             this.requestMove(zone.exitDir);
           }
         }
@@ -823,6 +902,7 @@
       pixelArt: true,
       backgroundColor: '#0b0c10',
       physics: { default: 'arcade', arcade: { gravity: { y: 900 }, debug: false } },
+      input: { gamepad: true },
       scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
       scene: [BootScene, GalleryScene, RoomScene],
     });

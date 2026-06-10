@@ -30,7 +30,9 @@
   const SLEEP_LINE = /^You go to sleep|^You wake|^You stand up|^You sit down|^You rest/i;
   const GOLD_LINE = /you (?:get|receive|find) (\d+) (?:gold )?coins?/i;
 
-  MH.parseLine = function parseLine(line) {
+  MH.parseLine = function parseLine(msg) {
+    const line = typeof msg === 'string' ? msg : msg.line;
+    const chunkLen = typeof msg === 'object' ? (msg.chunkLen || 99) : 99;
     const bus = MH.bus;
     let m;
 
@@ -73,6 +75,8 @@
     if (SLEEP_LINE.test(line)) { bus.emit('player.posture', { line }); return; }
     if (CHAT.test(line)) { bus.emit('chat', { line }); return; }
     if (COMBAT_LINE.test(line)) { bus.emit('combat.misc', { line }); return; }
+    // nothing matched: short standalone chunks are ambient narrative
+    if (MH.state && MH.state.isLoggedIn && chunkLen <= 2) bus.emit('ambient.candidate', { line });
   };
 
   // wire the bus

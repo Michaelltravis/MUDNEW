@@ -34,30 +34,93 @@
     els.drawerLog.scrollTop = els.drawerLog.scrollHeight;
   }
 
-  // ---- hotbar ----
+  // ---- hotbar 2.0: drawn icons, cooldown sweeps, drag-to-bind ----
   let hotbar = [];
+
+  function iconKindFor(cmd) {
+    const c = String(cmd || '').toLowerCase();
+    if (!c) return 'empty';
+    if (/^cast /.test(c)) return 'sparkle';
+    if (/^(kill|attack|bash|kick|backstab|cleave|charge|strike|execute)/.test(c)) return 'sword';
+    if (/^(look|examine|exits)/.test(c)) return 'eye';
+    if (/^(flee|escape|disengage|retreat)/.test(c)) return 'boot';
+    if (/^(rest|sleep|sit)/.test(c)) return 'zzz';
+    if (/^(stand|wake)/.test(c)) return 'arrow';
+    if (/^(inventory|equipment|wear|wield|get|drop)/.test(c)) return 'bag';
+    if (/^(score|affects|skills|talents)/.test(c)) return 'chart';
+    if (/^(quest|journal)/.test(c)) return 'scroll';
+    if (/^(north|south|east|west|up|down|recall)/.test(c)) return 'compass';
+    const p = MH.state.player;
+    if (p && (p.class_skills || []).some(s => c.startsWith(s))) return 'star';
+    return 'gear';
+  }
+
+  function drawIcon(canvas, kind) {
+    const x = canvas.getContext('2d');
+    x.clearRect(0, 0, 20, 20);
+    const px = (c, ...rects) => { x.fillStyle = c; rects.forEach(r => x.fillRect(...r)); };
+    switch (kind) {
+      case 'sword': px('#c8ccd8', [9, 2, 2, 11]); px('#e8c168', [6, 12, 8, 2]); px('#8a6a3a', [9, 14, 2, 4]); break;
+      case 'sparkle': px('#9ad6ff', [9, 3, 2, 14], [3, 9, 14, 2]); px('#ffffff', [8, 8, 4, 4]); break;
+      case 'eye': px('#c8ccd8', [4, 8, 12, 4]); px('#2a6a9a', [8, 7, 4, 6]); px('#0a0c10', [9, 9, 2, 2]); break;
+      case 'boot': px('#8a6a40', [7, 3, 4, 9]); px('#6a4e2c', [7, 12, 8, 4]); break;
+      case 'zzz': px('#9aa0b4', [4, 4, 6, 2], [6, 7, 4, 2], [4, 10, 6, 2], [10, 12, 5, 2], [12, 15, 3, 2]); break;
+      case 'arrow': px('#7ad68a', [9, 3, 2, 12], [6, 6, 2, 2], [12, 6, 2, 2], [4, 8, 2, 2], [14, 8, 2, 2]); break;
+      case 'bag': px('#8a6a40', [5, 7, 10, 9]); px('#6a4e2c', [7, 4, 6, 4]); px('#e8c168', [9, 10, 2, 2]); break;
+      case 'chart': px('#5c6478', [3, 15, 14, 2]); px('#7ad68a', [4, 10, 3, 5]); px('#e8c168', [9, 6, 3, 9]); px('#e06c6c', [14, 12, 3, 3]); break;
+      case 'scroll': px('#e0d8c0', [5, 3, 10, 14]); px('#8a7a5a', [7, 6, 6, 1], [7, 9, 6, 1], [7, 12, 4, 1]); break;
+      case 'compass': px('#c8ccd8', [9, 2, 2, 16], [2, 9, 16, 2]); px('#e06c6c', [9, 4, 2, 5]); break;
+      case 'star': px('#ffd44a', [9, 3, 2, 14], [4, 8, 12, 2], [6, 5, 2, 2], [12, 5, 2, 2], [6, 13, 2, 2], [12, 13, 2, 2]); break;
+      case 'gear': px('#9aa0b4', [7, 7, 6, 6], [9, 3, 2, 4], [9, 13, 2, 4], [3, 9, 4, 2], [13, 9, 4, 2]); break;
+      default: px('#2a2f3c', [8, 9, 4, 2]); break;
+    }
+  }
+
   function loadHotbar() {
     try { hotbar = JSON.parse(lsGet(HOTBAR_KEY)) || DEFAULT_HOTBAR.slice(); }
     catch (_) { hotbar = DEFAULT_HOTBAR.slice(); }
     if (!Array.isArray(hotbar) || hotbar.length !== 8) hotbar = DEFAULT_HOTBAR.slice();
     renderHotbar();
   }
+
+  function bindSlot(i, cmd) {
+    hotbar[i] = String(cmd || '').trim();
+    lsSet(HOTBAR_KEY, JSON.stringify(hotbar));
+    renderHotbar();
+  }
+
   function renderHotbar() {
     els.hotbar.innerHTML = '';
+    const skills = (MH.state.player && MH.state.player.skills) || {};
     hotbar.forEach((cmd, i) => {
       const slot = document.createElement('div');
       slot.className = 'hotslot';
-      slot.innerHTML = `<span class="key">${i + 1}</span><span class="lbl">${cmd || '—'}</span>`;
-      slot.title = `${cmd}\n(right-click to rebind)`;
+      const skillName = String(cmd || '').replace(/^cast '/, '').replace(/'$/, '');
+      const prof = skills[skillName];
+      slot.innerHTML = `<span class="key">${i + 1}</span>`
+        + (prof != null ? `<span class="prof">${prof}%</span>` : '')
+        + `<canvas width="20" height="20"></canvas>`
+        + `<span class="lbl">${cmd || '—'}</span><div class="cd"></div>`;
+      drawIcon(slot.querySelector('canvas'), iconKindFor(cmd));
+      slot.title = `${cmd || 'empty'}\n(right-click to rebind, drag a skill here from K)`;
       slot.addEventListener('click', () => useHotbar(i));
       slot.addEventListener('contextmenu', e => {
         e.preventDefault();
         const next = prompt(`Command for slot ${i + 1}:`, hotbar[i] || '');
-        if (next !== null) { hotbar[i] = next.trim(); lsSet(HOTBAR_KEY, JSON.stringify(hotbar)); renderHotbar(); }
+        if (next !== null) bindSlot(i, next);
+      });
+      slot.addEventListener('dragover', e => { e.preventDefault(); slot.classList.add('dragover'); });
+      slot.addEventListener('dragleave', () => slot.classList.remove('dragover'));
+      slot.addEventListener('drop', e => {
+        e.preventDefault();
+        slot.classList.remove('dragover');
+        const cmd2 = e.dataTransfer.getData('text/plain');
+        if (cmd2) bindSlot(i, cmd2);
       });
       els.hotbar.appendChild(slot);
     });
   }
+
   function useHotbar(i) {
     const cmd = hotbar[i];
     if (!cmd) return;
@@ -65,6 +128,14 @@
     const t = currentTarget ? MH.mobKeyword(currentTarget.name) : '';
     if ((cmd === 'kill' || /^cast '[^']+'$/.test(cmd)) && t) MH.sendCommand(`${cmd} ${t}`);
     else MH.sendCommand(cmd);
+    // cooldown sweep ~ one combat round
+    const slot = els.hotbar.children[i];
+    if (slot) {
+      const cd = slot.querySelector('.cd');
+      cd.classList.remove('run');
+      void cd.offsetWidth; // restart the animation
+      cd.classList.add('run');
+    }
   }
 
   // ---- HUD ----
@@ -231,24 +302,28 @@
     const p = MH.state.player;
     if (!p) { els.spellsBody.textContent = 'No data yet.'; return; }
     const skills = p.skills || {};
-    let html = '<div style="color:#e8c168">— SKILLS —</div>';
+    let html = '<div class="slot" style="margin-bottom:6px">click to use · drag onto a hotbar slot to bind</div>';
+    html += '<div style="color:#e8c168">— SKILLS —</div>';
     const list = (p.class_skills || []);
     if (!list.length) html += '<div class="slot">none</div>';
     for (const s of list) {
-      html += `<div class="item" data-cmd="${s}">${s} <span class="slot">${skills[s] != null ? skills[s] + '%' : ''}</span></div>`;
+      html += `<div class="item" draggable="true" data-cmd="${s}">${s} <span class="slot">${skills[s] != null ? skills[s] + '%' : ''}</span></div>`;
     }
     html += '<div style="color:#e8c168;margin-top:8px">— SPELLS —</div>';
     const spells = (p.class_spells || []);
     if (!spells.length) html += '<div class="slot">none</div>';
     for (const s of spells) {
-      html += `<div class="item" data-cmd="cast '${s}'">${s} <span class="slot">${skills[s] != null ? skills[s] + '%' : ''} (click to cast)</span></div>`;
+      html += `<div class="item" draggable="true" data-cmd="cast '${s}'">${s} <span class="slot">${skills[s] != null ? skills[s] + '%' : ''} (click to cast)</span></div>`;
     }
     els.spellsBody.innerHTML = html;
-    els.spellsBody.querySelectorAll('.item').forEach(el => el.addEventListener('click', () => {
-      const t = currentTarget ? ` ${MH.mobKeyword(currentTarget.name)}` : '';
-      MH.sendCommand(el.dataset.cmd + t);
-      closeModals();
-    }));
+    els.spellsBody.querySelectorAll('.item').forEach(el => {
+      el.addEventListener('click', () => {
+        const t = currentTarget ? ` ${MH.mobKeyword(currentTarget.name)}` : '';
+        MH.sendCommand(el.dataset.cmd + t);
+        closeModals();
+      });
+      el.addEventListener('dragstart', e => e.dataTransfer.setData('text/plain', el.dataset.cmd));
+    });
   }
 
   async function openJournal() {
@@ -401,6 +476,32 @@
     renderMinimap();
   }
 
+  // ---- mob hover tooltip with a consider verdict ----
+  function considerVerdict(mobLevel) {
+    const p = MH.state.player;
+    if (!p || mobLevel == null) return '';
+    const diff = mobLevel - (p.level || 1);
+    if (diff <= -10) return 'Now where did that chicken go?';
+    if (diff <= -5) return 'You could do it with a needle!';
+    if (diff <= -2) return 'Easy.';
+    if (diff <= 1) return 'The perfect match!';
+    if (diff <= 4) return 'You would need some luck!';
+    if (diff <= 9) return 'You ARE mad!';
+    return "Why don't you just lie down and pretend you're dead?";
+  }
+  function showMobTip({ data, kind, x, y }) {
+    const tip = els.mobTip;
+    const hp = data.hp != null && data.maxHp ? ` · ${data.hp}/${data.maxHp} hp` : '';
+    const role = data.shopkeeper ? 'shopkeeper' : data.boss ? 'BOSS' : data.hostile ? 'hostile' : (kind === 'player' ? (data.char_class || 'adventurer') : 'neutral');
+    const verdict = kind === 'mob' && !data.shopkeeper ? `<div class="verdict">"${considerVerdict(data.level)}"</div>` : '';
+    tip.innerHTML = `<div class="nm">${data.name}</div><div class="meta">level ${data.level ?? '?'} · ${role}${hp}</div>${verdict}`;
+    tip.style.display = 'block';
+    const r = tip.getBoundingClientRect();
+    tip.style.left = `${Math.min(window.innerWidth - r.width - 8, x + 14)}px`;
+    tip.style.top = `${Math.max(8, y - r.height - 10)}px`;
+  }
+  function hideMobTip() { els.mobTip.style.display = 'none'; }
+
   // ---- low-HP vignette ----
   function updateVignette() {
     const p = MH.state.player;
@@ -433,7 +534,7 @@
         chatLog: $('chat-log'), chatPanel: $('chat-panel'), chatBody: $('chat-body'),
         chatInput: $('chat-input'), chatMode: $('chat-mode'),
         invBody: $('inv-body'), journalBody: $('journal-body'), shopBody: $('shop-body'), spellsBody: $('spells-body'),
-        minimap: $('minimap'), mmToggle: $('mm-toggle'), vignette: $('vignette'),
+        minimap: $('minimap'), mmToggle: $('mm-toggle'), vignette: $('vignette'), mobTip: $('mob-tip'),
       });
 
       // login
@@ -493,7 +594,9 @@
       // game events
       MH.bus.on('map', payload => { updateHud(payload.player); renderMinimap(); updateVignette(); });
       MH.bus.on('combat.update', () => { updateHud(MH.state.player); updateVignette(); });
-      MH.bus.on('room.entered', () => walkStep());
+      MH.bus.on('room.entered', () => { walkStep(); hideMobTip(); });
+      MH.bus.on('mob.tip', showMobTip);
+      MH.bus.on('mob.tip.hide', hideMobTip);
       MH.bus.on('move.blocked', () => cancelWalk());
       MH.bus.on('player.death', () => cancelWalk());
       MH.bus.on('room.entered', ({ room, zoneName }) => showRoom(room, zoneName));

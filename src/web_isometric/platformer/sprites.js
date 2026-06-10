@@ -721,6 +721,21 @@
 
   function genParticles(scene) {
     {
+      // gravestone for fallen heroes
+      const [c, ctx] = canvasOf(18, 22);
+      ctx.fillStyle = '#7a7f8c';
+      ctx.fillRect(3, 6, 12, 16);
+      ctx.fillRect(4, 3, 10, 4);
+      ctx.fillRect(6, 1, 6, 3);
+      ctx.fillStyle = '#5c6068';
+      ctx.fillRect(3, 6, 2, 16);
+      ctx.fillStyle = '#3a3e48';
+      ctx.fillRect(8, 5, 2, 8); ctx.fillRect(6, 7, 6, 2);
+      ctx.fillStyle = '#4a6638';
+      ctx.fillRect(2, 20, 4, 2); ctx.fillRect(13, 21, 3, 1);
+      scene.textures.addCanvas('t_grave', c);
+    }
+    {
       const [c, ctx] = canvasOf(4, 4);
       ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, 4, 4);
       scene.textures.addCanvas('px_white', c);

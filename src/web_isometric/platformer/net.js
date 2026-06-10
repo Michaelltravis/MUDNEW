@@ -235,9 +235,10 @@
     if (payload.type === 'output') {
       const text = MH.stripServerMarkup(payload.data || '');
       MH.bus.emit('terminal.output', { html: payload.data, text });
-      for (const line of text.split('\n')) {
-        if (line.trim()) MH.bus.emit('mud.line', line);
-      }
+      const lines = text.split('\n').filter(l => l.trim());
+      // chunkLen lets the parser treat short standalone chunks as ambient
+      // narrative while ignoring look/score dumps
+      for (const line of lines) MH.bus.emit('mud.line', { line, chunkLen: lines.length });
       answerLoginPrompts(text);
       inferLoginSuccess(text);
     } else if (payload.type === 'mapsync') {
