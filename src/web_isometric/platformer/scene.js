@@ -27,7 +27,9 @@
       }).setOrigin(0.5);
       this.time.delayedCall(30, () => {
         MH.sprites.generateAll(this);
-        MH.tdSprites.generateAll(this);
+        // smooth high-res art is the default; the legacy pixel generator
+        // remains for ?view=side which doesn't use td_* keys
+        MH.smoothSprites.generateAll(this);
         txt.destroy();
         if (/[?&]gallery=1/.test(window.location.search)) this.scene.start('Gallery');
         else if (/[?&]view=side/.test(window.location.search)) this.scene.start('Room');
@@ -991,8 +993,8 @@
       parent: 'game-root',
       width: window.innerWidth,
       height: window.innerHeight,
-      pixelArt: true,
-      roundPixels: true,
+      pixelArt: false,
+      antialias: true,
       backgroundColor: '#0b0c10',
       physics: { default: 'arcade', arcade: { gravity: { y: 900 }, debug: false } },
       input: { gamepad: true },

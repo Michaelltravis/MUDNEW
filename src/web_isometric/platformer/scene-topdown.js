@@ -25,7 +25,7 @@
       this.cameras.main.setRoundPixels(true);
       // integer zoom for crisp pixels at any window size
       const fit = () => {
-        const z = Math.max(2, Math.floor(Math.min(this.scale.width / this.pxW, this.scale.height / this.pxH)));
+        const z = Phaser.Math.Clamp(Math.min(this.scale.width / this.pxW, this.scale.height / this.pxH), 1.5, 4.5);
         this.cameras.main.setZoom(z);
         this.cameras.main.centerOn(this.pxW / 2, this.pxH / 2);
       };
@@ -47,7 +47,8 @@
       this.bgLayer = this.add.layer().setDepth(-10);
 
       this.player = this.physics.add.sprite(this.pxW / 2, this.pxH / 2, 'td_player_warrior', 'd0');
-      this.player.setSize(11, 10).setOffset(6.5, 12);
+      this.player.setScale(1 / MH.SMOOTH_SS);
+      this.player.setSize(11 * MH.SMOOTH_SS, 10 * MH.SMOOTH_SS).setOffset(6.5 * MH.SMOOTH_SS, 12 * MH.SMOOTH_SS);
       this.player.setDepth(10);
       this.player.setCollideWorldBounds(true);
       this.player.body.setAllowGravity(false);
@@ -145,19 +146,21 @@
       for (let y = 0; y < layout.H; y++) {
         for (let x = 0; x < layout.W; x++) {
           const cell = layout.grid[y * layout.W + x];
-          const img = this.add.image(x * T, y * T, `td_${th}_floor`).setOrigin(0, 0);
-          if ((x + y) % 2) img.setTint(0xf2f2f2);   // subtle checker
+          const img = this.add.image(x * T, y * T, `td_${th}_floor`).setOrigin(0, 0).setDisplaySize(T, T);
+          if ((x + y) % 2) img.setTint(0xf4f4f4);   // subtle checker
           this.bgLayer.add(img);
           if (cell === BLOCK) {
             const isBorder = x === 0 || y === 0 || x === layout.W - 1 || y === layout.H - 1;
             const ob = layout.obstacles && layout.obstacles.find(o =>
               x >= o.x && x < o.x + (o.big ? 2 : 1) && y >= o.y && y < o.y + (o.big ? 2 : 1));
             const key = isBorder ? `td_${th}_border` : `td_${th}_obst${ob ? ob.idx : 0}`;
-            const blockImg = this.add.image(x * T, y * T, key).setOrigin(0, 0).setDepth(1);
+            const blockImg = this.add.image(x * T, y * T, key).setOrigin(0, 0).setDisplaySize(T, T).setDepth(1);
             this.tileLayer.add(blockImg);
           } else if (cell === WATER) {
-            const spr = this.add.sprite(x * T, y * T, `t_${th}_water`, '0').setOrigin(0, 0).setDepth(1).setAlpha(0.95);
-            spr.play(`water_${th}`);
+            const spr = this.add.sprite(x * T, y * T, 'sm_water', '0').setOrigin(0, 0).setDisplaySize(T, T).setDepth(1).setAlpha(0.95);
+            spr.play('sm_water_anim');
+            const liquid = (MH.THEMES[th] && MH.THEMES[th].liquid) || '#3a6a9a';
+            spr.setTint(Phaser.Display.Color.HexStringToColor(liquid).color | 0x404040);
             this.tileLayer.add(spr);
           }
         }
@@ -187,8 +190,14 @@
       this.buildAtmosphere(layout, th);
 
       // props, gravestones, prose
+      const propSet = ['forest', 'field', 'swamp', 'hills'].includes(th)
+        ? ['sm_prop_bush', 'sm_prop_bush', 'sm_prop_crate']
+        : ['city', 'inside'].includes(th)
+          ? ['sm_prop_lamp', 'sm_prop_crate', 'sm_prop_crate']
+          : ['sm_prop_crate', 'sm_prop_lamp', 'sm_prop_bush'];
       for (const prop of layout.props) {
-        const img = this.add.image(prop.x * T, (prop.y + 1) * T, `t_${th}_prop${prop.idx}`).setOrigin(0.25, 1).setDepth(3).setScale(0.8);
+        const img = this.add.image(prop.x * T, (prop.y + 1) * T, propSet[prop.idx % 3])
+          .setOrigin(0.25, 1).setDepth(3).setScale(0.85 / MH.SMOOTH_SS);
         this.tileLayer.add(img);
       }
       this.placeGravestones(layout);
@@ -300,7 +309,7 @@
         const zone = layout.exits[dir] && layout.exits[dir].to_zone;
         if (!zone) return;
         const post = this.add.text(x, y, `→ ${zone}`, {
-          fontFamily: 'Courier New', resolution: 3, fontSize: '7px', fontStyle: 'italic', color: '#e8c168',
+          fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '7px', fontStyle: 'italic', color: '#e8c168',
           backgroundColor: '#10131ea8', padding: { x: 2, y: 1 },
         }).setOrigin(0.5, 0.5).setDepth(5).setAlpha(0.9);
         this.tileLayer.add(post);
@@ -340,7 +349,7 @@
         drawDoor('east', (layout.W - 0.5) * T, midY * T + T / 2, true);
       }
       const addFeatureZone = (fx, fy, dir, texKey) => {
-        const img = this.add.image(fx * T, fy * T, texKey).setOrigin(0, 0).setDepth(2);
+        const img = this.add.image(fx * T, fy * T, texKey).setOrigin(0, 0).setDisplaySize(T, T).setDepth(2);
         this.tileLayer.add(img);
         const zone = this.add.zone(fx * T + 5, fy * T + 5, T - 10, T - 10).setOrigin(0, 0);
         this.physics.add.existing(zone, true);
@@ -356,15 +365,15 @@
         signpost('down', layout.stairsDown.x * T + T / 2, (layout.stairsDown.y - 1) * T);
       }
       for (const p of layout.portals) {
-        const spr = this.add.sprite(p.x * T + T / 2, (p.y + 1) * T, 't_portal', '0').setOrigin(0.5, 1).setDepth(3).setScale(0.7);
-        spr.play('portal_shimmer');
+        const spr = this.add.sprite(p.x * T + T / 2, (p.y + 1) * T, 'sm_portal', '0').setOrigin(0.5, 1).setDepth(3).setScale(0.75 / MH.SMOOTH_SS);
+        spr.play('sm_portal_anim');
         this.tileLayer.add(spr);
         const zone = this.add.zone(p.x * T, p.y * T, T, T).setOrigin(0, 0);
         this.physics.add.existing(zone, true);
         zone.exitDir = p.name;
         this.featureZones.push(zone);
         const hint = this.add.text(p.x * T + T / 2, (p.y - 1.2) * T, p.name, {
-          fontFamily: 'Courier New', resolution: 3, fontSize: '7px', color: '#b87cf0',
+          fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '7px', color: '#b87cf0',
         }).setOrigin(0.5, 1).setDepth(3);
         this.tileLayer.add(hint);
         signpost(p.name, p.x * T + T / 2, (p.y - 2) * T);
@@ -379,8 +388,8 @@
       Phaser.Utils.Array.Shuffle(frags);
       frags.slice(0, 2).forEach((frag, i) => {
         const tx = this.add.text(40 + rng() * (this.pxW - 220), 40 + i * 80 + rng() * 30, frag, {
-          fontFamily: 'Courier New', resolution: 3, fontSize: '8px', fontStyle: 'italic', color: '#ffffff',
-        }).setAlpha(0.16).setDepth(4);
+          fontFamily: 'Georgia, serif', resolution: 3, fontSize: '9px', fontStyle: 'italic', color: '#fdf6e3',
+        }).setAlpha(0.30).setDepth(4).setShadow(0, 1, '#000000', 2);
         this.tweens.add({ targets: tx, y: tx.y - 6, duration: 9000 + rng() * 3000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
         this.bgLayer.add(tx);
       });
@@ -404,11 +413,11 @@
       stones.slice(0, 5).forEach((d, i) => {
         const sx = (4 + (MH.hashStr(String(d.ts) + (d.name || '')) % (layout.W - 8))) * T;
         const sy = (3 + ((MH.hashStr(d.name || 'x') + i) % (layout.H - 6))) * T;
-        const g = this.add.image(sx, sy, 't_grave').setOrigin(0.5, 1).setDepth(3).setScale(0.8);
+        const g = this.add.image(sx, sy, 'sm_grave').setOrigin(0.5, 1).setDepth(3).setScale(0.85 / MH.SMOOTH_SS);
         this.tileLayer.add(g);
         const slain = d.killer ? `${d.name}, slain by ${d.killer}` : d.name;
         const label = this.add.text(sx, sy - 18, `here lies ${slain}`, {
-          fontFamily: 'Courier New', resolution: 3, fontSize: '7px', fontStyle: 'italic', color: '#8a90a4',
+          fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '7px', fontStyle: 'italic', color: '#8a90a4',
         }).setOrigin(0.5, 1).setAlpha(0.7).setDepth(3);
         this.tileLayer.add(label);
       });
@@ -437,7 +446,7 @@
       const ent = { key, kind: spec.kind, data: spec.data };
 
       if (spec.kind === 'item') {
-        ent.sprite = this.add.image(slot.x, slot.y, this.safeTex(MH.sprites.itemKey(spec.data.type), 'px_star')).setDepth(5);
+        ent.sprite = this.add.image(slot.x, slot.y, this.safeTex(MH.smoothSprites.itemKey(spec.data.type), 'fx_glow')).setDepth(5).setScale(0.85 / MH.SMOOTH_SS);
         this.tweens.add({ targets: ent.sprite, y: slot.y - 3, duration: 900, yoyo: true, repeat: -1, ease: 'sine.inOut' });
         ent.sprite.setInteractive({ useHandCursor: true });
         ent.sprite.on('pointerdown', () => MH.sendCommand(`get ${MH.mobKeyword(spec.data.name)}`));
@@ -446,14 +455,14 @@
 
       const tex = this.safeTex(spec.kind === 'player' ? MH.tdSprites.playerKey(spec.data.char_class) : MH.tdSprites.mobKey(spec.data.name), 'td_mob_citizen');
       ent.sprite = this.add.sprite(slot.x, slot.y, tex, 'd0').setDepth(8);
+      ent.sprite.setScale((spec.data.boss ? 1.5 : 1) / MH.SMOOTH_SS);
       ent.sprite.play(`${tex}_walkd`);
       ent.sprite.anims.pause();
-      if (spec.data.boss) ent.sprite.setScale(1.5);
       ent.homeX = slot.x; ent.homeY = slot.y;
 
       const labelColor = spec.kind === 'player' ? '#6ca8e0' : (spec.data.hostile ? '#e06c6c' : (spec.data.shopkeeper ? '#e8c168' : '#c8ccd8'));
       ent.label = this.add.text(slot.x, slot.y - 18, this.shortName(spec.data.name), {
-        fontFamily: 'Courier New', resolution: 3, fontSize: '7px', color: labelColor,
+        fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '7px', color: labelColor,
       }).setOrigin(0.5, 1).setDepth(9);
       ent.hpbar = this.add.graphics().setDepth(9);
       this.drawHpBar(ent);
@@ -487,7 +496,7 @@
       // loud telegraph: red swords + red name over whoever is attacking YOU
       if (data.fighting && !ent.fightMark) {
         ent.fightMark = this.add.text(ent.sprite.x, ent.sprite.y - 26, '⚔', {
-          fontFamily: 'Courier New', resolution: 3, fontSize: '12px', color: '#ff5050', stroke: '#000', strokeThickness: 2,
+          fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '12px', color: '#ff5050', stroke: '#000', strokeThickness: 2,
         }).setOrigin(0.5, 1).setDepth(20);
         this.tweens.add({ targets: ent.fightMark, scale: 1.3, duration: 380, yoyo: true, repeat: -1 });
         if (ent.label) ent.label.setColor('#ff5050');
@@ -609,7 +618,7 @@
     }
     fxExp(e) {
       const t = this.add.text(this.player.x, this.player.y - 22, `+${e.amount} xp`, {
-        fontFamily: 'Courier New', resolution: 3, fontSize: '9px', color: '#e8c168', stroke: '#000', strokeThickness: 2,
+        fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '9px', color: '#e8c168', stroke: '#000', strokeThickness: 2,
       }).setOrigin(0.5).setDepth(60);
       this.tweens.add({ targets: t, y: t.y - 18, alpha: 0, duration: 1400, ease: 'sine.out', onComplete: () => t.destroy() });
     }
@@ -661,14 +670,14 @@
       }
       if (!/^(you hear|a |an |the |somewhere|in the distance|dust|wind|water|shadows)/i.test(line)) return;
       const t = this.add.text(40 + Math.random() * (this.pxW - 200), 40 + Math.random() * 100, line, {
-        fontFamily: 'Courier New', resolution: 3, fontSize: '8px', fontStyle: 'italic', color: '#c8d0e4',
-      }).setAlpha(0).setDepth(45);
+        fontFamily: 'Georgia, serif', resolution: 3, fontSize: '9px', fontStyle: 'italic', color: '#e8e2d0',
+      }).setAlpha(0).setDepth(45).setShadow(0, 1, '#000000', 2);
       this.tweens.add({ targets: t, alpha: 0.45, duration: 900, yoyo: true, hold: 3600, onComplete: () => t.destroy() });
     }
     bubbleOver(ent, text, color = '#dce4f0') {
       if (!ent || !ent.sprite) return;
       const bubble = this.add.text(ent.sprite.x, ent.sprite.y - 24, String(text).slice(0, 50), {
-        fontFamily: 'Courier New', resolution: 3, fontSize: '7px', color, backgroundColor: '#10131ecc',
+        fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '7px', color, backgroundColor: '#10131ecc',
         padding: { x: 3, y: 1 }, wordWrap: { width: 120 },
       }).setOrigin(0.5, 1).setDepth(60);
       this.tweens.add({ targets: bubble, y: bubble.y - 6, alpha: 0, delay: 2800, duration: 700, onComplete: () => bubble.destroy() });
@@ -689,7 +698,7 @@
     }
     damageNumber(x, y, text, color, size = 9) {
       const t = this.add.text(x + (Math.random() * 10 - 5), y, text, {
-        fontFamily: 'Courier New', resolution: 3, fontSize: `${size}px`, color, stroke: '#000', strokeThickness: 2,
+        fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: `${size}px`, color, stroke: '#000', strokeThickness: 2,
       }).setOrigin(0.5).setDepth(60).setScale(1.4);
       this.tweens.add({ targets: t, scale: 1, duration: 110 });
       this.tweens.add({ targets: t, y: y - 16, alpha: 0, duration: 800, delay: 110, onComplete: () => t.destroy() });
