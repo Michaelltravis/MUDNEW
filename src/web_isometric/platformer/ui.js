@@ -125,8 +125,9 @@
     autofilled = true;
     const fillKey = `misthollow_bar_filled_${(pdata.name || '').toLowerCase()}`;
     if (lsGet(fillKey)) return;
-    const abilities = (pdata.class_spells || []).map(s => `cast '${s}'`)
-      .concat(pdata.class_skills || []);
+    // internal ability ids use underscores; the cast parser wants spaces
+    const abilities = (pdata.class_spells || []).map(s => `cast '${s.replace(/_/g, ' ')}'`)
+      .concat((pdata.class_skills || []).map(s => s.replace(/_/g, ' ')));
     let changed = false;
     for (let i = 0; i < BAR_SIZE && abilities.length; i++) {
       if (!hotbar[i]) { hotbar[i] = abilities.shift(); changed = true; }
@@ -411,10 +412,11 @@
       let h = `<div style="color:#e8c168;letter-spacing:1px;margin:6px 0 4px">${title}</div><div class="spellgrid">`;
       if (!entries.length) h += '<div class="slot">none</div>';
       for (const s of entries) {
-        const cmd = isSpell ? `cast '${s}'` : s;
+        const pretty = s.replace(/_/g, ' ');
+        const cmd = isSpell ? `cast '${pretty}'` : pretty;
         const prof = skills[s] != null ? `<span class="prof">${skills[s]}%</span>` : '';
         h += `<div class="spell-entry" draggable="true" data-cmd="${cmd}" data-kind="${isSpell ? 'sparkle' : 'star'}">`
-          + `<canvas width="20" height="20"></canvas><span class="nm">${s}</span>${prof}</div>`;
+          + `<canvas width="20" height="20"></canvas><span class="nm">${pretty}</span>${prof}</div>`;
       }
       return h + '</div>';
     };
@@ -684,6 +686,7 @@
         minimap: $('minimap'), mmToggle: $('mm-toggle'), vignette: $('vignette'), mobTip: $('mob-tip'),
         compass: $('compass'), hitFlash: $('hit-flash'), combatChip: $('combat-chip'),
         combatLog: $('combat-log'), combatLogLines: $('combat-log-lines'),
+        castBar: $('cast-bar'), roundBar: $('round-bar'), lootToast: $('loot-toast'), lootLines: $('loot-lines'),
       });
 
       // login
@@ -775,6 +778,61 @@
       MH.bus.on('combat.state', on => {
         if (!on) { clearTimeout(clogHideTimer); clogHideTimer = setTimeout(() => els.combatLog.classList.remove('show'), 3000); }
       });
+      // WoW-style cast bar: starts on 'cast', completes when the spell lands
+      let castTimer = null;
+      const startCast = name => {
+        els.castBar.querySelector('.nm').textContent = name;
+        els.castBar.classList.remove('go', 'done');
+        void els.castBar.offsetWidth;
+        els.castBar.classList.add('show', 'go');
+        clearTimeout(castTimer);
+        castTimer = setTimeout(() => els.castBar.classList.remove('show', 'go', 'done'), 2600);
+      };
+      const endCast = ok => {
+        if (!els.castBar.classList.contains('show')) return;
+        els.castBar.classList.add('done');
+        clearTimeout(castTimer);
+        castTimer = setTimeout(() => els.castBar.classList.remove('show', 'go', 'done'), ok ? 450 : 250);
+      };
+      MH.bus.on('terminal.echo', cmd => {
+        const m = String(cmd).match(/^cast '([^']+)'/i);
+        if (m) startCast(m[1]);
+      });
+      MH.bus.on('combat.hit', () => endCast(true));
+      MH.bus.on('combat.cast', () => endCast(true));
+      MH.bus.on('player.heal', () => endCast(true));
+
+      // next-exchange timer: MUD rounds are ~2s; show the rhythm
+      MH.bus.on('combat.update', () => {
+        els.roundBar.classList.add('show');
+        els.roundBar.classList.remove('tick');
+        void els.roundBar.offsetWidth;
+        els.roundBar.classList.add('tick');
+      });
+      MH.bus.on('combat.state', on => { if (!on) els.roundBar.classList.remove('show', 'tick'); });
+
+      // loot flow: corpse click -> loot toast -> inventory refreshed + opened
+      let lootTimer = null;
+      MH.bus.on('loot.corpse', async () => {
+        const p = captureOutput(1300);
+        MH.sendCommand('get all corpse', false);
+        const lines = await p;
+        const loot = lines.filter(l => /you get .+ from the corpse|there (?:is|are) no|corpse is empty|you can'?t/i.test(l));
+        els.lootLines.innerHTML = '';
+        (loot.length ? loot : ['The corpse holds nothing.']).slice(0, 8).forEach(l => {
+          const div = document.createElement('div');
+          div.className = /gold coin/i.test(l) ? 'gold' : 'it';
+          div.textContent = l.replace(/^You get /i, '+ ').replace(/ from the corpse\.?$/i, '');
+          els.lootLines.appendChild(div);
+        });
+        els.lootToast.classList.add('show');
+        clearTimeout(lootTimer);
+        lootTimer = setTimeout(() => els.lootToast.classList.remove('show'), 3500);
+        await MH.refreshState();
+        renderInventory();
+        openModal('modal-inv');
+      });
+
       // the chip pulses with each server combat round
       MH.bus.on('combat.update', () => {
         els.combatChip.style.transform = 'translateX(-50%) scale(1.12)';

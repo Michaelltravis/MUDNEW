@@ -463,7 +463,7 @@
         }
         ent.sprite.setInteractive({ useHandCursor: true });
         ent.sprite.on('pointerdown', () => {
-          if (isCorpse) { MH.sendCommand('get all corpse'); MH.bus.emit('flash', 'You loot the corpse…'); }
+          if (isCorpse) MH.bus.emit('loot.corpse');
           else MH.sendCommand(`get ${MH.mobKeyword(spec.data.name)}`);
         });
         if (isCorpse) {
@@ -798,6 +798,7 @@
       this.spark(ent.sprite.x, ent.sprite.y - 6, (fx && fx.color) || 0xffe080);
       const st = this.dmgStyle(e.dmg);
       if (st.shake) this.cameras.main.shake(90, st.shake);
+      if (e.dmg != null && e.dmg >= 25) this.zoomPunch();
       this.damageNumber(ent.sprite.x, ent.sprite.y - 16, e.dmg != null ? String(e.dmg) : 'hit', st.color, st.size);
     }
     fxMiss(e) {
@@ -851,6 +852,12 @@
       }
     }
 
+    zoomPunch() {
+      const cam = this.cameras.main;
+      const base = cam.zoom;
+      this.tweens.add({ targets: cam, zoom: base * 1.035, duration: 70, yoyo: true, ease: 'cubic.out' });
+    }
+
     fxExp(e) {
       const t = this.add.text(this.player.x, this.player.y - 22, `+${e.amount} xp`, {
         fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '9px', color: '#e8c168', stroke: '#000', strokeThickness: 2,
@@ -868,7 +875,7 @@
           .setScale(0.9 / MH.SMOOTH_SS).setDepth(4).setAlpha(0);
         this.tweens.add({ targets: corpse, alpha: 1, duration: 400, delay: 250 });
         corpse.setInteractive({ useHandCursor: true });
-        corpse.on('pointerdown', () => { MH.sendCommand('get all corpse'); MH.bus.emit('flash', 'You loot the corpse…'); });
+        corpse.on('pointerdown', () => MH.bus.emit('loot.corpse'));
         (this.corpses = this.corpses || []).push(corpse);
         if (this.corpses.length > 8) { const old = this.corpses.shift(); old.destroy(); }
         this.tileLayer.add(corpse);
@@ -1238,8 +1245,29 @@
         }
       }
 
-      // calm NPCs wander to nearby spots, walk there, then idle
       const now = Date.now();
+
+      // combat dance: face your target and circle it like a duelist - the
+      // strafing is cosmetic, but it makes the 2s rounds feel alive
+      const tgtEnt = MH.state.inCombat && this.target && this.entities.get(this.target.key);
+      if (tgtEnt && tgtEnt.sprite && !manual && !this.autoNav && !locked && !this.dead) {
+        const tgt = tgtEnt.sprite;
+        this.setFacing(tgt.x - this.player.x, tgt.y - this.player.y);
+        const baseAng = Math.atan2(this.player.y - tgt.y, this.player.x - tgt.x);
+        const sway = Math.sin(now / 850) * 0.55;
+        const orbitAng = baseAng + sway * 0.06;
+        const dist = Phaser.Math.Clamp(Phaser.Math.Distance.Between(this.player.x, this.player.y, tgt.x, tgt.y), 24, 38);
+        const ox = tgt.x + Math.cos(orbitAng) * dist;
+        const oy = tgt.y + Math.sin(orbitAng) * dist;
+        this.player.x += (ox - this.player.x) * 0.035;
+        this.player.y += (oy - this.player.y) * 0.035;
+        // ready stance: subtle bounce instead of statue idle
+        if (!this.player.anims.isPlaying) {
+          this.player.setFrame(`${this.facing}${Math.floor(now / 320) % 2}`);
+        }
+      }
+
+      // calm NPCs wander to nearby spots, walk there, then idle
       for (const ent of this.entities.values()) {
         if (ent.kind !== 'mob' || ent.stalker || (ent.data && ent.data.fighting) || ent.data.shopkeeper) continue;
         if (!ent.wanderAt || now < ent.wanderAt || ent.wanderTween) continue;
@@ -1276,6 +1304,11 @@
           const speed = ent.data.fighting ? 90 : 48;
           ent.sprite.x += (dx / d) * speed * dt;
           ent.sprite.y += (dy / d) * speed * dt;
+        } else if (ent.data.fighting) {
+          // in range: strafe around the player like a duelist
+          const sway = Math.cos(now / 700 + MH.hashStr(ent.key)) * 14 * dt;
+          ent.sprite.x += (-dy / (d || 1)) * sway;
+          ent.sprite.y += (dx / (d || 1)) * sway;
           const tex = ent.sprite.texture.key;
           const anim = Math.abs(dx) > Math.abs(dy) ? `${tex}_walks` : (dy > 0 ? `${tex}_walkd` : `${tex}_walku`);
           ent.sprite.setFlipX(Math.abs(dx) > Math.abs(dy) && dx < 0);
