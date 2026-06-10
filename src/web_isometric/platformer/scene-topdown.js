@@ -25,7 +25,8 @@
       this.cameras.main.setRoundPixels(true);
       // integer zoom for crisp pixels at any window size
       const fit = () => {
-        const z = Phaser.Math.Clamp(Math.min(this.scale.width / this.pxW, this.scale.height / this.pxH), 1.5, 4.5);
+        const raw = Math.min(this.scale.width / this.pxW, this.scale.height / this.pxH);
+        const z = Phaser.Math.Clamp(Math.floor(raw * 4) / 4, 1.5, 4.5);
         this.cameras.main.setZoom(z);
         this.cameras.main.centerOn(this.pxW / 2, this.pxH / 2);
       };
@@ -35,10 +36,9 @@
       // cinematic grade (WebGL only): falls back gracefully on canvas
       try {
         if (this.cameras.main.postFX) {
-          this.cameras.main.postFX.addVignette(0.5, 0.5, 0.98, 0.42);
-          this.cameras.main.postFX.addBloom(0xffffff, 1, 1, 1.1, 1.0, 4);
+          this.cameras.main.postFX.addVignette(0.5, 0.5, 1.0, 0.32);
           const cm = this.cameras.main.postFX.addColorMatrix();
-          cm.saturate(0.18, true);
+          cm.saturate(0.14, true);
         }
       } catch (_) { /* older GPU / canvas renderer */ }
 
@@ -56,9 +56,9 @@
       this.physics.add.collider(this.player, this.solids);
 
       this.heroGlow = this.add.image(this.player.x, this.player.y, 'fx_glow')
-        .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.20).setScale(0.7)
+        .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.13).setScale(0.55)
         .setDepth(9).setTint(0xfff2cc);
-      this.tweens.add({ targets: this.heroGlow, alpha: 0.28, scale: 0.8, duration: 1600, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      this.tweens.add({ targets: this.heroGlow, alpha: 0.18, scale: 0.62, duration: 1600, yoyo: true, repeat: -1, ease: 'sine.inOut' });
 
       this.keys = this.input.keyboard.addKeys({
         left: 'A', right: 'D', up: 'W', down: 'S',
@@ -98,6 +98,7 @@
       MH.bus.on('walk.step', dir => this.requestMove(dir));
       MH.bus.on('nav.goto', dir => this.navTo(dir));
       MH.bus.on('player.attack', () => this.tryAttack());
+      MH.bus.on('combat.flee', e => this.fxFlee(e));
       MH.bus.on('mob.death', e => this.fxMobDeath(e));
       MH.bus.on('player.death', () => this.fxPlayerDeath());
       MH.bus.on('level.up', () => this.fxLevelUp());
@@ -236,8 +237,8 @@
       for (let i = 0; i < pools; i++) {
         const g = this.add.image(40 + rng() * (this.pxW - 80), 30 + rng() * (this.pxH - 60), 'fx_glow')
           .setBlendMode(Phaser.BlendModes.ADD)
-          .setAlpha(0.07 + rng() * 0.07)
-          .setScale(1.4 + rng() * 1.6)
+          .setAlpha(0.035 + rng() * 0.035)
+          .setScale(1.1 + rng() * 1.1)
           .setTint(glowTint).setDepth(35);
         this.tweens.add({ targets: g, alpha: g.alpha + 0.05, duration: 2400 + rng() * 2200, yoyo: true, repeat: -1, ease: 'sine.inOut' });
         this.fxList.push(g);
@@ -249,7 +250,7 @@
           const ray = this.add.image(60 + rng() * (this.pxW - 120), -8, 'fx_ray')
             .setOrigin(0.5, 0)
             .setBlendMode(Phaser.BlendModes.ADD)
-            .setAlpha(0.05 + rng() * 0.05)
+            .setAlpha(0.03 + rng() * 0.03)
             .setRotation(0.25 + rng() * 0.15)
             .setTint(th === 'underwater' ? 0x88d8ff : 0xfff0c0)
             .setDepth(36);
@@ -387,9 +388,9 @@
         .map(s => s.trim()).filter(s => s.length > 15 && s.length <= 60);
       Phaser.Utils.Array.Shuffle(frags);
       frags.slice(0, 2).forEach((frag, i) => {
-        const tx = this.add.text(40 + rng() * (this.pxW - 220), 40 + i * 80 + rng() * 30, frag, {
-          fontFamily: 'Georgia, serif', resolution: 3, fontSize: '9px', fontStyle: 'italic', color: '#fdf6e3',
-        }).setAlpha(0.30).setDepth(4).setShadow(0, 1, '#000000', 2);
+        const tx = this.add.text(36 + rng() * (this.pxW - 260), 28 + i * 26, frag, {
+          fontFamily: 'Georgia, serif', resolution: 3, fontSize: '8px', fontStyle: 'italic', color: '#fdf6e3',
+        }).setAlpha(0.20).setDepth(4).setShadow(0, 1, '#000000', 2);
         this.tweens.add({ targets: tx, y: tx.y - 6, duration: 9000 + rng() * 3000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
         this.bgLayer.add(tx);
       });
@@ -613,9 +614,39 @@
         const ang = Math.atan2(this.player.y - atk.sprite.y, this.player.x - atk.sprite.x);
         this.player.x += Math.cos(ang) * 6;
         this.player.y += Math.sin(ang) * 6;
+        // attacker lunges at you so the hit has a visible author
+        this.tweens.add({
+          targets: atk.sprite,
+          x: atk.sprite.x + Math.cos(ang) * 9,
+          y: atk.sprite.y + Math.sin(ang) * 9,
+          duration: 90, yoyo: true, ease: 'cubic.out',
+        });
+        // mark them even if the server payload hasn't flagged it yet
+        if (!atk.data.fighting) this.updateEntity(atk, Object.assign({}, atk.data, { fighting: true }));
       }
       this.damageNumber(this.player.x, this.player.y - 18, e && e.dmg != null ? `-${e.dmg}` : '✦', '#e06c6c', st.size);
     }
+    // flee = an involuntary room exit: dash toward that edge so the
+    // following screen-slide reads as ESCAPING, not teleporting
+    fxFlee(e) {
+      MH.bus.emit('flash', e.dir ? `You flee ${e.dir}!` : 'You flee!');
+      if (e.dir && ['north', 'south', 'east', 'west', 'up', 'down'].includes(e.dir)) {
+        MH.state.pendingMove = { dir: e.dir, sentAt: Date.now() };
+      }
+      const v = { north: [0, -1], south: [0, 1], east: [1, 0], west: [-1, 0] }[e.dir] || [0, 0];
+      const streak = this.add.particles(this.player.x, this.player.y, 'px_white', {
+        speedX: { min: -v[0] * 120 - 20, max: -v[0] * 120 + 20 },
+        speedY: { min: -v[1] * 120 - 20, max: -v[1] * 120 + 20 },
+        lifespan: 350, quantity: 4, scale: { start: 0.7, end: 0 },
+        alpha: { start: 0.8, end: 0 }, tint: 0xfff0c0, blendMode: 'ADD', emitting: false,
+      }).setDepth(60);
+      streak.explode(14);
+      this.time.delayedCall(500, () => streak.destroy());
+      if (v[0] || v[1]) {
+        this.tweens.add({ targets: this.player, x: this.player.x + v[0] * 30, y: this.player.y + v[1] * 30, duration: 240, ease: 'cubic.in' });
+      }
+    }
+
     fxExp(e) {
       const t = this.add.text(this.player.x, this.player.y - 22, `+${e.amount} xp`, {
         fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '9px', color: '#e8c168', stroke: '#000', strokeThickness: 2,
@@ -983,9 +1014,9 @@
         if (!ent.sprite) continue;
         const dx = this.player.x - ent.sprite.x, dy = this.player.y - ent.sprite.y;
         const d = Math.hypot(dx, dy);
-        const stop = ent.data.fighting ? 18 : 28;
+        const stop = ent.data.fighting ? 16 : 26;
         if (d > stop) {
-          const speed = ent.data.fighting ? 48 : 30;
+          const speed = ent.data.fighting ? 90 : 48;
           ent.sprite.x += (dx / d) * speed * dt;
           ent.sprite.y += (dy / d) * speed * dt;
           const tex = ent.sprite.texture.key;

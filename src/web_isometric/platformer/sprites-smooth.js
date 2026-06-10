@@ -30,6 +30,11 @@
     ctx.arcTo(x, y, x + w, y, r);
     ctx.closePath();
   }
+  function outline(ctx, alpha = 0.45) {
+    ctx.strokeStyle = `rgba(12,14,20,${alpha})`;
+    ctx.lineWidth = 1.2 * SS;
+    ctx.stroke();
+  }
   function softShadow(ctx, cx, cy, w, h) {
     const g = ctx.createRadialGradient(cx, cy, 1, cx, cy, w / 2);
     g.addColorStop(0, 'rgba(0,0,0,0.30)');
@@ -78,6 +83,7 @@
         ctx.beginPath();
         ctx.arc(T / 2, T * 0.46, T * 0.40, 0, Math.PI * 2);
         ctx.fill();
+        outline(ctx, 0.35);
         ctx.fillStyle = 'rgba(255,255,255,0.12)';
         ctx.beginPath();
         ctx.arc(T * 0.38, T * 0.32, T * 0.14, 0, Math.PI * 2);
@@ -90,6 +96,7 @@
         ctx.fillStyle = g;
         rr(ctx, T * 0.1, T * 0.14, T * 0.8, T * 0.74, T * 0.22);
         ctx.fill();
+        outline(ctx, 0.35);
         ctx.fillStyle = 'rgba(255,255,255,0.10)';
         rr(ctx, T * 0.18, T * 0.2, T * 0.34, T * 0.2, T * 0.1);
         ctx.fill();
@@ -145,6 +152,7 @@
         ctx.beginPath();
         ctx.arc(T * 0.5, T * 0.52, T * 0.36, 0, Math.PI * 2);
         ctx.fill();
+        outline(ctx, 0.35);
       } else {
         const g = ctx.createLinearGradient(0, 0, 0, T);
         g.addColorStop(0, shade(p.accent, -22));
@@ -152,6 +160,7 @@
         ctx.fillStyle = g;
         rr(ctx, T * 0.16, T * 0.16, T * 0.68, T * 0.68, T * 0.14);
         ctx.fill();
+        outline(ctx, 0.35);
         ctx.fillStyle = 'rgba(255,255,255,0.10)';
         rr(ctx, T * 0.22, T * 0.22, T * 0.3, T * 0.18, T * 0.08);
         ctx.fill();
@@ -356,6 +365,7 @@
     ctx.fillStyle = bg;
     rr(ctx, cx - 5.5 * u, 9.5 * u, 11 * u, 10.5 * u, 4.5 * u);
     ctx.fill();
+    outline(ctx);
     // feet
     ctx.fillStyle = shade(pal.outfit2, -10);
     if (facing === 's') {
@@ -377,6 +387,7 @@
     ctx.beginPath();
     ctx.arc(cx, 7 * u, 4.6 * u, 0, Math.PI * 2);
     ctx.fill();
+    outline(ctx);
     // hair / hood arc
     ctx.fillStyle = pal.hair;
     if (facing === 'u') {
@@ -439,6 +450,7 @@
     ctx.beginPath();
     ctx.arc(0, 0, 5.6 * u, 0, Math.PI * 2);
     ctx.fill();
+    outline(ctx);
     ctx.restore();
     // head
     ctx.fillStyle = shade(pal.outfit, 8);
@@ -485,6 +497,7 @@
     ctx.beginPath();
     ctx.arc(0, 0, 6.4 * u, 0, Math.PI * 2);
     ctx.fill();
+    outline(ctx);
     ctx.restore();
     ctx.fillStyle = '#15171f';
     ctx.beginPath();
@@ -523,6 +536,7 @@
     ctx.beginPath();
     ctx.ellipse(cx, cy, 4 * u, 5.6 * u, 0, 0, Math.PI * 2);
     ctx.fill();
+    outline(ctx);
     ctx.fillStyle = '#15171f';
     ctx.beginPath();
     ctx.arc(cx - 1.4 * u, cy - 2 * u, 0.7 * u, 0, Math.PI * 2);

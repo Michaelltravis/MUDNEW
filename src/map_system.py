@@ -770,6 +770,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'exp': getattr(player, 'exp', 0),
             'exp_floor': _exp_thresholds(player)[0],
             'exp_to_level': _exp_thresholds(player)[1],
+            'in_combat': bool(getattr(player, 'fighting', None)),
             'equipment': {
                 slot: {'name': item.name, 'affects': getattr(item, 'affects', [])}
                 for slot, item in getattr(player, 'equipment', {}).items()

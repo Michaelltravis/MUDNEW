@@ -156,6 +156,8 @@
     st.lastPayload = payload;
     if (payload.player) st.player = payload.player;
     if (payload.current_room) st.currentRoom = payload.current_room;
+    // authoritative combat state rides every payload - no more stuck chips
+    if (payload.player && payload.player.in_combat != null) MH.setCombat(!!payload.player.in_combat);
     if (st.player && st.lastPayload) stopResubscribe();
     MH.bus.emit('map', payload);
   }

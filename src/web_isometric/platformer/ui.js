@@ -6,8 +6,9 @@
   const MH = window.MH = window.MH || {};
   const NAME_KEY = 'misthollow_name';
   const PW_KEY = 'misthollow_pw';
-  const HOTBAR_KEY = 'misthollow_plat_hotbar_v2';
-  const DEFAULT_HOTBAR = ['attack', 'look', 'flee', 'rest', 'stand', 'inventory', 'score', 'quests'];
+  const HOTBAR_KEY = 'misthollow_plat_hotbar_v3';
+  const BAR_SIZE = 10;
+  const DEFAULT_HOTBAR = ['attack', 'flee', '', '', '', '', '', 'inventory', 'score', 'quests'];
 
   const $ = id => document.getElementById(id);
   const els = {};
@@ -111,8 +112,31 @@
   function loadHotbar() {
     try { hotbar = JSON.parse(lsGet(HOTBAR_KEY)) || DEFAULT_HOTBAR.slice(); }
     catch (_) { hotbar = DEFAULT_HOTBAR.slice(); }
-    if (!Array.isArray(hotbar) || hotbar.length !== 8) hotbar = DEFAULT_HOTBAR.slice();
+    if (!Array.isArray(hotbar) || hotbar.length !== BAR_SIZE) hotbar = DEFAULT_HOTBAR.slice();
     renderHotbar();
+  }
+
+  // WoW-style quality of life: first time a class logs in, fill the empty
+  // slots with their actual spells and skills
+  let autofilled = false;
+  function autofillBar() {
+    const pdata = MH.state.player;
+    if (autofilled || !pdata || !pdata.char_class) return;
+    autofilled = true;
+    const fillKey = `misthollow_bar_filled_${(pdata.name || '').toLowerCase()}`;
+    if (lsGet(fillKey)) return;
+    const abilities = (pdata.class_spells || []).map(s => `cast '${s}'`)
+      .concat(pdata.class_skills || []);
+    let changed = false;
+    for (let i = 0; i < BAR_SIZE && abilities.length; i++) {
+      if (!hotbar[i]) { hotbar[i] = abilities.shift(); changed = true; }
+    }
+    if (changed) {
+      lsSet(HOTBAR_KEY, JSON.stringify(hotbar));
+      lsSet(fillKey, '1');
+      renderHotbar();
+      flash('Your abilities are on the action bar - drag from K to customize.');
+    }
   }
 
   function bindSlot(i, cmd) {
@@ -129,7 +153,8 @@
       slot.className = 'hotslot';
       const skillName = String(cmd || '').replace(/^cast '/, '').replace(/'$/, '');
       const prof = skills[skillName];
-      slot.innerHTML = `<span class="key">${i + 1}</span>`
+      slot.setAttribute('draggable', 'true');
+      slot.innerHTML = `<span class="key">${(i + 1) % 10}</span>`
         + (prof != null ? `<span class="prof">${prof}%</span>` : '')
         + `<canvas width="20" height="20"></canvas>`
         + `<span class="lbl">${cmd || '—'}</span><div class="cd"></div>`;
@@ -141,13 +166,22 @@
         const next = prompt(`Command for slot ${i + 1}:`, hotbar[i] || '');
         if (next !== null) bindSlot(i, next);
       });
+      slot.addEventListener('dragstart', e => e.dataTransfer.setData('text/plain', `slot:${i}`));
       slot.addEventListener('dragover', e => { e.preventDefault(); slot.classList.add('dragover'); });
       slot.addEventListener('dragleave', () => slot.classList.remove('dragover'));
       slot.addEventListener('drop', e => {
         e.preventDefault();
         slot.classList.remove('dragover');
-        const cmd2 = e.dataTransfer.getData('text/plain');
-        if (cmd2) bindSlot(i, cmd2);
+        const data = e.dataTransfer.getData('text/plain');
+        if (!data) return;
+        const m = data.match(/^slot:(\d+)$/);
+        if (m) {
+          // reorder: swap the two slots
+          const j = Number(m[1]);
+          if (j !== i) { const tmp = hotbar[i]; bindSlot(i, hotbar[j]); bindSlot(j, tmp); }
+        } else {
+          bindSlot(i, data);
+        }
       });
       els.hotbar.appendChild(slot);
     });
@@ -372,21 +406,23 @@
     const p = MH.state.player;
     if (!p) { els.spellsBody.textContent = 'No data yet.'; return; }
     const skills = p.skills || {};
-    let html = '<div class="slot" style="margin-bottom:6px">click to use · drag onto a hotbar slot to bind</div>';
-    html += '<div style="color:#e8c168">— SKILLS —</div>';
-    const list = (p.class_skills || []);
-    if (!list.length) html += '<div class="slot">none</div>';
-    for (const s of list) {
-      html += `<div class="item" draggable="true" data-cmd="${s}">${s} <span class="slot">${skills[s] != null ? skills[s] + '%' : ''}</span></div>`;
-    }
-    html += '<div style="color:#e8c168;margin-top:8px">— SPELLS —</div>';
-    const spells = (p.class_spells || []);
-    if (!spells.length) html += '<div class="slot">none</div>';
-    for (const s of spells) {
-      html += `<div class="item" draggable="true" data-cmd="cast '${s}'">${s} <span class="slot">${skills[s] != null ? skills[s] + '%' : ''} (click to cast)</span></div>`;
-    }
+    let html = '<div class="slot" style="margin-bottom:8px">click to use · drag onto the action bar to bind · keys 1–0</div>';
+    const section = (title, entries, isSpell) => {
+      let h = `<div style="color:#e8c168;letter-spacing:1px;margin:6px 0 4px">${title}</div><div class="spellgrid">`;
+      if (!entries.length) h += '<div class="slot">none</div>';
+      for (const s of entries) {
+        const cmd = isSpell ? `cast '${s}'` : s;
+        const prof = skills[s] != null ? `<span class="prof">${skills[s]}%</span>` : '';
+        h += `<div class="spell-entry" draggable="true" data-cmd="${cmd}" data-kind="${isSpell ? 'sparkle' : 'star'}">`
+          + `<canvas width="20" height="20"></canvas><span class="nm">${s}</span>${prof}</div>`;
+      }
+      return h + '</div>';
+    };
+    html += section('SKILLS', p.class_skills || [], false);
+    html += section('SPELLS', p.class_spells || [], true);
     els.spellsBody.innerHTML = html;
-    els.spellsBody.querySelectorAll('.item').forEach(el => {
+    els.spellsBody.querySelectorAll('.spell-entry').forEach(el => {
+      drawIcon(el.querySelector('canvas'), el.dataset.kind);
       el.addEventListener('click', () => {
         const t = currentTarget ? ` ${MH.mobKeyword(currentTarget.name)}` : '';
         MH.sendCommand(el.dataset.cmd + t);
@@ -704,7 +740,7 @@
       els.mmToggle.addEventListener('click', toggleMinimapSize);
 
       // game events
-      MH.bus.on('map', payload => { updateHud(payload.player); renderMinimap(); updateVignette(); });
+      MH.bus.on('map', payload => { updateHud(payload.player); renderMinimap(); updateVignette(); autofillBar(); });
       MH.bus.on('combat.update', () => { updateHud(MH.state.player); updateVignette(); });
       MH.bus.on('room.entered', () => { walkStep(); hideMobTip(); renderCompass(); });
       MH.bus.on('map', () => renderCompass());
@@ -770,7 +806,7 @@
           const navKey = { w: 'north', a: 'west', s: 'south', d: 'east', q: 'up', e: 'down' }[e.key.toLowerCase()];
           if (navKey) { e.preventDefault(); MH.bus.emit('nav.goto', navKey); return; }
         }
-        if (e.key >= '1' && e.key <= '8') { useHotbar(Number(e.key) - 1); return; }
+        if (e.key >= '0' && e.key <= '9') { useHotbar(e.key === '0' ? 9 : Number(e.key) - 1); return; }
         const k = e.key.toLowerCase();
         if (k === 'i') { renderInventory(); openModal('modal-inv'); }
         else if (k === 'j') { openJournal(); }

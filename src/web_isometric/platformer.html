@@ -137,6 +137,18 @@
   .hotslot .cd.run { animation: cdsweep 2s linear forwards; }
   @keyframes cdsweep { 0% { transform: scaleY(1); } 100% { transform: scaleY(0); } }
 
+  /* ---- spellbook grid ---- */
+  .spellgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+  .spell-entry {
+    display: flex; align-items: center; gap: 7px; padding: 5px 8px;
+    background: #11141c; border: 1px solid #1c202c; border-radius: 4px;
+    cursor: grab; font-size: 11px;
+  }
+  .spell-entry:hover { border-color: var(--gold); background: #1a1f2c; }
+  .spell-entry canvas { image-rendering: pixelated; flex: none; }
+  .spell-entry .nm { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .spell-entry .prof { color: var(--green); font-size: 9px; }
+
   /* ---- compass ---- */
   #compass {
     position: absolute; right: 12px; bottom: 64px; z-index: 20;
