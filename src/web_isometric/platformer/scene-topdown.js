@@ -686,12 +686,14 @@
       // ranged ones back you off - distance becomes legible
       const dist = Math.hypot(tx - this.player.x, ty - this.player.y);
       this.preferredRange = { melee: 24, close: 30, ranged: 64 }[fx.range] || this.preferredRange;
+      const M = TD().T * 1.6;
       if ((fx.range === 'melee' && dist > 30) || (fx.range === 'close' && dist > 40)) {
         const want = fx.range === 'melee' ? 20 : 30;
         const ang = Math.atan2(ty - this.player.y, tx - this.player.x);
         this.tweens.add({
           targets: this.player,
-          x: tx - Math.cos(ang) * want, y: ty - Math.sin(ang) * want,
+          x: Phaser.Math.Clamp(tx - Math.cos(ang) * want, M, this.pxW - M),
+          y: Phaser.Math.Clamp(ty - Math.sin(ang) * want, M, this.pxH - M),
           duration: 140, ease: 'cubic.in',
           onComplete: () => this.renderAbilityFx(fx, tx, ty),
         });
@@ -701,7 +703,8 @@
         const ang = Math.atan2(this.player.y - ty, this.player.x - tx);
         this.tweens.add({
           targets: this.player,
-          x: this.player.x + Math.cos(ang) * 22, y: this.player.y + Math.sin(ang) * 22,
+          x: Phaser.Math.Clamp(this.player.x + Math.cos(ang) * 22, M, this.pxW - M),
+          y: Phaser.Math.Clamp(this.player.y + Math.sin(ang) * 22, M, this.pxH - M),
           duration: 130, ease: 'cubic.out',
           onComplete: () => this.renderAbilityFx(fx, tx, ty),
         });
@@ -1088,8 +1091,9 @@
       }
       if (atk && atk.sprite) {
         const ang = Math.atan2(this.player.y - atk.sprite.y, this.player.x - atk.sprite.x);
-        this.player.x += Math.cos(ang) * 6;
-        this.player.y += Math.sin(ang) * 6;
+        const m = TD().T * 1.6;
+        this.player.x = Phaser.Math.Clamp(this.player.x + Math.cos(ang) * 6, m, this.pxW - m);
+        this.player.y = Phaser.Math.Clamp(this.player.y + Math.sin(ang) * 6, m, this.pxH - m);
         // attacker lunges at you so the hit has a visible author
         this.tweens.add({
           targets: atk.sprite,
@@ -1595,8 +1599,9 @@
       }
 
       // exits + feature tiles - use the small physics body, not the fat
-      // sprite bounds, so grazing past a staircase doesn't teleport you
-      if (!locked && Date.now() > this.exitSuppress) {
+      // sprite bounds, so grazing past a staircase doesn't teleport you.
+      // never while fighting: flee is the only exit from combat
+      if (!locked && !MH.state.inCombat && Date.now() > this.exitSuppress) {
         const b = this.player.body;
         const pb = new Phaser.Geom.Rectangle(b.x, b.y, b.width, b.height);
         for (const zone of this.exitZones.concat(this.featureZones || [])) {
@@ -1620,10 +1625,14 @@
         const orbitAng = baseAng + sway * 0.06;
         const want = this.preferredRange || this.classRange();
         const dist = Phaser.Math.Clamp(Phaser.Math.Distance.Between(this.player.x, this.player.y, tgt.x, tgt.y), want - 6, want + 8);
-        const ox = tgt.x + Math.cos(orbitAng) * dist;
-        const oy = tgt.y + Math.sin(orbitAng) * dist;
-        this.player.x += (ox - this.player.x) * 0.035;
-        this.player.y += (oy - this.player.y) * 0.035;
+        const m = TD().T * 1.6;   // stay clear of the border ring
+        const ox = Phaser.Math.Clamp(tgt.x + Math.cos(orbitAng) * dist, m, this.pxW - m);
+        const oy = Phaser.Math.Clamp(tgt.y + Math.sin(orbitAng) * dist, m, this.pxH - m);
+        // drive with velocity so the physics body respects walls
+        const ddx = ox - this.player.x, ddy = oy - this.player.y;
+        const dd = Math.hypot(ddx, ddy);
+        if (dd > 3) this.player.setVelocity((ddx / dd) * Math.min(40, dd * 2.2), (ddy / dd) * Math.min(40, dd * 2.2));
+        else this.player.setVelocity(0, 0);
         // ready stance: subtle bounce instead of statue idle
         if (!this.player.anims.isPlaying) {
           this.player.setFrame(`${this.facing}${Math.floor(now / 320) % 2}`);
@@ -1682,6 +1691,11 @@
         }
       }
 
+      {
+        const m = TD().T * 1.1;
+        this.player.x = Phaser.Math.Clamp(this.player.x, m, this.pxW - m);
+        this.player.y = Phaser.Math.Clamp(this.player.y, m, this.pxH - m);
+      }
       if (this.heroGlow) { this.heroGlow.x = this.player.x; this.heroGlow.y = this.player.y; }
 
       // footstep dust gives weight to movement

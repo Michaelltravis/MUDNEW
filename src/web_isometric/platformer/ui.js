@@ -506,8 +506,14 @@
   const MM_OFFSETS = { north: [0, -1, 0], south: [0, 1, 0], east: [1, 0, 0], west: [-1, 0, 0], up: [0, 0, 1], down: [0, 0, -1] };
   let mmLarge = false;
   let walkTargetVnum = null;
+  let mmZoom = Number(lsGet('misthollow_mm_zoom')) || 9;
 
-  function mmCell() { return mmLarge ? 10 : 7; }
+  function mmCell() { return mmZoom + (mmLarge ? 3 : 0); }
+  function mmSetZoom(z) {
+    mmZoom = Phaser.Math ? Phaser.Math.Clamp(z, 5, 20) : Math.max(5, Math.min(20, z));
+    lsSet('misthollow_mm_zoom', String(mmZoom));
+    renderMinimap();
+  }
 
   function renderMinimap() {
     const payload = MH.state.lastPayload;
@@ -764,9 +770,15 @@
         else if (e.key === 'Escape') toggleChatPanel(false);
       });
 
-      // minimap
+      // minimap: click to travel, wheel / +/- to zoom
       els.minimap.addEventListener('click', minimapClick);
       els.mmToggle.addEventListener('click', toggleMinimapSize);
+      els.minimap.addEventListener('wheel', e => {
+        e.preventDefault();
+        mmSetZoom(mmZoom + (e.deltaY < 0 ? 1 : -1));
+      }, { passive: false });
+      $('mm-in').addEventListener('click', () => mmSetZoom(mmZoom + 2));
+      $('mm-out').addEventListener('click', () => mmSetZoom(mmZoom - 2));
 
       // game events
       MH.bus.on('map', payload => { updateHud(payload.player); renderMinimap(); updateVignette(); autofillBar(); });

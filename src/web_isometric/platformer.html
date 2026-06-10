@@ -291,8 +291,8 @@
     font-size: 9px; color: var(--dim); letter-spacing: 1px; padding: 0 2px 3px;
     display: flex; justify-content: space-between;
   }
-  #minimap-wrap .mm-head span:last-child { cursor: pointer; }
-  #minimap-wrap .mm-head span:last-child:hover { color: var(--gold); }
+  #minimap-wrap .mm-head #mm-in, #minimap-wrap .mm-head #mm-out, #minimap-wrap .mm-head #mm-toggle { cursor: pointer; }
+  #minimap-wrap .mm-head #mm-in:hover, #minimap-wrap .mm-head #mm-out:hover, #minimap-wrap .mm-head #mm-toggle:hover { color: var(--gold); }
   #minimap { display: block; image-rendering: pixelated; cursor: crosshair; }
 
   /* ---- hit flash + combat state chip ---- */
@@ -412,7 +412,8 @@
   <div id="loot-toast"><div class="head">LOOT</div><div id="loot-lines"></div></div>
   <div id="mob-tip"></div>
   <div id="minimap-wrap">
-    <div class="mm-head"><span>CARTOGRAPHY</span><span id="mm-toggle" title="resize (M)">⤢</span></div>
+    <div class="mm-head"><span>CARTOGRAPHY</span><span style="display:flex;gap:8px">
+      <span id="mm-out" title="zoom out (wheel)">−</span><span id="mm-in" title="zoom in (wheel)">+</span><span id="mm-toggle" title="resize (M)">⤢</span></span></div>
     <canvas id="minimap" width="170" height="130"></canvas>
   </div>
 
