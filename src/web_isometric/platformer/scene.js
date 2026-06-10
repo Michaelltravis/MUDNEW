@@ -119,6 +119,7 @@
       MH.bus.on('combat.taken', e => this.fxTaken(e));
       MH.bus.on('player.exp', e => this.fxExp(e));
       MH.bus.on('walk.step', dir => this.requestMove(dir));
+      MH.bus.on('nav.goto', dir => this.navTo(dir));
       MH.bus.on('combat.cast', () => this.player.anims.play(`${this.playerTex()}_cast`, true));
       MH.bus.on('mob.death', e => this.fxMobDeath(e));
       MH.bus.on('player.death', () => this.fxPlayerDeath());
@@ -138,6 +139,7 @@
       this.layout = layout;
       this.dead = false;
       this.target = null;
+      this.autoNav = null;
       MH.bus.emit('target.clear');
 
       this.tileLayer.removeAll(true);
@@ -272,7 +274,7 @@
       this.darkRT.setVisible(!!layout.dark);
 
       // entry transition
-      this.cameras.main.fadeIn(280, 0, 0, 0);
+      this.cameras.main.fadeIn(170, 0, 0, 0);
     }
 
     buildExits(layout, th) {
@@ -284,6 +286,14 @@
         this.exitZones.push(zone);
       };
       const doorInfo = dir => (layout.exits[dir] && layout.exits[dir].door) || null;
+      // gently bouncing chevron so exits read at a glance
+      const chevron = (x, y, glyph, dx = 0, dy = -3) => {
+        const ch = this.add.text(x, y, glyph, {
+          fontFamily: 'Courier New', fontSize: '12px', color: '#e8c168',
+        }).setOrigin(0.5, 1).setDepth(4).setAlpha(0.75);
+        this.tweens.add({ targets: ch, x: x + dx, y: y + dy, duration: 700, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        this.tileLayer.add(ch);
+      };
       // trailhead signpost when an exit crosses into another zone
       const signpost = (dir, x, y, anchor = 0.5) => {
         const zone = layout.exits[dir] && layout.exits[dir].to_zone;
@@ -309,12 +319,14 @@
         addZone((layout.W - 2) * T, g.y0 * T, 2 * T, (g.y1 - g.y0 + 1) * T, 'east', 'walk');
         drawDoorIfClosed('east', (layout.W - 1.5) * T, (g.y1 + 1) * T);
         signpost('east', (layout.W - 2.5) * T, (g.y0 - 0.5) * T, 1);
+        chevron((layout.W - 2.8) * T, (g.y1 + 0.8) * T, '▶', 3, 0);
       }
       if (layout.westGap) {
         const g = layout.westGap;
         addZone(0, g.y0 * T, 2 * T, (g.y1 - g.y0 + 1) * T, 'west', 'walk');
         drawDoorIfClosed('west', 1.5 * T, (g.y1 + 1) * T);
         signpost('west', 2.5 * T, (g.y0 - 0.5) * T, 0);
+        chevron(2.8 * T, (g.y1 + 0.8) * T, '◀', -3, 0);
       }
       if (layout.northDoor) {
         const d = layout.northDoor;
@@ -326,6 +338,7 @@
         const hint = this.add.text(d.x * T, (d.y - 4.6) * T, 'W·north', { fontFamily: 'Courier New', fontSize: '8px', color: '#7a8094' }).setOrigin(0.5, 1).setDepth(3);
         this.tileLayer.add(hint);
         signpost('north', d.x * T, (d.y - 5.4) * T);
+        chevron(d.x * T, (d.y - 4.7) * T, '▲');
       }
       if (layout.southDoor) {
         const d = layout.southDoor;
@@ -336,11 +349,13 @@
         const hint = this.add.text(d.x * T, (d.y - 3.4) * T, 'S·south', { fontFamily: 'Courier New', fontSize: '8px', color: '#7a8094' }).setOrigin(0.5, 1).setDepth(4);
         this.tileLayer.add(hint);
         signpost('south', d.x * T, (d.y - 4.2) * T);
+        chevron(d.x * T, (d.y - 3.5) * T, '▼', 0, 3);
       }
       if (layout.ladder) {
         const l = layout.ladder;
         addZone(l.x * T - 4, 0, T + 8, 2.5 * T, 'up', 'walk'); // climbing past the top
         signpost('up', l.x * T + 10, 4.2 * T, 0);
+        chevron(l.x * T + T / 2, 3.4 * T, '▲');
       }
       for (const p of (layout.portals || [])) {
         const spr = this.add.sprite(p.x * T, p.y * T, 't_portal', '0').setOrigin(0.5, 1).setDepth(3);
@@ -361,6 +376,7 @@
         const hint = this.add.text(td.x * T, (td.y - 2.3) * T, 'S·down', { fontFamily: 'Courier New', fontSize: '8px', color: '#7a8094' }).setOrigin(0.5, 1).setDepth(3);
         this.tileLayer.add(hint);
         signpost('down', td.x * T, (td.y - 3.1) * T);
+        chevron(td.x * T, (td.y - 2.4) * T, '▼', 0, 3);
       }
     }
 
@@ -679,6 +695,29 @@
       if (door && /closed/i.test(e.line)) MH.sendCommand(`open ${door.name} ${pm.dir}`);
     }
 
+    // compass click / Shift+key: auto-run to the exit feature, then take it
+    navTo(dir) {
+      const L = this.layout;
+      if (!L || this.dead) return;
+      if (!Object.prototype.hasOwnProperty.call(L.exits || {}, dir)) {
+        MH.bus.emit('flash', `There is no exit ${dir} here.`);
+        return;
+      }
+      let x = null;
+      if (dir === 'east') x = (L.W - 3) * T;
+      else if (dir === 'west') x = 2.5 * T;
+      else if (dir === 'north' && L.northDoor) x = L.northDoor.x * T;
+      else if (dir === 'south' && L.southDoor) x = L.southDoor.x * T;
+      else if (dir === 'up' && L.ladder) x = L.ladder.x * T + T / 2;
+      else if (dir === 'down' && L.trapdoor) x = L.trapdoor.x * T;
+      else {
+        const p = (L.portals || []).find(pt => pt.name === dir);
+        if (p) x = p.x * T;
+      }
+      if (x == null) { this.requestMove(dir); return; }
+      this.autoNav = { dir, x };
+    }
+
     requestMove(dir) {
       const st = MH.state;
       if (st.pendingMove && Date.now() - st.pendingMove.sentAt < 2500) return;
@@ -816,8 +855,27 @@
       if (onLadder && (up || down) && !this.climbing) { this.climbing = true; body.setAllowGravity(false); }
       if (!onLadder && this.climbing) { this.climbing = false; body.setAllowGravity(true); }
 
+      // manual input cancels compass auto-run
+      if (this.autoNav && (left || right || up || down || jump)) this.autoNav = null;
+
       const speed = inWater && !this.layout.isUnderwater ? 80 : 140;
-      if (!locked) {
+      if (!locked && this.autoNav && !this.climbing) {
+        // auto-run toward the chosen exit feature, hopping obstacles
+        const dx = this.autoNav.x - this.player.x;
+        if (Math.abs(dx) < 10) {
+          const dir = this.autoNav.dir;
+          this.autoNav = null;
+          this.player.setVelocityX(0);
+          this.requestMove(dir);
+        } else {
+          this.player.setVelocityX(Math.sign(dx) * speed);
+          this.player.setFlipX(dx < 0);
+          const grounded = body.blocked.down || body.touching.down || inWater;
+          if ((body.blocked.left || body.blocked.right) && grounded) {
+            this.player.setVelocityY(inWater ? -180 : -330);
+          }
+        }
+      } else if (!locked) {
         if (this.climbing) {
           this.player.setVelocityX(left ? -60 : right ? 60 : 0);
           this.player.setVelocityY(up ? -90 : down ? 90 : 0);
@@ -845,7 +903,7 @@
       if (!this.player.anims.isPlaying || ['idle', 'walk', 'climb'].some(a => this.player.anims.currentAnim && this.player.anims.currentAnim.key.endsWith(a))) {
         if (this.climbing) { /* handled above */ }
         else if (!body.blocked.down && !inWater) this.player.setFrame('jump');
-        else if (left || right) this.player.anims.play(`${tex}_walk`, true);
+        else if (left || right || this.autoNav) this.player.anims.play(`${tex}_walk`, true);
         else this.player.anims.play(`${tex}_idle`, true);
       }
 

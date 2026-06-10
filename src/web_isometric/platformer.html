@@ -136,6 +136,25 @@
   .hotslot .cd.run { animation: cdsweep 2s linear forwards; }
   @keyframes cdsweep { 0% { transform: scaleY(1); } 100% { transform: scaleY(0); } }
 
+  /* ---- compass ---- */
+  #compass {
+    position: absolute; right: 12px; bottom: 64px; z-index: 20;
+    background: rgba(13,15,21,0.85); border: 1px solid var(--border); border-radius: 6px;
+    padding: 6px; display: grid; grid-template-columns: repeat(4, 30px); grid-auto-rows: 26px; gap: 3px;
+  }
+  .cmp {
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; letter-spacing: 1px; border-radius: 4px;
+    color: #3d4356; background: #11141c; border: 1px solid #1c202c;
+    cursor: default; user-select: none;
+  }
+  .cmp.on { color: var(--gold); border-color: var(--border); cursor: pointer; }
+  .cmp.on:hover { background: #242a3c; color: #fff; }
+  .cmp.zone { box-shadow: inset 0 0 6px rgba(232,193,104,0.35); }
+  .cmp.portal { color: #b87cf0; grid-column: span 2; font-size: 9px; overflow: hidden; }
+  .cmp.portal:hover { background: #2a2040; }
+  #compass .spacer { background: transparent; border: none; }
+
   /* ---- mob tooltip ---- */
   #mob-tip {
     position: absolute; z-index: 45; display: none; pointer-events: none;
@@ -337,6 +356,7 @@
            placeholder="press Enter to type a command to the MUD…">
   </div>
 
+  <div id="compass" title="click an exit to walk there (or Shift+WASD, Shift+Q/E for up/down)"></div>
   <div id="drawer-tab" title="toggle MUD terminal (~)">~ TERMINAL</div>
   <div id="drawer">
     <div id="drawer-head"><span>MISTHOLLOW · RAW FEED</span><span>~ to close</span></div>

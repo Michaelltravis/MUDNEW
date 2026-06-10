@@ -186,7 +186,7 @@
       els.roomDesc.textContent = desc;
       els.roomDesc.classList.add('show');
       clearTimeout(descTimer);
-      descTimer = setTimeout(() => els.roomDesc.classList.remove('show'), 6500);
+      descTimer = setTimeout(() => els.roomDesc.classList.remove('show'), 4800);
     } else {
       els.roomDesc.classList.remove('show');
     }
@@ -493,6 +493,30 @@
     renderMinimap();
   }
 
+  // ---- compass: click an exit to auto-run there and take it ----
+  const CARDINAL_SET = ['north', 'south', 'east', 'west', 'up', 'down'];
+  function renderCompass() {
+    const exits = (MH.state.currentRoom && MH.state.currentRoom.exits) || {};
+    const cell = (label, dir) => {
+      const has = dir && Object.prototype.hasOwnProperty.call(exits, dir);
+      const zone = has && exits[dir].to_zone;
+      const cls = dir == null ? 'cmp spacer' : `cmp${has ? ' on' : ''}${zone ? ' zone' : ''}`;
+      const title = zone ? ` title="→ ${zone}"` : '';
+      return `<div class="${cls}" ${has ? `data-dir="${dir}"` : ''}${title}>${label}</div>`;
+    };
+    let html = '';
+    html += cell('', null) + cell('N', 'north') + cell('', null) + cell('U', 'up');
+    html += cell('W', 'west') + cell('·', null) + cell('E', 'east') + cell('D', 'down');
+    html += cell('', null) + cell('S', 'south') + cell('', null) + cell('', null);
+    for (const name of Object.keys(exits)) {
+      if (CARDINAL_SET.includes(name)) continue;
+      html += `<div class="cmp on portal" data-dir="${name}">⟡ ${name}</div>`;
+    }
+    els.compass.innerHTML = html;
+    els.compass.querySelectorAll('.cmp.on').forEach(el =>
+      el.addEventListener('click', () => MH.bus.emit('nav.goto', el.dataset.dir)));
+  }
+
   // ---- mob hover tooltip with a consider verdict ----
   function considerVerdict(mobLevel) {
     const p = MH.state.player;
@@ -553,6 +577,7 @@
         chatInput: $('chat-input'), chatMode: $('chat-mode'),
         invBody: $('inv-body'), journalBody: $('journal-body'), shopBody: $('shop-body'), spellsBody: $('spells-body'),
         minimap: $('minimap'), mmToggle: $('mm-toggle'), vignette: $('vignette'), mobTip: $('mob-tip'),
+        compass: $('compass'),
       });
 
       // login
@@ -612,7 +637,8 @@
       // game events
       MH.bus.on('map', payload => { updateHud(payload.player); renderMinimap(); updateVignette(); });
       MH.bus.on('combat.update', () => { updateHud(MH.state.player); updateVignette(); });
-      MH.bus.on('room.entered', () => { walkStep(); hideMobTip(); });
+      MH.bus.on('room.entered', () => { walkStep(); hideMobTip(); renderCompass(); });
+      MH.bus.on('map', () => renderCompass());
       MH.bus.on('mob.tip', showMobTip);
       MH.bus.on('mob.tip.hide', hideMobTip);
       MH.bus.on('move.blocked', () => cancelWalk());
@@ -656,6 +682,11 @@
         if (e.key === 'Escape') { closeModals(); return; }
         if (e.key === '`' || e.key === '~') { e.preventDefault(); els.drawer.classList.toggle('open'); return; }
         if (anyModalOpen()) return;
+        // Shift+WASD = compass move, Shift+Q/E = up/down
+        if (e.shiftKey) {
+          const navKey = { w: 'north', a: 'west', s: 'south', d: 'east', q: 'up', e: 'down' }[e.key.toLowerCase()];
+          if (navKey) { e.preventDefault(); MH.bus.emit('nav.goto', navKey); return; }
+        }
         if (e.key >= '1' && e.key <= '8') { useHotbar(Number(e.key) - 1); return; }
         const k = e.key.toLowerCase();
         if (k === 'i') { renderInventory(); openModal('modal-inv'); }
@@ -663,7 +694,11 @@
         else if (k === 'k') { renderSpells(); openModal('modal-spells'); }
         else if (k === 't') { e.preventDefault(); toggleChatPanel(); }
         else if (k === 'm') { toggleMinimapSize(); }
-        if (['a', 'd', 'w', 's', 'arrowleft', 'arrowright', 'arrowup', 'arrowdown', ' '].includes(k)) cancelWalk();
+        if (['a', 'd', 'w', 's', 'arrowleft', 'arrowright', 'arrowup', 'arrowdown', ' '].includes(k)) {
+          cancelWalk();
+          // moving dismisses the room prose so it never blocks the view
+          els.roomDesc.classList.remove('show');
+        }
         if (e.key === ' ') e.preventDefault(); // don't scroll the page
       });
     },
