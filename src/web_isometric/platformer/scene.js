@@ -327,6 +327,16 @@
         const l = layout.ladder;
         addZone(l.x * T - 4, 0, T + 8, 2.5 * T, 'up', 'walk'); // climbing past the top
       }
+      for (const p of (layout.portals || [])) {
+        const spr = this.add.sprite(p.x * T, p.y * T, 't_portal', '0').setOrigin(0.5, 1).setDepth(3);
+        spr.play('portal_shimmer');
+        this.tileLayer.add(spr);
+        addZone((p.x - 1.2) * T, (p.y - 3) * T, 2.4 * T, 3 * T, p.name, 'press-up');
+        const hint = this.add.text(p.x * T, (p.y - 3.0) * T, `W·${p.name}`, {
+          fontFamily: 'Courier New', fontSize: '8px', color: '#b87cf0',
+        }).setOrigin(0.5, 1).setDepth(3);
+        this.tileLayer.add(hint);
+      }
       if (layout.trapdoor) {
         const td = layout.trapdoor;
         const img = this.add.image(td.x * T, td.y * T, `t_${th}_trap`).setOrigin(0.5, 1).setDepth(2);

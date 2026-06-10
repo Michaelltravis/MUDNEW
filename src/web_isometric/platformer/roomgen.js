@@ -113,6 +113,20 @@
     const northDoor = has('north') ? doorAt(0.62) : null;
     const southDoor = has('south') ? doorAt(0.38) : null;
 
+    // non-cardinal exits (gate/arch/portal/...) become shimmering portals
+    const CARDINALS = ['north', 'south', 'east', 'west', 'up', 'down'];
+    const portals = [];
+    const portalNames = Object.keys(exits).filter(d => !CARDINALS.includes(d));
+    portalNames.forEach((name, i) => {
+      const spot = doorAt(0.25 + (i * 0.5) / Math.max(1, portalNames.length));
+      // nudge off the cardinal doors
+      let px = spot.x;
+      if (southDoor && Math.abs(px - southDoor.x) < 4) px += 5;
+      if (northDoor && Math.abs(px - northDoor.x) < 4) px -= 5;
+      px = Math.max(5, Math.min(W - 6, px));
+      portals.push({ name, x: px, y: hm[px] });
+    });
+
     // --- one-way platforms in the air band ---
     const platforms = [];
     const nPlats = 2 + Math.floor(rng() * 3);
@@ -172,7 +186,7 @@
       lowGravity: sector === 'flying',
       dark: flags.includes('dark'),
       peaceful: flags.includes('peaceful'),
-      eastGap, westGap, ladder, trapdoor, northDoor, southDoor,
+      eastGap, westGap, ladder, trapdoor, northDoor, southDoor, portals,
       platforms, props, spawnSlots, entries,
       exits,
       pxW: W * T, pxH: H * T,

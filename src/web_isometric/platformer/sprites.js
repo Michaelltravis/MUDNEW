@@ -721,6 +721,34 @@
 
   function genParticles(scene) {
     {
+      // shimmering portal for non-cardinal exits (gate/arch/portal/...), 3 frames
+      const FW2 = 28, FH2 = 40;
+      const [c, ctx] = canvasOf(FW2 * 3, FH2);
+      for (let f = 0; f < 3; f++) {
+        const ox = f * FW2;
+        // stone arch
+        ctx.fillStyle = '#4a4456';
+        ctx.fillRect(ox + 2, 8, 4, 32);
+        ctx.fillRect(ox + 22, 8, 4, 32);
+        ctx.fillRect(ox + 4, 2, 20, 6);
+        // swirling inner glow, phase-shifted per frame
+        const rng = mulberry32(900 + f);
+        ctx.fillStyle = ['#5c2d8a', '#7a3dba', '#9a5cda'][f];
+        ctx.fillRect(ox + 6, 8, 16, 32);
+        ctx.fillStyle = ['#9a5cda', '#b87cf0', '#7a3dba'][f];
+        for (let i = 0; i < 14; i++) {
+          const sx = ox + 7 + Math.floor(rng() * 14);
+          const sy = 9 + ((Math.floor(rng() * 30) + f * 7) % 30);
+          ctx.fillRect(sx, sy, 2, 2);
+        }
+        ctx.fillStyle = '#e8d8ff';
+        ctx.fillRect(ox + 12 + f, 14 + ((f * 9) % 18), 2, 2);
+        ctx.fillRect(ox + 16 - f, 30 - ((f * 7) % 16), 1, 2);
+      }
+      const tex = scene.textures.addCanvas('t_portal', c);
+      for (let f = 0; f < 3; f++) tex.add(String(f), 0, f * FW2, 0, FW2, FH2);
+    }
+    {
       // gravestone for fallen heroes
       const [c, ctx] = canvasOf(18, 22);
       ctx.fillStyle = '#7a7f8c';
@@ -799,6 +827,13 @@
         mk('cast', ['cast0', 'cast1'], 6, 0);
         mk('hurt', ['hurt'], 1, 0);
         mk('death', ['death'], 1, 0);
+      }
+      if (!scene.anims.exists('portal_shimmer')) {
+        scene.anims.create({
+          key: 'portal_shimmer',
+          frames: [0, 1, 2, 1].map(f => ({ key: 't_portal', frame: String(f) })),
+          frameRate: 5, repeat: -1,
+        });
       }
       for (const name of Object.keys(THEMES)) {
         if (!scene.anims.exists(`water_${name}`)) {
