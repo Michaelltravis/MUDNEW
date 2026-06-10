@@ -285,12 +285,17 @@
   // ---- target frame ----
   let currentTarget = null;
   function setTarget(data) {
+    const prev = currentTarget;
     currentTarget = data;
     if (!data) { els.targetFrame.classList.remove('show'); return; }
     els.targetFrame.classList.add('show');
     els.targetName.textContent = `${data.name} (Lv ${data.level || '?'})`;
     const max = data.maxHp || 1, hp = data.hp != null ? data.hp : max;
-    els.targetHp.style.width = `${Math.max(0, Math.min(100, (hp / max) * 100))}%`;
+    const pct = Math.max(0, Math.min(100, (hp / max) * 100));
+    // ghost layer snaps to the OLD value then drains slowly behind the real bar
+    if (!prev || prev.name !== data.name) els.targetHpGhost.style.width = `${pct}%`;
+    els.targetHp.style.width = `${pct}%`;
+    requestAnimationFrame(() => { els.targetHpGhost.style.width = `${pct}%`; });
     els.targetHpTxt.textContent = `${hp} / ${max}`;
   }
 
@@ -865,6 +870,8 @@
         compass: $('compass'), hitFlash: $('hit-flash'), combatChip: $('combat-chip'),
         combatLog: $('combat-log'), combatLogLines: $('combat-log-lines'),
         castBar: $('cast-bar'), roundBar: $('round-bar'), lootToast: $('loot-toast'), lootLines: $('loot-lines'),
+        stanceBar: $('stance-bar'), momentumChip: $('momentum-chip'), finisherChip: $('finisher-chip'),
+        targetHpGhost: $('target-hp-ghost'),
       });
 
       // login
@@ -1015,6 +1022,61 @@
         await MH.refreshState();
         renderInventory();
         openModal('modal-inv');
+      });
+
+      // stance bar (warriors get all four; everyone can shift mood)
+      const STANCES = ['battle', 'berserk', 'defensive', 'precision'];
+      STANCES.forEach(st => {
+        const div = document.createElement('div');
+        div.className = 'stance';
+        div.dataset.st = st;
+        div.textContent = st.toUpperCase();
+        div.addEventListener('click', () => commandWithPeek(`stance ${st}`));
+        els.stanceBar.appendChild(div);
+      });
+      const setStance = st => {
+        els.stanceBar.querySelectorAll('.stance').forEach(d =>
+          d.classList.toggle('active', d.dataset.st === String(st || '').toLowerCase()));
+      };
+      MH.bus.on('combat.state', on => {
+        els.stanceBar.classList.toggle('show', !!on);
+        if (!on) { els.momentumChip.classList.remove('show'); els.finisherChip.classList.remove('show'); }
+      });
+
+      // momentum meter + finisher window, fed by the per-round push
+      let lastTargetHp = null;
+      const finisherFor = () => {
+        const cls = String((MH.state.player || {}).char_class || '').toLowerCase();
+        return cls === 'warrior' ? 'execute' : cls === 'assassin' ? 'vital' : cls === 'thief' ? 'backstab' : null;
+      };
+      MH.bus.on('combat.update', payload => {
+        const p = payload.player || {};
+        if (p.momentum > 0) {
+          els.momentumChip.textContent = `🔥 MOMENTUM ×${p.momentum}`;
+          els.momentumChip.classList.add('show');
+        } else {
+          els.momentumChip.classList.remove('show');
+        }
+        if (p.stance) setStance(p.stance);
+        // finisher window: target under 22%
+        const mob = (payload.mobs || []).find(m2 => m2.fighting);
+        if (mob && mob.maxHp && mob.hp != null) {
+          lastTargetHp = mob;
+          const frac = mob.hp / mob.maxHp;
+          const fin = finisherFor();
+          els.finisherChip.classList.toggle('show', !!(payload.in_combat && frac > 0 && frac <= 0.22 && fin));
+        }
+      });
+      const doFinisher = () => {
+        const fin = finisherFor();
+        if (!fin || !els.finisherChip.classList.contains('show')) return;
+        const t = currentTarget ? ` ${MH.mobKeyword(currentTarget.name)}` : (lastTargetHp ? ` ${MH.mobKeyword(lastTargetHp.name)}` : '');
+        MH.sendCommand(fin + t);
+        els.finisherChip.classList.remove('show');
+      };
+      els.finisherChip.addEventListener('click', doFinisher);
+      window.addEventListener('keydown', e => {
+        if (e.key.toLowerCase() === 'r' && !['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName)) doFinisher();
       });
 
       // the chip pulses with each server combat round

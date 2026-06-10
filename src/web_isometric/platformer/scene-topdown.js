@@ -94,6 +94,13 @@
       MH.bus.on('combat.hit', e => this.fxHit(e));
       MH.bus.on('combat.miss', e => this.fxMiss(e));
       MH.bus.on('combat.taken', e => this.fxTaken(e));
+      MH.bus.on('defense.parry', e => this.fxDeflect('PARRY', 0xd5dde9, e.from));
+      MH.bus.on('defense.dodge', e => this.fxSidestep());
+      MH.bus.on('defense.block', () => this.fxDeflect('BLOCK', 0xe8c168));
+      MH.bus.on('attack.parried', e => this.fxTargetDeflect(e.target, 'parried'));
+      MH.bus.on('attack.dodged', e => this.fxTargetDeflect(e.target, 'dodged'));
+      MH.bus.on('attack.blocked', e => this.fxTargetDeflect(e.target, 'blocked'));
+      this.input.keyboard.on('keydown-TAB', e => { e.preventDefault(); this.cycleTarget(); });
       MH.bus.on('player.exp', e => this.fxExp(e));
       MH.bus.on('walk.step', dir => this.requestMove(dir));
       MH.bus.on('nav.goto', dir => this.navTo(dir));
@@ -1185,6 +1192,54 @@
       const cam = this.cameras.main;
       const base = cam.zoom;
       this.tweens.add({ targets: cam, zoom: base * 1.035, duration: 70, yoyo: true, ease: 'cubic.out' });
+    }
+
+    // your defensive skills firing - make them feel earned
+    fxDeflect(word, color, from) {
+      const x = this.player.x, y = this.player.y;
+      const arc = this.add.circle(x, y - 4, 14).setStrokeStyle(2.5, color, 0.95)
+        .setBlendMode(Phaser.BlendModes.ADD).setDepth(61);
+      this.tweens.add({ targets: arc, radius: 20, alpha: 0, duration: 320, ease: 'cubic.out', onComplete: () => arc.destroy() });
+      this.spark(x + 8, y - 8, color);
+      this.damageNumber(x, y - 22, word, '#d5dde9', 11);
+      // riposte feel: face the attacker
+      const atk = from ? this.findEntityByText(from) : null;
+      if (atk && atk.sprite) this.setFacing(atk.sprite.x - x, atk.sprite.y - y);
+    }
+    fxSidestep() {
+      // quick ghost-dash to the side
+      this.afterimage(this.player, 0xbcd2ff);
+      const side = Math.random() < 0.5 ? -1 : 1;
+      const m = TD().T * 1.6;
+      const nx = Phaser.Math.Clamp(this.player.x + side * 14, m, this.pxW - m);
+      this.tweens.add({ targets: this.player, x: nx, duration: 110, yoyo: true, ease: 'cubic.out' });
+      this.damageNumber(this.player.x, this.player.y - 22, 'DODGE', '#bcd2ff', 11);
+    }
+    fxTargetDeflect(name, word) {
+      const ent = this.findEntityByText(name) || this.target;
+      if (!ent || !ent.sprite) return;
+      this.damageNumber(ent.sprite.x, ent.sprite.y - 18, word, '#9aa2b4', 9);
+      this.spark(ent.sprite.x, ent.sprite.y - 8, 0x9aa2b4);
+      if (word === 'dodged') {
+        const side = Math.random() < 0.5 ? -1 : 1;
+        this.tweens.add({ targets: ent.sprite, x: ent.sprite.x + side * 12, duration: 100, yoyo: true, ease: 'cubic.out' });
+      }
+    }
+
+    // Tab cycles hostile targets by distance
+    cycleTarget() {
+      const mobs = [...this.entities.values()].filter(e => e.kind === 'mob' && !e.data.shopkeeper && e.sprite)
+        .sort((a, b) => Phaser.Math.Distance.Between(this.player.x, this.player.y, a.sprite.x, a.sprite.y)
+                      - Phaser.Math.Distance.Between(this.player.x, this.player.y, b.sprite.x, b.sprite.y));
+      if (!mobs.length) return;
+      const idx = this.target ? mobs.findIndex(m => m.key === this.target.key) : -1;
+      const next = mobs[(idx + 1) % mobs.length];
+      this.target = next;
+      MH.bus.emit('target.set', next.data);
+      this.setFacing(next.sprite.x - this.player.x, next.sprite.y - this.player.y);
+      // target ping
+      const ring = this.add.circle(next.sprite.x, next.sprite.y - 6, 16).setStrokeStyle(2, 0xe8c168, 0.9).setDepth(61);
+      this.tweens.add({ targets: ring, radius: 8, alpha: 0, duration: 360, ease: 'cubic.in', onComplete: () => ring.destroy() });
     }
 
     fxExp(e) {

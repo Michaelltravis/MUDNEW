@@ -473,6 +473,8 @@ def build_combat_payload(player) -> dict:
         'in_combat': bool(getattr(player, 'fighting', None)),
         'player': {
             'name': player.name,
+            'momentum': getattr(player, 'momentum', 0),
+            'stance': getattr(player, 'combat_stance', getattr(player, 'mood', '')),
             'hp': getattr(player, 'hp', 0),
             'max_hp': getattr(player, 'max_hp', 1),
             'mana': getattr(player, 'mana', 0),

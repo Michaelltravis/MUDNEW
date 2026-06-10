@@ -70,6 +70,13 @@
     }
     if ((m = line.match(HIT_TARGET))) { MH.setCombat(true); bus.emit('combat.hit', { target: m[1].trim(), line }); return; }
     if ((m = line.match(MISS_TARGET))) { MH.setCombat(true); bus.emit('combat.miss', { target: m[1].trim(), line }); return; }
+    // defensive skills: yours and theirs, each with its own event
+    if ((m = line.match(/^You parry (.+?)'s attack/i))) { MH.setCombat(true); bus.emit('defense.parry', { from: m[1], line }); return; }
+    if ((m = line.match(/^You dodge (?:(.+?)'s attack|the attack)/i))) { MH.setCombat(true); bus.emit('defense.dodge', { from: m[1] || '', line }); return; }
+    if (/^You block the attack/i.test(line)) { MH.setCombat(true); bus.emit('defense.block', { line }); return; }
+    if ((m = line.match(/^(.+?) parries your attack/i))) { MH.setCombat(true); bus.emit('attack.parried', { target: m[1], line }); return; }
+    if ((m = line.match(/^(.+?) dodges (?:your attack|like a ghost|from the shadows)/i))) { MH.setCombat(true); bus.emit('attack.dodged', { target: m[1], line }); return; }
+    if ((m = line.match(/^(.+?) blocks (?:your attack|the attack with)/i))) { MH.setCombat(true); bus.emit('attack.blocked', { target: m[1], line }); return; }
     if (MISSED_ME.test(line)) { MH.setCombat(true); bus.emit('combat.dodged', { line }); return; }
     if (TAKEN.test(line)) { MH.setCombat(true); bus.emit('combat.taken', { line }); return; }
     if (NOT_HERE.test(line)) { bus.emit('combat.notarget', { line }); return; }

@@ -383,6 +383,47 @@
   #combat-log .miss { color: #7a8094; }
   #combat-log .info { color: #c9b8e0; }
 
+  /* ---- stance bar + momentum + finisher ---- */
+  #stance-bar {
+    position: absolute; bottom: 64px; left: 12px; z-index: 20;
+    display: none; flex-direction: column; gap: 4px;
+    background: rgba(13,15,21,0.85); border: 1px solid var(--border); border-radius: 6px; padding: 6px;
+  }
+  #stance-bar.show { display: flex; }
+  #stance-bar .sthead { color: var(--dim); font-size: 9px; letter-spacing: 2px; text-align: center; }
+  .stance {
+    padding: 5px 10px; font-size: 11px; letter-spacing: 1px; border-radius: 4px; cursor: pointer;
+    color: #aab2c4; background: #11141c; border: 1px solid #232838; text-align: center;
+  }
+  .stance:hover { border-color: var(--gold); color: #fff; }
+  .stance.active { color: var(--gold); border-color: var(--gold); background: #1c1910; }
+  #momentum-chip {
+    position: absolute; top: 96px; left: 50%; transform: translateX(-50%);
+    z-index: 22; display: none; padding: 3px 14px;
+    background: rgba(40,24,8,0.92); border: 1px solid #a06a20; border-radius: 4px;
+    color: #ffb84a; font-size: 12px; letter-spacing: 2px;
+  }
+  #momentum-chip.show { display: block; }
+  #finisher-chip {
+    position: absolute; top: 30%; left: 50%; transform: translateX(-50%);
+    z-index: 23; display: none; padding: 8px 24px; cursor: pointer;
+    background: rgba(60,10,10,0.95); border: 2px solid #ff4040; border-radius: 6px;
+    color: #ff7060; font-size: 16px; letter-spacing: 3px; font-weight: bold;
+    animation: finisherpulse 0.6s infinite;
+  }
+  #finisher-chip.show { display: block; }
+  @keyframes finisherpulse {
+    0%,100% { box-shadow: 0 0 8px rgba(255,40,40,0.4); transform: translateX(-50%) scale(1); }
+    50% { box-shadow: 0 0 26px rgba(255,60,60,0.9); transform: translateX(-50%) scale(1.06); }
+  }
+  /* ghost drain layer on the target hp bar */
+  #target-frame .bar.hp { position: relative; }
+  #target-hp-ghost {
+    position: absolute; left: 0; top: 0; height: 100%; background: rgba(255,255,255,0.45);
+    transition: width 0.9s ease 0.25s; z-index: 0;
+  }
+  #target-frame .bar.hp > i { position: relative; z-index: 1; }
+
   /* ---- cast bar ---- */
   #cast-bar {
     position: absolute; bottom: 132px; left: 50%; transform: translateX(-50%);
@@ -457,13 +498,16 @@
 
   <div id="target-frame">
     <div class="who" id="target-name"></div>
-    <div class="bar hp"><i id="target-hp"></i><b id="target-hp-txt"></b></div>
+    <div class="bar hp"><div id="target-hp-ghost"></div><i id="target-hp"></i><b id="target-hp-txt"></b></div>
     <div id="round-bar"><div class="fill"></div></div>
   </div>
 
   <div id="vignette"></div>
   <div id="hit-flash"></div>
   <div id="combat-chip">⚔ IN COMBAT</div>
+  <div id="momentum-chip"></div>
+  <div id="finisher-chip">☠ FINISH THEM — R</div>
+  <div id="stance-bar"><div class="sthead">STANCE</div></div>
   <div id="combat-log"><div class="head">COMBAT</div><div id="combat-log-lines"></div></div>
   <div id="cast-bar"><div class="nm"></div><div class="track"><div class="fill"></div></div></div>
   <div id="loot-toast"><div class="head">LOOT</div><div id="loot-lines"></div></div>
