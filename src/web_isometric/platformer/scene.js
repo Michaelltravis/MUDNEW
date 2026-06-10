@@ -116,7 +116,9 @@
       MH.bus.on('combat.update', payload => this.onCombatUpdate(payload));
       MH.bus.on('combat.hit', e => this.fxHit(e));
       MH.bus.on('combat.miss', e => this.fxMiss(e));
-      MH.bus.on('combat.taken', () => this.fxTaken());
+      MH.bus.on('combat.taken', e => this.fxTaken(e));
+      MH.bus.on('player.exp', e => this.fxExp(e));
+      MH.bus.on('walk.step', dir => this.requestMove(dir));
       MH.bus.on('combat.cast', () => this.player.anims.play(`${this.playerTex()}_cast`, true));
       MH.bus.on('mob.death', e => this.fxMobDeath(e));
       MH.bus.on('player.death', () => this.fxPlayerDeath());
@@ -161,8 +163,33 @@
       sky.fillRect(0, 0, GAME_W, GAME_H);
       this.bgLayer.add(sky);
 
+      // parallax silhouettes drift against player movement (camera is static)
+      this.bgFar = this.add.tileSprite(0, GAME_H - 400, GAME_W, 400, `bg_${th}_far`).setOrigin(0, 0).setAlpha(0.8);
+      this.bgNear = this.add.tileSprite(0, GAME_H - 400, GAME_W, 400, `bg_${th}_near`).setOrigin(0, 0).setAlpha(0.9);
+      this.bgFar.setTileScale(2, 2);
+      this.bgNear.setTileScale(2, 2);
+      this.bgLayer.add(this.bgFar);
+      this.bgLayer.add(this.bgNear);
+
+      // floating room prose: short fragments of the description, ghosted
+      // into the world. pure MUD heritage.
+      if (layout.description) {
+        const rng = MH.mulberry32(layout.vnum + 99);
+        const frags = layout.description.replace(/\n/g, ' ').split(/(?<=[.!?])\s+/)
+          .map(s => s.trim()).filter(s => s.length > 15 && s.length <= 70);
+        Phaser.Utils.Array.Shuffle(frags);
+        frags.slice(0, 3).forEach((frag, i) => {
+          const tx = this.add.text(
+            80 + rng() * (GAME_W - 360), 60 + i * 90 + rng() * 40, frag,
+            { fontFamily: 'Courier New', fontSize: '11px', fontStyle: 'italic', color: '#ffffff' }
+          ).setAlpha(0.13).setDepth(-4);
+          this.tweens.add({ targets: tx, y: tx.y - 10, duration: 9000 + rng() * 4000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+          this.bgLayer.add(tx);
+        });
+      }
+
       // sparse back-wall tiles for indoor-ish themes
-      if (['inside', 'city', 'dungeon', 'cave', 'default'].includes(th)) {
+      if (['inside', 'dungeon', 'cave', 'default'].includes(th)) {
         const rng = MH.mulberry32(layout.vnum + 7);
         for (let y = 2; y < 28; y += 1) {
           for (let x = 2; x < layout.W - 2; x += 1) {
@@ -439,6 +466,16 @@
     }
 
     // ---------- FX ----------
+    // damage tiers follow the server's get_damage_color thresholds
+    dmgStyle(dmg) {
+      if (dmg == null) return { color: '#ffe080', size: 12, shake: 0 };
+      if (dmg <= 4) return { color: '#d8dce8', size: 10, shake: 0 };
+      if (dmg <= 12) return { color: '#7ad68a', size: 12, shake: 0 };
+      if (dmg <= 24) return { color: '#e8c168', size: 14, shake: 0 };
+      if (dmg <= 48) return { color: '#ffd44a', size: 16, shake: 0.002 };
+      if (dmg <= 80) return { color: '#ff6a4a', size: 19, shake: 0.004 };
+      return { color: '#ff4ae0', size: 23, shake: 0.007 };
+    }
     fxHit(e) {
       const ent = this.findEntityByText(e.target) || this.target;
       this.player.anims.play(`${this.playerTex()}_attack`, true);
@@ -446,19 +483,35 @@
       this.player.setFlipX(ent.sprite.x < this.player.x);
       ent.sprite.setTintFill(0xffffff);
       this.time.delayedCall(80, () => ent.sprite && ent.sprite.clearTint());
+      // knockback nudge away from the player
+      const dir = Math.sign(ent.sprite.x - this.player.x) || 1;
+      this.tweens.add({ targets: ent.sprite, x: ent.sprite.x + dir * 7, duration: 70, yoyo: true });
       this.spark(ent.sprite.x, ent.sprite.y - 10, 0xffe080);
-      this.damageNumber(ent.sprite.x, ent.sprite.y - 30, 'hit', '#ffe080');
+      const st = this.dmgStyle(e.dmg);
+      if (st.shake) this.cameras.main.shake(90, st.shake);
+      this.damageNumber(ent.sprite.x, ent.sprite.y - 30, e.dmg != null ? String(e.dmg) : 'hit', st.color, st.size);
     }
     fxMiss(e) {
       const ent = this.findEntityByText(e.target) || this.target;
       this.player.anims.play(`${this.playerTex()}_attack`, true);
       if (ent && ent.sprite) this.damageNumber(ent.sprite.x, ent.sprite.y - 30, 'miss', '#7a8094');
     }
-    fxTaken() {
+    fxTaken(e) {
       this.player.setTintFill(0xff6060);
       this.time.delayedCall(90, () => this.player.clearTint());
-      this.cameras.main.shake(80, 0.004);
-      this.damageNumber(this.player.x, this.player.y - 34, '✦', '#e06c6c');
+      const st = this.dmgStyle(e && e.dmg);
+      this.cameras.main.shake(80, Math.max(0.004, st.shake));
+      // knockback away from the attacker if we can find them
+      const atk = e && e.from ? this.findEntityByText(e.from) : null;
+      const dir = atk && atk.sprite ? Math.sign(this.player.x - atk.sprite.x) || 1 : (this.player.flipX ? 1 : -1);
+      if (this.player.body && !this.climbing) this.player.setVelocityX(dir * 90);
+      this.damageNumber(this.player.x, this.player.y - 34, e && e.dmg != null ? `-${e.dmg}` : '✦', '#e06c6c', st.size);
+    }
+    fxExp(e) {
+      const t = this.add.text(this.player.x, this.player.y - 44, `+${e.amount} xp`, {
+        fontFamily: 'Courier New', fontSize: '12px', color: '#e8c168', stroke: '#000', strokeThickness: 2,
+      }).setOrigin(0.5).setDepth(60);
+      this.tweens.add({ targets: t, y: t.y - 30, alpha: 0, duration: 1400, ease: 'sine.out', onComplete: () => t.destroy() });
     }
     fxMobDeath(e) {
       const ent = this.findEntityByText(e.name) || this.target;
@@ -512,9 +565,12 @@
       emitter.explode(12);
       this.time.delayedCall(700, () => emitter.destroy());
     }
-    damageNumber(x, y, text, color) {
-      const t = this.add.text(x, y, text, { fontFamily: 'Courier New', fontSize: '11px', color, stroke: '#000', strokeThickness: 2 }).setOrigin(0.5).setDepth(60);
-      this.tweens.add({ targets: t, y: y - 22, alpha: 0, duration: 750, onComplete: () => t.destroy() });
+    damageNumber(x, y, text, color, size = 11) {
+      const t = this.add.text(x + (Math.random() * 14 - 7), y, text, {
+        fontFamily: 'Courier New', fontSize: `${size}px`, color, stroke: '#000', strokeThickness: 2,
+      }).setOrigin(0.5).setDepth(60).setScale(1.4);
+      this.tweens.add({ targets: t, scale: 1, duration: 110 });
+      this.tweens.add({ targets: t, y: y - 24, alpha: 0, duration: 800, delay: 110, onComplete: () => t.destroy() });
     }
 
     // ---------- movement / exits ----------
@@ -699,6 +755,10 @@
           }
         }
       }
+
+      // parallax drift against player movement
+      if (this.bgFar) { this.bgFar.tilePositionX = this.player.x * 0.022; }
+      if (this.bgNear) { this.bgNear.tilePositionX = this.player.x * 0.055; }
 
       // hostile mobs walk toward the player; fighting mobs press in close
       const dt = this.game.loop.delta / 1000;

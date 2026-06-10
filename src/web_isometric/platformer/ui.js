@@ -285,6 +285,136 @@
     els.shopBody.appendChild(hint);
   }
 
+  // ---- minimap + click-to-walk ----
+  const MM_OFFSETS = { north: [0, -1, 0], south: [0, 1, 0], east: [1, 0, 0], west: [-1, 0, 0], up: [0, 0, 1], down: [0, 0, -1] };
+  let mmLarge = false;
+  let walkTargetVnum = null;
+
+  function mmCell() { return mmLarge ? 10 : 7; }
+
+  function renderMinimap() {
+    const payload = MH.state.lastPayload;
+    if (!payload || !payload.player || !els.minimap) return;
+    const ctx = els.minimap.getContext('2d');
+    const W = els.minimap.width, H = els.minimap.height;
+    ctx.fillStyle = '#0b0c10';
+    ctx.fillRect(0, 0, W, H);
+    const p = payload.player;
+    const z = p.z || 0;
+    const cell = mmCell();
+    const zoneColor = {};
+    (payload.zones || []).forEach(zn => { zoneColor[zn.id] = zn.color; });
+    for (const r of (payload.rooms || [])) {
+      if ((r.z || 0) !== z) continue;
+      const x = W / 2 + (r.x - p.x) * cell - (cell - 2) / 2;
+      const y = H / 2 + (r.y - p.y) * cell - (cell - 2) / 2;
+      if (x < -cell || x > W || y < -cell || y > H) continue;
+      ctx.fillStyle = r.vnum === walkTargetVnum ? '#e8c168' : (zoneColor[r.zone] || '#4a4f60');
+      ctx.globalAlpha = r.vnum === p.vnum ? 1 : 0.55;
+      ctx.fillRect(x, y, cell - 2, cell - 2);
+      // up/down markers
+      if ((r.exits || []).includes('up') || (r.exits || []).includes('down')) {
+        ctx.fillStyle = '#c8ccd8';
+        ctx.fillRect(x + (cell - 2) / 2 - 1, y + (cell - 2) / 2 - 1, 1, 1);
+      }
+    }
+    ctx.globalAlpha = 0.6;
+    ctx.fillStyle = '#7a8094';
+    for (const f of (payload.frontier || [])) {
+      if ((f.z || 0) !== z) continue;
+      const x = W / 2 + (f.x - p.x) * cell;
+      const y = H / 2 + (f.y - p.y) * cell;
+      ctx.fillRect(x - 1, y - 1, 2, 2);
+    }
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(W / 2 - 2, H / 2 - 2, 4, 4);
+  }
+
+  function bfsPath(fromVnum, toVnum) {
+    const payload = MH.state.lastPayload;
+    if (!payload) return null;
+    const byVnum = new Map();
+    const byCoord = new Map();
+    for (const r of (payload.rooms || [])) {
+      byVnum.set(r.vnum, r);
+      byCoord.set(`${r.x},${r.y},${r.z || 0}`, r);
+    }
+    if (!byVnum.has(fromVnum) || !byVnum.has(toVnum)) return null;
+    const prev = new Map([[fromVnum, null]]);
+    const queue = [fromVnum];
+    while (queue.length) {
+      const v = queue.shift();
+      if (v === toVnum) break;
+      const room = byVnum.get(v);
+      for (const dir of (room.exits || [])) {
+        const off = MM_OFFSETS[dir];
+        if (!off) continue;
+        const nb = byCoord.get(`${room.x + off[0]},${room.y + off[1]},${(room.z || 0) + off[2]}`);
+        if (!nb || prev.has(nb.vnum)) continue;
+        prev.set(nb.vnum, { v, dir });
+        queue.push(nb.vnum);
+      }
+    }
+    if (!prev.has(toVnum)) return null;
+    const dirs = [];
+    let cur = toVnum;
+    while (prev.get(cur)) { dirs.unshift(prev.get(cur).dir); cur = prev.get(cur).v; }
+    return dirs;
+  }
+
+  function walkStep() {
+    if (walkTargetVnum == null) return;
+    const p = MH.state.lastPayload && MH.state.lastPayload.player;
+    if (!p) return;
+    if (p.vnum === walkTargetVnum) { walkTargetVnum = null; renderMinimap(); flash('You arrive.'); return; }
+    const dirs = bfsPath(p.vnum, walkTargetVnum);
+    if (!dirs || !dirs.length) { walkTargetVnum = null; renderMinimap(); return; }
+    setTimeout(() => MH.bus.emit('walk.step', dirs[0]), 300);
+  }
+
+  function cancelWalk() {
+    if (walkTargetVnum != null) { walkTargetVnum = null; renderMinimap(); }
+  }
+
+  function minimapClick(e) {
+    const payload = MH.state.lastPayload;
+    if (!payload || !payload.player) return;
+    const rect = els.minimap.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    const cell = mmCell();
+    const p = payload.player;
+    const rx = Math.round((mx - els.minimap.width / 2) / cell + p.x);
+    const ry = Math.round((my - els.minimap.height / 2) / cell + p.y);
+    const room = (payload.rooms || []).find(r => r.x === rx && r.y === ry && (r.z || 0) === (p.z || 0));
+    if (!room || room.vnum === p.vnum) return;
+    walkTargetVnum = room.vnum;
+    renderMinimap();
+    flash(`Walking to ${room.name}…`);
+    walkStep();
+  }
+
+  function toggleMinimapSize() {
+    mmLarge = !mmLarge;
+    els.minimap.width = mmLarge ? 300 : 170;
+    els.minimap.height = mmLarge ? 230 : 130;
+    renderMinimap();
+  }
+
+  // ---- low-HP vignette ----
+  function updateVignette() {
+    const p = MH.state.player;
+    if (!p || !els.vignette) return;
+    const frac = (p.max_hp || 1) > 0 ? (p.hp || 0) / (p.max_hp || 1) : 1;
+    if (frac < 0.4) {
+      els.vignette.style.opacity = String(Math.min(0.95, ((0.4 - frac) / 0.4) * 1.1));
+      els.vignette.classList.toggle('pulse', frac < 0.2);
+    } else {
+      els.vignette.style.opacity = '0';
+      els.vignette.classList.remove('pulse');
+    }
+  }
+
   // ---- typing focus management ----
   function setTyping(on) { MH.bus.emit('ui.typing', on); }
 
@@ -303,6 +433,7 @@
         chatLog: $('chat-log'), chatPanel: $('chat-panel'), chatBody: $('chat-body'),
         chatInput: $('chat-input'), chatMode: $('chat-mode'),
         invBody: $('inv-body'), journalBody: $('journal-body'), shopBody: $('shop-body'), spellsBody: $('spells-body'),
+        minimap: $('minimap'), mmToggle: $('mm-toggle'), vignette: $('vignette'),
       });
 
       // login
@@ -355,9 +486,16 @@
         else if (e.key === 'Escape') toggleChatPanel(false);
       });
 
+      // minimap
+      els.minimap.addEventListener('click', minimapClick);
+      els.mmToggle.addEventListener('click', toggleMinimapSize);
+
       // game events
-      MH.bus.on('map', payload => updateHud(payload.player));
-      MH.bus.on('combat.update', () => updateHud(MH.state.player));
+      MH.bus.on('map', payload => { updateHud(payload.player); renderMinimap(); updateVignette(); });
+      MH.bus.on('combat.update', () => { updateHud(MH.state.player); updateVignette(); });
+      MH.bus.on('room.entered', () => walkStep());
+      MH.bus.on('move.blocked', () => cancelWalk());
+      MH.bus.on('player.death', () => cancelWalk());
       MH.bus.on('room.entered', ({ room, zoneName }) => showRoom(room, zoneName));
       MH.bus.on('flash', flash);
       MH.bus.on('move.blocked', e => {}); // scene flashes it
@@ -403,6 +541,8 @@
         else if (k === 'j') { openJournal(); }
         else if (k === 'k') { renderSpells(); openModal('modal-spells'); }
         else if (k === 't') { e.preventDefault(); toggleChatPanel(); }
+        else if (k === 'm') { toggleMinimapSize(); }
+        if (['a', 'd', 'w', 's', 'arrowleft', 'arrowright', 'arrowup', 'arrowdown', ' '].includes(k)) cancelWalk();
         if (e.key === ' ') e.preventDefault(); // don't scroll the page
       });
     },

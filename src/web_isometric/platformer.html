@@ -228,6 +228,29 @@
   .modal-body .item:hover { background: #242a3c; color: var(--gold); }
   .modal-body .slot { color: var(--dim); }
 
+  /* ---- minimap ---- */
+  #minimap-wrap {
+    position: absolute; right: 12px; top: 64px; z-index: 20;
+    background: rgba(13,15,21,0.85); border: 1px solid var(--border); border-radius: 4px;
+    padding: 4px;
+  }
+  #minimap-wrap .mm-head {
+    font-size: 9px; color: var(--dim); letter-spacing: 1px; padding: 0 2px 3px;
+    display: flex; justify-content: space-between;
+  }
+  #minimap-wrap .mm-head span:last-child { cursor: pointer; }
+  #minimap-wrap .mm-head span:last-child:hover { color: var(--gold); }
+  #minimap { display: block; image-rendering: pixelated; cursor: crosshair; }
+
+  /* ---- low-HP vignette ---- */
+  #vignette {
+    position: absolute; inset: 0; z-index: 35; pointer-events: none; opacity: 0;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(160,10,10,0.55) 100%);
+    transition: opacity 0.4s;
+  }
+  #vignette.pulse { animation: vigpulse 1.1s infinite; }
+  @keyframes vigpulse { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.5); } }
+
   /* ---- bottom-left help ---- */
   #help-chip {
     position: absolute; left: 12px; bottom: 14px; z-index: 17;
@@ -256,6 +279,12 @@
   <div id="target-frame">
     <div class="who" id="target-name"></div>
     <div class="bar hp"><i id="target-hp"></i><b id="target-hp-txt"></b></div>
+  </div>
+
+  <div id="vignette"></div>
+  <div id="minimap-wrap">
+    <div class="mm-head"><span>CARTOGRAPHY</span><span id="mm-toggle" title="resize (M)">⤢</span></div>
+    <canvas id="minimap" width="170" height="130"></canvas>
   </div>
 
   <div id="chat-log"></div>

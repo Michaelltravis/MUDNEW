@@ -164,6 +164,7 @@
 
     return {
       vnum, theme, sector, flags,
+      description: roomData.description || '',
       W, H, T,
       grid, hm,
       pool, isUnderwater,

@@ -584,6 +584,141 @@
     }
   }
 
+  // ------------------------------------------------------------------
+  // Parallax silhouettes: two tileable 480x200 layers per theme.
+  // far = faint shapes near the horizon, near = darker foreground band.
+  // ------------------------------------------------------------------
+  function mixColor(hexA, hexB, t) {
+    const a = parseInt(hexA.slice(1), 16), b = parseInt(hexB.slice(1), 16);
+    const ch = (sa, sb) => Math.round(sa + (sb - sa) * t);
+    const r = ch((a >> 16) & 255, (b >> 16) & 255);
+    const g = ch((a >> 8) & 255, (b >> 8) & 255);
+    const bl = ch(a & 255, b & 255);
+    return `#${((r << 16) | (g << 8) | bl).toString(16).padStart(6, '0')}`;
+  }
+
+  function silhouette(ctx, kind, color, W, H, baseY, rng, accent) {
+    ctx.fillStyle = color;
+    if (kind === 'peaks') {
+      let x = -20;
+      while (x < W + 20) {
+        const w = 50 + rng() * 80, h = 40 + rng() * (baseY - 30);
+        ctx.beginPath();
+        ctx.moveTo(x, H); ctx.lineTo(x + w / 2, baseY - h); ctx.lineTo(x + w, H);
+        ctx.closePath(); ctx.fill();
+        x += w * 0.6;
+      }
+    } else if (kind === 'rooftops') {
+      let x = 0;
+      while (x < W) {
+        const w = 24 + rng() * 40, h = 30 + rng() * (baseY - 24);
+        ctx.fillRect(x, baseY - h + 40, w, H);
+        if (rng() < 0.5) ctx.fillRect(x + w * 0.3, baseY - h + 28, w * 0.25, 14); // chimney/tower
+        // lit windows
+        ctx.fillStyle = accent;
+        for (let wy = baseY - h + 48; wy < H - 20; wy += 14) {
+          for (let wx = x + 4; wx < x + w - 5; wx += 10) if (rng() < 0.16) ctx.fillRect(wx, wy, 3, 4);
+        }
+        ctx.fillStyle = color;
+        x += w + 2 + rng() * 8;
+      }
+    } else if (kind === 'treeline') {
+      ctx.fillRect(0, baseY + 30, W, H - baseY - 30);
+      let x = -10;
+      while (x < W + 10) {
+        const r = 14 + rng() * 22;
+        ctx.beginPath(); ctx.arc(x, baseY + 34 - r * 0.8, r, 0, Math.PI * 2); ctx.fill();
+        x += r * 0.9;
+      }
+    } else if (kind === 'dunes') {
+      for (let i = 0; i < 3; i++) {
+        const y0 = baseY + i * 16;
+        ctx.beginPath(); ctx.moveTo(0, H);
+        for (let x = 0; x <= W; x += 8) ctx.lineTo(x, y0 + Math.sin((x / W) * Math.PI * (2 + i) + rng() * 2) * 14);
+        ctx.lineTo(W, H); ctx.closePath(); ctx.fill();
+      }
+    } else if (kind === 'arches') {
+      for (let x = 14; x < W; x += 64) {
+        ctx.fillRect(x, baseY - 40, 12, H);
+        ctx.fillRect(x + 40, baseY - 40, 12, H);
+        ctx.fillRect(x - 4, baseY - 48, 60, 14);
+      }
+    } else if (kind === 'teeth') {
+      let x = 0;
+      while (x < W) {
+        const w = 10 + rng() * 18, h = 24 + rng() * 60;
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x + w / 2, h); ctx.lineTo(x + w, 0); ctx.closePath(); ctx.fill();
+        x += w + rng() * 14;
+      }
+      let x2 = 0;
+      while (x2 < W) {
+        const w = 16 + rng() * 24, h = 16 + rng() * 36;
+        ctx.beginPath(); ctx.moveTo(x2, H); ctx.lineTo(x2 + w / 2, H - h); ctx.lineTo(x2 + w, H); ctx.closePath(); ctx.fill();
+        x2 += w + rng() * 18;
+      }
+    } else if (kind === 'waves') {
+      for (let i = 0; i < 3; i++) {
+        const y0 = baseY + i * 18;
+        ctx.beginPath(); ctx.moveTo(0, H);
+        for (let x = 0; x <= W; x += 6) ctx.lineTo(x, y0 + Math.sin((x / 30) + i * 2) * 5);
+        ctx.lineTo(W, H); ctx.closePath(); ctx.fill();
+      }
+    } else if (kind === 'reef') {
+      let x = 0;
+      while (x < W) {
+        const w = 12 + rng() * 20, h = 20 + rng() * 50;
+        ctx.fillRect(x, H - h, w, h);
+        if (rng() < 0.4) { ctx.fillRect(x + w / 2 - 2, H - h - 12, 4, 12); }
+        x += w + rng() * 26;
+      }
+      // light shafts
+      ctx.fillStyle = accent;
+      ctx.globalAlpha = 0.12;
+      for (let i = 0; i < 4; i++) {
+        const sx = rng() * W;
+        ctx.beginPath(); ctx.moveTo(sx, 0); ctx.lineTo(sx + 30, 0); ctx.lineTo(sx - 20, H); ctx.lineTo(sx - 50, H); ctx.closePath(); ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+    } else if (kind === 'clouds') {
+      for (let i = 0; i < 7; i++) {
+        const cx = rng() * W, cy = 20 + rng() * (H - 60), w = 50 + rng() * 90;
+        ctx.fillRect(cx - w / 2, cy, w, 12 + rng() * 10);
+        ctx.fillRect(cx - w / 3, cy - 8, w * 0.6, 10);
+      }
+    } else { // hills
+      for (let i = 0; i < 2; i++) {
+        const y0 = baseY + i * 20;
+        ctx.beginPath(); ctx.moveTo(0, H);
+        for (let x = 0; x <= W; x += 10) ctx.lineTo(x, y0 + Math.sin((x / W) * Math.PI * (1.5 + i) + i) * 22);
+        ctx.lineTo(W, H); ctx.closePath(); ctx.fill();
+      }
+    }
+  }
+
+  const PARALLAX_KIND = {
+    mountain: 'peaks', hills: 'hills', city: 'rooftops', inside: 'arches',
+    dungeon: 'arches', cave: 'teeth', forest: 'treeline', field: 'hills',
+    swamp: 'treeline', desert: 'dunes', water_swim: 'waves', water_noswim: 'waves',
+    underwater: 'reef', flying: 'clouds', default: 'hills',
+  };
+
+  function genParallax(scene, name, p) {
+    const kind = PARALLAX_KIND[name] || 'hills';
+    const W = 480, H = 200;
+    const farCol = mixColor(p.sky[1], p.wall, 0.55);
+    const nearCol = mixColor(p.sky[1], '#000000', 0.25);
+    const layers = [
+      { key: `bg_${name}_far`, color: farCol, baseY: 70 },
+      { key: `bg_${name}_near`, color: nearCol, baseY: 110 },
+    ];
+    layers.forEach((l, i) => {
+      if (scene.textures.exists(l.key)) return;
+      const [c, ctx] = canvasOf(W, H);
+      silhouette(ctx, kind, l.color, W, H, l.baseY, mulberry32(hashStr(name + l.key)), p.accent);
+      scene.textures.addCanvas(l.key, c);
+    });
+  }
+
   function genParticles(scene) {
     {
       const [c, ctx] = canvasOf(4, 4);
@@ -617,7 +752,7 @@
     FRAMES, FW, FH, T,
 
     generateAll(scene) {
-      for (const [name, p] of Object.entries(THEMES)) genThemeTiles(scene, name, p);
+      for (const [name, p] of Object.entries(THEMES)) { genThemeTiles(scene, name, p); genParallax(scene, name, p); }
       for (const [cls, look] of Object.entries(CLASS_LOOKS)) {
         genActorSheet(scene, `player_${cls}`, 'human', look.pal, look.acc);
       }
