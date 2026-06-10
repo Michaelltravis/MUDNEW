@@ -1,3 +1,6 @@
+// Misthollow: room vnum -> level layout. Two generators share this file:
+//   generateRoom        - legacy side-view platformer chamber (?view=side)
+//   generateRoomTopDown - Zelda-style top-down screen (the default view)
 // Misthollow platformer: room vnum -> platforming chamber layout.
 // Pure and deterministic: the same room always generates the same level.
 // Side-view exit mapping:
@@ -189,6 +192,175 @@
       eastGap, westGap, ladder, trapdoor, northDoor, southDoor, portals,
       platforms, props, spawnSlots, entries,
       exits,
+      pxW: W * T, pxH: H * T,
+    };
+  };
+})();
+
+// ===================== Zelda-style top-down generator =====================
+// One MUD room = one screen. The four cardinal exits are gaps in the border
+// ring; up/down are staircase tiles; named passages are portal tiles.
+(() => {
+  const MH = window.MH = window.MH || {};
+  const W = 30, H = 17, T = 16;
+  const FLOOR = 0, BLOCK = 1, WATER = 4;
+  MH.TD = { W, H, T, FLOOR, BLOCK, WATER };
+
+  function floodReachable(grid, sx, sy) {
+    const seen = new Uint8Array(W * H);
+    const q = [[sx, sy]];
+    seen[sy * W + sx] = 1;
+    while (q.length) {
+      const [x, y] = q.pop();
+      for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+        const nx = x + dx, ny = y + dy;
+        if (nx < 0 || ny < 0 || nx >= W || ny >= H) continue;
+        const i = ny * W + nx;
+        if (seen[i] || grid[i] === BLOCK || grid[i] === WATER) continue;
+        seen[i] = 1;
+        q.push([nx, ny]);
+      }
+    }
+    return seen;
+  }
+
+  MH.generateRoomTopDown = function generateRoomTopDown(roomData) {
+    const vnum = Number(roomData.vnum) || 0;
+    const sector = MH.themeForSector(roomData.sector || 'default');
+    const rng = MH.mulberry32(((vnum * 2654435761) ^ 0x5eada) >>> 0);
+    const exits = roomData.exits || {};
+    const has = dir => Object.prototype.hasOwnProperty.call(exits, dir);
+    const flags = roomData.flags || [];
+    const swim = sector === 'underwater' || sector === 'water_swim';
+
+    const grid = new Uint8Array(W * H); // FLOOR
+    const at = (x, y) => grid[y * W + x];
+    const set = (x, y, v) => { if (x >= 0 && y >= 0 && x < W && y < H) grid[y * W + x] = v; };
+
+    // border ring with edge gaps where exits exist
+    for (let x = 0; x < W; x++) { set(x, 0, BLOCK); set(x, H - 1, BLOCK); }
+    for (let y = 0; y < H; y++) { set(0, y, BLOCK); set(W - 1, y, BLOCK); }
+    const midX = Math.floor(W / 2), midY = Math.floor(H / 2);
+    const gaps = {};
+    if (has('north')) { gaps.north = { x0: midX - 2, x1: midX + 2 }; for (let x = midX - 2; x <= midX + 2; x++) set(x, 0, FLOOR); }
+    if (has('south')) { gaps.south = { x0: midX - 2, x1: midX + 2 }; for (let x = midX - 2; x <= midX + 2; x++) set(x, H - 1, FLOOR); }
+    if (has('west'))  { gaps.west  = { y0: midY - 2, y1: midY + 2 }; for (let y = midY - 2; y <= midY + 2; y++) set(0, y, FLOOR); }
+    if (has('east'))  { gaps.east  = { y0: midY - 2, y1: midY + 2 }; for (let y = midY - 2; y <= midY + 2; y++) set(W - 1, y, FLOOR); }
+
+    // staircase / portal feature tiles
+    const stairsUp = has('up') ? { x: W - 8, y: 4 } : null;
+    const stairsDown = has('down') ? { x: 7, y: 4 } : null;
+    const CARDINALS = ['north', 'south', 'east', 'west', 'up', 'down'];
+    const portalNames = Object.keys(exits).filter(d => !CARDINALS.includes(d));
+    const portals = portalNames.map((name, i) => ({
+      name, x: 9 + ((i * 7) % (W - 18)), y: H - 5,
+    }));
+
+    // water pond blocks passage in non-swimmable water rooms
+    if (sector === 'water_noswim') {
+      const cx = midX + Math.floor(rng() * 4) - 2, cy = midY + Math.floor(rng() * 2) - 1;
+      for (let y = cy - 2; y <= cy + 2; y++) {
+        for (let x = cx - 3; x <= cx + 3; x++) {
+          if (x > 1 && x < W - 2 && y > 1 && y < H - 2) set(x, y, WATER);
+        }
+      }
+    }
+
+    // points of interest that must stay mutually reachable
+    const pois = [];
+    if (gaps.north) pois.push([midX, 1]);
+    if (gaps.south) pois.push([midX, H - 2]);
+    if (gaps.west) pois.push([1, midY]);
+    if (gaps.east) pois.push([W - 2, midY]);
+    if (stairsUp) pois.push([stairsUp.x, stairsUp.y]);
+    if (stairsDown) pois.push([stairsDown.x, stairsDown.y]);
+    portals.forEach(p => pois.push([p.x, p.y]));
+    pois.push([midX, midY]);
+
+    // entry tiles are POIs too: the player materializes there, so nothing
+    // may block them and they must stay reachable
+    const px = (x, y) => ({ x: x * T + T / 2, y: y * T + T / 2 });
+    const entries = {
+      north: px(midX, 1.6),
+      south: px(midX, H - 2.6),
+      west: px(1.6, midY),
+      east: px(W - 2.6, midY),
+      up: stairsDown ? px(stairsDown.x + 1.4, stairsDown.y) : px(midX, midY),
+      down: stairsUp ? px(stairsUp.x - 1.4, stairsUp.y) : px(midX, midY),
+      none: px(midX, midY),
+    };
+    for (const p of portals) entries[p.name] = px(midX, midY);
+    for (const e of Object.values(entries)) {
+      pois.push([Math.floor(e.x / T), Math.floor(e.y / T)]);
+    }
+
+    // clear POI tiles in case the pond landed on one
+    pois.forEach(([x, y]) => { if (at(x, y) === WATER) set(x, y, FLOOR); });
+
+    const allReachable = () => {
+      const seen = floodReachable(grid, midX, midY);
+      return pois.every(([x, y]) => seen[y * W + x]);
+    };
+    if (!allReachable()) {
+      // pond cut something off: drain it
+      for (let i = 0; i < grid.length; i++) if (grid[i] === WATER) grid[i] = FLOOR;
+    }
+
+    // scattered obstacles, kept only when they don't break connectivity
+    const obstacles = [];
+    const tries = 8 + Math.floor(rng() * 8);
+    for (let i = 0; i < tries; i++) {
+      const big = rng() < 0.35;
+      const ox = 2 + Math.floor(rng() * (W - 5));
+      const oy = 2 + Math.floor(rng() * (H - 5));
+      const cells = [];
+      for (let dy = 0; dy < (big ? 2 : 1); dy++) {
+        for (let dx = 0; dx < (big ? 2 : 1); dx++) cells.push([ox + dx, oy + dy]);
+      }
+      // skip near feature tiles and gap corridors
+      const nearPoi = pois.some(([px, py]) => cells.some(([cx, cy]) => Math.abs(cx - px) <= 1 && Math.abs(cy - py) <= 1));
+      if (nearPoi || cells.some(([cx, cy]) => at(cx, cy) !== FLOOR)) continue;
+      cells.forEach(([cx, cy]) => set(cx, cy, BLOCK));
+      if (!allReachable()) {
+        cells.forEach(([cx, cy]) => set(cx, cy, FLOOR));
+        continue;
+      }
+      obstacles.push({ x: ox, y: oy, big, idx: Math.floor(rng() * 2) });
+    }
+
+    // deterministic spawn slots on reachable floor
+    const seen = floodReachable(grid, midX, midY);
+    const spawnSlots = [];
+    let guard = 0;
+    while (spawnSlots.length < 8 && guard++ < 300) {
+      const sx = 2 + Math.floor(rng() * (W - 4));
+      const sy = 2 + Math.floor(rng() * (H - 4));
+      if (at(sx, sy) === FLOOR && seen[sy * W + sx]) {
+        spawnSlots.push({ x: sx * T + T / 2, y: sy * T + T / 2 });
+      }
+    }
+    while (spawnSlots.length < 8) spawnSlots.push({ x: midX * T + T / 2, y: midY * T + T / 2 });
+
+    // decorative props (non-blocking)
+    const props = [];
+    for (let i = 0; i < 3 + Math.floor(rng() * 3); i++) {
+      const px = 2 + Math.floor(rng() * (W - 4));
+      const py = 2 + Math.floor(rng() * (H - 4));
+      if (at(px, py) === FLOOR && !pois.some(([qx, qy]) => Math.abs(qx - px) <= 1 && Math.abs(qy - py) <= 1)) {
+        props.push({ idx: Math.floor(rng() * 3), x: px, y: py });
+      }
+    }
+
+    return {
+      topdown: true,
+      vnum, theme: sector, sector, flags,
+      description: roomData.description || '',
+      gravestones: roomData.gravestones,
+      W, H, T, grid, gaps,
+      stairsUp, stairsDown, portals, obstacles, props, spawnSlots, entries,
+      exits, swim,
+      dark: flags.includes('dark'),
+      peaceful: flags.includes('peaceful'),
       pxW: W * T, pxH: H * T,
     };
   };

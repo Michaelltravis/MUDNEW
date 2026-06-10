@@ -27,9 +27,11 @@
       }).setOrigin(0.5);
       this.time.delayedCall(30, () => {
         MH.sprites.generateAll(this);
+        MH.tdSprites.generateAll(this);
         txt.destroy();
         if (/[?&]gallery=1/.test(window.location.search)) this.scene.start('Gallery');
-        else this.scene.start('Room');
+        else if (/[?&]view=side/.test(window.location.search)) this.scene.start('Room');
+        else this.scene.start('TopRoom');   // Zelda-style top-down is the default
       });
     }
   }
@@ -994,7 +996,7 @@
       physics: { default: 'arcade', arcade: { gravity: { y: 900 }, debug: false } },
       input: { gamepad: true },
       scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
-      scene: [BootScene, GalleryScene, RoomScene],
+      scene: [BootScene, GalleryScene, RoomScene, MH.TopRoomScene],
     });
   };
 })();

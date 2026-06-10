@@ -793,6 +793,8 @@
   // ------------------------------------------------------------------
   MH.sprites = {
     FRAMES, FW, FH, T,
+    CLASS_LOOKS,
+    MOB_RULES: MOB_ARCHETYPES.concat([DEFAULT_ARCHETYPE]),
 
     generateAll(scene) {
       for (const [name, p] of Object.entries(THEMES)) { genThemeTiles(scene, name, p); genParallax(scene, name, p); }
@@ -861,4 +863,274 @@
   };
 
   MH.mulberry32 = mulberry32;
+})();
+
+// ===================== top-down (Zelda view) textures =====================
+// Actors are 24x24 frames: walk down/up/side x2, attack per facing, hurt,
+// death. Tiles: themed floor/border/obstacles + universal stairs.
+(() => {
+  const MH = window.MH;
+  const TD_FRAMES = ['d0', 'd1', 'u0', 'u1', 's0', 's1', 'atk_d', 'atk_u', 'atk_s', 'hurt', 'death'];
+  const FW = 24, FH = 24;
+
+  function canvasOf(w, h) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
+    return [c, ctx];
+  }
+  function shade(hex, amt) {
+    const n = parseInt(hex.slice(1), 16);
+    const cl = v => Math.max(0, Math.min(255, v + amt));
+    return `#${(((cl((n >> 16) & 255)) << 16) | ((cl((n >> 8) & 255)) << 8) | cl(n & 255)).toString(16).padStart(6, '0')}`;
+  }
+
+  // 3/4-view humanoid: hair/face block on a tunic with stepping feet
+  function tdHumanoid(ctx, ox, frame, pal) {
+    const cx = ox + 12;
+    if (frame === 'death') {
+      ctx.fillStyle = pal.outfit; ctx.fillRect(cx - 6, 12, 12, 6);
+      ctx.fillStyle = pal.skin; ctx.fillRect(cx + 5, 11, 4, 4);
+      return;
+    }
+    const step = frame.endsWith('1') ? 1 : 0;
+    const facing = frame.startsWith('atk_') ? frame.slice(4) : frame[0];
+    // feet
+    ctx.fillStyle = shade(pal.outfit2, -16);
+    if (facing === 's') {
+      ctx.fillRect(cx - 3 + step, 19, 3, 3); ctx.fillRect(cx + 1 - step, 19, 3, 3);
+    } else {
+      ctx.fillRect(cx - 4, 19 + step, 3, 3); ctx.fillRect(cx + 2, 20 - step, 3, 3);
+    }
+    // tunic
+    ctx.fillStyle = pal.outfit;
+    ctx.fillRect(cx - 5, 11, 11, 9);
+    ctx.fillStyle = pal.trim;
+    ctx.fillRect(cx - 5, 17, 11, 2);
+    // head
+    ctx.fillStyle = pal.skin;
+    ctx.fillRect(cx - 4, 4, 9, 8);
+    ctx.fillStyle = pal.hair;
+    if (facing === 'u') ctx.fillRect(cx - 4, 4, 9, 8);       // back of head
+    else ctx.fillRect(cx - 4, 3, 9, 4);                       // fringe
+    if (facing === 'd') {
+      ctx.fillStyle = '#101018';
+      ctx.fillRect(cx - 2, 8, 2, 2); ctx.fillRect(cx + 2, 8, 2, 2);
+    } else if (facing === 's') {
+      ctx.fillStyle = '#101018';
+      ctx.fillRect(cx + 2, 8, 2, 2);
+    }
+    // weapon thrust on attack frames
+    if (frame.startsWith('atk_')) {
+      ctx.fillStyle = pal.weapon;
+      if (facing === 'd') ctx.fillRect(cx + 6, 14, 2, 9);
+      else if (facing === 'u') ctx.fillRect(cx - 8, 1, 2, 11);
+      else ctx.fillRect(cx + 6, 12, 9, 2);
+    }
+    if (frame === 'hurt') {
+      ctx.fillStyle = '#e04040'; ctx.fillRect(cx - 5, 11, 11, 2);
+    }
+  }
+  function tdQuadruped(ctx, ox, frame, pal) {
+    const cx = ox + 12, cy = 12;
+    if (frame === 'death') { ctx.fillStyle = pal.outfit; ctx.fillRect(cx - 7, cy + 3, 14, 5); return; }
+    const step = frame.endsWith('1') ? 1 : 0;
+    const facing = frame.startsWith('atk_') ? frame.slice(4) : frame[0];
+    ctx.fillStyle = pal.outfit;
+    if (facing === 's') {
+      ctx.fillRect(cx - 8, cy - 3, 16, 8);                       // long body
+      ctx.fillRect(cx + 6, cy - 6, 6, 6);                        // head
+      ctx.fillStyle = pal.outfit2;
+      ctx.fillRect(cx - 7 + step, cy + 5, 3, 3); ctx.fillRect(cx + 3 - step, cy + 5, 3, 3);
+      ctx.fillStyle = '#101018'; ctx.fillRect(cx + 10, cy - 4, 1, 1);
+    } else {
+      ctx.fillRect(cx - 4, cy - 8, 8, 16);                       // body along y
+      ctx.fillRect(cx - 3, facing === 'd' ? cy + 5 : cy - 11, 6, 6); // head
+      ctx.fillStyle = pal.outfit2;
+      ctx.fillRect(cx - 6, cy - 5 + step, 3, 3); ctx.fillRect(cx + 3, cy + 2 - step, 3, 3);
+      if (facing === 'd') { ctx.fillStyle = '#101018'; ctx.fillRect(cx - 2, cy + 7, 1, 1); ctx.fillRect(cx + 1, cy + 7, 1, 1); }
+    }
+    ctx.fillStyle = pal.trim;
+    ctx.fillRect(cx - 1, cy - 1, 2, 2);
+    if (frame === 'hurt') { ctx.fillStyle = '#e04040'; ctx.fillRect(cx - 4, cy - 4, 8, 2); }
+  }
+  function tdBlob(ctx, ox, frame, pal) {
+    const cx = ox + 12, cy = 13;
+    if (frame === 'death') { ctx.fillStyle = pal.outfit; ctx.fillRect(cx - 6, cy + 4, 12, 3); return; }
+    const squish = frame.endsWith('1') ? 1 : 0;
+    ctx.fillStyle = pal.outfit;
+    ctx.fillRect(cx - 6, cy - 5 + squish, 12, 11 - squish);
+    ctx.fillRect(cx - 4, cy - 7 + squish, 8, 3);
+    ctx.fillStyle = shade(pal.outfit, 30);
+    ctx.fillRect(cx - 4, cy - 5 + squish, 3, 3);
+    ctx.fillStyle = '#101018';
+    ctx.fillRect(cx - 3, cy - 1, 2, 2); ctx.fillRect(cx + 1, cy - 1, 2, 2);
+    if (frame === 'hurt') { ctx.fillStyle = '#e04040'; ctx.fillRect(cx - 6, cy - 5, 12, 2); }
+  }
+  function tdFlyer(ctx, ox, frame, pal) {
+    const cx = ox + 12, cy = 12;
+    if (frame === 'death') { ctx.fillStyle = pal.outfit; ctx.fillRect(cx - 5, cy + 4, 10, 3); return; }
+    const flap = frame.endsWith('1') ? 3 : 0;
+    ctx.fillStyle = pal.outfit2;
+    ctx.fillRect(cx - 10 + flap, cy - 2, 7, 4);
+    ctx.fillRect(cx + 3 - flap + 1, cy - 2, 7, 4);
+    ctx.fillStyle = pal.outfit;
+    ctx.fillRect(cx - 4, cy - 5, 8, 11);
+    ctx.fillStyle = pal.trim;
+    ctx.fillRect(cx - 1, cy + 5, 2, 2);
+    ctx.fillStyle = '#101018';
+    ctx.fillRect(cx - 2, cy - 3, 1, 1); ctx.fillRect(cx + 1, cy - 3, 1, 1);
+    if (frame === 'hurt') { ctx.fillStyle = '#e04040'; ctx.fillRect(cx - 4, cy - 5, 8, 2); }
+  }
+
+  function tdAccessory(ctx, ox, frame, kind, pal) {
+    if (frame === 'death') return;
+    const cx = ox + 12;
+    switch (kind) {
+      case 'helm': ctx.fillStyle = '#9aa2b0'; ctx.fillRect(cx - 4, 2, 9, 3); break;
+      case 'wizardhat': ctx.fillStyle = pal.trim; ctx.fillRect(cx - 6, 3, 13, 2); ctx.fillRect(cx - 2, 0, 5, 3); break;
+      case 'hood': ctx.fillStyle = shade(pal.outfit, -20); ctx.fillRect(cx - 5, 2, 11, 4); break;
+      case 'circlet': ctx.fillStyle = '#e8c168'; ctx.fillRect(cx - 4, 4, 9, 1); break;
+      case 'apron': ctx.fillStyle = '#e8e0d0'; ctx.fillRect(cx - 3, 13, 7, 6); break;
+      case 'shield': ctx.fillStyle = '#8a929e'; ctx.fillRect(cx - 9, 11, 4, 7); break;
+      default: break;
+    }
+  }
+
+  function genTdActor(scene, key, body, pal, accs, alpha) {
+    if (scene.textures.exists(key)) return;
+    const [c, ctx] = canvasOf(FW * TD_FRAMES.length, FH);
+    if (alpha) ctx.globalAlpha = alpha;
+    TD_FRAMES.forEach((frame, i) => {
+      const ox = i * FW;
+      if (body === 'quad') tdQuadruped(ctx, ox, frame, pal);
+      else if (body === 'blob') tdBlob(ctx, ox, frame, pal);
+      else if (body === 'flyer') tdFlyer(ctx, ox, frame, pal);
+      else { tdHumanoid(ctx, ox, frame, pal); (accs || []).forEach(a => tdAccessory(ctx, ox, frame, a, pal)); }
+    });
+    const tex = scene.textures.addCanvas(key, c);
+    TD_FRAMES.forEach((frame, i) => tex.add(frame, 0, i * FW, 0, FW, FH));
+  }
+
+  function genTdTiles(scene, name, p) {
+    const rng = MH.mulberry32(MH.hashStr('td' + name));
+    const T = 16;
+    {
+      // floor: soft dithered ground seen from above
+      const [c, ctx] = canvasOf(T, T);
+      ctx.fillStyle = p.fillA; ctx.fillRect(0, 0, T, T);
+      ctx.fillStyle = p.fillB;
+      for (let y = 0; y < T; y++) for (let x = 0; x < T; x++) if (rng() < 0.18) ctx.fillRect(x, y, 1, 1);
+      ctx.fillStyle = shade(p.fillA, 12);
+      for (let i = 0; i < 3; i++) ctx.fillRect(Math.floor(rng() * 14), Math.floor(rng() * 14), 2, 1);
+      scene.textures.addCanvas(`td_${name}_floor`, c);
+    }
+    {
+      // border block: front-on tree/rock/wall ring, Zelda style
+      const [c, ctx] = canvasOf(T, T);
+      const kind = ['forest', 'field', 'swamp'].includes(name) ? 'tree'
+        : ['mountain', 'hills', 'cave', 'desert'].includes(name) ? 'rock'
+        : ['underwater', 'water_swim', 'water_noswim'].includes(name) ? 'coral'
+        : name === 'flying' ? 'cloud' : 'wall';
+      if (kind === 'tree') {
+        ctx.fillStyle = shade(p.fillB, -14); ctx.fillRect(0, 0, T, T);
+        ctx.fillStyle = '#2d6a38'; ctx.fillRect(1, 1, 14, 11);
+        ctx.fillStyle = '#3f8a4a'; ctx.fillRect(2, 2, 6, 4); ctx.fillRect(9, 5, 5, 3);
+        ctx.fillStyle = '#5c4226'; ctx.fillRect(6, 12, 4, 4);
+      } else if (kind === 'rock') {
+        ctx.fillStyle = shade(p.fillB, -20); ctx.fillRect(0, 0, T, T);
+        ctx.fillStyle = shade(p.top, -10); ctx.fillRect(1, 2, 14, 12);
+        ctx.fillStyle = shade(p.top, 14); ctx.fillRect(2, 3, 6, 4);
+      } else if (kind === 'coral') {
+        ctx.fillStyle = shade(p.sky[1], -10); ctx.fillRect(0, 0, T, T);
+        ctx.fillStyle = '#d6608a'; ctx.fillRect(2, 4, 4, 11);
+        ctx.fillStyle = '#e09a50'; ctx.fillRect(9, 6, 4, 9);
+      } else if (kind === 'cloud') {
+        ctx.fillStyle = '#cfd8ec'; ctx.fillRect(0, 0, T, T);
+        ctx.fillStyle = '#eef2fa'; ctx.fillRect(1, 2, 10, 5); ctx.fillRect(5, 8, 9, 5);
+      } else {
+        ctx.fillStyle = p.wall; ctx.fillRect(0, 0, T, T);
+        ctx.fillStyle = shade(p.wall, 18);
+        ctx.fillRect(0, 0, T, 2); ctx.fillRect(0, 8, T, 2);
+        ctx.fillStyle = shade(p.wall, -16);
+        ctx.fillRect(7, 2, 1, 6); ctx.fillRect(3, 10, 1, 6); ctx.fillRect(12, 10, 1, 6);
+      }
+      scene.textures.addCanvas(`td_${name}_border`, c);
+    }
+    for (let i = 0; i < 2; i++) {
+      // interior obstacles: boulder / themed block
+      const key = `td_${name}_obst${i}`;
+      if (scene.textures.exists(key)) continue;
+      const [c, ctx] = canvasOf(T, T);
+      if (i === 0) {
+        ctx.fillStyle = shade(p.top, -6); ctx.fillRect(2, 3, 12, 11);
+        ctx.fillStyle = shade(p.top, 16); ctx.fillRect(3, 4, 5, 4);
+        ctx.fillStyle = shade(p.top, -26); ctx.fillRect(2, 11, 12, 3);
+      } else {
+        ctx.fillStyle = shade(p.accent, -50); ctx.fillRect(3, 2, 10, 12);
+        ctx.fillStyle = shade(p.accent, -30); ctx.fillRect(4, 3, 8, 4);
+      }
+      scene.textures.addCanvas(key, c);
+    }
+  }
+
+  function genTdUniversal(scene) {
+    {
+      const [c, ctx] = canvasOf(16, 16);
+      // stairs up: light steps narrowing upward
+      ctx.fillStyle = '#1a1c24'; ctx.fillRect(0, 0, 16, 16);
+      ['#5c6068', '#7a7f8c', '#9aa2b0', '#c0c6d2'].forEach((col, i) => {
+        ctx.fillStyle = col; ctx.fillRect(2 + i, 13 - i * 3, 12 - i * 2, 3);
+      });
+      scene.textures.addCanvas('td_stairs_up', c);
+    }
+    {
+      const [c, ctx] = canvasOf(16, 16);
+      // stairs down: dark descending hole
+      ctx.fillStyle = '#06060a'; ctx.fillRect(0, 0, 16, 16);
+      ['#3c4048', '#2a2d34', '#181a20'].forEach((col, i) => {
+        ctx.fillStyle = col; ctx.fillRect(2, 2 + i * 4, 12, 4);
+      });
+      ctx.fillStyle = '#7a7f8c'; ctx.fillRect(1, 0, 14, 2);
+      scene.textures.addCanvas('td_stairs_down', c);
+    }
+  }
+
+  const TD = {
+    generateAll(scene) {
+      for (const [name, p] of Object.entries(MH.THEMES)) genTdTiles(scene, name, p);
+      genTdUniversal(scene);
+      for (const [cls, look] of Object.entries(MH.sprites.CLASS_LOOKS || {})) {
+        genTdActor(scene, `td_player_${cls}`, 'human', look.pal, look.acc);
+      }
+      for (const rule of (MH.sprites.MOB_RULES || [])) {
+        const pal = Object.assign({ skin: '#d8a878', hair: '#5a4a32', weapon: '#8a8e9a' }, rule.pal);
+        genTdActor(scene, `td_mob_${rule.key}`, rule.body, pal, rule.acc, rule.alpha);
+      }
+      this.registerAnims(scene);
+    },
+    registerAnims(scene) {
+      const keys = scene.textures.getTextureKeys().filter(k => k.startsWith('td_player_') || k.startsWith('td_mob_'));
+      for (const key of keys) {
+        const mk = (anim, frames, rate, repeat = -1) => {
+          if (scene.anims.exists(`${key}_${anim}`)) return;
+          scene.anims.create({ key: `${key}_${anim}`, frames: frames.map(f => ({ key, frame: f })), frameRate: rate, repeat });
+        };
+        mk('walkd', ['d0', 'd1'], 6);
+        mk('walku', ['u0', 'u1'], 6);
+        mk('walks', ['s0', 's1'], 6);
+        mk('hurt', ['hurt'], 1, 0);
+        mk('death', ['death'], 1, 0);
+      }
+    },
+    playerKey(charClass) {
+      const cls = String(charClass || '').toLowerCase();
+      return (MH.sprites.CLASS_LOOKS || {})[cls] ? `td_player_${cls}` : 'td_player_warrior';
+    },
+    mobKey(name) {
+      return `td_mob_${MH.mobArchetype(name).key}`;
+    },
+  };
+  MH.tdSprites = TD;
 })();

@@ -120,5 +120,81 @@ for (const [kind, list] of Object.entries(failures)) {
   const sample = list.slice(0, 6).map(f => `${f.vnum}${f.detail ? '(' + f.detail + ')' : ''}`).join(', ');
   console.log(`FAIL ${kind}: ${list.length}  e.g. ${sample}`);
 }
-if (!total) console.log('ALL CHECKS PASSED');
-process.exit(total ? 1 : 0);
+if (!total) console.log('[side-view] ALL CHECKS PASSED');
+if (total) process.exitCode = 1;
+
+// ===================== top-down (Zelda view) QC =====================
+(function qcTopDown() {
+  // the topdown generator needs themeForSector + mulberry32 already shimmed
+  eval(fs.readFileSync('src/web_isometric/platformer/roomgen.js', 'utf8'));
+  const gen = global.window.MH.generateRoomTopDown;
+  const TDC = global.window.MH.TD;
+
+  function flood(layout, sx, sy) {
+    const { W, H } = layout;
+    const seen = new Uint8Array(W * H);
+    const q = [[sx, sy]];
+    seen[sy * W + sx] = 1;
+    while (q.length) {
+      const [x, y] = q.pop();
+      for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+        const nx = x + dx, ny = y + dy;
+        if (nx < 0 || ny < 0 || nx >= W || ny >= H) continue;
+        const i = ny * W + nx;
+        if (seen[i]) continue;
+        const c = layout.grid[i];
+        if (c === TDC.BLOCK || c === TDC.WATER) continue;
+        seen[i] = 1;
+        q.push([nx, ny]);
+      }
+    }
+    return seen;
+  }
+
+  const tdFailures = {};
+  const tfail = (k, v, d) => (tdFailures[k] = tdFailures[k] || []).push({ v, d });
+  let n = 0;
+  for (const r of rooms) {
+    const rd = { vnum: r.vnum, sector: r.sector_type || '', flags: r.flags || [], exits: r.exits || {} };
+    let a, b;
+    try { a = gen(rd); b = gen(rd); } catch (e) { tfail('crash', r.vnum, e.message); continue; }
+    n++;
+    if (Buffer.from(a.grid).compare(Buffer.from(b.grid)) !== 0) tfail('nondeterministic', r.vnum, '');
+    const ex = rd.exits;
+    if (ex.north && !a.gaps.north) tfail('missing-exit', r.vnum, 'north');
+    if (ex.south && !a.gaps.south) tfail('missing-exit', r.vnum, 'south');
+    if (ex.east && !a.gaps.east) tfail('missing-exit', r.vnum, 'east');
+    if (ex.west && !a.gaps.west) tfail('missing-exit', r.vnum, 'west');
+    if (ex.up && !a.stairsUp) tfail('missing-exit', r.vnum, 'up');
+    if (ex.down && !a.stairsDown) tfail('missing-exit', r.vnum, 'down');
+    const midX = Math.floor(a.W / 2), midY = Math.floor(a.H / 2);
+    const seen = flood(a, midX, midY);
+    const pois = [];
+    if (a.gaps.north) pois.push(['north', midX, 1]);
+    if (a.gaps.south) pois.push(['south', midX, a.H - 2]);
+    if (a.gaps.west) pois.push(['west', 1, midY]);
+    if (a.gaps.east) pois.push(['east', a.W - 2, midY]);
+    if (a.stairsUp) pois.push(['up', a.stairsUp.x, a.stairsUp.y]);
+    if (a.stairsDown) pois.push(['down', a.stairsDown.x, a.stairsDown.y]);
+    a.portals.forEach(p => pois.push([p.name, p.x, p.y]));
+    for (const [name, x, y] of pois) {
+      if (!seen[y * a.W + x]) tfail('poi-unreachable', r.vnum, `${name} sector=${rd.sector}`);
+    }
+    a.spawnSlots.forEach((s, i) => {
+      const tx = Math.floor(s.x / a.T), ty = Math.floor(s.y / a.T);
+      if (a.grid[ty * a.W + tx] === TDC.BLOCK) tfail('spawn-in-wall', r.vnum, `slot${i}`);
+    });
+    for (const [dir, e] of Object.entries(a.entries)) {
+      const tx = Math.floor(e.x / a.T), ty = Math.floor(e.y / a.T);
+      if (a.grid[ty * a.W + tx] === TDC.BLOCK) tfail('entry-in-wall', r.vnum, dir);
+    }
+  }
+  console.log(`\n[topdown] checked ${n} rooms`);
+  let tdTotal = 0;
+  for (const [kind, list] of Object.entries(tdFailures)) {
+    tdTotal += list.length;
+    console.log(`[topdown] FAIL ${kind}: ${list.length}  e.g. ${list.slice(0, 5).map(f => `${f.v}(${f.d})`).join(', ')}`);
+  }
+  if (!tdTotal) console.log('[topdown] ALL CHECKS PASSED');
+  else process.exitCode = 1;
+})();
