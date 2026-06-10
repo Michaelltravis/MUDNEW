@@ -143,28 +143,56 @@
   .mtab { cursor: pointer; color: var(--dim); letter-spacing: 2px; }
   .mtab.active { color: var(--gold); border-bottom: 1px solid var(--gold); }
   .mtab:hover { color: #fff; }
-  .talent-points { color: var(--gold); font-size: 12px; letter-spacing: 1px; margin-bottom: 8px; }
+  .talent-points { color: var(--gold); font-size: 15px; letter-spacing: 1px; margin-bottom: 10px; }
   .ttrees { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
   .ttree { background: #10131c; border: 1px solid #1c202c; border-radius: 6px; padding: 8px; }
   .ttree .thead { text-align: center; margin-bottom: 6px; }
   .ttree .thead .ticon { font-size: 18px; }
-  .ttree .thead .tname { color: var(--gold); font-size: 12px; letter-spacing: 1px; }
-  .ttree .thead .tpts { color: var(--dim); font-size: 9px; }
-  .ttree .thead .tdesc { color: var(--dim); font-size: 9px; line-height: 1.4; margin-top: 2px; min-height: 24px; }
-  .tier-label { color: #3d4356; font-size: 8px; letter-spacing: 1px; margin: 6px 0 2px; border-top: 1px dashed #1c202c; padding-top: 4px; }
+  .ttree .thead .tname { color: var(--gold); font-size: 15px; letter-spacing: 1px; }
+  .ttree .thead .tpts { color: #aab2c4; font-size: 11px; }
+  .ttree .thead .tdesc { color: #aab2c4; font-size: 11px; line-height: 1.45; margin-top: 3px; min-height: 28px; }
+  .tier-label { color: #7a8094; font-size: 10px; letter-spacing: 1px; margin: 8px 0 3px; border-top: 1px dashed #2a3040; padding-top: 5px; }
   .tnode {
-    display: flex; align-items: center; gap: 6px; padding: 4px 6px; margin: 2px 0;
-    background: #161a26; border: 1px solid #232838; border-radius: 4px; font-size: 10.5px;
+    display: flex; align-items: center; gap: 7px; padding: 6px 8px; margin: 3px 0;
+    background: #161a26; border: 1px solid #2a3040; border-radius: 4px; font-size: 13px;
   }
-  .tnode .tn-name { flex: 1; color: #8a90a4; }
-  .tnode .tn-rank { font-size: 9px; color: var(--dim); }
+  .tnode .tn-name { flex: 1; color: #c2c8d6; }
+  .tnode .tn-rank { font-size: 11px; color: #9aa2b4; }
   .tnode.learnable { border-color: #2f7a45; cursor: pointer; }
   .tnode.learnable .tn-name { color: #b8e8c4; }
   .tnode.learnable:hover { background: #1a2a20; border-color: var(--green); }
   .tnode.ranked { border-color: #6a5a2c; }
   .tnode.ranked .tn-name { color: var(--gold); }
   .tnode.maxed { border-color: var(--gold); background: #1c1910; }
-  .tnode.locked { opacity: 0.45; }
+  .tnode.locked { opacity: 0.6; }
+  .tnode.locked .tn-name { color: #6a7184; }
+
+  /* ---- doctrine panel (warrior) ---- */
+  .doctrine-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+  .dcard { background: #10131c; border: 1px solid #2a3040; border-radius: 6px; padding: 12px; text-align: center; }
+  .dcard.sworn { border-color: var(--gold); background: #1a1710; }
+  .dcard .dname { color: var(--gold); font-size: 15px; letter-spacing: 1px; }
+  .dcard .ddesc { color: #c2c8d6; font-size: 12px; margin: 6px 0; line-height: 1.5; }
+  .dcard .dflavor { color: #8a90a4; font-size: 11px; font-style: italic; line-height: 1.45; }
+  .dcard .dbonus { color: var(--green); font-size: 11px; margin-top: 6px; }
+  .dcard button {
+    margin-top: 9px; padding: 6px 16px; background: #2a2f42; color: var(--gold);
+    border: 1px solid var(--border); border-radius: 4px; font-family: inherit; font-size: 12px; cursor: pointer;
+  }
+  .dcard button:hover { background: #353b54; }
+  .evo-card { background: #10131c; border: 1px solid #2a3040; border-radius: 6px; padding: 10px 12px; margin: 6px 0; }
+  .evo-card .ehead { display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+  .evo-card .ename { color: var(--gold); }
+  .evo-card .eusage { color: #aab2c4; font-size: 12px; }
+  .evo-track { height: 7px; background: #0a0b10; border-radius: 3px; margin: 7px 0; overflow: hidden; }
+  .evo-track i { display: block; height: 100%; background: linear-gradient(90deg, #8a6a2c, #e8c168); }
+  .evo-step { font-size: 12px; color: #c2c8d6; padding: 3px 0; }
+  .evo-step.done { color: var(--green); }
+  .evo-step.ready { color: var(--gold); }
+  .evo-step button {
+    margin-left: 8px; padding: 2px 10px; background: #2a3a22; color: var(--green);
+    border: 1px solid #2f7a45; border-radius: 3px; font-family: inherit; font-size: 11px; cursor: pointer;
+  }
 
   /* ---- spellbook grid ---- */
   .spellgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }

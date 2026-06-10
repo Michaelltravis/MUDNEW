@@ -674,8 +674,7 @@
       return;
     }
     if (!data.has_trees) {
-      els.talentsBody.innerHTML = '<div class="talent-points">Warriors follow the Martial Doctrines instead of talent trees.</div>'
-        + '<div class="slot">Use the <b>doctrine</b> and <b>evolve</b> commands — or the command bar below — to shape your path.</div>';
+      renderDoctrine();
       return;
     }
     let html = `<div class="talent-points">★ ${data.points_available} talent point${data.points_available === 1 ? '' : 's'} available`
@@ -719,6 +718,78 @@
       el.addEventListener('click', async () => {
         MH.sendCommand(`talents learn ${el.dataset.tid}`);
         setTimeout(() => { renderTalents(); MH.refreshState(); }, 700);
+      });
+    });
+  }
+
+  // warriors: doctrines + ability evolution instead of trees
+  async function renderDoctrine() {
+    let d;
+    try {
+      const url = talentsUrl().replace('/talents', '/doctrine');
+      d = await (await fetch(url)).json();
+    } catch (_) {
+      els.talentsBody.innerHTML = '<div class="slot">doctrine data unavailable</div>';
+      return;
+    }
+    let html = `<div class="talent-points">⚔ MARTIAL DOCTRINES`
+      + (d.doctrine ? ` <span style="color:#aab2c4">· sworn to the <b>${d.doctrine.replace(/_/g, ' ')}</b> · momentum ${d.momentum}</span>`
+                    : ' <span style="color:#aab2c4">· swear to one path - the choice shapes every ability</span>')
+      + `</div><div class="doctrine-cards">`;
+    for (const [id, doc] of Object.entries(d.doctrines)) {
+      const sworn = d.doctrine === id;
+      html += `<div class="dcard${sworn ? ' sworn' : ''}">`
+        + `<div class="dname">${doc.name}${sworn ? ' ★' : ''}</div>`
+        + `<div class="ddesc">${doc.description}</div>`
+        + `<div class="dflavor">${doc.flavor}</div>`
+        + (doc.bonus ? `<div class="dbonus">${doc.bonus}</div>` : '')
+        + (!d.doctrine ? `<button data-swear="${id}">SWEAR</button>` : '')
+        + `</div>`;
+    }
+    html += '</div>';
+    // evolution tracks: every ability grows with use
+    html += '<div class="talent-points" style="font-size:13px">ABILITY EVOLUTION <span style="color:#aab2c4">· abilities transform through use</span></div>';
+    for (const ab of d.abilities) {
+      const ths = Object.keys(ab.thresholds).map(Number).sort((a, b) => a - b);
+      const next = ths.find(t => ab.usage < t);
+      const maxTh = ths[ths.length - 1] || 1;
+      const frac = Math.min(1, ab.usage / maxTh);
+      html += `<div class="evo-card"><div class="ehead">`
+        + `<span class="ename">${ab.ability}${ab.evolved ? ` → ${ab.evolved.replace(/_/g, ' ')}` : ''}</span>`
+        + `<span class="eusage">${ab.usage} uses${next ? ` · next at ${next}` : ' · fully evolved path'}</span></div>`
+        + `<div class="evo-track"><i style="width:${frac * 100}%"></i></div>`;
+      for (const th of ths) {
+        const reached = ab.usage >= th;
+        const paths = ab.thresholds[String(th)];
+        const mine = d.doctrine && paths[d.doctrine];
+        if (mine) {
+          const [evoId, desc] = mine;
+          const done = ab.evolved === evoId;
+          const cls = done ? 'evo-step done' : reached ? 'evo-step ready' : 'evo-step';
+          html += `<div class="${cls}">${th} uses → <b>${evoId.replace(/_/g, ' ')}</b>: ${desc}`
+            + (reached && !done && !ab.evolved ? ` <button data-evolve="${ab.ability}">EVOLVE</button>` : (done ? ' ✓' : ''))
+            + `</div>`;
+        } else if (!d.doctrine) {
+          html += `<div class="evo-step">${th} uses → <span style="color:#8a90a4">${Object.values(paths).map(p2 => p2[0].replace(/_/g, ' ')).join(' / ')} (per doctrine)</span></div>`;
+        }
+      }
+      html += '</div>';
+    }
+    els.talentsBody.innerHTML = html;
+    els.talentsBody.querySelectorAll('[data-swear]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.dataset.swear;
+        if (!window.confirm(`Swear to the ${id.replace(/_/g, ' ')}? Doctrines shape your warrior permanently.`)) return;
+        MH.sendCommand(`swear ${id}`);
+        // the MUD asks for confirmation; give it
+        setTimeout(() => MH.sendCommand(`swear ${id}`, false), 700);
+        setTimeout(renderDoctrine, 1800);
+      });
+    });
+    els.talentsBody.querySelectorAll('[data-evolve]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        MH.sendCommand(`evolve ${btn.dataset.evolve}`);
+        setTimeout(renderDoctrine, 1200);
       });
     });
   }

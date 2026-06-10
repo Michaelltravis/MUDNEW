@@ -1620,19 +1620,22 @@
       if (tgtEnt && tgtEnt.sprite && !manual && !this.autoNav && !locked && !this.dead) {
         const tgt = tgtEnt.sprite;
         this.setFacing(tgt.x - this.player.x, tgt.y - this.player.y);
-        const baseAng = Math.atan2(this.player.y - tgt.y, this.player.x - tgt.x);
-        const sway = Math.sin(now / 850) * 0.55;
-        const orbitAng = baseAng + sway * 0.06;
+        // comfort band: only reposition when clearly out of range - no
+        // constant magnetic drag
         const want = this.preferredRange || this.classRange();
-        const dist = Phaser.Math.Clamp(Phaser.Math.Distance.Between(this.player.x, this.player.y, tgt.x, tgt.y), want - 6, want + 8);
-        const m = TD().T * 1.6;   // stay clear of the border ring
-        const ox = Phaser.Math.Clamp(tgt.x + Math.cos(orbitAng) * dist, m, this.pxW - m);
-        const oy = Phaser.Math.Clamp(tgt.y + Math.sin(orbitAng) * dist, m, this.pxH - m);
-        // drive with velocity so the physics body respects walls
-        const ddx = ox - this.player.x, ddy = oy - this.player.y;
-        const dd = Math.hypot(ddx, ddy);
-        if (dd > 3) this.player.setVelocity((ddx / dd) * Math.min(40, dd * 2.2), (ddy / dd) * Math.min(40, dd * 2.2));
-        else this.player.setVelocity(0, 0);
+        const d0 = Phaser.Math.Distance.Between(this.player.x, this.player.y, tgt.x, tgt.y);
+        if (d0 > want + 16 || d0 < Math.max(12, want - 14)) {
+          const m = TD().T * 1.6;
+          const ringD = Phaser.Math.Clamp(d0, want - 4, want + 4);
+          const baseAng = Math.atan2(this.player.y - tgt.y, this.player.x - tgt.x);
+          const ox = Phaser.Math.Clamp(tgt.x + Math.cos(baseAng) * ringD, m, this.pxW - m);
+          const oy = Phaser.Math.Clamp(tgt.y + Math.sin(baseAng) * ringD, m, this.pxH - m);
+          const ddx = ox - this.player.x, ddy = oy - this.player.y;
+          const dd = Math.hypot(ddx, ddy);
+          if (dd > 3) this.player.setVelocity((ddx / dd) * Math.min(34, dd * 2), (ddy / dd) * Math.min(34, dd * 2));
+        } else {
+          this.player.setVelocity(0, 0);
+        }
         // ready stance: subtle bounce instead of statue idle
         if (!this.player.anims.isPlaying) {
           this.player.setFrame(`${this.facing}${Math.floor(now / 320) % 2}`);
@@ -1664,25 +1667,59 @@
         });
       }
 
-      // stalking hostiles / fighters press in (2D)
+      // mob brains: approach with a weave, circle at fighting range with
+      // occasional direction flips, back off when too close, keep apart
+      // from each other, and never walk into walls
       const dt = this.game.loop.delta / 1000;
-      for (const ent of this.entities.values()) {
-        if (ent.kind !== 'mob' || (!ent.stalker && !(ent.data && ent.data.fighting))) continue;
-        if (!ent.sprite) continue;
+      const L2 = this.layout, T2 = TD().T;
+      const walkable = (x, y) => {
+        const cx = Math.floor(x / T2), cy = Math.floor(y / T2);
+        if (cx < 1 || cy < 1 || cx >= L2.W - 1 || cy >= L2.H - 1) return false;
+        return L2.grid[cy * L2.W + cx] === 0;
+      };
+      const fighters = [...this.entities.values()].filter(e =>
+        e.kind === 'mob' && e.sprite && (e.stalker || (e.data && e.data.fighting)));
+      for (const ent of fighters) {
+        if (!ent.ai) ent.ai = { dir: (MH.hashStr(ent.key) % 2) ? 1 : -1, nextFlip: now + 1000 + (MH.hashStr(ent.key) % 1500) };
         const dx = this.player.x - ent.sprite.x, dy = this.player.y - ent.sprite.y;
-        const d = Math.hypot(dx, dy);
+        const d = Math.hypot(dx, dy) || 1;
         const casterMob = /caster|ghost|elemental/.test(ent.sprite.texture.key);
-        const stop = ent.data.fighting ? (casterMob ? 52 : 16) : 26;
-        if (d > stop) {
-          const speed = ent.data.fighting ? 90 : 48;
-          ent.sprite.x += (dx / d) * speed * dt;
-          ent.sprite.y += (dy / d) * speed * dt;
+        const ring = ent.data.fighting ? (casterMob ? 52 : 22) : 30;
+        let vx = 0, vy = 0;
+        if (d > ring + 22) {
+          // approach with a hunting weave, not a beeline
+          const sp = ent.data.fighting ? 78 : 46;
+          const weave = Math.sin(now / 480 + MH.hashStr(ent.key)) * 0.45;
+          const a = Math.atan2(dy, dx) + weave;
+          vx = Math.cos(a) * sp;
+          vy = Math.sin(a) * sp;
+        } else if (d < ring - 8) {
+          // too close: give ground
+          vx = -(dx / d) * 34;
+          vy = -(dy / d) * 34;
         } else if (ent.data.fighting) {
-          // in range: strafe around the player like a duelist
-          const sway = Math.cos(now / 700 + MH.hashStr(ent.key)) * 14 * dt;
-          ent.sprite.x += (-dy / (d || 1)) * sway;
-          ent.sprite.y += (dx / (d || 1)) * sway;
-          const tex = ent.sprite.texture.key;
+          // circle the player, flipping direction unpredictably
+          if (now > ent.ai.nextFlip) {
+            if (Math.random() < 0.6) ent.ai.dir *= -1;
+            ent.ai.nextFlip = now + 1100 + Math.random() * 1900;
+          }
+          vx = (-dy / d) * 26 * ent.ai.dir;
+          vy = (dx / d) * 26 * ent.ai.dir;
+        }
+        // personal space: mobs shoulder each other apart
+        for (const other of fighters) {
+          if (other === ent || !other.sprite) continue;
+          const sx = ent.sprite.x - other.sprite.x, sy = ent.sprite.y - other.sprite.y;
+          const sd = Math.hypot(sx, sy);
+          if (sd > 0.01 && sd < 16) { vx += (sx / sd) * 28; vy += (sy / sd) * 28; }
+        }
+        // axis-wise wall respect
+        const nx = ent.sprite.x + vx * dt, ny = ent.sprite.y + vy * dt;
+        if (walkable(nx, ent.sprite.y)) ent.sprite.x = nx;
+        if (walkable(ent.sprite.x, ny)) ent.sprite.y = ny;
+        const moving = Math.abs(vx) + Math.abs(vy) > 4;
+        const tex = ent.sprite.texture.key;
+        if (moving) {
           const anim = Math.abs(dx) > Math.abs(dy) ? `${tex}_walks` : (dy > 0 ? `${tex}_walkd` : `${tex}_walku`);
           ent.sprite.setFlipX(Math.abs(dx) > Math.abs(dy) && dx < 0);
           if (!ent.sprite.anims.isPlaying || ent.sprite.anims.currentAnim.key !== anim) ent.sprite.play(anim);

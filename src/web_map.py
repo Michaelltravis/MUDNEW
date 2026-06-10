@@ -256,6 +256,38 @@ class WebMapServer:
                 except Exception as e:
                     logger.error(f"/talents error: {e}")
                     await self._http_response(writer, 500, 'Error', 'talent data unavailable')
+            elif path.startswith('/doctrine'):
+                # warrior doctrine + ability-evolution progression
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                try:
+                    from warrior_abilities import DOCTRINES, EVOLUTION_TREE
+                    usage = dict(getattr(player, 'ability_usage', {}) or {})
+                    evolved = dict(getattr(player, 'ability_evolutions', {}) or {})
+                    data = {
+                        'doctrine': getattr(player, 'war_doctrine', None),
+                        'momentum': getattr(player, 'momentum', 0),
+                        'doctrines': {k: {
+                            'name': v.get('name', k), 'description': v.get('description', ''),
+                            'flavor': v.get('flavor', ''), 'bonus': v.get('momentum_bonus', ''),
+                        } for k, v in DOCTRINES.items()},
+                        'abilities': [{
+                            'ability': ab,
+                            'usage': int(usage.get(ab, 0)),
+                            'evolved': evolved.get(ab),
+                            'thresholds': {str(th): {doc: list(pair) for doc, pair in paths.items()}
+                                           for th, paths in tree.items()},
+                        } for ab, tree in EVOLUTION_TREE.items()],
+                    }
+                    await self._http_response(writer, 200, 'OK', json.dumps(data), content_type='application/json')
+                except Exception as e:
+                    logger.error(f"/doctrine error: {e}")
+                    await self._http_response(writer, 500, 'Error', 'doctrine data unavailable')
             elif path.startswith('/platformer/'):
                 # Serve platformer client assets (js/css only, no traversal)
                 asset_dir = os.path.realpath(os.path.join(os.path.dirname(__file__), 'web_isometric', 'platformer'))
