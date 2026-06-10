@@ -44,3 +44,6 @@ lib/players/*.json
 
 # Test files (optional - uncomment if you don't want to track test files)
 # test_*.py
+
+# Live-server runtime state (rewritten on every player death)
+data/gravestones.json
