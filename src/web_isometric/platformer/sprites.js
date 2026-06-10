@@ -769,6 +769,30 @@
       scene.textures.addCanvas('px_white', c);
     }
     {
+      // soft radial glow for lights (additive-blended in the scene)
+      const [c, ctx] = canvasOf(128, 128);
+      const g = ctx.createRadialGradient(64, 64, 4, 64, 64, 64);
+      g.addColorStop(0, 'rgba(255,255,255,0.9)');
+      g.addColorStop(0.4, 'rgba(255,255,255,0.35)');
+      g.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, 128, 128);
+      scene.textures.addCanvas('fx_glow', c);
+    }
+    {
+      // long soft light shaft for god rays
+      const [c, ctx] = canvasOf(48, 220);
+      const g = ctx.createLinearGradient(0, 0, 0, 220);
+      g.addColorStop(0, 'rgba(255,255,255,0.55)');
+      g.addColorStop(0.7, 'rgba(255,255,255,0.12)');
+      g.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.moveTo(14, 0); ctx.lineTo(34, 0); ctx.lineTo(48, 220); ctx.lineTo(0, 220);
+      ctx.closePath(); ctx.fill();
+      scene.textures.addCanvas('fx_ray', c);
+    }
+    {
       const [c, ctx] = canvasOf(6, 6);
       ctx.fillStyle = '#ffe080'; ctx.fillRect(1, 1, 4, 4); ctx.fillRect(0, 2, 6, 2); ctx.fillRect(2, 0, 2, 6);
       scene.textures.addCanvas('px_star', c);

@@ -32,6 +32,16 @@
       fit();
       this.scale.on('resize', fit);
 
+      // cinematic grade (WebGL only): falls back gracefully on canvas
+      try {
+        if (this.cameras.main.postFX) {
+          this.cameras.main.postFX.addVignette(0.5, 0.5, 0.98, 0.42);
+          this.cameras.main.postFX.addBloom(0xffffff, 1, 1, 1.1, 1.0, 4);
+          const cm = this.cameras.main.postFX.addColorMatrix();
+          cm.saturate(0.18, true);
+        }
+      } catch (_) { /* older GPU / canvas renderer */ }
+
       this.solids = this.physics.add.staticGroup();
       this.tileLayer = this.add.layer();
       this.bgLayer = this.add.layer().setDepth(-10);
@@ -43,6 +53,11 @@
       this.player.body.setAllowGravity(false);
       this.facing = 'd';
       this.physics.add.collider(this.player, this.solids);
+
+      this.heroGlow = this.add.image(this.player.x, this.player.y, 'fx_glow')
+        .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.20).setScale(0.7)
+        .setDepth(9).setTint(0xfff2cc);
+      this.tweens.add({ targets: this.heroGlow, alpha: 0.28, scale: 0.8, duration: 1600, yoyo: true, repeat: -1, ease: 'sine.inOut' });
 
       this.keys = this.input.keyboard.addKeys({
         left: 'A', right: 'D', up: 'W', down: 'S',
@@ -169,6 +184,7 @@
       }
 
       this.buildFeatures(layout, th);
+      this.buildAtmosphere(layout, th);
 
       // props, gravestones, prose
       for (const prop of layout.props) {
@@ -189,6 +205,87 @@
       this.player.setFlipX(entryDir === 'east');
 
       this.darkRT.setVisible(!!layout.dark);
+    }
+
+    // Ori-style mood pass: themed light pools, god rays, drifting motes.
+    // All procedural, all additive-blended over the pixel art.
+    buildAtmosphere(layout, th) {
+      const { T } = TD();
+      const GLOW = {
+        forest: 0xaaffaa, field: 0xffe9a8, hills: 0xffe9a8, mountain: 0xcfe2ff,
+        desert: 0xffd9a0, swamp: 0x9fd6a0, inside: 0xffb868, city: 0xffc878,
+        dungeon: 0xb08aff, cave: 0xffa868, underwater: 0x66e0ff,
+        water_swim: 0x9fd9ff, water_noswim: 0x9fd9ff, flying: 0xffffff, default: 0xaac4ff,
+      };
+      const glowTint = GLOW[th] || GLOW.default;
+      const rng = MH.mulberry32(layout.vnum + 777);
+      if (this.fxList) this.fxList.forEach(o => o.destroy());
+      this.fxList = [];
+
+      // soft pools of colored light
+      const pools = 2 + Math.floor(rng() * 2);
+      for (let i = 0; i < pools; i++) {
+        const g = this.add.image(40 + rng() * (this.pxW - 80), 30 + rng() * (this.pxH - 60), 'fx_glow')
+          .setBlendMode(Phaser.BlendModes.ADD)
+          .setAlpha(0.07 + rng() * 0.07)
+          .setScale(1.4 + rng() * 1.6)
+          .setTint(glowTint).setDepth(35);
+        this.tweens.add({ targets: g, alpha: g.alpha + 0.05, duration: 2400 + rng() * 2200, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        this.fxList.push(g);
+      }
+
+      // god rays slanting in from above for sunlit themes
+      if (['forest', 'field', 'hills', 'mountain', 'desert', 'swamp', 'water_swim', 'water_noswim', 'flying'].includes(th)) {
+        for (let i = 0; i < 3; i++) {
+          const ray = this.add.image(60 + rng() * (this.pxW - 120), -8, 'fx_ray')
+            .setOrigin(0.5, 0)
+            .setBlendMode(Phaser.BlendModes.ADD)
+            .setAlpha(0.05 + rng() * 0.05)
+            .setRotation(0.25 + rng() * 0.15)
+            .setTint(th === 'underwater' ? 0x88d8ff : 0xfff0c0)
+            .setDepth(36);
+          this.tweens.add({ targets: ray, alpha: ray.alpha + 0.05, x: ray.x + 14, duration: 5200 + rng() * 2600, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+          this.fxList.push(ray);
+        }
+      }
+      if (th === 'underwater') {
+        for (let i = 0; i < 3; i++) {
+          const ray = this.add.image(60 + rng() * (this.pxW - 120), -8, 'fx_ray')
+            .setOrigin(0.5, 0).setBlendMode(Phaser.BlendModes.ADD)
+            .setAlpha(0.07).setRotation(0.18 + rng() * 0.1).setTint(0x88e0ff).setDepth(36);
+          this.tweens.add({ targets: ray, x: ray.x + 18, duration: 6400, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+          this.fxList.push(ray);
+        }
+      }
+
+      // drifting motes / fireflies
+      const moteTint = ['forest', 'swamp'].includes(th) ? 0xbfff80
+        : ['dungeon', 'cave', 'inside', 'default'].includes(th) ? 0xd8c8a0
+        : glowTint;
+      const motes = this.add.particles(0, 0, 'px_white', {
+        x: { min: 20, max: this.pxW - 20 },
+        y: { min: 20, max: this.pxH - 20 },
+        scale: { start: 0.5, end: 0.1 },
+        alpha: { start: 0.5, end: 0 },
+        tint: moteTint,
+        speedX: { min: -6, max: 6 },
+        speedY: { min: -8, max: 2 },
+        lifespan: 7000,
+        frequency: 420,
+        blendMode: 'ADD',
+      }).setDepth(34);
+      this.fxList.push(motes);
+
+      // glows on the travel features
+      const featureGlow = (x, y, tint, scale = 0.45, alpha = 0.3) => {
+        const g = this.add.image(x, y, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+          .setAlpha(alpha).setScale(scale).setTint(tint).setDepth(35);
+        this.tweens.add({ targets: g, alpha: alpha + 0.12, duration: 1200, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        this.fxList.push(g);
+      };
+      if (layout.stairsUp) featureGlow(layout.stairsUp.x * T + T / 2, layout.stairsUp.y * T + T / 2, 0xffe9a8);
+      if (layout.stairsDown) featureGlow(layout.stairsDown.x * T + T / 2, layout.stairsDown.y * T + T / 2, 0x8899ff, 0.4, 0.22);
+      for (const p of layout.portals) featureGlow(p.x * T + T / 2, p.y * T + T / 2, 0xc080ff, 0.55, 0.35);
     }
 
     buildFeatures(layout, th) {
@@ -890,6 +987,8 @@
           ent.sprite.anims.stop();
         }
       }
+
+      if (this.heroGlow) { this.heroGlow.x = this.player.x; this.heroGlow.y = this.player.y; }
 
       // labels + hp bars follow
       for (const ent of this.entities.values()) {
