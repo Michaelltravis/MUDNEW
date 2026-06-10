@@ -137,6 +137,35 @@
   .hotslot .cd.run { animation: cdsweep 2s linear forwards; }
   @keyframes cdsweep { 0% { transform: scaleY(1); } 100% { transform: scaleY(0); } }
 
+  /* ---- talent trees ---- */
+  .modal.wide { width: min(860px, 94vw); }
+  .tabbar { display: flex; gap: 14px; }
+  .mtab { cursor: pointer; color: var(--dim); letter-spacing: 2px; }
+  .mtab.active { color: var(--gold); border-bottom: 1px solid var(--gold); }
+  .mtab:hover { color: #fff; }
+  .talent-points { color: var(--gold); font-size: 12px; letter-spacing: 1px; margin-bottom: 8px; }
+  .ttrees { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  .ttree { background: #10131c; border: 1px solid #1c202c; border-radius: 6px; padding: 8px; }
+  .ttree .thead { text-align: center; margin-bottom: 6px; }
+  .ttree .thead .ticon { font-size: 18px; }
+  .ttree .thead .tname { color: var(--gold); font-size: 12px; letter-spacing: 1px; }
+  .ttree .thead .tpts { color: var(--dim); font-size: 9px; }
+  .ttree .thead .tdesc { color: var(--dim); font-size: 9px; line-height: 1.4; margin-top: 2px; min-height: 24px; }
+  .tier-label { color: #3d4356; font-size: 8px; letter-spacing: 1px; margin: 6px 0 2px; border-top: 1px dashed #1c202c; padding-top: 4px; }
+  .tnode {
+    display: flex; align-items: center; gap: 6px; padding: 4px 6px; margin: 2px 0;
+    background: #161a26; border: 1px solid #232838; border-radius: 4px; font-size: 10.5px;
+  }
+  .tnode .tn-name { flex: 1; color: #8a90a4; }
+  .tnode .tn-rank { font-size: 9px; color: var(--dim); }
+  .tnode.learnable { border-color: #2f7a45; cursor: pointer; }
+  .tnode.learnable .tn-name { color: #b8e8c4; }
+  .tnode.learnable:hover { background: #1a2a20; border-color: var(--green); }
+  .tnode.ranked { border-color: #6a5a2c; }
+  .tnode.ranked .tn-name { color: var(--gold); }
+  .tnode.maxed { border-color: var(--gold); background: #1c1910; }
+  .tnode.locked { opacity: 0.45; }
+
   /* ---- spellbook grid ---- */
   .spellgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
   .spell-entry {
@@ -463,9 +492,13 @@
     <div class="modal-head"><span>SHOP</span><span class="x" data-close="modal-shop">✕</span></div>
     <div class="modal-body" id="shop-body"></div>
   </div>
-  <div class="modal" id="modal-spells">
-    <div class="modal-head"><span>SKILLS &amp; SPELLS</span><span class="x" data-close="modal-spells">✕</span></div>
+  <div class="modal wide" id="modal-spells">
+    <div class="modal-head">
+      <span class="tabbar"><span class="mtab active" data-mtab="abilities">ABILITIES</span><span class="mtab" data-mtab="talents">TALENTS</span></span>
+      <span class="x" data-close="modal-spells">✕</span>
+    </div>
     <div class="modal-body" id="spells-body"></div>
+    <div class="modal-body" id="talents-body" style="display:none"></div>
   </div>
 
   <div id="help-chip">WASD walk · walk off an edge to travel · F/Space sword · T chat · I inv · J journal · K spells · M map · ~ terminal · Enter command</div>

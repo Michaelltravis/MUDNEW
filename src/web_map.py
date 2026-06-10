@@ -220,6 +220,42 @@ class WebMapServer:
                     await self._http_response(writer, 200, 'OK', iso_html, content_type='text/html')
                 except FileNotFoundError:
                     await self._http_response(writer, 404, 'Not Found', 'Isometric view not found')
+            elif path.startswith('/talents'):
+                # talent trees + the player's progression, for the talent UI
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                try:
+                    from talents import CLASS_TALENT_TREES, TalentManager
+                    cls_name = getattr(player, 'char_class', '').lower()
+                    learned = dict(getattr(player, 'talents', {}) or {})
+                    trees = CLASS_TALENT_TREES.get(cls_name, [])
+                    data = {
+                        'class': cls_name,
+                        'points_total': TalentManager.get_talent_points(player),
+                        'points_available': TalentManager.get_available_points(player),
+                        'has_trees': bool(trees),
+                        'trees': [{
+                            'name': t['name'],
+                            'description': t.get('description', ''),
+                            'icon': t.get('icon', ''),
+                            'points': TalentManager.get_tree_points(player, t['name']),
+                            'talents': [{
+                                'id': ta.id, 'name': ta.name, 'description': ta.description,
+                                'tier': ta.tier, 'max_rank': ta.max_rank,
+                                'requires': list(getattr(ta, 'requires', []) or []),
+                                'rank': int(learned.get(ta.id, 0)),
+                            } for ta in t['talents'].values()],
+                        } for t in trees],
+                    }
+                    await self._http_response(writer, 200, 'OK', json.dumps(data), content_type='application/json')
+                except Exception as e:
+                    logger.error(f"/talents error: {e}")
+                    await self._http_response(writer, 500, 'Error', 'talent data unavailable')
             elif path.startswith('/platformer/'):
                 # Serve platformer client assets (js/css only, no traversal)
                 asset_dir = os.path.realpath(os.path.join(os.path.dirname(__file__), 'web_isometric', 'platformer'))

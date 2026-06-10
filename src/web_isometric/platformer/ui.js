@@ -655,6 +655,81 @@
       el.addEventListener('click', () => MH.bus.emit('nav.goto', el.dataset.dir)));
   }
 
+  // ---- talent trees (WoW-style specs; data straight from the MUD) ----
+  function talentsUrl() {
+    const name = encodeURIComponent(MH.state.playerName);
+    const host = window.location.hostname || 'localhost';
+    const isProxy = !window.location.port || window.location.port == 80 || window.location.port == 443;
+    return isProxy ? `/talents?player=${name}` : `${window.location.protocol}//${host}:4001/talents?player=${name}`;
+  }
+
+  async function renderTalents() {
+    els.talentsBody.innerHTML = '<div class="slot">consulting the trainers…</div>';
+    let data;
+    try {
+      const res = await fetch(talentsUrl());
+      data = await res.json();
+    } catch (_) {
+      els.talentsBody.innerHTML = '<div class="slot">talent data unavailable</div>';
+      return;
+    }
+    if (!data.has_trees) {
+      els.talentsBody.innerHTML = '<div class="talent-points">Warriors follow the Martial Doctrines instead of talent trees.</div>'
+        + '<div class="slot">Use the <b>doctrine</b> and <b>evolve</b> commands — or the command bar below — to shape your path.</div>';
+      return;
+    }
+    let html = `<div class="talent-points">★ ${data.points_available} talent point${data.points_available === 1 ? '' : 's'} available`
+      + ` <span style="color:#7a8094">(${data.points_total} total · earned by leveling)</span></div>`;
+    html += '<div class="ttrees">';
+    for (const tree of data.trees) {
+      html += `<div class="ttree"><div class="thead">`
+        + `<div class="ticon">${tree.icon || '✦'}</div>`
+        + `<div class="tname">${tree.name}</div>`
+        + `<div class="tpts">${tree.points} points spent</div>`
+        + `<div class="tdesc">${tree.description || ''}</div></div>`;
+      const byTier = {};
+      tree.talents.forEach(t => (byTier[t.tier] = byTier[t.tier] || []).push(t));
+      const learnedIds = {};
+      tree.talents.forEach(t => { if (t.rank > 0) learnedIds[t.id] = t.rank; });
+      for (const tier of Object.keys(byTier).sort((a, b) => a - b)) {
+        const need = (tier - 1) * 5;
+        html += `<div class="tier-label">TIER ${tier}${need ? ` · ${need} pts in tree` : ''}</div>`;
+        for (const t of byTier[tier]) {
+          const tierOpen = tree.points >= need;
+          const prereqMet = (t.requires || []).every(r => {
+            const all = data.trees.flatMap(tr => tr.talents);
+            const pre = all.find(x => x.id === r);
+            return pre && pre.rank > 0;
+          });
+          const maxed = t.rank >= t.max_rank;
+          const learnable = !maxed && tierOpen && prereqMet && data.points_available > 0;
+          const cls = maxed ? 'tnode maxed' : learnable ? 'tnode learnable' : t.rank > 0 ? 'tnode ranked' : 'tnode locked';
+          const reqTxt = (t.requires || []).length ? ` · requires: ${t.requires.join(', ')}` : '';
+          html += `<div class="${cls}" data-tid="${t.id}" data-learnable="${learnable ? 1 : ''}"`
+            + ` title="${(t.description || '').replace(/"/g, '&quot;')}${reqTxt}">`
+            + `<span class="tn-name">${t.name}</span>`
+            + `<span class="tn-rank">${t.rank}/${t.max_rank}</span></div>`;
+        }
+      }
+      html += '</div>';
+    }
+    html += '</div>';
+    els.talentsBody.innerHTML = html;
+    els.talentsBody.querySelectorAll('.tnode[data-learnable="1"]').forEach(el => {
+      el.addEventListener('click', async () => {
+        MH.sendCommand(`talents learn ${el.dataset.tid}`);
+        setTimeout(() => { renderTalents(); MH.refreshState(); }, 700);
+      });
+    });
+  }
+
+  function showSpellsTab(which) {
+    els.spellsBody.style.display = which === 'abilities' ? '' : 'none';
+    els.talentsBody.style.display = which === 'talents' ? '' : 'none';
+    document.querySelectorAll('.mtab').forEach(t => t.classList.toggle('active', t.dataset.mtab === which));
+    if (which === 'talents') renderTalents();
+  }
+
   // ---- mob hover tooltip with a consider verdict ----
   function considerVerdict(mobLevel) {
     const p = MH.state.player;
@@ -714,6 +789,7 @@
         chatLog: $('chat-log'), chatPanel: $('chat-panel'), chatBody: $('chat-body'),
         chatInput: $('chat-input'), chatMode: $('chat-mode'),
         invBody: $('inv-body'), journalBody: $('journal-body'), shopBody: $('shop-body'), spellsBody: $('spells-body'),
+        talentsBody: $('talents-body'),
         minimap: $('minimap'), mmToggle: $('mm-toggle'), vignette: $('vignette'), mobTip: $('mob-tip'),
         compass: $('compass'), hitFlash: $('hit-flash'), combatChip: $('combat-chip'),
         combatLog: $('combat-log'), combatLogLines: $('combat-log-lines'),
@@ -911,6 +987,10 @@
         }
       });
 
+      // spellbook tab switching
+      document.querySelectorAll('.mtab').forEach(t =>
+        t.addEventListener('click', () => showSpellsTab(t.dataset.mtab)));
+
       // modal close buttons
       document.querySelectorAll('.modal-head .x').forEach(x =>
         x.addEventListener('click', () => $(x.dataset.close).classList.remove('open')));
@@ -934,7 +1014,8 @@
         const k = e.key.toLowerCase();
         if (k === 'i') { renderInventory(); openModal('modal-inv'); }
         else if (k === 'j') { openJournal(); }
-        else if (k === 'k') { renderSpells(); openModal('modal-spells'); }
+        else if (k === 'k') { renderSpells(); openModal('modal-spells'); showSpellsTab('abilities'); }
+        else if (k === 'n') { renderSpells(); openModal('modal-spells'); showSpellsTab('talents'); }
         else if (k === 't') { e.preventDefault(); toggleChatPanel(); }
         else if (k === 'm') { toggleMinimapSize(); }
         if (['a', 'd', 'w', 's', 'arrowleft', 'arrowright', 'arrowup', 'arrowdown', ' '].includes(k)) {
