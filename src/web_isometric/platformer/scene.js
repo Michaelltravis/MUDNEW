@@ -284,6 +284,16 @@
         this.exitZones.push(zone);
       };
       const doorInfo = dir => (layout.exits[dir] && layout.exits[dir].door) || null;
+      // trailhead signpost when an exit crosses into another zone
+      const signpost = (dir, x, y, anchor = 0.5) => {
+        const zone = layout.exits[dir] && layout.exits[dir].to_zone;
+        if (!zone) return;
+        const post = this.add.text(x, y, `→ ${zone}`, {
+          fontFamily: 'Courier New', fontSize: '8px', fontStyle: 'italic', color: '#e8c168',
+          backgroundColor: '#10131ea8', padding: { x: 3, y: 1 },
+        }).setOrigin(anchor, 1).setDepth(3).setAlpha(0.9);
+        this.tileLayer.add(post);
+      };
       const drawDoorIfClosed = (dir, x, y) => {
         const d = doorInfo(dir);
         if (d && d.state !== 'open') {
@@ -298,11 +308,13 @@
         const g = layout.eastGap;
         addZone((layout.W - 2) * T, g.y0 * T, 2 * T, (g.y1 - g.y0 + 1) * T, 'east', 'walk');
         drawDoorIfClosed('east', (layout.W - 1.5) * T, (g.y1 + 1) * T);
+        signpost('east', (layout.W - 2.5) * T, (g.y0 - 0.5) * T, 1);
       }
       if (layout.westGap) {
         const g = layout.westGap;
         addZone(0, g.y0 * T, 2 * T, (g.y1 - g.y0 + 1) * T, 'west', 'walk');
         drawDoorIfClosed('west', 1.5 * T, (g.y1 + 1) * T);
+        signpost('west', 2.5 * T, (g.y0 - 0.5) * T, 0);
       }
       if (layout.northDoor) {
         const d = layout.northDoor;
@@ -313,6 +325,7 @@
         drawDoorIfClosed('north', d.x * T, d.y * T);
         const hint = this.add.text(d.x * T, (d.y - 4.6) * T, 'W·north', { fontFamily: 'Courier New', fontSize: '8px', color: '#7a8094' }).setOrigin(0.5, 1).setDepth(3);
         this.tileLayer.add(hint);
+        signpost('north', d.x * T, (d.y - 5.4) * T);
       }
       if (layout.southDoor) {
         const d = layout.southDoor;
@@ -322,10 +335,12 @@
         drawDoorIfClosed('south', d.x * T, d.y * T);
         const hint = this.add.text(d.x * T, (d.y - 3.4) * T, 'S·south', { fontFamily: 'Courier New', fontSize: '8px', color: '#7a8094' }).setOrigin(0.5, 1).setDepth(4);
         this.tileLayer.add(hint);
+        signpost('south', d.x * T, (d.y - 4.2) * T);
       }
       if (layout.ladder) {
         const l = layout.ladder;
         addZone(l.x * T - 4, 0, T + 8, 2.5 * T, 'up', 'walk'); // climbing past the top
+        signpost('up', l.x * T + 10, 4.2 * T, 0);
       }
       for (const p of (layout.portals || [])) {
         const spr = this.add.sprite(p.x * T, p.y * T, 't_portal', '0').setOrigin(0.5, 1).setDepth(3);
@@ -336,6 +351,7 @@
           fontFamily: 'Courier New', fontSize: '8px', color: '#b87cf0',
         }).setOrigin(0.5, 1).setDepth(3);
         this.tileLayer.add(hint);
+        signpost(p.name, p.x * T, (p.y - 3.8) * T);
       }
       if (layout.trapdoor) {
         const td = layout.trapdoor;
@@ -344,6 +360,7 @@
         addZone((td.x - 1) * T, (td.y - 2) * T, 2 * T, 2 * T, 'down', 'press-down');
         const hint = this.add.text(td.x * T, (td.y - 2.3) * T, 'S·down', { fontFamily: 'Courier New', fontSize: '8px', color: '#7a8094' }).setOrigin(0.5, 1).setDepth(3);
         this.tileLayer.add(hint);
+        signpost('down', td.x * T, (td.y - 3.1) * T);
       }
     }
 

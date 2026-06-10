@@ -13771,6 +13771,13 @@ class CommandHandler:
                             await player.send(f"{c['cyan']}You enter {item.short_desc}.{c['reset']}")
                             await player.do_look([])
                             await dest.send_to_room(f"{player.name} arrives.", exclude=[player])
+                            if hasattr(player.world, 'web_map') and player.world.web_map:
+                                try:
+                                    if hasattr(player, 'explored_rooms'):
+                                        player.explored_rooms.add(dest.vnum)
+                                    await player.world.web_map.notify_player(player)
+                                except Exception:
+                                    pass
                             return
             
             # Try common directions for "inside"
@@ -13799,6 +13806,13 @@ class CommandHandler:
                         await player.send(f"{c['cyan']}You enter {item.short_desc}.{c['reset']}")
                         await player.do_look([])
                         await dest.send_to_room(f"{player.name} arrives.", exclude=[player])
+                        if hasattr(player.world, 'web_map') and player.world.web_map:
+                            try:
+                                if hasattr(player, 'explored_rooms'):
+                                    player.explored_rooms.add(dest.vnum)
+                                await player.world.web_map.notify_player(player)
+                            except Exception:
+                                pass
                         return
         
         await player.send(f"{c['red']}You can't enter that.{c['reset']}")
@@ -15743,6 +15757,15 @@ class CommandHandler:
 
         # Show room
         await recall_room.show_to(player)
+
+        # Keep graphical web clients in sync after the teleport
+        if hasattr(player.world, 'web_map') and player.world.web_map:
+            try:
+                if player.room.vnum not in getattr(player, 'explored_rooms', set()):
+                    player.explored_rooms.add(player.room.vnum)
+                await player.world.web_map.notify_player(player)
+            except Exception:
+                pass
 
         # Announce arrival
         await recall_room.send_to_room(

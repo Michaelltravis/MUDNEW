@@ -440,6 +440,13 @@
         prev.set(nb.vnum, { v, dir });
         queue.push(nb.vnum);
       }
+      // named passages (gate/arch/portal) teleport across the grid
+      for (const pe of (room.portals || [])) {
+        const nb = byVnum.get(pe.to_room);
+        if (!nb || prev.has(nb.vnum)) continue;
+        prev.set(nb.vnum, { v, dir: pe.name });
+        queue.push(nb.vnum);
+      }
     }
     if (!prev.has(toVnum)) return null;
     const dirs = [];

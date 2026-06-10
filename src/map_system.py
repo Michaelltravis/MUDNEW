@@ -535,8 +535,13 @@ def build_map_payload(player, mode: str = 'full') -> dict:
         exits = []
         one_way_exits = []
         
+        portal_exits = []
         for direction, exit_data in _iter_visible_exits(room, player):
             if direction not in DIR_OFFSETS:
+                # named passages (gate/arch/portal/...) — kept for pathfinding
+                pt = _get_exit_target_vnum(exit_data)
+                if pt:
+                    portal_exits.append({'name': direction, 'to_room': pt})
                 continue
             exits.append(direction)
             
@@ -631,6 +636,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'icon': get_room_icon(room),
             'exits': exits,
             'oneWayExits': one_way_exits,
+            'portals': portal_exits,
             'flags': list(room.flags) if hasattr(room, 'flags') else [],
             'mobs': mob_list,
             'players': player_list,
@@ -698,9 +704,17 @@ def build_map_payload(player, mode: str = 'full') -> dict:
                     'state': d.get('state', 'open'),
                     'locked': bool(d.get('locked', False)),
                 }
+            to_vnum = _get_exit_target_vnum(exit_data)
+            # signpost data: name the zone when this exit crosses a border
+            to_zone = None
+            if to_vnum and hasattr(player, 'world'):
+                dest = player.world.rooms.get(to_vnum)
+                if dest and dest.zone and cur.zone and dest.zone.number != cur.zone.number:
+                    to_zone = dest.zone.name
             cur_exits[direction] = {
-                'to_room': _get_exit_target_vnum(exit_data),
+                'to_room': to_vnum,
                 'door': door,
+                'to_zone': to_zone,
             }
         try:
             from gravestones import GravestoneRegistry
