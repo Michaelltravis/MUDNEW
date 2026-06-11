@@ -1086,6 +1086,8 @@ class Player(Character):
             'skills': self.skills,
             'spells': self.spells,
             'talents': getattr(self, 'talents', {}),
+            'path': getattr(self, 'path', None),
+            'path_switch_available': getattr(self, 'path_switch_available', False),
             'quests_completed': self.quests_completed,
             'quest_flags': self.quest_flags,
             'quest_chains': self.quest_chains,
@@ -1286,6 +1288,8 @@ class Player(Character):
             player.skills = data.get('skills', {})
             player.spells = data.get('spells', {})
             player.talents = data.get('talents', {})
+            player.path = data.get('path', None)
+            player.path_switch_available = data.get('path_switch_available', False)
             player.quests_completed = data.get('quests_completed', [])
             player.quest_flags = data.get('quest_flags', {})
             player.quest_chains = data.get('quest_chains', {})

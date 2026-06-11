@@ -807,8 +807,20 @@ class CombatHandler:
             except Exception:
                 pass
 
+            # Path system: lone wolf DR / fellowship coordination, then lifesteal
+            try:
+                from paths import PathManager
+                damage = PathManager.modify_damage(attacker, defender, damage)
+            except Exception:
+                pass
+
             # Apply damage
             killed = await defender.take_damage(damage, attacker)
+            try:
+                from paths import PathManager
+                await PathManager.after_damage(attacker, defender, damage)
+            except Exception:
+                pass
 
             # Assassin Intel accumulation on hit
             if not killed and hasattr(attacker, 'intel_target') and attacker.intel_target == defender:
@@ -1565,6 +1577,11 @@ class CombatHandler:
                             m_bonuses['rested'] = rb
                     total_gain = sum(m_bonuses.values())
                     if total_gain > 0:
+                        try:
+                            from paths import PathManager
+                            total_gain = int(total_gain * PathManager.xp_bonus(member))
+                        except Exception:
+                            pass
                         await member.gain_exp(total_gain, breakdown=m_bonuses)
                         if hasattr(member, 'send'):
                             await member.send(f"{c['bright_yellow']}You gain {total_gain} experience points!{c['reset']}")
@@ -1627,6 +1644,11 @@ class CombatHandler:
                         bonuses['rested'] = rested_bonus
 
                 total_gain = sum(bonuses.values())
+                try:
+                    from paths import PathManager
+                    total_gain = int(total_gain * PathManager.xp_bonus(exp_recipient))
+                except Exception:
+                    pass
                 await exp_recipient.gain_exp(total_gain, breakdown=bonuses)
                 if hasattr(exp_recipient, 'send'):
                     await exp_recipient.send(f"{c['bright_yellow']}You gain {total_gain} experience points!{c['reset']}")

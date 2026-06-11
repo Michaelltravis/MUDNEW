@@ -6097,6 +6097,12 @@ class CommandHandler:
         )
 
     @classmethod
+    async def cmd_path(cls, player: 'Player', args: List[str]):
+        """Choose or view your Path: Lone Wolf or Fellowship."""
+        from paths import PathManager
+        await PathManager.cmd_path(player, args)
+
+    @classmethod
     async def cmd_doctrine(cls, player: 'Player', args: List[str]):
         """View your War Doctrine and progression."""
         c = player.config.COLORS
@@ -9368,6 +9374,11 @@ class CommandHandler:
                 player.inventory.remove(item)
                 c = player.config.COLORS
                 await player.send(f"You quaff {item.short_desc}.")
+                try:
+                    from paths import PathManager
+                    await PathManager.after_quaff(player)
+                except Exception:
+                    pass
 
                 # Apply potion effects
                 if hasattr(item, 'spell_effects'):
@@ -9924,7 +9935,13 @@ class CommandHandler:
 
         elif subcommand == 'complete':
             if len(args) < 2:
-                await player.send("Usage: quest complete <quest_id>")
+                # no id: turn in everything that's finished
+                done = [q.quest_id for q in getattr(player, 'active_quests', []) if q.is_complete()]
+                if not done:
+                    await player.send("Usage: quest complete <quest_id> (no finished quests to turn in)")
+                    return
+                for qid in done:
+                    await QuestManager.complete_quest(player, qid)
                 return
             await QuestManager.complete_quest(player, args[1])
 
@@ -12778,6 +12795,11 @@ class CommandHandler:
             # Quaff the potion
             effects = getattr(target_obj, 'spell_effects', [])
             await player.send(f"{c['bright_green']}You quaff {target_obj.short_desc}.{c['reset']}")
+            try:
+                from paths import PathManager
+                await PathManager.after_quaff(player)
+            except Exception:
+                pass
             if player.room:
                 for char in player.room.characters:
                     if char != player and hasattr(char, 'send'):

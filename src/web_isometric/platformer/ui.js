@@ -682,7 +682,8 @@
       renderDoctrine();
       return;
     }
-    let html = `<div class="talent-points">★ ${data.points_available} talent point${data.points_available === 1 ? '' : 's'} available`
+    let html = pathCardsHtml();
+    html += `<div class="talent-points">★ ${data.points_available} talent point${data.points_available === 1 ? '' : 's'} available`
       + ` <span style="color:#7a8094">(${data.points_total} total · earned by leveling)</span></div>`;
     html += '<div class="ttrees">';
     for (const tree of data.trees) {
@@ -719,12 +720,32 @@
     }
     html += '</div>';
     els.talentsBody.innerHTML = html;
+    wirePathButtons(els.talentsBody);
     els.talentsBody.querySelectorAll('.tnode[data-learnable="1"]').forEach(el => {
       el.addEventListener('click', async () => {
         MH.sendCommand(`talents learn ${el.dataset.tid}`);
         setTimeout(() => { renderTalents(); MH.refreshState(); }, 700);
       });
     });
+  }
+
+  function pathCardsHtml() {
+    const pp = MH.state.player || {};
+    return `<div class="doctrine-cards" style="grid-template-columns:1fr 1fr; margin-bottom:10px">`
+      + `<div class="dcard${pp.path === 'lone_wolf' ? ' sworn' : ''}"><div class="dname">🐺 Lone Wolf${pp.path === 'lone_wolf' ? ' ★' : ''}</div>`
+      + `<div class="ddesc">Ungrouped: damage reduction, lifesteal, consumable mastery. Solo anything - with strategy and a full satchel.</div>`
+      + (pp.path !== 'lone_wolf' ? `<button data-path="lone_wolf">WALK IT</button>` : '') + `</div>`
+      + `<div class="dcard${pp.path === 'fellowship' ? ' sworn' : ''}"><div class="dname">🤝 Fellowship${pp.path === 'fellowship' ? ' ★' : ''}</div>`
+      + `<div class="ddesc">Grouped: +15% experience and coordinated strikes on shared targets. Alone, nothing.</div>`
+      + (pp.path !== 'fellowship' ? `<button data-path="fellowship">WALK IT</button>` : '') + `</div></div>`
+      + `<div class="slot" style="margin-bottom:10px">First choice is free · switching (and talent respec) requires the Trial of Unlearning - Sage Aldric, Temple of Midgaard</div>`;
+  }
+  function wirePathButtons(container) {
+    container.querySelectorAll('[data-path]').forEach(btn =>
+      btn.addEventListener('click', () => {
+        commandWithPeek(`path ${btn.dataset.path}`);
+        setTimeout(() => { MH.refreshState(); showSpellsTab('talents'); }, 1000);
+      }));
   }
 
   // warriors: doctrines + ability evolution instead of trees
@@ -737,7 +758,8 @@
       els.talentsBody.innerHTML = '<div class="slot">doctrine data unavailable</div>';
       return;
     }
-    let html = `<div class="talent-points">⚔ MARTIAL DOCTRINES`
+    let html = pathCardsHtml();
+    html += `<div class="talent-points">⚔ MARTIAL DOCTRINES`
       + (d.doctrine ? ` <span style="color:#aab2c4">· sworn to the <b>${d.doctrine.replace(/_/g, ' ')}</b> · momentum ${d.momentum}</span>`
                     : ' <span style="color:#aab2c4">· swear to one path - the choice shapes every ability</span>')
       + `</div><div class="doctrine-cards">`;
@@ -781,6 +803,7 @@
       html += '</div>';
     }
     els.talentsBody.innerHTML = html;
+    wirePathButtons(els.talentsBody);
     els.talentsBody.querySelectorAll('[data-swear]').forEach(btn => {
       btn.addEventListener('click', () => {
         const id = btn.dataset.swear;
@@ -919,6 +942,7 @@
         combatLog: $('combat-log'), combatLogLines: $('combat-log-lines'),
         castBar: $('cast-bar'), roundBar: $('round-bar'), lootToast: $('loot-toast'), lootLines: $('loot-lines'),
         stanceBar: $('stance-bar'), momentumChip: $('momentum-chip'), finisherChip: $('finisher-chip'),
+        pathChip: $('path-chip'),
         targetHpGhost: $('target-hp-ghost'),
       });
 
@@ -1012,7 +1036,14 @@
       $('mm-out').addEventListener('click', () => mmSetZoom(mmZoom - 2));
 
       // game events
-      MH.bus.on('map', payload => { updateHud(payload.player); renderMinimap(); updateVignette(); autofillBar(); });
+      const updatePathChip = p => {
+        if (!p) return;
+        if (p.path_active === 'lone_wolf') { els.pathChip.textContent = '🐺 LONE WOLF'; els.pathChip.style.display = 'block'; els.pathChip.style.color = '#d8c8a0'; }
+        else if (p.path_active === 'fellowship') { els.pathChip.textContent = '🤝 FELLOWSHIP'; els.pathChip.style.display = 'block'; els.pathChip.style.color = '#9ad0a8'; }
+        else if (p.path) { els.pathChip.textContent = (p.path === 'lone_wolf' ? '🐺' : '🤝') + ' dormant'; els.pathChip.style.display = 'block'; els.pathChip.style.color = '#5a6070'; }
+        else els.pathChip.style.display = 'none';
+      };
+      MH.bus.on('map', payload => { updateHud(payload.player); renderMinimap(); updateVignette(); autofillBar(); updatePathChip(payload.player); });
       MH.bus.on('combat.update', () => { updateHud(MH.state.player); updateVignette(); });
       MH.bus.on('room.entered', () => { walkStep(); hideMobTip(); renderCompass(); });
       // gentle onboarding for first-timers

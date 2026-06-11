@@ -433,6 +433,18 @@ def _exp_thresholds(player):
     return floor, nxt
 
 
+def _path_active(player):
+    try:
+        from paths import PathManager
+        if PathManager.lone_wolf_active(player):
+            return 'lone_wolf'
+        if PathManager.fellowship_active(player):
+            return 'fellowship'
+    except Exception:
+        pass
+    return None
+
+
 def build_combat_payload(player) -> dict:
     """Lightweight push for live combat: vitals + current-room entities only.
 
@@ -482,6 +494,8 @@ def build_combat_payload(player) -> dict:
         'player': {
             'name': player.name,
             'momentum': getattr(player, 'momentum', 0),
+            'path': getattr(player, 'path', None),
+            'path_active': _path_active(player),
             'stance': getattr(player, 'combat_stance', getattr(player, 'mood', '')),
             'hp': getattr(player, 'hp', 0),
             'max_hp': getattr(player, 'max_hp', 1),
@@ -789,6 +803,8 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'exp_floor': _exp_thresholds(player)[0],
             'exp_to_level': _exp_thresholds(player)[1],
             'in_combat': bool(getattr(player, 'fighting', None)),
+            'path': getattr(player, 'path', None),
+            'path_active': _path_active(player),
             'equipment': {
                 slot: {'name': item.name, 'affects': getattr(item, 'affects', [])}
                 for slot, item in getattr(player, 'equipment', {}).items()

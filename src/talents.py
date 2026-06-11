@@ -1728,6 +1728,13 @@ class TalentManager:
         return True, "OK"
     
     @staticmethod
+    def reset_talents(player) -> int:
+        """Clear all learned talents, refunding every point. Returns refunded count."""
+        spent = sum((getattr(player, 'talents', {}) or {}).values())
+        player.talents = {}
+        return spent
+
+    @staticmethod
     async def learn_talent(player: 'Player', talent_id: str) -> bool:
         """Learn or rank up a talent. Returns success."""
         can_learn, reason = TalentManager.can_learn_talent(player, talent_id)
