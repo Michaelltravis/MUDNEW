@@ -230,6 +230,37 @@
         }
       }
 
+      // worn roads run from the room's heart to each cardinal gap - the
+      // town's paths out are visible at a glance
+      if (this.textures.exists('zt_road') && layout.gaps) {
+        const midXt = Math.floor(layout.W / 2), midYt = Math.floor(layout.H / 2);
+        const lay = (x, y, vertical) => {
+          const img = this.add.image(x * T + T / 2, y * T + T / 2, 'zt_road')
+            .setDisplaySize(T, T).setDepth(0.5).setAlpha(0.9);
+          if (!vertical) img.setRotation(Math.PI / 2);
+          this.bgLayer.add(img);
+        };
+        if (layout.gaps.north) for (let y = 0; y <= midYt; y++) lay(midXt, y, true);
+        if (layout.gaps.south) for (let y = midYt; y < layout.H; y++) lay(midXt, y, true);
+        if (layout.gaps.west) for (let x = 0; x <= midXt; x++) lay(x, midYt, false);
+        if (layout.gaps.east) for (let x = midXt; x < layout.W; x++) lay(x, midYt, false);
+        // gateway pillars where a road leaves for another zone
+        if (this.textures.exists('zt_prop_pillar')) {
+          const flank = (x1, y1, x2, y2) => {
+            for (const [fx, fy] of [[x1, y1], [x2, y2]]) {
+              const pl = this.add.image(fx * T + T / 2, (fy + 1) * T, 'zt_prop_pillar')
+                .setOrigin(0.5, 1).setDepth(3).setScale(1 / MH.SMOOTH_SS);
+              this.tileLayer.add(pl);
+            }
+          };
+          const xz = d => layout.exits[d] && layout.exits[d].to_zone;
+          if (layout.gaps.north && xz('north')) flank(midXt - 3, 1, midXt + 3, 1);
+          if (layout.gaps.south && xz('south')) flank(midXt - 3, layout.H - 3, midXt + 3, layout.H - 3);
+          if (layout.gaps.west && xz('west')) flank(1, midYt - 3, 1, midYt + 2);
+          if (layout.gaps.east && xz('east')) flank(layout.W - 2, midYt - 3, layout.W - 2, midYt + 2);
+        }
+      }
+
       this.buildFeatures(layout, th);
       this.buildAtmosphere(layout, th);
 
@@ -529,13 +560,28 @@
         zone.exitDir = dir;
         this.featureZones.push(zone);
       };
+      const featureHint = (x, y, text, color) => {
+        const t = this.add.text(x, y, text, {
+          fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '7px', color,
+        }).setOrigin(0.5, 1).setDepth(3).setAlpha(0.85);
+        this.tileLayer.add(t);
+      };
       if (layout.stairsUp) {
         addFeatureZone(layout.stairsUp.x, layout.stairsUp.y, 'up', 'td_stairs_up');
         signpost('up', layout.stairsUp.x * T + T / 2, (layout.stairsUp.y - 1) * T);
+        if (!(layout.exits.up && layout.exits.up.to_zone)) {
+          featureHint(layout.stairsUp.x * T + T / 2, layout.stairsUp.y * T - 2, '▲ up', '#ffe9a8');
+        }
       }
       if (layout.stairsDown) {
-        addFeatureZone(layout.stairsDown.x, layout.stairsDown.y, 'down', 'td_stairs_down');
+        // in town, a down-exit is a sewer grate, not a stairwell
+        const urban = ['midgaard', 'sewer'].includes(layout.zoneKey) || ['city', 'inside'].includes(th);
+        const downTex = urban && this.textures.exists('zt_grate') ? 'zt_grate' : 'td_stairs_down';
+        addFeatureZone(layout.stairsDown.x, layout.stairsDown.y, 'down', downTex);
         signpost('down', layout.stairsDown.x * T + T / 2, (layout.stairsDown.y - 1) * T);
+        if (!(layout.exits.down && layout.exits.down.to_zone)) {
+          featureHint(layout.stairsDown.x * T + T / 2, layout.stairsDown.y * T - 2, '▼ down', '#9fb8ff');
+        }
       }
       for (const p of layout.portals) {
         const spr = this.add.sprite(p.x * T + T / 2, (p.y + 1) * T, 'sm_portal', '0').setOrigin(0.5, 1).setDepth(3).setScale(0.75 / MH.SMOOTH_SS);

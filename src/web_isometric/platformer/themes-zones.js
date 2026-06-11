@@ -682,6 +682,58 @@
         ctx.fill();
         scene.textures.addCanvas('zt_px_leaf', c);
       }
+      // landmark travel art: sewer grate, worn road tile
+      {
+        const S2 = 16 * SS;
+        const [c, ctx] = canvasOf(S2, S2);
+        // cobble base
+        ctx.fillStyle = '#4c515c'; ctx.fillRect(0, 0, S2, S2);
+        // iron ring
+        const g = ctx.createRadialGradient(S2 / 2, S2 / 2, S2 * 0.1, S2 / 2, S2 / 2, S2 * 0.46);
+        g.addColorStop(0, '#3a3e48'); g.addColorStop(1, '#181b22');
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(S2 / 2, S2 / 2, S2 * 0.42, 0, 7); ctx.fill();
+        ctx.strokeStyle = '#6a707c'; ctx.lineWidth = 1.6 * SS;
+        ctx.beginPath(); ctx.arc(S2 / 2, S2 / 2, S2 * 0.40, 0, 7); ctx.stroke();
+        // grate bars
+        ctx.strokeStyle = '#0c0e14'; ctx.lineWidth = 1.8 * SS;
+        for (let i = -2; i <= 2; i++) {
+          const off = i * S2 * 0.13;
+          const half = Math.sqrt(Math.max(0, (S2 * 0.34) ** 2 - off * off));
+          ctx.beginPath();
+          ctx.moveTo(S2 / 2 + off, S2 / 2 - half);
+          ctx.lineTo(S2 / 2 + off, S2 / 2 + half);
+          ctx.stroke();
+        }
+        // a hint of green glow from below
+        ctx.fillStyle = 'rgba(140,210,150,0.18)';
+        ctx.beginPath(); ctx.arc(S2 / 2, S2 / 2, S2 * 0.3, 0, 7); ctx.fill();
+        scene.textures.addCanvas('zt_grate', c);
+      }
+      {
+        const S2 = 16 * SS;
+        const [c, ctx] = canvasOf(S2, S2);
+        // worn road: translucent overlay tile laid over the floor
+        ctx.clearRect(0, 0, S2, S2);
+        const g = ctx.createLinearGradient(0, 0, S2, 0);
+        g.addColorStop(0, 'rgba(20,16,10,0)');
+        g.addColorStop(0.18, 'rgba(20,16,10,0.16)');
+        g.addColorStop(0.5, 'rgba(28,22,14,0.22)');
+        g.addColorStop(0.82, 'rgba(20,16,10,0.16)');
+        g.addColorStop(1, 'rgba(20,16,10,0)');
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, S2, S2);
+        // wheel ruts
+        ctx.strokeStyle = 'rgba(12,10,6,0.20)'; ctx.lineWidth = 1.2 * SS;
+        ctx.beginPath(); ctx.moveTo(S2 * 0.32, 0); ctx.lineTo(S2 * 0.32, S2);
+        ctx.moveTo(S2 * 0.68, 0); ctx.lineTo(S2 * 0.68, S2); ctx.stroke();
+        // scattered pebbles
+        ctx.fillStyle = 'rgba(255,255,255,0.07)';
+        for (const [px, py] of [[0.42, 0.2], [0.55, 0.6], [0.4, 0.85], [0.62, 0.32]]) {
+          ctx.beginPath(); ctx.arc(S2 * px, S2 * py, 1.1 * SS, 0, 7); ctx.fill();
+        }
+        scene.textures.addCanvas('zt_road', c);
+      }
       {
         const [c, ctx] = canvasOf(6 * SS, 6 * SS);
         const g = ctx.createRadialGradient(3 * SS, 3 * SS, 0.5, 3 * SS, 3 * SS, 3 * SS);

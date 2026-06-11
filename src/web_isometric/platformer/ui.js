@@ -77,7 +77,12 @@
   let capture = null;
   function captureOutput(ms) {
     return new Promise(resolve => {
-      capture = { lines: [], timer: setTimeout(() => { const l = capture.lines; capture = null; resolve(l); }, ms) };
+      const mine = { lines: [] };
+      capture = mine;
+      setTimeout(() => {
+        if (capture === mine) capture = null;   // overlapping captures must not null each other
+        resolve(mine.lines);
+      }, ms);
     });
   }
 
@@ -599,6 +604,7 @@
   let mmLarge = false;
   let walkTargetVnum = null;
   let mmZoom = Number(lsGet('misthollow_mm_zoom')) || 9;
+  let mmZOffset = 0;   // 0 = your level; -1 peeks the sewers below, +1 above
 
   function mmCell() { return mmZoom + (mmLarge ? 3 : 0); }
   function mmSetZoom(z) {
@@ -615,8 +621,22 @@
     ctx.fillStyle = '#0b0c10';
     ctx.fillRect(0, 0, W, H);
     const p = payload.player;
-    const z = p.z || 0;
+    if (renderMinimap._lastPz !== (p.z || 0)) { renderMinimap._lastPz = (p.z || 0); mmZOffset = 0; }
+    const z = (p.z || 0) + mmZOffset;
     const cell = mmCell();
+    if (mmZOffset !== 0) {
+      // peeking another level: faint echo of your own level for orientation
+      ctx.globalAlpha = 0.14;
+      ctx.fillStyle = '#6a7084';
+      for (const r of (payload.rooms || [])) {
+        if ((r.z || 0) !== (p.z || 0)) continue;
+        const ex = W / 2 + (r.x - p.x) * cell - (cell - 2) / 2;
+        const ey = H / 2 + (r.y - p.y) * cell - (cell - 2) / 2;
+        if (ex < -cell || ex > W || ey < -cell || ey > H) continue;
+        ctx.fillRect(ex, ey, cell - 2, cell - 2);
+      }
+      ctx.globalAlpha = 1;
+    }
     const zoneColor = {};
     (payload.zones || []).forEach(zn => { zoneColor[zn.id] = zn.color; });
     for (const r of (payload.rooms || [])) {
@@ -642,8 +662,18 @@
       ctx.fillRect(x - 1, y - 1, 2, 2);
     }
     ctx.globalAlpha = 1;
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(W / 2 - 2, H / 2 - 2, 4, 4);
+    if (mmZOffset === 0) {
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(W / 2 - 2, H / 2 - 2, 4, 4);
+    } else {
+      // hollow marker: you are not standing on the viewed level
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(W / 2 - 2.5, H / 2 - 2.5, 5, 5);
+      ctx.fillStyle = '#e8c168';
+      ctx.font = '8px Trebuchet MS, Verdana, sans-serif';
+      ctx.fillText(mmZOffset < 0 ? '▼ below ground' : '▲ upper level', 4, H - 4);
+    }
   }
 
   function bfsPath(fromVnum, toVnum) {
@@ -708,7 +738,7 @@
     const p = payload.player;
     const rx = Math.round((mx - els.minimap.width / 2) / cell + p.x);
     const ry = Math.round((my - els.minimap.height / 2) / cell + p.y);
-    const room = (payload.rooms || []).find(r => r.x === rx && r.y === ry && (r.z || 0) === (p.z || 0));
+    const room = (payload.rooms || []).find(r => r.x === rx && r.y === ry && (r.z || 0) === ((p.z || 0) + mmZOffset));
     if (!room || room.vnum === p.vnum) return;
     walkTargetVnum = room.vnum;
     renderMinimap();
@@ -1120,6 +1150,18 @@
         mmSetZoom(mmZoom + (e.deltaY < 0 ? 1 : -1));
       }, { passive: false });
       $('mm-in').addEventListener('click', () => mmSetZoom(mmZoom + 2));
+      // ↕ cycles through the levels you've explored here (sewers, towers)
+      $('mm-level').addEventListener('click', () => {
+        const payload = MH.state.lastPayload;
+        const pz = (payload && payload.player && payload.player.z) || 0;
+        const levels = [...new Set(((payload && payload.rooms) || []).map(r => (r.z || 0)))].sort((a, b) => b - a);
+        if (levels.length < 2) { flash('Nothing explored above or below here yet.'); return; }
+        const cur = levels.indexOf(pz + mmZOffset);
+        const next = levels[(cur + 1) % levels.length];
+        mmZOffset = next - pz;
+        flash(mmZOffset === 0 ? 'Map: your level' : mmZOffset < 0 ? 'Map: below ground' : 'Map: upper level');
+        renderMinimap();
+      });
       $('mm-out').addEventListener('click', () => mmSetZoom(mmZoom - 2));
 
       // game events

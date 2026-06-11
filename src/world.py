@@ -617,6 +617,30 @@ class World:
         # Link room exits
         self.link_exits()
 
+        # Canary check: if zone 30 loaded but looks like the tiny default-world
+        # stub (the old bootstrap bug overwrote real zone files with it), the
+        # big Midgaard - Market Square, the gates, the sewers - is missing.
+        # Try to self-heal from git, then reload once.
+        if not getattr(self, '_world_heal_attempted', False) and self._world_looks_corrupted():
+            self._world_heal_attempted = True
+            logger.error(
+                "WORLD DATA CORRUPTED: zone 30 is the 13-room stub town, not "
+                "Northern Midgaard (Market Square/sewers missing). Attempting "
+                "automatic restore from git..."
+            )
+            if self._restore_world_from_git():
+                logger.error("Restore succeeded - reloading world.")
+                self.zones.clear()
+                self.rooms.clear()
+                self.mob_prototypes.clear()
+                self.obj_prototypes.clear()
+                await self.load()
+                return
+            raise RuntimeError(
+                "World data is the corrupted stub and automatic restore failed. "
+                "Run: git checkout -- world/zones/   then restart the server."
+            )
+
         # Seed puzzles
         try:
             from puzzles import PuzzleManager
@@ -649,6 +673,34 @@ class World:
 
         logger.info(f"World loaded: {len(self.zones)} zones, {len(self.rooms)} rooms")
         
+    def _world_looks_corrupted(self):
+        """True when zone 30 is present but is the default-world stub: the
+        real Northern Midgaard has 70+ rooms including 3054 (Temple Altar)
+        and sewer links; the stub has 13 rooms and neither."""
+        z30 = self.zones.get(30)
+        if not z30:
+            return False
+        return len(z30.rooms) < 30 and 3054 not in self.rooms
+
+    def _restore_world_from_git(self):
+        """Best-effort `git checkout -- world/zones/` to recover clobbered
+        zone files. Returns True when the canary room is back on disk."""
+        import subprocess
+        repo = os.path.dirname(self.config.WORLD_DIR)
+        try:
+            subprocess.run(
+                ['git', 'checkout', '--', 'world/zones/'],
+                cwd=repo, capture_output=True, timeout=30, check=True,
+            )
+        except Exception as e:
+            logger.error(f"git restore failed: {e}")
+            return False
+        try:
+            with open(os.path.join(self.config.WORLD_DIR, 'zones', 'zone_030.json')) as f:
+                return '"3054"' in f.read()
+        except Exception:
+            return False
+
     async def load_zone_file(self, filepath: str):
         """Load a zone from a JSON file."""
         try:

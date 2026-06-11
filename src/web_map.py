@@ -221,7 +221,7 @@ class WebMapServer:
                 target = ((query.get('target') or [''])[0]).strip().lower()
                 player = self.world.players.get(player_name.lower()) if player_name else None
                 if not player or not target or not player.room:
-                    await self._http_response(writer, 404, 'Not Found', json.dumps({'found': False}), content_type='application/json')
+                    await self._http_response(writer, 200, 'OK', json.dumps({'found': False}), content_type='application/json')
                     return
                 room = player.room
                 result = None
@@ -264,7 +264,7 @@ class WebMapServer:
                 target = ((query.get('target') or [''])[0]).strip().lower()
                 player = self.world.players.get(player_name.lower()) if player_name else None
                 if not player or not target or not player.room:
-                    await self._http_response(writer, 404, 'Not Found', json.dumps({'found': False}), content_type='application/json')
+                    await self._http_response(writer, 200, 'OK', json.dumps({'found': False}), content_type='application/json')
                     return
                 from map_system import item_info
                 found = None
