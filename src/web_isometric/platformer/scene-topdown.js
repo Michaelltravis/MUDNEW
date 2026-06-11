@@ -1583,13 +1583,22 @@
       MH.bus.emit('flash', e.line);
       this.exitSuppress = Date.now() + 900;
       if (!pm) return;
-      // step back toward the room center
+      const door = this.layout && this.layout.exits[pm.dir] && this.layout.exits[pm.dir].door;
+      if (door && /closed/i.test(e.line)) {
+        // a closed door we can open: do it, don't treat as a hard block
+        MH.sendCommand(`open ${door.name} ${pm.dir}`);
+      } else {
+        // a real refusal (class/level lock, exhaustion, no way): remember it
+        // so we stop ramming the wall and re-spamming the command. The flash
+        // already told the player why; they can pick another direction.
+        this._blockedDir = pm.dir;
+        this._blockedUntil = Date.now() + 3500;
+      }
+      // step back toward the room center so we're off the gap mouth
       const cx = this.pxW / 2, cy = this.pxH / 2;
       const ang = Math.atan2(cy - this.player.y, cx - this.player.x);
-      this.player.x += Math.cos(ang) * 14;
-      this.player.y += Math.sin(ang) * 14;
-      const door = this.layout && this.layout.exits[pm.dir] && this.layout.exits[pm.dir].door;
-      if (door && /closed/i.test(e.line)) MH.sendCommand(`open ${door.name} ${pm.dir}`);
+      this.player.x += Math.cos(ang) * 18;
+      this.player.y += Math.sin(ang) * 18;
     }
 
     travelFlourish(dir) {
@@ -1694,6 +1703,7 @@
         const pm = MH.state.pendingMove;
         const moveDir = pm ? pm.dir : null;
         MH.state.pendingMove = null;
+        this._blockedDir = null;   // moved rooms: clear any refusal memory
         this.lastVnum = player.vnum;
         const layout = MH.generateRoomTopDown(roomData);
         this.slideTransition(layout, moveDir);
@@ -1796,22 +1806,22 @@
       }
     }
 
-    // same-room changes: secret exits revealed by search, doors opening -
-    // rebuild in place (keeping your feet planted) with a reveal flourish
+    // same-room changes: a secret exit revealed by search appears in place
+    // with a flourish. Deliberately conservative - only a genuinely NEW exit
+    // direction triggers a rebuild, and never while the player is mid-move,
+    // so this can never disturb navigation.
     detectRoomChanges(roomData) {
       if (!this.layout || roomData.vnum !== this.layout.vnum || !roomData.exits) return;
-      const prevExits = this.layout.exits || {};
-      const oldDirs = Object.keys(this.layout.exits || {}).sort().join(',');
-      const newDirs = Object.keys(roomData.exits).sort().join(',');
-      const doorState = ex => Object.entries(ex || {}).map(([d, e]) => d + ':' + (e && e.door ? e.door.state : '-')).sort().join(',');
-      const doorsChanged = doorState(this.layout.exits) !== doorState(roomData.exits);
-      if (oldDirs === newDirs && !doorsChanged) return;
+      if (MH.state.pendingMove || this.autoNav) return;   // never rebuild mid-move
       const fresh = Object.keys(roomData.exits).filter(d => !(d in (this.layout.exits || {})));
+      if (!fresh.length) return;
       const px = this.player.x, py = this.player.y;
-      const layout = MH.generateRoomTopDown(Object.assign({}, roomData, { zone: this.layout.zoneKey ? roomData.zone : roomData.zone }));
+      const suppress = this.exitSuppress;
+      const layout = MH.generateRoomTopDown(Object.assign({}, roomData));
       layout.zoneKey = this.layout.zoneKey;
       this.buildRoom(layout, 'none');
       this.player.setPosition(px, py);
+      this.exitSuppress = suppress;   // an in-place rebuild must not re-gate exits
       const { T } = TD();
       const midX = Math.floor(layout.W / 2) * T, midY = Math.floor(layout.H / 2) * T;
       const SPOT = { north: [midX, T], south: [midX, this.pxH - T], west: [T, midY], east: [this.pxW - T, midY],
@@ -1821,15 +1831,6 @@
         const [fx, fy] = SPOT[d] || [midX, midY];
         this.revealBurst(fx, fy);
         MH.bus.emit('flash', `A hidden way opens to the ${d}!`);
-      }
-      if (doorsChanged && !fresh.length) {
-        for (const [d, e] of Object.entries(roomData.exits)) {
-          const oldE = prevExits[d];
-          if (e.door && oldE && oldE.door && oldE.door.state !== e.door.state && e.door.state === 'open') {
-            const [fx, fy] = SPOT[d] || [midX, midY];
-            this.revealBurst(fx, fy);
-          }
-        }
       }
     }
 
@@ -1975,15 +1976,18 @@
         const body = this.player.body;
         const gapMidX = Math.floor(L.W / 2) * T + T / 2;
         const gapMidY = Math.floor(L.H / 2) * T + T / 2;
-        const PULL = 70, RANGE = 4.5 * T;
-        if (ax < 0 && body.blocked.left && L.gaps.west && Math.abs(this.player.y - gapMidY) < RANGE && vy === 0) {
-          vy = Math.sign(gapMidY - this.player.y) * PULL;
-        } else if (ax > 0 && body.blocked.right && L.gaps.east && Math.abs(this.player.y - gapMidY) < RANGE && vy === 0) {
-          vy = Math.sign(gapMidY - this.player.y) * PULL;
-        } else if (ay < 0 && body.blocked.up && L.gaps.north && Math.abs(this.player.x - gapMidX) < RANGE && vx === 0) {
-          vx = Math.sign(gapMidX - this.player.x) * PULL;
-        } else if (ay > 0 && body.blocked.down && L.gaps.south && Math.abs(this.player.x - gapMidX) < RANGE && vx === 0) {
-          vx = Math.sign(gapMidX - this.player.x) * PULL;
+        // when you drive into a border wall that has an exit, slide along it
+        // toward the gap - the whole wall funnels you to the door (no more
+        // getting pinned in a corner far from a centered gap)
+        const PULL = 90;
+        if (ax < 0 && body.blocked.left && L.gaps.west) {
+          vy = Math.abs(gapMidY - this.player.y) > 3 ? Math.sign(gapMidY - this.player.y) * PULL : 0;
+        } else if (ax > 0 && body.blocked.right && L.gaps.east) {
+          vy = Math.abs(gapMidY - this.player.y) > 3 ? Math.sign(gapMidY - this.player.y) * PULL : 0;
+        } else if (ay < 0 && body.blocked.up && L.gaps.north) {
+          vx = Math.abs(gapMidX - this.player.x) > 3 ? Math.sign(gapMidX - this.player.x) * PULL : 0;
+        } else if (ay > 0 && body.blocked.down && L.gaps.south) {
+          vx = Math.abs(gapMidX - this.player.x) > 3 ? Math.sign(gapMidX - this.player.x) * PULL : 0;
         }
         this.player.setVelocity(vx, vy);
         this.setFacing(ax, ay);
@@ -1996,24 +2000,51 @@
 
       const now = Date.now();
 
-      // exits: physics overlap OR proximity+intent (pressing toward a gap
-      // mouth within 16px) - two independent triggers so a missed overlap
-      // can never strand anyone. Gated states explain themselves.
+      // exits: three independent triggers so geometry can never strand you.
+      //  1) EDGE-PRESS: drive a cardinal into a border wall that has an exit
+      //     that way - intent is unambiguous, fires from anywhere on the wall
+      //  2) ZONE OVERLAP: walk onto an exit/feature zone (stairs, portals)
+      //  3) DEAD-MAN'S SWITCH: pressing toward an existing exit for too long
+      //     with no room change forces the move, bypassing every gate
       {
         const b = this.player.body;
-        const pb = new Phaser.Geom.Rectangle(b.x, b.y, b.width, b.height);
+        const L = this.layout;
+        const T = TD().T;
         let wantExit = null;
-        for (const zone of this.exitZones.concat(this.featureZones || [])) {
-          if (Phaser.Geom.Rectangle.Overlaps(zone.getBounds(), pb)) { wantExit = zone.exitDir; break; }
+        let force = false;
+        if (L && L.gaps) {
+          const atTop = b.blocked.up || this.player.y < T * 1.4;
+          const atBot = b.blocked.down || this.player.y > this.pxH - T * 1.4;
+          const atLeft = b.blocked.left || this.player.x < T * 1.4;
+          const atRight = b.blocked.right || this.player.x > this.pxW - T * 1.4;
+          if (ay < 0 && L.gaps.north && atTop) wantExit = 'north';
+          else if (ay > 0 && L.gaps.south && atBot) wantExit = 'south';
+          else if (ax < 0 && L.gaps.west && atLeft) wantExit = 'west';
+          else if (ax > 0 && L.gaps.east && atRight) wantExit = 'east';
         }
-        if (!wantExit && this.layout && this.layout.gaps) {
-          const midX = Math.floor(this.layout.W / 2) * TD().T + TD().T / 2;
-          const midY = Math.floor(this.layout.H / 2) * TD().T + TD().T / 2;
-          const near = (gx, gy) => Math.hypot(this.player.x - gx, this.player.y - gy) < 22;
-          if (this.layout.gaps.north && ay < 0 && near(midX, TD().T * 1.2)) wantExit = 'north';
-          else if (this.layout.gaps.south && ay > 0 && near(midX, this.pxH - TD().T * 1.2)) wantExit = 'south';
-          else if (this.layout.gaps.west && ax < 0 && near(TD().T * 1.2, midY)) wantExit = 'west';
-          else if (this.layout.gaps.east && ax > 0 && near(this.pxW - TD().T * 1.2, midY)) wantExit = 'east';
+        if (!wantExit) {
+          const pb = new Phaser.Geom.Rectangle(b.x, b.y, b.width, b.height);
+          for (const zone of this.exitZones.concat(this.featureZones || [])) {
+            if (Phaser.Geom.Rectangle.Overlaps(zone.getBounds(), pb)) { wantExit = zone.exitDir; break; }
+          }
+        }
+        // dead-man's switch: holding a direction with an exit but going
+        // nowhere for 1.5s means SOMETHING wedged - break through it
+        const pressedDir = ay < 0 ? 'north' : ay > 0 ? 'south' : ax < 0 ? 'west' : ax > 0 ? 'east' : null;
+        if (manual && pressedDir && L && L.exits && Object.prototype.hasOwnProperty.call(L.exits, pressedDir)
+            && !MH.state.inCombat && !locked) {
+          if (this._pressDir !== pressedDir) { this._pressDir = pressedDir; this._pressSince = now; }
+          else if (now - this._pressSince > 1500) {
+            wantExit = pressedDir; force = true;
+          }
+        } else {
+          this._pressDir = null;
+        }
+        // a direction the server just refused (class/level lock, exhaustion):
+        // don't ram it again until the cooldown passes or you press elsewhere
+        if (wantExit && wantExit === this._blockedDir && now < this._blockedUntil) {
+          if (pressedDir && pressedDir !== this._blockedDir) this._blockedDir = null;
+          wantExit = null;
         }
         if (wantExit) {
           if (MH.state.inCombat) {
@@ -2021,9 +2052,10 @@
               this._gateFlash = now;
               MH.bus.emit('flash', "You're fighting! Flee to escape, or finish it.");
             }
-          } else if (locked || Date.now() <= this.exitSuppress) {
+          } else if (!force && (locked || now <= this.exitSuppress)) {
             // in-flight or cooling down: silent, resolves within a second
           } else {
+            if (force) { MH.state.pendingMove = null; this.exitSuppress = 0; this._pressSince = now; }
             this.requestMove(wantExit);
           }
         }
