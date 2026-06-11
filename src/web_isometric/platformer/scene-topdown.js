@@ -164,25 +164,41 @@
       if (this.bubbleEmitter) { this.bubbleEmitter.destroy(); this.bubbleEmitter = null; }
 
       const th = layout.theme;
+      const zk = layout.zoneKey && this.textures.exists(`zt_${layout.zoneKey}_floor0`) ? layout.zoneKey : null;
+      const zt = zk ? MH.ZONE_THEMES[zk] : null;
+      const checker = zt && zt.floorKind === 'checker';
 
       // floor everywhere, then border/obstacles/water from the grid
+      const vrng = MH.mulberry32(layout.vnum ^ 0xf10c);
       for (let y = 0; y < layout.H; y++) {
         for (let x = 0; x < layout.W; x++) {
           const cell = layout.grid[y * layout.W + x];
-          const img = this.add.image(x * T, y * T, `td_${th}_floor`).setOrigin(0, 0).setDisplaySize(T, T);
-          if ((x + y) % 2) img.setTint(0xf4f4f4);   // subtle checker
+          let img;
+          if (zk) {
+            // seeded variant mix: mostly plain, some detailed; checker themes alternate dark tiles
+            const r = vrng();
+            const v = checker ? 0 : (r < 0.55 ? 0 : r < 0.8 ? 1 : 2);
+            img = this.add.image(x * T, y * T, `zt_${zk}_floor${v}`).setOrigin(0, 0).setDisplaySize(T, T);
+            if (checker && (x + y) % 2) img.setTint(0x3c3a48);
+            else if (!checker && (x + y) % 2) img.setTint(0xf6f6f6);
+          } else {
+            img = this.add.image(x * T, y * T, `td_${th}_floor`).setOrigin(0, 0).setDisplaySize(T, T);
+            if ((x + y) % 2) img.setTint(0xf4f4f4);   // subtle checker
+          }
           this.bgLayer.add(img);
           if (cell === BLOCK) {
             const isBorder = x === 0 || y === 0 || x === layout.W - 1 || y === layout.H - 1;
             const ob = layout.obstacles && layout.obstacles.find(o =>
               x >= o.x && x < o.x + (o.big ? 2 : 1) && y >= o.y && y < o.y + (o.big ? 2 : 1));
-            const key = isBorder ? `td_${th}_border` : `td_${th}_obst${ob ? ob.idx : 0}`;
+            const key = zk
+              ? (isBorder ? `zt_${zk}_border` : `zt_${zk}_obst${ob ? ob.idx % 2 : 0}`)
+              : (isBorder ? `td_${th}_border` : `td_${th}_obst${ob ? ob.idx : 0}`);
             const blockImg = this.add.image(x * T, y * T, key).setOrigin(0, 0).setDisplaySize(T, T).setDepth(1);
             this.tileLayer.add(blockImg);
           } else if (cell === WATER) {
             const spr = this.add.sprite(x * T, y * T, 'sm_water', '0').setOrigin(0, 0).setDisplaySize(T, T).setDepth(1).setAlpha(0.95);
             spr.play('sm_water_anim');
-            const liquid = (MH.THEMES[th] && MH.THEMES[th].liquid) || '#3a6a9a';
+            const liquid = (zt && zt.water) || (MH.THEMES[th] && MH.THEMES[th].liquid) || '#3a6a9a';
             spr.setTint(Phaser.Display.Color.HexStringToColor(liquid).color | 0x404040);
             this.tileLayer.add(spr);
           }
@@ -219,9 +235,22 @@
           ? ['sm_prop_lamp', 'sm_prop_crate', 'sm_prop_crate']
           : ['sm_prop_crate', 'sm_prop_lamp', 'sm_prop_bush'];
       for (const prop of layout.props) {
-        const img = this.add.image(prop.x * T, (prop.y + 1) * T, propSet[prop.idx % 3])
-          .setOrigin(0.25, 1).setDepth(3).setScale(0.85 / MH.SMOOTH_SS);
-        this.tileLayer.add(img);
+        if (prop.name && this.textures.exists(`zt_prop_${prop.name}`)) {
+          const img = this.add.image(prop.x * T + T / 2, (prop.y + 1) * T, `zt_prop_${prop.name}`)
+            .setOrigin(0.5, 1).setDepth(3).setScale((prop.scale || 1) / MH.SMOOTH_SS);
+          this.tileLayer.add(img);
+          const glowTint = MH.GLOW_PROPS && MH.GLOW_PROPS[prop.name];
+          if (glowTint) {
+            const g = this.add.image(prop.x * T + T / 2, prop.y * T + T * 0.3, 'fx_glow')
+              .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.22).setScale(0.32).setTint(glowTint).setDepth(35);
+            this.tweens.add({ targets: g, alpha: 0.34, duration: 900 + (prop.x * 137 % 700), yoyo: true, repeat: -1, ease: 'sine.inOut' });
+            this.tileLayer.add(g);
+          }
+        } else {
+          const img = this.add.image(prop.x * T, (prop.y + 1) * T, propSet[prop.idx % 3])
+            .setOrigin(0.25, 1).setDepth(3).setScale(0.85 / MH.SMOOTH_SS);
+          this.tileLayer.add(img);
+        }
       }
       this.placeGravestones(layout);
       this.placeProse(layout);
@@ -249,10 +278,18 @@
         dungeon: 0xb08aff, cave: 0xffa868, underwater: 0x66e0ff,
         water_swim: 0x9fd9ff, water_noswim: 0x9fd9ff, flying: 0xffffff, default: 0xaac4ff,
       };
-      const glowTint = GLOW[th] || GLOW.default;
+      const zt = layout.zoneKey && MH.ZONE_THEMES ? MH.ZONE_THEMES[layout.zoneKey] : null;
+      const glowTint = (zt && zt.glow) || GLOW[th] || GLOW.default;
       const rng = MH.mulberry32(layout.vnum + 777);
       if (this.fxList) this.fxList.forEach(o => o.destroy());
       this.fxList = [];
+
+      // zone mood wash: a whisper of the theme's color over everything
+      if (zt && zt.mood) {
+        const wash = this.add.rectangle(0, 0, this.pxW, this.pxH, zt.mood, zt.moodA || 0.06)
+          .setOrigin(0, 0).setDepth(33).setBlendMode(Phaser.BlendModes.OVERLAY);
+        this.fxList.push(wash);
+      }
 
       // soft pools of colored light
       const pools = 2 + Math.floor(rng() * 2);
@@ -290,23 +327,106 @@
         }
       }
 
-      // drifting motes / fireflies
-      const moteTint = ['forest', 'swamp'].includes(th) ? 0xbfff80
-        : ['dungeon', 'cave', 'inside', 'default'].includes(th) ? 0xd8c8a0
-        : glowTint;
-      const motes = this.add.particles(0, 0, 'px_white', {
-        x: { min: 20, max: this.pxW - 20 },
-        y: { min: 20, max: this.pxH - 20 },
-        scale: { start: 0.5, end: 0.1 },
-        alpha: { start: 0.5, end: 0 },
-        tint: moteTint,
-        speedX: { min: -6, max: 6 },
-        speedY: { min: -8, max: 2 },
-        lifespan: 7000,
-        frequency: 420,
-        blendMode: 'ADD',
-      }).setDepth(34);
-      this.fxList.push(motes);
+      // themed ambient weather (zone themes), falling back to drifting motes
+      const ambient = zt ? zt.ambient : 'motes';
+      const soft = this.textures.exists('zt_px_soft') ? 'zt_px_soft' : 'px_white';
+      const leaf = this.textures.exists('zt_px_leaf') ? 'zt_px_leaf' : 'px_white';
+      const fullX = { min: 10, max: this.pxW - 10 };
+      const addAmb = cfg => {
+        const p = this.add.particles(0, 0, cfg.tex || soft, cfg).setDepth(34);
+        this.fxList.push(p);
+        return p;
+      };
+      if (ambient === 'leaves' || ambient === 'petals') {
+        addAmb({
+          tex: leaf, x: fullX, y: -8,
+          tint: ambient === 'petals' ? [0xf0b8d0, 0xffe0ec, 0xe89ab8] : [0xc8d870, 0xe0b860, 0xa8c860],
+          scale: { start: 0.32, end: 0.22 }, alpha: { start: 0.9, end: 0 },
+          speedY: { min: 12, max: 26 }, speedX: { min: -14, max: 14 },
+          rotate: { start: 0, end: 360 }, lifespan: 11000, frequency: 560,
+        });
+      } else if (ambient === 'snow') {
+        addAmb({
+          x: fullX, y: -6, tint: 0xffffff,
+          scale: { start: 0.34, end: 0.2 }, alpha: { start: 0.85, end: 0.1 },
+          speedY: { min: 14, max: 30 }, speedX: { min: -10, max: 10 },
+          lifespan: 10000, frequency: 220,
+        });
+      } else if (ambient === 'embers' || ambient === 'sparks') {
+        addAmb({
+          x: fullX, y: this.pxH + 4,
+          tint: ambient === 'sparks' ? [0xffe9a8, 0xffc868] : [0xff9a4a, 0xff5a2a, 0xffd080],
+          scale: { start: 0.3, end: 0.05 }, alpha: { start: 0.9, end: 0 },
+          speedY: { min: -34, max: -14 }, speedX: { min: -8, max: 8 },
+          lifespan: 5200, frequency: ambient === 'sparks' ? 480 : 300, blendMode: 'ADD',
+        });
+      } else if (ambient === 'ash') {
+        addAmb({
+          x: fullX, y: -6, tint: [0x9a9a9a, 0x6e6a66, 0xc0b8b0],
+          scale: { start: 0.26, end: 0.12 }, alpha: { start: 0.6, end: 0 },
+          speedY: { min: 8, max: 18 }, speedX: { min: -12, max: 12 },
+          lifespan: 12000, frequency: 420,
+        });
+      } else if (ambient === 'bubbles') {
+        addAmb({
+          x: fullX, y: this.pxH + 4, tint: 0xbfe8ff,
+          scale: { start: 0.16, end: 0.4 }, alpha: { start: 0.55, end: 0 },
+          speedY: { min: -26, max: -12 }, speedX: { min: -6, max: 6 },
+          lifespan: 8000, frequency: 380, blendMode: 'ADD',
+        });
+      } else if (ambient === 'fireflies') {
+        const ff = addAmb({
+          x: fullX, y: { min: 20, max: this.pxH - 20 }, tint: [0xbfff80, 0xdfff9a],
+          scale: { start: 0.4, end: 0.08 }, alpha: { start: 0.9, end: 0 },
+          speedX: { min: -14, max: 14 }, speedY: { min: -10, max: 10 },
+          lifespan: 4200, frequency: 520, blendMode: 'ADD',
+        });
+      } else if (ambient === 'stars') {
+        addAmb({
+          x: fullX, y: { min: 10, max: this.pxH - 10 }, tint: [0xffffff, 0xb0a8ff, 0x9ad8ff],
+          scale: { start: 0.05, end: 0.4 }, alpha: { start: 0, end: 0.9 },
+          speedX: 0, speedY: 0, lifespan: 2600, frequency: 360, blendMode: 'ADD',
+        });
+      } else if (ambient === 'drips') {
+        addAmb({
+          x: fullX, y: -4, tint: 0x9fd6a0,
+          scale: { start: 0.22, end: 0.1 }, alpha: { start: 0.7, end: 0 },
+          speedY: { min: 60, max: 110 }, speedX: 0,
+          lifespan: 2400, frequency: 700,
+        });
+      } else if (ambient === 'mist') {
+        addAmb({
+          x: fullX, y: { min: this.pxH * 0.4, max: this.pxH - 14 }, tint: 0xaac8aa,
+          scale: { start: 1.6, end: 3.2 }, alpha: { start: 0.0, end: 0.10 },
+          speedX: { min: 4, max: 14 }, speedY: { min: -2, max: 2 },
+          lifespan: 9000, frequency: 800, blendMode: 'SCREEN',
+        });
+      } else if (ambient === 'dust') {
+        addAmb({
+          x: -8, y: { min: 16, max: this.pxH - 16 }, tint: 0xe8d8a8,
+          scale: { start: 0.3, end: 0.1 }, alpha: { start: 0.4, end: 0 },
+          speedX: { min: 26, max: 52 }, speedY: { min: -4, max: 4 },
+          lifespan: 9000, frequency: 520,
+        });
+      } else if (ambient === 'spores') {
+        addAmb({
+          x: fullX, y: { min: 14, max: this.pxH - 14 }, tint: [0xb06ce0, 0xd8a0ff],
+          scale: { start: 0.28, end: 0.06 }, alpha: { start: 0.7, end: 0 },
+          speedX: { min: -8, max: 8 }, speedY: { min: -12, max: -2 },
+          lifespan: 6500, frequency: 460, blendMode: 'ADD',
+        });
+      } else {
+        const moteTint = ['forest', 'swamp'].includes(th) ? 0xbfff80
+          : ['dungeon', 'cave', 'inside', 'default'].includes(th) ? 0xd8c8a0
+          : glowTint;
+        addAmb({
+          tex: 'px_white',
+          x: { min: 20, max: this.pxW - 20 }, y: { min: 20, max: this.pxH - 20 },
+          scale: { start: 0.5, end: 0.1 }, alpha: { start: 0.5, end: 0 },
+          tint: moteTint, speedX: { min: -6, max: 6 }, speedY: { min: -8, max: 2 },
+          lifespan: 7000, frequency: 420, blendMode: 'ADD',
+        });
+      }
 
       // glows on the travel features
       const featureGlow = (x, y, tint, scale = 0.45, alpha = 0.3) => {
@@ -1476,6 +1596,7 @@
       const roomData = cur && cur.vnum === player.vnum
         ? Object.assign({}, cur)
         : { vnum: player.vnum, name: roomEntry.name, description: '', sector: roomEntry.sector, flags: roomEntry.flags || [], exits: {} };
+      roomData.zone = roomEntry.zone;
       if (!cur || cur.vnum !== player.vnum) {
         (roomEntry.exits || []).forEach(d => { roomData.exits[d] = { to_room: null, door: (roomEntry.doors || {})[d] || null }; });
       } else {

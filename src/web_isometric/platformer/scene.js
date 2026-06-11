@@ -32,6 +32,8 @@
         MH.smoothSprites.generateAll(this);
         // artist pack (Kenney Tiny Dungeon, CC0) replaces the actor sheets
         try { MH.packSprites.apply(this); } catch (e) { console.warn('pack apply failed', e); }
+        // hand-tuned zone themes (floors, borders, props, ambience)
+        try { MH.zoneSprites.generateAll(this); } catch (e) { console.warn('zone themes failed', e); }
         txt.destroy();
         if (/[?&]gallery=1/.test(window.location.search)) this.scene.start('Gallery');
         else if (/[?&]view=side/.test(window.location.search)) this.scene.start('Room');

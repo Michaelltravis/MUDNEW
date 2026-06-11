@@ -341,19 +341,30 @@
     }
     while (spawnSlots.length < 8) spawnSlots.push({ x: midX * T + T / 2, y: midY * T + T / 2 });
 
-    // decorative props (non-blocking)
+    // decorative props (non-blocking); zone themes get richer, named sets
+    const zoneKey = MH.zoneThemeKey ? MH.zoneThemeKey(roomData.zone) : null;
+    const zoneTheme = zoneKey && MH.ZONE_THEMES ? MH.ZONE_THEMES[zoneKey] : null;
     const props = [];
-    for (let i = 0; i < 3 + Math.floor(rng() * 3); i++) {
+    const nProps = zoneTheme ? 5 + Math.floor(rng() * 5) : 3 + Math.floor(rng() * 3);
+    for (let i = 0; i < nProps; i++) {
       const px = 2 + Math.floor(rng() * (W - 4));
       const py = 2 + Math.floor(rng() * (H - 4));
-      if (at(px, py) === FLOOR && !pois.some(([qx, qy]) => Math.abs(qx - px) <= 1 && Math.abs(qy - py) <= 1)) {
-        props.push({ idx: Math.floor(rng() * 3), x: px, y: py });
+      if (at(px, py) === FLOOR && !pois.some(([qx, qy]) => Math.abs(qx - px) <= 1 && Math.abs(qy - py) <= 1)
+          && !props.some(p => Math.abs(p.x - px) <= 1 && Math.abs(p.y - py) <= 1)) {
+        const prop = { idx: Math.floor(rng() * 3), x: px, y: py };
+        if (zoneTheme) {
+          // first props lean on the theme's signature pieces, rest random
+          const list = zoneTheme.props;
+          prop.name = list[i < 2 ? i % list.length : Math.floor(rng() * list.length)];
+          prop.scale = 0.8 + rng() * 0.4;
+        }
+        props.push(prop);
       }
     }
 
     return {
       topdown: true,
-      vnum, theme: sector, sector, flags,
+      vnum, theme: sector, sector, flags, zoneKey,
       description: roomData.description || '',
       gravestones: roomData.gravestones,
       W, H, T, grid, gaps,
