@@ -1920,6 +1920,9 @@
         "west": {
           "to_room": 7060,
           "description": "You can't see anything in that direction and your light isn't enough to light that far."
+        },
+        "down": {
+          "to_room": 7099
         }
       },
       "extra_descs": {
@@ -1988,13 +1991,7 @@
           "description": "You can't see a thing.  It is too dark."
         },
         "down": {
-          "to_room": 7072,
-          "description": "A submerged tunnel drops below the ledge.",
-          "hidden": true,
-          "search_difficulty": 60,
-          "requires_light": true,
-          "secret": true,
-          "reveal_message": "You discover a submerged tunnel leading down."
+          "to_room": 7000
         }
       },
       "extra_descs": {
@@ -2061,8 +2058,7 @@
       ],
       "exits": {
         "up": {
-          "to_room": 7070,
-          "description": "You climb back up to the ledge."
+          "to_room": 7100
         }
       },
       "obj_resets": [
@@ -2153,6 +2149,9 @@
         "south": {
           "to_room": 14000,
           "description": "The way leads to Gates of the Dead"
+        },
+        "up": {
+          "to_room": 7068
         }
       },
       "mob_resets": [],

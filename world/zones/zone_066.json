@@ -308,6 +308,9 @@
         "south": {
           "to_room": 6612,
           "description": "The mountain pass leads south."
+        },
+        "north": {
+          "to_room": 18000
         }
       }
     }

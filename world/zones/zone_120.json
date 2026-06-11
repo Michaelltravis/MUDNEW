@@ -1738,6 +1738,9 @@
             "locked": false,
             "key_vnum": null
           }
+        },
+        "north": {
+          "to_room": 12057
         }
       }
     },
@@ -1879,6 +1882,9 @@
         "south": {
           "to_room": 12058,
           "description": "A rocky path climbs toward The Valley Of The Gods"
+        },
+        "north": {
+          "to_room": 12064
         }
       },
       "mob_resets": [],

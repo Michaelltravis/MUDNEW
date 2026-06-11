@@ -2979,7 +2979,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
                            '  stable list       - View available mounts and prices\n'
                            '  stable buy <mount> - Purchase a mount\n'
                            '  stable store      - Safely stable your current mount\n\n'
-                           'The stables are located south of the East Gate of Midgaard (room 3201).\n'
+                           'The stables are located south of the East Gate of Midgaard (room 3211).\n'
                            'Brynn the Stable Master can answer questions about different mounts.\n\n'
                            'PURCHASABLE MOUNTS:\n'
                            '  Horse        - 2,000 gold (+50% speed)\n'

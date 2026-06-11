@@ -84,6 +84,14 @@
         "east": {
           "to_room": 23804,
           "description": "A side passage leads to the vestry."
+        },
+        "up": {
+          "to_room": 23824,
+          "hidden": true,
+          "search_difficulty": 60,
+          "requires_light": true,
+          "secret": true,
+          "reveal_message": "A panel behind the altar slides aside, revealing a hidden stair."
         }
       },
       "mob_resets": [
@@ -300,6 +308,9 @@
         "east": {
           "to_room": 23812,
           "description": "The corridor continues to the refectory."
+        },
+        "up": {
+          "to_room": 23818
         }
       },
       "mob_resets": [
@@ -468,9 +479,8 @@
         "indoors"
       ],
       "exits": {
-        "south": {
-          "to_room": 23810,
-          "description": "The dormitory corridor lies to the south."
+        "down": {
+          "to_room": 23810
         }
       }
     },
@@ -595,9 +605,8 @@
         "consecrated"
       ],
       "exits": {
-        "south": {
-          "to_room": 23802,
-          "description": "The chapel lies to the south."
+        "down": {
+          "to_room": 23802
         }
       }
     }

@@ -236,7 +236,7 @@
           "description": "You see the good old Grunting Boar Inn."
         },
         "south": {
-          "to_room": 3200
+          "to_room": 3210
         },
         "west": {
           "to_room": 3004,
@@ -1552,7 +1552,7 @@
           }
         },
         "south": {
-          "to_room": 3200,
+          "to_room": 3210,
           "description": "You see a path leading to the Royal Stables."
         }
       },

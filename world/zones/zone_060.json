@@ -2049,13 +2049,7 @@
           "to_room": 6029
         },
         "up": {
-          "to_room": 6094,
-          "description": "A rope ladder blends with the bark.",
-          "hidden": true,
-          "search_difficulty": 60,
-          "requires_light": true,
-          "secret": true,
-          "reveal_message": "You find a rope ladder hidden in the canopy."
+          "to_room": 6032
         },
         "west": {
           "description": "This limb looks large and strong enough for you to walk most of the way along its length to the west.",
@@ -2939,8 +2933,7 @@
       ],
       "exits": {
         "down": {
-          "to_room": 6030,
-          "description": "The rope ladder descends back down."
+          "to_room": 6033
         }
       },
       "obj_resets": [
@@ -3016,6 +3009,14 @@
         "down": {
           "to_room": 6032,
           "description": "Midway To The Top Of The Large Oak"
+        },
+        "up": {
+          "to_room": 6094,
+          "hidden": true,
+          "search_difficulty": 60,
+          "requires_light": true,
+          "secret": true,
+          "reveal_message": "You find a rope ladder hidden in the canopy."
         }
       },
       "mob_resets": [],

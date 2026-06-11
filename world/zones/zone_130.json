@@ -14,10 +14,6 @@
       "description": "Wooden docks extend into the harbor, where boats bob gently on the\nwaves. Sailors and merchants crowd the waterfront, loading and unloading\ncargo. The smell of salt water and fish fills the air. To the west,\nbeyond the harbor mouth, the open ocean beckons. Strange tales are told\nof ruins beneath those waves - a city that sank centuries ago. Dust\nmotes drift in the stale air. The ceiling hangs low overhead.",
       "terrain": "city",
       "exits": {
-        "east": {
-          "to_room": 3005,
-          "description": "The cobblestones lead to The Temple Square"
-        },
         "west": {
           "to_room": 13001,
           "description": "The path continues west"
@@ -25,6 +21,9 @@
         "up": {
           "to_room": 5040,
           "description": "You see an exit up."
+        },
+        "north": {
+          "to_room": 3204
         }
       },
       "vnum": 13000,
@@ -441,6 +440,9 @@
         "up": {
           "to_room": 13015,
           "description": "The path continues up"
+        },
+        "down": {
+          "to_room": 13017
         }
       },
       "vnum": 13016,
@@ -462,8 +464,7 @@
       "special": "requires_water_breathing",
       "exits": {
         "up": {
-          "to_room": 13006,
-          "description": "The path continues up"
+          "to_room": 13016
         }
       },
       "vnum": 13017,

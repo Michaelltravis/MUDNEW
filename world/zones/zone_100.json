@@ -85,6 +85,14 @@
         "west": {
           "to_room": 10006,
           "description": "The path continues west"
+        },
+        "down": {
+          "to_room": 10024,
+          "hidden": true,
+          "search_difficulty": 60,
+          "requires_light": true,
+          "secret": true,
+          "reveal_message": "A concealed trapdoor swings open beneath the dust."
         }
       },
       "vnum": 10002,
@@ -163,6 +171,14 @@
         "south": {
           "to_room": 10009,
           "description": "The path continues south"
+        },
+        "down": {
+          "to_room": 10023,
+          "hidden": true,
+          "search_difficulty": 60,
+          "requires_light": true,
+          "secret": true,
+          "reveal_message": "Loose rubble shifts aside, revealing a shaft below."
         }
       },
       "vnum": 10005,
@@ -594,9 +610,8 @@
       "description": "This shop was cut into the living rock near the Great Forge, allowing\nthe master smiths to sell their finest works. Display cases line the\nwalls, showing off exquisite weapons and armor. Most are empty now,\ntheir contents looted or rusted, but a few pieces remain. A heavy stone\ncounter dominates the room, with a ledger listing prices in dwarven\nrunes. Dust motes drift in the stale air. Shadows gather in the corners.",
       "terrain": "underground",
       "exits": {
-        "north": {
-          "to_room": 10005,
-          "description": "The path continues north"
+        "up": {
+          "to_room": 10005
         }
       },
       "vnum": 10023,
@@ -620,9 +635,8 @@
       "description": "Rows of stone bunks line this long chamber, each with a small chest for\npersonal belongings at its foot. Most are empty and gathering dust, but\na few show signs of recent habitation - rumpled blankets, personal\nitems, ale mugs. The remaining dwarven miners sleep here, those too\nstubborn or brave to abandon their ancestral home despite the dangers.\nThe walls are rough-hewn and cold to the touch. The air is still and\nmusty.",
       "terrain": "underground",
       "exits": {
-        "west": {
-          "to_room": 10002,
-          "description": "The path continues west"
+        "up": {
+          "to_room": 10002
         }
       },
       "vnum": 10024,
