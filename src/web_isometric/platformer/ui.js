@@ -846,6 +846,54 @@
     }
   }
 
+  // ---- NPC dialogue: talk on click, accept quests with buttons ----
+  async function openDialogue({ name, quest }) {
+    openModal('modal-dialogue');
+    $('dialogue-title').textContent = name.toUpperCase();
+    els.dialogueBody.innerHTML = '<div class="slot">…</div>';
+    const kw = MH.mobKeyword(name);
+    const p1 = captureOutput(1300);
+    MH.sendCommand(`talk ${kw}`, false);
+    const talkLines = await p1;
+    let html = '';
+    const said = talkLines.filter(l => l.trim() && !/^\d+\/\d+hp/.test(l) && !/^>/.test(l) && !/quest accept/i.test(l));
+    if (said.length) html += `<div style="font-style:italic;color:#d8d2bc">${said.slice(0, 10).join('<br>')}</div>`;
+    if (quest) {
+      // ask the server what they're offering
+      const p2 = captureOutput(1300);
+      MH.sendCommand('quest', false);
+      const qLines = await p2;
+      const offers = [];
+      talkLines.concat(qLines).forEach(l => {
+        const m = l.match(/quest accept (\S+)/i);
+        const id = m && m[1].replace(/\)$/, '');
+        if (id && /^[a-z0-9_]+$/i.test(id) && !offers.includes(id)) offers.push(id);
+      });
+      const qText = qLines.filter(l => l.trim() && !/^\d+\/\d+hp/.test(l) && !/quest accept/i.test(l) && !/^>/.test(l)).slice(0, 14);
+      if (qText.length) html += `<div style="margin-top:10px;color:#c2c8d6">${qText.join('<br>')}</div>`;
+      if (offers.length) {
+        html += '<div style="margin-top:8px">'
+          + offers.map(id => `<span class="quest-btn" data-q="${id}">✦ ACCEPT: ${id.replace(/_/g, ' ')}</span>`).join('')
+          + '</div>';
+      } else if (quest === '?') {
+        html += `<div style="margin-top:8px"><span class="quest-btn" data-turnin="1">✔ TURN IN QUEST</span></div>`;
+      }
+    }
+    els.dialogueBody.innerHTML = html || '<div class="slot">They have nothing to say.</div>';
+    els.dialogueBody.querySelectorAll('[data-q]').forEach(btn =>
+      btn.addEventListener('click', () => {
+        commandWithPeek(`quest accept ${btn.dataset.q}`);
+        closeModals();
+        setTimeout(() => MH.refreshState(), 800);
+      }));
+    els.dialogueBody.querySelectorAll('[data-turnin]').forEach(btn =>
+      btn.addEventListener('click', () => {
+        commandWithPeek('quest complete');
+        closeModals();
+        setTimeout(() => MH.refreshState(), 800);
+      }));
+  }
+
   // ---- typing focus management ----
   function setTyping(on) { MH.bus.emit('ui.typing', on); }
 
@@ -865,7 +913,7 @@
         chatLog: $('chat-log'), chatPanel: $('chat-panel'), chatBody: $('chat-body'),
         chatInput: $('chat-input'), chatMode: $('chat-mode'),
         invBody: $('inv-body'), journalBody: $('journal-body'), shopBody: $('shop-body'), spellsBody: $('spells-body'),
-        talentsBody: $('talents-body'),
+        talentsBody: $('talents-body'), dialogueBody: $('dialogue-body'), createConsole: $('create-console'),
         minimap: $('minimap'), mmToggle: $('mm-toggle'), vignette: $('vignette'), mobTip: $('mob-tip'),
         compass: $('compass'), hitFlash: $('hit-flash'), combatChip: $('combat-chip'),
         combatLog: $('combat-log'), combatLogLines: $('combat-log-lines'),
@@ -881,8 +929,37 @@
       const begin = create => {
         const name = els.loginName.value.trim(), pass = els.loginPass.value;
         if (!name || !pass) { els.loginStatus.textContent = 'Need both name and password.'; els.loginStatus.className = 'error'; return; }
+        if (create) {
+          // creation is a conversation: show it and let them answer
+          els.createConsole.style.display = 'block';
+          els.loginStatus.textContent = 'Answer the questions below (type in the name box and press Enter).';
+          els.loginName.value = '';
+          els.loginName.placeholder = 'type answers here…';
+          creationMode = true;
+        }
         MH.connect(name, pass, create);
       };
+      let creationMode = false;
+      MH.bus.on('terminal.output', ({ text }) => {
+        if (!creationMode || MH.state.isLoggedIn) return;
+        const clean = text.split('\n').filter(l => l.trim()).slice(-30).join('\n');
+        if (!clean) return;
+        const div = document.createElement('div');
+        div.textContent = clean;
+        els.createConsole.appendChild(div);
+        while (els.createConsole.children.length > 40) els.createConsole.removeChild(els.createConsole.firstChild);
+        els.createConsole.scrollTop = els.createConsole.scrollHeight;
+      });
+      els.loginName.addEventListener('keydown', e => {
+        if (e.key === 'Enter' && creationMode && !MH.state.isLoggedIn) {
+          const v = els.loginName.value.trim();
+          const sock = MH.state.mudSocket;
+          if (sock && sock.readyState === WebSocket.OPEN) sock.send(v);
+          els.loginName.value = '';
+          e.preventDefault();
+        }
+      });
+      MH.bus.on('login.success', () => { creationMode = false; els.createConsole.style.display = 'none'; });
       els.loginBtn.addEventListener('click', () => begin(false));
       els.createBtn.addEventListener('click', () => begin(true));
       els.loginPass.addEventListener('keydown', e => { if (e.key === 'Enter') begin(false); });
@@ -938,6 +1015,21 @@
       MH.bus.on('map', payload => { updateHud(payload.player); renderMinimap(); updateVignette(); autofillBar(); });
       MH.bus.on('combat.update', () => { updateHud(MH.state.player); updateVignette(); });
       MH.bus.on('room.entered', () => { walkStep(); hideMobTip(); renderCompass(); });
+      // gentle onboarding for first-timers
+      let hintsShown = false;
+      MH.bus.on('map', () => {
+        const p = MH.state.player;
+        if (hintsShown || !p || (p.level || 99) > 2 || lsGet('misthollow_hints_done')) return;
+        hintsShown = true;
+        lsSet('misthollow_hints_done', '1');
+        const hints = [
+          'WASD to walk — step off a room edge to travel',
+          'Golden ! marks someone with a quest — click friendly folk to talk',
+          'F swings your weapon at hostile creatures · Tab picks targets',
+          'Keys 1–0 use your action bar · K opens your abilities',
+        ];
+        hints.forEach((h, i) => setTimeout(() => flash(h), 1500 + i * 4200));
+      });
       MH.bus.on('map', () => renderCompass());
       MH.bus.on('mob.tip', showMobTip);
       MH.bus.on('mob.tip.hide', hideMobTip);
@@ -1104,6 +1196,7 @@
       MH.bus.on('target.clear', () => setTarget(null));
       MH.bus.on('level.up', e => flash(e.line));
       MH.bus.on('shop.open', openShop);
+      MH.bus.on('npc.talk', openDialogue);
 
       // command input
       els.commandInput.addEventListener('focus', () => setTyping(true));

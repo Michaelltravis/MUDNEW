@@ -453,12 +453,20 @@ def build_combat_payload(player) -> dict:
                         'maxHp': getattr(entity, 'max_hp', 1),
                     })
                 continue
+            quest_mark = ''
+            if hasattr(entity, 'vnum'):
+                try:
+                    from quests import QuestManager
+                    quest_mark = QuestManager.get_quest_giver_indicator(player, entity.vnum)
+                except Exception:
+                    quest_mark = ''
             mob = {
                 'name': getattr(entity, 'name', 'Unknown'),
                 'level': getattr(entity, 'level', 1),
                 'hostile': getattr(entity, 'aggressive', False) or getattr(entity, 'hostile', False),
                 'boss': 'boss' in (getattr(entity, 'flags', None) or []) or getattr(entity, 'is_boss', False),
                 'shopkeeper': hasattr(entity, 'shop'),
+                'quest': quest_mark,
                 'fighting': bool(getattr(entity, 'fighting', None) is player),
             }
             hp = getattr(entity, 'hp', None)
@@ -575,12 +583,20 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             for entity in room.characters:
                 if hasattr(entity, 'account_name'):
                     continue  # skip players (handled below)
+                quest_mark = ''
+                if hasattr(entity, 'vnum'):
+                    try:
+                        from quests import QuestManager
+                        quest_mark = QuestManager.get_quest_giver_indicator(player, entity.vnum)
+                    except Exception:
+                        quest_mark = ''
                 mob_info = {
                     'name': getattr(entity, 'name', 'Unknown'),
                     'level': getattr(entity, 'level', 1),
                     'hostile': getattr(entity, 'aggressive', False) or getattr(entity, 'hostile', False),
                     'boss': 'boss' in (getattr(entity, 'flags', None) or []) or getattr(entity, 'is_boss', False),
                     'shopkeeper': hasattr(entity, 'shop'),
+                    'quest': quest_mark,
                     'flags': list(getattr(entity, 'flags', []) or []),
                 }
                 # Include HP if available

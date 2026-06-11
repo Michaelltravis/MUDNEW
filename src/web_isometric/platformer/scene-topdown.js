@@ -503,12 +503,13 @@
       this.drawHpBar(ent);
 
       ent.sprite.setInteractive({ useHandCursor: true });
-      ent.sprite.on('pointerdown', () => {
-        if (spec.kind === 'mob') {
-          if (spec.data.shopkeeper) MH.bus.emit('shop.open', spec.data);
-          else this.attackEntity(ent);
-        }
+      ent.sprite.on('pointerdown', pointer => {
+        if (spec.kind !== 'mob') return;
+        if (spec.data.shopkeeper) MH.bus.emit('shop.open', spec.data);
+        else if (ent.data.hostile || ent.data.fighting || (pointer.event && pointer.event.shiftKey)) this.attackEntity(ent);
+        else MH.bus.emit('npc.talk', { name: ent.data.name, quest: ent.data.quest || '' });
       });
+      this.updateQuestMark(ent);
       ent.sprite.on('pointerover', pointer => MH.bus.emit('mob.tip', { data: ent.data, kind: ent.kind, x: pointer.event.clientX, y: pointer.event.clientY }));
       ent.sprite.on('pointermove', pointer => MH.bus.emit('mob.tip', { data: ent.data, kind: ent.kind, x: pointer.event.clientX, y: pointer.event.clientY }));
       ent.sprite.on('pointerout', () => MH.bus.emit('mob.tip.hide'));
@@ -525,9 +526,26 @@
       return ent;
     }
 
+    updateQuestMark(ent) {
+      const q = ent.data && ent.data.quest;
+      if (q && !ent.questMark) {
+        ent.questMark = this.add.text(ent.sprite.x, ent.sprite.y - 26, q, {
+          fontFamily: 'Georgia, serif', resolution: 3, fontSize: '14px', fontStyle: 'bold',
+          color: q === '?' ? '#7dff9a' : '#ffd44a', stroke: '#000', strokeThickness: 3,
+        }).setOrigin(0.5, 1).setDepth(20);
+        this.tweens.add({ targets: ent.questMark, y: ent.questMark.y - 4, duration: 700, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      } else if (!q && ent.questMark) {
+        ent.questMark.destroy();
+        ent.questMark = null;
+      } else if (q && ent.questMark) {
+        ent.questMark.setText(q).setColor(q === '?' ? '#7dff9a' : '#ffd44a');
+      }
+    }
+
     updateEntity(ent, data) {
       ent.data = data;
       this.drawHpBar(ent);
+      this.updateQuestMark(ent);
       // loud telegraph: red swords + red name over whoever is attacking YOU
       if (data.fighting && !ent.fightMark) {
         ent.fightMark = this.add.text(ent.sprite.x, ent.sprite.y - 26, '⚔', {
@@ -569,7 +587,7 @@
       if (ent.breath) ent.breath.stop();
       if (ent.wanderTween) ent.wanderTween.stop();
       if (ent.smoke) ent.smoke.destroy();
-      ['sprite', 'label', 'hpbar', 'fightMark'].forEach(k => { if (ent[k]) ent[k].destroy(); });
+      ['sprite', 'label', 'hpbar', 'fightMark', 'questMark'].forEach(k => { if (ent[k]) ent[k].destroy(); });
     }
     shortName(name) {
       const n = String(name || '');
@@ -1803,6 +1821,7 @@
       for (const ent of this.entities.values()) {
         if (ent.label && ent.sprite) { ent.label.x = ent.sprite.x; ent.label.y = ent.sprite.y - (ent.data.boss ? 26 : 18); }
         if (ent.fightMark && ent.sprite) { ent.fightMark.x = ent.sprite.x; ent.fightMark.y = ent.sprite.y - 26; }
+        if (ent.questMark && ent.sprite) { ent.questMark.x = ent.sprite.x; }
         if (ent.hpbar && ent.sprite) this.drawHpBar(ent);
       }
       // depth-sort actors by y so overlap reads correctly
