@@ -1625,6 +1625,23 @@
       // a move that never got an answer (lost line, eaten message) must not
       // wedge the input forever
       if (MH.state.pendingMove && Date.now() - MH.state.pendingMove.sentAt > 4000) MH.state.pendingMove = null;
+      // keyboard can never stay wedged off while the game has focus
+      if (!this.input.keyboard.enabled) {
+        const a = document.activeElement;
+        if (!a || a === document.body || a.tagName === 'CANVAS') this.input.keyboard.enabled = true;
+      }
+      // combat flag with no living opponent in the room clears itself
+      if (MH.state.inCombat) {
+        const anyFighter = [...this.entities.values()].some(e => e.kind === 'mob' && e.data && e.data.fighting);
+        if (!anyFighter) {
+          this._combatIdle = (this._combatIdle || 0) + this.game.loop.delta;
+          if (this._combatIdle > 7000) { MH.setCombat(false); this._combatIdle = 0; }
+        } else {
+          this._combatIdle = 0;
+        }
+      } else {
+        this._combatIdle = 0;
+      }
       const locked = !!MH.state.pendingMove && Date.now() - MH.state.pendingMove.sentAt < 2500;
       const manual = ax !== 0 || ay !== 0;
       if (manual && this.autoNav) this.autoNav = null;

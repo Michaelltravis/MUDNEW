@@ -405,8 +405,17 @@
   }
 
   // ---- modals ----
-  function openModal(id) { closeModals(); $(id).classList.add('open'); }
-  function closeModals() { document.querySelectorAll('.modal.open').forEach(m => m.classList.remove('open')); }
+  function openModal(id) {
+    closeModals();
+    $(id).classList.add('open');
+    const bd = $('modal-backdrop');
+    if (bd) bd.classList.add('show');
+  }
+  function closeModals() {
+    document.querySelectorAll('.modal.open').forEach(m => m.classList.remove('open'));
+    const bd = $('modal-backdrop');
+    if (bd) bd.classList.remove('show');
+  }
   function anyModalOpen() { return !!document.querySelector('.modal.open'); }
 
   function renderInventory() {
@@ -1248,6 +1257,9 @@
       document.querySelectorAll('.mtab').forEach(t =>
         t.addEventListener('click', () => showSpellsTab(t.dataset.mtab)));
 
+      const bd = $('modal-backdrop');
+      if (bd) bd.addEventListener('click', closeModals);
+
       // modal close buttons
       document.querySelectorAll('.modal-head .x').forEach(x =>
         x.addEventListener('click', () => $(x.dataset.close).classList.remove('open')));
@@ -1259,7 +1271,14 @@
         const typingEls = [els.commandInput, els.loginName, els.loginPass, els.chatInput];
         if (typingEls.includes(document.activeElement)) return;
         if (e.key === 'Enter') { e.preventDefault(); els.commandInput.focus(); return; }
-        if (e.key === 'Escape') { closeModals(); return; }
+        if (e.key === 'Escape') {
+          // universal un-stick: close panels and clear any wedged state
+          closeModals();
+          cancelWalk();
+          MH.state.pendingMove = null;
+          setTyping(false);
+          return;
+        }
         if (e.key === '`' || e.key === '~') { e.preventDefault(); els.drawer.classList.toggle('open'); return; }
         if (anyModalOpen()) return;
         // Shift+WASD = compass move, Shift+Q/E = up/down

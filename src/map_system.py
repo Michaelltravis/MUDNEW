@@ -598,7 +598,10 @@ def build_map_payload(player, mode: str = 'full') -> dict:
                 if hasattr(entity, 'account_name'):
                     continue  # skip players (handled below)
                 quest_mark = ''
-                if hasattr(entity, 'vnum'):
+                # quest scan is per-mob, per-room, per-push: only the CURRENT
+                # room renders markers, so only compute it there (a veteran
+                # character's full explored set made every step crawl)
+                if hasattr(entity, 'vnum') and player.room and vnum == player.room.vnum:
                     try:
                         from quests import QuestManager
                         quest_mark = QuestManager.get_quest_giver_indicator(player, entity.vnum)
