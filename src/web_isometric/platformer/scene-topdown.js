@@ -1688,16 +1688,35 @@
         this.player.setFrame(`${this.facing}0`);
       }
 
-      // exits + feature tiles - use the small physics body, not the fat
-      // sprite bounds, so grazing past a staircase doesn't teleport you.
-      // never while fighting: flee is the only exit from combat
-      if (!locked && !MH.state.inCombat && Date.now() > this.exitSuppress) {
+      // exits: physics overlap OR proximity+intent (pressing toward a gap
+      // mouth within 16px) - two independent triggers so a missed overlap
+      // can never strand anyone. Gated states explain themselves.
+      {
         const b = this.player.body;
         const pb = new Phaser.Geom.Rectangle(b.x, b.y, b.width, b.height);
+        let wantExit = null;
         for (const zone of this.exitZones.concat(this.featureZones || [])) {
-          if (Phaser.Geom.Rectangle.Overlaps(zone.getBounds(), pb)) {
-            this.requestMove(zone.exitDir);
-            break;
+          if (Phaser.Geom.Rectangle.Overlaps(zone.getBounds(), pb)) { wantExit = zone.exitDir; break; }
+        }
+        if (!wantExit && this.layout && this.layout.gaps) {
+          const midX = Math.floor(this.layout.W / 2) * TD().T + TD().T / 2;
+          const midY = Math.floor(this.layout.H / 2) * TD().T + TD().T / 2;
+          const near = (gx, gy) => Math.hypot(this.player.x - gx, this.player.y - gy) < 22;
+          if (this.layout.gaps.north && ay < 0 && near(midX, TD().T * 1.2)) wantExit = 'north';
+          else if (this.layout.gaps.south && ay > 0 && near(midX, this.pxH - TD().T * 1.2)) wantExit = 'south';
+          else if (this.layout.gaps.west && ax < 0 && near(TD().T * 1.2, midY)) wantExit = 'west';
+          else if (this.layout.gaps.east && ax > 0 && near(this.pxW - TD().T * 1.2, midY)) wantExit = 'east';
+        }
+        if (wantExit) {
+          if (MH.state.inCombat) {
+            if (!this._gateFlash || now - this._gateFlash > 2500) {
+              this._gateFlash = now;
+              MH.bus.emit('flash', "You're fighting! Flee to escape, or finish it.");
+            }
+          } else if (locked || Date.now() <= this.exitSuppress) {
+            // in-flight or cooling down: silent, resolves within a second
+          } else {
+            this.requestMove(wantExit);
           }
         }
       }

@@ -433,6 +433,20 @@ def _exp_thresholds(player):
     return floor, nxt
 
 
+def _in_combat(player) -> bool:
+    """True only for a LIVE fight: target alive and in the same room.
+    Stale fighting references must never wedge graphical clients."""
+    f = getattr(player, 'fighting', None)
+    if not f:
+        return False
+    if getattr(f, 'hp', 0) <= 0:
+        return False
+    room = getattr(player, 'room', None)
+    if not room or f not in getattr(room, 'characters', []):
+        return False
+    return True
+
+
 def _path_active(player):
     try:
         from paths import PathManager
@@ -490,7 +504,7 @@ def build_combat_payload(player) -> dict:
     return {
         'type': 'combat_update',
         'vnum': room.vnum if room else None,
-        'in_combat': bool(getattr(player, 'fighting', None)),
+        'in_combat': _in_combat(player),
         'player': {
             'name': player.name,
             'momentum': getattr(player, 'momentum', 0),
@@ -805,7 +819,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'exp': getattr(player, 'exp', 0),
             'exp_floor': _exp_thresholds(player)[0],
             'exp_to_level': _exp_thresholds(player)[1],
-            'in_combat': bool(getattr(player, 'fighting', None)),
+            'in_combat': _in_combat(player),
             'path': getattr(player, 'path', None),
             'path_active': _path_active(player),
             'equipment': {
