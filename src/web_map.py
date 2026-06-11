@@ -294,10 +294,18 @@ class WebMapServer:
                 asset_file = path.split('?', 1)[0].replace('/platformer/', '', 1)
                 asset_path = os.path.realpath(os.path.join(asset_dir, asset_file))
                 ext = asset_file.rsplit('.', 1)[-1].lower() if '.' in asset_file else ''
-                if not asset_path.startswith(asset_dir + os.sep) or ext not in ('js', 'css'):
+                if not asset_path.startswith(asset_dir + os.sep) or ext not in ('js', 'css', 'png'):
                     await self._http_response(writer, 404, 'Not Found', 'Not found')
                     return
                 try:
+                    if ext == 'png':
+                        with open(asset_path, 'rb') as f:
+                            data = f.read()
+                        writer.write((f"HTTP/1.1 200 OK\r\nContent-Type: image/png\r\n"
+                                      f"Content-Length: {len(data)}\r\nAccess-Control-Allow-Origin: *\r\n\r\n").encode())
+                        writer.write(data)
+                        await writer.drain()
+                        return
                     with open(asset_path, 'r', encoding='utf-8') as f:
                         body = f.read()
                     ct = 'application/javascript' if ext == 'js' else 'text/css'

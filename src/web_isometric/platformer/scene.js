@@ -25,16 +25,22 @@
       const txt = this.add.text(GAME_W / 2, GAME_H / 2, 'Forging the world…', {
         fontFamily: 'Courier New', fontSize: '18px', color: '#e8c168',
       }).setOrigin(0.5);
-      this.time.delayedCall(30, () => {
+      const begin = () => {
         MH.sprites.generateAll(this);
         // smooth high-res art is the default; the legacy pixel generator
         // remains for ?view=side which doesn't use td_* keys
         MH.smoothSprites.generateAll(this);
+        // artist pack (Kenney Tiny Dungeon, CC0) replaces the actor sheets
+        try { MH.packSprites.apply(this); } catch (e) { console.warn('pack apply failed', e); }
         txt.destroy();
         if (/[?&]gallery=1/.test(window.location.search)) this.scene.start('Gallery');
         else if (/[?&]view=side/.test(window.location.search)) this.scene.start('Room');
         else this.scene.start('TopRoom');   // Zelda-style top-down is the default
-      });
+      };
+      this.load.image('pack_tiny', '/platformer/art/kenney_tiny_dungeon.png');
+      this.load.once('complete', () => this.time.delayedCall(10, begin));
+      this.load.once('loaderror', () => this.time.delayedCall(10, begin));
+      this.load.start();
     }
   }
 
