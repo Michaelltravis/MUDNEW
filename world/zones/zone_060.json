@@ -3021,7 +3021,10 @@
       },
       "mob_resets": [],
       "obj_resets": [],
-      "vnum": 6033
+      "vnum": 6033,
+      "extra_descs": {
+        "view canopy": "From the oak's crown the whole light forest sways beneath you. Haon-Dor wears its name well from up here."
+      }
     }
   }
 }

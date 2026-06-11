@@ -314,6 +314,13 @@ class AmbientManager:
         if message:
             c = player.config.COLORS
             await player.send(f"\r\n{c['white']}{message}{c['reset']}\r\n")
+            # float the same whisper in the graphical client
+            web_map = getattr(world, 'web_map', None)
+            if web_map:
+                try:
+                    await web_map.notify_event(player, {'type': 'ambient', 'text': message})
+                except Exception:
+                    pass
             cls._last_ambient[player.name] = now
             return True
         
@@ -326,4 +333,5 @@ class AmbientManager:
         Called periodically (e.g., every few seconds).
         """
         for player in world.players.values():
-            await cls.maybe_send_ambient(player, world)
+            # frequent enough to feel alive, rate-limited to 30s per player
+            await cls.maybe_send_ambient(player, world, chance=0.12)

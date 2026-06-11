@@ -20,6 +20,9 @@
       const { W, H, T } = TD();
       this.pxW = W * T; this.pxH = H * T;
       this.physics.world.gravity.y = 0;
+      this.input.mouse && this.input.mouse.disableContextMenu();
+      // street life: friendly NPCs murmur idle chatter now and then
+      this.time.addEvent({ delay: 7000, loop: true, callback: () => this.npcChatter() });
       this.physics.world.setBounds(0, 0, this.pxW, this.pxH);
       this.cameras.main.setBounds(0, 0, this.pxW, this.pxH);
       this.cameras.main.setRoundPixels(true);
@@ -238,6 +241,11 @@
         if (prop.name && this.textures.exists(`zt_prop_${prop.name}`)) {
           const img = this.add.image(prop.x * T + T / 2, (prop.y + 1) * T, `zt_prop_${prop.name}`)
             .setOrigin(0.5, 1).setDepth(3).setScale((prop.scale || 1) / MH.SMOOTH_SS);
+          // scenery rewards curiosity: click for flavor text
+          if (MH.PROP_FLAVOR && MH.PROP_FLAVOR[prop.name]) {
+            img.setInteractive({ useHandCursor: true });
+            img.on('pointerdown', () => MH.immersion && MH.immersion.propFlavor(prop.name));
+          }
           this.tileLayer.add(img);
           const glowTint = MH.GLOW_PROPS && MH.GLOW_PROPS[prop.name];
           if (glowTint) {
@@ -266,6 +274,7 @@
       this.player.setFlipX(entryDir === 'east');
 
       this.darkRT.setVisible(!!layout.dark);
+      MH.bus.emit('zone.theme', { zoneKey: layout.zoneKey, theme: layout.theme, dark: !!layout.dark });
     }
 
     // Ori-style mood pass: themed light pools, god rays, drifting motes.
@@ -624,6 +633,11 @@
 
       ent.sprite.setInteractive({ useHandCursor: true });
       ent.sprite.on('pointerdown', pointer => {
+        // right-click anyone: a closer look (the MUD's description)
+        if (pointer.rightButtonDown && pointer.rightButtonDown()) {
+          if (MH.immersion) MH.immersion.lookAt(MH.mobKeyword(ent.data.name || ''));
+          return;
+        }
         if (spec.kind !== 'mob') return;
         if (spec.data.shopkeeper) MH.bus.emit('shop.open', spec.data);
         else if (ent.data.hostile || ent.data.fighting || (pointer.event && pointer.event.shiftKey)) this.attackEntity(ent);
@@ -644,6 +658,31 @@
         else ent.wanderAt = Date.now() + 1500 + (MH.hashStr(key) % 3000);
       }
       return ent;
+    }
+
+    npcChatter() {
+      if (!this.layout || this.dead || !MH.CHATTER || Math.random() > 0.4) return;
+      const talkers = [...this.entities.values()].filter(e =>
+        e.kind === 'mob' && e.sprite && e.sprite.active && !e.data.hostile && !e.data.fighting && !e.bubble);
+      if (!talkers.length) return;
+      const ent = talkers[Math.floor(Math.random() * talkers.length)];
+      const arch = (this.safeTex(MH.tdSprites.mobKey(ent.data.name), 'td_mob_citizen') || '').replace('td_mob_', '');
+      const lines = ent.data.shopkeeper ? MH.CHATTER.shopkeeper
+        : MH.CHATTER[arch] || MH.CHATTER.citizen;
+      const text = lines[Math.floor(Math.random() * lines.length)];
+      const bubble = this.add.text(ent.sprite.x, ent.sprite.y - 22, text, {
+        fontFamily: 'Georgia, serif', resolution: 3, fontSize: '7px', fontStyle: 'italic',
+        color: '#e8e4d8', backgroundColor: '#10131ec8', padding: { x: 4, y: 2 },
+        wordWrap: { width: 110 },
+      }).setOrigin(0.5, 1).setDepth(30).setAlpha(0);
+      ent.bubble = bubble;
+      this.tweens.add({ targets: bubble, alpha: 1, y: bubble.y - 3, duration: 280 });
+      this.time.delayedCall(2600 + text.length * 35, () => {
+        this.tweens.add({
+          targets: bubble, alpha: 0, duration: 320,
+          onComplete: () => { bubble.destroy(); if (ent.bubble === bubble) ent.bubble = null; },
+        });
+      });
     }
 
     updateQuestMark(ent) {
@@ -707,7 +746,7 @@
       if (ent.breath) ent.breath.stop();
       if (ent.wanderTween) ent.wanderTween.stop();
       if (ent.smoke) ent.smoke.destroy();
-      ['sprite', 'label', 'hpbar', 'fightMark', 'questMark'].forEach(k => { if (ent[k]) ent[k].destroy(); });
+      ['sprite', 'label', 'hpbar', 'fightMark', 'questMark', 'bubble'].forEach(k => { if (ent[k]) ent[k].destroy(); });
     }
     shortName(name) {
       const n = String(name || '');
@@ -1720,10 +1759,44 @@
           x: { min: 0, max: this.pxW }, speedY: { min: -35, max: -12 }, lifespan: 3500, quantity: 1, alpha: 0.5,
         }).setDepth(45);
       }
+
+      // sky moods: rolling fog, storm lightning
+      const sky = (payload.weather && payload.weather.sky) || 'clear';
+      const wantFog = outdoor && sky === 'foggy';
+      if (wantFog && !this.fogEmitter) {
+        this.fogEmitter = this.add.particles(0, 0, this.textures.exists('zt_px_soft') ? 'zt_px_soft' : 'px_white', {
+          x: { min: -20, max: this.pxW }, y: { min: 10, max: this.pxH - 10 },
+          tint: 0xc8d0dc, scale: { start: 2.5, end: 4.5 }, alpha: { start: 0, end: 0.13 },
+          speedX: { min: 6, max: 16 }, speedY: { min: -2, max: 2 },
+          lifespan: 9000, frequency: 420, blendMode: 'SCREEN',
+        }).setDepth(46);
+      } else if (!wantFog && this.fogEmitter) {
+        this.fogEmitter.destroy();
+        this.fogEmitter = null;
+      }
+      const storming = outdoor && sky === 'stormy';
+      if (storming && (!this._nextBolt || Date.now() > this._nextBolt)) {
+        this._nextBolt = Date.now() + 6000 + Math.random() * 14000;
+        this.cameras.main.flash(160, 220, 225, 255);
+        MH.bus.emit('ambient.sound', 'thunder');
+      }
     }
 
     // ---------- update loop ----------
     update() {
+      // a thrown frame must never kill the rAF loop (a dead loop = total
+      // freeze, the "stuck at the exit" bug) - contain, log, keep running
+      try {
+        this.updateInner();
+      } catch (e) {
+        if (!this._lastUpdateErr || Date.now() - this._lastUpdateErr > 2000) {
+          this._lastUpdateErr = Date.now();
+          console.error('[misthollow] update error (contained):', e);
+        }
+      }
+    }
+
+    updateInner() {
       if (!this.layout || this.dead) return;
       const k = this.keys;
       const pad = this.input.gamepad && this.input.gamepad.total ? this.input.gamepad.getPad(0) : null;
@@ -1809,6 +1882,8 @@
         this.player.setFrame(`${this.facing}0`);
       }
 
+      const now = Date.now();
+
       // exits: physics overlap OR proximity+intent (pressing toward a gap
       // mouth within 16px) - two independent triggers so a missed overlap
       // can never strand anyone. Gated states explain themselves.
@@ -1841,8 +1916,6 @@
           }
         }
       }
-
-      const now = Date.now();
 
       // combat dance: face your target and circle it like a duelist - the
       // strafing is cosmetic, but it makes the 2s rounds feel alive

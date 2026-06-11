@@ -2156,7 +2156,10 @@
       },
       "mob_resets": [],
       "obj_resets": [],
-      "vnum": 7099
+      "vnum": 7099,
+      "extra_descs": {
+        "threshold carvings": "The carvings around the threshold are a warning in the oldest city script: 'BELOW LIES THE CITY THAT DOES NOT SLEEP.'"
+      }
     }
   },
   "mobs": {

@@ -45,7 +45,10 @@
           "max": 1
         }
       ],
-      "obj_resets": []
+      "obj_resets": [],
+      "extra_descs": {
+        "gates": "The Gates of the Dead stand open. They have always stood open. The dead, the inscription notes, are patient about visitors."
+      }
     },
     "14001": {
       "title": "Avenue of Tombs",

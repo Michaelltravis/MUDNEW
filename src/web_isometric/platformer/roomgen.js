@@ -319,7 +319,12 @@
       }
       // skip near feature tiles and gap corridors
       const nearPoi = pois.some(([px, py]) => cells.some(([cx, cy]) => Math.abs(cx - px) <= 1 && Math.abs(cy - py) <= 1));
-      if (nearPoi || cells.some(([cx, cy]) => at(cx, cy) !== FLOOR)) continue;
+      // keep the straight lanes to each exit clear: holding a direction
+      // key must always carry you from the center to the gap (Zelda feel)
+      const inLane = cells.some(([cx, cy]) =>
+        ((gaps.east || gaps.west) && Math.abs(cy - midY) <= 1) ||
+        ((gaps.north || gaps.south) && Math.abs(cx - midX) <= 1));
+      if (nearPoi || inLane || cells.some(([cx, cy]) => at(cx, cy) !== FLOOR)) continue;
       cells.forEach(([cx, cy]) => set(cx, cy, BLOCK));
       if (!allReachable()) {
         cells.forEach(([cx, cy]) => set(cx, cy, FLOOR));

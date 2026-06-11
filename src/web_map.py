@@ -130,6 +130,21 @@ class WebMapServer:
         for client in dead_clients:
             self.clients.discard(client)
 
+    async def notify_event(self, player, event: dict):
+        """Push a small structured event (ambient echo, npc chatter...) to a
+        player's connected web clients."""
+        dead_clients = []
+        for client in list(self.clients):
+            if not client.player_name or client.player_name.lower() != player.name.lower():
+                continue
+            try:
+                if not await self._ws_send(client.writer, json.dumps(event)):
+                    dead_clients.append(client)
+            except Exception:
+                dead_clients.append(client)
+        for client in dead_clients:
+            self.clients.discard(client)
+
     async def _handle_client(self, reader, writer):
         try:
             request = await reader.readline()
@@ -196,6 +211,48 @@ class WebMapServer:
                 payload = build_map_payload(player, mode='full')
                 logger.info(f"/state: returning {len(payload.get('rooms', []))} rooms for '{player_name}'")
                 await self._http_response(writer, 200, 'OK', json.dumps(payload), content_type='application/json')
+            elif path.startswith('/lookat'):
+                # examine a detail: room extra descriptions, items, mobs,
+                # inventory - resolved server-side so the client never has
+                # to scrape the text stream
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                target = ((query.get('target') or [''])[0]).strip().lower()
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player or not target or not player.room:
+                    await self._http_response(writer, 404, 'Not Found', json.dumps({'found': False}), content_type='application/json')
+                    return
+                room = player.room
+                result = None
+                # room extra descriptions ("look at fountain")
+                for keys, text in (getattr(room, 'extra_descs', None) or {}).items():
+                    if any(target in k.lower() or k.lower() in target for k in keys.split()):
+                        result = {'title': keys.split()[0].title(), 'text': text, 'kind': 'detail'}
+                        break
+                # mobs and players in the room
+                if not result:
+                    for ch in room.characters:
+                        name = getattr(ch, 'name', '') or ''
+                        kws = getattr(ch, 'keywords', None) or name.lower().split()
+                        if target in name.lower() or any(target in k.lower() for k in kws):
+                            text = getattr(ch, 'description', '') or getattr(ch, 'long_desc', '') or f'{name} looks unremarkable.'
+                            result = {'title': name, 'text': text, 'kind': 'being'}
+                            break
+                # items on the ground, then in inventory
+                if not result:
+                    pools = [(getattr(room, 'items', None) or []), (getattr(player, 'inventory', None) or [])]
+                    for pool in pools:
+                        for it in pool:
+                            name = getattr(it, 'name', '') or ''
+                            if target in name.lower():
+                                text = getattr(it, 'description', '') or getattr(it, 'long_desc', '') or getattr(it, 'short_desc', '') or 'Nothing remarkable.'
+                                result = {'title': getattr(it, 'short_desc', name) or name, 'text': text, 'kind': 'item'}
+                                break
+                        if result:
+                            break
+                body = json.dumps(dict(result, found=True)) if result else json.dumps({'found': False})
+                await self._http_response(writer, 200, 'OK', body, content_type='application/json')
             elif path.startswith('/sprites/'):
                 # Serve sprite images
                 sprite_file = path.replace('/sprites/', '')

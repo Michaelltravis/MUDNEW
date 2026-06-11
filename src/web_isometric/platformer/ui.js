@@ -300,22 +300,43 @@
   }
 
   // ---- room banner / description ----
+  // first visit: prose fades in over the scene; revisits show just the
+  // name. L re-reads the room anytime (the MUD 'look' reflex).
   let descTimer = null;
   let lastRoomShown = null;
+  let seenRooms = new Set();
+  try { seenRooms = new Set(JSON.parse(localStorage.getItem('misthollow_seen_rooms') || '[]')); } catch (_) {}
+  function rememberSeen(vnum) {
+    if (seenRooms.has(vnum)) return;
+    seenRooms.add(vnum);
+    if (seenRooms.size > 4000) seenRooms = new Set([...seenRooms].slice(-3000));
+    try { localStorage.setItem('misthollow_seen_rooms', JSON.stringify([...seenRooms])); } catch (_) {}
+  }
+  function showProse(room, holdMs) {
+    const desc = (room.description || '').trim();
+    if (!desc) { els.roomDesc.classList.remove('show'); return; }
+    if (MH.immersion && MH.immersion.decorateProse) MH.immersion.decorateProse(els.roomDesc, desc, room);
+    else els.roomDesc.textContent = desc;
+    els.roomDesc.classList.add('show');
+    clearTimeout(descTimer);
+    descTimer = setTimeout(() => els.roomDesc.classList.remove('show'), holdMs);
+  }
   function showRoom(room, zoneName) {
     lastRoomShown = { room, zoneName };
     els.roomName.textContent = room.name || '';
     els.roomZone.textContent = zoneName || '';
-    const desc = (room.description || '').trim();
-    if (desc) {
-      els.roomDesc.textContent = desc;
-      els.roomDesc.classList.add('show');
-      clearTimeout(descTimer);
-      descTimer = setTimeout(() => els.roomDesc.classList.remove('show'), 4800);
-    } else {
-      els.roomDesc.classList.remove('show');
-    }
+    const first = room.vnum != null && !seenRooms.has(room.vnum);
+    if (room.vnum != null) rememberSeen(room.vnum);
+    if (first) showProse(room, 7000);
+    else els.roomDesc.classList.remove('show');
   }
+  window.addEventListener('keydown', e => {
+    if (e.key.toLowerCase() === 'l' && !e.ctrlKey && !e.metaKey
+        && !['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName)
+        && lastRoomShown) {
+      showProse(lastRoomShown.room, 9000);
+    }
+  });
 
   // ---- flash line ----
   let flashTimer = null;

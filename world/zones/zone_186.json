@@ -845,7 +845,10 @@
       ],
       "name": "The Entrance To The Newbie Zone",
       "sector_type": "city",
-      "vnum": 18600
+      "vnum": 18600,
+      "extra_descs": {
+        "entrance": "Above the arch, someone has chalked 'GOOD LUCK' and someone else, beneath it, 'you'll need it.' Both hands look experienced."
+      }
     },
     "18601": {
       "description": "The passage opens entering a long corridor. You can hear the sound of\ncreatures roaming about, but you can't tell where the sound emanates\nfrom exactly. Exits lead to the east along the hallway, and south back\nto the entrance. Shadows gather in the corners. The walls are rough-hewn\nand cold to the touch.",
@@ -864,7 +867,10 @@
       ],
       "name": "The Beginning Of The Passage",
       "sector_type": "inside",
-      "vnum": 18601
+      "vnum": 18601,
+      "extra_descs": {
+        "corridor passage": "Claw marks score the stone at ankle height. Small claws. Lots of them."
+      }
     },
     "18602": {
       "description": "You continue wandering down the hallway. Nothing much different here,\nbut you are positive you here noises behind the door to the south, and\ncoming from the east. The walls are a bit slimy and moldy here... yeech,\ncouldn't they hire someone to clean this place? What will the newbies\nthink? Oh well, you can continue along the hallway to the east or west.\nDust motes drift in the stale air. The ceiling hangs low overhead.",
@@ -1002,7 +1008,10 @@
       ],
       "name": "The Dark Pit",
       "sector_type": "inside",
-      "vnum": 18605
+      "vnum": 18605,
+      "extra_descs": {
+        "pit thing": "The dark damp thing in the corner has eyes. The eyes have noticed you. The rest of it is taking its time."
+      }
     },
     "18606": {
       "description": "Hmmm... this is an interesting little room. Ack, and there is an\ninteresting little creature staring at you too. He looks a bit surprised\nat your intrusion. You can leave via the doors north or east, or you can\nstay and annoy him a bit more. There also appears to be some type of\nwell down here also, but it has a rather secure grate covering it. The\nceiling hangs low overhead. The air is still and musty.",
@@ -1107,7 +1116,10 @@
       ],
       "name": "An Open Field By The Great Field",
       "sector_type": "inside",
-      "vnum": 18608
+      "vnum": 18608,
+      "extra_descs": {
+        "field air": "After the tunnels, the open air tastes like a reward. The Great Field rolls away north, absurdly green."
+      }
     },
     "18609": {
       "description": "Ahhh... at last, the end of the hallway... you can exit into open air to\nthe west,or return to the east and make sure you didn't miss anything.\nDust motes drift in the stale air. The air is still and musty.",
@@ -1211,7 +1223,8 @@
         }
       },
       "extra_descs": {
-        "": "sign stairs stairway"
+        "": "sign stairs stairway",
+        "bottles flasks formulae": "Among the clutter, one formula is circled three times: 'humility, qty: as needed.'"
       },
       "flags": [
         "indoors"
@@ -1459,7 +1472,8 @@
         }
       },
       "extra_descs": {
-        "": "portal floor"
+        "": "portal floor",
+        "portal glow picture": "The painted field on the floor ripples like water when you look away. The red glow comes from underneath the paint."
       },
       "flags": [
         "dark",
@@ -1716,7 +1730,8 @@
         }
       },
       "extra_descs": {
-        "": "wall"
+        "": "wall",
+        "words picture wall": "The scrawl reads: 'I was a newbie here. Now I have a castle. Keep walking.' The crude picture is, generously, a castle."
       },
       "flags": [
         "dark",
@@ -1745,7 +1760,8 @@
         }
       },
       "extra_descs": {
-        "": "plaque nameplate name"
+        "": "plaque nameplate name",
+        "statue": "The statue shows an adventurer mid-stride, chin up, pack square. The plaque says only: ONWARD. Newbies touch the boot for luck; the bronze shines there."
       },
       "flags": [
         "dark",
@@ -1798,7 +1814,8 @@
         }
       },
       "extra_descs": {
-        "": "staircase stair stairs"
+        "": "staircase stair stairs",
+        "stair roof dome": "The dome catches every footstep and returns it doubled, as if the hall were applauding small beginnings."
       },
       "flags": [
         "dark",
@@ -1827,7 +1844,8 @@
         }
       },
       "extra_descs": {
-        "": "staircase stair stairs"
+        "": "staircase stair stairs",
+        "balcony world": "From the north rail the whole Great Field spreads out below, and beyond it Midgaard's towers, and beyond those - everything else."
       },
       "flags": [
         "dark",
@@ -1856,7 +1874,8 @@
         }
       },
       "extra_descs": {
-        "": "floor design"
+        "": "floor design",
+        "desk design decorations": "The desk's design is an inlaid compass rose, every point tipped with a different gemstone chip. North's is missing. Make of that what you will."
       },
       "flags": [
         "dark",
@@ -1914,7 +1933,8 @@
         }
       },
       "extra_descs": {
-        "": "floor design"
+        "": "floor design",
+        "desk design decorations": "Fresh flowers stand in a vase no one is ever seen refilling. The newbie hall keeps its small mysteries."
       },
       "flags": [
         "dark",

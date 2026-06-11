@@ -770,6 +770,12 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             stones = GravestoneRegistry.for_room(cur.vnum)
         except Exception:
             stones = []
+        # keywords the player can "look at" - first word of each extra_desc key
+        details = []
+        for keys in (getattr(cur, 'extra_descs', None) or {}):
+            first = (keys.split() or [''])[0]
+            if first:
+                details.append(first.lower())
         current_room = {
             'vnum': cur.vnum,
             'name': cur.name,
@@ -778,6 +784,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'flags': list(cur.flags) if hasattr(cur, 'flags') else [],
             'exits': cur_exits,
             'gravestones': stones,
+            'details': details,
         }
 
     return {
