@@ -604,7 +604,11 @@
         MH.sendCommand(el.dataset.cmd + t);
         closeModals();
       });
-      el.addEventListener('dragstart', e => e.dataTransfer.setData('text/plain', el.dataset.cmd));
+      el.addEventListener('dragstart', e => {
+        e.dataTransfer.setData('text/plain', el.dataset.cmd);
+        document.body.classList.add('skill-drag');   // backdrop must not eat the drop
+      });
+      el.addEventListener('dragend', () => document.body.classList.remove('skill-drag'));
     });
   }
 
@@ -825,8 +829,8 @@
 
   function toggleMinimapSize() {
     mmLarge = !mmLarge;
-    els.minimap.width = mmLarge ? 300 : 156;
-    els.minimap.height = mmLarge ? 230 : 84;
+    els.minimap.width = mmLarge ? 360 : 230;
+    els.minimap.height = mmLarge ? 320 : 170;
     renderMinimap();
   }
 

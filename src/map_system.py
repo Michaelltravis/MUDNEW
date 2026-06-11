@@ -198,28 +198,62 @@ def compute_room_coords(rooms: Dict[int, object], start_vnum: Optional[int], pla
         return coords
 
     unvisited = set(rooms.keys())
+    occupied = set()
     offset_x = 0
 
+    def _zone_num(vnum):
+        z = getattr(rooms[vnum], 'zone', None)
+        return getattr(z, 'number', None)
+
+    def _place(vnum, coord, dxyz):
+        """Claim a grid cell; on collision slide further along the travel
+        direction so distinct rooms never stack on one map square."""
+        if coord not in occupied:
+            coords[vnum] = coord
+            occupied.add(coord)
+            return coord
+        dx, dy, dz = dxyz if dxyz != (0, 0, 0) else (1, 0, 0)
+        x, y, z = coord
+        for step in range(1, 8):
+            cand = (x + dx * step, y + dy * step, z + dz * step)
+            if cand not in occupied:
+                coords[vnum] = cand
+                occupied.add(cand)
+                return cand
+        coords[vnum] = coord    # give up: overlap beats omission
+        return coord
+
     def bfs(seed_vnum: int, seed_coord: Tuple[int, int, int]):
-        queue = [seed_vnum]
-        coords[seed_vnum] = seed_coord
+        from collections import deque
+        _place(seed_vnum, seed_coord, (0, 0, 0))
         unvisited.discard(seed_vnum)
+        queue = deque([seed_vnum])
         while queue:
-            vnum = queue.pop(0)
+            vnum = queue.popleft()
             room = rooms[vnum]
             x, y, z = coords[vnum]
+            zone_here = _zone_num(vnum)
+            # lay out the local zone before chasing cross-zone links, so a
+            # town stays one coherent block on the map instead of being
+            # scattered by whichever detour the BFS found first
+            same, cross = [], []
             for direction, exit_data in _iter_visible_exits(room, player):
                 if direction not in DIR_OFFSETS:
                     continue
                 to_vnum = _get_exit_target_vnum(exit_data)
-                if to_vnum not in rooms:
+                if to_vnum not in rooms or to_vnum in coords:
                     continue
+                (same if _zone_num(to_vnum) == zone_here else cross).append((direction, to_vnum))
+            for direction, to_vnum in same + cross:
                 if to_vnum in coords:
                     continue
                 dx, dy, dz = DIR_OFFSETS[direction]
-                coords[to_vnum] = (x + dx, y + dy, z + dz)
+                _place(to_vnum, (x + dx, y + dy, z + dz), (dx, dy, dz))
                 unvisited.discard(to_vnum)
-                queue.append(to_vnum)
+                if _zone_num(to_vnum) == zone_here:
+                    queue.appendleft(to_vnum)
+                else:
+                    queue.append(to_vnum)
 
     # Start with player's component if available
     if start_vnum in unvisited:

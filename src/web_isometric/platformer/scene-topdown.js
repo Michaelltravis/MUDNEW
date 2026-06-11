@@ -24,7 +24,6 @@
       // street life: friendly NPCs murmur idle chatter now and then
       this.time.addEvent({ delay: 7000, loop: true, callback: () => this.npcChatter() });
       this.physics.world.setBounds(0, 0, this.pxW, this.pxH);
-      this.cameras.main.setBounds(0, 0, this.pxW, this.pxH);
       this.cameras.main.setRoundPixels(true);
       // integer zoom for crisp pixels at any window size
       const fit = () => {

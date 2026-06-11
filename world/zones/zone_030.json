@@ -248,7 +248,7 @@
           "description": "You see the good old Grunting Boar Inn."
         },
         "south": {
-          "to_room": 3210
+          "to_room": 3014
         },
         "west": {
           "to_room": 3004,
@@ -516,13 +516,15 @@
           "description": "You see the common square."
         },
         "west": {
+          "to_room": 3013
+        },
+        "down": {
           "to_room": 3072,
-          "description": "A seam in the statue base leads west.",
           "hidden": true,
-          "requires_detect_magic": true,
-          "search_difficulty": 62,
+          "search_difficulty": 55,
+          "requires_light": false,
           "secret": true,
-          "reveal_message": "A section of the statue base dissolves, opening a concealed passage west."
+          "reveal_message": "A seam in the statue base parts, revealing a cramped hollow below."
         }
       },
       "extra_descs": {
@@ -1364,11 +1366,15 @@
       "flags": [],
       "exits": {
         "east": {
-          "to_room": 25000
+          "to_room": 3024
         },
         "west": {
           "to_room": 3043,
           "description": "The alley leads west."
+        },
+        "arena": {
+          "to_room": 25000,
+          "description": "An iron-banded gate opens into the Blood Pit Arena."
         }
       },
       "mob_resets": [
@@ -1956,13 +1962,12 @@
         "indoors"
       ],
       "exits": {
-        "east": {
-          "to_room": 3014,
-          "description": "The passage returns to the market square."
-        },
         "north": {
           "to_room": 3069,
           "description": "The bank is to the north."
+        },
+        "up": {
+          "to_room": 3014
         }
       },
       "obj_resets": [

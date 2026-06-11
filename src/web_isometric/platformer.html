@@ -748,6 +748,12 @@
   .spell-entry { position: relative; }
   .spell-entry .helpq { color: #8a90a4; font-size: 10px; cursor: pointer; padding: 0 3px; }
   .spell-entry .helpq:hover { color: #e8c168; }
+
+  /* while dragging a skill out of the spellbook, the modal + backdrop go
+     transparent to pointer events so the hotbar can receive the drop */
+  body.skill-drag #modal-backdrop, body.skill-drag .modal { pointer-events: none; opacity: .35; }
+  body.skill-drag #hotbar { z-index: 60; }
+  body.skill-drag .hotslot { border-color: var(--green); box-shadow: 0 0 8px rgba(111,214,133,.35); }
   #help-chip { bottom: 112px !important; left: 10px !important; opacity: .55; }
   #help-chip:hover { opacity: 1; }
 
@@ -810,7 +816,7 @@
   <div id="minimap-wrap">
     <div class="mm-head"><span>CARTOGRAPHY</span><span style="display:flex;gap:8px">
       <span id="mm-level" title="view another level (sewers below, towers above)">↕</span><span id="mm-out" title="zoom out (wheel)">−</span><span id="mm-in" title="zoom in (wheel)">+</span><span id="mm-toggle" title="resize (M)">⤢</span></span></div>
-    <canvas id="minimap" width="156" height="84"></canvas>
+    <canvas id="minimap" width="230" height="170"></canvas>
   </div>
 
   <div id="chat-log"></div>
