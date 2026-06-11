@@ -439,28 +439,85 @@
   }
   function anyModalOpen() { return !!document.querySelector('.modal.open'); }
 
+  // paper-doll: your class character model wearing the gear, slot sockets
+  // around it, carried items as an icon grid
+  const PD_LEFT = ['head', 'neck', 'body', 'about', 'arms'];
+  const PD_RIGHT = ['hands', 'waist', 'legs', 'feet', 'wrist'];
+  const PD_BOTTOM = ['wield', 'shield', 'held', 'light', 'finger'];
+  function drawCharModel(canvas, p) {
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // class aura behind the model when wearing legendaries / a full set
+    if (p.aura && MH.itemIcons) {
+      const cls = (p.char_class || 'warrior').toLowerCase();
+      const sig = { warrior: '#e05a4a', paladin: '#ffe9a8', mage: '#9a8aff', necromancer: '#9adba0',
+        thief: '#b8b2c8', assassin: '#8a5a9a', ranger: '#8ac06a', cleric: '#cfe2ff', bard: '#f0b060' }[cls] || '#e8c168';
+      const g = ctx.createRadialGradient(canvas.width / 2, canvas.height * 0.55, 8, canvas.width / 2, canvas.height * 0.55, canvas.width * 0.48);
+      g.addColorStop(0, sig + '55'); g.addColorStop(1, sig + '00');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    }
+    try {
+      const scene = MH.game.scene.getScenes(true)[0];
+      const texKey = MH.tdSprites.playerKey((p.char_class || '').toLowerCase());
+      const tex = scene.textures.get(scene.textures.exists(texKey) ? texKey : 'td_player_warrior');
+      const frame = tex.get('d0');
+      ctx.imageSmoothingEnabled = false;
+      const sz = Math.min(canvas.width, canvas.height) * 0.86;
+      ctx.drawImage(tex.getSourceImage(), frame.cutX, frame.cutY, frame.cutWidth, frame.cutHeight,
+        (canvas.width - sz) / 2, (canvas.height - sz) / 2, sz, sz);
+    } catch (_) { /* model is decorative */ }
+  }
+  function pdSocket(slot, item) {
+    const filled = item ? '' : ' empty';
+    const rar = item ? (item.set_id ? 'set' : (item.rarity || 'common')) : '';
+    return `<div class="pd-socket${filled}" data-slot="${slot}" ${item ? `data-name="${item.name}" data-cmd="remove ${MH.mobKeyword(item.name)}"` : ''} title="${item ? item.name + ' (click to remove)' : slot}">`
+      + `<canvas width="34" height="34"></canvas><span class="pd-slotname">${slot}</span>${item && rar !== 'common' ? `<i class="pd-rar ${rar}"></i>` : ''}</div>`;
+  }
   function renderInventory() {
     const p = MH.state.player;
     if (!p) { els.invBody.textContent = 'No data yet.'; return; }
-    let html = '<div style="color:#e8c168">— EQUIPPED —</div>';
     const eq = p.equipment || {};
-    if (!Object.keys(eq).length) html += '<div class="slot">nothing equipped</div>';
-    for (const [slot, item] of Object.entries(eq)) {
-      html += `<div class="item" data-cmd="remove ${MH.mobKeyword(item.name)}"><span class="slot">[${slot}]</span> ${item.name} <span class="slot">(click to remove)</span></div>`;
-    }
-    html += '<div style="color:#e8c168;margin-top:8px">— CARRIED —</div>';
+    const known = new Set([...PD_LEFT, ...PD_RIGHT, ...PD_BOTTOM]);
+    const extra = Object.keys(eq).filter(sl => !known.has(sl));
+    let html = '<div class="pdoll">';
+    html += '<div class="pd-col">' + PD_LEFT.map(sl => pdSocket(sl, eq[sl])).join('') + '</div>';
+    html += `<div class="pd-center"><canvas id="pd-model" width="150" height="170"></canvas>`
+      + `<div class="pd-class">${p.name || ''}<br><span>${p.char_class || ''}${p.aura ? ' · ' + (p.aura === 'legendary' ? '⚜ legendary' : '◈ set bonus') : ''}</span></div></div>`;
+    html += '<div class="pd-col">' + PD_RIGHT.map(sl => pdSocket(sl, eq[sl])).join('') + '</div>';
+    html += '</div><div class="pd-row">' + PD_BOTTOM.concat(extra).map(sl => pdSocket(sl, eq[sl])).join('') + '</div>';
+
+    html += '<div style="color:#e8c168;margin:10px 0 4px;letter-spacing:1px">— CARRIED —</div><div class="inv-grid">';
     const inv = p.inventory || [];
     if (!inv.length) html += '<div class="slot">empty-handed</div>';
-    for (const item of inv) {
-      html += `<div class="item" data-cmd="wear ${MH.mobKeyword(item.name)}">${item.name} <span class="slot">(${item.item_type || 'item'} · click to wear/wield)</span></div>`;
-    }
+    inv.forEach((item, i) => {
+      html += `<div class="inv-cell" data-i="${i}" data-cmd="wear ${MH.mobKeyword(item.name)}" title="${item.name} (${item.item_type || 'item'})">`
+        + `<canvas width="34" height="34"></canvas><span class="inv-nm">${(item.short || item.name).slice(0, 26)}</span></div>`;
+    });
+    html += '</div>';
     els.invBody.innerHTML = html;
-    els.invBody.querySelectorAll('.item').forEach(el => el.addEventListener('click', () => {
-      let cmd = el.dataset.cmd;
-      if (cmd.startsWith('wear ') && /weapon/.test(el.textContent)) cmd = cmd.replace('wear ', 'wield ');
-      MH.sendCommand(cmd);
-      setTimeout(() => { MH.refreshState().then(renderInventory); }, 600);
-    }));
+
+    const model = els.invBody.querySelector('#pd-model');
+    if (model) drawCharModel(model, p);
+    els.invBody.querySelectorAll('.pd-socket').forEach(el => {
+      const item = eq[el.dataset.slot];
+      if (item && MH.itemIcons) MH.itemIcons.intoCanvas(el.querySelector('canvas'), item);
+      if (el.dataset.cmd) el.addEventListener('click', () => {
+        MH.sendCommand(el.dataset.cmd);
+        setTimeout(() => { MH.refreshState().then(renderInventory); }, 600);
+      });
+    });
+    els.invBody.querySelectorAll('.inv-cell').forEach(el => {
+      const item = inv[Number(el.dataset.i)];
+      if (item && MH.itemIcons) MH.itemIcons.intoCanvas(el.querySelector('canvas'), item);
+      el.addEventListener('click', () => {
+        let cmd = el.dataset.cmd;
+        if ((item.item_type || item.type) === 'weapon') cmd = cmd.replace('wear ', 'wield ');
+        else if (['potion', 'food', 'drink', 'scroll'].includes(item.item_type || item.type)) cmd = cmd.replace('wear ', 'use ');
+        MH.sendCommand(cmd);
+        setTimeout(() => { MH.refreshState().then(renderInventory); }, 600);
+      });
+    });
   }
 
   function renderSpells() {
@@ -1166,7 +1223,16 @@
         (loot.length ? loot : ['The corpse holds nothing.']).slice(0, 8).forEach(l => {
           const div = document.createElement('div');
           div.className = /gold coin/i.test(l) ? 'gold' : 'it';
-          div.textContent = l.replace(/^You get /i, '+ ').replace(/ from the corpse\.?$/i, '');
+          const nm = l.replace(/^You get /i, '').replace(/ from the corpse\.?$/i, '');
+          if (MH.itemIcons && loot.length) {
+            const c = document.createElement('canvas');
+            c.width = c.height = 20;
+            c.style.verticalAlign = 'middle';
+            c.style.marginRight = '5px';
+            MH.itemIcons.intoCanvas(c, { name: nm });
+            div.appendChild(c);
+          }
+          div.appendChild(document.createTextNode((loot.length ? '+ ' : '') + nm));
           els.lootLines.appendChild(div);
         });
         els.lootToast.classList.add('show');

@@ -164,6 +164,8 @@
       this.featureZones = [];
       this.corpses = [];
       if (this.weatherEmitter) { this.weatherEmitter.destroy(); this.weatherEmitter = null; }
+      if (this.fogEmitter) { this.fogEmitter.destroy(); this.fogEmitter = null; }
+      if (this.wornAura) { this.wornAura.destroy(); this.wornAura = null; }
       if (this.bubbleEmitter) { this.bubbleEmitter.destroy(); this.bubbleEmitter = null; }
 
       const th = layout.theme;
@@ -241,10 +243,29 @@
         if (prop.name && this.textures.exists(`zt_prop_${prop.name}`)) {
           const img = this.add.image(prop.x * T + T / 2, (prop.y + 1) * T, `zt_prop_${prop.name}`)
             .setOrigin(0.5, 1).setDepth(3).setScale((prop.scale || 1) / MH.SMOOTH_SS);
-          // scenery rewards curiosity: click for flavor text
+          // scenery rewards curiosity: flavor text, and some of it is usable
           if (MH.PROP_FLAVOR && MH.PROP_FLAVOR[prop.name]) {
             img.setInteractive({ useHandCursor: true });
-            img.on('pointerdown', () => MH.immersion && MH.immersion.propFlavor(prop.name));
+            img.on('pointerdown', pointer => {
+              if (!MH.immersion) return;
+              const cx = pointer.event.clientX, cy = pointer.event.clientY;
+              const acts = [];
+              if (prop.name === 'fountain') {
+                acts.push({ label: '🜄 Drink', fn: () => MH.sendCommand('drink') });
+                const p = MH.state.player || {};
+                for (const it of (p.inventory || []).filter(i => (i.item_type || i.type) === 'drink').slice(0, 3)) {
+                  acts.push({ label: `⚱ Fill ${(it.short || it.name).slice(0, 18)}`, fn: () => MH.sendCommand(`fill ${MH.mobKeyword(it.name)}`) });
+                }
+              } else if (['stump', 'bench'].includes(prop.name)) {
+                acts.push({ label: '🪑 Sit', fn: () => MH.sendCommand('sit') });
+                acts.push({ label: '😴 Rest', fn: () => MH.sendCommand('rest') });
+              } else if (prop.name === 'brazier' || prop.name === 'candles') {
+                acts.push({ label: '😴 Rest by the warmth', fn: () => MH.sendCommand('rest') });
+              }
+              acts.push({ label: '👁 Examine', fn: () => MH.immersion.propFlavor(prop.name) });
+              if (acts.length > 1 && MH.popover) MH.popover.show(cx, cy, (MH.PROP_FLAVOR[prop.name] || [prop.name])[0], acts);
+              else MH.immersion.propFlavor(prop.name);
+            });
           }
           this.tileLayer.add(img);
           const glowTint = MH.GLOW_PROPS && MH.GLOW_PROPS[prop.name];
@@ -599,14 +620,27 @@
 
       if (spec.kind === 'item') {
         const isCorpse = /corpse/i.test(spec.data.name || '');
-        const texKey = isCorpse ? 'sm_corpse' : this.safeTex(MH.smoothSprites.itemKey(spec.data.type), 'fx_glow');
-        ent.sprite = this.add.image(slot.x, slot.y, texKey).setDepth(5).setScale(0.9 / MH.SMOOTH_SS);
+        let texKey;
+        if (isCorpse) texKey = 'sm_corpse';
+        else if (MH.itemIcons) texKey = MH.itemIcons.textureKey(this, spec.data);
+        else texKey = this.safeTex(MH.smoothSprites.itemKey(spec.data.type), 'fx_glow');
+        ent.sprite = this.add.image(slot.x, slot.y, texKey).setDepth(5)
+          .setScale((isCorpse ? 0.9 : 0.75) / MH.SMOOTH_SS);
         if (!isCorpse) {
           this.tweens.add({ targets: ent.sprite, y: slot.y - 3, duration: 900, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+          const rar = spec.data.rarity;
+          if (rar === 'legendary' || rar === 'epic' || spec.data.set_id) {
+            const tint = spec.data.set_id ? 0x4ad0c0 : (rar === 'legendary' ? 0xffa838 : 0xb06ce0);
+            const g = this.add.image(slot.x, slot.y, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+              .setAlpha(0.3).setScale(0.3).setTint(tint).setDepth(4);
+            this.tweens.add({ targets: g, alpha: 0.48, duration: 800, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+            ent.smoke = g;   // cleaned up with the entity
+          }
         }
         ent.sprite.setInteractive({ useHandCursor: true });
-        ent.sprite.on('pointerdown', () => {
+        ent.sprite.on('pointerdown', pointer => {
           if (isCorpse) MH.bus.emit('loot.corpse');
+          else if (MH.objectActions) MH.objectActions(spec.data, pointer.event.clientX, pointer.event.clientY);
           else MH.sendCommand(`get ${MH.mobKeyword(spec.data.name)}`);
         });
         if (isCorpse) {
@@ -1558,11 +1592,23 @@
       if (door && /closed/i.test(e.line)) MH.sendCommand(`open ${door.name} ${pm.dir}`);
     }
 
+    travelFlourish(dir) {
+      const CARD = ['north', 'south', 'east', 'west'];
+      if (CARD.includes(dir)) return;
+      const swirl = this.add.particles(this.player.x, this.player.y, 'px_white', {
+        speed: { min: 20, max: 60 }, scale: { start: 0.6, end: 0 }, alpha: { start: 0.9, end: 0 },
+        tint: dir === 'up' || dir === 'down' ? 0xcfe2ff : 0xc080ff,
+        lifespan: 600, quantity: 14, blendMode: 'ADD',
+      }).setDepth(50);
+      this.time.delayedCall(700, () => swirl.destroy());
+    }
+
     requestMove(dir) {
       const st = MH.state;
       if (st.pendingMove && Date.now() - st.pendingMove.sentAt < 2500) return;
       st.pendingMove = { dir, sentAt: Date.now() };
       this.exitSuppress = Date.now() + 700;   // no double-fire while in flight
+      this.travelFlourish(dir);
       MH.sendCommand(dir);
     }
 
@@ -1655,6 +1701,8 @@
       }
       this.syncEntities(roomEntry);
       this.applyAtmosphere(payload);
+      this.syncWornAura(payload.player);
+      this.detectRoomChanges(roomData);
     }
 
     // Zelda screen-slide: snapshot the old room, build the new one beneath,
@@ -1730,6 +1778,69 @@
         const ent = this.entities.get(`pl:${p.name}`);
         if (ent) this.updateEntity(ent, Object.assign({}, ent.data, p));
       });
+    }
+
+    // class-colored aura when wearing legendaries / a full set
+    syncWornAura(p) {
+      const want = p && p.aura;
+      if (want && !this.wornAura) {
+        const cls = ((p.char_class || '') + '').toLowerCase();
+        const tint = { warrior: 0xe05a4a, paladin: 0xffe9a8, mage: 0x9a8aff, necromancer: 0x9adba0,
+          thief: 0xb8b2c8, assassin: 0x8a5a9a, ranger: 0x8ac06a, cleric: 0xcfe2ff, bard: 0xf0b060 }[cls] || 0xe8c168;
+        this.wornAura = this.add.image(this.player.x, this.player.y, 'fx_glow')
+          .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.30).setScale(0.34).setTint(tint).setDepth(7);
+        this.tweens.add({ targets: this.wornAura, alpha: 0.45, scale: 0.4, duration: 1100, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      } else if (!want && this.wornAura) {
+        this.wornAura.destroy();
+        this.wornAura = null;
+      }
+    }
+
+    // same-room changes: secret exits revealed by search, doors opening -
+    // rebuild in place (keeping your feet planted) with a reveal flourish
+    detectRoomChanges(roomData) {
+      if (!this.layout || roomData.vnum !== this.layout.vnum || !roomData.exits) return;
+      const prevExits = this.layout.exits || {};
+      const oldDirs = Object.keys(this.layout.exits || {}).sort().join(',');
+      const newDirs = Object.keys(roomData.exits).sort().join(',');
+      const doorState = ex => Object.entries(ex || {}).map(([d, e]) => d + ':' + (e && e.door ? e.door.state : '-')).sort().join(',');
+      const doorsChanged = doorState(this.layout.exits) !== doorState(roomData.exits);
+      if (oldDirs === newDirs && !doorsChanged) return;
+      const fresh = Object.keys(roomData.exits).filter(d => !(d in (this.layout.exits || {})));
+      const px = this.player.x, py = this.player.y;
+      const layout = MH.generateRoomTopDown(Object.assign({}, roomData, { zone: this.layout.zoneKey ? roomData.zone : roomData.zone }));
+      layout.zoneKey = this.layout.zoneKey;
+      this.buildRoom(layout, 'none');
+      this.player.setPosition(px, py);
+      const { T } = TD();
+      const midX = Math.floor(layout.W / 2) * T, midY = Math.floor(layout.H / 2) * T;
+      const SPOT = { north: [midX, T], south: [midX, this.pxH - T], west: [T, midY], east: [this.pxW - T, midY],
+        up: layout.stairsUp ? [layout.stairsUp.x * T, layout.stairsUp.y * T] : [midX, midY],
+        down: layout.stairsDown ? [layout.stairsDown.x * T, layout.stairsDown.y * T] : [midX, midY] };
+      for (const d of fresh) {
+        const [fx, fy] = SPOT[d] || [midX, midY];
+        this.revealBurst(fx, fy);
+        MH.bus.emit('flash', `A hidden way opens to the ${d}!`);
+      }
+      if (doorsChanged && !fresh.length) {
+        for (const [d, e] of Object.entries(roomData.exits)) {
+          const oldE = prevExits[d];
+          if (e.door && oldE && oldE.door && oldE.door.state !== e.door.state && e.door.state === 'open') {
+            const [fx, fy] = SPOT[d] || [midX, midY];
+            this.revealBurst(fx, fy);
+          }
+        }
+      }
+    }
+
+    revealBurst(x, y) {
+      const burst = this.add.particles(x, y, 'px_white', {
+        speed: { min: 30, max: 90 }, scale: { start: 0.7, end: 0 }, alpha: { start: 1, end: 0 },
+        tint: [0xffe9a8, 0xe8c168, 0xffffff], lifespan: 700, quantity: 18, blendMode: 'ADD',
+      }).setDepth(50);
+      this.time.delayedCall(800, () => burst.destroy());
+      this.cameras.main.flash(120, 255, 235, 180);
+      MH.bus.emit('ambient.sound', 'chime');
     }
 
     applyAtmosphere(payload) {
@@ -1836,6 +1947,7 @@
       } else {
         this._combatIdle = 0;
       }
+      if (this.wornAura) this.wornAura.setPosition(this.player.x, this.player.y + 4);
       const locked = !!MH.state.pendingMove && Date.now() - MH.state.pendingMove.sentAt < 2500;
       const manual = ax !== 0 || ay !== 0;
       if (manual && this.autoNav) this.autoNav = null;

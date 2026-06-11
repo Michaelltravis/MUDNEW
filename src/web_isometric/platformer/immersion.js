@@ -142,6 +142,81 @@
     },
   };
 
+  // ---------------- object action popover ----------------
+  let popTimer = null;
+  MH.popover = {
+    show(x, y, title, actions) {
+      const pop = $('obj-popover');
+      if (!pop) return;
+      pop.innerHTML = `<div class="op-title">${title}</div>`;
+      for (const a of actions) {
+        const b = document.createElement('button');
+        b.textContent = a.label;
+        b.onclick = () => { MH.popover.hide(); a.fn(); };
+        pop.appendChild(b);
+      }
+      pop.style.left = Math.min(x, window.innerWidth - 170) + 'px';
+      pop.style.top = Math.min(y, window.innerHeight - 40 - actions.length * 30) + 'px';
+      pop.classList.add('show');
+      clearTimeout(popTimer);
+      popTimer = setTimeout(() => MH.popover.hide(), 8000);
+      setTimeout(() => document.addEventListener('pointerdown', onAway, { once: true }), 0);
+    },
+    hide() {
+      const pop = $('obj-popover');
+      if (pop) pop.classList.remove('show');
+    },
+  };
+  function onAway(e) {
+    const pop = $('obj-popover');
+    if (pop && !pop.contains(e.target)) MH.popover.hide();
+  }
+
+  // context actions for a world object (server item on the ground)
+  MH.objectActions = function (data, x, y) {
+    const name = data.name || 'object';
+    const kw = MH.mobKeyword(name);
+    const type = data.type || data.item_type || 'other';
+    const acts = [];
+    if (type === 'fountain') {
+      acts.push({ label: '🜄 Drink', fn: () => MH.sendCommand('drink') });
+      const p = MH.state.player || {};
+      for (const it of (p.inventory || []).filter(i => (i.item_type || i.type) === 'drink').slice(0, 4)) {
+        acts.push({ label: `⚱ Fill ${ (it.short || it.name).slice(0, 18) }`, fn: () => MH.sendCommand(`fill ${MH.mobKeyword(it.name)}`) });
+      }
+      acts.push({ label: '👁 Look', fn: () => MH.immersion.lookAt(kw) });
+    } else if (type === 'container') {
+      acts.push({ label: '📦 Open', fn: () => MH.openContainer(kw, name) });
+      acts.push({ label: '✋ Take', fn: () => MH.sendCommand(`get ${kw}`) });
+      acts.push({ label: '👁 Look', fn: () => MH.immersion.lookAt(kw) });
+    } else if (type === 'note' || type === 'scroll') {
+      acts.push({ label: '📜 Read', fn: () => MH.immersion.lookAt(kw) });
+      acts.push({ label: '✋ Take', fn: () => MH.sendCommand(`get ${kw}`) });
+    } else if (type === 'drink') {
+      acts.push({ label: '🜄 Drink from it', fn: () => MH.sendCommand(`drink ${kw}`) });
+      acts.push({ label: '✋ Take', fn: () => MH.sendCommand(`get ${kw}`) });
+    } else {
+      acts.push({ label: '✋ Take', fn: () => MH.sendCommand(`get ${kw}`) });
+      acts.push({ label: '👁 Look', fn: () => MH.immersion.lookAt(kw) });
+    }
+    MH.popover.show(x, y, (data.short || name).slice(0, 30), acts);
+  };
+
+  // peek inside a ground/carried container, with per-item Take buttons
+  MH.openContainer = async function (kw, displayName) {
+    try {
+      const r = await fetch(`/container?player=${encodeURIComponent(MH.state.playerName)}&target=${encodeURIComponent(kw)}`);
+      const j = await r.json();
+      if (!j.found) { MH.immersion.showDetailCard(displayName, 'You find no way in.', 'item'); return; }
+      if (j.closed) { MH.sendCommand(`open ${kw}`); setTimeout(() => MH.openContainer(kw, displayName), 700); return; }
+      const lines = (j.items && j.items.length)
+        ? j.items.map(it => `• ${it.short || it.name}`).join('\n')
+        : 'It is empty.';
+      MH.immersion.showDetailCard(j.title || displayName, lines + (j.items && j.items.length ? '\n\n(taking everything…)' : ''), 'item');
+      if (j.items && j.items.length) MH.sendCommand(`get all ${kw}`);
+    } catch (_) { MH.sendCommand(`look in ${kw}`); }
+  };
+
   // ---------------- prop flavor (client-side lore for scenery) ----------------
   const PROP_FLAVOR = {
     lamppost: ['A Street Lamp', 'Oil-fed and iron-wrought, its flame gutters with every gust. Moths spiral in its halo.'],
@@ -250,7 +325,10 @@
     else oneShot({ bp: 600, dur: 0.5, vol: 0.022 });
   }
 
-  MH.bus.on('ambient.sound', k => { if (k === 'thunder') oneShot({ bp: 90, dur: 2.2, vol: 0.09 }); });
+  MH.bus.on('ambient.sound', k => {
+    if (k === 'thunder') oneShot({ bp: 90, dur: 2.2, vol: 0.09 });
+    else if (k === 'chime') { oneShot({ f: 880, type: 'triangle', dur: 0.5, vol: 0.05 }); oneShot({ f: 1320, type: 'triangle', dur: 0.7, vol: 0.04, delay: 0.12 }); }
+  });
 
   // ambient beds: a filtered noise layer + periodic chirps per theme family
   const BEDS = {

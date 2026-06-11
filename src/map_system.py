@@ -433,6 +433,36 @@ def _exp_thresholds(player):
     return floor, nxt
 
 
+def item_info(item):
+    """Compact item payload used for ground items, inventory and equipment:
+    enough for the client to draw a real icon and rarity border."""
+    return {
+        'name': getattr(item, 'name', 'something'),
+        'short': getattr(item, 'short_desc', '') or getattr(item, 'name', 'something'),
+        'type': getattr(item, 'item_type', 'other'),
+        'slot': getattr(item, 'wear_slot', None),
+        'rarity': getattr(item, 'rarity', 'common'),
+        'set_id': getattr(item, 'set_id', None),
+        'level': getattr(item, 'level', 0),
+    }
+
+
+def _worn_aura(player):
+    """'legendary' when any legendary piece is worn; 'set' at 4+ pieces of
+    one named set - drives the class-colored aura on the world sprite."""
+    worn = [it for it in getattr(player, 'equipment', {}).values() if it]
+    if any(getattr(it, 'rarity', '') == 'legendary' for it in worn):
+        return 'legendary'
+    counts = {}
+    for it in worn:
+        sid = getattr(it, 'set_id', None)
+        if sid:
+            counts[str(sid)] = counts.get(str(sid), 0) + 1
+    if any(c >= 4 for c in counts.values()):
+        return 'set'
+    return None
+
+
 def _in_combat(player) -> bool:
     """True only for a LIVE fight: target alive and in the same room.
     Stale fighting references must never wedge graphical clients."""
@@ -667,10 +697,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
         # Items on ground
         item_list = []
         for item in (getattr(room, 'items', None) or getattr(room, 'contents', []))[:12]:
-            item_list.append({
-                'name': getattr(item, 'name', 'something'),
-                'type': getattr(item, 'item_type', 'other'),
-            })
+            item_list.append(item_info(item))
 
         room_items.append({
             'vnum': vnum,
@@ -830,14 +857,15 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'path': getattr(player, 'path', None),
             'path_active': _path_active(player),
             'equipment': {
-                slot: {'name': item.name, 'affects': getattr(item, 'affects', [])}
+                slot: dict(item_info(item), affects=getattr(item, 'affects', []))
                 for slot, item in getattr(player, 'equipment', {}).items()
                 if item is not None
             },
             'inventory': [
-                {'name': item.name, 'item_type': getattr(item, 'item_type', 'other')}
+                dict(item_info(item), item_type=getattr(item, 'item_type', 'other'))
                 for item in getattr(player, 'inventory', [])
             ],
+            'aura': _worn_aura(player),
             'skills': dict(getattr(player, 'skills', {})),
             'talents': dict(getattr(player, 'talents', {})),
             'affects': AffectManager.save_affects(player),

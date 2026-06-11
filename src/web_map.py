@@ -247,11 +247,43 @@ class WebMapServer:
                             name = getattr(it, 'name', '') or ''
                             if target in name.lower():
                                 text = getattr(it, 'description', '') or getattr(it, 'long_desc', '') or getattr(it, 'short_desc', '') or 'Nothing remarkable.'
+                                written = getattr(it, 'text', None)
+                                if written and getattr(it, 'item_type', '') in ('note', 'scroll', 'book'):
+                                    text = f"{text}\n\n\u201c{written}\u201d"
                                 result = {'title': getattr(it, 'short_desc', name) or name, 'text': text, 'kind': 'item'}
                                 break
                         if result:
                             break
                 body = json.dumps(dict(result, found=True)) if result else json.dumps({'found': False})
+                await self._http_response(writer, 200, 'OK', body, content_type='application/json')
+            elif path.startswith('/container'):
+                # peek inside a container on the ground or in inventory
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                target = ((query.get('target') or [''])[0]).strip().lower()
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player or not target or not player.room:
+                    await self._http_response(writer, 404, 'Not Found', json.dumps({'found': False}), content_type='application/json')
+                    return
+                from map_system import item_info
+                found = None
+                where = None
+                for pool, wh in ((getattr(player.room, 'items', None) or [], 'room'),
+                                 (getattr(player, 'inventory', None) or [], 'inv')):
+                    for it in pool:
+                        if getattr(it, 'item_type', '') == 'container' and target in (getattr(it, 'name', '') or '').lower():
+                            found, where = it, wh
+                            break
+                    if found:
+                        break
+                if not found:
+                    body = json.dumps({'found': False})
+                else:
+                    contents = [item_info(x) for x in (getattr(found, 'contents', None) or [])][:30]
+                    body = json.dumps({'found': True, 'title': getattr(found, 'short_desc', '') or found.name,
+                                       'where': where, 'closed': bool(getattr(found, 'closed', False)),
+                                       'items': contents})
                 await self._http_response(writer, 200, 'OK', body, content_type='application/json')
             elif path.startswith('/sprites/'):
                 # Serve sprite images
