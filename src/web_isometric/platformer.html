@@ -707,7 +707,52 @@
   #obj-popover button:hover { border-color: #e8c168; color: #ffe9a8; }
 
   #flash-line { border-radius: 10px; backdrop-filter: blur(8px); box-shadow: var(--shadow); font-weight: 500; }
-</style>
+
+  /* ===================== THE DOCK ===================== */
+  /* the floating UI is gathered into one bottom bar so it never covers
+     the world; the game viewport is inset above it */
+  #dock { position: absolute; left: 0; right: 0; bottom: 0; height: 108px; z-index: 17;
+    background: linear-gradient(rgba(11,12,17,0) 0%, rgba(11,12,17,0.94) 30%, rgba(9,10,14,0.98) 100%);
+    border-top: 1px solid rgba(140,150,180,0.22); backdrop-filter: blur(10px); pointer-events: none; }
+  #game-root { inset: 0 0 108px 0; }
+  #hud { top: auto !important; bottom: 12px; left: 12px; z-index: 20;
+    background: transparent !important; border: none !important; box-shadow: none !important;
+    padding: 0 !important; min-width: 0; width: 330px; display: flex; gap: 10px; align-items: center; }
+  #hud-portrait-wrap { position: relative; width: 64px; height: 76px; flex: none; border-radius: 10px;
+    border: 1px solid rgba(232,193,104,0.4); background: radial-gradient(circle at 50% 30%, #232838, #10131e);
+    overflow: hidden; }
+  #hud-portrait { display: block; image-rendering: pixelated; }
+  #hud-weapon { position: absolute; right: 1px; bottom: 1px; }
+  #hud .stats { flex: 1; min-width: 0; }
+  #hud .bar { height: 15px; border-radius: 4px; margin: 4px 0; }
+  #hud .bar > b { font-size: 10px; line-height: 15px; }
+  #hud .bar.xp { height: 6px; }
+  #hud .who { font-size: 13px; margin-bottom: 2px; }
+  #hotbar { bottom: 40px !important; z-index: 20; }
+  #command-bar, #command-row { bottom: 8px; }
+  #compass { bottom: 10px !important; right: 188px !important; z-index: 20;
+    background: transparent !important; border: none !important; box-shadow: none !important;
+    grid-template-columns: repeat(4, 27px) !important; grid-auto-rows: 23px !important; padding: 0 !important; }
+  #minimap-wrap { top: auto !important; bottom: 10px !important; right: 10px !important; z-index: 20; }
+  #help-btn { position: absolute; right: 160px; bottom: 86px; z-index: 21; width: 22px; height: 22px;
+    border-radius: 50%; background: rgba(16,19,30,0.9); border: 1px solid rgba(232,193,104,0.4);
+    color: #e8c168; font-size: 13px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; pointer-events: auto; }
+  #help-btn:hover { background: rgba(40,45,60,0.95); color: #ffe9a8; }
+  /* talent rank + skill proficiency bars */
+  .tn-bar { display: block; height: 5px; border-radius: 3px; background: #10131e; border: 1px solid #000;
+    margin-top: 4px; overflow: hidden; }
+  .tn-bar > b { display: block; height: 100%; background: linear-gradient(90deg, #6fd685, #e8c168); transition: width .25s; }
+  .prof-bar { display: block; height: 4px; border-radius: 2px; background: #10131e; margin-top: 3px; overflow: hidden; }
+  .prof-bar > b { display: block; height: 100%; background: linear-gradient(90deg, #5a8ae8, #6fd685); }
+  .spell-entry { position: relative; }
+  .spell-entry .helpq { color: #8a90a4; font-size: 10px; cursor: pointer; padding: 0 3px; }
+  .spell-entry .helpq:hover { color: #e8c168; }
+  #help-chip { bottom: 112px !important; left: 10px !important; opacity: .55; }
+  #help-chip:hover { opacity: 1; }
+
+
+  </style>
 </head>
 <body>
   <div id="game-root"></div>
@@ -728,14 +773,22 @@
   <div id="room-desc"></div>
   <div id="flash-line"></div>
 
+  <div id="dock"></div>
   <div id="hud">
-    <div class="who" id="hud-name">—</div>
-    <div class="bar hp"><i id="bar-hp"></i><b id="txt-hp"></b></div>
-    <div class="bar mana"><i id="bar-mana"></i><b id="txt-mana"></b></div>
-    <div class="bar move"><i id="bar-move"></i><b id="txt-move"></b></div>
-    <div class="bar xp" title="experience to next level"><i id="bar-xp"></i></div>
-    <div class="row"><span id="hud-level"></span><span id="hud-xp-txt"></span><span id="hud-gold"></span></div>
+    <div id="hud-portrait-wrap" title="your character">
+      <canvas id="hud-portrait" width="64" height="72"></canvas>
+      <canvas id="hud-weapon" width="22" height="22" title="wielded weapon"></canvas>
+    </div>
+    <div class="stats">
+      <div class="who" id="hud-name">—</div>
+      <div class="bar hp"><i id="bar-hp"></i><b id="txt-hp"></b></div>
+      <div class="bar mana"><i id="bar-mana"></i><b id="txt-mana"></b></div>
+      <div class="bar move"><i id="bar-move"></i><b id="txt-move"></b></div>
+      <div class="bar xp" title="experience to next level"><i id="bar-xp"></i></div>
+      <div class="row"><span id="hud-level"></span><span id="hud-xp-txt"></span><span id="hud-gold"></span></div>
+    </div>
   </div>
+  <div id="help-btn" title="help (H)">?</div>
 
   <div id="target-frame">
     <div class="who" id="target-name"></div>
@@ -757,7 +810,7 @@
   <div id="minimap-wrap">
     <div class="mm-head"><span>CARTOGRAPHY</span><span style="display:flex;gap:8px">
       <span id="mm-level" title="view another level (sewers below, towers above)">↕</span><span id="mm-out" title="zoom out (wheel)">−</span><span id="mm-in" title="zoom in (wheel)">+</span><span id="mm-toggle" title="resize (M)">⤢</span></span></div>
-    <canvas id="minimap" width="170" height="130"></canvas>
+    <canvas id="minimap" width="156" height="84"></canvas>
   </div>
 
   <div id="chat-log"></div>
@@ -820,7 +873,7 @@
     <div class="modal-body" id="talents-body" style="display:none"></div>
   </div>
 
-  <div id="help-chip">WASD walk · walk off an edge to travel · F/Space sword · T chat · I inv · J journal · K spells · M map · ~ terminal · Enter command</div>
+  <div id="help-chip">WASD walk · walk off an edge to travel · F/Space sword · T chat · I inv · J journal · K spells · M map · H help · ~ terminal · Enter command</div>
 
   <div id="login-overlay">
     <div id="login-box">

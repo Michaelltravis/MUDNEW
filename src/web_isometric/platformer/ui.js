@@ -77,12 +77,17 @@
   let capture = null;
   function captureOutput(ms) {
     return new Promise(resolve => {
-      const mine = { lines: [] };
-      capture = mine;
-      setTimeout(() => {
+      const mine = { lines: [], done: false };
+      const finish = () => {
+        if (mine.done) return;
+        mine.done = true;
         if (capture === mine) capture = null;   // overlapping captures must not null each other
         resolve(mine.lines);
-      }, ms);
+      };
+      // snappy: resolve 250ms after the output stream goes quiet
+      mine.bump = () => { clearTimeout(mine.idle); mine.idle = setTimeout(finish, 250); };
+      capture = mine;
+      setTimeout(finish, ms);                   // hard ceiling
     });
   }
 
@@ -284,6 +289,43 @@
     } else {
       els.barXp.style.width = '100%';
       els.hudXpTxt.textContent = '';
+    }
+    drawHudPortrait(player);
+  }
+
+  // headshot with shoulders in the dock, plus your wielded weapon's icon
+  let portraitKey = null;
+  function drawHudPortrait(p) {
+    const c = document.getElementById('hud-portrait');
+    if (!c || !window.MH || !MH.game) return;
+    const wield = (p.equipment && p.equipment.wield && p.equipment.wield.name) || '';
+    const key = `${p.char_class}|${p.aura || ''}|${wield}`;
+    if (key === portraitKey) return;
+    portraitKey = key;
+    const ctx = c.getContext('2d');
+    ctx.clearRect(0, 0, c.width, c.height);
+    try {
+      const scene = MH.game.scene.getScenes(true)[0];
+      const texKey = MH.tdSprites.playerKey((p.char_class || '').toLowerCase());
+      const tex = scene.textures.get(scene.textures.exists(texKey) ? texKey : 'td_player_warrior');
+      const f = tex.get('d0');
+      if (p.aura) {
+        const sig = { warrior: '#e05a4a', paladin: '#ffe9a8', mage: '#9a8aff', necromancer: '#9adba0',
+          thief: '#b8b2c8', assassin: '#8a5a9a', ranger: '#8ac06a', cleric: '#cfe2ff', bard: '#f0b060' }[(p.char_class || '').toLowerCase()] || '#e8c168';
+        const g = ctx.createRadialGradient(c.width / 2, c.height * 0.45, 4, c.width / 2, c.height * 0.45, c.width * 0.7);
+        g.addColorStop(0, sig + '66'); g.addColorStop(1, sig + '00');
+        ctx.fillStyle = g; ctx.fillRect(0, 0, c.width, c.height);
+      }
+      ctx.imageSmoothingEnabled = false;
+      // head & shoulders: the upper ~2/3 of the frame, blown up
+      ctx.drawImage(tex.getSourceImage(), f.cutX, f.cutY + f.cutHeight * 0.06, f.cutWidth, f.cutHeight * 0.66,
+        -10, 4, c.width + 20, c.height + 8);
+    } catch (_) { /* decorative */ }
+    const w = document.getElementById('hud-weapon');
+    if (w) {
+      const wctx = w.getContext('2d');
+      wctx.clearRect(0, 0, w.width, w.height);
+      if (p.equipment && p.equipment.wield && MH.itemIcons) MH.itemIcons.intoCanvas(w, p.equipment.wield);
     }
   }
 
@@ -536,9 +578,12 @@
       for (const s of entries) {
         const pretty = s.replace(/_/g, ' ');
         const cmd = isSpell ? `cast '${pretty}'` : pretty;
-        const prof = skills[s] != null ? `<span class="prof">${skills[s]}%</span>` : '';
-        h += `<div class="spell-entry" draggable="true" data-cmd="${cmd}" data-kind="${isSpell ? 'sparkle' : 'star'}">`
-          + `<canvas width="20" height="20"></canvas><span class="nm">${pretty}</span>${prof}</div>`;
+        const pct = skills[s] != null ? skills[s] : null;
+        const prof = pct != null ? `<span class="prof">${pct}%</span>` : '';
+        const bar = pct != null ? `<i class="prof-bar" style="position:absolute;left:30px;right:26px;bottom:2px"><b style="width:${pct}%"></b></i>` : '';
+        h += `<div class="spell-entry" draggable="true" data-cmd="${cmd}" data-help="${pretty}" data-kind="${isSpell ? 'sparkle' : 'star'}">`
+          + `<canvas width="20" height="20"></canvas><span class="nm">${pretty}</span>${prof}`
+          + `<span class="helpq" title="help: ${pretty}">ⓘ</span>${bar}</div>`;
       }
       return h + '</div>';
     };
@@ -547,6 +592,13 @@
     els.spellsBody.innerHTML = html;
     els.spellsBody.querySelectorAll('.spell-entry').forEach(el => {
       drawIcon(el.querySelector('canvas'), el.dataset.kind);
+      const q = el.querySelector('.helpq');
+      if (q) q.addEventListener('click', async e => {
+        e.stopPropagation();
+        const lines = await (async () => { const pr = captureOutput(2200); MH.sendCommand(`help ${el.dataset.help}`, false); return pr; })();
+        const text = lines.length ? lines.join('\n') : `No help entry for '${el.dataset.help}'.`;
+        if (MH.immersion) MH.immersion.showDetailCard(el.dataset.help, text, 'detail');
+      });
       el.addEventListener('click', () => {
         const t = currentTarget ? ` ${MH.mobKeyword(currentTarget.name)}` : '';
         MH.sendCommand(el.dataset.cmd + t);
@@ -563,6 +615,31 @@
     MH.sendCommand(cmd, false);
     const lines = await p;
     els.journalBody.textContent = lines.length ? lines.join('\n') : `(no response to '${cmd}')`;
+  }
+
+  // ---- help browser: searchable MUD help files in a panel ----
+  async function openHelp(topic) {
+    openModal('modal-journal');
+    els.journalBody.innerHTML = '<div style="display:flex;gap:6px;margin-bottom:8px">'
+      + '<input id="help-search" type="text" placeholder="search help… (e.g. fireball, stance, path)" '
+      + 'style="flex:1;padding:6px 10px;background:rgba(13,15,21,.92);color:#d8dce8;border:1px solid rgba(140,150,180,.3);border-radius:6px;font-size:12px">'
+      + '</div><pre id="help-text" style="white-space:pre-wrap;font-size:12px;line-height:1.5;margin:0">…</pre>';
+    const input = document.getElementById('help-search');
+    const out = document.getElementById('help-text');
+    const show = async t => {
+      out.textContent = '…';
+      const pr = captureOutput(2400);
+      MH.sendCommand(t ? `help ${t}` : 'help', false);
+      const lines = await pr;
+      out.textContent = lines.length ? lines.join('\n') : '(no help text came back)';
+    };
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter') show(input.value.trim());
+      else if (e.key === 'Escape') { input.blur(); closeModals(); }
+      e.stopPropagation();
+    });
+    await show(topic || '');
+    if (!topic) input.focus();
   }
 
   async function openJournal() {
@@ -748,8 +825,8 @@
 
   function toggleMinimapSize() {
     mmLarge = !mmLarge;
-    els.minimap.width = mmLarge ? 300 : 170;
-    els.minimap.height = mmLarge ? 230 : 130;
+    els.minimap.width = mmLarge ? 300 : 156;
+    els.minimap.height = mmLarge ? 230 : 84;
     renderMinimap();
   }
 
@@ -830,7 +907,8 @@
           html += `<div class="${cls}" data-tid="${t.id}" data-learnable="${learnable ? 1 : ''}"`
             + ` title="${(t.description || '').replace(/"/g, '&quot;')}${reqTxt}">`
             + `<span class="tn-name">${t.name}</span>`
-            + `<span class="tn-rank">${t.rank}/${t.max_rank}</span></div>`;
+            + `<span class="tn-rank">${t.rank}/${t.max_rank}</span>`
+            + `<i class="tn-bar"><b style="width:${Math.round((t.rank / Math.max(1, t.max_rank)) * 100)}%"></b></i></div>`;
         }
       }
       html += '</div>';
@@ -1118,6 +1196,7 @@
         appendTerminal(html);
         if (capture) {
           for (const line of text.split('\n')) if (line.trim()) capture.lines.push(line);
+          if (capture.bump) capture.bump();
         }
       });
       MH.bus.on('terminal.echo', cmd => appendTerminal(`> ${cmd}`, 'cmd'));
@@ -1150,6 +1229,12 @@
         mmSetZoom(mmZoom + (e.deltaY < 0 ? 1 : -1));
       }, { passive: false });
       $('mm-in').addEventListener('click', () => mmSetZoom(mmZoom + 2));
+      const helpBtn = $('help-btn');
+      if (helpBtn) helpBtn.addEventListener('click', () => openHelp());
+      window.addEventListener('keydown', e => {
+        if (e.key.toLowerCase() === 'h' && !e.ctrlKey && !e.metaKey
+            && !['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName)) openHelp();
+      });
       // ↕ cycles through the levels you've explored here (sewers, towers)
       $('mm-level').addEventListener('click', () => {
         const payload = MH.state.lastPayload;
