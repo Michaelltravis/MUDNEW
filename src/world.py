@@ -593,8 +593,24 @@ class World:
         else:
             logger.warning(f"Zones directory not found: {zones_dir}")
             
-        # If no zones loaded, create default world
+        # If no zones loaded, create default world. Only treat this as a
+        # fresh install when there were no zone files at all — if files
+        # exist but every one failed to load, that's data corruption and
+        # rebuilding (let alone saving) the tiny default world on top of
+        # it would make things worse.
         if not self.zones:
+            zone_files = (
+                [f for f in os.listdir(zones_dir) if f.endswith('.json')]
+                if os.path.exists(zones_dir) else []
+            )
+            if zone_files:
+                logger.error(
+                    f"{len(zone_files)} zone files exist in {zones_dir} but "
+                    f"none loaded — refusing to build the default world over "
+                    f"them. Fix the zone files (or restore them with "
+                    f"'git checkout -- world/zones/') and restart."
+                )
+                raise RuntimeError("Zone files present but none could be loaded")
             logger.info("No zones found, creating default world...")
             await self.create_default_world()
             
