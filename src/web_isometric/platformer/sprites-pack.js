@@ -5,7 +5,7 @@
 // Variants are derived with hue rotation so the full cast stays distinct.
 (() => {
   const MH = window.MH = window.MH || {};
-  const TILE = 16, GAP = 1, COLS = 12;
+  const TILE = 16, GAP = 0, COLS = 12;   // tilemap_packed.png: 192x176, gapless grid
   const FRAMES = ['d0', 'd1', 'u0', 'u1', 's0', 's1', 'atk_d', 'atk_u', 'atk_s', 'hurt', 'death'];
 
   // tile index = row * 12 + col in tilemap_packed.png
@@ -65,8 +65,10 @@
       // 16px art at x5 in the 96px frame box; spec.scale grows big mobs
       // (dragons) as far as the frame allows
       const size = Math.round(TILE * 5 * Math.min(spec.scale || 1, 1.18));
-      const px = ox + (FW - size) / 2 + dx * SS;
-      const py = FH - size - 2 * SS + dy * SS;
+      // clamp inside this frame's box so lunge offsets never bleed into
+      // the neighboring frame
+      const px = Math.max(ox, Math.min(ox + FW - size, ox + (FW - size) / 2 + dx * SS));
+      const py = Math.max(0, Math.min(FH - size, FH - size - 2 * SS + dy * SS));
       ctx.save();
       ctx.globalAlpha = (spec.alpha || 1) * alpha;
       ctx.filter = filter;
