@@ -927,7 +927,7 @@ RANGER_SURVIVAL = {
             id='camouflage_talent', name='Camouflage',
             description='Active: Stealth usable in combat for 1 round. Costs 35 Focus. 45s CD.',
             max_rank=1, tier=4,
-            effects={'skill_unlock': 'camouflage_talent'}
+            effects={'skill_unlock': 'camouflage'}
         ),
         'survival_instincts': Talent(
             id='survival_instincts', name='Survival Instincts',
@@ -1031,7 +1031,7 @@ BARD_LORE = {
             id='identify_talent', name='Identify',
             description='Active: Identify any item\'s full stats. Costs 1 Inspiration.',
             max_rank=1, tier=2,
-            effects={'skill_unlock': 'identify_talent'}
+            effects={'skill_unlock': 'identify'}
         ),
         'encyclopedic': Talent(
             id='encyclopedic', name='Encyclopedic',
@@ -1093,7 +1093,7 @@ BARD_TRICKSTER = {
             id='mesmerize_talent', name='Mesmerize',
             description='Active: Mesmerize target (skip 1 round). Costs 2 Inspiration. 20s CD.',
             max_rank=1, tier=2,
-            effects={'skill_unlock': 'mesmerize_talent'}
+            effects={'skill_unlock': 'mesmerize'}
         ),
         'sleight_of_hand': Talent(
             id='sleight_of_hand', name='Sleight of Hand',
@@ -1117,7 +1117,7 @@ BARD_TRICKSTER = {
             id='mirror_image_bard', name='Mirror Image',
             description='Active: Create 2 illusions, each absorbs 1 hit. Costs 4 Inspiration. 45s CD.',
             max_rank=1, tier=4,
-            effects={'skill_unlock': 'mirror_image_bard'}
+            effects={'skill_unlock': 'mirror_image'}
         ),
         'puppet_master': Talent(
             id='puppet_master', name='Puppet Master',
@@ -1390,7 +1390,7 @@ THIEF_SUBTLETY_NEW = {
         'light_fingers': Talent(id='light_fingers', name='Light Fingers', description='Pick lock/steal speed +5% per rank.', max_rank=5, tier=1, effects={'stat_bonus': {'steal_speed': 5}}),
         'vanishing_act': Talent(id='vanishing_act', name='Vanishing Act', description='After using Pocket Sand, enter stealth for 1 round.', max_rank=1, tier=2, requires=['shadow_walk'], effects={'passive': 'vanishing_act'}),
         'misdirection': Talent(id='misdirection', name='Misdirection', description='After dodge, 10/20/30% chance target attacks a different mob.', max_rank=3, tier=2, requires=['shadow_walk'], effects={'proc': {'chance': 10, 'effect': 'misdirection'}}),
-        'shadowstep_thief': Talent(id='shadowstep_thief', name='Shadowstep', description='Teleport behind target.', max_rank=1, tier=3, requires=['vanishing_act'], effects={'skill_unlock': 'shadowstep_thief'}),
+        'shadowstep_thief': Talent(id='shadowstep_thief', name='Shadowstep', description='Teleport behind target.', max_rank=1, tier=3, requires=['vanishing_act'], effects={'skill_unlock': 'shadow_step'}),
         'ambush_mastery': Talent(id='ambush_mastery', name='Ambush Mastery', description='Backstab damage from stealth +4% per rank.', max_rank=5, tier=3, requires=['misdirection'], effects={'skill_mod': {'backstab': {'damage': 0.04}}}),
         'cloak_and_dagger': Talent(id='cloak_and_dagger', name='Cloak and Dagger', description='Stealth attacks generate +2 Luck.', max_rank=1, tier=4, requires=['shadowstep_thief'], effects={'passive': 'cloak_and_dagger'}),
         'ghost_walk': Talent(id='ghost_walk', name='Ghost Walk', description='Detection range while stealthed -3% per rank.', max_rank=5, tier=4, requires=['ambush_mastery'], effects={'stat_bonus': {'stealth_range': -0.03}}),
@@ -1480,7 +1480,7 @@ PALADIN_PROTECTION_NEW = {
     'icon': '🛡️',
     'talents': {
         'redoubt': Talent(id='redoubt', name='Redoubt', description='Block chance +2% per rank.', max_rank=5, tier=1, effects={'stat_bonus': {'block_chance': 2}}),
-        'toughness': Talent(id='prot_toughness', name='Toughness', description='Max HP +2% per rank.', max_rank=5, tier=1, effects={'stat_bonus': {'max_hp': 0.02}}),
+        'prot_toughness': Talent(id='prot_toughness', name='Toughness', description='Max HP +2% per rank.', max_rank=5, tier=1, effects={'stat_bonus': {'max_hp': 0.02}}),
         'blessing_of_sanctuary': Talent(id='blessing_of_sanctuary', name='Blessing of Sanctuary', description='Reduce all damage taken by 5%.', max_rank=1, tier=2, requires=['redoubt'], effects={'damage_reduction': {'all': 0.05}}),
         'improved_devotion': Talent(id='improved_devotion', name='Improved Devotion', description='Devotion Oath damage reduction +3% per rank.', max_rank=3, tier=2, requires=['redoubt'], effects={'stat_bonus': {'devotion_dr': 0.03}}),
         'holy_shield': Talent(id='holy_shield', name='Holy Shield', description='Block all attacks for 6s. Costs 3 Holy Power. 60s CD.', max_rank=1, tier=3, requires=['blessing_of_sanctuary'], effects={'skill_unlock': 'holy_shield'}),
@@ -1562,6 +1562,59 @@ CLERIC_SHADOW_NEW = {
         'mind_flay': Talent(id='mind_flay', name='Mind Flay', description='Channel: 3 ticks of int*4 damage, slows target. Costs 5 Faith.', max_rank=1, tier=5, requires=['shadowform', 'misery'], effects={'skill_unlock': 'mind_flay'}),
     }
 }
+
+
+# ---------------------------------------------------------------------------
+# Wired-in legacy spells: these were fully implemented in spells.py but no
+# class or talent ever granted them. Each becomes an unlockable talent in
+# its thematic tree (QA audit 2026-06-12).
+# ---------------------------------------------------------------------------
+def _wire_spell(tree, tid, name, desc, tier, unlock, requires=None):
+    tree['talents'][tid] = Talent(
+        id=tid, name=name, description=desc, max_rank=1, tier=tier,
+        requires=requires or [], effects={'skill_unlock': unlock})
+
+_wire_spell(MAGE_FROST, 'glacial_barrier', 'Glacial Barrier',
+            'Unlocks Ice Barrier: an absorbing shield of solid ice.', 3, 'ice_barrier')
+_wire_spell(MAGE_FROST, 'winters_command', "Winter's Command",
+            'Unlocks Cold Snap: instantly reset your frost cooldowns.', 4, 'cold_snap')
+_wire_spell(MAGE_ARCANE, 'unerring_bolts', 'Unerring Bolts',
+            'Unlocks Arcane Missiles: a stream of unavoidable force.', 2, 'arcane_missiles')
+_wire_spell(MAGE_ARCANE, 'rift_walker', 'Rift Walker',
+            'Unlocks Mana Rift: tear reality to drain mana from foes.', 4, 'mana_rift')
+_wire_spell(NECRO_UNHOLY_NEW, 'first_curse', 'The First Curse',
+            'Unlocks Curse: blight an enemy with creeping misfortune.', 1, 'curse')
+_wire_spell(NECRO_UNHOLY_NEW, 'festering_wounds', 'Festering Wounds',
+            'Unlocks Festering Strike: wounds that burst with rot.', 2, 'festering_strike')
+_wire_spell(NECRO_UNHOLY_NEW, 'grave_bursting', 'Grave Bursting',
+            'Unlocks Corpse Explosion: detonate the fallen.', 3, 'corpse_explosion')
+_wire_spell(NECRO_UNHOLY_NEW, 'legion_of_bone', 'Legion of Bone',
+            'Unlocks Mass Animate: raise every corpse in the room.', 4, 'mass_animate')
+_wire_spell(NECRO_UNHOLY_NEW, 'flesh_titan', 'Flesh Titan',
+            'Unlocks Raise Abomination: stitch a towering horror.', 5, 'raise_abomination')
+_wire_spell(NECRO_BLOOD_NEW, 'dark_mending', 'Dark Mending',
+            'Unlocks Dark Mending: knit flesh with stolen vitality.', 2, 'dark_mending')
+_wire_spell(NECRO_BLOOD_NEW, 'boiling_blood', 'Boiling Blood',
+            'Unlocks Blood Boil: superheat the blood of your enemies.', 2, 'blood_boil')
+_wire_spell(NECRO_BLOOD_NEW, 'death_pact', 'Death Pact',
+            'Unlocks Death Pact: sacrifice your servant for life.', 3, 'death_pact')
+_wire_spell(NECRO_BLOOD_NEW, 'siphon_unlife', 'Siphon Unlife',
+            'Unlocks Siphon Unlife: a channeled torrent of stolen life.', 4, 'siphon_unlife')
+_wire_spell(NECRO_FROST_NEW, 'deaths_caress', "Death's Caress",
+            'Unlocks Death Strike: a blow that heals for damage dealt.', 3, 'death_strike')
+_wire_spell(NECRO_FROST_NEW, 'endless_winter', 'Endless Winter',
+            'Unlocks Remorseless Winter: a howling storm of grave-cold.', 4, 'remorseless_winter')
+_wire_spell(PALADIN_HOLY_NEW, 'gift_of_the_light', 'Gift of the Light',
+            'Unlocks Lay on Hands: heal a touched ally to full, once a day.', 5, 'lay_on_hands')
+_wire_spell(CLERIC_DISCIPLINE_NEW, 'rite_of_unbinding', 'Rite of Unbinding',
+            'Unlocks Dispel Magic: strip magical effects away.', 3, 'dispel_magic')
+_wire_spell(CLERIC_SHADOW_NEW, 'eruption_of_void', 'Eruption of the Void',
+            'Unlocks Void Eruption: the dark answer to holy wrath.', 5, 'void_eruption')
+_wire_spell(BARD_PERFORMANCE, 'anthem_of_defense', 'Anthem of Defense',
+            'Unlocks Anthem of Defense: a song that shields the party.', 3, 'anthem_of_defense')
+_wire_spell(BARD_TRICKSTER, 'discordant_chord', 'Discordant Chord',
+            'Unlocks Discordant Chord: a jarring blast of anti-music.', 3, 'discordant_chord')
+
 
 CLASS_TALENT_TREES = {
     # Warrior uses Martial Doctrines + Ability Evolution instead of talent trees
@@ -1729,8 +1782,16 @@ class TalentManager:
     
     @staticmethod
     def reset_talents(player) -> int:
-        """Clear all learned talents, refunding every point. Returns refunded count."""
+        """Clear all learned talents, refunding every point. Returns refunded count.
+        Talent-unlocked abilities are revoked too - a respec means re-earning them."""
         spent = sum((getattr(player, 'talents', {}) or {}).values())
+        char_class = getattr(player, 'char_class', '').lower()
+        for tree in CLASS_TALENT_TREES.get(char_class, []):
+            for tid, talent in tree['talents'].items():
+                unlock = (talent.effects or {}).get('skill_unlock')
+                if unlock and (getattr(player, 'talents', {}) or {}).get(tid, 0) > 0:
+                    getattr(player, 'skills', {}).pop(unlock, None)
+                    getattr(player, 'spells', {}).pop(unlock, None)
         player.talents = {}
         return spent
 
@@ -1772,7 +1833,9 @@ class TalentManager:
                 # Check for skill unlocks
                 if 'skill_unlock' in talent.effects:
                     skill_name = talent.effects['skill_unlock']
-                    player.skills[skill_name] = 75  # Start at 75% proficiency
+                    from spells import SPELLS
+                    book = player.spells if skill_name in SPELLS else player.skills
+                    book[skill_name] = 75  # Start at 75% proficiency
                     await player.send(f"{c['bright_cyan']}New ability unlocked: {skill_name.replace('_', ' ').title()}!{c['reset']}")
                 
                 break

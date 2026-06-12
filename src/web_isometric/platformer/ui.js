@@ -1600,14 +1600,30 @@
         const cls = String((MH.state.player || {}).char_class || '').toLowerCase();
         return cls === 'warrior' ? 'execute' : cls === 'assassin' ? 'vital' : cls === 'thief' ? 'backstab' : null;
       };
-      MH.bus.on('combat.update', payload => {
-        const p = payload.player || {};
-        if (p.momentum > 0) {
+      // every class's signature resource gets the chip: momentum, faith,
+      // luck, focus, holy power, soul shards, inspiration, intel
+      const RES_ICON = { Momentum: '🔥', Luck: '🍀', Intel: '🗡', Faith: '🕯', 'Holy Power': '✨', Focus: '🎯', 'Soul Shards': '💀', Inspiration: '🎵' };
+      const renderResourceChip = p => {
+        const r = p.resource;
+        if (r && r.value > 0) {
+          const icon = RES_ICON[r.name] || '◆';
+          // pips for small caps, n/max for big ones (Focus 0-100)
+          const detail = r.max <= 10
+            ? '●'.repeat(r.value) + '○'.repeat(Math.max(0, r.max - r.value))
+            : `${r.value}/${r.max}`;
+          els.momentumChip.textContent = `${icon} ${r.name.toUpperCase()} ${detail}`;
+          els.momentumChip.classList.add('show');
+        } else if (p.momentum > 0) {
           els.momentumChip.textContent = `🔥 MOMENTUM ×${p.momentum}`;
           els.momentumChip.classList.add('show');
         } else {
           els.momentumChip.classList.remove('show');
         }
+      };
+      MH.bus.on('map', payload => { if (payload.player) renderResourceChip(payload.player); });
+      MH.bus.on('combat.update', payload => {
+        const p = payload.player || {};
+        renderResourceChip(p);
         if (p.stance) setStance(p.stance);
         // finisher window: target under 22%
         const mob = (payload.mobs || []).find(m2 => m2.fighting);

@@ -728,8 +728,10 @@ class CombatHandler:
 
             # Warrior stance crit bonus removed — warriors now use Combo Chain system
 
-            # Cap at 50%
-            crit_chance = min(crit_chance, 50)
+            # spell riders (Icy Veins etc.) can push past the normal cap
+            rider = getattr(attacker, 'crit_chance', 0)
+            crit_chance = min(crit_chance, 50) + max(0, rider)
+            crit_chance = min(crit_chance, 85)
 
             is_crit = force_crit or (random.randint(1, 100) <= crit_chance)
             if is_crit:

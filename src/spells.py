@@ -1639,6 +1639,64 @@ SPELLS = {
         'message_room': '$n performs their MAGNUM OPUS - music of LEGENDARY power fills the air!',
     },
 
+    # ---- talent capstones (QA 2026-06-12): were unlockable but undefined ----
+    'phoenix_flames': {
+        'name': 'Phoenix Flames', 'mana_cost': 60, 'damage_dice': '6d10+10',
+        'damage_per_level': 2, 'target': 'offensive',
+        'message_self': 'A phoenix of living flame erupts from your hands and engulfs $N!',
+        'message_room': 'A phoenix of living flame bursts from $n and engulfs $N!',
+    },
+    'renew': {
+        'name': 'Renew', 'mana_cost': 30, 'heal_dice': '2d8+6', 'heal_per_level': 1,
+        'target': 'defensive', 'duration_ticks': 8,
+        'affects': [{'type': 'regenerating', 'value': 1}],
+        'message_self': 'A gentle warmth settles in, knitting wounds closed over time.',
+        'message_other': "$N is wrapped in a soft, mending light.",
+    },
+    'inner_focus': {
+        'name': 'Inner Focus', 'mana_cost': 40, 'target': 'self', 'duration_ticks': 5,
+        'cooldown': 90,
+        'affects': [{'type': 'spell_power', 'value': 20}, {'type': 'heal_power', 'value': 20}],
+        'message_self': 'You center your mind; your next workings will strike true.',
+    },
+    'wound_poison': {
+        'name': 'Wound Poison', 'mana_cost': 35, 'damage_dice': '3d6+4', 'target': 'offensive',
+        'duration_ticks': 6, 'affects': [{'type': 'poison', 'value': 4}],
+        'message_self': 'You rake $N with venom-slick blades!',
+        'message_room': '$n rakes $N with venom-slick blades!',
+    },
+    'polymorph': {
+        'name': 'Polymorph', 'mana_cost': 70, 'target': 'offensive', 'duration_ticks': 3,
+        'cooldown': 60, 'affects': [{'type': 'sleep', 'value': 1}],
+        'message_self': 'You weave a glamour - $N blinks, bleats, and becomes a placid sheep!',
+        'message_room': '$n gestures at $N, who blinks, bleats, and becomes a placid sheep!',
+    },
+    'divine_favor': {
+        'name': 'Divine Favor', 'mana_cost': 45, 'target': 'self', 'duration_ticks': 8,
+        'cooldown': 120, 'affects': [{'type': 'heal_power', 'value': 30}],
+        'message_self': 'A mantle of golden light settles on your shoulders.',
+    },
+    'dark_transformation': {
+        'name': 'Dark Transformation', 'mana_cost': 80, 'target': 'self', 'duration_ticks': 10,
+        'cooldown': 120,
+        'affects': [{'type': 'damroll', 'value': 6}, {'type': 'spell_power', 'value': 15}],
+        'message_self': 'Shadow boils out of your veins - you are something more than alive.',
+        'message_room': "Darkness coils around $n like a living shroud.",
+    },
+    'breath_of_sindragosa': {
+        'name': 'Breath of Sindragosa', 'mana_cost': 90, 'damage_dice': '8d8+12',
+        'damage_per_level': 2, 'target': 'offensive', 'duration_ticks': 3,
+        'affects': [{'type': 'slow', 'value': 1}],
+        'message_self': 'You exhale a torrent of grave-frost over $N!',
+        'message_room': '$n exhales a torrent of grave-frost over $N!',
+    },
+    'grand_illusion': {
+        'name': 'Grand Illusion', 'mana_cost': 100, 'target': 'self', 'duration_ticks': 10,
+        'cooldown': 180,
+        'affects': [{'type': 'displacement', 'value': 1}, {'type': 'mirror_image', 'value': 3}],
+        'message_self': 'The stage is yours: a dozen of you take a bow at once.',
+        'message_room': 'A dozen copies of $n take a bow at once!',
+    },
 }
 
 # ========== RANGER COMPANION SYSTEM ==========
@@ -1868,6 +1926,9 @@ class SpellHandler:
 
     @classmethod
     async def cast_spell(cls, caster: 'Player', spell_name: str, target_name: Optional[str] = None):
+        if 'silenced' in getattr(caster, 'affect_flags', set()):
+            await caster.send(f"{caster.config.COLORS['red']}You open your mouth, but the discordant silence swallows the words!{caster.config.COLORS['reset']}")
+            return
         """Cast a spell."""
         c = cls.config.COLORS
         
@@ -1933,6 +1994,9 @@ class SpellHandler:
             
         # Get target
         target = await cls.get_target(caster, spell, target_name)
+        if target is None and spell.get('target') in ('object', 'door'):
+            await caster.send(f"{caster.config.COLORS['yellow']}Cast {spell.get('name', spell_name)} on what?{caster.config.COLORS['reset']}")
+            return
         if target is None and spell['target'] not in ('self', 'special', 'object', 'door', 'group', 'room'):
             await caster.send("Cast the spell on whom?")
             return
@@ -2121,7 +2185,7 @@ class SpellHandler:
                 damage = cls.roll_dice(spell['damage_dice'])
                 damage += spell.get('damage_per_level', 0) * caster.level
                 # Affix bonuses: spell_power and per-spell bonus (percentage)
-                spell_bonus = caster.get_equipment_bonus('spell_power') + caster.get_equipment_bonus(spell_name)
+                spell_bonus = caster.get_equipment_bonus('spell_power') + caster.get_equipment_bonus(spell_name) + getattr(caster, 'spell_power', 0)
                 if spell_bonus:
                     damage = int(damage * (1 + (spell_bonus / 100)))
 
@@ -2218,7 +2282,7 @@ class SpellHandler:
                 heal += spell.get('heal_per_level', 0) * caster.level
 
             # Affix bonuses: heal_power and per-spell bonus (percentage)
-            heal_bonus = caster.get_equipment_bonus('heal_power') + caster.get_equipment_bonus(spell_name)
+            heal_bonus = caster.get_equipment_bonus('heal_power') + caster.get_equipment_bonus(spell_name) + getattr(caster, 'heal_power', 0)
             if heal_bonus:
                 heal = int(heal * (1 + (heal_bonus / 100)))
 
@@ -2365,7 +2429,11 @@ class SpellHandler:
         # Determine if this is a stat modification or a flag
         stat_types = {'hitroll', 'damroll', 'ac', 'str', 'int', 'wis', 'dex', 'con', 'cha',
                      'armor_class', 'max_hp', 'max_mana', 'max_move', 'saving_throw',
-                     'spell_resist', 'damage_reduction'}
+                     'spell_resist', 'damage_reduction',
+                     'crit_chance', 'spell_power', 'heal_power', 'mana_regen'}
+        if affect_type == 'fire_crit':
+            affect_type = 'crit_chance'   # fire-school crit rides the same math
+            affect['type'] = 'crit_chance'
         flag_types = {'blind', 'invisible', 'sanctuary', 'haste', 'fly', 'detect_magic',
                      'detect_invisible', 'sense_life', 'waterwalk', 'stoneskin', 'mirror_image',
                      'displacement', 'mana_shield', 'ice_armor', 'fire_shield', 'spell_reflect',
@@ -2373,7 +2441,8 @@ class SpellHandler:
                      'detect_evil', 'charmed', 'entangled', 'sleeping', 'stunned', 'slow',
                      'combustion', 'presence_of_mind', 'arcane_power', 'guardian_spirit',
                      'beacon_of_light', 'holy_shield', 'divine_guardian', 'aegis_ward', 'shadowform',
-                     'armour_ward', 'briskness', 'shielded'}
+                     'armour_ward', 'briskness', 'shielded',
+                     'silenced', 'spirit_link', 'damage_redirect_pet', 'regenerating'}
 
         # Create affect data for AffectManager
         affect_data = {
@@ -2414,8 +2483,28 @@ class SpellHandler:
         elif affect_type in flag_types:
             affect_data['type'] = AffectManager.TYPE_FLAG
             # Absorption shields keep their value, other flags are binary
-            if affect_type not in ('divine_shield', 'stoneskin', 'armour_ward'):
+            if affect_type not in ('divine_shield', 'stoneskin', 'armour_ward', 'damage_redirect_pet'):
                 affect_data['value'] = 1  # Flags are binary (on/off)
+        elif affect_type == 'plague':
+            # virulent DOT + diseased marker (necromancer plague strike)
+            AffectManager.apply_affect(target, {
+                'name': 'plague', 'type': AffectManager.TYPE_DOT, 'applies_to': 'hp',
+                'value': max(2, value * 3 + caster_level // 4),
+                'duration': duration, 'caster_level': caster_level,
+            })
+            AffectManager.apply_affect(target, {
+                'name': 'plague', 'type': AffectManager.TYPE_FLAG, 'applies_to': 'diseased',
+                'value': 1, 'duration': duration, 'caster_level': caster_level,
+            })
+            return
+        elif affect_type == 'all_stats':
+            for st in ('str', 'int', 'wis', 'dex', 'con', 'cha'):
+                AffectManager.apply_affect(target, {
+                    'name': spell_name, 'type': AffectManager.TYPE_MODIFY_STAT,
+                    'applies_to': st, 'value': value,
+                    'duration': duration, 'caster_level': caster_level,
+                })
+            return
         elif affect_type == 'sleep':
             # Special case: sleep changes position immediately
             target.position = 'sleeping'
@@ -2553,7 +2642,6 @@ class SpellHandler:
 
         elif special == 'finger_of_death':
             # Finger of Death: massive damage + instant kill chance on low HP targets
-            import random
             
             # Calculate damage: 12d10+30 + 8 per level
             damage = cls.roll_dice('12d10+30') + (caster.level * 8)
@@ -2859,9 +2947,10 @@ class SpellHandler:
                     if char != caster and not (hasattr(char, 'owner') and char.owner == caster):
                         if hasattr(char, 'hp') and hasattr(char, 'take_damage'):
                             killed = await char.take_damage(total_damage, caster)
-                            await char.send(f"{c['bright_red']}The explosion engulfs you for {total_damage} damage!{c['reset']}")
+                            if hasattr(char, 'send'):
+                                await char.send(f"{c['bright_red']}The explosion engulfs you for {total_damage} damage!{c['reset']}")
                             hit_count += 1
-                            if killed and hasattr(char, 'send'):
+                            if killed:
                                 from combat import CombatHandler
                                 await CombatHandler.handle_death(caster, char)
                 
@@ -3219,17 +3308,15 @@ class SpellHandler:
 
         elif special == 'create_food':
             # Create food item
-            from objects import GameObject
-            food = GameObject.create_from_template({
-                'vnum': 9999,
-                'name': 'conjured bread',
-                'short_desc': 'a loaf of conjured bread',
-                'description': 'A magically created loaf of bread.',
-                'item_type': 'food',
-                'weight': 1,
-                'cost': 0,
-                'food_value': 12,
-            })
+            from objects import Object
+            food = Object(9999, caster.world)
+            food.name = 'conjured bread'
+            food.short_desc = 'a loaf of conjured bread'
+            food.room_desc = 'A loaf of conjured bread lies here.'
+            food.description = 'A magically created loaf of bread, still warm.'
+            food.item_type = 'food'
+            food.weight = 1
+            food.food_value = 12
             caster.inventory.append(food)
             await caster.send(f"{c['bright_yellow']}You conjure a loaf of bread!{c['reset']}")
 
@@ -3247,18 +3334,17 @@ class SpellHandler:
                 await caster.send(f"{c['bright_cyan']}You fill the waterskin with fresh water!{c['reset']}")
             else:
                 # Create a waterskin
-                from objects import GameObject
-                waterskin = GameObject.create_from_template({
-                    'vnum': 9998,
-                    'name': 'conjured waterskin',
-                    'short_desc': 'a conjured waterskin',
-                    'description': 'A magically created waterskin filled with water.',
-                    'item_type': 'drink',
-                    'weight': 2,
-                    'cost': 0,
-                    'drinks': 20,
-                    'liquid': 'water',
-                })
+                from objects import Object
+                waterskin = Object(9998, caster.world)
+                waterskin.name = 'conjured waterskin'
+                waterskin.short_desc = 'a conjured waterskin'
+                waterskin.room_desc = 'A conjured waterskin lies here.'
+                waterskin.description = 'A magically created waterskin, beaded with cool condensation.'
+                waterskin.item_type = 'drink'
+                waterskin.weight = 2
+                waterskin.drinks = 20
+                waterskin.max_drinks = 20
+                waterskin.liquid = 'water'
                 caster.inventory.append(waterskin)
                 await caster.send(f"{c['bright_cyan']}You conjure a waterskin full of water!{c['reset']}")
 

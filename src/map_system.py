@@ -482,6 +482,28 @@ def item_info(item):
     }
 
 
+CLASS_RESOURCE = {
+    # class -> (attribute, display name, maximum)
+    'warrior': ('momentum', 'Momentum', 10),
+    'thief': ('luck_points', 'Luck', 10),
+    'assassin': ('intel_points', 'Intel', 10),
+    'cleric': ('faith', 'Faith', 10),
+    'paladin': ('holy_power', 'Holy Power', 5),
+    'ranger': ('focus', 'Focus', 100),
+    'necromancer': ('soul_shards', 'Soul Shards', 10),
+    'bard': ('inspiration', 'Inspiration', 10),
+}
+
+
+def _class_resource(player):
+    """The class's signature combat resource, for the client resource chip."""
+    spec = CLASS_RESOURCE.get(str(getattr(player, 'char_class', '')).lower())
+    if not spec:
+        return None
+    attr, label, cap = spec
+    return {'name': label, 'value': int(getattr(player, attr, 0) or 0), 'max': cap}
+
+
 def _worn_aura(player):
     """'legendary' when any legendary piece is worn; 'set' at 4+ pieces of
     one named set - drives the class-colored aura on the world sprite."""
@@ -573,6 +595,7 @@ def build_combat_payload(player) -> dict:
         'player': {
             'name': player.name,
             'momentum': getattr(player, 'momentum', 0),
+            'resource': _class_resource(player),
             'path': getattr(player, 'path', None),
             'path_active': _path_active(player),
             'stance': getattr(player, 'combat_stance', getattr(player, 'mood', '')),
@@ -901,6 +924,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
                 for item in getattr(player, 'inventory', [])
             ],
             'aura': _worn_aura(player),
+            'resource': _class_resource(player),
             'skills': dict(getattr(player, 'skills', {})),
             'talents': dict(getattr(player, 'talents', {})),
             'affects': AffectManager.save_affects(player),

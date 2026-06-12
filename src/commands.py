@@ -24,6 +24,7 @@ class CommandHandler:
     
     # Command aliases
     ALIASES = {
+        'mockery': 'mock', 'poison': 'envenom',
         'n': 'north', 's': 'south', 'e': 'east', 'w': 'west',
         'u': 'up', 'd': 'down',
         'l': 'look', 'ex': 'examine',
@@ -4603,7 +4604,7 @@ class CommandHandler:
     @classmethod
     async def cmd_envenom(cls, player: 'Player', args: List[str]):
         """Envenom your weapon with deadly poison."""
-        if 'envenom' not in player.skills:
+        if 'envenom' not in player.skills and 'poison' not in player.skills:
             await player.send("You don't know how to envenom weapons!")
             return
 
@@ -4674,6 +4675,9 @@ class CommandHandler:
         import time
         c = player.config.COLORS
         char_class = getattr(player, 'char_class', '').lower()
+        # talent-trained shadow steppers (thief Subtlety) walk the same shadows
+        if char_class != 'assassin' and 'shadow_step' in getattr(player, 'skills', {}):
+            char_class = 'assassin'
 
         if char_class == 'assassin':
             if not args:
