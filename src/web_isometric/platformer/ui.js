@@ -1265,6 +1265,181 @@
     return isProxy ? `/talents?player=${name}` : `${window.location.protocol}//${host}:4001/talents?player=${name}`;
   }
 
+  // ---- talents as constellations: stars, prereq lines, a trinity of trees ----
+  const TREE_HUES = ['#ff9a5a', '#7ab8ff', '#c08aff'];
+  let constAnim = null;
+
+  function specTitle(data) {
+    const total = data.trees.reduce((a, t) => a + t.points, 0);
+    if (!total) return { txt: 'An Unwritten Star', pct: 0, idx: -1 };
+    let best = 0;
+    data.trees.forEach((t, i) => { if (t.points > data.trees[best].points) best = i; });
+    const pct = Math.round((data.trees[best].points / total) * 100);
+    const name = data.trees[best].name;
+    const rank = pct >= 80 ? 'Avatar of' : pct >= 60 ? 'Master of' : pct >= 40 ? 'Disciple of' : 'Student of';
+    return { txt: `${rank} ${name} · ${pct}%`, pct, idx: best };
+  }
+
+  function layoutConstellation(data, W) {
+    const colW = W / data.trees.length;
+    const nodes = [];
+    data.trees.forEach((tree, ti) => {
+      const tiers = {};
+      tree.talents.forEach(t => { (tiers[t.tier] = tiers[t.tier] || []).push(t); });
+      const tierKeys = Object.keys(tiers).map(Number).sort((a, b) => a - b);
+      tierKeys.forEach((tier, row) => {
+        const list = tiers[tier];
+        list.forEach((t, i) => {
+          const jx = ((MH.hashStr(t.id) % 17) - 8) * 1.6;
+          const jy = ((MH.hashStr(t.id + 'y') % 11) - 5) * 1.5;
+          nodes.push({
+            t, ti, tree,
+            x: ti * colW + colW * ((i + 1) / (list.length + 1)) + jx,
+            y: 46 + row * 52 + jy,
+          });
+        });
+      });
+    });
+    return nodes;
+  }
+
+  function drawConstellation(cv, data, nodes, phase, hover) {
+    const x = cv.getContext('2d');
+    const W = cv.width, H = cv.height;
+    x.clearRect(0, 0, W, H);
+    // night sky
+    const bg = x.createLinearGradient(0, 0, 0, H);
+    bg.addColorStop(0, '#0b0d18'); bg.addColorStop(1, '#11142a');
+    x.fillStyle = bg; x.fillRect(0, 0, W, H);
+    for (let i = 0; i < 70; i++) {
+      const sx = (MH.hashStr('bg' + i) % W), sy = (MH.hashStr('bgy' + i) % H);
+      x.globalAlpha = 0.12 + 0.1 * Math.sin(phase / 700 + i);
+      x.fillStyle = '#cfd8ff';
+      x.fillRect(sx, sy, 1.4, 1.4);
+    }
+    x.globalAlpha = 1;
+    const colW = W / data.trees.length;
+    const byId = Object.fromEntries(nodes.map(n => [n.t.id, n]));
+    // tree headers + column separators + milestone runes
+    data.trees.forEach((tree, ti) => {
+      const hue = TREE_HUES[ti % 3];
+      if (ti) { x.strokeStyle = 'rgba(140,150,180,0.12)'; x.beginPath(); x.moveTo(ti * colW, 14); x.lineTo(ti * colW, H - 8); x.stroke(); }
+      x.font = '600 12px Trebuchet MS, Verdana, sans-serif';
+      x.fillStyle = hue;
+      x.textAlign = 'center';
+      x.fillText(`${tree.icon || '✦'} ${tree.name}`, ti * colW + colW / 2, 18);
+      x.font = '9px Trebuchet MS, Verdana, sans-serif';
+      x.fillStyle = '#8a90a4';
+      x.fillText(`${tree.points} pts`, ti * colW + colW / 2, 30);
+      // milestone runes: 5/15/25 -> identity passive
+      [5, 15, 25].forEach((ms, mi) => {
+        const mx = ti * colW + colW / 2 + (mi - 1) * 26;
+        const lit = tree.points >= ms;
+        x.globalAlpha = lit ? 0.95 : 0.25;
+        x.fillStyle = lit ? hue : '#6a7084';
+        x.beginPath();
+        x.moveTo(mx, H - 16); x.lineTo(mx + 4, H - 10); x.lineTo(mx, H - 4); x.lineTo(mx - 4, H - 10);
+        x.closePath(); x.fill();
+        if (lit && ms === 25) { x.globalAlpha = 0.35 + 0.25 * Math.sin(phase / 300); x.beginPath(); x.arc(mx, H - 10, 9, 0, 7); x.strokeStyle = hue; x.stroke(); }
+      });
+      x.globalAlpha = 1;
+    });
+    x.textAlign = 'left';
+    // prereq starlines
+    for (const n of nodes) {
+      for (const req of (n.t.requires || [])) {
+        const from = byId[req];
+        if (!from) continue;
+        const lit = from.t.rank > 0;
+        x.strokeStyle = lit ? TREE_HUES[n.ti % 3] : 'rgba(140,150,180,0.18)';
+        x.globalAlpha = lit ? 0.5 : 1;
+        x.lineWidth = lit ? 1.4 : 1;
+        x.beginPath(); x.moveTo(from.x, from.y); x.lineTo(n.x, n.y); x.stroke();
+        x.globalAlpha = 1;
+      }
+    }
+    // stars
+    for (const n of nodes) {
+      const hue = TREE_HUES[n.ti % 3];
+      const st = n.state;
+      const r = 4 + n.t.rank * 1.1 + (st === 'maxed' ? 2 : 0);
+      if (st === 'maxed' || st === 'ranked') {
+        const g = x.createRadialGradient(n.x, n.y, 1, n.x, n.y, r * 3.4);
+        g.addColorStop(0, hue + 'cc'); g.addColorStop(1, hue + '00');
+        x.fillStyle = g; x.beginPath(); x.arc(n.x, n.y, r * 3.4, 0, 7); x.fill();
+      }
+      if (st === 'learnable') {
+        const pr = 7 + 2.4 * Math.sin(phase / 260 + n.x);
+        x.strokeStyle = '#ffe9a8';
+        x.globalAlpha = 0.75;
+        x.beginPath(); x.arc(n.x, n.y, pr, 0, 7); x.stroke();
+        x.globalAlpha = 1;
+      }
+      x.fillStyle = st === 'locked' ? '#3c4254' : st === 'learnable' ? '#e8e2d0' : hue;
+      x.beginPath(); x.arc(n.x, n.y, Math.max(3, r), 0, 7); x.fill();
+      if (st === 'maxed') {
+        x.strokeStyle = '#ffe9a8'; x.lineWidth = 1.2;
+        x.beginPath(); x.arc(n.x, n.y, r + 3, 0, 7); x.stroke();
+      }
+      if (hover === n) {
+        x.strokeStyle = '#ffffff'; x.lineWidth = 1;
+        x.beginPath(); x.arc(n.x, n.y, r + 5, 0, 7); x.stroke();
+      }
+    }
+  }
+
+  function drawTrinity(cv, data, phase) {
+    const x = cv.getContext('2d');
+    const W = cv.width, H = cv.height;
+    x.clearRect(0, 0, W, H);
+    const cx = W / 2, cy = H / 2 + 8, R = H / 2 - 22;
+    const corners = data.trees.map((t, i) => {
+      const a = -Math.PI / 2 + i * (Math.PI * 2 / 3);
+      return { x: cx + Math.cos(a) * R, y: cy + Math.sin(a) * R, t, hue: TREE_HUES[i % 3] };
+    });
+    // triangle frame
+    x.strokeStyle = 'rgba(232,193,104,0.35)';
+    x.lineWidth = 1.2;
+    x.beginPath();
+    corners.forEach((c, i) => i ? x.lineTo(c.x, c.y) : x.moveTo(c.x, c.y));
+    x.closePath(); x.stroke();
+    // corner crests
+    x.textAlign = 'center';
+    corners.forEach(c => {
+      const g = x.createRadialGradient(c.x, c.y, 1, c.x, c.y, 16);
+      g.addColorStop(0, c.hue + '88'); g.addColorStop(1, c.hue + '00');
+      x.fillStyle = g; x.beginPath(); x.arc(c.x, c.y, 16, 0, 7); x.fill();
+      x.font = '12px Trebuchet MS, Verdana, sans-serif';
+      x.fillStyle = c.hue;
+      const above = c.y < cy;
+      x.fillText(`${c.t.icon || '✦'} ${c.t.name} · ${c.t.points}`, c.x, c.y + (above ? -22 : 30));
+    });
+    // your build: a star pulled toward where the points lean
+    const total = data.trees.reduce((a, t) => a + t.points, 0);
+    let bx = cx, by = cy;
+    if (total > 0) {
+      bx = corners.reduce((a, c) => a + c.x * (c.t.points / total), 0);
+      by = corners.reduce((a, c) => a + c.y * (c.t.points / total), 0);
+    }
+    const spec = data.titleOverride || specTitle(data);
+    const hue = spec.idx >= 0 ? TREE_HUES[spec.idx % 3] : '#e8c168';
+    const g2 = x.createRadialGradient(bx, by, 1, bx, by, 18 + 4 * Math.sin(phase / 320));
+    g2.addColorStop(0, hue + 'ee'); g2.addColorStop(1, hue + '00');
+    x.fillStyle = g2; x.beginPath(); x.arc(bx, by, 22, 0, 7); x.fill();
+    x.fillStyle = '#fff';
+    x.beginPath();
+    for (let i = 0; i < 5; i++) {
+      const a = -Math.PI / 2 + i * Math.PI * 4 / 5;
+      const px2 = bx + Math.cos(a) * 6, py2 = by + Math.sin(a) * 6;
+      i ? x.lineTo(px2, py2) : x.moveTo(px2, py2);
+    }
+    x.closePath(); x.fill();
+    x.font = '600 12.5px Georgia, serif';
+    x.fillStyle = '#e8e2d0';
+    x.fillText(spec.txt, cx, H - 4);
+    x.textAlign = 'left';
+  }
+
   async function renderTalents() {
     els.talentsBody.innerHTML = '<div class="slot">consulting the trainers…</div>';
     let data;
@@ -1279,51 +1454,76 @@
       renderDoctrine();
       return;
     }
-    let html = pathCardsHtml();
-    html += `<div class="talent-points">★ ${data.points_available} talent point${data.points_available === 1 ? '' : 's'} available`
-      + ` <span style="color:#7a8094">(${data.points_total} total · earned by leveling)</span></div>`;
-    html += '<div class="ttrees">';
-    for (const tree of data.trees) {
-      html += `<div class="ttree"><div class="thead">`
-        + `<div class="ticon">${tree.icon || '✦'}</div>`
-        + `<div class="tname">${tree.name}</div>`
-        + `<div class="tpts">${tree.points} points spent</div>`
-        + `<div class="tdesc">${tree.description || ''}</div></div>`;
-      const byTier = {};
-      tree.talents.forEach(t => (byTier[t.tier] = byTier[t.tier] || []).push(t));
-      const learnedIds = {};
-      tree.talents.forEach(t => { if (t.rank > 0) learnedIds[t.id] = t.rank; });
-      for (const tier of Object.keys(byTier).sort((a, b) => a - b)) {
-        const need = (tier - 1) * 5;
-        html += `<div class="tier-label">TIER ${tier}${need ? ` · ${need} pts in tree` : ''}</div>`;
-        for (const t of byTier[tier]) {
-          const tierOpen = tree.points >= need;
-          const prereqMet = (t.requires || []).every(r => {
-            const all = data.trees.flatMap(tr => tr.talents);
-            const pre = all.find(x => x.id === r);
-            return pre && pre.rank > 0;
-          });
-          const maxed = t.rank >= t.max_rank;
-          const learnable = !maxed && tierOpen && prereqMet && data.points_available > 0;
-          const cls = maxed ? 'tnode maxed' : learnable ? 'tnode learnable' : t.rank > 0 ? 'tnode ranked' : 'tnode locked';
-          const reqTxt = (t.requires || []).length ? ` · requires: ${t.requires.join(', ')}` : '';
-          html += `<div class="${cls}" data-tid="${t.id}" data-learnable="${learnable ? 1 : ''}"`
-            + ` title="${(t.description || '').replace(/"/g, '&quot;')}${reqTxt}">`
-            + `<span class="tn-name">${t.name}</span>`
-            + `<span class="tn-rank">${t.rank}/${t.max_rank}</span>`
-            + `<i class="tn-bar"><b style="width:${Math.round((t.rank / Math.max(1, t.max_rank)) * 100)}%"></b></i></div>`;
-        }
-      }
-      html += '</div>';
-    }
-    html += '</div>';
-    els.talentsBody.innerHTML = html;
+    const W = 508;
+    const maxTiers = Math.max(...data.trees.map(t => Math.max(...t.talents.map(a => a.tier))));
+    const CH = 60 + maxTiers * 52;
+    els.talentsBody.innerHTML = pathCardsHtml()
+      + `<div class="talent-points">★ ${data.points_available} talent point${data.points_available === 1 ? '' : 's'} to place`
+      + ` <span style="color:#7a8094">(${data.points_total} earned by leveling · click a pulsing star)</span></div>`
+      + `<canvas id="trinity-cv" width="${W}" height="170" class="skyframe"></canvas>`
+      + `<canvas id="const-cv" width="${W}" height="${CH}" class="skyframe" style="margin-top:8px"></canvas>`
+      + `<div id="tal-tip"></div>`;
     wirePathButtons(els.talentsBody);
-    els.talentsBody.querySelectorAll('.tnode[data-learnable="1"]').forEach(el => {
-      el.addEventListener('click', async () => {
-        MH.sendCommand(`talents learn ${el.dataset.tid}`);
-        setTimeout(() => { renderTalents(); MH.refreshState(); }, 700);
-      });
+
+    const cv = document.getElementById('const-cv');
+    const tcv = document.getElementById('trinity-cv');
+    const tip = document.getElementById('tal-tip');
+    const nodes = layoutConstellation(data, W);
+    const allT = data.trees.flatMap(tr => tr.talents);
+    const tierNeed = tier => (tier - 1) * 5;
+    for (const n of nodes) {
+      const t = n.t;
+      const prereqMet = (t.requires || []).every(r => { const pre = allT.find(a2 => a2.id === r); return pre && pre.rank > 0; });
+      const tierOpen = n.tree.points >= tierNeed(t.tier);
+      n.state = t.rank >= t.max_rank ? 'maxed'
+        : (tierOpen && prereqMet && data.points_available > 0) ? (t.rank > 0 ? 'ranked' : 'learnable')
+        : t.rank > 0 ? 'ranked' : 'locked';
+      if (n.state === 'ranked' && tierOpen && prereqMet && data.points_available > 0) n.clickable = true;
+      if (n.state === 'learnable') n.clickable = true;
+    }
+    let hover = null;
+    const loop = ts => {
+      if (!document.body.contains(cv)) { constAnim = null; return; }
+      drawConstellation(cv, data, nodes, ts, hover);
+      drawTrinity(tcv, data, ts);
+      constAnim = requestAnimationFrame(loop);
+    };
+    if (constAnim) cancelAnimationFrame(constAnim);
+    constAnim = requestAnimationFrame(loop);
+
+    const nodeAt = e => {
+      const r = cv.getBoundingClientRect();
+      const mx = (e.clientX - r.left) * (cv.width / r.width);
+      const my = (e.clientY - r.top) * (cv.height / r.height);
+      let best = null, bd = 16;
+      for (const n of nodes) { const d = Math.hypot(n.x - mx, n.y - my); if (d < bd) { bd = d; best = n; } }
+      return best;
+    };
+    cv.addEventListener('mousemove', e => {
+      hover = nodeAt(e);
+      cv.style.cursor = hover && hover.clickable ? 'pointer' : 'default';
+      if (hover) {
+        const t = hover.t;
+        const req = (t.requires || []).length ? `<div class="tt-req">requires: ${t.requires.map(r => (allT.find(a2 => a2.id === r) || { name: r }).name).join(', ')}</div>` : '';
+        const gate = hover.tree.points < tierNeed(t.tier) ? `<div class="tt-req">tier opens at ${tierNeed(t.tier)} points in ${hover.tree.name}</div>` : '';
+        tip.innerHTML = `<b style="color:${TREE_HUES[hover.ti % 3]}">${t.name}</b> <span class="tt-rank">${t.rank}/${t.max_rank}</span>`
+          + `<div class="tt-desc">${t.description}</div>${req}${gate}`
+          + (hover.clickable ? '<div class="tt-go">✦ click to learn</div>' : '');
+        tip.style.display = 'block';
+        const rr = cv.getBoundingClientRect();
+        tip.style.left = Math.min(e.clientX - rr.left + 14, rr.width - 230) + 'px';
+        tip.style.top = (e.clientY - rr.top + cv.offsetTop - 10) + 'px';
+      } else tip.style.display = 'none';
+    });
+    cv.addEventListener('mouseleave', () => { hover = null; tip.style.display = 'none'; });
+    cv.addEventListener('click', e => {
+      const n = nodeAt(e);
+      if (!n || !n.clickable) return;
+      MH.sendCommand(`talents learn ${n.t.id}`);
+      // starburst on the spot
+      const r = cv.getBoundingClientRect();
+      flash(`✦ ${n.t.name}`);
+      setTimeout(() => { renderTalents(); MH.refreshState(); }, 650);
     });
   }
 
@@ -1357,6 +1557,7 @@
       return;
     }
     let html = pathCardsHtml();
+    html += `<canvas id="doctrine-cv" width="508" height="160" class="skyframe" style="margin-bottom:8px"></canvas>`;
     html += `<div class="talent-points">⚔ MARTIAL DOCTRINES`
       + (d.doctrine ? ` <span style="color:#aab2c4">· sworn to the <b>${d.doctrine.replace(/_/g, ' ')}</b> · momentum ${d.momentum}</span>`
                     : ' <span style="color:#aab2c4">· swear to one path - the choice shapes every ability</span>')
@@ -1401,6 +1602,27 @@
       html += '</div>';
     }
     els.talentsBody.innerHTML = html;
+    const dcv = document.getElementById('doctrine-cv');
+    if (dcv) {
+      const docs = Object.entries(d.doctrines).slice(0, 3);
+      const totalUse = (d.abilities || []).reduce((a, ab) => a + (ab.usage || 0), 0);
+      const synth = {
+        trees: docs.map(([id, doc]) => ({
+          name: doc.name.replace(/ Doctrine.*/i, ''),
+          icon: '⚔',
+          points: d.doctrine === id ? Math.max(1, totalUse) : 0,
+        })),
+        titleOverride: d.doctrine
+          ? { txt: `Sworn to the ${(d.doctrines[d.doctrine] || {}).name || d.doctrine} · ${totalUse} deeds`, idx: docs.findIndex(([id]) => id === d.doctrine) }
+          : { txt: 'Unsworn — three oaths await', idx: -1 },
+      };
+      const loop2 = ts => {
+        if (!document.body.contains(dcv)) return;
+        drawTrinity(dcv, synth, ts);
+        requestAnimationFrame(loop2);
+      };
+      requestAnimationFrame(loop2);
+    }
     wirePathButtons(els.talentsBody);
     els.talentsBody.querySelectorAll('[data-swear]').forEach(btn => {
       btn.addEventListener('click', () => {
