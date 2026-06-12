@@ -788,6 +788,49 @@
     padding: 4px 9px; font-size: 11px; color: #e8e2d0; font-family: var(--ui-font); }
   #wm-foot { padding: 6px 16px; border-top: 1px solid rgba(140,150,180,0.15); color: #6a7084;
     font-size: 10.5px; font-family: var(--ui-font); }
+
+  /* ===================== ARPG layer ===================== */
+  /* Diablo globes flanking the action bar */
+  #globe-hp, #globe-mana { position: absolute; bottom: 18px; z-index: 21; width: 76px; height: 76px; pointer-events: none; }
+  #globe-hp { left: calc(50% - 392px); }
+  #globe-mana { right: calc(50% - 392px); }
+  /* potion belt */
+  #belt { position: absolute; bottom: 42px; left: calc(50% + 404px); z-index: 21; display: flex; gap: 4px; }
+  .belt-slot { position: relative; width: 36px; height: 44px; border-radius: 7px; cursor: pointer;
+    background: rgba(13,15,21,0.88); border: 1px solid rgba(160,140,90,0.45); display: flex; align-items: center; justify-content: center; }
+  .belt-slot.empty { opacity: .35; cursor: default; }
+  .belt-slot:not(.empty):hover { border-color: var(--gold); }
+  .belt-slot .bcount { position: absolute; right: 2px; bottom: 1px; font-size: 9px; color: #ffe9a8; }
+  .belt-slot .bkey { position: absolute; left: 3px; top: 1px; font-size: 8px; color: #8a90a4; }
+  /* PoE buff bar */
+  #buff-bar { position: absolute; left: 12px; top: 12px; z-index: 21; display: flex; gap: 5px; flex-wrap: wrap; max-width: 380px; }
+  .buff-chip { display: flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 9px;
+    background: rgba(13,15,21,0.88); border: 1px solid rgba(140,150,180,0.3); color: #c8ccd8;
+    font-size: 10px; font-family: var(--ui-font); }
+  .buff-chip.good { border-color: rgba(95,196,106,0.55); color: #bfe8c4; }
+  .buff-chip.bad { border-color: rgba(224,90,74,0.6); color: #f0b0a8; }
+  .buff-chip b { color: #ffe9a8; font-weight: 600; }
+  .buff-chip i { font-style: normal; }
+  /* Dragon Warrior window */
+  #dw-window { position: absolute; left: 50%; top: 96px; transform: translateX(-50%); z-index: 30;
+    min-width: 280px; max-width: 560px; padding: 10px 18px; display: none; text-align: center;
+    background: rgba(16,15,11,0.95); border: 3px double rgba(232,193,104,0.85); border-radius: 3px;
+    color: #e8e2d0; font-family: 'Courier New', ui-monospace, monospace; font-size: 13.5px; letter-spacing: 0.5px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.55); }
+  #dw-window.show { display: block; }
+  /* item tooltip */
+  #item-tip { position: fixed; z-index: 95; display: none; pointer-events: none; min-width: 170px; max-width: 250px;
+    background: rgba(10,12,18,0.97); border: 1px solid rgba(232,193,104,0.45); border-radius: 8px;
+    padding: 8px 12px; font-family: var(--ui-font); font-size: 11px; }
+  #item-tip .it-name { font-size: 12.5px; font-weight: 600; margin-bottom: 2px; }
+  #item-tip .it-meta { color: #8a90a4; font-size: 10px; margin-bottom: 5px; text-transform: capitalize; }
+  #item-tip .aff-up { color: #9fe0a8; }
+  #item-tip .aff-dn { color: #f0a8a0; }
+  #item-tip .aff-none { color: #5a6076; font-style: italic; }
+  #item-tip .it-vs { color: #8a90a4; margin: 6px 0 3px; font-size: 10px; }
+  /* PoE bottom XP strip */
+  #xp-strip-track { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; z-index: 22; background: rgba(8,9,14,0.9); }
+  #xp-strip { height: 100%; width: 0; background: linear-gradient(90deg, #d4a017, #ffe9a8); box-shadow: 0 0 6px rgba(255,233,168,0.5); transition: width .6s; }
   #help-chip { bottom: 112px !important; left: 10px !important; opacity: .55; }
   #help-chip:hover { opacity: 1; }
 
@@ -900,6 +943,13 @@
     </div>
     <div id="wm-foot">M toggles the map · click a region to drill in · click an explored room to travel there · unexplored frontiers shown hollow</div>
   </div>
+  <canvas id="globe-hp" width="76" height="76"></canvas>
+  <canvas id="globe-mana" width="76" height="76"></canvas>
+  <div id="belt"></div>
+  <div id="buff-bar"></div>
+  <div id="dw-window"></div>
+  <div id="item-tip"></div>
+  <div id="xp-strip-track"><div id="xp-strip"></div></div>
   <div id="modal-backdrop"></div>
   <div class="modal" id="modal-inv">
     <div class="modal-head"><span>INVENTORY &amp; EQUIPMENT</span><span class="x" data-close="modal-inv">✕</span></div>
@@ -926,7 +976,7 @@
     <div class="modal-body" id="talents-body" style="display:none"></div>
   </div>
 
-  <div id="help-chip">WASD walk · walk off an edge to travel · F/Space sword · T chat · I inv · J journal · K spells · M map · H help · ~ terminal · Enter command</div>
+  <div id="help-chip">WASD walk · walk off an edge to travel · F/Space sword · T chat · I inv · J journal · K spells · M map · Q flask · H help · ~ terminal · Enter command</div>
 
   <div id="login-overlay">
     <div id="login-box">
@@ -948,6 +998,7 @@
   <script src="/platformer/sprites-pack.js"></script>
   <script src="/platformer/themes-zones.js"></script>
   <script src="/platformer/items.js"></script>
+  <script src="/platformer/ui-arpg.js"></script>
   <script src="/platformer/immersion.js"></script>
   <script src="/platformer/roomgen.js"></script>
   <script src="/platformer/scene-topdown.js"></script>

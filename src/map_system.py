@@ -478,6 +478,7 @@ def item_info(item):
         'rarity': getattr(item, 'rarity', 'common'),
         'set_id': getattr(item, 'set_id', None),
         'level': getattr(item, 'level', 0),
+        'affects': getattr(item, 'affects', []) or [],
     }
 
 
