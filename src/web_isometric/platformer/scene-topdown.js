@@ -713,18 +713,20 @@
       if (spec.kind === 'player') {
         texWanted = MH.tdSprites.playerKey(spec.data.char_class);
       } else if (spec.data.trainer) {
-        // guildmasters wear their class's face, crowned in gold
-        const n = (spec.data.name || '').toLowerCase();
-        const cls = /sword|warrior|fight/.test(n) ? 'warrior'
-          : /paladin|holy/.test(n) ? 'paladin'
+        // guildmasters wear their class's face, crowned in gold. Most are
+        // named just 'guildmaster', so the guild HALL names the class.
+        const room = (MH.state.currentRoom && MH.state.currentRoom.name) || '';
+        const n = `${spec.data.name || ''} ${room}`.toLowerCase();
+        const cls = /paladin|holy order/.test(n) ? 'paladin'
           : /necro/.test(n) ? 'necromancer'
-          : /mage|magic|wizard/.test(n) ? 'mage'
+          : /sword|warrior|fight|armory|barrack/.test(n) ? 'warrior'
+          : /mage|magic|wizard|arcan/.test(n) ? 'mage'
           : /assassin/.test(n) ? 'assassin'
           : /thie|rogue/.test(n) ? 'thief'
           : /ranger|hunt/.test(n) ? 'ranger'
-          : /cleric|priest|temple/.test(n) ? 'cleric'
+          : /cleric|priest|temple|sanctum/.test(n) ? 'cleric'
           : /bard|song|minstrel/.test(n) ? 'bard' : null;
-        texWanted = cls ? `td_gm_${cls}` : MH.tdSprites.mobKey(spec.data.name);
+        texWanted = cls ? `td_gm_${cls}` : 'td_mob_noble';   // crowned dignitary by default
       } else {
         texWanted = MH.tdSprites.mobKey(spec.data.name);
       }
@@ -2055,12 +2057,15 @@
       if (k.right.isDown || k.right2.isDown) ax = 1;
       if (k.up.isDown || k.up2.isDown) ay = -1;
       if (k.down.isDown || k.down2.isDown) ay = 1;
+      // a window owns the screen: the world doesn't hear the keys
+      if (MH.state.uiFrozen) { ax = 0; ay = 0; }
 
       // a move that never got an answer (lost line, eaten message) must not
       // wedge the input forever
       if (MH.state.pendingMove && Date.now() - MH.state.pendingMove.sentAt > 4000) MH.state.pendingMove = null;
-      // keyboard can never stay wedged off while the game has focus
-      if (!this.input.keyboard.enabled) {
+      // keyboard can never stay wedged off while the game has focus -
+      // unless a window deliberately froze the world
+      if (!this.input.keyboard.enabled && !MH.state.uiFrozen) {
         const a = document.activeElement;
         if (!a || a === document.body || a.tagName === 'CANVAS') this.input.keyboard.enabled = true;
       }

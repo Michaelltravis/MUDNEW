@@ -473,16 +473,32 @@
   }
 
   // ---- modals ----
+  // while any window is open the world is frozen to the mouse - no
+  // drinking from fountains through the talent tree
+  function setWorldInput(enabled) {
+    MH.state.uiFrozen = !enabled;
+    try {
+      if (MH.game && MH.game.input) {
+        MH.game.input.enabled = enabled;
+        const sc = MH.game.scene.getScenes(true).find(s2 => s2.buildRoom);
+        if (sc && sc.input.keyboard) sc.input.keyboard.enabled = enabled;
+      }
+    } catch (_) { /* game not booted yet */ }
+    if (MH.popover && !enabled) MH.popover.hide();
+  }
+  MH.setWorldInput = setWorldInput;
   function openModal(id) {
     closeModals();
     $(id).classList.add('open');
     const bd = $('modal-backdrop');
     if (bd) bd.classList.add('show');
+    setWorldInput(false);
   }
   function closeModals() {
     document.querySelectorAll('.modal.open').forEach(m => m.classList.remove('open'));
     const bd = $('modal-backdrop');
     if (bd) bd.classList.remove('show');
+    setWorldInput(true);
   }
   function anyModalOpen() { return !!document.querySelector('.modal.open'); }
 
@@ -923,6 +939,7 @@
     const el = $('world-map');
     if (!el) return;
     el.classList.toggle('show', wmOpen);
+    setWorldInput(!wmOpen);
     if (wmOpen) {
       wmView = 'world';
       wmAtlas().then(() => requestAnimationFrame(wmRender));

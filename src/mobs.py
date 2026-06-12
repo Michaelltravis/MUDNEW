@@ -227,6 +227,10 @@ class Mobile(Character):
         # Flags
         mob.flags = set(proto.get('flags', []))
         mob.special = proto.get('special')
+        # service NPCs hold their post: a guildmaster who wanders into the
+        # sewers (or chases someone there) breaks the whole guild
+        if mob.special in ('guildmaster', 'trainer', 'shopkeeper', 'healer', 'banker', 'postmaster'):
+            mob.flags.add('sentinel')
         mob.talk_responses = proto.get('talk_responses', {})
         mob.trains_class = proto.get('trains_class')  # For guildmasters
 
