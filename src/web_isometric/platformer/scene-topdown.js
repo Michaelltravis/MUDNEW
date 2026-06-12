@@ -719,6 +719,7 @@
         }
         if (spec.kind !== 'mob') return;
         if (spec.data.shopkeeper) MH.bus.emit('shop.open', spec.data);
+        else if (spec.data.trainer) MH.bus.emit('training.open', spec.data);
         else if (ent.data.hostile || ent.data.fighting || (pointer.event && pointer.event.shiftKey)) this.attackEntity(ent);
         else MH.bus.emit('npc.talk', { name: ent.data.name, quest: ent.data.quest || '' });
       });
@@ -766,6 +767,16 @@
 
     updateQuestMark(ent) {
       const q = ent.data && ent.data.quest;
+      const svc = ent.kind === 'mob' ? (data.shopkeeper ? '🪙' : data.trainer ? '📖' : null) : null;
+      if (svc && !ent.serviceMark) {
+        ent.serviceMark = this.add.text(ent.sprite.x + 9, ent.sprite.y - 24, svc, {
+          fontSize: '9px', resolution: 3,
+        }).setOrigin(0.5).setDepth(9);
+        this.tweens.add({ targets: ent.serviceMark, y: ent.serviceMark.y - 3, duration: 900, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      } else if (!svc && ent.serviceMark) {
+        ent.serviceMark.destroy();
+        ent.serviceMark = null;
+      }
       if (q && !ent.questMark) {
         ent.questMark = this.add.text(ent.sprite.x, ent.sprite.y - 26, q, {
           fontFamily: 'Georgia, serif', resolution: 3, fontSize: '14px', fontStyle: 'bold',
@@ -831,7 +842,7 @@
       if (ent.breath) ent.breath.stop();
       if (ent.wanderTween) ent.wanderTween.stop();
       if (ent.smoke) ent.smoke.destroy();
-      ['sprite', 'label', 'hpbar', 'fightMark', 'questMark', 'bubble', 'engageRing'].forEach(k => { if (ent[k]) ent[k].destroy(); });
+      ['sprite', 'label', 'hpbar', 'fightMark', 'questMark', 'bubble', 'engageRing', 'serviceMark'].forEach(k => { if (ent[k]) ent[k].destroy(); });
     }
     shortName(name) {
       const n = String(name || '');
@@ -2281,6 +2292,7 @@
         if (ent.label && ent.sprite) { ent.label.x = ent.sprite.x; ent.label.y = ent.sprite.y - (ent.data.boss ? 26 : 18); }
         if (ent.fightMark && ent.sprite) { ent.fightMark.x = ent.sprite.x; ent.fightMark.y = ent.sprite.y - 26; }
         if (ent.questMark && ent.sprite) { ent.questMark.x = ent.sprite.x; }
+        if (ent.serviceMark && ent.sprite) { ent.serviceMark.x = ent.sprite.x + 9; }
         if (ent.hpbar && ent.sprite) this.drawHpBar(ent);
         if (ent.engageRing && ent.sprite) {
           const g = ent.engageRing;

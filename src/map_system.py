@@ -578,7 +578,8 @@ def build_combat_payload(player) -> dict:
                 'level': getattr(entity, 'level', 1),
                 'hostile': getattr(entity, 'aggressive', False) or getattr(entity, 'hostile', False),
                 'boss': 'boss' in (getattr(entity, 'flags', None) or []) or getattr(entity, 'is_boss', False),
-                'shopkeeper': hasattr(entity, 'shop'),
+                'shopkeeper': getattr(entity, 'special', '') == 'shopkeeper',
+                'trainer': getattr(entity, 'special', '') in ('trainer', 'guildmaster'),
                 'quest': quest_mark,
                 'fighting': bool(getattr(entity, 'fighting', None) is player),
             }
@@ -769,7 +770,8 @@ def build_map_payload(player, mode: str = 'full') -> dict:
                     'level': getattr(entity, 'level', 1),
                     'hostile': getattr(entity, 'aggressive', False) or getattr(entity, 'hostile', False),
                     'boss': 'boss' in (getattr(entity, 'flags', None) or []) or getattr(entity, 'is_boss', False),
-                    'shopkeeper': hasattr(entity, 'shop'),
+                    'shopkeeper': getattr(entity, 'special', '') == 'shopkeeper',
+                'trainer': getattr(entity, 'special', '') in ('trainer', 'guildmaster'),
                     'quest': quest_mark,
                     'flags': list(getattr(entity, 'flags', []) or []),
                 }

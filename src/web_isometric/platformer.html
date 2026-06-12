@@ -810,6 +810,30 @@
   .duel-vs { color: #e8c168; font-size: 14px; font-weight: 700; font-family: Georgia, serif;
     text-shadow: 0 0 8px rgba(232,193,104,.5); flex: none; }
 
+
+  /* shop & training windows */
+  .shop-top { display: flex; align-items: center; gap: 12px; padding-bottom: 8px; margin-bottom: 8px;
+    border-bottom: 1px solid rgba(140,150,180,0.2); font-family: var(--ui-font); }
+  .sk-name { color: #e8c168; font-size: 13px; font-weight: 600; letter-spacing: 1px; }
+  .shop-tabs { display: flex; gap: 4px; }
+  .stab { padding: 2px 12px; border-radius: 6px; border: 1px solid rgba(140,150,180,0.25);
+    color: #9aa0b4; font-size: 11px; cursor: pointer; letter-spacing: 1px; }
+  .stab.on { color: #e8c168; border-color: #e8c168; background: rgba(232,193,104,0.08); }
+  .shop-gold { margin-left: auto; color: #ffe9a8; font-size: 12px; }
+  .shop-list { display: flex; flex-direction: column; gap: 3px; }
+  .shop-row { display: flex; align-items: center; gap: 9px; padding: 4px 8px; border-radius: 8px;
+    border: 1px solid rgba(140,150,180,0.14); background: rgba(16,19,30,0.6); cursor: pointer; }
+  .shop-row:hover { border-color: #e8c168; }
+  .shop-row.poor { opacity: .45; }
+  .shop-row canvas { flex: none; image-rendering: pixelated; }
+  .sr-nm { flex: 1; min-width: 0; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sr-price { color: #ffe9a8; font-size: 11px; white-space: nowrap; }
+  .train-head { color: #e8c168; letter-spacing: 2px; font-size: 10px; margin: 8px 0 4px; font-family: var(--ui-font); }
+  .tr-bar { width: 90px; height: 6px; flex: none; border-radius: 3px; background: #0a0b10; border: 1px solid #000; overflow: hidden; }
+  .tr-bar > i { display: block; height: 100%; background: linear-gradient(90deg, #5a8ae8, #6fd685); }
+  .shop-row.mastered { cursor: default; }
+  .shop-row.mastered .sr-price { color: #6fd685; }
+
   /* stacked foe frames: every mob on you gets a clickable row */
   #duel-foes { flex: 1.4; min-width: 0; display: flex; flex-direction: column; gap: 3px; max-height: 158px; overflow: hidden; }
   .foe-row { display: flex; align-items: center; gap: 6px; padding: 2px 5px; border: 1px solid rgba(140,150,180,0.18);

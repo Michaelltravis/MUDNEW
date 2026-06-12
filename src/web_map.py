@@ -261,6 +261,60 @@ class WebMapServer:
                 from map_system import build_atlas
                 body = json.dumps(build_atlas(self.world))
                 await self._http_response(writer, 200, 'OK', body, content_type='application/json')
+            elif path.startswith('/shop'):
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                kw = ((query.get('keeper') or [''])[0]).strip().lower()
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                from shops import ShopManager
+                keeper = None
+                if player and player.room:
+                    for ch in player.room.characters:
+                        if ShopManager.is_shopkeeper(ch) and (not kw or kw in (getattr(ch, 'name', '') or '').lower()):
+                            keeper = ch
+                            break
+                shop = ShopManager.get_shop(keeper) if keeper else None
+                if not keeper or not shop:
+                    body = json.dumps({'found': False})
+                else:
+                    from map_system import item_info
+                    buy = []
+                    for it in shop.get_sellable_items()[:40]:
+                        d = item_info(it)
+                        d['price'] = shop.get_sell_price(it, player)
+                        buy.append(d)
+                    sell = []
+                    for it in (getattr(player, 'inventory', None) or [])[:40]:
+                        d = item_info(it)
+                        d['price'] = shop.get_buy_price(it, player)
+                        d['will_buy'] = shop.will_buy(it)
+                        sell.append(d)
+                    body = json.dumps({'found': True, 'keeper': keeper.name,
+                                       'gold': getattr(player, 'gold', 0),
+                                       'buy': buy, 'sell': sell})
+                await self._http_response(writer, 200, 'OK', body, content_type='application/json')
+            elif path.startswith('/training'):
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    body = json.dumps({'found': False})
+                else:
+                    from config import Config as _Cfg
+                    cd = _Cfg().CLASSES.get(str(getattr(player, 'char_class', '')).lower(), {})
+                    body = json.dumps({
+                        'found': True,
+                        'practices': getattr(player, 'practices', 0),
+                        'gold': getattr(player, 'gold', 0),
+                        'level': getattr(player, 'level', 1),
+                        'skills': [{'id': sk, 'prof': player.skills.get(sk, 0), 'known': sk in player.skills}
+                                   for sk in cd.get('skills', [])],
+                        'spells': [{'id': sp, 'prof': player.spells.get(sp, 0), 'known': sp in player.spells}
+                                   for sp in cd.get('spells', [])],
+                    })
+                await self._http_response(writer, 200, 'OK', body, content_type='application/json')
             elif path.startswith('/container'):
                 # peek inside a container on the ground or in inventory
                 parsed = urlparse(path)

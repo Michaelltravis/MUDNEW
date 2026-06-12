@@ -655,29 +655,100 @@
     els.journalBody.textContent = lines.length ? lines.join('\n') : 'The journal stays blank. (No active quests, or try `quest list`.)';
   }
 
+  // ---- shop window: BUY/SELL tabs, icons, exact prices off /shop ----
+  let shopKeeperName = null, shopTab = 'buy', shopData = null;
   async function openShop(keeper) {
+    shopKeeperName = keeper ? keeper.name : null;
+    shopTab = 'buy';
     openModal('modal-shop');
-    els.shopBody.textContent = `${keeper ? keeper.name : 'The shopkeeper'} shows you the wares…`;
-    const p = captureOutput(1400);
-    MH.sendCommand('list', false);
-    const lines = await p;
-    if (!lines.length) { els.shopBody.textContent = 'No wares on offer here.'; return; }
-    els.shopBody.innerHTML = '';
-    for (const line of lines) {
-      const div = document.createElement('div');
-      div.className = 'item';
-      div.textContent = line;
-      div.addEventListener('click', () => {
-        // try the last word of the listing as the buy keyword
-        const kw = MH.mobKeyword(line.replace(/\d+|gold|coins?/gi, ''));
-        if (kw && kw !== 'mob') { MH.sendCommand(`buy ${kw}`); setTimeout(() => MH.refreshState(), 600); }
+    els.shopBody.innerHTML = '<div class="slot">opening the wares…</div>';
+    await shopFetchRender();
+  }
+  async function shopFetchRender() {
+    try {
+      const r = await fetch(`/shop?player=${encodeURIComponent(MH.state.playerName)}&keeper=${encodeURIComponent(shopKeeperName ? MH.mobKeyword(shopKeeperName) : '')}`);
+      shopData = await r.json();
+    } catch (_) { shopData = null; }
+    if (!shopData || !shopData.found) { els.shopBody.innerHTML = '<div class="slot">No wares on offer here.</div>'; return; }
+    renderShop();
+  }
+  function renderShop() {
+    const d = shopData;
+    let html = `<div class="shop-top"><span class="sk-name">${d.keeper}</span>`
+      + `<span class="shop-tabs"><span class="stab ${shopTab === 'buy' ? 'on' : ''}" data-t="buy">BUY</span>`
+      + `<span class="stab ${shopTab === 'sell' ? 'on' : ''}" data-t="sell">SELL</span></span>`
+      + `<span class="shop-gold">🪙 ${d.gold}</span></div><div class="shop-list">`;
+    const rows = shopTab === 'buy' ? d.buy : d.sell.filter(it => it.will_buy !== false);
+    if (!rows.length) html += `<div class="slot">${shopTab === 'buy' ? 'Nothing for sale.' : 'Nothing they want to buy.'}</div>`;
+    rows.forEach((it, i) => {
+      const rc = it.set_id ? '#4ad0c0' : ({ uncommon: '#5fc46a', rare: '#5a8ae8', epic: '#b06ce0', legendary: '#ffa838' })[it.rarity] || '#d8dce8';
+      const afford = shopTab === 'sell' || it.price <= d.gold;
+      html += `<div class="shop-row ${afford ? '' : 'poor'}" data-i="${i}">`
+        + `<canvas width="30" height="30"></canvas>`
+        + `<span class="sr-nm" style="color:${rc}">${it.short || it.name}</span>`
+        + `<span class="sr-price">${it.price} 🪙</span></div>`;
+    });
+    html += '</div>';
+    els.shopBody.innerHTML = html;
+    els.shopBody.querySelectorAll('.stab').forEach(t => t.addEventListener('click', () => { shopTab = t.dataset.t; renderShop(); }));
+    els.shopBody.querySelectorAll('.shop-row').forEach(row => {
+      const it = rows[Number(row.dataset.i)];
+      if (MH.itemIcons) MH.itemIcons.intoCanvas(row.querySelector('canvas'), it);
+      row.addEventListener('click', async () => {
+        const verb = shopTab === 'buy' ? 'buy' : 'sell';
+        const pr = captureOutput(1400);
+        MH.sendCommand(`${verb} ${MH.mobKeyword(it.name)}`, false);
+        const lines = await pr;
+        if (lines.length) flash(lines[0].replace(/\x1b\[[0-9;]*m/g, ''));
+        await MH.refreshState();
+        await shopFetchRender();
       });
-      els.shopBody.appendChild(div);
-    }
-    const hint = document.createElement('div');
-    hint.className = 'slot';
-    hint.textContent = '(click a line to buy; `sell <item>` via command input)';
-    els.shopBody.appendChild(hint);
+    });
+  }
+
+  // ---- training window: practice your craft at a trainer ----
+  async function openTraining() {
+    openModal('modal-shop');
+    els.shopBody.innerHTML = '<div class="slot">the trainer sizes you up…</div>';
+    await trainingRender();
+  }
+  async function trainingRender() {
+    let d = null;
+    try {
+      const r = await fetch(`/training?player=${encodeURIComponent(MH.state.playerName)}`);
+      d = await r.json();
+    } catch (_) { /* server too old */ }
+    if (!d || !d.found) { els.shopBody.innerHTML = '<div class="slot">No training to be had.</div>'; return; }
+    let html = `<div class="shop-top"><span class="sk-name">TRAINING</span>`
+      + `<span class="shop-gold">✦ ${d.practices} practice${d.practices === 1 ? '' : 's'} · 🪙 ${d.gold}</span></div>`;
+    const section = (title, list, kind) => {
+      if (!list.length) return '';
+      let h = `<div class="train-head">${title}</div><div class="shop-list">`;
+      for (const a of list) {
+        const pretty = a.id.replace(/_/g, ' ');
+        const mastered = a.prof >= 85;
+        h += `<div class="shop-row train ${mastered ? 'mastered' : ''}" data-id="${a.id}" data-kind="${kind}" `
+          + `title="${mastered ? 'mastered' : 'practice (1 session)'}">`
+          + `<canvas width="22" height="22" data-icon="${kind}"></canvas>`
+          + `<span class="sr-nm">${pretty}</span>`
+          + `<span class="tr-bar"><i style="width:${Math.min(100, a.prof)}%"></i></span>`
+          + `<span class="sr-price">${mastered ? 'MASTERED' : a.prof + '%'}</span></div>`;
+      }
+      return h + '</div>';
+    };
+    html += section('SKILLS', d.skills, 'star');
+    html += section('SPELLS', d.spells, 'sparkle');
+    els.shopBody.innerHTML = html;
+    els.shopBody.querySelectorAll('.shop-row.train').forEach(row => {
+      drawIcon(row.querySelector('canvas'), row.querySelector('canvas').dataset.icon);
+      if (!row.classList.contains('mastered')) row.addEventListener('click', async () => {
+        const pr = captureOutput(1400);
+        MH.sendCommand(`practice ${row.dataset.id.replace(/_/g, ' ')}`, false);
+        const lines = await pr;
+        if (lines.length) flash(lines[lines.length - 1].replace(/\x1b\[[0-9;]*m/g, ''));
+        await trainingRender();
+      });
+    });
   }
 
   // ---- minimap + click-to-walk ----
@@ -1857,6 +1928,7 @@
       MH.bus.on('target.clear', () => setTarget(null));
       MH.bus.on('level.up', e => flash(e.line));
       MH.bus.on('shop.open', openShop);
+      MH.bus.on('training.open', openTraining);
       MH.bus.on('npc.talk', openDialogue);
 
       // command input
