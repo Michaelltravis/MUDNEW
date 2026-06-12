@@ -809,6 +809,22 @@
   .duel-side.foe .duel-hp > i { background: linear-gradient(#e07f7f, #9e3f3f); }
   .duel-vs { color: #e8c168; font-size: 14px; font-weight: 700; font-family: Georgia, serif;
     text-shadow: 0 0 8px rgba(232,193,104,.5); flex: none; }
+
+  /* stacked foe frames: every mob on you gets a clickable row */
+  #duel-foes { flex: 1.4; min-width: 0; display: flex; flex-direction: column; gap: 3px; max-height: 158px; overflow: hidden; }
+  .foe-row { display: flex; align-items: center; gap: 6px; padding: 2px 5px; border: 1px solid rgba(140,150,180,0.18);
+    border-radius: 6px; cursor: pointer; background: rgba(20,14,14,0.5); }
+  .foe-row:hover { border-color: rgba(232,193,104,0.5); }
+  .foe-row.active { border-color: #e8c168; background: rgba(232,193,104,0.10); }
+  .foe-row canvas { width: 26px; height: 24px; flex: none; image-rendering: pixelated;
+    background: radial-gradient(circle at 50% 35%, #2a1c1c, #140e0e); border-radius: 5px; }
+  .foe-row .fr-meta { flex: 1; min-width: 0; }
+  .foe-row .fr-nm { font-size: 9.5px; color: #e0c8c0; font-family: var(--ui-font);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .foe-row .fr-hp { height: 4px; border-radius: 2px; background: #0a0b10; overflow: hidden; margin-top: 2px; }
+  .foe-row .fr-hp > i { display: block; height: 100%; background: linear-gradient(#e07f7f, #9e3f3f); transition: width .3s; }
+  .foe-more { font-size: 9px; color: #8a90a4; text-align: center; font-family: var(--ui-font); }
+
   #combat-log { right: 210px !important; bottom: 116px !important; width: 280px !important;
     max-height: 128px; border-radius: 0 0 8px 8px; }
 
@@ -887,11 +903,7 @@
         <div class="duel-hp"><i id="duel-you-hp"></i></div>
       </div>
       <div class="duel-vs">⚔<br>VS</div>
-      <div class="duel-side foe">
-        <canvas id="duel-foe" width="54" height="48"></canvas>
-        <div class="duel-nm" id="duel-foe-nm">—</div>
-        <div class="duel-hp"><i id="duel-foe-hp"></i></div>
-      </div>
+      <div id="duel-foes"></div>
     </div>
   </div>
   <div id="obj-popover"></div>

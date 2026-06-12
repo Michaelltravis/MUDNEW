@@ -1092,11 +1092,29 @@
     return best;
   }
 
-  function toggleMinimapSize() {
-    mmLarge = !mmLarge;
-    els.minimap.width = mmLarge ? 330 : 184;
+  // the map column lives in the black letterbox band right of the play
+  // area - never over the world. Sized to whatever band the window gives.
+  function fitMinimapColumn() {
+    const wrap = document.getElementById('minimap-wrap');
+    if (!wrap || !els.minimap) return;
+    let band = 220;
+    try {
+      const sc = MH.game.scene.getScenes(true).find(s2 => s2.buildRoom);
+      const cam = sc.cameras.main;
+      const gc = sc.game.canvas.getBoundingClientRect();
+      const roomRight = gc.left + (sc.pxW - cam.worldView.x) * cam.zoom;
+      band = window.innerWidth - roomRight;
+    } catch (_) { /* scene not up yet */ }
+    const w = Math.round(Math.max(150, Math.min(300, band - 26)));
+    els.minimap.width = mmLarge ? Math.max(w, 300) : w;
     els.minimap.height = mmLarge ? 520 : 340;
     renderMinimap();
+  }
+  MH.fitMinimapColumn = fitMinimapColumn;
+
+  function toggleMinimapSize() {
+    mmLarge = !mmLarge;
+    fitMinimapColumn();
   }
 
   // ---- compass: click an exit to auto-run there and take it ----
@@ -1528,7 +1546,9 @@
       window.addEventListener('keydown', e => {
         if (e.key === 'Escape' && wmOpen) wmToggle(false);
       });
-      window.addEventListener('resize', () => { if (wmOpen) wmRender(); });
+      window.addEventListener('resize', () => { if (wmOpen) wmRender(); fitMinimapColumn(); });
+      MH.bus.on('room.entered', () => setTimeout(fitMinimapColumn, 80));
+      setTimeout(fitMinimapColumn, 1200);
       window.addEventListener('keydown', e => {
         if (e.key.toLowerCase() === 'h' && !e.ctrlKey && !e.metaKey
             && !['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName)) openHelp();
@@ -1615,7 +1635,7 @@
         if (on) {
           card.classList.add('show');
           duelRenderYou();
-          duelRenderFoe();
+          duelRenderFoes(MH.state.lastCombatMobs || (currentTarget ? [{ ...currentTarget, fighting: true }] : []));
         } else {
           duelHideTimer = setTimeout(() => card.classList.remove('show'), 2500);
         }
@@ -1634,23 +1654,48 @@
         const bar = document.getElementById('duel-you-hp');
         if (bar) bar.style.width = `${Math.max(0, Math.min(100, ((p.hp || 0) / Math.max(1, p.max_hp || 1)) * 100))}%`;
       };
-      const duelRenderFoe = data => {
-        const t = data || currentTarget;
-        if (!t) return;
-        const nm = document.getElementById('duel-foe-nm');
-        if (nm) nm.textContent = t.name || '—';
-        const bar = document.getElementById('duel-foe-hp');
-        if (bar && t.maxHp) bar.style.width = `${Math.max(0, Math.min(100, ((t.hp != null ? t.hp : t.maxHp) / t.maxHp) * 100))}%`;
-        if (t.name !== duelFoeName) {
-          duelFoeName = t.name;
-          const cv = document.getElementById('duel-foe');
+      // stacked foe frames: one row per mob fighting YOU, click to retarget
+      const foePortraits = new Map();
+      const duelRenderFoes = mobs => {
+        const host = document.getElementById('duel-foes');
+        if (!host) return;
+        const foes = (mobs || []).filter(m => m.fighting);
+        const SHOW = 4;
+        host.innerHTML = '';
+        for (const m of foes.slice(0, SHOW)) {
+          const row = document.createElement('div');
+          row.className = 'foe-row' + (currentTarget && currentTarget.name === m.name ? ' active' : '');
+          const cv = document.createElement('canvas');
+          cv.width = 30; cv.height = 26;
+          row.appendChild(cv);
+          const meta = document.createElement('div');
+          meta.className = 'fr-meta';
+          const pct = m.maxHp ? Math.max(0, Math.min(100, ((m.hp != null ? m.hp : m.maxHp) / m.maxHp) * 100)) : 100;
+          meta.innerHTML = `<div class="fr-nm">${m.name}</div><div class="fr-hp"><i style="width:${pct}%"></i></div>`;
+          row.appendChild(meta);
+          row.title = `switch attacks to ${m.name}`;
+          row.addEventListener('click', () => {
+            const scene = MH.game && MH.game.scene.getScenes(true).find(sc => sc.targetByName);
+            if (scene) scene.targetByName(m.name);
+            MH.sendCommand(`kill ${MH.mobKeyword(m.name)}`);
+          });
+          host.appendChild(row);
           const scene = MH.game && MH.game.scene.getScenes(true).find(sc => sc.mobPortrait);
-          if (cv && scene) scene.mobPortrait(cv, t.name);
+          if (scene) scene.mobPortrait(cv, m.name);
         }
+        if (foes.length > SHOW) {
+          const more = document.createElement('div');
+          more.className = 'foe-more';
+          more.textContent = `+${foes.length - SHOW} more`;
+          host.appendChild(more);
+        }
+        if (!foes.length && currentTarget) duelRenderFoes([{ ...currentTarget, fighting: true }]);
       };
-      MH.bus.on('target.set', t => { if ($('duel-card').classList.contains('show')) duelRenderFoe(t); });
-      MH.bus.on('target.update', t => { if ($('duel-card').classList.contains('show')) duelRenderFoe(t); });
-      MH.bus.on('map', () => { if ($('duel-card').classList.contains('show')) duelRenderYou(); });
+      MH.bus.on('combat.update', payload => { if ($('duel-card').classList.contains('show')) { duelRenderFoes(payload.mobs); duelRenderYou(); } });
+      MH.bus.on('target.set', () => { if ($('duel-card').classList.contains('show')) {
+        const pl = MH.state.lastCombatMobs;
+        if (pl) duelRenderFoes(pl);
+      } });
       // WoW-style cast bar: starts on 'cast', completes when the spell lands
       let castTimer = null;
       const startCast = name => {
@@ -1762,6 +1807,7 @@
       };
       MH.bus.on('map', payload => { if (payload.player) renderResourceChip(payload.player); });
       MH.bus.on('combat.update', payload => {
+        MH.state.lastCombatMobs = payload.mobs;
         const p = payload.player || {};
         renderResourceChip(p);
         if (p.stance) setStance(p.stance);

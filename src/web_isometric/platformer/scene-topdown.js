@@ -785,6 +785,12 @@
       this.drawHpBar(ent);
       this.updateQuestMark(ent);
       // loud telegraph: red swords + red name over whoever is attacking YOU
+      if (data.fighting && !ent.engageRing) {
+        ent.engageRing = this.add.graphics().setDepth(9.5);
+      } else if (!data.fighting && ent.engageRing) {
+        ent.engageRing.destroy();
+        ent.engageRing = null;
+      }
       if (data.fighting && !ent.fightMark) {
         ent.fightMark = this.add.text(ent.sprite.x, ent.sprite.y - 26, '⚔', {
           fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '12px', color: '#ff5050', stroke: '#000', strokeThickness: 2,
@@ -825,7 +831,7 @@
       if (ent.breath) ent.breath.stop();
       if (ent.wanderTween) ent.wanderTween.stop();
       if (ent.smoke) ent.smoke.destroy();
-      ['sprite', 'label', 'hpbar', 'fightMark', 'questMark', 'bubble'].forEach(k => { if (ent[k]) ent[k].destroy(); });
+      ['sprite', 'label', 'hpbar', 'fightMark', 'questMark', 'bubble', 'engageRing'].forEach(k => { if (ent[k]) ent[k].destroy(); });
     }
     shortName(name) {
       const n = String(name || '');
@@ -1671,6 +1677,15 @@
       } catch (_) { return false; }
     }
 
+    targetByName(name) {
+      const ent = [...this.entities.values()].find(e2 =>
+        e2.kind === 'mob' && e2.data && e2.data.name === name);
+      if (!ent) return false;
+      this.target = { key: ent.key };
+      MH.bus.emit('target.set', ent.data);
+      return true;
+    }
+
     travelFlourish(dir) {
       const CARD = ['north', 'south', 'east', 'west'];
       if (CARD.includes(dir)) return;
@@ -2267,6 +2282,14 @@
         if (ent.fightMark && ent.sprite) { ent.fightMark.x = ent.sprite.x; ent.fightMark.y = ent.sprite.y - 26; }
         if (ent.questMark && ent.sprite) { ent.questMark.x = ent.sprite.x; }
         if (ent.hpbar && ent.sprite) this.drawHpBar(ent);
+        if (ent.engageRing && ent.sprite) {
+          const g = ent.engageRing;
+          g.clear();
+          const mine = this.target && this.target.key === ent.key;
+          const a = mine ? 0.9 : 0.45 + 0.3 * Math.sin(now / 240);
+          g.lineStyle(1.5, mine ? 0xe8c168 : 0xe05a4a, a);
+          g.strokeEllipse(ent.sprite.x, ent.sprite.y + 9, 18, 8);
+        }
       }
       // depth-sort actors by y so overlap reads correctly
       this.player.setDepth(10 + this.player.y / 1000);
