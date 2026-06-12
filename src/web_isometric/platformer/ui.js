@@ -827,6 +827,180 @@
     walkStep();
   }
 
+  // ---- world map (M): WoW-style world -> zone drill-down ----
+  let wmOpen = false, wmView = 'world', wmZoneId = null, wmZ = 0;
+  const DIRV = { north: [0, -1], south: [0, 1], east: [1, 0], west: [-1, 0] };
+  let wmHit = [];
+
+  function wmToggle(force) {
+    wmOpen = force != null ? force : !wmOpen;
+    const el = $('world-map');
+    if (!el) return;
+    el.classList.toggle('show', wmOpen);
+    if (wmOpen) {
+      // open on your current region, like a map should
+      const p = MH.state.lastPayload && MH.state.lastPayload.player;
+      wmView = 'world';
+      requestAnimationFrame(wmRender);
+    }
+  }
+
+  function wmRender() {
+    const payload = MH.state.lastPayload;
+    if (!payload || !payload.player) return;
+    $('wm-world').style.display = wmView === 'world' ? '' : 'none';
+    $('wm-zone').style.display = wmView === 'zone' ? '' : 'none';
+    $('wm-tip').style.display = 'none';
+    if (wmView === 'world') wmRenderWorld(payload);
+    else wmRenderZone(payload);
+  }
+
+  function wmRenderWorld(payload) {
+    const host = $('wm-world');
+    const rect = host.getBoundingClientRect();
+    const zoneColor = {}, zoneName = {};
+    (payload.zones || []).forEach(z => { zoneColor[z.id] = z.color; zoneName[z.id] = z.name; });
+    const agg = new Map();
+    for (const r of (payload.rooms || [])) {
+      const a = agg.get(r.zone) || { sx: 0, sy: 0, n: 0 };
+      a.sx += r.x; a.sy += r.y; a.n++;
+      agg.set(r.zone, a);
+    }
+    $('wm-crumb').innerHTML = '<span class="here">WORLD</span>';
+    $('wm-levels').innerHTML = '';
+    host.innerHTML = '';
+    if (!agg.size) { host.innerHTML = '<div style="color:#6a7084;padding:30px;font-family:var(--ui-font)">Explore to chart the world…</div>'; return; }
+    const pts = [...agg.entries()].map(([id, a]) => ({ id, x: a.sx / a.n, y: a.sy / a.n, n: a.n }));
+    const xs = pts.map(p => p.x), ys = pts.map(p => p.y);
+    const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+    const PAD = 90;
+    const sx = (rect.width - PAD * 2) / Math.max(1, x1 - x0);
+    const sy = (rect.height - PAD * 2) / Math.max(1, y1 - y0);
+    for (const p of pts) {
+      p.px = PAD + (p.x - x0) * sx;
+      p.py = PAD + (p.y - y0) * sy;
+    }
+    // relax overlapping cards apart a few rounds
+    for (let it = 0; it < 24; it++) {
+      let moved = false;
+      for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
+        const a = pts[i], b = pts[j];
+        const dx = b.px - a.px, dy = b.py - a.py;
+        if (Math.abs(dx) < 120 && Math.abs(dy) < 42) {
+          const push = dy >= 0 ? 1 : -1;
+          b.py += push * 12; a.py -= push * 12; moved = true;
+        }
+      }
+      if (!moved) break;
+    }
+    const hereZone = (payload.rooms || []).find(r => r.vnum === payload.player.vnum);
+    for (const p of pts) {
+      const card = document.createElement('div');
+      card.className = 'wm-zone-card' + (hereZone && hereZone.zone === p.id ? ' here' : '');
+      card.style.setProperty('--zc', zoneColor[p.id] || '#4a4f60');
+      card.style.left = Math.max(70, Math.min(rect.width - 70, p.px)) + 'px';
+      card.style.top = Math.max(30, Math.min(rect.height - 30, p.py)) + 'px';
+      card.innerHTML = `<div class="zn">${zoneName[p.id] || 'Uncharted'}</div><div class="zc">${p.n} room${p.n === 1 ? '' : 's'} explored</div>`;
+      card.addEventListener('click', () => {
+        wmZoneId = p.id;
+        const pz = hereZone && hereZone.zone === p.id ? (payload.player.z || 0) : null;
+        const zs = [...new Set((payload.rooms || []).filter(r => r.zone === p.id).map(r => r.z || 0))];
+        wmZ = pz != null && zs.includes(pz) ? pz : zs.sort((a, b) => Math.abs(a) - Math.abs(b))[0] || 0;
+        wmView = 'zone';
+        wmRender();
+      });
+      host.appendChild(card);
+    }
+  }
+
+  function wmRenderZone(payload) {
+    const canvas = $('wm-zone');
+    const body = $('wm-body');
+    const rect = body.getBoundingClientRect();
+    canvas.width = rect.width; canvas.height = rect.height;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const zoneColor = {}, zoneName = {};
+    (payload.zones || []).forEach(z => { zoneColor[z.id] = z.color; zoneName[z.id] = z.name; });
+    const all = (payload.rooms || []).filter(r => r.zone === wmZoneId);
+    const zs = [...new Set(all.map(r => r.z || 0))].sort((a, b) => b - a);
+    if (!zs.includes(wmZ)) wmZ = zs[0] || 0;
+    const rooms = all.filter(r => (r.z || 0) === wmZ);
+    $('wm-crumb').innerHTML = '<span id="wm-back" style="cursor:pointer">WORLD</span><span class="sep">›</span><span class="here">' + (zoneName[wmZoneId] || '?') + '</span>';
+    const back = document.getElementById('wm-back');
+    if (back) back.onclick = () => { wmView = 'world'; wmRender(); };
+    $('wm-levels').innerHTML = zs.map(z =>
+      `<span class="${z === wmZ ? 'on' : ''}" data-z="${z}">${z === 0 ? 'ground' : z > 0 ? '▲' + z : '▼' + (-z)}</span>`).join('');
+    $('wm-levels').querySelectorAll('span').forEach(el =>
+      el.addEventListener('click', () => { wmZ = Number(el.dataset.z); wmRender(); }));
+    wmHit = [];
+    if (!rooms.length) return;
+    const xs = rooms.map(r => r.x), ys = rooms.map(r => r.y);
+    const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+    const PAD = 50;
+    const cell = Math.max(9, Math.min(26,
+      Math.min((rect.width - PAD * 2) / Math.max(1, x1 - x0 + 1), (rect.height - PAD * 2) / Math.max(1, y1 - y0 + 1))));
+    const offX = (rect.width - (x1 - x0 + 1) * cell) / 2;
+    const offY = (rect.height - (y1 - y0 + 1) * cell) / 2;
+    const px = r => offX + (r.x - x0) * cell + cell / 2;
+    const py = r => offY + (r.y - y0) * cell + cell / 2;
+    const byCoord = new Map(rooms.map(r => [`${r.x},${r.y}`, r]));
+    // edges
+    ctx.strokeStyle = 'rgba(140,150,180,0.35)';
+    ctx.lineWidth = Math.max(1, cell * 0.12);
+    for (const r of rooms) {
+      for (const d of (r.exits || [])) {
+        const o = DIRV[d];
+        if (!o) continue;
+        const nb = byCoord.get(`${r.x + o[0]},${r.y + o[1]}`);
+        if (nb) { ctx.beginPath(); ctx.moveTo(px(r), py(r)); ctx.lineTo(px(nb), py(nb)); ctx.stroke(); }
+      }
+    }
+    // frontier ghosts (unexplored next-door rooms)
+    ctx.strokeStyle = 'rgba(140,150,180,0.45)';
+    for (const f of (payload.frontier || [])) {
+      if ((f.z || 0) !== wmZ) continue;
+      if (f.x < x0 - 1 || f.x > x1 + 1 || f.y < y0 - 1 || f.y > y1 + 1) continue;
+      const fx = offX + (f.x - x0) * cell + cell / 2, fy = offY + (f.y - y0) * cell + cell / 2;
+      ctx.strokeRect(fx - cell * 0.3, fy - cell * 0.3, cell * 0.6, cell * 0.6);
+    }
+    // rooms
+    const color = zoneColor[wmZoneId] || '#4a4f60';
+    for (const r of rooms) {
+      const X = px(r), Y = py(r);
+      ctx.fillStyle = color;
+      ctx.globalAlpha = 0.85;
+      ctx.fillRect(X - cell * 0.38, Y - cell * 0.38, cell * 0.76, cell * 0.76);
+      ctx.globalAlpha = 1;
+      if ((r.exits || []).some(d => d === 'up' || d === 'down')) {
+        ctx.fillStyle = '#e8e2d0';
+        ctx.fillRect(X - 1, Y - 1, 2, 2);
+      }
+      wmHit.push({ x: X, y: Y, vnum: r.vnum, name: r.name });
+    }
+    // player marker
+    const me = rooms.find(r => r.vnum === payload.player.vnum);
+    if (me) {
+      const X = px(me), Y = py(me);
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(X - cell * 0.5, Y - cell * 0.5, cell, cell);
+      ctx.fillStyle = '#ffe9a8';
+      ctx.beginPath(); ctx.arc(X, Y, Math.max(2.5, cell * 0.16), 0, 7); ctx.fill();
+    }
+  }
+
+  function wmNearest(e) {
+    const rect = $('wm-zone').getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+    let best = null, bd = 14;
+    for (const h of wmHit) {
+      const d = Math.hypot(h.x - mx, h.y - my);
+      if (d < bd) { bd = d; best = h; }
+    }
+    return best;
+  }
+
   function toggleMinimapSize() {
     mmLarge = !mmLarge;
     els.minimap.width = mmLarge ? 360 : 230;
@@ -1235,6 +1409,33 @@
       $('mm-in').addEventListener('click', () => mmSetZoom(mmZoom + 2));
       const helpBtn = $('help-btn');
       if (helpBtn) helpBtn.addEventListener('click', () => openHelp());
+      // world map wiring
+      $('wm-close').addEventListener('click', () => wmToggle(false));
+      $('wm-zone').addEventListener('mousemove', e => {
+        const tip = $('wm-tip');
+        const h = wmNearest(e);
+        if (!h) { tip.style.display = 'none'; return; }
+        const rect = $('wm-body').getBoundingClientRect();
+        tip.textContent = h.name + ' · click to travel';
+        tip.style.display = 'block';
+        tip.style.left = Math.min(e.clientX - rect.left + 14, rect.width - 180) + 'px';
+        tip.style.top = (e.clientY - rect.top - 26) + 'px';
+      });
+      $('wm-zone').addEventListener('click', e => {
+        const h = wmNearest(e);
+        if (!h) return;
+        const p = MH.state.lastPayload && MH.state.lastPayload.player;
+        if (p && h.vnum === p.vnum) { flash('You are here.'); return; }
+        walkTargetVnum = h.vnum;
+        renderMinimap();
+        flash(`Walking to ${h.name}…`);
+        wmToggle(false);
+        walkStep();
+      });
+      window.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && wmOpen) wmToggle(false);
+      });
+      window.addEventListener('resize', () => { if (wmOpen) wmRender(); });
       window.addEventListener('keydown', e => {
         if (e.key.toLowerCase() === 'h' && !e.ctrlKey && !e.metaKey
             && !['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName)) openHelp();
@@ -1511,7 +1712,7 @@
         else if (k === 'k') { renderSpells(); openModal('modal-spells'); showSpellsTab('abilities'); }
         else if (k === 'n') { renderSpells(); openModal('modal-spells'); showSpellsTab('talents'); }
         else if (k === 't') { e.preventDefault(); toggleChatPanel(); }
-        else if (k === 'm') { toggleMinimapSize(); }
+        else if (k === 'm') { wmToggle(); }
         if (['a', 'd', 'w', 's', 'arrowleft', 'arrowright', 'arrowup', 'arrowdown', ' '].includes(k)) {
           cancelWalk();
           // moving dismisses the room prose so it never blocks the view

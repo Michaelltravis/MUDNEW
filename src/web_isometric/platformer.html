@@ -754,6 +754,40 @@
   body.skill-drag #modal-backdrop, body.skill-drag .modal { pointer-events: none; opacity: .35; }
   body.skill-drag #hotbar { z-index: 60; }
   body.skill-drag .hotslot { border-color: var(--green); box-shadow: 0 0 8px rgba(111,214,133,.35); }
+
+  /* ===================== world map (M) ===================== */
+  #world-map { position: absolute; inset: 24px 24px 132px 24px; z-index: 44; display: none;
+    background: rgba(11,12,17,0.96); border: 1px solid rgba(232,193,104,0.35); border-radius: 14px;
+    backdrop-filter: blur(10px); flex-direction: column; overflow: hidden; }
+  #world-map.show { display: flex; }
+  #wm-head { display: flex; align-items: center; gap: 12px; padding: 10px 16px;
+    border-bottom: 1px solid rgba(140,150,180,0.2); font-family: var(--ui-font); }
+  #wm-crumb { color: #e8c168; font-size: 14px; letter-spacing: 2px; cursor: pointer; }
+  #wm-crumb .sep { color: #5a6076; margin: 0 6px; }
+  #wm-crumb .here { color: #fff; }
+  #wm-levels { display: flex; gap: 4px; margin-left: auto; }
+  #wm-levels span { padding: 2px 10px; border-radius: 6px; border: 1px solid rgba(140,150,180,0.25);
+    color: #9aa0b4; font-size: 11px; cursor: pointer; }
+  #wm-levels span.on { color: #e8c168; border-color: #e8c168; }
+  #wm-close { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    color: #9aa0b4; border: 1px solid rgba(140,150,180,0.25); cursor: pointer; margin-left: 10px; }
+  #wm-close:hover { color: #fff; border-color: #e8c168; }
+  #wm-body { position: relative; flex: 1; overflow: hidden; }
+  #wm-world { position: absolute; inset: 0; }
+  .wm-zone-card { position: absolute; transform: translate(-50%, -50%); cursor: pointer;
+    background: rgba(16,19,30,0.92); border: 2px solid var(--zc, #4a4f60); border-radius: 12px;
+    padding: 8px 14px; text-align: center; font-family: var(--ui-font); transition: transform .12s, box-shadow .12s; }
+  .wm-zone-card:hover { transform: translate(-50%, -50%) scale(1.08); box-shadow: 0 0 18px var(--zc, #4a4f60); z-index: 2; }
+  .wm-zone-card .zn { color: #e8e2d0; font-size: 12.5px; font-weight: 600; white-space: nowrap; }
+  .wm-zone-card .zc { color: #8a90a4; font-size: 10px; }
+  .wm-zone-card.here { border-width: 3px; box-shadow: 0 0 14px var(--zc, #e8c168); }
+  .wm-zone-card.here .zn::after { content: ' ★'; color: #ffe9a8; }
+  #wm-zone { position: absolute; inset: 0; cursor: crosshair; }
+  #wm-tip { position: absolute; display: none; pointer-events: none; z-index: 3;
+    background: rgba(13,15,21,0.95); border: 1px solid rgba(232,193,104,0.4); border-radius: 6px;
+    padding: 4px 9px; font-size: 11px; color: #e8e2d0; font-family: var(--ui-font); }
+  #wm-foot { padding: 6px 16px; border-top: 1px solid rgba(140,150,180,0.15); color: #6a7084;
+    font-size: 10.5px; font-family: var(--ui-font); }
   #help-chip { bottom: 112px !important; left: 10px !important; opacity: .55; }
   #help-chip:hover { opacity: 1; }
 
@@ -853,6 +887,19 @@
     <div id="drawer-log"></div>
   </div>
 
+  <div id="world-map">
+    <div id="wm-head">
+      <span id="wm-crumb">WORLD</span>
+      <span id="wm-levels"></span>
+      <span id="wm-close" title="close (M / Esc)">✕</span>
+    </div>
+    <div id="wm-body">
+      <div id="wm-world"></div>
+      <canvas id="wm-zone"></canvas>
+      <div id="wm-tip"></div>
+    </div>
+    <div id="wm-foot">M toggles the map · click a region to drill in · click an explored room to travel there · unexplored frontiers shown hollow</div>
+  </div>
   <div id="modal-backdrop"></div>
   <div class="modal" id="modal-inv">
     <div class="modal-head"><span>INVENTORY &amp; EQUIPMENT</span><span class="x" data-close="modal-inv">✕</span></div>
