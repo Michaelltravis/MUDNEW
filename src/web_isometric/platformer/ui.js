@@ -832,16 +832,29 @@
   const DIRV = { north: [0, -1], south: [0, 1], east: [1, 0], west: [-1, 0] };
   let wmHit = [];
 
+  async function wmAtlas() {
+    if (MH.state.atlas) return MH.state.atlas;
+    try {
+      const r = await fetch('/atlas');
+      const a = await r.json();
+      a.byVnum = new Map(a.rooms.map(rm => [rm.vnum, rm]));
+      MH.state.atlas = a;
+    } catch (_) { /* old server: fall back to explored-only */ }
+    return MH.state.atlas;
+  }
+  function wmExplored() {
+    const payload = MH.state.lastPayload;
+    return new Set(((payload && payload.rooms) || []).map(r => r.vnum));
+  }
+
   function wmToggle(force) {
     wmOpen = force != null ? force : !wmOpen;
     const el = $('world-map');
     if (!el) return;
     el.classList.toggle('show', wmOpen);
     if (wmOpen) {
-      // open on your current region, like a map should
-      const p = MH.state.lastPayload && MH.state.lastPayload.player;
       wmView = 'world';
-      requestAnimationFrame(wmRender);
+      wmAtlas().then(() => requestAnimationFrame(wmRender));
     }
   }
 
@@ -857,20 +870,39 @@
 
   function wmRenderWorld(payload) {
     const host = $('wm-world');
-    const rect = host.getBoundingClientRect();
-    const zoneColor = {}, zoneName = {};
-    (payload.zones || []).forEach(z => { zoneColor[z.id] = z.color; zoneName[z.id] = z.name; });
-    const agg = new Map();
-    for (const r of (payload.rooms || [])) {
-      const a = agg.get(r.zone) || { sx: 0, sy: 0, n: 0 };
-      a.sx += r.x; a.sy += r.y; a.n++;
-      agg.set(r.zone, a);
-    }
+    const canvas = $('wm-zone');           // doubles as the road-line layer
+    const body = $('wm-body');
+    const rect = body.getBoundingClientRect();
+    canvas.style.display = '';
+    canvas.width = rect.width; canvas.height = rect.height;
+    const lctx = canvas.getContext('2d');
+    lctx.clearRect(0, 0, canvas.width, canvas.height);
     $('wm-crumb').innerHTML = '<span class="here">WORLD</span>';
     $('wm-levels').innerHTML = '';
     host.innerHTML = '';
+    const atlas = MH.state.atlas;
+    const explored = wmExplored();
+    const zoneColor = {}, zoneName = {};
+    const agg = new Map();
+    if (atlas) {
+      // the whole world, fog-dimmed where uncharted
+      atlas.zones.forEach(z => { zoneColor[z.id] = z.color; zoneName[z.id] = z.name; });
+      for (const r of atlas.rooms) {
+        const a = agg.get(r.zone) || { sx: 0, sy: 0, n: 0, seen: 0 };
+        a.sx += r.x; a.sy += r.y; a.n++;
+        if (explored.has(r.vnum)) a.seen++;
+        agg.set(r.zone, a);
+      }
+    } else {
+      (payload.zones || []).forEach(z => { zoneColor[z.id] = z.color; zoneName[z.id] = z.name; });
+      for (const r of (payload.rooms || [])) {
+        const a = agg.get(r.zone) || { sx: 0, sy: 0, n: 0, seen: 0 };
+        a.sx += r.x; a.sy += r.y; a.n++; a.seen++;
+        agg.set(r.zone, a);
+      }
+    }
     if (!agg.size) { host.innerHTML = '<div style="color:#6a7084;padding:30px;font-family:var(--ui-font)">Explore to chart the world…</div>'; return; }
-    const pts = [...agg.entries()].map(([id, a]) => ({ id, x: a.sx / a.n, y: a.sy / a.n, n: a.n }));
+    const pts = [...agg.entries()].map(([id, a]) => ({ id, x: a.sx / a.n, y: a.sy / a.n, n: a.n, seen: a.seen }));
     const xs = pts.map(p => p.x), ys = pts.map(p => p.y);
     const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
     const PAD = 90;
@@ -880,31 +912,50 @@
       p.px = PAD + (p.x - x0) * sx;
       p.py = PAD + (p.y - y0) * sy;
     }
-    // relax overlapping cards apart a few rounds
     for (let it = 0; it < 24; it++) {
       let moved = false;
       for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
         const a = pts[i], b = pts[j];
         const dx = b.px - a.px, dy = b.py - a.py;
-        if (Math.abs(dx) < 120 && Math.abs(dy) < 42) {
+        if (Math.abs(dx) < 130 && Math.abs(dy) < 44) {
           const push = dy >= 0 ? 1 : -1;
           b.py += push * 12; a.py -= push * 12; moved = true;
         }
       }
       if (!moved) break;
     }
+    const at = Object.fromEntries(pts.map(p => [p.id, p]));
+    // roads between connected regions, beneath the cards
+    if (atlas && atlas.links) {
+      lctx.lineWidth = 1.5;
+      for (const [za, zb] of atlas.links) {
+        const a = at[za], b = at[zb];
+        if (!a || !b) continue;
+        const lit = a.seen > 0 && b.seen > 0;
+        lctx.strokeStyle = lit ? 'rgba(232,193,104,0.45)' : 'rgba(120,128,150,0.16)';
+        lctx.setLineDash(lit ? [] : [4, 5]);
+        lctx.beginPath();
+        lctx.moveTo(a.px, a.py);
+        const mx = (a.px + b.px) / 2, my = (a.py + b.py) / 2 - 18;
+        lctx.quadraticCurveTo(mx, my, b.px, b.py);
+        lctx.stroke();
+      }
+      lctx.setLineDash([]);
+    }
     const hereZone = (payload.rooms || []).find(r => r.vnum === payload.player.vnum);
     for (const p of pts) {
       const card = document.createElement('div');
-      card.className = 'wm-zone-card' + (hereZone && hereZone.zone === p.id ? ' here' : '');
+      const uncharted = p.seen === 0;
+      card.className = 'wm-zone-card' + (hereZone && hereZone.zone === p.id ? ' here' : '') + (uncharted ? ' fog' : '');
       card.style.setProperty('--zc', zoneColor[p.id] || '#4a4f60');
       card.style.left = Math.max(70, Math.min(rect.width - 70, p.px)) + 'px';
       card.style.top = Math.max(30, Math.min(rect.height - 30, p.py)) + 'px';
-      card.innerHTML = `<div class="zn">${zoneName[p.id] || 'Uncharted'}</div><div class="zc">${p.n} room${p.n === 1 ? '' : 's'} explored</div>`;
+      card.innerHTML = `<div class="zn">${zoneName[p.id] || 'Uncharted'}</div><div class="zc">${p.seen}/${p.n} charted</div>`;
       card.addEventListener('click', () => {
         wmZoneId = p.id;
+        const src = MH.state.atlas ? MH.state.atlas.rooms : (payload.rooms || []);
+        const zs = [...new Set(src.filter(r => r.zone === p.id).map(r => r.z || 0))];
         const pz = hereZone && hereZone.zone === p.id ? (payload.player.z || 0) : null;
-        const zs = [...new Set((payload.rooms || []).filter(r => r.zone === p.id).map(r => r.z || 0))];
         wmZ = pz != null && zs.includes(pz) ? pz : zs.sort((a, b) => Math.abs(a) - Math.abs(b))[0] || 0;
         wmView = 'zone';
         wmRender();
@@ -920,9 +971,13 @@
     canvas.width = rect.width; canvas.height = rect.height;
     const ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const atlas = MH.state.atlas;
+    const explored = wmExplored();
     const zoneColor = {}, zoneName = {};
-    (payload.zones || []).forEach(z => { zoneColor[z.id] = z.color; zoneName[z.id] = z.name; });
-    const all = (payload.rooms || []).filter(r => r.zone === wmZoneId);
+    const zsrc = atlas ? atlas.zones : (payload.zones || []);
+    zsrc.forEach(z => { zoneColor[z.id] = z.color; zoneName[z.id] = z.name; });
+    const src = atlas ? atlas.rooms : (payload.rooms || []);
+    const all = src.filter(r => r.zone === wmZoneId);
     const zs = [...new Set(all.map(r => r.z || 0))].sort((a, b) => b - a);
     if (!zs.includes(wmZ)) wmZ = zs[0] || 0;
     const rooms = all.filter(r => (r.z || 0) === wmZ);
@@ -935,50 +990,86 @@
       el.addEventListener('click', () => { wmZ = Number(el.dataset.z); wmRender(); }));
     wmHit = [];
     if (!rooms.length) return;
-    const xs = rooms.map(r => r.x), ys = rooms.map(r => r.y);
-    const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+    // percentile extents: a handful of collision-slid outliers must not
+    // shrink the whole town into a corner - they clamp to the map's edge
+    const q = (arr, t) => arr[Math.max(0, Math.min(arr.length - 1, Math.floor(arr.length * t)))];
+    const xs = rooms.map(r => r.x).sort((a, b) => a - b);
+    const ys = rooms.map(r => r.y).sort((a, b) => a - b);
+    const x0 = q(xs, 0.08), x1 = Math.max(q(xs, 0.92), x0 + 1);
+    const y0 = q(ys, 0.08), y1 = Math.max(q(ys, 0.92), y0 + 1);
     const PAD = 50;
-    const cell = Math.max(9, Math.min(26,
-      Math.min((rect.width - PAD * 2) / Math.max(1, x1 - x0 + 1), (rect.height - PAD * 2) / Math.max(1, y1 - y0 + 1))));
+    const cell = Math.max(7, Math.min(26,
+      Math.min((rect.width - PAD * 2) / (x1 - x0 + 1), (rect.height - PAD * 2) / (y1 - y0 + 1))));
     const offX = (rect.width - (x1 - x0 + 1) * cell) / 2;
     const offY = (rect.height - (y1 - y0 + 1) * cell) / 2;
-    const px = r => offX + (r.x - x0) * cell + cell / 2;
-    const py = r => offY + (r.y - y0) * cell + cell / 2;
-    const byCoord = new Map(rooms.map(r => [`${r.x},${r.y}`, r]));
-    // edges
-    ctx.strokeStyle = 'rgba(140,150,180,0.35)';
-    ctx.lineWidth = Math.max(1, cell * 0.12);
+    const clampX = v => Math.max(14, Math.min(rect.width - 14, v));
+    const clampY = v => Math.max(14, Math.min(rect.height - 14, v));
+    const px = r => clampX(offX + (r.x - x0) * cell + cell / 2);
+    const py = r => clampY(offY + (r.y - y0) * cell + cell / 2);
+    const here = new Map(rooms.map(r => [r.vnum, r]));
+
+    // every real connection gets a line, however far the rooms sit apart;
+    // exits beyond the zone or level get a short stub with a hint
+    const stubs = [];
     for (const r of rooms) {
-      for (const d of (r.exits || [])) {
-        const o = DIRV[d];
-        if (!o) continue;
-        const nb = byCoord.get(`${r.x + o[0]},${r.y + o[1]}`);
-        if (nb) { ctx.beginPath(); ctx.moveTo(px(r), py(r)); ctx.lineTo(px(nb), py(nb)); ctx.stroke(); }
+      const ex = r.exits || {};
+      const pairs = Array.isArray(ex) ? ex.map(d => [d, null]) : Object.entries(ex);
+      for (const [d, tv] of pairs) {
+        if (tv == null) continue;          // explored-payload fallback has no targets
+        if (here.has(tv)) {
+          if (tv > r.vnum) {               // draw each link once
+            const nb = here.get(tv);
+            const lit = explored.has(r.vnum) && explored.has(tv);
+            ctx.strokeStyle = lit ? 'rgba(180,190,215,0.5)' : 'rgba(120,128,150,0.18)';
+            ctx.lineWidth = Math.max(1, cell * 0.1);
+            ctx.beginPath(); ctx.moveTo(px(r), py(r)); ctx.lineTo(px(nb), py(nb)); ctx.stroke();
+          }
+        } else if (atlas) {
+          const target = atlas.byVnum.get(tv);
+          if (!target) continue;
+          if (target.zone === wmZoneId) continue;   // other level of same zone: the ▲▼ dot covers it
+          stubs.push({ r, d, zone: zoneName[target.zone] || '?' });
+        }
       }
     }
-    // frontier ghosts (unexplored next-door rooms)
-    ctx.strokeStyle = 'rgba(140,150,180,0.45)';
-    for (const f of (payload.frontier || [])) {
-      if ((f.z || 0) !== wmZ) continue;
-      if (f.x < x0 - 1 || f.x > x1 + 1 || f.y < y0 - 1 || f.y > y1 + 1) continue;
-      const fx = offX + (f.x - x0) * cell + cell / 2, fy = offY + (f.y - y0) * cell + cell / 2;
-      ctx.strokeRect(fx - cell * 0.3, fy - cell * 0.3, cell * 0.6, cell * 0.6);
+    // cross-zone gateways: a stub arrow + the destination's name
+    const DIRV2 = { north: [0, -1], south: [0, 1], east: [1, 0], west: [-1, 0], up: [0.6, -0.6], down: [-0.6, 0.6] };
+    ctx.font = '10px Trebuchet MS, Verdana, sans-serif';
+    for (const sb of stubs) {
+      const o = DIRV2[sb.d] || [0.6, -0.6];
+      const X = px(sb.r), Y = py(sb.r);
+      const ex2 = X + o[0] * cell * 1.6, ey2 = Y + o[1] * cell * 1.6;
+      const lit = explored.has(sb.r.vnum);
+      ctx.strokeStyle = lit ? 'rgba(232,193,104,0.8)' : 'rgba(150,140,110,0.3)';
+      ctx.lineWidth = 1.4;
+      ctx.beginPath(); ctx.moveTo(X, Y); ctx.lineTo(ex2, ey2); ctx.stroke();
+      ctx.fillStyle = lit ? 'rgba(232,193,104,0.9)' : 'rgba(150,140,110,0.4)';
+      ctx.beginPath(); ctx.arc(ex2, ey2, 2.2, 0, 7); ctx.fill();
+      if (lit) ctx.fillText('→ ' + sb.zone, ex2 + 4, ey2 + 3);
     }
-    // rooms
+    // rooms: bright when charted, fog-ghosts when not
     const color = zoneColor[wmZoneId] || '#4a4f60';
     for (const r of rooms) {
       const X = px(r), Y = py(r);
-      ctx.fillStyle = color;
-      ctx.globalAlpha = 0.85;
-      ctx.fillRect(X - cell * 0.38, Y - cell * 0.38, cell * 0.76, cell * 0.76);
-      ctx.globalAlpha = 1;
-      if ((r.exits || []).some(d => d === 'up' || d === 'down')) {
-        ctx.fillStyle = '#e8e2d0';
+      const lit = explored.has(r.vnum);
+      if (lit) {
+        ctx.fillStyle = color;
+        ctx.globalAlpha = 0.9;
+        ctx.fillRect(X - cell * 0.38, Y - cell * 0.38, cell * 0.76, cell * 0.76);
+        ctx.globalAlpha = 1;
+      } else {
+        ctx.strokeStyle = 'rgba(140,150,180,0.28)';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(X - cell * 0.3, Y - cell * 0.3, cell * 0.6, cell * 0.6);
+      }
+      const ex = r.exits || {};
+      const dirs = Array.isArray(ex) ? ex : Object.keys(ex);
+      if (dirs.includes('up') || dirs.includes('down')) {
+        ctx.fillStyle = lit ? '#e8e2d0' : 'rgba(180,180,170,0.35)';
         ctx.fillRect(X - 1, Y - 1, 2, 2);
       }
-      wmHit.push({ x: X, y: Y, vnum: r.vnum, name: r.name });
+      wmHit.push({ x: X, y: Y, vnum: r.vnum, name: r.name, lit });
     }
-    // player marker
     const me = rooms.find(r => r.vnum === payload.player.vnum);
     if (me) {
       const X = px(me), Y = py(me);
@@ -1416,14 +1507,16 @@
         const h = wmNearest(e);
         if (!h) { tip.style.display = 'none'; return; }
         const rect = $('wm-body').getBoundingClientRect();
-        tip.textContent = h.name + ' · click to travel';
+        tip.textContent = h.lit === false ? h.name + ' · uncharted' : h.name + ' · click to travel';
         tip.style.display = 'block';
         tip.style.left = Math.min(e.clientX - rect.left + 14, rect.width - 180) + 'px';
         tip.style.top = (e.clientY - rect.top - 26) + 'px';
       });
       $('wm-zone').addEventListener('click', e => {
+        if (wmView !== 'zone') return;
         const h = wmNearest(e);
         if (!h) return;
+        if (h.lit === false) { flash('You have not charted that room yet.'); return; }
         const p = MH.state.lastPayload && MH.state.lastPayload.player;
         if (p && h.vnum === p.vnum) { flash('You are here.'); return; }
         walkTargetVnum = h.vnum;

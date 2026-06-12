@@ -616,6 +616,61 @@ def build_combat_payload(player) -> dict:
     }
 
 
+_ATLAS_CACHE = None
+
+
+def build_atlas(world) -> dict:
+    """The complete world atlas: every room with coordinates and exit links,
+    plus zone metadata and zone-to-zone connections. The world is static, so
+    this is computed once and cached - it powers the full game map (M)."""
+    global _ATLAS_CACHE
+    if _ATLAS_CACHE is not None:
+        return _ATLAS_CACHE
+
+    coords = compute_room_coords(world.rooms, 3001)
+    zone_colors = [
+        '#6366f1', '#8b5cf6', '#a855f7', '#d946ef', '#ec4899',
+        '#f43f5e', '#ef4444', '#f97316', '#f59e0b', '#eab308',
+        '#84cc16', '#22c55e', '#10b981', '#14b8a6', '#06b6d4',
+        '#0ea5e9', '#3b82f6', '#6366f1', '#8b5cf6', '#a855f7',
+    ]
+    zones = {}
+    rooms = []
+    links = set()          # (zone_a, zone_b) pairs that touch
+    for vnum, room in world.rooms.items():
+        if vnum not in coords:
+            continue
+        x, y, z = coords[vnum]
+        znum = room.zone.number if room.zone else -1
+        if znum not in zones:
+            zones[znum] = {
+                'id': znum,
+                'name': room.zone.name if room.zone else 'Unknown',
+                'color': zone_colors[len(zones) % len(zone_colors)],
+            }
+        exits = {}
+        for direction, exit_data in _iter_visible_exits(room, None):
+            tv = _get_exit_target_vnum(exit_data)
+            if tv and tv in world.rooms:
+                exits[direction] = tv
+                tz = world.rooms[tv].zone.number if world.rooms[tv].zone else -1
+                if tz != znum:
+                    links.add((min(znum, tz), max(znum, tz)))
+        rooms.append({
+            'vnum': vnum, 'name': room.name, 'zone': znum,
+            'x': x, 'y': y, 'z': z,
+            'sector': getattr(room, 'sector_type', '') or '',
+            'exits': exits,
+        })
+    _ATLAS_CACHE = {
+        'type': 'atlas',
+        'rooms': rooms,
+        'zones': list(zones.values()),
+        'links': sorted(links),
+    }
+    return _ATLAS_CACHE
+
+
 def build_map_payload(player, mode: str = 'full') -> dict:
     """Build map data payload for the web map UI."""
     explored = set(getattr(player, 'explored_rooms', set()))

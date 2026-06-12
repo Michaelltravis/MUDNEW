@@ -782,6 +782,8 @@
   .wm-zone-card .zc { color: #8a90a4; font-size: 10px; }
   .wm-zone-card.here { border-width: 3px; box-shadow: 0 0 14px var(--zc, #e8c168); }
   .wm-zone-card.here .zn::after { content: ' ★'; color: #ffe9a8; }
+  .wm-zone-card.fog { opacity: .45; border-style: dashed; filter: saturate(.4); }
+  .wm-zone-card.fog:hover { opacity: .8; }
   #wm-zone { position: absolute; inset: 0; cursor: crosshair; }
   #wm-tip { position: absolute; display: none; pointer-events: none; z-index: 3;
     background: rgba(13,15,21,0.95); border: 1px solid rgba(232,193,104,0.4); border-radius: 6px;
@@ -941,7 +943,7 @@
       <canvas id="wm-zone"></canvas>
       <div id="wm-tip"></div>
     </div>
-    <div id="wm-foot">M toggles the map · click a region to drill in · click an explored room to travel there · unexplored frontiers shown hollow</div>
+    <div id="wm-foot">M toggles the map · the whole world is drawn, fog-dimmed until you chart it · click a region to drill in · click a charted room to travel there</div>
   </div>
   <canvas id="globe-hp" width="76" height="76"></canvas>
   <canvas id="globe-mana" width="76" height="76"></canvas>

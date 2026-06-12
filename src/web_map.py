@@ -256,6 +256,11 @@ class WebMapServer:
                             break
                 body = json.dumps(dict(result, found=True)) if result else json.dumps({'found': False})
                 await self._http_response(writer, 200, 'OK', body, content_type='application/json')
+            elif path.startswith('/atlas'):
+                # the complete world atlas (static; cached server-side)
+                from map_system import build_atlas
+                body = json.dumps(build_atlas(self.world))
+                await self._http_response(writer, 200, 'OK', body, content_type='application/json')
             elif path.startswith('/container'):
                 # peek inside a container on the ground or in inventory
                 parsed = urlparse(path)
