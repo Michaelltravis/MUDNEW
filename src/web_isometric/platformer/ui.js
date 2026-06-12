@@ -1457,11 +1457,13 @@
     const W = 508;
     const maxTiers = Math.max(...data.trees.map(t => Math.max(...t.talents.map(a => a.tier))));
     const CH = 60 + maxTiers * 52;
-    els.talentsBody.innerHTML = pathCardsHtml()
-      + `<div class="talent-points">★ ${data.points_available} talent point${data.points_available === 1 ? '' : 's'} to place`
+    // constellation first - it's the hero; trinity + path cards live below
+    els.talentsBody.innerHTML =
+      `<div class="talent-points">★ ${data.points_available} talent point${data.points_available === 1 ? '' : 's'} to place`
       + ` <span style="color:#7a8094">(${data.points_total} earned by leveling · click a pulsing star)</span></div>`
-      + `<canvas id="trinity-cv" width="${W}" height="170" class="skyframe"></canvas>`
-      + `<canvas id="const-cv" width="${W}" height="${CH}" class="skyframe" style="margin-top:8px"></canvas>`
+      + `<canvas id="const-cv" width="${W}" height="${CH}" class="skyframe"></canvas>`
+      + `<canvas id="trinity-cv" width="${W}" height="170" class="skyframe" style="margin-top:8px"></canvas>`
+      + pathCardsHtml()
       + `<div id="tal-tip"></div>`;
     wirePathButtons(els.talentsBody);
 
@@ -1556,8 +1558,8 @@
       els.talentsBody.innerHTML = '<div class="slot">doctrine data unavailable</div>';
       return;
     }
-    let html = pathCardsHtml();
-    html += `<canvas id="doctrine-cv" width="508" height="160" class="skyframe" style="margin-bottom:8px"></canvas>`;
+    // oath trinity leads; path cards move to the bottom of the panel
+    let html = `<canvas id="doctrine-cv" width="508" height="160" class="skyframe" style="margin-bottom:8px"></canvas>`;
     html += `<div class="talent-points">⚔ MARTIAL DOCTRINES`
       + (d.doctrine ? ` <span style="color:#aab2c4">· sworn to the <b>${d.doctrine.replace(/_/g, ' ')}</b> · momentum ${d.momentum}</span>`
                     : ' <span style="color:#aab2c4">· swear to one path - the choice shapes every ability</span>')
@@ -1601,6 +1603,7 @@
       }
       html += '</div>';
     }
+    html += pathCardsHtml();
     els.talentsBody.innerHTML = html;
     const dcv = document.getElementById('doctrine-cv');
     if (dcv) {
