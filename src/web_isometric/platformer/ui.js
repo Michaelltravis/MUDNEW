@@ -962,6 +962,7 @@
     const body = $('wm-body');
     const rect = body.getBoundingClientRect();
     canvas.style.display = '';
+    canvas.style.pointerEvents = 'none';      // cards take the clicks
     canvas.width = rect.width; canvas.height = rect.height;
     const lctx = canvas.getContext('2d');
     lctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -1080,6 +1081,7 @@
 
   function wmRenderZone(payload) {
     const canvas = $('wm-zone');
+    canvas.style.pointerEvents = '';
     const body = $('wm-body');
     const rect = body.getBoundingClientRect();
     canvas.width = rect.width; canvas.height = rect.height;

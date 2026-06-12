@@ -112,6 +112,8 @@
       this.input.keyboard.on('keydown-TAB', e => { e.preventDefault(); this.cycleTarget(); });
       MH.bus.on('player.exp', e => this.fxExp(e));
       MH.bus.on('walk.step', dir => this.requestMove(dir));
+      MH.bus.on('mob.move', e => this.onMobMove(e));
+      this.pendingArrivals = {};
       MH.bus.on('nav.goto', dir => this.navTo(dir));
       MH.bus.on('player.attack', () => this.tryAttack());
       MH.bus.on('combat.flee', e => this.fxFlee(e));
@@ -656,7 +658,11 @@
       (roomEntry.players || []).forEach((p, i) => want.set(`pl:${p.name}`, { kind: 'player', data: p, idx: i + 4 }));
       (roomEntry.items || []).forEach((it, i) => want.set(`it:${it.name}:${i}`, { kind: 'item', data: it, idx: i }));
       for (const [key, ent] of this.entities) {
-        if (!want.has(key)) { this.destroyEntity(ent); this.entities.delete(key); }
+        if (!want.has(key)) {
+          if (ent.leaving) continue;          // walking off under its own tween
+          this.destroyEntity(ent);
+          this.entities.delete(key);
+        }
       }
       for (const [key, spec] of want) {
         const existing = this.entities.get(key);
@@ -667,7 +673,7 @@
 
     spawnEntity(key, spec) {
       const slots = this.layout.spawnSlots;
-      const slot = slots[(MH.hashStr(key) + spec.idx) % slots.length];
+      let slot = slots[(MH.hashStr(key) + spec.idx) % slots.length];
       const ent = { key, kind: spec.kind, data: spec.data };
 
       if (spec.kind === 'item') {
@@ -731,6 +737,29 @@
         texWanted = MH.tdSprites.mobKey(spec.data.name);
       }
       const tex = this.safeTex(texWanted, 'td_mob_citizen');
+      // a fresh arrival enters from the doorway it actually used
+      const arr = spec.kind === 'mob' && this.pendingArrivals && this.pendingArrivals[spec.data.name];
+      if (arr && Date.now() - arr.at < 4000) {
+        delete this.pendingArrivals[spec.data.name];
+        const gp = this.gapPoint(arr.dir);
+        const destX = slot.x, destY = slot.y;
+        slot = { x: gp.x, y: gp.y };
+        this.time.delayedCall(30, () => {
+          const ent2 = this.entities.get(key);
+          if (ent2 && ent2.sprite) {
+            this.tweens.add({
+              targets: ent2.sprite, x: destX, y: destY, duration: 900, ease: 'sine.out',
+              onUpdate: () => { if (ent2.label) { ent2.label.x = ent2.sprite.x; ent2.label.y = ent2.sprite.y - 18; } },
+              onComplete: () => { ent2.homeX = destX; ent2.homeY = destY; },
+            });
+            const cue = this.add.text(gp.x, gp.y - 20, `from ${arr.dir}`, {
+              fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '8px',
+              color: '#c8ccd8', backgroundColor: '#10131ea8', padding: { x: 3, y: 1 },
+            }).setOrigin(0.5, 1).setDepth(40);
+            this.tweens.add({ targets: cue, y: cue.y - 10, alpha: 0, duration: 1600, onComplete: () => cue.destroy() });
+          }
+        });
+      }
       ent.sprite = this.add.sprite(slot.x, slot.y, tex, 'd0').setDepth(8);
       ent.sprite.setScale((spec.data.boss ? 1.5 : 1) / MH.SMOOTH_SS);
       ent.sprite.play(`${tex}_walkd`);
@@ -801,7 +830,8 @@
 
     updateQuestMark(ent) {
       const q = ent.data && ent.data.quest;
-      const svc = ent.kind === 'mob' ? (data.shopkeeper ? '🪙' : data.trainer ? '📖' : null) : null;
+      const d = ent.data || {};
+      const svc = ent.kind === 'mob' ? (d.shopkeeper ? '🪙' : d.trainer ? '📖' : null) : null;
       if (svc && !ent.serviceMark) {
         ent.serviceMark = this.add.text(ent.sprite.x + 9, ent.sprite.y - 24, svc, {
           fontSize: '9px', resolution: 3,
@@ -1720,6 +1750,46 @@
           (canvas.width - sz) / 2, 2, sz, sz * 0.8);
         return true;
       } catch (_) { return false; }
+    }
+
+    // a patrolling NPC walks OFF toward its exit (with a direction cue)
+    // instead of blinking out - and walks IN from where it came
+    gapPoint(dir) {
+      const { T } = TD();
+      const midX = Math.floor(this.layout.W / 2) * T + T / 2;
+      const midY = Math.floor(this.layout.H / 2) * T + T / 2;
+      return {
+        north: { x: midX, y: T }, south: { x: midX, y: this.pxH - T },
+        west: { x: T, y: midY }, east: { x: this.pxW - T, y: midY },
+        up: this.layout.stairsUp ? { x: this.layout.stairsUp.x * T, y: this.layout.stairsUp.y * T } : { x: midX, y: midY },
+        down: this.layout.stairsDown ? { x: this.layout.stairsDown.x * T, y: this.layout.stairsDown.y * T } : { x: midX, y: midY },
+      }[dir] || { x: midX, y: midY };
+    }
+
+    onMobMove(e) {
+      if (!this.layout || e.vnum !== this.layout.vnum || !e.name) return;
+      if (e.action === 'leave') {
+        const ent = [...this.entities.values()].find(en =>
+          en.kind === 'mob' && en.data && en.data.name === e.name && en.sprite && !en.leaving);
+        if (!ent) return;
+        ent.leaving = true;
+        const gp = this.gapPoint(e.dir);
+        const cue = this.add.text(ent.sprite.x, ent.sprite.y - 24, `→ ${e.dir}`, {
+          fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '8px',
+          color: '#c8ccd8', backgroundColor: '#10131ea8', padding: { x: 3, y: 1 },
+        }).setOrigin(0.5, 1).setDepth(40);
+        this.tweens.add({ targets: cue, y: cue.y - 10, alpha: 0, duration: 1600, onComplete: () => cue.destroy() });
+        this.tweens.add({
+          targets: ent.sprite, x: gp.x, y: gp.y, alpha: 0.1,
+          duration: 850, ease: 'sine.in',
+          onUpdate: () => { if (ent.label) { ent.label.x = ent.sprite.x; ent.label.y = ent.sprite.y - 18; } },
+          onComplete: () => { const key = ent.key; this.destroyEntity(ent); this.entities.delete(key); },
+        });
+      } else if (e.action === 'arrive') {
+        // remembered until the roster payload (sent right behind this
+        // event) actually spawns the mob
+        this.pendingArrivals[e.name] = { dir: e.dir, at: Date.now() };
+      }
     }
 
     targetByName(name) {

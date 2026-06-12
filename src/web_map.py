@@ -115,6 +115,29 @@ class WebMapServer:
         if matching_clients == 0:
             logger.warning(f"notify_player: NO connected clients for '{player.name}' (total clients: {len(self.clients)}, names: {client_names})")
 
+    async def notify_room(self, room, event=None):
+        """Push fresh map payloads to every connected player standing in the
+        room - optionally preceded by a lightweight event (mob movement) so
+        graphical clients can animate the cause before the roster updates."""
+        if not room:
+            return
+        for ch in list(getattr(room, 'characters', [])):
+            name = getattr(ch, 'name', None)
+            if not name or not hasattr(ch, 'connection'):
+                continue
+            if name.lower() not in self.world.players:
+                continue
+            for client in list(self.clients):
+                if not client.player_name or client.player_name.lower() != name.lower():
+                    continue
+                try:
+                    if event:
+                        await self._ws_send(client.writer, json.dumps(event))
+                    payload = build_map_payload(ch, mode=client.mode)
+                    await self._ws_send(client.writer, json.dumps(payload))
+                except Exception:
+                    self.clients.discard(client)
+
     async def notify_combat(self, player):
         """Push a lightweight vitals/entity update during combat rounds."""
         dead_clients = []

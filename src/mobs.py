@@ -482,6 +482,8 @@ class Mobile(Character):
                         self.room = exit_data['room']
                         self.room.characters.append(self)
                         await self.room.send_to_room(f"{self.name} arrives, eyes scanning the shadows.")
+                        opposite = self.config.DIRECTIONS.get(direction, {}).get('opposite', 'somewhere')
+                        await self._notify_move(old_room, self.room, direction, opposite)
                         return
             # If target is in same room, let normal AI handle aggression
         else:
@@ -923,6 +925,7 @@ class Mobile(Character):
         direction, target_room = random.choice(valid_exits)
         
         # Leave current room
+        old_room = self.room
         await self.room.send_to_room(f"{self.name} leaves {direction}.")
         self.room.characters.remove(self)
         
@@ -932,6 +935,24 @@ class Mobile(Character):
         
         opposite = self.config.DIRECTIONS.get(direction, {}).get('opposite', 'somewhere')
         await target_room.send_to_room(f"{self.name} arrives from the {opposite}.")
+        await self._notify_move(old_room, target_room, direction, opposite)
+
+    async def _notify_move(self, old_room, new_room, direction, opposite):
+        """Tell graphical clients in both rooms: live roster + travel arrows.
+        Without this, a wandering NPC's icon sticks on screen until the
+        player happens to move."""
+        web_map = getattr(self.world, 'web_map', None)
+        if not web_map:
+            return
+        try:
+            await web_map.notify_room(old_room, {
+                'type': 'mob_move', 'action': 'leave', 'name': self.name,
+                'dir': direction, 'vnum': getattr(old_room, 'vnum', None)})
+            await web_map.notify_room(new_room, {
+                'type': 'mob_move', 'action': 'arrive', 'name': self.name,
+                'dir': opposite, 'vnum': getattr(new_room, 'vnum', None)})
+        except Exception:
+            pass
         
     async def special_ai(self):
         """Handle special mob behaviors."""

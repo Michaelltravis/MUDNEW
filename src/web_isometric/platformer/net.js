@@ -190,6 +190,7 @@
         const payload = JSON.parse(event.data);
         if (payload.type === 'map_data') handleMapData(payload);
         else if (payload.type === 'combat_update') handleCombatUpdate(payload);
+        else if (payload.type === 'mob_move') MH.bus.emit('mob.move', payload);
         else if (payload.type === 'ambient') MH.bus.emit('ambient.echo', payload.text || '');
       } catch (err) {
         console.warn('map socket parse error', err);
