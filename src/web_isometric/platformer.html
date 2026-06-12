@@ -775,11 +775,11 @@
   #wm-body { position: relative; flex: 1; overflow: hidden; }
   #wm-world { position: absolute; inset: 0; }
   .wm-zone-card { position: absolute; transform: translate(-50%, -50%); cursor: pointer;
-    background: rgba(16,19,30,0.92); border: 2px solid var(--zc, #4a4f60); border-radius: 12px;
-    padding: 8px 14px; text-align: center; font-family: var(--ui-font); transition: transform .12s, box-shadow .12s; }
+    background: rgba(13,15,22,0.96); border: 1.5px solid var(--zc, #4a4f60); border-radius: 9px;
+    padding: 4px 10px; text-align: center; font-family: var(--ui-font); transition: transform .12s, box-shadow .12s; }
   .wm-zone-card:hover { transform: translate(-50%, -50%) scale(1.08); box-shadow: 0 0 18px var(--zc, #4a4f60); z-index: 2; }
-  .wm-zone-card .zn { color: #e8e2d0; font-size: 12.5px; font-weight: 600; white-space: nowrap; }
-  .wm-zone-card .zc { color: #8a90a4; font-size: 10px; }
+  .wm-zone-card .zn { color: #e8e2d0; font-size: 11px; font-weight: 600; white-space: nowrap; max-width: 190px; overflow: hidden; text-overflow: ellipsis; }
+  .wm-zone-card .zc { color: #8a90a4; font-size: 9px; }
   .wm-zone-card.here { border-width: 3px; box-shadow: 0 0 14px var(--zc, #e8c168); }
   .wm-zone-card.here .zn::after { content: ' ★'; color: #ffe9a8; }
 

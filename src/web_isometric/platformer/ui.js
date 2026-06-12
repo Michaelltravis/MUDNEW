@@ -991,26 +991,52 @@
     }
     if (!agg.size) { host.innerHTML = '<div style="color:#6a7084;padding:30px;font-family:var(--ui-font)">Explore to chart the world…</div>'; return; }
     const pts = [...agg.entries()].map(([id, a]) => ({ id, x: a.sx / a.n, y: a.sy / a.n, n: a.n, seen: a.seen }));
+    // force-directed layout: geography seeds it, then springs pull linked
+    // regions together while repulsion spreads the cards across the canvas
     const xs = pts.map(p => p.x), ys = pts.map(p => p.y);
     const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
-    const PAD = 90;
-    const sx = (rect.width - PAD * 2) / Math.max(1, x1 - x0);
-    const sy = (rect.height - PAD * 2) / Math.max(1, y1 - y0);
-    for (const p of pts) {
-      p.px = PAD + (p.x - x0) * sx;
-      p.py = PAD + (p.y - y0) * sy;
-    }
-    for (let it = 0; it < 24; it++) {
-      let moved = false;
-      for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
-        const a = pts[i], b = pts[j];
-        const dx = b.px - a.px, dy = b.py - a.py;
-        if (Math.abs(dx) < 130 && Math.abs(dy) < 44) {
-          const push = dy >= 0 ? 1 : -1;
-          b.py += push * 12; a.py -= push * 12; moved = true;
+    const PAD = 110;
+    pts.forEach((p, i) => {
+      p.px = PAD + ((p.x - x0) / Math.max(1, x1 - x0)) * (rect.width - PAD * 2) + (i % 7) * 3;
+      p.py = PAD * 0.5 + ((p.y - y0) / Math.max(1, y1 - y0)) * (rect.height - PAD) + (i % 5) * 3;
+    });
+    const links = (MH.state.atlas && MH.state.atlas.links) || [];
+    const byId = Object.fromEntries(pts.map(p => [p.id, p]));
+    const CW = 105, CH = 34;             // half card footprint for spacing
+    for (let it = 0; it < 260; it++) {
+      // repulsion: no two cards may crowd each other
+      for (let i = 0; i < pts.length; i++) {
+        for (let j = i + 1; j < pts.length; j++) {
+          const a = pts[i], b = pts[j];
+          let dx = b.px - a.px, dy = (b.py - a.py) * (CW / CH);
+          let d2 = dx * dx + dy * dy;
+          if (d2 < 1) { dx = (i - j); dy = 1; d2 = 2; }
+          const d = Math.sqrt(d2);
+          if (d < CW * 2.4) {
+            const f = (CW * 2.4 - d) / d * 0.18;
+            const fy = f * (CH / CW);
+            a.px -= dx * f; a.py -= dy * fy;
+            b.px += dx * f; b.py += dy * fy;
+          }
         }
       }
-      if (!moved) break;
+      // springs: connected regions stay near each other
+      for (const [za, zb] of links) {
+        const a = byId[za], b = byId[zb];
+        if (!a || !b) continue;
+        const dx = b.px - a.px, dy = b.py - a.py;
+        const d = Math.hypot(dx, dy) || 1;
+        const f = (d - 230) / d * 0.012;
+        a.px += dx * f; a.py += dy * f;
+        b.px -= dx * f; b.py -= dy * f;
+      }
+      // gentle pull toward center keeps islands on the canvas
+      for (const p of pts) {
+        p.px += (rect.width / 2 - p.px) * 0.0035;
+        p.py += (rect.height / 2 - p.py) * 0.0035;
+        p.px = Math.max(PAD * 0.7, Math.min(rect.width - PAD * 0.7, p.px));
+        p.py = Math.max(36, Math.min(rect.height - 36, p.py));
+      }
     }
     const at = Object.fromEntries(pts.map(p => [p.id, p]));
     // roads between connected regions, beneath the cards
