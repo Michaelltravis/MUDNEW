@@ -172,6 +172,96 @@
     if (pop && !pop.contains(e.target)) MH.popover.hide();
   }
 
+  // ============ universal right-click context menus ============
+  // every sensible verb for the target, the long tail behind More…
+  function kw(name) { return MH.mobKeyword(name || ''); }
+  function send(c) { MH.sendCommand(c); }
+  function mySkills() { return (MH.state.player && MH.state.player.skills) || {}; }
+
+  function mobVerbs(d) {
+    const k = kw(d.name);
+    const sk = mySkills();
+    const top = [];
+    if (d.hostile || d.fighting) top.push({ label: '⚔ Attack', fn: () => send(`kill ${k}`) });
+    top.push({ label: '💬 Talk', fn: () => MH.bus.emit('npc.talk', { name: d.name, quest: d.quest || '' }) });
+    top.push({ label: '👁 Look', fn: () => MH.immersion.lookAt(k) });
+    top.push({ label: '🧠 Consider', fn: () => send(`consider ${k}`) });
+    if (d.shopkeeper) top.push({ label: '🪙 Shop', fn: () => MH.bus.emit('shop.open', d) });
+    if (d.trainer) top.push({ label: '📖 Train', fn: () => MH.bus.emit('training.open', d) });
+    if (!d.hostile) top.push({ label: '⚔ Attack', fn: () => send(`kill ${k}`) });
+    const more = [
+      { label: 'Follow', fn: () => send(`follow ${k}`) },
+      { label: 'Give item…', fn: () => promptCmd(`give <item> ${k}`, `give `, ` ${k}`) },
+    ];
+    if ('steal' in sk) more.push({ label: 'Steal gold', fn: () => send(`steal gold ${k}`) });
+    if ('backstab' in sk) more.push({ label: 'Backstab', fn: () => send(`backstab ${k}`) });
+    if ('mark' in sk) more.push({ label: 'Mark', fn: () => send(`mark ${k}`) });
+    if ('track' in sk) more.push({ label: 'Track', fn: () => send(`track ${k}`) });
+    more.push({ label: 'Group with', fn: () => send(`group ${k}`) });
+    return { top, more };
+  }
+  function playerVerbs(d) {
+    const k = kw(d.name);
+    return {
+      top: [
+        { label: '💬 Tell…', fn: () => promptCmd(`tell ${k} <message>`, `tell ${k} `, '') },
+        { label: '👁 Look', fn: () => MH.immersion.lookAt(k) },
+        { label: '🤝 Group invite', fn: () => send(`group ${k}`) },
+        { label: '🚶 Follow', fn: () => send(`follow ${k}`) },
+      ],
+      more: [
+        { label: 'Give item…', fn: () => promptCmd(`give <item> ${k}`, `give `, ` ${k}`) },
+        { label: 'Where', fn: () => send('where') },
+      ],
+    };
+  }
+  function selfVerbs() {
+    const sk = mySkills();
+    const top = [
+      { label: '👁 Look around', fn: () => send('look') },
+      { label: '🔍 Search for secrets', fn: () => send('search') },
+      { label: '😴 Rest', fn: () => send('rest') },
+      { label: '🧍 Stand', fn: () => send('stand') },
+      { label: '🌀 Recall', fn: () => send('recall') },
+    ];
+    const more = [
+      { label: 'Where am I', fn: () => send('where') },
+      { label: 'Who is online', fn: () => send('who') },
+      { label: 'Sleep', fn: () => send('sleep') },
+      { label: 'Time & weather', fn: () => { send('time'); send('weather'); } },
+      { label: 'Save', fn: () => send('save') },
+      { label: 'Score sheet', fn: () => send('score') },
+    ];
+    if ('hide' in sk) more.unshift({ label: 'Hide', fn: () => send('hide') });
+    if ('sneak' in sk) more.unshift({ label: 'Sneak', fn: () => send('sneak') });
+    if ('camp' in sk) more.unshift({ label: 'Camp', fn: () => send('camp') });
+    return { top, more };
+  }
+  // typed-argument verbs prefill the command input instead of guessing
+  function promptCmd(hint, prefix, suffix) {
+    const input = document.getElementById('command-input');
+    if (!input) return;
+    input.value = prefix + suffix;
+    input.focus();
+    const pos = prefix.length;
+    input.setSelectionRange(pos, pos);
+    MH.bus.emit('flash', hint);
+  }
+
+  MH.contextMenu = function (kind, data, x, y) {
+    let v;
+    if (kind === 'mob') v = mobVerbs(data || {});
+    else if (kind === 'player') v = playerVerbs(data || {});
+    else if (kind === 'self') v = selfVerbs();
+    else if (kind === 'item') { MH.objectActions(data, x, y); return; }
+    else return;
+    const title = kind === 'self' ? (MH.state.player ? MH.state.player.name : 'You') : ((data && (data.short || data.name)) || kind);
+    const open = items => MH.popover.show(x, y, String(title).slice(0, 30), items);
+    const entries = v.top.slice(0, 6);
+    if (v.more && v.more.length) entries.push({ label: 'More…', fn: () => setTimeout(() => open(v.more), 0) });
+    open(entries);
+  };
+
   // context actions for a world object (server item on the ground)
   MH.objectActions = function (data, x, y) {
     const name = data.name || 'object';

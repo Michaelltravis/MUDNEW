@@ -35,6 +35,25 @@
     mob_slime:          { tile: 108 },
     mob_aquatic:        { tile: 108, hue: 130 },            // blue slime
     mob_elemental:      { tile: 124 },                      // stone golem
+    // ---- coverage audit additions ----
+    mob_reptile:        { tile: 123, hue: 95, dark: 0.05 }, // green scaled quadruped
+    mob_construct:      { tile: 124, dark: 0.15 },          // animate stone
+    mob_celestial:      { tile: 121, hue: 35, alpha: 0.95 },// radiant winged
+    mob_fey:            { tile: 121, hue: 250, alpha: 0.85, scale: 0.85 },
+    mob_plant:          { tile: 108, hue: 55 },             // verdant mass
+    mob_rogue:          { tile: 98, dark: 0.2 },            // hooded cutthroat
+    mob_noble:          { tile: 85, hue: 25, crown: true },
+    mob_horror:         { tile: 122, hue: 230, scale: 1.2 },// too many eyes
+    // ---- guildmasters: the class look, crowned in gold ----
+    gm_warrior:         { tile: 96, crown: true },
+    gm_paladin:         { tile: 97, crown: true },
+    gm_mage:            { tile: 84, crown: true },
+    gm_necromancer:     { tile: 84, hue: 110, dark: 0.25, crown: true },
+    gm_thief:           { tile: 98, crown: true },
+    gm_assassin:        { tile: 98, dark: 0.35, crown: true },
+    gm_ranger:          { tile: 112, crown: true },
+    gm_cleric:          { tile: 100, crown: true },
+    gm_bard:            { tile: 99, hue: 30, crown: true },
   };
 
   function tileRect(idx) {
@@ -80,6 +99,15 @@
         ctx.drawImage(src, sx, sy, TILE, TILE, px, py, size, size);
       }
       ctx.restore();
+      if (spec.crown && i !== 10) {
+        // a gold circlet floats above the brow on every living frame
+        const cw = size * 0.34, cx2 = px + size / 2 - cw / 2, cy2 = py + size * 0.02;
+        ctx.fillStyle = '#ffd44a';
+        ctx.fillRect(cx2, cy2 + cw * 0.18, cw, cw * 0.12);
+        for (const fx of [0, 0.42, 0.84]) {
+          ctx.fillRect(cx2 + cw * fx, cy2, cw * 0.16, cw * 0.2);
+        }
+      }
       if (flash) {
         ctx.save();
         ctx.globalCompositeOperation = 'source-atop';

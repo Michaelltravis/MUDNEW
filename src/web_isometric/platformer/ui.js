@@ -1618,6 +1618,10 @@
         if (e.key === 'Escape' && wmOpen) wmToggle(false);
       });
       window.addEventListener('resize', () => { if (wmOpen) wmRender(); fitMinimapColumn(); });
+      // the game owns right-click: no browser menu over the world
+      document.addEventListener('contextmenu', e => {
+        if (e.target.tagName === 'CANVAS' || e.target.closest('#game-root')) e.preventDefault();
+      });
       MH.bus.on('room.entered', () => setTimeout(fitMinimapColumn, 80));
       setTimeout(fitMinimapColumn, 1200);
       window.addEventListener('keydown', e => {

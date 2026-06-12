@@ -35,6 +35,13 @@
       fit();
       this.scale.on('resize', fit);
 
+      // right-click on open ground: your own action menu
+      this.input.on('pointerdown', (pointer, over) => {
+        if (!(pointer.rightButtonDown && pointer.rightButtonDown())) return;
+        if (over && over.length) return;   // an entity menu took it
+        if (MH.contextMenu) MH.contextMenu('self', null, pointer.event.clientX, pointer.event.clientY);
+      });
+
       // cinematic grade (WebGL only): falls back gracefully on canvas
       try {
         if (this.cameras.main.postFX) {
@@ -684,7 +691,13 @@
         }
         ent.sprite.setInteractive({ useHandCursor: true });
         ent.sprite.on('pointerdown', pointer => {
-          if (isCorpse) MH.bus.emit('loot.corpse');
+          const rb = pointer.rightButtonDown && pointer.rightButtonDown();
+          if (isCorpse && !rb) MH.bus.emit('loot.corpse');
+          else if (isCorpse && rb && MH.popover) MH.popover.show(pointer.event.clientX, pointer.event.clientY, spec.data.name, [
+            { label: '✋ Loot all', fn: () => MH.bus.emit('loot.corpse') },
+            { label: '👁 Look', fn: () => MH.immersion.lookAt('corpse') },
+            { label: '🔪 Butcher', fn: () => MH.sendCommand('butcher corpse') },
+          ]);
           else if (MH.objectActions) MH.objectActions(spec.data, pointer.event.clientX, pointer.event.clientY);
           else MH.sendCommand(`get ${MH.mobKeyword(spec.data.name)}`);
         });
@@ -696,7 +709,26 @@
         return ent;
       }
 
-      const tex = this.safeTex(spec.kind === 'player' ? MH.tdSprites.playerKey(spec.data.char_class) : MH.tdSprites.mobKey(spec.data.name), 'td_mob_citizen');
+      let texWanted;
+      if (spec.kind === 'player') {
+        texWanted = MH.tdSprites.playerKey(spec.data.char_class);
+      } else if (spec.data.trainer) {
+        // guildmasters wear their class's face, crowned in gold
+        const n = (spec.data.name || '').toLowerCase();
+        const cls = /sword|warrior|fight/.test(n) ? 'warrior'
+          : /paladin|holy/.test(n) ? 'paladin'
+          : /necro/.test(n) ? 'necromancer'
+          : /mage|magic|wizard/.test(n) ? 'mage'
+          : /assassin/.test(n) ? 'assassin'
+          : /thie|rogue/.test(n) ? 'thief'
+          : /ranger|hunt/.test(n) ? 'ranger'
+          : /cleric|priest|temple/.test(n) ? 'cleric'
+          : /bard|song|minstrel/.test(n) ? 'bard' : null;
+        texWanted = cls ? `td_gm_${cls}` : MH.tdSprites.mobKey(spec.data.name);
+      } else {
+        texWanted = MH.tdSprites.mobKey(spec.data.name);
+      }
+      const tex = this.safeTex(texWanted, 'td_mob_citizen');
       ent.sprite = this.add.sprite(slot.x, slot.y, tex, 'd0').setDepth(8);
       ent.sprite.setScale((spec.data.boss ? 1.5 : 1) / MH.SMOOTH_SS);
       ent.sprite.play(`${tex}_walkd`);
@@ -712,9 +744,9 @@
 
       ent.sprite.setInteractive({ useHandCursor: true });
       ent.sprite.on('pointerdown', pointer => {
-        // right-click anyone: a closer look (the MUD's description)
+        // right-click anyone: the full verb menu
         if (pointer.rightButtonDown && pointer.rightButtonDown()) {
-          if (MH.immersion) MH.immersion.lookAt(MH.mobKeyword(ent.data.name || ''));
+          if (MH.contextMenu) MH.contextMenu(spec.kind === 'player' ? 'player' : 'mob', ent.data, pointer.event.clientX, pointer.event.clientY);
           return;
         }
         if (spec.kind !== 'mob') return;

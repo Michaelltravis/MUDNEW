@@ -521,17 +521,25 @@
   const MOB_ARCHETYPES = [
     { terms: ['dragon', 'wyvern', 'drake'], key: 'dragon', body: 'quad', pal: { outfit: '#a83a2a', outfit2: '#7a2a1e', trim: '#e8c168' }, big: true },
     { terms: ['goblin', 'gnoll', 'orc', 'kobold', 'troll', 'ogre'], key: 'goblinoid', body: 'human', pal: { skin: '#6a9a4a', outfit: '#5c4a32', outfit2: '#42362a', hair: '#3a4a2a', trim: '#7a6a4a', weapon: '#8a8e9a' } },
-    { terms: ['skeleton', 'zombie', 'ghoul', 'lich', 'vampire', 'wight', 'wraith', 'undead', 'corpse'], key: 'undead', body: 'human', pal: { skin: '#cfc8b8', outfit: '#3a3a40', outfit2: '#2a2a2e', hair: '#cfc8b8', trim: '#5a5a64', weapon: '#9aa2b0' } },
-    { terms: ['ghost', 'spirit', 'specter', 'phantom', 'shade'], key: 'ghost', body: 'flyer', pal: { outfit: '#b8c8e0', outfit2: '#8aa0c0', trim: '#e8f0ff' }, alpha: 0.6 },
-    { terms: ['demon', 'devil', 'imp', 'fiend'], key: 'demon', body: 'human', pal: { skin: '#b03a3a', outfit: '#3a1a1a', outfit2: '#2a1010', hair: '#1a0a0a', trim: '#e85c2a', weapon: '#2a2a32' } },
-    { terms: ['wolf', 'bear', 'lion', 'cat', 'dog', 'boar', 'rat', 'horse', 'deer', 'cow', 'pig', 'fox', 'beast'], key: 'beast', body: 'quad', pal: { outfit: '#7a5a3a', outfit2: '#5c4228', trim: '#4a3620' } },
-    { terms: ['spider', 'scorpion', 'beetle', 'ant', 'insect', 'centipede', 'roach'], key: 'insect', body: 'quad', pal: { outfit: '#3a3a2a', outfit2: '#26261c', trim: '#a8a04a' } },
+    { terms: ['skeleton', 'zombie', 'ghoul', 'lich', 'vampire', 'wight', 'wraith', 'undead', 'corpse', 'mummy', 'ghast', 'bone', 'ossuary', 'gravebound', 'revenant', 'thrall'], key: 'undead', body: 'human', pal: { skin: '#cfc8b8', outfit: '#3a3a40', outfit2: '#2a2a2e', hair: '#cfc8b8', trim: '#5a5a64', weapon: '#9aa2b0' } },
+    { terms: ['ghost', 'spirit', 'specter', 'spectre', 'phantom', 'shade', 'banshee', 'shadow', 'umbral', 'will-o'], key: 'ghost', body: 'flyer', pal: { outfit: '#b8c8e0', outfit2: '#8aa0c0', trim: '#e8f0ff' }, alpha: 0.6 },
+    { terms: ['demon', 'devil', 'imp', 'fiend', 'balor', 'efreeti', 'succubus', 'quasit', 'lemure', 'yochlol', 'iblis', 'nightmare', 'blightlord'], key: 'demon', body: 'human', pal: { skin: '#b03a3a', outfit: '#3a1a1a', outfit2: '#2a1010', hair: '#1a0a0a', trim: '#e85c2a', weapon: '#2a2a32' } },
+    { terms: ['wolf', 'bear', 'lion', 'cat', 'dog', 'boar', 'rat', 'horse', 'deer', 'cow', 'pig', 'fox', 'beast', 'rabbit', 'squirrel', 'badger', 'goat', 'camel', 'mongoose', 'wolverine', 'warg', 'hound', 'rottweiler', 'puppy', 'kitten', 'chipmunk', 'goose', 'mule', 'donkey', 'warthog', 'hyena', 'jackal', 'panther', 'tiger'], key: 'beast', body: 'quad', pal: { outfit: '#7a5a3a', outfit2: '#5c4228', trim: '#4a3620' } },
+    { terms: ['spider', 'scorpion', 'beetle', 'ant', 'insect', 'centipede', 'roach', 'worm', 'maggot', 'wasp', 'mosquito', 'web spinner', 'larva'], key: 'insect', body: 'quad', pal: { outfit: '#3a3a2a', outfit2: '#26261c', trim: '#a8a04a' } },
     { terms: ['slime', 'ooze', 'pudding', 'jelly', 'blob'], key: 'slime', body: 'blob', pal: { outfit: '#4aa86a', outfit2: '#338050', trim: '#7ad68a' } },
     { terms: ['elemental', 'golem', 'gargoyle'], key: 'elemental', body: 'human', pal: { skin: '#8a8d96', outfit: '#6a6e7a', outfit2: '#52565e', hair: '#8a8d96', trim: '#cdd2dc', weapon: '#5c606a' } },
-    { terms: ['fish', 'shark', 'eel', 'octopus', 'crab', 'kraken', 'merman', 'siren'], key: 'aquatic', body: 'blob', pal: { outfit: '#3a7a9a', outfit2: '#2a5a74', trim: '#6cc0e0' } },
+    { terms: ['fish', 'shark', 'eel', 'octopus', 'crab', 'kraken', 'merman', 'siren', 'merfolk', 'mermaid', 'sahuagin', 'turtle', 'leviathan', 'ixitxachitl', 'duck', 'swan'], key: 'aquatic', body: 'blob', pal: { outfit: '#3a7a9a', outfit2: '#2a5a74', trim: '#6cc0e0' } },
     { terms: ['bird', 'hawk', 'eagle', 'raven', 'crow', 'bat', 'owl', 'vulture'], key: 'bird', body: 'flyer', pal: { outfit: '#4a4250', outfit2: '#36303c', trim: '#e8c168' } },
-    { terms: ['guard', 'soldier', 'knight', 'captain', 'warrior', 'fighter'], key: 'guard', body: 'human', pal: { skin: '#d8a878', outfit: '#5c6a8a', outfit2: '#424d66', hair: '#5a4a32', trim: '#9aa2b0', weapon: '#c8ccd8' }, acc: ['helm'] },
-    { terms: ['mage', 'wizard', 'sorcerer', 'witch', 'shaman', 'priest', 'cleric', 'acolyte'], key: 'caster', body: 'human', pal: { skin: '#d8a878', outfit: '#4a3a7a', outfit2: '#362a5a', hair: '#8a8a96', trim: '#9a8ae0', weapon: '#8a6a3a' }, acc: ['wizardhat'] },
+    { terms: ['guard', 'soldier', 'knight', 'captain', 'warrior', 'fighter', 'gladiator', 'mercenary', 'marshal', 'swordsman', 'crusader', 'paladin', 'executioner', 'jailer', 'jailor', 'bailiff', 'commander', 'legion'], key: 'guard', body: 'human', pal: { skin: '#d8a878', outfit: '#5c6a8a', outfit2: '#424d66', hair: '#5a4a32', trim: '#9aa2b0', weapon: '#c8ccd8' }, acc: ['helm'] },
+    { terms: ['mage', 'wizard', 'sorcerer', 'witch', 'shaman', 'priest', 'cleric', 'acolyte', 'necromancer', 'warlock', 'astrologer', 'sage', 'druid', 'arcanist', 'magus'], key: 'caster', body: 'human', pal: { skin: '#d8a878', outfit: '#4a3a7a', outfit2: '#362a5a', hair: '#8a8a96', trim: '#9a8ae0', weapon: '#8a6a3a' }, acc: ['wizardhat'] },
+    { terms: ['snake', 'serpent', 'asp', 'cobra', 'viper', 'lizard', 'crocodile', 'alligator', 'basilisk', 'naga', 'reptile', 'behir', 'hydra', 'wyrm'], key: 'reptile', body: 'quad', pal: { outfit: '#4e8a4a', outfit2: '#36603a', trim: '#a8d04a' } },
+    { terms: ['statue', 'construct', 'sentinel', 'sentry', 'drone', 'caryatid', 'grotesque', 'armor', 'automaton', 'juggernaut', 'mauler', 'warden'], key: 'construct', body: 'human', pal: { skin: '#9aa0ac', outfit: '#6e7480', outfit2: '#545a66', hair: '#9aa0ac', trim: '#c8a868', weapon: '#7a808c' } },
+    { terms: ['angel', 'cherub', 'archon', 'celestial', 'seraph', 'couatl', 'ki-rin', 'pegasus', 'uriel', 'gabriel', 'raphael', 'michael'], key: 'celestial', body: 'flyer', pal: { outfit: '#f0e8d0', outfit2: '#d0c0a0', trim: '#ffe9a8' } },
+    { terms: ['pixie', 'sprite', 'fey', 'fairy', 'nymph', 'dryad', 'wisp', 'shargugh'], key: 'fey', body: 'flyer', pal: { outfit: '#b0e0c8', outfit2: '#7ab8a0', trim: '#e8ffc0' }, alpha: 0.9 },
+    { terms: ['tree', 'thornvine', 'creeper', 'myconoid', 'fungus', 'plant', 'vine', 'oakfather', 'treant', 'shambler'], key: 'plant', body: 'blob', pal: { outfit: '#4a7a3a', outfit2: '#345a2a', trim: '#8ac06a' } },
+    { terms: ['thief', 'assassin', 'bandit', 'rogue', 'pickpocket', 'cutpurse', 'smuggler', 'burglar', 'stalker', 'raider', 'tomb robber'], key: 'rogue', body: 'human', pal: { skin: '#c89868', outfit: '#3a3a46', outfit2: '#2a2a34', hair: '#2a2420', trim: '#5a5a6a', weapon: '#9aa2b0' } },
+    { terms: ['king', 'queen', 'emperor', 'sultan', 'caliph', 'noble', 'prince', 'princess', 'regent', 'sovereign', 'mayor', 'senator', 'pharoah', 'pharaoh'], key: 'noble', body: 'human', pal: { skin: '#d8a878', outfit: '#6a3a7a', outfit2: '#4e2a5a', hair: '#8a7a62', trim: '#e8c168', weapon: '#e8c168' }, acc: ['crown'] },
+    { terms: ['beholder', 'flayer', 'horror', 'aberration', 'chimera', 'harpy', 'lamia', 'sphinx', 'otyugh', 'mimic', 'morkoth', 'drider', 'hag'], key: 'horror', body: 'blob', pal: { outfit: '#7a4a8a', outfit2: '#5a3468', trim: '#c06ce0' } },
   ];
   const DEFAULT_ARCHETYPE = { key: 'citizen', body: 'human', pal: { skin: '#d8a878', outfit: '#6a5a48', outfit2: '#4e4234', hair: '#5a4a32', trim: '#8a7a62', weapon: '#7a5a30' } };
 
@@ -1133,7 +1141,7 @@
       this.registerAnims(scene);
     },
     registerAnims(scene) {
-      const keys = scene.textures.getTextureKeys().filter(k => k.startsWith('td_player_') || k.startsWith('td_mob_'));
+      const keys = scene.textures.getTextureKeys().filter(k => k.startsWith('td_player_') || k.startsWith('td_mob_') || k.startsWith('td_gm_'));
       for (const key of keys) {
         const mk = (anim, frames, rate, repeat = -1) => {
           if (scene.anims.exists(`${key}_${anim}`)) return;
