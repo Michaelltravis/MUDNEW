@@ -1019,7 +1019,7 @@
     ];
     abilityFxFor(text) {
       for (const [re, fx] of TopRoomScene.ABILITY_FX) {
-        if (re.test(text)) return fx;
+        if (re.test(text)) return { ...fx, text };
       }
       return null;
     }
@@ -1058,6 +1058,15 @@
     }
     renderAbilityFx(fx, tx, ty) {
       const px = this.player.x, py = this.player.y;
+      // school FX engine: flagship sequences own the whole cast; otherwise
+      // a school-flavored cast-up + impact layers under the classic visuals
+      const SFX = MH.schoolFx;
+      if (SFX && fx.text) {
+        if (SFX.flagship(this, fx.text, this.player, tx, ty)) return;
+        const school = SFX.classify(fx.text);
+        SFX.castUp(this, this.player, school);
+        SFX.impact(this, tx, ty, school, SFX.tierOf(fx.text));
+      }
       switch (fx.type) {
         case 'bolt':
           this.projectileFx(px, py - 6, tx, ty - 6, fx.color);
