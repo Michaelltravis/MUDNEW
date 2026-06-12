@@ -1646,6 +1646,31 @@
       this.player.y += Math.sin(ang) * 18;
     }
 
+    // draw a mob's head-and-shoulders into a DOM canvas (duel card)
+    mobPortrait(canvas, name) {
+      try {
+        const ent = [...this.entities.values()].find(e2 =>
+          e2.kind === 'mob' && e2.data && e2.data.name === name && e2.sprite);
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let tex = ent && ent.sprite ? ent.sprite.texture : null;
+        if (!tex && MH.mobKeyFor) tex = null;
+        if (!tex) {
+          // no live entity (different room, summoned test): classify by name
+          const key = MH.smoothSprites && MH.smoothSprites.mobKey ? MH.smoothSprites.mobKey(name)
+            : `td_mob_${(MH.mobArchetype ? MH.mobArchetype(name).key : 'citizen')}`;
+          if (this.textures.exists(key)) tex = this.textures.get(key);
+        }
+        if (!tex) return false;
+        const f = tex.get('d0');
+        ctx.imageSmoothingEnabled = false;
+        const sz = Math.min(canvas.width, canvas.height) * 1.5;
+        ctx.drawImage(tex.getSourceImage(), f.cutX, f.cutY + f.cutHeight * 0.06, f.cutWidth, f.cutHeight * 0.62,
+          (canvas.width - sz) / 2, 2, sz, sz * 0.8);
+        return true;
+      } catch (_) { return false; }
+    }
+
     travelFlourish(dir) {
       const CARD = ['north', 'south', 'east', 'west'];
       if (CARD.includes(dir)) return;

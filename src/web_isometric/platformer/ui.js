@@ -1094,8 +1094,8 @@
 
   function toggleMinimapSize() {
     mmLarge = !mmLarge;
-    els.minimap.width = mmLarge ? 360 : 230;
-    els.minimap.height = mmLarge ? 320 : 170;
+    els.minimap.width = mmLarge ? 330 : 184;
+    els.minimap.height = mmLarge ? 520 : 340;
     renderMinimap();
   }
 
@@ -1603,7 +1603,54 @@
       MH.bus.on('combat.flee', () => clogLine('You flee!', 'info'));
       MH.bus.on('combat.state', on => {
         if (!on) { clearTimeout(clogHideTimer); clogHideTimer = setTimeout(() => els.combatLog.classList.remove('show'), 3000); }
+        duelShow(on);
       });
+
+      // duel card: you vs the foe, faces and life side by side
+      let duelFoeName = null, duelHideTimer = null;
+      const duelShow = on => {
+        const card = $('duel-card');
+        if (!card) return;
+        clearTimeout(duelHideTimer);
+        if (on) {
+          card.classList.add('show');
+          duelRenderYou();
+          duelRenderFoe();
+        } else {
+          duelHideTimer = setTimeout(() => card.classList.remove('show'), 2500);
+        }
+      };
+      const duelRenderYou = () => {
+        const src = document.getElementById('hud-portrait');
+        const dst = document.getElementById('duel-you');
+        const p = MH.state.player || {};
+        if (src && dst) {
+          const ctx = dst.getContext('2d');
+          ctx.clearRect(0, 0, dst.width, dst.height);
+          ctx.drawImage(src, 0, 0, src.width, src.height * 0.72, 0, 0, dst.width, dst.height);
+        }
+        const nm = document.getElementById('duel-you-nm');
+        if (nm) nm.textContent = p.name || 'you';
+        const bar = document.getElementById('duel-you-hp');
+        if (bar) bar.style.width = `${Math.max(0, Math.min(100, ((p.hp || 0) / Math.max(1, p.max_hp || 1)) * 100))}%`;
+      };
+      const duelRenderFoe = data => {
+        const t = data || currentTarget;
+        if (!t) return;
+        const nm = document.getElementById('duel-foe-nm');
+        if (nm) nm.textContent = t.name || '—';
+        const bar = document.getElementById('duel-foe-hp');
+        if (bar && t.maxHp) bar.style.width = `${Math.max(0, Math.min(100, ((t.hp != null ? t.hp : t.maxHp) / t.maxHp) * 100))}%`;
+        if (t.name !== duelFoeName) {
+          duelFoeName = t.name;
+          const cv = document.getElementById('duel-foe');
+          const scene = MH.game && MH.game.scene.getScenes(true).find(sc => sc.mobPortrait);
+          if (cv && scene) scene.mobPortrait(cv, t.name);
+        }
+      };
+      MH.bus.on('target.set', t => { if ($('duel-card').classList.contains('show')) duelRenderFoe(t); });
+      MH.bus.on('target.update', t => { if ($('duel-card').classList.contains('show')) duelRenderFoe(t); });
+      MH.bus.on('map', () => { if ($('duel-card').classList.contains('show')) duelRenderYou(); });
       // WoW-style cast bar: starts on 'cast', completes when the spell lands
       let castTimer = null;
       const startCast = name => {

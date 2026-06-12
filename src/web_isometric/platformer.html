@@ -782,6 +782,36 @@
   .wm-zone-card .zc { color: #8a90a4; font-size: 10px; }
   .wm-zone-card.here { border-width: 3px; box-shadow: 0 0 14px var(--zc, #e8c168); }
   .wm-zone-card.here .zn::after { content: ' ★'; color: #ffe9a8; }
+
+  /* ===== dock layout rework: stats right, tall map column, duel card ===== */
+  #minimap-wrap { top: auto !important; bottom: 116px !important; right: 10px !important; z-index: 20; }
+  #hud { left: auto !important; right: 12px !important; }
+  #compass { right: 356px !important; }
+  #belt { left: 14px !important; bottom: 44px; }
+  #help-chip { bottom: 10px !important; left: 14px !important; opacity: 1 !important;
+    color: #f0f2f8 !important; text-shadow: 0 1px 2px #000; max-width: 430px; white-space: normal; line-height: 1.5; }
+  /* duel card: you vs the mob, lower right, log lines beneath */
+  #duel-card { position: absolute; right: 210px; bottom: 248px; z-index: 22; display: none;
+    width: 280px; background: rgba(13,15,21,0.92); border: 1px solid #4a2828; border-radius: 8px 8px 0 0;
+    padding: 8px 10px 6px; }
+  #duel-card.show { display: block; }
+  .duel-row { display: flex; align-items: center; gap: 8px; }
+  .duel-side { flex: 1; min-width: 0; }
+  .duel-side canvas { display: block; margin: 0 auto; image-rendering: pixelated;
+    background: radial-gradient(circle at 50% 35%, #232838, #10131e); border-radius: 8px;
+    border: 1px solid rgba(140,150,180,0.3); }
+  .duel-side.foe canvas { border-color: rgba(224,90,74,0.5); }
+  .duel-nm { font-size: 10px; color: #c8ccd8; text-align: center; margin-top: 2px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--ui-font); }
+  .duel-hp { height: 6px; border-radius: 3px; background: #0a0b10; border: 1px solid #000;
+    margin-top: 3px; overflow: hidden; }
+  .duel-hp > i { display: block; height: 100%; background: linear-gradient(#7fe09a, #3f9e5c); transition: width .3s; }
+  .duel-side.foe .duel-hp > i { background: linear-gradient(#e07f7f, #9e3f3f); }
+  .duel-vs { color: #e8c168; font-size: 14px; font-weight: 700; font-family: Georgia, serif;
+    text-shadow: 0 0 8px rgba(232,193,104,.5); flex: none; }
+  #combat-log { right: 210px !important; bottom: 116px !important; width: 280px !important;
+    max-height: 128px; border-radius: 0 0 8px 8px; }
+
   .wm-zone-card.fog { opacity: .45; border-style: dashed; filter: saturate(.4); }
   .wm-zone-card.fog:hover { opacity: .8; }
   #wm-zone { position: absolute; inset: 0; cursor: crosshair; }
@@ -849,6 +879,21 @@
   <div id="whisper-host"></div>
   <div id="zone-card"></div>
   <div id="detail-card"></div>
+  <div id="duel-card">
+    <div class="duel-row">
+      <div class="duel-side you">
+        <canvas id="duel-you" width="54" height="48"></canvas>
+        <div class="duel-nm" id="duel-you-nm">you</div>
+        <div class="duel-hp"><i id="duel-you-hp"></i></div>
+      </div>
+      <div class="duel-vs">⚔<br>VS</div>
+      <div class="duel-side foe">
+        <canvas id="duel-foe" width="54" height="48"></canvas>
+        <div class="duel-nm" id="duel-foe-nm">—</div>
+        <div class="duel-hp"><i id="duel-foe-hp"></i></div>
+      </div>
+    </div>
+  </div>
   <div id="obj-popover"></div>
   <div id="sky-chip">
     <canvas id="sky-canvas" width="64" height="22"></canvas>
@@ -895,7 +940,7 @@
   <div id="minimap-wrap">
     <div class="mm-head"><span>CARTOGRAPHY</span><span style="display:flex;gap:8px">
       <span id="mm-level" title="view another level (sewers below, towers above)">↕</span><span id="mm-out" title="zoom out (wheel)">−</span><span id="mm-in" title="zoom in (wheel)">+</span><span id="mm-toggle" title="resize (M)">⤢</span></span></div>
-    <canvas id="minimap" width="230" height="170"></canvas>
+    <canvas id="minimap" width="184" height="340"></canvas>
   </div>
 
   <div id="chat-log"></div>
