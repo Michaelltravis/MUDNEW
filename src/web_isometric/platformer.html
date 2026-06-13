@@ -981,6 +981,23 @@
   .q-abandon { border-color: rgba(224,108,108,0.5); color: #e08a7a; }
   .q-abandon:hover { background: rgba(224,108,108,0.15); }
 
+  /* ---- emote picker ---- */
+  #emote-btn { flex: none; width: 34px; border: none; border-left: 1px solid var(--border);
+    background: transparent; color: #d8dce8; font-size: 15px; cursor: pointer; }
+  #emote-btn:hover { background: rgba(232,193,104,0.12); }
+  #emote-picker { position: absolute; z-index: 62; display: none; max-width: 280px; padding: 8px;
+    background: rgba(10,12,18,0.97); border: 1px solid rgba(232,193,104,0.4); border-radius: 10px;
+    font-family: var(--ui-font); }
+  #emote-picker.show { display: block; }
+  #emote-picker .ep-hd { font-size: 10px; color: #e8c168; letter-spacing: 1px; margin-bottom: 6px; }
+  #emote-picker .ep-target { font-size: 10px; color: #9dc0ff; margin-bottom: 6px; }
+  #emote-picker .ep-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+  #emote-picker .ep { padding: 6px 4px; border-radius: 6px; text-align: center; cursor: pointer;
+    border: 1px solid rgba(140,150,180,0.18); background: rgba(16,19,30,0.6); }
+  #emote-picker .ep:hover { border-color: #e8c168; background: rgba(232,193,104,0.12); }
+  #emote-picker .ep .ei { font-size: 16px; }
+  #emote-picker .ep .en { font-size: 8.5px; color: #aab2c4; margin-top: 1px; }
+
   /* ---- world-event banner: dramatic center-top alert ---- */
   #event-banner { position: absolute; top: 96px; left: 50%; transform: translateX(-50%) translateY(-20px);
     z-index: 58; display: none; opacity: 0; transition: opacity .4s, transform .4s;
@@ -1258,8 +1275,10 @@
         <option value="reply">reply</option>
       </select>
       <input id="chat-input" type="text" autocomplete="off" spellcheck="false" placeholder="speak… (Esc closes, T toggles)">
+      <button id="emote-btn" type="button" title="emotes / socials">😊</button>
     </div>
   </div>
+  <div id="emote-picker"></div>
   <div id="hotbar"></div>
 
   <div id="command-row">

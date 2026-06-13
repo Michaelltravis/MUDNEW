@@ -518,6 +518,35 @@
     }
   }
 
+  // ---- emote / social picker ----
+  const EMOTES = [
+    ['😊', 'smile'], ['👋', 'wave'], ['🙇', 'bow'], ['😂', 'laugh'], ['👍', 'nod'], ['🤗', 'hug'],
+    ['😘', 'kiss'], ['👏', 'clap'], ['🎉', 'cheer'], ['😉', 'wink'], ['🤛', 'poke'], ['💃', 'dance'],
+    ['🫡', 'salute'], ['💪', 'flex'], ['🙏', 'thank'], ['😢', 'cry'], ['😮', 'gasp'], ['🤦', 'facepalm'],
+    ['🤷', 'shrug'], ['😏', 'snicker'], ['😴', 'yawn'], ['🙇', 'kneel'], ['😠', 'glare'], ['😈', 'cackle'],
+  ];
+  function emotePickerOpen(on) {
+    const el = document.getElementById('emote-picker');
+    if (!el) return;
+    const show = on != null ? on : !el.classList.contains('show');
+    if (!show) { el.classList.remove('show'); return; }
+    const tgt = currentTarget ? currentTarget.name : (MH.state.allyTarget && MH.state.allyTarget.until > Date.now() ? MH.state.allyTarget.name : null);
+    const kw = tgt ? MH.mobKeyword(tgt) : '';
+    el.innerHTML = `<div class="ep-hd">EMOTES${tgt ? '' : ' · target someone to direct them'}</div>`
+      + (tgt ? `<div class="ep-target">→ at ${tgt}</div>` : '')
+      + '<div class="ep-grid">' + EMOTES.map(([ic, nm]) =>
+          `<div class="ep" data-em="${nm}"><div class="ei">${ic}</div><div class="en">${nm}</div></div>`).join('') + '</div>';
+    el.querySelectorAll('.ep').forEach(e => e.addEventListener('click', () => {
+      MH.sendCommand(kw ? `${e.dataset.em} ${kw}` : e.dataset.em, false);
+      emotePickerOpen(false);
+    }));
+    el.classList.add('show');
+    const btn = document.getElementById('emote-btn');
+    const r = btn.getBoundingClientRect();
+    el.style.left = Math.min(r.left, window.innerWidth - 290) + 'px';
+    el.style.top = (r.top - el.offsetHeight - 8) + 'px';
+  }
+
   function sendChat() {
     const msg = els.chatInput.value.trim();
     if (!msg) return;
@@ -956,6 +985,7 @@
       }));
     } else if (almTab === 'collections') {
       const cs = almData.collections || [];
+      const gs = almData.gear_sets || [];
       let html = `<div class="alm-hd">📚 Collections</div>`;
       if (!cs.length) html += `<div class="alm-note">No collections tracked yet.</div>`;
       for (const c of cs) {
@@ -965,6 +995,14 @@
         html += `<div class="alm-coll ${complete ? 'complete' : ''}"><div class="cn"><b>${c.name}</b>`
           + `<small>${c.description}${rwt ? ' — reward: ' + rwt : ''}</small></div>`
           + `<div class="cc">${complete ? '✓ complete' : c.have + '/' + c.total}</div></div>`;
+      }
+      html += `<div class="alm-hd" style="margin-top:12px">🛡 GEAR SETS</div>`;
+      if (!gs.length) html += `<div class="alm-note">You own no set pieces yet. Matching armor unlocks set bonuses.</div>`;
+      for (const s of gs) {
+        const tiers = s.tiers.map(t => `<div class="alm-ach ${t.active ? 'done' : 'locked'}" style="padding:5px 8px"><div class="am"><div class="ad" style="color:${t.active ? '#8ce8a0' : '#9aa0b4'}">${t.active ? '✓' : `${t.need}pc`} ${t.text}</div></div></div>`).join('');
+        html += `<div class="alm-coll" style="flex-direction:column;align-items:stretch"><div class="cn" style="display:flex"><b style="flex:1">${s.name}</b>`
+          + `<span class="cc">worn ${s.worn}/${s.total} · own ${s.owned}/${s.total}</span></div>`
+          + `<div style="display:flex;flex-direction:column;gap:3px;margin-top:5px">${tiers}</div></div>`;
       }
       b.innerHTML = html;
     }
@@ -2294,6 +2332,12 @@
       });
       els.chatInput.addEventListener('focus', () => setTyping(true));
       els.chatInput.addEventListener('blur', () => setTyping(false));
+      const emoteBtn = $('emote-btn');
+      if (emoteBtn) emoteBtn.addEventListener('click', e => { e.stopPropagation(); emotePickerOpen(); });
+      document.addEventListener('click', e => {
+        const ep = $('emote-picker');
+        if (ep && ep.classList.contains('show') && !ep.contains(e.target) && e.target.id !== 'emote-btn') emotePickerOpen(false);
+      });
       els.chatInput.addEventListener('keydown', e => {
         e.stopPropagation();
         if (e.key === 'Enter') sendChat();

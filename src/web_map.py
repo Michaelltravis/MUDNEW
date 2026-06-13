@@ -494,6 +494,29 @@ class WebMapServer:
                             })
                     except Exception:
                         pass
+                    # ---- gear sets ----
+                    gear_sets = []
+                    try:
+                        from sets import NAMED_SETS, get_named_set_bonus
+                        worn_vnums = [getattr(it, 'vnum', None) for it in (getattr(player, 'equipment', {}) or {}).values() if it]
+                        owned_vnums = worn_vnums + [getattr(it, 'vnum', None) for it in (getattr(player, 'inventory', []) or [])]
+                        for sid, cfg in NAMED_SETS.items():
+                            pieces = cfg.get('pieces', {})
+                            worn = sum(1 for v in worn_vnums if v in pieces)
+                            owned = sum(1 for v in owned_vnums if v in pieces)
+                            if owned <= 0:
+                                continue
+                            tiers = []
+                            for thr in sorted(cfg.get('bonuses', {})):
+                                bon = cfg['bonuses'][thr]
+                                txt = ', '.join(f"+{val} {stat.replace('_', ' ')}" for stat, val in bon.items())
+                                tiers.append({'need': thr, 'active': worn >= thr, 'text': txt})
+                            gear_sets.append({
+                                'name': cfg.get('name', sid), 'worn': worn,
+                                'owned': owned, 'total': len(pieces), 'tiers': tiers,
+                            })
+                    except Exception:
+                        pass
                     data = {
                         'daily': {
                             'streak': streak, 'total_days': total_days,
@@ -503,6 +526,7 @@ class WebMapServer:
                             'next': DAILY_REWARDS.get(next_day, DAILY_REWARDS[1]),
                             'next_milestone': next_ms,
                         },
+                        'gear_sets': gear_sets,
                         'achievements': {
                             'points': points, 'max_points': max_points,
                             'unlocked': len(unlocked), 'total': len(ACHIEVEMENTS),
