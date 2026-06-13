@@ -515,6 +515,84 @@ class WebMapServer:
                 except Exception as e:
                     logger.error(f"/almanac error: {e}")
                     await self._http_response(writer, 500, 'Error', 'almanac data unavailable')
+            elif path.startswith('/stable'):
+                # pets, hired companions, owned + purchasable mounts
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                try:
+                    pets = []
+                    try:
+                        from pets import PetManager
+                        for p in PetManager.get_player_pets(player) or []:
+                            pets.append({
+                                'name': getattr(p, 'name', 'pet'), 'level': getattr(p, 'level', 1),
+                                'hp': getattr(p, 'hp', 0), 'maxHp': getattr(p, 'max_hp', 1),
+                                'loyalty': getattr(p, 'loyalty', 100),
+                                'type': getattr(p, 'pet_type', 'summon'),
+                                'abilities': list(getattr(p, 'special_abilities', []) or []),
+                            })
+                    except Exception:
+                        pass
+                    comps = []
+                    try:
+                        from companions import CompanionManager
+                        for cm in CompanionManager.get_player_companions(player) or []:
+                            comps.append({
+                                'name': getattr(cm, 'name', 'companion'), 'level': getattr(cm, 'level', 1),
+                                'hp': getattr(cm, 'hp', 0), 'maxHp': getattr(cm, 'max_hp', 1),
+                                'role': getattr(cm, 'companion_type', 'Fighter'),
+                            })
+                    except Exception:
+                        pass
+                    from mounts import MountManager
+                    cur = getattr(player, 'mount', None)
+                    cur_key = getattr(cur, 'key', None) if cur else None
+                    owned = []
+                    for m in getattr(player, 'owned_mounts', []) or []:
+                        key = m if isinstance(m, str) else m.get('key', '')
+                        tpl = MountManager.get_mount_template(key) or {}
+                        owned.append({
+                            'key': key, 'name': tpl.get('name', key),
+                            'description': tpl.get('description', ''),
+                            'speed_bonus': tpl.get('speed_bonus', 0),
+                            'can_fly': bool(tpl.get('can_fly')), 'combat_ok': bool(tpl.get('combat_ok')),
+                            'loyalty': (m.get('loyalty', 100) if isinstance(m, dict) else 100),
+                            'active': key == cur_key,
+                        })
+                    room = getattr(player, 'room', None)
+                    at_stable = False
+                    if room:
+                        if getattr(room, 'sector_type', '') == 'city':
+                            at_stable = True
+                        for ch in getattr(room, 'characters', []) or []:
+                            if getattr(ch, 'special', None) == 'stable_master':
+                                at_stable = True
+                                break
+                    purchasable = []
+                    owned_keys = {o['key'] for o in owned}
+                    for k, v in MountManager.list_purchasable_mounts().items():
+                        if k in owned_keys:
+                            continue
+                        purchasable.append({
+                            'key': k, 'name': v.get('name', k), 'cost': v.get('cost', 0),
+                            'description': v.get('description', ''),
+                            'speed_bonus': v.get('speed_bonus', 0), 'can_fly': bool(v.get('can_fly')),
+                            'afford': getattr(player, 'gold', 0) >= v.get('cost', 0),
+                        })
+                    data = {
+                        'pets': pets, 'companions': comps,
+                        'mounts': {'owned': owned, 'current': cur_key, 'at_stable': at_stable,
+                                   'purchasable': purchasable, 'gold': getattr(player, 'gold', 0)},
+                    }
+                    await self._http_response(writer, 200, 'OK', json.dumps(data), content_type='application/json')
+                except Exception as e:
+                    logger.error(f"/stable error: {e}")
+                    await self._http_response(writer, 500, 'Error', 'stable data unavailable')
             elif path.startswith('/services'):
                 # mail inbox, bank balance, storage locker
                 parsed = urlparse(path)

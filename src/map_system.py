@@ -580,7 +580,21 @@ def build_group_block(player) -> Optional[dict]:
     health/mana/target stay live during a fight. Returns None when solo.
     """
     group = getattr(player, 'group', None)
-    if not group or len(getattr(group, 'members', [])) < 2:
+    roster = list(getattr(group, 'members', [])) if group else [player]
+    # gather the player's pets + companions so they ride along in the bar
+    minions = []
+    try:
+        from pets import PetManager
+        minions += [(p, 'pet') for p in (PetManager.get_player_pets(player) or [])]
+    except Exception:
+        pass
+    try:
+        from companions import CompanionManager
+        minions += [(c, 'companion') for c in (CompanionManager.get_player_companions(player) or [])]
+    except Exception:
+        pass
+    # solo with no minions => no party bar
+    if len(roster) < 2 and not minions:
         return None
 
     proom = getattr(player, 'room', None)
@@ -593,7 +607,7 @@ def build_group_block(player) -> Optional[dict]:
             dir_by_vnum[tv] = direction
 
     members = []
-    for m in group.members:
+    for m in roster:
         mroom = getattr(m, 'room', None)
         mvnum = getattr(mroom, 'vnum', None)
         same_room = mroom is proom and proom is not None
@@ -611,7 +625,7 @@ def build_group_block(player) -> Optional[dict]:
             'maxMana': max_mana,
             'move': getattr(m, 'move', 0),
             'maxMove': getattr(m, 'max_move', 1) or 1,
-            'is_leader': m is group.leader,
+            'is_leader': bool(group) and m is group.leader,
             'is_self': m is player,
             'sameRoom': same_room,
             'roomName': getattr(mroom, 'name', '???') if mroom else '???',
@@ -622,13 +636,28 @@ def build_group_block(player) -> Optional[dict]:
             'dead': getattr(m, 'hp', 1) <= 0,
         })
 
+    # pets & companions as compact sub-frames after their owner (you)
+    for minion, kind in minions:
+        mhp = getattr(minion, 'max_hp', 1) or 1
+        members.append({
+            'name': getattr(minion, 'name', kind), 'char_class': kind,
+            'role': 'pet', 'level': getattr(minion, 'level', 1),
+            'hp': getattr(minion, 'hp', 0), 'maxHp': mhp,
+            'mana': 0, 'maxMana': 0, 'move': 0, 'maxMove': 1,
+            'is_leader': False, 'is_self': False, 'is_minion': True, 'minion_kind': kind,
+            'sameRoom': getattr(minion, 'room', None) is proom,
+            'roomName': '', 'roomVnum': None, 'dir': None,
+            'fighting': _fighting_name(minion),
+            'online': True, 'dead': getattr(minion, 'hp', 1) <= 0,
+        })
+
     return {
-        'leader': getattr(group.leader, 'name', ''),
-        'loot_mode': getattr(group, 'loot_mode', 'freeforall'),
-        'auto_follow': bool(getattr(group, 'auto_follow', True)),
-        'exp_bonus': int((group.get_exp_bonus() - 1.0) * 100),
-        'size': len(group.members),
-        'is_leader': player is group.leader,
+        'leader': getattr(group.leader, 'name', '') if group else getattr(player, 'name', ''),
+        'loot_mode': getattr(group, 'loot_mode', 'freeforall') if group else 'freeforall',
+        'auto_follow': bool(getattr(group, 'auto_follow', True)) if group else True,
+        'exp_bonus': int((group.get_exp_bonus() - 1.0) * 100) if group else 0,
+        'size': len(members),
+        'is_leader': (player is group.leader) if group else True,
         'heal_spell': _best_heal_spell(player),
         'members': members,
     }

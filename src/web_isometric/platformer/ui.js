@@ -1025,6 +1025,75 @@
     }
   }
 
+  // ---- stable: pets / companions / mounts ----
+  let stTab = 'pets', stData = null;
+  async function openStable(tab) {
+    stTab = tab || 'pets';
+    openModal('modal-stable');
+    document.querySelectorAll('#modal-stable .mtab').forEach(t => t.classList.toggle('active', t.dataset.ctab === stTab));
+    els.stableBody.innerHTML = '<div class="slot">…</div>';
+    try {
+      stData = await (await fetch(`/stable?player=${encodeURIComponent(MH.state.playerName)}`)).json();
+    } catch (_) { els.stableBody.innerHTML = '<div class="slot">stable unavailable</div>'; return; }
+    renderStable();
+  }
+  function hpbar(hp, max) { return `<div class="st-hp"><i style="width:${Math.max(0, Math.min(100, (hp / Math.max(1, max)) * 100))}%"></i></div>`; }
+  function renderStable() {
+    if (!stData) return;
+    const b = els.stableBody;
+    if (stTab === 'pets') {
+      let html = `<div class="st-hd">🐾 SUMMONED & UNDEAD PETS</div>`;
+      if (!stData.pets.length) html += `<div class="alm-note" style="text-align:left">No active pets. Casters summon them; necromancers raise them.</div>`;
+      for (const p of stData.pets) {
+        const ab = p.abilities && p.abilities.length ? `<div class="st-d">✦ ${p.abilities.map(a => a.replace(/_/g, ' ')).join(', ')}</div>` : '';
+        html += `<div class="st-card"><div class="st-ic">🐾</div><div class="st-m">`
+          + `<div class="st-n">${p.name}<span class="tag">L${p.level} · ${p.type} · loyalty ${p.loyalty}%</span></div>`
+          + hpbar(p.hp, p.maxHp) + ab + `</div>`
+          + `<button class="st-btn" data-dismiss="${p.name.split(' ').slice(-1)[0]}">DISMISS</button></div>`;
+      }
+      b.innerHTML = html;
+      b.querySelectorAll('[data-dismiss]').forEach(btn => btn.addEventListener('click', () => {
+        MH.sendCommand(`dismiss ${btn.dataset.dismiss}`, false); setTimeout(() => openStable('pets'), 500);
+      }));
+    } else if (stTab === 'companions') {
+      let html = `<div class="st-hd">🛡 HIRED COMPANIONS</div>`;
+      if (!stData.companions.length) html += `<div class="alm-note" style="text-align:left">No companions hired. Find a mercenary or recruit and 'hire' them.</div>`;
+      for (const cmp of stData.companions) {
+        html += `<div class="st-card"><div class="st-ic">${cmp.role === 'Healer' ? '✚' : cmp.role === 'Mage' ? '✦' : cmp.role === 'Rogue' ? '🗡' : '🛡'}</div><div class="st-m">`
+          + `<div class="st-n">${cmp.name}<span class="tag">L${cmp.level} · ${cmp.role}</span></div>${hpbar(cmp.hp, cmp.maxHp)}</div>`
+          + `<button class="st-btn" data-dismiss="${cmp.name.split(' ').slice(-1)[0]}">DISMISS</button></div>`;
+      }
+      b.innerHTML = html;
+      b.querySelectorAll('[data-dismiss]').forEach(btn => btn.addEventListener('click', () => {
+        MH.sendCommand(`dismiss ${btn.dataset.dismiss}`, false); setTimeout(() => openStable('companions'), 500);
+      }));
+    } else if (stTab === 'mounts') {
+      const m = stData.mounts;
+      let html = `<div class="st-hd">🐴 YOUR MOUNTS</div>`;
+      if (!m.owned.length) html += `<div class="alm-note" style="text-align:left">You own no mounts.</div>`;
+      for (const o of m.owned) {
+        const feats = [o.can_fly ? 'flight' : '', o.combat_ok ? 'combat-ready' : '', `+${Math.round(o.speed_bonus * 100)}% speed`].filter(Boolean).join(' · ');
+        html += `<div class="st-card ${o.active ? 'active' : ''}"><div class="st-ic">${o.can_fly ? '🦅' : '🐴'}</div><div class="st-m">`
+          + `<div class="st-n">${o.name}${o.active ? '<span class="tag">riding</span>' : ''}</div><div class="st-d">${feats}</div></div>`
+          + (o.active ? `<button class="st-btn" id="st-dismount">DISMOUNT</button>`
+                      : `<button class="st-btn go" data-mount="${o.key}">RIDE</button>`) + `</div>`;
+      }
+      html += `<div class="st-hd">🏪 STABLE${m.at_stable ? '' : ' (find a stable to buy)'}</div>`;
+      for (const pu of m.purchasable) {
+        const can = m.at_stable && pu.afford;
+        html += `<div class="st-card"><div class="st-ic">${pu.can_fly ? '🦅' : '🐴'}</div><div class="st-m">`
+          + `<div class="st-n">${pu.name}</div><div class="st-d">${pu.description}</div></div>`
+          + `<span class="st-cost ${pu.afford ? '' : 'poor'}">${pu.cost.toLocaleString()}g</span>`
+          + `<button class="st-btn ${can ? 'go' : 'dim'}" data-buy="${pu.key}" ${can ? '' : 'disabled'}>BUY</button></div>`;
+      }
+      b.innerHTML = html;
+      const dm = document.getElementById('st-dismount');
+      if (dm) dm.addEventListener('click', () => { MH.sendCommand('dismount', false); setTimeout(() => openStable('mounts'), 500); });
+      b.querySelectorAll('[data-mount]').forEach(btn => btn.addEventListener('click', () => { MH.sendCommand(`mount ${btn.dataset.mount}`, false); setTimeout(() => openStable('mounts'), 500); }));
+      b.querySelectorAll('[data-buy]').forEach(btn => btn.addEventListener('click', () => { MH.sendCommand(`stable buy ${btn.dataset.buy}`, false); setTimeout(() => openStable('mounts'), 600); }));
+    }
+  }
+
   // ---- minimap + click-to-walk ----
   const MM_OFFSETS = { north: [0, -1, 0], south: [0, 1, 0], east: [1, 0, 0], west: [-1, 0, 0], up: [0, 0, 1], down: [0, 0, -1] };
   let mmLarge = false;
@@ -2026,7 +2095,7 @@
         pathChip: $('path-chip'),
         targetHpGhost: $('target-hp-ghost'),
         partyBar: $('party-bar'), partyMenu: $('party-menu'),
-        almanacBody: $('almanac-body'), servicesBody: $('services-body'),
+        almanacBody: $('almanac-body'), servicesBody: $('services-body'), stableBody: $('stable-body'),
       });
 
       // login
@@ -2330,7 +2399,7 @@
       } });
 
       // ===== party frames: top-center bar of allied unit frames =====
-      const ROLE_ICON = { tank: '🛡', healer: '✚', dps: '⚔' };
+      const ROLE_ICON = { tank: '🛡', healer: '✚', dps: '⚔', pet: '🐾' };
       const DIR_ARROW = { north: '↑', south: '↓', east: '→', west: '←', up: '⤒', down: '⤓',
         northeast: '↗', northwest: '↖', southeast: '↘', southwest: '↙' };
       const FRIENDLY_SPELL = /cure|heal|bless|armor|shield|sanctuary|renew|mend|protection|haste|barkskin|aegis|prayer|serenity|hymn|lay_on_hands|spirit_link|hand_of_freedom/i;
@@ -2347,18 +2416,19 @@
         const crit = hpPct <= 30, mid = hpPct > 30 && hpPct <= 60;
         f.className = 'pf'
           + (m.is_self ? ' self' : '')
+          + (m.is_minion ? ' minion' : '')
           + (!m.sameRoom ? ' away' : '')
           + (m.dead ? ' dead' : '')
           + (crit && !m.dead && m.sameRoom ? ' low' : '');
         f.dataset.name = m.name;
-        const canHeal = group.heal_spell && m.sameRoom && !m.dead;
+        const canHeal = group.heal_spell && m.sameRoom && !m.dead && !m.is_minion;
         f.innerHTML =
           `<div class="pf-top">`
-          + `<span class="pf-role ${m.role}" title="${m.role}">${ROLE_ICON[m.role] || '⚔'}</span>`
-          + `<span class="pf-nm">${m.is_leader ? '<span class="crown">♚</span>' : ''}${m.name}</span>`
+          + `<span class="pf-role ${m.role}" title="${m.is_minion ? m.minion_kind : m.role}">${ROLE_ICON[m.role] || '⚔'}</span>`
+          + `<span class="pf-nm">${m.is_leader ? '<span class="crown">♚</span>' : ''}${m.is_minion ? '<span style="color:#8a90a4">└ </span>' : ''}${m.name}</span>`
           + `<span class="pf-lv">L${m.level}</span></div>`
           + `<div class="pf-bar hp ${crit ? 'crit' : mid ? 'mid' : ''}"><i style="width:${hpPct}%"></i><b>${m.dead ? 'DEAD' : Math.round(m.hp) + '/' + m.maxHp}</b></div>`
-          + `<div class="pf-bar mana"><i style="width:${mpPct}%"></i></div>`
+          + (m.is_minion ? '' : `<div class="pf-bar mana"><i style="width:${mpPct}%"></i></div>`)
           + `<div class="pf-foot">`
           + (m.sameRoom
               ? `<span class="pf-target ${m.fighting ? '' : 'empty'}">${m.fighting ? '⚔ ' + m.fighting : 'idle'}</span>`
@@ -2366,14 +2436,15 @@
           + (canHeal ? `<button class="pf-heal" title="heal ${m.name}">✚</button>` : '')
           + `</div>`;
         // left-click = assist that member (attack what they're fighting)
-        if (!m.is_self) {
+        if (!m.is_self && !m.is_minion) {
           f.addEventListener('click', () => {
             if (!m.sameRoom) { flash(`${m.name} is ${m.dir ? DIR_ARROW[m.dir] + ' ' : ''}${m.roomName}`); return; }
             if (m.fighting) MH.sendCommand(`assist ${m.name.split(' ')[0]}`);
             else { MH.state.allyTarget = { name: m.name.split(' ')[0], until: Date.now() + 15000 }; flash(`Focusing ${m.name}`); }
           });
         }
-        f.addEventListener('contextmenu', e => { e.preventDefault(); e.stopPropagation(); partyMenu(m, group, e.clientX, e.clientY); });
+        if (!m.is_minion) f.addEventListener('contextmenu', e => { e.preventDefault(); e.stopPropagation(); partyMenu(m, group, e.clientX, e.clientY); });
+        else f.addEventListener('contextmenu', e => { e.preventDefault(); e.stopPropagation(); flash(`${m.name} — ${m.minion_kind} · click Companions (C) to manage`); });
         const heal = f.querySelector('.pf-heal');
         if (heal) heal.addEventListener('click', e => {
           e.stopPropagation();
@@ -2644,6 +2715,9 @@
       // services tab switching
       document.querySelectorAll('#modal-services .mtab').forEach(t =>
         t.addEventListener('click', () => openServices(t.dataset.stab)));
+      // stable tab switching
+      document.querySelectorAll('#modal-stable .mtab').forEach(t =>
+        t.addEventListener('click', () => openStable(t.dataset.ctab)));
 
       const bd = $('modal-backdrop');
       if (bd) bd.addEventListener('click', closeModals);
@@ -2684,6 +2758,7 @@
         else if (k === 'm') { wmToggle(); }
         else if (k === 'y') { openAlmanac('daily'); }
         else if (k === 'b') { openServices('mail'); }
+        else if (k === 'c') { openStable('pets'); }
         if (['a', 'd', 'w', 's', 'arrowleft', 'arrowright', 'arrowup', 'arrowdown', ' '].includes(k)) {
           cancelWalk();
           // moving dismisses the room prose so it never blocks the view
