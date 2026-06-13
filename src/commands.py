@@ -5581,29 +5581,109 @@ class CommandHandler:
         
         # Single match - practice it
         target, ability_type = matches[0]
-        
-        if ability_type == 'skill':
-            current = player.skills.get(target, 0)
-            if current >= 85:
-                await player.send("You've already mastered that skill!")
+
+        store = player.skills if ability_type == 'skill' else player.spells
+        current = store.get(target, 0)
+        pretty = target.replace('_', ' ')
+        if current >= 100:
+            await player.send(f"{c['bright_yellow']}You have achieved grandmastery of {pretty} — it cannot be honed further.{c['reset']}")
+            return
+        # Past 85% (Master), the trainer can only take you to 100% (Grandmaster)
+        # for coin as well as effort — a deliberate late-game gold sink.
+        if current >= 85:
+            gm_cost = (current - 80) * 250  # 85->90 = 1250g, rising to 95->100 = 3750g
+            if player.gold < gm_cost:
+                await player.send(f"{c['red']}Grandmaster training in {pretty} costs {gm_cost} gold (you have {player.gold}).{c['reset']}")
                 return
-            player.skills[target] = min(85, current + 10)
+            player.gold -= gm_cost
             player.practices -= 1
-            if current == 0:
-                await player.send(f"You learn {target.replace('_', ' ')}! ({player.skills[target]}%)")
-            else:
-                await player.send(f"You practice {target.replace('_', ' ')}. ({player.skills[target]}%)")
-        else:  # spell
-            current = player.spells.get(target, 0)
-            if current >= 85:
-                await player.send("You've already mastered that spell!")
+            store[target] = min(100, current + 5)
+            tier = 'GRANDMASTER' if store[target] >= 100 else 'Master'
+            await player.send(f"{c['bright_yellow']}You hone {pretty} to {store[target]}% ({tier}). {gm_cost} gold spent.{c['reset']}")
+            return
+        store[target] = min(85, current + 10)
+        player.practices -= 1
+        if current == 0:
+            await player.send(f"You learn {pretty}! ({store[target]}%)")
+        elif store[target] >= 85:
+            await player.send(f"{c['bright_green']}You master {pretty}! ({store[target]}%) — seek a grandmaster trainer to push beyond.{c['reset']}")
+        else:
+            await player.send(f"You practice {pretty}. ({store[target]}%)")
+
+    @classmethod
+    async def cmd_reforge(cls, player: 'Player', args: List[str]):
+        """Reforge a magical item, re-rolling its enchantments for gold.
+
+        Usage:
+            reforge          - List items you can reforge and the cost
+            reforge <item>   - Pay gold to re-roll the item's affects
+        """
+        import random
+        c = player.config.COLORS
+
+        def reforgeable(it):
+            if not it or not getattr(it, 'affects', None):
+                return False
+            flags = getattr(it, 'flags', set()) or set()
+            return not ({'quest_item', 'no_reforge'} & set(flags))
+
+        def cost_of(it):
+            return 250 + int(getattr(it, 'level', 0) or 0) * 40 + len(it.affects) * 120
+
+        carried = list(getattr(player, 'inventory', []) or [])
+        worn = [i for i in (getattr(player, 'equipment', {}) or {}).values() if i]
+        pool = carried + worn
+
+        if not args:
+            opts = [it for it in pool if reforgeable(it)]
+            if not opts:
+                await player.send(f"{c['yellow']}You carry nothing worth reforging. Bring enchanted gear.{c['reset']}")
                 return
-            player.spells[target] = min(85, current + 10)
-            player.practices -= 1
-            if current == 0:
-                await player.send(f"You learn {target.replace('_', ' ')}! ({player.spells[target]}%)")
-            else:
-                await player.send(f"You practice {target.replace('_', ' ')}. ({player.spells[target]}%)")
+            await player.send(f"\n{c['bright_cyan']}═══ The Reforge ═══{c['reset']}")
+            await player.send(f"{c['white']}You have {player.gold} gold.{c['reset']}")
+            for it in opts:
+                await player.send(f"  {c['bright_magenta']}{it.short_desc or it.name:<34}{c['reset']} {c['yellow']}{cost_of(it)} gold{c['reset']}")
+            await player.send(f"{c['cyan']}Reforge re-rolls each enchantment's strength (gamble). 'reforge <item>'.{c['reset']}\n")
+            return
+
+        kw = ' '.join(args).lower()
+        item = None
+        for it in pool:
+            if reforgeable(it) and kw in (it.name or '').lower():
+                item = it
+                break
+        if not item:
+            await player.send(f"{c['yellow']}You aren't carrying an enchanted '{kw}' to reforge.{c['reset']}")
+            return
+
+        cost = cost_of(item)
+        if player.gold < cost:
+            await player.send(f"{c['red']}Reforging {item.short_desc or item.name} costs {cost} gold (you have {player.gold}).{c['reset']}")
+            return
+
+        # snapshot the original roll once, so repeated reforges never drift
+        if not getattr(item, 'reforge_base', None):
+            item.reforge_base = [dict(a) for a in item.affects]
+
+        player.gold -= cost
+        lines = []
+        for i, aff in enumerate(item.affects):
+            base = item.reforge_base[i]['value'] if i < len(item.reforge_base) else aff['value']
+            if not isinstance(base, (int, float)) or base == 0:
+                continue
+            factor = random.uniform(0.75, 1.30)
+            newv = int(round(base * factor))
+            if newv == 0:
+                newv = 1 if base > 0 else -1
+            old = aff['value']
+            aff['value'] = newv
+            arrow = '↑' if newv > old else '↓' if newv < old else '='
+            lines.append(f"  {aff['type']}: {old:+d} → {c['bright_yellow']}{newv:+d}{c['reset']} {arrow}")
+
+        await player.send(f"\n{c['bright_cyan']}The forge roars. {item.short_desc or item.name} is reforged for {cost} gold:{c['reset']}")
+        for ln in lines:
+            await player.send(ln)
+        await player.send("")
 
     # ==================== BARD PERFORMANCE SYSTEM ====================
     
