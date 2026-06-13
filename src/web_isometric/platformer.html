@@ -998,6 +998,39 @@
   #emote-picker .ep .ei { font-size: 16px; }
   #emote-picker .ep .en { font-size: 8.5px; color: #aab2c4; margin-top: 1px; }
 
+  /* ---- persistent quest tracker (always-on objective HUD) ---- */
+  #quest-tracker { position: absolute; left: 12px; top: 96px; z-index: 19; display: none;
+    width: 224px; background: rgba(13,15,21,0.82); border: 1px solid rgba(232,193,104,0.3);
+    border-radius: 9px; padding: 8px 10px; font-family: var(--ui-font); }
+  #quest-tracker.show { display: block; }
+  #quest-tracker .qt-hd { display: flex; align-items: center; gap: 6px; font-size: 9px; color: #8a90a4;
+    letter-spacing: 1.5px; margin-bottom: 4px; }
+  #quest-tracker .qt-hd .qt-min { margin-left: auto; cursor: pointer; color: #6a7084; }
+  #quest-tracker .qt-hd .qt-min:hover { color: #e8c168; }
+  #quest-tracker .qt-nm { font-size: 12px; color: #ffe9a8; font-weight: 600; margin-bottom: 5px; }
+  #quest-tracker .qt-obj { display: flex; gap: 6px; font-size: 11px; color: #c8ccd8; margin-top: 3px; line-height: 1.3; }
+  #quest-tracker .qt-obj.done { color: #6fd685; }
+  #quest-tracker .qt-obj .qt-cnt { margin-left: auto; color: #8a90a4; font-size: 10px; white-space: nowrap; }
+  #quest-tracker .qt-way { font-size: 10px; color: #9dc0ff; margin-top: 6px; }
+  #quest-tracker.min .qt-nm, #quest-tracker.min .qt-obj, #quest-tracker.min .qt-way { display: none; }
+
+  /* ---- first-spawn welcome overlay ---- */
+  #welcome-overlay { position: absolute; inset: 0; z-index: 90; display: none; align-items: center;
+    justify-content: center; background: rgba(6,7,11,0.78); backdrop-filter: blur(3px); }
+  #welcome-overlay.show { display: flex; }
+  #welcome-card { width: 460px; max-width: 88vw; background: linear-gradient(180deg,#14161f,#0d0f15);
+    border: 1px solid rgba(232,193,104,0.45); border-radius: 14px; padding: 22px 26px;
+    box-shadow: 0 0 50px rgba(0,0,0,0.6); font-family: var(--ui-font); text-align: center; }
+  #welcome-card .wc-title { font-family: Georgia, serif; font-size: 22px; color: #ffe9a8; letter-spacing: 1px; }
+  #welcome-card .wc-body { font-size: 13px; color: #d6dae6; line-height: 1.5; margin: 12px 0 14px; text-align: left; }
+  #welcome-card .wc-body b { color: #ffe9a8; }
+  #welcome-card .wc-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 14px;
+    font-size: 11px; color: #aab2c4; text-align: left; margin-bottom: 16px; }
+  #welcome-card .wc-controls b { color: #e8c168; }
+  #welcome-card #welcome-go { padding: 9px 22px; border-radius: 8px; border: 1px solid #e8c168;
+    background: rgba(232,193,104,0.14); color: #ffe9a8; font-size: 13px; letter-spacing: 1px; cursor: pointer; }
+  #welcome-card #welcome-go:hover { background: rgba(232,193,104,0.3); }
+
   /* ---- world-event banner: dramatic center-top alert ---- */
   #event-banner { position: absolute; top: 96px; left: 50%; transform: translateX(-50%) translateY(-20px);
     z-index: 58; display: none; opacity: 0; transition: opacity .4s, transform .4s;
@@ -1019,6 +1052,7 @@
   .mh-toast.in { transform: translateX(0); opacity: 1; }
   .mh-toast.ach { border-color: #e8c168; box-shadow: 0 0 22px rgba(232,193,104,0.3); }
   .mh-toast.daily { border-color: #6fd685; box-shadow: 0 0 22px rgba(111,214,133,0.25); }
+  .mh-toast.tip { border-color: rgba(90,138,232,0.5); box-shadow: 0 0 18px rgba(90,138,232,0.2); }
   .mh-toast .tt-t { font-size: 12px; color: #ffe9a8; font-weight: 600; letter-spacing: 0.5px; }
   .mh-toast .tt-b { font-size: 12px; color: #d6dae6; margin-top: 3px; }
 
@@ -1190,6 +1224,7 @@
     <div id="room-zone"></div>
   </div>
   <div id="event-banner"></div>
+  <div id="quest-tracker"></div>
   <div id="party-bar"></div>
   <div id="party-menu"></div>
   <div id="whisper-host"></div>
@@ -1381,6 +1416,19 @@
       <span class="x" data-close="modal-legend">✕</span>
     </div>
     <div class="modal-body" id="legend-body"></div>
+  </div>
+
+  <div id="welcome-overlay">
+    <div id="welcome-card">
+      <div class="wc-title">⚔ Welcome to Misthollow</div>
+      <div class="wc-body" id="welcome-body"></div>
+      <div class="wc-controls">
+        <span><b>WASD</b> move</span><span><b>F</b>/<b>Space</b> attack</span><span><b>Tab</b> target</span>
+        <span><b>1–0</b> abilities</span><span><b>K</b> skills</span><span><b>J</b> quests</span>
+        <span><b>M</b> map</span><span><b>Enter</b> type a command</span>
+      </div>
+      <button id="welcome-go" type="button">Enter the Realm →</button>
+    </div>
   </div>
 
   <div id="help-chip">WASD walk · walk off an edge to travel · F/Space sword · T chat · I inv · J journal · K spells · M map · Y almanac · B mail/bank · C companions · L legend · Q flask · H help · ~ terminal · Enter command</div>

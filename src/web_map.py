@@ -742,6 +742,8 @@ class WebMapServer:
                             'current': int(getattr(o, 'current', 0)),
                             'required': int(getattr(o, 'required', 1)),
                             'completed': bool(getattr(o, 'completed', False)),
+                            'type': getattr(o, 'type', ''),
+                            'target': getattr(o, 'target', None),
                         } for o in q.objectives]
                         remaining = None
                         if getattr(q, 'time_limit', None):

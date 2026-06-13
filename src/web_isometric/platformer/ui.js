@@ -745,6 +745,41 @@
     if (!topic) input.focus();
   }
 
+  // ---- persistent quest tracker: always-on objective HUD + minimap waypoint ----
+  let qtMin = lsGet('mh_qt_min') === '1';
+  let qtLastFetch = 0;
+  const DIR_WORD = { north: 'N', south: 'S', east: 'E', west: 'W', up: 'up', down: 'down' };
+  function refreshQuestTracker(force) {
+    if (!MH.state.playerName) return;
+    if (!force && Date.now() - qtLastFetch < 6000) return;
+    qtLastFetch = Date.now();
+    fetch(`/quests?player=${encodeURIComponent(MH.state.playerName)}`)
+      .then(r => r.json()).then(renderQuestTracker).catch(() => {});
+  }
+  function renderQuestTracker(d) {
+    const el = els.questTracker;
+    if (!el) return;
+    const active = (d.active || []).filter(q => !q.complete);
+    const q = active[0] || (d.active || [])[0];
+    if (!q) { el.classList.remove('show'); questWaypoint = null; return; }
+    // waypoint: first incomplete visit/explore objective with a room target
+    const way = q.objectives.find(o => !o.completed && /visit|explore|escort/.test(o.type || '') && typeof o.target === 'number');
+    questWaypoint = way ? way.target : null;
+    let objs = '';
+    for (const o of q.objectives) {
+      objs += `<div class="qt-obj ${o.completed ? 'done' : ''}"><span>${o.completed ? '✓' : '○'} ${o.description}</span>`
+        + (o.required > 1 ? `<span class="qt-cnt">${o.current}/${o.required}</span>` : '') + `</div>`;
+    }
+    el.className = 'show' + (qtMin ? ' min' : '');
+    el.innerHTML = `<div class="qt-hd"><span>📜 QUEST${active.length > 1 ? ` · ${active.length} active` : q.complete ? ' · READY' : ''}</span>`
+      + `<span class="qt-min" id="qt-min" title="collapse">${qtMin ? '▸' : '▾'}</span></div>`
+      + `<div class="qt-nm">${q.name}</div>${objs}`
+      + (questWaypoint != null ? `<div class="qt-way">◈ objective marked on your map</div>` : (q.complete ? `<div class="qt-way" style="color:#6fd685">✓ return to the quest giver</div>` : ''));
+    const m = document.getElementById('qt-min');
+    if (m) m.addEventListener('click', () => { qtMin = !qtMin; lsSet('mh_qt_min', qtMin ? '1' : '0'); el.classList.toggle('min', qtMin); m.textContent = qtMin ? '▸' : '▾'; });
+    renderMinimap();
+  }
+
   function rewardText(r) {
     if (!r) return '';
     const parts = [];
@@ -1229,6 +1264,7 @@
   const MM_OFFSETS = { north: [0, -1, 0], south: [0, 1, 0], east: [1, 0, 0], west: [-1, 0, 0], up: [0, 0, 1], down: [0, 0, -1] };
   let mmLarge = false;
   let walkTargetVnum = null;
+  let questWaypoint = null;   // room vnum of the current tracked quest objective
   let mmZoom = Number(lsGet('misthollow_mm_zoom')) || 9;
   let mmZOffset = 0;   // 0 = your level; -1 peeks the sewers below, +1 above
 
@@ -1288,6 +1324,23 @@
       ctx.fillRect(x - 1, y - 1, 2, 2);
     }
     ctx.globalAlpha = 1;
+    // quest waypoint: a gold diamond on the target room, or an edge arrow toward it
+    if (questWaypoint != null) {
+      const wr = (payload.rooms || []).find(r => r.vnum === questWaypoint);
+      if (wr && (wr.z || 0) === z) {
+        const wx = W / 2 + (wr.x - p.x) * cell, wy = H / 2 + (wr.y - p.y) * cell;
+        ctx.fillStyle = '#ffd44a';
+        ctx.beginPath(); ctx.moveTo(wx, wy - 4); ctx.lineTo(wx + 4, wy); ctx.lineTo(wx, wy + 4); ctx.lineTo(wx - 4, wy); ctx.closePath(); ctx.fill();
+        ctx.strokeStyle = 'rgba(255,212,74,0.5)'; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(wx, wy, 7, 0, 7); ctx.stroke();
+      } else if (wr) {
+        // off-level or off-screen: arrow from center toward it
+        const ang = Math.atan2((wr.y - p.y), (wr.x - p.x));
+        const ex = W / 2 + Math.cos(ang) * (W / 2 - 10), ey = H / 2 + Math.sin(ang) * (H / 2 - 10);
+        ctx.save(); ctx.translate(ex, ey); ctx.rotate(ang);
+        ctx.fillStyle = '#ffd44a'; ctx.beginPath(); ctx.moveTo(5, 0); ctx.lineTo(-3, -4); ctx.lineTo(-3, 4); ctx.closePath(); ctx.fill();
+        ctx.restore();
+      }
+    }
     if (mmZOffset === 0) {
       ctx.fillStyle = '#ffffff';
       ctx.fillRect(W / 2 - 2, H / 2 - 2, 4, 4);
@@ -2227,7 +2280,8 @@
         targetHpGhost: $('target-hp-ghost'),
         partyBar: $('party-bar'), partyMenu: $('party-menu'),
         almanacBody: $('almanac-body'), servicesBody: $('services-body'), stableBody: $('stable-body'),
-        legendBody: $('legend-body'),
+        legendBody: $('legend-body'), questTracker: $('quest-tracker'),
+        welcomeOverlay: $('welcome-overlay'), welcomeBody: $('welcome-body'), welcomeGo: $('welcome-go'),
       });
 
       // login
@@ -2308,6 +2362,12 @@
           if (m) toast('🏷 Title Unlocked', m[1], 'ach');
         }
         detectWorldEvent(text);
+        // server tips/hints (💡) surface as a soft toast instead of scrolling past
+        if (/💡/.test(text)) {
+          const line = text.split('\n').map(l => l.replace(/\x1b\[[0-9;]*m/g, '').trim())
+            .find(l => l.includes('💡'));
+          if (line) toast('💡 Tip', line.replace(/💡/g, '').trim(), 'tip');
+        }
       });
       // small login nudge: if today's daily reward is unclaimed, invite a peek
       MH.bus.on('login.success', () => {
@@ -2416,6 +2476,32 @@
         else els.pathChip.style.display = 'none';
       };
       MH.bus.on('map', payload => { updateHud(payload.player); renderMinimap(); updateVignette(); autofillBar(); updatePathChip(payload.player); });
+      // quest tracker: refresh on room change (cheap) + throttle
+      let qtLastVnum = null;
+      MH.bus.on('map', payload => {
+        const v = payload.player && payload.player.vnum;
+        if (v !== qtLastVnum) { qtLastVnum = v; refreshQuestTracker(true); }
+        else refreshQuestTracker(false);
+      });
+      MH.bus.on('login.success', () => setTimeout(() => refreshQuestTracker(true), 1500));
+      // first-spawn welcome for new players (once, level <= 2)
+      let welcomeChecked = false;
+      function maybeWelcome(player) {
+        if (welcomeChecked || !player) return;
+        welcomeChecked = true;
+        if ((player.level || 1) > 2 || lsGet('mh_welcome_seen') === '1') return;
+        els.welcomeBody.innerHTML =
+          `Welcome, <b>${player.name || 'adventurer'}</b>. You stand in the Temple of Midgaard.<br><br>`
+          + `<b>Sage Aldric</b> is here to set you on your path — look for the gold <b>!</b> floating above him, walk up, and click <b>Talk</b>. `
+          + `Your current objective is always shown top-left and marked on your map (<b>◈</b>).<br><br>`
+          + `Hostile creatures glow red — face one and press <b>F</b> to fight. You can do everything by typing too: press <b>Enter</b> for a command line.`;
+        setWorldInput(false);
+        els.welcomeOverlay.classList.add('show');
+      }
+      els.welcomeGo.addEventListener('click', () => {
+        els.welcomeOverlay.classList.remove('show'); lsSet('mh_welcome_seen', '1'); setWorldInput(true);
+      });
+      MH.bus.on('map', payload => maybeWelcome(payload.player));
       MH.bus.on('combat.update', () => { updateHud(MH.state.player); updateVignette(); });
       MH.bus.on('room.entered', () => { walkStep(); hideMobTip(); renderCompass(); });
       // gentle onboarding for first-timers
