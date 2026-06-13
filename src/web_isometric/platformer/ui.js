@@ -937,6 +937,94 @@
     }
   }
 
+  // ---- services: mail / bank / storage ----
+  let svTab = 'mail', svData = null;
+  async function openServices(tab) {
+    svTab = tab || 'mail';
+    openModal('modal-services');
+    document.querySelectorAll('#modal-services .mtab').forEach(t => t.classList.toggle('active', t.dataset.stab === svTab));
+    els.servicesBody.innerHTML = '<div class="slot">…</div>';
+    try {
+      svData = await (await fetch(`/services?player=${encodeURIComponent(MH.state.playerName)}`)).json();
+    } catch (_) { els.servicesBody.innerHTML = '<div class="slot">services unavailable</div>'; return; }
+    renderServices();
+  }
+  function renderServices() {
+    if (!svData) return;
+    const b = els.servicesBody;
+    if (svTab === 'mail') {
+      const m = svData.mail;
+      let html = `<div class="sv-hd">✉ INBOX · ${m.unread} unread / ${m.messages.length} total</div><div class="sv-mail">`;
+      if (!m.messages.length) html += `<div class="alm-note" style="text-align:left">No mail. Send a letter below — it reaches any player, online or not.</div>`;
+      for (const msg of m.messages.slice().reverse()) {
+        html += `<div class="sv-msg ${msg.read ? '' : 'unread'}"><div class="mh">`
+          + `<span class="ms">${msg.read ? '' : '<span class="dot">●</span>'}${msg.sender}</span>`
+          + `<span class="mt">${msg.ts}</span><span class="md" data-del="${msg.id}">delete</span></div>`
+          + `<div class="mb">${msg.body.replace(/</g, '&lt;')}</div></div>`;
+      }
+      html += `</div><div class="sv-compose"><input class="to" id="sv-to" placeholder="to (name)">`
+        + `<input class="body" id="sv-body" placeholder="message…"><button class="sv-btn" id="sv-send">SEND</button></div>`;
+      b.innerHTML = html;
+      b.querySelectorAll('.md').forEach(d => d.addEventListener('click', () => {
+        MH.sendCommand(`mail delete ${d.dataset.del}`, false); setTimeout(() => openServices('mail'), 500);
+      }));
+      const send = () => {
+        const to = document.getElementById('sv-to').value.trim();
+        const body = document.getElementById('sv-body').value.trim();
+        if (!to || !body) return;
+        MH.sendCommand(`mail send ${to} ${body}`, false); flash(`Mail sent to ${to}`);
+        setTimeout(() => openServices('mail'), 600);
+      };
+      document.getElementById('sv-send').addEventListener('click', send);
+      ['sv-to', 'sv-body'].forEach(id => document.getElementById(id).addEventListener('keydown', e => {
+        e.stopPropagation(); if (e.key === 'Enter') send();
+      }));
+      // reading marks unread as read server-side; nudge a read so badges clear
+      if (m.unread) MH.sendCommand('mail read', false);
+    } else if (svTab === 'bank') {
+      const bk = svData.bank;
+      let html = `<div class="sv-hd">🏛 BANK OF MISTHOLLOW</div>`;
+      if (!bk.at_bank) html += `<div class="sv-gate">You can view your balance anywhere, but must stand in a bank to move gold.</div>`;
+      html += `<div class="sv-bank"><div class="sv-coin">`
+        + `<div class="c"><div class="lbl">VAULT</div><div class="amt">${bk.balance.toLocaleString()}</div></div>`
+        + `<div class="c"><div class="lbl">ON HAND</div><div class="amt">${bk.on_hand.toLocaleString()}</div></div></div>`;
+      const dis = bk.at_bank ? '' : 'disabled';
+      html += `<div class="sv-row"><input id="sv-amt" type="number" min="1" placeholder="amount" ${dis}>`
+        + `<button class="sv-btn ${bk.at_bank ? '' : 'dim'}" id="sv-dep" ${dis}>DEPOSIT</button>`
+        + `<button class="sv-btn ${bk.at_bank ? '' : 'dim'}" id="sv-wd" ${dis}>WITHDRAW</button></div>`;
+      if (bk.at_bank) html += `<div class="sv-row"><button class="sv-btn" id="sv-depall" style="flex:1">DEPOSIT ALL ON HAND</button></div>`;
+      html += `</div>`;
+      b.innerHTML = html;
+      if (bk.at_bank) {
+        const amt = () => document.getElementById('sv-amt').value.trim();
+        document.getElementById('sv-dep').addEventListener('click', () => { if (amt()) { MH.sendCommand(`deposit ${amt()}`, false); setTimeout(() => openServices('bank'), 500); } });
+        document.getElementById('sv-wd').addEventListener('click', () => { if (amt()) { MH.sendCommand(`withdraw ${amt()}`, false); setTimeout(() => openServices('bank'), 500); } });
+        document.getElementById('sv-depall').addEventListener('click', () => { MH.sendCommand(`deposit ${bk.on_hand}`, false); setTimeout(() => openServices('bank'), 500); });
+      }
+    } else if (svTab === 'storage') {
+      const s = svData.storage;
+      let html = `<div class="sv-hd">📦 STORAGE LOCKER${s.location ? ' · ' + s.location : ''}</div>`;
+      if (!s.at_inn) html += `<div class="sv-gate">Find an innkeeper to store or retrieve items.</div>`;
+      html += `<div class="sv-store">`;
+      if (!s.items.length) html += `<div class="alm-note" style="text-align:left">Locker empty.</div>`;
+      for (const it of s.items) {
+        html += `<div class="sv-item"><span class="nm">${it.name}</span>`
+          + (s.at_inn ? `<button class="sv-btn" data-ret="${it.name.replace(/"/g, '')}">RETRIEVE</button>` : '') + `</div>`;
+      }
+      html += `</div>`;
+      if (s.at_inn) html += `<div class="sv-compose"><input class="body" id="sv-stitem" placeholder="store item from inventory by name…"><button class="sv-btn" id="sv-store">STORE</button></div>`;
+      b.innerHTML = html;
+      if (s.at_inn) {
+        b.querySelectorAll('[data-ret]').forEach(btn => btn.addEventListener('click', () => {
+          MH.sendCommand(`retrieve ${btn.dataset.ret.split(' ').slice(-1)[0]}`, false); setTimeout(() => openServices('storage'), 500);
+        }));
+        const st = document.getElementById('sv-store');
+        st.addEventListener('click', () => { const v = document.getElementById('sv-stitem').value.trim(); if (v) { MH.sendCommand(`store ${v}`, false); setTimeout(() => openServices('storage'), 500); } });
+        document.getElementById('sv-stitem').addEventListener('keydown', e => e.stopPropagation());
+      }
+    }
+  }
+
   // ---- minimap + click-to-walk ----
   const MM_OFFSETS = { north: [0, -1, 0], south: [0, 1, 0], east: [1, 0, 0], west: [-1, 0, 0], up: [0, 0, 1], down: [0, 0, -1] };
   let mmLarge = false;
@@ -1938,7 +2026,7 @@
         pathChip: $('path-chip'),
         targetHpGhost: $('target-hp-ghost'),
         partyBar: $('party-bar'), partyMenu: $('party-menu'),
-        almanacBody: $('almanac-body'),
+        almanacBody: $('almanac-body'), servicesBody: $('services-body'),
       });
 
       // login
@@ -2553,6 +2641,9 @@
       // almanac tab switching
       document.querySelectorAll('#modal-almanac .mtab').forEach(t =>
         t.addEventListener('click', () => openAlmanac(t.dataset.atab)));
+      // services tab switching
+      document.querySelectorAll('#modal-services .mtab').forEach(t =>
+        t.addEventListener('click', () => openServices(t.dataset.stab)));
 
       const bd = $('modal-backdrop');
       if (bd) bd.addEventListener('click', closeModals);
@@ -2592,6 +2683,7 @@
         else if (k === 't') { e.preventDefault(); toggleChatPanel(); }
         else if (k === 'm') { wmToggle(); }
         else if (k === 'y') { openAlmanac('daily'); }
+        else if (k === 'b') { openServices('mail'); }
         if (['a', 'd', 'w', 's', 'arrowleft', 'arrowright', 'arrowup', 'arrowdown', ' '].includes(k)) {
           cancelWalk();
           // moving dismisses the room prose so it never blocks the view

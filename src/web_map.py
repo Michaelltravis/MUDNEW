@@ -515,6 +515,48 @@ class WebMapServer:
                 except Exception as e:
                     logger.error(f"/almanac error: {e}")
                     await self._http_response(writer, 500, 'Error', 'almanac data unavailable')
+            elif path.startswith('/services'):
+                # mail inbox, bank balance, storage locker
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                try:
+                    from mail_system import MailManager
+                    msgs = MailManager.get_all_mail(player.name) or []
+                    mail = [{
+                        'id': m.get('msg_id', i), 'sender': m.get('sender', '?'),
+                        'ts': (m.get('timestamp', '') or '')[:16].replace('T', ' '),
+                        'body': m.get('body', ''), 'read': bool(m.get('read', False)),
+                    } for i, m in enumerate(msgs)]
+                    room = getattr(player, 'room', None)
+                    flags = getattr(room, 'flags', set()) or set()
+                    at_bank = 'bank' in flags
+                    at_inn = False
+                    if room and hasattr(room, 'characters'):
+                        for ch in room.characters:
+                            if getattr(ch, 'special', None) == 'innkeeper':
+                                at_inn = True
+                                break
+                    storage = [{'name': getattr(it, 'short_desc', None) or getattr(it, 'name', 'an item')}
+                               for it in (getattr(player, 'storage', None) or [])]
+                    sloc = None
+                    if getattr(player, 'storage_location', None):
+                        sr = self.world.get_room(player.storage_location)
+                        sloc = getattr(sr, 'name', None) if sr else None
+                    data = {
+                        'mail': {'unread': sum(1 for m in mail if not m['read']), 'messages': mail},
+                        'bank': {'balance': int(getattr(player, 'bank_gold', 0) or 0),
+                                 'on_hand': int(getattr(player, 'gold', 0) or 0), 'at_bank': at_bank},
+                        'storage': {'items': storage, 'location': sloc, 'at_inn': at_inn},
+                    }
+                    await self._http_response(writer, 200, 'OK', json.dumps(data), content_type='application/json')
+                except Exception as e:
+                    logger.error(f"/services error: {e}")
+                    await self._http_response(writer, 500, 'Error', 'services data unavailable')
             elif path.startswith('/quests'):
                 # quest journal: active quests w/ progress + quests offered by
                 # NPCs in the current room (the contextual "board")
