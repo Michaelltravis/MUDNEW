@@ -251,8 +251,16 @@
     } else if (cmd === 'look') {
       if (lastRoomShown) showRoom(lastRoomShown.room, lastRoomShown.zoneName);
       commandWithPeek('look');
-    } else if (/^cast '[^']+'$/.test(cmd) && currentTarget) {
-      MH.sendCommand(`${cmd} ${MH.mobKeyword(currentTarget.name)}`);
+    } else if (/^cast '[^']+'$/.test(cmd)) {
+      const spell = (cmd.match(/^cast '([^']+)'$/) || [])[1] || '';
+      const ally = MH.state.allyTarget;
+      if (ally && ally.until > Date.now() && /cure|heal|bless|armor|shield|sanctuary|renew|mend|protection|haste|barkskin|aegis|prayer|serenity|hymn|spirit_link|hand_of_freedom/i.test(spell)) {
+        MH.sendCommand(`${cmd} ${ally.name}`);
+      } else if (currentTarget) {
+        MH.sendCommand(`${cmd} ${MH.mobKeyword(currentTarget.name)}`);
+      } else {
+        commandWithPeek(cmd);
+      }
     } else {
       commandWithPeek(cmd);
     }
@@ -395,11 +403,12 @@
   }
 
   // ---- chat: tabbed panel + ambient overlay ----
-  const chatStore = { all: [], say: [], channel: [], tell: [] };
-  const unread = { say: 0, channel: 0, tell: 0 };
+  const chatStore = { all: [], party: [], say: [], channel: [], tell: [] };
+  const unread = { party: 0, say: 0, channel: 0, tell: 0 };
   let activeTab = 'all';
 
   function classifyChat(line) {
+    if (/tells? the group,|^You tell the group/i.test(line)) return 'party';
     if (/^(You tell|\w+ tells you)/i.test(line)) return 'tell';
     if (/^(You (gossip|shout|chat)|\w+ (gossips|shouts|chats))|^\[\w+\]/i.test(line)) return 'channel';
     if (/^(You say|\w+ says)/i.test(line)) return 'say';
@@ -1767,6 +1776,7 @@
         stanceBar: $('stance-bar'), momentumChip: $('momentum-chip'), finisherChip: $('finisher-chip'),
         pathChip: $('path-chip'),
         targetHpGhost: $('target-hp-ghost'),
+        partyBar: $('party-bar'), partyMenu: $('party-menu'),
       });
 
       // login
@@ -2041,6 +2051,134 @@
         const pl = MH.state.lastCombatMobs;
         if (pl) duelRenderFoes(pl);
       } });
+
+      // ===== party frames: top-center bar of allied unit frames =====
+      const ROLE_ICON = { tank: '🛡', healer: '✚', dps: '⚔' };
+      const DIR_ARROW = { north: '↑', south: '↓', east: '→', west: '←', up: '⤒', down: '⤓',
+        northeast: '↗', northwest: '↖', southeast: '↘', southwest: '↙' };
+      const FRIENDLY_SPELL = /cure|heal|bless|armor|shield|sanctuary|renew|mend|protection|haste|barkskin|aegis|prayer|serenity|hymn|lay_on_hands|spirit_link|hand_of_freedom/i;
+      const prevHp = {};          // name -> last hp seen, for damage/heal pops
+      const lowWarned = {};       // name -> already alerted at low hp
+      let lastGroup = null;
+
+      function partyHide() { els.partyBar.classList.remove('show'); els.partyBar.innerHTML = ''; }
+
+      function frameFor(m, group) {
+        const f = document.createElement('div');
+        const hpPct = Math.max(0, Math.min(100, (m.hp / Math.max(1, m.maxHp)) * 100));
+        const mpPct = Math.max(0, Math.min(100, (m.mana / Math.max(1, m.maxMana)) * 100));
+        const crit = hpPct <= 30, mid = hpPct > 30 && hpPct <= 60;
+        f.className = 'pf'
+          + (m.is_self ? ' self' : '')
+          + (!m.sameRoom ? ' away' : '')
+          + (m.dead ? ' dead' : '')
+          + (crit && !m.dead && m.sameRoom ? ' low' : '');
+        f.dataset.name = m.name;
+        const canHeal = group.heal_spell && m.sameRoom && !m.dead;
+        f.innerHTML =
+          `<div class="pf-top">`
+          + `<span class="pf-role ${m.role}" title="${m.role}">${ROLE_ICON[m.role] || '⚔'}</span>`
+          + `<span class="pf-nm">${m.is_leader ? '<span class="crown">♚</span>' : ''}${m.name}</span>`
+          + `<span class="pf-lv">L${m.level}</span></div>`
+          + `<div class="pf-bar hp ${crit ? 'crit' : mid ? 'mid' : ''}"><i style="width:${hpPct}%"></i><b>${m.dead ? 'DEAD' : Math.round(m.hp) + '/' + m.maxHp}</b></div>`
+          + `<div class="pf-bar mana"><i style="width:${mpPct}%"></i></div>`
+          + `<div class="pf-foot">`
+          + (m.sameRoom
+              ? `<span class="pf-target ${m.fighting ? '' : 'empty'}">${m.fighting ? '⚔ ' + m.fighting : 'idle'}</span>`
+              : `<span class="pf-dir">${m.dir ? (DIR_ARROW[m.dir] || '•') + ' ' : '⋯ '}${m.roomName}</span>`)
+          + (canHeal ? `<button class="pf-heal" title="heal ${m.name}">✚</button>` : '')
+          + `</div>`;
+        // left-click = assist that member (attack what they're fighting)
+        if (!m.is_self) {
+          f.addEventListener('click', () => {
+            if (!m.sameRoom) { flash(`${m.name} is ${m.dir ? DIR_ARROW[m.dir] + ' ' : ''}${m.roomName}`); return; }
+            if (m.fighting) MH.sendCommand(`assist ${m.name.split(' ')[0]}`);
+            else { MH.state.allyTarget = { name: m.name.split(' ')[0], until: Date.now() + 15000 }; flash(`Focusing ${m.name}`); }
+          });
+        }
+        f.addEventListener('contextmenu', e => { e.preventDefault(); e.stopPropagation(); partyMenu(m, group, e.clientX, e.clientY); });
+        const heal = f.querySelector('.pf-heal');
+        if (heal) heal.addEventListener('click', e => {
+          e.stopPropagation();
+          MH.sendCommand(`cast ${group.heal_spell} ${m.name.split(' ')[0]}`);
+          flash(`✚ healing ${m.name}`);
+        });
+        return f;
+      }
+
+      function partyMenu(m, group, x, y) {
+        const menu = els.partyMenu;
+        const me = group.members.find(mm => mm.is_self) || {};
+        const kw = m.name.split(' ')[0];
+        const items = [];
+        if (!m.is_self) {
+          items.push({ label: '🎯 Focus (heal/buff target)', fn: () => { MH.state.allyTarget = { name: kw, until: Date.now() + 30000 }; flash(`Focusing ${m.name}`); } });
+          if (group.heal_spell && m.sameRoom) items.push({ label: `✚ Cast ${group.heal_spell.replace(/_/g, ' ')}`, fn: () => MH.sendCommand(`cast ${group.heal_spell} ${kw}`) });
+          if (m.sameRoom && m.fighting) items.push({ label: `⚔ Assist (attack ${m.fighting})`, fn: () => MH.sendCommand(`assist ${kw}`) });
+          items.push({ label: '💬 Whisper', fn: () => { els.chatMode.value = 'tell'; toggleChatPanel(true); els.chatInput.value = `${kw} `; els.chatInput.focus(); } });
+          items.push({ label: '👁 Inspect', fn: () => MH.sendCommand(`consider ${kw}`) });
+          items.push({ label: '🤝 Trade', fn: () => MH.sendCommand(`trade ${kw}`) });
+          items.push({ label: '🔗 Follow', fn: () => MH.sendCommand(`follow ${kw}`) });
+        }
+        if (me.is_leader && !m.is_self) {
+          items.push({ sep: true });
+          items.push({ label: '♚ Make leader', fn: () => MH.sendCommand(`group leader ${kw}`) });
+          items.push({ label: '✖ Remove from group', fn: () => MH.sendCommand(`group kick ${kw}`) });
+        }
+        if (me.is_leader && m.is_self) {
+          items.push({ label: `Loot: ${group.loot_mode === 'roundrobin' ? 'Round-Robin → Free-for-All' : 'Free-for-All → Round-Robin'}`,
+            fn: () => MH.sendCommand(`group loot ${group.loot_mode === 'roundrobin' ? 'freeforall' : 'roundrobin'}`) });
+        }
+        if (m.is_self) items.push({ label: '🚪 Leave group', fn: () => MH.sendCommand('group leave') });
+        menu.innerHTML = `<div class="pm-hd">${m.name}${m.is_leader ? ' ♚' : ''} · ${m.role}</div>`;
+        for (const it of items) {
+          if (it.sep) { const s = document.createElement('div'); s.className = 'pm-sep'; menu.appendChild(s); continue; }
+          const d = document.createElement('div'); d.className = 'pm-it'; d.textContent = it.label;
+          d.addEventListener('click', () => { menu.style.display = 'none'; it.fn(); });
+          menu.appendChild(d);
+        }
+        menu.style.display = 'block';
+        const w = menu.offsetWidth || 160, h = menu.offsetHeight || 200;
+        menu.style.left = Math.min(x, window.innerWidth - w - 8) + 'px';
+        menu.style.top = Math.min(y, window.innerHeight - h - 8) + 'px';
+      }
+      document.addEventListener('click', e => {
+        if (els.partyMenu.style.display === 'block' && !els.partyMenu.contains(e.target)) els.partyMenu.style.display = 'none';
+      });
+
+      function popNumber(name, delta) {
+        const frame = els.partyBar.querySelector(`.pf[data-name="${(name || '').replace(/"/g, '')}"]`);
+        if (!frame) return;
+        const p = document.createElement('div');
+        p.className = 'pf-pop';
+        const heal = delta > 0;
+        p.textContent = (heal ? '+' : '') + Math.round(delta);
+        p.style.color = heal ? '#7fe09a' : '#ff8a7a';
+        frame.appendChild(p);
+        setTimeout(() => { if (p.parentNode) p.parentNode.removeChild(p); }, 950);
+      }
+
+      function renderParty(group) {
+        if (!group || !group.members || group.size < 2) { partyHide(); lastGroup = null; return; }
+        lastGroup = group;
+        els.partyBar.innerHTML = '';
+        // self first, then the rest in roster order
+        const ordered = group.members.slice().sort((a, b) => (b.is_self - a.is_self) || (b.is_leader - a.is_leader));
+        for (const m of ordered) {
+          // floating combat numbers + low-hp alert, driven by vitals diff
+          const last = prevHp[m.name];
+          if (last != null && m.hp !== last && !m.dead) popNumber(m.name, m.hp - last);
+          prevHp[m.name] = m.hp;
+          const pct = (m.hp / Math.max(1, m.maxHp)) * 100;
+          if (pct <= 30 && !m.dead && m.sameRoom) {
+            if (!lowWarned[m.name]) { lowWarned[m.name] = true; if (!m.is_self) tone({ f: 880, f2: 660, type: 'sine', dur: 0.18, vol: 0.06 }); }
+          } else { lowWarned[m.name] = false; }
+          els.partyBar.appendChild(frameFor(m, group));
+        }
+        els.partyBar.classList.add('show');
+      }
+      MH.bus.on('map', payload => renderParty(payload.group));
+      MH.bus.on('combat.update', payload => renderParty(payload.group));
       // WoW-style cast bar: starts on 'cast', completes when the spell lands
       let castTimer = null;
       const startCast = name => {

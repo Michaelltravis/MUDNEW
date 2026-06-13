@@ -24,7 +24,7 @@
   const POSTURE_BLOCK = /you need to stand up first|you can'?t do that while (?:resting|sitting|sleeping)|you are asleep/i;
   const DOOR_OPENED = /^(?:You open|.* opens) (?:the )?(.+?)\.?$/i;
   const FLEE = /^You flee(?: (\w+))?|panic and (?:try to )?flee/i;
-  const CHAT = /^(You say|You tell|You shout|You gossip|You chat|\w+ says?|\w+ tells you|\w+ shouts?|\w+ gossips?|\[\w+\])/i;
+  const CHAT = /^(You say|You tell|You shout|You gossip|You chat|\w+ says?|\w+ tells you|\w+ tells the group|\w+ shouts?|\w+ gossips?|\[\w+\])/i;
   const COMBAT_LINE = /you hit|you slash|you pierce|you smite|you blast|you miss|is dead!|you are fighting|hits you|slashes you|attacks you|misses you|parry|dodge|block/i;
   const HEAL = /you feel (?:better|much better|healthier)|heals you|your wounds/i;
   const CAST_START = /^You (?:begin casting|start to cast|utter the words)/i;

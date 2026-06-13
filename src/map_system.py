@@ -546,6 +546,94 @@ def _path_active(player):
     return None
 
 
+# party-frame roles, inferred from class
+_GROUP_ROLES = {
+    'warrior': 'tank', 'paladin': 'tank',
+    'cleric': 'healer', 'bard': 'healer',
+    'mage': 'dps', 'necromancer': 'dps', 'thief': 'dps',
+    'assassin': 'dps', 'ranger': 'dps',
+}
+# strongest heal a class can cast on an ally, best first (underscore cast keys)
+_HEAL_PRIORITY = ['heal', 'cure_critical', 'cure_serious', 'cure_light', 'lay_on_hands']
+
+
+def _best_heal_spell(player):
+    """The strongest single-target heal the viewer can cast on an ally, or None."""
+    known = getattr(player, 'spells', None) or {}
+    for key in _HEAL_PRIORITY:
+        if key in known:
+            return key
+    return None
+
+
+def _fighting_name(entity):
+    f = getattr(entity, 'fighting', None)
+    if not f or getattr(f, 'hp', 0) <= 0:
+        return None
+    return getattr(f, 'name', None)
+
+
+def build_group_block(player) -> Optional[dict]:
+    """Roster + live vitals for the player's party, for the UI party frames.
+
+    Included in both map_data and the per-round combat_update so allied
+    health/mana/target stay live during a fight. Returns None when solo.
+    """
+    group = getattr(player, 'group', None)
+    if not group or len(getattr(group, 'members', [])) < 2:
+        return None
+
+    proom = getattr(player, 'room', None)
+    pvnum = getattr(proom, 'vnum', None)
+    # map adjacent room vnum -> direction, so split members get a heading
+    dir_by_vnum = {}
+    for direction, exit_data in _iter_visible_exits(proom, player):
+        tv = _get_exit_target_vnum(exit_data)
+        if tv is not None and tv not in dir_by_vnum:
+            dir_by_vnum[tv] = direction
+
+    members = []
+    for m in group.members:
+        mroom = getattr(m, 'room', None)
+        mvnum = getattr(mroom, 'vnum', None)
+        same_room = mroom is proom and proom is not None
+        cls = str(getattr(m, 'char_class', '') or '').lower()
+        max_hp = getattr(m, 'max_hp', 1) or 1
+        max_mana = getattr(m, 'max_mana', 1) or 1
+        members.append({
+            'name': getattr(m, 'name', 'Unknown'),
+            'char_class': cls,
+            'role': _GROUP_ROLES.get(cls, 'dps'),
+            'level': getattr(m, 'level', 1),
+            'hp': getattr(m, 'hp', 0),
+            'maxHp': max_hp,
+            'mana': getattr(m, 'mana', 0),
+            'maxMana': max_mana,
+            'move': getattr(m, 'move', 0),
+            'maxMove': getattr(m, 'max_move', 1) or 1,
+            'is_leader': m is group.leader,
+            'is_self': m is player,
+            'sameRoom': same_room,
+            'roomName': getattr(mroom, 'name', '???') if mroom else '???',
+            'roomVnum': mvnum,
+            'dir': None if same_room else dir_by_vnum.get(mvnum),
+            'fighting': _fighting_name(m),
+            'online': getattr(m, 'connection', None) is not None or m is player,
+            'dead': getattr(m, 'hp', 1) <= 0,
+        })
+
+    return {
+        'leader': getattr(group.leader, 'name', ''),
+        'loot_mode': getattr(group, 'loot_mode', 'freeforall'),
+        'auto_follow': bool(getattr(group, 'auto_follow', True)),
+        'exp_bonus': int((group.get_exp_bonus() - 1.0) * 100),
+        'size': len(group.members),
+        'is_leader': player is group.leader,
+        'heal_spell': _best_heal_spell(player),
+        'members': members,
+    }
+
+
 def build_combat_payload(player) -> dict:
     """Lightweight push for live combat: vitals + current-room entities only.
 
@@ -614,6 +702,7 @@ def build_combat_payload(player) -> dict:
         },
         'mobs': mobs,
         'players': others,
+        'group': build_group_block(player),
     }
 
 
@@ -985,5 +1074,6 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'skills': dict(getattr(player, 'skills', {})),
             'talents': dict(getattr(player, 'talents', {})),
             'affects': AffectManager.save_affects(player),
-        }
+        },
+        'group': build_group_block(player),
     }
