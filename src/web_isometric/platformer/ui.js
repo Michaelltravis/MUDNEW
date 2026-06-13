@@ -181,6 +181,27 @@
     renderHotbar();
   }
 
+  // spell mana costs (static), fetched once after login
+  let abilityCosts = {};
+  function costForCmd(cmd) {
+    const m = String(cmd || '').match(/^cast '([^']+)'$/);
+    if (!m) return null;
+    const a = abilityCosts[m[1].replace(/ /g, '_')];
+    return a ? a.mana_cost : null;
+  }
+  function loadAbilityCosts() {
+    if (!MH.state.playerName) return;
+    fetch(`/abilities?player=${encodeURIComponent(MH.state.playerName)}`)
+      .then(r => r.json()).then(d => { abilityCosts = d.abilities || {}; renderHotbar(); }).catch(() => {});
+  }
+  function updateHotbarAffordability() {
+    const mana = (MH.state.player && MH.state.player.mana) || 0;
+    els.hotbar.querySelectorAll('.hotslot').forEach(slot => {
+      const cost = Number(slot.dataset.cost || 0);
+      slot.classList.toggle('unaffordable', cost > 0 && mana < cost);
+    });
+  }
+
   function renderHotbar() {
     els.hotbar.innerHTML = '';
     const skills = (MH.state.player && MH.state.player.skills) || {};
@@ -189,13 +210,16 @@
       slot.className = 'hotslot';
       const skillName = String(cmd || '').replace(/^cast '/, '').replace(/'$/, '');
       const prof = skills[skillName];
+      const cost = costForCmd(cmd);
+      if (cost != null) slot.dataset.cost = cost;
       slot.setAttribute('draggable', 'true');
       slot.innerHTML = `<span class="key">${(i + 1) % 10}</span>`
         + (prof != null ? `<span class="prof">${prof}%</span>` : '')
+        + (cost ? `<span class="cost">${cost}</span>` : '')
         + `<canvas width="20" height="20"></canvas>`
         + `<span class="lbl">${cmd || '—'}</span><div class="cd"></div>`;
       drawIcon(slot.querySelector('canvas'), iconKindFor(cmd));
-      slot.title = `${cmd || 'empty'}\n(right-click to rebind, drag a skill here from K)`;
+      slot.title = `${cmd || 'empty'}${cost ? ` · ${cost} mana` : ''}\n(right-click to rebind, drag a skill here from K)`;
       slot.addEventListener('click', () => useHotbar(i));
       slot.addEventListener('contextmenu', e => {
         e.preventDefault();
@@ -221,6 +245,7 @@
       });
       els.hotbar.appendChild(slot);
     });
+    updateHotbarAffordability();
   }
 
   // raw commands print to the hidden terminal, which reads as "nothing
@@ -253,6 +278,12 @@
       commandWithPeek('look');
     } else if (/^cast '[^']+'$/.test(cmd)) {
       const spell = (cmd.match(/^cast '([^']+)'$/) || [])[1] || '';
+      const cost = costForCmd(cmd);
+      if (cost != null && ((MH.state.player && MH.state.player.mana) || 0) < cost) {
+        flash(`Not enough mana — ${spell} needs ${cost}`);
+        try { tone({ f: 160, f2: 110, type: 'sine', dur: 0.12, vol: 0.05 }); } catch (_) {}
+        return;
+      }
       const ally = MH.state.allyTarget;
       if (ally && ally.until > Date.now() && /cure|heal|bless|armor|shield|sanctuary|renew|mend|protection|haste|barkskin|aegis|prayer|serenity|hymn|spirit_link|hand_of_freedom/i.test(spell)) {
         MH.sendCommand(`${cmd} ${ally.name}`);
@@ -338,13 +369,27 @@
   }
 
   // ---- target frame ----
+  // consider/threat by level delta — the classic "is this safe?" read
+  function threatFor(mobLevel) {
+    const pl = (MH.state.player && MH.state.player.level) || 1;
+    const d = (mobLevel || pl) - pl;
+    if (d <= -8) return { txt: 'trivial', col: '#6a7084' };
+    if (d <= -4) return { txt: 'easy', col: '#6fd685' };
+    if (d <= -2) return { txt: 'manageable', col: '#9adba0' };
+    if (d <= 1) return { txt: 'even', col: '#e8c168' };
+    if (d <= 3) return { txt: 'tough', col: '#e0a07a' };
+    if (d <= 6) return { txt: 'dangerous', col: '#e0563a' };
+    return { txt: 'DEADLY', col: '#ff5a7a' };
+  }
   let currentTarget = null;
   function setTarget(data) {
     const prev = currentTarget;
     currentTarget = data;
     if (!data) { els.targetFrame.classList.remove('show'); return; }
     els.targetFrame.classList.add('show');
-    els.targetName.textContent = `${data.name} (Lv ${data.level || '?'})`;
+    const th = threatFor(data.level);
+    els.targetName.innerHTML = `${data.name} <span style="color:#8a90a4">(Lv ${data.level || '?'})</span> `
+      + `<span class="tgt-threat" style="color:${th.col}">● ${th.txt}</span>`;
     const max = data.maxHp || 1, hp = data.hp != null ? data.hp : max;
     const pct = Math.max(0, Math.min(100, (hp / max) * 100));
     // ghost layer snaps to the OLD value then drains slowly behind the real bar
@@ -2484,6 +2529,9 @@
         else refreshQuestTracker(false);
       });
       MH.bus.on('login.success', () => setTimeout(() => refreshQuestTracker(true), 1500));
+      MH.bus.on('login.success', () => setTimeout(loadAbilityCosts, 1800));
+      MH.bus.on('map', () => updateHotbarAffordability());
+      MH.bus.on('combat.update', () => updateHotbarAffordability());
       // first-spawn welcome for new players (once, level <= 2)
       let welcomeChecked = false;
       function maybeWelcome(player) {

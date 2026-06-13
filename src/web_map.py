@@ -539,6 +539,31 @@ class WebMapServer:
                 except Exception as e:
                     logger.error(f"/almanac error: {e}")
                     await self._http_response(writer, 500, 'Error', 'almanac data unavailable')
+            elif path.startswith('/abilities'):
+                # static costs for the player's known spells, for hotbar clarity
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                try:
+                    from spells import SPELLS
+                    known = getattr(player, 'spells', None) or {}
+                    abilities = {}
+                    for key, spell in SPELLS.items():
+                        if key not in known:
+                            continue
+                        abilities[key] = {
+                            'name': spell.get('name', key),
+                            'mana_cost': int(spell.get('mana_cost', 0) or 0),
+                        }
+                    data = {'abilities': abilities, 'resource': 'mana'}
+                    await self._http_response(writer, 200, 'OK', json.dumps(data), content_type='application/json')
+                except Exception as e:
+                    logger.error(f"/abilities error: {e}")
+                    await self._http_response(writer, 500, 'Error', 'ability data unavailable')
             elif path.startswith('/legend'):
                 # prestige specialization + server leaderboards
                 parsed = urlparse(path)
