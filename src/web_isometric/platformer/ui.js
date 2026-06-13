@@ -665,6 +665,7 @@
     return `<div class="pd-socket${filled}" data-slot="${slot}" ${item ? `data-name="${item.name}" data-cmd="remove ${MH.mobKeyword(item.name)}"` : ''} title="${item ? item.name + ' (click to remove)' : slot}">`
       + `<canvas width="34" height="34"></canvas><span class="pd-slotname">${slot}</span>${item && rar !== 'common' ? `<i class="pd-rar ${rar}"></i>` : ''}</div>`;
   }
+  let invFilter = '', invSort = 'slot';
   function renderInventory() {
     const p = MH.state.player;
     if (!p) { els.invBody.textContent = 'No data yet.'; return; }
@@ -678,15 +679,38 @@
     html += '<div class="pd-col">' + PD_RIGHT.map(sl => pdSocket(sl, eq[sl])).join('') + '</div>';
     html += '</div><div class="pd-row">' + PD_BOTTOM.concat(extra).map(sl => pdSocket(sl, eq[sl])).join('') + '</div>';
 
-    html += '<div style="color:#e8c168;margin:10px 0 4px;letter-spacing:1px">— CARRIED —</div><div class="inv-grid">';
-    const inv = p.inventory || [];
-    if (!inv.length) html += '<div class="slot">empty-handed</div>';
-    inv.forEach((item, i) => {
+    // loot toggles + search/sort controls
+    html += `<div class="inv-bar">`
+      + `<span class="inv-toggle ${p.autoloot ? 'on' : ''}" data-toggle="autoloot" title="auto-loot corpses">🎒 loot</span>`
+      + `<span class="inv-toggle ${p.autogold ? 'on' : ''}" data-toggle="autogold" title="auto-pick-up gold">🪙 gold</span>`
+      + `<input id="inv-search" placeholder="search…" value="${invFilter.replace(/"/g, '')}">`
+      + `<select id="inv-sort">`
+      + ['slot:default', 'name:A–Z', 'type:type', 'rarity:rarity'].map(o => { const [v, l] = o.split(':'); return `<option value="${v}" ${invSort === v ? 'selected' : ''}>${l}</option>`; }).join('')
+      + `</select></div>`;
+    html += '<div class="inv-grid">';
+    const RANK = { legendary: 5, epic: 4, rare: 3, uncommon: 2, common: 1 };
+    let inv = (p.inventory || []).map((item, i) => ({ item, i }));
+    if (invFilter) { const f = invFilter.toLowerCase(); inv = inv.filter(e => (e.item.name || '').toLowerCase().includes(f) || (e.item.item_type || e.item.type || '').toLowerCase().includes(f)); }
+    if (invSort === 'name') inv.sort((a, b) => (a.item.name || '').localeCompare(b.item.name || ''));
+    else if (invSort === 'type') inv.sort((a, b) => (a.item.item_type || a.item.type || '').localeCompare(b.item.item_type || b.item.type || ''));
+    else if (invSort === 'rarity') inv.sort((a, b) => (RANK[b.item.rarity] || 0) - (RANK[a.item.rarity] || 0));
+    if (!inv.length) html += `<div class="slot">${invFilter ? 'no matches' : 'empty-handed'}</div>`;
+    inv.forEach(({ item, i }) => {
       html += `<div class="inv-cell" data-i="${i}" data-cmd="wear ${MH.mobKeyword(item.name)}" title="${item.name} (${item.item_type || 'item'})">`
         + `<canvas width="34" height="34"></canvas><span class="inv-nm">${(item.short || item.name).slice(0, 26)}</span></div>`;
     });
     html += '</div>';
     els.invBody.innerHTML = html;
+    const allInv = p.inventory || [];
+    els.invBody.querySelectorAll('.inv-toggle').forEach(t => t.addEventListener('click', () => {
+      MH.sendCommand(t.dataset.toggle, false);
+      setTimeout(() => { MH.refreshState().then(renderInventory); }, 500);
+    }));
+    const srch = document.getElementById('inv-search');
+    if (srch) { srch.addEventListener('input', e => { invFilter = e.target.value; renderInventory(); setTimeout(() => { const s = document.getElementById('inv-search'); if (s) { s.focus(); s.setSelectionRange(s.value.length, s.value.length); } }, 0); });
+      srch.addEventListener('keydown', e => e.stopPropagation()); }
+    const srt = document.getElementById('inv-sort');
+    if (srt) srt.addEventListener('change', e => { invSort = e.target.value; renderInventory(); });
 
     const model = els.invBody.querySelector('#pd-model');
     if (model) drawCharModel(model, p);
@@ -699,7 +723,8 @@
       });
     });
     els.invBody.querySelectorAll('.inv-cell').forEach(el => {
-      const item = inv[Number(el.dataset.i)];
+      const item = allInv[Number(el.dataset.i)];
+      if (!item) return;
       if (item && MH.itemIcons) MH.itemIcons.intoCanvas(el.querySelector('canvas'), item);
       el.addEventListener('click', () => {
         let cmd = el.dataset.cmd;
@@ -1303,6 +1328,34 @@
       b.innerHTML = html;
       b.querySelectorAll('.lg-cat').forEach(c => c.addEventListener('click', () => { lgCat = c.dataset.lc; renderLegend(); }));
     }
+  }
+
+  // ---- fast travel / waypoints ----
+  async function openTravel() {
+    openModal('modal-travel');
+    els.travelBody.innerHTML = '<div class="slot">consulting the maps…</div>';
+    let d;
+    try { d = await (await fetch(`/travel?player=${encodeURIComponent(MH.state.playerName)}`)).json(); }
+    catch (_) { els.travelBody.innerHTML = '<div class="slot">travel unavailable</div>'; return; }
+    let html = `<div class="tv-hd">🗺 DISCOVERED WAYPOINTS · ${d.discovered}/${d.total}</div>`;
+    html += `<div class="tv-sub">🪙 ${d.gold.toLocaleString()} gold`
+      + (d.cooldown > 0 ? ` · ⏳ ready in ${d.cooldown}s` : '') + `</div>`;
+    if (!d.waypoints.length) html += `<div class="alm-note" style="text-align:left">No waypoints discovered yet — explore zone entrances to unlock fast travel.</div>`;
+    for (const w of d.waypoints) {
+      const poor = w.cost > d.gold;
+      const cls = w.here ? 'here' : poor ? 'poor' : '';
+      html += `<div class="tv-row ${cls}" data-key="${w.key}" data-ok="${!w.here && !poor && d.cooldown <= 0}">`
+        + `<span class="tn">${w.name}</span>`
+        + `<span class="tc">${w.here ? '◈ you are here' : w.cost + 'g'}</span></div>`;
+    }
+    els.travelBody.innerHTML = html;
+    els.travelBody.querySelectorAll('.tv-row').forEach(row => {
+      if (row.dataset.ok !== 'true') return;
+      row.addEventListener('click', () => {
+        MH.sendCommand(`travel ${row.dataset.key}`, false);
+        flash('Traveling…'); closeModals();
+      });
+    });
   }
 
   // ---- minimap + click-to-walk ----
@@ -2325,7 +2378,7 @@
         targetHpGhost: $('target-hp-ghost'),
         partyBar: $('party-bar'), partyMenu: $('party-menu'),
         almanacBody: $('almanac-body'), servicesBody: $('services-body'), stableBody: $('stable-body'),
-        legendBody: $('legend-body'), questTracker: $('quest-tracker'),
+        legendBody: $('legend-body'), questTracker: $('quest-tracker'), travelBody: $('travel-body'),
         welcomeOverlay: $('welcome-overlay'), welcomeBody: $('welcome-body'), welcomeGo: $('welcome-go'),
       });
 
@@ -3036,6 +3089,7 @@
         else if (k === 'b') { openServices('mail'); }
         else if (k === 'c') { openStable('pets'); }
         else if (k === 'l') { openLegend('prestige'); }
+        else if (k === 'v') { openTravel(); }
         if (['a', 'd', 'w', 's', 'arrowleft', 'arrowright', 'arrowup', 'arrowdown', ' '].includes(k)) {
           cancelWalk();
           // moving dismisses the room prose so it never blocks the view

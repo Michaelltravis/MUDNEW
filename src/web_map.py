@@ -539,6 +539,41 @@ class WebMapServer:
                 except Exception as e:
                     logger.error(f"/almanac error: {e}")
                     await self._http_response(writer, 500, 'Error', 'almanac data unavailable')
+            elif path.startswith('/travel'):
+                # discovered fast-travel waypoints + gold/cooldown state
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                try:
+                    import time as _t
+                    from travel import WAYPOINTS
+                    disc = set(getattr(player, 'discovered_waypoints', set()) or set())
+                    here = getattr(getattr(player, 'room', None), 'vnum', None)
+                    wps = []
+                    for key, info in WAYPOINTS.items():
+                        if key not in disc:
+                            continue
+                        wps.append({
+                            'key': key, 'name': info.get('name', key),
+                            'vnum': info.get('vnum'), 'cost': info.get('cost', 0),
+                            'here': info.get('vnum') == here,
+                        })
+                    cd_until = getattr(player, 'travel_cooldown_until', 0) or 0
+                    cd = max(0, int(cd_until - _t.time()))
+                    data = {
+                        'waypoints': sorted(wps, key=lambda w: w['cost']),
+                        'gold': int(getattr(player, 'gold', 0) or 0),
+                        'cooldown': cd,
+                        'total': len(WAYPOINTS), 'discovered': len(disc),
+                    }
+                    await self._http_response(writer, 200, 'OK', json.dumps(data), content_type='application/json')
+                except Exception as e:
+                    logger.error(f"/travel error: {e}")
+                    await self._http_response(writer, 500, 'Error', 'travel data unavailable')
             elif path.startswith('/abilities'):
                 # static costs for the player's known spells, for hotbar clarity
                 parsed = urlparse(path)

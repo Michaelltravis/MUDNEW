@@ -1002,6 +1002,28 @@
   #emote-picker .ep .ei { font-size: 16px; }
   #emote-picker .ep .en { font-size: 8.5px; color: #aab2c4; margin-top: 1px; }
 
+  /* ---- inventory controls: loot toggles + search/sort ---- */
+  .inv-bar { display: flex; align-items: center; gap: 6px; margin: 8px 0 6px; font-family: var(--ui-font); }
+  .inv-toggle { font-size: 10px; padding: 3px 9px; border-radius: 12px; cursor: pointer; letter-spacing: 0.5px;
+    border: 1px solid rgba(140,150,180,0.3); color: #8a90a4; }
+  .inv-toggle.on { color: #6fd685; border-color: rgba(111,214,133,0.6); background: rgba(111,214,133,0.1); }
+  .inv-bar #inv-search { flex: 1; min-width: 0; padding: 5px 9px; background: rgba(13,15,21,.92); color: #d8dce8;
+    border: 1px solid rgba(140,150,180,.3); border-radius: 6px; font-size: 12px; }
+  .inv-bar #inv-sort { padding: 5px 6px; background: rgba(13,15,21,.92); color: #d8dce8;
+    border: 1px solid rgba(140,150,180,.3); border-radius: 6px; font-size: 11px; }
+
+  /* ---- travel / waypoints panel ---- */
+  .tv-hd { font-size: 11px; color: #e8c168; letter-spacing: 2px; margin-bottom: 4px; font-family: var(--ui-font); }
+  .tv-sub { font-size: 11px; color: #aab2c4; margin-bottom: 10px; font-family: var(--ui-font); }
+  .tv-row { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 9px;
+    border: 1px solid rgba(140,150,180,0.16); background: rgba(16,19,30,0.6); margin-bottom: 6px; font-family: var(--ui-font); cursor: pointer; }
+  .tv-row:hover { border-color: #e8c168; }
+  .tv-row.here { border-color: rgba(111,214,133,0.5); cursor: default; }
+  .tv-row.poor { opacity: 0.5; cursor: not-allowed; }
+  .tv-row .tn { flex: 1; font-size: 13px; color: #e6e2d6; }
+  .tv-row .tc { font-size: 11px; color: #ffe9a8; white-space: nowrap; }
+  .tv-row.poor .tc { color: #e08a7a; }
+
   /* ---- persistent quest tracker (always-on objective HUD) ---- */
   #quest-tracker { position: absolute; left: 12px; top: 96px; z-index: 19; display: none;
     width: 224px; background: rgba(13,15,21,0.82); border: 1px solid rgba(232,193,104,0.3);
@@ -1421,6 +1443,10 @@
     </div>
     <div class="modal-body" id="legend-body"></div>
   </div>
+  <div class="modal" id="modal-travel">
+    <div class="modal-head"><span>FAST TRAVEL</span><span class="x" data-close="modal-travel">✕</span></div>
+    <div class="modal-body" id="travel-body"></div>
+  </div>
 
   <div id="welcome-overlay">
     <div id="welcome-card">
@@ -1435,7 +1461,7 @@
     </div>
   </div>
 
-  <div id="help-chip">WASD walk · walk off an edge to travel · F/Space sword · T chat · I inv · J journal · K spells · M map · Y almanac · B mail/bank · C companions · L legend · Q flask · H help · ~ terminal · Enter command</div>
+  <div id="help-chip">WASD walk · walk off an edge to travel · F/Space sword · T chat · I inv · J journal · K spells · M map · Y almanac · B mail/bank · C companions · L legend · V travel · Q flask · H help · ~ terminal · Enter command</div>
 
   <div id="login-overlay">
     <div id="login-box">

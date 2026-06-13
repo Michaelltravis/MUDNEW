@@ -1117,6 +1117,8 @@ def build_map_payload(player, mode: str = 'full') -> dict:
                 for item in getattr(player, 'inventory', [])
             ],
             'aura': _worn_aura(player),
+            'autoloot': bool(getattr(player, 'autoloot', False)),
+            'autogold': bool(getattr(player, 'autogold', True)),
             'resource': _class_resource(player),
             'skills': dict(getattr(player, 'skills', {})),
             'talents': dict(getattr(player, 'talents', {})),
