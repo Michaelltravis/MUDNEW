@@ -696,8 +696,9 @@
     else if (invSort === 'rarity') inv.sort((a, b) => (RANK[b.item.rarity] || 0) - (RANK[a.item.rarity] || 0));
     if (!inv.length) html += `<div class="slot">${invFilter ? 'no matches' : 'empty-handed'}</div>`;
     inv.forEach(({ item, i }) => {
+      const enchanted = (item.affects && item.affects.length) ? `<span class="inv-forge" data-kw="${MH.mobKeyword(item.name)}" title="reforge enchantments (gold)">⚒</span>` : '';
       html += `<div class="inv-cell" data-i="${i}" data-cmd="wear ${MH.mobKeyword(item.name)}" title="${item.name} (${item.item_type || 'item'})">`
-        + `<canvas width="34" height="34"></canvas><span class="inv-nm">${(item.short || item.name).slice(0, 26)}</span></div>`;
+        + `<canvas width="34" height="34"></canvas><span class="inv-nm">${(item.short || item.name).slice(0, 26)}</span>${enchanted}</div>`;
     });
     html += '</div>';
     els.invBody.innerHTML = html;
@@ -711,6 +712,12 @@
       srch.addEventListener('keydown', e => e.stopPropagation()); }
     const srt = document.getElementById('inv-sort');
     if (srt) srt.addEventListener('change', e => { invSort = e.target.value; renderInventory(); });
+    els.invBody.querySelectorAll('.inv-forge').forEach(fb => fb.addEventListener('click', e => {
+      e.stopPropagation();
+      MH.sendCommand(`reforge ${fb.dataset.kw}`, false);
+      flash('⚒ reforging…');
+      setTimeout(() => { MH.refreshState().then(renderInventory); }, 700);
+    }));
 
     const model = els.invBody.querySelector('#pd-model');
     if (model) drawCharModel(model, p);
@@ -1356,6 +1363,90 @@
         flash('Traveling…'); closeModals();
       });
     });
+  }
+
+  // ---- recovery: rest/sleep regeneration panel ----
+  const REST_POS = [
+    { key: 'stand', pos: 'standing', ic: '🧍', label: 'Stand' },
+    { key: 'sit', pos: 'sitting', ic: '🪑', label: 'Sit' },
+    { key: 'rest', pos: 'resting', ic: '🍵', label: 'Rest' },
+    { key: 'sleep', pos: 'sleeping', ic: '💤', label: 'Sleep' },
+  ];
+  let recoveryOpen = false, recoveryData = null, recoveryTimer = null;
+  function toggleRecovery(on) {
+    recoveryOpen = on != null ? on : !recoveryOpen;
+    els.recoveryPanel.classList.toggle('show', recoveryOpen);
+    clearInterval(recoveryTimer);
+    if (recoveryOpen) { refreshRecovery(); recoveryTimer = setInterval(refreshRecovery, 4000); }
+  }
+  function refreshRecovery() {
+    if (!MH.state.playerName) return;
+    fetch(`/regen?player=${encodeURIComponent(MH.state.playerName)}`)
+      .then(r => r.json()).then(d => { recoveryData = d; setRestChipPos(d.position); renderRecovery(); }).catch(() => {});
+  }
+  function setRestChipPos(pos) {
+    const resting = pos === 'resting' || pos === 'sleeping' || pos === 'sitting';
+    els.restChip.classList.toggle('show', resting);
+    if (resting) {
+      const ic = pos === 'sleeping' ? '💤' : pos === 'resting' ? '🍵' : '🪑';
+      els.restChip.textContent = `${ic} ${pos} — recovering (Z)`;
+    }
+  }
+  function renderRecovery() {
+    const d = recoveryData; if (!d || !recoveryOpen) return;
+    const cur = d.position || 'standing';
+    const r = d.rates[cur] || d.rates.standing;
+    const best = d.rates.sleeping;
+    const pct = (v, max) => Math.max(4, Math.min(100, (v / Math.max(1, max)) * 100));
+    let html = `<div class="rp-hd">RECOVERY · ${cur.toUpperCase()}</div><div class="rp-pos">`;
+    for (const p of REST_POS) {
+      const on = p.pos === cur ? ' on' : '';
+      const combat = d.in_combat && p.key !== 'stand' ? ' combat' : '';
+      html += `<div class="rp-btn${on}${combat}" data-cmd="${p.key}"><span class="ic">${p.ic}</span>${p.label}</div>`;
+    }
+    html += `</div><div class="rp-rates">`;
+    const rows = [['hp', 'HP', '#7fe09a'], ['mana', 'MP', '#5a8ae8'], ['move', 'MV', '#e8c168']];
+    const cls = { hp: 'hp', mana: 'mp', move: 'mv' };
+    for (const [k, lbl] of rows) {
+      html += `<div class="rp-rate"><span class="rl">${lbl}</span>`
+        + `<span class="rt ${cls[k]}"><i style="width:${pct(r[k], best[k])}%"></i></span>`
+        + `<span class="rv">+${r[k]}/min ${cur !== 'sleeping' ? `<small>(💤 +${best[k]})</small>` : ''}</span></div>`;
+    }
+    html += `</div>`;
+    if (d.modifiers && d.modifiers.length) {
+      html += `<div class="rp-mods">` + d.modifiers.map(m => `<span class="rp-mod">${m.icon} ${m.label}</span>`).join('') + `</div>`;
+    }
+    if (d.at_inn && d.rent_cost != null) {
+      const poor = d.gold < d.rent_cost;
+      html += `<button class="rp-rent ${poor ? 'poor' : ''}" id="rp-rent" ${poor ? 'disabled' : ''}>🛏 Rent &amp; log out · ${d.rent_cost}g</button>`;
+    }
+    els.recoveryPanel.innerHTML = html;
+    els.recoveryPanel.querySelectorAll('.rp-btn').forEach(b => {
+      if (b.classList.contains('combat')) return;
+      b.addEventListener('click', () => { MH.sendCommand(b.dataset.cmd, false); setTimeout(() => { refreshRecovery(); MH.refreshState && MH.refreshState(); }, 500); });
+    });
+    const rent = document.getElementById('rp-rent');
+    if (rent && !rent.disabled) rent.addEventListener('click', () => { MH.sendCommand('rent', false); flash('Renting…'); });
+  }
+  // persistent resting chip + regen float on bars
+  function updateRestChip(player) {
+    if (!player) return;
+    const pos = player.position || 'standing';
+    const resting = pos === 'resting' || pos === 'sleeping' || pos === 'sitting';
+    setRestChipPos(pos);
+    // float +N on the HP bar when vitals climb while recovering
+    if (resting && updateRestChip._hp != null && player.hp > updateRestChip._hp) {
+      floatRegen(player.hp - updateRestChip._hp);
+    }
+    updateRestChip._hp = player.hp;
+  }
+  function floatRegen(amt) {
+    const host = els.hud; if (!host) return;
+    const f = document.createElement('div');
+    f.textContent = `+${Math.round(amt)}`;
+    f.style.cssText = 'position:absolute;left:74px;top:6px;color:#7fe09a;font-size:13px;font-weight:700;pointer-events:none;text-shadow:0 0 3px #000;z-index:30;animation:pf-pop 1s ease-out forwards';
+    host.appendChild(f);
+    setTimeout(() => f.remove(), 1000);
   }
 
   // ---- minimap + click-to-walk ----
@@ -2379,6 +2470,7 @@
         partyBar: $('party-bar'), partyMenu: $('party-menu'),
         almanacBody: $('almanac-body'), servicesBody: $('services-body'), stableBody: $('stable-body'),
         legendBody: $('legend-body'), questTracker: $('quest-tracker'), travelBody: $('travel-body'),
+        restChip: $('rest-chip'), recoveryPanel: $('recovery-panel'),
         welcomeOverlay: $('welcome-overlay'), welcomeBody: $('welcome-body'), welcomeGo: $('welcome-go'),
       });
 
@@ -2585,6 +2677,10 @@
       MH.bus.on('login.success', () => setTimeout(loadAbilityCosts, 1800));
       MH.bus.on('map', () => updateHotbarAffordability());
       MH.bus.on('combat.update', () => updateHotbarAffordability());
+      // resting chip + regen float, and live-refresh the recovery panel
+      MH.bus.on('map', payload => { updateRestChip(payload.player); if (recoveryOpen) refreshRecovery(); });
+      MH.bus.on('combat.update', payload => updateRestChip(payload.player));
+      els.restChip.addEventListener('click', () => toggleRecovery(true));
       // first-spawn welcome for new players (once, level <= 2)
       let welcomeChecked = false;
       function maybeWelcome(player) {
@@ -3090,6 +3186,7 @@
         else if (k === 'c') { openStable('pets'); }
         else if (k === 'l') { openLegend('prestige'); }
         else if (k === 'v') { openTravel(); }
+        else if (k === 'z') { toggleRecovery(); }
         if (['a', 'd', 'w', 's', 'arrowleft', 'arrowright', 'arrowup', 'arrowdown', ' '].includes(k)) {
           cancelWalk();
           // moving dismisses the room prose so it never blocks the view

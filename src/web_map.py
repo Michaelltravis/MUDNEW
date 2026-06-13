@@ -539,6 +539,73 @@ class WebMapServer:
                 except Exception as e:
                     logger.error(f"/almanac error: {e}")
                     await self._http_response(writer, 500, 'Error', 'almanac data unavailable')
+            elif path.startswith('/regen'):
+                # recovery rates by position (tick = 60s, so these are /min),
+                # active modifiers, and rent availability — for the rest UI
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                try:
+                    from regeneration import RegenerationCalculator as RC
+                    from config import Config as _Cfg
+                    cfg = _Cfg()
+                    gt = getattr(self.world, 'game_time', None)
+                    room = getattr(player, 'room', None)
+                    weather = None
+                    if room and getattr(room, 'zone', None) and hasattr(room.zone, 'weather'):
+                        weather = room.zone.weather
+                    POS = {'standing': 1.0, 'sitting': 1.25, 'resting': 1.5, 'sleeping': 2.0}
+                    rates = {}
+                    for pos, mult in POS.items():
+                        rates[pos] = {
+                            'hp': round(RC.calculate_hp_regen(player, cfg.HP_REGEN_RATE, mult, gt, weather)),
+                            'mana': round(RC.calculate_mana_regen(player, cfg.MANA_REGEN_RATE, mult, gt, weather)),
+                            'move': round(RC.calculate_move_regen(player, cfg.MOVE_REGEN_RATE, mult, gt, weather)),
+                        }
+                    # active modifiers
+                    mods = []
+                    hour = getattr(gt, 'hour', 12) if gt else 12
+                    if 0 <= hour < 6:
+                        mods.append({'icon': '🌙', 'label': 'Night +25% (rest/sleep)'})
+                    aff = set(getattr(player, 'affect_flags', set()) or set())
+                    if 'regenerating' in aff:
+                        mods.append({'icon': '✨', 'label': 'Regeneration x2'})
+                    if 'poison' in aff or 'poisoned' in aff:
+                        mods.append({'icon': '☠', 'label': 'Poisoned −50%'})
+                    if 'disease' in aff or 'diseased' in aff:
+                        mods.append({'icon': '🤢', 'label': 'Diseased −75%'})
+                    sky = getattr(weather, 'sky_condition', None) if weather else None
+                    if sky in ('rainy', 'stormy', 'snowy'):
+                        mods.append({'icon': '☔', 'label': f'{sky.title()} weather'})
+                    # rent availability
+                    at_inn = False
+                    if room and hasattr(room, 'characters'):
+                        for ch in room.characters:
+                            if getattr(ch, 'special', None) == 'innkeeper':
+                                at_inn = True
+                                break
+                    rent_cost = None
+                    if at_inn:
+                        try:
+                            from commands import CommandHandler
+                            rent_cost = CommandHandler.calc_total_rent(player)
+                        except Exception:
+                            rent_cost = max(20, getattr(player, 'level', 1) * 5)
+                    data = {
+                        'position': getattr(player, 'position', 'standing'),
+                        'rates': rates, 'modifiers': mods,
+                        'at_inn': at_inn, 'rent_cost': rent_cost,
+                        'gold': int(getattr(player, 'gold', 0) or 0),
+                        'in_combat': bool(getattr(player, 'fighting', None)),
+                    }
+                    await self._http_response(writer, 200, 'OK', json.dumps(data), content_type='application/json')
+                except Exception as e:
+                    logger.error(f"/regen error: {e}")
+                    await self._http_response(writer, 500, 'Error', 'regen data unavailable')
             elif path.startswith('/travel'):
                 # discovered fast-travel waypoints + gold/cooldown state
                 parsed = urlparse(path)

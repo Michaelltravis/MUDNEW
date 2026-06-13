@@ -1011,6 +1011,9 @@
     border: 1px solid rgba(140,150,180,.3); border-radius: 6px; font-size: 12px; }
   .inv-bar #inv-sort { padding: 5px 6px; background: rgba(13,15,21,.92); color: #d8dce8;
     border: 1px solid rgba(140,150,180,.3); border-radius: 6px; font-size: 11px; }
+  .inv-cell { position: relative; }
+  .inv-forge { position: absolute; top: 1px; right: 2px; font-size: 11px; cursor: pointer; opacity: 0.65; }
+  .inv-forge:hover { opacity: 1; text-shadow: 0 0 6px #e8c168; }
 
   /* ---- travel / waypoints panel ---- */
   .tv-hd { font-size: 11px; color: #e8c168; letter-spacing: 2px; margin-bottom: 4px; font-family: var(--ui-font); }
@@ -1023,6 +1026,43 @@
   .tv-row .tn { flex: 1; font-size: 13px; color: #e6e2d6; }
   .tv-row .tc { font-size: 11px; color: #ffe9a8; white-space: nowrap; }
   .tv-row.poor .tc { color: #e08a7a; }
+
+  /* ---- recovery: rest/sleep regen panel + resting chip ---- */
+  #rest-chip { position: absolute; top: 12px; left: 50%; transform: translateX(calc(-50% + 160px));
+    z-index: 20; display: none; padding: 3px 11px; border-radius: 14px; font-family: var(--ui-font);
+    font-size: 11px; letter-spacing: 0.5px; background: rgba(13,15,21,0.88); border: 1px solid rgba(122,170,232,0.5);
+    color: #bcd4ff; cursor: pointer; }
+  #rest-chip.show { display: block; }
+  #recovery-panel { position: absolute; left: 12px; bottom: 150px; z-index: 22; display: none;
+    width: 236px; background: rgba(13,15,21,0.94); border: 1px solid rgba(122,170,232,0.4);
+    border-radius: 11px; padding: 11px 13px; font-family: var(--ui-font);
+    box-shadow: 0 6px 28px rgba(0,0,0,0.5); }
+  #recovery-panel.show { display: block; }
+  #recovery-panel .rp-hd { font-size: 10px; color: #8a90a4; letter-spacing: 2px; margin-bottom: 8px; }
+  #recovery-panel .rp-pos { display: flex; gap: 4px; margin-bottom: 10px; }
+  #recovery-panel .rp-btn { flex: 1; text-align: center; padding: 7px 2px; border-radius: 7px; cursor: pointer;
+    border: 1px solid rgba(140,150,180,0.25); font-size: 10px; color: #aab2c4; line-height: 1.3; }
+  #recovery-panel .rp-btn .ic { font-size: 14px; display: block; }
+  #recovery-panel .rp-btn:hover { border-color: #7aaae8; }
+  #recovery-panel .rp-btn.on { border-color: #7aaae8; background: rgba(122,170,232,0.14); color: #cfe2ff; }
+  #recovery-panel .rp-btn.combat { opacity: 0.4; cursor: not-allowed; }
+  #recovery-panel .rp-rates { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+  #recovery-panel .rp-rate { display: flex; align-items: center; gap: 6px; font-size: 11px; }
+  #recovery-panel .rp-rate .rl { width: 34px; color: #8a90a4; }
+  #recovery-panel .rp-rate .rt { width: 64px; height: 6px; border-radius: 3px; background: #0a0b10; border: 1px solid #000; overflow: hidden; }
+  #recovery-panel .rp-rate .rt > i { display: block; height: 100%; }
+  #recovery-panel .rp-rate .rt.hp > i { background: linear-gradient(90deg,#7fe09a,#3f9e5c); }
+  #recovery-panel .rp-rate .rt.mp > i { background: linear-gradient(90deg,#5a8ae8,#2f5ab8); }
+  #recovery-panel .rp-rate .rt.mv > i { background: linear-gradient(90deg,#e8c168,#b8932f); }
+  #recovery-panel .rp-rate .rv { font-size: 11px; color: #cfe2ff; }
+  #recovery-panel .rp-rate .rv small { color: #6a7084; }
+  #recovery-panel .rp-mods { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+  #recovery-panel .rp-mod { font-size: 9px; padding: 2px 7px; border-radius: 10px; background: rgba(122,170,232,0.12);
+    color: #bcd4ff; border: 1px solid rgba(122,170,232,0.3); }
+  #recovery-panel .rp-rent { width: 100%; padding: 7px; border-radius: 7px; cursor: pointer; font-size: 11px;
+    border: 1px solid #e8c168; background: rgba(232,193,104,0.12); color: #ffe9a8; letter-spacing: 0.5px; }
+  #recovery-panel .rp-rent:hover { background: rgba(232,193,104,0.28); }
+  #recovery-panel .rp-rent.poor { border-color: rgba(140,150,180,0.3); color: #8a90a4; background: transparent; cursor: not-allowed; }
 
   /* ---- persistent quest tracker (always-on objective HUD) ---- */
   #quest-tracker { position: absolute; left: 12px; top: 96px; z-index: 19; display: none;
@@ -1250,6 +1290,8 @@
     <div id="room-zone"></div>
   </div>
   <div id="event-banner"></div>
+  <div id="rest-chip"></div>
+  <div id="recovery-panel"></div>
   <div id="quest-tracker"></div>
   <div id="party-bar"></div>
   <div id="party-menu"></div>
@@ -1461,7 +1503,7 @@
     </div>
   </div>
 
-  <div id="help-chip">WASD walk · walk off an edge to travel · F/Space sword · T chat · I inv · J journal · K spells · M map · Y almanac · B mail/bank · C companions · L legend · V travel · Q flask · H help · ~ terminal · Enter command</div>
+  <div id="help-chip">WASD walk · walk off an edge to travel · F/Space sword · T chat · I inv · J journal · K spells · M map · Y almanac · B mail/bank · C companions · L legend · V travel · Z rest · Q flask · H help · ~ terminal · Enter command</div>
 
   <div id="login-overlay">
     <div id="login-box">
