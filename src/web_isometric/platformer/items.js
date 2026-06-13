@@ -306,6 +306,49 @@
     lyre(x, p) { x.strokeStyle = p; x.lineWidth = 1; x.beginPath(); x.moveTo(9, 19); x.quadraticCurveTo(8, 15, 9.6, 14.5); x.moveTo(13, 19); x.quadraticCurveTo(14, 15, 12.4, 14.5); x.moveTo(9.4, 17); x.lineTo(12.6, 17); x.stroke(); },
   };
 
+  // ---------------- named-set themes: every set piece gets its own
+  // palette, sigil border, and emblem so the 4 pieces read as a matched
+  // suit, distinct from every other set ----------------
+  const SET_EMBLEMS = {
+    pickaxe(x, p) { // crossed pickaxes
+      x.strokeStyle = p; x.lineWidth = 1.1; x.lineCap = 'round';
+      x.beginPath(); x.moveTo(8, 19); x.lineTo(13.5, 14); x.moveTo(14, 19); x.lineTo(8.5, 14); x.stroke();
+      x.beginPath(); x.moveTo(11.6, 14.2); x.quadraticCurveTo(14, 13.2, 14.6, 14.6); x.moveTo(10.4, 14.2); x.quadraticCurveTo(8, 13.2, 7.4, 14.6); x.stroke();
+    },
+    leaf(x, p) { x.fillStyle = p; x.beginPath(); x.moveTo(11, 13.5); x.quadraticCurveTo(15, 16, 11, 19.6); x.quadraticCurveTo(7, 16, 11, 13.5); x.fill();
+      x.strokeStyle = '#10131e'; x.lineWidth = 0.5; x.beginPath(); x.moveTo(11, 14.4); x.lineTo(11, 19); x.stroke(); },
+    spider(x, p) { x.fillStyle = p; x.beginPath(); x.arc(11, 16.6, 2, 0, 7); x.fill(); x.beginPath(); x.arc(11, 14.6, 1.1, 0, 7); x.fill();
+      x.strokeStyle = p; x.lineWidth = 0.8; x.lineCap = 'round';
+      for (const dx of [-1, 1]) for (const [y0, y1] of [[15.6, 13.5], [16.4, 15.8], [17.2, 18.6]]) { x.beginPath(); x.moveTo(11 + dx * 1.4, 16.4); x.lineTo(11 + dx * 4.2, y1); x.stroke(); } },
+    ankh(x, p) { x.strokeStyle = p; x.lineWidth = 1.2; x.beginPath(); x.arc(11, 14.6, 1.6, 0, 7); x.stroke();
+      x.beginPath(); x.moveTo(11, 16); x.lineTo(11, 19.6); x.moveTo(8.6, 17.4); x.lineTo(13.4, 17.4); x.stroke(); },
+    rat(x, p) { x.fillStyle = p; x.beginPath(); x.arc(10.5, 16.8, 2.1, 0, 7); x.fill();
+      x.beginPath(); x.arc(8.9, 15.2, 1, 0, 7); x.arc(12.1, 15.2, 1, 0, 7); x.fill();
+      x.strokeStyle = p; x.lineWidth = 0.8; x.beginPath(); x.moveTo(12.4, 17.4); x.quadraticCurveTo(16, 18, 15, 15.5); x.stroke(); },
+    claw(x, p) { x.strokeStyle = p; x.lineWidth = 1.1; x.lineCap = 'round';
+      for (const dx of [-2.4, 0, 2.4]) { x.beginPath(); x.moveTo(11 + dx * 0.5, 14); x.quadraticCurveTo(11 + dx, 17, 11 + dx * 1.3, 19.4); x.stroke(); } },
+    skull(x, p) { x.fillStyle = p; x.beginPath(); x.arc(11, 16.4, 2.3, 0, 7); x.fill(); x.fillRect(9.6, 17.6, 2.8, 2);
+      x.fillStyle = '#10131e'; x.beginPath(); x.arc(10.1, 16.2, 0.7, 0, 7); x.arc(11.9, 16.2, 0.7, 0, 7); x.fill(); },
+    chaosstar(x, p) { x.strokeStyle = p; x.lineWidth = 0.9; for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4; x.beginPath(); x.moveTo(11, 16.6); x.lineTo(11 + Math.cos(a) * 3.4, 16.6 + Math.sin(a) * 3); x.stroke(); }
+      x.fillStyle = p; x.beginPath(); x.arc(11, 16.6, 1, 0, 7); x.fill(); },
+    horsemen(x, p) { x.fillStyle = p; x.beginPath(); x.arc(11, 16.4, 2.2, 0, 7); x.fill();
+      x.strokeStyle = '#10131e'; x.lineWidth = 0.8; x.beginPath(); x.moveTo(9.6, 15); x.lineTo(12.4, 18); x.moveTo(12.4, 15); x.lineTo(9.6, 18); x.stroke(); },
+    snowflake(x, p) { x.strokeStyle = p; x.lineWidth = 0.9; x.lineCap = 'round'; for (let i = 0; i < 6; i++) { const a = i * Math.PI / 3; const ex = 11 + Math.cos(a) * 3.4, ey = 16.6 + Math.sin(a) * 3.4; x.beginPath(); x.moveTo(11, 16.6); x.lineTo(ex, ey);
+      x.moveTo(11 + Math.cos(a) * 2.2, 16.6 + Math.sin(a) * 2.2); x.lineTo(11 + Math.cos(a) * 2.2 + Math.cos(a + 1) * 1, 16.6 + Math.sin(a) * 2.2 + Math.sin(a + 1) * 1); x.stroke(); } },
+  };
+  const SET_THEMES = {
+    miners_garb:          { pal: { a: '#c08a4a', b: '#6e4824', shine: 0.5 }, accent: '#e8b860', emblem: 'pickaxe' },
+    forest_stalker:       { pal: { a: '#7faa55', b: '#3c5e28', shine: 0.25 }, accent: '#9ad06a', emblem: 'leaf' },
+    drow_shadow:          { pal: { a: '#6a5a8a', b: '#241a38', shine: 0.4 }, accent: '#b08aff', emblem: 'spider' },
+    pharaohs_legacy:      { pal: { a: '#f0d060', b: '#9a6e1e', shine: 0.85 }, accent: '#ffe9a8', emblem: 'ankh' },
+    sewer_rat:            { pal: { a: '#8a8a5a', b: '#48482a', shine: 0.2 }, accent: '#b0b070', emblem: 'rat' },
+    dragonscale:          { pal: { a: '#5fae5a', b: '#264e26', shine: 0.55 }, accent: '#8ae060', emblem: 'claw' },
+    necromancers_regalia: { pal: { a: '#d8d2bc', b: '#7a7a5a', shine: 0.3 }, accent: '#9adba0', emblem: 'skull' },
+    chaos_weave:          { pal: { a: '#b06ce0', b: '#4a2a78', shine: 0.7 }, accent: '#e08aff', emblem: 'chaosstar' },
+    apocalypse_raiment:   { pal: { a: '#5a2a2a', b: '#1c1014', shine: 0.4 }, accent: '#e0402a', emblem: 'horsemen' },
+    frostlords_mantle:    { pal: { a: '#cfe8ff', b: '#5a82c0', shine: 0.85 }, accent: '#bfe2ff', emblem: 'snowflake' },
+  };
+
   function shapeFor(info) {
     const n = (info.name || '').toLowerCase();
     let t = info.type || info.item_type || 'other';
@@ -352,28 +395,48 @@
     }[t] || 'sundries';
   }
 
+  function hexToRgb(h) {
+    const m = /^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(h || '');
+    return m ? [parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16)] : [255, 255, 255];
+  }
+
   const cache = new Map();
   function draw(ctx, info, size) {
-    const isHigh = info.rarity === 'legendary' || info.rarity === 'epic' || info.set_id;
-    const cls = isHigh ? classFor(info) : null;
-    const mat = cls && (info.rarity === 'legendary' || info.set_id) ? CLASS_SIG[cls] : matFor(info.name, info.type || info.item_type);
+    const setTheme = info.set_key && SET_THEMES[info.set_key];
+    const isHigh = info.rarity === 'legendary' || info.rarity === 'epic' || info.set_id || info.set_key;
+    // set pieces take their set palette; otherwise legendary/epic take a
+    // class signature; everything else gets a material from its name
+    const cls = (isHigh && !setTheme) ? classFor(info) : null;
+    const mat = setTheme ? setTheme.pal
+      : (cls && (info.rarity === 'legendary' || info.set_id)) ? CLASS_SIG[cls]
+      : matFor(info.name, info.type || info.item_type);
     ctx.save();
     ctx.scale(size / 22, size / 22);
-    // rarity backplate + border
-    const rc = info.set_id ? '#4ad0c0' : RARITY[info.rarity || 'common'];
+    // rarity / set backplate + border
+    const rc = setTheme ? setTheme.accent : info.set_id ? '#4ad0c0' : RARITY[info.rarity || 'common'];
     ctx.fillStyle = 'rgba(12,14,22,.85)';
     ctx.beginPath(); ctx.roundRect ? ctx.roundRect(0.6, 0.6, 20.8, 20.8, 3) : ctx.rect(0.6, 0.6, 20.8, 20.8); ctx.fill();
+    // set pieces get a tinted inner wash so the suit reads at a glance
+    if (setTheme) {
+      const [r, g, bl] = hexToRgb(setTheme.accent);
+      const gr = ctx.createRadialGradient(11, 10, 2, 11, 11, 12);
+      gr.addColorStop(0, `rgba(${r},${g},${bl},.20)`); gr.addColorStop(1, `rgba(${r},${g},${bl},0)`);
+      ctx.fillStyle = gr; ctx.fillRect(1, 1, 20, 20);
+    }
     if (rc) {
-      ctx.strokeStyle = rc; ctx.lineWidth = 1.1;
+      ctx.strokeStyle = rc; ctx.lineWidth = setTheme ? 1.4 : 1.1;
       ctx.beginPath(); ctx.roundRect ? ctx.roundRect(0.9, 0.9, 20.2, 20.2, 2.6) : ctx.rect(0.9, 0.9, 20.2, 20.2); ctx.stroke();
-      if (info.rarity === 'legendary') {
+      if (info.rarity === 'legendary' && !setTheme) {
         const g = ctx.createRadialGradient(11, 11, 3, 11, 11, 11);
         g.addColorStop(0, 'rgba(255,168,56,.22)'); g.addColorStop(1, 'rgba(255,168,56,0)');
         ctx.fillStyle = g; ctx.fillRect(1, 1, 20, 20);
       }
     }
     (SHAPES[shapeFor(info)] || SHAPES.sundries)(ctx, mat);
-    if (cls && (info.rarity === 'legendary' || info.set_id)) {
+    // emblem: set sigil for set pieces, else class motif for legendary
+    if (setTheme) {
+      (SET_EMBLEMS[setTheme.emblem] || (() => {}))(ctx, setTheme.accent);
+    } else if (cls && (info.rarity === 'legendary' || info.set_id)) {
       (MOTIFS[CLASS_SIG[cls].motif] || MOTIFS.chevron)(ctx, CLASS_SIG[cls].a);
     }
     ctx.restore();
@@ -383,7 +446,7 @@
     classFor,
     // a cached Phaser texture for world/ground use
     textureKey(scene, info) {
-      const key = 'icon_' + [shapeFor(info), info.rarity || 'c', info.set_id ? 's' : '',
+      const key = 'icon_' + [shapeFor(info), info.rarity || 'c', info.set_key || (info.set_id ? 's' : ''),
         (info.name || '').toLowerCase().replace(/[^a-z]+/g, '').slice(0, 24)].join('_');
       if (!scene.textures.exists(key)) {
         const c = document.createElement('canvas');

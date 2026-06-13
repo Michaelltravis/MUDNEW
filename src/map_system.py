@@ -467,9 +467,26 @@ def _exp_thresholds(player):
     return floor, nxt
 
 
+def _build_set_by_vnum():
+    """vnum -> named-set key, so the client can theme each set piece uniquely."""
+    out = {}
+    try:
+        from sets import NAMED_SETS
+        for sid, cfg in NAMED_SETS.items():
+            for vnum in cfg.get('pieces', {}):
+                out[vnum] = sid
+    except Exception:
+        pass
+    return out
+
+
+_SET_BY_VNUM = _build_set_by_vnum()
+
+
 def item_info(item):
     """Compact item payload used for ground items, inventory and equipment:
     enough for the client to draw a real icon and rarity border."""
+    vnum = getattr(item, 'vnum', None)
     return {
         'name': getattr(item, 'name', 'something'),
         'short': getattr(item, 'short_desc', '') or getattr(item, 'name', 'something'),
@@ -477,6 +494,7 @@ def item_info(item):
         'slot': getattr(item, 'wear_slot', None),
         'rarity': getattr(item, 'rarity', 'common'),
         'set_id': getattr(item, 'set_id', None),
+        'set_key': _SET_BY_VNUM.get(vnum),
         'level': getattr(item, 'level', 0),
         'affects': getattr(item, 'affects', []) or [],
     }
