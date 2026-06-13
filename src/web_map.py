@@ -515,6 +515,68 @@ class WebMapServer:
                 except Exception as e:
                     logger.error(f"/almanac error: {e}")
                     await self._http_response(writer, 500, 'Error', 'almanac data unavailable')
+            elif path.startswith('/quests'):
+                # quest journal: active quests w/ progress + quests offered by
+                # NPCs in the current room (the contextual "board")
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                try:
+                    from quests import QuestManager, QUEST_DEFINITIONS
+                    from datetime import datetime
+                    active = []
+                    for q in getattr(player, 'active_quests', []) or []:
+                        objs = [{
+                            'description': o.description,
+                            'current': int(getattr(o, 'current', 0)),
+                            'required': int(getattr(o, 'required', 1)),
+                            'completed': bool(getattr(o, 'completed', False)),
+                        } for o in q.objectives]
+                        remaining = None
+                        if getattr(q, 'time_limit', None):
+                            elapsed = (datetime.now() - q.started_at).total_seconds() / 60
+                            remaining = max(0, int(q.time_limit - elapsed))
+                        active.append({
+                            'id': q.quest_id, 'name': q.name, 'description': q.description,
+                            'objectives': objs, 'rewards': q.rewards,
+                            'complete': q.is_complete(), 'remaining_min': remaining,
+                        })
+                    # available from NPCs present in the room
+                    givers = []
+                    room = getattr(player, 'room', None)
+                    seen = set()
+                    if room and hasattr(room, 'characters'):
+                        for ent in room.characters:
+                            vnum = getattr(ent, 'vnum', None)
+                            if vnum is None or hasattr(ent, 'account_name') or vnum in seen:
+                                continue
+                            seen.add(vnum)
+                            qids = QuestManager.get_available_quests(player, vnum)
+                            if not qids:
+                                continue
+                            offers = []
+                            for qid in qids:
+                                qd = QUEST_DEFINITIONS.get(qid, {})
+                                offers.append({
+                                    'id': qid, 'name': qd.get('name', qid),
+                                    'description': qd.get('description', ''),
+                                    'level_min': qd.get('level_min', 1),
+                                    'level_max': qd.get('level_max', 99),
+                                    'rewards': qd.get('rewards', {}),
+                                    'repeatable': bool(qd.get('repeatable', False)),
+                                    'daily': bool(qd.get('daily', False)),
+                                })
+                            givers.append({'name': getattr(ent, 'name', 'Someone'), 'offers': offers})
+                    data = {'active': active, 'givers': givers,
+                            'completed': len(getattr(player, 'quests_completed', []) or [])}
+                    await self._http_response(writer, 200, 'OK', json.dumps(data), content_type='application/json')
+                except Exception as e:
+                    logger.error(f"/quests error: {e}")
+                    await self._http_response(writer, 500, 'Error', 'quest data unavailable')
             elif path.startswith('/doctrine'):
                 # warrior doctrine + ability-evolution progression
                 parsed = urlparse(path)

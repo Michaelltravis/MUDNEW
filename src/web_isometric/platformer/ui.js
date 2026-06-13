@@ -683,13 +683,69 @@
     if (!topic) input.focus();
   }
 
+  function rewardText(r) {
+    if (!r) return '';
+    const parts = [];
+    if (r.exp) parts.push(`${r.exp} XP`);
+    if (r.gold) parts.push(`${r.gold} gold`);
+    if (r.items && r.items.length) parts.push(`${r.items.length} item${r.items.length === 1 ? '' : 's'}`);
+    if (r.respec) parts.push('respec');
+    return parts.join(' · ');
+  }
   async function openJournal() {
     openModal('modal-journal');
-    els.journalBody.textContent = 'Consulting your journal…';
-    const p = captureOutput(1400);
-    MH.sendCommand('quests', false);
-    const lines = await p;
-    els.journalBody.textContent = lines.length ? lines.join('\n') : 'The journal stays blank. (No active quests, or try `quest list`.)';
+    els.journalBody.innerHTML = '<div class="slot">Consulting your journal…</div>';
+    let d;
+    try {
+      d = await (await fetch(`/quests?player=${encodeURIComponent(MH.state.playerName)}`)).json();
+    } catch (_) {
+      // fall back to raw text if the endpoint isn't there
+      const p = captureOutput(1400); MH.sendCommand('quests', false);
+      const lines = await p;
+      els.journalBody.textContent = lines.length ? lines.join('\n') : 'The journal stays blank.';
+      return;
+    }
+    let html = '';
+    // available quests from NPCs in the room
+    if (d.givers && d.givers.length) {
+      html += `<div class="q-hd">✦ AVAILABLE HERE</div>`;
+      for (const g of d.givers) {
+        for (const o of g.offers) {
+          const tag = o.daily ? '<span class="q-tag daily">DAILY</span>' : o.repeatable ? '<span class="q-tag rep">REPEATABLE</span>' : '';
+          html += `<div class="q-card avail"><div class="q-row"><span class="q-nm">${o.name}</span>`
+            + `<span class="q-lv">Lv ${o.level_min}-${o.level_max}</span>${tag}</div>`
+            + `<div class="q-from">from ${g.name}</div>`
+            + `<div class="q-desc">${o.description}</div>`
+            + `<div class="q-foot"><span class="q-rew">🎁 ${rewardText(o.rewards) || 'glory'}</span>`
+            + `<button class="q-accept" data-q="${o.id}">ACCEPT</button></div></div>`;
+        }
+      }
+    }
+    // active quests
+    html += `<div class="q-hd">📜 ACTIVE QUESTS${d.active.length ? ` (${d.active.length})` : ''}</div>`;
+    if (!d.active.length) html += `<div class="alm-note" style="text-align:left">No active quests. Look for ✦ markers over NPCs, or check the Quest Board in Temple Square.</div>`;
+    for (const q of d.active) {
+      let objs = '';
+      for (const o of q.objectives) {
+        const pct = o.required ? Math.round((o.current / o.required) * 100) : (o.completed ? 100 : 0);
+        objs += `<div class="q-obj ${o.completed ? 'done' : ''}"><span>${o.completed ? '✓' : '○'} ${o.description}</span>`
+          + `<span class="q-cnt">${o.current}/${o.required}</span></div>`
+          + `<div class="alm-prog"><i style="width:${pct}%"></i></div>`;
+      }
+      const timer = q.remaining_min != null ? `<span class="q-timer">⏳ ${q.remaining_min}m</span>` : '';
+      html += `<div class="q-card ${q.complete ? 'complete' : ''}"><div class="q-row"><span class="q-nm">${q.name}</span>`
+        + (q.complete ? '<span class="q-tag done">READY TO TURN IN</span>' : '') + timer + `</div>`
+        + `<div class="q-desc">${q.description}</div>${objs}`
+        + `<div class="q-foot"><span class="q-rew">🎁 ${rewardText(q.rewards) || ''}</span>`
+        + `<button class="q-abandon" data-q="${q.id}">ABANDON</button></div></div>`;
+    }
+    els.journalBody.innerHTML = html;
+    els.journalBody.querySelectorAll('.q-accept').forEach(b => b.addEventListener('click', () => {
+      MH.sendCommand(`quest accept ${b.dataset.q}`, false); flash('Quest accepted'); setTimeout(openJournal, 700);
+    }));
+    els.journalBody.querySelectorAll('.q-abandon').forEach(b => b.addEventListener('click', () => {
+      MH.sendCommand(`quest abandon ${b.dataset.q}`, false); flash('Quest abandoned'); setTimeout(openJournal, 700);
+    }));
   }
 
   // ---- shop window: BUY/SELL tabs, icons, exact prices off /shop ----
