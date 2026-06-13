@@ -867,6 +867,36 @@
   #party-menu .pm-it:hover { background: rgba(232,193,104,0.14); color: #fff; }
   #party-menu .pm-sep { height: 1px; background: rgba(140,150,180,0.18); margin: 3px 4px; }
 
+  /* ---- legend: prestige / leaderboards ---- */
+  .lg-hd { font-size: 11px; color: #e8c168; letter-spacing: 2px; margin: 4px 0 8px; font-family: var(--ui-font); }
+  .lg-cur { padding: 10px 12px; border-radius: 10px; border: 1px solid #c08aff; background: rgba(192,138,255,0.08);
+    margin-bottom: 10px; font-family: var(--ui-font); }
+  .lg-cur .nm { font-size: 15px; color: #d8b8ff; font-weight: 700; font-family: Georgia, serif; }
+  .lg-opt { padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(140,150,180,0.2);
+    background: rgba(16,19,30,0.6); margin-bottom: 7px; font-family: var(--ui-font); }
+  .lg-opt .oh { display: flex; align-items: center; gap: 8px; }
+  .lg-opt .on { flex: 1; font-size: 14px; color: #e6e2d6; font-weight: 700; font-family: Georgia, serif; }
+  .lg-opt .oth { font-size: 9px; padding: 1px 8px; border-radius: 10px; background: rgba(90,138,232,0.2); color: #9dc0ff; letter-spacing: 1px; text-transform: uppercase; }
+  .lg-opt .od { font-size: 11px; color: #aab2c4; margin-top: 4px; line-height: 1.4; }
+  .lg-ab { font-size: 10px; color: #c8ccd8; margin-top: 4px; padding-left: 10px; }
+  .lg-ab b { color: #ffe9a8; }
+  .lg-pick { margin-top: 8px; font-size: 11px; padding: 6px 16px; border-radius: 6px; cursor: pointer;
+    border: 1px solid #c08aff; background: rgba(192,138,255,0.12); color: #d8b8ff; letter-spacing: 1px; }
+  .lg-pick:hover { background: rgba(192,138,255,0.28); }
+  .lg-pick.confirm { border-color: #e0563a; background: rgba(224,86,58,0.18); color: #ff9a8a; }
+  .lg-gate { font-size: 11px; color: #e0a07a; margin-bottom: 8px; font-family: var(--ui-font); }
+  .lg-cats { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 8px; }
+  .lg-cat { font-size: 10px; padding: 3px 12px; border-radius: 12px; cursor: pointer;
+    border: 1px solid rgba(140,150,180,0.25); color: #9aa0b4; letter-spacing: 1px; }
+  .lg-cat.on { color: #e8c168; border-color: #e8c168; background: rgba(232,193,104,0.08); }
+  .lg-rank { display: flex; align-items: center; gap: 10px; padding: 6px 11px; border-radius: 7px;
+    border: 1px solid rgba(140,150,180,0.12); background: rgba(16,19,30,0.55); margin-bottom: 3px; font-family: var(--ui-font); }
+  .lg-rank.me { border-color: #e8c168; background: rgba(232,193,104,0.08); }
+  .lg-rank .pos { width: 28px; text-align: center; font-size: 13px; }
+  .lg-rank .rn { flex: 1; font-size: 12px; color: #e6e2d6; }
+  .lg-rank .rv { font-size: 12px; color: #ffe9a8; }
+  .lg-myrank { font-size: 11px; color: #aab2c4; margin-top: 8px; text-align: center; font-family: var(--ui-font); }
+
   /* ---- stable: pets / companions / mounts ---- */
   .st-hd { font-size: 11px; color: #e8c168; letter-spacing: 2px; margin: 4px 0 8px; font-family: var(--ui-font); }
   .st-gate { font-size: 11px; color: #e0a07a; margin-bottom: 8px; font-family: var(--ui-font); }
@@ -1323,8 +1353,18 @@
     </div>
     <div class="modal-body" id="stable-body"></div>
   </div>
+  <div class="modal wide" id="modal-legend">
+    <div class="modal-head">
+      <span class="tabbar">
+        <span class="mtab active" data-ltab="prestige">PRESTIGE</span>
+        <span class="mtab" data-ltab="leaderboards">LEADERBOARDS</span>
+      </span>
+      <span class="x" data-close="modal-legend">✕</span>
+    </div>
+    <div class="modal-body" id="legend-body"></div>
+  </div>
 
-  <div id="help-chip">WASD walk · walk off an edge to travel · F/Space sword · T chat · I inv · J journal · K spells · M map · Y almanac · B mail/bank · C companions · Q flask · H help · ~ terminal · Enter command</div>
+  <div id="help-chip">WASD walk · walk off an edge to travel · F/Space sword · T chat · I inv · J journal · K spells · M map · Y almanac · B mail/bank · C companions · L legend · Q flask · H help · ~ terminal · Enter command</div>
 
   <div id="login-overlay">
     <div id="login-box">

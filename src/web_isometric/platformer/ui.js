@@ -1127,6 +1127,66 @@
     }
   }
 
+  // ---- legend: prestige + leaderboards ----
+  let lgTab = 'prestige', lgCat = 'level', lgData = null, lgConfirm = null;
+  async function openLegend(tab) {
+    lgTab = tab || 'prestige';
+    openModal('modal-legend');
+    document.querySelectorAll('#modal-legend .mtab').forEach(t => t.classList.toggle('active', t.dataset.ltab === lgTab));
+    els.legendBody.innerHTML = '<div class="slot">…</div>';
+    try {
+      lgData = await (await fetch(`/legend?player=${encodeURIComponent(MH.state.playerName)}`)).json();
+    } catch (_) { els.legendBody.innerHTML = '<div class="slot">legend unavailable</div>'; return; }
+    renderLegend();
+  }
+  function renderLegend() {
+    if (!lgData) return;
+    const b = els.legendBody;
+    if (lgTab === 'prestige') {
+      const p = lgData.prestige;
+      let html = '';
+      if (p.current) {
+        html += `<div class="lg-cur"><div class="nm">★ ${p.current_name}</div>`
+          + `<div class="od" style="color:#c8ccd8">Your ${p.base_class} has ascended. Prestige abilities are active and you can level to 60.</div></div>`;
+      } else if (!p.eligible) {
+        html += `<div class="lg-gate">Reach level 50 to choose a prestige specialization. You are level ${p.level}.</div>`;
+      } else {
+        html += `<div class="lg-hd">★ CHOOSE YOUR PRESTIGE PATH (level 50+)</div>`;
+      }
+      for (const o of p.options) {
+        const ab = o.abilities.map(a => `<div class="lg-ab"><b>${a.name}</b> — ${a.description}</div>`).join('');
+        const isCur = p.current === o.key;
+        html += `<div class="lg-opt"><div class="oh"><span class="on">${o.name}</span>`
+          + `<span class="oth">${o.theme}</span></div><div class="od">${o.description}</div>${ab}`
+          + (!p.current && p.eligible ? `<button class="lg-pick ${lgConfirm === o.key ? 'confirm' : ''}" data-spec="${o.key}" data-name="${o.name}">${lgConfirm === o.key ? 'CONFIRM — this is permanent' : 'SPECIALIZE'}</button>` : '')
+          + (isCur ? '<div class="lg-ab" style="color:#8ce8a0">✓ your current path</div>' : '')
+          + `</div>`;
+      }
+      b.innerHTML = html;
+      b.querySelectorAll('[data-spec]').forEach(btn => btn.addEventListener('click', () => {
+        const key = btn.dataset.spec, name = btn.dataset.name;
+        if (lgConfirm === key) { MH.sendCommand(`specialize ${name}`, false); MH.sendCommand(`specialize ${name}`, false); flash(`Ascending as ${name}…`); lgConfirm = null; setTimeout(() => openLegend('prestige'), 900); }
+        else { lgConfirm = key; renderLegend(); }
+      }));
+    } else if (lgTab === 'leaderboards') {
+      const cats = ['level', 'kills', 'gold', 'achievements', 'quests'];
+      const lbl = { level: '⚔️ Level', kills: '💀 Kills', gold: '💰 Wealth', achievements: '🏆 Achievements', quests: '📜 Quests' };
+      let html = '<div class="lg-cats">' + cats.map(c => `<span class="lg-cat ${c === lgCat ? 'on' : ''}" data-lc="${c}">${lbl[c]}</span>`).join('') + '</div>';
+      const bd = lgData.leaderboards[lgCat] || { top: [], my_rank: null, total: 0 };
+      const medal = i => i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : (i + 1) + '.';
+      const me = (MH.state.playerName || '').toLowerCase();
+      for (let i = 0; i < bd.top.length; i++) {
+        const r = bd.top[i];
+        html += `<div class="lg-rank ${r.name.toLowerCase() === me ? 'me' : ''}"><span class="pos">${medal(i)}</span>`
+          + `<span class="rn">${r.name}</span><span class="rv">${(r.value || 0).toLocaleString()}</span></div>`;
+      }
+      if (!bd.top.length) html += `<div class="alm-note">No ranked players yet.</div>`;
+      html += `<div class="lg-myrank">${bd.my_rank ? `Your rank: #${bd.my_rank} of ${bd.total}` : 'Unranked — play on to climb the boards!'}</div>`;
+      b.innerHTML = html;
+      b.querySelectorAll('.lg-cat').forEach(c => c.addEventListener('click', () => { lgCat = c.dataset.lc; renderLegend(); }));
+    }
+  }
+
   // ---- minimap + click-to-walk ----
   const MM_OFFSETS = { north: [0, -1, 0], south: [0, 1, 0], east: [1, 0, 0], west: [-1, 0, 0], up: [0, 0, 1], down: [0, 0, -1] };
   let mmLarge = false;
@@ -2129,6 +2189,7 @@
         targetHpGhost: $('target-hp-ghost'),
         partyBar: $('party-bar'), partyMenu: $('party-menu'),
         almanacBody: $('almanac-body'), servicesBody: $('services-body'), stableBody: $('stable-body'),
+        legendBody: $('legend-body'),
       });
 
       // login
@@ -2752,6 +2813,9 @@
       // stable tab switching
       document.querySelectorAll('#modal-stable .mtab').forEach(t =>
         t.addEventListener('click', () => openStable(t.dataset.ctab)));
+      // legend tab switching
+      document.querySelectorAll('#modal-legend .mtab').forEach(t =>
+        t.addEventListener('click', () => openLegend(t.dataset.ltab)));
 
       const bd = $('modal-backdrop');
       if (bd) bd.addEventListener('click', closeModals);
@@ -2793,6 +2857,7 @@
         else if (k === 'y') { openAlmanac('daily'); }
         else if (k === 'b') { openServices('mail'); }
         else if (k === 'c') { openStable('pets'); }
+        else if (k === 'l') { openLegend('prestige'); }
         if (['a', 'd', 'w', 's', 'arrowleft', 'arrowright', 'arrowup', 'arrowdown', ' '].includes(k)) {
           cancelWalk();
           // moving dismisses the room prose so it never blocks the view

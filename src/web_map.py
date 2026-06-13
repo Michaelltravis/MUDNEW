@@ -515,6 +515,69 @@ class WebMapServer:
                 except Exception as e:
                     logger.error(f"/almanac error: {e}")
                     await self._http_response(writer, 500, 'Error', 'almanac data unavailable')
+            elif path.startswith('/legend'):
+                # prestige specialization + server leaderboards
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                try:
+                    from prestige import PRESTIGE_CLASSES
+                    base = str(getattr(player, 'char_class', '') or '').lower()
+                    current = getattr(player, 'prestige_class', None)
+                    options = []
+                    for key, pc in PRESTIGE_CLASSES.items():
+                        if pc.get('base_class') != base:
+                            continue
+                        options.append({
+                            'key': key, 'name': pc.get('name', key), 'theme': pc.get('theme', ''),
+                            'description': pc.get('description', ''),
+                            'abilities': [{'name': a.get('name', k), 'description': a.get('description', ''),
+                                           'type': a.get('type', '')} for k, a in pc.get('abilities', {}).items()],
+                        })
+                    prestige = {
+                        'base_class': base, 'current': current,
+                        'current_name': PRESTIGE_CLASSES.get(current, {}).get('name') if current else None,
+                        'eligible': player.level >= 50 and not current,
+                        'level': player.level, 'options': options,
+                    }
+                    # leaderboards from the real player directory
+                    import glob
+                    pdir = self.config.PLAYER_DIR if hasattr(self, 'config') else None
+                    if not pdir:
+                        from config import Config
+                        pdir = Config().PLAYER_DIR
+                    rows = []
+                    for pf in glob.glob(os.path.join(pdir, '*.json')):
+                        try:
+                            with open(pf) as f:
+                                d = json.load(f)
+                            st = d.get('stats', {}) or {}
+                            rows.append({
+                                'name': d.get('name', os.path.basename(pf)[:-5]).capitalize(),
+                                'level': d.get('level', 1),
+                                'kills': st.get('kills', d.get('kills', 0)) or 0,
+                                'gold': (d.get('gold', 0) or 0) + (d.get('bank_gold', 0) or 0),
+                                'achievements': len(d.get('achievements', {}) or {}),
+                                'quests': len(d.get('quests_completed', []) or []),
+                            })
+                        except Exception:
+                            continue
+                    boards = {}
+                    me = (getattr(player, 'name', '') or '').capitalize()
+                    for cat in ('level', 'kills', 'gold', 'achievements', 'quests'):
+                        ranked = sorted(rows, key=lambda r: r.get(cat, 0), reverse=True)
+                        top = [{'name': r['name'], 'value': r.get(cat, 0)} for r in ranked[:10]]
+                        my_rank = next((i + 1 for i, r in enumerate(ranked) if r['name'] == me), None)
+                        boards[cat] = {'top': top, 'my_rank': my_rank, 'total': len(ranked)}
+                    data = {'prestige': prestige, 'leaderboards': boards}
+                    await self._http_response(writer, 200, 'OK', json.dumps(data), content_type='application/json')
+                except Exception as e:
+                    logger.error(f"/legend error: {e}")
+                    await self._http_response(writer, 500, 'Error', 'legend data unavailable')
             elif path.startswith('/stable'):
                 # pets, hired companions, owned + purchasable mounts
                 parsed = urlparse(path)
