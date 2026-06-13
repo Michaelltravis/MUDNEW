@@ -402,6 +402,39 @@
     flashTimer = setTimeout(() => els.flashLine.classList.remove('show'), 2200);
   }
 
+  // dramatic center-top banner for world events
+  let evtBannerTimer = null, lastEvt = 0;
+  function eventAlert(title, sub, kind) {
+    const el = document.getElementById('event-banner');
+    if (!el) return;
+    el.className = kind || '';
+    el.innerHTML = `<div class="eb-t">${title}</div>${sub ? `<div class="eb-s">${sub}</div>` : ''}`;
+    el.classList.add('show');
+    clearTimeout(evtBannerTimer);
+    evtBannerTimer = setTimeout(() => el.classList.remove('show'), 7000);
+  }
+  const EVENTS = [
+    [/A WORLD BOSS HAS APPEARED|WORLD BOSS/i, () => ['👑 WORLD BOSS', 'A mighty foe has manifested — gather allies!', 'boss', 180]],
+    [/INVASION!|forces of darkness march|undead are rising/i, () => ['⚔️ INVASION', 'Defenders needed — slay the invaders for glory!', '', 220]],
+    [/Wave (\d+)\/(\d+)/i, (m) => [`⚔️ Invasion — Wave ${m[1]}/${m[2]}`, 'Hold the line!', '', 100]],
+    [/TREASURE HUNT|treasure has been hidden|seek the/i, () => ['🗺 TREASURE HUNT', 'A prize awaits the first to solve the clue!', 'good', 260]],
+    [/DOUBLE XP|double experience/i, () => ['✦ DOUBLE XP', 'Bonus experience is active — go hunt!', 'good', 330]],
+  ];
+  function detectWorldEvent(text) {
+    if (!text || Date.now() - lastEvt < 1200) return;
+    const clean = text.replace(/\x1b\[[0-9;]*m/g, '');
+    for (const [re, fn] of EVENTS) {
+      const m = clean.match(re);
+      if (m) {
+        lastEvt = Date.now();
+        const [t, s, kind, freq] = fn(m);
+        eventAlert(t, s, kind);
+        try { tone({ f: freq || 200, f2: (freq || 200) * 1.5, type: 'sawtooth', dur: 0.3, vol: 0.06 }); } catch (_) {}
+        return;
+      }
+    }
+  }
+
   // rich corner toast for achievements / daily / title unlocks
   function toast(title, body, kind) {
     let host = document.getElementById('toast-host');
@@ -2175,6 +2208,7 @@
           const m = text.replace(/\x1b\[[0-9;]*m/g, '').match(/New title unlocked: '([^']+)'/);
           if (m) toast('🏷 Title Unlocked', m[1], 'ach');
         }
+        detectWorldEvent(text);
       });
       // small login nudge: if today's daily reward is unclaimed, invite a peek
       MH.bus.on('login.success', () => {
