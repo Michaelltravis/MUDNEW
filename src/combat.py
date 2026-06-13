@@ -1530,6 +1530,18 @@ class CombatHandler:
             except Exception:
                 pass
 
+            # New Game+ reward scaling: enemies already hit harder per cycle/
+            # nightmare (see _ng_modifier), so the payout scales to match —
+            # otherwise NG+ is strictly worse. Applies to XP and looted gold.
+            try:
+                ng = cls._ng_modifier(exp_recipient)
+                if ng > 1.0:
+                    exp_base = int(exp_base * ng)
+                    if hasattr(victim, 'gold') and getattr(victim, 'gold', 0) > 0:
+                        victim.gold = int(victim.gold * ng)
+            except Exception:
+                pass
+
             # --- GROUP XP SHARING ---
             group = getattr(exp_recipient, 'group', None)
             if group and len(group.members) > 1:
