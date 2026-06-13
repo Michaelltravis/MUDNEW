@@ -427,6 +427,94 @@ class WebMapServer:
                 except Exception as e:
                     logger.error(f"/talents error: {e}")
                     await self._http_response(writer, 500, 'Error', 'talent data unavailable')
+            elif path.startswith('/almanac'):
+                # progression hub: daily streak, achievements, titles, collections
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                try:
+                    from datetime import datetime, date
+                    from achievements import ACHIEVEMENTS
+                    from daily import DAILY_REWARDS, MILESTONE_REWARDS
+                    # ---- daily ----
+                    daily = dict(getattr(player, 'daily', {}) or {})
+                    streak = int(daily.get('streak', 0) or 0)
+                    total_days = int(daily.get('total_days', 0) or 0)
+                    claimed_today = False
+                    lc = daily.get('last_claim')
+                    if lc:
+                        try:
+                            claimed_today = datetime.fromisoformat(lc).date() == date.today()
+                        except Exception:
+                            pass
+                    streak_day = ((max(1, streak) - 1) % 7) + 1
+                    next_day = (streak_day % 7) + 1
+                    ms_claimed = daily.get('milestones_claimed', []) or []
+                    next_ms = None
+                    for md in sorted(MILESTONE_REWARDS):
+                        if md not in ms_claimed and total_days < md:
+                            next_ms = {'day': md, 'name': MILESTONE_REWARDS[md].get('item_name', '')}
+                            break
+                    # ---- achievements ----
+                    unlocked = dict(getattr(player, 'achievements', {}) or {})
+                    prog = dict(getattr(player, 'achievement_progress', {}) or {})
+                    ach_list = []
+                    for aid, a in ACHIEVEMENTS.items():
+                        is_un = aid in unlocked
+                        if a.hidden and not is_un:
+                            continue
+                        cur = int(prog.get(a.progress_key, 0)) if a.progress_key else 0
+                        ach_list.append({
+                            'id': aid, 'name': a.name, 'description': a.description,
+                            'category': a.category, 'icon': a.icon, 'points': a.points,
+                            'target': a.target, 'progress': min(cur, a.target) if a.target else 0,
+                            'unlocked': is_un, 'reward_title': a.reward_title,
+                            'reward_gold': a.reward_gold, 'reward_xp': a.reward_xp,
+                        })
+                    points = sum(int(x.get('points', 0)) for x in unlocked.values())
+                    max_points = sum(a.points for a in ACHIEVEMENTS.values())
+                    # ---- titles ----
+                    titles = list(getattr(player, 'available_titles', []) or [])
+                    # ---- collections ----
+                    colls = []
+                    try:
+                        from collection_system import COLLECTION_SETS
+                        cprog = dict(getattr(player, 'collection_progress', {}) or {})
+                        for cname, cset in COLLECTION_SETS.items():
+                            have = cprog.get(cname, []) or []
+                            items = cset.get('items', [])
+                            colls.append({
+                                'name': cname, 'description': cset.get('description', ''),
+                                'have': len(have), 'total': len(items),
+                                'reward': cset.get('reward', {}),
+                            })
+                    except Exception:
+                        pass
+                    data = {
+                        'daily': {
+                            'streak': streak, 'total_days': total_days,
+                            'claimed_today': claimed_today,
+                            'streak_day': streak_day,
+                            'today': DAILY_REWARDS.get(streak_day, DAILY_REWARDS[1]),
+                            'next': DAILY_REWARDS.get(next_day, DAILY_REWARDS[1]),
+                            'next_milestone': next_ms,
+                        },
+                        'achievements': {
+                            'points': points, 'max_points': max_points,
+                            'unlocked': len(unlocked), 'total': len(ACHIEVEMENTS),
+                            'list': ach_list,
+                        },
+                        'titles': {'current': getattr(player, 'title', 'the Adventurer'), 'available': titles},
+                        'collections': colls,
+                    }
+                    await self._http_response(writer, 200, 'OK', json.dumps(data), content_type='application/json')
+                except Exception as e:
+                    logger.error(f"/almanac error: {e}")
+                    await self._http_response(writer, 500, 'Error', 'almanac data unavailable')
             elif path.startswith('/doctrine'):
                 # warrior doctrine + ability-evolution progression
                 parsed = urlparse(path)

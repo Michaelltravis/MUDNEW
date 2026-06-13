@@ -402,6 +402,18 @@
     flashTimer = setTimeout(() => els.flashLine.classList.remove('show'), 2200);
   }
 
+  // rich corner toast for achievements / daily / title unlocks
+  function toast(title, body, kind) {
+    let host = document.getElementById('toast-host');
+    if (!host) { host = document.createElement('div'); host.id = 'toast-host'; document.body.appendChild(host); }
+    const t = document.createElement('div');
+    t.className = 'mh-toast ' + (kind || '');
+    t.innerHTML = `<div class="tt-t">${title}</div><div class="tt-b">${body}</div>`;
+    host.appendChild(t);
+    requestAnimationFrame(() => t.classList.add('in'));
+    setTimeout(() => { t.classList.remove('in'); setTimeout(() => t.remove(), 400); }, 5200);
+  }
+
   // ---- chat: tabbed panel + ambient overlay ----
   const chatStore = { all: [], party: [], say: [], channel: [], tell: [] };
   const unread = { party: 0, say: 0, channel: 0, tell: 0 };
@@ -774,6 +786,99 @@
         await trainingRender();
       });
     });
+  }
+
+  // ---- almanac: daily rewards, achievements, titles, collections ----
+  let almTab = 'daily', almCat = 'all', almData = null;
+  async function openAlmanac(tab) {
+    almTab = tab || 'daily';
+    openModal('modal-almanac');
+    document.querySelectorAll('#modal-almanac .mtab').forEach(t => t.classList.toggle('active', t.dataset.atab === almTab));
+    els.almanacBody.innerHTML = '<div class="slot">consulting the almanac…</div>';
+    try {
+      almData = await (await fetch(`/almanac?player=${encodeURIComponent(MH.state.playerName)}`)).json();
+    } catch (_) { els.almanacBody.innerHTML = '<div class="slot">almanac unavailable</div>'; return; }
+    renderAlmanac();
+  }
+  function renderAlmanac() {
+    if (!almData) return;
+    const b = els.almanacBody;
+    if (almTab === 'daily') {
+      const d = almData.daily;
+      let days = '<div class="alm-streak">';
+      for (let i = 1; i <= 7; i++) {
+        const done = i < d.streak_day || (i === d.streak_day && d.claimed_today);
+        const today = i === d.streak_day;
+        const r = (i === 7) ? '🎁' : '';
+        days += `<div class="alm-day ${done ? 'done' : ''} ${today ? 'today' : ''}">`
+          + `${done ? '<span class="dchk">✓</span>' : ''}`
+          + `<div class="dn">DAY ${i}</div><div class="dr">${r || ''}</div></div>`;
+      }
+      days += '</div>';
+      const claim = d.claimed_today
+        ? `<div class="alm-claim done">✓ Today's reward claimed — come back tomorrow</div>`
+        : `<div class="alm-claim" id="alm-claim">🌟 Claim daily reward: +${d.today.gold} gold · +${d.today.xp} XP</div>`;
+      const ms = d.next_milestone ? `<div class="alm-note">🎁 Milestone at day ${d.next_milestone.day}: ${d.next_milestone.name}</div>` : '';
+      b.innerHTML = `<div class="alm-daily">`
+        + `<div class="alm-hd">🔥 Login streak: ${d.streak} day${d.streak === 1 ? '' : 's'} · ${d.total_days} total visits</div>`
+        + days + claim
+        + `<div class="alm-note">Tomorrow: +${d.next.gold} gold · +${d.next.xp} XP — keep the streak alive!</div>`
+        + ms + `</div>`;
+      const cb = document.getElementById('alm-claim');
+      if (cb) cb.addEventListener('click', async () => {
+        cb.textContent = 'claiming…';
+        MH.sendCommand('daily', false);
+        setTimeout(() => openAlmanac('daily'), 700);
+      });
+    } else if (almTab === 'achievements') {
+      const a = almData.achievements;
+      const cats = ['all', ...Array.from(new Set(a.list.map(x => x.category)))];
+      let html = `<div class="alm-hd">★ ${a.points}/${a.max_points} points · ${a.unlocked}/${a.total} unlocked</div>`;
+      html += '<div class="alm-cats">' + cats.map(cn =>
+        `<span class="alm-cat ${cn === almCat ? 'on' : ''}" data-cat="${cn}">${cn.toUpperCase()}</span>`).join('') + '</div>';
+      const list = a.list.filter(x => almCat === 'all' || x.category === almCat)
+        .sort((x, y) => (y.unlocked - x.unlocked) || (y.points - x.points));
+      html += '<div class="alm-grid">';
+      for (const x of list) {
+        const bar = x.target ? `<div class="alm-prog"><i style="width:${Math.round((x.progress / x.target) * 100)}%"></i></div>` : '';
+        const tl = x.reward_title ? `<div class="at">🏷 ${x.reward_title}</div>` : '';
+        html += `<div class="alm-ach ${x.unlocked ? 'done' : 'locked'}">`
+          + `<div class="ai">${x.icon}</div><div class="am">`
+          + `<div class="an">${x.name}<span class="pts">+${x.points}</span></div>`
+          + `<div class="ad">${x.description}</div>`
+          + (x.unlocked ? '' : (x.target ? `<div class="ad" style="color:#7a8094">${x.progress}/${x.target}</div>${bar}` : ''))
+          + tl + `</div></div>`;
+      }
+      html += '</div>';
+      b.innerHTML = html;
+      b.querySelectorAll('.alm-cat').forEach(c => c.addEventListener('click', () => { almCat = c.dataset.cat; renderAlmanac(); }));
+    } else if (almTab === 'titles') {
+      const t = almData.titles;
+      let html = `<div class="alm-hd">🏷 Choose your displayed title</div><div class="alm-titles">`;
+      html += `<div class="alm-title ${t.current === 'the Adventurer' ? 'current' : ''}" data-title="none">the Adventurer <small style="color:#8a90a4">(default)</small></div>`;
+      if (!t.available.length) html += `<div class="alm-note" style="margin-top:6px">Earn achievements to unlock titles.</div>`;
+      for (const ti of t.available) html += `<div class="alm-title ${ti === t.current ? 'current' : ''}" data-title="${ti}">${ti}</div>`;
+      html += '</div>';
+      b.innerHTML = html;
+      b.querySelectorAll('.alm-title').forEach(el => el.addEventListener('click', () => {
+        MH.sendCommand(`title ${el.dataset.title}`, false);
+        flash(`Title set: ${el.dataset.title === 'none' ? 'the Adventurer' : el.dataset.title}`);
+        setTimeout(() => openAlmanac('titles'), 600);
+      }));
+    } else if (almTab === 'collections') {
+      const cs = almData.collections || [];
+      let html = `<div class="alm-hd">📚 Collections</div>`;
+      if (!cs.length) html += `<div class="alm-note">No collections tracked yet.</div>`;
+      for (const c of cs) {
+        const complete = c.have >= c.total && c.total > 0;
+        const rw = c.reward || {};
+        const rwt = [rw.gold ? `${rw.gold}g` : '', rw.exp ? `${rw.exp}xp` : '', rw.title ? `“${rw.title}”` : ''].filter(Boolean).join(' · ');
+        html += `<div class="alm-coll ${complete ? 'complete' : ''}"><div class="cn"><b>${c.name}</b>`
+          + `<small>${c.description}${rwt ? ' — reward: ' + rwt : ''}</small></div>`
+          + `<div class="cc">${complete ? '✓ complete' : c.have + '/' + c.total}</div></div>`;
+      }
+      b.innerHTML = html;
+    }
   }
 
   // ---- minimap + click-to-walk ----
@@ -1777,6 +1882,7 @@
         pathChip: $('path-chip'),
         targetHpGhost: $('target-hp-ghost'),
         partyBar: $('party-bar'), partyMenu: $('party-menu'),
+        almanacBody: $('almanac-body'),
       });
 
       // login
@@ -1839,6 +1945,33 @@
       });
       MH.bus.on('terminal.echo', cmd => appendTerminal(`> ${cmd}`, 'cmd'));
       els.drawerTab.addEventListener('click', () => els.drawer.classList.toggle('open'));
+
+      // achievement / daily / title toasts pulled from the raw feed
+      let lastAch = 0;
+      MH.bus.on('terminal.output', ({ text }) => {
+        if (!text) return;
+        if (/ACHIEVEMENT UNLOCKED/.test(text) && Date.now() - lastAch > 1500) {
+          lastAch = Date.now();
+          const lines = text.split('\n').map(l => l.replace(/\x1b\[[0-9;]*m/g, '').trim()).filter(Boolean);
+          const i = lines.findIndex(l => /ACHIEVEMENT UNLOCKED/.test(l));
+          const name = i >= 0 && lines[i + 1] ? lines[i + 1] : 'New achievement';
+          toast(`🏆 Achievement Unlocked`, name, 'ach');
+          try { tone({ f: 660, f2: 990, type: 'sine', dur: 0.22, vol: 0.07 }); } catch (_) {}
+        }
+        if (/New title unlocked:/.test(text)) {
+          const m = text.replace(/\x1b\[[0-9;]*m/g, '').match(/New title unlocked: '([^']+)'/);
+          if (m) toast('🏷 Title Unlocked', m[1], 'ach');
+        }
+      });
+      // small login nudge: if today's daily reward is unclaimed, invite a peek
+      MH.bus.on('login.success', () => {
+        setTimeout(async () => {
+          try {
+            const a = await (await fetch(`/almanac?player=${encodeURIComponent(MH.state.playerName)}`)).json();
+            if (a.daily && !a.daily.claimed_today) toast('🌟 Daily reward ready', 'Press Y to claim · streak ' + a.daily.streak, 'daily');
+          } catch (_) {}
+        }, 2500);
+      });
 
       // chat panel
       document.querySelectorAll('.chat-tab').forEach(tab => {
@@ -2361,6 +2494,9 @@
       // spellbook tab switching
       document.querySelectorAll('.mtab').forEach(t =>
         t.addEventListener('click', () => showSpellsTab(t.dataset.mtab)));
+      // almanac tab switching
+      document.querySelectorAll('#modal-almanac .mtab').forEach(t =>
+        t.addEventListener('click', () => openAlmanac(t.dataset.atab)));
 
       const bd = $('modal-backdrop');
       if (bd) bd.addEventListener('click', closeModals);
@@ -2399,6 +2535,7 @@
         else if (k === 'n') { renderSpells(); openModal('modal-spells'); showSpellsTab('talents'); }
         else if (k === 't') { e.preventDefault(); toggleChatPanel(); }
         else if (k === 'm') { wmToggle(); }
+        else if (k === 'y') { openAlmanac('daily'); }
         if (['a', 'd', 'w', 's', 'arrowleft', 'arrowright', 'arrowup', 'arrowdown', ' '].includes(k)) {
           cancelWalk();
           // moving dismisses the room prose so it never blocks the view
