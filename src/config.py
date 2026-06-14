@@ -304,7 +304,7 @@ class Config:
                       'shield_of_faith', 'divine_shield', 'barkskin', 'righteous_fury',
                       'divine_protection', 'aegis', 'holy_aura', 'protection_from_evil',
                       # Level 31-60 spells
-                      'prayer_of_mending', 'spirit_link', 'mass_dispel', 'lightwell',
+                      'travelling_grace', 'shared_burden', 'mass_dispel', 'font_of_the_vigil',
                       'serenity', 'divine_intervention'],
             # Clerics build Divine Favor through healing/turning undead, spend on holy_smite
             # Level 31-60: prayer_of_mending (32), spirit_link (38), mass_dispel (44),

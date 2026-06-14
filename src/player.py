@@ -1298,6 +1298,9 @@ class Player(Character):
                 'mirror_image': 'tower_echoes', 'spell_reflection': 'mirrorward',
                 'time_warp': 'quicken', 'icy_veins': 'rimeheart',
                 'combustion_master': 'kindling_focus', 'arcane_explosion': 'resonance_burst',
+                # Cleric (Keeper of the Holy Order)
+                'prayer_of_mending': 'travelling_grace', 'spirit_link': 'shared_burden',
+                'lightwell': 'font_of_the_vigil',
             }
             for old_key, new_key in LEGACY_ABILITY_MAP.items():
                 if old_key in player.spells:

@@ -1293,6 +1293,26 @@ SPELLS = {
         'message_self': 'You bend the fabric of time, hastening your allies!',
         'message_room': '$n warps time itself, hastening everyone nearby!',
     },
+    # ── Keeper of the Holy Order reinvention (the Vigil). Reuse the proven
+    #    special hooks under Misthollow names. ──
+    'travelling_grace': {  # was prayer_of_mending
+        'name': 'Travelling Grace', 'mana_cost': 60, 'heal_dice': '4d8+10', 'heal_per_level': 2,
+        'target': 'defensive', 'level_required': 32, 'class_required': 'cleric', 'cooldown': 15,
+        'special': 'prayer_of_mending', 'bounces': 3,
+        'message_self': "A grace settles on $N, ready to leap to the next in need.",
+    },
+    'shared_burden': {  # was spirit_link
+        'name': 'Shared Burden', 'mana_cost': 100, 'target': 'group', 'duration_ticks': 15,
+        'level_required': 38, 'class_required': 'cleric', 'cooldown': 120,
+        'special': 'spirit_link', 'affects': [{'type': 'spirit_link', 'value': 1}],
+        'message_self': 'You bind your circle to share every wound between them.',
+    },
+    'font_of_the_vigil': {  # was lightwell
+        'name': 'Font of the Vigil', 'mana_cost': 100, 'target': 'room', 'duration_ticks': 30,
+        'level_required': 50, 'class_required': 'cleric', 'cooldown': 180,
+        'special': 'lightwell', 'heal_per_tick': '2d8+5',
+        'message_self': 'You raise a font of the Vigil; its light mends all who tarry near.',
+    },
     'arcane_explosion': {
         'name': 'Arcane Explosion',
         'mana_cost': 80,

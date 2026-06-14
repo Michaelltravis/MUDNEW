@@ -203,10 +203,10 @@
   // ============================ CLERIC ============================
   // (divine_intervention/resurrect/word_of_recall/flamestrike/holy_fire
   //  keep their flagships)
-  add(/cure.?light|cure.?serious|cure.?critical|prayer.?of.?mending|\bheal\b/i, 'self', (s, c) => {
+  add(/cure.?light|cure.?serious|cure.?critical|prayer.?of.?mending|travelling.?grace|\bheal\b/i, 'self', (s, c) => {
     MH.fx.risers(s, c.x, c.y, P().holy, 8, '✚'); MH.fx.glowFlash(s, c.x, c.y - 6, P().holy.a, 0.8); MH.fx.ringShock(s, c.x, c.y - 6, P().holy.b, 22, 420); sound('holy', 1);
   });
-  add(/group.?heal|spirit.?link|serenity|lightwell/i, 'self', (s, c) => {
+  add(/group.?heal|spirit.?link|shared.?burden|serenity|lightwell|font.?of.?the.?vigil/i, 'self', (s, c) => {
     foes(s, 6); MH.fx.ringShock(s, c.x, c.y - 6, P().holy.a, 60, 560);
     MH.fx.risers(s, c.x, c.y, P().holy, 12, '✚'); sound('holy', 2);
   });
