@@ -42,12 +42,16 @@
         if (MH.contextMenu) MH.contextMenu('self', null, pointer.event.clientX, pointer.event.clientY);
       });
 
-      // cinematic grade (WebGL only): falls back gracefully on canvas
+      // cinematic grade + bloom (WebGL only): falls back gracefully on canvas
       try {
         if (this.cameras.main.postFX) {
-          this.cameras.main.postFX.addVignette(0.5, 0.5, 1.0, 0.32);
+          this.cameras.main.postFX.addVignette(0.5, 0.5, 1.0, 0.30);
+          // bloom makes bright FX (fire/holy/lightning) and light sources glow
+          this.bloomFx = this.cameras.main.postFX.addBloom(0xffffff, 1, 1, 1.05, 0.85, 6);
           const cm = this.cameras.main.postFX.addColorMatrix();
-          cm.saturate(0.14, true);
+          cm.saturate(0.18, true);
+          cm.contrast(0.06, true);
+          this.gradeFx = cm;
         }
       } catch (_) { /* older GPU / canvas renderer */ }
 
