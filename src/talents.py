@@ -96,7 +96,7 @@ WARRIOR_EXECUTIONER = {
 # =============================================================================
 
 MAGE_FIRE = {
-    'name': 'Fire',
+    'name': 'Emberweave',
     'description': 'Burn enemies with devastating fire magic.',
     'icon': '🔥',
     'talents': {
@@ -107,7 +107,7 @@ MAGE_FIRE = {
             effects={'damage_mod': {'fire': 0.03}}
         ),
         'ignite': Talent(
-            id='ignite', name='Ignite',
+            id='ignite', name='Searing Mark',
             description='Fire spells leave a DoT for 3/4/5% of damage per tick.',
             max_rank=3, tier=1,
             effects={'proc': {'chance': 100, 'effect': 'ignite_dot', 'on': 'fire_spell'}}
@@ -125,7 +125,7 @@ MAGE_FIRE = {
             effects={'damage_mod': {'fire_dot': 0.02}}
         ),
         'pyroblast': Talent(
-            id='pyroblast', name='Pyroblast',
+            id='pyroblast', name='Cinderlance',
             description='Active: Massive fire nuke, int*6 damage. Costs 3 charges. 20s CD.',
             max_rank=1, tier=3,
             effects={'skill_unlock': 'pyroblast'}
@@ -137,19 +137,19 @@ MAGE_FIRE = {
             effects={'stat_bonus': {'fire_crit': 0.01}}
         ),
         'combustion': Talent(
-            id='combustion', name='Combustion',
+            id='combustion', name='Kindling Focus',
             description='Active: All fire DoTs tick instantly + 2x. Costs 4 charges. 45s CD.',
             max_rank=1, tier=4,
             effects={'skill_unlock': 'combustion'}
         ),
         'living_bomb': Talent(
-            id='living_bomb', name='Living Bomb',
+            id='living_bomb', name='Emberseed',
             description='Fire DoTs have 5% chance per rank to spread to nearby enemy.',
             max_rank=5, tier=4,
             effects={'proc': {'chance': 5, 'effect': 'spread_dot'}}
         ),
         'phoenix_flames': Talent(
-            id='phoenix_flames', name='Phoenix Flames',
+            id='phoenix_flames', name='Phoenix Mote',
             description='Active: AoE fire, int*8 to all enemies. Leaves HoT on mage. Costs 5 charges. 90s CD.',
             max_rank=1, tier=5,
             effects={'skill_unlock': 'phoenix_flames'}
@@ -158,12 +158,12 @@ MAGE_FIRE = {
 }
 
 MAGE_FROST = {
-    'name': 'Frost',
+    'name': 'Rimeward',
     'description': 'Control and shatter foes with frost magic.',
     'icon': '❄️',
     'talents': {
         'frostbite': Talent(
-            id='frostbite', name='Frostbite',
+            id='frostbite', name='Chillbite',
             description='Frost spells 10/20/30% chance to root for 1 round.',
             max_rank=3, tier=1,
             effects={'proc': {'chance': 10, 'effect': 'root', 'duration': 1}}
@@ -181,7 +181,7 @@ MAGE_FROST = {
             effects={'passive': 'frozen_armor'}
         ),
         'arctic_winds': Talent(
-            id='arctic_winds', name='Arctic Winds',
+            id='arctic_winds', name='Crypt Winds',
             description='Frost slow duration +5% per rank.',
             max_rank=5, tier=2,
             effects={'stat_bonus': {'frost_slow_duration': 0.05}}
@@ -193,13 +193,13 @@ MAGE_FROST = {
             effects={'passive': 'shatter'}
         ),
         'brain_freeze': Talent(
-            id='brain_freeze', name='Brain Freeze',
+            id='brain_freeze', name='Rimebrand',
             description='Frost spells have 3% per rank chance to make next spell free.',
             max_rank=5, tier=3,
             effects={'proc': {'chance': 3, 'effect': 'free_spell'}}
         ),
         'ice_lance': Talent(
-            id='ice_lance', name='Ice Lance',
+            id='ice_lance', name='Rimelance',
             description='Active: Instant frost damage, 2x vs frozen targets. Costs 2 charges. 10s CD.',
             max_rank=1, tier=4,
             effects={'skill_unlock': 'ice_lance'}
@@ -211,7 +211,7 @@ MAGE_FROST = {
             effects={'stat_bonus': {'frost_crit_damage': 0.03}}
         ),
         'deep_freeze': Talent(
-            id='deep_freeze', name='Deep Freeze',
+            id='deep_freeze', name='Graveic Frost',
             description='Active: Stun target 3 rounds + massive frost damage. Costs 5 charges. 120s CD.',
             max_rank=1, tier=5,
             effects={'skill_unlock': 'deep_freeze'}
@@ -220,7 +220,7 @@ MAGE_FROST = {
 }
 
 MAGE_ARCANE = {
-    'name': 'Arcane',
+    'name': 'Mistcalling',
     'description': 'Master arcane charges for devastating efficiency.',
     'icon': '✨',
     'talents': {
@@ -237,7 +237,7 @@ MAGE_ARCANE = {
             effects={'proc': {'chance': 5, 'effect': 'free_cast'}}
         ),
         'arcane_echo': Talent(
-            id='arcane_echo', name='Arcane Echo',
+            id='arcane_echo', name='Mist Echo',
             description='Arcane Barrage has 25% chance to refund 2 charges.',
             max_rank=1, tier=2,
             effects={'passive': 'arcane_echo'}
@@ -249,7 +249,7 @@ MAGE_ARCANE = {
             effects={'passive': 'arcane_stability'}
         ),
         'presence_of_mind': Talent(
-            id='presence_of_mind', name='Presence of Mind',
+            id='presence_of_mind', name='Clear Mind',
             description='Active: Next spell is instant cast + costs no mana. 90s CD.',
             max_rank=1, tier=3,
             effects={'skill_unlock': 'presence_of_mind'}
@@ -261,13 +261,13 @@ MAGE_ARCANE = {
             effects={'passive': 'arcane_potency'}
         ),
         'arcane_power': Talent(
-            id='arcane_power', name='Arcane Power',
+            id='arcane_power', name='Tower Surge',
             description='Active: +30% spell damage for 15s but charges generate 2x faster. Costs 3 charges. 120s CD.',
             max_rank=1, tier=4,
             effects={'skill_unlock': 'arcane_power'}
         ),
         'arcane_brilliance': Talent(
-            id='arcane_brilliance', name='Arcane Brilliance',
+            id='arcane_brilliance', name='Tower Brilliance',
             description='Max mana +2% per rank.',
             max_rank=5, tier=4,
             effects={'stat_bonus': {'max_mana_pct': 0.02}}
@@ -320,7 +320,7 @@ _THIEF_ASSASSINATION_LEGACY = {
             effects={'skill_unlock': 'ambush'}
         ),
         'cold_blood': Talent(
-            id='cold_blood', name='Cold Blood',
+            id='cold_blood', name='Cold Focus',
             description='Unlocks Cold Blood: Next attack is guaranteed crit.',
             max_rank=1, tier=2, requires=['malice'],
             effects={'skill_unlock': 'cold_blood'}
@@ -472,7 +472,7 @@ _THIEF_SUBTLETY_LEGACY = {
             effects={'skill_unlock': 'preparation'}
         ),
         'shadowstep': Talent(
-            id='shadowstep', name='Shadowstep',
+            id='shadowstep', name='Veilstep',
             description='Unlocks: Teleport behind target.',
             max_rank=1, tier=3, requires=['preparation'],
             effects={'skill_unlock': 'shadowstep'}
@@ -484,7 +484,7 @@ _THIEF_SUBTLETY_LEGACY = {
             effects={'skill_unlock': 'slip_away'}
         ),
         'shadow_dance': Talent(
-            id='shadow_dance', name='Shadow Dance',
+            id='shadow_dance', name='Veildance',
             description='Unlocks: Use stealth abilities while in combat.',
             max_rank=1, tier=5, requires=['shadowstep'],
             effects={'skill_unlock': 'shadow_dance'}
@@ -552,13 +552,13 @@ _CLERIC_HOLY_LEGACY = {
             effects={'passive': 'renew'}
         ),
         'guardian_spirit': Talent(
-            id='guardian_spirit', name='Guardian Spirit',
+            id='guardian_spirit', name='Wardspirit',
             description='Unlocks: Prevent target death, heal to 50%.',
             max_rank=1, tier=4, requires=['inspiration'],
             effects={'skill_unlock': 'guardian_spirit'}
         ),
         'divine_hymn': Talent(
-            id='divine_hymn', name='Divine Hymn',
+            id='divine_hymn', name='Hymn of the Vigil',
             description='Unlocks: Heal all allies in room.',
             max_rank=1, tier=5, requires=['guardian_spirit'],
             effects={'skill_unlock': 'divine_hymn'}
@@ -615,7 +615,7 @@ _CLERIC_DISCIPLINE_LEGACY = {
             effects={'passive': 'pain_to_power'}
         ),
         'power_word_shield': Talent(
-            id='power_word_shield', name='Power Word: Shield',
+            id='power_word_shield', name='Wardword',
             description='Unlocks: Instant cast damage absorption shield.',
             max_rank=1, tier=3, requires=['atonement'],
             effects={'skill_unlock': 'power_word_shield'}
@@ -627,7 +627,7 @@ _CLERIC_DISCIPLINE_LEGACY = {
             effects={'skill_unlock': 'aegis_ward'}
         ),
         'pain_suppression': Talent(
-            id='pain_suppression', name='Pain Suppression',
+            id='pain_suppression', name='Stillness',
             description='Unlocks: Reduce target damage taken by 40%.',
             max_rank=1, tier=5, requires=['aegis_ward'],
             effects={'skill_unlock': 'pain_suppression'}
@@ -684,7 +684,7 @@ _CLERIC_SHADOW_LEGACY = {
             effects={'damage_mod': {'shadow': 0.03}}
         ),
         'shadow_word_pain': Talent(
-            id='shadow_word_pain', name='Shadow Word: Pain',
+            id='shadow_word_pain', name='Whisper of Pain',
             description='Unlocks: Shadow Word: Pain damage over time spell.',
             max_rank=1, tier=2, requires=['shadow_focus'],
             effects={'skill_unlock': 'shadow_word_pain'}
@@ -702,13 +702,13 @@ _CLERIC_SHADOW_LEGACY = {
             effects={'passive': 'vampiric_embrace'}
         ),
         'shadowform': Talent(
-            id='shadowform', name='Shadowform',
+            id='shadowform', name='Umbral Shroud',
             description='Unlocks: +15% shadow damage, -15% physical.',
             max_rank=1, tier=4, requires=['vampiric_embrace'],
             effects={'skill_unlock': 'shadowform'}
         ),
         'mind_flay': Talent(
-            id='mind_flay', name='Mind Flay',
+            id='mind_flay', name='Soulflay',
             description='Unlocks: Channeled shadow damage that slows.',
             max_rank=1, tier=5, requires=['shadowform'],
             effects={'skill_unlock': 'mind_flay'}
@@ -759,7 +759,7 @@ _CLERIC_SHADOW_LEGACY = {
 # =============================================================================
 
 RANGER_BEASTMASTERY = {
-    'name': 'Beast Mastery',
+    'name': 'Wildbond',
     'description': 'Bond with nature and command animal companions.',
     'icon': '🐺',
     'talents': {
@@ -788,7 +788,7 @@ RANGER_BEASTMASTERY = {
             effects={'stat_bonus': {'pet_damage_reduction': 0.02}}
         ),
         'bestial_wrath': Talent(
-            id='bestial_wrath', name='Bestial Wrath',
+            id='bestial_wrath', name='Primal Accord',
             description='Active: Pet enrages, +50% damage for 15s. Costs 40 Focus. 60s CD.',
             max_rank=1, tier=3,
             effects={'skill_unlock': 'bestial_wrath'}
@@ -812,7 +812,7 @@ RANGER_BEASTMASTERY = {
             effects={'stat_bonus': {'pet_attack_speed': 0.02}}
         ),
         'stampede': Talent(
-            id='stampede', name='Stampede',
+            id='stampede', name='Call of the Pack',
             description='Active: Summon 3 spectral beasts for 15s. Costs 75 Focus. 180s CD.',
             max_rank=1, tier=5,
             effects={'skill_unlock': 'stampede'}
@@ -821,7 +821,7 @@ RANGER_BEASTMASTERY = {
 }
 
 RANGER_MARKSMANSHIP = {
-    'name': 'Marksmanship',
+    'name': 'Truesight',
     'description': 'Deadly precision with ranged attacks.',
     'icon': '🏹',
     'talents': {
@@ -850,7 +850,7 @@ RANGER_MARKSMANSHIP = {
             effects={'passive': 'barrage'}
         ),
         'predators_mark': Talent(
-            id='predators_mark', name="Predator's Mark",
+            id='predators_mark', name="Quarry Mark",
             description="Hunter's Mark also reduces target armor by 15%.",
             max_rank=1, tier=3,
             effects={'passive': 'predators_mark'}
@@ -862,13 +862,13 @@ RANGER_MARKSMANSHIP = {
             effects={'passive': 'rapid_fire_mastery'}
         ),
         'trueshot_aura': Talent(
-            id='trueshot_aura', name='Trueshot Aura',
+            id='trueshot_aura', name='Truesight Aura',
             description='Passive: +10% ranged damage to you and group.',
             max_rank=1, tier=4,
             effects={'passive': 'trueshot_aura'}
         ),
         'master_marksman': Talent(
-            id='master_marksman', name='Master Marksman',
+            id='master_marksman', name='Deadeye',
             description='Focus generation +2 per rank per hit.',
             max_rank=5, tier=4,
             effects={'stat_bonus': {'focus_gen_bonus': 2}}
@@ -883,7 +883,7 @@ RANGER_MARKSMANSHIP = {
 }
 
 RANGER_SURVIVAL = {
-    'name': 'Survival',
+    'name': 'Pathcraft',
     'description': 'Traps, tracking, and wilderness survival.',
     'icon': '🌿',
     'talents': {
@@ -912,7 +912,7 @@ RANGER_SURVIVAL = {
             effects={'stat_bonus': {'track_bonus': 0.05}}
         ),
         'black_arrow': Talent(
-            id='black_arrow', name='Black Arrow',
+            id='black_arrow', name='Thornshot',
             description='Active: Shadow-infused shot with shadow DoT. Costs 30 Focus. 20s CD.',
             max_rank=1, tier=3,
             effects={'skill_unlock': 'black_arrow'}
@@ -936,7 +936,7 @@ RANGER_SURVIVAL = {
             effects={'passive': 'survival_instincts'}
         ),
         'wyvern_sting': Talent(
-            id='wyvern_sting', name='Wyvern Sting',
+            id='wyvern_sting', name='Drowsing Dart',
             description='Active: Target sleeps for 3 rounds (breaks on damage). Costs 60 Focus. 120s CD.',
             max_rank=1, tier=5,
             effects={'skill_unlock': 'wyvern_sting'}
@@ -1064,7 +1064,7 @@ BARD_LORE = {
             effects={'stat_bonus': {'mana_regen_pct': 0.02}}
         ),
         'polymorph': Talent(
-            id='polymorph', name='Polymorph',
+            id='polymorph', name='Beastshape',
             description='Active: Transform target into sheep for 3 rounds. Costs 6 Inspiration. 120s CD.',
             max_rank=1, tier=5,
             effects={'skill_unlock': 'polymorph'}
@@ -1114,19 +1114,19 @@ BARD_TRICKSTER = {
             effects={'damage_mod': {'vs_confused': 0.02}}
         ),
         'mirror_image_bard': Talent(
-            id='mirror_image_bard', name='Mirror Image',
+            id='mirror_image_bard', name='Tower Echoes',
             description='Active: Create 2 illusions, each absorbs 1 hit. Costs 4 Inspiration. 45s CD.',
             max_rank=1, tier=4,
             effects={'skill_unlock': 'mirror_image'}
         ),
         'puppet_master': Talent(
-            id='puppet_master', name='Puppet Master',
+            id='puppet_master', name='Marionette',
             description='Charm duration +5% per rank.',
             max_rank=5, tier=4,
             effects={'stat_bonus': {'charm_duration': 0.05}}
         ),
         'grand_illusion': Talent(
-            id='grand_illusion', name='Grand Illusion',
+            id='grand_illusion', name='Grand Mirage',
             description='Active: All enemies confused for 2 rounds. Costs 8 Inspiration. 120s CD.',
             max_rank=1, tier=5,
             effects={'skill_unlock': 'grand_illusion'}
@@ -1184,7 +1184,7 @@ ASSASSIN_LETHALITY = {
         ),
         # Tier 4 (15 points required)
         'cold_blood': Talent(
-            id='cold_blood', name='Cold Blood',
+            id='cold_blood', name='Cold Focus',
             description='Unlocks: Next attack is a guaranteed critical hit.',
             max_rank=1, tier=4, requires=['improved_backstab'],
             effects={'skill_unlock': 'cold_blood'}
@@ -1197,7 +1197,7 @@ ASSASSIN_LETHALITY = {
         ),
         # Tier 5 (20 points required)
         'death_from_above': Talent(
-            id='death_from_above', name='Death from Above',
+            id='death_from_above', name='Falling Verdict',
             description='Unlocks: Leap attack with massive damage.',
             max_rank=1, tier=5, requires=['cold_blood'],
             effects={'skill_unlock': 'death_from_above'}
@@ -1264,7 +1264,7 @@ ASSASSIN_POISON = {
         ),
         # Tier 5 (20 points required)
         'envenom': Talent(
-            id='envenom', name='Envenom',
+            id='envenom', name='Coat the Blade',
             description='Unlocks: Consume poison stacks for burst damage.',
             max_rank=1, tier=5, requires=['wound_poison'],
             effects={'skill_unlock': 'envenom'}
@@ -1273,7 +1273,7 @@ ASSASSIN_POISON = {
 }
 
 ASSASSIN_SHADOW = {
-    'name': 'Shadow',
+    'name': 'Umbra',
     'description': 'Become one with darkness. Survive, evade, re-engage.',
     'icon': '🌑',
     'talents': {
@@ -1311,7 +1311,7 @@ ASSASSIN_SHADOW = {
             effects={'passive': 'ghost'}
         ),
         'shadow_mend': Talent(
-            id='shadow_mend', name='Shadow Mend',
+            id='shadow_mend', name='Veilmend',
             description='Damage from stealth heals you for 10% of damage dealt.',
             max_rank=1, tier=3, requires=['slip_passive'],
             effects={'passive': 'shadow_mend'}
@@ -1331,7 +1331,7 @@ ASSASSIN_SHADOW = {
         ),
         # Tier 5 (20 points required)
         'shadow_blade': Talent(
-            id='shadow_blade', name='Shadow Blade',
+            id='shadow_blade', name='Umbral Edge',
             description='Unlocks: +100% damage from stealth for 15s.',
             max_rank=1, tier=5, requires=['deadly_patience'],
             effects={'skill_unlock': 'shadow_blade'}
@@ -1382,7 +1382,7 @@ THIEF_DIRTY_TRICKS = {
 }
 
 THIEF_SUBTLETY_NEW = {
-    'name': 'Subtlety',
+    'name': 'Shadowcraft',
     'description': 'Master of stealth, repositioning, and ambush tactics.',
     'icon': '🌑',
     'talents': {
@@ -1390,11 +1390,11 @@ THIEF_SUBTLETY_NEW = {
         'light_fingers': Talent(id='light_fingers', name='Light Fingers', description='Pick lock/steal speed +5% per rank.', max_rank=5, tier=1, effects={'stat_bonus': {'steal_speed': 5}}),
         'vanishing_act': Talent(id='vanishing_act', name='Vanishing Act', description='After using Pocket Sand, enter stealth for 1 round.', max_rank=1, tier=2, requires=['shadow_walk'], effects={'passive': 'vanishing_act'}),
         'misdirection': Talent(id='misdirection', name='Misdirection', description='After dodge, 10/20/30% chance target attacks a different mob.', max_rank=3, tier=2, requires=['shadow_walk'], effects={'proc': {'chance': 10, 'effect': 'misdirection'}}),
-        'shadowstep_thief': Talent(id='shadowstep_thief', name='Shadowstep', description='Teleport behind target.', max_rank=1, tier=3, requires=['vanishing_act'], effects={'skill_unlock': 'shadow_step'}),
+        'shadowstep_thief': Talent(id='shadowstep_thief', name='Veilstep', description='Teleport behind target.', max_rank=1, tier=3, requires=['vanishing_act'], effects={'skill_unlock': 'shadow_step'}),
         'ambush_mastery': Talent(id='ambush_mastery', name='Ambush Mastery', description='Backstab damage from stealth +4% per rank.', max_rank=5, tier=3, requires=['misdirection'], effects={'skill_mod': {'backstab': {'damage': 0.04}}}),
-        'cloak_and_dagger': Talent(id='cloak_and_dagger', name='Cloak and Dagger', description='Stealth attacks generate +2 Luck.', max_rank=1, tier=4, requires=['shadowstep_thief'], effects={'passive': 'cloak_and_dagger'}),
+        'cloak_and_dagger': Talent(id='cloak_and_dagger', name='Veil and Blade', description='Stealth attacks generate +2 Luck.', max_rank=1, tier=4, requires=['shadowstep_thief'], effects={'passive': 'cloak_and_dagger'}),
         'ghost_walk': Talent(id='ghost_walk', name='Ghost Walk', description='Detection range while stealthed -3% per rank.', max_rank=5, tier=4, requires=['ambush_mastery'], effects={'stat_bonus': {'stealth_range': -0.03}}),
-        'shadow_dance': Talent(id='shadow_dance', name='Shadow Dance', description='For 15s, all attacks count as from stealth.', max_rank=1, tier=5, requires=['cloak_and_dagger', 'ghost_walk'], effects={'skill_unlock': 'shadow_dance'}),
+        'shadow_dance': Talent(id='shadow_dance', name='Veildance', description='For 15s, all attacks count as from stealth.', max_rank=1, tier=5, requires=['cloak_and_dagger', 'ghost_walk'], effects={'skill_unlock': 'shadow_dance'}),
     }
 }
 
@@ -1458,7 +1458,7 @@ NECRO_FROST_NEW = {
 # =============================================================================
 
 PALADIN_HOLY_NEW = {
-    'name': 'Holy',
+    'name': 'Dawnward',
     'description': 'Channel the Light to heal and support allies.',
     'icon': '✨',
     'talents': {
@@ -1466,16 +1466,16 @@ PALADIN_HOLY_NEW = {
         'divine_intellect': Talent(id='divine_intellect', name='Divine Intellect', description='Max mana +3% per rank.', max_rank=5, tier=1, effects={'stat_bonus': {'max_mana': 0.03}}),
         'illumination': Talent(id='illumination', name='Illumination', description='Heals have 15% chance to refund mana cost.', max_rank=1, tier=2, requires=['divine_strength'], effects={'passive': 'illumination'}),
         'healing_light': Talent(id='healing_light', name='Healing Light', description='Word of Glory heals 5% more per rank.', max_rank=3, tier=2, requires=['divine_strength'], effects={'stat_bonus': {'wog_bonus': 0.05}}),
-        'holy_shock': Talent(id='holy_shock', name='Holy Shock', description='Instant damage or heal. Costs 2 Holy Power. 15s CD.', max_rank=1, tier=3, requires=['illumination'], effects={'skill_unlock': 'holy_shock'}),
+        'holy_shock': Talent(id='holy_shock', name='Dawnflash', description='Instant damage or heal. Costs 2 Holy Power. 15s CD.', max_rank=1, tier=3, requires=['illumination'], effects={'skill_unlock': 'holy_shock'}),
         'sanctified_light': Talent(id='sanctified_light', name='Sanctified Light', description='Holy damage +2% per rank.', max_rank=5, tier=3, requires=['healing_light'], effects={'damage_mod': {'holy': 0.02}}),
         'divine_favor': Talent(id='divine_favor', name='Divine Favor', description='Next heal is guaranteed crit. Costs 1 Holy Power.', max_rank=1, tier=4, requires=['holy_shock'], effects={'skill_unlock': 'divine_favor'}),
         'infusion_of_light': Talent(id='infusion_of_light', name='Infusion of Light', description='Crit heals grant +1 Holy Power per 2 ranks.', max_rank=5, tier=4, requires=['sanctified_light'], effects={'stat_bonus': {'crit_heal_hp': 1}}),
-        'beacon_of_light': Talent(id='beacon_of_light', name='Beacon of Light', description='Link to ally, they receive 30% of all healing you do for 60s.', max_rank=1, tier=5, requires=['divine_favor', 'infusion_of_light'], effects={'skill_unlock': 'beacon_of_light'}),
+        'beacon_of_light': Talent(id='beacon_of_light', name='Beacon of Dawn', description='Link to ally, they receive 30% of all healing you do for 60s.', max_rank=1, tier=5, requires=['divine_favor', 'infusion_of_light'], effects={'skill_unlock': 'beacon_of_light'}),
     }
 }
 
 PALADIN_PROTECTION_NEW = {
-    'name': 'Protection',
+    'name': 'Bulwark',
     'description': 'Become an unbreakable shield of faith.',
     'icon': '🛡️',
     'talents': {
@@ -1485,14 +1485,14 @@ PALADIN_PROTECTION_NEW = {
         'improved_devotion': Talent(id='improved_devotion', name='Improved Devotion', description='Devotion Oath damage reduction +3% per rank.', max_rank=3, tier=2, requires=['redoubt'], effects={'stat_bonus': {'devotion_dr': 0.03}}),
         'holy_shield': Talent(id='holy_shield', name='Holy Shield', description='Block all attacks for 6s. Costs 3 Holy Power. 60s CD.', max_rank=1, tier=3, requires=['blessing_of_sanctuary'], effects={'skill_unlock': 'holy_shield'}),
         'divine_resilience': Talent(id='divine_resilience', name='Divine Resilience', description='Damage reduction +1% per rank.', max_rank=5, tier=3, requires=['improved_devotion'], effects={'damage_reduction': {'all': 0.01}}),
-        'ardent_defender': Talent(id='ardent_defender', name='Ardent Defender', description='Fatal blow heals to 20% HP (once per 5 min).', max_rank=1, tier=4, requires=['holy_shield'], effects={'passive': 'ardent_defender'}),
+        'ardent_defender': Talent(id='ardent_defender', name='Last Bulwark', description='Fatal blow heals to 20% HP (once per 5 min).', max_rank=1, tier=4, requires=['holy_shield'], effects={'passive': 'ardent_defender'}),
         'guarded_by_light': Talent(id='guarded_by_light', name='Guarded by the Light', description='Word of Glory also shields for 3% of heal per rank.', max_rank=5, tier=4, requires=['divine_resilience'], effects={'stat_bonus': {'wog_shield': 0.03}}),
-        'divine_guardian': Talent(id='divine_guardian', name='Divine Guardian', description='Redirect 30% of group damage to you for 10s. Costs 5 Holy Power.', max_rank=1, tier=5, requires=['ardent_defender', 'guarded_by_light'], effects={'skill_unlock': 'divine_guardian'}),
+        'divine_guardian': Talent(id='divine_guardian', name='Aegis Hour', description='Redirect 30% of group damage to you for 10s. Costs 5 Holy Power.', max_rank=1, tier=5, requires=['ardent_defender', 'guarded_by_light'], effects={'skill_unlock': 'divine_guardian'}),
     }
 }
 
 PALADIN_RETRIBUTION_NEW = {
-    'name': 'Retribution',
+    'name': 'Reckoning',
     'description': 'Smite enemies with righteous fury and Holy Power.',
     'icon': '⚔️',
     'talents': {
@@ -1500,11 +1500,11 @@ PALADIN_RETRIBUTION_NEW = {
         'conviction': Talent(id='conviction', name='Conviction', description='Crit chance +1% per rank.', max_rank=5, tier=1, effects={'stat_bonus': {'crit_chance': 1}}),
         'vow_of_courage': Talent(id='vow_of_courage', name='Vow of Courage', description='Vengeance Oath damage bonus +5% extra.', max_rank=1, tier=2, requires=['benediction'], effects={'passive': 'vow_of_courage'}),
         'pursuit_of_justice': Talent(id='pursuit_of_justice', name='Pursuit of Justice', description='Movement speed +5% per rank.', max_rank=3, tier=2, requires=['benediction'], effects={'stat_bonus': {'move_speed': 0.05}}),
-        'crusader_strike': Talent(id='crusader_strike', name='Crusader Strike', description='Melee attack that always generates +1 Holy Power.', max_rank=1, tier=3, requires=['vow_of_courage'], effects={'skill_unlock': 'crusader_strike'}),
-        'sanctity_of_battle': Talent(id='sanctity_of_battle', name='Sanctity of Battle', description="Templar's Verdict damage +3% per rank.", max_rank=5, tier=3, requires=['pursuit_of_justice'], effects={'stat_bonus': {'tv_bonus': 0.03}}),
-        'sanctified_wrath': Talent(id='sanctified_wrath', name='Sanctified Wrath', description="Templar's Verdict at 5 Holy Power deals 3x instead of 2x.", max_rank=1, tier=4, requires=['crusader_strike'], effects={'passive': 'sanctified_wrath'}),
+        'crusader_strike': Talent(id='crusader_strike', name='Dawnstrike', description='Melee attack that always generates +1 Holy Power.', max_rank=1, tier=3, requires=['vow_of_courage'], effects={'skill_unlock': 'crusader_strike'}),
+        'sanctity_of_battle': Talent(id='sanctity_of_battle', name='Zeal', description="Templar's Verdict damage +3% per rank.", max_rank=5, tier=3, requires=['pursuit_of_justice'], effects={'stat_bonus': {'tv_bonus': 0.03}}),
+        'sanctified_wrath': Talent(id='sanctified_wrath', name='Hallowed Fury', description="Templar's Verdict at 5 Holy Power deals 3x instead of 2x.", max_rank=1, tier=4, requires=['crusader_strike'], effects={'passive': 'sanctified_wrath'}),
         'fanaticism': Talent(id='fanaticism', name='Fanaticism', description='Holy damage +2% per rank.', max_rank=5, tier=4, requires=['sanctity_of_battle'], effects={'damage_mod': {'holy': 0.02}}),
-        'avenging_wrath': Talent(id='avenging_wrath', name='Avenging Wrath', description='+30% damage and +30% crit for 20s. Costs 5 Holy Power. 180s CD.', max_rank=1, tier=5, requires=['sanctified_wrath', 'fanaticism'], effects={'skill_unlock': 'avenging_wrath'}),
+        'avenging_wrath': Talent(id='avenging_wrath', name='Ascendant Hour', description='+30% damage and +30% crit for 20s. Costs 5 Holy Power. 180s CD.', max_rank=1, tier=5, requires=['sanctified_wrath', 'fanaticism'], effects={'skill_unlock': 'avenging_wrath'}),
     }
 }
 
@@ -1513,7 +1513,7 @@ PALADIN_RETRIBUTION_NEW = {
 # =============================================================================
 
 CLERIC_HOLY_NEW = {
-    'name': 'Holy',
+    'name': 'Radiance',
     'description': 'Channel divine light to heal and protect through Faith.',
     'icon': '✝️',
     'talents': {
@@ -1523,14 +1523,14 @@ CLERIC_HOLY_NEW = {
         'spiritual_guidance': Talent(id='spiritual_guidance', name='Spiritual Guidance', description='Mana regen +3% per rank.', max_rank=5, tier=2, requires=['healing_focus'], effects={'stat_bonus': {'mana_regen': 0.03}}),
         'renew': Talent(id='renew', name='Renew', description='HoT: heals 5% max HP per tick for 4 ticks. Costs 2 Faith.', max_rank=1, tier=3, requires=['inspiration'], effects={'skill_unlock': 'renew'}),
         'holy_specialization': Talent(id='holy_specialization', name='Holy Specialization', description='Holy spell crit +1% per rank.', max_rank=5, tier=3, requires=['spiritual_guidance'], effects={'stat_bonus': {'holy_crit': 1}}),
-        'guardian_spirit': Talent(id='guardian_spirit', name='Guardian Spirit', description='Target saved from death, heals to 40%. Costs 5 Faith. 120s CD.', max_rank=1, tier=4, requires=['renew'], effects={'skill_unlock': 'guardian_spirit'}),
+        'guardian_spirit': Talent(id='guardian_spirit', name='Wardspirit', description='Target saved from death, heals to 40%. Costs 5 Faith. 120s CD.', max_rank=1, tier=4, requires=['renew'], effects={'skill_unlock': 'guardian_spirit'}),
         'empowered_healing': Talent(id='empowered_healing', name='Empowered Healing', description='All heals +2% per rank.', max_rank=5, tier=4, requires=['holy_specialization'], effects={'stat_bonus': {'healing_power': 0.02}}),
-        'divine_hymn': Talent(id='divine_hymn', name='Divine Hymn', description='Channel AoE heal, 20% HP per round for 3 rounds. Costs 7 Faith.', max_rank=1, tier=5, requires=['guardian_spirit', 'empowered_healing'], effects={'skill_unlock': 'divine_hymn'}),
+        'divine_hymn': Talent(id='divine_hymn', name='Hymn of the Vigil', description='Channel AoE heal, 20% HP per round for 3 rounds. Costs 7 Faith.', max_rank=1, tier=5, requires=['guardian_spirit', 'empowered_healing'], effects={'skill_unlock': 'divine_hymn'}),
     }
 }
 
 CLERIC_DISCIPLINE_NEW = {
-    'name': 'Discipline',
+    'name': 'Vigil',
     'description': 'Prevent damage through shields and atonement.',
     'icon': '🛡️',
     'talents': {
@@ -1538,28 +1538,28 @@ CLERIC_DISCIPLINE_NEW = {
         'mental_agility': Talent(id='mental_agility', name='Mental Agility', description='Instant spell cost -2% per rank.', max_rank=5, tier=1, effects={'stat_bonus': {'instant_cost': -0.02}}),
         'atonement': Talent(id='atonement', name='Atonement', description='Dealing damage heals lowest HP ally for 50%.', max_rank=1, tier=2, requires=['improved_shields'], effects={'passive': 'atonement'}),
         'inner_focus': Talent(id='inner_focus', name='Inner Focus', description='Next spell costs no mana. 3/2/1 min CD per rank.', max_rank=3, tier=2, requires=['mental_agility'], effects={'skill_unlock': 'inner_focus'}),
-        'power_word_shield': Talent(id='power_word_shield', name='Power Word: Shield', description='Shield = 30% of target max HP. Costs 3 Faith. 15s CD.', max_rank=1, tier=3, requires=['atonement'], effects={'skill_unlock': 'power_word_shield'}),
+        'power_word_shield': Talent(id='power_word_shield', name='Wardword', description='Shield = 30% of target max HP. Costs 3 Faith. 15s CD.', max_rank=1, tier=3, requires=['atonement'], effects={'skill_unlock': 'power_word_shield'}),
         'focused_will': Talent(id='focused_will', name='Focused Will', description='Taking damage grants +1% DR per rank (stacks 5x).', max_rank=5, tier=3, requires=['inner_focus'], effects={'stat_bonus': {'hit_dr': 0.01}}),
         'aegis_ward': Talent(id='aegis_ward', name='Aegis Ward', description='Party shield absorbing 15% of each HP. Costs 6 Faith. 60s CD.', max_rank=1, tier=4, requires=['power_word_shield'], effects={'skill_unlock': 'aegis_ward'}),
         'grace': Talent(id='grace', name='Grace', description='Consecutive heals on same target +2% per rank (stacks 3x).', max_rank=5, tier=4, requires=['focused_will'], effects={'stat_bonus': {'grace_heal': 0.02}}),
-        'pain_suppression': Talent(id='pain_suppression', name='Pain Suppression', description='Target takes 40% less damage for 8s. Costs 8 Faith. 180s CD.', max_rank=1, tier=5, requires=['aegis_ward', 'grace'], effects={'skill_unlock': 'pain_suppression'}),
+        'pain_suppression': Talent(id='pain_suppression', name='Stillness', description='Target takes 40% less damage for 8s. Costs 8 Faith. 180s CD.', max_rank=1, tier=5, requires=['aegis_ward', 'grace'], effects={'skill_unlock': 'pain_suppression'}),
     }
 }
 
 CLERIC_SHADOW_NEW = {
-    'name': 'Shadow',
+    'name': 'Penance',
     'description': 'Embrace darkness for devastating power. Damage builds Faith.',
     'icon': '🌑',
     'talents': {
         'shadow_focus_cleric': Talent(id='shadow_focus_cleric', name='Shadow Focus', description='Shadow damage +2% per rank.', max_rank=5, tier=1, effects={'damage_mod': {'shadow': 0.02}}),
         'darkness': Talent(id='darkness', name='Darkness', description='Shadow DoT damage +2% per rank.', max_rank=5, tier=1, effects={'damage_mod': {'shadow_dot': 0.02}}),
-        'shadow_word_pain': Talent(id='shadow_word_pain', name='Shadow Word: Pain', description='Shadow DoT: int*2 per tick for 5 ticks. Costs 2 Faith.', max_rank=1, tier=2, requires=['shadow_focus_cleric'], effects={'skill_unlock': 'shadow_word_pain'}),
+        'shadow_word_pain': Talent(id='shadow_word_pain', name='Whisper of Pain', description='Shadow DoT: int*2 per tick for 5 ticks. Costs 2 Faith.', max_rank=1, tier=2, requires=['shadow_focus_cleric'], effects={'skill_unlock': 'shadow_word_pain'}),
         'shadow_weaving': Talent(id='shadow_weaving', name='Shadow Weaving', description='Shadow spells reduce target shadow resist -5% per rank.', max_rank=3, tier=2, requires=['shadow_focus_cleric'], effects={'stat_bonus': {'shadow_pen': 5}}),
         'siphon_light': Talent(id='siphon_light', name='Siphon Light', description='Shadow damage heals you for 10%.', max_rank=1, tier=3, requires=['shadow_word_pain'], effects={'passive': 'siphon_light'}),
         'shadow_power': Talent(id='shadow_power', name='Shadow Power', description='Shadow spell damage +3% per rank (shadow form only).', max_rank=5, tier=3, requires=['shadow_weaving'], effects={'damage_mod': {'shadow': 0.03}}),
-        'shadowform': Talent(id='shadowform', name='Shadowform', description='Toggle: +25% shadow damage, -30% healing, damage builds Faith.', max_rank=1, tier=4, requires=['siphon_light'], effects={'skill_unlock': 'shadowform'}),
+        'shadowform': Talent(id='shadowform', name='Umbral Shroud', description='Toggle: +25% shadow damage, -30% healing, damage builds Faith.', max_rank=1, tier=4, requires=['siphon_light'], effects={'skill_unlock': 'shadowform'}),
         'misery': Talent(id='misery', name='Misery', description='Shadow DoTs increase all damage target takes by 1% per rank.', max_rank=5, tier=4, requires=['shadow_power'], effects={'stat_bonus': {'dot_vuln': 0.01}}),
-        'mind_flay': Talent(id='mind_flay', name='Mind Flay', description='Channel: 3 ticks of int*4 damage, slows target. Costs 5 Faith.', max_rank=1, tier=5, requires=['shadowform', 'misery'], effects={'skill_unlock': 'mind_flay'}),
+        'mind_flay': Talent(id='mind_flay', name='Soulflay', description='Channel: 3 ticks of int*4 damage, slows target. Costs 5 Faith.', max_rank=1, tier=5, requires=['shadowform', 'misery'], effects={'skill_unlock': 'mind_flay'}),
     }
 }
 
