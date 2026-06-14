@@ -85,7 +85,7 @@ EVOLUTION_TREE = {
     'cleave': {
         50: {
             'iron_wall': ('bulwark_sweep', '0.8x + knockback/aggro all'),
-            'berserker': ('whirlwind', '1.2x all but bleed self 3% HP/round for 2 rounds'),
+            'berserker': ('bloodwhirl', '1.2x all but bleed self 3% HP/round for 2 rounds'),
             'warlord': ('surgical_cleave', '1x + armor shred -5 AC each for 3 rounds'),
         },
         150: {
@@ -129,7 +129,7 @@ EVOLUTION_TREE = {
         },
         300: {
             'iron_wall': ('eternal_guardian', 'Heal 40%, taunt, +35% DR, survive death once in 3 rounds'),
-            'berserker': ('avatar_of_war', '+75% damage 4 rounds, costs 20% HP, immune debuffs, lifesteal 15%'),
+            'berserker': ('war_incarnate', '+75% damage 4 rounds, costs 20% HP, immune debuffs, lifesteal 15%'),
             'warlord': ('supreme_command', 'Heal 20% group, +15% dmg +10% DR group 4 rounds, cleanse 1 debuff'),
         },
     },
@@ -579,7 +579,7 @@ async def do_cleave(player, args: list):
     dr_bonus = 0
     
     if evo == 'bulwark_sweep': mult = 0.8
-    elif evo == 'whirlwind': mult = 1.2; self_bleed_pct = 0.03
+    elif evo == 'bloodwhirl': mult = 1.2; self_bleed_pct = 0.03
     elif evo == 'surgical_cleave': mult = 1.0; ac_shred = 5
     elif evo == 'iron_tempest': mult = 1.0; dr_bonus = 10
     elif evo == 'blood_cyclone': mult = 1.5; self_bleed_pct = 0.05; lifesteal_pct = 0.20
@@ -769,7 +769,7 @@ async def do_rally(player, args: list):
     elif evo == 'berserker_rage': heal_pct = 0; self_cost_pct = 0.15; damage_buff = 50; damage_buff_rounds = 3
     elif evo == 'inspiring_command': heal_pct = 0.15; group_heal = True; damage_buff = 10; damage_buff_rounds = 3
     elif evo == 'eternal_guardian': heal_pct = 0.40; taunt = True; dr_bonus = 35
-    elif evo == 'avatar_of_war': heal_pct = 0; self_cost_pct = 0.20; damage_buff = 75; damage_buff_rounds = 4
+    elif evo == 'war_incarnate': heal_pct = 0; self_cost_pct = 0.20; damage_buff = 75; damage_buff_rounds = 4
     elif evo == 'supreme_command': heal_pct = 0.20; group_heal = True; damage_buff = 15; damage_buff_rounds = 4; dr_bonus = 10
     
     # Self-cost

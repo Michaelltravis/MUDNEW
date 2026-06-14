@@ -681,7 +681,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
             'description': 'Cleave — Hit all enemies in room. 10s cooldown. 0.8x damage each.\n\n'
                            'Evolutions (at 50/150/300 uses):\n'
                            '  Iron Wall: bulwark_sweep → iron_tempest → aegis_storm\n'
-                           '  Berserker: whirlwind → blood_cyclone → deathstorm\n'
+                           '  Berserker: bloodwhirl → blood_cyclone → deathstorm\n'
                            '  Warlord: surgical_cleave → anatomical_rend → grand_strategy',
             'syntax': 'cleave',
             'title': 'Cleave'},
@@ -700,7 +700,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
            'description': 'Rally — Self-buff/recovery. 15s cooldown. Heal 15% max HP.\n\n'
                           'Evolutions (at 50/150/300 uses):\n'
                           '  Iron Wall: stand_your_ground → immovable_object → eternal_guardian\n'
-                          '  Berserker: blood_frenzy → berserker_rage → avatar_of_war\n'
+                          '  Berserker: blood_frenzy → berserker_rage → war_incarnate\n'
                           '  Warlord: battle_orders → inspiring_command → supreme_command',
            'syntax': 'rally',
            'title': 'Rally'},
@@ -4654,7 +4654,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
                               'EVOLUTION EXAMPLES:\n'
                               '  strike → brutal_strike → savage_strike → deathwish_strike\n'
                               '  charge → reckless_charge → death_from_above → extinction_event\n'
-                              '  rally → blood_frenzy → berserker_rage → avatar_of_war\n'
+                              '  rally → blood_frenzy → berserker_rage → war_incarnate\n'
                               '  execute → overkill → massacre → annihilation',
                'title': 'Berserker'},
  'warlord': {'category': 'guide',

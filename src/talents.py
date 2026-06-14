@@ -87,7 +87,7 @@ WARRIOR_EXECUTIONER = {
         'devastating_force': Talent(id='devastating_force', name='Devastating Force', description='Execute HP threshold +2% per rank (base 30% becomes 40% at rank 5).', max_rank=5, tier=3, effects={'stat_bonus': {'exec_threshold': 0.02}}),
         'second_wind': Talent(id='second_wind', name='Second Wind', description='After landing a finisher, heal 10% max HP.', max_rank=1, tier=4, effects={'passive': 'second_wind'}),
         'relentless_finisher': Talent(id='relentless_finisher', name='Relentless Finisher', description='After finisher, next opener within 4s keeps chain at 2, +2% per rank chance to keep at 3.', max_rank=5, tier=4, effects={'stat_bonus': {'post_finish_chain': 0.02}}),
-        'avatar_of_war': Talent(id='avatar_of_war', name='Avatar of War', description='Active: For 15s, finishers don\'t reset chain. Every finisher also hits as AoE. 180s CD.', max_rank=1, tier=5, effects={'skill_unlock': 'avatar_of_war'}),
+        'avatar_of_war': Talent(id='avatar_of_war', name='War Incarnate', description='Active: For 15s, finishers don\'t reset chain. Every finisher also hits as AoE. 180s CD.', max_rank=1, tier=5, effects={'skill_unlock': 'war_incarnate'}),
     }
 }
 

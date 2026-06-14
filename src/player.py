@@ -1321,6 +1321,7 @@ class Player(Character):
                 'holy_fire': 'pyre_of_faith',
                 'templars_verdict': 'order_verdict', 'word_of_glory': 'absolution',
                 'divine_storm': 'halo_of_reckoning', 'smite': 'censure',
+                'avatar_of_war': 'war_incarnate',
             }
             for old_key, new_key in LEGACY_SKILL_MAP.items():
                 if old_key in player.skills:
@@ -1504,6 +1505,12 @@ class Player(Character):
             player.momentum = data.get('momentum', 0)
             player.ability_usage = data.get('ability_usage', {})
             player.ability_evolutions = data.get('ability_evolutions', {})
+            # migrate renamed evolution forms (whirlwind/avatar_of_war)
+            _EVO_RENAME = {'whirlwind': 'bloodwhirl', 'avatar_of_war': 'war_incarnate'}
+            if isinstance(player.ability_evolutions, dict):
+                for _k, _v in list(player.ability_evolutions.items()):
+                    if _v in _EVO_RENAME:
+                        player.ability_evolutions[_k] = _EVO_RENAME[_v]
             player.last_warrior_ability = data.get('last_warrior_ability', None)
             player.unstoppable_rounds = data.get('unstoppable_rounds', 0)
 

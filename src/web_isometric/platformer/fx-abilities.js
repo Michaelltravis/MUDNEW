@@ -113,7 +113,7 @@
     }));
     sound('physical', 2);
   });
-  add(/whirlwind/i, 'melee', (s, c, x, y) => { // (flagship may also fire; this guarantees a look)
+  add(/whirlwind|bloodwhirl/i, 'melee', (s, c, x, y) => { // (flagship may also fire; this guarantees a look)
     const g = s.add.graphics().setDepth(58).setBlendMode(1); const st = { r: 0 };
     s.tweens.add({ targets: st, r: Math.PI * 4, duration: 500, onUpdate: () => { g.clear(); g.lineStyle(3, STEEL, 0.8); g.beginPath(); g.arc(c.x, c.y - 6, 22, st.r, st.r + 2.2); g.strokePath(); }, onComplete: () => g.destroy() });
     MH.fx.ringShock(s, c.x, c.y - 6, RAGE, 30, 460); sound('physical', 2);
@@ -147,7 +147,7 @@
     MH.fx.risers(s, c.x, c.y, { a: 0xffe9a8, b: 0xffd44a }, 8, '!');
     glyph(s, c.x, c.y - 8, '⚑', 0xffd44a, { size: 16, rise: 22 }); sound('song', 2);
   });
-  add(/second.?wind|adrenaline|rage\b|titans.?wrath|avatar.?of.?war/i, 'self', (s, c) => {
+  add(/second.?wind|adrenaline|rage\b|titans.?wrath|avatar.?of.?war|war.?incarnate/i, 'self', (s, c) => {
     selfAura(s, c, { a: 0xffcaa0, b: 0xff6a4a }, null); MH.fx.punch(s, 0.04); sound('fire', 1);
   });
   add(/shield.?wall|bone.?shield|ignore.?pain|iron|second_attack|third_attack|tactical/i, 'self', (s, c) => {

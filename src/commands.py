@@ -18212,7 +18212,7 @@ class CommandHandler:
     async def cmd_avatar_of_war(cls, player: 'Player', args: List[str]):
         """Massive offensive burst."""
         c = player.config.COLORS
-        if 'avatar_of_war' not in player.skills:
+        if 'avatar_of_war' not in player.skills and 'war_incarnate' not in player.skills:
             await player.send(f"{c['red']}You don't know Avatar of War.{c['reset']}")
             return
         from affects import AffectManager
@@ -21083,6 +21083,7 @@ _SKILL_RENAMES = {
     # paladin (Lightbringer)
     'order_verdict': 'templars_verdict', 'absolution': 'word_of_glory',
     'halo_of_reckoning': 'divine_storm', 'censure': 'smite',
+    'war_incarnate': 'avatar_of_war',
 }
 for _new, _old in _SKILL_RENAMES.items():
     _m = getattr(CommandHandler, f'cmd_{_old}', None)
