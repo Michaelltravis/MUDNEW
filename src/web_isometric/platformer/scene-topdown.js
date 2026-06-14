@@ -115,6 +115,8 @@
       this.playerShadow = this.add.image(this.player.x, this.player.y, 'px_shadow')
         .setDepth(5).setAlpha(0.4).setScale(0.34);
       this.nightTint = this.add.rectangle(0, 0, this.pxW, this.pxH, 0x101830, 0).setOrigin(0, 0).setDepth(42);
+      // reusable off-screen stamp used to carve light pools out of the darkness layer
+      this.lightStamp = this.add.image(0, 0, 'px_light').setVisible(false);
       this.weatherEmitter = null;
       this.bubbleEmitter = null;
 
@@ -190,6 +192,7 @@
       this.exitZones = [];
       if (this.featureZones) this.featureZones.forEach(z => z.destroy());
       this.featureZones = [];
+      this.lightSources = [];
       this.corpses = [];
       if (this.weatherEmitter) { this.weatherEmitter.destroy(); this.weatherEmitter = null; }
       if (this.fogEmitter) { this.fogEmitter.destroy(); this.fogEmitter = null; }
@@ -329,10 +332,13 @@
           this.tileLayer.add(img);
           const glowTint = MH.GLOW_PROPS && MH.GLOW_PROPS[prop.name];
           if (glowTint) {
-            const g = this.add.image(prop.x * T + T / 2, prop.y * T + T * 0.3, 'fx_glow')
+            const gx = prop.x * T + T / 2, gy = prop.y * T + T * 0.3;
+            const g = this.add.image(gx, gy, 'fx_glow')
               .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.22).setScale(0.32).setTint(glowTint).setDepth(35);
             this.tweens.add({ targets: g, alpha: 0.34, duration: 900 + (prop.x * 137 % 700), yoyo: true, repeat: -1, ease: 'sine.inOut' });
             this.tileLayer.add(g);
+            // a torch/brazier/candle also carves a flickering pool of light out of the dark
+            this.lightSources.push({ x: gx, y: gy, r: 78, seed: (prop.x * 53 + prop.y * 17) % 1000 });
           }
         } else {
           const img = this.add.image(prop.x * T, (prop.y + 1) * T, propSet[prop.idx % 3])
@@ -523,6 +529,7 @@
           .setAlpha(alpha).setScale(scale).setTint(tint).setDepth(35);
         this.tweens.add({ targets: g, alpha: alpha + 0.12, duration: 1200, yoyo: true, repeat: -1, ease: 'sine.inOut' });
         this.fxList.push(g);
+        if (this.lightSources) this.lightSources.push({ x, y, r: 64, seed: (x * 31 + y * 7) % 1000 });
       };
       if (layout.stairsUp) featureGlow(layout.stairsUp.x * T + T / 2, layout.stairsUp.y * T + T / 2, 0xffe9a8);
       if (layout.stairsDown) featureGlow(layout.stairsDown.x * T + T / 2, layout.stairsDown.y * T + T / 2, 0x8899ff, 0.4, 0.22);
@@ -2508,8 +2515,20 @@
 
       if (this.layout.dark && this.darkRT.visible) {
         this.darkRT.clear();
-        this.darkRT.fill(0x000008, 0.88);
-        this.darkRT.erase('px_light', this.player.x - 128, this.player.y - 128);
+        this.darkRT.fill(0x000008, 0.92);
+        const stamp = this.lightStamp;
+        const carve = (x, y, radius, jitter) => {
+          stamp.setVisible(true).setPosition(x, y).setScale((radius / 128) * jitter);
+          this.darkRT.erase(stamp);
+        };
+        // the player carries a torch: a wide, gently breathing pool
+        carve(this.player.x, this.player.y, 132, 0.97 + 0.03 * Math.sin(now / 280));
+        // every brazier, candle and travel feature throws its own flickering light
+        for (const ls of (this.lightSources || [])) {
+          const flick = 0.86 + 0.14 * Math.sin(now / 90 + ls.seed) * Math.sin(now / 47 + ls.seed * 1.7);
+          carve(ls.x, ls.y, ls.r, flick);
+        }
+        stamp.setVisible(false);
       }
     }
 
