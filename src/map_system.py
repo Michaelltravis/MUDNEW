@@ -591,6 +591,28 @@ def _fighting_name(entity):
     return getattr(f, 'name', None)
 
 
+import re as _re
+# NPCs are never set to a sleeping position in data, but many are *described*
+# asleep or at rest. Read the flavor text so those few render the right pose.
+_POSE_SLEEP = _re.compile(r'\b(asleep|sleeping|sleeps here|slumber|snor(?:ing|es)|doz(?:ing|es)|napping|fallen asleep|obviously sl)\b', _re.I)
+_POSE_REST = _re.compile(r'\b(rests here|resting (?:here|against)|dormant|reclin|lounging)\b', _re.I)
+
+
+def _mob_pose(entity):
+    """'sleeping' / 'resting' if the mob's description says so, else None.
+    Cached on the prototype-shared mob since the text never changes."""
+    cached = getattr(entity, '_pose_cache', '__none__')
+    if cached != '__none__':
+        return cached
+    txt = ' '.join(str(getattr(entity, k, '') or '') for k in ('long_desc', 'description'))
+    pose = 'sleeping' if _POSE_SLEEP.search(txt) else 'resting' if _POSE_REST.search(txt) else None
+    try:
+        entity._pose_cache = pose
+    except Exception:
+        pass
+    return pose
+
+
 def build_group_block(player) -> Optional[dict]:
     """Roster + live vitals for the player's party, for the UI party frames.
 
@@ -910,6 +932,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
                 'trainer': getattr(entity, 'special', '') in ('trainer', 'guildmaster'),
                     'quest': quest_mark,
                     'flags': list(getattr(entity, 'flags', []) or []),
+                    'pose': _mob_pose(entity),
                 }
                 # Include HP if available
                 hp = getattr(entity, 'hp', None)

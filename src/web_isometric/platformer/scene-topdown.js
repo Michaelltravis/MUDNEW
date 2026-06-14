@@ -764,6 +764,11 @@
       ent.sprite.setScale((spec.data.boss ? 1.5 : 1) / MH.SMOOTH_SS);
       ent.sprite.play(`${tex}_walkd`);
       ent.sprite.anims.pause();
+      // mobs described as asleep/at rest spawn in that pose
+      if (spec.kind === 'mob' && (spec.data.pose === 'sleeping' || spec.data.pose === 'resting') && !spec.data.fighting) {
+        ent.sprite.anims.stop();
+        ent.sprite.setFrame(spec.data.pose === 'sleeping' ? 'sleep' : 'rest');
+      }
       ent.homeX = slot.x; ent.homeY = slot.y;
 
       const labelColor = spec.kind === 'player' ? '#6ca8e0' : (spec.data.hostile ? '#e06c6c' : (spec.data.shopkeeper ? '#e8c168' : '#c8ccd8'));
@@ -2311,6 +2316,14 @@
       // calm NPCs wander to nearby spots, walk there, then idle
       for (const ent of this.entities.values()) {
         if (ent.kind !== 'mob' || ent.stalker || (ent.data && ent.data.fighting) || ent.data.shopkeeper) continue;
+        // sleepers/resters stay put in their pose until something wakes them
+        if (ent.data && (ent.data.pose === 'sleeping' || ent.data.pose === 'resting')) {
+          if (ent.sprite && !ent.sprite.anims.isPlaying) {
+            const want = ent.data.pose === 'sleeping' ? 'sleep' : 'rest';
+            if (ent.sprite.frame && ent.sprite.frame.name !== want) ent.sprite.setFrame(want);
+          }
+          continue;
+        }
         if (!ent.wanderAt || now < ent.wanderAt || ent.wanderTween) continue;
         const L = this.layout, T2 = TD().T;
         const tx = Phaser.Math.Clamp(ent.homeX + (Math.random() * 90 - 45), 2.5 * T2, this.pxW - 2.5 * T2);
