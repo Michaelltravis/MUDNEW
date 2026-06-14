@@ -775,6 +775,49 @@ SPELLS = {
         'message_self': 'You grasp $N with the power of death!',
         'message_room': 'Dark energy grips $N!',
     },
+    # ── Soulbinder reinvention (Misthollow originals; replace the DK/Warlock
+    #    lifts). Anchored on Soul Shards + the Mist. ──
+    'mistgrasp': {
+        'name': 'Mistgrasp',
+        'mana_cost': 40,
+        'damage_dice': '3d8+3',
+        'damage_per_level': 2,
+        'target': 'offensive',
+        'special': 'mistgrasp',  # tendrils of mist: dmg + brief rot + 1 Soul Shard
+        'message_self': 'Tendrils of grave-mist seize $N!',
+        'message_room': 'Cold mist coils around $N!',
+    },
+    'wraithfire': {
+        'name': 'Wraithfire',
+        'mana_cost': 35,
+        'damage_dice': '2d8+4',
+        'damage_per_level': 2,
+        'target': 'offensive',
+        'special': 'wraithfire',  # spends up to 5 Soul Shards, +dmg per shard
+        'message_self': 'You hurl bound spirits at $N!',
+        'message_room': 'Screaming wraiths engulf $N!',
+    },
+    'mistrot': {
+        'name': 'Mistrot',
+        'mana_cost': 30,
+        'damage_dice': '1d8+2',
+        'damage_per_level': 1,
+        'target': 'offensive',
+        'special': 'mistrot',  # stacking rot DoT; binds a Soul Shard
+        'message_self': 'You sow creeping rot into $N!',
+        'message_room': 'Greenish rot festers across $N!',
+    },
+    'sever_cord': {
+        'name': 'Sever the Cord',
+        'mana_cost': 90,
+        'damage_dice': '6d8+10',
+        'damage_per_level': 4,
+        'target': 'offensive',
+        'save': True,
+        'special': 'sever_cord',  # execute: <25% HP -> massive reap + 3 shards
+        'message_self': 'You sever the silver cord binding $N to life!',
+        'message_room': "$N's soul is torn loose!",
+    },
     'finger_of_death': {
         'name': 'Finger of Death',
         'mana_cost': 150,
@@ -2530,6 +2573,50 @@ class SpellHandler:
                 if hasattr(caster, attr):
                     setattr(caster, attr, 0)
             await caster.send(f"{c['cyan']}Your frost power surges anew.{c['reset']}")
+            return
+
+        elif special in ('mistgrasp', 'wraithfire', 'mistrot', 'sever_cord'):
+            # ── Soulbinder originals — Soul-Shard death magic ──
+            from combat import CombatHandler
+            from affects import AffectManager
+            def _grant_shards(n):
+                cur = getattr(caster, 'soul_shards', 0)
+                caster.soul_shards = min(10, cur + n)
+                gained = caster.soul_shards - cur
+                if gained:
+                    c2 = caster.config.COLORS
+                    return f"{c2['magenta']}(+{gained} Soul Shard{'s' if gained != 1 else ''}: {caster.soul_shards}/10){c2['reset']}"
+                return ''
+            base = cls.roll_dice(spell['damage_dice']) + caster.level * spell.get('damage_per_level', 0)
+            note = ''
+            if special == 'mistgrasp':
+                damage = base
+                AffectManager.apply_affect(target, {'name': 'mistrot', 'type': AffectManager.TYPE_DOT,
+                    'applies_to': 'hp', 'value': 4 + caster.level // 6, 'duration': 4, 'caster_level': caster.level})
+                note = _grant_shards(1)
+            elif special == 'wraithfire':
+                spent = min(5, getattr(caster, 'soul_shards', 0))
+                caster.soul_shards -= spent
+                damage = base + spent * (8 + caster.level // 4)
+                if spent:
+                    note = f"{c['magenta']}(consumed {spent} Soul Shard{'s' if spent != 1 else ''}){c['reset']}"
+            elif special == 'mistrot':
+                damage = base
+                AffectManager.apply_affect(target, {'name': 'mistrot', 'type': AffectManager.TYPE_DOT,
+                    'applies_to': 'hp', 'value': 6 + caster.level // 4, 'duration': 6,
+                    'caster_level': caster.level, 'stacking': True})
+                note = _grant_shards(1)
+            else:  # sever_cord — execute
+                hp_pct = (target.hp / target.max_hp) if getattr(target, 'max_hp', 0) else 1.0
+                if hp_pct <= 0.25:
+                    damage = base + caster.level * 6
+                    note = _grant_shards(3) + f" {c['bright_red']}THE CORD IS SEVERED!{c['reset']}"
+                else:
+                    damage = base
+            await caster.send(f"{c['magenta']}{spell['name']} strikes {target.name} for {damage} damage! {note}{c['reset']}")
+            killed = await target.take_damage(damage, caster)
+            if killed:
+                await CombatHandler.handle_death(caster, target)
             return
 
         elif special == 'briskness':

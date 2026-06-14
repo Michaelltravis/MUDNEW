@@ -377,11 +377,11 @@ class Config:
             'save_progression': 'mage',
             'skills': ['soul_bolt', 'drain_soul', 'bone_shield', 'soul_reap'],
             'spells': ['chill_touch', 'animate_dead', 'vampiric_touch', 'enervation',
-                      'death_grip', 'finger_of_death', 'energy_drain',
+                      'mistgrasp', 'sever_cord', 'energy_drain',
                       'poison', 'weaken', 'blindness', 'fear', 'armor', 'shield',
                       'protection_from_good',
                       # Level 31-60 spells
-                      'death_coil', 'corpse_shield', 'plague_strike', 'summon_gargoyle',
+                      'wraithfire', 'corpse_shield', 'mistrot', 'summon_gargoyle',
                       'soul_harvest', 'apocalypse_necro'],
             # Level 31-60: death_coil (32), corpse_shield (38), plague_strike (44),
             #              summon_gargoyle (50), soul_harvest (56), apocalypse_necro (60)

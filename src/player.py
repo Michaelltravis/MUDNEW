@@ -1287,6 +1287,17 @@ class Player(Character):
             player.room_vnum = data.get('room_vnum', Config.STARTING_ROOM)
             player.skills = data.get('skills', {})
             player.spells = data.get('spells', {})
+            # Combat reinvention: migrate renamed ability keys so existing
+            # characters keep their learned abilities at equal power.
+            LEGACY_ABILITY_MAP = {
+                'death_grip': 'mistgrasp', 'death_coil': 'wraithfire',
+                'plague_strike': 'mistrot', 'finger_of_death': 'sever_cord',
+            }
+            for old_key, new_key in LEGACY_ABILITY_MAP.items():
+                if old_key in player.spells:
+                    player.spells.setdefault(new_key, player.spells.pop(old_key))
+                else:
+                    player.spells.pop(old_key, None)
             player.talents = data.get('talents', {})
             player.path = data.get('path', None)
             player.path_switch_available = data.get('path_switch_available', False)

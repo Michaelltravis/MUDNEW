@@ -229,8 +229,12 @@
     for (let i = 0; i < 6; i++) s.time.delayedCall(i * 60, () => { const m = s.add.image(x, y - 6, 'px_white').setTint(P().blood.a).setBlendMode(1).setDepth(57); s.tweens.add({ targets: m, x: c.x, y: c.y - 6, alpha: 0, duration: 360, onComplete: () => m.destroy() }); });
     sound('shadow', 2);
   });
-  add(/death.?grip/i, 'ranged', (s, c, x, y) => { beam(s, c, x, y, P().shadow.c, 4); glyph(s, x, y, '✋', P().shadow.a); sound('shadow', 2); });
-  add(/death.?coil|enervation|plague.?strike/i, 'ranged', (s, c, x, y) => { proj(s, c, x, y, P().blood.b, { ease: 'sine.inout', onHit: () => { novaRing(s, x, y, P().blood, 12); glyph(s, x, y, '☠', P().blood.a); } }); sound('blood', 2); });
+  // Soulbinder originals (mistgrasp/wraithfire/mistrot/sever_cord) +
+  // legacy names kept so old saves/log lines still animate
+  add(/mistgrasp|death.?grip/i, 'ranged', (s, c, x, y) => { beam(s, c, x, y, P().shadow.c, 4); glyph(s, x, y, '✋', P().shadow.a); MH.fx.risers(s, x, y, P().frost, 4); sound('shadow', 2); });
+  add(/wraithfire|death.?coil|enervation/i, 'ranged', (s, c, x, y) => { proj(s, c, x, y, P().shadow.a, { ease: 'sine.inout', onHit: () => { novaRing(s, x, y, P().shadow, 14); glyph(s, x, y, '👁', P().shadow.a); } }); sound('shadow', 2); });
+  add(/mistrot|plague.?strike/i, 'ranged', (s, c, x, y) => { cone(s, c, x, y, P().poison); MH.fx.decal(s, x, y, g => { g.fillStyle(0x2a3a10, 0.4); g.fillEllipse(x, y + 4, 26, 11); }); glyph(s, x, y, '☣', P().poison.a); sound('poison', 2); });
+  add(/sever.?cord|sever.?the.?cord|finger.?of.?death/i, 'ranged', (s, c, x, y) => { s.freezeFrame && s.freezeFrame(90); beam(s, c, x, y, 0xb09ae0, 2); MH.fx.burst(s, x, y - 6, P().shadow, 18, 120, 0.9); glyph(s, x, y, '✂', 0xffffff, { size: 18 }); MH.fx.punch(s, 0.06); sound('shadow', 3); });
   add(/\bpoison\b|weaken|blindness/i, 'ranged', (s, c, x, y) => { cone(s, c, x, y, P().poison); glyph(s, x, y, '☠', P().poison.a); sound('poison', 1); });
   add(/\bfear\b/i, 'ranged', (s, c, x, y) => { glyph(s, x, y, '!', 0x9a4ae0, { size: 18, rise: 22 }); MH.fx.ringShock(s, x, y - 6, P().shadow.b, 22, 320); sound('shadow', 1); });
   add(/soul.?reap|drain_soul/i, 'melee', (s, c, x, y) => { s.freezeFrame && s.freezeFrame(80); MH.fx.burst(s, x, y - 6, P().shadow, 16, 110, 0.8); glyph(s, x, y, '☠', P().shadow.a, { size: 16 }); sound('shadow', 3); });

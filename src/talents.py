@@ -1403,11 +1403,11 @@ THIEF_SUBTLETY_NEW = {
 # =============================================================================
 
 NECRO_UNHOLY_NEW = {
-    'name': 'Unholy',
-    'description': 'Command undead minions and spread disease. Soul Shards empower your dark army.',
+    'name': 'Mistbinding',
+    'description': 'Bind the risen dead and spread grave-rot. Soul Shards empower your Mist-touched servants.',
     'icon': '💀',
     'talents': {
-        'master_of_ghouls': Talent(id='master_of_ghouls', name='Master of Ghouls', description='Minion damage +4% per rank.', max_rank=5, tier=1, effects={'stat_bonus': {'minion_damage': 0.04}}),
+        'master_of_ghouls': Talent(id='master_of_ghouls', name='Ghoul-Warden', description='Minion damage +4% per rank.', max_rank=5, tier=1, effects={'stat_bonus': {'minion_damage': 0.04}}),
         'unholy_might': Talent(id='unholy_might', name='Unholy Might', description='Shadow spell damage +2% per rank.', max_rank=5, tier=1, effects={'damage_mod': {'shadow': 0.02}}),
         'grave_pact': Talent(id='grave_pact', name='Grave Pact', description='Minion gains 50% of your Soul Shard damage bonus.', max_rank=1, tier=2, requires=['master_of_ghouls'], effects={'passive': 'grave_pact'}),
         'epidemic': Talent(id='epidemic', name='Epidemic', description='Disease spreads to 1/2/3 nearby enemies.', max_rank=3, tier=2, requires=['master_of_ghouls'], effects={'stat_bonus': {'disease_spread': 1}}),
@@ -1415,30 +1415,30 @@ NECRO_UNHOLY_NEW = {
         'plague_mastery': Talent(id='plague_mastery', name='Plague Mastery', description='Disease damage +3% per rank.', max_rank=5, tier=3, requires=['epidemic'], effects={'damage_mod': {'disease': 0.03}}),
         'dark_transformation': Talent(id='dark_transformation', name='Dark Transformation', description='Transform minion: 2x damage, 2x HP for 30s.', max_rank=1, tier=4, requires=['ravenous_dead'], effects={'skill_unlock': 'dark_transformation'}),
         'desolation': Talent(id='desolation', name='Desolation', description='DoT damage +2% per rank.', max_rank=5, tier=4, requires=['plague_mastery'], effects={'damage_mod': {'dot': 0.02}}),
-        'army_of_dead': Talent(id='army_of_dead', name='Army of the Dead', description='Summon 4 temporary minions for 20s. Costs 5 Shards.', max_rank=1, tier=5, requires=['dark_transformation', 'desolation'], effects={'skill_unlock': 'army_of_dead'}),
+        'army_of_dead': Talent(id='army_of_dead', name='Crypt Call', description='Summon 4 temporary minions for 20s. Costs 5 Shards.', max_rank=1, tier=5, requires=['dark_transformation', 'desolation'], effects={'skill_unlock': 'army_of_dead'}),
     }
 }
 
 NECRO_BLOOD_NEW = {
-    'name': 'Blood',
-    'description': 'Sustain yourself through life drain and blood magic.',
+    'name': 'Sanguine',
+    'description': 'Sustain yourself through life-drain and the red art.',
     'icon': '🩸',
     'talents': {
         'butchery': Talent(id='butchery', name='Butchery', description='Melee damage +2% per rank.', max_rank=5, tier=1, effects={'damage_mod': {'physical': 0.02}}),
-        'scent_of_blood': Talent(id='scent_of_blood', name='Scent of Blood', description='Enemies below 25% HP take 5% more damage per rank.', max_rank=3, tier=1, effects={'damage_mod': {'vs_low_hp': 0.05}}),
+        'scent_of_blood': Talent(id='scent_of_blood', name='Bloodscent', description='Enemies below 25% HP take 5% more damage per rank.', max_rank=3, tier=1, effects={'damage_mod': {'vs_low_hp': 0.05}}),
         'blood_leech': Talent(id='blood_leech', name='Blood Leech', description='All damage heals you for 5% of damage dealt.', max_rank=1, tier=2, requires=['butchery'], effects={'passive': 'blood_leech'}),
-        'improved_blood_presence': Talent(id='improved_blood_presence', name='Improved Blood Presence', description='Max HP +2% per rank.', max_rank=5, tier=2, requires=['butchery'], effects={'stat_bonus': {'max_hp': 0.02}}),
+        'improved_blood_presence': Talent(id='improved_blood_presence', name='Sanguine Vigor', description='Max HP +2% per rank.', max_rank=5, tier=2, requires=['butchery'], effects={'stat_bonus': {'max_hp': 0.02}}),
         'bone_armor_mastery': Talent(id='bone_armor_mastery', name='Bone Armor Mastery', description='Bone Shield absorbs 750 instead of 500 per hit.', max_rank=1, tier=3, requires=['blood_leech'], effects={'passive': 'bone_armor_mastery'}),
         'blood_gorged': Talent(id='blood_gorged', name='Blood-Gorged', description='Damage +1% per rank while above 80% HP.', max_rank=5, tier=3, requires=['improved_blood_presence'], effects={'damage_mod': {'all': 0.01}}),
         'vampiric_blood': Talent(id='vampiric_blood', name='Vampiric Blood', description='+30% max HP and +100% healing for 15s. 120s CD.', max_rank=1, tier=4, requires=['bone_armor_mastery'], effects={'skill_unlock': 'vampiric_blood'}),
-        'will_of_the_necropolis': Talent(id='will_of_the_necropolis', name='Will of the Necropolis', description='Below 35% HP, take 3% less damage per rank.', max_rank=5, tier=4, requires=['blood_gorged'], effects={'stat_bonus': {'low_hp_dr': 0.03}}),
-        'dancing_rune_weapon': Talent(id='dancing_rune_weapon', name='Dancing Rune Weapon', description='Shadow clone mirrors attacks for 15s. Costs 6 Shards.', max_rank=1, tier=5, requires=['vampiric_blood', 'will_of_the_necropolis'], effects={'skill_unlock': 'dancing_rune_weapon'}),
+        'will_of_the_necropolis': Talent(id='will_of_the_necropolis', name='Deathward Will', description='Below 35% HP, take 3% less damage per rank.', max_rank=5, tier=4, requires=['blood_gorged'], effects={'stat_bonus': {'low_hp_dr': 0.03}}),
+        'dancing_rune_weapon': Talent(id='dancing_rune_weapon', name='Wraithblade', description='Shadow clone mirrors attacks for 15s. Costs 6 Shards.', max_rank=1, tier=5, requires=['vampiric_blood', 'will_of_the_necropolis'], effects={'skill_unlock': 'dancing_rune_weapon'}),
     }
 }
 
 NECRO_FROST_NEW = {
-    'name': 'Frost',
-    'description': 'Wield deathly cold for control and burst damage.',
+    'name': 'Gravecold',
+    'description': 'Wield the deathly chill of the crypt for control and burst.',
     'icon': '❄️',
     'talents': {
         'icy_talons': Talent(id='icy_talons', name='Icy Talons', description='Attack speed +2% per rank.', max_rank=5, tier=1, effects={'stat_bonus': {'attack_speed': 0.02}}),
