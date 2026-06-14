@@ -4676,7 +4676,7 @@ class CommandHandler:
         c = player.config.COLORS
         char_class = getattr(player, 'char_class', '').lower()
         # talent-trained shadow steppers (thief Subtlety) walk the same shadows
-        if char_class != 'assassin' and 'shadow_step' in getattr(player, 'skills', {}):
+        if char_class != 'assassin' and ('shadow_step' in getattr(player, 'skills', {}) or 'slip_the_veil' in getattr(player, 'skills', {})):
             char_class = 'assassin'
 
         if char_class == 'assassin':
@@ -4712,7 +4712,7 @@ class CommandHandler:
             return
 
         # Non-assassin fallback
-        if 'shadow_step' not in player.skills:
+        if 'shadow_step' not in player.skills and 'slip_the_veil' not in player.skills:
             await player.send("You don't know how to shadow step!")
             return
         if player.is_fighting:
@@ -18740,7 +18740,7 @@ class CommandHandler:
     async def cmd_divine_storm(cls, player: 'Player', args: List[str]):
         """Holy whirlwind attack."""
         c = player.config.COLORS
-        if 'divine_storm' not in player.skills:
+        if 'divine_storm' not in player.skills and 'halo_of_reckoning' not in player.skills:
             await player.send(f"{c['red']}You don't know Divine Storm.{c['reset']}")
             return
         from mobs import Mobile
@@ -18872,7 +18872,7 @@ class CommandHandler:
         import time
         c = player.config.COLORS
         char_class = getattr(player, 'char_class', '').lower()
-        if char_class not in ('assassin', 'thief') and 'vanish' not in player.skills:
+        if char_class not in ('assassin', 'thief') and ('vanish' not in player.skills and 'fade' not in player.skills):
             await player.send(f"{c['red']}You don't know Vanish.{c['reset']}")
             return
         now = time.time()
@@ -21061,3 +21061,30 @@ class CommandHandler:
         """
         from prestige import cmd_prestige
         await cmd_prestige(player, args)
+
+
+# ─────────────────────────────────────────────────────────────────────
+# Combat reinvention — skill renames (Misthollow originals). Each new
+# command dispatches to the existing handler (mechanics unchanged); old
+# names keep working via their original cmd_ methods + aliases. Player
+# skill keys are migrated on load (player.py LEGACY_ABILITY_MAP).
+# ─────────────────────────────────────────────────────────────────────
+_SKILL_RENAMES = {
+    # ranger (Silversong Warden)
+    'truesight_shot': 'aimed_shot', 'wildbond_strike': 'kill_command',
+    'loosing_storm': 'rapid_fire', 'quarry_mark': 'hunters_mark',
+    # mage (Adept of the High Tower)
+    'charge_release': 'arcane_barrage', 'towerbolt': 'arcane_blast',
+    'drink_the_leyline': 'evocation',
+    # assassin (Dark Brotherhood)
+    'slip_the_veil': 'shadowstep', 'fade': 'vanish',
+    # cleric (Holy Order)
+    'pyre_of_faith': 'holy_fire',
+    # paladin (Lightbringer)
+    'order_verdict': 'templars_verdict', 'absolution': 'word_of_glory',
+    'halo_of_reckoning': 'divine_storm',
+}
+for _new, _old in _SKILL_RENAMES.items():
+    _m = getattr(CommandHandler, f'cmd_{_old}', None)
+    if _m is not None:
+        setattr(CommandHandler, f'cmd_{_new}', _m)

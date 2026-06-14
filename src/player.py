@@ -1311,6 +1311,20 @@ class Player(Character):
                     player.spells.setdefault(new_key, player.spells.pop(old_key))
                 else:
                     player.spells.pop(old_key, None)
+            # Skill renames (combat reinvention, skill pass) — migrate skills
+            LEGACY_SKILL_MAP = {
+                'aimed_shot': 'truesight_shot', 'kill_command': 'wildbond_strike',
+                'rapid_fire': 'loosing_storm', 'hunters_mark': 'quarry_mark',
+                'arcane_barrage': 'charge_release', 'arcane_blast': 'towerbolt',
+                'evocation': 'drink_the_leyline',
+                'shadow_step': 'slip_the_veil', 'vanish': 'fade',
+                'holy_fire': 'pyre_of_faith',
+                'templars_verdict': 'order_verdict', 'word_of_glory': 'absolution',
+                'divine_storm': 'halo_of_reckoning',
+            }
+            for old_key, new_key in LEGACY_SKILL_MAP.items():
+                if old_key in player.skills:
+                    player.skills.setdefault(new_key, player.skills.pop(old_key))
             player.talents = data.get('talents', {})
             player.path = data.get('path', None)
             player.path_switch_available = data.get('path_switch_available', False)
