@@ -240,6 +240,69 @@
     sound('shadow', 1);
   });
 
+  // martial/hybrid extras
+  function arrowShot(s, c, x, y, color, opt = {}) {
+    const ang = Math.atan2(y - c.y, x - c.x);
+    const a = s.add.rectangle(c.x, c.y - 6, 12, 1.8, color).setDepth(60).setRotation(ang);
+    s.tweens.add({ targets: a, x, y: y - 6, duration: opt.life || 120, ease: 'linear', onComplete: () => { MH.fx.spark && s.spark(x, y - 6, color); a.destroy(); if (opt.onHit) opt.onHit(); } });
+  }
+  function daggerHit(s, x, y, color) {
+    const g = s.add.graphics().setDepth(60); g.lineStyle(2.2, color, 1);
+    g.beginPath(); g.moveTo(x - 9, y - 12); g.lineTo(x + 7, y + 4); g.moveTo(x + 8, y - 11); g.lineTo(x - 8, y + 5); g.strokePath();
+    s.tweens.add({ targets: g, alpha: 0, duration: 260, onComplete: () => g.destroy() });
+    MH.fx.spark && s.spark(x, y - 6, color);
+  }
+  function notes(s, c, pal, n) {
+    for (let i = 0; i < (n || 6); i++) s.time.delayedCall(i * 70, () => glyph(s, c.x + rnd(-16, 16), c.y - rnd(0, 8), ['♪', '♫', '♩'][i % 3], pal.a, { size: rnd(11, 15), rise: rnd(18, 30), life: 900 }));
+  }
+
+  // ============================ THIEF / ASSASSIN ============================
+  // (jackpot, vital keep flagships)
+  add(/backstab|shadowstrike|silence.?strike|nerve.?strike/i, 'melee', (s, c, x, y) => {
+    s.freezeFrame && s.freezeFrame(60); daggerHit(s, x, y, 0xb8b2c8);
+    MH.fx.burst(s, x, y - 6, P().blood, 10, 90, 0.6); MH.fx.punch(s, 0.04); sound('physical', 2);
+  });
+  add(/\b(circle|low.?blow|trip|feint|kidney|garrote|hamstring|crippling)\b/i, 'melee', (s, c, x, y) => { daggerHit(s, x, y, 0xb8b2c8); sound('physical', 1); });
+  add(/execute.?contract|assassinate|eviscerate|mutilate|envenom/i, 'melee', (s, c, x, y) => {
+    s.freezeFrame && s.freezeFrame(90); daggerHit(s, x, y, 0x8a5a9a); daggerHit(s, x + 3, y - 3, 0xd0ff8a);
+    MH.fx.burst(s, x, y - 6, P().poison, 12, 100, 0.7); MH.fx.punch(s, 0.06); sound('poison', 2);
+  });
+  add(/pocket.?sand/i, 'ranged', (s, c, x, y) => { cone(s, c, x, y, { a: 0xe8d8a0, b: 0xc0a060 }); glyph(s, x, y, '✦', 0xe8d8a0); sound('physical', 1); });
+  add(/\bsteal\b|pick.?lock|pick.?pocket|\bpick\b/i, 'melee', (s, c, x, y) => { glyph(s, x, y, '🪙', null, { size: 13 }); MH.fx.glowFlash(s, x, y - 6, 0xe8c168, 0.4); sound('arcane', 1); });
+  add(/rigged.?dice|perfect.?crime|preparation|cold.?blood|deadly.?poison|crippling.?poison/i, 'self', (s, c) => { selfAura(s, c, { a: 0xb8b2c8, b: 0x6a4a9a }, '✦'); sound('shadow', 1); });
+  add(/\b(sneak|hide|vanish|cloak.?of.?shadows|shadow.?dance|blur|camouflage)\b/i, 'self', (s, c) => {
+    const g = s.add.image(c.x, c.y - 6, 'fx_glow').setTint(0x6a4a9a).setBlendMode(1).setScale(0.7).setDepth(40);
+    s.tweens.add({ targets: g, alpha: 0, scale: 0.2, duration: 500, onComplete: () => g.destroy() });
+    MH.fx.risers(s, c.x, c.y, P().shadow, 4); sound('shadow', 1);
+  });
+  add(/shadow.?step|shadowstep|shadow.?blink|slip.?away/i, 'melee', (s, c, x, y) => { MH.fx.burst(s, c.x, c.y - 6, P().shadow, 8, 80, 0.5); s.time.delayedCall(80, () => { MH.fx.burst(s, x, y - 6, P().shadow, 8, 80, 0.5); daggerHit(s, x, y, 0x8a5a9a); }); sound('shadow', 2); });
+  add(/\bmark\b|marked.?for|hunters.?mark|predators.?mark|expose|vendetta|death.?mark/i, 'ranged', (s, c, x, y) => { glyph(s, x, y, '◎', 0xff5a5a, { size: 16, rise: 8, life: 1100 }); MH.fx.ringShock(s, x, y - 6, 0xff5a5a, 16, 280); sound('physical', 1); });
+  add(/\bevasion\b|tumble|escape|disengage|preparation/i, 'self', (s, c) => { MH.fx.ringShock(s, c.x, c.y - 6, 0xcfe2ff, 22, 300); sound('physical', 1); });
+  add(/fan.?of.?knives|blade.?dance|bladestorm|killing.?spree/i, 'melee', (s, c, x, y) => { for (let i = 0; i < 6; i++) s.time.delayedCall(i * 50, () => { const a = i / 6 * Math.PI * 2; daggerHit(s, c.x + Math.cos(a) * 22, c.y - 6 + Math.sin(a) * 22, 0xb8b2c8); }); sound('physical', 2); });
+
+  // ============================ RANGER ============================
+  add(/aimed.?shot|black.?arrow|serpent.?sting|wyvern.?sting/i, 'ranged', (s, c, x, y) => { s.freezeFrame && s.freezeFrame(60); arrowShot(s, c, x, y, 0xeae6d8, { life: 90, onHit: () => MH.fx.burst(s, x, y - 6, P().physical, 8, 80, 0.5) }); sound('physical', 2); });
+  add(/rapid.?fire|rapid.?shot|volley|multi.?shot|marked.?shot/i, 'ranged', (s, c, x, y) => { for (let i = 0; i < 5; i++) s.time.delayedCall(i * 70, () => arrowShot(s, c, x + rnd(-8, 8), y + rnd(-8, 8), 0xeae6d8, { life: 90 })); sound('physical', 2); });
+  add(/kill.?command|bestial.?wrath|stampede|alpha.?pack|predators/i, 'ranged', (s, c, x, y) => { glyph(s, x, y, '🐾', null, { size: 16 }); MH.fx.ringShock(s, x, y - 6, P().nature.b, 24, 320); MH.fx.burst(s, x, y - 6, P().nature, 10, 90, 0.6); sound('nature', 2); });
+  add(/call.?lightning/i, 'ranged', (s, c, x, y) => { MH.fx.boltFromSky(s, x, y, P().lightning); MH.fx.boltFromSky(s, x + rnd(-10, 10), y, P().lightning); MH.fx.spark && s.spark(x, y - 6, P().lightning.b); sound('lightning', 2); });
+  add(/faerie.?fire/i, 'ranged', (s, c, x, y) => { glyph(s, x, y, '✦', P().nature.a, { life: 1200, rise: 6 }); MH.fx.runeCircle(s, x, y, P().nature, 600, 14); sound('nature', 1); });
+  add(/entangle|\btame\b|\btrack\b|\bscan\b|forage|gather|camouflage_master/i, 'ranged', (s, c, x, y) => { MH.fx.runeCircle(s, x, y, P().nature, 700, 16); MH.fx.risers(s, x, y, P().nature, 5, '🌿'); sound('nature', 1); });
+  add(/briskness|aspect|hunters.?mark|barkskin/i, 'self', (s, c) => { selfAura(s, c, P().nature, '🌿'); sound('nature', 1); });
+  add(/explosive.?trap|detect.?traps/i, 'ranged', (s, c, x, y) => { MH.fx.ringShock(s, x, y - 6, P().fire.b, 26, 320); MH.fx.burst(s, x, y - 6, P().fire, 10, 90, 0.6); sound('fire', 2); });
+
+  // ============================ PALADIN ============================
+  // (templars_verdict, divine_storm keep flagships; shared holy/cure/bless covered)
+  add(/\bsmite\b|hammer.?of.?justice|crusader.?strike|crusaders.?judgment|judgment|seal.?of/i, 'ranged', (s, c, x, y) => { MH.fx.boltFromSky(s, x, y, P().holy); MH.fx.glowFlash(s, x, y - 6, P().holy.a, 0.7); glyph(s, x, y, '✟', P().holy.a); sound('holy', 2); });
+  add(/word.?of.?glory|hand.?of.?freedom|consecration|avenging.?wrath|sacred.?shield|divine.?favor|holylight|holy.?light|lay.?on/i, 'self', (s, c) => { selfAura(s, c, P().holy, '✚'); MH.fx.ringShock(s, c.x, c.y - 6, P().holy.a, 36, 440); sound('holy', 2); });
+  add(/\boath\b|\bswear\b|detect.?evil|sacred|aura/i, 'self', (s, c) => { MH.fx.runeCircle(s, c.x, c.y + 6, P().holy, 700, 18); glyph(s, c.x, c.y - 6, '✟', P().holy.a); sound('holy', 1); });
+
+  // ============================ BARD ============================
+  // (crescendo, magnum_opus keep flagships)
+  add(/\b(countersong|encore|epic.?tale|hymn.?of.?hope|perform|song|requiem|siren.?song)\b/i, 'self', (s, c) => { notes(s, c, P().song, 7); MH.fx.ringShock(s, c.x, c.y - 6, P().song.b, 34, 460); sound('song', 2); });
+  add(/discordant.?note|chord.?of.?disruption|mockery|mock\b|cackle/i, 'ranged', (s, c, x, y) => { notes(s, c, { a: 0xff8ad0, b: 0xb04a90 }, 4); glyph(s, x, y, '♯', 0xff5a5a, { size: 16 }); MH.fx.ringShock(s, x, y - 6, P().song.b, 20, 280); sound('song', 2); });
+  add(/charm|fascinate|mass.?charm|lullaby/i, 'ranged', (s, c, x, y) => { glyph(s, x, y, '♥', 0xff8ad0, { size: 15, rise: 18 }); notes(s, { x, y: y }, P().song, 3); sound('song', 1); });
+  add(/\b(haste|slow|heroism|briskness|lore|inspire)\b/i, 'self', (s, c) => { notes(s, c, P().song, 5); MH.fx.glowFlash(s, c.x, c.y - 6, P().song.a, 0.6); sound('song', 1); });
+
   MH.abilityFx = {
     match(text) { const t = String(text || ''); for (const [re, sig] of SIG) if (re.test(t)) return sig; return null; },
     run(scene, text, caster, tx, ty) {
