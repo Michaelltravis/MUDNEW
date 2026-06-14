@@ -304,7 +304,7 @@ class Config:
                       'shield_of_faith', 'divine_shield', 'barkskin', 'righteous_fury',
                       'divine_protection', 'aegis', 'holy_aura', 'protection_from_evil',
                       # Level 31-60 spells
-                      'travelling_grace', 'shared_burden', 'mass_dispel', 'font_of_the_vigil',
+                      'travelling_grace', 'shared_burden', 'cleansing_rite', 'font_of_the_vigil',
                       'serenity', 'divine_intervention'],
             # Clerics build Divine Favor through healing/turning undead, spend on holy_smite
             # Level 31-60: prayer_of_mending (32), spirit_link (38), mass_dispel (44),
@@ -375,8 +375,8 @@ class Config:
             'move_dice': 4,
             'thac0_progression': 'slow',
             'save_progression': 'mage',
-            'skills': ['soul_bolt', 'drain_soul', 'bone_shield', 'soul_reap'],
-            'spells': ['chill_touch', 'animate_dead', 'vampiric_touch', 'enervation',
+            'skills': ['soul_bolt', 'soul_siphon', 'bone_shield', 'soul_reap'],
+            'spells': ['chill_touch', 'animate_dead', 'leechcraft', 'enervation',
                       'mistgrasp', 'sever_cord', 'energy_drain',
                       'poison', 'weaken', 'blindness', 'fear', 'armor', 'shield',
                       'protection_from_good',
@@ -401,7 +401,7 @@ class Config:
                       'cure_light', 'detect_magic', 'heroism', 'fear', 'mass_charm',
                       'bless', 'armor',
                       # Level 31-60 spells
-                      'hymn_of_hope', 'chord_of_disruption', 'epic_tale', 'siren_song',
+                      'refrain_of_hope', 'chord_of_disruption', 'epic_tale', 'siren_song',
                       'requiem', 'magnum_opus'],
             # Bards also learn songs automatically based on level (see BARD_SONGS in spells.py)
             # Level 31-60: hymn_of_hope (32), chord_of_disruption (38), epic_tale (44),

@@ -240,14 +240,14 @@ PRESTIGE_CLASSES = {
         'description': 'The Inquisitor wields divine wrath as a weapon, punishing the wicked with holy fire and curses that weaken body and soul.',
         'abilities': {
             'judgment_of_light': {
-                'name': 'Judgment of Light',
+                'name': 'Verdict of Light',
                 'description': 'Pass divine judgment dealing 250% holy damage. Target takes 25% more damage from all sources for 15 seconds.',
                 'cooldown': 60,
                 'mana_cost': 50,
                 'type': 'attack',
             },
             'chains_of_penance': {
-                'name': 'Chains of Penance',
+                'name': 'Chains of Contrition',
                 'description': 'Bind target in holy chains for 3 rounds. They cannot move or attack, and take 50% holy damage per round.',
                 'cooldown': 90,
                 'mana_cost': 60,
@@ -331,7 +331,7 @@ PRESTIGE_CLASSES = {
         'description': 'The Crusader is a holy avenger, smiting evil with blinding radiance and righteous fury that grows stronger with every blow landed.',
         'abilities': {
             'radiant_judgment': {
-                'name': 'Radiant Judgment',
+                'name': 'Radiant Verdict',
                 'description': 'Smite target with holy fire for 300% holy damage. Undead and demons take 450% instead.',
                 'cooldown': 45,
                 'mana_cost': 40,
@@ -398,7 +398,7 @@ PRESTIGE_CLASSES = {
                 'type': 'buff',
             },
             'necrotic_nova': {
-                'name': 'Necrotic Nova',
+                'name': 'Graveburst',
                 'description': 'Explode necrotic energy outward: 250% shadow damage to all enemies. Heals you for 30% of total damage dealt.',
                 'cooldown': 75,
                 'mana_cost': 70,
@@ -420,7 +420,7 @@ PRESTIGE_CLASSES = {
         'description': 'The Reaper commands an army of the dead, raising ever more powerful minions and empowering them with dark rituals.',
         'abilities': {
             'army_of_the_dead': {
-                'name': 'Army of the Dead',
+                'name': 'Crypt Legion',
                 'description': 'Raise 3 skeletal warriors for 30 seconds. Each fights independently, dealing 60% of your spell damage per round.',
                 'cooldown': 120,
                 'mana_cost': 80,

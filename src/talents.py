@@ -696,7 +696,7 @@ _CLERIC_SHADOW_LEGACY = {
             effects={'passive': 'siphon_light'}
         ),
         'vampiric_embrace': Talent(
-            id='vampiric_embrace', name='Vampiric Embrace',
+            id='vampiric_embrace', name='Leeching Veil',
             description='Shadow damage heals you for 15%.',
             max_rank=1, tier=3, requires=['shadow_word_pain'],
             effects={'passive': 'vampiric_embrace'}
@@ -856,7 +856,7 @@ RANGER_MARKSMANSHIP = {
             effects={'passive': 'predators_mark'}
         ),
         'rapid_fire_mastery': Talent(
-            id='rapid_fire_mastery', name='Rapid Fire Mastery',
+            id='rapid_fire_mastery', name='Loosing Mastery',
             description='Rapid Fire grants +1 extra attack per 2 ranks (4-5 total).',
             max_rank=5, tier=3,
             effects={'passive': 'rapid_fire_mastery'}
@@ -900,7 +900,7 @@ RANGER_SURVIVAL = {
             effects={'stat_bonus': {'hp_regen_pct': 0.02}}
         ),
         'explosive_trap': Talent(
-            id='explosive_trap', name='Explosive Trap',
+            id='explosive_trap', name='Snare Charge',
             description='Active: Place trap, next enemy takes int*4 fire damage. Costs 20 Focus.',
             max_rank=1, tier=2,
             effects={'skill_unlock': 'explosive_trap'}
@@ -1251,7 +1251,7 @@ ASSASSIN_POISON = {
         ),
         # Tier 4 (15 points required)
         'wound_poison': Talent(
-            id='wound_poison', name='Wound Poison',
+            id='wound_poison', name='Wasting Coat',
             description='Unlocks: Poison that reduces healing by 50%.',
             max_rank=1, tier=4, requires=['leech_venom'],
             effects={'skill_unlock': 'wound_poison'}
@@ -1371,7 +1371,7 @@ THIEF_DIRTY_TRICKS = {
     'talents': {
         'sucker_punch': Talent(id='sucker_punch', name='Sucker Punch', description='Stun duration from abilities +0.5s per rank.', max_rank=5, tier=1, effects={'stat_bonus': {'stun_duration': 0.5}}),
         'street_smarts': Talent(id='street_smarts', name='Street Smarts', description='Resist stun/blind 5% per rank.', max_rank=3, tier=1, effects={'stat_bonus': {'cc_resist': 5}}),
-        'cheap_shot': Talent(id='cheap_shot', name='Cheap Shot', description='Opening attack from stealth stuns for 1 round.', max_rank=1, tier=2, requires=['sucker_punch'], effects={'passive': 'cheap_shot'}),
+        'cheap_shot': Talent(id='cheap_shot', name='Sucker Jab', description='Opening attack from stealth stuns for 1 round.', max_rank=1, tier=2, requires=['sucker_punch'], effects={'passive': 'cheap_shot'}),
         'dirty_fighting': Talent(id='dirty_fighting', name='Dirty Fighting', description='Pocket Sand blind duration +1 round per rank.', max_rank=3, tier=2, requires=['sucker_punch'], effects={'stat_bonus': {'blind_duration': 1}}),
         'con_artist': Talent(id='con_artist', name='Con Artist', description='Steal success rate +50%.', max_rank=1, tier=3, requires=['cheap_shot'], effects={'passive': 'con_artist'}),
         'slippery': Talent(id='slippery', name='Slippery', description='Dodge chance +1% per rank.', max_rank=5, tier=3, requires=['dirty_fighting'], effects={'stat_bonus': {'dodge': 1}}),
@@ -1413,7 +1413,7 @@ NECRO_UNHOLY_NEW = {
         'epidemic': Talent(id='epidemic', name='Epidemic', description='Disease spreads to 1/2/3 nearby enemies.', max_rank=3, tier=2, requires=['master_of_ghouls'], effects={'stat_bonus': {'disease_spread': 1}}),
         'ravenous_dead': Talent(id='ravenous_dead', name='Ravenous Dead', description='Minion kills grant you +1 Soul Shard.', max_rank=1, tier=3, requires=['grave_pact'], effects={'passive': 'ravenous_dead'}),
         'plague_mastery': Talent(id='plague_mastery', name='Plague Mastery', description='Disease damage +3% per rank.', max_rank=5, tier=3, requires=['epidemic'], effects={'damage_mod': {'disease': 0.03}}),
-        'dark_transformation': Talent(id='dark_transformation', name='Dark Transformation', description='Transform minion: 2x damage, 2x HP for 30s.', max_rank=1, tier=4, requires=['ravenous_dead'], effects={'skill_unlock': 'dark_transformation'}),
+        'dark_transformation': Talent(id='dark_transformation', name='Risen Horror', description='Transform minion: 2x damage, 2x HP for 30s.', max_rank=1, tier=4, requires=['ravenous_dead'], effects={'skill_unlock': 'dark_transformation'}),
         'desolation': Talent(id='desolation', name='Desolation', description='DoT damage +2% per rank.', max_rank=5, tier=4, requires=['plague_mastery'], effects={'damage_mod': {'dot': 0.02}}),
         'army_of_dead': Talent(id='army_of_dead', name='Crypt Call', description='Summon 4 temporary minions for 20s. Costs 5 Shards.', max_rank=1, tier=5, requires=['dark_transformation', 'desolation'], effects={'skill_unlock': 'army_of_dead'}),
     }
@@ -1430,7 +1430,7 @@ NECRO_BLOOD_NEW = {
         'improved_blood_presence': Talent(id='improved_blood_presence', name='Sanguine Vigor', description='Max HP +2% per rank.', max_rank=5, tier=2, requires=['butchery'], effects={'stat_bonus': {'max_hp': 0.02}}),
         'bone_armor_mastery': Talent(id='bone_armor_mastery', name='Bone Armor Mastery', description='Bone Shield absorbs 750 instead of 500 per hit.', max_rank=1, tier=3, requires=['blood_leech'], effects={'passive': 'bone_armor_mastery'}),
         'blood_gorged': Talent(id='blood_gorged', name='Blood-Gorged', description='Damage +1% per rank while above 80% HP.', max_rank=5, tier=3, requires=['improved_blood_presence'], effects={'damage_mod': {'all': 0.01}}),
-        'vampiric_blood': Talent(id='vampiric_blood', name='Vampiric Blood', description='+30% max HP and +100% healing for 15s. 120s CD.', max_rank=1, tier=4, requires=['bone_armor_mastery'], effects={'skill_unlock': 'vampiric_blood'}),
+        'vampiric_blood': Talent(id='vampiric_blood', name='Crimson Tide', description='+30% max HP and +100% healing for 15s. 120s CD.', max_rank=1, tier=4, requires=['bone_armor_mastery'], effects={'skill_unlock': 'vampiric_blood'}),
         'will_of_the_necropolis': Talent(id='will_of_the_necropolis', name='Deathward Will', description='Below 35% HP, take 3% less damage per rank.', max_rank=5, tier=4, requires=['blood_gorged'], effects={'stat_bonus': {'low_hp_dr': 0.03}}),
         'dancing_rune_weapon': Talent(id='dancing_rune_weapon', name='Wraithblade', description='Shadow clone mirrors attacks for 15s. Costs 6 Shards.', max_rank=1, tier=5, requires=['vampiric_blood', 'will_of_the_necropolis'], effects={'skill_unlock': 'dancing_rune_weapon'}),
     }
@@ -1444,12 +1444,12 @@ NECRO_FROST_NEW = {
         'icy_talons': Talent(id='icy_talons', name='Icy Talons', description='Attack speed +2% per rank.', max_rank=5, tier=1, effects={'stat_bonus': {'attack_speed': 0.02}}),
         'nerves_of_cold_steel': Talent(id='nerves_of_cold_steel', name='Nerves of Cold Steel', description='Frost spell damage +2% per rank.', max_rank=5, tier=1, effects={'damage_mod': {'frost': 0.02}}),
         'rime': Talent(id='rime', name='Rime', description='Frost spells have 15% chance to reset cooldowns.', max_rank=1, tier=2, requires=['icy_talons'], effects={'passive': 'rime'}),
-        'improved_icy_touch': Talent(id='improved_icy_touch', name='Improved Icy Touch', description='Frost slow effect duration +10% per rank.', max_rank=5, tier=2, requires=['nerves_of_cold_steel'], effects={'stat_bonus': {'frost_slow': 0.10}}),
+        'improved_icy_touch': Talent(id='improved_icy_touch', name='Gravechill', description='Frost slow effect duration +10% per rank.', max_rank=5, tier=2, requires=['nerves_of_cold_steel'], effects={'stat_bonus': {'frost_slow': 0.10}}),
         'killing_machine': Talent(id='killing_machine', name='Killing Machine', description='Every 5th attack is a guaranteed crit.', max_rank=1, tier=3, requires=['rime'], effects={'passive': 'killing_machine'}),
-        'howling_blast': Talent(id='howling_blast', name='Howling Blast', description='AoE frost damage +3% per rank.', max_rank=5, tier=3, requires=['improved_icy_touch'], effects={'damage_mod': {'frost_aoe': 0.03}}),
-        'obliterate_talent': Talent(id='obliterate_talent', name='Obliterate', description='Massive frost strike, 3x weapon damage + frost. Costs 4 Shards. 30s CD.', max_rank=1, tier=4, requires=['killing_machine'], effects={'skill_unlock': 'obliterate'}),
+        'howling_blast': Talent(id='howling_blast', name='Gravegale', description='AoE frost damage +3% per rank.', max_rank=5, tier=3, requires=['improved_icy_touch'], effects={'damage_mod': {'frost_aoe': 0.03}}),
+        'obliterate_talent': Talent(id='obliterate_talent', name='Soulrend', description='Massive frost strike, 3x weapon damage + frost. Costs 4 Shards. 30s CD.', max_rank=1, tier=4, requires=['killing_machine'], effects={'skill_unlock': 'obliterate'}),
         'merciless_combat': Talent(id='merciless_combat', name='Merciless Combat', description='Damage to targets below 35% HP +3% per rank.', max_rank=5, tier=4, requires=['howling_blast'], effects={'damage_mod': {'vs_low_hp': 0.03}}),
-        'breath_of_sindragosa': Talent(id='breath_of_sindragosa', name='Breath of Sindragosa', description='Channel frost AoE, drains 1 Shard per round.', max_rank=1, tier=5, requires=['obliterate_talent', 'merciless_combat'], effects={'skill_unlock': 'breath_of_sindragosa'}),
+        'breath_of_sindragosa': Talent(id='breath_of_sindragosa', name='Breath of the Crypt', description='Channel frost AoE, drains 1 Shard per round.', max_rank=1, tier=5, requires=['obliterate_talent', 'merciless_combat'], effects={'skill_unlock': 'breath_of_sindragosa'}),
     }
 }
 
@@ -1584,8 +1584,8 @@ _wire_spell(MAGE_ARCANE, 'rift_walker', 'Rift Walker',
             'Unlocks Mana Rift: tear reality to drain mana from foes.', 4, 'mana_rift')
 _wire_spell(NECRO_UNHOLY_NEW, 'first_curse', 'The First Curse',
             'Unlocks Curse: blight an enemy with creeping misfortune.', 1, 'curse')
-_wire_spell(NECRO_UNHOLY_NEW, 'festering_wounds', 'Festering Wounds',
-            'Unlocks Festering Strike: wounds that burst with rot.', 2, 'festering_strike')
+_wire_spell(NECRO_UNHOLY_NEW, 'festering_wounds', 'Rotting Wounds',
+            'Unlocks Rotting Strike: wounds that burst with rot.', 2, 'festering_strike')
 _wire_spell(NECRO_UNHOLY_NEW, 'grave_bursting', 'Grave Bursting',
             'Unlocks Corpse Explosion: detonate the fallen.', 3, 'corpse_explosion')
 _wire_spell(NECRO_UNHOLY_NEW, 'legion_of_bone', 'Legion of Bone',

@@ -1305,6 +1305,9 @@ class Player(Character):
                 'consecration': 'hallowed_ground', 'hammer_of_justice': 'dawnhammer',
                 'avenging_wrath_master': 'ascendant_hour', 'crusaders_judgment': 'verdict_of_the_order',
                 'hand_of_freedom': 'unfettered',
+                # Final de-WoW pass (learnable spells)
+                'vampiric_touch': 'leechcraft', 'hymn_of_hope': 'refrain_of_hope',
+                'mass_dispel': 'cleansing_rite',
             }
             for old_key, new_key in LEGACY_ABILITY_MAP.items():
                 if old_key in player.spells:
@@ -1321,7 +1324,7 @@ class Player(Character):
                 'holy_fire': 'pyre_of_faith',
                 'templars_verdict': 'order_verdict', 'word_of_glory': 'absolution',
                 'divine_storm': 'halo_of_reckoning', 'smite': 'censure',
-                'avatar_of_war': 'war_incarnate',
+                'avatar_of_war': 'war_incarnate', 'drain_soul': 'soul_siphon',
             }
             for old_key, new_key in LEGACY_SKILL_MAP.items():
                 if old_key in player.skills:

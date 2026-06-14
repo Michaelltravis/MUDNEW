@@ -211,7 +211,7 @@
     MH.fx.risers(s, c.x, c.y, P().holy, 12, '✚'); sound('holy', 2);
   });
   add(/holy.?smite|holysmite/i, 'ranged', (s, c, x, y) => { MH.fx.pillar(s, x, y, P().holy, 90, 18); glyph(s, x, y, '✟', P().holy.a); sound('holy', 2); });
-  add(/turn.?undead|dispel.?evil|dispel|mass.?dispel|remove.?curse|remove.?poison/i, 'self', (s, c) => {
+  add(/turn.?undead|dispel.?evil|dispel|mass.?dispel|cleansing.?rite|remove.?curse|remove.?poison/i, 'self', (s, c) => {
     MH.fx.ringShock(s, c.x, c.y - 6, P().holy.a, 48, 500); MH.fx.risers(s, c.x, c.y, P().holy, 8, '✦'); sound('holy', 2);
   });
   add(/\bharm\b/i, 'ranged', (s, c, x, y) => { proj(s, c, x, y, P().shadow.b, { size: 6, onHit: () => MH.fx.burst(s, x, y - 6, P().shadow, 12, 90, 0.7) }); sound('shadow', 2); });
@@ -227,7 +227,7 @@
   // ============================ NECROMANCER ============================
   // (animate_dead/apocalypse/corpse_explosion/finger_of_death keep flagships)
   add(/soul.?bolt/i, 'ranged', (s, c, x, y) => { proj(s, c, x, y, P().shadow.a, { size: 5, onHit: () => MH.fx.burst(s, x, y - 6, P().shadow, 10, 90, 0.6) }); sound('shadow', 1); });
-  add(/drain.?soul|vampiric.?touch|energy.?drain|soul.?harvest/i, 'ranged', (s, c, x, y) => {
+  add(/drain.?soul|soul.?siphon|vampiric.?touch|leechcraft|energy.?drain|soul.?harvest/i, 'ranged', (s, c, x, y) => {
     beam(s, c, x, y, P().shadow.b, 3);
     // motes flow back to caster
     for (let i = 0; i < 6; i++) s.time.delayedCall(i * 60, () => { const m = s.add.image(x, y - 6, 'px_white').setTint(P().blood.a).setBlendMode(1).setDepth(57); s.tweens.add({ targets: m, x: c.x, y: c.y - 6, alpha: 0, duration: 360, onComplete: () => m.destroy() }); });
@@ -308,7 +308,7 @@
 
   // ============================ BARD ============================
   // (crescendo, magnum_opus keep flagships)
-  add(/\b(countersong|encore|epic.?tale|hymn.?of.?hope|perform|song|requiem|siren.?song)\b/i, 'self', (s, c) => { notes(s, c, P().song, 7); MH.fx.ringShock(s, c.x, c.y - 6, P().song.b, 34, 460); sound('song', 2); });
+  add(/\b(countersong|encore|epic.?tale|hymn.?of.?hope|refrain.?of.?hope|perform|song|requiem|siren.?song)\b/i, 'self', (s, c) => { notes(s, c, P().song, 7); MH.fx.ringShock(s, c.x, c.y - 6, P().song.b, 34, 460); sound('song', 2); });
   add(/discordant.?note|chord.?of.?disruption|mockery|mock\b|cackle/i, 'ranged', (s, c, x, y) => { notes(s, c, { a: 0xff8ad0, b: 0xb04a90 }, 4); glyph(s, x, y, '♯', 0xff5a5a, { size: 16 }); MH.fx.ringShock(s, x, y - 6, P().song.b, 20, 280); sound('song', 2); });
   add(/charm|fascinate|mass.?charm|lullaby/i, 'ranged', (s, c, x, y) => { glyph(s, x, y, '♥', 0xff8ad0, { size: 15, rise: 18 }); notes(s, { x, y: y }, P().song, 3); sound('song', 1); });
   add(/\b(haste|slow|heroism|briskness|lore|inspire)\b/i, 'self', (s, c) => { notes(s, c, P().song, 5); MH.fx.glowFlash(s, c.x, c.y - 6, P().song.a, 0.6); sound('song', 1); });

@@ -21083,7 +21083,7 @@ _SKILL_RENAMES = {
     # paladin (Lightbringer)
     'order_verdict': 'templars_verdict', 'absolution': 'word_of_glory',
     'halo_of_reckoning': 'divine_storm', 'censure': 'smite',
-    'war_incarnate': 'avatar_of_war',
+    'war_incarnate': 'avatar_of_war', 'soul_siphon': 'drain_soul',
 }
 for _new, _old in _SKILL_RENAMES.items():
     _m = getattr(CommandHandler, f'cmd_{_old}', None)

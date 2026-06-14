@@ -247,8 +247,8 @@ SPELLS = {
         'message_self': 'You raise a corpse to serve you!',
         'message_room': '$n raises a corpse from the dead!',
     },
-    'vampiric_touch': {
-        'name': 'Vampiric Touch',
+    'leechcraft': {
+        'name': 'Leechcraft',
         'mana_cost': 30,
         'damage_dice': '2d6+2',
         'damage_per_level': 1,
@@ -528,7 +528,7 @@ SPELLS = {
         'message_other': 'A shimmering force shield surrounds $N!',
     },
     'mirror_image': {
-        'name': 'Mirror Image',
+        'name': 'Tower Echoes',
         'mana_cost': 40,
         'target': 'self',
         'duration_ticks': 12,
@@ -573,7 +573,7 @@ SPELLS = {
         'message_room': 'Flames erupt around $n in a protective shield!',
     },
     'spell_reflection': {
-        'name': 'Spell Reflection',
+        'name': 'Mirrorward',
         'mana_cost': 70,
         'target': 'self',
         'duration_ticks': 8,
@@ -676,7 +676,7 @@ SPELLS = {
     },
     # Paladin Talent Spells
     'lay_on_hands': {
-        'name': 'Lay on Hands',
+        'name': 'Laying of Hands',
         'mana_cost': 20,  # Minimum cost, uses all remaining mana
         'target': 'defensive',
         'special': 'lay_on_hands',
@@ -684,7 +684,7 @@ SPELLS = {
         'message_target': '$n places healing hands upon you!',
     },
     'avenging_wrath': {
-        'name': 'Avenging Wrath',
+        'name': 'Ascendant Hour',
         'mana_cost': 100,
         'target': 'self',
         'duration_ticks': 10,
@@ -766,7 +766,7 @@ SPELLS = {
         'message_room': 'Dark energy surrounds $N, draining their strength!',
     },
     'death_grip': {
-        'name': 'Death Grip',
+        'name': 'Mistgrasp',
         'mana_cost': 45,
         'damage_dice': '3d8+3',
         'damage_per_level': 2,
@@ -875,7 +875,7 @@ SPELLS = {
 
     # ========== TALENT SPELLS (NEW) ==========
     'pyroblast': {
-        'name': 'Pyroblast',
+        'name': 'Cinderlance',
         'mana_cost': 60,
         'damage_dice': '5d8',
         'damage_per_level': 3,
@@ -885,7 +885,7 @@ SPELLS = {
         'message_room': '$n hurls a massive pyroblast at $N!',
     },
     'combustion': {
-        'name': 'Combustion',
+        'name': 'Kindling Focus',
         'mana_cost': 40,
         'target': 'defensive',
         'duration_ticks': 6,
@@ -894,7 +894,7 @@ SPELLS = {
         'message_other': '$N ignites with overwhelming power.',
     },
     'ice_barrier': {
-        'name': 'Ice Barrier',
+        'name': 'Rimewall',
         'mana_cost': 35,
         'target': 'defensive',
         'duration_ticks': 8,
@@ -903,7 +903,7 @@ SPELLS = {
         'message_other': 'Ice surrounds $N in a protective barrier.',
     },
     'ice_lance': {
-        'name': 'Ice Lance',
+        'name': 'Rimelance',
         'mana_cost': 20,
         'damage_dice': '2d6+4',
         'damage_per_level': 2,
@@ -913,7 +913,7 @@ SPELLS = {
         'message_room': '$n launches a lance of ice at $N!',
     },
     'deep_freeze': {
-        'name': 'Deep Freeze',
+        'name': 'Gravefrost',
         'mana_cost': 45,
         'damage_dice': '3d6+6',
         'damage_per_level': 2,
@@ -933,7 +933,7 @@ SPELLS = {
         'message_other': '$N exhales a blast of winter air.',
     },
     'arcane_missiles': {
-        'name': 'Arcane Missiles',
+        'name': 'Mist Darts',
         'mana_cost': 30,
         'damage_dice': '3d5',
         'damage_per_level': 2,
@@ -943,7 +943,7 @@ SPELLS = {
         'message_room': 'Arcane missiles strike $N!',
     },
     'presence_of_mind': {
-        'name': 'Presence of Mind',
+        'name': 'Clear Mind',
         'mana_cost': 15,
         'target': 'defensive',
         'duration_ticks': 4,
@@ -952,7 +952,7 @@ SPELLS = {
         'message_other': '$N looks intensely focused.',
     },
     'arcane_power': {
-        'name': 'Arcane Power',
+        'name': 'Tower Surge',
         'mana_cost': 25,
         'target': 'defensive',
         'duration_ticks': 6,
@@ -969,7 +969,7 @@ SPELLS = {
         'message_room': '$n rips open a rift of raw mana at $N!',
     },
     'guardian_spirit': {
-        'name': 'Guardian Spirit',
+        'name': 'Wardspirit',
         'mana_cost': 50,
         'target': 'defensive',
         'duration_ticks': 8,
@@ -978,7 +978,7 @@ SPELLS = {
         'message_other': 'A guardian spirit watches over $N.',
     },
     'divine_hymn': {
-        'name': 'Divine Hymn',
+        'name': 'Hymn of the Vigil',
         'mana_cost': 70,
         'heal_dice': '3d8+6',
         'heal_per_level': 2,
@@ -987,7 +987,7 @@ SPELLS = {
         'message_room': '$n sings a divine hymn!',
     },
     'power_word_shield': {
-        'name': 'Power Word: Shield',
+        'name': 'Wardword',
         'mana_cost': 35,
         'target': 'defensive',
         'duration_ticks': 8,
@@ -1014,7 +1014,7 @@ SPELLS = {
         'message_other': '$N feels less pain.',
     },
     'shadowform': {
-        'name': 'Shadowform',
+        'name': 'Umbral Shroud',
         'mana_cost': 25,
         'target': 'defensive',
         'duration_ticks': 12,
@@ -1023,7 +1023,7 @@ SPELLS = {
         'message_other': '$N fades into shadow.',
     },
     'mind_flay': {
-        'name': 'Mind Flay',
+        'name': 'Soulflay',
         'mana_cost': 30,
         'damage_dice': '3d6',
         'damage_per_level': 2,
@@ -1035,7 +1035,7 @@ SPELLS = {
         'message_room': "$n flays $N's mind!",
     },
     'shadow_word_pain': {
-        'name': 'Shadow Word: Pain',
+        'name': 'Whisper of Pain',
         'mana_cost': 25,
         'target': 'offensive',
         'special': 'shadow_word_pain',
@@ -1043,7 +1043,7 @@ SPELLS = {
         'message_room': '$n afflicts $N with shadowy pain.',
     },
     'holy_shock': {
-        'name': 'Holy Shock',
+        'name': 'Dawnflash',
         'mana_cost': 35,
         'target': 'offensive',
         'special': 'holy_shock',
@@ -1051,7 +1051,7 @@ SPELLS = {
         'message_room': '$n unleashes a holy shock at $N!',
     },
     'beacon_of_light': {
-        'name': 'Beacon of Light',
+        'name': 'Beacon of Dawn',
         'mana_cost': 30,
         'target': 'defensive',
         'duration_ticks': 20,
@@ -1078,7 +1078,7 @@ SPELLS = {
         'message_other': '$N becomes a divine guardian.',
     },
     'army_of_dead': {
-        'name': 'Army of the Dead',
+        'name': 'Crypt Legion',
         'mana_cost': 60,
         'target': 'defensive',
         'special': 'army_of_dead',
@@ -1086,7 +1086,7 @@ SPELLS = {
         'message_other': '$n summons an army of the dead!',
     },
     'blood_boil': {
-        'name': 'Blood Boil',
+        'name': 'Boiling Bile',
         'mana_cost': 35,
         'target': 'room',
         'special': 'blood_boil',
@@ -1094,7 +1094,7 @@ SPELLS = {
         'message_room': '$n boils the blood of the room!',
     },
     'vampiric_blood': {
-        'name': 'Vampiric Blood',
+        'name': 'Crimson Tide',
         'mana_cost': 30,
         'target': 'defensive',
         'duration_ticks': 6,
@@ -1112,7 +1112,7 @@ SPELLS = {
         'message_other': 'Bones knit into a protective shell around $N.',
     },
     'howling_blast': {
-        'name': 'Howling Blast',
+        'name': 'Gravegale',
         'mana_cost': 35,
         'target': 'room',
         'damage_dice': '3d6',
@@ -1122,7 +1122,7 @@ SPELLS = {
         'message_room': 'A howl of frost rips through the room!',
     },
     'obliterate': {
-        'name': 'Obliterate',
+        'name': 'Soulrend',
         'mana_cost': 40,
         'damage_dice': '5d6',
         'damage_per_level': 3,
@@ -1133,7 +1133,7 @@ SPELLS = {
     },
     # Death Knight - Blood
     'death_strike': {
-        'name': 'Death Strike',
+        'name': 'Crypt Strike',
         'mana_cost': 35,
         'damage_dice': '4d6',
         'damage_per_level': 2,
@@ -1143,7 +1143,7 @@ SPELLS = {
         'message_room': '$n strikes $N with a deathly blow!',
     },
     'dancing_rune_weapon': {
-        'name': 'Dancing Rune Weapon',
+        'name': 'Wraithblade',
         'mana_cost': 60,
         'target': 'self',
         'duration_ticks': 8,
@@ -1153,7 +1153,7 @@ SPELLS = {
     },
     # Death Knight - Frost
     'remorseless_winter': {
-        'name': 'Remorseless Winter',
+        'name': 'Crypt Winter',
         'mana_cost': 45,
         'target': 'room',
         'damage_dice': '2d6',
@@ -1175,7 +1175,7 @@ SPELLS = {
     },
     # Death Knight - Unholy
     'festering_strike': {
-        'name': 'Festering Strike',
+        'name': 'Rotting Strike',
         'mana_cost': 30,
         'damage_dice': '3d6',
         'damage_per_level': 2,
@@ -1194,7 +1194,7 @@ SPELLS = {
     },
     # Priest - Shadow
     'vampiric_embrace': {
-        'name': 'Vampiric Embrace',
+        'name': 'Leeching Veil',
         'mana_cost': 40,
         'target': 'self',
         'duration_ticks': 15,
@@ -1278,7 +1278,7 @@ SPELLS = {
 
     # ===== MAGE LEVEL 31-60 =====
     'time_warp': {
-        'name': 'Time Warp',
+        'name': 'Quicken',
         'mana_cost': 120,
         'target': 'group',
         'duration_ticks': 20,
@@ -1345,7 +1345,7 @@ SPELLS = {
         'message_self': 'You raise a font of the Vigil; its light mends all who tarry near.',
     },
     'arcane_explosion': {
-        'name': 'Arcane Explosion',
+        'name': 'Resonant Burst',
         'mana_cost': 80,
         'damage_dice': '8d8+20',
         'damage_per_level': 4,
@@ -1406,7 +1406,7 @@ SPELLS = {
         'message_room': '$n releases a ringing burst of arcane resonance!',
     },
     'icy_veins': {
-        'name': 'Icy Veins',
+        'name': 'Rimeheart',
         'mana_cost': 100,
         'target': 'self',
         'duration_ticks': 15,
@@ -1422,7 +1422,7 @@ SPELLS = {
         'message_room': '$n\'s eyes glow icy blue as frost power surges through them!',
     },
     'combustion_master': {
-        'name': 'Combustion',
+        'name': 'Kindling Focus',
         'mana_cost': 80,
         'target': 'self',
         'duration_ticks': 12,
@@ -1457,7 +1457,7 @@ SPELLS = {
 
     # ===== CLERIC LEVEL 31-60 =====
     'prayer_of_mending': {
-        'name': 'Prayer of Mending',
+        'name': 'Travelling Grace',
         'mana_cost': 60,
         'heal_dice': '4d8+10',
         'heal_per_level': 2,
@@ -1483,8 +1483,8 @@ SPELLS = {
         'message_self': 'You link the spirits of your allies - damage is shared equally!',
         'message_room': 'Glowing spirit chains connect everyone in $n\'s group!',
     },
-    'mass_dispel': {
-        'name': 'Mass Dispel',
+    'cleansing_rite': {
+        'name': 'Cleansing Rite',
         'mana_cost': 80,
         'target': 'room',
         'level_required': 44,
@@ -1495,7 +1495,7 @@ SPELLS = {
         'message_room': 'A wave of holy light purges magical effects from everyone!',
     },
     'lightwell': {
-        'name': 'Lightwell',
+        'name': 'Font of the Vigil',
         'mana_cost': 100,
         'target': 'room',
         'duration_ticks': 30,
@@ -1545,7 +1545,7 @@ SPELLS = {
         'message_other': 'Golden light surrounds you - you are FREE!',
     },
     'consecration': {
-        'name': 'Consecration',
+        'name': 'Hallowed Ground',
         'mana_cost': 60,
         'target': 'room',
         'duration_ticks': 10,
@@ -1558,7 +1558,7 @@ SPELLS = {
         'message_room': 'Holy flames erupt from the ground around $n!',
     },
     'hammer_of_justice': {
-        'name': 'Hammer of Justice',
+        'name': 'Dawnhammer',
         'mana_cost': 50,
         'damage_dice': '4d8+10',
         'target': 'offensive',
@@ -1571,7 +1571,7 @@ SPELLS = {
         'message_room': '$n hurls a blazing hammer at $N, stunning them!',
     },
     'avenging_wrath_master': {
-        'name': 'Avenging Wrath',
+        'name': 'Ascendant Hour',
         'mana_cost': 120,
         'target': 'self',
         'duration_ticks': 20,
@@ -1600,7 +1600,7 @@ SPELLS = {
         'message_room': '$n is encased in a bubble of PURE DIVINE LIGHT!',
     },
     'crusaders_judgment': {
-        'name': "Crusader's Judgment",
+        'name': "Verdict of the Order",
         'mana_cost': 250,
         'damage_dice': '12d10+40',
         'target': 'offensive',
@@ -1614,7 +1614,7 @@ SPELLS = {
 
     # ===== NECROMANCER LEVEL 31-60 =====
     'death_coil': {
-        'name': 'Death Coil',
+        'name': 'Wraithfire',
         'mana_cost': 45,
         'damage_dice': '3d8+8',
         'heal_dice': '4d8+12',
@@ -1640,7 +1640,7 @@ SPELLS = {
         'message_room': 'Bones and shadow swirl around $n protectively!',
     },
     'plague_strike': {
-        'name': 'Plague Strike',
+        'name': 'Mistrot',
         'mana_cost': 55,
         'damage_dice': '3d6+5',
         'target': 'offensive',
@@ -1689,8 +1689,8 @@ SPELLS = {
     },
 
     # ===== BARD LEVEL 31-60 =====
-    'hymn_of_hope': {
-        'name': 'Hymn of Hope',
+    'refrain_of_hope': {
+        'name': 'Refrain of Hope',
         'mana_cost': 50,
         'target': 'group',
         'duration_ticks': 20,
@@ -1802,13 +1802,13 @@ SPELLS = {
         'message_self': 'You center your mind; your next workings will strike true.',
     },
     'wound_poison': {
-        'name': 'Wound Poison', 'mana_cost': 35, 'damage_dice': '3d6+4', 'target': 'offensive',
+        'name': 'Wasting Coat', 'mana_cost': 35, 'damage_dice': '3d6+4', 'target': 'offensive',
         'duration_ticks': 6, 'affects': [{'type': 'poison', 'value': 4}],
         'message_self': 'You rake $N with venom-slick blades!',
         'message_room': '$n rakes $N with venom-slick blades!',
     },
     'polymorph': {
-        'name': 'Polymorph', 'mana_cost': 70, 'target': 'offensive', 'duration_ticks': 3,
+        'name': 'Beastshape', 'mana_cost': 70, 'target': 'offensive', 'duration_ticks': 3,
         'cooldown': 60, 'affects': [{'type': 'sleep', 'value': 1}],
         'message_self': 'You weave a glamour - $N blinks, bleats, and becomes a placid sheep!',
         'message_room': '$n gestures at $N, who blinks, bleats, and becomes a placid sheep!',
@@ -1819,14 +1819,14 @@ SPELLS = {
         'message_self': 'A mantle of golden light settles on your shoulders.',
     },
     'dark_transformation': {
-        'name': 'Dark Transformation', 'mana_cost': 80, 'target': 'self', 'duration_ticks': 10,
+        'name': 'Risen Horror', 'mana_cost': 80, 'target': 'self', 'duration_ticks': 10,
         'cooldown': 120,
         'affects': [{'type': 'damroll', 'value': 6}, {'type': 'spell_power', 'value': 15}],
         'message_self': 'Shadow boils out of your veins - you are something more than alive.',
         'message_room': "Darkness coils around $n like a living shroud.",
     },
     'breath_of_sindragosa': {
-        'name': 'Breath of Sindragosa', 'mana_cost': 90, 'damage_dice': '8d8+12',
+        'name': 'Breath of the Crypt', 'mana_cost': 90, 'damage_dice': '8d8+12',
         'damage_per_level': 2, 'target': 'offensive', 'duration_ticks': 3,
         'affects': [{'type': 'slow', 'value': 1}],
         'message_self': 'You exhale a torrent of grave-frost over $N!',
