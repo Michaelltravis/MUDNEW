@@ -572,15 +572,6 @@ SPELLS = {
         'message_self': 'Flames surround you in a protective shield!',
         'message_room': 'Flames erupt around $n in a protective shield!',
     },
-    'spell_reflection': {
-        'name': 'Mirrorward',
-        'mana_cost': 70,
-        'target': 'self',
-        'duration_ticks': 8,
-        'affects': [{'type': 'spell_reflect', 'value': 1}],  # 50% chance to reflect
-        'message_self': 'A reflective aura surrounds you!',
-        'message_room': 'A shimmering aura surrounds $n!',
-    },
     'blink': {
         'name': 'Blink',
         'mana_cost': 30,
@@ -764,16 +755,6 @@ SPELLS = {
         'save': True,
         'message_self': 'Dark energy drains $N\'s vitality!',
         'message_room': 'Dark energy surrounds $N, draining their strength!',
-    },
-    'death_grip': {
-        'name': 'Mistgrasp',
-        'mana_cost': 45,
-        'damage_dice': '3d8+3',
-        'damage_per_level': 2,
-        'target': 'offensive',
-        'special': 'death_grip',  # Also stuns
-        'message_self': 'You grasp $N with the power of death!',
-        'message_room': 'Dark energy grips $N!',
     },
     # ── Soulbinder reinvention (Misthollow originals; replace the DK/Warlock
     #    lifts). Anchored on Soul Shards + the Mist. ──
@@ -1277,22 +1258,6 @@ SPELLS = {
     # These powerful abilities unlock at higher levels and define endgame play.
 
     # ===== MAGE LEVEL 31-60 =====
-    'time_warp': {
-        'name': 'Quicken',
-        'mana_cost': 120,
-        'target': 'group',
-        'duration_ticks': 20,
-        'level_required': 38,
-        'class_required': 'mage',
-        'cooldown': 300,  # 5 minutes
-        'affects': [
-            {'type': 'haste', 'value': 1},
-            {'type': 'hitroll', 'value': 4},
-            {'type': 'damroll', 'value': 3}
-        ],
-        'message_self': 'You bend the fabric of time, hastening your allies!',
-        'message_room': '$n warps time itself, hastening everyone nearby!',
-    },
     # ── Keeper of the Holy Order reinvention (the Vigil). Reuse the proven
     #    special hooks under Misthollow names. ──
     # ── Lightbringer reinvention (the Holy Order / Dawnward). ──
@@ -1344,19 +1309,6 @@ SPELLS = {
         'special': 'lightwell', 'heal_per_tick': '2d8+5',
         'message_self': 'You raise a font of the Vigil; its light mends all who tarry near.',
     },
-    'arcane_explosion': {
-        'name': 'Resonant Burst',
-        'mana_cost': 80,
-        'damage_dice': '8d8+20',
-        'damage_per_level': 4,
-        'target': 'room',
-        'level_required': 44,
-        'class_required': 'mage',
-        'cooldown': 30,
-        'element': 'arcane',
-        'message_self': 'You unleash a devastating arcane explosion!',
-        'message_room': '$n unleashes a massive arcane explosion that engulfs everything!',
-    },
     # ── Adept of the High Tower reinvention (Mages Circle / the Mist).
     #    Identity renames preserve the affect mechanics; Resonance Burst gets
     #    a genuinely-new Arcane-Charge-spend mechanic. ──
@@ -1405,37 +1357,6 @@ SPELLS = {
         'message_self': 'You release your stored arcane resonance in a ringing burst!',
         'message_room': '$n releases a ringing burst of arcane resonance!',
     },
-    'icy_veins': {
-        'name': 'Rimeheart',
-        'mana_cost': 100,
-        'target': 'self',
-        'duration_ticks': 15,
-        'level_required': 50,
-        'class_required': 'mage',
-        'cooldown': 180,  # 3 minutes
-        'affects': [
-            {'type': 'crit_chance', 'value': 30},
-            {'type': 'haste', 'value': 1},
-            {'type': 'spell_power', 'value': 15}
-        ],
-        'message_self': 'Frost surges through your veins, sharpening your focus!',
-        'message_room': '$n\'s eyes glow icy blue as frost power surges through them!',
-    },
-    'combustion_master': {
-        'name': 'Kindling Focus',
-        'mana_cost': 80,
-        'target': 'self',
-        'duration_ticks': 12,
-        'level_required': 56,
-        'class_required': 'mage',
-        'cooldown': 180,
-        'affects': [
-            {'type': 'fire_crit', 'value': 100},  # Guaranteed fire crits
-            {'type': 'damroll', 'value': 8}
-        ],
-        'message_self': 'Your inner fire ignites - every spell WILL burn!',
-        'message_room': '$n erupts in flames, fire magic guaranteed to devastate!',
-    },
     'meteor_storm': {
         'name': 'Meteor Storm',
         'mana_cost': 200,
@@ -1456,20 +1377,6 @@ SPELLS = {
     },
 
     # ===== CLERIC LEVEL 31-60 =====
-    'prayer_of_mending': {
-        'name': 'Travelling Grace',
-        'mana_cost': 60,
-        'heal_dice': '4d8+10',
-        'heal_per_level': 2,
-        'target': 'defensive',
-        'level_required': 32,
-        'class_required': 'cleric',
-        'cooldown': 15,
-        'special': 'prayer_of_mending',  # Bounces to injured allies
-        'bounces': 3,
-        'message_self': 'You place a prayer of mending on $N - it will bounce to heal others!',
-        'message_other': 'A glowing prayer settles on you, ready to heal and bounce!',
-    },
     'spirit_link': {
         'name': 'Spirit Link',
         'mana_cost': 100,
@@ -1493,19 +1400,6 @@ SPELLS = {
         'special': 'mass_dispel',
         'message_self': 'You unleash a wave of purifying energy!',
         'message_room': 'A wave of holy light purges magical effects from everyone!',
-    },
-    'lightwell': {
-        'name': 'Font of the Vigil',
-        'mana_cost': 100,
-        'target': 'room',
-        'duration_ticks': 30,
-        'level_required': 50,
-        'class_required': 'cleric',
-        'cooldown': 180,
-        'special': 'lightwell',
-        'heal_per_tick': '2d8+5',
-        'message_self': 'You summon a radiant Lightwell that pulses with healing energy!',
-        'message_room': 'A pillar of holy light appears, radiating healing energy!',
     },
     'serenity': {
         'name': 'Serenity',
@@ -1544,49 +1438,6 @@ SPELLS = {
         'message_self': 'You grant $N freedom from all bonds!',
         'message_other': 'Golden light surrounds you - you are FREE!',
     },
-    'consecration': {
-        'name': 'Hallowed Ground',
-        'mana_cost': 60,
-        'target': 'room',
-        'duration_ticks': 10,
-        'level_required': 38,
-        'class_required': 'paladin',
-        'cooldown': 20,
-        'special': 'consecration',
-        'damage_per_tick': '2d6+4',
-        'message_self': 'You consecrate the ground with holy fire!',
-        'message_room': 'Holy flames erupt from the ground around $n!',
-    },
-    'hammer_of_justice': {
-        'name': 'Dawnhammer',
-        'mana_cost': 50,
-        'damage_dice': '4d8+10',
-        'target': 'offensive',
-        'level_required': 44,
-        'class_required': 'paladin',
-        'cooldown': 45,
-        'affects': [{'type': 'stunned', 'value': 1}],
-        'duration_ticks': 4,
-        'message_self': 'You hurl a hammer of holy justice at $N!',
-        'message_room': '$n hurls a blazing hammer at $N, stunning them!',
-    },
-    'avenging_wrath_master': {
-        'name': 'Ascendant Hour',
-        'mana_cost': 120,
-        'target': 'self',
-        'duration_ticks': 20,
-        'level_required': 50,
-        'class_required': 'paladin',
-        'cooldown': 180,
-        'affects': [
-            {'type': 'damroll', 'value': 12},
-            {'type': 'hitroll', 'value': 8},
-            {'type': 'heal_power', 'value': 30},
-            {'type': 'haste', 'value': 1}
-        ],
-        'message_self': 'Wings of GOLDEN LIGHT burst from your back!',
-        'message_room': 'WINGS OF LIGHT burst from $n as divine wrath fills them!',
-    },
     'divine_shield_master': {
         'name': 'Divine Shield',
         'mana_cost': 80,
@@ -1599,33 +1450,8 @@ SPELLS = {
         'message_self': 'You are surrounded by an IMPENETRABLE divine shield!',
         'message_room': '$n is encased in a bubble of PURE DIVINE LIGHT!',
     },
-    'crusaders_judgment': {
-        'name': "Verdict of the Order",
-        'mana_cost': 250,
-        'damage_dice': '12d10+40',
-        'target': 'offensive',
-        'level_required': 60,
-        'class_required': 'paladin',
-        'cooldown': 600,
-        'special': 'crusaders_judgment',
-        'message_self': 'You invoke the ULTIMATE JUDGMENT of the Light!',
-        'message_room': 'Divine power EXPLODES as $n calls down CRUSADER\'S JUDGMENT!',
-    },
 
     # ===== NECROMANCER LEVEL 31-60 =====
-    'death_coil': {
-        'name': 'Wraithfire',
-        'mana_cost': 45,
-        'damage_dice': '3d8+8',
-        'heal_dice': '4d8+12',
-        'target': 'offensive',
-        'level_required': 32,
-        'class_required': 'necromancer',
-        'cooldown': 12,
-        'special': 'death_coil',
-        'message_self': 'You hurl a coil of death energy at $N!',
-        'message_room': '$n hurls dark death energy at $N!',
-    },
     'corpse_shield': {
         'name': 'Corpse Shield',
         'mana_cost': 60,
@@ -1638,20 +1464,6 @@ SPELLS = {
         'affects': [{'type': 'damage_redirect_pet', 'value': 50}],
         'message_self': 'Your undead minion forms a protective barrier around you!',
         'message_room': 'Bones and shadow swirl around $n protectively!',
-    },
-    'plague_strike': {
-        'name': 'Mistrot',
-        'mana_cost': 55,
-        'damage_dice': '3d6+5',
-        'target': 'offensive',
-        'level_required': 44,
-        'class_required': 'necromancer',
-        'cooldown': 20,
-        'special': 'plague_strike',
-        'affects': [{'type': 'plague', 'value': 1}],
-        'duration_ticks': 10,
-        'message_self': 'You strike $N with virulent plague!',
-        'message_room': '$n strikes $N with a diseased blow that spreads to nearby foes!',
     },
     'summon_gargoyle': {
         'name': 'Summon Gargoyle',
