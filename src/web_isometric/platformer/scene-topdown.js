@@ -2206,8 +2206,15 @@
         this.playWalk();
       } else {
         this.player.setVelocity(0, 0);
-        this.player.anims.stop();
-        this.player.setFrame(`${this.facing}0`);
+        const pos = MH.state.player && MH.state.player.position;
+        if (pos === 'sleeping' || pos === 'resting' || pos === 'sitting') {
+          // show the recovery pose while idle (any movement re-stands you)
+          this.player.anims.stop();
+          this.player.setFrame(pos === 'sleeping' ? 'sleep' : 'rest');
+        } else {
+          this.player.anims.stop();
+          this.player.setFrame(`${this.facing}0`);
+        }
       }
 
       const now = Date.now();

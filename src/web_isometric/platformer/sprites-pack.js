@@ -6,7 +6,7 @@
 (() => {
   const MH = window.MH = window.MH || {};
   const TILE = 16, GAP = 0, COLS = 12;   // tilemap_packed.png: 192x176, gapless grid
-  const FRAMES = ['d0', 'd1', 'u0', 'u1', 's0', 's1', 'atk_d', 'atk_u', 'atk_s', 'hurt', 'death'];
+  const FRAMES = ['d0', 'd1', 'u0', 'u1', 's0', 's1', 'atk_d', 'atk_u', 'atk_s', 'hurt', 'death', 'rest', 'sleep'];
 
   // tile index = row * 12 + col in tilemap_packed.png
   const CAST = {
@@ -99,7 +99,7 @@
         ctx.drawImage(src, sx, sy, TILE, TILE, px, py, size, size);
       }
       ctx.restore();
-      if (spec.crown && i !== 10) {
+      if (spec.crown && i !== 10 && i !== 12) {
         // a gold circlet floats above the brow on every living frame
         const cw = size * 0.34, cx2 = px + size / 2 - cw / 2, cy2 = py + size * 0.02;
         ctx.fillStyle = '#ffd44a';
@@ -128,6 +128,17 @@
     draw(8, 2, 0);            // atk_s
     draw(9, 0, 0, 0, true);   // hurt
     draw(10, 0, 3, Math.PI / 2, false, 0.85); // death topple
+    draw(11, 0, 4);           // rest: same art, sunk toward the floor (seated)
+    draw(12, 0, 5, Math.PI / 2, false, 0.95);  // sleep: lying on its side
+    {
+      // drifting z's over the sleeper
+      const sx2 = 12 * FW;
+      ctx.save(); ctx.filter = 'none'; ctx.globalAlpha = 1;
+      ctx.fillStyle = '#cfe2ff';
+      ctx.font = `bold ${5 * SS}px monospace`; ctx.fillText('z', sx2 + FW - 22 * SS, 26 * SS);
+      ctx.font = `bold ${7 * SS}px monospace`; ctx.fillText('z', sx2 + FW - 16 * SS, 18 * SS);
+      ctx.restore();
+    }
 
     if (scene.textures.exists(key)) scene.textures.remove(key);
     const tex = scene.textures.addCanvas(key, c);
@@ -148,7 +159,7 @@
       // but Phaser caches frame objects per anim - rebuild them
       for (const name of Object.keys(CAST)) {
         const key = `td_${name}`;
-        ['walkd', 'walku', 'walks', 'hurt', 'death'].forEach(a => {
+        ['walkd', 'walku', 'walks', 'hurt', 'death', 'rest', 'sleep'].forEach(a => {
           const ak = `${key}_${a}`;
           if (scene.anims.exists(ak)) scene.anims.remove(ak);
         });

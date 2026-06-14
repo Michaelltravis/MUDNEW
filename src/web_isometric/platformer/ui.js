@@ -2533,6 +2533,13 @@
         }
       });
       MH.bus.on('terminal.echo', cmd => appendTerminal(`> ${cmd}`, 'cmd'));
+      // position commands don't trigger a map push (you don't move), so pull
+      // fresh state to update the recovery pose + chip + panel
+      MH.bus.on('terminal.echo', cmd => {
+        if (/^(sleep|rest|sit|stand|wake)\b/i.test(String(cmd).trim())) {
+          setTimeout(() => { if (MH.refreshState) MH.refreshState(); if (recoveryOpen) refreshRecovery(); }, 350);
+        }
+      });
       els.drawerTab.addEventListener('click', () => els.drawer.classList.toggle('open'));
 
       // achievement / daily / title toasts pulled from the raw feed

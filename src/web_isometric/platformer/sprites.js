@@ -902,7 +902,7 @@
 // death. Tiles: themed floor/border/obstacles + universal stairs.
 (() => {
   const MH = window.MH;
-  const TD_FRAMES = ['d0', 'd1', 'u0', 'u1', 's0', 's1', 'atk_d', 'atk_u', 'atk_s', 'hurt', 'death'];
+  const TD_FRAMES = ['d0', 'd1', 'u0', 'u1', 's0', 's1', 'atk_d', 'atk_u', 'atk_s', 'hurt', 'death', 'rest', 'sleep'];
   const FW = 24, FH = 24;
 
   function canvasOf(w, h) {
@@ -1034,12 +1034,41 @@
     if (scene.textures.exists(key)) return;
     const [c, ctx] = canvasOf(FW * TD_FRAMES.length, FH);
     if (alpha) ctx.globalAlpha = alpha;
+    const drawBody = (g, ox, frame) => {
+      if (body === 'quad') tdQuadruped(g, ox, frame, pal);
+      else if (body === 'blob') tdBlob(g, ox, frame, pal);
+      else if (body === 'flyer') tdFlyer(g, ox, frame, pal);
+      else { tdHumanoid(g, ox, frame, pal); (accs || []).forEach(a => tdAccessory(g, ox, frame, a, pal)); }
+    };
     TD_FRAMES.forEach((frame, i) => {
       const ox = i * FW;
-      if (body === 'quad') tdQuadruped(ctx, ox, frame, pal);
-      else if (body === 'blob') tdBlob(ctx, ox, frame, pal);
-      else if (body === 'flyer') tdFlyer(ctx, ox, frame, pal);
-      else { tdHumanoid(ctx, ox, frame, pal); (accs || []).forEach(a => tdAccessory(ctx, ox, frame, a, pal)); }
+      if (frame === 'rest' || frame === 'sleep') {
+        // derive a resting/sleeping pose by transforming the standing front
+        // frame, so every body type and palette gets one for free
+        const [t, tctx] = canvasOf(FW, FH);
+        drawBody(tctx, 0, 'd0');
+        ctx.save();
+        if (frame === 'rest') {
+          // seated/hunched: squash vertically and sink to the floor
+          ctx.translate(ox, FH);
+          ctx.scale(1, 0.72);
+          ctx.drawImage(t, 0, FH * 0.10);
+          ctx.restore();
+        } else {
+          // sleeping: lie the body on its side near the floor, add drifting z's
+          ctx.translate(ox + FW / 2, FH - 7);
+          ctx.rotate(-Math.PI / 2);
+          ctx.drawImage(t, -FH / 2, -FW / 2 - 1);
+          ctx.restore();
+          ctx.fillStyle = '#cfe2ff';
+          ctx.font = 'bold 6px monospace';
+          ctx.fillText('z', ox + 15, 8);
+          ctx.font = 'bold 5px monospace';
+          ctx.fillText('z', ox + 18, 4);
+        }
+      } else {
+        drawBody(ctx, ox, frame);
+      }
     });
     const tex = scene.textures.addCanvas(key, c);
     TD_FRAMES.forEach((frame, i) => tex.add(frame, 0, i * FW, 0, FW, FH));
@@ -1152,6 +1181,8 @@
         mk('walks', ['s0', 's1'], 6);
         mk('hurt', ['hurt'], 1, 0);
         mk('death', ['death'], 1, 0);
+        mk('rest', ['rest'], 1, 0);
+        mk('sleep', ['sleep'], 1, 0);
       }
     },
     playerKey(charClass) {
