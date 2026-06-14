@@ -1295,6 +1295,37 @@ SPELLS = {
     },
     # ── Keeper of the Holy Order reinvention (the Vigil). Reuse the proven
     #    special hooks under Misthollow names. ──
+    # ── Lightbringer reinvention (the Holy Order / Dawnward). ──
+    'hallowed_ground': {  # was consecration
+        'name': 'Hallowed Ground', 'mana_cost': 60, 'target': 'room', 'duration_ticks': 10,
+        'level_required': 38, 'class_required': 'paladin', 'cooldown': 20,
+        'special': 'consecration', 'damage_per_tick': '2d6+4',
+        'message_self': 'You sanctify the ground; it sears the unworthy.',
+    },
+    'dawnhammer': {  # was hammer_of_justice
+        'name': 'Dawnhammer', 'mana_cost': 50, 'damage_dice': '4d8+10', 'target': 'offensive',
+        'level_required': 44, 'class_required': 'paladin', 'cooldown': 45,
+        'affects': [{'type': 'stunned', 'value': 1}], 'duration_ticks': 4,
+        'message_self': 'You bring down a hammer of dawnlight upon $N!',
+    },
+    'ascendant_hour': {  # was avenging_wrath
+        'name': 'Ascendant Hour', 'mana_cost': 120, 'target': 'self', 'duration_ticks': 20,
+        'level_required': 50, 'class_required': 'paladin', 'cooldown': 180,
+        'affects': [{'type': 'damroll', 'value': 12}, {'type': 'hitroll', 'value': 8}, {'type': 'heal_power', 'value': 30}, {'type': 'haste', 'value': 1}],
+        'message_self': 'The Order\'s light crowns you; your hour is ascendant.',
+    },
+    'verdict_of_the_order': {  # was crusaders_judgment
+        'name': 'Verdict of the Order', 'mana_cost': 250, 'damage_dice': '12d10+40', 'target': 'offensive',
+        'level_required': 60, 'class_required': 'paladin', 'cooldown': 600,
+        'special': 'crusaders_judgment',
+        'message_self': 'You pronounce the Order\'s final verdict upon $N!',
+    },
+    'unfettered': {  # was hand_of_freedom
+        'name': 'Unfettered', 'mana_cost': 40, 'target': 'defensive', 'duration_ticks': 8,
+        'level_required': 32, 'class_required': 'paladin', 'cooldown': 30,
+        'special': 'hand_of_freedom',
+        'message_self': 'A touch of dawn frees $N from every binding.',
+    },
     'travelling_grace': {  # was prayer_of_mending
         'name': 'Travelling Grace', 'mana_cost': 60, 'heal_dice': '4d8+10', 'heal_per_level': 2,
         'target': 'defensive', 'level_required': 32, 'class_required': 'cleric', 'cooldown': 15,

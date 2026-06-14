@@ -300,8 +300,8 @@
 
   // ============================ PALADIN ============================
   // (templars_verdict, divine_storm keep flagships; shared holy/cure/bless covered)
-  add(/\bsmite\b|hammer.?of.?justice|crusader.?strike|crusaders.?judgment|judgment|seal.?of/i, 'ranged', (s, c, x, y) => { MH.fx.boltFromSky(s, x, y, P().holy); MH.fx.glowFlash(s, x, y - 6, P().holy.a, 0.7); glyph(s, x, y, '✟', P().holy.a); sound('holy', 2); });
-  add(/word.?of.?glory|hand.?of.?freedom|consecration|avenging.?wrath|sacred.?shield|divine.?favor|holylight|holy.?light|lay.?on/i, 'self', (s, c) => { selfAura(s, c, P().holy, '✚'); MH.fx.ringShock(s, c.x, c.y - 6, P().holy.a, 36, 440); sound('holy', 2); });
+  add(/\bsmite\b|dawnhammer|hammer.?of.?justice|crusader.?strike|crusaders.?judgment|verdict.?of.?the.?order|judgment|seal.?of/i, 'ranged', (s, c, x, y) => { MH.fx.boltFromSky(s, x, y, P().holy); MH.fx.glowFlash(s, x, y - 6, P().holy.a, 0.7); glyph(s, x, y, '✟', P().holy.a); sound('holy', 2); });
+  add(/word.?of.?glory|hand.?of.?freedom|unfettered|hallowed.?ground|consecration|ascendant.?hour|avenging.?wrath|sacred.?shield|divine.?favor|holylight|holy.?light|lay.?on/i, 'self', (s, c) => { selfAura(s, c, P().holy, '✚'); MH.fx.ringShock(s, c.x, c.y - 6, P().holy.a, 36, 440); sound('holy', 2); });
   add(/\boath\b|\bswear\b|detect.?evil|sacred|aura/i, 'self', (s, c) => { MH.fx.runeCircle(s, c.x, c.y + 6, P().holy, 700, 18); glyph(s, c.x, c.y - 6, '✟', P().holy.a); sound('holy', 1); });
 
   // ============================ BARD ============================

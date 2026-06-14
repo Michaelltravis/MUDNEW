@@ -1301,6 +1301,10 @@ class Player(Character):
                 # Cleric (Keeper of the Holy Order)
                 'prayer_of_mending': 'travelling_grace', 'spirit_link': 'shared_burden',
                 'lightwell': 'font_of_the_vigil',
+                # Paladin (Lightbringer)
+                'consecration': 'hallowed_ground', 'hammer_of_justice': 'dawnhammer',
+                'avenging_wrath_master': 'ascendant_hour', 'crusaders_judgment': 'verdict_of_the_order',
+                'hand_of_freedom': 'unfettered',
             }
             for old_key, new_key in LEGACY_ABILITY_MAP.items():
                 if old_key in player.spells:

@@ -360,8 +360,8 @@ class Config:
             'spells': ['cure_light', 'cure_serious', 'bless', 'detect_evil', 'protection_from_evil',
                       'shield_of_faith', 'divine_shield',
                       # Level 31-60 spells
-                      'hand_of_freedom', 'consecration', 'hammer_of_justice',
-                      'avenging_wrath_master', 'divine_shield_master', 'crusaders_judgment'],
+                      'unfettered', 'hallowed_ground', 'dawnhammer',
+                      'ascendant_hour', 'divine_shield_master', 'verdict_of_the_order'],
             # Paladins use auras (devotion, protection, retribution) and lay_hands ability
             # Level 31-60: hand_of_freedom (32), consecration (38), hammer_of_justice (44),
             #              avenging_wrath_master (50), divine_shield_master (56), crusaders_judgment (60)
