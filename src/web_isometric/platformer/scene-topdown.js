@@ -2136,9 +2136,35 @@
       const storming = outdoor && sky === 'stormy';
       if (storming && (!this._nextBolt || Date.now() > this._nextBolt)) {
         this._nextBolt = Date.now() + 6000 + Math.random() * 14000;
+        // a jagged bolt strikes a random spot, briefly lighting the whole room
+        try { if (MH.fx && MH.fx.boltFromSky) MH.fx.boltFromSky(this, Phaser.Math.Between(40, this.pxW - 40), Phaser.Math.Between(this.pxH * 0.3, this.pxH * 0.7), MH.fx.PAL.lightning); } catch (_) {}
         this.cameras.main.flash(160, 220, 225, 255);
         MH.bus.emit('ambient.sound', 'thunder');
       }
+      this.updateSignatureMist();
+    }
+
+    // Misthollow's signature: a persistent low mist drifts through every
+    // room — thin in cities, choking in swamps/crypts/the dark.
+    updateSignatureMist() {
+      const theme = (this.layout && this.layout.theme) || 'default';
+      const dark = !!(this.layout && this.layout.dark);
+      const swim = !!(this.layout && this.layout.swim);
+      const key = theme + (dark ? 'D' : '') + (swim ? 'S' : '');
+      if (this._mistKey === key) return;
+      this._mistKey = key;
+      if (this.mistLayer) { this.mistLayer.destroy(); this.mistLayer = null; }
+      if (swim) return;  // underwater already has bubbles
+      const heavy = dark || ['swamp', 'cave', 'dungeon', 'underground'].includes(theme);
+      const light = ['inside', 'city'].includes(theme);
+      const maxAlpha = heavy ? 0.17 : light ? 0.055 : 0.09;
+      const tint = theme === 'swamp' ? 0x9ab69a : (dark || theme === 'cave') ? 0x8a90a8 : 0xc8d0dc;
+      this.mistLayer = this.add.particles(0, 0, 'px_light', {
+        x: { min: -30, max: this.pxW + 30 }, y: { min: this.pxH * 0.42, max: this.pxH - 4 },
+        tint, scale: { start: 0.55, end: 1.15 }, alpha: { start: 0, end: maxAlpha },
+        speedX: { min: 5, max: 15 }, speedY: { min: -2, max: 2 },
+        lifespan: 11000, frequency: heavy ? 480 : 900, blendMode: 'SCREEN',
+      }).setDepth(9);
     }
 
     // ---------- update loop ----------
