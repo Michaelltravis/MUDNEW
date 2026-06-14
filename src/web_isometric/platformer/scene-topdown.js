@@ -1023,6 +1023,12 @@
       [/missile|arcane|magic|blast/i,                                           { type: 'bolt', color: 0xc792ff, range: 'ranged' }],
     ];
     abilityFxFor(text) {
+      // per-ability signature registry is authoritative — every named spell/
+      // skill resolves here first, so each gets its own unique animation
+      if (MH.abilityFx) {
+        const sig = MH.abilityFx.match(text);
+        if (sig) return { type: 'signature', text, range: sig.range || 'ranged', color: sig.color || 0xffffff };
+      }
       for (const [re, fx] of TopRoomScene.ABILITY_FX) {
         if (re.test(text)) return { ...fx, text };
       }
@@ -1063,8 +1069,10 @@
     }
     renderAbilityFx(fx, tx, ty) {
       const px = this.player.x, py = this.player.y;
-      // school FX engine: flagship sequences own the whole cast; otherwise
-      // a school-flavored cast-up + impact layers under the classic visuals
+      // 1) per-ability signature (unique animation per spell/skill)
+      if (fx.text && MH.abilityFx && MH.abilityFx.run(this, fx.text, this.player, tx, ty)) return;
+      // 2) flagship cinematic, else school-flavored cast-up + impact under
+      //    the classic type visuals
       const SFX = MH.schoolFx;
       if (SFX && fx.text) {
         if (SFX.flagship(this, fx.text, this.player, tx, ty)) return;
@@ -1417,8 +1425,9 @@
       if (e.dmg != null && e.dmg >= 5) this.bloodSplat(ent.sprite.x, ent.sprite.y, e.dmg >= 20);
       this.afterimage(this.player);
       // class ability in flight? play its signature effect. otherwise steel.
-      const fx = this.abilityFxFor(e.line || '')
-        || (this.lastAbility && Date.now() - this.lastAbility.ts < 4000 ? this.abilityFxFor(this.lastAbility.name) : null);
+      // prefer the precise ability just used (clean key) over the combat line
+      const fx = (this.lastAbility && Date.now() - this.lastAbility.ts < 4000 ? this.abilityFxFor(this.lastAbility.name) : null)
+        || this.abilityFxFor(e.line || '');
       if (fx) this.playAbilityFx(fx, ent.sprite);
       else this.slashFx(ent.sprite.x, ent.sprite.y, this.player.x >= ent.sprite.x ? ent.sprite.x - 10 : ent.sprite.x + 10);
       this.spark(ent.sprite.x, ent.sprite.y - 6, (fx && fx.color) || 0xffe080);

@@ -535,4 +535,12 @@
       (SOUNDS[school] || SOUNDS.physical)(t);
     },
   };
+
+  // shared toolkit so the per-ability signature registry (fx-abilities.js)
+  // can compose the same primitives the flagships use
+  MH.fx = {
+    PAL, SOUNDS,
+    burst, ringShock, glowFlash, decal, wash, punch, shake,
+    pillar, boltFromSky, runeCircle, risers, tone, hiss,
+  };
 })();
