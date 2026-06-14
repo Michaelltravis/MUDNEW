@@ -354,7 +354,7 @@ class Config:
             'move_dice': 4,
             'thac0_progression': 'fast',
             'save_progression': 'warrior',
-            'skills': ['rescue', 'bash', 'turn_undead', 'second_attack', 'smite',
+            'skills': ['rescue', 'bash', 'turn_undead', 'second_attack', 'censure',
                       'oath', 'order_verdict', 'absolution', 'halo_of_reckoning',
                       'dodge', 'parry', 'shield_block'],
             'spells': ['cure_light', 'cure_serious', 'bless', 'detect_evil', 'protection_from_evil',

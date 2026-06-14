@@ -1320,7 +1320,7 @@ class Player(Character):
                 'shadow_step': 'slip_the_veil', 'vanish': 'fade',
                 'holy_fire': 'pyre_of_faith',
                 'templars_verdict': 'order_verdict', 'word_of_glory': 'absolution',
-                'divine_storm': 'halo_of_reckoning',
+                'divine_storm': 'halo_of_reckoning', 'smite': 'censure',
             }
             for old_key, new_key in LEGACY_SKILL_MAP.items():
                 if old_key in player.skills:
