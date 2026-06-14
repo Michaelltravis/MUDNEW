@@ -98,6 +98,22 @@
         lctx.fillRect(0, 0, 256, 256);
         this.textures.addCanvas('px_light', lc);
       }
+      // soft drop-shadow blob, drawn under every actor to ground them
+      if (!this.textures.exists('px_shadow')) {
+        const sc = document.createElement('canvas');
+        sc.width = 64; sc.height = 32;
+        const sx = sc.getContext('2d');
+        const sg = sx.createRadialGradient(32, 16, 2, 32, 16, 30);
+        sg.addColorStop(0, 'rgba(0,0,0,0.55)');
+        sg.addColorStop(0.6, 'rgba(0,0,0,0.28)');
+        sg.addColorStop(1, 'rgba(0,0,0,0)');
+        sx.fillStyle = sg;
+        sx.save(); sx.translate(32, 16); sx.scale(1, 0.42); sx.beginPath();
+        sx.arc(0, 0, 30, 0, 7); sx.fill(); sx.restore();
+        this.textures.addCanvas('px_shadow', sc);
+      }
+      this.playerShadow = this.add.image(this.player.x, this.player.y, 'px_shadow')
+        .setDepth(5).setAlpha(0.4).setScale(0.34);
       this.nightTint = this.add.rectangle(0, 0, this.pxW, this.pxH, 0x101830, 0).setOrigin(0, 0).setDepth(42);
       this.weatherEmitter = null;
       this.bubbleEmitter = null;
@@ -766,6 +782,10 @@
       }
       ent.sprite = this.add.sprite(slot.x, slot.y, tex, 'd0').setDepth(8);
       ent.sprite.setScale((spec.data.boss ? 1.5 : 1) / MH.SMOOTH_SS);
+      if (spec.kind !== 'item') {
+        ent.shadow = this.add.image(slot.x, slot.y + 9, 'px_shadow')
+          .setDepth(5).setAlpha(0.34).setScale((spec.data.boss ? 0.5 : 0.32));
+      }
       ent.sprite.play(`${tex}_walkd`);
       ent.sprite.anims.pause();
       // mobs described as asleep/at rest spawn in that pose
@@ -915,7 +935,7 @@
       if (ent.breath) ent.breath.stop();
       if (ent.wanderTween) ent.wanderTween.stop();
       if (ent.smoke) ent.smoke.destroy();
-      ['sprite', 'label', 'hpbar', 'fightMark', 'questMark', 'bubble', 'engageRing', 'serviceMark'].forEach(k => { if (ent[k]) ent[k].destroy(); });
+      ['sprite', 'label', 'hpbar', 'fightMark', 'questMark', 'bubble', 'engageRing', 'serviceMark', 'shadow'].forEach(k => { if (ent[k]) ent[k].destroy(); });
     }
     shortName(name) {
       const n = String(name || '');
@@ -2426,6 +2446,7 @@
         this.player.y = Phaser.Math.Clamp(this.player.y, m, this.pxH - m);
       }
       if (this.heroGlow) { this.heroGlow.x = this.player.x; this.heroGlow.y = this.player.y; }
+      if (this.playerShadow) { this.playerShadow.x = this.player.x; this.playerShadow.y = this.player.y + 9; this.playerShadow.setVisible(!this.dead); }
 
       // footstep dust gives weight to movement
       const moving = Math.abs(this.player.body.velocity.x) + Math.abs(this.player.body.velocity.y) > 10;
@@ -2438,6 +2459,7 @@
 
       // labels + hp bars follow
       for (const ent of this.entities.values()) {
+        if (ent.shadow && ent.sprite) { ent.shadow.x = ent.sprite.x; ent.shadow.y = ent.sprite.y + 9; ent.shadow.setVisible(ent.sprite.visible && !ent.leaving); }
         if (ent.label && ent.sprite) { ent.label.x = ent.sprite.x; ent.label.y = ent.sprite.y - (ent.data.boss ? 26 : 18); }
         if (ent.fightMark && ent.sprite) { ent.fightMark.x = ent.sprite.x; ent.fightMark.y = ent.sprite.y - 26; }
         if (ent.questMark && ent.sprite) { ent.questMark.x = ent.sprite.x; }
