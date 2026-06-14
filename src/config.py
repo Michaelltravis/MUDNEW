@@ -277,11 +277,11 @@ class Config:
                       'sleep', 'color_spray', 'teleport', 'fly', 'invisibility', 'detect_magic',
                       'identify', 'enchant_weapon', 'meteor_swarm', 'chain_lightning',
                       # Defensive spells
-                      'armor', 'shield', 'stoneskin', 'mirror_image', 'displacement', 'mana_shield',
-                      'ice_armor', 'fire_shield', 'spell_reflection', 'blink',
+                      'armor', 'shield', 'stoneskin', 'tower_echoes', 'phase_step', 'mana_shield',
+                      'ice_armor', 'fire_shield', 'mirrorward', 'stepwise',
                       'protection_from_evil', 'protection_from_good',
                       # Level 31-60 spells
-                      'time_warp', 'arcane_explosion', 'icy_veins', 'combustion_master', 'meteor_storm'],
+                      'quicken', 'resonance_burst', 'rimeheart', 'kindling_focus', 'meteor_storm'],
             # Level 31-60: mana_shield (32), time_warp (38), arcane_explosion (44),
             #              icy_veins (50), combustion_master (56), meteor_storm (60)
         },

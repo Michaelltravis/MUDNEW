@@ -1306,6 +1306,54 @@ SPELLS = {
         'message_self': 'You unleash a devastating arcane explosion!',
         'message_room': '$n unleashes a massive arcane explosion that engulfs everything!',
     },
+    # ── Adept of the High Tower reinvention (Mages Circle / the Mist).
+    #    Identity renames preserve the affect mechanics; Resonance Burst gets
+    #    a genuinely-new Arcane-Charge-spend mechanic. ──
+    'stepwise': {  # was blink
+        'name': 'Stepwise', 'mana_cost': 30, 'target': 'self', 'duration_ticks': 12,
+        'affects': [{'type': 'blink', 'value': 1}],
+        'message_self': 'You fold space and step a pace sideways through the Mist.',
+    },
+    'phase_step': {  # was displacement
+        'name': 'Phase Step', 'mana_cost': 35, 'target': 'self', 'duration_ticks': 18,
+        'affects': [{'type': 'displacement', 'value': 1}],
+        'message_self': 'Your outline blurs as you phase half a step out of the world.',
+    },
+    'tower_echoes': {  # was mirror_image
+        'name': 'Tower Echoes', 'mana_cost': 40, 'target': 'self', 'duration_ticks': 12,
+        'affects': [{'type': 'mirror_image', 'value': 3}],
+        'message_self': 'Three echoes of the High Tower step out of you.',
+    },
+    'mirrorward': {  # was spell_reflection
+        'name': 'Mirrorward', 'mana_cost': 70, 'target': 'self', 'duration_ticks': 8,
+        'affects': [{'type': 'spell_reflect', 'value': 1}],
+        'message_self': 'A mirrored ward of leyline-glass surrounds you.',
+    },
+    'quicken': {  # was time_warp
+        'name': 'Quicken', 'mana_cost': 120, 'target': 'group', 'duration_ticks': 20,
+        'level_required': 38, 'class_required': 'mage', 'cooldown': 300,
+        'affects': [{'type': 'haste', 'value': 1}, {'type': 'hitroll', 'value': 4}, {'type': 'damroll', 'value': 3}],
+        'message_self': 'You quicken the hour for your circle.',
+    },
+    'rimeheart': {  # was icy_veins
+        'name': 'Rimeheart', 'mana_cost': 100, 'target': 'self', 'duration_ticks': 15,
+        'level_required': 50, 'class_required': 'mage', 'cooldown': 180,
+        'affects': [{'type': 'crit_chance', 'value': 30}, {'type': 'haste', 'value': 1}, {'type': 'spell_power', 'value': 15}],
+        'message_self': 'Crypt-cold floods your veins; your casting sharpens to ice.',
+    },
+    'kindling_focus': {  # was combustion_master
+        'name': 'Kindling Focus', 'mana_cost': 80, 'target': 'self', 'duration_ticks': 12,
+        'level_required': 56, 'class_required': 'mage', 'cooldown': 180,
+        'affects': [{'type': 'fire_crit', 'value': 100}, {'type': 'damroll', 'value': 8}],
+        'message_self': 'You gather every ember into a single searing focus.',
+    },
+    'resonance_burst': {  # was arcane_explosion — now spends Arcane Charges
+        'name': 'Resonance Burst', 'mana_cost': 70, 'target': 'self',
+        'level_required': 44, 'class_required': 'mage', 'cooldown': 24,
+        'special': 'resonance_burst',
+        'message_self': 'You release your stored arcane resonance in a ringing burst!',
+        'message_room': '$n releases a ringing burst of arcane resonance!',
+    },
     'icy_veins': {
         'name': 'Icy Veins',
         'mana_cost': 100,
@@ -2573,6 +2621,25 @@ class SpellHandler:
                 if hasattr(caster, attr):
                     setattr(caster, attr, 0)
             await caster.send(f"{c['cyan']}Your frost power surges anew.{c['reset']}")
+            return
+
+        elif special == 'resonance_burst':
+            # Spend Arcane Charges for an escalating room burst (mage signature)
+            from combat import CombatHandler
+            charges = getattr(caster, 'arcane_charges', 0)
+            caster.arcane_charges = 0
+            base = cls.roll_dice('6d8+12') + caster.level * 3
+            per = 6 + caster.level // 3
+            total = base + charges * per
+            if caster.room:
+                hit = 0
+                for char in list(caster.room.characters):
+                    if char is not caster and hasattr(char, 'hp') and getattr(char, 'hp', 0) > 0 and not hasattr(char, 'connection'):
+                        killed = await char.take_damage(total, caster)
+                        hit += 1
+                        if killed:
+                            await CombatHandler.handle_death(caster, char)
+                await caster.send(f"{c['magenta']}Resonance Burst detonates for {total} (spent {charges} Arcane Charge{'s' if charges != 1 else ''}), striking {hit} foe{'s' if hit != 1 else ''}!{c['reset']}")
             return
 
         elif special in ('mistgrasp', 'wraithfire', 'mistrot', 'sever_cord'):

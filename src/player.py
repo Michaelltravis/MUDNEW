@@ -1290,8 +1290,14 @@ class Player(Character):
             # Combat reinvention: migrate renamed ability keys so existing
             # characters keep their learned abilities at equal power.
             LEGACY_ABILITY_MAP = {
+                # Necromancer (Soulbinder)
                 'death_grip': 'mistgrasp', 'death_coil': 'wraithfire',
                 'plague_strike': 'mistrot', 'finger_of_death': 'sever_cord',
+                # Mage (Adept of the High Tower)
+                'blink': 'stepwise', 'displacement': 'phase_step',
+                'mirror_image': 'tower_echoes', 'spell_reflection': 'mirrorward',
+                'time_warp': 'quicken', 'icy_veins': 'rimeheart',
+                'combustion_master': 'kindling_focus', 'arcane_explosion': 'resonance_burst',
             }
             for old_key, new_key in LEGACY_ABILITY_MAP.items():
                 if old_key in player.spells:

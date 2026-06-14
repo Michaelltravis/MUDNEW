@@ -180,11 +180,15 @@
   add(/chill.?touch/i, 'ranged', (s, c, x, y) => { proj(s, c, x, y, P().frost.b, { onHit: () => { novaRing(s, x, y, P().frost, 8); glyph(s, x, y, '❄', P().frost.a); } }); sound('frost', 1); });
   add(/lightning.?bolt/i, 'ranged', (s, c, x, y) => { beam(s, c, x, y, P().lightning.a, 3); MH.fx.boltFromSky(s, x, y, P().lightning); MH.fx.spark && s.spark(x, y - 6, P().lightning.b); sound('lightning', 2); });
   add(/color.?spray/i, 'ranged', (s, c, x, y) => { ['fire', 'frost', 'nature', 'arcane', 'song'].forEach((sch, i) => s.time.delayedCall(i * 40, () => cone(s, c, x, y, P()[sch]))); sound('arcane', 2); });
-  add(/arcane.?explosion/i, 'self', (s, c) => { novaRing(s, c.x, c.y, P().arcane, 22); MH.fx.ringShock(s, c.x, c.y - 6, P().arcane.a, 50, 480); MH.fx.punch(s, 0.05); sound('arcane', 2); });
+  add(/resonance.?burst|arcane.?explosion/i, 'self', (s, c) => { novaRing(s, c.x, c.y, P().arcane, 24); MH.fx.ringShock(s, c.x, c.y - 6, P().arcane.a, 56, 520); MH.fx.ringShock(s, c.x, c.y - 6, P().arcane.b, 34, 380); MH.fx.punch(s, 0.06); sound('arcane', 2); });
   add(/arcane.?blast/i, 'ranged', (s, c, x, y) => { proj(s, c, x, y, P().arcane.a, { size: 7, onHit: () => novaRing(s, x, y, P().arcane, 16) }); sound('arcane', 2); });
   add(/arcane.?barrage/i, 'ranged', (s, c, x, y) => { multiBolt(s, c, x, y, P().arcane.a, 6, 60); sound('arcane', 2); });
   add(/\bevocation\b/i, 'self', (s, c) => { selfAura(s, c, P().arcane, '✦'); MH.fx.ringShock(s, c.x, c.y - 6, P().arcane.b, 30, 400); sound('arcane', 1); });
-  add(/combustion|icy.?veins|time.?warp/i, 'self', (s, c) => { selfAura(s, c, P().fire, '↑'); sound('fire', 2); });
+  add(/kindling.?focus|combustion/i, 'self', (s, c) => { selfAura(s, c, P().fire, '↑'); sound('fire', 2); });
+  add(/rimeheart|icy.?veins/i, 'self', (s, c) => { selfAura(s, c, P().frost, '↑'); sound('frost', 2); });
+  add(/quicken|time.?warp/i, 'self', (s, c) => { selfAura(s, c, P().arcane, '⏵'); MH.fx.ringShock(s, c.x, c.y - 6, P().arcane.a, 40, 460); sound('arcane', 2); });
+  add(/tower.?echoes|mirror.?image/i, 'self', (s, c) => { for (let i = 0; i < 3; i++) { const g = s.add.image(c.x, c.y - 6, 'fx_glow').setTint(P().arcane.a).setBlendMode(1).setScale(0.5).setDepth(40).setAlpha(0.6); s.tweens.add({ targets: g, x: c.x + (i - 1) * 22, alpha: 0, duration: 600, onComplete: () => g.destroy() }); } sound('arcane', 1); });
+  add(/stepwise|phase.?step|mirrorward/i, 'self', (s, c) => { MH.fx.burst(s, c.x, c.y - 6, P().arcane, 12, 110, 0.6); MH.fx.glowFlash(s, c.x, c.y - 6, P().arcane.a, 0.8); sound('arcane', 1); });
   add(/\bsleep\b/i, 'ranged', (s, c, x, y) => { glyph(s, x, y, '💤', null, { size: 15, rise: 20 }); MH.fx.runeCircle(s, x, y, P().shadow, 600, 14); sound('shadow', 1); });
   add(/\b(teleport|blink|fly)\b/i, 'self', (s, c) => { MH.fx.burst(s, c.x, c.y - 6, P().arcane, 14, 120, 0.7); MH.fx.glowFlash(s, c.x, c.y - 6, P().arcane.a, 0.9); sound('arcane', 1); });
   add(/invisibility/i, 'self', (s, c) => { const g = s.add.image(c.x, c.y - 6, 'fx_glow').setTint(P().arcane.a).setBlendMode(1).setScale(0.8).setDepth(40); s.tweens.add({ targets: g, alpha: 0, scale: 0.2, duration: 600, onComplete: () => g.destroy() }); sound('arcane', 1); });
