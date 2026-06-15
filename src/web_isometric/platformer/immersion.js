@@ -115,6 +115,23 @@
       const f = PROP_FLAVOR[name];
       if (f) showDetailCard(f[0], f[1], 'prop');
     },
+    // run a text command and surface its reply in the detail card, so
+    // right-click verbs like Consider / Where / Score visibly "do something"
+    // instead of quietly dumping into the (usually closed) terminal drawer.
+    runInfo(cmd, title) {
+      let done = false;
+      const handler = ({ text }) => {
+        if (done) return;
+        done = true;
+        MH.bus.off('terminal.output', handler);
+        clearTimeout(t);
+        const clean = (text || '').replace(/\n{3,}/g, '\n\n').trim();
+        showDetailCard(title || cmd, clean || 'Nothing happens.', 'detail');
+      };
+      MH.bus.on('terminal.output', handler);
+      const t = setTimeout(() => { MH.bus.off('terminal.output', handler); }, 1600);
+      MH.sendCommand(cmd);
+    },
     showDetailCard,
     // wrap look-at keywords in the room prose with clickable spans
     decorateProse(el, desc, room) {
@@ -185,7 +202,7 @@
     if (d.hostile || d.fighting) top.push({ label: '⚔ Attack', fn: () => send(`kill ${k}`) });
     top.push({ label: '💬 Talk', fn: () => MH.bus.emit('npc.talk', { name: d.name, quest: d.quest || '' }) });
     top.push({ label: '👁 Look', fn: () => MH.immersion.lookAt(k) });
-    top.push({ label: '🧠 Consider', fn: () => send(`consider ${k}`) });
+    top.push({ label: '🧠 Consider', fn: () => MH.immersion.runInfo(`consider ${k}`, `Consider ${d.name}`) });
     if (d.shopkeeper) top.push({ label: '🪙 Shop', fn: () => MH.bus.emit('shop.open', d) });
     if (d.trainer) top.push({ label: '📖 Train', fn: () => MH.bus.emit('training.open', d) });
     if (!d.hostile) top.push({ label: '⚔ Attack', fn: () => send(`kill ${k}`) });
@@ -211,26 +228,26 @@
       ],
       more: [
         { label: 'Give item…', fn: () => promptCmd(`give <item> ${k}`, `give `, ` ${k}`) },
-        { label: 'Where', fn: () => send('where') },
+        { label: 'Where', fn: () => MH.immersion.runInfo('where', 'Who is where') },
       ],
     };
   }
   function selfVerbs() {
     const sk = mySkills();
     const top = [
-      { label: '👁 Look around', fn: () => send('look') },
-      { label: '🔍 Search for secrets', fn: () => send('search') },
+      { label: '👁 Look around', fn: () => MH.immersion.runInfo('look', 'You look around') },
+      { label: '🔍 Search for secrets', fn: () => MH.immersion.runInfo('search', 'You search') },
       { label: '😴 Rest', fn: () => send('rest') },
       { label: '🧍 Stand', fn: () => send('stand') },
       { label: '🌀 Recall', fn: () => send('recall') },
     ];
     const more = [
-      { label: 'Where am I', fn: () => send('where') },
-      { label: 'Who is online', fn: () => send('who') },
+      { label: 'Where am I', fn: () => MH.immersion.runInfo('where', 'Who is where') },
+      { label: 'Who is online', fn: () => MH.immersion.runInfo('who', 'Who is online') },
       { label: 'Sleep', fn: () => send('sleep') },
-      { label: 'Time & weather', fn: () => { send('time'); send('weather'); } },
+      { label: 'Time & weather', fn: () => MH.immersion.runInfo('time', 'Time & weather') },
       { label: 'Save', fn: () => send('save') },
-      { label: 'Score sheet', fn: () => send('score') },
+      { label: 'Score sheet', fn: () => MH.immersion.runInfo('score', 'Your score') },
     ];
     if ('hide' in sk) more.unshift({ label: 'Hide', fn: () => send('hide') });
     if ('sneak' in sk) more.unshift({ label: 'Sneak', fn: () => send('sneak') });

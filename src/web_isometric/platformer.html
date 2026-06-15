@@ -770,6 +770,12 @@
   #wm-crumb .sep { color: #5a6076; margin: 0 6px; }
   #wm-crumb .here { color: #fff; }
   #wm-levels { display: flex; gap: 4px; margin-left: auto; }
+  #wm-zoom { display: flex; align-items: center; gap: 2px; margin-left: 10px;
+    border: 1px solid rgba(140,150,180,0.25); border-radius: 6px; overflow: hidden; }
+  #wm-zoom span { padding: 2px 8px; color: #9aa0b4; font-size: 12px; cursor: pointer; user-select: none; }
+  #wm-zoom #wm-zoom-lvl { color: #c8ccd8; font-size: 10px; min-width: 38px; text-align: center;
+    cursor: default; border-left: 1px solid rgba(140,150,180,0.2); border-right: 1px solid rgba(140,150,180,0.2); }
+  #wm-zoom #wm-zoom-in:hover, #wm-zoom #wm-zoom-out:hover { color: #e8c168; background: rgba(232,193,104,0.1); }
   #wm-levels span { padding: 2px 10px; border-radius: 6px; border: 1px solid rgba(140,150,180,0.25);
     color: #9aa0b4; font-size: 11px; cursor: pointer; }
   #wm-levels span.on { color: #e8c168; border-color: #e8c168; }
@@ -1279,6 +1285,48 @@
   #help-chip { bottom: 112px !important; left: 10px !important; opacity: .55; }
   #help-chip:hover { opacity: 1; }
 
+  /* ============================================================
+     UI ADJUSTMENTS — declutter the dock, group stats with the orb,
+     lift the minimap, stop panels covering the controls hint.
+     This block is last in the cascade so it is authoritative.
+     ============================================================ */
+  /* Minimap lifted to the top-right, clear of the bottom dock */
+  #minimap-wrap { top: 96px !important; bottom: auto !important; right: 12px !important; }
+
+  /* Player stat panel sits in the bottom-left, immediately beside the HP orb */
+  #hud { left: 12px !important; right: auto !important; bottom: 14px !important;
+    width: 268px !important; }
+  #help-btn { left: 12px !important; right: auto !important; bottom: 126px !important; }
+
+  /* Controls hint pinned to the top-left in its own card so nothing covers it */
+  #help-chip { top: 12px !important; left: 12px !important; bottom: auto !important;
+    max-width: 340px !important; opacity: .9 !important; padding: 7px 11px !important;
+    background: rgba(11,12,17,0.72) !important; border-radius: 9px !important;
+    border: 1px solid rgba(140,150,180,0.18) !important; }
+  #help-chip:hover { opacity: 1 !important; }
+
+  /* Rest / recovery panel moved to the free left band, below the hint card
+     (was overlapping the controls hint; the mid-right is now the minimap) */
+  #recovery-panel { left: 12px !important; right: auto !important;
+    bottom: auto !important; top: 168px !important; }
+
+  /* Potion belt to the bottom-right corner the stats panel vacated */
+  #belt { left: auto !important; right: 14px !important; bottom: 96px !important; }
+
+  /* Combat "you vs enemy" frame: centred up top, prominent and clearly labelled */
+  #duel-card { left: 50% !important; right: auto !important; bottom: auto !important;
+    top: 96px !important; transform: translateX(-50%) !important;
+    border: 1px solid #6a3030 !important; box-shadow: 0 6px 28px rgba(0,0,0,0.55) !important; }
+  #duel-card::before { content: 'IN COMBAT'; display: block; text-align: center;
+    color: #e07f7f; font-size: 9px; letter-spacing: 3px; margin-bottom: 5px;
+    font-family: var(--ui-font); }
+  #target-frame { top: 480px !important; right: 12px !important; bottom: auto !important; }
+
+  /* Bigger, clearer hotbar slots that are easier to read and click */
+  #hotbar { gap: 7px !important; bottom: 44px !important; }
+  .hotslot { width: 58px !important; height: 56px !important; }
+  .hotslot .lbl { max-width: 54px !important; font-size: 9.5px !important; }
+  .hotslot .key { font-size: 9px !important; color: #e8c168 !important; }
 
   </style>
 </head>
@@ -1400,6 +1448,9 @@
     <div id="wm-head">
       <span id="wm-crumb">WORLD</span>
       <span id="wm-levels"></span>
+      <span id="wm-zoom" title="zoom the map (mouse wheel)">
+        <span id="wm-zoom-out">−</span><span id="wm-zoom-lvl">100%</span><span id="wm-zoom-in">+</span>
+      </span>
       <span id="wm-close" title="close (M / Esc)">✕</span>
     </div>
     <div id="wm-body">

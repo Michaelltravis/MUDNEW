@@ -1616,6 +1616,25 @@
 
   // ---- world map (M): WoW-style world -> zone drill-down ----
   let wmOpen = false, wmView = 'world', wmZoneId = null, wmZ = 0;
+  let wmZoom = 1;                       // big-map zoom multiplier (zone view)
+  const WM_ZOOM_MIN = 1, WM_ZOOM_MAX = 5;
+  function wmSetZoom(z) {
+    const nz = Math.max(WM_ZOOM_MIN, Math.min(WM_ZOOM_MAX, Math.round(z * 100) / 100));
+    if (nz === wmZoom) return;
+    wmZoom = nz;
+    const lbl = document.getElementById('wm-zoom-lvl');
+    if (lbl) lbl.textContent = Math.round(wmZoom * 100) + '%';
+    wmRender();
+  }
+  // zooming from the world overview drills into the zone you are standing in
+  function drillHome() {
+    const payload = MH.state.lastPayload;
+    if (!payload || !payload.player) return;
+    const atlas = MH.state.atlas;
+    let here = (payload.rooms || []).find(r => r.vnum === payload.player.vnum);
+    if (!here && atlas && atlas.byVnum) here = atlas.byVnum.get(payload.player.vnum);
+    if (here && here.zone != null) { wmZoneId = here.zone; wmView = 'zone'; }
+  }
   const DIRV = { north: [0, -1], south: [0, 1], east: [1, 0], west: [-1, 0] };
   let wmHit = [];
 
@@ -1642,6 +1661,7 @@
     setWorldInput(!wmOpen);
     if (wmOpen) {
       wmView = 'world';
+      wmSetZoom(1);
       wmAtlas().then(() => requestAnimationFrame(wmRender));
     }
   }
@@ -1773,6 +1793,9 @@
         const pz = hereZone && hereZone.zone === p.id ? (payload.player.z || 0) : null;
         wmZ = pz != null && zs.includes(pz) ? pz : zs.sort((a, b) => Math.abs(a) - Math.abs(b))[0] || 0;
         wmView = 'zone';
+        wmZoom = 1;
+        const zlbl = document.getElementById('wm-zoom-lvl');
+        if (zlbl) zlbl.textContent = '100%';
         wmRender();
       });
       host.appendChild(card);
@@ -1814,12 +1837,22 @@
     const x0 = q(xs, 0.08), x1 = Math.max(q(xs, 0.92), x0 + 1);
     const y0 = q(ys, 0.08), y1 = Math.max(q(ys, 0.92), y0 + 1);
     const PAD = 50;
-    const cell = Math.max(7, Math.min(26,
+    const baseCell = Math.max(7, Math.min(26,
       Math.min((rect.width - PAD * 2) / (x1 - x0 + 1), (rect.height - PAD * 2) / (y1 - y0 + 1))));
-    const offX = (rect.width - (x1 - x0 + 1) * cell) / 2;
-    const offY = (rect.height - (y1 - y0 + 1) * cell) / 2;
-    const clampX = v => Math.max(14, Math.min(rect.width - 14, v));
-    const clampY = v => Math.max(14, Math.min(rect.height - 14, v));
+    const cell = baseCell * wmZoom;
+    const me0 = rooms.find(r => r.vnum === payload.player.vnum);
+    let offX, offY;
+    if (wmZoom > 1 && me0) {
+      // when zoomed in, pan so the player's room stays centred
+      offX = rect.width / 2 - ((me0.x - x0) * cell + cell / 2);
+      offY = rect.height / 2 - ((me0.y - y0) * cell + cell / 2);
+    } else {
+      offX = (rect.width - (x1 - x0 + 1) * cell) / 2;
+      offY = (rect.height - (y1 - y0 + 1) * cell) / 2;
+    }
+    const doClamp = wmZoom <= 1;   // only squeeze outliers to the edge at full extent
+    const clampX = v => doClamp ? Math.max(14, Math.min(rect.width - 14, v)) : v;
+    const clampY = v => doClamp ? Math.max(14, Math.min(rect.height - 14, v)) : v;
     const px = r => clampX(offX + (r.x - x0) * cell + cell / 2);
     const py = r => clampY(offY + (r.y - y0) * cell + cell / 2);
     const here = new Map(rooms.map(r => [r.vnum, r]));
@@ -2613,6 +2646,16 @@
       if (helpBtn) helpBtn.addEventListener('click', () => openHelp());
       // world map wiring
       $('wm-close').addEventListener('click', () => wmToggle(false));
+      // big-map zoom: +/- buttons and mouse wheel over the body
+      const wmZoomIn = $('wm-zoom-in'), wmZoomOut = $('wm-zoom-out');
+      if (wmZoomIn) wmZoomIn.addEventListener('click', () => { if (wmView === 'world') drillHome(); wmSetZoom(wmZoom + 0.5); });
+      if (wmZoomOut) wmZoomOut.addEventListener('click', () => wmSetZoom(wmZoom - 0.5));
+      $('wm-body').addEventListener('wheel', e => {
+        if (!wmOpen) return;
+        e.preventDefault();
+        if (wmView === 'world') { if (e.deltaY < 0) drillHome(); return; }
+        wmSetZoom(wmZoom + (e.deltaY < 0 ? 0.5 : -0.5));
+      }, { passive: false });
       $('wm-zone').addEventListener('mousemove', e => {
         const tip = $('wm-tip');
         const h = wmNearest(e);

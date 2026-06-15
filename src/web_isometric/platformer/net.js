@@ -19,8 +19,14 @@
   const listeners = {};
   MH.bus = {
     on(event, fn) { (listeners[event] = listeners[event] || []).push(fn); },
+    off(event, fn) {
+      const a = listeners[event];
+      if (!a) return;
+      const i = a.indexOf(fn);
+      if (i >= 0) a.splice(i, 1);
+    },
     emit(event, payload) {
-      for (const fn of (listeners[event] || [])) {
+      for (const fn of (listeners[event] || []).slice()) {
         try { fn(payload); } catch (err) { console.error(`[bus:${event}]`, err); }
       }
     },
