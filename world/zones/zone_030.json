@@ -2247,7 +2247,12 @@
           "description": "The cobblestones lead to Main Street"
         }
       },
-      "mob_resets": [],
+      "mob_resets": [
+        {
+          "vnum": 3001,
+          "max": 1
+        }
+      ],
       "obj_resets": [],
       "vnum": 3009,
       "extra_descs": {
