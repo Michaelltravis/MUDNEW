@@ -161,6 +161,29 @@
         lg.addColorStop(0, 'rgba(0,0,0,0.42)'); lg.addColorStop(1, 'rgba(0,0,0,0)');
         g.fillStyle = lg; g.fillRect(0, 0, 32, 24);
       });
+      // wall-mounted decoration decals (mounted on inward-facing walls)
+      mkTex('wd_torch', 14, 22, g => {
+        g.fillStyle = '#3a2c1c'; g.fillRect(6, 9, 2, 11);                 // bracket
+        g.fillStyle = '#5a4630'; g.fillRect(4, 8, 6, 3);                  // cup
+        g.fillStyle = '#ff8a2a'; g.beginPath(); g.ellipse(7, 5, 3.4, 5, 0, 0, 7); g.fill();   // flame
+        g.fillStyle = '#ffd060'; g.beginPath(); g.ellipse(7, 6, 1.8, 3, 0, 0, 7); g.fill();
+      });
+      mkTex('wd_banner', 16, 24, g => {                                  // white, tinted at placement
+        g.fillStyle = '#5a4a2a'; g.fillRect(2, 1, 12, 2);                // rod
+        g.fillStyle = '#fff';
+        g.beginPath(); g.moveTo(3, 3); g.lineTo(13, 3); g.lineTo(13, 18); g.lineTo(8, 22); g.lineTo(3, 18); g.closePath(); g.fill();
+        g.fillStyle = 'rgba(0,0,0,0.18)'; g.fillRect(7, 5, 2, 12);       // crease
+      });
+      mkTex('wd_moss', 20, 14, g => {
+        g.fillStyle = '#fff';
+        for (const [mx, my, r] of [[5, 8, 4], [11, 6, 3], [14, 10, 3.5], [8, 11, 2.5]]) { g.beginPath(); g.arc(mx, my, r, 0, 7); g.fill(); }
+      });
+      mkTex('wd_vine', 14, 26, g => {
+        g.strokeStyle = '#fff'; g.lineWidth = 1.4;
+        g.beginPath(); g.moveTo(7, 0); g.quadraticCurveTo(3, 8, 7, 14); g.quadraticCurveTo(11, 20, 6, 26); g.stroke();
+        g.fillStyle = '#fff';
+        for (const [vx, vy] of [[4, 6], [10, 12], [4, 18], [9, 22]]) { g.beginPath(); g.ellipse(vx, vy, 2.4, 1.4, 0.6, 0, 7); g.fill(); }
+      });
       this.playerShadow = this.add.image(this.player.x, this.player.y, 'px_shadow')
         .setDepth(5).setAlpha(0.4).setScale(0.34);
       this.nightTint = this.add.rectangle(0, 0, this.pxW, this.pxH, 0x101830, 0).setOrigin(0, 0).setDepth(42);
@@ -319,6 +342,7 @@
       }
       // scatter ground detail + ground the walls with edge shadows
       this.decorateGround(layout, th);
+      this.decorateWalls(layout, th);
 
       // swimmable rooms get a translucent water wash over the whole floor
       if (layout.swim) {
@@ -496,6 +520,49 @@
             e.y = y * T + T / 2 + dy * (T / 2);
             this.tileLayer.add(e);
           }
+        }
+      }
+    }
+
+    // Phase 4: wall-mounted decoration on inward-facing walls — torches (which
+    // also light dark rooms), hanging banners, moss, and vines — so the walls
+    // read as surfaces with stuff on them, not bare blocks.
+    decorateWalls(layout, th) {
+      if (MH.gfx && MH.gfx.quality === 'low') return;
+      const { T, FLOOR, BLOCK } = TD();
+      const SETS = {
+        city: ['wd_banner', 'wd_torch', 'wd_vine'], inside: ['wd_banner', 'wd_torch'],
+        cave: ['wd_torch', 'wd_moss'], dungeon: ['wd_torch', 'wd_banner'], underground: ['wd_torch', 'wd_moss'],
+        mountain: ['wd_moss'], forest: ['wd_vine', 'wd_moss'], swamp: ['wd_vine', 'wd_moss'],
+        field: ['wd_vine'], hills: ['wd_moss'], desert: [], default: ['wd_moss'],
+      };
+      const set = SETS[th] || SETS.default;
+      if (!set.length) return;
+      const zt = layout.zoneKey && MH.ZONE_THEMES ? MH.ZONE_THEMES[layout.zoneKey] : null;
+      const bannerTint = (zt && zt.glow) || 0xc24a4a;
+      const rng = MH.mulberry32((layout.vnum ^ 0x4d2b9) >>> 0);
+      const grid = layout.grid, W = layout.W, H = layout.H;
+      const dens = (MH.gfx && MH.gfx.quality === 'medium') ? 0.12 : 0.18;
+      let placed = 0;
+      for (let y = 0; y < H - 1 && placed < 16; y++) {
+        for (let x = 1; x < W - 1 && placed < 16; x++) {
+          if (grid[y * W + x] !== BLOCK || grid[(y + 1) * W + x] !== FLOOR) continue;  // south-facing wall
+          if (rng() > dens) continue;
+          const name = set[(rng() * set.length) | 0];
+          const bx = x * T + T / 2, by = y * T + T * 0.96;
+          if (name === 'wd_torch') {
+            this.tileLayer.add(this.add.image(bx, by, 'wd_torch').setOrigin(0.5, 1).setDepth(2.3).setScale(0.85));
+            const gy = by - T * 0.5;
+            const glow = this.add.image(bx, gy, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+              .setAlpha(0.22).setScale(0.3).setTint(0xff9a4a).setDepth(35);
+            this.tweens.add({ targets: glow, alpha: 0.34, scale: 0.36, duration: 700 + rng() * 500, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+            this.tileLayer.add(glow); this.fxList && this.fxList.push(glow);
+            if (this.lightSources) this.lightSources.push({ x: bx, y: gy, r: 66, seed: (x * 41 + y * 13) % 1000 });
+          } else {
+            const tint = name === 'wd_banner' ? bannerTint : name === 'wd_vine' ? 0x4c7a3c : 0x5a8a4a;
+            this.tileLayer.add(this.add.image(bx, by, name).setOrigin(0.5, 1).setDepth(2.3).setTint(tint).setScale(0.85).setAlpha(name === 'wd_moss' ? 0.85 : 1));
+          }
+          placed++;
         }
       }
     }
