@@ -349,6 +349,10 @@
       if (this.critters) { this.critters.forEach(c => { this.tweens.killTweensOf(c); c.destroy(); }); }
       this.critters = [];
       this.reactiveProps = [];   // props that sway/flare when the player passes
+      // tall props live in the scene root (not the tile layer) so they y-sort
+      // against the player for walk-behind occlusion; track them to clean up
+      if (this.occluders) { this.occluders.forEach(o => o.destroy()); }
+      this.occluders = [];
       if (this.groundWeather) { this.groundWeather.forEach(o => o.destroy()); this.groundWeather = null; }
 
       const th = layout.theme;
@@ -673,6 +677,27 @@
       }
     }
 
+    // ---- Phase 3: rooms as spaces ----
+    // Tall props you can walk behind. They go in the scene root (not the tile
+    // layer) at a y-based depth in the player's band so the player is occluded
+    // when standing behind them, and draws in front when standing below them.
+    isTallProp(name) {
+      return ['tree', 'pine', 'deadtree', 'pillar', 'statue', 'runestone', 'lamppost',
+        'crystal', 'icecrystal', 'stall', 'fountain', 'brazier', 'anvil', 'gravestone', 'banner'].includes(name);
+    }
+    // Add a prop image with correct layering: tall ones occlude (root, depth
+    // 10+y), the rest are flat scenery in the tile layer (depth 3+y).
+    addPropImage(img, baseY, name) {
+      if (this.isTallProp(name)) {
+        img.setDepth(10 + baseY / 1000);
+        (this.occluders = this.occluders || []).push(img);
+      } else {
+        img.setDepth(3 + baseY / 1000);
+        this.tileLayer.add(img);
+      }
+      return img;
+    }
+
     // ---- Phase 1: living, reactive rooms ----
     // Register a prop so it responds when the player passes: 'sway' (plants
     // wobble + shed a leaf), 'flare' (fire/light brightens), 'ripple' (water).
@@ -746,6 +771,16 @@
               if (MH.fx && MH.fx.ringShock) MH.fx.ringShock(this, rp.img.x, rp.img.y - 4, 0x9fd9ff, 9, 360);
             }
           }
+        }
+      }
+      // walk-behind: fade a tall prop when the player is hidden behind it so
+      // you never fully lose your character
+      if (this.occluders) {
+        for (const o of this.occluders) {
+          if (!o.active) continue;
+          const behind = py < o.y && py > o.y - o.displayHeight && Math.abs(o.x - px) < o.displayWidth * 0.42;
+          const want = behind ? 0.5 : 1;
+          if (Math.abs(o.alpha - want) > 0.01) o.setAlpha(Phaser.Math.Linear(o.alpha, want, 0.18));
         }
       }
       // dust under a moving player on dry ground
@@ -898,8 +933,8 @@
         const bx = best.x * T + T / 2, by = (best.y + 1) * T;
         const scale = (pick.place === 'center' ? 1.5 : 1.1 + rng() * 0.25) / MH.SMOOTH_SS;
         this.tileLayer.add(this.add.image(bx, by - 1, 'px_shadow').setDepth(2.6).setAlpha(0.32).setScale(scale * 0.4));
-        const img = this.add.image(bx, by, `zt_prop_${name}`).setOrigin(0.5, 1).setDepth(3 + by / 1000).setScale(scale);
-        this.tileLayer.add(img);
+        const img = this.add.image(bx, by, `zt_prop_${name}`).setOrigin(0.5, 1).setScale(scale);
+        this.addPropImage(img, by, name);
         // glowing features pulse softly and draw the eye
         const SWAY = new Set(['tree', 'pine', 'deadtree', 'bush', 'flowers', 'mushrooms', 'reeds', 'lilypad', 'cactus', 'stump', 'coral']);
         if (GLOWN[name]) {
@@ -1077,9 +1112,8 @@
         .setAlpha(0.16).setScale(0.7).setTint(GLOWN[name] || 0xffe9a8).setDepth(35);
       this.tweens.add({ targets: glow, alpha: 0.28, scale: 0.85, duration: 1800, yoyo: true, repeat: -1, ease: 'sine.inOut' });
       this.fxList && this.fxList.push(glow);
-      const img = this.add.image(baseX, baseY, `zt_prop_${name}`).setOrigin(0.5, 1)
-        .setDepth(3 + baseY / 1000).setScale(scale);
-      this.tileLayer.add(img);
+      const img = this.add.image(baseX, baseY, `zt_prop_${name}`).setOrigin(0.5, 1).setScale(scale);
+      this.addPropImage(img, baseY, name);
       // the centrepiece reacts to your presence too
       if (['fountain', 'well'].includes(name)) this.registerReactive(img, 'ripple');
       else if (['campfire', 'brazier'].includes(name)) this.registerReactive(img, 'flare', { glow, glowMax: 0.16, tint: GLOWN[name] || 0xff9a4a });
