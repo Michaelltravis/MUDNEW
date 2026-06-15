@@ -115,6 +115,9 @@
       this.playerShadow = this.add.image(this.player.x, this.player.y, 'px_shadow')
         .setDepth(5).setAlpha(0.4).setScale(0.34);
       this.nightTint = this.add.rectangle(0, 0, this.pxW, this.pxH, 0x101830, 0).setOrigin(0, 0).setDepth(42);
+      // cinematic colour-cast layer: a soft per-zone/time grade laid over the scene
+      this.gradeCast = this.add.rectangle(0, 0, this.pxW, this.pxH, 0x000000, 0)
+        .setOrigin(0, 0).setDepth(41).setBlendMode(Phaser.BlendModes.OVERLAY);
       // reusable off-screen stamp used to carve light pools out of the darkness layer
       this.lightStamp = this.add.image(0, 0, 'px_light').setVisible(false);
       this.weatherEmitter = null;
@@ -2148,7 +2151,81 @@
         this.cameras.main.flash(160, 220, 225, 255);
         MH.bus.emit('ambient.sound', 'thunder');
       }
+      this.updateColorGrade(period, this.layout && this.layout.theme, sky);
       this.updateSignatureMist();
+    }
+
+    // Dynamic cinematic grade: a per-zone tonal curve (saturation/contrast via
+    // the WebGL ColorMatrix) plus a soft colour cast (warm cities, cold caves,
+    // green swamps…), both shifted by the time of day and the weather. This is
+    // what gives each region its own mood without touching the pixel art.
+    updateColorGrade(period, theme, sky) {
+      const key = `${theme}|${period}|${sky}`;
+      if (this._gradeKey === key) return;
+      this._gradeKey = key;
+
+      // --- per-zone base grade: [saturate, contrast, castColor, castAlpha] ---
+      const ZONE = {
+        swamp: [0.22, 0.06, 0x6a8a4a, 0.16],
+        forest: [0.26, 0.05, 0x4c7a3c, 0.11],
+        field: [0.22, 0.05, 0x6e8a4a, 0.08],
+        hills: [0.20, 0.05, 0x7a8a4a, 0.08],
+        cave: [-0.02, 0.13, 0x3a4a7a, 0.18],
+        dungeon: [0.02, 0.12, 0x4a3a6a, 0.16],
+        underground: [0.0, 0.12, 0x3a4a6a, 0.16],
+        inside: [0.10, 0.05, 0x7a5a2a, 0.10],
+        city: [0.16, 0.05, 0x8a6a2a, 0.08],
+        desert: [0.20, 0.08, 0xaa7a3a, 0.13],
+        mountain: [0.14, 0.07, 0x5a7aaa, 0.11],
+        underwater: [0.04, 0.04, 0x2a7aaa, 0.18],
+        water_swim: [0.10, 0.04, 0x2f86b4, 0.14],
+        water_noswim: [0.10, 0.04, 0x2f86b4, 0.12],
+        flying: [0.18, 0.05, 0x8ab4e8, 0.08],
+        default: [0.15, 0.05, 0x000000, 0.0],
+      };
+      let [sat, con, cast, castA] = ZONE[theme] || ZONE.default;
+
+      // --- time of day: warm dusk, cold night, soft dawn ---
+      if (period === 'night' || period === 'midnight') {
+        sat -= 0.10; con += 0.06; cast = 0x2a3a6e; castA = Math.max(castA, 0.16);
+      } else if (period === 'evening' || period === 'dusk') {
+        sat += 0.04; cast = 0x9a5a2a; castA = Math.max(castA, 0.14);
+      } else if (period === 'dawn' || period === 'morning') {
+        con -= 0.02; cast = 0xb47a5a; castA = Math.max(castA * 0.8, 0.10);
+      }
+
+      // --- weather: storms drain colour, fog flattens contrast ---
+      if (sky === 'stormy') { sat -= 0.14; con += 0.04; cast = 0x44506a; castA = Math.max(castA, 0.16); }
+      else if (sky === 'foggy') { sat -= 0.08; con -= 0.06; castA *= 0.7; }
+      else if (sky === 'overcast') { sat -= 0.06; con -= 0.02; }
+
+      // apply the tonal grade through the postFX ColorMatrix (WebGL only)
+      const cm = this.gradeFx;
+      if (cm && cm.reset) {
+        cm.reset();
+        cm.saturate(Phaser.Math.Clamp(sat, -0.9, 0.9), true);
+        cm.contrast(Phaser.Math.Clamp(con, -0.5, 0.5), true);
+      }
+      // tint the bloom so every glowing light/effect carries the zone's warmth
+      if (this.bloomFx) {
+        const warm = ['city', 'inside', 'desert'].includes(theme) || ['evening', 'dusk', 'dawn', 'morning'].includes(period);
+        const cold = ['cave', 'dungeon', 'underground', 'mountain', 'underwater', 'water_swim', 'water_noswim'].includes(theme)
+          || period === 'night' || period === 'midnight' || sky === 'stormy';
+        const green = ['swamp', 'forest'].includes(theme);
+        this.bloomFx.color = warm ? 0xfff0d8 : green ? 0xe8f4d8 : cold ? 0xd8e4ff : 0xffffff;
+      }
+      // apply the colour cast (works on every renderer); ease the alpha so
+      // walking between zones cross-fades the grade instead of snapping
+      if (this.gradeCast) {
+        const fromA = this.gradeCast.fillAlpha || 0;
+        this.tweens.killTweensOf(this.gradeCast);
+        this.gradeCast.setFillStyle(cast, fromA);
+        this.tweens.add({
+          targets: this.gradeCast,
+          fillAlpha: Phaser.Math.Clamp(castA, 0, 0.3),
+          duration: 900, ease: 'sine.inOut',
+        });
+      }
     }
 
     // Misthollow's signature: a persistent low mist drifts through every
