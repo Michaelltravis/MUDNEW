@@ -683,6 +683,16 @@
     if (MH.popover && !enabled) MH.popover.hide();
   }
   MH.setWorldInput = setWorldInput;
+  // opening a panel from the UI also issues the matching MUD command(s), so
+  // beginner quests that ask you to "type score / inventory / skills" count
+  // whether you type them or click the buttons. Sent silently (raw feed only).
+  const MODAL_CMDS = {
+    'modal-inv': ['inventory', 'equipment'],
+    'modal-score': ['score'],
+    'modal-spells': ['skills', 'spells'],
+    'modal-journal': ['quests'],
+    'modal-shop': ['list'],
+  };
   function openModal(id) {
     const already = anyModalOpen();
     closeModals(true);
@@ -691,6 +701,7 @@
     if (bd) bd.classList.add('show');
     setWorldInput(false);
     if (MH.sfx) MH.sfx.ui();
+    (MODAL_CMDS[id] || []).forEach(c => { try { MH.sendCommand(c, false); } catch (_) {} });
   }
   function closeModals(silent) {
     const had = anyModalOpen();
