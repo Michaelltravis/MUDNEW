@@ -58,6 +58,12 @@
       this.solids = this.physics.add.staticGroup();
       this.tileLayer = this.add.layer();
       this.bgLayer = this.add.layer().setDepth(-10);
+      // parallax depth: overlay atmosphere drifts opposite to the player so the
+      // scene reads as layered planes instead of one flat sheet. Containers are
+      // offset wholesale each frame, leaving each child's own tweens intact.
+      this.pxFar = this.add.container(0, 0).setDepth(8);    // behind the actors
+      this.pxNear = this.add.container(0, 0).setDepth(44);  // foreground haze
+      this.rimTint = 0xfff2cc;
 
       this.player = this.physics.add.sprite(this.pxW / 2, this.pxH / 2, 'td_player_warrior', 'd0');
       this.player.setScale(1 / MH.SMOOTH_SS);
@@ -71,6 +77,12 @@
       this.heroGlow = this.add.image(this.player.x, this.player.y, 'fx_glow')
         .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.13).setScale(0.55)
         .setDepth(9).setTint(0xfff2cc);
+      // rim-light: an additive copy of the sprite, scaled up a touch and nudged
+      // toward the light, so a bright edge peeks out and the actor pops off the
+      // floor. Synced to the live frame each tick.
+      this.playerRim = this.add.sprite(this.player.x, this.player.y, 'td_player_warrior', 'd0')
+        .setScale(this.player.scaleX * 1.08).setDepth(9.6)
+        .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.3).setTint(this.rimTint);
       this.tweens.add({ targets: this.heroGlow, alpha: 0.18, scale: 0.62, duration: 1600, yoyo: true, repeat: -1, ease: 'sine.inOut' });
 
       this.keys = this.input.keyboard.addKeys({
@@ -381,6 +393,28 @@
       const rng = MH.mulberry32(layout.vnum + 777);
       if (this.fxList) this.fxList.forEach(o => o.destroy());
       this.fxList = [];
+      if (this.pxFar) this.pxFar.removeAll(true);
+      if (this.pxNear) this.pxNear.removeAll(true);
+      this.pxFar.setPosition(0, 0);
+      this.pxNear.setPosition(0, 0);
+
+      // parallax planes: soft light clouds behind the actors (far, slow) and a
+      // few large blurred motes in front (near, fast). Children animate locally;
+      // the containers are slid by player offset in update() for the depth feel.
+      for (let i = 0; i < 4; i++) {
+        const fx = this.add.image(rng() * this.pxW, rng() * this.pxH, 'fx_glow')
+          .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.03 + rng() * 0.03)
+          .setScale(1.6 + rng() * 1.4).setTint(glowTint);
+        this.tweens.add({ targets: fx, alpha: fx.alpha + 0.03, duration: 3000 + rng() * 2000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        this.pxFar.add(fx);
+      }
+      for (let i = 0; i < 3; i++) {
+        const nx = this.add.image(rng() * this.pxW, rng() * this.pxH, 'fx_glow')
+          .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.025 + rng() * 0.03)
+          .setScale(2.4 + rng() * 1.8).setTint(glowTint);
+        this.tweens.add({ targets: nx, x: nx.x + (rng() - 0.5) * 40, duration: 5000 + rng() * 3000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        this.pxNear.add(nx);
+      }
 
       // zone mood wash: a whisper of the theme's color over everything
       if (zt && zt.mood) {
@@ -819,6 +853,10 @@
       if (spec.kind !== 'item') {
         ent.shadow = this.add.image(slot.x, slot.y + 9, 'px_shadow')
           .setDepth(5).setAlpha(0.34).setScale((spec.data.boss ? 0.5 : 0.32));
+        // matching rim-light so mobs and NPCs pop off the floor too
+        ent.rim = this.add.sprite(slot.x, slot.y, tex, 'd0')
+          .setScale(ent.sprite.scaleX * 1.08).setDepth(7.9)
+          .setBlendMode(Phaser.BlendModes.ADD).setAlpha(spec.data.boss ? 0.34 : 0.26).setTint(this.rimTint);
       }
       ent.sprite.play(`${tex}_walkd`);
       ent.sprite.anims.pause();
@@ -969,7 +1007,7 @@
       if (ent.breath) ent.breath.stop();
       if (ent.wanderTween) ent.wanderTween.stop();
       if (ent.smoke) ent.smoke.destroy();
-      ['sprite', 'label', 'hpbar', 'fightMark', 'questMark', 'bubble', 'engageRing', 'serviceMark', 'shadow'].forEach(k => { if (ent[k]) ent[k].destroy(); });
+      ['sprite', 'label', 'hpbar', 'fightMark', 'questMark', 'bubble', 'engageRing', 'serviceMark', 'shadow', 'rim'].forEach(k => { if (ent[k]) ent[k].destroy(); });
     }
     shortName(name) {
       const n = String(name || '');
@@ -2238,6 +2276,13 @@
         const green = ['swamp', 'forest'].includes(theme);
         this.bloomFx.color = warm ? 0xfff0d8 : green ? 0xe8f4d8 : cold ? 0xd8e4ff : 0xffffff;
       }
+      // rim-light colour tracks the zone's light so edges read warm or cold
+      {
+        const warm = ['city', 'inside', 'desert'].includes(theme) || ['evening', 'dusk', 'dawn', 'morning'].includes(period);
+        const cold = ['cave', 'dungeon', 'underground', 'mountain', 'underwater', 'water_swim', 'water_noswim'].includes(theme)
+          || period === 'night' || period === 'midnight';
+        this.rimTint = warm ? 0xffe8c0 : cold ? 0xc8dcff : 0xfff2cc;
+      }
       // apply the colour cast (works on every renderer); ease the alpha so
       // walking between zones cross-fades the grade instead of snapping
       if (this.gradeCast) {
@@ -2582,6 +2627,22 @@
       if (this.heroGlow) { this.heroGlow.x = this.player.x; this.heroGlow.y = this.player.y; }
       if (this.playerShadow) { this.playerShadow.x = this.player.x; this.playerShadow.y = this.player.y + 9; this.playerShadow.setVisible(!this.dead); }
 
+      // parallax: slide the overlay planes opposite the player's offset from the
+      // room centre — far plane drifts gently, near plane more, for layered depth
+      {
+        const ox = this.player.x - this.pxW / 2, oy = this.player.y - this.pxH / 2;
+        if (this.pxFar) this.pxFar.setPosition(-ox * 0.04, -oy * 0.04);
+        if (this.pxNear) this.pxNear.setPosition(-ox * 0.11, -oy * 0.11);
+      }
+      // rim-light follows the player's current frame, nudged toward the light
+      if (this.playerRim) {
+        const r = this.playerRim, pl = this.player;
+        r.setTexture(pl.texture.key, pl.frame.name);
+        r.setFlipX(pl.flipX); r.setScale(pl.scaleX * 1.08, pl.scaleY * 1.08);
+        r.setPosition(pl.x - 0.6, pl.y - 1.2);
+        r.setTint(this.rimTint).setVisible(!this.dead);
+      }
+
       // footstep dust gives weight to movement
       const moving = Math.abs(this.player.body.velocity.x) + Math.abs(this.player.body.velocity.y) > 10;
       if (moving && (!this._lastStep || now - this._lastStep > 260)) {
@@ -2594,6 +2655,13 @@
       // labels + hp bars follow
       for (const ent of this.entities.values()) {
         if (ent.shadow && ent.sprite) { ent.shadow.x = ent.sprite.x; ent.shadow.y = ent.sprite.y + 9; ent.shadow.setVisible(ent.sprite.visible && !ent.leaving); }
+        if (ent.rim && ent.sprite) {
+          ent.rim.setTexture(ent.sprite.texture.key, ent.sprite.frame.name);
+          ent.rim.setFlipX(ent.sprite.flipX);
+          ent.rim.setScale(ent.sprite.scaleX * 1.08, ent.sprite.scaleY * 1.08);
+          ent.rim.setPosition(ent.sprite.x - 0.6, ent.sprite.y - 1.2);
+          ent.rim.setDepth(ent.sprite.depth - 0.1).setTint(this.rimTint).setVisible(ent.sprite.visible && !ent.leaving);
+        }
         if (ent.label && ent.sprite) { ent.label.x = ent.sprite.x; ent.label.y = ent.sprite.y - (ent.data.boss ? 26 : 18); }
         if (ent.fightMark && ent.sprite) { ent.fightMark.x = ent.sprite.x; ent.fightMark.y = ent.sprite.y - 26; }
         if (ent.questMark && ent.sprite) { ent.questMark.x = ent.sprite.x; }
