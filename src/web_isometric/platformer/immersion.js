@@ -90,13 +90,36 @@
 
   // ---------------- look-at-everything ----------------
   let cardTimer = null;
-  function showDetailCard(title, text, kind) {
+  // remember where the player last clicked so examine/look bubbles can pop up
+  // right at the object instead of in a far corner
+  let _lastPointer = null;
+  document.addEventListener('pointerdown', e => { _lastPointer = { x: e.clientX, y: e.clientY }; }, true);
+
+  function showDetailCard(title, text, kind, x, y) {
     const card = $('detail-card');
     if (!card) return;
+    if (x == null && _lastPointer) { x = _lastPointer.x; y = _lastPointer.y; }
     const ICONS = { detail: '✦', being: '☻', item: '❖', prop: '✧' };
     card.innerHTML = `<div class="dc-title"><span class="dc-icon">${ICONS[kind] || '✦'}</span>${title}</div><div class="dc-text"></div>`;
     card.querySelector('.dc-text').textContent = text;
     card.classList.add('show');
+    // anchor the bubble at the object/pointer when coordinates are given,
+    // otherwise fall back to the fixed top-right card
+    if (x != null && y != null) {
+      card.classList.add('at');
+      card.style.right = 'auto';
+      // measure then place above the point, flipping below if it would clip
+      card.style.left = '0px'; card.style.top = '0px';
+      const r = card.getBoundingClientRect();
+      const w = r.width || 260, h = r.height || 120;
+      let lx = Math.max(8, Math.min(x - w / 2, window.innerWidth - w - 8));
+      let ty = y - h - 16;
+      if (ty < 8) ty = Math.min(y + 22, window.innerHeight - h - 8);
+      card.style.left = lx + 'px'; card.style.top = ty + 'px';
+    } else {
+      card.classList.remove('at');
+      card.style.left = ''; card.style.top = ''; card.style.right = '';
+    }
     clearTimeout(cardTimer);
     cardTimer = setTimeout(() => card.classList.remove('show'), Math.min(14000, 4500 + text.length * 28));
     card.onclick = () => { card.classList.remove('show'); clearTimeout(cardTimer); };

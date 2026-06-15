@@ -2094,9 +2094,12 @@
     const cell = (label, dir) => {
       const has = dir && Object.prototype.hasOwnProperty.call(exits, dir);
       const zone = has && exits[dir].to_zone;
-      const cls = dir == null ? 'cmp spacer' : `cmp${has ? ' on' : ''}${zone ? ' zone' : ''}`;
-      const title = zone ? ` title="→ ${zone}"` : '';
-      return `<div class="${cls}" ${has ? `data-dir="${dir}"` : ''}${title}>${label}</div>`;
+      const door = has && exits[dir].door;
+      const closed = door && door.state !== 'open';
+      const cls = dir == null ? 'cmp spacer' : `cmp${has ? ' on' : ''}${zone ? ' zone' : ''}${door ? ' door' : ''}${closed ? ' closed' : ''}`;
+      const title = door ? ` title="${closed ? (door.locked ? 'locked' : 'closed') : 'open'} ${door.name} — click for door controls"` : (zone ? ` title="→ ${zone}"` : '');
+      const mark = door ? `<span class="cmp-door">${door.locked && closed ? '🔒' : closed ? '🚪' : '◙'}</span>` : '';
+      return `<div class="${cls}" ${has ? `data-dir="${dir}"` : ''}${title}>${label}${mark}</div>`;
     };
     let html = '';
     html += cell('', null) + cell('N', 'north') + cell('', null) + cell('U', 'up');
@@ -2107,8 +2110,29 @@
       html += `<div class="cmp on portal" data-dir="${name}">⟡ ${name}</div>`;
     }
     els.compass.innerHTML = html;
-    els.compass.querySelectorAll('.cmp.on').forEach(el =>
-      el.addEventListener('click', () => MH.bus.emit('nav.goto', el.dataset.dir)));
+    els.compass.querySelectorAll('.cmp.on').forEach(el => {
+      const dir = el.dataset.dir;
+      const door = exits[dir] && exits[dir].door;
+      el.addEventListener('click', e => {
+        if (door) { doorDialogue(dir, door, e.clientX, e.clientY); return; }
+        MH.bus.emit('nav.goto', dir);
+      });
+    });
+  }
+  // a small open/close dialogue for a doorway, anchored on the compass cell
+  function doorDialogue(dir, door, x, y) {
+    if (!MH.popover) { MH.sendCommand(`${door.state === 'open' ? 'close' : 'open'} ${door.name} ${dir}`); return; }
+    const nm = door.name || 'door';
+    const closed = door.state !== 'open';
+    const acts = [];
+    if (closed) {
+      if (door.locked) acts.push({ label: `🔓 Unlock ${nm}`, fn: () => MH.sendCommand(`unlock ${nm} ${dir}`) });
+      acts.push({ label: `🚪 Open ${nm}`, fn: () => MH.sendCommand(`open ${nm} ${dir}`) });
+    } else {
+      acts.push({ label: `🚪 Close ${nm}`, fn: () => MH.sendCommand(`close ${nm} ${dir}`) });
+    }
+    acts.push({ label: `🧭 Go ${dir}`, fn: () => MH.bus.emit('nav.goto', dir) });
+    MH.popover.show(x, y, `${nm} (${dir})`, acts);
   }
 
   // ---- talent trees (WoW-style specs; data straight from the MUD) ----

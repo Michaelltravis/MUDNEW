@@ -258,6 +258,9 @@
   .cmp.on { color: var(--gold); border-color: var(--border); cursor: pointer; }
   .cmp.on:hover { background: #242a3c; color: #fff; }
   .cmp.zone { box-shadow: inset 0 0 6px rgba(232,193,104,0.35); }
+  .cmp.door { position: relative; }
+  .cmp.door .cmp-door { position: absolute; top: -1px; right: 1px; font-size: 7px; line-height: 1; }
+  .cmp.door.closed { color: #e0a07a; box-shadow: inset 0 0 6px rgba(224,140,90,0.35); }
   .cmp.portal { color: #b87cf0; grid-column: span 2; font-size: 9px; overflow: hidden; }
   .cmp.portal:hover { background: #2a2040; }
   #compass .spacer { background: transparent; border: none; }
@@ -737,6 +740,9 @@
     padding: 12px 14px; z-index: 80; opacity: 0; transform: translateX(12px); pointer-events: none;
     transition: opacity .35s ease, transform .35s ease; backdrop-filter: blur(8px); cursor: pointer; }
   #detail-card.show { opacity: 1; transform: translateX(0); pointer-events: auto; }
+  /* anchored-at-object variant: narrower bubble placed at the click point */
+  #detail-card.at { width: 240px; transform: translateY(8px); }
+  #detail-card.at.show { transform: translateY(0); }
   #detail-card .dc-title { font-family: Georgia, serif; color: #e8c168; font-size: 15px; margin-bottom: 6px; letter-spacing: .5px; }
   #detail-card .dc-icon { margin-right: 6px; opacity: .8; }
   #detail-card .dc-text { font-family: Georgia, serif; font-size: 13px; line-height: 1.55; color: #d8d4c8; white-space: pre-wrap; }

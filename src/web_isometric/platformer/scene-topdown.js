@@ -1083,6 +1083,8 @@
           return;
         }
         if (spec.kind !== 'mob') return;
+        // left-click always targets, so spells/abilities aim at who you clicked
+        this.targetEntity(ent);
         if (spec.data.shopkeeper) MH.bus.emit('shop.open', spec.data);
         else if (spec.data.trainer) MH.bus.emit('training.open', spec.data);
         else if (ent.data.hostile || ent.data.fighting || (pointer.event && pointer.event.shiftKey)) this.attackEntity(ent);
@@ -1951,19 +1953,22 @@
     }
 
     // Tab cycles hostile targets by distance
+    // set the current target (shared by Tab-cycle and click-to-target)
+    targetEntity(ent) {
+      if (!ent || !ent.sprite) return;
+      this.target = ent;
+      MH.bus.emit('target.set', ent.data);
+      this.setFacing(ent.sprite.x - this.player.x, ent.sprite.y - this.player.y);
+      const ring = this.add.circle(ent.sprite.x, ent.sprite.y - 6, 16).setStrokeStyle(2, 0xe8c168, 0.9).setDepth(61);
+      this.tweens.add({ targets: ring, radius: 8, alpha: 0, duration: 360, ease: 'cubic.in', onComplete: () => ring.destroy() });
+    }
     cycleTarget() {
       const mobs = [...this.entities.values()].filter(e => e.kind === 'mob' && !e.data.shopkeeper && e.sprite)
         .sort((a, b) => Phaser.Math.Distance.Between(this.player.x, this.player.y, a.sprite.x, a.sprite.y)
                       - Phaser.Math.Distance.Between(this.player.x, this.player.y, b.sprite.x, b.sprite.y));
       if (!mobs.length) return;
       const idx = this.target ? mobs.findIndex(m => m.key === this.target.key) : -1;
-      const next = mobs[(idx + 1) % mobs.length];
-      this.target = next;
-      MH.bus.emit('target.set', next.data);
-      this.setFacing(next.sprite.x - this.player.x, next.sprite.y - this.player.y);
-      // target ping
-      const ring = this.add.circle(next.sprite.x, next.sprite.y - 6, 16).setStrokeStyle(2, 0xe8c168, 0.9).setDepth(61);
-      this.tweens.add({ targets: ring, radius: 8, alpha: 0, duration: 360, ease: 'cubic.in', onComplete: () => ring.destroy() });
+      this.targetEntity(mobs[(idx + 1) % mobs.length]);
     }
 
     fxExp(e) {

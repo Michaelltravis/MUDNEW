@@ -471,14 +471,25 @@
       }
     },
     fountain(ctx, W, H) {
-      ctx.fillStyle = '#7a7f8c';
-      ctx.beginPath(); ctx.ellipse(W / 2, H * 0.84, W * 0.4, H * 0.12, 0, 0, 7); ctx.fill();
-      ctx.fillStyle = '#4a90c8';
-      ctx.beginPath(); ctx.ellipse(W / 2, H * 0.82, W * 0.3, H * 0.08, 0, 0, 7); ctx.fill();
-      ctx.fillStyle = '#9aa0ac';
-      ctx.fillRect(W * 0.44, H * 0.5, W * 0.12, H * 0.3);
-      ctx.fillStyle = 'rgba(160,210,255,0.8)';
-      ctx.beginPath(); ctx.arc(W / 2, H * 0.46, 2.6, 0, 7); ctx.fill();
+      // wide lower basin with water
+      ctx.fillStyle = '#6f7682';
+      ctx.beginPath(); ctx.ellipse(W / 2, H * 0.86, W * 0.46, H * 0.14, 0, 0, 7); ctx.fill();
+      ctx.fillStyle = '#3f86b8';
+      ctx.beginPath(); ctx.ellipse(W / 2, H * 0.84, W * 0.38, H * 0.10, 0, 0, 7); ctx.fill();
+      ctx.fillStyle = 'rgba(185,222,255,0.5)';
+      ctx.beginPath(); ctx.ellipse(W * 0.42, H * 0.83, W * 0.12, H * 0.03, 0, 0, 7); ctx.fill();
+      // short pedestal + upper tier basin (not a tall post)
+      ctx.fillStyle = '#8a909c'; ctx.fillRect(W * 0.45, H * 0.62, W * 0.10, H * 0.18);
+      ctx.fillStyle = '#7f868f';
+      ctx.beginPath(); ctx.ellipse(W / 2, H * 0.60, W * 0.21, H * 0.06, 0, 0, 7); ctx.fill();
+      ctx.fillStyle = '#4a93c8';
+      ctx.beginPath(); ctx.ellipse(W / 2, H * 0.59, W * 0.15, H * 0.04, 0, 0, 7); ctx.fill();
+      // arcing water jets to read unmistakably as a fountain
+      ctx.strokeStyle = 'rgba(195,228,255,0.85)'; ctx.lineWidth = 1.2;
+      ctx.beginPath(); ctx.moveTo(W / 2, H * 0.5); ctx.quadraticCurveTo(W * 0.64, H * 0.5, W * 0.6, H * 0.6); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(W / 2, H * 0.5); ctx.quadraticCurveTo(W * 0.36, H * 0.5, W * 0.4, H * 0.6); ctx.stroke();
+      ctx.fillStyle = 'rgba(205,236,255,0.95)';
+      ctx.beginPath(); ctx.arc(W / 2, H * 0.48, 1.8, 0, 7); ctx.fill();
     },
     urn(ctx, W, H) {
       const g = ctx.createLinearGradient(W * 0.3, 0, W * 0.7, 0);
@@ -639,7 +650,9 @@
     },
   };
   // props that glow in the dark get a light pool at placement
-  MH.GLOW_PROPS = { brazier: 0xff9a4a, lamppost: 0xffd98a, lantern: 0xcfff90, candles: 0xffe9a8, crystal: 0xb06ce0, icecrystal: 0x9fd0ff, runestone: 0x9a8aff, fountain: 0x9fd9ff, pipe: 0xffe8c0 };
+  // light-emitting props get a glow + carve light in the dark. Fountains were
+  // here too, but the bright top-glow made them read as lamps — removed.
+  MH.GLOW_PROPS = { brazier: 0xff9a4a, lamppost: 0xffd98a, lantern: 0xcfff90, candles: 0xffe9a8, crystal: 0xb06ce0, icecrystal: 0x9fd0ff, runestone: 0x9a8aff, pipe: 0xffe8c0 };
 
   MH.zoneSprites = {
     generateAll(scene) {
