@@ -2968,27 +2968,45 @@
         setTarget(currentTarget);
       });
       // live combat log: every exchange visible at a glance
-      let clogHideTimer = null;
+      // persistent, scrollable combat log keeping a long history; auto-scrolls
+      // to the newest line unless you've scrolled up to read back
       const clogLine = (text, cls) => {
+        const cl = els.combatLog, lines = els.combatLogLines;
+        const nearBottom = cl.scrollHeight - cl.scrollTop - cl.clientHeight < 60;
         const div = document.createElement('div');
         div.className = cls;
-        div.textContent = text;
-        els.combatLogLines.appendChild(div);
-        while (els.combatLogLines.children.length > 7) els.combatLogLines.removeChild(els.combatLogLines.firstChild);
-        els.combatLog.classList.add('show');
-        clearTimeout(clogHideTimer);
-        clogHideTimer = setTimeout(() => { if (!MH.state.inCombat) els.combatLog.classList.remove('show'); }, 4000);
+        const t = new Date();
+        div.innerHTML = `<span class="clog-t">${String(t.getHours()).padStart(2, '0')}:${String(t.getMinutes()).padStart(2, '0')}:${String(t.getSeconds()).padStart(2, '0')}</span> ${text}`;
+        lines.appendChild(div);
+        while (lines.children.length > 250) lines.removeChild(lines.firstChild);
+        cl.classList.add('show');
+        if (nearBottom) cl.scrollTop = cl.scrollHeight;
       };
-      MH.bus.on('combat.hit', e => clogLine(e.dmg != null ? `You hit ${e.target} for ${e.dmg}` : `You hit ${e.target}`, 'you'));
+      // header tools: clear + collapse
+      const clogClear = $('clog-clear'), clogCollapse = $('clog-collapse');
+      if (clogClear) clogClear.addEventListener('click', e => { e.stopPropagation(); els.combatLogLines.innerHTML = ''; });
+      if (clogCollapse) clogCollapse.addEventListener('click', e => {
+        e.stopPropagation();
+        const c = els.combatLog.classList.toggle('collapsed');
+        clogCollapse.textContent = c ? '▸' : '▾';
+      });
+      MH.bus.on('combat.hit', e => clogLine(e.dmg != null ? `You hit ${e.target} for <b>${e.dmg}</b>` : `You hit ${e.target}`, 'you'));
+      MH.bus.on('combat.taken', e => clogLine(e && e.dmg != null ? `${e.from || 'They'} hit YOU for <b>${e.dmg}</b>` : 'They hit YOU', 'them'));
       MH.bus.on('combat.miss', e => clogLine(`You miss ${e.target}`, 'miss'));
       MH.bus.on('combat.dodged', () => clogLine('They miss you', 'miss'));
+      MH.bus.on('defense.parry', e => clogLine(`You parry ${e.from || 'the attack'}`, 'def'));
+      MH.bus.on('defense.dodge', () => clogLine('You dodge the attack', 'def'));
+      MH.bus.on('defense.block', () => clogLine('You block the attack', 'def'));
+      MH.bus.on('attack.parried', e => clogLine(`${e.target} parries your attack`, 'miss'));
+      MH.bus.on('attack.dodged', e => clogLine(`${e.target} dodges`, 'miss'));
+      MH.bus.on('attack.blocked', e => clogLine(`${e.target} blocks`, 'miss'));
+      MH.bus.on('player.heal', () => clogLine('You are healed', 'heal'));
+      MH.bus.on('level.up', () => clogLine('★ You gain a level!', 'info'));
+      MH.bus.on('player.gold', e => clogLine(`+${e.amount} gold`, 'info'));
       MH.bus.on('mob.death', e => clogLine(`${e.name || 'It'} dies!`, 'info'));
       MH.bus.on('player.exp', e => clogLine(`+${e.amount} experience`, 'info'));
       MH.bus.on('combat.flee', () => clogLine('You flee!', 'info'));
-      MH.bus.on('combat.state', on => {
-        if (!on) { clearTimeout(clogHideTimer); clogHideTimer = setTimeout(() => els.combatLog.classList.remove('show'), 3000); }
-        duelShow(on);
-      });
+      MH.bus.on('combat.state', on => { duelShow(on); });
 
       // duel card: you vs the foe, faces and life side by side
       let duelFoeName = null, duelHideTimer = null;
@@ -3355,7 +3373,6 @@
       });
 
       MH.bus.on('combat.taken', e => {
-        clogLine(e && e.dmg != null ? `${e.from || 'They'} hit YOU for ${e.dmg}` : 'They hit YOU', 'them');
         els.hitFlash.classList.remove('go');
         void els.hitFlash.offsetWidth;
         els.hitFlash.classList.add('go');
