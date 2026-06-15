@@ -916,18 +916,44 @@
         img.setInteractive({ useHandCursor: true });
         img.on('pointerdown', pointer => {
           if (pointer.rightButtonDown && pointer.rightButtonDown()) return;
-          const acts = [];
-          const kind = INTERACT[name];
-          if (name === 'fountain') acts.push({ label: '🜄 Drink', fn: () => MH.sendCommand('drink') });
-          if (kind === 'warm') acts.push({ label: '😴 Rest by the warmth', fn: () => MH.sendCommand('rest') });
-          if (kind === 'holy') acts.push({ label: '🙏 Pray', fn: () => MH.sendCommand('pray') });
-          acts.push({ label: '🔍 Search', fn: () => (MH.immersion && MH.immersion.runInfo ? MH.immersion.runInfo('search', 'You search') : MH.sendCommand('search')) });
-          acts.push({ label: '👁 Examine', fn: () => MH.immersion && MH.immersion.propFlavor && MH.immersion.propFlavor(name) });
+          const acts = this.propActions(name, bx, by);
           const label = (MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name);
           if (MH.popover) MH.popover.show(pointer.event.clientX, pointer.event.clientY, label, acts);
         });
-        img.on('pointerover', () => MH.bus.emit('flash', `${MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name} — click to examine`));
+        img.on('pointerover', () => MH.bus.emit('flash', `${MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name} — click to interact`));
       });
+    }
+
+    // Phase 2: the verbs a prop offers — what you can DO with it. Shared by
+    // landmarks and prose-props so every feature is genuinely interactive, with
+    // a little ceremony (a ripple, warm light, a blessing) when you use it.
+    propActions(name, bx, by) {
+      const { T } = TD();
+      const P = MH.fx && MH.fx.PAL;
+      const react = kind => {
+        try {
+          if (kind === 'water') { if (MH.fx) MH.fx.ringShock(this, bx, by - T * 0.3, 0x9fd9ff, 14, 420); this.spark(bx, by - T * 0.3, 0x9fd9ff); }
+          else if (kind === 'warm') { if (MH.fx) MH.fx.risers(this, bx, by - T * 0.4, P ? P.fire : { a: 0xffd060, b: 0xff8a2a }, 5); this.cameras.main.flash(120, 50, 25, 0); }
+          else if (kind === 'holy') { if (MH.fx) { MH.fx.pillar(this, bx, by, P ? P.holy : { a: 0xfff6d0, b: 0xffe080 }, 90, 22); MH.fx.ringShock(this, bx, by - T * 0.4, 0xffe9a8, 18, 520); } this.flashScreen(0xfff2d0, 0.2, 380); MH.bus.emit('flash', 'You feel a fleeting blessing settle over you.'); }
+          else if (kind === 'dust') { this.dustPuff(bx, by - 2); }
+        } catch (_) {}
+      };
+      const search = () => (MH.immersion && MH.immersion.runInfo ? MH.immersion.runInfo('search', 'You search') : MH.sendCommand('search'));
+      const examine = () => MH.immersion && MH.immersion.propFlavor && MH.immersion.propFlavor(name);
+      const acts = [];
+      // primary verb per prop family
+      if (['fountain', 'well'].includes(name)) acts.push({ label: '🜄 Drink', fn: () => { react('water'); MH.sendCommand('drink'); } });
+      if (['brazier', 'campfire', 'candles', 'lantern', 'lamppost'].includes(name)) acts.push({ label: '😴 Warm yourself', fn: () => { react('warm'); MH.sendCommand('rest'); } });
+      if (['altar', 'statue', 'runestone'].includes(name)) acts.push({ label: '🙏 Pray', fn: () => { react('holy'); MH.sendCommand('pray'); } });
+      if (['stall'].includes(name)) acts.push({ label: '🛒 Browse wares', fn: () => (MH.immersion && MH.immersion.runInfo ? MH.immersion.runInfo('list', 'Wares for sale') : MH.sendCommand('list')) });
+      if (['bookpile', 'banner'].includes(name)) acts.push({ label: '📖 Read', fn: () => examine() });
+      if (['gravestone'].includes(name)) acts.push({ label: '🕯 Pay respects', fn: () => { react('holy'); examine(); } });
+      if (['crate', 'barrel', 'urn'].includes(name)) acts.push({ label: '📦 Search inside', fn: () => { react('dust'); search(); } });
+      if (['bones', 'rubble', 'web', 'mushrooms'].includes(name)) acts.push({ label: '🔍 Sift through', fn: () => { react('dust'); search(); } });
+      // universal verbs
+      acts.push({ label: '🔍 Search around it', fn: search });
+      acts.push({ label: '👁 Examine', fn: examine });
+      return acts;
     }
 
     scatterClutter(layout, th) {
@@ -966,6 +992,16 @@
           this.tileLayer.add(cimg);
           // small plants brush as you pass
           if (['flowers', 'reeds', 'bush', 'mushrooms'].includes(name)) this.registerReactive(cimg, 'sway', { tint: 0x8fbf6a });
+          // searchable clutter (containers, remains) is clickable for loot/lore
+          if (['crate', 'barrel', 'urn', 'bones', 'rubble'].includes(name)) {
+            cimg.setInteractive({ useHandCursor: true });
+            cimg.on('pointerdown', pointer => {
+              if (pointer.rightButtonDown && pointer.rightButtonDown()) return;
+              const acts = this.propActions(name, bx, by);
+              if (MH.popover) MH.popover.show(pointer.event.clientX, pointer.event.clientY, (MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name), acts);
+            });
+            cimg.on('pointerover', () => MH.bus.emit('flash', `${MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name} — click to search`));
+          }
           placed++;
         }
       }
@@ -1053,29 +1089,14 @@
         delay: 3200 + rng() * 2600, loop: true,
         callback: () => { if (img.active) this.spark(baseX, baseY - T * 1.4, GLOWN[name] || 0xffe9a8); },
       });
-      // examine + interact: the room's point of interest
+      // examine + interact: the room's point of interest (shared verb set)
       img.setInteractive({ useHandCursor: true });
       img.on('pointerdown', pointer => {
         if (pointer.rightButtonDown && pointer.rightButtonDown()) return;
-        const cxp = pointer.event.clientX, cyp = pointer.event.clientY;
-        const acts = [];
-        // landmarks react when you use them — a little ceremony for the act
-        const react = kind => {
-          try {
-            const P = MH.fx && MH.fx.PAL;
-            if (kind === 'water') { if (MH.fx) MH.fx.ringShock(this, baseX, baseY - T * 0.3, 0x9fd9ff, 14, 420); this.spark(baseX, baseY - T * 0.3, 0x9fd9ff); }
-            else if (kind === 'warm') { if (MH.fx) MH.fx.risers(this, baseX, baseY - T * 0.4, P ? P.fire : { a: 0xffd060, b: 0xff8a2a }, 5); this.cameras.main.flash(140, 60, 30, 0); }
-            else if (kind === 'holy') { if (MH.fx) { MH.fx.pillar(this, baseX, baseY, P ? P.holy : { a: 0xfff6d0, b: 0xffe080 }, 90, 22); MH.fx.ringShock(this, baseX, baseY - T * 0.4, 0xffe9a8, 18, 520); } this.flashScreen(0xfff2d0, 0.22, 400); MH.bus.emit('flash', 'You feel a fleeting blessing settle over you.'); }
-          } catch (_) {}
-        };
-        if (['fountain', 'well'].includes(name)) acts.push({ label: '🜄 Drink', fn: () => { react('water'); MH.sendCommand('drink'); } });
-        if (['brazier', 'candles', 'campfire'].includes(name)) acts.push({ label: '😴 Rest by the warmth', fn: () => { react('warm'); MH.sendCommand('rest'); } });
-        if (['statue', 'runestone', 'altar'].includes(name)) acts.push({ label: '🙏 Pray', fn: () => { react('holy'); MH.sendCommand('pray'); } });
-        acts.push({ label: '🔍 Search around it', fn: () => (MH.immersion && MH.immersion.runInfo ? MH.immersion.runInfo('search', 'You search') : MH.sendCommand('search')) });
-        acts.push({ label: '👁 Examine', fn: () => MH.immersion && MH.immersion.propFlavor && MH.immersion.propFlavor(name) });
-        if (MH.popover && acts.length) MH.popover.show(cxp, cyp, (MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name), acts);
+        const acts = this.propActions(name, baseX, baseY);
+        if (MH.popover && acts.length) MH.popover.show(pointer.event.clientX, pointer.event.clientY, (MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name), acts);
       });
-      img.on('pointerover', () => MH.bus.emit('flash', `${MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name} — click to examine`));
+      img.on('pointerover', () => MH.bus.emit('flash', `${MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name} — click to interact`));
     }
 
     // Ori-style mood pass: themed light pools, god rays, drifting motes.
