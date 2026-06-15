@@ -253,9 +253,17 @@
   }
   .dcard button:hover { background: #353b54; }
   .evo-card { background: #10131c; border: 1px solid #2a3040; border-radius: 6px; padding: 10px 12px; margin: 6px 0; }
-  .evo-card .ehead { display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
-  .evo-card .ename { color: var(--gold); }
+  .evo-card .ehead { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 14px; flex-wrap: wrap; }
+  .evo-card .ename { color: var(--gold); flex: 1; min-width: 90px; }
   .evo-card .eusage { color: #aab2c4; font-size: 12px; }
+  .evo-card .eacts { display: flex; gap: 4px; flex: none; }
+  .ebtn { padding: 2px 8px; border-radius: 6px; font-family: var(--ui-font); font-size: 10px; cursor: pointer;
+    border: 1px solid rgba(140,150,180,0.3); background: rgba(20,23,32,0.8); color: #c8ccd8; transition: all 0.13s; }
+  .ebtn:hover { color: #1a1408; }
+  .ebtn.use { border-color: rgba(232,193,104,0.5); color: #e8c168; }
+  .ebtn.use:hover { background: #e8c168; color: #1a1408; }
+  .ebtn.bind:hover { background: #5a8ae8; color: #fff; }
+  .ebtn.help:hover { background: #e8c168; }
   .evo-track { height: 7px; background: #0a0b10; border-radius: 3px; margin: 7px 0; overflow: hidden; }
   .evo-track i { display: block; height: 100%; background: linear-gradient(90deg, #8a6a2c, #e8c168); }
   .evo-step { font-size: 12px; color: #c2c8d6; padding: 3px 0; }
@@ -1443,11 +1451,17 @@
 
   /* persistent, scrollable combat log with full history (left side, below the hint) */
   #combat-log { left: 12px !important; top: 156px !important; right: auto !important; bottom: auto !important;
-    width: 300px !important; max-height: 40vh !important; overflow-y: auto !important;
+    width: 300px; height: 240px; max-height: 82vh; min-height: 64px; min-width: 190px; max-width: 620px;
+    overflow: auto !important; resize: both !important;
     border-radius: 9px !important; padding: 0 0 6px !important; scrollbar-width: thin; scrollbar-color: #3a4050 transparent; }
   #combat-log::-webkit-scrollbar { width: 7px; }
   #combat-log::-webkit-scrollbar-thumb { background: #3a4050; border-radius: 4px; }
-  #combat-log.collapsed { max-height: 22px !important; overflow: hidden !important; }
+  /* resize grip hint in the corner */
+  #combat-log::after { content: ''; position: sticky; float: right; bottom: 0; width: 11px; height: 11px;
+    margin: -11px 1px 0 0; pointer-events: none;
+    background: linear-gradient(135deg, transparent 50%, rgba(232,193,104,0.5) 50%, rgba(232,193,104,0.5) 60%, transparent 60%,
+      transparent 72%, rgba(232,193,104,0.5) 72%, rgba(232,193,104,0.5) 82%, transparent 82%); }
+  #combat-log.collapsed { height: 26px !important; min-height: 0 !important; overflow: hidden !important; resize: none !important; }
   #combat-log .head { position: sticky; top: 0; z-index: 1; display: flex; justify-content: space-between;
     align-items: center; background: rgba(13,15,21,0.96); padding: 5px 9px; margin: 0 0 3px !important;
     border-bottom: 1px solid rgba(140,150,180,0.15); }

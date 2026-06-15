@@ -180,6 +180,17 @@
     lsSet(HOTBAR_KEY, JSON.stringify(hotbar));
     renderHotbar();
   }
+  // bind a command to the first free action-bar slot; returns false if full or
+  // already bound. Used by the spellbook / doctrine "⊕ Bar" buttons.
+  function bindToHotbar(cmd) {
+    const c = String(cmd || '').trim();
+    if (!c) return false;
+    if (hotbar.some(s => (s || '').toLowerCase() === c.toLowerCase())) return false;
+    const free = hotbar.findIndex(s => !s);
+    if (free < 0) return false;
+    bindSlot(free, c);
+    return true;
+  }
 
   // spell mana costs (static), fetched once after login
   let abilityCosts = {};
@@ -772,7 +783,22 @@
       if (h) makeDraggable(m, h);
     });
     const cl = document.getElementById('combat-log');
-    if (cl) makeDraggable(cl, cl.querySelector('.head'));
+    if (cl) {
+      makeDraggable(cl, cl.querySelector('.head'));
+      // remember the player's chosen combat-log size across reloads
+      try {
+        const saved = JSON.parse(lsGet('mh_clog_size') || 'null');
+        if (saved && saved.w && saved.h) { cl.style.width = saved.w + 'px'; cl.style.height = saved.h + 'px'; }
+        if (window.ResizeObserver) {
+          let t = null;
+          new ResizeObserver(() => {
+            if (cl.classList.contains('collapsed')) return;
+            clearTimeout(t);
+            t = setTimeout(() => lsSet('mh_clog_size', JSON.stringify({ w: Math.round(cl.offsetWidth), h: Math.round(cl.offsetHeight) })), 300);
+          }).observe(cl);
+        }
+      } catch (_) {}
+    }
     const chat = document.getElementById('chat-panel');
     if (chat) { const ch = chat.querySelector('#chat-tabs, .chat-head, .head'); if (ch) makeDraggable(chat, ch); }
     // the combat "what you're fighting" boxes drag by their whole body
@@ -2691,7 +2717,10 @@
       const frac = Math.min(1, ab.usage / maxTh);
       html += `<div class="evo-card"><div class="ehead">`
         + `<span class="ename">${ab.ability}${ab.evolved ? ` → ${ab.evolved.replace(/_/g, ' ')}` : ''}</span>`
-        + `<span class="eusage">${ab.usage} uses${next ? ` · next at ${next}` : ' · fully evolved path'}</span></div>`
+        + `<span class="eusage">${ab.usage} uses${next ? ` · next at ${next}` : ' · fully evolved path'}</span>`
+        + `<span class="eacts"><button class="ebtn use" data-use="${ab.ability}" title="use ${ab.ability} now">▶ Use</button>`
+        + `<button class="ebtn bind" data-bind="${ab.ability}" title="add to action bar">⊕ Bar</button>`
+        + `<button class="ebtn help" data-abhelp="${ab.ability}" title="what does ${ab.ability} do?">ⓘ</button></span></div>`
         + `<div class="evo-track"><i style="width:${frac * 100}%"></i></div>`;
       for (const th of ths) {
         const reached = ab.usage >= th;
@@ -2749,6 +2778,24 @@
         MH.sendCommand(`evolve ${btn.dataset.evolve}`);
         setTimeout(renderDoctrine, 1200);
       });
+    });
+    // use an ability now (no typing) — closes the panel so you see it land
+    els.talentsBody.querySelectorAll('[data-use]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const ab = btn.dataset.use;
+        // target-needing abilities use the current target if there is one
+        const tgt = currentTarget && currentTarget.name ? ' ' + MH.mobKeyword(currentTarget.name) : '';
+        MH.sendCommand(`${ab}${tgt}`);
+        closeModals();
+      });
+    });
+    // bind an ability to the action bar
+    els.talentsBody.querySelectorAll('[data-bind]').forEach(btn => {
+      btn.addEventListener('click', () => { if (bindToHotbar(btn.dataset.bind)) flash(`${btn.dataset.bind} added to your action bar`); });
+    });
+    // show the help file for the ability
+    els.talentsBody.querySelectorAll('[data-abhelp]').forEach(btn => {
+      btn.addEventListener('click', e => { e.stopPropagation(); showAbilityHelp(btn.dataset.abhelp); });
     });
   }
 
