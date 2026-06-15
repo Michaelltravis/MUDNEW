@@ -371,6 +371,7 @@
       topdown: true,
       vnum, theme: sector, sector, flags, zoneKey,
       description: roomData.description || '',
+      name: roomData.name || '',
       gravestones: roomData.gravestones,
       W, H, T, grid, gaps,
       stairsUp, stairsDown, portals, obstacles, props, spawnSlots, entries,

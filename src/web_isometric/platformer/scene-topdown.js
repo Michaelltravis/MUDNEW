@@ -506,6 +506,7 @@
       }
       this.placeGravestones(layout);
       this.placeLandmark(layout, th);
+      this.decorateFromDescription(layout, th);
       this.scatterClutter(layout, th);
       this.spawnCritters(layout, th);
       this.placeProse(layout);
@@ -717,6 +718,125 @@
     // Phase 3: denser, themed clutter (cosmetic, non-blocking) clustered near
     // walls to fill the empty floor, plus a couple of "discovery" glints that
     // reward wandering the room — the exploration ask. Quality-scaled.
+    // Read the room's actual prose and place props that match what it describes,
+    // so a room that says "a marble fountain" gets a fountain, "ancient tomes
+    // line the shelves" gets bookpiles, etc. Deterministic per-vnum so a room
+    // always looks the same. This is what makes each room feel hand-placed.
+    decorateFromDescription(layout, th) {
+      const text = ((layout.name || '') + ' . ' + (layout.description || '')).toLowerCase();
+      if (!text.trim()) return;
+      const { T, FLOOR, BLOCK } = TD();
+      // keyword -> prop. First match wins per prop; order matters for specificity.
+      // [regex, propName, placement]  placement: 'wall' | 'edge' | 'center' | 'any'
+      const RULES = [
+        [/\bfountain|water spout|bubbling spring|basin\b/, 'fountain', 'center'],
+        [/\bwell\b|wishing well/, 'fountain', 'center'],
+        [/\baltar|shrine|sacrificial/, 'runestone', 'center'],
+        [/\bstatue|idol|effigy|monument|sculpture|figure of|likeness of/, 'statue', 'center'],
+        [/\bpillar|column|colonnade|pillars/, 'pillar', 'edge'],
+        [/\brunestone|runic|standing stone|obelisk|monolith|carved stone/, 'runestone', 'center'],
+        [/\banvil|forge|smithy|bellows/, 'anvil', 'edge'],
+        [/\bbrazier|hearth|fire ?pit|bonfire|campfire|roaring fire|coals|embers|fireplace/, 'brazier', 'center'],
+        [/\bcandle|candelabra|tapers/, 'candles', 'wall'],
+        [/\blamppost|street ?lamp|gaslight|lamp post/, 'lamppost', 'edge'],
+        [/\blantern/, 'lantern', 'wall'],
+        [/\bbanner|flag|pennant|tapestr/, 'banner', 'wall'],
+        [/\bbook|tome|scroll|librar|shelves|bookshelf|grimoire/, 'bookpile', 'wall'],
+        [/\bgear|cog|machine|mechanism|machinery|clockwork/, 'gear', 'edge'],
+        [/\bpipe|plumbing|conduit/, 'pipe', 'wall'],
+        [/\bcrate|crates|cargo|supplies|\bbox(es)?\b/, 'crate', 'wall'],
+        [/\bbarrel|cask|keg|barrels/, 'barrel', 'wall'],
+        [/\burn|vase|amphora|\bpot(s|tery)?\b/, 'urn', 'wall'],
+        [/\bstall|market|vendor|cart|booth|wares/, 'stall', 'edge'],
+        [/\bfence|railing|palisade|paddock/, 'fence', 'edge'],
+        [/\bgrave|tomb|headstone|sepulchre|crypt|burial/, 'gravestone', 'edge'],
+        [/\bbones|skeleton|skull|remains|carcass|corpse/, 'bones', 'edge'],
+        [/\bcobweb|\bweb\b|webbing|spider/, 'web', 'wall'],
+        [/\brubble|debris|ruins|collapsed|broken stone|crumbling/, 'rubble', 'edge'],
+        [/\bcrystal|geode|gemstone|glowing crystal|quartz/, 'crystal', 'edge'],
+        [/\bicicle|frozen|ice crystal|sheet of ice/, 'icecrystal', 'edge'],
+        [/\bsnow|snowdrift|drift of/, 'snowdrift', 'edge'],
+        [/\bmushroom|fungus|fungal|toadstool/, 'mushrooms', 'edge'],
+        [/\breed|rushes|cattail|marsh grass/, 'reeds', 'edge'],
+        [/\blily|lilypad|lily pad/, 'lilypad', 'any'],
+        [/\bcactus|cacti|succulent/, 'cactus', 'edge'],
+        [/\bflower|blossom|bloom|petal|wildflower|garden bed/, 'flowers', 'edge'],
+        [/\bpine|fir tree|evergreen|conifer|spruce/, 'pine', 'edge'],
+        [/\bdead tree|withered tree|gnarled|bare branch|leafless/, 'deadtree', 'edge'],
+        [/\bstump|fallen tree|fallen log|\blog\b/, 'stump', 'edge'],
+        [/\bbush|shrub|hedge|thicket|bramble|undergrowth/, 'bush', 'edge'],
+        [/\btree|oak|elm|willow|birch|maple|grove|orchard/, 'tree', 'edge'],
+        [/\bboulder|\brock|stones|stony|rocky/, 'rock', 'edge'],
+        [/\bcoral|reef/, 'coral', 'edge'],
+        [/\bshell|seashell|conch/, 'shell', 'edge'],
+      ];
+      const picks = [];
+      const seen = new Set();
+      for (const [re, prop, place] of RULES) {
+        if (picks.length >= 5) break;
+        if (seen.has(prop)) continue;
+        if (re.test(text) && this.textures.exists(`zt_prop_${prop}`)) { seen.add(prop); picks.push({ prop, place }); }
+      }
+      if (!picks.length) return;
+
+      const grid = layout.grid, W = layout.W, H = layout.H;
+      const cx = Math.floor(W / 2), cy = Math.floor(H / 2);
+      const taken = new Set((layout.props || []).map(p => `${p.x},${p.y}`));
+      const isFloor = (x, y) => x > 1 && y > 1 && x < W - 2 && y < H - 2 && grid[y * W + x] === FLOOR && !taken.has(`${x},${y}`);
+      const nearWall = (x, y) => grid[(y - 1) * W + x] === BLOCK || grid[(y + 1) * W + x] === BLOCK
+        || grid[y * W + x - 1] === BLOCK || grid[y * W + x + 1] === BLOCK;
+      const GLOWN = { fountain: 0x9fd9ff, crystal: 0xc792ff, icecrystal: 0x9fd0ff, statue: 0xffe9c0,
+        runestone: 0xffd089, brazier: 0xff9a4a, candles: 0xffe9a8, lamppost: 0xffd98a, lantern: 0xcfff90, mushrooms: 0xb06ce0 };
+      const INTERACT = { fountain: 'water', brazier: 'warm', runestone: 'holy', statue: 'holy', candles: 'warm' };
+
+      picks.forEach((pick, idx) => {
+        const rng = MH.mulberry32((layout.vnum ^ (0x51ed2 + idx * 0x9e37)) >>> 0);
+        // find a fitting free cell for this placement style
+        let best = null;
+        for (let g = 0; g < 80 && !best; g++) {
+          const x = 2 + ((rng() * (W - 4)) | 0), y = 2 + ((rng() * (H - 4)) | 0);
+          if (!isFloor(x, y)) continue;
+          const wall = nearWall(x, y);
+          const central = Math.abs(x - cx) < 3 && Math.abs(y - cy) < 3;
+          if (pick.place === 'center' && (central || g > 50)) best = { x, y };
+          else if (pick.place === 'wall' && wall) best = { x, y };
+          else if (pick.place === 'edge' && (wall || g > 40)) best = { x, y };
+          else if (pick.place === 'any') best = { x, y };
+          else if (g > 60) best = { x, y };   // fallback: take any floor
+        }
+        if (!best) return;
+        taken.add(`${best.x},${best.y}`);
+        const name = pick.prop;
+        const bx = best.x * T + T / 2, by = (best.y + 1) * T;
+        const scale = (pick.place === 'center' ? 1.5 : 1.1 + rng() * 0.25) / MH.SMOOTH_SS;
+        this.tileLayer.add(this.add.image(bx, by - 1, 'px_shadow').setDepth(2.6).setAlpha(0.32).setScale(scale * 0.4));
+        const img = this.add.image(bx, by, `zt_prop_${name}`).setOrigin(0.5, 1).setDepth(3 + by / 1000).setScale(scale);
+        this.tileLayer.add(img);
+        // glowing features pulse softly and draw the eye
+        if (GLOWN[name]) {
+          const glow = this.add.image(bx, by - T * 0.6, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+            .setAlpha(0.12).setScale(0.5).setTint(GLOWN[name]).setDepth(34);
+          this.tweens.add({ targets: glow, alpha: 0.22, scale: 0.66, duration: 2000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+          this.fxList && this.fxList.push(glow);
+        }
+        // examine / interact: these are the features the prose called out
+        img.setInteractive({ useHandCursor: true });
+        img.on('pointerdown', pointer => {
+          if (pointer.rightButtonDown && pointer.rightButtonDown()) return;
+          const acts = [];
+          const kind = INTERACT[name];
+          if (name === 'fountain') acts.push({ label: '🜄 Drink', fn: () => MH.sendCommand('drink') });
+          if (kind === 'warm') acts.push({ label: '😴 Rest by the warmth', fn: () => MH.sendCommand('rest') });
+          if (kind === 'holy') acts.push({ label: '🙏 Pray', fn: () => MH.sendCommand('pray') });
+          acts.push({ label: '🔍 Search', fn: () => (MH.immersion && MH.immersion.runInfo ? MH.immersion.runInfo('search', 'You search') : MH.sendCommand('search')) });
+          acts.push({ label: '👁 Examine', fn: () => MH.immersion && MH.immersion.propFlavor && MH.immersion.propFlavor(name) });
+          const label = (MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name);
+          if (MH.popover) MH.popover.show(pointer.event.clientX, pointer.event.clientY, label, acts);
+        });
+        img.on('pointerover', () => MH.bus.emit('flash', `${MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name} — click to examine`));
+      });
+    }
+
     scatterClutter(layout, th) {
       const { T, FLOOR, BLOCK } = TD();
       const CLUTTER = {
