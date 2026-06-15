@@ -560,6 +560,25 @@
     setTimeout(() => { t.classList.remove('in'); setTimeout(() => t.remove(), 400); }, 5200);
   }
 
+  // cinematic level-up: a full-screen golden burst with rays + the new level.
+  // The scene also plays an in-world pillar; this is the can't-miss UI moment.
+  let _luTimer = null;
+  function cinematicLevelUp() {
+    const ov = document.getElementById('levelup');
+    if (!ov) return;
+    const lvlEl = document.getElementById('lu-level');
+    const setLvl = () => { const l = MH.state.player && MH.state.player.level; if (lvlEl) lvlEl.textContent = l ? `LEVEL ${l}` : ''; };
+    setLvl();
+    // the new level usually arrives a beat later via state refresh
+    setTimeout(setLvl, 500);
+    setTimeout(setLvl, 1100);
+    ov.classList.remove('show');
+    void ov.offsetWidth;            // restart the CSS animation
+    ov.classList.add('show');
+    clearTimeout(_luTimer);
+    _luTimer = setTimeout(() => ov.classList.remove('show'), 2700);
+  }
+
   // ---- chat: tabbed panel + ambient overlay ----
   const chatStore = { all: [], party: [], say: [], channel: [], tell: [] };
   const unread = { party: 0, say: 0, channel: 0, tell: 0 };
@@ -718,7 +737,7 @@
     el._restoreDrag = applySaved;
     handle.addEventListener('pointerdown', e => {
       // let the close button, tools and any control inside the header work
-      if (e.target.closest('.x, .clog-tools, button, input, select, textarea, [data-close], [data-tab], a')) return;
+      if (e.target.closest('.x, .clog-tools, button, input, select, textarea, [data-close], [data-tab], a, .foe-row')) return;
       if (e.button !== 0) return;
       const r = el.getBoundingClientRect();
       const sr = stage().getBoundingClientRect();
@@ -756,6 +775,11 @@
     if (cl) makeDraggable(cl, cl.querySelector('.head'));
     const chat = document.getElementById('chat-panel');
     if (chat) { const ch = chat.querySelector('#chat-tabs, .chat-head, .head'); if (ch) makeDraggable(chat, ch); }
+    // the combat "what you're fighting" boxes drag by their whole body
+    const duel = document.getElementById('duel-card');
+    if (duel) makeDraggable(duel, duel);
+    const tf = document.getElementById('target-frame');
+    if (tf) makeDraggable(tf, tf);
   }
 
   function openModal(id) {
@@ -3274,6 +3298,44 @@
         if (pl) duelRenderFoes(pl);
       } });
 
+      // combat liveliness: the fighting box reacts to every blow so it never
+      // feels static. A struck foe row flashes + shows the damage; taking a
+      // hit flares your own portrait.
+      const floatDmg = (host, text, color) => {
+        if (!host) return;
+        const n = document.createElement('div');
+        n.className = 'duel-hit-num';
+        n.textContent = text;
+        n.style.color = color;
+        n.style.left = '50%';
+        n.style.top = '4px';
+        n.style.transform = 'translateX(-50%)';
+        if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
+        host.appendChild(n);
+        setTimeout(() => n.remove(), 900);
+      };
+      MH.bus.on('combat.hit', e => {
+        const card = $('duel-card');
+        if (!card || !card.classList.contains('show')) return;
+        const rows = card.querySelectorAll('.foe-row');
+        let row = card.querySelector('.foe-row.active') || rows[0];
+        if (e && e.target) {
+          const t = String(e.target).toLowerCase();
+          rows.forEach(r => { const nm = r.querySelector('.fr-nm'); if (nm && nm.textContent.toLowerCase().includes(t)) row = r; });
+        }
+        if (row) {
+          row.classList.remove('struck'); void row.offsetWidth; row.classList.add('struck');
+          if (e && e.dmg != null) floatDmg(row, `-${e.dmg}`, '#ffd86a');
+        }
+      });
+      MH.bus.on('combat.taken', e => {
+        const card = $('duel-card');
+        if (!card || !card.classList.contains('show')) return;
+        const you = card.querySelector('.duel-side.you');
+        if (you) { you.classList.remove('struck'); void you.offsetWidth; you.classList.add('struck');
+          if (e && e.dmg != null) floatDmg(you, `-${e.dmg}`, '#ff7a7a'); }
+      });
+
       // ===== party frames: top-center bar of allied unit frames =====
       const ROLE_ICON = { tank: '🛡', healer: '✚', dps: '⚔', pet: '🐾' };
       const DIR_ARROW = { north: '↑', south: '↓', east: '→', west: '←', up: '⤒', down: '⤓',
@@ -3583,7 +3645,7 @@
       MH.bus.on('room.entered', () => sfx.move());
       MH.bus.on('target.update', setTarget);
       MH.bus.on('target.clear', () => setTarget(null));
-      MH.bus.on('level.up', e => flash(e.line));
+      MH.bus.on('level.up', () => cinematicLevelUp());
       MH.bus.on('shop.open', openShop);
       MH.bus.on('training.open', openTraining);
       MH.bus.on('npc.talk', openDialogue);
