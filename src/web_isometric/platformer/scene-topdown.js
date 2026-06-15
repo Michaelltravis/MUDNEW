@@ -202,6 +202,28 @@
         g.beginPath(); g.moveTo(10, 4); g.lineTo(12, 2); g.lineTo(12, 6); g.fill();  // tail
         g.fillStyle = 'rgba(0,0,0,0.4)'; for (const lx of [4, 6, 8]) g.fillRect(lx, 6, 1, 1);  // legs
       });
+      // extra landmark centrepieces (keyed as zt_prop_* so they slot in directly)
+      mkTex('zt_prop_campfire', 30, 26, g => {
+        g.fillStyle = '#5a5048';                                          // ring stones
+        for (const sx of [4, 10, 18, 24]) { g.beginPath(); g.arc(sx, 22, 3, 0, 7); g.fill(); }
+        g.strokeStyle = '#6a4a2a'; g.lineWidth = 2.4;                     // crossed logs
+        g.beginPath(); g.moveTo(7, 23); g.lineTo(22, 17); g.moveTo(22, 23); g.lineTo(7, 17); g.stroke();
+        g.fillStyle = '#ff8a2a'; g.beginPath(); g.moveTo(15, 4); g.quadraticCurveTo(9, 14, 15, 18); g.quadraticCurveTo(21, 14, 15, 4); g.fill();
+        g.fillStyle = '#ffd861'; g.beginPath(); g.moveTo(15, 9); g.quadraticCurveTo(12, 14, 15, 17); g.quadraticCurveTo(18, 14, 15, 9); g.fill();
+      });
+      mkTex('zt_prop_well', 30, 30, g => {
+        g.fillStyle = '#7a7f8c'; g.beginPath(); g.ellipse(15, 23, 11, 5, 0, 0, 7); g.fill();   // rim
+        g.fillStyle = '#2a4a66'; g.beginPath(); g.ellipse(15, 23, 7.5, 3.2, 0, 0, 7); g.fill(); // water
+        g.fillStyle = '#6a7078'; g.fillRect(4, 12, 3, 12); g.fillRect(23, 12, 3, 12);           // posts
+        g.fillStyle = '#5a4030'; g.beginPath(); g.moveTo(2, 12); g.lineTo(15, 3); g.lineTo(28, 12); g.closePath(); g.fill();  // roof
+      });
+      mkTex('zt_prop_altar', 28, 26, g => {
+        g.fillStyle = '#6a6678'; g.fillRect(6, 14, 16, 10);               // base
+        g.fillStyle = '#8a8698'; g.fillRect(3, 11, 22, 4);                // slab
+        const rg = g.createRadialGradient(14, 9, 1, 14, 9, 10);
+        rg.addColorStop(0, 'rgba(200,160,255,0.95)'); rg.addColorStop(1, 'rgba(200,160,255,0)');
+        g.fillStyle = rg; g.beginPath(); g.arc(14, 9, 9, 0, 7); g.fill();  // holy glow
+      });
       this.playerShadow = this.add.image(this.player.x, this.player.y, 'px_shadow')
         .setDepth(5).setAlpha(0.4).setScale(0.34);
       this.nightTint = this.add.rectangle(0, 0, this.pxW, this.pxH, 0x101830, 0).setOrigin(0, 0).setDepth(42);
@@ -318,6 +340,7 @@
       if (this.bubbleEmitter) { this.bubbleEmitter.destroy(); this.bubbleEmitter = null; }
       if (this.critters) { this.critters.forEach(c => { this.tweens.killTweensOf(c); c.destroy(); }); }
       this.critters = [];
+      if (this.groundWeather) { this.groundWeather.forEach(o => o.destroy()); this.groundWeather = null; }
 
       const th = layout.theme;
       const zk = layout.zoneKey && this.textures.exists(`zt_${layout.zoneKey}_floor0`) ? layout.zoneKey : null;
@@ -724,18 +747,18 @@
       if (this._landmarkGlint) { this._landmarkGlint.remove(); this._landmarkGlint = null; }
       const { T, FLOOR } = TD();
       const CENTER = {
-        field: ['statue', 'runestone', 'fountain', 'rock', 'tree'],
-        hills: ['runestone', 'rock', 'statue', 'tree'],
-        forest: ['tree', 'deadtree', 'mushrooms', 'runestone'],
-        swamp: ['deadtree', 'statue', 'mushrooms', 'rock'],
-        desert: ['pillar', 'statue', 'cactus', 'rock'],
-        mountain: ['crystal', 'rock', 'runestone'],
-        cave: ['crystal', 'rock', 'runestone', 'mushrooms'],
-        dungeon: ['statue', 'runestone', 'pillar'],
-        underground: ['crystal', 'runestone', 'pillar'],
-        inside: ['statue', 'fountain', 'pillar', 'anvil'],
-        city: ['fountain', 'statue', 'runestone', 'stall'],
-        default: ['statue', 'runestone', 'rock'],
+        field: ['statue', 'runestone', 'fountain', 'well', 'campfire', 'tree'],
+        hills: ['runestone', 'rock', 'campfire', 'statue', 'tree'],
+        forest: ['tree', 'deadtree', 'campfire', 'mushrooms', 'altar'],
+        swamp: ['deadtree', 'altar', 'statue', 'mushrooms'],
+        desert: ['pillar', 'statue', 'well', 'campfire', 'cactus'],
+        mountain: ['crystal', 'campfire', 'rock', 'runestone'],
+        cave: ['crystal', 'campfire', 'altar', 'rock', 'mushrooms'],
+        dungeon: ['altar', 'statue', 'runestone', 'pillar'],
+        underground: ['crystal', 'altar', 'runestone', 'pillar'],
+        inside: ['statue', 'fountain', 'well', 'altar', 'anvil'],
+        city: ['fountain', 'well', 'statue', 'runestone', 'stall'],
+        default: ['statue', 'runestone', 'campfire', 'rock'],
       };
       const rng = MH.mulberry32((layout.vnum ^ 0x1a7f3) >>> 0);
       // only ~70% of rooms get a landmark, so they stay special
@@ -760,7 +783,7 @@
       const scale = 2.4 / MH.SMOOTH_SS;
       // shadow + glow ground and highlight it
       this.add.image(baseX, baseY - 1, 'px_shadow').setDepth(3 + baseY / 1000 - 0.01).setAlpha(0.42).setScale(0.85);
-      const GLOWN = { fountain: 0x9fd9ff, crystal: 0xc792ff, statue: 0xffe9c0, runestone: 0xffd089, mushrooms: 0xb06ce0, deadtree: 0x9ab69a, tree: 0xaaffaa };
+      const GLOWN = { fountain: 0x9fd9ff, well: 0x9fd9ff, crystal: 0xc792ff, statue: 0xffe9c0, runestone: 0xffd089, mushrooms: 0xb06ce0, deadtree: 0x9ab69a, tree: 0xaaffaa, campfire: 0xff9a4a, altar: 0xc8a0ff };
       const glow = this.add.image(baseX, baseY - T, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
         .setAlpha(0.16).setScale(0.7).setTint(GLOWN[name] || 0xffe9a8).setDepth(35);
       this.tweens.add({ targets: glow, alpha: 0.28, scale: 0.85, duration: 1800, yoyo: true, repeat: -1, ease: 'sine.inOut' });
@@ -872,6 +895,38 @@
             .setAlpha(0.07).setRotation(0.18 + rng() * 0.1).setTint(0x88e0ff).setDepth(36);
           this.tweens.add({ targets: ray, x: ray.x + 18, duration: 6400, yoyo: true, repeat: -1, ease: 'sine.inOut' });
           this.fxList.push(ray);
+        }
+      }
+      // indoor window shafts: a couple of bright sun-beams with drifting dust
+      const detailFx = !MH.gfx || MH.gfx.particleScale >= 0.5;
+      if (['inside', 'city', 'dungeon'].includes(th)) {
+        const beams = th === 'inside' ? 2 : 1;
+        for (let i = 0; i < beams; i++) {
+          const bx = (0.28 + 0.4 * i + rng() * 0.18) * this.pxW;
+          const ray = this.add.image(bx, -8, 'fx_ray').setOrigin(0.5, 0).setBlendMode(Phaser.BlendModes.ADD)
+            .setAlpha(0.06 + rng() * 0.04).setRotation(0.30 + rng() * 0.1).setScale(1.3, 1.7)
+            .setTint(th === 'dungeon' ? 0xbcd0ff : 0xfff0d0).setDepth(36);
+          this.tweens.add({ targets: ray, alpha: ray.alpha + 0.04, duration: 5000 + rng() * 2000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+          this.fxList.push(ray);
+          if (detailFx) {
+            const dust = this.add.particles(bx, this.pxH * 0.3, 'px_white', {
+              x: { min: -22, max: 22 }, y: { min: -40, max: this.pxH * 0.4 }, tint: 0xfff0d0,
+              scale: { start: 0.13, end: 0 }, alpha: { start: 0, end: 0.5 }, speedY: { min: 4, max: 12 }, speedX: { min: -3, max: 3 },
+              lifespan: 6000, frequency: 600, blendMode: 'ADD',
+            }).setDepth(36);
+            this.fxList.push(dust);
+          }
+        }
+      }
+      // forest canopy dapple: soft shifting light spots on the floor
+      if (['forest', 'swamp'].includes(th)) {
+        const spots = 3 + Math.floor(rng() * 3);
+        for (let i = 0; i < spots; i++) {
+          const dp = this.add.image(40 + rng() * (this.pxW - 80), 50 + rng() * (this.pxH - 100), 'fx_glow')
+            .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.05 + rng() * 0.05).setScale(0.5 + rng() * 0.5)
+            .setTint(0xeaffc0).setDepth(3.5);
+          this.tweens.add({ targets: dp, alpha: dp.alpha + 0.05, x: dp.x + (rng() - 0.5) * 22, duration: 4000 + rng() * 3000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+          this.fxList.push(dp);
         }
       }
 
@@ -2743,6 +2798,36 @@
         if (this.rainFar) { this.rainFar.destroy(); this.rainFar = null; }
         if (this.rainSplash) { this.rainSplash.destroy(); this.rainSplash = null; }
       }
+      // ground weather: rain pools the floor with reflective puddles, snow
+      // settles into pale drifts — laid once, cleared when the weather lifts
+      const isSnow = wantRain && /snow/i.test(precip || '');
+      const wantGround = wantRain && this.layout && !this.layout.swim;
+      if (wantGround && !this.groundWeather) {
+        this.groundWeather = [];
+        const grd = this.layout.grid, gW = this.layout.W, gH = this.layout.H, gT = TD().T;
+        const grng = MH.mulberry32((this.layout.vnum ^ (isSnow ? 0x5e0 : 0x9a7)) >>> 0);
+        const n = 6 + Math.floor(grng() * 6);
+        let made = 0, tries = 0;
+        while (made < n && tries++ < 120) {
+          const gx = 2 + ((grng() * (gW - 4)) | 0), gy = 2 + ((grng() * (gH - 4)) | 0);
+          if (grd[gy * gW + gx] !== TD().FLOOR) continue;
+          const bx = gx * gT + gT / 2, by = gy * gT + gT / 2;
+          if (isSnow) {
+            const s = this.add.image(bx, by, 'gd_patch').setDepth(0.5).setAlpha(0.5 + grng() * 0.3)
+              .setTint(0xffffff).setScale(0.7 + grng() * 0.7);
+            this.groundWeather.push(s);
+          } else {
+            const pud = this.add.image(bx, by, 'gd_patch').setDepth(0.5).setAlpha(0.28 + grng() * 0.16)
+              .setTint(0x6a86a0).setScale(0.8 + grng() * 0.7).setBlendMode(Phaser.BlendModes.SCREEN);
+            this.groundWeather.push(pud);
+            this.tweens.add({ targets: pud, alpha: pud.alpha + 0.1, duration: 1400 + grng() * 1200, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+          }
+          made++;
+        }
+      } else if (!wantGround && this.groundWeather) {
+        this.groundWeather.forEach(o => o.destroy());
+        this.groundWeather = null;
+      }
       if (this.layout && this.layout.swim && !this.bubbleEmitter) {
         this.bubbleEmitter = this.add.particles(0, this.pxH, 'px_bubble', {
           x: { min: 0, max: this.pxW }, speedY: { min: -35, max: -12 }, lifespan: 3500, quantity: 1, alpha: 0.5,
@@ -2815,8 +2900,20 @@
       } else if (this.playerRim) {
         this.playerRim.setVisible(true);
       }
-      // rebuild the room's atmosphere with the new density/parallax/caustics
-      if (this.layout) { this._gradeKey = null; this.buildAtmosphere(this.layout, this.layout.theme); }
+      // re-thin/enrich the whole room (clutter, wildlife, walls, particles) to
+      // match the new quality immediately, preserving where the player stands
+      if (this.layout && MH.state.lastPayload) {
+        const px = this.player.x, py = this.player.y, suppress = this.exitSuppress;
+        this._gradeKey = null;
+        this.buildRoom(this.layout, 'none');
+        this.player.setPosition(px, py);
+        this.exitSuppress = suppress;
+        const entry = (MH.state.lastPayload.rooms || []).find(r => r.vnum === this.layout.vnum);
+        if (entry) this.syncEntities(entry);     // bring mobs/items straight back
+        this.applyAtmosphere(MH.state.lastPayload);
+      } else if (this.layout) {
+        this._gradeKey = null; this.buildAtmosphere(this.layout, this.layout.theme);
+      }
     }
 
     // Dynamic cinematic grade: a per-zone tonal curve (saturation/contrast via
