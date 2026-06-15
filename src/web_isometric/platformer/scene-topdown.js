@@ -512,6 +512,7 @@
       this.placeGravestones(layout);
       this.placeLandmark(layout, th);
       this.decorateFromDescription(layout, th);
+      this.applySignatureRoom(layout, th);
       this.scatterClutter(layout, th);
       this.spawnCritters(layout, th);
       this.placeProse(layout);
@@ -696,6 +697,82 @@
         this.tileLayer.add(img);
       }
       return img;
+    }
+
+    // ---- Phase 4: signature hero rooms ----
+    // Spawn one fully-featured prop at a grid cell (shadow, glow, reactivity,
+    // interaction) — the building block for curated set-pieces.
+    GLOW_FOR(name) {
+      return ({ fountain: 0x9fd9ff, well: 0x9fd9ff, crystal: 0xc792ff, icecrystal: 0x9fd0ff, statue: 0xffe9c0,
+        runestone: 0xffd089, brazier: 0xff9a4a, campfire: 0xff9a4a, candles: 0xffe9a8, lamppost: 0xffd98a,
+        lantern: 0xcfff90, altar: 0xc8a0ff, mushrooms: 0xb06ce0 })[name];
+    }
+    spawnFeatureProp(name, cellX, cellY, scaleMul) {
+      if (!this.textures.exists(`zt_prop_${name}`) || !this.layout) return null;
+      const { T, FLOOR } = TD();
+      const W = this.layout.W, H = this.layout.H, grid = this.layout.grid;
+      cellX = Math.round(cellX); cellY = Math.round(cellY);
+      if (cellX < 1 || cellY < 1 || cellX > W - 2 || cellY > H - 2) return null;
+      if (grid[cellY * W + cellX] !== FLOOR) return null;
+      const bx = cellX * T + T / 2, by = (cellY + 1) * T;
+      const scale = (scaleMul || 1.2) / MH.SMOOTH_SS;
+      this.tileLayer.add(this.add.image(bx, by - 1, 'px_shadow').setDepth(2.6).setAlpha(0.32).setScale(scale * 0.4));
+      const img = this.add.image(bx, by, `zt_prop_${name}`).setOrigin(0.5, 1).setScale(scale);
+      this.addPropImage(img, by, name);
+      const SWAY = new Set(['tree', 'pine', 'deadtree', 'bush', 'flowers', 'mushrooms', 'reeds', 'lilypad', 'cactus', 'stump', 'coral']);
+      const g = this.GLOW_FOR(name);
+      if (g) {
+        const glow = this.add.image(bx, by - T * 0.6, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+          .setAlpha(0.13).setScale(0.55).setTint(g).setDepth(34);
+        this.tweens.add({ targets: glow, alpha: 0.24, scale: 0.72, duration: 2000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        this.fxList && this.fxList.push(glow);
+        if (name === 'fountain') this.registerReactive(img, 'ripple');
+        else this.registerReactive(img, 'flare', { glow, glowMax: 0.13, tint: g });
+      } else if (SWAY.has(name)) this.registerReactive(img, 'sway', { tint: g || 0x8fbf6a });
+      img.setInteractive({ useHandCursor: true });
+      img.on('pointerdown', pointer => {
+        if (pointer.rightButtonDown && pointer.rightButtonDown()) return;
+        const acts = this.propActions(name, bx, by);
+        if (MH.popover) MH.popover.show(pointer.event.clientX, pointer.event.clientY, (MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name), acts);
+      });
+      img.on('pointerover', () => MH.bus.emit('flash', `${MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name} — click to interact`));
+      return img;
+    }
+    // a soft coloured light wash that gives a hero room its own mood
+    signatureWash(color, alpha) {
+      const r = this.add.rectangle(0, 0, this.pxW, this.pxH, color, alpha || 0.1)
+        .setOrigin(0, 0).setBlendMode(Phaser.BlendModes.SCREEN).setDepth(31);
+      this.tileLayer.add(r);
+    }
+    // Detect a named hero room and dress it with a curated set-piece + mood.
+    // Symmetric compositions around the room centre make these feel built.
+    applySignatureRoom(layout, th) {
+      const name = (layout.name || '').toLowerCase();
+      if (!name) return;
+      const W = layout.W, H = layout.H, cx = Math.floor(W / 2), cy = Math.floor(H / 2);
+      const pair = (prop, dx, dy, sc) => { this.spawnFeatureProp(prop, cx - dx, cy + dy, sc); this.spawnFeatureProp(prop, cx + dx, cy + dy, sc); };
+      const center = (prop, sc) => this.spawnFeatureProp(prop, cx, cy, sc);
+      if (/throne|hall of kings|royal court/.test(name)) {
+        center('statue', 1.7); pair('brazier', 3, 0, 1.2); pair('pillar', 5, -2, 1.5); this.signatureWash(0xffcf6a, 0.1);
+      } else if (/temple|shrine|chapel|sanctuary|cathedral|altar/.test(name)) {
+        center('altar', 1.5); pair('candles', 2, 1, 1.1); pair('pillar', 4, -1, 1.5); this.signatureWash(0xbfe0ff, 0.1);
+      } else if (/tavern|\binn\b|alehouse|\bpub\b|drunk|tankard/.test(name)) {
+        pair('barrel', 4, 2, 1.1); pair('crate', 5, 0, 1); center('candles', 0.9); this.signatureWash(0xffb060, 0.11);
+      } else if (/librar|archive|scriptorium|study|reading/.test(name)) {
+        pair('bookpile', 4, -1, 1.2); pair('bookpile', 4, 2, 1.1); center('candles', 0.9); this.signatureWash(0xbfd0e8, 0.08);
+      } else if (/forge|smith|anvil|foundry/.test(name)) {
+        center('anvil', 1.4); pair('brazier', 3, 1, 1.2); pair('crate', 5, -1, 1); this.signatureWash(0xff9a4a, 0.12);
+      } else if (/fountain|plaza|square|courtyard/.test(name)) {
+        center('fountain', 1.7); pair('lamppost', 5, -2, 1.3); pair('flowers', 3, 2, 1); this.signatureWash(0xcfe0ff, 0.07);
+      } else if (/bank|vault|treasur|counting house/.test(name)) {
+        center('statue', 1.5); pair('pillar', 4, -1, 1.5); pair('urn', 3, 2, 1); this.signatureWash(0xffe0a0, 0.09);
+      } else if (/guild|barracks|armor|arena|training/.test(name)) {
+        pair('banner', 5, -2, 1.2); pair('crate', 4, 1, 1); center('runestone', 1.2); this.signatureWash(0xffd9a0, 0.08);
+      } else if (/graveyard|cemeter|crypt|tomb|catacomb|mausoleum|sepulch/.test(name)) {
+        pair('gravestone', 3, 0, 1.2); pair('deadtree', 5, -1, 1.4); center('candles', 0.9); this.signatureWash(0x9a86c8, 0.1);
+      } else if (/garden|grove|orchard|arbor/.test(name)) {
+        pair('tree', 4, -1, 1.5); pair('flowers', 2, 2, 1.1); center('fountain', 1.3); this.signatureWash(0xbfe8a0, 0.08);
+      }
     }
 
     // ---- Phase 1: living, reactive rooms ----
