@@ -839,8 +839,12 @@
   function pdSocket(slot, item) {
     const filled = item ? '' : ' empty';
     const rar = item ? (item.set_id ? 'set' : (item.rarity || 'common')) : '';
+    const badge = item ? itemStatBadge(item) : '';
+    // equipped items show their stat in place of the slot label
+    const label = badge ? `<span class="pd-slotname pd-statlabel">${badge}</span>` : `<span class="pd-slotname">${slot}</span>`;
     return `<div class="pd-socket${filled}" data-slot="${slot}" ${item ? `data-name="${item.name}" data-cmd="remove ${MH.mobKeyword(item.name)}"` : ''} title="${item ? item.name + ' (click to remove)' : slot}">`
-      + `<canvas width="34" height="34"></canvas><span class="pd-slotname">${slot}</span>${item && rar !== 'common' ? `<i class="pd-rar ${rar}"></i>` : ''}</div>`;
+      + `<canvas width="34" height="34"></canvas>${label}`
+      + `${item && rar !== 'common' ? `<i class="pd-rar ${rar}"></i>` : ''}</div>`;
   }
   let invFilter = '', invSort = 'slot';
   // ---- item hover tooltip (inventory & equipment) ----
@@ -881,6 +885,21 @@
     if (foot.length) h += `<div class="it-foot"><span>${foot[0] || ''}</span><span>${foot[1] || ''}</span></div>`;
     if (action) h += `<div class="it-hint">${action}</div>`;
     return h;
+  }
+  // short always-visible stat badge for a gear cell (weapon damage, armor, or
+  // the item's headline enchantment) so stats are readable without hovering
+  function itemStatBadge(item) {
+    if (!item) return '';
+    const t = item.item_type || item.type;
+    if (t === 'weapon' && item.damage_dice) return `⚔ ${item.damage_dice}`;
+    if (t === 'armor' && item.armor) return `🛡 +${item.armor}`;
+    const a = (item.affects || [])[0];
+    if (a) {
+      const v = a.value != null ? a.value : a.modifier;
+      const tt = a.type != null ? a.type : (a.location != null ? a.location : a.stat);
+      if (tt != null && v != null) return `<span class="aff">${prettyStat(tt).slice(0, 3)} ${v > 0 ? '+' : ''}${v}</span>`;
+    }
+    return '';
   }
   let _itemTipEl = null;
   function showItemTip(item, ev, action) {
@@ -934,8 +953,10 @@
     if (!inv.length) html += `<div class="slot">${invFilter ? 'no matches' : 'empty-handed'}</div>`;
     inv.forEach(({ item, i }) => {
       const enchanted = (item.affects && item.affects.length) ? `<span class="inv-forge" data-kw="${MH.mobKeyword(item.name)}" title="reforge enchantments (gold)">⚒</span>` : '';
+      const badge = itemStatBadge(item);
       html += `<div class="inv-cell" data-i="${i}" data-cmd="wear ${MH.mobKeyword(item.name)}" title="${item.name} (${item.item_type || 'item'})">`
-        + `<canvas width="34" height="34"></canvas><span class="inv-nm">${(item.short || item.name).slice(0, 26)}</span>${enchanted}</div>`;
+        + `<canvas width="34" height="34"></canvas><span class="inv-nm">${(item.short || item.name).slice(0, 26)}</span>`
+        + (badge ? `<span class="inv-stat">${badge}</span>` : '') + `${enchanted}</div>`;
     });
     html += '</div>';
     els.invBody.innerHTML = html;
