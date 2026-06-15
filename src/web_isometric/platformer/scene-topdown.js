@@ -132,7 +132,29 @@
         .setOrigin(0, 0).setDepth(41).setBlendMode(Phaser.BlendModes.OVERLAY);
       // reusable off-screen stamp used to carve light pools out of the darkness layer
       this.lightStamp = this.add.image(0, 0, 'px_light').setVisible(false);
+      // screen-edge vignette texture (clear centre, solid edge) used for the
+      // damage pulse and lightning wash — tinted at pulse time
+      if (!this.textures.exists('px_vignette')) {
+        const vc = document.createElement('canvas');
+        vc.width = vc.height = 256;
+        const vx = vc.getContext('2d');
+        const vg = vx.createRadialGradient(128, 128, 60, 128, 128, 150);
+        vg.addColorStop(0, 'rgba(255,255,255,0)');
+        vg.addColorStop(0.7, 'rgba(255,255,255,0.15)');
+        vg.addColorStop(1, 'rgba(255,255,255,1)');
+        vx.fillStyle = vg;
+        vx.fillRect(0, 0, 256, 256);
+        this.textures.addCanvas('px_vignette', vc);
+      }
+      // red combat-damage vignette + a full-screen flash plate (lightning/crits)
+      this.dmgVignette = this.add.image(this.pxW / 2, this.pxH / 2, 'px_vignette')
+        .setDisplaySize(this.pxW, this.pxH).setDepth(48).setAlpha(0)
+        .setTint(0xe02020).setScrollFactor(0);
+      this.screenFlash = this.add.rectangle(0, 0, this.pxW, this.pxH, 0xffffff, 0)
+        .setOrigin(0, 0).setDepth(49).setBlendMode(Phaser.BlendModes.ADD);
       this.weatherEmitter = null;
+      this.rainSplash = null;
+      this.heatHaze = null;
       this.bubbleEmitter = null;
 
       MH.bus.on('map', payload => this.onMap(payload));
@@ -210,6 +232,9 @@
       this.lightSources = [];
       this.corpses = [];
       if (this.weatherEmitter) { this.weatherEmitter.destroy(); this.weatherEmitter = null; }
+      if (this.rainFar) { this.rainFar.destroy(); this.rainFar = null; }
+      if (this.rainSplash) { this.rainSplash.destroy(); this.rainSplash = null; }
+      if (this.heatHaze) { this.heatHaze.destroy(); this.heatHaze = null; }
       if (this.fogEmitter) { this.fogEmitter.destroy(); this.fogEmitter = null; }
       if (this.wornAura) { this.wornAura.destroy(); this.wornAura = null; }
       if (this.bubbleEmitter) { this.bubbleEmitter.destroy(); this.bubbleEmitter = null; }
@@ -1529,7 +1554,7 @@
       this.spark(ent.sprite.x, ent.sprite.y - 6, (fx && fx.color) || 0xffe080);
       const st = this.dmgStyle(e.dmg);
       if (st.shake) this.cameras.main.shake(90, st.shake);
-      if (e.dmg != null && e.dmg >= 25) this.zoomPunch();
+      if (e.dmg != null && e.dmg >= 25) { this.zoomPunch(); this.flashScreen(0xfff2d0, 0.28, 160); this.lensKick(); }
       this.damageNumber(ent.sprite.x, ent.sprite.y - 16, e.dmg != null ? String(e.dmg) : 'hit', st.color, st.size);
     }
     fxMiss(e) {
@@ -1541,11 +1566,13 @@
       this.time.delayedCall(90, () => this.player.clearTint());
       const st = this.dmgStyle(e && e.dmg);
       this.cameras.main.shake(80, Math.max(0.004, st.shake));
+      this.dmgPulse(e && e.dmg);
       this.squash(this.player);
       this.impactLines(this.player.x, this.player.y - 6, 0xff8080);
       if (e && e.dmg != null && e.dmg >= 6) {
         this.freezeFrame(e.dmg >= 20 ? 90 : 55);
         this.bloodSplat(this.player.x, this.player.y, e.dmg >= 15);
+        if (e.dmg >= 20) this.lensKick();
       }
       const atk = e && e.from ? this.findEntityByText(e.from) : null;
       const inColor = this.elementFor((e && e.line) || '');
@@ -1648,6 +1675,35 @@
       const cam = this.cameras.main;
       const base = cam.zoom;
       this.tweens.add({ targets: cam, zoom: base * 1.035, duration: 70, yoyo: true, ease: 'cubic.out' });
+    }
+    // red screen-edge pulse when you take a hit — scales with the damage
+    dmgPulse(dmg) {
+      if (!this.dmgVignette) return;
+      const a = Phaser.Math.Clamp(0.22 + (dmg || 0) * 0.012, 0.22, 0.6);
+      this.tweens.killTweensOf(this.dmgVignette);
+      this.dmgVignette.setTint(0xe02020).setAlpha(a);
+      this.tweens.add({ targets: this.dmgVignette, alpha: 0, duration: 420, ease: 'cubic.out' });
+    }
+    // a brief full-screen wash (white crits, blue-white lightning)
+    flashScreen(color = 0xffffff, alpha = 0.5, dur = 220) {
+      if (!this.screenFlash) return;
+      this.tweens.killTweensOf(this.screenFlash);
+      this.screenFlash.setFillStyle(color, alpha);
+      this.screenFlash.fillAlpha = alpha;
+      this.tweens.add({ targets: this.screenFlash, fillAlpha: 0, duration: dur, ease: 'cubic.out' });
+    }
+    // lens "kick" on a heavy blow: a quick barrel-distortion punch (WebGL only)
+    lensKick() {
+      const cam = this.cameras.main;
+      if (!cam.postFX || !cam.postFX.addBarrel) return;
+      if (this._barrelBusy) return;
+      this._barrelBusy = true;
+      let barrel;
+      try { barrel = cam.postFX.addBarrel(1.18); } catch (_) { this._barrelBusy = false; return; }
+      this.tweens.add({
+        targets: barrel, amount: 1.0, duration: 180, ease: 'cubic.out',
+        onComplete: () => { try { cam.postFX.remove(barrel); } catch (_) {} this._barrelBusy = false; },
+      });
     }
 
     // your defensive skills firing - make them feel earned
@@ -2174,16 +2230,43 @@
       }
       this.nightTint.setFillStyle(color, alpha);
       const precip = payload.weather && payload.weather.precipitation;
+      const skyNow = (payload.weather && payload.weather.sky) || 'clear';
       const wantRain = outdoor && precip && precip !== 'none';
       if (wantRain && !this.weatherEmitter) {
         const snow = /snow/i.test(precip);
-        this.weatherEmitter = this.add.particles(0, -10, snow ? 'px_bubble' : 'px_rain', {
-          x: { min: 0, max: this.pxW }, speedY: snow ? { min: 20, max: 45 } : { min: 180, max: 260 },
-          speedX: snow ? { min: -10, max: 10 } : -20, lifespan: 2000, quantity: snow ? 1 : 3, alpha: 0.7,
-        }).setDepth(45);
+        const stormy = skyNow === 'stormy';
+        if (snow) {
+          this.weatherEmitter = this.add.particles(0, -10, 'px_bubble', {
+            x: { min: 0, max: this.pxW }, speedY: { min: 20, max: 45 },
+            speedX: { min: -10, max: 10 }, lifespan: 2000, quantity: 1, alpha: 0.7,
+          }).setDepth(45);
+        } else {
+          // wind-driven rain: angled streaks, heavier in a storm, with a faint
+          // far layer for depth and ground splashes where it lands
+          const wind = stormy ? -120 : -55;
+          this.weatherEmitter = this.add.particles(0, -10, 'px_rain', {
+            x: { min: -40, max: this.pxW }, speedY: stormy ? { min: 320, max: 430 } : { min: 220, max: 300 },
+            speedX: { min: wind - 30, max: wind + 10 }, rotate: stormy ? -18 : -12,
+            scaleY: stormy ? { min: 1.4, max: 2.2 } : { min: 1.0, max: 1.6 },
+            lifespan: 1500, quantity: stormy ? 6 : 3, alpha: stormy ? 0.6 : 0.5,
+          }).setDepth(45);
+          this.rainFar = this.add.particles(0, -10, 'px_rain', {
+            x: { min: -40, max: this.pxW }, speedY: { min: 180, max: 240 },
+            speedX: { min: wind - 10, max: wind + 20 }, rotate: stormy ? -18 : -12,
+            scaleX: 0.6, scaleY: 0.9, lifespan: 1600, quantity: stormy ? 3 : 1, alpha: 0.22,
+          }).setDepth(8);
+          this.rainSplash = this.add.particles(0, 0, 'px_white', {
+            x: { min: 0, max: this.pxW }, y: { min: this.pxH * 0.35, max: this.pxH - 6 },
+            scaleX: { start: 0.5, end: 1.4 }, scaleY: { start: 0.5, end: 0.1 },
+            alpha: { start: 0.5, end: 0 }, tint: 0xbcd0e0,
+            lifespan: 360, frequency: stormy ? 60 : 130, blendMode: 'SCREEN',
+          }).setDepth(7);
+        }
       } else if (!wantRain && this.weatherEmitter) {
         this.weatherEmitter.destroy();
         this.weatherEmitter = null;
+        if (this.rainFar) { this.rainFar.destroy(); this.rainFar = null; }
+        if (this.rainSplash) { this.rainSplash.destroy(); this.rainSplash = null; }
       }
       if (this.layout && this.layout.swim && !this.bubbleEmitter) {
         this.bubbleEmitter = this.add.particles(0, this.pxH, 'px_bubble', {
@@ -2208,10 +2291,29 @@
       const storming = outdoor && sky === 'stormy';
       if (storming && (!this._nextBolt || Date.now() > this._nextBolt)) {
         this._nextBolt = Date.now() + 6000 + Math.random() * 14000;
-        // a jagged bolt strikes a random spot, briefly lighting the whole room
+        // a jagged bolt strikes a random spot, washing the whole room in a
+        // cold blue-white flicker (a stutter-flash sells the strike)
         try { if (MH.fx && MH.fx.boltFromSky) MH.fx.boltFromSky(this, Phaser.Math.Between(40, this.pxW - 40), Phaser.Math.Between(this.pxH * 0.3, this.pxH * 0.7), MH.fx.PAL.lightning); } catch (_) {}
-        this.cameras.main.flash(160, 220, 225, 255);
+        this.flashScreen(0xcfe0ff, 0.55, 140);
+        this.time.delayedCall(110, () => this.flashScreen(0xdfeaff, 0.35, 200));
+        this.cameras.main.flash(120, 210, 222, 255);
         MH.bus.emit('ambient.sound', 'thunder');
+      }
+
+      // desert heat-shimmer: warm haze rising off the ground on hot, clear days
+      const wantHaze = this.layout && this.layout.theme === 'desert'
+        && !['night', 'midnight', 'evening', 'dusk'].includes(period)
+        && sky !== 'stormy' && !wantRain;
+      if (wantHaze && !this.heatHaze) {
+        this.heatHaze = this.add.particles(0, 0, this.textures.exists('zt_px_soft') ? 'zt_px_soft' : 'px_white', {
+          x: { min: 0, max: this.pxW }, y: { min: this.pxH * 0.45, max: this.pxH - 4 },
+          tint: 0xffe0a8, scaleX: { start: 1.2, end: 2.0 }, scaleY: { start: 0.4, end: 1.1 },
+          alpha: { start: 0, end: 0.07 }, speedY: { min: -22, max: -10 }, speedX: { min: -4, max: 4 },
+          lifespan: 2600, frequency: 240, blendMode: 'SCREEN',
+        }).setDepth(33);
+      } else if (!wantHaze && this.heatHaze) {
+        this.heatHaze.destroy();
+        this.heatHaze = null;
       }
       this.updateColorGrade(period, this.layout && this.layout.theme, sky);
       this.updateSignatureMist();
