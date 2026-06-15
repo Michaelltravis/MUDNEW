@@ -2670,37 +2670,92 @@
       const begin = create => {
         const name = els.loginName.value.trim(), pass = els.loginPass.value;
         if (!name || !pass) { els.loginStatus.textContent = 'Need both name and password.'; els.loginStatus.className = 'error'; return; }
+        if (create && !/^[a-zA-Z]{3,12}$/.test(name)) {
+          els.loginStatus.textContent = 'Name must be 3–12 letters (no spaces, numbers, or symbols).';
+          els.loginStatus.className = 'error';
+          return;
+        }
         if (create) {
-          // creation is a conversation: show it and let them answer
-          els.createConsole.style.display = 'block';
-          els.loginStatus.textContent = 'Answer the questions below (type in the name box and press Enter).';
-          els.loginName.value = '';
-          els.loginName.placeholder = 'type answers here…';
           creationMode = true;
+          cwShow(true);
+          cwWaiting('Summoning the loom of fate…');
         }
         MH.connect(name, pass, create);
       };
-      let creationMode = false;
+      // ---------------- character creation wizard ----------------
+      const CW_CLASSES = [
+        ['warrior', '⚔', 'Master of melee and defense — sturdy and relentless.', 'STR'],
+        ['mage', '🔮', 'Commands devastating arcane spells from afar.', 'INT'],
+        ['cleric', '✨', 'Divine healer who mends allies and smites the undead.', 'WIS'],
+        ['thief', '🗡', 'Cunning rogue who strikes from the shadows.', 'DEX'],
+        ['ranger', '🏹', 'Wilderness warrior blending blade and nature magic.', 'DEX'],
+        ['paladin', '🛡', 'Holy warrior — martial skill fused with divine power.', 'STR'],
+        ['necromancer', '💀', 'Dark mage who commands death and the undead.', 'INT'],
+        ['bard', '🎵', 'Charismatic performer who inspires with magical songs.', 'CHA'],
+        ['assassin', '🥷', 'Deadly killer who eliminates targets with precision.', 'DEX'],
+      ];
+      const CW_RACES = [
+        ['human', '🧑', 'Versatile and balanced — at home anywhere.'],
+        ['elf', '🧝', 'Graceful and magical, keen of mind and eye.'],
+        ['dwarf', '🧔', 'Sturdy and tough, hewn from living stone.'],
+        ['halfling', '🧒', 'Nimble and lucky — small, quick, hard to hit.'],
+        ['half_orc', '👹', 'Fierce and mighty, a born brawler.'],
+        ['gnome', '🧙', 'Clever and arcane, a tinkering mind.'],
+        ['dark_elf', '🦇', 'Deadly shadow-kin, swift and merciless.'],
+      ];
+      let creationMode = false, cwPrime = '';
+      const cw = id => document.getElementById(id);
+      const cwShow = on => cw('create-wizard').classList.toggle('show', on);
+      const cwSend = v => { const s = MH.state.mudSocket; if (s && s.readyState === WebSocket.OPEN) s.send(v); cw('cw-status').textContent = '✦ Forging…'; if (MH.sfx) MH.sfx.ui(); };
+      const cap = s => String(s || '').replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      function cwWaiting(msg) { cw('cw-steps').textContent = ''; cw('cw-sub').textContent = ''; cw('cw-body').innerHTML = `<div style="text-align:center;color:#9aa0b4;padding:30px 0">${msg}</div>`; }
+      function cwGrid(items, races) {
+        return `<div id="cw-grid"${races ? ' class="races"' : ''}>` + items.map(it => {
+          const [id, ic, de, st] = it;
+          return `<div class="cw-pick" data-v="${id}"><span class="cw-ic">${ic}</span><span class="cw-nm">${cap(id)}</span>`
+            + `<div class="cw-de">${de}</div>${st ? `<div class="cw-st">Prime: ${st}</div>` : ''}</div>`;
+        }).join('') + '</div>';
+      }
+      function cwBindPicks(onPick) {
+        cw('cw-body').querySelectorAll('.cw-pick').forEach(el => el.addEventListener('click', () => onPick(el.dataset.v)));
+      }
+      function cwRace() {
+        cw('cw-title').textContent = '⚔ CHOOSE YOUR LINEAGE'; cw('cw-steps').textContent = 'STEP 1 OF 3';
+        cw('cw-sub').textContent = 'Your bloodline shapes your gifts and your fate.';
+        cw('cw-body').innerHTML = cwGrid(CW_RACES, true);
+        cwBindPicks(v => cwSend(v));
+      }
+      function cwClass() {
+        cw('cw-title').textContent = '⚔ CHOOSE YOUR CALLING'; cw('cw-steps').textContent = 'STEP 2 OF 3';
+        cw('cw-sub').textContent = 'Your class is how you fight, cast, and grow.';
+        cw('cw-body').innerHTML = cwGrid(CW_CLASSES);
+        cwBindPicks(v => { const c = CW_CLASSES.find(x => x[0] === v); cwPrime = c ? c[3] : ''; cwSend(v); });
+      }
+      function cwStats(text) {
+        cw('cw-title').textContent = '⚔ ROLL YOUR FATE'; cw('cw-steps').textContent = 'STEP 3 OF 3';
+        cw('cw-sub').textContent = 'The dice favor the bold — keep them, or tempt fate again.';
+        const map = { Strength: 'STR', Intelligence: 'INT', Wisdom: 'WIS', Dexterity: 'DEX', Constitution: 'CON', Charisma: 'CHA' };
+        const re = /(Strength|Intelligence|Wisdom|Dexterity|Constitution|Charisma):\s*(\d+)/g;
+        let m, cells = '';
+        while ((m = re.exec(text))) { const k = map[m[1]]; cells += `<div class="cw-stat ${k === cwPrime ? 'prime' : ''}"><div class="v">${m[2]}</div><div class="k">${k}</div></div>`; }
+        cw('cw-body').innerHTML = `<div class="cw-stats">${cells}</div><div class="cw-btns"><button class="cw-btn go" id="cw-keep">⚑ Keep these</button><button class="cw-btn" id="cw-reroll">↻ Reroll</button></div>`;
+        cw('cw-keep').addEventListener('click', () => cwSend('y'));
+        cw('cw-reroll').addEventListener('click', () => cwSend('n'));
+      }
       MH.bus.on('terminal.output', ({ text }) => {
-        if (!creationMode || MH.state.isLoggedIn) return;
-        const clean = text.split('\n').filter(l => l.trim()).slice(-30).join('\n');
-        if (!clean) return;
-        const div = document.createElement('div');
-        div.textContent = clean;
-        els.createConsole.appendChild(div);
-        while (els.createConsole.children.length > 40) els.createConsole.removeChild(els.createConsole.firstChild);
-        els.createConsole.scrollTop = els.createConsole.scrollHeight;
-      });
-      els.loginName.addEventListener('keydown', e => {
-        if (e.key === 'Enter' && creationMode && !MH.state.isLoggedIn) {
-          const v = els.loginName.value.trim();
-          const sock = MH.state.mudSocket;
-          if (sock && sock.readyState === WebSocket.OPEN) sock.send(v);
-          els.loginName.value = '';
-          e.preventDefault();
+        if (!creationMode || MH.state.isLoggedIn || !text) return;
+        if (/choose your race|race name or number/i.test(text)) { cwRace(); cw('cw-status').textContent = ''; return; }
+        if (/choose your class|class name or number/i.test(text)) { cwClass(); cw('cw-status').textContent = ''; return; }
+        if (/accept these stats|to reroll/i.test(text) || /Strength:\s*\d+/.test(text)) { cwStats(text); cw('cw-status').textContent = ''; return; }
+        // surface name-taken / invalid notices, with a way to start over
+        const note = text.split('\n').map(l => l.trim()).filter(l => l && !/^[═=]+$/.test(l) && !/forging|opening the gate/i.test(l)).slice(-1)[0];
+        if (note && /invalid|already|taken|try again|not a valid|must (?:be|contain)|in use/i.test(note)) {
+          cw('cw-status').innerHTML = `${note.slice(0, 120)} <span id="cw-back">↻ start over</span>`;
+          const back = document.getElementById('cw-back');
+          if (back) back.addEventListener('click', () => location.reload());
         }
       });
-      MH.bus.on('login.success', () => { creationMode = false; els.createConsole.style.display = 'none'; });
+      MH.bus.on('login.success', () => { creationMode = false; cwShow(false); });
       els.loginBtn.addEventListener('click', () => begin(false));
       els.createBtn.addEventListener('click', () => begin(true));
       els.loginPass.addEventListener('keydown', e => { if (e.key === 'Enter') begin(false); });
