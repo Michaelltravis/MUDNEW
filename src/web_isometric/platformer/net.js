@@ -32,6 +32,51 @@
     },
   };
 
+  // --- graphics quality + reduced motion ---
+  // central source of truth the scene reads to scale its FX. Persisted, with
+  // first-load auto-detection (lighter on mobile/low-RAM, respects the OS
+  // "reduce motion" preference). Changing it emits 'gfx.changed'.
+  MH.gfx = (function () {
+    const QKEY = 'misthollow_gfx_quality', MKEY = 'misthollow_gfx_motion';
+    const TIERS = {
+      low:    { bloom: false, particleScale: 0.3, parallax: false, caustics: false, rim: false, weatherLayers: 1, lightPools: 0 },
+      medium: { bloom: true,  particleScale: 0.6, parallax: true,  caustics: true,  rim: true,  weatherLayers: 2, lightPools: 1 },
+      high:   { bloom: true,  particleScale: 1.0, parallax: true,  caustics: true,  rim: true,  weatherLayers: 3, lightPools: 2 },
+    };
+    const ls = (k) => { try { return localStorage.getItem(k); } catch (_) { return null; } };
+    const save = (k, v) => { try { localStorage.setItem(k, v); } catch (_) {} };
+    function detectQuality() {
+      try {
+        const mobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent || '');
+        const mem = navigator.deviceMemory || 4;
+        if (mobile || mem <= 2) return 'medium';
+        return 'high';
+      } catch (_) { return 'high'; }
+    }
+    function detectMotion() {
+      try { return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches); }
+      catch (_) { return false; }
+    }
+    let quality = TIERS[ls(QKEY)] ? ls(QKEY) : detectQuality();
+    const ms = ls(MKEY);
+    let reduced = ms != null ? ms === '1' : detectMotion();
+    const t = () => TIERS[quality] || TIERS.high;
+    return {
+      get quality() { return quality; },
+      get reducedMotion() { return reduced; },
+      get motion() { return !reduced; },
+      get bloom() { return t().bloom; },
+      get particleScale() { return t().particleScale; },
+      get parallax() { return t().parallax; },
+      get caustics() { return t().caustics; },
+      get rim() { return t().rim; },
+      get weatherLayers() { return t().weatherLayers; },
+      get lightPools() { return t().lightPools; },
+      setQuality(q) { if (!TIERS[q] || q === quality) return; quality = q; save(QKEY, q); MH.bus.emit('gfx.changed', { quality, reduced }); },
+      setReducedMotion(v) { v = !!v; if (v === reduced) return; reduced = v; save(MKEY, v ? '1' : '0'); MH.bus.emit('gfx.changed', { quality, reduced }); },
+    };
+  })();
+
   // --- shared state ---
   MH.state = {
     playerName: '',

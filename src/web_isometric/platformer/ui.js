@@ -2769,6 +2769,28 @@
         if (e.key === 'Escape' && wmOpen) wmToggle(false);
       });
       window.addEventListener('resize', () => { if (wmOpen) wmRender(); fitMinimapColumn(); });
+      // graphics quality + reduced-motion popover (gear button by the 🔊)
+      (function setupGfxMenu() {
+        const btn = $('gfx-toggle'), menu = $('gfx-menu');
+        if (!btn || !menu || !MH.gfx) return;
+        const seg = $('gfx-seg'), sw = $('gfx-motion');
+        const sync = () => {
+          seg.querySelectorAll('span').forEach(s => s.classList.toggle('on', s.dataset.q === MH.gfx.quality));
+          sw.classList.toggle('on', MH.gfx.reducedMotion);
+        };
+        sync();
+        btn.addEventListener('click', e => { e.stopPropagation(); menu.classList.toggle('show'); sync(); if (MH.sfx) MH.sfx.ui(); });
+        seg.querySelectorAll('span').forEach(s => s.addEventListener('click', () => {
+          MH.gfx.setQuality(s.dataset.q); sync(); flash('Graphics quality: ' + s.dataset.q); if (MH.sfx) MH.sfx.ui();
+        }));
+        sw.addEventListener('click', () => {
+          MH.gfx.setReducedMotion(!MH.gfx.reducedMotion); sync();
+          flash(MH.gfx.reducedMotion ? 'Reduced motion ON' : 'Reduced motion off'); if (MH.sfx) MH.sfx.ui();
+        });
+        document.addEventListener('click', e => {
+          if (menu.classList.contains('show') && !menu.contains(e.target) && e.target !== btn) menu.classList.remove('show');
+        });
+      })();
       // the game owns right-click: no browser menu over the world
       document.addEventListener('contextmenu', e => {
         if (e.target.tagName === 'CANVAS' || e.target.closest('#game-root')) e.preventDefault();

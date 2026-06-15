@@ -47,13 +47,18 @@
         if (this.cameras.main.postFX) {
           this.cameras.main.postFX.addVignette(0.5, 0.5, 1.0, 0.30);
           // bloom makes bright FX (fire/holy/lightning) and light sources glow
-          this.bloomFx = this.cameras.main.postFX.addBloom(0xffffff, 1, 1, 1.05, 0.85, 6);
+          // (the heaviest postFX — gated by graphics quality)
+          if (!MH.gfx || MH.gfx.bloom) {
+            this.bloomFx = this.cameras.main.postFX.addBloom(0xffffff, 1, 1, 1.05, 0.85, 6);
+          }
           const cm = this.cameras.main.postFX.addColorMatrix();
           cm.saturate(0.18, true);
           cm.contrast(0.06, true);
           this.gradeFx = cm;
         }
       } catch (_) { /* older GPU / canvas renderer */ }
+      // react to live graphics-quality changes: toggle bloom + rebuild room FX
+      MH.bus.on('gfx.changed', () => this.onGfxChanged());
 
       this.solids = this.physics.add.staticGroup();
       this.tileLayer = this.add.layer();
@@ -82,7 +87,8 @@
       // floor. Synced to the live frame each tick.
       this.playerRim = this.add.sprite(this.player.x, this.player.y, 'td_player_warrior', 'd0')
         .setScale(this.player.scaleX * 1.08).setDepth(9.6)
-        .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.3).setTint(this.rimTint);
+        .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.3).setTint(this.rimTint)
+        .setVisible(!MH.gfx || MH.gfx.rim);
       this.tweens.add({ targets: this.heroGlow, alpha: 0.18, scale: 0.62, duration: 1600, yoyo: true, repeat: -1, ease: 'sine.inOut' });
 
       this.keys = this.input.keyboard.addKeys({
@@ -423,22 +429,27 @@
       this.pxFar.setPosition(0, 0);
       this.pxNear.setPosition(0, 0);
 
+      const gfx = MH.gfx || {};
+      const pScale = gfx.particleScale != null ? gfx.particleScale : 1;
+
       // parallax planes: soft light clouds behind the actors (far, slow) and a
       // few large blurred motes in front (near, fast). Children animate locally;
       // the containers are slid by player offset in update() for the depth feel.
-      for (let i = 0; i < 4; i++) {
-        const fx = this.add.image(rng() * this.pxW, rng() * this.pxH, 'fx_glow')
-          .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.03 + rng() * 0.03)
-          .setScale(1.6 + rng() * 1.4).setTint(glowTint);
-        this.tweens.add({ targets: fx, alpha: fx.alpha + 0.03, duration: 3000 + rng() * 2000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
-        this.pxFar.add(fx);
-      }
-      for (let i = 0; i < 3; i++) {
-        const nx = this.add.image(rng() * this.pxW, rng() * this.pxH, 'fx_glow')
-          .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.025 + rng() * 0.03)
-          .setScale(2.4 + rng() * 1.8).setTint(glowTint);
-        this.tweens.add({ targets: nx, x: nx.x + (rng() - 0.5) * 40, duration: 5000 + rng() * 3000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
-        this.pxNear.add(nx);
+      if (gfx.parallax !== false) {
+        for (let i = 0; i < 4; i++) {
+          const fx = this.add.image(rng() * this.pxW, rng() * this.pxH, 'fx_glow')
+            .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.03 + rng() * 0.03)
+            .setScale(1.6 + rng() * 1.4).setTint(glowTint);
+          this.tweens.add({ targets: fx, alpha: fx.alpha + 0.03, duration: 3000 + rng() * 2000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+          this.pxFar.add(fx);
+        }
+        for (let i = 0; i < 3; i++) {
+          const nx = this.add.image(rng() * this.pxW, rng() * this.pxH, 'fx_glow')
+            .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.025 + rng() * 0.03)
+            .setScale(2.4 + rng() * 1.8).setTint(glowTint);
+          this.tweens.add({ targets: nx, x: nx.x + (rng() - 0.5) * 40, duration: 5000 + rng() * 3000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+          this.pxNear.add(nx);
+        }
       }
 
       // zone mood wash: a whisper of the theme's color over everything
@@ -449,7 +460,7 @@
       }
 
       // soft pools of colored light
-      const pools = 2 + Math.floor(rng() * 2);
+      const pools = gfx.lightPools != null ? gfx.lightPools : 2 + Math.floor(rng() * 2);
       for (let i = 0; i < pools; i++) {
         const g = this.add.image(40 + rng() * (this.pxW - 80), 30 + rng() * (this.pxH - 60), 'fx_glow')
           .setBlendMode(Phaser.BlendModes.ADD)
@@ -490,6 +501,8 @@
       const leaf = this.textures.exists('zt_px_leaf') ? 'zt_px_leaf' : 'px_white';
       const fullX = { min: 10, max: this.pxW - 10 };
       const addAmb = cfg => {
+        // thin out ambient particles at lower graphics quality
+        if (pScale < 1 && cfg.frequency) cfg = Object.assign({}, cfg, { frequency: cfg.frequency / pScale });
         const p = this.add.particles(0, 0, cfg.tex || soft, cfg).setDepth(34);
         this.fxList.push(p);
         return p;
@@ -599,7 +612,7 @@
 
       // water caustics: dappled, slowly rippling light cast across the floor of
       // any watery room — the single most "alive" thing about real water
-      if (['underwater', 'water_swim', 'water_noswim'].includes(th) || layout.swim) {
+      if (gfx.caustics !== false && (['underwater', 'water_swim', 'water_noswim'].includes(th) || layout.swim)) {
         const caustic = th === 'underwater' ? 0xaef0ff : 0xbfe8ff;
         const count = th === 'underwater' ? 9 : 6;
         for (let i = 0; i < count; i++) {
@@ -1279,7 +1292,7 @@
                 scale: { start: 1, end: 0 }, tint: [fx.color, 0xfff0c0], blendMode: 'ADD', emitting: false,
               }).setDepth(60);
               burst.explode(20);
-              this.cameras.main.shake(110, 0.005);
+              this.camShake(110, 0.005);
               this.time.delayedCall(700, () => burst.destroy());
             },
           });
@@ -1322,7 +1335,7 @@
         case 'shockwave': {
           const ring = this.add.circle(tx, ty, 4).setStrokeStyle(2.5, fx.color, 0.9).setDepth(60);
           this.tweens.add({ targets: ring, radius: 26, alpha: 0, duration: 320, ease: 'cubic.out', onComplete: () => ring.destroy() });
-          this.cameras.main.shake(70, 0.003);
+          this.camShake(70, 0.003);
           break;
         }
         case 'nova': {
@@ -1330,7 +1343,7 @@
           this.tweens.add({ targets: ring, radius: 52, alpha: 0, duration: 480, ease: 'cubic.out', onComplete: () => ring.destroy() });
           const ring2 = this.add.circle(px, py, 4).setStrokeStyle(1.5, 0xffffff, 0.7).setDepth(60);
           this.tweens.add({ targets: ring2, radius: 38, alpha: 0, duration: 420, delay: 80, ease: 'cubic.out', onComplete: () => ring2.destroy() });
-          this.cameras.main.shake(90, 0.004);
+          this.camShake(90, 0.004);
           break;
         }
         case 'bigslash':
@@ -1557,7 +1570,7 @@
       if (MH.sfx && e.dmg != null) MH.sfx.impact(e.dmg >= 25 ? 2.5 : e.dmg >= 10 ? 1.5 : 1);
       this.spark(ent.sprite.x, ent.sprite.y - 6, (fx && fx.color) || 0xffe080);
       const st = this.dmgStyle(e.dmg);
-      if (st.shake) this.cameras.main.shake(90, st.shake);
+      if (st.shake) this.camShake(90, st.shake);
       if (e.dmg != null && e.dmg >= 25) { this.zoomPunch(); this.flashScreen(0xfff2d0, 0.28, 160); this.lensKick(); }
       this.damageNumber(ent.sprite.x, ent.sprite.y - 16, e.dmg != null ? String(e.dmg) : 'hit', st.color, st.size);
     }
@@ -1569,7 +1582,7 @@
       this.player.setTintFill(0xff6060);
       this.time.delayedCall(90, () => this.player.clearTint());
       const st = this.dmgStyle(e && e.dmg);
-      this.cameras.main.shake(80, Math.max(0.004, st.shake));
+      this.camShake(80, Math.max(0.004, st.shake));
       this.dmgPulse(e && e.dmg);
       if (MH.sfx) MH.sfx.hurt(e && e.dmg >= 20 ? 2 : 1);
       this.squash(this.player);
@@ -1624,7 +1637,15 @@
 
     // hit-stop: the universal crunch. freeze the world for a few frames
     // on solid impacts (Vlambeer/Hades school of game feel)
+    // is jarring motion allowed? (false when the player chose reduced motion)
+    motionOk() { return !MH.gfx || MH.gfx.motion; }
+    // gentle camera shake that respects the reduced-motion setting
+    camShake(dur, intensity) {
+      if (!this.motionOk()) return;
+      this.cameras.main.shake(dur, intensity);
+    }
     freezeFrame(ms = 70) {
+      if (!this.motionOk()) return;
       if (this._frozen) return;
       this._frozen = true;
       this.tweens.timeScale = 0.05;
@@ -1639,6 +1660,7 @@
     }
     // slow-motion beat: ramp time down then back, for the big cinematic moments
     slowMo(ms = 300, scale = 0.35) {
+      if (!this.motionOk()) return;
       this.tweens.timeScale = scale;
       this.anims.globalTimeScale = scale;
       this.physics.world.timeScale = 1 / scale;
@@ -1690,14 +1712,17 @@
     }
 
     zoomPunch() {
+      if (!this.motionOk()) return;
       const cam = this.cameras.main;
       const base = cam.zoom;
       this.tweens.add({ targets: cam, zoom: base * 1.035, duration: 70, yoyo: true, ease: 'cubic.out' });
     }
     // red screen-edge pulse when you take a hit — scales with the damage
+    // (kept even on reduced motion, but softer, since it's informative)
     dmgPulse(dmg) {
       if (!this.dmgVignette) return;
-      const a = Phaser.Math.Clamp(0.22 + (dmg || 0) * 0.012, 0.22, 0.6);
+      const cap = this.motionOk() ? 0.6 : 0.28;
+      const a = Phaser.Math.Clamp(0.22 + (dmg || 0) * 0.012, 0.18, cap);
       this.tweens.killTweensOf(this.dmgVignette);
       this.dmgVignette.setTint(0xe02020).setAlpha(a);
       this.tweens.add({ targets: this.dmgVignette, alpha: 0, duration: 420, ease: 'cubic.out' });
@@ -1705,6 +1730,7 @@
     // a brief full-screen wash (white crits, blue-white lightning)
     flashScreen(color = 0xffffff, alpha = 0.5, dur = 220) {
       if (!this.screenFlash) return;
+      if (!this.motionOk()) alpha = Math.min(alpha, 0.12);   // calm the flash, don't kill the cue
       this.tweens.killTweensOf(this.screenFlash);
       this.screenFlash.setFillStyle(color, alpha);
       this.screenFlash.fillAlpha = alpha;
@@ -1712,6 +1738,7 @@
     }
     // lens "kick" on a heavy blow: a quick barrel-distortion punch (WebGL only)
     lensKick() {
+      if (!this.motionOk()) return;
       const cam = this.cameras.main;
       if (!cam.postFX || !cam.postFX.addBarrel) return;
       if (this._barrelBusy) return;
@@ -2298,23 +2325,28 @@
           // wind-driven rain: angled streaks, heavier in a storm, with a faint
           // far layer for depth and ground splashes where it lands
           const wind = stormy ? -120 : -55;
+          const layers = MH.gfx ? MH.gfx.weatherLayers : 3;
           this.weatherEmitter = this.add.particles(0, -10, 'px_rain', {
             x: { min: -40, max: this.pxW }, speedY: stormy ? { min: 320, max: 430 } : { min: 220, max: 300 },
             speedX: { min: wind - 30, max: wind + 10 }, rotate: stormy ? -18 : -12,
             scaleY: stormy ? { min: 1.4, max: 2.2 } : { min: 1.0, max: 1.6 },
             lifespan: 1500, quantity: stormy ? 6 : 3, alpha: stormy ? 0.6 : 0.5,
           }).setDepth(45);
-          this.rainFar = this.add.particles(0, -10, 'px_rain', {
-            x: { min: -40, max: this.pxW }, speedY: { min: 180, max: 240 },
-            speedX: { min: wind - 10, max: wind + 20 }, rotate: stormy ? -18 : -12,
-            scaleX: 0.6, scaleY: 0.9, lifespan: 1600, quantity: stormy ? 3 : 1, alpha: 0.22,
-          }).setDepth(8);
-          this.rainSplash = this.add.particles(0, 0, 'px_white', {
-            x: { min: 0, max: this.pxW }, y: { min: this.pxH * 0.35, max: this.pxH - 6 },
-            scaleX: { start: 0.5, end: 1.4 }, scaleY: { start: 0.5, end: 0.1 },
-            alpha: { start: 0.5, end: 0 }, tint: 0xbcd0e0,
-            lifespan: 360, frequency: stormy ? 60 : 130, blendMode: 'SCREEN',
-          }).setDepth(7);
+          if (layers >= 3) {
+            this.rainFar = this.add.particles(0, -10, 'px_rain', {
+              x: { min: -40, max: this.pxW }, speedY: { min: 180, max: 240 },
+              speedX: { min: wind - 10, max: wind + 20 }, rotate: stormy ? -18 : -12,
+              scaleX: 0.6, scaleY: 0.9, lifespan: 1600, quantity: stormy ? 3 : 1, alpha: 0.22,
+            }).setDepth(8);
+          }
+          if (layers >= 2) {
+            this.rainSplash = this.add.particles(0, 0, 'px_white', {
+              x: { min: 0, max: this.pxW }, y: { min: this.pxH * 0.35, max: this.pxH - 6 },
+              scaleX: { start: 0.5, end: 1.4 }, scaleY: { start: 0.5, end: 0.1 },
+              alpha: { start: 0.5, end: 0 }, tint: 0xbcd0e0,
+              lifespan: 360, frequency: stormy ? 60 : 130, blendMode: 'SCREEN',
+            }).setDepth(7);
+          }
         }
       } else if (!wantRain && this.weatherEmitter) {
         this.weatherEmitter.destroy();
@@ -2355,7 +2387,7 @@
       }
 
       // desert heat-shimmer: warm haze rising off the ground on hot, clear days
-      const wantHaze = this.layout && this.layout.theme === 'desert'
+      const wantHaze = (!MH.gfx || MH.gfx.caustics) && this.layout && this.layout.theme === 'desert'
         && !['night', 'midnight', 'evening', 'dusk'].includes(period)
         && sky !== 'stormy' && !wantRain;
       if (wantHaze && !this.heatHaze) {
@@ -2371,6 +2403,31 @@
       }
       this.updateColorGrade(period, this.layout && this.layout.theme, sky);
       this.updateSignatureMist();
+    }
+
+    // Quality changed live: add/remove bloom, then rebuild the room's
+    // atmosphere (parallax/caustics/particle density) and rim-lights.
+    onGfxChanged() {
+      try {
+        const pfx = this.cameras.main.postFX;
+        if (pfx) {
+          if (MH.gfx.bloom && !this.bloomFx) {
+            this.bloomFx = pfx.addBloom(0xffffff, 1, 1, 1.05, 0.85, 6);
+            this._gradeKey = null;   // re-apply bloom tint
+          } else if (!MH.gfx.bloom && this.bloomFx) {
+            pfx.remove(this.bloomFx); this.bloomFx = null;
+          }
+        }
+      } catch (_) {}
+      // rim-lights: tear down or (re)create to match the new setting
+      if (!MH.gfx.rim) {
+        if (this.playerRim) { this.playerRim.setVisible(false); }
+        for (const ent of this.entities.values()) if (ent.rim) ent.rim.setVisible(false);
+      } else if (this.playerRim) {
+        this.playerRim.setVisible(true);
+      }
+      // rebuild the room's atmosphere with the new density/parallax/caustics
+      if (this.layout) { this._gradeKey = null; this.buildAtmosphere(this.layout, this.layout.theme); }
     }
 
     // Dynamic cinematic grade: a per-zone tonal curve (saturation/contrast via
@@ -2791,12 +2848,14 @@
         if (this.pxNear) this.pxNear.setPosition(-ox * 0.11, -oy * 0.11);
       }
       // rim-light follows the player's current frame, nudged toward the light
-      if (this.playerRim) {
+      if (this.playerRim && (!MH.gfx || MH.gfx.rim)) {
         const r = this.playerRim, pl = this.player;
         r.setTexture(pl.texture.key, pl.frame.name);
         r.setFlipX(pl.flipX); r.setScale(pl.scaleX * 1.08, pl.scaleY * 1.08);
         r.setPosition(pl.x - 0.6, pl.y - 1.2);
         r.setTint(this.rimTint).setVisible(!this.dead);
+      } else if (this.playerRim) {
+        this.playerRim.setVisible(false);
       }
 
       // footstep dust gives weight to movement
@@ -2812,12 +2871,14 @@
       // labels + hp bars follow
       for (const ent of this.entities.values()) {
         if (ent.shadow && ent.sprite) { ent.shadow.x = ent.sprite.x; ent.shadow.y = ent.sprite.y + 9; ent.shadow.setVisible(ent.sprite.visible && !ent.leaving); }
-        if (ent.rim && ent.sprite) {
+        if (ent.rim && ent.sprite && (!MH.gfx || MH.gfx.rim)) {
           ent.rim.setTexture(ent.sprite.texture.key, ent.sprite.frame.name);
           ent.rim.setFlipX(ent.sprite.flipX);
           ent.rim.setScale(ent.sprite.scaleX * 1.08, ent.sprite.scaleY * 1.08);
           ent.rim.setPosition(ent.sprite.x - 0.6, ent.sprite.y - 1.2);
           ent.rim.setDepth(ent.sprite.depth - 0.1).setTint(this.rimTint).setVisible(ent.sprite.visible && !ent.leaving);
+        } else if (ent.rim) {
+          ent.rim.setVisible(false);
         }
         if (ent.label && ent.sprite) { ent.label.x = ent.sprite.x; ent.label.y = ent.sprite.y - (ent.data.boss ? 26 : 18); }
         if (ent.fightMark && ent.sprite) { ent.fightMark.x = ent.sprite.x; ent.fightMark.y = ent.sprite.y - 26; }

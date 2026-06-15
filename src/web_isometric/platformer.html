@@ -729,6 +729,28 @@
   #sky-label { font-family: 'Segoe UI', Verdana, sans-serif; font-size: 11px; color: #c8ccd8; white-space: nowrap; }
   #ambience-toggle { background: none; border: none; cursor: pointer; font-size: 13px; padding: 0 2px; opacity: .8; }
   #ambience-toggle:hover { opacity: 1; }
+  #gfx-toggle { background: none; border: none; cursor: pointer; font-size: 13px; padding: 0 2px; opacity: .8; color: #c8ccd8; }
+  #gfx-toggle:hover { opacity: 1; transform: rotate(35deg); transition: transform .2s; }
+  /* graphics + motion settings popover */
+  #gfx-menu { position: fixed; top: 40px; right: 200px; z-index: 60; display: none;
+    width: 232px; background: rgba(13,15,21,0.97); border: 1px solid rgba(232,193,104,0.4);
+    border-radius: 10px; padding: 11px 13px; backdrop-filter: blur(10px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.55); font-family: var(--ui-font); }
+  #gfx-menu.show { display: block; }
+  #gfx-menu .gfx-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  #gfx-menu .gfx-lbl { font-size: 12px; color: #d6dae6; }
+  #gfx-seg { display: flex; border: 1px solid rgba(140,150,180,0.3); border-radius: 6px; overflow: hidden; }
+  #gfx-seg span { font-size: 11px; color: #9aa0b4; padding: 3px 9px; cursor: pointer; }
+  #gfx-seg span + span { border-left: 1px solid rgba(140,150,180,0.2); }
+  #gfx-seg span:hover { color: #e6e2d6; }
+  #gfx-seg span.on { background: rgba(232,193,104,0.16); color: #ffe9a8; }
+  .gfx-switch { width: 34px; height: 18px; border-radius: 10px; background: rgba(140,150,180,0.25);
+    position: relative; cursor: pointer; transition: background .18s; }
+  .gfx-switch > i { position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%;
+    background: #c8ccd8; transition: transform .18s; }
+  .gfx-switch.on { background: rgba(111,214,133,0.5); }
+  .gfx-switch.on > i { transform: translateX(16px); background: #eafff0; }
+  #gfx-menu .gfx-hint { font-size: 10px; color: #8a90a4; line-height: 1.4; margin-top: 2px; }
 
 
   /* ---- paper doll + item grid ---- */
@@ -1414,6 +1436,20 @@
     <canvas id="sky-canvas" width="64" height="22"></canvas>
     <span id="sky-label"></span>
     <button id="ambience-toggle" type="button">🔊</button>
+    <button id="gfx-toggle" type="button" title="graphics &amp; motion settings">⚙</button>
+  </div>
+  <div id="gfx-menu">
+    <div class="gfx-row gfx-quality">
+      <span class="gfx-lbl">Graphics</span>
+      <span class="gfx-seg" id="gfx-seg">
+        <span data-q="low">Low</span><span data-q="medium">Med</span><span data-q="high">High</span>
+      </span>
+    </div>
+    <div class="gfx-row gfx-motion" id="gfx-motion-row">
+      <span class="gfx-lbl">Reduced motion</span>
+      <span class="gfx-switch" id="gfx-motion"><i></i></span>
+    </div>
+    <div class="gfx-hint">Lowers effects for weaker devices. Reduced motion calms shake, flashes &amp; zooms.</div>
   </div>
   <div id="room-desc"></div>
   <div id="flash-line"></div>
