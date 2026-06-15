@@ -537,6 +537,30 @@
       if (layout.stairsUp) featureGlow(layout.stairsUp.x * T + T / 2, layout.stairsUp.y * T + T / 2, 0xffe9a8);
       if (layout.stairsDown) featureGlow(layout.stairsDown.x * T + T / 2, layout.stairsDown.y * T + T / 2, 0x8899ff, 0.4, 0.22);
       for (const p of layout.portals) featureGlow(p.x * T + T / 2, p.y * T + T / 2, 0xc080ff, 0.55, 0.35);
+
+      // water caustics: dappled, slowly rippling light cast across the floor of
+      // any watery room — the single most "alive" thing about real water
+      if (['underwater', 'water_swim', 'water_noswim'].includes(th) || layout.swim) {
+        const caustic = th === 'underwater' ? 0xaef0ff : 0xbfe8ff;
+        const count = th === 'underwater' ? 9 : 6;
+        for (let i = 0; i < count; i++) {
+          const cx = 40 + rng() * (this.pxW - 80);
+          const cy = 40 + rng() * (this.pxH - 80);
+          const g = this.add.image(cx, cy, 'px_light')
+            .setBlendMode(Phaser.BlendModes.ADD)
+            .setAlpha(0.05 + rng() * 0.06)
+            .setScale(0.45 + rng() * 0.6)
+            .setTint(caustic).setDepth(4);
+          this.tweens.add({
+            targets: g,
+            x: cx + (rng() - 0.5) * 46, y: cy + (rng() - 0.5) * 34,
+            scaleX: g.scaleX * (1.3 + rng() * 0.5), scaleY: g.scaleY * (0.65 + rng() * 0.3),
+            alpha: g.alpha + 0.06,
+            duration: 2400 + rng() * 2600, yoyo: true, repeat: -1, ease: 'sine.inOut',
+          });
+          this.fxList.push(g);
+        }
+      }
     }
 
     buildFeatures(layout, th) {
