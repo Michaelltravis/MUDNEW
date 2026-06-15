@@ -202,6 +202,40 @@
     });
   }
 
+  // styled hover tooltip for hotbar slots — name, cost, cooldown, key, mastery
+  function showHotbarTip(e, cmd, i, prof, cost) {
+    const tip = document.getElementById('hotbar-tip');
+    if (!tip) return;
+    if (!cmd) {
+      tip.innerHTML = `<div class="ht-name">Empty slot</div>`
+        + `<div class="ht-key">drag a skill here from K, or right-click to bind</div>`;
+    } else {
+      const name = String(cmd).replace(/^cast '/, '').replace(/'$/, '').replace(/_/g, ' ');
+      const skillName = String(cmd).replace(/^cast '/, '').replace(/'$/, '').replace(/ /g, '_');
+      const a = abilityCosts[skillName] || {};
+      const meta = [];
+      if (cost) meta.push(`<b>${cost}</b> mana`);
+      if (a.cooldown) meta.push(`⏳ ${a.cooldown}s cd`);
+      if (prof != null) meta.push(`${prof}% mastery`);
+      tip.innerHTML = `<div class="ht-name">${name.replace(/\b\w/g, c => c.toUpperCase())}</div>`
+        + (meta.length ? `<div class="ht-meta">${meta.join(' · ')}</div>` : '')
+        + `<div class="ht-key">press <b>${(i + 1) % 10}</b> · right-click to rebind</div>`;
+    }
+    tip.classList.add('show');
+    positionHotbarTip(e);
+  }
+  function positionHotbarTip(e) {
+    const tip = document.getElementById('hotbar-tip');
+    if (!tip || !tip.classList.contains('show')) return;
+    const r = tip.getBoundingClientRect();
+    tip.style.left = Math.max(6, Math.min(e.clientX - r.width / 2, window.innerWidth - r.width - 6)) + 'px';
+    tip.style.top = Math.max(6, e.clientY - r.height - 14) + 'px';
+  }
+  function hideHotbarTip() {
+    const tip = document.getElementById('hotbar-tip');
+    if (tip) tip.classList.remove('show');
+  }
+
   function renderHotbar() {
     els.hotbar.innerHTML = '';
     const skills = (MH.state.player && MH.state.player.skills) || {};
@@ -219,7 +253,9 @@
         + `<canvas width="20" height="20"></canvas>`
         + `<span class="lbl">${cmd || '—'}</span><div class="cd"></div>`;
       drawIcon(slot.querySelector('canvas'), iconKindFor(cmd));
-      slot.title = `${cmd || 'empty'}${cost ? ` · ${cost} mana` : ''}\n(right-click to rebind, drag a skill here from K)`;
+      slot.addEventListener('mouseenter', e => showHotbarTip(e, cmd, i, prof, cost));
+      slot.addEventListener('mousemove', e => positionHotbarTip(e));
+      slot.addEventListener('mouseleave', hideHotbarTip);
       slot.addEventListener('click', () => useHotbar(i));
       slot.addEventListener('contextmenu', e => {
         e.preventDefault();
@@ -2555,6 +2591,19 @@
         els.loginOverlay.classList.add('hidden');
         lsSet(NAME_KEY, MH.state.playerName);
         lsSet(PW_KEY, btoa(MH.state.playerPassword));
+        // bridge the gap before the first room paints with a themed loader
+        const bl = document.getElementById('boot-loader');
+        if (bl && !bl.dataset.done) {
+          bl.classList.add('show');
+          const finish = () => {
+            if (bl.dataset.done) return;
+            bl.dataset.done = '1';
+            bl.classList.add('fade');
+            setTimeout(() => bl.classList.remove('show', 'fade'), 750);
+          };
+          MH.bus.on('room.entered', () => setTimeout(finish, 350));
+          setTimeout(finish, 4500);   // fallback so it never sticks
+        }
       });
 
       // terminal
@@ -3108,6 +3157,28 @@
           els.momentumChip.classList.remove('show');
         }
       };
+      // one-time, per-character primer on the class's signature resource — the
+      // combat system was reinvented around these, so teach them on first use
+      const RES_HINT = {
+        warrior: '🔥 Momentum builds as you land blows — spend it on finishers like Execute.',
+        cleric: '🕯 Faith builds as you smite and heal — spend it on miracles like Serenity.',
+        paladin: '✨ Holy Power builds from Dawnstrikes — spend it on Verdict of the Order or Absolution.',
+        necromancer: '💀 Soul Shards are harvested from the dying — spend them on Wraithfire and Reap.',
+        ranger: '🎯 Focus regenerates over time — spend it on Truesight Shot and Loosing Storm.',
+        thief: '🍀 Luck builds from dirty tricks — gamble it on The Big Score (jackpot).',
+        assassin: '🗡 Intel builds as you Mark a target — cash it in for a guaranteed kill.',
+        bard: '🎵 Inspiration builds as you perform — spend it on a Crescendo.',
+        mage: '✦ Arcane Charges build from Towerbolt — release them with Resonance Burst.',
+      };
+      function maybeResourceHint(p) {
+        if (!p || !p.char_class) return;
+        const cls = String(p.char_class).toLowerCase();
+        const key = `mh_reshint_${(p.name || '').toLowerCase()}_${cls}`;
+        if (lsGet(key) === '1' || !RES_HINT[cls]) return;
+        lsSet(key, '1');
+        setTimeout(() => flash(RES_HINT[cls]), 1200);
+      }
+      MH.bus.on('combat.update', payload => { if (payload.player) maybeResourceHint(payload.player); });
       MH.bus.on('map', payload => { if (payload.player) renderResourceChip(payload.player); });
       MH.bus.on('combat.update', payload => {
         MH.state.lastCombatMobs = payload.mobs;

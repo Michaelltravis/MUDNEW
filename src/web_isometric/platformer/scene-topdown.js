@@ -1632,6 +1632,19 @@
         this._frozen = false;
       }, ms);
     }
+    // slow-motion beat: ramp time down then back, for the big cinematic moments
+    slowMo(ms = 300, scale = 0.35) {
+      this.tweens.timeScale = scale;
+      this.anims.globalTimeScale = scale;
+      this.physics.world.timeScale = 1 / scale;
+      if (this._slowTimer) clearTimeout(this._slowTimer);
+      this._slowTimer = setTimeout(() => {
+        this.tweens.timeScale = 1;
+        this.anims.globalTimeScale = 1;
+        this.physics.world.timeScale = 1;
+        this._slowTimer = null;
+      }, ms);
+    }
     // squash & stretch: bodies deform on impact
     squash(sprite) {
       if (!sprite || !sprite.active) return;
@@ -1799,19 +1812,54 @@
       this.dead = true;
       this.recordDeath();
       this.player.setFrame('death');
-      this.cameras.main.fade(1200, 0, 0, 0, false, (_c, t) => {
+      // a beat of slow-mo + a low death knell, the world greys out, then fades
+      this.slowMo(700, 0.25);
+      try {
+        if (MH.fx && MH.fx.tone) {
+          MH.fx.tone({ f: 200, f2: 48, type: 'sawtooth', dur: 1.0, vol: 0.07 });
+          MH.fx.tone({ f: 120, f2: 36, type: 'sine', dur: 1.4, vol: 0.05, delay: 0.12 });
+        }
+      } catch (_) {}
+      if (this.gradeFx && this.gradeFx.reset) { this.gradeFx.reset(); this.gradeFx.grayscale(0.85, true); }
+      this.cameras.main.fade(1600, 0, 0, 0, false, (_c, t) => {
         if (t === 1) {
-          this.time.delayedCall(600, () => { MH.refreshState(); this.cameras.main.fadeIn(600); this.dead = false; });
+          this.time.delayedCall(700, () => {
+            this._gradeKey = null;   // let the grade re-apply on respawn
+            MH.refreshState();
+            this.cameras.main.fadeIn(700);
+            this.dead = false;
+          });
         }
       });
       MH.bus.emit('flash', 'You have died. The realm reclaims you…');
     }
     fxLevelUp() {
-      const emitter = this.add.particles(this.player.x, this.player.y - 6, 'px_star', {
-        speed: { min: 30, max: 100 }, lifespan: 900, quantity: 20, scale: { start: 1, end: 0 }, emitting: false,
-      }).setDepth(60);
-      emitter.explode(20);
-      this.time.delayedCall(1200, () => emitter.destroy());
+      const x = this.player.x, y = this.player.y;
+      const PAL = MH.fx && MH.fx.PAL;
+      // a pillar of golden light, expanding rings, a chime, and a beat of slow-mo
+      try {
+        if (MH.fx && PAL) {
+          MH.fx.pillar(this, x, y, PAL.holy, 130, 30);
+          MH.fx.ringShock(this, x, y - 4, PAL.holy.b, 30, 520);
+          this.time.delayedCall(150, () => MH.fx.ringShock(this, x, y - 4, PAL.holy.a, 22, 620));
+          if (MH.fx.SOUNDS && MH.fx.SOUNDS.holy) MH.fx.SOUNDS.holy(3);
+        }
+      } catch (_) {}
+      const emitter = this.add.particles(x, y - 6, 'px_star', {
+        speed: { min: 40, max: 130 }, lifespan: 1100, quantity: 28, scale: { start: 1.2, end: 0 },
+        tint: [0xffe9a8, 0xfff4d0, 0xffffff], emitting: false, gravityY: -30,
+      }).setDepth(61);
+      emitter.explode(28);
+      this.time.delayedCall(1500, () => emitter.destroy());
+      // "LEVEL UP!" banner rises over the hero
+      const txt = this.add.text(x, y - 30, 'LEVEL UP!', {
+        fontFamily: 'Georgia, serif', resolution: 3, fontSize: '16px', color: '#ffe9a8',
+        stroke: '#3a2400', strokeThickness: 4, fontStyle: 'bold',
+      }).setOrigin(0.5).setDepth(63).setScale(0.4).setAlpha(0);
+      this.tweens.add({ targets: txt, scale: 1, alpha: 1, y: y - 46, duration: 320, ease: 'back.out' });
+      this.tweens.add({ targets: txt, alpha: 0, y: y - 64, delay: 1100, duration: 520, onComplete: () => txt.destroy() });
+      this.cameras.main.flash(180, 255, 240, 190);
+      this.slowMo(240, 0.4);
     }
     fxChatBubble(e) {
       const m = e.line.match(/^(\w+) says?,? '?(.*?)'?$/i);
