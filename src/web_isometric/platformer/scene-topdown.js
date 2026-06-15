@@ -348,6 +348,7 @@
       if (this.bubbleEmitter) { this.bubbleEmitter.destroy(); this.bubbleEmitter = null; }
       if (this.critters) { this.critters.forEach(c => { this.tweens.killTweensOf(c); c.destroy(); }); }
       this.critters = [];
+      this.reactiveProps = [];   // props that sway/flare when the player passes
       if (this.groundWeather) { this.groundWeather.forEach(o => o.destroy()); this.groundWeather = null; }
 
       const th = layout.theme;
@@ -672,6 +673,93 @@
       }
     }
 
+    // ---- Phase 1: living, reactive rooms ----
+    // Register a prop so it responds when the player passes: 'sway' (plants
+    // wobble + shed a leaf), 'flare' (fire/light brightens), 'ripple' (water).
+    registerReactive(img, kind, opts) {
+      if (!this.reactiveProps) this.reactiveProps = [];
+      this.reactiveProps.push(Object.assign({ img, kind, cd: 0 }, opts || {}));
+    }
+    leafPuff(x, y, tint) {
+      const tex = this.textures.exists('zt_px_leaf') ? 'zt_px_leaf' : 'px_white';
+      const e = this.add.particles(x, y, tex, {
+        speedX: { min: -18, max: 18 }, speedY: { min: -26, max: -6 }, gravityY: 36,
+        lifespan: 760, quantity: 2, scale: { start: 0.7, end: 0 }, alpha: { start: 0.9, end: 0 },
+        rotate: { min: 0, max: 360 }, tint: tint || 0x8fbf6a, emitting: false,
+      }).setDepth(9);
+      e.explode(2);
+      this.time.delayedCall(900, () => e.destroy());
+    }
+    dustPuff(x, y) {
+      const e = this.add.particles(x, y, this.textures.exists('zt_px_soft') ? 'zt_px_soft' : 'px_white', {
+        speedX: { min: -14, max: 14 }, speedY: { min: -6, max: 2 }, lifespan: 420, quantity: 2,
+        scale: { start: 0.5, end: 0 }, alpha: { start: 0.35, end: 0 }, tint: 0xbfae90, emitting: false,
+      }).setDepth(4);
+      e.explode(2);
+      this.time.delayedCall(500, () => e.destroy());
+    }
+    // called each frame: critters flush, plants sway, fires flare, water ripples,
+    // dust kicks up under a moving player — the room answers your presence
+    reactToPlayer(now, dt) {
+      if (!this.player) return;
+      const px = this.player.x, py = this.player.y, { T } = TD();
+      // critters flee when you get close
+      if (this.critters) {
+        const m = T * 2;
+        for (const c of this.critters) {
+          if (!c.active) continue;
+          const dx = c.x - px, dy = c.y - py, d2 = dx * dx + dy * dy;
+          const R = c.fly ? 50 : 40;
+          if (d2 < R * R) {
+            const d = Math.sqrt(d2) || 1;
+            c.tx = Phaser.Math.Clamp(c.x + (dx / d) * 130, m, this.pxW - m);
+            c.ty = Phaser.Math.Clamp(c.y + (dy / d) * 130, c.fly ? T : m, this.pxH - m);
+            c.pauseUntil = 0;
+            if (!c._fleeUntil) { c._fleeUntil = now + 1100; c._spd0 = c.spd; c.spd = c.spd * 2.4; }
+          } else if (c._fleeUntil && now > c._fleeUntil) { c._fleeUntil = 0; c.spd = c._spd0 || c.spd; }
+        }
+      }
+      // reactive props
+      if (this.reactiveProps) {
+        for (const rp of this.reactiveProps) {
+          if (!rp.img || !rp.img.active) continue;
+          const dx = rp.img.x - px, dy = rp.img.y - py, d2 = dx * dx + dy * dy;
+          if (rp.kind === 'sway') {
+            if (d2 < 28 * 28 && now > rp.cd) {
+              rp.cd = now + 650;
+              if (this.motionOk()) {
+                const dir = dx < 0 ? -1 : 1;
+                this.tweens.add({ targets: rp.img, angle: { from: dir * -8, to: 0 }, duration: 540, ease: 'elastic.out' });
+                this.leafPuff(rp.img.x, rp.img.y - rp.img.displayHeight * 0.5, rp.tint);
+              }
+            }
+          } else if (rp.kind === 'flare' && rp.glow && rp.glow.active) {
+            const near = d2 < 64 * 64;
+            if (near && now > rp.cd) {
+              rp.cd = now + 900;
+              this.tweens.add({ targets: rp.glow, alpha: (rp.glowMax || 0.2) * 2.1, scale: rp.glow.scaleX * 1.5, duration: 240, yoyo: true, ease: 'sine.out' });
+              this.spark(rp.img.x, rp.img.y - rp.img.displayHeight * 0.6, rp.tint || 0xffd060);
+            }
+          } else if (rp.kind === 'ripple') {
+            if (d2 < 40 * 40 && now > rp.cd) {
+              rp.cd = now + 750;
+              if (MH.fx && MH.fx.ringShock) MH.fx.ringShock(this, rp.img.x, rp.img.y - 4, 0x9fd9ff, 9, 360);
+            }
+          }
+        }
+      }
+      // dust under a moving player on dry ground
+      if (this._pPrev) {
+        const moved = Math.hypot(px - this._pPrev.x, py - this._pPrev.y);
+        const dry = !this.layout.swim && !['water_swim', 'water_noswim', 'underwater'].includes(this.layout.theme);
+        if (moved > 0.6 && dry && now > (this._dustCd || 0) && this.motionOk()) {
+          this._dustCd = now + 230;
+          this.dustPuff(px, py + 2);
+        }
+      }
+      this._pPrev = { x: px, y: py };
+    }
+
     // Phase 4: wall-mounted decoration on inward-facing walls — torches (which
     // also light dark rooms), hanging banners, moss, and vines — so the walls
     // read as surfaces with stuff on them, not bare blocks.
@@ -813,11 +901,16 @@
         const img = this.add.image(bx, by, `zt_prop_${name}`).setOrigin(0.5, 1).setDepth(3 + by / 1000).setScale(scale);
         this.tileLayer.add(img);
         // glowing features pulse softly and draw the eye
+        const SWAY = new Set(['tree', 'pine', 'deadtree', 'bush', 'flowers', 'mushrooms', 'reeds', 'lilypad', 'cactus', 'stump', 'coral']);
         if (GLOWN[name]) {
           const glow = this.add.image(bx, by - T * 0.6, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
             .setAlpha(0.12).setScale(0.5).setTint(GLOWN[name]).setDepth(34);
           this.tweens.add({ targets: glow, alpha: 0.22, scale: 0.66, duration: 2000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
           this.fxList && this.fxList.push(glow);
+          if (name === 'fountain') this.registerReactive(img, 'ripple');
+          else this.registerReactive(img, 'flare', { glow, glowMax: 0.12, tint: GLOWN[name] });
+        } else if (SWAY.has(name)) {
+          this.registerReactive(img, 'sway', { tint: GLOWN[name] || 0x8fbf6a });
         }
         // examine / interact: these are the features the prose called out
         img.setInteractive({ useHandCursor: true });
@@ -868,8 +961,11 @@
           const name = set[(rng() * set.length) | 0];
           const bx = x * T + T / 2, by = (y + 1) * T;
           this.tileLayer.add(this.add.image(bx, by - 1, 'px_shadow').setDepth(2.5).setAlpha(0.24).setScale(0.18));
-          this.tileLayer.add(this.add.image(bx, by, `zt_prop_${name}`).setOrigin(0.5, 1)
-            .setDepth(3 + by / 1000).setScale((0.5 + rng() * 0.35) / MH.SMOOTH_SS));
+          const cimg = this.add.image(bx, by, `zt_prop_${name}`).setOrigin(0.5, 1)
+            .setDepth(3 + by / 1000).setScale((0.5 + rng() * 0.35) / MH.SMOOTH_SS);
+          this.tileLayer.add(cimg);
+          // small plants brush as you pass
+          if (['flowers', 'reeds', 'bush', 'mushrooms'].includes(name)) this.registerReactive(cimg, 'sway', { tint: 0x8fbf6a });
           placed++;
         }
       }
@@ -948,6 +1044,10 @@
       const img = this.add.image(baseX, baseY, `zt_prop_${name}`).setOrigin(0.5, 1)
         .setDepth(3 + baseY / 1000).setScale(scale);
       this.tileLayer.add(img);
+      // the centrepiece reacts to your presence too
+      if (['fountain', 'well'].includes(name)) this.registerReactive(img, 'ripple');
+      else if (['campfire', 'brazier'].includes(name)) this.registerReactive(img, 'flare', { glow, glowMax: 0.16, tint: GLOWN[name] || 0xff9a4a });
+      else if (['tree', 'deadtree', 'mushrooms', 'cactus'].includes(name)) this.registerReactive(img, 'sway', { tint: GLOWN[name] || 0x8fbf6a });
       // a periodic glint to draw the eye and invite exploration
       this._landmarkGlint = this.time.addEvent({
         delay: 3200 + rng() * 2600, loop: true,
@@ -3527,6 +3627,7 @@
 
       // footstep dust gives weight to movement
       this.updateCritters(now, dt);
+      this.reactToPlayer(now, dt);
 
       const moving = Math.abs(this.player.body.velocity.x) + Math.abs(this.player.body.velocity.y) > 10;
       if (moving && (!this._lastStep || now - this._lastStep > 260)) {
