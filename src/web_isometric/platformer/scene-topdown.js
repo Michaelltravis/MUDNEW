@@ -430,6 +430,7 @@
         }
       }
       this.placeGravestones(layout);
+      this.placeLandmark(layout, th);
       this.placeProse(layout);
 
       // place player
@@ -496,6 +497,79 @@
           }
         }
       }
+    }
+
+    // Phase 2: a per-room landmark centrepiece — a focal feature seeded by the
+    // room so each place has identity and a destination worth crossing to. Built
+    // from existing prop art, scaled up, with a glow, a draw-the-eye glint, and
+    // an examine/interact so wandering the room is rewarded (exploration).
+    placeLandmark(layout, th) {
+      if (this._landmarkGlint) { this._landmarkGlint.remove(); this._landmarkGlint = null; }
+      const { T, FLOOR } = TD();
+      const CENTER = {
+        field: ['statue', 'runestone', 'fountain', 'rock', 'tree'],
+        hills: ['runestone', 'rock', 'statue', 'tree'],
+        forest: ['tree', 'deadtree', 'mushrooms', 'runestone'],
+        swamp: ['deadtree', 'statue', 'mushrooms', 'rock'],
+        desert: ['pillar', 'statue', 'cactus', 'rock'],
+        mountain: ['crystal', 'rock', 'runestone'],
+        cave: ['crystal', 'rock', 'runestone', 'mushrooms'],
+        dungeon: ['statue', 'runestone', 'pillar'],
+        underground: ['crystal', 'runestone', 'pillar'],
+        inside: ['statue', 'fountain', 'pillar', 'anvil'],
+        city: ['fountain', 'statue', 'runestone', 'stall'],
+        default: ['statue', 'runestone', 'rock'],
+      };
+      const rng = MH.mulberry32((layout.vnum ^ 0x1a7f3) >>> 0);
+      // only ~70% of rooms get a landmark, so they stay special
+      if (rng() > 0.7) return;
+      const cands = (CENTER[th] || CENTER.default).filter(n => this.textures.exists(`zt_prop_${n}`));
+      if (!cands.length) return;
+      const name = cands[(rng() * cands.length) | 0];
+      // a clear floor cell near the centre (spiral out until one is free)
+      const grid = layout.grid, W = layout.W, H = layout.H;
+      const cx = Math.floor(W / 2), cy = Math.floor(H / 2);
+      const free = (x, y) => x > 1 && y > 1 && x < W - 2 && y < H - 2 && grid[y * W + x] === FLOOR
+        && !(layout.props || []).some(p => Math.abs(p.x - x) < 2 && Math.abs(p.y - y) < 2);
+      let lx = cx, ly = cy, found = free(cx, cy);
+      for (let r = 1; !found && r <= 5; r++) {
+        for (let a = 0; a < 8 && !found; a++) {
+          const tx = cx + Math.round(Math.cos(a / 8 * 6.28) * r), ty = cy + Math.round(Math.sin(a / 8 * 6.28) * r);
+          if (free(tx, ty)) { lx = tx; ly = ty; found = true; }
+        }
+      }
+      if (!found) return;
+      const baseX = lx * T + T / 2, baseY = (ly + 1) * T;
+      const scale = 2.4 / MH.SMOOTH_SS;
+      // shadow + glow ground and highlight it
+      this.add.image(baseX, baseY - 1, 'px_shadow').setDepth(3 + baseY / 1000 - 0.01).setAlpha(0.42).setScale(0.85);
+      const GLOWN = { fountain: 0x9fd9ff, crystal: 0xc792ff, statue: 0xffe9c0, runestone: 0xffd089, mushrooms: 0xb06ce0, deadtree: 0x9ab69a, tree: 0xaaffaa };
+      const glow = this.add.image(baseX, baseY - T, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+        .setAlpha(0.16).setScale(0.7).setTint(GLOWN[name] || 0xffe9a8).setDepth(35);
+      this.tweens.add({ targets: glow, alpha: 0.28, scale: 0.85, duration: 1800, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      this.fxList && this.fxList.push(glow);
+      const img = this.add.image(baseX, baseY, `zt_prop_${name}`).setOrigin(0.5, 1)
+        .setDepth(3 + baseY / 1000).setScale(scale);
+      this.tileLayer.add(img);
+      // a periodic glint to draw the eye and invite exploration
+      this._landmarkGlint = this.time.addEvent({
+        delay: 3200 + rng() * 2600, loop: true,
+        callback: () => { if (img.active) this.spark(baseX, baseY - T * 1.4, GLOWN[name] || 0xffe9a8); },
+      });
+      // examine + interact: the room's point of interest
+      img.setInteractive({ useHandCursor: true });
+      img.on('pointerdown', pointer => {
+        if (pointer.rightButtonDown && pointer.rightButtonDown()) return;
+        const cxp = pointer.event.clientX, cyp = pointer.event.clientY;
+        const acts = [];
+        if (['fountain', 'well'].includes(name)) acts.push({ label: '🜄 Drink', fn: () => MH.sendCommand('drink') });
+        if (['brazier', 'candles', 'campfire'].includes(name)) acts.push({ label: '😴 Rest by the warmth', fn: () => MH.sendCommand('rest') });
+        if (['statue', 'runestone', 'altar'].includes(name)) acts.push({ label: '🙏 Pray', fn: () => MH.sendCommand('pray') });
+        acts.push({ label: '🔍 Search around it', fn: () => (MH.immersion && MH.immersion.runInfo ? MH.immersion.runInfo('search', 'You search') : MH.sendCommand('search')) });
+        acts.push({ label: '👁 Examine', fn: () => MH.immersion && MH.immersion.propFlavor && MH.immersion.propFlavor(name) });
+        if (MH.popover && acts.length) MH.popover.show(cxp, cyp, (MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name), acts);
+      });
+      img.on('pointerover', () => MH.bus.emit('flash', `${MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name} — click to examine`));
     }
 
     // Ori-style mood pass: themed light pools, god rays, drifting motes.
