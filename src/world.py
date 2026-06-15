@@ -803,6 +803,7 @@ class World:
                         mob.home_zone = zone.number  # Set home zone for movement restrictions
                         room.characters.append(mob)
                         self.npcs.append(mob)
+                        self._ensure_shop(mob)  # stock shopkeepers with role-appropriate goods
                         
             # Spawn objects
             for obj_reset in room.obj_resets:
@@ -822,6 +823,88 @@ class World:
         zone.last_reset_at = time.time()
         zone.next_reset_at = zone.last_reset_at + zone.reset_interval_seconds
         
+    # role keyword -> item_types the shop sells
+    _SHOP_ROLES = [
+        (('baker', 'bread'), ['food']),
+        (('butcher', 'meat'), ['food']),
+        (('grocer', 'green', 'produce'), ['food', 'drink', 'drinkcon']),
+        (('weaponsmith', 'weapon', 'fletcher', 'bowyer', 'blade'), ['weapon']),
+        (('blacksmith', 'smith'), ['weapon', 'armor']),
+        (('armourer', 'armorer', 'armor', 'leather'), ['armor']),
+        (('tailor', 'clothier', 'robe'), ['armor']),
+        (('wizard', 'mage', 'magic', 'sorcer', 'witch', 'conjurer', 'enchant'), ['scroll', 'potion', 'wand', 'staff']),
+        (('alchemist', 'apothecary', 'potion', 'herbalist'), ['potion', 'drink']),
+        (('jewel', 'gem', 'jeweler'), ['treasure']),
+        (('tavern', 'bartender', 'innkeeper', 'barkeep', 'bar', 'pub'), ['drink', 'drinkcon', 'food']),
+        (('captain', 'guard', 'quartermaster'), ['weapon', 'armor']),
+        (('general', 'merchant', 'trader', 'pawn', 'peddler', 'vendor', 'shopkeep', 'keeper', 'clerk', 'salesman'),
+         ['food', 'drink', 'drinkcon', 'light', 'container', 'other', 'treasure']),
+    ]
+
+    def _shop_role(self, name: str):
+        n = (name or '').lower()
+        for keys, sells in self._SHOP_ROLES:
+            if any(k in n for k in keys):
+                buys = list(dict.fromkeys(sells + ['treasure', 'other']))
+                return sells, buys
+        # sensible default: a general store
+        return (['food', 'drink', 'light', 'container', 'other', 'treasure'], ['treasure', 'other', 'weapon', 'armor'])
+
+    def _ensure_shop(self, mob):
+        """Make sure every shopkeeper carries a proper, role-appropriate stock.
+        Many zone shop_configs are thin (a weaponsmith selling one dagger) or
+        have malformed buy lists; this enriches an existing shop up to a full
+        selection drawn from the world's objects, and creates one outright for
+        any shopkeeper that has none."""
+        if getattr(mob, 'special', '') != 'shopkeeper':
+            return
+        try:
+            from shops import ShopManager
+            from objects import create_object
+            TARGET = 12
+            # lazily index object prototypes by item_type
+            if not hasattr(self, '_obj_by_type'):
+                self._obj_by_type = {}
+                for ov, op in self.obj_prototypes.items():
+                    t = str(op.get('item_type') or op.get('type') or 'other').lower()
+                    self._obj_by_type.setdefault(t, []).append(ov)
+            sells_types, buys_types = self._shop_role(getattr(mob, 'name', ''))
+            zlow = (mob.vnum // 100) * 100
+            zhigh = zlow + 99
+            candidates = []
+            for t in sells_types:
+                pool = self._obj_by_type.get(t, [])
+                local = [v for v in pool if zlow <= v <= zhigh]
+                for v in (local if local else pool):
+                    if v not in candidates:
+                        candidates.append(v)
+            shop = ShopManager.shops.get(mob.vnum)
+            if shop:
+                if getattr(shop, '_autostocked', False):
+                    return   # already enriched once; don't re-stock every reset
+                shop._autostocked = True
+                # repair a malformed/empty buy list (e.g. a vnum where a type belongs)
+                if not shop.buy_types or any(str(b).isdigit() for b in shop.buy_types):
+                    shop.buy_types = buys_types
+                have = set(getattr(shop, 'sells_vnums', []) or [])
+                for v in candidates:
+                    if len(shop.inventory) >= TARGET:
+                        break
+                    if v in have:
+                        continue
+                    obj = create_object(v, self)
+                    if obj:
+                        shop.inventory.append(obj)
+                        shop.sells_vnums.append(v)
+                        have.add(v)
+                logger.info(f"Stocked shop for {getattr(mob, 'name', '?')} (vnum {mob.vnum}) -> {len(shop.inventory)} items")
+            else:
+                sells = candidates[:TARGET]
+                if sells:
+                    ShopManager.create_shop(mob, {'sells': sells, 'buys': buys_types}, self)
+        except Exception as e:
+            logger.warning(f"_ensure_shop failed for {getattr(mob, 'name', '?')}: {e}")
+
     def get_room(self, vnum: int) -> Optional[Room]:
         """Get a room by vnum."""
         return self.rooms.get(vnum)
