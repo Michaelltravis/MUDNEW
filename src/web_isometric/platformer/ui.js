@@ -1021,12 +1021,7 @@
     els.spellsBody.querySelectorAll('.spell-entry').forEach(el => {
       drawIcon(el.querySelector('canvas'), el.dataset.kind);
       const q = el.querySelector('.helpq');
-      if (q) q.addEventListener('click', async e => {
-        e.stopPropagation();
-        const lines = await (async () => { const pr = captureOutput(2200); MH.sendCommand(`help ${el.dataset.help}`, false); return pr; })();
-        const text = lines.length ? lines.join('\n') : `No help entry for '${el.dataset.help}'.`;
-        if (MH.immersion) MH.immersion.showDetailCard(el.dataset.help, text, 'detail');
-      });
+      if (q) q.addEventListener('click', e => { e.stopPropagation(); showAbilityHelp(el.dataset.help); });
       el.addEventListener('click', () => {
         const t = currentTarget ? ` ${MH.mobKeyword(currentTarget.name)}` : '';
         MH.sendCommand(el.dataset.cmd + t);
@@ -1094,6 +1089,21 @@
   }
 
   // ---- help browser: searchable MUD help files in a panel ----
+  // Show the help file for a single skill/spell/ability in the floating card,
+  // cleaned of MUD frames — used by the training window and the spellbook so a
+  // player can always learn what something does before spending on it.
+  async function showAbilityHelp(topic) {
+    const pretty = String(topic || '').replace(/_/g, ' ');
+    if (MH.immersion) MH.immersion.showDetailCard(pretty, 'consulting the lore…', 'detail');
+    const pr = captureOutput(2400);
+    MH.sendCommand(`help ${pretty}`, false);
+    const lines = await pr;
+    let text = MH.cleanInfoText ? MH.cleanInfoText(lines.join('\n'), `help ${pretty}`) : lines.join('\n');
+    if (!text.trim()) text = `No help entry for '${pretty}'. Try practicing it to learn by doing.`;
+    if (MH.immersion) MH.immersion.showDetailCard(pretty, text, 'detail');
+  }
+  MH.showAbilityHelp = showAbilityHelp;
+
   async function openHelp(topic) {
     openModal('modal-journal');
     const head = document.querySelector('#modal-journal .modal-head span');
@@ -1313,6 +1323,7 @@
           + `<canvas width="22" height="22" data-icon="${kind}"></canvas>`
           + `<span class="sr-nm">${pretty}</span>`
           + `<span class="tr-bar"><i style="width:${Math.min(100, a.prof)}%"></i></span>`
+          + `<span class="sr-help" data-help="${a.id}" title="what does ${pretty} do?">ⓘ</span>`
           + `<span class="sr-price">${mastered ? 'MASTERED' : a.prof + '%'}</span></div>`;
       }
       return h + '</div>';
@@ -1320,6 +1331,10 @@
     html += section('SKILLS', d.skills, 'star');
     html += section('SPELLS', d.spells, 'sparkle');
     els.shopBody.innerHTML = html;
+    els.shopBody.querySelectorAll('.sr-help').forEach(q => q.addEventListener('click', e => {
+      e.stopPropagation();
+      showAbilityHelp(q.dataset.help);
+    }));
     els.shopBody.querySelectorAll('.shop-row.train').forEach(row => {
       drawIcon(row.querySelector('canvas'), row.querySelector('canvas').dataset.icon);
       if (!row.classList.contains('mastered')) row.addEventListener('click', async () => {
