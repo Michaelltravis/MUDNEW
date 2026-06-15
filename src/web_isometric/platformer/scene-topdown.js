@@ -1504,6 +1504,7 @@
       });
     }
     slashFx(x, y, towardX) {
+      if (MH.sfx) MH.sfx.swing();
       const arc = this.add.image(x, y - 4, 'fx_slash')
         .setScale(0.9 / MH.SMOOTH_SS).setDepth(60)
         .setFlipX(towardX < x).setAlpha(0.95)
@@ -1515,6 +1516,7 @@
       });
     }
     fxHeal() {
+      if (MH.sfx) MH.sfx.heal();
       const rise = this.add.particles(this.player.x, this.player.y + 6, 'px_white', {
         x: { min: -8, max: 8 }, speedY: { min: -45, max: -25 }, lifespan: 800,
         quantity: 3, scale: { start: 0.7, end: 0 }, tint: 0x7dff9a, blendMode: 'ADD',
@@ -1551,6 +1553,8 @@
         || this.abilityFxFor(e.line || '');
       if (fx) this.playAbilityFx(fx, ent.sprite);
       else this.slashFx(ent.sprite.x, ent.sprite.y, this.player.x >= ent.sprite.x ? ent.sprite.x - 10 : ent.sprite.x + 10);
+      // the connecting thud — louder the harder it lands (ability stings carry their own audio)
+      if (MH.sfx && e.dmg != null) MH.sfx.impact(e.dmg >= 25 ? 2.5 : e.dmg >= 10 ? 1.5 : 1);
       this.spark(ent.sprite.x, ent.sprite.y - 6, (fx && fx.color) || 0xffe080);
       const st = this.dmgStyle(e.dmg);
       if (st.shake) this.cameras.main.shake(90, st.shake);
@@ -1567,6 +1571,7 @@
       const st = this.dmgStyle(e && e.dmg);
       this.cameras.main.shake(80, Math.max(0.004, st.shake));
       this.dmgPulse(e && e.dmg);
+      if (MH.sfx) MH.sfx.hurt(e && e.dmg >= 20 ? 2 : 1);
       this.squash(this.player);
       this.impactLines(this.player.x, this.player.y - 6, 0xff8080);
       if (e && e.dmg != null && e.dmg >= 6) {
@@ -1780,6 +1785,7 @@
         // the killing blow earns drama: freeze, flash, shatter, and a
         // soul drifting free of the body
         this.freezeFrame(110);
+        if (MH.sfx) MH.sfx.impact(2.5);
         ent.sprite.setTintFill(0xffffff);
         this.time.delayedCall(90, () => ent.sprite && ent.sprite.active && ent.sprite.clearTint());
         const shards = this.add.particles(dx, dy - 6, 'px_white', {
@@ -2797,6 +2803,7 @@
       const moving = Math.abs(this.player.body.velocity.x) + Math.abs(this.player.body.velocity.y) > 10;
       if (moving && (!this._lastStep || now - this._lastStep > 260)) {
         this._lastStep = now;
+        if (MH.sfx) MH.sfx.step();
         const puff = this.add.image(this.player.x, this.player.y + 9, 'px_poof')
           .setScale(0.6).setAlpha(0.35).setDepth(6);
         this.tweens.add({ targets: puff, scale: 1.3, alpha: 0, duration: 380, onComplete: () => puff.destroy() });

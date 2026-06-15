@@ -297,6 +297,7 @@
   function useHotbar(i) {
     const cmd = hotbar[i];
     if (!cmd) return;
+    if (MH.sfx) MH.sfx.ui();
     // slots map to real UI where possible - commands shouldn't vanish into
     // the void
     if (cmd === 'attack' || cmd === 'kill') {
@@ -331,13 +332,40 @@
     } else {
       commandWithPeek(cmd);
     }
-    // cooldown sweep ~ one combat round
     const slot = els.hotbar.children[i];
-    if (slot) {
-      const cd = slot.querySelector('.cd');
-      cd.classList.remove('run');
-      void cd.offsetWidth; // restart the animation
+    if (slot) startCooldown(slot, cmd);
+  }
+
+  // cooldown overlay: for abilities with a real cooldown, sweep over the true
+  // duration and tick a numeral down; otherwise a quick global-cooldown wipe
+  function startCooldown(slot, cmd) {
+    const cd = slot.querySelector('.cd');
+    if (!cd) return;
+    const skillName = String(cmd || '').replace(/^cast '/, '').replace(/'$/, '').replace(/ /g, '_');
+    const secs = (abilityCosts[skillName] && abilityCosts[skillName].cooldown) || 0;
+    cd.classList.remove('run');
+    void cd.offsetWidth;   // restart the CSS sweep
+    let num = slot.querySelector('.cd-num');
+    if (slot._cdTimer) { clearInterval(slot._cdTimer); slot._cdTimer = null; }
+    if (secs >= 2) {
+      cd.style.animationDuration = secs + 's';
       cd.classList.add('run');
+      if (!num) { num = document.createElement('span'); num.className = 'cd-num'; slot.appendChild(num); }
+      const end = Date.now() + secs * 1000;
+      const tick = () => {
+        if (!slot.isConnected) { clearInterval(slot._cdTimer); return; }
+        const rem = Math.ceil((end - Date.now()) / 1000);
+        if (rem <= 0) {
+          clearInterval(slot._cdTimer); slot._cdTimer = null;
+          num.style.display = 'none'; cd.classList.remove('run'); cd.style.animationDuration = '';
+        } else { num.textContent = rem; }
+      };
+      num.textContent = secs; num.style.display = 'flex';
+      slot._cdTimer = setInterval(tick, 200);
+    } else {
+      cd.style.animationDuration = '';   // default ~2s GCD wipe, no numeral
+      cd.classList.add('run');
+      if (num) num.style.display = 'none';
     }
   }
 
@@ -652,17 +680,26 @@
   }
   MH.setWorldInput = setWorldInput;
   function openModal(id) {
-    closeModals();
+    const already = anyModalOpen();
+    closeModals(true);
     $(id).classList.add('open');
     const bd = $('modal-backdrop');
     if (bd) bd.classList.add('show');
     setWorldInput(false);
+    if (MH.sfx) MH.sfx.ui();
   }
-  function closeModals() {
-    document.querySelectorAll('.modal.open').forEach(m => m.classList.remove('open'));
+  function closeModals(silent) {
+    const had = anyModalOpen();
+    document.querySelectorAll('.modal.open').forEach(m => {
+      // play the open animation in reverse for a soft close
+      m.classList.add('closing');
+      setTimeout(() => m.classList.remove('closing'), 160);
+      m.classList.remove('open');
+    });
     const bd = $('modal-backdrop');
     if (bd) bd.classList.remove('show');
     setWorldInput(true);
+    if (had && !silent && MH.sfx) MH.sfx.uiBack();
   }
   function anyModalOpen() { return !!document.querySelector('.modal.open'); }
 

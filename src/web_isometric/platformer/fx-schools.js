@@ -49,11 +49,17 @@
 
   // ---------------- procedural sound ----------------
   let actx = null;
+  // shared mute, unified with the ambience toggle (🔊) so one switch silences
+  // everything — ability stings, combat thuds, footsteps, UI ticks
+  let _muted = false;
+  try { _muted = localStorage.getItem('misthollow_ambience') === 'off'; } catch (_) {}
+  if (MH.bus && MH.bus.on) MH.bus.on('audio.mute', m => { _muted = !!m; });
   function ctx() {
     if (!actx) { try { actx = new (window.AudioContext || window.webkitAudioContext)(); } catch (_) {} }
     return actx;
   }
   function tone({ f = 220, f2 = null, type = 'sine', dur = 0.2, vol = 0.06, delay = 0 }) {
+    if (_muted) return;
     const a = ctx(); if (!a) return;
     const t0 = a.currentTime + delay;
     const o = a.createOscillator(), g = a.createGain();
@@ -65,6 +71,7 @@
     o.start(t0); o.stop(t0 + dur + 0.05);
   }
   function hiss({ dur = 0.3, vol = 0.05, delay = 0, low = false }) {
+    if (_muted) return;
     const a = ctx(); if (!a) return;
     const t0 = a.currentTime + delay;
     const n = a.createBufferSource();
@@ -94,6 +101,22 @@
     arcane: t => { tone({ f: 880, f2: 1320, type: 'sine', dur: 0.2, vol: 0.04 }); tone({ f: 440, f2: 660, type: 'triangle', dur: 0.25, vol: 0.03, delay: 0.04 }); },
     physical: t => { hiss({ dur: 0.08, vol: 0.06 }); tone({ f: 150, f2: 70, type: 'triangle', dur: 0.12 + t * 0.05, vol: 0.06 }); },
   };
+
+  // ---------------- moment-to-moment sfx ----------------
+  // the things you do every second: swings, hits, steps, UI. kept quiet so they
+  // sit under the ability stings rather than competing with them.
+  const sfx = {
+    swing() { hiss({ dur: 0.09, vol: 0.035 }); tone({ f: 340, f2: 150, type: 'triangle', dur: 0.08, vol: 0.025 }); },
+    impact(t = 1) { hiss({ dur: 0.06, vol: 0.05 }); tone({ f: 170, f2: 60, type: 'triangle', dur: 0.10 + t * 0.04, vol: 0.05 + t * 0.01 }); },
+    hurt(t = 1) { tone({ f: 240, f2: 90, type: 'sawtooth', dur: 0.16, vol: 0.05 }); hiss({ dur: 0.08, vol: 0.04, low: true }); },
+    step() { tone({ f: 95, f2: 62, type: 'sine', dur: 0.05, vol: 0.018 }); },
+    ui() { tone({ f: 660, f2: 880, type: 'sine', dur: 0.04, vol: 0.022 }); },
+    uiBack() { tone({ f: 460, f2: 330, type: 'sine', dur: 0.05, vol: 0.022 }); },
+    heal() { [523, 784].forEach((f, i) => tone({ f, type: 'sine', dur: 0.28, vol: 0.03, delay: i * 0.06 })); },
+    coin() { tone({ f: 920, f2: 1320, type: 'triangle', dur: 0.07, vol: 0.028 }); tone({ f: 1320, type: 'sine', dur: 0.06, vol: 0.02, delay: 0.05 }); },
+    death() { tone({ f: 200, f2: 48, type: 'sawtooth', dur: 1.0, vol: 0.07 }); tone({ f: 120, f2: 36, type: 'sine', dur: 1.3, vol: 0.05, delay: 0.12 }); },
+  };
+  MH.sfx = sfx;
 
   // ---------------- primitives ----------------
   function burst(scene, x, y, pal, n, speed, scale) {

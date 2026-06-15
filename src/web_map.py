@@ -660,6 +660,8 @@ class WebMapServer:
                         abilities[key] = {
                             'name': spell.get('name', key),
                             'mana_cost': int(spell.get('mana_cost', 0) or 0),
+                            'cooldown': int(spell.get('cooldown', 0) or 0),
+                            'level': int(spell.get('level_required', 0) or 0),
                         }
                     data = {'abilities': abilities, 'resource': 'mana'}
                     await self._http_response(writer, 200, 'OK', json.dumps(data), content_type='application/json')

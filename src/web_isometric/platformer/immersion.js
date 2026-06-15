@@ -519,6 +519,7 @@
       muted = !muted;
       localStorage.setItem('misthollow_ambience', muted ? 'off' : 'on');
       if (master) master.gain.value = muted ? 0 : 1;
+      MH.bus.emit('audio.mute', muted);   // also silence FX stings + sfx
       sync();
     };
   });
