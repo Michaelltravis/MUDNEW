@@ -2772,7 +2772,9 @@
     const p1 = captureOutput(1300);
     MH.sendCommand(`talk ${kw}`, false);
     const talkLines = await p1;
-    const said = talkLines.filter(l => l.trim() && !/^\d+\/\d+hp/.test(l) && !/^>/.test(l) && !/quest accept/i.test(l));
+    const NOISE = /quest accept|\*npc\*|notable figure encountered|^type '?journal'?|to view your discoveries/i;
+    const saidClean = MH.cleanInfoText ? MH.cleanInfoText(talkLines.join('\n'), `talk ${kw}`) : talkLines.join('\n');
+    const said = saidClean.split('\n').filter(l => l.trim() && !NOISE.test(l) && l.trim().toLowerCase() !== name.toLowerCase());
     let inner = `<div class="npc-head"><canvas class="npc-portrait" width="44" height="44"></canvas>`
       + `<div class="npc-id"><div class="npc-nm">${name}</div><div class="npc-role">${quest ? '✦ Quest Giver' : 'Townsfolk'}</div></div></div>`;
     if (said.length) inner += `<div class="npc-speech">${said.slice(0, 10).map(l => l.replace(/</g, '&lt;')).join('<br>')}</div>`;
@@ -2786,7 +2788,8 @@
         const id = m && m[1].replace(/\)$/, '');
         if (id && /^[a-z0-9_]+$/i.test(id) && !offers.includes(id)) offers.push(id);
       });
-      const qText = qLines.filter(l => l.trim() && !/^\d+\/\d+hp/.test(l) && !/quest accept/i.test(l) && !/^>/.test(l)).slice(0, 14);
+      const qClean = MH.cleanInfoText ? MH.cleanInfoText(qLines.join('\n'), 'quest') : qLines.join('\n');
+      const qText = qClean.split('\n').filter(l => l.trim() && !NOISE.test(l)).slice(0, 16);
       if (qText.length) inner += `<div class="npc-quest">${qText.map(l => l.replace(/</g, '&lt;')).join('<br>')}</div>`;
       if (offers.length) {
         inner += '<div class="npc-actions">'
