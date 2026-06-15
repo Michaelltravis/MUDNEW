@@ -95,6 +95,35 @@
   let _lastPointer = null;
   document.addEventListener('pointerdown', e => { _lastPointer = { x: e.clientX, y: e.clientY }; }, true);
 
+  // Turn a raw MUD command reply into clean, themed lines: drop the command
+  // echo, the status prompt, and the ASCII frame ("||", "====") the MUD draws,
+  // then unwrap framed content so it reads like the rest of the UI.
+  function cleanInfoText(text, cmd) {
+    const echo = (cmd || '').trim().toLowerCase();
+    const out = [];
+    String(text || '')
+      .replace(/\x1b\[[0-9;]*m/g, '')
+      .split('\n')
+      .forEach(raw => {
+        let l = raw.replace(/\s+$/, '');
+        const t = l.trim();
+        if (!t) { out.push(''); return; }
+        // command echo line ("> who")
+        if (/^>\s*/.test(t) && t.replace(/^>\s*/, '').toLowerCase() === echo) return;
+        // status prompt fragments ("62/62hp 120/120mp ...", "[Momentum: ..]", "2/10]>")
+        if (/\d+\/\d+\s*hp\b/i.test(t) || /^\[(momentum|combo|focus|rage|chi|stance)\b/i.test(t)) return;
+        if (/^[\d/]+\]?\s*>?\s*$/.test(t)) return;
+        if (/>\s*$/.test(t) && /\d+\/\d+/.test(t)) return;
+        // pure frame / divider rows (only box chars, pipes, dashes, equals)
+        if (/^[\s|=_~*+.\-─-╿]{3,}$/.test(t)) return;
+        // unwrap framed content: strip leading/trailing pipes & box chars
+        l = l.replace(/^[\s|─-╿]+/, '').replace(/[\s|─-╿]+$/, '');
+        if (l.trim()) out.push(l);
+      });
+    return out.join('\n').replace(/\n{3,}/g, '\n\n').trim();
+  }
+  MH.cleanInfoText = cleanInfoText;
+
   function showDetailCard(title, text, kind, x, y) {
     const card = $('detail-card');
     if (!card) return;
@@ -148,7 +177,7 @@
         done = true;
         MH.bus.off('terminal.output', handler);
         clearTimeout(t);
-        const clean = (text || '').replace(/\n{3,}/g, '\n\n').trim();
+        const clean = cleanInfoText(text, cmd);
         showDetailCard(title || cmd, clean || 'Nothing happens.', 'detail');
       };
       MH.bus.on('terminal.output', handler);
