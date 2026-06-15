@@ -2377,6 +2377,7 @@ class CommandHandler:
             'Combat': [],
             'Skills': [],
             'Spells': [],
+            'Talents': [],
             'Bard Songs': [],
             'Equipment & Items': [],
             'Groups & Social': [],
@@ -2394,6 +2395,8 @@ class CommandHandler:
                 categories['Skills'].append(topic)
             elif cat == 'spell':
                 categories['Spells'].append(topic)
+            elif cat == 'talent':
+                categories['Talents'].append(topic)
             elif cat == 'class':
                 categories['Classes'].append(topic)
             elif 'song' in topic.lower() or topic in ['perform', 'encore', 'countersong', 'fascinate', 'mock', 'songs']:

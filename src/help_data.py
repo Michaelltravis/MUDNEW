@@ -5302,6 +5302,15 @@ try:
 except Exception:
     pass
 
+# Merge auto-generated ability help (spells, skills, talents). This is the
+# authoritative, in-sync source for every ability and overwrites any older
+# hand-maintained spell/skill entries that have since been renamed/reworked.
+try:
+    from help_abilities import build_ability_help
+    HELP_TOPICS.update(build_ability_help())
+except Exception:
+    pass
+
 def get_help_text(topic: str) -> str:
     """Get formatted help text for a topic."""
     topic = topic.lower().replace(" ", "_")
