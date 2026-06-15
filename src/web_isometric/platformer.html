@@ -450,6 +450,36 @@
   .quest-btn:hover { background: #3a3a1c; border-color: var(--gold); }
   .modal-body .item:hover { background: #242a3c; color: var(--gold); }
   .modal-body .slot { color: var(--dim); }
+  /* ---- NPC dialogue (quest givers / townsfolk) ---- */
+  .npc-dialogue { font-family: var(--ui-font); }
+  .npc-head { display: flex; align-items: center; gap: 11px; margin-bottom: 12px;
+    padding-bottom: 11px; border-bottom: 1px solid rgba(140,150,180,.16); }
+  .npc-portrait { width: 44px; height: 44px; image-rendering: pixelated; border-radius: 9px;
+    border: 1px solid rgba(232,193,104,.4); background: radial-gradient(circle at 50% 30%, #232838, #10131e); }
+  .npc-id .npc-nm { color: #ffe9a8; font-family: Georgia, serif; font-size: 17px; }
+  .npc-id .npc-role { color: #8a90a4; font-size: 11px; letter-spacing: .5px; margin-top: 2px; }
+  .npc-speech { font-family: Georgia, serif; font-style: italic; color: #d8d2bc; font-size: 13.5px;
+    line-height: 1.65; background: rgba(232,193,104,.05); border-left: 2px solid rgba(232,193,104,.4);
+    border-radius: 0 8px 8px 0; padding: 10px 13px; }
+  .npc-quest { color: #c2c8d6; font-size: 12.5px; line-height: 1.6; margin-top: 11px;
+    background: rgba(20,24,34,.6); border: 1px solid rgba(140,150,180,.16); border-radius: 9px; padding: 10px 13px; }
+  .npc-actions { margin-top: 13px; display: flex; flex-wrap: wrap; gap: 7px; }
+  .npc-actions .quest-btn { margin: 0; padding: 8px 16px; font-size: 12px; border-radius: 8px; }
+  .quest-btn.turnin { background: rgba(111,214,133,.16); border-color: var(--green, #6fd685); color: #b8e8c4; }
+  /* ---- help panel (ability / skill / topic help) ---- */
+  .help-panel { font-family: var(--ui-font); }
+  .help-search { width: 100%; box-sizing: border-box; padding: 8px 11px; margin-bottom: 12px;
+    background: rgba(13,15,21,.92); color: #d8dce8; border: 1px solid rgba(140,150,180,.3);
+    border-radius: 8px; font-size: 12px; }
+  .help-search:focus { outline: none; border-color: var(--gold); }
+  .help-text { max-height: 56vh; overflow-y: auto; padding-right: 4px; }
+  .help-text .hl-title { font-family: Georgia, serif; color: var(--gold); font-size: 19px;
+    letter-spacing: 1px; margin-bottom: 10px; }
+  .help-text .hl-row { display: flex; gap: 8px; font-size: 12.5px; margin: 3px 0; }
+  .help-text .hl-k { color: #8a90a4; letter-spacing: 1px; font-size: 11px; min-width: 96px; flex: none; padding-top: 1px; }
+  .help-text .hl-v { color: #ffe9a8; }
+  .help-text .hl-line { color: #c8ccd8; font-size: 13px; line-height: 1.6; }
+  .help-text .hl-sp { height: 8px; }
 
   /* ---- minimap ---- */
   #minimap-wrap {

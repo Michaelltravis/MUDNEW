@@ -932,18 +932,34 @@
   // ---- help browser: searchable MUD help files in a panel ----
   async function openHelp(topic) {
     openModal('modal-journal');
-    els.journalBody.innerHTML = '<div style="display:flex;gap:6px;margin-bottom:8px">'
-      + '<input id="help-search" type="text" placeholder="search help… (e.g. fireball, stance, path)" '
-      + 'style="flex:1;padding:6px 10px;background:rgba(13,15,21,.92);color:#d8dce8;border:1px solid rgba(140,150,180,.3);border-radius:6px;font-size:12px">'
-      + '</div><pre id="help-text" style="white-space:pre-wrap;font-size:12px;line-height:1.5;margin:0">…</pre>';
+    const head = document.querySelector('#modal-journal .modal-head span');
+    if (head) head.textContent = 'HELP';
+    els.journalBody.innerHTML = '<div class="help-panel"><input id="help-search" class="help-search" type="text" '
+      + 'placeholder="search help… (e.g. fireball, stance, path)"><div id="help-text" class="help-text">…</div></div>';
     const input = document.getElementById('help-search');
     const out = document.getElementById('help-text');
+    const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    const fmt = txt => {
+      const lines = txt.split('\n').filter(l => !/^[=_]{5,}$/.test(l.trim()));
+      let h = '', titled = false;
+      for (const line of lines) {
+        const t = line.trim();
+        if (!t) { h += '<div class="hl-sp"></div>'; continue; }
+        if (!titled) { h += `<div class="hl-title">${esc(t)}</div>`; titled = true; continue; }
+        const lab = t.match(/^([A-Z][A-Z &/]{2,}):\s*(.*)$/);
+        if (lab) h += `<div class="hl-row"><span class="hl-k">${esc(lab[1])}</span> <span class="hl-v">${esc(lab[2])}</span></div>`;
+        else h += `<div class="hl-line">${esc(t)}</div>`;
+      }
+      return h;
+    };
     const show = async t => {
-      out.textContent = '…';
+      out.innerHTML = '<div class="hl-line">…</div>';
       const pr = captureOutput(2400);
       MH.sendCommand(t ? `help ${t}` : 'help', false);
       const lines = await pr;
-      out.textContent = lines.length ? lines.join('\n') : '(no help text came back)';
+      const txt = lines.join('\n').trim();
+      out.innerHTML = txt ? fmt(txt) : '<div class="hl-line">(no help text came back)</div>';
+      out.scrollTop = 0;
     };
     input.addEventListener('keydown', e => {
       if (e.key === 'Enter') show(input.value.trim());
@@ -1000,6 +1016,8 @@
   }
   async function openJournal() {
     openModal('modal-journal');
+    const jh = document.querySelector('#modal-journal .modal-head span');
+    if (jh) jh.textContent = 'QUEST JOURNAL';
     els.journalBody.innerHTML = '<div class="slot">Consulting your journal…</div>';
     let d;
     try {
@@ -2585,16 +2603,16 @@
   async function openDialogue({ name, quest }) {
     openModal('modal-dialogue');
     $('dialogue-title').textContent = name.toUpperCase();
-    els.dialogueBody.innerHTML = '<div class="slot">…</div>';
+    els.dialogueBody.innerHTML = '<div class="npc-speech slot">…</div>';
     const kw = MH.mobKeyword(name);
     const p1 = captureOutput(1300);
     MH.sendCommand(`talk ${kw}`, false);
     const talkLines = await p1;
-    let html = '';
     const said = talkLines.filter(l => l.trim() && !/^\d+\/\d+hp/.test(l) && !/^>/.test(l) && !/quest accept/i.test(l));
-    if (said.length) html += `<div style="font-style:italic;color:#d8d2bc">${said.slice(0, 10).join('<br>')}</div>`;
+    let inner = `<div class="npc-head"><canvas class="npc-portrait" width="44" height="44"></canvas>`
+      + `<div class="npc-id"><div class="npc-nm">${name}</div><div class="npc-role">${quest ? '✦ Quest Giver' : 'Townsfolk'}</div></div></div>`;
+    if (said.length) inner += `<div class="npc-speech">${said.slice(0, 10).map(l => l.replace(/</g, '&lt;')).join('<br>')}</div>`;
     if (quest) {
-      // ask the server what they're offering
       const p2 = captureOutput(1300);
       MH.sendCommand('quest', false);
       const qLines = await p2;
@@ -2605,16 +2623,22 @@
         if (id && /^[a-z0-9_]+$/i.test(id) && !offers.includes(id)) offers.push(id);
       });
       const qText = qLines.filter(l => l.trim() && !/^\d+\/\d+hp/.test(l) && !/quest accept/i.test(l) && !/^>/.test(l)).slice(0, 14);
-      if (qText.length) html += `<div style="margin-top:10px;color:#c2c8d6">${qText.join('<br>')}</div>`;
+      if (qText.length) inner += `<div class="npc-quest">${qText.map(l => l.replace(/</g, '&lt;')).join('<br>')}</div>`;
       if (offers.length) {
-        html += '<div style="margin-top:8px">'
-          + offers.map(id => `<span class="quest-btn" data-q="${id}">✦ ACCEPT: ${id.replace(/_/g, ' ')}</span>`).join('')
+        inner += '<div class="npc-actions">'
+          + offers.map(id => `<span class="quest-btn" data-q="${id}">✦ Accept: ${id.replace(/_/g, ' ')}</span>`).join('')
           + '</div>';
       } else if (quest === '?') {
-        html += `<div style="margin-top:8px"><span class="quest-btn" data-turnin="1">✔ TURN IN QUEST</span></div>`;
+        inner += `<div class="npc-actions"><span class="quest-btn turnin" data-turnin="1">✔ Turn in quest</span></div>`;
       }
     }
-    els.dialogueBody.innerHTML = html || '<div class="slot">They have nothing to say.</div>';
+    els.dialogueBody.innerHTML = `<div class="npc-dialogue">${inner}</div>`;
+    // draw the NPC's pixel portrait into the header
+    const cv = els.dialogueBody.querySelector('.npc-portrait');
+    if (cv) { const sc = MH.game && MH.game.scene.getScenes(true).find(s => s.mobPortrait); if (sc) try { sc.mobPortrait(cv, name); } catch (_) {} }
+    if (!said.length && !els.dialogueBody.querySelector('.npc-quest') && !els.dialogueBody.querySelector('.quest-btn')) {
+      els.dialogueBody.querySelector('.npc-dialogue').insertAdjacentHTML('beforeend', '<div class="npc-speech slot">They have nothing to say.</div>');
+    }
     els.dialogueBody.querySelectorAll('[data-q]').forEach(btn =>
       btn.addEventListener('click', () => {
         commandWithPeek(`quest accept ${btn.dataset.q}`);
