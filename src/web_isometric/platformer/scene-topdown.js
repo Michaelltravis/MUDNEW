@@ -1041,6 +1041,10 @@
       ent.hpbar.fillStyle(frac > 0.5 ? 0x6fd685 : frac > 0.25 ? 0xe8c168 : 0xe06c6c, 1).fillRect(x, y, 18 * frac, 2);
     }
     destroyEntity(ent) {
+      // if the thing we're targeting is being removed (it died, fled, or left),
+      // drop the target so the frame doesn't linger with stale HP and casts
+      // don't keep firing at a corpse
+      if (this.target === ent) { this.target = null; MH.bus.emit('target.clear'); }
       if (ent.patrol) ent.patrol.stop();
       if (ent.breath) ent.breath.stop();
       if (ent.wanderTween) ent.wanderTween.stop();

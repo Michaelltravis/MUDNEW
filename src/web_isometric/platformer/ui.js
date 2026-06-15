@@ -2884,6 +2884,17 @@
       MH.bus.on('move.blocked', e => {}); // scene flashes it
       MH.bus.on('chat', e => chatLine(e.line));
       MH.bus.on('target.set', setTarget);
+      // optimistic target HP: move the bar the instant a hit lands instead of
+      // waiting for the next server poll, then let target.update reconcile it
+      MH.bus.on('combat.hit', e => {
+        if (!currentTarget || e.dmg == null) return;
+        const a = MH.mobKeyword(currentTarget.name || ''), b = MH.mobKeyword(e.target || '');
+        if (!a || !b || (a !== b && !a.includes(b) && !b.includes(a))) return;
+        const max = currentTarget.maxHp || 1;
+        const hp = Math.max(0, (currentTarget.hp != null ? currentTarget.hp : max) - e.dmg);
+        currentTarget = Object.assign({}, currentTarget, { hp });
+        setTarget(currentTarget);
+      });
       // live combat log: every exchange visible at a glance
       let clogHideTimer = null;
       const clogLine = (text, cls) => {

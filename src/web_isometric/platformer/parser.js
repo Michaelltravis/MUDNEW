@@ -10,6 +10,9 @@
   const VERBS = 'hits|stings|whips|slashes|bites|bludgeons|crushes|pounds|claws|mauls|thrashes|pierces|blasts|punches|stabs|slices|cleaves|smashes';
   const HIT_DMG_FULL = new RegExp(`^Your .+? (?:${VERBS}) (.+?)! \\[(\\d+) damage\\]`, 'i');
   const HIT_DMG_COMPACT = /^You \w+ (.+?)\. \[(\d+)\]/i;
+  // spell damage: "Your spell does 21 damage to quasit!" (dmg, then target)
+  const SPELL_DMG_OUT = /^Your .*?\bdoes (\d+) damage to (.+?)!/i;
+  const SPELL_DMG_IN = /\bdoes (\d+) damage to you!/i;
   // incoming: "a janitor's scratch hits you! [3 damage]"  compact: "a janitor hits you. [3]"
   const TAKEN_DMG_FULL = new RegExp(`^(.+?)'s .+? (?:${VERBS}) you! \\[(\\d+) damage\\]`, 'i');
   const TAKEN_DMG_COMPACT = /^(.+?) \w+s? you\. \[(\d+)\]/i;
@@ -44,6 +47,16 @@
 
     if (PLAYER_DEATH.test(line)) { MH.setCombat(false); bus.emit('player.death', { line }); return; }
     if ((m = line.match(EXP_GAIN))) { bus.emit('player.exp', { amount: Number(m[1]), line }); /* fall through to MOB_DEATH below */ }
+    if ((m = line.match(SPELL_DMG_IN))) {   // check incoming before outgoing
+      MH.setCombat(true);
+      bus.emit('combat.taken', { dmg: Number(m[1]), line });
+      return;
+    }
+    if ((m = line.match(SPELL_DMG_OUT))) {
+      MH.setCombat(true);
+      bus.emit('combat.hit', { target: m[2].trim(), dmg: Number(m[1]), line });
+      return;
+    }
     if ((m = line.match(HIT_DMG_FULL)) || (m = line.match(HIT_DMG_COMPACT))) {
       MH.setCombat(true);
       bus.emit('combat.hit', { target: m[1].trim(), dmg: Number(m[2]), line });
