@@ -115,6 +115,12 @@
     heal() { [523, 784].forEach((f, i) => tone({ f, type: 'sine', dur: 0.28, vol: 0.03, delay: i * 0.06 })); },
     coin() { tone({ f: 920, f2: 1320, type: 'triangle', dur: 0.07, vol: 0.028 }); tone({ f: 1320, type: 'sine', dur: 0.06, vol: 0.02, delay: 0.05 }); },
     death() { tone({ f: 200, f2: 48, type: 'sawtooth', dur: 1.0, vol: 0.07 }); tone({ f: 120, f2: 36, type: 'sine', dur: 1.3, vol: 0.05, delay: 0.12 }); },
+    // ambient one-shots, played occasionally by zone + time of day
+    birdChirp() { [880, 1180, 990].forEach((f, i) => tone({ f, type: 'sine', dur: 0.07, vol: 0.022, delay: i * 0.07 })); },
+    cricket() { for (let i = 0; i < 3; i++) tone({ f: 2500, type: 'square', dur: 0.02, vol: 0.012, delay: i * 0.06 }); },
+    drip() { tone({ f: 900, f2: 380, type: 'sine', dur: 0.13, vol: 0.03 }); },
+    wind() { hiss({ dur: 1.3, vol: 0.028, low: true }); },
+    crackle() { hiss({ dur: 0.05, vol: 0.02, low: true }); tone({ f: 210, f2: 130, type: 'triangle', dur: 0.05, vol: 0.014 }); },
   };
   MH.sfx = sfx;
 

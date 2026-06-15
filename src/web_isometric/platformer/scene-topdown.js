@@ -59,6 +59,8 @@
       } catch (_) { /* older GPU / canvas renderer */ }
       // react to live graphics-quality changes: toggle bloom + rebuild room FX
       MH.bus.on('gfx.changed', () => this.onGfxChanged());
+      // occasional ambient sound keyed to the zone + time of day
+      this.time.addEvent({ delay: 5500, loop: true, callback: () => this.ambientSfx() });
 
       this.solids = this.physics.add.staticGroup();
       this.tileLayer = this.add.layer();
@@ -591,26 +593,53 @@
         underwater: [['cr_ground', 0x8fd0ff, 0, 4]], water_swim: [['cr_ground', 0x8fd0ff, 0, 3]], water_noswim: [['cr_ground', 0x8fd0ff, 0, 2]],
         default: [['cr_bug', 0xf0d860, 1, 2]],
       };
-      const groups = SET[th] || SET.default;
+      let groups = SET[th] || SET.default;
+      // day/night fauna swap: fireflies drift through the wilds after dark
+      const period = (MH.state.lastPayload && MH.state.lastPayload.time && MH.state.lastPayload.time.period) || 'day';
+      const night = ['night', 'midnight', 'evening', 'dusk'].includes(period);
+      const NIGHT = {
+        field: [['cr_bug', 0xc8ff70, 1, 4, true]], meadow: [['cr_bug', 0xc8ff70, 1, 4, true]],
+        hills: [['cr_bug', 0xc8ff70, 1, 3, true]], forest: [['cr_bug', 0xbfff80, 1, 4, true], ['cr_fly', 0x202028, 1, 1]],
+        elven: [['cr_bug', 0xd0ffa0, 1, 4, true]], swamp: [['cr_bug', 0x9aff80, 1, 4, true]],
+      };
+      if (night && NIGHT[th]) groups = NIGHT[th];
       const qMul = (MH.gfx && MH.gfx.quality === 'medium') ? 0.6 : 1;
       const rng = MH.mulberry32((layout.vnum ^ 0x7c1d) >>> 0);
       const m = T * 2;
-      for (const [tex, tint, fly, n] of groups) {
+      for (const [tex, tint, fly, n, glow] of groups) {
         const cnt = Math.max(1, Math.round(n * qMul));
         for (let i = 0; i < cnt; i++) {
           const x = m + rng() * (this.pxW - m * 2);
           const y = fly ? T * 1.4 + rng() * (this.pxH * 0.5) : m + rng() * (this.pxH - m * 2);
           const c = this.add.image(x, y, tex).setTint(tint).setDepth(fly ? 12 : 6)
             .setScale(fly ? 0.9 : 0.85).setAlpha(fly ? 0.92 : 0.95);
+          if (glow) {   // fireflies: additive bloom + a soft blink
+            c.setBlendMode(Phaser.BlendModes.ADD).setScale(0.7);
+            this.tweens.add({ targets: c, alpha: 0.25, duration: 900 + rng() * 700, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+          }
           // movement state, driven each frame in updateInner (robust, no tween chains)
-          c.fly = !!fly; c.baseScaleX = c.scaleX; c.flapPhase = rng() * 6.28;
-          c.spd = fly ? 28 + rng() * 22 : 18 + rng() * 14;
+          c.fly = !!fly; c.baseScaleX = c.scaleX; c.flapPhase = rng() * 6.28; c.glow = !!glow;
+          c.spd = fly ? (glow ? 14 + rng() * 12 : 28 + rng() * 22) : 18 + rng() * 14;
           c.tx = m + rng() * (this.pxW - m * 2);
           c.ty = fly ? T * 1.4 + rng() * (this.pxH * 0.5) : m + rng() * (this.pxH - m * 2);
           c.pauseUntil = 0;
           this.critters.push(c);
         }
       }
+    }
+    // occasional ambient sound: birdsong/crickets in the wilds, drips in caves,
+    // wind on the heights, and a steady crackle near a campfire
+    ambientSfx() {
+      if (!this.layout || !MH.sfx || this.dead) return;
+      const th = this.layout.theme;
+      const period = (MH.state.lastPayload && MH.state.lastPayload.time && MH.state.lastPayload.time.period) || 'day';
+      const night = ['night', 'midnight', 'evening', 'dusk'].includes(period);
+      if (this._campfire) MH.sfx.crackle();
+      if (Math.random() > 0.55) return;   // sparse, not every tick
+      if (['field', 'forest', 'hills', 'swamp', 'meadow', 'elven'].includes(th)) { if (night) MH.sfx.cricket(); else MH.sfx.birdChirp(); }
+      else if (['cave', 'dungeon', 'underground'].includes(th)) MH.sfx.drip();
+      else if (['mountain', 'desert'].includes(th)) MH.sfx.wind();
+      else if (th === 'city' && !night) MH.sfx.birdChirp();
     }
     // frame-driven critter wander (called from updateInner)
     updateCritters(now, dt) {
@@ -745,6 +774,7 @@
     // an examine/interact so wandering the room is rewarded (exploration).
     placeLandmark(layout, th) {
       if (this._landmarkGlint) { this._landmarkGlint.remove(); this._landmarkGlint = null; }
+      this._campfire = null;
       const { T, FLOOR } = TD();
       const CENTER = {
         field: ['statue', 'runestone', 'fountain', 'well', 'campfire', 'tree'],
@@ -780,6 +810,7 @@
       }
       if (!found) return;
       const baseX = lx * T + T / 2, baseY = (ly + 1) * T;
+      if (['campfire', 'brazier'].includes(name)) this._campfire = { x: baseX, y: baseY }; else this._campfire = null;
       const scale = 2.4 / MH.SMOOTH_SS;
       // shadow + glow ground and highlight it
       this.add.image(baseX, baseY - 1, 'px_shadow').setDepth(3 + baseY / 1000 - 0.01).setAlpha(0.42).setScale(0.85);
@@ -802,9 +833,18 @@
         if (pointer.rightButtonDown && pointer.rightButtonDown()) return;
         const cxp = pointer.event.clientX, cyp = pointer.event.clientY;
         const acts = [];
-        if (['fountain', 'well'].includes(name)) acts.push({ label: '🜄 Drink', fn: () => MH.sendCommand('drink') });
-        if (['brazier', 'candles', 'campfire'].includes(name)) acts.push({ label: '😴 Rest by the warmth', fn: () => MH.sendCommand('rest') });
-        if (['statue', 'runestone', 'altar'].includes(name)) acts.push({ label: '🙏 Pray', fn: () => MH.sendCommand('pray') });
+        // landmarks react when you use them — a little ceremony for the act
+        const react = kind => {
+          try {
+            const P = MH.fx && MH.fx.PAL;
+            if (kind === 'water') { if (MH.fx) MH.fx.ringShock(this, baseX, baseY - T * 0.3, 0x9fd9ff, 14, 420); this.spark(baseX, baseY - T * 0.3, 0x9fd9ff); }
+            else if (kind === 'warm') { if (MH.fx) MH.fx.risers(this, baseX, baseY - T * 0.4, P ? P.fire : { a: 0xffd060, b: 0xff8a2a }, 5); this.cameras.main.flash(140, 60, 30, 0); }
+            else if (kind === 'holy') { if (MH.fx) { MH.fx.pillar(this, baseX, baseY, P ? P.holy : { a: 0xfff6d0, b: 0xffe080 }, 90, 22); MH.fx.ringShock(this, baseX, baseY - T * 0.4, 0xffe9a8, 18, 520); } this.flashScreen(0xfff2d0, 0.22, 400); MH.bus.emit('flash', 'You feel a fleeting blessing settle over you.'); }
+          } catch (_) {}
+        };
+        if (['fountain', 'well'].includes(name)) acts.push({ label: '🜄 Drink', fn: () => { react('water'); MH.sendCommand('drink'); } });
+        if (['brazier', 'candles', 'campfire'].includes(name)) acts.push({ label: '😴 Rest by the warmth', fn: () => { react('warm'); MH.sendCommand('rest'); } });
+        if (['statue', 'runestone', 'altar'].includes(name)) acts.push({ label: '🙏 Pray', fn: () => { react('holy'); MH.sendCommand('pray'); } });
         acts.push({ label: '🔍 Search around it', fn: () => (MH.immersion && MH.immersion.runInfo ? MH.immersion.runInfo('search', 'You search') : MH.sendCommand('search')) });
         acts.push({ label: '👁 Examine', fn: () => MH.immersion && MH.immersion.propFlavor && MH.immersion.propFlavor(name) });
         if (MH.popover && acts.length) MH.popover.show(cxp, cyp, (MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name), acts);
@@ -2637,6 +2677,13 @@
         }
       }
       this.buildRoom(layout, entryDir);
+      // a brief wipe tinted to the destination zone, so arrivals feel like a
+      // place-change rather than a hard cut
+      try {
+        const zt = layout.zoneKey && MH.ZONE_THEMES ? MH.ZONE_THEMES[layout.zoneKey] : null;
+        const TINT = { forest: 0x6aff8a, field: 0xffe9a8, swamp: 0x8ab06a, cave: 0x8a90c8, dungeon: 0xb08aff, desert: 0xffd9a0, mountain: 0xcfe2ff, inside: 0xffd0a0, city: 0xffe0a0, underwater: 0x66e0ff };
+        this.flashScreen((zt && zt.glow) || TINT[layout.theme] || 0xffe9c0, 0.16, 300);
+      } catch (_) {}
       if (snap) {
         this.tweens.add({
           targets: snap, x: slide[0], y: slide[1], duration: 380, ease: 'cubic.inOut',
