@@ -431,6 +431,7 @@
       }
       this.placeGravestones(layout);
       this.placeLandmark(layout, th);
+      this.scatterClutter(layout, th);
       this.placeProse(layout);
 
       // place player
@@ -496,6 +497,66 @@
             this.tileLayer.add(e);
           }
         }
+      }
+    }
+
+    // Phase 3: denser, themed clutter (cosmetic, non-blocking) clustered near
+    // walls to fill the empty floor, plus a couple of "discovery" glints that
+    // reward wandering the room — the exploration ask. Quality-scaled.
+    scatterClutter(layout, th) {
+      const { T, FLOOR, BLOCK } = TD();
+      const CLUTTER = {
+        field: ['flowers', 'rock', 'bush', 'reeds'], forest: ['mushrooms', 'flowers', 'rock', 'bush'],
+        swamp: ['reeds', 'mushrooms', 'rock', 'bones'], hills: ['rock', 'bush', 'flowers'],
+        desert: ['rock', 'bones', 'cactus'], mountain: ['rock', 'bones'],
+        cave: ['rock', 'mushrooms', 'bones', 'crystal'], dungeon: ['rubble', 'bones', 'urn', 'web'],
+        underground: ['rubble', 'crystal', 'bones'], inside: ['crate', 'barrel', 'urn', 'bookpile'],
+        city: ['crate', 'barrel', 'urn'], default: ['rock', 'bush'],
+      };
+      const set = (CLUTTER[th] || CLUTTER.default).filter(n => this.textures.exists(`zt_prop_${n}`));
+      const pScale = (MH.gfx && MH.gfx.particleScale != null) ? MH.gfx.particleScale : 1;
+      const rng = MH.mulberry32((layout.vnum ^ 0x9e3a17) >>> 0);
+      const grid = layout.grid, W = layout.W, H = layout.H;
+      const cx = Math.floor(W / 2), cy = Math.floor(H / 2);
+      const taken = new Set((layout.props || []).map(p => `${p.x},${p.y}`));
+      if (set.length) {
+        const count = Math.round((8 + rng() * 8) * (0.4 + pScale * 0.6));
+        let placed = 0, guard = 0;
+        while (placed < count && guard++ < 240) {
+          const x = 2 + ((rng() * (W - 4)) | 0), y = 2 + ((rng() * (H - 4)) | 0);
+          if (grid[y * W + x] !== FLOOR) continue;
+          if (Math.abs(x - cx) < 3 && Math.abs(y - cy) < 3) continue;   // keep centre/landmark clear
+          if (taken.has(`${x},${y}`)) continue;
+          const nearWall = grid[(y - 1) * W + x] === BLOCK || grid[(y + 1) * W + x] === BLOCK
+            || grid[y * W + x - 1] === BLOCK || grid[y * W + x + 1] === BLOCK;
+          if (!nearWall && rng() < 0.5) continue;   // bias clutter toward walls/edges
+          taken.add(`${x},${y}`);
+          const name = set[(rng() * set.length) | 0];
+          const bx = x * T + T / 2, by = (y + 1) * T;
+          this.tileLayer.add(this.add.image(bx, by - 1, 'px_shadow').setDepth(2.5).setAlpha(0.24).setScale(0.18));
+          this.tileLayer.add(this.add.image(bx, by, `zt_prop_${name}`).setOrigin(0.5, 1)
+            .setDepth(3 + by / 1000).setScale((0.5 + rng() * 0.35) / MH.SMOOTH_SS));
+          placed++;
+        }
+      }
+      // discovery glints: faint sparkles inviting a search, rewarding wandering
+      const spots = 1 + (rng() < 0.45 ? 1 : 0);
+      for (let i = 0, g = 0; i < spots && g < 60; g++) {
+        const x = 2 + ((rng() * (W - 4)) | 0), y = 2 + ((rng() * (H - 4)) | 0);
+        if (grid[y * W + x] !== FLOOR || (Math.abs(x - cx) < 2 && Math.abs(y - cy) < 2) || taken.has(`${x},${y}`)) continue;
+        taken.add(`${x},${y}`);
+        i++;
+        const gx = x * T + T / 2, gy = y * T + T / 2;
+        const glint = this.add.image(gx, gy, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+          .setAlpha(0.0).setScale(0.12).setTint(0xffe9a8).setDepth(4).setInteractive({ useHandCursor: true });
+        this.tweens.add({ targets: glint, alpha: 0.5, scale: 0.2, duration: 700, yoyo: true, repeat: -1, repeatDelay: 2600, ease: 'sine.inOut' });
+        glint.on('pointerdown', () => {
+          this.spark(gx, gy, 0xffe9a8);
+          if (MH.immersion && MH.immersion.runInfo) MH.immersion.runInfo('search', 'You search the spot');
+          else MH.sendCommand('search');
+        });
+        glint.on('pointerover', () => MH.bus.emit('flash', 'Something glints here — click to search'));
+        this.fxList && this.fxList.push(glint);
       }
     }
 
