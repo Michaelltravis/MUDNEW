@@ -130,6 +130,37 @@
         sx.arc(0, 0, 30, 0, 7); sx.fill(); sx.restore();
         this.textures.addCanvas('px_shadow', sc);
       }
+      // ground-detail decals (white, tinted to the theme at placement) used to
+      // break up the flat tile grid — pebbles, grass blades, cracks, patches
+      const mkTex = (key, w, h, draw) => {
+        if (this.textures.exists(key)) return;
+        const c = document.createElement('canvas'); c.width = w; c.height = h;
+        draw(c.getContext('2d')); this.textures.addCanvas(key, c);
+      };
+      mkTex('gd_speck', 16, 16, g => {
+        g.fillStyle = '#fff';
+        const pts = [[3, 4], [9, 3], [6, 9], [12, 11], [4, 12], [11, 6]];
+        for (const [px, py] of pts) g.fillRect(px, py, 1 + (px % 2), 1 + (py % 2));
+      });
+      mkTex('gd_blades', 16, 16, g => {
+        g.strokeStyle = '#fff'; g.lineWidth = 1;
+        for (const bx of [4, 7, 9, 12]) { g.beginPath(); g.moveTo(bx, 15); g.lineTo(bx + (bx % 3) - 1, 15 - (5 + bx % 4)); g.stroke(); }
+      });
+      mkTex('gd_crack', 20, 20, g => {
+        g.strokeStyle = '#fff'; g.lineWidth = 1;
+        g.beginPath(); g.moveTo(2, 5); g.lineTo(8, 9); g.lineTo(6, 14); g.lineTo(13, 12); g.lineTo(18, 16); g.stroke();
+      });
+      mkTex('gd_patch', 24, 24, g => {
+        const rg = g.createRadialGradient(12, 12, 1, 12, 12, 12);
+        rg.addColorStop(0, 'rgba(255,255,255,0.9)'); rg.addColorStop(1, 'rgba(255,255,255,0)');
+        g.fillStyle = rg; g.beginPath(); g.arc(12, 12, 12, 0, 7); g.fill();
+      });
+      // soft directional edge-shadow strip (dark → transparent) to ground walls
+      mkTex('gd_edge', 32, 24, g => {
+        const lg = g.createLinearGradient(0, 0, 0, 24);
+        lg.addColorStop(0, 'rgba(0,0,0,0.42)'); lg.addColorStop(1, 'rgba(0,0,0,0)');
+        g.fillStyle = lg; g.fillRect(0, 0, 32, 24);
+      });
       this.playerShadow = this.add.image(this.player.x, this.player.y, 'px_shadow')
         .setDepth(5).setAlpha(0.4).setScale(0.34);
       this.nightTint = this.add.rectangle(0, 0, this.pxW, this.pxH, 0x101830, 0).setOrigin(0, 0).setDepth(42);
@@ -286,6 +317,9 @@
           }
         }
       }
+      // scatter ground detail + ground the walls with edge shadows
+      this.decorateGround(layout, th);
+
       // swimmable rooms get a translucent water wash over the whole floor
       if (layout.swim) {
         const wash = this.add.rectangle(0, 0, this.pxW, this.pxH, 0x1a4a7a, 0.35).setOrigin(0, 0).setDepth(2);
@@ -348,6 +382,9 @@
           ? ['sm_prop_lamp', 'sm_prop_crate', 'sm_prop_crate']
           : ['sm_prop_crate', 'sm_prop_lamp', 'sm_prop_bush'];
       for (const prop of layout.props) {
+        // drop-shadow grounds every prop on the floor
+        this.tileLayer.add(this.add.image(prop.x * T + T / 2, (prop.y + 1) * T - 1, 'px_shadow')
+          .setDepth(2.5).setAlpha(0.3).setScale(0.26 * (prop.scale || 1)));
         if (prop.name && this.textures.exists(`zt_prop_${prop.name}`)) {
           const img = this.add.image(prop.x * T + T / 2, (prop.y + 1) * T, `zt_prop_${prop.name}`)
             .setOrigin(0.5, 1).setDepth(3).setScale((prop.scale || 1) / MH.SMOOTH_SS);
@@ -407,6 +444,58 @@
 
       this.darkRT.setVisible(!!layout.dark);
       MH.bus.emit('zone.theme', { zoneKey: layout.zoneKey, theme: layout.theme, dark: !!layout.dark });
+    }
+
+    // Phase 1 room richness: scatter themed ground detail over the flat tile
+    // grid (grass, pebbles, cracks, mossy patches) and lay soft edge-shadows
+    // where the floor meets walls/obstacles, so the room reads as a real place.
+    decorateGround(layout, th) {
+      const { T, FLOOR, BLOCK } = TD();
+      const DECO = {
+        field:    { tex: ['gd_blades', 'gd_speck', 'gd_patch'], tint: [0x6e8a4a, 0x8a7a4a], density: 0.20 },
+        forest:   { tex: ['gd_blades', 'gd_patch', 'gd_speck'], tint: [0x4c7a3c, 0x6a5a3a], density: 0.24 },
+        swamp:    { tex: ['gd_patch', 'gd_blades', 'gd_speck'], tint: [0x5a6a3a, 0x4a5a4a], density: 0.22 },
+        hills:    { tex: ['gd_blades', 'gd_speck'], tint: [0x7a8a4a, 0x8a7a50], density: 0.18 },
+        desert:   { tex: ['gd_speck', 'gd_crack'], tint: [0xc9a35a, 0xb8924a], density: 0.15 },
+        mountain: { tex: ['gd_crack', 'gd_speck'], tint: [0x8a90a0, 0x6a7080], density: 0.16 },
+        cave:     { tex: ['gd_crack', 'gd_speck', 'gd_patch'], tint: [0x5a5060, 0x6a5a4a], density: 0.20 },
+        dungeon:  { tex: ['gd_crack', 'gd_speck'], tint: [0x4a4458, 0x5a5060], density: 0.18 },
+        underground: { tex: ['gd_crack', 'gd_speck'], tint: [0x4a4458, 0x5a5060], density: 0.18 },
+        inside:   { tex: ['gd_speck', 'gd_patch'], tint: [0x6a5a3a, 0x5a5048], density: 0.10 },
+        city:     { tex: ['gd_speck', 'gd_crack'], tint: [0x6a6258, 0x7a7068], density: 0.10 },
+        default:  { tex: ['gd_speck', 'gd_patch'], tint: [0x6a6458, 0x5a5448], density: 0.12 },
+      };
+      const cfg = DECO[th] || DECO.default;
+      const rng = MH.mulberry32((layout.vnum ^ 0x5bd1e9) >>> 0);
+      const grid = layout.grid, W = layout.W, H = layout.H;
+      const isFloor = (x, y) => x >= 0 && y >= 0 && x < W && y < H && grid[y * W + x] === FLOOR;
+      const isBlock = (x, y) => x < 0 || y < 0 || x >= W || y >= H || grid[y * W + x] === BLOCK;
+      for (let y = 1; y < H - 1; y++) {
+        for (let x = 1; x < W - 1; x++) {
+          if (!isFloor(x, y)) continue;
+          // scatter detail decals
+          if (rng() < cfg.density) {
+            const tex = cfg.tex[(rng() * cfg.tex.length) | 0];
+            const tint = cfg.tint[(rng() * cfg.tint.length) | 0];
+            const d = this.add.image(x * T + 2 + rng() * (T - 4), y * T + 2 + rng() * (T - 4), tex)
+              .setDepth(0.4).setAlpha(0.18 + rng() * 0.22).setTint(tint)
+              .setScale(0.5 + rng() * 0.7).setRotation(tex === 'gd_blades' ? 0 : rng() * 6.28);
+            this.tileLayer.add(d);
+          }
+          // edge shadows against adjacent walls/obstacles, grounding them
+          const sides = [[0, -1, 0], [0, 1, 180], [-1, 0, 270], [1, 0, 90]];
+          for (const [dx, dy, deg] of sides) {
+            if (!isBlock(x + dx, y + dy)) continue;
+            const e = this.add.image(x * T + T / 2, y * T + T / 2, 'gd_edge')
+              .setDisplaySize(T, T * 0.7).setOrigin(0.5, 0).setDepth(0.6).setAlpha(0.55)
+              .setAngle(deg);
+            // origin pin: rotate around centre then shove to the wall side
+            e.x = x * T + T / 2 + dx * (T / 2);
+            e.y = y * T + T / 2 + dy * (T / 2);
+            this.tileLayer.add(e);
+          }
+        }
+      }
     }
 
     // Ori-style mood pass: themed light pools, god rays, drifting motes.
