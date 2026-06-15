@@ -172,9 +172,17 @@
         b.onclick = () => { MH.popover.hide(); a.fn(); };
         pop.appendChild(b);
       }
-      pop.style.left = Math.min(x, window.innerWidth - 170) + 'px';
-      pop.style.top = Math.min(y, window.innerHeight - 40 - actions.length * 30) + 'px';
+      // anchor the bubble centred on the object, floating just above it —
+      // or just below if there isn't room above
       pop.classList.add('show');
+      const r = pop.getBoundingClientRect();
+      const w = r.width || 150, h = r.height || (40 + actions.length * 30);
+      let left = x - w / 2;
+      left = Math.max(8, Math.min(left, window.innerWidth - w - 8));
+      let top = y - h - 14;                       // prefer above the object
+      if (top < 8) top = Math.min(y + 18, window.innerHeight - h - 8);   // flip below
+      pop.style.left = left + 'px';
+      pop.style.top = top + 'px';
       clearTimeout(popTimer);
       popTimer = setTimeout(() => MH.popover.hide(), 8000);
       setTimeout(() => document.addEventListener('pointerdown', onAway, { once: true }), 0);

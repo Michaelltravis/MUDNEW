@@ -309,7 +309,7 @@
     } else if (cmd === 'quests' || cmd === 'journal') {
       openJournal();
     } else if (cmd === 'score') {
-      openTextPanel('score');
+      openScore();
     } else if (cmd === 'look') {
       if (lastRoomShown) showRoom(lastRoomShown.room, lastRoomShown.zoneName);
       commandWithPeek('look');
@@ -545,12 +545,16 @@
   }
 
   // rich corner toast for achievements / daily / title unlocks
-  function toast(title, body, kind) {
+  function toast(title, body, kind, onClick) {
     let host = document.getElementById('toast-host');
     if (!host) { host = document.createElement('div'); host.id = 'toast-host'; document.body.appendChild(host); }
     const t = document.createElement('div');
     t.className = 'mh-toast ' + (kind || '');
     t.innerHTML = `<div class="tt-t">${title}</div><div class="tt-b">${body}</div>`;
+    if (onClick) {
+      t.style.cursor = 'pointer';
+      t.addEventListener('click', () => { onClick(); t.classList.remove('in'); setTimeout(() => t.remove(), 400); });
+    }
     host.appendChild(t);
     requestAnimationFrame(() => t.classList.add('in'));
     setTimeout(() => { t.classList.remove('in'); setTimeout(() => t.remove(), 400); }, 5200);
@@ -859,6 +863,50 @@
       });
       el.addEventListener('dragend', () => document.body.classList.remove('skill-drag'));
     });
+  }
+
+  // a proper, structured character sheet built from the live player block —
+  // no more raw MUD-text dump in the journal modal
+  function openScore() {
+    renderScore();
+    openModal('modal-score');
+  }
+  function renderScore() {
+    const p = MH.state.player || {};
+    const body = $('score-body');
+    if (!body) return;
+    const cap = s => String(s || '').replace(/\b\w/g, c => c.toUpperCase());
+    const bar = (cls, v, max, label) => {
+      const pct = max > 0 ? Math.max(0, Math.min(100, (v / max) * 100)) : 0;
+      return `<div class="sc-bar ${cls}"><i style="width:${pct}%"></i><b>${label}</b></div>`;
+    };
+    const stat = (k, v) => `<div class="sc-stat"><div class="v">${v != null ? v : '—'}</div><div class="k">${k}</div></div>`;
+    const row = (k, v) => `<div class="sc-row"><span class="rk">${k}</span><span class="rv">${v}</span></div>`;
+    const xpHave = (p.exp || 0) - (p.exp_floor || 0);
+    const xpNeed = (p.exp_to_level || 0) - (p.exp_floor || 0);
+    const xpOk = xpNeed > 0 && xpHave >= 0 && xpNeed < 1e12;
+    const res = p.resource;
+    let html = `<div class="sc-hd"><div class="sc-name">${p.name || 'Adventurer'}${p.title ? `<span class="sc-sub"> ${p.title}</span>` : ''}</div>`
+      + `<div class="sc-sub">Level ${p.level || 1} · ${cap(p.race) || 'Adventurer'} ${cap(p.char_class)}</div></div>`;
+    html += `<div class="sc-vitals">`
+      + bar('hp', p.hp, p.max_hp, `Health ${p.hp || 0} / ${p.max_hp || 0}`)
+      + bar('mana', p.mana, p.max_mana, `Mana ${p.mana || 0} / ${p.max_mana || 0}`)
+      + bar('move', p.move, p.max_move, `Stamina ${p.move || 0} / ${p.max_move || 0}`)
+      + bar('xp', xpOk ? xpHave : 1, xpOk ? xpNeed : 1, xpOk ? `XP ${xpHave.toLocaleString()} / ${xpNeed.toLocaleString()} to next level` : 'Experience · max level')
+      + `</div>`;
+    html += `<div class="sc-grid">`
+      + stat('STR', p.str) + stat('INT', p.int) + stat('WIS', p.wis)
+      + stat('DEX', p.dex) + stat('CON', p.con) + stat('CHA', p.cha) + `</div>`;
+    html += `<div class="sc-sec">Combat</div><div class="sc-rows">`
+      + row('Hitroll', `+${p.hitroll || 0}`) + row('Damroll', `+${p.damroll || 0}`)
+      + row('Armor Class', p.armor_class != null ? p.armor_class : '—')
+      + row('Stance', cap(p.position) || 'Standing')
+      + (res && res.name ? row(res.name, `${res.value || 0}${res.max ? ' / ' + res.max : ''}`) : '')
+      + `</div>`;
+    html += `<div class="sc-sec">Wealth</div><div class="sc-rows">`
+      + row('Gold', `${p.gold || 0}`)
+      + `</div>`;
+    body.innerHTML = html;
   }
 
   async function openTextPanel(cmd) {
@@ -2690,7 +2738,7 @@
         setTimeout(async () => {
           try {
             const a = await (await fetch(`/almanac?player=${encodeURIComponent(MH.state.playerName)}`)).json();
-            if (a.daily && !a.daily.claimed_today) toast('🌟 Daily reward ready', 'Press Y to claim · streak ' + a.daily.streak, 'daily');
+            if (a.daily && !a.daily.claimed_today) toast('🌟 Daily reward ready', 'Click to claim · streak ' + a.daily.streak, 'daily', () => openAlmanac('daily'));
           } catch (_) {}
         }, 2500);
       });
@@ -3358,6 +3406,14 @@
           return;
         }
         if (e.key === '`' || e.key === '~') { e.preventDefault(); els.drawer.classList.toggle('open'); return; }
+        // pressing a panel's own hotkey again closes it (toggle)
+        {
+          const tk = e.key.toLowerCase();
+          const KEY_MODAL = { i: 'modal-inv', j: 'modal-journal', k: 'modal-spells', n: 'modal-spells',
+            y: 'modal-almanac', b: 'modal-services', c: 'modal-stable', l: 'modal-legend', v: 'modal-travel' };
+          const mid = KEY_MODAL[tk];
+          if (mid) { const el = document.getElementById(mid); if (el && el.classList.contains('open')) { closeModals(); return; } }
+        }
         if (anyModalOpen()) return;
         // Shift+WASD = compass move, Shift+Q/E = up/down
         if (e.shiftKey) {

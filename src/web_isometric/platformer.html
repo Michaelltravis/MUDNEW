@@ -262,6 +262,27 @@
   .cmp.portal:hover { background: #2a2040; }
   #compass .spacer { background: transparent; border: none; }
 
+  /* ---- character / score sheet ---- */
+  #score-body { font-family: var(--ui-font); }
+  .sc-hd { text-align: center; margin-bottom: 12px; }
+  .sc-hd .sc-name { font-family: Georgia, serif; font-size: 20px; color: #ffe9a8; }
+  .sc-hd .sc-sub { font-size: 12px; color: #9aa0b4; margin-top: 2px; }
+  .sc-vitals { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+  .sc-bar { position: relative; height: 18px; border-radius: 5px; background: #0a0b10; border: 1px solid #000; overflow: hidden; }
+  .sc-bar > i { display: block; height: 100%; transition: width .3s; }
+  .sc-bar.hp > i { background: linear-gradient(#7fe09a, #3f9e5c); }
+  .sc-bar.mana > i { background: linear-gradient(#5a8ae8, #2f5ab8); }
+  .sc-bar.move > i { background: linear-gradient(#e8c168, #b8932f); }
+  .sc-bar.xp > i { background: linear-gradient(#d4a017, #ffe9a8); }
+  .sc-bar > b { position: absolute; inset: 0; text-align: center; font-size: 10px; line-height: 18px; color: #fff; text-shadow: 0 1px 2px #000; font-weight: 600; }
+  .sc-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; margin-bottom: 14px; }
+  .sc-stat { background: rgba(16,19,30,.7); border: 1px solid rgba(140,150,180,.16); border-radius: 8px; padding: 7px 4px; text-align: center; }
+  .sc-stat .v { font-size: 18px; color: #e6e2d6; font-weight: 700; font-family: Georgia, serif; }
+  .sc-stat .k { font-size: 9px; color: #8a90a4; letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+  .sc-sec { font-size: 10px; color: #8a90a4; letter-spacing: 2px; text-transform: uppercase; margin: 4px 0 7px; border-top: 1px solid rgba(140,150,180,.14); padding-top: 8px; }
+  .sc-rows { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; }
+  .sc-row { display: flex; justify-content: space-between; font-size: 12px; }
+  .sc-row .rk { color: #aab2c4; } .sc-row .rv { color: #ffe9a8; font-weight: 600; }
   /* ---- mob tooltip ---- */
   #mob-tip {
     position: absolute; z-index: 45; display: none; pointer-events: none;
@@ -1564,6 +1585,10 @@
   <div class="modal" id="modal-journal">
     <div class="modal-head"><span>QUEST JOURNAL</span><span class="x" data-close="modal-journal">✕</span></div>
     <div class="modal-body" id="journal-body"></div>
+  </div>
+  <div class="modal" id="modal-score">
+    <div class="modal-head"><span>CHARACTER</span><span class="x" data-close="modal-score">✕</span></div>
+    <div class="modal-body" id="score-body"></div>
   </div>
   <div class="modal" id="modal-dialogue">
     <div class="modal-head"><span id="dialogue-title">DIALOGUE</span><span class="x" data-close="modal-dialogue">✕</span></div>
