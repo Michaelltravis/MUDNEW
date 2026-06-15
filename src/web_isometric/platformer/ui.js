@@ -3474,6 +3474,11 @@
       // command input
       els.commandInput.addEventListener('focus', () => setTyping(true));
       els.commandInput.addEventListener('blur', () => setTyping(false));
+      // catch-all: ANY editable element (login, creation, chat, command, future)
+      // pauses world input + key capture so letters like WASD reach the field
+      const isEditable = el => !!el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable);
+      document.addEventListener('focusin', e => { if (isEditable(e.target)) setTyping(true); });
+      document.addEventListener('focusout', e => { if (isEditable(e.target)) setTyping(false); });
       els.commandInput.addEventListener('keydown', e => {
         e.stopPropagation();
         if (e.key === 'Enter') {

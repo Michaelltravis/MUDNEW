@@ -290,7 +290,12 @@
       MH.bus.on('player.death', () => this.fxPlayerDeath());
       MH.bus.on('level.up', () => this.fxLevelUp());
       MH.bus.on('move.blocked', e => this.onMoveBlocked(e));
-      MH.bus.on('ui.typing', on => { this.input.keyboard.enabled = !on; });
+      MH.bus.on('ui.typing', on => {
+        this.input.keyboard.enabled = !on;
+        // enabled=false alone doesn't stop Phaser preventDefaulting WASD/arrows/
+        // space, which would swallow them from text fields — toggle capture too
+        try { if (on) this.input.keyboard.disableGlobalCapture(); else this.input.keyboard.enableGlobalCapture(); } catch (_) {}
+      });
       MH.bus.on('chat', e => this.fxChatBubble(e));
       MH.bus.on('ambient.candidate', e => this.fxAmbient(e));
 
@@ -3109,7 +3114,10 @@
       // unless a window deliberately froze the world
       if (!this.input.keyboard.enabled && !MH.state.uiFrozen) {
         const a = document.activeElement;
-        if (!a || a === document.body || a.tagName === 'CANVAS') this.input.keyboard.enabled = true;
+        if (!a || a === document.body || a.tagName === 'CANVAS') {
+          this.input.keyboard.enabled = true;
+          try { this.input.keyboard.enableGlobalCapture(); } catch (_) {}
+        }
       }
       // combat flag with no living opponent in the room clears itself
       if (MH.state.inCombat) {
