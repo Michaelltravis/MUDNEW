@@ -34,6 +34,14 @@
   const NOT_HERE = /they aren'?t here|you do not see that here|kill who/i;
   const SLEEP_LINE = /^You go to sleep|^You wake|^You stand up|^You sit down|^You rest/i;
   const GOLD_LINE = /you (?:get|receive|find) (\d+) (?:gold )?coins?/i;
+  // consumables & gear feedback (no UI cue today)
+  const EAT_LINE = /^You eat (.+?)\.?$/i;
+  const STILL_HUNGRY = /^You eat but are still hungry/i;
+  const DRINK_FROM = /^You drink (?:(.+?) )?from (.+?)\.?$/i;
+  const WEAR_LINE = /^You (?:wear|hold|grip|light) (.+?)\.?$/i;
+  const WIELD_LINE = /^You (?:wield|off-hand|sling) (.+?)\.?$/i;
+  const UNEQUIP_LINE = /^You (?:remove|stop using|unwield) (.+?)\.?$/i;
+  const LIGHT_KW = /torch|lantern|lamp|candle|brazier|glow|light|lume|flame|ember|fire(?:fly|brand)|crystal|star|beacon/i;
 
   MH.parseLine = function parseLine(msg) {
     let line = typeof msg === 'string' ? msg : msg.line;
@@ -102,6 +110,17 @@
     if (CAST_START.test(line)) { bus.emit('combat.cast', { line }); return; }
     if (HEAL.test(line)) { bus.emit('player.heal', { line }); return; }
     if ((m = line.match(GOLD_LINE))) { bus.emit('player.gold', { amount: Number(m[1]), line }); return; }
+    if (STILL_HUNGRY.test(line)) { bus.emit('item.consume', { kind: 'eat', sated: false, line }); return; }
+    if ((m = line.match(EAT_LINE))) { bus.emit('item.consume', { kind: 'eat', item: m[1].trim(), line }); MH.refreshState(); return; }
+    if ((m = line.match(DRINK_FROM))) { bus.emit('item.consume', { kind: 'drink', liquid: (m[1] || '').trim(), item: m[2].trim(), line }); MH.refreshState(); return; }
+    if ((m = line.match(WIELD_LINE))) { bus.emit('item.equip', { slot: 'wield', item: m[1].trim(), line }); MH.refreshState(); return; }
+    if ((m = line.match(WEAR_LINE))) {
+      const item = m[1].trim();
+      bus.emit('item.equip', { slot: LIGHT_KW.test(item) ? 'light' : 'wear', item, line });
+      MH.refreshState();
+      return;
+    }
+    if ((m = line.match(UNEQUIP_LINE))) { bus.emit('item.unequip', { item: m[1].trim(), line }); MH.refreshState(); return; }
     if ((m = line.match(DOOR_OPENED))) { bus.emit('door.opened', { name: m[1], line }); MH.refreshState(); return; }
     if (SLEEP_LINE.test(line)) { bus.emit('player.posture', { line }); return; }
     if (CHAT.test(line)) { bus.emit('chat', { line }); return; }

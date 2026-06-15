@@ -667,6 +667,9 @@
     box-shadow: 0 18px 60px rgba(0, 0, 0, 0.6);
   }
   .modal.open { animation: modalin 0.18s cubic-bezier(0.2, 0.9, 0.3, 1.2); }
+  /* once dragged, hold the parked position instead of re-centering */
+  .modal.dragged, .modal.dragged.open, .modal.dragged.closing { animation: none !important; transform: none !important; }
+  #combat-log.dragged, #chat-panel.dragged { transform: none !important; }
   @keyframes modalin {
     from { opacity: 0; transform: translate(-50%, -50%) scale(0.94); }
     to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
@@ -1293,6 +1296,8 @@
   .mh-toast.tip { border-color: rgba(90,138,232,0.5); box-shadow: 0 0 18px rgba(90,138,232,0.2); }
   .mh-toast .tt-t { font-size: 12px; color: #ffe9a8; font-weight: 600; letter-spacing: 0.5px; }
   .mh-toast .tt-b { font-size: 12px; color: #d6dae6; margin-top: 3px; }
+  .mh-toast.item { min-width: 0; padding: 7px 12px; border-color: rgba(232,193,104,0.4); box-shadow: 0 4px 14px rgba(0,0,0,0.45); }
+  .mh-toast.item .tt-b:empty { display: none; }
 
   /* ---- almanac: daily / achievements / titles / collections ---- */
   .alm-daily { display: flex; flex-direction: column; gap: 10px; font-family: var(--ui-font); }

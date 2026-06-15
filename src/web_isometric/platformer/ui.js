@@ -693,6 +693,71 @@
     'modal-journal': ['quests'],
     'modal-shop': ['list'],
   };
+  // ---- draggable panels (modals + combat log) ----
+  // Headers become drag handles; position is converted to explicit left/top
+  // (overriding any !important corner anchoring) and persisted per-panel so a
+  // reopened panel stays where the player parked it.
+  const DRAG_POS = {};
+  function makeDraggable(el, handle) {
+    if (!el || !handle || handle.dataset.drag) return;
+    handle.dataset.drag = '1';
+    handle.style.cursor = 'move';
+    handle.style.userSelect = 'none';
+    const stage = () => el.offsetParent || document.getElementById('game-root') || document.body;
+    // restore a saved position when the panel becomes visible
+    const applySaved = () => {
+      const p = DRAG_POS[el.id];
+      if (!p) return;
+      el.classList.add('dragged');
+      el.style.setProperty('left', p.x + 'px', 'important');
+      el.style.setProperty('top', p.y + 'px', 'important');
+      el.style.setProperty('right', 'auto', 'important');
+      el.style.setProperty('bottom', 'auto', 'important');
+      el.style.setProperty('transform', 'none', 'important');
+    };
+    el._restoreDrag = applySaved;
+    handle.addEventListener('pointerdown', e => {
+      // let the close button, tools and any control inside the header work
+      if (e.target.closest('.x, .clog-tools, button, input, select, textarea, [data-close], [data-tab], a')) return;
+      if (e.button !== 0) return;
+      const r = el.getBoundingClientRect();
+      const sr = stage().getBoundingClientRect();
+      const offX = e.clientX - r.left, offY = e.clientY - r.top;
+      el.classList.add('dragged');
+      el.style.setProperty('transform', 'none', 'important');
+      el.style.setProperty('right', 'auto', 'important');
+      el.style.setProperty('bottom', 'auto', 'important');
+      const move = ev => {
+        let x = ev.clientX - sr.left - offX;
+        let y = ev.clientY - sr.top - offY;
+        x = Math.max(2, Math.min(x, sr.width - r.width - 2));
+        y = Math.max(2, Math.min(y, sr.height - r.height - 2));
+        el.style.setProperty('left', x + 'px', 'important');
+        el.style.setProperty('top', y + 'px', 'important');
+        DRAG_POS[el.id] = { x, y };
+      };
+      const up = () => {
+        window.removeEventListener('pointermove', move);
+        window.removeEventListener('pointerup', up);
+        document.body.style.cursor = '';
+      };
+      document.body.style.cursor = 'move';
+      window.addEventListener('pointermove', move);
+      window.addEventListener('pointerup', up);
+      e.preventDefault();
+    });
+  }
+  function setupDraggables() {
+    document.querySelectorAll('.modal').forEach(m => {
+      const h = m.querySelector('.modal-head');
+      if (h) makeDraggable(m, h);
+    });
+    const cl = document.getElementById('combat-log');
+    if (cl) makeDraggable(cl, cl.querySelector('.head'));
+    const chat = document.getElementById('chat-panel');
+    if (chat) { const ch = chat.querySelector('#chat-tabs, .chat-head, .head'); if (ch) makeDraggable(chat, ch); }
+  }
+
   function openModal(id) {
     const already = anyModalOpen();
     closeModals(true);
@@ -2687,6 +2752,9 @@
         welcomeOverlay: $('welcome-overlay'), welcomeBody: $('welcome-body'), welcomeGo: $('welcome-go'),
       });
 
+      // panels (modals + combat log + chat) can be dragged by their headers
+      setupDraggables();
+
       // login
       const savedName = lsGet(NAME_KEY), savedPw = lsGet(PW_KEY);
       if (savedName) els.loginName.value = savedName;
@@ -3084,6 +3152,11 @@
         cl.classList.add('show');
         if (nearBottom) cl.scrollTop = cl.scrollHeight;
       };
+      // compact action toast (eat/drink/equip) + mirror into the combat log
+      const itemToast = (icon, label, name, logText) => {
+        toast(`${icon} ${label}`, name || '', 'item');
+        clogLine(logText || label, 'info');
+      };
       // header tools: clear + collapse
       const clogClear = $('clog-clear'), clogCollapse = $('clog-collapse');
       if (clogClear) clogClear.addEventListener('click', e => { e.stopPropagation(); els.combatLogLines.innerHTML = ''; });
@@ -3106,6 +3179,26 @@
       MH.bus.on('level.up', () => clogLine('★ You gain a level!', 'info'));
       MH.bus.on('player.gold', e => clogLine(`+${e.amount} gold`, 'info'));
       MH.bus.on('mob.death', e => clogLine(`${e.name || 'It'} dies!`, 'info'));
+      // consumables & gear: brief corner toast + combat-log line + sfx
+      const titleCase = s => (s || '').replace(/^(a|an|the)\s+/i, '').replace(/\b\w/g, c => c.toUpperCase());
+      MH.bus.on('item.consume', e => {
+        if (e.kind === 'eat') {
+          if (e.sated === false && !e.item) { itemToast('🍽', 'Still hungry', null, 'You eat but are still hungry'); return; }
+          itemToast('🍖', 'You eat', e.item, `You eat ${e.item}`);
+        } else {
+          const what = e.liquid ? `${e.liquid}` : 'a drink';
+          itemToast('🍷', 'You drink', e.liquid ? e.liquid : (e.item || ''), `You drink ${what}`);
+        }
+        if (MH.sfx && MH.sfx.ui) MH.sfx.ui();
+      });
+      MH.bus.on('item.equip', e => {
+        const nm = titleCase(e.item);
+        if (e.slot === 'light') { itemToast('🔆', 'Light source held', nm, `You hold ${e.item} aloft`); }
+        else if (e.slot === 'wield') { itemToast('⚔', 'Weapon ready', nm, `You wield ${e.item}`); }
+        else { itemToast('🛡', 'Equipped', nm, `You wear ${e.item}`); }
+        if (MH.sfx && MH.sfx.ui) MH.sfx.ui();
+      });
+      MH.bus.on('item.unequip', e => { itemToast('🎒', 'Unequipped', titleCase(e.item), `You remove ${e.item}`); if (MH.sfx && MH.sfx.uiBack) MH.sfx.uiBack(); });
       MH.bus.on('player.exp', e => clogLine(`+${e.amount} experience`, 'info'));
       MH.bus.on('combat.flee', () => clogLine('You flee!', 'info'));
       MH.bus.on('combat.state', on => { duelShow(on); });
