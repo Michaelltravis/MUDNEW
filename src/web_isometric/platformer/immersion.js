@@ -275,6 +275,8 @@
     const more = [
       { label: 'Where am I', fn: () => MH.immersion.runInfo('where', 'Who is where') },
       { label: 'Who is online', fn: () => MH.immersion.runInfo('who', 'Who is online') },
+      { label: 'Channels', fn: () => MH.immersion.runInfo('channel list', 'Channels') },
+      { label: 'Your group', fn: () => MH.immersion.runInfo('group', 'Your group') },
       { label: 'Sleep', fn: () => send('sleep') },
       { label: 'Time & weather', fn: () => MH.immersion.runInfo('time', 'Time & weather') },
       { label: 'Save', fn: () => send('save') },

@@ -2785,6 +2785,10 @@
           tab.classList.add('active');
           activeTab = tab.dataset.tab;
           if (unread[activeTab] !== undefined) unread[activeTab] = 0;
+          // opening Channels/Party issues the matching command server-side so
+          // the social beginner quests count from the UI too
+          if (activeTab === 'channel') { try { MH.sendCommand('channel list', false); } catch (_) {} }
+          else if (activeTab === 'party') { try { MH.sendCommand('group', false); } catch (_) {} }
           renderChatBody();
           updateBadges();
         });
