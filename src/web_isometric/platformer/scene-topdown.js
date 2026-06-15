@@ -45,15 +45,16 @@
       // cinematic grade + bloom (WebGL only): falls back gracefully on canvas
       try {
         if (this.cameras.main.postFX) {
-          this.cameras.main.postFX.addVignette(0.5, 0.5, 1.0, 0.30);
+          this.cameras.main.postFX.addVignette(0.5, 0.5, 1.0, 0.22);
           // bloom makes bright FX (fire/holy/lightning) and light sources glow
-          // (the heaviest postFX — gated by graphics quality)
+          // (the heaviest postFX — gated by graphics quality). Kept gentle so it
+          // accents lights instead of washing the whole scene into haze.
           if (!MH.gfx || MH.gfx.bloom) {
-            this.bloomFx = this.cameras.main.postFX.addBloom(0xffffff, 1, 1, 1.05, 0.85, 6);
+            this.bloomFx = this.cameras.main.postFX.addBloom(0xffffff, 1, 1, 0.7, 0.5, 5);
           }
           const cm = this.cameras.main.postFX.addColorMatrix();
           cm.saturate(0.18, true);
-          cm.contrast(0.06, true);
+          cm.contrast(0.12, true);
           this.gradeFx = cm;
         }
       } catch (_) { /* older GPU / canvas renderer */ }
@@ -891,10 +892,10 @@
           this.tweens.add({ targets: fx, alpha: fx.alpha + 0.03, duration: 3000 + rng() * 2000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
           this.pxFar.add(fx);
         }
-        for (let i = 0; i < 3; i++) {
+        for (let i = 0; i < 2; i++) {
           const nx = this.add.image(rng() * this.pxW, rng() * this.pxH, 'fx_glow')
-            .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.025 + rng() * 0.03)
-            .setScale(2.4 + rng() * 1.8).setTint(glowTint);
+            .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.015 + rng() * 0.02)
+            .setScale(1.8 + rng() * 1.2).setTint(glowTint);
           this.tweens.add({ targets: nx, x: nx.x + (rng() - 0.5) * 40, duration: 5000 + rng() * 3000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
           this.pxNear.add(nx);
         }
@@ -2938,7 +2939,7 @@
         const pfx = this.cameras.main.postFX;
         if (pfx) {
           if (MH.gfx.bloom && !this.bloomFx) {
-            this.bloomFx = pfx.addBloom(0xffffff, 1, 1, 1.05, 0.85, 6);
+            this.bloomFx = pfx.addBloom(0xffffff, 1, 1, 0.7, 0.5, 5);
             this._gradeKey = null;   // re-apply bloom tint
           } else if (!MH.gfx.bloom && this.bloomFx) {
             pfx.remove(this.bloomFx); this.bloomFx = null;
@@ -3012,6 +3013,11 @@
       else if (sky === 'foggy') { sat -= 0.08; con -= 0.06; castA *= 0.7; }
       else if (sky === 'overcast') { sat -= 0.06; con -= 0.02; }
 
+      // crispness pass: trim the colour wash and lift contrast a touch so the
+      // pixel art reads sharp instead of hazy (mood stays, fog goes)
+      castA *= 0.72;
+      con += 0.05;
+
       // apply the tonal grade through the postFX ColorMatrix (WebGL only)
       const cm = this.gradeFx;
       if (cm && cm.reset) {
@@ -3061,7 +3067,7 @@
       if (swim) return;  // underwater already has bubbles
       const heavy = dark || ['swamp', 'cave', 'dungeon', 'underground'].includes(theme);
       const light = ['inside', 'city'].includes(theme);
-      const maxAlpha = heavy ? 0.17 : light ? 0.055 : 0.09;
+      const maxAlpha = heavy ? 0.1 : light ? 0.025 : 0.045;
       const tint = theme === 'swamp' ? 0x9ab69a : (dark || theme === 'cave') ? 0x8a90a8 : 0xc8d0dc;
       this.mistLayer = this.add.particles(0, 0, 'px_light', {
         x: { min: -30, max: this.pxW + 30 }, y: { min: this.pxH * 0.42, max: this.pxH - 4 },
