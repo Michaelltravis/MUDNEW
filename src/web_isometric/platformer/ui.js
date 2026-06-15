@@ -2756,6 +2756,14 @@
         }
       });
       MH.bus.on('login.success', () => { creationMode = false; cwShow(false); });
+      MH.bus.on('create.blocked', msg => {
+        if (!creationMode) return;
+        cw('cw-title').textContent = '⚔ FORGE YOUR HERO'; cw('cw-steps').textContent = ''; cw('cw-sub').textContent = '';
+        cw('cw-body').innerHTML = `<div style="text-align:center;color:#e0a07a;padding:24px 12px;line-height:1.6">${msg}`
+          + `<br><br><span id="cw-back">↻ start over</span></div>`;
+        const back = document.getElementById('cw-back');
+        if (back) back.addEventListener('click', () => location.reload());
+      });
       els.loginBtn.addEventListener('click', () => begin(false));
       els.createBtn.addEventListener('click', () => begin(true));
       els.loginPass.addEventListener('keydown', e => { if (e.key === 'Enter') begin(false); });

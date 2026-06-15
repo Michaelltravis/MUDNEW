@@ -131,16 +131,13 @@
     MH.bus.emit('login.status', st.creatingAccount ? 'Forging a new soul…' : 'Opening the gate…');
     await sleep(500);
     MH.sendCommand(st.playerName, false);
-    await sleep(500);
-    if (st.creatingAccount) {
-      MH.sendCommand('y', false);
+    if (!st.creatingAccount) {
+      // existing character: answer the password prompt
       await sleep(500);
-      MH.sendCommand(st.playerPassword, false);
-      await sleep(500);
-      MH.sendCommand(st.playerPassword, false);
-    } else {
       MH.sendCommand(st.playerPassword, false);
     }
+    // creation is prompt-driven (answerLoginPrompts handles create?/password/
+    // confirm as each prompt actually arrives — robust against latency)
   }
 
   const ROOM_LOGIN_PATTERNS = [/^\[[0-9]+\]\s+/m, /\bExits?:\b/i, /You are in/i, /Obvious exits:/i];
@@ -152,15 +149,35 @@
     { test: /\[\s*press (?:enter|return)\s*\]/i, send: '' },
   ];
   function answerLoginPrompts(text) {
-    if (MH.state.isLoggedIn) return;
-    for (const { test, send } of LOGIN_PROMPT_RESPONDERS) {
-      if (test.test(text)) {
-        setTimeout(() => {
-          const sock = MH.state.mudSocket;
-          if (sock && sock.readyState === WebSocket.OPEN) sock.send(send);
-        }, 300);
+    const st = MH.state;
+    if (st.isLoggedIn) return;
+    const sendDelayed = (key, val) => {
+      if (st._lastPromptKey === key) return;   // dedupe a prompt repeated across chunks
+      st._lastPromptKey = key;
+      setTimeout(() => {
+        const sock = st.mudSocket;
+        if (sock && sock.readyState === WebSocket.OPEN) sock.send(val);
+      }, 250);
+    };
+    // creation handshake: confirm new name, then give + confirm the password
+    if (st.creatingAccount) {
+      const t = text.toLowerCase();
+      if (/is a new name|create account\?/.test(t)) { sendDelayed('create-confirm', 'y'); return; }
+      if (/choose a password/.test(t)) { sendDelayed('choose-pw', st.playerPassword); return; }
+      if (/confirm password/.test(t)) { sendDelayed('confirm-pw', st.playerPassword); return; }
+      // the name already exists (account/legacy) — can't create it; tell them
+      if (/account password|enter your password|welcome back/i.test(text)) {
+        MH.bus.emit('create.blocked', 'That name already exists — use "Enter the Realm" to log in, or pick a different name.');
         return;
       }
+      // bad/duplicate name kicked us back to the name prompt — surface it
+      if (/name shall you be|enter account name|only letters|between 3 and 12|wrong password/i.test(text)) {
+        MH.bus.emit('create.blocked', 'That name is taken or invalid — start over with a different one.');
+        return;
+      }
+    }
+    for (const { test, send } of LOGIN_PROMPT_RESPONDERS) {
+      if (test.test(text)) { sendDelayed('static:' + test.source, send); return; }
     }
   }
   function inferLoginSuccess(text) {
