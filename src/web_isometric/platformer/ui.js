@@ -3529,22 +3529,40 @@
         openModal('modal-inv');
       });
 
-      // stance bar (warriors get all four; everyone can shift mood)
-      const STANCES = ['battle', 'berserk', 'defensive', 'precision'];
-      STANCES.forEach(st => {
-        const div = document.createElement('div');
-        div.className = 'stance';
-        div.dataset.st = st;
-        div.textContent = st.toUpperCase();
-        div.addEventListener('click', () => commandWithPeek(`stance ${st}`));
-        els.stanceBar.appendChild(div);
-      });
+      // permanent stance selector, built into the HUD beside the vitals so the
+      // player can always see and change their combat stance (not just in a fight)
+      const STANCES = [
+        { id: 'aggressive', icon: '⚔', label: 'AGGRO', tip: 'Aggressive — +hit, +damage, but easier to hit' },
+        { id: 'normal', icon: '⚖', label: 'NORMAL', tip: 'Normal — balanced offense and defense' },
+        { id: 'defensive', icon: '🛡', label: 'DEFEND', tip: 'Defensive — better block & dodge, less offense' },
+      ];
+      const hudStances = $('hud-stances');
+      if (hudStances) {
+        STANCES.forEach(s => {
+          const div = document.createElement('div');
+          div.className = 'hud-stance';
+          div.dataset.st = s.id;
+          div.title = s.tip;
+          if (s.id === 'normal') div.classList.add('active');   // default until state confirms
+          div.innerHTML = `<span class="si">${s.icon}</span><span>${s.label}</span>`;
+          div.addEventListener('click', () => {
+            commandWithPeek(`stance ${s.id}`);
+            setStance(s.id);                       // optimistic; state refresh confirms
+            if (MH.state.player) MH.state.player.stance = s.id;
+            if (MH.sfx) MH.sfx.ui();
+          });
+          hudStances.appendChild(div);
+        });
+      }
       const setStance = st => {
-        els.stanceBar.querySelectorAll('.stance').forEach(d =>
-          d.classList.toggle('active', d.dataset.st === String(st || '').toLowerCase()));
+        const cur = String(st || '').toLowerCase();
+        if (hudStances) hudStances.querySelectorAll('.hud-stance').forEach(d =>
+          d.classList.toggle('active', d.dataset.st === cur));
+        // keep the legacy floating bar (if present) in sync but it stays hidden
+        if (els.stanceBar) els.stanceBar.querySelectorAll('.stance').forEach(d =>
+          d.classList.toggle('active', d.dataset.st === cur));
       };
       MH.bus.on('combat.state', on => {
-        els.stanceBar.classList.toggle('show', !!on);
         if (!on) { els.momentumChip.classList.remove('show'); els.finisherChip.classList.remove('show'); }
       });
 

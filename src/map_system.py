@@ -756,7 +756,7 @@ def build_combat_payload(player) -> dict:
             'resource': _class_resource(player),
             'path': getattr(player, 'path', None),
             'path_active': _path_active(player),
-            'stance': getattr(player, 'combat_stance', getattr(player, 'mood', '')),
+            'stance': getattr(player, 'stance', getattr(player, 'combat_stance', getattr(player, 'mood', 'normal'))) or 'normal',
             'hp': getattr(player, 'hp', 0),
             'max_hp': getattr(player, 'max_hp', 1),
             'mana': getattr(player, 'mana', 0),

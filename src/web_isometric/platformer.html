@@ -901,6 +901,17 @@
   #hud .bar > b { font-size: 10px; line-height: 15px; }
   #hud .bar.xp { height: 6px; }
   #hud .who { font-size: 13px; margin-bottom: 2px; }
+  /* permanent stance selector, tucked under the vitals */
+  #hud-stances { display: flex; gap: 4px; margin-top: 5px; }
+  .hud-stance { flex: 1; display: flex; align-items: center; justify-content: center; gap: 3px;
+    padding: 3px 4px; border-radius: 6px; cursor: pointer; font-family: var(--ui-font);
+    font-size: 9px; letter-spacing: 0.5px; color: #aab0c0; background: rgba(20,23,32,0.7);
+    border: 1px solid rgba(140,150,180,0.2); transition: all 0.14s; white-space: nowrap; user-select: none; }
+  .hud-stance .si { font-size: 11px; }
+  .hud-stance:hover { color: #e8e3d4; border-color: rgba(232,193,104,0.5); background: rgba(34,30,18,0.8); }
+  .hud-stance.active { color: #1a1408; font-weight: 700;
+    background: linear-gradient(180deg, #f0c873, #d49a30); border-color: #f0d488;
+    box-shadow: 0 0 10px rgba(232,193,104,0.45), inset 0 1px 0 rgba(255,255,255,0.3); }
   #hotbar { bottom: 40px !important; z-index: 20; }
   #command-bar, #command-row { bottom: 8px; }
   #compass { bottom: 10px !important; right: 188px !important; z-index: 20;
@@ -1631,6 +1642,7 @@
       <div class="bar move"><i id="bar-move"></i><b id="txt-move"></b></div>
       <div class="bar xp" title="experience to next level"><i id="bar-xp"></i></div>
       <div class="row"><span id="hud-level"></span><span id="hud-xp-txt"></span><span id="hud-gold"></span></div>
+      <div id="hud-stances" title="combat stance — click to change"></div>
     </div>
   </div>
   <div id="help-btn" title="help (H)">?</div>
