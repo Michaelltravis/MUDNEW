@@ -184,6 +184,24 @@
         g.fillStyle = '#fff';
         for (const [vx, vy] of [[4, 6], [10, 12], [4, 18], [9, 22]]) { g.beginPath(); g.ellipse(vx, vy, 2.4, 1.4, 0.6, 0, 7); g.fill(); }
       });
+      // ambient wildlife (tinted at placement): a flyer and a ground critter
+      mkTex('cr_fly', 12, 8, g => {                  // bird/bat/butterfly silhouette
+        g.fillStyle = '#fff';
+        g.beginPath(); g.ellipse(6, 4, 1.6, 1.2, 0, 0, 7); g.fill();      // body
+        g.beginPath(); g.moveTo(6, 4); g.quadraticCurveTo(1, 0, 0, 3); g.quadraticCurveTo(3, 4, 6, 4); g.fill();   // L wing
+        g.beginPath(); g.moveTo(6, 4); g.quadraticCurveTo(11, 0, 12, 3); g.quadraticCurveTo(9, 4, 6, 4); g.fill();  // R wing
+      });
+      mkTex('cr_bug', 9, 9, g => {                   // butterfly/insect
+        g.fillStyle = '#fff';
+        g.beginPath(); g.arc(3, 4, 2.4, 0, 7); g.fill(); g.beginPath(); g.arc(6, 5, 2.2, 0, 7); g.fill();
+        g.fillStyle = 'rgba(0,0,0,0.3)'; g.fillRect(4, 3, 1, 4);
+      });
+      mkTex('cr_ground', 12, 7, g => {               // rat/lizard/fish
+        g.fillStyle = '#fff';
+        g.beginPath(); g.ellipse(6, 4, 4, 2, 0, 0, 7); g.fill();          // body
+        g.beginPath(); g.moveTo(10, 4); g.lineTo(12, 2); g.lineTo(12, 6); g.fill();  // tail
+        g.fillStyle = 'rgba(0,0,0,0.4)'; for (const lx of [4, 6, 8]) g.fillRect(lx, 6, 1, 1);  // legs
+      });
       this.playerShadow = this.add.image(this.player.x, this.player.y, 'px_shadow')
         .setDepth(5).setAlpha(0.4).setScale(0.34);
       this.nightTint = this.add.rectangle(0, 0, this.pxW, this.pxH, 0x101830, 0).setOrigin(0, 0).setDepth(42);
@@ -298,6 +316,8 @@
       if (this.fogEmitter) { this.fogEmitter.destroy(); this.fogEmitter = null; }
       if (this.wornAura) { this.wornAura.destroy(); this.wornAura = null; }
       if (this.bubbleEmitter) { this.bubbleEmitter.destroy(); this.bubbleEmitter = null; }
+      if (this.critters) { this.critters.forEach(c => { this.tweens.killTweensOf(c); c.destroy(); }); }
+      this.critters = [];
 
       const th = layout.theme;
       const zk = layout.zoneKey && this.textures.exists(`zt_${layout.zoneKey}_floor0`) ? layout.zoneKey : null;
@@ -456,6 +476,7 @@
       this.placeGravestones(layout);
       this.placeLandmark(layout, th);
       this.scatterClutter(layout, th);
+      this.spawnCritters(layout, th);
       this.placeProse(layout);
 
       // place player
@@ -521,6 +542,74 @@
             this.tileLayer.add(e);
           }
         }
+      }
+    }
+
+    // Ambient wildlife: a few themed critters wander each room — butterflies
+    // and birds in the wilds, bats and rats in the dark, pigeons in the city,
+    // fish in the water — so rooms feel inhabited and alive, not static.
+    spawnCritters(layout, th) {
+      if (MH.gfx && MH.gfx.quality === 'low') return;
+      const { T } = TD();
+      // [texture, tint, flying, count]
+      const SET = {
+        field: [['cr_bug', 0xf0d860, 1, 3], ['cr_fly', 0x303030, 1, 1]],
+        meadow: [['cr_bug', 0xf0a0d0, 1, 3]], hills: [['cr_bug', 0xf0d860, 1, 2]],
+        forest: [['cr_bug', 0xf0a0d0, 1, 2], ['cr_fly', 0x282828, 1, 1]],
+        elven: [['cr_bug', 0xbff0a0, 1, 3]],
+        swamp: [['cr_bug', 0x9adf6a, 1, 3]],
+        cave: [['cr_fly', 0x1a1a24, 1, 3], ['cr_ground', 0x6a5a4a, 0, 1]],
+        dungeon: [['cr_fly', 0x1a1a24, 1, 2], ['cr_ground', 0x5a4a3a, 0, 1]],
+        underground: [['cr_ground', 0x5a4a3a, 0, 2]],
+        mountain: [['cr_fly', 0xdedede, 1, 2]],
+        desert: [['cr_ground', 0xc9a35a, 0, 2]],
+        inside: [['cr_ground', 0x6a5a4a, 0, 2]],
+        city: [['cr_fly', 0x8a8a8a, 1, 2], ['cr_ground', 0x5a4a3a, 0, 1]],
+        underwater: [['cr_ground', 0x8fd0ff, 0, 4]], water_swim: [['cr_ground', 0x8fd0ff, 0, 3]], water_noswim: [['cr_ground', 0x8fd0ff, 0, 2]],
+        default: [['cr_bug', 0xf0d860, 1, 2]],
+      };
+      const groups = SET[th] || SET.default;
+      const qMul = (MH.gfx && MH.gfx.quality === 'medium') ? 0.6 : 1;
+      const rng = MH.mulberry32((layout.vnum ^ 0x7c1d) >>> 0);
+      const m = T * 2;
+      for (const [tex, tint, fly, n] of groups) {
+        const cnt = Math.max(1, Math.round(n * qMul));
+        for (let i = 0; i < cnt; i++) {
+          const x = m + rng() * (this.pxW - m * 2);
+          const y = fly ? T * 1.4 + rng() * (this.pxH * 0.5) : m + rng() * (this.pxH - m * 2);
+          const c = this.add.image(x, y, tex).setTint(tint).setDepth(fly ? 12 : 6)
+            .setScale(fly ? 0.9 : 0.85).setAlpha(fly ? 0.92 : 0.95);
+          // movement state, driven each frame in updateInner (robust, no tween chains)
+          c.fly = !!fly; c.baseScaleX = c.scaleX; c.flapPhase = rng() * 6.28;
+          c.spd = fly ? 28 + rng() * 22 : 18 + rng() * 14;
+          c.tx = m + rng() * (this.pxW - m * 2);
+          c.ty = fly ? T * 1.4 + rng() * (this.pxH * 0.5) : m + rng() * (this.pxH - m * 2);
+          c.pauseUntil = 0;
+          this.critters.push(c);
+        }
+      }
+    }
+    // frame-driven critter wander (called from updateInner)
+    updateCritters(now, dt) {
+      if (!this.critters || !this.critters.length) return;
+      const { T } = TD();
+      const m = T * 2;
+      for (const c of this.critters) {
+        if (!c.active) continue;
+        if (now >= c.pauseUntil) {
+          const dx = c.tx - c.x, dy = c.ty - c.y, d = Math.hypot(dx, dy);
+          if (d < 4) {
+            // arrived: brief pause, then pick a fresh destination
+            c.pauseUntil = now + (c.fly ? 120 : 350) + Math.random() * (c.fly ? 500 : 1100);
+            c.tx = m + Math.random() * (this.pxW - m * 2);
+            c.ty = c.fly ? T * 1.4 + Math.random() * (this.pxH * 0.5) : m + Math.random() * (this.pxH - m * 2);
+          } else {
+            const v = c.spd * dt;
+            c.x += (dx / d) * v; c.y += (dy / d) * v;
+            c.setFlipX(dx < 0);
+          }
+        }
+        if (c.fly) c.scaleX = c.baseScaleX * (0.5 + 0.5 * Math.abs(Math.sin(now * 0.018 + c.flapPhase)));  // wing flap
       }
     }
 
@@ -3159,6 +3248,8 @@
       }
 
       // footstep dust gives weight to movement
+      this.updateCritters(now, dt);
+
       const moving = Math.abs(this.player.body.velocity.x) + Math.abs(this.player.body.velocity.y) > 10;
       if (moving && (!this._lastStep || now - this._lastStep > 260)) {
         this._lastStep = now;
