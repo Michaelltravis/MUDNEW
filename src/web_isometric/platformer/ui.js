@@ -843,6 +843,66 @@
       + `<canvas width="34" height="34"></canvas><span class="pd-slotname">${slot}</span>${item && rar !== 'common' ? `<i class="pd-rar ${rar}"></i>` : ''}</div>`;
   }
   let invFilter = '', invSort = 'slot';
+  // ---- item hover tooltip (inventory & equipment) ----
+  const STAT_NAMES = {
+    hitroll: 'Hit Roll', hit: 'Hit Roll', damroll: 'Damage', dam: 'Damage', ac: 'Armor Class',
+    armor: 'Armor', str: 'Strength', strength: 'Strength', int: 'Intelligence', intelligence: 'Intelligence',
+    wis: 'Wisdom', wisdom: 'Wisdom', dex: 'Dexterity', dexterity: 'Dexterity', con: 'Constitution',
+    constitution: 'Constitution', cha: 'Charisma', charisma: 'Charisma', hp: 'Health', max_hp: 'Health',
+    mana: 'Mana', max_mana: 'Mana', mv: 'Moves', move: 'Moves', moves: 'Moves', saves: 'Saving Throws',
+    save: 'Saving Throws', age: 'Age',
+  };
+  const prettyStat = t => STAT_NAMES[String(t).toLowerCase()] || String(t).replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  function itemTipHTML(item, action) {
+    if (!item) return '';
+    const rar = item.rarity || 'common';
+    const type = item.item_type || item.type || 'item';
+    const stat = (k, v) => `<div class="it-stat"><span class="k">${k}</span><span class="v">${v}</span></div>`;
+    let h = `<div class="it-name ${rar}">${item.name}</div>`;
+    const sub = [type];
+    if (item.slot) sub.push(item.slot);
+    if (item.level) sub.push('lvl ' + item.level);
+    if (rar && rar !== 'common') sub.push(rar);
+    h += `<div class="it-sub">${sub.join(' · ')}</div>`;
+    if (item.damage_dice) h += stat('Damage', item.damage_dice + (item.weapon_type ? ` (${item.weapon_type})` : ''));
+    if (item.armor) h += stat('Armor', '+' + item.armor);
+    if (item.light_hours) h += stat('Light', item.light_hours + ' hrs');
+    if (item.food_value) h += stat('Nourishment', item.food_value);
+    if (item.drinks) h += stat('Drinks', item.drinks);
+    (item.affects || []).forEach(a => {
+      const t = a.type != null ? a.type : (a.location != null ? a.location : (a.applies_to != null ? a.applies_to : a.stat));
+      const v = a.value != null ? a.value : a.modifier;
+      if (t != null && t !== '' && v != null) h += `<div class="it-stat it-aff"><span class="k">${prettyStat(t)}</span><span class="v">${v > 0 ? '+' : ''}${v}</span></div>`;
+    });
+    (item.procs || []).forEach(pr => { if (pr) h += `<div class="it-proc">⚡ ${pr}</div>`; });
+    const foot = [];
+    if (item.weight != null) foot.push(`⚖ ${item.weight}`);
+    if (item.cost) foot.push(`🪙 ${item.cost}`);
+    if (foot.length) h += `<div class="it-foot"><span>${foot[0] || ''}</span><span>${foot[1] || ''}</span></div>`;
+    if (action) h += `<div class="it-hint">${action}</div>`;
+    return h;
+  }
+  let _itemTipEl = null;
+  function showItemTip(item, ev, action) {
+    if (!item) return;
+    const tip = _itemTipEl || (_itemTipEl = document.getElementById('item-tip'));
+    if (!tip) return;
+    tip.innerHTML = itemTipHTML(item, action);
+    tip.classList.add('show');
+    moveItemTip(ev);
+  }
+  function moveItemTip(ev) {
+    const tip = _itemTipEl;
+    if (!tip || !tip.classList.contains('show')) return;
+    const r = tip.getBoundingClientRect();
+    let x = ev.clientX + 16, y = ev.clientY + 16;
+    if (x + r.width > window.innerWidth - 8) x = ev.clientX - r.width - 14;
+    if (y + r.height > window.innerHeight - 8) y = window.innerHeight - r.height - 8;
+    tip.style.left = Math.max(8, x) + 'px';
+    tip.style.top = Math.max(8, y) + 'px';
+  }
+  function hideItemTip() { if (_itemTipEl) _itemTipEl.classList.remove('show'); }
+
   function renderInventory() {
     const p = MH.state.player;
     if (!p) { els.invBody.textContent = 'No data yet.'; return; }
@@ -901,7 +961,14 @@
     els.invBody.querySelectorAll('.pd-socket').forEach(el => {
       const item = eq[el.dataset.slot];
       if (item && MH.itemIcons) MH.itemIcons.intoCanvas(el.querySelector('canvas'), item);
+      if (item) {
+        el.removeAttribute('title');   // replace the bare native title with the rich tooltip
+        el.addEventListener('mouseenter', ev => showItemTip(item, ev, 'click to remove'));
+        el.addEventListener('mousemove', moveItemTip);
+        el.addEventListener('mouseleave', hideItemTip);
+      }
       if (el.dataset.cmd) el.addEventListener('click', () => {
+        hideItemTip();
         MH.sendCommand(el.dataset.cmd);
         setTimeout(() => { MH.refreshState().then(renderInventory); }, 600);
       });
@@ -910,7 +977,15 @@
       const item = allInv[Number(el.dataset.i)];
       if (!item) return;
       if (item && MH.itemIcons) MH.itemIcons.intoCanvas(el.querySelector('canvas'), item);
+      el.removeAttribute('title');
+      const itype = item.item_type || item.type;
+      const act = itype === 'weapon' ? 'click to wield'
+        : ['potion', 'food', 'drink', 'scroll'].includes(itype) ? 'click to use' : 'click to wear';
+      el.addEventListener('mouseenter', ev => showItemTip(item, ev, act));
+      el.addEventListener('mousemove', moveItemTip);
+      el.addEventListener('mouseleave', hideItemTip);
       el.addEventListener('click', () => {
+        hideItemTip();
         let cmd = el.dataset.cmd;
         if ((item.item_type || item.type) === 'weapon') cmd = cmd.replace('wear ', 'wield ');
         else if (['potion', 'food', 'drink', 'scroll'].includes(item.item_type || item.type)) cmd = cmd.replace('wear ', 'use ');

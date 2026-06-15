@@ -343,6 +343,30 @@
   #mob-tip .meta { color: var(--dim); font-size: 10px; }
   #mob-tip .verdict { font-style: italic; margin-top: 3px; }
 
+  /* item hover tooltip — readable stats for inventory & equipment */
+  #item-tip {
+    position: fixed; z-index: 95; display: none; pointer-events: none;
+    background: rgba(13,15,21,0.98); border: 1px solid rgba(232,193,104,0.45); border-radius: 9px;
+    padding: 9px 12px; font-size: 11.5px; max-width: 250px; line-height: 1.5;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.6); backdrop-filter: blur(7px); font-family: var(--ui-font); }
+  #item-tip.show { display: block; }
+  #item-tip .it-name { font-family: Georgia, serif; font-size: 14px; font-weight: 700; margin-bottom: 1px; }
+  #item-tip .it-sub { color: #8a90a4; font-size: 10px; text-transform: capitalize; margin-bottom: 6px; }
+  #item-tip .it-stat { display: flex; justify-content: space-between; gap: 14px; color: #d4d8e2; }
+  #item-tip .it-stat .k { color: #9aa0b4; }
+  #item-tip .it-stat .v { color: #e8c168; font-weight: 600; }
+  #item-tip .it-aff { color: #8ce0a0; }
+  #item-tip .it-aff .v { color: #8ce0a0; }
+  #item-tip .it-proc { color: #c9a0ff; margin-top: 3px; font-style: italic; }
+  #item-tip .it-foot { color: #7a8094; font-size: 10px; margin-top: 6px; display: flex; justify-content: space-between; gap: 14px; }
+  #item-tip .it-hint { color: #6fb6ff; font-size: 10px; margin-top: 5px; }
+  /* rarity name colors */
+  #item-tip .it-name.common { color: #d8dce6; }
+  #item-tip .it-name.uncommon { color: #6fd685; }
+  #item-tip .it-name.rare { color: #5aa8ff; }
+  #item-tip .it-name.epic { color: #c77dff; }
+  #item-tip .it-name.legendary { color: #ffb454; text-shadow: 0 0 10px rgba(255,180,84,0.5); }
+
   /* ---- Command input ---- */
   #command-row {
     position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
@@ -1731,6 +1755,7 @@
   <div id="dw-window"></div>
   <div id="item-tip"></div>
   <div id="hotbar-tip"></div>
+  <div id="item-tip"></div>
   <div id="xp-strip-track"><div id="xp-strip"></div></div>
   <div id="modal-backdrop"></div>
   <div class="modal" id="modal-inv">

@@ -487,17 +487,39 @@ def item_info(item):
     """Compact item payload used for ground items, inventory and equipment:
     enough for the client to draw a real icon and rarity border."""
     vnum = getattr(item, 'vnum', None)
-    return {
+    itype = getattr(item, 'item_type', 'other')
+    info = {
         'name': getattr(item, 'name', 'something'),
         'short': getattr(item, 'short_desc', '') or getattr(item, 'name', 'something'),
-        'type': getattr(item, 'item_type', 'other'),
+        'type': itype,
         'slot': getattr(item, 'wear_slot', None),
         'rarity': getattr(item, 'rarity', 'common'),
         'set_id': getattr(item, 'set_id', None),
         'set_key': _SET_BY_VNUM.get(vnum),
         'level': getattr(item, 'level', 0),
         'affects': getattr(item, 'affects', []) or [],
+        'weight': getattr(item, 'weight', 0),
+        'cost': getattr(item, 'cost', 0),
     }
+    # type-specific combat stats so the client can show a real tooltip
+    if itype == 'weapon':
+        info['damage_dice'] = getattr(item, 'damage_dice', None)
+        info['weapon_type'] = getattr(item, 'weapon_type', None)
+    elif itype == 'armor':
+        info['armor'] = getattr(item, 'armor', 0)
+    elif itype == 'light':
+        info['light_hours'] = getattr(item, 'light_hours', 0)
+    elif itype in ('food',):
+        info['food_value'] = getattr(item, 'food_value', 0)
+    elif itype in ('drink', 'fountain'):
+        info['drinks'] = getattr(item, 'drinks', 0)
+    procs = getattr(item, 'procs', []) or []
+    if procs:
+        info['procs'] = [
+            (pr.get('desc') or pr.get('effect') or pr.get('type'))
+            for pr in procs if isinstance(pr, dict)
+        ]
+    return info
 
 
 CLASS_RESOURCE = {
