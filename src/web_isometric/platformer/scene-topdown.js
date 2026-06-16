@@ -45,7 +45,7 @@
       // cinematic grade + bloom (WebGL only): falls back gracefully on canvas
       try {
         if (this.cameras.main.postFX) {
-          this.cameras.main.postFX.addVignette(0.5, 0.5, 1.0, 0.22);
+          this.cameras.main.postFX.addVignette(0.5, 0.5, 1.1, 0.12);
           // bloom makes bright FX (fire/holy/lightning) and light sources glow
           // (the heaviest postFX — gated by graphics quality). Kept gentle so it
           // accents lights instead of washing the whole scene into haze.
@@ -973,7 +973,7 @@
       const picks = [];
       const seen = new Set();
       for (const [re, prop, place] of RULES) {
-        if (picks.length >= 5) break;
+        if (picks.length >= 4) break;
         if (seen.has(prop)) continue;
         if (re.test(text) && this.textures.exists(`zt_prop_${prop}`)) { seen.add(prop); picks.push({ prop, place }); }
       }
@@ -1085,12 +1085,14 @@
       const cx = Math.floor(W / 2), cy = Math.floor(H / 2);
       const taken = new Set((layout.props || []).map(p => `${p.x},${p.y}`));
       if (set.length) {
-        const count = Math.round((8 + rng() * 8) * (0.4 + pScale * 0.6));
+        // lean on the prose-driven props instead: only a light sprinkle of
+        // generic clutter, biased to the walls so the floor stays open
+        const count = Math.round((2 + rng() * 3) * (0.5 + pScale * 0.5));
         let placed = 0, guard = 0;
         while (placed < count && guard++ < 240) {
           const x = 2 + ((rng() * (W - 4)) | 0), y = 2 + ((rng() * (H - 4)) | 0);
           if (grid[y * W + x] !== FLOOR) continue;
-          if (Math.abs(x - cx) < 3 && Math.abs(y - cy) < 3) continue;   // keep centre/landmark clear
+          if (Math.abs(x - cx) < 2 && Math.abs(y - cy) < 2) continue;   // keep centre/landmark clear
           if (taken.has(`${x},${y}`)) continue;
           const nearWall = grid[(y - 1) * W + x] === BLOCK || grid[(y + 1) * W + x] === BLOCK
             || grid[y * W + x - 1] === BLOCK || grid[y * W + x + 1] === BLOCK;
@@ -1575,7 +1577,7 @@
       frags.slice(0, 2).forEach((frag, i) => {
         const tx = this.add.text(36 + rng() * (this.pxW - 260), 28 + i * 26, frag, {
           fontFamily: 'Georgia, serif', resolution: 3, fontSize: '8px', fontStyle: 'italic', color: '#fdf6e3',
-        }).setAlpha(0.20).setDepth(4).setShadow(0, 1, '#000000', 2);
+        }).setAlpha(0.14).setDepth(4).setShadow(0, 1, '#000000', 2);
         this.tweens.add({ targets: tx, y: tx.y - 6, duration: 9000 + rng() * 3000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
         this.bgLayer.add(tx);
       });
@@ -3152,11 +3154,12 @@
     applyAtmosphere(payload) {
       const period = payload.time && payload.time.period;
       const outdoor = this.layout && !['inside', 'dungeon', 'cave', 'default'].includes(this.layout.theme);
-      let alpha = 0, color = 0x101830;
+      let alpha = 0, color = 0x1a2440;
       if (outdoor) {
-        if (period === 'night' || period === 'midnight') alpha = 0.38;
-        else if (period === 'evening' || period === 'dusk') { alpha = 0.22; color = 0x40280f; }
-        else if (period === 'dawn' || period === 'morning') { alpha = 0.10; color = 0x402a20; }
+        // keep night readable: a light tint that reads as evening, not a blackout
+        if (period === 'night' || period === 'midnight') alpha = 0.18;
+        else if (period === 'evening' || period === 'dusk') { alpha = 0.11; color = 0x40280f; }
+        else if (period === 'dawn' || period === 'morning') { alpha = 0.06; color = 0x402a20; }
       }
       this.nightTint.setFillStyle(color, alpha);
       const precip = payload.weather && payload.weather.precipitation;
@@ -3353,7 +3356,7 @@
 
       // --- time of day: warm dusk, cold night, soft dawn ---
       if (period === 'night' || period === 'midnight') {
-        sat -= 0.10; con += 0.06; cast = 0x2a3a6e; castA = Math.max(castA, 0.16);
+        sat -= 0.05; con += 0.06; cast = 0x2a3a6e; castA = Math.max(castA, 0.09);
       } else if (period === 'evening' || period === 'dusk') {
         sat += 0.04; cast = 0x9a5a2a; castA = Math.max(castA, 0.14);
       } else if (period === 'dawn' || period === 'morning') {
@@ -3376,6 +3379,10 @@
         cm.reset();
         cm.saturate(Phaser.Math.Clamp(sat, -0.9, 0.9), true);
         cm.contrast(Phaser.Math.Clamp(con, -0.5, 0.5), true);
+        // a gentle brightness lift keeps rooms crisp and clear, never murky;
+        // a touch less at night so dusk still reads as dusk
+        const dark = period === 'night' || period === 'midnight';
+        if (cm.brightness) cm.brightness(dark ? 1.04 : 1.1, true);
       }
       // tint the bloom so every glowing light/effect carries the zone's warmth
       if (this.bloomFx) {

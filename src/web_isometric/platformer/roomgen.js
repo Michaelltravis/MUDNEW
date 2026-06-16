@@ -202,7 +202,9 @@
 // ring; up/down are staircase tiles; named passages are portal tiles.
 (() => {
   const MH = window.MH = window.MH || {};
-  const W = 30, H = 17, T = 16;
+  // cozier, more proportional chambers: a single room reads as one space, not an
+  // arena. Smaller grid -> camera zooms in -> the player is a clear focal point.
+  const W = 20, H = 13, T = 16;
   const FLOOR = 0, BLOCK = 1, WATER = 4;
   MH.TD = { W, H, T, FLOOR, BLOCK, WATER };
 
@@ -242,10 +244,10 @@
     for (let y = 0; y < H; y++) { set(0, y, BLOCK); set(W - 1, y, BLOCK); }
     const midX = Math.floor(W / 2), midY = Math.floor(H / 2);
     const gaps = {};
-    if (has('north')) { gaps.north = { x0: midX - 2, x1: midX + 2 }; for (let x = midX - 2; x <= midX + 2; x++) set(x, 0, FLOOR); }
-    if (has('south')) { gaps.south = { x0: midX - 2, x1: midX + 2 }; for (let x = midX - 2; x <= midX + 2; x++) set(x, H - 1, FLOOR); }
-    if (has('west'))  { gaps.west  = { y0: midY - 2, y1: midY + 2 }; for (let y = midY - 2; y <= midY + 2; y++) set(0, y, FLOOR); }
-    if (has('east'))  { gaps.east  = { y0: midY - 2, y1: midY + 2 }; for (let y = midY - 2; y <= midY + 2; y++) set(W - 1, y, FLOOR); }
+    if (has('north')) { gaps.north = { x0: midX - 1, x1: midX + 1 }; for (let x = midX - 1; x <= midX + 1; x++) set(x, 0, FLOOR); }
+    if (has('south')) { gaps.south = { x0: midX - 1, x1: midX + 1 }; for (let x = midX - 1; x <= midX + 1; x++) set(x, H - 1, FLOOR); }
+    if (has('west'))  { gaps.west  = { y0: midY - 1, y1: midY + 1 }; for (let y = midY - 1; y <= midY + 1; y++) set(0, y, FLOOR); }
+    if (has('east'))  { gaps.east  = { y0: midY - 1, y1: midY + 1 }; for (let y = midY - 1; y <= midY + 1; y++) set(W - 1, y, FLOOR); }
 
     // staircase / portal feature tiles
     const stairsUp = has('up') ? { x: W - 8, y: 4 } : null;
