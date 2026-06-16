@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Misthollow — Platformer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@500;600;700&family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <script src="/platformer/phaser.min.js"></script>
 <style>
   :root {
@@ -1612,6 +1615,58 @@
   .hotslot { width: 58px !important; height: 56px !important; }
   .hotslot .lbl { max-width: 54px !important; font-size: 9.5px !important; }
   .hotslot .key { font-size: 9px !important; color: #e8c168 !important; }
+
+  /* ════════════════════════════════════════════════════════════════
+     AETHER GRID — cold-steel tactical glass reskin (appended last; wins)
+     Cyan = the only energy/interaction color; red = harm; jade = friendly.
+     Day/night grade lives on the Phaser world layer; chrome never shifts hue.
+     ════════════════════════════════════════════════════════════════ */
+  :root {
+    --bg: #070b10;
+    --panel: #0e161e;
+    --panel2: #12202b;
+    --border: rgba(57,197,232,.28);
+    --text: #cfe6f0;
+    --dim: #6f95a8;
+    --gold: #39c5e8;          /* repurposed: the cyan energy accent */
+    --green: #46e0a0;         /* jade */
+    --red: #ff5a6a;           /* ember */
+    --blue: #39c5e8;
+    --mana: #6f7ce0;
+    --glass: rgba(14,22,30,.62);
+    --glass-border: rgba(57,197,232,.28);
+    --ui-font: 'Oxanium','Segoe UI',system-ui,sans-serif;
+    --prose-font: 'Rajdhani','Segoe UI',system-ui,sans-serif;
+    --num-font: 'JetBrains Mono', ui-monospace, monospace;
+    --shadow: 0 8px 28px rgba(0,0,0,.55);
+  }
+  body { background: var(--bg); }
+  /* glass panels: blur + cyan hairline + the signature notched corner */
+  #hud, #target-frame, #combat-log, #chat-panel, #minimap-wrap, #duel-card,
+  #stance-bar, .modal, #mob-tip, #item-tip, #detail-card, #cast-bar {
+    background: var(--glass) !important;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border) !important;
+  }
+  .modal, #minimap-wrap, #duel-card, #target-frame {
+    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  }
+  /* energy glow only on active / hovered controls */
+  .modal.open, .hotslot:hover, .hud-stance.active, #compass .dir.on {
+    box-shadow: 0 0 18px rgba(57,197,232,.5) !important;
+  }
+  /* typography: labels in Oxanium (tracked), prose in Rajdhani, numbers mono */
+  #hud, #target-frame, #compass, #minimap-wrap, #chat-panel, #combat-log,
+  #stance-bar, .modal, #hotbar, #cast-bar, #room-zone, #mob-tip, #item-tip,
+  #combat-chip, #momentum-chip, #login-box, #flash-line {
+    font-family: var(--ui-font);
+  }
+  #room-name, .modal-head, .who, .hud-stance, .mm-head, #room-zone { letter-spacing: .06em; }
+  #chat-body, #drawer-log, .npc-speech, .npc-quest, .hl-line, #detail-card .dc-text { font-family: var(--prose-font); }
+  .bar > b, #hud-level, #hud-xp-txt, #hud-gold, #target-hp-txt, #clock,
+  .inv-stat, .pd-statlabel, .sr-price, .it-stat .v, .prof { font-family: var(--num-font) !important; }
+  /* room name reads as a cyan readout */
+  #room-name { color: var(--gold); text-shadow: 0 0 10px rgba(57,197,232,.45); }
 
   </style>
 </head>
