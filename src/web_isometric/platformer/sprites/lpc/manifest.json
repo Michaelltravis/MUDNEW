@@ -1,0 +1,222 @@
+{
+  "_about": "Starter LPC paperdoll layers for Misthollow. Pixel 64x64. Each PNG is a per-animation sheet; rows = directions [up,left,down,right]; columns = frames. Stack same-named animation across layers and they align.",
+  "license": "LPC assets are dual-licensed CC-BY-SA 3.0 and GPL 3.0. Attribution REQUIRED. Ship CREDITS.csv with the project.",
+  "frame_size": 64,
+  "direction_rows": [
+    "up",
+    "left",
+    "down",
+    "right"
+  ],
+  "z_order_bottom_to_top": [
+    "weapon_bg",
+    "shield_bg",
+    "body",
+    "head_base",
+    "eyes",
+    "legs",
+    "feet",
+    "torso",
+    "arms",
+    "shoulders",
+    "hair",
+    "hat_helmet",
+    "cape_front",
+    "shield_fg",
+    "weapon_fg"
+  ],
+  "wear_slot_to_lpc": {
+    "body": "torso (torso/armour/*, torso/clothes/*, torso/robes)",
+    "head": "hat/helmet",
+    "legs": "legs (legs/armour/*, legs/pants)",
+    "feet": "feet/boots",
+    "hands": "arms (arms/gloves, arms/bracers)",
+    "shield": "shield (fg + bg pair)",
+    "wield": "weapon (fg + bg pair)",
+    "hold": "weapon/shield secondary (off-hand)",
+    "about": "cape",
+    "neck1": "cape or (amulet = stats-only, no layer)",
+    "neck2": "(amulet = stats-only, no layer)",
+    "light": "(stats-only unless you add a held torch from weapon/tools)"
+  },
+  "render_slots": [
+    "body",
+    "head",
+    "legs",
+    "feet",
+    "hands",
+    "shield",
+    "wield",
+    "about"
+  ],
+  "stats_only_slots": [
+    "neck1",
+    "neck2",
+    "light",
+    "hold(if ring/orb)"
+  ],
+  "weapon_layer_note": "Weapons & shields have foreground (over body) AND background (behind body) sheets. Place *_bg below body, *_fg on top.",
+  "class_default_loadouts_PLACEHOLDER": {
+    "warrior": {
+      "torso": "armour/plate",
+      "legs": "armour/plate",
+      "feet": "boots/basic",
+      "head": "helmet/greathelm",
+      "wield": "sword/arming",
+      "shield": "crusader"
+    },
+    "paladin": {
+      "torso": "armour/plate",
+      "legs": "armour/plate",
+      "feet": "boots/basic",
+      "head": "helmet/greathelm",
+      "wield": "sword/arming",
+      "shield": "crusader"
+    },
+    "ranger": {
+      "torso": "armour/leather",
+      "legs": "pants",
+      "feet": "boots/basic",
+      "hair": "flat_top_fade",
+      "wield": "ranged/bow/recurve",
+      "quiver": "quiver"
+    },
+    "thief": {
+      "torso": "armour/leather",
+      "legs": "pants",
+      "feet": "boots/basic",
+      "hair": "flat_top_fade",
+      "wield": "sword/arming"
+    },
+    "assassin": {
+      "torso": "armour/leather",
+      "legs": "pants",
+      "feet": "boots/basic",
+      "hair": "flat_top_fade",
+      "wield": "sword/arming"
+    },
+    "mage": {
+      "torso": "clothes/robe",
+      "hair": "xlong",
+      "wield": "magic/diamond"
+    },
+    "necromancer": {
+      "torso": "clothes/robe",
+      "hair": "xlong",
+      "wield": "magic/diamond"
+    },
+    "cleric": {
+      "torso": "clothes/robe",
+      "hair": "flat_top_fade",
+      "wield": "magic/diamond"
+    },
+    "bard": {
+      "torso": "armour/leather",
+      "hair": "flat_top_fade"
+    }
+  },
+  "items_copied": [
+    {
+      "slot": "body",
+      "dir": "body/bodies/male",
+      "status": "ok",
+      "png_count": 15
+    },
+    {
+      "slot": "body",
+      "dir": "body/bodies/female",
+      "status": "ok",
+      "png_count": 15
+    },
+    {
+      "slot": "torso",
+      "dir": "torso/armour/plate/male",
+      "status": "ok",
+      "png_count": 15
+    },
+    {
+      "slot": "torso",
+      "dir": "torso/armour/leather/male",
+      "status": "ok",
+      "png_count": 12
+    },
+    {
+      "slot": "torso",
+      "dir": "torso/clothes/robe/female",
+      "status": "ok",
+      "png_count": 44
+    },
+    {
+      "slot": "legs",
+      "dir": "legs/armour/plate/male",
+      "status": "ok",
+      "png_count": 11
+    },
+    {
+      "slot": "legs",
+      "dir": "legs/pants/male",
+      "status": "ok",
+      "png_count": 381
+    },
+    {
+      "slot": "feet",
+      "dir": "feet/boots/basic/male",
+      "status": "ok",
+      "png_count": 495
+    },
+    {
+      "slot": "head",
+      "dir": "hat/helmet/greathelm/male",
+      "status": "ok",
+      "png_count": 15
+    },
+    {
+      "slot": "head",
+      "dir": "hat/helmet/flattop/male",
+      "status": "ok",
+      "png_count": 15
+    },
+    {
+      "slot": "hair",
+      "dir": "hair/flat_top_fade/male",
+      "status": "ok",
+      "png_count": 6
+    },
+    {
+      "slot": "hair",
+      "dir": "hair/xlong/male",
+      "status": "ok",
+      "png_count": 6
+    },
+    {
+      "slot": "weapon",
+      "dir": "weapon/sword/arming/universal",
+      "status": "ok",
+      "png_count": 72
+    },
+    {
+      "slot": "weapon",
+      "dir": "weapon/magic/diamond/universal",
+      "status": "ok",
+      "png_count": 56
+    },
+    {
+      "slot": "weapon",
+      "dir": "weapon/ranged/bow/recurve",
+      "status": "ok",
+      "png_count": 84
+    },
+    {
+      "slot": "shield",
+      "dir": "shield/crusader",
+      "status": "ok",
+      "png_count": 30
+    },
+    {
+      "slot": "quiver",
+      "dir": "quiver",
+      "status": "ok",
+      "png_count": 6
+    }
+  ]
+}

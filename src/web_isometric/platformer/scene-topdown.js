@@ -320,7 +320,7 @@
 
     // ---------- room construction ----------
     buildRoom(layout, entryDir) {
-      const { T, BLOCK, WATER } = TD();
+      const { T, FLOOR, BLOCK, WATER } = TD();
       this.layout = layout;
       this.dead = false;
       this.target = null;
@@ -360,11 +360,55 @@
       const zt = zk ? MH.ZONE_THEMES[zk] : null;
       const checker = zt && zt.floorKind === 'checker';
 
+      // real terrain tile kit (handoff art) when available for this sector,
+      // else fall back to the procedural floor/border generators
+      const kit = MH.tilekit && MH.tilekit.isReady() ? MH.tilekit : null;
+      const kitTerrain = kit ? kit.terrainFor(layout.sector || layout.theme) : null;
+      const useKit = !!(kit && kitTerrain && kit.hasTerrain(kitTerrain));
+      this.kitTiles = [];
+
       // floor everywhere, then border/obstacles/water from the grid
       const vrng = MH.mulberry32(layout.vnum ^ 0xf10c);
-      for (let y = 0; y < layout.H; y++) {
-        for (let x = 0; x < layout.W; x++) {
-          const cell = layout.grid[y * layout.W + x];
+      const Wd = layout.W, Hd = layout.H;
+      for (let y = 0; y < Hd; y++) {
+        for (let x = 0; x < Wd; x++) {
+          const cell = layout.grid[y * Wd + x];
+          if (useKit) {
+            // base floor on every cell from the variants atlas
+            const floorImg = this.add.image(x * T, y * T, 'mh_variants', kit.floorVariantFrame(kitTerrain))
+              .setOrigin(0, 0).setDisplaySize(T, T);
+            this.bgLayer.add(floorImg); this.kitTiles.push(floorImg);
+            const N = y === 0, S = y === Hd - 1, Wl = x === 0, E = x === Wd - 1;
+            const border = N || S || Wl || E;
+            let piece = null;
+            if (border) {
+              const gap = cell === FLOOR;   // walkable border cell = an exit opening
+              if (N && Wl) piece = 'cornerNW'; else if (N && E) piece = 'cornerNE';
+              else if (S && E) piece = 'cornerSE'; else if (S && Wl) piece = 'cornerSW';
+              else if (N) piece = gap ? 'openN' : 'wallN';
+              else if (S) piece = gap ? 'openS' : 'wallS';
+              else if (Wl) piece = gap ? 'openW' : 'wallW';
+              else if (E) piece = gap ? 'openE' : 'wallE';
+            } else if (layout.stairsUp && x === layout.stairsUp.x && y === layout.stairsUp.y) {
+              piece = 'stairUp';
+            } else if (layout.stairsDown && x === layout.stairsDown.x && y === layout.stairsDown.y) {
+              piece = 'stairDown';
+            } else if (cell === BLOCK) {
+              piece = 'wallN';   // interior obstacle
+            }
+            if (piece) {
+              const top = this.add.image(x * T, y * T, 'mh_terrain', kit.terrainFrame(kitTerrain, piece))
+                .setOrigin(0, 0).setDisplaySize(T, T).setDepth(1);
+              this.tileLayer.add(top); this.kitTiles.push(top);
+            } else if (cell === WATER) {
+              const spr = this.add.sprite(x * T, y * T, 'sm_water', '0').setOrigin(0, 0).setDisplaySize(T, T).setDepth(1).setAlpha(0.95);
+              spr.play('sm_water_anim');
+              const liquid = (zt && zt.water) || (MH.THEMES[th] && MH.THEMES[th].liquid) || '#3a6a9a';
+              spr.setTint(Phaser.Display.Color.HexStringToColor(liquid).color | 0x404040);
+              this.tileLayer.add(spr);
+            }
+            continue;
+          }
           let img;
           if (zk) {
             // seeded variant mix: mostly plain, some detailed; checker themes alternate dark tiles
@@ -396,6 +440,8 @@
           }
         }
       }
+      // day/night grade on the kit tiles (world-layer only)
+      if (useKit) this.applyKitTint();
       // scatter ground detail + ground the walls with edge shadows
       this.decorateGround(layout, th);
       this.decorateWalls(layout, th);
@@ -3151,16 +3197,29 @@
       MH.bus.emit('ambient.sound', 'chime');
     }
 
+    // multiply the tile-kit floor/wall tiles by the day/night phase tint
+    // (the kit's own world grade); the chrome never shifts hue
+    applyKitTint() {
+      if (!MH.tilekit || !MH.tilekit.isReady() || !this.kitTiles || !this.kitTiles.length) return;
+      const period = (MH.state.lastPayload && MH.state.lastPayload.time && MH.state.lastPayload.time.period) || 'day';
+      const phase = MH.tilekit.phaseForPeriod(period);
+      const tint = MH.tilekit.tintFor(phase);
+      for (const t of this.kitTiles) { if (t && t.active) t.setTint(tint); }
+    }
     applyAtmosphere(payload) {
       const period = payload.time && payload.time.period;
       const outdoor = this.layout && !['inside', 'dungeon', 'cave', 'default'].includes(this.layout.theme);
+      // when the tile kit renders the room, its per-tile phase tint IS the
+      // day/night grade — re-tint it and skip the dark overlay (no double-dim)
+      const kitActive = !!(this.kitTiles && this.kitTiles.length && MH.tilekit && MH.tilekit.isReady());
       let alpha = 0, color = 0x1a2440;
-      if (outdoor) {
+      if (outdoor && !kitActive) {
         // keep night readable: a light tint that reads as evening, not a blackout
         if (period === 'night' || period === 'midnight') alpha = 0.18;
         else if (period === 'evening' || period === 'dusk') { alpha = 0.11; color = 0x40280f; }
         else if (period === 'dawn' || period === 'morning') { alpha = 0.06; color = 0x402a20; }
       }
+      if (kitActive) this.applyKitTint();
       this.nightTint.setFillStyle(color, alpha);
       const precip = payload.weather && payload.weather.precipitation;
       const skyNow = (payload.weather && payload.weather.sky) || 'clear';

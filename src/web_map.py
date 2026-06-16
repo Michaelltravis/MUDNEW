@@ -948,26 +948,28 @@ class WebMapServer:
                     logger.error(f"/doctrine error: {e}")
                     await self._http_response(writer, 500, 'Error', 'doctrine data unavailable')
             elif path.startswith('/platformer/'):
-                # Serve platformer client assets (js/css only, no traversal)
+                # Serve platformer client assets (js/css/png/json/woff2, no traversal)
                 asset_dir = os.path.realpath(os.path.join(os.path.dirname(__file__), 'web_isometric', 'platformer'))
                 asset_file = path.split('?', 1)[0].replace('/platformer/', '', 1)
                 asset_path = os.path.realpath(os.path.join(asset_dir, asset_file))
                 ext = asset_file.rsplit('.', 1)[-1].lower() if '.' in asset_file else ''
-                if not asset_path.startswith(asset_dir + os.sep) or ext not in ('js', 'css', 'png'):
+                if not asset_path.startswith(asset_dir + os.sep) or ext not in ('js', 'css', 'png', 'json', 'woff2', 'woff'):
                     await self._http_response(writer, 404, 'Not Found', 'Not found')
                     return
                 try:
-                    if ext == 'png':
+                    if ext in ('png', 'woff2', 'woff'):
                         with open(asset_path, 'rb') as f:
                             data = f.read()
-                        writer.write((f"HTTP/1.1 200 OK\r\nContent-Type: image/png\r\n"
+                        bct = {'png': 'image/png', 'woff2': 'font/woff2', 'woff': 'font/woff'}[ext]
+                        writer.write((f"HTTP/1.1 200 OK\r\nContent-Type: {bct}\r\n"
                                       f"Content-Length: {len(data)}\r\nAccess-Control-Allow-Origin: *\r\n\r\n").encode())
                         writer.write(data)
                         await writer.drain()
                         return
                     with open(asset_path, 'r', encoding='utf-8') as f:
                         body = f.read()
-                    ct = 'application/javascript' if ext == 'js' else 'text/css'
+                    ct = ('application/javascript' if ext == 'js' else 'text/css' if ext == 'css'
+                          else 'application/json')
                     await self._http_response(writer, 200, 'OK', body, content_type=ct)
                 except FileNotFoundError:
                     await self._http_response(writer, 404, 'Not Found', 'Asset not found')

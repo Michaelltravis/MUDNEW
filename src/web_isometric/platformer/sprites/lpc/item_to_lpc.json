@@ -1,0 +1,131 @@
+{
+  "_about": "Layer id = directory under sprites/lpc/. Resolve weapons by name keyword then weapon_type; armor by wear_slot then material. STATS_ONLY = no canvas layer.",
+  "weapon_name_keywords": [
+    {
+      "keywords": [
+        "staff",
+        "stave",
+        "scepter",
+        "sceptre",
+        "rod",
+        "wand"
+      ],
+      "layer": "weapon/magic/diamond/universal"
+    },
+    {
+      "keywords": [
+        "longbow",
+        "shortbow",
+        "bow"
+      ],
+      "layer": "weapon/ranged/bow/recurve"
+    },
+    {
+      "keywords": [
+        "crossbow"
+      ],
+      "layer": "weapon/ranged/bow/recurve"
+    },
+    {
+      "keywords": [
+        "dagger",
+        "knife",
+        "dirk",
+        "stiletto",
+        "kris"
+      ],
+      "layer": "weapon/sword/dagger"
+    },
+    {
+      "keywords": [
+        "axe",
+        "battleaxe",
+        "battle axe",
+        "hatchet",
+        "cleaver"
+      ],
+      "layer": "weapon/blunt/waraxe"
+    },
+    {
+      "keywords": [
+        "mace",
+        "hammer",
+        "warhammer",
+        "maul",
+        "flail",
+        "club",
+        "smasher",
+        "cudgel"
+      ],
+      "layer": "weapon/blunt/mace"
+    },
+    {
+      "keywords": [
+        "spear",
+        "trident",
+        "lance",
+        "pike",
+        "halberd",
+        "glaive",
+        "poleaxe"
+      ],
+      "layer": "weapon/polearm/spear"
+    },
+    {
+      "keywords": [
+        "whip"
+      ],
+      "layer": "weapon/sword/arming/universal"
+    },
+    {
+      "keywords": [
+        "sword",
+        "blade",
+        "sabre",
+        "saber",
+        "scimitar",
+        "katana",
+        "rapier",
+        "falchion",
+        "cutlass",
+        "longsword",
+        "greatsword"
+      ],
+      "layer": "weapon/sword/arming/universal"
+    }
+  ],
+  "weapon_type_fallback": {
+    "slash": "weapon/sword/arming/universal",
+    "sword": "weapon/sword/arming/universal",
+    "long_sword": "weapon/sword/arming/universal",
+    "sting": "weapon/sword/arming/universal",
+    "pierce": "weapon/sword/dagger",
+    "dagger": "weapon/sword/dagger",
+    "spear": "weapon/polearm/spear",
+    "trident": "weapon/polearm/spear",
+    "pound": "weapon/blunt/mace",
+    "crush": "weapon/blunt/mace",
+    "bludgeon": "weapon/blunt/mace",
+    "blunt": "weapon/blunt/mace",
+    "mace": "weapon/blunt/mace",
+    "hammer": "weapon/blunt/mace",
+    "bow": "weapon/ranged/bow/recurve",
+    "blast": "weapon/ranged/bow/recurve",
+    "crossbow": "weapon/ranged/bow/recurve",
+    "staff": "weapon/magic/diamond/universal",
+    "claw": "weapon/sword/arming/universal",
+    "axe": "weapon/blunt/waraxe",
+    "exotic": "weapon/sword/arming/universal",
+    "hit": "weapon/blunt/mace"
+  },
+  "stats_only_slots": [
+    "finger*",
+    "neck*",
+    "waist",
+    "light"
+  ],
+  "note_weapon_fg_bg": "Weapon/shield/cape dirs contain foreground(fg)+background(bg/behind) sheets; filenames vary (fg.png / foreground.png / behind/ / <color>.png). Resolve by globbing within the layer dir.",
+  "not_available_in_set": [
+    "whip (mapped to sword/arming placeholder)"
+  ]
+}

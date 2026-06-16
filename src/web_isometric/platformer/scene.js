@@ -34,12 +34,15 @@
         try { MH.packSprites.apply(this); } catch (e) { console.warn('pack apply failed', e); }
         // hand-tuned zone themes (floors, borders, props, ambience)
         try { MH.zoneSprites.generateAll(this); } catch (e) { console.warn('zone themes failed', e); }
+        // real terrain tile kit (handoff art) — rooms render from these atlases
+        try { if (MH.tilekit) MH.tilekit.init(this); } catch (e) { console.warn('tilekit init failed', e); }
         txt.destroy();
         if (/[?&]gallery=1/.test(window.location.search)) this.scene.start('Gallery');
         else if (/[?&]view=side/.test(window.location.search)) this.scene.start('Room');
         else this.scene.start('TopRoom');   // Zelda-style top-down is the default
       };
       this.load.image('pack_tiny', '/platformer/art/kenney_tiny_dungeon.png');
+      try { if (MH.tilekit) MH.tilekit.preload(this); } catch (e) { console.warn('tilekit preload failed', e); }
       this.load.once('complete', () => this.time.delayedCall(10, begin));
       this.load.once('loaderror', () => this.time.delayedCall(10, begin));
       this.load.start();
