@@ -955,6 +955,8 @@ def build_map_payload(player, mode: str = 'full') -> dict:
                     'quest': quest_mark,
                     'flags': list(getattr(entity, 'flags', []) or []),
                     'pose': _mob_pose(entity),
+                    'sex': (getattr(entity, 'sex', 'male') or 'male'),
+                    'char_class': (getattr(entity, 'char_class', '') or ''),
                 }
                 # Include HP if available
                 hp = getattr(entity, 'hp', None)
@@ -1121,6 +1123,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
         'player': {
             'name': player.name,
             'vnum': start_vnum,
+            'sex': (getattr(player, 'sex', 'male') or 'male'),
             'x': player_coord[0],
             'y': player_coord[1],
             'z': player_coord[2],

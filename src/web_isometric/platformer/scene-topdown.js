@@ -1822,7 +1822,23 @@
         if (spec.data.hostile) ent.stalker = true;
         else ent.wanderAt = Date.now() + 1500 + (MH.hashStr(key) % 3000);
       }
+      // LPC paperdoll overlay for the player and clearly-human NPCs (monsters
+      // keep their procedural art); follows ent.sprite, which stays the logic anchor
+      this.attachDoll(ent, spec);
       return ent;
+    }
+    // give an entity an LPC doll if it's the player or a human NPC
+    attachDoll(ent, spec) {
+      if (!MH.lpc || !MH.lpc.isReady() || ent.doll) return;
+      let cls = null;
+      if (spec.kind === 'player') cls = (spec.data.char_class || 'warrior');
+      else if (spec.kind === 'mob' && !spec.data.boss) cls = MH.lpc.humanoidClass(spec.data.name, spec.data.char_class);
+      if (!cls) return;
+      const dscale = Math.max(0.42, (ent.sprite.displayHeight / 64) * 1.4);   // ~match sprite height
+      ent.doll = MH.lpc.makeDoll(this, { char_class: cls, sex: spec.data.sex || 'male', equipment: spec.data.equipment || {} }, dscale);
+      ent.doll.container.setDepth(ent.sprite.depth || 8);
+      ent.sprite.setAlpha(0);
+      if (ent.rim) ent.rim.setVisible(false);
     }
 
     npcChatter() {
@@ -1932,6 +1948,7 @@
       if (ent.breath) ent.breath.stop();
       if (ent.wanderTween) ent.wanderTween.stop();
       if (ent.smoke) ent.smoke.destroy();
+      if (ent.doll) { ent.doll.destroy(); ent.doll = null; }
       ['sprite', 'label', 'hpbar', 'fightMark', 'questMark', 'bubble', 'engageRing', 'serviceMark', 'shadow', 'rim'].forEach(k => { if (ent[k]) ent[k].destroy(); });
     }
     shortName(name) {
@@ -3869,6 +3886,17 @@
       this.updatePlayerDoll(now);
       for (const ent of this.entities.values()) {
         if (ent.sprite && ent.kind !== 'item') ent.sprite.setDepth(10 + ent.sprite.y / 1000);
+        if (ent.doll) {
+          const s = ent.sprite;
+          ent.doll.container.setPosition(s.x, s.y);
+          ent.doll.container.setDepth(10 + s.y / 1000 + 0.01);
+          const prev = ent._dollPrev || { x: s.x, y: s.y };
+          const moving = Math.abs(s.x - prev.x) + Math.abs(s.y - prev.y) > 0.3;
+          const facing = s.flipX ? 'left' : (ent.facing === 'u' ? 'up' : 'down');
+          ent.doll.setAction(ent.data && ent.data.fighting ? 'attack' : (moving ? 'walk' : 'idle'), facing);
+          ent.doll.update(now);
+          ent._dollPrev = { x: s.x, y: s.y };
+        }
       }
 
       if (this.layout.dark && this.darkRT.visible) {

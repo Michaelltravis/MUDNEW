@@ -213,5 +213,23 @@
     return doll;
   }
 
-  MH.lpc = { preload, init, isReady, resolveLoadout, weaponLayer, makeDoll, sig, ANIMS };
+  // Only TRUE human NPCs get an LPC doll; monsters/beasts/undead keep their
+  // distinctive procedural art. Returns a loadout class string, or null.
+  const HUMAN_NPC = [
+    { re: /guard|soldier|knight|captain|warrior|fighter|gladiator|mercenary|marshal|swordsman|crusader|paladin|legion|sentinel|watch/, cls: 'warrior' },
+    { re: /mage|wizard|sorcer|witch|priest|cleric|acolyte|necromanc|warlock|sage|magus|enchant|scholar/, cls: 'mage' },
+    { re: /thief|assassin|bandit|rogue|pickpocket|cutpurse|smuggler|burglar|stalker/, cls: 'thief' },
+    { re: /ranger|hunter|scout|archer/, cls: 'ranger' },
+    { re: /king|queen|noble|prince|princess|regent|mayor|senator|lord|lady|baron/, cls: 'bard' },
+    { re: /citizen|peasant|villager|baker|merchant|grocer|maid|smith|innkeep|barkeep|bartender|farmer|fisher|miner|servant|peddler|vendor|shopkeep|trainer|guildmaster|man\b|woman\b|child|boy|girl|monk|pilgrim|beggar|drunk|sailor|guildsman/, cls: 'bard' },
+  ];
+  function humanoidClass(name, charClass) {
+    const cc = String(charClass || '').toLowerCase();
+    if (['warrior', 'mage', 'cleric', 'thief', 'ranger', 'paladin', 'necromancer', 'bard', 'assassin'].includes(cc)) return cc;
+    const n = String(name || '').toLowerCase();
+    for (const h of HUMAN_NPC) if (h.re.test(n)) return h.cls;
+    return null;
+  }
+
+  MH.lpc = { preload, init, isReady, resolveLoadout, weaponLayer, makeDoll, sig, humanoidClass, ANIMS };
 })();
