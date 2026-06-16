@@ -1959,6 +1959,7 @@
     }
     tryAttack() {
       if (this.dead || !this.layout) return;
+      this._atkFrame = this.time.now;   // doll swing signal
       // sword thrust animation regardless
       const tex = this.playerTex();
       this.afterimage(this.player, 0xd0e0ff);
@@ -3058,6 +3059,7 @@
       this.syncEntities(roomEntry);
       this.applyAtmosphere(payload);
       this.syncWornAura(payload.player);
+      this.syncPlayerDoll(payload.player);
       this.detectRoomChanges(roomData);
     }
 
@@ -3864,6 +3866,7 @@
       }
       // depth-sort actors by y so overlap reads correctly
       this.player.setDepth(10 + this.player.y / 1000);
+      this.updatePlayerDoll(now);
       for (const ent of this.entities.values()) {
         if (ent.sprite && ent.kind !== 'item') ent.sprite.setDepth(10 + ent.sprite.y / 1000);
       }
@@ -3893,9 +3896,41 @@
       else if (dy < 0) this.facing = 'u';
     }
     playWalk() {
+      this._walkFrame = this.time.now;   // doll movement signal
       const tex = this.playerTex();
       const anim = `${tex}_walk${this.facing}`;
       if (!this.player.anims.isPlaying || this.player.anims.currentAnim.key !== anim) this.player.play(anim);
+    }
+    // facing for the LPC doll: 'u'/'d' map directly; 's' splits by flipX
+    lpcFacing() {
+      if (this.facing === 'u') return 'up';
+      if (this.facing === 'd') return 'down';
+      return this.player.flipX ? 'left' : 'right';
+    }
+    // create/refresh the player's LPC paperdoll when gear/class changes; hide
+    // the procedural sprite while the doll is active
+    syncPlayerDoll(p) {
+      if (!p || !MH.lpc || !MH.lpc.isReady()) return;
+      const spec = { char_class: p.char_class, sex: p.sex || 'male', equipment: p.equipment || {} };
+      const sig = MH.lpc.sig(spec);
+      if (this.playerDoll && this._dollSig === sig) return;
+      if (this.playerDoll) { this.playerDoll.destroy(); this.playerDoll = null; }
+      this._dollSig = sig;
+      this.playerDoll = MH.lpc.makeDoll(this, spec, 0.5 / 1);
+      this.playerDoll.container.setDepth(10);
+      this.player.setAlpha(0);                 // keep physics body, hide the pixel art
+      if (this.playerRim) this.playerRim.setVisible(false);
+    }
+    updatePlayerDoll(now) {
+      const d = this.playerDoll;
+      if (!d) return;
+      d.container.setPosition(this.player.x, this.player.y);
+      d.container.setDepth(10 + this.player.y / 1000);
+      let action = 'idle';
+      if (this._atkFrame && now - this._atkFrame < 300) action = 'attack';
+      else if (this._walkFrame && now - this._walkFrame < 130) action = 'walk';
+      d.setAction(action, this.lpcFacing());
+      d.update(now);
     }
   }
 
