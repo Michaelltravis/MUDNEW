@@ -1453,8 +1453,9 @@
   .foe-more { font-size: 9px; color: #8a90a4; text-align: center; font-family: var(--ui-font); }
 
   /* persistent, scrollable combat log with full history (left side, below the hint) */
-  #combat-log { left: 12px !important; top: 156px !important; right: auto !important; bottom: auto !important;
-    width: 300px; height: 240px; max-height: 82vh; min-height: 64px; min-width: 190px; max-width: 620px;
+  #combat-log { left: 12px !important; top: 64px !important; right: auto !important; bottom: auto !important;
+    display: block !important;  /* persistent message feed */
+    width: 300px; height: 248px; max-height: 70vh; min-height: 64px; min-width: 190px; max-width: 620px;
     overflow: auto !important; resize: both !important;
     border-radius: 9px !important; padding: 0 0 6px !important; scrollbar-width: thin; scrollbar-color: #3a4050 transparent; }
   #combat-log::-webkit-scrollbar { width: 7px; }
@@ -1670,6 +1671,15 @@
   #room-name { color: var(--gold); text-shadow: 0 0 10px rgba(57,197,232,.45); font-size: 19px; font-weight: 700; }
   /* the verbose keybind legend clutters the clean Aether chrome — hide it */
   #help-chip { display: none !important; }
+  /* message feed: cyan header, chat lines tinted */
+  #combat-log .head { color: var(--gold) !important; border-bottom: 1px solid var(--glass-border) !important; }
+  #combat-log .head span:first-child { font-family: var(--ui-font); letter-spacing: .14em; }
+  #combat-log .chat { color: #9bdcef; font-style: italic; }
+  /* first-visit room description: Aether glass, prose font, clear of the bars */
+  #room-desc { top: 112px !important; background: var(--glass) !important; border: 1px solid var(--glass-border) !important;
+    color: var(--text) !important; font-family: var(--prose-font) !important; font-size: 13px !important;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-radius: 10px !important;
+    box-shadow: 0 8px 28px rgba(0,0,0,.5); max-width: 560px !important; }
 
   /* faint tactical 48px grid over the world (under the chrome) */
   #aether-grid { position: fixed; inset: 0; z-index: 6; pointer-events: none;
@@ -1879,7 +1889,7 @@
   <div id="path-chip" style="position:absolute; top:12px; left:50%; transform:translateX(calc(-50% - 240px)); z-index:20; display:none; padding:3px 10px; background:rgba(13,15,21,0.85); border:1px solid var(--border); border-radius:4px; color:#aab2c4; font-size:11px; letter-spacing:1px;"></div>
   <div id="finisher-chip">☠ FINISH THEM — R</div>
   <div id="stance-bar"><div class="sthead">STANCE</div></div>
-  <div id="combat-log"><div class="head"><span>⚔ COMBAT LOG</span><span class="clog-tools"><span id="clog-clear" title="clear">🗑</span><span id="clog-collapse" title="collapse / expand">▾</span></span></div><div id="combat-log-lines"></div></div>
+  <div id="combat-log" class="show"><div class="head"><span>✦ MESSAGE FEED</span><span class="clog-tools"><span id="clog-clear" title="clear">🗑</span><span id="clog-collapse" title="collapse / expand">▾</span></span></div><div id="combat-log-lines"></div></div>
   <div id="cast-bar"><div class="nm"></div><div class="track"><div class="fill"></div></div></div>
   <div id="loot-toast"><div class="head">LOOT</div><div id="loot-lines"></div></div>
   <div id="mob-tip"></div>

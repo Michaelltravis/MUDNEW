@@ -3376,7 +3376,8 @@
       MH.bus.on('room.entered', ({ room, zoneName }) => showRoom(room, zoneName));
       MH.bus.on('flash', flash);
       MH.bus.on('move.blocked', e => {}); // scene flashes it
-      MH.bus.on('chat', e => chatLine(e.line));
+      MH.bus.on('chat', e => { chatLine(e.line); clogLine(e.line.replace(/\x1b\[[0-9;]*m/g, '').replace(/</g, '&lt;'), 'chat'); });
+      MH.bus.on('room.entered', ({ room }) => clogLine(`→ ${(room && room.name) || 'You move on'}`, 'info'));
       MH.bus.on('target.set', setTarget);
       // optimistic target HP: move the bar the instant a hit lands instead of
       // waiting for the next server poll, then let target.update reconcile it

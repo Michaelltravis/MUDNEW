@@ -220,8 +220,9 @@
     { re: /mage|wizard|sorcer|witch|priest|cleric|acolyte|necromanc|warlock|sage|magus|enchant|scholar/, cls: 'mage' },
     { re: /thief|assassin|bandit|rogue|pickpocket|cutpurse|smuggler|burglar|stalker/, cls: 'thief' },
     { re: /ranger|hunter|scout|archer/, cls: 'ranger' },
-    { re: /king|queen|noble|prince|princess|regent|mayor|senator|lord|lady|baron/, cls: 'bard' },
-    { re: /citizen|peasant|villager|baker|merchant|grocer|maid|smith|innkeep|barkeep|bartender|farmer|fisher|miner|servant|peddler|vendor|shopkeep|trainer|guildmaster|man\b|woman\b|child|boy|girl|monk|pilgrim|beggar|drunk|sailor|guildsman/, cls: 'bard' },
+    { re: /king|queen|noble|prince|princess|regent|mayor|senator|lord|lady|baron|count|duke|duchess|emir|sultan|emperor/, cls: 'bard' },
+    { re: /guide|healer|elder|oracle|seer|keeper|herald|crier|squire|page|apprentice|student|recruit|adept|disciple|brother|sister|father|mother|abbot|nun|deacon|bishop|teacher|tutor|scribe|clerk|advisor|councillor|steward|chancellor|ambassador|envoy|emissary|diplomat|courtier|attendant|aide/, cls: 'bard' },
+    { re: /citizen|peasant|villager|baker|merchant|grocer|maid|smith|blacksmith|innkeep|barkeep|bartender|farmer|fisher|miner|servant|peddler|vendor|shopkeep|trainer|guildmaster|man\b|woman\b|child|boy|girl|monk|pilgrim|beggar|drunk|sailor|guildsman|cook|porter|guildmistress|townsfolk|stranger|traveler|traveller|wanderer|hermit|tinker|bard|minstrel|jester|dancer|courtesan|barmaid|wench|urchin|waif|laborer|labourer|worker|guildmember/, cls: 'bard' },
   ];
   function humanoidClass(name, charClass) {
     const cc = String(charClass || '').toLowerCase();
