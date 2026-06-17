@@ -202,9 +202,9 @@
 // ring; up/down are staircase tiles; named passages are portal tiles.
 (() => {
   const MH = window.MH = window.MH || {};
-  // cozier, more proportional chambers: a single room reads as one space, not an
-  // arena. Smaller grid -> camera zooms in -> the player is a clear focal point.
-  const W = 20, H = 13, T = 16;
+  // a roomy tactical chamber: enough grid that the world reads as a space with
+  // unit-sized actors (Aether Grid feel), not a cramped close-up.
+  const W = 24, H = 15, T = 16;
   const FLOOR = 0, BLOCK = 1, WATER = 4;
   MH.TD = { W, H, T, FLOOR, BLOCK, WATER };
 

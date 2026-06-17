@@ -1834,7 +1834,7 @@
       if (spec.kind === 'player') cls = (spec.data.char_class || 'warrior');
       else if (spec.kind === 'mob' && !spec.data.boss) cls = MH.lpc.humanoidClass(spec.data.name, spec.data.char_class);
       if (!cls) return;
-      const dscale = Math.max(0.42, (ent.sprite.displayHeight / 64) * 1.4);   // ~match sprite height
+      const dscale = Math.max(0.32, (ent.sprite.displayHeight / 64) * 1.0);   // ~match sprite height
       ent.doll = MH.lpc.makeDoll(this, { char_class: cls, sex: spec.data.sex || 'male', equipment: spec.data.equipment || {} }, dscale);
       ent.doll.container.setDepth(ent.sprite.depth || 8);
       ent.sprite.setAlpha(0);
@@ -3888,6 +3888,8 @@
         if (ent.sprite && ent.kind !== 'item') ent.sprite.setDepth(10 + ent.sprite.y / 1000);
         if (ent.doll) {
           const s = ent.sprite;
+          if (s.alpha !== 0) s.setAlpha(0);          // keep procedural sprite hidden
+          if (ent.rim) ent.rim.setVisible(false);
           ent.doll.container.setPosition(s.x, s.y);
           ent.doll.container.setDepth(10 + s.y / 1000 + 0.01);
           const prev = ent._dollPrev || { x: s.x, y: s.y };
@@ -3944,7 +3946,7 @@
       if (this.playerDoll && this._dollSig === sig) return;
       if (this.playerDoll) { this.playerDoll.destroy(); this.playerDoll = null; }
       this._dollSig = sig;
-      this.playerDoll = MH.lpc.makeDoll(this, spec, 0.5 / 1);
+      this.playerDoll = MH.lpc.makeDoll(this, spec, 0.4);
       this.playerDoll.container.setDepth(10);
       this.player.setAlpha(0);                 // keep physics body, hide the pixel art
       if (this.playerRim) this.playerRim.setVisible(false);
@@ -3952,6 +3954,10 @@
     updatePlayerDoll(now) {
       const d = this.playerDoll;
       if (!d) return;
+      // the doll is the only visible body — keep the procedural sprite + its
+      // additive rim hidden every frame (several places reset player.alpha=1)
+      if (this.player.alpha !== 0) this.player.setAlpha(0);
+      if (this.playerRim) this.playerRim.setVisible(false);
       d.container.setPosition(this.player.x, this.player.y);
       d.container.setDepth(10 + this.player.y / 1000);
       let action = 'idle';
