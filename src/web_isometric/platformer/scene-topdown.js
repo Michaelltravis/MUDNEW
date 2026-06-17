@@ -1827,30 +1827,37 @@
         if (spec.data.hostile) ent.stalker = true;
         else ent.wanderAt = Date.now() + 1500 + (MH.hashStr(key) % 3000);
       }
-      // New art: humans -> LPC paperdoll; everything else -> real DCSS creature
-      // art. ent.sprite stays the hidden logic/physics anchor either way.
-      this.attachDoll(ent, spec);
-      if (!ent.doll) this.attachCreatureArt(ent, spec);
+      // New art for every actor: explicit human role -> LPC paperdoll; a creature
+      // keyword -> real DCSS art; otherwise (proper-named townsfolk) -> a generic
+      // LPC person. ent.sprite stays the hidden logic/physics anchor.
+      this.attachArt(ent, spec);
       return ent;
     }
-    // give an entity an LPC doll if it's the player or a human NPC
-    attachDoll(ent, spec) {
-      if (!MH.lpc || !MH.lpc.isReady() || ent.doll) return;
-      let cls = null;
-      if (spec.kind === 'player') cls = (spec.data.char_class || 'warrior');
-      else if (spec.kind === 'mob' && !spec.data.boss) cls = MH.lpc.humanoidClass(spec.data.name, spec.data.char_class);
-      if (!cls) return;
+    attachArt(ent, spec) {
+      const lpcOK = MH.lpc && MH.lpc.isReady(), dcssOK = MH.dcss && MH.dcss.isReady();
+      if (spec.kind === 'player') { if (lpcOK) this.attachDollAs(ent, spec, spec.data.char_class || 'warrior'); return; }
+      const name = spec.data.name;
+      const humanRole = lpcOK ? MH.lpc.humanoidClass(name, spec.data.char_class) : null;
+      const creature = dcssOK ? MH.dcss.resolve(name) : null;
+      if (humanRole) this.attachDollAs(ent, spec, humanRole);
+      else if (creature) this.attachCreatureArt(ent, spec, creature);
+      else if (lpcOK && !spec.data.boss) this.attachDollAs(ent, spec, 'bard');   // generic person
+      // else: keep the procedural sprite (subsystems not ready / odd boss)
+    }
+    // build an LPC doll for an entity with an explicit class loadout
+    attachDollAs(ent, spec, cls) {
+      if (!MH.lpc || !MH.lpc.isReady() || ent.doll || !cls) return;
       const dscale = Math.max(0.32, (ent.sprite.displayHeight / 64) * 1.0);   // ~match sprite height
       ent.doll = MH.lpc.makeDoll(this, { char_class: cls, sex: spec.data.sex || 'male', equipment: spec.data.equipment || {} }, dscale);
       ent.doll.container.setDepth(ent.sprite.depth || 8);
       ent.sprite.setAlpha(0);
       if (ent.rim) ent.rim.setVisible(false);
     }
-    // real creature art (DCSS) for non-humanoid mobs; a single 32px image
-    // overlaid on the hidden procedural sprite, with a gentle idle bob
-    attachCreatureArt(ent, spec) {
+    // real creature art (DCSS) for monsters; a single 32px image overlaid on
+    // the hidden procedural sprite, with a gentle idle bob
+    attachCreatureArt(ent, spec, path) {
       if (!MH.dcss || !MH.dcss.isReady() || ent.art || spec.kind === 'player') return;
-      const path = MH.dcss.resolve(spec.data.name);
+      path = path || MH.dcss.resolve(spec.data.name);
       if (!path) return;   // nothing matched -> keep the procedural sprite
       const s = ent.sprite, big = spec.data.boss;
       MH.dcss.ensure(this, path, key => {

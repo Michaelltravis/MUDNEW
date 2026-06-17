@@ -75,6 +75,16 @@
     elephant: 'elephant', yak: 'death_yak', shrike: 'caustic_shrike',
   };
 
+  // exact full-name overrides for uniquely-named bosses/creatures whose names
+  // carry no generic creature keyword
+  const EXACT = {
+    death: 'boss/horseman_death.png', famine: 'boss/horseman_famine.png',
+    pestilence: 'boss/horseman_pestilence.png', war: 'boss/horseman_war.png',
+    androsphinx: 'demihumanoids/guardian_sphinx.png', sphinx: 'demihumanoids/guardian_sphinx.png',
+    khufu: 'boss/khufu.png', ignacio: 'boss/ignacio.png', arachne: 'boss/arachne.png',
+    'archon prime': 'holy/seraph.png',
+  };
+
   function pathForStem(stem) {
     const e = INDEX.find(i => i.path.endsWith('/' + stem + '.png'));
     return e ? e.path : null;
@@ -87,6 +97,11 @@
     const words = n.split(/[^a-z]+/).filter(w => w.length >= 2 && !STOP.has(w));
     if (!words.length) return null;
     const wset = new Set(words);
+
+    // 0) exact full-name / single-word overrides for unique bosses
+    const nClean = words.join(' ');
+    if (EXACT[nClean]) return EXACT[nClean];
+    if (words.length === 1 && EXACT[words[0]]) return EXACT[words[0]];
 
     // 1) best file-stem match: every word of the stem appears in the name;
     //    prefer the most specific (most words) stem
