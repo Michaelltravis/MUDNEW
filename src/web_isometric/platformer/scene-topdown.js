@@ -2490,15 +2490,28 @@
       if (dmg <= 80) return { color: '#ff6a4a', size: 14, shake: 0.004 };
       return { color: '#ff4ae0', size: 16, shake: 0.007 };
     }
+    // the visible body for an entity / the player (LPC doll or DCSS art, else
+    // the procedural sprite) — combat juice must play on whatever is on screen
+    entVisual(ent) { return (ent && ent.doll && ent.doll.container) || (ent && ent.art) || (ent && ent.sprite); }
+    playerVisual() { return (this.playerDoll && this.playerDoll.container) || this.player; }
+    // white/colored hit flash that also works on a layered doll Container
+    flashFill(obj, color, ms) {
+      if (!obj) return;
+      const apply = o => { if (o && o.setTintFill) { o.setTintFill(color); this.time.delayedCall(ms || 80, () => { if (o.active) o.clearTint(); }); } };
+      if (obj.setTintFill && !obj.list) apply(obj);
+      else if (obj.list) obj.list.forEach(apply);   // Container: tint each layer
+      else apply(obj);
+    }
     fxHit(e) {
       const ent = this.findEntityByText(e.target) || this.target;
       if (!ent || !ent.sprite) return;
-      ent.sprite.setTintFill(0xffffff);
-      this.time.delayedCall(80, () => ent.sprite && ent.sprite.clearTint());
+      const vis = this.entVisual(ent);
+      this.flashFill(vis, 0xffffff);
       const ang = Math.atan2(ent.sprite.y - this.player.y, ent.sprite.x - this.player.x);
       const kb = e.dmg != null ? Math.min(12, 4 + e.dmg * 0.25) : 5;
+      // knockback drives the hidden anchor; the visible art follows it each frame
       this.tweens.add({ targets: ent.sprite, x: ent.sprite.x + Math.cos(ang) * kb, y: ent.sprite.y + Math.sin(ang) * kb, duration: 70, yoyo: true });
-      this.squash(ent.sprite);
+      this.squash(vis);
       this.impactLines(ent.sprite.x, ent.sprite.y - 6);
       if (e.dmg != null && e.dmg >= 8) this.freezeFrame(e.dmg >= 25 ? 95 : 60);
       if (e.dmg != null && e.dmg >= 5) this.bloodSplat(ent.sprite.x, ent.sprite.y, e.dmg >= 20);
@@ -2522,13 +2535,13 @@
       if (ent && ent.sprite) this.damageNumber(ent.sprite.x, ent.sprite.y - 16, 'miss', '#7a8094', 8);
     }
     fxTaken(e) {
-      this.player.setTintFill(0xff6060);
-      this.time.delayedCall(90, () => this.player.clearTint());
+      const pv = this.playerVisual();
+      this.flashFill(pv, 0xff6060, 90);
       const st = this.dmgStyle(e && e.dmg);
       this.camShake(80, Math.max(0.004, st.shake));
       this.dmgPulse(e && e.dmg);
       if (MH.sfx) MH.sfx.hurt(e && e.dmg >= 20 ? 2 : 1);
-      this.squash(this.player);
+      this.squash(pv);
       this.impactLines(this.player.x, this.player.y - 6, 0xff8080);
       if (e && e.dmg != null && e.dmg >= 6) {
         this.freezeFrame(e.dmg >= 20 ? 90 : 55);
