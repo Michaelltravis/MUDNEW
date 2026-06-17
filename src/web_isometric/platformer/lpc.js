@@ -20,9 +20,8 @@
   function torsoLayer(stub, sex) {
     // the starter pack only ships a female robe, so any female wears it
     if (sex === 'female') return 'torso/clothes/robe/female';
-    if (stub === 'clothes/robe') return 'torso/clothes/robe/female';
-    if (stub === 'armour/leather') return 'torso/armour/leather/male';
-    return 'torso/armour/plate/male';
+    if (stub === 'armour/plate') return 'torso/armour/plate/male';
+    return 'torso/armour/leather/male';   // leather/cloth/robe (no male robe art) -> leather
   }
   const LEGS = { 'armour/plate': 'legs/armour/plate/male', 'pants': 'legs/pants/male' };
   const HEAD = { 'helmet/greathelm': 'hat/helmet/greathelm/male', 'helmet/flattop': 'hat/helmet/flattop/male' };
@@ -56,13 +55,30 @@
     const wt = String(item.weapon_type || item.type || '').toLowerCase();
     return RULES.weapon_type_fallback[wt] || RULES.weapon_type_fallback.slash;
   }
-  // body-armor material keyword -> torso stub (light gear reflection)
+  // worn item name -> the closest available LPC armor stub for each slot.
+  // The starter pack has plate + leather torso/legs, boots, two helms; anything
+  // heavier maps to plate, anything lighter to leather/pants.
+  const HEAVY = /plate|chain|mail|scale|splint|banded|brigandine|breastplate|cuirass|half-?plate|full plate|lamellar/;
   function torsoStubFromItem(item, fallback) {
     const n = String((item && item.name) || '').toLowerCase();
-    if (/plate|chain|mail|scale/.test(n)) return 'armour/plate';
-    if (/leather|hide|studded|jerkin/.test(n)) return 'armour/leather';
-    if (/robe|cloth|silk|vestment|cassock/.test(n)) return 'clothes/robe';
-    return fallback;
+    if (!n) return fallback;
+    if (HEAVY.test(n)) return 'armour/plate';
+    if (/leather|hide|studded|jerkin|brigand/.test(n)) return 'armour/leather';
+    if (/robe|cloth|silk|vestment|cassock|tunic|shirt|gown/.test(n)) return 'clothes/robe';
+    return 'armour/leather';   // worn but unknown -> a basic leather torso
+  }
+  function legsStubFromItem(item, fallback) {
+    if (!item) return fallback;
+    const n = String(item.name || '').toLowerCase();
+    if (HEAVY.test(n) || /greave|legplate|cuisse|tasset/.test(n)) return 'armour/plate';
+    return 'pants';   // leggings / leather / cloth / unknown
+  }
+  function headStubFromItem(item, fallback) {
+    if (!item) return fallback;
+    const n = String(item.name || '').toLowerCase();
+    if (/great ?helm|full helm|\bhelm(et)?\b|barbut|armet|sallet|bascinet|casque|visor/.test(n)) return 'helmet/greathelm';
+    if (/cap|hood|coif|circlet|crown|\bhat\b|cowl|bandana|mask|tiara|diadem/.test(n)) return 'helmet/flattop';
+    return 'helmet/flattop';   // worn head item, unknown -> light cap
   }
 
   // {key,url} for a layer's animation sheet via the resolved index, or null if
@@ -93,18 +109,19 @@
     out.push({ z: 'body', layerId: body, part: null });
 
     // legs
-    const legsStub = def.legs || 'pants';
+    // legs — reflect worn leg armor; a female's legs sit under the robe, so use pants
+    const legsStub = sex === 'female' ? 'pants' : legsStubFromItem(eq.legs, def.legs || 'pants');
     if (LEGS[legsStub]) out.push({ z: 'legs', layerId: LEGS[legsStub], part: null });
-    // feet
-    if (def.feet && def.feet.startsWith('boots')) out.push({ z: 'feet', layerId: 'feet/boots/basic/male', part: null });
-    // torso (reflect equipped body armor material when present)
+    // feet — boots when worn (or a class that defaults to them)
+    if (eq.feet || (def.feet && def.feet.startsWith('boots'))) out.push({ z: 'feet', layerId: 'feet/boots/basic/male', part: null });
+    // torso — reflect worn body armor (heavy->plate, light->leather, female->robe)
     const torsoStub = torsoStubFromItem(eq.body, def.torso || 'armour/leather');
     out.push({ z: 'torso', layerId: torsoLayer(torsoStub, sex), part: null });
     // hair (varied by per-NPC seed so a crowd isn't identical)
     const hairStub = (def.hair && spec.seed != null && spec.seed % 3 === 0) ? 'xlong' : def.hair;
     if (hairStub && HAIR[hairStub]) out.push({ z: 'hair', layerId: HAIR[hairStub], part: null });
-    // head/helmet (only if wearing a head item, or class default greathelm)
-    const headStub = (eq.head ? 'helmet/greathelm' : def.head);
+    // head/helmet — reflect worn headgear (heavy helm vs light cap), else class default
+    const headStub = headStubFromItem(eq.head, def.head);
     if (headStub && HEAD[headStub]) out.push({ z: 'hat_helmet', layerId: HEAD[headStub], part: null });
 
     // foreground weapon/shield (over the body)
@@ -120,8 +137,9 @@
   // signature for caching/identity
   function sig(spec) {
     const eq = (spec && spec.equipment) || {};
-    return [spec && spec.char_class, spec && spec.sex, eq.wield && eq.wield.name,
-      eq.shield && 1, eq.body && eq.body.name, eq.head && 1].join('|');
+    const nm = it => (it && it.name) || '';
+    return [spec && spec.char_class, spec && spec.sex, spec && spec.seed,
+      nm(eq.wield), nm(eq.shield), nm(eq.body), nm(eq.legs), nm(eq.feet), nm(eq.head)].join('|');
   }
 
   // queue dynamic loads, debounced into one loader run
