@@ -1567,8 +1567,9 @@
   #duel-card::before { content: 'IN COMBAT'; display: block; text-align: center;
     color: #e07f7f; font-size: 9px; letter-spacing: 3px; margin-bottom: 5px;
     font-family: var(--ui-font); }
-  #target-frame { top: 64px !important; left: 12px !important; right: auto !important; bottom: auto !important;
-    min-width: 200px !important; }
+  /* floating target frame: top-center over the world (draggable overrides) */
+  #target-frame { top: 70px !important; left: 50% !important; right: auto !important; bottom: auto !important;
+    transform: translateX(-50%); min-width: 280px !important; }
   /* once parked by the player, hold position */
   #duel-card.dragged { left: auto !important; transform: none !important; }
   #target-frame.dragged { left: auto !important; right: auto !important; transform: none !important; }
@@ -1724,6 +1725,25 @@
   /* lift room banner onto the bar, centered */
   #room-banner { top: 7px !important; background: transparent !important; border: none !important; box-shadow: none !important; }
   #room-zone { text-transform: uppercase; letter-spacing: .18em; color: var(--dim); }
+
+  /* ---- floating target frame: elite-target treatment ---- */
+  #target-frame { padding: 9px 12px !important; border-color: rgba(255,90,106,.55) !important;
+    box-shadow: 0 0 22px rgba(255,90,106,.28) !important; }
+  #target-frame.friendly { border-color: var(--glass-border) !important; box-shadow: 0 0 18px rgba(57,197,232,.3) !important; }
+  #target-frame .who { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 6px !important; }
+  #target-frame .tf-nm { font-family: var(--ui-font); font-weight: 700; font-size: 14px; letter-spacing: .06em;
+    color: #ffd6da; text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #target-frame.friendly .tf-nm { color: #bfeefb; }
+  #target-frame .tf-tag { font-family: var(--num-font); font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; flex: none; }
+  #target-frame .bar.hp { height: 14px !important; border-radius: 3px !important; border: 1px solid rgba(255,90,106,.4) !important;
+    background: rgba(7,11,16,.8) !important; }
+  #target-frame.friendly .bar.hp { border-color: var(--glass-border) !important; }
+  #target-frame .bar.hp > i { background: linear-gradient(90deg, #ff7a86, #d23a4a) !important; }
+  #target-frame.friendly .bar.hp > i { background: linear-gradient(90deg, #5ce0a8, #2a9e6c) !important; }
+  #target-frame #target-hp-txt { position: absolute; inset: 0; z-index: 2; text-align: center; line-height: 14px;
+    font-family: var(--num-font); font-size: 9.5px; color: #fff; text-shadow: 0 1px 2px #000; }
+  #target-frame #round-bar { height: 4px !important; margin-top: 6px !important; }
+  #target-frame #round-bar .fill { background: linear-gradient(90deg, var(--gold), #bfeefb) !important; }
 
   /* ---- CONTACTS panel (right, below the sector map) ---- */
   #contacts { position: absolute; right: 12px; top: 432px; z-index: 20; width: 210px; max-height: 34vh;

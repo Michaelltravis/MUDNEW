@@ -526,9 +526,10 @@
     currentTarget = data;
     if (!data) { els.targetFrame.classList.remove('show'); return; }
     els.targetFrame.classList.add('show');
+    els.targetFrame.classList.toggle('friendly', !data.hostile && !data.fighting);
     const th = threatFor(data.level);
-    els.targetName.innerHTML = `${data.name} <span style="color:#8a90a4">(Lv ${data.level || '?'})</span> `
-      + `<span class="tgt-threat" style="color:${th.col}">● ${th.txt}</span>`;
+    els.targetName.innerHTML = `<span class="tf-nm">${data.name}</span>`
+      + `<span class="tf-tag" style="color:${th.col}">LV ${data.level || '?'} · ${th.txt}</span>`;
     const max = data.maxHp || 1, hp = data.hp != null ? data.hp : max;
     const pct = Math.max(0, Math.min(100, (hp / max) * 100));
     // ghost layer snaps to the OLD value then drains slowly behind the real bar
