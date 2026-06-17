@@ -343,12 +343,12 @@
   /* ---- hotbar ability tooltip ---- */
   #hotbar-tip {
     position: fixed; z-index: 70; display: none; pointer-events: none;
-    background: rgba(13,15,21,0.97); border: 1px solid rgba(232,193,104,0.4); border-radius: 8px;
+    background: var(--glass, rgba(14,22,30,0.62)); border: 1px solid var(--glass-border, rgba(57,197,232,0.28)); border-radius: 8px;
     padding: 7px 10px; font-size: 11px; max-width: 220px; line-height: 1.5;
     box-shadow: 0 6px 22px rgba(0,0,0,0.5); backdrop-filter: blur(6px);
   }
   #hotbar-tip.show { display: block; }
-  #hotbar-tip .ht-name { color: #ffe9a8; font-family: var(--ui-font); font-weight: 600; font-size: 12px; }
+  #hotbar-tip .ht-name { color: #bfeefb; font-family: var(--ui-font); font-weight: 600; font-size: 12px; }
   #hotbar-tip .ht-meta { color: #9aa0b4; margin-top: 3px; }
   #hotbar-tip .ht-meta b { color: #6fb6ff; }
   #hotbar-tip .ht-key { color: #8a90a4; margin-top: 4px; font-size: 10px; }
@@ -1830,6 +1830,9 @@
   #quest-tracker .qt-nm { color: #bfeefb !important; font-family: var(--ui-font); }
   #quest-tracker .qt-obj.done { color: var(--green) !important; }
   #quest-tracker .qt-hd .qt-min:hover { color: var(--gold) !important; }
+  /* the old "you vs foes" duel card overlapped the target frame and duplicated
+     the Contacts list — the Aether target frame + Contacts cover combat now */
+  #duel-card { display: none !important; }
 
   </style>
 </head>
