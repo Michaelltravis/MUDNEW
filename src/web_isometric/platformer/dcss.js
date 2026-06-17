@@ -149,8 +149,12 @@
     if (pendCb[key]) { pendCb[key].push(cb); return; }
     pendCb[key] = [cb];
     scene.load.image(key, BASE + relPath);
-    scene.load.once('complete', () => { const cbs = pendCb[key] || []; delete pendCb[key]; cbs.forEach(f => { try { f(key); } catch (_) {} }); });
-    scene.load.once('loaderror', () => { delete pendCb[key]; });
+    scene.load.once('complete', () => {
+      const cbs = pendCb[key] || []; delete pendCb[key];
+      const ok = scene.textures.exists(key);
+      cbs.forEach(f => { try { f(ok ? key : null); } catch (_) {} });
+    });
+    scene.load.once('loaderror', () => { const cbs = pendCb[key] || []; delete pendCb[key]; cbs.forEach(f => { try { f(null); } catch (_) {} }); });
     scene.load.start();
   }
 

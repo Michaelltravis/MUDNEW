@@ -1860,8 +1860,11 @@
       path = path || MH.dcss.resolve(spec.data.name);
       if (!path) return;   // nothing matched -> keep the procedural sprite
       const s = ent.sprite, big = spec.data.boss;
+      s.setAlpha(0);                       // hide procedural now; no pre-load flash
+      if (ent.rim) ent.rim.setVisible(false);
       MH.dcss.ensure(this, path, key => {
         if (!s || !s.active) return;
+        if (!key) { s.setAlpha(1); if (ent.rim) ent.rim.setVisible(true); return; }   // load failed -> restore
         const img = this.add.image(s.x, s.y - 6, key).setOrigin(0.5, 0.9);
         // DCSS frames are 32px; scale up to ~1.4 tiles (bosses larger), crisp
         const sc = (TD().T * (big ? 2.3 : 1.7)) / 32;
