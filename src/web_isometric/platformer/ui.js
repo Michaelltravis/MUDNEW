@@ -2397,7 +2397,7 @@
     } catch (_) { /* scene not up yet */ }
     const w = Math.round(Math.max(150, Math.min(300, band - 26)));
     els.minimap.width = mmLarge ? Math.max(w, 300) : w;
-    els.minimap.height = mmLarge ? 520 : 340;
+    els.minimap.height = mmLarge ? 420 : 150;   // compact sector map (Aether spec)
     renderMinimap();
   }
   MH.fitMinimapColumn = fitMinimapColumn;
