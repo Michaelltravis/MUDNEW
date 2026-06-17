@@ -1615,6 +1615,11 @@
     }
 
     placeProse(layout) {
+      // the room-description card (top-center, first visit + 'L' to re-read)
+      // is the clean home for prose now; the floating in-world text duplicated
+      // it and cluttered the Aether view, so it's disabled.
+      return;
+      // eslint-disable-next-line no-unreachable
       if (!layout.description) return;
       const rng = MH.mulberry32(layout.vnum + 99);
       const frags = layout.description.replace(/\n/g, ' ').split(/(?<=[.!?])\s+/)
