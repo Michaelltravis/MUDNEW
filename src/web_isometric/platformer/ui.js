@@ -3472,6 +3472,7 @@
       MH.bus.on('player.heal', () => clogLine('You are healed', 'heal'));
       MH.bus.on('level.up', () => clogLine('★ You gain a level!', 'info'));
       MH.bus.on('player.gold', e => clogLine(`+${e.amount} gold`, 'info'));
+      MH.bus.on('item.loot', e => clogLine(e.from ? `◈ Looted <b>${e.item}</b> from ${e.from}` : `◈ Looted <b>${e.item}</b>`, 'loot'));
       MH.bus.on('mob.death', e => clogLine(`${e.name || 'It'} dies!`, 'info'));
       // consumables & gear: brief corner toast + combat-log line + sfx
       const titleCase = s => (s || '').replace(/^(a|an|the)\s+/i, '').replace(/\b\w/g, c => c.toUpperCase());

@@ -34,6 +34,9 @@
   const NOT_HERE = /they aren'?t here|you do not see that here|kill who/i;
   const SLEEP_LINE = /^You go to sleep|^You wake|^You stand up|^You sit down|^You rest/i;
   const GOLD_LINE = /you (?:get|receive|find) (\d+) (?:gold )?coins?/i;
+  // loot pickups: "You get <item> from <corpse>." or "You get <item>." (gold is
+  // matched by GOLD_LINE first, so this only catches real items)
+  const LOOT_LINE = /^You get (.+?)(?: from (.+?))?\.?$/i;
   // consumables & gear feedback (no UI cue today)
   const EAT_LINE = /^You eat (.+?)\.?$/i;
   const STILL_HUNGRY = /^You eat but are still hungry/i;
@@ -110,6 +113,7 @@
     if (CAST_START.test(line)) { bus.emit('combat.cast', { line }); return; }
     if (HEAL.test(line)) { bus.emit('player.heal', { line }); return; }
     if ((m = line.match(GOLD_LINE))) { bus.emit('player.gold', { amount: Number(m[1]), line }); return; }
+    if ((m = line.match(LOOT_LINE))) { bus.emit('item.loot', { item: m[1].trim(), from: (m[2] || '').trim(), line }); MH.refreshState(); return; }
     if (STILL_HUNGRY.test(line)) { bus.emit('item.consume', { kind: 'eat', sated: false, line }); return; }
     if ((m = line.match(EAT_LINE))) { bus.emit('item.consume', { kind: 'eat', item: m[1].trim(), line }); MH.refreshState(); return; }
     if ((m = line.match(DRINK_FROM))) { bus.emit('item.consume', { kind: 'drink', liquid: (m[1] || '').trim(), item: m[2].trim(), line }); MH.refreshState(); return; }
