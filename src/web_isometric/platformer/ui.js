@@ -1936,6 +1936,22 @@
       if (ctx.roundRect) { ctx.beginPath(); ctx.roundRect(x, y, w, h, rr); ctx.fill(); }
       else ctx.fillRect(x, y, w, h);
     };
+    // corridor links between adjacent explored rooms, drawn UNDER the cells so
+    // the map reads as a connected network rather than scattered dots
+    const onLevel = {};
+    for (const r of (payload.rooms || [])) if ((r.z || 0) === z) onLevel[r.x + ',' + r.y] = 1;
+    ctx.strokeStyle = 'rgba(120,165,200,0.3)';
+    ctx.lineWidth = Math.max(1, cell * 0.12);
+    ctx.lineCap = 'round';
+    for (const r of (payload.rooms || [])) {
+      if ((r.z || 0) !== z) continue;
+      const cxp = W / 2 + (r.x - p.x) * cell, cyp = H / 2 + (r.y - p.y) * cell;
+      for (const [dx, dy] of [[1, 0], [0, 1]]) {   // east + south avoids double-drawing
+        if (onLevel[(r.x + dx) + ',' + (r.y + dy)]) {
+          ctx.beginPath(); ctx.moveTo(cxp, cyp); ctx.lineTo(cxp + dx * cell, cyp + dy * cell); ctx.stroke();
+        }
+      }
+    }
     for (const r of (payload.rooms || [])) {
       if ((r.z || 0) !== z) continue;
       const x = W / 2 + (r.x - p.x) * cell - s / 2;

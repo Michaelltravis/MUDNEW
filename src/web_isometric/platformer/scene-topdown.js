@@ -1841,19 +1841,31 @@
       const creature = dcssOK ? MH.dcss.resolve(name) : null;
       if (humanRole) this.attachDollAs(ent, spec, humanRole);
       else if (creature) this.attachCreatureArt(ent, spec, creature);
-      else if (lpcOK && !spec.data.boss) this.attachDollAs(ent, spec, 'bard');   // generic person
-      // else: keep the procedural sprite (subsystems not ready / odd boss)
+      else if (lpcOK) this.attachDollAs(ent, spec, 'bard');   // generic person (incl. odd bosses)
+      // else: keep the procedural sprite (subsystems not ready)
+    }
+    // a pulsing ember glow beneath a boss so it reads as a threat
+    addBossAura(ent) {
+      if (ent.bossAura || !ent.sprite) return;
+      const s = ent.sprite;
+      const aura = this.add.image(s.x, s.y + 5, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+        .setAlpha(0.32).setScale(1.1).setTint(0xff6a3a).setDepth((s.depth || 8) - 0.02);
+      this.tweens.add({ targets: aura, alpha: 0.52, scale: 1.4, duration: 950, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      ent.bossAura = aura;
     }
     // build an LPC doll for an entity with an explicit class loadout
     attachDollAs(ent, spec, cls) {
       if (!MH.lpc || !MH.lpc.isReady() || ent.doll || !cls) return;
-      const dscale = Math.max(0.32, (ent.sprite.displayHeight / 64) * 1.0);   // ~match sprite height
+      const big = spec.data.boss;
+      const base = Math.max(0.32, (ent.sprite.displayHeight / 64) * 1.0);   // ~match sprite height
+      const dscale = big ? base * 1.6 : base;                               // bosses loom larger
       // the player keeps its real identity; NPCs vary by name-hash so towns
       // aren't full of identical twins (mixed sexes + hairstyles)
       const seed = MH.hashStr(spec.data.name || '');
       const sex = spec.kind === 'player' ? (spec.data.sex || 'male') : (seed % 2 ? 'female' : 'male');
       ent.doll = MH.lpc.makeDoll(this, { char_class: cls, sex, equipment: spec.data.equipment || {}, seed: spec.kind === 'player' ? null : seed }, dscale,
         () => this.tintCharacters());   // apply day/night tint once layers exist
+      if (big && spec.kind !== 'player') this.addBossAura(ent);
       ent.doll.container.setDepth(ent.sprite.depth || 8);
       ent.sprite.setAlpha(0);
       if (ent.rim) ent.rim.setVisible(false);
@@ -1871,13 +1883,15 @@
         if (!s || !s.active) return;
         if (!key) { s.setAlpha(1); if (ent.rim) ent.rim.setVisible(true); return; }   // load failed -> restore
         const img = this.add.image(s.x, s.y - 6, key).setOrigin(0.5, 0.9);
-        // DCSS frames are 32px; scale up to ~1.4 tiles (bosses larger), crisp
-        const sc = (TD().T * (big ? 2.3 : 1.7)) / 32;
+        // DCSS frames are 32px; scale up to ~1.4 tiles (bosses much larger), crisp
+        const sc = (TD().T * (big ? 2.9 : 1.7)) / 32;
         img.setScale(sc).setDepth(s.depth || 8);
         img.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
         img.setTint(this._charTint || 0xffffff);   // sit in the day/night scene
         ent.art = img;
-        ent.artPhase = (MH.hashStr(spec.data.name) % 628) / 100;   // idle-bob phase
+        ent.artScale = sc;                                          // base for idle breathing
+        ent.artPhase = (MH.hashStr(spec.data.name) % 628) / 100;    // idle-bob phase
+        if (big) this.addBossAura(ent);
         s.setAlpha(0);
         if (ent.rim) ent.rim.setVisible(false);
       });
@@ -1993,6 +2007,7 @@
       if (ent.doll) { ent.doll.destroy(); ent.doll = null; }
       if (ent.artBob) { ent.artBob.stop(); ent.artBob = null; }
       if (ent.art) { ent.art.destroy(); ent.art = null; }
+      if (ent.bossAura) { this.tweens.killTweensOf(ent.bossAura); ent.bossAura.destroy(); ent.bossAura = null; }
       ['sprite', 'label', 'hpbar', 'fightMark', 'questMark', 'bubble', 'engageRing', 'serviceMark', 'shadow', 'rim'].forEach(k => { if (ent[k]) ent[k].destroy(); });
     }
     shortName(name) {
@@ -3975,14 +3990,17 @@
           ent.doll.update(now);
           ent._dollPrev = { x: s.x, y: s.y };
         } else if (ent.art) {
-          const s = ent.sprite;
+          const s = ent.sprite, ph = ent.artPhase || 0, base = ent.artScale || ent.art.scaleX;
           if (s.alpha !== 0) s.setAlpha(0);
           if (ent.rim) ent.rim.setVisible(false);
           ent.art.x = s.x;
-          ent.art.y = s.y - 6 + Math.sin(now / 600 + (ent.artPhase || 0)) * 1.5;   // follow + idle bob
+          ent.art.y = s.y - 6 + Math.sin(now / 600 + ph) * 1.5;          // follow + idle bob
           ent.art.setDepth(10 + s.y / 1000 + 0.01);
-          ent.art.setFlipX(s.flipX);
+          // idle breathing: gentle vertical swell; manage flip via scaleX sign
+          ent.art.scaleX = base * (s.flipX ? -1 : 1);
+          ent.art.scaleY = base * (1 + Math.sin(now / 520 + ph) * 0.05);
         }
+        if (ent.bossAura) { ent.bossAura.x = ent.sprite.x; ent.bossAura.y = ent.sprite.y + 5; ent.bossAura.setDepth(9.5 + ent.sprite.y / 1000); }
       }
 
       if (this.layout.dark && this.darkRT.visible) {
