@@ -1931,18 +1931,34 @@
     }
     const zoneColor = {};
     (payload.zones || []).forEach(zn => { zoneColor[zn.id] = zn.color; });
+    const s = cell - 2, rad = Math.min(3, s / 3);
+    const rcell = (x, y, w, h, rr) => {
+      if (ctx.roundRect) { ctx.beginPath(); ctx.roundRect(x, y, w, h, rr); ctx.fill(); }
+      else ctx.fillRect(x, y, w, h);
+    };
     for (const r of (payload.rooms || [])) {
       if ((r.z || 0) !== z) continue;
-      const x = W / 2 + (r.x - p.x) * cell - (cell - 2) / 2;
-      const y = H / 2 + (r.y - p.y) * cell - (cell - 2) / 2;
+      const x = W / 2 + (r.x - p.x) * cell - s / 2;
+      const y = H / 2 + (r.y - p.y) * cell - s / 2;
       if (x < -cell || x > W || y < -cell || y > H) continue;
-      ctx.fillStyle = r.vnum === walkTargetVnum ? '#e8c168' : (zoneColor[r.zone] || '#4a4f60');
-      ctx.globalAlpha = r.vnum === p.vnum ? 1 : 0.55;
-      ctx.fillRect(x, y, cell - 2, cell - 2);
+      const here = r.vnum === p.vnum;
+      if (here) {
+        // current room: cyan with a soft glow ring
+        ctx.save();
+        ctx.shadowColor = '#39c5e8'; ctx.shadowBlur = 8;
+        ctx.fillStyle = '#39c5e8'; ctx.globalAlpha = 1;
+        rcell(x, y, s, s, rad);
+        ctx.restore();
+      } else {
+        ctx.fillStyle = r.vnum === walkTargetVnum ? '#e8c168' : (zoneColor[r.zone] || '#3a5566');
+        ctx.globalAlpha = 0.5;
+        rcell(x, y, s, s, rad);
+      }
+      ctx.globalAlpha = 1;
       // up/down markers
       if ((r.exits || []).includes('up') || (r.exits || []).includes('down')) {
-        ctx.fillStyle = '#c8ccd8';
-        ctx.fillRect(x + (cell - 2) / 2 - 1, y + (cell - 2) / 2 - 1, 1, 1);
+        ctx.fillStyle = '#cfe6f0';
+        ctx.fillRect(x + s / 2 - 1, y + s / 2 - 1, 1, 1);
       }
     }
     ctx.globalAlpha = 0.6;
