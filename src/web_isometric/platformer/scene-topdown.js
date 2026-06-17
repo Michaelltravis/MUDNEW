@@ -1827,9 +1827,10 @@
         if (spec.data.hostile) ent.stalker = true;
         else ent.wanderAt = Date.now() + 1500 + (MH.hashStr(key) % 3000);
       }
-      // LPC paperdoll overlay for the player and clearly-human NPCs (monsters
-      // keep their procedural art); follows ent.sprite, which stays the logic anchor
+      // New art: humans -> LPC paperdoll; everything else -> real DCSS creature
+      // art. ent.sprite stays the hidden logic/physics anchor either way.
       this.attachDoll(ent, spec);
+      if (!ent.doll) this.attachCreatureArt(ent, spec);
       return ent;
     }
     // give an entity an LPC doll if it's the player or a human NPC
@@ -1844,6 +1845,26 @@
       ent.doll.container.setDepth(ent.sprite.depth || 8);
       ent.sprite.setAlpha(0);
       if (ent.rim) ent.rim.setVisible(false);
+    }
+    // real creature art (DCSS) for non-humanoid mobs; a single 32px image
+    // overlaid on the hidden procedural sprite, with a gentle idle bob
+    attachCreatureArt(ent, spec) {
+      if (!MH.dcss || !MH.dcss.isReady() || ent.art || spec.kind === 'player') return;
+      const path = MH.dcss.resolve(spec.data.name);
+      if (!path) return;   // nothing matched -> keep the procedural sprite
+      const s = ent.sprite, big = spec.data.boss;
+      MH.dcss.ensure(this, path, key => {
+        if (!s || !s.active) return;
+        const img = this.add.image(s.x, s.y - 6, key).setOrigin(0.5, 0.9);
+        // DCSS frames are 32px; scale up to ~1.4 tiles (bosses larger), crisp
+        const sc = (TD().T * (big ? 2.3 : 1.7)) / 32;
+        img.setScale(sc).setDepth(s.depth || 8);
+        img.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
+        ent.art = img;
+        ent.artPhase = (MH.hashStr(spec.data.name) % 628) / 100;   // idle-bob phase
+        s.setAlpha(0);
+        if (ent.rim) ent.rim.setVisible(false);
+      });
     }
 
     npcChatter() {
@@ -1954,6 +1975,8 @@
       if (ent.wanderTween) ent.wanderTween.stop();
       if (ent.smoke) ent.smoke.destroy();
       if (ent.doll) { ent.doll.destroy(); ent.doll = null; }
+      if (ent.artBob) { ent.artBob.stop(); ent.artBob = null; }
+      if (ent.art) { ent.art.destroy(); ent.art = null; }
       ['sprite', 'label', 'hpbar', 'fightMark', 'questMark', 'bubble', 'engageRing', 'serviceMark', 'shadow', 'rim'].forEach(k => { if (ent[k]) ent[k].destroy(); });
     }
     shortName(name) {
@@ -3903,6 +3926,14 @@
           ent.doll.setAction(ent.data && ent.data.fighting ? 'attack' : (moving ? 'walk' : 'idle'), facing);
           ent.doll.update(now);
           ent._dollPrev = { x: s.x, y: s.y };
+        } else if (ent.art) {
+          const s = ent.sprite;
+          if (s.alpha !== 0) s.setAlpha(0);
+          if (ent.rim) ent.rim.setVisible(false);
+          ent.art.x = s.x;
+          ent.art.y = s.y - 6 + Math.sin(now / 600 + (ent.artPhase || 0)) * 1.5;   // follow + idle bob
+          ent.art.setDepth(10 + s.y / 1000 + 0.01);
+          ent.art.setFlipX(s.flipX);
         }
       }
 

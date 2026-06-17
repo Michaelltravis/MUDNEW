@@ -37,6 +37,7 @@
         // real terrain tile kit (handoff art) — rooms render from these atlases
         try { if (MH.tilekit) MH.tilekit.init(this); } catch (e) { console.warn('tilekit init failed', e); }
         try { if (MH.lpc) MH.lpc.init(this); } catch (e) { console.warn('lpc init failed', e); }
+        try { if (MH.dcss) MH.dcss.init(this); } catch (e) { console.warn('dcss init failed', e); }
         txt.destroy();
         if (/[?&]gallery=1/.test(window.location.search)) this.scene.start('Gallery');
         else if (/[?&]view=side/.test(window.location.search)) this.scene.start('Room');
@@ -45,6 +46,7 @@
       this.load.image('pack_tiny', '/platformer/art/kenney_tiny_dungeon.png');
       try { if (MH.tilekit) MH.tilekit.preload(this); } catch (e) { console.warn('tilekit preload failed', e); }
       try { if (MH.lpc) MH.lpc.preload(this); } catch (e) { console.warn('lpc preload failed', e); }
+      try { if (MH.dcss) MH.dcss.preload(this); } catch (e) { console.warn('dcss preload failed', e); }
       this.load.once('complete', () => this.time.delayedCall(10, begin));
       this.load.once('loaderror', () => this.time.delayedCall(10, begin));
       this.load.start();
