@@ -1776,7 +1776,7 @@
       ent.sprite.setScale((spec.data.boss ? 1.5 : 1) / MH.SMOOTH_SS);
       if (spec.kind !== 'item') {
         ent.shadow = this.add.image(slot.x, slot.y + 9, 'px_shadow')
-          .setDepth(5).setAlpha(0.34).setScale((spec.data.boss ? 0.5 : 0.32));
+          .setDepth(5).setAlpha(spec.data.boss ? 0.42 : 0.34).setScale(spec.data.boss ? 0.62 : 0.32);
         // matching rim-light so mobs and NPCs pop off the floor too
         ent.rim = this.add.sprite(slot.x, slot.y, tex, 'd0')
           .setScale(ent.sprite.scaleX * 1.08).setDepth(7.9)
@@ -1791,7 +1791,8 @@
       }
       ent.homeX = slot.x; ent.homeY = slot.y;
 
-      const labelColor = spec.kind === 'player' ? '#6ca8e0' : (spec.data.hostile ? '#e06c6c' : (spec.data.shopkeeper ? '#e8c168' : '#c8ccd8'));
+      // Aether label palette: cyan players, ember foes, jade friendlies
+      const labelColor = spec.kind === 'player' ? '#39c5e8' : (spec.data.hostile ? '#ff5a6a' : (spec.data.shopkeeper || spec.data.trainer || spec.data.quest ? '#46e0a0' : '#bfeefb'));
       ent.label = this.add.text(slot.x, slot.y - 18, this.shortName(spec.data.name), {
         fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '7px', color: labelColor,
       }).setOrigin(0.5, 1).setDepth(9);
@@ -1992,8 +1993,9 @@
         ent.smoke = null;
       }
       const x = ent.sprite.x - 9, y = ent.sprite.y - 16;
-      ent.hpbar.fillStyle(0x000000, 0.7).fillRect(x, y, 18, 2);
-      ent.hpbar.fillStyle(frac > 0.5 ? 0x6fd685 : frac > 0.25 ? 0xe8c168 : 0xe06c6c, 1).fillRect(x, y, 18 * frac, 2);
+      // Aether palette: jade healthy -> amber wounded -> ember critical, on a glass track
+      ent.hpbar.fillStyle(0x07111a, 0.8).fillRect(x - 0.5, y - 0.5, 19, 3);
+      ent.hpbar.fillStyle(frac > 0.5 ? 0x46e0a0 : frac > 0.25 ? 0xe8c168 : 0xff5a6a, 1).fillRect(x, y, 18 * frac, 2);
     }
     destroyEntity(ent) {
       // if the thing we're targeting is being removed (it died, fled, or left),
@@ -2808,6 +2810,11 @@
         if (MH.sfx) MH.sfx.impact(2.5);
         ent.sprite.setTintFill(0xffffff);
         this.time.delayedCall(90, () => ent.sprite && ent.sprite.active && ent.sprite.clearTint());
+        // the VISIBLE body (LPC doll / DCSS art) flashes white then fades as it falls
+        const vis = this.entVisual(ent);
+        this.flashFill(vis, 0xffffff, 90);
+        if (vis && vis !== ent.sprite) this.tweens.add({ targets: vis, alpha: 0.12, duration: 650, ease: 'sine.in' });
+        if (ent.bossAura) this.tweens.add({ targets: ent.bossAura, alpha: 0, duration: 500 });
         const shards = this.add.particles(dx, dy - 6, 'px_white', {
           speed: { min: 60, max: 150 }, lifespan: 520, quantity: 12,
           scale: { start: 1.1, end: 0 }, tint: [0xffffff, 0xd0d6e4], emitting: false,

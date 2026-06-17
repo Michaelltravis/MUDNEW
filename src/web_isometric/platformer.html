@@ -1824,6 +1824,12 @@
     #contacts { max-height: 26vh !important; }
     #minimap-wrap { transform: scale(0.85); transform-origin: top right; }
   }
+  /* quest tracker: below the message feed (no overlap), Aether-themed */
+  #quest-tracker { top: 330px !important; background: var(--glass) !important;
+    border: 1px solid var(--glass-border) !important; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+  #quest-tracker .qt-nm { color: #bfeefb !important; font-family: var(--ui-font); }
+  #quest-tracker .qt-obj.done { color: var(--green) !important; }
+  #quest-tracker .qt-hd .qt-min:hover { color: var(--gold) !important; }
 
   </style>
 </head>
