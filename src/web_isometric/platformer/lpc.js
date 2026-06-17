@@ -145,7 +145,7 @@
   }
 
   // Create a paperdoll. Returns { container, setAction(action,facing), update(now), refresh(spec), destroy() }
-  function makeDoll(scene, spec, scale) {
+  function makeDoll(scene, spec, scale, onBuilt) {
     const container = scene.add.container(0, 0);
     let layers = [];        // [{ z, layerId, part, sprite, cols, anim }]
     let curAnim = 'walk', curRow = 2, frameI = 0, lastStep = 0, moving = false;
@@ -169,6 +169,7 @@
           L.sprite = spr; container.add(spr);
         });
         applyAnim();
+        if (onBuilt) { try { onBuilt(doll); } catch (_) {} }   // e.g. apply day/night tint once layers exist
       });
     }
     function applyAnim() {

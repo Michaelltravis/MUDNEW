@@ -1852,7 +1852,8 @@
       // aren't full of identical twins (mixed sexes + hairstyles)
       const seed = MH.hashStr(spec.data.name || '');
       const sex = spec.kind === 'player' ? (spec.data.sex || 'male') : (seed % 2 ? 'female' : 'male');
-      ent.doll = MH.lpc.makeDoll(this, { char_class: cls, sex, equipment: spec.data.equipment || {}, seed: spec.kind === 'player' ? null : seed }, dscale);
+      ent.doll = MH.lpc.makeDoll(this, { char_class: cls, sex, equipment: spec.data.equipment || {}, seed: spec.kind === 'player' ? null : seed }, dscale,
+        () => this.tintCharacters());   // apply day/night tint once layers exist
       ent.doll.container.setDepth(ent.sprite.depth || 8);
       ent.sprite.setAlpha(0);
       if (ent.rim) ent.rim.setVisible(false);
@@ -1874,6 +1875,7 @@
         const sc = (TD().T * (big ? 2.3 : 1.7)) / 32;
         img.setScale(sc).setDepth(s.depth || 8);
         img.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
+        img.setTint(this._charTint || 0xffffff);   // sit in the day/night scene
         ent.art = img;
         ent.artPhase = (MH.hashStr(spec.data.name) % 628) / 100;   // idle-bob phase
         s.setAlpha(0);
@@ -2498,13 +2500,26 @@
     // the procedural sprite) — combat juice must play on whatever is on screen
     entVisual(ent) { return (ent && ent.doll && ent.doll.container) || (ent && ent.art) || (ent && ent.sprite); }
     playerVisual() { return (this.playerDoll && this.playerDoll.container) || this.player; }
-    // white/colored hit flash that also works on a layered doll Container
+    // white/colored hit flash that also works on a layered doll Container;
+    // restores to the current day/night character tint (not plain white)
     flashFill(obj, color, ms) {
       if (!obj) return;
-      const apply = o => { if (o && o.setTintFill) { o.setTintFill(color); this.time.delayedCall(ms || 80, () => { if (o.active) o.clearTint(); }); } };
+      const back = this._charTint || 0xffffff;
+      const apply = o => { if (o && o.setTintFill) { o.setTintFill(color); this.time.delayedCall(ms || 80, () => { if (o.active) o.setTint(back); }); } };
       if (obj.setTintFill && !obj.list) apply(obj);
       else if (obj.list) obj.list.forEach(apply);   // Container: tint each layer
       else apply(obj);
+    }
+    // multiply dolls + DCSS art by a readable per-phase tint so characters sit
+    // in the day/night scene instead of looking bright/pasted-on
+    tintCharacters() {
+      const t = this._charTint || 0xffffff;
+      const tintOne = o => { if (!o) return; if (o.list) o.list.forEach(c => c.setTint && c.setTint(t)); else if (o.setTint) o.setTint(t); };
+      if (this.playerDoll) tintOne(this.playerDoll.container);
+      for (const ent of this.entities.values()) {
+        if (ent.doll) tintOne(ent.doll.container);
+        else if (ent.art) ent.art.setTint(t);
+      }
     }
     fxHit(e) {
       const ent = this.findEntityByText(e.target) || this.target;
@@ -3283,6 +3298,12 @@
     applyAtmosphere(payload) {
       const period = payload.time && payload.time.period;
       const outdoor = this.layout && !['inside', 'dungeon', 'cave', 'default'].includes(this.layout.theme);
+      // readable per-phase character tint (lighter than the floor's so dolls
+      // stay legible), applied to dolls + DCSS art for scene cohesion
+      const phase = MH.tilekit ? MH.tilekit.phaseForPeriod(period) : 'midday';
+      const CHAR_TINT = { midday: 0xeef3fb, dusk: 0xffcfa0, night: 0x9aa6d8 };
+      this._charTint = (outdoor ? CHAR_TINT[phase] : 0xffffff) || 0xffffff;
+      this.tintCharacters();
       // when the tile kit renders the room, its per-tile phase tint IS the
       // day/night grade — re-tint it and skip the dark overlay (no double-dim)
       const kitActive = !!(this.kitTiles && this.kitTiles.length && MH.tilekit && MH.tilekit.isReady());
@@ -4009,7 +4030,7 @@
       if (this.playerDoll && this._dollSig === sig) return;
       if (this.playerDoll) { this.playerDoll.destroy(); this.playerDoll = null; }
       this._dollSig = sig;
-      this.playerDoll = MH.lpc.makeDoll(this, spec, 0.4);
+      this.playerDoll = MH.lpc.makeDoll(this, spec, 0.4, () => this.tintCharacters());
       this.playerDoll.container.setDepth(10);
       this.player.setAlpha(0);                 // keep physics body, hide the pixel art
       if (this.playerRim) this.playerRim.setVisible(false);
