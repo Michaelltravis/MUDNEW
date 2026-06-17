@@ -1803,6 +1803,28 @@
   .ct-act:hover { box-shadow: 0 0 10px rgba(57,197,232,.5); }
   .ct-act > span { transform: rotate(-45deg); }
 
+  /* ---- responsive hardening: keep the bottom row collision-free at any width ---- */
+  /* sigil stacks above the vitals panel (left edge is always free) instead of the
+     fragile center-offset that drifted into the panel on < ~1364px screens */
+  #aether-sigil { left: 14px !important; bottom: 150px !important; }
+  /* compass to the far corner so it never collides with the centered action bar */
+  #compass { right: 14px !important; }
+  @media (max-width: 1180px) {
+    #hotbar { width: min(520px, 58vw) !important; }
+    #combat-log { width: 250px !important; }
+    #contacts { width: 184px !important; }
+    #minimap-wrap { transform: scale(0.92); transform-origin: top right; }
+  }
+  @media (max-width: 1060px) {
+    #hotbar { width: min(430px, 50vw) !important; }
+    #aether-sigil { width: 88px !important; height: 88px !important; bottom: 140px !important; }
+  }
+  @media (max-height: 680px) {
+    #combat-log { max-height: 30vh !important; }
+    #contacts { max-height: 26vh !important; }
+    #minimap-wrap { transform: scale(0.85); transform-origin: top right; }
+  }
+
   </style>
 </head>
 <body>
