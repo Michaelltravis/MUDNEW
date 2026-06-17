@@ -30,6 +30,43 @@
     'ranged/bow/recurve': 'weapon/ranged/bow/recurve' };
   const SHIELD = { 'crusader': 'shield/crusader' };
 
+  // ---- procedural face ----------------------------------------------------
+  // The starter LPC bodies ship without facial features and the pack has no
+  // eyes/head layers, so we paint a minimal face (eyes + a hint of a mouth)
+  // ourselves. The bodies are a chibi proportion (figure in the lower half of
+  // the 64-cell; head ~y32-46, centred x≈31), and hair/hat/torso art is
+  // authored for a taller standard body, so those layers carry vertical
+  // offsets (LAYER_DY) to seat them on the body. Eyes sit on the small face
+  // window just under the hairline (~y37).
+  const FACE = { up: [], left: [[25, 37]], right: [[37, 37]], down: [[27, 37], [34, 37]] };
+  // per-layer vertical nudges (cell px) to align the taller-authored gear/hair
+  // onto the lower-sitting chibi body. Body/legs/feet/eyes stay at 0.
+  const LAYER_DY = { torso: 7, hair: 11, hat_helmet: 11 };
+  // paint a face for one facing into a 2D context. (sx,sy)=cell top-left in the
+  // target, s=pixels-per-source-pixel. Used for both the doll textures (s=1)
+  // and the larger inventory portrait.
+  function paintFace(ctx, facing, sx, sy, s) {
+    if (facing === 'up') return;
+    const px = (x, y, w, h, c) => { ctx.fillStyle = c; ctx.fillRect(sx + x * s, sy + y * s, Math.ceil(w * s), Math.ceil(h * s)); };
+    for (const [x, y] of (FACE[facing] || [])) {
+      px(x, y - 1, 2, 1, 'rgba(60,42,32,0.5)');  // soft brow shadow
+      px(x, y, 2, 2, '#2c1e17');                  // eye
+      px(x, y, 1, 1, '#5b4636');                  // tiny highlight
+    }
+    if (facing === 'down') px(30, 40, 4, 1, 'rgba(120,70,58,0.7)');  // mouth
+  }
+  const EYE_KEY = { up: null, left: 'mh_eyes_left', right: 'mh_eyes_right', down: 'mh_eyes_down' };
+  function ensureEyeTextures(scene) {
+    for (const facing of ['left', 'right', 'down']) {
+      const key = EYE_KEY[facing];
+      if (scene.textures.exists(key)) continue;
+      const cv = scene.textures.createCanvas(key, 64, 64);
+      if (!cv) continue;
+      paintFace(cv.getContext(), facing, 0, 0, 1);
+      cv.refresh();
+    }
+  }
+
   function preload(scene) {
     scene.load.json('lpc_rules', BASE + 'item_to_lpc.json');
     scene.load.json('lpc_manifest', BASE + 'manifest.json');
@@ -107,6 +144,7 @@
     if (slayer) out.push({ z: 'shield_bg', layerId: slayer, part: 'bg' });
 
     out.push({ z: 'body', layerId: body, part: null });
+    out.push({ z: 'eyes', layerId: '__eyes__', part: null });  // procedural face
 
     // legs
     // legs — reflect worn leg armor; a female's legs sit under the robe, so use pants
@@ -131,6 +169,14 @@
     // sort by manifest z-order
     const zo = MAN.z_order_bottom_to_top;
     out.sort((a, b) => zo.indexOf(a.z) - zo.indexOf(b.z));
+    // the painted face must sit above the body + torso (which would otherwise
+    // cover the small head) but below hair/hat — move it just before them
+    const ei = out.findIndex(o => o.layerId === '__eyes__');
+    if (ei >= 0) {
+      const [eye] = out.splice(ei, 1);
+      const hi = out.findIndex(o => o.z === 'hair' || o.z === 'hat_helmet');
+      out.splice(hi >= 0 ? hi : out.length, 0, eye);
+    }
     return out;
   }
 
@@ -174,16 +220,23 @@
     }
     function build() {
       layers.forEach(l => l.sprite && l.sprite.destroy());
-      layers = resolveLoadout(spec).map(L => Object.assign({}, L, { sprite: null, cols: 9, anim: null }));
+      ensureEyeTextures(scene);
+      layers = resolveLoadout(spec).map(L => Object.assign({}, L, { sprite: null, cols: 9, anim: null, isEyes: L.layerId === '__eyes__' }));
       // preload the supported anim sheets for all layers, then create sprites
       const want = [];
-      layers.forEach(L => ANIMS.forEach(a => { const s = sheet(L.layerId, a, L.part); if (s) want.push(s); }));
+      layers.forEach(L => { if (L.isEyes) return; ANIMS.forEach(a => { const s = sheet(L.layerId, a, L.part); if (s) want.push(s); }); });
       need(scene, want, () => {
         layers.forEach(L => {
+          if (L.isEyes) {
+            const spr = scene.add.image(0, 0, EYE_KEY.down).setOrigin(0.5, 0.78);
+            if (scale) spr.setScale(scale);
+            L.sprite = spr; container.add(spr); return;
+          }
           const sh = sheet(L.layerId, 'walk', L.part) || sheet(L.layerId, 'idle', L.part);
           if (!sh || !scene.textures.exists(sh.key)) return;   // layer not in the starter pack
           const spr = scene.add.image(0, 0, sh.key, 0).setOrigin(0.5, 0.78);
           if (scale) spr.setScale(scale);
+          spr.y = (LAYER_DY[L.z] || 0) * (scale || 1);   // seat tall-authored gear on the chibi body
           L.sprite = spr; container.add(spr);
         });
         applyAnim();
@@ -192,7 +245,7 @@
     }
     function applyAnim() {
       layers.forEach(L => {
-        if (!L.sprite) return;
+        if (!L.sprite || L.isEyes) return;
         let sh = sheet(L.layerId, curAnim, L.part);
         if (!sh || !scene.textures.exists(sh.key)) sh = sheet(L.layerId, 'walk', L.part);   // fall back to walk
         if (!sh || !scene.textures.exists(sh.key)) sh = sheet(L.layerId, 'idle', L.part);
@@ -221,7 +274,14 @@
         if (animate && now - lastStep > 95) { lastStep = now; frameI++; }
         if (!animate) frameI = 0;
         for (const L of layers) {
-          if (!L.sprite || !L.sprite.visible) continue;
+          if (!L.sprite) continue;
+          if (L.isEyes) {   // face: pick eye texture by facing; back of head has none
+            const key = EYE_KEY[['up', 'left', 'down', 'right'][curRow] || 'down'];
+            if (!key) { L.sprite.setVisible(false); }
+            else { L.sprite.setVisible(true); if (L.sprite.texture.key !== key) L.sprite.setTexture(key); }
+            continue;
+          }
+          if (!L.sprite.visible) continue;
           const cols = L.cols || 9;
           const f = curRow * cols + (frameI % cols);
           try { L.sprite.setFrame(f); } catch (_) {}
@@ -254,5 +314,34 @@
     return null;
   }
 
-  MH.lpc = { preload, init, isReady, resolveLoadout, weaponLayer, makeDoll, sig, humanoidClass, ANIMS };
+  // Composite a front-facing (down) paperdoll into a 2D canvas for the
+  // inventory/equipment portrait. Reuses the same loadout + sheets as the live
+  // doll so the portrait reflects equipped gear. Re-runs itself once any
+  // missing sheet finishes loading.
+  function drawPortrait(scene, spec, canvas) {
+    if (!ready) return;
+    const ctx = canvas.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const row = 2;                       // down / front-facing
+    const draw = Math.min(canvas.width, canvas.height) * 0.96;
+    const s = draw / 64;
+    const ox = (canvas.width - draw) / 2;
+    const oy = (canvas.height - draw) / 2;
+    let missing = [];
+    for (const L of resolveLoadout(spec)) {
+      if (L.isEyes || L.layerId === '__eyes__') { paintFace(ctx, 'down', ox, oy, s); continue; }
+      const sh = sheet(L.layerId, 'idle', L.part) || sheet(L.layerId, 'walk', L.part);
+      if (!sh) continue;
+      if (!scene.textures.exists(sh.key)) { missing.push(sh); continue; }
+      const img = scene.textures.get(sh.key).getSourceImage();
+      const cols = Math.max(1, Math.floor(img.width / 64));
+      const f = row * cols;              // frame 0 of the down row
+      const dy = (LAYER_DY[L.z] || 0) * s;
+      ctx.drawImage(img, (f % cols) * 64, Math.floor(f / cols) * 64, 64, 64, ox, oy + dy, draw, draw);
+    }
+    if (missing.length) need(scene, missing, () => drawPortrait(scene, spec, canvas));
+  }
+
+  MH.lpc = { preload, init, isReady, resolveLoadout, weaponLayer, makeDoll, sig, humanoidClass, drawPortrait, ANIMS };
 })();

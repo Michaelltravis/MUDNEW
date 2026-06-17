@@ -25,15 +25,30 @@
       this.time.addEvent({ delay: 7000, loop: true, callback: () => this.npcChatter() });
       this.physics.world.setBounds(0, 0, this.pxW, this.pxH);
       this.cameras.main.setRoundPixels(true);
-      // integer zoom for crisp pixels at any window size
+      // Carve a central play viewport framed by the docked HUD panels so the
+      // world is NEVER drawn under the UI (in rooms of any size / window of any
+      // aspect). The room is zoom-fit + centred inside that viewport.
       const fit = () => {
-        const raw = Math.min(this.scale.width / this.pxW, this.scale.height / this.pxH);
-        const z = Phaser.Math.Clamp(Math.floor(raw * 4) / 4, 1.5, 4.5);
-        this.cameras.main.setZoom(z);
-        this.cameras.main.centerOn(this.pxW / 2, this.pxH / 2);
+        const cw = this.scale.width, ch = this.scale.height;
+        const ins = this.computeHudInsets(cw, ch);
+        const vw = Math.max(160, cw - ins.left - ins.right);
+        const vh = Math.max(160, ch - ins.top - ins.bottom);
+        const raw = Math.min(vw / this.pxW, vh / this.pxH);
+        const z = Phaser.Math.Clamp(Math.floor(raw * 4) / 4, 1.0, 4.5);
+        const cam = this.cameras.main;
+        cam.setViewport(ins.left, ins.top, vw, vh);
+        cam.setZoom(z);
+        cam.centerOn(this.pxW / 2, this.pxH / 2);
+        this._hudInsets = ins;
+        if (MH.fitMinimapColumn) { try { MH.fitMinimapColumn(); } catch (_) {} }
       };
+      this._fit = fit;
       fit();
       this.scale.on('resize', fit);
+      // re-frame when a side panel toggles (target frame appears in combat,
+      // combat log collapses, etc.) so the bands always match the live UI
+      MH.bus.on('target.set', () => this._fit && this._fit());
+      MH.bus.on('target.clear', () => this._fit && this._fit());
 
       // right-click on open ground: your own action menu
       this.input.on('pointerdown', (pointer, over) => {
@@ -316,6 +331,40 @@
       if (this.textures.exists(key)) return key;
       console.warn(`[misthollow] missing texture '${key}', using '${fallback}'`);
       return fallback;
+    }
+
+    // Measure the docked HUD panels and return the play-area insets (in game
+    // pixels) needed so the world viewport clears them on every side.
+    computeHudInsets(cw, ch) {
+      const def = { left: Math.round(cw * 0.20), right: Math.round(cw * 0.16), top: 56, bottom: 0 };
+      try {
+        const gc = this.game.canvas.getBoundingClientRect();
+        if (!gc.width || !gc.height) return def;
+        const fx = cw / gc.width, fy = ch / gc.height;   // page px -> game px
+        const cxPage = gc.left + gc.width / 2;
+        let left = 0, right = 0, top = 0;
+        const FRAME = ['combat-log', 'hud', 'aether-sigil', 'crest', 'quest-tracker',
+          'stance-bar', 'minimap-wrap', 'contacts', 'compass', 'target-frame', 'topbar'];
+        for (const id of FRAME) {
+          const el = document.getElementById(id);
+          if (!el) continue;
+          const st = getComputedStyle(el);
+          if (st.display === 'none' || st.visibility === 'hidden' || parseFloat(st.opacity) === 0) continue;
+          const b = el.getBoundingClientRect();
+          if (!b.width || !b.height) continue;
+          if (b.bottom <= gc.top || b.top >= gc.bottom) continue;   // not over the canvas
+          if (id === 'topbar') { top = Math.max(top, (b.bottom - gc.top) * fy); continue; }
+          const cen = (b.left + b.right) / 2;
+          if (cen < cxPage) left = Math.max(left, (b.right - gc.left) * fx);
+          else right = Math.max(right, (gc.right - b.left) * fx);
+        }
+        return {
+          left: Math.round(Math.min(left + 12, cw * 0.34)),
+          right: Math.round(Math.min(right + 12, cw * 0.34)),
+          top: Math.round(Math.min(top + 6, ch * 0.22)),
+          bottom: 0,
+        };
+      } catch (_) { return def; }
     }
 
     // ---------- room construction ----------

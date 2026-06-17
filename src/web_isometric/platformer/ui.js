@@ -917,7 +917,13 @@
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
     try {
-      const scene = MH.game.scene.getScenes(true)[0];
+      const scene = MH.game.scene.getScenes(true).find(s => s.layout) || MH.game.scene.getScenes(true)[0];
+      // Prefer the real LPC paperdoll (matches the in-world character + gear).
+      if (MH.lpc && MH.lpc.isReady()) {
+        const spec = { char_class: p.char_class, sex: p.sex || 'male', equipment: p.equipment || {} };
+        MH.lpc.drawPortrait(scene, spec, canvas);
+        return;
+      }
       const texKey = MH.tdSprites.playerKey((p.char_class || '').toLowerCase());
       const tex = scene.textures.get(scene.textures.exists(texKey) ? texKey : 'td_player_warrior');
       const frame = tex.get('d0');
@@ -2424,8 +2430,11 @@
       const sc = MH.game.scene.getScenes(true).find(s2 => s2.buildRoom);
       const cam = sc.cameras.main;
       const gc = sc.game.canvas.getBoundingClientRect();
-      const roomRight = gc.left + (sc.pxW - cam.worldView.x) * cam.zoom;
-      band = window.innerWidth - roomRight;
+      // the world now renders inside the camera viewport; its right edge (in
+      // page px) marks where the UI band begins
+      const fx = gc.width / sc.scale.width;
+      const worldRight = gc.left + (cam.x + cam.width) * fx;
+      band = window.innerWidth - worldRight;
     } catch (_) { /* scene not up yet */ }
     const w = Math.round(Math.max(150, Math.min(300, band - 26)));
     els.minimap.width = mmLarge ? Math.max(w, 300) : w;
