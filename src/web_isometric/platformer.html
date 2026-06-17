@@ -1666,12 +1666,54 @@
   .bar > b, #hud-level, #hud-xp-txt, #hud-gold, #target-hp-txt, #clock,
   .inv-stat, .pd-statlabel, .sr-price, .it-stat .v, .prof { font-family: var(--num-font) !important; }
   /* room name reads as a cyan readout */
-  #room-name { color: var(--gold); text-shadow: 0 0 10px rgba(57,197,232,.45); }
+  #room-name { color: var(--gold); text-shadow: 0 0 10px rgba(57,197,232,.45); font-size: 19px; font-weight: 700; }
+
+  /* faint tactical 48px grid over the world (under the chrome) */
+  #aether-grid { position: fixed; inset: 0; z-index: 6; pointer-events: none;
+    background-image: linear-gradient(rgba(57,197,232,.045) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(57,197,232,.045) 1px, transparent 1px);
+    background-size: 48px 48px; }
+
+  /* ---- vitals: segmented bars, labels left, mono readouts right ---- */
+  #hud .bar { height: 15px !important; border-radius: 3px !important;
+    background: rgba(7,11,16,.78) !important; border: 1px solid var(--glass-border) !important;
+    position: relative; overflow: hidden; margin: 4px 0 !important; }
+  #hud .bar.xp { height: 5px !important; }
+  #hud .bar > i { position: relative; z-index: 1; }
+  #hud .bar.hp > i { background: linear-gradient(#ff7a86, #d23a4a) !important; }
+  #hud .bar.mana > i { background: linear-gradient(#8a93ff, #4a4ad0) !important; }
+  #hud .bar.move > i { background: linear-gradient(#5ce0a8, #2a9e6c) !important; }
+  /* segment ticks */
+  #hud .bar:not(.xp)::after { content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    background-image: repeating-linear-gradient(90deg, transparent 0 9px, rgba(7,11,16,.55) 9px 11px); }
+  /* label */
+  #hud .bar:not(.xp)::before { position: absolute; left: 7px; top: 0; line-height: 15px; z-index: 3;
+    font-family: var(--ui-font); font-size: 8.5px; letter-spacing: .12em; color: rgba(255,255,255,.85); text-shadow: 0 1px 2px #000; }
+  #hud .bar.hp::before { content: 'HP'; } #hud .bar.mana::before { content: 'MP'; } #hud .bar.move::before { content: 'MV'; }
+  /* value */
+  #hud .bar > b { left: auto !important; right: 7px !important; width: auto !important; inset: auto 7px auto auto !important;
+    z-index: 3; line-height: 15px !important; font-family: var(--num-font) !important; font-size: 9px !important;
+    color: #e8f4fa !important; text-align: right !important; }
+
+  /* ---- action bar: Aether ability tiles ---- */
+  .hotslot { width: 50px !important; height: 50px !important; border-radius: 8px !important;
+    background: var(--glass) !important; border: 1px solid var(--glass-border) !important;
+    backdrop-filter: blur(6px); }
+  .hotslot:hover { border-color: var(--gold) !important; box-shadow: 0 0 14px rgba(57,197,232,.5) !important; }
+  .hotslot .key { color: var(--gold) !important; font-family: var(--num-font) !important; font-size: 9px !important; top: 2px !important; left: 4px !important; }
+  .hotslot .lbl { font-family: var(--ui-font) !important; letter-spacing: .04em; font-size: 8px !important; color: #bfeefb !important; }
+  .hotslot .cost { font-family: var(--num-font) !important; color: #8ad0ff !important; }
+
+  /* ---- compass: cyan tactical keys ---- */
+  #compass .dir { border: 1px solid var(--glass-border); color: var(--dim); background: rgba(7,11,16,.5);
+    font-family: var(--ui-font); }
+  #compass .dir.on { color: var(--gold); border-color: var(--gold); box-shadow: 0 0 10px rgba(57,197,232,.45); }
 
   </style>
 </head>
 <body>
   <div id="game-root"></div>
+  <div id="aether-grid"></div>
 
   <div id="room-banner">
     <div id="room-name"></div>
