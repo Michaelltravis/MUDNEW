@@ -1848,7 +1848,11 @@
     attachDollAs(ent, spec, cls) {
       if (!MH.lpc || !MH.lpc.isReady() || ent.doll || !cls) return;
       const dscale = Math.max(0.32, (ent.sprite.displayHeight / 64) * 1.0);   // ~match sprite height
-      ent.doll = MH.lpc.makeDoll(this, { char_class: cls, sex: spec.data.sex || 'male', equipment: spec.data.equipment || {} }, dscale);
+      // the player keeps its real identity; NPCs vary by name-hash so towns
+      // aren't full of identical twins (mixed sexes + hairstyles)
+      const seed = MH.hashStr(spec.data.name || '');
+      const sex = spec.kind === 'player' ? (spec.data.sex || 'male') : (seed % 2 ? 'female' : 'male');
+      ent.doll = MH.lpc.makeDoll(this, { char_class: cls, sex, equipment: spec.data.equipment || {}, seed: spec.kind === 'player' ? null : seed }, dscale);
       ent.doll.container.setDepth(ent.sprite.depth || 8);
       ent.sprite.setAlpha(0);
       if (ent.rim) ent.rim.setVisible(false);

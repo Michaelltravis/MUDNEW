@@ -18,7 +18,9 @@
   // map a class-default loadout stub -> a real on-disk layer id (sex-aware
   // where the starter pack only ships one sex)
   function torsoLayer(stub, sex) {
-    if (stub === 'clothes/robe') return 'torso/clothes/robe/female';   // only female robe shipped
+    // the starter pack only ships a female robe, so any female wears it
+    if (sex === 'female') return 'torso/clothes/robe/female';
+    if (stub === 'clothes/robe') return 'torso/clothes/robe/female';
     if (stub === 'armour/leather') return 'torso/armour/leather/male';
     return 'torso/armour/plate/male';
   }
@@ -98,8 +100,9 @@
     // torso (reflect equipped body armor material when present)
     const torsoStub = torsoStubFromItem(eq.body, def.torso || 'armour/leather');
     out.push({ z: 'torso', layerId: torsoLayer(torsoStub, sex), part: null });
-    // hair
-    if (def.hair && HAIR[def.hair]) out.push({ z: 'hair', layerId: HAIR[def.hair], part: null });
+    // hair (varied by per-NPC seed so a crowd isn't identical)
+    const hairStub = (def.hair && spec.seed != null && spec.seed % 3 === 0) ? 'xlong' : def.hair;
+    if (hairStub && HAIR[hairStub]) out.push({ z: 'hair', layerId: HAIR[hairStub], part: null });
     // head/helmet (only if wearing a head item, or class default greathelm)
     const headStub = (eq.head ? 'helmet/greathelm' : def.head);
     if (headStub && HEAD[headStub]) out.push({ z: 'hat_helmet', layerId: HEAD[headStub], part: null });
