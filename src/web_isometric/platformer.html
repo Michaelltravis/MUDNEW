@@ -1709,11 +1709,66 @@
     font-family: var(--ui-font); }
   #compass .dir.on { color: var(--gold); border-color: var(--gold); box-shadow: 0 0 10px rgba(57,197,232,.45); }
 
+  /* ---- top bar: crest (left) · room name (center) · clock (right) ---- */
+  #topbar { position: fixed; top: 0; left: 0; right: 0; height: 54px; z-index: 18; pointer-events: none;
+    background: linear-gradient(180deg, rgba(10,16,22,.82), rgba(10,16,22,.55));
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--glass-border); }
+  #crest { position: fixed; top: 8px; left: 14px; z-index: 41; display: flex; align-items: center; gap: 9px; }
+  #crest-portrait { width: 38px; height: 38px; border-radius: 50%; image-rendering: pixelated;
+    border: 1px solid var(--gold); background: radial-gradient(circle at 50% 35%, #14222e, #070b10);
+    box-shadow: 0 0 12px rgba(57,197,232,.4); }
+  #crest .crest-id { line-height: 1.25; }
+  #crest-name { font-family: var(--ui-font); font-weight: 700; font-size: 14px; color: #e8f4fa; letter-spacing: .04em; }
+  #crest-sub { font-family: var(--num-font); font-size: 9.5px; color: var(--dim); text-transform: uppercase; letter-spacing: .12em; }
+  /* lift room banner onto the bar, centered */
+  #room-banner { top: 7px !important; background: transparent !important; border: none !important; box-shadow: none !important; }
+  #room-zone { text-transform: uppercase; letter-spacing: .18em; color: var(--dim); }
+
+  /* ---- CONTACTS panel (right, below the sector map) ---- */
+  #contacts { position: absolute; right: 12px; top: 432px; z-index: 20; width: 210px; max-height: 34vh;
+    overflow-y: auto; background: var(--glass); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border); border-radius: 10px; padding: 7px 8px;
+    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+    scrollbar-width: thin; scrollbar-color: #2a4452 transparent; }
+  #contacts.empty { display: none; }
+  .ct-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;
+    font-family: var(--ui-font); font-size: 10px; letter-spacing: .16em; color: var(--gold); }
+  .ct-count { font-family: var(--num-font); font-size: 10px; color: var(--dim);
+    border: 1px solid var(--glass-border); border-radius: 6px; padding: 0 6px; }
+  .ct-row { display: flex; align-items: center; gap: 7px; padding: 4px 5px; border-radius: 7px; cursor: pointer;
+    border: 1px solid transparent; transition: background .12s, border-color .12s; }
+  .ct-row:hover { background: rgba(57,197,232,.08); border-color: var(--glass-border); }
+  .ct-row.target { background: rgba(255,90,106,.12); border-color: rgba(255,90,106,.5); }
+  .ct-row.target.friendly { background: rgba(57,197,232,.12); border-color: var(--glass-border); }
+  .ct-dot { width: 22px; height: 22px; flex: none; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: var(--ui-font); font-weight: 700; font-size: 10px; color: #07111a;
+    border: 2px solid var(--dot, #6f95a8); background: rgba(7,11,16,.6); }
+  .ct-dot.hostile { --dot: #ff5a6a; color: #ff5a6a; background: rgba(40,12,16,.6); }
+  .ct-dot.friendly { --dot: #46e0a0; color: #46e0a0; background: rgba(12,32,24,.6); }
+  .ct-dot.neutral { --dot: #39c5e8; color: #9bdcef; background: rgba(12,26,34,.6); }
+  .ct-meta { flex: 1; min-width: 0; }
+  .ct-nm { font-family: var(--prose-font); font-size: 12px; color: #cfe6f0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ct-lv { font-family: var(--num-font); font-size: 9px; color: var(--dim); }
+  .ct-hp { height: 4px; border-radius: 2px; background: rgba(7,11,16,.8); margin-top: 3px; overflow: hidden; }
+  .ct-hp > i { display: block; height: 100%; background: linear-gradient(90deg, #ff7a86, #d23a4a); }
+  .ct-row.friendly .ct-hp > i { background: linear-gradient(90deg, #5ce0a8, #2a9e6c); }
+  .ct-act { flex: none; width: 22px; height: 22px; border-radius: 6px; border: 1px solid var(--glass-border);
+    color: var(--gold); background: rgba(7,11,16,.5); display: flex; align-items: center; justify-content: center;
+    font-size: 11px; cursor: pointer; transform: rotate(45deg); }
+  .ct-act:hover { box-shadow: 0 0 10px rgba(57,197,232,.5); }
+  .ct-act > span { transform: rotate(-45deg); }
+
   </style>
 </head>
 <body>
   <div id="game-root"></div>
   <div id="aether-grid"></div>
+  <div id="topbar"></div>
+  <div id="crest">
+    <canvas id="crest-portrait" width="40" height="40"></canvas>
+    <div class="crest-id"><div id="crest-name">—</div><div id="crest-sub"></div></div>
+  </div>
 
   <div id="room-banner">
     <div id="room-name"></div>
@@ -1810,6 +1865,11 @@
     <div class="mm-head"><span>CARTOGRAPHY</span><span style="display:flex;gap:8px">
       <span id="mm-level" title="view another level (sewers below, towers above)">↕</span><span id="mm-out" title="zoom out (wheel)">−</span><span id="mm-in" title="zoom in (wheel)">+</span><span id="mm-toggle" title="resize (M)">⤢</span></span></div>
     <canvas id="minimap" width="184" height="340"></canvas>
+  </div>
+
+  <div id="contacts">
+    <div class="ct-head"><span>CONTACTS</span><span id="ct-count" class="ct-count">0</span></div>
+    <div id="ct-list"></div>
   </div>
 
   <div id="chat-log"></div>

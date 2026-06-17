@@ -405,6 +405,70 @@
       els.hudXpTxt.textContent = '';
     }
     drawHudPortrait(player);
+    updateCrest(player);
+  }
+
+  // top-bar crest: name + class·level + a round head-and-shoulders portrait
+  function updateCrest(p) {
+    if (!p) return;
+    const nm = document.getElementById('crest-name'), sub = document.getElementById('crest-sub');
+    if (nm) nm.textContent = `${p.name || ''}${p.title ? ' ' + p.title : ''}`;
+    if (sub) sub.textContent = `${p.char_class || ''} · LV ${p.level || 1}`;
+    const c = document.getElementById('crest-portrait');
+    if (!c || !window.MH || !MH.game) return;
+    try {
+      const scene = MH.game.scene.getScenes(true)[0];
+      const texKey = MH.tdSprites.playerKey((p.char_class || '').toLowerCase());
+      const tex = scene.textures.get(scene.textures.exists(texKey) ? texKey : 'td_player_warrior');
+      const f = tex.get('d0');
+      const ctx = c.getContext('2d');
+      ctx.clearRect(0, 0, c.width, c.height);
+      ctx.imageSmoothingEnabled = false;
+      // crop the head + shoulders (top ~70% of the frame) into the round chip
+      ctx.drawImage(tex.getSourceImage(), f.cutX, f.cutY, f.cutWidth, f.cutHeight * 0.7, 2, 2, c.width - 4, c.height - 4);
+    } catch (_) { /* textures not ready yet */ }
+  }
+
+  // right-side CONTACTS: everyone in the room with disposition, level, HP, and
+  // a target/interact action — mirrors the Aether Grid spec
+  function renderContacts(payload) {
+    const host = document.getElementById('ct-list'), panel = document.getElementById('contacts');
+    if (!host || !panel) return;
+    const p = (payload && payload.player) || MH.state.player || {};
+    const room = ((payload && payload.rooms) || []).find(r => r.vnum === p.vnum);
+    const list = [];
+    ((room && room.mobs) || []).forEach(m => list.push({
+      name: m.name, level: m.level, hp: m.hp, maxHp: m.maxHp, hostile: !!m.hostile,
+      kind: m.hostile ? 'hostile' : (m.shopkeeper || m.trainer || m.quest ? 'friendly' : 'neutral'),
+    }));
+    ((room && room.players) || []).forEach(pl => {
+      const nm = typeof pl === 'string' ? pl : (pl && pl.name);
+      if (nm && nm !== p.name) list.push({ name: nm, level: (pl && pl.level) || '', kind: 'friendly', player: true });
+    });
+    const cc = document.getElementById('ct-count');
+    if (cc) cc.textContent = list.length;
+    panel.classList.toggle('empty', list.length === 0);
+    host.innerHTML = '';
+    const tgt = currentTarget && currentTarget.name;
+    for (const e of list) {
+      const row = document.createElement('div');
+      row.className = 'ct-row' + (e.kind === 'friendly' ? ' friendly' : '') + (tgt && tgt === e.name ? ' target' : '');
+      const pct = e.maxHp ? Math.max(0, Math.min(100, ((e.hp != null ? e.hp : e.maxHp) / e.maxHp) * 100)) : 100;
+      const initial = String(e.name || '?').replace(/^(a|an|the)\s+/i, '').charAt(0).toUpperCase();
+      row.innerHTML = `<div class="ct-dot ${e.kind}">${initial}</div>`
+        + `<div class="ct-meta"><div class="ct-nm">${e.name}</div><div class="ct-lv">LV ${e.level || '?'}</div>`
+        + (e.maxHp ? `<div class="ct-hp"><i style="width:${pct}%"></i></div>` : '') + `</div>`
+        + `<div class="ct-act" title="${e.hostile ? 'attack' : 'interact'}"><span>${e.hostile ? '⚔' : '◆'}</span></div>`;
+      const target = () => { const sc = MH.game && MH.game.scene.getScenes(true).find(s => s.targetByName); if (sc) sc.targetByName(e.name); };
+      row.addEventListener('click', target);
+      const act = row.querySelector('.ct-act');
+      if (act) act.addEventListener('click', ev => {
+        ev.stopPropagation(); target();
+        if (e.hostile) MH.sendCommand('kill ' + MH.mobKeyword(e.name));
+        else if (!e.player) MH.bus.emit('npc.talk', { name: e.name, quest: '' });
+      });
+      host.appendChild(row);
+    }
   }
 
   // headshot with shoulders in the dock, plus your wielded weapon's icon
@@ -3250,7 +3314,9 @@
         else if (p.path) { els.pathChip.textContent = (p.path === 'lone_wolf' ? '🐺' : '🤝') + ' dormant'; els.pathChip.style.display = 'block'; els.pathChip.style.color = '#5a6070'; }
         else els.pathChip.style.display = 'none';
       };
-      MH.bus.on('map', payload => { updateHud(payload.player); renderMinimap(); updateVignette(); autofillBar(); updatePathChip(payload.player); });
+      MH.bus.on('map', payload => { updateHud(payload.player); renderMinimap(); updateVignette(); autofillBar(); updatePathChip(payload.player); renderContacts(payload); });
+      MH.bus.on('target.set', () => renderContacts(MH.state.lastPayload));
+      MH.bus.on('target.clear', () => renderContacts(MH.state.lastPayload));
       // quest tracker: refresh on room change (cheap) + throttle
       let qtLastVnum = null;
       MH.bus.on('map', payload => {
