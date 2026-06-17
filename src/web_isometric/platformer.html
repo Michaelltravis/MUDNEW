@@ -1673,6 +1673,12 @@
   #room-name { color: var(--gold); text-shadow: 0 0 10px rgba(57,197,232,.45); font-size: 19px; font-weight: 700; }
   /* the verbose keybind legend clutters the clean Aether chrome — hide it */
   #help-chip { display: none !important; }
+  /* login + creation cards: Aether glass with the notched corner */
+  #login-box, #cw-card { background: var(--glass) !important; border: 1px solid var(--glass-border) !important;
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(57,197,232,.18), 0 18px 60px rgba(0,0,0,.6) !important;
+    clip-path: polygon(14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px); }
+  #login-box h1, #cw-title { font-family: var(--ui-font) !important; }
   /* message feed: cyan header, chat lines tinted */
   #combat-log .head { color: var(--gold) !important; border-bottom: 1px solid var(--glass-border) !important; }
   #combat-log .head span:first-child { font-family: var(--ui-font); letter-spacing: .14em; }
