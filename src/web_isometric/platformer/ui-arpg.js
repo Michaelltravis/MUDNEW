@@ -8,75 +8,107 @@
   const MH = window.MH = window.MH || {};
   const $ = id => document.getElementById(id);
 
-  // ================= Diablo globes =================
-  const globes = { hp: { cur: 1, tgt: 1, c: null }, mana: { cur: 1, tgt: 1, c: null } };
+  // ================= Aether Sigil =================
+  // One circular rune-gauge that replaces the Diablo globes: outer arc = HP,
+  // inner arc = MP, and the core is the class's signature resource (glyph +
+  // fill + pips). Unique to Misthollow — it reads differently on every class.
+  const CLASS_SIGIL = {
+    warrior: { g: '⚔', c: '#e05a4a' }, paladin: { g: '☀', c: '#ffe9a8' },
+    mage: { g: '✦', c: '#9a8aff' }, necromancer: { g: '☠', c: '#9adba0' },
+    cleric: { g: '✚', c: '#cfe2ff' }, thief: { g: '◆', c: '#b8b2c8' },
+    assassin: { g: '⌖', c: '#c77dff' }, ranger: { g: '➶', c: '#8ac06a' },
+    bard: { g: '♪', c: '#f0b060' },
+  };
+  const sigil = { hp: { cur: 1, tgt: 1 }, mp: { cur: 1, tgt: 1 }, res: { cur: 0, tgt: 0 },
+    cls: 'warrior', resVal: 0, resMax: 0, resName: '', c: null };
   let wavePhase = 0;
-  const bubbles = [];
 
-  function drawGlobe(g, kind) {
-    const c = g.c;
+  // draw a stroked arc gauge: track + filled portion, optional pulse/glow
+  function gauge(x, cx, cy, r, w, frac, col, track, glow) {
+    const START = Math.PI * 0.75, SWEEP = Math.PI * 1.5;   // 270°, gap at bottom
+    x.lineCap = 'round';
+    x.lineWidth = w;
+    x.strokeStyle = track;
+    x.beginPath(); x.arc(cx, cy, r, START, START + SWEEP); x.stroke();
+    if (frac > 0.001) {
+      if (glow) { x.shadowColor = col; x.shadowBlur = glow; }
+      x.strokeStyle = col;
+      x.beginPath(); x.arc(cx, cy, r, START, START + SWEEP * Math.max(0, Math.min(1, frac))); x.stroke();
+      x.shadowBlur = 0;
+    }
+  }
+
+  function drawSigil() {
+    const c = sigil.c;
     if (!c) return;
     const x = c.getContext('2d');
-    const W = c.width, H = c.height, R = W / 2 - 3;
+    const W = c.width, H = c.height, cx = W / 2, cy = H / 2;
     x.clearRect(0, 0, W, H);
-    // glass back
-    const bg = x.createRadialGradient(W / 2, H / 2, R * 0.2, W / 2, H / 2, R);
-    bg.addColorStop(0, 'rgba(20,24,34,0.9)');
-    bg.addColorStop(1, 'rgba(8,10,16,0.95)');
-    x.fillStyle = bg;
-    x.beginPath(); x.arc(W / 2, H / 2, R, 0, 7); x.fill();
-    // liquid
-    g.cur += (g.tgt - g.cur) * 0.08;
-    const lvl = Math.max(0.02, Math.min(1, g.cur));
-    const top = H / 2 + R - lvl * 2 * R;
+    // ease values toward targets
+    sigil.hp.cur += (sigil.hp.tgt - sigil.hp.cur) * 0.08;
+    sigil.mp.cur += (sigil.mp.tgt - sigil.mp.cur) * 0.08;
+    sigil.res.cur += (sigil.res.tgt - sigil.res.cur) * 0.1;
+
+    // glass disc
+    const bg = x.createRadialGradient(cx, cy, 4, cx, cy, W / 2);
+    bg.addColorStop(0, 'rgba(14,22,30,0.86)'); bg.addColorStop(1, 'rgba(7,11,16,0.94)');
+    x.fillStyle = bg; x.beginPath(); x.arc(cx, cy, W / 2 - 1, 0, 7); x.fill();
+    // faint cyan tactical tick rim
+    x.strokeStyle = 'rgba(57,197,232,0.5)'; x.lineWidth = 1;
+    for (let i = 0; i < 36; i++) {
+      const a = i / 36 * Math.PI * 2, r0 = W / 2 - 2.5, r1 = W / 2 - (i % 3 ? 4 : 6);
+      x.globalAlpha = i % 3 ? 0.18 : 0.4;
+      x.beginPath(); x.moveTo(cx + Math.cos(a) * r0, cy + Math.sin(a) * r0);
+      x.lineTo(cx + Math.cos(a) * r1, cy + Math.sin(a) * r1); x.stroke();
+    }
+    x.globalAlpha = 1;
+
+    const sg = CLASS_SIGIL[sigil.cls] || { g: '◆', c: '#39c5e8' };
+    // HP outer arc (ember; pulses under 25%)
+    const lowHp = sigil.hp.cur < 0.25;
+    const pulse = lowHp ? 0.7 + 0.3 * Math.sin(wavePhase * 4) : 1;
+    gauge(x, cx, cy, W / 2 - 13, 7, sigil.hp.cur, `rgba(${Math.round(255 * pulse)},${Math.round(90 * pulse)},106,0.95)`,
+      'rgba(255,90,106,0.12)', lowHp ? 10 : 0);
+    // MP inner arc (indigo)
+    gauge(x, cx, cy, W / 2 - 24, 5, sigil.mp.cur, 'rgba(125,140,255,0.95)', 'rgba(125,140,255,0.12)', 0);
+
+    // resource core — class-colored disc filled by the resource fraction
+    const coreR = W / 2 - 33;
     x.save();
-    x.beginPath(); x.arc(W / 2, H / 2, R - 1.5, 0, 7); x.clip();
-    const low = kind === 'hp' && lvl < 0.25;
-    const pulse = low ? 0.75 + 0.25 * Math.sin(wavePhase * 4) : 1;
-    const lg = x.createLinearGradient(0, top, 0, H);
-    if (kind === 'hp') {
-      lg.addColorStop(0, `rgba(${Math.round(232 * pulse)},60,60,0.95)`);
-      lg.addColorStop(1, 'rgba(110,16,20,0.95)');
-    } else {
-      lg.addColorStop(0, 'rgba(86,110,232,0.95)');
-      lg.addColorStop(1, 'rgba(28,32,120,0.95)');
+    x.beginPath(); x.arc(cx, cy, coreR, 0, 7); x.clip();
+    x.fillStyle = 'rgba(7,11,16,0.9)'; x.fillRect(0, 0, W, H);
+    const cg = x.createRadialGradient(cx, cy + coreR, 1, cx, cy, coreR * 1.6);
+    cg.addColorStop(0, sg.c); cg.addColorStop(1, 'rgba(0,0,0,0)');
+    x.globalAlpha = 0.18 + 0.5 * sigil.res.cur;   // brighter as the resource builds
+    x.fillStyle = cg; x.fillRect(0, 0, W, H);
+    x.globalAlpha = 1; x.restore();
+    x.strokeStyle = 'rgba(57,197,232,0.35)'; x.lineWidth = 1;
+    x.beginPath(); x.arc(cx, cy, coreR, 0, 7); x.stroke();
+    // resource pips around the core for small, discrete pools (<=12)
+    if (sigil.resMax > 1 && sigil.resMax <= 12) {
+      for (let i = 0; i < sigil.resMax; i++) {
+        const a = -Math.PI / 2 + i / sigil.resMax * Math.PI * 2;
+        const px = cx + Math.cos(a) * (coreR + 3.5), py = cy + Math.sin(a) * (coreR + 3.5);
+        x.fillStyle = i < Math.round(sigil.resVal) ? sg.c : 'rgba(120,140,160,0.3)';
+        x.beginPath(); x.arc(px, py, 1.6, 0, 7); x.fill();
+      }
     }
-    x.fillStyle = lg;
-    x.beginPath();
-    x.moveTo(0, H);
-    x.lineTo(0, top);
-    for (let px = 0; px <= W; px += 4) {
-      x.lineTo(px, top + Math.sin(wavePhase + px * 0.09) * 2.2 + Math.sin(wavePhase * 0.7 + px * 0.05) * 1.4);
+    // class glyph
+    x.fillStyle = sg.c; x.shadowColor = sg.c; x.shadowBlur = 6;
+    x.font = `${Math.round(coreR * 0.95)}px serif`;
+    x.textAlign = 'center'; x.textBaseline = 'middle';
+    x.fillText(sg.g, cx, cy - 3);
+    x.shadowBlur = 0;
+    // resource value (mono)
+    if (sigil.resMax > 0) {
+      x.fillStyle = '#bfeefb'; x.font = '9px "JetBrains Mono", monospace';
+      x.fillText(String(Math.round(sigil.resVal)), cx, cy + coreR * 0.62);
     }
-    x.lineTo(W, H);
-    x.closePath(); x.fill();
-    // bubbles rise through the liquid
-    x.fillStyle = 'rgba(255,255,255,0.25)';
-    for (const b of bubbles) {
-      if (b.kind !== kind) continue;
-      const by = H - b.t * (H - top - 6);
-      if (by > top + 4) { x.beginPath(); x.arc(b.x * W, by, b.r, 0, 7); x.fill(); }
-    }
-    x.restore();
-    // glass shine + rim
-    const sh = x.createRadialGradient(W * 0.36, H * 0.3, 1, W * 0.36, H * 0.3, R * 0.7);
-    sh.addColorStop(0, 'rgba(255,255,255,0.22)');
-    sh.addColorStop(1, 'rgba(255,255,255,0)');
-    x.fillStyle = sh;
-    x.beginPath(); x.arc(W / 2, H / 2, R - 1, 0, 7); x.fill();
-    x.strokeStyle = low ? `rgba(255,90,80,${0.5 + 0.5 * Math.sin(wavePhase * 4)})` : 'rgba(180,160,110,0.65)';
-    x.lineWidth = 2;
-    x.beginPath(); x.arc(W / 2, H / 2, R, 0, 7); x.stroke();
   }
 
   function globesLoop() {
     wavePhase += 0.045;
-    for (const b of bubbles) {
-      b.t += b.v;
-      if (b.t > 1) { b.t = 0; b.x = 0.25 + Math.random() * 0.5; }
-    }
-    drawGlobe(globes.hp, 'hp');
-    drawGlobe(globes.mana, 'mana');
+    drawSigil();
     requestAnimationFrame(globesLoop);
   }
 
@@ -256,11 +288,7 @@
 
   // ================= boot =================
   function init() {
-    globes.hp.c = $('globe-hp');
-    globes.mana.c = $('globe-mana');
-    for (let i = 0; i < 14; i++) {
-      bubbles.push({ kind: i % 2 ? 'hp' : 'mana', x: 0.25 + Math.random() * 0.5, t: Math.random(), v: 0.002 + Math.random() * 0.004, r: 1 + Math.random() * 1.8 });
-    }
+    sigil.c = $('aether-sigil');
     globesLoop();
     window.addEventListener('keydown', e => {
       if (e.key.toLowerCase() === 'q' && !e.ctrlKey && !e.metaKey && !e.shiftKey
@@ -269,8 +297,14 @@
     MH.bus.on('map', payload => {
       const p = payload.player;
       if (!p) return;
-      globes.hp.tgt = (p.hp || 0) / Math.max(1, p.max_hp || 1);
-      globes.mana.tgt = (p.mana || 0) / Math.max(1, p.max_mana || 1);
+      sigil.hp.tgt = (p.hp || 0) / Math.max(1, p.max_hp || 1);
+      sigil.mp.tgt = (p.mana || 0) / Math.max(1, p.max_mana || 1);
+      sigil.cls = String(p.char_class || 'warrior').toLowerCase();
+      const r = p.resource;
+      if (r && r.max) {
+        sigil.res.tgt = Math.max(0, Math.min(1, (r.value || 0) / r.max));
+        sigil.resVal = r.value || 0; sigil.resMax = r.max; sigil.resName = r.name || '';
+      } else { sigil.res.tgt = 0; sigil.resVal = 0; sigil.resMax = 0; sigil.resName = ''; }
       renderBelt();
       renderBuffs();
       renderXpStrip(p);

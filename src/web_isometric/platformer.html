@@ -1492,9 +1492,9 @@
 
   /* ===================== ARPG layer ===================== */
   /* Diablo globes flanking the action bar */
-  #globe-hp, #globe-mana { position: absolute; bottom: 18px; z-index: 21; width: 76px; height: 76px; pointer-events: none; }
-  #globe-hp { left: calc(50% - 392px); }
-  #globe-mana { right: calc(50% - 392px); }
+  #aether-sigil { position: absolute; bottom: 16px; left: calc(50% - 392px); z-index: 21;
+    width: 104px; height: 104px; pointer-events: none;
+    filter: drop-shadow(0 0 14px rgba(57,197,232,0.22)); }
   /* potion belt */
   #belt { position: absolute; bottom: 42px; left: calc(50% + 404px); z-index: 21; display: flex; gap: 4px; }
   .belt-slot { position: relative; width: 36px; height: 44px; border-radius: 7px; cursor: pointer;
@@ -1970,8 +1970,7 @@
     </div>
     <div id="wm-foot">M toggles the map · the whole world is drawn, fog-dimmed until you chart it · click a region to drill in · click a charted room to travel there</div>
   </div>
-  <canvas id="globe-hp" width="76" height="76"></canvas>
-  <canvas id="globe-mana" width="76" height="76"></canvas>
+  <canvas id="aether-sigil" width="104" height="104"></canvas>
   <div id="belt"></div>
   <div id="buff-bar"></div>
   <div id="dw-window"></div>
