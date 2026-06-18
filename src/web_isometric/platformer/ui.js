@@ -305,16 +305,76 @@
     if (first) flash(first.slice(0, 90));
   }
 
+  // ---- combat rhythm + input gating ----------------------------------------
+  // The server resolves combat in fixed ~4s rounds and already enforces ability
+  // cooldowns; this mirrors that on the client so the basic attack can't be
+  // spammed and every action reads against a clear rhythm. Purely a feel layer.
+  MH.combat = {
+    roundMs: 4000,            // server combat round (main.py: combat_tick every 4s)
+    roundStart: 0,            // performance.now() of the last round push
+    gcdMs: 1000,              // shared global cooldown so two actions can't fire at once
+    gcd: { until: 0, dur: 1000 },
+    cd: {},                   // skill -> { until, dur } (ms, performance.now timebase)
+    FLEE_CD: { flee: 6000, escape: 8000, disengage: 6000, retreat: 6000 },
+    skillOf(cmd) {
+      const c = String(cmd || '').trim().toLowerCase();
+      const m = c.match(/^cast '([^']+)'/);
+      if (m) return m[1].replace(/ /g, '_');
+      return c.split(/\s+/)[0] || '';
+    },
+    // is this a combat action that should be gated/rhythm-bound?
+    isCombatCmd(cmd) {
+      const s = this.skillOf(cmd);
+      if (['attack', 'kill', 'cast'].includes(s)) return true;
+      if (this.FLEE_CD[s] != null) return true;
+      return !!(abilityCosts[s] || /^cast '/.test(String(cmd || '')));
+    },
+    // gate duration (ms) this command should impose on its own slot
+    cdFor(cmd) {
+      const s = this.skillOf(cmd);
+      if (this.FLEE_CD[s] != null) return this.FLEE_CD[s];
+      const a = abilityCosts[s];
+      if (a && a.cooldown) return a.cooldown * 1000;
+      return 0;   // basic attack / cast with no listed cd -> shared GCD only
+    },
+    ready(cmd) {
+      const now = performance.now();
+      if (now < this.gcd.until) return false;
+      const e = this.cd[this.skillOf(cmd)];
+      if (e && now < e.until) return false;
+      return true;
+    },
+    trigger(cmd) {
+      const now = performance.now();
+      this.gcd = { until: now + this.gcdMs, dur: this.gcdMs };
+      const cdms = this.cdFor(cmd);
+      if (cdms > 0) this.cd[this.skillOf(cmd)] = { until: now + cdms, dur: cdms };
+    },
+    noteRound() { this.roundStart = performance.now(); },
+    roundFrac() {
+      if (!this.roundStart) return 0;
+      return Math.max(0, Math.min(1, (performance.now() - this.roundStart) / this.roundMs));
+    },
+  };
+
   function useHotbar(i) {
     const cmd = hotbar[i];
     if (!cmd) return;
+    const slot = els.hotbar.children[i];
+    // gate combat actions to the round / cooldowns (the attack slot is handled
+    // by the scene's engage logic, so it bypasses the hard block here)
+    if (MH.combat.isCombatCmd(cmd) && MH.combat.skillOf(cmd) !== 'attack'
+        && MH.combat.skillOf(cmd) !== 'kill' && !MH.combat.ready(cmd)) {
+      flashNotReady(slot);
+      return;
+    }
     if (MH.sfx) MH.sfx.ui();
     // slots map to real UI where possible - commands shouldn't vanish into
     // the void
     if (cmd === 'attack' || cmd === 'kill') {
-      const t = currentTarget ? MH.mobKeyword(currentTarget.name) : '';
-      if (cmd === 'kill' && t) MH.sendCommand(`kill ${t}`);
-      else MH.bus.emit('player.attack');
+      // delegate to the scene: it engages once, then the server auto-swings each
+      // round; mashing while already engaged is a no-op (gated there)
+      MH.bus.emit('player.attack');
     } else if (cmd === 'inventory' || cmd === 'equipment') {
       renderInventory(); openModal('modal-inv');
     } else if (cmd === 'quests' || cmd === 'journal') {
@@ -343,42 +403,64 @@
     } else {
       commandWithPeek(cmd);
     }
-    const slot = els.hotbar.children[i];
-    if (slot) startCooldown(slot, cmd);
+    // record the GCD / ability cooldown for non-attack combat actions; the
+    // attack slot's rhythm is triggered by the scene's engage logic, and the
+    // tick loop (tickHotbarCooldowns) drives all slot overlays from MH.combat
+    const s = MH.combat.skillOf(cmd);
+    if (MH.combat.isCombatCmd(cmd) && s !== 'attack' && s !== 'kill') MH.combat.trigger(cmd);
+  }
+  // brief "not ready" shake so an eaten press is acknowledged
+  function flashNotReady(slot) {
+    if (!slot) return;
+    if (MH.sfx) { try { tone({ f: 150, f2: 120, type: 'sine', dur: 0.08, vol: 0.04 }); } catch (_) {} }
+    slot.classList.remove('notready');
+    void slot.offsetWidth;
+    slot.classList.add('notready');
+  }
+  // Continuously paint each hotbar slot's cooldown/round overlay from the single
+  // source of truth (MH.combat), so visuals stay correct no matter what fired
+  // the action (hotbar, scene attack, or a server round push).
+  function tickHotbarCooldowns() {
+    if (!els.hotbar) return;
+    const now = performance.now();
+    const inCombat = !!(MH.state && MH.state.inCombat);
+    hotbar.forEach((cmd, i) => {
+      const slot = els.hotbar.children[i];
+      if (!slot) return;
+      const cd = slot.querySelector('.cd');
+      if (!cd) return;
+      const s = MH.combat.skillOf(cmd);
+      const isAtk = s === 'attack' || s === 'kill';
+      let frac = 0, num = 0;
+      // basic attack: show the round rhythm while engaged (informational, not a lock)
+      if (isAtk && inCombat) { frac = 1 - MH.combat.roundFrac(); slot.classList.add('engaged'); }
+      else slot.classList.remove('engaged');
+      // real ability / flee cooldown -> hard lock + numeral
+      const e = MH.combat.cd[s];
+      let locked = false;
+      if (e && now < e.until) {
+        const rem = e.until - now;
+        frac = Math.max(frac, rem / e.dur);
+        num = Math.ceil(rem / 1000);
+        locked = true;
+      } else if (!isAtk && MH.combat.isCombatCmd(cmd) && now < MH.combat.gcd.until) {
+        // shared GCD wipe on the other combat slots
+        frac = Math.max(frac, (MH.combat.gcd.until - now) / MH.combat.gcd.dur);
+        locked = true;
+      }
+      slot.classList.toggle('disabled', locked);
+      if (frac > 0.001) { cd.style.opacity = '1'; cd.style.setProperty('--cd-ang', (frac * 360) + 'deg'); }
+      else { cd.style.opacity = '0'; }
+      let nEl = slot.querySelector('.cd-num');
+      if (num >= 1) {
+        if (!nEl) { nEl = document.createElement('span'); nEl.className = 'cd-num'; slot.appendChild(nEl); }
+        nEl.textContent = num; nEl.style.display = 'flex';
+      } else if (nEl) { nEl.style.display = 'none'; }
+    });
   }
 
-  // cooldown overlay: for abilities with a real cooldown, sweep over the true
-  // duration and tick a numeral down; otherwise a quick global-cooldown wipe
-  function startCooldown(slot, cmd) {
-    const cd = slot.querySelector('.cd');
-    if (!cd) return;
-    const skillName = String(cmd || '').replace(/^cast '/, '').replace(/'$/, '').replace(/ /g, '_');
-    const secs = (abilityCosts[skillName] && abilityCosts[skillName].cooldown) || 0;
-    cd.classList.remove('run');
-    void cd.offsetWidth;   // restart the CSS sweep
-    let num = slot.querySelector('.cd-num');
-    if (slot._cdTimer) { clearInterval(slot._cdTimer); slot._cdTimer = null; }
-    if (secs >= 2) {
-      cd.style.animationDuration = secs + 's';
-      cd.classList.add('run');
-      if (!num) { num = document.createElement('span'); num.className = 'cd-num'; slot.appendChild(num); }
-      const end = Date.now() + secs * 1000;
-      const tick = () => {
-        if (!slot.isConnected) { clearInterval(slot._cdTimer); return; }
-        const rem = Math.ceil((end - Date.now()) / 1000);
-        if (rem <= 0) {
-          clearInterval(slot._cdTimer); slot._cdTimer = null;
-          num.style.display = 'none'; cd.classList.remove('run'); cd.style.animationDuration = '';
-        } else { num.textContent = rem; }
-      };
-      num.textContent = secs; num.style.display = 'flex';
-      slot._cdTimer = setInterval(tick, 200);
-    } else {
-      cd.style.animationDuration = '';   // default ~2s GCD wipe, no numeral
-      cd.classList.add('run');
-      if (num) num.style.display = 'none';
-    }
-  }
+  // (cooldown/round overlays are painted continuously by tickHotbarCooldowns
+  // from MH.combat, the single source of truth — no per-press animation needed)
 
   // ---- HUD ----
   function setBar(barEl, txtEl, val, max) {
@@ -3824,14 +3906,21 @@
       MH.bus.on('combat.cast', () => endCast(true));
       MH.bus.on('player.heal', () => endCast(true));
 
-      // next-exchange timer: MUD rounds are ~2s; show the rhythm
+      // next-swing timer: synced to the server's real combat round (~4s). The
+      // server pushes combat.update on every round boundary, so we restart the
+      // fill on each push and size it to the true round length.
+      const roundFill = els.roundBar && els.roundBar.querySelector('.fill');
       MH.bus.on('combat.update', () => {
+        MH.combat.noteRound();
         els.roundBar.classList.add('show');
         els.roundBar.classList.remove('tick');
         void els.roundBar.offsetWidth;
+        if (roundFill) roundFill.style.animationDuration = MH.combat.roundMs + 'ms';
         els.roundBar.classList.add('tick');
       });
       MH.bus.on('combat.state', on => { if (!on) els.roundBar.classList.remove('show', 'tick'); });
+      // continuously paint hotbar cooldown / round overlays from MH.combat
+      setInterval(tickHotbarCooldowns, 100);
 
       // loot flow: corpse click -> loot toast -> inventory refreshed + opened
       let lootTimer = null;

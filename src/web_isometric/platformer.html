@@ -213,6 +213,12 @@
     font-size: 16px; font-weight: 700; color: #fff; text-shadow: 0 1px 3px #000;
     pointer-events: none; z-index: 2;
   }
+  /* combat rhythm states */
+  .hotslot.disabled { filter: grayscale(0.7) brightness(0.58); }
+  .hotslot.disabled:hover { border-color: var(--border); }
+  .hotslot.engaged { border-color: #ff8a6a; box-shadow: 0 0 9px rgba(255,90,80,0.5); }
+  .hotslot.notready { animation: hotshake 0.22s ease; }
+  @keyframes hotshake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-3px); } 75% { transform: translateX(3px); } }
 
   /* ---- talent trees ---- */
   .modal.wide { width: min(860px, 94vw); }
@@ -636,7 +642,7 @@
   #round-bar { height: 4px; background: #0a0b10; border-radius: 2px; margin-top: 5px; overflow: hidden; display: none; }
   #round-bar.show { display: block; }
   #round-bar .fill { height: 100%; width: 0%; background: linear-gradient(90deg, #b33, #ff8a6a); }
-  #round-bar.tick .fill { animation: roundfill 2000ms linear forwards; }
+  #round-bar.tick .fill { animation: roundfill 4000ms linear forwards; }
   @keyframes roundfill { from { width: 0%; } to { width: 100%; } }
 
   /* ---- loot toast ---- */

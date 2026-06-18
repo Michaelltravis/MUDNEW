@@ -277,9 +277,9 @@
 
       MH.bus.on('map', payload => this.onMap(payload));
       MH.bus.on('combat.update', payload => this.onCombatUpdate(payload));
-      MH.bus.on('combat.hit', e => this.fxHit(e));
-      MH.bus.on('combat.miss', e => this.fxMiss(e));
-      MH.bus.on('combat.taken', e => this.fxTaken(e));
+      MH.bus.on('combat.hit', e => this.queueFx('hit', e));
+      MH.bus.on('combat.miss', e => this.queueFx('miss', e));
+      MH.bus.on('combat.taken', e => this.queueFx('taken', e));
       MH.bus.on('defense.parry', e => this.fxDeflect('PARRY', 0xd5dde9, e.from));
       MH.bus.on('defense.dodge', e => this.fxSidestep());
       MH.bus.on('defense.block', () => this.fxDeflect('BLOCK', 0xe8c168));
@@ -2086,27 +2086,61 @@
     }
     tryAttack() {
       if (this.dead || !this.layout) return;
-      this._atkFrame = this.time.now;   // doll swing signal
-      // sword thrust animation regardless
-      const tex = this.playerTex();
-      this.afterimage(this.player, 0xd0e0ff);
-      this.player.setFrame(`atk_${this.facing}`);
-      this.time.delayedCall(180, () => { if (!this.dead) this.player.setFrame(`${this.facing}0`); });
       if (this.layout.peaceful) { MH.bus.emit('flash', 'A calm presence here forbids violence.'); return; }
       const ent = this.target && this.entities.has(this.target.key) ? this.entities.get(this.target.key) : this.nearestMob(60, this.facing);
       if (!ent) return;
       this.attackEntity(ent);
     }
-    attackEntity(ent) {
-      this.target = ent;
-      MH.bus.emit('target.set', ent.data);
-      MH.sendCommand(`kill ${MH.mobKeyword(ent.data.name)}`);
-      // face the target
+    faceEntity(ent) {
+      if (!ent || !ent.sprite) return;
       const dx = ent.sprite.x - this.player.x, dy = ent.sprite.y - this.player.y;
       this.facing = Math.abs(dx) > Math.abs(dy) ? 's' : (dy > 0 ? 'd' : 'u');
       this.player.setFlipX(this.facing === 's' && dx < 0);
+    }
+    attackEntity(ent) {
+      if (!ent) return;
+      // auto-attack toggle: if already fighting this same target, the server is
+      // already swinging once per round — re-sending does nothing, so don't
+      // (this is what kills the "spam attack" feel). Just keep facing it.
+      const same = this.target && (ent === this.target || (ent.key && this.target.key === ent.key));
+      if (MH.state.inCombat && same) { this.faceEntity(ent); return; }
+      // (re)engage or switch target — gated by the shared GCD so switches/restarts
+      // can't be mashed faster than the round rhythm
+      if (MH.combat && !MH.combat.ready('attack')) return;
+      this.target = ent;
+      MH.bus.emit('target.set', ent.data);
+      MH.sendCommand(`kill ${MH.mobKeyword(ent.data.name)}`);
+      if (MH.combat) MH.combat.trigger('attack');
+      // swing feedback only fires on a real engage/switch now
+      this._atkFrame = this.time.now;
+      this.afterimage(this.player, 0xd0e0ff);
+      this.faceEntity(ent);
       this.player.setFrame(`atk_${this.facing}`);
       this.time.delayedCall(180, () => { if (!this.dead) this.player.setFrame(`${this.facing}0`); });
+    }
+    // Stagger per-round combat FX into a readable beat: the server resolves a
+    // whole round (your swing, bonus hits, pet, the enemy's swing) in one tick,
+    // so the lines arrive in a burst. Draining them ~a frame apart makes each
+    // round read as one exchange instead of a single chaotic flash.
+    queueFx(type, e) {
+      (this._fxQ || (this._fxQ = [])).push({ type, e });
+      if (this._fxQ.length > 12) this._fxQ.splice(0, this._fxQ.length - 12);
+    }
+    // drained from updateInner() each frame: fire one queued FX per ~gap so a
+    // round's burst reads as a paced exchange. Frame-driven (no timers) so it
+    // can never wedge on a room change or a lost delayedCall.
+    drainFxQueue(now) {
+      const q = this._fxQ;
+      if (!q || !q.length) return;
+      const gap = q.length > 4 ? 55 : 115;   // catch up if a big burst piled up
+      if (this._lastFxAt && now - this._lastFxAt < gap) return;
+      this._lastFxAt = now;
+      const { type, e } = q.shift();
+      try {
+        if (type === 'hit') this.fxHit(e);
+        else if (type === 'miss') this.fxMiss(e);
+        else this.fxTaken(e);
+      } catch (_) {}
     }
     findEntityByText(text) {
       const lower = String(text || '').toLowerCase();
@@ -3677,6 +3711,7 @@
 
     updateInner() {
       if (!this.layout || this.dead) return;
+      this.drainFxQueue(this.time.now);   // pace this round's combat FX into a beat
       const k = this.keys;
       const pad = this.input.gamepad && this.input.gamepad.total ? this.input.gamepad.getPad(0) : null;
       let ax = 0, ay = 0;
