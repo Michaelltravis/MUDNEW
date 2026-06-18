@@ -1594,27 +1594,46 @@
         img.doorDir = dir;
         this.tileLayer.push ? this.tileLayer.push(img) : this.tileLayer.add(img);
       };
+      // loud, pulsing skull + red glow on any exit that leads to a deathtrap, so
+      // the danger is unmistakable before you step that way
+      const dangerMark = (dir, x, y) => {
+        if (!(layout.exits[dir] && layout.exits[dir].deathtrap)) return;
+        const glow = this.add.image(x, y + 3, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+          .setTint(0xff2a2a).setAlpha(0.32).setScale(0.95).setDepth(5);
+        this.tileLayer.add(glow);
+        this.tweens.add({ targets: glow, alpha: 0.6, scale: 1.15, duration: 680, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        const t = this.add.text(x, y, '☠ DANGER', {
+          fontFamily: 'Oxanium, Trebuchet MS, sans-serif', resolution: 3, fontSize: '8px', fontStyle: 'bold',
+          color: '#ff5a6a', backgroundColor: '#2a0a0ecc', padding: { x: 3, y: 1 },
+        }).setOrigin(0.5, 0.5).setDepth(6);
+        this.tileLayer.add(t);
+        this.tweens.add({ targets: t, alpha: 0.45, duration: 600, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      };
 
       const midX = Math.floor(layout.W / 2), midY = Math.floor(layout.H / 2);
       if (layout.gaps.north) {
         addExitZone((midX - 2) * T, -6, 5 * T, T * 0.8, 'north');
         signpost('north', midX * T + T / 2, 2.4 * T);
         drawDoor('north', midX * T + T / 2, 0.5 * T, false);
+        dangerMark('north', midX * T + T / 2, 1.3 * T);
       }
       if (layout.gaps.south) {
         addExitZone((midX - 2) * T, (layout.H - 0.4) * T, 5 * T, T, 'south');
         signpost('south', midX * T + T / 2, (layout.H - 2.4) * T);
         drawDoor('south', midX * T + T / 2, (layout.H - 0.5) * T, false);
+        dangerMark('south', midX * T + T / 2, (layout.H - 1.3) * T);
       }
       if (layout.gaps.west) {
         addExitZone(-6, (midY - 2) * T, T * 0.8, 5 * T, 'west');
         signpost('west', 3.6 * T, midY * T + T / 2);
         drawDoor('west', 0.5 * T, midY * T + T / 2, true);
+        dangerMark('west', 2.4 * T, (midY - 1.2) * T);
       }
       if (layout.gaps.east) {
         addExitZone((layout.W - 0.4) * T, (midY - 2) * T, T, 5 * T, 'east');
         signpost('east', (layout.W - 3.6) * T, midY * T + T / 2);
         drawDoor('east', (layout.W - 0.5) * T, midY * T + T / 2, true);
+        dangerMark('east', (layout.W - 2.4) * T, (midY - 1.2) * T);
       }
       const addFeatureZone = (fx, fy, dir, texKey) => {
         const img = this.add.image(fx * T, fy * T, texKey).setOrigin(0, 0).setDisplaySize(T, T).setDepth(2);
@@ -1636,6 +1655,7 @@
         if (!(layout.exits.up && layout.exits.up.to_zone)) {
           featureHint(layout.stairsUp.x * T + T / 2, layout.stairsUp.y * T - 2, '▲ up', '#ffe9a8');
         }
+        dangerMark('up', layout.stairsUp.x * T + T / 2, (layout.stairsUp.y - 1.6) * T);
       }
       if (layout.stairsDown) {
         // in town, a down-exit is a sewer grate, not a stairwell
@@ -1646,6 +1666,7 @@
         if (!(layout.exits.down && layout.exits.down.to_zone)) {
           featureHint(layout.stairsDown.x * T + T / 2, layout.stairsDown.y * T - 2, '▼ down', '#9fb8ff');
         }
+        dangerMark('down', layout.stairsDown.x * T + T / 2, (layout.stairsDown.y - 1.6) * T);
       }
       for (const p of layout.portals) {
         const spr = this.add.sprite(p.x * T + T / 2, (p.y + 1) * T, 'sm_portal', '0').setOrigin(0.5, 1).setDepth(3).setScale(0.75 / MH.SMOOTH_SS);
@@ -1660,6 +1681,7 @@
         }).setOrigin(0.5, 1).setDepth(3);
         this.tileLayer.add(hint);
         signpost(p.name, p.x * T + T / 2, (p.y - 2) * T);
+        dangerMark(p.name, p.x * T + T / 2, (p.y - 2.6) * T);
       }
     }
 

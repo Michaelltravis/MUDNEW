@@ -2671,10 +2671,13 @@
       const door = has && exits[dir].door;
       const closed = door && door.state !== 'open';
       const hidden = has && exits[dir].hidden;
-      const cls = dir == null ? 'cmp spacer' : `cmp${has ? ' on' : ''}${zone ? ' zone' : ''}${door ? ' door' : ''}${closed ? ' closed' : ''}${hidden ? ' hidden' : ''}`;
-      const title = door ? ` title="${closed ? (door.locked ? 'locked' : 'closed') : 'open'} ${door.name}${hidden ? ' (hidden)' : ''} — click for door controls"`
+      const danger = has && exits[dir].deathtrap;
+      const cls = dir == null ? 'cmp spacer' : `cmp${has ? ' on' : ''}${zone ? ' zone' : ''}${door ? ' door' : ''}${closed ? ' closed' : ''}${hidden ? ' hidden' : ''}${danger ? ' deathtrap' : ''}`;
+      const title = danger ? ` title="⚠ DANGER — certain death lies ${dir}"`
+        : door ? ` title="${closed ? (door.locked ? 'locked' : 'closed') : 'open'} ${door.name}${hidden ? ' (hidden)' : ''} — click for door controls"`
         : hidden ? ` title="hidden passage ${dir}"` : (zone ? ` title="→ ${zone}"` : '');
-      const mark = door ? `<span class="cmp-door">${door.locked && closed ? '🔒' : closed ? '🚪' : '◙'}</span>`
+      const mark = danger ? `<span class="cmp-door cmp-danger">☠</span>`
+        : door ? `<span class="cmp-door">${door.locked && closed ? '🔒' : closed ? '🚪' : '◙'}</span>`
         : (hidden ? `<span class="cmp-door cmp-secret">❓</span>` : '');
       return `<div class="${cls}" ${has ? `data-dir="${dir}"` : ''}${title}>${label}${mark}</div>`;
     };
@@ -2690,8 +2693,10 @@
     els.compass.querySelectorAll('.cmp.on').forEach(el => {
       const dir = el.dataset.dir;
       const door = exits[dir] && exits[dir].door;
+      const danger = exits[dir] && exits[dir].deathtrap;
       el.addEventListener('click', e => {
         if (door) { doorDialogue(dir, door, e.clientX, e.clientY); return; }
+        if (danger && !window.confirm(`⚠ DANGER: heading ${dir} leads to certain death. Go anyway?`)) return;
         MH.bus.emit('nav.goto', dir);
       });
     });

@@ -1087,17 +1087,29 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             if not to_vnum and not door:
                 continue   # nothing actually leads anywhere here
             hidden = bool(isinstance(exit_data, dict) and exit_data.get('hidden'))
-            # signpost data: name the zone when this exit crosses a border
+            # signpost data: name the zone when this exit crosses a border, and
+            # flag exits that lead into a deathtrap so the UI can warn loudly
             to_zone = None
-            if to_vnum and hasattr(player, 'world'):
-                dest = player.world.rooms.get(to_vnum)
-                if dest and dest.zone and cur.zone and dest.zone.number != cur.zone.number:
-                    to_zone = dest.zone.name
+            deathtrap = False
+            world = getattr(player, 'world', None)
+            if to_vnum and world:
+                dest = world.rooms.get(to_vnum)
+                if dest:
+                    if dest.zone and cur.zone and dest.zone.number != cur.zone.number:
+                        to_zone = dest.zone.name
+                    dflags = set(dest.flags) if hasattr(dest, 'flags') else set()
+                    if 'deathtrap' in dflags or 'death' in dflags:
+                        deathtrap = True
+            if not deathtrap and isinstance(exit_data, dict):
+                desc = str(exit_data.get('description', '') or '')
+                if 'DANGER' in desc or 'deathtrap' in desc.lower():
+                    deathtrap = True
             cur_exits[direction] = {
                 'to_room': to_vnum,
                 'door': door,
                 'to_zone': to_zone,
                 'hidden': hidden,
+                'deathtrap': deathtrap,
             }
         try:
             from gravestones import GravestoneRegistry
