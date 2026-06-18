@@ -1145,9 +1145,10 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'dex': getattr(player, 'dex', 0),
             'con': getattr(player, 'con', 0),
             'cha': getattr(player, 'cha', 0),
-            'hitroll': getattr(player, 'hitroll', 0),
-            'damroll': getattr(player, 'damroll', 0),
-            'armor_class': getattr(player, 'armor_class', 0),
+            # totals (equipment + stats + stance), not the base attributes
+            'hitroll': player.get_hit_bonus() if hasattr(player, 'get_hit_bonus') else getattr(player, 'hitroll', 0),
+            'damroll': player.get_damage_bonus() if hasattr(player, 'get_damage_bonus') else getattr(player, 'damroll', 0),
+            'armor_class': player.get_armor_class() if hasattr(player, 'get_armor_class') else getattr(player, 'armor_class', 0),
             'gold': getattr(player, 'gold', 0),
             'exp': getattr(player, 'exp', 0),
             'exp_floor': _exp_thresholds(player)[0],

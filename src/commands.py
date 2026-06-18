@@ -8665,18 +8665,22 @@ class CommandHandler:
     @classmethod
     async def cmd_wear(cls, player: 'Player', args: List[str]):
         """Wear an item or 'wear all' to wear everything you can."""
+        from objects import infer_wear_slot
         if not args:
             await player.send("Wear what?")
             return
 
         item_name = ' '.join(args).lower()
+        # types that are never "worn" (they're wielded, used, or just carried)
+        non_wearable = ('weapon', 'food', 'drink', 'potion', 'scroll', 'wand',
+                        'staff', 'pill', 'container', 'key', 'trash', 'fountain')
 
         # Handle "wear all"
         if item_name == 'all':
             worn_count = 0
-            # Include lights even without wear_slot (they auto-assign to 'light')
+            # anything with a resolvable wear slot (light auto-resolves to 'light')
             items_to_wear = [item for item in player.inventory
-                           if item.item_type in ('armor', 'light', 'worn') and (hasattr(item, 'wear_slot') or item.item_type == 'light')]
+                           if item.item_type not in non_wearable and infer_wear_slot(item)]
 
             # Handle paired slots
             paired_slots = {
@@ -8684,12 +8688,9 @@ class CommandHandler:
                 'neck': ['neck1', 'neck2'],
                 'wrist': ['wrist1', 'wrist2'],
             }
-            
+
             for item in items_to_wear:
-                slot = getattr(item, 'wear_slot', None)
-                # Auto-assign light slot for light items
-                if not slot and item.item_type == 'light':
-                    slot = 'light'
+                slot = infer_wear_slot(item)
                 if not slot:
                     continue
                 actual_slot = slot
@@ -8722,14 +8723,13 @@ class CommandHandler:
         # Find specific item in inventory
         for item in player.inventory:
             if item_name in item.name.lower():
-                if item.item_type not in ('armor', 'light', 'worn'):
+                if item.item_type in non_wearable:
                     await player.send(f"You can't wear {item.short_desc}.")
                     return
 
-                slot = getattr(item, 'wear_slot', None)
-                # Auto-assign light slot for light items
-                if not slot and item.item_type == 'light':
-                    slot = 'light'
+                # resolve the slot (inferred from the name for legacy/preset gear
+                # that shipped without an explicit wear_slot, e.g. iron greaves)
+                slot = infer_wear_slot(item)
                 if not slot:
                     await player.send(f"You can't figure out how to wear {item.short_desc}.")
                     return
