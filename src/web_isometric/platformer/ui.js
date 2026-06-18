@@ -1075,12 +1075,50 @@
     if (t === 'light') return 'light';
     return item.slot || null;   // armor / worn / clothing carry their wear_slot
   }
+  const PAIRED_SLOTS = { finger: ['finger1', 'finger2'], neck: ['neck1', 'neck2'], wrist: ['wrist1', 'wrist2'] };
   // the equipped item currently occupying a given inventory item's slot
   function equippedCounterpart(eq, item) {
     if (!eq) return null;
     const slot = equipSlotKey(item);
     if (!slot) return null;
     return eq[slot] || eq[slot + '1'] || eq[slot + '2'] || null;
+  }
+  // when equipping would land in a *full* slot, return the worn piece that must
+  // be removed first so the new one can go on (i.e. a swap). null = slot is free
+  // (single empty slot, or a paired slot with a free side the server will use).
+  function occupantToSwap(eq, item) {
+    if (!eq) return null;
+    const slot = equipSlotKey(item);
+    if (!slot) return null;
+    const paired = PAIRED_SLOTS[slot];
+    if (paired) return paired.every(s => eq[s]) ? eq[paired[0]] : null;   // only if both full
+    return eq[slot] || null;
+  }
+  // Click-to-equip with auto-swap. The server refuses to equip into an occupied
+  // slot, so: try to equip; if it reports the slot is full, remove the worn
+  // piece and retry (a swap). Trying first means a class/level-restricted item
+  // never strands the worn one — that yields a "can't use" message and we leave
+  // the current gear alone. Consumables are simply used.
+  async function swapEquip(item, action, kw) {
+    hideItemTip();
+    if (action.verb === 'use') {
+      MH.sendCommand(`use ${kw}`);
+      setTimeout(() => { MH.refreshState().then(renderInventory); }, 650);
+      return;
+    }
+    const tryEquip = () => { const p = captureOutput(900); MH.sendCommand(`${action.verb} ${kw}`); return p; };
+    let lines = await tryEquip();
+    let joined = lines.join('  ');
+    if (/already (?:wielding|wearing|dual)/i.test(joined)) {
+      const occ = occupantToSwap(MH.state.player && MH.state.player.equipment, item);
+      if (occ) { MH.sendCommand(`remove ${MH.mobKeyword(occ.name)}`); lines = await tryEquip(); joined = lines.join('  '); }
+    }
+    // surface a genuine rejection (class/level/can't-wear) if nothing equipped
+    if (!/you (?:wear|wield|hold|grip|light)\b/i.test(joined)) {
+      const bad = lines.find(l => /you can'?t|cannot|not experienced|must be|don'?t have|no class|wrong class|already/i.test(l));
+      if (bad) flash(bad.replace(/\x1b\[[0-9;]*m/g, '').slice(0, 100));
+    }
+    setTimeout(() => { MH.refreshState().then(renderInventory); }, 700);
   }
   // stat-by-stat delta vs the currently equipped piece. Always renders for an
   // equippable item — comparing against the worn piece, or against an empty
@@ -1251,11 +1289,7 @@
       el.addEventListener('mouseenter', ev => showItemTip(item, ev, action.label, cmp, slot));
       el.addEventListener('mousemove', moveItemTip);
       el.addEventListener('mouseleave', hideItemTip);
-      el.addEventListener('click', () => {
-        hideItemTip();
-        MH.sendCommand(`${action.verb} ${kw}`);
-        setTimeout(() => { MH.refreshState().then(renderInventory); }, 600);
-      });
+      el.addEventListener('click', () => { swapEquip(item, action, kw); });
     });
   }
 
