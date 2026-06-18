@@ -37,6 +37,11 @@
   // loot pickups: "You get <item> from <corpse>." or "You get <item>." (gold is
   // matched by GOLD_LINE first, so this only catches real items)
   const LOOT_LINE = /^You get (.+?)(?: from (.+?))?\.?$/i;
+  // skill / spell proficiency growth, and warrior ability evolution
+  const SKILL_IMPROVE = /^You feel more skilled at (.+?)!\s*\((\d+)%\s*->\s*(\d+)%\)/i;
+  const SPELL_IMPROVE = /^Your knowledge of (.+?) deepens!\s*\((\d+)%\s*->\s*(\d+)%\)/i;
+  const ABILITY_EVOLVED_HDR = /ABILITY EVOLVED/i;
+  const EVOLVE_ARROW = /^\s*([A-Za-z][A-Za-z ]*?)\s*(?:→|->)\s*(.+?)\s*$/;
   // consumables & gear feedback (no UI cue today)
   const EAT_LINE = /^You eat (.+?)\.?$/i;
   const STILL_HUNGRY = /^You eat but are still hungry/i;
@@ -114,6 +119,10 @@
     if (HEAL.test(line)) { bus.emit('player.heal', { line }); return; }
     if ((m = line.match(GOLD_LINE))) { bus.emit('player.gold', { amount: Number(m[1]), line }); return; }
     if ((m = line.match(LOOT_LINE))) { bus.emit('item.loot', { item: m[1].trim(), from: (m[2] || '').trim(), line }); MH.refreshState(); return; }
+    if ((m = line.match(SKILL_IMPROVE))) { bus.emit('skill.improve', { kind: 'skill', skill: m[1].trim(), from: +m[2], to: +m[3], line }); return; }
+    if ((m = line.match(SPELL_IMPROVE))) { bus.emit('skill.improve', { kind: 'spell', skill: m[1].trim(), from: +m[2], to: +m[3], line }); return; }
+    if (ABILITY_EVOLVED_HDR.test(line)) { MH._pendingEvolve = true; return; }
+    if (MH._pendingEvolve && (m = line.match(EVOLVE_ARROW))) { MH._pendingEvolve = false; bus.emit('skill.evolve', { ability: m[1].trim(), evolution: m[2].trim(), line }); MH.refreshState(); return; }
     if (STILL_HUNGRY.test(line)) { bus.emit('item.consume', { kind: 'eat', sated: false, line }); return; }
     if ((m = line.match(EAT_LINE))) { bus.emit('item.consume', { kind: 'eat', item: m[1].trim(), line }); MH.refreshState(); return; }
     if ((m = line.match(DRINK_FROM))) { bus.emit('item.consume', { kind: 'drink', liquid: (m[1] || '').trim(), item: m[2].trim(), line }); MH.refreshState(); return; }

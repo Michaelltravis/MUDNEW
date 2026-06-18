@@ -737,6 +737,33 @@
     _luTimer = setTimeout(() => ov.classList.remove('show'), 2700);
   }
 
+  // brief sparkle on the action-bar slot whose skill just improved/evolved
+  function sparkleHotbarSkill(skill) {
+    if (!els.hotbar) return;
+    const key = String(skill || '').toLowerCase().replace(/ /g, '_');
+    [...els.hotbar.children].forEach((slot, i) => {
+      const cmd = String(hotbar[i] || '').toLowerCase().replace(/^cast '/, '').replace(/'$/, '').replace(/ /g, '_');
+      if (cmd && (cmd === key || cmd.includes(key) || key.includes(cmd))) {
+        slot.classList.remove('skillup'); void slot.offsetWidth; slot.classList.add('skillup');
+        setTimeout(() => slot.classList.remove('skillup'), 1400);
+      }
+    });
+  }
+  // cinematic banner when a warrior ability evolves into its next form
+  let _evoTimer = null;
+  function cinematicEvolve(ability, evolution) {
+    let host = document.getElementById('evolve-banner');
+    if (!host) { host = document.createElement('div'); host.id = 'evolve-banner'; document.body.appendChild(host); }
+    host.innerHTML = `<div class="evo-rays"></div><div class="evo-card">`
+      + `<div class="evo-h">★ ABILITY EVOLVED ★</div>`
+      + `<div class="evo-name">${String(ability).toUpperCase()} <span>→</span> ${evolution}</div></div>`;
+    host.classList.remove('show'); void host.offsetWidth; host.classList.add('show');
+    clearTimeout(_evoTimer);
+    _evoTimer = setTimeout(() => host.classList.remove('show'), 3400);
+    if (MH.sfx && MH.sfx.level) MH.sfx.level();
+    sparkleHotbarSkill(ability);
+  }
+
   // ---- chat: tabbed panel + ambient overlay ----
   const chatStore = { all: [], party: [], say: [], channel: [], tell: [] };
   const unread = { party: 0, say: 0, channel: 0, tell: 0 };
@@ -3695,6 +3722,17 @@
       MH.bus.on('player.gold', e => clogLine(`+${e.amount} gold`, 'info'));
       MH.bus.on('item.loot', e => clogLine(e.from ? `◈ Looted <b>${e.item}</b> from ${e.from}` : `◈ Looted <b>${e.item}</b>`, 'loot'));
       MH.bus.on('mob.death', e => clogLine(`${e.name || 'It'} dies!`, 'info'));
+      MH.bus.on('skill.improve', e => {
+        const name = String(e.skill).replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+        toast(e.kind === 'spell' ? '✦ Spell Improved' : '▲ Skill Improved', `${name} — ${e.to}%`, 'skillup');
+        clogLine(`▲ ${name} grows: ${e.from}% → <b>${e.to}%</b>`, 'heal');
+        sparkleHotbarSkill(e.skill);
+        if (MH.sfx && MH.sfx.ui) MH.sfx.ui();
+      });
+      MH.bus.on('skill.evolve', e => {
+        cinematicEvolve(e.ability, e.evolution);
+        clogLine(`✦ <b>${e.ability}</b> evolved → <b>${e.evolution}</b>`, 'info');
+      });
       // consumables & gear: brief corner toast + combat-log line + sfx
       const titleCase = s => (s || '').replace(/^(a|an|the)\s+/i, '').replace(/\b\w/g, c => c.toUpperCase());
       MH.bus.on('item.consume', e => {
