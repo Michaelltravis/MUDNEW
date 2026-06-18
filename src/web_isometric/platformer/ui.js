@@ -984,19 +984,29 @@
     if (USE_TYPES.includes(t)) return { verb: 'use', label: 'click to use' };
     return { verb: 'wear', label: 'click to wear' };
   }
-  // which equipped item a given inventory item would replace
+  // which equipment slot an inventory item targets (null if not equippable)
+  function equipSlotKey(item) {
+    if (!item) return null;
+    const t = String(item.item_type || item.type || '').toLowerCase();
+    if (['potion', 'food', 'drink', 'scroll', 'pill', 'wand', 'staff', 'fountain', 'container', 'key', 'trash', 'treasure', 'other'].includes(t)) return null;
+    if (t === 'weapon') return 'wield';
+    if (t === 'light') return 'light';
+    return item.slot || null;   // armor / worn / clothing carry their wear_slot
+  }
+  // the equipped item currently occupying a given inventory item's slot
   function equippedCounterpart(eq, item) {
-    if (!eq || !item) return null;
-    const t = item.item_type || item.type;
-    if (['potion', 'food', 'drink', 'scroll', 'pill', 'wand', 'staff'].includes(t)) return null;
-    const slot = t === 'weapon' ? 'wield' : t === 'light' ? 'light' : item.slot;
+    if (!eq) return null;
+    const slot = equipSlotKey(item);
     if (!slot) return null;
     return eq[slot] || eq[slot + '1'] || eq[slot + '2'] || null;
   }
-  // stat-by-stat delta vs the currently equipped piece
-  function comparisonHTML(item, equipped) {
-    if (!equipped || equipped.name === item.name) return '';
+  // stat-by-stat delta vs the currently equipped piece. Always renders for an
+  // equippable item — comparing against the worn piece, or against an empty
+  // slot (so weapons/armor always show what equipping them would change).
+  function comparisonHTML(item, equipped, slot) {
+    if (!slot) return '';
     const a = itemStatTotals(item), b = itemStatTotals(equipped);
+    if (equipped && equipped.name === item.name) return '';
     const keys = [...new Set([...Object.keys(a), ...Object.keys(b)])];
     if (!keys.length) return '';
     let rows = '';
@@ -1006,9 +1016,10 @@
       const arrow = d > 0 ? '▲' : d < 0 ? '▼' : '=';
       rows += `<div class="it-cmp ${cls}"><span class="k">${k}</span><span class="v">${av}</span><span class="d">${arrow}${d !== 0 ? (d > 0 ? ' +' + d : ' ' + d) : ''}</span></div>`;
     });
-    return `<div class="it-cmp-box"><div class="it-cmp-h">vs equipped · ${equipped.name}</div>${rows}</div>`;
+    const head = equipped ? `vs equipped · ${equipped.name}` : `vs ${slot} slot · empty`;
+    return `<div class="it-cmp-box"><div class="it-cmp-h">${head}</div>${rows}</div>`;
   }
-  function itemTipHTML(item, action, compareTo) {
+  function itemTipHTML(item, action, compareTo, slot) {
     if (!item) return '';
     const rar = item.rarity || 'common';
     const type = item.item_type || item.type || 'item';
@@ -1030,7 +1041,7 @@
       if (t != null && t !== '' && v != null) h += `<div class="it-stat it-aff"><span class="k">${prettyStat(t)}</span><span class="v">${v > 0 ? '+' : ''}${v}</span></div>`;
     });
     (item.procs || []).forEach(pr => { if (pr) h += `<div class="it-proc">⚡ ${pr}</div>`; });
-    if (compareTo) h += comparisonHTML(item, compareTo);
+    h += comparisonHTML(item, compareTo, slot !== undefined ? slot : equipSlotKey(item));
     const foot = [];
     if (item.weight != null) foot.push(`⚖ ${item.weight}`);
     if (item.cost) foot.push(`🪙 ${item.cost}`);
@@ -1054,11 +1065,11 @@
     return '';
   }
   let _itemTipEl = null;
-  function showItemTip(item, ev, action, compareTo) {
+  function showItemTip(item, ev, action, compareTo, slot) {
     if (!item) return;
     const tip = _itemTipEl || (_itemTipEl = document.getElementById('item-tip'));
     if (!tip) return;
-    tip.innerHTML = itemTipHTML(item, action, compareTo);
+    tip.innerHTML = itemTipHTML(item, action, compareTo, slot);
     tip.classList.add('show');
     moveItemTip(ev);
   }
@@ -1136,7 +1147,7 @@
       if (item && MH.itemIcons) MH.itemIcons.intoCanvas(el.querySelector('canvas'), item);
       if (item) {
         el.removeAttribute('title');   // replace the bare native title with the rich tooltip
-        el.addEventListener('mouseenter', ev => showItemTip(item, ev, 'click to remove'));
+        el.addEventListener('mouseenter', ev => showItemTip(item, ev, 'click to remove', null, null));
         el.addEventListener('mousemove', moveItemTip);
         el.addEventListener('mouseleave', hideItemTip);
       }
@@ -1153,8 +1164,9 @@
       el.removeAttribute('title');
       const action = itemActionFor(item);
       const kw = MH.mobKeyword(item.name);
+      const slot = equipSlotKey(item);
       const cmp = equippedCounterpart(eq, item);
-      el.addEventListener('mouseenter', ev => showItemTip(item, ev, action.label, cmp));
+      el.addEventListener('mouseenter', ev => showItemTip(item, ev, action.label, cmp, slot));
       el.addEventListener('mousemove', moveItemTip);
       el.addEventListener('mouseleave', hideItemTip);
       el.addEventListener('click', () => {
