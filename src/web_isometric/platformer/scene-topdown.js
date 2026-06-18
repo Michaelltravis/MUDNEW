@@ -2587,6 +2587,32 @@
         },
       });
     }
+    // A visible weapon swing from the player toward the target on every basic
+    // attack — shape varies by the wielded weapon (slash arc / thrust / smash)
+    // so melee reads as a real swing for every class.
+    playerSwing(towardX, towardY) {
+      const px = this.player.x, py = this.player.y - 8;
+      const ang = Math.atan2(towardY - py, towardX - px);
+      const wp = (MH.state.player && MH.state.player.equipment && MH.state.player.equipment.wield) || null;
+      const wt = String((wp && wp.weapon_type) || '').toLowerCase();
+      if (MH.sfx && MH.sfx.swing) MH.sfx.swing();
+      if (/pierce|stab|thrust/.test(wt)) {
+        // lunging thrust
+        const tip = this.add.image(px + Math.cos(ang) * 11, py + Math.sin(ang) * 11, 'fx_slash')
+          .setScale(0.5 / MH.SMOOTH_SS).setRotation(ang).setDepth(12).setAlpha(0.9).setTint(0xdfe8ff);
+        this.tweens.add({ targets: tip, x: px + Math.cos(ang) * 24, y: py + Math.sin(ang) * 24, alpha: 0, duration: 150, ease: 'cubic.out', onComplete: () => tip.destroy() });
+      } else if (/pound|crush|smash|blunt|maul/.test(wt)) {
+        // overhead smash + ground shock
+        const arc = this.add.image(px + Math.cos(ang) * 8, py - 11, 'fx_slash')
+          .setScale(0.85 / MH.SMOOTH_SS).setRotation(-1.4).setDepth(12).setAlpha(0.92).setTint(0xffe0a0);
+        this.tweens.add({ targets: arc, rotation: 0.3, y: py + 3, alpha: 0, scale: 1.05 / MH.SMOOTH_SS, duration: 200, ease: 'cubic.in', onComplete: () => arc.destroy() });
+      } else {
+        // slashing crescent sweep
+        const arc = this.add.image(px + Math.cos(ang) * 9, py + Math.sin(ang) * 9, 'fx_slash')
+          .setScale(0.7 / MH.SMOOTH_SS).setDepth(12).setAlpha(0.92).setTint(0xeaf2ff).setRotation(ang - 0.85);
+        this.tweens.add({ targets: arc, rotation: ang + 0.85, alpha: 0, scale: 0.95 / MH.SMOOTH_SS, duration: 170, ease: 'cubic.out', onComplete: () => arc.destroy() });
+      }
+    }
     slashFx(x, y, towardX) {
       if (MH.sfx) MH.sfx.swing();
       const arc = this.add.image(x, y - 4, 'fx_slash')
@@ -2662,7 +2688,7 @@
       const fx = (this.lastAbility && Date.now() - this.lastAbility.ts < 4000 ? this.abilityFxFor(this.lastAbility.name) : null)
         || this.abilityFxFor(e.line || '');
       if (fx) this.playAbilityFx(fx, ent.sprite);
-      else this.slashFx(ent.sprite.x, ent.sprite.y, this.player.x >= ent.sprite.x ? ent.sprite.x - 10 : ent.sprite.x + 10);
+      else { this.playerSwing(ent.sprite.x, ent.sprite.y); this.slashFx(ent.sprite.x, ent.sprite.y, this.player.x >= ent.sprite.x ? ent.sprite.x - 10 : ent.sprite.x + 10); }
       // the connecting thud — louder the harder it lands (ability stings carry their own audio)
       if (MH.sfx && e.dmg != null) MH.sfx.impact(e.dmg >= 25 ? 2.5 : e.dmg >= 10 ? 1.5 : 1);
       this.spark(ent.sprite.x, ent.sprite.y - 6, (fx && fx.color) || 0xffe080);
