@@ -1060,20 +1060,38 @@
   // and devices are used (cmd_use dispatches quaff/recite/zap/eat/drink),
   // everything else is worn (the server routes armor/light/held correctly)
   const USE_TYPES = ['potion', 'scroll', 'wand', 'staff', 'food', 'drink', 'pill', 'fountain'];
+  // a weapon may arrive mislabeled (affixed/legendary gear), so damage_dice also
+  // counts as "weapon"; anything with armor or a wear slot counts as wearable
+  function isWeaponItem(item) {
+    return String(item.item_type || item.type || '').toLowerCase() === 'weapon' || !!item.damage_dice;
+  }
   function itemActionFor(item) {
     const t = String(item.item_type || item.type || '').toLowerCase();
-    if (t === 'weapon') return { verb: 'wield', label: 'click to wield' };
-    if (USE_TYPES.includes(t)) return { verb: 'use', label: 'click to use' };
-    return { verb: 'wear', label: 'click to wear' };
+    if (isWeaponItem(item)) return { verb: 'wield', label: 'double-click to wield' };
+    if (USE_TYPES.includes(t) && !item.slot && item.armor == null) return { verb: 'use', label: 'double-click to use' };
+    return { verb: 'wear', label: 'double-click to wear' };
   }
   // which equipment slot an inventory item targets (null if not equippable)
   function equipSlotKey(item) {
     if (!item) return null;
+    if (isWeaponItem(item)) return 'wield';
     const t = String(item.item_type || item.type || '').toLowerCase();
-    if (['potion', 'food', 'drink', 'scroll', 'pill', 'wand', 'staff', 'fountain', 'container', 'key', 'trash', 'treasure', 'other'].includes(t)) return null;
-    if (t === 'weapon') return 'wield';
     if (t === 'light') return 'light';
-    return item.slot || null;   // armor / worn / clothing carry their wear_slot
+    if (item.slot) return item.slot;   // armor / worn / clothing / jewelry carry a wear_slot
+    if (['potion', 'food', 'drink', 'scroll', 'pill', 'wand', 'staff', 'fountain', 'container', 'key', 'trash'].includes(t)) return null;
+    return null;
+  }
+  // The MUD matches gear by substring of the FULL name, and wield/wear stop at
+  // the first name match — so a last-word keyword ("winter") can hit the wrong
+  // item and never reach the one you clicked. Use the whole name (minus a
+  // leading article) for an unambiguous match; keep apostrophes since the
+  // server compares against the real name.
+  function equipKeyword(item) {
+    // the cleaned name must remain a substring of the server's item.name, so
+    // only strip a leading article + collapse whitespace — keep all other chars
+    const full = String((item && item.name) || '').toLowerCase()
+      .replace(/^(?:a|an|the|some)\s+/, '').replace(/\s+/g, ' ').trim();
+    return full || MH.mobKeyword((item && item.name) || '');
   }
   const PAIRED_SLOTS = { finger: ['finger1', 'finger2'], neck: ['neck1', 'neck2'], wrist: ['wrist1', 'wrist2'] };
   // the equipped item currently occupying a given inventory item's slot
@@ -1083,9 +1101,8 @@
     if (!slot) return null;
     return eq[slot] || eq[slot + '1'] || eq[slot + '2'] || null;
   }
-  // when equipping would land in a *full* slot, return the worn piece that must
-  // be removed first so the new one can go on (i.e. a swap). null = slot is free
-  // (single empty slot, or a paired slot with a free side the server will use).
+  // the worn piece that must come off before the clicked item can go on. null =
+  // the slot is free (empty, or a paired slot with a free side the server uses).
   function occupantToSwap(eq, item) {
     if (!eq) return null;
     const slot = equipSlotKey(item);
@@ -1094,31 +1111,48 @@
     if (paired) return paired.every(s => eq[s]) ? eq[paired[0]] : null;   // only if both full
     return eq[slot] || null;
   }
-  // Click-to-equip with auto-swap. The server refuses to equip into an occupied
-  // slot, so: try to equip; if it reports the slot is full, remove the worn
-  // piece and retry (a swap). Trying first means a class/level-restricted item
-  // never strands the worn one — that yields a "can't use" message and we leave
-  // the current gear alone. Consumables are simply used.
-  async function swapEquip(item, action, kw) {
+  // Click-to-equip with a real swap. Equipping has no class/level gate in this
+  // MUD — it only fails on an occupied slot, the wrong keyword, or (for weapons
+  // on a dual-wielder) the off-hand path. So: free the target slot first if it's
+  // full, then wield/wear by the unique full name. Debounced so a double-click
+  // doesn't fire twice. Consumables are simply used.
+  let _equipLock = { key: '', ts: 0 };
+  function swapEquip(item, action) {
     hideItemTip();
+    const key = String((item && item.name) || '');
+    const now = Date.now();
+    if (_equipLock.key === key && now - _equipLock.ts < 600) return;   // de-dupe double-click
+    _equipLock = { key, ts: now };
+    const kw = equipKeyword(item);
     if (action.verb === 'use') {
       MH.sendCommand(`use ${kw}`);
       setTimeout(() => { MH.refreshState().then(renderInventory); }, 650);
       return;
     }
-    const tryEquip = () => { const p = captureOutput(900); MH.sendCommand(`${action.verb} ${kw}`); return p; };
-    let lines = await tryEquip();
-    let joined = lines.join('  ');
-    if (/already (?:wielding|wearing|dual)/i.test(joined)) {
-      const occ = occupantToSwap(MH.state.player && MH.state.player.equipment, item);
-      if (occ) { MH.sendCommand(`remove ${MH.mobKeyword(occ.name)}`); lines = await tryEquip(); joined = lines.join('  '); }
-    }
-    // surface a genuine rejection (class/level/can't-wear) if nothing equipped
-    if (!/you (?:wear|wield|hold|grip|light)\b/i.test(joined)) {
-      const bad = lines.find(l => /you can'?t|cannot|not experienced|must be|don'?t have|no class|wrong class|already/i.test(l));
-      if (bad) flash(bad.replace(/\x1b\[[0-9;]*m/g, '').slice(0, 100));
-    }
-    setTimeout(() => { MH.refreshState().then(renderInventory); }, 700);
+    // free an occupied slot first (also avoids the dual-wield off-hand path)
+    const occ = occupantToSwap(MH.state.player && MH.state.player.equipment, item);
+    if (occ) MH.sendCommand(`remove ${equipKeyword(occ)}`);
+    const p = captureOutput(950);
+    MH.sendCommand(`${action.verb} ${kw}`);
+    p.then(lines => {
+      const joined = lines.join('  ');
+      if (!/you (?:wear|wield|hold|grip|light)\b/i.test(joined)) {
+        const bad = lines.find(l => /you can'?t|cannot|don'?t have|must be|off-hand|already|no exit/i.test(l));
+        if (bad) flash(bad.replace(/\x1b\[[0-9;]*m/g, '').slice(0, 100));
+      }
+    }).catch(() => {});
+    setTimeout(() => { MH.refreshState().then(renderInventory); }, 750);
+  }
+  // remove a worn item by its unique full name (click or double-click a socket)
+  function removeWorn(item) {
+    if (!item) return;
+    const key = 'rm:' + String(item.name || '');
+    const now = Date.now();
+    if (_equipLock.key === key && now - _equipLock.ts < 600) return;
+    _equipLock = { key, ts: now };
+    hideItemTip();
+    MH.sendCommand(`remove ${equipKeyword(item)}`);
+    setTimeout(() => { MH.refreshState().then(renderInventory); }, 600);
   }
   // stat-by-stat delta vs the currently equipped piece. Always renders for an
   // equippable item — comparing against the worn piece, or against an empty
@@ -1270,12 +1304,10 @@
         el.addEventListener('mouseenter', ev => showItemTip(item, ev, 'click to remove', null, null));
         el.addEventListener('mousemove', moveItemTip);
         el.addEventListener('mouseleave', hideItemTip);
+        // a worn item comes off on click OR double-click
+        el.addEventListener('click', () => removeWorn(item));
+        el.addEventListener('dblclick', () => removeWorn(item));
       }
-      if (el.dataset.cmd) el.addEventListener('click', () => {
-        hideItemTip();
-        MH.sendCommand(el.dataset.cmd);
-        setTimeout(() => { MH.refreshState().then(renderInventory); }, 600);
-      });
     });
     els.invBody.querySelectorAll('.inv-cell').forEach(el => {
       const item = allInv[Number(el.dataset.i)];
@@ -1283,13 +1315,14 @@
       if (item && MH.itemIcons) MH.itemIcons.intoCanvas(el.querySelector('canvas'), item);
       el.removeAttribute('title');
       const action = itemActionFor(item);
-      const kw = MH.mobKeyword(item.name);
       const slot = equipSlotKey(item);
       const cmp = equippedCounterpart(eq, item);
       el.addEventListener('mouseenter', ev => showItemTip(item, ev, action.label, cmp, slot));
       el.addEventListener('mousemove', moveItemTip);
       el.addEventListener('mouseleave', hideItemTip);
-      el.addEventListener('click', () => { swapEquip(item, action, kw); });
+      // equip on click OR double-click (debounced so a double-click fires once)
+      el.addEventListener('click', () => swapEquip(item, action));
+      el.addEventListener('dblclick', () => swapEquip(item, action));
     });
   }
 
