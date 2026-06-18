@@ -782,6 +782,10 @@
         .cs-eq-affects { color: #88aaff; font-size: 12px; }
         .cs-inv-item { color: #bbb; font-size: 13px; padding: 3px 0; border-bottom: 1px solid #1a0808; }
         .cs-inv-type { color: #555; font-size: 11px; float: right; }
+        .cs-clickable { cursor: pointer; border-radius: 4px; transition: background 0.12s, color 0.12s; }
+        .cs-clickable:hover { background: rgba(224,192,144,0.10); color: #fff; }
+        .cs-eq-item.cs-clickable { padding: 4px 6px; margin: 0 -6px 6px; }
+        .cs-inv-item.cs-clickable { padding-left: 6px; padding-right: 6px; margin: 0 -6px; }
         .cs-skill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 10px; }
         .cs-skill-row { display: flex; justify-content: space-between; align-items: center; }
         .cs-skill-name { color: #aaa; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -5592,6 +5596,11 @@
             return `/sprites/players/${cls}_${tier}.png`;
         }
 
+        // Escape a string for safe use inside a double-quoted HTML attribute.
+        function csAttr(s) {
+            return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        }
+
         function renderCharacterSheet(p) {
             if (!p) return;
 
@@ -5647,16 +5656,19 @@
                   ${p.title ? `<div style="color:#888;font-size:10px;text-align:center;margin-top:4px;font-style:italic">${p.title}</div>` : ''}
                 `;
             } else if (csActiveTab === 'equip') {
-                const EQ_ORDER = ['wield','hold','head','body','about','hands','waist','feet','neck1','neck2','finger1','finger2','wrist1','wrist2','back','arms','shoulders','face','ears','shield'];
+                const EQ_ORDER = ['wield','dual_wield','hold','light','head','face','ears','neck1','neck2','shoulders','body','about','back','arms','hands','wrist1','wrist2','finger1','finger2','waist','legs','feet','shield'];
                 const eq = p.equipment || {};
-                const rows = EQ_ORDER.filter(s => eq[s]).map(slot => {
+                // Show any occupied slot, even ones not in the preferred order.
+                const slots = EQ_ORDER.filter(s => eq[s])
+                    .concat(Object.keys(eq).filter(s => eq[s] && !EQ_ORDER.includes(s)));
+                const rows = slots.map(slot => {
                     const item = eq[slot];
                     const affects = (item.affects||[]).map(a => {
                         const sign = a.value >= 0 ? '+' : '';
                         return `${sign}${a.value} ${(a.type||'').replace(/_/g,' ')}`;
                     }).join('  ');
-                    return `<div class="cs-eq-item">
-                        <div class="cs-eq-slot">${slot}</div>
+                    return `<div class="cs-eq-item cs-clickable" data-remove="${csAttr(item.name||'')}" title="Click to unequip">
+                        <div class="cs-eq-slot">${(slot||'').replace(/_/g,' ')}</div>
                         <div class="cs-eq-name">${item.name||'?'}</div>
                         ${affects ? `<div class="cs-eq-affects">${affects}</div>` : ''}
                     </div>`;
@@ -5668,7 +5680,7 @@
                     content.innerHTML = '<div class="cs-empty">Inventory is empty</div>';
                 } else {
                     content.innerHTML = inv.map(item =>
-                        `<div class="cs-inv-item">${item.name||'?'}<span class="cs-inv-type">${(item.item_type||'').replace(/_/g,' ')}</span></div>`
+                        `<div class="cs-inv-item cs-clickable" data-equip="${csAttr(item.name||'')}" title="Click to equip">${item.name||'?'}<span class="cs-inv-type">${(item.item_type||'').replace(/_/g,' ')}</span></div>`
                     ).join('');
                 }
             } else if (csActiveTab === 'skills') {
@@ -5701,6 +5713,21 @@
                   ${!skillRows && !talentRows ? '<div class="cs-empty">No skills</div>' : ''}
                 `;
             }
+
+            // Wire click-to-equip (inventory) and click-to-unequip (equipment)
+            // on the freshly rendered list. The server resolves the correct slot.
+            content.querySelectorAll('[data-equip]').forEach(el => {
+                el.addEventListener('click', () => {
+                    const name = el.getAttribute('data-equip');
+                    if (name) sendCommand('equip ' + name);
+                });
+            });
+            content.querySelectorAll('[data-remove]').forEach(el => {
+                el.addEventListener('click', () => {
+                    const name = el.getAttribute('data-remove');
+                    if (name) sendCommand('remove ' + name);
+                });
+            });
         }
 
         // ============================================

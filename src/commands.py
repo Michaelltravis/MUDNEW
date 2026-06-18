@@ -8732,9 +8732,179 @@ class CommandHandler:
                 except Exception:
                     pass
                 return
-                
+
         await player.send(f"You don't have '{item_name}'.")
-        
+
+    # ──────────────────────────────────────────────────────────────────────
+    # Unified equip (click-to-equip)
+    # ──────────────────────────────────────────────────────────────────────
+    @staticmethod
+    def _equip_slot_for(item):
+        """Resolve the canonical equipment slot for any item.
+
+        Returns a base slot name (e.g. 'wield', 'body', 'finger', 'hold',
+        'light') or None if the item simply cannot be equipped.  This is the
+        single source of truth that makes every equippable item clickable,
+        including weapons that carry no wear flags (e.g. the frostfire blade).
+        """
+        itype = (getattr(item, 'item_type', '') or '').lower()
+        slot = getattr(item, 'wear_slot', None)
+        # Weapons always go to the wield hand.  Most weapons in the world data
+        # have no wear_slot/wear_flags at all, so we key off the type here.
+        if itype == 'weapon':
+            return 'wield'
+        # An explicit slot from the world data wins: rings -> finger, amulets
+        # -> neck, shields -> shield, orbs/wands/tomes -> hold, etc.
+        if slot:
+            return slot
+        # Sensible fallbacks for equippable types that lack slot data.
+        if itype == 'light':
+            return 'light'
+        if itype in ('armor', 'worn'):
+            return 'body'
+        # Keys, food, potions, gems, containers, notes, ... aren't equippable.
+        return None
+
+    @staticmethod
+    def _offhand_ok(item) -> bool:
+        """Whether a weapon qualifies for the off-hand (dual wield)."""
+        name_l = (getattr(item, 'name', '') + ' ' + getattr(item, 'short_desc', '')).lower()
+        if any(x in name_l for x in ['dagger', 'knife', 'stiletto', 'short sword', 'shortsword']):
+            return True
+        return getattr(item, 'weapon_type', '') in ('pierce', 'stab')
+
+    @classmethod
+    async def _unequip_to_inventory(cls, player: 'Player', slot: str, announce: bool = True):
+        """Move whatever occupies a slot back into inventory (used when swapping)."""
+        existing = player.equipment.get(slot)
+        if not existing:
+            return
+        player.equipment[slot] = None
+        player.inventory.append(existing)
+        if announce:
+            await player.send(f"You remove {existing.short_desc}.")
+
+    @classmethod
+    async def _equip_item(cls, player: 'Player', item, announce: bool = True, swap: bool = True) -> bool:
+        """Move a single inventory item into its proper equipment slot.
+
+        When ``swap`` is True an item already occupying the target slot is moved
+        back to inventory first (the "swap on click" behaviour).  When False the
+        item is skipped if the slot is full (used by 'equip all').  Returns True
+        if the item ended up equipped.
+        """
+        slot = cls._equip_slot_for(item)
+        if not slot:
+            if announce:
+                await player.send(f"You can't equip {item.short_desc}.")
+            return False
+
+        # ── Weapons: main hand, with dual-wield support ──────────────────
+        if slot == 'wield':
+            if player.equipment.get('wield'):
+                # Prefer the off-hand if the player can dual wield and the
+                # weapon qualifies and the off-hand is free.
+                if ('dual_wield' in player.skills and not player.equipment.get('dual_wield')
+                        and cls._offhand_ok(item)):
+                    player.inventory.remove(item)
+                    player.equipment['dual_wield'] = item
+                    if announce:
+                        await player.send(f"You off-hand {item.short_desc}.")
+                        await player.room.send_to_room(
+                            f"{player.name} off-hands {item.short_desc}.", exclude=[player])
+                    return True
+                if not swap:
+                    return False
+                # Otherwise swap whatever is in the main hand back to inventory.
+                await cls._unequip_to_inventory(player, 'wield', announce)
+            player.inventory.remove(item)
+            player.equipment['wield'] = item
+            if announce:
+                await player.send(f"You wield {item.short_desc}.")
+                await player.room.send_to_room(
+                    f"{player.name} wields {item.short_desc}.", exclude=[player])
+            return True
+
+        # ── Paired slots (rings, necks, wrists): prefer an empty slot ────
+        paired_slots = {
+            'finger': ['finger1', 'finger2'],
+            'neck':   ['neck1', 'neck2'],
+            'wrist':  ['wrist1', 'wrist2'],
+        }
+        actual_slot = slot
+        if slot in paired_slots:
+            pair = paired_slots[slot]
+            empty = next((s for s in pair if not player.equipment.get(s)), None)
+            if empty is None:
+                if not swap:
+                    return False
+                actual_slot = pair[0]  # swap out the first of the pair
+            else:
+                actual_slot = empty
+
+        # ── Single slot: swap out any existing occupant ──────────────────
+        if player.equipment.get(actual_slot):
+            if not swap:
+                return False
+            await cls._unequip_to_inventory(player, actual_slot, announce)
+
+        player.inventory.remove(item)
+        player.equipment[actual_slot] = item
+        if announce:
+            verb = 'hold' if actual_slot in ('hold', 'light') else 'wear'
+            await player.send(f"You {verb} {item.short_desc}.")
+            await player.room.send_to_room(
+                f"{player.name} {verb}s {item.short_desc}.", exclude=[player])
+        return True
+
+    @classmethod
+    async def _notify_web(cls, player: 'Player'):
+        """Push a fresh state snapshot so the web character sheet updates at once."""
+        try:
+            if hasattr(player, 'world') and getattr(player.world, 'web_map', None):
+                await player.world.web_map.notify_player(player)
+        except Exception:
+            pass
+
+    @classmethod
+    async def cmd_equip(cls, player: 'Player', args: List[str]):
+        """Equip any item from inventory into its correct slot (click-to-equip).
+
+        Unlike 'wear' (armor only) and 'wield' (weapons only), this routes ANY
+        equippable item — weapon, armor, ring, amulet, shield, light or held
+        item — to the appropriate slot, swapping out whatever already occupies
+        it.  This is what the web inventory panel sends when an item is clicked.
+        """
+        if not args:
+            await player.send("Equip what?")
+            return
+
+        item_name = ' '.join(args).lower()
+
+        # "equip all" — equip everything equippable into free slots.
+        if item_name == 'all':
+            equipped = 0
+            for item in list(player.inventory):
+                if cls._equip_slot_for(item) and await cls._equip_item(player, item, announce=True, swap=False):
+                    equipped += 1
+            if equipped == 0:
+                await player.send("You have nothing you can equip.")
+            await cls._notify_web(player)
+            return
+
+        # Find the item in inventory (match keyword name or short description).
+        item = None
+        for it in player.inventory:
+            if item_name in it.name.lower() or item_name in (getattr(it, 'short_desc', '') or '').lower():
+                item = it
+                break
+        if item is None:
+            await player.send(f"You don't have '{item_name}'.")
+            return
+
+        await cls._equip_item(player, item)
+        await cls._notify_web(player)
+
     @classmethod
     async def cmd_remove(cls, player: 'Player', args: List[str]):
         """Remove worn equipment or 'remove all' to remove everything."""
@@ -8762,6 +8932,7 @@ class CommandHandler:
                 )
             else:
                 await player.send("You're not wearing anything to remove.")
+            await cls._notify_web(player)
             return
 
         # Find specific item in equipment
@@ -8775,6 +8946,7 @@ class CommandHandler:
                     f"{player.name} removes {item.short_desc}.",
                     exclude=[player]
                 )
+                await cls._notify_web(player)
                 return
 
         await player.send(f"You're not wearing '{item_name}'.")
