@@ -2670,9 +2670,12 @@
       const zone = has && exits[dir].to_zone;
       const door = has && exits[dir].door;
       const closed = door && door.state !== 'open';
-      const cls = dir == null ? 'cmp spacer' : `cmp${has ? ' on' : ''}${zone ? ' zone' : ''}${door ? ' door' : ''}${closed ? ' closed' : ''}`;
-      const title = door ? ` title="${closed ? (door.locked ? 'locked' : 'closed') : 'open'} ${door.name} — click for door controls"` : (zone ? ` title="→ ${zone}"` : '');
-      const mark = door ? `<span class="cmp-door">${door.locked && closed ? '🔒' : closed ? '🚪' : '◙'}</span>` : '';
+      const hidden = has && exits[dir].hidden;
+      const cls = dir == null ? 'cmp spacer' : `cmp${has ? ' on' : ''}${zone ? ' zone' : ''}${door ? ' door' : ''}${closed ? ' closed' : ''}${hidden ? ' hidden' : ''}`;
+      const title = door ? ` title="${closed ? (door.locked ? 'locked' : 'closed') : 'open'} ${door.name}${hidden ? ' (hidden)' : ''} — click for door controls"`
+        : hidden ? ` title="hidden passage ${dir}"` : (zone ? ` title="→ ${zone}"` : '');
+      const mark = door ? `<span class="cmp-door">${door.locked && closed ? '🔒' : closed ? '🚪' : '◙'}</span>`
+        : (hidden ? `<span class="cmp-door cmp-secret">❓</span>` : '');
       return `<div class="${cls}" ${has ? `data-dir="${dir}"` : ''}${title}>${label}${mark}</div>`;
     };
     let html = '';

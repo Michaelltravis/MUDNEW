@@ -1068,17 +1068,25 @@ def build_map_payload(player, mode: str = 'full') -> dict:
         cur = player.room
         cur_exits = {}
         raw_exits = cur.exits if isinstance(getattr(cur, 'exits', None), dict) else {}
-        for direction, exit_data in _iter_visible_exits(cur, player):
+        # The graphical client shows EVERY real exit of the current room — closed
+        # doors and hidden/secret passages included — so the player can see (and
+        # use) e.g. a closed trapdoor. We iterate the raw exits (not the
+        # visibility-filtered set) and flag hidden ones for a distinct UI marker.
+        for direction, exit_data in raw_exits.items():
+            if not exit_data:
+                continue
             door = None
-            raw = raw_exits.get(direction)
-            if isinstance(raw, dict) and 'door' in raw:
-                d = raw['door']
+            if isinstance(exit_data, dict) and 'door' in exit_data:
+                d = exit_data['door']
                 door = {
                     'name': d.get('name', 'door'),
                     'state': d.get('state', 'open'),
                     'locked': bool(d.get('locked', False)),
                 }
             to_vnum = _get_exit_target_vnum(exit_data)
+            if not to_vnum and not door:
+                continue   # nothing actually leads anywhere here
+            hidden = bool(isinstance(exit_data, dict) and exit_data.get('hidden'))
             # signpost data: name the zone when this exit crosses a border
             to_zone = None
             if to_vnum and hasattr(player, 'world'):
@@ -1089,6 +1097,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
                 'to_room': to_vnum,
                 'door': door,
                 'to_zone': to_zone,
+                'hidden': hidden,
             }
         try:
             from gravestones import GravestoneRegistry
