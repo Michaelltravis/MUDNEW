@@ -4118,11 +4118,45 @@
       if (this.playerRim) this.playerRim.setVisible(false);
       d.container.setPosition(this.player.x, this.player.y);
       d.container.setDepth(10 + this.player.y / 1000);
+      const pos = (MH.state.player && MH.state.player.position) || 'standing';
       let action = 'idle';
       if (this._atkFrame && now - this._atkFrame < 300) action = 'attack';
       else if (this._walkFrame && now - this._walkFrame < 130) action = 'walk';
       d.setAction(action, this.lpcFacing());
       d.update(now);
+      this.applyDollPose(d.container, pos, now);
+    }
+    // Lay the paperdoll into a sleeping/resting pose (the LPC pack has no
+    // lying-down frames, so we tilt/sink the whole doll) and float a 💤 cue.
+    applyDollPose(c, pos, now) {
+      const sleeping = pos === 'sleeping';
+      const resting = pos === 'resting' || pos === 'sitting';
+      if (sleeping) {
+        c.setRotation(-1.45);                 // lie flat on the ground, head to the side
+        c.setScale(1);
+        c.y += 5 * 0.4;                        // settle onto the floor (doll scale 0.4)
+      } else if (resting) {
+        c.setRotation(0);
+        c.setScale(1.04, 0.74);                 // squash toward the feet → seated/crouched
+        c.y += 4 * 0.4;
+      } else {
+        c.setRotation(0);
+        c.setScale(1);
+      }
+      // floating sleep/rest indicator
+      if (sleeping || resting) {
+        if (!this.dollZzz) {
+          this.dollZzz = this.add.text(0, 0, 'z Z z', {
+            fontFamily: 'Oxanium, Rajdhani, sans-serif', fontSize: '11px',
+            color: '#bfeefb', fontStyle: 'bold',
+          }).setOrigin(0.5, 1).setDepth(60);
+        }
+        this.dollZzz.setVisible(true);
+        this.dollZzz.setPosition(this.player.x + 10, this.player.y - 22 + Math.sin(now / 400) * 2);
+        this.dollZzz.setAlpha(0.55 + Math.sin(now / 400) * 0.3);
+      } else if (this.dollZzz) {
+        this.dollZzz.setVisible(false);
+      }
     }
   }
 

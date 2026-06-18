@@ -373,6 +373,16 @@
   #item-tip .it-proc { color: #c9a0ff; margin-top: 3px; font-style: italic; }
   #item-tip .it-foot { color: #7a8094; font-size: 10px; margin-top: 6px; display: flex; justify-content: space-between; gap: 14px; }
   #item-tip .it-hint { color: #6fb6ff; font-size: 10px; margin-top: 5px; }
+  /* equipped-vs-hovered comparison */
+  #item-tip .it-cmp-box { margin-top: 7px; padding-top: 6px; border-top: 1px solid rgba(57,197,232,0.22); }
+  #item-tip .it-cmp-h { color: #8a90a4; font-size: 9px; letter-spacing: .5px; text-transform: uppercase; margin-bottom: 3px; }
+  #item-tip .it-cmp { display: flex; justify-content: space-between; gap: 10px; font-size: 11px; }
+  #item-tip .it-cmp .k { color: #9aa0b4; flex: 1; }
+  #item-tip .it-cmp .v { color: #d4d8e2; min-width: 28px; text-align: right; font-family: var(--num-font, monospace); }
+  #item-tip .it-cmp .d { min-width: 44px; text-align: right; font-family: var(--num-font, monospace); }
+  #item-tip .it-cmp.up .d { color: #46e0a0; }
+  #item-tip .it-cmp.down .d { color: #ff5a6a; }
+  #item-tip .it-cmp.same .d { color: #6a7180; }
   /* rarity name colors */
   #item-tip .it-name.common { color: #d8dce6; }
   #item-tip .it-name.uncommon { color: #6fd685; }

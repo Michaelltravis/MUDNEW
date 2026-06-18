@@ -954,7 +954,61 @@
     save: 'Saving Throws', age: 'Age',
   };
   const prettyStat = t => STAT_NAMES[String(t).toLowerCase()] || String(t).replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
-  function itemTipHTML(item, action) {
+  // average damage of a dice string like "2d6+1"
+  function diceAvg(d) {
+    const m = /(\d+)\s*d\s*(\d+)(?:\s*\+\s*(\d+))?/i.exec(String(d || ''));
+    if (!m) return 0;
+    return Math.round((Number(m[1]) * (Number(m[2]) + 1) / 2 + (m[3] ? Number(m[3]) : 0)) * 10) / 10;
+  }
+  // flatten an item's combat-relevant numbers into { statName: total }
+  function itemStatTotals(item) {
+    const m = {};
+    if (!item) return m;
+    const add = (k, v) => { if (v) m[k] = (m[k] || 0) + Number(v); };
+    if (item.armor) add('Armor', item.armor);
+    if (item.damage_dice) add('Avg Dmg', diceAvg(item.damage_dice));
+    (item.affects || []).forEach(a => {
+      const t = a.type != null ? a.type : (a.location != null ? a.location : (a.applies_to != null ? a.applies_to : a.stat));
+      const v = a.value != null ? a.value : a.modifier;
+      if (t != null && t !== '' && v != null) add(prettyStat(t), v);
+    });
+    return m;
+  }
+  // map an inventory item to the right verb: weapons are wielded, consumables
+  // and devices are used (cmd_use dispatches quaff/recite/zap/eat/drink),
+  // everything else is worn (the server routes armor/light/held correctly)
+  const USE_TYPES = ['potion', 'scroll', 'wand', 'staff', 'food', 'drink', 'pill', 'fountain'];
+  function itemActionFor(item) {
+    const t = String(item.item_type || item.type || '').toLowerCase();
+    if (t === 'weapon') return { verb: 'wield', label: 'click to wield' };
+    if (USE_TYPES.includes(t)) return { verb: 'use', label: 'click to use' };
+    return { verb: 'wear', label: 'click to wear' };
+  }
+  // which equipped item a given inventory item would replace
+  function equippedCounterpart(eq, item) {
+    if (!eq || !item) return null;
+    const t = item.item_type || item.type;
+    if (['potion', 'food', 'drink', 'scroll', 'pill', 'wand', 'staff'].includes(t)) return null;
+    const slot = t === 'weapon' ? 'wield' : t === 'light' ? 'light' : item.slot;
+    if (!slot) return null;
+    return eq[slot] || eq[slot + '1'] || eq[slot + '2'] || null;
+  }
+  // stat-by-stat delta vs the currently equipped piece
+  function comparisonHTML(item, equipped) {
+    if (!equipped || equipped.name === item.name) return '';
+    const a = itemStatTotals(item), b = itemStatTotals(equipped);
+    const keys = [...new Set([...Object.keys(a), ...Object.keys(b)])];
+    if (!keys.length) return '';
+    let rows = '';
+    keys.forEach(k => {
+      const av = a[k] || 0, bv = b[k] || 0, d = Math.round((av - bv) * 10) / 10;
+      const cls = d > 0 ? 'up' : d < 0 ? 'down' : 'same';
+      const arrow = d > 0 ? '▲' : d < 0 ? '▼' : '=';
+      rows += `<div class="it-cmp ${cls}"><span class="k">${k}</span><span class="v">${av}</span><span class="d">${arrow}${d !== 0 ? (d > 0 ? ' +' + d : ' ' + d) : ''}</span></div>`;
+    });
+    return `<div class="it-cmp-box"><div class="it-cmp-h">vs equipped · ${equipped.name}</div>${rows}</div>`;
+  }
+  function itemTipHTML(item, action, compareTo) {
     if (!item) return '';
     const rar = item.rarity || 'common';
     const type = item.item_type || item.type || 'item';
@@ -976,6 +1030,7 @@
       if (t != null && t !== '' && v != null) h += `<div class="it-stat it-aff"><span class="k">${prettyStat(t)}</span><span class="v">${v > 0 ? '+' : ''}${v}</span></div>`;
     });
     (item.procs || []).forEach(pr => { if (pr) h += `<div class="it-proc">⚡ ${pr}</div>`; });
+    if (compareTo) h += comparisonHTML(item, compareTo);
     const foot = [];
     if (item.weight != null) foot.push(`⚖ ${item.weight}`);
     if (item.cost) foot.push(`🪙 ${item.cost}`);
@@ -999,11 +1054,11 @@
     return '';
   }
   let _itemTipEl = null;
-  function showItemTip(item, ev, action) {
+  function showItemTip(item, ev, action, compareTo) {
     if (!item) return;
     const tip = _itemTipEl || (_itemTipEl = document.getElementById('item-tip'));
     if (!tip) return;
-    tip.innerHTML = itemTipHTML(item, action);
+    tip.innerHTML = itemTipHTML(item, action, compareTo);
     tip.classList.add('show');
     moveItemTip(ev);
   }
@@ -1096,18 +1151,15 @@
       if (!item) return;
       if (item && MH.itemIcons) MH.itemIcons.intoCanvas(el.querySelector('canvas'), item);
       el.removeAttribute('title');
-      const itype = item.item_type || item.type;
-      const act = itype === 'weapon' ? 'click to wield'
-        : ['potion', 'food', 'drink', 'scroll'].includes(itype) ? 'click to use' : 'click to wear';
-      el.addEventListener('mouseenter', ev => showItemTip(item, ev, act));
+      const action = itemActionFor(item);
+      const kw = MH.mobKeyword(item.name);
+      const cmp = equippedCounterpart(eq, item);
+      el.addEventListener('mouseenter', ev => showItemTip(item, ev, action.label, cmp));
       el.addEventListener('mousemove', moveItemTip);
       el.addEventListener('mouseleave', hideItemTip);
       el.addEventListener('click', () => {
         hideItemTip();
-        let cmd = el.dataset.cmd;
-        if ((item.item_type || item.type) === 'weapon') cmd = cmd.replace('wear ', 'wield ');
-        else if (['potion', 'food', 'drink', 'scroll'].includes(item.item_type || item.type)) cmd = cmd.replace('wear ', 'use ');
-        MH.sendCommand(cmd);
+        MH.sendCommand(`${action.verb} ${kw}`);
         setTimeout(() => { MH.refreshState().then(renderInventory); }, 600);
       });
     });

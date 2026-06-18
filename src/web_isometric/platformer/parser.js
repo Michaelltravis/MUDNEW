@@ -126,7 +126,7 @@
     }
     if ((m = line.match(UNEQUIP_LINE))) { bus.emit('item.unequip', { item: m[1].trim(), line }); MH.refreshState(); return; }
     if ((m = line.match(DOOR_OPENED))) { bus.emit('door.opened', { name: m[1], line }); MH.refreshState(); return; }
-    if (SLEEP_LINE.test(line)) { bus.emit('player.posture', { line }); return; }
+    if (SLEEP_LINE.test(line)) { bus.emit('player.posture', { line }); MH.refreshState(); return; }
     if (CHAT.test(line)) { bus.emit('chat', { line }); return; }
     if (COMBAT_LINE.test(line)) { bus.emit('combat.misc', { line }); return; }
     // nothing matched: short standalone chunks are ambient narrative
