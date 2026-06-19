@@ -305,6 +305,31 @@
     if (first) flash(first.slice(0, 90));
   }
 
+  // Free-text command box: run ANY typed command and surface its reply in a
+  // readable card, so the ~400 info/utility/social commands that otherwise
+  // dump silently into the hidden terminal drawer actually show a result.
+  // Commands whose effect is already visible (movement, combat engage, chat,
+  // posture) just send raw so we don't pop a redundant card over them.
+  const TYPED_SILENT = new Set(['n', 's', 'e', 'w', 'u', 'd', 'ne', 'nw', 'se', 'sw',
+    'north', 'south', 'east', 'west', 'up', 'down', 'northeast', 'northwest', 'southeast', 'southwest',
+    'enter', 'leave', 'recall', 'travel', 'flee', 'escape', 'disengage', 'retreat',
+    'kill', 'attack', 'k', 'att', 'murder', 'say', 'tell', 'reply', 'whisper', 'gossip', 'gos',
+    'shout', 'yell', 'holler', 'chat', 'gt', 'gtell', 'qsay', 'grats', 'me', 'emote',
+    'sit', 'stand', 'sleep', 'rest', 'wake']);
+  async function runTypedCommand(raw) {
+    const cmd = String(raw || '').trim();
+    if (!cmd) return;
+    const first = cmd.split(/\s+/)[0].toLowerCase();
+    if (/^['":]/.test(cmd) || TYPED_SILENT.has(first)) { MH.sendCommand(cmd); return; }
+    const p = captureOutput(1300);
+    MH.sendCommand(cmd);
+    let lines = [];
+    try { lines = await p; } catch (_) {}
+    const clean = ((MH.cleanInfoText ? MH.cleanInfoText(lines.join('\n'), cmd) : lines.join('\n')) || '').trim();
+    if (clean && MH.immersion && MH.immersion.showDetailCard) MH.immersion.showDetailCard(cmd, clean, 'detail');
+    else if (clean) flash(clean.split('\n')[0].slice(0, 110));
+  }
+
   // ---- combat rhythm + input gating ----------------------------------------
   // The server resolves combat in fixed ~4s rounds and already enforces ability
   // cooldowns; this mirrors that on the client so the basic attack can't be
@@ -4217,7 +4242,7 @@
         e.stopPropagation();
         if (e.key === 'Enter') {
           const cmd = els.commandInput.value.trim();
-          if (cmd) { MH.sendCommand(cmd); els.commandInput.value = ''; }
+          if (cmd) { runTypedCommand(cmd); els.commandInput.value = ''; }
           els.commandInput.blur();
         } else if (e.key === 'Escape') {
           els.commandInput.value = '';
