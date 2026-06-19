@@ -131,8 +131,9 @@
     MH.bus.emit('login.status', st.creatingAccount ? 'Forging a new soul…' : 'Opening the gate…');
     await sleep(500);
     MH.sendCommand(st.playerName, false);
+    st._loginNameSent = true;   // a name re-prompt after this means it was rejected
     if (!st.creatingAccount) {
-      // existing character: answer the password prompt
+      // existing character: answer the password prompt (account or legacy)
       await sleep(500);
       MH.sendCommand(st.playerPassword, false);
     }
@@ -166,15 +167,32 @@
       if (/choose a password/.test(t)) { sendDelayed('choose-pw', st.playerPassword); return; }
       if (/confirm password/.test(t)) { sendDelayed('confirm-pw', st.playerPassword); return; }
       // the name already exists (account/legacy) — can't create it; tell them
-      if (/account password|enter your password|welcome back/i.test(text)) {
+      if (/account password|enter your password|welcome back, [^!]+! enter/i.test(text)) {
         MH.bus.emit('create.blocked', 'That name already exists — use "Enter the Realm" to log in, or pick a different name.');
         return;
       }
-      // bad/duplicate name kicked us back to the name prompt — surface it
-      if (/name shall you be|enter account name|only letters|between 3 and 12|wrong password/i.test(text)) {
+      // a name RE-prompt only counts as a rejection once we've already sent the
+      // name (the very first "enter account name" prompt is normal, not an error)
+      if (st._loginNameSent && /name shall you be|only letters|must be between|between 3 and 12|wrong password|already (?:taken|in use)/i.test(text)) {
         MH.bus.emit('create.blocked', 'That name is taken or invalid — start over with a different one.');
         return;
       }
+      return;   // race/class/stats prompts are handled by the creation wizard UI
+    }
+    // existing-character login: an account shows a character-selection menu
+    // after the password — auto-play the character we logged in as
+    if (/available commands:|play the character|play <name>/i.test(text)) {
+      sendDelayed('char-menu', `play ${st.playerName}`);
+      return;
+    }
+    // login failures: give clear feedback instead of a silent hang
+    if (st._loginNameSent && /invalid password|wrong password/i.test(text)) {
+      MH.bus.emit('login.error', 'Wrong password — try again.');
+      return;
+    }
+    if (st._loginNameSent && /is a new name|create account\?/i.test(text)) {
+      MH.bus.emit('login.error', 'No character by that name — use "Forge a Hero" to create one.');
+      return;
     }
     for (const { test, send } of LOGIN_PROMPT_RESPONDERS) {
       if (test.test(text)) { sendDelayed('static:' + test.source, send); return; }
@@ -332,6 +350,8 @@
     st.creatingAccount = !!createAccount;
     st.loginSequenceStarted = false;
     st.isLoggedIn = false;
+    st._loginNameSent = false;
+    st._lastPromptKey = null;
     if (st.mudSocket) { try { st.mudSocket.close(); } catch (_) {} }
     MH.bus.emit('login.status', `Connecting to ${MH.urls.mudWs}…`);
     st.mudSocket = new WebSocket(MH.urls.mudWs);
