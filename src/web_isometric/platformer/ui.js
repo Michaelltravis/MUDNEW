@@ -166,8 +166,43 @@
     renderHotbar();
   }
 
-  // WoW-style quality of life: first time a class logs in, fill the empty
-  // slots with their actual spells and skills
+  // Skills that are passive/automatic or pure utility — they do nothing when
+  // "used", so they never belong on the action bar (the player can still bind
+  // them by hand). Everything else in a class roster is an active ability.
+  const NON_HOTBAR_SKILLS = new Set([
+    'parry', 'dodge', 'shield_block', 'second_attack', 'third_attack', 'fourth_attack',
+    'evasion', 'dual_wield', 'enhanced_damage', 'sixth_sense', 'sneak', 'hide',
+    'track', 'scan', 'detect_traps', 'lore', 'scribe', 'doctrine', 'swear', 'evolve',
+    'oath', 'tame', 'steal', 'pick_lock',
+  ]);
+  // Curated "open with these" order per class — the iconic actives a new player
+  // should have ready. These are only an ordering hint: every id is validated
+  // against the live roster (spells/skills) before it is bound, so a class only
+  // ever gets abilities it actually has.
+  const CLASS_KIT_ORDER = {
+    warrior:     ['bash', 'cleave', 'kick', 'execute', 'rally', 'rescue', 'charge'],
+    paladin:     ['censure', 'order_verdict', 'holy_smite', 'absolution', 'halo_of_reckoning', 'turn_undead', 'rescue', 'bash'],
+    ranger:      ['truesight_shot', 'wildbond_strike', 'loosing_storm', 'quarry_mark', 'call_lightning'],
+    thief:       ['backstab', 'circle', 'trip', 'low_blow', 'pocket_sand', 'jackpot'],
+    assassin:    ['backstab', 'mark', 'expose', 'vital', 'feint', 'execute_contract', 'fade'],
+    mage:        ['magic_missile', 'fireball', 'lightning_bolt', 'chill_touch', 'sleep', 'towerbolt'],
+    necromancer: ['soul_bolt', 'chill_touch', 'soul_siphon', 'animate_dead', 'soul_reap'],
+    cleric:      ['holy_smite', 'cure_light', 'heal', 'turn_undead', 'bless', 'flamestrike'],
+    bard:        ['mockery', 'fascinate', 'crescendo', 'discordant_note', 'sleep'],
+  };
+
+  // turn an ability id into the command form the MUD expects, resolving whether
+  // it is a spell (needs `cast '...'`) or a skill (sent as the bare command;
+  // the server recombines multi-word skills like "shadow dance")
+  function abilityCommand(id, spellSet) {
+    const name = String(id || '');
+    if (spellSet.has(name)) return `cast '${name.replace(/_/g, ' ')}'`;
+    return name.replace(/_/g, ' ');
+  }
+
+  // WoW-style quality of life: the first time a character logs in, lay their
+  // basic class kit AND any active talents they have learned onto the empty
+  // action-bar slots — de-noised (no passives) and class-ordered.
   let autofilled = false;
   function autofillBar() {
     const pdata = MH.state.player;
@@ -175,18 +210,56 @@
     autofilled = true;
     const fillKey = `misthollow_bar_filled_${(pdata.name || '').toLowerCase()}`;
     if (lsGet(fillKey)) return;
-    // internal ability ids use underscores; the cast parser wants spaces
-    const abilities = (pdata.class_spells || []).map(s => `cast '${s.replace(/_/g, ' ')}'`)
-      .concat((pdata.class_skills || []).map(s => s.replace(/_/g, ' ')));
+
+    const cls = String(pdata.char_class || '').toLowerCase();
+    const spells = pdata.class_spells || [];
+    const spellSet = new Set(spells);
+    const rosterSkills = pdata.class_skills || [];
+    const rosterSet = new Set(rosterSkills);
+    const learned = pdata.skills || {};   // includes talent-granted actives once learned
+    const isActiveSkill = id => id && !NON_HOTBAR_SKILLS.has(id);
+
+    const seen = new Set();
+    const collect = (list, ids) => {
+      for (const id of ids) {
+        if (!id) continue;
+        const command = abilityCommand(id, spellSet);
+        const key = command.toLowerCase();
+        if (seen.has(key)) continue;
+        seen.add(key); list.push(command);
+      }
+    };
+
+    // basics = curated class kit (validated against the roster), then the rest
+    // of the roster's actives so nothing useful is left behind
+    const basics = [];
+    collect(basics, (CLASS_KIT_ORDER[cls] || []).filter(id => spellSet.has(id) || (rosterSet.has(id) && isActiveSkill(id))));
+    collect(basics, spells);
+    collect(basics, rosterSkills.filter(isActiveSkill));
+    // talents / trained extras: active abilities the player has actually learned
+    // that the class roster didn't list (e.g. Shadow Dance from a talent)
+    const talents = [];
+    collect(talents, Object.keys(learned).filter(id => !rosterSet.has(id) && !spellSet.has(id) && isActiveSkill(id)));
+
+    // interleave so learned talents always get a couple of slots even when the
+    // basic kit alone would fill the bar
+    const freeCount = hotbar.filter(s => !s).length;
+    const reserve = Math.min(talents.length, 2);
+    const basicHead = Math.max(0, freeCount - reserve);
+    const cmds = basics.slice(0, basicHead)
+      .concat(talents.slice(0, reserve))
+      .concat(basics.slice(basicHead))
+      .concat(talents.slice(reserve));
+
     let changed = false;
-    for (let i = 0; i < BAR_SIZE && abilities.length; i++) {
-      if (!hotbar[i]) { hotbar[i] = abilities.shift(); changed = true; }
+    for (let i = 0; i < BAR_SIZE && cmds.length; i++) {
+      if (!hotbar[i]) { hotbar[i] = cmds.shift(); changed = true; }
     }
     if (changed) {
       lsSet(HOTBAR_KEY, JSON.stringify(hotbar));
       lsSet(fillKey, '1');
       renderHotbar();
-      flash('Your abilities are on the action bar - drag from K to customize.');
+      flash('Your class abilities are on the action bar — drag from K to customize.');
     }
   }
 
