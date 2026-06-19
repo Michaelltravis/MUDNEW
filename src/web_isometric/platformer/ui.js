@@ -16,6 +16,21 @@
   function lsGet(k) { try { return localStorage.getItem(k); } catch (_) { return null; } }
   function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (_) {} }
 
+  // ---- accessibility / UI preferences (persisted) ----
+  MH.prefs = {
+    textSize: lsGet('mh_text_size') || 'normal',          // normal | large | huge
+    highContrast: lsGet('mh_high_contrast') === '1',
+    dmgNumbers: lsGet('mh_dmg_numbers') !== '0',          // floating combat numbers, default on
+  };
+  function applyPrefs() {
+    const b = document.body;
+    if (!b) return;
+    b.classList.toggle('uitext-large', MH.prefs.textSize === 'large');
+    b.classList.toggle('uitext-huge', MH.prefs.textSize === 'huge');
+    b.classList.toggle('hicontrast', !!MH.prefs.highContrast);
+  }
+  applyPrefs();
+
   // ---- WebAudio cues: you should HEAR combat ----
   let audioCtx = null;
   function audio() {
@@ -1486,6 +1501,63 @@
     if (MH.immersion) MH.immersion.showDetailCard(pretty, text, 'detail');
   }
   MH.showAbilityHelp = showAbilityHelp;
+
+  // Controls & keybinds reference — the quick "how do I play this" card every
+  // game should have. Built once, toggled open/closed.
+  const CONTROLS_GUIDE = [
+    ['Move & Explore', [
+      ['W A S D', 'Walk around the room (or arrow keys)'],
+      ['Shift+W/A/S/D', 'Travel through a room exit (N/S/E/W)'],
+      ['Shift+Q / Shift+E', 'Go up / down'],
+      ['Click ground', 'Walk there · click an exit on the compass to travel'],
+      ['M', 'World map'],
+    ]],
+    ['Fight', [
+      ['F or Space', 'Attack — engage your target / nearest foe'],
+      ['1 – 9, 0', 'Use the action-bar slot (skills & spells)'],
+      ['Click a foe', 'Target it · click again / F to attack'],
+      ['Stance', 'Aggressive / Normal / Defensive — beside your vitals'],
+    ]],
+    ['Panels', [
+      ['I', 'Inventory & equipment'],
+      ['K / N', 'Abilities & spells / Talents'],
+      ['J', 'Quests & journal'],
+      ['C', 'Companions & mounts'],
+      ['Y / B / V', 'Almanac / Services / Travel'],
+      ['Z', 'Rest & recovery'],
+      ['T', 'Chat'],
+    ]],
+    ['Interact & Tips', [
+      ['Right-click', 'Context menu (foe, player, yourself, objects)'],
+      ['Enter', 'Type any command — its reply shows in a card'],
+      ['Esc', 'Close panels / cancel'],
+      ['H / ?', 'Game help / this controls card'],
+      ['⚙', 'Settings: graphics, text size, sound, contrast'],
+      ['`', 'Raw message log (drawer)'],
+    ]],
+  ];
+  function openControls() {
+    let ov = document.getElementById('controls-overlay');
+    if (!ov) {
+      ov = document.createElement('div');
+      ov.id = 'controls-overlay';
+      document.body.appendChild(ov);
+    }
+    const cols = CONTROLS_GUIDE.map(([sec, rows]) =>
+      `<div class="co-sec">${sec}</div>` + rows.map(([k, d]) => {
+        const keys = k.split(' ').map(part => /^[A-Za-z0-9`?+\/–-]+$/.test(part) && part.length <= 9 ? `<b>${part}</b>` : part).join(' ');
+        return `<div class="co-row"><span class="co-key">${keys}</span><span class="co-desc">${d}</span></div>`;
+      }).join('')).join('');
+    ov.innerHTML = `<div class="co-card"><div class="co-h">⌨ CONTROLS</div>`
+      + `<div class="co-sub">Everything is also clickable — and you can type any command with Enter.</div>`
+      + `<div class="co-cols">${cols}</div><button class="co-close">Got it</button></div>`;
+    ov.classList.add('show');
+    const close = () => ov.classList.remove('show');
+    ov.querySelector('.co-close').addEventListener('click', close);
+    ov.addEventListener('click', e => { if (e.target === ov) close(); });
+    if (MH.sfx) MH.sfx.ui();
+  }
+  MH.openControls = openControls;
 
   async function openHelp(topic) {
     openModal('modal-journal');
@@ -3580,9 +3652,15 @@
         const btn = $('gfx-toggle'), menu = $('gfx-menu');
         if (!btn || !menu || !MH.gfx) return;
         const seg = $('gfx-seg'), sw = $('gfx-motion');
+        const tseg = $('gfx-textsize'), soundSw = $('gfx-sound'), dmgSw = $('gfx-dmgnum'), contrastSw = $('gfx-contrast');
+        const soundOn = () => lsGet('misthollow_ambience') !== 'off';
         const sync = () => {
           seg.querySelectorAll('span').forEach(s => s.classList.toggle('on', s.dataset.q === MH.gfx.quality));
           sw.classList.toggle('on', MH.gfx.reducedMotion);
+          if (tseg) tseg.querySelectorAll('span').forEach(s => s.classList.toggle('on', s.dataset.t === MH.prefs.textSize));
+          if (soundSw) soundSw.classList.toggle('on', soundOn());
+          if (dmgSw) dmgSw.classList.toggle('on', MH.prefs.dmgNumbers);
+          if (contrastSw) contrastSw.classList.toggle('on', MH.prefs.highContrast);
         };
         sync();
         btn.addEventListener('click', e => { e.stopPropagation(); menu.classList.toggle('show'); sync(); if (MH.sfx) MH.sfx.ui(); });
@@ -3593,10 +3671,35 @@
           MH.gfx.setReducedMotion(!MH.gfx.reducedMotion); sync();
           flash(MH.gfx.reducedMotion ? 'Reduced motion ON' : 'Reduced motion off'); if (MH.sfx) MH.sfx.ui();
         });
+        // text size
+        if (tseg) tseg.querySelectorAll('span').forEach(s => s.addEventListener('click', () => {
+          MH.prefs.textSize = s.dataset.t; lsSet('mh_text_size', s.dataset.t); applyPrefs(); sync();
+          flash('Text size: ' + s.dataset.t); if (MH.sfx) MH.sfx.ui();
+        }));
+        // sound (reuses the 🔊 ambience toggle so one switch governs all audio)
+        if (soundSw) soundSw.addEventListener('click', () => {
+          const amb = $('ambience-toggle'); if (amb) amb.click(); sync();
+          flash(soundOn() ? 'Sound on' : 'Sound muted');
+        });
+        // floating damage numbers
+        if (dmgSw) dmgSw.addEventListener('click', () => {
+          MH.prefs.dmgNumbers = !MH.prefs.dmgNumbers; lsSet('mh_dmg_numbers', MH.prefs.dmgNumbers ? '1' : '0'); sync();
+          flash(MH.prefs.dmgNumbers ? 'Damage numbers ON' : 'Damage numbers off'); if (MH.sfx) MH.sfx.ui();
+        });
+        // high contrast
+        if (contrastSw) contrastSw.addEventListener('click', () => {
+          MH.prefs.highContrast = !MH.prefs.highContrast; lsSet('mh_high_contrast', MH.prefs.highContrast ? '1' : '0'); applyPrefs(); sync();
+          flash(MH.prefs.highContrast ? 'High contrast ON' : 'High contrast off'); if (MH.sfx) MH.sfx.ui();
+        });
+        const ctrlBtn = $('gfx-controls');
+        if (ctrlBtn) ctrlBtn.addEventListener('click', () => { menu.classList.remove('show'); openControls(); });
         document.addEventListener('click', e => {
           if (menu.classList.contains('show') && !menu.contains(e.target) && e.target !== btn) menu.classList.remove('show');
         });
       })();
+      // ---- controls / keybinds reference overlay (discoverability) ----
+      const helpToggleBtn = $('help-toggle');
+      if (helpToggleBtn) helpToggleBtn.addEventListener('click', () => openControls());
       // the game owns right-click: no browser menu over the world
       document.addEventListener('contextmenu', e => {
         if (e.target.tagName === 'CANVAS' || e.target.closest('#game-root')) e.preventDefault();
@@ -4289,6 +4392,7 @@
           return;
         }
         if (e.key === '`' || e.key === '~') { e.preventDefault(); els.drawer.classList.toggle('open'); return; }
+        if (e.key === '?') { e.preventDefault(); openControls(); return; }
         // pressing a panel's own hotkey again closes it (toggle)
         {
           const tk = e.key.toLowerCase();

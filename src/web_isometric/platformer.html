@@ -908,6 +908,55 @@
   .gfx-switch.on { background: rgba(111,214,133,0.5); }
   .gfx-switch.on > i { transform: translateX(16px); background: #eafff0; }
   #gfx-menu .gfx-hint { font-size: 10px; color: #8a90a4; line-height: 1.4; margin-top: 2px; }
+  #gfx-menu .gfx-title { font-family: var(--head-font, var(--ui-font)); font-size: 12px; letter-spacing: 2px;
+    text-transform: uppercase; color: #bfeefb; margin: 0 0 9px; opacity: .9; }
+  #gfx-menu .gfx-btn { width: 100%; margin-top: 9px; background: rgba(57,197,232,0.12);
+    border: 1px solid rgba(57,197,232,0.4); color: #bfeefb; border-radius: 7px; padding: 6px; cursor: pointer;
+    font-family: var(--ui-font); font-size: 12px; }
+  #gfx-menu .gfx-btn:hover { background: rgba(57,197,232,0.22); color: #eafaff; }
+  #help-toggle { background: none; border: 1px solid rgba(200,204,216,0.4); border-radius: 50%; width: 18px; height: 18px;
+    line-height: 1; cursor: pointer; font-size: 11px; padding: 0; color: #c8ccd8; opacity: .85; }
+  #help-toggle:hover { opacity: 1; border-color: var(--gold, #e8c168); color: #ffe9a8; }
+
+  /* accessibility: text size (scales the most-read surfaces) */
+  body.uitext-large #combat-log, body.uitext-large #chat-body, body.uitext-large #item-tip,
+  body.uitext-large #detail-card .dc-text, body.uitext-large .modal-body, body.uitext-large #room-desc .rd-text,
+  body.uitext-large #hotbar .hotslot .lbl, body.uitext-large .cmp { font-size: 13.5px !important; line-height: 1.5; }
+  body.uitext-huge #combat-log, body.uitext-huge #chat-body, body.uitext-huge #item-tip,
+  body.uitext-huge #detail-card .dc-text, body.uitext-huge .modal-body, body.uitext-huge #room-desc .rd-text,
+  body.uitext-huge #hotbar .hotslot .lbl, body.uitext-huge .cmp { font-size: 15.5px !important; line-height: 1.55; }
+
+  /* accessibility: high contrast — opaque panels, brighter text, stronger borders */
+  body.hicontrast #combat-log, body.hicontrast #hud, body.hicontrast .modal, body.hicontrast #detail-card,
+  body.hicontrast #minimap-wrap, body.hicontrast #contacts, body.hicontrast #gfx-menu, body.hicontrast #chat-panel,
+  body.hicontrast #item-tip, body.hicontrast #quest-tracker, body.hicontrast #stance-bar {
+    background: rgba(5,7,11,0.97) !important; border-color: rgba(255,255,255,0.55) !important; backdrop-filter: none !important; }
+  body.hicontrast #combat-log-lines > div, body.hicontrast .dc-text, body.hicontrast .modal-body,
+  body.hicontrast #chat-body div, body.hicontrast .it-stat .k, body.hicontrast #room-desc .rd-text { color: #f4f6fb !important; }
+  body.hicontrast .bar > b { filter: brightness(1.25) saturate(1.2); }
+
+  /* controls / keybinds reference overlay */
+  #controls-overlay { position: fixed; inset: 0; z-index: 95; display: none; align-items: center; justify-content: center;
+    background: rgba(4,6,10,0.72); backdrop-filter: blur(3px); }
+  #controls-overlay.show { display: flex; }
+  #controls-overlay .co-card { width: min(720px, 92vw); max-height: 86vh; overflow-y: auto;
+    background: rgba(10,14,20,0.98); border: 1px solid rgba(57,197,232,0.4); border-radius: 14px; padding: 20px 24px;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.6); font-family: var(--ui-font); }
+  #controls-overlay .co-h { font-family: var(--head-font, var(--ui-font)); font-size: 19px; letter-spacing: 2px;
+    color: #bfeefb; text-align: center; margin-bottom: 4px; }
+  #controls-overlay .co-sub { text-align: center; color: #8a90a4; font-size: 12px; margin-bottom: 16px; }
+  #controls-overlay .co-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 26px; }
+  @media (max-width: 600px) { #controls-overlay .co-cols { grid-template-columns: 1fr; } }
+  #controls-overlay .co-sec { color: #ffe9a8; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+    margin: 8px 0 4px; border-bottom: 1px solid rgba(232,193,104,0.22); padding-bottom: 3px; }
+  #controls-overlay .co-row { display: flex; align-items: baseline; gap: 10px; padding: 2px 0; font-size: 12.5px; }
+  #controls-overlay .co-key { flex: 0 0 96px; color: #bfeefb; font-family: var(--num-font, monospace); font-size: 11.5px; }
+  #controls-overlay .co-key b { display: inline-block; background: rgba(57,197,232,0.14); border: 1px solid rgba(57,197,232,0.35);
+    border-radius: 4px; padding: 0 5px; margin: 0 1px; font-weight: 600; }
+  #controls-overlay .co-desc { color: #d6dae6; }
+  #controls-overlay .co-close { display: block; margin: 16px auto 0; background: rgba(57,197,232,0.14);
+    border: 1px solid rgba(57,197,232,0.4); color: #bfeefb; border-radius: 8px; padding: 7px 22px; cursor: pointer; font-size: 13px; }
+  #controls-overlay .co-close:hover { background: rgba(57,197,232,0.26); color: #eafaff; }
 
 
   /* ---- paper doll + item grid ---- */
@@ -1968,9 +2017,11 @@
     <canvas id="sky-canvas" width="64" height="22"></canvas>
     <span id="sky-label"></span>
     <button id="ambience-toggle" type="button">🔊</button>
-    <button id="gfx-toggle" type="button" title="graphics &amp; motion settings">⚙</button>
+    <button id="help-toggle" type="button" title="controls &amp; keybinds (?)">?</button>
+    <button id="gfx-toggle" type="button" title="settings">⚙</button>
   </div>
   <div id="gfx-menu">
+    <div class="gfx-title">Settings</div>
     <div class="gfx-row gfx-quality">
       <span class="gfx-lbl">Graphics</span>
       <span class="gfx-seg" id="gfx-seg">
@@ -1981,7 +2032,26 @@
       <span class="gfx-lbl">Reduced motion</span>
       <span class="gfx-switch" id="gfx-motion"><i></i></span>
     </div>
-    <div class="gfx-hint">Lowers effects for weaker devices. Reduced motion calms shake, flashes &amp; zooms.</div>
+    <div class="gfx-row">
+      <span class="gfx-lbl">Text size</span>
+      <span class="gfx-seg" id="gfx-textsize">
+        <span data-t="normal">A</span><span data-t="large">A+</span><span data-t="huge">A++</span>
+      </span>
+    </div>
+    <div class="gfx-row">
+      <span class="gfx-lbl">Sound</span>
+      <span class="gfx-switch" id="gfx-sound"><i></i></span>
+    </div>
+    <div class="gfx-row">
+      <span class="gfx-lbl">Damage numbers</span>
+      <span class="gfx-switch" id="gfx-dmgnum"><i></i></span>
+    </div>
+    <div class="gfx-row">
+      <span class="gfx-lbl">High contrast</span>
+      <span class="gfx-switch" id="gfx-contrast"><i></i></span>
+    </div>
+    <div class="gfx-hint">Reduced motion calms shake, flashes &amp; zooms. Press <b>?</b> for controls.</div>
+    <button id="gfx-controls" type="button" class="gfx-btn">⌨ Controls &amp; Keybinds</button>
   </div>
   <div id="room-desc"></div>
   <div id="flash-line"></div>

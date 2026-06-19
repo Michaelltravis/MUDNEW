@@ -3080,6 +3080,7 @@
       this.time.delayedCall(700, () => emitter.destroy());
     }
     damageNumber(x, y, text, color, size = 9) {
+      if (MH.prefs && MH.prefs.dmgNumbers === false) return;   // accessibility: declutter combat
       const crit = size >= 12;
       const t = this.add.text(x + (Math.random() * 10 - 5), y, text, {
         fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3,
