@@ -2093,6 +2093,16 @@
   }
 
   // ---- stable: pets / companions / mounts ----
+  // distinct art per mount type (the stable used one horse icon for everything)
+  const MOUNT_ICON = {
+    horse: '🐴', pony: '🐴', warhorse: '🐎', nightmare: '🔥🐎',
+    griffin: '🦅', clockwork_steed: '⚙️', donkey: '🫏',
+  };
+  function mountIcon(o) {
+    const byKey = MOUNT_ICON[String((o && o.key) || '').toLowerCase()];
+    if (byKey) return byKey;
+    return o && o.can_fly ? '🦅' : '🐴';
+  }
   let stTab = 'pets', stData = null;
   async function openStable(tab) {
     stTab = tab || 'pets';
@@ -2139,8 +2149,9 @@
       let html = `<div class="st-hd">🐴 YOUR MOUNTS</div>`;
       if (!m.owned.length) html += `<div class="alm-note" style="text-align:left">You own no mounts.</div>`;
       for (const o of m.owned) {
-        const feats = [o.can_fly ? 'flight' : '', o.combat_ok ? 'combat-ready' : '', `+${Math.round(o.speed_bonus * 100)}% speed`].filter(Boolean).join(' · ');
-        html += `<div class="st-card ${o.active ? 'active' : ''}"><div class="st-ic">${o.can_fly ? '🦅' : '🐴'}</div><div class="st-m">`
+        const loy = (o.loyalty != null) ? ` · loyalty ${o.loyalty}%` : '';
+        const feats = [o.can_fly ? 'flight' : '', o.combat_ok ? 'combat-ready' : '', `+${Math.round(o.speed_bonus * 100)}% speed`].filter(Boolean).join(' · ') + loy;
+        html += `<div class="st-card ${o.active ? 'active' : ''}"><div class="st-ic">${mountIcon(o)}</div><div class="st-m">`
           + `<div class="st-n">${o.name}${o.active ? '<span class="tag">riding</span>' : ''}</div><div class="st-d">${feats}</div></div>`
           + (o.active ? `<button class="st-btn" id="st-dismount">DISMOUNT</button>`
                       : `<button class="st-btn go" data-mount="${o.key}">RIDE</button>`) + `</div>`;
@@ -2148,7 +2159,7 @@
       html += `<div class="st-hd">🏪 STABLE${m.at_stable ? '' : ' (find a stable to buy)'}</div>`;
       for (const pu of m.purchasable) {
         const can = m.at_stable && pu.afford;
-        html += `<div class="st-card"><div class="st-ic">${pu.can_fly ? '🦅' : '🐴'}</div><div class="st-m">`
+        html += `<div class="st-card"><div class="st-ic">${mountIcon(pu)}</div><div class="st-m">`
           + `<div class="st-n">${pu.name}</div><div class="st-d">${pu.description}</div></div>`
           + `<span class="st-cost ${pu.afford ? '' : 'poor'}">${pu.cost.toLocaleString()}g</span>`
           + `<button class="st-btn ${can ? 'go' : 'dim'}" data-buy="${pu.key}" ${can ? '' : 'disabled'}>BUY</button></div>`;

@@ -544,6 +544,20 @@ def _class_resource(player):
     return {'name': label, 'value': int(getattr(player, attr, 0) or 0), 'max': cap}
 
 
+def _mount_info(player):
+    """The mount the player is currently riding (for a 'riding X' HUD chip and
+    in-world rider art), or None when on foot."""
+    m = getattr(player, 'mount', None)
+    if not m:
+        return None
+    return {
+        'key': getattr(m, 'key', ''),
+        'name': getattr(m, 'name', 'mount'),
+        'can_fly': bool(getattr(m, 'can_fly', False)),
+        'loyalty': getattr(m, 'loyalty', None),
+    }
+
+
 def _cooldowns(player):
     """Active ability cooldowns the client can paint on the action bar.
 
@@ -1223,6 +1237,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
                 for item in getattr(player, 'inventory', [])
             ],
             'aura': _worn_aura(player),
+            'mount': _mount_info(player),
             'position': getattr(player, 'position', 'standing'),
             'autoloot': bool(getattr(player, 'autoloot', False)),
             'autogold': bool(getattr(player, 'autogold', True)),

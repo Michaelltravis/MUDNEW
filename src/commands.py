@@ -923,9 +923,15 @@ class CommandHandler:
             if best_reduction > 0:
                 move_cost = max(1, int(move_cost * (1 - best_reduction)))
 
-        # Mounted movement bonus (reduced movement cost)
+        # Mounted movement bonus (reduced movement cost). Loyalty scales the
+        # bonus — a neglected mount carries you no faster than a half-hearted
+        # trot — and a flying mount soars over rough ground, paying only the
+        # base sector cost instead of the terrain/weather/sneak surcharges.
         if player.mount:
-            bonus = getattr(player.mount, 'speed_bonus', 0.5)
+            loyalty_speed = getattr(player.mount, 'loyalty_speed', None)
+            bonus = loyalty_speed() if callable(loyalty_speed) else getattr(player.mount, 'speed_bonus', 0.5)
+            if getattr(player.mount, 'can_fly', False):
+                move_cost = min(move_cost, max(1, sector['move_cost']))
             move_cost = max(1, int(move_cost * (1 - bonus)))
 
         return move_cost
