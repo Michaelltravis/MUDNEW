@@ -435,6 +435,33 @@
       if (m) return m[1].replace(/ /g, '_');
       return c.split(/\s+/)[0] || '';
     },
+    // full underscore key (e.g. "shadow dance" -> "shadow_dance") to match the
+    // server's cooldown attribute names; skillOf only keeps the first word
+    cdKey(cmd) {
+      const c = String(cmd || '').trim().toLowerCase();
+      const m = c.match(/^cast '([^']+)'/);
+      if (m) return m[1].replace(/ /g, '_');
+      return c.replace(/\s+/g, '_');
+    },
+    // the active cooldown entry for a slot, matching either the full key (server
+    // cooldowns) or the first-word key (client-predicted spell/flee cooldowns)
+    cdEntry(cmd) { return this.cd[this.cdKey(cmd)] || this.cd[this.skillOf(cmd)]; },
+    // fold the server's authoritative cooldowns (seconds remaining) into the
+    // single cd map so the action bar paints skill cooldowns — not just spells —
+    // for every class. Keeps the original duration across refreshes for a
+    // correct sweep, and counts down smoothly between the 4s round pushes.
+    syncServerCooldowns(cds) {
+      if (!cds) return;
+      const now = performance.now();
+      for (const k in cds) {
+        const secs = cds[k];
+        if (!(secs > 0)) continue;
+        const ms = secs * 1000, until = now + ms;
+        const ex = this.cd[k];
+        const dur = (ex && ex.until > now && ex.dur >= ms) ? ex.dur : ms;
+        this.cd[k] = { until, dur };
+      }
+    },
     // is this a combat action that should be gated/rhythm-bound?
     isCombatCmd(cmd) {
       const s = this.skillOf(cmd);
@@ -453,7 +480,7 @@
     ready(cmd) {
       const now = performance.now();
       if (now < this.gcd.until) return false;
-      const e = this.cd[this.skillOf(cmd)];
+      const e = this.cdEntry(cmd);
       if (e && now < e.until) return false;
       return true;
     },
@@ -549,7 +576,7 @@
       if (isAtk && inCombat) { frac = 1 - MH.combat.roundFrac(); slot.classList.add('engaged'); }
       else slot.classList.remove('engaged');
       // real ability / flee cooldown -> hard lock + numeral
-      const e = MH.combat.cd[s];
+      const e = MH.combat.cdEntry(cmd);
       let locked = false;
       if (e && now < e.until) {
         const rem = e.until - now;
@@ -3805,7 +3832,7 @@
         else if (p.path) { els.pathChip.textContent = (p.path === 'lone_wolf' ? '🐺' : '🤝') + ' dormant'; els.pathChip.style.display = 'block'; els.pathChip.style.color = '#5a6070'; }
         else els.pathChip.style.display = 'none';
       };
-      MH.bus.on('map', payload => { updateHud(payload.player); renderMinimap(); updateVignette(); autofillBar(); updatePathChip(payload.player); renderContacts(payload); });
+      MH.bus.on('map', payload => { updateHud(payload.player); renderMinimap(); updateVignette(); autofillBar(); updatePathChip(payload.player); renderContacts(payload); if (payload.player) MH.combat.syncServerCooldowns(payload.player.cooldowns); });
       MH.bus.on('target.set', () => renderContacts(MH.state.lastPayload));
       MH.bus.on('target.clear', () => renderContacts(MH.state.lastPayload));
       // quest tracker: refresh on room change (cheap) + throttle
@@ -4224,8 +4251,9 @@
       // server pushes combat.update on every round boundary, so we restart the
       // fill on each push and size it to the true round length.
       const roundFill = els.roundBar && els.roundBar.querySelector('.fill');
-      MH.bus.on('combat.update', () => {
+      MH.bus.on('combat.update', payload => {
         MH.combat.noteRound();
+        if (payload && payload.player) MH.combat.syncServerCooldowns(payload.player.cooldowns);
         els.roundBar.classList.add('show');
         els.roundBar.classList.remove('tick');
         void els.roundBar.offsetWidth;

@@ -544,6 +544,41 @@ def _class_resource(player):
     return {'name': label, 'value': int(getattr(player, attr, 0) or 0), 'max': cap}
 
 
+def _cooldowns(player):
+    """Active ability cooldowns the client can paint on the action bar.
+
+    Skill cooldowns are stored as scattered per-player attributes (e.g.
+    ``backstab_cooldown_until``, ``second_wind_cooldown_until``,
+    ``rallying_cry_cooldown``) all on the ``time.time()`` epoch. Scan for them
+    and return ``{skill_key: seconds_remaining}`` for every one still ticking,
+    so a warrior/thief/assassin (whose bars are skills, not spells) actually
+    sees cooldowns the way casters already do via /abilities."""
+    import time as _time
+    now = _time.time()
+    out = {}
+    for attr in list(vars(player).keys()):
+        if attr.endswith('_cooldown_until'):
+            key = attr[:-len('_cooldown_until')]
+        elif attr.endswith('_cooldown'):
+            key = attr[:-len('_cooldown')]
+        elif attr.endswith('_cd'):   # warrior_abilities stores bash_cd, rally_cd, ...
+            key = attr[:-len('_cd')]
+        else:
+            continue
+        if not key:
+            continue
+        try:
+            rem = float(getattr(player, attr, 0) or 0) - now
+        except (TypeError, ValueError):
+            continue
+        # an epoch timestamp in the near future; the upper bound keeps a stray
+        # plain-number attribute (e.g. a small counter) from being mistaken for
+        # a cooldown when it slips past the 0.4s floor
+        if 0.4 < rem < 86400:
+            out[key] = round(rem, 1)
+    return out
+
+
 def _worn_aura(player):
     """'legendary' when any legendary piece is worn; 'set' at 4+ pieces of
     one named set - drives the class-colored aura on the world sprite."""
@@ -790,6 +825,7 @@ def build_combat_payload(player) -> dict:
             'exp_floor': _exp_thresholds(player)[0],
             'exp_to_level': _exp_thresholds(player)[1],
             'gold': getattr(player, 'gold', 0),
+            'cooldowns': _cooldowns(player),
         },
         'mobs': mobs,
         'players': others,
@@ -1191,6 +1227,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'autoloot': bool(getattr(player, 'autoloot', False)),
             'autogold': bool(getattr(player, 'autogold', True)),
             'resource': _class_resource(player),
+            'cooldowns': _cooldowns(player),
             'skills': dict(getattr(player, 'skills', {})),
             'talents': dict(getattr(player, 'talents', {})),
             'affects': AffectManager.save_affects(player),

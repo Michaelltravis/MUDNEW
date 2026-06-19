@@ -1069,13 +1069,18 @@ class Mobile(Character):
                     f"{c['bright_magenta']}{self.name} tries to regenerate but the poison prevents it!{c['reset']}"
                 )
             else:
-                regen = self.max_hp // 10
+                # ~4% of max HP per proc (was 10%, which let trolls out-heal a
+                # whole party); capped so high-HP trolls/bosses don't spike, and
+                # only echoed when it's a meaningful heal so it stops spamming
+                regen = min(self.max_hp // 25, 150)
                 if 'diseased' in affect_flags:
                     regen = regen // 4
-                self.hp = min(self.max_hp, self.hp + regen)
-                await self.room.send_to_room(
-                    f"{c['green']}{self.name}'s wounds begin to close.{c['reset']}"
-                )
+                healed = min(regen, self.max_hp - self.hp)
+                self.hp += healed
+                if healed >= 5:
+                    await self.room.send_to_room(
+                        f"{c['green']}{self.name}'s wounds slowly close.{c['reset']}"
+                    )
             return
         elif self.special == 'paralyze':
             attack_type = 'tries to paralyze'
