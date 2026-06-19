@@ -550,65 +550,22 @@
       this.buildFeatures(layout, th);
       this.buildAtmosphere(layout, th);
 
-      // props, gravestones, prose
-      const propSet = ['forest', 'field', 'swamp', 'hills'].includes(th)
-        ? ['sm_prop_bush', 'sm_prop_bush', 'sm_prop_crate']
-        : ['city', 'inside'].includes(th)
-          ? ['sm_prop_lamp', 'sm_prop_crate', 'sm_prop_crate']
-          : ['sm_prop_crate', 'sm_prop_lamp', 'sm_prop_bush'];
-      for (const prop of layout.props) {
-        // drop-shadow grounds every prop on the floor
-        this.tileLayer.add(this.add.image(prop.x * T + T / 2, (prop.y + 1) * T - 1, 'px_shadow')
-          .setDepth(2.5).setAlpha(0.3).setScale(0.26 * (prop.scale || 1)));
-        if (prop.name && this.textures.exists(`zt_prop_${prop.name}`)) {
-          const img = this.add.image(prop.x * T + T / 2, (prop.y + 1) * T, `zt_prop_${prop.name}`)
-            .setOrigin(0.5, 1).setDepth(3).setScale((prop.scale || 1) / MH.SMOOTH_SS);
-          // scenery rewards curiosity: flavor text, and some of it is usable
-          if (MH.PROP_FLAVOR && MH.PROP_FLAVOR[prop.name]) {
-            img.setInteractive({ useHandCursor: true });
-            img.on('pointerdown', pointer => {
-              if (!MH.immersion) return;
-              const cx = pointer.event.clientX, cy = pointer.event.clientY;
-              const acts = [];
-              if (prop.name === 'fountain') {
-                acts.push({ label: '🜄 Drink', fn: () => MH.sendCommand('drink') });
-                const p = MH.state.player || {};
-                for (const it of (p.inventory || []).filter(i => (i.item_type || i.type) === 'drink').slice(0, 3)) {
-                  acts.push({ label: `⚱ Fill ${(it.short || it.name).slice(0, 18)}`, fn: () => MH.sendCommand(`fill ${MH.mobKeyword(it.name)}`) });
-                }
-              } else if (['stump', 'bench'].includes(prop.name)) {
-                acts.push({ label: '🪑 Sit', fn: () => MH.sendCommand('sit') });
-                acts.push({ label: '😴 Rest', fn: () => MH.sendCommand('rest') });
-              } else if (prop.name === 'brazier' || prop.name === 'candles') {
-                acts.push({ label: '😴 Rest by the warmth', fn: () => MH.sendCommand('rest') });
-              }
-              acts.push({ label: '👁 Examine', fn: () => MH.immersion.propFlavor(prop.name) });
-              if (acts.length > 1 && MH.popover) MH.popover.show(cx, cy, (MH.PROP_FLAVOR[prop.name] || [prop.name])[0], acts);
-              else MH.immersion.propFlavor(prop.name);
-            });
-          }
-          this.tileLayer.add(img);
-          const glowTint = MH.GLOW_PROPS && MH.GLOW_PROPS[prop.name];
-          if (glowTint) {
-            const gx = prop.x * T + T / 2, gy = prop.y * T + T * 0.3;
-            const g = this.add.image(gx, gy, 'fx_glow')
-              .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.22).setScale(0.32).setTint(glowTint).setDepth(35);
-            this.tweens.add({ targets: g, alpha: 0.34, duration: 900 + (prop.x * 137 % 700), yoyo: true, repeat: -1, ease: 'sine.inOut' });
-            this.tileLayer.add(g);
-            // a torch/brazier/candle also carves a flickering pool of light out of the dark
-            this.lightSources.push({ x: gx, y: gy, r: 78, seed: (prop.x * 53 + prop.y * 17) % 1000 });
-          }
-        } else {
-          const img = this.add.image(prop.x * T, (prop.y + 1) * T, propSet[prop.idx % 3])
-            .setOrigin(0.25, 1).setDepth(3).setScale(0.85 / MH.SMOOTH_SS);
-          this.tileLayer.add(img);
-        }
-      }
+      // (room objects are placed below by decorateFromDescription + ambientFill;
+      // the old roomgen sector-random props are no longer rendered)
       this.placeGravestones(layout);
-      this.placeLandmark(layout, th);
-      this.decorateFromDescription(layout, th);
-      this.applySignatureRoom(layout, th);
-      this.scatterClutter(layout, th);
+      // Objects are description-driven now: place only what the prose names
+      // (decorateFromDescription) plus a light, sector-appropriate touch
+      // (ambientFill) so vague rooms aren't bare. The old random sources
+      // (layout.props render, placeLandmark, scatterClutter generic clutter +
+      // search glints) are intentionally gone — they cluttered rooms with
+      // objects the text never mentioned.
+      this._objCells = new Set();
+      // description first; the curated set-piece for a named room only fills in
+      // when the prose itself furnished little, so we never double up objects
+      const placed = this.decorateFromDescription(layout, th) || 0;
+      let signature = false;
+      if (placed < 2) signature = this.applySignatureRoom(layout, th);
+      if (!signature) this.ambientFill(layout, th, placed);
       this.spawnCritters(layout, th);
       this.placeProse(layout);
 
@@ -843,7 +800,7 @@
     // Symmetric compositions around the room centre make these feel built.
     applySignatureRoom(layout, th) {
       const name = (layout.name || '').toLowerCase();
-      if (!name) return;
+      if (!name) return false;
       const W = layout.W, H = layout.H, cx = Math.floor(W / 2), cy = Math.floor(H / 2);
       const pair = (prop, dx, dy, sc) => { this.spawnFeatureProp(prop, cx - dx, cy + dy, sc); this.spawnFeatureProp(prop, cx + dx, cy + dy, sc); };
       const center = (prop, sc) => this.spawnFeatureProp(prop, cx, cy, sc);
@@ -867,7 +824,10 @@
         pair('gravestone', 3, 0, 1.2); pair('deadtree', 5, -1, 1.4); center('candles', 0.9); this.signatureWash(0x9a86c8, 0.1);
       } else if (/garden|grove|orchard|arbor/.test(name)) {
         pair('tree', 4, -1, 1.5); pair('flowers', 2, 2, 1.1); center('fountain', 1.3); this.signatureWash(0xbfe8a0, 0.08);
+      } else {
+        return false;   // not a signature room — caller may add light ambiance
       }
+      return true;   // dressed as a curated set-piece; skip generic ambiance
     }
 
     // ---- Phase 1: living, reactive rooms ----
@@ -1072,11 +1032,12 @@
         if (seen.has(prop)) continue;
         if (re.test(text) && this.textures.exists(`zt_prop_${prop}`)) { seen.add(prop); picks.push({ prop, place }); }
       }
-      if (!picks.length) return;
+      if (!picks.length) return 0;
 
       const grid = layout.grid, W = layout.W, H = layout.H;
       const cx = Math.floor(W / 2), cy = Math.floor(H / 2);
-      const taken = new Set((layout.props || []).map(p => `${p.x},${p.y}`));
+      const taken = this._objCells || (this._objCells = new Set());
+      let placedCount = 0;
       const isFloor = (x, y) => x > 1 && y > 1 && x < W - 2 && y < H - 2 && grid[y * W + x] === FLOOR && !taken.has(`${x},${y}`);
       const nearWall = (x, y) => grid[(y - 1) * W + x] === BLOCK || grid[(y + 1) * W + x] === BLOCK
         || grid[y * W + x - 1] === BLOCK || grid[y * W + x + 1] === BLOCK;
@@ -1101,6 +1062,7 @@
         }
         if (!best) return;
         taken.add(`${best.x},${best.y}`);
+        placedCount++;
         const name = pick.prop;
         const bx = best.x * T + T / 2, by = (best.y + 1) * T;
         const scale = (pick.place === 'center' ? 1.5 : 1.1 + rng() * 0.25) / MH.SMOOTH_SS;
@@ -1129,6 +1091,50 @@
         });
         img.on('pointerover', () => MH.bus.emit('flash', `${MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name} — click to interact`));
       });
+      return placedCount;
+    }
+
+    // A light, sector-appropriate touch of scenery so rooms whose prose names
+    // few/no objects still feel like a place — without re-cluttering. Runs only
+    // when the description produced few props; total objects stay capped ~4.
+    ambientFill(layout, th, placedCount) {
+      const { T, FLOOR, BLOCK } = TD();
+      const TARGET = 2, CAP = 4;
+      const want = Math.min(TARGET - (placedCount || 0), CAP - (placedCount || 0));
+      if (want <= 0) return;
+      const SETS = {
+        forest: ['tree', 'bush', 'mushrooms', 'rock'], field: ['bush', 'flowers', 'rock'],
+        hills: ['rock', 'bush'], swamp: ['reeds', 'deadtree', 'mushrooms'],
+        desert: ['cactus', 'rock'], mountain: ['rock', 'crystal'], cave: ['rock', 'crystal'],
+        dungeon: ['rubble', 'urn'], underground: ['rubble', 'crystal'],
+        inside: ['crate', 'barrel'], city: ['crate', 'barrel', 'lamppost'], default: ['rock', 'bush'],
+      };
+      const set = (SETS[th] || SETS.default).filter(n => this.textures.exists(`zt_prop_${n}`));
+      if (!set.length) return;
+      const grid = layout.grid, W = layout.W, H = layout.H;
+      const cx = Math.floor(W / 2), cy = Math.floor(H / 2);
+      const taken = this._objCells || (this._objCells = new Set());
+      const rng = MH.mulberry32((layout.vnum ^ 0x5eed17) >>> 0);
+      const SWAY = new Set(['tree', 'bush', 'flowers', 'mushrooms', 'reeds', 'cactus', 'deadtree']);
+      let placed = 0, guard = 0;
+      while (placed < want && guard++ < 200) {
+        const x = 2 + ((rng() * (W - 4)) | 0), y = 2 + ((rng() * (H - 4)) | 0);
+        if (grid[y * W + x] !== FLOOR) continue;
+        if (Math.abs(x - cx) < 2 && Math.abs(y - cy) < 2) continue;   // keep the centre open
+        if (taken.has(`${x},${y}`)) continue;
+        const nearWall = grid[(y - 1) * W + x] === BLOCK || grid[(y + 1) * W + x] === BLOCK
+          || grid[y * W + x - 1] === BLOCK || grid[y * W + x + 1] === BLOCK;
+        if (!nearWall && rng() < 0.55) continue;   // bias to edges so the floor stays clear
+        taken.add(`${x},${y}`);
+        const name = set[(rng() * set.length) | 0];
+        const bx = x * T + T / 2, by = (y + 1) * T;
+        const scale = (0.85 + rng() * 0.3) / MH.SMOOTH_SS;
+        this.tileLayer.add(this.add.image(bx, by - 1, 'px_shadow').setDepth(2.5).setAlpha(0.26).setScale(scale * 0.32));
+        const img = this.add.image(bx, by, `zt_prop_${name}`).setOrigin(0.5, 1).setDepth(3 + by / 1000).setScale(scale);
+        this.tileLayer.add(img);
+        if (SWAY.has(name)) this.registerReactive(img, 'sway', { tint: 0x8fbf6a });
+        placed++;
+      }
     }
 
     // Phase 2: the verbs a prop offers — what you can DO with it. Shared by
