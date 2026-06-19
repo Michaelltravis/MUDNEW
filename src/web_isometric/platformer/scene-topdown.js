@@ -1961,8 +1961,14 @@
         if (!s || !s.active) return;
         if (!key) { s.setAlpha(1); if (ent.rim) ent.rim.setVisible(true); return; }   // load failed -> restore
         const img = this.add.image(s.x, s.y - 6, key).setOrigin(0.5, 0.9);
-        // DCSS frames are 32px; scale up to ~1.4 tiles (bosses much larger), crisp
-        const sc = (TD().T * (big ? 2.9 : 1.7)) / 32;
+        // size to ~1.7 tiles tall (bosses larger) from the ART'S OWN height —
+        // most DCSS sprites are 32px, but some animal assets ship as large
+        // painterly illustrations, and a fixed /32 blew those up to fill the
+        // whole room (e.g. animals/tiger.png). Normalising by the real source
+        // height keeps every creature at a consistent in-world scale.
+        const srcImg = this.textures.get(key) && this.textures.get(key).getSourceImage();
+        const srcH = (srcImg && srcImg.height) || 32;
+        const sc = (TD().T * (big ? 2.9 : 1.7)) / srcH;
         img.setScale(sc).setDepth(s.depth || 8);
         img.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
         img.setTint(this._charTint || 0xffffff);   // sit in the day/night scene
