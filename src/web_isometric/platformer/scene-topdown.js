@@ -2978,6 +2978,25 @@
       }
       if (this.target && ent === this.target) { this.target = null; MH.bus.emit('target.clear'); }
     }
+    // A mob that vanished from the live room payload (died / was removed) — play
+    // the death beat and actually REMOVE the entity so its sprite + the target
+    // frame don't linger with stale HP. fxMobDeath only fades the body; this also
+    // destroys the entity and clears the target.
+    killEntity(ent) {
+      if (!ent || ent._dying) return;
+      ent._dying = true;
+      ent.leaving = true;   // keep syncEntities from racing the removal
+      try { this.fxMobDeath({ name: ent.data && ent.data.name }); } catch (_) {}
+      if (this.target === ent) { this.target = null; MH.bus.emit('target.clear'); }
+      const key = ent.key;
+      // Real timer (not the scene clock) so the removal still happens even when
+      // the scene's update loop is throttled (e.g. backgrounded tab) — the death
+      // FX above plays on the scene clock, but the entity MUST be reaped.
+      setTimeout(() => {
+        try { this.destroyEntity(ent); } catch (_) {}
+        if (this.entities.get(key) === ent) this.entities.delete(key);
+      }, 760);
+    }
     fxPlayerDeath() {
       this.dead = true;
       this.recordDeath();
@@ -3386,6 +3405,19 @@
         this.updateEntity(ent, Object.assign({}, ent.data, mob));
         if (mob.fighting && !this.target) { this.target = ent; MH.bus.emit('target.set', ent.data); }
       });
+      // Reconcile: a mob we were fighting (or had targeted) that has vanished
+      // from the live room payload has died/left — play the death beat and
+      // remove it so its sprite + the target frame don't linger with stale HP.
+      // Gated to combat participants so harmless wanderers leaving the tile via
+      // a partial payload aren't nuked.
+      const live = {};
+      (payload.mobs || []).forEach(m => { live[m.name] = (live[m.name] || 0) + 1; });
+      for (const ent of [...this.entities.values()]) {
+        if (!ent || ent.kind !== 'mob' || ent._dying || ent.leaving) continue;
+        const n = ent.data && ent.data.name;
+        if (live[n] > 0) { live[n]--; continue; }
+        if (ent === this.target || (ent.data && (ent.data.fighting || ent.data.hostile))) this.killEntity(ent);
+      }
       (payload.players || []).forEach(p => {
         const ent = this.entities.get(`pl:${p.name}`);
         if (ent) this.updateEntity(ent, Object.assign({}, ent.data, p));

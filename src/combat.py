@@ -1934,11 +1934,26 @@ class CombatHandler:
                 await manager.complete_dungeon(killer, dungeon)
 
         # Remove NPC from world if it's a mob
+        dead_room = victim.room
         if not hasattr(victim, 'connection'):  # It's an NPC
             if victim.room and victim in victim.room.characters:
                 victim.room.characters.remove(victim)
             if hasattr(killer, 'world') and victim in killer.world.npcs:
                 killer.world.npcs.remove(victim)
+
+        # Push a fresh combat/room update to any connected players in the room so
+        # the web client removes the slain mob immediately (its sprite + target
+        # frame would otherwise linger with stale HP until the next combat tick
+        # or a room change). Covers kills landed outside the regular combat tick.
+        try:
+            world = getattr(killer, 'world', None) or getattr(exp_recipient, 'world', None)
+            web_map = getattr(world, 'web_map', None) if world else None
+            if web_map and dead_room:
+                for ch in list(getattr(dead_room, 'characters', [])):
+                    if hasattr(ch, 'connection'):
+                        await web_map.notify_combat(ch)
+        except Exception:
+            pass
 
     @classmethod
     async def end_combat(cls, char1: 'Character', char2: 'Character'):
