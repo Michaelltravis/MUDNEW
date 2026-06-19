@@ -41,7 +41,29 @@
   const FACE = { up: [], left: [[25, 37]], right: [[37, 37]], down: [[27, 37], [34, 37]] };
   // per-layer vertical nudges (cell px) to align the taller-authored gear/hair
   // onto the lower-sitting chibi body. Body/legs/feet/eyes stay at 0.
-  const LAYER_DY = { torso: 7, hair: 11, hat_helmet: 11 };
+  const LAYER_DY = { torso: 7, hair: 11, hat_helmet: 11, arms: 7, cape_back: 7, cape_front: 7 };
+
+  // Per-class flavour built from the LPC layers that ship in the pack but the
+  // base loadout never used: a hood (hat/cloth/hood), a cape (cape/solid, two
+  // parts), and gloves/bracers (arms/*). Each is tinted (multiplied onto the
+  // light-grey source art) so a class reads at a glance — a black-hooded,
+  // caped assassin vs. a gold-caped paladin vs. a blue-hooded mage — instead of
+  // every non-warrior looking like the same person in leather.
+  const GLOVES = 'arms/hands/gloves/male';
+  const BRACERS = 'arms/bracers/male';
+  const HOOD = 'hat/cloth/hood/adult';
+  const CAPE = 'cape/solid';
+  const CLASS_KIT = {
+    warrior:     { hands: { id: GLOVES,  tint: 0x9aa0aa } },                                   // steel gauntlets
+    paladin:     { cape: 0xeadf9a, hands: { id: GLOVES, tint: 0xd8c98a } },                    // white-gold mantle
+    ranger:      { hood: 0x5e7a44, hands: { id: BRACERS, tint: 0x7a5a38 } },                   // green hood, leather bracers
+    thief:       { hood: 0x49434f, hands: { id: GLOVES,  tint: 0x39353f } },                   // dark hood + gloves
+    assassin:    { hood: 0x26262e, cape: 0x1b1b24, hands: { id: GLOVES, tint: 0x26262c } },    // black hood, cloak, gloves
+    mage:        { hood: 0x3b3b8e, cape: 0x2e2e7e },                                           // deep-blue wizard
+    necromancer: { hood: 0x2c2036, cape: 0x1a1426 },                                           // shadowed violet
+    cleric:      { hood: 0xdde6f2, cape: 0xe8eef8 },                                           // white priest mantle
+    bard:        { cape: 0x9a5fae },                                                            // colourful minstrel cape
+  };
   // paint a face for one facing into a 2D context. (sx,sy)=cell top-left in the
   // target, s=pixels-per-source-pixel. Used for both the doll textures (s=1)
   // and the larger inventory portrait.
@@ -155,12 +177,27 @@
     // torso — reflect worn body armor (heavy->plate, light->leather, female->robe)
     const torsoStub = torsoStubFromItem(eq.body, def.torso || 'armour/leather');
     out.push({ z: 'torso', layerId: torsoLayer(torsoStub, sex), part: null });
-    // hair (varied by per-NPC seed so a crowd isn't identical)
-    const hairStub = (def.hair && spec.seed != null && spec.seed % 3 === 0) ? 'xlong' : def.hair;
-    if (hairStub && HAIR[hairStub]) out.push({ z: 'hair', layerId: HAIR[hairStub], part: null });
-    // head/helmet — reflect worn headgear (heavy helm vs light cap), else class default
+
+    // --- class flavour: gloves/bracers, hood and cape (tinted per class) ---
+    const kit = CLASS_KIT[cls] || {};
+    // a worn head item still wins (you see what you equipped); only fall back to
+    // the class hood when nothing is worn there
+    const wornHead = eq.head ? headStubFromItem(eq.head, null) : null;
+    const useHood = kit.hood != null && !wornHead;
+    if (kit.hands) out.push({ z: 'arms', layerId: kit.hands.id, part: null, tint: kit.hands.tint });
+    if (kit.cape != null) {
+      out.push({ z: 'cape_back', layerId: CAPE, part: 'bg', tint: kit.cape });
+      out.push({ z: 'cape_front', layerId: CAPE, part: 'fg', tint: kit.cape });
+    }
+    // hair (varied by per-NPC seed so a crowd isn't identical); a hood replaces it
+    if (!useHood) {
+      const hairStub = (def.hair && spec.seed != null && spec.seed % 3 === 0) ? 'xlong' : def.hair;
+      if (hairStub && HAIR[hairStub]) out.push({ z: 'hair', layerId: HAIR[hairStub], part: null });
+    }
+    // head — worn headgear (heavy helm vs light cap) wins; else class hood; else class default helm
     const headStub = headStubFromItem(eq.head, def.head);
-    if (headStub && HEAD[headStub]) out.push({ z: 'hat_helmet', layerId: HEAD[headStub], part: null });
+    if (useHood) out.push({ z: 'hat_helmet', layerId: HOOD, part: null, tint: kit.hood });
+    else if (headStub && HEAD[headStub]) out.push({ z: 'hat_helmet', layerId: HEAD[headStub], part: null });
 
     // foreground weapon/shield (over the body)
     if (slayer) out.push({ z: 'shield_fg', layerId: slayer, part: 'fg' });
@@ -237,6 +274,9 @@
           const spr = scene.add.image(0, 0, sh.key, 0).setOrigin(0.5, 0.78);
           if (scale) spr.setScale(scale);
           spr.y = (LAYER_DY[L.z] || 0) * (scale || 1);   // seat tall-authored gear on the chibi body
+          // a class-tinted layer (hood/cape/gloves) carries a base colour the
+          // scene multiplies its day/night tint onto (see scene tintCharacters)
+          if (L.tint != null) { spr._baseTint = L.tint; spr.setTint(L.tint); }
           L.sprite = spr; container.add(spr);
         });
         applyAnim();
@@ -338,7 +378,22 @@
       const cols = Math.max(1, Math.floor(img.width / 64));
       const f = row * cols;              // frame 0 of the down row
       const dy = (LAYER_DY[L.z] || 0) * s;
-      ctx.drawImage(img, (f % cols) * 64, Math.floor(f / cols) * 64, 64, 64, ox, oy + dy, draw, draw);
+      const sx0 = (f % cols) * 64, sy0 = Math.floor(f / cols) * 64;
+      if (L.tint != null) {
+        // multiply the class tint onto this layer via a scratch canvas so the
+        // portrait matches the live doll (hood/cape/gloves colours)
+        const sc = document.createElement('canvas'); sc.width = 64; sc.height = 64;
+        const sctx = sc.getContext('2d'); sctx.imageSmoothingEnabled = false;
+        sctx.drawImage(img, sx0, sy0, 64, 64, 0, 0, 64, 64);
+        sctx.globalCompositeOperation = 'multiply';
+        const hex = '#' + ('000000' + (L.tint >>> 0).toString(16)).slice(-6);
+        sctx.fillStyle = hex; sctx.fillRect(0, 0, 64, 64);
+        sctx.globalCompositeOperation = 'destination-in';
+        sctx.drawImage(img, sx0, sy0, 64, 64, 0, 0, 64, 64);
+        ctx.drawImage(sc, 0, 0, 64, 64, ox, oy + dy, draw, draw);
+        continue;
+      }
+      ctx.drawImage(img, sx0, sy0, 64, 64, ox, oy + dy, draw, draw);
     }
     if (missing.length) need(scene, missing, () => drawPortrait(scene, spec, canvas));
   }

@@ -2659,16 +2659,26 @@
     flashFill(obj, color, ms) {
       if (!obj) return;
       const back = this._charTint || 0xffffff;
-      const apply = o => { if (o && o.setTintFill) { o.setTintFill(color); this.time.delayedCall(ms || 80, () => { if (o.active) o.setTint(back); }); } };
+      const apply = o => { if (o && o.setTintFill) { o.setTintFill(color); this.time.delayedCall(ms || 80, () => { if (o.active) o.setTint(this._mulTint(o._baseTint, back)); }); } };
       if (obj.setTintFill && !obj.list) apply(obj);
       else if (obj.list) obj.list.forEach(apply);   // Container: tint each layer
       else apply(obj);
     }
     // multiply dolls + DCSS art by a readable per-phase tint so characters sit
     // in the day/night scene instead of looking bright/pasted-on
+    // multiply a layer's per-class base colour (hood/cape/gloves) onto the
+    // day/night tint so both survive together; layers without a base tint just
+    // take the scene tint
+    _mulTint(base, t) {
+      if (base == null) return t;
+      const r = (((base >> 16) & 255) * ((t >> 16) & 255) / 255) | 0;
+      const g = (((base >> 8) & 255) * ((t >> 8) & 255) / 255) | 0;
+      const b = ((base & 255) * (t & 255) / 255) | 0;
+      return (r << 16) | (g << 8) | b;
+    }
     tintCharacters() {
       const t = this._charTint || 0xffffff;
-      const tintOne = o => { if (!o) return; if (o.list) o.list.forEach(c => c.setTint && c.setTint(t)); else if (o.setTint) o.setTint(t); };
+      const tintOne = o => { if (!o) return; if (o.list) o.list.forEach(c => c.setTint && c.setTint(this._mulTint(c._baseTint, t))); else if (o.setTint) o.setTint(t); };
       if (this.playerDoll) tintOne(this.playerDoll.container);
       for (const ent of this.entities.values()) {
         if (ent.doll) tintOne(ent.doll.container);
