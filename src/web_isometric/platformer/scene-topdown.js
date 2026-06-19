@@ -3511,10 +3511,13 @@
       const kitActive = !!(this.kitTiles && this.kitTiles.length && MH.tilekit && MH.tilekit.isReady());
       let alpha = 0, color = 0x1a2440;
       if (outdoor && !kitActive) {
-        // keep night readable: a light tint that reads as evening, not a blackout
+        // keep night readable: a light tint that reads as evening, not a blackout.
+        // these are NORMAL-blend washes, so saturated browns muddied the whole
+        // room into a dull mass — use cool, low-saturation dusk/dawn tints that
+        // dim the scene without casting brown over the tiles.
         if (period === 'night' || period === 'midnight') alpha = 0.18;
-        else if (period === 'evening' || period === 'dusk') { alpha = 0.11; color = 0x40280f; }
-        else if (period === 'dawn' || period === 'morning') { alpha = 0.06; color = 0x402a20; }
+        else if (period === 'evening' || period === 'dusk') { alpha = 0.12; color = 0x2a2640; }
+        else if (period === 'dawn' || period === 'morning') { alpha = 0.07; color = 0x2c3052; }
       }
       if (kitActive) this.applyKitTint();
       this.nightTint.setFillStyle(color, alpha);
