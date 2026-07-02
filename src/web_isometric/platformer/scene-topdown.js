@@ -2686,6 +2686,7 @@
       const t = this._charTint || 0xffffff;
       const tintOne = o => { if (!o) return; if (o.list) o.list.forEach(c => c.setTint && c.setTint(this._mulTint(c._baseTint, t))); else if (o.setTint) o.setTint(t); };
       if (this.playerDoll) tintOne(this.playerDoll.container);
+      if (this.mountArt) this.mountArt.setTint(this._mulTint(this.mountArt._specTint, t));
       for (const ent of this.entities.values()) {
         if (ent.doll) tintOne(ent.doll.container);
         else if (ent.art) ent.art.setTint(t);
@@ -3342,6 +3343,7 @@
       this.applyAtmosphere(payload);
       this.syncWornAura(payload.player);
       this.syncPlayerDoll(payload.player);
+      this.syncMountArt(payload.player);
       this.detectRoomChanges(roomData);
     }
 
@@ -4172,6 +4174,7 @@
       // depth-sort actors by y so overlap reads correctly
       this.player.setDepth(10 + this.player.y / 1000);
       this.updatePlayerDoll(now);
+      this.updateMountArt(now);
       for (const ent of this.entities.values()) {
         if (ent.sprite && ent.kind !== 'item') ent.sprite.setDepth(10 + ent.sprite.y / 1000);
         if (ent.doll) {
@@ -4250,6 +4253,57 @@
       this.player.setAlpha(0);                 // keep physics body, hide the pixel art
       if (this.playerRim) this.playerRim.setVisible(false);
     }
+    // ---- riding: the mount you're on is a visible body beneath you ----
+    // Per-type in-world art: DCSS horse art tinted per mount (the pack has no
+    // separate warhorse/nightmare/etc. sprites), hippogriff for the griffin.
+    syncMountArt(p) {
+      const m = p && p.mount;
+      const key = (m && m.key) || null;
+      if (this._mountKey === key) return;
+      this._mountKey = key;
+      if (this.mountArt) { this.mountArt.destroy(); this.mountArt = null; }
+      if (this.mountGlow) { this.tweens.killTweensOf(this.mountGlow); this.mountGlow.destroy(); this.mountGlow = null; }
+      if (!key || !MH.dcss || !MH.dcss.isReady()) return;
+      const SPEC = {
+        horse:           { art: 'animals/horse.png', tint: 0xffffff, size: 1.5 },
+        pony:            { art: 'animals/horse.png', tint: 0xdec8a8, size: 1.2 },
+        donkey:          { art: 'animals/horse.png', tint: 0xb8b0a2, size: 1.25 },
+        warhorse:        { art: 'animals/horse.png', tint: 0x9a9aa8, size: 1.65 },
+        nightmare:       { art: 'animals/horse.png', tint: 0x584060, size: 1.6, fire: true },
+        clockwork_steed: { art: 'animals/horse.png', tint: 0xd8b070, size: 1.55 },
+        griffin:         { art: 'animals/hippogriff.png', tint: 0xffffff, size: 1.7 },
+      };
+      const spec = SPEC[key] || SPEC.horse;
+      MH.dcss.ensure(this, spec.art, texKey => {
+        if (!texKey || this._mountKey !== key) return;   // dismounted while loading
+        const img = this.add.image(this.player.x, this.player.y + 4, texKey).setOrigin(0.5, 0.85);
+        const src = this.textures.get(texKey).getSourceImage();
+        img._baseScale = (TD().T * spec.size) / ((src && src.height) || 32);
+        img.setScale(img._baseScale);
+        img.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
+        img._specTint = spec.tint;
+        img.setTint(this._mulTint(spec.tint, this._charTint || 0xffffff));
+        this.mountArt = img;
+        if (spec.fire) {   // the nightmare smoulders
+          this.mountGlow = this.add.image(this.player.x, this.player.y + 6, 'fx_glow')
+            .setBlendMode(Phaser.BlendModes.ADD).setTint(0xff7a3a).setAlpha(0.35).setScale(0.5).setDepth(9);
+          this.tweens.add({ targets: this.mountGlow, alpha: 0.55, scale: 0.62, duration: 700, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        }
+      });
+    }
+    updateMountArt(now) {
+      const img = this.mountArt;
+      if (!img || !img.active) return;
+      const walking = this._walkFrame && now - this._walkFrame < 130;
+      const bob = walking ? Math.sin(now / 90) * 1.5 : Math.sin(now / 700) * 0.8;   // canter vs breathing
+      img.x = this.player.x;
+      img.y = this.player.y + 4 + bob;
+      img.setDepth(10 + this.player.y / 1000 - 0.004);   // just beneath the rider
+      const base = img._baseScale || Math.abs(img.scaleX);
+      img.scaleX = base * (this.player.flipX ? -1 : 1);
+      img.scaleY = base;
+      if (this.mountGlow) { this.mountGlow.x = img.x; this.mountGlow.y = img.y + 2; }
+    }
     updatePlayerDoll(now) {
       const d = this.playerDoll;
       if (!d) return;
@@ -4257,7 +4311,7 @@
       // additive rim hidden every frame (several places reset player.alpha=1)
       if (this.player.alpha !== 0) this.player.setAlpha(0);
       if (this.playerRim) this.playerRim.setVisible(false);
-      d.container.setPosition(this.player.x, this.player.y);
+      d.container.setPosition(this.player.x, this.player.y - (this.mountArt ? 7 : 0));   // riders sit up on the mount
       d.container.setDepth(10 + this.player.y / 1000);
       const pos = (MH.state.player && MH.state.player.position) || 'standing';
       let action = 'idle';

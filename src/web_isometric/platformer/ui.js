@@ -3843,7 +3843,20 @@
         else if (p.path) { els.pathChip.textContent = (p.path === 'lone_wolf' ? '🐺' : '🤝') + ' dormant'; els.pathChip.style.display = 'block'; els.pathChip.style.color = '#5a6070'; }
         else els.pathChip.style.display = 'none';
       };
-      MH.bus.on('map', payload => { updateHud(payload.player); renderMinimap(); updateVignette(); autofillBar(); updatePathChip(payload.player); renderContacts(payload); if (payload.player) MH.combat.syncServerCooldowns(payload.player.cooldowns); });
+      // riding indicator: which mount you're on, click to dismount
+      const mountChip = $('mount-chip');
+      const updateMountChip = p => {
+        if (!mountChip || !p) return;
+        const m = p.mount;
+        if (m) {
+          const ic = mountIcon(m);
+          const loy = (m.loyalty != null && m.loyalty < 50) ? ' · restless' : '';
+          mountChip.textContent = `${ic} riding ${m.name}${loy}`;
+          mountChip.style.display = 'block';
+        } else mountChip.style.display = 'none';
+      };
+      if (mountChip) mountChip.addEventListener('click', () => { MH.sendCommand('dismount', false); setTimeout(MH.refreshState, 600); });
+      MH.bus.on('map', payload => { updateHud(payload.player); renderMinimap(); updateVignette(); autofillBar(); updatePathChip(payload.player); updateMountChip(payload.player); renderContacts(payload); if (payload.player) MH.combat.syncServerCooldowns(payload.player.cooldowns); });
       MH.bus.on('target.set', () => renderContacts(MH.state.lastPayload));
       MH.bus.on('target.clear', () => renderContacts(MH.state.lastPayload));
       // quest tracker: refresh on room change (cheap) + throttle
