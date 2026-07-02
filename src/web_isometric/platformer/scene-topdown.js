@@ -31,6 +31,13 @@
       const fit = () => {
         const cw = this.scale.width, ch = this.scale.height;
         const ins = this.computeHudInsets(cw, ch);
+        // deadband: chrome panels wiggle by a few px as content changes
+        // (contacts list, quest tracker) — don't re-zoom the world for that
+        const li = this._lastFit;
+        if (li && li.cw === cw && li.ch === ch
+            && Math.abs(li.left - ins.left) < 16 && Math.abs(li.right - ins.right) < 16
+            && Math.abs(li.top - ins.top) < 16 && Math.abs(li.bottom - ins.bottom) < 16) return;
+        this._lastFit = { cw, ch, left: ins.left, right: ins.right, top: ins.top, bottom: ins.bottom };
         const vw = Math.max(160, cw - ins.left - ins.right);
         const vh = Math.max(160, ch - ins.top - ins.bottom);
         const raw = Math.min(vw / this.pxW, vh / this.pxH);
@@ -348,7 +355,7 @@
         if (!gc.width || !gc.height) return def;
         const fx = cw / gc.width, fy = ch / gc.height;   // page px -> game px
         const cxPage = gc.left + gc.width / 2;
-        let left = 0, right = 0, top = 0;
+        let left = 0, right = 0, top = 0, bottom = 0;
         const FRAME = ['combat-log', 'hud', 'aether-sigil', 'crest', 'quest-tracker',
           'stance-bar', 'minimap-wrap', 'contacts', 'compass', 'target-frame', 'topbar'];
         for (const id of FRAME) {
@@ -361,6 +368,16 @@
           if (b.bottom <= gc.top || b.top >= gc.bottom) continue;   // not over the canvas
           if (id === 'topbar') { top = Math.max(top, (b.bottom - gc.top) * fy); continue; }
           const cen = (b.left + b.right) / 2;
+          // CENTERED overlays (target frame, bottom message feed, chips) must
+          // never count as side docks: their center hovers at the midline, so
+          // rounding used to flip them between a huge left vs right inset on
+          // every target change — the whole viewport visibly jumped around.
+          if (Math.abs(cen - cxPage) < gc.width * 0.18) {
+            // a centered strip hugging the bottom (the message feed) reserves
+            // bottom space instead, so the room sits above it — stably
+            if (b.top > gc.top + gc.height * 0.55) bottom = Math.max(bottom, (gc.bottom - b.top) * fy);
+            continue;   // centered top overlays float over the letterbox area
+          }
           if (cen < cxPage) left = Math.max(left, (b.right - gc.left) * fx);
           else right = Math.max(right, (gc.right - b.left) * fx);
         }
@@ -368,7 +385,7 @@
           left: Math.round(Math.min(left + 12, cw * 0.34)),
           right: Math.round(Math.min(right + 12, cw * 0.34)),
           top: Math.round(Math.min(top + 6, ch * 0.22)),
-          bottom: 0,
+          bottom: Math.round(Math.min(bottom + 6, ch * 0.26)),
         };
       } catch (_) { return def; }
     }
