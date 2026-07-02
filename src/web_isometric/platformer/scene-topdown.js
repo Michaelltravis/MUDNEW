@@ -4232,6 +4232,7 @@
       this.player.setDepth(10 + this.player.y / 1000);
       this.updatePlayerDoll(now);
       this.updateMountArt(now);
+      this.syncPlayerVitals();
       // intent banners ride their mob
       if (this._intentBanners) {
         for (const [key, t] of this._intentBanners) {
@@ -4367,6 +4368,35 @@
       img.scaleX = base * (this.player.flipX ? -1 : 1);
       img.scaleY = base;
       if (this.mountGlow) { this.mountGlow.x = img.x; this.mountGlow.y = img.y + 2; }
+    }
+    // Compact vitals under your character — HP / mana / move at a glance right
+    // where the action is, instead of only in the corner HUD. Shown while
+    // fighting or whenever something isn't full; fades away when safe & topped.
+    syncPlayerVitals() {
+      const p = MH.state.player;
+      if (!p) return;
+      if (!this.playerVitals) this.playerVitals = this.add.graphics().setDepth(59);
+      const g = this.playerVitals;
+      const hp = p.hp / Math.max(1, p.max_hp);
+      const hasMana = (p.max_mana || 0) > 1;
+      const mp = hasMana ? p.mana / Math.max(1, p.max_mana) : null;
+      const mv = p.move / Math.max(1, p.max_move);
+      const inC = !!MH.state.inCombat;
+      const show = inC || hp < 0.995 || (mp != null && mp < 0.995) || mv < 0.995;
+      g.clear();
+      if (!show) return;
+      const x = this.player.x - 13, y = this.player.y + 9;
+      const bar = (yy, frac, color) => {
+        g.fillStyle(0x0a0c10, 0.8);
+        g.fillRect(x - 0.5, yy - 0.5, 27, 3.5);
+        g.fillStyle(color, 1);
+        g.fillRect(x, yy, 26 * Math.max(0, Math.min(1, frac)), 2.5);
+      };
+      const hpCol = hp > 0.5 ? 0x63c74d : hp > 0.25 ? 0xe8a33d : 0xe05a4a;
+      bar(y, hp, hpCol);
+      if (mp != null) bar(y + 4, mp, 0x5a8ae8);
+      bar(y + (mp != null ? 8 : 4), mv, 0xe8c168);
+      g.setAlpha(inC ? 0.95 : 0.55);
     }
     updatePlayerDoll(now) {
       const d = this.playerDoll;

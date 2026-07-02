@@ -1099,16 +1099,17 @@
     const cl = document.getElementById('combat-log');
     if (cl) {
       makeDraggable(cl, cl.querySelector('.head'));
-      // remember the player's chosen combat-log size across reloads
+      // remember the player's chosen feed height across reloads (v2: the feed
+      // moved to a bottom ticker strip, so stale v1 sizes must not apply)
       try {
-        const saved = JSON.parse(lsGet('mh_clog_size') || 'null');
-        if (saved && saved.w && saved.h) { cl.style.width = saved.w + 'px'; cl.style.height = saved.h + 'px'; }
+        const saved = JSON.parse(lsGet('mh_clog_size2') || 'null');
+        if (saved && saved.h) cl.style.height = saved.h + 'px';
         if (window.ResizeObserver) {
           let t = null;
           new ResizeObserver(() => {
             if (cl.classList.contains('collapsed')) return;
             clearTimeout(t);
-            t = setTimeout(() => lsSet('mh_clog_size', JSON.stringify({ w: Math.round(cl.offsetWidth), h: Math.round(cl.offsetHeight) })), 300);
+            t = setTimeout(() => lsSet('mh_clog_size2', JSON.stringify({ h: Math.round(cl.offsetHeight) })), 300);
           }).observe(cl);
         }
       } catch (_) {}

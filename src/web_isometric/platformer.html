@@ -1578,11 +1578,14 @@
   .foe-row .fr-hp > i { display: block; height: 100%; background: linear-gradient(#e07f7f, #9e3f3f); transition: width .3s; }
   .foe-more { font-size: 9px; color: #8a90a4; text-align: center; font-family: var(--ui-font); }
 
-  /* persistent, scrollable combat log with full history (left side, below the hint) */
-  #combat-log { left: 12px !important; top: 64px !important; right: auto !important; bottom: auto !important;
+  /* persistent, scrollable message feed: a ticker strip along the bottom,
+     centered just above the hotbar, oldest lines fading out at the top */
+  #combat-log { left: 50% !important; transform: translateX(-50%); top: auto !important; right: auto !important;
+    bottom: 104px !important;
     display: block !important;  /* persistent message feed */
-    width: 300px; height: 248px; max-height: 70vh; min-height: 64px; min-width: 190px; max-width: 620px;
-    overflow: auto !important; resize: both !important;
+    width: min(640px, 58vw); height: 112px; max-height: 40vh; min-height: 52px; min-width: 260px; max-width: 900px;
+    overflow: auto !important; resize: vertical !important;
+    background: rgba(13,15,21,0.78); border-color: rgba(120,90,90,0.5);
     border-radius: 9px !important; padding: 0 0 6px !important; scrollbar-width: thin; scrollbar-color: #3a4050 transparent; }
   #combat-log::-webkit-scrollbar { width: 7px; }
   #combat-log::-webkit-scrollbar-thumb { background: #3a4050; border-radius: 4px; }
