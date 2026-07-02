@@ -456,9 +456,11 @@ class Mobile(Character):
             return
 
         # Otherwise, use simple fallback AI
-        # If fighting, just fight
+        # While fighting, combat actions are owned EXCLUSIVELY by mob_ai_tick
+        # (world.combat_tick, once per 4s round). process_ai runs every 0.1s
+        # tick, so calling combat_ai here rolled specials/spells ~10x/sec on
+        # top of the round AI — mobs double-acted wildly.
         if self.is_fighting:
-            await self.combat_ai()
             return
 
         # Hunting AI - track players who attacked us

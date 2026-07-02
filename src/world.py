@@ -968,6 +968,18 @@ class World:
         """Process combat for all fighting characters."""
         from combat import CombatHandler
 
+        # Intent pre-pass: fighting mobs DECLARE their next special before the
+        # player phase runs, so this round's web push (notify_combat below)
+        # carries the wind-up with a full round left to react. The intent
+        # resolves next round in mob_ai_tick.
+        from mob_ai import declare_intents
+        for npc in list(self.npcs):
+            if npc.is_fighting and npc.fighting is not None:
+                try:
+                    await declare_intents(npc)
+                except Exception as e:
+                    logger.debug(f"declare_intents failed for {npc.name}: {e}")
+
         # Process player combat
         for player in list(self.players.values()):
             # If mobs are attacking the player, set fighting target to one of them

@@ -4529,12 +4529,45 @@ class CommandHandler:
 
     @classmethod
     async def cmd_interrupt(cls, player: 'Player', args: List[str]):
-        """Attempt to interrupt a boss cast with bash or kick."""
+        """Interrupt a declared enemy cast (or a boss telegraph)."""
+        c = player.config.COLORS
         if not player.is_fighting:
             await player.send("You're not fighting anyone!")
             return
 
         target = player.fighting
+
+        # Generic declared-intent interrupt (any mob winding up a cast/hex)
+        intent = getattr(target, 'pending_intent', None)
+        if intent is not None:
+            if not intent.get('interruptible'):
+                await player.send(f"{c['yellow']}That attack can't be interrupted — brace or sidestep it!{c['reset']}")
+                return
+            now = time.time()
+            cd = getattr(player, 'interrupt_cooldown_until', 0)
+            if now < cd:
+                await player.send(f"{c['yellow']}You need {int(cd - now) + 1}s before you can interrupt again.{c['reset']}")
+                return
+            skill = player.skills.get('kick', 0) if hasattr(player, 'skills') else 0
+            chance = min(90, max(30, skill if skill else 35))
+            if random.randint(1, 100) <= chance:
+                label = intent.get('label', 'casting')
+                target.pending_intent = None
+                player.interrupt_cooldown_until = now + 20
+                await player.send(f"{c['bright_green']}You slam into {target.name} and BREAK its {label}!{c['reset']}")
+                if player.room:
+                    await player.room.send_to_room(
+                        f"{c['green']}{player.name} interrupts {target.name}'s {label}!{c['reset']}",
+                        exclude=[player]
+                    )
+                if skill:
+                    await player.improve_skill('kick', difficulty=3)
+            else:
+                player.interrupt_cooldown_until = now + 8
+                await player.send(f"{c['yellow']}You lunge in but fail to break the {intent.get('label', 'cast')}!{c['reset']}")
+            return
+
+        # Legacy boss-class telegraph branch (bosses.py cast system)
         if not getattr(target, 'is_boss', False):
             await player.send("There's nothing to interrupt.")
             return
@@ -4552,6 +4585,60 @@ class CommandHandler:
                 )
         else:
             await player.send("You fail to interrupt the cast!")
+
+    @classmethod
+    async def cmd_brace(cls, player: 'Player', args: List[str]):
+        """Brace: halve the next declared heavy/AoE hit and resist its stun/fear."""
+        c = player.config.COLORS
+        if not player.is_fighting:
+            await player.send(f"{c['yellow']}You're not fighting anyone!{c['reset']}")
+            return
+        now = time.time()
+        cd = getattr(player, 'brace_cooldown_until', 0)
+        if now < cd:
+            await player.send(f"{c['yellow']}You need {int(cd - now) + 1}s to set your footing again.{c['reset']}")
+            return
+        if getattr(player, 'move', 0) < 10:
+            await player.send(f"{c['yellow']}You're too winded to brace!{c['reset']}")
+            return
+        player.move -= 10
+        player.brace_until = now + 4.5
+        player.brace_cooldown_until = now + 12
+        await player.send(f"{c['bright_cyan']}You plant your feet and BRACE for the incoming blow!{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{player.name} plants their feet, braced for impact.", exclude=[player])
+
+    @classmethod
+    async def cmd_sidestep(cls, player: 'Player', args: List[str]):
+        """Sidestep: fully evade a declared heavy/AoE attack, at the cost of
+        your own attack this round."""
+        c = player.config.COLORS
+        if not player.is_fighting:
+            await player.send(f"{c['yellow']}You're not fighting anyone!{c['reset']}")
+            return
+        now = time.time()
+        cd = getattr(player, 'sidestep_cooldown_until', 0)
+        if now < cd:
+            await player.send(f"{c['yellow']}You need {int(cd - now) + 1}s before you can sidestep again.{c['reset']}")
+            return
+        threat = None
+        for ch in (player.room.characters if player.room else []):
+            intent = getattr(ch, 'pending_intent', None)
+            if intent and intent.get('kind') in ('heavy', 'aoe'):
+                threat = ch
+                break
+        if threat is None:
+            await player.send(f"{c['yellow']}Nothing is winding up an attack you could sidestep.{c['reset']}")
+            return
+        player.sidestep_until = now + 4.5
+        player.sidestep_skip_attack = True
+        player.sidestep_cooldown_until = now + 16
+        await player.send(
+            f"{c['bright_cyan']}You shift your weight, reading {threat.name}'s wind-up — "
+            f"ready to sidestep! (you forgo your own attack){c['reset']}"
+        )
+        if player.room:
+            await player.room.send_to_room(f"{player.name} goes light on their feet, watching {threat.name} intently.", exclude=[player])
 
     @classmethod
     async def cmd_kick(cls, player: 'Player', args: List[str]):

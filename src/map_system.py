@@ -558,6 +558,46 @@ def _mount_info(player):
     }
 
 
+def _intent_public(entity):
+    """A mob's declared wind-up in client shape, or None. Covers both the
+    mob_ai pending_intent system and the bosses.py cast telegraphs, so the
+    web UI paints one uniform enemy wind-up bar."""
+    import time as _time
+    now = _time.time()
+    intent = getattr(entity, 'pending_intent', None)
+    if intent:
+        # resolves at the first combat tick past the windup — i.e. the next
+        # round boundary, ~4s after declaration
+        return {
+            'kind': intent.get('kind', 'heavy'),
+            'label': intent.get('label', 'Attack'),
+            'interruptible': bool(intent.get('interruptible')),
+            'resolve_in': round(max(0.0, intent.get('declared_at', now) + 4.0 - now), 1),
+        }
+    ai_state = getattr(entity, 'ai_state', None)
+    cast = ai_state.get('cast') if isinstance(ai_state, dict) else None
+    if cast and not cast.get('interrupted'):
+        ability = cast.get('ability', {})
+        return {
+            'kind': 'cast',
+            'label': str(ability.get('name', 'casting')).replace('_', ' ').title(),
+            'interruptible': bool(ability.get('interruptible')),
+            'resolve_in': round(max(0.0, cast.get('resolve_at', now) - now), 1),
+        }
+    return None
+
+
+def _reaction_ready(player):
+    """Which reaction commands are off cooldown, for the client prompt chips."""
+    import time as _time
+    now = _time.time()
+    return {
+        'brace': now >= getattr(player, 'brace_cooldown_until', 0),
+        'sidestep': now >= getattr(player, 'sidestep_cooldown_until', 0),
+        'interrupt': now >= getattr(player, 'interrupt_cooldown_until', 0),
+    }
+
+
 def _cooldowns(player):
     """Active ability cooldowns the client can paint on the action bar.
 
@@ -816,6 +856,9 @@ def build_combat_payload(player) -> dict:
             if hp is not None and max_hp:
                 mob['hp'] = hp
                 mob['maxHp'] = max_hp
+            intent = _intent_public(entity)
+            if intent:
+                mob['intent'] = intent
             mobs.append(mob)
     return {
         'type': 'combat_update',
@@ -840,6 +883,7 @@ def build_combat_payload(player) -> dict:
             'exp_to_level': _exp_thresholds(player)[1],
             'gold': getattr(player, 'gold', 0),
             'cooldowns': _cooldowns(player),
+            'reactions': _reaction_ready(player),
         },
         'mobs': mobs,
         'players': others,
@@ -1243,6 +1287,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'autogold': bool(getattr(player, 'autogold', True)),
             'resource': _class_resource(player),
             'cooldowns': _cooldowns(player),
+            'reactions': _reaction_ready(player),
             'skills': dict(getattr(player, 'skills', {})),
             'talents': dict(getattr(player, 'talents', {})),
             'affects': AffectManager.save_affects(player),

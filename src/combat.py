@@ -362,8 +362,21 @@ class CombatHandler:
 
         if not attacker.is_fighting or attacker.fighting != defender:
             return
-            
+
         c = cls.config.COLORS
+
+        # A mob whose declared heavy/aoe intent just resolved spent its round
+        # on that special — no auto-attack on top (see mob_ai._resolve_intent)
+        if getattr(attacker, '_skip_autoattack', False):
+            attacker._skip_autoattack = False
+            return
+
+        # A sidestepping player spent the round entirely on evasion
+        if getattr(attacker, 'sidestep_skip_attack', False):
+            attacker.sidestep_skip_attack = False
+            if hasattr(attacker, 'send'):
+                await attacker.send(f"{c['cyan']}You are focused entirely on evasion this round!{c['reset']}")
+            return
 
         # Combat movement cost (fatigue)
         fatigue_penalty = 0
@@ -1366,6 +1379,10 @@ class CombatHandler:
             return
         victim._death_processed = True
 
+        # A dying mob's declared wind-up dies with it
+        if getattr(victim, 'pending_intent', None):
+            victim.pending_intent = None
+
         # Arena PvP intercept — no real death in arena
         try:
             from arena import ArenaManager
@@ -1967,6 +1984,18 @@ class CombatHandler:
             char2.fighting = None
             if char2.position == 'fighting':
                 char2.position = 'standing'
+
+        # Clear intent/reaction combat state so nothing dangles into the next
+        # fight (mob wind-ups, player brace/sidestep windows)
+        for ch in (char1, char2):
+            if getattr(ch, 'pending_intent', None):
+                ch.pending_intent = None
+            if getattr(ch, 'brace_until', 0):
+                ch.brace_until = 0
+            if getattr(ch, 'sidestep_until', 0):
+                ch.sidestep_until = 0
+            if getattr(ch, 'sidestep_skip_attack', False):
+                ch.sidestep_skip_attack = False
 
     @classmethod
     async def attempt_flee(cls, player: 'Player', auto: bool = False):

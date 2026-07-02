@@ -106,6 +106,11 @@
     if ((m = line.match(/^(.+?) parries your attack/i))) { MH.setCombat(true); bus.emit('attack.parried', { target: m[1], line }); return; }
     if ((m = line.match(/^(.+?) dodges (?:your attack|like a ghost|from the shadows)/i))) { MH.setCombat(true); bus.emit('attack.dodged', { target: m[1], line }); return; }
     if ((m = line.match(/^(.+?) blocks (?:your attack|the attack with)/i))) { MH.setCombat(true); bus.emit('attack.blocked', { target: m[1], line }); return; }
+    // declared-intent reactions (brace / sidestep / interrupt)
+    if (/^You plant your feet and BRACE/i.test(line)) { MH.setCombat(true); bus.emit('reaction.brace', { line }); return; }
+    if (/^You brace against the impact/i.test(line)) { MH.setCombat(true); bus.emit('reaction.brace.success', { line }); return; }
+    if ((m = line.match(/^(.+?) sidesteps at the last instant/i))) { MH.setCombat(true); bus.emit('reaction.sidestep.success', { who: m[1], line }); return; }
+    if ((m = line.match(/^You slam into (.+?) and BREAK its (.+?)!/i))) { MH.setCombat(true); bus.emit('reaction.interrupt.success', { target: m[1], label: m[2], line }); return; }
     if (MISSED_ME.test(line)) { MH.setCombat(true); bus.emit('combat.dodged', { line }); return; }
     if (TAKEN.test(line)) { MH.setCombat(true); bus.emit('combat.taken', { line }); return; }
     if (NOT_HERE.test(line)) { bus.emit('combat.notarget', { line }); return; }

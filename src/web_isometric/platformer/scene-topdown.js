@@ -282,10 +282,16 @@
       MH.bus.on('combat.taken', e => this.queueFx('taken', e));
       MH.bus.on('defense.parry', e => this.fxDeflect('PARRY', 0xd5dde9, e.from));
       MH.bus.on('defense.dodge', e => this.fxSidestep());
-      MH.bus.on('defense.block', () => this.fxDeflect('BLOCK', 0xe8c168));
+      // a shield BLOCK lands heavier than a parry: golden arc + a thud of shake
+      MH.bus.on('defense.block', () => { this.fxDeflect('BLOCK', 0xe8c168); this.cameras.main.shake(60, 0.002); });
       MH.bus.on('attack.parried', e => this.fxTargetDeflect(e.target, 'parried'));
       MH.bus.on('attack.dodged', e => this.fxTargetDeflect(e.target, 'dodged'));
       MH.bus.on('attack.blocked', e => this.fxTargetDeflect(e.target, 'blocked'));
+      // declared-intent reactions (brace / sidestep / interrupt outcomes)
+      MH.bus.on('reaction.brace', () => this.fxBrace(false));
+      MH.bus.on('reaction.brace.success', () => this.fxBrace(true));
+      MH.bus.on('reaction.sidestep.success', e => this.fxSidestep());
+      MH.bus.on('reaction.interrupt.success', e => this.fxInterrupt(e.target));
       this.input.keyboard.on('keydown-TAB', e => { e.preventDefault(); this.cycleTarget(); });
       MH.bus.on('player.exp', e => this.fxExp(e));
       MH.bus.on('walk.step', dir => this.requestMove(dir));
@@ -2928,6 +2934,53 @@
         this.tweens.add({ targets: ent.sprite, x: ent.sprite.x + side * 12, duration: 100, yoyo: true, ease: 'cubic.out' });
       }
     }
+    // bracing: a golden guard ring snaps around you and holds
+    fxBrace(impact) {
+      const x = this.player.x, y = this.player.y - 6;
+      const ring = this.add.circle(x, y, impact ? 14 : 18).setStrokeStyle(2, 0xe8c168, 0.9).setDepth(61);
+      this.tweens.add({ targets: ring, radius: 10, alpha: 0, duration: impact ? 300 : 550, ease: 'cubic.out', onComplete: () => ring.destroy() });
+      this.flashFill(this.playerVisual(), 0xe8c168, 90);
+      this.damageNumber(x, y - 16, impact ? 'BRACED!' : 'BRACE', '#ffd88a', 11);
+    }
+    // a broken enemy wind-up: green snap + a beat of stillness
+    fxInterrupt(name) {
+      const ent = this.findEntityByText(name) || this.target;
+      if (!ent || !ent.sprite) return;
+      this.damageNumber(ent.sprite.x, ent.sprite.y - 22, 'INTERRUPTED!', '#8cf0a0', 12);
+      this.spark(ent.sprite.x, ent.sprite.y - 8, 0x8cf0a0);
+      this.freezeFrame(70);
+    }
+    // Floating ⚠ banner over each mob with a declared wind-up. Rebuilt from
+    // the round payload; banners follow their sprite each frame (update()).
+    syncIntentBanners(payload) {
+      this._intentBanners = this._intentBanners || new Map();
+      const want = new Map();
+      (payload.mobs || []).forEach((m, i) => { if (m.intent) want.set(`mob:${m.name}:${i}`, m.intent); });
+      for (const [key, banner] of [...this._intentBanners]) {
+        if (!want.has(key) || !this.entities.get(key)) {
+          this.tweens.killTweensOf(banner);
+          banner.destroy();
+          this._intentBanners.delete(key);
+        }
+      }
+      for (const [key, intent] of want) {
+        if (this._intentBanners.has(key)) continue;
+        const ent = this.entities.get(key);
+        if (!ent || !ent.sprite) continue;
+        const casty = intent.kind === 'cast' || intent.kind === 'debuff';
+        const t = this.add.text(ent.sprite.x, ent.sprite.y - 26, `⚠ ${intent.label}`, {
+          fontFamily: 'Oxanium, Trebuchet MS, sans-serif', resolution: 3, fontSize: '8px', fontStyle: 'bold',
+          color: casty ? '#c0a8ff' : '#ffb060', backgroundColor: '#1a0e0ecc', padding: { x: 3, y: 1 },
+        }).setOrigin(0.5, 1).setDepth(61);
+        this.tweens.add({ targets: t, alpha: 0.55, duration: 420, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        this._intentBanners.set(key, t);
+        // the winding-up mob glows with its tell color
+        const vis = this.entVisual(ent);
+        if (vis && vis.setTint) {
+          this.flashFill(vis, casty ? 0x9a7ae0 : 0xff8a4a, 160);
+        }
+      }
+    }
 
     // Tab cycles hostile targets by distance
     // set the current target (shared by Tab-cycle and click-to-target)
@@ -3397,6 +3450,7 @@
           if (!MH.state.inCombat) return;
           for (const ent2 of this.entities.values()) {
             if (!ent2.data || !ent2.data.fighting || !ent2.sprite || !ent2.sprite.active) continue;
+            if (ent2.data.intent) continue;   // a declared wind-up has its own bigger tell
             this.tweens.add({ targets: ent2.sprite, scaleX: ent2.sprite.scaleX * 1.12, scaleY: ent2.sprite.scaleY * 1.12, duration: 160, yoyo: true });
             ent2.sprite.setTint(0xffb0a0);
             this.time.delayedCall(330, () => ent2.sprite && ent2.sprite.active && ent2.sprite.clearTint());
@@ -3420,9 +3474,12 @@
       (payload.mobs || []).forEach((mob, i) => {
         const ent = this.entities.get(`mob:${mob.name}:${i}`);
         if (!ent) return;
-        this.updateEntity(ent, Object.assign({}, ent.data, mob));
+        const merged = Object.assign({}, ent.data, mob);
+        if (!mob.intent) delete merged.intent;   // a resolved wind-up must not linger
+        this.updateEntity(ent, merged);
         if (mob.fighting && !this.target) { this.target = ent; MH.bus.emit('target.set', ent.data); }
       });
+      this.syncIntentBanners(payload);
       // Reconcile: a mob we were fighting (or had targeted) that has vanished
       // from the live room payload has died/left — play the death beat and
       // remove it so its sprite + the target frame don't linger with stale HP.
@@ -4175,6 +4232,13 @@
       this.player.setDepth(10 + this.player.y / 1000);
       this.updatePlayerDoll(now);
       this.updateMountArt(now);
+      // intent banners ride their mob
+      if (this._intentBanners) {
+        for (const [key, t] of this._intentBanners) {
+          const ent = this.entities.get(key);
+          if (ent && ent.sprite && ent.sprite.active) { t.x = ent.sprite.x; t.y = ent.sprite.y - 26; }
+        }
+      }
       for (const ent of this.entities.values()) {
         if (ent.sprite && ent.kind !== 'item') ent.sprite.setDepth(10 + ent.sprite.y / 1000);
         if (ent.doll) {

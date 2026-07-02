@@ -1615,6 +1615,7 @@
     ['Fight', [
       ['F or Space', 'Attack — engage your target / nearest foe'],
       ['1 – 9, 0', 'Use the action-bar slot (skills & spells)'],
+      ['Q / E / X', 'React to an enemy wind-up: Brace / Sidestep / Interrupt'],
       ['Click a foe', 'Target it · click again / F to attack'],
       ['Stance', 'Aggressive / Normal / Defensive — beside your vitals'],
     ]],
@@ -4288,6 +4289,58 @@
       // continuously paint hotbar cooldown / round overlays from MH.combat
       setInterval(tickHotbarCooldowns, 100);
 
+      // ---- declared enemy intent: wind-up bar + reaction prompt (Q/E/X) ----
+      // A mob that telegraphs its next special arrives in the round payload as
+      // mobs[i].intent {kind,label,interruptible,resolve_in}. Show WHAT is
+      // coming, a red bar filling to when it lands, and the reactions that
+      // actually counter it. Clicking a chip (or its hotkey) sends the command.
+      const windup = $('enemy-windup'), rstrip = $('reaction-strip');
+      const fireReaction = k => {
+        const chip = rstrip && rstrip.querySelector(`.rchip[data-r="${k}"]`);
+        if (!rstrip || !rstrip.classList.contains('show') || !chip) return false;
+        if (chip.classList.contains('na') || chip.classList.contains('off')) return false;
+        MH.sendCommand(k, false);
+        chip.classList.add('off');   // optimistic; the next round push corrects it
+        if (MH.sfx) MH.sfx.ui();
+        return true;
+      };
+      window.fireReaction = fireReaction;   // used by the global hotkey handler
+      if (rstrip) rstrip.querySelectorAll('.rchip').forEach(chip =>
+        chip.addEventListener('click', () => fireReaction(chip.dataset.r)));
+      const updateIntentUI = payload => {
+        if (!windup || !rstrip) return;
+        const mobs = (payload && payload.mobs) || [];
+        const m = mobs.find(x => x.intent);
+        if (!m) { windup.classList.remove('show'); rstrip.classList.remove('show'); return; }
+        const it = m.intent;
+        windup.querySelector('.nm').textContent = `⚠ ${String(m.name).toUpperCase()} — ${it.label}`;
+        const fill = windup.querySelector('.fill');
+        const total = 4.0, rem = Math.max(0.15, Math.min(total, it.resolve_in || total));
+        // animate from the true elapsed fraction — never accumulate drift
+        fill.style.transition = 'none';
+        fill.style.width = ((1 - rem / total) * 100) + '%';
+        void fill.offsetWidth;
+        fill.style.transition = `width ${rem}s linear`;
+        fill.style.width = '100%';
+        windup.classList.add('show');
+        const ready = (payload && payload.player && payload.player.reactions) || {};
+        const applies = {
+          brace: it.kind === 'heavy' || it.kind === 'aoe' || it.kind === 'debuff',
+          sidestep: it.kind === 'heavy' || it.kind === 'aoe',
+          interrupt: !!it.interruptible,
+        };
+        rstrip.querySelectorAll('.rchip').forEach(chip => {
+          const k = chip.dataset.r;
+          chip.classList.toggle('na', !applies[k]);
+          chip.classList.toggle('off', ready[k] === false);
+        });
+        rstrip.classList.add('show');
+      };
+      MH.bus.on('combat.update', updateIntentUI);
+      MH.bus.on('combat.state', on => {
+        if (!on && windup && rstrip) { windup.classList.remove('show'); rstrip.classList.remove('show'); }
+      });
+
       // loot flow: corpse click -> loot toast -> inventory refreshed + opened
       let lootTimer = null;
       MH.bus.on('loot.corpse', async () => {
@@ -4533,6 +4586,12 @@
           if (navKey) { e.preventDefault(); MH.bus.emit('nav.goto', navKey); return; }
         }
         if (e.key >= '0' && e.key <= '9') { useHotbar(e.key === '0' ? 9 : Number(e.key) - 1); return; }
+        // combat reactions to a declared enemy wind-up (only when the prompt
+        // is showing and the chip is usable — otherwise the key falls through)
+        if (!e.shiftKey && ['q', 'e', 'x'].includes(e.key.toLowerCase()) && window.fireReaction) {
+          const rk = { q: 'brace', e: 'sidestep', x: 'interrupt' }[e.key.toLowerCase()];
+          if (window.fireReaction(rk)) { e.preventDefault(); return; }
+        }
         const k = e.key.toLowerCase();
         if (k === 'i') { renderInventory(); openModal('modal-inv'); }
         else if (k === 'j') { openJournal(); }
