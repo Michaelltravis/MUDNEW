@@ -1828,9 +1828,50 @@ HELP_TOPICS = {'auction': {'category': 'command',
           'syntax': 'info',
           'title': 'Info'},
  'interrupt': {'category': 'command',
-               'description': 'Attempt to interrupt a boss cast with bash or kick.',
+               'description': 'Break an enemy wind-up before it lands.\n'
+                              '\n'
+                              'When a foe begins an interruptible cast or hex (watch for the\n'
+                              '⚠ telegraph line), INTERRUPT slams into them to stop it cold.\n'
+                              '\n'
+                              'MECHANICS:\n'
+                              '- Works on any declared cast/hex marked interruptible\n'
+                              '- Chance scales with your kick skill\n'
+                              '- Cooldown: 20s on success, 8s on a miss\n'
+                              '- Also works on boss telegraphed casts\n'
+                              '\n'
+                              'See also: BRACE, SIDESTEP',
                'syntax': 'interrupt',
                'title': 'Interrupt'},
+ 'brace': {'category': 'command',
+           'description': 'Plant your feet against an incoming declared attack.\n'
+                          '\n'
+                          'When a foe winds up a heavy blow or AoE (watch for the ⚠\n'
+                          'telegraph line), BRACE to weather it.\n'
+                          '\n'
+                          'MECHANICS:\n'
+                          '- Halves the damage of the declared heavy/AoE hit\n'
+                          '- Resists its stun, fear or paralysis\n'
+                          '- Costs 10 move · Cooldown: 12s\n'
+                          '- You keep attacking normally while braced\n'
+                          '\n'
+                          'See also: SIDESTEP, INTERRUPT',
+           'syntax': 'brace',
+           'title': 'Brace'},
+ 'sidestep': {'category': 'command',
+              'description': 'Read an enemy wind-up and slip it entirely.\n'
+                             '\n'
+                             'When a foe winds up a heavy blow or AoE (watch for the ⚠\n'
+                             'telegraph line), SIDESTEP to attempt a full evasion.\n'
+                             '\n'
+                             'MECHANICS:\n'
+                             '- Success scales with your dodge skill and DEX\n'
+                             '- On success the declared hit misses you completely\n'
+                             '- You forfeit your own attack that round (all-in on evasion)\n'
+                             '- Cooldown: 16s\n'
+                             '\n'
+                             'See also: BRACE, INTERRUPT',
+              'syntax': 'sidestep',
+              'title': 'Sidestep'},
  'intimidate': {'category': 'skill',
                 'classes': ['warrior'],
                 'description': 'A class skill. Use it to gain tactical advantages in combat or utility.\n'
