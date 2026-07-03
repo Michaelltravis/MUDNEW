@@ -553,6 +553,8 @@
       }
       // day/night grade on the kit tiles (world-layer only)
       if (useKit && !painted) this.applyKitTint();
+      // Phase 2 depth: give walls faces and lit edges so they read as solid
+      this.paintWallDepth(layout, th, zt);
       // scatter ground detail + ground the walls with edge shadows
       this.decorateGround(layout, th);
       this.decorateWalls(layout, th);
@@ -651,6 +653,33 @@
     // Phase 1 room richness: scatter themed ground detail over the flat tile
     // grid (grass, pebbles, cracks, mossy patches) and lay soft edge-shadows
     // where the floor meets walls/obstacles, so the room reads as a real place.
+    // Walls stop being flat squares: wall-like blocks with open ground to the
+    // south get a shaded FRONT FACE with a lit lip (classic top-down height),
+    // every block gets a sunlit top edge and a whisper of side shading.
+    // Trees/rocks keep just the subtle edge cues — they aren't architecture.
+    paintWallDepth(layout, th, zt) {
+      const { T, BLOCK } = TD();
+      const W = layout.W, H = layout.H, grid = layout.grid;
+      const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? BLOCK : grid[y * W + x];
+      const wallish = (zt && ['wall', 'column'].includes(zt.borderKind))
+        || ['city', 'inside', 'dungeon', 'underground'].includes(th);
+      const g = this.add.graphics().setDepth(1.25);
+      for (let y = 0; y < H; y++) {
+        for (let x = 0; x < W; x++) {
+          if (at(x, y) !== BLOCK) continue;
+          const px = x * T, py = y * T;
+          if (wallish && at(x, y + 1) !== BLOCK) {
+            g.fillStyle(0x0a0c14, 0.30); g.fillRect(px, py + T * 0.55, T, T * 0.45);
+            g.fillStyle(0x0a0c14, 0.20); g.fillRect(px, py + T * 0.38, T, T * 0.2);
+            g.fillStyle(0xfff2d8, 0.15); g.fillRect(px, py + T * 0.36, T, 1.2);
+          }
+          if (at(x, y - 1) !== BLOCK) { g.fillStyle(0xfff2d8, 0.12); g.fillRect(px, py, T, 1.2); }
+          if (at(x - 1, y) !== BLOCK) { g.fillStyle(0x0a0c14, 0.13); g.fillRect(px, py, 1.4, T); }
+          if (at(x + 1, y) !== BLOCK) { g.fillStyle(0x0a0c14, 0.13); g.fillRect(px + T - 1.4, py, 1.4, T); }
+        }
+      }
+      this.tileLayer.add(g);
+    }
     decorateGround(layout, th) {
       const { T, FLOOR, BLOCK } = TD();
       const DECO = {
@@ -843,6 +872,12 @@
           .setAlpha(0.13).setScale(0.55).setTint(g).setDepth(34);
         this.tweens.add({ targets: glow, alpha: 0.24, scale: 0.72, duration: 2000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
         this.fxList && this.fxList.push(glow);
+        // glowing props are LIGHT SOURCES: they carve warm pools out of the
+        // night/dark light layer (lampposts throw the widest)
+        if (this.lightSources) {
+          this.lightSources.push({ x: bx, y: by - T * 0.5, r: name === 'lamppost' ? 84 : 60,
+            seed: (cellX * 53 + cellY * 17) % 1000 });
+        }
         if (name === 'fountain') this.registerReactive(img, 'ripple');
         else this.registerReactive(img, 'flare', { glow, glowMax: 0.13, tint: g });
       } else if (SWAY.has(name)) this.registerReactive(img, 'sway', { tint: g || 0x8fbf6a });
@@ -3716,6 +3751,26 @@
         else if (period === 'dawn' || period === 'morning') { alpha = 0.07; color = 0x2c3052; }
       }
       if (kitActive) this.applyKitTint();
+      // REAL light at night (Phase 2): instead of only the flat wash, enable
+      // the light layer so torches, braziers, candles and lampposts carve warm
+      // pools out of the darkness — same machinery magically-dark rooms use,
+      // with gentler parameters per period. The flat wash drops away when the
+      // light layer is on so the scene isn't double-dimmed.
+      if (this.layout && this.layout.dark) {
+        this._lightParams = { color: 0x000008, alpha: 0.92, torchR: 132 };
+        this.darkRT.setVisible(true);
+      } else if (outdoor && (period === 'night' || period === 'midnight')) {
+        this._lightParams = { color: 0x0a1030, alpha: 0.52, torchR: 150 };
+        this.darkRT.setVisible(true);
+        alpha = 0;
+      } else if (outdoor && (period === 'evening' || period === 'dusk')) {
+        this._lightParams = { color: 0x2a1a12, alpha: 0.30, torchR: 165 };
+        this.darkRT.setVisible(true);
+        alpha = 0;
+      } else {
+        this.darkRT.setVisible(false);
+        this.darkRT.clear();
+      }
       this.nightTint.setFillStyle(color, alpha);
       const precip = payload.weather && payload.weather.precipitation;
       const skyNow = (payload.weather && payload.weather.sky) || 'clear';
@@ -4361,6 +4416,10 @@
       }
       // depth-sort actors by y so overlap reads correctly
       this.player.setDepth(10 + this.player.y / 1000);
+      // contact shadow under your character (mounted riders sit higher)
+      if (!this.playerShadow) this.playerShadow = this.add.image(0, 0, 'px_shadow').setAlpha(0.30).setDepth(9.8);
+      this.playerShadow.setPosition(this.player.x, this.player.y + (this.mountArt ? 12 : 10));
+      this.playerShadow.setVisible(!this.dead);
       this.updatePlayerDoll(now);
       this.updateMountArt(now);
       this.syncPlayerVitals();
@@ -4418,17 +4477,22 @@
         if (ent.bossAura) { ent.bossAura.x = ent.sprite.x; ent.bossAura.y = ent.sprite.y + 5; ent.bossAura.setDepth(9.5 + ent.sprite.y / 1000); }
       }
 
-      if (this.layout.dark && this.darkRT.visible) {
+      if (this.darkRT.visible) {
+        // the light layer: darkness parameters come from applyAtmosphere —
+        // pitch black in magically dark rooms, a cool wash at night, warm
+        // gloom at dusk. Every light source carves a breathing pool from it.
+        const lp = this._lightParams || { color: 0x000008, alpha: 0.92, torchR: 132 };
         this.darkRT.clear();
-        this.darkRT.fill(0x000008, 0.92);
+        this.darkRT.fill(lp.color, lp.alpha);
         const stamp = this.lightStamp;
         const carve = (x, y, radius, jitter) => {
           stamp.setVisible(true).setPosition(x, y).setScale((radius / 128) * jitter);
           this.darkRT.erase(stamp);
         };
         // the player carries a torch: a wide, gently breathing pool
-        carve(this.player.x, this.player.y, 132, 0.97 + 0.03 * Math.sin(now / 280));
-        // every brazier, candle and travel feature throws its own flickering light
+        carve(this.player.x, this.player.y, lp.torchR, 0.97 + 0.03 * Math.sin(now / 280));
+        // every brazier, candle, lamppost and travel feature throws its own
+        // flickering light
         for (const ls of (this.lightSources || [])) {
           const flick = 0.86 + 0.14 * Math.sin(now / 90 + ls.seed) * Math.sin(now / 47 + ls.seed * 1.7);
           carve(ls.x, ls.y, ls.r, flick);
