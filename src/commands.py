@@ -531,6 +531,14 @@ class CommandHandler:
             player.explored_rooms = set()
         player.explored_rooms.add(target_room.vnum)
 
+        # Environmental hazards: hidden floor traps may spring on a careless
+        # entry (rogues can spot them; SEARCH reveals, DISARM removes)
+        try:
+            from environment import on_player_enter
+            await on_player_enter(player, target_room)
+        except Exception as e:
+            logger.debug(f"trap check failed: {e}")
+
         # Deathtrap rooms
         if player.room and ('deathtrap' in player.room.flags or 'death' in player.room.flags):
             from combat import CombatHandler
@@ -1094,6 +1102,16 @@ class CommandHandler:
                         if getattr(obj, 'lore_id', None):
                             if hasattr(player, 'add_journal_entry'):
                                 player.add_journal_entry(f"Recovered lore item: {obj.lore_title or obj.short_desc}.", category='lore')
+
+        # hidden floor traps show themselves to a careful search
+        try:
+            from environment import search_reveal
+            trap_msg = await search_reveal(player, room)
+            if trap_msg:
+                found_any = True
+                found_messages.append(f"You spot {trap_msg}!")
+        except Exception:
+            pass
 
         if found_messages:
             for msg in found_messages:
@@ -3129,6 +3147,17 @@ class CommandHandler:
         import random
         roll = random.randint(1, 100)
         if roll <= player.skills.get('detect_traps', 0):
+            # a successful sweep reveals the room's actual trap, if any
+            try:
+                from environment import search_reveal
+                trap_msg = await search_reveal(player, player.room)
+                if trap_msg:
+                    await player.send(f"{c['bright_green']}You spot {trap_msg}!{c['reset']}")
+                    if hasattr(player, 'improve_skill'):
+                        await player.improve_skill('detect_traps', difficulty=2)
+                    return
+            except Exception:
+                pass
             await player.send(f"{c['green']}You carefully scan for traps but find none.{c['reset']}")
         else:
             await player.send(f"{c['yellow']}You don't notice anything unusual.{c['reset']}")
@@ -4699,6 +4728,139 @@ class CommandHandler:
         if player.room:
             await player.room.send_to_room(f"{player.name} goes light on their feet, watching {threat.name} intently.", exclude=[player])
 
+    # ---- environmental gameplay: door tactics + player-laid traps ----
+
+    DIR_ALIAS = {'n': 'north', 's': 'south', 'e': 'east', 'w': 'west', 'u': 'up', 'd': 'down'}
+
+    @classmethod
+    def _door_at(cls, player, args):
+        """Resolve (direction, exit_data, door) from a direction argument."""
+        if not args or not player.room:
+            return None, None, None
+        d = cls.DIR_ALIAS.get(args[0].lower(), args[0].lower())
+        exit_data = player.room.exits.get(d)
+        if not exit_data or 'door' not in exit_data:
+            return d, None, None
+        return d, exit_data, exit_data['door']
+
+    @classmethod
+    async def _bash_door(cls, player, direction):
+        """Break a door open by force: STR + bash skill vs the door's strength.
+        Sealed doors are far harder; success leaves the door BROKEN open."""
+        c = player.config.COLORS
+        d, exit_data, door = cls._door_at(player, [direction])
+        if not door:
+            await player.send(f"{c['yellow']}There's no door to bash {d or 'there'}.{c['reset']}")
+            return
+        if door.get('state') != 'closed':
+            await player.send(f"{c['yellow']}The door is already open.{c['reset']}")
+            return
+        now = time.time()
+        strength = door.get('strength', 60)
+        if door.get('locked'):
+            strength += 25
+        if door.get('sealed_until', 0) > now:
+            strength += 40
+        if door.get('barricaded_until', 0) > now:
+            strength += 20
+        roll = player.str * 3 + player.skills.get('bash', 0) + random.randint(1, 40)
+        name = door.get('name', 'door')
+        if roll >= strength:
+            door['state'] = 'open'
+            door['locked'] = False
+            door['broken'] = True
+            door.pop('sealed_until', None)
+            door.pop('barricaded_until', None)
+            await player.send(f"{c['bright_yellow']}💥 CRACK! You smash the {name} open — it hangs broken on its hinges!{c['reset']}")
+            await player.room.send_to_room(f"{player.name} smashes the {name} {d} clean open!", exclude=[player])
+            # the far side hears it and its door matches
+            target_room = exit_data.get('room')
+            if target_room:
+                opp = player.config.DIRECTIONS.get(d, {}).get('opposite')
+                rev = target_room.exits.get(opp) if opp else None
+                if rev and 'door' in rev:
+                    rev['door'].update({'state': 'open', 'locked': False, 'broken': True})
+                    rev['door'].pop('sealed_until', None)
+                    rev['door'].pop('barricaded_until', None)
+                await target_room.send_to_room(f"{c['yellow']}💥 The {name} bursts open in a shower of splinters!{c['reset']}")
+            if player.skills.get('bash') and hasattr(player, 'improve_skill'):
+                await player.improve_skill('bash', difficulty=2)
+        else:
+            hurt = max(1, int(player.max_hp * 0.03))
+            player.hp = max(1, player.hp - hurt)
+            await player.send(f"{c['yellow']}THUD. The {name} holds — your shoulder takes the worst of it. [{hurt}]{c['reset']}")
+
+    @classmethod
+    async def cmd_barricade(cls, player: 'Player', args: List[str]):
+        """Barricade a closed door behind you: nothing opens it for a while.
+        The classic escape play — slam the door on your pursuers and brace it."""
+        c = player.config.COLORS
+        d, exit_data, door = cls._door_at(player, args)
+        if not args:
+            await player.send(f"{c['yellow']}Barricade which direction?{c['reset']}")
+            return
+        if not door:
+            await player.send(f"{c['yellow']}There's no door to barricade {d or 'there'}.{c['reset']}")
+            return
+        if door.get('state') != 'closed':
+            await player.send(f"{c['yellow']}Close it first!{c['reset']}")
+            return
+        if getattr(player, 'move', 0) < 15:
+            await player.send(f"{c['yellow']}You're too exhausted to wrestle furniture against it.{c['reset']}")
+            return
+        player.move -= 15
+        door['barricaded_until'] = time.time() + 90
+        name = door.get('name', 'door')
+        await player.send(f"{c['bright_green']}You heave everything you can find against the {name} — braced solid for a while.{c['reset']}")
+        await player.room.send_to_room(f"{player.name} barricades the {name} {d}.", exclude=[player])
+
+    @classmethod
+    async def cmd_seal(cls, player: 'Player', args: List[str]):
+        """Seal a closed door with arcane sigils (casters). Holds ~2 minutes
+        against anything short of a mighty bash."""
+        c = player.config.COLORS
+        if getattr(player, 'char_class', '').lower() not in ('mage', 'necromancer', 'cleric', 'paladin'):
+            await player.send(f"{c['red']}You don't know the sealing rites.{c['reset']}")
+            return
+        d, exit_data, door = cls._door_at(player, args)
+        if not args:
+            await player.send(f"{c['yellow']}Seal which direction?{c['reset']}")
+            return
+        if not door:
+            await player.send(f"{c['yellow']}There's no door to seal {d or 'there'}.{c['reset']}")
+            return
+        if door.get('state') != 'closed':
+            await player.send(f"{c['yellow']}The door must be closed to seal it.{c['reset']}")
+            return
+        if getattr(player, 'mana', 0) < 20:
+            await player.send(f"{c['red']}Not enough mana.{c['reset']}")
+            return
+        player.mana -= 20
+        door['sealed_until'] = time.time() + 120
+        name = door.get('name', 'door')
+        await player.send(f"{c['bright_magenta']}✦ You trace burning sigils across the {name} — it seals with a hum.{c['reset']}")
+        await player.room.send_to_room(f"Glowing sigils crawl across the {name} {d} as {player.name} seals it.", exclude=[player])
+
+    @classmethod
+    async def cmd_caltrops(cls, player: 'Player', args: List[str]):
+        """Thief: scatter caltrops — the next hostile here is hobbled and bled."""
+        c = player.config.COLORS
+        if getattr(player, 'char_class', '').lower() != 'thief':
+            await player.send(f"{c['red']}Only thieves carry caltrops.{c['reset']}")
+            return
+        from environment import lay_trap
+        await lay_trap(player, 'caltrops')
+
+    @classmethod
+    async def cmd_snare(cls, player: 'Player', args: List[str]):
+        """Ranger: rig a spring-snare — the next hostile here is yanked off its feet."""
+        c = player.config.COLORS
+        if getattr(player, 'char_class', '').lower() != 'ranger':
+            await player.send(f"{c['red']}Only rangers know snarecraft.{c['reset']}")
+            return
+        from environment import lay_trap
+        await lay_trap(player, 'snare')
+
     @classmethod
     async def cmd_kick(cls, player: 'Player', args: List[str]):
         """Kick skill."""
@@ -4728,9 +4890,15 @@ class CommandHandler:
         
     @classmethod
     async def cmd_bash(cls, player: 'Player', args: List[str]):
-        """Bash — Stun + damage. Warriors use doctrine system, others use legacy."""
+        """Bash — Stun + damage. Warriors use doctrine system, others use legacy.
+        BASH <direction> instead smashes a closed door open by force."""
         import time, random
         c = player.config.COLORS
+
+        # bash a DOOR: 'bash north' / 'bash n'
+        if args and (args[0].lower() in cls.DIR_ALIAS or args[0].lower() in ('north', 'south', 'east', 'west', 'up', 'down')):
+            await cls._bash_door(player, args[0].lower())
+            return
 
         # Warriors use the new doctrine system
         if player.char_class.lower() == 'warrior':
@@ -6527,9 +6695,17 @@ class CommandHandler:
     
     @classmethod
     async def cmd_disarm(cls, player: 'Player', args: List[str]):
-        """Disarm — Chain ability (🟡) for warriors. Disarm target for 2 rounds. 15s CD."""
+        """Disarm — Chain ability (🟡) for warriors. Disarm target for 2 rounds. 15s CD.
+        Also: DISARM TRAP (or plain DISARM out of combat) defuses a detected floor trap."""
         import time, random
         c = player.config.COLORS
+
+        # floor-trap disarm: explicit 'disarm trap', or a bare 'disarm' while
+        # not fighting anyone (the trap is the only thing to disarm)
+        if (args and args[0].lower() in ('trap', 'traps')) or (not args and not player.is_fighting):
+            from environment import disarm_trap
+            await disarm_trap(player, player.room)
+            return
 
         if 'disarm' not in player.skills:
             await player.send(f"{c['red']}You don't know how to disarm!{c['reset']}")
@@ -11313,6 +11489,15 @@ class CommandHandler:
         # Check if magically blocked
         if door.get('magically_blocked', False):
             await player.send(f"{c['red']}The door is magically sealed!{c['reset']}")
+            return
+
+        # Environmental door tactics: arcane seals and braced barricades hold
+        import time as _t
+        if door.get('sealed_until', 0) > _t.time():
+            await player.send(f"{c['magenta']}Glowing sigils flare — the door is sealed by magic! (a mighty bash might break it){c['reset']}")
+            return
+        if door.get('barricaded_until', 0) > _t.time():
+            await player.send(f"{c['yellow']}The door is barricaded from the other side!{c['reset']}")
             return
 
         door['state'] = 'open'

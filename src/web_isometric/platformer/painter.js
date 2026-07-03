@@ -268,6 +268,31 @@
       }
     }
 
+    // 5.5) frozen water: an ice sheet where the water used to be (the grid
+    // cells were converted to walkable floor; iceCells remembers them)
+    if (layout.icy && layout.iceCells && layout.iceCells.length) {
+      for (const i of layout.iceCells) {
+        const x = (i % W) * cell, y = ((i / W) | 0) * cell;
+        ctx.fillStyle = 'rgba(196,222,242,0.88)';
+        ctx.fillRect(x, y, cell, cell);
+        const gg = ctx.createRadialGradient(x + cell / 2, y + cell / 2, 0, x + cell / 2, y + cell / 2, cell * 0.7);
+        gg.addColorStop(0, 'rgba(255,255,255,0.18)');
+        gg.addColorStop(1, 'rgba(255,255,255,0)');
+        ctx.fillStyle = gg;
+        ctx.fillRect(x, y, cell, cell);
+      }
+      // hairline cracks wandering across the sheet
+      ctx.strokeStyle = 'rgba(140,175,205,0.5)';
+      ctx.lineWidth = SS * 0.6;
+      for (let k = 0; k < Math.max(3, layout.iceCells.length / 4); k++) {
+        const i = layout.iceCells[(rng() * layout.iceCells.length) | 0];
+        let x = (i % W) * cell + rng() * cell, y = ((i / W) | 0) * cell + rng() * cell;
+        ctx.beginPath(); ctx.moveTo(x, y);
+        for (let s2 = 0; s2 < 3; s2++) { x += (rng() - 0.5) * cell; y += (rng() - 0.5) * cell; ctx.lineTo(x, y); }
+        ctx.stroke();
+      }
+    }
+
     // 6) ambient occlusion: floor darkens where it meets walls/obstacles —
     // grounds the wall sprites into the painting
     const AO = 9 * SS;

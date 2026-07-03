@@ -472,8 +472,20 @@
       }
     }
 
+    // frozen terrain (elemental interplay): a frost spell froze this room's
+    // water — the ice is WALKABLE, and the painter draws it as an ice sheet
+    let icy = false, iceCells = null;
+    if (roomData.env && roomData.env.frozen) {
+      iceCells = [];
+      for (let i = 0; i < grid.length; i++) {
+        if (grid[i] === WATER) { grid[i] = FLOOR; iceCells.push(i); }
+      }
+      icy = iceCells.length > 0;
+    }
+
     return {
       topdown: true,
+      icy, iceCells,
       vnum, theme: sector, sector, flags, zoneKey,
       description: roomData.description || '',
       name: roomData.name || '',

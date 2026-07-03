@@ -3968,6 +3968,7 @@
       MH.bus.on('mob.guardup', e => clogLine(`🛡 ${e.name} raises a guard — bash or kick to break it`, 'info'));
       MH.bus.on('mob.guardbreak', e => clogLine(`💥 ${e.name}'s guard is BROKEN`, 'you'));
       MH.bus.on('reaction.evade', () => clogLine('You dart clear of the danger zone!', 'you'));
+      MH.bus.on('env.event', e => clogLine(String(e.line).replace(/</g, '&lt;'), 'info'));
       MH.bus.on('combat.taken', e => clogLine(e && e.dmg != null ? `${e.from || 'They'} hit YOU for <b>${e.dmg}</b>` : 'They hit YOU', 'them'));
       MH.bus.on('combat.miss', e => clogLine(`You miss ${e.target}`, 'miss'));
       MH.bus.on('combat.dodged', () => clogLine('They miss you', 'miss'));

@@ -869,9 +869,17 @@ def build_combat_payload(player) -> dict:
             if _tnow < getattr(entity, 'guard_until', 0):
                 mob['guarded'] = True
             mobs.append(mob)
+    env = None
+    if room is not None:
+        try:
+            from environment import env_public
+            env = env_public(room, player)
+        except Exception:
+            env = None
     return {
         'type': 'combat_update',
         'vnum': room.vnum if room else None,
+        'env': env,
         'in_combat': _in_combat(player),
         'player': {
             'name': player.name,
@@ -1235,6 +1243,13 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'gravestones': stones,
             'details': details,
         }
+        # environmental gameplay: hazards, trap state (per-viewer detection),
+        # elemental terrain states (burning webs, frozen water)
+        try:
+            from environment import env_public
+            current_room['env'] = env_public(cur, player)
+        except Exception:
+            pass
 
     return {
         'type': 'map_data',

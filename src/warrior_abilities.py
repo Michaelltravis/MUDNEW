@@ -517,6 +517,13 @@ async def do_bash(player, args: list):
     from combat import CombatHandler
     await CombatHandler.break_guard(player, target)
     killed = await apply_damage_to_target(player, target, damage, ability_display.replace('_', ' '))
+    if not killed:
+        # a solid bash can knock them into the room's hazards
+        try:
+            from environment import try_shove
+            await try_shove(player, target, player.room)
+        except Exception:
+            pass
     
     if not killed:
         # Stun

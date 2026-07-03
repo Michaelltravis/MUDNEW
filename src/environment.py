@@ -1,0 +1,410 @@
+"""
+Room-environment gameplay
+=========================
+The world itself becomes part of a fight:
+
+- ENV TAGS: each room derives once from its prose/sector what it contains —
+  water, fire, webs. These power everything below.
+- FLOOR TRAPS: dangerous areas seed hidden traps (spike / snare / gas).
+  search / detect traps reveals them, disarm removes them (thief bonus),
+  walking in blind risks springing them. Deadly variants only where the room
+  is already flagged hostile. Thieves lay caltrops, rangers lay snares that
+  catch the next hostile that blunders in.
+- HAZARD SHOVES: heavy blows (bash, charge, a mob's Crushing Blow) can knock
+  the victim into the room's water / fire / an armed trap. Fully symmetric.
+- ELEMENTAL TERRAIN: fire spells ignite webbed rooms (burning field), frost
+  freezes water (the client renders walkable ice), lightning cast in a water
+  room splashes everyone standing in the fight.
+
+Server owns hazard LOGIC; the web client owns hazard GEOMETRY (it renders
+markers/ice/embers from the payload). Telnet players get the same game via
+messages and the same commands.
+"""
+
+import random
+import re
+import time
+import logging
+
+logger = logging.getLogger('Misthollow.Environment')
+
+WATER_RE = re.compile(r'\b(stream|river|brook|creek|pond|pool|lake|spring|fountain|waterfall)\b', re.I)
+FIRE_RE = re.compile(r'\b(brazier|campfire|forge|hearth|furnace|bonfire|firepit|flames?)\b', re.I)
+WEB_RE = re.compile(r'\b(cobwebs?|webs?|webbing)\b', re.I)
+TRAPPY_RE = re.compile(r'dungeon|crypt|mine|sewer|tomb|lair|cave|catacomb|ruin|warren', re.I)
+
+# rooms burning right now (fire spread), ticked from world.combat_tick
+_burning_rooms = set()
+
+
+def _seed(vnum: int) -> int:
+    return ((vnum * 2654435761) ^ 0x5eed) & 0xffffffff
+
+
+def get_env(room) -> dict:
+    """Derive (and cache) the room's environmental tags."""
+    env = getattr(room, '_env', None)
+    if env is not None:
+        return env
+    text = f"{getattr(room, 'name', '')} {getattr(room, 'description', '')}"
+    sector = getattr(room, 'sector_type', '')
+    env = {
+        'water': bool(WATER_RE.search(text)) or sector in ('water_swim', 'water_noswim', 'underwater'),
+        'fire': bool(FIRE_RE.search(text)),
+        'webbed': bool(WEB_RE.search(text)),
+    }
+    room._env = env
+    return env
+
+
+# ---------------------------------------------------------------------------
+# World traps
+# ---------------------------------------------------------------------------
+
+TRAP_KINDS = ('spike', 'snare', 'gas')
+TRAP_NAMES = {'spike': 'a spike trap', 'snare': 'a snare', 'gas': 'a gas vent'}
+
+
+def get_trap(room):
+    """The room's world trap dict, or None. Seeded by vnum: dangerous-sounding
+    zones grow traps deterministically. Lazily created and cached."""
+    if hasattr(room, 'trap'):
+        return room.trap
+    trap = None
+    vnum = getattr(room, 'vnum', 0)
+    zone_name = str(getattr(getattr(room, 'zone', None), 'name', '') or '')
+    text = f"{zone_name} {getattr(room, 'name', '')}"
+    flags = getattr(room, 'flags', set()) or set()
+    trappy = 'trapped' in flags or TRAPPY_RE.search(text)
+    if trappy and 'peaceful' not in flags:
+        s = _seed(vnum)
+        if s % 100 < 16:   # ~1 in 6 dangerous rooms carries a trap
+            kind = TRAP_KINDS[(s >> 8) % len(TRAP_KINDS)]
+            deadly = 'trapped' in flags or (s >> 16) % 100 < 8   # rare, where it fits
+            trap = {'kind': kind, 'deadly': deadly, 'disarmed': False, 'sprung_until': 0}
+    room.trap = trap
+    return trap
+
+
+def trap_detected(player, room) -> bool:
+    return (getattr(room, 'vnum', 0)) in getattr(player, 'detected_traps', set())
+
+
+def _mark_detected(player, room):
+    if not hasattr(player, 'detected_traps'):
+        player.detected_traps = set()
+    player.detected_traps.add(getattr(room, 'vnum', 0))
+
+
+async def spring_trap(room, victim, trap=None, forced=False):
+    """The trap goes off on the victim. Used by walk-ins and hazard shoves."""
+    trap = trap or get_trap(room)
+    if not trap or trap['disarmed']:
+        return False
+    now = time.time()
+    if not forced and now < trap['sprung_until']:
+        return False
+    trap['sprung_until'] = now + 30   # doesn't shred corpse runs
+    from config import Config
+    c = Config.COLORS
+    name = getattr(victim, 'name', 'Someone')
+    max_hp = max(1, getattr(victim, 'max_hp', 1))
+    killed = False
+    if trap['kind'] == 'spike':
+        frac = (0.45 + random.random() * 0.2) if trap['deadly'] else (0.10 + random.random() * 0.08)
+        dmg = max(3, int(max_hp * frac))
+        await room.send_to_room(
+            f"{c['bright_red']}⚠ SHUNK! Iron spikes burst from the ground beneath {name}! [{dmg}]{c['reset']}"
+        )
+        killed = await victim.take_damage(dmg, None)
+    elif trap['kind'] == 'snare':
+        victim.stunned_rounds = getattr(victim, 'stunned_rounds', 0) + 2
+        await room.send_to_room(
+            f"{c['bright_yellow']}⚠ A hidden snare whips tight around {name}'s legs — held fast!{c['reset']}"
+        )
+    else:   # gas
+        dmg = max(2, int(max_hp * (0.20 if trap['deadly'] else 0.06)))
+        try:
+            from affects import AffectManager
+            AffectManager.apply_affect(victim, {
+                'name': 'poison', 'type': AffectManager.TYPE_DOT, 'applies_to': 'hp',
+                'value': max(2, dmg // 3), 'duration': 4, 'caster_level': 10,
+            })
+        except Exception:
+            pass
+        await room.send_to_room(
+            f"{c['green']}⚠ A vent hisses — {name} is engulfed in noxious gas! [{dmg}]{c['reset']}"
+        )
+        killed = await victim.take_damage(dmg, None)
+    if killed and hasattr(victim, 'die'):
+        try:
+            await victim.die(None)
+        except Exception:
+            pass
+    return True
+
+
+async def on_player_enter(player, room):
+    """Walk-in trap logic: passive spotting, careful steps, or a sprung trap."""
+    trap = get_trap(room)
+    if not trap or trap['disarmed']:
+        return
+    c = player.config.COLORS
+    if trap_detected(player, room):
+        await player.send(f"{c['cyan']}You step carefully around {TRAP_NAMES[trap['kind']]}.{c['reset']}")
+        return
+    # rogues' eyes: passive chance to spot on entry
+    spot = getattr(player, 'skills', {}).get('detect_traps', 0) // 2
+    if spot and random.randint(1, 100) <= spot:
+        _mark_detected(player, room)
+        await player.send(
+            f"{c['bright_cyan']}Your trained eye catches {TRAP_NAMES[trap['kind']]} hidden here! "
+            f"(step around it, or DISARM it){c['reset']}"
+        )
+        return
+    if random.randint(1, 100) <= 55:
+        await spring_trap(room, player, trap)
+
+
+async def search_reveal(player, room) -> str:
+    """Called from search / detect traps: reveal the room's trap if present."""
+    trap = get_trap(room)
+    if not trap or trap['disarmed'] or trap_detected(player, room):
+        return None
+    _mark_detected(player, room)
+    return f"{TRAP_NAMES[trap['kind']]}{' — it looks LETHAL' if trap['deadly'] else ''} (DISARM it, or lure a foe onto it)"
+
+
+async def disarm_trap(player, room):
+    """Disarm the room's detected world trap. Thieves shine at this."""
+    from config import Config
+    c = Config.COLORS
+    trap = get_trap(room)
+    if not trap or trap['disarmed']:
+        await player.send(f"{c['yellow']}There's no armed trap here.{c['reset']}")
+        return
+    if not trap_detected(player, room):
+        await player.send(f"{c['yellow']}You don't see a trap here... yet. Try SEARCH.{c['reset']}")
+        return
+    skill = getattr(player, 'skills', {}).get('detect_traps', 0)
+    chance = min(95, 35 + skill + (getattr(player, 'dex', 10) - 10) * 2)
+    if random.randint(1, 100) <= chance:
+        trap['disarmed'] = True
+        await player.send(f"{c['bright_green']}Click. You carefully disarm {TRAP_NAMES[trap['kind']]}.{c['reset']}")
+        if room:
+            await room.send_to_room(f"{player.name} disarms a hidden trap.", exclude=[player])
+        if skill and hasattr(player, 'improve_skill'):
+            await player.improve_skill('detect_traps', difficulty=2)
+        if hasattr(player, 'gain_exp'):
+            try:
+                await player.gain_exp(15 + (10 if trap['deadly'] else 0))
+            except Exception:
+                pass
+    else:
+        await player.send(f"{c['yellow']}Your hand slips —{c['reset']}")
+        await spring_trap(room, player, trap, forced=True)
+
+
+# ---------------------------------------------------------------------------
+# Player-laid traps (thief caltrops / ranger snares)
+# ---------------------------------------------------------------------------
+
+async def lay_trap(player, kind):
+    from config import Config
+    c = Config.COLORS
+    room = player.room
+    if not room:
+        return
+    traps = getattr(room, 'player_traps', None)
+    if traps is None:
+        traps = room.player_traps = []
+    if any(t['owner'] == player.name for t in traps):
+        await player.send(f"{c['yellow']}You've already prepared a trap here.{c['reset']}")
+        return
+    traps.append({'owner': player.name, 'kind': kind, 'until': time.time() + 300})
+    verb = 'scatter a handful of caltrops across the ground' if kind == 'caltrops' \
+        else 'rig a spring-snare across the approach'
+    await player.send(f"{c['bright_green']}You {verb}. The next hostile through here is in for a surprise.{c['reset']}")
+    await room.send_to_room(f"{player.name} rigs something low to the ground...", exclude=[player])
+
+
+async def check_player_traps(mob, room):
+    """A hostile mob blunders into a player-laid trap (on aggro/each round)."""
+    traps = getattr(room, 'player_traps', None)
+    if not traps:
+        return False
+    now = time.time()
+    room.player_traps = [t for t in traps if t['until'] > now]
+    if not room.player_traps:
+        return False
+    t = room.player_traps.pop(0)   # consumed
+    from config import Config
+    c = Config.COLORS
+    if t['kind'] == 'caltrops':
+        dmg = max(2, int(getattr(mob, 'max_hp', 10) * 0.06))
+        mob.stunned_rounds = getattr(mob, 'stunned_rounds', 0) + 1
+        await room.send_to_room(
+            f"{c['bright_yellow']}⚠ {mob.name} stamps onto {t['owner']}'s caltrops — hobbled! [{dmg}]{c['reset']}"
+        )
+        if await mob.take_damage(dmg, None):
+            return True
+    else:   # snare
+        mob.stunned_rounds = getattr(mob, 'stunned_rounds', 0) + 2
+        mob.pending_intent = None
+        await room.send_to_room(
+            f"{c['bright_yellow']}⚠ {t['owner']}'s snare snaps shut — {mob.name} is yanked off its feet!{c['reset']}"
+        )
+    return True
+
+
+# ---------------------------------------------------------------------------
+# Hazard shoves — heavy blows use the room, both directions
+# ---------------------------------------------------------------------------
+
+async def try_shove(attacker, victim, room):
+    """A heavy hit may knock the victim into the room's hazard (35%)."""
+    if not room or random.random() > 0.35:
+        return False
+    env = get_env(room)
+    from config import Config
+    c = Config.COLORS
+    name = getattr(victim, 'name', 'Someone')
+    options = []
+    if env['water']:
+        options.append('water')
+    if env['fire'] or getattr(room, 'burning_until', 0) > time.time():
+        options.append('fire')
+    trap = get_trap(room)
+    if trap and not trap['disarmed'] and time.time() >= trap['sprung_until']:
+        options.append('trap')
+    if not options:
+        return False
+    what = random.choice(options)
+    if what == 'water':
+        if getattr(room, 'frozen_until', 0) > time.time():
+            return False   # the water is ice right now
+        dmg = max(2, int(getattr(victim, 'max_hp', 10) * 0.04))
+        await room.send_to_room(
+            f"{c['bright_cyan']}💦 The blow sends {name} sprawling into the water! [{dmg}]{c['reset']}"
+        )
+        if hasattr(victim, 'fire_aura'):
+            victim.fire_aura = False
+        if await victim.take_damage(dmg, attacker):
+            from combat import CombatHandler
+            await CombatHandler.handle_death(attacker, victim)
+    elif what == 'fire':
+        dmg = max(3, int(getattr(victim, 'max_hp', 10) * 0.07))
+        await room.send_to_room(
+            f"{c['bright_red']}🔥 The blow knocks {name} into the flames! [{dmg}]{c['reset']}"
+        )
+        try:
+            from affects import AffectManager
+            AffectManager.apply_affect(victim, {
+                'name': 'burning', 'type': AffectManager.TYPE_DOT, 'applies_to': 'hp',
+                'value': max(2, dmg // 3), 'duration': 3, 'caster_level': 10,
+            })
+        except Exception:
+            pass
+        if await victim.take_damage(dmg, attacker):
+            from combat import CombatHandler
+            await CombatHandler.handle_death(attacker, victim)
+    else:
+        await room.send_to_room(
+            f"{c['bright_yellow']}The blow drives {name} straight onto the hidden trap!{c['reset']}"
+        )
+        await spring_trap(room, victim, trap, forced=True)
+    return True
+
+
+# ---------------------------------------------------------------------------
+# Elemental terrain interplay
+# ---------------------------------------------------------------------------
+
+FIRE_SPELL = re.compile(r'fire|burn|flame|meteor|combust|immolat|pyro', re.I)
+FROST_SPELL = re.compile(r'frost|\bice\b|chill|rime|blizzard|freez', re.I)
+BOLT_SPELL = re.compile(r'lightning|shock|storm|thunder|chain', re.I)
+
+
+async def elemental_cast(caster, target, spell_name, room=None):
+    """Spells interact with what the room is made of."""
+    room = room or getattr(caster, 'room', None)
+    if not room:
+        return
+    env = get_env(room)
+    now = time.time()
+    from config import Config
+    c = Config.COLORS
+    sp = str(spell_name or '')
+    if FIRE_SPELL.search(sp) and env['webbed'] and getattr(room, 'burning_until', 0) <= now:
+        room.burning_until = now + 16   # ~4 rounds of burning webs
+        _burning_rooms.add(room)
+        await room.send_to_room(
+            f"{c['bright_red']}🔥 The webs catch — in a heartbeat the whole chamber is BURNING!{c['reset']}"
+        )
+    elif FROST_SPELL.search(sp) and env['water'] and getattr(room, 'frozen_until', 0) <= now:
+        room.frozen_until = now + 120
+        await room.send_to_room(
+            f"{c['bright_cyan']}❄ The water crackles and stills — frozen into a sheet of ice!{c['reset']}"
+        )
+    elif BOLT_SPELL.search(sp) and env['water'] and getattr(room, 'frozen_until', 0) <= now:
+        # everyone standing in the fight takes the splash — allies included
+        splash = max(3, int(getattr(caster, 'level', 5) * 1.5))
+        await room.send_to_room(
+            f"{c['bright_cyan']}⚡ The bolt arcs through the water — the whole pool LIGHTS UP!{c['reset']}"
+        )
+        for ch in list(getattr(room, 'characters', [])):
+            if ch is caster or ch is target:
+                continue
+            if not getattr(ch, 'fighting', None):
+                continue
+            if hasattr(ch, 'send'):
+                await ch.send(f"{c['bright_cyan']}Electricity surges up through the water! [{splash}]{c['reset']}")
+            try:
+                if await ch.take_damage(splash, caster):
+                    from combat import CombatHandler
+                    await CombatHandler.handle_death(caster, ch)
+            except Exception:
+                pass
+
+
+async def tick(world):
+    """Per-combat-round upkeep: burning rooms cook everyone inside."""
+    now = time.time()
+    from config import Config
+    c = Config.COLORS
+    for room in list(_burning_rooms):
+        if getattr(room, 'burning_until', 0) <= now:
+            _burning_rooms.discard(room)
+            try:
+                await room.send_to_room(f"{c['yellow']}The flames gutter out, leaving scorched strands.{c['reset']}")
+            except Exception:
+                pass
+            continue
+        for ch in list(getattr(room, 'characters', [])):
+            dmg = max(2, int(getattr(ch, 'max_hp', 10) * 0.05))
+            try:
+                if hasattr(ch, 'send'):
+                    await ch.send(f"{c['bright_red']}The burning room sears you! [{dmg}]{c['reset']}")
+                if await ch.take_damage(dmg, None) and hasattr(ch, 'die'):
+                    await ch.die(None)
+            except Exception:
+                pass
+
+
+def env_public(room, player=None) -> dict:
+    """Environment block for the web payload."""
+    env = get_env(room)
+    now = time.time()
+    trap = get_trap(room)
+    out = {
+        'water': env['water'], 'fire': env['fire'], 'webbed': env['webbed'],
+        'burning': getattr(room, 'burning_until', 0) > now,
+        'frozen': getattr(room, 'frozen_until', 0) > now,
+        'ptraps': len([t for t in getattr(room, 'player_traps', []) or [] if t['until'] > now]),
+    }
+    if trap and not trap['disarmed']:
+        out['trap'] = {
+            'kind': trap['kind'], 'deadly': trap['deadly'],
+            'detected': bool(player and trap_detected(player, room)),
+        }
+    return out

@@ -2267,6 +2267,13 @@ class CombatHandler:
             killed = await target.take_damage(damage, player)
             if killed:
                 await cls.handle_death(player, target)
+            else:
+                # a solid bash can knock them into the room's hazards
+                try:
+                    from environment import try_shove
+                    await try_shove(player, target, player.room)
+                except Exception:
+                    pass
         else:
             await player.send(f"{c['yellow']}You fail to bash {target.name}!{c['reset']}")
             # Failed bash can make you fall

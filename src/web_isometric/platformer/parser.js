@@ -114,6 +114,12 @@
     if ((m = line.match(/heavy blow SHATTERS (.+?)'s guard/i))) { MH.setCombat(true); bus.emit('mob.guardbreak', { name: m[1].trim(), line }); return; }
     if ((m = line.match(/(?:🛡 )?(.+?) (?:locks into a defensive guard|reads your rhythm and snaps into a guard)/i))) { MH.setCombat(true); bus.emit('mob.guardup', { name: m[1].trim(), line }); return; }
     if (/^You dart clear of the danger zone/i.test(line)) { MH.setCombat(true); bus.emit('reaction.evade', { line }); return; }
+    // environmental drama (traps, shoves, elemental terrain, door tactics):
+    // surface these lines in the message feed so nobody misses the world
+    // fighting back. (Stagger/guard lines matched above keep their own events.)
+    if (/^(?:⚠|💦|🔥|❄|⚡|💥 CRACK)/.test(line) || /barricades the|seals it\.$|disarms a hidden trap/i.test(line)) {
+      bus.emit('env.event', { line }); return;
+    }
     // declared-intent reactions (brace / sidestep / interrupt)
     if (/^You plant your feet and BRACE/i.test(line)) { MH.setCombat(true); bus.emit('reaction.brace', { line }); return; }
     if (/^You brace against the impact/i.test(line)) { MH.setCombat(true); bus.emit('reaction.brace.success', { line }); return; }

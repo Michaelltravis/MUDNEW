@@ -2200,8 +2200,17 @@ class SpellHandler:
                 # Apply spell damage
                 damage_type = spell.get('damage_type', 'magic')
                 killed = await target.take_damage(damage, caster, damage_type=damage_type)
-                
+
                 await caster.send(f"{c['bright_red']}Your spell does {damage} damage to {target.name}!{c['reset']}")
+
+                # elemental terrain interplay: fire ignites webbed rooms, frost
+                # freezes water into ice, lightning cast into water splashes
+                # everyone standing in the fight
+                try:
+                    from environment import elemental_cast
+                    await elemental_cast(caster, target, spell_name)
+                except Exception:
+                    pass
 
                 # Build arcane charges on offensive casts
                 if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'mage':

@@ -1842,6 +1842,43 @@ HELP_TOPICS = {'auction': {'category': 'command',
                               'See also: BRACE, SIDESTEP',
                'syntax': 'interrupt',
                'title': 'Interrupt'},
+ 'barricade': {'category': 'command',
+               'description': 'Brace a closed door so nothing opens it for a while.\n'
+                              '\n'
+                              'The classic escape: slam the door on your pursuers and pile\n'
+                              'everything you can find against it (~90s hold, costs 15 move).\n'
+                              'A mighty BASH can still break through.\n'
+                              '\n'
+                              'See also: SEAL, BASH <direction>',
+               'syntax': 'barricade <direction>',
+               'title': 'Barricade'},
+ 'seal': {'category': 'command',
+          'description': 'Seal a closed door with arcane sigils (casters, 20 mana).\n'
+                         '\n'
+                         'Holds ~2 minutes against anything short of a mighty bash.\n'
+                         'Mages, necromancers, clerics and paladins know the rites.\n'
+                         '\n'
+                         'See also: BARRICADE, BASH <direction>',
+          'syntax': 'seal <direction>',
+          'title': 'Seal'},
+ 'caltrops': {'category': 'command',
+              'description': 'Thief: scatter caltrops across the ground.\n'
+                             '\n'
+                             'The next hostile through here is hobbled and hurt. Lasts ~5\n'
+                             'minutes or until sprung. Prepare a fight, or cover an escape.\n'
+                             '\n'
+                             'See also: SNARE, SEARCH, DISARM',
+              'syntax': 'caltrops',
+              'title': 'Caltrops'},
+ 'snare': {'category': 'command',
+           'description': 'Ranger: rig a spring-snare across the approach.\n'
+                          '\n'
+                          'The next hostile through here is yanked off its feet and held\n'
+                          'for two rounds. Lasts ~5 minutes or until sprung.\n'
+                          '\n'
+                          'See also: CALTROPS, SEARCH, DISARM',
+           'syntax': 'snare',
+           'title': 'Snare'},
  'swing': {'category': 'command',
            'description': 'Time your attack to the combat rhythm.\n'
                           '\n'

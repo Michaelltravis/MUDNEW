@@ -879,6 +879,14 @@ async def _resolve_bruiser(mob, target, variant=None):
             await target.send(f"{c['yellow']}The impact leaves you reeling — stunned!{c['reset']}")
     if await target.take_damage(dmg, mob):
         await CombatHandler.handle_death(mob, target)
+        return
+    # full symmetry: their heavy blow can knock YOU into the room's hazards
+    try:
+        from environment import try_shove
+        if not _braced(target):
+            await try_shove(mob, target, mob.room)
+    except Exception:
+        pass
 
 
 async def _resolve_intent(mob):

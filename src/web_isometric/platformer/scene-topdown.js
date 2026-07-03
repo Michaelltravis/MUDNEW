@@ -653,6 +653,47 @@
     // Phase 1 room richness: scatter themed ground detail over the flat tile
     // grid (grass, pebbles, cracks, mossy patches) and lay soft edge-shadows
     // where the floor meets walls/obstacles, so the room reads as a real place.
+    // Environmental gameplay markers: a detected floor trap gets a pulsing ⚠
+    // you can click to DISARM; a burning room glows and rains embers.
+    syncEnvMarkers(roomData) {
+      const env = roomData && roomData.env;
+      const sig = JSON.stringify([this.layout && this.layout.vnum, env && env.trap, !!(env && env.burning)]);
+      if (sig === this._envSig) return;   // nothing changed — don't flicker
+      this._envSig = sig;
+      if (this._trapMark) { this.tweens.killTweensOf(this._trapMark); this._trapMark.destroy(); this._trapMark = null; }
+      if (env && env.trap && env.trap.detected && this.layout) {
+        const { T, FLOOR } = TD();
+        const rng = MH.mulberry32((this.layout.vnum ^ 0x7a9) >>> 0);
+        let tx = Math.floor(this.layout.W / 2), ty = Math.floor(this.layout.H / 2) + 2;
+        for (let i = 0; i < 50; i++) {
+          const x = 3 + Math.floor(rng() * (this.layout.W - 6));
+          const y = 3 + Math.floor(rng() * (this.layout.H - 6));
+          if (this.layout.grid[y * this.layout.W + x] === FLOOR) { tx = x; ty = y; break; }
+        }
+        const m = this.add.text(tx * T + T / 2, ty * T + T / 2, env.trap.deadly ? '☠' : '⚠', {
+          fontSize: '10px', resolution: 3,
+        }).setOrigin(0.5).setDepth(3).setAlpha(0.9);
+        this.tweens.add({ targets: m, alpha: 0.35, duration: 700, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        m.setInteractive({ useHandCursor: true });
+        m.on('pointerdown', () => MH.sendCommand('disarm trap', false));
+        m.on('pointerover', () => MH.bus.emit('flash', `${env.trap.deadly ? 'a LETHAL trap' : 'a trap'} — click to disarm, or lure a foe onto it`));
+        this._trapMark = m;
+      }
+      const burning = !!(env && env.burning);
+      if (burning && !this._burnFx) {
+        const wash = this.add.rectangle(0, 0, this.pxW, this.pxH, 0xff4a20, 0.10).setOrigin(0, 0).setDepth(33);
+        const emb = this.add.particles(0, 0, 'px_white', {
+          x: { min: 0, max: this.pxW }, y: this.pxH + 4, tint: [0xff9a4a, 0xff5a2a, 0xffd080],
+          speedY: { min: -44, max: -18 }, speedX: { min: -6, max: 6 },
+          scale: { start: 0.4, end: 0 }, alpha: { start: 0.9, end: 0 },
+          lifespan: 2200, frequency: 55, blendMode: 'ADD',
+        }).setDepth(34);
+        this._burnFx = [wash, emb];
+      } else if (!burning && this._burnFx) {
+        this._burnFx.forEach(o => o.destroy());
+        this._burnFx = null;
+      }
+    }
     // Walls stop being flat squares: wall-like blocks with open ground to the
     // south get a shaded FRONT FACE with a lit lip (classic top-down height),
     // every block gets a sunlit top edge and a whisper of side shading.
@@ -3561,6 +3602,13 @@
       this.syncWornAura(payload.player);
       this.syncPlayerDoll(payload.player);
       this.syncMountArt(payload.player);
+      // elemental terrain flipped while standing here (a frost spell froze
+      // the stream): rebuild so the ice sheet appears underfoot
+      if (this.layout && roomData && roomData.env
+          && !!roomData.env.frozen !== !!this.layout.icy && this.lastVnum === player.vnum) {
+        this.buildRoom(MH.generateRoomTopDown(roomData), null);
+      }
+      this.syncEnvMarkers(roomData);
       this.detectRoomChanges(roomData);
     }
 
@@ -3646,6 +3694,7 @@
         if (mob.fighting && !this.target) { this.target = ent; MH.bus.emit('target.set', ent.data); }
       });
       this.syncIntentBanners(payload);
+      if (payload.env) this.syncEnvMarkers({ env: payload.env });   // burning/trap state per round
       // Reconcile: a mob we were fighting (or had targeted) that has vanished
       // from the live room payload has died/left — play the death beat and
       // remove it so its sprite + the target frame don't linger with stale HP.

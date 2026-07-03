@@ -977,12 +977,21 @@ class World:
         # carries the wind-up with a full round left to react. The intent
         # resolves next round in mob_ai_tick.
         from mob_ai import declare_intents
+        from environment import check_player_traps, tick as env_tick
         for npc in list(self.npcs):
             if npc.is_fighting and npc.fighting is not None:
                 try:
+                    # a fighting mob can stumble into a player-laid trap
+                    if getattr(npc.room, 'player_traps', None) and __import__('random').random() < 0.30:
+                        await check_player_traps(npc, npc.room)
                     await declare_intents(npc)
                 except Exception as e:
                     logger.debug(f"declare_intents failed for {npc.name}: {e}")
+        # burning rooms cook everyone inside
+        try:
+            await env_tick(self)
+        except Exception as e:
+            logger.debug(f"environment tick failed: {e}")
 
         # Process player combat
         for player in list(self.players.values()):
