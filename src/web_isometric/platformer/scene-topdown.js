@@ -457,13 +457,30 @@
       const useKit = !!(kit && kitTerrain && kit.hasTerrain(kitTerrain));
       this.kitTiles = [];
 
+      // Painterly ground (Phase 1 of the graphics overhaul): ONE soft-brushed
+      // painting per room replaces the per-tile floor grid — kills the
+      // repeating-tile look at the root. Walls/water/props still layer on top.
+      let painted = null;
+      if (MH.painter && MH.painter.enabled) {
+        try { painted = MH.painter.paint(this, layout, th); } catch (e) { console.warn('painter failed', e); }
+      }
+      if (painted) {
+        if (this._lastPaintKey && this._lastPaintKey !== painted && this.textures.exists(this._lastPaintKey)) {
+          this.textures.remove(this._lastPaintKey);   // free the previous room's canvas
+        }
+        this._lastPaintKey = painted;
+        const img = this.add.image(0, 0, painted).setOrigin(0, 0).setDisplaySize(this.pxW, this.pxH);
+        this.bgLayer.add(img);
+        this.roomPainting = img;
+      }
+
       // floor everywhere, then border/obstacles/water from the grid
       const vrng = MH.mulberry32(layout.vnum ^ 0xf10c);
       const Wd = layout.W, Hd = layout.H;
       for (let y = 0; y < Hd; y++) {
         for (let x = 0; x < Wd; x++) {
           const cell = layout.grid[y * Wd + x];
-          if (useKit) {
+          if (useKit && !painted) {
             // base floor on every cell from the variants atlas
             const floorImg = this.add.image(x * T, y * T, 'mh_variants', kit.floorVariantFrame(kitTerrain))
               .setOrigin(0, 0).setDisplaySize(T, T);
@@ -499,19 +516,21 @@
             }
             continue;
           }
-          let img;
-          if (zk) {
-            // seeded variant mix: mostly plain, some detailed; checker themes alternate dark tiles
-            const r = vrng();
-            const v = checker ? 0 : (r < 0.55 ? 0 : r < 0.8 ? 1 : 2);
-            img = this.add.image(x * T, y * T, `zt_${zk}_floor${v}`).setOrigin(0, 0).setDisplaySize(T, T);
-            if (checker && (x + y) % 2) img.setTint(0x3c3a48);
-            else if (!checker && (x + y) % 2) img.setTint(0xf6f6f6);
-          } else {
-            img = this.add.image(x * T, y * T, `td_${th}_floor`).setOrigin(0, 0).setDisplaySize(T, T);
-            if ((x + y) % 2) img.setTint(0xf4f4f4);   // subtle checker
+          if (!painted) {
+            let img;
+            if (zk) {
+              // seeded variant mix: mostly plain, some detailed; checker themes alternate dark tiles
+              const r = vrng();
+              const v = checker ? 0 : (r < 0.55 ? 0 : r < 0.8 ? 1 : 2);
+              img = this.add.image(x * T, y * T, `zt_${zk}_floor${v}`).setOrigin(0, 0).setDisplaySize(T, T);
+              if (checker && (x + y) % 2) img.setTint(0x3c3a48);
+              else if (!checker && (x + y) % 2) img.setTint(0xf6f6f6);
+            } else {
+              img = this.add.image(x * T, y * T, `td_${th}_floor`).setOrigin(0, 0).setDisplaySize(T, T);
+              if ((x + y) % 2) img.setTint(0xf4f4f4);   // subtle checker
+            }
+            this.bgLayer.add(img);
           }
-          this.bgLayer.add(img);
           if (cell === BLOCK) {
             const isBorder = x === 0 || y === 0 || x === layout.W - 1 || y === layout.H - 1;
             const ob = layout.obstacles && layout.obstacles.find(o =>
@@ -522,7 +541,9 @@
             const blockImg = this.add.image(x * T, y * T, key).setOrigin(0, 0).setDisplaySize(T, T).setDepth(1);
             this.tileLayer.add(blockImg);
           } else if (cell === WATER) {
-            const spr = this.add.sprite(x * T, y * T, 'sm_water', '0').setOrigin(0, 0).setDisplaySize(T, T).setDepth(1).setAlpha(0.95);
+            // over a painted room the water body is already in the painting —
+            // the animated sprite becomes a translucent shimmer on top
+            const spr = this.add.sprite(x * T, y * T, 'sm_water', '0').setOrigin(0, 0).setDisplaySize(T, T).setDepth(1).setAlpha(painted ? 0.4 : 0.95);
             spr.play('sm_water_anim');
             const liquid = (zt && zt.water) || (MH.THEMES[th] && MH.THEMES[th].liquid) || '#3a6a9a';
             spr.setTint(Phaser.Display.Color.HexStringToColor(liquid).color | 0x404040);
@@ -531,7 +552,7 @@
         }
       }
       // day/night grade on the kit tiles (world-layer only)
-      if (useKit) this.applyKitTint();
+      if (useKit && !painted) this.applyKitTint();
       // scatter ground detail + ground the walls with edge shadows
       this.decorateGround(layout, th);
       this.decorateWalls(layout, th);
@@ -567,10 +588,13 @@
           if (!vertical) img.setRotation(Math.PI / 2);
           this.bgLayer.add(img);
         };
-        if (layout.gaps.north) for (let y = 0; y <= midYt; y++) lay(midXt, y, true);
-        if (layout.gaps.south) for (let y = midYt; y < layout.H; y++) lay(midXt, y, true);
-        if (layout.gaps.west) for (let x = 0; x <= midXt; x++) lay(x, midYt, false);
-        if (layout.gaps.east) for (let x = midXt; x < layout.W; x++) lay(x, midYt, false);
+        // painted rooms already carry a soft worn path in the ground painting
+        if (!painted) {
+          if (layout.gaps.north) for (let y = 0; y <= midYt; y++) lay(midXt, y, true);
+          if (layout.gaps.south) for (let y = midYt; y < layout.H; y++) lay(midXt, y, true);
+          if (layout.gaps.west) for (let x = 0; x <= midXt; x++) lay(x, midYt, false);
+          if (layout.gaps.east) for (let x = midXt; x < layout.W; x++) lay(x, midYt, false);
+        }
         // gateway pillars where a road leaves for another zone
         if (this.textures.exists('zt_prop_pillar')) {
           const flank = (x1, y1, x2, y2) => {
