@@ -800,6 +800,18 @@
     }
   });
 
+  // One-time contextual teaching: the first time a new mechanic appears on
+  // screen, say ONE sentence about it (then never again — stored per browser).
+  function teach(key, msg) {
+    try {
+      if (lsGet('mh_tip_' + key)) return;
+      lsSet('mh_tip_' + key, '1');
+    } catch (_) { return; }
+    flash(msg);
+    if (typeof clogLineRef === 'function') clogLineRef(`💡 ${msg}`, 'info');
+  }
+  let clogLineRef = null;   // bound once the feed exists
+
   // ---- flash line ----
   let flashTimer = null;
   function flash(text) {
@@ -3944,6 +3956,7 @@
       // persistent, scrollable combat log keeping a long history; auto-scrolls
       // to the newest line unless you've scrolled up to read back
       const clogLine = (text, cls) => {
+        clogLineRef = clogLine;
         const cl = els.combatLog, lines = els.combatLogLines;
         const nearBottom = cl.scrollHeight - cl.scrollTop - cl.clientHeight < 60;
         const div = document.createElement('div');
@@ -3971,10 +3984,29 @@
       MH.bus.on('combat.hit', e => clogLine(e.dmg != null ? `You hit ${e.target} for <b>${e.dmg}</b>` : `You hit ${e.target}`, 'you'));
       MH.bus.on('reaction.swing.perfect', () => clogLine('★ PERFECT STRIKE!', 'you'));
       MH.bus.on('mob.staggered', e => clogLine(`💥 ${e.name} is <b>STAGGERED</b> — strike now!`, 'info'));
-      MH.bus.on('mob.guardup', e => clogLine(`🛡 ${e.name} raises a guard — bash or kick to break it`, 'info'));
+      MH.bus.on('mob.guardup', e => {
+        clogLine(`🛡 ${e.name} raises a guard — bash or kick to break it`, 'info');
+        teach('guard', 'A 🛡 GUARD blunts your weapon swings — abilities pierce it, and a bash or kick SHATTERS it.');
+      });
       MH.bus.on('mob.guardbreak', e => clogLine(`💥 ${e.name}'s guard is BROKEN`, 'you'));
       MH.bus.on('reaction.evade', () => clogLine('You dart clear of the danger zone!', 'you'));
-      MH.bus.on('env.event', e => clogLine(String(e.line).replace(/</g, '&lt;'), 'info'));
+      MH.bus.on('env.event', e => {
+        const line = String(e.line);
+        clogLine(line.replace(/</g, '&lt;'), 'info');
+        // the environment has a voice: thuds, snaps, shatters, whooshes
+        try {
+          if (MH.fx && MH.fx.tone) {
+            if (/BOOM/.test(line)) MH.fx.tone({ f: 90, f2: 42, type: 'sine', dur: 0.22, vol: 0.09 });
+            else if (/💥 CRACK/.test(line)) MH.fx.tone({ f: 240, f2: 55, type: 'square', dur: 0.2, vol: 0.08 });
+            else if (/SHUNK|snare (?:whips|snaps)|caltrops/.test(line)) MH.fx.tone({ f: 340, f2: 90, type: 'square', dur: 0.1, vol: 0.07 });
+            else if (/noxious gas/.test(line)) MH.fx.tone({ f: 180, f2: 320, type: 'sawtooth', dur: 0.3, vol: 0.04 });
+            else if (/❄💥|SHATTERS under/.test(line)) MH.fx.tone({ f: 1400, f2: 360, type: 'triangle', dur: 0.24, vol: 0.06 });
+            else if (/BURNING|webs catch/.test(line)) MH.fx.tone({ f: 160, f2: 620, type: 'sawtooth', dur: 0.3, vol: 0.05 });
+            else if (/frozen into a sheet|crackles and stills/.test(line)) MH.fx.tone({ f: 900, f2: 1500, type: 'sine', dur: 0.3, vol: 0.04 });
+            else if (/pool LIGHTS UP/.test(line)) MH.fx.tone({ f: 1000, f2: 120, type: 'sawtooth', dur: 0.18, vol: 0.06 });
+          }
+        } catch (_) {}
+      });
       MH.bus.on('combat.taken', e => clogLine(e && e.dmg != null ? `${e.from || 'They'} hit YOU for <b>${e.dmg}</b>` : 'They hit YOU', 'them'));
       MH.bus.on('combat.miss', e => clogLine(`You miss ${e.target}`, 'miss'));
       MH.bus.on('combat.dodged', () => clogLine('They miss you', 'miss'));
@@ -4293,6 +4325,10 @@
       MH.bus.on('combat.update', payload => {
         MH.combat.noteRound();
         if (payload && payload.player) MH.combat.syncServerCooldowns(payload.player.cooldowns);
+        teach('sweetspot', 'See the GOLD window on the round bar? Press F inside it to land a PERFECT strike.');
+        if ((payload.mobs || []).some(m => m.poise && m.poise.cur > 0)) {
+          teach('poise', 'The amber pips under an enemy are its BALANCE — fill them and it STAGGERS, wide open.');
+        }
         els.roundBar.classList.add('show');
         els.roundBar.classList.remove('tick', 'perfect');
         void els.roundBar.offsetWidth;
@@ -4352,6 +4388,7 @@
           chip.classList.toggle('off', ready[k] === false);
         });
         rstrip.classList.add('show');
+        teach('windup', 'That red bar is an enemy WIND-UP — react with Q brace, E sidestep, or X interrupt (or just keep hitting).');
       };
       MH.bus.on('combat.update', updateIntentUI);
       MH.bus.on('combat.state', on => {
@@ -4367,12 +4404,20 @@
       let lastEnv = null;
       MH.bus.on('map', p => { if (p.current_room && p.current_room.env) lastEnv = p.current_room.env; });
       MH.bus.on('combat.update', p => { if (p.env) lastEnv = p.env; });
+      // the packing column for all center chrome (see #center-stack CSS)
+      const centerStack = document.createElement('div');
+      centerStack.id = 'center-stack';
+      document.body.appendChild(centerStack);
+      window.__centerStack = centerStack;
       const hazEl = document.createElement('div');
       hazEl.id = 'room-hazards';
-      document.body.appendChild(hazEl);
+      centerStack.appendChild(hazEl);
       const envEl = document.createElement('div');
       envEl.id = 'env-strip';
-      document.body.appendChild(envEl);
+      centerStack.appendChild(envEl);
+      if (els.momentumChip) centerStack.appendChild(els.momentumChip);
+      const spEl = document.getElementById('spender-menu');
+      if (spEl) centerStack.appendChild(spEl);
       window.__envChips = null;
       const CASTERS = ['mage', 'necromancer', 'cleric', 'paladin'];
       const updateEnvUI = () => {
@@ -4387,9 +4432,13 @@
           if (env.webbed) hz += `<span class="hz" title="thick webs — highly flammable">🕸</span>`;
           if (env.brambles) hz += `<span class="hz" title="thorns rake everyone who fights here">🌿</span>`;
           if (env.ledge) hz += `<span class="hz" title="a drop — heavy blows can send someone over">🪨</span>`;
-          if (env.trap && env.trap.detected) hz += `<span class="hz warn" title="detected ${env.trap.kind} trap">${env.trap.deadly ? '☠' : '⚠'} TRAP</span>`;
+          if (env.trap && env.trap.detected) {
+            hz += `<span class="hz warn" title="detected ${env.trap.kind} trap">${env.trap.deadly ? '☠' : '⚠'} TRAP</span>`;
+            teach('trap', 'Trap spotted! Press U (or click the ⚠) to disarm it — or leave it armed and lure a foe onto it.');
+          }
           if (env.ptraps) hz += `<span class="hz own" title="your traps are set here">🚧×${env.ptraps}</span>`;
         }
+        if (hz) teach('hazards', 'Those chips under the room name are HAZARDS — water, fire, webs, thorns. Fights can use them.');
         hazEl.innerHTML = hz;
         hazEl.classList.toggle('show', !!hz);
         // context action chips
@@ -4567,7 +4616,7 @@
         if (!spenderEl) {
           spenderEl = document.createElement('div');
           spenderEl.id = 'spender-menu';
-          document.body.appendChild(spenderEl);
+          (window.__centerStack || document.body).appendChild(spenderEl);
         }
         const cls = String(p.char_class || '').toLowerCase();
         const r = p.resource;

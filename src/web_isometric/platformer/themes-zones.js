@@ -194,43 +194,87 @@
 
   // --- border / obstacle painters ---
   function paintBorder(ctx, S, t, kind) {
-    ctx.fillStyle = shade(t.borderCol, -14);
-    ctx.fillRect(0, 0, S, S);
+    // Painterly pass: ORGANIC kinds (trees, rocks, dunes...) no longer sit on
+    // an opaque colored square — that square is what stamped the tile grid
+    // back onto the painted ground. They get a soft ground shadow and layered,
+    // light-shaded forms instead. Architectural kinds keep their solid base.
+    const ORGANIC = ['tree', 'pine', 'deadtree', 'hedge', 'rock', 'dune'].includes(kind);
+    if (!ORGANIC) {
+      ctx.fillStyle = shade(t.borderCol, -14);
+      ctx.fillRect(0, 0, S, S);
+    } else {
+      const sh = ctx.createRadialGradient(S / 2, S * 0.86, 1, S / 2, S * 0.86, S * 0.5);
+      sh.addColorStop(0, 'rgba(8,10,14,0.38)');
+      sh.addColorStop(1, 'rgba(8,10,14,0)');
+      ctx.fillStyle = sh;
+      ctx.beginPath(); ctx.ellipse(S / 2, S * 0.86, S * 0.46, S * 0.18, 0, 0, 7); ctx.fill();
+    }
     const lighten = (c, a) => { ctx.fillStyle = `rgba(255,255,255,${a})`; };
     if (kind === 'tree' || kind === 'pine' || kind === 'deadtree' || kind === 'hedge') {
-      const g = ctx.createRadialGradient(S * 0.38, S * 0.3, 3, S / 2, S / 2, S * 0.62);
-      if (kind === 'deadtree') { g.addColorStop(0, '#4e5a4a'); g.addColorStop(1, '#222e24'); }
-      else if (kind === 'pine') { g.addColorStop(0, '#5a8a6e'); g.addColorStop(1, '#22402e'); }
-      else { g.addColorStop(0, shade(t.borderCol, 70)); g.addColorStop(1, t.borderCol); }
-      ctx.fillStyle = g;
+      const hi = kind === 'deadtree' ? '#5a6656' : kind === 'pine' ? '#679a7c' : shade(t.borderCol, 80);
+      const lo = kind === 'deadtree' ? '#20291f' : kind === 'pine' ? '#1e3a2a' : shade(t.borderCol, -22);
       if (kind === 'pine') {
-        ctx.beginPath(); ctx.moveTo(S / 2, S * 0.06); ctx.lineTo(S * 0.88, S * 0.9); ctx.lineTo(S * 0.12, S * 0.9); ctx.closePath(); ctx.fill();
-        ctx.fillStyle = 'rgba(255,255,255,0.5)';
-        ctx.beginPath(); ctx.moveTo(S / 2, S * 0.06); ctx.lineTo(S * 0.66, S * 0.4); ctx.lineTo(S * 0.34, S * 0.4); ctx.closePath(); ctx.fill();
+        const g = ctx.createLinearGradient(0, 0, S * 0.6, S);
+        g.addColorStop(0, hi); g.addColorStop(1, lo);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.moveTo(S / 2, S * 0.04); ctx.lineTo(S * 0.88, S * 0.88); ctx.lineTo(S * 0.12, S * 0.88); ctx.closePath(); ctx.fill();
+        ctx.fillStyle = 'rgba(255,255,255,0.22)';
+        ctx.beginPath(); ctx.moveTo(S / 2, S * 0.04); ctx.lineTo(S * 0.62, S * 0.42); ctx.lineTo(S * 0.38, S * 0.42); ctx.closePath(); ctx.fill();
       } else if (kind === 'hedge') {
-        rr(ctx, S * 0.06, S * 0.14, S * 0.88, S * 0.76, S * 0.2); ctx.fill();
+        const g = ctx.createLinearGradient(0, 0, 0, S);
+        g.addColorStop(0, hi); g.addColorStop(1, lo);
+        ctx.fillStyle = g;
+        rr(ctx, S * 0.06, S * 0.14, S * 0.88, S * 0.72, S * 0.24); ctx.fill();
         ctx.fillStyle = 'rgba(255,255,255,0.10)';
-        ctx.beginPath(); ctx.arc(S * 0.32, S * 0.32, S * 0.12, 0, 7); ctx.arc(S * 0.62, S * 0.28, S * 0.10, 0, 7); ctx.fill();
+        ctx.beginPath(); ctx.arc(S * 0.32, S * 0.3, S * 0.12, 0, 7); ctx.arc(S * 0.62, S * 0.26, S * 0.10, 0, 7); ctx.fill();
       } else {
-        ctx.beginPath(); ctx.arc(S / 2, S * 0.46, S * 0.40, 0, 7); ctx.fill();
-        ctx.fillStyle = 'rgba(255,255,255,0.12)';
-        ctx.beginPath(); ctx.arc(S * 0.38, S * 0.32, S * 0.14, 0, 7); ctx.fill();
+        // trunk peeking beneath the canopy
+        ctx.fillStyle = kind === 'deadtree' ? '#2c2620' : '#4a3a28';
+        ctx.fillRect(S * 0.46, S * 0.6, S * 0.09, S * 0.28);
+        // layered canopy lobes, lit from the upper-left
+        const lobe = (x, y, r, c0, c1) => {
+          const g = ctx.createRadialGradient(x - r * 0.35, y - r * 0.4, r * 0.15, x, y, r);
+          g.addColorStop(0, c0); g.addColorStop(1, c1);
+          ctx.fillStyle = g;
+          ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
+        };
+        lobe(S * 0.34, S * 0.44, S * 0.26, hi, lo);
+        lobe(S * 0.66, S * 0.42, S * 0.24, hi, lo);
+        lobe(S * 0.5, S * 0.3, S * 0.26, shade(t.borderCol, 95), t.borderCol);
+        // leaf-cluster dabs
+        ctx.fillStyle = 'rgba(255,255,255,0.10)';
+        ctx.beginPath(); ctx.arc(S * 0.42, S * 0.24, S * 0.07, 0, 7); ctx.arc(S * 0.58, S * 0.34, S * 0.05, 0, 7); ctx.fill();
         if (kind === 'deadtree') {
           ctx.strokeStyle = '#1a241c'; ctx.lineWidth = 1.6 * SS;
           ctx.beginPath(); ctx.moveTo(S / 2, S * 0.3); ctx.lineTo(S / 2, S * 0.86); ctx.moveTo(S / 2, S * 0.5); ctx.lineTo(S * 0.7, S * 0.36); ctx.stroke();
         }
       }
     } else if (kind === 'rock' || kind === 'dune' || kind === 'ice') {
-      const g = ctx.createLinearGradient(0, 0, 0, S);
-      if (kind === 'ice') { g.addColorStop(0, '#dceefc'); g.addColorStop(1, '#7e9cc0'); }
-      else if (kind === 'dune') { g.addColorStop(0, shade(t.floor, 26)); g.addColorStop(1, shade(t.floor, -30)); }
-      else { g.addColorStop(0, shade(t.borderCol, 56)); g.addColorStop(1, shade(t.borderCol, -8)); }
-      ctx.fillStyle = g;
-      rr(ctx, S * 0.08, S * 0.12, S * 0.84, S * 0.78, kind === 'dune' ? S * 0.4 : S * 0.2);
-      ctx.fill();
-      ctx.fillStyle = 'rgba(255,255,255,0.12)';
-      rr(ctx, S * 0.18, S * 0.2, S * 0.34, S * 0.18, S * 0.09); ctx.fill();
-      if (kind === 'ice') { ctx.strokeStyle = 'rgba(255,255,255,0.4)'; ctx.lineWidth = SS; ctx.beginPath(); ctx.moveTo(S * 0.3, S * 0.7); ctx.lineTo(S * 0.5, S * 0.4); ctx.lineTo(S * 0.62, S * 0.6); ctx.stroke(); }
+      if (kind === 'rock' || kind === 'dune') {
+        // two soft-shaded lumps instead of one square slab
+        const c0 = kind === 'dune' ? shade(t.floor, 30) : shade(t.borderCol, 60);
+        const c1 = kind === 'dune' ? shade(t.floor, -26) : shade(t.borderCol, -14);
+        const lump = (x, y, rx, ry) => {
+          const g = ctx.createRadialGradient(x - rx * 0.3, y - ry * 0.5, 2, x, y, rx * 1.15);
+          g.addColorStop(0, c0); g.addColorStop(1, c1);
+          ctx.fillStyle = g;
+          ctx.beginPath(); ctx.ellipse(x, y, rx, ry, 0, 0, 7); ctx.fill();
+        };
+        lump(S * 0.38, S * 0.58, S * 0.3, S * 0.26);
+        lump(S * 0.66, S * 0.62, S * 0.24, S * 0.2);
+        ctx.fillStyle = 'rgba(255,255,255,0.14)';
+        ctx.beginPath(); ctx.ellipse(S * 0.32, S * 0.46, S * 0.1, S * 0.06, -0.4, 0, 7); ctx.fill();
+      } else {
+        const g = ctx.createLinearGradient(0, 0, 0, S);
+        g.addColorStop(0, '#dceefc'); g.addColorStop(1, '#7e9cc0');
+        ctx.fillStyle = g;
+        rr(ctx, S * 0.08, S * 0.12, S * 0.84, S * 0.78, S * 0.2);
+        ctx.fill();
+        ctx.fillStyle = 'rgba(255,255,255,0.12)';
+        rr(ctx, S * 0.18, S * 0.2, S * 0.34, S * 0.18, S * 0.09); ctx.fill();
+        ctx.strokeStyle = 'rgba(255,255,255,0.4)'; ctx.lineWidth = SS;
+        ctx.beginPath(); ctx.moveTo(S * 0.3, S * 0.7); ctx.lineTo(S * 0.5, S * 0.4); ctx.lineTo(S * 0.62, S * 0.6); ctx.stroke();
+      }
     } else if (kind === 'bone') {
       const g = ctx.createLinearGradient(0, 0, 0, S);
       g.addColorStop(0, '#b8b4a4'); g.addColorStop(1, '#6e6a5c');
@@ -663,16 +707,37 @@
           paintFloor(ctx, S, t, t.floorKind, v);
           scene.textures.addCanvas(`zt_${key}_floor${v}`, c);
         }
+        const organicEdge = (ctx2) => {
+          // organic sprites must keep transparent rims — stray edge pixels
+          // read as a tile grid over the painted ground
+          if (!['tree', 'pine', 'deadtree', 'hedge', 'rock', 'dune'].includes(t.borderKind)) return;
+          ctx2.clearRect(0, 0, S, 3); ctx2.clearRect(0, 0, 3, S);
+          ctx2.clearRect(S - 3, 0, 3, S); ctx2.clearRect(0, S - 3, S, 3);
+        };
         {
           const [c, ctx] = canvasOf(S, S);
           paintBorder(ctx, S, t, t.borderKind);
+          organicEdge(ctx);
           scene.textures.addCanvas(`zt_${key}_border`, c);
         }
         // obstacles reuse the border painter with a small variation tint
+        // (organic kinds keep transparent corners — a full-square wash would
+        // stamp the tile grid back onto the painted ground)
+        const organicKind = ['tree', 'pine', 'deadtree', 'hedge', 'rock', 'dune'].includes(t.borderKind);
         for (let i = 0; i < 2; i++) {
           const [c, ctx] = canvasOf(S, S);
           paintBorder(ctx, S, t, t.borderKind);
-          if (i === 1) { ctx.fillStyle = 'rgba(0,0,0,0.12)'; ctx.fillRect(0, 0, S, S); }
+          if (i === 1) {
+            ctx.fillStyle = 'rgba(0,0,0,0.12)';
+            if (organicKind) {
+              ctx.globalCompositeOperation = 'source-atop';   // darken the art only
+              ctx.fillRect(0, 0, S, S);
+              ctx.globalCompositeOperation = 'source-over';
+            } else {
+              ctx.fillRect(0, 0, S, S);
+            }
+          }
+          organicEdge(ctx);
           scene.textures.addCanvas(`zt_${key}_obst${i}`, c);
         }
       }

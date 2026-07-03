@@ -321,7 +321,7 @@ class Config:
             'save_progression': 'thief',
             'skills': ['backstab', 'sneak', 'hide', 'steal', 'pick_lock', 'detect_traps',
                       'second_attack', 'dodge', 'evasion', 'pocket_sand', 'low_blow',
-                      'rigged_dice', 'jackpot', 'circle', 'trip'],
+                      'rigged_dice', 'jackpot', 'circle', 'trip', 'caltrops'],
             'spells': [],
             # Thieves use combo points: backstab/attacks build points, finishers spend them
             # Finishers: eviscerate (1+), kidney_shot (4+), slice_dice (3+)
@@ -338,7 +338,8 @@ class Config:
             'thac0_progression': 'fast',
             'save_progression': 'warrior',
             'skills': ['track', 'sneak', 'hide', 'second_attack', 'dual_wield', 'dodge', 'scan',
-                      'truesight_shot', 'wildbond_strike', 'loosing_storm', 'quarry_mark', 'tame'],
+                      'truesight_shot', 'wildbond_strike', 'loosing_storm', 'quarry_mark', 'tame',
+                      'snare'],
             'spells': ['cure_light', 'detect_magic', 'faerie_fire', 'call_lightning',
                       'barkskin', 'entangle', 'briskness'],
             # Rangers can tame animal companions: wolf, bear, hawk, cat, boar

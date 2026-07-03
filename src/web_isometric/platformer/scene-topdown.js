@@ -299,14 +299,18 @@
       MH.bus.on('reaction.brace.success', () => this.fxBrace(true));
       MH.bus.on('reaction.sidestep.success', e => this.fxSidestep());
       MH.bus.on('reaction.interrupt.success', e => this.fxInterrupt(e.target));
-      // rhythm combat: perfect strikes, stagger bursts, guard breaks, evades
+      // rhythm combat: perfect strikes, stagger bursts, guard breaks, evades —
+      // each with its own voice so your ears learn the fight too
+      const tone = o => { try { if (MH.fx && MH.fx.tone) MH.fx.tone(o); } catch (_) {} };
       MH.bus.on('reaction.swing.ready', () => {
         this.flashFill(this.playerVisual(), 0xffd44a, 130);
         this.damageNumber(this.player.x, this.player.y - 24, 'READY!', '#ffd44a', 11);
+        tone({ f: 620, f2: 930, type: 'triangle', dur: 0.12, vol: 0.05 });
       });
       MH.bus.on('reaction.swing.perfect', () => {
         this.freezeFrame(80);
         this.spark(this.player.x, this.player.y - 10, 0xffd44a);
+        tone({ f: 880, f2: 1320, type: 'triangle', dur: 0.16, vol: 0.06 });
       });
       MH.bus.on('mob.staggered', e => this.fxStagger(e.name));
       MH.bus.on('mob.guardbreak', e => {
@@ -315,6 +319,7 @@
           this.spark(ent.sprite.x, ent.sprite.y - 8, 0x9adcff);
           this.damageNumber(ent.sprite.x, ent.sprite.y - 20, 'GUARD BROKEN', '#9adcff', 11);
         }
+        tone({ f: 1200, f2: 280, type: 'square', dur: 0.14, vol: 0.05 });
       });
       MH.bus.on('reaction.evade', () => this.fxSidestep());
       this.input.keyboard.on('keydown-TAB', e => { e.preventDefault(); this.cycleTarget(); });
@@ -725,12 +730,16 @@
       const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? BLOCK : grid[y * W + x];
       const wallish = (zt && ['wall', 'column'].includes(zt.borderKind))
         || ['city', 'inside', 'dungeon', 'underground'].includes(th);
+      // organic borders (trees, rocks, dunes) carry their own painterly
+      // shading in the sprite art — edge strips would just re-stamp the tile
+      // grid onto them, so only architecture gets the depth treatment
+      if (!wallish) return;
       const g = this.add.graphics().setDepth(1.25);
       for (let y = 0; y < H; y++) {
         for (let x = 0; x < W; x++) {
           if (at(x, y) !== BLOCK) continue;
           const px = x * T, py = y * T;
-          if (wallish && at(x, y + 1) !== BLOCK) {
+          if (at(x, y + 1) !== BLOCK) {
             g.fillStyle(0x0a0c14, 0.30); g.fillRect(px, py + T * 0.55, T, T * 0.45);
             g.fillStyle(0x0a0c14, 0.20); g.fillRect(px, py + T * 0.38, T, T * 0.2);
             g.fillStyle(0xfff2d8, 0.15); g.fillRect(px, py + T * 0.36, T, 1.2);
