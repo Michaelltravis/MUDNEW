@@ -674,11 +674,16 @@
   #reaction-strip .rchip.off { opacity: 0.45; filter: grayscale(1); pointer-events: none; }
 
   /* ---- round timer (next exchange) ---- */
-  #round-bar { height: 4px; background: #0a0b10; border-radius: 2px; margin-top: 5px; overflow: hidden; display: none; }
+  #round-bar { height: 6px; background: #0a0b10; border-radius: 2px; margin-top: 5px; overflow: hidden; display: none; position: relative; }
   #round-bar.show { display: block; }
   #round-bar .fill { height: 100%; width: 0%; background: linear-gradient(90deg, #b33, #ff8a6a); }
   #round-bar.tick .fill { animation: roundfill 4000ms linear forwards; }
   @keyframes roundfill { from { width: 0%; } to { width: 100%; } }
+  /* the golden SWEET SPOT: press attack while the fill is inside it for a
+     perfect strike (cmd_swing) */
+  #round-bar .sweet { position: absolute; top: 0; left: 65%; width: 35%; height: 100%;
+    background: rgba(255,212,74,0.30); border-left: 1px solid rgba(255,212,74,0.85); pointer-events: none; }
+  #round-bar.perfect .fill { background: linear-gradient(90deg, #ffd44a, #fff0a0); }
 
   /* ---- loot toast ---- */
   #loot-toast {
@@ -2106,7 +2111,7 @@
   <div id="target-frame">
     <div class="who" id="target-name"></div>
     <div class="bar hp"><div id="target-hp-ghost"></div><i id="target-hp"></i><b id="target-hp-txt"></b></div>
-    <div id="round-bar"><div class="fill"></div></div>
+    <div id="round-bar"><div class="fill"></div><div class="sweet"></div></div>
   </div>
 
   <div id="vignette"></div>

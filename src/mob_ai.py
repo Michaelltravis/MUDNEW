@@ -34,6 +34,10 @@ PACK_KEYWORDS = {'wolf', 'wolves', 'rat', 'rats', 'goblin', 'kobold', 'gnoll',
                  'orc', 'hyena', 'jackal', 'bandit', 'brigand', 'pirate'}
 COWARD_KEYWORDS = {'rabbit', 'deer', 'squirrel', 'chicken', 'fox', 'cat',
                    'mouse', 'fawn', 'sparrow', 'villager', 'peasant', 'beggar'}
+GUARDED_KEYWORDS = {'guard', 'cityguard', 'knight', 'soldier', 'sentinel', 'sentry',
+                    'legionnaire', 'defender', 'golem', 'turtle', 'crab', 'warden'}
+BIG_KEYWORDS = {'ogre', 'troll', 'giant', 'bear', 'golem', 'minotaur', 'yeti',
+                'cyclops', 'behemoth', 'ettin', 'juggernaut'}
 
 
 def _has_flag(mob, flag: str) -> bool:
@@ -94,6 +98,11 @@ def classify_mob(mob) -> set:
             or 'poison' in flags \
             or any(w in name for w in ('dragon', 'troll', 'spider', 'snake')):
         roles.add('legacy_special')
+
+    # Disciplined/armored fighters periodically raise a GUARD that turns
+    # blades aside — broken by a bash or kick (guarded-mob counterplay)
+    if any(w in all_words for w in GUARDED_KEYWORDS) or 'shield' in name:
+        roles.add('guarded')
 
     # Infer from keywords / name
     if not roles & {'caster'}:
@@ -696,13 +705,20 @@ def _choose_legacy_intent(mob, target):
 
 
 def _choose_bruiser_intent(mob, target):
-    """Role-less mobs wind up a crushing blow every few rounds."""
+    """Role-less mobs wind up a crushing blow every few rounds; hulking brutes
+    sweep the whole area instead — the client paints a danger zone you can
+    physically walk out of (cmd_evade)."""
     now = time.time()
     if now < mob.ai_state.get('heavy_cd', 0):
         return None
     if random.randint(1, 100) > 40:
         return None
     mob.ai_state['heavy_cd'] = now + random.randint(12, 16)   # every 3-4 rounds
+    big = bool(set(_name_lower(mob).split()) & BIG_KEYWORDS)
+    if big and random.randint(1, 100) <= 60:
+        return {'kind': 'aoe', 'label': 'Sweeping Blow', 'interruptible': False,
+                'ability': ('bruiser', 'sweep'),
+                'telegraph': f'{mob.name} winds up a great SWEEPING blow — get clear!'}
     return {'kind': 'heavy', 'label': 'Crushing Blow', 'interruptible': False,
             'ability': ('bruiser', None),
             'telegraph': f'{mob.name} plants its feet and rears back for a crushing blow!'}
@@ -722,6 +738,8 @@ async def declare_intents(mob):
         mob.ai_state = {}
     if _intent_exempt(mob, target):
         return
+    if time.time() < getattr(mob, 'staggered_until', 0):
+        return   # reeling — in no state to wind anything up
     # keep pack fights readable: at most a couple of wind-ups at once
     pending = sum(1 for ch in mob.room.characters if getattr(ch, 'pending_intent', None))
     if pending >= INTENT_ROOM_CAP:
@@ -806,12 +824,31 @@ async def _resolve_legacy(mob, target, which):
             )
 
 
-async def _resolve_bruiser(mob, target):
+async def _resolve_bruiser(mob, target, variant=None):
     c = mob.config.COLORS
+    from combat import CombatHandler
     try:
         base = mob.roll_dice(mob.damage_dice)
     except Exception:
         base = random.randint(mob.level, max(mob.level, mob.level * 3))
+    if variant == 'sweep':
+        # area sweep: hits every player in the room; sidestep/brace/evade all
+        # mitigate (the web client auto-evades when you're physically clear)
+        damage = int(base * 1.4) + getattr(mob, 'damroll', 0)
+        await mob.room.send_to_room(
+            f"{c['bright_red']}{mob.name}'s SWEEPING blow scythes across the area!{c['reset']}"
+        )
+        for char in list(mob.room.characters):
+            if char is mob or not hasattr(char, 'connection'):
+                continue
+            dmg = await _mitigate_hit(mob, char, damage)
+            if dmg is None:
+                continue
+            if hasattr(char, 'send'):
+                await char.send(f"{c['bright_red']}The sweep smashes into you! [{dmg}]{c['reset']}")
+            if await char.take_damage(dmg, mob):
+                await CombatHandler.handle_death(mob, char)
+        return
     damage = int(base * 1.8) + getattr(mob, 'damroll', 0)
     dmg = await _mitigate_hit(mob, target, damage)
     if dmg is None:
@@ -824,7 +861,6 @@ async def _resolve_bruiser(mob, target):
         if hasattr(target, 'send'):
             await target.send(f"{c['yellow']}The impact leaves you reeling — stunned!{c['reset']}")
     if await target.take_damage(dmg, mob):
-        from combat import CombatHandler
         await CombatHandler.handle_death(mob, target)
 
 
@@ -860,7 +896,7 @@ async def _resolve_intent(mob):
     elif what == 'legacy':
         await _resolve_legacy(mob, target, arg)
     elif what == 'bruiser':
-        await _resolve_bruiser(mob, target)
+        await _resolve_bruiser(mob, target, arg)
     return True
 
 
@@ -930,6 +966,22 @@ async def mob_ai_tick(mob):
     if 'legacy_special' in roles and _legacy_kind(mob) is None:
         if random.randint(1, 100) <= 30:
             await mob.special_attack()
+            return True
+
+    # Disciplined fighters raise a GUARD: physical damage mostly turned aside
+    # for two rounds. The taught counter is a bash/kick (break_guard).
+    if 'guarded' in roles:
+        now = time.time()
+        if now >= mob.ai_state.get('guard_cd', 0) \
+                and now >= getattr(mob, 'staggered_until', 0) \
+                and random.randint(1, 100) <= 45:
+            mob.guard_until = now + 8.0          # ~2 rounds
+            mob.ai_state['guard_cd'] = now + 20  # ~5 rounds between guards
+            c = mob.config.COLORS
+            await mob.room.send_to_room(
+                f"{c['bright_cyan']}🛡 {mob.name} locks into a defensive guard! "
+                f"{c['yellow']}(a heavy bash or kick can break it){c['reset']}"
+            )
             return True
 
     return False

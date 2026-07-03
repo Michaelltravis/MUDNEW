@@ -1842,6 +1842,36 @@ HELP_TOPICS = {'auction': {'category': 'command',
                               'See also: BRACE, SIDESTEP',
                'syntax': 'interrupt',
                'title': 'Interrupt'},
+ 'swing': {'category': 'command',
+           'description': 'Time your attack to the combat rhythm.\n'
+                          '\n'
+                          'Call SWING in the final stretch of the round (the gold window\n'
+                          'on the round bar) and your next attack lands PERFECTLY:\n'
+                          '\n'
+                          'MECHANICS:\n'
+                          '- Perfect strike: +30% damage and double poise damage\n'
+                          '- Mistime it and you are off-balance for the rest of the round\n'
+                          '- Fill an enemy\'s poise and they are STAGGERED: they lose a\n'
+                          '  round and take +50% damage while reeling\n'
+                          '\n'
+                          'See also: EVADE, BRACE, SIDESTEP',
+           'syntax': 'swing',
+           'title': 'Swing (perfect timing)'},
+ 'evade': {'category': 'command',
+           'description': 'Slip out of a marked danger zone before an area attack lands.\n'
+                          '\n'
+                          'When a hulking foe winds up a sweeping area attack, get clear\n'
+                          'and EVADE just before it lands to avoid it entirely.\n'
+                          '\n'
+                          'MECHANICS:\n'
+                          '- Only works against declared AREA attacks (⚠ sweeping blows)\n'
+                          '- Call it in the last moments of the wind-up, not too early\n'
+                          '- You forfeit your own attack that round (all-in on movement)\n'
+                          '- Web client: simply WALK out of the red zone — it evades for you\n'
+                          '\n'
+                          'See also: SWING, BRACE, SIDESTEP',
+           'syntax': 'evade',
+           'title': 'Evade'},
  'brace': {'category': 'command',
            'description': 'Plant your feet against an incoming declared attack.\n'
                           '\n'

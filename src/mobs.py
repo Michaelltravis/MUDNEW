@@ -1108,7 +1108,27 @@ class Mobile(Character):
     async def take_damage(self, amount: int, attacker: 'Character' = None, damage_type: str = 'physical') -> bool:
         """Take damage, return True if killed."""
         damage_type = damage_type or 'physical'
-        
+        import time as _time
+        _now = _time.time()
+
+        # STAGGERED: poise broken — reeling and wide open (+50% damage taken)
+        if amount > 0 and _now < getattr(self, 'staggered_until', 0):
+            amount = int(amount * 1.5)
+        # GUARDED: shield raised — weapon auto-swings are mostly turned aside.
+        # Class abilities and spells punch through, and any concussive skill
+        # (bash/kick/trip/smite...) SHATTERS the guard (CombatHandler.break_guard).
+        elif amount > 0 and damage_type == 'physical' \
+                and getattr(attacker, '_weapon_swing', False) \
+                and _now < getattr(self, 'guard_until', 0):
+            turned = amount - max(1, int(amount * 0.4))
+            amount = max(1, int(amount * 0.4))
+            if turned > 2 and hasattr(self, 'room') and self.room and random.random() < 0.5:
+                c = Config().COLORS
+                await self.room.send_to_room(
+                    f"{c['cyan']}{self.name}'s guard turns the blow aside! (-{turned}) "
+                    f"{c['yellow']}A heavy bash or kick could break it.{c['reset']}"
+                )
+
         # Absorb shields (divine_shield / stoneskin / armour_ward)
         try:
             absorb_allowed = damage_type == 'physical' or damage_type in Config.ABSORB_MAGIC_TYPES
@@ -1162,7 +1182,7 @@ class Mobile(Character):
                 pass
         
         self.hp -= amount
-        
+
         # Check for death
         if self.hp <= 0:
             if not getattr(self, '_dying', False):
@@ -1173,7 +1193,31 @@ class Mobile(Character):
                 else:
                     await self.die(attacker)
             return True
-        
+
+        # POISE: player hits chip the mob's balance; break it and the mob is
+        # STAGGERED — loses its round and takes +50% while the window lasts.
+        # A perfect-timed strike (cmd_swing) chips double. Poise grows after
+        # each stagger so the loop has diminishing returns within one fight.
+        if amount > 0 and attacker is not None and hasattr(attacker, 'connection') \
+                and _now >= getattr(self, 'staggered_until', 0):
+            if not getattr(self, 'max_poise', 0):
+                self.max_poise = 3 + getattr(self, 'level', 1) // 4
+            chip = 2 if getattr(attacker, '_poise_bonus_hit', False) else 1
+            attacker._poise_bonus_hit = False
+            self.poise = getattr(self, 'poise', 0) + chip
+            if self.poise >= self.max_poise:
+                self.poise = 0
+                self.max_poise = int(self.max_poise * 1.5) + 1
+                self.stunned_rounds = getattr(self, 'stunned_rounds', 0) + 1
+                self.staggered_until = _now + 4.5
+                self.guard_until = 0          # a broken stance drops any guard
+                self.pending_intent = None    # ...and interrupts any wind-up
+                if hasattr(self, 'room') and self.room:
+                    c = Config().COLORS
+                    await self.room.send_to_room(
+                        f"{c['bright_yellow']}💥 {self.name} reels — STAGGERED! Strike now!{c['reset']}"
+                    )
+
         # Wimpy mobs flee at low health (but not if dead)
         if 'wimpy' in self.flags and self.hp < self.max_hp * 0.2:
             if self.fighting:

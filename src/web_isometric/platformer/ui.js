@@ -1614,10 +1614,11 @@
       ['M', 'World map'],
     ]],
     ['Fight', [
-      ['F or Space', 'Attack — engage your target / nearest foe'],
+      ['F or Space', 'Attack — engage · while fighting, press in the GOLD window for a PERFECT strike'],
       ['1 – 9, 0', 'Use the action-bar slot (skills & spells)'],
       ['Q / E / X', 'React to an enemy wind-up: Brace / Sidestep / Interrupt'],
-      ['Click a foe', 'Target it · click again / F to attack'],
+      ['Move away', 'Walk OUT of a red danger zone to evade area attacks'],
+      ['Bash / Kick', 'Break a 🛡 guarded enemy; fill their poise pips to STAGGER them'],
       ['Stance', 'Aggressive / Normal / Defensive — beside your vitals'],
     ]],
     ['Panels', [
@@ -3962,6 +3963,11 @@
         clogCollapse.textContent = c ? '▸' : '▾';
       });
       MH.bus.on('combat.hit', e => clogLine(e.dmg != null ? `You hit ${e.target} for <b>${e.dmg}</b>` : `You hit ${e.target}`, 'you'));
+      MH.bus.on('reaction.swing.perfect', () => clogLine('★ PERFECT STRIKE!', 'you'));
+      MH.bus.on('mob.staggered', e => clogLine(`💥 ${e.name} is <b>STAGGERED</b> — strike now!`, 'info'));
+      MH.bus.on('mob.guardup', e => clogLine(`🛡 ${e.name} raises a guard — bash or kick to break it`, 'info'));
+      MH.bus.on('mob.guardbreak', e => clogLine(`💥 ${e.name}'s guard is BROKEN`, 'you'));
+      MH.bus.on('reaction.evade', () => clogLine('You dart clear of the danger zone!', 'you'));
       MH.bus.on('combat.taken', e => clogLine(e && e.dmg != null ? `${e.from || 'They'} hit YOU for <b>${e.dmg}</b>` : 'They hit YOU', 'them'));
       MH.bus.on('combat.miss', e => clogLine(`You miss ${e.target}`, 'miss'));
       MH.bus.on('combat.dodged', () => clogLine('They miss you', 'miss'));
@@ -4281,11 +4287,14 @@
         MH.combat.noteRound();
         if (payload && payload.player) MH.combat.syncServerCooldowns(payload.player.cooldowns);
         els.roundBar.classList.add('show');
-        els.roundBar.classList.remove('tick');
+        els.roundBar.classList.remove('tick', 'perfect');
         void els.roundBar.offsetWidth;
         if (roundFill) roundFill.style.animationDuration = MH.combat.roundMs + 'ms';
         els.roundBar.classList.add('tick');
       });
+      // a timed swing landed in the sweet spot: the bar turns gold until the
+      // perfect strike resolves next round
+      MH.bus.on('reaction.swing.ready', () => els.roundBar.classList.add('perfect'));
       MH.bus.on('combat.state', on => { if (!on) els.roundBar.classList.remove('show', 'tick'); });
       // continuously paint hotbar cooldown / round overlays from MH.combat
       setInterval(tickHotbarCooldowns, 100);

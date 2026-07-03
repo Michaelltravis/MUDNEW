@@ -859,6 +859,15 @@ def build_combat_payload(player) -> dict:
             intent = _intent_public(entity)
             if intent:
                 mob['intent'] = intent
+            # rhythm-combat state: poise meter, stagger window, raised guard
+            import time as _t
+            _tnow = _t.time()
+            if getattr(entity, 'max_poise', 0):
+                mob['poise'] = {'cur': getattr(entity, 'poise', 0), 'max': entity.max_poise}
+            if _tnow < getattr(entity, 'staggered_until', 0):
+                mob['staggered'] = round(getattr(entity, 'staggered_until', 0) - _tnow, 1)
+            if _tnow < getattr(entity, 'guard_until', 0):
+                mob['guarded'] = True
             mobs.append(mob)
     return {
         'type': 'combat_update',

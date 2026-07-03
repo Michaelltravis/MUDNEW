@@ -612,6 +612,16 @@ class CombatHandler:
 
             damage += attacker.get_damage_bonus()
 
+            # PERFECT STRIKE: the player timed cmd_swing to the round's sweet
+            # spot — this swing lands +30% and chips double poise (the
+            # _poise_bonus_hit flag is consumed in Mobile.take_damage)
+            perfect_hit = False
+            if getattr(attacker, 'perfect_next', False):
+                attacker.perfect_next = False
+                attacker._poise_bonus_hit = True
+                perfect_hit = True
+                damage = int(damage * 1.3)
+
             if fatigue_penalty:
                 damage = max(1, int(damage * (1.0 - cls.config.COMBAT_FATIGUE_DAMAGE_PENALTY)))
 
@@ -795,6 +805,8 @@ class CombatHandler:
                 intel_suffix = f" {c['cyan']}(Intel: {intel_pts}/10){c['reset']}"
 
             if hasattr(attacker, 'send'):
+                if perfect_hit:
+                    await attacker.send(f"{c['bright_yellow']}★ PERFECT STRIKE!{c['reset']}")
                 if getattr(attacker, 'compact_mode', False):
                     await attacker.send(f"{c['green']}You {you_verb} {defender.name}. {damage_color}[{damage}]{c['reset']}{intel_suffix}")
                 else:
@@ -829,8 +841,11 @@ class CombatHandler:
             except Exception:
                 pass
 
-            # Apply damage
+            # Apply damage (flagged as a weapon auto-swing: a raised GUARD only
+            # blunts these — class abilities and spells punch through)
+            attacker._weapon_swing = True
             killed = await defender.take_damage(damage, attacker)
+            attacker._weapon_swing = False
             try:
                 from paths import PathManager
                 await PathManager.after_damage(attacker, defender, damage)
@@ -1333,7 +1348,9 @@ class CombatHandler:
                 else:
                     await defender.send(f"{c['red']}{attacker.name}'s {damage_word} you. [{damage}]{c['reset']}")
 
+            attacker._weapon_swing = True
             killed = await defender.take_damage(damage, attacker)
+            attacker._weapon_swing = False
             if killed:
                 await cls.handle_death(attacker, defender)
 
@@ -1362,7 +1379,9 @@ class CombatHandler:
             if hasattr(defender, 'send'):
                 await defender.send(f"{c['red']}{attacker.name}'s off-hand {damage_word} you. [{damage}]{c['reset']}")
 
+            attacker._weapon_swing = True
             killed = await defender.take_damage(damage, attacker)
+            attacker._weapon_swing = False
             if killed:
                 await cls.handle_death(attacker, defender)
         else:
@@ -2185,11 +2204,26 @@ class CombatHandler:
                 else:
                     await target.send(f"{c['bright_red']}{player.name}'s kick {damage_word} you! [{damage}]{c['reset']}")
 
+            await cls.break_guard(player, target)
             killed = await target.take_damage(damage, player)
             if killed:
                 await cls.handle_death(player, target)
         else:
             await player.send(f"{c['yellow']}Your kick misses {target.name}!{c['reset']}")
+
+    @classmethod
+    async def break_guard(cls, player: 'Player', target: 'Character'):
+        """A heavy blow (bash/kick family) SHATTERS a raised guard and rocks
+        the target's poise — the taught counter to guarded mobs."""
+        if time.time() >= getattr(target, 'guard_until', 0):
+            return
+        target.guard_until = 0
+        target.poise = getattr(target, 'poise', 0) + 2
+        c = cls.config.COLORS
+        if getattr(target, 'room', None):
+            await target.room.send_to_room(
+                f"{c['bright_yellow']}💥 {player.name}'s heavy blow SHATTERS {target.name}'s guard!{c['reset']}"
+            )
 
     @classmethod
     async def do_bash(cls, player: 'Player', target: 'Character' = None):
@@ -2229,6 +2263,7 @@ class CombatHandler:
                     target.position = 'stunned'
                 await player.send(f"{c['bright_yellow']}{target.name} is stunned!{c['reset']}")
 
+            await cls.break_guard(player, target)
             killed = await target.take_damage(damage, player)
             if killed:
                 await cls.handle_death(player, target)

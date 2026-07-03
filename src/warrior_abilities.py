@@ -512,7 +512,10 @@ async def do_bash(player, args: list):
         await player.send(f"{c['bright_yellow']}*** UNSTOPPABLE! ***{c['reset']}")
     
     increment_usage(player, 'bash')
-    
+
+    # a bash SHATTERS a raised guard (guarded-mob counterplay)
+    from combat import CombatHandler
+    await CombatHandler.break_guard(player, target)
     killed = await apply_damage_to_target(player, target, damage, ability_display.replace('_', ' '))
     
     if not killed:

@@ -299,6 +299,24 @@
       MH.bus.on('reaction.brace.success', () => this.fxBrace(true));
       MH.bus.on('reaction.sidestep.success', e => this.fxSidestep());
       MH.bus.on('reaction.interrupt.success', e => this.fxInterrupt(e.target));
+      // rhythm combat: perfect strikes, stagger bursts, guard breaks, evades
+      MH.bus.on('reaction.swing.ready', () => {
+        this.flashFill(this.playerVisual(), 0xffd44a, 130);
+        this.damageNumber(this.player.x, this.player.y - 24, 'READY!', '#ffd44a', 11);
+      });
+      MH.bus.on('reaction.swing.perfect', () => {
+        this.freezeFrame(80);
+        this.spark(this.player.x, this.player.y - 10, 0xffd44a);
+      });
+      MH.bus.on('mob.staggered', e => this.fxStagger(e.name));
+      MH.bus.on('mob.guardbreak', e => {
+        const ent = this.findEntityByText(e.name) || this.target;
+        if (ent && ent.sprite) {
+          this.spark(ent.sprite.x, ent.sprite.y - 8, 0x9adcff);
+          this.damageNumber(ent.sprite.x, ent.sprite.y - 20, 'GUARD BROKEN', '#9adcff', 11);
+        }
+      });
+      MH.bus.on('reaction.evade', () => this.fxSidestep());
       this.input.keyboard.on('keydown-TAB', e => { e.preventDefault(); this.cycleTarget(); });
       MH.bus.on('player.exp', e => this.fxExp(e));
       MH.bus.on('walk.step', dir => this.requestMove(dir));
@@ -2102,6 +2120,30 @@
       // Aether palette: jade healthy -> amber wounded -> ember critical, on a glass track
       ent.hpbar.fillStyle(0x07111a, 0.8).fillRect(x - 0.5, y - 0.5, 19, 3);
       ent.hpbar.fillStyle(frac > 0.5 ? 0x46e0a0 : frac > 0.25 ? 0xe8c168 : 0xff5a6a, 1).fillRect(x, y, 18 * frac, 2);
+      // poise pips: amber ticks fill as your hits rock the mob's balance —
+      // when they max out the mob STAGGERS (a burst window you created)
+      const poise = ent.data.poise;
+      if (poise && poise.max > 0 && ent.kind === 'mob' && !ent.data.shopkeeper) {
+        const n = Math.min(poise.max, 8);
+        const cur = Math.round((poise.cur / poise.max) * n);
+        const w = Math.min(3, Math.max(1.6, 18 / n - 0.6));
+        for (let i = 0; i < n; i++) {
+          ent.hpbar.fillStyle(i < cur ? 0xffb84a : 0x2a2f3c, i < cur ? 1 : 0.8);
+          ent.hpbar.fillRect(x + i * (18 / n), y + 3.4, w, 1.6);
+        }
+      }
+      // staggered: the burst window glows gold; guarded: a steel shell tint
+      if (ent.data.staggered) {
+        ent.hpbar.lineStyle(1, 0xffd44a, 0.9).strokeRect(x - 2, y - 2, 22, 8);
+      }
+      // 🛡 marker while the mob's guard is raised (break it with a bash/kick)
+      if (ent.data.guarded && !ent.guardMark) {
+        ent.guardMark = this.add.text(0, 0, '🛡', { fontSize: '10px', resolution: 3 }).setOrigin(0.5, 1).setDepth(61);
+      } else if (!ent.data.guarded && ent.guardMark) {
+        ent.guardMark.destroy();
+        ent.guardMark = null;
+      }
+      if (ent.guardMark) ent.guardMark.setPosition(ent.sprite.x + 12, ent.sprite.y - 14);
     }
     destroyEntity(ent) {
       // if the thing we're targeting is being removed (it died, fled, or left),
@@ -2116,7 +2158,7 @@
       if (ent.artBob) { ent.artBob.stop(); ent.artBob = null; }
       if (ent.art) { ent.art.destroy(); ent.art = null; }
       if (ent.bossAura) { this.tweens.killTweensOf(ent.bossAura); ent.bossAura.destroy(); ent.bossAura = null; }
-      ['sprite', 'label', 'hpbar', 'fightMark', 'questMark', 'bubble', 'engageRing', 'serviceMark', 'shadow', 'rim'].forEach(k => { if (ent[k]) ent[k].destroy(); });
+      ['sprite', 'label', 'hpbar', 'fightMark', 'questMark', 'bubble', 'engageRing', 'serviceMark', 'shadow', 'rim', 'guardMark'].forEach(k => { if (ent[k]) ent[k].destroy(); });
     }
     shortName(name) {
       const n = String(name || '');
@@ -2156,11 +2198,27 @@
     }
     attackEntity(ent) {
       if (!ent) return;
-      // auto-attack toggle: if already fighting this same target, the server is
-      // already swinging once per round — re-sending does nothing, so don't
-      // (this is what kills the "spam attack" feel). Just keep facing it.
+      // Already fighting this target: the attack key becomes your TIMING input.
+      // Press while the round bar is in the golden sweet spot → cmd_swing →
+      // your next auto-attack lands PERFECTLY. Early presses give local
+      // feedback only (no server lockout for a harmless mistime).
       const same = this.target && (ent === this.target || (ent.key && this.target.key === ent.key));
-      if (MH.state.inCombat && same) { this.faceEntity(ent); return; }
+      if (MH.state.inCombat && same) {
+        this.faceEntity(ent);
+        const frac = MH.combat ? MH.combat.roundFrac() : 0;
+        const now = this.time.now;
+        if (this._swingSent && now - this._swingSent < 1200) return;   // debounce
+        if (frac >= 0.62) {
+          this._swingSent = now;
+          MH.sendCommand('swing', false);
+          this._atkFrame = now;                       // visible wind-up
+          this.player.setFrame(`atk_${this.facing}`);
+          this.time.delayedCall(180, () => { if (!this.dead) this.player.setFrame(`${this.facing}0`); });
+        } else {
+          this.damageNumber(this.player.x, this.player.y - 20, 'wait for it…', '#8a90a4', 9);
+        }
+        return;
+      }
       // (re)engage or switch target — gated by the shared GCD so switches/restarts
       // can't be mashed faster than the round rhythm
       if (MH.combat && !MH.combat.ready('attack')) return;
@@ -2959,6 +3017,20 @@
       this.flashFill(this.playerVisual(), 0xe8c168, 90);
       this.damageNumber(x, y - 16, impact ? 'BRACED!' : 'BRACE', '#ffd88a', 11);
     }
+    // the mob's poise breaks: a hard hit-stop and a golden reel — your window
+    fxStagger(name) {
+      const ent = this.findEntityByText(name) || this.target;
+      if (!ent || !ent.sprite) return;
+      this.freezeFrame(95);
+      this.damageNumber(ent.sprite.x, ent.sprite.y - 26, 'STAGGERED!', '#ffd44a', 14);
+      this.spark(ent.sprite.x, ent.sprite.y - 8, 0xffd44a);
+      const vis = this.entVisual(ent);
+      if (vis && vis.setAngle) {
+        this.tweens.add({ targets: vis, angle: { from: -9, to: 9 }, duration: 90, yoyo: true, repeat: 3,
+          onComplete: () => vis.setAngle(0) });
+      }
+      if (MH.sfx) MH.sfx.impact(2);
+    }
     // a broken enemy wind-up: green snap + a beat of stillness
     fxInterrupt(name) {
       const ent = this.findEntityByText(name) || this.target;
@@ -2967,10 +3039,13 @@
       this.spark(ent.sprite.x, ent.sprite.y - 8, 0x8cf0a0);
       this.freezeFrame(70);
     }
-    // Floating ⚠ banner over each mob with a declared wind-up. Rebuilt from
-    // the round payload; banners follow their sprite each frame (update()).
+    // Floating ⚠ banner over each mob with a declared wind-up, plus a red
+    // DANGER ZONE decal for area attacks — walk out of the circle and the
+    // client auto-sends `evade` just before the sweep lands. Rebuilt from the
+    // round payload; both follow their sprite each frame (update()).
     syncIntentBanners(payload) {
       this._intentBanners = this._intentBanners || new Map();
+      this._dangerZones = this._dangerZones || new Map();
       const want = new Map();
       (payload.mobs || []).forEach((m, i) => { if (m.intent) want.set(`mob:${m.name}:${i}`, m.intent); });
       for (const [key, banner] of [...this._intentBanners]) {
@@ -2980,10 +3055,23 @@
           this._intentBanners.delete(key);
         }
       }
+      for (const [key, z] of [...this._dangerZones]) {
+        const it = want.get(key);
+        if (!it || it.kind !== 'aoe' || !this.entities.get(key)) {
+          z.gfx.destroy();
+          this._dangerZones.delete(key);
+        }
+      }
       for (const [key, intent] of want) {
-        if (this._intentBanners.has(key)) continue;
         const ent = this.entities.get(key);
         if (!ent || !ent.sprite) continue;
+        // area attacks paint the ground you need to NOT be standing on
+        if (intent.kind === 'aoe' && !this._dangerZones.has(key)) {
+          const gfx = this.add.circle(ent.sprite.x, ent.sprite.y, 52, 0xff4a3a, 0.10)
+            .setStrokeStyle(2, 0xff4a3a, 0.8).setDepth(2.5);
+          this._dangerZones.set(key, { gfx, resolveAt: Date.now() + ((intent.resolve_in || 4) * 1000), sent: false });
+        }
+        if (this._intentBanners.has(key)) continue;
         const casty = intent.kind === 'cast' || intent.kind === 'debuff';
         const t = this.add.text(ent.sprite.x, ent.sprite.y - 26, `⚠ ${intent.label}`, {
           fontFamily: 'Oxanium, Trebuchet MS, sans-serif', resolution: 3, fontSize: '8px', fontStyle: 'bold',
@@ -3492,7 +3580,9 @@
         const ent = this.entities.get(`mob:${mob.name}:${i}`);
         if (!ent) return;
         const merged = Object.assign({}, ent.data, mob);
-        if (!mob.intent) delete merged.intent;   // a resolved wind-up must not linger
+        if (!mob.intent) delete merged.intent;         // a resolved wind-up must not linger
+        if (!mob.staggered) delete merged.staggered;   // ...nor a closed burst window
+        if (!mob.guarded) delete merged.guarded;       // ...nor a dropped guard
         this.updateEntity(ent, merged);
         if (mob.fighting && !this.target) { this.target = ent; MH.bus.emit('target.set', ent.data); }
       });
@@ -4257,6 +4347,25 @@
           if (ent && ent.sprite && ent.sprite.active) { t.x = ent.sprite.x; t.y = ent.sprite.y - 26; }
         }
       }
+      // danger zones ride their mob too — and if you're physically CLEAR of
+      // the circle as the sweep is about to land, auto-send `evade`
+      if (this._dangerZones) {
+        for (const [key, z] of [...this._dangerZones]) {
+          const ent = this.entities.get(key);
+          if (!ent || !ent.sprite || !ent.sprite.active) { z.gfx.destroy(); this._dangerZones.delete(key); continue; }
+          z.gfx.setPosition(ent.sprite.x, ent.sprite.y);
+          z.gfx.setAlpha(0.75 + 0.25 * Math.sin(now / 110));
+          const remain = z.resolveAt - Date.now();
+          if (!z.sent && remain < 900 && remain > -400) {
+            const dist = Phaser.Math.Distance.Between(this.player.x, this.player.y, ent.sprite.x, ent.sprite.y);
+            if (dist > 58) {
+              z.sent = true;
+              MH.sendCommand('evade', false);
+              this.damageNumber(this.player.x, this.player.y - 22, 'CLEAR!', '#8cf0a0', 12);
+            }
+          }
+        }
+      }
       for (const ent of this.entities.values()) {
         if (ent.sprite && ent.kind !== 'item') ent.sprite.setDepth(10 + ent.sprite.y / 1000);
         if (ent.doll) {
@@ -4386,8 +4495,8 @@
       img.scaleY = base;
       if (this.mountGlow) { this.mountGlow.x = img.x; this.mountGlow.y = img.y + 2; }
     }
-    // Compact vitals under your character — HP / mana / move at a glance right
-    // where the action is, instead of only in the corner HUD. Shown while
+    // Vitals as slim arc "parens" hugging your character — health curves up
+    // the left side, mana up the right, movement underfoot. Shown while
     // fighting or whenever something isn't full; fades away when safe & topped.
     syncPlayerVitals() {
       const p = MH.state.player;
@@ -4402,17 +4511,22 @@
       const show = inC || hp < 0.995 || (mp != null && mp < 0.995) || mv < 0.995;
       g.clear();
       if (!show) return;
-      const x = this.player.x - 13, y = this.player.y + 9;
-      const bar = (yy, frac, color) => {
-        g.fillStyle(0x0a0c10, 0.8);
-        g.fillRect(x - 0.5, yy - 0.5, 27, 3.5);
-        g.fillStyle(color, 1);
-        g.fillRect(x, yy, 26 * Math.max(0, Math.min(1, frac)), 2.5);
+      const cx = this.player.x, cy = this.player.y - 5, r = 13;
+      const D = Phaser.Math.DegToRad;
+      // an arc bracket: dim track + colored fill growing from its anchor end
+      const arc = (a0, span, frac, color) => {
+        const anti = span < 0;
+        g.lineStyle(3, 0x0a0c10, 0.65);
+        g.beginPath(); g.arc(cx, cy, r, D(a0), D(a0 + span), anti); g.strokePath();
+        if (frac > 0.02) {
+          g.lineStyle(2, color, 1);
+          g.beginPath(); g.arc(cx, cy, r, D(a0), D(a0 + span * Math.max(0, Math.min(1, frac))), anti); g.strokePath();
+        }
       };
       const hpCol = hp > 0.5 ? 0x63c74d : hp > 0.25 ? 0xe8a33d : 0xe05a4a;
-      bar(y, hp, hpCol);
-      if (mp != null) bar(y + 4, mp, 0x5a8ae8);
-      bar(y + (mp != null ? 8 : 4), mv, 0xe8c168);
+      arc(135, 100, hp, hpCol);                 // left paren — health, filling upward
+      if (mp != null) arc(45, -100, mp, 0x5a8ae8);   // right paren — mana, filling upward
+      arc(70, 40, mv, 0xe8c168);                // underfoot — movement
       g.setAlpha(inC ? 0.95 : 0.55);
     }
     updatePlayerDoll(now) {

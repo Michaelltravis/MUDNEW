@@ -968,6 +968,10 @@ class World:
         """Process combat for all fighting characters."""
         from combat import CombatHandler
 
+        # Round heartbeat: cmd_swing's perfect-strike timing window is judged
+        # against when this round actually began
+        self.last_combat_round = time.time()
+
         # Intent pre-pass: fighting mobs DECLARE their next special before the
         # player phase runs, so this round's web push (notify_combat below)
         # carries the wind-up with a full round left to react. The intent

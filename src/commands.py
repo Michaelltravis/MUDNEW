@@ -3080,6 +3080,8 @@ class CommandHandler:
         chance = player.skills.get('trip', 0) + (player.dex - getattr(target, 'dex', 10))
         if random.randint(1, 100) <= max(5, chance):
             target.position = 'sitting'
+            from combat import CombatHandler
+            await CombatHandler.break_guard(player, target)   # feet gone = guard gone
             await player.send(f"{c['green']}You trip {target.name}!{c['reset']}")
             await player.room.send_to_room(f"{target.name} is knocked to the ground!", exclude=[player])
         else:
@@ -4609,6 +4611,63 @@ class CommandHandler:
             await player.room.send_to_room(f"{player.name} plants their feet, braced for impact.", exclude=[player])
 
     @classmethod
+    async def cmd_swing(cls, player: 'Player', args: List[str]):
+        """Time your swing to the combat rhythm: called in the last stretch of
+        the round, your next attack lands PERFECTLY (+damage, double stagger).
+        Mistime it and you're off-balance for the rest of the round."""
+        c = player.config.COLORS
+        if not player.is_fighting:
+            await player.send(f"{c['yellow']}You're not fighting anyone!{c['reset']}")
+            return
+        now = time.time()
+        world = getattr(player, 'world', None)
+        round_start = getattr(world, 'last_combat_round', 0) if world else 0
+        if getattr(player, 'perfect_next', False):
+            await player.send(f"{c['yellow']}You're already poised for a perfect strike.{c['reset']}")
+            return
+        if now < getattr(player, 'swing_lockout_until', 0):
+            await player.send(f"{c['yellow']}You're off-balance — wait for the next exchange.{c['reset']}")
+            return
+        elapsed = now - round_start
+        # sweet spot: the final stretch of the ~4s round (the client paints it
+        # gold on the round bar). A little slack past the boundary forgives lag.
+        if 2.6 <= elapsed <= 4.3:
+            player.perfect_next = True
+            await player.send(f"{c['bright_yellow']}You read the rhythm — your next strike will land PERFECTLY!{c['reset']}")
+        else:
+            player.swing_lockout_until = round_start + 4.2
+            await player.send(f"{c['yellow']}Your timing is off — you swing wide and must steady yourself.{c['reset']}")
+
+    @classmethod
+    async def cmd_evade(cls, player: 'Player', args: List[str]):
+        """Slip out of a marked danger zone before an area attack lands.
+        The web client sends this automatically when you MOVE clear of the red
+        zone; telnet players can type it as the wind-up nears its end."""
+        c = player.config.COLORS
+        if not player.is_fighting:
+            await player.send(f"{c['yellow']}You're not fighting anyone!{c['reset']}")
+            return
+        now = time.time()
+        threat = None
+        for ch in (player.room.characters if player.room else []):
+            intent = getattr(ch, 'pending_intent', None)
+            if intent and intent.get('kind') == 'aoe':
+                threat = (ch, intent)
+                break
+        if not threat:
+            await player.send(f"{c['yellow']}There's no area attack to evade.{c['reset']}")
+            return
+        mob, intent = threat
+        if now - intent.get('declared_at', now) < 1.5:
+            await player.send(f"{c['yellow']}Too soon — watch the wind-up and move at the last moment!{c['reset']}")
+            return
+        player.sidestep_until = now + 2.5
+        player.sidestep_skip_attack = True
+        await player.send(f"{c['bright_cyan']}You dart clear of the danger zone!{c['reset']}")
+        if player.room:
+            await player.room.send_to_room(f"{player.name} darts clear of {mob.name}'s reach!", exclude=[player])
+
+    @classmethod
     async def cmd_sidestep(cls, player: 'Player', args: List[str]):
         """Sidestep: fully evade a declared heavy/AoE attack, at the cost of
         your own attack this round."""
@@ -4929,6 +4988,8 @@ class CommandHandler:
         player.intel_points -= 3
         player.expose_target = player.intel_target
         player.expose_until = now + 30
+        from combat import CombatHandler as _CH
+        await _CH.break_guard(player, player.intel_target)   # precision finds the gap in any guard
         await player.send(f"{c['bright_green']}You expose {player.intel_target.name}'s weakness! They take 15% more damage from you for 30s.{c['reset']}")
         await player.send(f"{c['cyan']}[Intel: {player.intel_points}/10]{c['reset']}")
 
@@ -7247,7 +7308,9 @@ class CommandHandler:
             f"{player.name} smites {target.name} with divine power!",
             exclude=[player, target]
         )
-        
+
+        from combat import CombatHandler as _CH
+        await _CH.break_guard(player, target)   # holy force staves in a guard
         killed = await target.take_damage(damage, player)
         if killed:
             from combat import CombatHandler
@@ -7678,6 +7741,7 @@ class CommandHandler:
         await player.send(f"{c['bright_red']}You deliver a devastating low blow to {target.name}! [{damage}] STUNNED!{c['reset']}")
         if hasattr(target, 'send'):
             await target.send(f"{c['red']}{player.name} hits you below the belt! You're stunned!{c['reset']}")
+        await CombatHandler.break_guard(player, target)   # nothing guards THAT
         killed = await target.take_damage(damage, player)
         if killed:
             await CombatHandler.handle_death(player, target)
@@ -18717,6 +18781,8 @@ class CommandHandler:
         if player.room:
             await player.room.send_to_room(f"{player.name} fires a precise aimed shot at {target.name}!", exclude=[player, target])
 
+        from combat import CombatHandler as _CH
+        await _CH.break_guard(player, target)   # the arrow threads the gap in the guard
         killed = await target.take_damage(damage, player)
         if killed:
             from combat import CombatHandler
@@ -21031,6 +21097,8 @@ class CommandHandler:
         if player.room:
             await player.room.send_to_room(f"{player.name} strikes a discordant note at {target.name}!", exclude=[player, target])
 
+        from combat import CombatHandler as _CH
+        await _CH.break_guard(player, target)   # the dissonance rattles a raised guard apart
         killed = await target.take_damage(damage, player)
         if killed:
             from combat import CombatHandler
