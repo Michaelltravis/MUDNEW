@@ -128,7 +128,7 @@
     // environmental drama (traps, shoves, elemental terrain, door tactics):
     // surface these lines in the message feed so nobody misses the world
     // fighting back. (Stagger/guard lines matched above keep their own events.)
-    if (/^(?:⚠|💦|🔥|❄|⚡|💥 CRACK)/.test(line) || /barricades the|seals it\.$|disarms a hidden trap/i.test(line)) {
+    if (/^(?:⚠|💦|🔥|❄|⚡|🐺|🗡|💥 CRACK)/.test(line) || /barricades the|seals it\.$|disarms a hidden trap|SLAMS the \w+ shut|fiddles with something low to the ground/i.test(line)) {
       bus.emit('env.event', { line }); return;
     }
     // declared-intent reactions (brace / sidestep / interrupt)

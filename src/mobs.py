@@ -468,6 +468,17 @@ class Mobile(Character):
         if await self.hunting_ai():
             return
 
+        # Trapsmiths rig their lair while idle (~once per 30s of ticks)
+        if self.room and random.random() < 0.003:
+            try:
+                from mob_ai import classify_mob
+                if 'trapsmith' in classify_mob(self) and not getattr(self.room, 'mob_traps', None):
+                    from environment import mob_rig_trap
+                    await mob_rig_trap(self, self.room)
+                    return
+            except Exception:
+                pass
+
         # Tracking AI - follow detected sneaking targets briefly
         import time
         track_target = self.ai_state.get('track_target') if hasattr(self, 'ai_state') else None
@@ -1280,14 +1291,31 @@ class Mobile(Character):
         
         if valid_exits:
             direction, target_room = random.choice(valid_exits)
-            
+
             c = self.config.COLORS
             await self.room.send_to_room(f"{c['yellow']}{self.name} flees {direction}!{c['reset']}")
-            
+
+            old_room = self.room
+            exit_used = old_room.exits.get(direction)
             self.room.characters.remove(self)
             self.room = target_room
             target_room.characters.append(self)
-            
+
+            # a fleeing COWARD slams the door behind it — chase or cut it off
+            try:
+                from mob_ai import classify_mob
+                if exit_used and 'door' in exit_used and exit_used['door'].get('state') == 'open' \
+                        and 'coward' in classify_mob(self):
+                    exit_used['door']['state'] = 'closed'
+                    opp = self.config.DIRECTIONS.get(direction, {}).get('opposite')
+                    rev = target_room.exits.get(opp) if opp else None
+                    if rev and 'door' in rev:
+                        rev['door']['state'] = 'closed'
+                    name = exit_used['door'].get('name', 'door')
+                    await old_room.send_to_room(f"{c['yellow']}{self.name} SLAMS the {name} shut behind it!{c['reset']}")
+            except Exception:
+                pass
+
     async def die(self, killer: 'Character' = None):
         """Handle mob death."""
         if self.fighting:

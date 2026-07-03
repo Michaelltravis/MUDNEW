@@ -689,6 +689,13 @@
   #room-hazards .hz.warn { border-color: #a08028; color: #ffd44a; }
   #room-hazards .hz.own { border-color: #4a7a4a; color: #9adf9a; }
   @keyframes hazpulse { from { opacity: 0.75; } to { opacity: 1; } }
+  #flanked-chip { display: none; }
+  #flanked-chip.show { display: flex; }
+  #flanked-chip .hz {
+    padding: 1px 8px; background: rgba(26,10,12,0.92); border: 1px solid #a04028;
+    border-radius: 10px; color: #ff9a6a; font-size: 10px; letter-spacing: 1px;
+    font-weight: bold; animation: hazpulse 0.8s infinite alternate;
+  }
   #env-strip {
     position: absolute; top: 76px; left: 50%; transform: translateX(-50%);
     z-index: 21; display: none; gap: 6px;

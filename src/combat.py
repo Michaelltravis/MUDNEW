@@ -669,6 +669,22 @@ class CombatHandler:
             if not hasattr(attacker, 'connection') and hasattr(defender, 'connection'):
                 damage = int(damage * cls._ng_modifier(defender))
 
+            # Pack flanking + ambush openers (NPC attackers; helpers self-guard)
+            if not hasattr(attacker, 'connection'):
+                try:
+                    from mob_ai import pack_bonus, consume_ambush
+                    flank = pack_bonus(attacker, defender)
+                    if flank > 1.0:
+                        damage = int(damage * flank)
+                    amb = consume_ambush(attacker)
+                    if amb > 1.0:
+                        damage = int(damage * amb)
+                        if attacker.room:
+                            await attacker.room.send_to_room(
+                                f"{c['bright_red']}🗡 {attacker.name} strikes from AMBUSH!{c['reset']}")
+                except Exception:
+                    pass
+
             # Sleeping targets take more damage
             if getattr(defender, 'position', '') == 'sleeping':
                 damage = int(damage * 1.5)
@@ -2015,6 +2031,10 @@ class CombatHandler:
                 ch.sidestep_until = 0
             if getattr(ch, 'sidestep_skip_attack', False):
                 ch.sidestep_skip_attack = False
+            # Re-arm ambush openers for NPCs once combat ends (only the
+            # ambusher role ever consumes the flag)
+            if not hasattr(ch, 'connection') and getattr(ch, 'ai_state', None) is not None:
+                ch.ai_state['ambush'] = True
 
     @classmethod
     async def attempt_flee(cls, player: 'Player', auto: bool = False):

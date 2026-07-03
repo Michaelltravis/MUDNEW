@@ -4418,6 +4418,17 @@
       if (els.momentumChip) centerStack.appendChild(els.momentumChip);
       const spEl = document.getElementById('spender-menu');
       if (spEl) centerStack.appendChild(spEl);
+      // FLANKED warning: with 2+ enemies on you, pack hunters hit harder
+      const flankEl = document.createElement('div');
+      flankEl.id = 'flanked-chip';
+      flankEl.innerHTML = '<span class="hz hot" title="multiple enemies on you — pack hunters gain flanking damage">⚔ FLANKED</span>';
+      centerStack.insertBefore(flankEl, envEl);
+      MH.bus.on('combat.update', p => {
+        const n = ((p && p.mobs) || []).filter(m => m.fighting).length;
+        flankEl.classList.toggle('show', n >= 2);
+        if (n >= 2) teach('flanked', 'FLANKED! Pack hunters hit +10% per packmate on you — thin the pack, or back into a doorway.');
+      });
+      MH.bus.on('combat.state', on => { if (!on) flankEl.classList.remove('show'); });
       window.__envChips = null;
       const CASTERS = ['mage', 'necromancer', 'cleric', 'paladin'];
       const updateEnvUI = () => {

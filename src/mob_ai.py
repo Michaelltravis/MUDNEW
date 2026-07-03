@@ -38,6 +38,9 @@ GUARDED_KEYWORDS = {'guard', 'cityguard', 'knight', 'soldier', 'sentinel', 'sent
                     'legionnaire', 'defender', 'golem', 'turtle', 'crab', 'warden'}
 BIG_KEYWORDS = {'ogre', 'troll', 'giant', 'bear', 'golem', 'minotaur', 'yeti',
                 'cyclops', 'behemoth', 'ettin', 'juggernaut'}
+TRAPSMITH_KEYWORDS = {'kobold', 'trapper', 'tinker', 'sapper', 'saboteur', 'poacher'}
+AMBUSH_KEYWORDS = {'spider', 'stalker', 'lurker', 'assassin', 'panther', 'shadow',
+                   'ambusher', 'creeper', 'widow'}
 
 
 def _has_flag(mob, flag: str) -> bool:
@@ -103,6 +106,13 @@ def classify_mob(mob) -> set:
     # blades aside — broken by a bash or kick (guarded-mob counterplay)
     if any(w in all_words for w in GUARDED_KEYWORDS) or 'shield' in name:
         roles.add('guarded')
+
+    # Trapsmiths rig snares in their lairs while idle; ambushers strike from
+    # cold with a devastating opener
+    if all_words & TRAPSMITH_KEYWORDS:
+        roles.add('trapsmith')
+    if all_words & AMBUSH_KEYWORDS:
+        roles.add('ambusher')
 
     # Infer from keywords / name
     if not roles & {'caster'}:
@@ -255,6 +265,14 @@ async def _cast_offensive(mob, target, spell):
     if killed:
         from combat import CombatHandler
         await CombatHandler.handle_death(mob, target)
+        return
+    # mob spells work the terrain too: their lightning splashes the pool,
+    # their fire can torch the webs — the room is nobody's ally by default
+    try:
+        from environment import elemental_cast
+        await elemental_cast(mob, target, spell_name, mob.room)
+    except Exception:
+        pass
 
 
 # ---------------------------------------------------------------------------
@@ -658,7 +676,20 @@ def _choose_caster_intent(mob, target):
             return {'kind': 'debuff', 'label': deb[0].replace('_', ' ').title(),
                     'interruptible': True, 'ability': ('caster_debuff', deb),
                     'telegraph': f'{mob.name} begins weaving a hex, fingers tracing sickly glowing sigils!'}
-    for spell in CASTER_OFFENSIVE:
+    # smart casters read the ROOM: lightning when the prey stands in water,
+    # and a desperate arsonist will torch a webbed chamber with you in it
+    spells = list(CASTER_OFFENSIVE)
+    try:
+        from environment import get_env
+        env = get_env(mob.room)
+        if env['water'] and getattr(mob.room, 'frozen_until', 0) <= now:
+            spells.sort(key=lambda s: 0 if 'lightning' in s[0] else 1)
+        elif env['webbed'] and getattr(mob.room, 'burning_until', 0) <= now \
+                and mob.hp < mob.max_hp * 0.6 and random.randint(1, 100) <= 25:
+            spells.sort(key=lambda s: 0 if 'fire' in s[0] else 1)
+    except Exception:
+        pass
+    for spell in spells:
         if mob.mana >= spell[3]:
             mob.ai_state['spell_cd'] = now + 4
             return {'kind': 'cast', 'label': spell[0].replace('_', ' ').title(),
@@ -702,6 +733,86 @@ def _choose_legacy_intent(mob, target):
     return {'kind': 'heavy', 'label': 'Venomous Strike', 'interruptible': False,
             'ability': ('legacy', 'poison'),
             'telegraph': f'{mob.name} bares dripping fangs, venom beading at their tips!'}
+
+
+def _pack_allies(mob, target):
+    """Same-species packmates in the room fighting the same prey."""
+    if not mob.room:
+        return []
+    myname = _name_lower(mob)
+    return [ch for ch in mob.room.characters
+            if ch is not mob and not hasattr(ch, 'connection')
+            and getattr(ch, 'fighting', None) is target
+            and _name_lower(ch) == myname]
+
+
+def pack_bonus(attacker, defender):
+    """Flanking: pack hunters hit harder for every packmate on the same prey
+    (+10% each, capped +30%). Returns a damage multiplier."""
+    try:
+        if hasattr(attacker, 'connection'):
+            return 1.0
+        if 'pack' not in classify_mob(attacker):
+            return 1.0
+        n = len(_pack_allies(attacker, defender))
+        return 1.0 + 0.10 * min(3, n)
+    except Exception:
+        return 1.0
+
+
+def consume_ambush(attacker):
+    """An ambusher's first strike from cold hits like a backstab (×1.8).
+    Returns the multiplier and consumes the ambush (re-armed on combat end)."""
+    try:
+        if hasattr(attacker, 'connection'):
+            return 1.0
+        ai = getattr(attacker, 'ai_state', None)
+        if not isinstance(ai, dict):
+            return 1.0
+        if 'ambusher' not in classify_mob(attacker):
+            return 1.0
+        if not ai.get('ambush', True):  # missing flag = never fought = armed
+            return 1.0
+        ai['ambush'] = False
+        return 1.8
+    except Exception:
+        return 1.0
+
+
+def _choose_pack_intent(mob, target):
+    """With packmates on the prey, the pack winds up a COORDINATED LUNGE —
+    they strike as one, and the whole pile can be braced or sidestepped."""
+    allies = _pack_allies(mob, target)
+    if len(allies) < 1:
+        return None
+    now = time.time()
+    if now < mob.ai_state.get('lunge_cd', 0):
+        return None
+    if random.randint(1, 100) > 35:
+        return None
+    mob.ai_state['lunge_cd'] = now + 16
+    n = 1 + min(2, len(allies))
+    return {'kind': 'heavy', 'label': 'Coordinated Lunge', 'interruptible': False,
+            'ability': ('pack_lunge', n),
+            'telegraph': f'{mob.name} and its pack fan out, moving as ONE...'}
+
+
+async def _resolve_pack_lunge(mob, target, n):
+    c = mob.config.COLORS
+    from combat import CombatHandler
+    try:
+        base = mob.roll_dice(mob.damage_dice)
+    except Exception:
+        base = random.randint(mob.level, max(mob.level, mob.level * 2))
+    damage = int(base * 1.1 * n) + getattr(mob, 'damroll', 0)
+    dmg = await _mitigate_hit(mob, target, damage)
+    if dmg is None:
+        return
+    await mob.room.send_to_room(
+        f"{c['bright_red']}🐺 The pack strikes as one — {n} sets of fangs hit {target.name} together! [{dmg}]{c['reset']}"
+    )
+    if await target.take_damage(dmg, mob):
+        await CombatHandler.handle_death(mob, target)
 
 
 def _choose_bruiser_intent(mob, target):
@@ -770,6 +881,8 @@ async def declare_intents(mob):
         intent = _choose_caster_intent(mob, target)
     if intent is None and 'legacy_special' in roles:
         intent = _choose_legacy_intent(mob, target)
+    if intent is None and 'pack' in roles:
+        intent = _choose_pack_intent(mob, target)
     if intent is None and not roles & {'boss', 'caster', 'legacy_special'}:
         intent = _choose_bruiser_intent(mob, target)
     if intent is None:
@@ -928,6 +1041,8 @@ async def _resolve_intent(mob):
         await _resolve_legacy(mob, target, arg)
     elif what == 'bruiser':
         await _resolve_bruiser(mob, target, arg)
+    elif what == 'pack_lunge':
+        await _resolve_pack_lunge(mob, target, arg)
     return True
 
 

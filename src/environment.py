@@ -150,6 +150,11 @@ async def spring_trap(room, victim, trap=None, forced=False):
 
 async def on_player_enter(player, room):
     """Walk-in trap logic: passive spotting, careful steps, or a sprung trap."""
+    # a trapsmith's rig checks first — it was made for exactly this moment
+    try:
+        await check_mob_traps(player, room)
+    except Exception:
+        pass
     trap = get_trap(room)
     if not trap or trap['disarmed']:
         return
@@ -173,6 +178,12 @@ async def on_player_enter(player, room):
 async def search_reveal(player, room) -> str:
     """Called from search / detect traps: reveal the room's trap if present."""
     trap = get_trap(room)
+    mob_rigs = [t for t in getattr(room, 'mob_traps', []) or [] if t['until'] > time.time()]
+    if (not trap or trap['disarmed'] or trap_detected(player, room)) and not mob_rigs:
+        return None
+    if mob_rigs and not trap_detected(player, room):
+        _mark_detected(player, room)
+        return f"{mob_rigs[0]['owner']}'s crude {mob_rigs[0]['kind']} rig (DISARM it, or step around it)"
     if not trap or trap['disarmed'] or trap_detected(player, room):
         return None
     _mark_detected(player, room)
@@ -180,9 +191,20 @@ async def search_reveal(player, room) -> str:
 
 
 async def disarm_trap(player, room):
-    """Disarm the room's detected world trap. Thieves shine at this."""
+    """Disarm the room's detected trap (a trapsmith's rig first, then the
+    world trap). Thieves shine at this."""
     from config import Config
     c = Config.COLORS
+    # a spotted mob rig comes apart easily — it's crude work
+    mob_rigs = [t for t in getattr(room, 'mob_traps', []) or [] if t['until'] > time.time()]
+    if mob_rigs and trap_detected(player, room):
+        room.mob_traps = []
+        player.trap_parts = getattr(player, 'trap_parts', 0) + 1
+        await player.send(
+            f"{c['bright_green']}You pull apart {mob_rigs[0]['owner']}'s crude rig and pocket a trap part "
+            f"({player.trap_parts} carried).{c['reset']}"
+        )
+        return
     trap = get_trap(room)
     if not trap or trap['disarmed']:
         await player.send(f"{c['yellow']}There's no armed trap here.{c['reset']}")
@@ -213,6 +235,63 @@ async def disarm_trap(player, room):
     else:
         await player.send(f"{c['yellow']}Your hand slips —{c['reset']}")
         await spring_trap(room, player, trap, forced=True)
+
+
+# ---------------------------------------------------------------------------
+# Mob-laid traps: trapsmiths (kobolds, trappers...) rig their lairs while
+# idle — and the trap they rigged is a trap YOU can spot, disarm, or shove
+# them onto. Fair's fair.
+# ---------------------------------------------------------------------------
+
+async def mob_rig_trap(mob, room):
+    """A trapsmith rigs a snare/spike in its room (one per room)."""
+    traps = getattr(room, 'mob_traps', None)
+    if traps is None:
+        traps = room.mob_traps = []
+    if traps:
+        return False
+    kind = random.choice(('snare', 'spike'))
+    traps.append({'owner': getattr(mob, 'name', 'something'), 'kind': kind, 'until': time.time() + 900})
+    from config import Config
+    c = Config.COLORS
+    if any(hasattr(ch, 'connection') for ch in getattr(room, 'characters', [])):
+        await room.send_to_room(f"{c['yellow']}{mob.name} fiddles with something low to the ground...{c['reset']}")
+    return True
+
+
+async def check_mob_traps(player, room):
+    """A player blunders into a trapsmith's rig on entry (DEX helps)."""
+    traps = getattr(room, 'mob_traps', None)
+    if not traps:
+        return False
+    now = time.time()
+    room.mob_traps = [t for t in traps if t['until'] > now]
+    if not room.mob_traps:
+        return False
+    if room.vnum in getattr(player, 'detected_traps', set()):
+        return False   # spotted rigs get stepped around (search covers both)
+    dodge = min(60, (getattr(player, 'dex', 10) - 10) * 3 + getattr(player, 'skills', {}).get('detect_traps', 0) // 3)
+    if random.randint(1, 100) <= dodge:
+        return False
+    t = room.mob_traps.pop(0)
+    from config import Config
+    c = Config.COLORS
+    if t['kind'] == 'snare':
+        player.stunned_rounds = getattr(player, 'stunned_rounds', 0) + 1
+        await room.send_to_room(
+            f"{c['bright_yellow']}⚠ {t['owner']}'s hidden snare snaps around {player.name}'s ankle!{c['reset']}"
+        )
+    else:
+        dmg = max(2, int(getattr(player, 'max_hp', 10) * 0.08))
+        await room.send_to_room(
+            f"{c['bright_red']}⚠ SHUNK! {t['owner']}'s spike rig bites into {player.name}! [{dmg}]{c['reset']}"
+        )
+        if await player.take_damage(dmg, None) and hasattr(player, 'die'):
+            try:
+                await player.die(None)
+            except Exception:
+                pass
+    return True
 
 
 # ---------------------------------------------------------------------------
@@ -296,6 +375,9 @@ async def try_shove(attacker, victim, room):
     trap = get_trap(room)
     if trap and not trap['disarmed'] and time.time() >= trap['sprung_until']:
         options.append('trap')
+    # a trapsmith's own rig makes a fine landing spot too
+    if [t for t in getattr(room, 'mob_traps', []) or [] if t['until'] > time.time()]:
+        options.append('mobtrap')
     if not options:
         return False
     what = random.choice(options)
@@ -334,6 +416,17 @@ async def try_shove(attacker, victim, room):
         await room.send_to_room(
             f"{c['bright_red']}🪨 The blow sends {name} over the ledge — a sickening scrape down the rocks! [{dmg}]{c['reset']}"
         )
+        if await victim.take_damage(dmg, attacker):
+            from combat import CombatHandler
+            await CombatHandler.handle_death(attacker, victim)
+    elif what == 'mobtrap':
+        t = room.mob_traps.pop(0)
+        dmg = max(2, int(getattr(victim, 'max_hp', 10) * 0.08))
+        await room.send_to_room(
+            f"{c['bright_yellow']}The blow drives {name} straight onto {t['owner']}'s own rig! [{dmg}]{c['reset']}"
+        )
+        if t['kind'] == 'snare':
+            victim.stunned_rounds = getattr(victim, 'stunned_rounds', 0) + 1
         if await victim.take_damage(dmg, attacker):
             from combat import CombatHandler
             await CombatHandler.handle_death(attacker, victim)
@@ -494,6 +587,11 @@ def env_public(room, player=None) -> dict:
     if trap and not trap['disarmed']:
         out['trap'] = {
             'kind': trap['kind'], 'deadly': trap['deadly'],
+            'detected': bool(player and trap_detected(player, room)),
+        }
+    elif [t for t in getattr(room, 'mob_traps', []) or [] if t['until'] > now]:
+        out['trap'] = {
+            'kind': 'rig', 'deadly': False,
             'detected': bool(player and trap_detected(player, room)),
         }
     return out
