@@ -609,6 +609,20 @@
     color: #ffb84a; font-size: 12px; letter-spacing: 2px;
   }
   #momentum-chip.show { display: block; }
+  /* class-resource spenders: the build→spend choices, under the resource chip */
+  #spender-menu {
+    position: absolute; top: 126px; left: 50%; transform: translateX(-50%);
+    z-index: 22; display: none; gap: 6px;
+  }
+  #spender-menu.show { display: flex; }
+  .sp-row {
+    padding: 3px 9px; background: rgba(20,16,8,0.92); border: 1px solid #a06a20;
+    border-radius: 4px; color: #ffd88a; font-size: 10px; letter-spacing: 1px; cursor: pointer;
+    transition: transform 0.08s;
+  }
+  .sp-row b { color: #ffb84a; margin-left: 4px; }
+  .sp-row:hover { border-color: #ffd44a; transform: translateY(-1px); }
+  .sp-row.dim { opacity: 0.35; pointer-events: none; }
   #finisher-chip {
     position: absolute; top: 30%; left: 50%; transform: translateX(-50%);
     z-index: 23; display: none; padding: 8px 24px; cursor: pointer;

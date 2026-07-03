@@ -4416,7 +4416,12 @@
           d.classList.toggle('active', d.dataset.st === cur));
       };
       MH.bus.on('combat.state', on => {
-        if (!on) { els.momentumChip.classList.remove('show'); els.finisherChip.classList.remove('show'); }
+        if (!on) {
+          els.momentumChip.classList.remove('show');
+          els.finisherChip.classList.remove('show');
+          const sp = document.getElementById('spender-menu');
+          if (sp) sp.classList.remove('show');
+        }
       });
 
       // momentum meter + finisher window, fed by the per-round push
@@ -4445,6 +4450,57 @@
           els.momentumChip.classList.remove('show');
         }
       };
+      // ---- build → spend: the class resource SPENDER menu ----
+      // The decision layer for every class loop: while you're fighting, your
+      // signature resource's spenders appear under the resource chip — lit
+      // when affordable, dim when not. Click one to spend. (Server validates
+      // costs; this only surfaces the choice that already exists.)
+      const CLASS_SPENDERS = {
+        thief:       [['Pocket Sand', 'pocket sand', 3], ['Low Blow', 'low blow', 5], ['Rigged Dice', 'rigged dice', 7], ['Jackpot', 'jackpot', 10]],
+        assassin:    [['Expose', 'expose', 3], ['Vital Strike', 'vital', 6], ['Execute Contract', 'execute contract', 10]],
+        necromancer: [['Soul Bolt', 'soul bolt', 2], ['Drain Soul', 'drain soul', 3], ['Bone Shield', 'bone shield', 4], ['Soul Reap', 'soul reap', 8]],
+        paladin:     [['Word of Glory', 'word of glory', 3]],
+        cleric:      [['Divine Word', 'divine word', 3], ['Holy Fire', 'holy fire', 5], ['Divine Intervention', 'divine intervention', 10]],
+        ranger:      [['Kill Command', 'kill command', 25], ['Aimed Shot', 'aimed shot', 30], ['Rapid Fire', 'rapid fire', 50]],
+        bard:        [['Encore', 'encore', 2], ['Discordant Note', 'discordant note', 4], ['Crescendo', 'crescendo', 5], ['Magnum Opus', 'magnum opus', 10]],
+      };
+      let spenderEl = null, spenderSig = '';
+      const renderSpenderMenu = p => {
+        if (!spenderEl) {
+          spenderEl = document.createElement('div');
+          spenderEl.id = 'spender-menu';
+          document.body.appendChild(spenderEl);
+        }
+        const cls = String(p.char_class || '').toLowerCase();
+        const r = p.resource;
+        const list = CLASS_SPENDERS[cls];
+        // warrior's climax is automatic — tease it as Momentum nears full
+        if (cls === 'warrior' && MH.state.inCombat && r && r.value >= 7 && r.value < r.max) {
+          const sig = `w${r.value}`;
+          if (spenderSig !== sig) {
+            spenderSig = sig;
+            spenderEl.innerHTML = `<div class="sp-row dim">🔥 ${r.max}× Momentum = UNSTOPPABLE</div>`;
+          }
+          spenderEl.classList.add('show');
+          return;
+        }
+        const cheapest = list && list.length ? list[0][2] : Infinity;
+        if (!MH.state.inCombat || !r || !list || !list.length || r.value < cheapest) {
+          spenderEl.classList.remove('show');
+          spenderSig = '';
+          return;
+        }
+        const sig = cls + '|' + list.map(s => r.value >= s[2] ? 1 : 0).join('');
+        if (spenderSig !== sig) {
+          spenderSig = sig;
+          spenderEl.innerHTML = list.map(([label, cmd, cost]) =>
+            `<div class="sp-row ${r.value >= cost ? '' : 'dim'}" data-cmd="${cmd}" title="spend ${cost} ${r.name}">${label} <b>${cost}</b></div>`
+          ).join('');
+          spenderEl.querySelectorAll('.sp-row[data-cmd]').forEach(row =>
+            row.addEventListener('click', () => { MH.sendCommand(row.dataset.cmd, false); if (MH.sfx) MH.sfx.ui(); }));
+        }
+        spenderEl.classList.add('show');
+      };
       // one-time, per-character primer on the class's signature resource — the
       // combat system was reinvented around these, so teach them on first use
       const RES_HINT = {
@@ -4467,11 +4523,12 @@
         setTimeout(() => flash(RES_HINT[cls]), 1200);
       }
       MH.bus.on('combat.update', payload => { if (payload.player) maybeResourceHint(payload.player); });
-      MH.bus.on('map', payload => { if (payload.player) renderResourceChip(payload.player); });
+      MH.bus.on('map', payload => { if (payload.player) { renderResourceChip(payload.player); renderSpenderMenu(payload.player); } });
       MH.bus.on('combat.update', payload => {
         MH.state.lastCombatMobs = payload.mobs;
         const p = payload.player || {};
         renderResourceChip(p);
+        renderSpenderMenu(p);
         if (p.stance) setStance(p.stance);
         // finisher window: target under 22%
         const mob = (payload.mobs || []).find(m2 => m2.fighting);

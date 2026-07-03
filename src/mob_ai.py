@@ -746,6 +746,23 @@ async def declare_intents(mob):
         return
 
     roles = classify_mob(mob)
+
+    # A disciplined foe READS your rhythm: arming a perfect strike (cmd_swing)
+    # can invite a counter — the guard snaps up before your blow lands. This
+    # runs in the pre-pass, i.e. BEFORE the player phase resolves the strike,
+    # so the duel actually plays out: telegraph → counter → breaker.
+    if 'guarded' in roles and getattr(target, 'perfect_next', False):
+        now = time.time()
+        if now >= mob.ai_state.get('guard_cd', 0) and now >= getattr(mob, 'staggered_until', 0) \
+                and random.randint(1, 100) <= 60:
+            mob.guard_until = now + 8.0
+            mob.ai_state['guard_cd'] = now + 20
+            c = mob.config.COLORS
+            await mob.room.send_to_room(
+                f"{c['bright_cyan']}🛡 {mob.name} reads your rhythm and snaps into a guard!{c['reset']}"
+            )
+            return
+
     intent = None
     if 'boss' in roles:
         intent = _choose_boss_intent(mob, target)
