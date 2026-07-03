@@ -249,6 +249,100 @@
     if (has('west'))  { gaps.west  = { y0: midY - 1, y1: midY + 1 }; for (let y = midY - 1; y <= midY + 1; y++) set(0, y, FLOOR); }
     if (has('east'))  { gaps.east  = { y0: midY - 1, y1: midY + 1 }; for (let y = midY - 1; y <= midY + 1; y++) set(W - 1, y, FLOOR); }
 
+    // ---- Phase 3: biome-shaped rooms ------------------------------------
+    // Every room used to be the same rectangle. Now the border grows into the
+    // room organically per biome (noise treelines in the wilds, cellular
+    // caverns underground), and the prose can carve real terrain (a stream, a
+    // pond). All shaped cells are tracked so connectivity failures revert.
+    const organic = [];
+    const midX0 = Math.floor(W / 2), midY0 = Math.floor(H / 2);
+    // lanes + gap mouths stay clear so holding a direction always exits
+    const laneSafe = (x, y) =>
+      (((gaps.east || gaps.west) && Math.abs(y - midY0) <= 1)
+        || ((gaps.north || gaps.south) && Math.abs(x - midX0) <= 1)
+        || (gaps.north && y <= 2 && Math.abs(x - midX0) <= 2)
+        || (gaps.south && y >= H - 3 && Math.abs(x - midX0) <= 2)
+        || (gaps.west && x <= 2 && Math.abs(y - midY0) <= 2)
+        || (gaps.east && x >= W - 3 && Math.abs(y - midY0) <= 2));
+    const carve = (x, y, v) => {
+      if (x < 1 || y < 1 || x >= W - 1 || y >= H - 1) return;
+      if (laneSafe(x, y) || at(x, y) !== FLOOR) return;
+      set(x, y, v);
+      organic.push([x, y]);
+    };
+    const SHAPE = {
+      forest: 3, darkforest: 3, swamp: 3, hills: 2, field: 2, desert: 2,
+      cave: 'cavern', mountain: 'cavern', underground: 'cavern',
+    }[sector];
+    if (typeof SHAPE === 'number' && !swim) {
+      // organic border: each side's thickness wanders 0..maxD like a treeline
+      const maxD = SHAPE;
+      const walk = () => { let d = 1 + Math.floor(rng() * maxD); return () => { d += Math.floor(rng() * 3) - 1; d = Math.max(0, Math.min(maxD, d)); return d; }; };
+      const dn = walk(), ds = walk(), dw = walk(), de = walk();
+      for (let x = 1; x < W - 1; x++) {
+        const d1 = dn(); for (let y = 1; y <= d1; y++) carve(x, y, BLOCK);
+        const d2 = ds(); for (let y = H - 2; y >= H - 1 - d2; y--) carve(x, y, BLOCK);
+      }
+      for (let y = 1; y < H - 1; y++) {
+        const d1 = dw(); for (let x = 1; x <= d1; x++) carve(x, y, BLOCK);
+        const d2 = de(); for (let x = W - 2; x >= W - 1 - d2; x--) carve(x, y, BLOCK);
+      }
+    } else if (SHAPE === 'cavern' && !swim) {
+      // cellular-automata rubble: caves stop being tidy rectangles
+      const tmp = new Uint8Array(W * H);
+      for (let y = 2; y < H - 2; y++) for (let x = 2; x < W - 2; x++) {
+        if (!laneSafe(x, y) && rng() < 0.24) tmp[y * W + x] = 1;
+      }
+      for (let pass = 0; pass < 2; pass++) {
+        const nxt = new Uint8Array(tmp);
+        for (let y = 2; y < H - 2; y++) for (let x = 2; x < W - 2; x++) {
+          let n = 0;
+          for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+            if (!dx && !dy) continue;
+            const xx = x + dx, yy = y + dy;
+            if (xx < 1 || yy < 1 || xx >= W - 1 || yy >= H - 1 || tmp[yy * W + xx]) n++;
+          }
+          nxt[y * W + x] = n >= 5 ? 1 : (n <= 2 ? 0 : tmp[y * W + x]);
+        }
+        tmp.set(nxt);
+      }
+      for (let y = 2; y < H - 2; y++) for (let x = 2; x < W - 2; x++) {
+        if (tmp[y * W + x]) carve(x, y, BLOCK);
+      }
+    }
+    // prose-carved terrain: the description reshapes the ground
+    const prose = `${roomData.name || ''} ${roomData.description || ''}`.toLowerCase();
+    const proseFx = {
+      mossy: /\bmoss|overgrown|ivy|vines?\b/.test(prose),
+      snowy: /\bsnow|frozen|icy|frost\b/.test(prose),
+    };
+    if (!swim && /\b(stream|river|brook|creek)\b/.test(prose)) {
+      // a winding ribbon of water along one third of the room; lane crossings
+      // stay dry and read as natural fords
+      const vertical = rng() < 0.5;
+      if (vertical) {
+        let x = 4 + Math.floor(rng() * 3);
+        for (let y = 1; y < H - 1; y++) {
+          if (Math.abs(y - midY0) <= 1) continue;   // the ford: always crossable
+          x += Math.floor(rng() * 3) - 1; x = Math.max(3, Math.min(8, x));
+          carve(x, y, WATER); if (rng() < 0.6) carve(x + 1, y, WATER);
+        }
+      } else {
+        let y = 3 + Math.floor(rng() * 2);
+        for (let x = 1; x < W - 1; x++) {
+          if (Math.abs(x - midX0) <= 1) continue;   // the ford: always crossable
+          y += Math.floor(rng() * 3) - 1; y = Math.max(2, Math.min(5, y));
+          carve(x, y, WATER); if (rng() < 0.6) carve(x, y + 1, WATER);
+        }
+      }
+    } else if (!swim && sector !== 'water_noswim' && /\b(pond|pool|lake|spring)\b/.test(prose)) {
+      const cx = midX0 + Math.floor(rng() * 6) - 3, cy = midY0 + Math.floor(rng() * 4) - 2;
+      for (let y = cy - 2; y <= cy + 2; y++) for (let x = cx - 3; x <= cx + 3; x++) {
+        const d = Math.hypot((x - cx) / 3.2, (y - cy) / 2.2);
+        if (d <= 1) carve(x, y, WATER);
+      }
+    }
+
     // staircase / portal feature tiles
     const stairsUp = has('up') ? { x: W - 8, y: 4 } : null;
     const stairsDown = has('down') ? { x: 7, y: 4 } : null;
@@ -296,15 +390,24 @@
       pois.push([Math.floor(e.x / T), Math.floor(e.y / T)]);
     }
 
-    // clear POI tiles in case the pond landed on one
-    pois.forEach(([x, y]) => { if (at(x, y) === WATER) set(x, y, FLOOR); });
+    // clear a small disc around every POI the shaping/pond may have swallowed
+    // (stairs, portals, entries must stay open and walkable)
+    pois.forEach(([x, y]) => {
+      for (let dy = -1; dy <= 1; dy++) {
+        for (let dx = -1; dx <= 1; dx++) {
+          const xx = x + dx, yy = y + dy;
+          if (xx > 0 && yy > 0 && xx < W - 1 && yy < H - 1 && at(xx, yy) !== FLOOR) set(xx, yy, FLOOR);
+        }
+      }
+    });
 
     const allReachable = () => {
       const seen = floodReachable(grid, midX, midY);
       return pois.every(([x, y]) => seen[y * W + x]);
     };
     if (!allReachable()) {
-      // pond cut something off: drain it
+      // the biome shaping / stream / pond cut something off: revert it all
+      for (const [x, y] of organic) set(x, y, FLOOR);
       for (let i = 0; i < grid.length; i++) if (grid[i] === WATER) grid[i] = FLOOR;
     }
 
@@ -377,6 +480,7 @@
       gravestones: roomData.gravestones,
       W, H, T, grid, gaps,
       stairsUp, stairsDown, portals, obstacles, props, spawnSlots, entries,
+      mossy: proseFx.mossy, snowy: proseFx.snowy,
       exits, swim,
       dark: flags.includes('dark'),
       peaceful: flags.includes('peaceful'),

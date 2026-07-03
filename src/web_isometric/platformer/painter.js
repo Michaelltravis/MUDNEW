@@ -192,6 +192,31 @@
       }
     }
 
+    // 4.5) prose accents: the description tints the ground itself
+    if (layout.mossy) {
+      const moss = mix(base, rgb('#4a7a3a'), 0.6);
+      for (let i = 0; i < 110; i++) {
+        const x = rng() * cw, y = rng() * ch, r = (6 + rng() * 22) * SS;
+        const gg = ctx.createRadialGradient(x, y, 0, x, y, r);
+        gg.addColorStop(0, css(moss, 0.10 + rng() * 0.08));
+        gg.addColorStop(1, css(moss, 0));
+        ctx.fillStyle = gg;
+        ctx.beginPath(); ctx.arc(x, y, r, 0, 6.283); ctx.fill();
+      }
+    }
+    if (layout.snowy) {
+      ctx.fillStyle = 'rgba(235,242,250,0.22)';
+      ctx.fillRect(0, 0, cw, ch);
+      for (let i = 0; i < 160; i++) {
+        const x = rng() * cw, y = rng() * ch, r = (4 + rng() * 18) * SS;
+        const gg = ctx.createRadialGradient(x, y, 0, x, y, r);
+        gg.addColorStop(0, `rgba(245,250,255,${0.10 + rng() * 0.10})`);
+        gg.addColorStop(1, 'rgba(245,250,255,0)');
+        ctx.fillStyle = gg;
+        ctx.beginPath(); ctx.arc(x, y, r, 0, 6.283); ctx.fill();
+      }
+    }
+
     // 5) water: deep fill, shallow soft edge, wobbling foam shoreline
     let hasWater = false;
     for (let i = 0; i < grid.length; i++) if (grid[i] === WATER) { hasWater = true; break; }
