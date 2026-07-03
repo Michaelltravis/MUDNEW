@@ -1630,6 +1630,12 @@
       ['Z', 'Rest & recovery'],
       ['T', 'Chat'],
     ]],
+    ['Environment', [
+      ['G / B / V / L / P', 'By a door: Open · Bash · Barricade · Lock · Seal (chips appear)'],
+      ['U', 'Disarm a detected trap (⚠ marker — or click it)'],
+      ['O', 'Thief/Ranger: lay caltrops / a snare'],
+      ['Search', 'Type search or detect traps to reveal hidden traps'],
+    ]],
     ['Interact & Tips', [
       ['Right-click', 'Context menu (foe, player, yourself, objects)'],
       ['Enter', 'Type any command — its reply shows in a card'],
@@ -4352,6 +4358,97 @@
         if (!on && windup && rstrip) { windup.classList.remove('show'); rstrip.classList.remove('show'); }
       });
 
+      // ---- environment UI: hazard chips + smart context strip ----
+      // Hazard chips show WHAT the room holds (💧🔥🕸🌿🪨⚠❄); the context strip
+      // shows only the actions that make sense right now, each with a hotkey:
+      // stand by a door → door verbs; a detected trap → [U] disarm; thief or
+      // ranger at peace → [O] lay a trap. Keys are context-gated: with no chip
+      // showing, the same keys keep their normal panel meanings.
+      let lastEnv = null;
+      MH.bus.on('map', p => { if (p.current_room && p.current_room.env) lastEnv = p.current_room.env; });
+      MH.bus.on('combat.update', p => { if (p.env) lastEnv = p.env; });
+      const hazEl = document.createElement('div');
+      hazEl.id = 'room-hazards';
+      document.body.appendChild(hazEl);
+      const envEl = document.createElement('div');
+      envEl.id = 'env-strip';
+      document.body.appendChild(envEl);
+      window.__envChips = null;
+      const CASTERS = ['mage', 'necromancer', 'cleric', 'paladin'];
+      const updateEnvUI = () => {
+        const env = lastEnv;
+        // hazard chips
+        let hz = '';
+        if (env) {
+          if (env.burning) hz += `<span class="hz hot" title="the room is BURNING">🔥 BURNING</span>`;
+          else if (env.fire) hz += `<span class="hz" title="open flames here">🔥</span>`;
+          if (env.frozen) hz += `<span class="hz cold" title="the water is frozen — walkable ice">❄ FROZEN</span>`;
+          else if (env.water) hz += `<span class="hz" title="water here">💧</span>`;
+          if (env.webbed) hz += `<span class="hz" title="thick webs — highly flammable">🕸</span>`;
+          if (env.brambles) hz += `<span class="hz" title="thorns rake everyone who fights here">🌿</span>`;
+          if (env.ledge) hz += `<span class="hz" title="a drop — heavy blows can send someone over">🪨</span>`;
+          if (env.trap && env.trap.detected) hz += `<span class="hz warn" title="detected ${env.trap.kind} trap">${env.trap.deadly ? '☠' : '⚠'} TRAP</span>`;
+          if (env.ptraps) hz += `<span class="hz own" title="your traps are set here">🚧×${env.ptraps}</span>`;
+        }
+        hazEl.innerHTML = hz;
+        hazEl.classList.toggle('show', !!hz);
+        // context action chips
+        const chips = [];
+        const sc = MH.game && MH.game.scene.getScenes(true).find(s => s.getNearbyDoor);
+        const door = sc ? sc.getNearbyDoor() : null;
+        const cls = String((MH.state.player && MH.state.player.char_class) || '').toLowerCase();
+        if (door) {
+          const d = door.dir;
+          if (door.state === 'closed') {
+            chips.push(['G', door.locked ? 'Locked door' : 'Open', door.locked ? null : `open ${d}`]);
+            chips.push(['B', 'Bash', `bash ${d}`]);
+            chips.push(['V', 'Barricade', `barricade ${d}`]);
+            chips.push(['L', door.locked ? 'Unlock' : 'Lock', door.locked ? `unlock ${d}` : `lock ${d}`]);
+            if (CASTERS.includes(cls)) chips.push(['P', 'Seal', `seal ${d}`]);
+          } else if (!door.broken) {
+            chips.push(['G', 'Close', `close ${d}`]);
+          }
+        }
+        if (env && env.trap && env.trap.detected) chips.push(['U', 'Disarm trap', 'disarm trap']);
+        if (!MH.state.inCombat && (cls === 'thief' || cls === 'ranger')) {
+          chips.push(['O', cls === 'thief' ? 'Caltrops' : 'Snare', cls === 'thief' ? 'caltrops' : 'snare']);
+        }
+        if (!chips.length) {
+          envEl.classList.remove('show');
+          window.__envChips = null;
+          return;
+        }
+        const sig = JSON.stringify(chips);
+        if (envEl.dataset.sig !== sig) {
+          envEl.dataset.sig = sig;
+          envEl.innerHTML = chips.map(([k, label, cmd]) =>
+            `<span class="ec ${cmd ? '' : 'dim'}" data-cmd="${cmd || ''}"><b>${k}</b> ${label}</span>`).join('');
+          envEl.querySelectorAll('.ec[data-cmd]').forEach(elc =>
+            elc.addEventListener('click', () => { if (elc.dataset.cmd) MH.sendCommand(elc.dataset.cmd, false); }));
+        }
+        envEl.classList.add('show');
+        window.__envChips = {};
+        chips.forEach(([k, label, cmd]) => { if (cmd) window.__envChips[k.toLowerCase()] = cmd; });
+      };
+      setInterval(updateEnvUI, 400);
+
+      // timed door work (barricading, sealing, lockpicking) shows on the cast
+      // bar; any movement key abandons it (cancel instantly, never stuck)
+      window.__envChannel = false;
+      MH.bus.on('env.channel', e => {
+        window.__envChannel = true;
+        els.castBar.querySelector('.nm').textContent = `${e.label}…`;
+        els.castBar.style.setProperty('--cast-ms', (e.secs * 1000) + 'ms');
+        els.castBar.classList.remove('go', 'done');
+        void els.castBar.offsetWidth;
+        els.castBar.classList.add('show', 'go');
+        setTimeout(() => { window.__envChannel = false; els.castBar.classList.remove('show', 'go', 'done'); }, e.secs * 1000 + 400);
+      });
+      MH.bus.on('env.channel.end', () => {
+        window.__envChannel = false;
+        els.castBar.classList.remove('show', 'go', 'done');
+      });
+
       // loot flow: corpse click -> loot toast -> inventory refreshed + opened
       let lootTimer = null;
       MH.bus.on('loot.corpse', async () => {
@@ -4660,6 +4757,13 @@
           const rk = { q: 'brace', e: 'sidestep', x: 'interrupt' }[e.key.toLowerCase()];
           if (window.fireReaction(rk)) { e.preventDefault(); return; }
         }
+        // environment context chips (door verbs, disarm, lay trap): the key
+        // acts only while its chip is visible, otherwise panels keep it
+        if (!e.shiftKey && window.__envChips && window.__envChips[e.key.toLowerCase()]) {
+          MH.sendCommand(window.__envChips[e.key.toLowerCase()], false);
+          e.preventDefault();
+          return;
+        }
         const k = e.key.toLowerCase();
         if (k === 'i') { renderInventory(); openModal('modal-inv'); }
         else if (k === 'j') { openJournal(); }
@@ -4675,6 +4779,8 @@
         else if (k === 'z') { toggleRecovery(); }
         if (['a', 'd', 'w', 's', 'arrowleft', 'arrowright', 'arrowup', 'arrowdown', ' '].includes(k)) {
           cancelWalk();
+          // moving abandons any timed door work — you're never stuck
+          if (window.__envChannel) { MH.sendCommand('stopwork', false); MH.bus.emit('env.channel.end'); }
           // moving dismisses the room prose so it never blocks the view
           els.roomDesc.classList.remove('show');
         }

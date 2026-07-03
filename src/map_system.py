@@ -1189,10 +1189,14 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             door = None
             if isinstance(exit_data, dict) and 'door' in exit_data:
                 d = exit_data['door']
+                import time as _t
                 door = {
                     'name': d.get('name', 'door'),
                     'state': d.get('state', 'open'),
                     'locked': bool(d.get('locked', False)),
+                    'sealed': d.get('sealed_until', 0) > _t.time(),
+                    'barricaded': d.get('barricaded_until', 0) > _t.time(),
+                    'broken': bool(d.get('broken', False)),
                 }
             to_vnum = _get_exit_target_vnum(exit_data)
             if not to_vnum and not door:

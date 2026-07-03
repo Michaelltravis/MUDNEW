@@ -661,6 +661,35 @@
   @keyframes castfill { from { width: 0%; } to { width: 100%; } }
   #cast-bar.done .fill { background: linear-gradient(90deg, #8ce0a0, #d2ffd9); width: 100% !important; }
 
+  /* ---- environment: hazard chips + context action strip ---- */
+  #room-hazards {
+    position: absolute; top: 52px; left: 50%; transform: translateX(-50%);
+    z-index: 21; display: none; gap: 5px;
+  }
+  #room-hazards.show { display: flex; }
+  #room-hazards .hz {
+    padding: 1px 7px; background: rgba(13,15,21,0.85); border: 1px solid var(--border);
+    border-radius: 10px; color: #cdd3df; font-size: 10px; letter-spacing: 1px;
+  }
+  #room-hazards .hz.hot { border-color: #a04028; color: #ff9a6a; animation: hazpulse 0.8s infinite alternate; }
+  #room-hazards .hz.cold { border-color: #4a7a9a; color: #bfe4ff; }
+  #room-hazards .hz.warn { border-color: #a08028; color: #ffd44a; }
+  #room-hazards .hz.own { border-color: #4a7a4a; color: #9adf9a; }
+  @keyframes hazpulse { from { opacity: 0.75; } to { opacity: 1; } }
+  #env-strip {
+    position: absolute; top: 76px; left: 50%; transform: translateX(-50%);
+    z-index: 21; display: none; gap: 6px;
+  }
+  #env-strip.show { display: flex; }
+  #env-strip .ec {
+    padding: 2px 9px; background: rgba(13,15,21,0.92); border: 1px solid var(--border);
+    border-radius: 4px; color: #cdd3df; font-size: 10px; letter-spacing: 1px; cursor: pointer;
+    transition: transform 0.08s;
+  }
+  #env-strip .ec b { color: #7ad68a; margin-right: 3px; }
+  #env-strip .ec:hover { border-color: #7ad68a; transform: translateY(-1px); }
+  #env-strip .ec.dim { opacity: 0.4; pointer-events: none; }
+
   /* ---- enemy wind-up (declared intent) + reaction prompt ---- */
   #enemy-windup {
     position: absolute; bottom: 178px; left: 50%; transform: translateX(-50%);

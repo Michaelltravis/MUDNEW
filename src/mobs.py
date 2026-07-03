@@ -5,6 +5,7 @@ Non-player characters and monsters.
 """
 
 import random
+import time
 import logging
 from typing import Dict, List, Optional, TYPE_CHECKING
 
@@ -624,7 +625,34 @@ class Mobile(Character):
             if moved:
                 self.hunt_cooldown = 2  # Wait 2 ticks before moving again
                 return True
-        
+
+        # Path blocked and the prey is right through a door? POUND ON IT.
+        # Barricades and seals buy time, not safety — you HEAR it coming.
+        for d, ex in self.room.exits.items():
+            if not ex or ex.get('room') is not target.room or 'door' not in ex:
+                continue
+            door = ex['door']
+            if door.get('state') != 'closed':
+                continue
+            from commands import CommandHandler
+            c = self.config.COLORS
+            max_hp = CommandHandler._door_max_hp(door)
+            door.setdefault('hp', max_hp)
+            door['hp'] -= getattr(self, 'str', 12) * 2 + self.level + random.randint(0, 10)
+            name = door.get('name', 'door')
+            if door['hp'] <= 0:
+                await CommandHandler._break_door_open(self, self.room, d, ex, door, self.config)
+            else:
+                await self.room.send_to_room(
+                    f"{c['bright_red']}{self.name} slams against the {name} {d}! BOOM!{c['reset']}"
+                )
+                if target.room:
+                    await target.room.send_to_room(
+                        f"{c['bright_red']}💥 BOOM! Something heavy pounds against the {name}!{c['reset']}"
+                    )
+            self.hunt_cooldown = 2
+            return True
+
         return False
     
     async def find_path_to_target(self, target: 'Character') -> list:
@@ -669,6 +697,10 @@ class Mobile(Character):
                 if 'door' in exit_data:
                     door = exit_data['door']
                     if door.get('state') == 'closed':
+                        # barricades and arcane seals block PATHING for everyone
+                        # (a blocked hunter pounds the door down instead)
+                        if door.get('barricaded_until', 0) > time.time() or door.get('sealed_until', 0) > time.time():
+                            continue
                         # Mobs can't open locked doors
                         if door.get('locked'):
                             continue

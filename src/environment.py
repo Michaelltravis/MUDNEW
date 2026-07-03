@@ -31,6 +31,8 @@ logger = logging.getLogger('Misthollow.Environment')
 WATER_RE = re.compile(r'\b(stream|river|brook|creek|pond|pool|lake|spring|fountain|waterfall)\b', re.I)
 FIRE_RE = re.compile(r'\b(brazier|campfire|forge|hearth|furnace|bonfire|firepit|flames?)\b', re.I)
 WEB_RE = re.compile(r'\b(cobwebs?|webs?|webbing)\b', re.I)
+BRAMBLE_RE = re.compile(r'\b(brambles?|thorns?|briars?|nettles?)\b', re.I)
+LEDGE_RE = re.compile(r'\b(cliff|ledge|chasm|precipice|ravine|drop-?off)\b', re.I)
 TRAPPY_RE = re.compile(r'dungeon|crypt|mine|sewer|tomb|lair|cave|catacomb|ruin|warren', re.I)
 
 # rooms burning right now (fire spread), ticked from world.combat_tick
@@ -52,6 +54,8 @@ def get_env(room) -> dict:
         'water': bool(WATER_RE.search(text)) or sector in ('water_swim', 'water_noswim', 'underwater'),
         'fire': bool(FIRE_RE.search(text)),
         'webbed': bool(WEB_RE.search(text)),
+        'brambles': bool(BRAMBLE_RE.search(text)),
+        'ledge': bool(LEDGE_RE.search(text)) or sector == 'mountain' and 'cliff' in text.lower(),
     }
     room._env = env
     return env
@@ -190,7 +194,13 @@ async def disarm_trap(player, room):
     chance = min(95, 35 + skill + (getattr(player, 'dex', 10) - 10) * 2)
     if random.randint(1, 100) <= chance:
         trap['disarmed'] = True
-        await player.send(f"{c['bright_green']}Click. You carefully disarm {TRAP_NAMES[trap['kind']]}.{c['reset']}")
+        parts = 2 if trap['deadly'] else 1
+        player.trap_parts = getattr(player, 'trap_parts', 0) + parts
+        await player.send(
+            f"{c['bright_green']}Click. You carefully disarm {TRAP_NAMES[trap['kind']]} "
+            f"and salvage {parts} trap part{'s' if parts > 1 else ''} ({player.trap_parts} carried) — "
+            f"your own traps grow nastier.{c['reset']}"
+        )
         if room:
             await room.send_to_room(f"{player.name} disarms a hidden trap.", exclude=[player])
         if skill and hasattr(player, 'improve_skill'):
@@ -221,10 +231,16 @@ async def lay_trap(player, kind):
     if any(t['owner'] == player.name for t in traps):
         await player.send(f"{c['yellow']}You've already prepared a trap here.{c['reset']}")
         return
-    traps.append({'owner': player.name, 'kind': kind, 'until': time.time() + 300})
+    # salvaged trap parts make your traps meaner (up to 2 consumed per trap)
+    spend = min(2, getattr(player, 'trap_parts', 0))
+    if spend:
+        player.trap_parts -= spend
+    potency = 1 + spend
+    traps.append({'owner': player.name, 'kind': kind, 'until': time.time() + 300, 'potency': potency})
     verb = 'scatter a handful of caltrops across the ground' if kind == 'caltrops' \
         else 'rig a spring-snare across the approach'
-    await player.send(f"{c['bright_green']}You {verb}. The next hostile through here is in for a surprise.{c['reset']}")
+    extra = f" (reinforced with {spend} salvaged part{'s' if spend > 1 else ''})" if spend else ''
+    await player.send(f"{c['bright_green']}You {verb}{extra}. The next hostile through here is in for a surprise.{c['reset']}")
     await room.send_to_room(f"{player.name} rigs something low to the ground...", exclude=[player])
 
 
@@ -240,8 +256,9 @@ async def check_player_traps(mob, room):
     t = room.player_traps.pop(0)   # consumed
     from config import Config
     c = Config.COLORS
+    potency = t.get('potency', 1)
     if t['kind'] == 'caltrops':
-        dmg = max(2, int(getattr(mob, 'max_hp', 10) * 0.06))
+        dmg = max(2, int(getattr(mob, 'max_hp', 10) * (0.03 + 0.04 * potency)))
         mob.stunned_rounds = getattr(mob, 'stunned_rounds', 0) + 1
         await room.send_to_room(
             f"{c['bright_yellow']}⚠ {mob.name} stamps onto {t['owner']}'s caltrops — hobbled! [{dmg}]{c['reset']}"
@@ -249,7 +266,7 @@ async def check_player_traps(mob, room):
         if await mob.take_damage(dmg, None):
             return True
     else:   # snare
-        mob.stunned_rounds = getattr(mob, 'stunned_rounds', 0) + 2
+        mob.stunned_rounds = getattr(mob, 'stunned_rounds', 0) + 1 + potency
         mob.pending_intent = None
         await room.send_to_room(
             f"{c['bright_yellow']}⚠ {t['owner']}'s snare snaps shut — {mob.name} is yanked off its feet!{c['reset']}"
@@ -274,6 +291,8 @@ async def try_shove(attacker, victim, room):
         options.append('water')
     if env['fire'] or getattr(room, 'burning_until', 0) > time.time():
         options.append('fire')
+    if env['ledge']:
+        options.append('ledge')
     trap = get_trap(room)
     if trap and not trap['disarmed'] and time.time() >= trap['sprung_until']:
         options.append('trap')
@@ -305,6 +324,16 @@ async def try_shove(attacker, victim, room):
             })
         except Exception:
             pass
+        if await victim.take_damage(dmg, attacker):
+            from combat import CombatHandler
+            await CombatHandler.handle_death(attacker, victim)
+    elif what == 'ledge':
+        # over the edge: the big one — scraped down the rocks and left reeling
+        dmg = max(4, int(getattr(victim, 'max_hp', 10) * 0.12))
+        victim.stunned_rounds = getattr(victim, 'stunned_rounds', 0) + 1
+        await room.send_to_room(
+            f"{c['bright_red']}🪨 The blow sends {name} over the ledge — a sickening scrape down the rocks! [{dmg}]{c['reset']}"
+        )
         if await victim.take_damage(dmg, attacker):
             from combat import CombatHandler
             await CombatHandler.handle_death(attacker, victim)
@@ -367,12 +396,71 @@ async def elemental_cast(caster, target, spell_name, room=None):
                 pass
 
 
+async def heavy_impact(room):
+    """A heavy/area blow landed in this room: frozen ice can SHATTER under
+    the fight, dumping everyone standing on it back into freezing water."""
+    now = time.time()
+    if getattr(room, 'frozen_until', 0) <= now or random.random() > 0.30:
+        return False
+    room.frozen_until = 0
+    from config import Config
+    c = Config.COLORS
+    await room.send_to_room(
+        f"{c['bright_cyan']}❄💥 The ice SHATTERS under the impact — freezing water swallows the footing!{c['reset']}"
+    )
+    for ch in list(getattr(room, 'characters', [])):
+        if not getattr(ch, 'fighting', None):
+            continue
+        dmg = max(2, int(getattr(ch, 'max_hp', 10) * 0.06))
+        try:
+            if hasattr(ch, 'send'):
+                await ch.send(f"{c['bright_cyan']}You crash through into the freezing water! [{dmg}]{c['reset']}")
+            if await ch.take_damage(dmg, None) and hasattr(ch, 'die'):
+                await ch.die(None)
+        except Exception:
+            pass
+    return True
+
+
 async def tick(world):
-    """Per-combat-round upkeep: burning rooms cook everyone inside."""
+    """Per-combat-round upkeep: burning rooms cook everyone inside, brambles
+    bleed whoever fights among them, rain douses open flames."""
     now = time.time()
     from config import Config
     c = Config.COLORS
+    # brambles: fighting in a thorn patch costs blood — everyone's blood
+    for p in list(getattr(world, 'players', {}).values()):
+        room = getattr(p, 'room', None)
+        if not room or not getattr(p, 'fighting', None):
+            continue
+        if not get_env(room)['brambles']:
+            continue
+        if getattr(room, '_bramble_tick', 0) > now - 3.5:
+            continue   # once per round per room
+        room._bramble_tick = now
+        for ch in list(getattr(room, 'characters', [])):
+            if not getattr(ch, 'fighting', None):
+                continue
+            dmg = max(1, int(getattr(ch, 'max_hp', 10) * 0.02))
+            try:
+                if hasattr(ch, 'send'):
+                    await ch.send(f"{c['green']}🌿 The thorns rake you as you fight! [{dmg}]{c['reset']}")
+                if await ch.take_damage(dmg, None) and hasattr(ch, 'die'):
+                    await ch.die(None)
+            except Exception:
+                pass
     for room in list(_burning_rooms):
+        # rain douses open flames outdoors
+        try:
+            weather = getattr(getattr(room, 'zone', None), 'weather', None)
+            precip = getattr(weather, 'precipitation', 'none') if weather else 'none'
+            if precip and precip != 'none' and random.random() < 0.4:
+                room.burning_until = 0
+                _burning_rooms.discard(room)
+                await room.send_to_room(f"{c['cyan']}The rain hisses down — the flames are doused.{c['reset']}")
+                continue
+        except Exception:
+            pass
         if getattr(room, 'burning_until', 0) <= now:
             _burning_rooms.discard(room)
             try:
@@ -398,6 +486,7 @@ def env_public(room, player=None) -> dict:
     trap = get_trap(room)
     out = {
         'water': env['water'], 'fire': env['fire'], 'webbed': env['webbed'],
+        'brambles': env['brambles'], 'ledge': env['ledge'],
         'burning': getattr(room, 'burning_until', 0) > now,
         'frozen': getattr(room, 'frozen_until', 0) > now,
         'ptraps': len([t for t in getattr(room, 'player_traps', []) or [] if t['until'] > now]),

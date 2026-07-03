@@ -653,6 +653,27 @@
     // Phase 1 room richness: scatter themed ground detail over the flat tile
     // grid (grass, pebbles, cracks, mossy patches) and lay soft edge-shadows
     // where the floor meets walls/obstacles, so the room reads as a real place.
+    // The door you're standing beside (if any) — drives the contextual door
+    // chips in the UI. Door positions are the exit-gap midpoints.
+    getNearbyDoor() {
+      if (!this.layout || !this.layout.exits) return null;
+      const { T } = TD();
+      const W = this.layout.W, H = this.layout.H;
+      const midX = Math.floor(W / 2) * T + T / 2, midY = Math.floor(H / 2) * T + T / 2;
+      const POS = {
+        north: [midX, 1.2 * T], south: [midX, (H - 1.2) * T],
+        west: [1.2 * T, midY], east: [(W - 1.2) * T, midY],
+      };
+      let best = null, bestD = 42;
+      for (const dir of ['north', 'south', 'east', 'west']) {
+        const ex = this.layout.exits[dir];
+        if (!ex || !ex.door) continue;
+        const [x, y] = POS[dir];
+        const d = Phaser.Math.Distance.Between(this.player.x, this.player.y, x, y);
+        if (d < bestD) { bestD = d; best = Object.assign({ dir }, ex.door); }
+      }
+      return best;
+    }
     // Environmental gameplay markers: a detected floor trap gets a pulsing ⚠
     // you can click to DISARM; a burning room glows and rains embers.
     syncEnvMarkers(roomData) {

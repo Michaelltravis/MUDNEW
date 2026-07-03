@@ -114,6 +114,17 @@
     if ((m = line.match(/heavy blow SHATTERS (.+?)'s guard/i))) { MH.setCombat(true); bus.emit('mob.guardbreak', { name: m[1].trim(), line }); return; }
     if ((m = line.match(/(?:🛡 )?(.+?) (?:locks into a defensive guard|reads your rhythm and snaps into a guard)/i))) { MH.setCombat(true); bus.emit('mob.guardup', { name: m[1].trim(), line }); return; }
     if (/^You dart clear of the danger zone/i.test(line)) { MH.setCombat(true); bus.emit('reaction.evade', { line }); return; }
+    // timed door work: begin lines carry their duration "(~Ns"; interruption
+    // and completion lines end the progress bar
+    if ((m = line.match(/\(~(\d+)s/)) && /barricad|sigils|picks whispering|tumblers shut/i.test(line)) {
+      const label = /barricad/i.test(line) ? 'Barricading' : /sigil/i.test(line) ? 'Sealing' : 'Lockpicking';
+      bus.emit('env.channel', { secs: Number(m[1]), label, line });
+      return;
+    }
+    if (/is interrupted — the pile|rite is broken|picks slip|abandon the work|wedge the last piece|last sigil flares|tumblers seat|tumblers refuse/i.test(line)) {
+      bus.emit('env.channel.end', { line });
+      // fall through: these also read well in the feed
+    }
     // environmental drama (traps, shoves, elemental terrain, door tactics):
     // surface these lines in the message feed so nobody misses the world
     // fighting back. (Stagger/guard lines matched above keep their own events.)

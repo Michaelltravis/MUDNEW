@@ -4744,9 +4744,47 @@ class CommandHandler:
         return d, exit_data, exit_data['door']
 
     @classmethod
+    def _door_max_hp(cls, door):
+        """A door's total integrity: base strength, plus locks, seals, bracing."""
+        now = time.time()
+        hp = door.get('strength', 60)
+        if door.get('locked'):
+            hp += 25
+        if door.get('sealed_until', 0) > now:
+            hp += 45
+        if door.get('barricaded_until', 0) > now:
+            hp += 30
+        return hp
+
+    @classmethod
+    async def _break_door_open(cls, player_or_mob, room, d, exit_data, door, config):
+        """Shared breakage: the door bursts open (broken) on BOTH sides."""
+        c = config.COLORS
+        name = door.get('name', 'door')
+        door['state'] = 'open'
+        door['locked'] = False
+        door['broken'] = True
+        door.pop('sealed_until', None)
+        door.pop('barricaded_until', None)
+        door.pop('hp', None)
+        target_room = exit_data.get('room') if exit_data else None
+        if target_room:
+            opp = config.DIRECTIONS.get(d, {}).get('opposite')
+            rev = target_room.exits.get(opp) if opp else None
+            if rev and 'door' in rev:
+                rev['door'].update({'state': 'open', 'locked': False, 'broken': True})
+                rev['door'].pop('sealed_until', None)
+                rev['door'].pop('barricaded_until', None)
+                rev['door'].pop('hp', None)
+            await target_room.send_to_room(f"{c['yellow']}💥 The {name} bursts open in a shower of splinters!{c['reset']}")
+        if room:
+            await room.send_to_room(f"{c['bright_yellow']}💥 CRACK! The {name} hangs broken on its hinges!{c['reset']}")
+
+    @classmethod
     async def _bash_door(cls, player, direction):
-        """Break a door open by force: STR + bash skill vs the door's strength.
-        Sealed doors are far harder; success leaves the door BROKEN open."""
+        """Break a door down by FORCE, swing by swing: each bash chips its
+        integrity (STR + bash skill = bigger chips = fewer swings). Locked,
+        sealed and barricaded doors take more breaking."""
         c = player.config.COLORS
         d, exit_data, door = cls._door_at(player, [direction])
         if not door:
@@ -4755,40 +4793,27 @@ class CommandHandler:
         if door.get('state') != 'closed':
             await player.send(f"{c['yellow']}The door is already open.{c['reset']}")
             return
-        now = time.time()
-        strength = door.get('strength', 60)
-        if door.get('locked'):
-            strength += 25
-        if door.get('sealed_until', 0) > now:
-            strength += 40
-        if door.get('barricaded_until', 0) > now:
-            strength += 20
-        roll = player.str * 3 + player.skills.get('bash', 0) + random.randint(1, 40)
+        max_hp = cls._door_max_hp(door)
+        if 'hp' not in door:
+            door['hp'] = max_hp
+        chip = player.str * 2 + player.skills.get('bash', 0) // 2 + random.randint(5, 20)
+        door['hp'] -= chip
         name = door.get('name', 'door')
-        if roll >= strength:
-            door['state'] = 'open'
-            door['locked'] = False
-            door['broken'] = True
-            door.pop('sealed_until', None)
-            door.pop('barricaded_until', None)
-            await player.send(f"{c['bright_yellow']}💥 CRACK! You smash the {name} open — it hangs broken on its hinges!{c['reset']}")
-            await player.room.send_to_room(f"{player.name} smashes the {name} {d} clean open!", exclude=[player])
-            # the far side hears it and its door matches
-            target_room = exit_data.get('room')
-            if target_room:
-                opp = player.config.DIRECTIONS.get(d, {}).get('opposite')
-                rev = target_room.exits.get(opp) if opp else None
-                if rev and 'door' in rev:
-                    rev['door'].update({'state': 'open', 'locked': False, 'broken': True})
-                    rev['door'].pop('sealed_until', None)
-                    rev['door'].pop('barricaded_until', None)
-                await target_room.send_to_room(f"{c['yellow']}💥 The {name} bursts open in a shower of splinters!{c['reset']}")
+        if door['hp'] <= 0:
+            await player.send(f"{c['bright_yellow']}💥 CRACK! You smash the {name} open!{c['reset']}")
+            await cls._break_door_open(player, player.room, d, exit_data, door, player.config)
             if player.skills.get('bash') and hasattr(player, 'improve_skill'):
                 await player.improve_skill('bash', difficulty=2)
         else:
-            hurt = max(1, int(player.max_hp * 0.03))
+            frac = max(0, door['hp'] / max_hp)
+            bar = '▓' * max(1, round((1 - frac) * 8)) + '░' * round(frac * 8)
+            hurt = max(1, int(player.max_hp * 0.02))
             player.hp = max(1, player.hp - hurt)
-            await player.send(f"{c['yellow']}THUD. The {name} holds — your shoulder takes the worst of it. [{hurt}]{c['reset']}")
+            await player.send(
+                f"{c['yellow']}THUD! The {name} splinters but holds. [{bar}] "
+                f"Your shoulder aches. [{hurt}]{c['reset']}"
+            )
+            await player.room.send_to_room(f"{player.name} slams into the {name} {d}!", exclude=[player])
 
     @classmethod
     async def cmd_barricade(cls, player: 'Player', args: List[str]):
@@ -4808,11 +4833,34 @@ class CommandHandler:
         if getattr(player, 'move', 0) < 15:
             await player.send(f"{c['yellow']}You're too exhausted to wrestle furniture against it.{c['reset']}")
             return
+        if getattr(player, '_door_channel', None):
+            await player.send(f"{c['yellow']}You're already busy with a door!{c['reset']}")
+            return
         player.move -= 15
-        door['barricaded_until'] = time.time() + 90
         name = door.get('name', 'door')
-        await player.send(f"{c['bright_green']}You heave everything you can find against the {name} — braced solid for a while.{c['reset']}")
-        await player.room.send_to_room(f"{player.name} barricades the {name} {d}.", exclude=[player])
+        # heaving furniture TAKES TIME — the strong and seasoned work faster,
+        # and taking a hit or leaving the room ruins the work
+        duration = max(3, 12 - player.str // 3 - player.level // 8)
+        await player.send(f"{c['yellow']}You start heaving everything you can find against the {name}... (~{duration}s — don't get hit){c['reset']}")
+        await player.room.send_to_room(f"{player.name} starts barricading the {name} {d}.", exclude=[player])
+        import asyncio as _aio
+        player._door_channel = {'kind': 'barricade', 'room': player.room, 'hp': player.hp}
+
+        async def _finish():
+            await _aio.sleep(duration)
+            ch = getattr(player, '_door_channel', None)
+            player._door_channel = None
+            if not ch or ch['kind'] != 'barricade':
+                return
+            if player.room is not ch['room'] or player.is_fighting or player.hp < ch['hp']:
+                await player.send(f"{c['red']}Your barricading is interrupted — the pile clatters apart!{c['reset']}")
+                return
+            door['barricaded_until'] = time.time() + 90 + player.level * 2
+            door.pop('hp', None)   # fresh integrity including the brace
+            await player.send(f"{c['bright_green']}You wedge the last piece home — the {name} is braced solid.{c['reset']}")
+            if player.room:
+                await player.room.send_to_room(f"{player.name} barricades the {name} {d}.", exclude=[player])
+        _aio.create_task(_finish())
 
     @classmethod
     async def cmd_seal(cls, player: 'Player', args: List[str]):
@@ -4835,11 +4883,42 @@ class CommandHandler:
         if getattr(player, 'mana', 0) < 20:
             await player.send(f"{c['red']}Not enough mana.{c['reset']}")
             return
+        if getattr(player, '_door_channel', None):
+            await player.send(f"{c['yellow']}You're already busy with a door!{c['reset']}")
+            return
         player.mana -= 20
-        door['sealed_until'] = time.time() + 120
         name = door.get('name', 'door')
-        await player.send(f"{c['bright_magenta']}✦ You trace burning sigils across the {name} — it seals with a hum.{c['reset']}")
-        await player.room.send_to_room(f"Glowing sigils crawl across the {name} {d} as {player.name} seals it.", exclude=[player])
+        # tracing the sigils takes focus — INT speeds the rite; a hit breaks it
+        duration = max(2, 7 - getattr(player, 'int', 10) // 4)
+        await player.send(f"{c['magenta']}You begin tracing sigils across the {name}... (~{duration}s){c['reset']}")
+        import asyncio as _aio
+        player._door_channel = {'kind': 'seal', 'room': player.room, 'hp': player.hp}
+
+        async def _finish():
+            await _aio.sleep(duration)
+            ch = getattr(player, '_door_channel', None)
+            player._door_channel = None
+            if not ch or ch['kind'] != 'seal':
+                return
+            if player.room is not ch['room'] or player.hp < ch['hp']:
+                await player.send(f"{c['red']}The rite is broken — the half-formed sigils gutter out!{c['reset']}")
+                return
+            door['sealed_until'] = time.time() + 120 + player.level * 2
+            door.pop('hp', None)
+            await player.send(f"{c['bright_magenta']}✦ The last sigil flares — the {name} seals with a hum.{c['reset']}")
+            if player.room:
+                await player.room.send_to_room(f"Glowing sigils crawl across the {name} {d} as {player.name} seals it.", exclude=[player])
+        _aio.create_task(_finish())
+
+    @classmethod
+    async def cmd_stopwork(cls, player: 'Player', args: List[str]):
+        """Abandon a timed door/lock action in progress (the web client sends
+        this when you move; telnet players can type it)."""
+        c = player.config.COLORS
+        if getattr(player, '_door_channel', None):
+            player._door_channel = None
+            await player.send(f"{c['yellow']}You abandon the work.{c['reset']}")
+        # silent when there's nothing to stop — this fires on movement keys
 
     @classmethod
     async def cmd_caltrops(cls, player: 'Player', args: List[str]):
@@ -11704,7 +11783,43 @@ class CommandHandler:
                     break
 
         if key_vnum and not has_key:
-            await player.send(f"{c['red']}You don't have the key.{c['reset']}")
+            # no key: a lockpicker can force the tumblers SHUT — but it takes
+            # time (DEX + pick_lock proficiency = faster). A key is instant.
+            pick_skill = player.skills.get('pick_lock', 0)
+            if not pick_skill:
+                await player.send(f"{c['red']}You don't have the key.{c['reset']}")
+                return
+            if getattr(player, '_door_channel', None):
+                await player.send(f"{c['yellow']}You're already busy with a door!{c['reset']}")
+                return
+            duration = max(2, 10 - player.dex // 3 - pick_skill // 15)
+            await player.send(f"{c['yellow']}No key — you crouch and work the tumblers shut... (~{duration}s){c['reset']}")
+            import asyncio as _aio
+            player._door_channel = {'kind': 'lockpick', 'room': player.room, 'hp': player.hp}
+            _door, _dir, _exit = door, direction, exit_data
+
+            async def _finish():
+                await _aio.sleep(duration)
+                ch = getattr(player, '_door_channel', None)
+                player._door_channel = None
+                if not ch or ch['kind'] != 'lockpick':
+                    return
+                if player.room is not ch['room'] or player.hp < ch['hp']:
+                    await player.send(f"{c['red']}Your picks slip — the work is ruined!{c['reset']}")
+                    return
+                if random.randint(1, 100) <= min(95, pick_skill + (player.dex - 10) * 2):
+                    _door['locked'] = True
+                    nr = _exit.get('room')
+                    if nr:
+                        od = player.config.DIRECTIONS[_dir]['opposite']
+                        if od in nr.exits and 'door' in nr.exits[od]:
+                            nr.exits[od]['door']['locked'] = True
+                    await player.send(f"{c['bright_green']}*Click* The tumblers seat — locked without a key.{c['reset']}")
+                    if hasattr(player, 'improve_skill'):
+                        await player.improve_skill('pick_lock', difficulty=3)
+                else:
+                    await player.send(f"{c['yellow']}The tumblers refuse to seat. No luck.{c['reset']}")
+            _aio.create_task(_finish())
             return
 
         door['locked'] = True
@@ -11818,17 +11933,45 @@ class CommandHandler:
 
     @classmethod
     async def cmd_pick(cls, player: 'Player', args: List[str]):
-        """Pick a lock (Thief skill). Usage: pick <door/container>"""
+        """Pick a lock (Thief skill). Usage: pick <door/container>.
+        Working a lock TAKES TIME (DEX + proficiency = faster); a key is instant."""
         if not args:
             await player.send("Pick what lock?")
             return
 
         c = player.config.COLORS
 
-        # Check if player has pick lock skill
+        pick_skill0 = player.skills.get('pick_lock', 0)
+        if pick_skill0 == 0:
+            await player.send(f"{c['red']}You don't know how to pick locks!{c['reset']}")
+            return
+        if getattr(player, '_door_channel', None):
+            await player.send(f"{c['yellow']}You're already busy with a lock!{c['reset']}")
+            return
+        duration = max(2, 9 - player.dex // 3 - pick_skill0 // 15)
+        await player.send(f"{c['yellow']}You crouch over the lock, picks whispering... (~{duration}s){c['reset']}")
+        import asyncio as _aio
+        player._door_channel = {'kind': 'pick', 'room': player.room, 'hp': player.hp}
+
+        async def _finish():
+            await _aio.sleep(duration)
+            ch = getattr(player, '_door_channel', None)
+            player._door_channel = None
+            if not ch or ch['kind'] != 'pick':
+                return
+            if player.room is not ch['room'] or player.hp < ch['hp']:
+                await player.send(f"{c['red']}Your picks slip — the attempt is ruined!{c['reset']}")
+                return
+            await cls._do_pick(player, args)
+        _aio.create_task(_finish())
+        return
+
+    @classmethod
+    async def _do_pick(cls, player: 'Player', args: List[str]):
+        """The actual pick-lock resolution (runs after the timed channel)."""
+        c = player.config.COLORS
         pick_skill = player.skills.get('pick_lock', 0)
         if pick_skill == 0:
-            await player.send(f"{c['red']}You don't know how to pick locks!{c['reset']}")
             return
 
         target_name = ' '.join(args).lower()

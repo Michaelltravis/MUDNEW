@@ -908,6 +908,12 @@ async def _resolve_intent(mob):
 
     if intent['kind'] in ('heavy', 'aoe'):
         mob._skip_autoattack = True   # the special IS this round's attack
+        # a massive impact can SHATTER frozen ice under the whole fight
+        try:
+            from environment import heavy_impact
+            await heavy_impact(mob.room)
+        except Exception:
+            pass
 
     what, arg = intent['ability']
     if what == 'boss':
