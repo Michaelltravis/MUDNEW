@@ -16465,6 +16465,21 @@ class CommandHandler:
         # Show room
         await target_room.show_to(player)
 
+        # Refresh the graphical client: a teleport is not a normal move, so the
+        # map stream would otherwise keep showing the old room. The map only
+        # draws explored rooms, so mark the destination explored first.
+        try:
+            if not hasattr(player, 'explored_rooms') or player.explored_rooms is None:
+                player.explored_rooms = set()
+            player.explored_rooms.add(target_room.vnum)
+        except Exception:
+            pass
+        if hasattr(player.world, 'web_map') and player.world.web_map:
+            try:
+                await player.world.web_map.notify_player(player)
+            except Exception:
+                pass
+
         # Announce arrival
         await target_room.send_to_room(
             f"{c['bright_magenta']}{player.name} appears in a puff of smoke!{c['reset']}",
@@ -17352,6 +17367,53 @@ class CommandHandler:
             await player.send(f"{c['bright_green']}You restore {target.name} to full health!{c['reset']}")
             await target.send(f"{c['bright_green']}You feel a surge of divine energy! Fully restored!{c['reset']}")
     
+    @classmethod
+    async def cmd_settime(cls, player: 'Player', args: List[str]):
+        """Set the game clock hour (immortal only). Used by QA/capture tooling.
+
+        Usage: settime <hour 0-23>
+        """
+        c = player.config.COLORS
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        try:
+            hour = int(args[0])
+            if not 0 <= hour <= 23:
+                raise ValueError
+        except (IndexError, ValueError):
+            await player.send(f"{c['yellow']}Usage: settime <hour 0-23>{c['reset']}")
+            return
+        gt = getattr(player.world, 'game_time', None)
+        if not gt:
+            await player.send(f"{c['red']}No game clock is running.{c['reset']}")
+            return
+        gt.hour = hour
+        gt.tick_counter = 0
+        await player.send(f"{c['bright_cyan']}The clock now reads {hour:02d}:00 ({'day' if gt.is_day() else 'night'}).{c['reset']}")
+
+    @classmethod
+    async def cmd_setweather(cls, player: 'Player', args: List[str]):
+        """Set the sky condition for the current zone (immortal only). QA/capture tooling.
+
+        Usage: setweather <clear|overcast|rainy|stormy|snowy|foggy>
+        """
+        c = player.config.COLORS
+        if not player.is_immortal:
+            await player.send(f"{c['red']}You do not have the power to do that.{c['reset']}")
+            return
+        valid = ('clear', 'overcast', 'rainy', 'stormy', 'snowy', 'foggy')
+        if not args or args[0].lower() not in valid:
+            await player.send(f"{c['yellow']}Usage: setweather <{'|'.join(valid)}>{c['reset']}")
+            return
+        zone = player.room.zone if player.room else None
+        weather = getattr(zone, 'weather', None) if zone else None
+        if not weather:
+            await player.send(f"{c['red']}This zone has no weather to set.{c['reset']}")
+            return
+        weather.sky_condition = args[0].lower()
+        await player.send(f"{c['bright_cyan']}The sky over {zone.name} is now {weather.sky_condition}.{c['reset']}")
+
     @classmethod
     async def cmd_advance(cls, player: 'Player', args: List[str]):
         """Set a player's level (immortal only).

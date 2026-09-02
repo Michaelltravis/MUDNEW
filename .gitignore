@@ -47,3 +47,9 @@ lib/players/*.json
 
 # Live-server runtime state (rewritten on every player death)
 data/gravestones.json
+
+# Gauntlet loop: local reference game clone + capture account
+.gauntlet-ref/
+lib/accounts/gauntlet.json
+docs/gauntlet/**/mh/
+docs/gauntlet/**/pairs/
