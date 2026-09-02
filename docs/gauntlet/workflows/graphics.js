@@ -1,7 +1,7 @@
 export const meta = {
   name: 'gauntlet-graphics',
   description: 'Gauntlet Loop, graphics dimension: 3 builders, blind critic vs BrowserQuest, max 3 rounds',
-  whenToUse: 'Run with the Workflow tool: args {run: "graphics-01", timestamp: "<iso>", rounds?: 3, pieces?: ["atmosphere","actors","hud"]}',
+  whenToUse: 'Run with the Workflow tool: args {run: "graphics-01", timestamp: "<iso>", rounds?: 3, pieces?: ["atmosphere","actors","hud"], prior?: {atmosphere: "docs/gauntlet/dry-01/round-1/critic-atmosphere.json"}}',
   phases: [
     { title: 'Reference gate', detail: 'reference shots + servers present' },
     { title: 'Build', detail: 'one fresh builder per open piece' },
@@ -66,7 +66,7 @@ Run: ${RUN}, round ${n}. Piece: ${p.title}.
 Goal: ${p.goal}
 You may ONLY edit these files: ${p.files.join(', ')}. Do not touch any other file. Other builders are editing other files concurrently in this same working tree; never run git checkout/stash/reset.
 Reference bar: BrowserQuest. Its screenshots are in ${REF_DIR}/ (labels: ${p.labels.join(', ')}). Our latest screenshots are in ${n > 1 ? roundDir(n - 1) : 'docs/gauntlet/smoke/round-0'}/mh/. LOOK at both (Read the PNGs) before coding and decide what specifically makes theirs read better; fix that, in our painterly style, not by copying pixel art.
-${verdict ? `Previous critic verdict for this piece (fix these FIRST):\n${JSON.stringify(verdict, null, 2)}` : 'First round: no verdict yet.'}
+${verdict ? `Previous critic verdict for this piece (fix these FIRST):\n${JSON.stringify(verdict, null, 2)}` : (args && args.prior && args.prior[p.id]) ? `No verdict in this run yet, but an earlier run judged this piece: Read ${args.prior[p.id]} and its sibling verdicts.md first and fix those points FIRST. The working tree may already contain that run's uncommitted edits to your files; build on them.` : 'First round: no verdict yet.'}
 The critic will judge only these labels ${p.labels.join(', ')} on these questions: ${p.questions.map((q, i) => `(${i + 1}) ${q}`).join(' ')}
 Hard rules: keep the game playable at every commit; no new external assets or CDN loads; keep the file syntax valid (run: node -e "new Function(require('fs').readFileSync('<file>','utf8'))" for each JS file you touched; for platformer.html only edit CSS/markup). Before finishing run BOTH checks and paste their last lines verbatim into self_check: (a) node tools/qc_platformer_rooms.js  (b) python3 tests/test_suite.py localhost 4000 --smoke  (the MUD is running on :4000; if it is not, start it with ./run.sh in the background and wait for "Server listening").
 Do not judge your own work; describe what changed and why in at most 8 bullets. Write those bullets to ${roundDir(n)}/builder-${p.id}.md (create dirs). Return {piece:"${p.id}", files, summary, self_check:{qc_rooms, smoke}}.`

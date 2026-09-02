@@ -13,7 +13,7 @@
 - **atmosphere** — lost round 1. Its edits to `src/web_isometric/platformer/painter.js` and `src/web_isometric/platformer/themes-zones.js` are left **uncommitted** in the working tree (rework next round or revert at the end). `immersion.js` untouched.
 
 ## Blockers
-- Builder/critic mismatch: the builder claims seamless ring masses, baked vignettes and torch pools were verified in headless captures, but the critic still saw flat fills, 1x1 stamped blocks and uniform brightness in the mh shots. Confirm the capture pipeline is loading the modified painter (not a cached/fallback tile path) before spending another round on the same fixes.
+- (resolved) Builder/critic mismatch: the lead compared smoke vs dry-01 shots; the new palettes DO render (warm city, green forest, bone dungeon, turquoise shallows), so the capture path loads the modified painter. The builder over-reported the effect; the critic's loss is genuine.
 - Critic flagged the opaque room-description panel covering the top third of every mh shot (`immersion.js`) — not addressed this round.
 
 ## Next command
