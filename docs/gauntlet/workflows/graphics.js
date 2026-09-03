@@ -41,6 +41,9 @@ const RUN = (args && args.run) || 'graphics-01'
 const STAMP = (args && args.timestamp) || 'unstamped'
 const ROUNDS = Math.min(3, (args && args.rounds) || 3)
 const PIECES = ALL_PIECES.filter(p => !(args && args.pieces) || args.pieces.includes(p.id))
+  .map(p => (args && args.labels && args.labels[p.id]) ? { ...p, labels: args.labels[p.id] } : p)
+// win rule: 'overall' (critic's overall pick) or 'majority' (overall pick AND more than half the labels)
+const WIN_RULE = (args && args.winRule) || 'overall'
 const ENV = 'NODE_PATH=/opt/node22/lib/node_modules'
 const REF_DIR = 'docs/gauntlet/reference/browserquest'
 const runDir = `docs/gauntlet/${RUN}`
@@ -88,7 +91,7 @@ const decodePrompt = (n, verdicts) => `You are the LEAD's clerk in a Gauntlet Lo
 Critic verdicts (JSON, one per piece): ${JSON.stringify(verdicts)}
 Piece file ownership: ${JSON.stringify(PIECES.map(p => ({ id: p.id, files: p.files })))}
 Do:
-1. Read ${roundDir(n)}/pairs/key.json. A piece WINS when its overall pick maps to "mh" in the key (per-label picks decode the same way; report them too).
+1. Read ${roundDir(n)}/pairs/key.json. Decode the overall pick and every per-label pick through the key. Win rule "${WIN_RULE}": ${WIN_RULE === 'majority' ? 'a piece WINS only when its overall pick decodes to "mh" AND more than half of its judged labels decode to "mh"' : 'a piece WINS when its overall pick decodes to "mh"'}. Report the per-label table either way.
 2. Write ${roundDir(n)}/verdicts.md: a table per piece (label, pick, decoded winner), overall win/loss, the critic's 3 reasons and fixes verbatim.
 3. For each WINNING piece: git add exactly its owned files plus ${roundDir(n)}/builder-<piece>.md, critic-<piece>.json and verdicts.md, then commit with message:
    gauntlet(${RUN}): <piece> won round ${n}
