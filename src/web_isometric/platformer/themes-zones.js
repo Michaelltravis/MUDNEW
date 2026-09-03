@@ -14,13 +14,19 @@
   //   the walls, cool daylight spilling in at the exits); false = open sky
   //   (soft vignette, sun shadows cast by the treeline / walls onto the floor)
   //   vig: vignette strength 0..1, vigCol: its color, pool: light-pool color
-  const LIGHT_OUT  = { enclosed: false, vig: 0.16, vigCol: '#0c1410', pool: '#fff0c0', dapple: true };
-  const LIGHT_SUN  = { enclosed: false, vig: 0.10, vigCol: '#2a1a08', pool: '#fff4d0', dapple: false };
+  //   (open-sky vignettes are deliberately strong: a clearing is brightest
+  //   in the middle and sinks into canopy shade at the treeline; a square is
+  //   brightest where the sun hits and shaded under the eaves)
+  const LIGHT_OUT  = { enclosed: false, vig: 0.30, vigCol: '#06100a', pool: '#fff0c0', dapple: true };
+  const LIGHT_SUN  = { enclosed: false, vig: 0.22, vigCol: '#2a1a08', pool: '#fff4d0', dapple: false };
   const LIGHT_IN   = { enclosed: true,  vig: 0.42, vigCol: '#0a0810', pool: '#ffc888' };
   const LIGHT_DARK = { enclosed: true,  vig: 0.78, vigCol: '#060302', pool: '#ffa850' };
   const LIGHT_COLD = { enclosed: true,  vig: 0.50, vigCol: '#0a1018', pool: '#ffd8a8' };
   const T22 = {
-    midgaard:   { floor: '#8d7d66', f2: '#7b6c57', acc: '#f2c46a', floorKind: 'cobble', borderKind: 'wall', borderCol: '#6a5846', glow: 0xffc878, mood: 0xffe4b8, moodA: 0.07, ambient: 'motes', light: LIGHT_SUN, props: ['lamppost', 'crate', 'barrel', 'stall', 'banner', 'fountain'] },
+    // midgaard: a warm sandstone-and-cobble town; the border is painted by
+    // painter.js as the rooftops of the houses that ring each street/square
+    // (paintBorder + borderStyle 'roof'), not a brick wall
+    midgaard:   { floor: '#a08a66', f2: '#8c7858', acc: '#f2c46a', floorKind: 'cobble', borderKind: 'wall', borderCol: '#6a5846', paintBorder: true, borderStyle: 'roof', roofCols: ['#a8583a', '#5a6a94', '#8a6a40', '#7a4e5e', '#b06a3c', '#4e6a7a'], glow: 0xffc878, mood: 0xffe4b8, moodA: 0.07, ambient: 'motes', light: LIGHT_SUN, props: ['lamppost', 'crate', 'barrel', 'stall', 'banner', 'fountain'] },
     temple:     { floor: '#a29ea8', f2: '#928e9a', acc: '#ffe9a8', floorKind: 'marble', borderKind: 'column', borderCol: '#b4b0c0', glow: 0xffe9a8, mood: 0xfff6e0, moodA: 0.06, ambient: 'motes', light: LIGHT_IN, props: ['pillar', 'candles', 'urn', 'banner', 'statue'] },
     sewer:      { floor: '#3e4a36', f2: '#333e2c', acc: '#9fd6a0', floorKind: 'slimestone', borderKind: 'wall', borderCol: '#2e382a', glow: 0x9fd6a0, mood: 0x9adba0, moodA: 0.07, ambient: 'drips', light: { enclosed: true, vig: 0.55, vigCol: '#040806', pool: '#b8f0a0' }, props: ['mushrooms', 'bones', 'rubble', 'barrel'], water: '#4a6a3a' },
     forest:     { floor: '#529440', f2: '#427a34', acc: '#b8e878', floorKind: 'grass', borderKind: 'tree', borderCol: '#2a6a34', glow: 0xaaffaa, mood: 0xd8ffd0, moodA: 0.05, ambient: 'leaves', light: LIGHT_OUT, props: ['tree', 'bush', 'flowers', 'mushrooms', 'stump', 'rock'] },
@@ -883,7 +889,7 @@
         // into the room painting as one continuous mass; their sprites stay
         // transparent so no 16px stamp repeats round the room. Without the
         // painter the seamless ring art is used as before.
-        const organicKind = MH.PAINTED_BORDER_KINDS.includes(t.borderKind);
+        const organicKind = MH.PAINTED_BORDER_KINDS.includes(t.borderKind) || !!t.paintBorder;
         const painted = organicKind && !!(MH.painter && MH.painter.enabled !== false);
         {
           const [c, ctx] = canvasOf(S, S);

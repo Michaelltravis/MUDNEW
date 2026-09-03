@@ -49,12 +49,12 @@
     underground: { enclosed: true, vig: 0.78, vigCol: '#060302', pool: '#ffa850' },
     dungeon: { enclosed: true, vig: 0.58, vigCol: '#06050a', pool: '#ffb468' },
     inside: { enclosed: true, vig: 0.42, vigCol: '#0a0810', pool: '#ffc888' },
-    city: { enclosed: false, vig: 0.10, vigCol: '#2a1a08', pool: '#fff4d0', dapple: false },
-    desert: { enclosed: false, vig: 0.08, vigCol: '#2a1a08', pool: '#fff4d0', dapple: false },
-    mountain: { enclosed: false, vig: 0.18, vigCol: '#101820', pool: '#fff4d0', dapple: false },
+    city: { enclosed: false, vig: 0.22, vigCol: '#2a1a08', pool: '#fff4d0', dapple: false },
+    desert: { enclosed: false, vig: 0.14, vigCol: '#2a1a08', pool: '#fff4d0', dapple: false },
+    mountain: { enclosed: false, vig: 0.24, vigCol: '#101820', pool: '#fff4d0', dapple: false },
     water_swim: { enclosed: false, vig: 0.14, vigCol: '#062838', pool: '#c0f8ff', dapple: false },
     underwater: { enclosed: false, vig: 0.5, vigCol: '#041828', pool: '#a0e8ff', dapple: false },
-    default: { enclosed: false, vig: 0.16, vigCol: '#0c1410', pool: '#fff0c0', dapple: true },
+    default: { enclosed: false, vig: 0.28, vigCol: '#06100a', pool: '#fff0c0', dapple: true },
   };
 
   // The scene hangs wall torches with this exact walk (decorateWalls); we
@@ -120,9 +120,16 @@
     // which block mass (if any) this painting owns: the ZONE decides whether
     // the tile sprites are transparent, the resolved palette decides the look
     // (a cave sector inside a forest zone paints rock where the trees would be)
-    const zoneOrganic = !!(zt0 && PAINTED_KINDS.includes(zt0.borderKind));
+    const zoneOrganic = !!(zt0 && (PAINTED_KINDS.includes(zt0.borderKind) || zt0.paintBorder));
     const massKind = zoneOrganic ? ((zt && zt.borderKind) || 'rock') : null;
     const borderCol = rgb((zt && zt.borderCol) || (zt0 && zt0.borderCol) || '#4a4a4a');
+    // a rooftop border (city squares ringed by houses) is a wall-style mass
+    const roofed = massKind === 'wall' && !!(zt && zt.borderStyle === 'roof');
+    const roomName = (layout.name || '').toLowerCase();
+    // a market / plaza floor gets stalls, a paved circle and cart ruts
+    const market = /market|square|plaza|bazaar|fair\b|forum|piazza/.test(roomName)
+      && (kind === 'cobble' || kind === 'flagstone' || kind === 'marble');
+    const cityish = !enclosed && (kind === 'cobble' || (kind === 'flagstone' && th === 'city'));
 
     const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? BLOCK : grid[y * W + x];
     const blocks = [];
@@ -135,6 +142,57 @@
       ctx.fillStyle = gg;
       ctx.beginPath(); ctx.arc(x, y, r, 0, 6.283); ctx.fill();
     };
+    // a soft-edged band of light (sun shaft / caustic ray) rotated about (x, y)
+    const beam = (x, y, ang, w, len, col, a) => {
+      ctx.save(); ctx.translate(x, y); ctx.rotate(ang);
+      const gg = ctx.createLinearGradient(-w / 2, 0, w / 2, 0);
+      gg.addColorStop(0, css(col, 0)); gg.addColorStop(0.5, css(col, a)); gg.addColorStop(1, css(col, 0));
+      ctx.fillStyle = gg; ctx.fillRect(-w / 2, -len / 2, w, len);
+      ctx.restore();
+    };
+    // a wandering polyline from the room's heart to an exit (the path / rut
+    // generator shared by grass roads and cobbled cart tracks)
+    const wobble = (ex, ey, amp) => {
+      const cx = cw / 2, cy = ch / 2;
+      const pts = [[cx, cy]];
+      const dx = ex - cx, dy = ey - cy, len = Math.hypot(dx, dy);
+      const nx = -dy / len, ny = dx / len;
+      const N = 5;
+      for (let i = 1; i < N; i++) {
+        const t = i / N, fade = Math.sin(t * Math.PI);
+        const off = (rng() - 0.5) * 2 * amp * fade;
+        pts.push([cx + dx * t + nx * off, cy + dy * t + ny * off]);
+      }
+      pts.push([ex, ey]);
+      return pts;
+    };
+    const strokePath = (pts, col, a, w, shift = 0) => {
+      // shift: sideways offset in px (parallel ruts)
+      ctx.strokeStyle = css(col, a); ctx.lineWidth = w;
+      ctx.beginPath();
+      const P = pts.map((p, i) => {
+        if (!shift) return p;
+        const q = pts[Math.min(pts.length - 1, i + 1)], o = pts[Math.max(0, i - 1)];
+        const dx = q[0] - o[0], dy = q[1] - o[1], l = Math.hypot(dx, dy) || 1;
+        return [p[0] - dy / l * shift, p[1] + dx / l * shift];
+      });
+      ctx.moveTo(P[0][0], P[0][1]);
+      for (let i = 1; i < P.length - 1; i++) {
+        const mx = (P[i][0] + P[i + 1][0]) / 2, my = (P[i][1] + P[i + 1][1]) / 2;
+        ctx.quadraticCurveTo(P[i][0], P[i][1], mx, my);
+      }
+      ctx.lineTo(P[P.length - 1][0], P[P.length - 1][1]);
+      ctx.stroke();
+    };
+    const exitEnds = () => {
+      const ends = [];
+      if (!layout.gaps) return ends;
+      if (layout.gaps.north) ends.push([cw / 2, 0]);
+      if (layout.gaps.south) ends.push([cw / 2, ch]);
+      if (layout.gaps.west) ends.push([0, ch / 2]);
+      if (layout.gaps.east) ends.push([cw, ch / 2]);
+      return ends;
+    };
 
     // 1) base wash: soft radial center-light over a two-tone ground
     let g = ctx.createRadialGradient(cw / 2, ch / 2, 40, cw / 2, ch / 2, Math.max(cw, ch) * 0.72);
@@ -142,11 +200,13 @@
     g.addColorStop(1, css(base2));
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, cw, ch);
-    // sun direction: warm light from the top-left, cool shade bottom-right
+    // sun direction: warm light from the top-left, cool shade bottom-right —
+    // outdoors this is the first, broadest falloff: the room is brighter on
+    // the side the sun comes from and sinks into cool shade opposite
     g = ctx.createLinearGradient(0, 0, cw, ch);
-    g.addColorStop(0, enclosed ? 'rgba(255,220,180,0.03)' : 'rgba(255,240,200,0.07)');
-    g.addColorStop(0.5, 'rgba(255,240,200,0)');
-    g.addColorStop(1, enclosed ? 'rgba(4,4,12,0.10)' : 'rgba(10,20,40,0.07)');
+    g.addColorStop(0, enclosed ? 'rgba(255,220,180,0.03)' : 'rgba(255,238,190,0.16)');
+    g.addColorStop(0.45, 'rgba(255,240,200,0)');
+    g.addColorStop(1, enclosed ? 'rgba(4,4,12,0.10)' : 'rgba(10,20,40,0.15)');
     ctx.fillStyle = g;
     ctx.fillRect(0, 0, cw, ch);
 
@@ -167,36 +227,8 @@
         : kind === 'slimestone' ? mix(base, rgb('#5a4a30'), 0.6) : mix(base, rgb('#7a5632'), 0.8);
       const edgeCol = shade(dirt, 0.74), core = mix(dirt, rgb('#c8a878'), 0.3);
       const cx = cw / 2, cy = ch / 2;
-      const ends = [];
-      if (layout.gaps.north) ends.push([cx, 0]);
-      if (layout.gaps.south) ends.push([cx, ch]);
-      if (layout.gaps.west) ends.push([0, cy]);
-      if (layout.gaps.east) ends.push([cw, cy]);
+      const ends = exitEnds();
       ctx.lineCap = 'round'; ctx.lineJoin = 'round';
-      const wobble = (ex, ey, amp) => {
-        // polyline centre -> exit with perpendicular wander that dies at the exit
-        const pts = [[cx, cy]];
-        const dx = ex - cx, dy = ey - cy, len = Math.hypot(dx, dy);
-        const nx = -dy / len, ny = dx / len;
-        const N = 5;
-        for (let i = 1; i < N; i++) {
-          const t = i / N, fade = Math.sin(t * Math.PI);
-          const off = (rng() - 0.5) * 2 * amp * fade;
-          pts.push([cx + dx * t + nx * off, cy + dy * t + ny * off]);
-        }
-        pts.push([ex, ey]);
-        return pts;
-      };
-      const strokePath = (pts, col, a, w) => {
-        ctx.strokeStyle = css(col, a); ctx.lineWidth = w;
-        ctx.beginPath(); ctx.moveTo(pts[0][0], pts[0][1]);
-        for (let i = 1; i < pts.length - 1; i++) {
-          const mx = (pts[i][0] + pts[i + 1][0]) / 2, my = (pts[i][1] + pts[i + 1][1]) / 2;
-          ctx.quadraticCurveTo(pts[i][0], pts[i][1], mx, my);
-        }
-        ctx.lineTo(pts[pts.length - 1][0], pts[pts.length - 1][1]);
-        ctx.stroke();
-      };
       const roads = ends.map(([ex, ey]) => wobble(ex, ey, cell * 1.1));
       for (const pts of roads) strokePath(pts, edgeCol, 0.34, cell * 2.0);   // soft worn verge
       for (const pts of roads) strokePath(pts, dirt, 0.72, cell * 1.45);     // the road
@@ -211,16 +243,19 @@
       // trodden centre where the paths meet
       if (ends.length) softDisc(cx, cy, cell * 2.2, dirt, 0.55);
     } else if (layout.gaps && (kind === 'cobble' || kind === 'flagstone' || kind === 'marble' || kind === 'bone')) {
-      // worn lighter track over stone
-      const wear = mix(base, [255, 255, 255], 0.12);
-      const cx = cw / 2, cy = ch / 2;
-      ctx.lineCap = 'round';
-      for (const [gk, ex, ey] of [['north', cx, 0], ['south', cx, ch], ['west', 0, cy], ['east', cw, cy]]) {
-        if (!layout.gaps[gk]) continue;
-        ctx.strokeStyle = css(wear, 0.12);
-        ctx.lineWidth = 14 * SS * 0.6;
-        ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(ex, ey); ctx.stroke();
+      // a worn, wandering track over the stone: paler where feet polish it,
+      // with two dark cart ruts on cobbles (a straight cross reads as a grid
+      // line; a curved track reads as traffic)
+      const wear = mix(base, [255, 255, 255], 0.14);
+      ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      const roads = exitEnds().map(([ex, ey]) => wobble(ex, ey, cell * (kind === 'cobble' ? 0.9 : 0.5)));
+      for (const pts of roads) strokePath(pts, wear, 0.16, cell * 1.9);
+      for (const pts of roads) strokePath(pts, wear, 0.14, cell * 0.9);
+      if (kind === 'cobble' || (kind === 'flagstone' && cityish)) {
+        const rut = shade(base, 0.55);
+        for (const pts of roads) { strokePath(pts, rut, 0.22, SS * 1.3, cell * 0.28); strokePath(pts, rut, 0.22, SS * 1.3, -cell * 0.28); }
       }
+      if (roads.length) softDisc(cw / 2, ch / 2, cell * 2.4, wear, 0.22);
     }
 
     // 4) floor-kind brushwork
@@ -260,16 +295,32 @@
           ctx.save();
           ctx.translate(px + w / 2, py + h / 2);
           ctx.rotate((rng() - 0.5) * 0.18);
-          ctx.fillStyle = css(mix(shade(base, lum), acc, rng() * 0.08), 0.26);
+          ctx.fillStyle = css(mix(shade(base, lum), acc, rng() * 0.08), 0.16 + rng() * 0.14);
           ctx.beginPath();
           if (ctx.roundRect) ctx.roundRect(-w / 2, -h / 2, w, h, 3.5 * SS); else ctx.rect(-w / 2, -h / 2, w, h);
           ctx.fill();
-          ctx.strokeStyle = css(seam, 0.22);
+          ctx.strokeStyle = css(seam, 0.10 + rng() * 0.12);
           ctx.lineWidth = SS * 0.9;
           ctx.stroke();
           ctx.restore();
         }
       }
+      // the rhythm is broken by a few big worn flagstones and patches of
+      // packed earth / dust where the paving has gone, so the ground reads
+      // as an old paved surface rather than a tiled pattern
+      for (let i = 0; i < 7; i++) {
+        const w = cell * (1.2 + rng() * 1.4), h = cell * (0.9 + rng() * 1.1);
+        const x = rng() * (cw - w), y = rng() * (ch - h);
+        ctx.save(); ctx.translate(x + w / 2, y + h / 2); ctx.rotate((rng() - 0.5) * 0.25);
+        ctx.fillStyle = css(mix(shade(base, 1.05 + rng() * 0.12), acc, 0.1), 0.42);
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(-w / 2, -h / 2, w, h, 5 * SS); else ctx.rect(-w / 2, -h / 2, w, h);
+        ctx.fill();
+        ctx.strokeStyle = css(seam, 0.28); ctx.lineWidth = SS * 1.1; ctx.stroke();
+        ctx.restore();
+      }
+      const dust = mix(base, rgb('#c8a870'), cityish ? 0.5 : 0.25);
+      for (let i = 0; i < 9; i++) softDisc(rng() * cw, rng() * ch, cell * (1.0 + rng() * 1.8), dust, 0.18 + rng() * 0.16);
     } else if (kind === 'marble') {
       // polish sheen + wandering pale veins
       for (let i = 0; i < 10; i++) {
@@ -433,6 +484,114 @@
         ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + l, y - l * 0.15); ctx.stroke();
       }
       ctx.globalCompositeOperation = 'source-over';
+    }
+
+    // 4.3) a town square: the paving is its own landmark (a paved circle at
+    // the heart), striped market awnings lean against the walls, and grass
+    // and weeds push up where the square meets the houses — the biome cues
+    // BrowserQuest gets from houses, tree clumps and sand-vs-green ground
+    if (cityish) {
+      const grass = mix(base, rgb('#4e8a3a'), 0.72), grassLt = mix(base, rgb('#7cb85a'), 0.7);
+      const tuft = (x, y, r, a) => {
+        softDisc(x, y, r, grass, a);
+        ctx.lineWidth = SS * 0.9; ctx.lineCap = 'round';
+        for (let k = 0; k < 9; k++) {
+          const ax = x + (rng() - 0.5) * r * 1.4, ay = y + (rng() - 0.5) * r * 1.2, l = (2.5 + rng() * 4) * SS;
+          ctx.strokeStyle = css(rng() < 0.5 ? grassLt : shade(grass, 0.8), 0.45 + rng() * 0.3);
+          ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(ax + (rng() - 0.5) * 3 * SS, ay - l); ctx.stroke();
+        }
+      };
+      // verges: every floor cell touching a wall has a chance of a grass tuft,
+      // corners almost always (the paving is oldest and most broken there)
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+        if (at(x, y) !== FLOOR) continue;
+        const n = [at(x - 1, y), at(x + 1, y), at(x, y - 1), at(x, y + 1)].filter(c => c === BLOCK).length;
+        if (!n) continue;
+        const p = n >= 2 ? 0.85 : 0.22;
+        if (rng() > p) continue;
+        tuft(x * cell + cell * 0.5 + jit(0.5), y * cell + cell * 0.5 + jit(0.5), cell * (0.45 + rng() * 0.3), 0.55);
+      }
+      // a few weedy patches out in the open too
+      for (let i = 0; i < 4; i++) tuft(rng() * cw, rng() * ch, cell * (0.35 + rng() * 0.3), 0.35);
+    }
+    if (market) {
+      const cx = cw / 2, cy = ch / 2;
+      const pale = mix(shade(base, 1.14), acc, 0.22), dark = shade(base2, 0.6);
+      // paved circle: two rings and radial seams round the fountain / statue
+      const R = cell * 3.1;
+      softDisc(cx, cy, R * 1.25, pale, 0.5, 0);
+      ctx.fillStyle = css(pale, 0.42); ctx.beginPath(); ctx.arc(cx, cy, R, 0, 6.283); ctx.fill();
+      ctx.strokeStyle = css(dark, 0.42); ctx.lineWidth = SS * 1.3;
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, 6.283); ctx.stroke();
+      ctx.beginPath(); ctx.arc(cx, cy, R * 0.62, 0, 6.283); ctx.stroke();
+      ctx.lineWidth = SS * 0.9;
+      for (let k = 0; k < 12; k++) {
+        const a = k * 0.5236 + 0.26;
+        ctx.beginPath(); ctx.moveTo(cx + Math.cos(a) * R * 0.62, cy + Math.sin(a) * R * 0.62); ctx.lineTo(cx + Math.cos(a) * R, cy + Math.sin(a) * R); ctx.stroke();
+      }
+      ctx.strokeStyle = css(mix(pale, [255, 255, 255], 0.3), 0.35); ctx.lineWidth = SS * 0.8;
+      ctx.beginPath(); ctx.arc(cx, cy, R * 0.93, 0, 6.283); ctx.stroke();
+      // market awnings along the walls (two cells wide, hugging a wall run,
+      // never over an exit), each with a counter, goods and a cast shadow
+      const cols = [rgb('#c8443c'), rgb('#3466b0'), rgb('#3a8a4a'), rgb('#d08a2a'), rgb('#8a4a9a')];
+      const cream = [238, 228, 204];
+      const spots = [];
+      const gapX = (W / 2) | 0, gapY = (H / 2) | 0;
+      for (let x = 1; x < W - 2; x++) {
+        if (at(x, 0) === BLOCK && at(x + 1, 0) === BLOCK && at(x, 1) === FLOOR && at(x + 1, 1) === FLOOR && Math.abs(x + 0.5 - gapX) > 2.6) spots.push({ x, y: 1, side: 'n' });
+        if (at(x, H - 1) === BLOCK && at(x + 1, H - 1) === BLOCK && at(x, H - 2) === FLOOR && at(x + 1, H - 2) === FLOOR && Math.abs(x + 0.5 - gapX) > 2.6) spots.push({ x, y: H - 2, side: 's' });
+      }
+      for (let y = 1; y < H - 2; y++) {
+        if (at(0, y) === BLOCK && at(0, y + 1) === BLOCK && at(1, y) === FLOOR && at(1, y + 1) === FLOOR && Math.abs(y + 0.5 - gapY) > 2.6) spots.push({ x: 1, y, side: 'w' });
+        if (at(W - 1, y) === BLOCK && at(W - 1, y + 1) === BLOCK && at(W - 2, y) === FLOOR && at(W - 2, y + 1) === FLOOR && Math.abs(y + 0.5 - gapY) > 2.6) spots.push({ x: W - 2, y, side: 'e' });
+      }
+      const chosen = [];
+      for (let tries = 0; tries < 40 && chosen.length < 5 && spots.length; tries++) {
+        const s = spots[(rng() * spots.length) | 0];
+        if (chosen.some(c => c.side === s.side && Math.abs(c.x - s.x) < 4 && Math.abs(c.y - s.y) < 4)) continue;
+        if (chosen.some(c => c.side !== s.side && Math.abs(c.x - s.x) < 2 && Math.abs(c.y - s.y) < 2)) continue;
+        chosen.push(s);
+      }
+      for (const s of chosen) {
+        const col = cols[(rng() * cols.length) | 0];
+        const horiz = s.side === 'n' || s.side === 's';
+        const aw = horiz ? cell * 2 : cell * 0.85, ah = horiz ? cell * 0.85 : cell * 2;
+        let ax = s.x * cell, ay = s.y * cell;
+        if (s.side === 's') ay += cell - ah;
+        if (s.side === 'e') ax += cell - aw;
+        // shadow thrown onto the paving (sun upper-left)
+        ctx.fillStyle = 'rgba(6,8,14,0.34)';
+        ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(ax + cell * 0.18, ay + cell * 0.22, aw, ah, 2 * SS); else ctx.rect(ax + cell * 0.18, ay + cell * 0.22, aw, ah); ctx.fill();
+        // counter (dark wood) under the canopy
+        ctx.fillStyle = css(rgb('#5a3c22'), 0.95);
+        ctx.fillRect(ax, ay, aw, ah);
+        // canvas stripes
+        const n = 6;
+        for (let k = 0; k < n; k++) {
+          ctx.fillStyle = css(k % 2 ? cream : col, 0.96);
+          if (horiz) ctx.fillRect(ax + (aw / n) * k, ay, aw / n + 0.5, ah); else ctx.fillRect(ax, ay + (ah / n) * k, aw, ah / n + 0.5);
+        }
+        // scalloped hem on the open side + a lit edge along the wall side
+        ctx.fillStyle = css(col, 0.96);
+        const hemR = (horiz ? aw : ah) / n / 2;
+        for (let k = 0; k < n; k++) {
+          const hx = horiz ? ax + hemR + (aw / n) * k : (s.side === 'w' ? ax + aw : ax);
+          const hy = horiz ? (s.side === 'n' ? ay + ah : ay) : ay + hemR + (ah / n) * k;
+          ctx.beginPath(); ctx.arc(hx, hy, hemR, 0, 6.283); ctx.fill();
+        }
+        const lg = horiz ? ctx.createLinearGradient(0, ay, 0, ay + ah) : ctx.createLinearGradient(ax, 0, ax + aw, 0);
+        const wallFirst = s.side === 'n' || s.side === 'w';
+        lg.addColorStop(wallFirst ? 0 : 1, 'rgba(255,255,255,0.28)'); lg.addColorStop(wallFirst ? 1 : 0, 'rgba(0,0,0,0.22)');
+        ctx.fillStyle = lg; ctx.fillRect(ax, ay, aw, ah);
+        // goods spilling out in front: crates and baskets
+        const gx = horiz ? ax + aw * (0.25 + rng() * 0.5) : (s.side === 'w' ? ax + aw + cell * 0.3 : ax - cell * 0.3);
+        const gy = horiz ? (s.side === 'n' ? ay + ah + cell * 0.3 : ay - cell * 0.3) : ay + ah * (0.25 + rng() * 0.5);
+        ctx.fillStyle = 'rgba(6,8,14,0.3)'; ctx.beginPath(); ctx.ellipse(gx + SS, gy + 2 * SS, cell * 0.28, cell * 0.14, 0, 0, 6.283); ctx.fill();
+        ctx.fillStyle = css(rgb('#b08048'), 1); ctx.fillRect(gx - cell * 0.2, gy - cell * 0.2, cell * 0.4, cell * 0.36);
+        ctx.strokeStyle = 'rgba(40,24,8,0.6)'; ctx.lineWidth = SS * 0.8; ctx.strokeRect(gx - cell * 0.2, gy - cell * 0.2, cell * 0.4, cell * 0.36);
+        ctx.fillStyle = css([rgb('#d8503c'), rgb('#e8b84a'), rgb('#6ab04c')][(rng() * 3) | 0], 1);
+        for (let k = 0; k < 4; k++) { ctx.beginPath(); ctx.arc(gx - cell * 0.12 + k * cell * 0.08, gy - cell * 0.22 - (k % 2) * cell * 0.06, cell * 0.06, 0, 6.283); ctx.fill(); }
+      }
     }
 
     // 4.5) prose accents: the description tints the ground itself
@@ -711,6 +870,65 @@
             }
           }
         }
+      } else if (roofed) {
+        // a town square seen from above is ringed by the ROOFS of the houses
+        // round it: runs of terracotta and slate tiles, each house its own
+        // colour, a sunlit ridge on the far side and a shadowed eave over the
+        // street (BrowserQuest's village reads from its rooftops first)
+        const roofCols = ((zt && zt.roofCols) || ['#a8583a', '#5a6a94', '#8a6a40', '#7a4e5e', '#b06a3c']).map(rgb);
+        const house = (x, y) => {
+          // border cells group into ~5-cell houses along the wall; interior
+          // obstacle blocks group by 2x2 neighbourhood
+          const border = x === 0 || y === 0 || x === W - 1 || y === H - 1;
+          const k = border ? ((y === 0 || y === H - 1) ? ((x / 5) | 0) * 7 + (y ? 3 : 0) : ((y / 5) | 0) * 11 + (x ? 5 : 1))
+            : ((x / 2) | 0) * 13 + ((y / 2) | 0) * 29 + 100;
+          return roofCols[(((k * 2654435761) ^ layout.vnum) >>> 0) % roofCols.length];
+        };
+        // (the scene darkens the lower half of every wall cell as the house's
+        // wall face under the eave, so the roof is the sunlit top half: big
+        // bold tiles, two courses per cell, saturated colour)
+        const course = cell / 2;
+        for (const b of blocks) {
+          const [bx, by] = b;
+          const px = bx * cell, py = by * cell;
+          const col = house(bx, by);
+          // tiles: base with a top-lit gradient
+          const lg = ctx.createLinearGradient(0, py, 0, py + cell);
+          lg.addColorStop(0, css(shade(col, 1.32))); lg.addColorStop(0.55, css(shade(col, 1.05))); lg.addColorStop(1, css(shade(col, 0.9)));
+          ctx.fillStyle = lg; ctx.fillRect(px, py, cell, cell);
+          // tile courses, staggered like shingles
+          ctx.lineWidth = SS * 0.9;
+          for (let c = 0; c < 2; c++) {
+            const y = py + course * (c + 1) - SS * 0.6;
+            ctx.strokeStyle = css(shade(col, 0.5), 0.6);
+            ctx.beginPath(); ctx.moveTo(px, y); ctx.lineTo(px + cell, y); ctx.stroke();
+            ctx.strokeStyle = css(shade(col, 0.55), 0.45);
+            const off = (c + bx + by) % 2 ? course * 0.5 : 0;
+            for (let k = 0; k < 3; k++) { const x = px + off + k * course; ctx.beginPath(); ctx.moveTo(x, y - course + SS); ctx.lineTo(x, y); ctx.stroke(); }
+            // each tile catches the light along its top edge
+            ctx.strokeStyle = css(mix(col, [255, 245, 220], 0.35), 0.35);
+            ctx.beginPath(); ctx.moveTo(px, y - course + SS * 0.8); ctx.lineTo(px + cell, y - course + SS * 0.8); ctx.stroke();
+          }
+          // sun on the tiles from the upper-left: pale scumble
+          softDisc(px + cell * 0.3, py + cell * 0.25, cell * 0.5, mix(col, [255, 245, 220], 0.6), 0.18);
+          // ridge / gable edges: pale where the roof meets sky, dark eave
+          // where it overhangs the street
+          ctx.lineWidth = SS * 1.1;
+          if (at(bx, by - 1) !== BLOCK || by === 0) { ctx.strokeStyle = css(mix(col, [255, 250, 230], 0.55), 0.9); ctx.beginPath(); ctx.moveTo(px, py + SS * 0.6); ctx.lineTo(px + cell, py + SS * 0.6); ctx.stroke(); }
+          if (at(bx - 1, by) !== BLOCK || bx === 0) { ctx.strokeStyle = css(mix(col, [255, 250, 230], 0.45), 0.7); ctx.beginPath(); ctx.moveTo(px + SS * 0.6, py); ctx.lineTo(px + SS * 0.6, py + cell); ctx.stroke(); }
+          if (at(bx, by + 1) === FLOOR) { ctx.fillStyle = 'rgba(20,12,8,0.55)'; ctx.fillRect(px, py + cell - SS * 2.2, cell, SS * 2.2); }
+          if (at(bx + 1, by) === FLOOR) { ctx.fillStyle = 'rgba(20,12,8,0.4)'; ctx.fillRect(px + cell - SS * 1.6, py, SS * 1.6, cell); }
+          // a different house next door: a dark seam between roofs
+          if (at(bx + 1, by) === BLOCK && house(bx + 1, by) !== col) { ctx.fillStyle = 'rgba(20,12,8,0.6)'; ctx.fillRect(px + cell - SS * 0.8, py, SS * 1.6, cell); }
+          if (at(bx, by + 1) === BLOCK && house(bx, by + 1) !== col) { ctx.fillStyle = 'rgba(20,12,8,0.6)'; ctx.fillRect(px, py + cell - SS * 0.8, cell, SS * 1.6); }
+          // chimneys and skylights here and there
+          if (rng() < 0.16) {
+            const chx = px + cell * (0.3 + rng() * 0.4), chy = py + cell * (0.3 + rng() * 0.3), cs = cell * 0.22;
+            ctx.fillStyle = 'rgba(20,12,8,0.45)'; ctx.fillRect(chx + SS, chy + SS, cs, cs);
+            ctx.fillStyle = css(rgb('#6a5048')); ctx.fillRect(chx, chy, cs, cs);
+            ctx.fillStyle = css(rgb('#3a2a24')); ctx.fillRect(chx + cs * 0.2, chy + cs * 0.2, cs * 0.6, cs * 0.6);
+          }
+        }
       } else {
         // 'wall' (a dungeon / indoor sector inside an organic zone): running-
         // bond masonry laid on a world grid so courses run across every cell
@@ -740,10 +958,25 @@
       // every mass darkens the floor it meets: a soft round contact shadow
       // (this replaces the straight-edged AO strips, which stepped along an
       // organic outline), stronger below/right where the sun cannot reach
+      const canopyShade = !enclosed && CANOPY_KINDS.includes(massKind);
       for (const [bx, by] of blocks) {
         if (!openSide(bx, by)) continue;
         softDisc(bx * cell + cell * 0.5, by * cell + cell * 0.5, cell * 1.35, [6, 8, 14], enclosed ? 0.5 : 0.3);
         softDisc(bx * cell + cell * 0.75, by * cell + cell * 0.8, cell * 1.0, [6, 8, 14], enclosed ? 0.3 : 0.2);
+        // under a canopy the ground stays in deep green shade for a couple of
+        // cells: the light falls off from the sunlit middle toward the trees
+        if (canopyShade) softDisc(bx * cell + cell * 0.6, by * cell + cell * 0.7, cell * 2.6, [4, 14, 8], 0.26);
+      }
+      // pockets of floor hemmed in by the mass on three sides sit in deep
+      // under-storey shade (otherwise they show as pale squares in the canopy)
+      if (CANOPY_KINDS.includes(massKind)) {
+        for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
+          if (at(x, y) !== FLOOR) continue;
+          const n = [at(x - 1, y), at(x + 1, y), at(x, y - 1), at(x, y + 1)].filter(c => c === BLOCK).length;
+          if (n < 3) continue;
+          softDisc(x * cell + cell / 2, y * cell + cell / 2, cell * 0.95, [4, 12, 8], 0.6, 0.2);
+          for (let k = 0; k < 3; k++) softDisc(x * cell + cell / 2 + jit(0.6), y * cell + cell / 2 + jit(0.6), cell * 0.3, mix(borderCol, [0, 0, 0], 0.5), 0.5);
+        }
       }
     }
 
@@ -782,13 +1015,29 @@
           ctx.fillStyle = gg; ctx.fillRect(px + cell, py, cell * 0.45, cell * 1.1);
         }
       }
-      // 7b) dappled light through the canopy: warm sun-spots on the ground
+      // 7b) dappled light through the canopy: warm sun-spots on the ground,
+      // and two or three broad sun shafts slanting in from the upper-left so
+      // the clearing has a lit side and a shaded side
       if (light.dapple !== false) {
         ctx.globalCompositeOperation = 'lighter';
         const sun = mix(poolCol, acc, 0.3);
-        for (let i = 0; i < 26; i++) {
-          const x = rng() * cw, y = rng() * ch, r = (16 + rng() * 34) * SS;
-          softDisc(x, y, r, sun, 0.05 + rng() * 0.06);
+        for (let i = 0; i < 30; i++) {
+          const x = rng() * cw, y = rng() * ch, r = (18 + rng() * 40) * SS;
+          softDisc(x, y, r, sun, 0.06 + rng() * 0.08);
+        }
+        const nb = 2 + ((rng() * 2) | 0);
+        for (let i = 0; i < nb; i++) {
+          const x = cw * (0.15 + rng() * 0.7), y = ch * (0.2 + rng() * 0.6);
+          beam(x, y, -0.62 + (rng() - 0.5) * 0.2, cell * (2.2 + rng() * 2.4), Math.max(cw, ch) * 2, mix(sun, [255, 255, 240], 0.3), 0.10 + rng() * 0.06);
+        }
+        ctx.globalCompositeOperation = 'source-over';
+      }
+      // 7b') sunlight through shallow water: pale caustic rays over the bed
+      if (kind === 'shallows') {
+        ctx.globalCompositeOperation = 'lighter';
+        for (let i = 0; i < 4; i++) {
+          const x = cw * (0.1 + rng() * 0.8), y = ch * (0.2 + rng() * 0.6);
+          beam(x, y, -0.7 + (rng() - 0.5) * 0.25, cell * (1.2 + rng() * 1.6), Math.max(cw, ch) * 2, [220, 250, 255], 0.09 + rng() * 0.06);
         }
         ctx.globalCompositeOperation = 'source-over';
       }
@@ -804,6 +1053,28 @@
       if (enclosed) {
         // corners fall to near-black
         for (const [x, y] of [[0, 0], [cw, 0], [0, ch], [cw, ch]]) softDisc(x, y, Math.min(cw, ch) * 0.55, vigCol, light.vig * 0.8);
+      } else {
+        // outdoors the shaded corner (away from the sun) sinks deepest
+        softDisc(cw, ch, Math.min(cw, ch) * 0.7, vigCol, light.vig * 0.7);
+        softDisc(0, ch, Math.min(cw, ch) * 0.5, vigCol, light.vig * 0.4);
+        softDisc(cw, 0, Math.min(cw, ch) * 0.5, vigCol, light.vig * 0.4);
+      }
+    }
+    // 7d') open-sky rooms still have their lamps: every wall torch / lantern
+    // the scene hangs gets a warm pool with real falloff baked under it
+    if (!enclosed) {
+      const lamps = wallTorches(layout, th, BLOCK, FLOOR);
+      if (lamps.length) {
+        const lampCol = mix(poolCol, [255, 200, 120], 0.5);
+        ctx.globalCompositeOperation = 'lighter';
+        for (const t of lamps) {
+          const x = t.x * cell, y = t.y * cell, r = 4.4 * cell;
+          const gg = ctx.createRadialGradient(x, y, 0, x, y, r);
+          gg.addColorStop(0, css(lampCol, 0.55)); gg.addColorStop(0.3, css(lampCol, 0.22)); gg.addColorStop(0.65, css(lampCol, 0.07)); gg.addColorStop(1, css(lampCol, 0));
+          ctx.fillStyle = gg; ctx.beginPath(); ctx.arc(x, y, r, 0, 6.283); ctx.fill();
+        }
+        ctx.globalCompositeOperation = 'source-over';
+        for (const t of lamps) softDisc(t.x * cell, t.y * cell + cell * 0.3, 2.2 * cell, mix(lampCol, [255, 140, 60], 0.35), 0.2);
       }
     }
     // 7d) baked light pools
