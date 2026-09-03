@@ -6,6 +6,25 @@
 (() => {
   const MH = window.MH = window.MH || {};
   const TD = () => MH.TD;
+  // Actor readability (BrowserQuest bar): every character stands ~1.5 tiles
+  // tall with a hard dark contour so it reads as a figure against painterly
+  // ground. LPC dolls are chibi (body in the lower half of a 64px cell), so
+  // this scale gives ~24px of body on a 16px tile.
+  const DOLL_SCALE = 0.7;
+  // hostiles wear a VIVID red contour (the old deep red read as black at this
+  // zoom, so a grey grave keeper vanished among grey tombstones)
+  const OUTLINE = { player: 0x0a0a16, hostile: 0xe8322e, neutral: 0x16100e };
+  const HOSTILE_RGBA = 'rgba(232,50,46,0.96)';
+  // add a tight dark contour (postFX glow) to a visible body — WebGL only.
+  // strength: 5 = a hairline silhouette edge, 9 = a loud coloured rim.
+  function addContour(obj, color, strength) {
+    try {
+      if (!obj || !obj.postFX || !obj.postFX.addGlow) return null;
+      if (obj._contour) { obj.postFX.remove(obj._contour); obj._contour = null; }
+      obj._contour = obj.postFX.addGlow(color, strength || 5, 0, false, 0.2, 6);
+      return obj._contour;
+    } catch (_) { return null; }
+  }
 
   class TopRoomScene extends Phaser.Scene {
     constructor() {
@@ -104,9 +123,13 @@
       this.facing = 'd';
       this.physics.add.collider(this.player, this.solids);
 
+      this.playerPose = { sx: 1, sy: 1, lean: 0, dy: 0 };   // squash/rear-back multipliers for the visible body
       this.heroGlow = this.add.image(this.player.x, this.player.y, 'fx_glow')
-        .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.13).setScale(0.55)
-        .setDepth(9).setTint(0xfff2cc);
+        .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.2).setScale(0.55)
+        .setDepth(9).setTint(0xbfe8ff);
+      // a cool cyan ring at the hero's feet: "this one is you", findable in a
+      // crowd or a dark cave at a glance (matches the cyan player palette)
+      this.playerRing = this.add.graphics().setDepth(5.2);
       // rim-light: an additive copy of the sprite, scaled up a touch and nudged
       // toward the light, so a bright edge peeks out and the actor pops off the
       // floor. Synced to the live frame each tick.
@@ -1997,6 +2020,19 @@
         texWanted = MH.tdSprites.mobKey(spec.data.name);
       }
       const tex = this.safeTex(texWanted, 'td_mob_citizen');
+      // a tall body needs headroom: a slot in the first floor rows would put
+      // the head (and name) over the top wall, so it reads as floating over
+      // the room edge. Walk the slot down to the first row that clears it.
+      {
+        const T1 = TD().T, L1 = this.layout;
+        const minY = T1 * (spec.data.boss ? 4.2 : 3.4);
+        if (slot.y < minY && L1 && L1.grid) {
+          const cx = Math.floor(slot.x / T1);
+          let cy = Math.floor(minY / T1);
+          while (cy < L1.H - 1 && L1.grid[cy * L1.W + cx] !== 0) cy++;
+          if (cy < L1.H - 1) slot = { x: slot.x, y: cy * T1 + T1 / 2 };
+        }
+      }
       // a fresh arrival enters from the doorway it actually used
       const arr = spec.kind === 'mob' && this.pendingArrivals && this.pendingArrivals[spec.data.name];
       if (arr && Date.now() - arr.at < 4000) {
@@ -2042,9 +2078,22 @@
       // Aether label palette: cyan players, ember foes, jade friendlies
       const labelColor = spec.kind === 'player' ? '#39c5e8' : (spec.data.hostile ? '#ff5a6a' : (spec.data.shopkeeper || spec.data.trainer || spec.data.quest ? '#46e0a0' : '#bfeefb'));
       ent.label = this.add.text(slot.x, slot.y - 18, this.shortName(spec.data.name), {
-        fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '7px', color: labelColor,
+        fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '8px', color: labelColor,
+        stroke: '#07111a', strokeThickness: 2,
       }).setOrigin(0.5, 1).setDepth(9);
       ent.hpbar = this.add.graphics().setDepth(9);
+      ent.pose = { sx: 1, sy: 1, lean: 0, dy: 0 };   // squash / rear-back / lift / topple multipliers for the visible body
+      // hostiles are visibly hostile before they ever swing: an ember pool
+      // under their feet (bystanders get nothing, so the two never mix up)
+      if (spec.kind === 'mob' && spec.data.hostile && !spec.data.shopkeeper) {
+        ent.aggroRing = this.add.image(slot.x, slot.y + 8, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+          .setAlpha(0.42).setScale(spec.data.boss ? 0.8 : 0.55).setTint(0xff3a2a).setDepth(4.6);
+        this.tweens.add({ targets: ent.aggroRing, alpha: 0.6, duration: 700, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        // plus a crisp red ring at the feet, drawn ABOVE the darkness layer so
+        // a hostile in a black crypt is still ringed in red (soft glows get
+        // swallowed by the dark; this doesn't). Redrawn each frame.
+        ent.aggroGfx = this.add.graphics().setDepth(40.3);
+      }
       this.drawHpBar(ent);
 
       ent.sprite.setInteractive({ useHandCursor: true });
@@ -2106,14 +2155,14 @@
     attachDollAs(ent, spec, cls) {
       if (!MH.lpc || !MH.lpc.isReady() || ent.doll || !cls) return;
       const big = spec.data.boss;
-      const base = Math.max(0.32, (ent.sprite.displayHeight / 64) * 1.0);   // ~match sprite height
-      const dscale = big ? base * 1.6 : base;                               // bosses loom larger
+      const dscale = big ? DOLL_SCALE * 1.5 : DOLL_SCALE;                    // bosses loom larger
+      ent.labelDy = big ? 40 : 28;                                          // name/hp sit above the head
       // the player keeps its real identity; NPCs vary by name-hash so towns
       // aren't full of identical twins (mixed sexes + hairstyles)
       const seed = MH.hashStr(spec.data.name || '');
       const sex = spec.kind === 'player' ? (spec.data.sex || 'male') : (seed % 2 ? 'female' : 'male');
       ent.doll = MH.lpc.makeDoll(this, { char_class: cls, sex, equipment: spec.data.equipment || {}, seed: spec.kind === 'player' ? null : seed }, dscale,
-        () => this.tintCharacters());   // apply day/night tint once layers exist
+        () => { this.tintCharacters(); this.applyContour(ent); });   // day/night tint + silhouette contour once layers exist
       if (big && spec.kind !== 'player') this.addBossAura(ent);
       ent.doll.container.setDepth(ent.sprite.depth || 8);
       ent.sprite.setAlpha(0);
@@ -2131,16 +2180,24 @@
       MH.dcss.ensure(this, path, key => {
         if (!s || !s.active) return;
         if (!key) { s.setAlpha(1); if (ent.rim) ent.rim.setVisible(true); return; }   // load failed -> restore
-        const img = this.add.image(s.x, s.y - 6, key).setOrigin(0.5, 0.9);
-        // size to ~1.7 tiles tall (bosses larger) from the ART'S OWN height —
-        // most DCSS sprites are 32px, but some animal assets ship as large
-        // painterly illustrations, and a fixed /32 blew those up to fill the
-        // whole room (e.g. animals/tiger.png). Normalising by the real source
-        // height keeps every creature at a consistent in-world scale.
+        // bake a dark contour (deep red for hostiles) so the creature reads
+        // as a figure with a clean silhouette against any ground
+        const hostile = !!(ent.data && ent.data.hostile);
+        const olKey = MH.dcss.outlined ? MH.dcss.outlined(this, key, hostile ? HOSTILE_RGBA : 'rgba(18,10,14,0.92)', hostile ? 2 : 1) : key;
+        // FEET-anchored (origin at the bottom edge, sitting on the contact
+        // shadow) so a creature stands on the floor like the dolls do instead
+        // of hovering over whatever is behind it
+        const img = this.add.image(s.x, s.y + 9, olKey).setOrigin(0.5, 1);
+        // Size from the ART'S OWN height — most DCSS sprites are 32px, but some
+        // animal assets ship as large painterly illustrations. A creature
+        // stands 2 tiles (1:1 pixels for 32px art, about the player's own body
+        // height); a boss 2.5 tiles — big, but the same tile scale as the
+        // player (the old 3.2 made the bear a wall-sized blob).
         const srcImg = this.textures.get(key) && this.textures.get(key).getSourceImage();
         const srcH = (srcImg && srcImg.height) || 32;
-        const sc = (TD().T * (big ? 2.9 : 1.7)) / srcH;
+        const sc = (TD().T * (big ? 2.5 : 2.0)) / srcH;
         img.setScale(sc).setDepth(s.depth || 8);
+        ent.labelDy = Math.round(img.displayHeight - 9 + 8);                 // clear the top of the art
         img.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
         img.setTint(this._charTint || 0xffffff);   // sit in the day/night scene
         ent.art = img;
@@ -2216,7 +2273,7 @@
         ent.engageRing = null;
       }
       if (data.fighting && !ent.fightMark) {
-        ent.fightMark = this.add.text(ent.sprite.x, ent.sprite.y - 26, '⚔', {
+        ent.fightMark = this.add.text(ent.sprite.x, ent.sprite.y - ((ent.labelDy || 18) + 8), '⚔', {
           fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '12px', color: '#ff5050', stroke: '#000', strokeThickness: 2,
         }).setOrigin(0.5, 1).setDepth(20);
         this.tweens.add({ targets: ent.fightMark, scale: 1.3, duration: 380, yoyo: true, repeat: -1 });
@@ -2246,7 +2303,7 @@
         ent.smoke.destroy();
         ent.smoke = null;
       }
-      const x = ent.sprite.x - 9, y = ent.sprite.y - 16;
+      const x = ent.sprite.x - 9, y = ent.sprite.y - ((ent.labelDy || 18) - 2);
       // Aether palette: jade healthy -> amber wounded -> ember critical, on a glass track
       ent.hpbar.fillStyle(0x07111a, 0.8).fillRect(x - 0.5, y - 0.5, 19, 3);
       ent.hpbar.fillStyle(frac > 0.5 ? 0x46e0a0 : frac > 0.25 ? 0xe8c168 : 0xff5a6a, 1).fillRect(x, y, 18 * frac, 2);
@@ -2288,7 +2345,10 @@
       if (ent.artBob) { ent.artBob.stop(); ent.artBob = null; }
       if (ent.art) { ent.art.destroy(); ent.art = null; }
       if (ent.bossAura) { this.tweens.killTweensOf(ent.bossAura); ent.bossAura.destroy(); ent.bossAura = null; }
-      ['sprite', 'label', 'hpbar', 'fightMark', 'questMark', 'bubble', 'engageRing', 'serviceMark', 'shadow', 'rim', 'guardMark'].forEach(k => { if (ent[k]) ent[k].destroy(); });
+      if (ent.pose) this.tweens.killTweensOf(ent.pose);
+      if (ent.windup) this.endWindup(ent, false);
+      if (ent.aggroRing) this.tweens.killTweensOf(ent.aggroRing);
+      ['sprite', 'label', 'hpbar', 'fightMark', 'questMark', 'bubble', 'engageRing', 'serviceMark', 'shadow', 'rim', 'guardMark', 'aggroRing', 'aggroGfx'].forEach(k => { if (ent[k]) ent[k].destroy(); });
     }
     shortName(name) {
       const n = String(name || '');
@@ -2871,6 +2931,105 @@
     // the procedural sprite) — combat juice must play on whatever is on screen
     entVisual(ent) { return (ent && ent.doll && ent.doll.container) || (ent && ent.art) || (ent && ent.sprite); }
     playerVisual() { return (this.playerDoll && this.playerDoll.container) || this.player; }
+    // silhouette contour for a doll body: dark for the player/bystanders,
+    // deep red for hostiles (DCSS creature art bakes its contour instead)
+    applyContour(ent) {
+      const c = ent && ent.doll && ent.doll.container;
+      if (!c || !c.active) return;
+      const hostile = !!(ent.data && ent.data.hostile);
+      const color = ent.kind === 'player' ? OUTLINE.player : (hostile ? OUTLINE.hostile : OUTLINE.neutral);
+      addContour(c, color, hostile ? 9 : 5);
+    }
+    // multiply a colour onto the visible body (keeps art readable, unlike a fill)
+    tintVisual(ent, color) {
+      const vis = this.entVisual(ent);
+      if (!vis) return;
+      const t = this._mulTint(color, this._charTint || 0xffffff);
+      if (vis.list) vis.list.forEach(c => c.setTint && c.setTint(this._mulTint(c._baseTint, t)));
+      else if (vis.setTint) vis.setTint(t);
+    }
+    // squash & stretch through the pose multipliers, so it survives the
+    // per-frame scale sync that drives dolls / creature art
+    squashPose(pose) {
+      if (!pose) return;
+      this.tweens.add({ targets: pose, sx: 1.28, sy: 0.72, duration: 60, yoyo: true, ease: 'cubic.out',
+        onComplete: () => { pose.sx = 1; pose.sy = 1; } });
+    }
+    // Enemy wind-up telegraph: the body rears BACK and up, shivers, glows with
+    // its tell colour, and a red ring contracts onto its feet as the strike
+    // timer runs out — readable at a glance without the text banner.
+    startWindup(ent, intent) {
+      if (!ent || !ent.sprite || ent.windup) return;
+      const casty = intent.kind === 'cast' || intent.kind === 'debuff';
+      const color = casty ? 0xb08cff : 0xff6a3a;
+      const ms = Math.max(600, (intent.resolve_in || 3) * 1000);
+      const away = this.player.x >= ent.sprite.x ? -22 : 22;     // lean away from the player
+      // drawn ABOVE the darkness layer: a wind-up in a black crypt must still
+      // show its rings (the old depth 4.7 was swallowed by the dark)
+      const gfx = this.add.graphics().setDepth(40.5);
+      const ring = { r: 30 };
+      ent.windup = { color, until: Date.now() + ms, gfx, ring, away, start: Date.now(), ms };
+      this.tweens.killTweensOf(ent.pose);
+      // REAR BACK: tall and thin, tilted away, lifted off the ground — a pose
+      // that is obviously "about to swing" from across the room
+      this.tweens.add({ targets: ent.pose, sx: 0.84, sy: 1.3, lean: away, dy: -6, duration: 260, ease: 'back.out' });
+      ent.windup.shiver = this.tweens.add({ targets: ent.pose, lean: away * 1.3, duration: 90, yoyo: true, repeat: -1, delay: 260 });
+      ent.windup.ringTween = this.tweens.add({ targets: ring, r: 9, duration: ms, ease: 'linear' });
+      const mark = this.add.text(ent.sprite.x, ent.sprite.y - ((ent.labelDy || 18) + 6), '!', {
+        fontFamily: 'Georgia, serif', resolution: 3, fontSize: '18px', fontStyle: 'bold',
+        color: casty ? '#d0b8ff' : '#ff7a4a', stroke: '#1a0608', strokeThickness: 4,
+      }).setOrigin(0.5, 1).setDepth(62);
+      this.tweens.add({ targets: mark, scale: 1.35, duration: 160, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      ent.windup.mark = mark;
+    }
+    // wind-up over: snap FORWARD into the strike (or just relax if interrupted)
+    endWindup(ent, strike) {
+      const w = ent && ent.windup;
+      if (!w) return;
+      ent.windup = null;
+      if (w.shiver) w.shiver.stop();
+      if (w.ringTween) w.ringTween.stop();
+      if (w.gfx) w.gfx.destroy();
+      if (w.mark) { this.tweens.killTweensOf(w.mark); w.mark.destroy(); }
+      this.tweens.killTweensOf(ent.pose);
+      this.tintCharacters();
+      if (strike && ent.sprite && ent.sprite.active) {
+        this.tweens.add({ targets: ent.pose, sx: 1.24, sy: 0.84, lean: -w.away * 1.2, dy: 0, duration: 90, yoyo: true, ease: 'cubic.out',
+          onComplete: () => { ent.pose.sx = 1; ent.pose.sy = 1; ent.pose.lean = 0; ent.pose.dy = 0; } });
+        // the strike lands: a white impact star on the target (you)
+        if (MH.abilityFx && MH.abilityFx.impact) MH.abilityFx.impact(this, this.player.x, this.player.y - 6, 0xffffff);
+      } else { ent.pose.sx = 1; ent.pose.sy = 1; ent.pose.lean = 0; ent.pose.dy = 0; }
+    }
+    // per-frame: draw the wind-up ring and pulse the tell colour on the body
+    tickWindup(ent, now) {
+      const w = ent.windup;
+      if (!w || !ent.sprite) return;
+      const x = ent.sprite.x, y = ent.sprite.y + 8;
+      const pulse = 0.55 + 0.45 * Math.sin(now / 70);
+      w.gfx.clear();
+      w.gfx.lineStyle(3, w.color, 0.6 + 0.4 * pulse).strokeEllipse(x, y, w.ring.r * 2, w.ring.r * 0.9);
+      w.gfx.fillStyle(w.color, 0.14 + 0.1 * pulse).fillEllipse(x, y, w.ring.r * 2, w.ring.r * 0.9);
+      // ...and a red target reticle closes on the FEET OF WHOEVER IT IS ABOUT
+      // TO HIT (you): an ellipse that shrinks with the timer plus four ticks
+      const frac = Math.max(0, Math.min(1, (Date.now() - (w.start || 0)) / (w.ms || 1)));
+      const px = this.player.x, py = this.player.y + (this.mountArt ? 12 : 10);
+      const tr = 22 - 10 * frac;
+      w.gfx.lineStyle(2, 0xff3a2a, 0.5 + 0.45 * pulse).strokeEllipse(px, py, tr * 2, tr * 0.9);
+      w.gfx.lineStyle(2, 0xffd0c0, 0.8);
+      for (const [cx, cy] of [[px - tr, py], [px + tr, py], [px, py - tr * 0.45], [px, py + tr * 0.45]]) {
+        w.gfx.beginPath(); w.gfx.moveTo(cx - (cx === px ? 3 : 0), cy - (cy === py ? 2 : 0)); w.gfx.lineTo(cx + (cx === px ? 3 : 0), cy + (cy === py ? 2 : 0)); w.gfx.strokePath();
+      }
+      // a red beam of intent from the attacker's feet to yours, fading in as the timer runs
+      w.gfx.lineStyle(1.5, w.color, 0.15 + 0.45 * frac);
+      w.gfx.beginPath(); w.gfx.moveTo(x, y); w.gfx.lineTo(px, py); w.gfx.strokePath();
+      if (w.mark) { w.mark.x = x; w.mark.y = ent.sprite.y - ((ent.labelDy || 18) + 6); }
+      // body: pulse between normal and the tell colour
+      const k = 0.35 + 0.45 * pulse;
+      const mix = (a, b) => (((((a >> 16) & 255) + (((b >> 16) & 255) - ((a >> 16) & 255)) * k) | 0) << 16)
+        | (((((a >> 8) & 255) + (((b >> 8) & 255) - ((a >> 8) & 255)) * k) | 0) << 8)
+        | ((((a & 255) + ((b & 255) - (a & 255)) * k) | 0));
+      this.tintVisual(ent, mix(0xffffff, w.color));
+    }
     // white/colored hit flash that also works on a layered doll Container;
     // restores to the current day/night character tint (not plain white)
     flashFill(obj, color, ms) {
@@ -2907,12 +3066,18 @@
       const ent = this.findEntityByText(e.target) || this.target;
       if (!ent || !ent.sprite) return;
       const vis = this.entVisual(ent);
-      this.flashFill(vis, 0xffffff);
+      // hit flash: the whole body blinks solid white (twice on a heavy hit),
+      // with a white impact star on the body so the flash reads even on a
+      // pale sprite against a pale floor
+      this.flashFill(vis, 0xffffff, 130);
+      if (MH.abilityFx && MH.abilityFx.impact) MH.abilityFx.impact(this, ent.sprite.x, ent.sprite.y - 8, 0xffffff);
+      if (e.dmg != null && e.dmg >= 12) this.time.delayedCall(190, () => this.flashFill(this.entVisual(ent), 0xffffff, 80));
+      ent.hurtUntil = this.time.now + 340;     // doll plays its hurt pose
       const ang = Math.atan2(ent.sprite.y - this.player.y, ent.sprite.x - this.player.x);
       const kb = e.dmg != null ? Math.min(12, 4 + e.dmg * 0.25) : 5;
       // knockback drives the hidden anchor; the visible art follows it each frame
       this.tweens.add({ targets: ent.sprite, x: ent.sprite.x + Math.cos(ang) * kb, y: ent.sprite.y + Math.sin(ang) * kb, duration: 70, yoyo: true });
-      this.squash(vis);
+      if (ent.pose && !ent.windup && !ent._dying) this.squashPose(ent.pose); else this.squash(vis);
       this.impactLines(ent.sprite.x, ent.sprite.y - 6);
       if (e.dmg != null && e.dmg >= 8) this.freezeFrame(e.dmg >= 25 ? 95 : 60);
       if (e.dmg != null && e.dmg >= 5) this.bloodSplat(ent.sprite.x, ent.sprite.y, e.dmg >= 20);
@@ -2937,12 +3102,15 @@
     }
     fxTaken(e) {
       const pv = this.playerVisual();
-      this.flashFill(pv, 0xff6060, 90);
+      this.flashFill(pv, 0xffffff, 90);
+      this.time.delayedCall(100, () => this.flashFill(this.playerVisual(), 0xff6060, 120));
+      if (MH.abilityFx && MH.abilityFx.impact) MH.abilityFx.impact(this, this.player.x, this.player.y - 8, 0xffffff);
+      this._hurtFrame = this.time.now;          // doll plays its hurt pose
       const st = this.dmgStyle(e && e.dmg);
       this.camShake(80, Math.max(0.004, st.shake));
       this.dmgPulse(e && e.dmg);
       if (MH.sfx) MH.sfx.hurt(e && e.dmg >= 20 ? 2 : 1);
-      this.squash(pv);
+      if (this.playerDoll && this.playerPose) this.squashPose(this.playerPose); else this.squash(pv);
       this.impactLines(this.player.x, this.player.y - 6, 0xff8080);
       if (e && e.dmg != null && e.dmg >= 6) {
         this.freezeFrame(e.dmg >= 20 ? 90 : 55);
@@ -3183,6 +3351,8 @@
           this.tweens.killTweensOf(banner);
           banner.destroy();
           this._intentBanners.delete(key);
+          const gone = this.entities.get(key);
+          if (gone && gone.windup) this.endWindup(gone, true);   // the wind-up resolved: strike forward
         }
       }
       for (const [key, z] of [...this._dangerZones]) {
@@ -3203,13 +3373,14 @@
         }
         if (this._intentBanners.has(key)) continue;
         const casty = intent.kind === 'cast' || intent.kind === 'debuff';
-        const t = this.add.text(ent.sprite.x, ent.sprite.y - 26, `⚠ ${intent.label}`, {
+        this.startWindup(ent, intent);   // body rears back + contracting ring + '!'
+        const t = this.add.text(ent.sprite.x, ent.sprite.y - ((ent.labelDy || 18) + 24), `⚠ ${intent.label}`, {
           fontFamily: 'Oxanium, Trebuchet MS, sans-serif', resolution: 3, fontSize: '8px', fontStyle: 'bold',
           color: casty ? '#c0a8ff' : '#ffb060', backgroundColor: '#1a0e0ecc', padding: { x: 3, y: 1 },
         }).setOrigin(0.5, 1).setDepth(61);
         this.tweens.add({ targets: t, alpha: 0.55, duration: 420, yoyo: true, repeat: -1, ease: 'sine.inOut' });
         this._intentBanners.set(key, t);
-        // the winding-up mob glows with its tell color
+        // the winding-up mob snaps to its tell color for a beat
         const vis = this.entVisual(ent);
         if (vis && vis.setTint) {
           this.flashFill(vis, casty ? 0x9a7ae0 : 0xff8a4a, 160);
@@ -3255,7 +3426,19 @@
         // the VISIBLE body (LPC doll / DCSS art) flashes white then fades as it falls
         const vis = this.entVisual(ent);
         this.flashFill(vis, 0xffffff, 90);
-        if (vis && vis !== ent.sprite) this.tweens.add({ targets: vis, alpha: 0.12, duration: 650, ease: 'sine.in' });
+        ent._dying = true;
+        if (ent.windup) this.endWindup(ent, false);
+        if (ent.aggroRing) this.tweens.add({ targets: ent.aggroRing, alpha: 0, duration: 300 });
+        if (ent.aggroGfx) { ent.aggroGfx.destroy(); ent.aggroGfx = null; }   // a corpse is no longer a threat
+        // the body goes DOWN: a doll plays its hurt sequence and stays on the
+        // floor; creature art topples over its feet. Both grey out.
+        if (ent.doll) ent.doll.die();
+        else if (ent.pose) {
+          this.tweens.killTweensOf(ent.pose);
+          this.tweens.add({ targets: ent.pose, lean: this.player.x >= ent.sprite.x ? -84 : 84, sy: 0.92, duration: 380, delay: 90, ease: 'back.in' });
+        }
+        this.time.delayedCall(100, () => this.tintVisual(ent, 0x8a8a96));
+        if (vis && vis !== ent.sprite) this.tweens.add({ targets: vis, alpha: 0.45, duration: 650, delay: 120, ease: 'sine.in' });
         if (ent.bossAura) this.tweens.add({ targets: ent.bossAura, alpha: 0, duration: 500 });
         const shards = this.add.particles(dx, dy - 6, 'px_white', {
           speed: { min: 60, max: 150 }, lifespan: 520, quantity: 12,
@@ -3306,6 +3489,8 @@
       this.dead = true;
       this.recordDeath();
       this.player.setFrame('death');
+      if (this.playerDoll) this.playerDoll.die();   // the doll goes down and stays down
+      if (this.playerPose) { this.playerPose.sx = 1; this.playerPose.sy = 1; this.playerPose.lean = 0; }
       // a beat of slow-mo + a low death knell, the world greys out, then fades
       this.slowMo(700, 0.25);
       try {
@@ -3322,6 +3507,7 @@
             MH.refreshState();
             this.cameras.main.fadeIn(700);
             this.dead = false;
+            if (this.playerDoll) this.playerDoll.revive();
           });
         }
       });
@@ -3693,9 +3879,14 @@
           for (const ent2 of this.entities.values()) {
             if (!ent2.data || !ent2.data.fighting || !ent2.sprite || !ent2.sprite.active) continue;
             if (ent2.data.intent) continue;   // a declared wind-up has its own bigger tell
-            this.tweens.add({ targets: ent2.sprite, scaleX: ent2.sprite.scaleX * 1.12, scaleY: ent2.sprite.scaleY * 1.12, duration: 160, yoyo: true });
-            ent2.sprite.setTint(0xffb0a0);
-            this.time.delayedCall(330, () => ent2.sprite && ent2.sprite.active && ent2.sprite.clearTint());
+            if (ent2.pose && !ent2.windup && !ent2._dying) {
+              const away = this.player.x >= ent2.sprite.x ? -16 : 16;
+              this.tweens.killTweensOf(ent2.pose);
+              this.tweens.add({ targets: ent2.pose, sx: 0.88, sy: 1.2, lean: away, dy: -4, duration: 180, yoyo: true, hold: 120, ease: 'sine.inOut',
+                onComplete: () => { ent2.pose.sx = 1; ent2.pose.sy = 1; ent2.pose.lean = 0; ent2.pose.dy = 0; } });
+            }
+            this.tintVisual(ent2, 0xffb0a0);
+            this.time.delayedCall(330, () => { if (ent2.sprite && ent2.sprite.active && !ent2.windup && !ent2._dying) this.tintCharacters(); });
             break;
           }
         });
@@ -4384,7 +4575,9 @@
         const dx = this.player.x - ent.sprite.x, dy = this.player.y - ent.sprite.y;
         const d = Math.hypot(dx, dy) || 1;
         const casterMob = /caster|ghost|elemental/.test(ent.sprite.texture.key);
-        const ring = ent.data.fighting ? (casterMob ? 52 : 22) : 30;
+        // melee range is a full body-width apart (the old 22px put the mob
+        // ON the player's tile, so one of the two was always hidden)
+        const ring = ent.data.fighting ? (casterMob ? 52 : 32) : 34;
         let vx = 0, vy = 0;
         if (d > ring + 22) {
           // approach with a hunting weave, not a beeline
@@ -4393,6 +4586,18 @@
           const a = Math.atan2(dy, dx) + weave;
           vx = Math.cos(a) * sp;
           vy = Math.sin(a) * sp;
+        } else if (ent.data.fighting && !casterMob) {
+          // melee: take a stance BESIDE the player (same row, one body-width
+          // out) and hold it, with a restless shuffle. Circling put the mob
+          // straight above/below the hero where one body hid the other.
+          if (!ent.ai.side) ent.ai.side = ent.sprite.x < this.player.x ? -1 : 1;
+          if (now > ent.ai.nextFlip) { if (Math.random() < 0.3) ent.ai.side *= -1; ent.ai.nextFlip = now + 2200 + Math.random() * 2600; }
+          const gx = this.player.x + ent.ai.side * ring, gy = this.player.y;
+          if (!walkable(gx, gy) && walkable(this.player.x - ent.ai.side * ring, gy)) ent.ai.side *= -1;   // that side is a wall
+          const ex = this.player.x + ent.ai.side * ring - ent.sprite.x, ey = gy - ent.sprite.y;
+          const ed = Math.hypot(ex, ey);
+          if (ed > 2) { const sp = Math.min(64, 10 + ed * 3.5); vx = (ex / ed) * sp; vy = (ey / ed) * sp; }
+          vx += Math.sin(now / 260 + MH.hashStr(ent.key)) * 5;
         } else if (d < ring - 8) {
           // too close: give ground
           vx = -(dx / d) * 34;
@@ -4479,8 +4684,23 @@
         } else if (ent.rim) {
           ent.rim.setVisible(false);
         }
-        if (ent.label && ent.sprite) { ent.label.x = ent.sprite.x; ent.label.y = ent.sprite.y - (ent.data.boss ? 26 : 18); }
-        if (ent.fightMark && ent.sprite) { ent.fightMark.x = ent.sprite.x; ent.fightMark.y = ent.sprite.y - 26; }
+        if (ent.label && ent.sprite) { ent.label.x = ent.sprite.x; ent.label.y = ent.sprite.y - (ent.labelDy || (ent.data.boss ? 26 : 18)); }
+        if (ent.fightMark && ent.sprite) { ent.fightMark.x = ent.sprite.x; ent.fightMark.y = ent.sprite.y - ((ent.labelDy || 18) + 8); }
+        if (ent.aggroRing && ent.sprite) { ent.aggroRing.x = ent.sprite.x; ent.aggroRing.y = ent.sprite.y + 8; ent.aggroRing.setVisible(ent.sprite.visible && !ent.leaving); }
+        if (ent.aggroGfx && ent.sprite) {
+          // the hostile ring: crisp red ellipse at the feet, brighter and
+          // pulsing faster once the mob is actually fighting you
+          const g = ent.aggroGfx;
+          g.clear();
+          if (ent.sprite.visible && !ent.leaving && !ent._dying) {
+            const fighting = !!(ent.data && ent.data.fighting);
+            const a = fighting ? 0.75 + 0.25 * Math.sin(now / 120) : 0.5 + 0.2 * Math.sin(now / 380);
+            const rw = ent.data && ent.data.boss ? 30 : 22;
+            g.lineStyle(fighting ? 2 : 1.5, 0xff3a2a, a).strokeEllipse(ent.sprite.x, ent.sprite.y + 9, rw, rw * 0.42);
+            g.fillStyle(0xff3a2a, 0.07 + 0.05 * Math.sin(now / 380)).fillEllipse(ent.sprite.x, ent.sprite.y + 9, rw, rw * 0.42);
+          }
+        }
+        if (ent.windup) this.tickWindup(ent, now);
         if (ent.questMark && ent.sprite) { ent.questMark.x = ent.sprite.x; }
         if (ent.serviceMark && ent.sprite) { ent.serviceMark.x = ent.sprite.x + 9; }
         if (ent.hpbar && ent.sprite) this.drawHpBar(ent);
@@ -4499,6 +4719,16 @@
       if (!this.playerShadow) this.playerShadow = this.add.image(0, 0, 'px_shadow').setAlpha(0.30).setDepth(9.8);
       this.playerShadow.setPosition(this.player.x, this.player.y + (this.mountArt ? 12 : 10));
       this.playerShadow.setVisible(!this.dead);
+      if (this.playerRing) {
+        const g = this.playerRing;
+        g.clear();
+        if (!this.dead) {
+          const a = 0.5 + 0.2 * Math.sin(now / 420);
+          g.lineStyle(1.4, 0x39c5e8, a).strokeEllipse(this.player.x, this.player.y + (this.mountArt ? 12 : 10), 22, 9);
+          g.fillStyle(0x39c5e8, 0.08).fillEllipse(this.player.x, this.player.y + (this.mountArt ? 12 : 10), 22, 9);
+        }
+        g.setDepth(5.2 + this.player.y / 1000 - 0.006);
+      }
       this.updatePlayerDoll(now);
       this.updateMountArt(now);
       this.syncPlayerVitals();
@@ -4506,7 +4736,7 @@
       if (this._intentBanners) {
         for (const [key, t] of this._intentBanners) {
           const ent = this.entities.get(key);
-          if (ent && ent.sprite && ent.sprite.active) { t.x = ent.sprite.x; t.y = ent.sprite.y - 26; }
+          if (ent && ent.sprite && ent.sprite.active) { t.x = ent.sprite.x; t.y = ent.sprite.y - ((ent.labelDy || 18) + 24); }
         }
       }
       // danger zones ride their mob too — and if you're physically CLEAR of
@@ -4534,24 +4764,42 @@
           const s = ent.sprite;
           if (s.alpha !== 0) s.setAlpha(0);          // keep procedural sprite hidden
           if (ent.rim) ent.rim.setVisible(false);
-          ent.doll.container.setPosition(s.x, s.y);
+          ent.doll.container.setPosition(s.x, s.y + ((ent.pose && ent.pose.dy) || 0));
           ent.doll.container.setDepth(10 + s.y / 1000 + 0.01);
+          if (ent.pose) { ent.doll.container.setScale(ent.pose.sx, ent.pose.sy); ent.doll.container.setAngle(ent.pose.lean); }
           const prev = ent._dollPrev || { x: s.x, y: s.y };
           const moving = Math.abs(s.x - prev.x) + Math.abs(s.y - prev.y) > 0.3;
-          const facing = s.flipX ? 'left' : (ent.facing === 'u' ? 'up' : 'down');
-          ent.doll.setAction(ent.data && ent.data.fighting ? 'attack' : (moving ? 'walk' : 'idle'), facing);
+          // facing: from the hidden sprite's walk row + flip (it never had a
+          // 'right', so a right-walking NPC showed its face); a fighter
+          // squares up to the player instead of staring at the floor
+          let facing;
+          if (ent.data && ent.data.fighting) {
+            const dx = this.player.x - s.x, dy = this.player.y - s.y;
+            facing = Math.abs(dx) > Math.abs(dy) ? (dx < 0 ? 'left' : 'right') : (dy < 0 ? 'up' : 'down');
+          } else {
+            const ak = (s.anims && s.anims.currentAnim && s.anims.currentAnim.key) || '';
+            facing = ak.endsWith('walku') ? 'up' : ak.endsWith('walks') ? (s.flipX ? 'left' : 'right') : 'down';
+          }
+          const hurt = ent.hurtUntil && now < ent.hurtUntil;
+          ent.doll.setAction(hurt ? 'hurt' : ent.data && ent.data.fighting ? 'attack' : (moving ? 'walk' : 'idle'), facing);
           ent.doll.update(now);
           ent._dollPrev = { x: s.x, y: s.y };
         } else if (ent.art) {
           const s = ent.sprite, ph = ent.artPhase || 0, base = ent.artScale || ent.art.scaleX;
           if (s.alpha !== 0) s.setAlpha(0);
           if (ent.rim) ent.rim.setVisible(false);
+          const po = ent.pose || { sx: 1, sy: 1, lean: 0, dy: 0 };
           ent.art.x = s.x;
-          ent.art.y = s.y - 6 + Math.sin(now / 600 + ph) * 1.5;          // follow + idle bob
+          // feet on the contact shadow (origin is the bottom edge) + idle bob + pose lift
+          ent.art.y = s.y + 9 + Math.sin(now / 600 + ph) * 1.2 + (po.dy || 0);
           ent.art.setDepth(10 + s.y / 1000 + 0.01);
-          // idle breathing: gentle vertical swell; manage flip via scaleX sign
-          ent.art.scaleX = base * (s.flipX ? -1 : 1);
-          ent.art.scaleY = base * (1 + Math.sin(now / 520 + ph) * 0.05);
+          // a creature faces the player while fighting (flip toward them)
+          if (ent.data && ent.data.fighting && Math.abs(this.player.x - s.x) > 4) s.setFlipX(this.player.x < s.x);
+          // idle breathing: gentle vertical swell; manage flip via scaleX sign;
+          // pose multipliers carry squash, wind-up rear-back and the death topple
+          ent.art.scaleX = base * (s.flipX ? -1 : 1) * po.sx;
+          ent.art.scaleY = base * (1 + Math.sin(now / 520 + ph) * 0.05) * po.sy;
+          ent.art.setAngle(po.lean);
         }
         if (ent.bossAura) { ent.bossAura.x = ent.sprite.x; ent.bossAura.y = ent.sprite.y + 5; ent.bossAura.setDepth(9.5 + ent.sprite.y / 1000); }
       }
@@ -4570,6 +4818,14 @@
         };
         // the player carries a torch: a wide, gently breathing pool
         carve(this.player.x, this.player.y, lp.torchR, 0.97 + 0.03 * Math.sin(now / 280));
+        // every actor keeps a small pool of its own so a character is never
+        // lost in the dark — you can always see WHO is in the room
+        for (const ent of this.entities.values()) {
+          if (ent.kind === 'item' || !ent.sprite || !ent.sprite.active || ent.leaving) continue;
+          // hostiles get a wider pool so a threat is never a grey smudge in the gloom
+          const hostile = ent.data && (ent.data.hostile || ent.data.fighting);
+          carve(ent.sprite.x, ent.sprite.y - 4, hostile ? 64 : 44, 1);
+        }
         // every brazier, candle, lamppost and travel feature throws its own
         // flickering light
         for (const ls of (this.lightSources || [])) {
@@ -4606,7 +4862,7 @@
       if (this.playerDoll && this._dollSig === sig) return;
       if (this.playerDoll) { this.playerDoll.destroy(); this.playerDoll = null; }
       this._dollSig = sig;
-      this.playerDoll = MH.lpc.makeDoll(this, spec, 0.4, () => this.tintCharacters());
+      this.playerDoll = MH.lpc.makeDoll(this, spec, DOLL_SCALE, () => { this.tintCharacters(); addContour(this.playerDoll && this.playerDoll.container, OUTLINE.player); });
       this.playerDoll.container.setDepth(10);
       this.player.setAlpha(0);                 // keep physics body, hide the pixel art
       if (this.playerRim) this.playerRim.setVisible(false);
@@ -4707,11 +4963,23 @@
       d.container.setDepth(10 + this.player.y / 1000);
       const pos = (MH.state.player && MH.state.player.position) || 'standing';
       let action = 'idle';
-      if (this._atkFrame && now - this._atkFrame < 300) action = 'attack';
+      if (this._hurtFrame && now - this._hurtFrame < 320) action = 'hurt';
+      else if (this._atkFrame && now - this._atkFrame < 300) action = 'attack';
       else if (this._walkFrame && now - this._walkFrame < 130) action = 'walk';
+      // mid-fight the hero is visibly SWINGING at the target, not standing
+      // politely beside it (BrowserQuest's in-combat sword pose)
+      else if (MH.state.inCombat && this.target && this.target.sprite && this.target.sprite.active && !this.dead) {
+        action = 'attack';
+        if (!this._faceTick || now - this._faceTick > 250) { this._faceTick = now; this.faceEntity(this.target); }
+      }
       d.setAction(action, this.lpcFacing());
       d.update(now);
       this.applyDollPose(d.container, pos, now);
+      const pp = this.playerPose;
+      if (pp && (pp.sx !== 1 || pp.sy !== 1 || pp.lean)) {
+        d.container.setScale(d.container.scaleX * pp.sx, d.container.scaleY * pp.sy);
+        d.container.setAngle(d.container.angle + pp.lean);
+      }
     }
     // Lay the paperdoll into a sleeping/resting pose (the LPC pack has no
     // lying-down frames, so we tilt/sink the whole doll) and float a 💤 cue.
@@ -4721,11 +4989,11 @@
       if (sleeping) {
         c.setRotation(-1.45);                 // lie flat on the ground, head to the side
         c.setScale(1);
-        c.y += 5 * 0.4;                        // settle onto the floor (doll scale 0.4)
+        c.y += 5 * DOLL_SCALE;                 // settle onto the floor
       } else if (resting) {
         c.setRotation(0);
         c.setScale(1.04, 0.74);                 // squash toward the feet → seated/crouched
-        c.y += 4 * 0.4;
+        c.y += 4 * DOLL_SCALE;
       } else {
         c.setRotation(0);
         c.setScale(1);

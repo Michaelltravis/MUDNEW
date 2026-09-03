@@ -158,5 +158,40 @@
     scene.load.start();
   }
 
-  MH.dcss = { preload, init, isReady, resolve, ensure };
+  // Bake a dark contour around a loaded creature sprite -> new texture key.
+  // Characters need a hard silhouette edge to read against painterly ground
+  // (BrowserQuest-style readability); the contour is scaled to the art's own
+  // resolution so a 32px sprite gets 1px and a large painted animal ~its
+  // equivalent once it is shrunk to tile scale. Cached per (key, color).
+  // `thick` multiplies the contour (2 = a bold hostile rim that reads as a
+  // red silhouette from across the room, not a hairline).
+  function outlined(scene, key, color, thick) {
+    const col = color || 'rgba(18,10,14,0.92)';
+    const mul = Math.max(1, Math.round(thick || 1));
+    const ok = key + '|ol:' + col + (mul > 1 ? '|t' + mul : '');
+    if (scene.textures.exists(ok)) return ok;
+    try {
+      const src = scene.textures.get(key).getSourceImage();
+      const w = src.width, h = src.height;
+      const t = Math.max(1, Math.round(h / 32)) * mul;   // contour thickness in source px
+      const c = document.createElement('canvas');
+      c.width = w + t * 2; c.height = h + t * 2;
+      const g = c.getContext('2d');
+      // silhouette stamped at every offset within the contour radius (a full
+      // disc of stamps, so a 2px rim is solid rather than eight corners)
+      for (let dx = -t; dx <= t; dx++) for (let dy = -t; dy <= t; dy++) {
+        if (!dx && !dy) continue;
+        if (dx * dx + dy * dy > t * t + 0.5) continue;
+        g.drawImage(src, t + dx, t + dy);
+      }
+      g.globalCompositeOperation = 'source-in';
+      g.fillStyle = col; g.fillRect(0, 0, c.width, c.height);
+      g.globalCompositeOperation = 'source-over';
+      g.drawImage(src, t, t);
+      scene.textures.addCanvas(ok, c);
+      return ok;
+    } catch (_) { return key; }
+  }
+
+  MH.dcss = { preload, init, isReady, resolve, ensure, outlined };
 })();

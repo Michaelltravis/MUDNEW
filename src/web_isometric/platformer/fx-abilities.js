@@ -313,7 +313,33 @@
   add(/charm|fascinate|mass.?charm|lullaby/i, 'ranged', (s, c, x, y) => { glyph(s, x, y, '♥', 0xff8ad0, { size: 15, rise: 18 }); notes(s, { x, y: y }, P().song, 3); sound('song', 1); });
   add(/\b(haste|slow|heroism|briskness|lore|inspire)\b/i, 'self', (s, c) => { notes(s, c, P().song, 5); MH.fx.glowFlash(s, c.x, c.y - 6, P().song.a, 0.6); sound('song', 1); });
 
+  // ---------- shared actor-readability beats (used by the scene) ----------
+  // HIT: a white four-point impact star that pops and fades on the struck
+  // body, plus a thin ring — the hit reads even when the body-flash lands on
+  // a pale sprite over a pale floor.
+  function impact(s, x, y, color) {
+    const col = color == null ? 0xffffff : color;
+    const g = s.add.graphics().setDepth(60).setBlendMode(1);
+    const st = { p: 0 };
+    s.tweens.add({
+      targets: st, p: 1, duration: 200, ease: 'cubic.out',
+      onUpdate: () => {
+        const p = st.p, a = 1 - p, r = 6 + 14 * p;
+        g.clear();
+        g.lineStyle(2.2, col, a);
+        g.beginPath(); g.moveTo(x - r, y); g.lineTo(x + r, y); g.moveTo(x, y - r); g.lineTo(x, y + r); g.strokePath();
+        g.lineStyle(1.2, col, a * 0.8);
+        const d = r * 0.55;
+        g.beginPath(); g.moveTo(x - d, y - d); g.lineTo(x + d, y + d); g.moveTo(x + d, y - d); g.lineTo(x - d, y + d); g.strokePath();
+        g.lineStyle(1.5, col, a * 0.7); g.strokeCircle(x, y, 4 + 12 * p);
+      },
+      onComplete: () => g.destroy(),
+    });
+    return g;
+  }
+
   MH.abilityFx = {
+    impact,
     match(text) { const t = String(text || ''); for (const [re, sig] of SIG) if (re.test(t)) return sig; return null; },
     run(scene, text, caster, tx, ty) {
       const sig = this.match(text); if (!sig) return false;

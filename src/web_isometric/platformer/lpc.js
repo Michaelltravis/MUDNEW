@@ -307,23 +307,37 @@
         if (anim !== curAnim) { curAnim = anim; curRow = row; applyAnim(); this._oneShot = oneShot; }
         else { curRow = row; if (oneShot) this._oneShot = true; }
       },
+      // death: play the hurt sequence once and HOLD its last (lying) frame so
+      // the body stays down until the entity is reaped / the player respawns
+      die() {
+        if (this._dead) return;
+        this._dead = true; moving = false; this._oneShot = false;
+        curAnim = 'hurt'; applyAnim(); frameI = 0; lastStep = 0;
+      },
+      revive() {
+        if (!this._dead) return;
+        this._dead = false; curAnim = 'idle'; applyAnim(); frameI = 0;
+      },
+      get dead() { return !!this._dead; },
       update(now) {
         if (!layers.length) return;
         // idle holds frame 0; walking/attacks step ~10fps
-        const animate = moving || this._oneShot;
+        const animate = moving || this._oneShot || this._dead;
         if (animate && now - lastStep > 95) { lastStep = now; frameI++; }
         if (!animate) frameI = 0;
         for (const L of layers) {
           if (!L.sprite) continue;
           if (L.isEyes) {   // face: pick eye texture by facing; back of head has none
             const key = EYE_KEY[['up', 'left', 'down', 'right'][curRow] || 'down'];
-            if (!key) { L.sprite.setVisible(false); }
+            if (!key || this._dead || curAnim === 'hurt') { L.sprite.setVisible(false); }
             else { L.sprite.setVisible(true); if (L.sprite.texture.key !== key) L.sprite.setTexture(key); }
             continue;
           }
           if (!L.sprite.visible) continue;
           const cols = L.cols || 9;
-          const f = curRow * cols + (frameI % cols);
+          // a dead doll freezes on the final hurt frame (lying on the ground)
+          const fi = this._dead ? Math.min(frameI, cols - 1) : (frameI % cols);
+          const f = curRow * cols + fi;
           try { L.sprite.setFrame(f); } catch (_) {}
         }
         if (this._oneShot && frameI >= 5) this._oneShot = false;   // end the swing
