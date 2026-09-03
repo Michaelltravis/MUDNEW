@@ -80,6 +80,8 @@ function isBlankPng(buf) {
     await send(`goto ${r.vnum}`);
     let arrived = false;
     for (let i = 0; i < 20 && !arrived; i++) { await sleep(250); arrived = await page.evaluate(v => !!(MH.state.currentRoom && String(MH.state.currentRoom.vnum) === String(v)), r.vnum); }
+    // pre-commands run after arrival and before the scene commands (e.g. zreset so the target mob is alive)
+    for (const c of (r.pre || [])) { await send(c); await sleep(1200); }
     for (const c of (r.cmds || [])) { await send(c); await sleep(200); }
     await sleep(r.waitMs || 4500);   // let the zone title card and arrival description fade
     const file = path.join(OUT, `${r.label}.png`);

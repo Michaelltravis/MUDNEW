@@ -75,7 +75,10 @@
       "camera": null,
       "attackNearest": true,
       "note": "fight a rat near spawn"
-    }
+    },
+    "pre": [
+      "zreset"
+    ]
   },
   {
     "label": "fight",
@@ -98,6 +101,9 @@
       "camera": null,
       "attackNearest": true,
       "note": "rat fight near spawn, same 8-frame storyboard"
-    }
+    },
+    "pre": [
+      "zreset"
+    ]
   }
 ]

@@ -46,6 +46,7 @@ def login(c):
 def run_fight(c, f, max_s):
     c.send_and_receive(f"restore {CFG['character']['name']}", 0.6)
     c.send_and_receive(f"goto {f['vnum']}", 1.0)
+    c.send_and_receive('zreset', 1.2)   # repopulate so the target is alive even if the previous fight killed it
     consider = strip(c.send_and_receive(f"consider {f['target']}", 1.0))
     c.send(f"kill {f['target']}"); t0 = time.time(); chunks = []; ended = 'timeout'
     while time.time() - t0 < max_s:
@@ -67,7 +68,7 @@ def run_fight(c, f, max_s):
         'distinct_lines': len(set(l.strip() for l in body.splitlines() if l.strip() and not re.match(r'^\d+/\d+hp', l))),
         'total_lines': len([l for l in body.splitlines() if l.strip()]),
     }
-    stats['decision_rounds'] = stats['telegraph'] + stats['stagger']
+    stats['decision_rounds'] = min(rounds, stats['telegraph'] + stats['stagger'])   # a round counts once
     stats['rounds_without_decision_pct'] = round(100 * max(0, rounds - stats['decision_rounds']) / rounds) if rounds else None
     if ended != 'player_died': c.send_and_receive('flee', 0.8)
     c.send_and_receive(f"restore {CFG['character']['name']}", 0.6)   # full heal between fights (immortal)
