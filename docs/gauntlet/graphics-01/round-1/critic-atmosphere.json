@@ -1,0 +1,16 @@
+{
+  "piece": "atmosphere",
+  "pick": "B",
+  "per_label": { "city": "A", "forest": "B", "dungeon": "B", "cave": "A", "water": "B" },
+  "reasons": [
+    "cave: A has two orange torch pools on the top wall that fade into a near-black rock floor plus a purple glow ring; B's cave is a flat black floor at uniform brightness with no light source anywhere.",
+    "dungeon: B reads as a necropolis at a glance (grey tombstones, ghost, blue fountain glow, grey haze, wall torches); A reads as a brown desert with dead trees and lava, not a dungeon, and is lit uniformly edge to edge.",
+    "city: B's Market Square is a small brick-tile box with a visibly repeating cobble grid and no landmarks, while A shows houses, tree canopies and paths that read as a village without any text; in forest and water, B's darker edge vignette and haze give depth where A's grass and sand are flat repeated tiles."
+  ],
+  "fixes": [
+    { "what": "City floor is a bare repeating cobble grid inside a brick box: paint stalls, awnings, a well/fountain, cart ruts and irregular flagstone patches so Market Square reads as a market without the title text.", "file_hint": "src/web_isometric/platformer/themes-zones.js" },
+    { "what": "Add real light sources with radial falloff (lanterns, braziers, windows) to city, forest, water and the flat desert-style dungeon; right now those screens are uniformly bright and only cave shows falloff.", "file_hint": "src/web_isometric/platformer/immersion.js" },
+    { "what": "Break the visible tile grid on sand, grass and cobble with overlaid noise, scatter decals and soft edge blending so ground reads as painted terrain; also bump actor/exit contrast on the blue water floor where the player nearly vanishes.", "file_hint": "src/web_isometric/platformer/painter.js" }
+  ],
+  "confidence": "low"
+}

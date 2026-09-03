@@ -49,6 +49,33 @@
     card.classList.add('show');
   });
 
+  // ---------------- room prose: read it, then get out of the way ----------------
+  // The first-visit description card sits over the top third of the map. It
+  // now lifts after a short read (hovering it holds it open) and the moment
+  // the player starts moving or clicks the world — the picture is the room;
+  // L re-reads the prose any time.
+  let proseTimer = null;
+  const proseCard = () => $('room-desc');
+  function liftProse() {
+    const card = proseCard();
+    if (!card || !card.classList.contains('show')) return;
+    if (card.matches && card.matches(':hover')) { proseTimer = setTimeout(liftProse, 1200); return; }
+    card.classList.remove('show');
+  }
+  MH.bus.on('room.entered', () => {
+    clearTimeout(proseTimer);
+    proseTimer = setTimeout(liftProse, 3600);
+  });
+  window.addEventListener('keydown', e => {
+    if (/^(Arrow(Up|Down|Left|Right)|KeyW|KeyA|KeyS|KeyD)$/.test(e.code) && !(e.target && /INPUT|TEXTAREA/.test(e.target.tagName))) {
+      clearTimeout(proseTimer);
+      proseTimer = setTimeout(liftProse, 250);
+    }
+  });
+  document.addEventListener('pointerdown', e => {
+    if (e.target && e.target.tagName === 'CANVAS') { clearTimeout(proseTimer); liftProse(); }
+  }, true);
+
   // ---------------- sky chip: sun/moon arc + weather + date ----------------
   const MONTHS = ['Deepwinter', 'Thaw', 'Seedfall', 'Rainmoon', 'Blossom', 'Highsun',
     'Goldfield', 'Harvest', 'Emberfall', 'Mistmoon', 'Frostveil', 'Longnight'];

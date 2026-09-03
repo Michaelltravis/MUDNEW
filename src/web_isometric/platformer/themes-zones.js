@@ -9,32 +9,71 @@
   // ---------------- theme specs ----------------
   // floor: base color; floorKind paints the pattern; border/obst share kind+colors
   // ambient: particle weather; glow: light pool tint; mood: scene tint wash
+  // light: how the painter bakes illumination into the ground —
+  //   enclosed: true = a dark interior (strong vignette, warm torch pools at
+  //   the walls, cool daylight spilling in at the exits); false = open sky
+  //   (soft vignette, sun shadows cast by the treeline / walls onto the floor)
+  //   vig: vignette strength 0..1, vigCol: its color, pool: light-pool color
+  const LIGHT_OUT  = { enclosed: false, vig: 0.16, vigCol: '#0c1410', pool: '#fff0c0', dapple: true };
+  const LIGHT_SUN  = { enclosed: false, vig: 0.10, vigCol: '#2a1a08', pool: '#fff4d0', dapple: false };
+  const LIGHT_IN   = { enclosed: true,  vig: 0.42, vigCol: '#0a0810', pool: '#ffc888' };
+  const LIGHT_DARK = { enclosed: true,  vig: 0.78, vigCol: '#060302', pool: '#ffa850' };
+  const LIGHT_COLD = { enclosed: true,  vig: 0.50, vigCol: '#0a1018', pool: '#ffd8a8' };
   const T22 = {
-    midgaard:   { floor: '#565b66', f2: '#4c515c', acc: '#e8c168', floorKind: 'cobble', borderKind: 'wall', borderCol: '#3a4050', glow: 0xffc878, mood: 0xfff2dc, moodA: 0.05, ambient: 'motes', props: ['lamppost', 'crate', 'barrel', 'stall', 'banner', 'fountain'] },
-    temple:     { floor: '#8d8a96', f2: '#807d8a', acc: '#ffe9a8', floorKind: 'marble', borderKind: 'column', borderCol: '#a8a4b4', glow: 0xffe9a8, mood: 0xfff6e0, moodA: 0.06, ambient: 'motes', props: ['pillar', 'candles', 'urn', 'banner', 'statue'] },
-    sewer:      { floor: '#3e4434', f2: '#353b2c', acc: '#9fd6a0', floorKind: 'slimestone', borderKind: 'wall', borderCol: '#2c3226', glow: 0x9fd6a0, mood: 0x9adba0, moodA: 0.07, ambient: 'drips', props: ['mushrooms', 'bones', 'rubble', 'barrel'], water: '#4a6a3a' },
-    forest:     { floor: '#46583a', f2: '#3e4f33', acc: '#7ad68a', floorKind: 'grass', borderKind: 'tree', borderCol: '#27572f', glow: 0xaaffaa, mood: 0xd8ffd0, moodA: 0.05, ambient: 'leaves', props: ['tree', 'bush', 'flowers', 'mushrooms', 'stump', 'rock'] },
-    darkforest: { floor: '#33403a', f2: '#2c3833', acc: '#6cae8a', floorKind: 'grass', borderKind: 'deadtree', borderCol: '#1c2a22', glow: 0x86c89a, mood: 0x9ec8b8, moodA: 0.10, ambient: 'fireflies', props: ['deadtree', 'mushrooms', 'web', 'rock', 'bones'] },
-    swamp:      { floor: '#454a34', f2: '#3c402c', acc: '#86b060', floorKind: 'slimestone', borderKind: 'deadtree', borderCol: '#28301e', glow: 0x9fd6a0, mood: 0xa6c890, moodA: 0.10, ambient: 'fireflies', props: ['deadtree', 'reeds', 'lilypad', 'mushrooms'], water: '#3a5a3a' },
-    mines:      { floor: '#4c4338', f2: '#443c32', acc: '#c08a4a', floorKind: 'cracked', borderKind: 'rock', borderCol: '#3a332a', glow: 0xffa868, mood: 0xc8a888, moodA: 0.08, ambient: 'dust', props: ['rock', 'beam', 'crystal', 'rubble', 'barrel'] },
-    dwarvenhall:{ floor: '#5c5048', f2: '#534840', acc: '#f0a868', floorKind: 'flagstone', borderKind: 'wall', borderCol: '#463c34', glow: 0xffb868, mood: 0xffd2a8, moodA: 0.07, ambient: 'embers', props: ['anvil', 'brazier', 'pillar', 'barrel', 'crate'] },
-    desert:     { floor: '#b59a64', f2: '#a98f5a', acc: '#f0d898', floorKind: 'sand', borderKind: 'dune', borderCol: '#8a7244', glow: 0xffd9a0, mood: 0xffe8c0, moodA: 0.07, ambient: 'dust', props: ['cactus', 'bones', 'rock', 'urn'] },
-    sandstone:  { floor: '#a08a5e', f2: '#947f54', acc: '#f0d898', floorKind: 'flagstone', borderKind: 'wall', borderCol: '#7a6840', glow: 0xffd9a0, mood: 0xffe4b8, moodA: 0.06, ambient: 'dust', props: ['urn', 'stall', 'banner', 'crate', 'pillar'] },
-    drow:       { floor: '#3a3148', f2: '#332b40', acc: '#b06ce0', floorKind: 'flagstone', borderKind: 'rock', borderCol: '#28203a', glow: 0xb06ce0, mood: 0x9a7ce0, moodA: 0.12, ambient: 'spores', props: ['crystal', 'web', 'mushrooms', 'pillar', 'banner'] },
-    castle:     { floor: '#555a64', f2: '#4c5159', acc: '#c8a868', floorKind: 'flagstone', borderKind: 'wall', borderCol: '#3c4250', glow: 0xffc878, mood: 0xdce4f0, moodA: 0.05, ambient: 'motes', props: ['banner', 'brazier', 'pillar', 'statue', 'crate'] },
-    darkcastle: { floor: '#3c3a46', f2: '#34323e', acc: '#c06868', floorKind: 'cracked', borderKind: 'wall', borderCol: '#2a2834', glow: 0xc06868, mood: 0x8a86b0, moodA: 0.12, ambient: 'ash', props: ['banner', 'rubble', 'bones', 'brazier', 'statue'] },
-    rome:       { floor: '#9a948a', f2: '#8f897f', acc: '#e0c888', floorKind: 'marble', borderKind: 'column', borderCol: '#b0a898', glow: 0xffe9a8, mood: 0xfff4dc, moodA: 0.06, ambient: 'motes', props: ['pillar', 'statue', 'urn', 'fountain', 'banner'] },
-    elven:      { floor: '#4e5e48', f2: '#465540', acc: '#bfe8a8', floorKind: 'grass', borderKind: 'tree', borderCol: '#2e4a32', glow: 0xcfffc0, mood: 0xe8ffe0, moodA: 0.06, ambient: 'petals', props: ['tree', 'flowers', 'lantern', 'fountain', 'bush'] },
-    autumn:     { floor: '#6a5a3c', f2: '#605234', acc: '#e0a868', floorKind: 'grass', borderKind: 'tree', borderCol: '#5a4426', glow: 0xffd9a0, mood: 0xffe0b8, moodA: 0.06, ambient: 'leaves', props: ['tree', 'stump', 'rock', 'bush', 'fence'] },
-    frozen:     { floor: '#aeb8c4', f2: '#a2adba', acc: '#dff0ff', floorKind: 'snow', borderKind: 'pine', borderCol: '#3a5648', glow: 0xcfe2ff, mood: 0xdce8ff, moodA: 0.08, ambient: 'snow', props: ['pine', 'snowdrift', 'icecrystal', 'rock', 'stump'] },
-    necropolis: { floor: '#4a4a44', f2: '#42423c', acc: '#9adba0', floorKind: 'bone', borderKind: 'bone', borderCol: '#383832', glow: 0x9adba0, mood: 0xa8c8a8, moodA: 0.12, ambient: 'mist', props: ['gravestone', 'bones', 'deadtree', 'statue', 'brazier'] },
-    volcanic:   { floor: '#46383a', f2: '#3e3134', acc: '#f08a5a', floorKind: 'cracked', borderKind: 'rock', borderCol: '#2e2426', glow: 0xff8a5a, mood: 0xd09080, moodA: 0.10, ambient: 'embers', props: ['rock', 'deadtree', 'bones', 'rubble'], water: '#c04a2a' },
-    sunken:     { floor: '#3e5a5e', f2: '#375154', acc: '#5ce0c0', floorKind: 'slimestone', borderKind: 'coral', borderCol: '#2a4448', glow: 0x66e0ff, mood: 0x7ac8d8, moodA: 0.12, ambient: 'bubbles', props: ['coral', 'shell', 'reeds', 'pillar', 'rubble'], water: '#1e4a78' },
-    clockwork:  { floor: '#5e5244', f2: '#554a3e', acc: '#f0c868', floorKind: 'brass', borderKind: 'brass', borderCol: '#463c30', glow: 0xffc868, mood: 0xe8c898, moodA: 0.08, ambient: 'sparks', props: ['gear', 'pipe', 'crate', 'brazier', 'barrel'] },
-    voidstar:   { floor: '#2e2c44', f2: '#28263c', acc: '#9a8aff', floorKind: 'runic', borderKind: 'voidpillar', borderCol: '#1e1c30', glow: 0x9a8aff, mood: 0x8a86d0, moodA: 0.12, ambient: 'stars', props: ['runestone', 'crystal', 'pillar', 'bookpile', 'candles'] },
-    arcane:     { floor: '#46405c', f2: '#3e3952', acc: '#b08aff', floorKind: 'runic', borderKind: 'wall', borderCol: '#322c46', glow: 0xb08aff, mood: 0xb0a0e8, moodA: 0.10, ambient: 'stars', props: ['bookpile', 'candles', 'runestone', 'crystal', 'urn'] },
-    chessboard: { floor: '#d8d4cc', f2: '#34323c', acc: '#e8c168', floorKind: 'checker', borderKind: 'column', borderCol: '#8a8694', glow: 0xffffff, mood: 0xe8e8f4, moodA: 0.05, ambient: 'motes', props: ['pillar', 'statue'] },
-    meadow:     { floor: '#5a7040', f2: '#516538', acc: '#cce070', floorKind: 'grass', borderKind: 'hedge', borderCol: '#36502a', glow: 0xffe9a8, mood: 0xf0ffd8, moodA: 0.05, ambient: 'petals', props: ['flowers', 'bush', 'fence', 'tree', 'fountain'] },
+    midgaard:   { floor: '#8d7d66', f2: '#7b6c57', acc: '#f2c46a', floorKind: 'cobble', borderKind: 'wall', borderCol: '#6a5846', glow: 0xffc878, mood: 0xffe4b8, moodA: 0.07, ambient: 'motes', light: LIGHT_SUN, props: ['lamppost', 'crate', 'barrel', 'stall', 'banner', 'fountain'] },
+    temple:     { floor: '#a29ea8', f2: '#928e9a', acc: '#ffe9a8', floorKind: 'marble', borderKind: 'column', borderCol: '#b4b0c0', glow: 0xffe9a8, mood: 0xfff6e0, moodA: 0.06, ambient: 'motes', light: LIGHT_IN, props: ['pillar', 'candles', 'urn', 'banner', 'statue'] },
+    sewer:      { floor: '#3e4a36', f2: '#333e2c', acc: '#9fd6a0', floorKind: 'slimestone', borderKind: 'wall', borderCol: '#2e382a', glow: 0x9fd6a0, mood: 0x9adba0, moodA: 0.07, ambient: 'drips', light: { enclosed: true, vig: 0.55, vigCol: '#040806', pool: '#b8f0a0' }, props: ['mushrooms', 'bones', 'rubble', 'barrel'], water: '#4a6a3a' },
+    forest:     { floor: '#529440', f2: '#427a34', acc: '#b8e878', floorKind: 'grass', borderKind: 'tree', borderCol: '#2a6a34', glow: 0xaaffaa, mood: 0xd8ffd0, moodA: 0.05, ambient: 'leaves', light: LIGHT_OUT, props: ['tree', 'bush', 'flowers', 'mushrooms', 'stump', 'rock'] },
+    darkforest: { floor: '#34503a', f2: '#2a4230', acc: '#6cae8a', floorKind: 'grass', borderKind: 'deadtree', borderCol: '#1c2a22', glow: 0x86c89a, mood: 0x9ec8b8, moodA: 0.10, ambient: 'fireflies', light: { enclosed: false, vig: 0.36, vigCol: '#060a08', pool: '#b0e0a0', dapple: true }, props: ['deadtree', 'mushrooms', 'web', 'rock', 'bones'] },
+    swamp:      { floor: '#4e5838', f2: '#424a2e', acc: '#a8c860', floorKind: 'slimestone', borderKind: 'deadtree', borderCol: '#28301e', glow: 0x9fd6a0, mood: 0xa6c890, moodA: 0.10, ambient: 'fireflies', light: { enclosed: false, vig: 0.30, vigCol: '#080c06', pool: '#c8e890', dapple: true }, props: ['deadtree', 'reeds', 'lilypad', 'mushrooms'], water: '#4a6a42' },
+    mines:      { floor: '#4a3e32', f2: '#3c322a', acc: '#d09050', floorKind: 'cracked', borderKind: 'rock', borderCol: '#3a3028', glow: 0xffa868, mood: 0xc8a888, moodA: 0.08, ambient: 'embers', light: LIGHT_DARK, props: ['rock', 'beam', 'crystal', 'rubble', 'barrel'] },
+    dwarvenhall:{ floor: '#6a5a4c', f2: '#5c4e42', acc: '#f0a868', floorKind: 'flagstone', borderKind: 'wall', borderCol: '#4e4238', glow: 0xffb868, mood: 0xffd2a8, moodA: 0.07, ambient: 'embers', light: LIGHT_IN, props: ['anvil', 'brazier', 'pillar', 'barrel', 'crate'] },
+    desert:     { floor: '#d4b478', f2: '#c4a468', acc: '#fff0b0', floorKind: 'sand', borderKind: 'dune', borderCol: '#a08050', glow: 0xffd9a0, mood: 0xffe8c0, moodA: 0.07, ambient: 'dust', light: LIGHT_SUN, props: ['cactus', 'bones', 'rock', 'urn'] },
+    sandstone:  { floor: '#b89a66', f2: '#a88c5c', acc: '#f0d898', floorKind: 'flagstone', borderKind: 'wall', borderCol: '#8a7048', glow: 0xffd9a0, mood: 0xffe4b8, moodA: 0.06, ambient: 'dust', light: LIGHT_SUN, props: ['urn', 'stall', 'banner', 'crate', 'pillar'] },
+    drow:       { floor: '#3a3150', f2: '#302846', acc: '#c07cf0', floorKind: 'flagstone', borderKind: 'rock', borderCol: '#28203a', glow: 0xb06ce0, mood: 0x9a7ce0, moodA: 0.12, ambient: 'spores', light: { enclosed: true, vig: 0.6, vigCol: '#06040c', pool: '#c890ff' }, props: ['crystal', 'web', 'mushrooms', 'pillar', 'banner'] },
+    castle:     { floor: '#66697a', f2: '#5a5d6c', acc: '#d8b878', floorKind: 'flagstone', borderKind: 'wall', borderCol: '#464a5c', glow: 0xffc878, mood: 0xdce4f0, moodA: 0.05, ambient: 'motes', light: LIGHT_IN, props: ['banner', 'brazier', 'pillar', 'statue', 'crate'] },
+    darkcastle: { floor: '#3c3846', f2: '#322e3c', acc: '#d06868', floorKind: 'cracked', borderKind: 'wall', borderCol: '#2a2834', glow: 0xc06868, mood: 0x8a86b0, moodA: 0.12, ambient: 'ash', light: { enclosed: true, vig: 0.6, vigCol: '#08060a', pool: '#ff9060' }, props: ['banner', 'rubble', 'bones', 'brazier', 'statue'] },
+    rome:       { floor: '#b0a894', f2: '#a29a88', acc: '#f0d898', floorKind: 'marble', borderKind: 'column', borderCol: '#b8ae9c', glow: 0xffe9a8, mood: 0xfff4dc, moodA: 0.06, ambient: 'motes', light: LIGHT_SUN, props: ['pillar', 'statue', 'urn', 'fountain', 'banner'] },
+    elven:      { floor: '#5a8a4c', f2: '#4c7a40', acc: '#d0f0a8', floorKind: 'grass', borderKind: 'tree', borderCol: '#2e6a3a', glow: 0xcfffc0, mood: 0xe8ffe0, moodA: 0.06, ambient: 'petals', light: LIGHT_OUT, props: ['tree', 'flowers', 'lantern', 'fountain', 'bush'] },
+    autumn:     { floor: '#8a6a3c', f2: '#7a5c34', acc: '#f0b060', floorKind: 'grass', borderKind: 'tree', borderCol: '#7a4a22', glow: 0xffd9a0, mood: 0xffe0b8, moodA: 0.06, ambient: 'leaves', light: LIGHT_OUT, props: ['tree', 'stump', 'rock', 'bush', 'fence'] },
+    frozen:     { floor: '#c4d0dc', f2: '#b4c2d0', acc: '#f0f8ff', floorKind: 'snow', borderKind: 'pine', borderCol: '#3a5648', glow: 0xcfe2ff, mood: 0xdce8ff, moodA: 0.08, ambient: 'snow', light: { enclosed: false, vig: 0.12, vigCol: '#1a2840', pool: '#ffffff', dapple: false }, props: ['pine', 'snowdrift', 'icecrystal', 'rock', 'stump'] },
+    necropolis: { floor: '#b8b4a4', f2: '#a6a294', acc: '#e8ead8', floorKind: 'bone', borderKind: 'bone', borderCol: '#7c7a6e', glow: 0xc8dcec, mood: 0xb0c4dc, moodA: 0.14, ambient: 'mist', light: LIGHT_COLD, props: ['gravestone', 'bones', 'deadtree', 'statue', 'brazier'] },
+    volcanic:   { floor: '#463434', f2: '#3c2c2c', acc: '#ff9a5a', floorKind: 'cracked', borderKind: 'rock', borderCol: '#2e2426', glow: 0xff8a5a, mood: 0xd09080, moodA: 0.10, ambient: 'embers', light: { enclosed: true, vig: 0.55, vigCol: '#0a0404', pool: '#ff8a40' }, props: ['rock', 'deadtree', 'bones', 'rubble'], water: '#d85a2a' },
+    sunken:     { floor: '#c8b88c', f2: '#b8a87c', acc: '#8af0e0', floorKind: 'shallows', borderKind: 'coral', borderCol: '#8a7a5c', glow: 0x66e0ff, mood: 0x8ad8e8, moodA: 0.04, ambient: 'bubbles', light: { enclosed: false, vig: 0.14, vigCol: '#062838', pool: '#c0f8ff', dapple: false }, props: ['coral', 'shell', 'reeds', 'pillar', 'rubble'], water: '#2e8ed0' },
+    clockwork:  { floor: '#6e5e4c', f2: '#625444', acc: '#f0c868', floorKind: 'brass', borderKind: 'brass', borderCol: '#463c30', glow: 0xffc868, mood: 0xe8c898, moodA: 0.08, ambient: 'sparks', light: LIGHT_IN, props: ['gear', 'pipe', 'crate', 'brazier', 'barrel'] },
+    voidstar:   { floor: '#2e2c4c', f2: '#262440', acc: '#a89aff', floorKind: 'runic', borderKind: 'voidpillar', borderCol: '#1e1c30', glow: 0x9a8aff, mood: 0x8a86d0, moodA: 0.12, ambient: 'stars', light: { enclosed: true, vig: 0.55, vigCol: '#04040c', pool: '#a898ff' }, props: ['runestone', 'crystal', 'pillar', 'bookpile', 'candles'] },
+    arcane:     { floor: '#4a4266', f2: '#403a5a', acc: '#b898ff', floorKind: 'runic', borderKind: 'wall', borderCol: '#342e4c', glow: 0xb08aff, mood: 0xb0a0e8, moodA: 0.10, ambient: 'stars', light: { enclosed: true, vig: 0.45, vigCol: '#08060e', pool: '#c0a8ff' }, props: ['bookpile', 'candles', 'runestone', 'crystal', 'urn'] },
+    chessboard: { floor: '#d8d4cc', f2: '#34323c', acc: '#e8c168', floorKind: 'checker', borderKind: 'column', borderCol: '#8a8694', glow: 0xffffff, mood: 0xe8e8f4, moodA: 0.05, ambient: 'motes', light: LIGHT_IN, props: ['pillar', 'statue'] },
+    meadow:     { floor: '#6a9a44', f2: '#5c8a3c', acc: '#e0f080', floorKind: 'grass', borderKind: 'hedge', borderCol: '#3a6a2c', glow: 0xffe9a8, mood: 0xf0ffd8, moodA: 0.05, ambient: 'petals', light: LIGHT_SUN, props: ['flowers', 'bush', 'fence', 'tree', 'fountain'] },
+  };
+
+  // Sector atmospheres: a room's SECTOR can overrule its zone's look. A cave
+  // inside a forest zone is still a cave (dark rock, torch pools) and a
+  // swimmable room is water no matter which zone owns it. `override`:
+  //   'outdoor' = only replace open-sky zone looks (grass/sand/snow/shallows)
+  //   'always'  = replace any zone look
+  const OUTDOOR_KINDS = ['grass', 'sand', 'snow', 'shallows'];
+  // borderKind/borderCol here tell the PAINTER what mass to paint where the
+  // zone's (transparent, organic) border sprites would have been
+  MH.SECTOR_ATMOS = {
+    cave:        { override: 'outdoor', floor: '#4a3a2c', f2: '#3a2d22', acc: '#d8a060', floorKind: 'cracked', borderKind: 'rock', borderCol: '#6a5442', light: LIGHT_DARK, mood: 0xffc890, moodA: 0.06, glow: 0xffa868 },
+    underground: { override: 'outdoor', floor: '#4a3a2c', f2: '#3a2d22', acc: '#d8a060', floorKind: 'cracked', borderKind: 'rock', borderCol: '#6a5442', light: LIGHT_DARK, mood: 0xffc890, moodA: 0.06, glow: 0xffa868 },
+    dungeon:     { override: 'outdoor', floor: '#56525c', f2: '#4a4650', acc: '#c0b8a8', floorKind: 'flagstone', borderKind: 'wall', borderCol: '#4e4a56', light: LIGHT_DARK },
+    inside:      { override: 'outdoor', floor: '#7a6650', f2: '#6c5a46', acc: '#f0c890', floorKind: 'flagstone', borderKind: 'wall', borderCol: '#5c4c3c', light: LIGHT_IN },
+    water_swim:  { override: 'always',  floor: '#c8b88c', f2: '#b8a87c', acc: '#8af0e0', floorKind: 'shallows', water: '#2e8ed0', light: { enclosed: false, vig: 0.14, vigCol: '#062838', pool: '#c0f8ff', dapple: false } },
+    underwater:  { override: 'always',  floor: '#7a9a8c', f2: '#6a8a7c', acc: '#8af0e0', floorKind: 'shallows', water: '#1e5aa0', deep: true, borderKind: 'coral', borderCol: '#6a6a58', light: { enclosed: false, vig: 0.5, vigCol: '#041828', pool: '#a0e8ff', dapple: false } },
+  };
+  MH.OUTDOOR_FLOOR_KINDS = OUTDOOR_KINDS;
+  // organic border kinds are painted into the room painting by painter.js;
+  // their tile sprites are left transparent so the mass shows through
+  MH.PAINTED_BORDER_KINDS = ['tree', 'pine', 'deadtree', 'hedge', 'rock', 'dune', 'coral'];
+  // resolve the palette a room paints with: zone theme, then sector atmosphere
+  MH.roomPalette = function (zt, sector) {
+    const atm = MH.SECTOR_ATMOS[sector];
+    if (!atm) return zt;
+    if (!zt) return Object.assign({}, atm);
+    if (atm.override === 'always' || OUTDOOR_KINDS.includes(zt.floorKind)) return Object.assign({}, zt, atm);
+    return zt;
   };
 
   // ---------------- zone number -> theme ----------------
@@ -192,24 +231,157 @@
     ctx.fillRect(0, 0, S, S);
   }
 
+  // --- seamless border-ring painters (return true when handled) ---
+  function paintSeamlessBorder(ctx, S, t, kind) {
+    const rng = MH.mulberry32(0xb0d3 + kind.length);
+    const lobe = (x, y, r, c0, c1) => {
+      const g = ctx.createRadialGradient(x - r * 0.35, y - r * 0.4, r * 0.1, x, y, r);
+      g.addColorStop(0, c0); g.addColorStop(1, c1);
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
+    };
+    if (kind === 'tree' || kind === 'hedge' || kind === 'deadtree' || kind === 'pine') {
+      // a dense canopy band: dark under-storey fills the tile, lit lobes sit on
+      // top, and edge-centred lobes continue into the neighbouring tile
+      const dead = kind === 'deadtree', pine = kind === 'pine';
+      const lo = dead ? '#1a2620' : pine ? '#1c3628' : shade(t.borderCol, -30);
+      const mid = dead ? '#33453a' : pine ? '#2e5a40' : shade(t.borderCol, 10);
+      const hi = dead ? '#55685a' : pine ? '#5c9a72' : shade(t.borderCol, 78);
+      const top = dead ? '#6a7c6c' : pine ? '#8ac094' : shade(t.borderCol, 118);
+      ctx.fillStyle = lo; ctx.fillRect(0, 0, S, S);
+      // deep shadow gaps between crowns
+      ctx.fillStyle = 'rgba(4,10,6,0.55)';
+      ctx.beginPath(); ctx.arc(S * 0.5, S * 0.5, S * 0.22, 0, 7); ctx.fill();
+      // edge-centred crowns (identical on opposite edges → seamless)
+      lobe(0, S * 0.5, S * 0.34, mid, lo); lobe(S, S * 0.5, S * 0.34, mid, lo);
+      lobe(S * 0.5, 0, S * 0.34, mid, lo); lobe(S * 0.5, S, S * 0.34, mid, lo);
+      lobe(0, 0, S * 0.3, hi, mid); lobe(S, 0, S * 0.3, hi, mid);
+      lobe(0, S, S * 0.3, hi, mid); lobe(S, S, S * 0.3, hi, mid);
+      // interior crowns, lit from the upper-left
+      lobe(S * 0.32, S * 0.36, S * 0.26, top, hi);
+      lobe(S * 0.68, S * 0.62, S * 0.24, hi, mid);
+      lobe(S * 0.62, S * 0.28, S * 0.18, top, hi);
+      // leaf-cluster dabs and a few dark gaps
+      ctx.fillStyle = 'rgba(255,255,255,0.12)';
+      for (let i = 0; i < 6; i++) { ctx.beginPath(); ctx.arc(S * (0.15 + rng() * 0.7), S * (0.12 + rng() * 0.6), S * (0.03 + rng() * 0.04), 0, 7); ctx.fill(); }
+      ctx.fillStyle = 'rgba(0,10,4,0.28)';
+      for (let i = 0; i < 4; i++) { ctx.beginPath(); ctx.arc(S * (0.15 + rng() * 0.7), S * (0.3 + rng() * 0.6), S * (0.04 + rng() * 0.05), 0, 7); ctx.fill(); }
+      if (dead) {
+        ctx.strokeStyle = '#141c16'; ctx.lineWidth = 1.4 * SS; ctx.lineCap = 'round';
+        ctx.beginPath(); ctx.moveTo(S * 0.5, S * 0.9); ctx.lineTo(S * 0.48, S * 0.4); ctx.moveTo(S * 0.49, S * 0.6); ctx.lineTo(S * 0.72, S * 0.34); ctx.moveTo(S * 0.49, S * 0.52); ctx.lineTo(S * 0.28, S * 0.3); ctx.stroke();
+      }
+      return true;
+    }
+    if (kind === 'rock' || kind === 'dune') {
+      // a continuous rock face / dune ridge: dark base, edge-centred lumps
+      const dune = kind === 'dune';
+      const lo = dune ? shade(t.floor, -40) : shade(t.borderCol, -26);
+      const mid = dune ? shade(t.floor, -6) : shade(t.borderCol, 18);
+      const hi = dune ? shade(t.floor, 34) : shade(t.borderCol, 64);
+      ctx.fillStyle = lo; ctx.fillRect(0, 0, S, S);
+      const lump = (x, y, rx, ry, c0, c1) => {
+        const g = ctx.createRadialGradient(x - rx * 0.3, y - ry * 0.5, 1, x, y, rx * 1.1);
+        g.addColorStop(0, c0); g.addColorStop(1, c1);
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.ellipse(x, y, rx, ry, 0, 0, 7); ctx.fill();
+      };
+      lump(0, S * 0.5, S * 0.36, S * 0.3, mid, lo); lump(S, S * 0.5, S * 0.36, S * 0.3, mid, lo);
+      lump(S * 0.5, 0, S * 0.36, S * 0.3, mid, lo); lump(S * 0.5, S, S * 0.36, S * 0.3, mid, lo);
+      lump(S * 0.36, S * 0.42, S * 0.3, S * 0.26, hi, mid);
+      lump(S * 0.7, S * 0.66, S * 0.24, S * 0.2, hi, mid);
+      ctx.fillStyle = 'rgba(255,255,255,0.12)';
+      ctx.beginPath(); ctx.ellipse(S * 0.3, S * 0.32, S * 0.1, S * 0.05, -0.4, 0, 7); ctx.fill();
+      ctx.strokeStyle = 'rgba(0,0,0,0.35)'; ctx.lineWidth = SS * 0.8;
+      ctx.beginPath(); ctx.moveTo(S * 0.2, S * 0.8); ctx.lineTo(S * 0.42, S * 0.62); ctx.lineTo(S * 0.5, S * 0.78); ctx.stroke();
+      return true;
+    }
+    if (kind === 'wall') {
+      // running-bond masonry that continues across tiles: two courses per
+      // tile, alternate courses offset by half a brick, lit from the top
+      const base = shade(t.borderCol, 4), mortar = shade(t.borderCol, -34);
+      ctx.fillStyle = mortar; ctx.fillRect(0, 0, S, S);
+      const bw = S / 2, bh = S / 2, gap = 1.2 * SS;
+      for (let row = 0; row < 2; row++) {
+        const off = row ? bw / 2 : 0;
+        for (let i = -1; i <= 2; i++) {
+          const x = i * bw + off, y = row * bh;
+          const g = ctx.createLinearGradient(0, y, 0, y + bh);
+          g.addColorStop(0, shade(base, 30)); g.addColorStop(1, shade(base, -8));
+          ctx.fillStyle = g;
+          rr(ctx, x + gap / 2, y + gap / 2, bw - gap, bh - gap, 1.5 * SS); ctx.fill();
+        }
+      }
+      ctx.fillStyle = 'rgba(255,255,255,0.06)';
+      for (let i = 0; i < 5; i++) ctx.fillRect(rng() * S, rng() * S, 3 * SS, 1.2 * SS);
+      ctx.fillStyle = 'rgba(0,0,0,0.10)';
+      for (let i = 0; i < 4; i++) { ctx.beginPath(); ctx.arc(rng() * S, rng() * S, (1.5 + rng() * 2) * SS, 0, 7); ctx.fill(); }
+      return true;
+    }
+    if (kind === 'bone') {
+      // an ossuary wall: stacked pale long-bones with a skull every tile,
+      // bone-white on top, cold shadow beneath
+      ctx.fillStyle = '#5c5a50'; ctx.fillRect(0, 0, S, S);
+      const bone = (x, y, w, h) => {
+        const g = ctx.createLinearGradient(0, y, 0, y + h);
+        g.addColorStop(0, '#e8e4d4'); g.addColorStop(1, '#a8a494');
+        ctx.fillStyle = g;
+        rr(ctx, x, y, w, h, h / 2); ctx.fill();
+        ctx.fillStyle = '#f4f0e4';
+        ctx.beginPath(); ctx.arc(x + h * 0.5, y + h * 0.5, h * 0.55, 0, 7); ctx.arc(x + w - h * 0.5, y + h * 0.5, h * 0.55, 0, 7); ctx.fill();
+      };
+      const bh = S * 0.16;
+      bone(-S * 0.3, S * 0.04, S * 0.8, bh); bone(S * 0.55, S * 0.04, S * 0.8, bh);
+      bone(-S * 0.1, S * 0.28, S * 0.7, bh); bone(S * 0.62, S * 0.28, S * 0.6, bh);
+      bone(-S * 0.3, S * 0.58, S * 0.8, bh); bone(S * 0.55, S * 0.58, S * 0.8, bh);
+      bone(-S * 0.1, S * 0.82, S * 0.7, bh); bone(S * 0.62, S * 0.82, S * 0.6, bh);
+      // skull
+      const g = ctx.createRadialGradient(S * 0.42, S * 0.42, 1, S * 0.5, S * 0.5, S * 0.2);
+      g.addColorStop(0, '#f0ecdc'); g.addColorStop(1, '#a4a090');
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(S * 0.5, S * 0.5, S * 0.19, 0, 7); ctx.fill();
+      ctx.fillStyle = '#2c2a24';
+      ctx.beginPath(); ctx.arc(S * 0.43, S * 0.47, S * 0.05, 0, 7); ctx.arc(S * 0.57, S * 0.47, S * 0.05, 0, 7); ctx.fill();
+      ctx.fillRect(S * 0.46, S * 0.6, S * 0.08, S * 0.03);
+      const sh = ctx.createLinearGradient(0, 0, 0, S);
+      sh.addColorStop(0, 'rgba(255,255,255,0.10)'); sh.addColorStop(1, 'rgba(10,16,24,0.30)');
+      ctx.fillStyle = sh; ctx.fillRect(0, 0, S, S);
+      return true;
+    }
+    if (kind === 'coral') {
+      // a reef mass: pale rock ridge under water, coral fans and tube sponges
+      ctx.fillStyle = '#6a6a58'; ctx.fillRect(0, 0, S, S);
+      lobe(0, S * 0.5, S * 0.36, '#a09880', '#5c5a4a'); lobe(S, S * 0.5, S * 0.36, '#a09880', '#5c5a4a');
+      lobe(S * 0.5, 0, S * 0.36, '#a09880', '#5c5a4a'); lobe(S * 0.5, S, S * 0.36, '#a09880', '#5c5a4a');
+      lobe(S * 0.4, S * 0.4, S * 0.3, '#c0b898', '#7a7460');
+      for (const [x, y, r, c] of [[0.22, 0.3, 0.13, '#d85a86'], [0.7, 0.24, 0.11, '#e8845a'], [0.62, 0.72, 0.14, '#38a0a0'], [0.24, 0.76, 0.1, '#e0c060']]) {
+        lobe(S * x, S * y, S * r, shade(c, 40), c);
+      }
+      ctx.strokeStyle = 'rgba(255,255,255,0.25)'; ctx.lineWidth = SS * 0.8;
+      ctx.beginPath(); ctx.moveTo(S * 0.5, S * 0.9); ctx.lineTo(S * 0.5, S * 0.55); ctx.moveTo(S * 0.5, S * 0.7); ctx.lineTo(S * 0.6, S * 0.58); ctx.stroke();
+      ctx.fillStyle = 'rgba(30,90,140,0.18)'; ctx.fillRect(0, 0, S, S);
+      return true;
+    }
+    return false;
+  }
+
   // --- border / obstacle painters ---
-  function paintBorder(ctx, S, t, kind) {
-    // Painterly pass: ORGANIC kinds (trees, rocks, dunes...) no longer sit on
-    // an opaque colored square — that square is what stamped the tile grid
-    // back onto the painted ground. They get a soft ground shadow and layered,
-    // light-shaded forms instead. Architectural kinds keep their solid base.
+  // seamless=true paints the BORDER-RING version: forms are centred on the
+  // tile edges so neighbouring tiles join into one continuous treeline /
+  // rock face / wall (BrowserQuest's edges read as masses, not stamps).
+  // seamless=false paints a free-standing obstacle with transparent rims.
+  function paintBorder(ctx, S, t, kind, seamless) {
     const ORGANIC = ['tree', 'pine', 'deadtree', 'hedge', 'rock', 'dune'].includes(kind);
-    if (!ORGANIC) {
+    if (!ORGANIC && !(seamless && (kind === 'wall' || kind === 'bone' || kind === 'coral'))) {
       ctx.fillStyle = shade(t.borderCol, -14);
       ctx.fillRect(0, 0, S, S);
-    } else {
+    } else if (!seamless) {
       const sh = ctx.createRadialGradient(S / 2, S * 0.86, 1, S / 2, S * 0.86, S * 0.5);
       sh.addColorStop(0, 'rgba(8,10,14,0.38)');
       sh.addColorStop(1, 'rgba(8,10,14,0)');
       ctx.fillStyle = sh;
       ctx.beginPath(); ctx.ellipse(S / 2, S * 0.86, S * 0.46, S * 0.18, 0, 0, 7); ctx.fill();
     }
-    const lighten = (c, a) => { ctx.fillStyle = `rgba(255,255,255,${a})`; };
+    if (seamless && paintSeamlessBorder(ctx, S, t, kind)) return;
     if (kind === 'tree' || kind === 'pine' || kind === 'deadtree' || kind === 'hedge') {
       const hi = kind === 'deadtree' ? '#5a6656' : kind === 'pine' ? '#679a7c' : shade(t.borderCol, 80);
       const lo = kind === 'deadtree' ? '#20291f' : kind === 'pine' ? '#1e3a2a' : shade(t.borderCol, -22);
@@ -707,37 +879,29 @@
           paintFloor(ctx, S, t, t.floorKind, v);
           scene.textures.addCanvas(`zt_${key}_floor${v}`, c);
         }
-        const organicEdge = (ctx2) => {
-          // organic sprites must keep transparent rims — stray edge pixels
-          // read as a tile grid over the painted ground
-          if (!['tree', 'pine', 'deadtree', 'hedge', 'rock', 'dune'].includes(t.borderKind)) return;
-          ctx2.clearRect(0, 0, S, 3); ctx2.clearRect(0, 0, 3, S);
-          ctx2.clearRect(S - 3, 0, 3, S); ctx2.clearRect(0, S - 3, S, 3);
-        };
+        // organic borders (treelines, rock faces, dunes, reefs) are painted
+        // into the room painting as one continuous mass; their sprites stay
+        // transparent so no 16px stamp repeats round the room. Without the
+        // painter the seamless ring art is used as before.
+        const organicKind = MH.PAINTED_BORDER_KINDS.includes(t.borderKind);
+        const painted = organicKind && !!(MH.painter && MH.painter.enabled !== false);
         {
           const [c, ctx] = canvasOf(S, S);
-          paintBorder(ctx, S, t, t.borderKind);
-          organicEdge(ctx);
+          if (!painted) paintBorder(ctx, S, t, t.borderKind, true);   // seamless ring
           scene.textures.addCanvas(`zt_${key}_border`, c);
         }
-        // obstacles reuse the border painter with a small variation tint
-        // (organic kinds keep transparent corners — a full-square wash would
-        // stamp the tile grid back onto the painted ground)
-        const organicKind = ['tree', 'pine', 'deadtree', 'hedge', 'rock', 'dune'].includes(t.borderKind);
+        // obstacles reuse the border painter with a small variation tint;
+        // organic obstacles are the biome-shaped treelines / cavern walls
+        // roomgen grows INTO the room, so they use the same mass treatment
         for (let i = 0; i < 2; i++) {
           const [c, ctx] = canvasOf(S, S);
-          paintBorder(ctx, S, t, t.borderKind);
-          if (i === 1) {
-            ctx.fillStyle = 'rgba(0,0,0,0.12)';
-            if (organicKind) {
-              ctx.globalCompositeOperation = 'source-atop';   // darken the art only
-              ctx.fillRect(0, 0, S, S);
-              ctx.globalCompositeOperation = 'source-over';
-            } else {
+          if (!painted) {
+            paintBorder(ctx, S, t, t.borderKind, organicKind);
+            if (i === 1) {
+              ctx.fillStyle = 'rgba(0,0,0,0.12)';
               ctx.fillRect(0, 0, S, S);
             }
           }
-          organicEdge(ctx);
           scene.textures.addCanvas(`zt_${key}_obst${i}`, c);
         }
       }
