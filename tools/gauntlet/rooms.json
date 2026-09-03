@@ -89,14 +89,14 @@
     "waitMs": 800,
     "filmstrip": {
       "frames": 8,
-      "intervalMs": 1500,
+      "intervalMs": 1000,
       "cols": 4
     },
     "after": [
       "flee",
       "goto 3001"
     ],
-    "note": "combat feel storyboard: 8 frames over 12s of a fight with the grave keeper",
+    "note": "combat feel storyboard: 8 frames over 8s of a fight with the grave keeper",
     "ref": {
       "camera": null,
       "attackNearest": true,
