@@ -39,16 +39,18 @@ async function render(html, out, width, height) {
   const seed = arg('seed', `${RUN}:${ROUND}`);
   const rand = rng(String(seed));
   const key = {};
+  // ONE A/B order per round: the critic gives a single overall letter, which is
+  // only decodable if every label in the round shares the same mapping.
+  const mhFirst = rand() < 0.5;
   const labels = fs.readdirSync(mhDir).filter(f => f.endsWith('.png') && !f.startsWith('_')).map(f => f.replace(/\.png$/, ''))
     .filter(l => !ONLY.length || ONLY.includes(l));
   for (const label of labels) {
     const mh = path.join(mhDir, `${label}.png`), ref = path.join(refDir, `${label}.png`);
     if (!fs.existsSync(ref)) { console.warn(`no reference shot for ${label}, skipped`); continue; }
-    const mhFirst = rand() < 0.5;
     const [A, B] = mhFirst ? [mh, ref] : [ref, mh];
     key[label] = { A: mhFirst ? 'mh' : 'ref', B: mhFirst ? 'ref' : 'mh' };
-    const W = 1280, H = 720, S = 0.5;
-    const html = `<style>body{margin:0;background:#000}.row{display:flex;gap:8px;padding:8px}.p{position:relative;width:${W * S}px;height:${H * S}px}.p img{width:100%;height:100%;object-fit:contain;background:#000}.p span{position:absolute;left:8px;top:8px;background:#000d;color:#fff;font:bold 22px sans-serif;padding:2px 10px;border-radius:4px}</style>
+    const W = 1280, H = 720, S = 1;   // full scale so text size is judged as rendered
+    const html = `<style>body{margin:0;background:#000}.row{display:flex;gap:8px;padding:8px}.p{position:relative;width:${W * S}px;height:${H * S}px}.p img{width:100%;height:100%;object-fit:contain;background:#000}.p span{position:absolute;left:8px;top:8px;background:#000d;color:#fff;font:bold 28px sans-serif;padding:2px 10px;border-radius:4px}</style>
       <div class="row"><div class="p"><img src="data:image/png;base64,${b64(A)}"><span>A</span></div><div class="p"><img src="data:image/png;base64,${b64(B)}"><span>B</span></div></div>`;
     await render(html, path.join(outDir, `${label}.png`), W * S * 2 + 24, H * S + 16);
     console.log('pair  ', label);
