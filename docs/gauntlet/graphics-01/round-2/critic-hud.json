@@ -1,0 +1,17 @@
+{
+  "piece": "hud",
+  "pick": "B",
+  "per_label": { "city": "B", "combat": "B", "dungeon": "B" },
+  "reasons": [
+    "city/dungeon: A's world is letterboxed with black margins on both sides and a two-row bottom strip of ~13 action buttons (attack/flee/bash/cleave/kick/exec...) at roughly 7px text plus three color-coded HP/MP/MV bars; B's world fills the full viewport with a single red HP bar bottom-left and one line of readable text ('Welcome to BrowserQuest!', '1 player').",
+    "city/dungeon: A has four competing chrome elements (room banner top-center, clock/date pill top-right, compass bottom-right, PANELS/Tab button) around a tiny walled-in 'Lv 30 Warrior - 0% xp - 2075 gold' status line; B has one focal point, the player with the highlighted target square, and nothing else to read.",
+    "combat: B (the dark HUD) shows a target frame 'GRAVE KEEPER Lv 35 DANGEROUS 758/768' with an 'IN COMBAT' badge, floating '34' damage numbers, and a three-line pill feed ('grave keeper hit YOU for 34', 'grave keeper dodges'); A (the bright game) shows no enemy health at all, a barely visible '6' damage number over a rat, and the player HP bar is the only fight-state signal, so fight state is unreadable there."
+  ],
+  "fixes": [
+    { "what": "Kill the black letterbox margins: scale the game canvas to fill the viewport width (or letterbox only vertically) so the world, not empty black, owns the screen like the bright game does in city/dungeon.", "file_hint": "src/web_isometric/platformer.html" },
+    { "what": "Collapse the two-row bottom strip: merge HP/MP/MV into one compact cluster with >=12px numerals, and hide the 13 tiny action buttons behind hotkeys or a single expandable bar so the bottom edge reads at a glance.", "file_hint": "src/web_isometric/platformer/ui.js" },
+    { "what": "Reduce competing top chrome: fold the clock/date pill and PANELS button into the room banner or fade them out after a few seconds so the room name and (in combat) the target frame are the only focal points; keep the combat feed and target frame, they are the one thing this side already wins.", "file_hint": "src/web_isometric/platformer/ui-arpg.js" }
+  ],
+  "confidence": "low",
+  "note": "Letters B in city/dungeon and B in combat are DIFFERENT games. The bright full-viewport game wins city and dungeon (questions 1-3); the dark letterboxed game wins combat only on question 4 (target frame + feed). Overall winner is the bright game, which is B in city and dungeon and A in combat. Fixes target the dark game."
+}
