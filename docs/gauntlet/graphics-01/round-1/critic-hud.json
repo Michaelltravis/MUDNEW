@@ -1,0 +1,16 @@
+{
+  "piece": "hud",
+  "pick": "A",
+  "per_label": { "city": "A", "combat": "B", "dungeon": "A" },
+  "reasons": [
+    "city/dungeon: A gives the world ~90% of the frame with a single bottom strip (health bar + 5 icons); B's playfield is a small window boxed in by Sector Map, Contacts, Quest, Message Feed, hotbar and compass panels, so the world is roughly a third of the screen.",
+    "all labels: A's text is large and high-contrast (white on dark strip, red health bar with clear fill); B's contacts list, feed timestamps, hotbar labels and the 'Le 38 warrior / 2075 gold' vitals readout are ~6px grey-on-navy and unreadable at a glance, and the tiny stacked HP/MP/XP bars sit buried in the bottom-left corner behind the stance chips.",
+    "combat: B wins the fight-state question outright: a big target panel names GRAVE KEEPER with a green HP bar and 'DANGEROUS' tag, a red telegraph bar 'Crushing Blow' with 'Q BRACE / E SIDESTEP' prompts, and the feed colors hits (yellow for yours, red for enemy's, 'hit YOU for 16'); A in combat shows only your own health bar and a rat with no threat, target HP or action cue at all."
+  ],
+  "fixes": [
+    { "what": "Reclaim world area: collapse Sector Map and Contacts into small toggleable widgets (or overlay them translucently on the map edge) and shrink the bottom hotbar/vitals cluster so the playfield fills at least two thirds of the width.", "file_hint": "src/web_isometric/platformer.html" },
+    { "what": "Raise the minimum font size to ~12px and use white/near-white on the dark panels for feed lines, contact names, hotbar labels and the vitals readout; drop or dim the 00:00:00 timestamps so the message text is the first thing read.", "file_hint": "src/web_isometric/platformer/ui.js" },
+    { "what": "Make the player HP/MP bars a single large, high-contrast readout (BrowserQuest-style long red bar) placed in a clear corner away from the stance chips and hotbar, so vitals are glanceable even outside combat.", "file_hint": "src/web_isometric/platformer/ui-arpg.js" }
+  ],
+  "confidence": "low"
+}

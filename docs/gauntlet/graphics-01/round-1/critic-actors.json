@@ -1,0 +1,16 @@
+{
+  "piece": "actors",
+  "pick": "A",
+  "per_label": { "city": "B", "combat": "A", "cave": "A" },
+  "reasons": [
+    "combat: A's player has a visible sword-swing pose and the rat/crab enemies are distinct critters against the grass; B's grave keeper is grey-on-grey among identical grey tombstones and is only identifiable by the 'GRAVE KEEPER - Crushing Blow' text banner, so the wind-up is unreadable without reading.",
+    "city: B's player sits under a bright halo/ring in the middle of the square and is found instantly; A's player is a small grey knight near a house with only a faint white box nearby and takes scanning to locate.",
+    "cave: A's bear is unmistakably hostile and huge, but it is drawn at roughly 3x the player's scale and overlaps the top wall so it reads as floating over the room edge; B's lone player is clean but there are no enemies at all to judge."
+  ],
+  "fixes": [
+    { "what": "Give hostiles a silhouette-level hostile cue (red outline/underglow or a distinct palette) so the grave keeper is separable from tombstones and the floor without a text banner.", "file_hint": "src/web_isometric/platformer/scene-topdown.js" },
+    { "what": "Make the wind-up a sprite-level telegraph: enemy rears back (scale/skew/offset tween) plus a ground ring under the target, and a white hit-flash on the struck actor, instead of only a HUD banner.", "file_hint": "src/web_isometric/platformer/fx-abilities.js" },
+    { "what": "Normalize actor scale and anchor: the bear must be the same tile scale as the player and feet-anchored so it does not overlap walls and appear to float.", "file_hint": "src/web_isometric/platformer/dcss.js" }
+  ],
+  "confidence": "low"
+}

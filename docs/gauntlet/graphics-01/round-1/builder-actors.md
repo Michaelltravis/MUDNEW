@@ -1,0 +1,12 @@
+# Builder: actors (graphics-01, round 1)
+
+Files: src/web_isometric/platformer/scene-topdown.js, lpc.js, dcss.js (fx-abilities.js untouched).
+
+- Actors were ~13px tall on a 16px tile (LPC dolls at 0.4) with no edge separation, which is why BrowserQuest's 1.5-tile, hard-outlined figures read first. Dolls now render at DOLL_SCALE 0.7 (~24px body; bosses x1.5) and DCSS creature art at 2.1 tiles (bosses 3.2); labels and hp bars moved above the taller heads via a per-entity `labelDy`.
+- Silhouette contour: LPC dolls (player, NPCs) get a tight dark postFX glow (WebGL) on the doll container; DCSS creature art gets a baked contour texture (`MH.dcss.outlined`, thickness scaled to the art's own resolution). Hostiles' contour is deep red, bystanders'/player's near-black.
+- Hostility at a glance: hostile mobs carry a pulsing ember pool under their feet (`aggroRing`) in addition to the red name; friendly/service NPCs get nothing extra, so the two never mix.
+- Player findability: cool cyan feet ring + brighter cool hero glow (warm torches stay warm); every actor also carves a small pool out of the darkness layer so nobody vanishes into a black cave.
+- Wind-up telegraph is now a body pose, not only a text banner: on a declared intent the mob rears back/up, shivers, pulses toward its tell colour, shows a large stroked `!`, and a red ring contracts onto its feet over `resolve_in`; when the intent resolves it snaps forward into the strike. The generic per-round telegraph was tweening the hidden procedural sprite (invisible when dolls/art are used) and now drives the visible body through the same pose multipliers.
+- Hit flash: white solid-fill blink lengthened to 110ms with a second blink on heavy hits; dolls play the LPC `hurt` pose for ~340ms; squash now goes through pose multipliers so it survives the per-frame scale sync (before, squash on DCSS art was overwritten the same frame).
+- Death: dolls play the hurt sequence and hold the lying frame (`doll.die()`/`revive()` in lpc.js, also used for the player and reset on respawn); creature art topples 84 degrees over its feet; both grey out and stay at 45% alpha instead of fading to 12%.
+- Checks: `node tools/qc_platformer_rooms.js` passes; the smoke suite fails at login for a pre-existing reason outside this piece (the server shows an account menu that expects `play Tester`, and tests/test_suite.py never sends it, looping on "Unknown command"). Capture of city/combat/cave ran with zero page errors.
