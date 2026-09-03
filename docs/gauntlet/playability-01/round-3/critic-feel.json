@@ -1,0 +1,16 @@
+{
+  "piece": "feel",
+  "pick": "B",
+  "per_label": { "fight": "B", "combat": "B" },
+  "reasons": [
+    "fight: A's eight frames (0.0s-10.5s) are visually near-identical: the knight stands in the same spot with the same blue ring and no visible enemy, no hit flash, no numbers, and the bottom HP bar never visibly changes, so you cannot tell who is winning or even that a fight is happening; B's frames show a rat beside the player, a 'You killed a rat' banner at 1.5s/3.0s/4.5s, and the player relocating toward a second rat by 9.0s, so the arc of the fight reads frame by frame.",
+    "combat: B has a mid-swing sword pose on the player, a rat in contact, floating damage numbers '4' and '6' above the target, and a white target reticle box, i.e. wind-up, contact, and result on one frame; A's combat frame has no enemy on screen at all, only a 'corpse of ...' label and a static knight sprite with no impact flash, recoil, or numbers.",
+    "combat: A's hotbar (1 attack / 2 flee / 3 bash / 4 cleave / 5 kick) is the only next-action cue and it sits in the bottom strip far from the action with no highlight on which key matters now, while B's reticle sits on the target itself and the damage numbers land at the point of impact, telling the player what to hit without covering the scene; A's washed-out grey fog also hides the enemy skulls so the threat is not legible."
+  ],
+  "fixes": [
+    { "what": "Put the enemy telegraph and result on the sprites: a visible wind-up (enemy lunge/tint) 0.3-0.5 s before the hit, then impact flash, knockback recoil and a floating damage number at the hit point for both player and enemy, so a 1.5 s storyboard shows state change every frame.", "file_hint": "src/web_isometric/platformer/fx-abilities.js" },
+    { "what": "Draw a target reticle/HP bar directly over the engaged enemy and make the engaged enemy stand out against the fog (higher contrast, outline); currently no enemy is discernible in any fight frame.", "file_hint": "src/web_isometric/platformer/scene-topdown.js" },
+    { "what": "Highlight the currently-relevant hotbar key (ready/cooldown pulse) and flash the HP bar on damage so the bottom strip changes with the fight instead of staying static across all 8 frames.", "file_hint": "src/web_isometric/platformer/ui-arpg.js" }
+  ],
+  "confidence": "high"
+}
