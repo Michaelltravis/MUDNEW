@@ -317,21 +317,26 @@
   // HIT: a white four-point impact star that pops and fades on the struck
   // body, plus a thin ring — the hit reads even when the body-flash lands on
   // a pale sprite over a pale floor.
-  function impact(s, x, y, color) {
+  // playability-02/r1: `size` (1 = a light hit, up to ~2.4 for a heavy one)
+  // scales the star, thickens its arms and adds a soft filled disc behind it,
+  // so a big blow is a visibly bigger picture than a small one
+  function impact(s, x, y, color, size) {
     const col = color == null ? 0xffffff : color;
+    const k = Math.max(0.6, Math.min(3, size || 1));
     const g = s.add.graphics().setDepth(60).setBlendMode(1);
     const st = { p: 0 };
     s.tweens.add({
-      targets: st, p: 1, duration: 200, ease: 'cubic.out',
+      targets: st, p: 1, duration: 200 + 60 * (k - 1), ease: 'cubic.out',
       onUpdate: () => {
-        const p = st.p, a = 1 - p, r = 6 + 14 * p;
+        const p = st.p, a = 1 - p, r = (6 + 14 * p) * k;
         g.clear();
-        g.lineStyle(2.2, col, a);
+        if (k > 1.15) { g.fillStyle(col, a * 0.28); g.fillCircle(x, y, (5 + 10 * p) * k); }
+        g.lineStyle(2.2 * Math.sqrt(k), col, a);
         g.beginPath(); g.moveTo(x - r, y); g.lineTo(x + r, y); g.moveTo(x, y - r); g.lineTo(x, y + r); g.strokePath();
         g.lineStyle(1.2, col, a * 0.8);
         const d = r * 0.55;
         g.beginPath(); g.moveTo(x - d, y - d); g.lineTo(x + d, y + d); g.moveTo(x + d, y - d); g.lineTo(x - d, y + d); g.strokePath();
-        g.lineStyle(1.5, col, a * 0.7); g.strokeCircle(x, y, 4 + 12 * p);
+        g.lineStyle(1.5 * Math.sqrt(k), col, a * 0.7); g.strokeCircle(x, y, (4 + 12 * p) * k);
       },
       onComplete: () => g.destroy(),
     });

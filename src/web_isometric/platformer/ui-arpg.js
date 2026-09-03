@@ -219,11 +219,20 @@
   let lastFoe = null;
   MH.bus.on('target.set', t => { if (t && t.name) lastFoe = t.name; });
   MH.bus.on('target.update', t => { if (t && t.name) lastFoe = t.name; });
+  let lastDeathAt = 0;
   MH.bus.on('combat.state', on => {
-    if (on) dwShow(`⚔ ${lastFoe ? `${cap(lastFoe)} draws near!` : 'An enemy draws near!'} Command?`);
+    // the death line's trailing hit text flips combat on for a beat: that is
+    // not a new enemy drawing near (gauntlet playability-01/r2)
+    // r3: a short beat (1.8s) — the typewriter box sits in the lower arena
+    // and was still covering the fight two frames after it began
+    if (on && Date.now() - lastDeathAt > 2500) dwShow(`⚔ ${lastFoe ? `${cap(lastFoe)} draws near!` : 'An enemy draws near!'} Command?`, 1800);
   });
   MH.bus.on('mob.death', e => {
+    lastDeathAt = Date.now();
     const nm = (e && e.name) || lastFoe || 'the enemy';
+    // gauntlet playability-01/r2: the kill is announced by the HUD result
+    // line (ui.js, held 7s); the typewriter only speaks when that is absent
+    if (MH.feel && MH.feel.result) { const el = $('dw-window'); if (el) { el.classList.remove('show'); dwTarget = ''; } return; }
     dwShow(`Thou hast defeated ${nm.toLowerCase()}!`, 2800);
   });
   MH.bus.on('player.exp', e => {
@@ -313,10 +322,30 @@
         // gauntlet graphics-02/r2: the bar itself flashes when HP drops so a
         // hit reads on the one big element without hunting the feed
         const hpNow = p.hp || 0;
+        // gauntlet playability-01/r1: a pale GHOST of the HP you just lost
+        // hangs on the bar for a beat, then drains — the size of the chunk
+        // that came off reads on the dock without reading a number
+        const hpBar = $('bar-hp');
+        let ghost = $('hud-hp-ghost');
+        if (hpBar && hpBar.parentNode && !ghost) {
+          ghost = document.createElement('div');
+          ghost.id = 'hud-hp-ghost';
+          hpBar.parentNode.insertBefore(ghost, hpBar);
+        }
         if (lastHpSeen != null && hpNow < lastHpSeen) {
           hud.classList.remove('hp-hit'); void hud.offsetWidth; hud.classList.add('hp-hit');
           clearTimeout(hpHitTimer);
           hpHitTimer = setTimeout(() => hud.classList.remove('hp-hit'), 420);
+          if (ghost) {
+            const maxHp = Math.max(1, p.max_hp || 1);
+            ghost.style.transition = 'none';
+            ghost.style.width = `${Math.min(100, (lastHpSeen / maxHp) * 100)}%`;
+            void ghost.offsetWidth;
+            ghost.style.transition = '';
+            ghost.style.width = `${(hpNow / maxHp) * 100}%`;
+          }
+        } else if (ghost) {
+          ghost.style.width = `${(hpNow / Math.max(1, p.max_hp || 1)) * 100}%`;
         }
         lastHpSeen = hpNow;
       }

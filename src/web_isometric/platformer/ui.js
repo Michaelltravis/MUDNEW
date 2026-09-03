@@ -366,7 +366,7 @@
         + (prof != null ? `<span class="prof">${prof}%</span>` : '')
         + (cost ? `<span class="cost">${cost}</span>` : '')
         + `<canvas width="20" height="20"></canvas>`
-        + `<span class="lbl">${cmd || '—'}</span><div class="cd"></div>`;
+        + `<span class="lbl">${cmd || '—'}</span><div class="cd"></div><span class="hint"></span>`;
       drawIcon(slot.querySelector('canvas'), iconKindFor(cmd));
       slot.addEventListener('mouseenter', e => showHotbarTip(e, cmd, i, prof, cost));
       slot.addEventListener('mousemove', e => positionHotbarTip(e));
@@ -586,10 +586,42 @@
   // Continuously paint each hotbar slot's cooldown/round overlay from the single
   // source of truth (MH.combat), so visuals stay correct no matter what fired
   // the action (hotbar, scene attack, or a server round push).
+  // gauntlet playability-01/r2: what the fight is doing RIGHT NOW, kept for
+  // the action bar so it can point at the answer (a staggered foe -> your
+  // burst skill, an interruptible cast -> bash/kick, a foe under 22% -> the
+  // finisher, you under 25% and losing -> flee)
+  const feel = { staggeredUntil: 0, windup: null, foeFrac: 1, losing: false };
+  MH.feel = feel;
+  MH.bus.on('mob.staggered', () => { feel.staggeredUntil = performance.now() + 4000; });
+  MH.bus.on('combat.state', on => { if (!on) { feel.staggeredUntil = 0; feel.windup = null; feel.foeFrac = 1; feel.losing = false; } });
+  MH.bus.on('combat.update', payload => {
+    const mobs = (payload && payload.mobs) || [];
+    if (mobs.some(m => m.staggered)) feel.staggeredUntil = Math.max(feel.staggeredUntil, performance.now() + 2500);
+    const foe = mobs.find(m => m.fighting) || mobs[0];
+    feel.foeFrac = foe && foe.maxHp && foe.hp != null ? Math.max(0, foe.hp / foe.maxHp) : 1;
+    const p = (payload && payload.player) || MH.state.player;
+    const you = p && p.max_hp ? (p.hp || 0) / p.max_hp : 1;
+    feel.losing = you < 0.25 && you < feel.foeFrac - 0.15;
+  });
+  const BURST = /^(cleave|backstab|execute|strike|charge|smite|maul|rend|pummel|whirlwind|shadow_strike|eviscerate|crushing_blow|holy_strike|shield_slam)/;
+  const STUN = /^(bash|kick|shield_bash|stun|pummel|hamstring|trip)/;
+  function suggestSlot(inCombat, locked) {
+    if (!inCombat) return null;
+    const now = performance.now();
+    const skillAt = i => MH.combat.skillOf(hotbar[i]);
+    const find = (re, lockedOk) => hotbar.findIndex((c, i) => c && re.test(skillAt(i)) && (lockedOk || !locked[i]));
+    let i = -1;
+    if (feel.losing) { i = find(/^(flee|escape|disengage|retreat)$/, false); if (i >= 0) return { i, hint: 'FLEE', cls: 'suggest danger' }; }
+    if (now < feel.staggeredUntil) { i = find(BURST, false); if (i < 0) i = find(STUN, false); if (i >= 0) return { i, hint: 'STRIKE!', cls: 'suggest' }; }
+    if (feel.windup && feel.windup.interruptible) { i = find(STUN, false); if (i >= 0) return { i, hint: 'INTERRUPT', cls: 'suggest' }; }
+    if (feel.foeFrac > 0 && feel.foeFrac <= 0.22) { i = find(/^(execute|finish|assassinate|death_blow|coup)/, false); if (i < 0) i = find(BURST, false); if (i >= 0) return { i, hint: 'FINISH', cls: 'suggest' }; }
+    return null;
+  }
   function tickHotbarCooldowns() {
     if (!els.hotbar) return;
     const now = performance.now();
     const inCombat = !!(MH.state && MH.state.inCombat);
+    const lockedArr = [];
     hotbar.forEach((cmd, i) => {
       const slot = els.hotbar.children[i];
       if (!slot) return;
@@ -615,6 +647,7 @@
         locked = true;
       }
       slot.classList.toggle('disabled', locked);
+      lockedArr[i] = locked;
       if (frac > 0.001) { cd.style.opacity = '1'; cd.style.setProperty('--cd-ang', (frac * 360) + 'deg'); }
       else { cd.style.opacity = '0'; }
       let nEl = slot.querySelector('.cd-num');
@@ -622,6 +655,21 @@
         if (!nEl) { nEl = document.createElement('span'); nEl.className = 'cd-num'; slot.appendChild(nEl); }
         nEl.textContent = num; nEl.style.display = 'flex';
       } else if (nEl) { nEl.style.display = 'none'; }
+      // a burst/stun skill that is off cooldown mid-fight wears a thin gold
+      // rim ("ready"); the one strong suggestion is applied below
+      const s2 = MH.combat.skillOf(cmd);
+      slot.classList.toggle('ready', inCombat && !locked && !isAtk && (BURST.test(s2) || STUN.test(s2)));
+    });
+    // ONE slot at a time gets the ribbon + bounce: the answer to this moment
+    const sg = suggestSlot(inCombat, lockedArr);
+    hotbar.forEach((cmd, i) => {
+      const slot = els.hotbar.children[i];
+      if (!slot) return;
+      const on = !!(sg && sg.i === i);
+      slot.classList.toggle('suggest', on);
+      slot.classList.toggle('danger', on && /danger/.test(sg.cls));
+      const h = slot.querySelector('.hint');
+      if (h) h.textContent = on ? sg.hint : '';
     });
   }
 
@@ -786,6 +834,39 @@
     els.targetHp.style.width = `${pct}%`;
     requestAnimationFrame(() => { els.targetHpGhost.style.width = `${pct}%`; });
     els.targetHpTxt.textContent = `${hp} / ${max}`;
+    updateDuelMeter();
+  }
+  // gauntlet playability-01/r1: YOU vs FOE meter under the target's HP —
+  // your bar grows LEFT from the centre line, theirs grows RIGHT, so the
+  // longer side is the one winning, and a WINNING / EVEN / LOSING tag says
+  // it in one word. Shown only while actually fighting a hostile target.
+  function updateDuelMeter() {
+    if (!els.targetFrame) return;
+    let dm = $('duel-meter');
+    if (!dm) {
+      dm = document.createElement('div');
+      dm.id = 'duel-meter';
+      dm.innerHTML = '<div class="dm-bars"><div class="dm-you"></div><div class="dm-foe"></div><div class="dm-mid"></div></div>'
+        + '<div class="dm-row"><span class="dm-you-t"></span><span class="dm-tag"></span><span class="dm-foe-t"></span></div>';
+      els.targetFrame.appendChild(dm);
+    }
+    const p = MH.state && MH.state.player, t = currentTarget;
+    // any target held while in combat is the duel (round payloads don't
+    // always carry hostile/fighting flags, and a friendly frame hides itself)
+    const fighting = !!(MH.state && MH.state.inCombat) && !!p && !!t;
+    els.targetFrame.classList.toggle('fighting', fighting);
+    if (!fighting) return;
+    const you = Math.max(0, Math.min(1, (p.hp || 0) / Math.max(1, p.max_hp || 1)));
+    const foe = Math.max(0, Math.min(1, (t.hp != null ? t.hp : (t.maxHp || 1)) / Math.max(1, t.maxHp || 1)));
+    dm.querySelector('.dm-you').style.width = `${you * 50}%`;
+    dm.querySelector('.dm-foe').style.width = `${foe * 50}%`;
+    dm.querySelector('.dm-you-t').textContent = `YOU ${Math.round(you * 100)}%`;
+    dm.querySelector('.dm-foe-t').textContent = `${Math.round(foe * 100)}% ${MH.mobKeyword ? MH.mobKeyword(t.name || 'foe').toUpperCase() : 'FOE'}`;
+    const d = you - foe;
+    const tag = dm.querySelector('.dm-tag');
+    const state = d > 0.15 ? 'win' : d < -0.15 ? 'lose' : 'even';
+    tag.className = `dm-tag ${state}`;
+    tag.textContent = state === 'win' ? '▲ WINNING' : state === 'lose' ? '▼ LOSING' : '◆ EVEN';
   }
 
   // ---- room banner / description ----
@@ -4078,7 +4159,13 @@
         const c = els.combatLog.classList.toggle('collapsed');
         clogCollapse.textContent = c ? '▸' : '▾';
       });
-      MH.bus.on('combat.hit', e => clogLine(e.dmg != null ? `You hit ${e.target} for <b>${e.dmg}</b>` : `You hit ${e.target}`, 'you'));
+      // gauntlet playability-01/r2: per-swing lines ("You hit X", "X hit YOU
+      // for 4", "You miss") are already told by the floating numbers over the
+      // bodies; echoing each one stacked three pills over the bottom of the
+      // arena every round. They go to the feed only when damage numbers are
+      // switched off. Telegraphs, staggers, deaths and loot still land here.
+      const numbersOn = () => !(MH.prefs && MH.prefs.dmgNumbers === false);
+      MH.bus.on('combat.hit', e => { if (!numbersOn()) clogLine(e.dmg != null ? `You hit ${e.target} for <b>${e.dmg}</b>` : `You hit ${e.target}`, 'you'); });
       MH.bus.on('reaction.swing.perfect', () => clogLine('★ PERFECT STRIKE!', 'you'));
       MH.bus.on('mob.staggered', e => clogLine(`💥 ${e.name} is <b>STAGGERED</b> — strike now!`, 'info'));
       MH.bus.on('mob.guardup', e => {
@@ -4104,8 +4191,8 @@
           }
         } catch (_) {}
       });
-      MH.bus.on('combat.taken', e => clogLine(e && e.dmg != null ? `${e.from || 'They'} hit YOU for <b>${e.dmg}</b>` : 'They hit YOU', 'them'));
-      MH.bus.on('combat.miss', e => clogLine(`You miss ${e.target}`, 'miss'));
+      MH.bus.on('combat.taken', e => { if (!numbersOn()) clogLine(e && e.dmg != null ? `${e.from || 'They'} hit YOU for <b>${e.dmg}</b>` : 'They hit YOU', 'them'); });
+      MH.bus.on('combat.miss', e => { if (!numbersOn()) clogLine(`You miss ${e.target}`, 'miss'); });
       MH.bus.on('combat.dodged', () => clogLine('They miss you', 'miss'));
       MH.bus.on('defense.parry', e => clogLine(`You parry ${e.from || 'the attack'}`, 'def'));
       MH.bus.on('defense.dodge', () => clogLine('You dodge the attack', 'def'));
@@ -4117,7 +4204,7 @@
       MH.bus.on('level.up', () => clogLine('★ You gain a level!', 'info'));
       MH.bus.on('player.gold', e => clogLine(`+${e.amount} gold`, 'info'));
       MH.bus.on('item.loot', e => clogLine(e.from ? `◈ Looted <b>${e.item}</b> from ${e.from}` : `◈ Looted <b>${e.item}</b>`, 'loot'));
-      MH.bus.on('mob.death', e => clogLine(`${e.name || 'It'} dies!`, 'info'));
+      MH.bus.on('mob.death', e => clogLine(`☠ You killed <b>${String(e.name || 'it').replace(/^[^a-z0-9]+/i, '')}</b>`, 'you'));
       MH.bus.on('skill.improve', e => {
         const name = String(e.skill).replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
         toast(e.kind === 'spell' ? '✦ Spell Improved' : '▲ Skill Improved', `${name} — ${e.to}%`, 'skillup');
@@ -4445,6 +4532,173 @@
       // coming, a red bar filling to when it lands, and the reactions that
       // actually counter it. Clicking a chip (or its hotkey) sends the command.
       const windup = $('enemy-windup'), rstrip = $('reaction-strip');
+      // gauntlet playability-01/r1 (combat feel): the wind-up line becomes an
+      // INCOMING plate with a live countdown, the reaction chips become key-cap
+      // buttons with the best answer lit, chips that don't apply are hidden
+      // instead of dimmed, and the target frame grows a YOU-vs-FOE meter.
+      // Injected here (not in platformer.html) so this piece owns its look.
+      if (!document.getElementById('feel-css')) {
+        const st = document.createElement('style');
+        st.id = 'feel-css';
+        st.textContent = `
+  #enemy-windup { top: 84px !important; width: 330px !important; padding: 5px 9px 6px !important;
+    background: linear-gradient(180deg, rgba(64,14,14,.97), rgba(24,7,9,.97)) !important;
+    border: 1px solid #ff8a6a !important; border-radius: 6px !important;
+    animation: mhWindupGlow .55s ease-in-out infinite alternate; }
+  @keyframes mhWindupGlow { from { box-shadow: 0 0 0 1px #3a0c0c, 0 0 8px rgba(255,90,60,.25); }
+    to { box-shadow: 0 0 0 1px #3a0c0c, 0 0 22px rgba(255,120,80,.75); } }
+  #enemy-windup .nm { display: flex; justify-content: space-between; align-items: baseline; gap: 8px;
+    color: #ffe4d6 !important; font-size: 12.5px !important; margin-bottom: 4px !important; }
+  #enemy-windup .nm .mh-lead { color: #ff9a6a; font-size: 9px; letter-spacing: 2.5px; font-weight: 800; }
+  #enemy-windup .nm .mh-name { flex: 1; text-align: center; letter-spacing: 1.5px; font-weight: 800; }
+  #enemy-windup .nm .mh-cd { font-family: var(--num-font, ui-monospace, monospace); color: #ffd44a; font-size: 12px; min-width: 34px; text-align: right; }
+  #enemy-windup .track { height: 9px !important; border: 1px solid #5a1a1a; background: #120508 !important; }
+  #enemy-windup .fill { background: linear-gradient(90deg, #ff3a2a, #ffb060) !important; box-shadow: 0 0 6px rgba(255,120,60,.8); }
+  /* r3: the reaction prompt sits just ABOVE THE ACTION BAR (chrome, not arena) at
+     button size — an invitation you can read from the thumbnail, next to the
+     keys it names, instead of a 9px strip under the target frame */
+  #reaction-strip { top: auto !important; bottom: 138px !important; left: 50% !important; transform: translateX(-50%);
+    gap: 8px !important; align-items: center; z-index: 32 !important; padding: 5px 10px; border-radius: 8px;
+    background: rgba(12,6,8,.82); border: 1px solid rgba(255,138,106,.55); box-shadow: 0 4px 18px rgba(0,0,0,.55); }
+  #reaction-strip::before { content: 'REACT NOW'; color: #ffd0b8; font-size: 11px; letter-spacing: 2.5px; font-weight: 800;
+    padding: 4px 8px; border-radius: 4px; background: rgba(60,14,14,.95); border: 1px solid #a03a2a; animation: mhWindupGlow .55s ease-in-out infinite alternate; }
+  #reaction-strip .rchip { display: flex !important; align-items: center; gap: 8px; border-radius: 6px !important;
+    border: 1px solid #5a6a80 !important; background: rgba(10,14,22,.97) !important; padding: 5px 13px 5px 6px !important;
+    color: #eef4fb !important; font-weight: 800; font-size: 14px !important; letter-spacing: 1.2px; }
+  #reaction-strip .rchip b { display: inline-block; min-width: 20px; text-align: center; padding: 2px 7px; border-radius: 4px; font-size: 14px;
+    background: #e8c168; color: #1a1208 !important; font-weight: 800; margin: 0 !important; box-shadow: 0 2px 0 #7a5a20; }
+  #reaction-strip .rchip.best { border-color: #ffd44a !important; box-shadow: 0 0 12px rgba(255,212,74,.6); animation: mhBest .45s ease-in-out infinite alternate; }
+  @keyframes mhBest { from { transform: translateY(0); } to { transform: translateY(-2px); } }
+  #reaction-strip .rchip.na { display: none !important; }
+  #reaction-strip .rchip.off { opacity: .55 !important; filter: none !important; }
+  #reaction-strip .rchip.off b { background: #4a505c; color: #9aa2b4 !important; box-shadow: none; }
+  #duel-meter { display: none; margin-top: 6px; }
+  #target-frame.fighting #duel-meter { display: block; }
+  #duel-meter .dm-bars { position: relative; height: 9px; background: #0a0b10; border-radius: 3px; overflow: hidden; border: 1px solid rgba(255,255,255,.1); }
+  #duel-meter .dm-you { position: absolute; right: 50%; top: 0; bottom: 0; width: 0; background: linear-gradient(270deg, #3a8ae0, #8ad0ff); transition: width .35s; }
+  #duel-meter .dm-foe { position: absolute; left: 50%; top: 0; bottom: 0; width: 0; background: linear-gradient(90deg, #ff7a86, #d23a4a); transition: width .35s; }
+  #duel-meter .dm-mid { position: absolute; left: 50%; top: -1px; bottom: -1px; width: 2px; margin-left: -1px; background: #fff; }
+  #duel-meter .dm-row { display: flex; justify-content: space-between; align-items: baseline; margin-top: 2px;
+    font-family: var(--num-font, ui-monospace, monospace); font-size: 10px; letter-spacing: 1px; color: #aab2c4; }
+  #duel-meter .dm-you-t { color: #8ad0ff; } #duel-meter .dm-foe-t { color: #ff8a8a; }
+  #duel-meter .dm-tag { font-weight: 800; font-size: 10.5px; letter-spacing: 2px; }
+  #duel-meter .dm-tag.win { color: #7dff9a; } #duel-meter .dm-tag.even { color: #e8c168; } #duel-meter .dm-tag.lose { color: #ff5a6a; animation: hazpulse .5s infinite alternate; }
+  #hud .bar.hp { position: relative; }
+  #hud-hp-ghost { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: #ffd6d6; opacity: .8; z-index: 0; transition: width .6s ease .3s; }
+  /* r2: reactive action bar — ready rim, ONE suggested slot with a ribbon */
+  .hotslot.ready { border-color: rgba(255,212,74,.55); }
+  .hotslot .hint { position: absolute; left: -2px; right: -2px; top: -13px; display: none; z-index: 3; text-align: center; border-radius: 3px;
+    background: #ffd44a; color: #1a1208; font-size: 9px; font-weight: 800; letter-spacing: .8px; line-height: 14px; white-space: nowrap; overflow: visible; box-shadow: 0 1px 4px rgba(0,0,0,.6); }
+  .hotslot.suggest { border-color: #ffd44a !important; filter: none !important;
+    box-shadow: 0 0 0 1px #ffd44a, 0 0 16px rgba(255,212,74,.75); animation: mhSuggest .45s ease-in-out infinite alternate; }
+  .hotslot.suggest .hint { display: block; }
+  .hotslot.suggest.danger { border-color: #ff5a5a !important; box-shadow: 0 0 0 1px #ff5a5a, 0 0 16px rgba(255,90,90,.75); }
+  .hotslot.suggest.danger .hint { background: #ff5a5a; color: #fff; }
+  @keyframes mhSuggest { from { transform: translateY(0); } to { transform: translateY(-3px); } }
+  /* r2: the target frame blinks white on each of your hits, red when it hits you */
+  #target-frame { transition: box-shadow .12s; }
+  #target-frame.hit { box-shadow: 0 0 0 2px #fff, 0 0 18px rgba(255,255,255,.8) !important; }
+  #target-frame.hurt { box-shadow: 0 0 0 2px #ff5a5a, 0 0 18px rgba(255,90,90,.8) !important; }
+  /* r2: the RESULT line — "You killed X" that stays on screen after the fight */
+  #feel-result { position: absolute; left: 50%; bottom: 224px; transform: translateX(-50%); z-index: 31; display: none;
+    padding: 7px 20px; border-radius: 6px; white-space: nowrap; pointer-events: none;
+    background: linear-gradient(180deg, rgba(48,38,10,.97), rgba(22,17,6,.97)); border: 1px solid #ffd44a;
+    color: #ffe9a8; font-family: var(--ui-font, Oxanium, 'Trebuchet MS', sans-serif); font-weight: 800; font-size: 14px; letter-spacing: 2px;
+    box-shadow: 0 0 22px rgba(255,212,74,.35), 0 4px 14px rgba(0,0,0,.6); }
+  #feel-result.show { display: block; animation: mhResultIn .3s cubic-bezier(.2,1.4,.4,1); }
+  #feel-result.dead { border-color: #ff5a5a; color: #ff9a9a; background: linear-gradient(180deg, rgba(60,12,12,.97), rgba(24,6,6,.97)); box-shadow: 0 0 22px rgba(255,60,60,.4); }
+  #feel-result .xp { color: #8ce0a0; margin-left: 12px; font-size: 12px; letter-spacing: 1px; }
+  #feel-result.settle { font-size: 12px; padding: 4px 14px; opacity: .85; box-shadow: 0 2px 10px rgba(0,0,0,.5); transition: font-size .4s, padding .4s, opacity .4s; }
+  /* playability-02/r1: the NEXT line — what to do now that the fight is over, on the same plate */
+  #feel-result .next { display: block; margin-top: 4px; padding-top: 4px; border-top: 1px solid rgba(255,212,74,.35);
+    font-size: 11.5px; letter-spacing: 1.2px; color: #fff2c8; font-weight: 700; }
+  #feel-result .next b { display: inline-block; min-width: 14px; text-align: center; padding: 1px 6px; margin: 0 3px; border-radius: 4px;
+    background: #e8c168; color: #1a1208; font-size: 11px; box-shadow: 0 2px 0 #7a5a20; }
+  #feel-result .next .arrow { color: #ffd44a; margin-right: 4px; }
+  #feel-result.settle .next { font-size: 10.5px; }
+  @keyframes mhResultIn { from { transform: translateX(-50%) scale(.6); opacity: 0; } to { transform: translateX(-50%) scale(1); opacity: 1; } }
+  /* r2: the finisher prompt sits just above the action bar (it IS an action),
+     not at 30% height where it covered the tell pill and the mob's head */
+  #finisher-chip { top: auto !important; bottom: 172px !important; font-size: 13px !important; padding: 5px 16px !important; letter-spacing: 2px !important; }
+        `;
+        document.head.appendChild(st);
+      }
+      // r2: the result line. Held 7s so the outcome stays on screen after the
+      // body has fallen (the old 2.8s "Thou hast defeated" was gone before a
+      // storyboard's next frame); the xp line folds into it when it arrives.
+      let resultEl = document.getElementById('feel-result'), resultTimer = null, settleTimer = null;
+      if (!resultEl) { resultEl = document.createElement('div'); resultEl.id = 'feel-result'; document.body.appendChild(resultEl); }
+      // Like the reference's status bar ("You killed a rat" stays until the
+      // next event), the line holds until the next fight or room; it settles
+      // to a quieter plate after 8s and is dropped after 60s regardless.
+      feel.result = (text, kind, hold = 60000) => {
+        resultEl.className = kind === 'dead' ? 'dead' : '';
+        resultEl.innerHTML = text;
+        void resultEl.offsetWidth;
+        resultEl.classList.add('show');
+        clearTimeout(resultTimer); clearTimeout(settleTimer);
+        settleTimer = setTimeout(() => resultEl.classList.add('settle'), 8000);
+        resultTimer = setTimeout(() => resultEl.classList.remove('show'), hold);
+      };
+      feel.clearResult = () => { clearTimeout(resultTimer); clearTimeout(settleTimer); resultEl.classList.remove('show'); };
+      // (the death line's own trailing hit text flips combat on for a beat —
+      // only a fight that starts a couple of seconds later is a new fight)
+      let resultAt = 0;
+      MH.bus.on('mob.death', () => { resultAt = Date.now(); });
+      // playability-02/r1: only a REAL new fight (a round push with a live
+      // mob fighting you) clears the plate — the combat flag alone flickers on
+      // from late hit lines after the kill and wiped the result off the
+      // post-kill frames
+      MH.bus.on('combat.update', payload => {
+        if (!payload || !payload.in_combat || Date.now() - resultAt < 2500) return;
+        if ((payload.mobs || []).some(m => m && m.fighting && (m.hp == null || m.hp > 0))) feel.clearResult();
+      });
+      let resultRoom = null;
+      MH.bus.on('map', payload => {
+        const v = payload && payload.current_room && payload.current_room.vnum;
+        if (v != null && resultRoom != null && v !== resultRoom) feel.clearResult();
+        if (v != null) resultRoom = v;
+      });
+      // playability-02/r1: the scene tells us what is left in the room when a
+      // mob dies; the plate grows a NEXT line so the post-kill frames still
+      // tell the player what to do (another foe -> TAB; none -> loot the body)
+      let nextInfo = null;
+      const nextLine = () => {
+        if (!nextInfo || !resultEl.classList.contains('show') || resultEl.querySelector('.next')) return;
+        const html = nextInfo.hostiles > 0
+          ? `<span class="arrow">▶</span>NEXT FOE: ${String(nextInfo.next || 'another enemy').toUpperCase()} <b>TAB</b> TARGET · <b>1</b> ATTACK`
+          : `<span class="arrow">▶</span>CLEAR — CLICK <b>▼ LOOT</b> ON THE BODY, THEN MOVE ON`;
+        resultEl.insertAdjacentHTML('beforeend', `<span class="next">${html}</span>`);
+      };
+      MH.bus.on('feel.next', e => { nextInfo = e || null; nextLine(); });
+      MH.bus.on('loot.corpse', () => { const n = resultEl.querySelector('.next'); if (n) n.remove(); nextInfo = null; });
+      MH.bus.on('mob.death', e => {
+        const nm = String((e && e.name) || (currentTarget && currentTarget.name) || 'the enemy').replace(/^[^a-z0-9]+/i, '');
+        feel.result(`☠ YOU KILLED ${nm.toUpperCase()}`);
+        nextLine();
+      });
+      MH.bus.on('player.exp', e => {
+        if (e && e.amount && resultEl.classList.contains('show') && !resultEl.querySelector('.xp')) {
+          resultEl.insertAdjacentHTML('beforeend', `<span class="xp">+${e.amount} xp</span>`);
+        }
+      });
+      MH.bus.on('player.death', () => feel.result('☠ YOU DIED', 'dead', 6000));
+      // the target frame answers each exchange: white blink on your hit, red on theirs
+      const tfPulse = (cls) => {
+        const tf = els.targetFrame; if (!tf) return;
+        tf.classList.remove('hit', 'hurt'); void tf.offsetWidth; tf.classList.add(cls);
+        setTimeout(() => tf.classList.remove(cls), 260);
+      };
+      MH.bus.on('combat.hit', () => tfPulse('hit'));
+      MH.bus.on('combat.taken', () => tfPulse('hurt'));
+      let windupCd = null;
+      const tickWindupCd = () => {
+        const cd = windup && windup.querySelector('.mh-cd');
+        if (!cd || !windup.classList.contains('show')) { clearInterval(windupCd); windupCd = null; return; }
+        const s = Math.max(0, (windup._until || 0) - Date.now()) / 1000;
+        cd.textContent = s > 0 ? `${s.toFixed(1)}s` : 'NOW';
+        cd.style.color = s <= 1 ? '#ff5a5a' : '#ffd44a';
+      };
       const fireReaction = k => {
         const chip = rstrip && rstrip.querySelector(`.rchip[data-r="${k}"]`);
         if (!rstrip || !rstrip.classList.contains('show') || !chip) return false;
@@ -4461,11 +4715,15 @@
         if (!windup || !rstrip) return;
         const mobs = (payload && payload.mobs) || [];
         const m = mobs.find(x => x.intent);
-        if (!m) { windup.classList.remove('show'); rstrip.classList.remove('show'); return; }
+        if (!m) { feel.windup = null; windup.classList.remove('show'); rstrip.classList.remove('show'); return; }
         const it = m.intent;
-        windup.querySelector('.nm').textContent = `⚠ ${String(m.name).toUpperCase()} — ${it.label}`;
-        const fill = windup.querySelector('.fill');
+        feel.windup = it;
         const total = 4.0, rem = Math.max(0.15, Math.min(total, it.resolve_in || total));
+        windup.querySelector('.nm').innerHTML = `<span class="mh-lead">⚠ INCOMING</span>`
+          + `<span class="mh-name">${String(it.label || 'attack').toUpperCase()}</span><span class="mh-cd"></span>`;
+        windup._until = Date.now() + rem * 1000;
+        if (!windupCd) windupCd = setInterval(tickWindupCd, 100);
+        const fill = windup.querySelector('.fill');
         // animate from the true elapsed fraction — never accumulate drift
         fill.style.transition = 'none';
         fill.style.width = ((1 - rem / total) * 100) + '%';
@@ -4479,10 +4737,17 @@
           sidestep: it.kind === 'heavy' || it.kind === 'aoe',
           interrupt: !!it.interruptible,
         };
+        // the answer that fits THIS tell is lit: interrupt a cast, sidestep a
+        // sweep, brace a heavy blow — one chip bounces, the rest wait
+        const best = applies.interrupt && ready.interrupt !== false ? 'interrupt'
+          : it.kind === 'aoe' && ready.sidestep !== false ? 'sidestep'
+          : applies.brace && ready.brace !== false ? 'brace'
+          : applies.sidestep && ready.sidestep !== false ? 'sidestep' : null;
         rstrip.querySelectorAll('.rchip').forEach(chip => {
           const k = chip.dataset.r;
           chip.classList.toggle('na', !applies[k]);
           chip.classList.toggle('off', ready[k] === false);
+          chip.classList.toggle('best', k === best);
         });
         rstrip.classList.add('show');
         teach('windup', 'That red bar is an enemy WIND-UP — react with Q brace, E sidestep, or X interrupt (or just keep hitting).');
@@ -4828,6 +5093,10 @@
       MH.bus.on('room.entered', () => sfx.move());
       MH.bus.on('target.update', setTarget);
       MH.bus.on('target.clear', () => setTarget(null));
+      // the duel meter follows both sides' vitals and the combat state
+      MH.bus.on('map', updateDuelMeter);
+      MH.bus.on('combat.update', updateDuelMeter);
+      MH.bus.on('combat.state', updateDuelMeter);
       MH.bus.on('level.up', () => cinematicLevelUp());
       MH.bus.on('shop.open', openShop);
       MH.bus.on('training.open', openTraining);

@@ -44,6 +44,18 @@
       this.time.addEvent({ delay: 7000, loop: true, callback: () => this.npcChatter() });
       this.physics.world.setBounds(0, 0, this.pxW, this.pxH);
       this.cameras.main.setRoundPixels(true);
+      // gauntlet playability-01/r2: Phaser clamps a slow frame's delta to
+      // 1000/minFps (200ms). On a software-rendered or throttled machine
+      // (2-4 fps) every tween then ran 2-3x slow: a 160ms damage-number pop
+      // hung at 2.4x scale for seconds and a 0.85s fade lasted six. Combat
+      // feedback must stay wall-clock true, so let the clamp go to 500ms.
+      // The bigger culprit: after any focus/resume Phaser pins delta to 16.7ms
+      // for panicMax (120) FRAMES — at 1-3 fps that is a minute of slow motion.
+      // Eight frames still swallows the post-focus spike at 60 fps.
+      try {
+        const loop = this.game && this.game.loop;
+        if (loop) { loop.minFps = 1; loop._min = 1000; loop.panicMax = 8; if (loop._coolDown > 8) loop._coolDown = 8; }
+      } catch (_) {}
       // Carve a central play viewport framed by the docked HUD panels so the
       // world is NEVER drawn under the UI (in rooms of any size / window of any
       // aspect). The room is zoom-fit + centred inside that viewport.
@@ -353,7 +365,7 @@
       MH.bus.on('nav.goto', dir => this.navTo(dir));
       MH.bus.on('player.attack', () => this.tryAttack());
       MH.bus.on('combat.flee', e => this.fxFlee(e));
-      MH.bus.on('combat.state', on => { if (!on) this.preferredRange = null; });
+      MH.bus.on('combat.state', on => { if (!on) { this.preferredRange = null; this.clearLedger(); } });
       MH.bus.on('player.heal', () => this.fxHeal());
       MH.bus.on('terminal.echo', cmd => {
         const c = String(cmd);
@@ -2281,6 +2293,7 @@
       } else if (!data.fighting && ent.fightMark) {
         ent.fightMark.destroy();
         ent.fightMark = null;
+        if (ent.ai) ent.ai.unstackAt = 0;   // next fight may start on your tile again
         if (ent.label) ent.label.setColor(ent.kind === 'player' ? '#6ca8e0' : (data.hostile ? '#e06c6c' : '#c8ccd8'));
       }
       if (this.target && this.target.key === ent.key) MH.bus.emit('target.update', data);
@@ -2303,25 +2316,41 @@
         ent.smoke.destroy();
         ent.smoke = null;
       }
-      const x = ent.sprite.x - 9, y = ent.sprite.y - ((ent.labelDy || 18) - 2);
+      // r3: a mob that is fighting you carries a bar almost twice as wide and
+      // a point taller — its HP has to read from the arena, not the HUD
+      const fighting = !!(ent.data.fighting && ent.kind === 'mob');
+      // playability-02/r1: 44x5 while fighting (was 32x3.5) — at storyboard
+      // scale (1280 -> ~500px) the bar has to survive a 2.5x shrink and still
+      // sit next to your own bar as a pair
+      const BW = fighting ? 44 : 18, BH = fighting ? 5 : 2;
+      const x = ent.sprite.x - BW / 2, y = ent.sprite.y - ((ent.labelDy || 18) - 2);
       // Aether palette: jade healthy -> amber wounded -> ember critical, on a glass track
-      ent.hpbar.fillStyle(0x07111a, 0.8).fillRect(x - 0.5, y - 0.5, 19, 3);
-      ent.hpbar.fillStyle(frac > 0.5 ? 0x46e0a0 : frac > 0.25 ? 0xe8c168 : 0xff5a6a, 1).fillRect(x, y, 18 * frac, 2);
+      ent.hpbar.fillStyle(0x07111a, 0.85).fillRect(x - 1, y - 1, BW + 2, BH + 2);
+      ent.hpbar.fillStyle(frac > 0.5 ? 0x46e0a0 : frac > 0.25 ? 0xe8c168 : 0xff5a6a, 1).fillRect(x, y, BW * frac, BH);
+      if (fighting) {
+        ent.hpbar.lineStyle(1, 0x000000, 0.5).strokeRect(x - 1, y - 1, BW + 2, BH + 2);
+        // a red rim on the foe's bar, a blue rim on yours: two bars, two colours,
+        // and the longer one is winning
+        ent.hpbar.lineStyle(1.2, 0xff6a5a, 0.9).strokeRect(x - 2, y - 2, BW + 4, BH + 4);
+        // ticks every 25% so "half" and "almost dead" read without a number
+        ent.hpbar.fillStyle(0x07111a, 0.7);
+        for (let q = 1; q < 4; q++) ent.hpbar.fillRect(x + (BW * q) / 4 - 0.5, y, 1, BH);
+      }
       // poise pips: amber ticks fill as your hits rock the mob's balance —
       // when they max out the mob STAGGERS (a burst window you created)
       const poise = ent.data.poise;
       if (poise && poise.max > 0 && ent.kind === 'mob' && !ent.data.shopkeeper) {
         const n = Math.min(poise.max, 8);
         const cur = Math.round((poise.cur / poise.max) * n);
-        const w = Math.min(3, Math.max(1.6, 18 / n - 0.6));
+        const w = Math.min(4, Math.max(1.6, BW / n - 0.6));
         for (let i = 0; i < n; i++) {
           ent.hpbar.fillStyle(i < cur ? 0xffb84a : 0x2a2f3c, i < cur ? 1 : 0.8);
-          ent.hpbar.fillRect(x + i * (18 / n), y + 3.4, w, 1.6);
+          ent.hpbar.fillRect(x + i * (BW / n), y + BH + 1.6, w, 1.6);
         }
       }
       // staggered: the burst window glows gold; guarded: a steel shell tint
       if (ent.data.staggered) {
-        ent.hpbar.lineStyle(1, 0xffd44a, 0.9).strokeRect(x - 2, y - 2, 22, 8);
+        ent.hpbar.lineStyle(1, 0xffd44a, 0.9).strokeRect(x - 2.5, y - 2.5, BW + 5, BH + 7);
       }
       // 🛡 marker while the mob's guard is raised (break it with a bash/kick)
       if (ent.data.guarded && !ent.guardMark) {
@@ -2919,11 +2948,16 @@
 
     // ---------- FX (shared design with the side view) ----------
     dmgStyle(dmg) {
-      if (dmg == null) return { color: '#ffe080', size: 9, shake: 0 };
-      if (dmg <= 4) return { color: '#d8dce8', size: 8, shake: 0 };
-      if (dmg <= 12) return { color: '#7ad68a', size: 9, shake: 0 };
-      if (dmg <= 24) return { color: '#e8c168', size: 10, shake: 0 };
-      if (dmg <= 48) return { color: '#ffd44a', size: 12, shake: 0.002 };
+      // gauntlet playability-01/r1: a warm white→gold→ember ladder — every
+      // step reads against a pale, hazy floor (the old green 5–12 vanished)
+      // playability-02/r1: the low steps come up two points — a '-4' next to
+      // a '26' was a speck in the storyboard, and the taken number is the
+      // half of the exchange that says who is losing
+      if (dmg == null) return { color: '#ffe080', size: 10, shake: 0 };
+      if (dmg <= 4) return { color: '#e6e9f2', size: 11, shake: 0 };
+      if (dmg <= 12) return { color: '#fff1b8', size: 12, shake: 0 };
+      if (dmg <= 24) return { color: '#ffd86a', size: 13, shake: 0 };
+      if (dmg <= 48) return { color: '#ffb84a', size: 12, shake: 0.002 };
       if (dmg <= 80) return { color: '#ff6a4a', size: 14, shake: 0.004 };
       return { color: '#ff4ae0', size: 16, shake: 0.007 };
     }
@@ -2975,13 +3009,26 @@
       this.tweens.add({ targets: ent.pose, sx: 0.84, sy: 1.3, lean: away, dy: -6, duration: 260, ease: 'back.out' });
       ent.windup.shiver = this.tweens.add({ targets: ent.pose, lean: away * 1.3, duration: 90, yoyo: true, repeat: -1, delay: 260 });
       ent.windup.ringTween = this.tweens.add({ targets: ring, r: 9, duration: ms, ease: 'linear' });
-      if (ent.fightMark) ent.fightMark.setVisible(false);   // the '!' takes the ⚔'s slot
-      const mark = this.add.text(ent.sprite.x, ent.sprite.y - ((ent.labelDy || 18) + 12), '!', {
-        fontFamily: 'Georgia, serif', resolution: 3, fontSize: '18px', fontStyle: 'bold',
-        color: casty ? '#d0b8ff' : '#ff7a4a', stroke: '#1a0608', strokeThickness: 4,
-      }).setOrigin(0.5, 1).setDepth(62);
-      this.tweens.add({ targets: mark, scale: 1.35, duration: 160, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      if (ent.fightMark) ent.fightMark.setVisible(false);   // the tell pill takes the ⚔'s slot
+      // gauntlet playability-01/r1: ONE tell above the head instead of a '!'
+      // plus a separate caption — a named pill ("! CRUSHING BLOW") with the
+      // strike timer filling inside it, so what is coming AND when it lands
+      // read from the same glance
+      const label = String(intent.label || 'ATTACK').toUpperCase();
+      const txt = this.add.text(0, -2, `! ${label}`, {
+        // playability-02/r1: 11px (was 9) — the pill is the telegraph's name
+        // and it has to survive the storyboard shrink
+        fontFamily: 'Oxanium, Trebuchet MS, sans-serif', resolution: 3, fontSize: '11px', fontStyle: 'bold',
+        color: casty ? '#e6dcff' : '#fff0e0', stroke: '#1a0608', strokeThickness: 2.5,
+      }).setOrigin(0.5, 0.5);
+      const bg = this.add.graphics();
+      const mark = this.add.container(ent.sprite.x, ent.sprite.y - ((ent.labelDy || 18) + 22), [bg, txt]).setDepth(62);
+      mark._windupMark = true;
+      this.tweens.add({ targets: mark, scale: 1.1, duration: 220, yoyo: true, repeat: -1, ease: 'sine.inOut' });
       ent.windup.mark = mark;
+      ent.windup.markBg = bg;
+      ent.windup.markW = Math.ceil(txt.width) + 14;
+      ent.windup.markH = 22;
     }
     // wind-up over: snap FORWARD into the strike (or just relax if interrupted)
     endWindup(ent, strike) {
@@ -3012,12 +3059,24 @@
       if (!w || !ent.sprite) return;
       const x = ent.sprite.x, y = ent.sprite.y + 8;
       const pulse = 0.55 + 0.45 * Math.sin(now / 70);
+      const frac = Math.max(0, Math.min(1, (Date.now() - (w.start || 0)) / (w.ms || 1)));
       w.gfx.clear();
       w.gfx.lineStyle(3, w.color, 0.6 + 0.4 * pulse).strokeEllipse(x, y, w.ring.r * 2, w.ring.r * 0.9);
       w.gfx.fillStyle(w.color, 0.14 + 0.1 * pulse).fillEllipse(x, y, w.ring.r * 2, w.ring.r * 0.9);
+      // the tell pill: dark plate, tell-coloured rim, and a timer bar along its
+      // foot that fills as the strike comes (full = it lands NOW)
+      if (w.markBg) {
+        const g = w.markBg, pw = w.markW, ph = w.markH, hx = -pw / 2, hy = -ph / 2;
+        g.clear();
+        g.fillStyle(0x140406, 0.94).fillRoundedRect(hx, hy, pw, ph, 3);
+        g.lineStyle(1.2, w.color, 0.7 + 0.3 * pulse).strokeRoundedRect(hx, hy, pw, ph, 3);
+        g.fillStyle(0x3a1010, 1).fillRect(hx + 3, hy + ph - 5, pw - 6, 3);
+        g.fillStyle(frac > 0.7 ? 0xffe060 : w.color, 1).fillRect(hx + 3, hy + ph - 5, (pw - 6) * frac, 3);
+        // pointer down to the mob's head
+        g.fillStyle(0x140406, 0.94).fillTriangle(-4, hy + ph, 4, hy + ph, 0, hy + ph + 4);
+      }
       // ...and a red target reticle closes on the FEET OF WHOEVER IT IS ABOUT
       // TO HIT (you): an ellipse that shrinks with the timer plus four ticks
-      const frac = Math.max(0, Math.min(1, (Date.now() - (w.start || 0)) / (w.ms || 1)));
       const px = this.player.x, py = this.player.y + (this.mountArt ? 12 : 10);
       const tr = 22 - 10 * frac;
       w.gfx.lineStyle(2, 0xff3a2a, 0.5 + 0.45 * pulse).strokeEllipse(px, py, tr * 2, tr * 0.9);
@@ -3025,23 +3084,70 @@
       for (const [cx, cy] of [[px - tr, py], [px + tr, py], [px, py - tr * 0.45], [px, py + tr * 0.45]]) {
         w.gfx.beginPath(); w.gfx.moveTo(cx - (cx === px ? 3 : 0), cy - (cy === py ? 2 : 0)); w.gfx.lineTo(cx + (cx === px ? 3 : 0), cy + (cy === py ? 2 : 0)); w.gfx.strokePath();
       }
-      // a red beam of intent from the attacker's feet to yours, fading in as the timer runs
-      w.gfx.lineStyle(1.5, w.color, 0.15 + 0.45 * frac);
-      w.gfx.beginPath(); w.gfx.moveTo(x, y); w.gfx.lineTo(px, py); w.gfx.strokePath();
-      if (w.mark) { w.mark.x = x; w.mark.y = ent.sprite.y - ((ent.labelDy || 18) + 12); }
+      // playability-02/r1: a WEDGE of intent — a translucent cone from the
+      // attacker's feet that widens onto your ring and fills in as the timer
+      // runs, so the direction of the coming blow reads even when the two
+      // bodies overlap (the old 1.5px beam vanished between them)
+      {
+        const dxw = px - x, dyw = py - y, len = Math.hypot(dxw, dyw) || 1;
+        const nx = -dyw / len, ny = dxw / len, hw = tr * 1.1;
+        w.gfx.fillStyle(w.color, 0.10 + 0.22 * frac);
+        w.gfx.fillTriangle(x, y, px + nx * hw, py + ny * hw * 0.5, px - nx * hw, py - ny * hw * 0.5);
+        w.gfx.lineStyle(1.5, w.color, 0.25 + 0.55 * frac);
+        w.gfx.beginPath(); w.gfx.moveTo(x, y); w.gfx.lineTo(px, py); w.gfx.strokePath();
+      }
+      if (w.mark) { w.mark.x = x; w.mark.y = ent.sprite.y - ((ent.labelDy || 18) + 22); }
+      // gauntlet playability-01/r2: the LAST BEAT before the blow lands is its
+      // own tell — ~0.45s out the body snaps solid white, the pill jumps a
+      // size, and a white-hot ring flares at the feet, so "it is about to hit
+      // NOW" is a different picture from "it is winding up"
+      if (frac >= 0.82 && !w.flashed) {
+        w.flashed = true;
+        this.flashFill(this.entVisual(ent), 0xffffff, 140);
+        if (w.mark) this.tweens.add({ targets: w.mark, scale: 1.45, duration: 120, yoyo: true, ease: 'cubic.out' });
+        if (MH.fx && MH.fx.ringShock) MH.fx.ringShock(this, x, y, 0xfff0d0, 26, 320);
+      }
+      if (w.flashed) w.gfx.lineStyle(2, 0xffffff, 0.5 + 0.5 * pulse).strokeEllipse(x, y, w.ring.r * 2 + 6, w.ring.r * 0.9 + 3);
       // body: pulse between normal and the tell colour
-      const k = 0.35 + 0.45 * pulse;
+      const k = w.flashed ? 0.9 : 0.35 + 0.45 * pulse;
       const mix = (a, b) => (((((a >> 16) & 255) + (((b >> 16) & 255) - ((a >> 16) & 255)) * k) | 0) << 16)
         | (((((a >> 8) & 255) + (((b >> 8) & 255) - ((a >> 8) & 255)) * k) | 0) << 8)
         | ((((a & 255) + ((b & 255) - (a & 255)) * k) | 0));
       this.tintVisual(ent, mix(0xffffff, w.color));
+    }
+    // gauntlet playability-01/r1: in combat YOUR HP bar floats over your own
+    // head in the same language as the mob's (green→amber→red), with a blue
+    // rim so it reads as "you". Two bars in one glance = who is winning,
+    // without hunting between the top-centre frame and the bottom-left dock.
+    drawPlayerHpBar() {
+      const p = MH.state && MH.state.player;
+      const on = !!(MH.state && MH.state.inCombat) && p && p.max_hp && this.player;
+      if (!this.playerHpGfx) this.playerHpGfx = this.add.graphics().setDepth(59.5);   // above the haze/darkness layers, like the vitals arcs
+      const g = this.playerHpGfx;
+      g.clear();
+      if (!on) return;
+      const frac = Math.max(0, Math.min(1, (p.hp || 0) / p.max_hp));
+      // playability-02/r1: 36x5 (was 24x3) so it pairs with the foe's 44x5 bar
+      const w = 36, h = 5, x = this.player.x - w / 2, y = this.player.y - (this.mountArt ? 40 : 34);   // clear of the doll's hair
+      g.fillStyle(0x07111a, 0.85).fillRect(x - 1, y - 1, w + 2, h + 2);
+      g.fillStyle(frac > 0.5 ? 0x46e0a0 : frac > 0.25 ? 0xe8c168 : 0xff5a6a, 1).fillRect(x, y, w * frac, h);
+      g.fillStyle(0x07111a, 0.7);
+      for (let q = 1; q < 4; q++) g.fillRect(x + (w * q) / 4 - 0.5, y, 1, h);
+      g.lineStyle(1.2, 0x8ac8ff, 0.95).strokeRect(x - 2, y - 2, w + 4, h + 4);
+      if (frac <= 0.25) {   // low: the rim beats red so "losing" reads from across the room
+        const a = 0.4 + 0.6 * Math.abs(Math.sin(Date.now() / 160));
+        g.lineStyle(1.5, 0xff3a3a, a).strokeRect(x - 3.5, y - 3.5, w + 7, h + 7);
+      }
     }
     // white/colored hit flash that also works on a layered doll Container;
     // restores to the current day/night character tint (not plain white)
     flashFill(obj, color, ms) {
       if (!obj) return;
       const back = this._charTint || 0xffffff;
-      const apply = o => { if (o && o.setTintFill) { o.setTintFill(color); this.time.delayedCall(ms || 80, () => { if (o.active) o.setTint(this._mulTint(o._baseTint, back)); }); } };
+      // gauntlet playability-01/r3: restore on the WALL clock (setTimeout), not
+      // the scene clock — at a few fps the scene clock ran late and the body
+      // stayed a flat silhouette across whole seconds instead of blinking
+      const apply = o => { if (o && o.setTintFill) { o.setTintFill(color); setTimeout(() => { if (o.active) o.setTint(this._mulTint(o._baseTint, back)); }, ms || 80); } };
       if (obj.setTintFill && !obj.list) apply(obj);
       else if (obj.list) obj.list.forEach(apply);   // Container: tint each layer
       else apply(obj);
@@ -3075,15 +3181,25 @@
       // hit flash: the whole body blinks solid white (twice on a heavy hit),
       // with a white impact star on the body so the flash reads even on a
       // pale sprite against a pale floor
-      this.flashFill(vis, 0xffffff, 130);
-      if (MH.abilityFx && MH.abilityFx.impact) MH.abilityFx.impact(this, ent.sprite.x, ent.sprite.y - 8, 0xffffff);
-      if (e.dmg != null && e.dmg >= 12) this.time.delayedCall(190, () => this.flashFill(this.entVisual(ent), 0xffffff, 80));
+      this.flashFill(vis, 0xffffff, 160);
+      // playability-02/r1: the impact star grows with the blow (a 26 is a
+      // burst twice the size of a 4) so weight reads before the number does
+      if (MH.abilityFx && MH.abilityFx.impact) MH.abilityFx.impact(this, ent.sprite.x, ent.sprite.y - 8, 0xffffff, e.dmg != null ? Math.min(2.4, 1 + e.dmg / 22) : 1);
+      if (e.dmg != null && e.dmg >= 12) setTimeout(() => this.flashFill(this.entVisual(ent), 0xffffff, 90), 220);
       ent.hurtUntil = this.time.now + 340;     // doll plays its hurt pose
       const ang = Math.atan2(ent.sprite.y - this.player.y, ent.sprite.x - this.player.x);
       const kb = e.dmg != null ? Math.min(12, 4 + e.dmg * 0.25) : 5;
       // knockback drives the hidden anchor; the visible art follows it each frame
       this.tweens.add({ targets: ent.sprite, x: ent.sprite.x + Math.cos(ang) * kb, y: ent.sprite.y + Math.sin(ang) * kb, duration: 70, yoyo: true });
-      if (ent.pose && !ent.windup && !ent._dying) this.squashPose(ent.pose); else this.squash(vis);
+      if (ent.pose && !ent.windup && !ent._dying) {
+        this.squashPose(ent.pose);
+        // gauntlet playability-01/r3: REEL — the struck body tips away from
+        // you and drops a little, harder for a bigger hit, so "just got hit"
+        // is a pose, not only a flash
+        const reel = e.dmg != null ? Math.min(26, 10 + e.dmg * 0.35) : 12;
+        this.tweens.add({ targets: ent.pose, lean: (this.player.x >= ent.sprite.x ? -reel : reel), dy: 2, duration: 110, yoyo: true, hold: 90, ease: 'cubic.out',
+          onComplete: () => { if (!ent.windup) { ent.pose.lean = 0; ent.pose.dy = 0; } } });
+      } else this.squash(vis);
       this.impactLines(ent.sprite.x, ent.sprite.y - 6);
       if (e.dmg != null && e.dmg >= 8) this.freezeFrame(e.dmg >= 25 ? 95 : 60);
       if (e.dmg != null && e.dmg >= 5) this.bloodSplat(ent.sprite.x, ent.sprite.y, e.dmg >= 20);
@@ -3100,17 +3216,33 @@
       const st = this.dmgStyle(e.dmg);
       if (st.shake) this.camShake(90, st.shake);
       if (e.dmg != null && e.dmg >= 25) { this.zoomPunch(); this.flashScreen(0xfff2d0, 0.28, 160); this.lensKick(); }
-      this.damageNumber(ent.sprite.x, ent.sprite.y - 16, e.dmg != null ? String(e.dmg) : 'hit', st.color, st.size);
+      // your numbers pop on the FAR side of the mob (away from you); damage you
+      // take pops on your far side — the two columns never share a lane
+      const farSide = (Math.sign(ent.sprite.x - this.player.x) || 1) * 14;
+      // r3: "You attack X!" is the engage line, not a landed blow — no number
+      // for it; a real hit without a parsed amount pops 'hit' but is not
+      // parked as the ledger (the ledger only ever shows a number)
+      if (e.dmg == null && /^You attack/i.test(e.line || '')) return;
+      this.damageNumber(ent.sprite.x, ent.sprite.y - 16, e.dmg != null ? String(e.dmg) : 'hit', st.color, st.size,
+        e.dmg != null ? { dx: farSide, ledger: 'foe', ent } : { dx: farSide });
     }
     fxMiss(e) {
       const ent = this.findEntityByText(e.target) || this.target;
-      if (ent && ent.sprite) this.damageNumber(ent.sprite.x, ent.sprite.y - 16, 'miss', '#7a8094', 8);
+      if (ent && ent.sprite) this.damageNumber(ent.sprite.x, ent.sprite.y - 16, 'miss', '#9aa2b4', 8, { dx: (Math.sign(ent.sprite.x - this.player.x) || 1) * 14 });
     }
     fxTaken(e) {
       const pv = this.playerVisual();
-      this.flashFill(pv, 0xffffff, 90);
-      this.time.delayedCall(100, () => this.flashFill(this.playerVisual(), 0xff6060, 120));
-      if (MH.abilityFx && MH.abilityFx.impact) MH.abilityFx.impact(this, this.player.x, this.player.y - 8, 0xffffff);
+      this.flashFill(pv, 0xffffff, 120);
+      // gauntlet playability-01/r3: after the white blink the body is WASHED
+      // red (multiplied tint, so the sprite stays readable — the old solid
+      // 0xff6060 fill turned you into a pink blob for the whole hit frame)
+      setTimeout(() => {
+        const v = this.playerVisual();
+        const ap = o => { if (o && o.setTint && !o.list) o.setTint(this._mulTint(o._baseTint, 0xff7a7a)); };
+        if (v && v.list) v.list.forEach(ap); else ap(v);
+      }, 130);
+      setTimeout(() => this.tintCharacters(), 460);
+      if (MH.abilityFx && MH.abilityFx.impact) MH.abilityFx.impact(this, this.player.x, this.player.y - 8, 0xffb0a0, e && e.dmg != null ? Math.min(2.4, 1 + e.dmg / 22) : 1);
       this._hurtFrame = this.time.now;          // doll plays its hurt pose
       const st = this.dmgStyle(e && e.dmg);
       this.camShake(80, Math.max(0.004, st.shake));
@@ -3131,19 +3263,32 @@
       if (atk && atk.sprite) {
         const ang = Math.atan2(this.player.y - atk.sprite.y, this.player.x - atk.sprite.x);
         const m = TD().T * 1.6;
-        this.player.x = Phaser.Math.Clamp(this.player.x + Math.cos(ang) * 6, m, this.pxW - m);
-        this.player.y = Phaser.Math.Clamp(this.player.y + Math.sin(ang) * 6, m, this.pxH - m);
+        // gauntlet playability-01/r2: the blow has WEIGHT — you are shoved a
+        // body-quarter back (scaled by the hit) and the attacker lunges a
+        // full 14px into the strike, so the pair's positions differ between
+        // the wind-up frame and the impact frame
+        const shove = e && e.dmg != null ? Math.min(14, 6 + e.dmg * 0.3) : 7;
+        this.player.x = Phaser.Math.Clamp(this.player.x + Math.cos(ang) * shove, m, this.pxW - m);
+        this.player.y = Phaser.Math.Clamp(this.player.y + Math.sin(ang) * shove, m, this.pxH - m);
         // attacker lunges at you so the hit has a visible author
         this.tweens.add({
           targets: atk.sprite,
-          x: atk.sprite.x + Math.cos(ang) * 9,
-          y: atk.sprite.y + Math.sin(ang) * 9,
-          duration: 90, yoyo: true, ease: 'cubic.out',
+          x: atk.sprite.x + Math.cos(ang) * 14,
+          y: atk.sprite.y + Math.sin(ang) * 14,
+          duration: 100, yoyo: true, ease: 'cubic.out',
         });
+        if (atk.pose && !atk.windup && !atk._dying) {
+          this.tweens.killTweensOf(atk.pose);
+          this.tweens.add({ targets: atk.pose, sx: 1.22, sy: 0.86, lean: (this.player.x >= atk.sprite.x ? 14 : -14), duration: 90, yoyo: true, ease: 'cubic.out',
+            onComplete: () => { atk.pose.sx = 1; atk.pose.sy = 1; atk.pose.lean = 0; } });
+        }
         // mark them even if the server payload hasn't flagged it yet
         if (!atk.data.fighting) this.updateEntity(atk, Object.assign({}, atk.data, { fighting: true }));
       }
-      this.damageNumber(this.player.x, this.player.y - 18, e && e.dmg != null ? `-${e.dmg}` : '✦', '#e06c6c', st.size);
+      // what YOU lost: bold ember red, one size up, on your far side from the attacker
+      const mySide = atk && atk.sprite ? (Math.sign(this.player.x - atk.sprite.x) || -1) * 14 : -14;
+      this.damageNumber(this.player.x, this.player.y - 18, e && e.dmg != null ? `-${e.dmg}` : '✦', '#ff5a5a', Math.max(12, st.size + 2),
+        e && e.dmg != null ? { dx: mySide, bold: true, ledger: 'you' } : { dx: mySide, bold: true });
     }
     // flee = an involuntary room exit: dash toward that edge so the
     // following screen-slide reads as ESCAPING, not teleporting
@@ -3255,8 +3400,18 @@
       const cap = this.motionOk() ? 0.6 : 0.28;
       const a = Phaser.Math.Clamp(0.22 + (dmg || 0) * 0.012, 0.18, cap);
       this.tweens.killTweensOf(this.dmgVignette);
-      this.dmgVignette.setTint(0xe02020).setAlpha(a);
-      this.tweens.add({ targets: this.dmgVignette, alpha: 0, duration: 420, ease: 'cubic.out' });
+      // playability-02/r1: the pulse decays on the WALL clock (tickDmgPulse in
+      // update) and tops out at 0.42 — on the tween clock at a few fps the
+      // 0.6 red wash sat over the whole frame and hid the fight it announced
+      this.dmgVignette.setTint(0xe02020).setAlpha(Math.min(a, 0.3));
+      this._dmgPulse = { at: Date.now(), a0: Math.min(a, 0.3), ms: 380 };
+    }
+    tickDmgPulse() {
+      const p = this._dmgPulse;
+      if (!p || !this.dmgVignette) return;
+      const k = Math.min(1, (Date.now() - p.at) / p.ms);
+      this.dmgVignette.setAlpha(p.a0 * (1 - k) * (1 - k));
+      if (k >= 1) this._dmgPulse = null;
     }
     // a brief full-screen wash (white crits, blue-white lightning)
     flashScreen(color = 0xffffff, alpha = 0.5, dur = 220) {
@@ -3326,7 +3481,7 @@
       const ent = this.findEntityByText(name) || this.target;
       if (!ent || !ent.sprite) return;
       this.freezeFrame(95);
-      this.damageNumber(ent.sprite.x, ent.sprite.y - 26, 'STAGGERED!', '#ffd44a', 14);
+      this.damageNumber(ent.sprite.x, ent.sprite.y - 26, 'STAGGERED!', '#ffd44a', 12);
       this.spark(ent.sprite.x, ent.sprite.y - 8, 0xffd44a);
       const vis = this.entVisual(ent);
       if (vis && vis.setAngle) {
@@ -3379,13 +3534,10 @@
         }
         if (this._intentBanners.has(key)) continue;
         const casty = intent.kind === 'cast' || intent.kind === 'debuff';
-        this.startWindup(ent, intent);   // body rears back + contracting ring + '!'
-        const t = this.add.text(ent.sprite.x, ent.sprite.y - ((ent.labelDy || 18) + 36), `⚠ ${intent.label}`, {
-          fontFamily: 'Oxanium, Trebuchet MS, sans-serif', resolution: 3, fontSize: '8px', fontStyle: 'bold',
-          color: casty ? '#c0a8ff' : '#ffb060', backgroundColor: '#1a0e0ecc', padding: { x: 3, y: 1 },
-        }).setOrigin(0.5, 1).setDepth(61);
-        this.tweens.add({ targets: t, alpha: 0.55, duration: 420, yoyo: true, repeat: -1, ease: 'sine.inOut' });
-        this._intentBanners.set(key, t);
+        this.startWindup(ent, intent);   // body rears back + contracting ring + named tell pill
+        // the pill IS the banner now (one tell, not a '!' plus a caption
+        // plus a HUD line all saying the same thing over each other)
+        this._intentBanners.set(key, (ent.windup && ent.windup.mark) || { destroy() {} });
         // the winding-up mob snaps to its tell color for a beat
         const vis = this.entVisual(ent);
         if (vis && vis.setTint) {
@@ -3413,6 +3565,30 @@
       this.targetEntity(mobs[(idx + 1) % mobs.length]);
     }
 
+    showLootTag(x, y, onClick) {
+      this.hideLootTag();
+      const t = this.add.text(x, y, '▼ LOOT', {
+        fontFamily: 'Oxanium, Trebuchet MS, sans-serif', resolution: 3, fontSize: '11px', fontStyle: 'bold',
+        color: '#1a1208', backgroundColor: '#ffd44a', padding: { x: 5, y: 2 },
+      }).setOrigin(0.5, 1).setDepth(62).setAlpha(0);
+      t.setInteractive({ useHandCursor: true });
+      t.on('pointerdown', () => { if (onClick) onClick(); this.hideLootTag(); });
+      this.tweens.add({ targets: t, alpha: 1, duration: 300, delay: 700 });
+      this.tweens.add({ targets: t, y: y - 5, duration: 520, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 700 });
+      t._at = Date.now();
+      this._lootTag = t;
+      if (!this._lootTagHooked) {
+        this._lootTagHooked = true;
+        MH.bus.on('loot.corpse', () => this.hideLootTag());
+        // (the death line's trailing hit text flips combat on for a beat —
+        // only a fight that starts a couple of seconds later is a new fight)
+        MH.bus.on('combat.state', on => { if (on && this._lootTag && Date.now() - (this._lootTag._at || 0) > 2500) this.hideLootTag(); });
+        MH.bus.on('room.entered', () => this.hideLootTag());
+      }
+    }
+    hideLootTag() {
+      if (this._lootTag) { this.tweens.killTweensOf(this._lootTag); this._lootTag.destroy(); this._lootTag = null; }
+    }
     fxExp(e) {
       const t = this.add.text(this.player.x, this.player.y - 22, `+${e.amount} xp`, {
         fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '9px', color: '#e8c168', stroke: '#000', strokeThickness: 2,
@@ -3427,6 +3603,21 @@
         // soul drifting free of the body
         this.freezeFrame(110);
         if (MH.sfx) MH.sfx.impact(2.5);
+        // gauntlet playability-01/r2: the kill is the loudest beat of the
+        // fight — a gold shockwave from the body, a camera thud, a screen
+        // flash and a SLAIN stamp over the spot, so the result reads in the
+        // frame after the last hit even before the HUD result line lands
+        if (!ent._slain) {   // killEntity + the parsed death line both arrive here: one stamp
+          ent._slain = true;
+          this.camShake(160, 0.006);
+          if (MH.fx && MH.fx.ringShock) { MH.fx.ringShock(this, dx, dy, 0xffd44a, 40, 460); MH.fx.ringShock(this, dx, dy, 0xffffff, 22, 300); }
+          this.damageNumber(dx, dy - 30, 'SLAIN', '#ffd44a', 14, { dx: 0 });
+          // playability-02/r1: what to do NEXT, decided here where the room is
+          // known — another live hostile (name it, TAB targets it) or the corpse
+          const others = [...this.entities.values()].filter(o => o !== ent && o.kind === 'mob' && o.sprite && o.sprite.active && !o._dying && o.data && o.data.hostile && !o.data.shopkeeper)
+            .sort((a, b) => Phaser.Math.Distance.Between(dx, dy, a.sprite.x, a.sprite.y) - Phaser.Math.Distance.Between(dx, dy, b.sprite.x, b.sprite.y));
+          MH.bus.emit('feel.next', { hostiles: others.length, next: others.length ? (others[0].data.name || others[0].data.short || '') : '' });
+        }
         ent.sprite.setTintFill(0xffffff);
         this.time.delayedCall(90, () => ent.sprite && ent.sprite.active && ent.sprite.clearTint());
         // the VISIBLE body (LPC doll / DCSS art) flashes white then fades as it falls
@@ -3466,6 +3657,10 @@
         this.tweens.add({ targets: corpse, alpha: 1, duration: 400, delay: 250 });
         corpse.setInteractive({ useHandCursor: true });
         corpse.on('pointerdown', () => MH.bus.emit('loot.corpse'));
+        // playability-02/r1: a LOOT tag hangs over the fresh body (bobbing,
+        // clickable) until it is looted or the next fight starts — the
+        // post-kill frames point at the one thing left to do, on the spot
+        this.showLootTag(ent.sprite.x, ent.sprite.y - 12, () => MH.bus.emit('loot.corpse'));
         (this.corpses = this.corpses || []).push(corpse);
         if (this.corpses.length > 8) { const old = this.corpses.shift(); old.destroy(); }
         this.tileLayer.add(corpse);
@@ -3595,21 +3790,113 @@
       emitter.explode(12);
       this.time.delayedCall(700, () => emitter.destroy());
     }
-    damageNumber(x, y, text, color, size = 9) {
+    damageNumber(x, y, text, color, size = 9, opt = {}) {
       if (MH.prefs && MH.prefs.dmgNumbers === false) return;   // accessibility: declutter combat
       const crit = size >= 12;
-      const t = this.add.text(x + (Math.random() * 10 - 5), y, text, {
+      // r3: only NUMBERS get the +3pt bump and the big pop-in; a word
+      // ('STAGGERED!', 'SLAIN') at number size filled the arena when a slow
+      // frame caught it mid-pop
+      const word = !/^[-+]?\d+$/.test(String(text));
+      // gauntlet playability-01/r1: LANES. A round's burst (hit, bonus hit,
+      // dodge, the enemy's blow) used to pile onto one spot and smear into
+      // "-15 4 -30". Numbers popping near the same anchor within ~0.9s now
+      // climb one lane each, so they stack as a readable column.
+      const nowMs = Date.now();
+      const ax = x + (opt.dx || 0);
+      const laneKey = `${Math.round(ax / 28)}:${Math.round(y / 28)}`;
+      const lanes = this._popLanes || (this._popLanes = new Map());
+      const prev = lanes.get(laneKey);
+      const lane = prev && nowMs - prev.at < 900 ? (prev.n + 1) % 4 : 0;
+      lanes.set(laneKey, { at: nowMs, n: lane });
+      const sx = ax + (lane ? (lane % 2 ? 5 : -5) : 0), sy = y - lane * 12;
+      const t = this.add.text(sx, sy, text, {
         fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3,
-        fontSize: `${crit ? size + 3 : size}px`, color,
-        stroke: '#000', strokeThickness: crit ? 3 : 2,
-        fontStyle: crit ? 'bold' : 'normal',
-      }).setOrigin(0.5).setDepth(62).setScale(crit ? 2.4 : 1.4);
-      this.tweens.add({ targets: t, scale: 1, duration: crit ? 160 : 110, ease: 'back.out' });
-      this.tweens.add({
-        targets: t, y: y - (crit ? 24 : 16), x: t.x + (Math.random() * 24 - 12),
-        alpha: 0, duration: crit ? 950 : 800, delay: 110, onComplete: () => t.destroy(),
+        // r3: three points bigger across the ladder — a 9px number at 1.4x
+        // vanished in a 640px-wide storyboard frame
+        fontSize: `${(crit ? size + 3 : size) + (word ? 0 : 3)}px`, color,
+        stroke: '#000', strokeThickness: crit ? 4 : 3,
+        fontStyle: crit || opt.bold ? 'bold' : 'normal',
+        shadow: { offsetX: 0, offsetY: 1, color: '#000', blur: 2, fill: true },
+      }).setOrigin(0.5).setDepth(62).setScale(word ? (crit ? 1.3 : 1.15) : crit ? 1.9 : 1.4);
+      // gauntlet playability-01/r2: pops live on the WALL CLOCK, not the tween
+      // clock. Phaser's smoothed delta is capped per frame, so on a machine
+      // rendering at a few fps a 0.85s number stayed on screen for ten
+      // seconds and the next round's numbers piled onto it. tickPops()
+      // (update loop) drives scale/rise/fade from Date.now() instead.
+      (this._pops || (this._pops = [])).push({
+        t, sx, sy, s0: word ? (crit ? 1.3 : 1.15) : crit ? 1.9 : 1.4, rise: crit ? 26 : 18,
+        dx: opt.dx ? Math.sign(opt.dx) * 6 : (Math.random() * 12 - 6),
+        start: nowMs, inDur: crit ? 160 : 110, hold: 140, life: crit ? 1000 : 850,
+        // r3: 'foe' / 'you' pops don't vanish — they PARK beside their owner
+        // as the "last hit" tag until the next number replaces them
+        ledger: opt.ledger || null, ent: opt.ent || null, side: Math.sign(opt.dx || 0) || 1,
       });
       if (crit) this.impactLines(x, y, Phaser.Display.Color.HexStringToColor(color).color);
+    }
+    tickPops() {
+      const pops = this._pops;
+      if (!pops || !pops.length) return;
+      const now = Date.now();
+      for (let i = pops.length - 1; i >= 0; i--) {
+        const p = pops[i], t = p.t;
+        if (!t || !t.active) { pops.splice(i, 1); continue; }
+        const e = now - p.start;
+        if (e < p.inDur) {   // back.out from the oversized pop to 1
+          const u = e / p.inDur - 1, b = 1 + 2.70158 * u * u * u + 1.70158 * u * u;
+          t.setScale(p.s0 + (1 - p.s0) * b);
+        }
+        else t.setScale(1);
+        const f = (e - p.hold) / p.life;
+        if (f > 0) {
+          const k = Math.min(1, f), ease = Math.sin(k * Math.PI / 2);
+          t.y = p.sy - p.rise * ease;
+          t.x = p.sx + p.dx * ease;
+          t.setAlpha(1 - k);
+          if (k >= 1) { pops.splice(i, 1); if (p.ledger) this.parkPop(p); else t.destroy(); }
+        }
+      }
+    }
+    // gauntlet playability-01/r3: the LEDGER. The last number each side dealt
+    // stays parked beside its owner (white/gold over the foe, red over you) at
+    // full size until the next hit replaces it, so a frame taken between two
+    // exchanges still shows the score of the exchange before — the fight no
+    // longer depends on the shutter catching a 1s pop. Cleared when the fight
+    // ends; the foe's final number stays over the body for a beat.
+    parkPop(p) {
+      const L = this._ledger || (this._ledger = {});
+      const old = L[p.ledger];
+      if (old && old.t && old.t.active) old.t.destroy();
+      p.t.setAlpha(0.95).setScale(1);
+      L[p.ledger] = { t: p.t, ent: p.ent, side: p.side, at: Date.now() };
+      this.tickLedger();
+    }
+    tickLedger() {
+      const L = this._ledger;
+      if (!L) return;
+      for (const kind of Object.keys(L)) {
+        const l = L[kind];
+        if (!l) continue;
+        if (!l.t || !l.t.active) { delete L[kind]; continue; }
+        let ax, ay;
+        if (kind === 'you') { ax = this.player.x; ay = this.player.y - 36; }
+        else {
+          const s = l.ent && l.ent.sprite;
+          if (!s || !s.active || (l.ent._dying && Date.now() - l.at > 2500)) { this.tweens.add({ targets: l.t, alpha: 0, duration: 400, onComplete: () => l.t.destroy() }); delete L[kind]; continue; }
+          ax = s.x; ay = s.y - ((l.ent.labelDy || 18) + 30);
+        }
+        l.t.x = ax + l.side * 18; l.t.y = ay;
+        // a parked number breathes very slightly so it reads as live, not stuck
+        l.t.setScale(1 + 0.03 * Math.sin(Date.now() / 260));
+      }
+    }
+    clearLedger() {
+      const L = this._ledger;
+      if (!L) return;
+      for (const kind of Object.keys(L)) {
+        const l = L[kind];
+        if (l && l.t && l.t.active) this.tweens.add({ targets: l.t, alpha: 0, duration: 600, onComplete: () => l.t.destroy() });
+        delete L[kind];
+      }
     }
 
     // ---------- movement / exits ----------
@@ -3891,8 +4178,8 @@
               this.tweens.add({ targets: ent2.pose, sx: 0.88, sy: 1.2, lean: away, dy: -4, duration: 180, yoyo: true, hold: 120, ease: 'sine.inOut',
                 onComplete: () => { ent2.pose.sx = 1; ent2.pose.sy = 1; ent2.pose.lean = 0; ent2.pose.dy = 0; } });
             }
-            this.tintVisual(ent2, 0xffb0a0);
-            this.time.delayedCall(330, () => { if (ent2.sprite && ent2.sprite.active && !ent2.windup && !ent2._dying) this.tintCharacters(); });
+            this.tintVisual(ent2, 0xff9a86);
+            setTimeout(() => { if (ent2.sprite && ent2.sprite.active && !ent2.windup && !ent2._dying) this.tintCharacters(); }, 520);
             break;
           }
         });
@@ -4327,6 +4614,17 @@
       // a thrown frame must never kill the rAF loop (a dead loop = total
       // freeze, the "stuck at the exit" bug) - contain, log, keep running
       try {
+        // gauntlet playability-01/r2: Phaser treats an unfocused window as
+        // backgrounded and pins every frame's delta to 16.7ms. A VISIBLE but
+        // unfocused window (another app in front, a second monitor, a
+        // headless capture) that renders slowly then plays every tween in
+        // slow motion — a 0.85s damage number hung for six seconds. If the
+        // page is visible the fight is being watched: keep it wall-clock true.
+        const loop = this.game && this.game.loop;
+        if (loop && !loop.inFocus && typeof document !== 'undefined' && document.visibilityState === 'visible') loop.inFocus = true;
+        this.tickPops();
+        this.tickLedger();
+        this.tickDmgPulse();
         this.updateInner();
       } catch (e) {
         if (!this._lastUpdateErr || Date.now() - this._lastUpdateErr > 2000) {
@@ -4521,7 +4819,9 @@
           const oy = Phaser.Math.Clamp(tgt.y + Math.sin(baseAng) * ringD, m, this.pxH - m);
           const ddx = ox - this.player.x, ddy = oy - this.player.y;
           const dd = Math.hypot(ddx, ddy);
-          if (dd > 3) this.player.setVelocity((ddx / dd) * Math.min(34, dd * 2), (ddy / dd) * Math.min(34, dd * 2));
+          const pdt = Math.max(0.016, (this.game.loop.delta || 16) / 1000);
+          const psp = Math.min(34, dd * 2, dd / pdt);   // never overshoot the ring on a long frame
+          if (dd > 3) this.player.setVelocity((ddx / dd) * psp, (ddy / dd) * psp);
         } else {
           this.player.setVelocity(0, 0);
         }
@@ -4603,8 +4903,22 @@
         const casterMob = /caster|ghost|elemental/.test(ent.sprite.texture.key);
         // melee range is a full body-width apart (the old 22px put the mob
         // ON the player's tile, so one of the two was always hidden)
-        const ring = ent.data.fighting ? (casterMob ? 52 : 32) : 34;
+        // r3: 40 (was 32) — two 0.7-scale dolls are ~36px shoulder to shoulder,
+        // so at 32 the mob still stood half inside you
+        const ring = ent.data.fighting ? (casterMob ? 52 : 40) : 34;
         let vx = 0, vy = 0;
+        // gauntlet playability-01/r2: a fight that starts with the mob ON your
+        // tile (it spawned or walked there) hid one body inside the other for
+        // the first seconds — step it straight to its stance beside you
+        // (r3: re-armed every 2.5s — a shove/lunge could stack them again
+        // mid-fight and the once-per-fight step never fired a second time)
+        if (ent.data.fighting && d < ring - 12 && !(ent.ai.unstackAt > now)) {
+          ent.ai.unstackAt = now + 2500;
+          const side = ent.ai.side || (MH.hashStr(ent.key) % 2 ? 1 : -1);
+          const gx = this.player.x + side * ring;
+          if (walkable(gx, this.player.y)) { ent.ai.side = side; ent.sprite.x = gx; ent.sprite.y = this.player.y; }
+          else if (walkable(this.player.x - side * ring, this.player.y)) { ent.ai.side = -side; ent.sprite.x = this.player.x - side * ring; ent.sprite.y = this.player.y; }
+        }
         if (d > ring + 22) {
           // approach with a hunting weave, not a beeline
           const sp = ent.data.fighting ? 78 : 46;
@@ -4622,7 +4936,10 @@
           if (!walkable(gx, gy) && walkable(this.player.x - ent.ai.side * ring, gy)) ent.ai.side *= -1;   // that side is a wall
           const ex = this.player.x + ent.ai.side * ring - ent.sprite.x, ey = gy - ent.sprite.y;
           const ed = Math.hypot(ex, ey);
-          if (ed > 2) { const sp = Math.min(64, 10 + ed * 3.5); vx = (ex / ed) * sp; vy = (ey / ed) * sp; }
+          // (speed capped at "reach it this frame": with a long frame delta the
+          // old Euler step overshot the stance and the mob oscillated through
+          // the player's tile — gauntlet playability-01/r2)
+          if (ed > 2) { const sp = Math.min(64, 10 + ed * 3.5, ed / Math.max(dt, 0.016)); vx = (ex / ed) * sp; vy = (ey / ed) * sp; }
           vx += Math.sin(now / 260 + MH.hashStr(ent.key)) * 5;
         } else if (d < ring - 8) {
           // too close: give ground
@@ -4736,9 +5053,32 @@
           const g = ent.engageRing;
           g.clear();
           const mine = this.target && this.target.key === ent.key;
-          const a = mine ? 0.9 : 0.45 + 0.3 * Math.sin(now / 240);
-          g.lineStyle(1.5, mine ? 0xe8c168 : 0xe05a4a, a);
-          g.strokeEllipse(ent.sprite.x, ent.sprite.y + 9, 18, 8);
+          if (mine && !ent._dying) {
+            // gauntlet playability-01/r3: a four-corner TARGET BRACKET around
+            // the whole body of the foe you are engaged with (the old 18x8
+            // ellipse under the boots did not read at storyboard size) —
+            // this is "who your buttons apply to". Drawn ABOVE the bodies:
+            // at floor depth it vanished behind two overlapping dolls.
+            g.setDepth(59);
+            const s = ent.sprite, hh = (ent.labelDy || 18) + 2, hw = ent.data && ent.data.boss ? 24 : 19;
+            const x0 = s.x - hw, x1 = s.x + hw, y0 = s.y - hh, y1 = s.y + 14, c = 7;
+            const a = 0.8 + 0.2 * Math.sin(now / 160);
+            g.lineStyle(2.5, 0x140a00, 0.7);
+            for (const [cx, cy, sx, sy] of [[x0, y0, 1, 1], [x1, y0, -1, 1], [x0, y1, 1, -1], [x1, y1, -1, -1]]) {
+              g.beginPath(); g.moveTo(cx, cy + sy * c); g.lineTo(cx, cy); g.lineTo(cx + sx * c, cy); g.strokePath();
+            }
+            g.lineStyle(2, 0xffd44a, a);
+            for (const [cx, cy, sx, sy] of [[x0, y0, 1, 1], [x1, y0, -1, 1], [x0, y1, 1, -1], [x1, y1, -1, -1]]) {
+              g.beginPath(); g.moveTo(cx, cy + sy * c); g.lineTo(cx, cy); g.lineTo(cx + sx * c, cy); g.strokePath();
+            }
+            g.lineStyle(1.5, 0xffd44a, 0.9);
+            g.strokeEllipse(s.x, s.y + 9, 24, 10);
+          } else {
+            g.setDepth(9.5);
+            const a = 0.45 + 0.3 * Math.sin(now / 240);
+            g.lineStyle(1.5, 0xe05a4a, a);
+            g.strokeEllipse(ent.sprite.x, ent.sprite.y + 9, 18, 8);
+          }
         }
       }
       // depth-sort actors by y so overlap reads correctly
@@ -4760,10 +5100,12 @@
       this.updatePlayerDoll(now);
       this.updateMountArt(now);
       this.syncPlayerVitals();
+      this.drawPlayerHpBar();
       // intent banners ride their mob
       if (this._intentBanners) {
         for (const [key, t] of this._intentBanners) {
           const ent = this.entities.get(key);
+          if (t._windupMark) continue;   // the tell pill is placed by tickWindup
           if (ent && ent.sprite && ent.sprite.active) { t.x = ent.sprite.x; t.y = ent.sprite.y - ((ent.labelDy || 18) + 36); }
         }
       }
