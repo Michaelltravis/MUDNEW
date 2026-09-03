@@ -6,55 +6,10 @@
   },
   "shots": [
     {
-      "label": "city",
-      "camera": [
-        40,
-        222
-      ],
-      "note": "BrowserQuest village: two houses, lamp posts",
-      "file": "docs/gauntlet/reference/browserquest/city.png"
-    },
-    {
-      "label": "forest",
-      "camera": [
-        20,
-        165
-      ],
-      "note": "grassland with trees, rocks and a path",
-      "file": "docs/gauntlet/reference/browserquest/forest.png"
-    },
-    {
-      "label": "dungeon",
-      "camera": [
-        60,
-        40
-      ],
-      "note": "underworld lava caverns",
-      "file": "docs/gauntlet/reference/browserquest/dungeon.png"
-    },
-    {
-      "label": "cave",
-      "camera": [
-        130,
-        220
-      ],
-      "note": "cave interior with a bridge over water",
-      "file": "docs/gauntlet/reference/browserquest/cave.png"
-    },
-    {
-      "label": "water",
-      "camera": [
-        20,
-        180
-      ],
-      "note": "river, dock and bridge",
-      "file": "docs/gauntlet/reference/browserquest/water.png"
-    },
-    {
-      "label": "combat",
+      "label": "fight",
       "camera": null,
-      "note": "fight a rat near spawn",
-      "file": "docs/gauntlet/reference/browserquest/combat.png"
+      "note": "rat fight near spawn, same 8-frame storyboard",
+      "file": "docs/gauntlet/reference/browserquest/fight.png"
     }
   ]
 }

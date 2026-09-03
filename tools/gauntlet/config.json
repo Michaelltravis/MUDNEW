@@ -1,13 +1,45 @@
 {
-  "mud": { "host": "localhost", "telnetPort": 4000, "mapPort": 4001, "cmdPort": 4003 },
-  "character": { "name": "Gauntlet", "password": "gauntlet1", "level": 30 },
-  "viewport": { "width": 1280, "height": 720 },
-  "setup": ["settime 14", "setweather clear"],
+  "mud": {
+    "host": "localhost",
+    "telnetPort": 4000,
+    "mapPort": 4001,
+    "cmdPort": 4003
+  },
+  "character": {
+    "name": "Gauntlet",
+    "password": "gauntlet1",
+    "level": 30
+  },
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "setup": [
+    "settime 14",
+    "setweather clear"
+  ],
   "reference": {
     "name": "BrowserQuest (mozilla/BrowserQuest, node server + HTML5 client)",
     "dir": ".gauntlet-ref/browserquest",
     "serverPort": 8000,
     "clientPort": 8001,
     "clientUrl": "http://localhost:8001/client/index.html"
-  }
+  },
+  "gear": [
+    3022,
+    3080,
+    3085
+  ],
+  "fights": [
+    {
+      "label": "fight_keeper",
+      "vnum": 14002,
+      "target": "keeper"
+    },
+    {
+      "label": "fight_bear",
+      "vnum": 27021,
+      "target": "grimclaw"
+    }
+  ]
 }

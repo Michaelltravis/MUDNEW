@@ -76,5 +76,28 @@
       "attackNearest": true,
       "note": "fight a rat near spawn"
     }
+  },
+  {
+    "label": "fight",
+    "vnum": 14002,
+    "cmds": [
+      "kill keeper"
+    ],
+    "waitMs": 800,
+    "filmstrip": {
+      "frames": 8,
+      "intervalMs": 1500,
+      "cols": 4
+    },
+    "after": [
+      "flee",
+      "goto 3001"
+    ],
+    "note": "combat feel storyboard: 8 frames over 12s of a fight with the grave keeper",
+    "ref": {
+      "camera": null,
+      "attackNearest": true,
+      "note": "rat fight near spawn, same 8-frame storyboard"
+    }
   }
 ]

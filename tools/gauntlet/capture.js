@@ -83,7 +83,23 @@ function isBlankPng(buf) {
     for (const c of (r.cmds || [])) { await send(c); await sleep(200); }
     await sleep(r.waitMs || 4500);   // let the zone title card and arrival description fade
     const file = path.join(OUT, `${r.label}.png`);
-    const buf = await page.screenshot({ path: file });
+    let buf;
+    if (r.filmstrip) {
+      // combat feel: N frames at a fixed interval composed into one storyboard
+      const frames = [];
+      for (let i = 0; i < r.filmstrip.frames; i++) {
+        frames.push((await page.screenshot()).toString('base64'));
+        await sleep(r.filmstrip.intervalMs);
+      }
+      const cols = r.filmstrip.cols || 4, W = 640, H = 360;
+      const html = `<style>body{margin:0;background:#000}.g{display:grid;grid-template-columns:repeat(${cols},${W}px);gap:6px;padding:6px}.c{position:relative;width:${W}px;height:${H}px}.c img{width:100%;height:100%}.c span{position:absolute;left:6px;top:6px;background:#000c;color:#fff;font:bold 18px sans-serif;padding:1px 8px;border-radius:3px}</style><div class="g">${frames.map((b, i) => `<div class="c"><img src="data:image/png;base64,${b}"><span>${(i * r.filmstrip.intervalMs / 1000).toFixed(1)}s</span></div>`).join('')}</div>`;
+      const strip = await ctx.newPage({ viewport: { width: cols * (W + 6) + 6, height: Math.ceil(frames.length / cols) * (H + 6) + 6 } });
+      await strip.setContent(html); await sleep(200);
+      buf = await strip.screenshot({ path: file, fullPage: true });
+      await strip.close();
+    } else {
+      buf = await page.screenshot({ path: file });
+    }
     const blank = isBlankPng(buf);
     manifest.shots.push({ label: r.label, vnum: r.vnum, room: await roomName(), arrived, file: path.relative(ROOT, file), bytes: buf.length, blank });
     console.log(`${blank ? 'BLANK ' : 'ok    '} ${r.label.padEnd(8)} ${await roomName()}`);
