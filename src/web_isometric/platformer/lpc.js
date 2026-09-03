@@ -64,6 +64,11 @@
     cleric:      { hood: 0xdde6f2, cape: 0xe8eef8 },                                           // white priest mantle
     bard:        { cape: 0x9a5fae },                                                            // colourful minstrel cape
   };
+  // NPC livery tints (multiplied onto the grey plate / tan leather art)
+  const NPC_LIVERY = {
+    steel: [0xd8b878, 0x9cb8d8, 0xc89878, 0xa8c8a0, 0xd0a0a0],     // brass, blued steel, bronze, verdigris, rose
+    cloth: [0xd8c0a0, 0xb8c8a0, 0xc8b0d0, 0xe0c0a8, 0xa8c0c8, 0xd8d0b8],
+  };
   // paint a face for one facing into a 2D context. (sx,sy)=cell top-left in the
   // target, s=pixels-per-source-pixel. Used for both the doll textures (s=1)
   // and the larger inventory portrait.
@@ -157,12 +162,19 @@
     const def = (MAN.class_default_loadouts_PLACEHOLDER || {})[cls] || MAN.class_default_loadouts_PLACEHOLDER.warrior;
     const out = [];
     const body = sex === 'female' ? 'body/bodies/female' : 'body/bodies/male';
+    // NPC dolls carry a seed; the player never does. The hero keeps the full
+    // class kit (great helm + crusader shield) as a UNIQUE silhouette, while
+    // NPCs of the same class drop the shield, wear the light cap and dress in
+    // a seeded livery tint — so a square full of guards never contains three
+    // copies of you (BrowserQuest's hero is the one figure nobody else copies).
+    const npc = !!(spec && spec.seed != null);
+    const seed = npc ? Math.abs(spec.seed | 0) : 0;
 
     // weapon: prefer the equipped weapon, else the class default
     const wlayer = (eq.wield && weaponLayer(eq.wield)) || (def.wield && WIELD[def.wield]) || null;
     if (wlayer) { out.push({ z: 'weapon_bg', layerId: wlayer, part: 'bg' }); }
-    // shield bg
-    const slayer = (eq.shield && SHIELD.crusader) || (def.shield && SHIELD[def.shield]) || null;
+    // shield bg (only the hero, or an NPC that actually has one equipped)
+    const slayer = (eq.shield && SHIELD.crusader) || (!npc && def.shield && SHIELD[def.shield]) || null;
     if (slayer) out.push({ z: 'shield_bg', layerId: slayer, part: 'bg' });
 
     out.push({ z: 'body', layerId: body, part: null });
@@ -176,7 +188,13 @@
     if (eq.feet || (def.feet && def.feet.startsWith('boots'))) out.push({ z: 'feet', layerId: 'feet/boots/basic/male', part: null });
     // torso — reflect worn body armor (heavy->plate, light->leather, female->robe)
     const torsoStub = torsoStubFromItem(eq.body, def.torso || 'armour/leather');
-    out.push({ z: 'torso', layerId: torsoLayer(torsoStub, sex), part: null });
+    const torso = { z: 'torso', layerId: torsoLayer(torsoStub, sex), part: null };
+    if (npc && !eq.body) {
+      // seeded livery: guards in coloured steel, townsfolk in dyed cloth
+      const pal = cls === 'warrior' || cls === 'paladin' ? NPC_LIVERY.steel : NPC_LIVERY.cloth;
+      torso.tint = pal[seed % pal.length];
+    }
+    out.push(torso);
 
     // --- class flavour: gloves/bracers, hood and cape (tinted per class) ---
     const kit = CLASS_KIT[cls] || {};
@@ -195,7 +213,8 @@
       if (hairStub && HAIR[hairStub]) out.push({ z: 'hair', layerId: HAIR[hairStub], part: null });
     }
     // head — worn headgear (heavy helm vs light cap) wins; else class hood; else class default helm
-    const headStub = headStubFromItem(eq.head, def.head);
+    let headStub = headStubFromItem(eq.head, def.head);
+    if (npc && !eq.head && headStub === 'helmet/greathelm') headStub = 'helmet/flattop';   // the great helm is the hero's
     if (useHood) out.push({ z: 'hat_helmet', layerId: HOOD, part: null, tint: kit.hood });
     else if (headStub && HEAD[headStub]) out.push({ z: 'hat_helmet', layerId: HEAD[headStub], part: null });
 

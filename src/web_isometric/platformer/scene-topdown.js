@@ -2896,10 +2896,10 @@
         this.tweens.add({ targets: arc, rotation: ang + 0.85, alpha: 0, scale: 0.95 / MH.SMOOTH_SS, duration: 170, ease: 'cubic.out', onComplete: () => arc.destroy() });
       }
     }
-    slashFx(x, y, towardX) {
+    slashFx(x, y, towardX, tint) {
       if (MH.sfx) MH.sfx.swing();
       const arc = this.add.image(x, y - 4, 'fx_slash')
-        .setScale(0.9 / MH.SMOOTH_SS).setDepth(60)
+        .setScale(0.9 / MH.SMOOTH_SS).setDepth(60).setTint(tint == null ? 0xffffff : tint)
         .setFlipX(towardX < x).setAlpha(0.95)
         .setRotation((towardX < x ? -0.5 : 0.5));
       this.tweens.add({
@@ -2975,7 +2975,8 @@
       this.tweens.add({ targets: ent.pose, sx: 0.84, sy: 1.3, lean: away, dy: -6, duration: 260, ease: 'back.out' });
       ent.windup.shiver = this.tweens.add({ targets: ent.pose, lean: away * 1.3, duration: 90, yoyo: true, repeat: -1, delay: 260 });
       ent.windup.ringTween = this.tweens.add({ targets: ring, r: 9, duration: ms, ease: 'linear' });
-      const mark = this.add.text(ent.sprite.x, ent.sprite.y - ((ent.labelDy || 18) + 6), '!', {
+      if (ent.fightMark) ent.fightMark.setVisible(false);   // the '!' takes the ⚔'s slot
+      const mark = this.add.text(ent.sprite.x, ent.sprite.y - ((ent.labelDy || 18) + 12), '!', {
         fontFamily: 'Georgia, serif', resolution: 3, fontSize: '18px', fontStyle: 'bold',
         color: casty ? '#d0b8ff' : '#ff7a4a', stroke: '#1a0608', strokeThickness: 4,
       }).setOrigin(0.5, 1).setDepth(62);
@@ -2991,9 +2992,14 @@
       if (w.ringTween) w.ringTween.stop();
       if (w.gfx) w.gfx.destroy();
       if (w.mark) { this.tweens.killTweensOf(w.mark); w.mark.destroy(); }
+      if (ent.fightMark && ent.fightMark.active) ent.fightMark.setVisible(true);
       this.tweens.killTweensOf(ent.pose);
       this.tintCharacters();
       if (strike && ent.sprite && ent.sprite.active) {
+        // the ENEMY'S swing is drawn too: a red arc sweeps across you from the
+        // attacker's side, so the strike reads as their blow (not just your flinch)
+        const px = this.player.x, py = this.player.y;
+        this.slashFx(px, py, ent.sprite.x >= px ? px - 10 : px + 10, w.color);
         this.tweens.add({ targets: ent.pose, sx: 1.24, sy: 0.84, lean: -w.away * 1.2, dy: 0, duration: 90, yoyo: true, ease: 'cubic.out',
           onComplete: () => { ent.pose.sx = 1; ent.pose.sy = 1; ent.pose.lean = 0; ent.pose.dy = 0; } });
         // the strike lands: a white impact star on the target (you)
@@ -3022,7 +3028,7 @@
       // a red beam of intent from the attacker's feet to yours, fading in as the timer runs
       w.gfx.lineStyle(1.5, w.color, 0.15 + 0.45 * frac);
       w.gfx.beginPath(); w.gfx.moveTo(x, y); w.gfx.lineTo(px, py); w.gfx.strokePath();
-      if (w.mark) { w.mark.x = x; w.mark.y = ent.sprite.y - ((ent.labelDy || 18) + 6); }
+      if (w.mark) { w.mark.x = x; w.mark.y = ent.sprite.y - ((ent.labelDy || 18) + 12); }
       // body: pulse between normal and the tell colour
       const k = 0.35 + 0.45 * pulse;
       const mix = (a, b) => (((((a >> 16) & 255) + (((b >> 16) & 255) - ((a >> 16) & 255)) * k) | 0) << 16)
@@ -3374,7 +3380,7 @@
         if (this._intentBanners.has(key)) continue;
         const casty = intent.kind === 'cast' || intent.kind === 'debuff';
         this.startWindup(ent, intent);   // body rears back + contracting ring + '!'
-        const t = this.add.text(ent.sprite.x, ent.sprite.y - ((ent.labelDy || 18) + 24), `⚠ ${intent.label}`, {
+        const t = this.add.text(ent.sprite.x, ent.sprite.y - ((ent.labelDy || 18) + 36), `⚠ ${intent.label}`, {
           fontFamily: 'Oxanium, Trebuchet MS, sans-serif', resolution: 3, fontSize: '8px', fontStyle: 'bold',
           color: casty ? '#c0a8ff' : '#ffb060', backgroundColor: '#1a0e0ecc', padding: { x: 3, y: 1 },
         }).setOrigin(0.5, 1).setDepth(61);
@@ -4536,12 +4542,32 @@
           }
           continue;
         }
-        if (!ent.wanderAt || now < ent.wanderAt || ent.wanderTween) continue;
+        if (!ent.wanderAt || ent.wanderTween) continue;
         const L = this.layout, T2 = TD().T;
-        const tx = Phaser.Math.Clamp(ent.homeX + (Math.random() * 90 - 45), 2.5 * T2, this.pxW - 2.5 * T2);
-        const ty = Phaser.Math.Clamp(ent.homeY + (Math.random() * 60 - 30), 2.5 * T2, this.pxH - 2.5 * T2);
+        // personal space: a bystander standing on top of you (or you walking
+        // onto one) steps aside at once, so two silhouettes never merge into
+        // one blob; otherwise it waits for its wander tick
+        const pdx = ent.sprite.x - this.player.x, pdy = ent.sprite.y - this.player.y;
+        const crowded = Math.hypot(pdx, pdy) < 24;
+        if (!crowded && now < ent.wanderAt) continue;
+        let tx, ty;
+        if (crowded) {
+          const a = Math.atan2(pdy, pdx || (Math.random() - 0.5));
+          tx = Phaser.Math.Clamp(ent.sprite.x + Math.cos(a) * 40, 2.5 * T2, this.pxW - 2.5 * T2);
+          ty = Phaser.Math.Clamp(ent.sprite.y + Math.sin(a) * 30, 2.5 * T2, this.pxH - 2.5 * T2);
+        } else {
+          tx = Phaser.Math.Clamp(ent.homeX + (Math.random() * 90 - 45), 2.5 * T2, this.pxW - 2.5 * T2);
+          ty = Phaser.Math.Clamp(ent.homeY + (Math.random() * 60 - 30), 2.5 * T2, this.pxH - 2.5 * T2);
+        }
         const cell = L.grid[Math.floor(ty / T2) * L.W + Math.floor(tx / T2)];
-        if (cell !== 0) { ent.wanderAt = now + 1200; continue; }
+        if (cell !== 0) { ent.wanderAt = now + (crowded ? 300 : 1200); continue; }
+        // never wander INTO the player or another bystander
+        let blocked = !crowded && Phaser.Math.Distance.Between(tx, ty, this.player.x, this.player.y) < 30;
+        if (!blocked) for (const o of this.entities.values()) {
+          if (o === ent || o.kind !== 'mob' || !o.sprite) continue;
+          if (Phaser.Math.Distance.Between(tx, ty, o.sprite.x, o.sprite.y) < 20) { blocked = true; break; }
+        }
+        if (blocked) { ent.wanderAt = now + (crowded ? 300 : 900); continue; }
         const dist = Phaser.Math.Distance.Between(ent.sprite.x, ent.sprite.y, tx, ty);
         const tex = ent.sprite.texture.key;
         const anim = Math.abs(tx - ent.sprite.x) > Math.abs(ty - ent.sprite.y) ? `${tex}_walks` : (ty > ent.sprite.y ? `${tex}_walkd` : `${tex}_walku`);
@@ -4695,8 +4721,10 @@
           if (ent.sprite.visible && !ent.leaving && !ent._dying) {
             const fighting = !!(ent.data && ent.data.fighting);
             const a = fighting ? 0.75 + 0.25 * Math.sin(now / 120) : 0.5 + 0.2 * Math.sin(now / 380);
-            const rw = ent.data && ent.data.boss ? 30 : 22;
-            g.lineStyle(fighting ? 2 : 1.5, 0xff3a2a, a).strokeEllipse(ent.sprite.x, ent.sprite.y + 9, rw, rw * 0.42);
+            // wider than the body so the red reads past the feet (the old 22px
+            // ring hid under a 0.7-scale doll's boots)
+            const rw = ent.data && ent.data.boss ? 38 : 30;
+            g.lineStyle(fighting ? 2.2 : 1.6, 0xff3a2a, a).strokeEllipse(ent.sprite.x, ent.sprite.y + 9, rw, rw * 0.42);
             g.fillStyle(0xff3a2a, 0.07 + 0.05 * Math.sin(now / 380)).fillEllipse(ent.sprite.x, ent.sprite.y + 9, rw, rw * 0.42);
           }
         }
@@ -4736,7 +4764,7 @@
       if (this._intentBanners) {
         for (const [key, t] of this._intentBanners) {
           const ent = this.entities.get(key);
-          if (ent && ent.sprite && ent.sprite.active) { t.x = ent.sprite.x; t.y = ent.sprite.y - ((ent.labelDy || 18) + 24); }
+          if (ent && ent.sprite && ent.sprite.active) { t.x = ent.sprite.x; t.y = ent.sprite.y - ((ent.labelDy || 18) + 36); }
         }
       }
       // danger zones ride their mob too — and if you're physically CLEAR of
