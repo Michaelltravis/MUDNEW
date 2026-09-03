@@ -2572,12 +2572,190 @@
   #combat-log-lines > div:nth-last-child(2), #combat-log-lines > div:nth-last-child(3) { opacity: .78; font-size: 13px !important; }
   #combat-log-lines > div:nth-last-child(3) { opacity: .6; }
   #dw-window { top: 150px !important; }
+
+  /* ════════════════════════════════════════════════════════════════
+     GAUNTLET graphics-02 — HUD & FEED, round 1 (appended last; wins)
+     BrowserQuest reads cleaner because its strip has ONE loud element
+     (the red health bar) and everything else is a quiet icon. Ours had
+     six things of equal weight in the dock. This pass: HP is the only
+     saturated, large readout; MP/MV, the stance, the compass and PANELS
+     drop to secondary weight; the level line moves to the UI face at
+     13px; the letterbox bands become a soft painterly frame instead of
+     two flat grey slabs; the feed keeps its 3-line rhythm but the older
+     lines settle further back so the newest beat leads.
+     ════════════════════════════════════════════════════════════════ */
+  /* -- frame: the side bands read as vignette, not dead chrome --------------- */
+  body { background: radial-gradient(ellipse 70% 60% at 50% 45%, #14161c 0%, #0a0b0f 70%, #06070a 100%) fixed; }
+  #aether-grid { opacity: .16; }
+  #frame-vignette { position: fixed; inset: 0; z-index: 7; pointer-events: none;
+    box-shadow: inset 0 0 70px 18px rgba(4,5,8,.55), inset 0 -40px 60px -20px rgba(4,5,8,.5); }
+  /* -- top edge: title is the one focal point; the clock is a whisper -------- */
+  #room-name { font-size: 18px !important; padding: 4px 18px !important; line-height: 22px;
+    background: rgba(8,12,18,.8) !important; border-color: rgba(232,193,104,.32) !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,.55); }
+  #room-zone { font-size: 11.5px !important; color: #dbe6ee !important; opacity: .92; }
+  #sky-chip { opacity: .42; background: none !important; border-color: transparent !important; box-shadow: none !important; }
+  #sky-label { font-size: 12px !important; }
+  /* -- dock: one big red bar, everything else recedes ------------------------ */
+  #dock { height: 66px !important;
+    background: linear-gradient(rgba(7,9,13,0) 0px, rgba(7,9,13,.55) 8px, rgba(7,9,13,.9) 20px, rgba(6,8,12,.97) 100%) !important; }
+  #hud { width: 430px !important; height: 58px !important; bottom: 4px !important; padding: 3px 6px !important; }
+  #hud .stats { grid-template-columns: 1fr 92px 92px !important; grid-template-rows: 28px 18px !important;
+    column-gap: 6px !important; row-gap: 4px !important; }
+  #hud .bar.hp { height: 28px !important; border-radius: 7px !important; border-color: rgba(255,140,150,.4) !important;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.7), 0 0 14px rgba(224,60,70,.35), inset 0 1px 0 rgba(255,255,255,.12); }
+  #hud .bar.hp > i { background: linear-gradient(#ff8a92 0%, #e0404e 45%, #b8202e 100%) !important; }
+  #hud .bar.hp::before { line-height: 28px; font-size: 12px; font-weight: 800; letter-spacing: .14em; color: #fff; }
+  #hud .bar.hp > b { line-height: 28px !important; font-size: 16px !important; font-weight: 700; color: #fff !important;
+    text-shadow: 0 1px 2px #000, 0 0 6px rgba(0,0,0,.8); }
+  #hud .bar:not(.xp)::after { background-image: repeating-linear-gradient(90deg, transparent 0 13px, rgba(7,11,16,.45) 13px 15px); }
+  /* MP / MV: same information, half the shout */
+  #hud .bar.mana, #hud .bar.move { height: 18px !important; border-radius: 5px !important; align-self: center; }
+  #hud .bar.mana > i { background: linear-gradient(#7d86e6, #4646b8) !important; opacity: .85; }
+  #hud .bar.move > i { background: linear-gradient(#57c99a, #2a8a60) !important; opacity: .85; }
+  /* the colour is the label: the MP/MV letters would collide with 12.5px numerals in 92px */
+  #hud .bar.mana::before, #hud .bar.move::before { display: none; }
+  #hud .bar.mana > b, #hud .bar.move > b { line-height: 18px !important; font-size: 12.5px !important; font-weight: 600; color: #f2f7fa !important; }
+  /* level line: UI face at 13px, level in gold, the rest quiet white */
+  #hud .row { font-family: var(--ui-font) !important; font-size: 13px !important; line-height: 18px; color: #e6eef3 !important;
+    letter-spacing: .01em; }
+  #hud .row #hud-level { color: #f4dc9a; font-weight: 700; }
+  #hud .row span + span:not(:empty)::before { color: #6f8a99; margin: 0 7px; }
+  /* stance: an outlined chip, not a second gold focal point */
+  .hud-stance { height: 18px; line-height: 18px; font-size: 11.5px !important; letter-spacing: .06em; padding: 0 8px !important; }
+  .hud-stance.active { color: #f4dc9a !important; font-weight: 600 !important;
+    background: rgba(40,32,14,.75) !important; border-color: rgba(232,193,104,.55) !important; box-shadow: none !important; }
+  .hud-stance.active::before { opacity: .7; }
+  /* -- actions: 13px labels, gold key numerals, one row --------------------- */
+  #belt { left: 446px !important; }
+  #hotbar { left: 528px !important; }
+  .hotslot { width: 56px !important; }
+  .hotslot .lbl { font-size: 13px !important; max-width: 54px !important; color: #f2f7fa !important; }
+  .hotslot .key { font-size: 12px !important; }
+  #hotbar:not(.compact) .hotslot { width: 48px !important; }
+  #hotbar:not(.compact) .hotslot .lbl { font-size: 12px !important; max-width: 46px !important; }
+  /* -- compass: only real exits show, as gold keys in the cross layout ------- */
+  #compass { right: 170px !important; grid-template-columns: repeat(4, 24px) !important; grid-auto-rows: 19px !important; }
+  #compass .cmp:not(.on) { visibility: hidden; }
+  .cmp { font-size: 12px; font-weight: 700; background: rgba(10,14,20,.85); }
+  .cmp.on { color: #f4dc9a; border-color: rgba(232,193,104,.4); }
+  .cmp.portal { font-size: 10px; }
+  /* the secret-passage marker was absolutely positioned against the whole grid
+     (no relative parent): pin it to its own cell as a small purple glyph */
+  .cmp.hidden { position: relative; }
+  .cmp.hidden .cmp-secret { top: 0; right: 2px; font-size: 8px; color: #b8a8f0; font-weight: 700; }
+  /* PANELS: a ghost until hovered (Tab still opens the drawer) */
+  #side-toggle { opacity: .55; font-size: 12px !important; background: rgba(12,18,26,.6) !important; }
+  #side-toggle:hover, body.side-open #side-toggle { opacity: 1; }
+  /* -- feed: the newest beat leads, older lines settle further back ---------- */
+  #combat-log { bottom: 72px !important; }
+  #combat-log-lines > div { font-size: 14.5px !important; line-height: 20px !important; }
+  #combat-log-lines > div:nth-last-child(2) { opacity: .7; font-size: 13px !important; }
+  #combat-log-lines > div:nth-last-child(3) { opacity: .45; font-size: 12.5px !important; }
+  #combat-log .them { border-color: rgba(255,120,130,.35) !important; }
+  #combat-log .you { border-color: rgba(70,224,160,.35) !important; }
+
+  /* ════════════════════════════════════════════════════════════════
+     GAUNTLET graphics-02 — HUD & FEED, round 2 (appended last; wins)
+     Critic (r1): vitals still needed a squint, ambient prose floated
+     over the playfield, and the eye had six HUD zones to scan. This
+     pass leaves THREE zones — title (top), dock (bottom), feed strip
+     (just above the dock) — and inside the dock ONE loud element: a
+     32px heart-marked HP bar with 18px numerals that flashes white on
+     a hit. MP/MV become thin bars under it, the WASD compass and the
+     top-right clock only appear on hover / with the drawer, every HUD
+     text is >=12px on a dark backdrop, and the feed carries the
+     ambient prose (routed there by ui.js) as a quiet italic beat.
+     ════════════════════════════════════════════════════════════════ */
+  /* -- dock: 70px, the rest of 720 is world -------------------------------- */
+  #dock { height: 78px !important;
+    background: linear-gradient(rgba(7,9,13,0) 0px, rgba(7,9,13,.6) 6px, rgba(7,9,13,.92) 16px, rgba(6,8,12,.98) 100%) !important; }
+  /* -- vitals: HP full width and tall, MP/MV thin beneath, level line last -- */
+  #hud { width: 400px !important; height: 72px !important; bottom: 3px !important; padding: 3px 6px !important; }
+  #hud .stats { grid-template-columns: 1fr 1fr 118px !important; grid-template-rows: 32px 12px 15px !important;
+    column-gap: 5px !important; row-gap: 3px !important; align-items: stretch !important; }
+  #hud .bar.hp { grid-column: 1 / -1 !important; grid-row: 1 !important; height: 32px !important; border-radius: 8px !important;
+    border: 1px solid rgba(255,150,158,.45) !important;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.75), 0 0 16px rgba(224,60,70,.4), inset 0 1px 0 rgba(255,255,255,.14) !important; }
+  #hud .bar.hp > i { background: linear-gradient(#ff9aa0 0%, #e6414f 40%, #b41c2a 100%) !important; }
+  #hud .bar.hp::before { content: '\2665\00a0 HP'; line-height: 32px; font-size: 14px; font-weight: 800; letter-spacing: .1em;
+    color: #fff; left: 10px; text-shadow: 0 1px 2px #000, 0 0 6px rgba(0,0,0,.8); }
+  #hud .bar.hp > b { line-height: 32px !important; font-size: 18px !important; font-weight: 800; color: #fff !important;
+    right: 10px !important; text-shadow: 0 1px 2px #000, 0 0 8px rgba(0,0,0,.85); }
+  #hud .bar.hp::after { background-image: repeating-linear-gradient(90deg, transparent 0 18px, rgba(7,11,16,.4) 18px 20px) !important; }
+  /* a hit flashes the bar white then settles: fight state on the loud element */
+  #hud.hp-hit .bar.hp > i { animation: hpHit .42s ease-out; }
+  #hud.hp-hit .bar.hp { box-shadow: 0 0 0 1px rgba(0,0,0,.75), 0 0 26px rgba(255,120,130,.85) !important; }
+  @keyframes hpHit { 0% { filter: brightness(2.4) saturate(.4); } 35% { filter: brightness(1.5); } 100% { filter: none; } }
+  #hud.hp-low .bar.hp::before { animation: hpLow .9s ease-in-out infinite; }
+  /* MP / MV: thin, numerals in the bar, colour is the label */
+  #hud .bar.mana { grid-column: 1 !important; grid-row: 2 !important; }
+  #hud .bar.move { grid-column: 2 !important; grid-row: 2 !important; }
+  #hud .bar.mana, #hud .bar.move { height: 12px !important; border-radius: 4px !important; align-self: center !important;
+    border-color: rgba(255,255,255,.14) !important; }
+  #hud .bar.mana > i { background: linear-gradient(#8f98ff, #4c4cc8) !important; opacity: 1; }
+  #hud .bar.move > i { background: linear-gradient(#63d9a8, #2b9668) !important; opacity: 1; }
+  #hud .bar.mana::after, #hud .bar.move::after { display: none; }
+  #hud .bar.mana > b, #hud .bar.move > b { display: block !important; line-height: 12px !important; font-size: 11px !important;
+    font-weight: 700; color: #fff !important; right: 6px !important; text-shadow: 0 1px 2px #000, 0 0 4px #000; }
+  #hud .bar.mana::before, #hud .bar.move::before { display: none; }
+  #hud .row { grid-column: 1 / 3 !important; grid-row: 3 !important; font-size: 12.5px !important; line-height: 15px;
+    color: #eef7fb !important; text-shadow: 0 1px 2px #000; overflow: hidden; white-space: nowrap; }
+  #hud .row #hud-level { color: #f4dc9a; font-weight: 700; }
+  #hud .row span + span:not(:empty)::before { content: '\00b7'; color: #7f95a3; margin: 0 6px; }
+  #hud-stances { grid-column: 3 !important; grid-row: 2 / 4 !important; align-self: end; justify-content: flex-end; }
+  .hud-stance { height: 17px; line-height: 17px; font-size: 12px !important; padding: 0 8px !important; }
+  /* -- actions: keys at 13px gold, labels at 13px white ---------------------- */
+  #belt { left: 416px !important; bottom: 6px !important; }
+  #hotbar { left: 498px !important; bottom: 6px !important; gap: 6px !important; }
+  .hotslot { width: 58px !important; height: 52px !important; }
+  .hotslot .lbl { font-size: 13px !important; line-height: 15px; max-width: 56px !important; color: #f6f9fb !important;
+    text-shadow: 0 1px 2px #000; }
+  .hotslot .key { font-size: 13px !important; font-weight: 800; color: #f4dc9a !important; text-shadow: 0 1px 2px #000; }
+  #hotbar:not(.compact) .hotslot { width: 50px !important; }
+  #hotbar:not(.compact) .hotslot .lbl { font-size: 12px !important; max-width: 48px !important; }
+  /* -- compass: gone from the dock; it lives in the Tab drawer state --------- */
+  #compass { display: none !important; }
+  body.side-open #compass { display: grid !important; right: 12px !important; bottom: 76px !important; z-index: 21 !important; }
+  .cmp { font-size: 12px; }
+  /* -- PANELS: the only thing on the dock's right, 12px, quiet until hovered - */
+  #side-toggle { bottom: 22px !important; right: 12px !important; font-size: 12px !important; padding: 4px 10px !important;
+    opacity: .7; letter-spacing: .08em; }
+  #side-toggle b { font-size: 11px; }
+  /* -- top edge: title only; the clock folds into the banner on hover ------- */
+  #room-name { font-size: 19px !important; line-height: 24px; padding: 4px 20px !important; }
+  #room-zone { font-size: 12px !important; text-shadow: 0 1px 3px #000, 0 0 6px rgba(0,0,0,.9); }
+  #room-banner { padding-bottom: 14px; }          /* hover target reaches the chip row */
+  #sky-chip { opacity: 0 !important; transition: opacity .25s; }
+  #room-banner:hover ~ #sky-chip, #sky-chip:hover, body.side-open #sky-chip { opacity: 1 !important; }
+  #sky-chip:hover, body.side-open #sky-chip { background: rgba(8,12,18,.85) !important; border-color: rgba(255,255,255,.12) !important; }
+  #sky-label { font-size: 12.5px !important; color: #eef7fb; text-shadow: 0 1px 2px #000; }
+  body.side-open #sky-chip #help-toggle, body.side-open #sky-chip #gfx-toggle, body.side-open #sky-chip #ambience-toggle { display: inline-block; }
+  /* -- feed strip: one place for text, dark backdrop, three beats ------------ */
+  #combat-log { bottom: 78px !important; width: 680px !important; max-width: 64vw !important; }
+  #combat-log-lines > div { font-size: 15px !important; line-height: 21px !important; padding: 3px 14px !important;
+    background: rgba(6,9,14,.86) !important; border-color: rgba(255,255,255,.1); }
+  #combat-log-lines > div:nth-last-child(2) { opacity: .72; font-size: 13.5px !important; line-height: 19px !important; }
+  #combat-log-lines > div:nth-last-child(3) { opacity: .45; font-size: 12.5px !important; line-height: 18px !important; }
+  #combat-log .ambient { color: #e4dcc6; font-style: italic; font-family: Georgia, 'Times New Roman', serif;
+    background: rgba(10,10,14,.8) !important; border-color: rgba(232,193,104,.18) !important; }
+  #combat-log .them { background: rgba(120,20,30,.86) !important; }
+  #combat-log .them b, #combat-log .you b { font-size: 15.5px; }
+  /* -- floating chat lines: 13px, dark pill, never more than three ----------- */
+  #chat-log { bottom: 82px !important; left: 12px !important; width: 360px !important; max-height: 78px !important;
+    font-size: 13px !important; z-index: 23 !important; }
+  #chat-log div { background: rgba(6,9,14,.86) !important; color: #cfeaf6 !important; padding: 3px 10px !important;
+    text-shadow: 0 1px 2px #000; }
+  #chat-log div:nth-last-child(n+4) { display: none; }
+  /* the encounter caption sits above the feed strip, never on the sprites */
+  #dw-window { top: auto !important; bottom: 150px !important; }
   </style>
 
 </head>
 <body>
   <div id="game-root"></div>
   <div id="aether-grid"></div>
+  <div id="frame-vignette"></div>
   <div id="topbar"></div>
   <div id="crest">
     <canvas id="crest-portrait" width="40" height="40"></canvas>

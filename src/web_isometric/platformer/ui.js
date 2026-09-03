@@ -838,6 +838,7 @@
     if (typeof clogLineRef === 'function') clogLineRef(`💡 ${msg}`, 'info');
   }
   let clogLineRef = null;   // bound once the feed exists
+  let ambientFeedAt = 0;    // last ambient prose line routed into the feed
 
   // ---- flash line ----
   let flashTimer = null;
@@ -2941,7 +2942,7 @@
         : hidden ? ` title="hidden passage ${dir}"` : (zone ? ` title="→ ${zone}"` : '');
       const mark = danger ? `<span class="cmp-door cmp-danger">☠</span>`
         : door ? `<span class="cmp-door">${door.locked && closed ? '🔒' : closed ? '🚪' : '◙'}</span>`
-        : (hidden ? `<span class="cmp-door cmp-secret">❓</span>` : '');
+        : (hidden ? `<span class="cmp-door cmp-secret">?</span>` : '');   // text glyph: the emoji fell back to a red '?' at the compass corner
       return `<div class="${cls}" ${has ? `data-dir="${dir}"` : ''}${title}>${label}${mark}</div>`;
     };
     let html = '';
@@ -4021,8 +4022,25 @@
         MH.bus.emit = (event, payload) => {
           if (event === 'ambient.candidate') {
             if (document.body.classList.contains('in-combat')) return;
+            const line = ((payload && payload.line) || '').trim();
             // arrivals/departures already get an in-world "-> south" cue
-            if (/\b(leaves|arrives|has arrived|walks|wanders|flees)\b/i.test((payload && payload.line) || '')) return;
+            if (/\b(leaves|arrives|has arrived|walks|wanders|flees)\b/i.test(line)) return;
+            // gauntlet graphics-02/r2: ambient prose never floats over the
+            // playfield. A line that names a mob in the room still reaches the
+            // scene (it becomes a speech bubble over that mob); everything
+            // else that reads as atmosphere goes into the feed strip, where it
+            // has a dark backdrop, and at most one line per 9s so it stays a
+            // beat between fights instead of a wall of text.
+            const lower = line.toLowerCase();
+            const mobs = (MH.state.currentRoom && MH.state.currentRoom.mobs) || [];
+            const namesMob = mobs.some(m => { const kw = MH.mobKeyword(m.name || ''); return kw.length > 2 && lower.includes(kw); });
+            if (namesMob) return rawEmit(event, payload);
+            if (line && line.length <= 110 && /^(you hear|a |an |the |somewhere|in the distance|dust|wind|water|shadows)/i.test(line)
+                && !/\d+\/\d+(hp|mp|mv)/i.test(line) && !/^[>\[]/.test(line)) {
+              const now = Date.now();
+              if (clogLineRef && now - ambientFeedAt > 9000) { ambientFeedAt = now; clogLineRef(line, 'ambient'); }
+            }
+            return;
           }
           return rawEmit(event, payload);
         };

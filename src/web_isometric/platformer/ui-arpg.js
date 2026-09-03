@@ -22,6 +22,7 @@
   const sigil = { hp: { cur: 1, tgt: 1 }, mp: { cur: 1, tgt: 1 }, res: { cur: 0, tgt: 0 },
     cls: 'warrior', resVal: 0, resMax: 0, resName: '', c: null };
   let wavePhase = 0;
+  let lastHpSeen = null, hpHitTimer = null;
 
   // draw a stroked arc gauge: track + filled portion, optional pulse/glow
   function gauge(x, cx, cy, r, w, frac, col, track, glow) {
@@ -309,6 +310,15 @@
       if (hud) {
         hud.classList.toggle('hp-low', sigil.hp.tgt < 0.25);
         hud.classList.toggle('hp-hurt', sigil.hp.tgt >= 0.25 && sigil.hp.tgt < 0.5);
+        // gauntlet graphics-02/r2: the bar itself flashes when HP drops so a
+        // hit reads on the one big element without hunting the feed
+        const hpNow = p.hp || 0;
+        if (lastHpSeen != null && hpNow < lastHpSeen) {
+          hud.classList.remove('hp-hit'); void hud.offsetWidth; hud.classList.add('hp-hit');
+          clearTimeout(hpHitTimer);
+          hpHitTimer = setTimeout(() => hud.classList.remove('hp-hit'), 420);
+        }
+        lastHpSeen = hpNow;
       }
       sigil.cls = String(p.char_class || 'warrior').toLowerCase();
       const r = p.resource;
