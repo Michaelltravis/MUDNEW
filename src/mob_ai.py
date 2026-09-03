@@ -625,11 +625,32 @@ async def _mitigate_hit(mob, char, damage):
             f"{c['bright_cyan']}{name} sidesteps at the last instant — the blow finds only air!{c['reset']}"
         )
         return None
+    # hero toughness (same reduction the auto-attack path applies)
+    try:
+        from combat import CombatHandler
+        damage = CombatHandler.mitigate_incoming(char, damage)
+    except Exception:
+        pass
     if _braced(char):
         if hasattr(char, 'send'):
             await char.send(f"{c['cyan']}You brace against the impact — it glances off you! (halved){c['reset']}")
         return max(1, damage // 2)
     return damage
+
+
+def _full_hit(mob) -> int:
+    """One average-strength auto-hit (dice + the mob's damage bonus) — the
+    unit a heavy blow is measured in, so a wind-up is always scarier than a
+    plain swing regardless of how the zone wrote the dice."""
+    try:
+        base = mob.roll_dice(mob.damage_dice)
+    except Exception:
+        base = random.randint(mob.level, max(mob.level, mob.level * 2))
+    try:
+        base += max(0, mob.get_damage_bonus())
+    except Exception:
+        base += getattr(mob, 'damroll', 0)
+    return max(1, base)
 
 
 def _choose_boss_intent(mob, target):
@@ -820,19 +841,32 @@ def _choose_bruiser_intent(mob, target):
     sweep the whole area instead — the client paints a danger zone you can
     physically walk out of (cmd_evade)."""
     now = time.time()
+    cfg = mob.config
     if now < mob.ai_state.get('heavy_cd', 0):
         return None
-    if random.randint(1, 100) > 40:
+    # The opening wind-up is guaranteed (a read on the foe in the first
+    # seconds); after that, roughly every 3-4 rounds.
+    chance = cfg.WINDUP_CHANCE if 'heavy_cd' in mob.ai_state else cfg.WINDUP_FIRST_ROUND_CHANCE
+    if random.randint(1, 100) > chance:
         return None
-    mob.ai_state['heavy_cd'] = now + random.randint(12, 16)   # every 3-4 rounds
+    mob.ai_state['heavy_cd'] = now + random.randint(cfg.WINDUP_COOLDOWN_MIN, cfg.WINDUP_COOLDOWN_MAX)
     big = bool(set(_name_lower(mob).split()) & BIG_KEYWORDS)
+    name = mob.name
     if big and random.randint(1, 100) <= 60:
         return {'kind': 'aoe', 'label': 'Sweeping Blow', 'interruptible': False,
                 'ability': ('bruiser', 'sweep'),
-                'telegraph': f'{mob.name} winds up a great SWEEPING blow — get clear!'}
+                'telegraph': random.choice([
+                    f'{name} winds up a great SWEEPING blow — get clear!',
+                    f'{name} rears back, both arms wide, and winds up a SWEEPING blow!',
+                    f'{name} drops low and winds up to SWEEP the whole area — get clear!',
+                ])}
     return {'kind': 'heavy', 'label': 'Crushing Blow', 'interruptible': False,
             'ability': ('bruiser', None),
-            'telegraph': f'{mob.name} plants its feet and rears back for a crushing blow!'}
+            'telegraph': random.choice([
+                f'{name} plants its feet and rears back for a crushing blow!',
+                f'{name} draws back, muscles bunching, and winds up a crushing blow!',
+                f"{name} rears back — a crushing blow is coming!",
+            ])}
 
 
 async def declare_intents(mob):
@@ -957,14 +991,11 @@ async def _resolve_legacy(mob, target, which):
 async def _resolve_bruiser(mob, target, variant=None):
     c = mob.config.COLORS
     from combat import CombatHandler
-    try:
-        base = mob.roll_dice(mob.damage_dice)
-    except Exception:
-        base = random.randint(mob.level, max(mob.level, mob.level * 3))
+    base = _full_hit(mob)
     if variant == 'sweep':
         # area sweep: hits every player in the room; sidestep/brace/evade all
         # mitigate (the web client auto-evades when you're physically clear)
-        damage = int(base * 1.4) + getattr(mob, 'damroll', 0)
+        damage = int(base * mob.config.SWEEP_BLOW_MULT)
         await mob.room.send_to_room(
             f"{c['bright_red']}{mob.name}'s SWEEPING blow scythes across the area!{c['reset']}"
         )
@@ -979,14 +1010,14 @@ async def _resolve_bruiser(mob, target, variant=None):
             if await char.take_damage(dmg, mob):
                 await CombatHandler.handle_death(mob, char)
         return
-    damage = int(base * 1.8) + getattr(mob, 'damroll', 0)
+    damage = int(base * mob.config.HEAVY_BLOW_MULT)
     dmg = await _mitigate_hit(mob, target, damage)
     if dmg is None:
         return
     await mob.room.send_to_room(
         f"{c['bright_red']}{mob.name}'s crushing blow slams into {target.name}! [{dmg}]{c['reset']}"
     )
-    if not _braced(target) and random.randint(1, 100) <= 25:
+    if not _braced(target) and random.randint(1, 100) <= mob.config.HEAVY_STUN_CHANCE:
         target.stunned_rounds = getattr(target, 'stunned_rounds', 0) + 1
         if hasattr(target, 'send'):
             await target.send(f"{c['yellow']}The impact leaves you reeling — stunned!{c['reset']}")

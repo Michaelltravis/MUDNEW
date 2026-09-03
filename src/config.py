@@ -90,6 +90,30 @@ class Config:
     COMBAT_FATIGUE_HIT_PENALTY = 2
     COMBAT_FATIGUE_DAMAGE_PENALTY = 0.10
 
+    # Fight pacing (gauntlet playability-01). Mob DATA stays untouched; these
+    # rules shape how a fight feels: a level-appropriate duel lasts 8-20
+    # rounds, mob burst is telegraphed rather than random, and staggers are
+    # reachable. All applied in combat.py / mob_ai.py.
+    PLAYER_LEVEL_HIT_DIV = 3              # players add level//3 to their hit roll
+    PLAYER_DAMAGE_MULT_PER_LEVEL = 0.22   # weapon dice x (1 + level * this)
+    PLAYER_DAMAGE_FLAT_PER_LEVEL = 0.6    # ...plus level*0.6 flat (keeps low rolls from stalling a fight)
+    PLAYER_TOUGHNESS_PER_LEVEL = 0.0185   # damage reduction vs NPC hits per level
+    PLAYER_TOUGHNESS_CAP = 0.60
+    MOB_CRIT_CHANCE = 5                   # NPC random crits are rare: burst comes from wind-ups
+    MOB_WINDUP_AUTOATTACK_MULT = 0.5      # a mob gathering a heavy swings lighter that round
+    BOSS_SWING_CAP_PCT = 0.10             # no single player swing takes >10% of a boss's HP
+    HEAVY_BLOW_MULT = 2.2                 # crushing blow = 2.2x a full average hit
+    SWEEP_BLOW_MULT = 1.7
+    HEAVY_STUN_CHANCE = 15                # % chance an unbraced crushing blow also stuns
+    POISE_BASE = 3                        # stagger budget: POISE_BASE + level//POISE_LEVEL_DIV hits
+    POISE_LEVEL_DIV = 8
+    POISE_HEAVY_HIT_PCT = 0.08            # a hit >= 8% of max HP (or a crit) chips double poise
+    LOW_HP_WARN_PCT = 0.25                # one warning per fight when HP first drops below this
+    WINDUP_FIRST_ROUND_CHANCE = 100       # opening wind-up is guaranteed
+    WINDUP_CHANCE = 75                    # per-round chance once the cooldown is up
+    WINDUP_COOLDOWN_MIN = 10              # seconds from declaration to next eligible declaration
+    WINDUP_COOLDOWN_MAX = 14              #   (resolution is +4s, so ~every 3-4 rounds)
+
     FLEE_COOLDOWN_SECONDS = 6
     ESCAPE_COOLDOWN_SECONDS = 8
     DISENGAGE_COOLDOWN_SECONDS = 6
