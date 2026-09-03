@@ -40,7 +40,9 @@
 
   function drawSigil() {
     const c = sigil.c;
-    if (!c) return;
+    // the sigil is hidden by the r2 HUD (the big HP bar is the one vitals
+    // readout); skip the canvas work while it has no layout box
+    if (!c || !c.offsetParent) return;
     const x = c.getContext('2d');
     const W = c.width, H = c.height, cx = W / 2, cy = H / 2;
     x.clearRect(0, 0, W, H);
@@ -195,7 +197,9 @@
     el.textContent = dwTarget.slice(0, want);
     if (want >= dwTarget.length) { clearInterval(dwTyping); dwTyping = null; }
   }
-  function dwShow(text, hold = 3400, extend = false) {
+  // shorter hold (gauntlet graphics-01/r4): the encounter line is a beat,
+  // not a caption that lingers over the fight
+  function dwShow(text, hold = 2600, extend = false) {
     const el = $('dw-window');
     if (!el) return;
     const wasShown = el.classList.contains('show');
@@ -299,6 +303,13 @@
       if (!p) return;
       sigil.hp.tgt = (p.hp || 0) / Math.max(1, p.max_hp || 1);
       sigil.mp.tgt = (p.mana || 0) / Math.max(1, p.max_mana || 1);
+      // glanceable vitals: the big HP bar in the dock carries the state
+      // (hurt = amber tint, low = ember pulse) instead of a separate globe
+      const hud = $('hud');
+      if (hud) {
+        hud.classList.toggle('hp-low', sigil.hp.tgt < 0.25);
+        hud.classList.toggle('hp-hurt', sigil.hp.tgt >= 0.25 && sigil.hp.tgt < 0.5);
+      }
       sigil.cls = String(p.char_class || 'warrior').toLowerCase();
       const r = p.resource;
       if (r && r.max) {

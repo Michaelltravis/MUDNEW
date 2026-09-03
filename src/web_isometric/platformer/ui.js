@@ -335,12 +335,28 @@
     if (tip) tip.classList.remove('show');
   }
 
+  // Compact action bar (gauntlet graphics-01/r3): only the first COMPACT_N
+  // slots are drawn by default; a small "more" tab past them opens the full
+  // row. Keys 1-0 fire every slot either way, and the expander is appended
+  // LAST so els.hotbar.children[i] still addresses slot i for cooldown paint.
+  const HOTBAR_OPEN_KEY = 'misthollow_hotbar_open';
+  const COMPACT_N = 5;
+  let hotbarOpen = lsGet(HOTBAR_OPEN_KEY) === '1';
+  function applyHotbarMode() {
+    if (!els.hotbar) return;
+    els.hotbar.classList.toggle('compact', !hotbarOpen);
+    const more = els.hotbar.querySelector('.hotbar-more');
+    if (more) {
+      more.textContent = hotbarOpen ? '\u25c2' : '\u25b8';
+      more.title = hotbarOpen ? 'fewer actions (slots 1-5)' : 'all actions (slots 6-0 still fire from the keyboard)';
+    }
+  }
   function renderHotbar() {
     els.hotbar.innerHTML = '';
     const skills = (MH.state.player && MH.state.player.skills) || {};
     hotbar.forEach((cmd, i) => {
       const slot = document.createElement('div');
-      slot.className = 'hotslot';
+      slot.className = 'hotslot' + (i >= COMPACT_N ? ' tail' : '');
       const skillName = String(cmd || '').replace(/^cast '/, '').replace(/'$/, '');
       const prof = skills[skillName];
       const cost = costForCmd(cmd);
@@ -380,6 +396,16 @@
       });
       els.hotbar.appendChild(slot);
     });
+    const more = document.createElement('div');
+    more.className = 'hotbar-more';
+    more.addEventListener('click', () => {
+      hotbarOpen = !hotbarOpen;
+      lsSet(HOTBAR_OPEN_KEY, hotbarOpen ? '1' : '0');
+      applyHotbarMode();
+      if (MH.sfx && MH.sfx.ui) MH.sfx.ui();
+    });
+    els.hotbar.appendChild(more);
+    applyHotbarMode();
     updateHotbarAffordability();
   }
 
@@ -614,7 +640,8 @@
     setBar(els.barHp, els.txtHp, player.hp || 0, player.max_hp || 1);
     setBar(els.barMana, els.txtMana, player.mana || 0, player.max_mana || 1);
     setBar(els.barMove, els.txtMove, player.move || 0, player.max_move || 1);
-    els.hudLevel.textContent = `Lv ${player.level} ${player.char_class || ''}`;
+    const cls = String(player.char_class || '');
+    els.hudLevel.textContent = `Lv ${player.level} ${cls.charAt(0).toUpperCase() + cls.slice(1)}`;
     els.hudGold.textContent = `${player.gold || 0} gold`;
     // xp progress within the current level (exp is cumulative)
     const floor = player.exp_floor || 0, next = player.exp_to_level || 0;
@@ -1108,24 +1135,8 @@
       const h = m.querySelector('.modal-head');
       if (h) makeDraggable(m, h);
     });
-    const cl = document.getElementById('combat-log');
-    if (cl) {
-      makeDraggable(cl, cl.querySelector('.head'));
-      // remember the player's chosen feed height across reloads (v2: the feed
-      // moved to a bottom ticker strip, so stale v1 sizes must not apply)
-      try {
-        const saved = JSON.parse(lsGet('mh_clog_size2') || 'null');
-        if (saved && saved.h) cl.style.height = saved.h + 'px';
-        if (window.ResizeObserver) {
-          let t = null;
-          new ResizeObserver(() => {
-            if (cl.classList.contains('collapsed')) return;
-            clearTimeout(t);
-            t = setTimeout(() => lsSet('mh_clog_size2', JSON.stringify({ h: Math.round(cl.offsetHeight) })), 300);
-          }).observe(cl);
-        }
-      } catch (_) {}
-    }
+    // the message feed is docked in the right-hand side column (gauntlet
+    // graphics-01/r2): it is sized by the column, not dragged or resized
     const chat = document.getElementById('chat-panel');
     if (chat) { const ch = chat.querySelector('#chat-tabs, .chat-head, .head'); if (ch) makeDraggable(chat, ch); }
     // the combat "what you're fighting" boxes drag by their whole body
@@ -2894,17 +2905,13 @@
   function fitMinimapColumn() {
     const wrap = document.getElementById('minimap-wrap');
     if (!wrap || !els.minimap) return;
-    let band = 220;
+    // the map lives in the Tab drawer (gauntlet graphics-01/r4): size it to
+    // the drawer's inner width (the drawer measures 0 while closed -> 270)
+    let band = 296;
     try {
-      const sc = MH.game.scene.getScenes(true).find(s2 => s2.buildRoom);
-      const cam = sc.cameras.main;
-      const gc = sc.game.canvas.getBoundingClientRect();
-      // the world now renders inside the camera viewport; its right edge (in
-      // page px) marks where the UI band begins
-      const fx = gc.width / sc.scale.width;
-      const worldRight = gc.left + (cam.x + cam.width) * fx;
-      band = window.innerWidth - worldRight;
-    } catch (_) { /* scene not up yet */ }
+      const col = document.getElementById('side-col');
+      if (col && col.clientWidth) band = col.clientWidth;
+    } catch (_) { /* not mounted */ }
     const w = Math.round(Math.max(150, Math.min(300, band - 26)));
     els.minimap.width = mmLarge ? Math.max(w, 300) : w;
     els.minimap.height = mmLarge ? 420 : 150;   // compact sector map (Aether spec)
@@ -3939,7 +3946,9 @@
       MH.bus.on('flash', flash);
       MH.bus.on('move.blocked', e => {}); // scene flashes it
       MH.bus.on('chat', e => { chatLine(e.line); clogLine(e.line.replace(/\x1b\[[0-9;]*m/g, '').replace(/</g, '&lt;'), 'chat'); });
-      MH.bus.on('room.entered', ({ room }) => clogLine(`→ ${(room && room.name) || 'You move on'}`, 'info'));
+      // room arrivals are no longer echoed into the feed (gauntlet graphics-01/r3):
+      // the banner already names the room, and the feed should hold only fights
+      // and speech so an empty feed can hide and a busy one reads as combat
       MH.bus.on('target.set', setTarget);
       // optimistic target HP: move the bar the instant a hit lands instead of
       // waiting for the next server poll, then let target.update reconcile it
@@ -3955,19 +3964,87 @@
       // live combat log: every exchange visible at a glance
       // persistent, scrollable combat log keeping a long history; auto-scrolls
       // to the newest line unless you've scrolled up to read back
+      // Feed rhythm (gauntlet graphics-01): identical consecutive lines fold
+      // into one line with a xN counter instead of stacking, and the first
+      // line after each server combat round opens a new "beat" (hairline +
+      // gap) so an exchange reads as a group, not a stream.
+      let clogLast = null, clogBeat = false;
       const clogLine = (text, cls) => {
         clogLineRef = clogLine;
         const cl = els.combatLog, lines = els.combatLogLines;
         const nearBottom = cl.scrollHeight - cl.scrollTop - cl.clientHeight < 60;
+        if (clogLast && clogLast.el.parentNode === lines && clogLast.text === text && clogLast.cls === cls
+            && lines.lastElementChild === clogLast.el && Date.now() - clogLast.at < 20000) {
+          clogLast.n++;
+          let n = clogLast.el.querySelector('.clog-n');
+          if (!n) { n = document.createElement('span'); n.className = 'clog-n'; clogLast.el.appendChild(n); }
+          n.textContent = '\u00d7' + clogLast.n;
+          clogLast.at = Date.now();
+          // the ticker fades a line out after a few seconds: a fold is new
+          // information, so restart its enter/fade cycle
+          clogLast.el.style.animation = 'none';
+          void clogLast.el.offsetWidth;
+          clogLast.el.style.animation = '';
+          if (nearBottom) cl.scrollTop = cl.scrollHeight;
+          return;
+        }
+        // the ticker is one line per beat, not a paragraph: a long prose line
+        // (a wind-up's full flavour text, an environment event) is cut at its
+        // first clause so the pill stays readable at a glance (graphics-01/r3)
+        if (text.length > 64 && !/<[a-z]/i.test(text)) {
+          const m = text.match(/^(.{24,64}?[.!?])(?:\s|$)/) || text.match(/^(.{24,64}?)\s[(\u2014-]/);
+          if (m) text = m[1] + (/[.!?]$/.test(m[1]) ? '' : '\u2026');
+        }
         const div = document.createElement('div');
-        div.className = cls;
+        div.className = cls + (clogBeat ? ' beat' : '');
+        clogBeat = false;
+        // timestamp lives in the tooltip, not the line: the message text is
+        // the first thing read (gauntlet graphics-01/r2)
         const t = new Date();
-        div.innerHTML = `<span class="clog-t">${String(t.getHours()).padStart(2, '0')}:${String(t.getMinutes()).padStart(2, '0')}:${String(t.getSeconds()).padStart(2, '0')}</span> ${text}`;
+        div.title = `${String(t.getHours()).padStart(2, '0')}:${String(t.getMinutes()).padStart(2, '0')}:${String(t.getSeconds()).padStart(2, '0')}`;
+        div.innerHTML = text;
         lines.appendChild(div);
+        clogLast = { el: div, text, cls, n: 1, at: Date.now() };
         while (lines.children.length > 250) lines.removeChild(lines.firstChild);
         cl.classList.add('show');
         if (nearBottom) cl.scrollTop = cl.scrollHeight;
       };
+      MH.bus.on('combat.update', () => { clogBeat = true; });
+      MH.bus.on('combat.state', () => { clogBeat = true; clogLast = null; });
+      // body.in-combat: the room title yields the top edge to the target frame
+      MH.bus.on('combat.state', on => document.body.classList.toggle('in-combat', !!on));
+      // in a fight nothing textual floats over the scene: the scene bubbles
+      // short server lines that name a mob over that mob ("You swing at the
+      // grave keeper... miss!") — the ticker already carries every exchange
+      {
+        const rawEmit = MH.bus.emit.bind(MH.bus);
+        MH.bus.emit = (event, payload) => {
+          if (event === 'ambient.candidate') {
+            if (document.body.classList.contains('in-combat')) return;
+            // arrivals/departures already get an in-world "-> south" cue
+            if (/\b(leaves|arrives|has arrived|walks|wanders|flees)\b/i.test((payload && payload.line) || '')) return;
+          }
+          return rawEmit(event, payload);
+        };
+      }
+      // side drawer (sector map / contacts / quest): Tab or the PANELS button
+      {
+        const toggle = $('side-toggle');
+        const setDrawer = open => {
+          document.body.classList.toggle('side-open', open);
+          if (open && MH.fitMinimapColumn) { try { MH.fitMinimapColumn(); } catch (_) {} }
+        };
+        if (toggle) toggle.addEventListener('click', () => setDrawer(!document.body.classList.contains('side-open')));
+        window.addEventListener('keydown', e => {
+          if (['INPUT', 'SELECT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+          if (e.key === 'Tab' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+            e.preventDefault();
+            setDrawer(!document.body.classList.contains('side-open'));
+          } else if (e.key === 'Escape' && document.body.classList.contains('side-open')) {
+            setDrawer(false);
+          }
+        });
+      }
       // compact action toast (eat/drink/equip) + mirror into the combat log
       const itemToast = (icon, label, name, logText) => {
         toast(`${icon} ${label}`, name || '', 'item');
@@ -3975,7 +4052,9 @@
       };
       // header tools: clear + collapse
       const clogClear = $('clog-clear'), clogCollapse = $('clog-collapse');
-      if (clogClear) clogClear.addEventListener('click', e => { e.stopPropagation(); els.combatLogLines.innerHTML = ''; });
+      if (clogClear) clogClear.addEventListener('click', e => { e.stopPropagation(); els.combatLogLines.innerHTML = ''; els.combatLog.classList.remove('show'); });
+      // an empty feed is not a panel: it stays hidden until the first line lands
+      if (!els.combatLogLines.children.length) els.combatLog.classList.remove('show');
       if (clogCollapse) clogCollapse.addEventListener('click', e => {
         e.stopPropagation();
         const c = els.combatLog.classList.toggle('collapsed');

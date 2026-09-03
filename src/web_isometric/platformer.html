@@ -2065,7 +2065,515 @@
   .evo-track i { background: linear-gradient(90deg, #2a7ad0, #39c5e8) !important; }
   .dcard.sworn { box-shadow: 0 0 18px rgba(57,197,232,.22) !important; }
 
+
+  /* ════════════════════════════════════════════════════════════════
+     GAUNTLET graphics-01 / round-1 — HUD & FEED PASS (appended last; wins)
+     Goal: the world owns the middle of the screen. Chrome lives in the two
+     side bands and the bottom dock; nothing persistent sits over the room.
+     One focal point per situation: room name (explore) / target frame (fight).
+     ════════════════════════════════════════════════════════════════ */
+  /* -- room prose: out of the play area, into the free left band ------------ */
+  #room-desc { top: 64px !important; left: 14px !important; right: auto !important;
+    transform: none !important; width: 300px !important; max-width: 300px !important;
+    max-height: 250px; overflow-y: auto; scrollbar-width: thin;
+    font-style: normal !important; font-size: 12.5px !important; line-height: 1.5 !important;
+    padding: 10px 12px !important; border-radius: 8px !important;
+    background: rgba(10,16,22,.84) !important; border-left: 2px solid var(--gold) !important;
+    box-shadow: 0 6px 20px rgba(0,0,0,.45); z-index: 19; }
+  #room-desc::-webkit-scrollbar { width: 6px; }
+  /* -- top bar: quieter zone line, brighter room name ------------------------ */
+  #room-zone { font-size: 10.5px !important; color: #8fb3c4 !important; margin-top: 2px !important; }
+  #room-name { font-size: 20px !important; padding: 4px 20px !important; }
+  /* -- vitals (bottom-left): HP is the loud one; MP / MV secondary ----------- */
+  #hud .who { display: none !important; }          /* the crest already names you */
+  #hud { width: 286px !important; bottom: 14px !important; align-items: flex-end !important; }
+  #hud .bar { margin: 3px 0 !important; }
+  /* the readout was clipped: with top/bottom auto it sat below the 100%-tall fill */
+  #hud .bar > b { top: 0 !important; bottom: 0 !important; }
+  #hud .bar.hp { height: 20px !important; }
+  #hud .bar.hp::before { line-height: 20px; font-size: 9.5px; }
+  #hud .bar.hp > b { line-height: 20px !important; font-size: 12px !important; font-weight: 700; }
+  #hud .bar.mana, #hud .bar.move { height: 13px !important; }
+  #hud .bar.mana::before, #hud .bar.move::before { line-height: 13px; font-size: 8px; }
+  #hud .bar.mana > b, #hud .bar.move > b { line-height: 13px !important; font-size: 9.5px !important; }
+  #hud .bar.hp > i { background: linear-gradient(#ff8a94, #d8303f) !important; box-shadow: 0 0 10px rgba(255,90,106,.35) !important; }
+  #hud .bar:not(.xp)::after { background-image: repeating-linear-gradient(90deg, transparent 0 15px, rgba(7,11,16,.5) 15px 16px); }
+  #hud .row { font-family: var(--num-font); font-size: 9.5px !important; color: #8fb3c4 !important;
+    letter-spacing: .04em; margin-top: 3px !important; }
+  #hud-stances { margin-top: 4px !important; }
+  .hud-stance { font-size: 9.5px !important; padding: 3px 4px !important; }
+  #aether-sigil { width: 92px !important; height: 92px !important; bottom: 150px !important; }
+  /* -- action bar: labels readable at 720p --------------------------------- */
+  .hotslot .lbl { font-size: 10px !important; letter-spacing: .02em; color: #d8eef6 !important; }
+  .hotslot .key { font-size: 10px !important; }
+  /* -- message feed: a rhythm, not a wall ---------------------------------- */
+  #combat-log { height: 104px; width: min(640px, 58vw); background: rgba(10,16,22,.8) !important;
+    border-color: rgba(57,197,232,.22) !important; }
+  #combat-log-lines { padding: 2px 8px 0; font-size: 12px; line-height: 1.45; }
+  #combat-log-lines > div { padding: 1px 6px 1px 8px; border-left: 2px solid transparent; border-radius: 0 4px 4px 0; }
+  #combat-log .clog-t { font-family: var(--num-font); font-size: 9px; color: #5b7a8a; opacity: .45; margin-right: 5px; }
+  #combat-log:hover .clog-t { opacity: .9; }
+  #combat-log .you { color: #d6f3e4; border-left-color: rgba(70,224,160,.75); }
+  #combat-log .you b { color: #46e0a0; font-family: var(--num-font); font-size: 12.5px; }
+  #combat-log .them { color: #ffd6da; border-left-color: rgba(255,90,106,.85); background: rgba(255,90,106,.06); }
+  #combat-log .them b { color: #ff5a6a; font-family: var(--num-font); font-size: 13px; }
+  #combat-log .miss { color: #6f8a98; }
+  #combat-log .def { color: #bfeefb; border-left-color: rgba(57,197,232,.6); }
+  #combat-log .heal { color: #b9f0cf; border-left-color: rgba(70,224,160,.5); }
+  #combat-log .info { color: #a9c8d6; }
+  #combat-log .loot { color: #46e0a0; border-left-color: rgba(70,224,160,.75); }
+  #combat-log .chat { color: #9bdcef; border-left-color: rgba(57,197,232,.35); }
+  /* round separator: each server exchange starts a new beat */
+  #combat-log-lines > div.beat { margin-top: 4px; border-top: 1px solid rgba(57,197,232,.16); padding-top: 3px; }
+  /* repeated lines fold into a counter instead of stacking */
+  #combat-log .clog-n { float: right; font-family: var(--num-font); font-size: 9.5px; color: #8fb3c4;
+    border: 1px solid rgba(57,197,232,.3); border-radius: 8px; padding: 0 6px; margin-left: 6px; line-height: 14px; }
+  #combat-log .head { padding: 4px 9px !important; background: #0b141b !important; z-index: 3 !important; }
+  #combat-log .head span:first-child { font-size: 10px; letter-spacing: .16em; }
+  /* -- combat: one focal point, stacked, nothing over the feed -------------- */
+  #combat-chip { top: 58px !important; padding: 2px 12px !important; font-size: 10px !important;
+    letter-spacing: .18em !important; z-index: 24 !important; }
+  #target-frame { top: 76px !important; min-width: 300px !important; }
+  #target-frame .tf-nm { font-size: 15px; }
+  #target-frame .bar.hp { height: 16px !important; }
+  #target-frame #target-hp-txt { line-height: 16px; font-size: 10.5px; font-weight: 700; }
+  /* enemy intent + reactions sit under the target frame (the eye is already there),
+     not on top of the feed */
+  #enemy-windup { top: 146px !important; bottom: auto !important; width: 300px !important; z-index: 24 !important; }
+  #enemy-windup .nm { font-size: 11px; }
+  #reaction-strip { top: 182px !important; bottom: auto !important; z-index: 24 !important; }
+  #reaction-strip .rchip { font-size: 11.5px; padding: 4px 12px; background: rgba(10,16,22,.9); }
+  #reaction-strip .rchip b { color: var(--gold); font-family: var(--num-font); }
+  /* the "draws near" caption goes above the feed instead of under the target frame */
+  #dw-window { top: auto !important; bottom: 224px !important; font-size: 12.5px; padding: 6px 14px; }
+  /* cast bar: above the feed, not inside it */
+  #cast-bar { bottom: 224px !important; }
+
+  /* ════════════════════════════════════════════════════════════════
+     GAUNTLET graphics-01 / round-2 — HUD & FEED (appended last; wins)
+     The world owns the left + centre of the frame: the canvas starts under
+     the top bar and ends above a single 110px dock, and every persistent
+     side panel (sector map, contacts, quest, first-visit prose, feed) lives
+     in ONE right-hand column. With a 24x15 room that lands the camera on
+     zoom 2.25 (864x540 of 1280x720) instead of 1.75 (672x420).
+     ════════════════════════════════════════════════════════════════ */
+  #game-root { inset: 54px 0 110px 0 !important; }
+  #dock { height: 110px; }
+  /* the rune globe duplicated the HP/MP bars and cost a left inset */
+  #aether-sigil { display: none !important; }
+
+  /* -- right column ------------------------------------------------------- */
+  #side-col { position: absolute; right: 12px; top: 62px; bottom: 118px; width: 320px; z-index: 20;
+    display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
+  #side-col > * { pointer-events: auto; position: relative !important; left: auto !important; right: auto !important;
+    top: auto !important; bottom: auto !important; transform: none !important; width: auto !important;
+    max-width: none !important; min-width: 0 !important; margin: 0 !important; flex: none; }
+  #side-col > #minimap-wrap { padding: 4px 7px 7px !important; }
+  #side-col > #minimap-wrap .mm-head { font-size: 10.5px; color: #a9c3d0; padding: 2px 1px 4px; }
+  #side-col > #minimap-wrap #minimap { max-width: 100%; }
+  #side-col > #contacts { max-height: 190px !important; overflow-y: auto; }
+  #side-col > #quest-tracker { display: none; }
+  #side-col > #quest-tracker.show { display: block; }
+  #side-col > #room-desc { display: none; opacity: 1 !important; max-height: 168px !important; overflow-y: auto;
+    font-size: 12.5px !important; line-height: 1.45 !important; padding: 8px 11px !important; }
+  #side-col > #room-desc.show { display: block; }
+  #side-col > #combat-log { flex: 1 1 auto !important; min-height: 92px !important; height: auto !important;
+    max-height: none !important; resize: none !important; overflow-y: auto !important;
+    background: rgba(10,16,22,.86) !important; }
+  #side-col > #combat-log.collapsed { flex: none !important; height: 28px !important; }
+  #side-col > #combat-log::after { display: none; }
+
+  /* -- feed: near-white text, no timestamps, hits carry the colour ---------- */
+  #combat-log .head { padding: 5px 9px !important; }
+  #combat-log .head span:first-child { font-size: 10.5px; color: #bfeefb; }
+  #combat-log-lines { padding: 3px 8px 5px; font-size: 12.5px; line-height: 1.4; }
+  #combat-log-lines > div { padding: 2px 6px 2px 8px; }
+  #combat-log .info { color: #dbe9f0; }
+  #combat-log .you { color: #e6f8ee; }
+  #combat-log .you b { color: #5cf0b0; font-size: 13px; }
+  #combat-log .them { color: #ffe3e6; background: rgba(255,90,106,.09); }
+  #combat-log .them b { color: #ff6a78; font-size: 13.5px; }
+  #combat-log .miss { color: #93a8b4; }
+  #combat-log .def { color: #d2f0fb; }
+  #combat-log .heal { color: #cdf5dc; }
+  #combat-log .chat { color: #b4e6f4; }
+  #combat-log .clog-n { font-size: 10px; color: #bfeefb; }
+  #combat-log-lines > div.beat { margin-top: 5px; padding-top: 4px; }
+
+  /* -- contacts + quest: names first, level second ---------------------------- */
+  .ct-head { font-size: 10.5px; color: #bfeefb; }
+  .ct-row { padding: 3px 5px; gap: 8px; }
+  .ct-nm { font-size: 13px; color: #eef7fb; }
+  .ct-lv { font-size: 10.5px; color: #a9c3d0; }
+  #quest-tracker .qt-hd { font-size: 10px !important; color: #a9c3d0 !important; }
+  #quest-tracker .qt-nm { font-size: 13px !important; }
+  #quest-tracker .qt-obj { font-size: 12px !important; color: #dbe9f0 !important; }
+  #quest-tracker .qt-obj .qt-cnt { font-size: 11px; color: #a9c3d0; }
+
+  /* -- vitals (dock, bottom-left): one big HP bar, MP/MV half-width under it -- */
+  #hud { left: 12px !important; right: auto !important; bottom: 10px !important; width: 324px !important;
+    gap: 8px !important; align-items: flex-end !important; }
+  #hud .stats { display: grid !important; grid-template-columns: 1fr 1fr; column-gap: 5px; row-gap: 3px; align-items: center; }
+  #hud .bar { margin: 0 !important; }
+  #hud .bar.hp, #hud .bar.xp, #hud .row, #hud-stances { grid-column: 1 / -1; }
+  #hud .bar.hp { height: 24px !important; border: 1px solid rgba(255,130,140,.5) !important;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.6), 0 0 12px rgba(255,90,106,.25) !important; }
+  #hud .bar.hp::before { line-height: 24px; font-size: 10.5px; font-weight: 700; color: #fff; }
+  #hud .bar.hp > b { line-height: 24px !important; font-size: 13.5px !important; font-weight: 700; color: #fff !important; }
+  #hud .bar.hp > i { background: linear-gradient(#ff8f98, #d8283a) !important; }
+  #hud .bar.mana, #hud .bar.move { height: 13px !important; }
+  #hud .bar.mana::before, #hud .bar.move::before { line-height: 13px; font-size: 8.5px; }
+  #hud .bar.mana > b, #hud .bar.move > b { line-height: 13px !important; font-size: 10px !important; color: #fff !important; }
+  #hud .bar.xp { height: 4px !important; }
+  #hud .bar:not(.xp)::after { background-image: repeating-linear-gradient(90deg, transparent 0 23px, rgba(7,11,16,.45) 23px 24px); }
+  #hud .row { font-size: 11px !important; color: #d6e8f0 !important; margin-top: 0 !important; line-height: 14px; }
+  #hud-stances { margin-top: 0 !important; gap: 4px; }
+  .hud-stance { font-size: 10.5px !important; padding: 2px 4px !important; line-height: 14px; }
+  /* HP state carried by the bar itself (set from ui-arpg.js) */
+  #hud.hp-hurt .bar.hp > i { background: linear-gradient(#ffb478, #d8702a) !important; }
+  #hud.hp-low .bar.hp > i { background: linear-gradient(#ff7a86, #c81e30) !important; animation: hpLow .9s ease-in-out infinite; }
+  #hud.hp-low .bar.hp { box-shadow: 0 0 0 1px rgba(0,0,0,.6), 0 0 18px rgba(255,60,80,.65) !important; }
+  @keyframes hpLow { 0%,100% { filter: brightness(1); } 50% { filter: brightness(1.6); } }
+
+  /* -- action bar + dock right side ------------------------------------------ */
+  #hotbar { bottom: 46px !important; gap: 6px !important; }
+  .hotslot { width: 54px !important; height: 50px !important; }
+  .hotslot .lbl { font-size: 11px !important; max-width: 50px !important; color: #eef7fb !important; }
+  .hotslot .key { font-size: 11px !important; font-weight: 700; }
+  .hotslot .prof, .hotslot .cost { font-size: 9px !important; }
+  #command-row { width: 560px !important; bottom: 8px !important; }
+  #command-input { font-size: 13px; padding: 7px 12px; }
+  #belt { left: auto !important; right: 130px !important; bottom: 56px !important; }
+  #compass { right: 14px !important; bottom: 10px !important; }
+  #help-btn { left: 12px !important; right: auto !important; bottom: 124px !important; }
+
+  /* -- combat stack: target -> telegraph -> reactions, tight under the top bar - */
+  #combat-chip { top: 16px !important; left: calc(50% - 252px) !important; transform: none !important;
+    z-index: 42 !important; font-size: 10.5px !important; padding: 3px 12px !important; }
+  #target-frame { top: 62px !important; min-width: 320px !important; padding: 8px 12px !important; }
+  #target-frame .tf-nm { font-size: 16px; }
+  #target-frame .tf-tag { font-size: 10.5px; }
+  #target-frame .bar.hp { height: 18px !important; }
+  #target-frame #target-hp-txt { line-height: 18px; font-size: 11.5px; font-weight: 700; }
+  #enemy-windup { top: 136px !important; bottom: auto !important; width: 320px !important; padding: 5px 8px !important; }
+  #enemy-windup .nm { font-size: 12px; color: #ffb8a6; }
+  #enemy-windup .track { height: 9px; }
+  #reaction-strip { top: 178px !important; bottom: auto !important; }
+  #reaction-strip .rchip { font-size: 12px; padding: 4px 12px; color: #eef7fb; }
+  #reaction-strip .rchip b { font-size: 12px; }
+
+  /* -- transient overlays: keep them off the column and off the top bar ------- */
+  #dw-window { top: auto !important; bottom: 120px !important; }
+  #cast-bar { bottom: 156px !important; }
+  #buff-bar { top: 15px !important; left: 250px !important; max-width: 270px; z-index: 42; }
+  #recovery-panel { left: auto !important; right: 344px !important; top: 66px !important; bottom: auto !important; }
+  #detail-card { right: 344px !important; top: 66px !important; }
+  /* top bar secondary text a notch larger */
+  #crest-sub { font-size: 10.5px; }
+  #room-zone { font-size: 11px !important; }
+
+  /* ════════════════════════════════════════════════════════════════
+     GAUNTLET graphics-01 — HUD & FEED, round 3 (appended last; wins)
+     BrowserQuest's edge is vertical: one thin strip, world edge to edge.
+     The camera zoom-fits the 24x15 room in quarter steps from the chrome
+     rects, so the chrome budget is exact: top bar 40px + dock 64px leaves a
+     616px canvas -> 604px viewport -> zoom 2.5 (room 960x600 of 1280x720,
+     75% of the width, 83% of the height) instead of 2.25 (864x540).
+     The right column narrows to 280px so it never forces the zoom down.
+     The command line is hidden until Enter opens it; the portrait, the
+     XP bar and the help button leave the dock (crest / row text / H key).
+     ════════════════════════════════════════════════════════════════ */
+  #game-root { inset: 40px 0 64px 0 !important; }
+  #dock { height: 64px !important; }
+  #topbar { height: 40px !important; }
+  /* -- top bar: one line, zone inline after the name ------------------------ */
+  #crest { top: 4px !important; gap: 8px !important; }
+  #crest-portrait { width: 32px !important; height: 32px !important; }
+  #crest-name { font-size: 13.5px; }
+  #crest-sub { font-size: 10px; }
+  #room-banner { top: 3px !important; white-space: nowrap; }
+  #room-name { font-size: 17px !important; padding: 2px 16px !important; line-height: 20px; }
+  #room-zone { margin-top: 1px !important; font-size: 10px !important; line-height: 12px; }
+  #sky-chip { top: 5px !important; right: 12px !important; }
+  /* the centre chip column (hazards, context actions, momentum, flanked) packs UP
+     from the dock instead of down from the title: prompts sit by the action bar
+     and the top edge keeps a single focal point (title / target frame) */
+  #center-stack { top: auto !important; bottom: 70px !important; flex-direction: column-reverse !important; }
+  #combat-chip { top: 9px !important; }
+  #buff-bar { top: 6px !important; }
+  #path-chip { top: 44px !important; } #mount-chip { top: 44px !important; }
+  /* -- dock: vitals | action bar | belt + compass, all inside 64px ------------ */
+  /* fixed 52px box: the scene measures this rect for the play-area insets, so it must
+     never rise above the canvas bottom (it would become a 350px LEFT inset) */
+  #hud { left: 10px !important; bottom: 6px !important; width: 340px !important; gap: 0 !important;
+    height: 52px !important; box-sizing: border-box; }
+  #hud-portrait-wrap { display: none !important; }        /* the crest is the portrait */
+  #hud .stats { grid-template-columns: 1fr 1fr auto !important; column-gap: 5px !important; row-gap: 3px !important; }
+  #hud .bar.hp { grid-column: 1 / 3 !important; height: 22px !important; }
+  #hud .bar.hp::before { line-height: 22px; font-size: 10.5px; }
+  #hud .bar.hp > b { line-height: 22px !important; font-size: 13.5px !important; }
+  #hud .bar.mana { grid-column: 1 !important; } #hud .bar.move { grid-column: 2 !important; }
+  #hud .bar.mana, #hud .bar.move { height: 12px !important; }
+  #hud .bar.mana::before, #hud .bar.move::before { line-height: 12px; font-size: 8px; }
+  #hud .bar.mana > b, #hud .bar.move > b { line-height: 12px !important; font-size: 9.5px !important; }
+  #hud .bar.xp { display: none !important; }              /* "x% xp" lives in the row */
+  #hud .row { grid-column: 1 / 3 !important; font-size: 12px !important; line-height: 14px; color: #eef7fb !important; }
+  #hud-stances { grid-column: 3 !important; grid-row: 1 / 4; flex-direction: column; gap: 2px !important;
+    justify-content: space-between; margin-left: 4px; }
+  .hud-stance { font-size: 10px !important; padding: 0 6px !important; line-height: 14px; height: 16px;
+    box-sizing: border-box; min-width: 66px; }
+  .hud-stance .si { font-size: 10px; }
+  #hotbar { bottom: 8px !important; gap: 6px !important; }
+  .hotslot { width: 50px !important; height: 48px !important; }
+  .hotslot .lbl { max-width: 46px !important; }
+  #belt { right: 132px !important; bottom: 10px !important; }
+  .belt-slot { height: 42px !important; }
+  #compass { right: 10px !important; bottom: 1px !important;
+    grid-template-columns: repeat(4, 26px) !important; grid-auto-rows: 19px !important; }
+  #drawer-tab { display: none !important; }                /* ~ still opens the terminal */
+  #help-btn { display: none !important; }                  /* H and the top-bar ? */
+  /* the command line is a transient: Enter opens it above the dock, it hides on blur */
+  #command-row { bottom: 72px !important; opacity: 0; pointer-events: none; transition: opacity .15s; }
+  #command-row:focus-within { opacity: 1; pointer-events: auto; }
+  #command-input { background: rgba(10,16,22,.95); }
+  /* -- right column: 280px, never wider than the zoom can afford -------------- */
+  #side-col { width: 280px !important; right: 10px !important; top: 46px !important; bottom: 70px !important; gap: 6px !important; }
+  #side-col > #minimap-wrap #minimap { max-width: 100%; height: auto; }
+  #side-col > #contacts { max-height: 150px !important; }
+  /* the feed anchors to the bottom of the column: five lines, then it scrolls */
+  #side-col > #combat-log { flex: 0 1 auto !important; margin-top: auto !important; max-height: 148px !important;
+    min-height: 0 !important; }
+  #side-col > #combat-log:not(.show) { display: none !important; }
+  #combat-log-lines { font-size: 13px; line-height: 1.35; }
+  #combat-log-lines > div { padding: 2px 6px 2px 8px; }
+  /* rhythm: the newest lines are bright, older ones settle back */
+  @keyframes clogAge { from { opacity: 1; } to { opacity: .55; } }
+  #combat-log-lines > div { animation: clogAge 10s ease-out 8s forwards; }
+  #combat-log:hover #combat-log-lines > div { animation: none; opacity: 1; }
+  /* -- combat stack under the 40px bar ---------------------------------------- */
+  #target-frame { top: 46px !important; }
+  #enemy-windup { top: 120px !important; }
+  #reaction-strip { top: 160px !important; }
+  /* -- transients above the dock, not in it ----------------------------------- */
+  #dw-window { bottom: 76px !important; }
+  #cast-bar { bottom: 110px !important; }
+  #recovery-panel, #detail-card { right: 300px !important; top: 48px !important; }
+  /* ════════════════════════════════════════════════════════════════
+     GAUNTLET graphics-01 — HUD & FEED, round 4 (appended last; wins)
+     One strip, no column, no top bar. The scene zoom-fits the 24x15 room in
+     quarter steps from the chrome rects; with no top bar and a 48px dock the
+     canvas is 672px -> 660px viewport -> zoom 2.75: the room is 1056x660 of
+     1280x720 (82% of the width, 92% of the height; was 960x600 at 2.5).
+     Sector map / contacts / quest become a Tab-toggled drawer. The feed is a
+     3-line ticker on the world's bottom edge. Elements that float over the
+     canvas but must NOT reserve play-area insets (the scene measures the
+     rects of #hud, #compass, #combat-log, #minimap-wrap, #contacts,
+     #quest-tracker) are `visibility:hidden` with visible children: the scene
+     skips a hidden box, the content still renders.
+     ════════════════════════════════════════════════════════════════ */
+  #game-root { inset: 0 0 48px 0 !important; }
+  #topbar, #crest { display: none !important; }        /* name/class/level live in the dock row */
+  #dock { height: 62px !important; border-top: none !important;
+    background: linear-gradient(rgba(7,9,13,0) 0px, rgba(7,9,13,.72) 12px, rgba(7,9,13,.96) 20px, rgba(6,8,12,.98) 100%) !important; }
+  /* -- room title: one translucent pill at the top edge, gone in combat ------- */
+  #room-banner { top: 6px !important; }
+  #room-name { font-size: 16px !important; padding: 3px 14px !important; line-height: 20px;
+    background: rgba(8,12,18,.74) !important; border-color: rgba(140,170,190,.35) !important; }
+  #room-zone { margin-top: 2px !important; font-size: 11.5px !important; line-height: 13px; color: #e2eef5 !important;
+    text-shadow: 0 1px 2px #000, 0 0 6px #000; }
+  body.in-combat #room-banner { display: none !important; }
+  #sky-chip { top: 6px !important; right: 10px !important; padding: 3px 8px !important; }
+  #sky-label { font-size: 12px !important; color: #e2eef5 !important; }
+  /* -- drawer: map / contacts / quest, Tab or the PANELS button --------------- */
+  #side-col { display: none; position: absolute !important; right: 10px !important; top: 44px !important;
+    bottom: 100px !important; width: 288px !important; z-index: 45 !important; box-sizing: border-box;
+    padding: 8px; gap: 0 !important; overflow-y: auto; pointer-events: auto !important;
+    background: rgba(8,12,18,.93); border: 1px solid rgba(140,170,190,.35); border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0,0,0,.6); }
+  body.side-open #side-col { display: flex; }
+  #side-col > * { visibility: hidden; background: none !important; border: none !important; box-shadow: none !important;
+    padding: 0 !important; }
+  #side-col > * > * { visibility: visible; }
+  #side-col > * + *::before { content: ''; display: block; visibility: visible; height: 1px; margin: 8px 0;
+    background: rgba(140,170,190,.22); }
+  #side-col > #minimap-wrap #minimap { max-width: 100%; height: auto; }
+  #side-col > #contacts { max-height: none !important; overflow: visible !important; }
+  #side-col > #room-desc.show { max-height: none !important; }
+  #side-col .mm-head, .ct-head, #quest-tracker .qt-hd { font-size: 12px !important; color: #cfe2ec !important; letter-spacing: .08em; }
+  .ct-nm { font-size: 13.5px; } .ct-lv { font-size: 12px; color: #c4d6e0; }
+  #quest-tracker .qt-nm { font-size: 14px !important; }
+  #quest-tracker .qt-obj { font-size: 13px !important; color: #e6f0f5 !important; }
+  #quest-tracker .qt-obj .qt-cnt { font-size: 12px; }
+  #side-col > #room-desc { font-size: 13px !important; line-height: 1.45 !important; }
+  #side-toggle { position: absolute; right: 10px; bottom: 16px; z-index: 30; cursor: pointer;
+    font: 600 12px var(--ui-font, 'Segoe UI', sans-serif); letter-spacing: .06em; color: #cfe2ec;
+    background: rgba(12,18,26,.9); border: 1px solid rgba(140,170,190,.35); border-radius: 8px; padding: 4px 9px; }
+  #side-toggle b { font-family: var(--num-font, monospace); font-weight: 700; font-size: 11px; color: #e8c168; margin-left: 5px;
+    border: 1px solid rgba(232,193,104,.45); border-radius: 4px; padding: 0 4px; }
+  #side-toggle:hover, body.side-open #side-toggle { color: #fff; border-color: #e8c168; }
+  /* -- feed: a 3-line ticker on the world's bottom edge, 5s lifetime ----------- */
+  #combat-log { position: absolute !important; left: 50% !important; right: auto !important; top: auto !important;
+    bottom: 68px !important; transform: translateX(-50%) !important; width: 640px !important; max-width: 60vw !important;
+    height: auto !important; max-height: none !important; min-height: 0 !important; padding: 0 !important; margin: 0 !important;
+    background: none !important; border: none !important; box-shadow: none !important; overflow: visible !important;
+    pointer-events: none !important; z-index: 24 !important; visibility: hidden; resize: none !important; }
+  #combat-log.show { display: block !important; }
+  #combat-log:not(.show) { display: none !important; }
+  #combat-log .head { display: none !important; }
+  #combat-log-lines { visibility: visible; display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 0 !important; }
+  #combat-log-lines > div { display: none; }
+  #combat-log-lines > div:nth-last-child(-n+3) { display: block; }
+  #combat-log-lines > div { font-size: 13.5px !important; line-height: 18px !important; padding: 2px 12px !important; margin: 0 !important;
+    border-radius: 9px; background: rgba(8,12,18,.76) !important; border: 1px solid rgba(255,255,255,.08); color: #eef7fb;
+    text-shadow: 0 1px 2px #000; max-width: 100%; box-sizing: border-box; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    animation: clogTick .3s ease-out, clogFade .7s ease-in 6.5s forwards !important; }
+  #combat-log-lines > div.beat { padding-top: 2px !important; border-top: none; }
+  #combat-log .them { background: rgba(110,18,28,.82) !important; color: #ffe8ea; }
+  #combat-log .them b { font-size: 14px; color: #ff8a94; }
+  #combat-log .you b { font-size: 14px; color: #7cf5c0; }
+  #combat-log .miss { color: #b7c6cf; }
+  #combat-log .clog-n { font-size: 12px; color: #e8c168; margin-left: 6px; }
+  @keyframes clogTick { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  @keyframes clogFade { to { opacity: 0; } }
+  /* -- dock, left: one big HP bar, MP/MV beside it, row + stances under -------- */
+  #hud { left: 10px !important; bottom: 4px !important; width: 484px !important; height: 52px !important;
+    padding: 5px 8px !important; box-sizing: border-box; visibility: hidden;
+    background: none !important; border: none !important; box-shadow: none !important; }
+  #hud > * { visibility: visible; }
+  #hud .stats { display: grid !important; grid-template-columns: 1fr 98px 98px !important; grid-template-rows: 22px 16px;
+    column-gap: 5px !important; row-gap: 4px !important; align-items: center; }
+  #hud .bar.hp { grid-column: 1 !important; grid-row: 1; height: 22px !important; }
+  #hud .bar.mana { grid-column: 2 !important; grid-row: 1; height: 18px !important; }
+  #hud .bar.move { grid-column: 3 !important; grid-row: 1; height: 18px !important; }
+  #hud .bar.mana::before, #hud .bar.move::before { line-height: 18px; font-size: 10px; color: #fff; }
+  #hud .bar.mana > b, #hud .bar.move > b { line-height: 18px !important; font-size: 12px !important; font-weight: 700; }
+  #hud .row { grid-column: 1 !important; grid-row: 2; font-size: 12px !important; line-height: 16px; color: #eef7fb !important;
+    justify-content: flex-start !important; gap: 0 !important; overflow: hidden; white-space: nowrap; }
+  #hud .row span:empty { display: none; }
+  #hud .row span + span:not(:empty)::before { content: '·'; margin: 0 6px; color: #8fb3c4; }
+  #hud-stances { grid-column: 2 / 4 !important; grid-row: 2; flex-direction: row !important; gap: 4px !important;
+    margin: 0 !important; justify-content: stretch; }
+  .hud-stance { flex: 1 1 0; height: 16px; min-width: 0 !important; padding: 0 !important; font-size: 12px !important;
+    line-height: 16px; letter-spacing: .02em; box-sizing: border-box; }
+  .hud-stance .si { display: none; }
+  /* -- dock, centre: action bar with 12px labels ------------------------------ */
+  #hotbar { left: 500px !important; transform: none !important; bottom: 5px !important; gap: 5px !important; width: auto !important; }
+  .hotslot { width: 44px !important; height: 50px !important; padding: 0 !important; justify-content: flex-end !important; }
+  .hotslot canvas { width: 18px; height: 18px; margin-bottom: 1px; }
+  .hotslot .lbl { font-size: 12px !important; line-height: 14px; max-width: 42px !important; margin-bottom: 3px; color: #eef7fb !important; }
+  .hotslot .key { font-size: 11px !important; top: 2px !important; left: 4px !important; }
+  .hotslot .prof { display: none !important; }        /* proficiency lives in the tooltip */
+  .hotslot .cost { font-size: 11px !important; top: 2px !important; bottom: auto !important; right: 4px !important; }
+  #belt { left: 996px !important; right: auto !important; bottom: 5px !important; }
+  .belt-slot { height: 46px !important; }
+  .belt-slot .bkey { font-size: 10px; } .belt-slot .bcount { font-size: 11px; }
+  /* -- compass floats in the void right of the room (never a play-area inset) -- */
+  #compass { right: 8px !important; bottom: 70px !important; visibility: hidden; background: none !important;
+    border: none !important; padding: 0 !important; box-shadow: none !important;
+    grid-template-columns: repeat(4, 23px) !important; grid-auto-rows: 20px !important; gap: 3px !important; }
+  #compass > * { visibility: visible; }
+  #compass .spacer { visibility: hidden; }
+  .cmp { font-size: 11px; background: rgba(8,12,18,.82); }
+  /* -- combat stack at the top edge (the title hides in combat) --------------- */
+  #combat-chip { top: 14px !important; left: auto !important; right: calc(50% + 176px) !important; font-size: 11.5px !important; }
+  #target-frame { top: 8px !important; }
+  #target-frame .tf-nm { font-size: 17px; }
+  #target-frame .tf-tag { font-size: 12px; }
+  #target-frame #target-hp-txt { font-size: 12.5px; }
+  #enemy-windup { top: 84px !important; }
+  #enemy-windup .nm { font-size: 12.5px; }
+  #reaction-strip { top: 124px !important; }
+  #reaction-strip .rchip { font-size: 13px; }
+  #reaction-strip .rchip b { font-size: 13px; }
+  #buff-bar { top: 44px !important; left: 10px !important; }
+  #path-chip, #mount-chip { top: 8px !important; }
+  /* -- transients: above the ticker, never in the dock ------------------------ */
+  #center-stack { bottom: 140px !important; }
+  #dw-window { top: 170px !important; bottom: auto !important; }
+  #cast-bar { bottom: 186px !important; }
+  #command-row { bottom: 66px !important; }
+  #recovery-panel, #detail-card { right: 10px !important; top: 44px !important; }
+  #party-bar { top: 44px !important; }
+
+  /* ════════════════════════════════════════════════════════════════
+     GAUNTLET graphics-01 — HUD & FEED, round 3 (appended last; wins)
+     1. The world owns the screen: the canvas is 48px wider than the room needs
+        on each side and 6px taller at both ends, so the scene's quarter-step
+        zoom-fit lands on 3.0 (room 1152x720 = 90% x 100% of 1280x720; the
+        r2 fit was 2.75 = 1056x660). The bottom wall row sits under the
+        translucent dock; the 64px side margins hold no chrome.
+     2. One compact bottom cluster: HP (26px, 15px numerals) with MP/MV beside
+        it; 5 visible actions with 12.5px labels + a "more" tab (keys 1-0
+        still fire everything); belt, compass and PANELS in the same 62px.
+     3. One focal point at the top: the room pill (or the target frame in a
+        fight). The clock chip is a dim ghost until hovered and hides in combat.
+     ════════════════════════════════════════════════════════════════ */
+  #game-root { inset: -6px 48px -6px 48px !important; }
+  body { background: #0b0c10; }
+  #aether-grid { opacity: .35; }
+  #dock { height: 62px !important;
+    background: linear-gradient(rgba(7,9,13,0) 0px, rgba(7,9,13,.62) 10px, rgba(7,9,13,.93) 22px, rgba(6,8,12,.98) 100%) !important; }
+  /* -- top edge -------------------------------------------------------------- */
+  #room-name { font-size: 17px !important; padding: 4px 16px !important; line-height: 21px; color: #f4dc9a !important;
+    text-shadow: 0 1px 2px #000, 0 0 10px rgba(232,193,104,.35) !important; }
+  #room-zone { font-size: 12px !important; letter-spacing: .12em !important; color: #eef4f8 !important; }
+  #sky-chip { opacity: .55; transition: opacity .25s; padding: 2px 7px !important; }
+  #sky-chip:hover { opacity: 1; }
+  #sky-chip:not(:hover) #help-toggle, #sky-chip:not(:hover) #gfx-toggle, #sky-chip:not(:hover) #ambience-toggle { display: none; }
+  body.in-combat #sky-chip { opacity: 0; pointer-events: none; }
+  body.in-combat #sky-chip:hover { opacity: 1; pointer-events: auto; }
+  #buff-bar { top: 40px !important; }
+  /* -- vitals: HP is the one big readout, MP/MV ride beside it ---------------- */
+  #hud { width: 404px !important; height: 56px !important; bottom: 3px !important; padding: 4px 6px !important; }
+  #hud .stats { grid-template-columns: 1fr 86px 86px !important; grid-template-rows: 26px 17px !important;
+    column-gap: 5px !important; row-gap: 4px !important; }
+  #hud .bar.hp { height: 26px !important; border-radius: 6px !important; box-shadow: 0 0 0 1px rgba(0,0,0,.6), 0 0 10px rgba(224,80,80,.25); }
+  #hud .bar.hp::before { line-height: 26px; font-size: 11px; font-weight: 700; color: #fff; }
+  #hud .bar.hp > b { line-height: 26px !important; font-size: 15px !important; font-weight: 700; letter-spacing: .02em; }
+  #hud .bar.mana, #hud .bar.move { height: 20px !important; border-radius: 5px !important; }
+  #hud .bar.mana::before, #hud .bar.move::before { line-height: 20px; font-size: 10px; }
+  #hud .bar.mana > b, #hud .bar.move > b { line-height: 20px !important; font-size: 12.5px !important; }
+  #hud .row { grid-column: 1 / 3 !important; font-size: 12.5px !important; line-height: 17px; color: #f2f7fa !important; text-shadow: 0 1px 2px #000; }
+  /* the stance row collapses to the active chip; hover the cell to switch */
+  #hud-stances { grid-column: 3 !important; justify-content: flex-end; }
+  #hud-stances:not(:hover) .hud-stance:not(.active) { display: none; }
+  .hud-stance { height: 17px; line-height: 17px; font-size: 12px !important; flex: 0 0 auto; padding: 0 6px !important; }
+  #hud-stances:hover { position: relative; z-index: 3; overflow: visible; }
+  .hud-stance.active::before { content: '\25c6'; font-size: 8px; margin-right: 5px; opacity: .8; }
+  /* -- actions: belt (Q + one), 5 slots, "more" tab --------------------------- */
+  #belt { left: 418px !important; right: auto !important; bottom: 5px !important; gap: 4px !important; }
+  .belt-slot { width: 34px !important; height: 50px !important; }
+  .belt-slot:nth-child(n+3) { display: none !important; }
+  #hotbar { left: 500px !important; bottom: 5px !important; gap: 6px !important; align-items: stretch; }
+  .hotslot { width: 54px !important; height: 50px !important; border-radius: 7px !important;
+    background: rgba(14,18,26,.9) !important; border-color: rgba(140,170,190,.28) !important; }
+  .hotslot .lbl { font-size: 12.5px !important; line-height: 15px; max-width: 52px !important; margin-bottom: 3px; }
+  .hotslot .key { font-size: 11px !important; color: #e8c168 !important; }
+  .hotslot canvas { width: 20px; height: 20px; }
+  #hotbar.compact .hotslot.tail { display: none !important; }
+  #hotbar:not(.compact) { gap: 4px !important; }
+  #hotbar:not(.compact) .hotslot { width: 46px !important; }
+  #hotbar:not(.compact) .hotslot .lbl { font-size: 11.5px !important; max-width: 44px !important; }
+  .hotbar-more { width: 18px; align-self: stretch; display: flex; align-items: center; justify-content: center;
+    border-radius: 7px; cursor: pointer; color: #cfe2ec; font-size: 13px; user-select: none;
+    background: rgba(14,18,26,.7); border: 1px solid rgba(140,170,190,.22); }
+  .hotbar-more:hover { color: #fff; border-color: #e8c168; }
+  /* -- right: compass + PANELS inside the dock, never over the room ---------- */
+  /* (the compass box stays visibility:hidden with visible cells: the canvas now
+     runs under the dock, so a visible box there would become a right inset) */
+  #compass { right: 150px !important; bottom: 1px !important; top: auto !important;
+    grid-template-columns: repeat(4, 22px) !important; grid-auto-rows: 18px !important; gap: 2px !important; z-index: 21 !important; }
+  .cmp { font-size: 10.5px; }
+  .cmp.on { color: #f4dc9a; }
+  #side-toggle { bottom: 20px !important; right: 8px !important; padding: 3px 8px !important; font-size: 11.5px !important; }
+  /* -- feed: newest line leads, the two before it settle back ----------------- */
+  #combat-log { bottom: 68px !important; }
+  #combat-log-lines > div { font-size: 14px !important; line-height: 19px !important; }
+  #combat-log-lines > div:nth-last-child(2), #combat-log-lines > div:nth-last-child(3) { opacity: .78; font-size: 13px !important; }
+  #combat-log-lines > div:nth-last-child(3) { opacity: .6; }
+  #dw-window { top: 150px !important; }
   </style>
+
 </head>
 <body>
   <div id="game-root"></div>
@@ -2083,7 +2591,6 @@
   <div id="event-banner"></div>
   <div id="rest-chip"></div>
   <div id="recovery-panel"></div>
-  <div id="quest-tracker"></div>
   <div id="party-bar"></div>
   <div id="party-menu"></div>
   <div id="whisper-host"></div>
@@ -2150,7 +2657,6 @@
     <div class="gfx-hint">Reduced motion calms shake, flashes &amp; zooms. Press <b>?</b> for controls.</div>
     <button id="gfx-controls" type="button" class="gfx-btn">⌨ Controls &amp; Keybinds</button>
   </div>
-  <div id="room-desc"></div>
   <div id="flash-line"></div>
 
   <div id="dock"></div>
@@ -2185,7 +2691,6 @@
   <div id="mount-chip" title="click to dismount" style="position:absolute; top:38px; left:50%; transform:translateX(calc(-50% - 240px)); z-index:20; display:none; padding:3px 10px; background:rgba(13,15,21,0.85); border:1px solid var(--border); border-radius:4px; color:#d8b070; font-size:11px; letter-spacing:1px; cursor:pointer;"></div>
   <div id="finisher-chip">☠ FINISH THEM — R</div>
   <div id="stance-bar"><div class="sthead">STANCE</div></div>
-  <div id="combat-log" class="show"><div class="head"><span>✦ MESSAGE FEED</span><span class="clog-tools"><span id="clog-clear" title="clear">🗑</span><span id="clog-collapse" title="collapse / expand">▾</span></span></div><div id="combat-log-lines"></div></div>
   <div id="cast-bar"><div class="nm"></div><div class="track"><div class="fill"></div></div></div>
   <div id="enemy-windup"><div class="nm"></div><div class="track"><div class="fill"></div></div></div>
   <div id="reaction-strip">
@@ -2195,16 +2700,27 @@
   </div>
   <div id="loot-toast"><div class="head">LOOT</div><div id="loot-lines"></div></div>
   <div id="mob-tip"></div>
+
+
+  <!-- gauntlet graphics-01/r2: every persistent side panel lives in ONE right-hand
+       column so the world keeps the whole left + centre of the frame -->
+  <div id="side-col">
   <div id="minimap-wrap">
     <div class="mm-head"><span>SECTOR MAP</span><span style="display:flex;gap:8px">
       <span id="mm-level" title="view another level (sewers below, towers above)">↕</span><span id="mm-out" title="zoom out (wheel)">−</span><span id="mm-in" title="zoom in (wheel)">+</span><span id="mm-toggle" title="resize (M)">⤢</span></span></div>
     <canvas id="minimap" width="184" height="340"></canvas>
   </div>
-
   <div id="contacts">
     <div class="ct-head"><span>CONTACTS</span><span id="ct-count" class="ct-count">0</span></div>
     <div id="ct-list"></div>
   </div>
+  <div id="quest-tracker"></div>
+  <div id="room-desc"></div>
+  </div>
+  <!-- gauntlet graphics-01/r4: the feed is a 3-line ticker on the world's bottom
+       edge (outside the drawer so it shows while the panels are hidden) -->
+  <div id="combat-log" class="show"><div class="head"><span>✦ MESSAGE FEED</span><span class="clog-tools"><span id="clog-clear" title="clear">🗑</span><span id="clog-collapse" title="collapse / expand">▾</span></span></div><div id="combat-log-lines"></div></div>
+  <button id="side-toggle" type="button" title="map, contacts &amp; quest (Tab)">▤ PANELS <b>Tab</b></button>
 
   <div id="chat-log"></div>
   <div id="chat-panel">
