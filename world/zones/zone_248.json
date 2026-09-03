@@ -375,6 +375,14 @@
         "north": {
           "to_room": 24814,
           "description": "Through the corridor."
+        },
+        "east": {
+          "to_room": 24824,
+          "hidden": true,
+          "search_difficulty": 60,
+          "requires_light": true,
+          "secret": true,
+          "reveal_message": "A bulkhead unseals with a hiss, revealing Gear Room Beta."
         }
       },
       "mob_resets": [
@@ -402,6 +410,14 @@
         "east": {
           "to_room": 24816,
           "description": "A side passage."
+        },
+        "up": {
+          "to_room": 24825,
+          "hidden": true,
+          "search_difficulty": 60,
+          "requires_light": true,
+          "secret": true,
+          "reveal_message": "A maintenance ladder unfolds from the ceiling."
         }
       }
     },
@@ -669,12 +685,7 @@
       "flags": [],
       "exits": {
         "west": {
-          "to_room": 24811,
-          "description": "The central junction."
-        },
-        "north": {
-          "to_room": 24813,
-          "description": "The Tesla corridor."
+          "to_room": 24813
         }
       },
       "mob_resets": [
@@ -691,9 +702,8 @@
       "sector_type": "inside",
       "flags": [],
       "exits": {
-        "south": {
-          "to_room": 24814,
-          "description": "Power core observation."
+        "down": {
+          "to_room": 24814
         }
       },
       "mob_resets": [

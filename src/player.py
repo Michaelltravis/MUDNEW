@@ -1086,6 +1086,8 @@ class Player(Character):
             'skills': self.skills,
             'spells': self.spells,
             'talents': getattr(self, 'talents', {}),
+            'path': getattr(self, 'path', None),
+            'path_switch_available': getattr(self, 'path_switch_available', False),
             'quests_completed': self.quests_completed,
             'quest_flags': self.quest_flags,
             'quest_chains': self.quest_chains,
@@ -1285,7 +1287,51 @@ class Player(Character):
             player.room_vnum = data.get('room_vnum', Config.STARTING_ROOM)
             player.skills = data.get('skills', {})
             player.spells = data.get('spells', {})
+            # Combat reinvention: migrate renamed ability keys so existing
+            # characters keep their learned abilities at equal power.
+            LEGACY_ABILITY_MAP = {
+                # Necromancer (Soulbinder)
+                'death_grip': 'mistgrasp', 'death_coil': 'wraithfire',
+                'plague_strike': 'mistrot', 'finger_of_death': 'sever_cord',
+                # Mage (Adept of the High Tower)
+                'blink': 'stepwise', 'displacement': 'phase_step',
+                'mirror_image': 'tower_echoes', 'spell_reflection': 'mirrorward',
+                'time_warp': 'quicken', 'icy_veins': 'rimeheart',
+                'combustion_master': 'kindling_focus', 'arcane_explosion': 'resonance_burst',
+                # Cleric (Keeper of the Holy Order)
+                'prayer_of_mending': 'travelling_grace', 'spirit_link': 'shared_burden',
+                'lightwell': 'font_of_the_vigil',
+                # Paladin (Lightbringer)
+                'consecration': 'hallowed_ground', 'hammer_of_justice': 'dawnhammer',
+                'avenging_wrath_master': 'ascendant_hour', 'crusaders_judgment': 'verdict_of_the_order',
+                'hand_of_freedom': 'unfettered',
+                # Final de-WoW pass (learnable spells)
+                'vampiric_touch': 'leechcraft', 'hymn_of_hope': 'refrain_of_hope',
+                'mass_dispel': 'cleansing_rite',
+            }
+            for old_key, new_key in LEGACY_ABILITY_MAP.items():
+                if old_key in player.spells:
+                    player.spells.setdefault(new_key, player.spells.pop(old_key))
+                else:
+                    player.spells.pop(old_key, None)
+            # Skill renames (combat reinvention, skill pass) — migrate skills
+            LEGACY_SKILL_MAP = {
+                'aimed_shot': 'truesight_shot', 'kill_command': 'wildbond_strike',
+                'rapid_fire': 'loosing_storm', 'hunters_mark': 'quarry_mark',
+                'arcane_barrage': 'charge_release', 'arcane_blast': 'towerbolt',
+                'evocation': 'drink_the_leyline',
+                'shadow_step': 'slip_the_veil', 'vanish': 'fade',
+                'holy_fire': 'pyre_of_faith',
+                'templars_verdict': 'order_verdict', 'word_of_glory': 'absolution',
+                'divine_storm': 'halo_of_reckoning', 'smite': 'censure',
+                'avatar_of_war': 'war_incarnate', 'drain_soul': 'soul_siphon',
+            }
+            for old_key, new_key in LEGACY_SKILL_MAP.items():
+                if old_key in player.skills:
+                    player.skills.setdefault(new_key, player.skills.pop(old_key))
             player.talents = data.get('talents', {})
+            player.path = data.get('path', None)
+            player.path_switch_available = data.get('path_switch_available', False)
             player.quests_completed = data.get('quests_completed', [])
             player.quest_flags = data.get('quest_flags', {})
             player.quest_chains = data.get('quest_chains', {})
@@ -1462,6 +1508,12 @@ class Player(Character):
             player.momentum = data.get('momentum', 0)
             player.ability_usage = data.get('ability_usage', {})
             player.ability_evolutions = data.get('ability_evolutions', {})
+            # migrate renamed evolution forms (whirlwind/avatar_of_war)
+            _EVO_RENAME = {'whirlwind': 'bloodwhirl', 'avatar_of_war': 'war_incarnate'}
+            if isinstance(player.ability_evolutions, dict):
+                for _k, _v in list(player.ability_evolutions.items()):
+                    if _v in _EVO_RENAME:
+                        player.ability_evolutions[_k] = _EVO_RENAME[_v]
             player.last_warrior_ability = data.get('last_warrior_ability', None)
             player.unstoppable_rounds = data.get('unstoppable_rounds', 0)
 
@@ -2427,6 +2479,43 @@ class Player(Character):
         """Take damage, return True if killed."""
         c = self.config.COLORS
         damage_type = damage_type or 'physical'
+
+        flags = getattr(self, 'affect_flags', set())
+        # Corpse Shield: a necromancer's pet absorbs part of every blow
+        if amount > 1 and 'damage_redirect_pet' in flags:
+            from affects import AffectManager
+            aff = AffectManager.get_affect(self, 'corpse_shield') or AffectManager.get_affect(self, 'Corpse Shield')
+            pct = getattr(aff, 'value', 50) if aff else 50
+            pet = next((c2 for c2 in (getattr(self, 'companions', None) or [])
+                        if getattr(c2, 'hp', 0) > 0 and getattr(c2, 'room', None) == self.room), None)
+            if pet:
+                redirected = max(1, amount * max(10, min(90, pct)) // 100)
+                amount -= redirected
+                pet.hp -= redirected
+                await self.send(f"{c['green']}Your corpse shield diverts {redirected} damage to {pet.name}!{c['reset']}")
+                if pet.hp <= 0:
+                    pet.hp = 0
+                    await self.send(f"{c['yellow']}{pet.name} is torn apart absorbing the blow!{c['reset']}")
+                    if pet.room and pet in pet.room.characters:
+                        pet.room.characters.remove(pet)
+                    if hasattr(self, 'companions') and pet in self.companions:
+                        self.companions.remove(pet)
+
+        # Spirit Link: linked groupmates shoulder part of each other's pain
+        if amount > 3 and 'spirit_link' in flags and getattr(self, 'group', None):
+            linked = [m for m in getattr(self.group, 'members', [])
+                      if m is not self and getattr(m, 'hp', 0) > 1
+                      and 'spirit_link' in getattr(m, 'affect_flags', set())
+                      and getattr(m, 'room', None) == self.room]
+            if linked:
+                share = (amount * 30 // 100) // len(linked)
+                if share > 0:
+                    amount -= share * len(linked)
+                    for m in linked:
+                        m.hp = max(1, m.hp - share)   # the link never kills
+                        if hasattr(m, 'send'):
+                            await m.send(f"{c['cyan']}The spirit link draws {share} of {self.name}'s pain into you.{c['reset']}")
+                    await self.send(f"{c['cyan']}Your linked spirits absorb {share * len(linked)} damage.{c['reset']}")
         
         # Player protection intercept - check if any ally is protecting this player
         if attacker and self.room and amount > 0:

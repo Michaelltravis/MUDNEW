@@ -62,6 +62,131 @@ class CombatHandler:
         npc.ng_scaled_cycle = cycle
         npc.ng_scaled_nightmare = nightmare
 
+    # ------------------------------------------------------------------
+    # Fight pacing helpers (see Config "Fight pacing")
+    # ------------------------------------------------------------------
+    @classmethod
+    def is_player(cls, ch) -> bool:
+        return hasattr(ch, 'connection')
+
+    @classmethod
+    def is_boss_mob(cls, ch) -> bool:
+        if cls.is_player(ch):
+            return False
+        return bool(getattr(ch, 'is_boss', False)) or 'boss' in getattr(ch, 'flags', set())
+
+    @classmethod
+    def player_toughness(cls, player) -> float:
+        """Level-scaled damage reduction a player enjoys against NPC damage."""
+        lvl = getattr(player, 'level', 1) or 1
+        return min(cls.config.PLAYER_TOUGHNESS_CAP, lvl * cls.config.PLAYER_TOUGHNESS_PER_LEVEL)
+
+    @classmethod
+    def mitigate_incoming(cls, defender, damage: int) -> int:
+        """Apply hero toughness to damage an NPC deals to a player."""
+        if damage <= 0 or not cls.is_player(defender):
+            return damage
+        return max(1, int(round(damage * (1.0 - cls.player_toughness(defender)))))
+
+    @classmethod
+    def scale_player_weapon_damage(cls, attacker, dice_damage: int) -> int:
+        """Weapon dice scale with level so a level-30 hero is not swinging a
+        level-1 sword: dice x (1 + level*mult) + level//div."""
+        lvl = getattr(attacker, 'level', 1) or 1
+        return int(dice_damage * (1.0 + lvl * cls.config.PLAYER_DAMAGE_MULT_PER_LEVEL)) \
+            + int(lvl * cls.config.PLAYER_DAMAGE_FLAT_PER_LEVEL)
+
+    @classmethod
+    def cap_boss_swing(cls, attacker, defender, damage: int) -> int:
+        """Boss fights always last several exchanges: one weapon swing never
+        removes more than BOSS_SWING_CAP_PCT of a boss's max HP."""
+        if not cls.is_player(attacker) or not cls.is_boss_mob(defender):
+            return damage
+        cap = max(1, int(getattr(defender, 'max_hp', 1) * cls.config.BOSS_SWING_CAP_PCT))
+        return min(damage, cap)
+
+    @classmethod
+    def prime_poise(cls, mob):
+        """Set the stagger budget for a fresh mob (mobs.py only fills it when unset)."""
+        if cls.is_player(mob) or getattr(mob, 'max_poise', 0):
+            return
+        mob.max_poise = cls.config.POISE_BASE + (getattr(mob, 'level', 1) or 1) // cls.config.POISE_LEVEL_DIV
+        mob.poise = 0
+
+    @classmethod
+    async def check_low_hp(cls, player):
+        """Exactly one warning per fight when HP first drops under LOW_HP_WARN_PCT."""
+        if not cls.is_player(player) or not hasattr(player, 'send'):
+            return
+        if getattr(player, '_low_hp_warned', False):
+            return
+        if player.max_hp > 0 and 0 < player.hp < player.max_hp * cls.config.LOW_HP_WARN_PCT:
+            player._low_hp_warned = True
+            c = cls.config.COLORS
+            await player.send(f"{c['bright_red']}Your health is low! Flee now, or brace for the next heavy blow.{c['reset']}")
+
+    # Damage word -> (3rd-person verb, adjective) for grammatical hit lines:
+    #   attacker:  "Your slash wounds the rat! [20 damage]"
+    #   defender:  "the rat's wounding bite hits you! [20 damage]"
+    DAMAGE_FORMS = {
+        'miss': ('misses', 'feeble'), 'tickle': ('tickles', 'feeble'),
+        'barely scratch': ('barely scratches', 'glancing'), 'scratch': ('scratches', 'light'),
+        'nick': ('nicks', 'quick'), 'graze': ('grazes', 'grazing'), 'hit': ('hits', 'solid'),
+        'injure': ('injures', 'painful'), 'wound': ('wounds', 'wounding'), 'maul': ('mauls', 'mauling'),
+        'decimate': ('decimates', 'brutal'), 'devastate': ('devastates', 'devastating'),
+        'maim': ('maims', 'maiming'), 'MUTILATE': ('MUTILATES', 'MUTILATING'),
+        'DISMEMBER': ('DISMEMBERS', 'DISMEMBERING'), 'MASSACRE': ('MASSACRES', 'MASSACRING'),
+        'OBLITERATE': ('OBLITERATES', 'OBLITERATING'),
+        '*** ANNIHILATE ***': ('*** ANNIHILATES ***', 'ANNIHILATING'),
+    }
+    # weapon verb -> noun for "Your <noun> ..." lines
+    WEAPON_NOUNS = {
+        'hit': 'blow', 'sting': 'sting', 'whip': 'lash', 'slash': 'slash', 'bite': 'bite',
+        'bludgeon': 'blow', 'crush': 'crushing blow', 'pound': 'pounding blow', 'claw': 'claw',
+        'maul': 'mauling', 'thrash': 'thrashing', 'pierce': 'thrust', 'blast': 'blast',
+        'punch': 'punch', 'stab': 'stab', 'slice': 'slice', 'cleave': 'cleave', 'smash': 'smash',
+    }
+
+    NPC_ATTACK_NOUNS = ('blow', 'strike', 'swing')
+
+    @classmethod
+    def damage_forms(cls, damage_word: str, you_verb: str, attacker=None) -> tuple:
+        """Return (noun, 3rd-person verb, adjective) for a hit line."""
+        verb, adj = cls.DAMAGE_FORMS.get(damage_word, (damage_word + 's', damage_word))
+        noun = cls.WEAPON_NOUNS.get(you_verb, 'blow')
+        if attacker is not None and not cls.is_player(attacker) and you_verb == 'hit':
+            # unarmed NPCs: rotate the noun so the same line never repeats
+            i = (getattr(attacker, '_hit_noun_i', -1) + 1) % len(cls.NPC_ATTACK_NOUNS)
+            attacker._hit_noun_i = i
+            noun = cls.NPC_ATTACK_NOUNS[i]
+        return noun, verb, adj
+
+    @classmethod
+    def _rotate(cls, ch, key: str, n: int) -> int:
+        """Round-robin template index per character: consecutive hit lines
+        always use different phrasing (no identical line two rounds running)."""
+        i = (getattr(ch, key, -1) + 1) % n
+        setattr(ch, key, i)
+        return i
+
+    @classmethod
+    def attacker_hit_line(cls, attacker, target_name, noun, verb, adj, tail) -> str:
+        i = cls._rotate(attacker, '_hit_line_i', 3)
+        if i == 0:
+            return f"Your {noun} {verb} {target_name}! {tail}"
+        if i == 1:
+            return f"Your {noun} lands squarely and {verb} {target_name}! {tail}"
+        return f"Your {noun} connects — it {verb} {target_name}! {tail}"
+
+    @classmethod
+    def defender_hit_line(cls, defender, attacker_name, noun, verb, adj, tail) -> str:
+        i = cls._rotate(defender, '_taken_line_i', 3)
+        if i == 0:
+            return f"{attacker_name}'s {adj} {noun} hits you! {tail}"
+        if i == 1:
+            return f"{attacker_name}'s {noun} hits you — it {verb} you! {tail}"
+        return f"{attacker_name}'s {noun} hits home, a {adj} one! {tail}"
+
     @classmethod
     def get_health_color(cls, health_pct: float) -> str:
         """Get color code based on health percentage."""
@@ -330,6 +455,13 @@ class CombatHandler:
         if hasattr(defender, 'flags') and 'helper' in defender.flags:
             await cls.call_guards_for_help(defender, attacker)
 
+        # Fight pacing: stagger budget for the mob, one low-HP warning per fight
+        for ch in (attacker, defender):
+            cls.prime_poise(ch)
+            if cls.is_player(ch):
+                ch._low_hp_warned = False
+                ch._low_health_tip_shown = True   # combat owns the low-HP warning now
+
         # First strike
         await cls.one_round(attacker, defender)
 
@@ -362,8 +494,24 @@ class CombatHandler:
 
         if not attacker.is_fighting or attacker.fighting != defender:
             return
-            
+
         c = cls.config.COLORS
+
+        # One low-HP warning per fight (covers heavies resolved in mob_ai too)
+        await cls.check_low_hp(attacker)
+
+        # A mob whose declared heavy/aoe intent just resolved spent its round
+        # on that special — no auto-attack on top (see mob_ai._resolve_intent)
+        if getattr(attacker, '_skip_autoattack', False):
+            attacker._skip_autoattack = False
+            return
+
+        # A sidestepping player spent the round entirely on evasion
+        if getattr(attacker, 'sidestep_skip_attack', False):
+            attacker.sidestep_skip_attack = False
+            if hasattr(attacker, 'send'):
+                await attacker.send(f"{c['cyan']}You are focused entirely on evasion this round!{c['reset']}")
+            return
 
         # Combat movement cost (fatigue)
         fatigue_penalty = 0
@@ -422,6 +570,8 @@ class CombatHandler:
 
         # Calculate hits
         hit_roll = random.randint(1, 20) + attacker.get_hit_bonus()
+        if cls.is_player(attacker):
+            hit_roll += (getattr(attacker, 'level', 1) or 1) // cls.config.PLAYER_LEVEL_HIT_DIV
         if fatigue_penalty:
             hit_roll -= fatigue_penalty
         if blinded:
@@ -597,7 +747,25 @@ class CombatHandler:
                 # Bare hands
                 damage = random.randint(1, 3)
 
+            # Hero scaling: weapon dice grow with level (pacing)
+            if cls.is_player(attacker):
+                damage = cls.scale_player_weapon_damage(attacker, damage)
+
             damage += attacker.get_damage_bonus()
+
+            # A mob mid wind-up is gathering itself: its auto-swing is lighter
+            if not cls.is_player(attacker) and getattr(attacker, 'pending_intent', None):
+                damage = max(1, int(damage * cls.config.MOB_WINDUP_AUTOATTACK_MULT))
+
+            # PERFECT STRIKE: the player timed cmd_swing to the round's sweet
+            # spot — this swing lands +30% and chips double poise (the
+            # _poise_bonus_hit flag is consumed in Mobile.take_damage)
+            perfect_hit = False
+            if getattr(attacker, 'perfect_next', False):
+                attacker.perfect_next = False
+                attacker._poise_bonus_hit = True
+                perfect_hit = True
+                damage = int(damage * 1.3)
 
             if fatigue_penalty:
                 damage = max(1, int(damage * (1.0 - cls.config.COMBAT_FATIGUE_DAMAGE_PENALTY)))
@@ -645,6 +813,22 @@ class CombatHandler:
             # NG+ enemy damage scaling
             if not hasattr(attacker, 'connection') and hasattr(defender, 'connection'):
                 damage = int(damage * cls._ng_modifier(defender))
+
+            # Pack flanking + ambush openers (NPC attackers; helpers self-guard)
+            if not hasattr(attacker, 'connection'):
+                try:
+                    from mob_ai import pack_bonus, consume_ambush
+                    flank = pack_bonus(attacker, defender)
+                    if flank > 1.0:
+                        damage = int(damage * flank)
+                    amb = consume_ambush(attacker)
+                    if amb > 1.0:
+                        damage = int(damage * amb)
+                        if attacker.room:
+                            await attacker.room.send_to_room(
+                                f"{c['bright_red']}🗡 {attacker.name} strikes from AMBUSH!{c['reset']}")
+                except Exception:
+                    pass
 
             # Sleeping targets take more damage
             if getattr(defender, 'position', '') == 'sleeping':
@@ -728,8 +912,13 @@ class CombatHandler:
 
             # Warrior stance crit bonus removed — warriors now use Combo Chain system
 
-            # Cap at 50%
-            crit_chance = min(crit_chance, 50)
+            # spell riders (Icy Veins etc.) can push past the normal cap
+            rider = getattr(attacker, 'crit_chance', 0)
+            crit_chance = min(crit_chance, 50) + max(0, rider)
+            crit_chance = min(crit_chance, 85)
+            # NPC burst is telegraphed (wind-ups), not rolled: rare random crits
+            if not cls.is_player(attacker):
+                crit_chance = cls.config.MOB_CRIT_CHANCE
 
             is_crit = force_crit or (random.randint(1, 100) <= crit_chance)
             if is_crit:
@@ -762,6 +951,18 @@ class CombatHandler:
                     return
             damage = max(1, damage)
 
+            # Pacing: boss swing cap, hero toughness vs NPC hits
+            damage = cls.cap_boss_swing(attacker, defender, damage)
+            if not cls.is_player(attacker):
+                damage = cls.mitigate_incoming(defender, damage)
+
+            # Heavy hits and crits chip double poise (consumed in Mobile.take_damage)
+            exploiting_stagger = False
+            if cls.is_player(attacker) and not cls.is_player(defender):
+                if is_crit or damage >= getattr(defender, 'max_hp', 1) * cls.config.POISE_HEAVY_HIT_PCT:
+                    attacker._poise_bonus_hit = True
+                exploiting_stagger = time.time() < getattr(defender, 'staggered_until', 0)
+
             damage_word = cls.get_damage_word(damage)
             damage_color = cls.get_damage_color(damage)
 
@@ -770,6 +971,7 @@ class CombatHandler:
             if weapon and hasattr(weapon, 'weapon_type'):
                 weapon_type = weapon.weapon_type
             you_verb, they_verb = cls.get_weapon_verb(weapon_type)
+            hit_noun, hit_verb, hit_adj = cls.damage_forms(damage_word, you_verb, attacker)
 
             # Send messages with enhanced formatting
             # Build Intel suffix for assassins with marked targets
@@ -780,15 +982,23 @@ class CombatHandler:
                 intel_suffix = f" {c['cyan']}(Intel: {intel_pts}/10){c['reset']}"
 
             if hasattr(attacker, 'send'):
+                if perfect_hit:
+                    await attacker.send(f"{c['bright_yellow']}★ PERFECT STRIKE!{c['reset']}")
+                if exploiting_stagger:
+                    await attacker.send(f"{c['bright_yellow']}You press the opening while {defender.name} reels — wide open!{c['reset']}")
                 if getattr(attacker, 'compact_mode', False):
                     await attacker.send(f"{c['green']}You {you_verb} {defender.name}. {damage_color}[{damage}]{c['reset']}{intel_suffix}")
                 else:
-                    await attacker.send(f"{c['green']}Your {damage_word} {they_verb} {defender.name}! {damage_color}[{damage} damage]{c['reset']}{intel_suffix}")
+                    line = cls.attacker_hit_line(attacker, defender.name, hit_noun, hit_verb, hit_adj,
+                                                 f"{damage_color}[{damage} damage]")
+                    await attacker.send(f"{c['green']}{line}{c['reset']}{intel_suffix}")
             if hasattr(defender, 'send'):
                 if getattr(defender, 'compact_mode', False):
                     await defender.send(f"{c['red']}{attacker.name} {they_verb} you. {damage_color}[{damage}]{c['reset']}")
                 else:
-                    await defender.send(f"{c['red']}{attacker.name}'s {damage_word} {they_verb} you! {damage_color}[{damage} damage]{c['reset']}")
+                    line = cls.defender_hit_line(defender, attacker.name, hit_noun, hit_verb, hit_adj,
+                                                 f"{damage_color}[{damage} damage]")
+                    await defender.send(f"{c['red']}{line}{c['reset']}")
 
             # Bystander message
             try:
@@ -807,8 +1017,23 @@ class CombatHandler:
             except Exception:
                 pass
 
-            # Apply damage
+            # Path system: lone wolf DR / fellowship coordination, then lifesteal
+            try:
+                from paths import PathManager
+                damage = PathManager.modify_damage(attacker, defender, damage)
+            except Exception:
+                pass
+
+            # Apply damage (flagged as a weapon auto-swing: a raised GUARD only
+            # blunts these — class abilities and spells punch through)
+            attacker._weapon_swing = True
             killed = await defender.take_damage(damage, attacker)
+            attacker._weapon_swing = False
+            try:
+                from paths import PathManager
+                await PathManager.after_damage(attacker, defender, damage)
+            except Exception:
+                pass
 
             # Assassin Intel accumulation on hit
             if not killed and hasattr(attacker, 'intel_target') and attacker.intel_target == defender:
@@ -1291,22 +1516,31 @@ class CombatHandler:
             else:
                 damage = random.randint(1, 3)
 
+            if cls.is_player(attacker):
+                damage = cls.scale_player_weapon_damage(attacker, damage)
             damage += attacker.get_damage_bonus()
             damage = max(1, damage)
+            damage = cls.cap_boss_swing(attacker, defender, damage)
+            if not cls.is_player(attacker):
+                damage = cls.mitigate_incoming(defender, damage)
             damage_word = cls.get_damage_word(damage)
+            wtype = getattr(weapon, 'weapon_type', 'hit') if weapon else 'hit'
+            hit_noun, hit_verb, hit_adj = cls.damage_forms(damage_word, cls.get_weapon_verb(wtype)[0])
 
             if hasattr(attacker, 'send'):
                 if getattr(attacker, 'compact_mode', False):
                     await attacker.send(f"{c['green']}You hit {defender.name}. [{damage}]{c['reset']}")
                 else:
-                    await attacker.send(f"{c['green']}Your {damage_word} {defender.name}. [{damage}]{c['reset']}")
+                    await attacker.send(f"{c['green']}Your follow-up {hit_noun} {hit_verb} {defender.name}! [{damage} damage]{c['reset']}")
             if hasattr(defender, 'send'):
                 if getattr(defender, 'compact_mode', False):
                     await defender.send(f"{c['red']}{attacker.name} hits you. [{damage}]{c['reset']}")
                 else:
-                    await defender.send(f"{c['red']}{attacker.name}'s {damage_word} you. [{damage}]{c['reset']}")
+                    await defender.send(f"{c['red']}{attacker.name}'s {hit_adj} follow-up {hit_noun} hits you! [{damage} damage]{c['reset']}")
 
+            attacker._weapon_swing = True
             killed = await defender.take_damage(damage, attacker)
+            attacker._weapon_swing = False
             if killed:
                 await cls.handle_death(attacker, defender)
 
@@ -1326,16 +1560,22 @@ class CombatHandler:
                 damage = int(cls.roll_dice(weapon.damage_dice) * 0.75)
             else:
                 damage = random.randint(1, 2)
+            if cls.is_player(attacker):
+                damage = cls.scale_player_weapon_damage(attacker, damage)
             damage += int(attacker.get_damage_bonus() * 0.5)
             damage = max(1, damage)
+            damage = cls.cap_boss_swing(attacker, defender, damage)
             damage_word = cls.get_damage_word(damage)
+            _, hit_verb, hit_adj = cls.damage_forms(damage_word, 'hit')
 
             if hasattr(attacker, 'send'):
-                await attacker.send(f"{c['green']}Your off-hand {damage_word} {defender.name}. [{damage}]{c['reset']}")
+                await attacker.send(f"{c['green']}Your off-hand blow {hit_verb} {defender.name}! [{damage} damage]{c['reset']}")
             if hasattr(defender, 'send'):
-                await defender.send(f"{c['red']}{attacker.name}'s off-hand {damage_word} you. [{damage}]{c['reset']}")
+                await defender.send(f"{c['red']}{attacker.name}'s {hit_adj} off-hand blow hits you! [{damage} damage]{c['reset']}")
 
+            attacker._weapon_swing = True
             killed = await defender.take_damage(damage, attacker)
+            attacker._weapon_swing = False
             if killed:
                 await cls.handle_death(attacker, defender)
         else:
@@ -1351,6 +1591,21 @@ class CombatHandler:
         if getattr(victim, '_death_processed', False):
             return
         victim._death_processed = True
+
+        # A dying mob's declared wind-up dies with it
+        if getattr(victim, 'pending_intent', None):
+            victim.pending_intent = None
+
+        # Announce the kill up front so the fight has a clear, readable end
+        # (NPC deaths otherwise skipped Mobile.die's "is DEAD!" line)
+        if not cls.is_player(victim) and getattr(victim, 'position', '') != 'dead':
+            victim.position = 'dead'
+            c_d = cls.config.COLORS
+            if hasattr(killer, 'send'):
+                await killer.send(f"{c_d['bright_red']}☠ {victim.name} is DEAD! You killed {victim.name}.{c_d['reset']}")
+            if victim.room:
+                await victim.room.send_to_room(
+                    f"{c_d['red']}{victim.name} is DEAD!{c_d['reset']}", exclude=[killer])
 
         # Arena PvP intercept — no real death in arena
         try:
@@ -1516,6 +1771,18 @@ class CombatHandler:
             except Exception:
                 pass
 
+            # New Game+ reward scaling: enemies already hit harder per cycle/
+            # nightmare (see _ng_modifier), so the payout scales to match —
+            # otherwise NG+ is strictly worse. Applies to XP and looted gold.
+            try:
+                ng = cls._ng_modifier(exp_recipient)
+                if ng > 1.0:
+                    exp_base = int(exp_base * ng)
+                    if hasattr(victim, 'gold') and getattr(victim, 'gold', 0) > 0:
+                        victim.gold = int(victim.gold * ng)
+            except Exception:
+                pass
+
             # --- GROUP XP SHARING ---
             group = getattr(exp_recipient, 'group', None)
             if group and len(group.members) > 1:
@@ -1565,6 +1832,11 @@ class CombatHandler:
                             m_bonuses['rested'] = rb
                     total_gain = sum(m_bonuses.values())
                     if total_gain > 0:
+                        try:
+                            from paths import PathManager
+                            total_gain = int(total_gain * PathManager.xp_bonus(member))
+                        except Exception:
+                            pass
                         await member.gain_exp(total_gain, breakdown=m_bonuses)
                         if hasattr(member, 'send'):
                             await member.send(f"{c['bright_yellow']}You gain {total_gain} experience points!{c['reset']}")
@@ -1627,6 +1899,11 @@ class CombatHandler:
                         bonuses['rested'] = rested_bonus
 
                 total_gain = sum(bonuses.values())
+                try:
+                    from paths import PathManager
+                    total_gain = int(total_gain * PathManager.xp_bonus(exp_recipient))
+                except Exception:
+                    pass
                 await exp_recipient.gain_exp(total_gain, breakdown=bonuses)
                 if hasattr(exp_recipient, 'send'):
                     await exp_recipient.send(f"{c['bright_yellow']}You gain {total_gain} experience points!{c['reset']}")
@@ -1876,6 +2153,12 @@ class CombatHandler:
             # Player corpses last longer (10 min), mob corpses 5 min
             if hasattr(victim, 'connection'):
                 corpse.decay_timer = 100  # ~10 min real time (player)
+                # leave a memorial for graphical clients
+                try:
+                    from gravestones import GravestoneRegistry
+                    GravestoneRegistry.record(victim.room.vnum, victim.name, getattr(killer, 'name', 'something'))
+                except Exception:
+                    pass
             else:
                 corpse.decay_timer = 50  # ~5 min real time (mob)
             victim.room.items.append(corpse)
@@ -1892,11 +2175,26 @@ class CombatHandler:
                 await manager.complete_dungeon(killer, dungeon)
 
         # Remove NPC from world if it's a mob
+        dead_room = victim.room
         if not hasattr(victim, 'connection'):  # It's an NPC
             if victim.room and victim in victim.room.characters:
                 victim.room.characters.remove(victim)
             if hasattr(killer, 'world') and victim in killer.world.npcs:
                 killer.world.npcs.remove(victim)
+
+        # Push a fresh combat/room update to any connected players in the room so
+        # the web client removes the slain mob immediately (its sprite + target
+        # frame would otherwise linger with stale HP until the next combat tick
+        # or a room change). Covers kills landed outside the regular combat tick.
+        try:
+            world = getattr(killer, 'world', None) or getattr(exp_recipient, 'world', None)
+            web_map = getattr(world, 'web_map', None) if world else None
+            if web_map and dead_room:
+                for ch in list(getattr(dead_room, 'characters', [])):
+                    if hasattr(ch, 'connection'):
+                        await web_map.notify_combat(ch)
+        except Exception:
+            pass
 
     @classmethod
     async def end_combat(cls, char1: 'Character', char2: 'Character'):
@@ -1910,6 +2208,24 @@ class CombatHandler:
             char2.fighting = None
             if char2.position == 'fighting':
                 char2.position = 'standing'
+
+        # Clear intent/reaction combat state so nothing dangles into the next
+        # fight (mob wind-ups, player brace/sidestep windows)
+        for ch in (char1, char2):
+            if getattr(ch, 'pending_intent', None):
+                ch.pending_intent = None
+            if getattr(ch, 'brace_until', 0):
+                ch.brace_until = 0
+            if getattr(ch, 'sidestep_until', 0):
+                ch.sidestep_until = 0
+            if getattr(ch, 'sidestep_skip_attack', False):
+                ch.sidestep_skip_attack = False
+            if getattr(ch, '_low_hp_warned', False):
+                ch._low_hp_warned = False
+            # Re-arm ambush openers for NPCs once combat ends (only the
+            # ambusher role ever consumes the flag)
+            if not hasattr(ch, 'connection') and getattr(ch, 'ai_state', None) is not None:
+                ch.ai_state['ambush'] = True
 
     @classmethod
     async def attempt_flee(cls, player: 'Player', auto: bool = False):
@@ -2099,11 +2415,26 @@ class CombatHandler:
                 else:
                     await target.send(f"{c['bright_red']}{player.name}'s kick {damage_word} you! [{damage}]{c['reset']}")
 
+            await cls.break_guard(player, target)
             killed = await target.take_damage(damage, player)
             if killed:
                 await cls.handle_death(player, target)
         else:
             await player.send(f"{c['yellow']}Your kick misses {target.name}!{c['reset']}")
+
+    @classmethod
+    async def break_guard(cls, player: 'Player', target: 'Character'):
+        """A heavy blow (bash/kick family) SHATTERS a raised guard and rocks
+        the target's poise — the taught counter to guarded mobs."""
+        if time.time() >= getattr(target, 'guard_until', 0):
+            return
+        target.guard_until = 0
+        target.poise = getattr(target, 'poise', 0) + 2
+        c = cls.config.COLORS
+        if getattr(target, 'room', None):
+            await target.room.send_to_room(
+                f"{c['bright_yellow']}💥 {player.name}'s heavy blow SHATTERS {target.name}'s guard!{c['reset']}"
+            )
 
     @classmethod
     async def do_bash(cls, player: 'Player', target: 'Character' = None):
@@ -2143,9 +2474,17 @@ class CombatHandler:
                     target.position = 'stunned'
                 await player.send(f"{c['bright_yellow']}{target.name} is stunned!{c['reset']}")
 
+            await cls.break_guard(player, target)
             killed = await target.take_damage(damage, player)
             if killed:
                 await cls.handle_death(player, target)
+            else:
+                # a solid bash can knock them into the room's hazards
+                try:
+                    from environment import try_shove
+                    await try_shove(player, target, player.room)
+                except Exception:
+                    pass
         else:
             await player.send(f"{c['yellow']}You fail to bash {target.name}!{c['reset']}")
             # Failed bash can make you fall

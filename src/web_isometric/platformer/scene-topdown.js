@@ -1,0 +1,5389 @@
+// Misthollow: Zelda-style top-down room scene (the default view).
+// One MUD room = one screen; the four cardinal exits are gaps in the border
+// ring — walk off the edge and the screen slides to the next room. Up/down
+// are staircase tiles, named passages are portal arches. The MUD server
+// stays authoritative exactly as in the side-view client.
+(() => {
+  const MH = window.MH = window.MH || {};
+  const TD = () => MH.TD;
+  // Actor readability (BrowserQuest bar): every character stands ~1.5 tiles
+  // tall with a hard dark contour so it reads as a figure against painterly
+  // ground. LPC dolls are chibi (body in the lower half of a 64px cell), so
+  // this scale gives ~24px of body on a 16px tile.
+  const DOLL_SCALE = 0.7;
+  // hostiles wear a VIVID red contour (the old deep red read as black at this
+  // zoom, so a grey grave keeper vanished among grey tombstones)
+  const OUTLINE = { player: 0x0a0a16, hostile: 0xe8322e, neutral: 0x16100e };
+  const HOSTILE_RGBA = 'rgba(232,50,46,0.96)';
+  // add a tight dark contour (postFX glow) to a visible body — WebGL only.
+  // strength: 5 = a hairline silhouette edge, 9 = a loud coloured rim.
+  function addContour(obj, color, strength) {
+    try {
+      if (!obj || !obj.postFX || !obj.postFX.addGlow) return null;
+      if (obj._contour) { obj.postFX.remove(obj._contour); obj._contour = null; }
+      obj._contour = obj.postFX.addGlow(color, strength || 5, 0, false, 0.2, 6);
+      return obj._contour;
+    } catch (_) { return null; }
+  }
+
+  class TopRoomScene extends Phaser.Scene {
+    constructor() {
+      super('TopRoom');
+      this.layout = null;
+      this.entities = new Map();
+      this.target = null;
+      this.lastVnum = null;
+    }
+
+    create() {
+      const { W, H, T } = TD();
+      this.pxW = W * T; this.pxH = H * T;
+      this.physics.world.gravity.y = 0;
+      this.input.mouse && this.input.mouse.disableContextMenu();
+      // street life: friendly NPCs murmur idle chatter now and then
+      this.time.addEvent({ delay: 7000, loop: true, callback: () => this.npcChatter() });
+      this.physics.world.setBounds(0, 0, this.pxW, this.pxH);
+      this.cameras.main.setRoundPixels(true);
+      // gauntlet playability-01/r2: Phaser clamps a slow frame's delta to
+      // 1000/minFps (200ms). On a software-rendered or throttled machine
+      // (2-4 fps) every tween then ran 2-3x slow: a 160ms damage-number pop
+      // hung at 2.4x scale for seconds and a 0.85s fade lasted six. Combat
+      // feedback must stay wall-clock true, so let the clamp go to 500ms.
+      // The bigger culprit: after any focus/resume Phaser pins delta to 16.7ms
+      // for panicMax (120) FRAMES — at 1-3 fps that is a minute of slow motion.
+      // Eight frames still swallows the post-focus spike at 60 fps.
+      try {
+        const loop = this.game && this.game.loop;
+        if (loop) { loop.minFps = 1; loop._min = 1000; loop.panicMax = 8; if (loop._coolDown > 8) loop._coolDown = 8; }
+      } catch (_) {}
+      // Carve a central play viewport framed by the docked HUD panels so the
+      // world is NEVER drawn under the UI (in rooms of any size / window of any
+      // aspect). The room is zoom-fit + centred inside that viewport.
+      const fit = () => {
+        const cw = this.scale.width, ch = this.scale.height;
+        const ins = this.computeHudInsets(cw, ch);
+        // deadband: chrome panels wiggle by a few px as content changes
+        // (contacts list, quest tracker) — don't re-zoom the world for that
+        const li = this._lastFit;
+        if (li && li.cw === cw && li.ch === ch
+            && Math.abs(li.left - ins.left) < 16 && Math.abs(li.right - ins.right) < 16
+            && Math.abs(li.top - ins.top) < 16 && Math.abs(li.bottom - ins.bottom) < 16) return;
+        this._lastFit = { cw, ch, left: ins.left, right: ins.right, top: ins.top, bottom: ins.bottom };
+        const vw = Math.max(160, cw - ins.left - ins.right);
+        const vh = Math.max(160, ch - ins.top - ins.bottom);
+        const raw = Math.min(vw / this.pxW, vh / this.pxH);
+        const z = Phaser.Math.Clamp(Math.floor(raw * 4) / 4, 1.0, 4.5);
+        const cam = this.cameras.main;
+        cam.setViewport(ins.left, ins.top, vw, vh);
+        cam.setZoom(z);
+        cam.centerOn(this.pxW / 2, this.pxH / 2);
+        this._hudInsets = ins;
+        if (MH.fitMinimapColumn) { try { MH.fitMinimapColumn(); } catch (_) {} }
+      };
+      this._fit = fit;
+      fit();
+      this.scale.on('resize', fit);
+      // re-frame when a side panel toggles (target frame appears in combat,
+      // combat log collapses, etc.) so the bands always match the live UI
+      MH.bus.on('target.set', () => this._fit && this._fit());
+      MH.bus.on('target.clear', () => this._fit && this._fit());
+
+      // right-click on open ground: your own action menu
+      this.input.on('pointerdown', (pointer, over) => {
+        if (!(pointer.rightButtonDown && pointer.rightButtonDown())) return;
+        if (over && over.length) return;   // an entity menu took it
+        if (MH.contextMenu) MH.contextMenu('self', null, pointer.event.clientX, pointer.event.clientY);
+      });
+
+      // cinematic grade + bloom (WebGL only): falls back gracefully on canvas
+      try {
+        if (this.cameras.main.postFX) {
+          this.cameras.main.postFX.addVignette(0.5, 0.5, 1.1, 0.12);
+          // bloom makes bright FX (fire/holy/lightning) and light sources glow
+          // (the heaviest postFX — gated by graphics quality). Kept gentle so it
+          // accents lights instead of washing the whole scene into haze.
+          if (!MH.gfx || MH.gfx.bloom) {
+            this.bloomFx = this.cameras.main.postFX.addBloom(0xffffff, 1, 1, 0.7, 0.5, 5);
+          }
+          const cm = this.cameras.main.postFX.addColorMatrix();
+          cm.saturate(0.18, true);
+          cm.contrast(0.12, true);
+          this.gradeFx = cm;
+        }
+      } catch (_) { /* older GPU / canvas renderer */ }
+      // react to live graphics-quality changes: toggle bloom + rebuild room FX
+      MH.bus.on('gfx.changed', () => this.onGfxChanged());
+      // occasional ambient sound keyed to the zone + time of day
+      this.time.addEvent({ delay: 5500, loop: true, callback: () => this.ambientSfx() });
+
+      this.solids = this.physics.add.staticGroup();
+      this.tileLayer = this.add.layer();
+      this.bgLayer = this.add.layer().setDepth(-10);
+      // parallax depth: overlay atmosphere drifts opposite to the player so the
+      // scene reads as layered planes instead of one flat sheet. Containers are
+      // offset wholesale each frame, leaving each child's own tweens intact.
+      this.pxFar = this.add.container(0, 0).setDepth(8);    // behind the actors
+      this.pxNear = this.add.container(0, 0).setDepth(44);  // foreground haze
+      this.rimTint = 0xfff2cc;
+
+      this.player = this.physics.add.sprite(this.pxW / 2, this.pxH / 2, 'td_player_warrior', 'd0');
+      this.player.setScale(1 / MH.SMOOTH_SS);
+      this.player.setSize(11 * MH.SMOOTH_SS, 10 * MH.SMOOTH_SS).setOffset(6.5 * MH.SMOOTH_SS, 12 * MH.SMOOTH_SS);
+      this.player.setDepth(10);
+      this.player.setCollideWorldBounds(true);
+      this.player.body.setAllowGravity(false);
+      this.facing = 'd';
+      this.physics.add.collider(this.player, this.solids);
+
+      this.playerPose = { sx: 1, sy: 1, lean: 0, dy: 0 };   // squash/rear-back multipliers for the visible body
+      this.heroGlow = this.add.image(this.player.x, this.player.y, 'fx_glow')
+        .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.2).setScale(0.55)
+        .setDepth(9).setTint(0xbfe8ff);
+      // a cool cyan ring at the hero's feet: "this one is you", findable in a
+      // crowd or a dark cave at a glance (matches the cyan player palette)
+      this.playerRing = this.add.graphics().setDepth(5.2);
+      // rim-light: an additive copy of the sprite, scaled up a touch and nudged
+      // toward the light, so a bright edge peeks out and the actor pops off the
+      // floor. Synced to the live frame each tick.
+      this.playerRim = this.add.sprite(this.player.x, this.player.y, 'td_player_warrior', 'd0')
+        .setScale(this.player.scaleX * 1.08).setDepth(9.6)
+        .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.3).setTint(this.rimTint)
+        .setVisible(!MH.gfx || MH.gfx.rim);
+      this.tweens.add({ targets: this.heroGlow, alpha: 0.18, scale: 0.62, duration: 1600, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+
+      this.keys = this.input.keyboard.addKeys({
+        left: 'A', right: 'D', up: 'W', down: 'S',
+        left2: 'LEFT', right2: 'RIGHT', up2: 'UP', down2: 'DOWN',
+        attack: 'F', attack2: 'SPACE',
+      });
+      this.input.keyboard.on('keydown-F', () => this.tryAttack());
+      this.input.keyboard.on('keydown-SPACE', () => this.tryAttack());
+
+      this.dead = false;
+      this.exitSuppress = 0;   // ms timestamp before which exit tiles are inert
+      this.autoNav = null;     // {path:[{x,y}], action:{dir}}
+
+      // darkness overlay
+      this.darkRT = this.add.renderTexture(0, 0, this.pxW, this.pxH).setOrigin(0, 0).setDepth(40).setVisible(false);
+      if (!this.textures.exists('px_light')) {
+        const lc = document.createElement('canvas');
+        lc.width = lc.height = 256;
+        const lctx = lc.getContext('2d');
+        const grad = lctx.createRadialGradient(128, 128, 10, 128, 128, 128);
+        grad.addColorStop(0, 'rgba(255,255,255,1)');
+        grad.addColorStop(1, 'rgba(255,255,255,0)');
+        lctx.fillStyle = grad;
+        lctx.fillRect(0, 0, 256, 256);
+        this.textures.addCanvas('px_light', lc);
+      }
+      // soft drop-shadow blob, drawn under every actor to ground them
+      if (!this.textures.exists('px_shadow')) {
+        const sc = document.createElement('canvas');
+        sc.width = 64; sc.height = 32;
+        const sx = sc.getContext('2d');
+        const sg = sx.createRadialGradient(32, 16, 2, 32, 16, 30);
+        sg.addColorStop(0, 'rgba(0,0,0,0.55)');
+        sg.addColorStop(0.6, 'rgba(0,0,0,0.28)');
+        sg.addColorStop(1, 'rgba(0,0,0,0)');
+        sx.fillStyle = sg;
+        sx.save(); sx.translate(32, 16); sx.scale(1, 0.42); sx.beginPath();
+        sx.arc(0, 0, 30, 0, 7); sx.fill(); sx.restore();
+        this.textures.addCanvas('px_shadow', sc);
+      }
+      // ground-detail decals (white, tinted to the theme at placement) used to
+      // break up the flat tile grid — pebbles, grass blades, cracks, patches
+      const mkTex = (key, w, h, draw) => {
+        if (this.textures.exists(key)) return;
+        const c = document.createElement('canvas'); c.width = w; c.height = h;
+        draw(c.getContext('2d')); this.textures.addCanvas(key, c);
+      };
+      mkTex('gd_speck', 16, 16, g => {
+        g.fillStyle = '#fff';
+        const pts = [[3, 4], [9, 3], [6, 9], [12, 11], [4, 12], [11, 6]];
+        for (const [px, py] of pts) g.fillRect(px, py, 1 + (px % 2), 1 + (py % 2));
+      });
+      mkTex('gd_blades', 16, 16, g => {
+        g.strokeStyle = '#fff'; g.lineWidth = 1;
+        for (const bx of [4, 7, 9, 12]) { g.beginPath(); g.moveTo(bx, 15); g.lineTo(bx + (bx % 3) - 1, 15 - (5 + bx % 4)); g.stroke(); }
+      });
+      mkTex('gd_crack', 20, 20, g => {
+        g.strokeStyle = '#fff'; g.lineWidth = 1;
+        g.beginPath(); g.moveTo(2, 5); g.lineTo(8, 9); g.lineTo(6, 14); g.lineTo(13, 12); g.lineTo(18, 16); g.stroke();
+      });
+      mkTex('gd_patch', 24, 24, g => {
+        const rg = g.createRadialGradient(12, 12, 1, 12, 12, 12);
+        rg.addColorStop(0, 'rgba(255,255,255,0.9)'); rg.addColorStop(1, 'rgba(255,255,255,0)');
+        g.fillStyle = rg; g.beginPath(); g.arc(12, 12, 12, 0, 7); g.fill();
+      });
+      // soft directional edge-shadow strip (dark → transparent) to ground walls
+      mkTex('gd_edge', 32, 24, g => {
+        const lg = g.createLinearGradient(0, 0, 0, 24);
+        lg.addColorStop(0, 'rgba(0,0,0,0.42)'); lg.addColorStop(1, 'rgba(0,0,0,0)');
+        g.fillStyle = lg; g.fillRect(0, 0, 32, 24);
+      });
+      // wall-mounted decoration decals (mounted on inward-facing walls)
+      mkTex('wd_torch', 14, 22, g => {
+        g.fillStyle = '#3a2c1c'; g.fillRect(6, 9, 2, 11);                 // bracket
+        g.fillStyle = '#5a4630'; g.fillRect(4, 8, 6, 3);                  // cup
+        g.fillStyle = '#ff8a2a'; g.beginPath(); g.ellipse(7, 5, 3.4, 5, 0, 0, 7); g.fill();   // flame
+        g.fillStyle = '#ffd060'; g.beginPath(); g.ellipse(7, 6, 1.8, 3, 0, 0, 7); g.fill();
+      });
+      mkTex('wd_banner', 16, 24, g => {                                  // white, tinted at placement
+        g.fillStyle = '#5a4a2a'; g.fillRect(2, 1, 12, 2);                // rod
+        g.fillStyle = '#fff';
+        g.beginPath(); g.moveTo(3, 3); g.lineTo(13, 3); g.lineTo(13, 18); g.lineTo(8, 22); g.lineTo(3, 18); g.closePath(); g.fill();
+        g.fillStyle = 'rgba(0,0,0,0.18)'; g.fillRect(7, 5, 2, 12);       // crease
+      });
+      mkTex('wd_moss', 20, 14, g => {
+        g.fillStyle = '#fff';
+        for (const [mx, my, r] of [[5, 8, 4], [11, 6, 3], [14, 10, 3.5], [8, 11, 2.5]]) { g.beginPath(); g.arc(mx, my, r, 0, 7); g.fill(); }
+      });
+      mkTex('wd_vine', 14, 26, g => {
+        g.strokeStyle = '#fff'; g.lineWidth = 1.4;
+        g.beginPath(); g.moveTo(7, 0); g.quadraticCurveTo(3, 8, 7, 14); g.quadraticCurveTo(11, 20, 6, 26); g.stroke();
+        g.fillStyle = '#fff';
+        for (const [vx, vy] of [[4, 6], [10, 12], [4, 18], [9, 22]]) { g.beginPath(); g.ellipse(vx, vy, 2.4, 1.4, 0.6, 0, 7); g.fill(); }
+      });
+      // ambient wildlife (tinted at placement): a flyer and a ground critter
+      mkTex('cr_fly', 12, 8, g => {                  // bird/bat/butterfly silhouette
+        g.fillStyle = '#fff';
+        g.beginPath(); g.ellipse(6, 4, 1.6, 1.2, 0, 0, 7); g.fill();      // body
+        g.beginPath(); g.moveTo(6, 4); g.quadraticCurveTo(1, 0, 0, 3); g.quadraticCurveTo(3, 4, 6, 4); g.fill();   // L wing
+        g.beginPath(); g.moveTo(6, 4); g.quadraticCurveTo(11, 0, 12, 3); g.quadraticCurveTo(9, 4, 6, 4); g.fill();  // R wing
+      });
+      mkTex('cr_bug', 9, 9, g => {                   // butterfly/insect
+        g.fillStyle = '#fff';
+        g.beginPath(); g.arc(3, 4, 2.4, 0, 7); g.fill(); g.beginPath(); g.arc(6, 5, 2.2, 0, 7); g.fill();
+        g.fillStyle = 'rgba(0,0,0,0.3)'; g.fillRect(4, 3, 1, 4);
+      });
+      mkTex('cr_ground', 12, 7, g => {               // rat/lizard/fish
+        g.fillStyle = '#fff';
+        g.beginPath(); g.ellipse(6, 4, 4, 2, 0, 0, 7); g.fill();          // body
+        g.beginPath(); g.moveTo(10, 4); g.lineTo(12, 2); g.lineTo(12, 6); g.fill();  // tail
+        g.fillStyle = 'rgba(0,0,0,0.4)'; for (const lx of [4, 6, 8]) g.fillRect(lx, 6, 1, 1);  // legs
+      });
+      // extra landmark centrepieces (keyed as zt_prop_* so they slot in directly)
+      mkTex('zt_prop_campfire', 30, 26, g => {
+        g.fillStyle = '#5a5048';                                          // ring stones
+        for (const sx of [4, 10, 18, 24]) { g.beginPath(); g.arc(sx, 22, 3, 0, 7); g.fill(); }
+        g.strokeStyle = '#6a4a2a'; g.lineWidth = 2.4;                     // crossed logs
+        g.beginPath(); g.moveTo(7, 23); g.lineTo(22, 17); g.moveTo(22, 23); g.lineTo(7, 17); g.stroke();
+        g.fillStyle = '#ff8a2a'; g.beginPath(); g.moveTo(15, 4); g.quadraticCurveTo(9, 14, 15, 18); g.quadraticCurveTo(21, 14, 15, 4); g.fill();
+        g.fillStyle = '#ffd861'; g.beginPath(); g.moveTo(15, 9); g.quadraticCurveTo(12, 14, 15, 17); g.quadraticCurveTo(18, 14, 15, 9); g.fill();
+      });
+      mkTex('zt_prop_well', 30, 30, g => {
+        g.fillStyle = '#7a7f8c'; g.beginPath(); g.ellipse(15, 23, 11, 5, 0, 0, 7); g.fill();   // rim
+        g.fillStyle = '#2a4a66'; g.beginPath(); g.ellipse(15, 23, 7.5, 3.2, 0, 0, 7); g.fill(); // water
+        g.fillStyle = '#6a7078'; g.fillRect(4, 12, 3, 12); g.fillRect(23, 12, 3, 12);           // posts
+        g.fillStyle = '#5a4030'; g.beginPath(); g.moveTo(2, 12); g.lineTo(15, 3); g.lineTo(28, 12); g.closePath(); g.fill();  // roof
+      });
+      mkTex('zt_prop_altar', 28, 26, g => {
+        g.fillStyle = '#6a6678'; g.fillRect(6, 14, 16, 10);               // base
+        g.fillStyle = '#8a8698'; g.fillRect(3, 11, 22, 4);                // slab
+        const rg = g.createRadialGradient(14, 9, 1, 14, 9, 10);
+        rg.addColorStop(0, 'rgba(200,160,255,0.95)'); rg.addColorStop(1, 'rgba(200,160,255,0)');
+        g.fillStyle = rg; g.beginPath(); g.arc(14, 9, 9, 0, 7); g.fill();  // holy glow
+      });
+      this.playerShadow = this.add.image(this.player.x, this.player.y, 'px_shadow')
+        .setDepth(5).setAlpha(0.4).setScale(0.34);
+      this.nightTint = this.add.rectangle(0, 0, this.pxW, this.pxH, 0x101830, 0).setOrigin(0, 0).setDepth(42);
+      // cinematic colour-cast layer: a soft per-zone/time grade laid over the scene
+      this.gradeCast = this.add.rectangle(0, 0, this.pxW, this.pxH, 0x000000, 0)
+        .setOrigin(0, 0).setDepth(41).setBlendMode(Phaser.BlendModes.OVERLAY);
+      // reusable off-screen stamp used to carve light pools out of the darkness layer
+      this.lightStamp = this.add.image(0, 0, 'px_light').setVisible(false);
+      // screen-edge vignette texture (clear centre, solid edge) used for the
+      // damage pulse and lightning wash — tinted at pulse time
+      if (!this.textures.exists('px_vignette')) {
+        const vc = document.createElement('canvas');
+        vc.width = vc.height = 256;
+        const vx = vc.getContext('2d');
+        const vg = vx.createRadialGradient(128, 128, 60, 128, 128, 150);
+        vg.addColorStop(0, 'rgba(255,255,255,0)');
+        vg.addColorStop(0.7, 'rgba(255,255,255,0.15)');
+        vg.addColorStop(1, 'rgba(255,255,255,1)');
+        vx.fillStyle = vg;
+        vx.fillRect(0, 0, 256, 256);
+        this.textures.addCanvas('px_vignette', vc);
+      }
+      // red combat-damage vignette + a full-screen flash plate (lightning/crits)
+      this.dmgVignette = this.add.image(this.pxW / 2, this.pxH / 2, 'px_vignette')
+        .setDisplaySize(this.pxW, this.pxH).setDepth(48).setAlpha(0)
+        .setTint(0xe02020).setScrollFactor(0);
+      this.screenFlash = this.add.rectangle(0, 0, this.pxW, this.pxH, 0xffffff, 0)
+        .setOrigin(0, 0).setDepth(49).setBlendMode(Phaser.BlendModes.ADD);
+      this.weatherEmitter = null;
+      this.rainSplash = null;
+      this.heatHaze = null;
+      this.bubbleEmitter = null;
+
+      MH.bus.on('map', payload => this.onMap(payload));
+      MH.bus.on('combat.update', payload => this.onCombatUpdate(payload));
+      MH.bus.on('combat.hit', e => this.queueFx('hit', e));
+      MH.bus.on('combat.miss', e => this.queueFx('miss', e));
+      MH.bus.on('combat.taken', e => this.queueFx('taken', e));
+      MH.bus.on('defense.parry', e => this.fxDeflect('PARRY', 0xd5dde9, e.from));
+      MH.bus.on('defense.dodge', e => this.fxSidestep());
+      // a shield BLOCK lands heavier than a parry: golden arc + a thud of shake
+      MH.bus.on('defense.block', () => { this.fxDeflect('BLOCK', 0xe8c168); this.cameras.main.shake(60, 0.002); });
+      MH.bus.on('attack.parried', e => this.fxTargetDeflect(e.target, 'parried'));
+      MH.bus.on('attack.dodged', e => this.fxTargetDeflect(e.target, 'dodged'));
+      MH.bus.on('attack.blocked', e => this.fxTargetDeflect(e.target, 'blocked'));
+      // declared-intent reactions (brace / sidestep / interrupt outcomes)
+      MH.bus.on('reaction.brace', () => this.fxBrace(false));
+      MH.bus.on('reaction.brace.success', () => this.fxBrace(true));
+      MH.bus.on('reaction.sidestep.success', e => this.fxSidestep());
+      MH.bus.on('reaction.interrupt.success', e => this.fxInterrupt(e.target));
+      // rhythm combat: perfect strikes, stagger bursts, guard breaks, evades —
+      // each with its own voice so your ears learn the fight too
+      const tone = o => { try { if (MH.fx && MH.fx.tone) MH.fx.tone(o); } catch (_) {} };
+      MH.bus.on('reaction.swing.ready', () => {
+        this.flashFill(this.playerVisual(), 0xffd44a, 130);
+        this.damageNumber(this.player.x, this.player.y - 24, 'READY!', '#ffd44a', 11);
+        tone({ f: 620, f2: 930, type: 'triangle', dur: 0.12, vol: 0.05 });
+      });
+      MH.bus.on('reaction.swing.perfect', () => {
+        this.freezeFrame(80);
+        this.spark(this.player.x, this.player.y - 10, 0xffd44a);
+        tone({ f: 880, f2: 1320, type: 'triangle', dur: 0.16, vol: 0.06 });
+      });
+      MH.bus.on('mob.staggered', e => this.fxStagger(e.name));
+      MH.bus.on('mob.guardbreak', e => {
+        const ent = this.findEntityByText(e.name) || this.target;
+        if (ent && ent.sprite) {
+          this.spark(ent.sprite.x, ent.sprite.y - 8, 0x9adcff);
+          this.damageNumber(ent.sprite.x, ent.sprite.y - 20, 'GUARD BROKEN', '#9adcff', 11);
+        }
+        tone({ f: 1200, f2: 280, type: 'square', dur: 0.14, vol: 0.05 });
+      });
+      MH.bus.on('reaction.evade', () => this.fxSidestep());
+      this.input.keyboard.on('keydown-TAB', e => { e.preventDefault(); this.cycleTarget(); });
+      MH.bus.on('player.exp', e => this.fxExp(e));
+      MH.bus.on('walk.step', dir => this.requestMove(dir));
+      MH.bus.on('mob.move', e => this.onMobMove(e));
+      this.pendingArrivals = {};
+      MH.bus.on('nav.goto', dir => this.navTo(dir));
+      MH.bus.on('player.attack', () => this.tryAttack());
+      MH.bus.on('combat.flee', e => this.fxFlee(e));
+      MH.bus.on('combat.state', on => { if (!on) { this.preferredRange = null; this.clearLedger(); } });
+      MH.bus.on('player.heal', () => this.fxHeal());
+      MH.bus.on('terminal.echo', cmd => {
+        const c = String(cmd);
+        const m = c.match(/^cast '([^']+)'/i);
+        if (m) this.lastAbility = { name: m[1], ts: Date.now() };
+        else if (this.abilityFxFor(c.split(/\s+/)[0] || '')) this.lastAbility = { name: c.split(/\s+/)[0], ts: Date.now() };
+      });
+      MH.bus.on('mob.death', e => this.fxMobDeath(e));
+      MH.bus.on('player.death', () => this.fxPlayerDeath());
+      MH.bus.on('level.up', () => this.fxLevelUp());
+      MH.bus.on('move.blocked', e => this.onMoveBlocked(e));
+      MH.bus.on('ui.typing', on => {
+        this.input.keyboard.enabled = !on;
+        // enabled=false alone doesn't stop Phaser preventDefaulting WASD/arrows/
+        // space, which would swallow them from text fields — toggle capture too
+        try { if (on) this.input.keyboard.disableGlobalCapture(); else this.input.keyboard.enableGlobalCapture(); } catch (_) {}
+      });
+      MH.bus.on('chat', e => this.fxChatBubble(e));
+      MH.bus.on('ambient.candidate', e => this.fxAmbient(e));
+
+      if (MH.state.lastPayload) this.onMap(MH.state.lastPayload);
+    }
+
+    playerTex() { return MH.tdSprites.playerKey(MH.state.player && MH.state.player.char_class); }
+
+    classRange() {
+      const cls = String((MH.state.player && MH.state.player.char_class) || '').toLowerCase();
+      return ['mage', 'necromancer', 'cleric', 'bard'].includes(cls) ? 60
+        : cls === 'ranger' ? 64 : 24;
+    }
+
+    // never render Phaser's NULL missing-texture box: substitute and log
+    safeTex(key, fallback) {
+      if (this.textures.exists(key)) return key;
+      console.warn(`[misthollow] missing texture '${key}', using '${fallback}'`);
+      return fallback;
+    }
+
+    // Measure the docked HUD panels and return the play-area insets (in game
+    // pixels) needed so the world viewport clears them on every side.
+    computeHudInsets(cw, ch) {
+      const def = { left: Math.round(cw * 0.20), right: Math.round(cw * 0.16), top: 56, bottom: 0 };
+      try {
+        const gc = this.game.canvas.getBoundingClientRect();
+        if (!gc.width || !gc.height) return def;
+        const fx = cw / gc.width, fy = ch / gc.height;   // page px -> game px
+        const cxPage = gc.left + gc.width / 2;
+        let left = 0, right = 0, top = 0, bottom = 0;
+        const FRAME = ['combat-log', 'hud', 'aether-sigil', 'crest', 'quest-tracker',
+          'stance-bar', 'minimap-wrap', 'contacts', 'compass', 'target-frame', 'topbar'];
+        for (const id of FRAME) {
+          const el = document.getElementById(id);
+          if (!el) continue;
+          const st = getComputedStyle(el);
+          if (st.display === 'none' || st.visibility === 'hidden' || parseFloat(st.opacity) === 0) continue;
+          const b = el.getBoundingClientRect();
+          if (!b.width || !b.height) continue;
+          if (b.bottom <= gc.top || b.top >= gc.bottom) continue;   // not over the canvas
+          if (id === 'topbar') { top = Math.max(top, (b.bottom - gc.top) * fy); continue; }
+          const cen = (b.left + b.right) / 2;
+          // CENTERED overlays (target frame, bottom message feed, chips) must
+          // never count as side docks: their center hovers at the midline, so
+          // rounding used to flip them between a huge left vs right inset on
+          // every target change — the whole viewport visibly jumped around.
+          if (Math.abs(cen - cxPage) < gc.width * 0.18) {
+            // a centered strip hugging the bottom (the message feed) reserves
+            // bottom space instead, so the room sits above it — stably
+            if (b.top > gc.top + gc.height * 0.55) bottom = Math.max(bottom, (gc.bottom - b.top) * fy);
+            continue;   // centered top overlays float over the letterbox area
+          }
+          if (cen < cxPage) left = Math.max(left, (b.right - gc.left) * fx);
+          else right = Math.max(right, (gc.right - b.left) * fx);
+        }
+        return {
+          left: Math.round(Math.min(left + 12, cw * 0.34)),
+          right: Math.round(Math.min(right + 12, cw * 0.34)),
+          top: Math.round(Math.min(top + 6, ch * 0.22)),
+          bottom: Math.round(Math.min(bottom + 6, ch * 0.26)),
+        };
+      } catch (_) { return def; }
+    }
+
+    // ---------- room construction ----------
+    buildRoom(layout, entryDir) {
+      const { T, FLOOR, BLOCK, WATER } = TD();
+      this.layout = layout;
+      this.dead = false;
+      this.target = null;
+      this.autoNav = null;
+      this.exitSuppress = Date.now() + 700;
+      MH.bus.emit('target.clear');
+
+      this.tileLayer.removeAll(true);
+      this.bgLayer.removeAll(true);
+      this.solids.clear(true, true);
+      for (const ent of this.entities.values()) this.destroyEntity(ent);
+      this.entities.clear();
+      if (this.exitZones) this.exitZones.forEach(z => z.destroy());
+      this.exitZones = [];
+      if (this.featureZones) this.featureZones.forEach(z => z.destroy());
+      this.featureZones = [];
+      this.lightSources = [];
+      this.corpses = [];
+      if (this.weatherEmitter) { this.weatherEmitter.destroy(); this.weatherEmitter = null; }
+      if (this.rainFar) { this.rainFar.destroy(); this.rainFar = null; }
+      if (this.rainSplash) { this.rainSplash.destroy(); this.rainSplash = null; }
+      if (this.heatHaze) { this.heatHaze.destroy(); this.heatHaze = null; }
+      if (this.fogEmitter) { this.fogEmitter.destroy(); this.fogEmitter = null; }
+      if (this.wornAura) { this.wornAura.destroy(); this.wornAura = null; }
+      if (this.bubbleEmitter) { this.bubbleEmitter.destroy(); this.bubbleEmitter = null; }
+      if (this.critters) { this.critters.forEach(c => { this.tweens.killTweensOf(c); c.destroy(); }); }
+      this.critters = [];
+      this.reactiveProps = [];   // props that sway/flare when the player passes
+      // tall props live in the scene root (not the tile layer) so they y-sort
+      // against the player for walk-behind occlusion; track them to clean up
+      if (this.occluders) { this.occluders.forEach(o => o.destroy()); }
+      this.occluders = [];
+      if (this.groundWeather) { this.groundWeather.forEach(o => o.destroy()); this.groundWeather = null; }
+
+      const th = layout.theme;
+      const zk = layout.zoneKey && this.textures.exists(`zt_${layout.zoneKey}_floor0`) ? layout.zoneKey : null;
+      const zt = zk ? MH.ZONE_THEMES[zk] : null;
+      const checker = zt && zt.floorKind === 'checker';
+
+      // real terrain tile kit (handoff art) when available for this sector,
+      // else fall back to the procedural floor/border generators
+      const kit = MH.tilekit && MH.tilekit.isReady() ? MH.tilekit : null;
+      const kitTerrain = kit ? kit.terrainFor(layout.sector || layout.theme) : null;
+      const useKit = !!(kit && kitTerrain && kit.hasTerrain(kitTerrain));
+      this.kitTiles = [];
+
+      // Painterly ground (Phase 1 of the graphics overhaul): ONE soft-brushed
+      // painting per room replaces the per-tile floor grid — kills the
+      // repeating-tile look at the root. Walls/water/props still layer on top.
+      let painted = null;
+      if (MH.painter && MH.painter.enabled) {
+        try { painted = MH.painter.paint(this, layout, th); } catch (e) { console.warn('painter failed', e); }
+      }
+      if (painted) {
+        if (this._lastPaintKey && this._lastPaintKey !== painted && this.textures.exists(this._lastPaintKey)) {
+          this.textures.remove(this._lastPaintKey);   // free the previous room's canvas
+        }
+        this._lastPaintKey = painted;
+        const img = this.add.image(0, 0, painted).setOrigin(0, 0).setDisplaySize(this.pxW, this.pxH);
+        this.bgLayer.add(img);
+        this.roomPainting = img;
+      }
+
+      // floor everywhere, then border/obstacles/water from the grid
+      const vrng = MH.mulberry32(layout.vnum ^ 0xf10c);
+      const Wd = layout.W, Hd = layout.H;
+      for (let y = 0; y < Hd; y++) {
+        for (let x = 0; x < Wd; x++) {
+          const cell = layout.grid[y * Wd + x];
+          if (useKit && !painted) {
+            // base floor on every cell from the variants atlas
+            const floorImg = this.add.image(x * T, y * T, 'mh_variants', kit.floorVariantFrame(kitTerrain))
+              .setOrigin(0, 0).setDisplaySize(T, T);
+            this.bgLayer.add(floorImg); this.kitTiles.push(floorImg);
+            const N = y === 0, S = y === Hd - 1, Wl = x === 0, E = x === Wd - 1;
+            const border = N || S || Wl || E;
+            let piece = null;
+            if (border) {
+              const gap = cell === FLOOR;   // walkable border cell = an exit opening
+              if (N && Wl) piece = 'cornerNW'; else if (N && E) piece = 'cornerNE';
+              else if (S && E) piece = 'cornerSE'; else if (S && Wl) piece = 'cornerSW';
+              else if (N) piece = gap ? 'openN' : 'wallN';
+              else if (S) piece = gap ? 'openS' : 'wallS';
+              else if (Wl) piece = gap ? 'openW' : 'wallW';
+              else if (E) piece = gap ? 'openE' : 'wallE';
+            } else if (layout.stairsUp && x === layout.stairsUp.x && y === layout.stairsUp.y) {
+              piece = 'stairUp';
+            } else if (layout.stairsDown && x === layout.stairsDown.x && y === layout.stairsDown.y) {
+              piece = 'stairDown';
+            } else if (cell === BLOCK) {
+              piece = 'wallN';   // interior obstacle
+            }
+            if (piece) {
+              const top = this.add.image(x * T, y * T, 'mh_terrain', kit.terrainFrame(kitTerrain, piece))
+                .setOrigin(0, 0).setDisplaySize(T, T).setDepth(1);
+              this.tileLayer.add(top); this.kitTiles.push(top);
+            } else if (cell === WATER) {
+              const spr = this.add.sprite(x * T, y * T, 'sm_water', '0').setOrigin(0, 0).setDisplaySize(T, T).setDepth(1).setAlpha(0.95);
+              spr.play('sm_water_anim');
+              const liquid = (zt && zt.water) || (MH.THEMES[th] && MH.THEMES[th].liquid) || '#3a6a9a';
+              spr.setTint(Phaser.Display.Color.HexStringToColor(liquid).color | 0x404040);
+              this.tileLayer.add(spr);
+            }
+            continue;
+          }
+          if (!painted) {
+            let img;
+            if (zk) {
+              // seeded variant mix: mostly plain, some detailed; checker themes alternate dark tiles
+              const r = vrng();
+              const v = checker ? 0 : (r < 0.55 ? 0 : r < 0.8 ? 1 : 2);
+              img = this.add.image(x * T, y * T, `zt_${zk}_floor${v}`).setOrigin(0, 0).setDisplaySize(T, T);
+              if (checker && (x + y) % 2) img.setTint(0x3c3a48);
+              else if (!checker && (x + y) % 2) img.setTint(0xf6f6f6);
+            } else {
+              img = this.add.image(x * T, y * T, `td_${th}_floor`).setOrigin(0, 0).setDisplaySize(T, T);
+              if ((x + y) % 2) img.setTint(0xf4f4f4);   // subtle checker
+            }
+            this.bgLayer.add(img);
+          }
+          if (cell === BLOCK) {
+            const isBorder = x === 0 || y === 0 || x === layout.W - 1 || y === layout.H - 1;
+            const ob = layout.obstacles && layout.obstacles.find(o =>
+              x >= o.x && x < o.x + (o.big ? 2 : 1) && y >= o.y && y < o.y + (o.big ? 2 : 1));
+            const key = zk
+              ? (isBorder ? `zt_${zk}_border` : `zt_${zk}_obst${ob ? ob.idx % 2 : 0}`)
+              : (isBorder ? `td_${th}_border` : `td_${th}_obst${ob ? ob.idx : 0}`);
+            const blockImg = this.add.image(x * T, y * T, key).setOrigin(0, 0).setDisplaySize(T, T).setDepth(1);
+            this.tileLayer.add(blockImg);
+          } else if (cell === WATER) {
+            // over a painted room the water body is already in the painting —
+            // the animated sprite becomes a translucent shimmer on top
+            const spr = this.add.sprite(x * T, y * T, 'sm_water', '0').setOrigin(0, 0).setDisplaySize(T, T).setDepth(1).setAlpha(painted ? 0.4 : 0.95);
+            spr.play('sm_water_anim');
+            const liquid = (zt && zt.water) || (MH.THEMES[th] && MH.THEMES[th].liquid) || '#3a6a9a';
+            spr.setTint(Phaser.Display.Color.HexStringToColor(liquid).color | 0x404040);
+            this.tileLayer.add(spr);
+          }
+        }
+      }
+      // day/night grade on the kit tiles (world-layer only)
+      if (useKit && !painted) this.applyKitTint();
+      // Phase 2 depth: give walls faces and lit edges so they read as solid
+      this.paintWallDepth(layout, th, zt);
+      // scatter ground detail + ground the walls with edge shadows
+      this.decorateGround(layout, th);
+      this.decorateWalls(layout, th);
+
+      // swimmable rooms get a translucent water wash over the whole floor
+      if (layout.swim) {
+        const wash = this.add.rectangle(0, 0, this.pxW, this.pxH, 0x1a4a7a, 0.35).setOrigin(0, 0).setDepth(2);
+        this.bgLayer.add(wash);
+      }
+
+      // merged static bodies per row for BLOCK and (non-swim) WATER cells
+      for (let y = 0; y < layout.H; y++) {
+        let run = -1;
+        for (let x = 0; x <= layout.W; x++) {
+          const solid = x < layout.W && (layout.grid[y * layout.W + x] === BLOCK || layout.grid[y * layout.W + x] === WATER);
+          if (solid && run < 0) run = x;
+          else if (!solid && run >= 0) {
+            const zone = this.add.zone(run * T, y * T, (x - run) * T, T).setOrigin(0, 0);
+            this.physics.add.existing(zone, true);
+            this.solids.add(zone);
+            run = -1;
+          }
+        }
+      }
+
+      // worn roads run from the room's heart to each cardinal gap - the
+      // town's paths out are visible at a glance
+      if (this.textures.exists('zt_road') && layout.gaps) {
+        const midXt = Math.floor(layout.W / 2), midYt = Math.floor(layout.H / 2);
+        const lay = (x, y, vertical) => {
+          const img = this.add.image(x * T + T / 2, y * T + T / 2, 'zt_road')
+            .setDisplaySize(T, T).setDepth(0.5).setAlpha(0.9);
+          if (!vertical) img.setRotation(Math.PI / 2);
+          this.bgLayer.add(img);
+        };
+        // painted rooms already carry a soft worn path in the ground painting
+        if (!painted) {
+          if (layout.gaps.north) for (let y = 0; y <= midYt; y++) lay(midXt, y, true);
+          if (layout.gaps.south) for (let y = midYt; y < layout.H; y++) lay(midXt, y, true);
+          if (layout.gaps.west) for (let x = 0; x <= midXt; x++) lay(x, midYt, false);
+          if (layout.gaps.east) for (let x = midXt; x < layout.W; x++) lay(x, midYt, false);
+        }
+        // gateway pillars where a road leaves for another zone
+        if (this.textures.exists('zt_prop_pillar')) {
+          const flank = (x1, y1, x2, y2) => {
+            for (const [fx, fy] of [[x1, y1], [x2, y2]]) {
+              const pl = this.add.image(fx * T + T / 2, (fy + 1) * T, 'zt_prop_pillar')
+                .setOrigin(0.5, 1).setDepth(3).setScale(1 / MH.SMOOTH_SS);
+              this.tileLayer.add(pl);
+            }
+          };
+          const xz = d => layout.exits[d] && layout.exits[d].to_zone;
+          if (layout.gaps.north && xz('north')) flank(midXt - 3, 1, midXt + 3, 1);
+          if (layout.gaps.south && xz('south')) flank(midXt - 3, layout.H - 3, midXt + 3, layout.H - 3);
+          if (layout.gaps.west && xz('west')) flank(1, midYt - 3, 1, midYt + 2);
+          if (layout.gaps.east && xz('east')) flank(layout.W - 2, midYt - 3, layout.W - 2, midYt + 2);
+        }
+      }
+
+      this.buildFeatures(layout, th);
+      this.buildAtmosphere(layout, th);
+
+      // (room objects are placed below by decorateFromDescription + ambientFill;
+      // the old roomgen sector-random props are no longer rendered)
+      this.placeGravestones(layout);
+      // Objects are description-driven now: place only what the prose names
+      // (decorateFromDescription) plus a light, sector-appropriate touch
+      // (ambientFill) so vague rooms aren't bare. The old random sources
+      // (layout.props render, placeLandmark, scatterClutter generic clutter +
+      // search glints) are intentionally gone — they cluttered rooms with
+      // objects the text never mentioned.
+      this._objCells = new Set();
+      // description first; the curated set-piece for a named room only fills in
+      // when the prose itself furnished little, so we never double up objects
+      const placed = this.decorateFromDescription(layout, th) || 0;
+      let signature = false;
+      if (placed < 2) signature = this.applySignatureRoom(layout, th);
+      if (!signature) this.ambientFill(layout, th, placed);
+      this.spawnCritters(layout, th);
+      this.placeProse(layout);
+
+      // place player
+      const entry = layout.entries[entryDir] || layout.entries.none;
+      this.player.setTexture(this.playerTex(), 'd0');
+      this.player.setPosition(entry.x, entry.y);
+      this.player.setVelocity(0, 0);
+      this.player.clearTint();
+      this.player.setAlpha(1);
+      this.facing = entryDir === 'north' ? 'd' : entryDir === 'south' ? 'u' : entryDir === 'west' ? 's' : entryDir === 'east' ? 's' : 'd';
+      this.player.setFlipX(entryDir === 'east');
+
+      this.darkRT.setVisible(!!layout.dark);
+      MH.bus.emit('zone.theme', { zoneKey: layout.zoneKey, theme: layout.theme, dark: !!layout.dark });
+    }
+
+    // Phase 1 room richness: scatter themed ground detail over the flat tile
+    // grid (grass, pebbles, cracks, mossy patches) and lay soft edge-shadows
+    // where the floor meets walls/obstacles, so the room reads as a real place.
+    // The door you're standing beside (if any) — drives the contextual door
+    // chips in the UI. Door positions are the exit-gap midpoints.
+    getNearbyDoor() {
+      if (!this.layout || !this.layout.exits) return null;
+      const { T } = TD();
+      const W = this.layout.W, H = this.layout.H;
+      const midX = Math.floor(W / 2) * T + T / 2, midY = Math.floor(H / 2) * T + T / 2;
+      const POS = {
+        north: [midX, 1.2 * T], south: [midX, (H - 1.2) * T],
+        west: [1.2 * T, midY], east: [(W - 1.2) * T, midY],
+      };
+      let best = null, bestD = 42;
+      for (const dir of ['north', 'south', 'east', 'west']) {
+        const ex = this.layout.exits[dir];
+        if (!ex || !ex.door) continue;
+        const [x, y] = POS[dir];
+        const d = Phaser.Math.Distance.Between(this.player.x, this.player.y, x, y);
+        if (d < bestD) { bestD = d; best = Object.assign({ dir }, ex.door); }
+      }
+      return best;
+    }
+    // Environmental gameplay markers: a detected floor trap gets a pulsing ⚠
+    // you can click to DISARM; a burning room glows and rains embers.
+    syncEnvMarkers(roomData) {
+      const env = roomData && roomData.env;
+      const sig = JSON.stringify([this.layout && this.layout.vnum, env && env.trap, !!(env && env.burning)]);
+      if (sig === this._envSig) return;   // nothing changed — don't flicker
+      this._envSig = sig;
+      if (this._trapMark) { this.tweens.killTweensOf(this._trapMark); this._trapMark.destroy(); this._trapMark = null; }
+      if (env && env.trap && env.trap.detected && this.layout) {
+        const { T, FLOOR } = TD();
+        const rng = MH.mulberry32((this.layout.vnum ^ 0x7a9) >>> 0);
+        let tx = Math.floor(this.layout.W / 2), ty = Math.floor(this.layout.H / 2) + 2;
+        for (let i = 0; i < 50; i++) {
+          const x = 3 + Math.floor(rng() * (this.layout.W - 6));
+          const y = 3 + Math.floor(rng() * (this.layout.H - 6));
+          if (this.layout.grid[y * this.layout.W + x] === FLOOR) { tx = x; ty = y; break; }
+        }
+        const m = this.add.text(tx * T + T / 2, ty * T + T / 2, env.trap.deadly ? '☠' : '⚠', {
+          fontSize: '10px', resolution: 3,
+        }).setOrigin(0.5).setDepth(3).setAlpha(0.9);
+        this.tweens.add({ targets: m, alpha: 0.35, duration: 700, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        m.setInteractive({ useHandCursor: true });
+        m.on('pointerdown', () => MH.sendCommand('disarm trap', false));
+        m.on('pointerover', () => MH.bus.emit('flash', `${env.trap.deadly ? 'a LETHAL trap' : 'a trap'} — click to disarm, or lure a foe onto it`));
+        this._trapMark = m;
+      }
+      const burning = !!(env && env.burning);
+      if (burning && !this._burnFx) {
+        const wash = this.add.rectangle(0, 0, this.pxW, this.pxH, 0xff4a20, 0.10).setOrigin(0, 0).setDepth(33);
+        const emb = this.add.particles(0, 0, 'px_white', {
+          x: { min: 0, max: this.pxW }, y: this.pxH + 4, tint: [0xff9a4a, 0xff5a2a, 0xffd080],
+          speedY: { min: -44, max: -18 }, speedX: { min: -6, max: 6 },
+          scale: { start: 0.4, end: 0 }, alpha: { start: 0.9, end: 0 },
+          lifespan: 2200, frequency: 55, blendMode: 'ADD',
+        }).setDepth(34);
+        this._burnFx = [wash, emb];
+      } else if (!burning && this._burnFx) {
+        this._burnFx.forEach(o => o.destroy());
+        this._burnFx = null;
+      }
+    }
+    // Walls stop being flat squares: wall-like blocks with open ground to the
+    // south get a shaded FRONT FACE with a lit lip (classic top-down height),
+    // every block gets a sunlit top edge and a whisper of side shading.
+    // Trees/rocks keep just the subtle edge cues — they aren't architecture.
+    paintWallDepth(layout, th, zt) {
+      const { T, BLOCK } = TD();
+      const W = layout.W, H = layout.H, grid = layout.grid;
+      const at = (x, y) => (x < 0 || y < 0 || x >= W || y >= H) ? BLOCK : grid[y * W + x];
+      const wallish = (zt && ['wall', 'column'].includes(zt.borderKind))
+        || ['city', 'inside', 'dungeon', 'underground'].includes(th);
+      // organic borders (trees, rocks, dunes) carry their own painterly
+      // shading in the sprite art — edge strips would just re-stamp the tile
+      // grid onto them, so only architecture gets the depth treatment
+      if (!wallish) return;
+      const g = this.add.graphics().setDepth(1.25);
+      for (let y = 0; y < H; y++) {
+        for (let x = 0; x < W; x++) {
+          if (at(x, y) !== BLOCK) continue;
+          const px = x * T, py = y * T;
+          if (at(x, y + 1) !== BLOCK) {
+            g.fillStyle(0x0a0c14, 0.30); g.fillRect(px, py + T * 0.55, T, T * 0.45);
+            g.fillStyle(0x0a0c14, 0.20); g.fillRect(px, py + T * 0.38, T, T * 0.2);
+            g.fillStyle(0xfff2d8, 0.15); g.fillRect(px, py + T * 0.36, T, 1.2);
+          }
+          if (at(x, y - 1) !== BLOCK) { g.fillStyle(0xfff2d8, 0.12); g.fillRect(px, py, T, 1.2); }
+          if (at(x - 1, y) !== BLOCK) { g.fillStyle(0x0a0c14, 0.13); g.fillRect(px, py, 1.4, T); }
+          if (at(x + 1, y) !== BLOCK) { g.fillStyle(0x0a0c14, 0.13); g.fillRect(px + T - 1.4, py, 1.4, T); }
+        }
+      }
+      this.tileLayer.add(g);
+    }
+    decorateGround(layout, th) {
+      const { T, FLOOR, BLOCK } = TD();
+      const DECO = {
+        field:    { tex: ['gd_blades', 'gd_speck', 'gd_patch'], tint: [0x6e8a4a, 0x8a7a4a], density: 0.20 },
+        forest:   { tex: ['gd_blades', 'gd_patch', 'gd_speck'], tint: [0x4c7a3c, 0x6a5a3a], density: 0.24 },
+        swamp:    { tex: ['gd_patch', 'gd_blades', 'gd_speck'], tint: [0x5a6a3a, 0x4a5a4a], density: 0.22 },
+        hills:    { tex: ['gd_blades', 'gd_speck'], tint: [0x7a8a4a, 0x8a7a50], density: 0.18 },
+        desert:   { tex: ['gd_speck', 'gd_crack'], tint: [0xc9a35a, 0xb8924a], density: 0.15 },
+        mountain: { tex: ['gd_crack', 'gd_speck'], tint: [0x8a90a0, 0x6a7080], density: 0.16 },
+        cave:     { tex: ['gd_crack', 'gd_speck', 'gd_patch'], tint: [0x5a5060, 0x6a5a4a], density: 0.20 },
+        dungeon:  { tex: ['gd_crack', 'gd_speck'], tint: [0x4a4458, 0x5a5060], density: 0.18 },
+        underground: { tex: ['gd_crack', 'gd_speck'], tint: [0x4a4458, 0x5a5060], density: 0.18 },
+        inside:   { tex: ['gd_speck', 'gd_patch'], tint: [0x6a5a3a, 0x5a5048], density: 0.10 },
+        city:     { tex: ['gd_speck', 'gd_crack'], tint: [0x6a6258, 0x7a7068], density: 0.10 },
+        default:  { tex: ['gd_speck', 'gd_patch'], tint: [0x6a6458, 0x5a5448], density: 0.12 },
+      };
+      const cfg = DECO[th] || DECO.default;
+      const rng = MH.mulberry32((layout.vnum ^ 0x5bd1e9) >>> 0);
+      const grid = layout.grid, W = layout.W, H = layout.H;
+      const isFloor = (x, y) => x >= 0 && y >= 0 && x < W && y < H && grid[y * W + x] === FLOOR;
+      const isBlock = (x, y) => x < 0 || y < 0 || x >= W || y >= H || grid[y * W + x] === BLOCK;
+      for (let y = 1; y < H - 1; y++) {
+        for (let x = 1; x < W - 1; x++) {
+          if (!isFloor(x, y)) continue;
+          // scatter detail decals
+          if (rng() < cfg.density) {
+            const tex = cfg.tex[(rng() * cfg.tex.length) | 0];
+            const tint = cfg.tint[(rng() * cfg.tint.length) | 0];
+            const d = this.add.image(x * T + 2 + rng() * (T - 4), y * T + 2 + rng() * (T - 4), tex)
+              .setDepth(0.4).setAlpha(0.18 + rng() * 0.22).setTint(tint)
+              .setScale(0.5 + rng() * 0.7).setRotation(tex === 'gd_blades' ? 0 : rng() * 6.28);
+            this.tileLayer.add(d);
+          }
+          // edge shadows against adjacent walls/obstacles, grounding them
+          const sides = [[0, -1, 0], [0, 1, 180], [-1, 0, 270], [1, 0, 90]];
+          for (const [dx, dy, deg] of sides) {
+            if (!isBlock(x + dx, y + dy)) continue;
+            const e = this.add.image(x * T + T / 2, y * T + T / 2, 'gd_edge')
+              .setDisplaySize(T, T * 0.7).setOrigin(0.5, 0).setDepth(0.6).setAlpha(0.55)
+              .setAngle(deg);
+            // origin pin: rotate around centre then shove to the wall side
+            e.x = x * T + T / 2 + dx * (T / 2);
+            e.y = y * T + T / 2 + dy * (T / 2);
+            this.tileLayer.add(e);
+          }
+        }
+      }
+    }
+
+    // Ambient wildlife: a few themed critters wander each room — butterflies
+    // and birds in the wilds, bats and rats in the dark, pigeons in the city,
+    // fish in the water — so rooms feel inhabited and alive, not static.
+    spawnCritters(layout, th) {
+      if (MH.gfx && MH.gfx.quality === 'low') return;
+      const { T } = TD();
+      // [texture, tint, flying, count]
+      const SET = {
+        field: [['cr_bug', 0xf0d860, 1, 3], ['cr_fly', 0x303030, 1, 1]],
+        meadow: [['cr_bug', 0xf0a0d0, 1, 3]], hills: [['cr_bug', 0xf0d860, 1, 2]],
+        forest: [['cr_bug', 0xf0a0d0, 1, 2], ['cr_fly', 0x282828, 1, 1]],
+        elven: [['cr_bug', 0xbff0a0, 1, 3]],
+        swamp: [['cr_bug', 0x9adf6a, 1, 3]],
+        cave: [['cr_fly', 0x1a1a24, 1, 3], ['cr_ground', 0x6a5a4a, 0, 1]],
+        dungeon: [['cr_fly', 0x1a1a24, 1, 2], ['cr_ground', 0x5a4a3a, 0, 1]],
+        underground: [['cr_ground', 0x5a4a3a, 0, 2]],
+        mountain: [['cr_fly', 0xdedede, 1, 2]],
+        desert: [['cr_ground', 0xc9a35a, 0, 2]],
+        inside: [['cr_ground', 0x6a5a4a, 0, 2]],
+        city: [['cr_fly', 0x8a8a8a, 1, 2], ['cr_ground', 0x5a4a3a, 0, 1]],
+        underwater: [['cr_ground', 0x8fd0ff, 0, 4]], water_swim: [['cr_ground', 0x8fd0ff, 0, 3]], water_noswim: [['cr_ground', 0x8fd0ff, 0, 2]],
+        default: [['cr_bug', 0xf0d860, 1, 2]],
+      };
+      let groups = SET[th] || SET.default;
+      // day/night fauna swap: fireflies drift through the wilds after dark
+      const period = (MH.state.lastPayload && MH.state.lastPayload.time && MH.state.lastPayload.time.period) || 'day';
+      const night = ['night', 'midnight', 'evening', 'dusk'].includes(period);
+      const NIGHT = {
+        field: [['cr_bug', 0xc8ff70, 1, 4, true]], meadow: [['cr_bug', 0xc8ff70, 1, 4, true]],
+        hills: [['cr_bug', 0xc8ff70, 1, 3, true]], forest: [['cr_bug', 0xbfff80, 1, 4, true], ['cr_fly', 0x202028, 1, 1]],
+        elven: [['cr_bug', 0xd0ffa0, 1, 4, true]], swamp: [['cr_bug', 0x9aff80, 1, 4, true]],
+      };
+      if (night && NIGHT[th]) groups = NIGHT[th];
+      const qMul = (MH.gfx && MH.gfx.quality === 'medium') ? 0.6 : 1;
+      const rng = MH.mulberry32((layout.vnum ^ 0x7c1d) >>> 0);
+      const m = T * 2;
+      for (const [tex, tint, fly, n, glow] of groups) {
+        const cnt = Math.max(1, Math.round(n * qMul));
+        for (let i = 0; i < cnt; i++) {
+          const x = m + rng() * (this.pxW - m * 2);
+          const y = fly ? T * 1.4 + rng() * (this.pxH * 0.5) : m + rng() * (this.pxH - m * 2);
+          const c = this.add.image(x, y, tex).setTint(tint).setDepth(fly ? 12 : 6)
+            .setScale(fly ? 0.9 : 0.85).setAlpha(fly ? 0.92 : 0.95);
+          if (glow) {   // fireflies: additive bloom + a soft blink
+            c.setBlendMode(Phaser.BlendModes.ADD).setScale(0.7);
+            this.tweens.add({ targets: c, alpha: 0.25, duration: 900 + rng() * 700, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+          }
+          // movement state, driven each frame in updateInner (robust, no tween chains)
+          c.fly = !!fly; c.baseScaleX = c.scaleX; c.flapPhase = rng() * 6.28; c.glow = !!glow;
+          c.spd = fly ? (glow ? 14 + rng() * 12 : 28 + rng() * 22) : 18 + rng() * 14;
+          c.tx = m + rng() * (this.pxW - m * 2);
+          c.ty = fly ? T * 1.4 + rng() * (this.pxH * 0.5) : m + rng() * (this.pxH - m * 2);
+          c.pauseUntil = 0;
+          this.critters.push(c);
+        }
+      }
+    }
+    // occasional ambient sound: birdsong/crickets in the wilds, drips in caves,
+    // wind on the heights, and a steady crackle near a campfire
+    ambientSfx() {
+      if (!this.layout || !MH.sfx || this.dead) return;
+      const th = this.layout.theme;
+      const period = (MH.state.lastPayload && MH.state.lastPayload.time && MH.state.lastPayload.time.period) || 'day';
+      const night = ['night', 'midnight', 'evening', 'dusk'].includes(period);
+      if (this._campfire) MH.sfx.crackle();
+      if (Math.random() > 0.55) return;   // sparse, not every tick
+      if (['field', 'forest', 'hills', 'swamp', 'meadow', 'elven'].includes(th)) { if (night) MH.sfx.cricket(); else MH.sfx.birdChirp(); }
+      else if (['cave', 'dungeon', 'underground'].includes(th)) MH.sfx.drip();
+      else if (['mountain', 'desert'].includes(th)) MH.sfx.wind();
+      else if (th === 'city' && !night) MH.sfx.birdChirp();
+    }
+    // frame-driven critter wander (called from updateInner)
+    updateCritters(now, dt) {
+      if (!this.critters || !this.critters.length) return;
+      const { T } = TD();
+      const m = T * 2;
+      for (const c of this.critters) {
+        if (!c.active) continue;
+        if (now >= c.pauseUntil) {
+          const dx = c.tx - c.x, dy = c.ty - c.y, d = Math.hypot(dx, dy);
+          if (d < 4) {
+            // arrived: brief pause, then pick a fresh destination
+            c.pauseUntil = now + (c.fly ? 120 : 350) + Math.random() * (c.fly ? 500 : 1100);
+            c.tx = m + Math.random() * (this.pxW - m * 2);
+            c.ty = c.fly ? T * 1.4 + Math.random() * (this.pxH * 0.5) : m + Math.random() * (this.pxH - m * 2);
+          } else {
+            const v = c.spd * dt;
+            c.x += (dx / d) * v; c.y += (dy / d) * v;
+            c.setFlipX(dx < 0);
+          }
+        }
+        if (c.fly) c.scaleX = c.baseScaleX * (0.5 + 0.5 * Math.abs(Math.sin(now * 0.018 + c.flapPhase)));  // wing flap
+      }
+    }
+
+    // ---- Phase 3: rooms as spaces ----
+    // Tall props you can walk behind. They go in the scene root (not the tile
+    // layer) at a y-based depth in the player's band so the player is occluded
+    // when standing behind them, and draws in front when standing below them.
+    isTallProp(name) {
+      return ['tree', 'pine', 'deadtree', 'pillar', 'statue', 'runestone', 'lamppost',
+        'crystal', 'icecrystal', 'stall', 'fountain', 'brazier', 'anvil', 'gravestone', 'banner'].includes(name);
+    }
+    // Add a prop image with correct layering: tall ones occlude (root, depth
+    // 10+y), the rest are flat scenery in the tile layer (depth 3+y).
+    addPropImage(img, baseY, name) {
+      if (this.isTallProp(name)) {
+        img.setDepth(10 + baseY / 1000);
+        (this.occluders = this.occluders || []).push(img);
+      } else {
+        img.setDepth(3 + baseY / 1000);
+        this.tileLayer.add(img);
+      }
+      return img;
+    }
+
+    // ---- Phase 4: signature hero rooms ----
+    // Spawn one fully-featured prop at a grid cell (shadow, glow, reactivity,
+    // interaction) — the building block for curated set-pieces.
+    GLOW_FOR(name) {
+      return ({ fountain: 0x9fd9ff, well: 0x9fd9ff, crystal: 0xc792ff, icecrystal: 0x9fd0ff, statue: 0xffe9c0,
+        runestone: 0xffd089, brazier: 0xff9a4a, campfire: 0xff9a4a, candles: 0xffe9a8, lamppost: 0xffd98a,
+        lantern: 0xcfff90, altar: 0xc8a0ff, mushrooms: 0xb06ce0 })[name];
+    }
+    spawnFeatureProp(name, cellX, cellY, scaleMul) {
+      if (!this.textures.exists(`zt_prop_${name}`) || !this.layout) return null;
+      const { T, FLOOR } = TD();
+      const W = this.layout.W, H = this.layout.H, grid = this.layout.grid;
+      cellX = Math.round(cellX); cellY = Math.round(cellY);
+      if (cellX < 1 || cellY < 1 || cellX > W - 2 || cellY > H - 2) return null;
+      if (grid[cellY * W + cellX] !== FLOOR) return null;
+      const bx = cellX * T + T / 2, by = (cellY + 1) * T;
+      const scale = (scaleMul || 1.2) / MH.SMOOTH_SS;
+      this.tileLayer.add(this.add.image(bx, by - 1, 'px_shadow').setDepth(2.6).setAlpha(0.32).setScale(scale * 0.4));
+      const img = this.add.image(bx, by, `zt_prop_${name}`).setOrigin(0.5, 1).setScale(scale);
+      this.addPropImage(img, by, name);
+      const SWAY = new Set(['tree', 'pine', 'deadtree', 'bush', 'flowers', 'mushrooms', 'reeds', 'lilypad', 'cactus', 'stump', 'coral']);
+      const g = this.GLOW_FOR(name);
+      if (g) {
+        const glow = this.add.image(bx, by - T * 0.6, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+          .setAlpha(0.13).setScale(0.55).setTint(g).setDepth(34);
+        this.tweens.add({ targets: glow, alpha: 0.24, scale: 0.72, duration: 2000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        this.fxList && this.fxList.push(glow);
+        // glowing props are LIGHT SOURCES: they carve warm pools out of the
+        // night/dark light layer (lampposts throw the widest)
+        if (this.lightSources) {
+          this.lightSources.push({ x: bx, y: by - T * 0.5, r: name === 'lamppost' ? 84 : 60,
+            seed: (cellX * 53 + cellY * 17) % 1000 });
+        }
+        if (name === 'fountain') this.registerReactive(img, 'ripple');
+        else this.registerReactive(img, 'flare', { glow, glowMax: 0.13, tint: g });
+      } else if (SWAY.has(name)) this.registerReactive(img, 'sway', { tint: g || 0x8fbf6a });
+      img.setInteractive({ useHandCursor: true });
+      img.on('pointerdown', pointer => {
+        if (pointer.rightButtonDown && pointer.rightButtonDown()) return;
+        const acts = this.propActions(name, bx, by);
+        if (MH.popover) MH.popover.show(pointer.event.clientX, pointer.event.clientY, (MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name), acts);
+      });
+      img.on('pointerover', () => MH.bus.emit('flash', `${MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name} — click to interact`));
+      return img;
+    }
+    // a soft coloured light wash that gives a hero room its own mood
+    signatureWash(color, alpha) {
+      const r = this.add.rectangle(0, 0, this.pxW, this.pxH, color, alpha || 0.1)
+        .setOrigin(0, 0).setBlendMode(Phaser.BlendModes.SCREEN).setDepth(31);
+      this.tileLayer.add(r);
+    }
+    // Detect a named hero room and dress it with a curated set-piece + mood.
+    // Symmetric compositions around the room centre make these feel built.
+    applySignatureRoom(layout, th) {
+      const name = (layout.name || '').toLowerCase();
+      if (!name) return false;
+      const W = layout.W, H = layout.H, cx = Math.floor(W / 2), cy = Math.floor(H / 2);
+      const pair = (prop, dx, dy, sc) => { this.spawnFeatureProp(prop, cx - dx, cy + dy, sc); this.spawnFeatureProp(prop, cx + dx, cy + dy, sc); };
+      const center = (prop, sc) => this.spawnFeatureProp(prop, cx, cy, sc);
+      if (/throne|hall of kings|royal court/.test(name)) {
+        center('statue', 1.7); pair('brazier', 3, 0, 1.2); pair('pillar', 5, -2, 1.5); this.signatureWash(0xffcf6a, 0.1);
+      } else if (/temple|shrine|chapel|sanctuary|cathedral|altar/.test(name)) {
+        center('altar', 1.5); pair('candles', 2, 1, 1.1); pair('pillar', 4, -1, 1.5); this.signatureWash(0xbfe0ff, 0.1);
+      } else if (/tavern|\binn\b|alehouse|\bpub\b|drunk|tankard/.test(name)) {
+        pair('barrel', 4, 2, 1.1); pair('crate', 5, 0, 1); center('candles', 0.9); this.signatureWash(0xffb060, 0.11);
+      } else if (/librar|archive|scriptorium|study|reading/.test(name)) {
+        pair('bookpile', 4, -1, 1.2); pair('bookpile', 4, 2, 1.1); center('candles', 0.9); this.signatureWash(0xbfd0e8, 0.08);
+      } else if (/forge|smith|anvil|foundry/.test(name)) {
+        center('anvil', 1.4); pair('brazier', 3, 1, 1.2); pair('crate', 5, -1, 1); this.signatureWash(0xff9a4a, 0.12);
+      } else if (/fountain|plaza|square|courtyard/.test(name)) {
+        center('fountain', 1.7); pair('lamppost', 5, -2, 1.3); pair('flowers', 3, 2, 1); this.signatureWash(0xcfe0ff, 0.07);
+      } else if (/bank|vault|treasur|counting house/.test(name)) {
+        center('statue', 1.5); pair('pillar', 4, -1, 1.5); pair('urn', 3, 2, 1); this.signatureWash(0xffe0a0, 0.09);
+      } else if (/guild|barracks|armor|arena|training/.test(name)) {
+        pair('banner', 5, -2, 1.2); pair('crate', 4, 1, 1); center('runestone', 1.2); this.signatureWash(0xffd9a0, 0.08);
+      } else if (/graveyard|cemeter|crypt|tomb|catacomb|mausoleum|sepulch/.test(name)) {
+        pair('gravestone', 3, 0, 1.2); pair('deadtree', 5, -1, 1.4); center('candles', 0.9); this.signatureWash(0x9a86c8, 0.1);
+      } else if (/garden|grove|orchard|arbor/.test(name)) {
+        pair('tree', 4, -1, 1.5); pair('flowers', 2, 2, 1.1); center('fountain', 1.3); this.signatureWash(0xbfe8a0, 0.08);
+      } else {
+        return false;   // not a signature room — caller may add light ambiance
+      }
+      return true;   // dressed as a curated set-piece; skip generic ambiance
+    }
+
+    // ---- Phase 1: living, reactive rooms ----
+    // Register a prop so it responds when the player passes: 'sway' (plants
+    // wobble + shed a leaf), 'flare' (fire/light brightens), 'ripple' (water).
+    registerReactive(img, kind, opts) {
+      if (!this.reactiveProps) this.reactiveProps = [];
+      this.reactiveProps.push(Object.assign({ img, kind, cd: 0 }, opts || {}));
+    }
+    leafPuff(x, y, tint) {
+      const tex = this.textures.exists('zt_px_leaf') ? 'zt_px_leaf' : 'px_white';
+      const e = this.add.particles(x, y, tex, {
+        speedX: { min: -18, max: 18 }, speedY: { min: -26, max: -6 }, gravityY: 36,
+        lifespan: 760, quantity: 2, scale: { start: 0.7, end: 0 }, alpha: { start: 0.9, end: 0 },
+        rotate: { min: 0, max: 360 }, tint: tint || 0x8fbf6a, emitting: false,
+      }).setDepth(9);
+      e.explode(2);
+      this.time.delayedCall(900, () => e.destroy());
+    }
+    dustPuff(x, y) {
+      const e = this.add.particles(x, y, this.textures.exists('zt_px_soft') ? 'zt_px_soft' : 'px_white', {
+        speedX: { min: -14, max: 14 }, speedY: { min: -6, max: 2 }, lifespan: 420, quantity: 2,
+        scale: { start: 0.5, end: 0 }, alpha: { start: 0.35, end: 0 }, tint: 0xbfae90, emitting: false,
+      }).setDepth(4);
+      e.explode(2);
+      this.time.delayedCall(500, () => e.destroy());
+    }
+    // called each frame: critters flush, plants sway, fires flare, water ripples,
+    // dust kicks up under a moving player — the room answers your presence
+    reactToPlayer(now, dt) {
+      if (!this.player) return;
+      const px = this.player.x, py = this.player.y, { T } = TD();
+      // critters flee when you get close
+      if (this.critters) {
+        const m = T * 2;
+        for (const c of this.critters) {
+          if (!c.active) continue;
+          const dx = c.x - px, dy = c.y - py, d2 = dx * dx + dy * dy;
+          const R = c.fly ? 50 : 40;
+          if (d2 < R * R) {
+            const d = Math.sqrt(d2) || 1;
+            c.tx = Phaser.Math.Clamp(c.x + (dx / d) * 130, m, this.pxW - m);
+            c.ty = Phaser.Math.Clamp(c.y + (dy / d) * 130, c.fly ? T : m, this.pxH - m);
+            c.pauseUntil = 0;
+            if (!c._fleeUntil) { c._fleeUntil = now + 1100; c._spd0 = c.spd; c.spd = c.spd * 2.4; }
+          } else if (c._fleeUntil && now > c._fleeUntil) { c._fleeUntil = 0; c.spd = c._spd0 || c.spd; }
+        }
+      }
+      // reactive props
+      if (this.reactiveProps) {
+        for (const rp of this.reactiveProps) {
+          if (!rp.img || !rp.img.active) continue;
+          const dx = rp.img.x - px, dy = rp.img.y - py, d2 = dx * dx + dy * dy;
+          if (rp.kind === 'sway') {
+            if (d2 < 28 * 28 && now > rp.cd) {
+              rp.cd = now + 650;
+              if (this.motionOk()) {
+                const dir = dx < 0 ? -1 : 1;
+                this.tweens.add({ targets: rp.img, angle: { from: dir * -8, to: 0 }, duration: 540, ease: 'elastic.out' });
+                this.leafPuff(rp.img.x, rp.img.y - rp.img.displayHeight * 0.5, rp.tint);
+              }
+            }
+          } else if (rp.kind === 'flare' && rp.glow && rp.glow.active) {
+            const near = d2 < 64 * 64;
+            if (near && now > rp.cd) {
+              rp.cd = now + 900;
+              this.tweens.add({ targets: rp.glow, alpha: (rp.glowMax || 0.2) * 2.1, scale: rp.glow.scaleX * 1.5, duration: 240, yoyo: true, ease: 'sine.out' });
+              this.spark(rp.img.x, rp.img.y - rp.img.displayHeight * 0.6, rp.tint || 0xffd060);
+            }
+          } else if (rp.kind === 'ripple') {
+            if (d2 < 40 * 40 && now > rp.cd) {
+              rp.cd = now + 750;
+              if (MH.fx && MH.fx.ringShock) MH.fx.ringShock(this, rp.img.x, rp.img.y - 4, 0x9fd9ff, 9, 360);
+            }
+          }
+        }
+      }
+      // walk-behind: fade a tall prop when the player is hidden behind it so
+      // you never fully lose your character
+      if (this.occluders) {
+        for (const o of this.occluders) {
+          if (!o.active) continue;
+          const behind = py < o.y && py > o.y - o.displayHeight && Math.abs(o.x - px) < o.displayWidth * 0.42;
+          const want = behind ? 0.5 : 1;
+          if (Math.abs(o.alpha - want) > 0.01) o.setAlpha(Phaser.Math.Linear(o.alpha, want, 0.18));
+        }
+      }
+      // dust under a moving player on dry ground
+      if (this._pPrev) {
+        const moved = Math.hypot(px - this._pPrev.x, py - this._pPrev.y);
+        const dry = !this.layout.swim && !['water_swim', 'water_noswim', 'underwater'].includes(this.layout.theme);
+        if (moved > 0.6 && dry && now > (this._dustCd || 0) && this.motionOk()) {
+          this._dustCd = now + 230;
+          this.dustPuff(px, py + 2);
+        }
+      }
+      this._pPrev = { x: px, y: py };
+    }
+
+    // Phase 4: wall-mounted decoration on inward-facing walls — torches (which
+    // also light dark rooms), hanging banners, moss, and vines — so the walls
+    // read as surfaces with stuff on them, not bare blocks.
+    decorateWalls(layout, th) {
+      if (MH.gfx && MH.gfx.quality === 'low') return;
+      const { T, FLOOR, BLOCK } = TD();
+      const SETS = {
+        city: ['wd_banner', 'wd_torch', 'wd_vine'], inside: ['wd_banner', 'wd_torch'],
+        cave: ['wd_torch', 'wd_moss'], dungeon: ['wd_torch', 'wd_banner'], underground: ['wd_torch', 'wd_moss'],
+        mountain: ['wd_moss'], forest: ['wd_vine', 'wd_moss'], swamp: ['wd_vine', 'wd_moss'],
+        field: ['wd_vine'], hills: ['wd_moss'], desert: [], default: ['wd_moss'],
+      };
+      const set = SETS[th] || SETS.default;
+      if (!set.length) return;
+      const zt = layout.zoneKey && MH.ZONE_THEMES ? MH.ZONE_THEMES[layout.zoneKey] : null;
+      const bannerTint = (zt && zt.glow) || 0xc24a4a;
+      const rng = MH.mulberry32((layout.vnum ^ 0x4d2b9) >>> 0);
+      const grid = layout.grid, W = layout.W, H = layout.H;
+      const dens = (MH.gfx && MH.gfx.quality === 'medium') ? 0.12 : 0.18;
+      let placed = 0;
+      for (let y = 0; y < H - 1 && placed < 16; y++) {
+        for (let x = 1; x < W - 1 && placed < 16; x++) {
+          if (grid[y * W + x] !== BLOCK || grid[(y + 1) * W + x] !== FLOOR) continue;  // south-facing wall
+          if (rng() > dens) continue;
+          const name = set[(rng() * set.length) | 0];
+          const bx = x * T + T / 2, by = y * T + T * 0.96;
+          if (name === 'wd_torch') {
+            this.tileLayer.add(this.add.image(bx, by, 'wd_torch').setOrigin(0.5, 1).setDepth(2.3).setScale(0.85));
+            const gy = by - T * 0.5;
+            const glow = this.add.image(bx, gy, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+              .setAlpha(0.22).setScale(0.3).setTint(0xff9a4a).setDepth(35);
+            this.tweens.add({ targets: glow, alpha: 0.34, scale: 0.36, duration: 700 + rng() * 500, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+            this.tileLayer.add(glow); this.fxList && this.fxList.push(glow);
+            if (this.lightSources) this.lightSources.push({ x: bx, y: gy, r: 66, seed: (x * 41 + y * 13) % 1000 });
+          } else {
+            const tint = name === 'wd_banner' ? bannerTint : name === 'wd_vine' ? 0x4c7a3c : 0x5a8a4a;
+            this.tileLayer.add(this.add.image(bx, by, name).setOrigin(0.5, 1).setDepth(2.3).setTint(tint).setScale(0.85).setAlpha(name === 'wd_moss' ? 0.85 : 1));
+          }
+          placed++;
+        }
+      }
+    }
+
+    // Phase 3: denser, themed clutter (cosmetic, non-blocking) clustered near
+    // walls to fill the empty floor, plus a couple of "discovery" glints that
+    // reward wandering the room — the exploration ask. Quality-scaled.
+    // Read the room's actual prose and place props that match what it describes,
+    // so a room that says "a marble fountain" gets a fountain, "ancient tomes
+    // line the shelves" gets bookpiles, etc. Deterministic per-vnum so a room
+    // always looks the same. This is what makes each room feel hand-placed.
+    decorateFromDescription(layout, th) {
+      const text = ((layout.name || '') + ' . ' + (layout.description || '')).toLowerCase();
+      if (!text.trim()) return;
+      const { T, FLOOR, BLOCK } = TD();
+      // keyword -> prop. First match wins per prop; order matters for specificity.
+      // [regex, propName, placement]  placement: 'wall' | 'edge' | 'center' | 'any'
+      const RULES = [
+        [/\bfountain|water spout|bubbling spring|basin\b/, 'fountain', 'center'],
+        [/\bwell\b|wishing well/, 'fountain', 'center'],
+        [/\baltar|shrine|sacrificial/, 'runestone', 'center'],
+        [/\bstatue|idol|effigy|monument|sculpture|figure of|likeness of/, 'statue', 'center'],
+        [/\bpillar|column|colonnade|pillars/, 'pillar', 'edge'],
+        [/\brunestone|runic|standing stone|obelisk|monolith|carved stone/, 'runestone', 'center'],
+        [/\banvil|forge|smithy|bellows/, 'anvil', 'edge'],
+        [/\bbrazier|hearth|fire ?pit|bonfire|campfire|roaring fire|coals|embers|fireplace/, 'brazier', 'center'],
+        [/\bcandle|candelabra|tapers/, 'candles', 'wall'],
+        [/\blamppost|street ?lamp|gaslight|lamp post/, 'lamppost', 'edge'],
+        [/\blantern/, 'lantern', 'wall'],
+        [/\bbanner|flag|pennant|tapestr/, 'banner', 'wall'],
+        [/\bbook|tome|scroll|librar|shelves|bookshelf|grimoire/, 'bookpile', 'wall'],
+        [/\bgear|cog|machine|mechanism|machinery|clockwork/, 'gear', 'edge'],
+        [/\bpipe|plumbing|conduit/, 'pipe', 'wall'],
+        [/\bcrate|crates|cargo|supplies|\bbox(es)?\b/, 'crate', 'wall'],
+        [/\bbarrel|cask|keg|barrels/, 'barrel', 'wall'],
+        [/\burn|vase|amphora|\bpot(s|tery)?\b/, 'urn', 'wall'],
+        [/\bstall|market|vendor|cart|booth|wares/, 'stall', 'edge'],
+        [/\bfence|railing|palisade|paddock/, 'fence', 'edge'],
+        [/\bgrave|tomb|headstone|sepulchre|crypt|burial/, 'gravestone', 'edge'],
+        [/\bbones|skeleton|skull|remains|carcass|corpse/, 'bones', 'edge'],
+        [/\bcobweb|\bweb\b|webbing|spider/, 'web', 'wall'],
+        [/\brubble|debris|ruins|collapsed|broken stone|crumbling/, 'rubble', 'edge'],
+        [/\bcrystal|geode|gemstone|glowing crystal|quartz/, 'crystal', 'edge'],
+        [/\bicicle|frozen|ice crystal|sheet of ice/, 'icecrystal', 'edge'],
+        [/\bsnow|snowdrift|drift of/, 'snowdrift', 'edge'],
+        [/\bmushroom|fungus|fungal|toadstool/, 'mushrooms', 'edge'],
+        [/\breed|rushes|cattail|marsh grass/, 'reeds', 'edge'],
+        [/\blily|lilypad|lily pad/, 'lilypad', 'any'],
+        [/\bcactus|cacti|succulent/, 'cactus', 'edge'],
+        [/\bflower|blossom|bloom|petal|wildflower|garden bed/, 'flowers', 'edge'],
+        [/\bpine|fir tree|evergreen|conifer|spruce/, 'pine', 'edge'],
+        [/\bdead tree|withered tree|gnarled|bare branch|leafless/, 'deadtree', 'edge'],
+        [/\bstump|fallen tree|fallen log|\blog\b/, 'stump', 'edge'],
+        [/\bbush|shrub|hedge|thicket|bramble|undergrowth/, 'bush', 'edge'],
+        [/\btree|oak|elm|willow|birch|maple|grove|orchard/, 'tree', 'edge'],
+        [/\bboulder|\brock|stones|stony|rocky/, 'rock', 'edge'],
+        [/\bcoral|reef/, 'coral', 'edge'],
+        [/\bshell|seashell|conch/, 'shell', 'edge'],
+      ];
+      const picks = [];
+      const seen = new Set();
+      for (const [re, prop, place] of RULES) {
+        if (picks.length >= 4) break;
+        if (seen.has(prop)) continue;
+        if (re.test(text) && this.textures.exists(`zt_prop_${prop}`)) { seen.add(prop); picks.push({ prop, place }); }
+      }
+      if (!picks.length) return 0;
+
+      const grid = layout.grid, W = layout.W, H = layout.H;
+      const cx = Math.floor(W / 2), cy = Math.floor(H / 2);
+      const taken = this._objCells || (this._objCells = new Set());
+      let placedCount = 0;
+      const isFloor = (x, y) => x > 1 && y > 1 && x < W - 2 && y < H - 2 && grid[y * W + x] === FLOOR && !taken.has(`${x},${y}`);
+      const nearWall = (x, y) => grid[(y - 1) * W + x] === BLOCK || grid[(y + 1) * W + x] === BLOCK
+        || grid[y * W + x - 1] === BLOCK || grid[y * W + x + 1] === BLOCK;
+      const GLOWN = { fountain: 0x9fd9ff, crystal: 0xc792ff, icecrystal: 0x9fd0ff, statue: 0xffe9c0,
+        runestone: 0xffd089, brazier: 0xff9a4a, candles: 0xffe9a8, lamppost: 0xffd98a, lantern: 0xcfff90, mushrooms: 0xb06ce0 };
+      const INTERACT = { fountain: 'water', brazier: 'warm', runestone: 'holy', statue: 'holy', candles: 'warm' };
+
+      picks.forEach((pick, idx) => {
+        const rng = MH.mulberry32((layout.vnum ^ (0x51ed2 + idx * 0x9e37)) >>> 0);
+        // find a fitting free cell for this placement style
+        let best = null;
+        for (let g = 0; g < 80 && !best; g++) {
+          const x = 2 + ((rng() * (W - 4)) | 0), y = 2 + ((rng() * (H - 4)) | 0);
+          if (!isFloor(x, y)) continue;
+          const wall = nearWall(x, y);
+          const central = Math.abs(x - cx) < 3 && Math.abs(y - cy) < 3;
+          if (pick.place === 'center' && (central || g > 50)) best = { x, y };
+          else if (pick.place === 'wall' && wall) best = { x, y };
+          else if (pick.place === 'edge' && (wall || g > 40)) best = { x, y };
+          else if (pick.place === 'any') best = { x, y };
+          else if (g > 60) best = { x, y };   // fallback: take any floor
+        }
+        if (!best) return;
+        taken.add(`${best.x},${best.y}`);
+        placedCount++;
+        const name = pick.prop;
+        const bx = best.x * T + T / 2, by = (best.y + 1) * T;
+        const scale = (pick.place === 'center' ? 1.5 : 1.1 + rng() * 0.25) / MH.SMOOTH_SS;
+        this.tileLayer.add(this.add.image(bx, by - 1, 'px_shadow').setDepth(2.6).setAlpha(0.32).setScale(scale * 0.4));
+        const img = this.add.image(bx, by, `zt_prop_${name}`).setOrigin(0.5, 1).setScale(scale);
+        this.addPropImage(img, by, name);
+        // glowing features pulse softly and draw the eye
+        const SWAY = new Set(['tree', 'pine', 'deadtree', 'bush', 'flowers', 'mushrooms', 'reeds', 'lilypad', 'cactus', 'stump', 'coral']);
+        if (GLOWN[name]) {
+          const glow = this.add.image(bx, by - T * 0.6, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+            .setAlpha(0.12).setScale(0.5).setTint(GLOWN[name]).setDepth(34);
+          this.tweens.add({ targets: glow, alpha: 0.22, scale: 0.66, duration: 2000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+          this.fxList && this.fxList.push(glow);
+          if (name === 'fountain') this.registerReactive(img, 'ripple');
+          else this.registerReactive(img, 'flare', { glow, glowMax: 0.12, tint: GLOWN[name] });
+        } else if (SWAY.has(name)) {
+          this.registerReactive(img, 'sway', { tint: GLOWN[name] || 0x8fbf6a });
+        }
+        // examine / interact: these are the features the prose called out
+        img.setInteractive({ useHandCursor: true });
+        img.on('pointerdown', pointer => {
+          if (pointer.rightButtonDown && pointer.rightButtonDown()) return;
+          const acts = this.propActions(name, bx, by);
+          const label = (MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name);
+          if (MH.popover) MH.popover.show(pointer.event.clientX, pointer.event.clientY, label, acts);
+        });
+        img.on('pointerover', () => MH.bus.emit('flash', `${MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name} — click to interact`));
+      });
+      return placedCount;
+    }
+
+    // A light, sector-appropriate touch of scenery so rooms whose prose names
+    // few/no objects still feel like a place — without re-cluttering. Runs only
+    // when the description produced few props; total objects stay capped ~4.
+    ambientFill(layout, th, placedCount) {
+      const { T, FLOOR, BLOCK } = TD();
+      const TARGET = 2, CAP = 4;
+      const want = Math.min(TARGET - (placedCount || 0), CAP - (placedCount || 0));
+      if (want <= 0) return;
+      const SETS = {
+        forest: ['tree', 'bush', 'mushrooms', 'rock'], field: ['bush', 'flowers', 'rock'],
+        hills: ['rock', 'bush'], swamp: ['reeds', 'deadtree', 'mushrooms'],
+        desert: ['cactus', 'rock'], mountain: ['rock', 'crystal'], cave: ['rock', 'crystal'],
+        dungeon: ['rubble', 'urn'], underground: ['rubble', 'crystal'],
+        inside: ['crate', 'barrel'], city: ['crate', 'barrel', 'lamppost'], default: ['rock', 'bush'],
+      };
+      const set = (SETS[th] || SETS.default).filter(n => this.textures.exists(`zt_prop_${n}`));
+      if (!set.length) return;
+      const grid = layout.grid, W = layout.W, H = layout.H;
+      const cx = Math.floor(W / 2), cy = Math.floor(H / 2);
+      const taken = this._objCells || (this._objCells = new Set());
+      const rng = MH.mulberry32((layout.vnum ^ 0x5eed17) >>> 0);
+      const SWAY = new Set(['tree', 'bush', 'flowers', 'mushrooms', 'reeds', 'cactus', 'deadtree']);
+      let placed = 0, guard = 0;
+      while (placed < want && guard++ < 200) {
+        const x = 2 + ((rng() * (W - 4)) | 0), y = 2 + ((rng() * (H - 4)) | 0);
+        if (grid[y * W + x] !== FLOOR) continue;
+        if (Math.abs(x - cx) < 2 && Math.abs(y - cy) < 2) continue;   // keep the centre open
+        if (taken.has(`${x},${y}`)) continue;
+        const nearWall = grid[(y - 1) * W + x] === BLOCK || grid[(y + 1) * W + x] === BLOCK
+          || grid[y * W + x - 1] === BLOCK || grid[y * W + x + 1] === BLOCK;
+        if (!nearWall && rng() < 0.55) continue;   // bias to edges so the floor stays clear
+        taken.add(`${x},${y}`);
+        const name = set[(rng() * set.length) | 0];
+        const bx = x * T + T / 2, by = (y + 1) * T;
+        const scale = (0.85 + rng() * 0.3) / MH.SMOOTH_SS;
+        this.tileLayer.add(this.add.image(bx, by - 1, 'px_shadow').setDepth(2.5).setAlpha(0.26).setScale(scale * 0.32));
+        const img = this.add.image(bx, by, `zt_prop_${name}`).setOrigin(0.5, 1).setDepth(3 + by / 1000).setScale(scale);
+        this.tileLayer.add(img);
+        if (SWAY.has(name)) this.registerReactive(img, 'sway', { tint: 0x8fbf6a });
+        placed++;
+      }
+    }
+
+    // Phase 2: the verbs a prop offers — what you can DO with it. Shared by
+    // landmarks and prose-props so every feature is genuinely interactive, with
+    // a little ceremony (a ripple, warm light, a blessing) when you use it.
+    propActions(name, bx, by) {
+      const { T } = TD();
+      const P = MH.fx && MH.fx.PAL;
+      const react = kind => {
+        try {
+          if (kind === 'water') { if (MH.fx) MH.fx.ringShock(this, bx, by - T * 0.3, 0x9fd9ff, 14, 420); this.spark(bx, by - T * 0.3, 0x9fd9ff); }
+          else if (kind === 'warm') { if (MH.fx) MH.fx.risers(this, bx, by - T * 0.4, P ? P.fire : { a: 0xffd060, b: 0xff8a2a }, 5); this.cameras.main.flash(120, 50, 25, 0); }
+          else if (kind === 'holy') { if (MH.fx) { MH.fx.pillar(this, bx, by, P ? P.holy : { a: 0xfff6d0, b: 0xffe080 }, 90, 22); MH.fx.ringShock(this, bx, by - T * 0.4, 0xffe9a8, 18, 520); } this.flashScreen(0xfff2d0, 0.2, 380); MH.bus.emit('flash', 'You feel a fleeting blessing settle over you.'); }
+          else if (kind === 'dust') { this.dustPuff(bx, by - 2); }
+        } catch (_) {}
+      };
+      const search = () => (MH.immersion && MH.immersion.runInfo ? MH.immersion.runInfo('search', 'You search') : MH.sendCommand('search'));
+      const examine = () => MH.immersion && MH.immersion.propFlavor && MH.immersion.propFlavor(name);
+      const acts = [];
+      // primary verb per prop family
+      if (['fountain', 'well'].includes(name)) acts.push({ label: '🜄 Drink', fn: () => { react('water'); MH.sendCommand('drink'); } });
+      if (['brazier', 'campfire', 'candles', 'lantern', 'lamppost'].includes(name)) acts.push({ label: '😴 Warm yourself', fn: () => { react('warm'); MH.sendCommand('rest'); } });
+      if (['altar', 'statue', 'runestone'].includes(name)) acts.push({ label: '🙏 Pray', fn: () => { react('holy'); MH.sendCommand('pray'); } });
+      if (['stall'].includes(name)) acts.push({ label: '🛒 Browse wares', fn: () => (MH.immersion && MH.immersion.runInfo ? MH.immersion.runInfo('list', 'Wares for sale') : MH.sendCommand('list')) });
+      if (['bookpile', 'banner'].includes(name)) acts.push({ label: '📖 Read', fn: () => examine() });
+      if (['gravestone'].includes(name)) acts.push({ label: '🕯 Pay respects', fn: () => { react('holy'); examine(); } });
+      if (['crate', 'barrel', 'urn'].includes(name)) acts.push({ label: '📦 Search inside', fn: () => { react('dust'); search(); } });
+      if (['bones', 'rubble', 'web', 'mushrooms'].includes(name)) acts.push({ label: '🔍 Sift through', fn: () => { react('dust'); search(); } });
+      // universal verbs
+      acts.push({ label: '🔍 Search around it', fn: search });
+      acts.push({ label: '👁 Examine', fn: examine });
+      return acts;
+    }
+
+    scatterClutter(layout, th) {
+      const { T, FLOOR, BLOCK } = TD();
+      const CLUTTER = {
+        field: ['flowers', 'rock', 'bush', 'reeds'], forest: ['mushrooms', 'flowers', 'rock', 'bush'],
+        swamp: ['reeds', 'mushrooms', 'rock', 'bones'], hills: ['rock', 'bush', 'flowers'],
+        desert: ['rock', 'bones', 'cactus'], mountain: ['rock', 'bones'],
+        cave: ['rock', 'mushrooms', 'bones', 'crystal'], dungeon: ['rubble', 'bones', 'urn', 'web'],
+        underground: ['rubble', 'crystal', 'bones'], inside: ['crate', 'barrel', 'urn', 'bookpile'],
+        city: ['crate', 'barrel', 'urn'], default: ['rock', 'bush'],
+      };
+      const set = (CLUTTER[th] || CLUTTER.default).filter(n => this.textures.exists(`zt_prop_${n}`));
+      const pScale = (MH.gfx && MH.gfx.particleScale != null) ? MH.gfx.particleScale : 1;
+      const rng = MH.mulberry32((layout.vnum ^ 0x9e3a17) >>> 0);
+      const grid = layout.grid, W = layout.W, H = layout.H;
+      const cx = Math.floor(W / 2), cy = Math.floor(H / 2);
+      const taken = new Set((layout.props || []).map(p => `${p.x},${p.y}`));
+      if (set.length) {
+        // lean on the prose-driven props instead: only a light sprinkle of
+        // generic clutter, biased to the walls so the floor stays open
+        const count = Math.round((2 + rng() * 3) * (0.5 + pScale * 0.5));
+        let placed = 0, guard = 0;
+        while (placed < count && guard++ < 240) {
+          const x = 2 + ((rng() * (W - 4)) | 0), y = 2 + ((rng() * (H - 4)) | 0);
+          if (grid[y * W + x] !== FLOOR) continue;
+          if (Math.abs(x - cx) < 2 && Math.abs(y - cy) < 2) continue;   // keep centre/landmark clear
+          if (taken.has(`${x},${y}`)) continue;
+          const nearWall = grid[(y - 1) * W + x] === BLOCK || grid[(y + 1) * W + x] === BLOCK
+            || grid[y * W + x - 1] === BLOCK || grid[y * W + x + 1] === BLOCK;
+          if (!nearWall && rng() < 0.5) continue;   // bias clutter toward walls/edges
+          taken.add(`${x},${y}`);
+          const name = set[(rng() * set.length) | 0];
+          const bx = x * T + T / 2, by = (y + 1) * T;
+          this.tileLayer.add(this.add.image(bx, by - 1, 'px_shadow').setDepth(2.5).setAlpha(0.24).setScale(0.18));
+          const cimg = this.add.image(bx, by, `zt_prop_${name}`).setOrigin(0.5, 1)
+            .setDepth(3 + by / 1000).setScale((0.5 + rng() * 0.35) / MH.SMOOTH_SS);
+          this.tileLayer.add(cimg);
+          // small plants brush as you pass
+          if (['flowers', 'reeds', 'bush', 'mushrooms'].includes(name)) this.registerReactive(cimg, 'sway', { tint: 0x8fbf6a });
+          // searchable clutter (containers, remains) is clickable for loot/lore
+          if (['crate', 'barrel', 'urn', 'bones', 'rubble'].includes(name)) {
+            cimg.setInteractive({ useHandCursor: true });
+            cimg.on('pointerdown', pointer => {
+              if (pointer.rightButtonDown && pointer.rightButtonDown()) return;
+              const acts = this.propActions(name, bx, by);
+              if (MH.popover) MH.popover.show(pointer.event.clientX, pointer.event.clientY, (MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name), acts);
+            });
+            cimg.on('pointerover', () => MH.bus.emit('flash', `${MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name} — click to search`));
+          }
+          placed++;
+        }
+      }
+      // discovery glints: faint sparkles inviting a search, rewarding wandering
+      const spots = 1 + (rng() < 0.45 ? 1 : 0);
+      for (let i = 0, g = 0; i < spots && g < 60; g++) {
+        const x = 2 + ((rng() * (W - 4)) | 0), y = 2 + ((rng() * (H - 4)) | 0);
+        if (grid[y * W + x] !== FLOOR || (Math.abs(x - cx) < 2 && Math.abs(y - cy) < 2) || taken.has(`${x},${y}`)) continue;
+        taken.add(`${x},${y}`);
+        i++;
+        const gx = x * T + T / 2, gy = y * T + T / 2;
+        const glint = this.add.image(gx, gy, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+          .setAlpha(0.0).setScale(0.12).setTint(0xffe9a8).setDepth(4).setInteractive({ useHandCursor: true });
+        this.tweens.add({ targets: glint, alpha: 0.5, scale: 0.2, duration: 700, yoyo: true, repeat: -1, repeatDelay: 2600, ease: 'sine.inOut' });
+        glint.on('pointerdown', () => {
+          this.spark(gx, gy, 0xffe9a8);
+          if (MH.immersion && MH.immersion.runInfo) MH.immersion.runInfo('search', 'You search the spot');
+          else MH.sendCommand('search');
+        });
+        glint.on('pointerover', () => MH.bus.emit('flash', 'Something glints here — click to search'));
+        this.fxList && this.fxList.push(glint);
+      }
+    }
+
+    // Phase 2: a per-room landmark centrepiece — a focal feature seeded by the
+    // room so each place has identity and a destination worth crossing to. Built
+    // from existing prop art, scaled up, with a glow, a draw-the-eye glint, and
+    // an examine/interact so wandering the room is rewarded (exploration).
+    placeLandmark(layout, th) {
+      if (this._landmarkGlint) { this._landmarkGlint.remove(); this._landmarkGlint = null; }
+      this._campfire = null;
+      const { T, FLOOR } = TD();
+      const CENTER = {
+        field: ['statue', 'runestone', 'fountain', 'well', 'campfire', 'tree'],
+        hills: ['runestone', 'rock', 'campfire', 'statue', 'tree'],
+        forest: ['tree', 'deadtree', 'campfire', 'mushrooms', 'altar'],
+        swamp: ['deadtree', 'altar', 'statue', 'mushrooms'],
+        desert: ['pillar', 'statue', 'well', 'campfire', 'cactus'],
+        mountain: ['crystal', 'campfire', 'rock', 'runestone'],
+        cave: ['crystal', 'campfire', 'altar', 'rock', 'mushrooms'],
+        dungeon: ['altar', 'statue', 'runestone', 'pillar'],
+        underground: ['crystal', 'altar', 'runestone', 'pillar'],
+        inside: ['statue', 'fountain', 'well', 'altar', 'anvil'],
+        city: ['fountain', 'well', 'statue', 'runestone', 'stall'],
+        default: ['statue', 'runestone', 'campfire', 'rock'],
+      };
+      const rng = MH.mulberry32((layout.vnum ^ 0x1a7f3) >>> 0);
+      // only ~70% of rooms get a landmark, so they stay special
+      if (rng() > 0.7) return;
+      const cands = (CENTER[th] || CENTER.default).filter(n => this.textures.exists(`zt_prop_${n}`));
+      if (!cands.length) return;
+      const name = cands[(rng() * cands.length) | 0];
+      // a clear floor cell near the centre (spiral out until one is free)
+      const grid = layout.grid, W = layout.W, H = layout.H;
+      const cx = Math.floor(W / 2), cy = Math.floor(H / 2);
+      const free = (x, y) => x > 1 && y > 1 && x < W - 2 && y < H - 2 && grid[y * W + x] === FLOOR
+        && !(layout.props || []).some(p => Math.abs(p.x - x) < 2 && Math.abs(p.y - y) < 2);
+      let lx = cx, ly = cy, found = free(cx, cy);
+      for (let r = 1; !found && r <= 5; r++) {
+        for (let a = 0; a < 8 && !found; a++) {
+          const tx = cx + Math.round(Math.cos(a / 8 * 6.28) * r), ty = cy + Math.round(Math.sin(a / 8 * 6.28) * r);
+          if (free(tx, ty)) { lx = tx; ly = ty; found = true; }
+        }
+      }
+      if (!found) return;
+      const baseX = lx * T + T / 2, baseY = (ly + 1) * T;
+      if (['campfire', 'brazier'].includes(name)) this._campfire = { x: baseX, y: baseY }; else this._campfire = null;
+      const scale = 2.4 / MH.SMOOTH_SS;
+      // shadow + glow ground and highlight it
+      this.add.image(baseX, baseY - 1, 'px_shadow').setDepth(3 + baseY / 1000 - 0.01).setAlpha(0.42).setScale(0.85);
+      const GLOWN = { fountain: 0x9fd9ff, well: 0x9fd9ff, crystal: 0xc792ff, statue: 0xffe9c0, runestone: 0xffd089, mushrooms: 0xb06ce0, deadtree: 0x9ab69a, tree: 0xaaffaa, campfire: 0xff9a4a, altar: 0xc8a0ff };
+      const glow = this.add.image(baseX, baseY - T, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+        .setAlpha(0.16).setScale(0.7).setTint(GLOWN[name] || 0xffe9a8).setDepth(35);
+      this.tweens.add({ targets: glow, alpha: 0.28, scale: 0.85, duration: 1800, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      this.fxList && this.fxList.push(glow);
+      const img = this.add.image(baseX, baseY, `zt_prop_${name}`).setOrigin(0.5, 1).setScale(scale);
+      this.addPropImage(img, baseY, name);
+      // the centrepiece reacts to your presence too
+      if (['fountain', 'well'].includes(name)) this.registerReactive(img, 'ripple');
+      else if (['campfire', 'brazier'].includes(name)) this.registerReactive(img, 'flare', { glow, glowMax: 0.16, tint: GLOWN[name] || 0xff9a4a });
+      else if (['tree', 'deadtree', 'mushrooms', 'cactus'].includes(name)) this.registerReactive(img, 'sway', { tint: GLOWN[name] || 0x8fbf6a });
+      // a periodic glint to draw the eye and invite exploration
+      this._landmarkGlint = this.time.addEvent({
+        delay: 3200 + rng() * 2600, loop: true,
+        callback: () => { if (img.active) this.spark(baseX, baseY - T * 1.4, GLOWN[name] || 0xffe9a8); },
+      });
+      // examine + interact: the room's point of interest (shared verb set)
+      img.setInteractive({ useHandCursor: true });
+      img.on('pointerdown', pointer => {
+        if (pointer.rightButtonDown && pointer.rightButtonDown()) return;
+        const acts = this.propActions(name, baseX, baseY);
+        if (MH.popover && acts.length) MH.popover.show(pointer.event.clientX, pointer.event.clientY, (MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name), acts);
+      });
+      img.on('pointerover', () => MH.bus.emit('flash', `${MH.PROP_FLAVOR && MH.PROP_FLAVOR[name] ? MH.PROP_FLAVOR[name][0] : name} — click to interact`));
+    }
+
+    // Ori-style mood pass: themed light pools, god rays, drifting motes.
+    // All procedural, all additive-blended over the pixel art.
+    buildAtmosphere(layout, th) {
+      const { T } = TD();
+      const GLOW = {
+        forest: 0xaaffaa, field: 0xffe9a8, hills: 0xffe9a8, mountain: 0xcfe2ff,
+        desert: 0xffd9a0, swamp: 0x9fd6a0, inside: 0xffb868, city: 0xffc878,
+        dungeon: 0xb08aff, cave: 0xffa868, underwater: 0x66e0ff,
+        water_swim: 0x9fd9ff, water_noswim: 0x9fd9ff, flying: 0xffffff, default: 0xaac4ff,
+      };
+      const zt = layout.zoneKey && MH.ZONE_THEMES ? MH.ZONE_THEMES[layout.zoneKey] : null;
+      const glowTint = (zt && zt.glow) || GLOW[th] || GLOW.default;
+      const rng = MH.mulberry32(layout.vnum + 777);
+      if (this.fxList) this.fxList.forEach(o => o.destroy());
+      this.fxList = [];
+      if (this.pxFar) this.pxFar.removeAll(true);
+      if (this.pxNear) this.pxNear.removeAll(true);
+      this.pxFar.setPosition(0, 0);
+      this.pxNear.setPosition(0, 0);
+
+      const gfx = MH.gfx || {};
+      const pScale = gfx.particleScale != null ? gfx.particleScale : 1;
+
+      // parallax planes: soft light clouds behind the actors (far, slow) and a
+      // few large blurred motes in front (near, fast). Children animate locally;
+      // the containers are slid by player offset in update() for the depth feel.
+      if (gfx.parallax !== false) {
+        for (let i = 0; i < 4; i++) {
+          const fx = this.add.image(rng() * this.pxW, rng() * this.pxH, 'fx_glow')
+            .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.03 + rng() * 0.03)
+            .setScale(1.6 + rng() * 1.4).setTint(glowTint);
+          this.tweens.add({ targets: fx, alpha: fx.alpha + 0.03, duration: 3000 + rng() * 2000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+          this.pxFar.add(fx);
+        }
+        for (let i = 0; i < 2; i++) {
+          const nx = this.add.image(rng() * this.pxW, rng() * this.pxH, 'fx_glow')
+            .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.015 + rng() * 0.02)
+            .setScale(1.8 + rng() * 1.2).setTint(glowTint);
+          this.tweens.add({ targets: nx, x: nx.x + (rng() - 0.5) * 40, duration: 5000 + rng() * 3000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+          this.pxNear.add(nx);
+        }
+      }
+
+      // zone mood wash: a whisper of the theme's color over everything
+      if (zt && zt.mood) {
+        const wash = this.add.rectangle(0, 0, this.pxW, this.pxH, zt.mood, zt.moodA || 0.06)
+          .setOrigin(0, 0).setDepth(33).setBlendMode(Phaser.BlendModes.OVERLAY);
+        this.fxList.push(wash);
+      }
+
+      // soft pools of colored light
+      const pools = gfx.lightPools != null ? gfx.lightPools : 2 + Math.floor(rng() * 2);
+      for (let i = 0; i < pools; i++) {
+        const g = this.add.image(40 + rng() * (this.pxW - 80), 30 + rng() * (this.pxH - 60), 'fx_glow')
+          .setBlendMode(Phaser.BlendModes.ADD)
+          .setAlpha(0.035 + rng() * 0.035)
+          .setScale(1.1 + rng() * 1.1)
+          .setTint(glowTint).setDepth(35);
+        this.tweens.add({ targets: g, alpha: g.alpha + 0.05, duration: 2400 + rng() * 2200, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        this.fxList.push(g);
+      }
+
+      // god rays slanting in from above for sunlit themes
+      if (['forest', 'field', 'hills', 'mountain', 'desert', 'swamp', 'water_swim', 'water_noswim', 'flying'].includes(th)) {
+        for (let i = 0; i < 3; i++) {
+          const ray = this.add.image(60 + rng() * (this.pxW - 120), -8, 'fx_ray')
+            .setOrigin(0.5, 0)
+            .setBlendMode(Phaser.BlendModes.ADD)
+            .setAlpha(0.03 + rng() * 0.03)
+            .setRotation(0.25 + rng() * 0.15)
+            .setTint(th === 'underwater' ? 0x88d8ff : 0xfff0c0)
+            .setDepth(36);
+          this.tweens.add({ targets: ray, alpha: ray.alpha + 0.05, x: ray.x + 14, duration: 5200 + rng() * 2600, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+          this.fxList.push(ray);
+        }
+      }
+      if (th === 'underwater') {
+        for (let i = 0; i < 3; i++) {
+          const ray = this.add.image(60 + rng() * (this.pxW - 120), -8, 'fx_ray')
+            .setOrigin(0.5, 0).setBlendMode(Phaser.BlendModes.ADD)
+            .setAlpha(0.07).setRotation(0.18 + rng() * 0.1).setTint(0x88e0ff).setDepth(36);
+          this.tweens.add({ targets: ray, x: ray.x + 18, duration: 6400, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+          this.fxList.push(ray);
+        }
+      }
+      // indoor window shafts: a couple of bright sun-beams with drifting dust
+      const detailFx = !MH.gfx || MH.gfx.particleScale >= 0.5;
+      if (['inside', 'city', 'dungeon'].includes(th)) {
+        const beams = th === 'inside' ? 2 : 1;
+        for (let i = 0; i < beams; i++) {
+          const bx = (0.28 + 0.4 * i + rng() * 0.18) * this.pxW;
+          const ray = this.add.image(bx, -8, 'fx_ray').setOrigin(0.5, 0).setBlendMode(Phaser.BlendModes.ADD)
+            .setAlpha(0.06 + rng() * 0.04).setRotation(0.30 + rng() * 0.1).setScale(1.3, 1.7)
+            .setTint(th === 'dungeon' ? 0xbcd0ff : 0xfff0d0).setDepth(36);
+          this.tweens.add({ targets: ray, alpha: ray.alpha + 0.04, duration: 5000 + rng() * 2000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+          this.fxList.push(ray);
+          if (detailFx) {
+            const dust = this.add.particles(bx, this.pxH * 0.3, 'px_white', {
+              x: { min: -22, max: 22 }, y: { min: -40, max: this.pxH * 0.4 }, tint: 0xfff0d0,
+              scale: { start: 0.13, end: 0 }, alpha: { start: 0, end: 0.5 }, speedY: { min: 4, max: 12 }, speedX: { min: -3, max: 3 },
+              lifespan: 6000, frequency: 600, blendMode: 'ADD',
+            }).setDepth(36);
+            this.fxList.push(dust);
+          }
+        }
+      }
+      // forest canopy dapple: soft shifting light spots on the floor
+      if (['forest', 'swamp'].includes(th)) {
+        const spots = 3 + Math.floor(rng() * 3);
+        for (let i = 0; i < spots; i++) {
+          const dp = this.add.image(40 + rng() * (this.pxW - 80), 50 + rng() * (this.pxH - 100), 'fx_glow')
+            .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.05 + rng() * 0.05).setScale(0.5 + rng() * 0.5)
+            .setTint(0xeaffc0).setDepth(3.5);
+          this.tweens.add({ targets: dp, alpha: dp.alpha + 0.05, x: dp.x + (rng() - 0.5) * 22, duration: 4000 + rng() * 3000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+          this.fxList.push(dp);
+        }
+      }
+
+      // themed ambient weather (zone themes), falling back to drifting motes
+      const ambient = zt ? zt.ambient : 'motes';
+      const soft = this.textures.exists('zt_px_soft') ? 'zt_px_soft' : 'px_white';
+      const leaf = this.textures.exists('zt_px_leaf') ? 'zt_px_leaf' : 'px_white';
+      const fullX = { min: 10, max: this.pxW - 10 };
+      const addAmb = cfg => {
+        // thin out ambient particles at lower graphics quality
+        if (pScale < 1 && cfg.frequency) cfg = Object.assign({}, cfg, { frequency: cfg.frequency / pScale });
+        const p = this.add.particles(0, 0, cfg.tex || soft, cfg).setDepth(34);
+        this.fxList.push(p);
+        return p;
+      };
+      if (ambient === 'leaves' || ambient === 'petals') {
+        addAmb({
+          tex: leaf, x: fullX, y: -8,
+          tint: ambient === 'petals' ? [0xf0b8d0, 0xffe0ec, 0xe89ab8] : [0xc8d870, 0xe0b860, 0xa8c860],
+          scale: { start: 0.32, end: 0.22 }, alpha: { start: 0.9, end: 0 },
+          speedY: { min: 12, max: 26 }, speedX: { min: -14, max: 14 },
+          rotate: { start: 0, end: 360 }, lifespan: 11000, frequency: 560,
+        });
+      } else if (ambient === 'snow') {
+        addAmb({
+          x: fullX, y: -6, tint: 0xffffff,
+          scale: { start: 0.34, end: 0.2 }, alpha: { start: 0.85, end: 0.1 },
+          speedY: { min: 14, max: 30 }, speedX: { min: -10, max: 10 },
+          lifespan: 10000, frequency: 220,
+        });
+      } else if (ambient === 'embers' || ambient === 'sparks') {
+        addAmb({
+          x: fullX, y: this.pxH + 4,
+          tint: ambient === 'sparks' ? [0xffe9a8, 0xffc868] : [0xff9a4a, 0xff5a2a, 0xffd080],
+          scale: { start: 0.3, end: 0.05 }, alpha: { start: 0.9, end: 0 },
+          speedY: { min: -34, max: -14 }, speedX: { min: -8, max: 8 },
+          lifespan: 5200, frequency: ambient === 'sparks' ? 480 : 300, blendMode: 'ADD',
+        });
+      } else if (ambient === 'ash') {
+        addAmb({
+          x: fullX, y: -6, tint: [0x9a9a9a, 0x6e6a66, 0xc0b8b0],
+          scale: { start: 0.26, end: 0.12 }, alpha: { start: 0.6, end: 0 },
+          speedY: { min: 8, max: 18 }, speedX: { min: -12, max: 12 },
+          lifespan: 12000, frequency: 420,
+        });
+      } else if (ambient === 'bubbles') {
+        addAmb({
+          x: fullX, y: this.pxH + 4, tint: 0xbfe8ff,
+          scale: { start: 0.16, end: 0.4 }, alpha: { start: 0.55, end: 0 },
+          speedY: { min: -26, max: -12 }, speedX: { min: -6, max: 6 },
+          lifespan: 8000, frequency: 380, blendMode: 'ADD',
+        });
+      } else if (ambient === 'fireflies') {
+        const ff = addAmb({
+          x: fullX, y: { min: 20, max: this.pxH - 20 }, tint: [0xbfff80, 0xdfff9a],
+          scale: { start: 0.4, end: 0.08 }, alpha: { start: 0.9, end: 0 },
+          speedX: { min: -14, max: 14 }, speedY: { min: -10, max: 10 },
+          lifespan: 4200, frequency: 520, blendMode: 'ADD',
+        });
+      } else if (ambient === 'stars') {
+        addAmb({
+          x: fullX, y: { min: 10, max: this.pxH - 10 }, tint: [0xffffff, 0xb0a8ff, 0x9ad8ff],
+          scale: { start: 0.05, end: 0.4 }, alpha: { start: 0, end: 0.9 },
+          speedX: 0, speedY: 0, lifespan: 2600, frequency: 360, blendMode: 'ADD',
+        });
+      } else if (ambient === 'drips') {
+        addAmb({
+          x: fullX, y: -4, tint: 0x9fd6a0,
+          scale: { start: 0.22, end: 0.1 }, alpha: { start: 0.7, end: 0 },
+          speedY: { min: 60, max: 110 }, speedX: 0,
+          lifespan: 2400, frequency: 700,
+        });
+      } else if (ambient === 'mist') {
+        addAmb({
+          x: fullX, y: { min: this.pxH * 0.4, max: this.pxH - 14 }, tint: 0xaac8aa,
+          scale: { start: 1.6, end: 3.2 }, alpha: { start: 0.0, end: 0.10 },
+          speedX: { min: 4, max: 14 }, speedY: { min: -2, max: 2 },
+          lifespan: 9000, frequency: 800, blendMode: 'SCREEN',
+        });
+      } else if (ambient === 'dust') {
+        addAmb({
+          x: -8, y: { min: 16, max: this.pxH - 16 }, tint: 0xe8d8a8,
+          scale: { start: 0.3, end: 0.1 }, alpha: { start: 0.4, end: 0 },
+          speedX: { min: 26, max: 52 }, speedY: { min: -4, max: 4 },
+          lifespan: 9000, frequency: 520,
+        });
+      } else if (ambient === 'spores') {
+        addAmb({
+          x: fullX, y: { min: 14, max: this.pxH - 14 }, tint: [0xb06ce0, 0xd8a0ff],
+          scale: { start: 0.28, end: 0.06 }, alpha: { start: 0.7, end: 0 },
+          speedX: { min: -8, max: 8 }, speedY: { min: -12, max: -2 },
+          lifespan: 6500, frequency: 460, blendMode: 'ADD',
+        });
+      } else {
+        const moteTint = ['forest', 'swamp'].includes(th) ? 0xbfff80
+          : ['dungeon', 'cave', 'inside', 'default'].includes(th) ? 0xd8c8a0
+          : glowTint;
+        addAmb({
+          tex: 'px_white',
+          x: { min: 20, max: this.pxW - 20 }, y: { min: 20, max: this.pxH - 20 },
+          scale: { start: 0.5, end: 0.1 }, alpha: { start: 0.5, end: 0 },
+          tint: moteTint, speedX: { min: -6, max: 6 }, speedY: { min: -8, max: 2 },
+          lifespan: 7000, frequency: 420, blendMode: 'ADD',
+        });
+      }
+
+      // glows on the travel features
+      const featureGlow = (x, y, tint, scale = 0.45, alpha = 0.3) => {
+        const g = this.add.image(x, y, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+          .setAlpha(alpha).setScale(scale).setTint(tint).setDepth(35);
+        this.tweens.add({ targets: g, alpha: alpha + 0.12, duration: 1200, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        this.fxList.push(g);
+        if (this.lightSources) this.lightSources.push({ x, y, r: 64, seed: (x * 31 + y * 7) % 1000 });
+      };
+      if (layout.stairsUp) featureGlow(layout.stairsUp.x * T + T / 2, layout.stairsUp.y * T + T / 2, 0xffe9a8);
+      if (layout.stairsDown) featureGlow(layout.stairsDown.x * T + T / 2, layout.stairsDown.y * T + T / 2, 0x8899ff, 0.4, 0.22);
+      for (const p of layout.portals) featureGlow(p.x * T + T / 2, p.y * T + T / 2, 0xc080ff, 0.55, 0.35);
+
+      // water caustics: dappled, slowly rippling light cast across the floor of
+      // any watery room — the single most "alive" thing about real water
+      if (gfx.caustics !== false && (['underwater', 'water_swim', 'water_noswim'].includes(th) || layout.swim)) {
+        const caustic = th === 'underwater' ? 0xaef0ff : 0xbfe8ff;
+        const count = th === 'underwater' ? 9 : 6;
+        for (let i = 0; i < count; i++) {
+          const cx = 40 + rng() * (this.pxW - 80);
+          const cy = 40 + rng() * (this.pxH - 80);
+          const g = this.add.image(cx, cy, 'px_light')
+            .setBlendMode(Phaser.BlendModes.ADD)
+            .setAlpha(0.05 + rng() * 0.06)
+            .setScale(0.45 + rng() * 0.6)
+            .setTint(caustic).setDepth(4);
+          this.tweens.add({
+            targets: g,
+            x: cx + (rng() - 0.5) * 46, y: cy + (rng() - 0.5) * 34,
+            scaleX: g.scaleX * (1.3 + rng() * 0.5), scaleY: g.scaleY * (0.65 + rng() * 0.3),
+            alpha: g.alpha + 0.06,
+            duration: 2400 + rng() * 2600, yoyo: true, repeat: -1, ease: 'sine.inOut',
+          });
+          this.fxList.push(g);
+        }
+      }
+    }
+
+    buildFeatures(layout, th) {
+      const { T } = TD();
+      const addExitZone = (x, y, w, h, dir) => {
+        const zone = this.add.zone(x, y, w, h).setOrigin(0, 0);
+        this.physics.add.existing(zone, true);
+        zone.exitDir = dir;
+        this.exitZones.push(zone);
+      };
+      const signpost = (dir, x, y) => {
+        const zone = layout.exits[dir] && layout.exits[dir].to_zone;
+        if (!zone) return;
+        const post = this.add.text(x, y, `→ ${zone}`, {
+          fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '7px', fontStyle: 'italic', color: '#e8c168',
+          backgroundColor: '#10131ea8', padding: { x: 2, y: 1 },
+        }).setOrigin(0.5, 0.5).setDepth(5).setAlpha(0.9);
+        this.tileLayer.add(post);
+      };
+      const doorIn = dir => {
+        const d = layout.exits[dir] && layout.exits[dir].door;
+        if (d && d.state !== 'open') return d;
+        return null;
+      };
+      const drawDoor = (dir, x, y, vertical) => {
+        if (!doorIn(dir)) return;
+        const img = this.add.image(x, y, `t_${th}_door`).setOrigin(0.5, 0.5).setDepth(4)
+          .setDisplaySize(vertical ? 12 : 40, vertical ? 40 : 12);
+        img.doorDir = dir;
+        this.tileLayer.push ? this.tileLayer.push(img) : this.tileLayer.add(img);
+      };
+      // loud, pulsing skull + red glow on any exit that leads to a deathtrap, so
+      // the danger is unmistakable before you step that way
+      const dangerMark = (dir, x, y) => {
+        if (!(layout.exits[dir] && layout.exits[dir].deathtrap)) return;
+        const glow = this.add.image(x, y + 3, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+          .setTint(0xff2a2a).setAlpha(0.32).setScale(0.95).setDepth(5);
+        this.tileLayer.add(glow);
+        this.tweens.add({ targets: glow, alpha: 0.6, scale: 1.15, duration: 680, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        const t = this.add.text(x, y, '☠ DANGER', {
+          fontFamily: 'Oxanium, Trebuchet MS, sans-serif', resolution: 3, fontSize: '8px', fontStyle: 'bold',
+          color: '#ff5a6a', backgroundColor: '#2a0a0ecc', padding: { x: 3, y: 1 },
+        }).setOrigin(0.5, 0.5).setDepth(6);
+        this.tileLayer.add(t);
+        this.tweens.add({ targets: t, alpha: 0.45, duration: 600, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      };
+
+      const midX = Math.floor(layout.W / 2), midY = Math.floor(layout.H / 2);
+      if (layout.gaps.north) {
+        addExitZone((midX - 2) * T, -6, 5 * T, T * 0.8, 'north');
+        signpost('north', midX * T + T / 2, 2.4 * T);
+        drawDoor('north', midX * T + T / 2, 0.5 * T, false);
+        dangerMark('north', midX * T + T / 2, 1.3 * T);
+      }
+      if (layout.gaps.south) {
+        addExitZone((midX - 2) * T, (layout.H - 0.4) * T, 5 * T, T, 'south');
+        signpost('south', midX * T + T / 2, (layout.H - 2.4) * T);
+        drawDoor('south', midX * T + T / 2, (layout.H - 0.5) * T, false);
+        dangerMark('south', midX * T + T / 2, (layout.H - 1.3) * T);
+      }
+      if (layout.gaps.west) {
+        addExitZone(-6, (midY - 2) * T, T * 0.8, 5 * T, 'west');
+        signpost('west', 3.6 * T, midY * T + T / 2);
+        drawDoor('west', 0.5 * T, midY * T + T / 2, true);
+        dangerMark('west', 2.4 * T, (midY - 1.2) * T);
+      }
+      if (layout.gaps.east) {
+        addExitZone((layout.W - 0.4) * T, (midY - 2) * T, T, 5 * T, 'east');
+        signpost('east', (layout.W - 3.6) * T, midY * T + T / 2);
+        drawDoor('east', (layout.W - 0.5) * T, midY * T + T / 2, true);
+        dangerMark('east', (layout.W - 2.4) * T, (midY - 1.2) * T);
+      }
+      const addFeatureZone = (fx, fy, dir, texKey) => {
+        const img = this.add.image(fx * T, fy * T, texKey).setOrigin(0, 0).setDisplaySize(T, T).setDepth(2);
+        this.tileLayer.add(img);
+        const zone = this.add.zone(fx * T + 5, fy * T + 5, T - 10, T - 10).setOrigin(0, 0);
+        this.physics.add.existing(zone, true);
+        zone.exitDir = dir;
+        this.featureZones.push(zone);
+      };
+      const featureHint = (x, y, text, color) => {
+        const t = this.add.text(x, y, text, {
+          fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '7px', color,
+        }).setOrigin(0.5, 1).setDepth(3).setAlpha(0.85);
+        this.tileLayer.add(t);
+      };
+      if (layout.stairsUp) {
+        addFeatureZone(layout.stairsUp.x, layout.stairsUp.y, 'up', 'td_stairs_up');
+        signpost('up', layout.stairsUp.x * T + T / 2, (layout.stairsUp.y - 1) * T);
+        if (!(layout.exits.up && layout.exits.up.to_zone)) {
+          featureHint(layout.stairsUp.x * T + T / 2, layout.stairsUp.y * T - 2, '▲ up', '#ffe9a8');
+        }
+        dangerMark('up', layout.stairsUp.x * T + T / 2, (layout.stairsUp.y - 1.6) * T);
+      }
+      if (layout.stairsDown) {
+        // in town, a down-exit is a sewer grate, not a stairwell
+        const urban = ['midgaard', 'sewer'].includes(layout.zoneKey) || ['city', 'inside'].includes(th);
+        const downTex = urban && this.textures.exists('zt_grate') ? 'zt_grate' : 'td_stairs_down';
+        addFeatureZone(layout.stairsDown.x, layout.stairsDown.y, 'down', downTex);
+        signpost('down', layout.stairsDown.x * T + T / 2, (layout.stairsDown.y - 1) * T);
+        if (!(layout.exits.down && layout.exits.down.to_zone)) {
+          featureHint(layout.stairsDown.x * T + T / 2, layout.stairsDown.y * T - 2, '▼ down', '#9fb8ff');
+        }
+        dangerMark('down', layout.stairsDown.x * T + T / 2, (layout.stairsDown.y - 1.6) * T);
+      }
+      for (const p of layout.portals) {
+        const spr = this.add.sprite(p.x * T + T / 2, (p.y + 1) * T, 'sm_portal', '0').setOrigin(0.5, 1).setDepth(3).setScale(0.75 / MH.SMOOTH_SS);
+        spr.play('sm_portal_anim');
+        this.tileLayer.add(spr);
+        const zone = this.add.zone(p.x * T, p.y * T, T, T).setOrigin(0, 0);
+        this.physics.add.existing(zone, true);
+        zone.exitDir = p.name;
+        this.featureZones.push(zone);
+        const hint = this.add.text(p.x * T + T / 2, (p.y - 1.2) * T, p.name, {
+          fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '7px', color: '#b87cf0',
+        }).setOrigin(0.5, 1).setDepth(3);
+        this.tileLayer.add(hint);
+        signpost(p.name, p.x * T + T / 2, (p.y - 2) * T);
+        dangerMark(p.name, p.x * T + T / 2, (p.y - 2.6) * T);
+      }
+    }
+
+    placeProse(layout) {
+      // the room-description card (top-center, first visit + 'L' to re-read)
+      // is the clean home for prose now; the floating in-world text duplicated
+      // it and cluttered the Aether view, so it's disabled.
+      return;
+      // eslint-disable-next-line no-unreachable
+      if (!layout.description) return;
+      const rng = MH.mulberry32(layout.vnum + 99);
+      const frags = layout.description.replace(/\n/g, ' ').split(/(?<=[.!?])\s+/)
+        .map(s => s.trim()).filter(s => s.length > 15 && s.length <= 60);
+      Phaser.Utils.Array.Shuffle(frags);
+      frags.slice(0, 2).forEach((frag, i) => {
+        const tx = this.add.text(36 + rng() * (this.pxW - 260), 28 + i * 26, frag, {
+          fontFamily: 'Georgia, serif', resolution: 3, fontSize: '8px', fontStyle: 'italic', color: '#fdf6e3',
+        }).setAlpha(0.14).setDepth(4).setShadow(0, 1, '#000000', 2);
+        this.tweens.add({ targets: tx, y: tx.y - 6, duration: 9000 + rng() * 3000, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        this.bgLayer.add(tx);
+      });
+    }
+
+    deathLog() {
+      try { return JSON.parse(localStorage.getItem('misthollow_deaths')) || []; } catch (_) { return []; }
+    }
+    recordDeath() {
+      if (!this.layout) return;
+      const deaths = this.deathLog();
+      deaths.push({ vnum: this.layout.vnum, name: MH.state.playerName, ts: Date.now() });
+      while (deaths.length > 25) deaths.shift();
+      try { localStorage.setItem('misthollow_deaths', JSON.stringify(deaths)); } catch (_) {}
+    }
+    placeGravestones(layout) {
+      const { T } = TD();
+      const stones = Array.isArray(layout.gravestones)
+        ? layout.gravestones
+        : this.deathLog().filter(d => d.vnum === layout.vnum);
+      stones.slice(0, 5).forEach((d, i) => {
+        const sx = (4 + (MH.hashStr(String(d.ts) + (d.name || '')) % (layout.W - 8))) * T;
+        const sy = (3 + ((MH.hashStr(d.name || 'x') + i) % (layout.H - 6))) * T;
+        const g = this.add.image(sx, sy, 'sm_grave').setOrigin(0.5, 1).setDepth(3).setScale(0.85 / MH.SMOOTH_SS);
+        this.tileLayer.add(g);
+        const slain = d.killer ? `${d.name}, slain by ${d.killer}` : d.name;
+        const label = this.add.text(sx, sy - 18, `here lies ${slain}`, {
+          fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '7px', fontStyle: 'italic', color: '#8a90a4',
+        }).setOrigin(0.5, 1).setAlpha(0.7).setDepth(3);
+        this.tileLayer.add(label);
+      });
+    }
+
+    // ---------- entities ----------
+    syncEntities(roomEntry) {
+      if (!this.layout) return;
+      const want = new Map();
+      (roomEntry.mobs || []).forEach((mob, i) => want.set(`mob:${mob.name}:${i}`, { kind: 'mob', data: mob, idx: i }));
+      (roomEntry.players || []).forEach((p, i) => want.set(`pl:${p.name}`, { kind: 'player', data: p, idx: i + 4 }));
+      (roomEntry.items || []).forEach((it, i) => want.set(`it:${it.name}:${i}`, { kind: 'item', data: it, idx: i }));
+      for (const [key, ent] of this.entities) {
+        if (!want.has(key)) {
+          if (ent.leaving) continue;          // walking off under its own tween
+          this.destroyEntity(ent);
+          this.entities.delete(key);
+        }
+      }
+      for (const [key, spec] of want) {
+        const existing = this.entities.get(key);
+        if (existing) { this.updateEntity(existing, spec.data); continue; }
+        this.entities.set(key, this.spawnEntity(key, spec));
+      }
+    }
+
+    spawnEntity(key, spec) {
+      const slots = this.layout.spawnSlots;
+      let slot = slots[(MH.hashStr(key) + spec.idx) % slots.length];
+      const ent = { key, kind: spec.kind, data: spec.data };
+
+      if (spec.kind === 'item') {
+        const isCorpse = /corpse/i.test(spec.data.name || '');
+        let texKey;
+        if (isCorpse) texKey = 'sm_corpse';
+        else if (MH.itemIcons) texKey = MH.itemIcons.textureKey(this, spec.data);
+        else texKey = this.safeTex(MH.smoothSprites.itemKey(spec.data.type), 'fx_glow');
+        ent.sprite = this.add.image(slot.x, slot.y, texKey).setDepth(5)
+          .setScale((isCorpse ? 0.9 : 0.75) / MH.SMOOTH_SS);
+        if (!isCorpse) {
+          this.tweens.add({ targets: ent.sprite, y: slot.y - 3, duration: 900, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+          const rar = spec.data.rarity;
+          if (rar === 'legendary' || rar === 'epic' || spec.data.set_id) {
+            const tint = spec.data.set_id ? 0x4ad0c0 : (rar === 'legendary' ? 0xffa838 : 0xb06ce0);
+            const g = this.add.image(slot.x, slot.y, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+              .setAlpha(0.3).setScale(0.3).setTint(tint).setDepth(4);
+            this.tweens.add({ targets: g, alpha: 0.48, duration: 800, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+            ent.smoke = g;   // cleaned up with the entity
+          }
+        }
+        ent.sprite.setInteractive({ useHandCursor: true });
+        ent.sprite.on('pointerdown', pointer => {
+          const rb = pointer.rightButtonDown && pointer.rightButtonDown();
+          if (isCorpse && !rb) MH.bus.emit('loot.corpse');
+          else if (isCorpse && rb && MH.popover) MH.popover.show(pointer.event.clientX, pointer.event.clientY, spec.data.name, [
+            { label: '✋ Loot all', fn: () => MH.bus.emit('loot.corpse') },
+            { label: '👁 Look', fn: () => MH.immersion.lookAt('corpse') },
+            { label: '🔪 Butcher', fn: () => MH.sendCommand('butcher corpse') },
+          ]);
+          else if (MH.objectActions) MH.objectActions(spec.data, pointer.event.clientX, pointer.event.clientY);
+          else MH.sendCommand(`get ${MH.mobKeyword(spec.data.name)}`);
+        });
+        if (isCorpse) {
+          ent.label = this.add.text(slot.x, slot.y - 12, this.shortName(spec.data.name), {
+            fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '6px', color: '#9a8f80',
+          }).setOrigin(0.5, 1).setDepth(5).setAlpha(0.8);
+        }
+        return ent;
+      }
+
+      let texWanted;
+      if (spec.kind === 'player') {
+        texWanted = MH.tdSprites.playerKey(spec.data.char_class);
+      } else if (spec.data.trainer) {
+        // guildmasters wear their class's face, crowned in gold. Most are
+        // named just 'guildmaster', so the guild HALL names the class.
+        const room = (MH.state.currentRoom && MH.state.currentRoom.name) || '';
+        const n = `${spec.data.name || ''} ${room}`.toLowerCase();
+        const cls = /paladin|holy order/.test(n) ? 'paladin'
+          : /necro/.test(n) ? 'necromancer'
+          : /sword|warrior|fight|armory|barrack/.test(n) ? 'warrior'
+          : /mage|magic|wizard|arcan/.test(n) ? 'mage'
+          : /assassin/.test(n) ? 'assassin'
+          : /thie|rogue/.test(n) ? 'thief'
+          : /ranger|hunt/.test(n) ? 'ranger'
+          : /cleric|priest|temple|sanctum/.test(n) ? 'cleric'
+          : /bard|song|minstrel/.test(n) ? 'bard' : null;
+        texWanted = cls ? `td_gm_${cls}` : 'td_mob_noble';   // crowned dignitary by default
+      } else {
+        texWanted = MH.tdSprites.mobKey(spec.data.name);
+      }
+      const tex = this.safeTex(texWanted, 'td_mob_citizen');
+      // a tall body needs headroom: a slot in the first floor rows would put
+      // the head (and name) over the top wall, so it reads as floating over
+      // the room edge. Walk the slot down to the first row that clears it.
+      {
+        const T1 = TD().T, L1 = this.layout;
+        const minY = T1 * (spec.data.boss ? 4.2 : 3.4);
+        if (slot.y < minY && L1 && L1.grid) {
+          const cx = Math.floor(slot.x / T1);
+          let cy = Math.floor(minY / T1);
+          while (cy < L1.H - 1 && L1.grid[cy * L1.W + cx] !== 0) cy++;
+          if (cy < L1.H - 1) slot = { x: slot.x, y: cy * T1 + T1 / 2 };
+        }
+      }
+      // a fresh arrival enters from the doorway it actually used
+      const arr = spec.kind === 'mob' && this.pendingArrivals && this.pendingArrivals[spec.data.name];
+      if (arr && Date.now() - arr.at < 4000) {
+        delete this.pendingArrivals[spec.data.name];
+        const gp = this.gapPoint(arr.dir);
+        const destX = slot.x, destY = slot.y;
+        slot = { x: gp.x, y: gp.y };
+        this.time.delayedCall(30, () => {
+          const ent2 = this.entities.get(key);
+          if (ent2 && ent2.sprite) {
+            this.tweens.add({
+              targets: ent2.sprite, x: destX, y: destY, duration: 900, ease: 'sine.out',
+              onUpdate: () => { if (ent2.label) { ent2.label.x = ent2.sprite.x; ent2.label.y = ent2.sprite.y - 18; } },
+              onComplete: () => { ent2.homeX = destX; ent2.homeY = destY; },
+            });
+            const cue = this.add.text(gp.x, gp.y - 20, `from ${arr.dir}`, {
+              fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '8px',
+              color: '#c8ccd8', backgroundColor: '#10131ea8', padding: { x: 3, y: 1 },
+            }).setOrigin(0.5, 1).setDepth(40);
+            this.tweens.add({ targets: cue, y: cue.y - 10, alpha: 0, duration: 1600, onComplete: () => cue.destroy() });
+          }
+        });
+      }
+      ent.sprite = this.add.sprite(slot.x, slot.y, tex, 'd0').setDepth(8);
+      ent.sprite.setScale((spec.data.boss ? 1.5 : 1) / MH.SMOOTH_SS);
+      if (spec.kind !== 'item') {
+        ent.shadow = this.add.image(slot.x, slot.y + 9, 'px_shadow')
+          .setDepth(5).setAlpha(spec.data.boss ? 0.42 : 0.34).setScale(spec.data.boss ? 0.62 : 0.32);
+        // matching rim-light so mobs and NPCs pop off the floor too
+        ent.rim = this.add.sprite(slot.x, slot.y, tex, 'd0')
+          .setScale(ent.sprite.scaleX * 1.08).setDepth(7.9)
+          .setBlendMode(Phaser.BlendModes.ADD).setAlpha(spec.data.boss ? 0.34 : 0.26).setTint(this.rimTint);
+      }
+      ent.sprite.play(`${tex}_walkd`);
+      ent.sprite.anims.pause();
+      // mobs described as asleep/at rest spawn in that pose
+      if (spec.kind === 'mob' && (spec.data.pose === 'sleeping' || spec.data.pose === 'resting') && !spec.data.fighting) {
+        ent.sprite.anims.stop();
+        ent.sprite.setFrame(spec.data.pose === 'sleeping' ? 'sleep' : 'rest');
+      }
+      ent.homeX = slot.x; ent.homeY = slot.y;
+
+      // Aether label palette: cyan players, ember foes, jade friendlies
+      const labelColor = spec.kind === 'player' ? '#39c5e8' : (spec.data.hostile ? '#ff5a6a' : (spec.data.shopkeeper || spec.data.trainer || spec.data.quest ? '#46e0a0' : '#bfeefb'));
+      ent.label = this.add.text(slot.x, slot.y - 18, this.shortName(spec.data.name), {
+        fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '8px', color: labelColor,
+        stroke: '#07111a', strokeThickness: 2,
+      }).setOrigin(0.5, 1).setDepth(9);
+      ent.hpbar = this.add.graphics().setDepth(9);
+      ent.pose = { sx: 1, sy: 1, lean: 0, dy: 0 };   // squash / rear-back / lift / topple multipliers for the visible body
+      // hostiles are visibly hostile before they ever swing: an ember pool
+      // under their feet (bystanders get nothing, so the two never mix up)
+      if (spec.kind === 'mob' && spec.data.hostile && !spec.data.shopkeeper) {
+        ent.aggroRing = this.add.image(slot.x, slot.y + 8, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+          .setAlpha(0.42).setScale(spec.data.boss ? 0.8 : 0.55).setTint(0xff3a2a).setDepth(4.6);
+        this.tweens.add({ targets: ent.aggroRing, alpha: 0.6, duration: 700, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        // plus a crisp red ring at the feet, drawn ABOVE the darkness layer so
+        // a hostile in a black crypt is still ringed in red (soft glows get
+        // swallowed by the dark; this doesn't). Redrawn each frame.
+        ent.aggroGfx = this.add.graphics().setDepth(40.3);
+      }
+      this.drawHpBar(ent);
+
+      ent.sprite.setInteractive({ useHandCursor: true });
+      ent.sprite.on('pointerdown', pointer => {
+        // right-click anyone: the full verb menu
+        if (pointer.rightButtonDown && pointer.rightButtonDown()) {
+          if (MH.contextMenu) MH.contextMenu(spec.kind === 'player' ? 'player' : 'mob', ent.data, pointer.event.clientX, pointer.event.clientY);
+          return;
+        }
+        if (spec.kind !== 'mob') return;
+        // left-click always targets, so spells/abilities aim at who you clicked
+        this.targetEntity(ent);
+        if (spec.data.shopkeeper) MH.bus.emit('shop.open', spec.data);
+        else if (spec.data.trainer) MH.bus.emit('training.open', spec.data);
+        else if (ent.data.hostile || ent.data.fighting || (pointer.event && pointer.event.shiftKey)) this.attackEntity(ent);
+        else MH.bus.emit('npc.talk', { name: ent.data.name, quest: ent.data.quest || '' });
+      });
+      this.updateQuestMark(ent);
+      ent.sprite.on('pointerover', pointer => MH.bus.emit('mob.tip', { data: ent.data, kind: ent.kind, x: pointer.event.clientX, y: pointer.event.clientY }));
+      ent.sprite.on('pointermove', pointer => MH.bus.emit('mob.tip', { data: ent.data, kind: ent.kind, x: pointer.event.clientX, y: pointer.event.clientY }));
+      ent.sprite.on('pointerout', () => MH.bus.emit('mob.tip.hide'));
+
+      // idle breathing: everything alive moves a little
+      ent.breath = this.tweens.add({
+        targets: ent.sprite, scaleY: ent.sprite.scaleY * 1.04, duration: 1100 + (MH.hashStr(key) % 600),
+        yoyo: true, repeat: -1, ease: 'sine.inOut', delay: MH.hashStr(key) % 800,
+      });
+      if (spec.kind === 'mob' && !spec.data.shopkeeper) {
+        if (spec.data.hostile) ent.stalker = true;
+        else ent.wanderAt = Date.now() + 1500 + (MH.hashStr(key) % 3000);
+      }
+      // New art for every actor: explicit human role -> LPC paperdoll; a creature
+      // keyword -> real DCSS art; otherwise (proper-named townsfolk) -> a generic
+      // LPC person. ent.sprite stays the hidden logic/physics anchor.
+      this.attachArt(ent, spec);
+      return ent;
+    }
+    attachArt(ent, spec) {
+      const lpcOK = MH.lpc && MH.lpc.isReady(), dcssOK = MH.dcss && MH.dcss.isReady();
+      if (spec.kind === 'player') { if (lpcOK) this.attachDollAs(ent, spec, spec.data.char_class || 'warrior'); return; }
+      const name = spec.data.name;
+      const humanRole = lpcOK ? MH.lpc.humanoidClass(name, spec.data.char_class) : null;
+      const creature = dcssOK ? MH.dcss.resolve(name) : null;
+      if (humanRole) this.attachDollAs(ent, spec, humanRole);
+      else if (creature) this.attachCreatureArt(ent, spec, creature);
+      else if (lpcOK) this.attachDollAs(ent, spec, 'bard');   // generic person (incl. odd bosses)
+      // else: keep the procedural sprite (subsystems not ready)
+    }
+    // a pulsing ember glow beneath a boss so it reads as a threat
+    addBossAura(ent) {
+      if (ent.bossAura || !ent.sprite) return;
+      const s = ent.sprite;
+      const aura = this.add.image(s.x, s.y + 5, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+        .setAlpha(0.32).setScale(1.1).setTint(0xff6a3a).setDepth((s.depth || 8) - 0.02);
+      this.tweens.add({ targets: aura, alpha: 0.52, scale: 1.4, duration: 950, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      ent.bossAura = aura;
+    }
+    // build an LPC doll for an entity with an explicit class loadout
+    attachDollAs(ent, spec, cls) {
+      if (!MH.lpc || !MH.lpc.isReady() || ent.doll || !cls) return;
+      const big = spec.data.boss;
+      const dscale = big ? DOLL_SCALE * 1.5 : DOLL_SCALE;                    // bosses loom larger
+      ent.labelDy = big ? 40 : 28;                                          // name/hp sit above the head
+      // the player keeps its real identity; NPCs vary by name-hash so towns
+      // aren't full of identical twins (mixed sexes + hairstyles)
+      const seed = MH.hashStr(spec.data.name || '');
+      const sex = spec.kind === 'player' ? (spec.data.sex || 'male') : (seed % 2 ? 'female' : 'male');
+      ent.doll = MH.lpc.makeDoll(this, { char_class: cls, sex, equipment: spec.data.equipment || {}, seed: spec.kind === 'player' ? null : seed }, dscale,
+        () => { this.tintCharacters(); this.applyContour(ent); });   // day/night tint + silhouette contour once layers exist
+      if (big && spec.kind !== 'player') this.addBossAura(ent);
+      ent.doll.container.setDepth(ent.sprite.depth || 8);
+      ent.sprite.setAlpha(0);
+      if (ent.rim) ent.rim.setVisible(false);
+    }
+    // real creature art (DCSS) for monsters; a single 32px image overlaid on
+    // the hidden procedural sprite, with a gentle idle bob
+    attachCreatureArt(ent, spec, path) {
+      if (!MH.dcss || !MH.dcss.isReady() || ent.art || spec.kind === 'player') return;
+      path = path || MH.dcss.resolve(spec.data.name);
+      if (!path) return;   // nothing matched -> keep the procedural sprite
+      const s = ent.sprite, big = spec.data.boss;
+      s.setAlpha(0);                       // hide procedural now; no pre-load flash
+      if (ent.rim) ent.rim.setVisible(false);
+      MH.dcss.ensure(this, path, key => {
+        if (!s || !s.active) return;
+        if (!key) { s.setAlpha(1); if (ent.rim) ent.rim.setVisible(true); return; }   // load failed -> restore
+        // bake a dark contour (deep red for hostiles) so the creature reads
+        // as a figure with a clean silhouette against any ground
+        const hostile = !!(ent.data && ent.data.hostile);
+        const olKey = MH.dcss.outlined ? MH.dcss.outlined(this, key, hostile ? HOSTILE_RGBA : 'rgba(18,10,14,0.92)', hostile ? 2 : 1) : key;
+        // FEET-anchored (origin at the bottom edge, sitting on the contact
+        // shadow) so a creature stands on the floor like the dolls do instead
+        // of hovering over whatever is behind it
+        const img = this.add.image(s.x, s.y + 9, olKey).setOrigin(0.5, 1);
+        // Size from the ART'S OWN height — most DCSS sprites are 32px, but some
+        // animal assets ship as large painterly illustrations. A creature
+        // stands 2 tiles (1:1 pixels for 32px art, about the player's own body
+        // height); a boss 2.5 tiles — big, but the same tile scale as the
+        // player (the old 3.2 made the bear a wall-sized blob).
+        const srcImg = this.textures.get(key) && this.textures.get(key).getSourceImage();
+        const srcH = (srcImg && srcImg.height) || 32;
+        const sc = (TD().T * (big ? 2.5 : 2.0)) / srcH;
+        img.setScale(sc).setDepth(s.depth || 8);
+        ent.labelDy = Math.round(img.displayHeight - 9 + 8);                 // clear the top of the art
+        img.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
+        img.setTint(this._charTint || 0xffffff);   // sit in the day/night scene
+        ent.art = img;
+        ent.artScale = sc;                                          // base for idle breathing
+        ent.artPhase = (MH.hashStr(spec.data.name) % 628) / 100;    // idle-bob phase
+        if (big) this.addBossAura(ent);
+        s.setAlpha(0);
+        if (ent.rim) ent.rim.setVisible(false);
+      });
+    }
+
+    npcChatter() {
+      if (!this.layout || this.dead || !MH.CHATTER || Math.random() > 0.4) return;
+      const talkers = [...this.entities.values()].filter(e =>
+        e.kind === 'mob' && e.sprite && e.sprite.active && !e.data.hostile && !e.data.fighting && !e.bubble);
+      if (!talkers.length) return;
+      const ent = talkers[Math.floor(Math.random() * talkers.length)];
+      const arch = (this.safeTex(MH.tdSprites.mobKey(ent.data.name), 'td_mob_citizen') || '').replace('td_mob_', '');
+      const lines = ent.data.shopkeeper ? MH.CHATTER.shopkeeper
+        : MH.CHATTER[arch] || MH.CHATTER.citizen;
+      const text = lines[Math.floor(Math.random() * lines.length)];
+      const bubble = this.add.text(ent.sprite.x, ent.sprite.y - 22, text, {
+        fontFamily: 'Georgia, serif', resolution: 3, fontSize: '7px', fontStyle: 'italic',
+        color: '#e8e4d8', backgroundColor: '#10131ec8', padding: { x: 4, y: 2 },
+        wordWrap: { width: 110 },
+      }).setOrigin(0.5, 1).setDepth(30).setAlpha(0);
+      ent.bubble = bubble;
+      this.tweens.add({ targets: bubble, alpha: 1, y: bubble.y - 3, duration: 280 });
+      this.time.delayedCall(2600 + text.length * 35, () => {
+        this.tweens.add({
+          targets: bubble, alpha: 0, duration: 320,
+          onComplete: () => { bubble.destroy(); if (ent.bubble === bubble) ent.bubble = null; },
+        });
+      });
+    }
+
+    updateQuestMark(ent) {
+      const q = ent.data && ent.data.quest;
+      const d = ent.data || {};
+      const svc = ent.kind === 'mob' ? (d.shopkeeper ? '🪙' : d.trainer ? '📖' : null) : null;
+      if (svc && !ent.serviceMark) {
+        ent.serviceMark = this.add.text(ent.sprite.x + 9, ent.sprite.y - 24, svc, {
+          fontSize: '9px', resolution: 3,
+        }).setOrigin(0.5).setDepth(9);
+        this.tweens.add({ targets: ent.serviceMark, y: ent.serviceMark.y - 3, duration: 900, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      } else if (!svc && ent.serviceMark) {
+        ent.serviceMark.destroy();
+        ent.serviceMark = null;
+      }
+      if (q && !ent.questMark) {
+        ent.questMark = this.add.text(ent.sprite.x, ent.sprite.y - 26, q, {
+          fontFamily: 'Georgia, serif', resolution: 3, fontSize: '14px', fontStyle: 'bold',
+          color: q === '?' ? '#7dff9a' : '#ffd44a', stroke: '#000', strokeThickness: 3,
+        }).setOrigin(0.5, 1).setDepth(20);
+        this.tweens.add({ targets: ent.questMark, y: ent.questMark.y - 4, duration: 700, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      } else if (!q && ent.questMark) {
+        ent.questMark.destroy();
+        ent.questMark = null;
+      } else if (q && ent.questMark) {
+        ent.questMark.setText(q).setColor(q === '?' ? '#7dff9a' : '#ffd44a');
+      }
+    }
+
+    updateEntity(ent, data) {
+      ent.data = data;
+      this.drawHpBar(ent);
+      this.updateQuestMark(ent);
+      // loud telegraph: red swords + red name over whoever is attacking YOU
+      if (data.fighting && !ent.engageRing) {
+        ent.engageRing = this.add.graphics().setDepth(9.5);
+      } else if (!data.fighting && ent.engageRing) {
+        ent.engageRing.destroy();
+        ent.engageRing = null;
+      }
+      if (data.fighting && !ent.fightMark) {
+        ent.fightMark = this.add.text(ent.sprite.x, ent.sprite.y - ((ent.labelDy || 18) + 8), '⚔', {
+          fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '12px', color: '#ff5050', stroke: '#000', strokeThickness: 2,
+        }).setOrigin(0.5, 1).setDepth(20);
+        this.tweens.add({ targets: ent.fightMark, scale: 1.3, duration: 380, yoyo: true, repeat: -1 });
+        if (ent.label) ent.label.setColor('#ff5050');
+      } else if (!data.fighting && ent.fightMark) {
+        ent.fightMark.destroy();
+        ent.fightMark = null;
+        if (ent.ai) ent.ai.unstackAt = 0;   // next fight may start on your tile again
+        if (ent.label) ent.label.setColor(ent.kind === 'player' ? '#6ca8e0' : (data.hostile ? '#e06c6c' : '#c8ccd8'));
+      }
+      if (this.target && this.target.key === ent.key) MH.bus.emit('target.update', data);
+    }
+    drawHpBar(ent) {
+      if (!ent.hpbar) return;
+      ent.hpbar.clear();
+      const max = ent.data.maxHp || ent.data.max_hp;
+      const hp = ent.data.hp;
+      if (!max || hp == null) return;
+      const frac = Math.max(0, Math.min(1, hp / max));
+      // badly wounded mobs visibly smolder
+      if (frac < 0.3 && !ent.smoke && ent.sprite) {
+        ent.smoke = this.add.particles(0, 0, 'px_poof', {
+          follow: ent.sprite, followOffset: { x: 0, y: -8 },
+          speedY: { min: -16, max: -8 }, lifespan: 900, frequency: 350,
+          scale: { start: 0.5, end: 0 }, alpha: { start: 0.4, end: 0 },
+        }).setDepth(7);
+      } else if (frac >= 0.3 && ent.smoke) {
+        ent.smoke.destroy();
+        ent.smoke = null;
+      }
+      // r3: a mob that is fighting you carries a bar almost twice as wide and
+      // a point taller — its HP has to read from the arena, not the HUD
+      const fighting = !!(ent.data.fighting && ent.kind === 'mob');
+      // playability-02/r1: 44x5 while fighting (was 32x3.5) — at storyboard
+      // scale (1280 -> ~500px) the bar has to survive a 2.5x shrink and still
+      // sit next to your own bar as a pair
+      const BW = fighting ? 44 : 18, BH = fighting ? 5 : 2;
+      const x = ent.sprite.x - BW / 2, y = ent.sprite.y - ((ent.labelDy || 18) - 2);
+      // Aether palette: jade healthy -> amber wounded -> ember critical, on a glass track
+      ent.hpbar.fillStyle(0x07111a, 0.85).fillRect(x - 1, y - 1, BW + 2, BH + 2);
+      ent.hpbar.fillStyle(frac > 0.5 ? 0x46e0a0 : frac > 0.25 ? 0xe8c168 : 0xff5a6a, 1).fillRect(x, y, BW * frac, BH);
+      if (fighting) {
+        ent.hpbar.lineStyle(1, 0x000000, 0.5).strokeRect(x - 1, y - 1, BW + 2, BH + 2);
+        // a red rim on the foe's bar, a blue rim on yours: two bars, two colours,
+        // and the longer one is winning
+        ent.hpbar.lineStyle(1.2, 0xff6a5a, 0.9).strokeRect(x - 2, y - 2, BW + 4, BH + 4);
+        // ticks every 25% so "half" and "almost dead" read without a number
+        ent.hpbar.fillStyle(0x07111a, 0.7);
+        for (let q = 1; q < 4; q++) ent.hpbar.fillRect(x + (BW * q) / 4 - 0.5, y, 1, BH);
+      }
+      // poise pips: amber ticks fill as your hits rock the mob's balance —
+      // when they max out the mob STAGGERS (a burst window you created)
+      const poise = ent.data.poise;
+      if (poise && poise.max > 0 && ent.kind === 'mob' && !ent.data.shopkeeper) {
+        const n = Math.min(poise.max, 8);
+        const cur = Math.round((poise.cur / poise.max) * n);
+        const w = Math.min(4, Math.max(1.6, BW / n - 0.6));
+        for (let i = 0; i < n; i++) {
+          ent.hpbar.fillStyle(i < cur ? 0xffb84a : 0x2a2f3c, i < cur ? 1 : 0.8);
+          ent.hpbar.fillRect(x + i * (BW / n), y + BH + 1.6, w, 1.6);
+        }
+      }
+      // staggered: the burst window glows gold; guarded: a steel shell tint
+      if (ent.data.staggered) {
+        ent.hpbar.lineStyle(1, 0xffd44a, 0.9).strokeRect(x - 2.5, y - 2.5, BW + 5, BH + 7);
+      }
+      // 🛡 marker while the mob's guard is raised (break it with a bash/kick)
+      if (ent.data.guarded && !ent.guardMark) {
+        ent.guardMark = this.add.text(0, 0, '🛡', { fontSize: '10px', resolution: 3 }).setOrigin(0.5, 1).setDepth(61);
+      } else if (!ent.data.guarded && ent.guardMark) {
+        ent.guardMark.destroy();
+        ent.guardMark = null;
+      }
+      if (ent.guardMark) ent.guardMark.setPosition(ent.sprite.x + 12, ent.sprite.y - 14);
+    }
+    destroyEntity(ent) {
+      // if the thing we're targeting is being removed (it died, fled, or left),
+      // drop the target so the frame doesn't linger with stale HP and casts
+      // don't keep firing at a corpse
+      if (this.target === ent) { this.target = null; MH.bus.emit('target.clear'); }
+      if (ent.patrol) ent.patrol.stop();
+      if (ent.breath) ent.breath.stop();
+      if (ent.wanderTween) ent.wanderTween.stop();
+      if (ent.smoke) ent.smoke.destroy();
+      if (ent.doll) { ent.doll.destroy(); ent.doll = null; }
+      if (ent.artBob) { ent.artBob.stop(); ent.artBob = null; }
+      if (ent.art) { ent.art.destroy(); ent.art = null; }
+      if (ent.bossAura) { this.tweens.killTweensOf(ent.bossAura); ent.bossAura.destroy(); ent.bossAura = null; }
+      if (ent.pose) this.tweens.killTweensOf(ent.pose);
+      if (ent.windup) this.endWindup(ent, false);
+      if (ent.aggroRing) this.tweens.killTweensOf(ent.aggroRing);
+      ['sprite', 'label', 'hpbar', 'fightMark', 'questMark', 'bubble', 'engageRing', 'serviceMark', 'shadow', 'rim', 'guardMark', 'aggroRing', 'aggroGfx'].forEach(k => { if (ent[k]) ent[k].destroy(); });
+    }
+    shortName(name) {
+      const n = String(name || '');
+      return n.length > 20 ? n.slice(0, 19) + '…' : n;
+    }
+
+    // ---------- combat ----------
+    nearestMob(maxDist = 60, arcFacing = null) {
+      let best = null, bestD = maxDist;
+      const fdx = { d: 0, u: 0, s: this.player.flipX ? -1 : 1 }[arcFacing] ?? 0;
+      const fdy = { d: 1, u: -1, s: 0 }[arcFacing] ?? 0;
+      for (const ent of this.entities.values()) {
+        if (ent.kind !== 'mob' || ent.data.shopkeeper) continue;
+        const dx = ent.sprite.x - this.player.x, dy = ent.sprite.y - this.player.y;
+        const d = Math.hypot(dx, dy);
+        if (d >= bestD) continue;
+        if (arcFacing && d > 18) {
+          const dot = (dx * fdx + dy * fdy) / (d || 1);
+          if (dot < 0.3) continue; // outside the thrust arc
+        }
+        best = ent; bestD = d;
+      }
+      return best;
+    }
+    tryAttack() {
+      if (this.dead || !this.layout) return;
+      if (this.layout.peaceful) { MH.bus.emit('flash', 'A calm presence here forbids violence.'); return; }
+      const ent = this.target && this.entities.has(this.target.key) ? this.entities.get(this.target.key) : this.nearestMob(60, this.facing);
+      if (!ent) return;
+      this.attackEntity(ent);
+    }
+    faceEntity(ent) {
+      if (!ent || !ent.sprite) return;
+      const dx = ent.sprite.x - this.player.x, dy = ent.sprite.y - this.player.y;
+      this.facing = Math.abs(dx) > Math.abs(dy) ? 's' : (dy > 0 ? 'd' : 'u');
+      this.player.setFlipX(this.facing === 's' && dx < 0);
+    }
+    attackEntity(ent) {
+      if (!ent) return;
+      // Already fighting this target: the attack key becomes your TIMING input.
+      // Press while the round bar is in the golden sweet spot → cmd_swing →
+      // your next auto-attack lands PERFECTLY. Early presses give local
+      // feedback only (no server lockout for a harmless mistime).
+      const same = this.target && (ent === this.target || (ent.key && this.target.key === ent.key));
+      if (MH.state.inCombat && same) {
+        this.faceEntity(ent);
+        const frac = MH.combat ? MH.combat.roundFrac() : 0;
+        const now = this.time.now;
+        if (this._swingSent && now - this._swingSent < 1200) return;   // debounce
+        if (frac >= 0.62) {
+          this._swingSent = now;
+          MH.sendCommand('swing', false);
+          this._atkFrame = now;                       // visible wind-up
+          this.player.setFrame(`atk_${this.facing}`);
+          this.time.delayedCall(180, () => { if (!this.dead) this.player.setFrame(`${this.facing}0`); });
+        } else {
+          this.damageNumber(this.player.x, this.player.y - 20, 'wait for it…', '#8a90a4', 9);
+        }
+        return;
+      }
+      // (re)engage or switch target — gated by the shared GCD so switches/restarts
+      // can't be mashed faster than the round rhythm
+      if (MH.combat && !MH.combat.ready('attack')) return;
+      this.target = ent;
+      MH.bus.emit('target.set', ent.data);
+      MH.sendCommand(`kill ${MH.mobKeyword(ent.data.name)}`);
+      if (MH.combat) MH.combat.trigger('attack');
+      // swing feedback only fires on a real engage/switch now
+      this._atkFrame = this.time.now;
+      this.afterimage(this.player, 0xd0e0ff);
+      this.faceEntity(ent);
+      this.player.setFrame(`atk_${this.facing}`);
+      this.time.delayedCall(180, () => { if (!this.dead) this.player.setFrame(`${this.facing}0`); });
+    }
+    // Stagger per-round combat FX into a readable beat: the server resolves a
+    // whole round (your swing, bonus hits, pet, the enemy's swing) in one tick,
+    // so the lines arrive in a burst. Draining them ~a frame apart makes each
+    // round read as one exchange instead of a single chaotic flash.
+    queueFx(type, e) {
+      (this._fxQ || (this._fxQ = [])).push({ type, e });
+      if (this._fxQ.length > 12) this._fxQ.splice(0, this._fxQ.length - 12);
+    }
+    // drained from updateInner() each frame: fire one queued FX per ~gap so a
+    // round's burst reads as a paced exchange. Frame-driven (no timers) so it
+    // can never wedge on a room change or a lost delayedCall.
+    drainFxQueue(now) {
+      const q = this._fxQ;
+      if (!q || !q.length) return;
+      const gap = q.length > 4 ? 55 : 115;   // catch up if a big burst piled up
+      if (this._lastFxAt && now - this._lastFxAt < gap) return;
+      this._lastFxAt = now;
+      const { type, e } = q.shift();
+      try {
+        if (type === 'hit') this.fxHit(e);
+        else if (type === 'miss') this.fxMiss(e);
+        else this.fxTaken(e);
+      } catch (_) {}
+    }
+    findEntityByText(text) {
+      const lower = String(text || '').toLowerCase();
+      for (const ent of this.entities.values()) {
+        if (ent.kind !== 'mob') continue;
+        const name = String(ent.data.name || '').toLowerCase();
+        if (lower.includes(MH.mobKeyword(name)) || name.includes(lower) || lower.includes(name)) return ent;
+      }
+      return null;
+    }
+
+    // ---------- per-class ability effects ----------
+    // every class reads differently in combat: warriors shock the earth,
+    // rangers loose arrows, necromancers drain life, bards weaponize music
+    // Audited from config.CLASSES: 70 skills + 100 spells across 9 classes.
+    // Every ability gets a visual TYPE, a COLOR, and a RANGE class that
+    // drives positioning: melee abilities step you in, ranged ones hold
+    // distance, self/ally effects play on you.
+    static ABILITY_FX = [
+      // --- precision strikes & shadow work ---
+      [/backstab|assassinate|garrote|execute_contract|execute contract|vital/i, { type: 'shadowstrike', color: 0x8a8af0, range: 'melee' }],
+      [/shadow.?step|vanish|sneak|hide|invisibility|blink/i,                    { type: 'stealth', color: 0x6a6af0, range: 'self' }],
+      [/feint|trip|low.?blow|circle/i,                                          { type: 'impact', color: 0xc0c8d8, range: 'melee' }],
+      [/pocket.?sand/i,                                                         { type: 'cone', color: 0xd8c08a, range: 'close' }],
+      [/steal|rigged|jackpot/i,                                                 { type: 'coins', color: 0xffd44a, range: 'melee' }],
+      [/mark|expose|hunters.?mark|track|scan/i,                                 { type: 'mark', color: 0xff5050, range: 'ranged' }],
+      // --- warrior steel ---
+      [/bash|slam|hammer of justice/i,                                          { type: 'shockwave', color: 0xd8c8a0, range: 'melee' }],
+      [/cleave|whirlwind|divine.?storm/i,                                       { type: 'bigslash', color: 0xffffff, range: 'melee' }],
+      [/charge|death.?grip/i,                                                   { type: 'dash', color: 0xd8c8a0, range: 'ranged' }],
+      [/kick|punch|strike|smite$|execute/i,                                     { type: 'impact', color: 0xffe080, range: 'melee' }],
+      [/rally|heroism|oath|doctrine|swear|evolve|briskness|haste|icy.?veins|time.?warp/i, { type: 'rally', color: 0xffd44a, range: 'self' }],
+      // --- ranger ---
+      [/aimed.?shot|rapid.?fire|kill.?command|shot|arrow/i,                     { type: 'arrow', color: 0xd8e8c0, range: 'ranged' }],
+      [/entangle|barkskin/i,                                                    { type: 'vines', color: 0x6ab04a, range: 'ranged' }],
+      [/faerie.?fire/i,                                                         { type: 'mark', color: 0xd070ff, range: 'ranged' }],
+      // --- holy ---
+      [/holy.?smite|holy.?fire|flamestrike|judgement|templars|crusaders|divine.?word|word.?of.?glory|dispel.?evil/i, { type: 'column', color: 0xffe9a0, range: 'ranged' }],
+      [/turn.?undead|consecration|righteous|avenging/i,                         { type: 'nova', color: 0xffe9a0, range: 'self' }],
+      [/cure|heal|mend|lightwell|serenity|resurrect|spirit.?link|word.?of.?recall/i, { type: 'healburst', color: 0x7dff9a, range: 'ally' }],
+      [/bless|sanctuary|aegis|holy.?aura|divine.?(shield|protection|intervention)|shield.?of.?faith|hand.?of.?freedom|protection.?from/i, { type: 'buff', color: 0xffe9a0, range: 'self' }],
+      // --- necromancy ---
+      [/drain|vampiric|energy.?drain|soul.?(reap|harvest)/i,                    { type: 'drain', color: 0xb05ae0, range: 'ranged' }],
+      [/chill.?touch|plague.?strike|touch/i,                                    { type: 'touch', color: 0x9adcff, range: 'melee' }],
+      [/soul.?bolt|death.?coil|finger.?of.?death|harm$|enervation/i,            { type: 'bolt', color: 0xb05ae0, range: 'ranged' }],
+      [/fear|weaken|blindness|curse|mockery|slow$/i,                            { type: 'debuff', color: 0x8a4ad6, range: 'ranged' }],
+      [/poison|venom|acid/i,                                                    { type: 'debuff', color: 0x9ee05a, range: 'ranged' }],
+      [/animate.?dead|summon|gargoyle|corpse.?shield|bone.?shield|apocalypse/i, { type: 'nova', color: 0x8a4ad6, range: 'self' }],
+      // --- bard ---
+      [/song|sing|chant|dirge|melody|sonic|note|discord|crescendo|encore|requiem|hymn|chord|epic.?tale|magnum|countersong|fascinate|charm|siren/i, { type: 'notes', color: 0xffa8d8, range: 'ranged' }],
+      [/sleep/i,                                                                { type: 'sleep', color: 0xb8c4e8, range: 'ranged' }],
+      // --- arcane artillery ---
+      [/magic.?missile|arcane.?barrage/i,                                       { type: 'missiles', color: 0xc792ff, range: 'ranged' }],
+      [/burning.?hands|color.?spray|breathes|breath/i,                          { type: 'cone', color: 0xff8a3c, range: 'close' }],
+      [/fireball|combustion/i,                                                  { type: 'bigbolt', color: 0xff8a3c, range: 'ranged' }],
+      [/meteor/i,                                                               { type: 'meteor', color: 0xff8a3c, range: 'ranged' }],
+      [/chain.?lightning/i,                                                     { type: 'chainzap', color: 0x9adcff, range: 'ranged' }],
+      [/lightning|call.?lightning|shock|storm/i,                                { type: 'zap', color: 0x9adcff, range: 'ranged' }],
+      [/arcane.?(blast|explosion)|earthquake/i,                                 { type: 'nova', color: 0xc792ff, range: 'self' }],
+      [/frost|ice|chill|cold/i,                                                 { type: 'bolt', color: 0xbfeaff, range: 'ranged' }],
+      [/fire|burn|flame|inferno/i,                                              { type: 'bolt', color: 0xff8a3c, range: 'ranged' }],
+      [/armor|shield$|stoneskin|mirror.?image|displacement|mana.?shield|spell.?reflection|ice.?armor|fire.?shield/i, { type: 'buff', color: 0x9adcff, range: 'self' }],
+      [/missile|arcane|magic|blast/i,                                           { type: 'bolt', color: 0xc792ff, range: 'ranged' }],
+    ];
+    abilityFxFor(text) {
+      // per-ability signature registry is authoritative — every named spell/
+      // skill resolves here first, so each gets its own unique animation
+      if (MH.abilityFx) {
+        const sig = MH.abilityFx.match(text);
+        if (sig) return { type: 'signature', text, range: sig.range || 'ranged', color: sig.color || 0xffffff };
+      }
+      for (const [re, fx] of TopRoomScene.ABILITY_FX) {
+        if (re.test(text)) return { ...fx, text };
+      }
+      return null;
+    }
+    playAbilityFx(fx, target) {
+      const tx = target ? target.x : this.player.x + 30;
+      const ty = target ? target.y : this.player.y;
+      // range drives positioning: melee/close abilities step you in,
+      // ranged ones back you off - distance becomes legible
+      const dist = Math.hypot(tx - this.player.x, ty - this.player.y);
+      this.preferredRange = { melee: 24, close: 30, ranged: 64 }[fx.range] || this.preferredRange;
+      const M = TD().T * 1.6;
+      if ((fx.range === 'melee' && dist > 30) || (fx.range === 'close' && dist > 40)) {
+        const want = fx.range === 'melee' ? 20 : 30;
+        const ang = Math.atan2(ty - this.player.y, tx - this.player.x);
+        this.tweens.add({
+          targets: this.player,
+          x: Phaser.Math.Clamp(tx - Math.cos(ang) * want, M, this.pxW - M),
+          y: Phaser.Math.Clamp(ty - Math.sin(ang) * want, M, this.pxH - M),
+          duration: 140, ease: 'cubic.in',
+          onComplete: () => this.renderAbilityFx(fx, tx, ty),
+        });
+        return;
+      }
+      if (fx.range === 'ranged' && target && dist < 34) {
+        const ang = Math.atan2(this.player.y - ty, this.player.x - tx);
+        this.tweens.add({
+          targets: this.player,
+          x: Phaser.Math.Clamp(this.player.x + Math.cos(ang) * 22, M, this.pxW - M),
+          y: Phaser.Math.Clamp(this.player.y + Math.sin(ang) * 22, M, this.pxH - M),
+          duration: 130, ease: 'cubic.out',
+          onComplete: () => this.renderAbilityFx(fx, tx, ty),
+        });
+        return;
+      }
+      this.renderAbilityFx(fx, tx, ty);
+    }
+    renderAbilityFx(fx, tx, ty) {
+      const px = this.player.x, py = this.player.y;
+      // 1) per-ability signature (unique animation per spell/skill)
+      if (fx.text && MH.abilityFx && MH.abilityFx.run(this, fx.text, this.player, tx, ty)) return;
+      // 2) flagship cinematic, else school-flavored cast-up + impact under
+      //    the classic type visuals
+      const SFX = MH.schoolFx;
+      if (SFX && fx.text) {
+        if (SFX.flagship(this, fx.text, this.player, tx, ty)) return;
+        const school = SFX.classify(fx.text);
+        SFX.castUp(this, this.player, school);
+        SFX.impact(this, tx, ty, school, SFX.tierOf(fx.text));
+      }
+      switch (fx.type) {
+        case 'bolt':
+          this.projectileFx(px, py - 6, tx, ty - 6, fx.color);
+          break;
+        case 'missiles': {
+          for (let i = 0; i < 3; i++) {
+            this.time.delayedCall(i * 110, () => this.projectileFx(px, py - 6 + (i - 1) * 3, tx, ty - 6, fx.color));
+          }
+          break;
+        }
+        case 'arrow': {
+          const arrow = this.add.rectangle(px, py - 6, 10, 1.6, 0xeae6d8).setDepth(60);
+          arrow.setRotation(Math.atan2(ty - py, tx - px));
+          this.tweens.add({ targets: arrow, x: tx, y: ty - 6, duration: 130, ease: 'linear',
+            onComplete: () => { this.spark(tx, ty - 6, fx.color); arrow.destroy(); } });
+          break;
+        }
+        case 'cone': {
+          const base = Math.atan2(ty - py, tx - px);
+          const fan = this.add.particles(px + Math.cos(base) * 8, py - 4 + Math.sin(base) * 8, 'px_white', {
+            speed: { min: 70, max: 130 },
+            angle: { min: Phaser.Math.RadToDeg(base) - 24, max: Phaser.Math.RadToDeg(base) + 24 },
+            lifespan: 360, quantity: 6, frequency: 30,
+            scale: { start: 0.9, end: 0 }, tint: [fx.color, 0xfff0c0], blendMode: 'ADD',
+          }).setDepth(60);
+          this.time.delayedCall(420, () => fan.stop());
+          this.time.delayedCall(900, () => fan.destroy());
+          break;
+        }
+        case 'zap': {
+          const g = this.add.graphics().setDepth(60);
+          const seg = 6;
+          for (const [width, color, alpha] of [[3, fx.color, 0.9], [1.2, 0xffffff, 1]]) {
+            g.lineStyle(width, color, alpha);
+            g.beginPath();
+            g.moveTo(px, py - 8);
+            for (let i = 1; i <= seg; i++) {
+              const t = i / seg;
+              g.lineTo(px + (tx - px) * t + (i < seg ? (Math.random() * 14 - 7) : 0),
+                       (py - 8) + ((ty - 6) - (py - 8)) * t + (i < seg ? (Math.random() * 14 - 7) : 0));
+            }
+            g.strokePath();
+          }
+          this.cameras.main.flash(90, 160, 200, 255, false);
+          this.spark(tx, ty - 6, fx.color);
+          this.tweens.add({ targets: g, alpha: 0, duration: 200, delay: 60, onComplete: () => g.destroy() });
+          break;
+        }
+        case 'chainzap': {
+          this.renderAbilityFx({ type: 'zap', color: fx.color }, tx, ty);
+          const second = [...this.entities.values()].find(e =>
+            e.kind === 'mob' && e.sprite && Math.hypot(e.sprite.x - tx, e.sprite.y - ty) > 6 &&
+            Math.hypot(e.sprite.x - tx, e.sprite.y - ty) < 70);
+          if (second) {
+            this.time.delayedCall(140, () => {
+              const g2 = this.add.graphics().setDepth(60);
+              g2.lineStyle(2, fx.color, 0.85);
+              g2.lineBetween(tx, ty - 6, second.sprite.x, second.sprite.y - 6);
+              this.spark(second.sprite.x, second.sprite.y - 6, fx.color);
+              this.tweens.add({ targets: g2, alpha: 0, duration: 220, onComplete: () => g2.destroy() });
+            });
+          }
+          break;
+        }
+        case 'bigbolt': {
+          const bolt = this.add.image(px, py - 6, 'fx_glow')
+            .setBlendMode(Phaser.BlendModes.ADD).setScale(0.45).setTint(fx.color).setDepth(60);
+          this.tweens.add({
+            targets: bolt, x: tx, y: ty - 6, duration: 330, ease: 'sine.in',
+            onComplete: () => {
+              bolt.destroy();
+              const ring = this.add.circle(tx, ty - 4, 5).setStrokeStyle(3, fx.color, 0.9).setDepth(60);
+              this.tweens.add({ targets: ring, radius: 30, alpha: 0, duration: 380, ease: 'cubic.out', onComplete: () => ring.destroy() });
+              const burst = this.add.particles(tx, ty - 6, 'px_white', {
+                speed: { min: 50, max: 140 }, lifespan: 450, quantity: 20,
+                scale: { start: 1, end: 0 }, tint: [fx.color, 0xfff0c0], blendMode: 'ADD', emitting: false,
+              }).setDepth(60);
+              burst.explode(20);
+              this.camShake(110, 0.005);
+              this.time.delayedCall(700, () => burst.destroy());
+            },
+          });
+          break;
+        }
+        case 'meteor': {
+          for (let i = 0; i < 3; i++) {
+            const ox = tx + (i - 1) * 18 + (Math.random() * 10 - 5);
+            this.time.delayedCall(i * 160, () => {
+              const rock = this.add.image(ox + 26, ty - 110, 'fx_glow')
+                .setBlendMode(Phaser.BlendModes.ADD).setScale(0.35).setTint(fx.color).setDepth(60);
+              this.tweens.add({
+                targets: rock, x: ox, y: ty - 4, duration: 240, ease: 'cubic.in',
+                onComplete: () => {
+                  rock.destroy();
+                  this.renderAbilityFx({ type: 'shockwave', color: fx.color }, ox, ty);
+                },
+              });
+            });
+          }
+          break;
+        }
+        case 'touch': {
+          const hand = this.add.image(tx, ty - 8, 'fx_glow')
+            .setBlendMode(Phaser.BlendModes.ADD).setScale(0.08).setTint(fx.color).setDepth(60);
+          this.tweens.add({ targets: hand, scale: 0.42, alpha: 0, duration: 360, ease: 'cubic.out', onComplete: () => hand.destroy() });
+          this.spark(tx, ty - 6, fx.color);
+          break;
+        }
+        case 'column': {
+          const beam = this.add.rectangle(tx, ty - 60, 14, 0, fx.color, 0.55).setOrigin(0.5, 0)
+            .setBlendMode(Phaser.BlendModes.ADD).setDepth(60);
+          this.tweens.add({ targets: beam, height: 64, duration: 160, ease: 'cubic.in',
+            onComplete: () => {
+              this.spark(tx, ty - 6, fx.color);
+              this.tweens.add({ targets: beam, alpha: 0, duration: 260, onComplete: () => beam.destroy() });
+            } });
+          break;
+        }
+        case 'shockwave': {
+          const ring = this.add.circle(tx, ty, 4).setStrokeStyle(2.5, fx.color, 0.9).setDepth(60);
+          this.tweens.add({ targets: ring, radius: 26, alpha: 0, duration: 320, ease: 'cubic.out', onComplete: () => ring.destroy() });
+          this.camShake(70, 0.003);
+          break;
+        }
+        case 'nova': {
+          const ring = this.add.circle(px, py, 6).setStrokeStyle(3, fx.color, 0.9).setDepth(60);
+          this.tweens.add({ targets: ring, radius: 52, alpha: 0, duration: 480, ease: 'cubic.out', onComplete: () => ring.destroy() });
+          const ring2 = this.add.circle(px, py, 4).setStrokeStyle(1.5, 0xffffff, 0.7).setDepth(60);
+          this.tweens.add({ targets: ring2, radius: 38, alpha: 0, duration: 420, delay: 80, ease: 'cubic.out', onComplete: () => ring2.destroy() });
+          this.camShake(90, 0.004);
+          break;
+        }
+        case 'bigslash':
+          this.slashFx(tx, ty, px >= tx ? tx - 10 : tx + 10);
+          this.time.delayedCall(90, () => this.slashFx(tx, ty - 4, px >= tx ? tx + 10 : tx - 10));
+          break;
+        case 'shadowstrike': {
+          const ghost = this.add.sprite(px, py, this.playerTex(), 'atk_s')
+            .setScale(1 / MH.SMOOTH_SS).setAlpha(0.5).setTint(0x6a6af0).setDepth(60);
+          this.tweens.add({ targets: ghost, x: tx + (px < tx ? 12 : -12), y: ty, alpha: 0.9, duration: 110,
+            onComplete: () => {
+              this.slashFx(tx, ty, ghost.x);
+              this.tweens.add({ targets: ghost, alpha: 0, duration: 180, onComplete: () => ghost.destroy() });
+            } });
+          break;
+        }
+        case 'dash': {
+          const v = { x: tx - px, y: ty - py };
+          const d = Math.hypot(v.x, v.y) || 1;
+          this.tweens.add({ targets: this.player, x: tx - (v.x / d) * 16, y: ty - (v.y / d) * 16, duration: 130, ease: 'cubic.in',
+            onComplete: () => this.renderAbilityFx({ type: 'shockwave', color: fx.color }, tx, ty) });
+          break;
+        }
+        case 'drain':
+          this.projectileFx(px, py - 6, tx, ty - 6, fx.color);
+          this.time.delayedCall(320, () => {
+            const back = this.add.particles(tx, ty - 6, 'px_white', {
+              speed: 10, lifespan: 600, quantity: 3, scale: { start: 0.6, end: 0 },
+              tint: 0x7dff9a, blendMode: 'ADD',
+            }).setDepth(60);
+            const orb = this.add.image(tx, ty - 6, 'fx_glow').setScale(0.15).setTint(0x7dff9a)
+              .setBlendMode(Phaser.BlendModes.ADD).setDepth(60);
+            back.startFollow(orb);
+            this.tweens.add({ targets: orb, x: this.player.x, y: this.player.y - 6, duration: 380, ease: 'sine.out',
+              onComplete: () => { this.fxHeal(); orb.destroy(); this.time.delayedCall(400, () => back.destroy()); } });
+          });
+          break;
+        case 'notes': {
+          for (let i = 0; i < 4; i++) {
+            const note = this.add.text(px, py - 10, i % 2 ? '♪' : '♫', {
+              fontFamily: 'Georgia, serif', resolution: 3, fontSize: '10px', color: '#ffa8d8',
+            }).setOrigin(0.5).setDepth(60).setAlpha(0.9);
+            this.tweens.add({ targets: note, x: tx + (i - 1.5) * 8, y: ty - 14 - i * 4, alpha: 0,
+              duration: 600 + i * 110, ease: 'sine.out', delay: i * 70, onComplete: () => note.destroy() });
+          }
+          this.time.delayedCall(500, () => this.spark(tx, ty - 6, fx.color));
+          break;
+        }
+        case 'debuff': {
+          for (let i = 0; i < 6; i++) {
+            const mote = this.add.image(tx, ty - 36, 'px_white').setTint(fx.color)
+              .setBlendMode(Phaser.BlendModes.ADD).setScale(0.8).setDepth(60);
+            const ang0 = (i / 6) * Math.PI * 2;
+            this.tweens.add({
+              targets: mote, duration: 520, delay: i * 40, ease: 'sine.in',
+              x: tx, y: ty - 4, scale: 0.1,
+              onUpdate: (tw, t2) => {
+                const k = tw.progress;
+                t2.x = tx + Math.cos(ang0 + k * 4) * 14 * (1 - k);
+                t2.y = (ty - 36) + 32 * k;
+              },
+              onComplete: () => mote.destroy(),
+            });
+          }
+          break;
+        }
+        case 'sleep': {
+          const z = this.add.text(tx, ty - 18, 'z Z z', {
+            fontFamily: 'Georgia, serif', resolution: 3, fontSize: '10px', fontStyle: 'italic', color: '#b8c4e8',
+          }).setOrigin(0.5).setDepth(60);
+          this.tweens.add({ targets: z, y: ty - 34, alpha: 0, duration: 1300, ease: 'sine.out', onComplete: () => z.destroy() });
+          break;
+        }
+        case 'vines': {
+          const g = this.add.graphics().setDepth(60);
+          g.lineStyle(2, fx.color, 0.9);
+          for (let i = 0; i < 3; i++) {
+            g.beginPath();
+            g.arc(tx, ty + 2 - i * 4, 9 - i * 2, Math.PI * 0.1 * i, Math.PI * (1.6 + 0.1 * i));
+            g.strokePath();
+          }
+          this.tweens.add({ targets: g, alpha: 0, duration: 900, delay: 350, onComplete: () => g.destroy() });
+          break;
+        }
+        case 'mark': {
+          const ring = this.add.circle(tx, ty - 8, 13).setStrokeStyle(2, fx.color, 0.95).setDepth(60);
+          const cross = this.add.text(tx, ty - 8, '+', {
+            fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '12px', color: '#ff6a6a',
+          }).setOrigin(0.5).setDepth(60);
+          this.tweens.add({ targets: ring, scale: 0.55, duration: 260, ease: 'cubic.in' });
+          this.tweens.add({ targets: [ring, cross], alpha: 0, duration: 400, delay: 500, onComplete: () => { ring.destroy(); cross.destroy(); } });
+          break;
+        }
+        case 'coins': {
+          for (let i = 0; i < 5; i++) {
+            const coin = this.add.image(tx + (Math.random() * 12 - 6), ty - 8, 'px_star')
+              .setTint(0xffd44a).setDepth(60).setScale(1.1);
+            this.tweens.add({
+              targets: coin, x: px, y: py - 6, duration: 320 + i * 70, ease: 'cubic.in',
+              delay: i * 60, onComplete: () => coin.destroy(),
+            });
+          }
+          break;
+        }
+        case 'rally': {
+          const up = this.add.particles(px, py + 4, 'px_star', {
+            x: { min: -12, max: 12 }, speedY: { min: -55, max: -30 }, lifespan: 700,
+            quantity: 3, scale: { start: 1, end: 0 }, tint: fx.color, blendMode: 'ADD',
+          }).setDepth(60);
+          this.time.delayedCall(800, () => up.destroy());
+          this.zoomPunch();
+          break;
+        }
+        case 'stealth': {
+          this.player.setAlpha(0.35);
+          const ghost = this.add.particles(px, py, 'px_poof', {
+            speed: 14, lifespan: 500, quantity: 8, scale: { start: 0.9, end: 0 }, emitting: false,
+          }).setDepth(60);
+          ghost.explode(8);
+          this.time.delayedCall(2200, () => { this.player.setAlpha(1); ghost.destroy(); });
+          break;
+        }
+        case 'healburst':
+          this.fxHeal();
+          break;
+        case 'impact':
+        default:
+          this.spark(tx, ty - 6, fx.color);
+          this.slashFx(tx, ty, px >= tx ? tx - 10 : tx + 10);
+          break;
+      }
+    }
+
+    static SPELL_ELEMENTS = [
+      [/fire|burn|flame|inferno/i, 0xff8a3c],
+      [/lightning|shock|storm/i, 0x9adcff],
+      [/chill|frost|ice|cone of cold/i, 0xbfeaff],
+      [/missile|force|arcane|magic/i, 0xc792ff],
+      [/acid|poison|venom/i, 0x9ee05a],
+      [/holy|smite|divine|flamestrike/i, 0xffe9a0],
+      [/harm|drain|necro|shadow|curse/i, 0xb05ae0],
+    ];
+    elementFor(text) {
+      for (const [re, color] of TopRoomScene.SPELL_ELEMENTS) {
+        if (re.test(text)) return color;
+      }
+      return null;
+    }
+    projectileFx(x0, y0, x1, y1, color) {
+      const bolt = this.add.image(x0, y0, 'fx_glow')
+        .setBlendMode(Phaser.BlendModes.ADD).setScale(0.22).setTint(color).setDepth(60);
+      const trail = this.add.particles(x0, y0, 'px_white', {
+        speed: 8, lifespan: 280, quantity: 2, scale: { start: 0.5, end: 0 },
+        alpha: { start: 0.8, end: 0 }, tint: color, blendMode: 'ADD',
+      }).setDepth(59);
+      trail.startFollow(bolt);
+      this.tweens.add({
+        targets: bolt, x: x1, y: y1, duration: 230, ease: 'sine.in',
+        onComplete: () => {
+          const burst = this.add.particles(x1, y1, 'px_white', {
+            speed: { min: 40, max: 110 }, lifespan: 380, quantity: 14,
+            scale: { start: 0.9, end: 0 }, tint: color, blendMode: 'ADD', emitting: false,
+          }).setDepth(60);
+          burst.explode(14);
+          const flash = this.add.image(x1, y1, 'fx_glow').setBlendMode(Phaser.BlendModes.ADD)
+            .setScale(0.5).setTint(color).setDepth(60);
+          this.tweens.add({ targets: flash, scale: 0.1, alpha: 0, duration: 260, onComplete: () => flash.destroy() });
+          this.time.delayedCall(600, () => { burst.destroy(); trail.destroy(); });
+          bolt.destroy();
+        },
+      });
+    }
+    // A visible weapon swing from the player toward the target on every basic
+    // attack — shape varies by the wielded weapon (slash arc / thrust / smash)
+    // so melee reads as a real swing for every class.
+    playerSwing(towardX, towardY) {
+      const px = this.player.x, py = this.player.y - 8;
+      const ang = Math.atan2(towardY - py, towardX - px);
+      const wp = (MH.state.player && MH.state.player.equipment && MH.state.player.equipment.wield) || null;
+      const wt = String((wp && wp.weapon_type) || '').toLowerCase();
+      if (MH.sfx && MH.sfx.swing) MH.sfx.swing();
+      if (/pierce|stab|thrust/.test(wt)) {
+        // lunging thrust
+        const tip = this.add.image(px + Math.cos(ang) * 11, py + Math.sin(ang) * 11, 'fx_slash')
+          .setScale(0.5 / MH.SMOOTH_SS).setRotation(ang).setDepth(12).setAlpha(0.9).setTint(0xdfe8ff);
+        this.tweens.add({ targets: tip, x: px + Math.cos(ang) * 24, y: py + Math.sin(ang) * 24, alpha: 0, duration: 150, ease: 'cubic.out', onComplete: () => tip.destroy() });
+      } else if (/pound|crush|smash|blunt|maul/.test(wt)) {
+        // overhead smash + ground shock
+        const arc = this.add.image(px + Math.cos(ang) * 8, py - 11, 'fx_slash')
+          .setScale(0.85 / MH.SMOOTH_SS).setRotation(-1.4).setDepth(12).setAlpha(0.92).setTint(0xffe0a0);
+        this.tweens.add({ targets: arc, rotation: 0.3, y: py + 3, alpha: 0, scale: 1.05 / MH.SMOOTH_SS, duration: 200, ease: 'cubic.in', onComplete: () => arc.destroy() });
+      } else {
+        // slashing crescent sweep
+        const arc = this.add.image(px + Math.cos(ang) * 9, py + Math.sin(ang) * 9, 'fx_slash')
+          .setScale(0.7 / MH.SMOOTH_SS).setDepth(12).setAlpha(0.92).setTint(0xeaf2ff).setRotation(ang - 0.85);
+        this.tweens.add({ targets: arc, rotation: ang + 0.85, alpha: 0, scale: 0.95 / MH.SMOOTH_SS, duration: 170, ease: 'cubic.out', onComplete: () => arc.destroy() });
+      }
+    }
+    slashFx(x, y, towardX, tint) {
+      if (MH.sfx) MH.sfx.swing();
+      const arc = this.add.image(x, y - 4, 'fx_slash')
+        .setScale(0.9 / MH.SMOOTH_SS).setDepth(60).setTint(tint == null ? 0xffffff : tint)
+        .setFlipX(towardX < x).setAlpha(0.95)
+        .setRotation((towardX < x ? -0.5 : 0.5));
+      this.tweens.add({
+        targets: arc, rotation: arc.rotation + (towardX < x ? -1.1 : 1.1), alpha: 0,
+        scale: 1.15 / MH.SMOOTH_SS, duration: 220, ease: 'cubic.out',
+        onComplete: () => arc.destroy(),
+      });
+    }
+    fxHeal() {
+      if (MH.sfx) MH.sfx.heal();
+      const rise = this.add.particles(this.player.x, this.player.y + 6, 'px_white', {
+        x: { min: -8, max: 8 }, speedY: { min: -45, max: -25 }, lifespan: 800,
+        quantity: 3, scale: { start: 0.7, end: 0 }, tint: 0x7dff9a, blendMode: 'ADD',
+      }).setDepth(60);
+      this.time.delayedCall(900, () => rise.destroy());
+    }
+
+    // ---------- FX (shared design with the side view) ----------
+    dmgStyle(dmg) {
+      // gauntlet playability-01/r1: a warm white→gold→ember ladder — every
+      // step reads against a pale, hazy floor (the old green 5–12 vanished)
+      // playability-02/r1: the low steps come up two points — a '-4' next to
+      // a '26' was a speck in the storyboard, and the taken number is the
+      // half of the exchange that says who is losing
+      if (dmg == null) return { color: '#ffe080', size: 10, shake: 0 };
+      if (dmg <= 4) return { color: '#e6e9f2', size: 11, shake: 0 };
+      if (dmg <= 12) return { color: '#fff1b8', size: 12, shake: 0 };
+      if (dmg <= 24) return { color: '#ffd86a', size: 13, shake: 0 };
+      if (dmg <= 48) return { color: '#ffb84a', size: 12, shake: 0.002 };
+      if (dmg <= 80) return { color: '#ff6a4a', size: 14, shake: 0.004 };
+      return { color: '#ff4ae0', size: 16, shake: 0.007 };
+    }
+    // the visible body for an entity / the player (LPC doll or DCSS art, else
+    // the procedural sprite) — combat juice must play on whatever is on screen
+    entVisual(ent) { return (ent && ent.doll && ent.doll.container) || (ent && ent.art) || (ent && ent.sprite); }
+    playerVisual() { return (this.playerDoll && this.playerDoll.container) || this.player; }
+    // silhouette contour for a doll body: dark for the player/bystanders,
+    // deep red for hostiles (DCSS creature art bakes its contour instead)
+    applyContour(ent) {
+      const c = ent && ent.doll && ent.doll.container;
+      if (!c || !c.active) return;
+      const hostile = !!(ent.data && ent.data.hostile);
+      const color = ent.kind === 'player' ? OUTLINE.player : (hostile ? OUTLINE.hostile : OUTLINE.neutral);
+      addContour(c, color, hostile ? 9 : 5);
+    }
+    // multiply a colour onto the visible body (keeps art readable, unlike a fill)
+    tintVisual(ent, color) {
+      const vis = this.entVisual(ent);
+      if (!vis) return;
+      const t = this._mulTint(color, this._charTint || 0xffffff);
+      if (vis.list) vis.list.forEach(c => c.setTint && c.setTint(this._mulTint(c._baseTint, t)));
+      else if (vis.setTint) vis.setTint(t);
+    }
+    // squash & stretch through the pose multipliers, so it survives the
+    // per-frame scale sync that drives dolls / creature art
+    squashPose(pose) {
+      if (!pose) return;
+      this.tweens.add({ targets: pose, sx: 1.28, sy: 0.72, duration: 60, yoyo: true, ease: 'cubic.out',
+        onComplete: () => { pose.sx = 1; pose.sy = 1; } });
+    }
+    // Enemy wind-up telegraph: the body rears BACK and up, shivers, glows with
+    // its tell colour, and a red ring contracts onto its feet as the strike
+    // timer runs out — readable at a glance without the text banner.
+    startWindup(ent, intent) {
+      if (!ent || !ent.sprite || ent.windup) return;
+      const casty = intent.kind === 'cast' || intent.kind === 'debuff';
+      const color = casty ? 0xb08cff : 0xff6a3a;
+      const ms = Math.max(600, (intent.resolve_in || 3) * 1000);
+      const away = this.player.x >= ent.sprite.x ? -22 : 22;     // lean away from the player
+      // drawn ABOVE the darkness layer: a wind-up in a black crypt must still
+      // show its rings (the old depth 4.7 was swallowed by the dark)
+      const gfx = this.add.graphics().setDepth(40.5);
+      const ring = { r: 30 };
+      ent.windup = { color, until: Date.now() + ms, gfx, ring, away, start: Date.now(), ms };
+      this.tweens.killTweensOf(ent.pose);
+      // REAR BACK: tall and thin, tilted away, lifted off the ground — a pose
+      // that is obviously "about to swing" from across the room
+      this.tweens.add({ targets: ent.pose, sx: 0.84, sy: 1.3, lean: away, dy: -6, duration: 260, ease: 'back.out' });
+      ent.windup.shiver = this.tweens.add({ targets: ent.pose, lean: away * 1.3, duration: 90, yoyo: true, repeat: -1, delay: 260 });
+      ent.windup.ringTween = this.tweens.add({ targets: ring, r: 9, duration: ms, ease: 'linear' });
+      if (ent.fightMark) ent.fightMark.setVisible(false);   // the tell pill takes the ⚔'s slot
+      // gauntlet playability-01/r1: ONE tell above the head instead of a '!'
+      // plus a separate caption — a named pill ("! CRUSHING BLOW") with the
+      // strike timer filling inside it, so what is coming AND when it lands
+      // read from the same glance
+      const label = String(intent.label || 'ATTACK').toUpperCase();
+      const txt = this.add.text(0, -2, `! ${label}`, {
+        // playability-02/r1: 11px (was 9) — the pill is the telegraph's name
+        // and it has to survive the storyboard shrink
+        fontFamily: 'Oxanium, Trebuchet MS, sans-serif', resolution: 3, fontSize: '11px', fontStyle: 'bold',
+        color: casty ? '#e6dcff' : '#fff0e0', stroke: '#1a0608', strokeThickness: 2.5,
+      }).setOrigin(0.5, 0.5);
+      const bg = this.add.graphics();
+      const mark = this.add.container(ent.sprite.x, ent.sprite.y - ((ent.labelDy || 18) + 22), [bg, txt]).setDepth(62);
+      mark._windupMark = true;
+      this.tweens.add({ targets: mark, scale: 1.1, duration: 220, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      ent.windup.mark = mark;
+      ent.windup.markBg = bg;
+      ent.windup.markW = Math.ceil(txt.width) + 14;
+      ent.windup.markH = 22;
+    }
+    // wind-up over: snap FORWARD into the strike (or just relax if interrupted)
+    endWindup(ent, strike) {
+      const w = ent && ent.windup;
+      if (!w) return;
+      ent.windup = null;
+      if (w.shiver) w.shiver.stop();
+      if (w.ringTween) w.ringTween.stop();
+      if (w.gfx) w.gfx.destroy();
+      if (w.mark) { this.tweens.killTweensOf(w.mark); w.mark.destroy(); }
+      if (ent.fightMark && ent.fightMark.active) ent.fightMark.setVisible(true);
+      this.tweens.killTweensOf(ent.pose);
+      this.tintCharacters();
+      if (strike && ent.sprite && ent.sprite.active) {
+        // the ENEMY'S swing is drawn too: a red arc sweeps across you from the
+        // attacker's side, so the strike reads as their blow (not just your flinch)
+        const px = this.player.x, py = this.player.y;
+        this.slashFx(px, py, ent.sprite.x >= px ? px - 10 : px + 10, w.color);
+        this.tweens.add({ targets: ent.pose, sx: 1.24, sy: 0.84, lean: -w.away * 1.2, dy: 0, duration: 90, yoyo: true, ease: 'cubic.out',
+          onComplete: () => { ent.pose.sx = 1; ent.pose.sy = 1; ent.pose.lean = 0; ent.pose.dy = 0; } });
+        // the strike lands: a white impact star on the target (you)
+        if (MH.abilityFx && MH.abilityFx.impact) MH.abilityFx.impact(this, this.player.x, this.player.y - 6, 0xffffff);
+      } else { ent.pose.sx = 1; ent.pose.sy = 1; ent.pose.lean = 0; ent.pose.dy = 0; }
+    }
+    // per-frame: draw the wind-up ring and pulse the tell colour on the body
+    tickWindup(ent, now) {
+      const w = ent.windup;
+      if (!w || !ent.sprite) return;
+      const x = ent.sprite.x, y = ent.sprite.y + 8;
+      const pulse = 0.55 + 0.45 * Math.sin(now / 70);
+      const frac = Math.max(0, Math.min(1, (Date.now() - (w.start || 0)) / (w.ms || 1)));
+      w.gfx.clear();
+      w.gfx.lineStyle(3, w.color, 0.6 + 0.4 * pulse).strokeEllipse(x, y, w.ring.r * 2, w.ring.r * 0.9);
+      w.gfx.fillStyle(w.color, 0.14 + 0.1 * pulse).fillEllipse(x, y, w.ring.r * 2, w.ring.r * 0.9);
+      // the tell pill: dark plate, tell-coloured rim, and a timer bar along its
+      // foot that fills as the strike comes (full = it lands NOW)
+      if (w.markBg) {
+        const g = w.markBg, pw = w.markW, ph = w.markH, hx = -pw / 2, hy = -ph / 2;
+        g.clear();
+        g.fillStyle(0x140406, 0.94).fillRoundedRect(hx, hy, pw, ph, 3);
+        g.lineStyle(1.2, w.color, 0.7 + 0.3 * pulse).strokeRoundedRect(hx, hy, pw, ph, 3);
+        g.fillStyle(0x3a1010, 1).fillRect(hx + 3, hy + ph - 5, pw - 6, 3);
+        g.fillStyle(frac > 0.7 ? 0xffe060 : w.color, 1).fillRect(hx + 3, hy + ph - 5, (pw - 6) * frac, 3);
+        // pointer down to the mob's head
+        g.fillStyle(0x140406, 0.94).fillTriangle(-4, hy + ph, 4, hy + ph, 0, hy + ph + 4);
+      }
+      // ...and a red target reticle closes on the FEET OF WHOEVER IT IS ABOUT
+      // TO HIT (you): an ellipse that shrinks with the timer plus four ticks
+      const px = this.player.x, py = this.player.y + (this.mountArt ? 12 : 10);
+      const tr = 22 - 10 * frac;
+      w.gfx.lineStyle(2, 0xff3a2a, 0.5 + 0.45 * pulse).strokeEllipse(px, py, tr * 2, tr * 0.9);
+      w.gfx.lineStyle(2, 0xffd0c0, 0.8);
+      for (const [cx, cy] of [[px - tr, py], [px + tr, py], [px, py - tr * 0.45], [px, py + tr * 0.45]]) {
+        w.gfx.beginPath(); w.gfx.moveTo(cx - (cx === px ? 3 : 0), cy - (cy === py ? 2 : 0)); w.gfx.lineTo(cx + (cx === px ? 3 : 0), cy + (cy === py ? 2 : 0)); w.gfx.strokePath();
+      }
+      // playability-02/r1: a WEDGE of intent — a translucent cone from the
+      // attacker's feet that widens onto your ring and fills in as the timer
+      // runs, so the direction of the coming blow reads even when the two
+      // bodies overlap (the old 1.5px beam vanished between them)
+      {
+        const dxw = px - x, dyw = py - y, len = Math.hypot(dxw, dyw) || 1;
+        const nx = -dyw / len, ny = dxw / len, hw = tr * 1.1;
+        w.gfx.fillStyle(w.color, 0.10 + 0.22 * frac);
+        w.gfx.fillTriangle(x, y, px + nx * hw, py + ny * hw * 0.5, px - nx * hw, py - ny * hw * 0.5);
+        w.gfx.lineStyle(1.5, w.color, 0.25 + 0.55 * frac);
+        w.gfx.beginPath(); w.gfx.moveTo(x, y); w.gfx.lineTo(px, py); w.gfx.strokePath();
+      }
+      if (w.mark) { w.mark.x = x; w.mark.y = ent.sprite.y - ((ent.labelDy || 18) + 22); }
+      // gauntlet playability-01/r2: the LAST BEAT before the blow lands is its
+      // own tell — ~0.45s out the body snaps solid white, the pill jumps a
+      // size, and a white-hot ring flares at the feet, so "it is about to hit
+      // NOW" is a different picture from "it is winding up"
+      if (frac >= 0.82 && !w.flashed) {
+        w.flashed = true;
+        this.flashFill(this.entVisual(ent), 0xffffff, 140);
+        if (w.mark) this.tweens.add({ targets: w.mark, scale: 1.45, duration: 120, yoyo: true, ease: 'cubic.out' });
+        if (MH.fx && MH.fx.ringShock) MH.fx.ringShock(this, x, y, 0xfff0d0, 26, 320);
+      }
+      if (w.flashed) w.gfx.lineStyle(2, 0xffffff, 0.5 + 0.5 * pulse).strokeEllipse(x, y, w.ring.r * 2 + 6, w.ring.r * 0.9 + 3);
+      // body: pulse between normal and the tell colour
+      const k = w.flashed ? 0.9 : 0.35 + 0.45 * pulse;
+      const mix = (a, b) => (((((a >> 16) & 255) + (((b >> 16) & 255) - ((a >> 16) & 255)) * k) | 0) << 16)
+        | (((((a >> 8) & 255) + (((b >> 8) & 255) - ((a >> 8) & 255)) * k) | 0) << 8)
+        | ((((a & 255) + ((b & 255) - (a & 255)) * k) | 0));
+      this.tintVisual(ent, mix(0xffffff, w.color));
+    }
+    // gauntlet playability-01/r1: in combat YOUR HP bar floats over your own
+    // head in the same language as the mob's (green→amber→red), with a blue
+    // rim so it reads as "you". Two bars in one glance = who is winning,
+    // without hunting between the top-centre frame and the bottom-left dock.
+    drawPlayerHpBar() {
+      const p = MH.state && MH.state.player;
+      const on = !!(MH.state && MH.state.inCombat) && p && p.max_hp && this.player;
+      if (!this.playerHpGfx) this.playerHpGfx = this.add.graphics().setDepth(59.5);   // above the haze/darkness layers, like the vitals arcs
+      const g = this.playerHpGfx;
+      g.clear();
+      if (!on) return;
+      const frac = Math.max(0, Math.min(1, (p.hp || 0) / p.max_hp));
+      // playability-02/r1: 36x5 (was 24x3) so it pairs with the foe's 44x5 bar
+      const w = 36, h = 5, x = this.player.x - w / 2, y = this.player.y - (this.mountArt ? 40 : 34);   // clear of the doll's hair
+      g.fillStyle(0x07111a, 0.85).fillRect(x - 1, y - 1, w + 2, h + 2);
+      g.fillStyle(frac > 0.5 ? 0x46e0a0 : frac > 0.25 ? 0xe8c168 : 0xff5a6a, 1).fillRect(x, y, w * frac, h);
+      g.fillStyle(0x07111a, 0.7);
+      for (let q = 1; q < 4; q++) g.fillRect(x + (w * q) / 4 - 0.5, y, 1, h);
+      g.lineStyle(1.2, 0x8ac8ff, 0.95).strokeRect(x - 2, y - 2, w + 4, h + 4);
+      if (frac <= 0.25) {   // low: the rim beats red so "losing" reads from across the room
+        const a = 0.4 + 0.6 * Math.abs(Math.sin(Date.now() / 160));
+        g.lineStyle(1.5, 0xff3a3a, a).strokeRect(x - 3.5, y - 3.5, w + 7, h + 7);
+      }
+    }
+    // white/colored hit flash that also works on a layered doll Container;
+    // restores to the current day/night character tint (not plain white)
+    flashFill(obj, color, ms) {
+      if (!obj) return;
+      const back = this._charTint || 0xffffff;
+      // gauntlet playability-01/r3: restore on the WALL clock (setTimeout), not
+      // the scene clock — at a few fps the scene clock ran late and the body
+      // stayed a flat silhouette across whole seconds instead of blinking
+      const apply = o => { if (o && o.setTintFill) { o.setTintFill(color); setTimeout(() => { if (o.active) o.setTint(this._mulTint(o._baseTint, back)); }, ms || 80); } };
+      if (obj.setTintFill && !obj.list) apply(obj);
+      else if (obj.list) obj.list.forEach(apply);   // Container: tint each layer
+      else apply(obj);
+    }
+    // multiply dolls + DCSS art by a readable per-phase tint so characters sit
+    // in the day/night scene instead of looking bright/pasted-on
+    // multiply a layer's per-class base colour (hood/cape/gloves) onto the
+    // day/night tint so both survive together; layers without a base tint just
+    // take the scene tint
+    _mulTint(base, t) {
+      if (base == null) return t;
+      const r = (((base >> 16) & 255) * ((t >> 16) & 255) / 255) | 0;
+      const g = (((base >> 8) & 255) * ((t >> 8) & 255) / 255) | 0;
+      const b = ((base & 255) * (t & 255) / 255) | 0;
+      return (r << 16) | (g << 8) | b;
+    }
+    tintCharacters() {
+      const t = this._charTint || 0xffffff;
+      const tintOne = o => { if (!o) return; if (o.list) o.list.forEach(c => c.setTint && c.setTint(this._mulTint(c._baseTint, t))); else if (o.setTint) o.setTint(t); };
+      if (this.playerDoll) tintOne(this.playerDoll.container);
+      if (this.mountArt) this.mountArt.setTint(this._mulTint(this.mountArt._specTint, t));
+      for (const ent of this.entities.values()) {
+        if (ent.doll) tintOne(ent.doll.container);
+        else if (ent.art) ent.art.setTint(t);
+      }
+    }
+    fxHit(e) {
+      const ent = this.findEntityByText(e.target) || this.target;
+      if (!ent || !ent.sprite) return;
+      const vis = this.entVisual(ent);
+      // hit flash: the whole body blinks solid white (twice on a heavy hit),
+      // with a white impact star on the body so the flash reads even on a
+      // pale sprite against a pale floor
+      this.flashFill(vis, 0xffffff, 160);
+      // playability-02/r1: the impact star grows with the blow (a 26 is a
+      // burst twice the size of a 4) so weight reads before the number does
+      if (MH.abilityFx && MH.abilityFx.impact) MH.abilityFx.impact(this, ent.sprite.x, ent.sprite.y - 8, 0xffffff, e.dmg != null ? Math.min(2.4, 1 + e.dmg / 22) : 1);
+      if (e.dmg != null && e.dmg >= 12) setTimeout(() => this.flashFill(this.entVisual(ent), 0xffffff, 90), 220);
+      ent.hurtUntil = this.time.now + 340;     // doll plays its hurt pose
+      const ang = Math.atan2(ent.sprite.y - this.player.y, ent.sprite.x - this.player.x);
+      const kb = e.dmg != null ? Math.min(12, 4 + e.dmg * 0.25) : 5;
+      // knockback drives the hidden anchor; the visible art follows it each frame
+      this.tweens.add({ targets: ent.sprite, x: ent.sprite.x + Math.cos(ang) * kb, y: ent.sprite.y + Math.sin(ang) * kb, duration: 70, yoyo: true });
+      if (ent.pose && !ent.windup && !ent._dying) {
+        this.squashPose(ent.pose);
+        // gauntlet playability-01/r3: REEL — the struck body tips away from
+        // you and drops a little, harder for a bigger hit, so "just got hit"
+        // is a pose, not only a flash
+        const reel = e.dmg != null ? Math.min(26, 10 + e.dmg * 0.35) : 12;
+        this.tweens.add({ targets: ent.pose, lean: (this.player.x >= ent.sprite.x ? -reel : reel), dy: 2, duration: 110, yoyo: true, hold: 90, ease: 'cubic.out',
+          onComplete: () => { if (!ent.windup) { ent.pose.lean = 0; ent.pose.dy = 0; } } });
+      } else this.squash(vis);
+      this.impactLines(ent.sprite.x, ent.sprite.y - 6);
+      if (e.dmg != null && e.dmg >= 8) this.freezeFrame(e.dmg >= 25 ? 95 : 60);
+      if (e.dmg != null && e.dmg >= 5) this.bloodSplat(ent.sprite.x, ent.sprite.y, e.dmg >= 20);
+      this.afterimage(this.player);
+      // class ability in flight? play its signature effect. otherwise steel.
+      // prefer the precise ability just used (clean key) over the combat line
+      const fx = (this.lastAbility && Date.now() - this.lastAbility.ts < 4000 ? this.abilityFxFor(this.lastAbility.name) : null)
+        || this.abilityFxFor(e.line || '');
+      if (fx) this.playAbilityFx(fx, ent.sprite);
+      else { this.playerSwing(ent.sprite.x, ent.sprite.y); this.slashFx(ent.sprite.x, ent.sprite.y, this.player.x >= ent.sprite.x ? ent.sprite.x - 10 : ent.sprite.x + 10); }
+      // the connecting thud — louder the harder it lands (ability stings carry their own audio)
+      if (MH.sfx && e.dmg != null) MH.sfx.impact(e.dmg >= 25 ? 2.5 : e.dmg >= 10 ? 1.5 : 1);
+      this.spark(ent.sprite.x, ent.sprite.y - 6, (fx && fx.color) || 0xffe080);
+      const st = this.dmgStyle(e.dmg);
+      if (st.shake) this.camShake(90, st.shake);
+      if (e.dmg != null && e.dmg >= 25) { this.zoomPunch(); this.flashScreen(0xfff2d0, 0.28, 160); this.lensKick(); }
+      // your numbers pop on the FAR side of the mob (away from you); damage you
+      // take pops on your far side — the two columns never share a lane
+      const farSide = (Math.sign(ent.sprite.x - this.player.x) || 1) * 14;
+      // r3: "You attack X!" is the engage line, not a landed blow — no number
+      // for it; a real hit without a parsed amount pops 'hit' but is not
+      // parked as the ledger (the ledger only ever shows a number)
+      if (e.dmg == null && /^You attack/i.test(e.line || '')) return;
+      this.damageNumber(ent.sprite.x, ent.sprite.y - 16, e.dmg != null ? String(e.dmg) : 'hit', st.color, st.size,
+        e.dmg != null ? { dx: farSide, ledger: 'foe', ent } : { dx: farSide });
+    }
+    fxMiss(e) {
+      const ent = this.findEntityByText(e.target) || this.target;
+      if (ent && ent.sprite) this.damageNumber(ent.sprite.x, ent.sprite.y - 16, 'miss', '#9aa2b4', 8, { dx: (Math.sign(ent.sprite.x - this.player.x) || 1) * 14 });
+    }
+    fxTaken(e) {
+      const pv = this.playerVisual();
+      this.flashFill(pv, 0xffffff, 120);
+      // gauntlet playability-01/r3: after the white blink the body is WASHED
+      // red (multiplied tint, so the sprite stays readable — the old solid
+      // 0xff6060 fill turned you into a pink blob for the whole hit frame)
+      setTimeout(() => {
+        const v = this.playerVisual();
+        const ap = o => { if (o && o.setTint && !o.list) o.setTint(this._mulTint(o._baseTint, 0xff7a7a)); };
+        if (v && v.list) v.list.forEach(ap); else ap(v);
+      }, 130);
+      setTimeout(() => this.tintCharacters(), 460);
+      if (MH.abilityFx && MH.abilityFx.impact) MH.abilityFx.impact(this, this.player.x, this.player.y - 8, 0xffb0a0, e && e.dmg != null ? Math.min(2.4, 1 + e.dmg / 22) : 1);
+      this._hurtFrame = this.time.now;          // doll plays its hurt pose
+      const st = this.dmgStyle(e && e.dmg);
+      this.camShake(80, Math.max(0.004, st.shake));
+      this.dmgPulse(e && e.dmg);
+      if (MH.sfx) MH.sfx.hurt(e && e.dmg >= 20 ? 2 : 1);
+      if (this.playerDoll && this.playerPose) this.squashPose(this.playerPose); else this.squash(pv);
+      this.impactLines(this.player.x, this.player.y - 6, 0xff8080);
+      if (e && e.dmg != null && e.dmg >= 6) {
+        this.freezeFrame(e.dmg >= 20 ? 90 : 55);
+        this.bloodSplat(this.player.x, this.player.y, e.dmg >= 15);
+        if (e.dmg >= 20) this.lensKick();
+      }
+      const atk = e && e.from ? this.findEntityByText(e.from) : null;
+      const inColor = this.elementFor((e && e.line) || '');
+      if (atk && atk.sprite && inColor) {
+        this.projectileFx(atk.sprite.x, atk.sprite.y - 6, this.player.x, this.player.y - 6, inColor);
+      }
+      if (atk && atk.sprite) {
+        const ang = Math.atan2(this.player.y - atk.sprite.y, this.player.x - atk.sprite.x);
+        const m = TD().T * 1.6;
+        // gauntlet playability-01/r2: the blow has WEIGHT — you are shoved a
+        // body-quarter back (scaled by the hit) and the attacker lunges a
+        // full 14px into the strike, so the pair's positions differ between
+        // the wind-up frame and the impact frame
+        const shove = e && e.dmg != null ? Math.min(14, 6 + e.dmg * 0.3) : 7;
+        this.player.x = Phaser.Math.Clamp(this.player.x + Math.cos(ang) * shove, m, this.pxW - m);
+        this.player.y = Phaser.Math.Clamp(this.player.y + Math.sin(ang) * shove, m, this.pxH - m);
+        // attacker lunges at you so the hit has a visible author
+        this.tweens.add({
+          targets: atk.sprite,
+          x: atk.sprite.x + Math.cos(ang) * 14,
+          y: atk.sprite.y + Math.sin(ang) * 14,
+          duration: 100, yoyo: true, ease: 'cubic.out',
+        });
+        if (atk.pose && !atk.windup && !atk._dying) {
+          this.tweens.killTweensOf(atk.pose);
+          this.tweens.add({ targets: atk.pose, sx: 1.22, sy: 0.86, lean: (this.player.x >= atk.sprite.x ? 14 : -14), duration: 90, yoyo: true, ease: 'cubic.out',
+            onComplete: () => { atk.pose.sx = 1; atk.pose.sy = 1; atk.pose.lean = 0; } });
+        }
+        // mark them even if the server payload hasn't flagged it yet
+        if (!atk.data.fighting) this.updateEntity(atk, Object.assign({}, atk.data, { fighting: true }));
+      }
+      // what YOU lost: bold ember red, one size up, on your far side from the attacker
+      const mySide = atk && atk.sprite ? (Math.sign(this.player.x - atk.sprite.x) || -1) * 14 : -14;
+      this.damageNumber(this.player.x, this.player.y - 18, e && e.dmg != null ? `-${e.dmg}` : '✦', '#ff5a5a', Math.max(12, st.size + 2),
+        e && e.dmg != null ? { dx: mySide, bold: true, ledger: 'you' } : { dx: mySide, bold: true });
+    }
+    // flee = an involuntary room exit: dash toward that edge so the
+    // following screen-slide reads as ESCAPING, not teleporting
+    fxFlee(e) {
+      MH.bus.emit('flash', e.dir ? `You flee ${e.dir}!` : 'You flee!');
+      if (e.dir && ['north', 'south', 'east', 'west', 'up', 'down'].includes(e.dir)) {
+        MH.state.pendingMove = { dir: e.dir, sentAt: Date.now() };
+      }
+      const v = { north: [0, -1], south: [0, 1], east: [1, 0], west: [-1, 0] }[e.dir] || [0, 0];
+      const streak = this.add.particles(this.player.x, this.player.y, 'px_white', {
+        speedX: { min: -v[0] * 120 - 20, max: -v[0] * 120 + 20 },
+        speedY: { min: -v[1] * 120 - 20, max: -v[1] * 120 + 20 },
+        lifespan: 350, quantity: 4, scale: { start: 0.7, end: 0 },
+        alpha: { start: 0.8, end: 0 }, tint: 0xfff0c0, blendMode: 'ADD', emitting: false,
+      }).setDepth(60);
+      streak.explode(14);
+      this.time.delayedCall(500, () => streak.destroy());
+      if (v[0] || v[1]) {
+        this.tweens.add({ targets: this.player, x: this.player.x + v[0] * 30, y: this.player.y + v[1] * 30, duration: 240, ease: 'cubic.in' });
+      }
+    }
+
+    // hit-stop: the universal crunch. freeze the world for a few frames
+    // on solid impacts (Vlambeer/Hades school of game feel)
+    // is jarring motion allowed? (false when the player chose reduced motion)
+    motionOk() { return !MH.gfx || MH.gfx.motion; }
+    // gentle camera shake that respects the reduced-motion setting
+    camShake(dur, intensity) {
+      if (!this.motionOk()) return;
+      this.cameras.main.shake(dur, intensity);
+    }
+    freezeFrame(ms = 70) {
+      if (!this.motionOk()) return;
+      if (this._frozen) return;
+      this._frozen = true;
+      this.tweens.timeScale = 0.05;
+      this.physics.world.timeScale = 10;
+      this.anims.globalTimeScale = 0.05;
+      setTimeout(() => {
+        this.tweens.timeScale = 1;
+        this.physics.world.timeScale = 1;
+        this.anims.globalTimeScale = 1;
+        this._frozen = false;
+      }, ms);
+    }
+    // slow-motion beat: ramp time down then back, for the big cinematic moments
+    slowMo(ms = 300, scale = 0.35) {
+      if (!this.motionOk()) return;
+      this.tweens.timeScale = scale;
+      this.anims.globalTimeScale = scale;
+      this.physics.world.timeScale = 1 / scale;
+      if (this._slowTimer) clearTimeout(this._slowTimer);
+      this._slowTimer = setTimeout(() => {
+        this.tweens.timeScale = 1;
+        this.anims.globalTimeScale = 1;
+        this.physics.world.timeScale = 1;
+        this._slowTimer = null;
+      }, ms);
+    }
+    // squash & stretch: bodies deform on impact
+    squash(sprite) {
+      if (!sprite || !sprite.active) return;
+      const sx = sprite.scaleX, sy = sprite.scaleY;
+      this.tweens.add({
+        targets: sprite, scaleX: sx * 1.28, scaleY: sy * 0.72,
+        duration: 60, yoyo: true, ease: 'cubic.out',
+        onComplete: () => { if (sprite.active) sprite.setScale(sx, sy); },
+      });
+    }
+    // impact frame: radial white lines snapping out from the hit point
+    impactLines(x, y, color = 0xffffff) {
+      const g = this.add.graphics().setDepth(61);
+      for (let i = 0; i < 6; i++) {
+        const a = (i / 6) * Math.PI * 2 + Math.random() * 0.4;
+        g.lineStyle(1.4, color, 0.95);
+        g.lineBetween(x + Math.cos(a) * 5, y + Math.sin(a) * 5, x + Math.cos(a) * 13, y + Math.sin(a) * 13);
+      }
+      this.tweens.add({ targets: g, alpha: 0, duration: 140, onComplete: () => g.destroy() });
+    }
+    // wounds stay on the floor
+    bloodSplat(x, y, heavy = false) {
+      const g = this.add.graphics().setDepth(2);
+      g.fillStyle(0x6a1818, heavy ? 0.5 : 0.35);
+      for (let i = 0; i < (heavy ? 5 : 3); i++) {
+        g.fillEllipse(x + (Math.random() * 14 - 7), y + 6 + (Math.random() * 8 - 4), 5 + Math.random() * 5, 3 + Math.random() * 3);
+      }
+      this.tileLayer.add(g);
+      this.tweens.add({ targets: g, alpha: 0, duration: 2500, delay: 6000, onComplete: () => g.destroy() });
+    }
+    // afterimage trail for dashes and strikes
+    afterimage(sprite, tint = 0xffffff) {
+      if (!sprite || !sprite.active) return;
+      const ghost = this.add.image(sprite.x, sprite.y, sprite.texture.key, sprite.frame.name)
+        .setScale(sprite.scaleX, sprite.scaleY).setFlipX(sprite.flipX)
+        .setAlpha(0.4).setTint(tint).setDepth(sprite.depth - 0.1);
+      this.tweens.add({ targets: ghost, alpha: 0, duration: 220, onComplete: () => ghost.destroy() });
+    }
+
+    zoomPunch() {
+      if (!this.motionOk()) return;
+      const cam = this.cameras.main;
+      const base = cam.zoom;
+      this.tweens.add({ targets: cam, zoom: base * 1.035, duration: 70, yoyo: true, ease: 'cubic.out' });
+    }
+    // red screen-edge pulse when you take a hit — scales with the damage
+    // (kept even on reduced motion, but softer, since it's informative)
+    dmgPulse(dmg) {
+      if (!this.dmgVignette) return;
+      const cap = this.motionOk() ? 0.6 : 0.28;
+      const a = Phaser.Math.Clamp(0.22 + (dmg || 0) * 0.012, 0.18, cap);
+      this.tweens.killTweensOf(this.dmgVignette);
+      // playability-02/r1: the pulse decays on the WALL clock (tickDmgPulse in
+      // update) and tops out at 0.42 — on the tween clock at a few fps the
+      // 0.6 red wash sat over the whole frame and hid the fight it announced
+      this.dmgVignette.setTint(0xe02020).setAlpha(Math.min(a, 0.3));
+      this._dmgPulse = { at: Date.now(), a0: Math.min(a, 0.3), ms: 380 };
+    }
+    tickDmgPulse() {
+      const p = this._dmgPulse;
+      if (!p || !this.dmgVignette) return;
+      const k = Math.min(1, (Date.now() - p.at) / p.ms);
+      this.dmgVignette.setAlpha(p.a0 * (1 - k) * (1 - k));
+      if (k >= 1) this._dmgPulse = null;
+    }
+    // a brief full-screen wash (white crits, blue-white lightning)
+    flashScreen(color = 0xffffff, alpha = 0.5, dur = 220) {
+      if (!this.screenFlash) return;
+      if (!this.motionOk()) alpha = Math.min(alpha, 0.12);   // calm the flash, don't kill the cue
+      this.tweens.killTweensOf(this.screenFlash);
+      this.screenFlash.setFillStyle(color, alpha);
+      this.screenFlash.fillAlpha = alpha;
+      this.tweens.add({ targets: this.screenFlash, fillAlpha: 0, duration: dur, ease: 'cubic.out' });
+    }
+    // lens "kick" on a heavy blow: a quick barrel-distortion punch (WebGL only)
+    lensKick() {
+      if (!this.motionOk()) return;
+      const cam = this.cameras.main;
+      if (!cam.postFX || !cam.postFX.addBarrel) return;
+      if (this._barrelBusy) return;
+      this._barrelBusy = true;
+      let barrel;
+      try { barrel = cam.postFX.addBarrel(1.18); } catch (_) { this._barrelBusy = false; return; }
+      this.tweens.add({
+        targets: barrel, amount: 1.0, duration: 180, ease: 'cubic.out',
+        onComplete: () => { try { cam.postFX.remove(barrel); } catch (_) {} this._barrelBusy = false; },
+      });
+    }
+
+    // your defensive skills firing - make them feel earned
+    fxDeflect(word, color, from) {
+      const x = this.player.x, y = this.player.y;
+      const arc = this.add.circle(x, y - 4, 14).setStrokeStyle(2.5, color, 0.95)
+        .setBlendMode(Phaser.BlendModes.ADD).setDepth(61);
+      this.tweens.add({ targets: arc, radius: 20, alpha: 0, duration: 320, ease: 'cubic.out', onComplete: () => arc.destroy() });
+      this.spark(x + 8, y - 8, color);
+      this.damageNumber(x, y - 22, word, '#d5dde9', 11);
+      // riposte feel: face the attacker
+      const atk = from ? this.findEntityByText(from) : null;
+      if (atk && atk.sprite) this.setFacing(atk.sprite.x - x, atk.sprite.y - y);
+    }
+    fxSidestep() {
+      // quick ghost-dash to the side
+      this.afterimage(this.player, 0xbcd2ff);
+      const side = Math.random() < 0.5 ? -1 : 1;
+      const m = TD().T * 1.6;
+      const nx = Phaser.Math.Clamp(this.player.x + side * 14, m, this.pxW - m);
+      this.tweens.add({ targets: this.player, x: nx, duration: 110, yoyo: true, ease: 'cubic.out' });
+      this.damageNumber(this.player.x, this.player.y - 22, 'DODGE', '#bcd2ff', 11);
+    }
+    fxTargetDeflect(name, word) {
+      const ent = this.findEntityByText(name) || this.target;
+      if (!ent || !ent.sprite) return;
+      this.damageNumber(ent.sprite.x, ent.sprite.y - 18, word, '#9aa2b4', 9);
+      this.spark(ent.sprite.x, ent.sprite.y - 8, 0x9aa2b4);
+      if (word === 'dodged') {
+        const side = Math.random() < 0.5 ? -1 : 1;
+        this.tweens.add({ targets: ent.sprite, x: ent.sprite.x + side * 12, duration: 100, yoyo: true, ease: 'cubic.out' });
+      }
+    }
+    // bracing: a golden guard ring snaps around you and holds
+    fxBrace(impact) {
+      const x = this.player.x, y = this.player.y - 6;
+      const ring = this.add.circle(x, y, impact ? 14 : 18).setStrokeStyle(2, 0xe8c168, 0.9).setDepth(61);
+      this.tweens.add({ targets: ring, radius: 10, alpha: 0, duration: impact ? 300 : 550, ease: 'cubic.out', onComplete: () => ring.destroy() });
+      this.flashFill(this.playerVisual(), 0xe8c168, 90);
+      this.damageNumber(x, y - 16, impact ? 'BRACED!' : 'BRACE', '#ffd88a', 11);
+    }
+    // the mob's poise breaks: a hard hit-stop and a golden reel — your window
+    fxStagger(name) {
+      const ent = this.findEntityByText(name) || this.target;
+      if (!ent || !ent.sprite) return;
+      this.freezeFrame(95);
+      this.damageNumber(ent.sprite.x, ent.sprite.y - 26, 'STAGGERED!', '#ffd44a', 12);
+      this.spark(ent.sprite.x, ent.sprite.y - 8, 0xffd44a);
+      const vis = this.entVisual(ent);
+      if (vis && vis.setAngle) {
+        this.tweens.add({ targets: vis, angle: { from: -9, to: 9 }, duration: 90, yoyo: true, repeat: 3,
+          onComplete: () => vis.setAngle(0) });
+      }
+      if (MH.sfx) MH.sfx.impact(2);
+    }
+    // a broken enemy wind-up: green snap + a beat of stillness
+    fxInterrupt(name) {
+      const ent = this.findEntityByText(name) || this.target;
+      if (!ent || !ent.sprite) return;
+      this.damageNumber(ent.sprite.x, ent.sprite.y - 22, 'INTERRUPTED!', '#8cf0a0', 12);
+      this.spark(ent.sprite.x, ent.sprite.y - 8, 0x8cf0a0);
+      this.freezeFrame(70);
+    }
+    // Floating ⚠ banner over each mob with a declared wind-up, plus a red
+    // DANGER ZONE decal for area attacks — walk out of the circle and the
+    // client auto-sends `evade` just before the sweep lands. Rebuilt from the
+    // round payload; both follow their sprite each frame (update()).
+    syncIntentBanners(payload) {
+      this._intentBanners = this._intentBanners || new Map();
+      this._dangerZones = this._dangerZones || new Map();
+      const want = new Map();
+      (payload.mobs || []).forEach((m, i) => { if (m.intent) want.set(`mob:${m.name}:${i}`, m.intent); });
+      for (const [key, banner] of [...this._intentBanners]) {
+        if (!want.has(key) || !this.entities.get(key)) {
+          this.tweens.killTweensOf(banner);
+          banner.destroy();
+          this._intentBanners.delete(key);
+          const gone = this.entities.get(key);
+          if (gone && gone.windup) this.endWindup(gone, true);   // the wind-up resolved: strike forward
+        }
+      }
+      for (const [key, z] of [...this._dangerZones]) {
+        const it = want.get(key);
+        if (!it || it.kind !== 'aoe' || !this.entities.get(key)) {
+          z.gfx.destroy();
+          this._dangerZones.delete(key);
+        }
+      }
+      for (const [key, intent] of want) {
+        const ent = this.entities.get(key);
+        if (!ent || !ent.sprite) continue;
+        // area attacks paint the ground you need to NOT be standing on
+        if (intent.kind === 'aoe' && !this._dangerZones.has(key)) {
+          const gfx = this.add.circle(ent.sprite.x, ent.sprite.y, 52, 0xff4a3a, 0.10)
+            .setStrokeStyle(2, 0xff4a3a, 0.8).setDepth(2.5);
+          this._dangerZones.set(key, { gfx, resolveAt: Date.now() + ((intent.resolve_in || 4) * 1000), sent: false });
+        }
+        if (this._intentBanners.has(key)) continue;
+        const casty = intent.kind === 'cast' || intent.kind === 'debuff';
+        this.startWindup(ent, intent);   // body rears back + contracting ring + named tell pill
+        // the pill IS the banner now (one tell, not a '!' plus a caption
+        // plus a HUD line all saying the same thing over each other)
+        this._intentBanners.set(key, (ent.windup && ent.windup.mark) || { destroy() {} });
+        // the winding-up mob snaps to its tell color for a beat
+        const vis = this.entVisual(ent);
+        if (vis && vis.setTint) {
+          this.flashFill(vis, casty ? 0x9a7ae0 : 0xff8a4a, 160);
+        }
+      }
+    }
+
+    // Tab cycles hostile targets by distance
+    // set the current target (shared by Tab-cycle and click-to-target)
+    targetEntity(ent) {
+      if (!ent || !ent.sprite) return;
+      this.target = ent;
+      MH.bus.emit('target.set', ent.data);
+      this.setFacing(ent.sprite.x - this.player.x, ent.sprite.y - this.player.y);
+      const ring = this.add.circle(ent.sprite.x, ent.sprite.y - 6, 16).setStrokeStyle(2, 0xe8c168, 0.9).setDepth(61);
+      this.tweens.add({ targets: ring, radius: 8, alpha: 0, duration: 360, ease: 'cubic.in', onComplete: () => ring.destroy() });
+    }
+    cycleTarget() {
+      const mobs = [...this.entities.values()].filter(e => e.kind === 'mob' && !e.data.shopkeeper && e.sprite)
+        .sort((a, b) => Phaser.Math.Distance.Between(this.player.x, this.player.y, a.sprite.x, a.sprite.y)
+                      - Phaser.Math.Distance.Between(this.player.x, this.player.y, b.sprite.x, b.sprite.y));
+      if (!mobs.length) return;
+      const idx = this.target ? mobs.findIndex(m => m.key === this.target.key) : -1;
+      this.targetEntity(mobs[(idx + 1) % mobs.length]);
+    }
+
+    showLootTag(x, y, onClick) {
+      this.hideLootTag();
+      const t = this.add.text(x, y, '▼ LOOT', {
+        fontFamily: 'Oxanium, Trebuchet MS, sans-serif', resolution: 3, fontSize: '11px', fontStyle: 'bold',
+        color: '#1a1208', backgroundColor: '#ffd44a', padding: { x: 5, y: 2 },
+      }).setOrigin(0.5, 1).setDepth(62).setAlpha(0);
+      t.setInteractive({ useHandCursor: true });
+      t.on('pointerdown', () => { if (onClick) onClick(); this.hideLootTag(); });
+      this.tweens.add({ targets: t, alpha: 1, duration: 300, delay: 700 });
+      this.tweens.add({ targets: t, y: y - 5, duration: 520, yoyo: true, repeat: -1, ease: 'sine.inOut', delay: 700 });
+      t._at = Date.now();
+      this._lootTag = t;
+      if (!this._lootTagHooked) {
+        this._lootTagHooked = true;
+        MH.bus.on('loot.corpse', () => this.hideLootTag());
+        // (the death line's trailing hit text flips combat on for a beat —
+        // only a fight that starts a couple of seconds later is a new fight)
+        MH.bus.on('combat.state', on => { if (on && this._lootTag && Date.now() - (this._lootTag._at || 0) > 2500) this.hideLootTag(); });
+        MH.bus.on('room.entered', () => this.hideLootTag());
+      }
+    }
+    hideLootTag() {
+      if (this._lootTag) { this.tweens.killTweensOf(this._lootTag); this._lootTag.destroy(); this._lootTag = null; }
+    }
+    fxExp(e) {
+      const t = this.add.text(this.player.x, this.player.y - 22, `+${e.amount} xp`, {
+        fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '9px', color: '#e8c168', stroke: '#000', strokeThickness: 2,
+      }).setOrigin(0.5).setDepth(60);
+      this.tweens.add({ targets: t, y: t.y - 18, alpha: 0, duration: 1400, ease: 'sine.out', onComplete: () => t.destroy() });
+    }
+    fxMobDeath(e) {
+      const ent = this.findEntityByText(e.name) || this.target;
+      if (ent && ent.sprite) {
+        const dx = ent.sprite.x, dy = ent.sprite.y;
+        // the killing blow earns drama: freeze, flash, shatter, and a
+        // soul drifting free of the body
+        this.freezeFrame(110);
+        if (MH.sfx) MH.sfx.impact(2.5);
+        // gauntlet playability-01/r2: the kill is the loudest beat of the
+        // fight — a gold shockwave from the body, a camera thud, a screen
+        // flash and a SLAIN stamp over the spot, so the result reads in the
+        // frame after the last hit even before the HUD result line lands
+        if (!ent._slain) {   // killEntity + the parsed death line both arrive here: one stamp
+          ent._slain = true;
+          this.camShake(160, 0.006);
+          if (MH.fx && MH.fx.ringShock) { MH.fx.ringShock(this, dx, dy, 0xffd44a, 40, 460); MH.fx.ringShock(this, dx, dy, 0xffffff, 22, 300); }
+          this.damageNumber(dx, dy - 30, 'SLAIN', '#ffd44a', 14, { dx: 0 });
+          // playability-02/r1: what to do NEXT, decided here where the room is
+          // known — another live hostile (name it, TAB targets it) or the corpse
+          const others = [...this.entities.values()].filter(o => o !== ent && o.kind === 'mob' && o.sprite && o.sprite.active && !o._dying && o.data && o.data.hostile && !o.data.shopkeeper)
+            .sort((a, b) => Phaser.Math.Distance.Between(dx, dy, a.sprite.x, a.sprite.y) - Phaser.Math.Distance.Between(dx, dy, b.sprite.x, b.sprite.y));
+          MH.bus.emit('feel.next', { hostiles: others.length, next: others.length ? (others[0].data.name || others[0].data.short || '') : '' });
+        }
+        ent.sprite.setTintFill(0xffffff);
+        this.time.delayedCall(90, () => ent.sprite && ent.sprite.active && ent.sprite.clearTint());
+        // the VISIBLE body (LPC doll / DCSS art) flashes white then fades as it falls
+        const vis = this.entVisual(ent);
+        this.flashFill(vis, 0xffffff, 90);
+        ent._dying = true;
+        if (ent.windup) this.endWindup(ent, false);
+        if (ent.aggroRing) this.tweens.add({ targets: ent.aggroRing, alpha: 0, duration: 300 });
+        if (ent.aggroGfx) { ent.aggroGfx.destroy(); ent.aggroGfx = null; }   // a corpse is no longer a threat
+        // the body goes DOWN: a doll plays its hurt sequence and stays on the
+        // floor; creature art topples over its feet. Both grey out.
+        if (ent.doll) ent.doll.die();
+        else if (ent.pose) {
+          this.tweens.killTweensOf(ent.pose);
+          this.tweens.add({ targets: ent.pose, lean: this.player.x >= ent.sprite.x ? -84 : 84, sy: 0.92, duration: 380, delay: 90, ease: 'back.in' });
+        }
+        this.time.delayedCall(100, () => this.tintVisual(ent, 0x8a8a96));
+        if (vis && vis !== ent.sprite) this.tweens.add({ targets: vis, alpha: 0.45, duration: 650, delay: 120, ease: 'sine.in' });
+        if (ent.bossAura) this.tweens.add({ targets: ent.bossAura, alpha: 0, duration: 500 });
+        const shards = this.add.particles(dx, dy - 6, 'px_white', {
+          speed: { min: 60, max: 150 }, lifespan: 520, quantity: 12,
+          scale: { start: 1.1, end: 0 }, tint: [0xffffff, 0xd0d6e4], emitting: false,
+          gravityY: 160,
+        }).setDepth(60);
+        shards.explode(12);
+        this.time.delayedCall(800, () => shards.destroy());
+        const soul = this.add.image(dx, dy - 8, 'fx_glow')
+          .setBlendMode(Phaser.BlendModes.ADD).setScale(0.16).setTint(0xbcd2ff).setAlpha(0.85).setDepth(60);
+        this.tweens.add({ targets: soul, y: dy - 42, alpha: 0, scale: 0.05, duration: 1400, ease: 'sine.out', onComplete: () => soul.destroy() });
+        this.bloodSplat(dx, dy, true);
+        ent.sprite.setFrame('death');
+        this.poof(ent.sprite.x, ent.sprite.y);
+        // a body remains where it fell (the lootable corpse item follows
+        // in the next payload; this is the visual continuity)
+        const corpse = this.add.image(ent.sprite.x, ent.sprite.y + 4, 'sm_corpse')
+          .setScale(0.9 / MH.SMOOTH_SS).setDepth(4).setAlpha(0);
+        this.tweens.add({ targets: corpse, alpha: 1, duration: 400, delay: 250 });
+        corpse.setInteractive({ useHandCursor: true });
+        corpse.on('pointerdown', () => MH.bus.emit('loot.corpse'));
+        // playability-02/r1: a LOOT tag hangs over the fresh body (bobbing,
+        // clickable) until it is looted or the next fight starts — the
+        // post-kill frames point at the one thing left to do, on the spot
+        this.showLootTag(ent.sprite.x, ent.sprite.y - 12, () => MH.bus.emit('loot.corpse'));
+        (this.corpses = this.corpses || []).push(corpse);
+        if (this.corpses.length > 8) { const old = this.corpses.shift(); old.destroy(); }
+        this.tileLayer.add(corpse);
+      }
+      if (this.target && ent === this.target) { this.target = null; MH.bus.emit('target.clear'); }
+    }
+    // A mob that vanished from the live room payload (died / was removed) — play
+    // the death beat and actually REMOVE the entity so its sprite + the target
+    // frame don't linger with stale HP. fxMobDeath only fades the body; this also
+    // destroys the entity and clears the target.
+    killEntity(ent) {
+      if (!ent || ent._dying) return;
+      ent._dying = true;
+      ent.leaving = true;   // keep syncEntities from racing the removal
+      try { this.fxMobDeath({ name: ent.data && ent.data.name }); } catch (_) {}
+      if (this.target === ent) { this.target = null; MH.bus.emit('target.clear'); }
+      const key = ent.key;
+      // Real timer (not the scene clock) so the removal still happens even when
+      // the scene's update loop is throttled (e.g. backgrounded tab) — the death
+      // FX above plays on the scene clock, but the entity MUST be reaped.
+      setTimeout(() => {
+        try { this.destroyEntity(ent); } catch (_) {}
+        if (this.entities.get(key) === ent) this.entities.delete(key);
+      }, 760);
+    }
+    fxPlayerDeath() {
+      this.dead = true;
+      this.recordDeath();
+      this.player.setFrame('death');
+      if (this.playerDoll) this.playerDoll.die();   // the doll goes down and stays down
+      if (this.playerPose) { this.playerPose.sx = 1; this.playerPose.sy = 1; this.playerPose.lean = 0; }
+      // a beat of slow-mo + a low death knell, the world greys out, then fades
+      this.slowMo(700, 0.25);
+      try {
+        if (MH.fx && MH.fx.tone) {
+          MH.fx.tone({ f: 200, f2: 48, type: 'sawtooth', dur: 1.0, vol: 0.07 });
+          MH.fx.tone({ f: 120, f2: 36, type: 'sine', dur: 1.4, vol: 0.05, delay: 0.12 });
+        }
+      } catch (_) {}
+      if (this.gradeFx && this.gradeFx.reset) { this.gradeFx.reset(); this.gradeFx.grayscale(0.85, true); }
+      this.cameras.main.fade(1600, 0, 0, 0, false, (_c, t) => {
+        if (t === 1) {
+          this.time.delayedCall(700, () => {
+            this._gradeKey = null;   // let the grade re-apply on respawn
+            MH.refreshState();
+            this.cameras.main.fadeIn(700);
+            this.dead = false;
+            if (this.playerDoll) this.playerDoll.revive();
+          });
+        }
+      });
+      MH.bus.emit('flash', 'You have died. The realm reclaims you…');
+    }
+    fxLevelUp() {
+      const x = this.player.x, y = this.player.y;
+      const PAL = MH.fx && MH.fx.PAL;
+      // a pillar of golden light, expanding rings, a chime, and a beat of slow-mo
+      try {
+        if (MH.fx && PAL) {
+          MH.fx.pillar(this, x, y, PAL.holy, 130, 30);
+          MH.fx.ringShock(this, x, y - 4, PAL.holy.b, 30, 520);
+          this.time.delayedCall(150, () => MH.fx.ringShock(this, x, y - 4, PAL.holy.a, 22, 620));
+          if (MH.fx.SOUNDS && MH.fx.SOUNDS.holy) MH.fx.SOUNDS.holy(3);
+        }
+      } catch (_) {}
+      const emitter = this.add.particles(x, y - 6, 'px_star', {
+        speed: { min: 40, max: 130 }, lifespan: 1100, quantity: 28, scale: { start: 1.2, end: 0 },
+        tint: [0xffe9a8, 0xfff4d0, 0xffffff], emitting: false, gravityY: -30,
+      }).setDepth(61);
+      emitter.explode(28);
+      this.time.delayedCall(1500, () => emitter.destroy());
+      // "LEVEL UP!" banner rises over the hero
+      const txt = this.add.text(x, y - 30, 'LEVEL UP!', {
+        fontFamily: 'Georgia, serif', resolution: 3, fontSize: '16px', color: '#ffe9a8',
+        stroke: '#3a2400', strokeThickness: 4, fontStyle: 'bold',
+      }).setOrigin(0.5).setDepth(63).setScale(0.4).setAlpha(0);
+      this.tweens.add({ targets: txt, scale: 1, alpha: 1, y: y - 46, duration: 320, ease: 'back.out' });
+      this.tweens.add({ targets: txt, alpha: 0, y: y - 64, delay: 1100, duration: 520, onComplete: () => txt.destroy() });
+      this.cameras.main.flash(180, 255, 240, 190);
+      this.slowMo(240, 0.4);
+    }
+    fxChatBubble(e) {
+      const m = e.line.match(/^(\w+) says?,? '?(.*?)'?$/i);
+      if (!m) return;
+      for (const ent of this.entities.values()) {
+        if (ent.label && ent.data.name && String(ent.data.name).toLowerCase().includes(m[1].toLowerCase())) {
+          this.bubbleOver(ent, m[2]);
+          break;
+        }
+      }
+    }
+    fxAmbient(e) {
+      const line = e.line.trim();
+      if (!line || line.length > 110) return;
+      if (/\d+\/\d+(hp|mp|mv)/i.test(line) || /^>/.test(line) || /^\[/.test(line)) return;
+      const lower = line.toLowerCase();
+      for (const ent of this.entities.values()) {
+        if (ent.kind !== 'mob') continue;
+        const kw = MH.mobKeyword(ent.data.name);
+        if (kw.length > 2 && lower.includes(kw)) { this.bubbleOver(ent, line, '#b8c0d4'); return; }
+      }
+      if (!/^(you hear|a |an |the |somewhere|in the distance|dust|wind|water|shadows)/i.test(line)) return;
+      const t = this.add.text(40 + Math.random() * (this.pxW - 200), 40 + Math.random() * 100, line, {
+        fontFamily: 'Georgia, serif', resolution: 3, fontSize: '9px', fontStyle: 'italic', color: '#e8e2d0',
+      }).setAlpha(0).setDepth(45).setShadow(0, 1, '#000000', 2);
+      this.tweens.add({ targets: t, alpha: 0.45, duration: 900, yoyo: true, hold: 3600, onComplete: () => t.destroy() });
+    }
+    bubbleOver(ent, text, color = '#dce4f0') {
+      if (!ent || !ent.sprite) return;
+      const bubble = this.add.text(ent.sprite.x, ent.sprite.y - 24, String(text).slice(0, 50), {
+        fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '7px', color, backgroundColor: '#10131ecc',
+        padding: { x: 3, y: 1 }, wordWrap: { width: 120 },
+      }).setOrigin(0.5, 1).setDepth(60);
+      this.tweens.add({ targets: bubble, y: bubble.y - 6, alpha: 0, delay: 2800, duration: 700, onComplete: () => bubble.destroy() });
+    }
+    spark(x, y, color) {
+      const emitter = this.add.particles(x, y, 'px_white', {
+        speed: { min: 30, max: 90 }, lifespan: 300, quantity: 8, scale: { start: 0.8, end: 0 }, tint: color, emitting: false,
+      }).setDepth(60);
+      emitter.explode(8);
+      this.time.delayedCall(500, () => emitter.destroy());
+    }
+    poof(x, y) {
+      const emitter = this.add.particles(x, y, 'px_poof', {
+        speed: { min: 15, max: 55 }, lifespan: 500, quantity: 12, scale: { start: 1, end: 0 }, emitting: false,
+      }).setDepth(60);
+      emitter.explode(12);
+      this.time.delayedCall(700, () => emitter.destroy());
+    }
+    damageNumber(x, y, text, color, size = 9, opt = {}) {
+      if (MH.prefs && MH.prefs.dmgNumbers === false) return;   // accessibility: declutter combat
+      const crit = size >= 12;
+      // r3: only NUMBERS get the +3pt bump and the big pop-in; a word
+      // ('STAGGERED!', 'SLAIN') at number size filled the arena when a slow
+      // frame caught it mid-pop
+      const word = !/^[-+]?\d+$/.test(String(text));
+      // gauntlet playability-01/r1: LANES. A round's burst (hit, bonus hit,
+      // dodge, the enemy's blow) used to pile onto one spot and smear into
+      // "-15 4 -30". Numbers popping near the same anchor within ~0.9s now
+      // climb one lane each, so they stack as a readable column.
+      const nowMs = Date.now();
+      const ax = x + (opt.dx || 0);
+      const laneKey = `${Math.round(ax / 28)}:${Math.round(y / 28)}`;
+      const lanes = this._popLanes || (this._popLanes = new Map());
+      const prev = lanes.get(laneKey);
+      const lane = prev && nowMs - prev.at < 900 ? (prev.n + 1) % 4 : 0;
+      lanes.set(laneKey, { at: nowMs, n: lane });
+      const sx = ax + (lane ? (lane % 2 ? 5 : -5) : 0), sy = y - lane * 12;
+      const t = this.add.text(sx, sy, text, {
+        fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3,
+        // r3: three points bigger across the ladder — a 9px number at 1.4x
+        // vanished in a 640px-wide storyboard frame
+        fontSize: `${(crit ? size + 3 : size) + (word ? 0 : 3)}px`, color,
+        stroke: '#000', strokeThickness: crit ? 4 : 3,
+        fontStyle: crit || opt.bold ? 'bold' : 'normal',
+        shadow: { offsetX: 0, offsetY: 1, color: '#000', blur: 2, fill: true },
+      }).setOrigin(0.5).setDepth(62).setScale(word ? (crit ? 1.3 : 1.15) : crit ? 1.9 : 1.4);
+      // gauntlet playability-01/r2: pops live on the WALL CLOCK, not the tween
+      // clock. Phaser's smoothed delta is capped per frame, so on a machine
+      // rendering at a few fps a 0.85s number stayed on screen for ten
+      // seconds and the next round's numbers piled onto it. tickPops()
+      // (update loop) drives scale/rise/fade from Date.now() instead.
+      (this._pops || (this._pops = [])).push({
+        t, sx, sy, s0: word ? (crit ? 1.3 : 1.15) : crit ? 1.9 : 1.4, rise: crit ? 26 : 18,
+        dx: opt.dx ? Math.sign(opt.dx) * 6 : (Math.random() * 12 - 6),
+        start: nowMs, inDur: crit ? 160 : 110, hold: 140, life: crit ? 1000 : 850,
+        // r3: 'foe' / 'you' pops don't vanish — they PARK beside their owner
+        // as the "last hit" tag until the next number replaces them
+        ledger: opt.ledger || null, ent: opt.ent || null, side: Math.sign(opt.dx || 0) || 1,
+      });
+      if (crit) this.impactLines(x, y, Phaser.Display.Color.HexStringToColor(color).color);
+    }
+    tickPops() {
+      const pops = this._pops;
+      if (!pops || !pops.length) return;
+      const now = Date.now();
+      for (let i = pops.length - 1; i >= 0; i--) {
+        const p = pops[i], t = p.t;
+        if (!t || !t.active) { pops.splice(i, 1); continue; }
+        const e = now - p.start;
+        if (e < p.inDur) {   // back.out from the oversized pop to 1
+          const u = e / p.inDur - 1, b = 1 + 2.70158 * u * u * u + 1.70158 * u * u;
+          t.setScale(p.s0 + (1 - p.s0) * b);
+        }
+        else t.setScale(1);
+        const f = (e - p.hold) / p.life;
+        if (f > 0) {
+          const k = Math.min(1, f), ease = Math.sin(k * Math.PI / 2);
+          t.y = p.sy - p.rise * ease;
+          t.x = p.sx + p.dx * ease;
+          t.setAlpha(1 - k);
+          if (k >= 1) { pops.splice(i, 1); if (p.ledger) this.parkPop(p); else t.destroy(); }
+        }
+      }
+    }
+    // gauntlet playability-01/r3: the LEDGER. The last number each side dealt
+    // stays parked beside its owner (white/gold over the foe, red over you) at
+    // full size until the next hit replaces it, so a frame taken between two
+    // exchanges still shows the score of the exchange before — the fight no
+    // longer depends on the shutter catching a 1s pop. Cleared when the fight
+    // ends; the foe's final number stays over the body for a beat.
+    parkPop(p) {
+      const L = this._ledger || (this._ledger = {});
+      const old = L[p.ledger];
+      if (old && old.t && old.t.active) old.t.destroy();
+      p.t.setAlpha(0.95).setScale(1);
+      L[p.ledger] = { t: p.t, ent: p.ent, side: p.side, at: Date.now() };
+      this.tickLedger();
+    }
+    tickLedger() {
+      const L = this._ledger;
+      if (!L) return;
+      for (const kind of Object.keys(L)) {
+        const l = L[kind];
+        if (!l) continue;
+        if (!l.t || !l.t.active) { delete L[kind]; continue; }
+        let ax, ay;
+        if (kind === 'you') { ax = this.player.x; ay = this.player.y - 36; }
+        else {
+          const s = l.ent && l.ent.sprite;
+          if (!s || !s.active || (l.ent._dying && Date.now() - l.at > 2500)) { this.tweens.add({ targets: l.t, alpha: 0, duration: 400, onComplete: () => l.t.destroy() }); delete L[kind]; continue; }
+          ax = s.x; ay = s.y - ((l.ent.labelDy || 18) + 30);
+        }
+        l.t.x = ax + l.side * 18; l.t.y = ay;
+        // a parked number breathes very slightly so it reads as live, not stuck
+        l.t.setScale(1 + 0.03 * Math.sin(Date.now() / 260));
+      }
+    }
+    clearLedger() {
+      const L = this._ledger;
+      if (!L) return;
+      for (const kind of Object.keys(L)) {
+        const l = L[kind];
+        if (l && l.t && l.t.active) this.tweens.add({ targets: l.t, alpha: 0, duration: 600, onComplete: () => l.t.destroy() });
+        delete L[kind];
+      }
+    }
+
+    // ---------- movement / exits ----------
+    onMoveBlocked(e) {
+      const pm = MH.state.pendingMove;
+      MH.state.pendingMove = null;
+      MH.bus.emit('flash', e.line);
+      this.exitSuppress = Date.now() + 900;
+      if (!pm) return;
+      const door = this.layout && this.layout.exits[pm.dir] && this.layout.exits[pm.dir].door;
+      if (door && /closed/i.test(e.line)) {
+        // a closed door we can open: do it, don't treat as a hard block
+        MH.sendCommand(`open ${door.name} ${pm.dir}`);
+      } else {
+        // a real refusal (class/level lock, exhaustion, no way): remember it
+        // so we stop ramming the wall and re-spamming the command. The flash
+        // already told the player why; they can pick another direction.
+        this._blockedDir = pm.dir;
+        this._blockedUntil = Date.now() + 3500;
+      }
+      // step back toward the room center so we're off the gap mouth
+      const cx = this.pxW / 2, cy = this.pxH / 2;
+      const ang = Math.atan2(cy - this.player.y, cx - this.player.x);
+      this.player.x += Math.cos(ang) * 18;
+      this.player.y += Math.sin(ang) * 18;
+    }
+
+    // draw a mob's head-and-shoulders into a DOM canvas (duel card)
+    mobPortrait(canvas, name) {
+      try {
+        const ent = [...this.entities.values()].find(e2 =>
+          e2.kind === 'mob' && e2.data && e2.data.name === name && e2.sprite);
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let tex = ent && ent.sprite ? ent.sprite.texture : null;
+        if (!tex && MH.mobKeyFor) tex = null;
+        if (!tex) {
+          // no live entity (different room, summoned test): classify by name
+          const key = MH.smoothSprites && MH.smoothSprites.mobKey ? MH.smoothSprites.mobKey(name)
+            : `td_mob_${(MH.mobArchetype ? MH.mobArchetype(name).key : 'citizen')}`;
+          if (this.textures.exists(key)) tex = this.textures.get(key);
+        }
+        if (!tex) return false;
+        const f = tex.get('d0');
+        ctx.imageSmoothingEnabled = false;
+        const sz = Math.min(canvas.width, canvas.height) * 1.5;
+        ctx.drawImage(tex.getSourceImage(), f.cutX, f.cutY + f.cutHeight * 0.06, f.cutWidth, f.cutHeight * 0.62,
+          (canvas.width - sz) / 2, 2, sz, sz * 0.8);
+        return true;
+      } catch (_) { return false; }
+    }
+
+    // a patrolling NPC walks OFF toward its exit (with a direction cue)
+    // instead of blinking out - and walks IN from where it came
+    gapPoint(dir) {
+      const { T } = TD();
+      const midX = Math.floor(this.layout.W / 2) * T + T / 2;
+      const midY = Math.floor(this.layout.H / 2) * T + T / 2;
+      return {
+        north: { x: midX, y: T }, south: { x: midX, y: this.pxH - T },
+        west: { x: T, y: midY }, east: { x: this.pxW - T, y: midY },
+        up: this.layout.stairsUp ? { x: this.layout.stairsUp.x * T, y: this.layout.stairsUp.y * T } : { x: midX, y: midY },
+        down: this.layout.stairsDown ? { x: this.layout.stairsDown.x * T, y: this.layout.stairsDown.y * T } : { x: midX, y: midY },
+      }[dir] || { x: midX, y: midY };
+    }
+
+    onMobMove(e) {
+      if (!this.layout || e.vnum !== this.layout.vnum || !e.name) return;
+      if (e.action === 'leave') {
+        const ent = [...this.entities.values()].find(en =>
+          en.kind === 'mob' && en.data && en.data.name === e.name && en.sprite && !en.leaving);
+        if (!ent) return;
+        ent.leaving = true;
+        const gp = this.gapPoint(e.dir);
+        const cue = this.add.text(ent.sprite.x, ent.sprite.y - 24, `→ ${e.dir}`, {
+          fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '8px',
+          color: '#c8ccd8', backgroundColor: '#10131ea8', padding: { x: 3, y: 1 },
+        }).setOrigin(0.5, 1).setDepth(40);
+        this.tweens.add({ targets: cue, y: cue.y - 10, alpha: 0, duration: 1600, onComplete: () => cue.destroy() });
+        this.tweens.add({
+          targets: ent.sprite, x: gp.x, y: gp.y, alpha: 0.1,
+          duration: 850, ease: 'sine.in',
+          onUpdate: () => { if (ent.label) { ent.label.x = ent.sprite.x; ent.label.y = ent.sprite.y - 18; } },
+          onComplete: () => { const key = ent.key; this.destroyEntity(ent); this.entities.delete(key); },
+        });
+      } else if (e.action === 'arrive') {
+        // remembered until the roster payload (sent right behind this
+        // event) actually spawns the mob
+        this.pendingArrivals[e.name] = { dir: e.dir, at: Date.now() };
+      }
+    }
+
+    targetByName(name) {
+      const ent = [...this.entities.values()].find(e2 =>
+        e2.kind === 'mob' && e2.data && e2.data.name === name);
+      if (!ent) return false;
+      this.target = { key: ent.key };
+      MH.bus.emit('target.set', ent.data);
+      return true;
+    }
+
+    travelFlourish(dir) {
+      const CARD = ['north', 'south', 'east', 'west'];
+      if (CARD.includes(dir)) return;
+      const swirl = this.add.particles(this.player.x, this.player.y, 'px_white', {
+        speed: { min: 20, max: 60 }, scale: { start: 0.6, end: 0 }, alpha: { start: 0.9, end: 0 },
+        tint: dir === 'up' || dir === 'down' ? 0xcfe2ff : 0xc080ff,
+        lifespan: 600, quantity: 14, blendMode: 'ADD',
+      }).setDepth(50);
+      this.time.delayedCall(700, () => swirl.destroy());
+    }
+
+    requestMove(dir) {
+      const st = MH.state;
+      if (st.pendingMove && Date.now() - st.pendingMove.sentAt < 2500) return;
+      st.pendingMove = { dir, sentAt: Date.now() };
+      this.exitSuppress = Date.now() + 700;   // no double-fire while in flight
+      this.travelFlourish(dir);
+      MH.sendCommand(dir);
+    }
+
+    // compass / Shift+key: BFS a path on the grid and walk it
+    navTo(dir) {
+      const L = this.layout;
+      if (!L || this.dead) return;
+      if (!Object.prototype.hasOwnProperty.call(L.exits || {}, dir)) {
+        MH.bus.emit('flash', `There is no exit ${dir} here.`);
+        return;
+      }
+      const { T, BLOCK, WATER } = TD();
+      const midX = Math.floor(L.W / 2), midY = Math.floor(L.H / 2);
+      let goal = null;
+      if (dir === 'north') goal = [midX, 0];
+      else if (dir === 'south') goal = [midX, L.H - 1];
+      else if (dir === 'west') goal = [0, midY];
+      else if (dir === 'east') goal = [L.W - 1, midY];
+      else if (dir === 'up' && L.stairsUp) goal = [L.stairsUp.x, L.stairsUp.y];
+      else if (dir === 'down' && L.stairsDown) goal = [L.stairsDown.x, L.stairsDown.y];
+      else {
+        const p = (L.portals || []).find(pt => pt.name === dir);
+        if (p) goal = [p.x, p.y];
+      }
+      if (!goal) { this.requestMove(dir); return; }
+      // feature tiles teleport on touch; never path across one en route
+      const avoid = new Set();
+      if (L.stairsUp) avoid.add(L.stairsUp.y * L.W + L.stairsUp.x);
+      if (L.stairsDown) avoid.add(L.stairsDown.y * L.W + L.stairsDown.x);
+      (L.portals || []).forEach(p => avoid.add(p.y * L.W + p.x));
+      avoid.delete(goal[1] * L.W + goal[0]);
+      // BFS from the player's tile
+      const sx = Phaser.Math.Clamp(Math.floor(this.player.x / T), 0, L.W - 1);
+      const sy = Phaser.Math.Clamp(Math.floor(this.player.y / T), 0, L.H - 1);
+      const prev = new Map([[sy * L.W + sx, -1]]);
+      const q = [[sx, sy]];
+      let found = false;
+      while (q.length && !found) {
+        const [x, y] = q.shift();
+        for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+          const nx = x + dx, ny = y + dy;
+          if (nx < 0 || ny < 0 || nx >= L.W || ny >= L.H) continue;
+          const i = ny * L.W + nx;
+          if (prev.has(i)) continue;
+          const cell = L.grid[i];
+          if (cell === BLOCK || cell === WATER || avoid.has(i)) continue;
+          prev.set(i, y * L.W + x);
+          if (nx === goal[0] && ny === goal[1]) { found = true; break; }
+          q.push([nx, ny]);
+        }
+      }
+      const gi = goal[1] * L.W + goal[0];
+      if (!prev.has(gi)) { this.requestMove(dir); return; }
+      const path = [];
+      let cur = gi;
+      while (cur !== -1 && cur !== (sy * L.W + sx)) {
+        path.unshift({ x: (cur % L.W) * T + T / 2, y: Math.floor(cur / L.W) * T + T / 2 });
+        cur = prev.get(cur);
+      }
+      this.exitSuppress = 0; // walking into the exit should fire it
+      this.autoNav = { path, dir };
+    }
+
+    // ---------- map payload ----------
+    onMap(payload) {
+      const cur = payload.current_room;
+      const player = payload.player;
+      if (!player) return;
+      const roomEntry = (payload.rooms || []).find(r => r.vnum === player.vnum) || { mobs: [], players: [], items: [] };
+      const roomData = cur && cur.vnum === player.vnum
+        ? Object.assign({}, cur)
+        : { vnum: player.vnum, name: roomEntry.name, description: '', sector: roomEntry.sector, flags: roomEntry.flags || [], exits: {} };
+      roomData.zone = roomEntry.zone;
+      if (!cur || cur.vnum !== player.vnum) {
+        (roomEntry.exits || []).forEach(d => { roomData.exits[d] = { to_room: null, door: (roomEntry.doors || {})[d] || null }; });
+      } else {
+        for (const [d, ex] of Object.entries(roomData.exits || {})) {
+          if (roomEntry.doors && roomEntry.doors[d]) ex.door = roomEntry.doors[d];
+        }
+      }
+
+      if (this.lastVnum !== player.vnum) {
+        const pm = MH.state.pendingMove;
+        const moveDir = pm ? pm.dir : null;
+        MH.state.pendingMove = null;
+        this._blockedDir = null;   // moved rooms: clear any refusal memory
+        this.lastVnum = player.vnum;
+        const layout = MH.generateRoomTopDown(roomData);
+        this.slideTransition(layout, moveDir);
+        MH.bus.emit('room.entered', { room: roomData, zoneName: roomEntry.zoneName });
+      }
+      this.syncEntities(roomEntry);
+      this.applyAtmosphere(payload);
+      this.syncWornAura(payload.player);
+      this.syncPlayerDoll(payload.player);
+      this.syncMountArt(payload.player);
+      // elemental terrain flipped while standing here (a frost spell froze
+      // the stream): rebuild so the ice sheet appears underfoot
+      if (this.layout && roomData && roomData.env
+          && !!roomData.env.frozen !== !!this.layout.icy && this.lastVnum === player.vnum) {
+        this.buildRoom(MH.generateRoomTopDown(roomData), null);
+      }
+      this.syncEnvMarkers(roomData);
+      this.detectRoomChanges(roomData);
+    }
+
+    // Zelda screen-slide: snapshot the old room, build the new one beneath,
+    // slide the snapshot off in the direction of travel.
+    slideTransition(layout, moveDir) {
+      const ARRIVAL = { east: 'west', west: 'east', north: 'south', south: 'north', up: 'up', down: 'down' };
+      const entryDir = moveDir ? (ARRIVAL[moveDir] || moveDir) : 'none';
+      const slide = { north: [0, this.pxH], south: [0, -this.pxH], east: [-this.pxW, 0], west: [this.pxW, 0] }[moveDir];
+
+      let snap = null;
+      if (slide && this.layout) {
+        try {
+          snap = this.add.renderTexture(0, 0, this.pxW, this.pxH).setOrigin(0, 0).setDepth(900);
+          // RenderTexture can't draw a Layer object itself - draw its children
+          snap.draw(this.bgLayer.list.slice());
+          snap.draw(this.tileLayer.list.slice());
+          for (const ent of this.entities.values()) { if (ent.sprite) snap.draw(ent.sprite); }
+          snap.draw(this.player);
+        } catch (err) {
+          // a broken slide must never block the room rebuild
+          if (snap) { snap.destroy(); snap = null; }
+        }
+      }
+      this.buildRoom(layout, entryDir);
+      // a brief wipe tinted to the destination zone, so arrivals feel like a
+      // place-change rather than a hard cut
+      try {
+        const zt = layout.zoneKey && MH.ZONE_THEMES ? MH.ZONE_THEMES[layout.zoneKey] : null;
+        const TINT = { forest: 0x6aff8a, field: 0xffe9a8, swamp: 0x8ab06a, cave: 0x8a90c8, dungeon: 0xb08aff, desert: 0xffd9a0, mountain: 0xcfe2ff, inside: 0xffd0a0, city: 0xffe0a0, underwater: 0x66e0ff };
+        this.flashScreen((zt && zt.glow) || TINT[layout.theme] || 0xffe9c0, 0.16, 300);
+      } catch (_) {}
+      if (snap) {
+        this.tweens.add({
+          targets: snap, x: slide[0], y: slide[1], duration: 380, ease: 'cubic.inOut',
+          onComplete: () => snap.destroy(),
+        });
+      } else {
+        this.cameras.main.fadeIn(200, 0, 0, 0);
+      }
+    }
+
+    onCombatUpdate(payload) {
+      if (!this.layout || payload.vnum !== this.layout.vnum) return;
+      // the MUD fights in rounds: give each round a visible beat - the
+      // fighters feint toward each other as the server resolves the exchange
+      if (payload.in_combat) {
+        // telegraph: ~1.5s into the round (just before the next exchange),
+        // the attacker rears up - you can FEEL the hit coming
+        this.time.delayedCall(1450, () => {
+          if (!MH.state.inCombat) return;
+          for (const ent2 of this.entities.values()) {
+            if (!ent2.data || !ent2.data.fighting || !ent2.sprite || !ent2.sprite.active) continue;
+            if (ent2.data.intent) continue;   // a declared wind-up has its own bigger tell
+            if (ent2.pose && !ent2.windup && !ent2._dying) {
+              const away = this.player.x >= ent2.sprite.x ? -16 : 16;
+              this.tweens.killTweensOf(ent2.pose);
+              this.tweens.add({ targets: ent2.pose, sx: 0.88, sy: 1.2, lean: away, dy: -4, duration: 180, yoyo: true, hold: 120, ease: 'sine.inOut',
+                onComplete: () => { ent2.pose.sx = 1; ent2.pose.sy = 1; ent2.pose.lean = 0; ent2.pose.dy = 0; } });
+            }
+            this.tintVisual(ent2, 0xff9a86);
+            setTimeout(() => { if (ent2.sprite && ent2.sprite.active && !ent2.windup && !ent2._dying) this.tintCharacters(); }, 520);
+            break;
+          }
+        });
+        for (const ent of this.entities.values()) {
+          if (!ent.data || !ent.data.fighting || !ent.sprite) continue;
+          const ang = Math.atan2(this.player.y - ent.sprite.y, this.player.x - ent.sprite.x);
+          this.tweens.add({
+            targets: ent.sprite, x: ent.sprite.x + Math.cos(ang) * 6, y: ent.sprite.y + Math.sin(ang) * 6,
+            duration: 120, yoyo: true, ease: 'cubic.out',
+          });
+          this.tweens.add({
+            targets: this.player, x: this.player.x - Math.cos(ang) * 4, y: this.player.y - Math.sin(ang) * 4,
+            duration: 120, yoyo: true, ease: 'cubic.out', delay: 60,
+          });
+          break;
+        }
+      }
+      (payload.mobs || []).forEach((mob, i) => {
+        const ent = this.entities.get(`mob:${mob.name}:${i}`);
+        if (!ent) return;
+        const merged = Object.assign({}, ent.data, mob);
+        if (!mob.intent) delete merged.intent;         // a resolved wind-up must not linger
+        if (!mob.staggered) delete merged.staggered;   // ...nor a closed burst window
+        if (!mob.guarded) delete merged.guarded;       // ...nor a dropped guard
+        this.updateEntity(ent, merged);
+        if (mob.fighting && !this.target) { this.target = ent; MH.bus.emit('target.set', ent.data); }
+      });
+      this.syncIntentBanners(payload);
+      if (payload.env) this.syncEnvMarkers({ env: payload.env });   // burning/trap state per round
+      // Reconcile: a mob we were fighting (or had targeted) that has vanished
+      // from the live room payload has died/left — play the death beat and
+      // remove it so its sprite + the target frame don't linger with stale HP.
+      // Gated to combat participants so harmless wanderers leaving the tile via
+      // a partial payload aren't nuked.
+      const live = {};
+      (payload.mobs || []).forEach(m => { live[m.name] = (live[m.name] || 0) + 1; });
+      for (const ent of [...this.entities.values()]) {
+        if (!ent || ent.kind !== 'mob' || ent._dying || ent.leaving) continue;
+        const n = ent.data && ent.data.name;
+        if (live[n] > 0) { live[n]--; continue; }
+        if (ent === this.target || (ent.data && (ent.data.fighting || ent.data.hostile))) this.killEntity(ent);
+      }
+      (payload.players || []).forEach(p => {
+        const ent = this.entities.get(`pl:${p.name}`);
+        if (ent) this.updateEntity(ent, Object.assign({}, ent.data, p));
+      });
+    }
+
+    // class-colored aura when wearing legendaries / a full set
+    syncWornAura(p) {
+      const want = p && p.aura;
+      if (want && !this.wornAura) {
+        const cls = ((p.char_class || '') + '').toLowerCase();
+        const tint = { warrior: 0xe05a4a, paladin: 0xffe9a8, mage: 0x9a8aff, necromancer: 0x9adba0,
+          thief: 0xb8b2c8, assassin: 0x8a5a9a, ranger: 0x8ac06a, cleric: 0xcfe2ff, bard: 0xf0b060 }[cls] || 0xe8c168;
+        this.wornAura = this.add.image(this.player.x, this.player.y, 'fx_glow')
+          .setBlendMode(Phaser.BlendModes.ADD).setAlpha(0.30).setScale(0.34).setTint(tint).setDepth(7);
+        this.tweens.add({ targets: this.wornAura, alpha: 0.45, scale: 0.4, duration: 1100, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+      } else if (!want && this.wornAura) {
+        this.wornAura.destroy();
+        this.wornAura = null;
+      }
+    }
+
+    // same-room changes: a secret exit revealed by search appears in place
+    // with a flourish. Deliberately conservative - only a genuinely NEW exit
+    // direction triggers a rebuild, and never while the player is mid-move,
+    // so this can never disturb navigation.
+    detectRoomChanges(roomData) {
+      if (!this.layout || roomData.vnum !== this.layout.vnum || !roomData.exits) return;
+      if (MH.state.pendingMove || this.autoNav) return;   // never rebuild mid-move
+      const fresh = Object.keys(roomData.exits).filter(d => !(d in (this.layout.exits || {})));
+      if (!fresh.length) return;
+      const px = this.player.x, py = this.player.y;
+      const suppress = this.exitSuppress;
+      const layout = MH.generateRoomTopDown(Object.assign({}, roomData));
+      layout.zoneKey = this.layout.zoneKey;
+      this.buildRoom(layout, 'none');
+      this.player.setPosition(px, py);
+      this.exitSuppress = suppress;   // an in-place rebuild must not re-gate exits
+      const { T } = TD();
+      const midX = Math.floor(layout.W / 2) * T, midY = Math.floor(layout.H / 2) * T;
+      const SPOT = { north: [midX, T], south: [midX, this.pxH - T], west: [T, midY], east: [this.pxW - T, midY],
+        up: layout.stairsUp ? [layout.stairsUp.x * T, layout.stairsUp.y * T] : [midX, midY],
+        down: layout.stairsDown ? [layout.stairsDown.x * T, layout.stairsDown.y * T] : [midX, midY] };
+      for (const d of fresh) {
+        const [fx, fy] = SPOT[d] || [midX, midY];
+        this.revealBurst(fx, fy);
+        MH.bus.emit('flash', `A hidden way opens to the ${d}!`);
+      }
+    }
+
+    revealBurst(x, y) {
+      const burst = this.add.particles(x, y, 'px_white', {
+        speed: { min: 30, max: 90 }, scale: { start: 0.7, end: 0 }, alpha: { start: 1, end: 0 },
+        tint: [0xffe9a8, 0xe8c168, 0xffffff], lifespan: 700, quantity: 18, blendMode: 'ADD',
+      }).setDepth(50);
+      this.time.delayedCall(800, () => burst.destroy());
+      this.cameras.main.flash(120, 255, 235, 180);
+      MH.bus.emit('ambient.sound', 'chime');
+    }
+
+    // multiply the tile-kit floor/wall tiles by the day/night phase tint
+    // (the kit's own world grade); the chrome never shifts hue
+    applyKitTint() {
+      if (!MH.tilekit || !MH.tilekit.isReady() || !this.kitTiles || !this.kitTiles.length) return;
+      const period = (MH.state.lastPayload && MH.state.lastPayload.time && MH.state.lastPayload.time.period) || 'day';
+      const phase = MH.tilekit.phaseForPeriod(period);
+      const tint = MH.tilekit.tintFor(phase);
+      for (const t of this.kitTiles) { if (t && t.active) t.setTint(tint); }
+    }
+    applyAtmosphere(payload) {
+      const period = payload.time && payload.time.period;
+      const outdoor = this.layout && !['inside', 'dungeon', 'cave', 'default'].includes(this.layout.theme);
+      // readable per-phase character tint (lighter than the floor's so dolls
+      // stay legible), applied to dolls + DCSS art for scene cohesion
+      const phase = MH.tilekit ? MH.tilekit.phaseForPeriod(period) : 'midday';
+      const CHAR_TINT = { midday: 0xeef3fb, dusk: 0xffcfa0, night: 0x9aa6d8 };
+      this._charTint = (outdoor ? CHAR_TINT[phase] : 0xffffff) || 0xffffff;
+      this.tintCharacters();
+      // when the tile kit renders the room, its per-tile phase tint IS the
+      // day/night grade — re-tint it and skip the dark overlay (no double-dim)
+      const kitActive = !!(this.kitTiles && this.kitTiles.length && MH.tilekit && MH.tilekit.isReady());
+      let alpha = 0, color = 0x1a2440;
+      if (outdoor && !kitActive) {
+        // keep night readable: a light tint that reads as evening, not a blackout.
+        // these are NORMAL-blend washes, so saturated browns muddied the whole
+        // room into a dull mass — use cool, low-saturation dusk/dawn tints that
+        // dim the scene without casting brown over the tiles.
+        if (period === 'night' || period === 'midnight') alpha = 0.18;
+        else if (period === 'evening' || period === 'dusk') { alpha = 0.12; color = 0x2a2640; }
+        else if (period === 'dawn' || period === 'morning') { alpha = 0.07; color = 0x2c3052; }
+      }
+      if (kitActive) this.applyKitTint();
+      // REAL light at night (Phase 2): instead of only the flat wash, enable
+      // the light layer so torches, braziers, candles and lampposts carve warm
+      // pools out of the darkness — same machinery magically-dark rooms use,
+      // with gentler parameters per period. The flat wash drops away when the
+      // light layer is on so the scene isn't double-dimmed.
+      if (this.layout && this.layout.dark) {
+        this._lightParams = { color: 0x000008, alpha: 0.92, torchR: 132 };
+        this.darkRT.setVisible(true);
+      } else if (outdoor && (period === 'night' || period === 'midnight')) {
+        this._lightParams = { color: 0x0a1030, alpha: 0.52, torchR: 150 };
+        this.darkRT.setVisible(true);
+        alpha = 0;
+      } else if (outdoor && (period === 'evening' || period === 'dusk')) {
+        this._lightParams = { color: 0x2a1a12, alpha: 0.30, torchR: 165 };
+        this.darkRT.setVisible(true);
+        alpha = 0;
+      } else {
+        this.darkRT.setVisible(false);
+        this.darkRT.clear();
+      }
+      this.nightTint.setFillStyle(color, alpha);
+      const precip = payload.weather && payload.weather.precipitation;
+      const skyNow = (payload.weather && payload.weather.sky) || 'clear';
+      const wantRain = outdoor && precip && precip !== 'none';
+      if (wantRain && !this.weatherEmitter) {
+        const snow = /snow/i.test(precip);
+        const stormy = skyNow === 'stormy';
+        if (snow) {
+          this.weatherEmitter = this.add.particles(0, -10, 'px_bubble', {
+            x: { min: 0, max: this.pxW }, speedY: { min: 20, max: 45 },
+            speedX: { min: -10, max: 10 }, lifespan: 2000, quantity: 1, alpha: 0.7,
+          }).setDepth(45);
+        } else {
+          // wind-driven rain: angled streaks, heavier in a storm, with a faint
+          // far layer for depth and ground splashes where it lands
+          const wind = stormy ? -120 : -55;
+          const layers = MH.gfx ? MH.gfx.weatherLayers : 3;
+          this.weatherEmitter = this.add.particles(0, -10, 'px_rain', {
+            x: { min: -40, max: this.pxW }, speedY: stormy ? { min: 320, max: 430 } : { min: 220, max: 300 },
+            speedX: { min: wind - 30, max: wind + 10 }, rotate: stormy ? -18 : -12,
+            scaleY: stormy ? { min: 1.4, max: 2.2 } : { min: 1.0, max: 1.6 },
+            lifespan: 1500, quantity: stormy ? 6 : 3, alpha: stormy ? 0.6 : 0.5,
+          }).setDepth(45);
+          if (layers >= 3) {
+            this.rainFar = this.add.particles(0, -10, 'px_rain', {
+              x: { min: -40, max: this.pxW }, speedY: { min: 180, max: 240 },
+              speedX: { min: wind - 10, max: wind + 20 }, rotate: stormy ? -18 : -12,
+              scaleX: 0.6, scaleY: 0.9, lifespan: 1600, quantity: stormy ? 3 : 1, alpha: 0.22,
+            }).setDepth(8);
+          }
+          if (layers >= 2) {
+            this.rainSplash = this.add.particles(0, 0, 'px_white', {
+              x: { min: 0, max: this.pxW }, y: { min: this.pxH * 0.35, max: this.pxH - 6 },
+              scaleX: { start: 0.5, end: 1.4 }, scaleY: { start: 0.5, end: 0.1 },
+              alpha: { start: 0.5, end: 0 }, tint: 0xbcd0e0,
+              lifespan: 360, frequency: stormy ? 60 : 130, blendMode: 'SCREEN',
+            }).setDepth(7);
+          }
+        }
+      } else if (!wantRain && this.weatherEmitter) {
+        this.weatherEmitter.destroy();
+        this.weatherEmitter = null;
+        if (this.rainFar) { this.rainFar.destroy(); this.rainFar = null; }
+        if (this.rainSplash) { this.rainSplash.destroy(); this.rainSplash = null; }
+      }
+      // ground weather: rain pools the floor with reflective puddles, snow
+      // settles into pale drifts — laid once, cleared when the weather lifts
+      const isSnow = wantRain && /snow/i.test(precip || '');
+      const wantGround = wantRain && this.layout && !this.layout.swim;
+      if (wantGround && !this.groundWeather) {
+        this.groundWeather = [];
+        const grd = this.layout.grid, gW = this.layout.W, gH = this.layout.H, gT = TD().T;
+        const grng = MH.mulberry32((this.layout.vnum ^ (isSnow ? 0x5e0 : 0x9a7)) >>> 0);
+        const n = 6 + Math.floor(grng() * 6);
+        let made = 0, tries = 0;
+        while (made < n && tries++ < 120) {
+          const gx = 2 + ((grng() * (gW - 4)) | 0), gy = 2 + ((grng() * (gH - 4)) | 0);
+          if (grd[gy * gW + gx] !== TD().FLOOR) continue;
+          const bx = gx * gT + gT / 2, by = gy * gT + gT / 2;
+          if (isSnow) {
+            const s = this.add.image(bx, by, 'gd_patch').setDepth(0.5).setAlpha(0.5 + grng() * 0.3)
+              .setTint(0xffffff).setScale(0.7 + grng() * 0.7);
+            this.groundWeather.push(s);
+          } else {
+            const pud = this.add.image(bx, by, 'gd_patch').setDepth(0.5).setAlpha(0.28 + grng() * 0.16)
+              .setTint(0x6a86a0).setScale(0.8 + grng() * 0.7).setBlendMode(Phaser.BlendModes.SCREEN);
+            this.groundWeather.push(pud);
+            this.tweens.add({ targets: pud, alpha: pud.alpha + 0.1, duration: 1400 + grng() * 1200, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+          }
+          made++;
+        }
+      } else if (!wantGround && this.groundWeather) {
+        this.groundWeather.forEach(o => o.destroy());
+        this.groundWeather = null;
+      }
+      if (this.layout && this.layout.swim && !this.bubbleEmitter) {
+        this.bubbleEmitter = this.add.particles(0, this.pxH, 'px_bubble', {
+          x: { min: 0, max: this.pxW }, speedY: { min: -35, max: -12 }, lifespan: 3500, quantity: 1, alpha: 0.5,
+        }).setDepth(45);
+      }
+
+      // sky moods: rolling fog, storm lightning
+      const sky = (payload.weather && payload.weather.sky) || 'clear';
+      const wantFog = outdoor && sky === 'foggy';
+      if (wantFog && !this.fogEmitter) {
+        this.fogEmitter = this.add.particles(0, 0, this.textures.exists('zt_px_soft') ? 'zt_px_soft' : 'px_white', {
+          x: { min: -20, max: this.pxW }, y: { min: 10, max: this.pxH - 10 },
+          tint: 0xc8d0dc, scale: { start: 2.5, end: 4.5 }, alpha: { start: 0, end: 0.13 },
+          speedX: { min: 6, max: 16 }, speedY: { min: -2, max: 2 },
+          lifespan: 9000, frequency: 420, blendMode: 'SCREEN',
+        }).setDepth(46);
+      } else if (!wantFog && this.fogEmitter) {
+        this.fogEmitter.destroy();
+        this.fogEmitter = null;
+      }
+      const storming = outdoor && sky === 'stormy';
+      if (storming && (!this._nextBolt || Date.now() > this._nextBolt)) {
+        this._nextBolt = Date.now() + 6000 + Math.random() * 14000;
+        // a jagged bolt strikes a random spot, washing the whole room in a
+        // cold blue-white flicker (a stutter-flash sells the strike)
+        try { if (MH.fx && MH.fx.boltFromSky) MH.fx.boltFromSky(this, Phaser.Math.Between(40, this.pxW - 40), Phaser.Math.Between(this.pxH * 0.3, this.pxH * 0.7), MH.fx.PAL.lightning); } catch (_) {}
+        this.flashScreen(0xcfe0ff, 0.55, 140);
+        this.time.delayedCall(110, () => this.flashScreen(0xdfeaff, 0.35, 200));
+        this.cameras.main.flash(120, 210, 222, 255);
+        MH.bus.emit('ambient.sound', 'thunder');
+      }
+
+      // desert heat-shimmer: warm haze rising off the ground on hot, clear days
+      const wantHaze = (!MH.gfx || MH.gfx.caustics) && this.layout && this.layout.theme === 'desert'
+        && !['night', 'midnight', 'evening', 'dusk'].includes(period)
+        && sky !== 'stormy' && !wantRain;
+      if (wantHaze && !this.heatHaze) {
+        this.heatHaze = this.add.particles(0, 0, this.textures.exists('zt_px_soft') ? 'zt_px_soft' : 'px_white', {
+          x: { min: 0, max: this.pxW }, y: { min: this.pxH * 0.45, max: this.pxH - 4 },
+          tint: 0xffe0a8, scaleX: { start: 1.2, end: 2.0 }, scaleY: { start: 0.4, end: 1.1 },
+          alpha: { start: 0, end: 0.07 }, speedY: { min: -22, max: -10 }, speedX: { min: -4, max: 4 },
+          lifespan: 2600, frequency: 240, blendMode: 'SCREEN',
+        }).setDepth(33);
+      } else if (!wantHaze && this.heatHaze) {
+        this.heatHaze.destroy();
+        this.heatHaze = null;
+      }
+      this.updateColorGrade(period, this.layout && this.layout.theme, sky);
+      this.updateSignatureMist();
+    }
+
+    // Quality changed live: add/remove bloom, then rebuild the room's
+    // atmosphere (parallax/caustics/particle density) and rim-lights.
+    onGfxChanged() {
+      try {
+        const pfx = this.cameras.main.postFX;
+        if (pfx) {
+          if (MH.gfx.bloom && !this.bloomFx) {
+            this.bloomFx = pfx.addBloom(0xffffff, 1, 1, 0.7, 0.5, 5);
+            this._gradeKey = null;   // re-apply bloom tint
+          } else if (!MH.gfx.bloom && this.bloomFx) {
+            pfx.remove(this.bloomFx); this.bloomFx = null;
+          }
+        }
+      } catch (_) {}
+      // rim-lights: tear down or (re)create to match the new setting
+      if (!MH.gfx.rim) {
+        if (this.playerRim) { this.playerRim.setVisible(false); }
+        for (const ent of this.entities.values()) if (ent.rim) ent.rim.setVisible(false);
+      } else if (this.playerRim) {
+        this.playerRim.setVisible(true);
+      }
+      // re-thin/enrich the whole room (clutter, wildlife, walls, particles) to
+      // match the new quality immediately, preserving where the player stands
+      if (this.layout && MH.state.lastPayload) {
+        const px = this.player.x, py = this.player.y, suppress = this.exitSuppress;
+        this._gradeKey = null;
+        this.buildRoom(this.layout, 'none');
+        this.player.setPosition(px, py);
+        this.exitSuppress = suppress;
+        const entry = (MH.state.lastPayload.rooms || []).find(r => r.vnum === this.layout.vnum);
+        if (entry) this.syncEntities(entry);     // bring mobs/items straight back
+        this.applyAtmosphere(MH.state.lastPayload);
+      } else if (this.layout) {
+        this._gradeKey = null; this.buildAtmosphere(this.layout, this.layout.theme);
+      }
+    }
+
+    // Dynamic cinematic grade: a per-zone tonal curve (saturation/contrast via
+    // the WebGL ColorMatrix) plus a soft colour cast (warm cities, cold caves,
+    // green swamps…), both shifted by the time of day and the weather. This is
+    // what gives each region its own mood without touching the pixel art.
+    updateColorGrade(period, theme, sky) {
+      const key = `${theme}|${period}|${sky}`;
+      if (this._gradeKey === key) return;
+      this._gradeKey = key;
+
+      // --- per-zone base grade: [saturate, contrast, castColor, castAlpha] ---
+      const ZONE = {
+        swamp: [0.22, 0.06, 0x6a8a4a, 0.16],
+        forest: [0.26, 0.05, 0x4c7a3c, 0.11],
+        field: [0.22, 0.05, 0x6e8a4a, 0.08],
+        hills: [0.20, 0.05, 0x7a8a4a, 0.08],
+        cave: [-0.02, 0.13, 0x3a4a7a, 0.18],
+        dungeon: [0.02, 0.12, 0x4a3a6a, 0.16],
+        underground: [0.0, 0.12, 0x3a4a6a, 0.16],
+        inside: [0.10, 0.05, 0x7a5a2a, 0.10],
+        city: [0.16, 0.05, 0x8a6a2a, 0.08],
+        desert: [0.20, 0.08, 0xaa7a3a, 0.13],
+        mountain: [0.14, 0.07, 0x5a7aaa, 0.11],
+        underwater: [0.04, 0.04, 0x2a7aaa, 0.18],
+        water_swim: [0.10, 0.04, 0x2f86b4, 0.14],
+        water_noswim: [0.10, 0.04, 0x2f86b4, 0.12],
+        flying: [0.18, 0.05, 0x8ab4e8, 0.08],
+        default: [0.15, 0.05, 0x000000, 0.0],
+      };
+      let [sat, con, cast, castA] = ZONE[theme] || ZONE.default;
+
+      // --- time of day: warm dusk, cold night, soft dawn ---
+      if (period === 'night' || period === 'midnight') {
+        sat -= 0.05; con += 0.06; cast = 0x2a3a6e; castA = Math.max(castA, 0.09);
+      } else if (period === 'evening' || period === 'dusk') {
+        sat += 0.04; cast = 0x9a5a2a; castA = Math.max(castA, 0.14);
+      } else if (period === 'dawn' || period === 'morning') {
+        con -= 0.02; cast = 0xb47a5a; castA = Math.max(castA * 0.8, 0.10);
+      }
+
+      // --- weather: storms drain colour, fog flattens contrast ---
+      if (sky === 'stormy') { sat -= 0.14; con += 0.04; cast = 0x44506a; castA = Math.max(castA, 0.16); }
+      else if (sky === 'foggy') { sat -= 0.08; con -= 0.06; castA *= 0.7; }
+      else if (sky === 'overcast') { sat -= 0.06; con -= 0.02; }
+
+      // crispness pass: trim the colour wash and lift contrast a touch so the
+      // pixel art reads sharp instead of hazy (mood stays, fog goes)
+      castA *= 0.72;
+      con += 0.05;
+
+      // apply the tonal grade through the postFX ColorMatrix (WebGL only)
+      const cm = this.gradeFx;
+      if (cm && cm.reset) {
+        cm.reset();
+        cm.saturate(Phaser.Math.Clamp(sat, -0.9, 0.9), true);
+        cm.contrast(Phaser.Math.Clamp(con, -0.5, 0.5), true);
+        // a gentle brightness lift keeps rooms crisp and clear, never murky;
+        // a touch less at night so dusk still reads as dusk
+        const dark = period === 'night' || period === 'midnight';
+        if (cm.brightness) cm.brightness(dark ? 1.04 : 1.1, true);
+      }
+      // tint the bloom so every glowing light/effect carries the zone's warmth
+      if (this.bloomFx) {
+        const warm = ['city', 'inside', 'desert'].includes(theme) || ['evening', 'dusk', 'dawn', 'morning'].includes(period);
+        const cold = ['cave', 'dungeon', 'underground', 'mountain', 'underwater', 'water_swim', 'water_noswim'].includes(theme)
+          || period === 'night' || period === 'midnight' || sky === 'stormy';
+        const green = ['swamp', 'forest'].includes(theme);
+        this.bloomFx.color = warm ? 0xfff0d8 : green ? 0xe8f4d8 : cold ? 0xd8e4ff : 0xffffff;
+      }
+      // rim-light colour tracks the zone's light so edges read warm or cold
+      {
+        const warm = ['city', 'inside', 'desert'].includes(theme) || ['evening', 'dusk', 'dawn', 'morning'].includes(period);
+        const cold = ['cave', 'dungeon', 'underground', 'mountain', 'underwater', 'water_swim', 'water_noswim'].includes(theme)
+          || period === 'night' || period === 'midnight';
+        this.rimTint = warm ? 0xffe8c0 : cold ? 0xc8dcff : 0xfff2cc;
+      }
+      // apply the colour cast (works on every renderer); ease the alpha so
+      // walking between zones cross-fades the grade instead of snapping
+      if (this.gradeCast) {
+        const fromA = this.gradeCast.fillAlpha || 0;
+        this.tweens.killTweensOf(this.gradeCast);
+        this.gradeCast.setFillStyle(cast, fromA);
+        this.tweens.add({
+          targets: this.gradeCast,
+          fillAlpha: Phaser.Math.Clamp(castA, 0, 0.3),
+          duration: 900, ease: 'sine.inOut',
+        });
+      }
+    }
+
+    // Misthollow's signature: a persistent low mist drifts through every
+    // room — thin in cities, choking in swamps/crypts/the dark.
+    updateSignatureMist() {
+      const theme = (this.layout && this.layout.theme) || 'default';
+      const dark = !!(this.layout && this.layout.dark);
+      const swim = !!(this.layout && this.layout.swim);
+      const key = theme + (dark ? 'D' : '') + (swim ? 'S' : '');
+      if (this._mistKey === key) return;
+      this._mistKey = key;
+      if (this.mistLayer) { this.mistLayer.destroy(); this.mistLayer = null; }
+      if (swim) return;  // underwater already has bubbles
+      const heavy = dark || ['swamp', 'cave', 'dungeon', 'underground'].includes(theme);
+      const light = ['inside', 'city'].includes(theme);
+      const maxAlpha = heavy ? 0.1 : light ? 0.025 : 0.045;
+      const tint = theme === 'swamp' ? 0x9ab69a : (dark || theme === 'cave') ? 0x8a90a8 : 0xc8d0dc;
+      this.mistLayer = this.add.particles(0, 0, 'px_light', {
+        x: { min: -30, max: this.pxW + 30 }, y: { min: this.pxH * 0.42, max: this.pxH - 4 },
+        tint, scale: { start: 0.55, end: 1.15 }, alpha: { start: 0, end: maxAlpha },
+        speedX: { min: 5, max: 15 }, speedY: { min: -2, max: 2 },
+        lifespan: 11000, frequency: heavy ? 480 : 900, blendMode: 'SCREEN',
+      }).setDepth(9);
+    }
+
+    // ---------- update loop ----------
+    update() {
+      // a thrown frame must never kill the rAF loop (a dead loop = total
+      // freeze, the "stuck at the exit" bug) - contain, log, keep running
+      try {
+        // gauntlet playability-01/r2: Phaser treats an unfocused window as
+        // backgrounded and pins every frame's delta to 16.7ms. A VISIBLE but
+        // unfocused window (another app in front, a second monitor, a
+        // headless capture) that renders slowly then plays every tween in
+        // slow motion — a 0.85s damage number hung for six seconds. If the
+        // page is visible the fight is being watched: keep it wall-clock true.
+        const loop = this.game && this.game.loop;
+        if (loop && !loop.inFocus && typeof document !== 'undefined' && document.visibilityState === 'visible') loop.inFocus = true;
+        this.tickPops();
+        this.tickLedger();
+        this.tickDmgPulse();
+        this.updateInner();
+      } catch (e) {
+        if (!this._lastUpdateErr || Date.now() - this._lastUpdateErr > 2000) {
+          this._lastUpdateErr = Date.now();
+          console.error('[misthollow] update error (contained):', e);
+        }
+      }
+    }
+
+    updateInner() {
+      if (!this.layout || this.dead) return;
+      this.drainFxQueue(this.time.now);   // pace this round's combat FX into a beat
+      const k = this.keys;
+      const pad = this.input.gamepad && this.input.gamepad.total ? this.input.gamepad.getPad(0) : null;
+      let ax = 0, ay = 0;
+      if (pad) {
+        const gx = pad.axes.length ? pad.axes[0].getValue() : 0;
+        const gy = pad.axes.length > 1 ? pad.axes[1].getValue() : 0;
+        if (Math.abs(gx) > 0.3) ax = gx;
+        if (Math.abs(gy) > 0.3) ay = gy;
+        if (pad.left) ax = -1; if (pad.right) ax = 1;
+        if (pad.up) ay = -1; if (pad.down) ay = 1;
+        if (pad.A && !this._padA) this.tryAttack();
+        this._padA = pad.A;
+      }
+      if (k.left.isDown || k.left2.isDown) ax = -1;
+      if (k.right.isDown || k.right2.isDown) ax = 1;
+      if (k.up.isDown || k.up2.isDown) ay = -1;
+      if (k.down.isDown || k.down2.isDown) ay = 1;
+      // a window owns the screen: the world doesn't hear the keys
+      if (MH.state.uiFrozen) { ax = 0; ay = 0; }
+
+      // a move that never got an answer (lost line, eaten message) must not
+      // wedge the input forever
+      if (MH.state.pendingMove && Date.now() - MH.state.pendingMove.sentAt > 4000) MH.state.pendingMove = null;
+      // keyboard can never stay wedged off while the game has focus -
+      // unless a window deliberately froze the world
+      if (!this.input.keyboard.enabled && !MH.state.uiFrozen) {
+        const a = document.activeElement;
+        if (!a || a === document.body || a.tagName === 'CANVAS') {
+          this.input.keyboard.enabled = true;
+          try { this.input.keyboard.enableGlobalCapture(); } catch (_) {}
+        }
+      }
+      // combat flag with no living opponent in the room clears itself
+      if (MH.state.inCombat) {
+        const anyFighter = [...this.entities.values()].some(e => e.kind === 'mob' && e.data && e.data.fighting);
+        if (!anyFighter) {
+          this._combatIdle = (this._combatIdle || 0) + this.game.loop.delta;
+          if (this._combatIdle > 7000) { MH.setCombat(false); this._combatIdle = 0; }
+        } else {
+          this._combatIdle = 0;
+        }
+      } else {
+        this._combatIdle = 0;
+      }
+      if (this.wornAura) this.wornAura.setPosition(this.player.x, this.player.y + 4);
+      const locked = !!MH.state.pendingMove && Date.now() - MH.state.pendingMove.sentAt < 2500;
+      const manual = ax !== 0 || ay !== 0;
+      if (manual && this.autoNav) this.autoNav = null;
+
+      const baseSpeed = this.layout.swim ? 70 : 110;
+      if (locked) {
+        this.player.setVelocity(0, 0);
+      } else if (this.autoNav && this.autoNav.path.length) {
+        const wp = this.autoNav.path[0];
+        const dx = wp.x - this.player.x, dy = wp.y - this.player.y;
+        const d = Math.hypot(dx, dy);
+        if (d < 4) this.autoNav.path.shift();
+        else {
+          this.player.setVelocity((dx / d) * baseSpeed, (dy / d) * baseSpeed);
+          this.setFacing(dx, dy);
+          this.playWalk();
+        }
+        if (!this.autoNav.path.length) { this.player.setVelocity(0, 0); this.autoNav = null; }
+      } else if (manual) {
+        const len = Math.hypot(ax, ay) || 1;
+        let vx = (ax / len) * baseSpeed, vy = (ay / len) * baseSpeed;
+        // gap magnetism: pressing into a border wall near a doorway slides
+        // you along the wall into the opening (forgiving Zelda doors)
+        const L = this.layout, T = TD().T;
+        const body = this.player.body;
+        const gapMidX = Math.floor(L.W / 2) * T + T / 2;
+        const gapMidY = Math.floor(L.H / 2) * T + T / 2;
+        // when you drive into a border wall that has an exit, slide along it
+        // toward the gap - the whole wall funnels you to the door (no more
+        // getting pinned in a corner far from a centered gap)
+        const PULL = 90;
+        if (ax < 0 && body.blocked.left && L.gaps.west) {
+          vy = Math.abs(gapMidY - this.player.y) > 3 ? Math.sign(gapMidY - this.player.y) * PULL : 0;
+        } else if (ax > 0 && body.blocked.right && L.gaps.east) {
+          vy = Math.abs(gapMidY - this.player.y) > 3 ? Math.sign(gapMidY - this.player.y) * PULL : 0;
+        } else if (ay < 0 && body.blocked.up && L.gaps.north) {
+          vx = Math.abs(gapMidX - this.player.x) > 3 ? Math.sign(gapMidX - this.player.x) * PULL : 0;
+        } else if (ay > 0 && body.blocked.down && L.gaps.south) {
+          vx = Math.abs(gapMidX - this.player.x) > 3 ? Math.sign(gapMidX - this.player.x) * PULL : 0;
+        }
+        this.player.setVelocity(vx, vy);
+        this.setFacing(ax, ay);
+        this.playWalk();
+      } else {
+        this.player.setVelocity(0, 0);
+        const pos = MH.state.player && MH.state.player.position;
+        if (pos === 'sleeping' || pos === 'resting' || pos === 'sitting') {
+          // show the recovery pose while idle (any movement re-stands you)
+          this.player.anims.stop();
+          this.player.setFrame(pos === 'sleeping' ? 'sleep' : 'rest');
+        } else {
+          this.player.anims.stop();
+          this.player.setFrame(`${this.facing}0`);
+        }
+      }
+
+      const now = Date.now();
+
+      // exits: three independent triggers so geometry can never strand you.
+      //  1) EDGE-PRESS: drive a cardinal into a border wall that has an exit
+      //     that way - intent is unambiguous, fires from anywhere on the wall
+      //  2) ZONE OVERLAP: walk onto an exit/feature zone (stairs, portals)
+      //  3) DEAD-MAN'S SWITCH: pressing toward an existing exit for too long
+      //     with no room change forces the move, bypassing every gate
+      {
+        const b = this.player.body;
+        const L = this.layout;
+        const T = TD().T;
+        let wantExit = null;
+        let force = false;
+        if (L && L.gaps) {
+          const atTop = b.blocked.up || this.player.y < T * 1.4;
+          const atBot = b.blocked.down || this.player.y > this.pxH - T * 1.4;
+          const atLeft = b.blocked.left || this.player.x < T * 1.4;
+          const atRight = b.blocked.right || this.player.x > this.pxW - T * 1.4;
+          if (ay < 0 && L.gaps.north && atTop) wantExit = 'north';
+          else if (ay > 0 && L.gaps.south && atBot) wantExit = 'south';
+          else if (ax < 0 && L.gaps.west && atLeft) wantExit = 'west';
+          else if (ax > 0 && L.gaps.east && atRight) wantExit = 'east';
+        }
+        if (!wantExit) {
+          const pb = new Phaser.Geom.Rectangle(b.x, b.y, b.width, b.height);
+          for (const zone of this.exitZones.concat(this.featureZones || [])) {
+            if (Phaser.Geom.Rectangle.Overlaps(zone.getBounds(), pb)) { wantExit = zone.exitDir; break; }
+          }
+        }
+        // dead-man's switch: holding a direction with an exit but going
+        // nowhere for 1.5s means SOMETHING wedged - break through it
+        const pressedDir = ay < 0 ? 'north' : ay > 0 ? 'south' : ax < 0 ? 'west' : ax > 0 ? 'east' : null;
+        if (manual && pressedDir && L && L.exits && Object.prototype.hasOwnProperty.call(L.exits, pressedDir)
+            && !MH.state.inCombat && !locked) {
+          if (this._pressDir !== pressedDir) { this._pressDir = pressedDir; this._pressSince = now; }
+          else if (now - this._pressSince > 1500) {
+            wantExit = pressedDir; force = true;
+          }
+        } else {
+          this._pressDir = null;
+        }
+        // a direction the server just refused (class/level lock, exhaustion):
+        // don't ram it again until the cooldown passes or you press elsewhere
+        if (wantExit && wantExit === this._blockedDir && now < this._blockedUntil) {
+          if (pressedDir && pressedDir !== this._blockedDir) this._blockedDir = null;
+          wantExit = null;
+        }
+        if (wantExit) {
+          if (MH.state.inCombat) {
+            if (!this._gateFlash || now - this._gateFlash > 2500) {
+              this._gateFlash = now;
+              MH.bus.emit('flash', "You're fighting! Flee to escape, or finish it.");
+            }
+          } else if (!force && (locked || now <= this.exitSuppress)) {
+            // in-flight or cooling down: silent, resolves within a second
+          } else {
+            if (force) { MH.state.pendingMove = null; this.exitSuppress = 0; this._pressSince = now; }
+            this.requestMove(wantExit);
+          }
+        }
+      }
+
+      // combat dance: face your target and circle it like a duelist - the
+      // strafing is cosmetic, but it makes the 2s rounds feel alive
+      const tgtEnt = MH.state.inCombat && this.target && this.entities.get(this.target.key);
+      if (tgtEnt && tgtEnt.sprite && !manual && !this.autoNav && !locked && !this.dead) {
+        const tgt = tgtEnt.sprite;
+        this.setFacing(tgt.x - this.player.x, tgt.y - this.player.y);
+        // comfort band: only reposition when clearly out of range - no
+        // constant magnetic drag
+        const want = this.preferredRange || this.classRange();
+        const d0 = Phaser.Math.Distance.Between(this.player.x, this.player.y, tgt.x, tgt.y);
+        if (d0 > want + 16 || d0 < Math.max(12, want - 14)) {
+          const m = TD().T * 1.6;
+          const ringD = Phaser.Math.Clamp(d0, want - 4, want + 4);
+          const baseAng = Math.atan2(this.player.y - tgt.y, this.player.x - tgt.x);
+          const ox = Phaser.Math.Clamp(tgt.x + Math.cos(baseAng) * ringD, m, this.pxW - m);
+          const oy = Phaser.Math.Clamp(tgt.y + Math.sin(baseAng) * ringD, m, this.pxH - m);
+          const ddx = ox - this.player.x, ddy = oy - this.player.y;
+          const dd = Math.hypot(ddx, ddy);
+          const pdt = Math.max(0.016, (this.game.loop.delta || 16) / 1000);
+          const psp = Math.min(34, dd * 2, dd / pdt);   // never overshoot the ring on a long frame
+          if (dd > 3) this.player.setVelocity((ddx / dd) * psp, (ddy / dd) * psp);
+        } else {
+          this.player.setVelocity(0, 0);
+        }
+        // ready stance: subtle bounce instead of statue idle
+        if (!this.player.anims.isPlaying) {
+          this.player.setFrame(`${this.facing}${Math.floor(now / 320) % 2}`);
+        }
+      }
+
+      // calm NPCs wander to nearby spots, walk there, then idle
+      for (const ent of this.entities.values()) {
+        if (ent.kind !== 'mob' || ent.stalker || (ent.data && ent.data.fighting) || ent.data.shopkeeper) continue;
+        // sleepers/resters stay put in their pose until something wakes them
+        if (ent.data && (ent.data.pose === 'sleeping' || ent.data.pose === 'resting')) {
+          if (ent.sprite && !ent.sprite.anims.isPlaying) {
+            const want = ent.data.pose === 'sleeping' ? 'sleep' : 'rest';
+            if (ent.sprite.frame && ent.sprite.frame.name !== want) ent.sprite.setFrame(want);
+          }
+          continue;
+        }
+        if (!ent.wanderAt || ent.wanderTween) continue;
+        const L = this.layout, T2 = TD().T;
+        // personal space: a bystander standing on top of you (or you walking
+        // onto one) steps aside at once, so two silhouettes never merge into
+        // one blob; otherwise it waits for its wander tick
+        const pdx = ent.sprite.x - this.player.x, pdy = ent.sprite.y - this.player.y;
+        const crowded = Math.hypot(pdx, pdy) < 24;
+        if (!crowded && now < ent.wanderAt) continue;
+        let tx, ty;
+        if (crowded) {
+          const a = Math.atan2(pdy, pdx || (Math.random() - 0.5));
+          tx = Phaser.Math.Clamp(ent.sprite.x + Math.cos(a) * 40, 2.5 * T2, this.pxW - 2.5 * T2);
+          ty = Phaser.Math.Clamp(ent.sprite.y + Math.sin(a) * 30, 2.5 * T2, this.pxH - 2.5 * T2);
+        } else {
+          tx = Phaser.Math.Clamp(ent.homeX + (Math.random() * 90 - 45), 2.5 * T2, this.pxW - 2.5 * T2);
+          ty = Phaser.Math.Clamp(ent.homeY + (Math.random() * 60 - 30), 2.5 * T2, this.pxH - 2.5 * T2);
+        }
+        const cell = L.grid[Math.floor(ty / T2) * L.W + Math.floor(tx / T2)];
+        if (cell !== 0) { ent.wanderAt = now + (crowded ? 300 : 1200); continue; }
+        // never wander INTO the player or another bystander
+        let blocked = !crowded && Phaser.Math.Distance.Between(tx, ty, this.player.x, this.player.y) < 30;
+        if (!blocked) for (const o of this.entities.values()) {
+          if (o === ent || o.kind !== 'mob' || !o.sprite) continue;
+          if (Phaser.Math.Distance.Between(tx, ty, o.sprite.x, o.sprite.y) < 20) { blocked = true; break; }
+        }
+        if (blocked) { ent.wanderAt = now + (crowded ? 300 : 900); continue; }
+        const dist = Phaser.Math.Distance.Between(ent.sprite.x, ent.sprite.y, tx, ty);
+        const tex = ent.sprite.texture.key;
+        const anim = Math.abs(tx - ent.sprite.x) > Math.abs(ty - ent.sprite.y) ? `${tex}_walks` : (ty > ent.sprite.y ? `${tex}_walkd` : `${tex}_walku`);
+        ent.sprite.setFlipX(tx < ent.sprite.x && anim.endsWith('walks'));
+        ent.sprite.play(anim);
+        ent.wanderTween = this.tweens.add({
+          targets: ent.sprite, x: tx, y: ty, duration: (dist / 26) * 1000, ease: 'sine.inOut',
+          onComplete: () => {
+            ent.wanderTween = null;
+            ent.wanderAt = Date.now() + 2500 + Math.random() * 5000;
+            ent.sprite.anims.stop();
+            ent.sprite.setFrame('d0');
+          },
+        });
+      }
+
+      // mob brains: approach with a weave, circle at fighting range with
+      // occasional direction flips, back off when too close, keep apart
+      // from each other, and never walk into walls
+      const dt = this.game.loop.delta / 1000;
+      const L2 = this.layout, T2 = TD().T;
+      const walkable = (x, y) => {
+        const cx = Math.floor(x / T2), cy = Math.floor(y / T2);
+        if (cx < 1 || cy < 1 || cx >= L2.W - 1 || cy >= L2.H - 1) return false;
+        return L2.grid[cy * L2.W + cx] === 0;
+      };
+      const fighters = [...this.entities.values()].filter(e =>
+        e.kind === 'mob' && e.sprite && (e.stalker || (e.data && e.data.fighting)));
+      for (const ent of fighters) {
+        if (!ent.ai) ent.ai = { dir: (MH.hashStr(ent.key) % 2) ? 1 : -1, nextFlip: now + 1000 + (MH.hashStr(ent.key) % 1500) };
+        const dx = this.player.x - ent.sprite.x, dy = this.player.y - ent.sprite.y;
+        const d = Math.hypot(dx, dy) || 1;
+        const casterMob = /caster|ghost|elemental/.test(ent.sprite.texture.key);
+        // melee range is a full body-width apart (the old 22px put the mob
+        // ON the player's tile, so one of the two was always hidden)
+        // r3: 40 (was 32) — two 0.7-scale dolls are ~36px shoulder to shoulder,
+        // so at 32 the mob still stood half inside you
+        const ring = ent.data.fighting ? (casterMob ? 52 : 40) : 34;
+        let vx = 0, vy = 0;
+        // gauntlet playability-01/r2: a fight that starts with the mob ON your
+        // tile (it spawned or walked there) hid one body inside the other for
+        // the first seconds — step it straight to its stance beside you
+        // (r3: re-armed every 2.5s — a shove/lunge could stack them again
+        // mid-fight and the once-per-fight step never fired a second time)
+        if (ent.data.fighting && d < ring - 12 && !(ent.ai.unstackAt > now)) {
+          ent.ai.unstackAt = now + 2500;
+          const side = ent.ai.side || (MH.hashStr(ent.key) % 2 ? 1 : -1);
+          const gx = this.player.x + side * ring;
+          if (walkable(gx, this.player.y)) { ent.ai.side = side; ent.sprite.x = gx; ent.sprite.y = this.player.y; }
+          else if (walkable(this.player.x - side * ring, this.player.y)) { ent.ai.side = -side; ent.sprite.x = this.player.x - side * ring; ent.sprite.y = this.player.y; }
+        }
+        if (d > ring + 22) {
+          // approach with a hunting weave, not a beeline
+          const sp = ent.data.fighting ? 78 : 46;
+          const weave = Math.sin(now / 480 + MH.hashStr(ent.key)) * 0.45;
+          const a = Math.atan2(dy, dx) + weave;
+          vx = Math.cos(a) * sp;
+          vy = Math.sin(a) * sp;
+        } else if (ent.data.fighting && !casterMob) {
+          // melee: take a stance BESIDE the player (same row, one body-width
+          // out) and hold it, with a restless shuffle. Circling put the mob
+          // straight above/below the hero where one body hid the other.
+          if (!ent.ai.side) ent.ai.side = ent.sprite.x < this.player.x ? -1 : 1;
+          if (now > ent.ai.nextFlip) { if (Math.random() < 0.3) ent.ai.side *= -1; ent.ai.nextFlip = now + 2200 + Math.random() * 2600; }
+          const gx = this.player.x + ent.ai.side * ring, gy = this.player.y;
+          if (!walkable(gx, gy) && walkable(this.player.x - ent.ai.side * ring, gy)) ent.ai.side *= -1;   // that side is a wall
+          const ex = this.player.x + ent.ai.side * ring - ent.sprite.x, ey = gy - ent.sprite.y;
+          const ed = Math.hypot(ex, ey);
+          // (speed capped at "reach it this frame": with a long frame delta the
+          // old Euler step overshot the stance and the mob oscillated through
+          // the player's tile — gauntlet playability-01/r2)
+          if (ed > 2) { const sp = Math.min(64, 10 + ed * 3.5, ed / Math.max(dt, 0.016)); vx = (ex / ed) * sp; vy = (ey / ed) * sp; }
+          vx += Math.sin(now / 260 + MH.hashStr(ent.key)) * 5;
+        } else if (d < ring - 8) {
+          // too close: give ground
+          vx = -(dx / d) * 34;
+          vy = -(dy / d) * 34;
+        } else if (ent.data.fighting) {
+          // circle the player, flipping direction unpredictably
+          if (now > ent.ai.nextFlip) {
+            if (Math.random() < 0.6) ent.ai.dir *= -1;
+            ent.ai.nextFlip = now + 1100 + Math.random() * 1900;
+          }
+          vx = (-dy / d) * 26 * ent.ai.dir;
+          vy = (dx / d) * 26 * ent.ai.dir;
+        }
+        // personal space: mobs shoulder each other apart
+        for (const other of fighters) {
+          if (other === ent || !other.sprite) continue;
+          const sx = ent.sprite.x - other.sprite.x, sy = ent.sprite.y - other.sprite.y;
+          const sd = Math.hypot(sx, sy);
+          if (sd > 0.01 && sd < 16) { vx += (sx / sd) * 28; vy += (sy / sd) * 28; }
+        }
+        // axis-wise wall respect
+        const nx = ent.sprite.x + vx * dt, ny = ent.sprite.y + vy * dt;
+        if (walkable(nx, ent.sprite.y)) ent.sprite.x = nx;
+        if (walkable(ent.sprite.x, ny)) ent.sprite.y = ny;
+        const moving = Math.abs(vx) + Math.abs(vy) > 4;
+        const tex = ent.sprite.texture.key;
+        if (moving) {
+          const anim = Math.abs(dx) > Math.abs(dy) ? `${tex}_walks` : (dy > 0 ? `${tex}_walkd` : `${tex}_walku`);
+          ent.sprite.setFlipX(Math.abs(dx) > Math.abs(dy) && dx < 0);
+          if (!ent.sprite.anims.isPlaying || ent.sprite.anims.currentAnim.key !== anim) ent.sprite.play(anim);
+        } else if (ent.sprite.anims.isPlaying) {
+          ent.sprite.anims.stop();
+        }
+      }
+
+      {
+        const m = TD().T * 1.1;
+        this.player.x = Phaser.Math.Clamp(this.player.x, m, this.pxW - m);
+        this.player.y = Phaser.Math.Clamp(this.player.y, m, this.pxH - m);
+      }
+      if (this.heroGlow) { this.heroGlow.x = this.player.x; this.heroGlow.y = this.player.y; }
+      if (this.playerShadow) { this.playerShadow.x = this.player.x; this.playerShadow.y = this.player.y + 9; this.playerShadow.setVisible(!this.dead); }
+
+      // parallax: slide the overlay planes opposite the player's offset from the
+      // room centre — far plane drifts gently, near plane more, for layered depth
+      {
+        const ox = this.player.x - this.pxW / 2, oy = this.player.y - this.pxH / 2;
+        if (this.pxFar) this.pxFar.setPosition(-ox * 0.04, -oy * 0.04);
+        if (this.pxNear) this.pxNear.setPosition(-ox * 0.11, -oy * 0.11);
+      }
+      // rim-light follows the player's current frame, nudged toward the light
+      if (this.playerRim && (!MH.gfx || MH.gfx.rim)) {
+        const r = this.playerRim, pl = this.player;
+        r.setTexture(pl.texture.key, pl.frame.name);
+        r.setFlipX(pl.flipX); r.setScale(pl.scaleX * 1.08, pl.scaleY * 1.08);
+        r.setPosition(pl.x - 0.6, pl.y - 1.2);
+        r.setTint(this.rimTint).setVisible(!this.dead);
+      } else if (this.playerRim) {
+        this.playerRim.setVisible(false);
+      }
+
+      // footstep dust gives weight to movement
+      this.updateCritters(now, dt);
+      this.reactToPlayer(now, dt);
+
+      const moving = Math.abs(this.player.body.velocity.x) + Math.abs(this.player.body.velocity.y) > 10;
+      if (moving && (!this._lastStep || now - this._lastStep > 260)) {
+        this._lastStep = now;
+        if (MH.sfx) MH.sfx.step();
+        const puff = this.add.image(this.player.x, this.player.y + 9, 'px_poof')
+          .setScale(0.6).setAlpha(0.35).setDepth(6);
+        this.tweens.add({ targets: puff, scale: 1.3, alpha: 0, duration: 380, onComplete: () => puff.destroy() });
+      }
+
+      // labels + hp bars follow
+      for (const ent of this.entities.values()) {
+        if (ent.shadow && ent.sprite) { ent.shadow.x = ent.sprite.x; ent.shadow.y = ent.sprite.y + 9; ent.shadow.setVisible(ent.sprite.visible && !ent.leaving); }
+        if (ent.rim && ent.sprite && (!MH.gfx || MH.gfx.rim)) {
+          ent.rim.setTexture(ent.sprite.texture.key, ent.sprite.frame.name);
+          ent.rim.setFlipX(ent.sprite.flipX);
+          ent.rim.setScale(ent.sprite.scaleX * 1.08, ent.sprite.scaleY * 1.08);
+          ent.rim.setPosition(ent.sprite.x - 0.6, ent.sprite.y - 1.2);
+          ent.rim.setDepth(ent.sprite.depth - 0.1).setTint(this.rimTint).setVisible(ent.sprite.visible && !ent.leaving);
+        } else if (ent.rim) {
+          ent.rim.setVisible(false);
+        }
+        if (ent.label && ent.sprite) { ent.label.x = ent.sprite.x; ent.label.y = ent.sprite.y - (ent.labelDy || (ent.data.boss ? 26 : 18)); }
+        if (ent.fightMark && ent.sprite) { ent.fightMark.x = ent.sprite.x; ent.fightMark.y = ent.sprite.y - ((ent.labelDy || 18) + 8); }
+        if (ent.aggroRing && ent.sprite) { ent.aggroRing.x = ent.sprite.x; ent.aggroRing.y = ent.sprite.y + 8; ent.aggroRing.setVisible(ent.sprite.visible && !ent.leaving); }
+        if (ent.aggroGfx && ent.sprite) {
+          // the hostile ring: crisp red ellipse at the feet, brighter and
+          // pulsing faster once the mob is actually fighting you
+          const g = ent.aggroGfx;
+          g.clear();
+          if (ent.sprite.visible && !ent.leaving && !ent._dying) {
+            const fighting = !!(ent.data && ent.data.fighting);
+            const a = fighting ? 0.75 + 0.25 * Math.sin(now / 120) : 0.5 + 0.2 * Math.sin(now / 380);
+            // wider than the body so the red reads past the feet (the old 22px
+            // ring hid under a 0.7-scale doll's boots)
+            const rw = ent.data && ent.data.boss ? 38 : 30;
+            g.lineStyle(fighting ? 2.2 : 1.6, 0xff3a2a, a).strokeEllipse(ent.sprite.x, ent.sprite.y + 9, rw, rw * 0.42);
+            g.fillStyle(0xff3a2a, 0.07 + 0.05 * Math.sin(now / 380)).fillEllipse(ent.sprite.x, ent.sprite.y + 9, rw, rw * 0.42);
+          }
+        }
+        if (ent.windup) this.tickWindup(ent, now);
+        if (ent.questMark && ent.sprite) { ent.questMark.x = ent.sprite.x; }
+        if (ent.serviceMark && ent.sprite) { ent.serviceMark.x = ent.sprite.x + 9; }
+        if (ent.hpbar && ent.sprite) this.drawHpBar(ent);
+        if (ent.engageRing && ent.sprite) {
+          const g = ent.engageRing;
+          g.clear();
+          const mine = this.target && this.target.key === ent.key;
+          if (mine && !ent._dying) {
+            // gauntlet playability-01/r3: a four-corner TARGET BRACKET around
+            // the whole body of the foe you are engaged with (the old 18x8
+            // ellipse under the boots did not read at storyboard size) —
+            // this is "who your buttons apply to". Drawn ABOVE the bodies:
+            // at floor depth it vanished behind two overlapping dolls.
+            g.setDepth(59);
+            const s = ent.sprite, hh = (ent.labelDy || 18) + 2, hw = ent.data && ent.data.boss ? 24 : 19;
+            const x0 = s.x - hw, x1 = s.x + hw, y0 = s.y - hh, y1 = s.y + 14, c = 7;
+            const a = 0.8 + 0.2 * Math.sin(now / 160);
+            g.lineStyle(2.5, 0x140a00, 0.7);
+            for (const [cx, cy, sx, sy] of [[x0, y0, 1, 1], [x1, y0, -1, 1], [x0, y1, 1, -1], [x1, y1, -1, -1]]) {
+              g.beginPath(); g.moveTo(cx, cy + sy * c); g.lineTo(cx, cy); g.lineTo(cx + sx * c, cy); g.strokePath();
+            }
+            g.lineStyle(2, 0xffd44a, a);
+            for (const [cx, cy, sx, sy] of [[x0, y0, 1, 1], [x1, y0, -1, 1], [x0, y1, 1, -1], [x1, y1, -1, -1]]) {
+              g.beginPath(); g.moveTo(cx, cy + sy * c); g.lineTo(cx, cy); g.lineTo(cx + sx * c, cy); g.strokePath();
+            }
+            g.lineStyle(1.5, 0xffd44a, 0.9);
+            g.strokeEllipse(s.x, s.y + 9, 24, 10);
+          } else {
+            g.setDepth(9.5);
+            const a = 0.45 + 0.3 * Math.sin(now / 240);
+            g.lineStyle(1.5, 0xe05a4a, a);
+            g.strokeEllipse(ent.sprite.x, ent.sprite.y + 9, 18, 8);
+          }
+        }
+      }
+      // depth-sort actors by y so overlap reads correctly
+      this.player.setDepth(10 + this.player.y / 1000);
+      // contact shadow under your character (mounted riders sit higher)
+      if (!this.playerShadow) this.playerShadow = this.add.image(0, 0, 'px_shadow').setAlpha(0.30).setDepth(9.8);
+      this.playerShadow.setPosition(this.player.x, this.player.y + (this.mountArt ? 12 : 10));
+      this.playerShadow.setVisible(!this.dead);
+      if (this.playerRing) {
+        const g = this.playerRing;
+        g.clear();
+        if (!this.dead) {
+          const a = 0.5 + 0.2 * Math.sin(now / 420);
+          g.lineStyle(1.4, 0x39c5e8, a).strokeEllipse(this.player.x, this.player.y + (this.mountArt ? 12 : 10), 22, 9);
+          g.fillStyle(0x39c5e8, 0.08).fillEllipse(this.player.x, this.player.y + (this.mountArt ? 12 : 10), 22, 9);
+        }
+        g.setDepth(5.2 + this.player.y / 1000 - 0.006);
+      }
+      this.updatePlayerDoll(now);
+      this.updateMountArt(now);
+      this.syncPlayerVitals();
+      this.drawPlayerHpBar();
+      // intent banners ride their mob
+      if (this._intentBanners) {
+        for (const [key, t] of this._intentBanners) {
+          const ent = this.entities.get(key);
+          if (t._windupMark) continue;   // the tell pill is placed by tickWindup
+          if (ent && ent.sprite && ent.sprite.active) { t.x = ent.sprite.x; t.y = ent.sprite.y - ((ent.labelDy || 18) + 36); }
+        }
+      }
+      // danger zones ride their mob too — and if you're physically CLEAR of
+      // the circle as the sweep is about to land, auto-send `evade`
+      if (this._dangerZones) {
+        for (const [key, z] of [...this._dangerZones]) {
+          const ent = this.entities.get(key);
+          if (!ent || !ent.sprite || !ent.sprite.active) { z.gfx.destroy(); this._dangerZones.delete(key); continue; }
+          z.gfx.setPosition(ent.sprite.x, ent.sprite.y);
+          z.gfx.setAlpha(0.75 + 0.25 * Math.sin(now / 110));
+          const remain = z.resolveAt - Date.now();
+          if (!z.sent && remain < 900 && remain > -400) {
+            const dist = Phaser.Math.Distance.Between(this.player.x, this.player.y, ent.sprite.x, ent.sprite.y);
+            if (dist > 58) {
+              z.sent = true;
+              MH.sendCommand('evade', false);
+              this.damageNumber(this.player.x, this.player.y - 22, 'CLEAR!', '#8cf0a0', 12);
+            }
+          }
+        }
+      }
+      for (const ent of this.entities.values()) {
+        if (ent.sprite && ent.kind !== 'item') ent.sprite.setDepth(10 + ent.sprite.y / 1000);
+        if (ent.doll) {
+          const s = ent.sprite;
+          if (s.alpha !== 0) s.setAlpha(0);          // keep procedural sprite hidden
+          if (ent.rim) ent.rim.setVisible(false);
+          ent.doll.container.setPosition(s.x, s.y + ((ent.pose && ent.pose.dy) || 0));
+          ent.doll.container.setDepth(10 + s.y / 1000 + 0.01);
+          if (ent.pose) { ent.doll.container.setScale(ent.pose.sx, ent.pose.sy); ent.doll.container.setAngle(ent.pose.lean); }
+          const prev = ent._dollPrev || { x: s.x, y: s.y };
+          const moving = Math.abs(s.x - prev.x) + Math.abs(s.y - prev.y) > 0.3;
+          // facing: from the hidden sprite's walk row + flip (it never had a
+          // 'right', so a right-walking NPC showed its face); a fighter
+          // squares up to the player instead of staring at the floor
+          let facing;
+          if (ent.data && ent.data.fighting) {
+            const dx = this.player.x - s.x, dy = this.player.y - s.y;
+            facing = Math.abs(dx) > Math.abs(dy) ? (dx < 0 ? 'left' : 'right') : (dy < 0 ? 'up' : 'down');
+          } else {
+            const ak = (s.anims && s.anims.currentAnim && s.anims.currentAnim.key) || '';
+            facing = ak.endsWith('walku') ? 'up' : ak.endsWith('walks') ? (s.flipX ? 'left' : 'right') : 'down';
+          }
+          const hurt = ent.hurtUntil && now < ent.hurtUntil;
+          ent.doll.setAction(hurt ? 'hurt' : ent.data && ent.data.fighting ? 'attack' : (moving ? 'walk' : 'idle'), facing);
+          ent.doll.update(now);
+          ent._dollPrev = { x: s.x, y: s.y };
+        } else if (ent.art) {
+          const s = ent.sprite, ph = ent.artPhase || 0, base = ent.artScale || ent.art.scaleX;
+          if (s.alpha !== 0) s.setAlpha(0);
+          if (ent.rim) ent.rim.setVisible(false);
+          const po = ent.pose || { sx: 1, sy: 1, lean: 0, dy: 0 };
+          ent.art.x = s.x;
+          // feet on the contact shadow (origin is the bottom edge) + idle bob + pose lift
+          ent.art.y = s.y + 9 + Math.sin(now / 600 + ph) * 1.2 + (po.dy || 0);
+          ent.art.setDepth(10 + s.y / 1000 + 0.01);
+          // a creature faces the player while fighting (flip toward them)
+          if (ent.data && ent.data.fighting && Math.abs(this.player.x - s.x) > 4) s.setFlipX(this.player.x < s.x);
+          // idle breathing: gentle vertical swell; manage flip via scaleX sign;
+          // pose multipliers carry squash, wind-up rear-back and the death topple
+          ent.art.scaleX = base * (s.flipX ? -1 : 1) * po.sx;
+          ent.art.scaleY = base * (1 + Math.sin(now / 520 + ph) * 0.05) * po.sy;
+          ent.art.setAngle(po.lean);
+        }
+        if (ent.bossAura) { ent.bossAura.x = ent.sprite.x; ent.bossAura.y = ent.sprite.y + 5; ent.bossAura.setDepth(9.5 + ent.sprite.y / 1000); }
+      }
+
+      if (this.darkRT.visible) {
+        // the light layer: darkness parameters come from applyAtmosphere —
+        // pitch black in magically dark rooms, a cool wash at night, warm
+        // gloom at dusk. Every light source carves a breathing pool from it.
+        const lp = this._lightParams || { color: 0x000008, alpha: 0.92, torchR: 132 };
+        this.darkRT.clear();
+        this.darkRT.fill(lp.color, lp.alpha);
+        const stamp = this.lightStamp;
+        const carve = (x, y, radius, jitter) => {
+          stamp.setVisible(true).setPosition(x, y).setScale((radius / 128) * jitter);
+          this.darkRT.erase(stamp);
+        };
+        // the player carries a torch: a wide, gently breathing pool
+        carve(this.player.x, this.player.y, lp.torchR, 0.97 + 0.03 * Math.sin(now / 280));
+        // every actor keeps a small pool of its own so a character is never
+        // lost in the dark — you can always see WHO is in the room
+        for (const ent of this.entities.values()) {
+          if (ent.kind === 'item' || !ent.sprite || !ent.sprite.active || ent.leaving) continue;
+          // hostiles get a wider pool so a threat is never a grey smudge in the gloom
+          const hostile = ent.data && (ent.data.hostile || ent.data.fighting);
+          carve(ent.sprite.x, ent.sprite.y - 4, hostile ? 64 : 44, 1);
+        }
+        // every brazier, candle, lamppost and travel feature throws its own
+        // flickering light
+        for (const ls of (this.lightSources || [])) {
+          const flick = 0.86 + 0.14 * Math.sin(now / 90 + ls.seed) * Math.sin(now / 47 + ls.seed * 1.7);
+          carve(ls.x, ls.y, ls.r, flick);
+        }
+        stamp.setVisible(false);
+      }
+    }
+
+    setFacing(dx, dy) {
+      if (Math.abs(dx) > Math.abs(dy)) { this.facing = 's'; this.player.setFlipX(dx < 0); }
+      else if (dy > 0) this.facing = 'd';
+      else if (dy < 0) this.facing = 'u';
+    }
+    playWalk() {
+      this._walkFrame = this.time.now;   // doll movement signal
+      const tex = this.playerTex();
+      const anim = `${tex}_walk${this.facing}`;
+      if (!this.player.anims.isPlaying || this.player.anims.currentAnim.key !== anim) this.player.play(anim);
+    }
+    // facing for the LPC doll: 'u'/'d' map directly; 's' splits by flipX
+    lpcFacing() {
+      if (this.facing === 'u') return 'up';
+      if (this.facing === 'd') return 'down';
+      return this.player.flipX ? 'left' : 'right';
+    }
+    // create/refresh the player's LPC paperdoll when gear/class changes; hide
+    // the procedural sprite while the doll is active
+    syncPlayerDoll(p) {
+      if (!p || !MH.lpc || !MH.lpc.isReady()) return;
+      const spec = { char_class: p.char_class, sex: p.sex || 'male', equipment: p.equipment || {} };
+      const sig = MH.lpc.sig(spec);
+      if (this.playerDoll && this._dollSig === sig) return;
+      if (this.playerDoll) { this.playerDoll.destroy(); this.playerDoll = null; }
+      this._dollSig = sig;
+      this.playerDoll = MH.lpc.makeDoll(this, spec, DOLL_SCALE, () => { this.tintCharacters(); addContour(this.playerDoll && this.playerDoll.container, OUTLINE.player); });
+      this.playerDoll.container.setDepth(10);
+      this.player.setAlpha(0);                 // keep physics body, hide the pixel art
+      if (this.playerRim) this.playerRim.setVisible(false);
+    }
+    // ---- riding: the mount you're on is a visible body beneath you ----
+    // Per-type in-world art: DCSS horse art tinted per mount (the pack has no
+    // separate warhorse/nightmare/etc. sprites), hippogriff for the griffin.
+    syncMountArt(p) {
+      const m = p && p.mount;
+      const key = (m && m.key) || null;
+      if (this._mountKey === key) return;
+      this._mountKey = key;
+      if (this.mountArt) { this.mountArt.destroy(); this.mountArt = null; }
+      if (this.mountGlow) { this.tweens.killTweensOf(this.mountGlow); this.mountGlow.destroy(); this.mountGlow = null; }
+      if (!key || !MH.dcss || !MH.dcss.isReady()) return;
+      const SPEC = {
+        horse:           { art: 'animals/horse.png', tint: 0xffffff, size: 1.5 },
+        pony:            { art: 'animals/horse.png', tint: 0xdec8a8, size: 1.2 },
+        donkey:          { art: 'animals/horse.png', tint: 0xb8b0a2, size: 1.25 },
+        warhorse:        { art: 'animals/horse.png', tint: 0x9a9aa8, size: 1.65 },
+        nightmare:       { art: 'animals/horse.png', tint: 0x584060, size: 1.6, fire: true },
+        clockwork_steed: { art: 'animals/horse.png', tint: 0xd8b070, size: 1.55 },
+        griffin:         { art: 'animals/hippogriff.png', tint: 0xffffff, size: 1.7 },
+      };
+      const spec = SPEC[key] || SPEC.horse;
+      MH.dcss.ensure(this, spec.art, texKey => {
+        if (!texKey || this._mountKey !== key) return;   // dismounted while loading
+        const img = this.add.image(this.player.x, this.player.y + 4, texKey).setOrigin(0.5, 0.85);
+        const src = this.textures.get(texKey).getSourceImage();
+        img._baseScale = (TD().T * spec.size) / ((src && src.height) || 32);
+        img.setScale(img._baseScale);
+        img.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
+        img._specTint = spec.tint;
+        img.setTint(this._mulTint(spec.tint, this._charTint || 0xffffff));
+        this.mountArt = img;
+        if (spec.fire) {   // the nightmare smoulders
+          this.mountGlow = this.add.image(this.player.x, this.player.y + 6, 'fx_glow')
+            .setBlendMode(Phaser.BlendModes.ADD).setTint(0xff7a3a).setAlpha(0.35).setScale(0.5).setDepth(9);
+          this.tweens.add({ targets: this.mountGlow, alpha: 0.55, scale: 0.62, duration: 700, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        }
+      });
+    }
+    updateMountArt(now) {
+      const img = this.mountArt;
+      if (!img || !img.active) return;
+      const walking = this._walkFrame && now - this._walkFrame < 130;
+      const bob = walking ? Math.sin(now / 90) * 1.5 : Math.sin(now / 700) * 0.8;   // canter vs breathing
+      img.x = this.player.x;
+      img.y = this.player.y + 4 + bob;
+      img.setDepth(10 + this.player.y / 1000 - 0.004);   // just beneath the rider
+      const base = img._baseScale || Math.abs(img.scaleX);
+      img.scaleX = base * (this.player.flipX ? -1 : 1);
+      img.scaleY = base;
+      if (this.mountGlow) { this.mountGlow.x = img.x; this.mountGlow.y = img.y + 2; }
+    }
+    // Vitals as slim arc "parens" hugging your character — health curves up
+    // the left side, mana up the right, movement underfoot. Shown while
+    // fighting or whenever something isn't full; fades away when safe & topped.
+    syncPlayerVitals() {
+      const p = MH.state.player;
+      if (!p) return;
+      if (!this.playerVitals) this.playerVitals = this.add.graphics().setDepth(59);
+      const g = this.playerVitals;
+      const hp = p.hp / Math.max(1, p.max_hp);
+      const hasMana = (p.max_mana || 0) > 1;
+      const mp = hasMana ? p.mana / Math.max(1, p.max_mana) : null;
+      const mv = p.move / Math.max(1, p.max_move);
+      const inC = !!MH.state.inCombat;
+      const show = inC || hp < 0.995 || (mp != null && mp < 0.995) || mv < 0.995;
+      g.clear();
+      if (!show) return;
+      const cx = this.player.x, cy = this.player.y - 5, r = 13;
+      const D = Phaser.Math.DegToRad;
+      // an arc bracket: dim track + colored fill growing from its anchor end
+      const arc = (a0, span, frac, color) => {
+        const anti = span < 0;
+        g.lineStyle(3, 0x0a0c10, 0.65);
+        g.beginPath(); g.arc(cx, cy, r, D(a0), D(a0 + span), anti); g.strokePath();
+        if (frac > 0.02) {
+          g.lineStyle(2, color, 1);
+          g.beginPath(); g.arc(cx, cy, r, D(a0), D(a0 + span * Math.max(0, Math.min(1, frac))), anti); g.strokePath();
+        }
+      };
+      const hpCol = hp > 0.5 ? 0x63c74d : hp > 0.25 ? 0xe8a33d : 0xe05a4a;
+      arc(135, 100, hp, hpCol);                 // left paren — health, filling upward
+      if (mp != null) arc(45, -100, mp, 0x5a8ae8);   // right paren — mana, filling upward
+      arc(70, 40, mv, 0xe8c168);                // underfoot — movement
+      g.setAlpha(inC ? 0.95 : 0.55);
+    }
+    updatePlayerDoll(now) {
+      const d = this.playerDoll;
+      if (!d) return;
+      // the doll is the only visible body — keep the procedural sprite + its
+      // additive rim hidden every frame (several places reset player.alpha=1)
+      if (this.player.alpha !== 0) this.player.setAlpha(0);
+      if (this.playerRim) this.playerRim.setVisible(false);
+      d.container.setPosition(this.player.x, this.player.y - (this.mountArt ? 7 : 0));   // riders sit up on the mount
+      d.container.setDepth(10 + this.player.y / 1000);
+      const pos = (MH.state.player && MH.state.player.position) || 'standing';
+      let action = 'idle';
+      if (this._hurtFrame && now - this._hurtFrame < 320) action = 'hurt';
+      else if (this._atkFrame && now - this._atkFrame < 300) action = 'attack';
+      else if (this._walkFrame && now - this._walkFrame < 130) action = 'walk';
+      // mid-fight the hero is visibly SWINGING at the target, not standing
+      // politely beside it (BrowserQuest's in-combat sword pose)
+      else if (MH.state.inCombat && this.target && this.target.sprite && this.target.sprite.active && !this.dead) {
+        action = 'attack';
+        if (!this._faceTick || now - this._faceTick > 250) { this._faceTick = now; this.faceEntity(this.target); }
+      }
+      d.setAction(action, this.lpcFacing());
+      d.update(now);
+      this.applyDollPose(d.container, pos, now);
+      const pp = this.playerPose;
+      if (pp && (pp.sx !== 1 || pp.sy !== 1 || pp.lean)) {
+        d.container.setScale(d.container.scaleX * pp.sx, d.container.scaleY * pp.sy);
+        d.container.setAngle(d.container.angle + pp.lean);
+      }
+    }
+    // Lay the paperdoll into a sleeping/resting pose (the LPC pack has no
+    // lying-down frames, so we tilt/sink the whole doll) and float a 💤 cue.
+    applyDollPose(c, pos, now) {
+      const sleeping = pos === 'sleeping';
+      const resting = pos === 'resting' || pos === 'sitting';
+      if (sleeping) {
+        c.setRotation(-1.45);                 // lie flat on the ground, head to the side
+        c.setScale(1);
+        c.y += 5 * DOLL_SCALE;                 // settle onto the floor
+      } else if (resting) {
+        c.setRotation(0);
+        c.setScale(1.04, 0.74);                 // squash toward the feet → seated/crouched
+        c.y += 4 * DOLL_SCALE;
+      } else {
+        c.setRotation(0);
+        c.setScale(1);
+      }
+      // floating sleep/rest indicator
+      if (sleeping || resting) {
+        if (!this.dollZzz) {
+          this.dollZzz = this.add.text(0, 0, 'z Z z', {
+            fontFamily: 'Oxanium, Rajdhani, sans-serif', fontSize: '11px',
+            color: '#bfeefb', fontStyle: 'bold',
+          }).setOrigin(0.5, 1).setDepth(60);
+        }
+        this.dollZzz.setVisible(true);
+        this.dollZzz.setPosition(this.player.x + 10, this.player.y - 22 + Math.sin(now / 400) * 2);
+        this.dollZzz.setAlpha(0.55 + Math.sin(now / 400) * 0.3);
+      } else if (this.dollZzz) {
+        this.dollZzz.setVisible(false);
+      }
+    }
+  }
+
+  MH.TopRoomScene = TopRoomScene;
+})();

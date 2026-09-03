@@ -138,6 +138,55 @@ class DialogueNode:
 
 # Quest definitions (could be loaded from JSON files)
 QUEST_DEFINITIONS = {
+    # ========== THE TRIAL OF UNLEARNING (respec, all brackets) ==========
+    # Completing any Trial resets your talents and frees you to choose a
+    # new Path (lone wolf / fellowship). Difficulty scales by bracket.
+    'trial_of_unlearning_novice': {
+        'name': 'Trial of Unlearning',
+        'description': 'Sage Aldric can cleanse what you have learned - if you prove your '
+                       'humility. Walk to the temple altar and reflect.',
+        'type': 'visit',
+        'level_min': 1,
+        'level_max': 19,
+        'quest_giver': 3200,
+        'objectives': [
+            {'type': 'visit', 'description': 'Reflect at the temple altar', 'target': 3054, 'required': 1},
+        ],
+        'rewards': {'exp': 50, 'gold': 0, 'items': [], 'respec': True},
+        'repeatable': True,
+    },
+    'trial_of_unlearning_adept': {
+        'name': 'Trial of Unlearning',
+        'description': 'The adept\'s trial: a pilgrimage beyond comfort. Visit the altar, '
+                       'then stand at the gates of the city you defend.',
+        'type': 'visit',
+        'level_min': 20,
+        'level_max': 39,
+        'quest_giver': 3200,
+        'objectives': [
+            {'type': 'visit', 'description': 'Reflect at the temple altar', 'target': 3054, 'required': 1},
+            {'type': 'visit', 'description': 'Stand outside the west gate', 'target': 3052, 'required': 1},
+            {'type': 'visit', 'description': 'Stand outside the east gate', 'target': 3053, 'required': 1},
+        ],
+        'rewards': {'exp': 200, 'gold': 0, 'items': [], 'respec': True},
+        'repeatable': True,
+    },
+    'trial_of_unlearning_master': {
+        'name': 'Trial of Unlearning',
+        'description': 'The master\'s trial: carry your doubts to the edge of the dragon\'s '
+                       'domain and back. Few return unchanged.',
+        'type': 'visit',
+        'level_min': 40,
+        'level_max': 70,
+        'quest_giver': 3200,
+        'objectives': [
+            {'type': 'visit', 'description': 'Reflect at the temple altar', 'target': 3054, 'required': 1},
+            {'type': 'visit', 'description': 'Reach the mountain pass of the Dragon\'s Domain', 'target': 8000, 'required': 1},
+        ],
+        'rewards': {'exp': 800, 'gold': 0, 'items': [], 'respec': True},
+        'repeatable': True,
+    },
+
     # ========== BEGINNER QUESTS (Level 1-10) ==========
     'rat_problem': {
         'name': 'Rat Problem',
@@ -2314,6 +2363,18 @@ class QuestManager:
         # Grant rewards
         c = player.config.COLORS
         await player.send(f"\r\n{c['bright_green']}Quest Completed: {quest.name}{c['reset']}\r\n")
+
+        # Trial of Unlearning: cleanse talents and free the path choice
+        if (quest.rewards or {}).get('respec'):
+            try:
+                from talents import TalentManager
+                refunded = TalentManager.reset_talents(player)
+                player.path_switch_available = True
+                await player.send(f"{c['bright_cyan']}The Trial cleanses you. "
+                                  f"{refunded} talent point{'s' if refunded != 1 else ''} refunded - "
+                                  f"and you may choose a new Path ('path' command).{c['reset']}")
+            except Exception:
+                pass
 
         if quest.rewards.get('exp'):
             await player.gain_exp(quest.rewards['exp'], source='quest')

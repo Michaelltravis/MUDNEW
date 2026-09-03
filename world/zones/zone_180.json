@@ -18,8 +18,7 @@
           "description": "A trail winds toward A Winding Forest Path"
         },
         "south": {
-          "to_room": 3065,
-          "description": "The great field of Midgaard stretches to the south."
+          "to_room": 6613
         }
       },
       "mob_resets": [
@@ -167,6 +166,9 @@
         "south": {
           "to_room": 18004,
           "description": "A trail winds toward Northern Bank of the Stream"
+        },
+        "west": {
+          "to_room": 18023
         }
       },
       "mob_resets": [
@@ -361,6 +363,9 @@
         "west": {
           "to_room": 18005,
           "description": "A trail winds toward The Whispering Pines"
+        },
+        "east": {
+          "to_room": 18022
         }
       },
       "mob_resets": [
@@ -457,6 +462,10 @@
         "west": {
           "to_room": 18018,
           "description": "A trail winds toward Northwestern Forest"
+        },
+        "oak": {
+          "to_room": 18021,
+          "description": "A great hollow oak stands at the edge of the clearing."
         }
       },
       "mob_resets": [
@@ -606,9 +615,8 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "east": {
-          "to_room": 18012,
-          "description": "A trail winds toward A Bandit's Ambush Point"
+        "west": {
+          "to_room": 18012
         }
       },
       "mob_resets": [
@@ -639,13 +647,12 @@
       "sector_type": "forest",
       "flags": [],
       "exits": {
-        "south": {
-          "to_room": 18005,
-          "description": "A trail winds toward The Whispering Pines"
-        },
         "west": {
           "to_room": 18024,
           "description": "A trail winds toward The Wolf Den"
+        },
+        "east": {
+          "to_room": 18005
         }
       }
     },

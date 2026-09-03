@@ -67,6 +67,9 @@
         "east": {
           "to_room": 6906,
           "description": "The ash grows deeper toward the volcanic heart."
+        },
+        "south": {
+          "to_room": 6911
         }
       },
       "gathering_nodes": [
@@ -273,9 +276,8 @@
         "indoors"
       ],
       "exits": {
-        "east": {
-          "to_room": 6902,
-          "description": "The ashfields stretch outside."
+        "north": {
+          "to_room": 6902
         }
       }
     }

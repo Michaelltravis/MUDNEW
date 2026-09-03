@@ -5,6 +5,7 @@ Items, equipment, and containers.
 """
 
 import logging
+import re
 from typing import Dict, List, Optional, TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -13,6 +14,44 @@ if TYPE_CHECKING:
 from config import Config
 
 logger = logging.getLogger('Misthollow.Objects')
+
+# Map an item's name/short_desc to its wear slot when it has no explicit one.
+# Returns a BASE slot name ('finger'/'neck'/'wrist' included) so the paired-slot
+# logic in cmd_wear can still expand to finger1/finger2 etc. Order matters:
+# legs is checked before feet so "greaves" -> legs, not feet.
+_WEAR_SLOT_PATTERNS = [
+    ('legs',   r'greave|legplate|cuisse|tasset|legging|chausses|\bpants\b|trousers|legguard'),
+    ('head',   r'helm|helmet|\bcap\b|hood|coif|crown|circlet|\bhat\b|cowl|mask|visor|bascinet|sallet|barbute|armet|skullcap'),
+    ('hands',  r'gauntlet|\bglove|mitt|handguard|\bgaunt'),
+    ('feet',   r'\bboot|sabaton|\bshoe|sandal|footguard|footwrap|slipper'),
+    ('about',  r'cloak|cape|mantle|shawl|shroud|surcoat'),
+    ('waist',  r'\bbelt\b|girdle|sash|\bwaist'),
+    ('finger', r'\bring\b|signet|\bband\b'),
+    ('neck',   r'amulet|necklace|pendant|medallion|\bsymbol\b|collar|torc|choker|periapt|talisman|charm'),
+    ('wrist',  r'bracer|bracelet|armband|wristguard|\bwrist'),
+    ('shield', r'shield|buckler|\baegis\b|targe|bulwark'),
+    ('arms',   r'sleeve|vambrace|armguard|pauldron|spaulder|\barms?\b'),
+    ('body',   r'mail|plate|armou?r|robe|vest|tunic|jerkin|breastplate|cuirass|\bchest|shirt|gown|hauberk|brigandine|cassock|doublet|bodysuit'),
+]
+
+
+def infer_wear_slot(item) -> Optional[str]:
+    """Resolve an item's equipment slot, inferring from its name when the item
+    carries no explicit wear_slot (e.g. legacy/preset gear that used wear_pos,
+    or affixed loot). Returns None for things that aren't worn."""
+    slot = getattr(item, 'wear_slot', None)
+    if slot:
+        return slot
+    itype = getattr(item, 'item_type', '') or ''
+    if itype == 'light':
+        return 'light'
+    text = (str(getattr(item, 'name', '') or '') + ' ' + str(getattr(item, 'short_desc', '') or '')).lower()
+    for s, pat in _WEAR_SLOT_PATTERNS:
+        if re.search(pat, text):
+            return s
+    if itype in ('armor', 'worn'):
+        return 'body'   # wearable but unrecognised -> torso as a last resort
+    return None
 
 
 class Object:
@@ -157,7 +196,11 @@ class Object:
         obj.room_desc = data.get('room_desc', f"{obj.short_desc} lies here.")
         obj.description = data.get('description', '')
         obj.item_type = data.get('item_type', 'other')
-        obj.wear_slot = data.get('wear_slot')
+        obj.wear_slot = data.get('wear_slot') or data.get('wear_pos')
+        # self-heal wearable items saved without a slot (legacy/preset gear), so
+        # they can be re-worn; to_dict persists this on the next save
+        if not obj.wear_slot and obj.item_type in ('armor', 'worn'):
+            obj.wear_slot = infer_wear_slot(obj)
         obj.set_id = data.get('set_id')
         obj.weight = data.get('weight', 1)
         obj.cost = data.get('cost', data.get('value', 0))
@@ -204,12 +247,16 @@ class Object:
         obj.room_desc = proto.get('room_desc', f"{obj.short_desc} lies here.")
         obj.description = proto.get('description', 'You see nothing special.')
         obj.item_type = proto.get('item_type', proto.get('type', 'other'))
-        obj.wear_slot = proto.get('wear_slot')
+        # preset/area data may use 'wear_pos' instead of 'wear_slot'
+        obj.wear_slot = proto.get('wear_slot') or proto.get('wear_pos')
         # Support wear_flags list (CircleMUD-style) as fallback for wear_slot
         if not obj.wear_slot and proto.get('wear_flags'):
             flags = proto['wear_flags']
             if isinstance(flags, list) and flags:
                 obj.wear_slot = flags[0]  # Use first wear flag as slot
+        # infer from the item name for wearable gear that still has no slot
+        if not obj.wear_slot and obj.item_type in ('armor', 'worn'):
+            obj.wear_slot = infer_wear_slot(obj)
         obj.set_id = proto.get('set_id')
         obj.weight = proto.get('weight', 1)
         obj.cost = proto.get('cost', proto.get('value', 0))

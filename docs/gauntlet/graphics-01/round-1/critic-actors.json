@@ -1,0 +1,16 @@
+{
+  "piece": "actors",
+  "pick": "A",
+  "per_label": { "city": "A", "combat": "A", "cave": "A" },
+  "reasons": [
+    "City and cave: A's player is a knight with a raised shield sitting inside a bright ground highlight ring, found instantly; B's player is a tiny grey rat-sized sprite on a busy floor, locatable only by the white cursor box next to it (cave B is a grey speck on dark brown floor).",
+    "Combat: A shows a wind-up state without text: red concentric rings on the ground under the grave keeper, a '!' warning marker above it, and floating '4' / '-16' damage numbers; B's rats and blonde player show no hit flash, no wind-up pose, no ground telegraph, so you cannot tell who is attacking whom.",
+    "Cave: A's bear 'Grimclaw' is a large dark silhouette that reads as a threat at a glance with a name plate, while A's city NPCs (stray dog, citiguards) all carry identical green bars so hostile vs bystander is not distinguished; B has no visible hostile actor at all in city or cave, only a rat that could be the player."
+  ],
+  "fixes": [
+    { "what": "Make the player sprite larger and higher-contrast against floor tiles and add a persistent ground highlight ring so it is findable in one second (cave B is a grey speck).", "file_hint": "src/web_isometric/platformer/lpc.js" },
+    { "what": "Give hostile actors a red aggro tint/outline and bar colour distinct from neutral NPCs; neutral bystanders should not share the enemy treatment.", "file_hint": "src/web_isometric/platformer/scene-topdown.js" },
+    { "what": "Add a visible wind-up telegraph (ground ring plus pose/scale pulse) and a white hit-flash on damage so attack state reads without the log.", "file_hint": "src/web_isometric/platformer/fx-abilities.js" }
+  ],
+  "confidence": "high"
+}

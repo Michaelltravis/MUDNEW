@@ -38,7 +38,11 @@
           "vnum": 3214,
           "max": 1
         }
-      ]
+      ],
+      "extra_descs": {
+        "bookshelf shelves": "One shelf sits a finger's width proud of the wall, and the dust behind it has been disturbed in a long vertical line. Something moves back there when the candles gutter.",
+        "desks benches": "Generations of students have carved initials, curses and at least one marriage proposal into the soft wood."
+      }
     },
     "3001": {
       "vnum": 3001,
@@ -96,7 +100,11 @@
           "vnum": 3035,
           "max": 1
         }
-      ]
+      ],
+      "extra_descs": {
+        "columns marble": "Each marble block is taller than a man and fitted without mortar. Masons still argue about how the founders raised them.",
+        "walls hangings": "The wall hangings chronicle the city's history in fading thread: the founding, the plague years, the dragon that never quite reached the gates."
+      }
     },
     "3002": {
       "vnum": 3002,
@@ -129,7 +137,11 @@
           "vnum": 3035,
           "max": 1
         }
-      ]
+      ],
+      "extra_descs": {
+        "well": "The well's rope is gone, but cold air breathes steadily up from the dark. Things echo down there for longer than they should.",
+        "altar picture thor": "Thor glares down from the painting with the particular disapproval reserved for adventurers about to do something stupid."
+      }
     },
     "3003": {
       "vnum": 3003,
@@ -236,7 +248,7 @@
           "description": "You see the good old Grunting Boar Inn."
         },
         "south": {
-          "to_room": 3200
+          "to_room": 3014
         },
         "west": {
           "to_room": 3004,
@@ -254,6 +266,10 @@
         "up": {
           "to_room": 3001
         }
+      },
+      "extra_descs": {
+        "fountain": "Coins pave the fountain's floor, each one a wish. The water stays sweet year round, which the clerics call a blessing and the engineers call good plumbing.",
+        "steps gate": "The marble steps are worn into shallow bowls by ten thousand penitent feet."
       }
     },
     "3006": {
@@ -306,7 +322,9 @@
         }
       },
       "extra_descs": {
-        "": "writing carving carvings symbols symbol"
+        "": "writing carving carvings symbols symbol",
+        "bar carvings symbols": "The carvings are older than the inn: names, dates, and one line repeated in six languages - 'the boar grunted first.'",
+        "fireplace": "The fire never quite goes out. The landlord claims it has burned continuously since his grandmother's day."
       },
       "mob_resets": [
         {
@@ -442,7 +460,10 @@
           "vnum": 3062,
           "max": 1
         }
-      ]
+      ],
+      "extra_descs": {
+        "street": "Cart ruts run deep in the cobbles here, all bending toward the market square like streams toward a river."
+      }
     },
     "3013": {
       "vnum": 3013,
@@ -495,17 +516,21 @@
           "description": "You see the common square."
         },
         "west": {
+          "to_room": 3013
+        },
+        "down": {
           "to_room": 3072,
-          "description": "A seam in the statue base leads west.",
           "hidden": true,
-          "requires_detect_magic": true,
-          "search_difficulty": 62,
+          "search_difficulty": 55,
+          "requires_light": false,
           "secret": true,
-          "reveal_message": "A section of the statue base dissolves, opening a concealed passage west."
+          "reveal_message": "A seam in the statue base parts, revealing a cramped hollow below."
         }
       },
       "extra_descs": {
-        "": "statue"
+        "": "statue",
+        "statue": "The statue depicts a hero nobody can name, sword raised toward the east gate. Pigeons have crowned him; he bears it with stone dignity.",
+        "square": "By dawn the square belongs to farmers, by noon to merchants, by midnight to thieves. Everyone agrees this is fair."
       },
       "mob_resets": [
         {
@@ -679,7 +704,11 @@
           "vnum": 3020,
           "max": 1
         }
-      ]
+      ],
+      "extra_descs": {
+        "tables pipes flasks": "One flask bubbles by itself, unattended, and has been - according to a yellowing warning note - since the year 987.",
+        "floor": "Scorch marks on the flagstones form rough circles, each one ringed with chalk annotations in a nervous hand."
+      }
     },
     "3020": {
       "vnum": 3020,
@@ -808,7 +837,11 @@
           "vnum": 3023,
           "max": 1
         }
-      ]
+      ],
+      "extra_descs": {
+        "well": "A practice sword lies bent at the well's lip. The fighters say you can hear it splash if you drop a coin; nobody has heard the coin land.",
+        "dummies yard": "The straw dummies have been stabbed, burned, frozen and once, memorably, married. The guild does not discuss the incident."
+      }
     },
     "3024": {
       "vnum": 3024,
@@ -884,7 +917,10 @@
           "vnum": 3062,
           "max": 1
         }
-      ]
+      ],
+      "extra_descs": {
+        "people square": "Gossip moves through the common square faster than the wind: who's hiring, who's missing, what crawled out of the sewers last night."
+      }
     },
     "3026": {
       "vnum": 3026,
@@ -1024,7 +1060,10 @@
           "vnum": 3022,
           "max": 1
         }
-      ]
+      ],
+      "extra_descs": {
+        "well": "Scratched beside the well mouth, in thieves' cant: 'fastest way down. second fastest way up.'"
+      }
     },
     "3030": {
       "vnum": 3030,
@@ -1049,6 +1088,10 @@
             "key_vnum": 3005
           }
         }
+      },
+      "extra_descs": {
+        "garbage pipes junction": "The pipe junction yawns out of the refuse like a mouth. Warm air sighs from it, smelling of the city's secrets gone soft.",
+        "dump": "Gulls, rats and one philosophical old man pick through the heaps. All three find treasure more often than you'd think."
       }
     },
     "3031": {
@@ -1168,7 +1211,10 @@
           "vnum": 3000,
           "max": 1
         }
-      ]
+      ],
+      "extra_descs": {
+        "racks items": "Wands sorted by temperament, potions by color, and one shelf labeled simply 'DO NOT' in three alphabets."
+      }
     },
     "3040": {
       "vnum": 3040,
@@ -1211,7 +1257,8 @@
         }
       },
       "extra_descs": {
-        "": "wall"
+        "": "wall",
+        "towers footbridge gate": "Guards on the footbridge track everything that passes below. The western tower's bell has rung true for a century; the eastern one sticks in wet weather."
       },
       "mob_resets": [
         {
@@ -1249,7 +1296,8 @@
         }
       },
       "extra_descs": {
-        "": "wall"
+        "": "wall",
+        "towers footbridge gate": "The east gate's timbers are scarred at axe height. The carpenters stopped sanding the marks out; they make a better warning than any sign."
       },
       "mob_resets": [
         {
@@ -1318,11 +1366,15 @@
       "flags": [],
       "exits": {
         "east": {
-          "to_room": 25000
+          "to_room": 3024
         },
         "west": {
           "to_room": 3043,
           "description": "The alley leads west."
+        },
+        "arena": {
+          "to_room": 25000,
+          "description": "An iron-banded gate opens into the Blood Pit Arena."
         }
       },
       "mob_resets": [
@@ -1443,7 +1495,11 @@
           "vnum": 3006,
           "max": 1
         }
-      ]
+      ],
+      "extra_descs": {
+        "river": "The river slides west, slow and green, carrying leaves, lost hats, and the occasional message in a bottle nobody answers.",
+        "bank levee": "The levee's stones are stained in bands, one for every flood the old-timers still argue about."
+      }
     },
     "3050": {
       "vnum": 3050,
@@ -1491,7 +1547,8 @@
         }
       },
       "extra_descs": {
-        "": "wall"
+        "": "wall",
+        "bridge river opening": "Ten feet below, the river hurries through its archway in the wall. Lovers' padlocks rust along the bridge rail, keys somewhere in the silt."
       }
     },
     "3052": {
@@ -1521,7 +1578,9 @@
         }
       },
       "extra_descs": {
-        "": "wall"
+        "": "wall",
+        "forest path": "The forest's edge is a hard line, as if the trees had agreed among themselves not to come closer. The shadowy path south slips toward the Forest of Shadows.",
+        "towers gate": "Travelers' chalk marks crowd the gate posts: safe roads, bad inns, a crude sketch of a wolf with far too many teeth."
       },
       "obj_resets": [
         {
@@ -1552,12 +1611,14 @@
           }
         },
         "south": {
-          "to_room": 3200,
+          "to_room": 3210,
           "description": "You see a path leading to the Royal Stables."
         }
       },
       "extra_descs": {
-        "": "wall"
+        "": "wall",
+        "plains": "Heat shimmers over the eastern plains. Somewhere past the haze lie Miden'Nir and the long road to the desert kingdoms.",
+        "towers gate": "Outbound caravans pause here to count heads and sharpen blades. Inbound ones to thank their gods."
       },
       "obj_resets": [
         {
@@ -1590,7 +1651,8 @@
       },
       "extra_descs": {
         "": "statue odin king god",
-        "ven though the altar is more than ten feet long it appears to be made from": "a single block of white virgin marble."
+        "ven though the altar is more than ten feet long it appears to be made from": "a single block of white virgin marble.",
+        "statue odin": "Odin's stone gaze has watched over every soul ever raised at this altar. One eye is carved shut; the sculptor knew the stories."
       },
       "mob_resets": []
     },
@@ -1647,6 +1709,9 @@
           "to_room": 3054,
           "description": "You see the Temple Altar."
         }
+      },
+      "extra_descs": {
+        "path mountains": "The dirt path runs north between hedgerows toward the Dragonhelm Mountains, blue with distance and, the rangers insist, only mostly safe."
       }
     },
     "3060": {
@@ -1664,6 +1729,9 @@
           "to_room": 3059,
           "description": "You see the path which goes back to Midgaard."
         }
+      },
+      "extra_descs": {
+        "countryside path": "Larks rise out of the grass ahead of your footsteps. On a clear day you can see three church spires and the smoke of four villages."
       }
     },
     "3061": {
@@ -1697,7 +1765,10 @@
           "vnum": 3293,
           "max": 1
         }
-      ]
+      ],
+      "extra_descs": {
+        "countryside path": "East across the field, a banner marks the Newbie Hall, where the city trains its hopefuls before the world gets a turn at them."
+      }
     },
     "3062": {
       "vnum": 3062,
@@ -1717,7 +1788,8 @@
       },
       "extra_descs": {
         "": "WANTED posters poster wall",
-        "nvelopes of all sizes are heaped into hugh piles around the room.  As you": "look closer, you see a letter that you had posted a full week ago, laying unnoticed and slightly rat-chewed towards the bottom of the pile."
+        "nvelopes of all sizes are heaped into hugh piles around the room.  As you": "look closer, you see a letter that you had posted a full week ago, laying unnoticed and slightly rat-chewed towards the bottom of the pile.",
+        "mail crates piles": "One crate is addressed, in beautiful copperplate, to 'The Hero Who Will Eventually Open This.' The customs seal is unbroken."
       },
       "mob_resets": [
         {
@@ -1785,7 +1857,10 @@
           "vnum": 3292,
           "max": 1
         }
-      ]
+      ],
+      "extra_descs": {
+        "trees line": "The dark line of trees to the north is the Great Northern Forest. Trappers say the snow starts inside it a month before it reaches the fields."
+      }
     },
     "3066": {
       "vnum": 3066,
@@ -1824,6 +1899,9 @@
           "to_room": 3072,
           "description": "The statue base cache is to the south."
         }
+      },
+      "extra_descs": {
+        "banker windows lobby": "The teller windows' iron bars are polished bright at hand height. The banker's smile is exact, weighed, and entirely uninsured."
       }
     },
     "3070": {
@@ -1845,7 +1923,10 @@
           "vnum": 3210,
           "max": 1
         }
-      ]
+      ],
+      "extra_descs": {
+        "desks parchment candle": "The last entry in the open ledger stops mid-word, the pen still lying in the gutter of the page."
+      }
     },
     "3071": {
       "vnum": 3071,
@@ -1867,7 +1948,10 @@
           "vnum": 3211,
           "max": 1
         }
-      ]
+      ],
+      "extra_descs": {
+        "reliquary bowls pedestal": "The votive bowls hold offerings centuries old: dried flowers, a child's ring, a soldier's button worn smooth with handling."
+      }
     },
     "3072": {
       "vnum": 3072,
@@ -1878,13 +1962,12 @@
         "indoors"
       ],
       "exits": {
-        "east": {
-          "to_room": 3014,
-          "description": "The passage returns to the market square."
-        },
         "north": {
           "to_room": 3069,
           "description": "The bank is to the north."
+        },
+        "up": {
+          "to_room": 3014
         }
       },
       "obj_resets": [
@@ -1913,7 +1996,10 @@
           "vnum": 3213,
           "max": 1
         }
-      ]
+      ],
+      "extra_descs": {
+        "coffer slits": "Through the arrow slits, the west road unrolls toward the forest. The coffer's lock has been picked so many times it opens politely for anyone."
+      }
     },
     "3074": {
       "vnum": 3074,
@@ -1968,7 +2054,10 @@
           "vnum": 3120,
           "max": 1
         }
-      ]
+      ],
+      "extra_descs": {
+        "throne totems bones": "The throne of garbage and bone is arranged with real care. Whatever rules down here has opinions about majesty."
+      }
     },
     "3076": {
       "vnum": 3076,
@@ -2020,7 +2109,10 @@
           "max": 1
         }
       ],
-      "obj_resets": []
+      "obj_resets": [],
+      "extra_descs": {
+        "golem runes": "The golem's eyes track you without light. The runes pulse in rhythm - not your heartbeat, you realize slowly. Its own."
+      }
     },
     "3078": {
       "vnum": 3078,
@@ -2047,7 +2139,10 @@
           "vnum": 3202,
           "max": 1
         }
-      ]
+      ],
+      "extra_descs": {
+        "dummies weapons courtyard": "Notches on the rack post tally every student who graduated to the real thing. The column is taller than you are."
+      }
     },
     "3080": {
       "vnum": 3080,
@@ -2087,6 +2182,9 @@
           "to_room": 3082,
           "description": "The main hall of the guild awaits."
         }
+      },
+      "extra_descs": {
+        "skulls bones candles patterns": "Look long enough and the bone patterns resolve into script. The candlelight makes the empty sockets seem to read along with you."
       }
     },
     "3082": {
@@ -2115,7 +2213,10 @@
           "vnum": 3033,
           "max": 1
         }
-      ]
+      ],
+      "extra_descs": {
+        "tomes circle shelves": "The silver ritual circle is worn thin at the northern arc, where generations of necromancers have stood to ask the same question of the dark."
+      }
     },
     "3083": {
       "vnum": 3083,
@@ -2146,9 +2247,18 @@
           "description": "The cobblestones lead to Main Street"
         }
       },
-      "mob_resets": [],
+      "mob_resets": [
+        {
+          "vnum": 3001,
+          "max": 1
+        }
+      ],
       "obj_resets": [],
-      "vnum": 3009
+      "vnum": 3009,
+      "extra_descs": {
+        "baker": "Flour has settled into every line of the baker's face. He works the dough like a man who has outlasted three wars and intends to outlast the next.",
+        "shelves loaves bread": "Crusty rounds, honey twists, and a row of hard travel loaves that the baker swears will survive anything short of dragonfire."
+      }
     },
     "3085": {
       "vnum": 3085,
@@ -2179,7 +2289,10 @@
           "max": 1
         }
       ],
-      "obj_resets": []
+      "obj_resets": [],
+      "extra_descs": {
+        "shields archway sigils": "Every shield bears a different sigil and the same dents. Service in the Order is evidently democratic about danger."
+      }
     },
     "3086": {
       "vnum": 3086,
@@ -2202,7 +2315,10 @@
           "max": 1
         }
       ],
-      "obj_resets": []
+      "obj_resets": [],
+      "extra_descs": {
+        "altar windows glass": "At dawn the stained glass pours its saints across the floor in color; the paladins drill in their light without ever stepping on a face."
+      }
     }
   },
   "mobs": {

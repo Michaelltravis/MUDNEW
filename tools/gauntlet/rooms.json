@@ -1,0 +1,109 @@
+[
+  {
+    "label": "city",
+    "vnum": 3014,
+    "note": "Market Square, Midgaard: crowd, statue, fountain",
+    "ref": {
+      "camera": [
+        40,
+        222
+      ],
+      "note": "BrowserQuest village: two houses, lamp posts"
+    }
+  },
+  {
+    "label": "forest",
+    "vnum": 27001,
+    "note": "Whispering Woods: winding forest path",
+    "ref": {
+      "camera": [
+        20,
+        165
+      ],
+      "note": "grassland with trees, rocks and a path"
+    }
+  },
+  {
+    "label": "dungeon",
+    "vnum": 14002,
+    "note": "Plaza of Bones: undead city",
+    "ref": {
+      "camera": [
+        60,
+        40
+      ],
+      "note": "underworld lava caverns"
+    }
+  },
+  {
+    "label": "cave",
+    "vnum": 27021,
+    "note": "Bear's Den cave",
+    "ref": {
+      "camera": [
+        130,
+        220
+      ],
+      "note": "cave interior with a bridge over water"
+    }
+  },
+  {
+    "label": "water",
+    "vnum": 6809,
+    "note": "Reef Shallows, wading water",
+    "ref": {
+      "camera": [
+        20,
+        180
+      ],
+      "note": "river, dock and bridge"
+    }
+  },
+  {
+    "label": "combat",
+    "vnum": 14002,
+    "cmds": [
+      "kill keeper"
+    ],
+    "waitMs": 6500,
+    "after": [
+      "flee",
+      "goto 3001"
+    ],
+    "note": "mid-fight: wind-up bar / hit flash / feed",
+    "ref": {
+      "camera": null,
+      "attackNearest": true,
+      "note": "fight a rat near spawn"
+    },
+    "pre": [
+      "zreset"
+    ]
+  },
+  {
+    "label": "fight",
+    "vnum": 14002,
+    "cmds": [
+      "kill keeper"
+    ],
+    "waitMs": 800,
+    "filmstrip": {
+      "frames": 8,
+      "intervalMs": 1000,
+      "cols": 4
+    },
+    "after": [
+      "flee",
+      "goto 3001"
+    ],
+    "note": "combat feel storyboard: 8 frames over 8s of a fight with the grave keeper",
+    "ref": {
+      "camera": null,
+      "attackNearest": true,
+      "note": "rat fight near spawn, same 8-frame storyboard"
+    },
+    "pre": [
+      "zreset"
+    ]
+  }
+]

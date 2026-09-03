@@ -247,8 +247,8 @@ SPELLS = {
         'message_self': 'You raise a corpse to serve you!',
         'message_room': '$n raises a corpse from the dead!',
     },
-    'vampiric_touch': {
-        'name': 'Vampiric Touch',
+    'leechcraft': {
+        'name': 'Leechcraft',
         'mana_cost': 30,
         'damage_dice': '2d6+2',
         'damage_per_level': 1,
@@ -528,7 +528,7 @@ SPELLS = {
         'message_other': 'A shimmering force shield surrounds $N!',
     },
     'mirror_image': {
-        'name': 'Mirror Image',
+        'name': 'Tower Echoes',
         'mana_cost': 40,
         'target': 'self',
         'duration_ticks': 12,
@@ -571,15 +571,6 @@ SPELLS = {
         'affects': [{'type': 'ac', 'value': -20}, {'type': 'fire_shield', 'value': 1}],
         'message_self': 'Flames surround you in a protective shield!',
         'message_room': 'Flames erupt around $n in a protective shield!',
-    },
-    'spell_reflection': {
-        'name': 'Spell Reflection',
-        'mana_cost': 70,
-        'target': 'self',
-        'duration_ticks': 8,
-        'affects': [{'type': 'spell_reflect', 'value': 1}],  # 50% chance to reflect
-        'message_self': 'A reflective aura surrounds you!',
-        'message_room': 'A shimmering aura surrounds $n!',
     },
     'blink': {
         'name': 'Blink',
@@ -676,7 +667,7 @@ SPELLS = {
     },
     # Paladin Talent Spells
     'lay_on_hands': {
-        'name': 'Lay on Hands',
+        'name': 'Laying of Hands',
         'mana_cost': 20,  # Minimum cost, uses all remaining mana
         'target': 'defensive',
         'special': 'lay_on_hands',
@@ -684,7 +675,7 @@ SPELLS = {
         'message_target': '$n places healing hands upon you!',
     },
     'avenging_wrath': {
-        'name': 'Avenging Wrath',
+        'name': 'Ascendant Hour',
         'mana_cost': 100,
         'target': 'self',
         'duration_ticks': 10,
@@ -765,15 +756,48 @@ SPELLS = {
         'message_self': 'Dark energy drains $N\'s vitality!',
         'message_room': 'Dark energy surrounds $N, draining their strength!',
     },
-    'death_grip': {
-        'name': 'Death Grip',
-        'mana_cost': 45,
+    # ── Soulbinder reinvention (Misthollow originals; replace the DK/Warlock
+    #    lifts). Anchored on Soul Shards + the Mist. ──
+    'mistgrasp': {
+        'name': 'Mistgrasp',
+        'mana_cost': 40,
         'damage_dice': '3d8+3',
         'damage_per_level': 2,
         'target': 'offensive',
-        'special': 'death_grip',  # Also stuns
-        'message_self': 'You grasp $N with the power of death!',
-        'message_room': 'Dark energy grips $N!',
+        'special': 'mistgrasp',  # tendrils of mist: dmg + brief rot + 1 Soul Shard
+        'message_self': 'Tendrils of grave-mist seize $N!',
+        'message_room': 'Cold mist coils around $N!',
+    },
+    'wraithfire': {
+        'name': 'Wraithfire',
+        'mana_cost': 35,
+        'damage_dice': '2d8+4',
+        'damage_per_level': 2,
+        'target': 'offensive',
+        'special': 'wraithfire',  # spends up to 5 Soul Shards, +dmg per shard
+        'message_self': 'You hurl bound spirits at $N!',
+        'message_room': 'Screaming wraiths engulf $N!',
+    },
+    'mistrot': {
+        'name': 'Mistrot',
+        'mana_cost': 30,
+        'damage_dice': '1d8+2',
+        'damage_per_level': 1,
+        'target': 'offensive',
+        'special': 'mistrot',  # stacking rot DoT; binds a Soul Shard
+        'message_self': 'You sow creeping rot into $N!',
+        'message_room': 'Greenish rot festers across $N!',
+    },
+    'sever_cord': {
+        'name': 'Sever the Cord',
+        'mana_cost': 90,
+        'damage_dice': '6d8+10',
+        'damage_per_level': 4,
+        'target': 'offensive',
+        'save': True,
+        'special': 'sever_cord',  # execute: <25% HP -> massive reap + 3 shards
+        'message_self': 'You sever the silver cord binding $N to life!',
+        'message_room': "$N's soul is torn loose!",
     },
     'finger_of_death': {
         'name': 'Finger of Death',
@@ -832,7 +856,7 @@ SPELLS = {
 
     # ========== TALENT SPELLS (NEW) ==========
     'pyroblast': {
-        'name': 'Pyroblast',
+        'name': 'Cinderlance',
         'mana_cost': 60,
         'damage_dice': '5d8',
         'damage_per_level': 3,
@@ -842,7 +866,7 @@ SPELLS = {
         'message_room': '$n hurls a massive pyroblast at $N!',
     },
     'combustion': {
-        'name': 'Combustion',
+        'name': 'Kindling Focus',
         'mana_cost': 40,
         'target': 'defensive',
         'duration_ticks': 6,
@@ -851,7 +875,7 @@ SPELLS = {
         'message_other': '$N ignites with overwhelming power.',
     },
     'ice_barrier': {
-        'name': 'Ice Barrier',
+        'name': 'Rimewall',
         'mana_cost': 35,
         'target': 'defensive',
         'duration_ticks': 8,
@@ -860,7 +884,7 @@ SPELLS = {
         'message_other': 'Ice surrounds $N in a protective barrier.',
     },
     'ice_lance': {
-        'name': 'Ice Lance',
+        'name': 'Rimelance',
         'mana_cost': 20,
         'damage_dice': '2d6+4',
         'damage_per_level': 2,
@@ -870,7 +894,7 @@ SPELLS = {
         'message_room': '$n launches a lance of ice at $N!',
     },
     'deep_freeze': {
-        'name': 'Deep Freeze',
+        'name': 'Gravefrost',
         'mana_cost': 45,
         'damage_dice': '3d6+6',
         'damage_per_level': 2,
@@ -890,7 +914,7 @@ SPELLS = {
         'message_other': '$N exhales a blast of winter air.',
     },
     'arcane_missiles': {
-        'name': 'Arcane Missiles',
+        'name': 'Mist Darts',
         'mana_cost': 30,
         'damage_dice': '3d5',
         'damage_per_level': 2,
@@ -900,7 +924,7 @@ SPELLS = {
         'message_room': 'Arcane missiles strike $N!',
     },
     'presence_of_mind': {
-        'name': 'Presence of Mind',
+        'name': 'Clear Mind',
         'mana_cost': 15,
         'target': 'defensive',
         'duration_ticks': 4,
@@ -909,7 +933,7 @@ SPELLS = {
         'message_other': '$N looks intensely focused.',
     },
     'arcane_power': {
-        'name': 'Arcane Power',
+        'name': 'Tower Surge',
         'mana_cost': 25,
         'target': 'defensive',
         'duration_ticks': 6,
@@ -926,7 +950,7 @@ SPELLS = {
         'message_room': '$n rips open a rift of raw mana at $N!',
     },
     'guardian_spirit': {
-        'name': 'Guardian Spirit',
+        'name': 'Wardspirit',
         'mana_cost': 50,
         'target': 'defensive',
         'duration_ticks': 8,
@@ -935,7 +959,7 @@ SPELLS = {
         'message_other': 'A guardian spirit watches over $N.',
     },
     'divine_hymn': {
-        'name': 'Divine Hymn',
+        'name': 'Hymn of the Vigil',
         'mana_cost': 70,
         'heal_dice': '3d8+6',
         'heal_per_level': 2,
@@ -944,7 +968,7 @@ SPELLS = {
         'message_room': '$n sings a divine hymn!',
     },
     'power_word_shield': {
-        'name': 'Power Word: Shield',
+        'name': 'Wardword',
         'mana_cost': 35,
         'target': 'defensive',
         'duration_ticks': 8,
@@ -971,7 +995,7 @@ SPELLS = {
         'message_other': '$N feels less pain.',
     },
     'shadowform': {
-        'name': 'Shadowform',
+        'name': 'Umbral Shroud',
         'mana_cost': 25,
         'target': 'defensive',
         'duration_ticks': 12,
@@ -980,7 +1004,7 @@ SPELLS = {
         'message_other': '$N fades into shadow.',
     },
     'mind_flay': {
-        'name': 'Mind Flay',
+        'name': 'Soulflay',
         'mana_cost': 30,
         'damage_dice': '3d6',
         'damage_per_level': 2,
@@ -992,7 +1016,7 @@ SPELLS = {
         'message_room': "$n flays $N's mind!",
     },
     'shadow_word_pain': {
-        'name': 'Shadow Word: Pain',
+        'name': 'Whisper of Pain',
         'mana_cost': 25,
         'target': 'offensive',
         'special': 'shadow_word_pain',
@@ -1000,7 +1024,7 @@ SPELLS = {
         'message_room': '$n afflicts $N with shadowy pain.',
     },
     'holy_shock': {
-        'name': 'Holy Shock',
+        'name': 'Dawnflash',
         'mana_cost': 35,
         'target': 'offensive',
         'special': 'holy_shock',
@@ -1008,7 +1032,7 @@ SPELLS = {
         'message_room': '$n unleashes a holy shock at $N!',
     },
     'beacon_of_light': {
-        'name': 'Beacon of Light',
+        'name': 'Beacon of Dawn',
         'mana_cost': 30,
         'target': 'defensive',
         'duration_ticks': 20,
@@ -1035,7 +1059,7 @@ SPELLS = {
         'message_other': '$N becomes a divine guardian.',
     },
     'army_of_dead': {
-        'name': 'Army of the Dead',
+        'name': 'Crypt Legion',
         'mana_cost': 60,
         'target': 'defensive',
         'special': 'army_of_dead',
@@ -1043,7 +1067,7 @@ SPELLS = {
         'message_other': '$n summons an army of the dead!',
     },
     'blood_boil': {
-        'name': 'Blood Boil',
+        'name': 'Boiling Bile',
         'mana_cost': 35,
         'target': 'room',
         'special': 'blood_boil',
@@ -1051,7 +1075,7 @@ SPELLS = {
         'message_room': '$n boils the blood of the room!',
     },
     'vampiric_blood': {
-        'name': 'Vampiric Blood',
+        'name': 'Crimson Tide',
         'mana_cost': 30,
         'target': 'defensive',
         'duration_ticks': 6,
@@ -1069,7 +1093,7 @@ SPELLS = {
         'message_other': 'Bones knit into a protective shell around $N.',
     },
     'howling_blast': {
-        'name': 'Howling Blast',
+        'name': 'Gravegale',
         'mana_cost': 35,
         'target': 'room',
         'damage_dice': '3d6',
@@ -1079,7 +1103,7 @@ SPELLS = {
         'message_room': 'A howl of frost rips through the room!',
     },
     'obliterate': {
-        'name': 'Obliterate',
+        'name': 'Soulrend',
         'mana_cost': 40,
         'damage_dice': '5d6',
         'damage_per_level': 3,
@@ -1090,7 +1114,7 @@ SPELLS = {
     },
     # Death Knight - Blood
     'death_strike': {
-        'name': 'Death Strike',
+        'name': 'Crypt Strike',
         'mana_cost': 35,
         'damage_dice': '4d6',
         'damage_per_level': 2,
@@ -1100,7 +1124,7 @@ SPELLS = {
         'message_room': '$n strikes $N with a deathly blow!',
     },
     'dancing_rune_weapon': {
-        'name': 'Dancing Rune Weapon',
+        'name': 'Wraithblade',
         'mana_cost': 60,
         'target': 'self',
         'duration_ticks': 8,
@@ -1110,7 +1134,7 @@ SPELLS = {
     },
     # Death Knight - Frost
     'remorseless_winter': {
-        'name': 'Remorseless Winter',
+        'name': 'Crypt Winter',
         'mana_cost': 45,
         'target': 'room',
         'damage_dice': '2d6',
@@ -1132,7 +1156,7 @@ SPELLS = {
     },
     # Death Knight - Unholy
     'festering_strike': {
-        'name': 'Festering Strike',
+        'name': 'Rotting Strike',
         'mana_cost': 30,
         'damage_dice': '3d6',
         'damage_per_level': 2,
@@ -1151,7 +1175,7 @@ SPELLS = {
     },
     # Priest - Shadow
     'vampiric_embrace': {
-        'name': 'Vampiric Embrace',
+        'name': 'Leeching Veil',
         'mana_cost': 40,
         'target': 'self',
         'duration_ticks': 15,
@@ -1234,65 +1258,104 @@ SPELLS = {
     # These powerful abilities unlock at higher levels and define endgame play.
 
     # ===== MAGE LEVEL 31-60 =====
-    'time_warp': {
-        'name': 'Time Warp',
-        'mana_cost': 120,
-        'target': 'group',
-        'duration_ticks': 20,
-        'level_required': 38,
-        'class_required': 'mage',
-        'cooldown': 300,  # 5 minutes
-        'affects': [
-            {'type': 'haste', 'value': 1},
-            {'type': 'hitroll', 'value': 4},
-            {'type': 'damroll', 'value': 3}
-        ],
-        'message_self': 'You bend the fabric of time, hastening your allies!',
-        'message_room': '$n warps time itself, hastening everyone nearby!',
+    # ── Keeper of the Holy Order reinvention (the Vigil). Reuse the proven
+    #    special hooks under Misthollow names. ──
+    # ── Lightbringer reinvention (the Holy Order / Dawnward). ──
+    'hallowed_ground': {  # was consecration
+        'name': 'Hallowed Ground', 'mana_cost': 60, 'target': 'room', 'duration_ticks': 10,
+        'level_required': 38, 'class_required': 'paladin', 'cooldown': 20,
+        'special': 'consecration', 'damage_per_tick': '2d6+4',
+        'message_self': 'You sanctify the ground; it sears the unworthy.',
     },
-    'arcane_explosion': {
-        'name': 'Arcane Explosion',
-        'mana_cost': 80,
-        'damage_dice': '8d8+20',
-        'damage_per_level': 4,
-        'target': 'room',
-        'level_required': 44,
-        'class_required': 'mage',
-        'cooldown': 30,
-        'element': 'arcane',
-        'message_self': 'You unleash a devastating arcane explosion!',
-        'message_room': '$n unleashes a massive arcane explosion that engulfs everything!',
+    'dawnhammer': {  # was hammer_of_justice
+        'name': 'Dawnhammer', 'mana_cost': 50, 'damage_dice': '4d8+10', 'target': 'offensive',
+        'level_required': 44, 'class_required': 'paladin', 'cooldown': 45,
+        'affects': [{'type': 'stunned', 'value': 1}], 'duration_ticks': 4,
+        'message_self': 'You bring down a hammer of dawnlight upon $N!',
     },
-    'icy_veins': {
-        'name': 'Icy Veins',
-        'mana_cost': 100,
-        'target': 'self',
-        'duration_ticks': 15,
-        'level_required': 50,
-        'class_required': 'mage',
-        'cooldown': 180,  # 3 minutes
-        'affects': [
-            {'type': 'crit_chance', 'value': 30},
-            {'type': 'haste', 'value': 1},
-            {'type': 'spell_power', 'value': 15}
-        ],
-        'message_self': 'Frost surges through your veins, sharpening your focus!',
-        'message_room': '$n\'s eyes glow icy blue as frost power surges through them!',
+    'ascendant_hour': {  # was avenging_wrath
+        'name': 'Ascendant Hour', 'mana_cost': 120, 'target': 'self', 'duration_ticks': 20,
+        'level_required': 50, 'class_required': 'paladin', 'cooldown': 180,
+        'affects': [{'type': 'damroll', 'value': 12}, {'type': 'hitroll', 'value': 8}, {'type': 'heal_power', 'value': 30}, {'type': 'haste', 'value': 1}],
+        'message_self': 'The Order\'s light crowns you; your hour is ascendant.',
     },
-    'combustion_master': {
-        'name': 'Combustion',
-        'mana_cost': 80,
-        'target': 'self',
-        'duration_ticks': 12,
-        'level_required': 56,
-        'class_required': 'mage',
-        'cooldown': 180,
-        'affects': [
-            {'type': 'fire_crit', 'value': 100},  # Guaranteed fire crits
-            {'type': 'damroll', 'value': 8}
-        ],
-        'message_self': 'Your inner fire ignites - every spell WILL burn!',
-        'message_room': '$n erupts in flames, fire magic guaranteed to devastate!',
+    'verdict_of_the_order': {  # was crusaders_judgment
+        'name': 'Verdict of the Order', 'mana_cost': 250, 'damage_dice': '12d10+40', 'target': 'offensive',
+        'level_required': 60, 'class_required': 'paladin', 'cooldown': 600,
+        'special': 'crusaders_judgment',
+        'message_self': 'You pronounce the Order\'s final verdict upon $N!',
+    },
+    'unfettered': {  # was hand_of_freedom
+        'name': 'Unfettered', 'mana_cost': 40, 'target': 'defensive', 'duration_ticks': 8,
+        'level_required': 32, 'class_required': 'paladin', 'cooldown': 30,
+        'special': 'hand_of_freedom',
+        'message_self': 'A touch of dawn frees $N from every binding.',
+    },
+    'travelling_grace': {  # was prayer_of_mending
+        'name': 'Travelling Grace', 'mana_cost': 60, 'heal_dice': '4d8+10', 'heal_per_level': 2,
+        'target': 'defensive', 'level_required': 32, 'class_required': 'cleric', 'cooldown': 15,
+        'special': 'prayer_of_mending', 'bounces': 3,
+        'message_self': "A grace settles on $N, ready to leap to the next in need.",
+    },
+    'shared_burden': {  # was spirit_link
+        'name': 'Shared Burden', 'mana_cost': 100, 'target': 'group', 'duration_ticks': 15,
+        'level_required': 38, 'class_required': 'cleric', 'cooldown': 120,
+        'special': 'spirit_link', 'affects': [{'type': 'spirit_link', 'value': 1}],
+        'message_self': 'You bind your circle to share every wound between them.',
+    },
+    'font_of_the_vigil': {  # was lightwell
+        'name': 'Font of the Vigil', 'mana_cost': 100, 'target': 'room', 'duration_ticks': 30,
+        'level_required': 50, 'class_required': 'cleric', 'cooldown': 180,
+        'special': 'lightwell', 'heal_per_tick': '2d8+5',
+        'message_self': 'You raise a font of the Vigil; its light mends all who tarry near.',
+    },
+    # ── Adept of the High Tower reinvention (Mages Circle / the Mist).
+    #    Identity renames preserve the affect mechanics; Resonance Burst gets
+    #    a genuinely-new Arcane-Charge-spend mechanic. ──
+    'stepwise': {  # was blink
+        'name': 'Stepwise', 'mana_cost': 30, 'target': 'self', 'duration_ticks': 12,
+        'affects': [{'type': 'blink', 'value': 1}],
+        'message_self': 'You fold space and step a pace sideways through the Mist.',
+    },
+    'phase_step': {  # was displacement
+        'name': 'Phase Step', 'mana_cost': 35, 'target': 'self', 'duration_ticks': 18,
+        'affects': [{'type': 'displacement', 'value': 1}],
+        'message_self': 'Your outline blurs as you phase half a step out of the world.',
+    },
+    'tower_echoes': {  # was mirror_image
+        'name': 'Tower Echoes', 'mana_cost': 40, 'target': 'self', 'duration_ticks': 12,
+        'affects': [{'type': 'mirror_image', 'value': 3}],
+        'message_self': 'Three echoes of the High Tower step out of you.',
+    },
+    'mirrorward': {  # was spell_reflection
+        'name': 'Mirrorward', 'mana_cost': 70, 'target': 'self', 'duration_ticks': 8,
+        'affects': [{'type': 'spell_reflect', 'value': 1}],
+        'message_self': 'A mirrored ward of leyline-glass surrounds you.',
+    },
+    'quicken': {  # was time_warp
+        'name': 'Quicken', 'mana_cost': 120, 'target': 'group', 'duration_ticks': 20,
+        'level_required': 38, 'class_required': 'mage', 'cooldown': 300,
+        'affects': [{'type': 'haste', 'value': 1}, {'type': 'hitroll', 'value': 4}, {'type': 'damroll', 'value': 3}],
+        'message_self': 'You quicken the hour for your circle.',
+    },
+    'rimeheart': {  # was icy_veins
+        'name': 'Rimeheart', 'mana_cost': 100, 'target': 'self', 'duration_ticks': 15,
+        'level_required': 50, 'class_required': 'mage', 'cooldown': 180,
+        'affects': [{'type': 'crit_chance', 'value': 30}, {'type': 'haste', 'value': 1}, {'type': 'spell_power', 'value': 15}],
+        'message_self': 'Crypt-cold floods your veins; your casting sharpens to ice.',
+    },
+    'kindling_focus': {  # was combustion_master
+        'name': 'Kindling Focus', 'mana_cost': 80, 'target': 'self', 'duration_ticks': 12,
+        'level_required': 56, 'class_required': 'mage', 'cooldown': 180,
+        'affects': [{'type': 'fire_crit', 'value': 100}, {'type': 'damroll', 'value': 8}],
+        'message_self': 'You gather every ember into a single searing focus.',
+    },
+    'resonance_burst': {  # was arcane_explosion — now spends Arcane Charges
+        'name': 'Resonance Burst', 'mana_cost': 70, 'target': 'self',
+        'level_required': 44, 'class_required': 'mage', 'cooldown': 24,
+        'special': 'resonance_burst',
+        'message_self': 'You release your stored arcane resonance in a ringing burst!',
+        'message_room': '$n releases a ringing burst of arcane resonance!',
     },
     'meteor_storm': {
         'name': 'Meteor Storm',
@@ -1314,20 +1377,6 @@ SPELLS = {
     },
 
     # ===== CLERIC LEVEL 31-60 =====
-    'prayer_of_mending': {
-        'name': 'Prayer of Mending',
-        'mana_cost': 60,
-        'heal_dice': '4d8+10',
-        'heal_per_level': 2,
-        'target': 'defensive',
-        'level_required': 32,
-        'class_required': 'cleric',
-        'cooldown': 15,
-        'special': 'prayer_of_mending',  # Bounces to injured allies
-        'bounces': 3,
-        'message_self': 'You place a prayer of mending on $N - it will bounce to heal others!',
-        'message_other': 'A glowing prayer settles on you, ready to heal and bounce!',
-    },
     'spirit_link': {
         'name': 'Spirit Link',
         'mana_cost': 100,
@@ -1341,8 +1390,8 @@ SPELLS = {
         'message_self': 'You link the spirits of your allies - damage is shared equally!',
         'message_room': 'Glowing spirit chains connect everyone in $n\'s group!',
     },
-    'mass_dispel': {
-        'name': 'Mass Dispel',
+    'cleansing_rite': {
+        'name': 'Cleansing Rite',
         'mana_cost': 80,
         'target': 'room',
         'level_required': 44,
@@ -1351,19 +1400,6 @@ SPELLS = {
         'special': 'mass_dispel',
         'message_self': 'You unleash a wave of purifying energy!',
         'message_room': 'A wave of holy light purges magical effects from everyone!',
-    },
-    'lightwell': {
-        'name': 'Lightwell',
-        'mana_cost': 100,
-        'target': 'room',
-        'duration_ticks': 30,
-        'level_required': 50,
-        'class_required': 'cleric',
-        'cooldown': 180,
-        'special': 'lightwell',
-        'heal_per_tick': '2d8+5',
-        'message_self': 'You summon a radiant Lightwell that pulses with healing energy!',
-        'message_room': 'A pillar of holy light appears, radiating healing energy!',
     },
     'serenity': {
         'name': 'Serenity',
@@ -1402,49 +1438,6 @@ SPELLS = {
         'message_self': 'You grant $N freedom from all bonds!',
         'message_other': 'Golden light surrounds you - you are FREE!',
     },
-    'consecration': {
-        'name': 'Consecration',
-        'mana_cost': 60,
-        'target': 'room',
-        'duration_ticks': 10,
-        'level_required': 38,
-        'class_required': 'paladin',
-        'cooldown': 20,
-        'special': 'consecration',
-        'damage_per_tick': '2d6+4',
-        'message_self': 'You consecrate the ground with holy fire!',
-        'message_room': 'Holy flames erupt from the ground around $n!',
-    },
-    'hammer_of_justice': {
-        'name': 'Hammer of Justice',
-        'mana_cost': 50,
-        'damage_dice': '4d8+10',
-        'target': 'offensive',
-        'level_required': 44,
-        'class_required': 'paladin',
-        'cooldown': 45,
-        'affects': [{'type': 'stunned', 'value': 1}],
-        'duration_ticks': 4,
-        'message_self': 'You hurl a hammer of holy justice at $N!',
-        'message_room': '$n hurls a blazing hammer at $N, stunning them!',
-    },
-    'avenging_wrath_master': {
-        'name': 'Avenging Wrath',
-        'mana_cost': 120,
-        'target': 'self',
-        'duration_ticks': 20,
-        'level_required': 50,
-        'class_required': 'paladin',
-        'cooldown': 180,
-        'affects': [
-            {'type': 'damroll', 'value': 12},
-            {'type': 'hitroll', 'value': 8},
-            {'type': 'heal_power', 'value': 30},
-            {'type': 'haste', 'value': 1}
-        ],
-        'message_self': 'Wings of GOLDEN LIGHT burst from your back!',
-        'message_room': 'WINGS OF LIGHT burst from $n as divine wrath fills them!',
-    },
     'divine_shield_master': {
         'name': 'Divine Shield',
         'mana_cost': 80,
@@ -1457,33 +1450,8 @@ SPELLS = {
         'message_self': 'You are surrounded by an IMPENETRABLE divine shield!',
         'message_room': '$n is encased in a bubble of PURE DIVINE LIGHT!',
     },
-    'crusaders_judgment': {
-        'name': "Crusader's Judgment",
-        'mana_cost': 250,
-        'damage_dice': '12d10+40',
-        'target': 'offensive',
-        'level_required': 60,
-        'class_required': 'paladin',
-        'cooldown': 600,
-        'special': 'crusaders_judgment',
-        'message_self': 'You invoke the ULTIMATE JUDGMENT of the Light!',
-        'message_room': 'Divine power EXPLODES as $n calls down CRUSADER\'S JUDGMENT!',
-    },
 
     # ===== NECROMANCER LEVEL 31-60 =====
-    'death_coil': {
-        'name': 'Death Coil',
-        'mana_cost': 45,
-        'damage_dice': '3d8+8',
-        'heal_dice': '4d8+12',
-        'target': 'offensive',
-        'level_required': 32,
-        'class_required': 'necromancer',
-        'cooldown': 12,
-        'special': 'death_coil',
-        'message_self': 'You hurl a coil of death energy at $N!',
-        'message_room': '$n hurls dark death energy at $N!',
-    },
     'corpse_shield': {
         'name': 'Corpse Shield',
         'mana_cost': 60,
@@ -1496,20 +1464,6 @@ SPELLS = {
         'affects': [{'type': 'damage_redirect_pet', 'value': 50}],
         'message_self': 'Your undead minion forms a protective barrier around you!',
         'message_room': 'Bones and shadow swirl around $n protectively!',
-    },
-    'plague_strike': {
-        'name': 'Plague Strike',
-        'mana_cost': 55,
-        'damage_dice': '3d6+5',
-        'target': 'offensive',
-        'level_required': 44,
-        'class_required': 'necromancer',
-        'cooldown': 20,
-        'special': 'plague_strike',
-        'affects': [{'type': 'plague', 'value': 1}],
-        'duration_ticks': 10,
-        'message_self': 'You strike $N with virulent plague!',
-        'message_room': '$n strikes $N with a diseased blow that spreads to nearby foes!',
     },
     'summon_gargoyle': {
         'name': 'Summon Gargoyle',
@@ -1547,8 +1501,8 @@ SPELLS = {
     },
 
     # ===== BARD LEVEL 31-60 =====
-    'hymn_of_hope': {
-        'name': 'Hymn of Hope',
+    'refrain_of_hope': {
+        'name': 'Refrain of Hope',
         'mana_cost': 50,
         'target': 'group',
         'duration_ticks': 20,
@@ -1639,6 +1593,64 @@ SPELLS = {
         'message_room': '$n performs their MAGNUM OPUS - music of LEGENDARY power fills the air!',
     },
 
+    # ---- talent capstones (QA 2026-06-12): were unlockable but undefined ----
+    'phoenix_flames': {
+        'name': 'Phoenix Flames', 'mana_cost': 60, 'damage_dice': '6d10+10',
+        'damage_per_level': 2, 'target': 'offensive',
+        'message_self': 'A phoenix of living flame erupts from your hands and engulfs $N!',
+        'message_room': 'A phoenix of living flame bursts from $n and engulfs $N!',
+    },
+    'renew': {
+        'name': 'Renew', 'mana_cost': 30, 'heal_dice': '2d8+6', 'heal_per_level': 1,
+        'target': 'defensive', 'duration_ticks': 8,
+        'affects': [{'type': 'regenerating', 'value': 1}],
+        'message_self': 'A gentle warmth settles in, knitting wounds closed over time.',
+        'message_other': "$N is wrapped in a soft, mending light.",
+    },
+    'inner_focus': {
+        'name': 'Inner Focus', 'mana_cost': 40, 'target': 'self', 'duration_ticks': 5,
+        'cooldown': 90,
+        'affects': [{'type': 'spell_power', 'value': 20}, {'type': 'heal_power', 'value': 20}],
+        'message_self': 'You center your mind; your next workings will strike true.',
+    },
+    'wound_poison': {
+        'name': 'Wasting Coat', 'mana_cost': 35, 'damage_dice': '3d6+4', 'target': 'offensive',
+        'duration_ticks': 6, 'affects': [{'type': 'poison', 'value': 4}],
+        'message_self': 'You rake $N with venom-slick blades!',
+        'message_room': '$n rakes $N with venom-slick blades!',
+    },
+    'polymorph': {
+        'name': 'Beastshape', 'mana_cost': 70, 'target': 'offensive', 'duration_ticks': 3,
+        'cooldown': 60, 'affects': [{'type': 'sleep', 'value': 1}],
+        'message_self': 'You weave a glamour - $N blinks, bleats, and becomes a placid sheep!',
+        'message_room': '$n gestures at $N, who blinks, bleats, and becomes a placid sheep!',
+    },
+    'divine_favor': {
+        'name': 'Divine Favor', 'mana_cost': 45, 'target': 'self', 'duration_ticks': 8,
+        'cooldown': 120, 'affects': [{'type': 'heal_power', 'value': 30}],
+        'message_self': 'A mantle of golden light settles on your shoulders.',
+    },
+    'dark_transformation': {
+        'name': 'Risen Horror', 'mana_cost': 80, 'target': 'self', 'duration_ticks': 10,
+        'cooldown': 120,
+        'affects': [{'type': 'damroll', 'value': 6}, {'type': 'spell_power', 'value': 15}],
+        'message_self': 'Shadow boils out of your veins - you are something more than alive.',
+        'message_room': "Darkness coils around $n like a living shroud.",
+    },
+    'breath_of_sindragosa': {
+        'name': 'Breath of the Crypt', 'mana_cost': 90, 'damage_dice': '8d8+12',
+        'damage_per_level': 2, 'target': 'offensive', 'duration_ticks': 3,
+        'affects': [{'type': 'slow', 'value': 1}],
+        'message_self': 'You exhale a torrent of grave-frost over $N!',
+        'message_room': '$n exhales a torrent of grave-frost over $N!',
+    },
+    'grand_illusion': {
+        'name': 'Grand Illusion', 'mana_cost': 100, 'target': 'self', 'duration_ticks': 10,
+        'cooldown': 180,
+        'affects': [{'type': 'displacement', 'value': 1}, {'type': 'mirror_image', 'value': 3}],
+        'message_self': 'The stage is yours: a dozen of you take a bow at once.',
+        'message_room': 'A dozen copies of $n take a bow at once!',
+    },
 }
 
 # ========== RANGER COMPANION SYSTEM ==========
@@ -1868,6 +1880,9 @@ class SpellHandler:
 
     @classmethod
     async def cast_spell(cls, caster: 'Player', spell_name: str, target_name: Optional[str] = None):
+        if 'silenced' in getattr(caster, 'affect_flags', set()):
+            await caster.send(f"{caster.config.COLORS['red']}You open your mouth, but the discordant silence swallows the words!{caster.config.COLORS['reset']}")
+            return
         """Cast a spell."""
         c = cls.config.COLORS
         
@@ -1933,6 +1948,9 @@ class SpellHandler:
             
         # Get target
         target = await cls.get_target(caster, spell, target_name)
+        if target is None and spell.get('target') in ('object', 'door'):
+            await caster.send(f"{caster.config.COLORS['yellow']}Cast {spell.get('name', spell_name)} on what?{caster.config.COLORS['reset']}")
+            return
         if target is None and spell['target'] not in ('self', 'special', 'object', 'door', 'group', 'room'):
             await caster.send("Cast the spell on whom?")
             return
@@ -2121,7 +2139,7 @@ class SpellHandler:
                 damage = cls.roll_dice(spell['damage_dice'])
                 damage += spell.get('damage_per_level', 0) * caster.level
                 # Affix bonuses: spell_power and per-spell bonus (percentage)
-                spell_bonus = caster.get_equipment_bonus('spell_power') + caster.get_equipment_bonus(spell_name)
+                spell_bonus = caster.get_equipment_bonus('spell_power') + caster.get_equipment_bonus(spell_name) + getattr(caster, 'spell_power', 0)
                 if spell_bonus:
                     damage = int(damage * (1 + (spell_bonus / 100)))
 
@@ -2182,8 +2200,17 @@ class SpellHandler:
                 # Apply spell damage
                 damage_type = spell.get('damage_type', 'magic')
                 killed = await target.take_damage(damage, caster, damage_type=damage_type)
-                
+
                 await caster.send(f"{c['bright_red']}Your spell does {damage} damage to {target.name}!{c['reset']}")
+
+                # elemental terrain interplay: fire ignites webbed rooms, frost
+                # freezes water into ice, lightning cast into water splashes
+                # everyone standing in the fight
+                try:
+                    from environment import elemental_cast
+                    await elemental_cast(caster, target, spell_name)
+                except Exception:
+                    pass
 
                 # Build arcane charges on offensive casts
                 if hasattr(caster, 'char_class') and str(caster.char_class).lower() == 'mage':
@@ -2218,7 +2245,7 @@ class SpellHandler:
                 heal += spell.get('heal_per_level', 0) * caster.level
 
             # Affix bonuses: heal_power and per-spell bonus (percentage)
-            heal_bonus = caster.get_equipment_bonus('heal_power') + caster.get_equipment_bonus(spell_name)
+            heal_bonus = caster.get_equipment_bonus('heal_power') + caster.get_equipment_bonus(spell_name) + getattr(caster, 'heal_power', 0)
             if heal_bonus:
                 heal = int(heal * (1 + (heal_bonus / 100)))
 
@@ -2365,7 +2392,11 @@ class SpellHandler:
         # Determine if this is a stat modification or a flag
         stat_types = {'hitroll', 'damroll', 'ac', 'str', 'int', 'wis', 'dex', 'con', 'cha',
                      'armor_class', 'max_hp', 'max_mana', 'max_move', 'saving_throw',
-                     'spell_resist', 'damage_reduction'}
+                     'spell_resist', 'damage_reduction',
+                     'crit_chance', 'spell_power', 'heal_power', 'mana_regen'}
+        if affect_type == 'fire_crit':
+            affect_type = 'crit_chance'   # fire-school crit rides the same math
+            affect['type'] = 'crit_chance'
         flag_types = {'blind', 'invisible', 'sanctuary', 'haste', 'fly', 'detect_magic',
                      'detect_invisible', 'sense_life', 'waterwalk', 'stoneskin', 'mirror_image',
                      'displacement', 'mana_shield', 'ice_armor', 'fire_shield', 'spell_reflect',
@@ -2373,7 +2404,8 @@ class SpellHandler:
                      'detect_evil', 'charmed', 'entangled', 'sleeping', 'stunned', 'slow',
                      'combustion', 'presence_of_mind', 'arcane_power', 'guardian_spirit',
                      'beacon_of_light', 'holy_shield', 'divine_guardian', 'aegis_ward', 'shadowform',
-                     'armour_ward', 'briskness', 'shielded'}
+                     'armour_ward', 'briskness', 'shielded',
+                     'silenced', 'spirit_link', 'damage_redirect_pet', 'regenerating'}
 
         # Create affect data for AffectManager
         affect_data = {
@@ -2414,8 +2446,28 @@ class SpellHandler:
         elif affect_type in flag_types:
             affect_data['type'] = AffectManager.TYPE_FLAG
             # Absorption shields keep their value, other flags are binary
-            if affect_type not in ('divine_shield', 'stoneskin', 'armour_ward'):
+            if affect_type not in ('divine_shield', 'stoneskin', 'armour_ward', 'damage_redirect_pet'):
                 affect_data['value'] = 1  # Flags are binary (on/off)
+        elif affect_type == 'plague':
+            # virulent DOT + diseased marker (necromancer plague strike)
+            AffectManager.apply_affect(target, {
+                'name': 'plague', 'type': AffectManager.TYPE_DOT, 'applies_to': 'hp',
+                'value': max(2, value * 3 + caster_level // 4),
+                'duration': duration, 'caster_level': caster_level,
+            })
+            AffectManager.apply_affect(target, {
+                'name': 'plague', 'type': AffectManager.TYPE_FLAG, 'applies_to': 'diseased',
+                'value': 1, 'duration': duration, 'caster_level': caster_level,
+            })
+            return
+        elif affect_type == 'all_stats':
+            for st in ('str', 'int', 'wis', 'dex', 'con', 'cha'):
+                AffectManager.apply_affect(target, {
+                    'name': spell_name, 'type': AffectManager.TYPE_MODIFY_STAT,
+                    'applies_to': st, 'value': value,
+                    'duration': duration, 'caster_level': caster_level,
+                })
+            return
         elif affect_type == 'sleep':
             # Special case: sleep changes position immediately
             target.position = 'sleeping'
@@ -2441,6 +2493,69 @@ class SpellHandler:
                 if hasattr(caster, attr):
                     setattr(caster, attr, 0)
             await caster.send(f"{c['cyan']}Your frost power surges anew.{c['reset']}")
+            return
+
+        elif special == 'resonance_burst':
+            # Spend Arcane Charges for an escalating room burst (mage signature)
+            from combat import CombatHandler
+            charges = getattr(caster, 'arcane_charges', 0)
+            caster.arcane_charges = 0
+            base = cls.roll_dice('6d8+12') + caster.level * 3
+            per = 6 + caster.level // 3
+            total = base + charges * per
+            if caster.room:
+                hit = 0
+                for char in list(caster.room.characters):
+                    if char is not caster and hasattr(char, 'hp') and getattr(char, 'hp', 0) > 0 and not hasattr(char, 'connection'):
+                        killed = await char.take_damage(total, caster)
+                        hit += 1
+                        if killed:
+                            await CombatHandler.handle_death(caster, char)
+                await caster.send(f"{c['magenta']}Resonance Burst detonates for {total} (spent {charges} Arcane Charge{'s' if charges != 1 else ''}), striking {hit} foe{'s' if hit != 1 else ''}!{c['reset']}")
+            return
+
+        elif special in ('mistgrasp', 'wraithfire', 'mistrot', 'sever_cord'):
+            # ── Soulbinder originals — Soul-Shard death magic ──
+            from combat import CombatHandler
+            from affects import AffectManager
+            def _grant_shards(n):
+                cur = getattr(caster, 'soul_shards', 0)
+                caster.soul_shards = min(10, cur + n)
+                gained = caster.soul_shards - cur
+                if gained:
+                    c2 = caster.config.COLORS
+                    return f"{c2['magenta']}(+{gained} Soul Shard{'s' if gained != 1 else ''}: {caster.soul_shards}/10){c2['reset']}"
+                return ''
+            base = cls.roll_dice(spell['damage_dice']) + caster.level * spell.get('damage_per_level', 0)
+            note = ''
+            if special == 'mistgrasp':
+                damage = base
+                AffectManager.apply_affect(target, {'name': 'mistrot', 'type': AffectManager.TYPE_DOT,
+                    'applies_to': 'hp', 'value': 4 + caster.level // 6, 'duration': 4, 'caster_level': caster.level})
+                note = _grant_shards(1)
+            elif special == 'wraithfire':
+                spent = min(5, getattr(caster, 'soul_shards', 0))
+                caster.soul_shards -= spent
+                damage = base + spent * (8 + caster.level // 4)
+                if spent:
+                    note = f"{c['magenta']}(consumed {spent} Soul Shard{'s' if spent != 1 else ''}){c['reset']}"
+            elif special == 'mistrot':
+                damage = base
+                AffectManager.apply_affect(target, {'name': 'mistrot', 'type': AffectManager.TYPE_DOT,
+                    'applies_to': 'hp', 'value': 6 + caster.level // 4, 'duration': 6,
+                    'caster_level': caster.level, 'stacking': True})
+                note = _grant_shards(1)
+            else:  # sever_cord — execute
+                hp_pct = (target.hp / target.max_hp) if getattr(target, 'max_hp', 0) else 1.0
+                if hp_pct <= 0.25:
+                    damage = base + caster.level * 6
+                    note = _grant_shards(3) + f" {c['bright_red']}THE CORD IS SEVERED!{c['reset']}"
+                else:
+                    damage = base
+            await caster.send(f"{c['magenta']}{spell['name']} strikes {target.name} for {damage} damage! {note}{c['reset']}")
+            killed = await target.take_damage(damage, caster)
+            if killed:
+                await CombatHandler.handle_death(caster, target)
             return
 
         elif special == 'briskness':
@@ -2553,7 +2668,6 @@ class SpellHandler:
 
         elif special == 'finger_of_death':
             # Finger of Death: massive damage + instant kill chance on low HP targets
-            import random
             
             # Calculate damage: 12d10+30 + 8 per level
             damage = cls.roll_dice('12d10+30') + (caster.level * 8)
@@ -2859,9 +2973,10 @@ class SpellHandler:
                     if char != caster and not (hasattr(char, 'owner') and char.owner == caster):
                         if hasattr(char, 'hp') and hasattr(char, 'take_damage'):
                             killed = await char.take_damage(total_damage, caster)
-                            await char.send(f"{c['bright_red']}The explosion engulfs you for {total_damage} damage!{c['reset']}")
+                            if hasattr(char, 'send'):
+                                await char.send(f"{c['bright_red']}The explosion engulfs you for {total_damage} damage!{c['reset']}")
                             hit_count += 1
-                            if killed and hasattr(char, 'send'):
+                            if killed:
                                 from combat import CombatHandler
                                 await CombatHandler.handle_death(caster, char)
                 
@@ -3219,17 +3334,15 @@ class SpellHandler:
 
         elif special == 'create_food':
             # Create food item
-            from objects import GameObject
-            food = GameObject.create_from_template({
-                'vnum': 9999,
-                'name': 'conjured bread',
-                'short_desc': 'a loaf of conjured bread',
-                'description': 'A magically created loaf of bread.',
-                'item_type': 'food',
-                'weight': 1,
-                'cost': 0,
-                'food_value': 12,
-            })
+            from objects import Object
+            food = Object(9999, caster.world)
+            food.name = 'conjured bread'
+            food.short_desc = 'a loaf of conjured bread'
+            food.room_desc = 'A loaf of conjured bread lies here.'
+            food.description = 'A magically created loaf of bread, still warm.'
+            food.item_type = 'food'
+            food.weight = 1
+            food.food_value = 12
             caster.inventory.append(food)
             await caster.send(f"{c['bright_yellow']}You conjure a loaf of bread!{c['reset']}")
 
@@ -3247,18 +3360,17 @@ class SpellHandler:
                 await caster.send(f"{c['bright_cyan']}You fill the waterskin with fresh water!{c['reset']}")
             else:
                 # Create a waterskin
-                from objects import GameObject
-                waterskin = GameObject.create_from_template({
-                    'vnum': 9998,
-                    'name': 'conjured waterskin',
-                    'short_desc': 'a conjured waterskin',
-                    'description': 'A magically created waterskin filled with water.',
-                    'item_type': 'drink',
-                    'weight': 2,
-                    'cost': 0,
-                    'drinks': 20,
-                    'liquid': 'water',
-                })
+                from objects import Object
+                waterskin = Object(9998, caster.world)
+                waterskin.name = 'conjured waterskin'
+                waterskin.short_desc = 'a conjured waterskin'
+                waterskin.room_desc = 'A conjured waterskin lies here.'
+                waterskin.description = 'A magically created waterskin, beaded with cool condensation.'
+                waterskin.item_type = 'drink'
+                waterskin.weight = 2
+                waterskin.drinks = 20
+                waterskin.max_drinks = 20
+                waterskin.liquid = 'water'
                 caster.inventory.append(waterskin)
                 await caster.send(f"{c['bright_cyan']}You conjure a waterskin full of water!{c['reset']}")
 

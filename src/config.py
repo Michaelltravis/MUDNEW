@@ -90,6 +90,30 @@ class Config:
     COMBAT_FATIGUE_HIT_PENALTY = 2
     COMBAT_FATIGUE_DAMAGE_PENALTY = 0.10
 
+    # Fight pacing (gauntlet playability-01). Mob DATA stays untouched; these
+    # rules shape how a fight feels: a level-appropriate duel lasts 8-20
+    # rounds, mob burst is telegraphed rather than random, and staggers are
+    # reachable. All applied in combat.py / mob_ai.py.
+    PLAYER_LEVEL_HIT_DIV = 3              # players add level//3 to their hit roll
+    PLAYER_DAMAGE_MULT_PER_LEVEL = 0.22   # weapon dice x (1 + level * this)
+    PLAYER_DAMAGE_FLAT_PER_LEVEL = 0.6    # ...plus level*0.6 flat (keeps low rolls from stalling a fight)
+    PLAYER_TOUGHNESS_PER_LEVEL = 0.0185   # damage reduction vs NPC hits per level
+    PLAYER_TOUGHNESS_CAP = 0.60
+    MOB_CRIT_CHANCE = 5                   # NPC random crits are rare: burst comes from wind-ups
+    MOB_WINDUP_AUTOATTACK_MULT = 0.5      # a mob gathering a heavy swings lighter that round
+    BOSS_SWING_CAP_PCT = 0.10             # no single player swing takes >10% of a boss's HP
+    HEAVY_BLOW_MULT = 2.2                 # crushing blow = 2.2x a full average hit
+    SWEEP_BLOW_MULT = 1.7
+    HEAVY_STUN_CHANCE = 15                # % chance an unbraced crushing blow also stuns
+    POISE_BASE = 3                        # stagger budget: POISE_BASE + level//POISE_LEVEL_DIV hits
+    POISE_LEVEL_DIV = 8
+    POISE_HEAVY_HIT_PCT = 0.08            # a hit >= 8% of max HP (or a crit) chips double poise
+    LOW_HP_WARN_PCT = 0.25                # one warning per fight when HP first drops below this
+    WINDUP_FIRST_ROUND_CHANCE = 100       # opening wind-up is guaranteed
+    WINDUP_CHANCE = 75                    # per-round chance once the cooldown is up
+    WINDUP_COOLDOWN_MIN = 10              # seconds from declaration to next eligible declaration
+    WINDUP_COOLDOWN_MAX = 14              #   (resolution is +4s, so ~every 3-4 rounds)
+
     FLEE_COOLDOWN_SECONDS = 6
     ESCAPE_COOLDOWN_SECONDS = 8
     DISENGAGE_COOLDOWN_SECONDS = 6
@@ -272,16 +296,16 @@ class Config:
             'move_dice': 4,
             'thac0_progression': 'slow',
             'save_progression': 'mage',
-            'skills': ['scribe', 'arcane_barrage', 'evocation', 'arcane_blast', 'dodge'],
+            'skills': ['scribe', 'charge_release', 'drink_the_leyline', 'towerbolt', 'dodge'],
             'spells': ['magic_missile', 'burning_hands', 'chill_touch', 'fireball', 'lightning_bolt',
                       'sleep', 'color_spray', 'teleport', 'fly', 'invisibility', 'detect_magic',
                       'identify', 'enchant_weapon', 'meteor_swarm', 'chain_lightning',
                       # Defensive spells
-                      'armor', 'shield', 'stoneskin', 'mirror_image', 'displacement', 'mana_shield',
-                      'ice_armor', 'fire_shield', 'spell_reflection', 'blink',
+                      'armor', 'shield', 'stoneskin', 'tower_echoes', 'phase_step', 'mana_shield',
+                      'ice_armor', 'fire_shield', 'mirrorward', 'stepwise',
                       'protection_from_evil', 'protection_from_good',
                       # Level 31-60 spells
-                      'time_warp', 'arcane_explosion', 'icy_veins', 'combustion_master', 'meteor_storm'],
+                      'quicken', 'resonance_burst', 'rimeheart', 'kindling_focus', 'meteor_storm'],
             # Level 31-60: mana_shield (32), time_warp (38), arcane_explosion (44),
             #              icy_veins (50), combustion_master (56), meteor_storm (60)
         },
@@ -295,7 +319,7 @@ class Config:
             'thac0_progression': 'medium',
             'save_progression': 'cleric',
             'skills': ['turn_undead', 'holy_smite', 'dodge', 'divine_word',
-                      'holy_fire', 'divine_intervention'],
+                      'pyre_of_faith', 'divine_intervention'],
             'spells': ['cure_light', 'cure_serious', 'cure_critical', 'heal', 'group_heal',
                       'bless', 'armor', 'sanctuary', 'remove_curse', 'remove_poison',
                       'create_food', 'create_water', 'summon', 'word_of_recall', 'resurrect',
@@ -304,7 +328,7 @@ class Config:
                       'shield_of_faith', 'divine_shield', 'barkskin', 'righteous_fury',
                       'divine_protection', 'aegis', 'holy_aura', 'protection_from_evil',
                       # Level 31-60 spells
-                      'prayer_of_mending', 'spirit_link', 'mass_dispel', 'lightwell',
+                      'travelling_grace', 'shared_burden', 'cleansing_rite', 'font_of_the_vigil',
                       'serenity', 'divine_intervention'],
             # Clerics build Divine Favor through healing/turning undead, spend on holy_smite
             # Level 31-60: prayer_of_mending (32), spirit_link (38), mass_dispel (44),
@@ -321,7 +345,7 @@ class Config:
             'save_progression': 'thief',
             'skills': ['backstab', 'sneak', 'hide', 'steal', 'pick_lock', 'detect_traps',
                       'second_attack', 'dodge', 'evasion', 'pocket_sand', 'low_blow',
-                      'rigged_dice', 'jackpot', 'circle', 'trip'],
+                      'rigged_dice', 'jackpot', 'circle', 'trip', 'caltrops'],
             'spells': [],
             # Thieves use combo points: backstab/attacks build points, finishers spend them
             # Finishers: eviscerate (1+), kidney_shot (4+), slice_dice (3+)
@@ -338,7 +362,8 @@ class Config:
             'thac0_progression': 'fast',
             'save_progression': 'warrior',
             'skills': ['track', 'sneak', 'hide', 'second_attack', 'dual_wield', 'dodge', 'scan',
-                      'aimed_shot', 'kill_command', 'rapid_fire', 'hunters_mark', 'tame'],
+                      'truesight_shot', 'wildbond_strike', 'loosing_storm', 'quarry_mark', 'tame',
+                      'snare'],
             'spells': ['cure_light', 'detect_magic', 'faerie_fire', 'call_lightning',
                       'barkskin', 'entangle', 'briskness'],
             # Rangers can tame animal companions: wolf, bear, hawk, cat, boar
@@ -354,14 +379,14 @@ class Config:
             'move_dice': 4,
             'thac0_progression': 'fast',
             'save_progression': 'warrior',
-            'skills': ['rescue', 'bash', 'turn_undead', 'second_attack', 'smite',
-                      'oath', 'templars_verdict', 'word_of_glory', 'divine_storm',
+            'skills': ['rescue', 'bash', 'turn_undead', 'second_attack', 'censure',
+                      'oath', 'order_verdict', 'absolution', 'halo_of_reckoning',
                       'dodge', 'parry', 'shield_block'],
             'spells': ['cure_light', 'cure_serious', 'bless', 'detect_evil', 'protection_from_evil',
                       'shield_of_faith', 'divine_shield',
                       # Level 31-60 spells
-                      'hand_of_freedom', 'consecration', 'hammer_of_justice',
-                      'avenging_wrath_master', 'divine_shield_master', 'crusaders_judgment'],
+                      'unfettered', 'hallowed_ground', 'dawnhammer',
+                      'ascendant_hour', 'divine_shield_master', 'verdict_of_the_order'],
             # Paladins use auras (devotion, protection, retribution) and lay_hands ability
             # Level 31-60: hand_of_freedom (32), consecration (38), hammer_of_justice (44),
             #              avenging_wrath_master (50), divine_shield_master (56), crusaders_judgment (60)
@@ -375,13 +400,13 @@ class Config:
             'move_dice': 4,
             'thac0_progression': 'slow',
             'save_progression': 'mage',
-            'skills': ['soul_bolt', 'drain_soul', 'bone_shield', 'soul_reap'],
-            'spells': ['chill_touch', 'animate_dead', 'vampiric_touch', 'enervation',
-                      'death_grip', 'finger_of_death', 'energy_drain',
+            'skills': ['soul_bolt', 'soul_siphon', 'bone_shield', 'soul_reap'],
+            'spells': ['chill_touch', 'animate_dead', 'leechcraft', 'enervation',
+                      'mistgrasp', 'sever_cord', 'energy_drain',
                       'poison', 'weaken', 'blindness', 'fear', 'armor', 'shield',
                       'protection_from_good',
                       # Level 31-60 spells
-                      'death_coil', 'corpse_shield', 'plague_strike', 'summon_gargoyle',
+                      'wraithfire', 'corpse_shield', 'mistrot', 'summon_gargoyle',
                       'soul_harvest', 'apocalypse_necro'],
             # Level 31-60: death_coil (32), corpse_shield (38), plague_strike (44),
             #              summon_gargoyle (50), soul_harvest (56), apocalypse_necro (60)
@@ -401,7 +426,7 @@ class Config:
                       'cure_light', 'detect_magic', 'heroism', 'fear', 'mass_charm',
                       'bless', 'armor',
                       # Level 31-60 spells
-                      'hymn_of_hope', 'chord_of_disruption', 'epic_tale', 'siren_song',
+                      'refrain_of_hope', 'chord_of_disruption', 'epic_tale', 'siren_song',
                       'requiem', 'magnum_opus'],
             # Bards also learn songs automatically based on level (see BARD_SONGS in spells.py)
             # Level 31-60: hymn_of_hope (32), chord_of_disruption (38), epic_tale (44),
@@ -417,7 +442,7 @@ class Config:
             'thac0_progression': 'fast',
             'save_progression': 'thief',
             'skills': ['backstab', 'mark', 'expose', 'vital', 'execute_contract',
-                      'feint', 'evasion', 'vanish', 'shadow_step',
+                      'feint', 'evasion', 'fade', 'slip_the_veil',
                       'sneak', 'hide', 'dual_wield', 'second_attack', 'dodge', 'poison'],
             'spells': [],
             # Level 31-60: shadowstrike (32), fan_of_knives (38), rupture (44),

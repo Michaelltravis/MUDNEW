@@ -74,6 +74,9 @@
         "south": {
           "to_room": 6805,
           "description": "A pier extends further out over the water."
+        },
+        "up": {
+          "to_room": 6811
         }
       },
       "extra_descs": {
@@ -291,9 +294,8 @@
         "indoors"
       ],
       "exits": {
-        "east": {
-          "to_room": 6802,
-          "description": "The door opens onto the docks."
+        "down": {
+          "to_room": 6802
         }
       }
     }

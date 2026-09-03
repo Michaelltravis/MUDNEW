@@ -3,8 +3,8 @@
   "name": "Midgaard Stables",
   "lifespan": 30,
   "rooms": {
-    "3200": {
-      "vnum": 3200,
+    "3210": {
+      "vnum": 3210,
       "name": "Stable Road",
       "description": "A wide cobblestone road leads south from the bustling streets of Midgaard toward a large wooden stable complex. The scent of hay and horses fills the air. A weathered sign reads 'Midgaard Royal Stables - Finest Mounts in the Realm'. Hoofprints and wheel ruts mark the well-traveled path.",
       "sector_type": "city",
@@ -13,10 +13,10 @@
       ],
       "exits": {
         "north": {
-          "to_room": 3005
+          "to_room": 3053
         },
         "south": {
-          "room_vnum": 3201
+          "to_room": 3211
         }
       },
       "mob_resets": [
@@ -26,8 +26,8 @@
         }
       ]
     },
-    "3201": {
-      "vnum": 3201,
+    "3211": {
+      "vnum": 3211,
       "name": "Midgaard Royal Stables - Main Hall",
       "description": "You stand in the main hall of the Royal Stables. Sturdy wooden stalls line both sides of the wide central aisle. The sweet smell of fresh hay mingles with the warm scent of horses. Saddles, bridles, and riding gear hang from pegs along the walls. The stable master oversees all business from a small desk near the entrance. A passage to the east leads to the premium stables, while the training paddock lies to the south.",
       "sector_type": "city",
@@ -37,18 +37,18 @@
       ],
       "exits": {
         "north": {
-          "room_vnum": 3200
+          "to_room": 3210
         },
         "east": {
-          "room_vnum": 3202
+          "to_room": 3212
         },
         "south": {
-          "room_vnum": 3203
+          "to_room": 3213
         }
       }
     },
-    "3202": {
-      "vnum": 3202,
+    "3212": {
+      "vnum": 3212,
       "name": "Premium Stables",
       "description": "These stalls are larger and better-appointed than the common ones. Brass nameplates mark each stall, and the bedding is fresh and deep. War horses stamp impatiently in their reinforced stalls, while more exotic mounts peer from behind enchanted barriers. A sign lists the available mounts and their prices.",
       "sector_type": "city",
@@ -58,12 +58,12 @@
       ],
       "exits": {
         "west": {
-          "room_vnum": 3201
+          "to_room": 3211
         }
       }
     },
-    "3203": {
-      "vnum": 3203,
+    "3213": {
+      "vnum": 3213,
       "name": "Training Paddock",
       "description": "A large open paddock stretches out behind the stables, enclosed by a sturdy wooden fence. Riders practice their skills here, circling the paddock on various mounts. A few hay bales serve as practice targets. The ground is packed earth, worn smooth by countless hooves.",
       "sector_type": "field",
@@ -72,7 +72,7 @@
       ],
       "exits": {
         "north": {
-          "room_vnum": 3201
+          "to_room": 3211
         }
       }
     }

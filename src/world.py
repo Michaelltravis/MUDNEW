@@ -593,13 +593,53 @@ class World:
         else:
             logger.warning(f"Zones directory not found: {zones_dir}")
             
-        # If no zones loaded, create default world
+        # If no zones loaded, create default world. Only treat this as a
+        # fresh install when there were no zone files at all — if files
+        # exist but every one failed to load, that's data corruption and
+        # rebuilding (let alone saving) the tiny default world on top of
+        # it would make things worse.
         if not self.zones:
+            zone_files = (
+                [f for f in os.listdir(zones_dir) if f.endswith('.json')]
+                if os.path.exists(zones_dir) else []
+            )
+            if zone_files:
+                logger.error(
+                    f"{len(zone_files)} zone files exist in {zones_dir} but "
+                    f"none loaded — refusing to build the default world over "
+                    f"them. Fix the zone files (or restore them with "
+                    f"'git checkout -- world/zones/') and restart."
+                )
+                raise RuntimeError("Zone files present but none could be loaded")
             logger.info("No zones found, creating default world...")
             await self.create_default_world()
             
         # Link room exits
         self.link_exits()
+
+        # Canary check: if zone 30 loaded but looks like the tiny default-world
+        # stub (the old bootstrap bug overwrote real zone files with it), the
+        # big Midgaard - Market Square, the gates, the sewers - is missing.
+        # Try to self-heal from git, then reload once.
+        if not getattr(self, '_world_heal_attempted', False) and self._world_looks_corrupted():
+            self._world_heal_attempted = True
+            logger.error(
+                "WORLD DATA CORRUPTED: zone 30 is the 13-room stub town, not "
+                "Northern Midgaard (Market Square/sewers missing). Attempting "
+                "automatic restore from git..."
+            )
+            if self._restore_world_from_git():
+                logger.error("Restore succeeded - reloading world.")
+                self.zones.clear()
+                self.rooms.clear()
+                self.mob_prototypes.clear()
+                self.obj_prototypes.clear()
+                await self.load()
+                return
+            raise RuntimeError(
+                "World data is the corrupted stub and automatic restore failed. "
+                "Run: git checkout -- world/zones/   then restart the server."
+            )
 
         # Seed puzzles
         try:
@@ -633,6 +673,34 @@ class World:
 
         logger.info(f"World loaded: {len(self.zones)} zones, {len(self.rooms)} rooms")
         
+    def _world_looks_corrupted(self):
+        """True when zone 30 is present but is the default-world stub: the
+        real Northern Midgaard has 70+ rooms including 3054 (Temple Altar)
+        and sewer links; the stub has 13 rooms and neither."""
+        z30 = self.zones.get(30)
+        if not z30:
+            return False
+        return len(z30.rooms) < 30 and 3054 not in self.rooms
+
+    def _restore_world_from_git(self):
+        """Best-effort `git checkout -- world/zones/` to recover clobbered
+        zone files. Returns True when the canary room is back on disk."""
+        import subprocess
+        repo = os.path.dirname(self.config.WORLD_DIR)
+        try:
+            subprocess.run(
+                ['git', 'checkout', '--', 'world/zones/'],
+                cwd=repo, capture_output=True, timeout=30, check=True,
+            )
+        except Exception as e:
+            logger.error(f"git restore failed: {e}")
+            return False
+        try:
+            with open(os.path.join(self.config.WORLD_DIR, 'zones', 'zone_030.json')) as f:
+                return '"3054"' in f.read()
+        except Exception:
+            return False
+
     async def load_zone_file(self, filepath: str):
         """Load a zone from a JSON file."""
         try:
@@ -735,6 +803,7 @@ class World:
                         mob.home_zone = zone.number  # Set home zone for movement restrictions
                         room.characters.append(mob)
                         self.npcs.append(mob)
+                        self._ensure_shop(mob)  # stock shopkeepers with role-appropriate goods
                         
             # Spawn objects
             for obj_reset in room.obj_resets:
@@ -754,6 +823,88 @@ class World:
         zone.last_reset_at = time.time()
         zone.next_reset_at = zone.last_reset_at + zone.reset_interval_seconds
         
+    # role keyword -> item_types the shop sells
+    _SHOP_ROLES = [
+        (('baker', 'bread'), ['food']),
+        (('butcher', 'meat'), ['food']),
+        (('grocer', 'green', 'produce'), ['food', 'drink', 'drinkcon']),
+        (('weaponsmith', 'weapon', 'fletcher', 'bowyer', 'blade'), ['weapon']),
+        (('blacksmith', 'smith'), ['weapon', 'armor']),
+        (('armourer', 'armorer', 'armor', 'leather'), ['armor']),
+        (('tailor', 'clothier', 'robe'), ['armor']),
+        (('wizard', 'mage', 'magic', 'sorcer', 'witch', 'conjurer', 'enchant'), ['scroll', 'potion', 'wand', 'staff']),
+        (('alchemist', 'apothecary', 'potion', 'herbalist'), ['potion', 'drink']),
+        (('jewel', 'gem', 'jeweler'), ['treasure']),
+        (('tavern', 'bartender', 'innkeeper', 'barkeep', 'bar', 'pub'), ['drink', 'drinkcon', 'food']),
+        (('captain', 'guard', 'quartermaster'), ['weapon', 'armor']),
+        (('general', 'merchant', 'trader', 'pawn', 'peddler', 'vendor', 'shopkeep', 'keeper', 'clerk', 'salesman'),
+         ['food', 'drink', 'drinkcon', 'light', 'container', 'other', 'treasure']),
+    ]
+
+    def _shop_role(self, name: str):
+        n = (name or '').lower()
+        for keys, sells in self._SHOP_ROLES:
+            if any(k in n for k in keys):
+                buys = list(dict.fromkeys(sells + ['treasure', 'other']))
+                return sells, buys
+        # sensible default: a general store
+        return (['food', 'drink', 'light', 'container', 'other', 'treasure'], ['treasure', 'other', 'weapon', 'armor'])
+
+    def _ensure_shop(self, mob):
+        """Make sure every shopkeeper carries a proper, role-appropriate stock.
+        Many zone shop_configs are thin (a weaponsmith selling one dagger) or
+        have malformed buy lists; this enriches an existing shop up to a full
+        selection drawn from the world's objects, and creates one outright for
+        any shopkeeper that has none."""
+        if getattr(mob, 'special', '') != 'shopkeeper':
+            return
+        try:
+            from shops import ShopManager
+            from objects import create_object
+            TARGET = 12
+            # lazily index object prototypes by item_type
+            if not hasattr(self, '_obj_by_type'):
+                self._obj_by_type = {}
+                for ov, op in self.obj_prototypes.items():
+                    t = str(op.get('item_type') or op.get('type') or 'other').lower()
+                    self._obj_by_type.setdefault(t, []).append(ov)
+            sells_types, buys_types = self._shop_role(getattr(mob, 'name', ''))
+            zlow = (mob.vnum // 100) * 100
+            zhigh = zlow + 99
+            candidates = []
+            for t in sells_types:
+                pool = self._obj_by_type.get(t, [])
+                local = [v for v in pool if zlow <= v <= zhigh]
+                for v in (local if local else pool):
+                    if v not in candidates:
+                        candidates.append(v)
+            shop = ShopManager.shops.get(mob.vnum)
+            if shop:
+                if getattr(shop, '_autostocked', False):
+                    return   # already enriched once; don't re-stock every reset
+                shop._autostocked = True
+                # repair a malformed/empty buy list (e.g. a vnum where a type belongs)
+                if not shop.buy_types or any(str(b).isdigit() for b in shop.buy_types):
+                    shop.buy_types = buys_types
+                have = set(getattr(shop, 'sells_vnums', []) or [])
+                for v in candidates:
+                    if len(shop.inventory) >= TARGET:
+                        break
+                    if v in have:
+                        continue
+                    obj = create_object(v, self)
+                    if obj:
+                        shop.inventory.append(obj)
+                        shop.sells_vnums.append(v)
+                        have.add(v)
+                logger.info(f"Stocked shop for {getattr(mob, 'name', '?')} (vnum {mob.vnum}) -> {len(shop.inventory)} items")
+            else:
+                sells = candidates[:TARGET]
+                if sells:
+                    ShopManager.create_shop(mob, {'sells': sells, 'buys': buys_types}, self)
+        except Exception as e:
+            logger.warning(f"_ensure_shop failed for {getattr(mob, 'name', '?')}: {e}")
+
     def get_room(self, vnum: int) -> Optional[Room]:
         """Get a room by vnum."""
         return self.rooms.get(vnum)
@@ -817,6 +968,31 @@ class World:
         """Process combat for all fighting characters."""
         from combat import CombatHandler
 
+        # Round heartbeat: cmd_swing's perfect-strike timing window is judged
+        # against when this round actually began
+        self.last_combat_round = time.time()
+
+        # Intent pre-pass: fighting mobs DECLARE their next special before the
+        # player phase runs, so this round's web push (notify_combat below)
+        # carries the wind-up with a full round left to react. The intent
+        # resolves next round in mob_ai_tick.
+        from mob_ai import declare_intents
+        from environment import check_player_traps, tick as env_tick
+        for npc in list(self.npcs):
+            if npc.is_fighting and npc.fighting is not None:
+                try:
+                    # a fighting mob can stumble into a player-laid trap
+                    if getattr(npc.room, 'player_traps', None) and __import__('random').random() < 0.30:
+                        await check_player_traps(npc, npc.room)
+                    await declare_intents(npc)
+                except Exception as e:
+                    logger.debug(f"declare_intents failed for {npc.name}: {e}")
+        # burning rooms cook everyone inside
+        try:
+            await env_tick(self)
+        except Exception as e:
+            logger.debug(f"environment tick failed: {e}")
+
         # Process player combat
         for player in list(self.players.values()):
             # If mobs are attacking the player, set fighting target to one of them
@@ -846,6 +1022,12 @@ class World:
                 # Send prompt after combat round so player always sees HP
                 if hasattr(player, 'connection') and player.connection:
                     await player.connection.send_prompt()
+                # Push live vitals to graphical web clients every round
+                if getattr(self, 'web_map', None):
+                    try:
+                        await self.web_map.notify_combat(player)
+                    except Exception as e:
+                        logger.debug(f"notify_combat failed for {player.name}: {e}")
 
         # Process NPC combat
         from mob_ai import mob_ai_tick

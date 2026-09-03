@@ -198,28 +198,62 @@ def compute_room_coords(rooms: Dict[int, object], start_vnum: Optional[int], pla
         return coords
 
     unvisited = set(rooms.keys())
+    occupied = set()
     offset_x = 0
 
+    def _zone_num(vnum):
+        z = getattr(rooms[vnum], 'zone', None)
+        return getattr(z, 'number', None)
+
+    def _place(vnum, coord, dxyz):
+        """Claim a grid cell; on collision slide further along the travel
+        direction so distinct rooms never stack on one map square."""
+        if coord not in occupied:
+            coords[vnum] = coord
+            occupied.add(coord)
+            return coord
+        dx, dy, dz = dxyz if dxyz != (0, 0, 0) else (1, 0, 0)
+        x, y, z = coord
+        for step in range(1, 8):
+            cand = (x + dx * step, y + dy * step, z + dz * step)
+            if cand not in occupied:
+                coords[vnum] = cand
+                occupied.add(cand)
+                return cand
+        coords[vnum] = coord    # give up: overlap beats omission
+        return coord
+
     def bfs(seed_vnum: int, seed_coord: Tuple[int, int, int]):
-        queue = [seed_vnum]
-        coords[seed_vnum] = seed_coord
+        from collections import deque
+        _place(seed_vnum, seed_coord, (0, 0, 0))
         unvisited.discard(seed_vnum)
+        queue = deque([seed_vnum])
         while queue:
-            vnum = queue.pop(0)
+            vnum = queue.popleft()
             room = rooms[vnum]
             x, y, z = coords[vnum]
+            zone_here = _zone_num(vnum)
+            # lay out the local zone before chasing cross-zone links, so a
+            # town stays one coherent block on the map instead of being
+            # scattered by whichever detour the BFS found first
+            same, cross = [], []
             for direction, exit_data in _iter_visible_exits(room, player):
                 if direction not in DIR_OFFSETS:
                     continue
                 to_vnum = _get_exit_target_vnum(exit_data)
-                if to_vnum not in rooms:
+                if to_vnum not in rooms or to_vnum in coords:
                     continue
+                (same if _zone_num(to_vnum) == zone_here else cross).append((direction, to_vnum))
+            for direction, to_vnum in same + cross:
                 if to_vnum in coords:
                     continue
                 dx, dy, dz = DIR_OFFSETS[direction]
-                coords[to_vnum] = (x + dx, y + dy, z + dz)
+                _place(to_vnum, (x + dx, y + dy, z + dz), (dx, dy, dz))
                 unvisited.discard(to_vnum)
-                queue.append(to_vnum)
+                if _zone_num(to_vnum) == zone_here:
+                    queue.appendleft(to_vnum)
+                else:
+                    queue.append(to_vnum)
 
     # Start with player's component if available
     if start_vnum in unvisited:
@@ -409,6 +443,526 @@ def render_ascii_map(player, mode: str = 'local', size: int = 11) -> str:
     return '\n'.join(lines)
 
 
+def _exp_thresholds(player):
+    """Return (exp floor of current level, exp needed for next level).
+
+    exp is cumulative, so within-level progress is
+    (exp - floor) / (next - floor). Mirrors Player.exp_to_level().
+    """
+    try:
+        nxt = player.exp_to_level()
+    except Exception:
+        return 0, 0
+    lvl = getattr(player, 'level', 1)
+    if lvl <= 1:
+        return 0, nxt
+    cfg = player.config
+    thr = getattr(cfg, 'HIGH_LEVEL_THRESHOLD', 30)
+    prev = lvl - 1
+    if prev <= thr:
+        floor = int(cfg.BASE_EXP * (cfg.EXP_MULTIPLIER ** (prev - 1)))
+    else:
+        level_30 = int(cfg.BASE_EXP * (cfg.EXP_MULTIPLIER ** (thr - 1)))
+        floor = int(level_30 * (getattr(cfg, 'HIGH_LEVEL_EXP_MULTIPLIER', 1.6) ** (prev - thr)))
+    return floor, nxt
+
+
+def _build_set_by_vnum():
+    """vnum -> named-set key, so the client can theme each set piece uniquely."""
+    out = {}
+    try:
+        from sets import NAMED_SETS
+        for sid, cfg in NAMED_SETS.items():
+            for vnum in cfg.get('pieces', {}):
+                out[vnum] = sid
+    except Exception:
+        pass
+    return out
+
+
+_SET_BY_VNUM = _build_set_by_vnum()
+
+
+def item_info(item):
+    """Compact item payload used for ground items, inventory and equipment:
+    enough for the client to draw a real icon and rarity border."""
+    vnum = getattr(item, 'vnum', None)
+    itype = getattr(item, 'item_type', 'other')
+    info = {
+        'name': getattr(item, 'name', 'something'),
+        'short': getattr(item, 'short_desc', '') or getattr(item, 'name', 'something'),
+        'type': itype,
+        'slot': getattr(item, 'wear_slot', None),
+        'rarity': getattr(item, 'rarity', 'common'),
+        'set_id': getattr(item, 'set_id', None),
+        'set_key': _SET_BY_VNUM.get(vnum),
+        'level': getattr(item, 'level', 0),
+        'affects': getattr(item, 'affects', []) or [],
+        'weight': getattr(item, 'weight', 0),
+        'cost': getattr(item, 'cost', 0),
+    }
+    # type-specific combat stats so the client can show a real tooltip
+    if itype == 'weapon':
+        info['damage_dice'] = getattr(item, 'damage_dice', None)
+        info['weapon_type'] = getattr(item, 'weapon_type', None)
+    elif itype == 'armor':
+        info['armor'] = getattr(item, 'armor', 0)
+    elif itype == 'light':
+        info['light_hours'] = getattr(item, 'light_hours', 0)
+    elif itype in ('food',):
+        info['food_value'] = getattr(item, 'food_value', 0)
+    elif itype in ('drink', 'fountain'):
+        info['drinks'] = getattr(item, 'drinks', 0)
+    procs = getattr(item, 'procs', []) or []
+    if procs:
+        info['procs'] = [
+            (pr.get('desc') or pr.get('effect') or pr.get('type'))
+            for pr in procs if isinstance(pr, dict)
+        ]
+    return info
+
+
+CLASS_RESOURCE = {
+    # class -> (attribute, display name, maximum)
+    'warrior': ('momentum', 'Momentum', 10),
+    'thief': ('luck_points', 'Luck', 10),
+    'assassin': ('intel_points', 'Intel', 10),
+    'cleric': ('faith', 'Faith', 10),
+    'paladin': ('holy_power', 'Holy Power', 5),
+    'ranger': ('focus', 'Focus', 100),
+    'necromancer': ('soul_shards', 'Soul Shards', 10),
+    'bard': ('inspiration', 'Inspiration', 10),
+}
+
+
+def _class_resource(player):
+    """The class's signature combat resource, for the client resource chip."""
+    spec = CLASS_RESOURCE.get(str(getattr(player, 'char_class', '')).lower())
+    if not spec:
+        return None
+    attr, label, cap = spec
+    return {'name': label, 'value': int(getattr(player, attr, 0) or 0), 'max': cap}
+
+
+def _mount_info(player):
+    """The mount the player is currently riding (for a 'riding X' HUD chip and
+    in-world rider art), or None when on foot."""
+    m = getattr(player, 'mount', None)
+    if not m:
+        return None
+    return {
+        'key': getattr(m, 'key', ''),
+        'name': getattr(m, 'name', 'mount'),
+        'can_fly': bool(getattr(m, 'can_fly', False)),
+        'loyalty': getattr(m, 'loyalty', None),
+    }
+
+
+def _intent_public(entity):
+    """A mob's declared wind-up in client shape, or None. Covers both the
+    mob_ai pending_intent system and the bosses.py cast telegraphs, so the
+    web UI paints one uniform enemy wind-up bar."""
+    import time as _time
+    now = _time.time()
+    intent = getattr(entity, 'pending_intent', None)
+    if intent:
+        # resolves at the first combat tick past the windup — i.e. the next
+        # round boundary, ~4s after declaration
+        return {
+            'kind': intent.get('kind', 'heavy'),
+            'label': intent.get('label', 'Attack'),
+            'interruptible': bool(intent.get('interruptible')),
+            'resolve_in': round(max(0.0, intent.get('declared_at', now) + 4.0 - now), 1),
+        }
+    ai_state = getattr(entity, 'ai_state', None)
+    cast = ai_state.get('cast') if isinstance(ai_state, dict) else None
+    if cast and not cast.get('interrupted'):
+        ability = cast.get('ability', {})
+        return {
+            'kind': 'cast',
+            'label': str(ability.get('name', 'casting')).replace('_', ' ').title(),
+            'interruptible': bool(ability.get('interruptible')),
+            'resolve_in': round(max(0.0, cast.get('resolve_at', now) - now), 1),
+        }
+    return None
+
+
+def _reaction_ready(player):
+    """Which reaction commands are off cooldown, for the client prompt chips."""
+    import time as _time
+    now = _time.time()
+    return {
+        'brace': now >= getattr(player, 'brace_cooldown_until', 0),
+        'sidestep': now >= getattr(player, 'sidestep_cooldown_until', 0),
+        'interrupt': now >= getattr(player, 'interrupt_cooldown_until', 0),
+    }
+
+
+def _cooldowns(player):
+    """Active ability cooldowns the client can paint on the action bar.
+
+    Skill cooldowns are stored as scattered per-player attributes (e.g.
+    ``backstab_cooldown_until``, ``second_wind_cooldown_until``,
+    ``rallying_cry_cooldown``) all on the ``time.time()`` epoch. Scan for them
+    and return ``{skill_key: seconds_remaining}`` for every one still ticking,
+    so a warrior/thief/assassin (whose bars are skills, not spells) actually
+    sees cooldowns the way casters already do via /abilities."""
+    import time as _time
+    now = _time.time()
+    out = {}
+    for attr in list(vars(player).keys()):
+        if attr.endswith('_cooldown_until'):
+            key = attr[:-len('_cooldown_until')]
+        elif attr.endswith('_cooldown'):
+            key = attr[:-len('_cooldown')]
+        elif attr.endswith('_cd'):   # warrior_abilities stores bash_cd, rally_cd, ...
+            key = attr[:-len('_cd')]
+        else:
+            continue
+        if not key:
+            continue
+        try:
+            rem = float(getattr(player, attr, 0) or 0) - now
+        except (TypeError, ValueError):
+            continue
+        # an epoch timestamp in the near future; the upper bound keeps a stray
+        # plain-number attribute (e.g. a small counter) from being mistaken for
+        # a cooldown when it slips past the 0.4s floor
+        if 0.4 < rem < 86400:
+            out[key] = round(rem, 1)
+    return out
+
+
+def _worn_aura(player):
+    """'legendary' when any legendary piece is worn; 'set' at 4+ pieces of
+    one named set - drives the class-colored aura on the world sprite."""
+    worn = [it for it in getattr(player, 'equipment', {}).values() if it]
+    if any(getattr(it, 'rarity', '') == 'legendary' for it in worn):
+        return 'legendary'
+    counts = {}
+    for it in worn:
+        sid = getattr(it, 'set_id', None)
+        if sid:
+            counts[str(sid)] = counts.get(str(sid), 0) + 1
+    if any(c >= 4 for c in counts.values()):
+        return 'set'
+    return None
+
+
+def _in_combat(player) -> bool:
+    """True only for a LIVE fight: target alive and in the same room.
+    Stale fighting references must never wedge graphical clients."""
+    f = getattr(player, 'fighting', None)
+    if not f:
+        return False
+    if getattr(f, 'hp', 0) <= 0:
+        return False
+    room = getattr(player, 'room', None)
+    if not room or f not in getattr(room, 'characters', []):
+        return False
+    return True
+
+
+def _path_active(player):
+    try:
+        from paths import PathManager
+        if PathManager.lone_wolf_active(player):
+            return 'lone_wolf'
+        if PathManager.fellowship_active(player):
+            return 'fellowship'
+    except Exception:
+        pass
+    return None
+
+
+# party-frame roles, inferred from class
+_GROUP_ROLES = {
+    'warrior': 'tank', 'paladin': 'tank',
+    'cleric': 'healer', 'bard': 'healer',
+    'mage': 'dps', 'necromancer': 'dps', 'thief': 'dps',
+    'assassin': 'dps', 'ranger': 'dps',
+}
+# strongest heal a class can cast on an ally, best first (underscore cast keys)
+_HEAL_PRIORITY = ['heal', 'cure_critical', 'cure_serious', 'cure_light', 'lay_on_hands']
+
+
+def _best_heal_spell(player):
+    """The strongest single-target heal the viewer can cast on an ally, or None."""
+    known = getattr(player, 'spells', None) or {}
+    for key in _HEAL_PRIORITY:
+        if key in known:
+            return key
+    return None
+
+
+def _fighting_name(entity):
+    f = getattr(entity, 'fighting', None)
+    if not f or getattr(f, 'hp', 0) <= 0:
+        return None
+    return getattr(f, 'name', None)
+
+
+import re as _re
+# NPCs are never set to a sleeping position in data, but many are *described*
+# asleep or at rest. Read the flavor text so those few render the right pose.
+_POSE_SLEEP = _re.compile(r'\b(asleep|sleeping|sleeps here|slumber|snor(?:ing|es)|doz(?:ing|es)|napping|fallen asleep|obviously sl)\b', _re.I)
+_POSE_REST = _re.compile(r'\b(rests here|resting (?:here|against)|dormant|reclin|lounging)\b', _re.I)
+
+
+def _mob_pose(entity):
+    """'sleeping' / 'resting' if the mob's description says so, else None.
+    Cached on the prototype-shared mob since the text never changes."""
+    cached = getattr(entity, '_pose_cache', '__none__')
+    if cached != '__none__':
+        return cached
+    txt = ' '.join(str(getattr(entity, k, '') or '') for k in ('long_desc', 'description'))
+    pose = 'sleeping' if _POSE_SLEEP.search(txt) else 'resting' if _POSE_REST.search(txt) else None
+    try:
+        entity._pose_cache = pose
+    except Exception:
+        pass
+    return pose
+
+
+def build_group_block(player) -> Optional[dict]:
+    """Roster + live vitals for the player's party, for the UI party frames.
+
+    Included in both map_data and the per-round combat_update so allied
+    health/mana/target stay live during a fight. Returns None when solo.
+    """
+    group = getattr(player, 'group', None)
+    roster = list(getattr(group, 'members', [])) if group else [player]
+    # gather the player's pets + companions so they ride along in the bar
+    minions = []
+    try:
+        from pets import PetManager
+        minions += [(p, 'pet') for p in (PetManager.get_player_pets(player) or [])]
+    except Exception:
+        pass
+    try:
+        from companions import CompanionManager
+        minions += [(c, 'companion') for c in (CompanionManager.get_player_companions(player) or [])]
+    except Exception:
+        pass
+    # solo with no minions => no party bar
+    if len(roster) < 2 and not minions:
+        return None
+
+    proom = getattr(player, 'room', None)
+    pvnum = getattr(proom, 'vnum', None)
+    # map adjacent room vnum -> direction, so split members get a heading
+    dir_by_vnum = {}
+    for direction, exit_data in _iter_visible_exits(proom, player):
+        tv = _get_exit_target_vnum(exit_data)
+        if tv is not None and tv not in dir_by_vnum:
+            dir_by_vnum[tv] = direction
+
+    members = []
+    for m in roster:
+        mroom = getattr(m, 'room', None)
+        mvnum = getattr(mroom, 'vnum', None)
+        same_room = mroom is proom and proom is not None
+        cls = str(getattr(m, 'char_class', '') or '').lower()
+        max_hp = getattr(m, 'max_hp', 1) or 1
+        max_mana = getattr(m, 'max_mana', 1) or 1
+        members.append({
+            'name': getattr(m, 'name', 'Unknown'),
+            'char_class': cls,
+            'role': _GROUP_ROLES.get(cls, 'dps'),
+            'level': getattr(m, 'level', 1),
+            'hp': getattr(m, 'hp', 0),
+            'maxHp': max_hp,
+            'mana': getattr(m, 'mana', 0),
+            'maxMana': max_mana,
+            'move': getattr(m, 'move', 0),
+            'maxMove': getattr(m, 'max_move', 1) or 1,
+            'is_leader': bool(group) and m is group.leader,
+            'is_self': m is player,
+            'sameRoom': same_room,
+            'roomName': getattr(mroom, 'name', '???') if mroom else '???',
+            'roomVnum': mvnum,
+            'dir': None if same_room else dir_by_vnum.get(mvnum),
+            'fighting': _fighting_name(m),
+            'online': getattr(m, 'connection', None) is not None or m is player,
+            'dead': getattr(m, 'hp', 1) <= 0,
+        })
+
+    # pets & companions as compact sub-frames after their owner (you)
+    for minion, kind in minions:
+        mhp = getattr(minion, 'max_hp', 1) or 1
+        members.append({
+            'name': getattr(minion, 'name', kind), 'char_class': kind,
+            'role': 'pet', 'level': getattr(minion, 'level', 1),
+            'hp': getattr(minion, 'hp', 0), 'maxHp': mhp,
+            'mana': 0, 'maxMana': 0, 'move': 0, 'maxMove': 1,
+            'is_leader': False, 'is_self': False, 'is_minion': True, 'minion_kind': kind,
+            'sameRoom': getattr(minion, 'room', None) is proom,
+            'roomName': '', 'roomVnum': None, 'dir': None,
+            'fighting': _fighting_name(minion),
+            'online': True, 'dead': getattr(minion, 'hp', 1) <= 0,
+        })
+
+    return {
+        'leader': getattr(group.leader, 'name', '') if group else getattr(player, 'name', ''),
+        'loot_mode': getattr(group, 'loot_mode', 'freeforall') if group else 'freeforall',
+        'auto_follow': bool(getattr(group, 'auto_follow', True)) if group else True,
+        'exp_bonus': int((group.get_exp_bonus() - 1.0) * 100) if group else 0,
+        'size': len(members),
+        'is_leader': (player is group.leader) if group else True,
+        'heal_spell': _best_heal_spell(player),
+        'members': members,
+    }
+
+
+def build_combat_payload(player) -> dict:
+    """Lightweight push for live combat: vitals + current-room entities only.
+
+    Sent every violence round, so it must stay cheap — no BFS, no room list.
+    """
+    room = player.room
+    mobs = []
+    others = []
+    if room and hasattr(room, 'characters'):
+        for entity in room.characters:
+            if hasattr(entity, 'account_name'):
+                if entity is not player:
+                    others.append({
+                        'name': getattr(entity, 'name', 'Unknown'),
+                        'level': getattr(entity, 'level', 1),
+                        'char_class': getattr(entity, 'char_class', ''),
+                        'hp': getattr(entity, 'hp', 0),
+                        'maxHp': getattr(entity, 'max_hp', 1),
+                    })
+                continue
+            quest_mark = ''
+            if hasattr(entity, 'vnum'):
+                try:
+                    from quests import QuestManager
+                    quest_mark = QuestManager.get_quest_giver_indicator(player, entity.vnum)
+                except Exception:
+                    quest_mark = ''
+            mob = {
+                'name': getattr(entity, 'name', 'Unknown'),
+                'level': getattr(entity, 'level', 1),
+                'hostile': getattr(entity, 'aggressive', False) or getattr(entity, 'hostile', False),
+                'boss': 'boss' in (getattr(entity, 'flags', None) or []) or getattr(entity, 'is_boss', False),
+                'shopkeeper': getattr(entity, 'special', '') == 'shopkeeper',
+                'trainer': getattr(entity, 'special', '') in ('trainer', 'guildmaster'),
+                'quest': quest_mark,
+                'fighting': bool(getattr(entity, 'fighting', None) is player),
+            }
+            hp = getattr(entity, 'hp', None)
+            max_hp = getattr(entity, 'max_hp', None)
+            if hp is not None and max_hp:
+                mob['hp'] = hp
+                mob['maxHp'] = max_hp
+            intent = _intent_public(entity)
+            if intent:
+                mob['intent'] = intent
+            # rhythm-combat state: poise meter, stagger window, raised guard
+            import time as _t
+            _tnow = _t.time()
+            if getattr(entity, 'max_poise', 0):
+                mob['poise'] = {'cur': getattr(entity, 'poise', 0), 'max': entity.max_poise}
+            if _tnow < getattr(entity, 'staggered_until', 0):
+                mob['staggered'] = round(getattr(entity, 'staggered_until', 0) - _tnow, 1)
+            if _tnow < getattr(entity, 'guard_until', 0):
+                mob['guarded'] = True
+            mobs.append(mob)
+    env = None
+    if room is not None:
+        try:
+            from environment import env_public
+            env = env_public(room, player)
+        except Exception:
+            env = None
+    return {
+        'type': 'combat_update',
+        'vnum': room.vnum if room else None,
+        'env': env,
+        'in_combat': _in_combat(player),
+        'player': {
+            'name': player.name,
+            'momentum': getattr(player, 'momentum', 0),
+            'resource': _class_resource(player),
+            'path': getattr(player, 'path', None),
+            'path_active': _path_active(player),
+            'stance': getattr(player, 'stance', getattr(player, 'combat_stance', getattr(player, 'mood', 'normal'))) or 'normal',
+            'hp': getattr(player, 'hp', 0),
+            'max_hp': getattr(player, 'max_hp', 1),
+            'mana': getattr(player, 'mana', 0),
+            'max_mana': getattr(player, 'max_mana', 1),
+            'move': getattr(player, 'move', 0),
+            'max_move': getattr(player, 'max_move', 1),
+            'level': getattr(player, 'level', 1),
+            'exp': getattr(player, 'exp', 0),
+            'exp_floor': _exp_thresholds(player)[0],
+            'exp_to_level': _exp_thresholds(player)[1],
+            'gold': getattr(player, 'gold', 0),
+            'cooldowns': _cooldowns(player),
+            'reactions': _reaction_ready(player),
+        },
+        'mobs': mobs,
+        'players': others,
+        'group': build_group_block(player),
+    }
+
+
+_ATLAS_CACHE = None
+
+
+def build_atlas(world) -> dict:
+    """The complete world atlas: every room with coordinates and exit links,
+    plus zone metadata and zone-to-zone connections. The world is static, so
+    this is computed once and cached - it powers the full game map (M)."""
+    global _ATLAS_CACHE
+    if _ATLAS_CACHE is not None:
+        return _ATLAS_CACHE
+
+    coords = compute_room_coords(world.rooms, 3001)
+    zone_colors = [
+        '#6366f1', '#8b5cf6', '#a855f7', '#d946ef', '#ec4899',
+        '#f43f5e', '#ef4444', '#f97316', '#f59e0b', '#eab308',
+        '#84cc16', '#22c55e', '#10b981', '#14b8a6', '#06b6d4',
+        '#0ea5e9', '#3b82f6', '#6366f1', '#8b5cf6', '#a855f7',
+    ]
+    zones = {}
+    rooms = []
+    links = set()          # (zone_a, zone_b) pairs that touch
+    for vnum, room in world.rooms.items():
+        if vnum not in coords:
+            continue
+        x, y, z = coords[vnum]
+        znum = room.zone.number if room.zone else -1
+        if znum not in zones:
+            zones[znum] = {
+                'id': znum,
+                'name': room.zone.name if room.zone else 'Unknown',
+                'color': zone_colors[len(zones) % len(zone_colors)],
+            }
+        exits = {}
+        for direction, exit_data in _iter_visible_exits(room, None):
+            tv = _get_exit_target_vnum(exit_data)
+            if tv and tv in world.rooms:
+                exits[direction] = tv
+                tz = world.rooms[tv].zone.number if world.rooms[tv].zone else -1
+                if tz != znum:
+                    links.add((min(znum, tz), max(znum, tz)))
+        rooms.append({
+            'vnum': vnum, 'name': room.name, 'zone': znum,
+            'x': x, 'y': y, 'z': z,
+            'sector': getattr(room, 'sector_type', '') or '',
+            'exits': exits,
+        })
+    _ATLAS_CACHE = {
+        'type': 'atlas',
+        'rooms': rooms,
+        'zones': list(zones.values()),
+        'links': sorted(links),
+    }
+    return _ATLAS_CACHE
+
+
 def build_map_payload(player, mode: str = 'full') -> dict:
     """Build map data payload for the web map UI."""
     explored = set(getattr(player, 'explored_rooms', set()))
@@ -454,8 +1008,13 @@ def build_map_payload(player, mode: str = 'full') -> dict:
         exits = []
         one_way_exits = []
         
+        portal_exits = []
         for direction, exit_data in _iter_visible_exits(room, player):
             if direction not in DIR_OFFSETS:
+                # named passages (gate/arch/portal/...) — kept for pathfinding
+                pt = _get_exit_target_vnum(exit_data)
+                if pt:
+                    portal_exits.append({'name': direction, 'to_room': pt})
                 continue
             exits.append(direction)
             
@@ -487,13 +1046,28 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             for entity in room.characters:
                 if hasattr(entity, 'account_name'):
                     continue  # skip players (handled below)
+                quest_mark = ''
+                # quest scan is per-mob, per-room, per-push: only the CURRENT
+                # room renders markers, so only compute it there (a veteran
+                # character's full explored set made every step crawl)
+                if hasattr(entity, 'vnum') and player.room and vnum == player.room.vnum:
+                    try:
+                        from quests import QuestManager
+                        quest_mark = QuestManager.get_quest_giver_indicator(player, entity.vnum)
+                    except Exception:
+                        quest_mark = ''
                 mob_info = {
                     'name': getattr(entity, 'name', 'Unknown'),
                     'level': getattr(entity, 'level', 1),
                     'hostile': getattr(entity, 'aggressive', False) or getattr(entity, 'hostile', False),
                     'boss': 'boss' in (getattr(entity, 'flags', None) or []) or getattr(entity, 'is_boss', False),
-                    'shopkeeper': hasattr(entity, 'shop'),
+                    'shopkeeper': getattr(entity, 'special', '') == 'shopkeeper',
+                'trainer': getattr(entity, 'special', '') in ('trainer', 'guildmaster'),
+                    'quest': quest_mark,
                     'flags': list(getattr(entity, 'flags', []) or []),
+                    'pose': _mob_pose(entity),
+                    'sex': (getattr(entity, 'sex', 'male') or 'male'),
+                    'char_class': (getattr(entity, 'char_class', '') or ''),
                 }
                 # Include HP if available
                 hp = getattr(entity, 'hp', None)
@@ -531,11 +1105,8 @@ def build_map_payload(player, mode: str = 'full') -> dict:
 
         # Items on ground
         item_list = []
-        for item in getattr(room, 'contents', []):
-            item_list.append({
-                'name': getattr(item, 'name', 'something'),
-                'type': getattr(item, 'item_type', 'other'),
-            })
+        for item in (getattr(room, 'items', None) or getattr(room, 'contents', []))[:12]:
+            item_list.append(item_info(item))
 
         room_items.append({
             'vnum': vnum,
@@ -550,6 +1121,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'icon': get_room_icon(room),
             'exits': exits,
             'oneWayExits': one_way_exits,
+            'portals': portal_exits,
             'flags': list(room.flags) if hasattr(room, 'flags') else [],
             'mobs': mob_list,
             'players': player_list,
@@ -601,16 +1173,100 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'precipitation': getattr(w, 'precipitation', 'none'),
         }
 
+    # Detailed info for the player's current room (used by the platformer client)
+    current_room = None
+    if player.room:
+        cur = player.room
+        cur_exits = {}
+        raw_exits = cur.exits if isinstance(getattr(cur, 'exits', None), dict) else {}
+        # The graphical client shows EVERY real exit of the current room — closed
+        # doors and hidden/secret passages included — so the player can see (and
+        # use) e.g. a closed trapdoor. We iterate the raw exits (not the
+        # visibility-filtered set) and flag hidden ones for a distinct UI marker.
+        for direction, exit_data in raw_exits.items():
+            if not exit_data:
+                continue
+            door = None
+            if isinstance(exit_data, dict) and 'door' in exit_data:
+                d = exit_data['door']
+                import time as _t
+                door = {
+                    'name': d.get('name', 'door'),
+                    'state': d.get('state', 'open'),
+                    'locked': bool(d.get('locked', False)),
+                    'sealed': d.get('sealed_until', 0) > _t.time(),
+                    'barricaded': d.get('barricaded_until', 0) > _t.time(),
+                    'broken': bool(d.get('broken', False)),
+                }
+            to_vnum = _get_exit_target_vnum(exit_data)
+            if not to_vnum and not door:
+                continue   # nothing actually leads anywhere here
+            hidden = bool(isinstance(exit_data, dict) and exit_data.get('hidden'))
+            # signpost data: name the zone when this exit crosses a border, and
+            # flag exits that lead into a deathtrap so the UI can warn loudly
+            to_zone = None
+            deathtrap = False
+            world = getattr(player, 'world', None)
+            if to_vnum and world:
+                dest = world.rooms.get(to_vnum)
+                if dest:
+                    if dest.zone and cur.zone and dest.zone.number != cur.zone.number:
+                        to_zone = dest.zone.name
+                    dflags = set(dest.flags) if hasattr(dest, 'flags') else set()
+                    if 'deathtrap' in dflags or 'death' in dflags:
+                        deathtrap = True
+            if not deathtrap and isinstance(exit_data, dict):
+                desc = str(exit_data.get('description', '') or '')
+                if 'DANGER' in desc or 'deathtrap' in desc.lower():
+                    deathtrap = True
+            cur_exits[direction] = {
+                'to_room': to_vnum,
+                'door': door,
+                'to_zone': to_zone,
+                'hidden': hidden,
+                'deathtrap': deathtrap,
+            }
+        try:
+            from gravestones import GravestoneRegistry
+            stones = GravestoneRegistry.for_room(cur.vnum)
+        except Exception:
+            stones = []
+        # keywords the player can "look at" - first word of each extra_desc key
+        details = []
+        for keys in (getattr(cur, 'extra_descs', None) or {}):
+            first = (keys.split() or [''])[0]
+            if first:
+                details.append(first.lower())
+        current_room = {
+            'vnum': cur.vnum,
+            'name': cur.name,
+            'description': getattr(cur, 'description', '') or '',
+            'sector': getattr(cur, 'sector_type', '') or '',
+            'flags': list(cur.flags) if hasattr(cur, 'flags') else [],
+            'exits': cur_exits,
+            'gravestones': stones,
+            'details': details,
+        }
+        # environmental gameplay: hazards, trap state (per-viewer detection),
+        # elemental terrain states (burning webs, frozen water)
+        try:
+            from environment import env_public
+            current_room['env'] = env_public(cur, player)
+        except Exception:
+            pass
+
     return {
         'type': 'map_data',
         'rooms': room_items,
         'frontier': valid_frontier,
+        'current_room': current_room,
         'zones': zones_list,
         'time': time_info,
         'weather': weather_info,
         'player': {
             'name': player.name,
             'vnum': start_vnum,
+            'sex': (getattr(player, 'sex', 'male') or 'male'),
             'x': player_coord[0],
             'y': player_coord[1],
             'z': player_coord[2],
@@ -632,22 +1288,37 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'dex': getattr(player, 'dex', 0),
             'con': getattr(player, 'con', 0),
             'cha': getattr(player, 'cha', 0),
-            'hitroll': getattr(player, 'hitroll', 0),
-            'damroll': getattr(player, 'damroll', 0),
-            'armor_class': getattr(player, 'armor_class', 0),
+            # totals (equipment + stats + stance), not the base attributes
+            'hitroll': player.get_hit_bonus() if hasattr(player, 'get_hit_bonus') else getattr(player, 'hitroll', 0),
+            'damroll': player.get_damage_bonus() if hasattr(player, 'get_damage_bonus') else getattr(player, 'damroll', 0),
+            'armor_class': player.get_armor_class() if hasattr(player, 'get_armor_class') else getattr(player, 'armor_class', 0),
             'gold': getattr(player, 'gold', 0),
             'exp': getattr(player, 'exp', 0),
+            'exp_floor': _exp_thresholds(player)[0],
+            'exp_to_level': _exp_thresholds(player)[1],
+            'in_combat': _in_combat(player),
+            'path': getattr(player, 'path', None),
+            'path_active': _path_active(player),
             'equipment': {
-                slot: {'name': item.name, 'affects': getattr(item, 'affects', [])}
+                slot: dict(item_info(item), affects=getattr(item, 'affects', []))
                 for slot, item in getattr(player, 'equipment', {}).items()
                 if item is not None
             },
             'inventory': [
-                {'name': item.name, 'item_type': getattr(item, 'item_type', 'other')}
+                dict(item_info(item), item_type=getattr(item, 'item_type', 'other'))
                 for item in getattr(player, 'inventory', [])
             ],
+            'aura': _worn_aura(player),
+            'mount': _mount_info(player),
+            'position': getattr(player, 'position', 'standing'),
+            'autoloot': bool(getattr(player, 'autoloot', False)),
+            'autogold': bool(getattr(player, 'autogold', True)),
+            'resource': _class_resource(player),
+            'cooldowns': _cooldowns(player),
+            'reactions': _reaction_ready(player),
             'skills': dict(getattr(player, 'skills', {})),
             'talents': dict(getattr(player, 'talents', {})),
             'affects': AffectManager.save_affects(player),
-        }
+        },
+        'group': build_group_block(player),
     }

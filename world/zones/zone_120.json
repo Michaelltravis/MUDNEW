@@ -1738,6 +1738,9 @@
             "locked": false,
             "key_vnum": null
           }
+        },
+        "north": {
+          "to_room": 12057
         }
       }
     },
@@ -1879,11 +1882,17 @@
         "south": {
           "to_room": 12058,
           "description": "A rocky path climbs toward The Valley Of The Gods"
+        },
+        "north": {
+          "to_room": 12064
         }
       },
       "mob_resets": [],
       "obj_resets": [],
-      "vnum": 12057
+      "vnum": 12057,
+      "extra_descs": {
+        "valley mountain": "The Valley of the Gods opens above the road, terraced with shrines. The summit beyond is said to answer one question per pilgrim, rarely kindly."
+      }
     }
   },
   "mobs": {

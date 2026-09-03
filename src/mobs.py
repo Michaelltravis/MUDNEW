@@ -5,6 +5,7 @@ Non-player characters and monsters.
 """
 
 import random
+import time
 import logging
 from typing import Dict, List, Optional, TYPE_CHECKING
 
@@ -227,6 +228,10 @@ class Mobile(Character):
         # Flags
         mob.flags = set(proto.get('flags', []))
         mob.special = proto.get('special')
+        # service NPCs hold their post: a guildmaster who wanders into the
+        # sewers (or chases someone there) breaks the whole guild
+        if mob.special in ('guildmaster', 'trainer', 'shopkeeper', 'healer', 'banker', 'postmaster'):
+            mob.flags.add('sentinel')
         mob.talk_responses = proto.get('talk_responses', {})
         mob.trains_class = proto.get('trains_class')  # For guildmasters
 
@@ -452,14 +457,27 @@ class Mobile(Character):
             return
 
         # Otherwise, use simple fallback AI
-        # If fighting, just fight
+        # While fighting, combat actions are owned EXCLUSIVELY by mob_ai_tick
+        # (world.combat_tick, once per 4s round). process_ai runs every 0.1s
+        # tick, so calling combat_ai here rolled specials/spells ~10x/sec on
+        # top of the round AI — mobs double-acted wildly.
         if self.is_fighting:
-            await self.combat_ai()
             return
 
         # Hunting AI - track players who attacked us
         if await self.hunting_ai():
             return
+
+        # Trapsmiths rig their lair while idle (~once per 30s of ticks)
+        if self.room and random.random() < 0.003:
+            try:
+                from mob_ai import classify_mob
+                if 'trapsmith' in classify_mob(self) and not getattr(self.room, 'mob_traps', None):
+                    from environment import mob_rig_trap
+                    await mob_rig_trap(self, self.room)
+                    return
+            except Exception:
+                pass
 
         # Tracking AI - follow detected sneaking targets briefly
         import time
@@ -478,6 +496,8 @@ class Mobile(Character):
                         self.room = exit_data['room']
                         self.room.characters.append(self)
                         await self.room.send_to_room(f"{self.name} arrives, eyes scanning the shadows.")
+                        opposite = self.config.DIRECTIONS.get(direction, {}).get('opposite', 'somewhere')
+                        await self._notify_move(old_room, self.room, direction, opposite)
                         return
             # If target is in same room, let normal AI handle aggression
         else:
@@ -616,7 +636,34 @@ class Mobile(Character):
             if moved:
                 self.hunt_cooldown = 2  # Wait 2 ticks before moving again
                 return True
-        
+
+        # Path blocked and the prey is right through a door? POUND ON IT.
+        # Barricades and seals buy time, not safety — you HEAR it coming.
+        for d, ex in self.room.exits.items():
+            if not ex or ex.get('room') is not target.room or 'door' not in ex:
+                continue
+            door = ex['door']
+            if door.get('state') != 'closed':
+                continue
+            from commands import CommandHandler
+            c = self.config.COLORS
+            max_hp = CommandHandler._door_max_hp(door)
+            door.setdefault('hp', max_hp)
+            door['hp'] -= getattr(self, 'str', 12) * 2 + self.level + random.randint(0, 10)
+            name = door.get('name', 'door')
+            if door['hp'] <= 0:
+                await CommandHandler._break_door_open(self, self.room, d, ex, door, self.config)
+            else:
+                await self.room.send_to_room(
+                    f"{c['bright_red']}{self.name} slams against the {name} {d}! BOOM!{c['reset']}"
+                )
+                if target.room:
+                    await target.room.send_to_room(
+                        f"{c['bright_red']}💥 BOOM! Something heavy pounds against the {name}!{c['reset']}"
+                    )
+            self.hunt_cooldown = 2
+            return True
+
         return False
     
     async def find_path_to_target(self, target: 'Character') -> list:
@@ -661,6 +708,10 @@ class Mobile(Character):
                 if 'door' in exit_data:
                     door = exit_data['door']
                     if door.get('state') == 'closed':
+                        # barricades and arcane seals block PATHING for everyone
+                        # (a blocked hunter pounds the door down instead)
+                        if door.get('barricaded_until', 0) > time.time() or door.get('sealed_until', 0) > time.time():
+                            continue
                         # Mobs can't open locked doors
                         if door.get('locked'):
                             continue
@@ -919,6 +970,7 @@ class Mobile(Character):
         direction, target_room = random.choice(valid_exits)
         
         # Leave current room
+        old_room = self.room
         await self.room.send_to_room(f"{self.name} leaves {direction}.")
         self.room.characters.remove(self)
         
@@ -928,6 +980,24 @@ class Mobile(Character):
         
         opposite = self.config.DIRECTIONS.get(direction, {}).get('opposite', 'somewhere')
         await target_room.send_to_room(f"{self.name} arrives from the {opposite}.")
+        await self._notify_move(old_room, target_room, direction, opposite)
+
+    async def _notify_move(self, old_room, new_room, direction, opposite):
+        """Tell graphical clients in both rooms: live roster + travel arrows.
+        Without this, a wandering NPC's icon sticks on screen until the
+        player happens to move."""
+        web_map = getattr(self.world, 'web_map', None)
+        if not web_map:
+            return
+        try:
+            await web_map.notify_room(old_room, {
+                'type': 'mob_move', 'action': 'leave', 'name': self.name,
+                'dir': direction, 'vnum': getattr(old_room, 'vnum', None)})
+            await web_map.notify_room(new_room, {
+                'type': 'mob_move', 'action': 'arrive', 'name': self.name,
+                'dir': opposite, 'vnum': getattr(new_room, 'vnum', None)})
+        except Exception:
+            pass
         
     async def special_ai(self):
         """Handle special mob behaviors."""
@@ -1044,13 +1114,18 @@ class Mobile(Character):
                     f"{c['bright_magenta']}{self.name} tries to regenerate but the poison prevents it!{c['reset']}"
                 )
             else:
-                regen = self.max_hp // 10
+                # ~4% of max HP per proc (was 10%, which let trolls out-heal a
+                # whole party); capped so high-HP trolls/bosses don't spike, and
+                # only echoed when it's a meaningful heal so it stops spamming
+                regen = min(self.max_hp // 25, 150)
                 if 'diseased' in affect_flags:
                     regen = regen // 4
-                self.hp = min(self.max_hp, self.hp + regen)
-                await self.room.send_to_room(
-                    f"{c['green']}{self.name}'s wounds begin to close.{c['reset']}"
-                )
+                healed = min(regen, self.max_hp - self.hp)
+                self.hp += healed
+                if healed >= 5:
+                    await self.room.send_to_room(
+                        f"{c['green']}{self.name}'s wounds slowly close.{c['reset']}"
+                    )
             return
         elif self.special == 'paralyze':
             attack_type = 'tries to paralyze'
@@ -1076,7 +1151,27 @@ class Mobile(Character):
     async def take_damage(self, amount: int, attacker: 'Character' = None, damage_type: str = 'physical') -> bool:
         """Take damage, return True if killed."""
         damage_type = damage_type or 'physical'
-        
+        import time as _time
+        _now = _time.time()
+
+        # STAGGERED: poise broken — reeling and wide open (+50% damage taken)
+        if amount > 0 and _now < getattr(self, 'staggered_until', 0):
+            amount = int(amount * 1.5)
+        # GUARDED: shield raised — weapon auto-swings are mostly turned aside.
+        # Class abilities and spells punch through, and any concussive skill
+        # (bash/kick/trip/smite...) SHATTERS the guard (CombatHandler.break_guard).
+        elif amount > 0 and damage_type == 'physical' \
+                and getattr(attacker, '_weapon_swing', False) \
+                and _now < getattr(self, 'guard_until', 0):
+            turned = amount - max(1, int(amount * 0.4))
+            amount = max(1, int(amount * 0.4))
+            if turned > 2 and hasattr(self, 'room') and self.room and random.random() < 0.5:
+                c = Config().COLORS
+                await self.room.send_to_room(
+                    f"{c['cyan']}{self.name}'s guard turns the blow aside! (-{turned}) "
+                    f"{c['yellow']}A heavy bash or kick could break it.{c['reset']}"
+                )
+
         # Absorb shields (divine_shield / stoneskin / armour_ward)
         try:
             absorb_allowed = damage_type == 'physical' or damage_type in Config.ABSORB_MAGIC_TYPES
@@ -1130,7 +1225,7 @@ class Mobile(Character):
                 pass
         
         self.hp -= amount
-        
+
         # Check for death
         if self.hp <= 0:
             if not getattr(self, '_dying', False):
@@ -1141,7 +1236,31 @@ class Mobile(Character):
                 else:
                     await self.die(attacker)
             return True
-        
+
+        # POISE: player hits chip the mob's balance; break it and the mob is
+        # STAGGERED — loses its round and takes +50% while the window lasts.
+        # A perfect-timed strike (cmd_swing) chips double. Poise grows after
+        # each stagger so the loop has diminishing returns within one fight.
+        if amount > 0 and attacker is not None and hasattr(attacker, 'connection') \
+                and _now >= getattr(self, 'staggered_until', 0):
+            if not getattr(self, 'max_poise', 0):
+                self.max_poise = 3 + getattr(self, 'level', 1) // 4
+            chip = 2 if getattr(attacker, '_poise_bonus_hit', False) else 1
+            attacker._poise_bonus_hit = False
+            self.poise = getattr(self, 'poise', 0) + chip
+            if self.poise >= self.max_poise:
+                self.poise = 0
+                self.max_poise = int(self.max_poise * 1.5) + 1
+                self.stunned_rounds = getattr(self, 'stunned_rounds', 0) + 1
+                self.staggered_until = _now + 4.5
+                self.guard_until = 0          # a broken stance drops any guard
+                self.pending_intent = None    # ...and interrupts any wind-up
+                if hasattr(self, 'room') and self.room:
+                    c = Config().COLORS
+                    await self.room.send_to_room(
+                        f"{c['bright_yellow']}💥 {self.name} reels — STAGGERED! Strike now!{c['reset']}"
+                    )
+
         # Wimpy mobs flee at low health (but not if dead)
         if 'wimpy' in self.flags and self.hp < self.max_hp * 0.2:
             if self.fighting:
@@ -1172,14 +1291,31 @@ class Mobile(Character):
         
         if valid_exits:
             direction, target_room = random.choice(valid_exits)
-            
+
             c = self.config.COLORS
             await self.room.send_to_room(f"{c['yellow']}{self.name} flees {direction}!{c['reset']}")
-            
+
+            old_room = self.room
+            exit_used = old_room.exits.get(direction)
             self.room.characters.remove(self)
             self.room = target_room
             target_room.characters.append(self)
-            
+
+            # a fleeing COWARD slams the door behind it — chase or cut it off
+            try:
+                from mob_ai import classify_mob
+                if exit_used and 'door' in exit_used and exit_used['door'].get('state') == 'open' \
+                        and 'coward' in classify_mob(self):
+                    exit_used['door']['state'] = 'closed'
+                    opp = self.config.DIRECTIONS.get(direction, {}).get('opposite')
+                    rev = target_room.exits.get(opp) if opp else None
+                    if rev and 'door' in rev:
+                        rev['door']['state'] = 'closed'
+                    name = exit_used['door'].get('name', 'door')
+                    await old_room.send_to_room(f"{c['yellow']}{self.name} SLAMS the {name} shut behind it!{c['reset']}")
+            except Exception:
+                pass
+
     async def die(self, killer: 'Character' = None):
         """Handle mob death."""
         if self.fighting:

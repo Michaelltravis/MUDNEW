@@ -34,6 +34,13 @@ PACK_KEYWORDS = {'wolf', 'wolves', 'rat', 'rats', 'goblin', 'kobold', 'gnoll',
                  'orc', 'hyena', 'jackal', 'bandit', 'brigand', 'pirate'}
 COWARD_KEYWORDS = {'rabbit', 'deer', 'squirrel', 'chicken', 'fox', 'cat',
                    'mouse', 'fawn', 'sparrow', 'villager', 'peasant', 'beggar'}
+GUARDED_KEYWORDS = {'guard', 'cityguard', 'knight', 'soldier', 'sentinel', 'sentry',
+                    'legionnaire', 'defender', 'golem', 'turtle', 'crab', 'warden'}
+BIG_KEYWORDS = {'ogre', 'troll', 'giant', 'bear', 'golem', 'minotaur', 'yeti',
+                'cyclops', 'behemoth', 'ettin', 'juggernaut'}
+TRAPSMITH_KEYWORDS = {'kobold', 'trapper', 'tinker', 'sapper', 'saboteur', 'poacher'}
+AMBUSH_KEYWORDS = {'spider', 'stalker', 'lurker', 'assassin', 'panther', 'shadow',
+                   'ambusher', 'creeper', 'widow'}
 
 
 def _has_flag(mob, flag: str) -> bool:
@@ -66,10 +73,19 @@ def classify_mob(mob) -> set:
     name_words = set(name.split())
     all_words = kws | name_words
 
+    # bosses.py Boss instances run their own telegraph/cast rotation via
+    # Boss.process_ai — giving them the mob_ai 'boss' role too made two boss
+    # ability systems fire on one mob
+    try:
+        from bosses import Boss
+        is_boss_class = isinstance(mob, Boss)
+    except Exception:
+        is_boss_class = False
+
     # Explicit flags take priority
     if 'mob_caster' in flags or 'caster' in flags:
         roles.add('caster')
-    if 'mob_boss' in flags or 'boss' in flags:
+    if ('mob_boss' in flags or 'boss' in flags) and not is_boss_class:
         roles.add('boss')
     if 'mob_pack' in flags or 'pack' in flags:
         roles.add('pack')
@@ -77,6 +93,26 @@ def classify_mob(mob) -> set:
         roles.add('healer')
     if 'mob_coward' in flags:
         roles.add('coward')
+
+    # Legacy special-attack mobs (poison bite, fire breath, paralyzing touch,
+    # troll regen) — these fired from the old per-tick combat_ai; now owned here
+    special = getattr(mob, 'special', None)
+    if special in ('poison', 'firebreath', 'paralyze', 'regenerate') \
+            or 'poison' in flags \
+            or any(w in name for w in ('dragon', 'troll', 'spider', 'snake')):
+        roles.add('legacy_special')
+
+    # Disciplined/armored fighters periodically raise a GUARD that turns
+    # blades aside — broken by a bash or kick (guarded-mob counterplay)
+    if any(w in all_words for w in GUARDED_KEYWORDS) or 'shield' in name:
+        roles.add('guarded')
+
+    # Trapsmiths rig snares in their lairs while idle; ambushers strike from
+    # cold with a devastating opener
+    if all_words & TRAPSMITH_KEYWORDS:
+        roles.add('trapsmith')
+    if all_words & AMBUSH_KEYWORDS:
+        roles.add('ambusher')
 
     # Infer from keywords / name
     if not roles & {'caster'}:
@@ -96,8 +132,8 @@ def classify_mob(mob) -> set:
         elif 'wimpy' in flags and getattr(mob, 'level', 99) <= 8:
             roles.add('coward')
 
-    # Boss by HP threshold
-    if not roles & {'boss'}:
+    # Boss by HP threshold (never for bosses.py Boss instances — see above)
+    if not roles & {'boss'} and not is_boss_class:
         if getattr(mob, 'max_hp', 0) > 5000:
             roles.add('boss')
         elif getattr(mob, 'is_boss', False):
@@ -163,44 +199,80 @@ async def _caster_tick(mob, target):
         )
         return True
 
-    # 35% chance to cast offensive spell
-    if random.randint(1, 100) > 35:
+    # Offensive/debuff casts are DECLARED an round ahead (declare_intents) so
+    # players can react; this direct path only runs for trivial fights that
+    # bypass the intent system entirely.
+    if not _intent_exempt(mob, target):
+        return False
+
+    # 60% chance to cast offensive spell (was 35% at 10Hz via the old
+    # combat_ai path — this runs once per 4s round now)
+    if random.randint(1, 100) > 60:
         return False
 
     # Debuff (20% of casts, if target not already debuffed)
     if random.randint(1, 100) <= 20 and CASTER_DEBUFFS:
-        spell_name, msg, attr, val = random.choice(CASTER_DEBUFFS)
-        if attr and getattr(target, attr, 0) <= 0:
-            mob.mana -= 15
+        deb = random.choice(CASTER_DEBUFFS)
+        if deb[2] and getattr(target, deb[2], 0) <= 0:
             mob.ai_state['spell_cd'] = now + 5
-            if attr:
-                setattr(target, attr, val)
-            await mob.room.send_to_room(
-                f"{c['bright_magenta']}{mob.name} {msg} {target.name}!{c['reset']}"
-            )
-            if hasattr(target, 'send'):
-                await target.send(f"{c['yellow']}You feel the effects of {spell_name.replace('_',' ')}!{c['reset']}")
+            await _cast_debuff(mob, target, deb)
             return True
 
     # Offensive spell
-    for spell_name, msg, mult, mana_cost in CASTER_OFFENSIVE:
-        if mob.mana >= mana_cost:
-            base_dmg = random.randint(mob.level, mob.level * 3)
-            damage = int(base_dmg * mult)
-            mob.mana -= mana_cost
+    for spell in CASTER_OFFENSIVE:
+        if mob.mana >= spell[3]:
             mob.ai_state['spell_cd'] = now + 4
-            await mob.room.send_to_room(
-                f"{c['bright_magenta']}{mob.name} {msg} {target.name}! [{damage}]{c['reset']}"
-            )
-            if hasattr(target, 'send'):
-                await target.send(f"{c['bright_red']}{mob.name}'s spell hits you for {damage} damage!{c['reset']}")
-            killed = await target.take_damage(damage, mob)
-            if killed:
-                from combat import CombatHandler
-                await CombatHandler.handle_death(mob, target)
+            await _cast_offensive(mob, target, spell)
             return True
 
     return False
+
+
+async def _cast_debuff(mob, target, deb):
+    """Execute a caster debuff (shared by the instant path and intent resolve)."""
+    spell_name, msg, attr, val = deb
+    c = mob.config.COLORS
+    mob.mana = max(0, mob.mana - 15)
+    if attr and getattr(target, attr, 0) <= 0:
+        # brace = standing firm: resists the stun/blind family
+        if attr in ('stunned_rounds', 'blinded_rounds') and _braced(target):
+            await mob.room.send_to_room(
+                f"{c['cyan']}{getattr(target, 'name', 'Someone')} stands braced — "
+                f"the {spell_name.replace('_', ' ')} washes over them harmlessly!{c['reset']}"
+            )
+            return
+        setattr(target, attr, val)
+    await mob.room.send_to_room(
+        f"{c['bright_magenta']}{mob.name} {msg} {target.name}!{c['reset']}"
+    )
+    if hasattr(target, 'send'):
+        await target.send(f"{c['yellow']}You feel the effects of {spell_name.replace('_', ' ')}!{c['reset']}")
+
+
+async def _cast_offensive(mob, target, spell):
+    """Execute a caster attack spell (shared by the instant path and intent resolve)."""
+    spell_name, msg, mult, mana_cost = spell
+    c = mob.config.COLORS
+    base_dmg = random.randint(mob.level, mob.level * 3)
+    damage = int(base_dmg * mult)
+    mob.mana = max(0, mob.mana - mana_cost)
+    await mob.room.send_to_room(
+        f"{c['bright_magenta']}{mob.name} {msg} {target.name}! [{damage}]{c['reset']}"
+    )
+    if hasattr(target, 'send'):
+        await target.send(f"{c['bright_red']}{mob.name}'s spell hits you for {damage} damage!{c['reset']}")
+    killed = await target.take_damage(damage, mob)
+    if killed:
+        from combat import CombatHandler
+        await CombatHandler.handle_death(mob, target)
+        return
+    # mob spells work the terrain too: their lightning splashes the pool,
+    # their fire can torch the webs — the room is nobody's ally by default
+    try:
+        from environment import elemental_cast
+        await elemental_cast(mob, target, spell_name, mob.room)
+    except Exception:
+        pass
 
 
 # ---------------------------------------------------------------------------
@@ -230,6 +302,10 @@ async def _boss_aoe_slam(mob, target):
         if char == mob or not hasattr(char, 'connection'):
             continue
         actual_dmg = random.randint(int(damage * 0.7), damage)
+        # declared-intent counterplay: sidestep avoids, brace halves
+        actual_dmg = await _mitigate_hit(mob, char, actual_dmg)
+        if actual_dmg is None:
+            continue
         if hasattr(char, 'send'):
             await char.send(f"{c['bright_red']}The shockwave hits you for {actual_dmg} damage!{c['reset']}")
         killed = await char.take_damage(actual_dmg, mob)
@@ -248,6 +324,11 @@ async def _boss_fear(mob, target):
     )
     for char in list(mob.room.characters):
         if char == mob or not hasattr(char, 'connection'):
+            continue
+        if _braced(char):
+            # standing braced = steeled nerves; the fear breaks against you
+            if hasattr(char, 'send'):
+                await char.send(f"{c['cyan']}Braced and unshakable, you stare the terror down!{c['reset']}")
             continue
         if random.randint(1, 100) <= 60:  # 60% chance to be feared
             rounds = random.randint(1, 2)
@@ -326,10 +407,17 @@ _BOSS_HANDLERS = {
 
 
 async def _boss_tick(mob, target):
-    """Boss mob AI: rotate through special abilities on cooldown."""
+    """Boss mob AI: rotate through special abilities on cooldown.
+
+    In real fights the damaging abilities are DECLARED a round ahead
+    (declare_intents) so players can react; this direct path executes them
+    only for trivial fights. Enrage (a self-buff with no counterplay) always
+    fires instantly.
+    """
     now = time.time()
     cooldowns = mob.ai_state.setdefault('boss_cooldowns', {})
     hp_pct = mob.hp / max(1, mob.max_hp)
+    exempt = _intent_exempt(mob, target)
 
     for ability_name, cd_secs, hp_max, handler_name in BOSS_ABILITIES:
         # Check HP threshold
@@ -340,6 +428,9 @@ async def _boss_tick(mob, target):
             continue
         # Enrage is one-time
         if ability_name == 'enrage' and mob.ai_state.get('enraged'):
+            continue
+        # Non-enrage abilities go through the intent system in real fights
+        if ability_name != 'enrage' and not exempt:
             continue
 
         handler = _BOSS_HANDLERS.get(handler_name)
@@ -494,6 +585,499 @@ async def _coward_tick(mob, target):
 
 
 # ---------------------------------------------------------------------------
+# Declared intents — a mob telegraphs its next special ONE ROUND AHEAD and the
+# players get a real window to react (brace / sidestep / interrupt, see
+# commands.py). declare_intents() runs in a pre-pass at the top of
+# world.combat_tick — BEFORE the player phase — so the same tick's web push
+# carries the intent with a full round left on the clock. mob_ai_tick()
+# resolves a ripe intent the following round.
+# ---------------------------------------------------------------------------
+
+INTENT_WINDUP = 3.0        # min seconds between declaration and resolution
+INTENT_ROOM_CAP = 2        # max simultaneous wind-ups per room (readability)
+
+
+def _intent_exempt(mob, target) -> bool:
+    """Trivial fights skip the declare/react loop so grinding stays fast."""
+    return getattr(mob, 'level', 1) <= getattr(target, 'level', 1) - 8
+
+
+def _braced(char) -> bool:
+    return time.time() < getattr(char, 'brace_until', 0)
+
+
+def _sidestep_roll(char) -> bool:
+    """One evasion roll for a character in the sidestep window (dodge formula)."""
+    if time.time() >= getattr(char, 'sidestep_until', 0):
+        return False
+    skill = char.skills.get('dodge', 0) if hasattr(char, 'skills') else 0
+    bonus = (getattr(char, 'dex', 10) - 10) * 2
+    return random.randint(1, 100) <= min(95, max(25, skill + bonus))
+
+
+async def _mitigate_hit(mob, char, damage):
+    """Apply brace/sidestep to a resolving heavy/aoe hit.
+    Returns the final damage, or None when fully avoided."""
+    c = mob.config.COLORS
+    name = getattr(char, 'name', 'Someone')
+    if _sidestep_roll(char):
+        await mob.room.send_to_room(
+            f"{c['bright_cyan']}{name} sidesteps at the last instant — the blow finds only air!{c['reset']}"
+        )
+        return None
+    # hero toughness (same reduction the auto-attack path applies)
+    try:
+        from combat import CombatHandler
+        damage = CombatHandler.mitigate_incoming(char, damage)
+    except Exception:
+        pass
+    if _braced(char):
+        if hasattr(char, 'send'):
+            await char.send(f"{c['cyan']}You brace against the impact — it glances off you! (halved){c['reset']}")
+        return max(1, damage // 2)
+    return damage
+
+
+def _full_hit(mob) -> int:
+    """One average-strength auto-hit (dice + the mob's damage bonus) — the
+    unit a heavy blow is measured in, so a wind-up is always scarier than a
+    plain swing regardless of how the zone wrote the dice."""
+    try:
+        base = mob.roll_dice(mob.damage_dice)
+    except Exception:
+        base = random.randint(mob.level, max(mob.level, mob.level * 2))
+    try:
+        base += max(0, mob.get_damage_bonus())
+    except Exception:
+        base += getattr(mob, 'damroll', 0)
+    return max(1, base)
+
+
+def _choose_boss_intent(mob, target):
+    """Pick the boss's next declared ability (enrage stays instant)."""
+    now = time.time()
+    cooldowns = mob.ai_state.setdefault('boss_cooldowns', {})
+    hp_pct = mob.hp / max(1, mob.max_hp)
+    META = {
+        'aoe_slam':    ('aoe', 'Ground Slam', False,
+                        '{name} coils low and raises both fists — the very air trembles!'),
+        'fear':        ('debuff', 'Terrifying Roar', True,
+                        "{name}'s chest swells as it draws in a deep, rumbling breath..."),
+        'summon_adds': ('cast', 'Summon Minions', True,
+                        '{name} begins chanting, dark energy gathering at its fingertips!'),
+    }
+    for ability_name, cd_secs, hp_max, handler_name in BOSS_ABILITIES:
+        if ability_name == 'enrage' or ability_name not in META:
+            continue
+        if hp_pct > hp_max or now < cooldowns.get(ability_name, 0):
+            continue
+        kind, label, interruptible, telegraph = META[ability_name]
+        cooldowns[ability_name] = now + cd_secs   # cooldown commits at declaration
+        return {'kind': kind, 'label': label, 'interruptible': interruptible,
+                'ability': ('boss', handler_name),
+                'telegraph': telegraph.format(name=mob.name)}
+    return None
+
+
+def _choose_caster_intent(mob, target):
+    """Pick the caster's next declared offensive/debuff spell (heal/buff stay instant)."""
+    now = time.time()
+    if mob.mana < 10 or now < mob.ai_state.get('spell_cd', 0):
+        return None
+    hp_pct = mob.hp / max(1, mob.max_hp)
+    # leave the round free for the instant self-heal / first-buff paths
+    if (hp_pct < 0.4 and mob.mana >= 25) or not mob.ai_state.get('buffed'):
+        return None
+    if random.randint(1, 100) > 60:
+        return None
+    if random.randint(1, 100) <= 20:
+        deb = random.choice(CASTER_DEBUFFS)
+        if deb[2] and getattr(target, deb[2], 0) <= 0:
+            mob.ai_state['spell_cd'] = now + 5
+            return {'kind': 'debuff', 'label': deb[0].replace('_', ' ').title(),
+                    'interruptible': True, 'ability': ('caster_debuff', deb),
+                    'telegraph': f'{mob.name} begins weaving a hex, fingers tracing sickly glowing sigils!'}
+    # smart casters read the ROOM: lightning when the prey stands in water,
+    # and a desperate arsonist will torch a webbed chamber with you in it
+    spells = list(CASTER_OFFENSIVE)
+    try:
+        from environment import get_env
+        env = get_env(mob.room)
+        if env['water'] and getattr(mob.room, 'frozen_until', 0) <= now:
+            spells.sort(key=lambda s: 0 if 'lightning' in s[0] else 1)
+        elif env['webbed'] and getattr(mob.room, 'burning_until', 0) <= now \
+                and mob.hp < mob.max_hp * 0.6 and random.randint(1, 100) <= 25:
+            spells.sort(key=lambda s: 0 if 'fire' in s[0] else 1)
+    except Exception:
+        pass
+    for spell in spells:
+        if mob.mana >= spell[3]:
+            mob.ai_state['spell_cd'] = now + 4
+            return {'kind': 'cast', 'label': spell[0].replace('_', ' ').title(),
+                    'interruptible': True, 'ability': ('caster_offensive', spell),
+                    'telegraph': f'{mob.name} begins an incantation — arcane power crackles around it!'}
+    return None
+
+
+def _legacy_kind(mob):
+    """Which legacy special this mob declares (None = instant-only, e.g. troll regen)."""
+    special = getattr(mob, 'special', None)
+    name = _name_lower(mob)
+    flags = getattr(mob, 'flags', set())
+    if special == 'firebreath' or 'dragon' in name:
+        return 'firebreath'
+    if special == 'paralyze':
+        return 'paralyze'
+    if special == 'poison' or 'poison' in flags or 'spider' in name or 'snake' in name:
+        return 'poison'
+    return None
+
+
+def _choose_legacy_intent(mob, target):
+    which = _legacy_kind(mob)
+    if not which:
+        return None
+    now = time.time()
+    if now < mob.ai_state.get('legacy_cd', 0):
+        return None
+    if random.randint(1, 100) > 35:
+        return None
+    mob.ai_state['legacy_cd'] = now + 8   # ~2 rounds
+    if which == 'firebreath':
+        return {'kind': 'heavy', 'label': 'Fire Breath', 'interruptible': False,
+                'ability': ('legacy', 'firebreath'),
+                'telegraph': f'{mob.name} rears back, flames licking between its jaws!'}
+    if which == 'paralyze':
+        return {'kind': 'debuff', 'label': 'Paralyzing Touch', 'interruptible': True,
+                'ability': ('legacy', 'paralyze'),
+                'telegraph': f'{mob.name} reaches out, numbing energy trailing from its touch...'}
+    return {'kind': 'heavy', 'label': 'Venomous Strike', 'interruptible': False,
+            'ability': ('legacy', 'poison'),
+            'telegraph': f'{mob.name} bares dripping fangs, venom beading at their tips!'}
+
+
+def _pack_allies(mob, target):
+    """Same-species packmates in the room fighting the same prey."""
+    if not mob.room:
+        return []
+    myname = _name_lower(mob)
+    return [ch for ch in mob.room.characters
+            if ch is not mob and not hasattr(ch, 'connection')
+            and getattr(ch, 'fighting', None) is target
+            and _name_lower(ch) == myname]
+
+
+def pack_bonus(attacker, defender):
+    """Flanking: pack hunters hit harder for every packmate on the same prey
+    (+10% each, capped +30%). Returns a damage multiplier."""
+    try:
+        if hasattr(attacker, 'connection'):
+            return 1.0
+        if 'pack' not in classify_mob(attacker):
+            return 1.0
+        n = len(_pack_allies(attacker, defender))
+        return 1.0 + 0.10 * min(3, n)
+    except Exception:
+        return 1.0
+
+
+def consume_ambush(attacker):
+    """An ambusher's first strike from cold hits like a backstab (×1.8).
+    Returns the multiplier and consumes the ambush (re-armed on combat end)."""
+    try:
+        if hasattr(attacker, 'connection'):
+            return 1.0
+        ai = getattr(attacker, 'ai_state', None)
+        if not isinstance(ai, dict):
+            return 1.0
+        if 'ambusher' not in classify_mob(attacker):
+            return 1.0
+        if not ai.get('ambush', True):  # missing flag = never fought = armed
+            return 1.0
+        ai['ambush'] = False
+        return 1.8
+    except Exception:
+        return 1.0
+
+
+def _choose_pack_intent(mob, target):
+    """With packmates on the prey, the pack winds up a COORDINATED LUNGE —
+    they strike as one, and the whole pile can be braced or sidestepped."""
+    allies = _pack_allies(mob, target)
+    if len(allies) < 1:
+        return None
+    now = time.time()
+    if now < mob.ai_state.get('lunge_cd', 0):
+        return None
+    if random.randint(1, 100) > 35:
+        return None
+    mob.ai_state['lunge_cd'] = now + 16
+    n = 1 + min(2, len(allies))
+    return {'kind': 'heavy', 'label': 'Coordinated Lunge', 'interruptible': False,
+            'ability': ('pack_lunge', n),
+            'telegraph': f'{mob.name} and its pack fan out, moving as ONE...'}
+
+
+async def _resolve_pack_lunge(mob, target, n):
+    c = mob.config.COLORS
+    from combat import CombatHandler
+    try:
+        base = mob.roll_dice(mob.damage_dice)
+    except Exception:
+        base = random.randint(mob.level, max(mob.level, mob.level * 2))
+    damage = int(base * 1.1 * n) + getattr(mob, 'damroll', 0)
+    dmg = await _mitigate_hit(mob, target, damage)
+    if dmg is None:
+        return
+    await mob.room.send_to_room(
+        f"{c['bright_red']}🐺 The pack strikes as one — {n} sets of fangs hit {target.name} together! [{dmg}]{c['reset']}"
+    )
+    if await target.take_damage(dmg, mob):
+        await CombatHandler.handle_death(mob, target)
+
+
+def _choose_bruiser_intent(mob, target):
+    """Role-less mobs wind up a crushing blow every few rounds; hulking brutes
+    sweep the whole area instead — the client paints a danger zone you can
+    physically walk out of (cmd_evade)."""
+    now = time.time()
+    cfg = mob.config
+    if now < mob.ai_state.get('heavy_cd', 0):
+        return None
+    # The opening wind-up is guaranteed (a read on the foe in the first
+    # seconds); after that, roughly every 3-4 rounds.
+    chance = cfg.WINDUP_CHANCE if 'heavy_cd' in mob.ai_state else cfg.WINDUP_FIRST_ROUND_CHANCE
+    if random.randint(1, 100) > chance:
+        return None
+    mob.ai_state['heavy_cd'] = now + random.randint(cfg.WINDUP_COOLDOWN_MIN, cfg.WINDUP_COOLDOWN_MAX)
+    big = bool(set(_name_lower(mob).split()) & BIG_KEYWORDS)
+    name = mob.name
+    if big and random.randint(1, 100) <= 60:
+        return {'kind': 'aoe', 'label': 'Sweeping Blow', 'interruptible': False,
+                'ability': ('bruiser', 'sweep'),
+                'telegraph': random.choice([
+                    f'{name} winds up a great SWEEPING blow — get clear!',
+                    f'{name} rears back, both arms wide, and winds up a SWEEPING blow!',
+                    f'{name} drops low and winds up to SWEEP the whole area — get clear!',
+                ])}
+    return {'kind': 'heavy', 'label': 'Crushing Blow', 'interruptible': False,
+            'ability': ('bruiser', None),
+            'telegraph': random.choice([
+                f'{name} plants its feet and rears back for a crushing blow!',
+                f'{name} draws back, muscles bunching, and winds up a crushing blow!',
+                f"{name} rears back — a crushing blow is coming!",
+            ])}
+
+
+async def declare_intents(mob):
+    """Pre-pass (top of world.combat_tick): a fighting mob with no pending
+    wind-up may choose and DECLARE its next special. It resolves next round."""
+    if getattr(mob, 'pending_intent', None):
+        return
+    if not mob.is_fighting or not mob.fighting or not mob.room:
+        return
+    target = mob.fighting
+    if not getattr(target, 'is_alive', False):
+        return
+    if not hasattr(mob, 'ai_state') or mob.ai_state is None:
+        mob.ai_state = {}
+    if _intent_exempt(mob, target):
+        return
+    if time.time() < getattr(mob, 'staggered_until', 0):
+        return   # reeling — in no state to wind anything up
+    # keep pack fights readable: at most a couple of wind-ups at once
+    pending = sum(1 for ch in mob.room.characters if getattr(ch, 'pending_intent', None))
+    if pending >= INTENT_ROOM_CAP:
+        return
+
+    roles = classify_mob(mob)
+
+    # A disciplined foe READS your rhythm: arming a perfect strike (cmd_swing)
+    # can invite a counter — the guard snaps up before your blow lands. This
+    # runs in the pre-pass, i.e. BEFORE the player phase resolves the strike,
+    # so the duel actually plays out: telegraph → counter → breaker.
+    if 'guarded' in roles and getattr(target, 'perfect_next', False):
+        now = time.time()
+        if now >= mob.ai_state.get('guard_cd', 0) and now >= getattr(mob, 'staggered_until', 0) \
+                and random.randint(1, 100) <= 60:
+            mob.guard_until = now + 8.0
+            mob.ai_state['guard_cd'] = now + 20
+            c = mob.config.COLORS
+            await mob.room.send_to_room(
+                f"{c['bright_cyan']}🛡 {mob.name} reads your rhythm and snaps into a guard!{c['reset']}"
+            )
+            return
+
+    intent = None
+    if 'boss' in roles:
+        intent = _choose_boss_intent(mob, target)
+    if intent is None and 'caster' in roles:
+        intent = _choose_caster_intent(mob, target)
+    if intent is None and 'legacy_special' in roles:
+        intent = _choose_legacy_intent(mob, target)
+    if intent is None and 'pack' in roles:
+        intent = _choose_pack_intent(mob, target)
+    if intent is None and not roles & {'boss', 'caster', 'legacy_special'}:
+        intent = _choose_bruiser_intent(mob, target)
+    if intent is None:
+        return
+
+    intent['declared_at'] = time.time()
+    mob.pending_intent = intent
+    c = mob.config.COLORS
+    if intent['kind'] in ('heavy', 'aoe'):
+        tip = ' (brace or sidestep!)'
+    elif intent.get('interruptible'):
+        tip = ' (interrupt it!)'
+    else:
+        tip = ''
+    await mob.room.send_to_room(
+        f"{c['bright_yellow']}⚠ {intent['telegraph']}{c['yellow']}{tip}{c['reset']}"
+    )
+
+
+async def _resolve_legacy(mob, target, which):
+    c = mob.config.COLORS
+    from combat import CombatHandler
+    if which == 'firebreath':
+        damage = int(mob.roll_dice(mob.damage_dice) * 2.0)
+        dmg = await _mitigate_hit(mob, target, damage)
+        if dmg is None:
+            return
+        await mob.room.send_to_room(
+            f"{c['bright_red']}{mob.name} breathes a torrent of fire over {target.name}! [{dmg}]{c['reset']}"
+        )
+        if await target.take_damage(dmg, mob):
+            await CombatHandler.handle_death(mob, target)
+    elif which == 'poison':
+        damage = max(1, int(mob.roll_dice(mob.damage_dice) * 0.5))
+        dmg = await _mitigate_hit(mob, target, damage)
+        if dmg is None:
+            return
+        await mob.room.send_to_room(
+            f"{c['bright_red']}{mob.name} sinks venomous fangs into {target.name}! [{dmg}]{c['reset']}"
+        )
+        try:
+            from affects import AffectManager
+            already = any((a.get('name') if isinstance(a, dict) else getattr(a, 'name', '')) == 'poison'
+                          for a in getattr(target, 'affects', []))
+            if not already:
+                AffectManager.apply_affect(target, {
+                    'name': 'poison', 'type': AffectManager.TYPE_DOT, 'applies_to': 'hp',
+                    'value': 3 + mob.level // 5, 'duration': 4, 'caster_level': mob.level,
+                })
+                if hasattr(target, 'send'):
+                    await target.send(f"{c['green']}You feel poison coursing through your veins!{c['reset']}")
+        except Exception:
+            pass
+        if await target.take_damage(dmg, mob):
+            await CombatHandler.handle_death(mob, target)
+    else:   # paralyze
+        if _braced(target) or _sidestep_roll(target):
+            await mob.room.send_to_room(
+                f"{c['cyan']}{target.name} shrugs off {mob.name}'s numbing touch!{c['reset']}"
+            )
+            return
+        if random.randint(1, 100) <= 35:
+            if hasattr(target, 'position'):
+                target.position = 'stunned'
+            await mob.room.send_to_room(f"{c['yellow']}{target.name} is paralyzed!{c['reset']}")
+        else:
+            await mob.room.send_to_room(
+                f"{c['yellow']}{target.name} twists away from the paralyzing touch!{c['reset']}"
+            )
+
+
+async def _resolve_bruiser(mob, target, variant=None):
+    c = mob.config.COLORS
+    from combat import CombatHandler
+    base = _full_hit(mob)
+    if variant == 'sweep':
+        # area sweep: hits every player in the room; sidestep/brace/evade all
+        # mitigate (the web client auto-evades when you're physically clear)
+        damage = int(base * mob.config.SWEEP_BLOW_MULT)
+        await mob.room.send_to_room(
+            f"{c['bright_red']}{mob.name}'s SWEEPING blow scythes across the area!{c['reset']}"
+        )
+        for char in list(mob.room.characters):
+            if char is mob or not hasattr(char, 'connection'):
+                continue
+            dmg = await _mitigate_hit(mob, char, damage)
+            if dmg is None:
+                continue
+            if hasattr(char, 'send'):
+                await char.send(f"{c['bright_red']}The sweep smashes into you! [{dmg}]{c['reset']}")
+            if await char.take_damage(dmg, mob):
+                await CombatHandler.handle_death(mob, char)
+        return
+    damage = int(base * mob.config.HEAVY_BLOW_MULT)
+    dmg = await _mitigate_hit(mob, target, damage)
+    if dmg is None:
+        return
+    await mob.room.send_to_room(
+        f"{c['bright_red']}{mob.name}'s crushing blow slams into {target.name}! [{dmg}]{c['reset']}"
+    )
+    if not _braced(target) and random.randint(1, 100) <= mob.config.HEAVY_STUN_CHANCE:
+        target.stunned_rounds = getattr(target, 'stunned_rounds', 0) + 1
+        if hasattr(target, 'send'):
+            await target.send(f"{c['yellow']}The impact leaves you reeling — stunned!{c['reset']}")
+    if await target.take_damage(dmg, mob):
+        await CombatHandler.handle_death(mob, target)
+        return
+    # full symmetry: their heavy blow can knock YOU into the room's hazards
+    try:
+        from environment import try_shove
+        if not _braced(target):
+            await try_shove(mob, target, mob.room)
+    except Exception:
+        pass
+
+
+async def _resolve_intent(mob):
+    """Execute (or fizzle) the mob's declared intent. Called from mob_ai_tick
+    one round after declaration; an interrupt clears pending_intent before we
+    ever get here."""
+    intent = getattr(mob, 'pending_intent', None)
+    mob.pending_intent = None
+    if not intent:
+        return False
+    c = mob.config.COLORS
+    target = mob.fighting
+    if not target or not getattr(target, 'is_alive', False) or not mob.room:
+        if mob.room:
+            await mob.room.send_to_room(
+                f"{c['yellow']}{mob.name}'s {intent['label']} finds no target and fizzles.{c['reset']}"
+            )
+        return True
+
+    if intent['kind'] in ('heavy', 'aoe'):
+        mob._skip_autoattack = True   # the special IS this round's attack
+        # a massive impact can SHATTER frozen ice under the whole fight
+        try:
+            from environment import heavy_impact
+            await heavy_impact(mob.room)
+        except Exception:
+            pass
+
+    what, arg = intent['ability']
+    if what == 'boss':
+        handler = _BOSS_HANDLERS.get(arg)
+        if handler:
+            await handler(mob, target)
+    elif what == 'caster_offensive':
+        await _cast_offensive(mob, target, arg)
+    elif what == 'caster_debuff':
+        await _cast_debuff(mob, target, arg)
+    elif what == 'legacy':
+        await _resolve_legacy(mob, target, arg)
+    elif what == 'bruiser':
+        await _resolve_bruiser(mob, target, arg)
+    elif what == 'pack_lunge':
+        await _resolve_pack_lunge(mob, target, arg)
+    return True
+
+
+# ---------------------------------------------------------------------------
 # Main entry point — called each combat round per fighting mob
 # ---------------------------------------------------------------------------
 
@@ -504,6 +1088,7 @@ async def mob_ai_tick(mob):
     Returns True if the mob took a special action this round.
     """
     if not mob.is_fighting or not mob.fighting or not mob.room:
+        mob.pending_intent = None   # never leave a wind-up dangling
         return False
 
     target = mob.fighting
@@ -513,6 +1098,15 @@ async def mob_ai_tick(mob):
     # Ensure ai_state dict exists
     if not hasattr(mob, 'ai_state') or mob.ai_state is None:
         mob.ai_state = {}
+
+    # A declared intent owns this mob's special action: resolve it once ripe
+    # (it was declared in a previous round's pre-pass); otherwise it is still
+    # winding up and the mob takes no other special action this round.
+    intent = getattr(mob, 'pending_intent', None)
+    if intent:
+        if time.time() - intent.get('declared_at', 0) >= INTENT_WINDUP:
+            await _resolve_intent(mob)
+        return True
 
     roles = classify_mob(mob)
     if not roles:
@@ -542,6 +1136,29 @@ async def mob_ai_tick(mob):
     # Caster spells
     if 'caster' in roles:
         if await _caster_tick(mob, target):
+            return True
+
+    # Troll-style regeneration (instant — its counter is poison, not a reaction).
+    # Declared legacy specials (fire breath etc.) go through declare_intents.
+    if 'legacy_special' in roles and _legacy_kind(mob) is None:
+        if random.randint(1, 100) <= 30:
+            await mob.special_attack()
+            return True
+
+    # Disciplined fighters raise a GUARD: physical damage mostly turned aside
+    # for two rounds. The taught counter is a bash/kick (break_guard).
+    if 'guarded' in roles:
+        now = time.time()
+        if now >= mob.ai_state.get('guard_cd', 0) \
+                and now >= getattr(mob, 'staggered_until', 0) \
+                and random.randint(1, 100) <= 45:
+            mob.guard_until = now + 8.0          # ~2 rounds
+            mob.ai_state['guard_cd'] = now + 20  # ~5 rounds between guards
+            c = mob.config.COLORS
+            await mob.room.send_to_room(
+                f"{c['bright_cyan']}🛡 {mob.name} locks into a defensive guard! "
+                f"{c['yellow']}(a heavy bash or kick can break it){c['reset']}"
+            )
             return True
 
     return False

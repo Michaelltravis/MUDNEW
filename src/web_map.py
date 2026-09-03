@@ -12,7 +12,7 @@ import os
 from typing import Optional
 from urllib.parse import parse_qs, urlparse
 
-from map_system import build_map_payload
+from map_system import build_map_payload, build_combat_payload
 
 logger = logging.getLogger('Misthollow.WebMap')
 
@@ -115,6 +115,59 @@ class WebMapServer:
         if matching_clients == 0:
             logger.warning(f"notify_player: NO connected clients for '{player.name}' (total clients: {len(self.clients)}, names: {client_names})")
 
+    async def notify_room(self, room, event=None):
+        """Push fresh map payloads to every connected player standing in the
+        room - optionally preceded by a lightweight event (mob movement) so
+        graphical clients can animate the cause before the roster updates."""
+        if not room:
+            return
+        for ch in list(getattr(room, 'characters', [])):
+            name = getattr(ch, 'name', None)
+            if not name or not hasattr(ch, 'connection'):
+                continue
+            if name.lower() not in self.world.players:
+                continue
+            for client in list(self.clients):
+                if not client.player_name or client.player_name.lower() != name.lower():
+                    continue
+                try:
+                    if event:
+                        await self._ws_send(client.writer, json.dumps(event))
+                    payload = build_map_payload(ch, mode=client.mode)
+                    await self._ws_send(client.writer, json.dumps(payload))
+                except Exception:
+                    self.clients.discard(client)
+
+    async def notify_combat(self, player):
+        """Push a lightweight vitals/entity update during combat rounds."""
+        dead_clients = []
+        for client in list(self.clients):
+            if not client.player_name or client.player_name.lower() != player.name.lower():
+                continue
+            try:
+                payload = build_combat_payload(player)
+                if not await self._ws_send(client.writer, json.dumps(payload)):
+                    dead_clients.append(client)
+            except Exception:
+                dead_clients.append(client)
+        for client in dead_clients:
+            self.clients.discard(client)
+
+    async def notify_event(self, player, event: dict):
+        """Push a small structured event (ambient echo, npc chatter...) to a
+        player's connected web clients."""
+        dead_clients = []
+        for client in list(self.clients):
+            if not client.player_name or client.player_name.lower() != player.name.lower():
+                continue
+            try:
+                if not await self._ws_send(client.writer, json.dumps(event)):
+                    dead_clients.append(client)
+            except Exception:
+                dead_clients.append(client)
+        for client in dead_clients:
+            self.clients.discard(client)
+
     async def _handle_client(self, reader, writer):
         try:
             request = await reader.readline()
@@ -181,6 +234,139 @@ class WebMapServer:
                 payload = build_map_payload(player, mode='full')
                 logger.info(f"/state: returning {len(payload.get('rooms', []))} rooms for '{player_name}'")
                 await self._http_response(writer, 200, 'OK', json.dumps(payload), content_type='application/json')
+            elif path.startswith('/lookat'):
+                # examine a detail: room extra descriptions, items, mobs,
+                # inventory - resolved server-side so the client never has
+                # to scrape the text stream
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                target = ((query.get('target') or [''])[0]).strip().lower()
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player or not target or not player.room:
+                    await self._http_response(writer, 200, 'OK', json.dumps({'found': False}), content_type='application/json')
+                    return
+                room = player.room
+                result = None
+                # room extra descriptions ("look at fountain")
+                for keys, text in (getattr(room, 'extra_descs', None) or {}).items():
+                    if any(target in k.lower() or k.lower() in target for k in keys.split()):
+                        result = {'title': keys.split()[0].title(), 'text': text, 'kind': 'detail'}
+                        break
+                # mobs and players in the room
+                if not result:
+                    for ch in room.characters:
+                        name = getattr(ch, 'name', '') or ''
+                        kws = getattr(ch, 'keywords', None) or name.lower().split()
+                        if target in name.lower() or any(target in k.lower() for k in kws):
+                            text = getattr(ch, 'description', '') or getattr(ch, 'long_desc', '') or f'{name} looks unremarkable.'
+                            result = {'title': name, 'text': text, 'kind': 'being'}
+                            break
+                # items on the ground, then in inventory
+                if not result:
+                    pools = [(getattr(room, 'items', None) or []), (getattr(player, 'inventory', None) or [])]
+                    for pool in pools:
+                        for it in pool:
+                            name = getattr(it, 'name', '') or ''
+                            if target in name.lower():
+                                text = getattr(it, 'description', '') or getattr(it, 'long_desc', '') or getattr(it, 'short_desc', '') or 'Nothing remarkable.'
+                                written = getattr(it, 'text', None)
+                                if written and getattr(it, 'item_type', '') in ('note', 'scroll', 'book'):
+                                    text = f"{text}\n\n\u201c{written}\u201d"
+                                result = {'title': getattr(it, 'short_desc', name) or name, 'text': text, 'kind': 'item'}
+                                break
+                        if result:
+                            break
+                body = json.dumps(dict(result, found=True)) if result else json.dumps({'found': False})
+                await self._http_response(writer, 200, 'OK', body, content_type='application/json')
+            elif path.startswith('/atlas'):
+                # the complete world atlas (static; cached server-side)
+                from map_system import build_atlas
+                body = json.dumps(build_atlas(self.world))
+                await self._http_response(writer, 200, 'OK', body, content_type='application/json')
+            elif path.startswith('/shop'):
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                kw = ((query.get('keeper') or [''])[0]).strip().lower()
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                from shops import ShopManager
+                keeper = None
+                if player and player.room:
+                    for ch in player.room.characters:
+                        if ShopManager.is_shopkeeper(ch) and (not kw or kw in (getattr(ch, 'name', '') or '').lower()):
+                            keeper = ch
+                            break
+                shop = ShopManager.get_shop(keeper) if keeper else None
+                if not keeper or not shop:
+                    body = json.dumps({'found': False})
+                else:
+                    from map_system import item_info
+                    buy = []
+                    for it in shop.get_sellable_items()[:40]:
+                        d = item_info(it)
+                        d['price'] = shop.get_sell_price(it, player)
+                        buy.append(d)
+                    sell = []
+                    for it in (getattr(player, 'inventory', None) or [])[:40]:
+                        d = item_info(it)
+                        d['price'] = shop.get_buy_price(it, player)
+                        d['will_buy'] = shop.will_buy(it)
+                        sell.append(d)
+                    body = json.dumps({'found': True, 'keeper': keeper.name,
+                                       'gold': getattr(player, 'gold', 0),
+                                       'buy': buy, 'sell': sell})
+                await self._http_response(writer, 200, 'OK', body, content_type='application/json')
+            elif path.startswith('/training'):
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    body = json.dumps({'found': False})
+                else:
+                    from config import Config as _Cfg
+                    cd = _Cfg().CLASSES.get(str(getattr(player, 'char_class', '')).lower(), {})
+                    body = json.dumps({
+                        'found': True,
+                        'practices': getattr(player, 'practices', 0),
+                        'gold': getattr(player, 'gold', 0),
+                        'level': getattr(player, 'level', 1),
+                        'skills': [{'id': sk, 'prof': player.skills.get(sk, 0), 'known': sk in player.skills}
+                                   for sk in cd.get('skills', [])],
+                        'spells': [{'id': sp, 'prof': player.spells.get(sp, 0), 'known': sp in player.spells}
+                                   for sp in cd.get('spells', [])],
+                    })
+                await self._http_response(writer, 200, 'OK', body, content_type='application/json')
+            elif path.startswith('/container'):
+                # peek inside a container on the ground or in inventory
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                target = ((query.get('target') or [''])[0]).strip().lower()
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player or not target or not player.room:
+                    await self._http_response(writer, 200, 'OK', json.dumps({'found': False}), content_type='application/json')
+                    return
+                from map_system import item_info
+                found = None
+                where = None
+                for pool, wh in ((getattr(player.room, 'items', None) or [], 'room'),
+                                 (getattr(player, 'inventory', None) or [], 'inv')):
+                    for it in pool:
+                        if getattr(it, 'item_type', '') == 'container' and target in (getattr(it, 'name', '') or '').lower():
+                            found, where = it, wh
+                            break
+                    if found:
+                        break
+                if not found:
+                    body = json.dumps({'found': False})
+                else:
+                    contents = [item_info(x) for x in (getattr(found, 'contents', None) or [])][:30]
+                    body = json.dumps({'found': True, 'title': getattr(found, 'short_desc', '') or found.name,
+                                       'where': where, 'closed': bool(getattr(found, 'closed', False)),
+                                       'items': contents})
+                await self._http_response(writer, 200, 'OK', body, content_type='application/json')
             elif path.startswith('/sprites/'):
                 # Serve sprite images
                 sprite_file = path.replace('/sprites/', '')
@@ -205,6 +391,597 @@ class WebMapServer:
                     await self._http_response(writer, 200, 'OK', iso_html, content_type='text/html')
                 except FileNotFoundError:
                     await self._http_response(writer, 404, 'Not Found', 'Isometric view not found')
+            elif path.startswith('/talents'):
+                # talent trees + the player's progression, for the talent UI
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                try:
+                    from talents import CLASS_TALENT_TREES, TalentManager
+                    cls_name = getattr(player, 'char_class', '').lower()
+                    learned = dict(getattr(player, 'talents', {}) or {})
+                    trees = CLASS_TALENT_TREES.get(cls_name, [])
+                    data = {
+                        'class': cls_name,
+                        'points_total': TalentManager.get_talent_points(player),
+                        'points_available': TalentManager.get_available_points(player),
+                        'has_trees': bool(trees),
+                        'trees': [{
+                            'name': t['name'],
+                            'description': t.get('description', ''),
+                            'icon': t.get('icon', ''),
+                            'points': TalentManager.get_tree_points(player, t['name']),
+                            'talents': [{
+                                'id': ta.id, 'name': ta.name, 'description': ta.description,
+                                'tier': ta.tier, 'max_rank': ta.max_rank,
+                                'requires': list(getattr(ta, 'requires', []) or []),
+                                'rank': int(learned.get(ta.id, 0)),
+                            } for ta in t['talents'].values()],
+                        } for t in trees],
+                    }
+                    await self._http_response(writer, 200, 'OK', json.dumps(data), content_type='application/json')
+                except Exception as e:
+                    logger.error(f"/talents error: {e}")
+                    await self._http_response(writer, 500, 'Error', 'talent data unavailable')
+            elif path.startswith('/almanac'):
+                # progression hub: daily streak, achievements, titles, collections
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                try:
+                    from datetime import datetime, date
+                    from achievements import ACHIEVEMENTS
+                    from daily import DAILY_REWARDS, MILESTONE_REWARDS
+                    # ---- daily ----
+                    daily = dict(getattr(player, 'daily', {}) or {})
+                    streak = int(daily.get('streak', 0) or 0)
+                    total_days = int(daily.get('total_days', 0) or 0)
+                    claimed_today = False
+                    lc = daily.get('last_claim')
+                    if lc:
+                        try:
+                            claimed_today = datetime.fromisoformat(lc).date() == date.today()
+                        except Exception:
+                            pass
+                    streak_day = ((max(1, streak) - 1) % 7) + 1
+                    next_day = (streak_day % 7) + 1
+                    ms_claimed = daily.get('milestones_claimed', []) or []
+                    next_ms = None
+                    for md in sorted(MILESTONE_REWARDS):
+                        if md not in ms_claimed and total_days < md:
+                            next_ms = {'day': md, 'name': MILESTONE_REWARDS[md].get('item_name', '')}
+                            break
+                    # ---- achievements ----
+                    unlocked = dict(getattr(player, 'achievements', {}) or {})
+                    prog = dict(getattr(player, 'achievement_progress', {}) or {})
+                    ach_list = []
+                    for aid, a in ACHIEVEMENTS.items():
+                        is_un = aid in unlocked
+                        if a.hidden and not is_un:
+                            continue
+                        cur = int(prog.get(a.progress_key, 0)) if a.progress_key else 0
+                        ach_list.append({
+                            'id': aid, 'name': a.name, 'description': a.description,
+                            'category': a.category, 'icon': a.icon, 'points': a.points,
+                            'target': a.target, 'progress': min(cur, a.target) if a.target else 0,
+                            'unlocked': is_un, 'reward_title': a.reward_title,
+                            'reward_gold': a.reward_gold, 'reward_xp': a.reward_xp,
+                        })
+                    points = sum(int(x.get('points', 0)) for x in unlocked.values())
+                    max_points = sum(a.points for a in ACHIEVEMENTS.values())
+                    # ---- titles ----
+                    titles = list(getattr(player, 'available_titles', []) or [])
+                    # ---- collections ----
+                    colls = []
+                    try:
+                        from collection_system import COLLECTION_SETS
+                        cprog = dict(getattr(player, 'collection_progress', {}) or {})
+                        for cname, cset in COLLECTION_SETS.items():
+                            have = cprog.get(cname, []) or []
+                            items = cset.get('items', [])
+                            colls.append({
+                                'name': cname, 'description': cset.get('description', ''),
+                                'have': len(have), 'total': len(items),
+                                'reward': cset.get('reward', {}),
+                            })
+                    except Exception:
+                        pass
+                    # ---- gear sets ----
+                    gear_sets = []
+                    try:
+                        from sets import NAMED_SETS, get_named_set_bonus
+                        worn_vnums = [getattr(it, 'vnum', None) for it in (getattr(player, 'equipment', {}) or {}).values() if it]
+                        owned_vnums = worn_vnums + [getattr(it, 'vnum', None) for it in (getattr(player, 'inventory', []) or [])]
+                        for sid, cfg in NAMED_SETS.items():
+                            pieces = cfg.get('pieces', {})
+                            worn = sum(1 for v in worn_vnums if v in pieces)
+                            owned = sum(1 for v in owned_vnums if v in pieces)
+                            if owned <= 0:
+                                continue
+                            tiers = []
+                            for thr in sorted(cfg.get('bonuses', {})):
+                                bon = cfg['bonuses'][thr]
+                                txt = ', '.join(f"+{val} {stat.replace('_', ' ')}" for stat, val in bon.items())
+                                tiers.append({'need': thr, 'active': worn >= thr, 'text': txt})
+                            gear_sets.append({
+                                'name': cfg.get('name', sid), 'worn': worn,
+                                'owned': owned, 'total': len(pieces), 'tiers': tiers,
+                            })
+                    except Exception:
+                        pass
+                    data = {
+                        'daily': {
+                            'streak': streak, 'total_days': total_days,
+                            'claimed_today': claimed_today,
+                            'streak_day': streak_day,
+                            'today': DAILY_REWARDS.get(streak_day, DAILY_REWARDS[1]),
+                            'next': DAILY_REWARDS.get(next_day, DAILY_REWARDS[1]),
+                            'next_milestone': next_ms,
+                        },
+                        'gear_sets': gear_sets,
+                        'achievements': {
+                            'points': points, 'max_points': max_points,
+                            'unlocked': len(unlocked), 'total': len(ACHIEVEMENTS),
+                            'list': ach_list,
+                        },
+                        'titles': {'current': getattr(player, 'title', 'the Adventurer'), 'available': titles},
+                        'collections': colls,
+                    }
+                    await self._http_response(writer, 200, 'OK', json.dumps(data), content_type='application/json')
+                except Exception as e:
+                    logger.error(f"/almanac error: {e}")
+                    await self._http_response(writer, 500, 'Error', 'almanac data unavailable')
+            elif path.startswith('/regen'):
+                # recovery rates by position (tick = 60s, so these are /min),
+                # active modifiers, and rent availability — for the rest UI
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                try:
+                    from regeneration import RegenerationCalculator as RC
+                    from config import Config as _Cfg
+                    cfg = _Cfg()
+                    gt = getattr(self.world, 'game_time', None)
+                    room = getattr(player, 'room', None)
+                    weather = None
+                    if room and getattr(room, 'zone', None) and hasattr(room.zone, 'weather'):
+                        weather = room.zone.weather
+                    POS = {'standing': 1.0, 'sitting': 1.25, 'resting': 1.5, 'sleeping': 2.0}
+                    rates = {}
+                    for pos, mult in POS.items():
+                        rates[pos] = {
+                            'hp': round(RC.calculate_hp_regen(player, cfg.HP_REGEN_RATE, mult, gt, weather)),
+                            'mana': round(RC.calculate_mana_regen(player, cfg.MANA_REGEN_RATE, mult, gt, weather)),
+                            'move': round(RC.calculate_move_regen(player, cfg.MOVE_REGEN_RATE, mult, gt, weather)),
+                        }
+                    # active modifiers
+                    mods = []
+                    hour = getattr(gt, 'hour', 12) if gt else 12
+                    if 0 <= hour < 6:
+                        mods.append({'icon': '🌙', 'label': 'Night +25% (rest/sleep)'})
+                    aff = set(getattr(player, 'affect_flags', set()) or set())
+                    if 'regenerating' in aff:
+                        mods.append({'icon': '✨', 'label': 'Regeneration x2'})
+                    if 'poison' in aff or 'poisoned' in aff:
+                        mods.append({'icon': '☠', 'label': 'Poisoned −50%'})
+                    if 'disease' in aff or 'diseased' in aff:
+                        mods.append({'icon': '🤢', 'label': 'Diseased −75%'})
+                    sky = getattr(weather, 'sky_condition', None) if weather else None
+                    if sky in ('rainy', 'stormy', 'snowy'):
+                        mods.append({'icon': '☔', 'label': f'{sky.title()} weather'})
+                    # rent availability
+                    at_inn = False
+                    if room and hasattr(room, 'characters'):
+                        for ch in room.characters:
+                            if getattr(ch, 'special', None) == 'innkeeper':
+                                at_inn = True
+                                break
+                    rent_cost = None
+                    if at_inn:
+                        try:
+                            from commands import CommandHandler
+                            rent_cost = CommandHandler.calc_total_rent(player)
+                        except Exception:
+                            rent_cost = max(20, getattr(player, 'level', 1) * 5)
+                    data = {
+                        'position': getattr(player, 'position', 'standing'),
+                        'rates': rates, 'modifiers': mods,
+                        'at_inn': at_inn, 'rent_cost': rent_cost,
+                        'gold': int(getattr(player, 'gold', 0) or 0),
+                        'in_combat': bool(getattr(player, 'fighting', None)),
+                    }
+                    await self._http_response(writer, 200, 'OK', json.dumps(data), content_type='application/json')
+                except Exception as e:
+                    logger.error(f"/regen error: {e}")
+                    await self._http_response(writer, 500, 'Error', 'regen data unavailable')
+            elif path.startswith('/travel'):
+                # discovered fast-travel waypoints + gold/cooldown state
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                try:
+                    import time as _t
+                    from travel import WAYPOINTS
+                    disc = set(getattr(player, 'discovered_waypoints', set()) or set())
+                    here = getattr(getattr(player, 'room', None), 'vnum', None)
+                    wps = []
+                    for key, info in WAYPOINTS.items():
+                        if key not in disc:
+                            continue
+                        wps.append({
+                            'key': key, 'name': info.get('name', key),
+                            'vnum': info.get('vnum'), 'cost': info.get('cost', 0),
+                            'here': info.get('vnum') == here,
+                        })
+                    cd_until = getattr(player, 'travel_cooldown_until', 0) or 0
+                    cd = max(0, int(cd_until - _t.time()))
+                    data = {
+                        'waypoints': sorted(wps, key=lambda w: w['cost']),
+                        'gold': int(getattr(player, 'gold', 0) or 0),
+                        'cooldown': cd,
+                        'total': len(WAYPOINTS), 'discovered': len(disc),
+                    }
+                    await self._http_response(writer, 200, 'OK', json.dumps(data), content_type='application/json')
+                except Exception as e:
+                    logger.error(f"/travel error: {e}")
+                    await self._http_response(writer, 500, 'Error', 'travel data unavailable')
+            elif path.startswith('/abilities'):
+                # static costs for the player's known spells, for hotbar clarity
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                try:
+                    from spells import SPELLS
+                    known = getattr(player, 'spells', None) or {}
+                    abilities = {}
+                    for key, spell in SPELLS.items():
+                        if key not in known:
+                            continue
+                        abilities[key] = {
+                            'name': spell.get('name', key),
+                            'mana_cost': int(spell.get('mana_cost', 0) or 0),
+                            'cooldown': int(spell.get('cooldown', 0) or 0),
+                            'level': int(spell.get('level_required', 0) or 0),
+                        }
+                    data = {'abilities': abilities, 'resource': 'mana'}
+                    await self._http_response(writer, 200, 'OK', json.dumps(data), content_type='application/json')
+                except Exception as e:
+                    logger.error(f"/abilities error: {e}")
+                    await self._http_response(writer, 500, 'Error', 'ability data unavailable')
+            elif path.startswith('/legend'):
+                # prestige specialization + server leaderboards
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                try:
+                    from prestige import PRESTIGE_CLASSES
+                    base = str(getattr(player, 'char_class', '') or '').lower()
+                    current = getattr(player, 'prestige_class', None)
+                    options = []
+                    for key, pc in PRESTIGE_CLASSES.items():
+                        if pc.get('base_class') != base:
+                            continue
+                        options.append({
+                            'key': key, 'name': pc.get('name', key), 'theme': pc.get('theme', ''),
+                            'description': pc.get('description', ''),
+                            'abilities': [{'name': a.get('name', k), 'description': a.get('description', ''),
+                                           'type': a.get('type', '')} for k, a in pc.get('abilities', {}).items()],
+                        })
+                    prestige = {
+                        'base_class': base, 'current': current,
+                        'current_name': PRESTIGE_CLASSES.get(current, {}).get('name') if current else None,
+                        'eligible': player.level >= 50 and not current,
+                        'level': player.level, 'options': options,
+                    }
+                    # leaderboards from the real player directory
+                    import glob
+                    pdir = self.config.PLAYER_DIR if hasattr(self, 'config') else None
+                    if not pdir:
+                        from config import Config
+                        pdir = Config().PLAYER_DIR
+                    rows = []
+                    for pf in glob.glob(os.path.join(pdir, '*.json')):
+                        try:
+                            with open(pf) as f:
+                                d = json.load(f)
+                            st = d.get('stats', {}) or {}
+                            rows.append({
+                                'name': d.get('name', os.path.basename(pf)[:-5]).capitalize(),
+                                'level': d.get('level', 1),
+                                'kills': st.get('kills', d.get('kills', 0)) or 0,
+                                'gold': (d.get('gold', 0) or 0) + (d.get('bank_gold', 0) or 0),
+                                'achievements': len(d.get('achievements', {}) or {}),
+                                'quests': len(d.get('quests_completed', []) or []),
+                            })
+                        except Exception:
+                            continue
+                    boards = {}
+                    me = (getattr(player, 'name', '') or '').capitalize()
+                    for cat in ('level', 'kills', 'gold', 'achievements', 'quests'):
+                        ranked = sorted(rows, key=lambda r: r.get(cat, 0), reverse=True)
+                        top = [{'name': r['name'], 'value': r.get(cat, 0)} for r in ranked[:10]]
+                        my_rank = next((i + 1 for i, r in enumerate(ranked) if r['name'] == me), None)
+                        boards[cat] = {'top': top, 'my_rank': my_rank, 'total': len(ranked)}
+                    data = {'prestige': prestige, 'leaderboards': boards}
+                    await self._http_response(writer, 200, 'OK', json.dumps(data), content_type='application/json')
+                except Exception as e:
+                    logger.error(f"/legend error: {e}")
+                    await self._http_response(writer, 500, 'Error', 'legend data unavailable')
+            elif path.startswith('/stable'):
+                # pets, hired companions, owned + purchasable mounts
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                try:
+                    pets = []
+                    try:
+                        from pets import PetManager
+                        for p in PetManager.get_player_pets(player) or []:
+                            pets.append({
+                                'name': getattr(p, 'name', 'pet'), 'level': getattr(p, 'level', 1),
+                                'hp': getattr(p, 'hp', 0), 'maxHp': getattr(p, 'max_hp', 1),
+                                'loyalty': getattr(p, 'loyalty', 100),
+                                'type': getattr(p, 'pet_type', 'summon'),
+                                'abilities': list(getattr(p, 'special_abilities', []) or []),
+                            })
+                    except Exception:
+                        pass
+                    comps = []
+                    try:
+                        from companions import CompanionManager
+                        for cm in CompanionManager.get_player_companions(player) or []:
+                            comps.append({
+                                'name': getattr(cm, 'name', 'companion'), 'level': getattr(cm, 'level', 1),
+                                'hp': getattr(cm, 'hp', 0), 'maxHp': getattr(cm, 'max_hp', 1),
+                                'role': getattr(cm, 'companion_type', 'Fighter'),
+                            })
+                    except Exception:
+                        pass
+                    from mounts import MountManager
+                    cur = getattr(player, 'mount', None)
+                    cur_key = getattr(cur, 'key', None) if cur else None
+                    owned = []
+                    for m in getattr(player, 'owned_mounts', []) or []:
+                        key = m if isinstance(m, str) else m.get('key', '')
+                        tpl = MountManager.get_mount_template(key) or {}
+                        owned.append({
+                            'key': key, 'name': tpl.get('name', key),
+                            'description': tpl.get('description', ''),
+                            'speed_bonus': tpl.get('speed_bonus', 0),
+                            'can_fly': bool(tpl.get('can_fly')), 'combat_ok': bool(tpl.get('combat_ok')),
+                            'loyalty': (m.get('loyalty', 100) if isinstance(m, dict) else 100),
+                            'active': key == cur_key,
+                        })
+                    room = getattr(player, 'room', None)
+                    at_stable = False
+                    if room:
+                        if getattr(room, 'sector_type', '') == 'city':
+                            at_stable = True
+                        for ch in getattr(room, 'characters', []) or []:
+                            if getattr(ch, 'special', None) == 'stable_master':
+                                at_stable = True
+                                break
+                    purchasable = []
+                    owned_keys = {o['key'] for o in owned}
+                    for k, v in MountManager.list_purchasable_mounts().items():
+                        if k in owned_keys:
+                            continue
+                        purchasable.append({
+                            'key': k, 'name': v.get('name', k), 'cost': v.get('cost', 0),
+                            'description': v.get('description', ''),
+                            'speed_bonus': v.get('speed_bonus', 0), 'can_fly': bool(v.get('can_fly')),
+                            'afford': getattr(player, 'gold', 0) >= v.get('cost', 0),
+                        })
+                    data = {
+                        'pets': pets, 'companions': comps,
+                        'mounts': {'owned': owned, 'current': cur_key, 'at_stable': at_stable,
+                                   'purchasable': purchasable, 'gold': getattr(player, 'gold', 0)},
+                    }
+                    await self._http_response(writer, 200, 'OK', json.dumps(data), content_type='application/json')
+                except Exception as e:
+                    logger.error(f"/stable error: {e}")
+                    await self._http_response(writer, 500, 'Error', 'stable data unavailable')
+            elif path.startswith('/services'):
+                # mail inbox, bank balance, storage locker
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                try:
+                    from mail_system import MailManager
+                    msgs = MailManager.get_all_mail(player.name) or []
+                    mail = [{
+                        'id': m.get('msg_id', i), 'sender': m.get('sender', '?'),
+                        'ts': (m.get('timestamp', '') or '')[:16].replace('T', ' '),
+                        'body': m.get('body', ''), 'read': bool(m.get('read', False)),
+                    } for i, m in enumerate(msgs)]
+                    room = getattr(player, 'room', None)
+                    flags = getattr(room, 'flags', set()) or set()
+                    at_bank = 'bank' in flags
+                    at_inn = False
+                    if room and hasattr(room, 'characters'):
+                        for ch in room.characters:
+                            if getattr(ch, 'special', None) == 'innkeeper':
+                                at_inn = True
+                                break
+                    storage = [{'name': getattr(it, 'short_desc', None) or getattr(it, 'name', 'an item')}
+                               for it in (getattr(player, 'storage', None) or [])]
+                    sloc = None
+                    if getattr(player, 'storage_location', None):
+                        sr = self.world.get_room(player.storage_location)
+                        sloc = getattr(sr, 'name', None) if sr else None
+                    data = {
+                        'mail': {'unread': sum(1 for m in mail if not m['read']), 'messages': mail},
+                        'bank': {'balance': int(getattr(player, 'bank_gold', 0) or 0),
+                                 'on_hand': int(getattr(player, 'gold', 0) or 0), 'at_bank': at_bank},
+                        'storage': {'items': storage, 'location': sloc, 'at_inn': at_inn},
+                    }
+                    await self._http_response(writer, 200, 'OK', json.dumps(data), content_type='application/json')
+                except Exception as e:
+                    logger.error(f"/services error: {e}")
+                    await self._http_response(writer, 500, 'Error', 'services data unavailable')
+            elif path.startswith('/quests'):
+                # quest journal: active quests w/ progress + quests offered by
+                # NPCs in the current room (the contextual "board")
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                try:
+                    from quests import QuestManager, QUEST_DEFINITIONS
+                    from datetime import datetime
+                    active = []
+                    for q in getattr(player, 'active_quests', []) or []:
+                        objs = [{
+                            'description': o.description,
+                            'current': int(getattr(o, 'current', 0)),
+                            'required': int(getattr(o, 'required', 1)),
+                            'completed': bool(getattr(o, 'completed', False)),
+                            'type': getattr(o, 'type', ''),
+                            'target': getattr(o, 'target', None),
+                        } for o in q.objectives]
+                        remaining = None
+                        if getattr(q, 'time_limit', None):
+                            elapsed = (datetime.now() - q.started_at).total_seconds() / 60
+                            remaining = max(0, int(q.time_limit - elapsed))
+                        active.append({
+                            'id': q.quest_id, 'name': q.name, 'description': q.description,
+                            'objectives': objs, 'rewards': q.rewards,
+                            'complete': q.is_complete(), 'remaining_min': remaining,
+                        })
+                    # available from NPCs present in the room
+                    givers = []
+                    room = getattr(player, 'room', None)
+                    seen = set()
+                    if room and hasattr(room, 'characters'):
+                        for ent in room.characters:
+                            vnum = getattr(ent, 'vnum', None)
+                            if vnum is None or hasattr(ent, 'account_name') or vnum in seen:
+                                continue
+                            seen.add(vnum)
+                            qids = QuestManager.get_available_quests(player, vnum)
+                            if not qids:
+                                continue
+                            offers = []
+                            for qid in qids:
+                                qd = QUEST_DEFINITIONS.get(qid, {})
+                                offers.append({
+                                    'id': qid, 'name': qd.get('name', qid),
+                                    'description': qd.get('description', ''),
+                                    'level_min': qd.get('level_min', 1),
+                                    'level_max': qd.get('level_max', 99),
+                                    'rewards': qd.get('rewards', {}),
+                                    'repeatable': bool(qd.get('repeatable', False)),
+                                    'daily': bool(qd.get('daily', False)),
+                                })
+                            givers.append({'name': getattr(ent, 'name', 'Someone'), 'offers': offers})
+                    data = {'active': active, 'givers': givers,
+                            'completed': len(getattr(player, 'quests_completed', []) or [])}
+                    await self._http_response(writer, 200, 'OK', json.dumps(data), content_type='application/json')
+                except Exception as e:
+                    logger.error(f"/quests error: {e}")
+                    await self._http_response(writer, 500, 'Error', 'quest data unavailable')
+            elif path.startswith('/doctrine'):
+                # warrior doctrine + ability-evolution progression
+                parsed = urlparse(path)
+                query = parse_qs(parsed.query)
+                player_name = (query.get('player') or [''])[0]
+                player = self.world.players.get(player_name.lower()) if player_name else None
+                if not player:
+                    await self._http_response(writer, 404, 'Not Found', 'Player not found')
+                    return
+                try:
+                    from warrior_abilities import DOCTRINES, EVOLUTION_TREE
+                    usage = dict(getattr(player, 'ability_usage', {}) or {})
+                    evolved = dict(getattr(player, 'ability_evolutions', {}) or {})
+                    data = {
+                        'doctrine': getattr(player, 'war_doctrine', None),
+                        'momentum': getattr(player, 'momentum', 0),
+                        'doctrines': {k: {
+                            'name': v.get('name', k), 'description': v.get('description', ''),
+                            'flavor': v.get('flavor', ''), 'bonus': v.get('momentum_bonus', ''),
+                        } for k, v in DOCTRINES.items()},
+                        'abilities': [{
+                            'ability': ab,
+                            'usage': int(usage.get(ab, 0)),
+                            'evolved': evolved.get(ab),
+                            'thresholds': {str(th): {doc: list(pair) for doc, pair in paths.items()}
+                                           for th, paths in tree.items()},
+                        } for ab, tree in EVOLUTION_TREE.items()],
+                    }
+                    await self._http_response(writer, 200, 'OK', json.dumps(data), content_type='application/json')
+                except Exception as e:
+                    logger.error(f"/doctrine error: {e}")
+                    await self._http_response(writer, 500, 'Error', 'doctrine data unavailable')
+            elif path.startswith('/platformer/'):
+                # Serve platformer client assets (js/css/png/json/woff2, no traversal)
+                asset_dir = os.path.realpath(os.path.join(os.path.dirname(__file__), 'web_isometric', 'platformer'))
+                asset_file = path.split('?', 1)[0].replace('/platformer/', '', 1)
+                asset_path = os.path.realpath(os.path.join(asset_dir, asset_file))
+                ext = asset_file.rsplit('.', 1)[-1].lower() if '.' in asset_file else ''
+                if not asset_path.startswith(asset_dir + os.sep) or ext not in ('js', 'css', 'png', 'json', 'woff2', 'woff'):
+                    await self._http_response(writer, 404, 'Not Found', 'Not found')
+                    return
+                try:
+                    if ext in ('png', 'woff2', 'woff'):
+                        with open(asset_path, 'rb') as f:
+                            data = f.read()
+                        bct = {'png': 'image/png', 'woff2': 'font/woff2', 'woff': 'font/woff'}[ext]
+                        writer.write((f"HTTP/1.1 200 OK\r\nContent-Type: {bct}\r\n"
+                                      f"Content-Length: {len(data)}\r\nAccess-Control-Allow-Origin: *\r\n\r\n").encode())
+                        writer.write(data)
+                        await writer.drain()
+                        return
+                    with open(asset_path, 'r', encoding='utf-8') as f:
+                        body = f.read()
+                    ct = ('application/javascript' if ext == 'js' else 'text/css' if ext == 'css'
+                          else 'application/json')
+                    await self._http_response(writer, 200, 'OK', body, content_type=ct)
+                except FileNotFoundError:
+                    await self._http_response(writer, 404, 'Not Found', 'Asset not found')
+            elif path.startswith('/platformer'):
+                # Serve the 2D platformer client
+                plat_path = os.path.join(os.path.dirname(__file__), 'web_isometric', 'platformer.html')
+                try:
+                    with open(plat_path, 'r', encoding='utf-8') as f:
+                        plat_html = f.read()
+                    await self._http_response(writer, 200, 'OK', plat_html, content_type='text/html')
+                except FileNotFoundError:
+                    await self._http_response(writer, 404, 'Not Found', 'Platformer client not found')
             elif path.startswith('/2d'):
                 # Serve the Phaser 2D top-down view
                 client2d_path = os.path.join(os.path.dirname(__file__), 'web_isometric', 'client2d.html')

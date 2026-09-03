@@ -1,0 +1,15 @@
+{
+  "reference": "BrowserQuest (mozilla/BrowserQuest, node server + HTML5 client)",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "shots": [
+    {
+      "label": "fight",
+      "camera": null,
+      "note": "rat fight near spawn, same 8-frame storyboard",
+      "file": "docs/gauntlet/reference/browserquest/fight.png"
+    }
+  ]
+}

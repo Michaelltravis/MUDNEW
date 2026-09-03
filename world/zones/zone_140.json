@@ -45,7 +45,10 @@
           "max": 1
         }
       ],
-      "obj_resets": []
+      "obj_resets": [],
+      "extra_descs": {
+        "gates": "The Gates of the Dead stand open. They have always stood open. The dead, the inscription notes, are patient about visitors."
+      }
     },
     "14001": {
       "title": "Avenue of Tombs",
@@ -139,6 +142,9 @@
         "south": {
           "to_room": 14006,
           "description": "The way leads to Mausoleum District"
+        },
+        "east": {
+          "to_room": 14028
         }
       },
       "vnum": 14003,
@@ -169,6 +175,9 @@
         "east": {
           "to_room": 14001,
           "description": "The way leads to Avenue of Tombs"
+        },
+        "south": {
+          "to_room": 14016
         }
       },
       "vnum": 14004,
@@ -203,6 +212,9 @@
         "south": {
           "to_room": 14008,
           "description": "The way leads to Sanctum of Dark Rites"
+        },
+        "east": {
+          "to_room": 14019
         }
       },
       "vnum": 14005,
@@ -271,6 +283,9 @@
         "south": {
           "to_room": 14010,
           "description": "The way leads to Ghoul Warren"
+        },
+        "west": {
+          "to_room": 14025
         }
       },
       "vnum": 14007,
@@ -543,8 +558,7 @@
       "terrain": "undead",
       "exits": {
         "north": {
-          "to_room": 14002,
-          "description": "The way leads to Plaza of Bones"
+          "to_room": 14004
         },
         "south": {
           "to_room": 14017,
@@ -636,8 +650,7 @@
       "terrain": "undead",
       "exits": {
         "west": {
-          "to_room": 14002,
-          "description": "The way leads to Plaza of Bones"
+          "to_room": 14005
         },
         "up": {
           "to_room": 14020,
@@ -835,8 +848,7 @@
       "terrain": "undead",
       "exits": {
         "east": {
-          "to_room": 14002,
-          "description": "The way leads to Plaza of Bones"
+          "to_room": 14007
         },
         "south": {
           "to_room": 14026,
@@ -933,8 +945,7 @@
       "terrain": "undead",
       "exits": {
         "west": {
-          "to_room": 14001,
-          "description": "The way leads to Avenue of Tombs"
+          "to_room": 14003
         }
       },
       "vnum": 14028,

@@ -681,7 +681,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
             'description': 'Cleave — Hit all enemies in room. 10s cooldown. 0.8x damage each.\n\n'
                            'Evolutions (at 50/150/300 uses):\n'
                            '  Iron Wall: bulwark_sweep → iron_tempest → aegis_storm\n'
-                           '  Berserker: whirlwind → blood_cyclone → deathstorm\n'
+                           '  Berserker: bloodwhirl → blood_cyclone → deathstorm\n'
                            '  Warlord: surgical_cleave → anatomical_rend → grand_strategy',
             'syntax': 'cleave',
             'title': 'Cleave'},
@@ -700,7 +700,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
            'description': 'Rally — Self-buff/recovery. 15s cooldown. Heal 15% max HP.\n\n'
                           'Evolutions (at 50/150/300 uses):\n'
                           '  Iron Wall: stand_your_ground → immovable_object → eternal_guardian\n'
-                          '  Berserker: blood_frenzy → berserker_rage → avatar_of_war\n'
+                          '  Berserker: blood_frenzy → berserker_rage → war_incarnate\n'
                           '  Warlord: battle_orders → inspiring_command → supreme_command',
            'syntax': 'rally',
            'title': 'Rally'},
@@ -1828,9 +1828,117 @@ HELP_TOPICS = {'auction': {'category': 'command',
           'syntax': 'info',
           'title': 'Info'},
  'interrupt': {'category': 'command',
-               'description': 'Attempt to interrupt a boss cast with bash or kick.',
+               'description': 'Break an enemy wind-up before it lands.\n'
+                              '\n'
+                              'When a foe begins an interruptible cast or hex (watch for the\n'
+                              '⚠ telegraph line), INTERRUPT slams into them to stop it cold.\n'
+                              '\n'
+                              'MECHANICS:\n'
+                              '- Works on any declared cast/hex marked interruptible\n'
+                              '- Chance scales with your kick skill\n'
+                              '- Cooldown: 20s on success, 8s on a miss\n'
+                              '- Also works on boss telegraphed casts\n'
+                              '\n'
+                              'See also: BRACE, SIDESTEP',
                'syntax': 'interrupt',
                'title': 'Interrupt'},
+ 'barricade': {'category': 'command',
+               'description': 'Brace a closed door so nothing opens it for a while.\n'
+                              '\n'
+                              'The classic escape: slam the door on your pursuers and pile\n'
+                              'everything you can find against it (~90s hold, costs 15 move).\n'
+                              'A mighty BASH can still break through.\n'
+                              '\n'
+                              'See also: SEAL, BASH <direction>',
+               'syntax': 'barricade <direction>',
+               'title': 'Barricade'},
+ 'seal': {'category': 'command',
+          'description': 'Seal a closed door with arcane sigils (casters, 20 mana).\n'
+                         '\n'
+                         'Holds ~2 minutes against anything short of a mighty bash.\n'
+                         'Mages, necromancers, clerics and paladins know the rites.\n'
+                         '\n'
+                         'See also: BARRICADE, BASH <direction>',
+          'syntax': 'seal <direction>',
+          'title': 'Seal'},
+ 'caltrops': {'category': 'command',
+              'description': 'Thief: scatter caltrops across the ground.\n'
+                             '\n'
+                             'The next hostile through here is hobbled and hurt. Lasts ~5\n'
+                             'minutes or until sprung. Prepare a fight, or cover an escape.\n'
+                             '\n'
+                             'See also: SNARE, SEARCH, DISARM',
+              'syntax': 'caltrops',
+              'title': 'Caltrops'},
+ 'snare': {'category': 'command',
+           'description': 'Ranger: rig a spring-snare across the approach.\n'
+                          '\n'
+                          'The next hostile through here is yanked off its feet and held\n'
+                          'for two rounds. Lasts ~5 minutes or until sprung.\n'
+                          '\n'
+                          'See also: CALTROPS, SEARCH, DISARM',
+           'syntax': 'snare',
+           'title': 'Snare'},
+ 'swing': {'category': 'command',
+           'description': 'Time your attack to the combat rhythm.\n'
+                          '\n'
+                          'Call SWING in the final stretch of the round (the gold window\n'
+                          'on the round bar) and your next attack lands PERFECTLY:\n'
+                          '\n'
+                          'MECHANICS:\n'
+                          '- Perfect strike: +30% damage and double poise damage\n'
+                          '- Mistime it and you are off-balance for the rest of the round\n'
+                          '- Fill an enemy\'s poise and they are STAGGERED: they lose a\n'
+                          '  round and take +50% damage while reeling\n'
+                          '\n'
+                          'See also: EVADE, BRACE, SIDESTEP',
+           'syntax': 'swing',
+           'title': 'Swing (perfect timing)'},
+ 'evade': {'category': 'command',
+           'description': 'Slip out of a marked danger zone before an area attack lands.\n'
+                          '\n'
+                          'When a hulking foe winds up a sweeping area attack, get clear\n'
+                          'and EVADE just before it lands to avoid it entirely.\n'
+                          '\n'
+                          'MECHANICS:\n'
+                          '- Only works against declared AREA attacks (⚠ sweeping blows)\n'
+                          '- Call it in the last moments of the wind-up, not too early\n'
+                          '- You forfeit your own attack that round (all-in on movement)\n'
+                          '- Web client: simply WALK out of the red zone — it evades for you\n'
+                          '\n'
+                          'See also: SWING, BRACE, SIDESTEP',
+           'syntax': 'evade',
+           'title': 'Evade'},
+ 'brace': {'category': 'command',
+           'description': 'Plant your feet against an incoming declared attack.\n'
+                          '\n'
+                          'When a foe winds up a heavy blow or AoE (watch for the ⚠\n'
+                          'telegraph line), BRACE to weather it.\n'
+                          '\n'
+                          'MECHANICS:\n'
+                          '- Halves the damage of the declared heavy/AoE hit\n'
+                          '- Resists its stun, fear or paralysis\n'
+                          '- Costs 10 move · Cooldown: 12s\n'
+                          '- You keep attacking normally while braced\n'
+                          '\n'
+                          'See also: SIDESTEP, INTERRUPT',
+           'syntax': 'brace',
+           'title': 'Brace'},
+ 'sidestep': {'category': 'command',
+              'description': 'Read an enemy wind-up and slip it entirely.\n'
+                             '\n'
+                             'When a foe winds up a heavy blow or AoE (watch for the ⚠\n'
+                             'telegraph line), SIDESTEP to attempt a full evasion.\n'
+                             '\n'
+                             'MECHANICS:\n'
+                             '- Success scales with your dodge skill and DEX\n'
+                             '- On success the declared hit misses you completely\n'
+                             '- You forfeit your own attack that round (all-in on evasion)\n'
+                             '- Cooldown: 16s\n'
+                             '\n'
+                             'See also: BRACE, INTERRUPT',
+              'syntax': 'sidestep',
+              'title': 'Sidestep'},
  'intimidate': {'category': 'skill',
                 'classes': ['warrior'],
                 'description': 'A class skill. Use it to gain tactical advantages in combat or utility.\n'
@@ -2979,7 +3087,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
                            '  stable list       - View available mounts and prices\n'
                            '  stable buy <mount> - Purchase a mount\n'
                            '  stable store      - Safely stable your current mount\n\n'
-                           'The stables are located south of the East Gate of Midgaard (room 3201).\n'
+                           'The stables are located south of the East Gate of Midgaard (room 3211).\n'
                            'Brynn the Stable Master can answer questions about different mounts.\n\n'
                            'PURCHASABLE MOUNTS:\n'
                            '  Horse        - 2,000 gold (+50% speed)\n'
@@ -4654,7 +4762,7 @@ HELP_TOPICS = {'auction': {'category': 'command',
                               'EVOLUTION EXAMPLES:\n'
                               '  strike → brutal_strike → savage_strike → deathwish_strike\n'
                               '  charge → reckless_charge → death_from_above → extinction_event\n'
-                              '  rally → blood_frenzy → berserker_rage → avatar_of_war\n'
+                              '  rally → blood_frenzy → berserker_rage → war_incarnate\n'
                               '  execute → overkill → massacre → annihilation',
                'title': 'Berserker'},
  'warlord': {'category': 'guide',
@@ -5299,6 +5407,15 @@ HELP_CATEGORIES = {'class': ['assassin', 'bard', 'cleric', 'mage', 'necromancer'
 try:
     from prestige import PRESTIGE_HELP_ENTRIES
     HELP_TOPICS.update(PRESTIGE_HELP_ENTRIES)
+except Exception:
+    pass
+
+# Merge auto-generated ability help (spells, skills, talents). This is the
+# authoritative, in-sync source for every ability and overwrites any older
+# hand-maintained spell/skill entries that have since been renamed/reworked.
+try:
+    from help_abilities import build_ability_help
+    HELP_TOPICS.update(build_ability_help())
 except Exception:
     pass
 
