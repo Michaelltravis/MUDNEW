@@ -105,5 +105,20 @@
     "pre": [
       "zreset"
     ]
+  },
+  {
+    "label": "castle",
+    "vnum": 15001,
+    "note": "King Welmar's Castle hall"
+  },
+  {
+    "label": "sewer",
+    "vnum": 7001,
+    "note": "Midgaard sewer"
+  },
+  {
+    "label": "dwarf",
+    "vnum": 6501,
+    "note": "Dwarven Kingdom"
   }
 ]

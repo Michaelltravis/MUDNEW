@@ -88,7 +88,8 @@
     }
     // zone border / obstacle blocks that clashed with the painted look (style-01
     // critic: necropolis 'skull cubes'): fixed 32px stone-wall crops instead
-    const BLOCKS = { necropolis: { atlas: 'dungeon', border: [128, 0], obst: [[480, 224], [512, 224]] } };
+    const STONE = { atlas: 'dungeon', border: [128, 0], obst: [[480, 224], [512, 224]] };
+    const BLOCKS = { necropolis: STONE, castle: STONE, darkcastle: STONE, sewer: STONE, dwarvenhall: STONE, sandstone: STONE, drow: STONE };
     for (const [zone, b] of Object.entries(BLOCKS)) {
       const img = imgs[b.atlas]; if (!img) continue;
       const S = 16 * SS;

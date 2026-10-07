@@ -15,7 +15,8 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   no baked contour on Lucifer actors, +12% brightness, a warm readable townsfolk variant, and
   necropolis border/obstacle blocks replaced by Lucifer stone brick (`lucifer-tiles.js`).
   Record: `docs/gauntlet/style-01/round-1/verdicts.md`.
-- Not done in Phase A: wall tiles for other wall-kind zones (midgaard, castle, sewer). Decision: the Lucifer RPG UI chrome (flat 14-48px pixel frames) is NOT adopted;
+- Stone border/obstacle blocks also applied to castle, darkcastle, sewer, dwarvenhall, sandstone
+  and drow themes; midgaard keeps its painted rooftop border (a town square ringed by houses). Decision: the Lucifer RPG UI chrome (flat 14-48px pixel frames) is NOT adopted;
   the glass HUD that won graphics-02 stays. Lucifer icons/boss bars remain available for later.
 
 ## Phase B: continuous world (IN PROGRESS)
