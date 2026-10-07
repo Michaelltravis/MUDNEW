@@ -545,6 +545,13 @@ class Connection:
             
             # Announce arrival
             await room.send_to_room(f"{self.player.name} has entered the realm.", exclude=[self.player])
+            # graphical clients already in the room see the newcomer at once
+            wm = getattr(self.player.world, 'web_map', None)
+            if wm:
+                try:
+                    await wm.notify_room(room, {'type': 'player_move', 'name': self.player.name, 'action': 'arrive', 'to': room.vnum})
+                except Exception:
+                    pass
             
             # Daily login bonus check
             try:

@@ -902,10 +902,26 @@
     clearTimeout(descTimer);
     descTimer = setTimeout(() => els.roomDesc.classList.remove('show'), holdMs);
   }
+  // presence chip under the zone caption: who else is here / in the zone / online
+  let lastPresence = null;
+  function presenceText(p) {
+    if (!p) return '';
+    const bits = [];
+    if (p.here) bits.push(`${p.here} with you`);
+    else if (p.zone) bits.push(`${p.zone} nearby`);
+    bits.push(`${Math.max(1, p.online)} online`);
+    return bits.join(' · ');
+  }
+  MH.bus.on('map', payload => {
+    if (!payload.presence) return;
+    lastPresence = payload.presence;
+    const el = $('room-presence'); if (el) el.textContent = presenceText(lastPresence);
+  });
   function showRoom(room, zoneName) {
     lastRoomShown = { room, zoneName };
     els.roomName.textContent = room.name || '';
     els.roomZone.textContent = zoneName || '';
+    const pel = $('room-presence'); if (pel) pel.textContent = presenceText(lastPresence);
     const first = room.vnum != null && !seenRooms.has(room.vnum);
     if (room.vnum != null) rememberSeen(room.vnum);
     if (first) showProse(room, 7000);

@@ -278,6 +278,7 @@
         if (payload.type === 'map_data') handleMapData(payload);
         else if (payload.type === 'combat_update') handleCombatUpdate(payload);
         else if (payload.type === 'mob_move') MH.bus.emit('mob.move', payload);
+        else if (payload.type === 'player_move') { MH.bus.emit('player.move', payload); if (payload.name && payload.name !== MH.state.playerName) MH.bus.emit('ambient.echo', `${payload.name} ${payload.action === 'leave' ? 'leaves' : 'arrives'}.`); }
         else if (payload.type === 'ambient') MH.bus.emit('ambient.echo', payload.text || '');
       } catch (err) {
         console.warn('map socket parse error', err);

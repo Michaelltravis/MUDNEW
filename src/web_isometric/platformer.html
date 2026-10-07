@@ -135,6 +135,8 @@
     color: var(--gold); font-size: 15px; letter-spacing: 2px; text-shadow: 0 0 8px rgba(232,193,104,0.3);
   }
   #room-zone { font-size: 10px; color: var(--dim); margin-top: 3px; letter-spacing: 1px; }
+  #room-presence { font-size: 9.5px; color: #8fd3a8; margin-top: 2px; letter-spacing: .5px; opacity: .9; }
+  #room-presence:empty { display: none; }
   #room-desc {
     position: absolute; top: 62px; left: 50%; transform: translateX(-50%);
     z-index: 19; width: min(620px, 80vw);
@@ -2765,6 +2767,7 @@
   <div id="room-banner">
     <div id="room-name"></div>
     <div id="room-zone"></div>
+    <div id="room-presence"></div>
   </div>
   <div id="event-banner"></div>
   <div id="rest-chip"></div>

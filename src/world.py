@@ -955,10 +955,18 @@ class World:
         if player.name.lower() in self.players:
             del self.players[player.name.lower()]
 
+        left_room = player.room
         if player.room and player in player.room.characters:
             player.room.characters.remove(player)
 
         logger.info(f"Player left world: {player.name}")
+        # bystanders' graphical clients drop the departed player immediately
+        wm = getattr(self, 'web_map', None)
+        if wm and left_room:
+            try:
+                await wm.notify_room(left_room, {'type': 'player_move', 'name': player.name, 'action': 'leave', 'from': getattr(left_room, 'vnum', None)})
+            except Exception:
+                pass
         
     def get_player(self, name: str) -> Optional['Player']:
         """Get an online player by name."""

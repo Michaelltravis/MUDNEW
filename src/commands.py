@@ -645,9 +645,17 @@ class CommandHandler:
             player.room.gold = 0
             await player.send(f"{c['yellow']}You pick up {gold_amount} gold coins. You now have {player.gold} gold.{c['reset']}")
 
-        # Web map update
+        # Web map update (the mover, then everyone in both rooms so bystanders
+        # see the arrival/departure at once instead of on their next refresh)
         if hasattr(player.world, 'web_map') and player.world.web_map:
-            await player.world.web_map.notify_player(player)
+            wm = player.world.web_map
+            await wm.notify_player(player)
+            try:
+                ev = {'type': 'player_move', 'name': player.name, 'from': getattr(old_room, 'vnum', None), 'to': getattr(target_room, 'vnum', None)}
+                await wm.notify_room(old_room, dict(ev, action='leave'))
+                await wm.notify_room(target_room, dict(ev, action='arrive'))
+            except Exception:
+                pass
 
         # Sneak detection check in new room
         import time, random
@@ -16477,6 +16485,7 @@ class CommandHandler:
         if hasattr(player.world, 'web_map') and player.world.web_map:
             try:
                 await player.world.web_map.notify_player(player)
+                await player.world.web_map.notify_room(target_room, {'type': 'player_move', 'name': player.name, 'action': 'arrive', 'to': target_room.vnum})
             except Exception:
                 pass
 

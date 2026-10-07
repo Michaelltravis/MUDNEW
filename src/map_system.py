@@ -1290,6 +1290,13 @@ def build_map_payload(player, mode: str = 'full') -> dict:
         'zones': zones_list,
         'time': time_info,
         'weather': weather_info,
+        # presence: who else is around (multiplayer readability)
+        'presence': {
+            'here': sum(1 for c in (getattr(getattr(player, 'room', None), 'characters', None) or []) if c is not player and hasattr(c, 'account_name')),
+            'zone': sum(1 for p in getattr(getattr(player, 'world', None), 'players', {}).values()
+                        if p is not player and getattr(getattr(p, 'room', None), 'zone', None) is getattr(getattr(player, 'room', None), 'zone', object())),
+            'online': len(getattr(getattr(player, 'world', None), 'players', {}) or {}),
+        },
         'player': {
             'name': player.name,
             'vnum': start_vnum,
