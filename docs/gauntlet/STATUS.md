@@ -22,8 +22,11 @@ read this file, `docs/art/SOURCES.md`, then the plan.
 - Step 2 done: neighbours are painted with the real painter, deferred one per tick after the
   current room renders (flat fill shows first), tinted as distance haze; canvases are freed when
   you move on. Evidence: `docs/gauntlet/artlock/peek_forest_edge.png`.
-- Next: seamless crossing (extend physics bounds across the opening and fire the move command
-  from entering the neighbour; drop the slide), then a gauntlet "world" round vs BrowserQuest.
+- Step 3 done: cardinal room changes are a camera pan, not a screen slide. The camera keeps the
+  old composition (the room you left is now the neighbour behind you) and eases onto the player.
+  Up/down/portal travel keeps the wipe.
+- Next: a gauntlet "world" round vs the BrowserQuest overworld; later, true shared physics
+  across the opening so the move fires from walking into the neighbour.
 ## Phase D: multiplayer presence (BASELINE VERIFIED)
 - Two live clients (`tools/gauntlet/duo.js`, characters Gauntlet/Gauntletb) share a room, follow,
   group, and fight together; party frames (top centre) show both members' live HP. Evidence:

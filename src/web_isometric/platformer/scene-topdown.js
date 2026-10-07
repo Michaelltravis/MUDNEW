@@ -4167,7 +4167,18 @@
       const entryDir = moveDir ? (ARRIVAL[moveDir] || moveDir) : 'none';
       const slide = { north: [0, this.pxH], south: [0, -this.pxH], east: [-this.pxW, 0], west: [this.pxW, 0] }[moveDir];
 
+      // continuous world: with the neighbour already peeked, a cardinal move is a
+      // camera PAN, not a screen slide. The old room becomes the neighbour behind
+      // us in the new frame, so shifting the camera by the slide delta keeps the
+      // exact same composition on screen while follow() eases onto the player.
+      const seamless = !!(slide && this.layout && MH.worldPeek);
       let snap = null;
+      if (seamless) {
+        const cam = this.cameras.main, sx = cam.scrollX, sy = cam.scrollY;
+        this.buildRoom(layout, entryDir);
+        cam.setScroll(sx + slide[0], sy + slide[1]);
+        return;
+      }
       if (slide && this.layout) {
         try {
           snap = this.add.renderTexture(0, 0, this.pxW, this.pxH).setOrigin(0, 0).setDepth(900);
