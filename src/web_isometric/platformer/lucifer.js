@@ -84,16 +84,25 @@
     } catch (_) { return false; }
   }
   // name keywords and mob_ai roles -> pack; 'fallback' means keep the old art
-  function resolveMob(name, roles, boss) {
+  function mobRule(name, roles, boss) {
     if (!ready) return null;
     const n = String(name || '').toLowerCase();
     const rs = new Set((roles || []).map(r => String(r).toLowerCase()));
     if (boss) rs.add('boss');
     for (const rule of ROLES.mobs) {
-      if (rule.match && rule.match.some(k => n.includes(k))) return rule.pack === 'fallback' ? null : rule.pack;
-      if (rule.roles && rule.roles.some(r => rs.has(r))) return rule.pack === 'fallback' ? null : rule.pack;
+      if (rule.match && rule.match.some(k => n.includes(k))) return rule;
+      if (rule.roles && rule.roles.some(r => rs.has(r))) return rule;
     }
     return null;
+  }
+  function resolveMob(name, roles, boss) {
+    const rule = mobRule(name, roles, boss);
+    return rule && rule.pack !== 'fallback' && MAN.actors[rule.pack] ? rule.pack : null;
+  }
+  function mobVariant(name, roles, boss) {
+    const rule = mobRule(name, roles, boss);
+    const v = rule && rule.variant;
+    return v ? { key: v.key || rule.pack, hue: v.hue || 0, sat: v.sat == null ? 1 : v.sat, light: v.light == null ? 1 : v.light, greySat: v.greySat || 0 } : null;
   }
 
   // ---- lazy strip loading ----------------------------------------------
@@ -184,5 +193,5 @@
     return self;
   }
 
-  MH.lucifer = { preload, init, isReady, resolveClass, variant, resolveMob, makeActor };
+  MH.lucifer = { preload, init, isReady, resolveClass, variant, resolveMob, mobVariant, makeActor };
 })();

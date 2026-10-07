@@ -86,6 +86,23 @@
       scene.textures.get(key).setFilter(Phaser.Textures.FilterMode.NEAREST);
       report[name] = `${box.w}x${box.h}@${box.x},${box.y}`;
     }
+    // zone border / obstacle blocks that clashed with the painted look (style-01
+    // critic: necropolis 'skull cubes'): fixed 32px stone-wall crops instead
+    const BLOCKS = { necropolis: { atlas: 'dungeon', border: [128, 0], obst: [[480, 224], [512, 224]] } };
+    for (const [zone, b] of Object.entries(BLOCKS)) {
+      const img = imgs[b.atlas]; if (!img) continue;
+      const S = 16 * SS;
+      const stamp = (key, sx, sy) => {
+        const c = document.createElement('canvas'); c.width = S; c.height = S;
+        const g = c.getContext('2d'); g.imageSmoothingEnabled = false;
+        g.drawImage(img, sx, sy, 32, 32, 0, 0, S, S);
+        if (scene.textures.exists(key)) scene.textures.remove(key);
+        scene.textures.addCanvas(key, c); scene.textures.get(key).setFilter(Phaser.Textures.FilterMode.NEAREST);
+      };
+      stamp(`zt_${zone}_border`, b.border[0], b.border[1]);
+      b.obst.forEach(([x, y], i) => stamp(`zt_${zone}_obst${i}`, x, y));
+      report['block:' + zone] = 'ok';
+    }
     MH.luciferTiles.report = report;
   }
   MH.luciferTiles = { preload, apply, report };

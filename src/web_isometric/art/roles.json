@@ -5,63 +5,63 @@
       "pack": "lucifer-warrior",
       "hue": 0,
       "sat": 1.0,
-      "light": 1.0,
+      "light": 1.12,
       "greySat": 0
     },
     "paladin": {
       "pack": "lucifer-warrior",
       "hue": 40,
       "sat": 1.25,
-      "light": 1.18,
+      "light": 1.32,
       "greySat": 0.42
     },
     "ranger": {
       "pack": "lucifer-warrior",
       "hue": 100,
       "sat": 1.1,
-      "light": 0.92,
+      "light": 1.12,
       "greySat": 0.4
     },
     "thief": {
       "pack": "lucifer-warrior",
       "hue": 250,
       "sat": 0.7,
-      "light": 0.72,
+      "light": 1.12,
       "greySat": 0.3
     },
     "assassin": {
       "pack": "lucifer-warrior",
       "hue": 330,
       "sat": 0.8,
-      "light": 0.62,
+      "light": 1.12,
       "greySat": 0.35
     },
     "mage": {
       "pack": "lucifer-sorceress",
       "hue": 200,
       "sat": 1.15,
-      "light": 1.0,
+      "light": 1.12,
       "greySat": 0
     },
     "cleric": {
       "pack": "lucifer-sorceress",
       "hue": 45,
       "sat": 0.9,
-      "light": 1.28,
+      "light": 1.43,
       "greySat": 0.25
     },
     "bard": {
       "pack": "lucifer-sorceress",
       "hue": 290,
       "sat": 1.2,
-      "light": 1.05,
+      "light": 1.18,
       "greySat": 0.3
     },
     "necromancer": {
       "pack": "lucifer-necromancer",
       "hue": 0,
       "sat": 1.0,
-      "light": 1.0,
+      "light": 1.12,
       "greySat": 0
     }
   },
@@ -194,7 +194,14 @@
         "bandit",
         "thug"
       ],
-      "pack": "lucifer-warrior"
+      "pack": "lucifer-warrior",
+      "variant": {
+        "key": "guard",
+        "hue": 0,
+        "sat": 1.0,
+        "light": 1.12,
+        "greySat": 0
+      }
     },
     {
       "match": [
@@ -220,7 +227,14 @@
         "smith",
         "baker"
       ],
-      "pack": "lucifer-cultist-enemy"
+      "pack": "lucifer-cultist-enemy",
+      "variant": {
+        "key": "townsfolk",
+        "hue": 28,
+        "sat": 0.9,
+        "light": 1.35,
+        "greySat": 0.28
+      }
     }
   ],
   "anim_aliases": {

@@ -10,8 +10,12 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   recoloured model (`docs/art/class-lineup.png`); LPC/DCSS remain fallbacks for animals.
 - `lucifer-tiles.js`: 16 painter props replaced by Lucifer crops under the same texture keys.
 - Art is served by the aiohttp bridge (:4003 `/art/`); web_map's HTTP truncated large bodies.
-- Not done in Phase A: wall/border tiles (painter borders kept), a gauntlet "style" round against
-  BrowserQuest. Decision: the Lucifer RPG UI chrome (flat 14-48px pixel frames) is NOT adopted;
+- Gauntlet style-01 (no builder, one blind critic vs BrowserQuest): WIN 6/7 labels; city lost
+  (dark hero silhouette, unreadable townsfolk, skull-cube obstacles). Fixed after the round:
+  no baked contour on Lucifer actors, +12% brightness, a warm readable townsfolk variant, and
+  necropolis border/obstacle blocks replaced by Lucifer stone brick (`lucifer-tiles.js`).
+  Record: `docs/gauntlet/style-01/round-1/verdicts.md`.
+- Not done in Phase A: wall tiles for other wall-kind zones (midgaard, castle, sewer). Decision: the Lucifer RPG UI chrome (flat 14-48px pixel frames) is NOT adopted;
   the glass HUD that won graphics-02 stays. Lucifer icons/boss bars remain available for later.
 
 ## Phase B: continuous world (IN PROGRESS)
