@@ -947,6 +947,26 @@ class WebMapServer:
                 except Exception as e:
                     logger.error(f"/doctrine error: {e}")
                     await self._http_response(writer, 500, 'Error', 'doctrine data unavailable')
+            elif path.startswith('/art/'):
+                # Serve the CC0 art packs (png/json only, no traversal); see docs/art/SOURCES.md
+                art_dir = os.path.realpath(os.path.join(os.path.dirname(__file__), 'web_isometric', 'art'))
+                art_file = path.split('?', 1)[0].replace('/art/', '', 1)
+                art_path = os.path.realpath(os.path.join(art_dir, art_file))
+                ext = art_file.rsplit('.', 1)[-1].lower() if '.' in art_file else ''
+                if not art_path.startswith(art_dir + os.sep) or ext not in ('png', 'json'):
+                    await self._http_response(writer, 404, 'Not Found', 'Not found')
+                    return
+                try:
+                    with open(art_path, 'rb') as f:
+                        data = f.read()
+                    ct = 'image/png' if ext == 'png' else 'application/json'
+                    writer.write((f"HTTP/1.1 200 OK\r\nContent-Type: {ct}\r\nContent-Length: {len(data)}\r\n"
+                                  f"Cache-Control: max-age=3600\r\nAccess-Control-Allow-Origin: *\r\n\r\n").encode())
+                    writer.write(data)
+                    await writer.drain()
+                    return
+                except FileNotFoundError:
+                    await self._http_response(writer, 404, 'Not Found', 'Art not found')
             elif path.startswith('/platformer/'):
                 # Serve platformer client assets (js/css/png/json/woff2, no traversal)
                 asset_dir = os.path.realpath(os.path.join(os.path.dirname(__file__), 'web_isometric', 'platformer'))

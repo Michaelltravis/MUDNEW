@@ -846,6 +846,7 @@ def build_combat_payload(player) -> dict:
                 'level': getattr(entity, 'level', 1),
                 'hostile': getattr(entity, 'aggressive', False) or getattr(entity, 'hostile', False),
                 'boss': 'boss' in (getattr(entity, 'flags', None) or []) or getattr(entity, 'is_boss', False),
+                'roles': _mob_roles(entity),
                 'shopkeeper': getattr(entity, 'special', '') == 'shopkeeper',
                 'trainer': getattr(entity, 'special', '') in ('trainer', 'guildmaster'),
                 'quest': quest_mark,
@@ -963,6 +964,15 @@ def build_atlas(world) -> dict:
     return _ATLAS_CACHE
 
 
+
+def _mob_roles(entity) -> list:
+    """mob_ai tactical roles (pack, caster, boss, ...) so the client can pick art by role."""
+    try:
+        from mob_ai import classify_mob
+        return sorted(classify_mob(entity))
+    except Exception:
+        return []
+
 def build_map_payload(player, mode: str = 'full') -> dict:
     """Build map data payload for the web map UI."""
     explored = set(getattr(player, 'explored_rooms', set()))
@@ -1061,6 +1071,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
                     'level': getattr(entity, 'level', 1),
                     'hostile': getattr(entity, 'aggressive', False) or getattr(entity, 'hostile', False),
                     'boss': 'boss' in (getattr(entity, 'flags', None) or []) or getattr(entity, 'is_boss', False),
+                    'roles': _mob_roles(entity),
                     'shopkeeper': getattr(entity, 'special', '') == 'shopkeeper',
                 'trainer': getattr(entity, 'special', '') in ('trainer', 'guildmaster'),
                     'quest': quest_mark,

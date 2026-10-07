@@ -1,27 +1,180 @@
 {
-  "_doc": "Maps Misthollow classes and mob_ai roles / name keywords to Lucifer actor packs in manifest.json. First match wins; 'fallback' keeps the old renderer.",
+  "_doc": "Maps Misthollow classes and mob_ai roles / name keywords to Lucifer actor packs in manifest.json. First match wins; 'fallback' keeps the old renderer. Townsfolk use the robed cultist sheet (non-hostile tint) so the street reads in one style; animals/monsters with no Lucifer sheet fall through to DCSS art.",
   "classes": {
-    "warrior": "lucifer-warrior", "paladin": "lucifer-warrior", "ranger": "lucifer-warrior",
-    "thief": "lucifer-warrior", "assassin": "lucifer-warrior",
-    "mage": "lucifer-sorceress", "bard": "lucifer-sorceress", "cleric": "lucifer-sorceress",
+    "warrior": "lucifer-warrior",
+    "paladin": "lucifer-warrior",
+    "ranger": "lucifer-warrior",
+    "thief": "lucifer-warrior",
+    "assassin": "lucifer-warrior",
+    "mage": "lucifer-sorceress",
+    "bard": "lucifer-sorceress",
+    "cleric": "lucifer-sorceress",
     "necromancer": "lucifer-necromancer"
   },
   "mobs": [
-    { "match": ["skeleton king", "lich king", "bone lord"], "pack": "lucifer-skeleton-king-boss" },
-    { "match": ["ancient", "elder lich", "wight"], "pack": "lucifer-skeleton-ancient-boss" },
-    { "match": ["archer", "hunter", "skeletal archer"], "pack": "lucifer-skeleton-hunter-enemy" },
-    { "match": ["skeleton", "undead", "zombie", "ghoul", "grave keeper", "bones"], "pack": "lucifer-skeleton-grunt-enemy" },
-    { "match": ["goblin chief", "goblin king", "warg rider", "rider"], "pack": "lucifer-goblin-rider-boss" },
-    { "match": ["beast", "ogre", "troll", "bear"], "pack": "lucifer-goblin-beast-boss" },
-    { "match": ["slinger", "goblin archer", "kobold"], "pack": "lucifer-goblin-slinger-enemy" },
-    { "match": ["goblin", "orc", "berserker", "hobgoblin"], "pack": "lucifer-goblin-berserker-enemy" },
-    { "match": ["cultist", "acolyte", "priest", "shaman", "mage", "wizard", "sorcer", "witch"], "pack": "lucifer-cultist-enemy" },
-    { "match": ["possessed", "demon", "fiend", "imp", "shade", "wraith", "spectre", "ghost"], "pack": "lucifer-possessed-enemy" },
-    { "roles": ["boss"], "pack": "lucifer-skeleton-king-boss" },
-    { "roles": ["caster", "healer"], "pack": "lucifer-cultist-enemy" },
-    { "roles": ["pack", "ambusher", "coward", "trapsmith"], "pack": "lucifer-goblin-berserker-enemy" },
-    { "match": ["guard", "soldier", "knight", "warrior", "mercenary", "bandit", "thug"], "pack": "lucifer-warrior" },
-    { "match": ["citizen", "merchant", "vendor", "keeper", "sage", "guide", "master", "man", "woman"], "pack": "fallback" }
+    {
+      "match": [
+        "skeleton king",
+        "lich king",
+        "bone lord"
+      ],
+      "pack": "lucifer-skeleton-king-boss"
+    },
+    {
+      "match": [
+        "ancient",
+        "elder lich",
+        "wight"
+      ],
+      "pack": "lucifer-skeleton-ancient-boss"
+    },
+    {
+      "match": [
+        "archer",
+        "hunter",
+        "skeletal archer"
+      ],
+      "pack": "lucifer-skeleton-hunter-enemy"
+    },
+    {
+      "match": [
+        "skeleton",
+        "undead",
+        "zombie",
+        "ghoul",
+        "grave keeper",
+        "bones"
+      ],
+      "pack": "lucifer-skeleton-grunt-enemy"
+    },
+    {
+      "match": [
+        "goblin chief",
+        "goblin king",
+        "warg rider",
+        "rider"
+      ],
+      "pack": "lucifer-goblin-rider-boss"
+    },
+    {
+      "match": [
+        "ogre",
+        "troll",
+        "ettin",
+        "giant"
+      ],
+      "pack": "lucifer-goblin-beast-boss"
+    },
+    {
+      "match": [
+        "slinger",
+        "goblin archer",
+        "kobold"
+      ],
+      "pack": "lucifer-goblin-slinger-enemy"
+    },
+    {
+      "match": [
+        "goblin",
+        "orc",
+        "berserker",
+        "hobgoblin"
+      ],
+      "pack": "lucifer-goblin-berserker-enemy"
+    },
+    {
+      "match": [
+        "cultist",
+        "acolyte",
+        "priest",
+        "shaman",
+        "mage",
+        "wizard",
+        "sorcer",
+        "witch"
+      ],
+      "pack": "lucifer-cultist-enemy"
+    },
+    {
+      "match": [
+        "possessed",
+        "demon",
+        "fiend",
+        "imp",
+        "shade",
+        "wraith",
+        "spectre",
+        "ghost"
+      ],
+      "pack": "lucifer-possessed-enemy"
+    },
+    {
+      "roles": [
+        "boss"
+      ],
+      "pack": "lucifer-skeleton-king-boss"
+    },
+    {
+      "roles": [
+        "caster",
+        "healer"
+      ],
+      "pack": "lucifer-cultist-enemy"
+    },
+    {
+      "roles": [
+        "pack",
+        "ambusher",
+        "coward",
+        "trapsmith"
+      ],
+      "pack": "lucifer-goblin-berserker-enemy"
+    },
+    {
+      "match": [
+        "guard",
+        "soldier",
+        "knight",
+        "warrior",
+        "mercenary",
+        "bandit",
+        "thug"
+      ],
+      "pack": "lucifer-warrior"
+    },
+    {
+      "match": [
+        "citizen",
+        "merchant",
+        "vendor",
+        "keeper",
+        "sage",
+        "guide",
+        "master",
+        "man",
+        "woman",
+        "sage",
+        "elder",
+        "scholar",
+        "priestess",
+        "monk",
+        "villager",
+        "peasant",
+        "farmer",
+        "innkeeper",
+        "bartender",
+        "smith",
+        "baker"
+      ],
+      "pack": "lucifer-cultist-enemy"
+    }
   ],
-  "anim_aliases": { "run": "walk", "walk": "run", "attack": "attack01", "cast": "attack02", "die": "death", "hit": "hurt" }
+  "anim_aliases": {
+    "run": "walk",
+    "walk": "run",
+    "attack": "attack01",
+    "cast": "attack02",
+    "die": "death",
+    "hit": "hurt"
+  }
 }

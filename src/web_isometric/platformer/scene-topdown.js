@@ -2145,6 +2145,8 @@
     }
     attachArt(ent, spec) {
       const lpcOK = MH.lpc && MH.lpc.isReady(), dcssOK = MH.dcss && MH.dcss.isReady();
+      // Lucifer collection first (the style lock); LPC/DCSS stay as fallbacks
+      if (this.attachLucifer(ent, spec)) return;
       if (spec.kind === 'player') { if (lpcOK) this.attachDollAs(ent, spec, spec.data.char_class || 'warrior'); return; }
       const name = spec.data.name;
       const humanRole = lpcOK ? MH.lpc.humanoidClass(name, spec.data.char_class) : null;
@@ -2153,6 +2155,22 @@
       else if (creature) this.attachCreatureArt(ent, spec, creature);
       else if (lpcOK) this.attachDollAs(ent, spec, 'bard');   // generic person (incl. odd bosses)
       // else: keep the procedural sprite (subsystems not ready)
+    }
+    // Lucifer actor (same interface as the LPC doll, so the per-frame driver
+    // in update() needs no changes). Returns true when the entity got one.
+    attachLucifer(ent, spec) {
+      const L = MH.lucifer; if (!L || !L.isReady() || ent.doll) return false;
+      const d = spec.data || {};
+      const pack = spec.kind === 'player' ? L.resolveClass(d.char_class) : L.resolveMob(d.name, d.roles, d.boss);
+      if (!pack) return false;
+      const big = d.boss;
+      ent.labelDy = big ? 44 : 30;
+      ent.doll = L.makeActor(this, pack, TD().T * (big ? 3.0 : 2.4), () => { this.tintCharacters(); this.applyContour(ent); });
+      ent.doll.container.setDepth(ent.sprite.depth || 8);
+      ent.sprite.setAlpha(0);
+      if (ent.rim) ent.rim.setVisible(false);
+      if (big && spec.kind !== 'player') this.addBossAura(ent);
+      return true;
     }
     // a pulsing ember glow beneath a boss so it reads as a threat
     addBossAura(ent) {
@@ -5226,7 +5244,19 @@
     // create/refresh the player's LPC paperdoll when gear/class changes; hide
     // the procedural sprite while the doll is active
     syncPlayerDoll(p) {
-      if (!p || !MH.lpc || !MH.lpc.isReady()) return;
+      if (!p) return;
+      const luc = MH.lucifer && MH.lucifer.isReady() ? MH.lucifer.resolveClass(p.char_class) : null;
+      if (luc) {   // style lock: Lucifer hero for a mapped class
+        if (this.playerDoll && this._dollSig === 'luc:' + luc) return;
+        if (this.playerDoll) { this.playerDoll.destroy(); this.playerDoll = null; }
+        this._dollSig = 'luc:' + luc;
+        this.playerDoll = MH.lucifer.makeActor(this, luc, TD().T * 2.4, () => { this.tintCharacters(); addContour(this.playerDoll && this.playerDoll.container, OUTLINE.player); });
+        this.playerDoll.container.setDepth(10);
+        this.player.setAlpha(0);
+        if (this.playerRim) this.playerRim.setVisible(false);
+        return;
+      }
+      if (!MH.lpc || !MH.lpc.isReady()) return;
       const spec = { char_class: p.char_class, sex: p.sex || 'male', equipment: p.equipment || {} };
       const sig = MH.lpc.sig(spec);
       if (this.playerDoll && this._dollSig === sig) return;
