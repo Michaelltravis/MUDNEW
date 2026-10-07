@@ -21,6 +21,20 @@ read this file, `docs/art/SOURCES.md`, then the plan.
 - Next: paint neighbours with the real painter at low priority (idle time), let the physics
   bounds extend across the opening so the move command fires from walking into the next room
   rather than an exit zone, then a gauntlet "world" round vs BrowserQuest overworld.
+## Phase D: multiplayer presence (BASELINE VERIFIED)
+- Two live clients (`tools/gauntlet/duo.js`, characters Gauntlet/Gauntletb) share a room, follow,
+  group, and fight together; party frames (top centre) show both members' live HP. Evidence:
+  `docs/gauntlet/multiplayer/duo_A_party_fight.png`.
+- Next: ally wind-up/telegraph rings visible to party members, group loot roll popup,
+  "others here" count, world-event banners.
+
+## Phase E: onboarding (STEP 1 DONE)
+- Progressive hotbar: 3 slots (attack, flee, first class ability) through level 5, 5 slots to
+  level 10, full bar after; unlock flash on tier change (`ui.js` autofillBar).
+- Class-specific welcome card: class fantasy line, the three starting buttons, and how to group.
+  Evidence: `docs/gauntlet/multiplayer/newbie_welcome.png`.
+- Next: first-10-minutes scripted prompts on the tutorial chain; class picker with ability preview.
+
 Credit discipline: one piece, one round.
 
 **Run:** playability-02 — **round 1 of 2 done**. Working branch `claude/nice-johnson-slpinu`.

@@ -34,3 +34,6 @@ Determinism: `settime 14` + `setweather clear` (immortal commands added for this
 `Math.random` in the page, first-run tips silenced via localStorage, vnum-seeded room layouts.
 Remaining nondeterminism: mob wander/spawn state and combat timing (the combat label is a
 snapshot ~6.5 s into a fight with the grave keeper in 14002).
+
+## Second character
+Create `Gauntletb` the same way as `Gauntlet` (login via test suite, admin account, `account_name`). `duo.js` drives both clients for multiplayer evidence (party frames, shared fights).

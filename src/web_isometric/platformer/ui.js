@@ -204,12 +204,22 @@
   // basic class kit AND any active talents they have learned onto the empty
   // action-bar slots — de-noised (no passives) and class-ordered.
   let autofilled = false;
+  // easy to start, hard to master: a new character gets THREE buttons
+  // (attack, flee, one class ability); the bar grows at levels 6 and 11
+  const barTier = level => (level || 1) <= 5 ? 1 : (level || 1) <= 10 ? 2 : 3;
+  const barCap = tier => tier === 1 ? 3 : tier === 2 ? 5 : BAR_SIZE;
   function autofillBar() {
     const pdata = MH.state.player;
-    if (autofilled || !pdata || !pdata.char_class) return;
+    if (!pdata || !pdata.char_class) return;
+    const tier = barTier(pdata.level);
+    const tierKey = `misthollow_bar_tier_${(pdata.name || '').toLowerCase()}`;
+    const prevTier = parseInt(lsGet(tierKey) || '0', 10) || 0;
+    if (autofilled && tier <= prevTier) return;
     autofilled = true;
     const fillKey = `misthollow_bar_filled_${(pdata.name || '').toLowerCase()}`;
-    if (lsGet(fillKey)) return;
+    if (lsGet(fillKey) && tier <= prevTier) return;
+    if (prevTier && tier > prevTier) flash(`New hotbar slots unlocked: ${barCap(tier)} abilities ready`);
+    lsSet(tierKey, String(tier));
 
     const cls = String(pdata.char_class || '').toLowerCase();
     const spells = pdata.class_spells || [];
@@ -252,7 +262,8 @@
       .concat(talents.slice(reserve));
 
     let changed = false;
-    for (let i = 0; i < BAR_SIZE && cmds.length; i++) {
+    const cap = barCap(tier);
+    for (let i = 0; i < cap && cmds.length; i++) {
       if (!hotbar[i]) { hotbar[i] = cmds.shift(); changed = true; }
     }
     if (changed) {
@@ -3990,11 +4001,25 @@
         if (welcomeChecked || !player) return;
         welcomeChecked = true;
         if ((player.level || 1) > 2 || lsGet('mh_welcome_seen') === '1') return;
+        const cls = String(player.char_class || '').toLowerCase();
+        const kit = (CLASS_KIT_ORDER[cls] || []).map(id => abilityCommand(id, new Set(player.class_spells || [])));
+        const first = kit[0] ? kit[0].replace(/^cast /, '') : 'your class ability';
+        const CLASS_LINE = {
+          warrior: 'a wall of steel: open with <b>bash</b>, build momentum, finish with <b>execute</b>',
+          paladin: 'the Light\'s hammer: <b>censure</b> the wicked and <b>absolve</b> the fallen',
+          ranger: 'the quiet arrow: <b>mark</b> your quarry and strike from range',
+          thief: 'the knife in the dark: <b>backstab</b> from behind and vanish',
+          mage: 'the High Tower\'s fire: <b>magic missile</b> now, fireballs soon',
+          cleric: 'the keeper of the Order: <b>smite</b> and <b>heal</b> your allies',
+          bard: 'the court\'s voice: <b>mock</b>, <b>fascinate</b>, and turn the tide with song',
+          necromancer: 'the Soulbinder: <b>soul bolt</b> to harvest, then raise the dead',
+        };
         els.welcomeBody.innerHTML =
-          `Welcome, <b>${player.name || 'adventurer'}</b>. You stand in the Temple of Midgaard.<br><br>`
-          + `<b>Sage Aldric</b> is here to set you on your path — look for the gold <b>!</b> floating above him, walk up, and click <b>Talk</b>. `
-          + `Your current objective is always shown top-left and marked on your map (<b>◈</b>).<br><br>`
-          + `Hostile creatures glow red — face one and press <b>F</b> to fight. You can do everything by typing too: press <b>Enter</b> for a command line.`;
+          `Welcome, <b>${player.name || 'adventurer'}</b>. You are ${CLASS_LINE[cls] || 'an adventurer of Misthollow'}.<br><br>`
+          + `<b>Three buttons to start:</b> <b>1</b> attack, <b>2</b> flee, <b>3</b> ${first}. More unlock at levels 6 and 11, `
+          + `and the depth beneath (stances, perfect strikes, talents, prestige) is there when you want it.<br><br>`
+          + `<b>Sage Aldric</b> is here to set you on your path — look for the gold <b>!</b> above him and click <b>Talk</b>. `
+          + `Hostile creatures glow red — face one and press <b>F</b>. Found a friend? <b>Enter</b>, then <b>group &lt;name&gt;</b> to adventure together.`;
         setWorldInput(false);
         els.welcomeOverlay.classList.add('show');
       }
