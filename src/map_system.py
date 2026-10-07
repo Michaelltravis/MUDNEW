@@ -832,6 +832,7 @@ def build_combat_payload(player) -> dict:
                         'char_class': getattr(entity, 'char_class', ''),
                         'hp': getattr(entity, 'hp', 0),
                         'maxHp': getattr(entity, 'max_hp', 1),
+                        **_ally_combat(entity, player),
                     })
                 continue
             quest_mark = ''
@@ -851,6 +852,7 @@ def build_combat_payload(player) -> dict:
                 'trainer': getattr(entity, 'special', '') in ('trainer', 'guildmaster'),
                 'quest': quest_mark,
                 'fighting': bool(getattr(entity, 'fighting', None) is player),
+                'fighting_name': getattr(getattr(entity, 'fighting', None), 'name', '') or '',
             }
             hp = getattr(entity, 'hp', None)
             max_hp = getattr(entity, 'max_hp', None)
@@ -964,6 +966,19 @@ def build_atlas(world) -> dict:
     return _ATLAS_CACHE
 
 
+
+
+def _ally_combat(entity, viewer) -> dict:
+    """What another player in the room is doing in a fight, for party readability."""
+    tgt = getattr(entity, 'fighting', None)
+    return {
+        'in_combat': bool(tgt),
+        'fighting': getattr(tgt, 'name', '') if tgt else '',
+        'fighting_you': bool(tgt is viewer),
+        'sex': (getattr(entity, 'sex', 'male') or 'male'),
+        'stance': getattr(entity, 'stance', getattr(entity, 'combat_stance', 'normal')) or 'normal',
+        'dead': getattr(entity, 'hp', 1) <= 0,
+    }
 
 def _mob_roles(entity) -> list:
     """mob_ai tactical roles (pack, caster, boss, ...) so the client can pick art by role."""
@@ -1099,6 +1114,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
                         'char_class': getattr(entity, 'char_class', ''),
                         'hp': getattr(entity, 'hp', 0),
                         'maxHp': getattr(entity, 'max_hp', 1),
+                        **_ally_combat(entity, player),
                     })
 
         # Build door info for exits

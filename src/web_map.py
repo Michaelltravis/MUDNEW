@@ -139,13 +139,23 @@ class WebMapServer:
                     self.clients.discard(client)
 
     async def notify_combat(self, player):
-        """Push a lightweight vitals/entity update during combat rounds."""
+        """Push a lightweight vitals/entity update during combat rounds, to the
+        fighter AND to everyone else standing in the room (each sees the round
+        from their own side), so a party member's wind-ups, staggers and hits
+        are visible to allies who are not themselves in the fight."""
         dead_clients = []
+        room = getattr(player, 'room', None)
+        viewers = {}
+        viewers[player.name.lower()] = player
+        for other in (getattr(room, 'characters', None) or []):
+            if other is not player and hasattr(other, 'account_name') and getattr(other, 'name', None):
+                viewers.setdefault(other.name.lower(), other)
         for client in list(self.clients):
-            if not client.player_name or client.player_name.lower() != player.name.lower():
+            viewer = viewers.get((client.player_name or '').lower())
+            if not viewer:
                 continue
             try:
-                payload = build_combat_payload(player)
+                payload = build_combat_payload(viewer)
                 if not await self._ws_send(client.writer, json.dumps(payload)):
                     dead_clients.append(client)
             except Exception:

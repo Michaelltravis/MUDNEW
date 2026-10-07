@@ -25,8 +25,17 @@ read this file, `docs/art/SOURCES.md`, then the plan.
 - Two live clients (`tools/gauntlet/duo.js`, characters Gauntlet/Gauntletb) share a room, follow,
   group, and fight together; party frames (top centre) show both members' live HP. Evidence:
   `docs/gauntlet/multiplayer/duo_A_party_fight.png`.
-- Next: ally wind-up/telegraph rings visible to party members, group loot roll popup,
-  "others here" count, world-event banners.
+- Step 2 done: combat rounds are pushed to everyone in the room (each from their own side), so
+  a party member's mob wind-ups and staggers show for allies; other players carry
+  `in_combat` / `fighting` / `fighting_you` and get a gold crossed-swords badge while fighting
+  (red stays reserved for "attacking you"); allies animate their attacks.
+  Evidence: `docs/gauntlet/multiplayer/duo_A_ally_badge.png`.
+- Next: group loot roll popup, "others here" count, world-event banners.
+
+## Phase C: ARPG controls and readability (BASELINE EXISTS)
+- Click-to-move, hit-stop, screen shake, floor telegraphs, reaction prompts and damage numbers
+  already exist from the gauntlet runs; the playability gauntlet judged them above the bar.
+- Next: radial reaction prompt, Dead-Cells-style hit pause on perfect strikes, a gauntlet round.
 
 ## Phase E: onboarding (STEP 1 DONE)
 - Progressive hotbar: 3 slots (attack, flee, first class ability) through level 5, 5 slots to

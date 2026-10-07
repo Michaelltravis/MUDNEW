@@ -2301,6 +2301,20 @@
       ent.data = data;
       this.drawHpBar(ent);
       this.updateQuestMark(ent);
+      // other players: `fighting` is their target's name; only `fighting_you`
+      // earns the red "attacking YOU" telegraph. An ally mid-fight gets a gold
+      // crossed-swords badge instead so party fights read from across the room.
+      if (ent.kind === 'player') {
+        const allyFighting = !!data.in_combat && !data.fighting_you;
+        if (allyFighting && !ent.allyMark) {
+          ent.allyMark = this.add.text(ent.sprite.x, ent.sprite.y - ((ent.labelDy || 18) + 8), '⚔', {
+            fontFamily: 'Trebuchet MS, Verdana, sans-serif', resolution: 3, fontSize: '11px', color: '#f2c46a', stroke: '#000', strokeThickness: 2,
+          }).setOrigin(0.5, 1).setDepth(20);
+          this.tweens.add({ targets: ent.allyMark, scale: 1.2, duration: 420, yoyo: true, repeat: -1 });
+        } else if (!allyFighting && ent.allyMark) { ent.allyMark.destroy(); ent.allyMark = null; }
+        data = Object.assign({}, data, { fighting: !!data.fighting_you });
+        ent.data = data;
+      }
       // loud telegraph: red swords + red name over whoever is attacking YOU
       if (data.fighting && !ent.engageRing) {
         ent.engageRing = this.add.graphics().setDepth(9.5);
@@ -2395,6 +2409,7 @@
       if (ent.wanderTween) ent.wanderTween.stop();
       if (ent.smoke) ent.smoke.destroy();
       if (ent.doll) { ent.doll.destroy(); ent.doll = null; }
+      if (ent.allyMark) { ent.allyMark.destroy(); ent.allyMark = null; }
       if (ent.artBob) { ent.artBob.stop(); ent.artBob = null; }
       if (ent.art) { ent.art.destroy(); ent.art = null; }
       if (ent.bossAura) { this.tweens.killTweensOf(ent.bossAura); ent.bossAura.destroy(); ent.bossAura = null; }
@@ -5052,6 +5067,7 @@
           ent.rim.setVisible(false);
         }
         if (ent.label && ent.sprite) { ent.label.x = ent.sprite.x; ent.label.y = ent.sprite.y - (ent.labelDy || (ent.data.boss ? 26 : 18)); }
+        if (ent.allyMark && ent.sprite) { ent.allyMark.x = ent.sprite.x; ent.allyMark.y = ent.sprite.y - ((ent.labelDy || 18) + 8); }
         if (ent.fightMark && ent.sprite) { ent.fightMark.x = ent.sprite.x; ent.fightMark.y = ent.sprite.y - ((ent.labelDy || 18) + 8); }
         if (ent.aggroRing && ent.sprite) { ent.aggroRing.x = ent.sprite.x; ent.aggroRing.y = ent.sprite.y + 8; ent.aggroRing.setVisible(ent.sprite.visible && !ent.leaving); }
         if (ent.aggroGfx && ent.sprite) {
@@ -5175,7 +5191,7 @@
             facing = ak.endsWith('walku') ? 'up' : ak.endsWith('walks') ? (s.flipX ? 'left' : 'right') : 'down';
           }
           const hurt = ent.hurtUntil && now < ent.hurtUntil;
-          ent.doll.setAction(hurt ? 'hurt' : ent.data && ent.data.fighting ? 'attack' : (moving ? 'walk' : 'idle'), facing);
+          ent.doll.setAction(hurt ? 'hurt' : ent.data && (ent.data.fighting || ent.data.in_combat) ? 'attack' : (moving ? 'walk' : 'idle'), facing);
           ent.doll.update(now);
           ent._dollPrev = { x: s.x, y: s.y };
         } else if (ent.art) {
