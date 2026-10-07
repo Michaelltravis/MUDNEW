@@ -2162,6 +2162,13 @@ class CombatHandler:
             else:
                 corpse.decay_timer = 50  # ~5 min real time (mob)
             victim.room.items.append(corpse)
+            # modern group loot: worthwhile drops go to a need/greed/pass roll
+            if hasattr(killer, 'connection') and getattr(killer, 'group', None) and not hasattr(victim, 'connection'):
+                try:
+                    from groups import start_rolls
+                    await start_rolls(killer, corpse)
+                except Exception as e:
+                    logger.warning(f"loot roll failed: {e}")
 
         # End combat
         await cls.end_combat(killer, victim)

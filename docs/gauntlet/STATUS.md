@@ -45,7 +45,11 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   arrivals, departures, teleports, logins and logouts now refresh every graphical client in the
   affected rooms at once (`player_move` events), with an "X arrives/leaves" feed line.
 - World-event banners already exist (`ui.js` eventAlert detects boss/invasion/treasure/double-XP lines).
-- Next: group loot roll (needs a server-side roll in groups.py first), then a popup.
+- Step 4 done: need/greed/pass loot rolls. New groups default to `loot_mode = roll`; worthwhile drops
+  (uncommon+ rarity, weapons/armor worth 50+, anything 200+) from a group kill go to a 20 s roll
+  among members in the room; `roll need|greed|pass` or the client popup; winner takes the item
+  from the corpse. Verified end to end with two clients (`tools/gauntlet/duo.js` with POLL).
+- Next: ally telegraph rings for mobs fighting a party member on the SAME tile; loot history panel.
 
 ## Phase C: ARPG controls and readability (BASELINE EXISTS)
 - Click-to-move, hit-stop, screen shake, floor telegraphs, reaction prompts and damage numbers

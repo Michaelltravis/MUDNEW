@@ -957,6 +957,28 @@
     flashTimer = setTimeout(() => els.flashLine.classList.remove('show'), 2200);
   }
 
+  // group loot: need / greed / pass popup (server event 'loot_roll'), queued
+  // so several drops from one kill are answered one at a time
+  const lootQueue = []; let lootTimer = null;
+  function showLoot() {
+    const el = document.getElementById('loot-roll'); if (!el) return;
+    const r = lootQueue[0];
+    if (!r) { el.classList.remove('show'); return; }
+    el.innerHTML = `<div class="lr-t">LOOT ROLL${lootQueue.length > 1 ? ` · ${lootQueue.length} items` : ''}</div>`
+      + `<div class="lr-i ${r.rarity || ''}">${r.item}</div>`
+      + `<div class="lr-b"><button class="need">Need</button><button class="greed">Greed</button><button class="pass">Pass</button></div>`
+      + `<div class="lr-bar" style="--lr-ms:${(r.timeout || 20) * 1000}ms"></div>`;
+    el.classList.add('show');
+    el.querySelectorAll('button').forEach(b => b.addEventListener('click', () => { MH.sendCommand('roll ' + b.className, false); lootQueue.shift(); showLoot(); }));
+    clearTimeout(lootTimer);
+    lootTimer = setTimeout(() => { lootQueue.shift(); showLoot(); }, (r.timeout || 20) * 1000);
+  }
+  MH.bus.on('loot.roll', r => { lootQueue.push(r); if (lootQueue.length === 1) showLoot(); });
+  MH.bus.on('loot.result', r => {
+    const i = lootQueue.findIndex(q => q.id === r.id); if (i >= 0) { lootQueue.splice(i, 1); showLoot(); }
+    flash(r.winner ? `${r.winner} wins ${r.item}` : `Everyone passed on ${r.item}`);
+  });
+
   // dramatic center-top banner for world events
   let evtBannerTimer = null, lastEvt = 0;
   function eventAlert(title, sub, kind) {

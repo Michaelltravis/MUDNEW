@@ -9,6 +9,8 @@ async function login(ctx, name) {
   await page.goto('http://localhost:4001/platformer?gauntlet=1', { waitUntil: 'load' });
   await page.waitForSelector('#login-name'); await page.fill('#login-name', name); await page.fill('#login-pass', 'gauntlet1'); await page.click('#login-btn');
   for (let i = 0; i < 40; i++) { await page.waitForTimeout(500); if (await page.evaluate(() => !!(window.MH && MH.state.currentRoom))) break; }
+  await page.waitForTimeout(800);
+  try { await page.click('#welcome-go', { timeout: 1500 }); } catch (_) {}   // new characters get a welcome card
   await page.evaluate(() => { window.__out = []; MH.bus.on('terminal.output', t => __out.push(String(t.text).replace(/\s+/g, ' ').slice(0, 140))); });
   return page;
 }
@@ -19,10 +21,13 @@ async function login(ctx, name) {
   const A = await login(ctxA, 'Gauntlet'), B = await login(ctxB, 'Gauntletb');
   const cmds = JSON.parse(process.env.CMDS || '[]');
   for (const [who, c] of cmds) { await (who === 'A' ? A : B).evaluate(x => MH.sendCommand(x, false), c); await A.waitForTimeout(900); }
-  await A.waitForTimeout(3500);
+  // POLL='<css selector>' waits (up to 90 s) until that element is visible on B before the screenshots
+  if (process.env.POLL) { for (let i = 0; i < 90; i++) { await B.waitForTimeout(1000); if (await B.evaluate(sel => { const e = document.querySelector(sel); return !!(e && e.offsetParent !== null); }, process.env.POLL)) break; } await B.waitForTimeout(400); }
+  else await A.waitForTimeout(3500);
   const info = await A.evaluate(() => ({ vnum: MH.state.player.vnum, group: MH.state.lastPayload && MH.state.lastPayload.group, keys: Object.keys(MH.state.lastPayload || {}), cur: MH.state.lastPayload.current_room && Object.keys(MH.state.lastPayload.current_room), out: __out.slice(-6) }));
   console.log('B:', JSON.stringify(await B.evaluate(() => ({ vnum: MH.state.player.vnum, out: __out.slice(-5) }))).slice(0, 700));
   console.log(JSON.stringify(info).slice(0, 600));
+  for (const pg of [A, B]) { try { await pg.evaluate(() => { const o = document.getElementById('welcome-overlay'); if (o) o.classList.remove('show'); }); } catch (_) {} }
   await A.screenshot({ path: process.env.OUT + '/duo_A.png' }); await B.screenshot({ path: process.env.OUT + '/duo_B.png' });
   await A.evaluate(() => MH.sendCommand('quit', false)); await B.evaluate(() => MH.sendCommand('quit', false)); await browser.close();
 })();

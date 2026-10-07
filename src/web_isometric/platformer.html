@@ -1495,6 +1495,20 @@
   #welcome-card #welcome-go:hover { background: rgba(232,193,104,0.3); }
 
   /* ---- world-event banner: dramatic center-top alert ---- */
+  /* need / greed / pass popup for group loot rolls */
+  #loot-roll { position: absolute; top: 150px; left: 50%; transform: translateX(-50%); z-index: 25; display: none;
+    background: rgba(13,15,21,0.94); border: 1px solid var(--gold); border-radius: 10px; padding: 10px 14px; min-width: 260px;
+    box-shadow: 0 10px 40px rgba(0,0,0,.6); font-family: var(--ui-font); }
+  #loot-roll.show { display: block; }
+  #loot-roll .lr-t { font-size: 10px; letter-spacing: 2px; color: var(--dim); }
+  #loot-roll .lr-i { font-size: 14px; font-weight: 700; color: #ffe9a8; margin: 3px 0 8px; }
+  #loot-roll .lr-i.rare { color: #6fb6ff; } #loot-roll .lr-i.epic { color: #c08aff; } #loot-roll .lr-i.legendary { color: #ff9a4a; }
+  #loot-roll .lr-b { display: flex; gap: 6px; }
+  #loot-roll button { flex: 1; padding: 6px 0; border-radius: 6px; border: 1px solid var(--border); background: #1c2130; color: var(--text); cursor: pointer; font-weight: 700; }
+  #loot-roll button.need { border-color: #6fd685; color: #9fe8a8; } #loot-roll button.greed { border-color: #ffd44a; color: #ffe08a; }
+  #loot-roll button:hover { filter: brightness(1.25); }
+  #loot-roll .lr-bar { height: 3px; background: var(--gold); margin-top: 8px; transform-origin: left; animation: lrdrain var(--lr-ms, 20s) linear forwards; }
+  @keyframes lrdrain { from { transform: scaleX(1); } to { transform: scaleX(0); } }
   #event-banner { position: absolute; top: 96px; left: 50%; transform: translateX(-50%) translateY(-20px);
     z-index: 58; display: none; opacity: 0; transition: opacity .4s, transform .4s;
     padding: 12px 28px; border-radius: 12px; text-align: center; max-width: 70vw; pointer-events: none;
@@ -2770,6 +2784,7 @@
     <div id="room-presence"></div>
   </div>
   <div id="event-banner"></div>
+  <div id="loot-roll"></div>
   <div id="rest-chip"></div>
   <div id="recovery-panel"></div>
   <div id="party-bar"></div>

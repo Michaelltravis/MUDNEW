@@ -4,7 +4,10 @@ Misthollow Group System
 Party formation, XP sharing, loot rules, group chat, auto-follow, and group effects.
 """
 
+import asyncio
 import logging
+import random
+import time
 from typing import List, Optional, Dict, TYPE_CHECKING
 
 if TYPE_CHECKING:
@@ -24,8 +27,9 @@ class Group:
         self.leader = leader
         self.members: List['Player'] = [leader]
         self.config = Config()
-        self.loot_mode = 'freeforall'  # 'freeforall' or 'roundrobin'
+        self.loot_mode = 'roll'  # 'roll' (need/greed/pass), 'freeforall' or 'roundrobin'
         self._rr_index = 0  # round-robin pointer
+        self.active_rolls: List['LootRoll'] = []
         self.auto_follow = True  # members auto-follow leader on move
 
     # ------------------------------------------------------------------
@@ -505,3 +509,149 @@ class GroupManager:
                     if aura:
                         auras.add(aura)
         return auras
+
+
+# ---------------------------------------------------------------------------
+# Need / greed / pass loot rolls (modern group loot)
+# ---------------------------------------------------------------------------
+ROLL_TIMEOUT = 20
+ROLL_WORTH_RARITIES = ('uncommon', 'rare', 'epic', 'legendary')
+_roll_seq = 0
+
+
+def _worth_rolling(item) -> bool:
+    if getattr(item, 'rarity', 'common') in ROLL_WORTH_RARITIES:
+        return True
+    if getattr(item, 'item_type', '') in ('weapon', 'armor') and getattr(item, 'cost', 0) >= 50:
+        return True
+    return getattr(item, 'cost', 0) >= 200
+
+
+class LootRoll:
+    """One item up for need/greed/pass among the group members present."""
+
+    def __init__(self, group: 'Group', item, corpse, members: List['Player']):
+        global _roll_seq
+        _roll_seq += 1
+        self.id = _roll_seq
+        self.group = group
+        self.item = item
+        self.corpse = corpse
+        self.members = list(members)
+        self.votes: Dict[str, str] = {}
+        self.started = time.time()
+        self.done = False
+        self._task = None
+
+    @property
+    def item_name(self) -> str:
+        return getattr(self.item, 'short_desc', None) or getattr(self.item, 'name', 'an item')
+
+    def event(self) -> dict:
+        return {'type': 'loot_roll', 'id': self.id, 'item': self.item_name,
+                'rarity': getattr(self.item, 'rarity', 'common'), 'timeout': ROLL_TIMEOUT}
+
+    async def announce(self):
+        c = Config.COLORS
+        for m in self.members:
+            try:
+                await m.send(f"{c['bright_yellow']}Loot roll: {self.item_name} — 'roll need', 'roll greed' or 'roll pass' ({ROLL_TIMEOUT}s).{c['reset']}")
+                wm = getattr(getattr(m, 'world', None), 'web_map', None)
+                if wm:
+                    await wm.notify_event(m, self.event())
+            except Exception:
+                pass
+        self._task = asyncio.create_task(self._expire())
+
+    async def _expire(self):
+        try:
+            await asyncio.sleep(ROLL_TIMEOUT)
+            await self.resolve()
+        except asyncio.CancelledError:
+            pass
+
+    async def vote(self, player: 'Player', choice: str) -> bool:
+        if self.done or player not in self.members:
+            return False
+        self.votes[player.name.lower()] = choice
+        if all(m.name.lower() in self.votes for m in self.members):
+            if self._task:
+                self._task.cancel()
+            await self.resolve()
+        return True
+
+    async def resolve(self):
+        if self.done:
+            return
+        self.done = True
+        c = Config.COLORS
+        if self in self.group.active_rolls:
+            self.group.active_rolls.remove(self)
+        pool = [m for m in self.members if self.votes.get(m.name.lower()) == 'need']
+        tier = 'need'
+        if not pool:
+            pool = [m for m in self.members if self.votes.get(m.name.lower()) == 'greed']
+            tier = 'greed'
+        if not pool:
+            for m in self.members:
+                try:
+                    await m.send(f"{c['yellow']}Everyone passed on {self.item_name}; it stays in the corpse.{c['reset']}")
+                    wm = getattr(getattr(m, 'world', None), 'web_map', None)
+                    if wm:
+                        await wm.notify_event(m, {'type': 'loot_result', 'id': self.id, 'item': self.item_name, 'winner': None})
+                except Exception:
+                    pass
+            return
+        rolls = {m.name: random.randint(1, 100) for m in pool}
+        winner = max(pool, key=lambda m: rolls[m.name])
+        try:
+            if self.item in getattr(self.corpse, 'contents', []):
+                self.corpse.contents.remove(self.item)
+            winner.inventory.append(self.item)
+        except Exception:
+            pass
+        summary = ', '.join(f"{n} {r}" for n, r in sorted(rolls.items(), key=lambda kv: -kv[1]))
+        for m in self.members:
+            try:
+                await m.send(f"{c['bright_green']}{winner.name} wins {self.item_name} ({tier}: {summary}).{c['reset']}")
+                wm = getattr(getattr(m, 'world', None), 'web_map', None)
+                if wm:
+                    await wm.notify_event(m, {'type': 'loot_result', 'id': self.id, 'item': self.item_name,
+                                              'winner': winner.name, 'tier': tier, 'rolls': rolls})
+            except Exception:
+                pass
+
+
+async def start_rolls(killer: 'Player', corpse) -> int:
+    """After a group kill, put each worthwhile item in the corpse up for a roll
+    among the members standing in the room. Returns the number of rolls."""
+    group = getattr(killer, 'group', None)
+    if not group or group.loot_mode != 'roll' or not getattr(corpse, 'contents', None):
+        return 0
+    room = getattr(killer, 'room', None)
+    members = [m for m in group.members if getattr(m, 'room', None) is room and hasattr(m, 'connection')]
+    if len(members) < 2:
+        return 0
+    n = 0
+    for item in list(corpse.contents):
+        if not _worth_rolling(item):
+            continue
+        roll = LootRoll(group, item, corpse, members)
+        group.active_rolls.append(roll)
+        await roll.announce()
+        n += 1
+        if n >= 4:
+            break
+    return n
+
+
+async def cast_vote(player: 'Player', choice: str) -> Optional['LootRoll']:
+    """Vote on the oldest open roll the player has not answered yet."""
+    group = getattr(player, 'group', None)
+    if not group:
+        return None
+    for roll in list(group.active_rolls):
+        if not roll.done and player in roll.members and player.name.lower() not in roll.votes:
+            await roll.vote(player, choice)
+            return roll
+    return None

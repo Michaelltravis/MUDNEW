@@ -12689,11 +12689,15 @@ class CommandHandler:
                 await player.send(f"{c['red']}Only the leader can change loot mode.{c['reset']}")
                 return
             if len(args) < 2:
-                current = 'Round-Robin' if player.group.loot_mode == 'roundrobin' else 'Free-for-All'
-                await player.send(f"{c['cyan']}Current loot mode: {current}. Use 'group loot freeforall' or 'group loot roundrobin'.{c['reset']}")
+                current = {'roundrobin': 'Round-Robin', 'roll': 'Need/Greed roll'}.get(player.group.loot_mode, 'Free-for-All')
+                await player.send(f"{c['cyan']}Current loot mode: {current}. Use 'group loot roll', 'group loot freeforall' or 'group loot roundrobin'.{c['reset']}")
                 return
             mode = args[1].lower().replace('-', '').replace('_', '')
-            if mode in ('ffa', 'freeforall', 'free'):
+            if mode in ('roll', 'needgreed', 'ng'):
+                player.group.loot_mode = 'roll'
+                for member in player.group.members:
+                    await member.send(f"{c['bright_green']}Loot mode set to Need/Greed roll: worthwhile drops are rolled for.{c['reset']}")
+            elif mode in ('ffa', 'freeforall', 'free'):
                 player.group.loot_mode = 'freeforall'
                 for member in player.group.members:
                     await member.send(f"{c['bright_green']}Loot mode set to Free-for-All.{c['reset']}")
@@ -17376,6 +17380,24 @@ class CommandHandler:
             await player.send(f"{c['bright_green']}You restore {target.name} to full health!{c['reset']}")
             await target.send(f"{c['bright_green']}You feel a surge of divine energy! Fully restored!{c['reset']}")
     
+    @classmethod
+    async def cmd_roll(cls, player: 'Player', args: List[str]):
+        """Answer a group loot roll.
+
+        Usage: roll need | roll greed | roll pass
+        """
+        c = player.config.COLORS
+        choice = (args[0].lower() if args else '')
+        if choice not in ('need', 'greed', 'pass'):
+            await player.send(f"{c['yellow']}Usage: roll need | roll greed | roll pass{c['reset']}")
+            return
+        from groups import cast_vote
+        roll = await cast_vote(player, choice)
+        if not roll:
+            await player.send(f"{c['yellow']}There is no loot roll waiting for you.{c['reset']}")
+            return
+        await player.send(f"{c['cyan']}You roll {choice} on {roll.item_name}.{c['reset']}")
+
     @classmethod
     async def cmd_settime(cls, player: 'Player', args: List[str]):
         """Set the game clock hour (immortal only). Used by QA/capture tooling.
