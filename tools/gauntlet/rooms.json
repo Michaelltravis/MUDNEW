@@ -120,5 +120,28 @@
     "label": "dwarf",
     "vnum": 6501,
     "note": "Dwarven Kingdom"
+  },
+  {
+    "label": "walk",
+    "vnum": 27001,
+    "cmds": [],
+    "waitMs": 3500,
+    "filmstrip": {
+      "frames": 6,
+      "intervalMs": 450,
+      "cols": 3
+    },
+    "note": "continuous world: hold D for 2.7 s from mid-room, walking east through the gap into the next room",
+    "ref": {
+      "walkTo": [
+        12,
+        0
+      ],
+      "note": "BrowserQuest: walk 12 tiles east from spawn, camera scrolling"
+    },
+    "js": "(() => { const sc = MH.game.scene.getScenes(true).find(s => s.player); sc.player.setPosition(sc.pxW * 0.62, sc.pxH / 2); const inp = document.getElementById('command-input'); if (inp) inp.blur(); document.body.focus(); })()",
+    "keys": {
+      "down": "d"
+    }
   }
 ]

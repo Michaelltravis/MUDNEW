@@ -41,6 +41,17 @@
     const { W, H, T, grid } = layout;
     const { BLOCK, WATER } = MH.TD || { BLOCK: 1, WATER: 2 };
     const pal = palette(room);
+    // a painting of this room already in the texture cache (the room we just
+    // left, or one painted on a previous visit) is used at once: no flat flash
+    const ready = `paint_${room.vnum}`;
+    if (scene.textures.exists(ready)) {
+      const img = scene.add.image(ox, oy, ready).setOrigin(0, 0).setDisplaySize(W * T, H * T).setDepth(-8.5).setTint(0x9aa0b4);
+      scene.bgLayer.add(img);
+      (scene._peekKeys = scene._peekKeys || []).push(ready);
+      const lbl = scene.add.text(ox + W * T / 2, oy + H * T / 2, room.name || '', { fontFamily: 'sans-serif', fontSize: '7px', color: '#d8d0c0', backgroundColor: 'rgba(6,8,12,0.55)', padding: { x: 3, y: 1 } }).setOrigin(0.5).setAlpha(0.85).setDepth(-8);
+      scene.bgLayer.add(lbl);
+      return img;
+    }
     const g = scene.add.graphics().setDepth(-9);
     const rng = MH.mulberry32 ? MH.mulberry32((room.vnum * 7919) >>> 0) : Math.random;
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
@@ -86,7 +97,7 @@
       try { job(); } catch (_) {}
       setTimeout(step, 120);
     };
-    setTimeout(step, 250);
+    setTimeout(step, 60);
   }
 
   // called from buildRoom once the real room is painted
@@ -95,12 +106,19 @@
     if (!cur) return;
     scene._peekQueue = [];                       // drop neighbours queued for the room we left
     for (const k of (scene._peekKeys || [])) {   // and free their canvases, except the one we now stand in
-      if (k !== `paint_${cur}` && scene.textures.exists(k)) { try { scene.textures.remove(k); } catch (_) {} }
+      if (k !== `paint_${cur}` && k !== scene._prevPaintKey && k !== scene._lastPaintKey && scene.textures.exists(k)) { try { scene.textures.remove(k); } catch (_) {} }
     }
     scene._peekKeys = [];
     loadAtlas().then(a => {
       if (!scene.layout || scene.layout.vnum !== cur) return;   // moved on while the atlas loaded
       const here = a.rooms[cur]; if (!here) return;
+      // the camera may only look past edges that actually open somewhere
+      try {
+        const ex = here.exits || {}, cam = scene.cameras.main;
+        const x0 = ex.west ? -scene.pxW : 0, y0 = ex.north ? -scene.pxH : 0;
+        const x1 = ex.east ? scene.pxW * 2 : scene.pxW, y1 = ex.south ? scene.pxH * 2 : scene.pxH;
+        cam.setBounds(x0, y0, x1 - x0, y1 - y0);
+      } catch (_) {}
       for (const [dir, vnum] of Object.entries(here.exits || {})) {
         const off = OFF[dir]; if (!off) continue;
         const room = a.rooms[vnum]; if (!room) continue;

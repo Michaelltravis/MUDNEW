@@ -91,6 +91,10 @@ async function capture() {
       await sleep(2600);
       await page.evaluate(() => game.camera.lookAt(game.player));
       await sleep(200);
+    } else if (ref.walkTo) {
+      // continuous-world storyboard: walk N tiles from the current spot with the camera following
+      await page.evaluate(([dx, dy]) => { game.camera.lookAt(game.player); game.makePlayerGoTo(game.player.gridX + dx, game.player.gridY + dy); }, ref.walkTo);
+      await sleep(150);
     } else if (ref.camera) {
       await page.evaluate(([x, y]) => { game.camera.setGridPosition(x, y); game.renderer.renderStaticCanvases(); }, ref.camera);
       await sleep(900);

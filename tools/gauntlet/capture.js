@@ -83,7 +83,11 @@ function isBlankPng(buf) {
     // pre-commands run after arrival and before the scene commands (e.g. zreset so the target mob is alive)
     for (const c of (r.pre || [])) { await send(c); await sleep(1200); }
     for (const c of (r.cmds || [])) { await send(c); await sleep(200); }
-    await sleep(r.waitMs || 4500);   // let the zone title card and arrival description fade
+    if (r.js) { try { await page.evaluate(r.js); } catch (e) { console.warn('js hook', r.label, String(e).slice(0, 120)); } }
+    await sleep(r.waitMs || 4500);
+    // keys: hold a movement key for the storyboard so the client's own walking
+    // (physics, camera follow, exit crossing) is what gets filmed
+    if (r.keys && r.keys.down) await page.keyboard.down(r.keys.down);   // let the zone title card and arrival description fade
     const file = path.join(OUT, `${r.label}.png`);
     let buf;
     if (r.filmstrip) {
@@ -103,6 +107,7 @@ function isBlankPng(buf) {
       buf = await page.screenshot({ path: file });
     }
     const blank = isBlankPng(buf);
+    if (r.keys && r.keys.down) await page.keyboard.up(r.keys.down);
     manifest.shots.push({ label: r.label, vnum: r.vnum, room: await roomName(), arrived, file: path.relative(ROOT, file), bytes: buf.length, blank });
     console.log(`${blank ? 'BLANK ' : 'ok    '} ${r.label.padEnd(8)} ${await roomName()}`);
     for (const c of (r.after || [])) { await send(c); await sleep(400); }

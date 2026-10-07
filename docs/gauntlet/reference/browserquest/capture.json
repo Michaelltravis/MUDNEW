@@ -6,10 +6,10 @@
   },
   "shots": [
     {
-      "label": "fight",
+      "label": "walk",
       "camera": null,
-      "note": "rat fight near spawn, same 8-frame storyboard",
-      "file": "docs/gauntlet/reference/browserquest/fight.png"
+      "note": "BrowserQuest: walk 12 tiles east from spawn, camera scrolling",
+      "file": "docs/gauntlet/reference/browserquest/walk.png"
     }
   ]
 }

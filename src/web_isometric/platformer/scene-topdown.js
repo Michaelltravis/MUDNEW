@@ -511,9 +511,13 @@
         if (MH.worldPeek) { try { MH.worldPeek.render(this, layout); } catch (e) { console.warn('peek failed', e); } }
       }
       if (painted) {
-        if (this._lastPaintKey && this._lastPaintKey !== painted && this.textures.exists(this._lastPaintKey)) {
-          this.textures.remove(this._lastPaintKey);   // free the previous room's canvas
+        // keep the previous room's canvas one more cycle: after a crossing it
+        // is the neighbour right behind the player (world-peek reuses it), so
+        // free the one before that instead
+        if (this._prevPaintKey && this._prevPaintKey !== painted && this._prevPaintKey !== this._lastPaintKey && this.textures.exists(this._prevPaintKey)) {
+          this.textures.remove(this._prevPaintKey);
         }
+        this._prevPaintKey = this._lastPaintKey;
         this._lastPaintKey = painted;
         const img = this.add.image(0, 0, painted).setOrigin(0, 0).setDisplaySize(this.pxW, this.pxH);
         this.bgLayer.add(img);
