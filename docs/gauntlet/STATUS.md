@@ -44,7 +44,8 @@ read this file, `docs/art/SOURCES.md`, then the plan.
 - Step 3 done: presence chip under the zone caption ("N with you · M nearby · K online"); player
   arrivals, departures, teleports, logins and logouts now refresh every graphical client in the
   affected rooms at once (`player_move` events), with an "X arrives/leaves" feed line.
-- Next: group loot roll popup, world-event banners.
+- World-event banners already exist (`ui.js` eventAlert detects boss/invasion/treasure/double-XP lines).
+- Next: group loot roll (needs a server-side roll in groups.py first), then a popup.
 
 ## Phase C: ARPG controls and readability (BASELINE EXISTS)
 - Click-to-move, hit-stop, screen shake, floor telegraphs, reaction prompts and damage numbers
