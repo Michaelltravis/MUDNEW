@@ -13,7 +13,15 @@ read this file, `docs/art/SOURCES.md`, then the plan.
 - Not done in Phase A: wall/border tiles (painter borders kept), Lucifer HUD chrome, a gauntlet
   "style" round against BrowserQuest.
 
-## Phase B next: continuous world rendering (see plan). Credit discipline: one piece, one round.
+## Phase B: continuous world (IN PROGRESS)
+- Step 1 done (`world-peek.js`): the camera follows the player at a notch more zoom, and the
+  rooms behind each exit are pre-rendered at their offsets as dimmed flat ground (deterministic
+  `generateRoomTopDown` layouts, colours from the zone theme) using the static `/atlas`, so an
+  exit reveals the next space instead of black.
+- Next: paint neighbours with the real painter at low priority (idle time), let the physics
+  bounds extend across the opening so the move command fires from walking into the next room
+  rather than an exit zone, then a gauntlet "world" round vs BrowserQuest overworld.
+Credit discipline: one piece, one round.
 
 **Run:** playability-02 — **round 1 of 2 done**. Working branch `claude/nice-johnson-slpinu`.
 **Reference:** BrowserQuest, local clone `.gauntlet-ref/browserquest` (gitignored; rebuild with `node tools/gauntlet/capture-ref.js --setup`).

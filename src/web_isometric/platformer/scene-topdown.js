@@ -72,11 +72,15 @@
         const vw = Math.max(160, cw - ins.left - ins.right);
         const vh = Math.max(160, ch - ins.top - ins.bottom);
         const raw = Math.min(vw / this.pxW, vh / this.pxH);
-        const z = Phaser.Math.Clamp(Math.floor(raw * 4) / 4, 1.0, 4.5);
+        // continuous-world step 1: the room is a notch LARGER than the viewport
+        // and the camera follows the player, so approaching an exit reveals the
+        // neighbouring room (pre-rendered by world-peek.js) through the gap
+        const z = Phaser.Math.Clamp(Math.floor(raw * 1.3 * 4) / 4, 1.0, 5.0);
         const cam = this.cameras.main;
         cam.setViewport(ins.left, ins.top, vw, vh);
         cam.setZoom(z);
-        cam.centerOn(this.pxW / 2, this.pxH / 2);
+        cam.setBounds(-this.pxW, -this.pxH, this.pxW * 3, this.pxH * 3);
+        if (this.player) cam.startFollow(this.player, true, 0.12, 0.12); else cam.centerOn(this.pxW / 2, this.pxH / 2);
         this._hudInsets = ins;
         if (MH.fitMinimapColumn) { try { MH.fitMinimapColumn(); } catch (_) {} }
       };
@@ -127,6 +131,7 @@
       this.rimTint = 0xfff2cc;
 
       this.player = this.physics.add.sprite(this.pxW / 2, this.pxH / 2, 'td_player_warrior', 'd0');
+      this.cameras.main.startFollow(this.player, true, 0.12, 0.12);   // the camera tracks the player (world-peek)
       this.player.setScale(1 / MH.SMOOTH_SS);
       this.player.setSize(11 * MH.SMOOTH_SS, 10 * MH.SMOOTH_SS).setOffset(6.5 * MH.SMOOTH_SS, 12 * MH.SMOOTH_SS);
       this.player.setDepth(10);
@@ -503,6 +508,7 @@
       let painted = null;
       if (MH.painter && MH.painter.enabled) {
         try { painted = MH.painter.paint(this, layout, th); } catch (e) { console.warn('painter failed', e); }
+        if (MH.worldPeek) { try { MH.worldPeek.render(this, layout); } catch (e) { console.warn('peek failed', e); } }
       }
       if (painted) {
         if (this._lastPaintKey && this._lastPaintKey !== painted && this.textures.exists(this._lastPaintKey)) {
