@@ -1,5 +1,20 @@
 # Gauntlet status
 
+**Current direction (user goal, 2026-10-07):** a modern multiplayer ARPG face on the MUD. Plan in
+`/root/.claude/plans/take-a-look-at-twinkly-grove.md` (Phases A-E). Handoff for a fresh context:
+read this file, `docs/art/SOURCES.md`, then the plan.
+
+## Phase A: art pipeline and style lock (DONE, commits 53dcf5e..HEAD)
+- CC0 Foozle Lucifer collection adopted (`src/web_isometric/art/`, `docs/art/SOURCES.md`).
+- `lucifer.js`: players and humanoid mobs render from Lucifer sheets; every class has its own
+  recoloured model (`docs/art/class-lineup.png`); LPC/DCSS remain fallbacks for animals.
+- `lucifer-tiles.js`: 16 painter props replaced by Lucifer crops under the same texture keys.
+- Art is served by the aiohttp bridge (:4003 `/art/`); web_map's HTTP truncated large bodies.
+- Not done in Phase A: wall/border tiles (painter borders kept), Lucifer HUD chrome, a gauntlet
+  "style" round against BrowserQuest.
+
+## Phase B next: continuous world rendering (see plan). Credit discipline: one piece, one round.
+
 **Run:** playability-02 — **round 1 of 2 done**. Working branch `claude/nice-johnson-slpinu`.
 **Reference:** BrowserQuest, local clone `.gauntlet-ref/browserquest` (gitignored; rebuild with `node tools/gauntlet/capture-ref.js --setup`).
 **Pieces:** feel (ab; labels: fight, combat; files `src/web_isometric/platformer/{scene-topdown,fx-abilities,ui,ui-arpg}.js`). Pacing closed in playability-01 (won round 1, `cf2a4c4`).

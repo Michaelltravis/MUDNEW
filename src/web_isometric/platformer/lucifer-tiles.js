@@ -12,21 +12,21 @@
   };
   // name -> { atlas, seed: [x, y] inside the sprite, max: [w, h] search box }
   const PROPS = {
-    brazier:    { atlas: 'dungeon', seed: [560, 20],  max: [32, 64] },   // candelabra flame
-    lantern:    { atlas: 'dungeon', seed: [496, 20],  max: [32, 64] },   // wall torch
-    candles:    { atlas: 'dungeon', seed: [560, 150], max: [32, 64] },   // candle stand
+    brazier:    { atlas: 'dungeon', seed: [560, 20],  max: [32, 64], fitH: 18 },   // candelabra flame
+    lantern:    { atlas: 'dungeon', seed: [496, 20],  max: [32, 64], fitH: 16 },   // wall torch
+    candles:    { atlas: 'dungeon', seed: [560, 150], max: [32, 64], fitH: 22 },   // candle stand
     pillar:     { atlas: 'dungeon', seed: [592, 150], max: [32, 64] },   // stone column
-    banner:     { atlas: 'dungeon', seed: [496, 100], max: [32, 64] },   // red hanging banner
-    barrel:     { atlas: 'dungeon', seed: [560, 110], max: [32, 32] },
-    statue:     { atlas: 'dungeon', seed: [432, 160], max: [32, 64] },   // armoured knight statue
-    gravestone: { atlas: 'outer',   seed: [944, 14],  max: [32, 32] },
-    runestone:  { atlas: 'outer',   seed: [976, 14],  max: [32, 32] },   // cross marker
+    banner:     { atlas: 'dungeon', seed: [496, 100], max: [32, 64], fitH: 22 },   // red hanging banner
+    barrel:     { atlas: 'dungeon', seed: [560, 110], max: [32, 32], fitH: 14 },
+    statue:     { atlas: 'dungeon', seed: [432, 160], max: [32, 64], fitH: 17 },   // armoured knight statue
+    gravestone: { atlas: 'outer',   seed: [944, 14],  max: [32, 32], fitH: 14 },
+    runestone:  { atlas: 'outer',   seed: [976, 14],  max: [32, 32], fitH: 15 },   // cross marker
     pine:       { atlas: 'outer',   seed: [1248, 40], max: [64, 96] },
     tree:       { atlas: 'outer',   seed: [1248, 40], max: [64, 96] },
-    rock:       { atlas: 'outer',   seed: [1152, 50], max: [64, 32] },
-    bush:       { atlas: 'outer',   seed: [1168, 80], max: [32, 32] },
-    urn:        { atlas: 'outer',   seed: [1072, 80], max: [32, 32] },   // potted plant
-    fence:      { atlas: 'outer',   seed: [1000, 110], max: [64, 32] },
+    rock:       { atlas: 'outer',   seed: [1152, 50], max: [64, 32], fitH: 16 },
+    bush:       { atlas: 'outer',   seed: [1168, 80], max: [32, 32], fitH: 14 },
+    urn:        { atlas: 'outer',   seed: [1072, 80], max: [32, 32], fitH: 14 },   // potted plant
+    fence:      { atlas: 'outer',   seed: [1000, 110], max: [64, 32], fitH: 14 },
     lamppost:   { atlas: 'outer',   seed: [1072, 150], max: [16, 96] },  // standing pole
   };
   const report = {};
@@ -75,7 +75,7 @@
       // themes-zones props are 20x26 logical px at SS and every placement
       // scales by (mul / SS), so fit each crop into that same box: the art
       // then lands at the size the set-piece code already tuned for.
-      const fit = Math.min(1, 20 / box.w, 26 / box.h);
+      const fit = Math.min(1, 20 / box.w, (spec.fitH || 26) / box.h);
       const lw = Math.max(1, Math.round(box.w * fit)), lh = Math.max(1, Math.round(box.h * fit));
       const c = document.createElement('canvas'); c.width = lw * SS; c.height = lh * SS;
       const g = c.getContext('2d'); g.imageSmoothingEnabled = fit < 1;   // smooth only when shrinking
