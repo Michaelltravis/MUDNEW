@@ -1,15 +1,69 @@
 {
-  "_doc": "Maps Misthollow classes and mob_ai roles / name keywords to Lucifer actor packs in manifest.json. First match wins; 'fallback' keeps the old renderer. Townsfolk use the robed cultist sheet (non-hostile tint) so the street reads in one style; animals/monsters with no Lucifer sheet fall through to DCSS art.",
+  "_doc": "Maps Misthollow classes and mob_ai roles / name keywords to Lucifer actor packs in manifest.json. First match wins; 'fallback' keeps the old renderer. Townsfolk use the robed cultist sheet (non-hostile tint) so the street reads in one style; animals/monsters with no Lucifer sheet fall through to DCSS art. classes: pack plus a hue/sat/light recolour so every class has its own model; skin tones are left untouched by the recolour.",
   "classes": {
-    "warrior": "lucifer-warrior",
-    "paladin": "lucifer-warrior",
-    "ranger": "lucifer-warrior",
-    "thief": "lucifer-warrior",
-    "assassin": "lucifer-warrior",
-    "mage": "lucifer-sorceress",
-    "bard": "lucifer-sorceress",
-    "cleric": "lucifer-sorceress",
-    "necromancer": "lucifer-necromancer"
+    "warrior": {
+      "pack": "lucifer-warrior",
+      "hue": 0,
+      "sat": 1.0,
+      "light": 1.0,
+      "greySat": 0
+    },
+    "paladin": {
+      "pack": "lucifer-warrior",
+      "hue": 40,
+      "sat": 1.25,
+      "light": 1.18,
+      "greySat": 0.42
+    },
+    "ranger": {
+      "pack": "lucifer-warrior",
+      "hue": 100,
+      "sat": 1.1,
+      "light": 0.92,
+      "greySat": 0.4
+    },
+    "thief": {
+      "pack": "lucifer-warrior",
+      "hue": 250,
+      "sat": 0.7,
+      "light": 0.72,
+      "greySat": 0.3
+    },
+    "assassin": {
+      "pack": "lucifer-warrior",
+      "hue": 330,
+      "sat": 0.8,
+      "light": 0.62,
+      "greySat": 0.35
+    },
+    "mage": {
+      "pack": "lucifer-sorceress",
+      "hue": 200,
+      "sat": 1.15,
+      "light": 1.0,
+      "greySat": 0
+    },
+    "cleric": {
+      "pack": "lucifer-sorceress",
+      "hue": 45,
+      "sat": 0.9,
+      "light": 1.28,
+      "greySat": 0.25
+    },
+    "bard": {
+      "pack": "lucifer-sorceress",
+      "hue": 290,
+      "sat": 1.2,
+      "light": 1.05,
+      "greySat": 0.3
+    },
+    "necromancer": {
+      "pack": "lucifer-necromancer",
+      "hue": 0,
+      "sat": 1.0,
+      "light": 1.0,
+      "greySat": 0
+    }
   },
   "mobs": [
     {

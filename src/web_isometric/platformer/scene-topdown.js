@@ -2165,7 +2165,7 @@
       if (!pack) return false;
       const big = d.boss;
       ent.labelDy = big ? 44 : 30;
-      ent.doll = L.makeActor(this, pack, TD().T * (big ? 3.0 : 2.4), () => { this.tintCharacters(); this.applyContour(ent); });
+      ent.doll = L.makeActor(this, pack, TD().T * (big ? 3.0 : 2.4), () => { this.tintCharacters(); this.applyContour(ent); }, spec.kind === 'player' ? L.variant(d.char_class) : null);
       ent.doll.container.setDepth(ent.sprite.depth || 8);
       ent.sprite.setAlpha(0);
       if (ent.rim) ent.rim.setVisible(false);
@@ -5247,10 +5247,10 @@
       if (!p) return;
       const luc = MH.lucifer && MH.lucifer.isReady() ? MH.lucifer.resolveClass(p.char_class) : null;
       if (luc) {   // style lock: Lucifer hero for a mapped class
-        if (this.playerDoll && this._dollSig === 'luc:' + luc) return;
+        if (this.playerDoll && this._dollSig === 'luc:' + luc + ':' + p.char_class) return;
         if (this.playerDoll) { this.playerDoll.destroy(); this.playerDoll = null; }
-        this._dollSig = 'luc:' + luc;
-        this.playerDoll = MH.lucifer.makeActor(this, luc, TD().T * 2.4, () => { this.tintCharacters(); addContour(this.playerDoll && this.playerDoll.container, OUTLINE.player); });
+        this._dollSig = 'luc:' + luc + ':' + p.char_class;
+        this.playerDoll = MH.lucifer.makeActor(this, luc, TD().T * 2.4, () => { this.tintCharacters(); addContour(this.playerDoll && this.playerDoll.container, OUTLINE.player); }, MH.lucifer.variant(p.char_class));
         this.playerDoll.container.setDepth(10);
         this.player.setAlpha(0);
         if (this.playerRim) this.playerRim.setVisible(false);

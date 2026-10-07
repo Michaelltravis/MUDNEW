@@ -5,7 +5,8 @@
 // from art/manifest.json, which tools/art_manifest.py generates from the folder.
 (() => {
   const MH = window.MH = window.MH || {};
-  const BASE = '/art/';
+  // art is served by the aiohttp bridge (:4003, or mud.<host> behind a proxy)
+  const BASE = (MH.urls && MH.urls.art) || '/art/';
   let MAN = null, ROLES = null, ready = false;
   const DIRS = ['down', 'up', 'left', 'right'];
   // scene action -> candidate Lucifer anims, first available wins
@@ -28,10 +29,59 @@
   const isReady = () => ready;
 
   // ---- resolution -------------------------------------------------------
+  // -> pack name; the class recolour rides along as variant() below
   function resolveClass(cls) {
     if (!ready || !cls) return null;
-    const p = ROLES.classes[String(cls).toLowerCase()];
+    const e = ROLES.classes[String(cls).toLowerCase()];
+    const p = e && (typeof e === 'string' ? e : e.pack);
     return p && MAN.actors[p] ? p : null;
+  }
+  function variant(cls) {
+    const e = ready && cls ? ROLES.classes[String(cls).toLowerCase()] : null;
+    if (!e || typeof e === 'string' || (!e.hue && e.sat == null && e.light == null)) return null;
+    return { key: String(cls).toLowerCase(), hue: e.hue || 0, sat: e.sat == null ? 1 : e.sat, light: e.light == null ? 1 : e.light, greySat: e.greySat || 0 };
+  }
+  // bake a recoloured copy of a loaded strip: rotate hue / scale saturation and
+  // lightness of coloured pixels, leaving skin tones (warm, mid-light) alone so
+  // faces stay human while armour and robes take the class colour
+  function recolour(scene, srcKey, dstKey, v, fw, fh, frames) {
+    if (scene.textures.exists(dstKey)) return true;
+    try {
+      const img = scene.textures.get(srcKey).getSourceImage();
+      const c = document.createElement('canvas'); c.width = img.width; c.height = img.height;
+      const g = c.getContext('2d'); g.drawImage(img, 0, 0);
+      const id = g.getImageData(0, 0, c.width, c.height), d = id.data;
+      for (let i = 0; i < d.length; i += 4) {
+        if (d[i + 3] < 8) continue;
+        let r = d[i] / 255, gg = d[i + 1] / 255, b = d[i + 2] / 255;
+        const mx = Math.max(r, gg, b), mn = Math.min(r, gg, b), l = (mx + mn) / 2;
+        let h = 0, s = 0;
+        if (mx !== mn) {
+          const dd = mx - mn; s = l > 0.5 ? dd / (2 - mx - mn) : dd / (mx + mn);
+          h = mx === r ? ((gg - b) / dd + (gg < b ? 6 : 0)) : mx === gg ? ((b - r) / dd + 2) : ((r - gg) / dd + 4);
+          h *= 60;
+        }
+        const skin = s > 0.2 && s < 0.75 && h >= 12 && h <= 42 && l > 0.42 && l < 0.88;
+        const grey = s < 0.12;
+        if (skin || (grey && !(v.greySat && l > 0.18 && l < 0.8))) { // skin, and greys we leave uncoloured: lightness only
+          const L = Math.min(1, l * v.light); const k = l > 0 ? L / l : 1; d[i] = r * k * 255; d[i + 1] = gg * k * 255; d[i + 2] = b * k * 255; continue;
+        }
+        // grey armour takes the class colour at a muted saturation (steel -> gilt, verdigris, blued)
+        if (grey) { h = v.hue; s = v.greySat; } else { h = (h + v.hue + 360) % 360; s = Math.min(1, s * v.sat); }
+        const L = Math.min(1, l * v.light);
+        const q = L < 0.5 ? L * (1 + s) : L + s - L * s, pp = 2 * L - q;
+        const t2c = t => { t = (t + 1) % 1; return t < 1 / 6 ? pp + (q - pp) * 6 * t : t < 0.5 ? q : t < 2 / 3 ? pp + (q - pp) * (2 / 3 - t) * 6 : pp; };
+        const hh = h / 360; d[i] = t2c(hh + 1 / 3) * 255; d[i + 1] = t2c(hh) * 255; d[i + 2] = t2c(hh - 1 / 3) * 255;
+      }
+      g.putImageData(id, 0, 0);
+      scene.textures.addSpriteSheet(dstKey, c, { frameWidth: fw, frameHeight: fh });
+      scene.textures.get(dstKey).setFilter(Phaser.Textures.FilterMode.NEAREST);
+      if (!scene.anims.exists(dstKey)) {
+        const src = scene.anims.get(srcKey);
+        scene.anims.create({ key: dstKey, frames: scene.anims.generateFrameNumbers(dstKey, { start: 0, end: frames - 1 }), frameRate: src ? src.frameRate : 10, repeat: src ? src.repeat : -1 });
+      }
+      return true;
+    } catch (_) { return false; }
   }
   // name keywords and mob_ai roles -> pack; 'fallback' means keep the old art
   function resolveMob(name, roles, boss) {
@@ -58,28 +108,33 @@
     const idle = actor.anims.idle && (actor.anims.idle[dir] || actor.anims.idle.down);
     return idle ? { anim: 'idle', dir, ...idle } : null;
   }
+  // Strips bypass Phaser's loader: a shared queue stalls when one file sticks
+  // in processing, and actors arrive one at a time mid-session. A plain Image
+  // (CORS-safe) registered as a spritesheet is race-free.
   function ensureStrip(scene, pack, strip, cb) {
     const key = `luc:${pack}:${strip.anim}:${strip.dir}`;
     if (scene.textures.exists(key)) { cb(key); return; }
     if (pending[key]) { pending[key].push(cb); return; }
     pending[key] = [cb];
-    scene.load.spritesheet(key, BASE + strip.file, { frameWidth: strip.w, frameHeight: strip.h });
-    scene.load.once('complete', () => {
-      const cbs = pending[key] || []; delete pending[key];
-      const ok = scene.textures.exists(key);
-      if (ok && !scene.anims.exists(key)) {
-        scene.textures.get(key).setFilter(Phaser.Textures.FilterMode.NEAREST);
-        scene.anims.create({ key, frames: scene.anims.generateFrameNumbers(key, { start: 0, end: strip.frames - 1 }),
+    const done = ok => { const cbs = pending[key] || []; delete pending[key]; cbs.forEach(f => { try { f(ok ? key : null); } catch (_) {} }); };
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      try {
+        if (!scene.textures.exists(key)) scene.textures.addSpriteSheet(key, img, { frameWidth: strip.w, frameHeight: strip.h });
+        const tex = scene.textures.get(key); if (tex) tex.setFilter(Phaser.Textures.FilterMode.NEAREST);
+        if (!scene.anims.exists(key)) scene.anims.create({ key, frames: scene.anims.generateFrameNumbers(key, { start: 0, end: strip.frames - 1 }),
           frameRate: FPS[strip.anim] || 10, repeat: (strip.anim === 'idle' || strip.anim === 'walk' || strip.anim === 'run') ? -1 : 0 });
-      }
-      cbs.forEach(f => { try { f(ok ? key : null); } catch (_) {} });
-    });
-    scene.load.start();
+        done(scene.textures.exists(key));
+      } catch (e) { console.warn('lucifer strip', key, e); done(false); }
+    };
+    img.onerror = () => done(false);
+    img.src = BASE + strip.file;
   }
 
   // ---- actor ------------------------------------------------------------
   // scale: tiles per actor height (the scene sizes dolls to ~2 tiles)
-  function makeActor(scene, pack, pxHeight, onBuilt) {
+  function makeActor(scene, pack, pxHeight, onBuilt, v) {
     const actor = MAN.actors[pack];
     const container = scene.add.container(0, 0);
     const spr = scene.add.sprite(0, 0, '__DEFAULT').setOrigin(0.5, 1).setVisible(false);
@@ -106,6 +161,7 @@
         cur = strip; curKey = key;
         ensureStrip(scene, pack, strip, k => {
           if (!k || !spr.active || curKey !== key) return;
+          if (v) { const vk = k + ':' + v.key; if (recolour(scene, k, vk, v, strip.w, strip.h, strip.frames)) k = vk; }
           spr.setVisible(true);
           spr.play(k);
           this._oneShot = !!oneShot;
@@ -118,7 +174,7 @@
         this._dead = true; this._oneShot = false;
         const strip = stripFor(pack, 'death', facing); if (!strip) return;
         const key = `luc:${pack}:${strip.anim}:${strip.dir}`; curKey = key;
-        ensureStrip(scene, pack, strip, k => { if (k && spr.active) { spr.setVisible(true); spr.play(k); } });
+        ensureStrip(scene, pack, strip, k => { if (!k || !spr.active) return; if (v) { const vk = k + ':' + v.key; if (recolour(scene, k, vk, v, strip.w, strip.h, strip.frames)) k = vk; } spr.setVisible(true); spr.play(k); });
       },
       revive() { if (!this._dead) return; this._dead = false; action = 'idle'; curKey = null; this._apply(false); },
       update() {},                                // Phaser's animation clock drives the frames
@@ -128,5 +184,5 @@
     return self;
   }
 
-  MH.lucifer = { preload, init, isReady, resolveClass, resolveMob, makeActor };
+  MH.lucifer = { preload, init, isReady, resolveClass, variant, resolveMob, makeActor };
 })();

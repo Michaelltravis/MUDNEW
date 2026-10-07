@@ -34,6 +34,7 @@
         try { MH.packSprites.apply(this); } catch (e) { console.warn('pack apply failed', e); }
         // hand-tuned zone themes (floors, borders, props, ambience)
         try { MH.zoneSprites.generateAll(this); } catch (e) { console.warn('zone themes failed', e); }
+        try { if (MH.luciferTiles) MH.luciferTiles.apply(this); } catch (e) { console.warn('lucifer tiles failed', e); }
         // real terrain tile kit (handoff art) — rooms render from these atlases
         try { if (MH.tilekit) MH.tilekit.init(this); } catch (e) { console.warn('tilekit init failed', e); }
         try { if (MH.lpc) MH.lpc.init(this); } catch (e) { console.warn('lpc init failed', e); }
@@ -49,6 +50,7 @@
       try { if (MH.lpc) MH.lpc.preload(this); } catch (e) { console.warn('lpc preload failed', e); }
       try { if (MH.dcss) MH.dcss.preload(this); } catch (e) { console.warn('dcss preload failed', e); }
       try { if (MH.lucifer) MH.lucifer.preload(this); } catch (e) { console.warn('lucifer preload failed', e); }
+      try { if (MH.luciferTiles) MH.luciferTiles.preload(this); } catch (e) { console.warn('lucifer tiles preload failed', e); }
       this.load.once('complete', () => this.time.delayedCall(10, begin));
       this.load.once('loaderror', () => this.time.delayedCall(10, begin));
       this.load.start();

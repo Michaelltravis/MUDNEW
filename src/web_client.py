@@ -5,6 +5,7 @@ Port 4003 by default.
 """
 
 import asyncio
+import os
 import json
 import re
 from aiohttp import web, WSMsgType
@@ -165,6 +166,17 @@ class WebClient:
     def _setup_routes(self):
         self.app.router.add_get('/', self.handle_index)
         self.app.router.add_get('/ws', self.handle_websocket)
+        # CC0 art packs for the graphical client (docs/art/SOURCES.md). Served
+        # here rather than by web_map's hand-rolled HTTP, which truncates
+        # larger binary bodies; CORS so Phaser can read pixels off the canvas.
+        art_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'web_isometric', 'art')
+        if os.path.isdir(art_dir):
+            self.app.router.add_static('/art/', art_dir, show_index=False)
+        self.app.on_response_prepare.append(self._cors)
+
+    @staticmethod
+    async def _cors(request, response):
+        response.headers['Access-Control-Allow-Origin'] = '*'
     
     async def handle_index(self, request: web.Request) -> web.Response:
         """Serve the web client HTML."""

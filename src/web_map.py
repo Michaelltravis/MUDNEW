@@ -376,7 +376,7 @@ class WebMapServer:
                         data = f.read()
                     ext = sprite_file.rsplit('.', 1)[-1].lower()
                     ct = {'png': 'image/png', 'jpg': 'image/jpeg', 'gif': 'image/gif', 'webp': 'image/webp'}.get(ext, 'image/png')
-                    writer.write(f"HTTP/1.1 200 OK\r\nContent-Type: {ct}\r\nContent-Length: {len(data)}\r\nAccess-Control-Allow-Origin: *\r\n\r\n".encode())
+                    writer.write(f"HTTP/1.1 200 OK\r\nContent-Type: {ct}\r\nContent-Length: {len(data)}\r\nConnection: close\r\nAccess-Control-Allow-Origin: *\r\n\r\n".encode())
                     writer.write(data)
                     await writer.drain()
                     return
@@ -961,7 +961,7 @@ class WebMapServer:
                         data = f.read()
                     ct = 'image/png' if ext == 'png' else 'application/json'
                     writer.write((f"HTTP/1.1 200 OK\r\nContent-Type: {ct}\r\nContent-Length: {len(data)}\r\n"
-                                  f"Cache-Control: max-age=3600\r\nAccess-Control-Allow-Origin: *\r\n\r\n").encode())
+                                  f"Cache-Control: max-age=3600\r\nConnection: close\r\nAccess-Control-Allow-Origin: *\r\n\r\n").encode())
                     writer.write(data)
                     await writer.drain()
                     return
@@ -982,7 +982,7 @@ class WebMapServer:
                             data = f.read()
                         bct = {'png': 'image/png', 'woff2': 'font/woff2', 'woff': 'font/woff'}[ext]
                         writer.write((f"HTTP/1.1 200 OK\r\nContent-Type: {bct}\r\n"
-                                      f"Content-Length: {len(data)}\r\nAccess-Control-Allow-Origin: *\r\n\r\n").encode())
+                                      f"Content-Length: {len(data)}\r\nConnection: close\r\nAccess-Control-Allow-Origin: *\r\n\r\n").encode())
                         writer.write(data)
                         await writer.drain()
                         return
