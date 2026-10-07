@@ -31,3 +31,14 @@ with Lucifer), Pixel Frog Tiny Swords (custom licence, not CC0, 64px bright styl
 Kept from before: the procedural painterly ground (`painter.js`) stays as the base layer; Lucifer
 tiles are used for walls, props, doors and decor on top of it. LPC paperdolls and DCSS creature
 sprites remain as fallbacks until every class and mob archetype is mapped (see `roles.json`).
+
+## Decisions after the search for beast and extra hero sheets (2026-10-07)
+- **Beasts and non-humanoid monsters keep the CC0 DCSS creature art.** No CC0 top-down animal
+  pack with four-direction animation exists in a matching style; the candidates found were
+  CC-BY (Reemax giant spider, LPC rat/cat/dog, AntumDeluge rodents), paid (PidrouDays bear), or
+  16px cartoon (Tiny Creatures). DCSS art already sits inside the actor pipeline with outlines
+  and scale rules, and the style-01 critic did not flag it.
+- **Five classes stay recolours of the three Lucifer silhouettes** (warrior, sorceress,
+  necromancer) until a sheet in the same style is commissioned. CC0 alternatives found were
+  16px idle-only (PixeLike) or AI-generated / non-CC0 (Pixel Heroes, Tiny Questers).
+  Recolours are distinct at a glance (see `class-lineup.png`); the gap is silhouette variety.

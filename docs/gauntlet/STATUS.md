@@ -16,7 +16,8 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   necropolis border/obstacle blocks replaced by Lucifer stone brick (`lucifer-tiles.js`).
   Record: `docs/gauntlet/style-01/round-1/verdicts.md`.
 - Stone border/obstacle blocks also applied to castle, darkcastle, sewer, dwarvenhall, sandstone
-  and drow themes; midgaard keeps its painted rooftop border (a town square ringed by houses). Decision: the Lucifer RPG UI chrome (flat 14-48px pixel frames) is NOT adopted;
+  and drow themes; midgaard keeps its painted rooftop border (decision: the Lucifer exterior atlas
+  only has a thin stone fence frame, and the painted rooftops won the atmosphere round). Decision: the Lucifer RPG UI chrome (flat 14-48px pixel frames) is NOT adopted;
   the glass HUD that won graphics-02 stays. Lucifer icons/boss bars remain available for later.
 
 ## Phase B: continuous world (IN PROGRESS)
@@ -30,8 +31,8 @@ read this file, `docs/art/SOURCES.md`, then the plan.
 - Step 3 done: cardinal room changes are a camera pan, not a screen slide. The camera keeps the
   old composition (the room you left is now the neighbour behind you) and eases onto the player.
   Up/down/portal travel keeps the wipe.
-- Next: a gauntlet "world" round vs the BrowserQuest overworld; later, true shared physics
-  across the opening so the move fires from walking into the neighbour.
+- Decision: cross-room physics stays client-side as a camera pan (the server owns rooms and
+  movement; exit gaps already send the move). A gauntlet "world" round is the remaining check.
 ## Phase D: multiplayer presence (BASELINE VERIFIED)
 - Two live clients (`tools/gauntlet/duo.js`, characters Gauntlet/Gauntletb) share a room, follow,
   group, and fight together; party frames (top centre) show both members' live HP. Evidence:
@@ -49,7 +50,9 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   (uncommon+ rarity, weapons/armor worth 50+, anything 200+) from a group kill go to a 20 s roll
   among members in the room; `roll need|greed|pass` or the client popup; winner takes the item
   from the corpse. Verified end to end with two clients (`tools/gauntlet/duo.js` with POLL).
-- Next: ally telegraph rings for mobs fighting a party member on the SAME tile; loot history panel.
+- Art decisions (no CC0 beast or extra-hero sheets exist): DCSS creature art stays for animals;
+  recoloured heroes stay until a commissioned sheet. See docs/art/SOURCES.md.
+- Next: loot history panel; ally telegraph rings when a mob fights a party member beside you.
 
 ## Phase C: ARPG controls and readability (BASELINE EXISTS)
 - Click-to-move, hit-stop, screen shake, floor telegraphs, reaction prompts and damage numbers
