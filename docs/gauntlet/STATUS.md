@@ -10,8 +10,9 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   recoloured model (`docs/art/class-lineup.png`); LPC/DCSS remain fallbacks for animals.
 - `lucifer-tiles.js`: 16 painter props replaced by Lucifer crops under the same texture keys.
 - Art is served by the aiohttp bridge (:4003 `/art/`); web_map's HTTP truncated large bodies.
-- Not done in Phase A: wall/border tiles (painter borders kept), Lucifer HUD chrome, a gauntlet
-  "style" round against BrowserQuest.
+- Not done in Phase A: wall/border tiles (painter borders kept), a gauntlet "style" round against
+  BrowserQuest. Decision: the Lucifer RPG UI chrome (flat 14-48px pixel frames) is NOT adopted;
+  the glass HUD that won graphics-02 stays. Lucifer icons/boss bars remain available for later.
 
 ## Phase B: continuous world (IN PROGRESS)
 - Step 1 done (`world-peek.js`): the camera follows the player at a notch more zoom, and the
