@@ -4557,6 +4557,16 @@
       // coming, a red bar filling to when it lands, and the reactions that
       // actually counter it. Clicking a chip (or its hotkey) sends the command.
       const windup = $('enemy-windup'), rstrip = $('reaction-strip');
+      // ARPG feel: the reaction prompt floats just above the hero's head (where
+      // the eyes already are during a wind-up) instead of a fixed bottom strip
+      MH.bus.on('player.screen', p => {
+        if (!rstrip || !rstrip.classList.contains('show')) return;
+        const y = Math.max(60, p.y - 56 * Math.max(1, p.zoom / 3) - 28);
+        rstrip.style.setProperty('left', Math.round(p.x) + 'px', 'important');
+        rstrip.style.setProperty('top', Math.round(y) + 'px', 'important');
+        rstrip.style.setProperty('bottom', 'auto', 'important');
+        rstrip.style.setProperty('transform', 'translateX(-50%)', 'important');
+      });
       // gauntlet playability-01/r1 (combat feel): the wind-up line becomes an
       // INCOMING plate with a live countdown, the reaction chips become key-cap
       // buttons with the best answer lit, chips that don't apply are hidden

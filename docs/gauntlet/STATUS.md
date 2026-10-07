@@ -46,7 +46,8 @@ read this file, `docs/art/SOURCES.md`, then the plan.
 ## Phase C: ARPG controls and readability (BASELINE EXISTS)
 - Click-to-move, hit-stop, screen shake, floor telegraphs, reaction prompts and damage numbers
   already exist from the gauntlet runs; the playability gauntlet judged them above the bar.
-- Next: radial reaction prompt, Dead-Cells-style hit pause on perfect strikes, a gauntlet round.
+- Reaction prompt now floats above the hero (ui.js listens to `player.screen`); perfect strikes already hit-stop (`freezeFrame`).
+- Next: a gauntlet feel round with the new art, radial layout for the prompt chips.
 
 ## Phase E: onboarding (STEP 1 DONE)
 - Progressive hotbar: 3 slots (attack, flee, first class ability) through level 5, 5 slots to

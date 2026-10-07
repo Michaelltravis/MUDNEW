@@ -5035,6 +5035,16 @@
       }
       if (this.heroGlow) { this.heroGlow.x = this.player.x; this.heroGlow.y = this.player.y; }
       if (this.playerShadow) { this.playerShadow.x = this.player.x; this.playerShadow.y = this.player.y + 9; this.playerShadow.setVisible(!this.dead); }
+      // the player's position on the page, for DOM overlays that anchor to the
+      // hero (reaction prompt) instead of a fixed strip
+      {
+        const cam = this.cameras.main, z = cam.zoom;
+        const sx = cam.x + (this.player.x - cam.scrollX) * z, sy = cam.y + (this.player.y - cam.scrollY) * z;
+        if (!this._lastScreen || Math.abs(this._lastScreen.x - sx) > 0.5 || Math.abs(this._lastScreen.y - sy) > 0.5) {
+          this._lastScreen = { x: sx, y: sy };
+          MH.bus.emit('player.screen', { x: sx, y: sy, zoom: z });
+        }
+      }
 
       // parallax: slide the overlay planes opposite the player's offset from the
       // room centre — far plane drifts gently, near plane more, for layered depth
