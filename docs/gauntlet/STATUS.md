@@ -19,9 +19,11 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   rooms behind each exit are pre-rendered at their offsets as dimmed flat ground (deterministic
   `generateRoomTopDown` layouts, colours from the zone theme) using the static `/atlas`, so an
   exit reveals the next space instead of black.
-- Next: paint neighbours with the real painter at low priority (idle time), let the physics
-  bounds extend across the opening so the move command fires from walking into the next room
-  rather than an exit zone, then a gauntlet "world" round vs BrowserQuest overworld.
+- Step 2 done: neighbours are painted with the real painter, deferred one per tick after the
+  current room renders (flat fill shows first), tinted as distance haze; canvases are freed when
+  you move on. Evidence: `docs/gauntlet/artlock/peek_forest_edge.png`.
+- Next: seamless crossing (extend physics bounds across the opening and fire the move command
+  from entering the neighbour; drop the slide), then a gauntlet "world" round vs BrowserQuest.
 ## Phase D: multiplayer presence (BASELINE VERIFIED)
 - Two live clients (`tools/gauntlet/duo.js`, characters Gauntlet/Gauntletb) share a room, follow,
   group, and fight together; party frames (top centre) show both members' live HP. Evidence:

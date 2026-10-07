@@ -51,6 +51,25 @@
     // distance haze: the next room is seen, not visited
     g.fillStyle(0x06080c, 0.42); g.fillRect(ox, oy, W * T, H * T);
     scene.bgLayer.add(g);
+    // step 2: the real painterly ground, deferred so the room you are in
+    // renders first; one neighbour per tick, dropped if you have moved on
+    const curVnum = scene.layout && scene.layout.vnum;
+    if (MH.painter && MH.painter.enabled && curVnum) {
+      scene._peekQueue = scene._peekQueue || [];
+      scene._peekQueue.push(() => {
+        if (!scene.layout || scene.layout.vnum !== curVnum || !scene.bgLayer) return;
+        try {
+          const key = MH.painter.paint(scene, layout, layout.theme);
+          if (!key) return;
+          (scene._peekKeys = scene._peekKeys || []).push(key);
+          const img = scene.add.image(ox, oy, key).setOrigin(0, 0).setDisplaySize(W * T, H * T).setDepth(-8.5).setTint(0x9aa0b4);
+          scene.bgLayer.add(img);
+          g.setVisible(false);
+          label.setDepth(-8).setAlpha(0.85);
+        } catch (e) { console.warn('peek paint', room.vnum, e); }
+      });
+      pumpQueue(scene);
+    }
     const label = scene.add.text(ox + W * T / 2, oy + H * T / 2, room.name || '', {
       fontFamily: 'sans-serif', fontSize: '7px', color: '#d8d0c0', backgroundColor: 'rgba(6,8,12,0.55)', padding: { x: 3, y: 1 },
     }).setOrigin(0.5).setAlpha(0.8).setDepth(-8);
@@ -58,10 +77,27 @@
     return g;
   }
 
+  function pumpQueue(scene) {
+    if (scene._peekPumping) return;
+    scene._peekPumping = true;
+    const step = () => {
+      const job = scene._peekQueue && scene._peekQueue.shift();
+      if (!job) { scene._peekPumping = false; return; }
+      try { job(); } catch (_) {}
+      setTimeout(step, 120);
+    };
+    setTimeout(step, 250);
+  }
+
   // called from buildRoom once the real room is painted
   function render(scene, layout) {
     const cur = layout && layout.vnum;
     if (!cur) return;
+    scene._peekQueue = [];                       // drop neighbours queued for the room we left
+    for (const k of (scene._peekKeys || [])) {   // and free their canvases, except the one we now stand in
+      if (k !== `paint_${cur}` && scene.textures.exists(k)) { try { scene.textures.remove(k); } catch (_) {} }
+    }
+    scene._peekKeys = [];
     loadAtlas().then(a => {
       if (!scene.layout || scene.layout.vnum !== cur) return;   // moved on while the atlas loaded
       const here = a.rooms[cur]; if (!here) return;
