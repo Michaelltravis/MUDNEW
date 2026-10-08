@@ -91,14 +91,21 @@ def fight(adm, c, name, cands, max_s, out_path, smart=True, opener='bash', pro=F
                 'level_before': score(c)['level'], 'level_after': None, 'levelled': False, 'exp_before': None, 'exp_after': None, 'hp_start': None, 'hp_end': None, 'maxhp': None}
     threat = re.search(r'Threat:\s*([^|]+)\|', consider)
     before = score(c)
-    if pro: c.send_and_receive('stance defensive', 0.5)   # mastery: a stance before the first swing
+    # mastery (v2): no defensive stance — measured as a net loss at this tier; instead the
+    # PERFECT STRIKE: `swing` in the last stretch of each ~4 s round (+damage, double stagger)
     c.send(f'kill {kw}'); t0 = time.time(); body = []; ended = 'timeout'; levelled = False
-    sidestep_at = -99; reactions = {'brace': 0, 'sidestep': 0, 'interrupt': 0}
+    sidestep_at = -99; reactions = {'brace': 0, 'sidestep': 0, 'interrupt': 0, 'swing': 0, 'perfect': 0}
+    last_round = time.time(); swing_due = None
     # "three buttons": a newcomer opens with bash (button 3) and answers the
     # wind-up prompt with brace — the client's Guide and reaction chips teach exactly this
     last_bash = -99; braces = 0; bashes = 0
     while time.time() - t0 < max_s:
         out = strip(c.receive(1.0))
+        if pro:
+            # a round boundary is the combat prompt line; the sweet spot is ~2.6-4.3 s after it
+            if re.search(r'\d+/\d+hp \d+/\d+mp[^\n]*\[', out): last_round = time.time(); swing_due = last_round + 3.0
+            if swing_due and time.time() >= swing_due: c.send('swing'); reactions['swing'] += 1; swing_due = None
+            if 'PERFECT' in out: reactions['perfect'] += 1
         if smart:
             # the opener may be a spell or a skill depending on the class: flip the
             # form once if the server does not recognise it
@@ -140,7 +147,7 @@ def fight(adm, c, name, cands, max_s, out_path, smart=True, opener='bash', pro=F
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--run', default='progression-01')
     ap.add_argument('--name', default='NewYzxgo'); ap.add_argument('--password', default='newcomer1')
-    ap.add_argument('--admin', default='Gauntletb'); ap.add_argument('--admin-password', default='gauntlet1'); ap.add_argument('--max', type=int, default=90); ap.add_argument('--dumb', action='store_true', help='auto-attack only (no bash, no brace)'); ap.add_argument('--open', default='bash', help="the class's button-3 command used as the opener, e.g. \"cast 'magic missile'\""); ap.add_argument('--out', default=None, help='output dir (default docs/gauntlet/<run>)'); ap.add_argument('--ladder', default='newcomer', choices=['newcomer', 'mastery']); ap.add_argument('--pro', action='store_true', help='mastery play: defensive stance, sidestep/interrupt on prompts, alternate a second ability'); ap.add_argument('--second', default='cleave'); ap.add_argument('--no-reset', action='store_true', help='keep the character at its current level (mastery runs)')
+    ap.add_argument('--admin', default='Gauntletb'); ap.add_argument('--admin-password', default='gauntlet1'); ap.add_argument('--max', type=int, default=90); ap.add_argument('--dumb', action='store_true', help='auto-attack only (no bash, no brace)'); ap.add_argument('--open', default='bash', help="the class's button-3 command used as the opener, e.g. \"cast 'magic missile'\""); ap.add_argument('--out', default=None, help='output dir (default docs/gauntlet/<run>)'); ap.add_argument('--ladder', default='newcomer', choices=['newcomer', 'mastery']); ap.add_argument('--pro', action='store_true', help='mastery play: perfect strikes (swing in the round\'s last stretch), sidestep/interrupt on prompts, alternate a second ability'); ap.add_argument('--second', default='cleave'); ap.add_argument('--no-reset', action='store_true', help='keep the character at its current level (mastery runs)')
     a = ap.parse_args()
     out_dir = a.out or os.path.join(ROOT, 'docs', 'gauntlet', a.run); os.makedirs(os.path.join(out_dir, 'fights'), exist_ok=True)
     adm = MUDClient('localhost', 4000); login(adm, a.admin, a.admin_password)
