@@ -4193,7 +4193,8 @@
         let ghost = null;
         try {
           ghost = this.add.renderTexture(0, 0, this.pxW, this.pxH).setOrigin(0, 0);
-          ghost.draw(this.tileLayer.list.slice());
+          // Graphics objects (wall-depth strips, AO) render opaque in a RenderTexture: skip them
+          ghost.draw(this.tileLayer.list.filter(o => o.type !== 'Graphics'));
           for (const ent of this.entities.values()) {
             if (ent.doll && ent.doll.container) ghost.draw(ent.doll.container);
             else if (ent.art) ghost.draw(ent.art);
