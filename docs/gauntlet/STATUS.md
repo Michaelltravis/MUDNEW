@@ -151,6 +151,11 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   level-1 characters out the East Gate into level-4 aggressive goblins while promising rabbits;
   it now routes to the Light Forest beyond the West Gate where they live. Dial if wanted:
   `NEWCOMER_EXP` 300/450/600/800 for a ~10-minute first five levels. Tool: `tools/gauntlet/curve.py`.
+  **All nine classes measured** (`progression-01/classes/README.md`, `tools/gauntlet/curve_all.py`):
+  nine of nine reach level 5 with no deaths in 2.4–3.6 min. The first pass caught a real bug: a
+  level-1 bard died ten times because its promised button 3 (mockery) is the sixth roster skill
+  and new characters learn the first three; paladin and ranger had the same gap. Rosters reordered,
+  learned spells exposed in the payload, hotbar/welcome now promise only learned abilities.
 - **onboard-01 (critic only, fresh level-1 character through the live wizard vs BrowserQuest's
   intro): round 1 WIN overall (start WIN, first LOSS: dimmed wall-of-text modal); round 2 WIN on
   both** after the welcome became a three-line corner card over an undimmed world with the keybind
