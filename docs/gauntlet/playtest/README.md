@@ -3,15 +3,22 @@
 The automated record (`../REPORT.md`, `../STATUS.md`) is complete. What remains is a real person
 playing the first ten minutes. This page is the deploy + script for that.
 
-## Deploy on the Mac mini (paste to OpenClaw)
+## Deploy from GitHub (frostpine pulls; nothing reaches in)
+One-time, on frostpine (OpenClaw, or any terminal on that box):
 ```
-cd ~/MUDNEW && git fetch origin claude/nice-johnson-slpinu && git checkout claude/nice-johnson-slpinu
-pip3 install aiohttp
-./run.sh &            # telnet :4000, web map :4001, command bridge + art :4003
-open http://localhost:4001/platformer
+cd ~/MUDNEW && git fetch origin claude/nice-johnson-slpinu && git checkout claude/nice-johnson-slpinu \
+  && git reset --hard origin/claude/nice-johnson-slpinu && bash deploy/frostpine.sh && bash deploy/install-autopull.sh
 ```
-Behind a reverse proxy: forward `/` → :4001, `/ws` and `/art/` → :4003 (`src/web_isometric/platformer/net.js`,
-`MH.urls`, expects `mud.<host>` for the bridge). Nothing else to set up: accounts, world and art are in the repo.
+After that, frostpine checks GitHub every minute (`deploy/autopull.sh`, cron). Any push to
+`claude/nice-johnson-slpinu` — from Claude, from GitHub's web editor, from any computer — is live
+within a minute. It restarts the server only when code changed (docs and gauntlet records alone
+don't kick players), keeps live game data that happens to be tracked in git (`data/`, `lib/`,
+`logs/`), and refuses to deploy over uncommitted code edits made on the box. Log: `~/MUDNEW/deploy.log`.
+Remove with `bash deploy/install-autopull.sh --remove`.
+
+Proxy: `map.frostpine.net/*` → :4001; `mud.frostpine.net/ws` **and `mud.frostpine.net/art/*`** → :4003
+(the `/art/` route is new; without it characters render as silhouettes). Play at
+`https://map.frostpine.net/platformer`.
 
 ## Script (15 minutes, one sitting, a brand-new character)
 1. **forge a new soul** → human → a class from the picker (warrior, cleric, ranger carry "★ first pick").

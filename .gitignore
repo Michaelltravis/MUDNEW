@@ -54,3 +54,7 @@ lib/accounts/gauntlet.json
 docs/gauntlet/**/mh/
 docs/gauntlet/**/pairs/
 docs/gauntlet/scratch/
+
+# deploy
+deploy.log
+server.log
