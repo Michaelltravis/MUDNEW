@@ -45,12 +45,14 @@ TELEGRAPH = re.compile(r'\(brace or sidestep', re.I)
 INTERRUPT = re.compile(r'\(interrupt it', re.I)
 # "hard to master": what a level-5 character meets one step past the newcomer tier
 MASTERY = [
-    ('newbie zone: balcony newbie (L5)', [(18645, 'newbie'), (18605, 'pitbeast')]),
-    ('newbie zone: spectre (L6)', [(18639, 'spectre'), (18638, 'quasit')]),
-    ('newbie zone: minotaur (L7)', [(18629, 'minotaur'), (18639, 'spectre')]),
-    ('light forest: goblin pack (L4 x2, aggressive)', [(3509, 'goblin'), (3512, 'goblin')]),
-    ('light forest: goblin pack again', [(3512, 'goblin'), (3509, 'goblin')]),
-    ('newbie zone: minotaur again (L7)', [(18629, 'minotaur'), (18645, 'newbie')]),
+    # (room, keyword, mob vnum[, count]) — a creature that is not there is LOADED by the escort,
+    # so every run meets the same six fights (wanderers made half the v1/v2 steps "absent")
+    ('newbie zone: balcony newbie (L5)', [(18645, 'newbie', 18615)]),
+    ('newbie zone: spectre (L6)', [(18639, 'spectre', 18610)]),
+    ('newbie zone: minotaur (L7)', [(18629, 'minotaur', 18609)]),
+    ('light forest: goblin pack (L4 x2, aggressive)', [(3509, 'goblin', 3501, 2)]),
+    ('light forest: goblin pack again', [(3512, 'goblin', 3501, 2)]),
+    ('newbie zone: minotaur again (L7)', [(18629, 'minotaur', 18609)]),
 ]
 DEATH = re.compile(r'\bis dead\b|has been slain|You killed|is DEAD', re.I)
 PDEATH = re.compile(r'soul slipping away|You have died|You are dead', re.I)
@@ -81,8 +83,15 @@ def rest_up(c, max_s=150):
 def fight(adm, c, name, cands, max_s, out_path, smart=True, opener='bash', pro=False, second=None):
     c.send_and_receive('stand', 0.4)
     consider = ''; vnum = kw = None
-    for v, k in cands:
-        adm.send_and_receive(f'goto {v}', 1.0); adm.send_and_receive('zreset', 1.2); adm.send_and_receive(f'transfer {name}', 1.0)
+    for cand in cands:
+        v, k = cand[0], cand[1]; mob_vnum = cand[2] if len(cand) > 2 else None; count = cand[3] if len(cand) > 3 else 1
+        adm.send_and_receive(f'goto {v}', 1.0); adm.send_and_receive('zreset', 1.2)
+        if mob_vnum:
+            # the escort guarantees the fight: load the creature(s) if the room is empty of them
+            look = strip(adm.send_and_receive('look', 1.0))
+            present = len(re.findall(re.escape(k), look, re.I))
+            for _ in range(max(0, count - present)): adm.send_and_receive(f'mload {mob_vnum}', 0.8)
+        adm.send_and_receive(f'transfer {name}', 1.0)
         c.receive(1.0)
         consider = strip(c.send_and_receive(f'consider {k}', 1.0))
         if "don't see" not in consider: vnum, kw = v, k; break
@@ -147,12 +156,13 @@ def fight(adm, c, name, cands, max_s, out_path, smart=True, opener='bash', pro=F
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--run', default='progression-01')
     ap.add_argument('--name', default='NewYzxgo'); ap.add_argument('--password', default='newcomer1')
-    ap.add_argument('--admin', default='Gauntletb'); ap.add_argument('--admin-password', default='gauntlet1'); ap.add_argument('--max', type=int, default=90); ap.add_argument('--dumb', action='store_true', help='auto-attack only (no bash, no brace)'); ap.add_argument('--open', default='bash', help="the class's button-3 command used as the opener, e.g. \"cast 'magic missile'\""); ap.add_argument('--out', default=None, help='output dir (default docs/gauntlet/<run>)'); ap.add_argument('--ladder', default='newcomer', choices=['newcomer', 'mastery']); ap.add_argument('--pro', action='store_true', help='mastery play: perfect strikes (swing in the round\'s last stretch), sidestep/interrupt on prompts, alternate a second ability'); ap.add_argument('--second', default='cleave'); ap.add_argument('--no-reset', action='store_true', help='keep the character at its current level (mastery runs)')
+    ap.add_argument('--admin', default='Gauntletb'); ap.add_argument('--admin-password', default='gauntlet1'); ap.add_argument('--max', type=int, default=90); ap.add_argument('--dumb', action='store_true', help='auto-attack only (no bash, no brace)'); ap.add_argument('--open', default='bash', help="the class's button-3 command used as the opener, e.g. \"cast 'magic missile'\""); ap.add_argument('--out', default=None, help='output dir (default docs/gauntlet/<run>)'); ap.add_argument('--ladder', default='newcomer', choices=['newcomer', 'mastery']); ap.add_argument('--pro', action='store_true', help='mastery play: perfect strikes (swing in the round\'s last stretch), sidestep/interrupt on prompts, alternate a second ability'); ap.add_argument('--second', default='cleave'); ap.add_argument('--advance', type=int, default=0, help='escort advances the character to this level first (mastery runs on a fresh character)')
     a = ap.parse_args()
     out_dir = a.out or os.path.join(ROOT, 'docs', 'gauntlet', a.run); os.makedirs(os.path.join(out_dir, 'fights'), exist_ok=True)
     adm = MUDClient('localhost', 4000); login(adm, a.admin, a.admin_password)
     adm.send_and_receive('settime 14', 0.3); adm.send_and_receive('setweather clear', 0.3)
     c = MUDClient('localhost', 4000); login(c, a.name, a.password)
+    if a.advance: adm.send_and_receive(f'advance {a.name} {a.advance}', 1.5); c.receive(2.0)
     adm.send_and_receive(f'restore {a.name}', 0.8)
     start = score(c); t_start = time.time(); fights = []; rests = []; deaths = 0; level_times = {}
     steps = MASTERY if a.ladder == 'mastery' else LADDER
