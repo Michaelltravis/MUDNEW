@@ -171,7 +171,11 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   it now routes to the Light Forest beyond the West Gate where they live. Dial if wanted:
   `NEWCOMER_EXP` 300/450/600/800 for a ~10-minute first five levels. Tool: `tools/gauntlet/curve.py`.
   **All nine classes measured** (`progression-01/classes/README.md`, `tools/gauntlet/curve_all.py`):
-  nine of nine reach level 5 with no deaths in 2.4–3.6 min. The first pass caught a real bug: a
+  nine of nine reach level 5 with no deaths in 2.4–3.6 min; a second independent run (nine new
+  characters) repeats it at 0–1 deaths and 1.5–5.4 min once the ladder was pinned to each
+  creature's vnum — the unpinned run exposed a world hazard: six creatures of levels 1–5 share
+  the keyword "newbie" in the same corridors, so `kill newbie` at level 2 can draw the level-5
+  one (recorded for the human). The first pass caught a real bug: a
   level-1 bard died ten times because its promised button 3 (mockery) is the sixth roster skill
   and new characters learn the first three; paladin and ranger had the same gap. Rosters reordered,
   learned spells exposed in the payload, hotbar/welcome now promise only learned abilities.

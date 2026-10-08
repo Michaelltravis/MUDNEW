@@ -39,16 +39,20 @@ name abilities the character actually has (`ui.js`). Bard after the fix: 0 death
 | ranger | 0, 2.9 min | 0, 2.3 min |
 | assassin | 0, 2.9 min | 0, 5.0 min |
 | necromancer | 0, 2.9 min | 1, 2.4 min |
-| thief | 0, 3.6 min | **4, never (level 3)** |
-| bard | 0, 2.8 min | **7, never (level 2)** |
+| thief | 0, 3.6 min | 4, never (wrong-level "newbie" fights) → **1, 3.3 min** on the pinned ladder (`../classes-run2c/`) |
+| bard | 0, 2.8 min | 7, never (wrong-level "newbie" fights) → **0, 2.0 min**, 12/12 on the pinned ladder (`../classes-run2c/`) |
 
 Run 2 is not a tuning regression; it found a **world hazard**. "newbie" is the keyword of six
 different creatures (levels 1 to 5) that wander the same Newbie Zone corridors, and the ladder
 (like a real player typing `kill newbie`) got whichever was standing there: the bard at level 2
 fought "newbie" creatures that `consider` correctly called DEADLY, and died seven times. The
 thief (14 HP at level 1 — a low CON roll) died to the first fights outright. Two things follow:
-1. The tool now pins every step to the creature's vnum and the escort loads it (`curve.py`), so a
-   step labelled "newbie (L2)" is the level-2 one. Re-run in `../classes-run2b/`.
+1. The tool now pins every step to the creature's vnum and the escort loads it when the newcomer
+   cannot see one (`curve.py`; a first attempt counted the word "newbie" in the room's own name and
+   kept reading "absent" — `../classes-run2b/`). On the pinned ladder (`../classes-run2c/`) the bard
+   wins 12 of 12 with no deaths and the thief 11 of 12 with one — **two runs per class now, nine of
+   nine reaching level 5 in 1.5–5.4 minutes, with the only deaths being the keyword trap, one
+   level-1 crawler fight on a 14-HP thief, and single late-ladder losses.**
 2. For the human: the Newbie Zone's shared keyword is a trap the tutorial walks newcomers into
    ("Defeat 3 creatures in the Newbie Zone"). Distinct names (e.g. "newbie wanderer" L1-2,
    "newbie brute" L4-5), or keeping the L4-5 ones out of the entrance corridors, would remove
