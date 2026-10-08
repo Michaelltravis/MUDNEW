@@ -5,10 +5,11 @@ creation wizard with its starting kit, plus an admin escort that repops each roo
 newcomer in and restores after a death so the ladder continues). Bar from the plan: **level 5
 inside ~15 minutes with no deaths on the newcomer ladder, using only what the screen teaches.**
 
-| run | play style | level reached | deaths | time to L2 | record |
-|---|---|---|---|---|---|
-| A | auto-attack only (`--dumb`) | 1 | 2 | never (339/800 xp after 5 fights) | `run-a-autoattack/` |
-| B | the three buttons: bash to open, brace on the wind-up prompt | 2 | 2 | 9.5 min | `curve.md`, `fights/` |
+| run | play style | curve | level reached | deaths | time to L2 / L5 | record |
+|---|---|---|---|---|---|---|
+| A | auto-attack only (`--dumb`) | 800 xp base | 1 | 2 | never / never | `run-a-autoattack/` |
+| B | three buttons: bash to open, brace on the wind-up | 800 xp base | 2 | 2 | 9.5 min / — | `run-b-three-buttons/` |
+| C | three buttons | **newcomer ramp 250/350/500/650** + DEADLY tier below L6 | **5** | 1 | 3.6 min / **5.1 min** | `curve.md`, `fights/` |
 
 ## What the numbers say
 1. **The three buttons are the difference between dying and winning at level 1–2.** On
@@ -27,14 +28,18 @@ inside ~15 minutes with no deaths on the newcomer ladder, using only what the sc
 5. Deaths cost a real player a corpse run from the temple; here the escort restored them. Real
    first-ten-minutes with two deaths would be ~3 minutes longer and far more discouraging.
 
-## Decisions for the human (not retuned here)
-- XP: either lower `BASE_EXP`/`EXP_MULTIPLIER` for levels 1–5 or raise newcomer-kill XP so that
-  level 5 lands near 15 minutes (≈ 2–3 kills per level for the first four levels).
-- `consider` wording at low level: "Challenging" should not be reachable from "Even" by one
-  room; add a "Deadly" tier below level 5 or gate the Dark Alley (3026) behind level 4.
-- Make the training-grounds and Main Street animals (fido, rat) sentinel or add a second training
-  dummy tier, so the first three fights are always where the Guide sends you.
-- Beggar and pet-shop animals: mark no-fight (shop pets) or give them hittable stats.
+## After the retune (run C)
+- `NEWCOMER_EXP = (250, 350, 500, 650)` (config-overridable, `player.exp_to_level`) and a DEADLY
+  `consider` verdict below level 6 for any target three or more levels up (`cmd_consider`).
+- Level 5 at 5.1 minutes — inside the 15-minute bar with room to spare; the Dark Alley pair that
+  one-shot the level-1 character reads "Even" by level 4–5 and is won at 17–29 HP left.
+- One death remains: the level-2 drunk at level 1 (RNG — the same fight was won at 11/19 in run
+  B). The "no deaths" half of the bar is not guaranteed; the honest statement is "a newcomer who
+  presses the two taught buttons usually survives the first ten minutes and reaches level 5 in
+  about five". A one-kill double level (1 → 3 on the urchin) shows the ramp is now generous at
+  the very bottom; 300/400/500/650 would smooth it if the human prefers a slower first level.
+- Still open for the human: sentinel first targets (fido wandered again — a 90 s timeout at full
+  HP), and the beggar / shop pets that cannot be hurt.
 
 ## Not a gauntlet piece
 There is no BrowserQuest reference for progression (it has no levels). This record is the

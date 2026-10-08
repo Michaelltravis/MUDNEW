@@ -140,13 +140,14 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   the recolour pixel pass shared with the Phaser bake), plays the attack on hover, and states the
   one-line fantasy and the three starting buttons (attack · flee · first kit ability). Verified
   through the live wizard (`scratch/create/class-step.png`, local).
-- **Progression measured (`docs/gauntlet/progression-01/README.md`): the "easy to start" bar
-  (level 5 in ~15 min, no deaths) is NOT met.** A genuine level-1 warrior dies to an "Even"
-  level-2 urchin on auto-attack; with the three taught buttons (bash, brace) the level 1–2 ladder
-  is won every time, but level 2 takes 9.5 min (800 xp/level vs 70–140 per kill) and any
-  "Challenging" level-5 mob is a one-exchange death. Balance decisions for the human are listed
-  there (XP curve for levels 1–5, a Deadly tier / gated Dark Alley, sentinel first targets,
-  unhittable beggar and shop pets). Tool: `tools/gauntlet/curve.py`.
+- **Progression measured and retuned (`docs/gauntlet/progression-01/README.md`).** On the old
+  curve a genuine level-1 warrior died to an "Even" level-2 urchin on auto-attack (run A), and
+  with the two taught buttons (bash, brace) won the ladder but needed 9.5 min for level 2 and was
+  one-shot by "Challenging" level-5 mobs (run B). Retune: newcomer XP ramp 250/350/500/650 for
+  levels 1–4 (`NEWCOMER_EXP`) and a DEADLY `consider` verdict below level 6 for a three-level
+  gap. Run C: **level 5 at 5.1 min, one death** (RNG on the level-1 drunk). The 15-minute half
+  of the bar is met; "no deaths" is usually true, not guaranteed. Still for the human: sentinel
+  first targets (fido wanders), unhittable beggar / shop pets. Tool: `tools/gauntlet/curve.py`.
 - **onboard-01 (critic only, fresh level-1 character through the live wizard vs BrowserQuest's
   intro): round 1 WIN overall (start WIN, first LOSS: dimmed wall-of-text modal); round 2 WIN on
   both** after the welcome became a three-line corner card over an undimmed world with the keybind
