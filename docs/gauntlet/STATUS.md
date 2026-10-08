@@ -208,7 +208,9 @@ read this file, `docs/art/SOURCES.md`, then the plan.
 - **onboard-01 (critic only, fresh level-1 character through the live wizard vs BrowserQuest's
   intro): round 1 WIN overall (start WIN, first LOSS: dimmed wall-of-text modal); round 2 WIN on
   both (medium); round 4 WIN on both at HIGH confidence** (`round-4/verdicts.md`, with the
-  focus-pane picker and deferred toasts) after the welcome became a three-line corner card over an undimmed world with the keybind
+  focus-pane picker and deferred toasts; the welcome card now carries the Guide's live first
+  step and button while it is up — one card that teaches and points; test-character
+  gravestones cleared from the temple) after the welcome became a three-line corner card over an undimmed world with the keybind
   table behind "Controls" (`docs/gauntlet/onboard-01/round-2/verdicts.md`). Tool:
   `tools/gauntlet/capture-onboard.js`. The picker pass from the critic's notes is built (no round
   spent): model above the name on every card, a role tag (Tank/Healer/Ranged/…), three "★ first

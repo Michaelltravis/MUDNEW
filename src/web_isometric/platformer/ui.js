@@ -2779,7 +2779,18 @@
     // onboard-01 r4 critic: ONE overlay on first load — the welcome card teaches first,
     // the Guide takes over the moment it folds (the fold re-runs refreshGuide)
     const wo = document.getElementById('welcome-overlay');
-    if (wo && wo.classList.contains('show')) { el.classList.remove('show'); return; }
+    if (wo && wo.classList.contains('show')) {
+      // merged: the welcome card carries the live objective and its button, so the
+      // newcomer sees one card that both teaches and points
+      el.classList.remove('show');
+      const slot = document.getElementById('welcome-objective');
+      if (slot && o) {
+        slot.innerHTML = `<div class="wc-obj">○ ${o.description.replace(/\s*\(type [^)]*\)/i, '')}</div>`
+          + (plan && plan.act ? `<button class="g-act wc-act">${plan.act}</button>` : (plan && plan.hint ? `<div class="g-hint">${plan.hint}</div>` : ''));
+        const wb = slot.querySelector('.wc-act'); if (wb && plan && plan.fn) wb.addEventListener('click', () => { plan.fn(); setTimeout(refreshGuide, 1200); });
+      }
+      return;
+    }
     el.classList.add('show');
     const x = el.querySelector('.g-x'); if (x) x.addEventListener('click', () => { guideDismissedId = q.id; el.classList.remove('show'); });
     const b = el.querySelector('.g-act'); if (b && plan && plan.fn) b.addEventListener('click', () => { plan.fn(); setTimeout(refreshGuide, 1200); });
@@ -4233,13 +4244,14 @@
           + `<div class="wc-steps">`
           + `<div class="wc-step"><span class="ic">🧭</span><span><b>WASD</b> to walk · step off an edge to travel</span></div>`
           + `<div class="wc-step"><span class="ic">⚔</span><span><b>F</b> attacks what glows red · <b>3</b> is ${first3}</span></div>`
-          + `<div class="wc-step"><span class="ic">❗</span><span>Talk to <b>Sage Aldric</b> — the gold <b>!</b> with the ring</span></div>`
-          + `</div><div class="wc-depth">Three buttons now. More unlock at level 6 — the Guide (top-left) shows your next step.</div>`;
+          + `<div class="wc-step"><span class="ic">❗</span><span>Your first step: <span id="welcome-objective"><span class="g-hint">Talk to <b>Sage Aldric</b> — the gold <b>!</b> with the ring</span></span></span></div>`
+          + `</div><div class="wc-depth">Three buttons now. More unlock at level 6 — the Guide (top-left) takes over from here.</div>`;
         const ctl = document.getElementById('welcome-ctl');
         if (ctl && !ctl.dataset.bound) { ctl.dataset.bound = '1'; ctl.addEventListener('click', () => document.getElementById('welcome-card').classList.toggle('ctl')); }
         // the world stays playable under the corner card; the card also folds
         // itself away the first time you talk to someone or change rooms
         els.welcomeOverlay.classList.add('show');
+        setTimeout(refreshGuide, 50);   // fills #welcome-objective with the live first step
         const fold = () => { if (els.welcomeOverlay.classList.contains('show')) { els.welcomeOverlay.classList.remove('show'); lsSet('mh_welcome_seen', '1'); setTimeout(refreshGuide, 50); } };
         const shownIn = player.vnum;   // the arrival itself must not fold it: only a real room change does
         MH.bus.on('room.entered', ({ room }) => { if (room && room.vnum !== shownIn) setTimeout(fold, 0); });

@@ -764,7 +764,7 @@
             const r = cell * (0.36 + rng() * 0.2), x = cx0 + jit(0.6), y = cy0 + jit(0.6);
             lobe(x, y, r, mid, lo);
             ctx.lineWidth = SS * 0.9; ctx.lineCap = 'round';
-            ctx.strokeStyle = css(hi, 0.8);
+            ctx.strokeStyle = css(top, 0.9);
             ctx.beginPath(); ctx.arc(x, y, r * 0.84, 3.5, 5.3); ctx.stroke();
             ctx.strokeStyle = css(shade(lo, 0.6), 0.9);
             ctx.beginPath(); ctx.arc(x, y, r * 0.9, 0.4, 2.3); ctx.stroke();
@@ -778,6 +778,19 @@
             ctx.strokeStyle = 'rgba(120,88,58,0.6)'; ctx.lineWidth = SS * 0.6;
             ctx.beginPath(); ctx.moveTo(tx - SS * 0.5, ty - cell * 0.22); ctx.lineTo(tx - SS * 0.5, ty - SS); ctx.stroke();
           }
+        }
+        // 2b) a crisp dark contour where the canopy mass meets open ground, so a
+        //     tree line reads as an edge at game scale, not a soft blob (world-03 r5)
+        ctx.strokeStyle = css(shade(lo, 0.45), 0.85); ctx.lineWidth = SS * 1.2; ctx.lineCap = 'round';
+        for (const b of blocks) {
+          const [bx, by] = b;
+          const x0 = bx * cell, y0 = by * cell, x1 = x0 + cell, y1 = y0 + cell;
+          ctx.beginPath();
+          if (at(bx, by + 1) === FLOOR) { ctx.moveTo(x0, y1 - SS * 0.6); ctx.lineTo(x1, y1 - SS * 0.6); }
+          if (at(bx, by - 1) === FLOOR) { ctx.moveTo(x0, y0 + SS * 0.6); ctx.lineTo(x1, y0 + SS * 0.6); }
+          if (at(bx + 1, by) === FLOOR) { ctx.moveTo(x1 - SS * 0.6, y0); ctx.lineTo(x1 - SS * 0.6, y1); }
+          if (at(bx - 1, by) === FLOOR) { ctx.moveTo(x0 + SS * 0.6, y0); ctx.lineTo(x0 + SS * 0.6, y1); }
+          ctx.stroke();
         }
         // 3) sunlit tops, leaf dabs, dark gaps, dead branches
         for (const b of blocks) {
