@@ -45,7 +45,11 @@
     // left, or one painted on a previous visit) is used at once: no flat flash
     const ready = `paint_${room.vnum}`;
     if (scene.textures.exists(ready)) {
-      const img = scene.add.image(ox, oy, ready).setOrigin(0, 0).setDisplaySize(W * T, H * T).setDepth(-8.5).setTint(0xc4c8d4);
+      const img = scene.add.image(ox, oy, ready).setOrigin(0, 0).setDisplaySize(W * T, H * T).setDepth(-8.5);
+      // the room just left stays at full brightness through the crossing and
+      // only then settles into distance haze, so leaving never reads as a cut
+      if (ready === scene._prevPaintKey) { img.setTint(0xffffff); scene.tweens.addCounter({ from: 0, to: 1, duration: 900, delay: 700, onUpdate: t => { const v = t.getValue(); const c = Math.round(0xff - (0xff - 0xc4) * v), c2 = Math.round(0xff - (0xff - 0xc8) * v), c3 = Math.round(0xff - (0xff - 0xd4) * v); if (img.active) img.setTint((c << 16) | (c2 << 8) | c3); } }); }
+      else img.setTint(0xc4c8d4);
       scene.bgLayer.add(img);
       (scene._peekKeys = scene._peekKeys || []).push(ready);
       return img;

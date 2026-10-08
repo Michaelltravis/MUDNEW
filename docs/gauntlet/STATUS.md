@@ -36,6 +36,9 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   still a visible cut next to BrowserQuest's single map. Fixed on the way: placeholder labels,
   the black band past exit-less edges, the invisible hero, the flat flash, key auto-repeat in
   captures. Records: `docs/gauntlet/world-01/round-*/verdicts.md`.
+- After round 3 (unjudged): the player's world position now carries across the rebuild (no
+  4-tile hop) and the room just left stays at full brightness before fading to haze; see
+  `docs/gauntlet/artlock/walk_crossing_round4.png`. The remaining tell is the camera settle.
 - NEXT (architectural, the biggest remaining item): a stitched-zone renderer. Build the whole
   zone as one tilemap from `/atlas` coordinates (each room = its deterministic layout placed at
   x*W, y*H; corridors drawn for non-adjacent exits), paint per room into one big canvas on idle,

@@ -4186,7 +4186,27 @@
         // follow() ease toward centre
         const cam = this.cameras.main;
         const offX = cam.scrollX - this.player.x, offY = cam.scrollY - this.player.y;
+        const oldX = this.player.x, oldY = this.player.y;
         this.buildRoom(layout, entryDir);
+        // continuous position: where the player WAS, expressed in the new room's
+        // frame (the gap they walked through is the gap they arrive by), so
+        // there is no 4-tile hop from exit gap to entry marker; fall back to the
+        // entry marker only if that cell is not walkable
+        try {
+          const { T, FLOOR } = TD();
+          const nx = oldX + slide[0], ny = oldY + slide[1];
+          const cx = Math.floor(nx / T), cy = Math.floor(ny / T);
+          const L = this.layout;
+          const inside = cx >= 0 && cy >= 0 && cx < L.W && cy < L.H;
+          if (inside && L.grid[cy * L.W + cx] === FLOOR) this.player.setPosition(nx, ny);
+          else {
+            // just inside the gap instead: one tile in from the edge on the same row/column
+            const ex = moveDir === 'east' ? T * 1.2 : moveDir === 'west' ? L.pxW - T * 1.2 : nx;
+            const ey = moveDir === 'south' ? T * 1.2 : moveDir === 'north' ? L.pxH - T * 1.2 : ny;
+            const ccx = Math.floor(ex / T), ccy = Math.floor(ey / T);
+            if (ccx >= 0 && ccy >= 0 && ccx < L.W && ccy < L.H && L.grid[ccy * L.W + ccx] === FLOOR) this.player.setPosition(ex, ey);
+          }
+        } catch (_) {}
         cam.setScroll(this.player.x + offX, this.player.y + offY);
         return;
       }
