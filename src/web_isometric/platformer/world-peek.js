@@ -34,7 +34,37 @@
   }
 
   // draw one neighbour room's layout as flat cells into bgLayer at (ox, oy)
-  function drawNeighbour(scene, room, ox, oy, dist) {
+  // a sector boundary (field beside forest) is a real step in ground colour: the
+  // luminance probe measured 70 vs 82 across the border with every overlay hidden.
+  // Cross-fade the two floor colours over ~4 tiles around the shared edge.
+  function blendSeam(scene, pal, livePal, ox, oy, dx, dy, W, H, T) {
+    if (Math.abs(dx) + Math.abs(dy) !== 1 || !livePal) return;
+    const g = scene.add.graphics().setDepth(-8.4);
+    const band = T * 2;
+    const A = livePal.floor, B = pal.floor;
+    if (dx !== 0) {
+      // vertical seam at x = (dx < 0 ? ox + W*T : ox); live room is on the other side
+      const sx = dx < 0 ? ox + W * T : ox;
+      // neighbour side: live colour fading out away from the seam
+      const nx0 = dx < 0 ? sx - band : sx, nx1 = dx < 0 ? sx : sx + band;
+      g.fillGradientStyle(A, A, A, A, dx < 0 ? 0 : 0.55, dx < 0 ? 0.55 : 0, dx < 0 ? 0 : 0.55, dx < 0 ? 0.55 : 0);
+      g.fillRect(nx0, oy, nx1 - nx0, H * T);
+      // live side: neighbour colour fading out away from the seam
+      const lx0 = dx < 0 ? sx : sx - band, lx1 = dx < 0 ? sx + band : sx;
+      g.fillGradientStyle(B, B, B, B, dx < 0 ? 0.55 : 0, dx < 0 ? 0 : 0.55, dx < 0 ? 0.55 : 0, dx < 0 ? 0 : 0.55);
+      g.fillRect(lx0, oy, lx1 - lx0, H * T);
+    } else {
+      const sy = dy < 0 ? oy + H * T : oy;
+      const ny0 = dy < 0 ? sy - band : sy, ny1 = dy < 0 ? sy : sy + band;
+      g.fillGradientStyle(A, A, A, A, dy < 0 ? 0 : 0.55, dy < 0 ? 0 : 0.55, dy < 0 ? 0.55 : 0, dy < 0 ? 0.55 : 0);
+      g.fillRect(ox, ny0, W * T, ny1 - ny0);
+      const ly0 = dy < 0 ? sy : sy - band, ly1 = dy < 0 ? sy + band : sy;
+      g.fillGradientStyle(B, B, B, B, dy < 0 ? 0.55 : 0, dy < 0 ? 0.55 : 0, dy < 0 ? 0 : 0.55, dy < 0 ? 0 : 0.55);
+      g.fillRect(ox, ly0, W * T, ly1 - ly0);
+    }
+    scene.bgLayer.add(g);
+  }
+  function drawNeighbour(scene, room, ox, oy, dist, dx, dy, livePal) {
     const atlasExits = room.exits || {};
     const exits = {}; for (const d of Object.keys(atlasExits)) exits[d] = { to_room: atlasExits[d] };
     // same inputs as the live build (zone → theme + props, description →
@@ -45,6 +75,7 @@
     const { BLOCK, WATER } = MH.TD || { BLOCK: 1, WATER: 2 };
     const pal = palette(room);
     (scene._peekOffsets = scene._peekOffsets || {})[room.vnum] = { ox, oy, layout };   // for far entities
+    try { blendSeam(scene, pal, livePal, ox, oy, dx, dy, W, H, T); } catch (_) {}
     // adjacent rooms are the same ground you are standing on: no tint, no seam;
     // only the outer ring recedes into haze
     const HAZE = dist > 1 ? 0xe2e5ec : 0xffffff;   // outer ring: a whisper, not a step
@@ -147,6 +178,7 @@
     loadAtlas().then(a => {
       if (!scene.layout || scene.layout.vnum !== cur) return;   // moved on while the atlas loaded
       const here = a.rooms[cur]; if (!here) return;
+      const livePal = palette(here);
       const placed = [];
       for (const room of Object.values(a.rooms)) {
         if (room.vnum === cur || room.zone !== here.zone || room.z !== here.z) continue;
@@ -178,7 +210,7 @@
       const seen = new Set();
       for (const p of placed) {
         const key = `${p.dx},${p.dy}`; if (seen.has(key)) continue; seen.add(key);
-        try { drawNeighbour(scene, p.room, p.dx * scene.pxW, p.dy * scene.pxH, p.d); } catch (e) { console.warn('peek', p.room.vnum, e); }
+        try { drawNeighbour(scene, p.room, p.dx * scene.pxW, p.dy * scene.pxH, p.d, p.dx, p.dy, livePal); } catch (e) { console.warn('peek', p.room.vnum, e); }
       }
       scene._justLeft = null;
       if (scene.syncFarEntities) { try { scene.syncFarEntities(); } catch (e) { console.warn('far entities', e); } }
