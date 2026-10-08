@@ -132,6 +132,10 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   censure). `duo.js` now drives any two characters (`A_NAME`/`B_NAME`/`PASS`). Found on the way:
   the "Proving Grounds" tutorial said "north three times" to the Great Field; it is four (the
   field is two rooms deep and only the far room opens east) — fixed in `src/quests.py`.
+- Third playthrough (`docs/gauntlet/multiplayer/boss/duo_{A,B}.png`): the two admin characters
+  (L60 and L6) group in the Spider Queen's Lair, the boss is loaded and killed together; both
+  screens show the partner, party frames for both, the corpse with its LOOT tag. The queen's
+  drop was not worth a need/greed roll (the popup is exercised in `multiplayer/duo_B_loot_roll.png`).
 - Next: loot history panel; ally telegraph rings when a mob fights a party member beside you.
 
 ## Phase C: ARPG controls and readability (BASELINE EXISTS)
