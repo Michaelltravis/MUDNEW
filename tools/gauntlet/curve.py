@@ -42,6 +42,16 @@ LADDER = [
     ('newbie zone: balcony newbie (L5)', [(18645, 'newbie'), (18605, 'pitbeast')]),
 ]
 TELEGRAPH = re.compile(r'\(brace or sidestep', re.I)
+INTERRUPT = re.compile(r'\(interrupt it', re.I)
+# "hard to master": what a level-5 character meets one step past the newcomer tier
+MASTERY = [
+    ('newbie zone: balcony newbie (L5)', [(18645, 'newbie'), (18605, 'pitbeast')]),
+    ('newbie zone: spectre (L6)', [(18639, 'spectre'), (18638, 'quasit')]),
+    ('newbie zone: minotaur (L7)', [(18629, 'minotaur'), (18639, 'spectre')]),
+    ('light forest: goblin pack (L4 x2, aggressive)', [(3509, 'goblin'), (3512, 'goblin')]),
+    ('light forest: goblin pack again', [(3512, 'goblin'), (3509, 'goblin')]),
+    ('newbie zone: minotaur again (L7)', [(18629, 'minotaur'), (18645, 'newbie')]),
+]
 DEATH = re.compile(r'\bis dead\b|has been slain|You killed|is DEAD', re.I)
 PDEATH = re.compile(r'soul slipping away|You have died|You are dead', re.I)
 LEVEL_UP = re.compile(r'LEVEL UP|You (?:have )?(?:gained|reached|advance to) level|You rise to level', re.I)
@@ -68,7 +78,7 @@ def rest_up(c, max_s=150):
     c.send_and_receive('stand', 0.6)
     return round(time.time() - t0, 1)
 
-def fight(adm, c, name, cands, max_s, out_path, smart=True, opener='bash'):
+def fight(adm, c, name, cands, max_s, out_path, smart=True, opener='bash', pro=False, second=None):
     c.send_and_receive('stand', 0.4)
     consider = ''; vnum = kw = None
     for v, k in cands:
@@ -81,7 +91,9 @@ def fight(adm, c, name, cands, max_s, out_path, smart=True, opener='bash'):
                 'level_before': score(c)['level'], 'level_after': None, 'levelled': False, 'exp_before': None, 'exp_after': None, 'hp_start': None, 'hp_end': None, 'maxhp': None}
     threat = re.search(r'Threat:\s*([^|]+)\|', consider)
     before = score(c)
+    if pro: c.send_and_receive('stance defensive', 0.5)   # mastery: a stance before the first swing
     c.send(f'kill {kw}'); t0 = time.time(); body = []; ended = 'timeout'; levelled = False
+    sidestep_at = -99; reactions = {'brace': 0, 'sidestep': 0, 'interrupt': 0}
     # "three buttons": a newcomer opens with bash (button 3) and answers the
     # wind-up prompt with brace — the client's Guide and reaction chips teach exactly this
     last_bash = -99; braces = 0; bashes = 0
@@ -93,8 +105,15 @@ def fight(adm, c, name, cands, max_s, out_path, smart=True, opener='bash'):
             if bashes == 1 and re.search(r"Huh\?|don't know (?:that|the|any)|What do you want to|You can't cast|not a (?:skill|spell)", out, re.I):
                 opener = re.sub(r"^cast '(.+)'$", r"\1", opener) if opener.startswith('cast ') else f"cast '{opener}'"
                 last_bash = -99
-            if TELEGRAPH.search(out): c.send('brace'); braces += 1
-            elif time.time() - t0 - last_bash > 9 and 'collapse' not in out: c.send(f'{opener} {kw}'); last_bash = time.time() - t0; bashes += 1
+            if TELEGRAPH.search(out):
+                # mastery: sidestep (full evade) when it is off cooldown, brace otherwise; a newcomer only braces
+                if pro and time.time() - t0 - sidestep_at > 12: c.send('sidestep'); sidestep_at = time.time() - t0; reactions['sidestep'] += 1
+                else: c.send('brace'); braces += 1; reactions['brace'] += 1
+            elif pro and INTERRUPT.search(out): c.send('interrupt'); reactions['interrupt'] += 1
+            elif time.time() - t0 - last_bash > 9 and 'collapse' not in out:
+                # mastery: alternate the opener with the second kit ability
+                cmd = second if (pro and second and bashes % 2 == 1) else opener
+                c.send(f'{cmd} {kw}'); last_bash = time.time() - t0; bashes += 1
         if out.strip():
             body.append((round(time.time() - t0, 1), out))
             if LEVEL_UP.search(out): levelled = True
@@ -114,14 +133,14 @@ def fight(adm, c, name, cands, max_s, out_path, smart=True, opener='bash'):
         'vnum': vnum, 'target': kw, 'threat': threat.group(1).strip() if threat else consider.strip()[-80:],
         'level_before': before['level'], 'level_after': after['level'], 'levelled': levelled or (after['level'] or 0) > (before['level'] or 0),
         'exp_before': before['exp'], 'exp_after': after['exp'],
-        'duration_s': dur, 'rounds': rounds, 'ended': ended, 'bashes': bashes, 'braces': braces, 'opener_used': opener,
+        'duration_s': dur, 'rounds': rounds, 'ended': ended, 'bashes': bashes, 'braces': braces, 'opener_used': opener, 'reactions': reactions,
         'hp_start': int(prompts[0][0]) if prompts else before['hp'], 'hp_end': int(prompts[-1][0]) if prompts else after['hp'], 'maxhp': after['maxhp'],
     }
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--run', default='progression-01')
     ap.add_argument('--name', default='NewYzxgo'); ap.add_argument('--password', default='newcomer1')
-    ap.add_argument('--admin', default='Gauntletb'); ap.add_argument('--admin-password', default='gauntlet1'); ap.add_argument('--max', type=int, default=90); ap.add_argument('--dumb', action='store_true', help='auto-attack only (no bash, no brace)'); ap.add_argument('--open', default='bash', help="the class's button-3 command used as the opener, e.g. \"cast 'magic missile'\""); ap.add_argument('--out', default=None, help='output dir (default docs/gauntlet/<run>)')
+    ap.add_argument('--admin', default='Gauntletb'); ap.add_argument('--admin-password', default='gauntlet1'); ap.add_argument('--max', type=int, default=90); ap.add_argument('--dumb', action='store_true', help='auto-attack only (no bash, no brace)'); ap.add_argument('--open', default='bash', help="the class's button-3 command used as the opener, e.g. \"cast 'magic missile'\""); ap.add_argument('--out', default=None, help='output dir (default docs/gauntlet/<run>)'); ap.add_argument('--ladder', default='newcomer', choices=['newcomer', 'mastery']); ap.add_argument('--pro', action='store_true', help='mastery play: defensive stance, sidestep/interrupt on prompts, alternate a second ability'); ap.add_argument('--second', default='cleave'); ap.add_argument('--no-reset', action='store_true', help='keep the character at its current level (mastery runs)')
     a = ap.parse_args()
     out_dir = a.out or os.path.join(ROOT, 'docs', 'gauntlet', a.run); os.makedirs(os.path.join(out_dir, 'fights'), exist_ok=True)
     adm = MUDClient('localhost', 4000); login(adm, a.admin, a.admin_password)
@@ -129,8 +148,9 @@ def main():
     c = MUDClient('localhost', 4000); login(c, a.name, a.password)
     adm.send_and_receive(f'restore {a.name}', 0.8)
     start = score(c); t_start = time.time(); fights = []; rests = []; deaths = 0; level_times = {}
-    for i, (label, cands) in enumerate(LADDER, 1):
-        f = fight(adm, c, a.name, cands, a.max, os.path.join(out_dir, 'fights', f'{i:02d}_{cands[0][1]}.txt'), smart=not a.dumb, opener=a.open)
+    steps = MASTERY if a.ladder == 'mastery' else LADDER
+    for i, (label, cands) in enumerate(steps, 1):
+        f = fight(adm, c, a.name, cands, a.max, os.path.join(out_dir, 'fights', f'{i:02d}_{cands[0][1]}.txt'), smart=not a.dumb, opener=a.open, pro=a.pro, second=a.second)
         f['label'] = label; f['t_elapsed_s'] = round(time.time() - t_start, 1)
         fights.append(f); print(json.dumps(f))
         if f['ended'] == 'player_died': deaths += 1
@@ -143,7 +163,7 @@ def main():
                'level_reached': end['level'], 'time_to_level': level_times, 'total_s': round(time.time() - t_start, 1),
                'active_fight_s': round(sum(f['duration_s'] for f in fights), 1), 'rest_s': round(sum(r['seconds'] for r in rests), 1)}
     json.dump(summary, open(os.path.join(out_dir, 'curve.json'), 'w'), indent=2)
-    md = [f"# {a.run} — the first hour as numbers\n", f"Character: {a.name}, a real level-{start['level']} character with its starting kit (opener: `{a.open}`). Ladder of {len(LADDER)} fights, resting when under 60% HP; a death is restored by an admin so the ladder continues (a real player respawns at the temple).\n",
+    md = [f"# {a.run} — the first hour as numbers\n", f"Character: {a.name}, a real level-{start['level']} character with its starting kit (opener: `{a.open}`). Ladder `{a.ladder}` of {len(steps)} fights, play `{'auto-attack' if a.dumb else ('mastery' if a.pro else 'three buttons')}`, resting when under 60% HP; a death is restored by an admin so the ladder continues (a real player respawns at the temple).\n",
           f"**Level reached: {end['level']}** · deaths: {deaths} · total {summary['total_s']}s (fighting {summary['active_fight_s']}s, resting {summary['rest_s']}s)\n",
           'Time to level: ' + (', '.join(f"L{k} at {v}s" for k, v in sorted(level_times.items())) or 'no level gained') + '\n',
           '| # | fight | target | threat | lvl | rounds | s | bash/brace | HP end | result |', '|---|---|---|---|---|---|---|---|---|---|']
