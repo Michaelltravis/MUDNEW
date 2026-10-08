@@ -169,9 +169,12 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   death, chiefly because defensive stance prolongs fights more than it protects at this tier
   (sidestep itself worked 2 of 3 times). Mastery v2 — perfect strikes (`swing` timed into the
   round's last stretch) + sidestep, no stance — won the one comparable fight **untouched**
-  (83/83 vs 48/76 for the three buttons), 12 PERFECT strikes in 21 rounds; n=1 because the other
-  ladder creatures had wandered off. The depth bites; measuring it properly needs creatures that
-  stay put (tool task). The defensive-stance trade remains a design call.
+  (83/83 vs 48/76 for the three buttons); mastery v3 on equal footing (three fresh level-5
+  warriors, creatures guaranteed by `mload`, which was broken and is fixed): auto-attack 4 deaths,
+  three buttons 1 death, perfect strikes + sidestep 2 deaths with fights twice as long. **The tier
+  punishes auto-attack and the two taught buttons suffice; the deeper layer has not been shown to
+  beat them** — sidestep forgoes your attack and a mistimed swing locks you out. Whether a human's
+  timing changes that is the open question; it is a design call, recorded in the README.
 - **onboard-01 (critic only, fresh level-1 character through the live wizard vs BrowserQuest's
   intro): round 1 WIN overall (start WIN, first LOSS: dimmed wall-of-text modal); round 2 WIN on
   both** after the welcome became a three-line corner card over an undimmed world with the keybind

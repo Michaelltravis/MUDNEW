@@ -100,6 +100,28 @@ differ by one. The v1 lesson stands: the losing "mastery" was the defensive stan
 reaction systems. To make this a real measurement the ladder needs creatures that stay put
 (sentinel copies in a test zone, or a `zreset` that re-seats wanderers); recorded as a tool task.
 
+### Mastery v3: equal footing, guaranteed creatures (`mastery-v3/{dumb,three,pro}/`)
+Three freshly forged warriors, each advanced to level 5 by the escort, the same six fights with
+the creature loaded if it had wandered (`mload`, fixed on the way — it crashed the caller's
+connection). Caveat: `advance` rolls hit dice, so max HP differed (52 / 32 / 38).
+
+| play | max HP | deaths | where |
+|---|---|---|---|
+| auto-attack | 52 | **4** | spectre, minotaur, both goblin packs |
+| three buttons (bash + brace) | 32 | 1 | second goblin pack (9/32) |
+| perfect strikes + sidestep + cleave | 38 | 2 | spectre (20/38 → dead), minotaur (3/38) — 10–11 PERFECT strikes each, 16–19 rounds |
+
+What this says:
+- **The tier punishes auto-attack hard** (four deaths on 52 HP) and **the two taught buttons
+  are enough** (one death on 32 HP). Easy to start holds up one tier past the newcomer zone.
+- **The deeper layer, as a bot plays it, still does not beat the buttons.** Perfect strikes land
+  (10–11 per fight) but the fights run twice as long: `sidestep` forgoes your own attack and a
+  mistimed `swing` (the bot polls once a second against a 1.7 s window) locks you out for the rest
+  of the round. With 38 HP against the three-button warrior's 32 it still died twice. Either the
+  mechanic rewards human timing the bot cannot reproduce, or its tempo cost is too high at this
+  tier — only a human playthrough can tell which. That is the honest state of "hard to master":
+  the systems exist and bite, but they have not yet been shown to out-perform the basics.
+
 ## Not a gauntlet piece
 There is no BrowserQuest reference for progression (it has no levels). This record is the
 measurement itself; a future round can re-run `curve.py` after retuning and compare the table.
