@@ -917,10 +917,22 @@
     lastPresence = payload.presence;
     const el = $('room-presence'); if (el) el.textContent = presenceText(lastPresence);
   });
+  let bannerFade = null;
   function showRoom(room, zoneName) {
     lastRoomShown = { room, zoneName };
-    els.roomName.textContent = room.name || '';
-    els.roomZone.textContent = zoneName || '';
+    // crossfade the banner on a room change instead of an instant swap: a hard
+    // text cut was the first thing the world critics named as a "screen change"
+    const banner = document.getElementById('room-banner');
+    const changed = els.roomName.textContent !== (room.name || '');
+    if (banner && changed) {
+      banner.style.transition = 'opacity .18s ease';
+      banner.style.opacity = '0';
+      clearTimeout(bannerFade);
+      bannerFade = setTimeout(() => { els.roomName.textContent = room.name || ''; els.roomZone.textContent = zoneName || ''; banner.style.opacity = '1'; }, 190);
+    } else {
+      els.roomName.textContent = room.name || '';
+      els.roomZone.textContent = zoneName || '';
+    }
     const pel = $('room-presence'); if (pel) pel.textContent = presenceText(lastPresence);
     const first = room.vnum != null && !seenRooms.has(room.vnum);
     if (room.vnum != null) rememberSeen(room.vnum);
