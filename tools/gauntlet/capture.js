@@ -105,6 +105,11 @@ function isBlankPng(buf) {
         // from outside in parallel. No HUD in these frames, no frozen loop,
         // no wall-clock side effects on the client's own timers.
         const n = r.filmstrip.frames, iv = r.filmstrip.intervalMs;
+        // warm the readback path with the key RELEASED: the first snapshot can take
+        // 2+ s and the hero would otherwise walk through the crossing before frame 0
+        if (r.keys && r.keys.down) await page.keyboard.up(r.keys.down);
+        await page.evaluate(() => new Promise(res => MH.game.renderer.snapshot(() => res())));
+        if (r.keys && r.keys.down) await page.keyboard.down(r.keys.down);
         const [shots] = await Promise.all([
           page.evaluate(async ({ n, iv }) => {
             const out = []; const t0 = performance.now();
