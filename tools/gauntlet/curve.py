@@ -6,10 +6,14 @@ level 1–5 creatures of Midgaard — fighting each once, resting when hurt, and
 we record what "easy to start, hard to master" actually costs: seconds per
 fight, HP left, rests, deaths, and when levels 2..5 arrive.
 
-  python3 tools/gauntlet/curve.py --run progression-01 [--name Gauntletb --password gauntlet1] [--max 90]
+  python3 tools/gauntlet/curve.py --run progression-01 [--name NewYzxgo --password newcomer1] [--admin Gauntletb --admin-password gauntlet1] [--max 90]
 
-Writes docs/gauntlet/<run>/curve.json and curve.md. The character is reset to
-level 1 (admin `advance`) and left wherever the ladder ends.
+Two telnet sessions: the NEWCOMER (a real level-1 character forged through the
+creation flow, with its starting kit — `advance` only levels up, so no admin
+can make one) does every fight; the ADMIN stands in each ladder room, repops
+it, transfers the newcomer in, and restores them after a death (a real player
+would respawn at the temple; we keep the ladder going and count the death).
+Writes docs/gauntlet/<run>/curve.json, curve.md and fights/<n>_<target>.txt.
 """
 import argparse, json, os, re, sys, time
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
@@ -42,7 +46,6 @@ PROMPT = re.compile(r'(\d+)/(\d+)hp')
 def login(c, name, pw):
     c.connect(); time.sleep(1); c.receive(2)
     for cmd in (name, pw, f'play {name}'): c.send_and_receive(cmd, 1.0)
-    c.send_and_receive('settime 14', 0.3); c.send_and_receive('setweather clear', 0.3)
 
 def score(c):
     out = strip(c.send_and_receive('score', 1.0))
@@ -61,26 +64,32 @@ def rest_up(c, max_s=150):
     c.send_and_receive('stand', 0.6)
     return round(time.time() - t0, 1)
 
-def fight(c, vnum, kw, max_s):
-    c.send_and_receive('stand', 0.4); c.send_and_receive(f'goto {vnum}', 1.0); c.send_and_receive('zreset', 1.2)
+def fight(adm, c, name, vnum, kw, max_s, out_path):
+    c.send_and_receive('stand', 0.4)
+    adm.send_and_receive(f'goto {vnum}', 1.0); adm.send_and_receive('zreset', 1.2); adm.send_and_receive(f'transfer {name}', 1.0)
+    c.receive(1.0)
     consider = strip(c.send_and_receive(f'consider {kw}', 1.0))
+    if "don't see" in consider:
+        return {'vnum': vnum, 'target': kw, 'threat': 'absent (wandered off)', 'ended': 'absent', 'duration_s': 0, 'rounds': 0,
+                'level_before': score(c)['level'], 'level_after': None, 'levelled': False, 'exp_before': None, 'exp_after': None, 'hp_start': None, 'hp_end': None, 'maxhp': None}
     threat = re.search(r'Threat:\s*([^|]+)\|', consider)
     before = score(c)
     c.send(f'kill {kw}'); t0 = time.time(); body = []; ended = 'timeout'; levelled = False
     while time.time() - t0 < max_s:
         out = strip(c.receive(1.0))
         if out.strip():
-            body.append(out)
+            body.append((round(time.time() - t0, 1), out))
             if LEVEL_UP.search(out): levelled = True
             if PDEATH.search(out): ended = 'player_died'; break
             if DEATH.search(out): ended = 'mob_killed'; break
-    text = '\n'.join(body); dur = round(time.time() - t0, 1)
+    text = '\n'.join(o for _, o in body); dur = round(time.time() - t0, 1)
+    open(out_path, 'w').write(consider + '\n' + '\n'.join(f'[t={t:6.1f}s] {line}' for t, o in body for line in o.splitlines() if line.strip()) + '\n')
     prompts = PROMPT.findall(text)
     rounds = len(re.findall(r'\d+/\d+hp \d+/\d+mp', text))
     if ended == 'timeout': c.send_and_receive('flee', 0.8)
     if ended == 'player_died':
-        # a real newcomer respawns at the temple; we restore so the ladder continues
-        c.send_and_receive(f'restore {CHAR}', 0.8)
+        time.sleep(2.0); c.receive(2.0)
+        adm.send_and_receive(f'restore {name}', 0.8)
     time.sleep(0.8)
     after = score(c)
     return {
@@ -92,16 +101,19 @@ def fight(c, vnum, kw, max_s):
     }
 
 def main():
-    global CHAR
     ap = argparse.ArgumentParser(); ap.add_argument('--run', default='progression-01')
-    ap.add_argument('--name', default='Gauntletb'); ap.add_argument('--password', default='gauntlet1'); ap.add_argument('--max', type=int, default=90)
-    a = ap.parse_args(); CHAR = a.name
-    out_dir = os.path.join(ROOT, 'docs', 'gauntlet', a.run); os.makedirs(out_dir, exist_ok=True)
+    ap.add_argument('--name', default='NewYzxgo'); ap.add_argument('--password', default='newcomer1')
+    ap.add_argument('--admin', default='Gauntletb'); ap.add_argument('--admin-password', default='gauntlet1'); ap.add_argument('--max', type=int, default=90)
+    a = ap.parse_args()
+    out_dir = os.path.join(ROOT, 'docs', 'gauntlet', a.run); os.makedirs(os.path.join(out_dir, 'fights'), exist_ok=True)
+    adm = MUDClient('localhost', 4000); login(adm, a.admin, a.admin_password)
+    adm.send_and_receive('settime 14', 0.3); adm.send_and_receive('setweather clear', 0.3)
     c = MUDClient('localhost', 4000); login(c, a.name, a.password)
-    c.send_and_receive(f'advance {a.name} 1', 0.8); c.send_and_receive(f'restore {a.name}', 0.8)
+    adm.send_and_receive(f'restore {a.name}', 0.8)
     start = score(c); t_start = time.time(); fights = []; rests = []; deaths = 0; level_times = {}
-    for vnum, kw, label in LADDER:
-        f = fight(c, vnum, kw, a.max); f['label'] = label; f['t_elapsed_s'] = round(time.time() - t_start, 1)
+    for i, (vnum, kw, label) in enumerate(LADDER, 1):
+        f = fight(adm, c, a.name, vnum, kw, a.max, os.path.join(out_dir, 'fights', f'{i:02d}_{kw}.txt'))
+        f['label'] = label; f['t_elapsed_s'] = round(time.time() - t_start, 1)
         fights.append(f); print(json.dumps(f))
         if f['ended'] == 'player_died': deaths += 1
         for lv in range(2, 11):
@@ -113,17 +125,18 @@ def main():
                'level_reached': end['level'], 'time_to_level': level_times, 'total_s': round(time.time() - t_start, 1),
                'active_fight_s': round(sum(f['duration_s'] for f in fights), 1), 'rest_s': round(sum(r['seconds'] for r in rests), 1)}
     json.dump(summary, open(os.path.join(out_dir, 'curve.json'), 'w'), indent=2)
-    md = [f"# {a.run} — the first hour as numbers\n", f"Character: {a.name}, reset to level 1. Ladder of {len(LADDER)} fights, resting when under 60% HP.\n",
+    md = [f"# {a.run} — the first hour as numbers\n", f"Character: {a.name}, a real level-{start['level']} character with its starting kit. Ladder of {len(LADDER)} fights, resting when under 60% HP; a death is restored by an admin so the ladder continues (a real player respawns at the temple).\n",
           f"**Level reached: {end['level']}** · deaths: {deaths} · total {summary['total_s']}s (fighting {summary['active_fight_s']}s, resting {summary['rest_s']}s)\n",
-          'Time to level: ' + ', '.join(f"L{k} at {v}s" for k, v in sorted(level_times.items())) + '\n',
+          'Time to level: ' + (', '.join(f"L{k} at {v}s" for k, v in sorted(level_times.items())) or 'no level gained') + '\n',
           '| # | fight | threat | lvl | rounds | s | HP end | result |', '|---|---|---|---|---|---|---|---|']
     for i, f in enumerate(fights, 1):
         md.append(f"| {i} | {f['label']} | {f['threat']} | {f['level_before']}→{f['level_after']} | {f['rounds']} | {f['duration_s']} | {f['hp_end']}/{f['maxhp']} | {f['ended']}{' ↑' if f['levelled'] else ''} |")
     if rests: md.append('\nRests: ' + ', '.join(f"{r['seconds']}s after {r['after']}" for r in rests))
     open(os.path.join(out_dir, 'curve.md'), 'w').write('\n'.join(md) + '\n')
     print('wrote', os.path.relpath(out_dir, ROOT))
-    try: c.send_and_receive('quit', 0.5)
-    except Exception: pass
+    for cl in (c, adm):
+        try: cl.send_and_receive('quit', 0.5)
+        except Exception: pass
 
 if __name__ == '__main__':
     main()
