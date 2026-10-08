@@ -2632,7 +2632,14 @@ class CommandHandler:
             exp_note = "suicide (+50% exp)"
             danger = "DEADLY"
             advice = "Avoid unless you have a strong group."
-            
+        # Easy to start: below level 6 a three-level gap is not "challenging",
+        # it is one exchange (progression-01: a level-5 mercenary killed a
+        # level-1 warrior in 2.3 s). Say so, in the word the newcomer will read.
+        if player.level < 6 and diff >= 3:
+            msg = f"{c['red']}{target.name} would end you before your second swing.{c['reset']}"
+            danger = "DEADLY"
+            advice = "Not yet. Gain a few levels first."
+
         await player.send(msg)
         await player.send(f"{c['white']}Threat: {danger}  |  Level: {target_level} vs You {player.level}  |  XP: {exp_note}{c['reset']}")
         await player.send(f"{c['white']}Outcome: {advice}{c['reset']}")

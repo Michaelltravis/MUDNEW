@@ -2204,7 +2204,13 @@ class Player(Character):
         Levels 31-60: Use HIGH_LEVEL_EXP_MULTIPLIER (1.6x) for slower progression
         """
         threshold = getattr(self.config, 'HIGH_LEVEL_THRESHOLD', 30)
-        
+
+        # Easy to start: the first four levels are a ramp, not the full curve.
+        # progression-01 measured level 2 at 9.5 min on the 800-xp base (70-140
+        # xp per newcomer kill); 2-3 kills a level puts level 5 near 15 minutes.
+        ramp = getattr(self.config, 'NEWCOMER_EXP', (250, 350, 500, 650))
+        if self.level <= len(ramp):
+            return int(ramp[self.level - 1])
         if self.level <= threshold:
             # Standard progression for levels 1-30
             return int(self.config.BASE_EXP * (self.config.EXP_MULTIPLIER ** (self.level - 1)))
