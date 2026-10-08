@@ -75,6 +75,7 @@
     const { BLOCK, WATER } = MH.TD || { BLOCK: 1, WATER: 2 };
     const pal = palette(room);
     (scene._peekOffsets = scene._peekOffsets || {})[room.vnum] = { ox, oy, layout };   // for far entities
+    if (scene.addNeighbourSolids && Math.abs(dx) + Math.abs(dy) === 1) { try { scene.addNeighbourSolids(layout, ox, oy); } catch (_) {} }   // physics across the shared edge
     try { blendSeam(scene, pal, livePal, ox, oy, dx, dy, W, H, T); } catch (_) {}
     // adjacent rooms are the same ground you are standing on: no tint, no seam;
     // only the outer ring recedes into haze
@@ -206,6 +207,8 @@
         let x0 = 0, y0 = 0, x1 = scene.pxW, y1 = scene.pxH;
         for (const p of placed) { x0 = Math.min(x0, p.dx * scene.pxW); y0 = Math.min(y0, p.dy * scene.pxH); x1 = Math.max(x1, (p.dx + 1) * scene.pxW); y1 = Math.max(y1, (p.dy + 1) * scene.pxH); }
         scene.cameras.main.setBounds(x0, y0, x1 - x0, y1 - y0);
+        // the physics world spans the drawn extent too: the hero may walk into a neighbour
+        if (scene.physics && scene.physics.world) scene.physics.world.setBounds(x0, y0, x1 - x0, y1 - y0);
       } catch (_) {}
       const seen = new Set();
       for (const p of placed) {

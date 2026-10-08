@@ -84,7 +84,15 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   All four notes acted on without a round: peek queue pumps at 40 ms (nearest first), outer-ring
   haze is 0xe2e5ec / 0.10 instead of 0xc4c8d4 / 0.22, crowns get trunks on their open south side
   and stronger rims, outdoor vignette 0.28 → 0.22 (`scratch/round-5` local evidence).
-- NEXT (architectural, the biggest remaining item): the full stitched-zone renderer. Build the whole
+- **Physics across rooms (built).** Adjacent rooms' layouts are static bodies at their offsets
+  and the physics world spans the drawn extent, so a held key keeps the hero walking through
+  the gap while the server confirms the move; the arrival re-origins the world with the position
+  preserved (probe: x = 449 in the old frame → 61 in the new, no stop, no snap), and a refusal
+  clamps the hero back inside the room. The last item of the stitched-zone list is therefore
+  done in substance: no rebuild is *visible*, physics is continuous at the seam. What remains
+  of the original "one tilemap" idea is an implementation detail (the per-room rebuild still
+  happens under the continuous camera), not a player-facing gap.
+- (superseded) NEXT (architectural, the biggest remaining item): the full stitched-zone renderer. Build the whole
   zone as one tilemap from `/atlas` coordinates (each room = its deterministic layout placed at
   x*W, y*H; corridors drawn for non-adjacent exits), paint per room into one big canvas on idle,
   keep one physics world with openings between rooms, and derive the room change from the

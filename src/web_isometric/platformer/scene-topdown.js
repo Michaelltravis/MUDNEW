@@ -803,6 +803,29 @@
       return rt ? this._storeStaticRT(layout.vnum, rt) : null;
     }
 
+    // ---- stitched zone: physics across rooms ----
+    // Neighbour layouts become static bodies at their offsets, so the hero can
+    // keep walking through the gap into the next room while the server confirms
+    // the move (optimistic crossing). The arrival re-origins the world with the
+    // position preserved (slideTransition); a refusal snaps back inside the room.
+    addNeighbourSolids(layout, ox, oy) {
+      const { T, BLOCK, WATER } = TD();
+      if (!layout || !this.solids) return;
+      for (let y = 0; y < layout.H; y++) {
+        let run = -1;
+        for (let x = 0; x <= layout.W; x++) {
+          const solid = x < layout.W && (layout.grid[y * layout.W + x] === BLOCK || (layout.grid[y * layout.W + x] === WATER && !layout.swim));
+          if (solid && run < 0) run = x;
+          else if (!solid && run >= 0) {
+            const zone = this.add.zone(ox + run * T, oy + y * T, (x - run) * T, T).setOrigin(0, 0);
+            this.physics.add.existing(zone, true);
+            this.solids.add(zone);
+            run = -1;
+          }
+        }
+      }
+    }
+
     // ---- stitched zone: creatures in neighbouring rooms ----
     // map_data already carries every explored room's mobs and players; the
     // ones in rooms world-peek has parked are stood on that room's spawn slots
@@ -4126,7 +4149,11 @@
         this._blockedDir = pm.dir;
         this._blockedUntil = Date.now() + 3500;
       }
-      // step back toward the room center so we're off the gap mouth
+      // step back toward the room center so we're off the gap mouth — and if the
+      // optimistic crossing already carried us past the edge, back inside it
+      const T0 = TD().T;
+      this.player.x = Phaser.Math.Clamp(this.player.x, T0 * 1.2, this.pxW - T0 * 1.2);
+      this.player.y = Phaser.Math.Clamp(this.player.y, T0 * 1.2, this.pxH - T0 * 1.2);
       const cx = this.pxW / 2, cy = this.pxH / 2;
       const ang = Math.atan2(cy - this.player.y, cx - this.player.x);
       this.player.x += Math.cos(ang) * 18;
@@ -4948,7 +4975,10 @@
       if (manual && this.autoNav) this.autoNav = null;
 
       const baseSpeed = this.layout.swim ? 70 : 110;
-      if (locked) {
+      if (locked && !(MH.worldPeek && manual)) {
+        // optimistic crossing: with the neighbour's walls already in the physics
+        // world, a held key keeps you walking through the gap while the server
+        // confirms; anything else waits for the confirmation as before
         this.player.setVelocity(0, 0);
       } else if (this.autoNav && this.autoNav.path.length) {
         const wp = this.autoNav.path[0];
