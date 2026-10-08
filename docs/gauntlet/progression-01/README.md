@@ -199,6 +199,24 @@ should mean. Two things this surfaced for the human:
    or the cap should be lower for "Moderate" gaps. **Set**: `consider` weighs a caster one level
    step up, so that mage now reads "Challenging" to a level-10 character.
 
+### Second runs of the tiers (`mastery-v4b/`, `boss-v1b/`, `caster-v3b/`)
+Fresh warriors, same ladders, same play styles, to put n=2 behind each tier:
+
+| tier | play | run 1 deaths | run 2 deaths | max HP (run 2) |
+|---|---|---|---|---|
+| mastery (L5) | three buttons | 1 | 1 | 58 |
+| mastery (L5) | reaction layer | 1 | 3 | 40 |
+| boss (L10) | three buttons | 0 (one timeout) | 0 | 100 |
+| boss (L10) | reaction layer | 0 | 1 (alpha wolf, 2/109) | 109 |
+
+Read together with run 1: **at the mastery and boss tiers the two taught buttons are the most
+reliable play**, and the reaction layer's run-1 edge on the bosses (finishing the wolf that
+three-button play timed out on) did not repeat — the second reaction-layer warrior died to the
+alpha wolf once and finished it untouched the second time. The reaction layer's *measured* edge
+is at the caster tier (interrupt), and the pack is what punishes auto-attack. Max HP still varies
+widely at the same level (40 vs 58 at level 5) even with the hit-dice floor: four level-ups at
+d10 floored at 5 still span 20 HP, which decides the mastery-tier fights more than the play does.
+
 ## Not a gauntlet piece
 There is no BrowserQuest reference for progression (it has no levels). This record is the
 measurement itself; a future round can re-run `curve.py` after retuning and compare the table.
