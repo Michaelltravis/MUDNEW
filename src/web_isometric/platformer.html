@@ -561,11 +561,15 @@
 
   /* ---- hit flash + combat state chip ---- */
   #hit-flash {
+    /* edge-only: the world must stay visible when a wolf shows up. The
+       red lives in the outer 20% of the frame, never over the player. */
     position: absolute; inset: 0; z-index: 36; pointer-events: none; opacity: 0;
-    background: radial-gradient(ellipse at center, transparent 40%, rgba(255,40,40,0.45) 100%);
+    background: radial-gradient(ellipse at center, transparent 72%, rgba(255,40,40,0.22) 92%, rgba(255,40,40,0.34) 100%);
   }
-  #hit-flash.go { animation: hitflash 0.45s ease-out; }
-  @keyframes hitflash { 0% { opacity: 1; } 100% { opacity: 0; } }
+  #hit-flash.go { animation: hitflash 0.32s ease-out; }
+  #hit-flash.go.heavy { animation: hitflashHeavy 0.42s ease-out; }
+  @keyframes hitflash { 0% { opacity: 0.8; } 100% { opacity: 0; } }
+  @keyframes hitflashHeavy { 0% { opacity: 1; } 35% { opacity: 0.7; } 100% { opacity: 0; } }
   #combat-chip {
     position: absolute; top: 58px; left: 50%; transform: translateX(-50%);
     z-index: 22; display: none; padding: 3px 14px;

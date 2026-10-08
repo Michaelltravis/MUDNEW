@@ -45,6 +45,9 @@ read this file, `docs/art/SOURCES.md`, then the plan.
 - world-02 round 2 (after tight follow + title crossfade): still LOSS on walk, WIN on forest.
   Two new notes: the full-screen red ambush wash reads as a cut (use an edge flash); painted
   canopies read as mush at storyboard scale (sharpen silhouettes). World runs closed (6 rounds).
+- Both notes fixed (no new round): `#hit-flash` was the red wash — every hit taken fired a
+  full-viewport radial at 45%; it is now edge-only (transparent to 72%, 0.32 s, `heavy` variant
+  for hits ≥20). Painter canopy crowns get a lit sunward rim + dark underside arc, like rocks.
 - NEXT (architectural, the biggest remaining item): the full stitched-zone renderer. Build the whole
   zone as one tilemap from `/atlas` coordinates (each room = its deterministic layout placed at
   x*W, y*H; corridors drawn for non-adjacent exits), paint per room into one big canvas on idle,

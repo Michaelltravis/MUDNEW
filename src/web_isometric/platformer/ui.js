@@ -5163,9 +5163,10 @@
       });
 
       MH.bus.on('combat.taken', e => {
-        els.hitFlash.classList.remove('go');
+        els.hitFlash.classList.remove('go', 'heavy');
         void els.hitFlash.offsetWidth;
         els.hitFlash.classList.add('go');
+        if (e && e.dmg != null && e.dmg >= 20) els.hitFlash.classList.add('heavy');
         sfx.taken();
       });
       MH.bus.on('combat.hit', () => sfx.hit());

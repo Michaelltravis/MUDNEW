@@ -755,10 +755,20 @@
           ctx.fillStyle = css(lo); ctx.fillRect(b[0] * cell, b[1] * cell, cell, cell);
           for (let k = 0; k < 3; k++) lobe(cx0 + jit(0.7), cy0 + jit(0.7), cell * (0.5 + rng() * 0.22), lo, shade(lo, 0.85), false);
         }
-        // 2) crowns lit from the upper-left
+        // 2) crowns lit from the upper-left, each with a crisp sunward rim and
+        //    a dark underside edge so the canopy reads as distinct lobes at
+        //    storyboard scale instead of a green mush (same trick as rocks)
         for (const b of blocks) {
           const [cx0, cy0] = centre(b);
-          for (let k = 0; k < 2; k++) lobe(cx0 + jit(0.6), cy0 + jit(0.6), cell * (0.36 + rng() * 0.2), mid, lo);
+          for (let k = 0; k < 2; k++) {
+            const r = cell * (0.36 + rng() * 0.2), x = cx0 + jit(0.6), y = cy0 + jit(0.6);
+            lobe(x, y, r, mid, lo);
+            ctx.lineWidth = SS * 0.9; ctx.lineCap = 'round';
+            ctx.strokeStyle = css(hi, 0.55);
+            ctx.beginPath(); ctx.arc(x, y, r * 0.84, 3.5, 5.3); ctx.stroke();
+            ctx.strokeStyle = css(shade(lo, 0.6), 0.7);
+            ctx.beginPath(); ctx.arc(x, y, r * 0.9, 0.4, 2.3); ctx.stroke();
+          }
         }
         // 3) sunlit tops, leaf dabs, dark gaps, dead branches
         for (const b of blocks) {
