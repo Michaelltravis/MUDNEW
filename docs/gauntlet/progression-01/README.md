@@ -9,7 +9,8 @@ inside ~15 minutes with no deaths on the newcomer ladder, using only what the sc
 |---|---|---|---|---|---|---|
 | A | auto-attack only (`--dumb`) | 800 xp base | 1 | 2 | never / never | `run-a-autoattack/` |
 | B | three buttons: bash to open, brace on the wind-up | 800 xp base | 2 | 2 | 9.5 min / — | `run-b-three-buttons/` |
-| C | three buttons | **newcomer ramp 250/350/500/650** + DEADLY tier below L6 | **5** | 1 | 3.6 min / **5.1 min** | `curve.md`, `fights/` |
+| C | three buttons, Midgaard bars and alleys | newcomer ramp 250/350/500/650 + DEADLY tier below L6 | 5 | 1 | 3.6 min / 5.1 min | `run-c-ramp-midgaard/` |
+| D | three buttons, **the tutorial's own route** (dummy → Newbie Zone) | same ramp | **5** | **0** | 1.3 min / **2.5 min** | `curve.md`, `fights/` |
 
 ## What the numbers say
 1. **The three buttons are the difference between dying and winning at level 1–2.** On
@@ -40,6 +41,23 @@ inside ~15 minutes with no deaths on the newcomer ladder, using only what the sc
   the very bottom; 300/400/500/650 would smooth it if the human prefers a slower first level.
 - Still open for the human: sentinel first targets (fido wandered again — a 90 s timeout at full
   HP), and the beggar / shop pets that cannot be hurt.
+
+## Run D: the route the Guide actually walks
+- Runs A–C fought Midgaard's drunks, urchins and alley thugs because that is what the ladder
+  picked; the tutorial chain never sends a newcomer there. Its real route is the training dummy,
+  then the Newbie Zone (18600+: crawlers L1, newbies L2–5, keeper and quasits L3, pitbeast L5).
+- On that route a fresh warrior wins all twelve fights, never drops below half HP, and reaches
+  level 5 in 2.5 minutes with no deaths — the bar is met on both halves. (It is now brisk: if
+  the human wants the first five levels to take closer to ten minutes, `NEWCOMER_EXP` of
+  300/450/600/800 is the dial, nothing else needs touching.)
+- Found on the way, and fixed: the tutorial quest "Into the Unknown" sent level-1 characters out
+  the **East** Gate to fight "a rabbit, a fox, or a deer — safe for your level"; the only creatures
+  east of that gate are level-4 aggressive goblins. The rabbits and foxes live beyond the **West**
+  Gate (6001 and the shaded paths north of it); the quest now routes there (`src/quests.py`).
+- Still for the human: the beggar / shop-pet rooms are `godroom` (no fighting — correct, they
+  just must not be suggested as fights), and Midgaard's own level 2–4 fights are thin (one drunk
+  in a bard-only tavern, a wandering urchin, a wandering patron) — fine as long as the chain
+  keeps pointing at the Newbie Zone and the forest.
 
 ## Not a gauntlet piece
 There is no BrowserQuest reference for progression (it has no levels). This record is the

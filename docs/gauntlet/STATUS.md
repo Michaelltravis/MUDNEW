@@ -145,9 +145,12 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   with the two taught buttons (bash, brace) won the ladder but needed 9.5 min for level 2 and was
   one-shot by "Challenging" level-5 mobs (run B). Retune: newcomer XP ramp 250/350/500/650 for
   levels 1–4 (`NEWCOMER_EXP`) and a DEADLY `consider` verdict below level 6 for a three-level
-  gap. Run C: **level 5 at 5.1 min, one death** (RNG on the level-1 drunk). The 15-minute half
-  of the bar is met; "no deaths" is usually true, not guaranteed. Still for the human: sentinel
-  first targets (fido wanders), unhittable beggar / shop pets. Tool: `tools/gauntlet/curve.py`.
+  gap. Run C (Midgaard bars/alleys): level 5 at 5.1 min, one RNG death. **Run D, the tutorial's
+  own route (dummy → Newbie Zone): level 5 at 2.5 min, 12/12 wins, no deaths — the bar is met
+  on both halves.** Found and fixed on the way: the tutorial quest "Into the Unknown" sent
+  level-1 characters out the East Gate into level-4 aggressive goblins while promising rabbits;
+  it now routes to the Light Forest beyond the West Gate where they live. Dial if wanted:
+  `NEWCOMER_EXP` 300/450/600/800 for a ~10-minute first five levels. Tool: `tools/gauntlet/curve.py`.
 - **onboard-01 (critic only, fresh level-1 character through the live wizard vs BrowserQuest's
   intro): round 1 WIN overall (start WIN, first LOSS: dimmed wall-of-text modal); round 2 WIN on
   both** after the welcome became a three-line corner card over an undimmed world with the keybind
