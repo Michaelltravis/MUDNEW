@@ -106,6 +106,13 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   from the corpse. Verified end to end with two clients (`tools/gauntlet/duo.js` with POLL).
 - Art decisions (no CC0 beast or extra-hero sheets exist): DCSS creature art stays for animals;
   recoloured heroes stay until a commissioned sheet. See docs/art/SOURCES.md.
+- Current playthrough (this build, two live clients, `tools/gauntlet/duo.js`): Gauntlet (L60) and
+  Gauntletb (L3) teleport to Rocky Outcropping, group, and fight a dire wolf together. A's screen:
+  the partner visible in the room, party frames for both (B's shows "idle"), the wolf's plate,
+  the stagger prompt. B's screen: Gauntlet visible, the shared kill credited ("You killed a dire
+  wolf", level 3 → 5, achievement toast), the corpse loot tag. Evidence:
+  `docs/gauntlet/multiplayer/current/duo_{A,B}.png`. Found on the way: a same-zone crossing's
+  delayed banner settle could overwrite a later teleport's name (tracked timer, fixed).
 - Next: loot history panel; ally telegraph rings when a mob fights a party member beside you.
 
 ## Phase C: ARPG controls and readability (BASELINE EXISTS)

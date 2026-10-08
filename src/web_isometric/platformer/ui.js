@@ -918,6 +918,7 @@
     const el = $('room-presence'); if (el) el.textContent = presenceText(lastPresence);
   });
   let bannerFade = null;
+  let bannerSettle = null;
   function showRoom(room, zoneName, seamless) {
     lastRoomShown = { room, zoneName };
     // crossfade the banner on a room change instead of an instant swap: a hard
@@ -927,16 +928,17 @@
     if (banner && changed && seamless) {
       // walking inside a zone: no title card at the seam (the critic read the
       // swap as a scene change). The name settles in quietly a beat later.
-      clearTimeout(bannerFade);
+      clearTimeout(bannerFade); clearTimeout(bannerSettle);
       bannerFade = setTimeout(() => {
         banner.style.transition = 'opacity .7s ease';
         banner.style.opacity = '0.35';
-        setTimeout(() => { els.roomName.textContent = room.name || ''; els.roomZone.textContent = zoneName || ''; banner.style.opacity = '1'; }, 700);
+        // tracked: a later teleport/zone change must not be overwritten by this name settling late
+        bannerSettle = setTimeout(() => { els.roomName.textContent = room.name || ''; els.roomZone.textContent = zoneName || ''; banner.style.opacity = '1'; }, 700);
       }, 1100);
     } else if (banner && changed) {
       banner.style.transition = 'opacity .18s ease';
       banner.style.opacity = '0';
-      clearTimeout(bannerFade);
+      clearTimeout(bannerFade); clearTimeout(bannerSettle);
       bannerFade = setTimeout(() => { els.roomName.textContent = room.name || ''; els.roomZone.textContent = zoneName || ''; banner.style.opacity = '1'; }, 190);
     } else {
       els.roomName.textContent = room.name || '';
