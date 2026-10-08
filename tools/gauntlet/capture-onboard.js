@@ -36,9 +36,11 @@ async function mh(browser) {
   if (!(await until(async () => /CALLING/.test(await t())))) throw new Error('wizard: no class step');
   await sleep(2200);
   await page.hover(`.cw-pick[data-v="${CLASS}"]`); await sleep(500);
+  await page.click(`.cw-pick[data-v="${CLASS}"]`);   // focus the class (big preview + Choose button)
+  await sleep(600);
   await page.screenshot({ path: path.join(OUT, 'start.png') });
-  await page.click(`.cw-pick[data-v="${CLASS}"]`);
-  if (!(await until(async () => /FATE/.test(await t())))) throw new Error('wizard: no stats step');
+  await page.evaluate(() => { const b = document.getElementById('cw-choose'); if (b) b.click(); });   // (a real click is swallowed by the animating preview canvas under Playwright's stability check)
+  if (!(await until(async () => /FATE/.test(await t())))) throw new Error('wizard: no stats step; title=' + await t() + '; status=' + await page.evaluate(() => (document.getElementById('cw-status') || {}).textContent) + '; errors=' + JSON.stringify(errors));
   await page.click('#cw-keep');
   if (!(await until(() => page.evaluate(() => !!(window.MH && MH.state.currentRoom)), 60))) throw new Error('did not reach a room');
   // the first screen exactly as a newcomer gets it: welcome card, Guide, three buttons

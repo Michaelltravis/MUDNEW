@@ -3843,28 +3843,53 @@
         necromancer: 'The Soulbinder. Harvest souls, then raise the dead.',
         assassin: 'The Brotherhood\'s blade. Mark, expose, fulfil the contract.',
       };
-      let cwPreviews = [];
+      // onboard-01 critic: role tag and a "good first pick" badge per card, a
+      // strong selected state, a big preview of the selected class, and a
+      // visible "Choose X" button — pick with your eyes, confirm with one click
+      const CW_ROLE = { warrior: 'Tank', paladin: 'Tank · Healer', ranger: 'Ranged', thief: 'Stealth', mage: 'Caster', cleric: 'Healer', bard: 'Support', necromancer: 'Summoner', assassin: 'Burst' };
+      const CW_FIRST_PICK = new Set(['warrior', 'cleric', 'ranger']);
+      let cwPreviews = [], cwBig = null, cwSelected = null;
       function cwClass() {
         cw('cw-title').textContent = '⚔ CHOOSE YOUR CALLING'; cw('cw-steps').textContent = 'STEP 2 OF 3';
-        cw('cw-sub').textContent = 'Your class is how you fight, cast, and grow. Three buttons to start; the depth comes as you level.';
-        cwPreviews.forEach(p => { try { p.destroy(); } catch (_) {} }); cwPreviews = [];
+        cw('cw-sub').textContent = 'Click a class to see it up close; three are marked as good first picks.';
+        cwPreviews.forEach(p => { try { p.destroy(); } catch (_) {} }); cwPreviews = []; if (cwBig) { try { cwBig.destroy(); } catch (_) {} cwBig = null; } cwSelected = null;
         const luc = MH.lucifer && MH.lucifer.isReady() ? MH.lucifer : null;
-        cw('cw-body').innerHTML = '<div id="cw-grid">' + CW_CLASSES.map(([id, ic, de, st]) => {
-          const first = (CLASS_KIT_ORDER[id] || [])[0];
-          const kit = ['attack', 'flee', first ? first.replace(/_/g, ' ') : null].filter(Boolean).join(' · ');
+        const kitOf = id => { const first = (CLASS_KIT_ORDER[id] || [])[0]; return ['attack', 'flee', first ? first.replace(/_/g, ' ') : null].filter(Boolean); };
+        cw('cw-body').innerHTML = '<div class="cw-split"><div id="cw-grid" class="classes">' + CW_CLASSES.map(([id, ic, de, st]) => {
           const model = luc && luc.resolveClass(id) ? `<canvas class="cw-prev" width="64" height="72" data-cls="${id}"></canvas>` : `<span class="cw-ic">${ic}</span>`;
           return `<div class="cw-pick" data-v="${id}"><div class="cw-row">${model}<div><span class="cw-nm">${cap(id)}</span>`
-            + `<div class="cw-de">${CW_FANTASY[id] || de}</div></div></div>`
-            + `<div class="cw-kit">starts with <b>${kit}</b></div><div class="cw-st">Prime: ${st}</div></div>`;
-        }).join('') + '</div>';
+            + `<div class="cw-role">${CW_ROLE[id] || ''}${CW_FIRST_PICK.has(id) ? ' <span class="cw-first">★ first pick</span>' : ''}</div></div></div></div>`;
+        }).join('') + '</div>'
+        + `<div id="cw-focus"><div class="cw-focus-hint">← pick a class to see it up close</div></div></div>`;
         cw('cw-body').querySelectorAll('.cw-prev').forEach(cv => {
           const pv = luc.preview(cv.dataset.cls, cv, { scale: 1.5 });
           if (!pv) return;
           cwPreviews.push(pv);
-          const card = cv.closest('.cw-pick');
-          card.addEventListener('mouseenter', () => pv.setAction('attack'));
+          cv.closest('.cw-pick').addEventListener('mouseenter', () => pv.setAction('attack'));
         });
-        cwBindPicks(v => { const c = CW_CLASSES.find(x => x[0] === v); cwPrime = c ? c[3] : ''; cwPreviews.forEach(p => { try { p.destroy(); } catch (_) {} }); cwPreviews = []; cwSend(v); });
+        const focus = id => {
+          cwSelected = id;
+          cw('cw-body').querySelectorAll('.cw-pick').forEach(el => el.classList.toggle('selected', el.dataset.v === id));
+          const c = CW_CLASSES.find(x => x[0] === id); const kit = kitOf(id);
+          const f = cw('cw-focus');
+          f.innerHTML = `<div class="cw-focus-card">`
+            + (luc && luc.resolveClass(id) ? `<canvas id="cw-focus-model" width="128" height="144"></canvas>` : `<div class="cw-focus-ic">${c[1]}</div>`)
+            + `<div class="cw-focus-nm">${cap(id)} <span class="cw-role">${CW_ROLE[id] || ''}</span></div>`
+            + `<div class="cw-focus-de">${CW_FANTASY[id] || c[2]}</div>`
+            + `<div class="cw-focus-kit">You start with ${kit.map((k, i) => `<span class="cw-key"><b>${i + 1}</b> ${k}</span>`).join('')}</div>`
+            + `<div class="cw-focus-st">Prime stat: ${c[3]}</div>`
+            + `<button class="cw-btn go" id="cw-choose">⚑ Choose ${cap(id)}</button></div>`;
+          if (cwBig) { try { cwBig.destroy(); } catch (_) {} cwBig = null; }
+          const big = document.getElementById('cw-focus-model');
+          if (big) { cwBig = luc.preview(id, big, { scale: 3 }); if (cwBig) setTimeout(() => cwBig.setAction('attack'), 600); }
+          document.getElementById('cw-choose').addEventListener('click', () => {
+            cwPrime = c ? c[3] : '';
+            cwPreviews.forEach(p => { try { p.destroy(); } catch (_) {} }); cwPreviews = []; if (cwBig) { try { cwBig.destroy(); } catch (_) {} cwBig = null; }
+            cwSend(id);
+          });
+        };
+        cwBindPicks(v => focus(v));
+        focus('warrior');
       }
       function cwStats(text) {
         cw('cw-title').textContent = '⚔ ROLL YOUR FATE'; cw('cw-steps').textContent = 'STEP 3 OF 3';

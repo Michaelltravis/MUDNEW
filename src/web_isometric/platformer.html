@@ -93,6 +93,33 @@
   .cw-pick .cw-prev { width: 64px; height: 72px; flex: 0 0 64px; image-rendering: pixelated; background: radial-gradient(ellipse at 50% 90%, rgba(0,0,0,.45), transparent 60%); }
   .cw-pick .cw-kit { color: #c8ccd8; font-size: 10.5px; margin-top: 6px; }
   .cw-pick .cw-kit b { color: #ffe9a8; font-weight: normal; }
+  /* onboard-01 r2: class grid + focus pane */
+  .cw-split { display: flex; gap: 12px; align-items: flex-start; }
+  .cw-split #cw-grid.classes { flex: 1 1 60%; min-width: 0; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .cw-split #cw-grid.classes .cw-pick { min-width: 0; overflow: hidden; }
+  /* narrow columns: model above the name, centred, nothing truncated */
+  .cw-split #cw-grid.classes .cw-row { min-width: 0; flex-direction: column; align-items: center; gap: 2px; text-align: center; }
+  .cw-split #cw-grid.classes .cw-row > div { min-width: 0; width: 100%; }
+  .cw-split #cw-grid.classes .cw-nm { font-size: 14px; display: block; }
+  .cw-split #cw-grid.classes .cw-role { font-size: 10px; }
+  .cw-split #cw-grid.classes .cw-first { display: block; margin: 3px auto 0; width: max-content; }
+  #cw-grid.classes .cw-pick { padding: 8px 10px; }
+  #cw-grid.classes .cw-pick.selected { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold), 0 6px 20px rgba(0,0,0,.4); background: rgba(232,193,104,.08); }
+  .cw-pick .cw-role { color: #8fb8ff; font-size: 10.5px; margin-top: 3px; letter-spacing: .4px; }
+  .cw-pick .cw-first { color: #8fd3a8; font-size: 9.5px; letter-spacing: .5px; border: 1px solid rgba(143,211,168,.5); border-radius: 3px; padding: 0 4px; margin-left: 4px; }
+  #cw-focus { flex: 0 0 37%; min-height: 380px; }
+  .cw-focus-hint { color: #6f6a5c; font-size: 12px; padding: 40px 10px; text-align: center; }
+  .cw-focus-card { background: rgba(20,24,34,0.7); border: 1px solid rgba(232,193,104,.35); border-radius: 11px; padding: 14px 16px; text-align: center; }
+  #cw-focus-model { width: 128px; height: 144px; image-rendering: pixelated; background: radial-gradient(ellipse at 50% 92%, rgba(0,0,0,.5), transparent 60%); }
+  .cw-focus-ic { font-size: 64px; }
+  .cw-focus-nm { color: #ffe9a8; font-family: Georgia, serif; font-size: 22px; margin-top: 6px; }
+  .cw-focus-nm .cw-role { display: block; font-family: var(--ui-font); }
+  .cw-focus-de { color: #d6dae6; font-size: 13px; line-height: 1.45; margin: 8px 0 10px; }
+  .cw-focus-kit { color: #c8ccd8; font-size: 12px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; align-items: center; }
+  .cw-key { background: rgba(232,193,104,.1); border: 1px solid rgba(232,193,104,.35); border-radius: 5px; padding: 3px 8px; color: #ffe9a8; }
+  .cw-key b { color: #fff; margin-right: 3px; }
+  .cw-focus-st { color: #6fb6ff; font-size: 11px; margin: 10px 0 12px; letter-spacing: .5px; }
+  #cw-choose { width: 100%; font-size: 14px; }
   .cw-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
   .cw-stat { background: rgba(20,24,34,.7); border: 1px solid rgba(140,150,180,.16); border-radius: 9px; padding: 9px; text-align: center; }
   .cw-stat .v { font-size: 22px; color: #e6e2d6; font-weight: 700; font-family: Georgia, serif; }

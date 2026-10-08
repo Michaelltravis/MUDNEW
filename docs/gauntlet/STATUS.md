@@ -155,9 +155,12 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   intro): round 1 WIN overall (start WIN, first LOSS: dimmed wall-of-text modal); round 2 WIN on
   both** after the welcome became a three-line corner card over an undimmed world with the keybind
   table behind "Controls" (`docs/gauntlet/onboard-01/round-2/verdicts.md`). Tool:
-  `tools/gauntlet/capture-onboard.js`. Open notes: one teaching surface at a time (hint toast and
-  daily chip now deferred while the welcome is up), bigger picker sprites / preview pane, larger
-  body text, stronger selected state.
+  `tools/gauntlet/capture-onboard.js`. The picker pass from the critic's notes is built (no round
+  spent): model above the name on every card, a role tag (Tank/Healer/Ranged/…), three "★ first
+  pick" badges (warrior, cleric, ranger), a strong selected state, a big animated preview of the
+  selected class with its fantasy, the three starting buttons as keys, and a visible "Choose X"
+  button (`round-3/mh/start.png`, local). The hint toast and daily chip defer while the welcome
+  card is up.
 
 Credit discipline: one piece, one round.
 
