@@ -2943,8 +2943,11 @@ class Player(Character):
                 # Handle both dict affects and Affect objects
                 self.affects = [a for a in self.affects if getattr(a, 'name', a.get('name', '') if isinstance(a, dict) else '') not in bad_affects]
         
-        # Move to temple/recall point
-        if self.room:
+        # Move to temple/recall point. The removal must be safe: a hunting mob can
+        # finish a player whose room list no longer holds them (a dropped
+        # connection mid-hunt), and an unguarded remove() here took the whole
+        # server down (progression-01 tier runs).
+        if self.room and self in self.room.characters:
             self.room.characters.remove(self)
         
         recall_vnum = getattr(self, 'recall_point', self.config.STARTING_ROOM)
