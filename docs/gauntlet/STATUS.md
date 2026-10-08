@@ -188,8 +188,10 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   70% + kick/4. Every mastery mechanic now has a tier where it is measured to bite. The one-shot
   fireball (82–90 on 73–82 HP) is gone: non-boss caster spells are mitigated like heavy blows
   and capped at 60% of max HP (caster v3: deaths 3/6 and 3/5, all from accumulation against
-  Challenging/Dangerous targets). New dials surfaced: level-up hit-dice variance (two level-10
-  warriors at 53 and 85 max HP) and `consider` calling a caster two levels up "Moderate".
+  Challenging/Dangerous targets). Two dials it surfaced are now set: level-up HP rolls are
+  floored at half the hit die (two level-10 warriors had rolled 53 and 85 max HP), and
+  `consider` weighs a caster one level step up (a "Moderate" L12 mage had killed each L10
+  warrior once in two).
 - **onboard-01 (critic only, fresh level-1 character through the live wizard vs BrowserQuest's
   intro): round 1 WIN overall (start WIN, first LOSS: dimmed wall-of-text modal); round 2 WIN on
   both** after the welcome became a three-line corner card over an undimmed world with the keybind

@@ -2583,6 +2583,14 @@ class CommandHandler:
         c = player.config.COLORS
         diff = target.level - player.level
         target_level = getattr(target, 'level', 1)
+        # a caster punches a tier above its level (progression-01: a "Moderate" level-12
+        # mage killed each level-10 warrior once in two tries) — weigh it one step up
+        try:
+            from mob_ai import classify_mob
+            if not hasattr(target, 'connection') and 'caster' in classify_mob(target):
+                diff += 1
+        except Exception:
+            pass
         
         await player.send(f"\r\n{c['bright_cyan']}=== Considering: {target.name} ==={c['reset']}")
         

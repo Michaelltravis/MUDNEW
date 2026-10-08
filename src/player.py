@@ -2230,7 +2230,11 @@ class Player(Character):
         class_data = self.config.CLASSES[self.char_class]
         
         # Gain HP
-        hp_gain = random.randint(1, class_data['hit_dice']) + (self.con - 10) // 4
+        # progression-01: two level-10 warriors forged the same way rolled 53 and 85
+        # max HP — a 1..d roll per level is the widest variance in the game. Floor
+        # the roll at half the hit die so levels are a gain, not a lottery.
+        hd = class_data['hit_dice']
+        hp_gain = random.randint(max(1, hd // 2), hd) + (self.con - 10) // 4
         self.max_hp += max(1, hp_gain)
         self.hp = self.max_hp
         
