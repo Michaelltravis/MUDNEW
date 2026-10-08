@@ -2776,6 +2776,10 @@
            + (plan && plan.hint ? `<div class="g-hint">${plan.hint}</div>` : '')
            + (plan && plan.act ? `<button class="g-act">${plan.act}</button>` : '')
          : `<div class="g-obj done">✓ Complete${q.complete ? ' — rewards granted' : ''}</div>`);
+    // onboard-01 r4 critic: ONE overlay on first load — the welcome card teaches first,
+    // the Guide takes over the moment it folds (the fold re-runs refreshGuide)
+    const wo = document.getElementById('welcome-overlay');
+    if (wo && wo.classList.contains('show')) { el.classList.remove('show'); return; }
     el.classList.add('show');
     const x = el.querySelector('.g-x'); if (x) x.addEventListener('click', () => { guideDismissedId = q.id; el.classList.remove('show'); });
     const b = el.querySelector('.g-act'); if (b && plan && plan.fn) b.addEventListener('click', () => { plan.fn(); setTimeout(refreshGuide, 1200); });
@@ -4236,13 +4240,13 @@
         // the world stays playable under the corner card; the card also folds
         // itself away the first time you talk to someone or change rooms
         els.welcomeOverlay.classList.add('show');
-        const fold = () => { if (els.welcomeOverlay.classList.contains('show')) { els.welcomeOverlay.classList.remove('show'); lsSet('mh_welcome_seen', '1'); } };
+        const fold = () => { if (els.welcomeOverlay.classList.contains('show')) { els.welcomeOverlay.classList.remove('show'); lsSet('mh_welcome_seen', '1'); setTimeout(refreshGuide, 50); } };
         const shownIn = player.vnum;   // the arrival itself must not fold it: only a real room change does
         MH.bus.on('room.entered', ({ room }) => { if (room && room.vnum !== shownIn) setTimeout(fold, 0); });
         MH.bus.on('npc.talk', fold);
       }
       els.welcomeGo.addEventListener('click', () => {
-        els.welcomeOverlay.classList.remove('show'); lsSet('mh_welcome_seen', '1');
+        els.welcomeOverlay.classList.remove('show'); lsSet('mh_welcome_seen', '1'); setTimeout(refreshGuide, 50);
       });
       MH.bus.on('map', payload => maybeWelcome(payload.player));
       MH.bus.once ? MH.bus.once('map', startGuide) : MH.bus.on('map', startGuide);

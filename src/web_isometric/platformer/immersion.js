@@ -17,6 +17,8 @@
   function showWhisper(text) {
     const host = $('whisper-host');
     if (!host) return;
+    // the newcomer's first screen has one teaching surface: no ambient whispers under the welcome card
+    const wo = document.getElementById('welcome-overlay'); if (wo && wo.classList.contains('show')) return;
     if (whispersShowing >= 2) { if (whisperQueue.length < 4) whisperQueue.push(text); return; }
     whispersShowing++;
     const div = document.createElement('div');
