@@ -468,6 +468,7 @@
       this.solids.clear(true, true);
       for (const ent of this.entities.values()) this.destroyEntity(ent);
       this.entities.clear();
+      this.clearFarEntities();
       if (this.exitZones) this.exitZones.forEach(z => z.destroy());
       this.exitZones = [];
       if (this.featureZones) this.featureZones.forEach(z => z.destroy());
@@ -745,7 +746,8 @@
       let rt = null;
       try {
         rt = this.add.renderTexture(0, 0, this.pxW, this.pxH);
-        this._drawStaticInto(rt, this.tileLayer.list, this.occluders, [...this.entities.values()]);
+        // mobs are NOT baked: syncFarEntities draws them live from map_data
+        this._drawStaticInto(rt, this.tileLayer.list, this.occluders, null);
         return this._storeStaticRT(this.layout.vnum, rt);
       } catch (_) { if (rt) rt.destroy(); return null; }
     }
@@ -789,6 +791,59 @@
       tmpT.removeAll(true); tmpB.removeAll(true); tmpT.destroy(); tmpB.destroy();
       Object.assign(this, saved);
       return rt ? this._storeStaticRT(layout.vnum, rt) : null;
+    }
+
+    // ---- stitched zone: creatures in neighbouring rooms ----
+    // map_data already carries every explored room's mobs and players; the
+    // ones in rooms world-peek has parked are stood on that room's spawn slots
+    // at its offset, so you see the wolf pack beyond the gap before you cross.
+    // They are display-only (no physics, no labels, no targeting).
+    syncFarEntities(rooms) {
+      if (rooms) this._lastRooms = rooms;
+      rooms = this._lastRooms || [];
+      const offs = this._peekOffsets || {};
+      this._far = this._far || new Map();
+      const want = new Map();
+      for (const r of rooms) {
+        const o = offs[r.vnum]; if (!o || !o.layout) continue;
+        (r.mobs || []).forEach((m, i) => want.set(`far:${r.vnum}:m:${m.name}:${i}`, { kind: 'mob', data: m, idx: i, o }));
+        (r.players || []).forEach((p, i) => want.set(`far:${r.vnum}:p:${p.name}`, { kind: 'player', data: p, idx: i + 4, o }));
+      }
+      for (const [k, f] of this._far) if (!want.has(k)) { this._destroyFar(f); this._far.delete(k); }
+      for (const [k, spec] of want) if (!this._far.has(k)) { const f = this._spawnFar(k, spec); if (f) this._far.set(k, f); }
+    }
+    _spawnFar(key, spec) {
+      const slots = spec.o.layout.spawnSlots; if (!slots || !slots.length) return null;
+      const slot = slots[(MH.hashStr(key) + spec.idx) % slots.length];
+      const x = spec.o.ox + slot.x, y = spec.o.oy + slot.y;
+      const d = spec.data || {};
+      const L = MH.lucifer;
+      const pack = L && L.isReady() ? (spec.kind === 'player' ? L.resolveClass(d.char_class) : L.resolveMob(d.name, d.roles, d.boss)) : null;
+      const f = { key, objs: [], alive: true };
+      const sh = this.add.ellipse(x, y + 9, 18, 8, 0x000000, 0.22).setDepth(7.9); f.objs.push(sh);
+      if (pack) {
+        const doll = L.makeActor(this, pack, TD().T * (d.boss ? 3.0 : 2.4), null,
+          spec.kind === 'player' ? L.variant(d.char_class) : L.mobVariant(d.name, d.roles, d.boss));
+        doll.container.setPosition(x, y).setDepth(8); f.doll = doll;
+        // face a hashed way so a room of mobs is not a row of clones
+        doll.setAction('idle', ['down', 'left', 'right', 'up'][MH.hashStr(key) % 4]);
+      } else if (MH.dcss && MH.dcss.isReady() && spec.kind !== 'player') {
+        const path = MH.dcss.resolve(d.name); if (!path) { sh.destroy(); return null; }
+        MH.dcss.ensure(this, path, k => {
+          if (!k || !f.alive) return;
+          const img = this.add.image(x, y + 9, k).setOrigin(0.5, 1).setDepth(8);
+          const src = this.textures.get(k).getSourceImage();
+          img.setScale(TD().T * (d.boss ? 2.5 : 2.0) / ((src && src.height) || 32));
+          img.texture.setFilter(Phaser.Textures.FilterMode.NEAREST);
+          f.objs.push(img);
+        });
+      } else { sh.destroy(); return null; }
+      return f;
+    }
+    _destroyFar(f) { f.alive = false; if (f.doll) f.doll.destroy(); f.objs.forEach(o => { try { o.destroy(); } catch (_) {} }); }
+    clearFarEntities() {
+      if (this._far) { for (const f of this._far.values()) this._destroyFar(f); this._far.clear(); }
+      this._peekOffsets = {};
     }
 
     // Phase 1 room richness: scatter themed ground detail over the flat tile
@@ -4243,6 +4298,7 @@
         MH.bus.emit('room.entered', { room: roomData, zoneName: roomEntry.zoneName });
       }
       this.syncEntities(roomEntry);
+      this.syncFarEntities(payload.rooms);
       this.applyAtmosphere(payload);
       this.syncWornAura(payload.player);
       this.syncPlayerDoll(payload.player);

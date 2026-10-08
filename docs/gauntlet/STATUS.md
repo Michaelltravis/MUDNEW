@@ -59,9 +59,15 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   are untinted (haze only on the outer ring): the brightness seam at the border is gone.
   Evidence: `docs/gauntlet/scratch/round-3/mh/walk.png` (local only) — trees visible beyond the
   gap before crossing, the old room fully furnished beside the new one, no flash.
-  Still not stitched: mobs in neighbouring rooms (the server only sends the current room's
-  entities) and physics (one physics world per room; a crossing is still a camera pan + rebuild
-  under a continuous camera). Those are the remaining items of the NEXT below.
+- Stitched zone step 4: creatures in neighbouring rooms. `map_data.rooms[]` already carries every
+  explored room's mobs/players, so `scene.syncFarEntities()` stands them on that room's spawn
+  slots at the offset world-peek parked it at (Lucifer actor idling in a hashed facing, DCSS
+  fallback, contact shadow; display-only — no physics/labels/targeting). Re-synced on every
+  payload and on every peek render; the old-room snapshot no longer bakes mobs (they are live).
+  Evidence: `scratch/round-4/mh/{walk,city}.png` (local) — a creature beyond the gap before the
+  crossing; two guards in the next street of Midgaard.
+  Still not stitched: physics (one physics world per room; a crossing is a camera pan + rebuild
+  under a continuous camera). That is the remaining item of the NEXT below.
 - NEXT (architectural, the biggest remaining item): the full stitched-zone renderer. Build the whole
   zone as one tilemap from `/atlas` coordinates (each room = its deterministic layout placed at
   x*W, y*H; corridors drawn for non-adjacent exits), paint per room into one big canvas on idle,

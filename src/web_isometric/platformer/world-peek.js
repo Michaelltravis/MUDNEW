@@ -44,6 +44,7 @@
     const { W, H, T, grid } = layout;
     const { BLOCK, WATER } = MH.TD || { BLOCK: 1, WATER: 2 };
     const pal = palette(room);
+    (scene._peekOffsets = scene._peekOffsets || {})[room.vnum] = { ox, oy, layout };   // for far entities
     // adjacent rooms are the same ground you are standing on: no tint, no seam;
     // only the outer ring recedes into haze
     const HAZE = dist > 1 ? 0xc4c8d4 : 0xffffff;
@@ -180,6 +181,7 @@
         try { drawNeighbour(scene, p.room, p.dx * scene.pxW, p.dy * scene.pxH, p.d); } catch (e) { console.warn('peek', p.room.vnum, e); }
       }
       scene._justLeft = null;
+      if (scene.syncFarEntities) { try { scene.syncFarEntities(); } catch (e) { console.warn('far entities', e); } }
     });
   }
   MH.worldPeek = { render, loadAtlas };
