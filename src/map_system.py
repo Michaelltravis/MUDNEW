@@ -956,6 +956,11 @@ def build_atlas(world) -> dict:
             'x': x, 'y': y, 'z': z,
             'sector': getattr(room, 'sector_type', '') or '',
             'exits': exits,
+            # the graphical client pre-renders neighbouring rooms from the atlas;
+            # the layout generator keys props and darkness off these, so without
+            # them the peeked room would differ from the one you walk into
+            'description': getattr(room, 'description', '') or '',
+            'flags': list(room.flags) if hasattr(room, 'flags') else [],
         })
     _ATLAS_CACHE = {
         'type': 'atlas',

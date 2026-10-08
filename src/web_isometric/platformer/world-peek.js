@@ -34,13 +34,39 @@
   }
 
   // draw one neighbour room's layout as flat cells into bgLayer at (ox, oy)
-  function drawNeighbour(scene, room, ox, oy, dir) {
+  function drawNeighbour(scene, room, ox, oy, dist) {
     const atlasExits = room.exits || {};
     const exits = {}; for (const d of Object.keys(atlasExits)) exits[d] = { to_room: atlasExits[d] };
-    const layout = MH.generateRoomTopDown({ vnum: room.vnum, name: room.name, sector: room.sector, exits, flags: [] });
+    // same inputs as the live build (zone → theme + props, description →
+    // furniture, flags → darkness), so the peeked room IS the room you enter
+    const layout = MH.generateRoomTopDown({ vnum: room.vnum, name: room.name, sector: room.sector, exits,
+      flags: room.flags || [], description: room.description || '', zone: room.zone });
     const { W, H, T, grid } = layout;
     const { BLOCK, WATER } = MH.TD || { BLOCK: 1, WATER: 2 };
     const pal = palette(room);
+    // adjacent rooms are the same ground you are standing on: no tint, no seam;
+    // only the outer ring recedes into haze
+    const HAZE = dist > 1 ? 0xc4c8d4 : 0xffffff;
+    const hazeTween = (obj) => { if (dist > 1) scene.tweens.addCounter({ from: 0, to: 1, duration: 900, delay: 700, onUpdate: t => { const v = t.getValue(); const c = Math.round(0xff - (0xff - 0xc4) * v), c2 = Math.round(0xff - (0xff - 0xc8) * v), c3 = Math.round(0xff - (0xff - 0xd4) * v); if (obj.active) obj.setTint((c << 16) | (c2 << 8) | c3); } }); };
+    // walls, props and furniture: a cached static snapshot is parked at the
+    // offset at once; an unvisited room is pre-rendered in the deferred queue
+    const parkStatic = (rt, bright) => {
+      if (!rt || !rt.active) return;
+      rt.setPosition(ox, oy).setVisible(true);
+      if (bright) { rt.setTint(0xffffff); hazeTween(rt); } else rt.setTint(HAZE);
+    };
+    const queueStatic = () => {
+      const cached = scene.staticRT ? scene.staticRT(room.vnum) : null;
+      if (cached) { parkStatic(cached, scene._justLeft === room.vnum); return; }
+      if (!scene.prerenderStatic) return;
+      const curVnum0 = scene.layout && scene.layout.vnum;
+      scene._peekQueue = scene._peekQueue || [];
+      scene._peekQueue.push(() => {   // after this room's ground paint, which was queued first
+        if (!scene.layout || scene.layout.vnum !== curVnum0) return;
+        try { parkStatic(scene.prerenderStatic(layout), false); } catch (e) { console.warn('peek static', room.vnum, e); }
+      });
+      pumpQueue(scene);
+    };
     // a painting of this room already in the texture cache (the room we just
     // left, or one painted on a previous visit) is used at once: no flat flash
     const ready = `paint_${room.vnum}`;
@@ -48,10 +74,11 @@
       const img = scene.add.image(ox, oy, ready).setOrigin(0, 0).setDisplaySize(W * T, H * T).setDepth(-8.5);
       // the room just left stays at full brightness through the crossing and
       // only then settles into distance haze, so leaving never reads as a cut
-      if (ready === scene._prevPaintKey) { img.setTint(0xffffff); scene.tweens.addCounter({ from: 0, to: 1, duration: 900, delay: 700, onUpdate: t => { const v = t.getValue(); const c = Math.round(0xff - (0xff - 0xc4) * v), c2 = Math.round(0xff - (0xff - 0xc8) * v), c3 = Math.round(0xff - (0xff - 0xd4) * v); if (img.active) img.setTint((c << 16) | (c2 << 8) | c3); } }); }
-      else img.setTint(0xc4c8d4);
+      if (ready === scene._prevPaintKey) { img.setTint(0xffffff); hazeTween(img); }
+      else img.setTint(HAZE);
       scene.bgLayer.add(img);
       (scene._peekKeys = scene._peekKeys || []).push(ready);
+      queueStatic();
       return img;
     }
     const g = scene.add.graphics().setDepth(-9);
@@ -62,7 +89,7 @@
       g.fillStyle(col, 1); g.fillRect(ox + x * T, oy + y * T, T, T);
     }
     // distance haze: the next room is seen, not visited
-    g.fillStyle(0x06080c, 0.22); g.fillRect(ox, oy, W * T, H * T);
+    if (dist > 1) { g.fillStyle(0x06080c, 0.22); g.fillRect(ox, oy, W * T, H * T); }
     scene.bgLayer.add(g);
     // step 2: the real painterly ground, deferred so the room you are in
     // renders first; one neighbour per tick, dropped if you have moved on
@@ -75,7 +102,7 @@
           const key = MH.painter.paint(scene, layout, layout.theme);
           if (!key) return;
           (scene._peekKeys = scene._peekKeys || []).push(key);
-          const img = scene.add.image(ox, oy, key).setOrigin(0, 0).setDisplaySize(W * T, H * T).setDepth(-8.5).setTint(0xc4c8d4);
+          const img = scene.add.image(ox, oy, key).setOrigin(0, 0).setDisplaySize(W * T, H * T).setDepth(-8.5).setTint(HAZE);
           scene.bgLayer.add(img);
           g.setVisible(false);
           label.setDepth(-8).setAlpha(0.85);
@@ -85,6 +112,7 @@
     }
     // no name label: the critic read it as a placeholder; the HUD names the room on arrival
     const label = { setDepth() { return this; }, setAlpha() { return this; } };
+    queueStatic();
     return g;
   }
 
@@ -114,6 +142,7 @@
       if (k !== `paint_${cur}` && k !== scene._prevPaintKey && k !== scene._lastPaintKey && scene.textures.exists(k)) { try { scene.textures.remove(k); } catch (_) {} }
     }
     scene._peekKeys = [];
+    { const mine = scene.staticRT && scene.staticRT(cur); if (mine) mine.setVisible(false); }
     loadAtlas().then(a => {
       if (!scene.layout || scene.layout.vnum !== cur) return;   // moved on while the atlas loaded
       const here = a.rooms[cur]; if (!here) return;
@@ -132,6 +161,13 @@
         placed.push({ room, dx: off[0], dy: off[1], d: 1 });
       }
       placed.sort((p, q) => p.d - q.d);
+      // static snapshots: keep the ones in range (and ours, hidden under the
+      // live room), free the rest; every kept one is re-parked below
+      if (scene.pruneStaticRTs) {
+        const keep = new Set(placed.map(p => p.room.vnum)); keep.add(cur);
+        scene.pruneStaticRTs(keep);
+        const mine = scene.staticRT(cur); if (mine) mine.setVisible(false);
+      }
       // the camera may roam over everything that is drawn
       try {
         let x0 = 0, y0 = 0, x1 = scene.pxW, y1 = scene.pxH;
@@ -141,8 +177,9 @@
       const seen = new Set();
       for (const p of placed) {
         const key = `${p.dx},${p.dy}`; if (seen.has(key)) continue; seen.add(key);
-        try { drawNeighbour(scene, p.room, p.dx * scene.pxW, p.dy * scene.pxH, null); } catch (e) { console.warn('peek', p.room.vnum, e); }
+        try { drawNeighbour(scene, p.room, p.dx * scene.pxW, p.dy * scene.pxH, p.d); } catch (e) { console.warn('peek', p.room.vnum, e); }
       }
+      scene._justLeft = null;
     });
   }
   MH.worldPeek = { render, loadAtlas };

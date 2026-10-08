@@ -581,24 +581,7 @@
             }
             this.bgLayer.add(img);
           }
-          if (cell === BLOCK) {
-            const isBorder = x === 0 || y === 0 || x === layout.W - 1 || y === layout.H - 1;
-            const ob = layout.obstacles && layout.obstacles.find(o =>
-              x >= o.x && x < o.x + (o.big ? 2 : 1) && y >= o.y && y < o.y + (o.big ? 2 : 1));
-            const key = zk
-              ? (isBorder ? `zt_${zk}_border` : `zt_${zk}_obst${ob ? ob.idx % 2 : 0}`)
-              : (isBorder ? `td_${th}_border` : `td_${th}_obst${ob ? ob.idx : 0}`);
-            const blockImg = this.add.image(x * T, y * T, key).setOrigin(0, 0).setDisplaySize(T, T).setDepth(1);
-            this.tileLayer.add(blockImg);
-          } else if (cell === WATER) {
-            // over a painted room the water body is already in the painting —
-            // the animated sprite becomes a translucent shimmer on top
-            const spr = this.add.sprite(x * T, y * T, 'sm_water', '0').setOrigin(0, 0).setDisplaySize(T, T).setDepth(1).setAlpha(painted ? 0.4 : 0.95);
-            spr.play('sm_water_anim');
-            const liquid = (zt && zt.water) || (MH.THEMES[th] && MH.THEMES[th].liquid) || '#3a6a9a';
-            spr.setTint(Phaser.Display.Color.HexStringToColor(liquid).color | 0x404040);
-            this.tileLayer.add(spr);
-          }
+          this.drawSolidCell(layout, x, y, cell, th, zk, zt, painted);
         }
       }
       // day/night grade on the kit tiles (world-layer only)
@@ -698,6 +681,114 @@
 
       this.darkRT.setVisible(!!layout.dark);
       MH.bus.emit('zone.theme', { zoneKey: layout.zoneKey, theme: layout.theme, dark: !!layout.dark });
+    }
+
+    // one BLOCK/WATER cell of the terrain grid (shared by the live room and the
+    // neighbour pre-render, so what you see through the gap is what you get)
+    drawSolidCell(layout, x, y, cell, th, zk, zt, painted) {
+      const { T, BLOCK, WATER } = TD();
+      if (cell === BLOCK) {
+        const isBorder = x === 0 || y === 0 || x === layout.W - 1 || y === layout.H - 1;
+        const ob = layout.obstacles && layout.obstacles.find(o =>
+          x >= o.x && x < o.x + (o.big ? 2 : 1) && y >= o.y && y < o.y + (o.big ? 2 : 1));
+        const key = zk
+          ? (isBorder ? `zt_${zk}_border` : `zt_${zk}_obst${ob ? ob.idx % 2 : 0}`)
+          : (isBorder ? `td_${th}_border` : `td_${th}_obst${ob ? ob.idx : 0}`);
+        const blockImg = this.add.image(x * T, y * T, key).setOrigin(0, 0).setDisplaySize(T, T).setDepth(1);
+        this.tileLayer.add(blockImg);
+      } else if (cell === WATER) {
+        // over a painted room the water body is already in the painting —
+        // the animated sprite becomes a translucent shimmer on top
+        const spr = this.add.sprite(x * T, y * T, 'sm_water', '0').setOrigin(0, 0).setDisplaySize(T, T).setDepth(1).setAlpha(painted ? 0.4 : 0.95);
+        spr.play('sm_water_anim');
+        const liquid = (zt && zt.water) || (MH.THEMES[th] && MH.THEMES[th].liquid) || '#3a6a9a';
+        spr.setTint(Phaser.Display.Color.HexStringToColor(liquid).color | 0x404040);
+        this.tileLayer.add(spr);
+      }
+    }
+
+    // ---- stitched zone: static snapshots of other rooms ----
+    // One RenderTexture per room (walls, props, furniture, and for a room we
+    // just left its mobs too) lives in the scene root and is parked at the
+    // room's atlas offset by world-peek. Rooms around you are therefore drawn
+    // at full fidelity BEFORE you arrive, and the one you leave keeps every
+    // tree and barrel where it was, so a crossing is only a camera pan.
+    staticRT(vnum) { return (this._staticRTs = this._staticRTs || new Map()).get(vnum) || null; }
+    _storeStaticRT(vnum, rt) {
+      const old = this.staticRT(vnum);
+      if (old && old !== rt) { try { old.destroy(); } catch (_) {} }
+      rt.setOrigin(0, 0).setDepth(-5).setVisible(false);
+      this._staticRTs.set(vnum, rt);
+      return rt;
+    }
+    // drop snapshots of rooms no longer in range (keep = set of vnums)
+    pruneStaticRTs(keep) {
+      if (!this._staticRTs) return;
+      for (const [v, rt] of this._staticRTs) {
+        if (!keep.has(v)) { try { rt.destroy(); } catch (_) {} this._staticRTs.delete(v); }
+      }
+    }
+    _drawStaticInto(rt, tileObjs, occluders, entities) {
+      // Graphics (wall-depth strips, AO) and screen-blend washes render opaque
+      // in a RenderTexture: skip them, the painting underneath carries the look
+      rt.draw(tileObjs.filter(o => o.type !== 'Graphics' && o.type !== 'Rectangle'));
+      if (occluders && occluders.length) rt.draw(occluders);
+      for (const ent of entities || []) {
+        if (ent.doll && ent.doll.container) rt.draw(ent.doll.container);
+        else if (ent.art) rt.draw(ent.art);
+        else if (ent.sprite && ent.sprite.alpha > 0) rt.draw(ent.sprite);
+      }
+    }
+    // snapshot the LIVE room (called just before it is torn down)
+    snapshotLiveStatic() {
+      if (!this.layout || !this.layout.vnum) return null;
+      let rt = null;
+      try {
+        rt = this.add.renderTexture(0, 0, this.pxW, this.pxH);
+        this._drawStaticInto(rt, this.tileLayer.list, this.occluders, [...this.entities.values()]);
+        return this._storeStaticRT(this.layout.vnum, rt);
+      } catch (_) { if (rt) rt.destroy(); return null; }
+    }
+    // build a room we have NOT visited into a snapshot, without touching the
+    // live room: the decoration passes draw into throwaway layers that are
+    // swapped in for the duration, then rendered once and freed
+    prerenderStatic(layout) {
+      if (!layout || !layout.vnum || this.staticRT(layout.vnum)) return this.staticRT(layout.vnum);
+      const { BLOCK, WATER } = TD();
+      const saved = {};
+      for (const k of ['tileLayer', 'bgLayer', 'occluders', '_objCells', 'lightSources', 'featureZones', 'exitZones', 'reactiveProps', 'critters', 'kitTiles']) saved[k] = this[k];
+      const tmpT = this.add.layer().setVisible(false), tmpB = this.add.layer().setVisible(false);
+      this.tileLayer = tmpT; this.bgLayer = tmpB; this.occluders = []; this._objCells = new Set();
+      this.lightSources = []; this.featureZones = []; this.exitZones = []; this.reactiveProps = []; this.critters = []; this.kitTiles = [];
+      let rt = null;
+      try {
+        const th = layout.theme;
+        const zk = layout.zoneKey && this.textures.exists(`zt_${layout.zoneKey}_floor0`) ? layout.zoneKey : null;
+        const zt = zk ? MH.ZONE_THEMES[zk] : null;
+        for (let y = 0; y < layout.H; y++) for (let x = 0; x < layout.W; x++) {
+          const cell = layout.grid[y * layout.W + x];
+          if (cell === BLOCK || cell === WATER) this.drawSolidCell(layout, x, y, cell, th, zk, zt, true);
+        }
+        this.paintWallDepth(layout, th, zt);
+        this.decorateGround(layout, th);
+        this.decorateWalls(layout, th);
+        this.placeGravestones(layout);
+        const placed = this.decorateFromDescription(layout, th) || 0;
+        let signature = false;
+        if (placed < 2) signature = this.applySignatureRoom(layout, th);
+        if (!signature) this.ambientFill(layout, th, placed);
+        rt = this.add.renderTexture(0, 0, layout.pxW || this.pxW, layout.pxH || this.pxH);
+        this._drawStaticInto(rt, tmpT.list, this.occluders, null);
+      } catch (e) {
+        console.warn('prerender', layout.vnum, e);
+        if (rt) { rt.destroy(); rt = null; }
+      }
+      // tear down everything the passes made, then restore the live room's state
+      try { this.occluders.forEach(o => o.destroy()); } catch (_) {}
+      try { this.reactiveProps.forEach(p => p.img && p.img.destroy && p.img.destroy()); } catch (_) {}
+      tmpT.removeAll(true); tmpB.removeAll(true); tmpT.destroy(); tmpB.destroy();
+      Object.assign(this, saved);
+      return rt ? this._storeStaticRT(layout.vnum, rt) : null;
     }
 
     // Phase 1 room richness: scatter themed ground detail over the flat tile
@@ -4190,22 +4281,16 @@
         // the room we leave keeps its full rendered content (props, trees, mobs)
         // as a snapshot parked at its neighbour offset, fading into the painted
         // haze, so the rebuild never shows things popping out of existence
-        let ghost = null;
-        try {
-          ghost = this.add.renderTexture(0, 0, this.pxW, this.pxH).setOrigin(0, 0);
-          // Graphics objects (wall-depth strips, AO) render opaque in a RenderTexture: skip them
-          ghost.draw(this.tileLayer.list.filter(o => o.type !== 'Graphics'));
-          for (const ent of this.entities.values()) {
-            if (ent.doll && ent.doll.container) ghost.draw(ent.doll.container);
-            else if (ent.art) ghost.draw(ent.art);
-            else if (ent.sprite && ent.sprite.alpha > 0) ghost.draw(ent.sprite);
-          }
-        } catch (_) { if (ghost) { ghost.destroy(); ghost = null; } }
+        // (stitched zone) the snapshot is cached per room and parked at its
+        // atlas offset by world-peek, which also keeps it there for as long as
+        // the room stays in range: nothing pops out of existence behind you
+        const left = this.layout.vnum;
+        const ghost = this.snapshotLiveStatic();
         this.buildRoom(layout, entryDir);
-        if (ghost) {
-          ghost.setPosition(slide[0], slide[1]).setDepth(-8.3);
-          this.bgLayer.add(ghost);
-          this.tweens.add({ targets: ghost, alpha: 0, delay: 900, duration: 1400, onComplete: () => { try { ghost.destroy(); } catch (_) {} } });
+        if (ghost && ghost.active) {
+          // shown at once in case the atlas placement lags a frame
+          ghost.setPosition(slide[0], slide[1]).setVisible(true).setTint(0xffffff);
+          this._justLeft = left;
         }
         // continuous position: where the player WAS, expressed in the new room's
         // frame (the gap they walked through is the gap they arrive by), so

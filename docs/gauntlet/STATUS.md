@@ -48,6 +48,20 @@ read this file, `docs/art/SOURCES.md`, then the plan.
 - Both notes fixed (no new round): `#hit-flash` was the red wash — every hit taken fired a
   full-viewport radial at 45%; it is now edge-only (transparent to 72%, 0.32 s, `heavy` variant
   for hits ≥20). Painter canopy crowns get a lit sunward rim + dark underside arc, like rocks.
+- Stitched zone step 3 (built, no round spent): neighbours are now pre-rendered at FULL fidelity,
+  not just ground. `scene.prerenderStatic(layout)` runs the wall/decoration/furniture passes into
+  throwaway layers and bakes one RenderTexture per room (`_staticRTs`); `world-peek` parks each
+  at its atlas offset in the deferred queue (after that room's ground paint) and prunes the ones
+  out of range. The room you leave is snapshotted into the same cache (walls, props AND its mobs)
+  instead of a fading ghost, so nothing vanishes behind you. `/atlas` now carries `description`
+  + `flags`, and the peek passes `zone`, so the peeked layout is byte-identical to the live one
+  (before, zone-less layouts drew different props and the crossing swapped them). Adjacent rooms
+  are untinted (haze only on the outer ring): the brightness seam at the border is gone.
+  Evidence: `docs/gauntlet/scratch/round-3/mh/walk.png` (local only) — trees visible beyond the
+  gap before crossing, the old room fully furnished beside the new one, no flash.
+  Still not stitched: mobs in neighbouring rooms (the server only sends the current room's
+  entities) and physics (one physics world per room; a crossing is still a camera pan + rebuild
+  under a continuous camera). Those are the remaining items of the NEXT below.
 - NEXT (architectural, the biggest remaining item): the full stitched-zone renderer. Build the whole
   zone as one tilemap from `/atlas` coordinates (each room = its deterministic layout placed at
   x*W, y*H; corridors drawn for non-adjacent exits), paint per room into one big canvas on idle,
