@@ -17186,8 +17186,14 @@ class CommandHandler:
         mob = create_mob_from_prototype(proto, player.world)
         mob.room = player.room
         mob.home_room = player.room
+        mob.home_zone = player.room.zone.number if getattr(player.room, 'zone', None) else None
         player.room.characters.append(mob)
-        player.world.mobs.append(mob)
+        # same registry the zone spawner uses (world.mobs never existed: mload crashed the caller's connection)
+        player.world.npcs.append(mob)
+        try:
+            player.world._ensure_shop(mob)
+        except Exception:
+            pass
         
         await player.send(f"{c['bright_green']}You wave your hand and {mob.short_desc} appears!{c['reset']}")
         await player.room.send_to_room(
