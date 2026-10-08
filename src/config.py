@@ -361,8 +361,11 @@ class Config:
             'move_dice': 8,
             'thac0_progression': 'fast',
             'save_progression': 'warrior',
-            'skills': ['track', 'sneak', 'hide', 'second_attack', 'dual_wield', 'dodge', 'scan',
-                      'truesight_shot', 'wildbond_strike', 'loosing_storm', 'quarry_mark', 'tame',
+            # progression-01: a new character learns the first THREE skills, so the
+            # class's button-3 attack must sit among them (a level-1 ranger had track,
+            # sneak and hide — no way to fight but the sword)
+            'skills': ['truesight_shot', 'track', 'sneak', 'hide', 'second_attack', 'dual_wield', 'dodge', 'scan',
+                      'wildbond_strike', 'loosing_storm', 'quarry_mark', 'tame',
                       'snare'],
             'spells': ['cure_light', 'detect_magic', 'faerie_fire', 'call_lightning',
                       'barkskin', 'entangle', 'briskness'],
@@ -379,9 +382,9 @@ class Config:
             'move_dice': 4,
             'thac0_progression': 'fast',
             'save_progression': 'warrior',
-            'skills': ['rescue', 'bash', 'turn_undead', 'second_attack', 'censure',
+            'skills': ['censure', 'rescue', 'bash', 'turn_undead', 'second_attack',
                       'oath', 'order_verdict', 'absolution', 'halo_of_reckoning',
-                      'dodge', 'parry', 'shield_block'],
+                      'dodge', 'parry', 'shield_block'],   # censure first: it is the paladin's button 3
             'spells': ['cure_light', 'cure_serious', 'bless', 'detect_evil', 'protection_from_evil',
                       'shield_of_faith', 'divine_shield',
                       # Level 31-60 spells
@@ -420,7 +423,9 @@ class Config:
             'move_dice': 6,
             'thac0_progression': 'medium',
             'save_progression': 'thief',
-            'skills': ['sneak', 'pick_lock', 'lore', 'countersong', 'fascinate', 'mockery', 'dodge',
+            # progression-01: a level-1 bard with sneak, pick_lock and lore died ten
+            # times on the newcomer ladder; mockery and fascinate are its fight
+            'skills': ['mockery', 'fascinate', 'sneak', 'pick_lock', 'lore', 'countersong', 'dodge',
                       'crescendo', 'encore', 'magnum_opus', 'discordant_note'],
             'spells': ['charm_person', 'sleep', 'invisibility', 'haste', 'slow',
                       'cure_light', 'detect_magic', 'heroism', 'fear', 'mass_charm',

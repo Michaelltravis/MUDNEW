@@ -1,0 +1,51 @@
+> consider quasit
+
+=== Considering: quasit ===
+quasit looks like an easy kill.
+Threat: Easy  |  Level: 3 vs You 5  |  XP: green (80% exp)
+Outcome: You should win with minimal risk.
+Tactics: OB/DB/PB You +2/+24/0% | quasit +1/+6/0%
+State: Stance Normal | Move steady | Defenses: baseline
+Health: excellent condition
+Insight: Good target for beginners
+
+
+38/52hp 138/138mp 191/191mv> 
+[t=   0.0s] > kill quasit
+[t=   0.0s] You attack quasit!
+[t=   0.0s] Your thrust hits quasit! [12 damage]
+[t=   0.0s] quasit [████████░░] [54/66]
+[t=   0.0s] 38/52hp 138/138mp 190/191mv [quasit: 54/66]> 
+[t=   0.0s] > cast 'truesight shot' quasit
+[t=   0.0s] You don't know the spell 'truesight'!
+[t=   0.0s] Type 'spells' to see your known spells.
+[t=   0.0s] 38/52hp 138/138mp 190/191mv [quasit: 54/66]> 
+[t=   0.0s] > truesight shot quasit
+[t=   0.0s] 🏹 You fire a perfectly aimed shot at quasit! [7]
+[t=   0.0s] 💥 quasit reels — STAGGERED! Strike now!
+[t=   0.0s] 38/52hp 138/138mp 190/191mv [quasit: 47/66]> 
+[t=   0.5s] You press the opening while quasit reels — wide open!
+[t=   0.5s] Your thrust lands squarely and scratches quasit! [6 damage]
+[t=   0.5s] [Focus: 27/100]
+[t=   0.5s] quasit [█████░░░░░] [38/66]
+[t=   0.5s] 38/52hp 138/138mp 189/191mv [quasit: 38/66]> 
+[t=   4.6s] ⚠ quasit rears back — a crushing blow is coming! (brace or sidestep!)
+[t=   4.6s] Your thrust connects — it hits quasit! [14 damage]
+[t=   4.6s] quasit [███░░░░░░░] [24/66]
+[t=   4.6s] 39/52hp 138/138mp 190/191mv [quasit: 24/66]> 
+[t=   4.6s] quasit's blow hits you — it tickles you! [2 damage]
+[t=   4.6s] > brace
+[t=   4.6s] You plant your feet and BRACE for the incoming blow!
+[t=   4.6s] 37/52hp 138/138mp 180/191mv [quasit: 24/66]> 
+[t=   8.6s] Your thrust hits quasit! [12 damage]
+[t=   8.6s] quasit [█░░░░░░░░░] [12/66]
+[t=   8.6s] 38/52hp 138/138mp 182/191mv [quasit: 12/66]> 
+[t=   8.6s] You brace against the impact — it glances off you! (halved)
+[t=   8.6s] quasit's crushing blow slams into Newtreje! [7]
+[t=   9.6s] > truesight shot quasit
+[t=   9.6s] Aimed Shot on cooldown (2s).
+[t=   9.6s] 31/52hp 138/138mp 182/191mv [quasit: 12/66]> 
+[t=  12.6s] Your thrust lands squarely and hits quasit! [14 damage]
+[t=  12.6s] ☠ quasit is DEAD! You killed quasit.
+[t=  12.6s] You gain 164 experience points!
+[t=  12.6s] Bonuses: Streak +20

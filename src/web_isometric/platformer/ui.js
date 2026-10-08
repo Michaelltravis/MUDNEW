@@ -243,7 +243,11 @@
     // basics = curated class kit (validated against the roster), then the rest
     // of the roster's actives so nothing useful is left behind
     const basics = [];
-    collect(basics, (CLASS_KIT_ORDER[cls] || []).filter(id => spellSet.has(id) || (rosterSet.has(id) && isActiveSkill(id))));
+    // the curated kit only promises what the character has actually LEARNED
+    // (progression-01: a level-1 bard's bar offered mockery, learned at level 10)
+    const knownSpells = pdata.spells || null;
+    const known = id => (id in learned) || (knownSpells ? (id in knownSpells) : spellSet.has(id));
+    collect(basics, (CLASS_KIT_ORDER[cls] || []).filter(id => known(id) && (spellSet.has(id) || (rosterSet.has(id) && isActiveSkill(id)))));
     collect(basics, spells);
     collect(basics, rosterSkills.filter(isActiveSkill));
     // talents / trained extras: active abilities the player has actually learned
@@ -4204,7 +4208,9 @@
         welcomeChecked = true;
         if ((player.level || 1) > 2 || lsGet('mh_welcome_seen') === '1') return;
         const cls = String(player.char_class || '').toLowerCase();
-        const kit = (CLASS_KIT_ORDER[cls] || []).map(id => abilityCommand(id, new Set(player.class_spells || [])));
+        const knownIds = Object.assign({}, player.skills || {}, player.spells || {});
+        const kitIds = (CLASS_KIT_ORDER[cls] || []).filter(id => id in knownIds);
+        const kit = (kitIds.length ? kitIds : (CLASS_KIT_ORDER[cls] || [])).map(id => abilityCommand(id, new Set(player.class_spells || [])));
         const first = kit[0] ? kit[0].replace(/^cast /, '') : 'your class ability';
         const CLASS_LINE = {
           warrior: 'a wall of steel: open with <b>bash</b>, build momentum, finish with <b>execute</b>',

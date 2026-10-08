@@ -1356,6 +1356,7 @@ def build_map_payload(player, mode: str = 'full') -> dict:
             'cooldowns': _cooldowns(player),
             'reactions': _reaction_ready(player),
             'skills': dict(getattr(player, 'skills', {})),
+            'spells': dict(getattr(player, 'spells', {})),   # learned spells (the roster is class_spells)
             'talents': dict(getattr(player, 'talents', {})),
             'affects': AffectManager.save_affects(player),
         },
