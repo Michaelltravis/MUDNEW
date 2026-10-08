@@ -29,6 +29,32 @@ was not among them. Fixes: rosters reordered so button 3 is learned at creation 
 the payload carries learned spells (`src/map_system.py`), and the hotbar kit and welcome card only
 name abilities the character actually has (`ui.js`). Bard after the fix: 0 deaths, level 5 at 2.8 min.
 
+## Run 2 (`../classes-run2/`): the same ladder, nine new characters — and a world hazard
+| class | run 1 (deaths, L5 at) | run 2 (deaths, L5 at) |
+|---|---|---|
+| warrior | 0, 2.5 min | 1, 5.4 min |
+| paladin | 0, 2.4 min | 0, 2.0 min |
+| cleric | 0, 2.8 min | 0, 1.5 min |
+| mage | 0, 2.9 min | 0, 2.9 min |
+| ranger | 0, 2.9 min | 0, 2.3 min |
+| assassin | 0, 2.9 min | 0, 5.0 min |
+| necromancer | 0, 2.9 min | 1, 2.4 min |
+| thief | 0, 3.6 min | **4, never (level 3)** |
+| bard | 0, 2.8 min | **7, never (level 2)** |
+
+Run 2 is not a tuning regression; it found a **world hazard**. "newbie" is the keyword of six
+different creatures (levels 1 to 5) that wander the same Newbie Zone corridors, and the ladder
+(like a real player typing `kill newbie`) got whichever was standing there: the bard at level 2
+fought "newbie" creatures that `consider` correctly called DEADLY, and died seven times. The
+thief (14 HP at level 1 — a low CON roll) died to the first fights outright. Two things follow:
+1. The tool now pins every step to the creature's vnum and the escort loads it (`curve.py`), so a
+   step labelled "newbie (L2)" is the level-2 one. Re-run in `../classes-run2b/`.
+2. For the human: the Newbie Zone's shared keyword is a trap the tutorial walks newcomers into
+   ("Defeat 3 creatures in the Newbie Zone"). Distinct names (e.g. "newbie wanderer" L1-2,
+   "newbie brute" L4-5), or keeping the L4-5 ones out of the entrance corridors, would remove
+   it. Also: a level-1 thief or bard can start with 14 HP; a starting-HP floor is the same
+   dial as the hit-dice floor, one level earlier.
+
 ## Caveats
 - One run per class, one route; RNG on a single fight can still kill a level-1 character (run C
   in the parent record shows one such death on a different ladder).

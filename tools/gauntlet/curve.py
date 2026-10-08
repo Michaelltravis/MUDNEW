@@ -27,19 +27,22 @@ def strip(s): return ANSI.sub('', s or '')
 # each step: label, then (vnum, keyword) candidates — the first one present is fought
 # (fidos and drunks wander; a sentinel alternative keeps the ladder measurable)
 LADDER = [
-    # the tutorial's own route: training dummy, then the Newbie Zone the chain sends you to
+    # the tutorial's own route: training dummy, then the Newbie Zone the chain sends you to.
+    # Each step names the creature's vnum: "newbie" is the keyword of SIX different mobs
+    # (levels 1-5) that wander the same corridors, and run 2 of the per-class ladder found a
+    # level-2 bard fighting a level-5 "newbie" that `consider` rightly called DEADLY
     ('training dummy (tutorial)', [(3078, 'dummy')]),
-    ('newbie zone: crawler (L1)', [(18602, 'crawler'), (18606, 'crawler'), (18609, 'crawler')]),
-    ('newbie zone: newbie (L2)', [(18600, 'newbie'), (18607, 'newbie'), (18646, 'newbie')]),
-    ('newbie zone: crawler (L1)', [(18609, 'crawler'), (18606, 'crawler'), (18602, 'crawler')]),
-    ('newbie zone: newbie (L2)', [(18607, 'newbie'), (18646, 'newbie'), (18600, 'newbie')]),
-    ('newbie zone: keeper (L3)', [(18606, 'keeper'), (18640, 'newbie')]),
-    ('newbie zone: quasit (L3)', [(18621, 'quasit'), (18627, 'quasit'), (18636, 'quasit')]),
-    ('newbie zone: newbie (L4)', [(18604, 'newbie'), (18620, 'newbie'), (18624, 'newbie')]),
-    ('newbie zone: quasit (L3)', [(18638, 'quasit'), (18627, 'quasit'), (18636, 'quasit')]),
-    ('newbie zone: newbie (L4)', [(18633, 'newbie'), (18637, 'newbie'), (18620, 'newbie')]),
-    ('newbie zone: pitbeast (L5)', [(18605, 'pitbeast'), (18645, 'newbie')]),
-    ('newbie zone: balcony newbie (L5)', [(18645, 'newbie'), (18605, 'pitbeast')]),
+    ('newbie zone: crawler (L1)', [(18602, 'crawler', 18606)]),
+    ('newbie zone: newbie (L2)', [(18600, 'newbie', 18602)]),
+    ('newbie zone: crawler (L1)', [(18609, 'crawler', 18606)]),
+    ('newbie zone: newbie (L2)', [(18607, 'newbie', 18611)]),
+    ('newbie zone: keeper (L3)', [(18606, 'keeper', 18604)]),
+    ('newbie zone: quasit (L3)', [(18621, 'quasit', 18608)]),
+    ('newbie zone: newbie (L4)', [(18604, 'newbie', 18607)]),
+    ('newbie zone: quasit (L3)', [(18638, 'quasit', 18608)]),
+    ('newbie zone: newbie (L4)', [(18633, 'newbie', 18614)]),
+    ('newbie zone: pitbeast (L5)', [(18605, 'pitbeast', 18601)]),
+    ('newbie zone: balcony newbie (L5)', [(18645, 'newbie', 18615)]),
 ]
 TELEGRAPH = re.compile(r'\(brace or sidestep', re.I)
 # boss tier: the lowest bosses in the world, loaded into their lairs — the fights where brace alone

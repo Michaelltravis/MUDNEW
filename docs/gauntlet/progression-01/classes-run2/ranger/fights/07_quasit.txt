@@ -1,0 +1,43 @@
+> consider quasit
+
+=== Considering: quasit ===
+quasit looks like an easy kill.
+Threat: Easy  |  Level: 3 vs You 5  |  XP: green (80% exp)
+Outcome: You should win with minimal risk.
+Tactics: OB/DB/PB You +3/+24/0% | quasit +1/+6/0%
+State: Stance Normal | Move steady | Defenses: baseline
+Health: excellent condition
+Insight: Good target for beginners
+
+
+57/57hp 156/156mp 194/194mv> 
+[t=   0.0s] > kill quasit
+[t=   0.0s] You attack quasit!
+[t=   0.0s] Your thrust lands squarely and hits quasit! [11 damage]
+[t=   0.0s] quasit [████████░░] [57/68]
+[t=   0.0s] 57/57hp 156/156mp 193/194mv [quasit: 57/68]> 
+[t=   0.0s] > cast 'truesight shot' quasit
+[t=   0.0s] You don't know the spell 'truesight'!
+[t=   0.0s] Type 'spells' to see your known spells.
+[t=   0.0s] 57/57hp 156/156mp 193/194mv [quasit: 57/68]> 
+[t=   0.0s] > truesight shot quasit
+[t=   0.0s] 🏹 You fire a perfectly aimed shot at quasit! [9]
+[t=   0.0s] 💥 quasit reels — STAGGERED! Strike now!
+[t=   0.0s] 57/57hp 156/156mp 193/194mv [quasit: 48/68]> 
+[t=   0.7s] You press the opening while quasit reels — wide open!
+[t=   0.7s] Your thrust connects — it hits quasit! [11 damage]
+[t=   0.7s] quasit [████░░░░░░] [32/68]
+[t=   0.7s] 57/57hp 156/156mp 192/194mv [quasit: 32/68]> 
+[t=   2.7s] the corpse of quasit decays, leaving behind its contents.
+[t=   4.7s] ⚠ quasit rears back — a crushing blow is coming! (brace or sidestep!)
+[t=   4.7s] Your thrust injures quasit! [17 damage]
+[t=   4.7s] [Focus: 26/100]
+[t=   4.7s] quasit [██░░░░░░░░] [15/68]
+[t=   4.7s] 57/57hp 156/156mp 193/194mv [quasit: 15/68]> 
+[t=   4.7s] quasit's pounding blow hits you — it tickles you! [2 damage]
+[t=   4.7s] > brace
+[t=   4.7s] You plant your feet and BRACE for the incoming blow!
+[t=   4.7s] 55/57hp 156/156mp 183/194mv [quasit: 15/68]> 
+[t=   8.7s] *** CRITICAL HIT! ***
+[t=   8.7s] Your thrust lands squarely and wounds quasit! [22 damage]
+[t=   8.7s] ☠ quasit is DEAD! You killed quasit.
