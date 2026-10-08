@@ -158,7 +158,8 @@
       try { job(); } catch (_) {}
       setTimeout(step, 40);
     };
-    setTimeout(step, 20);
+    // the first job (the room ahead) runs on the next frame, not after a delay
+    requestAnimationFrame(step);
   }
 
   // called from buildRoom once the real room is painted: stitched-zone step 1.
@@ -194,7 +195,12 @@
         if (!off || !room || placed.some(p => p.room.vnum === vnum)) continue;
         placed.push({ room, dx: off[0], dy: off[1], d: 1 });
       }
-      placed.sort((p, q) => p.d - q.d);
+      // nearest first, and among equals the room AHEAD of the hero first: with
+      // physics across rooms you can be in the next room within a second, and a
+      // flat placeholder there is the one thing a walk must never show
+      const vel = (scene.player && scene.player.body && scene.player.body.velocity) || { x: 0, y: 0 };
+      const ahead = p => (p.dx * vel.x + p.dy * vel.y);
+      placed.sort((p, q) => (p.d - q.d) || (ahead(q) - ahead(p)));
       // static snapshots: keep the ones in range (and ours, hidden under the
       // live room), free the rest; every kept one is re-parked below
       if (scene.pruneStaticRTs) {
