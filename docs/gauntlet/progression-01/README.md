@@ -208,9 +208,13 @@ Fresh warriors, same ladders, same play styles, to put n=2 behind each tier:
 | mastery (L5) | reaction layer | 1 | 3 | 40 |
 | boss (L10) | three buttons | 0 (one timeout) | 0 | 100 |
 | boss (L10) | reaction layer | 0 | 1 (alpha wolf, 2/109) | 109 |
+| caster (L10) | three buttons | 3 of 6 | 2 of 6 (wizard L15, mage L13) | 116 |
+| caster (L10) | reaction layer | 3 of 5 | 2 of 5 (mage L13, wizard L15); interrupts 2 landed, 0 failed | 87 |
 
 Read together with run 1: **at the mastery and boss tiers the two taught buttons are the most
-reliable play**, and the reaction layer's run-1 edge on the bosses (finishing the wolf that
+reliable play**; at the caster tier both styles lose to the "Dangerous" level-15 wizard and the
+aggressive level-13 mage and beat the level-12 mages, with the reaction layer finishing one fight
+untouched on a 29-HP-lighter character and every prompted interrupt landing; and the reaction layer's run-1 edge on the bosses (finishing the wolf that
 three-button play timed out on) did not repeat — the second reaction-layer warrior died to the
 alpha wolf once and finished it untouched the second time. The reaction layer's *measured* edge
 is at the caster tier (interrupt), and the pack is what punishes auto-attack. Max HP still varies
