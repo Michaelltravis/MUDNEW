@@ -469,6 +469,7 @@
       for (const ent of this.entities.values()) this.destroyEntity(ent);
       this.entities.clear();
       this.clearFarEntities();
+      this.clearLedger();   // a parked "last hit" belongs to the fight you just left, not the next room
       if (this.exitZones) this.exitZones.forEach(z => z.destroy());
       this.exitZones = [];
       if (this.featureZones) this.featureZones.forEach(z => z.destroy());
@@ -4294,8 +4295,10 @@
         this._blockedDir = null;   // moved rooms: clear any refusal memory
         this.lastVnum = player.vnum;
         const layout = MH.generateRoomTopDown(roomData);
+        const sameZone = !!(this.layout && this.layout.zoneKey && layout.zoneKey === this.layout.zoneKey);
+        const seamless = !!(moveDir && ['north', 'south', 'east', 'west'].includes(moveDir) && sameZone && MH.worldPeek);
         this.slideTransition(layout, moveDir);
-        MH.bus.emit('room.entered', { room: roomData, zoneName: roomEntry.zoneName });
+        MH.bus.emit('room.entered', { room: roomData, zoneName: roomEntry.zoneName, seamless });
       }
       this.syncEntities(roomEntry);
       this.syncFarEntities(payload.rooms);
@@ -5014,7 +5017,11 @@
         const pressedDir = ay < 0 ? 'north' : ay > 0 ? 'south' : ax < 0 ? 'west' : ax > 0 ? 'east' : null;
         if (manual && pressedDir && L && L.exits && Object.prototype.hasOwnProperty.call(L.exits, pressedDir)
             && !MH.state.inCombat && !locked) {
-          if (this._pressDir !== pressedDir) { this._pressDir = pressedDir; this._pressSince = now; }
+          // "wedged" means the hero is NOT moving: a key held while walking
+          // freely must never fire the exit (it used to teleport you a room
+          // ahead every 1.5 s of held key — every walk critic saw that as a cut)
+          const moved = this._pressPos && Phaser.Math.Distance.Between(this._pressPos.x, this._pressPos.y, this.player.x, this.player.y) > 3;
+          if (this._pressDir !== pressedDir || moved) { this._pressDir = pressedDir; this._pressSince = now; this._pressPos = { x: this.player.x, y: this.player.y }; }
           else if (now - this._pressSince > 1500) {
             wantExit = pressedDir; force = true;
           }

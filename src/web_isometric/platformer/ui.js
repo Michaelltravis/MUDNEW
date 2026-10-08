@@ -918,13 +918,22 @@
     const el = $('room-presence'); if (el) el.textContent = presenceText(lastPresence);
   });
   let bannerFade = null;
-  function showRoom(room, zoneName) {
+  function showRoom(room, zoneName, seamless) {
     lastRoomShown = { room, zoneName };
     // crossfade the banner on a room change instead of an instant swap: a hard
     // text cut was the first thing the world critics named as a "screen change"
     const banner = document.getElementById('room-banner');
     const changed = els.roomName.textContent !== (room.name || '');
-    if (banner && changed) {
+    if (banner && changed && seamless) {
+      // walking inside a zone: no title card at the seam (the critic read the
+      // swap as a scene change). The name settles in quietly a beat later.
+      clearTimeout(bannerFade);
+      bannerFade = setTimeout(() => {
+        banner.style.transition = 'opacity .7s ease';
+        banner.style.opacity = '0.35';
+        setTimeout(() => { els.roomName.textContent = room.name || ''; els.roomZone.textContent = zoneName || ''; banner.style.opacity = '1'; }, 700);
+      }, 1100);
+    } else if (banner && changed) {
       banner.style.transition = 'opacity .18s ease';
       banner.style.opacity = '0';
       clearTimeout(bannerFade);
@@ -4099,7 +4108,7 @@
       MH.bus.on('mob.tip.hide', hideMobTip);
       MH.bus.on('move.blocked', () => cancelWalk());
       MH.bus.on('player.death', () => cancelWalk());
-      MH.bus.on('room.entered', ({ room, zoneName }) => showRoom(room, zoneName));
+      MH.bus.on('room.entered', ({ room, zoneName, seamless }) => showRoom(room, zoneName, seamless));
       MH.bus.on('flash', flash);
       MH.bus.on('move.blocked', e => {}); // scene flashes it
       MH.bus.on('chat', e => { chatLine(e.line); clogLine(e.line.replace(/\x1b\[[0-9;]*m/g, '').replace(/</g, '&lt;'), 'chat'); });

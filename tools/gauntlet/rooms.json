@@ -129,7 +129,8 @@
     "filmstrip": {
       "frames": 6,
       "intervalMs": 450,
-      "cols": 3
+      "cols": 3,
+      "canvasOnly": true
     },
     "note": "continuous world: hold D for 2.7 s from mid-room, walking east through the gap into the next room",
     "ref": {

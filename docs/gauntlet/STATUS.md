@@ -68,6 +68,15 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   crossing; two guards in the next street of Midgaard.
   Still not stitched: physics (one physics world per room; a crossing is a camera pan + rebuild
   under a continuous camera). That is the remaining item of the NEXT below.
+- **world-03 (critic only): round 1 LOSS on walk (title-card swap, combat overlays), round 2 WIN on
+  walk AND forest** (`docs/gauntlet/world-03/round-2/verdicts.md`). The seven-round walk loss
+  turned out to be a client bug: the "wedged" exit breaker fired on any key held 1.5 s and
+  teleported the hero a room ahead (fixed: requires no movement). The capture tool compounded
+  it (a 3–4 s WebGL screenshot made a "2.7 s" storyboard film ~20 s of play; world storyboards
+  are now in-page renderer snapshots at true game time, fight storyboards freeze the loop per
+  frame; reference re-filmed with real stamps). Open notes from the win: un-painted neighbour
+  flat fill can reach the screen (paint ahead first), haze step at the outer ring (feather),
+  canopy crispness, vignette one notch lighter. Confidence low; see the caveats in the record.
 - NEXT (architectural, the biggest remaining item): the full stitched-zone renderer. Build the whole
   zone as one tilemap from `/atlas` coordinates (each room = its deterministic layout placed at
   x*W, y*H; corridors drawn for non-adjacent exits), paint per room into one big canvas on idle,

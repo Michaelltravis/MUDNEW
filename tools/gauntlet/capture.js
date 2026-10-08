@@ -93,14 +93,50 @@ function isBlankPng(buf) {
     if (r.filmstrip) {
       // combat feel: N frames at a fixed interval composed into one storyboard
       const frames = [];
+      // A WebGL screenshot under xvfb/swiftshader takes 3-4 s, which made a
+      // "2.7 s" storyboard film 20 s of play (two room crossings and a wolf
+      // fight) against a 2.3 s reference. The game loop now SLEEPS while each
+      // frame is read back, so every frame is exactly intervalMs of play apart
+      // and the stamps are game time, like the reference's.
+      const stamps = []; let played = 0;
+      if (r.filmstrip.canvasOnly) {
+        // world storyboards: frames are read back IN-PAGE from the renderer at
+        // exact game-time intervals (fast), while the held key is re-pressed
+        // from outside in parallel. No HUD in these frames, no frozen loop,
+        // no wall-clock side effects on the client's own timers.
+        const n = r.filmstrip.frames, iv = r.filmstrip.intervalMs;
+        const [shots] = await Promise.all([
+          page.evaluate(async ({ n, iv }) => {
+            const out = []; const t0 = performance.now();
+            for (let i = 0; i < n; i++) {
+              const due = t0 + i * iv; const w = due - performance.now(); if (w > 0) await new Promise(r => setTimeout(r, w));
+              const stamp = (performance.now() - t0) / 1000;
+              const src = await new Promise(res => MH.game.renderer.snapshot(img => res(img.src)));
+              out.push({ stamp, src });
+            }
+            return out;
+          }, { n, iv }),
+          (async () => { for (let i = 0; i < n; i++) { await sleep(Math.max(100, iv - 50)); if (r.keys && r.keys.down) await page.keyboard.down(r.keys.down); } })(),
+        ]);
+        for (const sh of shots) { stamps.push(sh.stamp); frames.push(sh.src.replace(/^data:image\/png;base64,/, '')); }
+      } else {
+      const freeze = on => page.evaluate(o => { try {
+        const g = MH.game; if (!g) return;
+        if (o) g.loop.sleep();
+        else { g.loop.wake(); if (g.loop.resetDelta) g.loop.resetDelta(); const sc = g.scene.getScenes(true).find(s => s.player); if (sc) sc._pressSince = Date.now(); }   // the wall-clock "held key, going nowhere" exit breaker must not count frozen time
+      } catch (_) {} }, on);
       for (let i = 0; i < r.filmstrip.frames; i++) {
+        stamps.push(played / 1000);
+        await freeze(true);
         frames.push((await page.screenshot()).toString('base64'));
+        await freeze(false);
+        const tw = Date.now(); await sleep(r.filmstrip.intervalMs); played += Date.now() - tw;
         // browsers auto-repeat a held key; Playwright does not, so re-press between frames
         if (r.keys && r.keys.down) { await page.keyboard.down(r.keys.down); }
-        await sleep(r.filmstrip.intervalMs);
+      }
       }
       const cols = r.filmstrip.cols || 4, W = 640, H = 360;
-      const html = `<style>body{margin:0;background:#000}.g{display:grid;grid-template-columns:repeat(${cols},${W}px);gap:6px;padding:6px}.c{position:relative;width:${W}px;height:${H}px}.c img{width:100%;height:100%}.c span{position:absolute;left:6px;top:6px;background:#000c;color:#fff;font:bold 18px sans-serif;padding:1px 8px;border-radius:3px}</style><div class="g">${frames.map((b, i) => `<div class="c"><img src="data:image/png;base64,${b}"><span>${(i * r.filmstrip.intervalMs / 1000).toFixed(1)}s</span></div>`).join('')}</div>`;
+      const html = `<style>body{margin:0;background:#000}.g{display:grid;grid-template-columns:repeat(${cols},${W}px);gap:6px;padding:6px}.c{position:relative;width:${W}px;height:${H}px}.c img{width:100%;height:100%}.c span{position:absolute;left:6px;top:6px;background:#000c;color:#fff;font:bold 18px sans-serif;padding:1px 8px;border-radius:3px}</style><div class="g">${frames.map((b, i) => `<div class="c"><img src="data:image/png;base64,${b}"><span>${stamps[i].toFixed(1)}s</span></div>`).join('')}</div>`;
       const strip = await ctx.newPage({ viewport: { width: cols * (W + 6) + 6, height: Math.ceil(frames.length / cols) * (H + 6) + 6 } });
       await strip.setContent(html); await sleep(200);
       buf = await strip.screenshot({ path: file, fullPage: true });
