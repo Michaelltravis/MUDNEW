@@ -80,7 +80,7 @@
         cam.setViewport(ins.left, ins.top, vw, vh);
         cam.setZoom(z);
         cam.setBounds(-this.pxW, -this.pxH, this.pxW * 3, this.pxH * 3);
-        if (this.player) cam.startFollow(this.player, true, 0.12, 0.12); else cam.centerOn(this.pxW / 2, this.pxH / 2);
+        if (this.player) cam.startFollow(this.player, true, 0.2, 0.2); else cam.centerOn(this.pxW / 2, this.pxH / 2);
         this._hudInsets = ins;
         if (MH.fitMinimapColumn) { try { MH.fitMinimapColumn(); } catch (_) {} }
       };
@@ -131,7 +131,7 @@
       this.rimTint = 0xfff2cc;
 
       this.player = this.physics.add.sprite(this.pxW / 2, this.pxH / 2, 'td_player_warrior', 'd0');
-      this.cameras.main.startFollow(this.player, true, 0.12, 0.12);   // the camera tracks the player (world-peek)
+      this.cameras.main.startFollow(this.player, true, 0.2, 0.2);   // the camera tracks the player (world-peek)
       this.player.setScale(1 / MH.SMOOTH_SS);
       this.player.setSize(11 * MH.SMOOTH_SS, 10 * MH.SMOOTH_SS).setOffset(6.5 * MH.SMOOTH_SS, 12 * MH.SMOOTH_SS);
       this.player.setDepth(10);

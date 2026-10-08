@@ -95,6 +95,8 @@ function isBlankPng(buf) {
       const frames = [];
       for (let i = 0; i < r.filmstrip.frames; i++) {
         frames.push((await page.screenshot()).toString('base64'));
+        // browsers auto-repeat a held key; Playwright does not, so re-press between frames
+        if (r.keys && r.keys.down) { await page.keyboard.down(r.keys.down); }
         await sleep(r.filmstrip.intervalMs);
       }
       const cols = r.filmstrip.cols || 4, W = 640, H = 360;
