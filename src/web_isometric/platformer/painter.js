@@ -1061,8 +1061,13 @@
         ctx.globalCompositeOperation = 'source-over';
       }
     }
-    // 7c) vignette: the room darkens toward its walls (strong indoors)
-    if (light.vig > 0) {
+    // 7c) vignette: the room darkens toward its walls (strong indoors). In the
+    // stitched world an OUTDOOR room must not carry its own vignette: every
+    // painting then has dark edges and two paintings meet in a dark seam
+    // (world-03 r4 critic: "hard vertical brightness edge"). Outdoors the
+    // vignette is one screen-space pass over the viewport (platformer.html);
+    // enclosed rooms keep theirs, their walls are real edges.
+    if (light.vig > 0 && (enclosed || !MH.worldPeek)) {
       const vr = Math.max(cw, ch) * (enclosed ? 0.68 : 0.78);
       const vg = ctx.createRadialGradient(cw / 2, ch / 2, Math.min(cw, ch) * (enclosed ? 0.14 : 0.3), cw / 2, ch / 2, vr);
       vg.addColorStop(0, css(vigCol, 0));

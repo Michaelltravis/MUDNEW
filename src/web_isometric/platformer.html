@@ -822,6 +822,10 @@
   #loot-toast .gold { color: var(--gold); }
 
   /* ---- low-HP vignette ---- */
+  /* one screen-space vignette for the stitched outdoors (room paintings no longer
+     carry their own, which met in dark seams at every border) */
+  #game-root::after { content: ''; position: absolute; inset: 0; z-index: 30; pointer-events: none;
+    background: radial-gradient(ellipse at center, transparent 58%, rgba(4,10,6,0.28) 88%, rgba(4,10,6,0.46) 100%); }
   #vignette {
     position: absolute; inset: 0; z-index: 35; pointer-events: none; opacity: 0;
     background: radial-gradient(ellipse at center, transparent 55%, rgba(160,10,10,0.55) 100%);
