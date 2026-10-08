@@ -24,20 +24,23 @@ ANSI = re.compile(r'\x1b\[[0-9;]*m')
 def strip(s): return ANSI.sub('', s or '')
 
 # vnum, keyword, what a newcomer sees it as
+# each step: label, then (vnum, keyword) candidates — the first one present is fought
+# (fidos and drunks wander; a sentinel alternative keeps the ladder measurable)
 LADDER = [
-    (3078, 'dummy', 'training dummy (tutorial)'),
-    (3012, 'fido', 'fido, Main Street'),
-    (3074, 'rat', 'rat, Forgotten Passage'),
-    (3007, 'drunk', 'drunk, Grunting Boar'),
-    (3024, 'urchin', 'street urchin, Poor Alley'),
-    (3048, 'patron', 'drunk patron, Grubby Inn'),
-    (3032, 'rottweiler', 'rottweiler, Pet Shop'),
-    (3032, 'wolf', 'wolf, Pet Shop'),
-    (3026, 'pickpocket', 'pickpocket, Dark Alley'),
-    (3026, 'mercenary', 'mercenary, Dark Alley'),
-    (3012, 'fido', 'fido again (second lap)'),
-    (3024, 'urchin', 'street urchin again'),
+    ('training dummy (tutorial)', [(3078, 'dummy')]),
+    ('fido / janitor (level 1)', [(3012, 'fido'), (3016, 'fido'), (3006, 'janitor')]),
+    ('rat / beggar (level 1)', [(3074, 'rat'), (3044, 'beggar'), (3048, 'beggar')]),
+    ('drunk (level 2)', [(3007, 'drunk'), (3048, 'patron')]),
+    ('street urchin (level 2)', [(3024, 'urchin'), (3007, 'drunk')]),
+    ('drunk patron (level 3)', [(3048, 'patron'), (3032, 'rottweiler'), (3032, 'raven')]),
+    ('rottweiler / wolf (level 3-4)', [(3032, 'rottweiler'), (3032, 'wolf'), (3032, 'snake')]),
+    ('pickpocket (level 5)', [(3026, 'pickpocket'), (3026, 'mercenary')]),
+    ('mercenary (level 5)', [(3026, 'mercenary'), (3026, 'pickpocket')]),
+    ('second lap: level 1-2', [(3012, 'fido'), (3006, 'janitor'), (3024, 'urchin'), (3007, 'drunk')]),
+    ('second lap: level 2', [(3024, 'urchin'), (3007, 'drunk'), (3048, 'patron')]),
+    ('second lap: level 2-3', [(3007, 'drunk'), (3048, 'patron'), (3024, 'urchin')]),
 ]
+TELEGRAPH = re.compile(r'\(brace or sidestep', re.I)
 DEATH = re.compile(r'\bis dead\b|has been slain|You killed|is DEAD', re.I)
 PDEATH = re.compile(r'soul slipping away|You have died|You are dead', re.I)
 LEVEL_UP = re.compile(r'LEVEL UP|You (?:have )?(?:gained|reached|advance to) level|You rise to level', re.I)
@@ -64,19 +67,28 @@ def rest_up(c, max_s=150):
     c.send_and_receive('stand', 0.6)
     return round(time.time() - t0, 1)
 
-def fight(adm, c, name, vnum, kw, max_s, out_path):
+def fight(adm, c, name, cands, max_s, out_path, smart=True):
     c.send_and_receive('stand', 0.4)
-    adm.send_and_receive(f'goto {vnum}', 1.0); adm.send_and_receive('zreset', 1.2); adm.send_and_receive(f'transfer {name}', 1.0)
-    c.receive(1.0)
-    consider = strip(c.send_and_receive(f'consider {kw}', 1.0))
-    if "don't see" in consider:
-        return {'vnum': vnum, 'target': kw, 'threat': 'absent (wandered off)', 'ended': 'absent', 'duration_s': 0, 'rounds': 0,
+    consider = ''; vnum = kw = None
+    for v, k in cands:
+        adm.send_and_receive(f'goto {v}', 1.0); adm.send_and_receive('zreset', 1.2); adm.send_and_receive(f'transfer {name}', 1.0)
+        c.receive(1.0)
+        consider = strip(c.send_and_receive(f'consider {k}', 1.0))
+        if "don't see" not in consider: vnum, kw = v, k; break
+    if vnum is None:
+        return {'vnum': cands[0][0], 'target': cands[0][1], 'threat': 'absent (every candidate wandered off)', 'ended': 'absent', 'duration_s': 0, 'rounds': 0,
                 'level_before': score(c)['level'], 'level_after': None, 'levelled': False, 'exp_before': None, 'exp_after': None, 'hp_start': None, 'hp_end': None, 'maxhp': None}
     threat = re.search(r'Threat:\s*([^|]+)\|', consider)
     before = score(c)
     c.send(f'kill {kw}'); t0 = time.time(); body = []; ended = 'timeout'; levelled = False
+    # "three buttons": a newcomer opens with bash (button 3) and answers the
+    # wind-up prompt with brace — the client's Guide and reaction chips teach exactly this
+    last_bash = -99; braces = 0; bashes = 0
     while time.time() - t0 < max_s:
         out = strip(c.receive(1.0))
+        if smart:
+            if TELEGRAPH.search(out): c.send('brace'); braces += 1
+            elif time.time() - t0 - last_bash > 9 and 'collapse' not in out: c.send(f'bash {kw}'); last_bash = time.time() - t0; bashes += 1
         if out.strip():
             body.append((round(time.time() - t0, 1), out))
             if LEVEL_UP.search(out): levelled = True
@@ -96,14 +108,14 @@ def fight(adm, c, name, vnum, kw, max_s, out_path):
         'vnum': vnum, 'target': kw, 'threat': threat.group(1).strip() if threat else consider.strip()[-80:],
         'level_before': before['level'], 'level_after': after['level'], 'levelled': levelled or (after['level'] or 0) > (before['level'] or 0),
         'exp_before': before['exp'], 'exp_after': after['exp'],
-        'duration_s': dur, 'rounds': rounds, 'ended': ended,
+        'duration_s': dur, 'rounds': rounds, 'ended': ended, 'bashes': bashes, 'braces': braces,
         'hp_start': int(prompts[0][0]) if prompts else before['hp'], 'hp_end': int(prompts[-1][0]) if prompts else after['hp'], 'maxhp': after['maxhp'],
     }
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--run', default='progression-01')
     ap.add_argument('--name', default='NewYzxgo'); ap.add_argument('--password', default='newcomer1')
-    ap.add_argument('--admin', default='Gauntletb'); ap.add_argument('--admin-password', default='gauntlet1'); ap.add_argument('--max', type=int, default=90)
+    ap.add_argument('--admin', default='Gauntletb'); ap.add_argument('--admin-password', default='gauntlet1'); ap.add_argument('--max', type=int, default=90); ap.add_argument('--dumb', action='store_true', help='auto-attack only (no bash, no brace)')
     a = ap.parse_args()
     out_dir = os.path.join(ROOT, 'docs', 'gauntlet', a.run); os.makedirs(os.path.join(out_dir, 'fights'), exist_ok=True)
     adm = MUDClient('localhost', 4000); login(adm, a.admin, a.admin_password)
@@ -111,8 +123,8 @@ def main():
     c = MUDClient('localhost', 4000); login(c, a.name, a.password)
     adm.send_and_receive(f'restore {a.name}', 0.8)
     start = score(c); t_start = time.time(); fights = []; rests = []; deaths = 0; level_times = {}
-    for i, (vnum, kw, label) in enumerate(LADDER, 1):
-        f = fight(adm, c, a.name, vnum, kw, a.max, os.path.join(out_dir, 'fights', f'{i:02d}_{kw}.txt'))
+    for i, (label, cands) in enumerate(LADDER, 1):
+        f = fight(adm, c, a.name, cands, a.max, os.path.join(out_dir, 'fights', f'{i:02d}_{cands[0][1]}.txt'), smart=not a.dumb)
         f['label'] = label; f['t_elapsed_s'] = round(time.time() - t_start, 1)
         fights.append(f); print(json.dumps(f))
         if f['ended'] == 'player_died': deaths += 1
@@ -128,9 +140,9 @@ def main():
     md = [f"# {a.run} — the first hour as numbers\n", f"Character: {a.name}, a real level-{start['level']} character with its starting kit. Ladder of {len(LADDER)} fights, resting when under 60% HP; a death is restored by an admin so the ladder continues (a real player respawns at the temple).\n",
           f"**Level reached: {end['level']}** · deaths: {deaths} · total {summary['total_s']}s (fighting {summary['active_fight_s']}s, resting {summary['rest_s']}s)\n",
           'Time to level: ' + (', '.join(f"L{k} at {v}s" for k, v in sorted(level_times.items())) or 'no level gained') + '\n',
-          '| # | fight | threat | lvl | rounds | s | HP end | result |', '|---|---|---|---|---|---|---|---|']
+          '| # | fight | target | threat | lvl | rounds | s | bash/brace | HP end | result |', '|---|---|---|---|---|---|---|---|---|---|']
     for i, f in enumerate(fights, 1):
-        md.append(f"| {i} | {f['label']} | {f['threat']} | {f['level_before']}→{f['level_after']} | {f['rounds']} | {f['duration_s']} | {f['hp_end']}/{f['maxhp']} | {f['ended']}{' ↑' if f['levelled'] else ''} |")
+        md.append(f"| {i} | {f['label']} | {f['target']} | {f['threat']} | {f['level_before']}→{f['level_after']} | {f['rounds']} | {f['duration_s']} | {f.get('bashes', 0)}/{f.get('braces', 0)} | {f['hp_end']}/{f['maxhp']} | {f['ended']}{' ↑' if f['levelled'] else ''} |")
     if rests: md.append('\nRests: ' + ', '.join(f"{r['seconds']}s after {r['after']}" for r in rests))
     open(os.path.join(out_dir, 'curve.md'), 'w').write('\n'.join(md) + '\n')
     print('wrote', os.path.relpath(out_dir, ROOT))
