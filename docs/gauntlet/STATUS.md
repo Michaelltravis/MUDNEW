@@ -128,7 +128,13 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   on combat end, level-up, and a 15 s poll. Verified end to end with the tutorial chain
   (`scratch/guide/*.png`, local). Found and fixed on the way: `prerenderStatic` leaked root-level
   glows/washes over the live room (now sweeps every display-list newcomer).
-- Next: class picker with ability preview.
+- Class picker (built): the creation wizard's class step now shows the hero you are about to be —
+  each card runs the class's recoloured Lucifer model idling on a DOM canvas (`MH.lucifer.preview`,
+  the recolour pixel pass shared with the Phaser bake), plays the attack on hover, and states the
+  one-line fantasy and the three starting buttons (attack · flee · first kit ability). Verified
+  through the live wizard (`scratch/create/class-step.png`, local).
+- Next (onboarding): nothing blocking; a critic round on "first ten minutes" would be the honest
+  test, with a fresh level-1 character and the Guide driving.
 
 Credit discipline: one piece, one round.
 

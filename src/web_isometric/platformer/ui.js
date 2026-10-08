@@ -3827,11 +3827,42 @@
         cw('cw-body').innerHTML = cwGrid(CW_RACES, true);
         cwBindPicks(v => cwSend(v));
       }
+      // the class step shows the hero you are about to be: the recoloured
+      // model idling on each card, the attack on hover, the one-line fantasy
+      // and the three buttons you start with (easy to start)
+      const CW_FANTASY = {
+        warrior: 'A wall of steel. Open with bash, build momentum, finish with execute.',
+        paladin: 'The Light\'s hammer. Censure the wicked, absolve the fallen.',
+        ranger: 'The quiet arrow. Mark your quarry and strike from range.',
+        thief: 'The knife in the dark. Backstab from behind and vanish.',
+        mage: 'The High Tower\'s fire. Magic missile now, fireballs soon.',
+        cleric: 'Keeper of the Order. Smite the undead, heal your allies.',
+        bard: 'The court\'s voice. Mock, fascinate, turn the tide with song.',
+        necromancer: 'The Soulbinder. Harvest souls, then raise the dead.',
+        assassin: 'The Brotherhood\'s blade. Mark, expose, fulfil the contract.',
+      };
+      let cwPreviews = [];
       function cwClass() {
         cw('cw-title').textContent = '⚔ CHOOSE YOUR CALLING'; cw('cw-steps').textContent = 'STEP 2 OF 3';
-        cw('cw-sub').textContent = 'Your class is how you fight, cast, and grow.';
-        cw('cw-body').innerHTML = cwGrid(CW_CLASSES);
-        cwBindPicks(v => { const c = CW_CLASSES.find(x => x[0] === v); cwPrime = c ? c[3] : ''; cwSend(v); });
+        cw('cw-sub').textContent = 'Your class is how you fight, cast, and grow. Three buttons to start; the depth comes as you level.';
+        cwPreviews.forEach(p => { try { p.destroy(); } catch (_) {} }); cwPreviews = [];
+        const luc = MH.lucifer && MH.lucifer.isReady() ? MH.lucifer : null;
+        cw('cw-body').innerHTML = '<div id="cw-grid">' + CW_CLASSES.map(([id, ic, de, st]) => {
+          const first = (CLASS_KIT_ORDER[id] || [])[0];
+          const kit = ['attack', 'flee', first ? first.replace(/_/g, ' ') : null].filter(Boolean).join(' · ');
+          const model = luc && luc.resolveClass(id) ? `<canvas class="cw-prev" width="64" height="72" data-cls="${id}"></canvas>` : `<span class="cw-ic">${ic}</span>`;
+          return `<div class="cw-pick" data-v="${id}"><div class="cw-row">${model}<div><span class="cw-nm">${cap(id)}</span>`
+            + `<div class="cw-de">${CW_FANTASY[id] || de}</div></div></div>`
+            + `<div class="cw-kit">starts with <b>${kit}</b></div><div class="cw-st">Prime: ${st}</div></div>`;
+        }).join('') + '</div>';
+        cw('cw-body').querySelectorAll('.cw-prev').forEach(cv => {
+          const pv = luc.preview(cv.dataset.cls, cv, { scale: 1.5 });
+          if (!pv) return;
+          cwPreviews.push(pv);
+          const card = cv.closest('.cw-pick');
+          card.addEventListener('mouseenter', () => pv.setAction('attack'));
+        });
+        cwBindPicks(v => { const c = CW_CLASSES.find(x => x[0] === v); cwPrime = c ? c[3] : ''; cwPreviews.forEach(p => { try { p.destroy(); } catch (_) {} }); cwPreviews = []; cwSend(v); });
       }
       function cwStats(text) {
         cw('cw-title').textContent = '⚔ ROLL YOUR FATE'; cw('cw-steps').textContent = 'STEP 3 OF 3';
