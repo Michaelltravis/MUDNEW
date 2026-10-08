@@ -69,7 +69,11 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   Still not stitched: physics (one physics world per room; a crossing is a camera pan + rebuild
   under a continuous camera). That is the remaining item of the NEXT below.
 - **world-03 (critic only): round 1 LOSS on walk (title-card swap, combat overlays), round 2 WIN on
-  walk AND forest** (`docs/gauntlet/world-03/round-2/verdicts.md`). The seven-round walk loss
+  walk AND forest (low); rounds 3–4 LOSS on walk (tooling: a 2.4 s first snapshot swallowed the
+  crossing, a dead-end route; then real seams — a measured 70 vs 82 luminance step at a sector
+  border, fixed with a four-tile floor cross-fade, one screen-space vignette, world-sized grade
+  plates); round 5 WIN on walk AND forest at MEDIUM confidence with the sides swapped by seed**
+  (`round-5/verdicts.md`; earlier detail `docs/gauntlet/world-03/round-2/verdicts.md`). The seven-round walk loss
   turned out to be a client bug: the "wedged" exit breaker fired on any key held 1.5 s and
   teleported the hero a room ahead (fixed: requires no movement). The capture tool compounded
   it (a 3–4 s WebGL screenshot made a "2.7 s" storyboard film ~20 s of play; world storyboards
