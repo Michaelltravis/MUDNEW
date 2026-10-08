@@ -1624,16 +1624,16 @@ QUEST_DEFINITIONS = {
 
     'tutorial_9_newbie_zone': {
         'name': 'Proving Grounds',
-        'description': 'Test your skills in the Newbie Zone! The Great Field is north of the Temple, past the Altar. From the Temple, go north three times to reach the Great Field, then go east to enter the Newbie Zone. Defeat 3 creatures there, then return to the Temple.',
+        'description': 'Test your skills in the Newbie Zone! The Great Field is north of the Temple, past the Altar. From the Temple, go north four times (the field is two rooms deep) to reach the Great Field, then go east to enter the Newbie Zone. Defeat 3 creatures there, then return to the Temple.',
         'type': 'tutorial',
         'level_min': 1,
         'level_max': 7,
         'quest_giver': 3200,
         'objectives': [
-            {'type': 'visit', 'description': 'Find the Great Field (go north 3 times from the Temple)', 'target': '3061', 'required': 1},
+            {'type': 'visit', 'description': 'Find the far end of the Great Field (go north 4 times from the Temple)', 'target': '3061', 'required': 1},
             {'type': 'visit', 'description': 'Enter the Newbie Zone (go east from the Great Field)', 'target': '18600', 'required': 1},
             {'type': 'kill', 'description': 'Defeat 3 creatures in the Newbie Zone', 'target': 'any', 'required': 3},
-            {'type': 'visit', 'description': 'Return to Sage Aldric at the Temple (go west, then south 3 times)', 'target': '3001', 'required': 1}
+            {'type': 'visit', 'description': 'Return to Sage Aldric at the Temple (go west, then south 4 times)', 'target': '3001', 'required': 1}
         ],
         'rewards': {'exp': 500, 'gold': 200},
         'next_quest': 'tutorial_10_skills',

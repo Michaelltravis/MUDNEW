@@ -1,13 +1,14 @@
 // Gauntlet evidence: two live clients (Gauntlet, Gauntletb) in one room.
 // CMDS='[["A","goto 3014"],["B","goto 3014"],["B","follow Gauntlet"],["A","group Gauntletb"],["B","group accept"],["A","kill cityguard"]]' \
 //   OUT=docs/gauntlet/<run>/round-<n>/mh NODE_PATH=/opt/node22/lib/node_modules xvfb-run -a node tools/gauntlet/duo.js
-// Writes duo_A.png and duo_B.png. Both characters are admin accounts (see tools/gauntlet/README.md).
+// Writes duo_A.png and duo_B.png. Defaults to the admin accounts (see tools/gauntlet/README.md);
+// A_NAME=... B_NAME=... PASS=... drives any two characters, e.g. two fresh newcomers walking (no goto).
 const { chromium } = require('playwright');
-async function login(ctx, name) {
+async function login(ctx, name, pass) {
   const page = await ctx.newPage();
   page.on('pageerror', e => console.log(name, 'pageerror:', String(e).slice(0, 140)));
   await page.goto('http://localhost:4001/platformer?gauntlet=1', { waitUntil: 'load' });
-  await page.waitForSelector('#login-name'); await page.fill('#login-name', name); await page.fill('#login-pass', 'gauntlet1'); await page.click('#login-btn');
+  await page.waitForSelector('#login-name'); await page.fill('#login-name', name); await page.fill('#login-pass', pass || process.env.PASS || 'gauntlet1'); await page.click('#login-btn');
   for (let i = 0; i < 40; i++) { await page.waitForTimeout(500); if (await page.evaluate(() => !!(window.MH && MH.state.currentRoom))) break; }
   await page.waitForTimeout(800);
   try { await page.click('#welcome-go', { timeout: 1500 }); } catch (_) {}   // new characters get a welcome card
@@ -18,7 +19,7 @@ async function login(ctx, name) {
   const browser = await chromium.launch({ args: ['--use-gl=swiftshader','--enable-webgl','--ignore-gpu-blocklist'] });
   const ctxA = await browser.newContext({ viewport: { width: 1280, height: 720 } });
   const ctxB = await browser.newContext({ viewport: { width: 1280, height: 720 } });
-  const A = await login(ctxA, 'Gauntlet'), B = await login(ctxB, 'Gauntletb');
+  const A = await login(ctxA, process.env.A_NAME || 'Gauntlet'), B = await login(ctxB, process.env.B_NAME || 'Gauntletb');   // A_NAME/B_NAME/PASS: any two characters (e.g. two newcomers)
   const cmds = JSON.parse(process.env.CMDS || '[]');
   for (const [who, c] of cmds) { await (who === 'A' ? A : B).evaluate(x => MH.sendCommand(x, false), c); await A.waitForTimeout(900); }
   // POLL='<css selector>' waits (up to 90 s) until that element is visible on B before the screenshots

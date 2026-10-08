@@ -113,6 +113,13 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   wolf", level 3 → 5, achievement toast), the corpse loot tag. Evidence:
   `docs/gauntlet/multiplayer/current/duo_{A,B}.png`. Found on the way: a same-zone crossing's
   delayed banner settle could overwrite a later teleport's name (tracked timer, fixed).
+- Two NEWCOMERS together (`docs/gauntlet/multiplayer/newcomers/duo_{A,B}.png`): a fresh level-5
+  bard and paladin recall to the temple, walk the tutorial's route north to the Great Field and
+  east into the Newbie Zone, and stand together at its entrance — each sees the other, the
+  presence chip reads "1 with you · 2 online", each hotbar shows its own button 3 (mockery /
+  censure). `duo.js` now drives any two characters (`A_NAME`/`B_NAME`/`PASS`). Found on the way:
+  the "Proving Grounds" tutorial said "north three times" to the Great Field; it is four (the
+  field is two rooms deep and only the far room opens east) — fixed in `src/quests.py`.
 - Next: loot history panel; ally telegraph rings when a mob fights a party member beside you.
 
 ## Phase C: ARPG controls and readability (BASELINE EXISTS)
