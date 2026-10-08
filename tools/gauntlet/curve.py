@@ -106,7 +106,7 @@ def fight(adm, c, name, cands, max_s, out_path, smart=True, opener='bash', pro=F
     if vnum is None:
         return {'vnum': cands[0][0], 'target': cands[0][1], 'threat': 'absent (every candidate wandered off)', 'ended': 'absent', 'duration_s': 0, 'rounds': 0,
                 'level_before': score(c)['level'], 'level_after': None, 'levelled': False, 'exp_before': None, 'exp_after': None, 'hp_start': None, 'hp_end': None, 'maxhp': None}
-    threat = re.search(r'Threat:\s*([^|]+)\|', consider)
+    threat = re.search(r'Threat:\s*([A-Za-z]+)', consider)   # the Threat line only (consider also prints box-drawn tables)
     before = score(c)
     # mastery (v2): no defensive stance — measured as a net loss at this tier; instead the
     # PERFECT STRIKE: `swing` in the last stretch of each ~4 s round (+damage, double stagger)

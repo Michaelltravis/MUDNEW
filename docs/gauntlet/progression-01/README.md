@@ -139,6 +139,27 @@ only ever helps), but "hard to master" is not yet evidenced by numbers; it needs
 playthrough or a tier where brace alone is not enough (bosses with interruptible casts, AoE that
 must be evaded) — that is the next measurement if the human wants one.
 
+### Boss tier (`boss-v1/{dumb,three,pro}/`)
+The two lowest bosses in the world, loaded into their lairs, against three fresh warriors advanced
+to level 10 (spider queen L12 "Moderate", alpha wolf L14 "Even/Challenging", each twice):
+
+| play | deaths | results |
+|---|---|---|
+| auto-attack | **2** | queen killed it (2/62), wolf killed it (11/62) |
+| three buttons (bash + brace) | 0 | queen won 14/82; wolf won 61/82; second wolf **timed out** at 73/82 (18 rounds, 150 s) |
+| perfect strikes + sidestep + cleave | 0 | queen won 13/78; wolf won 8/78 and 22/78 — 14–20 PERFECT strikes per fight |
+
+- **The boss tier kills auto-attack outright** and both reaction styles survive it. The perfect-
+  strike player is the only one to *finish* every boss inside the window: three-button play ran
+  out the clock on the second alpha wolf. That is the first number in which the deeper layer
+  beats the basics — on kill speed, not on safety.
+- Caveat that matters: neither boss declared an interruptible cast or an AoE slam in any run.
+  The spider queen fights with a legacy "Venomous Strike" heavy wind-up (brace/sidestep), the
+  alpha wolf with its pack's lunges; the boss ability table (Ground Slam, Terrifying Roar, Summon
+  Minions) lives on the `Boss` class's own AI and did not fire for these two. So `interrupt` is
+  still unmeasured. A boss that actually casts (zone 200's higher bosses, or any `caster` role
+  elite) is the next ladder if the human wants the interrupt mechanic proven.
+
 ## Not a gauntlet piece
 There is no BrowserQuest reference for progression (it has no levels). This record is the
 measurement itself; a future round can re-run `curve.py` after retuning and compare the table.

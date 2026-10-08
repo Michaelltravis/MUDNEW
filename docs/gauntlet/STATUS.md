@@ -178,7 +178,11 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   styles on the same fight, the three-button warrior untouched in four fights on fewer HP, the
   riposte never triggered. Verdict as recorded: brace + bash dominates this tier; the deeper
   layer needs a human playthrough or a boss tier (interruptible casts, must-evade AoE) to show
-  its worth. Design call for the human.
+  its worth. **Boss tier measured** (`boss-v1/`, level-10 warriors vs the spider queen L12 and
+  alpha wolf L14): auto-attack dies twice, both reaction styles survive, and the perfect-strike
+  player is the only one to finish every boss (three-button play timed out on the second wolf) —
+  the deeper layer's first measured edge, on kill speed. Neither boss declared an interruptible
+  cast, so `interrupt` is still unproven; a casting boss is the next ladder if wanted.
 - **onboard-01 (critic only, fresh level-1 character through the live wizard vs BrowserQuest's
   intro): round 1 WIN overall (start WIN, first LOSS: dimmed wall-of-text modal); round 2 WIN on
   both** after the welcome became a three-line corner card over an undimmed world with the keybind
