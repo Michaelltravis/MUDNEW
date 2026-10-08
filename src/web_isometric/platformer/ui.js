@@ -4187,17 +4187,27 @@
           bard: 'the court\'s voice: <b>mock</b>, <b>fascinate</b>, and turn the tide with song',
           necromancer: 'the Soulbinder: <b>soul bolt</b> to harvest, then raise the dead',
         };
+        // onboard-01 critic: three things, one line each, the world visible behind
+        const first3 = first.replace(/^cast /, '');
         els.welcomeBody.innerHTML =
-          `Welcome, <b>${player.name || 'adventurer'}</b>. You are ${CLASS_LINE[cls] || 'an adventurer of Misthollow'}.<br><br>`
-          + `<b>Three buttons to start:</b> <b>1</b> attack, <b>2</b> flee, <b>3</b> ${first}. More unlock at levels 6 and 11, `
-          + `and the depth beneath (stances, perfect strikes, talents, prestige) is there when you want it.<br><br>`
-          + `<b>Sage Aldric</b> is here to set you on your path — look for the gold <b>!</b> above him and click <b>Talk</b>. `
-          + `Hostile creatures glow red — face one and press <b>F</b>. Found a friend? <b>Enter</b>, then <b>group &lt;name&gt;</b> to adventure together.`;
-        setWorldInput(false);
+          `<div style="font-size:12px;color:#c8ccd8;text-align:left">Welcome, <b>${player.name || 'adventurer'}</b> — ${CLASS_LINE[cls] ? CLASS_LINE[cls].split(':')[0] : 'an adventurer of Misthollow'}.</div>`
+          + `<div class="wc-steps">`
+          + `<div class="wc-step"><span class="ic">🧭</span><span><b>WASD</b> to walk · step off an edge to travel</span></div>`
+          + `<div class="wc-step"><span class="ic">⚔</span><span><b>F</b> attacks what glows red · <b>3</b> is ${first3}</span></div>`
+          + `<div class="wc-step"><span class="ic">❗</span><span>Talk to <b>Sage Aldric</b> — the gold <b>!</b> with the ring</span></div>`
+          + `</div><div class="wc-depth">Three buttons now. More unlock at level 6 — the Guide (top-left) shows your next step.</div>`;
+        const ctl = document.getElementById('welcome-ctl');
+        if (ctl && !ctl.dataset.bound) { ctl.dataset.bound = '1'; ctl.addEventListener('click', () => document.getElementById('welcome-card').classList.toggle('ctl')); }
+        // the world stays playable under the corner card; the card also folds
+        // itself away the first time you talk to someone or change rooms
         els.welcomeOverlay.classList.add('show');
+        const fold = () => { if (els.welcomeOverlay.classList.contains('show')) { els.welcomeOverlay.classList.remove('show'); lsSet('mh_welcome_seen', '1'); } };
+        const shownIn = player.vnum;   // the arrival itself must not fold it: only a real room change does
+        MH.bus.on('room.entered', ({ room }) => { if (room && room.vnum !== shownIn) setTimeout(fold, 0); });
+        MH.bus.on('npc.talk', fold);
       }
       els.welcomeGo.addEventListener('click', () => {
-        els.welcomeOverlay.classList.remove('show'); lsSet('mh_welcome_seen', '1'); setWorldInput(true);
+        els.welcomeOverlay.classList.remove('show'); lsSet('mh_welcome_seen', '1');
       });
       MH.bus.on('map', payload => maybeWelcome(payload.player));
       MH.bus.once ? MH.bus.once('map', startGuide) : MH.bus.on('map', startGuide);

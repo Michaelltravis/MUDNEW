@@ -1510,13 +1510,24 @@
   #quest-tracker.min .qt-nm, #quest-tracker.min .qt-obj, #quest-tracker.min .qt-way { display: none; }
 
   /* ---- first-spawn welcome overlay ---- */
-  #welcome-overlay { position: absolute; inset: 0; z-index: 90; display: none; align-items: center;
-    justify-content: center; background: rgba(6,7,11,0.78); backdrop-filter: blur(3px); }
-  #welcome-overlay.show { display: flex; }
-  #welcome-card { width: 460px; max-width: 88vw; background: linear-gradient(180deg,#14161f,#0d0f15);
-    border: 1px solid rgba(232,193,104,0.45); border-radius: 14px; padding: 22px 26px;
-    box-shadow: 0 0 50px rgba(0,0,0,0.6); font-family: var(--ui-font); text-align: center; }
-  #welcome-card .wc-title { font-family: Georgia, serif; font-size: 22px; color: #ffe9a8; letter-spacing: 1px; }
+  /* onboard-01 critic: the world stays visible and bright behind the welcome —
+     a corner card, not a dimmed modal; the keybind table hides behind "Controls" */
+  #welcome-overlay { position: absolute; inset: 0; z-index: 90; display: none; pointer-events: none; }
+  #welcome-overlay.show { display: block; }
+  #welcome-card { position: absolute; right: 18px; bottom: 96px; width: 340px; max-width: 88vw; pointer-events: auto;
+    background: linear-gradient(180deg,rgba(20,22,31,.96),rgba(13,15,21,.96));
+    border: 1px solid rgba(232,193,104,0.5); border-radius: 12px; padding: 16px 18px 14px;
+    box-shadow: 0 6px 30px rgba(0,0,0,0.55); font-family: var(--ui-font); text-align: center; }
+  #welcome-card .wc-steps { text-align: left; margin: 10px 0 8px; }
+  #welcome-card .wc-step { display: flex; align-items: center; gap: 10px; padding: 5px 0; font-size: 13px; color: #e8e2cc; }
+  #welcome-card .wc-step .ic { width: 30px; height: 30px; border-radius: 8px; display: inline-flex; align-items: center; justify-content: center;
+    background: rgba(232,193,104,0.12); border: 1px solid rgba(232,193,104,0.35); font-size: 15px; flex: 0 0 30px; }
+  #welcome-card .wc-step b { color: #ffe9a8; }
+  #welcome-card .wc-depth { font-size: 11px; color: #9aa2b4; text-align: left; margin: 2px 0 10px; }
+  #welcome-card .wc-ctl { font-size: 10.5px; color: #8a90a4; cursor: pointer; text-decoration: underline dotted; margin-left: 12px; }
+  #welcome-card .wc-ctl:hover { color: #fff; }
+  #welcome-card:not(.ctl) .wc-controls { display: none !important; }
+  #welcome-card .wc-title { font-family: Georgia, serif; font-size: 18px; color: #ffe9a8; letter-spacing: 1px; }
   #welcome-card .wc-body { font-size: 13px; color: #d6dae6; line-height: 1.5; margin: 12px 0 14px; text-align: left; }
   #welcome-card .wc-body b { color: #ffe9a8; }
   #welcome-card .wc-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 14px;
@@ -3100,7 +3111,7 @@
         <span><b>1–0</b> abilities</span><span><b>K</b> skills</span><span><b>J</b> quests</span>
         <span><b>M</b> map</span><span><b>Enter</b> type a command</span>
       </div>
-      <button id="welcome-go" type="button">Enter the Realm →</button>
+      <button id="welcome-go" type="button">Got it →</button><span class="wc-ctl" id="welcome-ctl">Controls</span>
     </div>
   </div>
 

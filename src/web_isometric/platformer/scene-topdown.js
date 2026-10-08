@@ -2447,9 +2447,17 @@
           color: q === '?' ? '#7dff9a' : '#ffd44a', stroke: '#000', strokeThickness: 3,
         }).setOrigin(0.5, 1).setDepth(20);
         this.tweens.add({ targets: ent.questMark, y: ent.questMark.y - 4, duration: 700, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+        // onboard-01 critic: a newcomer's first objective is a person — ring
+        // them on the floor so the "!" is not the only cue (levels 1-2 only)
+        const lvl = (MH.state.player && MH.state.player.level) || 99;
+        if (q === '!' && lvl <= 2) {
+          ent.questRing = this.add.ellipse(ent.sprite.x, ent.sprite.y + 6, 26, 11).setStrokeStyle(2, 0xffd44a, 0.9).setDepth((ent.sprite.depth || 8) - 0.05);
+          this.tweens.add({ targets: ent.questRing, scaleX: 1.6, scaleY: 1.6, alpha: 0, duration: 1200, repeat: -1, ease: 'sine.out' });
+        }
       } else if (!q && ent.questMark) {
         ent.questMark.destroy();
         ent.questMark = null;
+        if (ent.questRing) { ent.questRing.destroy(); ent.questRing = null; }
       } else if (q && ent.questMark) {
         ent.questMark.setText(q).setColor(q === '?' ? '#7dff9a' : '#ffd44a');
       }
@@ -2574,7 +2582,7 @@
       if (ent.pose) this.tweens.killTweensOf(ent.pose);
       if (ent.windup) this.endWindup(ent, false);
       if (ent.aggroRing) this.tweens.killTweensOf(ent.aggroRing);
-      ['sprite', 'label', 'hpbar', 'fightMark', 'questMark', 'bubble', 'engageRing', 'serviceMark', 'shadow', 'rim', 'guardMark', 'aggroRing', 'aggroGfx'].forEach(k => { if (ent[k]) ent[k].destroy(); });
+      ['sprite', 'label', 'hpbar', 'fightMark', 'questMark', 'questRing', 'bubble', 'engageRing', 'serviceMark', 'shadow', 'rim', 'guardMark', 'aggroRing', 'aggroGfx'].forEach(k => { if (ent[k]) ent[k].destroy(); });
     }
     shortName(name) {
       const n = String(name || '');
