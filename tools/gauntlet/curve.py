@@ -68,7 +68,7 @@ def rest_up(c, max_s=150):
     c.send_and_receive('stand', 0.6)
     return round(time.time() - t0, 1)
 
-def fight(adm, c, name, cands, max_s, out_path, smart=True):
+def fight(adm, c, name, cands, max_s, out_path, smart=True, opener='bash'):
     c.send_and_receive('stand', 0.4)
     consider = ''; vnum = kw = None
     for v, k in cands:
@@ -88,8 +88,13 @@ def fight(adm, c, name, cands, max_s, out_path, smart=True):
     while time.time() - t0 < max_s:
         out = strip(c.receive(1.0))
         if smart:
+            # the opener may be a spell or a skill depending on the class: flip the
+            # form once if the server does not recognise it
+            if bashes == 1 and re.search(r"Huh\?|don't know (?:that|the|any)|What do you want to|You can't cast|not a (?:skill|spell)", out, re.I):
+                opener = re.sub(r"^cast '(.+)'$", r"\1", opener) if opener.startswith('cast ') else f"cast '{opener}'"
+                last_bash = -99
             if TELEGRAPH.search(out): c.send('brace'); braces += 1
-            elif time.time() - t0 - last_bash > 9 and 'collapse' not in out: c.send(f'bash {kw}'); last_bash = time.time() - t0; bashes += 1
+            elif time.time() - t0 - last_bash > 9 and 'collapse' not in out: c.send(f'{opener} {kw}'); last_bash = time.time() - t0; bashes += 1
         if out.strip():
             body.append((round(time.time() - t0, 1), out))
             if LEVEL_UP.search(out): levelled = True
@@ -109,23 +114,23 @@ def fight(adm, c, name, cands, max_s, out_path, smart=True):
         'vnum': vnum, 'target': kw, 'threat': threat.group(1).strip() if threat else consider.strip()[-80:],
         'level_before': before['level'], 'level_after': after['level'], 'levelled': levelled or (after['level'] or 0) > (before['level'] or 0),
         'exp_before': before['exp'], 'exp_after': after['exp'],
-        'duration_s': dur, 'rounds': rounds, 'ended': ended, 'bashes': bashes, 'braces': braces,
+        'duration_s': dur, 'rounds': rounds, 'ended': ended, 'bashes': bashes, 'braces': braces, 'opener_used': opener,
         'hp_start': int(prompts[0][0]) if prompts else before['hp'], 'hp_end': int(prompts[-1][0]) if prompts else after['hp'], 'maxhp': after['maxhp'],
     }
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--run', default='progression-01')
     ap.add_argument('--name', default='NewYzxgo'); ap.add_argument('--password', default='newcomer1')
-    ap.add_argument('--admin', default='Gauntletb'); ap.add_argument('--admin-password', default='gauntlet1'); ap.add_argument('--max', type=int, default=90); ap.add_argument('--dumb', action='store_true', help='auto-attack only (no bash, no brace)')
+    ap.add_argument('--admin', default='Gauntletb'); ap.add_argument('--admin-password', default='gauntlet1'); ap.add_argument('--max', type=int, default=90); ap.add_argument('--dumb', action='store_true', help='auto-attack only (no bash, no brace)'); ap.add_argument('--open', default='bash', help="the class's button-3 command used as the opener, e.g. \"cast 'magic missile'\""); ap.add_argument('--out', default=None, help='output dir (default docs/gauntlet/<run>)')
     a = ap.parse_args()
-    out_dir = os.path.join(ROOT, 'docs', 'gauntlet', a.run); os.makedirs(os.path.join(out_dir, 'fights'), exist_ok=True)
+    out_dir = a.out or os.path.join(ROOT, 'docs', 'gauntlet', a.run); os.makedirs(os.path.join(out_dir, 'fights'), exist_ok=True)
     adm = MUDClient('localhost', 4000); login(adm, a.admin, a.admin_password)
     adm.send_and_receive('settime 14', 0.3); adm.send_and_receive('setweather clear', 0.3)
     c = MUDClient('localhost', 4000); login(c, a.name, a.password)
     adm.send_and_receive(f'restore {a.name}', 0.8)
     start = score(c); t_start = time.time(); fights = []; rests = []; deaths = 0; level_times = {}
     for i, (label, cands) in enumerate(LADDER, 1):
-        f = fight(adm, c, a.name, cands, a.max, os.path.join(out_dir, 'fights', f'{i:02d}_{cands[0][1]}.txt'), smart=not a.dumb)
+        f = fight(adm, c, a.name, cands, a.max, os.path.join(out_dir, 'fights', f'{i:02d}_{cands[0][1]}.txt'), smart=not a.dumb, opener=a.open)
         f['label'] = label; f['t_elapsed_s'] = round(time.time() - t_start, 1)
         fights.append(f); print(json.dumps(f))
         if f['ended'] == 'player_died': deaths += 1
@@ -134,11 +139,11 @@ def main():
         if f['hp_end'] is not None and f['maxhp'] and f['hp_end'] < 0.6 * f['maxhp'] and f['ended'] != 'player_died':
             r = rest_up(c); rests.append({'after': label, 'seconds': r}); print(json.dumps({'rest': r}))
     end = score(c)
-    summary = {'run': a.run, 'character': a.name, 'start': start, 'end': end, 'fights': fights, 'rests': rests, 'deaths': deaths,
+    summary = {'run': a.run, 'character': a.name, 'opener': a.open, 'start': start, 'end': end, 'fights': fights, 'rests': rests, 'deaths': deaths,
                'level_reached': end['level'], 'time_to_level': level_times, 'total_s': round(time.time() - t_start, 1),
                'active_fight_s': round(sum(f['duration_s'] for f in fights), 1), 'rest_s': round(sum(r['seconds'] for r in rests), 1)}
     json.dump(summary, open(os.path.join(out_dir, 'curve.json'), 'w'), indent=2)
-    md = [f"# {a.run} — the first hour as numbers\n", f"Character: {a.name}, a real level-{start['level']} character with its starting kit. Ladder of {len(LADDER)} fights, resting when under 60% HP; a death is restored by an admin so the ladder continues (a real player respawns at the temple).\n",
+    md = [f"# {a.run} — the first hour as numbers\n", f"Character: {a.name}, a real level-{start['level']} character with its starting kit (opener: `{a.open}`). Ladder of {len(LADDER)} fights, resting when under 60% HP; a death is restored by an admin so the ladder continues (a real player respawns at the temple).\n",
           f"**Level reached: {end['level']}** · deaths: {deaths} · total {summary['total_s']}s (fighting {summary['active_fight_s']}s, resting {summary['rest_s']}s)\n",
           'Time to level: ' + (', '.join(f"L{k} at {v}s" for k, v in sorted(level_times.items())) or 'no level gained') + '\n',
           '| # | fight | target | threat | lvl | rounds | s | bash/brace | HP end | result |', '|---|---|---|---|---|---|---|---|---|---|']
