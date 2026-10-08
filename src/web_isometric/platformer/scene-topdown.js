@@ -291,9 +291,13 @@
       });
       this.playerShadow = this.add.image(this.player.x, this.player.y, 'px_shadow')
         .setDepth(5).setAlpha(0.4).setScale(0.34);
-      this.nightTint = this.add.rectangle(0, 0, this.pxW, this.pxH, 0x101830, 0).setOrigin(0, 0).setDepth(42);
+      // grade/tint plates cover the WHOLE drawn world (±3 rooms), not just the live
+      // room: a room-sized plate left every neighbour ungraded and drew a hard
+      // brightness edge at each border (world-03 r4/r5 storyboards)
+      const PLATE = [-3 * this.pxW, -3 * this.pxH, 7 * this.pxW, 7 * this.pxH];
+      this.nightTint = this.add.rectangle(PLATE[0], PLATE[1], PLATE[2], PLATE[3], 0x101830, 0).setOrigin(0, 0).setDepth(42);
       // cinematic colour-cast layer: a soft per-zone/time grade laid over the scene
-      this.gradeCast = this.add.rectangle(0, 0, this.pxW, this.pxH, 0x000000, 0)
+      this.gradeCast = this.add.rectangle(PLATE[0], PLATE[1], PLATE[2], PLATE[3], 0x000000, 0)
         .setOrigin(0, 0).setDepth(41).setBlendMode(Phaser.BlendModes.OVERLAY);
       // reusable off-screen stamp used to carve light pools out of the darkness layer
       this.lightStamp = this.add.image(0, 0, 'px_light').setVisible(false);
@@ -315,7 +319,7 @@
       this.dmgVignette = this.add.image(this.pxW / 2, this.pxH / 2, 'px_vignette')
         .setDisplaySize(this.pxW, this.pxH).setDepth(48).setAlpha(0)
         .setTint(0xe02020).setScrollFactor(0);
-      this.screenFlash = this.add.rectangle(0, 0, this.pxW, this.pxH, 0xffffff, 0)
+      this.screenFlash = this.add.rectangle(PLATE[0], PLATE[1], PLATE[2], PLATE[3], 0xffffff, 0)
         .setOrigin(0, 0).setDepth(49).setBlendMode(Phaser.BlendModes.ADD);
       this.weatherEmitter = null;
       this.rainSplash = null;
@@ -1726,8 +1730,8 @@
 
       // zone mood wash: a whisper of the theme's color over everything
       if (zt && zt.mood) {
-        const wash = this.add.rectangle(0, 0, this.pxW, this.pxH, zt.mood, zt.moodA || 0.06)
-          .setOrigin(0, 0).setDepth(33).setBlendMode(Phaser.BlendModes.OVERLAY);
+        const wash = this.add.rectangle(-3 * this.pxW, -3 * this.pxH, 7 * this.pxW, 7 * this.pxH, zt.mood, zt.moodA || 0.06)
+          .setOrigin(0, 0).setDepth(33).setBlendMode(Phaser.BlendModes.OVERLAY);   // whole drawn world, see PLATE
         this.fxList.push(wash);
       }
 
