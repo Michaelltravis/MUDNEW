@@ -59,6 +59,32 @@ inside ~15 minutes with no deaths on the newcomer ladder, using only what the sc
   in a bard-only tavern, a wandering urchin, a wandering patron) — fine as long as the chain
   keeps pointing at the Newbie Zone and the forest.
 
+## Hard to master? The mastery ladder (`mastery-{dumb,three,pro}/`)
+The same level-5 warrior (`NewSlzkb`) one tier up — balcony newbie L5, the Light Forest goblin
+pack (L4 ×2, aggressive), minotaur L7 / spectre L6 — played three ways:
+
+| play | deaths | notes |
+|---|---|---|
+| auto-attack | 2 | both deaths to the goblin pack (22/67 then 8/67 HP) |
+| three buttons (bash + brace) | 0 | pack beaten at 76/76 and 28/76; levelled to 6 on the first fight |
+| "mastery" (defensive stance, sidestep, interrupt, cleave alternated) | 1 | died to the balcony newbie after 21 rounds; pack beaten at 32/76 and 54/76 |
+
+What this says, honestly:
+- The pack is the first thing that **punishes** auto-attack: reacting to the wind-up prompt is
+  the difference between two deaths and none. That is the "hard to master" edge biting, one tier
+  past the newcomer zone.
+- The scripted "mastery" layer did **not** outperform the three buttons. Defensive stance stretched
+  the balcony fight to 21 rounds and lost it; `sidestep` answered "Nothing is winding up" because
+  the player's own blow in the same round staggered the creature and cancelled the wind-up (the
+  telegraph and the stagger arrive in one packet). Brace "works" only because it never checks.
+  Two design observations for the human: (1) a stagger that cancels a declared wind-up makes the
+  reaction prompt moot in the common case — either the prompt should not print when the mob is
+  about to be staggered, or the stagger should not cancel; (2) defensive stance's trade at this
+  tier is a net loss for a warrior with 67 HP.
+- Spectre and minotaur could not be measured: after the first run `zreset` did not bring them
+  back inside the ladder's window (tool limitation, same cause as "wandered off" above). Confound:
+  the three-button run levelled the character to 6 before the mastery run.
+
 ## Not a gauntlet piece
 There is no BrowserQuest reference for progression (it has no levels). This record is the
 measurement itself; a future round can re-run `curve.py` after retuning and compare the table.
