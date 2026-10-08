@@ -16,9 +16,9 @@ OPENER = {
     'mage': "cast 'magic missile'", 'necromancer': "cast 'soul bolt'", 'cleric': "cast 'holy smite'", 'bard': 'mockery',
 }
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument('--run', default='progression-01'); ap.add_argument('--classes', default=','.join(OPENER))
+    ap = argparse.ArgumentParser(); ap.add_argument('--run', default='progression-01'); ap.add_argument('--classes', default=','.join(OPENER)); ap.add_argument('--out', default='classes', help='subfolder under docs/gauntlet/<run>/')
     a = ap.parse_args()
-    base = os.path.join(ROOT, 'docs', 'gauntlet', a.run, 'classes'); os.makedirs(base, exist_ok=True)
+    base = os.path.join(ROOT, 'docs', 'gauntlet', a.run, a.out); os.makedirs(base, exist_ok=True)
     rows = []
     for cls in [c for c in a.classes.split(',') if c]:
         print('==', cls, flush=True)
