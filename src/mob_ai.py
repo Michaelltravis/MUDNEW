@@ -255,6 +255,18 @@ async def _cast_offensive(mob, target, spell):
     c = mob.config.COLORS
     base_dmg = random.randint(mob.level, mob.level * 3)
     damage = int(base_dmg * mult)
+    # A declared spell is meant to be ANSWERED (interrupt) or survived once, not to
+    # end the fight from above half health: progression-01's caster tier had a
+    # "Moderate" level-12 mage fireballing a level-10 warrior for 82-90 on 73-82 HP.
+    # Non-boss casters cap a single spell at 60% of a player's max HP, after the
+    # same toughness mitigation a heavy blow gets; bosses keep their full numbers.
+    if hasattr(target, 'send') and not getattr(mob, 'is_boss', False) and 'boss' not in (getattr(mob, 'flags', None) or []):
+        try:
+            from combat import CombatHandler
+            damage = CombatHandler.mitigate_incoming(target, damage)
+        except Exception:
+            pass
+        damage = max(1, min(damage, int(getattr(target, 'max_hp', damage) * 0.6)))
     mob.mana = max(0, mob.mana - mana_cost)
     await mob.room.send_to_room(
         f"{c['bright_magenta']}{mob.name} {msg} {target.name}! [{damage}]{c['reset']}"
