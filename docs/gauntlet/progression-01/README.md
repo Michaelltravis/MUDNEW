@@ -84,6 +84,22 @@ What this says, honestly:
   back inside the ladder's window (tool limitation, same cause as "wandered off" above). Confound:
   the three-button run levelled the character to 6 before the mastery run.
 
+### Mastery v2: perfect strikes (`mastery-three-l6/`, `mastery-pro/`)
+Dropping the defensive stance and instead timing `swing` into the last stretch of every round
+(the PERFECT STRIKE: +damage, double stagger), with sidestep on the heavy wind-ups:
+
+| play | pitbeast (L5) fight | swings / PERFECT lines |
+|---|---|---|
+| three buttons, level 6 | won at **48/76 HP**, 15 rounds | — |
+| perfect strikes + sidestep, level 7 | won at **83/83 HP** (untouched), 21 rounds | 7 / 12 |
+
+That is the depth biting the way it should — the timed strike and the sidestep turn a fight that
+costs a third of your health into one that costs nothing — **but it is one comparable fight**
+(the goblins and the minotaur had wandered off or not repopped for the v2 run) and the levels
+differ by one. The v1 lesson stands: the losing "mastery" was the defensive stance, not the
+reaction systems. To make this a real measurement the ladder needs creatures that stay put
+(sentinel copies in a test zone, or a `zreset` that re-seats wanderers); recorded as a tool task.
+
 ## Not a gauntlet piece
 There is no BrowserQuest reference for progression (it has no levels). This record is the
 measurement itself; a future round can re-run `curve.py` after retuning and compare the table.

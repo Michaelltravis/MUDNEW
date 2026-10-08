@@ -167,7 +167,11 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   goblin pack kills auto-attack twice and the three buttons beat it; the scripted mastery layer
   (defensive stance, sidestep, interrupt, second ability) did not beat the three buttons — one
   death, chiefly because defensive stance prolongs fights more than it protects at this tier
-  (sidestep itself worked 2 of 3 times). The design call is recorded there.
+  (sidestep itself worked 2 of 3 times). Mastery v2 — perfect strikes (`swing` timed into the
+  round's last stretch) + sidestep, no stance — won the one comparable fight **untouched**
+  (83/83 vs 48/76 for the three buttons), 12 PERFECT strikes in 21 rounds; n=1 because the other
+  ladder creatures had wandered off. The depth bites; measuring it properly needs creatures that
+  stay put (tool task). The defensive-stance trade remains a design call.
 - **onboard-01 (critic only, fresh level-1 character through the live wizard vs BrowserQuest's
   intro): round 1 WIN overall (start WIN, first LOSS: dimmed wall-of-text modal); round 2 WIN on
   both** after the welcome became a three-line corner card over an undimmed world with the keybind
