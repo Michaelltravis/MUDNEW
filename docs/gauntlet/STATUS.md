@@ -20,7 +20,7 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   only has a thin stone fence frame, and the painted rooftops won the atmosphere round). Decision: the Lucifer RPG UI chrome (flat 14-48px pixel frames) is NOT adopted;
   the glass HUD that won graphics-02 stays. Lucifer icons/boss bars remain available for later.
 
-## Phase B: continuous world (IN PROGRESS)
+## Phase B: continuous world (DONE — walk WIN at medium confidence, physics across rooms built)
 - Step 1 done (`world-peek.js`): the camera follows the player at a notch more zoom, and the
   rooms behind each exit are pre-rendered at their offsets as dimmed flat ground (deterministic
   `generateRoomTopDown` layouts, colours from the zone theme) using the static `/atlas`, so an
@@ -99,7 +99,7 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   player's world position (send the move when they cross; the HUD title follows the server).
   No rebuild, no cut. Estimated at several sessions; everything built here (peek, painter reuse,
   atlas, roles, actors) carries over.
-## Phase D: multiplayer presence (BASELINE VERIFIED)
+## Phase D: multiplayer presence (DONE — three two-client playthroughs on the current build)
 - Two live clients (`tools/gauntlet/duo.js`, characters Gauntlet/Gauntletb) share a room, follow,
   group, and fight together; party frames (top centre) show both members' live HP. Evidence:
   `docs/gauntlet/multiplayer/duo_A_party_fight.png`.
@@ -138,13 +138,13 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   drop was not worth a need/greed roll (the popup is exercised in `multiplayer/duo_B_loot_roll.png`).
 - Next: loot history panel; ally telegraph rings when a mob fights a party member beside you.
 
-## Phase C: ARPG controls and readability (BASELINE EXISTS)
+## Phase C: ARPG controls and readability (DONE — pacing and feel WON; mastery tiers measured twice)
 - Click-to-move, hit-stop, screen shake, floor telegraphs, reaction prompts and damage numbers
   already exist from the gauntlet runs; the playability gauntlet judged them above the bar.
 - Reaction prompt now floats above the hero (ui.js listens to `player.screen`); perfect strikes already hit-stop (`freezeFrame`).
 - Next: a gauntlet feel round with the new art, radial layout for the prompt chips.
 
-## Phase E: onboarding (STEP 1 DONE)
+## Phase E: onboarding (DONE — WIN at high confidence; nine of nine classes measured twice)
 - Progressive hotbar: 3 slots (attack, flee, first class ability) through level 5, 5 slots to
   level 10, full bar after; unlock flash on tier change (`ui.js` autofillBar).
 - Class-specific welcome card: class fantasy line, the three starting buttons, and how to group.
