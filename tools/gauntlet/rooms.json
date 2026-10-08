@@ -142,6 +142,9 @@
     "js": "(() => { const sc = MH.game.scene.getScenes(true).find(s => s.player); sc.player.setPosition(sc.pxW * 0.62, sc.pxH / 2); const inp = document.getElementById('command-input'); if (inp) inp.blur(); document.body.focus(); })()",
     "keys": {
       "down": "d"
-    }
+    },
+    "pre": [
+      "zreset"
+    ]
   }
 ]
