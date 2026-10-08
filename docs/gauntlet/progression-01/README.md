@@ -122,6 +122,23 @@ What this says:
   tier — only a human playthrough can tell which. That is the honest state of "hard to master":
   the systems exist and bite, but they have not yet been shown to out-perform the basics.
 
+### Mastery v4: with the riposte (`mastery-v4/{pro,three}/`)
+A clean sidestep now makes the next strike perfect (`mob_ai._mitigate_hit`). Two fresh level-5
+warriors, same guaranteed six fights:
+
+| play | max HP | deaths | HP left per win |
+|---|---|---|---|
+| perfect strikes + sidestep + cleave | 48 | 1 (second goblin pack, 10/48) | 28, 43, 27, 33, 45 |
+| three buttons (bash + brace) | 35 | 1 (second goblin pack, 14/35) | **35, 35, 35, 35**, 30 |
+
+Same deaths, same fight. The three-button warrior finished four fights **untouched** on 13 fewer
+HP; the riposte never fired because the bot sidestepped once in six fights (brace answers most
+wind-ups first). Reading across v3 and v4: at this tier **brace + bash is the dominant play and
+the perfect-strike/sidestep layer adds nothing a bot can demonstrate**. The riposte stays (it
+only ever helps), but "hard to master" is not yet evidenced by numbers; it needs either a human
+playthrough or a tier where brace alone is not enough (bosses with interruptible casts, AoE that
+must be evaded) — that is the next measurement if the human wants one.
+
 ## Not a gauntlet piece
 There is no BrowserQuest reference for progression (it has no levels). This record is the
 measurement itself; a future round can re-run `curve.py` after retuning and compare the table.

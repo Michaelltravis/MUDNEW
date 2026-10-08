@@ -173,8 +173,12 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   warriors, creatures guaranteed by `mload`, which was broken and is fixed): auto-attack 4 deaths,
   three buttons 1 death, perfect strikes + sidestep 2 deaths with fights twice as long. **The tier
   punishes auto-attack and the two taught buttons suffice; the deeper layer has not been shown to
-  beat them** — sidestep forgoes your attack and a mistimed swing locks you out. Whether a human's
-  timing changes that is the open question; it is a design call, recorded in the README.
+  beat them** — sidestep forgoes your attack and a mistimed swing locks you out. Added a riposte
+  (a clean sidestep makes the next strike perfect) and re-ran (v4): same single death for both
+  styles on the same fight, the three-button warrior untouched in four fights on fewer HP, the
+  riposte never triggered. Verdict as recorded: brace + bash dominates this tier; the deeper
+  layer needs a human playthrough or a boss tier (interruptible casts, must-evade AoE) to show
+  its worth. Design call for the human.
 - **onboard-01 (critic only, fresh level-1 character through the live wizard vs BrowserQuest's
   intro): round 1 WIN overall (start WIN, first LOSS: dimmed wall-of-text modal); round 2 WIN on
   both** after the welcome became a three-line corner card over an undimmed world with the keybind
