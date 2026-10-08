@@ -31,8 +31,18 @@ read this file, `docs/art/SOURCES.md`, then the plan.
 - Step 3 done: cardinal room changes are a camera pan, not a screen slide. The camera keeps the
   old composition (the room you left is now the neighbour behind you) and eases onto the player.
   Up/down/portal travel keeps the wipe.
-- Decision: cross-room physics stays client-side as a camera pan (the server owns rooms and
-  movement; exit gaps already send the move). A gauntlet "world" round is the remaining check.
+- Gauntlet world-01 (critic only, 3 rounds): forest still WON every round on depth/lighting; the
+  walk storyboard LOST every round because a room rebuild (title swap, scene reconstruction) is
+  still a visible cut next to BrowserQuest's single map. Fixed on the way: placeholder labels,
+  the black band past exit-less edges, the invisible hero, the flat flash, key auto-repeat in
+  captures. Records: `docs/gauntlet/world-01/round-*/verdicts.md`.
+- NEXT (architectural, the biggest remaining item): a stitched-zone renderer. Build the whole
+  zone as one tilemap from `/atlas` coordinates (each room = its deterministic layout placed at
+  x*W, y*H; corridors drawn for non-adjacent exits), paint per room into one big canvas on idle,
+  keep one physics world with openings between rooms, and derive the room change from the
+  player's world position (send the move when they cross; the HUD title follows the server).
+  No rebuild, no cut. Estimated at several sessions; everything built here (peek, painter reuse,
+  atlas, roles, actors) carries over.
 ## Phase D: multiplayer presence (BASELINE VERIFIED)
 - Two live clients (`tools/gauntlet/duo.js`, characters Gauntlet/Gauntletb) share a room, follow,
   group, and fight together; party frames (top centre) show both members' live HP. Evidence:
