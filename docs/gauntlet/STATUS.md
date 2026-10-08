@@ -166,8 +166,8 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   **Hard to master, measured one tier up** (`progression-01/README.md`, mastery section): the
   goblin pack kills auto-attack twice and the three buttons beat it; the scripted mastery layer
   (defensive stance, sidestep, interrupt, second ability) did not beat the three buttons — one
-  death, and `sidestep` finds nothing because the player's own stagger cancels the wind-up in
-  the same round. Two design calls for the human are recorded there.
+  death, chiefly because defensive stance prolongs fights more than it protects at this tier
+  (sidestep itself worked 2 of 3 times). The design call is recorded there.
 - **onboard-01 (critic only, fresh level-1 character through the live wizard vs BrowserQuest's
   intro): round 1 WIN overall (start WIN, first LOSS: dimmed wall-of-text modal); round 2 WIN on
   both** after the welcome became a three-line corner card over an undimmed world with the keybind

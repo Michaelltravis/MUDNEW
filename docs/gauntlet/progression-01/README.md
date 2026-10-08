@@ -74,13 +74,12 @@ What this says, honestly:
   the difference between two deaths and none. That is the "hard to master" edge biting, one tier
   past the newcomer zone.
 - The scripted "mastery" layer did **not** outperform the three buttons. Defensive stance stretched
-  the balcony fight to 21 rounds and lost it; `sidestep` answered "Nothing is winding up" because
-  the player's own blow in the same round staggered the creature and cancelled the wind-up (the
-  telegraph and the stagger arrive in one packet). Brace "works" only because it never checks.
-  Two design observations for the human: (1) a stagger that cancels a declared wind-up makes the
-  reaction prompt moot in the common case — either the prompt should not print when the mob is
-  about to be staggered, or the stagger should not cancel; (2) defensive stance's trade at this
-  tier is a net loss for a warrior with 67 HP.
+  the balcony fight to 21 rounds and lost it. `sidestep` worked on 2 of 3 prompts (the wind-up
+  survives the player's stagger — checked in `mob_ai.py`: an intent is cleared only by interrupt,
+  death or the fight ending); the one miss, on the fight's first telegraph, answered "Nothing is
+  winding up" and is unexplained from the transcript. Brace never checks, so it never "misses".
+  Design observation for the human: defensive stance's trade (−hit/−dam for +AC/+PB) is a net
+  loss for a 67-HP warrior at this tier — the fight it prolongs does more damage than it saves.
 - Spectre and minotaur could not be measured: after the first run `zreset` did not bring them
   back inside the ladder's window (tool limitation, same cause as "wandered off" above). Confound:
   the three-button run levelled the character to 6 before the mastery run.
