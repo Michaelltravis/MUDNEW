@@ -140,6 +140,13 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   the recolour pixel pass shared with the Phaser bake), plays the attack on hover, and states the
   one-line fantasy and the three starting buttons (attack · flee · first kit ability). Verified
   through the live wizard (`scratch/create/class-step.png`, local).
+- **Progression measured (`docs/gauntlet/progression-01/README.md`): the "easy to start" bar
+  (level 5 in ~15 min, no deaths) is NOT met.** A genuine level-1 warrior dies to an "Even"
+  level-2 urchin on auto-attack; with the three taught buttons (bash, brace) the level 1–2 ladder
+  is won every time, but level 2 takes 9.5 min (800 xp/level vs 70–140 per kill) and any
+  "Challenging" level-5 mob is a one-exchange death. Balance decisions for the human are listed
+  there (XP curve for levels 1–5, a Deadly tier / gated Dark Alley, sentinel first targets,
+  unhittable beggar and shop pets). Tool: `tools/gauntlet/curve.py`.
 - **onboard-01 (critic only, fresh level-1 character through the live wizard vs BrowserQuest's
   intro): round 1 WIN overall (start WIN, first LOSS: dimmed wall-of-text modal); round 2 WIN on
   both** after the welcome became a three-line corner card over an undimmed world with the keybind
