@@ -5034,8 +5034,12 @@
           // freely must never fire the exit (it used to teleport you a room
           // ahead every 1.5 s of held key — every walk critic saw that as a cut)
           const moved = this._pressPos && Phaser.Math.Distance.Between(this._pressPos.x, this._pressPos.y, this.player.x, this.player.y) > 3;
-          if (this._pressDir !== pressedDir || moved) { this._pressDir = pressedDir; this._pressSince = now; this._pressPos = { x: this.player.x, y: this.player.y }; }
-          else if (now - this._pressSince > 1500) {
+          // GAME time, not wall clock: a stalled frame (a screenshot readback, a tab
+          // in the background) must not count as "stuck for 1.5 s" and fire the exit
+          const dtMs = Math.min(200, (this.game && this.game.loop && this.game.loop.delta) || 16);
+          if (this._pressDir !== pressedDir || moved) { this._pressDir = pressedDir; this._pressHeld = 0; this._pressPos = { x: this.player.x, y: this.player.y }; }
+          else this._pressHeld = (this._pressHeld || 0) + dtMs;
+          if (this._pressDir === pressedDir && !moved && this._pressHeld > 1500) {
             wantExit = pressedDir; force = true;
           }
         } else {
@@ -5056,7 +5060,7 @@
           } else if (!force && (locked || now <= this.exitSuppress)) {
             // in-flight or cooling down: silent, resolves within a second
           } else {
-            if (force) { MH.state.pendingMove = null; this.exitSuppress = 0; this._pressSince = now; }
+            if (force) { MH.state.pendingMove = null; this.exitSuppress = 0; this._pressHeld = 0; }
             this.requestMove(wantExit);
           }
         }

@@ -123,7 +123,7 @@ function isBlankPng(buf) {
       const freeze = on => page.evaluate(o => { try {
         const g = MH.game; if (!g) return;
         if (o) g.loop.sleep();
-        else { g.loop.wake(); if (g.loop.resetDelta) g.loop.resetDelta(); const sc = g.scene.getScenes(true).find(s => s.player); if (sc) sc._pressSince = Date.now(); }   // the wall-clock "held key, going nowhere" exit breaker must not count frozen time
+        else { g.loop.wake(); if (g.loop.resetDelta) g.loop.resetDelta(); const sc = g.scene.getScenes(true).find(s => s.player); if (sc) sc._pressHeld = 0; }   // the "held key, going nowhere" exit breaker must not count frozen time
       } catch (_) {} }, on);
       for (let i = 0; i < r.filmstrip.frames; i++) {
         stamps.push(played / 1000);
