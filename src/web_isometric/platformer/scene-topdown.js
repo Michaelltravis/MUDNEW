@@ -4180,9 +4180,14 @@
       const seamless = !!(slide && this.layout && MH.worldPeek);
       let snap = null;
       if (seamless) {
-        const cam = this.cameras.main, sx = cam.scrollX, sy = cam.scrollY;
+        // keep the hero at the same spot ON SCREEN across the rebuild: remember
+        // the camera's offset from the player, rebuild, re-apply the offset at
+        // the player's new position (robust against bounds clamping), then let
+        // follow() ease toward centre
+        const cam = this.cameras.main;
+        const offX = cam.scrollX - this.player.x, offY = cam.scrollY - this.player.y;
         this.buildRoom(layout, entryDir);
-        cam.setScroll(sx + slide[0], sy + slide[1]);
+        cam.setScroll(this.player.x + offX, this.player.y + offY);
         return;
       }
       if (slide && this.layout) {

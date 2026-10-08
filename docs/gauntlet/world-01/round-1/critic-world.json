@@ -1,0 +1,16 @@
+{
+  "piece": "world",
+  "pick": "A",
+  "per_label": { "walk": "A", "forest": "B" },
+  "reasons": [
+    "walk B frame 0.5s is a hard cut: the frame goes dim/washed-out with only a floating 'Eastern Trail' label in the middle and no character, then 0.9s pops into a different room titled 'Rocky Outcropping' with the character absent until 1.4s. walk A frames 0.0s-1.8s keep one continuous scene with the same buildings, trees and path while the character walks from the house toward the east road, so the destination is visible before the character reaches it.",
+    "walk B frames 1.4s, 1.8s, 2.3s show a flat dark-grey/black vertical band covering roughly the right fifth of the viewport (a blank or unpainted area at the room edge), plus a stale '-6' damage number hanging beside the player across the cut; walk A has no blank regions in any frame and the frame edges are all painted terrain.",
+    "forest B has real depth: a vignetted canopy with blurred dark tree masses over the ground, a soft ground light gradient, a glowing ring under the player and a lit crossroads path; forest A is a flat, uniform green tile plane with hard-edged trees and no lighting at all, reading as a tile map rather than a place."
+  ],
+  "fixes": [
+    { "what": "Remove the dim placeholder frame on room change: stop fading to a near-black screen with a lone exit label ('Eastern Trail'); instead keep the current room painted and slide/scroll the camera into the next room, or at minimum cross-fade with the new room already rendered and the player sprite present in the first frame.", "file_hint": "src/web_isometric/platformer/scene-topdown.js" },
+    { "what": "Never leave an unpainted band at the viewport edge (the dark strip on the right in frames 1.4s-2.3s): paint the neighbouring room's terrain (or at least canopy/ground fill) past the room boundary so the edge the player is heading to reads as more world, not void.", "file_hint": "src/web_isometric/platformer/world-peek.js" },
+    { "what": "Make the destination visible before arrival: show the adjacent room's path and tree silhouettes beyond the exit so the walk east is a reveal rather than a cut, and clear stale floating damage numbers when the room changes.", "file_hint": "src/web_isometric/platformer/painter.js" }
+  ],
+  "confidence": "medium"
+}

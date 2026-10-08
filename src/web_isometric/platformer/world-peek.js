@@ -45,11 +45,9 @@
     // left, or one painted on a previous visit) is used at once: no flat flash
     const ready = `paint_${room.vnum}`;
     if (scene.textures.exists(ready)) {
-      const img = scene.add.image(ox, oy, ready).setOrigin(0, 0).setDisplaySize(W * T, H * T).setDepth(-8.5).setTint(0x9aa0b4);
+      const img = scene.add.image(ox, oy, ready).setOrigin(0, 0).setDisplaySize(W * T, H * T).setDepth(-8.5).setTint(0xc4c8d4);
       scene.bgLayer.add(img);
       (scene._peekKeys = scene._peekKeys || []).push(ready);
-      const lbl = scene.add.text(ox + W * T / 2, oy + H * T / 2, room.name || '', { fontFamily: 'sans-serif', fontSize: '7px', color: '#d8d0c0', backgroundColor: 'rgba(6,8,12,0.55)', padding: { x: 3, y: 1 } }).setOrigin(0.5).setAlpha(0.85).setDepth(-8);
-      scene.bgLayer.add(lbl);
       return img;
     }
     const g = scene.add.graphics().setDepth(-9);
@@ -60,7 +58,7 @@
       g.fillStyle(col, 1); g.fillRect(ox + x * T, oy + y * T, T, T);
     }
     // distance haze: the next room is seen, not visited
-    g.fillStyle(0x06080c, 0.42); g.fillRect(ox, oy, W * T, H * T);
+    g.fillStyle(0x06080c, 0.22); g.fillRect(ox, oy, W * T, H * T);
     scene.bgLayer.add(g);
     // step 2: the real painterly ground, deferred so the room you are in
     // renders first; one neighbour per tick, dropped if you have moved on
@@ -73,7 +71,7 @@
           const key = MH.painter.paint(scene, layout, layout.theme);
           if (!key) return;
           (scene._peekKeys = scene._peekKeys || []).push(key);
-          const img = scene.add.image(ox, oy, key).setOrigin(0, 0).setDisplaySize(W * T, H * T).setDepth(-8.5).setTint(0x9aa0b4);
+          const img = scene.add.image(ox, oy, key).setOrigin(0, 0).setDisplaySize(W * T, H * T).setDepth(-8.5).setTint(0xc4c8d4);
           scene.bgLayer.add(img);
           g.setVisible(false);
           label.setDepth(-8).setAlpha(0.85);
@@ -81,10 +79,8 @@
       });
       pumpQueue(scene);
     }
-    const label = scene.add.text(ox + W * T / 2, oy + H * T / 2, room.name || '', {
-      fontFamily: 'sans-serif', fontSize: '7px', color: '#d8d0c0', backgroundColor: 'rgba(6,8,12,0.55)', padding: { x: 3, y: 1 },
-    }).setOrigin(0.5).setAlpha(0.8).setDepth(-8);
-    scene.bgLayer.add(label);
+    // no name label: the critic read it as a placeholder; the HUD names the room on arrival
+    const label = { setDepth() { return this; }, setAlpha() { return this; } };
     return g;
   }
 
