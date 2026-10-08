@@ -54,7 +54,7 @@
     mountain: { enclosed: false, vig: 0.24, vigCol: '#101820', pool: '#fff4d0', dapple: false },
     water_swim: { enclosed: false, vig: 0.14, vigCol: '#062838', pool: '#c0f8ff', dapple: false },
     underwater: { enclosed: false, vig: 0.5, vigCol: '#041828', pool: '#a0e8ff', dapple: false },
-    default: { enclosed: false, vig: 0.28, vigCol: '#06100a', pool: '#fff0c0', dapple: true },
+    default: { enclosed: false, vig: 0.22, vigCol: '#06100a', pool: '#fff0c0', dapple: true },   // world-03: one notch lighter, the murk hid the path
   };
 
   // The scene hangs wall torches with this exact walk (decorateWalls); we
@@ -764,10 +764,19 @@
             const r = cell * (0.36 + rng() * 0.2), x = cx0 + jit(0.6), y = cy0 + jit(0.6);
             lobe(x, y, r, mid, lo);
             ctx.lineWidth = SS * 0.9; ctx.lineCap = 'round';
-            ctx.strokeStyle = css(hi, 0.55);
+            ctx.strokeStyle = css(hi, 0.8);
             ctx.beginPath(); ctx.arc(x, y, r * 0.84, 3.5, 5.3); ctx.stroke();
-            ctx.strokeStyle = css(shade(lo, 0.6), 0.7);
+            ctx.strokeStyle = css(shade(lo, 0.6), 0.9);
             ctx.beginPath(); ctx.arc(x, y, r * 0.9, 0.4, 2.3); ctx.stroke();
+          }
+          // a trunk shows under crowns that face open ground to the south, so
+          // a tree reads as a tree (world-03 critic: "no visible trunks")
+          if (!dead && at(b[0], b[1] + 1) === FLOOR && rng() < 0.7) {
+            ctx.strokeStyle = 'rgba(46,30,18,0.95)'; ctx.lineWidth = SS * 1.6; ctx.lineCap = 'round';
+            const tx = cx0 + jit(0.2), ty = cy0 + cell * 0.55;
+            ctx.beginPath(); ctx.moveTo(tx, ty - cell * 0.25); ctx.lineTo(tx, ty); ctx.stroke();
+            ctx.strokeStyle = 'rgba(120,88,58,0.6)'; ctx.lineWidth = SS * 0.6;
+            ctx.beginPath(); ctx.moveTo(tx - SS * 0.5, ty - cell * 0.22); ctx.lineTo(tx - SS * 0.5, ty - SS); ctx.stroke();
           }
         }
         // 3) sunlit tops, leaf dabs, dark gaps, dead branches

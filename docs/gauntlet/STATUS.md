@@ -77,6 +77,9 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   frame; reference re-filmed with real stamps). Open notes from the win: un-painted neighbour
   flat fill can reach the screen (paint ahead first), haze step at the outer ring (feather),
   canopy crispness, vignette one notch lighter. Confidence low; see the caveats in the record.
+  All four notes acted on without a round: peek queue pumps at 40 ms (nearest first), outer-ring
+  haze is 0xe2e5ec / 0.10 instead of 0xc4c8d4 / 0.22, crowns get trunks on their open south side
+  and stronger rims, outdoor vignette 0.28 → 0.22 (`scratch/round-5` local evidence).
 - NEXT (architectural, the biggest remaining item): the full stitched-zone renderer. Build the whole
   zone as one tilemap from `/atlas` coordinates (each room = its deterministic layout placed at
   x*W, y*H; corridors drawn for non-adjacent exits), paint per room into one big canvas on idle,

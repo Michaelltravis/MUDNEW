@@ -47,8 +47,8 @@
     (scene._peekOffsets = scene._peekOffsets || {})[room.vnum] = { ox, oy, layout };   // for far entities
     // adjacent rooms are the same ground you are standing on: no tint, no seam;
     // only the outer ring recedes into haze
-    const HAZE = dist > 1 ? 0xc4c8d4 : 0xffffff;
-    const hazeTween = (obj) => { if (dist > 1) scene.tweens.addCounter({ from: 0, to: 1, duration: 900, delay: 700, onUpdate: t => { const v = t.getValue(); const c = Math.round(0xff - (0xff - 0xc4) * v), c2 = Math.round(0xff - (0xff - 0xc8) * v), c3 = Math.round(0xff - (0xff - 0xd4) * v); if (obj.active) obj.setTint((c << 16) | (c2 << 8) | c3); } }); };
+    const HAZE = dist > 1 ? 0xe2e5ec : 0xffffff;   // outer ring: a whisper, not a step
+    const hazeTween = (obj) => { if (dist > 1) scene.tweens.addCounter({ from: 0, to: 1, duration: 900, delay: 700, onUpdate: t => { const v = t.getValue(); const c = Math.round(0xff - (0xff - 0xe2) * v), c2 = Math.round(0xff - (0xff - 0xe5) * v), c3 = Math.round(0xff - (0xff - 0xec) * v); if (obj.active) obj.setTint((c << 16) | (c2 << 8) | c3); } }); };
     // walls, props and furniture: a cached static snapshot is parked at the
     // offset at once; an unvisited room is pre-rendered in the deferred queue
     const parkStatic = (rt, bright) => {
@@ -90,7 +90,7 @@
       g.fillStyle(col, 1); g.fillRect(ox + x * T, oy + y * T, T, T);
     }
     // distance haze: the next room is seen, not visited
-    if (dist > 1) { g.fillStyle(0x06080c, 0.22); g.fillRect(ox, oy, W * T, H * T); }
+    if (dist > 1) { g.fillStyle(0x06080c, 0.10); g.fillRect(ox, oy, W * T, H * T); }
     scene.bgLayer.add(g);
     // step 2: the real painterly ground, deferred so the room you are in
     // renders first; one neighbour per tick, dropped if you have moved on
@@ -124,9 +124,9 @@
       const job = scene._peekQueue && scene._peekQueue.shift();
       if (!job) { scene._peekPumping = false; return; }
       try { job(); } catch (_) {}
-      setTimeout(step, 120);
+      setTimeout(step, 40);
     };
-    setTimeout(step, 60);
+    setTimeout(step, 20);
   }
 
   // called from buildRoom once the real room is painted: stitched-zone step 1.
