@@ -191,10 +191,13 @@ should mean. Two things this surfaced for the human:
 1. **Hit-dice variance.** Two level-10 warriors forged the same way rolled **53** and **85** max HP.
    A 60% cap is 31 for one and 51 for the other; the same "Moderate" mage is a fair fight for one
    and a coin-flip for the other. Level-up HP rolls (`player.level_up`, `random.randint(1,
-   hit_dice)`) are the widest variance in the whole progression record.
+   hit_dice)`) are the widest variance in the whole progression record. **Set**: the per-level
+   roll now starts at half the hit die; three warriors forged and advanced to level 10 afterwards
+   read 93, 95 and 110 max HP (before: 53, 73, 78, 82, 85 across the ladder runs).
 2. The L12 "Moderate" mage still killed each warrior once in two tries; "Moderate" for a caster
    two levels up is optimistic. Either the `consider` tiers should weigh caster roles up a step,
-   or the cap should be lower for "Moderate" gaps. Left as a dial.
+   or the cap should be lower for "Moderate" gaps. **Set**: `consider` weighs a caster one level
+   step up, so that mage now reads "Challenging" to a level-10 character.
 
 ## Not a gauntlet piece
 There is no BrowserQuest reference for progression (it has no levels). This record is the

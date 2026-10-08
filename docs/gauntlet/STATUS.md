@@ -189,7 +189,8 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   fireball (82–90 on 73–82 HP) is gone: non-boss caster spells are mitigated like heavy blows
   and capped at 60% of max HP (caster v3: deaths 3/6 and 3/5, all from accumulation against
   Challenging/Dangerous targets). Two dials it surfaced are now set: level-up HP rolls are
-  floored at half the hit die (two level-10 warriors had rolled 53 and 85 max HP), and
+  floored at half the hit die (two level-10 warriors had rolled 53 and 85 max HP; three forged
+  afterwards read 93, 95, 110), and
   `consider` weighs a caster one level step up (a "Moderate" L12 mage had killed each L10
   warrior once in two).
 - **onboard-01 (critic only, fresh level-1 character through the live wizard vs BrowserQuest's
