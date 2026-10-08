@@ -133,8 +133,13 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   the recolour pixel pass shared with the Phaser bake), plays the attack on hover, and states the
   one-line fantasy and the three starting buttons (attack · flee · first kit ability). Verified
   through the live wizard (`scratch/create/class-step.png`, local).
-- Next (onboarding): nothing blocking; a critic round on "first ten minutes" would be the honest
-  test, with a fresh level-1 character and the Guide driving.
+- **onboard-01 (critic only, fresh level-1 character through the live wizard vs BrowserQuest's
+  intro): round 1 WIN overall (start WIN, first LOSS: dimmed wall-of-text modal); round 2 WIN on
+  both** after the welcome became a three-line corner card over an undimmed world with the keybind
+  table behind "Controls" (`docs/gauntlet/onboard-01/round-2/verdicts.md`). Tool:
+  `tools/gauntlet/capture-onboard.js`. Open notes: one teaching surface at a time (hint toast and
+  daily chip now deferred while the welcome is up), bigger picker sprites / preview pane, larger
+  body text, stronger selected state.
 
 Credit discipline: one piece, one round.
 

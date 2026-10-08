@@ -3969,7 +3969,9 @@
         setTimeout(async () => {
           try {
             const a = await (await fetch(`/almanac?player=${encodeURIComponent(MH.state.playerName)}`)).json();
-            if (a.daily && !a.daily.claimed_today) toast('🌟 Daily reward ready', 'Click to claim · streak ' + a.daily.streak, 'daily', () => openAlmanac('daily'));
+            // onboard-01: a newcomer's first screen has one teaching surface — the daily chip waits
+            const fresh = (MH.state.player && (MH.state.player.level || 1) <= 2) || els.welcomeOverlay.classList.contains('show');
+            if (a.daily && !a.daily.claimed_today && !fresh) toast('🌟 Daily reward ready', 'Click to claim · streak ' + a.daily.streak, 'daily', () => openAlmanac('daily'));
           } catch (_) {}
         }, 2500);
       });
@@ -4218,6 +4220,7 @@
       MH.bus.on('map', () => {
         const p = MH.state.player;
         if (hintsShown || !p || (p.level || 99) > 2 || lsGet('misthollow_hints_done')) return;
+        if (els.welcomeOverlay.classList.contains('show')) return;   // the welcome card is the one teaching surface right now; hints follow it
         hintsShown = true;
         lsSet('misthollow_hints_done', '1');
         const hints = [
