@@ -53,11 +53,10 @@ thief (14 HP at level 1 — a low CON roll) died to the first fights outright. T
    wins 12 of 12 with no deaths and the thief 11 of 12 with one — **two runs per class now, nine of
    nine reaching level 5 in 1.5–5.4 minutes, with the only deaths being the keyword trap, one
    level-1 crawler fight on a 14-HP thief, and single late-ladder losses.**
-2. For the human: the Newbie Zone's shared keyword is a trap the tutorial walks newcomers into
-   ("Defeat 3 creatures in the Newbie Zone"). Distinct names (e.g. "newbie wanderer" L1-2,
-   "newbie brute" L4-5), or keeping the L4-5 ones out of the entrance corridors, would remove
-   it. Also: a level-1 thief or bard can start with 14 HP; a starting-HP floor is the same
-   dial as the hit-dice floor, one level earlier.
+2. **Set**: the level-4 and level-5 creatures are now a zombie, a wanderer and a veteran
+   (`world/zones/zone_186.json`), so `kill newbie` only ever draws a level 1–3 creature; and
+   starting HP is floored at 16 (`player.py`) so a level-1 bard or thief no longer begins on
+   13–14 HP from a CON roll.
 
 ## Caveats
 - One run per class, one route; RNG on a single fight can still kill a level-1 character (run C
