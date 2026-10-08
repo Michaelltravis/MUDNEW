@@ -44,6 +44,16 @@ LADDER = [
 TELEGRAPH = re.compile(r'\(brace or sidestep', re.I)
 # boss tier: the lowest bosses in the world, loaded into their lairs — the fights where brace alone
 # should not be enough (declared boss abilities: interruptible casts, sweeping AoE)
+# caster tier: mobs the AI classifies as casters declare spells with "(interrupt it!)" — the only
+# ladder where `interrupt` can be measured (the two low bosses never cast)
+CASTERS = [
+    ('mage (L10)', [(2513, 'mage', 2504)]),
+    ('mage (L12)', [(2537, 'mage', 2514)]),
+    ('mage (L13, aggressive)', [(4114, 'mage', 4100)]),
+    ('mage (L12) again', [(2537, 'mage', 2514)]),
+    ('wizard (L15, aggressive)', [(6259, 'wizard', 6210)]),
+    ('mage (L13) again', [(4114, 'mage', 4100)]),
+]
 BOSSES = [
     ('spider queen (boss L12)', [(20008, 'queen', 20007)]),
     ('spider queen again', [(20008, 'queen', 20007)]),
@@ -164,7 +174,7 @@ def fight(adm, c, name, cands, max_s, out_path, smart=True, opener='bash', pro=F
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument('--run', default='progression-01')
     ap.add_argument('--name', default='NewYzxgo'); ap.add_argument('--password', default='newcomer1')
-    ap.add_argument('--admin', default='Gauntletb'); ap.add_argument('--admin-password', default='gauntlet1'); ap.add_argument('--max', type=int, default=90); ap.add_argument('--dumb', action='store_true', help='auto-attack only (no bash, no brace)'); ap.add_argument('--open', default='bash', help="the class's button-3 command used as the opener, e.g. \"cast 'magic missile'\""); ap.add_argument('--out', default=None, help='output dir (default docs/gauntlet/<run>)'); ap.add_argument('--ladder', default='newcomer', choices=['newcomer', 'mastery', 'boss']); ap.add_argument('--pro', action='store_true', help='mastery play: perfect strikes (swing in the round\'s last stretch), sidestep/interrupt on prompts, alternate a second ability'); ap.add_argument('--second', default='cleave'); ap.add_argument('--advance', type=int, default=0, help='escort advances the character to this level first (mastery runs on a fresh character)')
+    ap.add_argument('--admin', default='Gauntletb'); ap.add_argument('--admin-password', default='gauntlet1'); ap.add_argument('--max', type=int, default=90); ap.add_argument('--dumb', action='store_true', help='auto-attack only (no bash, no brace)'); ap.add_argument('--open', default='bash', help="the class's button-3 command used as the opener, e.g. \"cast 'magic missile'\""); ap.add_argument('--out', default=None, help='output dir (default docs/gauntlet/<run>)'); ap.add_argument('--ladder', default='newcomer', choices=['newcomer', 'mastery', 'boss', 'caster']); ap.add_argument('--pro', action='store_true', help='mastery play: perfect strikes (swing in the round\'s last stretch), sidestep/interrupt on prompts, alternate a second ability'); ap.add_argument('--second', default='cleave'); ap.add_argument('--advance', type=int, default=0, help='escort advances the character to this level first (mastery runs on a fresh character)')
     a = ap.parse_args()
     out_dir = a.out or os.path.join(ROOT, 'docs', 'gauntlet', a.run); os.makedirs(os.path.join(out_dir, 'fights'), exist_ok=True)
     adm = MUDClient('localhost', 4000); login(adm, a.admin, a.admin_password)
@@ -173,7 +183,7 @@ def main():
     if a.advance: adm.send_and_receive(f'advance {a.name} {a.advance}', 1.5); c.receive(2.0)
     adm.send_and_receive(f'restore {a.name}', 0.8)
     start = score(c); t_start = time.time(); fights = []; rests = []; deaths = 0; level_times = {}
-    steps = {'mastery': MASTERY, 'boss': BOSSES}.get(a.ladder, LADDER)
+    steps = {'mastery': MASTERY, 'boss': BOSSES, 'caster': CASTERS}.get(a.ladder, LADDER)
     for i, (label, cands) in enumerate(steps, 1):
         f = fight(adm, c, a.name, cands, a.max, os.path.join(out_dir, 'fights', f'{i:02d}_{cands[0][1]}.txt'), smart=not a.dumb, opener=a.open, pro=a.pro, second=a.second)
         f['label'] = label; f['t_elapsed_s'] = round(time.time() - t_start, 1)
