@@ -160,6 +160,29 @@ to level 10 (spider queen L12 "Moderate", alpha wolf L14 "Even/Challenging", eac
   still unmeasured. A boss that actually casts (zone 200's higher bosses, or any `caster` role
   elite) is the next ladder if the human wants the interrupt mechanic proven.
 
+### Caster tier (`caster-v1/{three,pro}/`, `caster-v2/pro/`)
+Six mid-level casters (mages L10–13, a wizard L15) loaded into their rooms, fresh level-10
+warriors. The casters declare their spells with "(interrupt it!)" — the only ladder where
+`interrupt` can be measured.
+
+| play | deaths | what happened |
+|---|---|---|
+| three buttons (cannot interrupt) | 5 of 6 | fireballs land for 27–42 a hit on 75 HP |
+| reaction layer, interrupt at the old 35% | 4 of 5 | prompted interrupts failed **3 of 3**; a L12 mage's fireball hit for **82** on a 73-HP warrior — dead from 60/73 |
+| reaction layer, interrupt at 70% + kick/4 (`cmd_interrupt`, changed) | 2 of 5 | 2 interrupts landed, 2 failed; the two deaths were a **90** fireball from 50/82 and the L15 wizard ("Dangerous", expected) |
+
+What this says:
+- **Interrupt now matters**: with a reliable answer to the prompt, the warrior wins the L12 and
+  L13 mages it died to before. That completes the mastery picture: brace for heavy blows,
+  sidestep for the riposte, interrupt for casts, perfect strikes for kill speed — each measured
+  in the tier where it bites.
+- **The remaining cliff is the mob fireball itself**: 82–90 damage from a "Moderate" level-12
+  caster against a level-10 warrior's 73–82 HP is a one-shot from above half health. No
+  reaction mechanic should have to carry that; it is a caster-spell scaling dial
+  (`_cast_offensive` in `mob_ai.py`) and it is left for the human.
+- Interrupt's 8 s cooldown after a failure means a second cast in the same fight cannot be
+  answered; at 70% that is now the main way a caster fight is lost.
+
 ## Not a gauntlet piece
 There is no BrowserQuest reference for progression (it has no levels). This record is the
 measurement itself; a future round can re-run `curve.py` after retuning and compare the table.

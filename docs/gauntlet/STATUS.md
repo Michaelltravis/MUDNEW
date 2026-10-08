@@ -181,8 +181,12 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   its worth. **Boss tier measured** (`boss-v1/`, level-10 warriors vs the spider queen L12 and
   alpha wolf L14): auto-attack dies twice, both reaction styles survive, and the perfect-strike
   player is the only one to finish every boss (three-button play timed out on the second wolf) —
-  the deeper layer's first measured edge, on kill speed. Neither boss declared an interruptible
-  cast, so `interrupt` is still unproven; a casting boss is the next ladder if wanted.
+  the deeper layer's first measured edge, on kill speed. **Caster tier measured** (`caster-v1/`,
+  `caster-v2/`): the two buttons die 5 of 6 times to mid-level mages; the reaction layer died
+  4 of 5 at the old 35% interrupt (3 of 3 prompted interrupts failed, then an 82-point fireball
+  one-shot a 73-HP warrior) and 2 of 5 after `interrupt` was made to answer a declared cast at
+  70% + kick/4. Every mastery mechanic now has a tier where it is measured to bite. The open
+  balance dial: a "Moderate" level-12 mob fireball doing 82–90 to a level-10 warrior's 73–82 HP.
 - **onboard-01 (critic only, fresh level-1 character through the live wizard vs BrowserQuest's
   intro): round 1 WIN overall (start WIN, first LOSS: dimmed wall-of-text modal); round 2 WIN on
   both** after the welcome became a three-line corner card over an undimmed world with the keybind
