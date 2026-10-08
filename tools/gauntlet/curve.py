@@ -107,14 +107,15 @@ def fight(adm, c, name, cands, max_s, out_path, smart=True, opener='bash', pro=F
     for cand in cands:
         v, k = cand[0], cand[1]; mob_vnum = cand[2] if len(cand) > 2 else None; count = cand[3] if len(cand) > 3 else 1
         adm.send_and_receive(f'goto {v}', 1.0); adm.send_and_receive('zreset', 1.2)
-        if mob_vnum:
-            # the escort guarantees the fight: load the creature(s) if the room is empty of them
-            look = strip(adm.send_and_receive('look', 1.0))
-            present = len(re.findall(re.escape(k), look, re.I))
-            for _ in range(max(0, count - present)): adm.send_and_receive(f'mload {mob_vnum}', 0.8)
         adm.send_and_receive(f'transfer {name}', 1.0)
         c.receive(1.0)
         consider = strip(c.send_and_receive(f'consider {k}', 1.0))
+        if "don't see" in consider and mob_vnum:
+            # the escort guarantees the fight: load the creature(s) when the newcomer cannot
+            # see one (a `look` word-count was fooled by room names like "The Newbie Zone")
+            for _ in range(count): adm.send_and_receive(f'mload {mob_vnum}', 0.8)
+            c.receive(0.8)
+            consider = strip(c.send_and_receive(f'consider {k}', 1.0))
         if "don't see" not in consider: vnum, kw = v, k; break
     if vnum is None:
         return {'vnum': cands[0][0], 'target': cands[0][1], 'threat': 'absent (every candidate wandered off)', 'ended': 'absent', 'duration_s': 0, 'rounds': 0,
