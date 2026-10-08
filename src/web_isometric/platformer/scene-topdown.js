@@ -760,6 +760,10 @@
       const { BLOCK, WATER } = TD();
       const saved = {};
       for (const k of ['tileLayer', 'bgLayer', 'occluders', '_objCells', 'lightSources', 'featureZones', 'exitZones', 'reactiveProps', 'critters', 'kitTiles']) saved[k] = this[k];
+      // anything a pass adds straight to the scene root (glows, washes, lights)
+      // would stay behind over the LIVE room at local coordinates: remember the
+      // display list and sweep every newcomer afterwards
+      const before = new Set(this.children.list);
       const tmpT = this.add.layer().setVisible(false), tmpB = this.add.layer().setVisible(false);
       this.tileLayer = tmpT; this.bgLayer = tmpB; this.occluders = []; this._objCells = new Set();
       this.lightSources = []; this.featureZones = []; this.exitZones = []; this.reactiveProps = []; this.critters = []; this.kitTiles = [];
@@ -790,6 +794,7 @@
       try { this.occluders.forEach(o => o.destroy()); } catch (_) {}
       try { this.reactiveProps.forEach(p => p.img && p.img.destroy && p.img.destroy()); } catch (_) {}
       tmpT.removeAll(true); tmpB.removeAll(true); tmpT.destroy(); tmpB.destroy();
+      for (const o of this.children.list.slice()) { if (!before.has(o) && o !== rt) { try { this.tweens.killTweensOf(o); o.destroy(); } catch (_) {} } }
       Object.assign(this, saved);
       return rt ? this._storeStaticRT(layout.vnum, rt) : null;
     }

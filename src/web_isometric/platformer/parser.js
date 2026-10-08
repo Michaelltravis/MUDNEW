@@ -89,6 +89,7 @@
       MH.refreshState();
       return;
     }
+    if (/^(Quest accepted:|Objective complete!|Quest Completed:|.*QUEST COMPLETE:)/.test(line)) { bus.emit('quest.update', { line }); }   // falls through: the line still reaches the feed
     if (LEVEL_UP.test(line)) { bus.emit('level.up', { line }); MH.refreshState(); return; }
     if (MOVE_BLOCKED.test(line)) { bus.emit('move.blocked', { line }); return; }
     if (POSTURE_BLOCK.test(line)) {

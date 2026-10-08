@@ -2708,6 +2708,89 @@
     if (walkTargetVnum != null) { walkTargetVnum = null; renderMinimap(); }
   }
 
+  // ---- the Guide (easy to start): tracks the quest you are on and turns its
+  // current objective into one hint and one button. Tutorial quests first,
+  // then whatever is active. Data is the same /quests the journal uses;
+  // refreshed on room change, on quest lines in the feed, and on a slow poll.
+  let guideQuestId = null, guideDismissedId = null, guideTimer = null, guideBusy = false;
+  const G_DIR = { north: 'north ↑', south: 'south ↓', east: 'east →', west: 'west ←', up: 'up', down: 'down' };
+  const DIRW = d => G_DIR[d] || d;
+  function guideObjectivePlan(o) {
+    const cur = MH.state.lastPayload && MH.state.lastPayload.player && MH.state.lastPayload.player.vnum;
+    const desc = o.description || '';
+    if (o.type === 'visit' && o.target != null) {
+      const tv = Number(o.target);
+      const dirs = cur != null ? bfsPath(cur, tv) : null;
+      if (dirs && dirs.length) return { hint: `Head ${G_DIR[dirs[0]] || dirs[0]} · ${dirs.length} room${dirs.length > 1 ? 's' : ''}`, act: 'Walk there', fn: () => { walkTargetVnum = tv; renderMinimap(); walkStep(); } };
+      if (dirs && !dirs.length) return { hint: 'You are here.', act: null };
+      return { hint: 'Not on your map yet — step off a room edge to travel and explore.', act: null };
+    }
+    if (o.type === 'command' && o.target) {
+      const cmd = String(o.target);
+      return { hint: `Type it, or press the button.`, act: cmd, fn: () => MH.sendCommand(cmd, false) };
+    }
+    if (o.type === 'talk') {
+      const m = desc.match(/(?:speak|talk) (?:with|to) (.+?)(?: at | in | \(|$)/i);
+      const who = m ? m[1].trim() : null;
+      const typed = desc.match(/\(type ["'](.+?)["']\)/i);   // the prose often names the exact command
+      const talkCmd = typed ? typed[1] : (who ? `talk ${MH.mobKeyword(who)}` : null);
+      if (who) {
+        const here = ((MH.state.currentRoom && MH.state.lastPayload && (MH.state.lastPayload.rooms || []).find(r => r.vnum === MH.state.lastPayload.player.vnum)) || {}).mobs || [];
+        const present = here.some(mb => (mb.name || '').toLowerCase().includes(who.toLowerCase().split(' ').pop()));
+        return present
+          ? { hint: `${who} is here — gold ! above their head.`, act: `Talk to ${who}`, fn: () => MH.sendCommand(talkCmd, false) }
+          : (() => {
+            // not here: the map already knows every explored room's people — point the way
+            const last = who.toLowerCase().split(' ').pop();
+            const room = ((MH.state.lastPayload && MH.state.lastPayload.rooms) || []).find(r => (r.mobs || []).some(mb => (mb.name || '').toLowerCase().includes(last)));
+            const dirs = room && cur != null ? bfsPath(cur, room.vnum) : null;
+            if (dirs && dirs.length) return { hint: `${who} is ${DIRW(dirs[0])} · ${dirs.length} room${dirs.length > 1 ? 's' : ''} (${room.name})`, act: 'Walk there', fn: () => { walkTargetVnum = room.vnum; renderMinimap(); walkStep(); } };
+            if (room) return { hint: `${who} is at ${room.name} — not on your map's paths yet; explore toward it.`, act: null };
+            return { hint: `Find ${who}. Friendly folk show a gold ! — click them to talk.`, act: null };
+          })();
+      }
+      return { hint: 'Click a friendly NPC and choose Talk.', act: null };
+    }
+    if (o.type === 'kill') return { hint: 'Hostile creatures glow red — face one and press F.', act: null };
+    return { hint: '', act: null };
+  }
+  function renderGuide(d) {
+    const el = $('guide'); if (!el) return;
+    const active = (d && d.active) || [];
+    const q = active.find(x => /^tutorial_/.test(x.id)) || active[0];
+    if (!q || q.id === guideDismissedId) { el.classList.remove('show'); el.innerHTML = ''; guideQuestId = q ? q.id : null; return; }
+    if (q.id !== guideQuestId) { guideQuestId = q.id; if (/^tutorial_/.test(q.id)) flash(`Guide: ${q.name}`); }
+    const objs = q.objectives || [];
+    const idx = objs.findIndex(o => !o.completed);
+    const o = idx >= 0 ? objs[idx] : null;
+    const plan = o ? guideObjectivePlan(o) : null;
+    const step = objs.length > 1 ? `<span class="g-step">${Math.min(idx < 0 ? objs.length : idx + 1, objs.length)}/${objs.length}</span>` : '';
+    el.innerHTML = `<div class="g-hd">GUIDE <span class="g-q" title="${q.name}">${q.name}</span>${step}<button class="g-x" title="hide for this quest">×</button></div>`
+      + (o ? `<div class="g-obj">○ ${o.description}${o.required > 1 ? ` <span style="color:#9aa2b4">(${o.current}/${o.required})</span>` : ''}</div>`
+           + (plan && plan.hint ? `<div class="g-hint">${plan.hint}</div>` : '')
+           + (plan && plan.act ? `<button class="g-act">${plan.act}</button>` : '')
+         : `<div class="g-obj done">✓ Complete${q.complete ? ' — rewards granted' : ''}</div>`);
+    el.classList.add('show');
+    const x = el.querySelector('.g-x'); if (x) x.addEventListener('click', () => { guideDismissedId = q.id; el.classList.remove('show'); });
+    const b = el.querySelector('.g-act'); if (b && plan && plan.fn) b.addEventListener('click', () => { plan.fn(); setTimeout(refreshGuide, 1200); });
+  }
+  async function refreshGuide() {
+    if (guideBusy || !MH.state.playerName) return;
+    guideBusy = true;
+    try { renderGuide(await (await fetch(`/quests?player=${encodeURIComponent(MH.state.playerName)}`)).json()); }
+    catch (_) {}
+    guideBusy = false;
+  }
+  function startGuide() {
+    if (guideTimer) return;
+    refreshGuide();
+    guideTimer = setInterval(refreshGuide, 15000);
+    MH.bus.on('room.entered', () => setTimeout(refreshGuide, 400));
+    MH.bus.on('quest.update', () => setTimeout(refreshGuide, 600));
+    MH.bus.on('combat.state', on => { if (!on) setTimeout(refreshGuide, 800); });
+    MH.bus.on('level.up', () => setTimeout(refreshGuide, 800));
+  }
+
   function minimapClick(e) {
     const payload = MH.state.lastPayload;
     if (!payload || !payload.player) return;
@@ -4086,6 +4169,7 @@
         els.welcomeOverlay.classList.remove('show'); lsSet('mh_welcome_seen', '1'); setWorldInput(true);
       });
       MH.bus.on('map', payload => maybeWelcome(payload.player));
+      MH.bus.once ? MH.bus.once('map', startGuide) : MH.bus.on('map', startGuide);
       MH.bus.on('combat.update', () => { updateHud(MH.state.player); updateVignette(); });
       MH.bus.on('room.entered', () => { walkStep(); hideMobTip(); renderCompass(); });
       // gentle onboarding for first-timers

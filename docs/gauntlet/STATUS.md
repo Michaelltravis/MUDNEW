@@ -119,7 +119,16 @@ read this file, `docs/art/SOURCES.md`, then the plan.
   level 10, full bar after; unlock flash on tier change (`ui.js` autofillBar).
 - Class-specific welcome card: class fantasy line, the three starting buttons, and how to group.
   Evidence: `docs/gauntlet/multiplayer/newbie_welcome.png`.
-- Next: first-10-minutes scripted prompts on the tutorial chain; class picker with ability preview.
+- The Guide (built): a WoW-style objective tracker (`#guide`, top-left) for the quest you are on —
+  tutorial quests first, then any active quest. It turns the current objective into one hint and
+  one button from the same `/quests` data the journal uses: visit → "Head north ↑ · 3 rooms" +
+  Walk there (minimap auto-walk); command → the command as a button; talk → "Talk to X" when
+  X is in the room, else the room X is in with a Walk there if a path is known; kill → the F
+  hint. Refreshes on room change, on quest lines in the feed (`quest.update` from the parser),
+  on combat end, level-up, and a 15 s poll. Verified end to end with the tutorial chain
+  (`scratch/guide/*.png`, local). Found and fixed on the way: `prerenderStatic` leaked root-level
+  glows/washes over the live room (now sweeps every display-list newcomer).
+- Next: class picker with ability preview.
 
 Credit discipline: one piece, one round.
 
